@@ -2,526 +2,357 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCE1B4A4D1D
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 18:25:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E6C84A4D25
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 18:25:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381008AbiAaRZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 12:25:39 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:45674 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380917AbiAaRZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 12:25:12 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1F14060F8A;
-        Mon, 31 Jan 2022 17:25:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85785C340F0;
-        Mon, 31 Jan 2022 17:25:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643649910;
-        bh=nPEjBRXdNzJXnjxJpmZvEAHmB5XNHQExUL9DWceCG/g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HYEf6MTUz5T1TYyB7XLVEkniNo8tV3ymo6lP16pjyRRHJgOzFGYW6M9XfLvlPaACq
-         Ma/IuTu/LhnENpXWd11jNdwbfdRsFdI8yf/3cbzgThsJUBNRlX1VQPr74sDbR3x4t7
-         ZOmlSPhWwpk6+vDjgRUAQnmB06QXnsTRvWwtEcgB8nSMj+vbc1SGl9XBewKVhCWJDo
-         3AI+0dHlW1ziV/bZQOZz8CCkK8o/vR/gor/4v5k+Jf85yhQx4Eje1ztyZEYcUQKySh
-         cq8QQNh3BqIzQ9TrGmZa9kruChaQDNZJ5HKI3r980OX5hHXTS5lT3GEzDKz1LYiXOU
-         eN0TRBG35p6fg==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        David Collins <quic_collinsd@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Dai <daidavid1@codeaurora.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH 3/3] spmi: pmic-arb: Add support for PMIC v7
-Date:   Mon, 31 Jan 2022 22:54:50 +0530
-Message-Id: <20220131172450.2528065-4-vkoul@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220131172450.2528065-1-vkoul@kernel.org>
-References: <20220131172450.2528065-1-vkoul@kernel.org>
+        id S1380982AbiAaRZp convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 31 Jan 2022 12:25:45 -0500
+Received: from mout.kundenserver.de ([212.227.17.13]:54573 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1380905AbiAaRZe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 12:25:34 -0500
+Received: from [192.168.1.107] ([37.4.249.169]) by mrelayeu.kundenserver.de
+ (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MbjBo-1meyE31UCs-00dEaD; Mon, 31 Jan 2022 18:25:13 +0100
+Subject: Re: [PATCH RFC 1/4] brcmfmac: use separate firmware for 43430
+ revision 4
+To:     Arend Van Spriel <arend.vanspriel@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
+        Kalle Valo <kvalo@kernel.org>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        Mikhail Rudenko <mike.rudenko@gmail.com>
+References: <1641068812-5851-1-git-send-email-stefan.wahren@i2se.com>
+ <1641068812-5851-2-git-send-email-stefan.wahren@i2se.com>
+ <8ed4450d-85d9-c69b-761a-7695b3f1bbb3@i2se.com>
+ <dff5f86f-d6a5-f197-3c90-3b77d06991ce@broadcom.com>
+ <aa3c8cfc-39bf-22e4-cb98-c19c14e7d8bc@i2se.com>
+ <17eab0f59a8.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+Autocrypt: addr=stefan.wahren@i2se.com; keydata=
+ LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tClZlcnNpb246IEdudVBHIHYy
+ CgptUUlOQkZ0NmdCTUJFQUN1Yi9wQmV2SHhidkplZnlaRzMySklObW4yYnNFUFgyNVY2ZmVq
+ bXlZd21DR0tqRnRMCi9Eb1VNRVZIRHhDSjQ3Qk1YbzM0NGZIVjFDM0FudWRnTjFCZWhMb0J0
+ TEh4bW5lQ3pnSDNLY1B0V1c3cHRqNEcKdEp2OUNRRFp5MjdTS29FUHh5YUk4Q0YweWdSeEpj
+ NzJNOUk5d21zUFo1YlVIc0x1WVdNcVE3SmNSbVBzNkQ4ZwpCa2srOC95bmdFeU5FeHd4SnBS
+ MXlsajVianhXREh5WVF2dUo1THpaS3VPOUxCM2xYVnNjNGJxWEVqYzZWRnVaCkZDQ2svc3lp
+ by9ZaHNlOE4rUXN4N01RYWd6NHdLVWtRUWJmWGcxVnFrVG5BaXZYczQyVm5Ja211NWd6SXcv
+ MHQKUkp2NTBGUmhIaHhweUtBSThCOG5oTjhRdng3TVZrUGM1dkRmZDN1R1lXNDdKUGhWUUJj
+ VXdKd05rLzQ5RjllQQp2ZzJtdE1QRm5GT1JrV1VSdlArRzZGSmZtNitDdk92N1lmUDF1ZXdB
+ aTRsbitKTzFnK2dqVklXbC9XSnB5MG5UCmlwZGZlSDlkSGtnU2lmUXVuWWN1Y2lzTXlvUmJG
+ OTU1dENna0VZOUVNRWRZMXQ4aUdEaUNnWDZzNTBMSGJpM2sKNDUzdWFjcHhmUVhTYUF3UGtz
+ bDhNa0NPc3YyZUVyNElOQ0hZUUR5WmljbEJ1dUNnOEVOYlI2QUdWdFpTUGNRYgplbnpTektS
+ Wm9POUNhcUlEK2ZhdkxpQi9kaHptSEErOWJnSWhtWGZ2WFJMRFp6ZThwbzFkeXQzRTFzaFhp
+ ZGRaClBBOE51SlZ6RUl0MmxtSTZWOHBaRHBuMjIxcmZLaml2UlFpYW9zNTRUZ1pqak1ZSTdu
+ bko3ZTZ4endBUkFRQUIKdENCVGRHVm1ZVzRnVjJGb2NtVnVJRHgzWVdoeVpXNXpkRUJuYlhn
+ dWJtVjBQb2tDTndRVEFRZ0FJUVVDWElkYwo0Z0liQXdVTENRZ0hBZ1lWQ0FrS0N3SUVGZ0lE
+ QVFJZUFRSVhnQUFLQ1JDVWdld1BFWkR5MjFPVEQvOUdpWkxkCnRSWWNteVJKZ2x0aVFRekFp
+ UWRjSUQ3OGxHb1dwL3grci92Y1U2YjZqdVl1ZVR3Z1Iwclc3djdsMklSQnlEN24KSEp4YSt0
+ SVNvUVpCZ2hvbE1JZmI5TXRoR09KTENZNzdrL1FoQWhuMzJOR1prZWp3OXR6a3MvNDBtclpT
+ VVQ4NApaeWJzUVhyTE0vSFI2VElJL0RlUEIwbktEM0ppcHBzMlVIUUQ5cUQySWpFd1NRUGxI
+ akNPckVaaDQ1UFo3bTkrClo5M0x6aVRlc1dabFlRdUxpSndzNHJLcHRIVzFkL3dSZWxzaG1t
+ NlFxY0wybDRDL2U0MGVEQjlncTRkU1poOVgKUEVZbGxpeU5RaDdhMkxTZHVtRTFyK2NTd0lq
+ RS91ZHRSdmRPOWFLb0psT2JVSzVkTmpTUEg3d0tUYndkWGRZRApHUHdEaFhkNThOQXdyK1BY
+ QmxQajB0STFMQ3ErTEJ4ZUt6aFdYK0dWcTlEb2pWanlVREV4Rk5Ga1h1b0M3ZzhtClY5VDB0
+ ZUJpdVpSbm91WEt3VjJGcHRaT0hIN0JVRVd0a0t0aGgxZXRmT1dwaWdCemtVN2JQc2ZJWVQr
+ cnk5dGIKMW9KK3Y0MVBOYXFaRW1QVXBKeHZmek5UN3Ayd01lRDdaajlmMHJ1YlJQdExBSjJR
+ R2pyRkhzdVh3QU9xcHl6ZQoxOEVidHNZazBOMHp1SEVoY2orUEJJQmZoMFlJWWQ1MW9mNkdJ
+ aU95UjlxMFhYdHBsVUo3VDIvSDF1UXFrWGxwCitnVzRWa2lmc2NJckl1eWZueFpXMTJlSXZq
+ NnlicVdMN2FZS0dZbVQ2aUxDUGJIWXlZY2F5bDRFa0ZjckNGN0UKZTBXVC9zY1ZNaE8vNVgv
+ SGFOQTVIQngvcjUycGdMY3Y0aTlNeExRbVUzUmxabUZ1SUZkaGFISmxiaUE4YzNSbApabUZ1
+ TG5kaGFISmxia0JwTW5ObExtTnZiVDZKQWpnRUV3RUNBQ0lGQWx0NmdCTUNHd01HQ3drSUJ3
+ TUNCaFVJCkFna0tDd1FXQWdNQkFoNEJBaGVBQUFvSkVKU0I3QThSa1BMYmpic1AvamdqYVNz
+ NUh0bGtBSXZXUytGcm15N2MKaG5jT0F4TFRWL0Q2UkV3SU95R0poRkt3d29pck55UTJnOXZV
+ YTNZQ1lDZjFmSjh3RWhhS09COWQwTHBNUm5MNApkRVQ4ZDgyMzhFL3BLK0hxTktpSXNKaHM2
+ SnNLOFpnalZRR3JtbWZua0dyWisxdjBIQnV4ZGljZ0duUC9XdHVBClVsOGw2Mi9BTGJheXlq
+ KzYxQ2xyc0V0UklhcU82N0xJWXdQaVBEUkkrWGlNek5pR3pIRi8xUTZHUjAyUkg2YTMKRjg5
+ ejhhUHhjSGkxWnZDdDJ5a3o2VUVjaHpQMHI1Z3FGSisvTC9VcHU4ME1YaVk0djVlSWFCNTJn
+ VlBnaXlNQQpsTDJkRHMxbUladm5yUkxSWTJ0YjNtQVlOa1Y1QjVJRFQzcGtXeTZrS281T0Nn
+ SytZZFlPUjhGTloyb04ydDhPCnJLK1ZudGFLN01NU0tIbG1ZL3NPd3RSbEVoMU9CbXJjQ3dH
+ d21wLzA1R2tSNDZmL0lzaFJWZUZPUmF3K0dBcXQKUDIrQ0ZhMkNOQS9JSG5aTm95aWtsRHpQ
+ UUhVVUdzck5wcERyaFg5Sm1oQm1nMXYyeXdIMU5YdTFpRGZQMUJBdwpLZ29rdDVmNVVhUkY5
+ c0FBNTN2V0V2YlVVTjllZXNGR0x6UFdkSkdRNWhwZC9WSDVJUXk5U0JyaC93SWNla3E1Cm4w
+ a042cGJUSHhHRTUyU2kvTVZJa05UdURaM2FwbjJqbERaNHBPdHBCWEkydlAzYlBPK05pcUJa
+ anNVM3R4TGkKV2R2MkZqeXp6NlhMUndlV1JZVkw1SGE2TER0eG9yMnZ1NlVQMDdwOXh6MXhS
+ WmFPRFczb1lsSEZ6WXBhNFc1ZwpMSGIybEVrSXVVZlNjaWNHYmpqQXRDbFRkR1ZtWVc0Z1Yy
+ Rm9jbVZ1SUR4emRHVm1ZVzR1ZDJGb2NtVnVRR2x1CkxYUmxZMmd1WTI5dFBva0NOd1FUQVFn
+ QUlRVUNYSWRlaHdJYkF3VUxDUWdIQWdZVkNBa0tDd0lFRmdJREFRSWUKQVFJWGdBQUtDUkNV
+ Z2V3UEVaRHkyeUhURC85VUY3UWxEa0d4elE3QWFDSTZOOTVpUWY4LzFvU1VhRE51Mlk2SQpL
+ K0R6UXBiMVRiVE9yM1ZKd3dZOGEzT1d6NU5MU09MTVdlVnh0K29zTW1sUUlHdWJEM09EWko4
+ aXpQbEcvSnJOCnQ1elNkbU41SUE1ZjNlc1dXUVZLdmdoWkFnVERxZHB2K1pIVzJFbXhuQUox
+ dUxGWFhlUWQzVVpjQzVyMy9nL3YKU2FNbzl4ZWszSjVtTnVEbTcxbEVXc0FzL0JBY0ZjK3lu
+ TGh4d0JXQld3c3Z3UjhiSHRKNURPTVd2YUt1RHNrcApJR0ZVZS9LYjJCK2pyYXZRM1RuNnMv
+ SHFKTTBjZXhTSHo1cGUrMHNHdlArdDlKNzIzNEJGUXdlRkV4cmlleThVCkl4T3I0WEFiYWFi
+ U3J5WW5VL3pWSDlVMWkyQUlRWk1XSkFldkN2VmdRL1UrTmVSaFh1ZGU5WVVtRE1EbzJzQjIK
+ VkFGRUFxaUYyUVVIUEEybThhN0VPM3lmTDRyTWswaUh6TElLdmg2L3JIOFFDWThpM1h4VE5M
+ OWlDTHpCV3UvTgpPbkNBYlMremx2TFphaVNNaDVFZnV4VHR2NFBsVmRFamY2MlArWkhJRDE2
+ Z1VEd0VtYXpMQU1yeDY2NmpINWt1ClVDVFZ5bWJMMFR2Qis2TDZBUmw4QU55TTRBRG1rV2tw
+ eU0yMmtDdUlTWUFFZlFSM3VXWFo5WWd4YVBNcWJWK3cKQnJoSmc0SGFONkM2eFRxR3YzcjRC
+ MmFxYjc3L0NWb1JKMVo5Y3BIQ3dpT3pJYUFtdnl6UFU2TXhDRFhaOEZnWQpsVDR2MjNHNWlt
+ SlAyemdYNXMrRjZBQ1VKOVVRUEQwdVRmK0o5RGEycitza2gvc1dPbloreWNvSE5CUXZvY1pF
+ Ck5BSFFmN2tDRFFSYmVvQVRBUkFBMkhkMGZzRFZLNzJSTFNESGJ5ME9oZ0RjRGxWQk0yTSto
+ WVlwTzNmWDFyKysKc2hpcVBLQ0hWQXNRNWJ4ZTdIbUppbUhhNEtLWXMya3YvbWx0L0NhdUNK
+ Ly9wbWN5Y0JNN0d2d25Lem11WHp1QQpHbVZUWkM2V1I1TGtha0ZydEhPelZtc0VHcE52NVJj
+ OWw2SFlGcExrYlNrVmk1U1BRWkp5K0VNZ01DRmdqclpmClZGNnlvdHdFMWFmN0hOdE1oTlBh
+ TEROMW9VS0Y1aitSeVJnNWl3SnVDRGtuSGp3QlFWNHBndzIvNXZTOEE3WlEKdjJNYlcvVExF
+ eXBLWGlmNzhJaGdBelh0RTJYck0xbi9vNlpINzFvUkZGS096NDJsRmR6ZHJTWDBZc3FYZ0hD
+ WAo1Z0l0TGZxemoxcHNNYTlvMWVpTlRFbTFkVlFyVHFueXMwbDE4b2FsUk5zd1lsUW1uWUJ3
+ cHdDa2FUSExNSHdLCmZHQmJvNWRMUEVzaHRWb3dJNm5zZ3FMVHlRSG1xSFlxVVpZSXBpZ21t
+ QzNTd0JXWTFWNmZmVUVta3FwQUFDRW4KTDQvZ1Vnbjd5US81ZDBzZXFuQXEycFNCSE1VVW9D
+ Y1R6RVFVV1ZraUR2M1JrN2hURm1oVHNNcTc4eHYyWFJzWApNUjZ5UWhTVFBGWkNZRFVFeEVs
+ RXNTbzlGV0hXcjZ6SHlZY2M4cURMRnZHOUZQaG1RdVQyczlCbHg2Z0kzMjNHCm5FcTFsd1dQ
+ SlZ6UDRqUWtKS0lBWHdGcHYrVzhDV0xxekRXT3ZkbHJEYVRhVk1zY0ZUZUg1VzZVcHJsNjVq
+ cUYKUUdNcGNSR0NzOEdDVVcxM0gwSXlPdFF0d1dYQTRueStTTDgxcHZpQW1hU1hVOGxhS2FS
+ dTkxVk9WYUY5ZjRzQQpFUUVBQVlrQ0h3UVlBUUlBQ1FVQ1czcUFFd0liREFBS0NSQ1VnZXdQ
+ RVpEeTIrb1hELzljSEhSa0JaT2ZrbVNxCjE0U3Z4MDYyUHRVMEtWNDcwVFNucC9qV29ZSm5L
+ SXczRzBtWElSZ3J0SDJkUHdwSWdWanNZeVJTVk1LbVNwdDUKWnJEZjlOdFRiTldnazhWb0xl
+ WnpZRW8rSjNvUHFGclRNczNhWVl2N2U0K0pLNjk1WW5tUSttT0Q5bmlhOTE1dApyNUFaajk1
+ VWZTVGx5VW15aWMxZDhvdnNmMWZQN1hDVVZSRmNSamZOZkRGMW9ML3BEZ01QNUdaMk93YVRl
+ am15CkN1SGpNOElSMUNpYXZCcFlEbUJuVFlrN1B0aHk2YXRXdllsMGZ5L0NxYWpUS3N4Nytw
+ OXh6aXU4WmZWWCtpS0IKQ2MrSGUrRURFZEdJRGh2TlovSVFIZk9CMlBVWFdHUytzOUZOVHhy
+ L0E2bkxHWG5BOVk2dzkzaVBkWUl3eFM3SwpYTG9LSmVlMTBEamx6c1lzUmZsRk9XMFpPaVNp
+ aElDWGlRVjF1cU02dHpGRzlndFJjaXVzNVVBdGhXYU8xT3dVClNDUW1mQ09tNGZ2TUlKSUE5
+ cnh0b1M2T3FSUWNpRjNjcm1vMHJKQ3ROMmF3WmZnaThYRWlmN2Q2aGp2MEVLTTkKWFpvaUFa
+ WVpEKy9pTG01VGFLV042b0dJdGkwVmpKdjhaWk9aT2ZDYjZ2cUZJa0pXK2FPdTRvclRMRk16
+ MjhhbwpVM1F5V3BOQzhGRm1kWXNWdWE4czZnTjFOSWE2eTNxYS9aQjhiQS9pa3k1OUFFejRp
+ RElScmdVek1FZzhBazdUCmZtMUtpWWVpVHRCRENvMjVCdlhqYnFzeXhrUUQxbmtSbTZGQVZ6
+ RXVPUEllOEp1cVcyeEQ5aXhHWXZqVTVoa1IKZ0pwM2dQNWIrY25HM0xQcXF1UTJFNmdvS1VN
+ TEFia0NEUVJiZmw5REFSQUFzRExjYStMbFAydm5mdEVHaHBjQQpCR1ZOUUVGbkdQckNhdVU2
+ SGhOODA1V3RQVHRtc1JPdUp6cWdVVDBtcHFXSWZacTZzTXd5dkhLOVRzL0tIM0paClVWYlJD
+ M3oyaDNLZmhIL0RhZjk1cGQ2bVBjL2g5dkYvT3kzK2VUV2hnR25QNmNBNWtsUitmTzFXaEc4
+ VnJpWHYKck5lUkcyMHN6emplSG9jblNJY1Q1WHVaUjB1REhPaUd4T2l6MXNNUkZUR3h6R095
+ MTlSOXJ2dTYzdGlJM2Q3dgpnYzc1T0NBZGtlQi9TZUNFbGFSdzBUZjdMWmJQampzRjI2M0JZ
+ bk1mNGtrTkVLdnFXY1UyaWNNcCtxZXpqeW5CCnB2ZXVlMHJDVFFCWUFRbG9GQ1ZUR0hyV1dB
+ NkQ0VzVPMkFmSWRJYzF1MUpDWnAyZjVMV1ZvVUZUVklyUW5RUVUKU0hDaWZyOU1aeExUdFBK
+ ZFU1Mm9TUHczZGs0aExQOGlKSUx1dnYvYXZhakNzUVlIRXR3WXNiZUZaeGl1TGdscApBN1lj
+ Sk5ObXBnQ3BNRDR3VWh2bEN0QUtOQlFXeXIyOTc2OThFUVRuNDZlQmVVNkttMkNpaFhrZ3dD
+ eWY4ZXlLCkxFM3NYZXdhcTVrZ1pXdk5xNml1NXFZSVJCOXl3K2NYYzYwZE9aRE9scTkzWDVT
+ QVJZemFvZXBrSHo0cmtMa1AKUG8rdENIeUhRUHNHblBYYzlXVDgwREM5Tm5KR2R2VWx5NXJk
+ TUk0eHBaeWdlb2tqd293VlFsUFV1Y1M2TXluNwpmOHc4Y2dmQjdDMklBSWNEeDJwUC9IendY
+ dmtDT1FOQTdtVjFsTTA4bitnVmtUcnpweGlwNURicTRDSW9ZeDJNCkpaVDhiR1JINlhqY1VE
+ S2EwOVFoeVpzQUVRRUFBWWtFUkFRWUFRZ0FEd1VDVzM1ZlF3SWJBZ1VKQThKbkFBSXAKQ1JD
+ VWdld1BFWkR5MjhGZElBUVpBUWdBQmdVQ1czNWZRd0FLQ1JCVnhETFBjVk1NamNkc0QvMFJo
+ QXN1UVlPeQpyMTNCbDNOaFhrWUFaR3AyWkZER3VrZTdPU2tWOG9qT09UZFR5ei9jT1JHQ2J5
+ ZEQrRGd2cUZ5VmRuT1hLZ08wCmxKbUd3ckdlTGRnZ0F2aDBpaHJwNU8wWVVKOWJCU1htR01t
+ UVRZSC9BbUxUR2FkYnVqQ1dqNWZGVWtDeXd4aW0KSHV5MFBiMjRwelR2UzUwR1k1WStxSDBG
+ SE5haWdka2tpV04zcnVnN0haRXUvQ3lsUFpqT1h6K0QxUVBNckV4dwo3ZC9NS2FiVis5YU5i
+ UVlabGRJajk4UXd2VUYxS1N6YThqbFVJdnBoUnEyN0FUOGZER1lHUGZERU1nMmNCT2FlCkty
+ N29uUXM0YjdhV082aWZEbHhRVHB6c3pvK0FuODA3Tk1TdFZFRmYrczNBaFZEM2U3bmY4SkJh
+ dmJWckFlMGsKb20yNm96elBubnh6K2xxVlZ0dzZVazRYTUl6dGl4L0h3SFl3dUNuY1VYWndL
+ MEkzeUFKd2pZd29vck9DaEozUwpFVWJKUVB0R3NneFJERXhWQkZlNk5MUC82MnhQOU82dGFj
+ d09kYjBNbVAxYjM5cFJBVEM3YmdkMWxkVUxpNzVaCmxKckowL1NpVkVyb3FOWXk3OXRmbWdB
+ WjJVeFptczlTckV5Nm85UVNmc24xYVh2K01QTDlKYUNHbWtQNnpiTFEKTm5kajBKY2FRbmtD
+ MHZneWRPMUJtNk11OTZQOXVmbEtaY0FTNndtTE01SWRIT3lqTDg4d0h3anVjakFPQnRjdwpw
+ MG9HVG5WT25Sc05ZU084VzhZWi9LZGJ1Nzg1ZGF6TXFKMmlOakFEdUJiZG02TjRqNUVkTW5r
+ TG4wQklmUEpwCmRnbTR2bDJVcExqd1JHci9NM3dtbTVwdnMrNnVCN2hrL0ZKaUQvNGxsRU5Q
+ NGVNMWg3U200aitWcTZOMSt6VEIKSVhKQWViSXFhc0RwNXlaUzdYcnk0STM2bjg1WEVZZkcw
+ MWx0QXlob05WMkRPOFNJUlFwdWkydHErOVJQM1JLMQpKREJ4eEVKWTJFTzVKWjhNeGFQSFEw
+ RFQwNWxSRmpLMkFsaGRFSXRqTGpwSjNmVW05c3FMeE1XeHpQNlV6M2lpCjJ1YTR1bnJ0Nk9D
+ VHFRd2lqRi8zYlRXaXd2VkFBSG5NRlVpb1hzaEhhb2hWRGNWZm5lSU1mVjBiUUNYWWkzTnAK
+ WTB2MFp3Y2lGSCtnU0M3cUQ2WE51aHBWR1NMNElpbGlGeS9TemNhSkV6QUhlTERTaFpQMkNX
+ ZG5DNHZnbDM3dApocHg4aDU1WWhKbjZIU3VVelBnaGFLdFZCMmsrajdaZXlaK1NGeHA3SXVi
+ SEN3TEhsUWhUNzVSd1EzaUF4S242CjBxajUxY1lUbnF4ZFpYVzZmSDNQa3VNellVNUdwcVIv
+ MU9sNWMvd2ZJNmc2QW04eUtXLzBFVUx0K0tuNExGc1MKbTdZM201SDV2MTJVNkpCWXZWK3Ix
+ M2paaW9zNEVFREU5M0Q1c05IMk1JeVJ6Q0RxMXpkZHQ0WHV5S0ZqUEtXMQo5aWJaRGZGVjdL
+ dUNzdnVMMjNzQmMxc0NNb3ArRTFtVC9ReE9JQTZvRFQxTVFzdHdPVnVReURDdi9PdktTZ2Z6
+ CjhGWEdMNkFQY2xqQ3FqOEFKaHhReXN4ZG9pUVA4bS92dStialdHR3Z4dzVzMWxncGlSRFRS
+ VVBnY0pKTmFHWTIKVklEclpRaTROU2lOUTBOSWkrZGp1NGZOTW1DcFFxZzh0YkMzY0FhNnl3
+ bTZvUUIxU0JobURYMmUxMWdSbGx1SQpPblRHUEUwSFRvM2w3MmxoYmc9PQo9cVpNVgotLS0t
+ LUVORCBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCg==
+Message-ID: <17ecdb9e-9b3e-9308-acd6-b1aa7f953002@i2se.com>
+Date:   Mon, 31 Jan 2022 18:25:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <17eab0f59a8.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8BIT
+Content-Language: en-US
+X-Provags-ID: V03:K1:J+sWzvQ0tEnbEsYsNEanCFVKohCloP7zU4v8HxkSLpI/7RK5WO9
+ FWBGvStQWdsXVGdHf/n0BhUofGu8/aW+YqysI+vmyvHBfb/dBl+ktsZ5L6EZLDIkTGJTX1a
+ BUgHcuJ6QE7uaLwROn7zAZwQFpOy6Fef2rnHmC9x9vGVB1GBNEQQW8adjduMxRay+ZueG5A
+ 8SUjH92yXjHuWVaLPfKnQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:uhfAs3EL9kY=:z+Ccb10S5u0clT+5dG2ZKG
+ uOoQyc6SAe3gBdoRU1pV0JwxmSDbG8IydHcATav2BVYIe/nz/9nLe8b3WSF8o1sOamCsVt0hY
+ V8mppRn4cFVHPItOCMUiQfkcHy2Wb2FbcMCiLWj+BZitzzgWtAgObTQ4j1OoYC7DubYpvUR52
+ 6+5MBmFc0pCGyszN2focskQFsO78CPX+wbDQUWmSNG3l2mKbSggvG8lIEnNG2rKo1+EXgj4a7
+ k/h5FsZnJC620481g18G2zpy00kaRF8/kiDv6SLWW4BbeclijS+JjuROqF6BMU/vF6RdxLWua
+ PMDVu2GyuKbzUCZuibkEHZCk0/DSgL2ReodDmVeegTwL1SZe6hzFzfV6hvsC3zJRclWow/p0f
+ OKfIeZdf/5si/hFtDqeey0L1jWuyjzr9xWigaFi9M/BshEEMP9UlAWFwYeiNqvo0rhW+/HeiL
+ 3P5e6yF/zq6SHp6sscLPelod85xJK3GhDjlZYH7hm2+y5Lh8qi7iXnJkNmLNHWGPVGvqTwhuW
+ vDuJM0IQNTbeZsjIUmKHegia+PDW1l6GO3gOVw/d/UQa1qMEPtI16yHOt5bo/RfZXi2iUt5w/
+ BxPJt+wDodtpyKfa3QRx1j+Pv17qyJRO3fYorYFgxe8FTgooVTakp3gvG4enddEodphoc6lxe
+ R0N9VZQq6Wbmw1LFQ4yzw9QoU/wa+iRIM4V53x2Nw0AULsQrwJC5SdUX3CZUN1fAfLEZNUj9z
+ jwl2R59PQKLuw8Gq
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Dai <daidavid1@codeaurora.org>
+Hi Arend,
 
-PMIC v7 has different offset values and seqeunces, so add support for
-this new version of PMIC
+Am 30.01.22 um 13:56 schrieb Arend Van Spriel:
+> I am also a bit confused. The subject mentions revision 4, but your
+> log shows 43430/2. Took some digging but found that numerical rev 2
+> matches 'b0' and rev 3 matches 'b1'. The BT part is unknown territory
+> for me so can not clarify things there.
 
-Signed-off-by: David Dai <daidavid1@codeaurora.org>
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- drivers/spmi/spmi-pmic-arb.c | 233 ++++++++++++++++++++++++++++++++---
- 1 file changed, 214 insertions(+), 19 deletions(-)
+my patch based on a similar patch [1] by Mikhail Rudenko. I falsely
+assumed that the Ampak AP6212 and Raspberry Pi Zero 2 W are using
+different wifi chips. But now it i think they are identical. If i grep
+the firmware blob for the Raspberry Pi Zero 2 W, i getting this:
 
-diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
-index 2113be40b5a9..f4d54e7785a8 100644
---- a/drivers/spmi/spmi-pmic-arb.c
-+++ b/drivers/spmi/spmi-pmic-arb.c
-@@ -22,8 +22,14 @@
- #define PMIC_ARB_VERSION_V2_MIN		0x20010000
- #define PMIC_ARB_VERSION_V3_MIN		0x30000000
- #define PMIC_ARB_VERSION_V5_MIN		0x50000000
-+#define PMIC_ARB_VERSION_V7_MIN		0x70000000
- #define PMIC_ARB_INT_EN			0x0004
- 
-+#define PMIC_ARB_FEATURES		0x0004
-+#define PMIC_ARB_FEATURES_PERIPH_MASK	GENMASK(10, 0)
-+
-+#define PMIC_ARB_FEATURES1		0x0008
-+
- /* PMIC Arbiter channel registers offsets */
- #define PMIC_ARB_CMD			0x00
- #define PMIC_ARB_CONFIG			0x04
-@@ -48,7 +54,6 @@
- #define INVALID_EE				0xFF
- 
- /* Ownership Table */
--#define SPMI_OWNERSHIP_TABLE_REG(N)	(0x0700 + (4 * (N)))
- #define SPMI_OWNERSHIP_PERIPH2OWNER(X)	((X) & 0x7)
- 
- /* Channel Status fields */
-@@ -91,6 +96,7 @@ enum pmic_arb_channel {
- 
- /* Maximum number of support PMIC peripherals */
- #define PMIC_ARB_MAX_PERIPHS		512
-+#define PMIC_ARB_MAX_PERIPHS_V7		1024
- #define PMIC_ARB_TIMEOUT_US		100
- #define PMIC_ARB_MAX_TRANS_BYTES	(8)
- 
-@@ -104,12 +110,12 @@ enum pmic_arb_channel {
- 	((((slave_id) & 0xF)   << 28) | \
- 	(((periph_id) & 0xFF)  << 20) | \
- 	(((irq_id)    & 0x7)   << 16) | \
--	(((apid)      & 0x1FF) << 0))
-+	(((apid)      & 0x3FF) << 0))
- 
- #define hwirq_to_sid(hwirq)  (((hwirq) >> 28) & 0xF)
- #define hwirq_to_per(hwirq)  (((hwirq) >> 20) & 0xFF)
- #define hwirq_to_irq(hwirq)  (((hwirq) >> 16) & 0x7)
--#define hwirq_to_apid(hwirq) (((hwirq) >> 0)  & 0x1FF)
-+#define hwirq_to_apid(hwirq) (((hwirq) >> 0)  & 0x3FF)
- 
- struct pmic_arb_ver_ops;
- 
-@@ -137,6 +143,8 @@ struct apid_data {
-  * @spmic:		SPMI controller object
-  * @ver_ops:		version dependent operations.
-  * @ppid_to_apid	in-memory copy of PPID -> APID mapping table.
-+ * @apid_data:		Table of data for all APIDs
-+ * @max_periphs:	Number of elements in apid_data[]
-  */
- struct spmi_pmic_arb {
- 	void __iomem		*rd_base;
-@@ -149,8 +157,11 @@ struct spmi_pmic_arb {
- 	u8			channel;
- 	int			irq;
- 	u8			ee;
-+	u32			bus_instance;
- 	u16			min_apid;
- 	u16			max_apid;
-+	u16			base_apid;
-+	int			apid_count;
- 	u32			*mapping_table;
- 	DECLARE_BITMAP(mapping_table_valid, PMIC_ARB_MAX_PERIPHS);
- 	struct irq_domain	*domain;
-@@ -158,7 +169,8 @@ struct spmi_pmic_arb {
- 	const struct pmic_arb_ver_ops *ver_ops;
- 	u16			*ppid_to_apid;
- 	u16			last_apid;
--	struct apid_data	apid_data[PMIC_ARB_MAX_PERIPHS];
-+	struct apid_data	*apid_data;
-+	int			max_periphs;
- };
- 
- /**
-@@ -180,6 +192,7 @@ struct spmi_pmic_arb {
-  * @irq_clear:		on v1 address of PMIC_ARB_SPMI_PIC_IRQ_CLEARn
-  *			on v2 address of SPMI_PIC_IRQ_CLEARn.
-  * @apid_map_offset:	offset of PMIC_ARB_REG_CHNLn
-+ * @apid_owner:		on v2 and later address of SPMI_PERIPHn_2OWNER_TABLE_REG
-  */
- struct pmic_arb_ver_ops {
- 	const char *ver_str;
-@@ -196,6 +209,7 @@ struct pmic_arb_ver_ops {
- 	void __iomem *(*irq_status)(struct spmi_pmic_arb *pmic_arb, u16 n);
- 	void __iomem *(*irq_clear)(struct spmi_pmic_arb *pmic_arb, u16 n);
- 	u32 (*apid_map_offset)(u16 n);
-+	void __iomem *(*apid_owner)(struct spmi_pmic_arb *pmic_arb, u16 n);
- };
- 
- static inline void pmic_arb_base_write(struct spmi_pmic_arb *pmic_arb,
-@@ -631,6 +645,11 @@ static void pmic_arb_chained_irq(struct irq_desc *desc)
- 	struct irq_chip *chip = irq_desc_get_chip(desc);
- 	int first = pmic_arb->min_apid >> 5;
- 	int last = pmic_arb->max_apid >> 5;
-+	/*
-+	 * acc_offset will be non-zero for the secondary SPMI bus instance on
-+	 * v7 controllers.
-+	 */
-+	int acc_offset = pmic_arb->base_apid >> 5;
- 	u8 ee = pmic_arb->ee;
- 	u32 status, enable;
- 	int i, id, apid;
-@@ -638,8 +657,7 @@ static void pmic_arb_chained_irq(struct irq_desc *desc)
- 	chained_irq_enter(chip, desc);
- 
- 	for (i = first; i <= last; ++i) {
--		status = readl_relaxed(
--				ver_ops->owner_acc_status(pmic_arb, ee, i));
-+		status = readl_relaxed(ver_ops->owner_acc_status(pmic_arb, ee, i - acc_offset));
- 		while (status) {
- 			id = ffs(status) - 1;
- 			status &= ~BIT(id);
-@@ -944,8 +962,8 @@ static u16 pmic_arb_find_apid(struct spmi_pmic_arb *pmic_arb, u16 ppid)
- 		if (offset >= pmic_arb->core_size)
- 			break;
- 
--		regval = readl_relaxed(pmic_arb->cnfg +
--				      SPMI_OWNERSHIP_TABLE_REG(apid));
-+		regval = readl_relaxed(pmic_arb->ver_ops->apid_owner(pmic_arb,
-+								     apid));
- 		apidd->irq_ee = SPMI_OWNERSHIP_PERIPH2OWNER(regval);
- 		apidd->write_ee = apidd->irq_ee;
- 
-@@ -981,20 +999,29 @@ static int pmic_arb_ppid_to_apid_v2(struct spmi_pmic_arb *pmic_arb, u16 ppid)
- 
- static int pmic_arb_read_apid_map_v5(struct spmi_pmic_arb *pmic_arb)
- {
--	struct apid_data *apidd = pmic_arb->apid_data;
-+	struct apid_data *apidd;
- 	struct apid_data *prev_apidd;
--	u16 i, apid, ppid;
-+	u16 i, apid, ppid, apid_max;
- 	bool valid, is_irq_ee;
- 	u32 regval, offset;
- 
- 	/*
- 	 * In order to allow multiple EEs to write to a single PPID in arbiter
--	 * version 5, there is more than one APID mapped to each PPID.
-+	 * version 5 and 7, there is more than one APID mapped to each PPID.
- 	 * The owner field for each of these mappings specifies the EE which is
- 	 * allowed to write to the APID.  The owner of the last (highest) APID
- 	 * for a given PPID will receive interrupts from the PPID.
-+	 *
-+	 * In arbiter version 7, the APID numbering space is divided between
-+	 * the primary bus (0) and secondary bus (1) such that:
-+	 * APID = 0 to N-1 are assigned to the primary bus
-+	 * APID = N to N+M-1 are assigned to the secondary bus
-+	 * where N = number of APIDs supported by the primary bus and
-+	 *       M = number of APIDs supported by the secondary bus
- 	 */
--	for (i = 0; ; i++, apidd++) {
-+	apidd = &pmic_arb->apid_data[pmic_arb->base_apid];
-+	apid_max = pmic_arb->base_apid + pmic_arb->apid_count;
-+	for (i = pmic_arb->base_apid; i < apid_max; i++, apidd++) {
- 		offset = pmic_arb->ver_ops->apid_map_offset(i);
- 		if (offset >= pmic_arb->core_size)
- 			break;
-@@ -1005,8 +1032,8 @@ static int pmic_arb_read_apid_map_v5(struct spmi_pmic_arb *pmic_arb)
- 		ppid = (regval >> 8) & PMIC_ARB_PPID_MASK;
- 		is_irq_ee = PMIC_ARB_CHAN_IS_IRQ_OWNER(regval);
- 
--		regval = readl_relaxed(pmic_arb->cnfg +
--				      SPMI_OWNERSHIP_TABLE_REG(i));
-+		regval = readl_relaxed(pmic_arb->ver_ops->apid_owner(pmic_arb,
-+								     i));
- 		apidd->write_ee = SPMI_OWNERSHIP_PERIPH2OWNER(regval);
- 
- 		apidd->irq_ee = is_irq_ee ? apidd->write_ee : INVALID_EE;
-@@ -1100,6 +1127,40 @@ static int pmic_arb_offset_v5(struct spmi_pmic_arb *pmic_arb, u8 sid, u16 addr,
- 	return offset;
- }
- 
-+/*
-+ * v7 offset per ee and per apid for observer channels and per apid for
-+ * read/write channels.
-+ */
-+static int pmic_arb_offset_v7(struct spmi_pmic_arb *pmic_arb, u8 sid, u16 addr,
-+			   enum pmic_arb_channel ch_type)
-+{
-+	u16 apid;
-+	int rc;
-+	u32 offset = 0;
-+	u16 ppid = (sid << 8) | (addr >> 8);
-+
-+	rc = pmic_arb->ver_ops->ppid_to_apid(pmic_arb, ppid);
-+	if (rc < 0)
-+		return rc;
-+
-+	apid = rc;
-+	switch (ch_type) {
-+	case PMIC_ARB_CHANNEL_OBS:
-+		offset = 0x8000 * pmic_arb->ee + 0x20 * apid;
-+		break;
-+	case PMIC_ARB_CHANNEL_RW:
-+		if (pmic_arb->apid_data[apid].write_ee != pmic_arb->ee) {
-+			dev_err(&pmic_arb->spmic->dev, "disallowed SPMI write to sid=%u, addr=0x%04X\n",
-+				sid, addr);
-+			return -EPERM;
-+		}
-+		offset = 0x1000 * apid;
-+		break;
-+	}
-+
-+	return offset;
-+}
-+
- static u32 pmic_arb_fmt_cmd_v1(u8 opc, u8 sid, u16 addr, u8 bc)
- {
- 	return (opc << 27) | ((sid & 0xf) << 20) | (addr << 4) | (bc & 0x7);
-@@ -1134,6 +1195,12 @@ pmic_arb_owner_acc_status_v5(struct spmi_pmic_arb *pmic_arb, u8 m, u16 n)
- 	return pmic_arb->intr + 0x10000 * m + 0x4 * n;
- }
- 
-+static void __iomem *
-+pmic_arb_owner_acc_status_v7(struct spmi_pmic_arb *pmic_arb, u8 m, u16 n)
-+{
-+	return pmic_arb->intr + 0x1000 * m + 0x4 * n;
-+}
-+
- static void __iomem *
- pmic_arb_acc_enable_v1(struct spmi_pmic_arb *pmic_arb, u16 n)
- {
-@@ -1152,6 +1219,12 @@ pmic_arb_acc_enable_v5(struct spmi_pmic_arb *pmic_arb, u16 n)
- 	return pmic_arb->wr_base + 0x100 + 0x10000 * n;
- }
- 
-+static void __iomem *
-+pmic_arb_acc_enable_v7(struct spmi_pmic_arb *pmic_arb, u16 n)
-+{
-+	return pmic_arb->wr_base + 0x100 + 0x1000 * n;
-+}
-+
- static void __iomem *
- pmic_arb_irq_status_v1(struct spmi_pmic_arb *pmic_arb, u16 n)
- {
-@@ -1170,6 +1243,12 @@ pmic_arb_irq_status_v5(struct spmi_pmic_arb *pmic_arb, u16 n)
- 	return pmic_arb->wr_base + 0x104 + 0x10000 * n;
- }
- 
-+static void __iomem *
-+pmic_arb_irq_status_v7(struct spmi_pmic_arb *pmic_arb, u16 n)
-+{
-+	return pmic_arb->wr_base + 0x104 + 0x1000 * n;
-+}
-+
- static void __iomem *
- pmic_arb_irq_clear_v1(struct spmi_pmic_arb *pmic_arb, u16 n)
- {
-@@ -1188,6 +1267,12 @@ pmic_arb_irq_clear_v5(struct spmi_pmic_arb *pmic_arb, u16 n)
- 	return pmic_arb->wr_base + 0x108 + 0x10000 * n;
- }
- 
-+static void __iomem *
-+pmic_arb_irq_clear_v7(struct spmi_pmic_arb *pmic_arb, u16 n)
-+{
-+	return pmic_arb->wr_base + 0x108 + 0x1000 * n;
-+}
-+
- static u32 pmic_arb_apid_map_offset_v2(u16 n)
- {
- 	return 0x800 + 0x4 * n;
-@@ -1198,6 +1283,28 @@ static u32 pmic_arb_apid_map_offset_v5(u16 n)
- 	return 0x900 + 0x4 * n;
- }
- 
-+static u32 pmic_arb_apid_map_offset_v7(u16 n)
-+{
-+	return 0x2000 + 0x4 * n;
-+}
-+
-+static void __iomem *
-+pmic_arb_apid_owner_v2(struct spmi_pmic_arb *pmic_arb, u16 n)
-+{
-+	return pmic_arb->cnfg + 0x700 + 0x4 * n;
-+}
-+
-+/*
-+ * For arbiter version 7, APID ownership table registers have independent
-+ * numbering space for each SPMI bus instance, so each is indexed starting from
-+ * 0.
-+ */
-+static void __iomem *
-+pmic_arb_apid_owner_v7(struct spmi_pmic_arb *pmic_arb, u16 n)
-+{
-+	return pmic_arb->cnfg + 0x4 * (n - pmic_arb->base_apid);
-+}
-+
- static const struct pmic_arb_ver_ops pmic_arb_v1 = {
- 	.ver_str		= "v1",
- 	.ppid_to_apid		= pmic_arb_ppid_to_apid_v1,
-@@ -1209,6 +1316,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v1 = {
- 	.irq_status		= pmic_arb_irq_status_v1,
- 	.irq_clear		= pmic_arb_irq_clear_v1,
- 	.apid_map_offset	= pmic_arb_apid_map_offset_v2,
-+	.apid_owner		= pmic_arb_apid_owner_v2,
- };
- 
- static const struct pmic_arb_ver_ops pmic_arb_v2 = {
-@@ -1222,6 +1330,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v2 = {
- 	.irq_status		= pmic_arb_irq_status_v2,
- 	.irq_clear		= pmic_arb_irq_clear_v2,
- 	.apid_map_offset	= pmic_arb_apid_map_offset_v2,
-+	.apid_owner		= pmic_arb_apid_owner_v2,
- };
- 
- static const struct pmic_arb_ver_ops pmic_arb_v3 = {
-@@ -1235,6 +1344,7 @@ static const struct pmic_arb_ver_ops pmic_arb_v3 = {
- 	.irq_status		= pmic_arb_irq_status_v2,
- 	.irq_clear		= pmic_arb_irq_clear_v2,
- 	.apid_map_offset	= pmic_arb_apid_map_offset_v2,
-+	.apid_owner		= pmic_arb_apid_owner_v2,
- };
- 
- static const struct pmic_arb_ver_ops pmic_arb_v5 = {
-@@ -1248,6 +1358,21 @@ static const struct pmic_arb_ver_ops pmic_arb_v5 = {
- 	.irq_status		= pmic_arb_irq_status_v5,
- 	.irq_clear		= pmic_arb_irq_clear_v5,
- 	.apid_map_offset	= pmic_arb_apid_map_offset_v5,
-+	.apid_owner		= pmic_arb_apid_owner_v2,
-+};
-+
-+static const struct pmic_arb_ver_ops pmic_arb_v7 = {
-+	.ver_str		= "v7",
-+	.ppid_to_apid		= pmic_arb_ppid_to_apid_v5,
-+	.non_data_cmd		= pmic_arb_non_data_cmd_v2,
-+	.offset			= pmic_arb_offset_v7,
-+	.fmt_cmd		= pmic_arb_fmt_cmd_v2,
-+	.owner_acc_status	= pmic_arb_owner_acc_status_v7,
-+	.acc_enable		= pmic_arb_acc_enable_v7,
-+	.irq_status		= pmic_arb_irq_status_v7,
-+	.irq_clear		= pmic_arb_irq_clear_v7,
-+	.apid_map_offset	= pmic_arb_apid_map_offset_v7,
-+	.apid_owner		= pmic_arb_apid_owner_v7,
- };
- 
- static const struct irq_domain_ops pmic_arb_irq_domain_ops = {
-@@ -1274,8 +1399,18 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
- 	pmic_arb = spmi_controller_get_drvdata(ctrl);
- 	pmic_arb->spmic = ctrl;
- 
-+	/*
-+	 * Please don't replace this with devm_platform_ioremap_resource() or
-+	 * devm_ioremap_resource().  These both result in a call to
-+	 * devm_request_mem_region() which prevents multiple mappings of this
-+	 * register address range.  SoCs with PMIC arbiter v7 may define two
-+	 * arbiter devices, for the two physical SPMI interfaces, which  share
-+	 * some register address ranges (i.e. "core", "obsrvr", and "chnls").
-+	 * Ensure that both devices probe successfully by calling devm_ioremap()
-+	 * which does not result in a devm_request_mem_region() call.
-+	 */
- 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "core");
--	core = devm_ioremap_resource(&ctrl->dev, res);
-+	core = devm_ioremap(&ctrl->dev, res->start, resource_size(res));
- 	if (IS_ERR(core)) {
- 		err = PTR_ERR(core);
- 		goto err_put_ctrl;
-@@ -1304,12 +1439,15 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
- 			pmic_arb->ver_ops = &pmic_arb_v2;
- 		else if (hw_ver < PMIC_ARB_VERSION_V5_MIN)
- 			pmic_arb->ver_ops = &pmic_arb_v3;
--		else
-+		else if (hw_ver < PMIC_ARB_VERSION_V7_MIN)
- 			pmic_arb->ver_ops = &pmic_arb_v5;
-+		else
-+			pmic_arb->ver_ops = &pmic_arb_v7;
- 
- 		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
- 						   "obsrvr");
--		pmic_arb->rd_base = devm_ioremap_resource(&ctrl->dev, res);
-+		pmic_arb->rd_base = devm_ioremap(&ctrl->dev, res->start,
-+						 resource_size(res));
- 		if (IS_ERR(pmic_arb->rd_base)) {
- 			err = PTR_ERR(pmic_arb->rd_base);
- 			goto err_put_ctrl;
-@@ -1317,13 +1455,70 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
- 
- 		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
- 						   "chnls");
--		pmic_arb->wr_base = devm_ioremap_resource(&ctrl->dev, res);
-+		pmic_arb->wr_base = devm_ioremap(&ctrl->dev, res->start,
-+						 resource_size(res));
- 		if (IS_ERR(pmic_arb->wr_base)) {
- 			err = PTR_ERR(pmic_arb->wr_base);
- 			goto err_put_ctrl;
- 		}
- 	}
- 
-+	pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS;
-+
-+	if (hw_ver >= PMIC_ARB_VERSION_V7_MIN) {
-+		pmic_arb->max_periphs = PMIC_ARB_MAX_PERIPHS_V7;
-+		/* Optional property for v7: */
-+		of_property_read_u32(pdev->dev.of_node, "qcom,bus-id",
-+					&pmic_arb->bus_instance);
-+		if (pmic_arb->bus_instance > 1) {
-+			err = -EINVAL;
-+			dev_err(&pdev->dev, "invalid bus instance (%u) specified\n",
-+				pmic_arb->bus_instance);
-+			goto err_put_ctrl;
-+		}
-+
-+		if (pmic_arb->bus_instance == 0) {
-+			pmic_arb->base_apid = 0;
-+			pmic_arb->apid_count =
-+				readl_relaxed(core + PMIC_ARB_FEATURES) &
-+				PMIC_ARB_FEATURES_PERIPH_MASK;
-+		} else {
-+			pmic_arb->base_apid =
-+				readl_relaxed(core + PMIC_ARB_FEATURES) &
-+				PMIC_ARB_FEATURES_PERIPH_MASK;
-+			pmic_arb->apid_count =
-+				readl_relaxed(core + PMIC_ARB_FEATURES1) &
-+				PMIC_ARB_FEATURES_PERIPH_MASK;
-+		}
-+
-+		if (pmic_arb->base_apid + pmic_arb->apid_count >
-+		    pmic_arb->max_periphs) {
-+			err = -EINVAL;
-+			dev_err(&pdev->dev, "Unsupported APID count %d detected\n",
-+				pmic_arb->base_apid + pmic_arb->apid_count);
-+			goto err_put_ctrl;
-+		}
-+	} else if (hw_ver >= PMIC_ARB_VERSION_V5_MIN) {
-+		pmic_arb->base_apid = 0;
-+		pmic_arb->apid_count = readl_relaxed(core + PMIC_ARB_FEATURES) &
-+					PMIC_ARB_FEATURES_PERIPH_MASK;
-+
-+		if (pmic_arb->apid_count > pmic_arb->max_periphs) {
-+			err = -EINVAL;
-+			dev_err(&pdev->dev, "Unsupported APID count %d detected\n",
-+				pmic_arb->apid_count);
-+			goto err_put_ctrl;
-+		}
-+	}
-+
-+	pmic_arb->apid_data = devm_kcalloc(&ctrl->dev, pmic_arb->max_periphs,
-+					   sizeof(*pmic_arb->apid_data),
-+					   GFP_KERNEL);
-+	if (!pmic_arb->apid_data) {
-+		err = -ENOMEM;
-+		goto err_put_ctrl;
-+	}
-+
- 	dev_info(&ctrl->dev, "PMIC arbiter version %s (0x%x)\n",
- 		 pmic_arb->ver_ops->ver_str, hw_ver);
- 
-@@ -1386,7 +1581,7 @@ static int spmi_pmic_arb_probe(struct platform_device *pdev)
- 	/* Initialize max_apid/min_apid to the opposite bounds, during
- 	 * the irq domain translation, we are sure to update these */
- 	pmic_arb->max_apid = 0;
--	pmic_arb->min_apid = PMIC_ARB_MAX_PERIPHS - 1;
-+	pmic_arb->min_apid = pmic_arb->max_periphs - 1;
- 
- 	platform_set_drvdata(pdev, ctrl);
- 	raw_spin_lock_init(&pmic_arb->lock);
--- 
-2.31.1
+# strings firmware.bin | grep 4343
+43436b0-roml/sdio-g-pool-p2p-pno-pktfilter-keepalive-aoe-mchan-proptxstatus-ampduhostreorder-lpc-wl11u-fmc-wepso-anqpo-srmem-srfast-11nprop-ob-ndoe-rssiindur-bcol-gtr-mfp-sdiorxenhance-extsae
+Version: 9.88.4.65 (test) (f149b32@shgit)  (r679549) CRC: 3e0bc4b6 Date:
+Fri 2020-10-09 14:45:07 CST Ucode Ver: 1043.20742 FWID: 01-f40f3270
+
+So i will drop this patch from the series and hope the firmware isn't
+customized.
+
+Best regards
+
+[1]
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?h=v5.17-rc2&id=f8d6523891cf07468f0bfe21aba8b562a6f75780
+
+>
+> Regards,
+> Arend
+>
+> On January 30, 2022 12:35:35 PM Stefan Wahren <stefan.wahren@i2se.com>
+> wrote:
+>
+>> Hi Arend,
+>>
+>> Am 24.01.22 um 10:43 schrieb Arend van Spriel:
+>>> On 1/22/2022 1:35 PM, Stefan Wahren wrote:
+>>>> Am 01.01.22 um 21:26 schrieb Stefan Wahren:
+>>>>> A separate firmware is needed, for Broadcom 43430 revision 4. This
+>>>>> chip can be found on e.g. certain revisions of Raspberry Pi Zero 2 W.
+>>>>> Original firmware file from IC vendor is named
+>>>>> 'brcmfmac43436-sdio.bin',
+>>>>> but brcmfmac and also btbcm drivers report chip id 43430, so
+>>>>> requested
+>>>>> firmware file name is 'brcmfmac43430c0-sdio.bin' in line with other
+>>>>> 43430 revisions.
+>>>>>
+>>>>> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+>>>>> ---
+>>>>>
+>>>>> Hi,
+>>>>> i'm not sure about all these mappings. All i can say is that the wifi
+>>>>> interface of the RPi Zero 2 cames up with this patch.
+>>>> gentle ping (yes, i'm aware of the merge window)
+>>>
+>>> Sorry, Stefan
+>>>
+>>> Should have seen this earlier, but here it is....
+>>>
+>>>>>
+>>>>>  drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c | 4 +++-
+>>>>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+>>>>> b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+>>>>> index 8effeb7..c79bd47 100644
+>>>>> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+>>>>> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+>>>>> @@ -618,6 +618,7 @@ BRCMF_FW_DEF(43430A0, "brcmfmac43430a0-sdio");
+>>>>>  /* Note the names are not postfixed with a1 for backward
+>>>>> compatibility */
+>>>>>  BRCMF_FW_CLM_DEF(43430A1, "brcmfmac43430-sdio");
+>>>>>  BRCMF_FW_DEF(43430B0, "brcmfmac43430b0-sdio");
+>>>>> +BRCMF_FW_CLM_DEF(43430C0, "brcmfmac43430c0-sdio");
+>>>>>  BRCMF_FW_CLM_DEF(43455, "brcmfmac43455-sdio");
+>>>>>  BRCMF_FW_DEF(43456, "brcmfmac43456-sdio");
+>>>>>  BRCMF_FW_CLM_DEF(4354, "brcmfmac4354-sdio");
+>>>>> @@ -649,7 +650,8 @@ static const struct brcmf_firmware_mapping
+>>>>> brcmf_sdio_fwnames[] = {
+>>>>>      BRCMF_FW_ENTRY(BRCM_CC_4339_CHIP_ID, 0xFFFFFFFF, 4339),
+>>>>>      BRCMF_FW_ENTRY(BRCM_CC_43430_CHIP_ID, 0x00000001, 43430A0),
+>>>>>      BRCMF_FW_ENTRY(BRCM_CC_43430_CHIP_ID, 0x00000002, 43430A1),
+>>>>> -    BRCMF_FW_ENTRY(BRCM_CC_43430_CHIP_ID, 0xFFFFFFFC, 43430B0),
+>>>>> +    BRCMF_FW_ENTRY(BRCM_CC_43430_CHIP_ID, 0x00000004, 43430C0),
+>>>
+>>> According to the revision mask your firmware seems to be for numerical
+>>> revision 2 of this chip...
+>>>
+>>>>> +    BRCMF_FW_ENTRY(BRCM_CC_43430_CHIP_ID, 0xFFFFFFF8, 43430B0),
+>>>
+>>> and for the b0 the chip revision is 3 (or higher). So the alphanumeric
+>>> revision of your chip would be 'a2' instead of 'c0'.
+>>
+>> i changed this to a2 for the next version of this series. But before i
+>> send them out, please doublecheck the kernel log 5.17-rc1 of my RPi Zero
+>> 2 W. I confuses me that the bluetooth part tells about BCM43430B0:
+>>
+>> [    9.653199] Bluetooth: hci0: BCM: chip id 115
+>> [    9.653749] Bluetooth: hci0: BCM: features 0x0e
+>> [    9.655466] Bluetooth: hci0: BCM43430B0
+>> [    9.655502] Bluetooth: hci0: BCM43430B0 (002.001.012) build 0000
+>> [    9.659512] vc4-drm soc:gpu: bound 3f400000.hvs (ops
+>> vc4_drm_unregister [vc4])
+>> [    9.667047] Bluetooth: hci0: BCM43430B0 'brcm/BCM43430B0.hcd' Patch
+>> [    9.668052] brcmfmac: brcmf_fw_alloc_request: using
+>> brcm/brcmfmac43430a2-sdio for chip BCM43430/2
+>> [    9.668567] brcmfmac mmc1:0001:1: Direct firmware load for
+>> brcm/brcmfmac43430a2-sdio.raspberrypi,model-zero-2-w.bin failed with
+>> error -2
+>> [    9.673724] vc4-drm soc:gpu: bound 3f400000.hvs (ops
+>> vc4_drm_unregister [vc4])
+>> [    9.697996] brcmfmac mmc1:0001:1: Direct firmware load for
+>> brcm/brcmfmac43430a2-sdio.raspberrypi,model-zero-2-w.txt failed with
+>> error -2
+>> [    9.816030] brcmfmac: brcmf_fw_alloc_request: using
+>> brcm/brcmfmac43430a2-sdio for chip BCM43430/2
+>> [    9.840128] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM43430/2
+>> wl0: Oct  9 2020 14:44:32 version 9.88.4.65 (test) (f149b32@shgit)
+>> (r679549) FWID 01-f40f3270
+>> [    9.919182] random: crng init done
+>> [    9.919200] random: 7 urandom warning(s) missed due to ratelimiting
+>> [   10.105524] vc4-drm soc:gpu: bound 3f400000.hvs (ops
+>> vc4_drm_unregister [vc4])
+>> [   10.118011] vc4-drm soc:gpu: bound 3f902000.hdmi (ops
+>> vc4_drm_unregister [vc4])
+>> [   10.118190] vc4-drm soc:gpu: bound 3f806000.vec (ops
+>> vc4_drm_unregister [vc4])
+>> [   10.118364] vc4-drm soc:gpu: bound 3f004000.txp (ops
+>> vc4_drm_unregister [vc4])
+>> [   10.118503] vc4-drm soc:gpu: bound 3f206000.pixelvalve (ops
+>> vc4_drm_unregister [vc4])
+>> [   10.118625] vc4-drm soc:gpu: bound 3f207000.pixelvalve (ops
+>> vc4_drm_unregister [vc4])
+>> [   10.118747] vc4-drm soc:gpu: bound 3f807000.pixelvalve (ops
+>> vc4_drm_unregister [vc4])
+>> [   10.118847] vc4-drm soc:gpu: bound 3fc00000.v3d (ops
+>> vc4_drm_unregister [vc4])
+>> [   10.119331] checking generic (1e330000 8ca000) vs hw (0 ffffffff)
+>> [   10.119339] fb0: switching to vc4 from simple
+>> [   10.122443] Console: switching to colour dummy device 80x30
+>> [   10.125147] [drm] Initialized vc4 0.0.0 20140616 for soc:gpu on
+>> minor 0
+>> [   10.203822] Console: switching to colour frame buffer device 240x75
+>> [   10.241067] vc4-drm soc:gpu: [drm] fb0: vc4drmfb frame buffer device
+>> [   10.414793] Bluetooth: hci0: BCM4343B0 37.4MHz wlbga_iLNA_iTR
+>> [Baseline: 0092]
+>> [   10.414822] Bluetooth: hci0: BCM43430B0 (002.001.012) build 0092
+>>
+>> Thanks
+>
+>
+>
 
