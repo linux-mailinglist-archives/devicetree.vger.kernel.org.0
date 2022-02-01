@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C24054A5697
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:23:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F353A4A56AA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:23:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233981AbiBAFXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 00:23:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42298 "EHLO
+        id S230459AbiBAFXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 00:23:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234082AbiBAFU7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:20:59 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324D0C0617AA
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:52 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id g15-20020a9d6b0f000000b005a062b0dc12so15162615otp.4
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:52 -0800 (PST)
+        with ESMTP id S231905AbiBAFVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:21:06 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45EC2C0613E3
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:53 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id x193so31335198oix.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=QCCppAscP/KIGwl1JCLJN5liCcMT30u1TqUecRLuuZk=;
-        b=ICVa3ObG2poOxz2N8URYem+JfD02Eg4WelUkOiUAbodduvFbvIxPp3WAemXDKMNwJu
-         aO0ea+0TBaq4itnPydmKaNU/YmzwjGXZaQq7XowAlX4jvJ2hSLB9QAl/Fk2r2oADjPnU
-         5yAQ0uKlaSvxM0JgsYOZIymJn32lrz/5ug2Qtox/NrADlOXLZ94Hb6KDKRgl6q9SJFxR
-         EjzLOeWYpSUBdz/voXZUAlMq+l2nTO6gEJ4Spm6Wy3Em/1cDL62Fov0gmhXZcUb4f2gQ
-         7HIY7XcOK9RUCVOkIEYNACckDEBuCJNP5NNyWeKat0DoN5D3IwC3DMgjr1KqYM+vkCEa
-         dTZQ==
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=8eJDK8k9PLNksLwTNgF92CJDyZen/m8QxzhQHEelcXE=;
+        b=GFOMq8d2CVyMLlstH8xW5YydCafbemE7NlZGGPOcShD6VWLjEcI/dnZBq/NB9TNatM
+         3LifrHzPJQgC48TyqnweQquAx3hey6etHYR+cOZkJR9SRdPIybZbR3yuFhlTYxIWCEXO
+         ZzLN3dtuxhceef1o+Pfuh0vlL1L+pVOaVp6JLRWLaT9SlKJmTySTTql/rQu/69GjXYwV
+         yxAvQ0ZbS4EDaBQhrRzGoER33FFClhuYLfyyMG1VN51u+XovauH9yNBnrfx0BXw6/4SU
+         PZIFui3OV5b/kZKHvosmnXmMAt2cHdK8Fr1tgEC6weOlgEKZpmD6oI2HEZV1EV33M4vy
+         +nzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=QCCppAscP/KIGwl1JCLJN5liCcMT30u1TqUecRLuuZk=;
-        b=TrzaWjBkAd+ksUTmpghNE9+F0/jbX2ocXrmxUA2/ith3+YWbSj4pLTlnKvu7C4QLD9
-         j6K2uCAcU9qjB5x2TvphqPDAKcSGNRqmJ+12FmYCe42mW9w2m2x+F+SK9XEmH/E8EW8A
-         EN6VvEmLQtlUdqDThymQ4oHLFYYerXnbkk7Po7iaG+tOeOvyvlekhoeHY3cKKv006lDe
-         kbs+st95TjGPMXhxVag0atTenJXC7Bhv+WerTAyDScwFswuToTDjTrgQNZkGPKLDzvVi
-         gJQAG+efhzwL/Kn6Z3IgGHZO3h4JYhkQ8uNYiHPkVCuyRa4Qb0z6bfifK1urFv4Ndllf
-         krfQ==
-X-Gm-Message-State: AOAM530N1cSOcVzOomZaJEHfhOsoI+DJnjRyhQ6FZwnSqkFcuO9z42Ob
-        EKYEfQn/7doIbqrhOz2sr2NzFw==
-X-Google-Smtp-Source: ABdhPJx+TBtU7wXSTDxavLIS3+39W1LCovnJUUwk64VK0Zthdm4jh6mS5bTZwW6JIiQDUCvfhDDX7Q==
-X-Received: by 2002:a9d:6f11:: with SMTP id n17mr5920242otq.228.1643692851587;
-        Mon, 31 Jan 2022 21:20:51 -0800 (PST)
+        bh=8eJDK8k9PLNksLwTNgF92CJDyZen/m8QxzhQHEelcXE=;
+        b=79jJd7D3TZb/K/aKzHyTNlrNVw75gQZ6UBMwi4OSwKazMIglA128gl/BWXKx1lCkRu
+         9iiYNNQaBe003eriwLJfgNuQLxvjVLS32YEUIFyLpVhYimCqKh02Gu7CBwTDeUEEN+Ly
+         tqGZRK1zojGU5KDjrJDW93sA/ltmAMMt9bMJPcDu58YvEpC+1/SlxWKdEanIsV5apJvC
+         m28S90X9dXFtOp+rHSqR6c/tT7SagpEK8DA9moVUiAZ4+cEA+K5a+3AMqJwrCjc8fXxo
+         UDz+TTjnuix4GiF+JoyliS2eav3u4dqaljGfmnvT+8ZP9KKQg659oL1OOtOWKeedGdsH
+         mKLw==
+X-Gm-Message-State: AOAM533fLxGj8eBSnj5xgGGU5DYkwbufT0QyowBUMr5ThpQTbWHFNeBm
+        YUE+AklSAxLQ+0Dlcx6in1EAWj6gIF3aEA==
+X-Google-Smtp-Source: ABdhPJwcWntPtAK7lvVeiFgffQtfCps0k+8Sz49Jrk8SUZwiZTu+lb9zhlJtFVDSpQdtPAeOMyaCTg==
+X-Received: by 2002:aca:59d5:: with SMTP id n204mr208977oib.291.1643692852470;
+        Mon, 31 Jan 2022 21:20:52 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.50
+        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 21:20:51 -0800 (PST)
+        Mon, 31 Jan 2022 21:20:52 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH] arm64: dts: qcom: Fix msm8998 cache nodes
-Date:   Mon, 31 Jan 2022 23:20:01 -0600
-Message-Id: <164369277343.3095904.13862409515453016955.b4-ty@linaro.org>
+To:     devicetree@vger.kernel.org, agross@kernel.org,
+        Robert Marko <robimarko@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: (subset) [PATCH v2] arm64: dts: ipq8074: add SMEM support
+Date:   Mon, 31 Jan 2022 23:20:02 -0600
+Message-Id: <164369277344.3095904.15034660056285619770.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211217211136.3536443-1-robh@kernel.org>
-References: <20211217211136.3536443-1-robh@kernel.org>
+In-Reply-To: <20220106212512.1970828-1-robimarko@gmail.com>
+References: <20220106212512.1970828-1-robimarko@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -64,21 +65,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 15:11:36 -0600, Rob Herring wrote:
-> The msm8998 cache nodes have some issues. First, L1 caches are described
-> within cpu nodes, not as separate nodes. The 'next-level-cache' property
-> is of course in the correct location, otherwise the cache hierarchy
-> walking would not work. Remove all the L1 cache nodes.
+On Thu, 6 Jan 2022 22:25:12 +0100, Robert Marko wrote:
+> IPQ8074 uses SMEM like other modern QCA SoC-s, so since its already
+> supported by the kernel add the required DT nodes.
 > 
-> Second, 'arm,arch-cache' is not a documented compatible string. "cache"
-> is a sufficient compatible string for the Arm architected caches.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: Fix msm8998 cache nodes
-      commit: fad35efa75a22050bb4b7cace8c1c9dd4fc70d16
+[1/1] arm64: dts: ipq8074: add SMEM support
+      commit: 42124b947e8eee401b778e9bdc5017d205ad8b71
 
 Best regards,
 -- 
