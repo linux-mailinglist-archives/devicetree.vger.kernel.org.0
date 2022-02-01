@@ -2,102 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 794684A57B9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 08:27:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A9644A57E0
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 08:37:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234875AbiBAH14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 02:27:56 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:46447 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233720AbiBAH1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 02:27:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1643700475; x=1675236475;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=W7GHtGGiLvtTayhJ4mO2oK96L/0WqB+0ryNcDPdY2zM=;
-  b=xA9cDU4ntnSjCKBgkFlYXmnxh0cu6AbIyGLVpE8kBC1oFM56bbciIkRT
-   WrquuprK3NiOEp57qW3UuQ6vlnZf6sS70I6x1wah4XBa6EZrvlhKgljpi
-   Lc53b+wRhE571Y1q+30S+sL2BudTbTDIzCBNJVmzRkURjJXSAIiYF5ecz
-   k=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 31 Jan 2022 23:27:55 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2022 23:27:39 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 31 Jan 2022 23:27:38 -0800
-Received: from [10.216.11.50] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Mon, 31 Jan
- 2022 23:27:34 -0800
-Message-ID: <01aac7b1-88e9-32e3-9b3c-625a2b03bdce@quicinc.com>
-Date:   Tue, 1 Feb 2022 12:57:30 +0530
+        id S235057AbiBAHhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 02:37:40 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:55890
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234768AbiBAHhj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 02:37:39 -0500
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C7EDB3FDC7
+        for <devicetree@vger.kernel.org>; Tue,  1 Feb 2022 07:37:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1643701053;
+        bh=RPRvR9h0sqEY3BztfrrZpWvb2ynNRmBl0rQCLPnBj/g=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=Qs4BlX2kBYqjx31CFH1X4KmRI+coA0WjBwEEdfK3c2uBaHwGrYI4sYaLQxutF3j6O
+         ma/J4nXuy1VYWGEvizyl6EZV0igl94+JkWxhTeyTZVTwZuXsfk5LGtIECT7OlQR1pc
+         AqKZBtr/axPxulstn75nX8CgrTrR9Hl3oF7HxyiBl4kuu4rQCJRuwpTbhzhhcs8+Q6
+         aeEAcwMYuROFPURJ+Zx4/G03ZoLUZ3NaKCGNvTKYnukVAQvHigPm7OwnT5D0XCvnA8
+         S/HmkigJhL/a3bQG7LKu7H7vbpxMBKJ2ySMP2b7J39sj173DH15sPJ087q2LsKNYhQ
+         wIphrF4nYUZzQ==
+Received: by mail-ej1-f72.google.com with SMTP id gb4-20020a170907960400b0069d1ebc4538so6139731ejc.2
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 23:37:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=RPRvR9h0sqEY3BztfrrZpWvb2ynNRmBl0rQCLPnBj/g=;
+        b=Qu697XrFa/u+G1ohHE4mqVbAxsOytWQ6DTFTJwhenxyS4Atl8xnuYAIAZNQztEa0s4
+         kLffkb96NkSrK+InRjEWYlogvFyPqGHUpVaod7HS9jdm0714pDz333Z6qm2qNb/QiDn1
+         zg8VWIIBmrgAs0FC2FwLeCmJ83X29kSp51uNoIO+jlTPeZjC7hEND1278cVH41n3weZx
+         1n4m8CHg6UICyFqIo5GheVklAtuK9paYYMvdkluMyT7rzHKzcfsK4SNFA/Baf/C8CzDd
+         Oea7yZHMViQIKHVCvE76Mjw0SZm51cl1sxS0gVyJ2QwR4aIoM6Q084wyWacEsMRFQmpP
+         dQYQ==
+X-Gm-Message-State: AOAM532sQ+8eQtTZJEil0LD9XbXt9zpXDmvsWP80Wqy39dmMyiATs+Av
+        y777w26wWf2teHwzGUPmmAeJJKIycroBAF4WfRSEYU+ClVDbXgi8vXZbuU12v85e7q1V5Ktjb01
+        KO0A4q/TSVHhe6Y1s/2OvIB/aGmk47TITBRmTWJQ=
+X-Received: by 2002:a17:906:1e14:: with SMTP id g20mr18883234ejj.251.1643701053287;
+        Mon, 31 Jan 2022 23:37:33 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzdBOrUNwjS7G2zy8TMHS3gDIoDuZnHB5qetY+xmbLyj+/+QOcDDs71Opq3V/kdsUTieqf06w==
+X-Received: by 2002:a17:906:1e14:: with SMTP id g20mr18883221ejj.251.1643701053098;
+        Mon, 31 Jan 2022 23:37:33 -0800 (PST)
+Received: from [192.168.0.74] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id h7sm14184838ejk.69.2022.01.31.23.37.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Jan 2022 23:37:32 -0800 (PST)
+Message-ID: <0b771c5a-1fe0-0fa8-a635-18e0417c7e65@canonical.com>
+Date:   Tue, 1 Feb 2022 08:37:30 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v2 1/5] arm64: dts: qcom: sc7280: Fix gmu unit address
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] Adding architectural support for HPE's GXP BMC. This is
+ the first of a series of patches to support HPE's BMC with Linux Kernel.
 Content-Language: en-US
-To:     Douglas Anderson <dianders@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     <konrad.dybcio@somainline.org>, <swboyd@chromium.org>,
-        <kgodara@codeaurora.org>, <mka@chromium.org>,
-        <sibis@codeaurora.org>, <pmaliset@codeaurora.org>,
-        <quic_rjendra@quicinc.com>, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220125224422.544381-1-dianders@chromium.org>
- <20220125144316.v2.1.I19f60014e9be4b9dda4d66b5d56ef3d9600b6e10@changeid>
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <20220125144316.v2.1.I19f60014e9be4b9dda4d66b5d56ef3d9600b6e10@changeid>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     "Verdun, Jean-Marie" <verdun@hpe.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hao Fang <fanghao11@huawei.com>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <nick.hawkins@hpe.com>
+ <20220125194609.32314-1-nick.hawkins@hpe.com>
+ <CAK8P3a0ccoH_sNE9eWxQnWHEWNBPFL6k4k6mku=cHs_fRfnL-w@mail.gmail.com>
+ <CA8148A1-578E-4621-9714-45AB391C353A@hpe.com>
+ <2f4dd91a-e4ad-2559-f65e-914561de4047@canonical.com>
+ <015EB9CD-ADB9-4C12-BD3F-78268E849884@hpe.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <015EB9CD-ADB9-4C12-BD3F-78268E849884@hpe.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/26/2022 4:14 AM, Douglas Anderson wrote:
-> When processing sc7280 device trees, I can see:
->
->    Warning (simple_bus_reg): /soc@0/gmu@3d69000:
->      simple-bus unit address format error, expected "3d6a000"
->
-> There's a clear typo in the node name. Fix it.
->
-> Fixes: 96c471970b7b ("arm64: dts: qcom: sc7280: Add gpu support")
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
->
-> (no changes since v1)
->
->   arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 937c2e0e93eb..eab7a8505053 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -1790,7 +1790,7 @@ opp-550000000 {
->   			};
->   		};
->   
-> -		gmu: gmu@3d69000 {
-> +		gmu: gmu@3d6a000 {
->   			compatible="qcom,adreno-gmu-635.0", "qcom,adreno-gmu";
->   			reg = <0 0x03d6a000 0 0x34000>,
->   				<0 0x3de0000 0 0x10000>,
+On 31/01/2022 19:52, Verdun, Jean-Marie wrote:
+> Hi Krzysztof
+> 
+> We made some progress during the week-end and took the decision to breakdown the dts as you recommended (one dtsi for the SoC, and one dts per system board, we will start with the dl360 Gen10 server). We will send you some updates during the week, as I need to validate a few things with some of my colleagues regarding the partition tables definition which we kept (for the moment) into the ASIC definition, as all our implementation are using currently the same partition table.
+> 
+> We also removed many of the warning generated by the dtc compiler.
+> 
+> We will probably send the driver code at the same time than the dts update (or the next day). There will be a few of them including
+> 
+> - gpio
+> - hwmon
+> - udc / usb gadget
+> - umac
+> - i2c
+> - watchdog
+> - fbdev
+> - kcs
+> - vuart
+> - spifi
+> - clock
+> 
+> So as to simplify your understanding
+> 
+> - GXP is the name of the SoC. It has multiple implementations, which are currently compatibles. I don't think for the moment that we need to distinguished them. We might have a GXP v2 coming up but not before a certain amount of time which is far enough.
+> - This SoC is used to implement BMC features of HPE servers (all ProLiant, many Apollo, and Superdome machines)
+> 
+> It does support many features including:
+> - ARMv7 architecture, and it is based on a Cortex A9 core
+> - Use an AXI bus to which 
+> 	- a memory controller is attached, as well as multiple SPI interfaces to connect boot flash, and ROM flash, a 10/100/1000 Mac engine which supports SGMII (2 ports) and RMII
+> 	- Multiple I2C engines to drive connectivity with a host infrastructure
+> 	- A video engine which support VGA and DP, as well as an hardware video encder
+> 	- Multiple PCIe ports
+> 		- A PECI interface, and LPC eSPI
+> 	- Multiple UART for debug purpose, and Virtual UART for host connectivity
+> 	- A GPIO engine
+> 
+> Hope this help,
+> 
 
-My bad! Thanks for the fix.
+Thanks, this helps, but it should be in the cover letter of the pathshet
+plus some parts of it (subtract) in commit adding the new SoC support.
 
-fwiw, Reviewed-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
 
--Akhil.
-
+Best regards,
+Krzysztof
