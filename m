@@ -2,87 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D01B74A616F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 17:33:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA13A4A618E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 17:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241129AbiBAQdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 11:33:50 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:55684 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232147AbiBAQdt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 11:33:49 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 211GXfRw079887;
-        Tue, 1 Feb 2022 10:33:41 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1643733221;
-        bh=q2ouwwLWSdd5/lHoU6vthFD6b9kzpQaq91tRzWfLWqk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=XFDrGa09mg2tM7FgaAwoKmDU3k7z1DUivp5dthd52dEva0vlJQQyf7Clkc70I9YND
-         pzafLhmPwddkDCX+9VaOqKcYIzHTUw6GMGmWVjkf8cNPc8x3BM9vytEG5UOpjMh+ZP
-         G+reSb46rujSXlgmzTnP3mDoPgQH6/ipTAhmq3qU=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 211GXfBf019721
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Feb 2022 10:33:41 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 1
- Feb 2022 10:33:41 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 1 Feb 2022 10:33:41 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 211GXfwW110634;
-        Tue, 1 Feb 2022 10:33:41 -0600
-Date:   Tue, 1 Feb 2022 10:33:41 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Roger Quadros <rogerq@kernel.org>
-CC:     <kishon@ti.com>, <vigneshr@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] arm64: dts: ti: k3-am64-main: Add GPMC & ELM nodes
-Message-ID: <20220201163341.u5etiz3zoi2t7h2x@briskly>
-References: <20211208131536.23667-1-rogerq@kernel.org>
- <9250e5ed-6d4a-9eae-93d4-90e5906ae166@kernel.org>
- <20211223132822.nhujenxwmdwtjruw@viral>
+        id S241233AbiBAQrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 11:47:05 -0500
+Received: from mail-vk1-f178.google.com ([209.85.221.178]:45664 "EHLO
+        mail-vk1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241238AbiBAQrF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 11:47:05 -0500
+Received: by mail-vk1-f178.google.com with SMTP id l14so9642755vko.12;
+        Tue, 01 Feb 2022 08:47:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RZJ3KR+etR/Hrlh91I0/q2n0oluzt1AeQ1Y88MCWErk=;
+        b=QbAgLPspUnCIeTrUVgx+Pkq/j39BE2aipheD/Dtby0t+N/rF7rrO2cAL0ErbEjsXul
+         4EBAGxx4ZCd5M/FowEuWomkoEHKZJLLXV4bEksFWz7XkqBS+ZW1jv0JM2iQSOm85PkGZ
+         szueYxsaRuBYuq4KNTMmWhg5UtuBJUl9iM6nKKj8ZyFSEceF8RfFz04wVGj54072j+zU
+         A2LcGO/hBCLM82SC6wCIhKDXZ2X14vjU3BC15vgjgiA+JxUTjnbquJy1hwLgAtzlFmnu
+         26/nwzDMVO2GDLG4N+NW2kS6ZvQFXRz2Xv4WMFE4nv+qxBkvoMb69+BwlCmTSHkrNFnl
+         Bhfw==
+X-Gm-Message-State: AOAM533YzFP7sk7fYXSxQ7uQa2enmK/7nZdZMRYUNVcWYUGtZn2HNTSK
+        QznwBmbapzScxCmXqC1ifaABN3xEr0abIw==
+X-Google-Smtp-Source: ABdhPJx3cikH412WRkFmT5OAbZx8Ej+QMjkLbWzLeL2C4vJcP50fmkCxj8tV99flG0B9Uecyu7oOtQ==
+X-Received: by 2002:a05:6122:792:: with SMTP id k18mr10505884vkr.15.1643734024182;
+        Tue, 01 Feb 2022 08:47:04 -0800 (PST)
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
+        by smtp.gmail.com with ESMTPSA id g22sm4945810vkm.3.2022.02.01.08.47.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Feb 2022 08:47:03 -0800 (PST)
+Received: by mail-ua1-f43.google.com with SMTP id p26so5975590uaa.11;
+        Tue, 01 Feb 2022 08:47:03 -0800 (PST)
+X-Received: by 2002:a67:5f83:: with SMTP id t125mr9797963vsb.68.1643734023456;
+ Tue, 01 Feb 2022 08:47:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20211223132822.nhujenxwmdwtjruw@viral>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20220119095245.5611-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220119095245.5611-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 1 Feb 2022 17:46:52 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVJD8FFy2aXRpsfvhHL4zTGG8nyGp==q2VzT5k-eNh2pw@mail.gmail.com>
+Message-ID: <CAMuHMdVJD8FFy2aXRpsfvhHL4zTGG8nyGp==q2VzT5k-eNh2pw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: renesas: rzg2l-smarc: Add common dtsi file
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07:28-20211223, Nishanth Menon wrote:
-> On 19:11-20211222, Roger Quadros wrote:
-> > Hi Nishanth,
-> > 
-> > On 08/12/2021 15:15, Roger Quadros wrote:
-> > > Hi Nishanth,
-> > > 
-> > > This series adds GPMC and ELM controller device tree nodes to
-> > > AM64 SoC's dtsi file.
-> > > 
-> > > Changelog:
-> > > v2
-> > > - Fix register sizes for GPMC node.
-> > > - Disable GPMC and ELM nodes in board files. They will be enabled in
-> > > NAND card device tree overlay.
-> > 
-> > Gentle reminder to pick this for -next
-> > GPMC + NAND side patches are already in queue for -next. Thanks.
-> 
-> just responding to the main thread: lets hold this back for next window.
-> the bindings need to be in master rc1 prior to the dts getting picked up.
+Hi Biju, Prabhakar,
 
+On Wed, Jan 19, 2022 at 10:52 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> RZ/G2L and RZ/G2LC SoC use the same carrier board, but the SoM is
+> different.
+>
+> Different pin mapping is possible on SoM. For eg:- RZ/G2L SMARC EVK
+> uses SCIF2, whereas RZ/G2LC uses SCIF1 for the serial interface available
+> on PMOD1.
+>
+> This patch adds support for handling the pin mapping differences by moving
+> definitions common to RZ/G2L and RZ/G2LC to a common dtsi file.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Any updates?
+Thanks for your patch!
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> --- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
+
+> @@ -66,11 +65,6 @@
+>         status = "disabled";
+>  };
+>
+> -&scif2 {
+> -       /delete-property/ pinctrl-0;
+
+In the meantime, one more line for pinctrl-names should be deleted.
+
+> -       status = "disabled";
+> -};
+> -
+>  &spi1 {
+>         /delete-property/ pinctrl-0;
+>         status = "disabled";
+
+The rest LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+> --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  /*
+> - * Device Tree Source for the RZ/G2L SMARC EVK common parts
+> + * Device Tree Source for the RZ/G2L SMARC EVK parts
+>   *
+>   * Copyright (C) 2021 Renesas Electronics Corp.
+>   */
+
+Note that the above conflicts with "[PATCH v2 11/12] arm64: dts:
+renesas: Add initial device tree for RZ/V2L SMARC EVK"[1], which
+I had queued in renesas-devel, but dropped again due to a missing
+dependency on the clock bindings include file.  In the meantime,
+the updated clock bindings include file is ready.
+
+So, which one has the highest priority: this series, or RZ/V2L?
+
+[1] https://lore.kernel.org/all/20220110134659.30424-12-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
