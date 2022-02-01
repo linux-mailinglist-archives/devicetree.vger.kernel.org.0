@@ -2,71 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BB7D4A5684
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:23:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11ED24A568A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:23:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234784AbiBAFVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 00:21:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42446 "EHLO
+        id S234821AbiBAFVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 00:21:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233914AbiBAFUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:20:48 -0500
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A67C061786
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:44 -0800 (PST)
-Received: by mail-oi1-x22f.google.com with SMTP id u13so15002908oie.5
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:44 -0800 (PST)
+        with ESMTP id S233824AbiBAFUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:20:49 -0500
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DB95C061795
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:47 -0800 (PST)
+Received: by mail-oi1-x22c.google.com with SMTP id q8so16715413oiw.7
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Hy1PRuFMC9Ce2a9cN4d8FhqZJnP42URBCgpnIQqeV8w=;
-        b=DT4fm5bhm/yWpQy4ULEutr8AAWE+qCM7uAwskI4/Ky9os3bIMLZjEB+kPdWWzpwwTM
-         LNaO9LEh5ze+ySW5/+ZaLAlWrA3NDnRLNUixmTVnh21wF+AooRQup+1FMM8FBIQ98YVm
-         kI+q+pHOpprM1CiWG6S4Jk+Bzcercp4P0YkUkQMRdm7hvjBnJTyRSFlK9cvPrwf0djIz
-         plMhzyIXQdzP1CtSSsUAgqRqd3ey8v6OAzuYYeJ2F0ZBoKRR/XAGqrzo7JtO6klBzAjD
-         i1MWJ9kxETVIkixUx8FQQHImRkIm9qY3PSK0J3T8de4FM7qNmwQCU657dJwhZ7LkTl4Y
-         3/GA==
+        bh=1lTepv3idJ431ji34tjMdaFNok0BzDcs8koIe5PN4nI=;
+        b=GH3h+yjlKV2PvzOJLmI1rwPrq3DQB48RyjeSSH6m831HcEDJg0y0A5KqTY8wa3uEg5
+         B1mQeYzL0MPH4V/FbLv/kHLkzOXxOA3gVTe2isVSU+HNcyDSy8Mm9A6anedRVzgPzmW1
+         Xrd48UzqUBHIAFBYNllPIhTIE1fZXJvzBz41ObCr1mgkdauXlB6SzyxFJQhsSs7GUSl8
+         zSbDrqJFI3VhEGvEYNNKXtZV+JNCUT0Jurvtu34O8uUdHs+H3IlQYbMokBdN3XG2uiJo
+         kXnfux+O4wasK0LR7oH8i4C/Y025t+ZGipTl0CjFvYCgFfWnaCCCA/7ToqopDBxHnQaR
+         VlPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Hy1PRuFMC9Ce2a9cN4d8FhqZJnP42URBCgpnIQqeV8w=;
-        b=wX31tmEnCxZSEq7T0l4Pz/PPFQbwEbwMuRSz9DQU7fxtQSbpvOzGNJvYyHkzqpZGbD
-         zAThvJEp6LxPiqfHKVv4ISkajv/NhsCJ3BqAcW6a6qtRk8Nc1gRbWqR4WKJKc67av6DS
-         YrWu0r0lXS4ZWmP0uNtq9dg4Zm+aq5pxkwIsncDhZ5LVttlt4yxxrlmmJmDp7hM79V+r
-         R+8bIYRetRTVhBl0OOb2415kHjTeYnc5J9fHqjU/CieBHN5lmIyMLAVRvC6SfpufLpVI
-         nuGCAXZLZvqX8VrIf6G3hHrO3r6Rt1bxp719ytTNPt9oehVvT9L45On6uCaVvdRbthNz
-         xZxg==
-X-Gm-Message-State: AOAM532Onu/W0HRlT8LOE2bnZGBK8fgVz9K+R7Da1Q7upT3avS+QR8kT
-        LIWj3tgT59mj0kFMdVgtRxzw2w==
-X-Google-Smtp-Source: ABdhPJxtu24Ia2hL9Ce0dNrzZ5Z4HZ7RBd97CQJdFBRRdq5FIYEsqDkdRyAubR7kTtLy5M1jZp6x0A==
-X-Received: by 2002:a54:4812:: with SMTP id j18mr216625oij.274.1643692844164;
-        Mon, 31 Jan 2022 21:20:44 -0800 (PST)
+        bh=1lTepv3idJ431ji34tjMdaFNok0BzDcs8koIe5PN4nI=;
+        b=3X82EOW/nLx0sCjqZcJNIJxcpd44suEE6IAKpW+TaCGNuZHDMvpzCNisZYxqkBzeN0
+         hLoH91BUS25GIISxz9EUcrLyspaRFK45PZWl4jJP4b2KeN3RMU3xRcRWZi52zWmKquoG
+         VVTsVZpqG1hsD71iLP0rPAmUCI8FrWH7Yka1UWNvqYSrANJd9P5aPUX1vw5eCM6b+XtS
+         wmKW0u3zhddRfMTFF1iWjnnxGMR7K2Q4oOyJfQULani1JeeUJHAEy9f8Eu3XTm8pxPJj
+         96tUEXXm5e4OVKDdhsGFX/+m5AqrWe9Zpc3m6BGucLkW3t12SFQgxbEE+TlkH2n3nOni
+         eKeg==
+X-Gm-Message-State: AOAM532ZLqWJ45VNdWOA/A1G8tfIZP7sJcyosRnaGAhxjx0ginaToGpW
+        Pdd3TKZYKQXArFOL4i/xhqw6eA==
+X-Google-Smtp-Source: ABdhPJyRY563+KGjf5B3xMQ2eUDjeHzkGdKigmS65ymLahPsTqqQsFuW6ANOC/YWG1ltbjBxFw1Ebg==
+X-Received: by 2002:a05:6808:208d:: with SMTP id s13mr213938oiw.282.1643692846756;
+        Mon, 31 Jan 2022 21:20:46 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.43
+        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 21:20:43 -0800 (PST)
+        Mon, 31 Jan 2022 21:20:46 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     phone-devel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH] Revert "arm64: dts: qcom: sm6125: Avoid using missing SM6125_VDDCX"
-Date:   Mon, 31 Jan 2022 23:19:53 -0600
-Message-Id: <164369277344.3095904.5938604292655738290.b4-ty@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, Petr Vorel <petr.vorel@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        Andy Gross <agross@kernel.org>
+Subject: Re: (subset) [PATCH 1/3] dt-bindings: mmc: sdhci-msm: Add compatible string for msm8994
+Date:   Mon, 31 Jan 2022 23:19:56 -0600
+Message-Id: <164369277343.3095904.2299985482267225526.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211229220117.293542-1-marijn.suijten@somainline.org>
-References: <20211229220117.293542-1-marijn.suijten@somainline.org>
+In-Reply-To: <20211223083153.22435-1-petr.vorel@gmail.com>
+References: <20211223083153.22435-1-petr.vorel@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -74,21 +66,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Dec 2021 23:01:17 +0100, Marijn Suijten wrote:
-> This reverts commit c23f1b77358c173a25ef21303d2a8cc893e9ce22.
+On Thu, 23 Dec 2021 09:31:51 +0100, Petr Vorel wrote:
+> Add msm8994 SoC specific compatible strings for qcom-sdhci controller.
 > 
-> The SM6125_VDDCX constant was replaced with 0 temporarily as the header
-> patch defining this constant resided in a different branch, creating an
-> unwanted dependency of the dts branch on the drivers branch.
-> Now (by the time this patch will be applied) that both branches have
-> been merged upstream, it is safe to revert to the constant again.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] Revert "arm64: dts: qcom: sm6125: Avoid using missing SM6125_VDDCX"
-      commit: a90b8adfa2ddfd74944fa73be97fabe230f0046d
+[2/3] arm64: dts: qcom: msm8994: SoC specific compatible strings for qcom-sdhci
+      commit: 4ec48ebfc3eab546c66c62ee13028f7e271cf496
+[3/3] arm64: dts: qcom: msm8996: SoC specific compatible strings for qcom-sdhci
+      commit: 52f6fa2d2d723b5f07b07856dc15a14c3f59d3a3
 
 Best regards,
 -- 
