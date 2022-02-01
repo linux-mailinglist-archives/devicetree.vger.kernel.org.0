@@ -2,100 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E8E4A62FB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 18:52:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 375894A630C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 18:57:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233237AbiBARwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 12:52:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44090 "EHLO
+        id S241704AbiBAR5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 12:57:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233089AbiBARwD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 12:52:03 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F81EC061714;
-        Tue,  1 Feb 2022 09:52:03 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 6E13A1F42650
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1643737922;
-        bh=vjUzehLvDCyX+ZuEqZcFwP2Vc1ndAwr7dPV8FPY5mOA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QObNmog3dVAUNgUeT+YmFBheaj1ZgBvbYmTanGwngouXuYFnTF4WHlX6+73fY8G4n
-         y3rBcPrlPZphgsd6tQyHXVw2XMvhp4w6aqzIO5gTmlB859DSMP7LjF1iE+DyLFCOlL
-         aSmKNRUrNmywsY956sn74tS5vAmR0SlMZzDys4Rugy+4VGd8deIPjEYT5tV6bblUcY
-         S1T1/Z8O4kom9w0mFj6i2Vl3nc6ZyAA2lMRuJ926rD19e4acK9K+8ZIl7bDbcrGTgx
-         FeMvu2DYLCQdwGbDW4pYA3vzxs9bHABp0IyqtV1Q4RDM6mDfuTCfU5mh9b6Ti9TaCb
-         Aap954XKr3V7A==
-Date:   Tue, 1 Feb 2022 12:51:57 -0500
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Robert Foss <robert.foss@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
-Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: dts: mt8183: jacuzzi: Fix bus properties in
- anx's DSI endpoint
-Message-ID: <20220201175157.nhjbspw7kfz7gwyy@notapiano>
-References: <20220201174643.843102-1-nfraprado@collabora.com>
+        with ESMTP id S234979AbiBAR5k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 12:57:40 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8485C061714
+        for <devicetree@vger.kernel.org>; Tue,  1 Feb 2022 09:57:40 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id i65so16519573pfc.9
+        for <devicetree@vger.kernel.org>; Tue, 01 Feb 2022 09:57:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=GJ0qrx5Mp4w3Xs18ckk11+4zOC5Jvoz3CEpKaitBSfk=;
+        b=nN6U8QmQr86yUBlkSqrKcdXXQmnjEID8Bq7kPVqNt8oUSRqaABg76JAselIAtRfbAM
+         TM4hvvRzFCcU174FE/JjEGaXDUYx1vDgTnq2SMFAvuCzmNJW8NMQNxz9J91LvToAwiq2
+         bzY2Wl2cUGp9EBpsdJghMhl0kT9R5NQGIHVZM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GJ0qrx5Mp4w3Xs18ckk11+4zOC5Jvoz3CEpKaitBSfk=;
+        b=l1rq81tVwfds9BmflbTzqr8T9JElxwXGp9cU4eW6PnhSiFDyOIRydfkkiCnFDqxhLF
+         P797ZPCn47AgLLO4Yyag5nqbQDQEQQ2B1BKbBSFpxZiNC/hoDSvNlyB64OyG+ye3ffyh
+         /YKmbnnHMGgVxmTWq6tANwPC7I8nST75JRI/Lkmh1ArvQG/X5dq3gyoKiSQ+DLfXvA04
+         P7n2J2Pwh6vKsJf4PUT8nVVhQty5oq4LgjtvoP4AhhkD0RG/xy5D+iDf6DFS7iZjvwRG
+         bJLQBMqec3eI3UsW/+lEAQ+quIRlg7QLYuux3hMNo9L6j19H/iDdlSZQJIF7MqDT8gGB
+         rUEQ==
+X-Gm-Message-State: AOAM531CHmYv2/mG+6IxNGGaoKC6vMNh8y46SD03IMIjNrQ+MXxALwXK
+        mWt1DUVKwoFrblzUu9peqjPZkA==
+X-Google-Smtp-Source: ABdhPJy11vBs8O9KVFKUg1ojzylkrZJoKpzxvQaPslmX1NNwEJpSWnlfG1qN4WF664MbSmKOdP5G/w==
+X-Received: by 2002:a63:594b:: with SMTP id j11mr21693612pgm.4.1643738260340;
+        Tue, 01 Feb 2022 09:57:40 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:aca9:b3a5:6f80:8fb5])
+        by smtp.gmail.com with UTF8SMTPSA id oo4sm3635450pjb.46.2022.02.01.09.57.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Feb 2022 09:57:39 -0800 (PST)
+Date:   Tue, 1 Feb 2022 09:57:38 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
+        swboyd@chromium.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: sc7180-trogdor: Add "-regulator"
+ suffix to pp3300_hub
+Message-ID: <Yfl0kkJeErHD2qzg@google.com>
+References: <20220201001042.3724523-1-dianders@chromium.org>
+ <20220131161034.1.I7b284531f1c992932f7eef8abaf7cc5548064f33@changeid>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220201174643.843102-1-nfraprado@collabora.com>
+In-Reply-To: <20220131161034.1.I7b284531f1c992932f7eef8abaf7cc5548064f33@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry, I forgot to add the reviewed-by from v1. Added below.
+On Mon, Jan 31, 2022 at 04:10:38PM -0800, Douglas Anderson wrote:
+> All of the other fixed regulators have the "-regulator" suffix. Add it
+> to pp3300_hub to match.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-On Tue, Feb 01, 2022 at 12:46:43PM -0500, Nícolas F. R. A. Prado wrote:
-> mt8183-kukui-jacuzzi has an anx7625 bridge connected to the output of
-> its DSI host. However, after commit fd0310b6fe7d ("drm/bridge: anx7625:
-> add MIPI DPI input feature"), a bus-type property started being required
-> in the endpoint node by the driver to indicate whether it is DSI or DPI.
-> 
-> Add the missing bus-type property and set it to 5
-> (V4L2_FWNODE_BUS_TYPE_PARALLEL) so that the driver has its input
-> configured to DSI and the display pipeline can probe correctly.
-> 
-> While at it, also set the data-lanes property that was also introduced
-> in that same commit, so that we don't rely on the default value.
-> 
-> Fixes: fd0310b6fe7d ("drm/bridge: anx7625: add MIPI DPI input feature")
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-> 
-> ---
-> v1: https://lore.kernel.org/all/20220120224204.773117-1-nfraprado@collabora.com
-> 
-> Changes in v2:
-> - (thanks Rob) Use proper format when refering to commit in commit
->   message as pointed out by checkpatch
-> 
->  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> index 8f7bf33f607d..e8f133dc96b9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> @@ -171,6 +171,8 @@ port@0 {
->  
->  			anx7625_in: endpoint {
->  				remote-endpoint = <&dsi_out>;
-> +				bus-type = <5>;
-> +				data-lanes = <0 1 2 3>;
->  			};
->  		};
->  
-> -- 
-> 2.35.1
-> 
-> 
-> -- 
-> To unsubscribe, send mail to kernel-unsubscribe@lists.collabora.co.uk.
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
