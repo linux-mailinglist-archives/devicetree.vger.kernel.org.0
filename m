@@ -2,96 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BDAE4A60FB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 17:07:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 895404A6103
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 17:10:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240813AbiBAQHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 11:07:36 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:50404 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240806AbiBAQHf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 11:07:35 -0500
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 211FZhqi014100;
-        Tue, 1 Feb 2022 17:05:17 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=6PYg5Hhedg4uaQloxJmFy2l1dVuPmR6nR41VJNfEuyw=;
- b=oqT9bxTBsdPQbWEw8zRCkvHS7d0ZOGjZRvt4F1frv3tzh4HMDqo7Xjm5to0uQiRRSrlV
- lZ+vzDo4K+QpqdupZGDv7+WxhRfia63lXIPuWGtMIMWni2K8q9ZmNiodZ1L+LmPx/USz
- 9Ws35zLakxRjWrKivI9k4DolcyFKYitA+/+wohyg0ym/Pfm72IxM/PUe1N47n9OPBSLX
- rurQLGg9a8e/GxSpNcHh14qCFMzgJK7Y0ytP/3rGrSw5lEAw/ZuERIJ0HW1mchvrcYFa
- hlLFCWlx+dL2URgyiBgl5XNZs+OrMCEKKYl4THKyAYZmyt9QBhctc7kPCssFo1B9W1JT /A== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3dy1xm1uw2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 01 Feb 2022 17:05:17 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D757410002A;
-        Tue,  1 Feb 2022 17:05:16 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CF7072248DE;
-        Tue,  1 Feb 2022 17:05:16 +0100 (CET)
-Received: from localhost (10.75.127.48) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.26; Tue, 1 Feb 2022 17:05:15
- +0100
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH 2/2] ARM: dts: stm32: add MDMA on STM32MP13x SoC family
-Date:   Tue, 1 Feb 2022 17:05:06 +0100
-Message-ID: <20220201160506.348701-3-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220201160506.348701-1-amelie.delaunay@foss.st.com>
-References: <20220201160506.348701-1-amelie.delaunay@foss.st.com>
+        id S240823AbiBAQKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 11:10:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48644 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240802AbiBAQKF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 11:10:05 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AB98C061714
+        for <devicetree@vger.kernel.org>; Tue,  1 Feb 2022 08:10:05 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id n6-20020a9d6f06000000b005a0750019a7so16685871otq.5
+        for <devicetree@vger.kernel.org>; Tue, 01 Feb 2022 08:10:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=idCVfX47C0O2Y1CHA7a2jaNRuQYfE2agHfqoqrIKZds=;
+        b=iRyKl8QSj3s1NXy8ZQQZrNuldMAkE8qvcSGuVV0nBwlpAMYdzQ4ImKQm5VnNTHxh2p
+         Rz2ekpsr0kwg0osNZX2SIrYWa6dCgPpOU/R7VGv39E3+y5SQ0b5k+PDFdRD/DHjA/jZ+
+         Ni12PPYVHX1M8UeBoomKS4OQhAMRKynop8ZevgbIMdj58BUxz7Kma0E/xOxcsfOcTqeK
+         ex2gTlfspbcgkVeszzTQQNDGLE+fsXRXQSZtO+4DWfu9zveh9prUPR5/g59sTapKTDDQ
+         388Zui1LL4jRWRsyLE11UzZhLVLUxFFJN2WyHZ5N6agl/iuPT9qy/yk53gLWmsvKGFGA
+         QUxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=idCVfX47C0O2Y1CHA7a2jaNRuQYfE2agHfqoqrIKZds=;
+        b=2YZZFbwsilJQnUcx+O5JzDlKXi728FqkCtnGkERq/JW+2fmIGbrcgh9RoTCwPiz0Og
+         NkC4wpAd/BoMOpswouvc4EGaEyD55iCTaWKBHYTt5+E9XzI08C68/yEG6y4H5zwN9TRQ
+         /Gp6gUg8gXNp2Ogm9Uo/HLGd21Rh/HI3/ZySQ0nh3F9XweJUcm43J63rMDxhSvjluKfk
+         q0czzWJjY5XSmqyLs+2KuHp4Cxi/2oyfeLn7RMDPbEUp6R25fyB77WKbWEEh62A0ah2N
+         d8jzXWAz/s1aeiLGyUmykUh5RLw8QPFsDEhLyT6UPbYSy039vwQXsHGlahaP6X/93zBb
+         wNvA==
+X-Gm-Message-State: AOAM5314OcbqjY1A0zqSEvhnl/aShGh00sGAsUWrgYG4Q8eY+nh7n425
+        SD+UHdRSlcqWmD0w6tkkSy7e0yVqIdvWIj2w2Gg=
+X-Google-Smtp-Source: ABdhPJwQwi4kNHjxiXLm/58mzyhgOAxCGCsOHUvketSmSJCA/C0S/0JDOCkCyrGrmwitWwfavAS1ovvDcHBH/ayCKuI=
+X-Received: by 2002:a9d:6c8b:: with SMTP id c11mr14398176otr.92.1643731804489;
+ Tue, 01 Feb 2022 08:10:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-01_08,2022-02-01_01,2021-12-02_01
+Received: by 2002:a4a:aa83:0:0:0:0:0 with HTTP; Tue, 1 Feb 2022 08:10:04 -0800 (PST)
+From:   Varal consultancy DMCC Dubai <glblscrtsrvc@gmail.com>
+Date:   Tue, 1 Feb 2022 08:10:04 -0800
+Message-ID: <CAH1WQQNiASVrvSpr1idbq4MdapMuA=GyKpLDN3Yd--vJedtang@mail.gmail.com>
+Subject: GOOD NEWS
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MDMA on STM32MP13x SoCs is the same than on STM32MP15x SoCs: it offers up
-to 32 channels and supports 48 requests.
-
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
- arch/arm/boot/dts/stm32mp131.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-index e64fa10ac245..b2377a22b511 100644
---- a/arch/arm/boot/dts/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/stm32mp131.dtsi
-@@ -165,6 +165,16 @@ syscfg: syscon@50020000 {
- 			clocks = <&clk_pclk3>;
- 		};
- 
-+		mdma: dma-controller@58000000 {
-+			compatible = "st,stm32h7-mdma";
-+			reg = <0x58000000 0x1000>;
-+			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk_pclk4>;
-+			#dma-cells = <5>;
-+			dma-channels = <32>;
-+			dma-requests = <48>;
-+		};
-+
- 		sdmmc1: mmc@58005000 {
- 			compatible = "arm,pl18x", "arm,primecell";
- 			arm,primecell-periphid = <0x00253180>;
 -- 
-2.25.1
+Please this message is coming directly from world bank head office
+with their address World Bank Office, 7 Bis Avenue de la Paix 1202
+Geneva, Switzerland. we are obliged to inform those whose inheritance
+funds was stucked due to one reason to another. after their general
+meeting held in geneva on 17 of january 2022, they appoint Dr Lopez
+Jackson who was a member of united nation Europian units under
+financial institution. He was financial consultant residing in London
+he has helped many who has similar cases in europe, asia , africa and
+american, this is the right person being appointed to handle your
+funds case.before releasing his contact to you for further process you
+need to furnish us with this following information below.
 
+1, your full names. 2, your bank account info. 3, your country of
+origin.4, the amount involved and finally your direct what's app
+number.
+
+Note, this man will perfect all that concerns your long awaiting
+inheritance funds without any problem or stress.many has confirmed
+their inheritance funds since last week.contact me on my direct what's
+app number for direction +971521456648 .
+
+Mr Gwada Sikumar.
+varal consultancy DMCC Dubai.
+united arab emirates.
+officemanagement234@gmail.com
