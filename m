@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7F924A5679
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:23:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D65634A5682
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233937AbiBAFV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 00:21:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42408 "EHLO
+        id S233475AbiBAFVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 00:21:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234141AbiBAFUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:20:42 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD304C0613E9
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:41 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id r27so9033984oiw.4
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:41 -0800 (PST)
+        with ESMTP id S231304AbiBAFUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:20:47 -0500
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E17CCC0613EC
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:42 -0800 (PST)
+Received: by mail-ot1-x331.google.com with SMTP id n6-20020a9d6f06000000b005a0750019a7so15167377otq.5
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=j0Sm1ybUCneqTyIY3hidk0w03V7qLnrgIwlToVmhPfk=;
-        b=Pzb3k1+JIq+2MtOA0yqBbzVwZBnQYEBpHyhjklmMt8N5J+ryFJattL5mzQqeLtM99O
-         Xz8Ljuo8N58xOUt1a2iNLKzCRIKlw6Gp3nUW5TdG3nvdnsnnx0XsnM0ZjcYUigxdOg37
-         5yxZpmL1pKnRAr2OxWWtDyLDT8EKIDzxZvkDpGMckOyc8r733d4WoHaeND0zHOm2nA7Y
-         yk7xYLdc4HN/IjtcvpyigmFQjP3o4mE17I9yURofnAI1y8kwNHL+7RqkQDyZyCR1yR5e
-         oi1klMPslB5ZuP2P4pnuroJQ3oCXsGCnRbQO/aSFcdkZCzzajwTt52o40x0Y+T82X+68
-         4Ylg==
+        bh=AxUIbjg3SvCLBVXCrv9jIsGx71GsTQ6qIWnsAt6VTbY=;
+        b=BiSXSMEsNtBTkDinyXlJ67kpwdj31ar6lPoZA/5iikJbtUTbyv+x8iSa7vv7ZCPYq6
+         R7Nv0ANSJk6YgAKMwKENalGwcFVeYxJ7V2bekO9F5h1eAxArRCkEJ+lG56yEr9XWpOxd
+         j2UrqPc78k5N69ULMd+CcgKOfYHmCINMvzaZAjVplmKnLYhCFakcrm4CQledQ5fmW064
+         2J0OepZDuPZHszaOu2m/zgWix3+PDZZGPT2LMzNHLZVSXKE7Jp/jdpgT+cVMmsIampR7
+         hre70NoxFVAjnX75mUVPc1J863wP7tru5EaM0vZP9LKpUoOAE8n6/QQyI2vekIi4LFOB
+         I8cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=j0Sm1ybUCneqTyIY3hidk0w03V7qLnrgIwlToVmhPfk=;
-        b=WNFju9hIpvvoRQJraDz8JNWYJ/L0D//jpdWkyLQ+w9AKSTjArlaa1j0jeICWsiYtej
-         JXd86lJZTx5GdCwDSjdnSYL3E1uIdYFL6WH1X8uOFl26MlZm0oppmU+xN3Fv9cAN0GTd
-         bvOiTLAiYzMZmBiMxI5Kkj9pWhHuc2PtICxFzwQ87xq74iIZrYYx87t4W+FfERjje9C+
-         yx5lEJhHhHaEM9SIHB7leycAqels8kYB2pOPzH57C3Lcq/+J5VAneEUOGrsZeCqxsjBW
-         s2PlMXkr+0sAPdszyf70E+emP2libKfYOY/NovlaXXD9qWs6tWV7b5tz+CTVHcH/kVdU
-         jVvw==
-X-Gm-Message-State: AOAM532xdZwNNIfwmSzYSj9V5SphMbXO7SxssL6JRJtHjn0PX4Y383bJ
-        Hm471s1NJ2uthfHRI9ace+h00MkHLRWijQ==
-X-Google-Smtp-Source: ABdhPJzhttDk/Frhf6kwxi5jgwfK1+KcsTYNHkagbvFNpx/3R8LTIGq/HpRA2IBGC+i3sOz9sSLnMQ==
-X-Received: by 2002:a54:4486:: with SMTP id v6mr207711oiv.121.1643692841329;
-        Mon, 31 Jan 2022 21:20:41 -0800 (PST)
+        bh=AxUIbjg3SvCLBVXCrv9jIsGx71GsTQ6qIWnsAt6VTbY=;
+        b=dmgXOUQ5HCX0yi2iAAv3vvfiLJ9mKHSjRnMbKtC5tFQTS2PSyufiWUvzvS+0tTqp3J
+         URiKVi320BHuMQktigW4H6co8JCDO5WMwz/7ZmgEZCMYX7V8zJY0X2YYgYxMqEv/waqI
+         Ck+3eczew0Nwwv1zUn+ggkIfiItrqlm6C7/muw/lTK/38hr8R4Jt8DIWEJogP/AaXakv
+         rwemMwboS6xVHt9KSDk00o04vAqh2Hgw3GxUJsFlT81OGlIsp2WxD6wfc4cf+uY8g7hV
+         FswRiuQQcc88kZc3f9u0HaYx2xVGrQge2irZa/SZ9QN3XScpKY8mEWVm9dv+q1vkNWlO
+         TPqw==
+X-Gm-Message-State: AOAM531WoONteiNokpvAYIqOlSKtosxaL4JtiRnWyI1+ynoy6XuyXRrl
+        wRdHYqltmOZ/f6ZhTxnpB8LhfPTsHS/vHw==
+X-Google-Smtp-Source: ABdhPJz7xSZzfdlELJEKFP+8VoUH7pamHFIqMvwPRNtJNI8E/x0hnVAHOllmRicnrMtz2Q1gMZswNw==
+X-Received: by 2002:a05:6830:1084:: with SMTP id y4mr9564994oto.42.1643692842301;
+        Mon, 31 Jan 2022 21:20:42 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.40
+        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 21:20:40 -0800 (PST)
+        Mon, 31 Jan 2022 21:20:41 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8450: enable GCC_USB3_0_CLKREF_EN for usb
-Date:   Mon, 31 Jan 2022 23:19:50 -0600
-Message-Id: <164369277345.3095904.13835466857141707804.b4-ty@linaro.org>
+To:     linux-arm-msm@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>
+Cc:     dri-devel@lists.freedesktop.org, phone-devel@vger.kernel.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        linux-kernel@vger.kernel.org, Kiran Gunda <kgunda@codeaurora.org>
+Subject: Re: (subset) [PATCH 0/4] Enable display backlight on Fairphone 4
+Date:   Mon, 31 Jan 2022 23:19:51 -0600
+Message-Id: <164369277344.3095904.11289204126111973872.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220122162932.7686-1-jonathan@marek.ca>
-References: <20220122162932.7686-1-jonathan@marek.ca>
+In-Reply-To: <20211229170358.2457006-1-luca.weiss@fairphone.com>
+References: <20211229170358.2457006-1-luca.weiss@fairphone.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -67,18 +67,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 22 Jan 2022 11:29:31 -0500, Jonathan Marek wrote:
-> USB doesn't work at all without this clock enabled. This fixes USB when not
-> using clk_ignore_unused.
+On Wed, 29 Dec 2021 18:03:54 +0100, Luca Weiss wrote:
+> Add and enable PM6150L wled which is used for controlling the display
+> backlight on Fairphone 4.
 > 
+> This series depends on the recent wled series by Marijn Suijten,
+> currently applied in the for-backlight-next branch of
+> kernel/git/lee/backlight.git (or linux-next).
 > 
+> [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: qcom: sm8450: enable GCC_USB3_0_CLKREF_EN for usb
-      commit: 197769fede5824d218f1f13f7620243015801d81
-[2/2] arm64: dts: qcom: sm8450: fix apps_smmu interrupts
-      commit: 7baa00bef336254e2cea5d4b064afe6430a05309
+[3/4] arm64: dts: qcom: pm6150l: Add wled node
+      commit: fe508ced49dd51a700c0f9ec7826d523cfe621b2
+[4/4] arm64: dts: qcom: sm7225-fairphone-fp4: Configure WLED
+      commit: 7a52967d9050f3e430373bc51c56865b49a38573
 
 Best regards,
 -- 
