@@ -2,65 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0E704A63A9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 19:23:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8DC14A63C8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 19:28:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230147AbiBASXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 13:23:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51674 "EHLO
+        id S229801AbiBAS12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 13:27:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230124AbiBASXw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 13:23:52 -0500
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0F0C061714;
-        Tue,  1 Feb 2022 10:23:52 -0800 (PST)
-Received: by mail-qv1-xf32.google.com with SMTP id a7so16816192qvl.1;
-        Tue, 01 Feb 2022 10:23:52 -0800 (PST)
+        with ESMTP id S234755AbiBAS11 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 13:27:27 -0500
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E08D2C06173B;
+        Tue,  1 Feb 2022 10:27:26 -0800 (PST)
+Received: by mail-qt1-x835.google.com with SMTP id k25so10203469qtp.4;
+        Tue, 01 Feb 2022 10:27:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
+        h=subject:from:to:cc:references:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=RE7G6HWBplku2+vK7AkTfekQdPqvsoGPNP8lPj8UG8A=;
-        b=C4/bdY54tA7woecKdYjn/Fd4jSyJs6g6Rj9bPihHkJ8Gv8hCcx5NiiahNi3EkChPXb
-         pMq7x7LbgtiUqqBnrSxggwyFnBLU74m6t1w8biFMTVNyaGsbymUFtr1Z5KVWw/g3sgC4
-         Gc9kSzGMzvOOZV8adUEIs2l4mF0oHdRhEA9KkhCTkJTK3CMSbTr4FOVYMwHXtkERgsEW
-         7drfa28HCkwpE9wDsjEte/vVxGiw9ulDcWJDbSckaozxZwnow2jq1DJGucNz1lxNurfy
-         ERssRXDim9jWVxz6n4F6sg/gawIkkKHcUVGxE5m357K+WvdWDBq8rpO8iZJVsHkQjxg7
-         IDxw==
+        bh=4fU16CwaNXSv04OsiOZ3YMb430l73X6vlu4kJVwG20k=;
+        b=KYJNmKkb4p91XXQbFqsjbRL25/Mko2MtELbhOCsWZPoJbAPJXXoBWGymf5u49D7bzD
+         opUZyhYoE+d1dYl9LyUf6N91v6sid6FJRpcSIxBzuS0zCu/0TRa11IAyTKSKodN+lKdy
+         5ooQJfxuXAk52C2060I+Bbmc+5K0y4+FHWoSuTqr4mTMl8p7oH+HF6wlaD54KMWnCmVE
+         jzHkloOW5SPIpxHurKn8cnzwLZIGX5/uOXzmGJk60qaTIZeQKHXaElGKpTMvTDh9ZbRK
+         3eHllDv/IoaaVAWtHNvyjX/OzMVJzUolXDIl1AGsnLfklHGbftnrekFmlKBmUtdJmQGK
+         VfGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=RE7G6HWBplku2+vK7AkTfekQdPqvsoGPNP8lPj8UG8A=;
-        b=yS/PmoxO0VCjj+tSU3CfCSCpzIfgfg28aV4pVX9TWlCj4wczf8x1xL+YYxtr0qsPyr
-         70S+wlL2ji2Zu1hB4wZ9ys175UMfHNxxDmIeX86IkvykoJJxqEK/yd/sqOkB2RV3pgaR
-         kLQ6qhHGV47Nk9c83MZa7pY/r5HxXe8yDV/3QB2kQiizXodQw5s+yEnv+7eTI8D24duh
-         Y7tZbjxSmjZqJlvRrhosKBnsOmwtGOlEdK0f8BtsBATJ65QbOjGPf6UXK8cPMslYYwDW
-         Kmbp8azG1FrlZlpctssSry4bRSaDjhoo2UCoIyMylVDNSmpkIlF6OQJSF7bDDntAFOXX
-         OXDg==
-X-Gm-Message-State: AOAM533M9vokhyou9l5rYNVNgdiAZPPHCSKWluSPgHbJNDNYi1rj8r0E
-        nTJMgFS0eJt21ON+6INDig8=
-X-Google-Smtp-Source: ABdhPJyz24WaXYwJehVlFOjiOu5IYBKdLTOVrLVYVHU4x8xMIGuN+nse9AfCRG7QPpmo5Rou7bpUGg==
-X-Received: by 2002:ad4:5dcf:: with SMTP id m15mr23680408qvh.26.1643739831787;
-        Tue, 01 Feb 2022 10:23:51 -0800 (PST)
+        bh=4fU16CwaNXSv04OsiOZ3YMb430l73X6vlu4kJVwG20k=;
+        b=S0CFwpDUeMnuNrxu0tnbFx87eEnWDW3UdFuIf3e79LsUUkaGNHabYmEuXPS2DW7j4C
+         lpIBCWjaWJAAJYL7L81Y7g4rNqTCdkniP+dyTf8o7rI08Jm1RI4+a4zL8o9gVafLWhLs
+         XiKI02RpDEgxXna19SZGJRPzfF2dwwJANRQ4OvrWPSxqcvUby37hjT/4E6QDsskbtSOL
+         OJGVjIfHptgNP3HaYeTvF2zLml+TjgzXtgqqQrtyHnhbxhlT8DyhZnypRHK1BoU4bw+I
+         ujQ6UTJyhQT9H8s6Z8FopxI5T4kc9AyJu2uYdMWr5zWY7IEhUV0k9X38Hee0+6Kn/Qey
+         f25A==
+X-Gm-Message-State: AOAM531DegDFliwww1eoRzoRoLN57M4Y8758+zTZBKTYLw5ab42jh6VR
+        VExy+FaqPP/4M0K0nZK6dU4=
+X-Google-Smtp-Source: ABdhPJw2N7U22+7/5sOSlB4KcU3zAXRTpYadOqzWHPeG7KXP4+sTogcCLvRoJthCH/Opo9aHr/BeHg==
+X-Received: by 2002:a05:622a:40e:: with SMTP id n14mr3047058qtx.189.1643740046137;
+        Tue, 01 Feb 2022 10:27:26 -0800 (PST)
 Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id u17sm4956827qkp.23.2022.02.01.10.23.50
+        by smtp.gmail.com with ESMTPSA id ay12sm3492549qkb.127.2022.02.01.10.27.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Feb 2022 10:23:51 -0800 (PST)
-Subject: Re: [PATCH 1/1] of: unittest: update text of expected warnings
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220127192643.2534941-1-frowand.list@gmail.com>
- <CAL_JsqLSsHJMKqOcLYR6uegghy8acLmu7iOX40gp__XVaShBUg@mail.gmail.com>
+        Tue, 01 Feb 2022 10:27:25 -0800 (PST)
+Subject: Re: [PATCH 1/1] of: unittest: add program to process EXPECT messages
 From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <fb292c87-ea49-3837-40e7-a5d9031cdeb7@gmail.com>
-Date:   Tue, 1 Feb 2022 12:23:50 -0600
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220201181413.2719955-1-frowand.list@gmail.com>
+Message-ID: <3b1b29eb-5c8e-497a-1688-fa9df80dfd6e@gmail.com>
+Date:   Tue, 1 Feb 2022 12:27:24 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLSsHJMKqOcLYR6uegghy8acLmu7iOX40gp__XVaShBUg@mail.gmail.com>
+In-Reply-To: <20220201181413.2719955-1-frowand.list@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -68,27 +66,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/31/22 9:04 AM, Rob Herring wrote:
-> On Thu, Jan 27, 2022 at 1:26 PM <frowand.list@gmail.com> wrote:
->>
->> From: Frank Rowand <frank.rowand@sony.com>
->>
->> The text of various warning messages triggered by unittest has
->> changed.  Update the text of expected warnings to match.
->>
->> The expected vs actual warnings are most easily seen by filtering
->> the boot console messages with the of_unittest_expect program at
->> https://github.com/frowand/dt_tools.git.  The filter prefixes
-> 
-> News to me there's such a tool. Normally, I just give up staring at
-> the wall of text spewed out and check failures. Can we add this tool
-> to the kernel tree? Then there might be some hope that I'll run it.
-
-I cleaned it up and submitted a patch.
-
--Frank
-
-> 
-> Rob
+On 2/1/22 12:14 PM, frowand.list@gmail.com wrote:
+> From: Frank Rowand <frank.rowand@sony.com>
 > 
 
+< snip >
+
+> I will reply to this message with the usage message from
+> 'scripts/dtc/of_unittest_expect --help'.
+
+< snip >
+
+$ scripts/dtc/of_unittest_expect --help
+
+usage:
+
+  of_unittest_expect CONSOLE_LOG
+
+     -h                print program usage
+    --help             print program usage
+    --hide-expect      suppress output of EXPECTed lines
+    --line-num         report line number of CONSOLE_LOG
+    --no-expect-stats  do not report EXPECT statistics
+    --no-strip-ts      do not strip leading console timestamps
+    --verbose          do not suppress EXPECT begin and end lines
+    --version          print program version and exit
+
+
+  Process a console log for EXPECTed test related messages to either
+  highlight expected devicetree unittest related messages or suppress
+  the messages.  Leading console timestamps will be stripped.
+
+  Various unittests may trigger kernel messages from outside the
+  unittest code.  The unittest annotates that it expects the message
+  to occur with an 'EXPECT \ : text' (begin) before triggering the
+  message, and an 'EXPECT / : text' (end) after triggering the message.
+
+  If an expected message does not occur, that will be reported.
+
+  For each expected message, the 'EXPECT \ : text' (begin) and
+  'EXPECT / : text' (end), 'text' will contain the message text.
+
+  If 'EXPECT \' (begin) and 'EXPECT /' (end) lines do not contain
+  matching 'text', that will be reported.
+
+  If EXPECT lines are nested, 'EXPECT /' (end) lines must be in the
+  reverse order of the corresponding 'EXPECT \' (begin) lines.
+
+  'EXPECT \ : text' (begin) and 'EXPECT / : text' (end) lines can
+  contain special patterns in 'text':
+
+     <<int>> matches: [+-]*[0-9]+
+     <<hex>> matches: (0x)*[0-9a-f]+
+
+  'EXPECT \' (begin) and 'EXPECT /' (end) lines are suppressed.
+
+  A prefix is added to every line of output:
+
+    'ok ' Line matches an enclosing EXPECT begin/end pair
+
+    '** ' Line reports of_unittest_expect warning or error
+
+    '-> ' Line reports start or end of the unittests
+
+    '>> ' Line reports a unittest test FAIL
+
+    '   ' Lines that are not otherwise prefixed
+
+  Issues detected in CONSOLE_LOG are reported to STDOUT, not to STDERR.
+
+  Known Issues:
+
+    --line-num causes the CONSOLE_LOG line number to be printed in 4 columns.
+       If CONSOLE_LOG contains more than 9999 lines then more columns will be
+       used to report the line number for lines greater than 9999 (eg for
+       lines 10000 - 99999, 5 columns will be used).
