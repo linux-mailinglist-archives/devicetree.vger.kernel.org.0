@@ -2,82 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6DC94A6134
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 17:16:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C9C64A6118
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 17:12:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240875AbiBAQQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 11:16:35 -0500
-Received: from mail-vs1-f51.google.com ([209.85.217.51]:40478 "EHLO
-        mail-vs1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238531AbiBAQQf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 11:16:35 -0500
-Received: by mail-vs1-f51.google.com with SMTP id g23so16734094vsf.7;
-        Tue, 01 Feb 2022 08:16:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WKBhlOoIftqWUSFiJM+fo/SElMCHM247+01rYcyFYnU=;
-        b=mHrKPu9TM2qhGU8y7P/Q5MZAGSgt7fk6hPrbvKHiximTEwvlLnGW8esNrxIwKXTtOG
-         lKeWLnWbv3jnOT/wZWo0q3vbc09L2WR0ODiVbWe0as2qnCgFbr6tK/E7mWiuAmR6ZBrs
-         QlO/FGqNFNKWHFGdCfz+hYpYf6bIi2BB5d44aKEEzRqoNZzVqaIQPeIch2yUCHrelVYv
-         oA6bRM96VRWSONDn4STNr6l1CK3wWCu/2mkz2zPvSfoGd0+QfXwnsobr8cQcdEBXpPMH
-         TPuonks3WwARaaxChHLebArlqJdQ8ruAUdTCWJ2yZZlch0ni2Gm3UaVDyU1KbbQd45dN
-         5P+w==
-X-Gm-Message-State: AOAM533UAt3lKLpA0Z41rgwKoPzwbB6vMOtpvnD//Edtjbkn0bu5eemH
-        3a2TSNWq4ROofGw0WeOQ95+dUAYe4LCTtg==
-X-Google-Smtp-Source: ABdhPJxRBo7jqmPUB8zF6CUfW0ToRrPBHqm/rWt/E+Q0xsRkp7OyLddl5QzoPCC4IVVFXrN2AKRYuQ==
-X-Received: by 2002:a05:6102:548a:: with SMTP id bk10mr10087610vsb.27.1643732194382;
-        Tue, 01 Feb 2022 08:16:34 -0800 (PST)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id x14sm1129371uav.5.2022.02.01.08.16.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Feb 2022 08:16:34 -0800 (PST)
-Received: by mail-ua1-f49.google.com with SMTP id y4so14186755uad.1;
-        Tue, 01 Feb 2022 08:16:33 -0800 (PST)
-X-Received: by 2002:ab0:6f0d:: with SMTP id r13mr7477310uah.114.1643732193344;
- Tue, 01 Feb 2022 08:16:33 -0800 (PST)
+        id S240890AbiBAQMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 11:12:50 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:45874 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240848AbiBAQMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 11:12:50 -0500
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 211FVMX8032227;
+        Tue, 1 Feb 2022 11:12:43 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3dx8jbvvnv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 01 Feb 2022 11:12:42 -0500
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 211GCf0Y045166
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 1 Feb 2022 11:12:41 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 1 Feb 2022 11:12:40 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 1 Feb 2022 11:12:40 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 1 Feb 2022 11:12:40 -0500
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 211GCWGa019228;
+        Tue, 1 Feb 2022 11:12:34 -0500
+From:   Cristian Pop <cristian.pop@analog.com>
+To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <jic23@kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, Cristian Pop <cristian.pop@analog.com>
+Subject: [PATCH v2 1/2] dt:bindings:iio:frequency: Add ADMV4420 doc
+Date:   Tue, 1 Feb 2022 18:23:50 +0200
+Message-ID: <20220201162351.53520-1-cristian.pop@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20220117075130.6198-1-biju.das.jz@bp.renesas.com> <20220117075130.6198-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220117075130.6198-2-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 1 Feb 2022 17:16:22 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUKjRJkQ5c-FRuwEny3gpoWeCUXPfeU3CZud1ovT=Pp5A@mail.gmail.com>
-Message-ID: <CAMuHMdUKjRJkQ5c-FRuwEny3gpoWeCUXPfeU3CZud1ovT=Pp5A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzg2lc-smarc: Enable microSD on
- SMARC platform
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: vm1ni3cvA7FvzkoUTE-YRYnD4eucenw_
+X-Proofpoint-ORIG-GUID: vm1ni3cvA7FvzkoUTE-YRYnD4eucenw_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-01_08,2022-02-01_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 adultscore=0 malwarescore=0 impostorscore=0
+ mlxlogscore=999 phishscore=0 mlxscore=0 priorityscore=1501 bulkscore=0
+ spamscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2201110000 definitions=main-2202010092
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 17, 2022 at 8:51 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> This patch enables microSD card slot connected to SDHI1 on RZ/G2LC SMARC
-> platform by removing the sdhi1 overlay which disabled it and adding the
-> necessary pinmux required for SDHI1.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Add device tree bindings for the ADMV4420 K band downconverter.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.18.
+Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+---
+changes in v2:
+ - Fix indentation
+ - Remove '|', there is no formatting to persevere
+ - Add plank line before 'properties:'
+ - replace '_' with '-' in property names
+ .../bindings/iio/frequency/adi,admv4420.yaml  | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
 
-Gr{oetje,eeting}s,
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
+new file mode 100644
+index 000000000000..43a27d8e5da1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/frequency/adi,admv4420.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ADMV4420 K Band Downconverter
++
++maintainers:
++  - Cristian Pop <cristian.pop@analog.com>
++
++description:
++    The ADMV4420 is a highly integrated, double balanced, active
++    mixer with an integrated fractional-N synthesizer, ideally suited
++    for next generation K band satellite communications
++
++properties:
++  compatible:
++    enum:
++      - adi,admv4420
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 1000000
++
++  adi,lo-freq-hz:
++    description: LO Frequency
++
++  adi,ref-ext-single-ended-en:
++    description: External reference selected.
++    type: boolean
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      admv4420@0 {
++        compatible = "adi,admv4420";
++        reg = <0>;
++        spi-max-frequency = <1000000>;
++        adi,lo-freq-hz = /bits/ 64 <16743700000>;
++        adi,ref-ext-single-ended-en;
++      };
++    };
++...
+-- 
+2.17.1
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
