@@ -2,91 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A244A4A53E2
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 01:11:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8160B4A53EE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 01:18:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230339AbiBAALS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 19:11:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58328 "EHLO
+        id S230303AbiBAASt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 19:18:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230232AbiBAALL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 19:11:11 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98835C061714
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 16:11:11 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id b15so13986694plg.3
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 16:11:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=BLyJY/CY058PdC6QzTbbwc0EGXgTrNIX9qqqeiwTwrw=;
-        b=ayCvbNcKiPTczzqS9XHoyUnHjt4Z3nLj6ZGXwOxIZHj6AF48fpi0jxqXunWsnufBUJ
-         XP/rpS0IRJa7HQ5OYPiMUxZL2ggXFfQABDoOVt/d0X+AFqc3zWrCT807UUnffnB4gxQe
-         SW78/BW7hd2R0hYUJE5RfhI+c+gqz2DaYciDg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BLyJY/CY058PdC6QzTbbwc0EGXgTrNIX9qqqeiwTwrw=;
-        b=3LTDZZW+D/g6a16k2NArug0slkbO9PSZS/kgyS/oK+sIP+z9XpipGECgzi5CeaTXzH
-         4sLmSMapXfxmu0rt/MoOsLlzjgX7haqurTudEkVKsazUl8PCJQ32tvTf/2RRL/DBlm3N
-         ePkN7vbCXHgY99w/RZQCVsQZQPcPhYDLHdJgz85P70/clWDADCGZV8aWByIIbPDnRbK2
-         W2+V6c5oz77DEo9Qw59BpXnqGIAqdJ42w/Z5makVO3SaEtpXWmCdRTpuZp8MJb8Ym1/H
-         /mJ9UlFSRpDnKsUsT3GxzmlwP9ChN+G1KffVqUDWxgYPDTWu0553P+F7cm+/33kG7J3w
-         onCg==
-X-Gm-Message-State: AOAM533tacQ8tQlqwC4bGiChklxO2TEuvEPhNxet1ym4yJEI9f8337Qy
-        s7pBjUSX5NmQO4gziScGt6y8Kw==
-X-Google-Smtp-Source: ABdhPJzhPbukCAQnFB32y0r3lP+C+C9GoEC9M2CC+qRHwEeEZZNueWtJOl6DIlqw6o8Q3YFKVs9uEg==
-X-Received: by 2002:a17:902:6b0b:: with SMTP id o11mr5876923plk.169.1643674271194;
-        Mon, 31 Jan 2022 16:11:11 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:c47e:986d:769b:ead2])
-        by smtp.gmail.com with ESMTPSA id oj5sm424024pjb.53.2022.01.31.16.11.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 16:11:10 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>, mka@chromium.org,
-        swboyd@chromium.org, Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: qcom: sc7280-idp: No need for "input-enable" on sw_ctrl
-Date:   Mon, 31 Jan 2022 16:10:42 -0800
-Message-Id: <20220131161034.5.Ibaf8a803802beb089cc6266b37e6156cff3ddaec@changeid>
-X-Mailer: git-send-email 2.35.0.rc2.247.g8bbb082509-goog
-In-Reply-To: <20220201001042.3724523-1-dianders@chromium.org>
-References: <20220201001042.3724523-1-dianders@chromium.org>
+        with ESMTP id S230290AbiBAASs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 19:18:48 -0500
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 184D9C06173B;
+        Mon, 31 Jan 2022 16:18:48 -0800 (PST)
+Received: from hatter.bewilderbeest.net (174-21-190-118.tukw.qwest.net [174.21.190.118])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 68340407;
+        Mon, 31 Jan 2022 16:18:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1643674726;
+        bh=vzPsNjZvndAyHxwYzpRfPbOzW25qWDh7MkzyvlonJCI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=giilTykb2ELfTcPfC8n/+sJ0g9/UFXKa/W5nrtxv0TvhP63lm8znl5kNWAcGdvfNb
+         qoxAzlFBuLgBsjc4UUzLMUH1V+QNdjxN9gvZ7MaHbF+fA7p1a6u/OD11gxEsUweeqe
+         rdrvQvXDTuiT8d/pc9TynkRPqKeFXTQtrois/LQU=
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     linux-i2c@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>
+Cc:     Zev Weiss <zev@bewilderbeest.net>, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] ic2: mux: pca9541: add delayed-release support
+Date:   Mon, 31 Jan 2022 16:18:08 -0800
+Message-Id: <20220201001810.19516-1-zev@bewilderbeest.net>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Specifying "input-enable" on a MSM GPIO is a no-op for the most
-part. The only thing it really does is to explicitly force the output
-of a GPIO to be disabled right at the point of a pinctrl
-transition. We don't need to do this and we don't typically specify
-"input-enable" unless there's a good reason to. Remove it.
+Hello,
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+This series adds support for a new pca9541 device-tree property
+("release-delay-us"), which delays releasing ownership of the bus
+after a transaction for a configurable duration, anticipating that
+another transaction may follow shortly.  By avoiding a
+release/reacquisition between transactions, this can provide a
+substantial performance improvement for back-to-back operations -- on
+a Delta AHE-50DC (ASPEED AST1250) system running OpenBMC with dozens
+of LM25066 PMICs on PCA9541-arbitrated busses, a setting of 10000 (10
+ms) reduces the median latency the psusensor daemon's hwmon sysfs file
+reads from 2.28 ms to 0.99 ms (a 57% improvement).
 
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 7a987bc9b758..23e656e51904 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -534,7 +534,6 @@ sd_cd: sd-cd {
- 	sw_ctrl: sw-ctrl {
- 		pins = "gpio86";
- 		function = "gpio";
--		input-enable;
- 		bias-pull-down;
- 	};
- };
+Thanks,
+Zev
+
+Changes since v1 [0]:
+ - removed spurious #include line from dt-bindings example
+
+[0] https://lore.kernel.org/linux-i2c/20220124213850.3766-1-zev@bewilderbeest.net/
+
+Zev Weiss (2):
+  i2c: mux: pca9541: add delayed-release support
+  dt-bindings: i2c: add nxp,pca9541 release-delay-us property
+
+ .../devicetree/bindings/i2c/nxp,pca9541.txt   |  9 +++
+ drivers/i2c/muxes/i2c-mux-pca9541.c           | 56 ++++++++++++++++---
+ 2 files changed, 56 insertions(+), 9 deletions(-)
+
 -- 
-2.35.0.rc2.247.g8bbb082509-goog
+2.34.1
 
