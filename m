@@ -2,92 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCEA34A540B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 01:29:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00D624A540C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 01:29:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbiBAA3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 19:29:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34120 "EHLO
+        id S230388AbiBAA3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 19:29:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230388AbiBAA3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 19:29:13 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89D5C06173B
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 16:29:13 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id c9so13965272plg.11
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 16:29:13 -0800 (PST)
+        with ESMTP id S230387AbiBAA3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 19:29:43 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4BA7C061714
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 16:29:42 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id d18so14026264plg.2
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 16:29:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:references:in-reply-to:content-transfer-encoding;
-        bh=zgyqB+ORKqwkDdxEBDo6wVn0bd5ZLkx9bBWvDBcs1W8=;
-        b=atfLOFfiL/vTYJgGoDcq93q15fshaIXXpPlmssLEAyLBGzQaKcrHV5eKkMP7E/Oxw+
-         obXQPQESnwI6Kf++OudPmr6HjNsWGavCre+kjkGJulTYksJrm3B9QE1z7N9V0Kn1MQxQ
-         Yme07lWHuOUhcFctMfU48pLXx25NJ6n+unvib7U8++P5BtakrczkjhspAe5M4olfc4+c
-         vUj0kGqyTcldTQrSQxVyMx2Iv1r0mEdIUHNI8ABpIhCepmJU/lyV4PeAcJwbQZ+X42Ho
-         jCuFvWStbjecPn8UDXkXpd76XV7yeZFwA1nSe/4bdYozyVYffgZ3fT/dBI9lfiJishAV
-         WXNA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=fUiEyLSNC6XcZr3ogWGG4JeevRxf/6Z+zhwMWg+FhsE=;
+        b=giuPojpckPWdJqVWPqQ6mN3E0814gEEgGvlJiG8FCpjMnDFjqaVeeeQHyRWanKRb/4
+         lm6OgpN5WLZL4g5X45DawRO1zEwbpljajE2sPMzeqRXFfKPR2eSr0te7ASiT90mmyUZV
+         pXlKsooirYd5bnTvH3H2vtgjy9fbKZezw+NumXDKtes0IJaMSB4nwrB494BklRYkYX3M
+         lb9f6DMIhXbYUZO5nVcyzQQUdFkjpltFsQjGf/Kby/NOA+FDJFNTNQ7+fLJekZgmWOax
+         QjPg98Vn32b4q693U5HNPTgiPRADq6NyZSRyaWg0/av9pFPiN/UbW+OEupu0gz0J0iA7
+         AFhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:references:in-reply-to
-         :content-transfer-encoding;
-        bh=zgyqB+ORKqwkDdxEBDo6wVn0bd5ZLkx9bBWvDBcs1W8=;
-        b=M5/PJNfI8CmXNpWLHtf8+upthCQeZay0vwZusnAQBRWxslHTFmkXIIkWoAjpcp9ide
-         9Aa9akV0mobT/TSNAbBorJwEL3kjKgzOdSjKqYp2XLMo9vQ7oovahraqz1u06biZd+ti
-         9CbGutH/ajfNLl6cyXAJRz9dO5Al1KYiVBC7g5nqhH1xpi5++VdyE0FDuHbsn3THibA+
-         csUp42bX+vHOFTJZ5t2DG58LMIoNO+QmXzrjdZv3yeyMmOQT7aqWigjSMc3EEXFPUDEQ
-         VnNA8Dv8E3VIEP0mmH4eO2SVSaEEcRdYREiEMp/XpRJdbWf8C6MANUQbyqXzg8x9G60a
-         yv3Q==
-X-Gm-Message-State: AOAM533llXrxKJG6mLR0I9kKWC9Ax/h6uxcT6BRBi+ID6LnaF+04yd8z
-        nZW4jXgqSLRmHMldNinBULtu6IOEeHM=
-X-Google-Smtp-Source: ABdhPJzpjtQsI60DHGxKVpAAFXO9HuB78bjEKWaBTEHm62zmn2DIYwBaB9KBMzVOwcqWi2AYBrr9fw==
-X-Received: by 2002:a17:90a:f0c9:: with SMTP id fa9mr27406764pjb.131.1643675353264;
-        Mon, 31 Jan 2022 16:29:13 -0800 (PST)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id d2sm459096pju.2.2022.01.31.16.29.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Jan 2022 16:29:12 -0800 (PST)
-Message-ID: <a449c627-c036-dc72-0e90-a14f5f1c4dfe@gmail.com>
-Date:   Mon, 31 Jan 2022 16:29:11 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] ARM: dts: bcm2837: Add the missing L1/L2 cache
- information
-Content-Language: en-US
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=fUiEyLSNC6XcZr3ogWGG4JeevRxf/6Z+zhwMWg+FhsE=;
+        b=z+XdG8ECPDJu1CkUCZ6+7lShuEzFLmOk+hyAtwHsYHKsCUP2G6lOX9IRmXuUqdzaXK
+         fPqyUztWGuRzjQEsHtuirhYJOzccidWFnhQb77yQ0UHWj7+YM1xGwipyrJHwgokFkVIu
+         +hwowfbO4oEWOiC4LaRicBAriD5j36s6ubGR/i3TS/eGt3+B4diBzCDDPdomX02jGuYr
+         kiRn2T1lXNUMZfmnd3G60WpT0qSvej/aCU100t3xt/z5QV5y5yezqxxOAo7jYW1X7QmS
+         rH9j332uHa+Byx289BHzvr5nWwc1YhIbIlfoG60V4UDqOAIqfTG/WsWCc4E/mXZtzTWr
+         MFcg==
+X-Gm-Message-State: AOAM531+8CRfNDt/u1dAr6EEG+e5oJmxT+LWm3QjXs4CG2AJ2CoA3DJI
+        wrksnMNCs4O3uhehMoUmteM=
+X-Google-Smtp-Source: ABdhPJwj3puh0IVgN0Qt0V03yjG+k5cJsnef8Mb8pvoj/Yt9wMNaeXMRmOjByPgqA945dqBVwZeR9A==
+X-Received: by 2002:a17:90b:33ca:: with SMTP id lk10mr27050518pjb.45.1643675382329;
+        Mon, 31 Jan 2022 16:29:42 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id s2sm20741829pgq.38.2022.01.31.16.29.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jan 2022 16:29:41 -0800 (PST)
 From:   Florian Fainelli <f.fainelli@gmail.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
-        Richard Schleich <rs@noreya.tech>, robh+dt@kernel.org,
-        nsaenz@kernel.org, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20211218200009.16856-1-rs@noreya.tech>
- <20220201002407.426327-1-f.fainelli@gmail.com>
-In-Reply-To: <20220201002407.426327-1-f.fainelli@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH] arm64: dts: broadcom: bcm4908: use proper TWD binding
+Date:   Mon, 31 Jan 2022 16:29:40 -0800
+Message-Id: <20220201002940.428113-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211229102314.5423-1-zajec5@gmail.com>
+References: <20211229102314.5423-1-zajec5@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 1/31/2022 4:24 PM, Florian Fainelli wrote:
-> On Sat, 18 Dec 2021 21:00:09 +0100, Richard Schleich <rs@noreya.tech> wrote:
->> This patch fixes the kernel warning
->> "cacheinfo: Unable to detect cache hierarchy for CPU 0"
->> for the bcm2837 on newer kernel versions.
->>
->> Signed-off-by: Richard Schleich <rs@noreya.tech>
->> ---
+On Wed, 29 Dec 2021 11:23:14 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+> Block at <ff800400 0x4c> is a TWD that contains timers, watchdog and
+> reset. Actual timers happen to be at block beginning but they only span
+> across the first 0x28 registers. It means the old block description was
+> incorrect (size 0x3c).
+> 
+> Drop timers binding for now and use documented TWD binding. Timers
+> should be properly documented and defined as TWD subnode.
+> 
+> Fixes: 2961f69f151c ("arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300 early DTS files")
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
-I did remove the comments that were not helpful for the 'd-cache-size', 
-'d-cache-line-size', 'i-cache-size' and 'i-cache-line-size'  since they 
-are self explanatory.
-
-Thanks!
--- 
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+--
 Florian
