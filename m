@@ -2,143 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A9644A57E0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 08:37:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 755C14A5826
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 08:58:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235057AbiBAHhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 02:37:40 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:55890
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234768AbiBAHhj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 02:37:39 -0500
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C7EDB3FDC7
-        for <devicetree@vger.kernel.org>; Tue,  1 Feb 2022 07:37:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643701053;
-        bh=RPRvR9h0sqEY3BztfrrZpWvb2ynNRmBl0rQCLPnBj/g=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=Qs4BlX2kBYqjx31CFH1X4KmRI+coA0WjBwEEdfK3c2uBaHwGrYI4sYaLQxutF3j6O
-         ma/J4nXuy1VYWGEvizyl6EZV0igl94+JkWxhTeyTZVTwZuXsfk5LGtIECT7OlQR1pc
-         AqKZBtr/axPxulstn75nX8CgrTrR9Hl3oF7HxyiBl4kuu4rQCJRuwpTbhzhhcs8+Q6
-         aeEAcwMYuROFPURJ+Zx4/G03ZoLUZ3NaKCGNvTKYnukVAQvHigPm7OwnT5D0XCvnA8
-         S/HmkigJhL/a3bQG7LKu7H7vbpxMBKJ2ySMP2b7J39sj173DH15sPJ087q2LsKNYhQ
-         wIphrF4nYUZzQ==
-Received: by mail-ej1-f72.google.com with SMTP id gb4-20020a170907960400b0069d1ebc4538so6139731ejc.2
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 23:37:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=RPRvR9h0sqEY3BztfrrZpWvb2ynNRmBl0rQCLPnBj/g=;
-        b=Qu697XrFa/u+G1ohHE4mqVbAxsOytWQ6DTFTJwhenxyS4Atl8xnuYAIAZNQztEa0s4
-         kLffkb96NkSrK+InRjEWYlogvFyPqGHUpVaod7HS9jdm0714pDz333Z6qm2qNb/QiDn1
-         zg8VWIIBmrgAs0FC2FwLeCmJ83X29kSp51uNoIO+jlTPeZjC7hEND1278cVH41n3weZx
-         1n4m8CHg6UICyFqIo5GheVklAtuK9paYYMvdkluMyT7rzHKzcfsK4SNFA/Baf/C8CzDd
-         Oea7yZHMViQIKHVCvE76Mjw0SZm51cl1sxS0gVyJ2QwR4aIoM6Q084wyWacEsMRFQmpP
-         dQYQ==
-X-Gm-Message-State: AOAM532sQ+8eQtTZJEil0LD9XbXt9zpXDmvsWP80Wqy39dmMyiATs+Av
-        y777w26wWf2teHwzGUPmmAeJJKIycroBAF4WfRSEYU+ClVDbXgi8vXZbuU12v85e7q1V5Ktjb01
-        KO0A4q/TSVHhe6Y1s/2OvIB/aGmk47TITBRmTWJQ=
-X-Received: by 2002:a17:906:1e14:: with SMTP id g20mr18883234ejj.251.1643701053287;
-        Mon, 31 Jan 2022 23:37:33 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzdBOrUNwjS7G2zy8TMHS3gDIoDuZnHB5qetY+xmbLyj+/+QOcDDs71Opq3V/kdsUTieqf06w==
-X-Received: by 2002:a17:906:1e14:: with SMTP id g20mr18883221ejj.251.1643701053098;
-        Mon, 31 Jan 2022 23:37:33 -0800 (PST)
-Received: from [192.168.0.74] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id h7sm14184838ejk.69.2022.01.31.23.37.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Jan 2022 23:37:32 -0800 (PST)
-Message-ID: <0b771c5a-1fe0-0fa8-a635-18e0417c7e65@canonical.com>
-Date:   Tue, 1 Feb 2022 08:37:30 +0100
+        id S229929AbiBAH6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 02:58:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49218 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231276AbiBAH6r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 02:58:47 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BDD8C061714
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 23:58:47 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nEo3e-00046y-6s; Tue, 01 Feb 2022 08:58:34 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nEo3V-00Dmxz-QK; Tue, 01 Feb 2022 08:58:25 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nEo3U-002kWK-5c; Tue, 01 Feb 2022 08:58:24 +0100
+Date:   Tue, 1 Feb 2022 08:58:24 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     conor.dooley@microchip.com
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, thierry.reding@gmail.com,
+        lee.jones@linaro.org, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, geert@linux-m68k.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-riscv@lists.infradead.org, krzysztof.kozlowski@canonical.com,
+        bin.meng@windriver.com, heiko@sntech.de, lewis.hanly@microchip.com,
+        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
+        atishp@rivosinc.com, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 06/12] dt-bindings: pwm: add microchip corepwm binding
+Message-ID: <20220201075824.aixrvkvmjde2ihxx@pengutronix.de>
+References: <20220131114726.973690-1-conor.dooley@microchip.com>
+ <20220131114726.973690-7-conor.dooley@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] Adding architectural support for HPE's GXP BMC. This is
- the first of a series of patches to support HPE's BMC with Linux Kernel.
-Content-Language: en-US
-To:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hao Fang <fanghao11@huawei.com>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <nick.hawkins@hpe.com>
- <20220125194609.32314-1-nick.hawkins@hpe.com>
- <CAK8P3a0ccoH_sNE9eWxQnWHEWNBPFL6k4k6mku=cHs_fRfnL-w@mail.gmail.com>
- <CA8148A1-578E-4621-9714-45AB391C353A@hpe.com>
- <2f4dd91a-e4ad-2559-f65e-914561de4047@canonical.com>
- <015EB9CD-ADB9-4C12-BD3F-78268E849884@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <015EB9CD-ADB9-4C12-BD3F-78268E849884@hpe.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="pqylyjr6p2p3xcpl"
+Content-Disposition: inline
+In-Reply-To: <20220131114726.973690-7-conor.dooley@microchip.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/01/2022 19:52, Verdun, Jean-Marie wrote:
-> Hi Krzysztof
-> 
-> We made some progress during the week-end and took the decision to breakdown the dts as you recommended (one dtsi for the SoC, and one dts per system board, we will start with the dl360 Gen10 server). We will send you some updates during the week, as I need to validate a few things with some of my colleagues regarding the partition tables definition which we kept (for the moment) into the ASIC definition, as all our implementation are using currently the same partition table.
-> 
-> We also removed many of the warning generated by the dtc compiler.
-> 
-> We will probably send the driver code at the same time than the dts update (or the next day). There will be a few of them including
-> 
-> - gpio
-> - hwmon
-> - udc / usb gadget
-> - umac
-> - i2c
-> - watchdog
-> - fbdev
-> - kcs
-> - vuart
-> - spifi
-> - clock
-> 
-> So as to simplify your understanding
-> 
-> - GXP is the name of the SoC. It has multiple implementations, which are currently compatibles. I don't think for the moment that we need to distinguished them. We might have a GXP v2 coming up but not before a certain amount of time which is far enough.
-> - This SoC is used to implement BMC features of HPE servers (all ProLiant, many Apollo, and Superdome machines)
-> 
-> It does support many features including:
-> - ARMv7 architecture, and it is based on a Cortex A9 core
-> - Use an AXI bus to which 
-> 	- a memory controller is attached, as well as multiple SPI interfaces to connect boot flash, and ROM flash, a 10/100/1000 Mac engine which supports SGMII (2 ports) and RMII
-> 	- Multiple I2C engines to drive connectivity with a host infrastructure
-> 	- A video engine which support VGA and DP, as well as an hardware video encder
-> 	- Multiple PCIe ports
-> 		- A PECI interface, and LPC eSPI
-> 	- Multiple UART for debug purpose, and Virtual UART for host connectivity
-> 	- A GPIO engine
-> 
-> Hope this help,
-> 
 
-Thanks, this helps, but it should be in the cover letter of the pathshet
-plus some parts of it (subtract) in commit adding the new SoC support.
+--pqylyjr6p2p3xcpl
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jan 31, 2022 at 11:47:21AM +0000, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Add device tree bindings for the Microchip fpga fabric based "core" PWM
+> controller.
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
+>=20
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../bindings/pwm/microchip,corepwm.yaml       | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/microchip,corep=
+wm.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/microchip,corepwm.yaml=
+ b/Documentation/devicetree/bindings/pwm/microchip,corepwm.yaml
+> new file mode 100644
+> index 000000000000..26a77cde2465
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/microchip,corepwm.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/microchip,corepwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip ip core PWM controller bindings
+> +
+> +maintainers:
+> +  - Conor Dooley <conor.dooley@microchip.com>
+> +
+> +description: |
+> +  corePWM is an 16 channel pulse width modulator FPGA IP
+> +
+> +  https://www.microsemi.com/existing-parts/parts/152118
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: microchip,corepwm-rtl-v4
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  "#pwm-cells":
+> +    const: 2
+> +
+> +  microchip,sync-update:
+> +    description: |
+> +      In synchronous mode, all channels are updated at the beginning of =
+the PWM period.
+> +      Asynchronous mode is relevant to applications such as LED control,=
+ where
+> +      synchronous updates are not required. Asynchronous mode lowers the=
+ area size,
+> +      reducing shadow register requirements. This can be set at run time=
+, provided
+> +      SHADOW_REG_EN is asserted. SHADOW_REG_EN is set by the FPGA bitstr=
+eam programmed
+> +      to the device.
+> +      Each bit corresponds to a PWM channel & represents whether synchro=
+nous mode is
+> +      possible for the PWM channel.
+> +
+> +    $ref: /schemas/types.yaml#/definitions/uint16
+> +    default: 0
+
+I'm not sure I understand this correctly. This is a soft-core and you
+can synthesize it either with or without the ability to do synchronous
+updates or not, right? All 16 channels share the same period length and
+in the simple implementation changing the duty cycle is done at once
+(maybe introducing a glitch) and in the more expensive implementation
+there is a register to implement both variants?
 
 
-Best regards,
-Krzysztof
+> +  microchip,dac-mode:
+> +    description: |
+> +      Optional, per-channel Low Ripple DAC mode is possible on this IP c=
+ore. It creates
+> +      a minimum period pulse train whose High/Low average is that of the=
+ chosen duty
+> +      cycle. This "DAC" will have far better bandwidth and ripple perfor=
+mance than the
+> +      standard PWM algorithm can achieve.
+> +      Each bit corresponds to a PWM channel & represents whether dac mod=
+e is enabled
+> +      that PWM channel.
+
+In the last sentence a "for" is missing?
+
+These two properties are not detectable in software?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--pqylyjr6p2p3xcpl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmH46B0ACgkQwfwUeK3K
+7Am3Sgf/UTtQSsIPttdHYyNUxSYZF6fH8Mu324npdIKQ+39Z6OX/+MjR27kWtIP9
+PnRVaiT3ysheX8NpDwOr4mFokpvxx6yswleZStNKVh+xzGfPDwvGMbCElcf/RL7P
+UdSovN/QCVE/X+dCUDz+sZtlbnXMW3+mJmDr2Qs1xh0/R+wuHwIwetY/8jW8t1Hy
+AkxUBTyiszRkAlXctrW+k+NaoXvtJnLLS3oCyp/vuHXvsCuwzp5GwHjL7alf89uE
+h/EMEzivdI/Bks9p9w9jDMg6GNp3KoL4RYeQwCWz4DkO3kezyhIwIgbMRLF57IqZ
+HYcnZow7dopjm+dWBk/s32mz7/prow==
+=622s
+-----END PGP SIGNATURE-----
+
+--pqylyjr6p2p3xcpl--
