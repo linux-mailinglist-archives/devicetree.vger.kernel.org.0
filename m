@@ -2,150 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CE4F4A5449
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 01:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 031A54A545C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 02:01:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231317AbiBAAuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 19:50:08 -0500
-Received: from mail-co1nam11on2088.outbound.protection.outlook.com ([40.107.220.88]:55393
-        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231311AbiBAAuH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Jan 2022 19:50:07 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DiUqEhFlI+yXyXEYktoJHW4Ugi/7XXvlfcARrWS68Gl4tMEiVIMr7HoLeOsLP241eCS5u/c/v+8/5Yh1Fis/oV2EzvNAiNWAmVOwFdjbqrdQEveQNTDUYRKDfJO/VTNGKmY+zzNklV2AnYObJ8rKyRjGu/C37RCI80wWERtGmzob1SK53nxSH2gJQkZUYno0RiTqkjOsqv4jDw67kue48fk2TM2Krk72joCvZaQF9v+wlGYlSNbItqH6K479UdHi/YKl3ir4BPl3AOID7xjbk98EapFGJSdxs2kU6hRNYl4VQGiHPrs+OW8zt8uVTjX7ZodiRPM44gG9qWmLQJD5eQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aGIvMTQx9wI9Y3zHrHo2RjEF3krxmZOyHA9eq8rhUSE=;
- b=lDf2Zr6+wLYLvdNu0vK8EVp99u6E9+neE+hY+Nqda783zzhFAwwKc27Bt4uP/aewpo9iERc/0Caf3Lh3+cCYWBPDkcKkV6lBKw8LcGZJte1GqN+gnQ6IUE/YuqXXGqgs37L4gMZMQWesfWDnBgF4hmLHm7hyzdqQx2Z538HawI7NJ+5J63SjD3qCiCGW1TMzbeWwfCnov8wqP6qlIAF16G1pEmbPt2GgfcUNhXRchL1dVytlBLhmYz0I2zAmG2yyvOoR2o3f9c/UNHZ292WeP5DNpkhrtgnNI+OOHGbQQ7kwjnjjds22+CJU1U6FdUEpBD/xZT10EJjtHE8jvbrJvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=infradead.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        id S229739AbiBABBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 20:01:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41332 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231402AbiBABBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 20:01:17 -0500
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA75C061714
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 17:01:17 -0800 (PST)
+Received: by mail-il1-x12b.google.com with SMTP id o10so13014128ilh.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 17:01:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aGIvMTQx9wI9Y3zHrHo2RjEF3krxmZOyHA9eq8rhUSE=;
- b=cc5NtO2JaN+VUy4Hu8edvzNuW1S0gdCvNhIuLHU6KoCgBQgZk/H8uVfeIci5KiPw8qr9snuAT17bf8W2hAFmHtAeZUKVXEFT9UeG+bbbsuVQhs9FGxPqj4zbB1IUqB4Pea0SfHRe6w0DkyUvk6V7HXVA3ghalMAb7JId7B9Nzm0=
-Received: from BN9PR03CA0807.namprd03.prod.outlook.com (2603:10b6:408:13f::32)
- by BL0PR02MB5684.namprd02.prod.outlook.com (2603:10b6:208:85::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17; Tue, 1 Feb
- 2022 00:49:54 +0000
-Received: from BN1NAM02FT020.eop-nam02.prod.protection.outlook.com
- (2603:10b6:408:13f:cafe::9b) by BN9PR03CA0807.outlook.office365.com
- (2603:10b6:408:13f::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17 via Frontend
- Transport; Tue, 1 Feb 2022 00:49:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- BN1NAM02FT020.mail.protection.outlook.com (10.13.2.135) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4930.15 via Frontend Transport; Tue, 1 Feb 2022 00:49:54 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Mon, 31 Jan 2022 16:49:53 -0800
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Mon, 31 Jan 2022 16:49:53 -0800
-Envelope-to: dwmw2@infradead.org,
- mdf@kernel.org,
- trix@redhat.com,
- yilun.xu@intel.com,
- linux-kernel@vger.kernel.org,
- robh@kernel.org,
- devicetree@vger.kernel.org
-Received: from [10.17.2.60] (port=35296)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <lizhi.hou@xilinx.com>)
-        id 1nEhMn-000F2V-He; Mon, 31 Jan 2022 16:49:53 -0800
-Subject: Re: [PATCH V1 Create empty OF root 0/1] XRT Alveo driver
- infrastructure overview
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, <devicetree@vger.kernel.org>,
-        <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <yilun.xu@intel.com>,
-        <maxz@xilinx.com>, <sonal.santan@xilinx.com>, <yliu@xilinx.com>,
-        <michal.simek@xilinx.com>, <stefanos@xilinx.com>,
-        <trix@redhat.com>, <mdf@kernel.org>, <dwmw2@infradead.org>
-References: <20220126054807.492651-1-lizhi.hou@xilinx.com>
-From:   Lizhi Hou <lizhi.hou@xilinx.com>
-Message-ID: <17d60142-c72f-1a11-45de-e9a2974abeb8@xilinx.com>
-Date:   Mon, 31 Jan 2022 16:49:53 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.1
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SlA+CRxN1+l3Q6yf6tu5cYnYlmBs1/fByPS12U2oI0k=;
+        b=fo/VVwycn1Uqn6OK+5mbn/4uxSczpI91VNZPf/j2vArqlSDljsgEI1EHHuyfyjSt/s
+         S6vfcVpHHnEWCAeJf91hsMXp3U2kbHwBdlt8f65Kyb+ggvAbeNoCRxDxhxzEB7JLJH4L
+         qeoRVkH3OOnE/wXc4ErYDPQnrrubvAd1YRU8M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SlA+CRxN1+l3Q6yf6tu5cYnYlmBs1/fByPS12U2oI0k=;
+        b=x+9qUhpi8zm0UQLPdJhTF6r//t8/Gzc/9CBhNVUSmekAQ85CTydsaPNRQ+/4kW5pKB
+         ZOAili8mEjBVgOXE73+I4I9mO6C9aH9SQf6KoBnwBKkGB34IRZHIh38Y5yZqeQ5vdjWk
+         tS8GV1RdkgmIXd1PRK0m6Oh6FYiPOCiT/t1sctkpkawa3+eaTE1MXPhzmB7R5EQmul6b
+         KuERsVGH33T1bd6VyRQdbXxuty+atBDgU+sgtHIME8O5H0o1MtzSxCsON87IeoX1k0tx
+         lb1l2IOBYNFIEEsyT1yJOBzE/x4hQMsGw2flw2cXb92bzynjz287sm0135whtqAdaPD1
+         EgLw==
+X-Gm-Message-State: AOAM53133ug/74BKmFtF7a6F9A7ntL7Asz0+C7zFiQ/cSmqdBder3zeK
+        SqT8Nef1YcZ/OwlwRe3i6juhwsw+1/lSuQ==
+X-Google-Smtp-Source: ABdhPJytgce7xf4n2gu96AdAYdnW/7E7VCLTq2BywyNEaWVAkuVRb+A2UijOEhTiUXQ/bFuISLzZWw==
+X-Received: by 2002:a92:c5c7:: with SMTP id s7mr13498800ilt.200.1643677276325;
+        Mon, 31 Jan 2022 17:01:16 -0800 (PST)
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com. [209.85.166.43])
+        by smtp.gmail.com with ESMTPSA id i22sm18722732ila.85.2022.01.31.17.01.14
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Jan 2022 17:01:14 -0800 (PST)
+Received: by mail-io1-f43.google.com with SMTP id s18so19211065ioa.12
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 17:01:14 -0800 (PST)
+X-Received: by 2002:a05:6602:140c:: with SMTP id t12mr12178540iov.177.1643677273820;
+ Mon, 31 Jan 2022 17:01:13 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20220126054807.492651-1-lizhi.hou@xilinx.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ce173449-692a-458f-4f70-08d9e51cc316
-X-MS-TrafficTypeDiagnostic: BL0PR02MB5684:EE_
-X-Microsoft-Antispam-PRVS: <BL0PR02MB5684CD0B5E650800C7B47CD5A1269@BL0PR02MB5684.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zhsn9FIIjDoAJp89D4BsszV3YVAqOupqUl0MFBXAuxM/If7tDjwAF1yXzCM0uv12FVp0pASt08/aXR6UNHebX8gTYPp8Eo9bdkQqYL5Meo30lvfIk2olASDi9mxfigcxx/0asP+qLIKHwDJkbICBY/dmyTS/ifnTuPbujU56Uclsj1zEhjIZfTyHOv3/kZ7nsD3frCtURe3O4eK7MWY0veCRZaY40IQqKS13uUvPY5sB9mS+4zmW/duztz+qeuBgHsjiBgrsB2djwuwwgwu6NIfJoe26JtdBmPF3l5Lcq93x8DeM/9mfs23KVLYmBx13mpOSoqTfHgzV/hLY2uyeEeJ25xRajUyu6JGSsNjZgGkr6lFRQXaIgglcPtGrv0WFuhWzTkIVn6Y0o1gRsz/Q5D4DAxFZWfEC7FUXZi2unFNl55o7NYClszox6ldNuxezXk8Nm+oVf37A/fOoGpmVq/ACOkYNS/FWPMMQvtToyAXy1UoBc98sjbMy3Gv4J9rJoUGuyEAliSj/WLyM7ZI2eIznBEntO42EiVqGAz9M0iLzIDLKBCMhh/bnwaxZY1A8tXA/39NhX6jC57OgkJFoj30UqELlf09tTy7Y0mzu98dfWgpK9FyduVyrVwAt3LikLTQHsgvmRE4Vq4mRKNw/c3Od7gAHQckjSUjTxsX0MNZafUnVjzp7ZfJNj3fvP6gEV/OddZDsvX3hLjdHmFRNugdHkl1i2s/eOel3drer6QLtXnPtu9dtFR3k8Vw/C2HyQ+d43xSDHGG8wCWUlqQXXQe6horwu+JYK6jilZe7XyAuNCJnAQCpNRQFD6e+XGpMRN01/MNcQjgZAQyMyxciaA==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(46966006)(36840700001)(31696002)(966005)(7636003)(54906003)(186003)(316002)(110136005)(44832011)(5660300002)(508600001)(82310400004)(2906002)(8676002)(4326008)(9786002)(36860700001)(8936002)(47076005)(70206006)(70586007)(26005)(2616005)(356005)(336012)(426003)(36756003)(31686004)(53546011)(50156003)(43740500002)(20210929001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2022 00:49:54.3093
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce173449-692a-458f-4f70-08d9e51cc316
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT020.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB5684
+References: <20220125224422.544381-1-dianders@chromium.org>
+ <20220125144316.v2.5.I5604b7af908e8bbe709ac037a6a8a6ba8a2bfa94@changeid>
+ <CAE-0n528Bxdj+DKhi2Lan4qR_=4KHD7A1Zkr15tmu+MchryJ1A@mail.gmail.com>
+ <CAD=FV=UcpKaLQ31CGKUnaNnZcYnM4N_t8VC43FPGktoYDiMfsw@mail.gmail.com>
+ <YfC5i2jR5N+pmHoZ@ripper> <CAE-0n50sX9-0MxcpF+3Rwqm75jSw5=aNwdsitLwE2sEA69jLJw@mail.gmail.com>
+ <YfgRS/UtRn6Ewwhj@builder.lan> <CAD=FV=V=pbmP-wKhAOVRBC0M=YjYm3Ym-022g8uBEZOxKW-8BQ@mail.gmail.com>
+In-Reply-To: <CAD=FV=V=pbmP-wKhAOVRBC0M=YjYm3Ym-022g8uBEZOxKW-8BQ@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 31 Jan 2022 17:01:02 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WQ0gR18x9rhioLtYGO3oWtny1c52YaiZHUG=PG03d+OQ@mail.gmail.com>
+Message-ID: <CAD=FV=WQ0gR18x9rhioLtYGO3oWtny1c52YaiZHUG=PG03d+OQ@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sc7280: Add herobrine-r1
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        kgodara@codeaurora.org, Matthias Kaehlcke <mka@chromium.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Prasad Malisetty <pmaliset@codeaurora.org>,
+        quic_rjendra@quicinc.com, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi,
 
+On Mon, Jan 31, 2022 at 8:50 AM Doug Anderson <dianders@chromium.org> wrote:
+>
+> > Either we leave it as is - which follows my interpretation of what the DT
+> > spec says - or we (and the DT maitainers) agree that it shouldn't be
+> > there (because this dtb won't run on any random qcom,sc7180 anyways) at
+> > all.
+>
+> I'm curious what part of the DT spec says that we should have the SoC
+> in there? I know I've always done it, but it's always just been
+> following the examples of what was done before. When talking about the
+> root node, I see this in the `devicetree-specification-v0.4-rc1` spec:
+>
+> ---
+>
+> Specifies a list of platform architectures with which this platform is
+> compatible. This property can be used by operating systems in
+> selecting platform specific code. The recommended form of the property
+> value is: "manufacturer,model"
+>
+> For example:
+> compatible = "fsl,mpc8572ds"
+>
+> ---
+>
+> That doesn't say anything about putting the SoC there.
+>
+>
+> I would also note that I'd be at least moderately inclined to land
+> things as-is and deal with this in a follow-up patch, though I'm happy
+> to spin if that's what people agree upon too. This is not a new
+> problem and so it doesn't seem like it makes sense to glom dealing
+> with it into this patch series...
 
-We are still waiting for your feedback and guidance on this. Could you 
-take a look?
+I noticed that you applied the first 4 patches in the series (thanks!)
+but not this one. Are we waiting to get agreement on this before
+landing? As per above, I think it'd be OK to land as-is and then I'm
+happy to do a follow-up patch to clean this up since this isn't a new
+issue. Having this patch outstanding makes it a little confusing with
+the other cleanup patches that I'm posting... ;-)
 
+Thanks!
 
-Thanks,
-
-Lizhi
-
-On 1/25/22 9:48 PM, Lizhi Hou wrote:
-> Hello,
->
-> Xilinx Alveo PCIe accelerator cards use flattened device tree to describe
-> HW subsystems or endpoints. Each device tree node represents a hardware
-> endpoint and each endpoint is an hardware unit which requires a driver.
-> The product detail:
->      https://www.xilinx.com/products/boards-and-kits/alveo.html
->
-> The feedback from the previous patches was to create a base tree if there
-> is not one and apply the unflattened device nodes by existing Linux
-> platform device and OF infrastructure. Please refer to previous discussion
-> with device tree and fpga maintainers.
->      https://lore.kernel.org/lkml/CAL_JsqJfyRymB=VxLuQqLpep+Q1Eie48dobv9sC5OizDz0d2DQ@mail.gmail.com/
->      https://lore.kernel.org/lkml/20220105225013.1567871-1-lizhi.hou@xilinx.com/
->
-> This patch adds OF_EMPTY_ROOT config. When it is selected and there is not
-> a device tree, create an empty device tree root node.
->
-> Lizhi Hou (1):
->    of: create empty of root
->
->   drivers/of/Kconfig         |  3 +++
->   drivers/of/Makefile        |  1 +
->   drivers/of/of_empty_root.c | 51 ++++++++++++++++++++++++++++++++++++++
->   3 files changed, 55 insertions(+)
->   create mode 100644 drivers/of/of_empty_root.c
->
+-Doug
