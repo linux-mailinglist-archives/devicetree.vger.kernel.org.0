@@ -2,149 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2042A4A60CB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 16:55:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F814A60F9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 17:07:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240720AbiBAPzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 10:55:25 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:33558 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237158AbiBAPzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 10:55:24 -0500
-Received: by mail-oi1-f180.google.com with SMTP id x193so34252776oix.0;
-        Tue, 01 Feb 2022 07:55:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=BIOHVYrkUV2xJeNiNC056YPJOZ8/TdHWrOUE5wcAtsg=;
-        b=6IcQLbT6/nx9LqGyJ04IzCHtbtbGt0MCoLefPPvTO9QrPquMpeDyCu+hoBL3ez3JnI
-         i9cRumQxyWlKIt1+/QalEzeIp9q74WV4Dah8e0oCr+PkAYOjWt4ddOkMSNc92m9rxk6p
-         8LUy6LclqJn0QVbu+VREj3mzGH2kDrKPucpji5YqwLf5MCaag+LZLjJIZDgnvPDgEz96
-         tF2SPOv1omzRDrsUNvT0mhCVU6l9nhDflTsKAJAg8/HtXlG5jeSleQDDnTMkn/nczQwj
-         b18KwuBdbusfVwbaxLpVL5zf1DNU3IKRGJE/oBc1oIQVzRgdu+PEcRrz+Q2AhZNDohwM
-         ui9A==
-X-Gm-Message-State: AOAM531VTiOF+Gt6ko9s9BHLkGdf+Rl5joHuPMGr/uvdwb0t2Rwda59Q
-        RvShVQrrYfqnqB9Y+z4qcw==
-X-Google-Smtp-Source: ABdhPJxBrh/ir0cmOW9wJ0tFhEtPE2+p0SLWpOeItg+jaohY58A/07Nx1NrilC1u3e7v5UKhgu1fBQ==
-X-Received: by 2002:a05:6808:3098:: with SMTP id bl24mr1677697oib.312.1643730924088;
-        Tue, 01 Feb 2022 07:55:24 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q14sm17568505otg.77.2022.02.01.07.55.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Feb 2022 07:55:23 -0800 (PST)
-Received: (nullmailer pid 100417 invoked by uid 1000);
-        Tue, 01 Feb 2022 15:55:22 -0000
-Date:   Tue, 1 Feb 2022 09:55:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH REBASED 2/2] dt-bindings: nvmem: cells: add MAC address
- cell
-Message-ID: <YflX6kxWTD6qMnhJ@robh.at.kernel.org>
-References: <20220125180114.12286-1-zajec5@gmail.com>
- <20220126070745.32305-1-zajec5@gmail.com>
- <20220126070745.32305-2-zajec5@gmail.com>
+        id S240809AbiBAQHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 11:07:36 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:41048 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S240804AbiBAQHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 11:07:35 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 211CNAwv030142;
+        Tue, 1 Feb 2022 17:05:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=LErjSzLlzd1bZwa3rCfJ3gG9bX5m/yeoFgqt1O1gyfE=;
+ b=211qr4V34spBmewxNvOD0qkiQ2Z6sCsysazdl1zx5DKp2XjPJg1uVkw1cFNRqKvucTk2
+ gW9SEFqxo4iPOUlLsVHMCd/frtlzzYhgtBPMNS4sHN2GKA/64/9b/hMIWQvfb4iHagT0
+ TL2uJFGlOApSFjPxhEDrznzFrHD6ESRT3pe699iLKf4Q25dWqeTv9X+sJWkb1dfnlGUa
+ xgoQS4/zudMe4pmd3y0RMcZAj9YsgSxumeb7eaUpmtGLB+cL4c1h/xUBpiu2ZW92yzdj
+ EJyfN4ghCDxFCrFmhsO4df+zRHGa2RnSAbRdVLrDXxclbeuHDuYS7tTyRjcq2rhNTI/h 2g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3dxk0rx0w4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 01 Feb 2022 17:05:16 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D279E10002A;
+        Tue,  1 Feb 2022 17:05:13 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C492C2248DE;
+        Tue,  1 Feb 2022 17:05:13 +0100 (CET)
+Received: from localhost (10.75.127.49) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Tue, 1 Feb 2022 17:05:13
+ +0100
+From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH 0/2] Add DMA and MDMA support on STM32MP13x SoC family
+Date:   Tue, 1 Feb 2022 17:05:04 +0100
+Message-ID: <20220201160506.348701-1-amelie.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220126070745.32305-2-zajec5@gmail.com>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-01_08,2022-02-01_01,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 08:07:45AM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This adds support for describing details of NVMEM cell containing MAC
-> address. Those are often device specific and could be nicely stored in
-> DT.
-> 
-> Initial documentation includes support for describing:
-> 1. Cell data format (e.g. Broadcom's NVRAM uses ASCII to store MAC)
-> 2. Reversed bytes flash (required for i.MX6/i.MX7 OCOTP support)
-> 3. Source for multiple addresses (very common in home routers)
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  .../bindings/nvmem/cells/mac-address.yaml     | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/cells/mac-address.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/cells/mac-address.yaml b/Documentation/devicetree/bindings/nvmem/cells/mac-address.yaml
-> new file mode 100644
-> index 000000000000..f8d19e87cdf0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/cells/mac-address.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/cells/mac-address.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVMEM cell containing a MAC address
-> +
-> +maintainers:
-> +  - Rafał Miłecki <rafal@milecki.pl>
-> +
-> +properties:
-> +  compatible:
-> +    const: mac-address
-> +
-> +  format:
-> +    description: |
-> +      Some NVMEM cells contain MAC in a non-binary format.
-> +
-> +      ASCII should be specified if MAC is string formatted like:
-> +      - "01:23:45:67:89:AB" (30 31 3a 32 33 3a 34 35 3a 36 37 3a 38 39 3a 41 42)
-> +      - "01-23-45-67-89-AB"
-> +      - "0123456789AB"
-> +    enum:
-> +      - ascii
-> +
-> +  reversed-bytes:
-> +    type: boolean
-> +    description: |
-> +      MAC is stored in reversed bytes order. Example:
-> +      Stored value: AB 89 67 45 23 01
-> +      Actual MAC: 01 23 45 67 89 AB
-> +
-> +  base-address:
-> +    type: boolean
-> +    description: |
-> +      Marks NVMEM cell as provider of multiple addresses that are relative to
-> +      the one actually stored physically. Respective addresses can be requested
-> +      by specifying cell index of NVMEM cell.
+This patchset enables DMA1 and DMA2 routed on DMAMUX1, and MDMA on
+STM32MP13.
 
-While a base address is common, aren't there different ways the base is 
-modified. 
+Amelie Delaunay (2):
+  ARM: dts: stm32: add DMA1, DMA2 and DMAMUX1 on STM32MP13x SoC family
+  ARM: dts: stm32: add MDMA on STM32MP13x SoC family
 
-The problem with these properties is every new variation results in a 
-new property and the end result is something not well designed. A unique
-compatible string, "#nvmem-cell-cells" and code to interpret the data is 
-more flexible.
+ arch/arm/boot/dts/stm32mp131.dtsi | 54 +++++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
 
-For something like this to fly, I need some level of confidence this is 
-enough for everyone for some time (IOW, find all the previous attempts 
-and get those people's buy-in). You have found at least 3 cases, but I 
-seem to recall more.
+-- 
+2.25.1
 
-Rob
