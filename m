@@ -2,76 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37A194A68B2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 00:44:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A78274A68B6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 00:46:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbiBAXok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 18:44:40 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:33642 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230127AbiBAXoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 18:44:39 -0500
-Received: by mail-oi1-f179.google.com with SMTP id x193so36704723oix.0;
-        Tue, 01 Feb 2022 15:44:39 -0800 (PST)
+        id S242949AbiBAXqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 18:46:50 -0500
+Received: from mail-oo1-f43.google.com ([209.85.161.43]:45857 "EHLO
+        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230127AbiBAXqu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 18:46:50 -0500
+Received: by mail-oo1-f43.google.com with SMTP id u25-20020a4ad0d9000000b002e8d4370689so4519106oor.12;
+        Tue, 01 Feb 2022 15:46:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xJ5ww5IowYah3vuOkTM8CuTagH4Jd5vAIL+T4NILP4U=;
-        b=g380H+4YQ8sp3j/fYvePpI99GGgxYYvSyaG1Gp+pZlakKuyT0Rb0NNKbSVae7wkAwv
-         9O3suv/feGBIVSRZHwh8ritwlRu59ZoFaW5uBI4kviFQ9W11pLwopYZgw5vSQQwjX2OS
-         WOA28j5/EXd5TY4Eo+Eddw/weOb5vJdZOuujsybSmMg8AeP6Wm0Kv+w0RLsIFaJTmBhe
-         4U42N6RMBx/TjSaYQeedgVs9EJ/N/ZxuRlUMBTdbjXc5te2Tf87e4dkJ4x/r8PVRIvl/
-         uYExYgpBw7bUVrM/rLbKz39bFhJQTrOdZ4VeR74j5SeRqJxyWFWKGxo5kiPXmznhOdzJ
-         mjig==
-X-Gm-Message-State: AOAM531A5Mpkf5wJjEtlFnZCh7iIAXSqmjqaO6ZO099xjctyk6CObN/j
-        UkyTpohszAiiTJT7q6AWYw==
-X-Google-Smtp-Source: ABdhPJze9s7mNLSyDWw1RyySuLSwpCDHLYGjvVviYTYm+PB29dALZWT1UEjiI37xaHSSpMrSmOPzsQ==
-X-Received: by 2002:a05:6808:23cc:: with SMTP id bq12mr2761135oib.230.1643759079139;
-        Tue, 01 Feb 2022 15:44:39 -0800 (PST)
+        bh=LTyiwabigKmsdYC9HQNink5x9LNkFsxuP0xeUKbF8uk=;
+        b=2FM/36FNprbbqMvYdV/Sg3fk1ROBnPl3qmGMchcoOSWzt6dI2xfRDuFeF+C2/FD8wV
+         RzB+EmCgfqOPpsWPvDQ11ngAmELwoPEUQVukodXl+FdQ8lGXprde8Yo660a288yMP8ii
+         hZmZ9XVyBg2gEk2TvL7A5oSUmyvwcCQi5e6VFZBEKpTGKagaCZlH0C++HCqlF/CdRMLg
+         vBf8pA/JA5I45ZPbzLcSKDfGPI8aqjDNShZh+J1GPzMXy0XL5lTNIp7lAKKDjHLHFES/
+         sjMP/WRmkdZSK9hsD82yLdscF3P401j+UTNrTwCiPFyfUw5+riMdXj+bEydGZb5/43oe
+         anHg==
+X-Gm-Message-State: AOAM532dV5rDMgTRa38DazPN7dfu2HqtKIEN3E9nrFriwEWCeZbXf8If
+        O7y0l6iEMcu4/waIBTtI+g==
+X-Google-Smtp-Source: ABdhPJx++uYA6DaX9YvhRINV+3ono/nKlgW1aE+hQqL8GMCoLzjLZVKOGkfwu6S8OcKabeYIdJGwqg==
+X-Received: by 2002:a4a:b401:: with SMTP id y1mr13925543oon.95.1643759209668;
+        Tue, 01 Feb 2022 15:46:49 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g34sm11925438ooi.48.2022.02.01.15.44.37
+        by smtp.gmail.com with ESMTPSA id bg10sm7141928oib.33.2022.02.01.15.46.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Feb 2022 15:44:38 -0800 (PST)
-Received: (nullmailer pid 989022 invoked by uid 1000);
-        Tue, 01 Feb 2022 23:44:37 -0000
-Date:   Tue, 1 Feb 2022 17:44:37 -0600
+        Tue, 01 Feb 2022 15:46:48 -0800 (PST)
+Received: (nullmailer pid 993179 invoked by uid 1000);
+        Tue, 01 Feb 2022 23:46:47 -0000
+Date:   Tue, 1 Feb 2022 17:46:47 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Sam Ravnborg <sam@ravnborg.org>, linux-tegra@vger.kernel.org,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        dri-devel@lists.freedesktop.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Anton Bambura <jenneron@protonmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: sharp,lq101r1sx01: Add compatible
- for LQ101R1SX03
-Message-ID: <YfnF5XqvdQ8RpB/O@robh.at.kernel.org>
-References: <20220130235945.22746-1-digetx@gmail.com>
- <20220130235945.22746-2-digetx@gmail.com>
+To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Fengping Yu <fengping.yu@mediatek.com>,
+        linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v20 1/3] dt-bindings: input: Add bindings for Mediatek
+ matrix keypad
+Message-ID: <YfnGZxD5jJxB+GXY@robh.at.kernel.org>
+References: <20220127111526.3716689-1-mkorpershoek@baylibre.com>
+ <20220127111526.3716689-2-mkorpershoek@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220130235945.22746-2-digetx@gmail.com>
+In-Reply-To: <20220127111526.3716689-2-mkorpershoek@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Jan 2022 02:59:43 +0300, Dmitry Osipenko wrote:
-> From: Anton Bambura <jenneron@protonmail.com>
+On Thu, 27 Jan 2022 12:15:24 +0100, Mattijs Korpershoek wrote:
+> From: "fengping.yu" <fengping.yu@mediatek.com>
 > 
-> LQ101R1SX03 is compatible with LQ101R1SX01 from software perspective,
-> document it. The LQ101R1SX03 is a newer revision of LQ101R1SX01, it has
-> minor differences in hardware pins in comparison to the older version.
-> The newer version of the panel can be found on Android tablets, like
-> ASUS TF701T.
+> This patch add devicetree bindings for Mediatek matrix keypad driver.
 > 
-> Signed-off-by: Anton Bambura <jenneron@protonmail.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> Signed-off-by: fengping.yu <fengping.yu@mediatek.com>
+> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 > ---
->  .../bindings/display/panel/sharp,lq101r1sx01.yaml          | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+>  .../input/mediatek,mt6779-keypad.yaml         | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
