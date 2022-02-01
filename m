@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A48DE4A56A5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:23:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D1F24A56AB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:23:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230526AbiBAFXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 00:23:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42408 "EHLO
+        id S231184AbiBAFXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 00:23:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234640AbiBAFV1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:21:27 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A70C061390
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:55 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id e81so31209829oia.6
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:55 -0800 (PST)
+        with ESMTP id S234675AbiBAFVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:21:30 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C668C061395
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:56 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id t199so14580601oie.10
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=nLEXQVzRDD9hDzDA3QQaJl+H9Aj1xtzImTCkX8rQYr4=;
-        b=F5tBTRyBpiZkZn6jnRnjgWcmgcX+XALUqsue4m+40+W+znnYjLXzuj/z9KKx80HWY7
-         QPKDLG7aq5GWolNfCbAabApSl08TiQkj+TR1WEGvjoJNJ6dAlELFePfDAGZizsK6a/z2
-         yvdpxzOz3kiaI/2ZblAfRsrLNhxj57GnDdU8n3XHBohG3AEJ56cUHihoVLn9cwxVnRf+
-         9RiFv33E70U+2OAo3U+o2ZXNoCai1c3u2MTKcjOJTK/qCLgqOMI6+M31NDrTIY9WYcZe
-         qfxW3UHTkRCPIS14uhWQVCuB3jMIAGAh5FTsrr43xZbMm+GbsD+CyRikZirmNGtQtjdk
-         B2Rw==
+        bh=4U0RnhJf2qy4ekypISTjLXa/8Onef48oMVP4y/5HaIs=;
+        b=PQ3SlmjeOj5hN/aYuLMmXFv3pZoPhRe8coaMImsJ5jYHm02oFj9M3djEEMhm0Q6kXy
+         sozuPbimKTZhDdEKQOj8NZv1uZpPs3r+EwEJM0mlKW9Bf3AcRvTOSETJ/EQpMzzcDux1
+         VCCfnkpr0LH0grIkhjcTF8vCUWAQOifCdgMSNgCvZfe7AH7ytmHpHvaU1MyR0U6npzXw
+         rF4AoYLHCKExNEVjsr/dhgEi+okrQDf+X4TZRaPN1V3UJpRV/YgBOKclC+YNr5r/fPRs
+         97qDmgIjUOiWjYOPwkPve/AQaveWGczjMm7klTRfa8RdF64q/6aOP5fy9oNPKFKQYdd6
+         nY9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=nLEXQVzRDD9hDzDA3QQaJl+H9Aj1xtzImTCkX8rQYr4=;
-        b=aJ39dTO+i9Vv/2OE+HleX6N5KxjVMFqQlWFFaP//EZSgGCHdSgiluTVahElAB0owQj
-         hIGCwmQisBoVdba82ojSrP38CyIp3hwkeTX9k7KpyPY/XAJiNxLPHHFIxFFsJHvkO0t/
-         9eTStFcnKtO7wI5poRdn3aPDmNDugHu7fMzVOVhQRsgPeDeHxERNqiADdlG3mXVuEQq/
-         0PPTGgoT4WRQl2pkAx/S5gtcWZ2S8zuQANgM5k/sPayYT6gd0mFPiWES4IGZYLRba0OZ
-         F3/WetF1uNM0Gdz/J1rSmA5TYAdYJD1UgsS93grt4p5KlK1E5UL138lWI2Ubrk7zgML1
-         lmeg==
-X-Gm-Message-State: AOAM532inFsIuQmf3rYaedfsIOzDOyTcK9Ix9Z3c90g9b1VdS1WdY/8d
-        PHItq5ePcXIA9PZN6XNWAtbDmNLNcTYx+Q==
-X-Google-Smtp-Source: ABdhPJyA2SqGmolBEGjQSSfhzwfp1+4bigXN6qmmLMj0IIm+HkHMAt1eboCIC+G9vUL/S4QV2fPLmw==
-X-Received: by 2002:a05:6808:17a7:: with SMTP id bg39mr227540oib.184.1643692855233;
-        Mon, 31 Jan 2022 21:20:55 -0800 (PST)
+        bh=4U0RnhJf2qy4ekypISTjLXa/8Onef48oMVP4y/5HaIs=;
+        b=4RnJqsbBlkhtoo8CXXOTXpswc3llNwwhXtSWfLQHLqpqV03iH3HCppGc2qQDcrqjHy
+         lCRxy2AQN8JR56wHNpQNR3xQOW88aPmkrQ8CSjhTj+S3NkxKgdilHnVPX+Jy0huGGght
+         SZqgMdeKx0kslfiagtuJzJr1qRh3fi+aPXo6YXJc4q7pTXqmNK8tnqMujFsdqvAX/4H9
+         MoaW1vm3gWUQTsmsksdS3rzWOek11vHEGMzQ1ORrAKC1VvVA5MhXKQ7hRdkNXQGvCybj
+         NW7ulrjze8ccNw3tuRZrvlJ1UgNewZJyYFmXA25jXMOMDCaGqV6FrlHlyp712ddpmgTJ
+         rZZg==
+X-Gm-Message-State: AOAM533FVuvAn55PoOTq5BEkBFWrXhFpPTUfrUunFT+VfXc8ghxwIsok
+        PkmKHcKJkaRnErGlpnNTfK7phg==
+X-Google-Smtp-Source: ABdhPJw4Mbd6LiKmJVsOiaZ+mqz4qMQ5yCJAqQ6zW5zg6f0Sv2CM6YaobrL1V8Xf6WhlhrgA01+uFQ==
+X-Received: by 2002:aca:bd46:: with SMTP id n67mr212759oif.168.1643692856066;
+        Mon, 31 Jan 2022 21:20:56 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.54
+        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 21:20:54 -0800 (PST)
+        Mon, 31 Jan 2022 21:20:55 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Jean THOMAS <virgule@jeanthomas.me>
-Cc:     devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        petr.vorel@gmail.com, konradybcio@gmail.com
-Subject: Re: [PATCH v2 1/2] arm64: dts: msm8992-lg-bullhead: Place LG Bullhead generic code into a DTSI file
-Date:   Mon, 31 Jan 2022 23:20:05 -0600
-Message-Id: <164369277342.3095904.5357867603310330864.b4-ty@linaro.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org
+Subject: Re: (subset) [PATCH] arm64: dts: qcom: sm8250: add description of dcvsh interrupts
+Date:   Mon, 31 Jan 2022 23:20:06 -0600
+Message-Id: <164369277343.3095904.9732101469044043644.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211201231832.188634-1-virgule@jeanthomas.me>
-References: <20211201231832.188634-1-virgule@jeanthomas.me>
+In-Reply-To: <20211223075640.2924569-1-vladimir.zapolskiy@linaro.org>
+References: <20211223075640.2924569-1-vladimir.zapolskiy@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -65,24 +65,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2 Dec 2021 00:18:31 +0100, Jean THOMAS wrote:
-> This patch puts the generic code common across all hardware revisions
-> into a DTSI file.
+On Thu, 23 Dec 2021 09:56:40 +0200, Vladimir Zapolskiy wrote:
+> The change adds SM8250 cpufreq-epss controller interrupts for each
+> CPU core cluster.
 > 
-> It also prefixes the DTS filename with the vendor name, to follow the
-> naming convention used by other DTS files.
 > 
-> Changes since v1:
->  - Added "model" property to the DTS file
-> 
-> [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: msm8992-lg-bullhead: Place LG Bullhead generic code into a DTSI file
-      commit: 3f99518c6f6520ad0fd14d862d54ee12f16156b4
-[2/2] arm64: dts: msm8992-lg-bullhead: Add support for LG Bullhead rev 1.0
-      commit: cd4bd4704ec8cff3d045493e2130c7095bbabf78
+[1/1] arm64: dts: qcom: sm8250: add description of dcvsh interrupts
+      commit: ffd6cc92ab9cb426896481fa8372d38cbe53f76b
 
 Best regards,
 -- 
