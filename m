@@ -2,101 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D8BF4A5C3B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 13:28:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E0D64A5CCC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 14:06:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238064AbiBAM2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 07:28:01 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:58702 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237630AbiBAM2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 07:28:00 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0192F61524;
-        Tue,  1 Feb 2022 12:27:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD77EC340EB;
-        Tue,  1 Feb 2022 12:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643718462;
-        bh=JbkAYC/M1v6wy+velggKtiIsj1hfd2OT5WgmxqSpRmo=;
-        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-        b=MvrZsek1b6VXbur1sjrSrW9r5HERM81Yh71gmHzYA9DzrL4MGX45gsGNTkUS2FCCv
-         Uk2LK0Ly8BTw9MdkDWc4CANUy0x8xK8FNWg81k3HA9UKjOvX1WLvFe8aEXIyUoE7HO
-         zZQCBOKH1AV1a6C7Jw/xokCSENcxjaOIJ3glevudARnyyvtU2lD/EFlCVy0kDGicoH
-         ke6CONaBXhJ+yYQ9hBO01aWYGgUG5sdtY2z7T+Sr8xJQGgdLRpGd1j7CSRuikONVLZ
-         7CE1k1DuL0yLZeoo6CtFFia21ojZFhRFUaXQP0SxiPfyP2RaUR1q6Pu4ECPsrxZinZ
-         iana8DFBgKVqQ==
-Content-Type: text/plain; charset="utf-8"
+        id S238341AbiBANGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 08:06:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34302 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237005AbiBANGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 08:06:21 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC33C06173B;
+        Tue,  1 Feb 2022 05:06:20 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id b9so33706068lfq.6;
+        Tue, 01 Feb 2022 05:06:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=4zDZjUZzO0/LtwU7i9Sbk8gH9GLW2GWv2DNfc2cOlK8=;
+        b=JNAn9CjthSQNVzc8E9MvXEfIRED/5Pzbf2PSwdXbtYWxzebxjpuAEdSbwVR21MPhXV
+         GMOMYnR66hRxWJrFrvyxpwSivNaMAnWwH1bsUqFGgu+2g0CSZ6bennm5eoKV5/7obg/W
+         HLObfWN3gn9Pm7nWbFd9N3yHAl1IHxe6JQQD+M8vc17wnU2TYTuKwjHEs2c1Ykjv1gA/
+         igK5KCDPxVpzfSKsN4frwEogrZbMfnDep0GnnvhZldrioZu3jMnVWEDZRKyfwytuY+lB
+         KKH/pQ7U76q83LZbOjpDl1UPLTfLSatRLWXOuWXwHzDb4DIbvCMUrCN/XLFLLj3PNvWe
+         j6ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=4zDZjUZzO0/LtwU7i9Sbk8gH9GLW2GWv2DNfc2cOlK8=;
+        b=C0+DzV/1WwV6lvpeGIcUdrIW2UtqkaYsXCfq7RhEI0xw/kWg+YlQnN9xIRovJ97aIY
+         /jQ6GZp9Vd6xB67JlwWD03q80XTUA9EN7v8boobG9Nl5tBiPQIIo72DhTj7EDiicwmnY
+         jpoYjar9Rx9N00BUzRxisOWkgxiMtqY7nqGtoy8kATNMQJ35CVveEvCz2z0F8dSk/4/b
+         P7Mu6BIw0hAlyjQvNQwNGlQ6U7Jf7RO3jyPGH5QHcRVJK+N+uFL6MlcF23xGhOanL3ve
+         cuV9O2Tgd4w4cz19GNRJKkzA9XB5J6L85alIgbDYgjS+3/E0u1UCszmVg/6my2u4kRrf
+         4V5w==
+X-Gm-Message-State: AOAM533Uxt45Xy8eGB8idu1iKRfSjvYK4ip9XnMilnN+v+SUQa5QOw8R
+        ZAwcPoUZfE/caIV33iXv86BXTSapV6E=
+X-Google-Smtp-Source: ABdhPJzQlKfW0CtWm4bXhyHTG7O7g1qPpYXDtoKXdkxclUHQ+RGjI+UtK3exNdt/OH4p05IWMjFUrw==
+X-Received: by 2002:ac2:55ad:: with SMTP id y13mr19034028lfg.38.1643720778908;
+        Tue, 01 Feb 2022 05:06:18 -0800 (PST)
+Received: from [192.168.2.145] (109-252-138-136.dynamic.spd-mgts.ru. [109.252.138.136])
+        by smtp.googlemail.com with ESMTPSA id n15sm3344584ljh.36.2022.02.01.05.06.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Feb 2022 05:06:18 -0800 (PST)
+Message-ID: <9900cecc-8e00-5b34-a8b2-95d8e1c1ad77@gmail.com>
+Date:   Tue, 1 Feb 2022 16:06:17 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v4 1/9] brcmfmac: pcie: Release firmwares in the
- brcmf_pcie_setup error path
-From:   Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220131160713.245637-2-marcan@marcan.st>
-References: <20220131160713.245637-2-marcan@marcan.st>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com,
-        Arend van Spriel <arend.vanspriel@broadcom.com>,
-        stable@vger.kernel.org
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164371845418.16633.10070643455446160726.kvalo@kernel.org>
-Date:   Tue,  1 Feb 2022 12:27:35 +0000 (UTC)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v17 2/4] dmaengine: tegra: Add tegra gpcdma driver
+Content-Language: en-US
+To:     Akhil R <akhilrajeev@nvidia.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Rajesh Gumasta <rgumasta@nvidia.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Pavan Kunapuli <pkunapuli@nvidia.com>
+References: <1643474453-32619-1-git-send-email-akhilrajeev@nvidia.com>
+ <1643474453-32619-3-git-send-email-akhilrajeev@nvidia.com>
+ <ba109465-d7ee-09cb-775b-9b702a3910b0@gmail.com>
+ <DM5PR12MB1850D836ACDF95008EF74CC7C0249@DM5PR12MB1850.namprd12.prod.outlook.com>
+ <08f6571e-af75-b6b3-443e-e86e3bdb365b@gmail.com>
+ <DM5PR12MB1850FD5F3EF5CBFEA97B3611C0259@DM5PR12MB1850.namprd12.prod.outlook.com>
+ <20220131094205.73f5f8c3@dimatab>
+ <DM5PR12MB1850D677140466EC74C621A4C0259@DM5PR12MB1850.namprd12.prod.outlook.com>
+ <8abf2da8-9a11-8f16-b495-d8ef2d00ab51@gmail.com>
+ <DM5PR12MB18505C4CB4A34F96E74BF28FC0259@DM5PR12MB1850.namprd12.prod.outlook.com>
+ <6dfdfd02-bfc3-1626-f819-7ddcc8bf9c1c@gmail.com>
+ <DM5PR12MB1850689286F20C18B12ADF1DC0269@DM5PR12MB1850.namprd12.prod.outlook.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <DM5PR12MB1850689286F20C18B12ADF1DC0269@DM5PR12MB1850.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hector Martin <marcan@marcan.st> wrote:
+01.02.2022 15:05, Akhil R пишет:
+>> 31.01.2022 18:38, Akhil R пишет:
+>>> Does the below method look good? bytes_xfer is updated on every ISR and in
+>>> tx_status(), the wcount is read to calculate the intermittent value. If the
+>> transfer
+>>> get complete in between, use wcount as 0 to add sg_req.len to bytes_xfer
+>>>
+>>> static int tegra_dma_get_residual(struct tegra_dma_channel *tdc)
+>>> {
+>>>       unsigned long wcount = 0, status;
+>>>       unsigned int bytes_xfer, residual;
+>>>       struct tegra_dma_desc *dma_desc = tdc->dma_desc;
+>>>       struct tegra_dma_sg_req *sg_req = dma_desc->sg_req;
+>>>
+>>>       /*
+>>>        * Do not read from CHAN_XFER_COUNT if EOC bit is set
+>>>        * as the transfer would have already completed and
+>>>        * the register could have updated for next transfer
+>>>        * in case of cyclic transfers.
+>>>        */
+>>>       status = tdc_read(tdc, TEGRA_GPCDMA_CHAN_STATUS);
+>>>       if (!(status & TEGRA_GPCDMA_STATUS_ISE_EOC))
+>>>               wcount = tdc_read(tdc, TEGRA_GPCDMA_CHAN_XFER_COUNT);
+>>
+>> You can't read WCOUNT after the STATUS without racing with the STATUS
+>> updates made by h/w. You should read the WCOUNT first and only then
+>> check the STATUS.
+>>
+>> You should also check whether T20 tegra_dma_sg_bytes_xferred()
+>> workarounds apply to newer h/w. I see that the h/w base hasn't changed
+>> much since T20.
+> The calculation in T20 driver is not applicable here. The register shows the
+> actual number of words remaining to be transferred as far as I understand.
 
-> This avoids leaking memory if brcmf_chip_get_raminfo fails. Note that
-> the CLM blob is released in the device remove path.
-> 
-> Fixes: 82f93cf46d60 ("brcmfmac: get chip's default RAM info during PCIe setup")
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-
-8 patches applied to wireless-next.git, thanks.
-
-5e90f0f3ead0 brcmfmac: pcie: Release firmwares in the brcmf_pcie_setup error path
-d19d8e3ba256 brcmfmac: firmware: Allocate space for default boardrev in nvram
-6d766d8cb505 brcmfmac: pcie: Declare missing firmware files in pcie.c
-9466987f2467 brcmfmac: pcie: Replace brcmf_pcie_copy_mem_todev with memcpy_toio
-b50255c83b91 brcmfmac: pcie: Fix crashes due to early IRQs
-9cf6d7f2c554 brcmfmac: of: Use devm_kstrdup for board_type & check for errors
-e7191182adc5 brcmfmac: fwil: Constify iovar name arguments
-b4bb8469e90e brcmfmac: pcie: Read the console on init and shutdown
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220131160713.245637-2-marcan@marcan.st/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+If downstream kernel DMA driver doesn't have any special quirks, then
+likely that they are indeed unneeded.
