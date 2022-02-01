@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EA2D4A5B7D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 12:48:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EF1A4A5B81
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 12:48:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237434AbiBALsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 06:48:38 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:56570
+        id S237507AbiBALsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 06:48:39 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:56578
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237427AbiBALsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 06:48:37 -0500
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        by vger.kernel.org with ESMTP id S237487AbiBALsi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 06:48:38 -0500
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id DBD863F1F3
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id EF07B3F1FD
         for <devicetree@vger.kernel.org>; Tue,  1 Feb 2022 11:48:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
         s=20210705; t=1643716115;
-        bh=WADk9zGuYiMHMUgeqEWKXcx1LnePmBdOwPQaJwQS8DQ=;
+        bh=T/Y7vvIm1vNgiOBuzuvlSLr7bPQM9EpmEANjJNIACK4=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=BXGAEKKZky1gvaZ2uUab9T9F+Uvi6gdSHiJBzMgvznK4mkFl/kx9YwIL1p5g1JO3u
-         J+vmwug73mOFk4glAEwv2m31EM1pxzf/cC8loJLrl9TbhTv2JowPOHwV9MpWz8oCFK
-         N9BvpJySDS/CO7Xx8B7E/QDo0ii8QvUCbYETGBQ7FrC3uxuBiPAtD9beoNGOkxjPAy
-         detQK9IubDgnrvuv6lZA6d6LOzMfjk34Q9eXKOwcm9zPSzHlwwMvYyZxBtss0wpXSa
-         1YKFaHacW2hrmR9/7eUicvmXXO0LCYW+5n3zV+9PnIZB9PDtz7tSC8dxSn84XzCGa8
-         x3V0cdcsDHDsA==
-Received: by mail-ed1-f72.google.com with SMTP id a18-20020aa7d752000000b00403d18712beso8539192eds.17
+        b=fWaCjtCFAId5QA4V1GCSRDXFqhjgZdckceaY7/K7nWrs91XpBTgGnt8z5ZfcpwTHM
+         MaX7nbdOUCfRb2r6RuILJM53indPFVkhoShvL+mprqGPFloP7i6vK1LbLA3pIKJhu1
+         I7Oy0FUxuSx+gnFlj4YzhY1l3PpPVx+e0Ek2opKnbu6xZrsuEwBBya70d7r3unTPpN
+         dc5ob/WtlDGqtC6IZ4FdbqdiASRmmwedERcD0aox4co/7gawzQgwO44i0oQSChOg90
+         LXyNMPQddwjhVN1w7rlavEyCbTyHkkXlbnfkpY3P1+F/ElX55dTXxA77IRXJwBpDUJ
+         cmOYfvSkOC5Vw==
+Received: by mail-ed1-f71.google.com with SMTP id f21-20020a50d555000000b00407a8d03b5fso8487177edj.9
         for <devicetree@vger.kernel.org>; Tue, 01 Feb 2022 03:48:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=WADk9zGuYiMHMUgeqEWKXcx1LnePmBdOwPQaJwQS8DQ=;
-        b=K3hUk6uB2ZUNeXs0zwWNgDntgTBQCu3/Ua65OypwbfhIL1qKyE9qqdVMieIr8RyiUg
-         rUsd58ZjQlCu4/VNd00J3k8/Fw4A41fFGelFBqstMQuMCoUg3Tz/kh36r9jmpqxV7zZO
-         qkpUV+kj9hL66UHN5fcUjCCY+6AbiUstxiKai2NxjBwPHa1MfBx5ob+F8kQM0Yk6V4zz
-         4Kqam9atSGLh1mdGILhhG3M+kJoBqUBQrGBcp4HWcutiVIYtL7nocCPMJzlHHz/eFbJS
-         r92lmOwWuXXUFv6++KEbe+Qb4nQOFc8VmWMTjY8jGcBFdFC4wc+lDMgyLuD1190jNWkL
-         ZOvw==
-X-Gm-Message-State: AOAM532qoah+80VE20MkwytNea+rjFkZ1xcsDri5/wKWtGkal2Bm2YFc
-        2xtZQIY2KDaWa/2i+nyOzVJYRIQELfQgXdz3l1+ajI+wkvqVzd7mGOVh2i9atfNHe4LhFGRSgi1
-        GTvgpaxucPupYM39RDGPzW84Z/BMYCmaDhkitJvA=
-X-Received: by 2002:a17:906:31cc:: with SMTP id f12mr20180718ejf.115.1643716113298;
-        Tue, 01 Feb 2022 03:48:33 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzritvK1s6ruWejqqATTfAiWNIFOFiUVuabJlDk6yiD80KSJT2X8p45M7wsQIgsuFwujL1ONQ==
-X-Received: by 2002:a17:906:31cc:: with SMTP id f12mr20180702ejf.115.1643716113054;
+        bh=T/Y7vvIm1vNgiOBuzuvlSLr7bPQM9EpmEANjJNIACK4=;
+        b=lBtBIUWKfepgx4jNPEdPlMUbc7m+GwsxFSwbEY2mMDSwii5lNMZ8Omaie5E6cBkaaF
+         zo/iDRmLOsPbSfTbWRkO3RdhH+Dp8huNJHP6zaA50R5n/zRcCbSl0yxv2ZXlVL90RMPH
+         8Tvm8s6wmbTvAhi1jRjepoGdSoUKZjhx6KVhDAwuIimGWhPASaQ8movW+fWDUbvko2XS
+         XS7aPIJap5JwYFzrSHBftraBS4Sd4y5r4WQmz57cpNaMvGolIJiYnjGLpJ+1I/mzM8dF
+         aC0ZYv0uJMeWQ+xrvaHPrcN6Np9gV8aeihiokIXJrsj418f1gHDApNyNcE4d/0HFHYBQ
+         QmyA==
+X-Gm-Message-State: AOAM530o3gyAdnE2djPnHKPFzl3d9X/l6PwMFi7vrnFyNAfPDyFH+GZk
+        PgFLnyOzdBsqQ0P5xQM3Oll++iBK9UU7vkjFiwQtZHGl3U+/2N1EdpWkucyPnz/fWzedFlUTU85
+        8lyw0IKZtqmkxxvw/t773wFVtZjAaBXezQUpfZ8M=
+X-Received: by 2002:a17:907:7ea3:: with SMTP id qb35mr20935345ejc.553.1643716114004;
+        Tue, 01 Feb 2022 03:48:34 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxBVg7XQAKdtCkCWKY7svrC9N0kglErPiZRvcZ3T1qESNacpBeH/7PKHB+m0oeeHfjiu1i0cQ==
+X-Received: by 2002:a17:907:7ea3:: with SMTP id qb35mr20935333ejc.553.1643716113773;
         Tue, 01 Feb 2022 03:48:33 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id bo19sm17954484edb.56.2022.02.01.03.48.31
+        by smtp.gmail.com with ESMTPSA id bo19sm17954484edb.56.2022.02.01.03.48.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Feb 2022 03:48:32 -0800 (PST)
+        Tue, 01 Feb 2022 03:48:33 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -61,9 +61,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 5/6] dt-bindings: memory: lpddr3-timings: convert to dtschema
-Date:   Tue,  1 Feb 2022 12:47:48 +0100
-Message-Id: <20220201114749.88500-5-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 6/6] dt-bindings: memory: lpddr2-timings: convert to dtschema
+Date:   Tue,  1 Feb 2022 12:47:49 +0100
+Message-Id: <20220201114749.88500-6-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220201114749.88500-1-krzysztof.kozlowski@canonical.com>
 References: <20220201114749.88500-1-krzysztof.kozlowski@canonical.com>
@@ -73,40 +73,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the LPDDR3 memory timings bindings to DT schema format.
+Convert the LPDDR2 memory timings bindings to DT schema format.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../ddr/jedec,lpddr3-timings.yaml             | 153 ++++++++++++++++++
- .../memory-controllers/ddr/jedec,lpddr3.yaml  |   5 +-
- .../memory-controllers/ddr/lpddr3-timings.txt |  58 -------
- 3 files changed, 155 insertions(+), 61 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3-timings.yaml
- delete mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3-timings.txt
+ .../ddr/jedec,lpddr2-timings.yaml             | 135 ++++++++++++++++++
+ .../memory-controllers/ddr/jedec,lpddr2.yaml  |   6 +-
+ .../memory-controllers/ddr/lpddr2-timings.txt |  52 -------
+ 3 files changed, 137 insertions(+), 56 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3-timings.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3-timings.yaml
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
 new file mode 100644
-index 000000000000..98bc219e8a25
+index 000000000000..7cc3021decfe
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3-timings.yaml
-@@ -0,0 +1,153 @@
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
+@@ -0,0 +1,135 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr3-timings.yaml#
++$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr2-timings.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: LPDDR3 SDRAM AC timing parameters for a given speed-bin
++title: LPDDR2 SDRAM AC timing parameters for a given speed-bin
 +
 +maintainers:
 +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 +
 +properties:
 +  compatible:
-+    const: jedec,lpddr3-timings
++    const: jedec,lpddr2-timings
 +
-+  reg:
-+    maxItems: 1
++  max-freq:
++    $ref: /schemas/types.yaml#/definitions/uint32
 +    description: |
 +      Maximum DDR clock frequency for the speed-bin, in Hz.
 +
@@ -115,61 +115,46 @@ index 000000000000..98bc219e8a25
 +    description: |
 +      Minimum DDR clock frequency for the speed-bin, in Hz.
 +
-+  tCKE:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      CKE minimum pulse width (HIGH and LOW pulse width) in pico seconds.
-+
 +  tCKESR:
 +    $ref: /schemas/types.yaml#/definitions/uint32
 +    description: |
 +      CKE minimum pulse width during SELF REFRESH (low pulse width during
 +      SELF REFRESH) in pico seconds.
 +
++  tDQSCK-max:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      DQS output data access time from CK_t/CK_c in pico seconds.
++
++  tDQSCK-max-derated:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      DQS output data access time from CK_t/CK_c, temperature de-rated, in pico
++      seconds.
++
 +  tFAW:
 +    $ref: /schemas/types.yaml#/definitions/uint32
 +    description: |
 +      Four-bank activate window in pico seconds.
 +
-+  tMRD:
-+    $ref: /schemas/types.yaml#/definitions/uint32
++  tRAS-max-ns:
 +    description: |
-+      Mode register set command delay in pico seconds.
++      Row active time in nano seconds.
 +
-+  tR2R-C2C:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Additional READ-to-READ delay in chip-to-chip cases in pico seconds.
-+
-+  tRAS:
++  tRAS-min:
 +    $ref: /schemas/types.yaml#/definitions/uint32
 +    description: |
 +      Row active time in pico seconds.
-+
-+  tRC:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      ACTIVATE-to-ACTIVATE command period in pico seconds.
 +
 +  tRCD:
 +    $ref: /schemas/types.yaml#/definitions/uint32
 +    description: |
 +      RAS-to-CAS delay in pico seconds.
 +
-+  tRFC:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Refresh Cycle time in pico seconds.
-+
 +  tRPab:
 +    $ref: /schemas/types.yaml#/definitions/uint32
 +    description: |
 +      Row precharge time (all banks) in pico seconds.
-+
-+  tRPpb:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Row precharge time (single banks) in pico seconds.
 +
 +  tRRD:
 +    $ref: /schemas/types.yaml#/definitions/uint32
@@ -180,11 +165,6 @@ index 000000000000..98bc219e8a25
 +    $ref: /schemas/types.yaml#/definitions/uint32
 +    description: |
 +      Internal READ to PRECHARGE command delay in pico seconds.
-+
-+  tW2W-C2C:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Additional WRITE-to-WRITE delay in chip-to-chip cases in pico seconds.
 +
 +  tWR:
 +    $ref: /schemas/types.yaml#/definitions/uint32
@@ -201,7 +181,17 @@ index 000000000000..98bc219e8a25
 +    description: |
 +      Exit power-down to next valid command delay in pico seconds.
 +
-+  tXSR:
++  tZQCL:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      SELF REFRESH exit to next valid command delay in pico seconds.
++
++  tZQCS:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      SELF REFRESH exit to next valid command delay in pico seconds.
++
++  tZQinit:
 +    $ref: /schemas/types.yaml#/definitions/uint32
 +    description: |
 +      SELF REFRESH exit to next valid command delay in pico seconds.
@@ -209,123 +199,110 @@ index 000000000000..98bc219e8a25
 +required:
 +  - compatible
 +  - min-freq
-+  - reg
++  - max-freq
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    lpddr3 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        timings@800000000 {
-+            compatible = "jedec,lpddr3-timings";
-+            reg = <800000000>;
-+            min-freq = <100000000>;
-+            tCKE = <3750>;
-+            tCKESR = <3750>;
-+            tFAW = <25000>;
-+            tMRD = <7000>;
-+            tR2R-C2C = <0>;
-+            tRAS = <23000>;
-+            tRC = <33750>;
-+            tRCD = <10000>;
-+            tRFC = <65000>;
-+            tRPab = <12000>;
-+            tRPpb = <12000>;
-+            tRRD = <6000>;
-+            tRTP = <3750>;
-+            tW2W-C2C = <0>;
-+            tWR = <7500>;
-+            tWTR = <3750>;
-+            tXP = <3750>;
-+            tXSR = <70000>;
-+        };
++    timings {
++        compatible = "jedec,lpddr2-timings";
++        min-freq = <10000000>;
++        max-freq = <400000000>;
++        tCKESR = <15000>;
++        tDQSCK-max = <5500>;
++        tFAW = <50000>;
++        tRAS-max-ns = <70000>;
++        tRAS-min = <42000>;
++        tRPab = <21000>;
++        tRCD = <18000>;
++        tRRD = <10000>;
++        tRTP = <7500>;
++        tWR = <15000>;
++        tWTR = <7500>;
++        tXP = <7500>;
++        tZQCL = <360000>;
++        tZQCS = <90000>;
++        tZQinit = <1000000>;
 +    };
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
-index 138c57d8a375..3bcba15098ea 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
-@@ -192,13 +192,12 @@ properties:
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+index 25ed0266f6dd..2d8a701e2a05 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+@@ -142,14 +142,12 @@ properties:
  
  patternProperties:
-   "^timings@[0-9a-f]+$":
+   "^lpddr2-timings":
 -    type: object
-+    $ref: jedec,lpddr3-timings.yaml
++    $ref: jedec,lpddr2-timings.yaml
      description: |
-       The lpddr3 node may have one or more child nodes with timings.
-       Each timing node provides AC timing parameters of the device for a given
-       speed-bin. The user may provide the timings for as many speed-bins as is
--      required. For more information please see::
--      Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3-timings.txt
-+      required.
+       The lpddr2 node may have one or more child nodes of type "lpddr2-timings".
+       "lpddr2-timings" provides AC timing parameters of the device for
+       a given speed-bin. The user may provide the timings for as many
+-      speed-bins as is required. Please see Documentation/devicetree/
+-      bindings/memory-controllers/ddr/lpddr2-timings.txt for more information
+-      on "lpddr2-timings".
++      speed-bins as is required.
  
  required:
    - compatible
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3-timings.txt b/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3-timings.txt
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt b/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
 deleted file mode 100644
-index 84705e50a3fd..000000000000
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3-timings.txt
+index 9ceb19e0c7fd..000000000000
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
 +++ /dev/null
-@@ -1,58 +0,0 @@
--* AC timing parameters of LPDDR3 memories for a given speed-bin.
--
--The structures are based on LPDDR2 and extended where needed.
+@@ -1,52 +0,0 @@
+-* AC timing parameters of LPDDR2(JESD209-2) memories for a given speed-bin
 -
 -Required properties:
--- compatible : Should be "jedec,lpddr3-timings"
+-- compatible : Should be "jedec,lpddr2-timings"
 -- min-freq : minimum DDR clock frequency for the speed-bin. Type is <u32>
--- reg : maximum DDR clock frequency for the speed-bin. Type is <u32>
+-- max-freq : maximum DDR clock frequency for the speed-bin. Type is <u32>
 -
 -Optional properties:
 -
 -The following properties represent AC timing parameters from the memory
 -data-sheet of the device for a given speed-bin. All these properties are
--of type <u32> and the default unit is ps (pico seconds).
--- tRFC
--- tRRD
--- tRPab
--- tRPpb
+-of type <u32> and the default unit is ps (pico seconds). Parameters with
+-a different unit have a suffix indicating the unit such as 'tRAS-max-ns'
 -- tRCD
--- tRC
--- tRAS
--- tWTR
 -- tWR
--- tRTP
--- tW2W-C2C
--- tR2R-C2C
--- tFAW
--- tXSR
+-- tRAS-min
+-- tRRD
+-- tWTR
 -- tXP
--- tCKE
+-- tRTP
+-- tDQSCK-max
+-- tFAW
+-- tZQCS
+-- tZQinit
+-- tRPab
+-- tZQCL
 -- tCKESR
--- tMRD
+-- tRAS-max-ns
+-- tDQSCK-max-derated
 -
 -Example:
 -
--timings_samsung_K3QF2F20DB_800mhz: lpddr3-timings@800000000 {
--	compatible	= "jedec,lpddr3-timings";
--	reg		= <800000000>; /* workaround: it shows max-freq */
--	min-freq	= <100000000>;
--	tRFC		= <65000>;
--	tRRD		= <6000>;
--	tRPab		= <12000>;
--	tRPpb		= <12000>;
--	tRCD		= <10000>;
--	tRC		= <33750>;
--	tRAS		= <23000>;
--	tWTR		= <3750>;
--	tWR		= <7500>;
--	tRTP		= <3750>;
--	tW2W-C2C	= <0>;
--	tR2R-C2C	= <0>;
--	tFAW		= <25000>;
--	tXSR		= <70000>;
--	tXP		= <3750>;
--	tCKE		= <3750>;
--	tCKESR		= <3750>;
--	tMRD		= <7000>;
+-timings_elpida_ECB240ABACN_400mhz: lpddr2-timings@0 {
+-	compatible	= "jedec,lpddr2-timings";
+-	min-freq	= <10000000>;
+-	max-freq	= <400000000>;
+-	tRPab		= <21000>;
+-	tRCD		= <18000>;
+-	tWR		= <15000>;
+-	tRAS-min	= <42000>;
+-	tRRD		= <10000>;
+-	tWTR		= <7500>;
+-	tXP		= <7500>;
+-	tRTP		= <7500>;
+-	tCKESR		= <15000>;
+-	tDQSCK-max	= <5500>;
+-	tFAW		= <50000>;
+-	tZQCS		= <90000>;
+-	tZQCL		= <360000>;
+-	tZQinit		= <1000000>;
+-	tRAS-max-ns	= <70000>;
 -};
 -- 
 2.32.0
