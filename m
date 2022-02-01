@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12E554A5B78
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 12:48:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D4BB4A5B71
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 12:48:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237472AbiBALsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 06:48:36 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:56560
+        id S237448AbiBALsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 06:48:35 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:56532
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237455AbiBALsf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 06:48:35 -0500
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        by vger.kernel.org with ESMTP id S237438AbiBALse (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 06:48:34 -0500
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1C3233F20D
-        for <devicetree@vger.kernel.org>; Tue,  1 Feb 2022 11:48:32 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 8FC0C3F2FF
+        for <devicetree@vger.kernel.org>; Tue,  1 Feb 2022 11:48:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643716113;
-        bh=o1EGYrWsRqx/bd/p11jiwzAPNZIWt1CcXa2YB+SDcqU=;
+        s=20210705; t=1643716111;
+        bh=OuVWT+OxqE323DEVUlu5DyHs7hHuGTLMdHDm6pwqNSI=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=ix/0lFwZCPkpSmfSDpi0iM0cK4HOIizn0ATxf0YRuudd6kDL76U0EfwL1lAocxD3/
-         36fL2oUj3Y/dDqRmD6ByhRKdEdLsxPiUkH6NPnoaSfA1Tcjh2hLQ+N552iyetNk6Ts
-         WaFG4ONx/7mdy+zkJceqCPyv52xkaaOpOiQo6ITaeX+sZ1Fu+LT9VDpk/zK+1okd7j
-         j28ubCNfi11nj0C5RhkimD/KZs40aZ1BelGXJPHz/plnvpSailR30pp8VgvV9k6018
-         QjofiJ5STXpQ3QISNaW7DK4SdSyhjjftgVGNTAJb0Qdy+Gysl1ppR5JqyhRPhkz1Mr
-         zVPLsazr1MhqA==
-Received: by mail-ed1-f71.google.com with SMTP id q10-20020a5085ca000000b0040e3ecf0ec2so708157edh.14
-        for <devicetree@vger.kernel.org>; Tue, 01 Feb 2022 03:48:32 -0800 (PST)
+        b=Fbs15aGFgyvnkbWUtMPMpCUoM8+qO2YRu8ZLKtjcYMAkFKmbOHtePRgZXkfPczobF
+         8LtGVc8k3BokIJoM+7yVBwcLUsKyxwvjlx3n7tVJYMwrPYfrsu9Lj2LT48ECZcnaQ3
+         EyL7V++sdNi1p5tLZMP65miqlwrhGiFOEv20cD95G22I05ISeQ+dptM+4M3L7z6UVD
+         UFXF/YIfdI+V3albUpnGby2f6TQ2EwoZUtekPhlxVKvT3hobRkRk1TErcHM8BLGasW
+         agtHMssixjPYn0519F0aBdSXBXd+yhVAy7YteKJOtPXexuYrFpCqgrPqy1qbXtfaRf
+         uW3M4RY/QTepg==
+Received: by mail-ej1-f70.google.com with SMTP id rl11-20020a170907216b00b006b73a611c1aso6400217ejb.22
+        for <devicetree@vger.kernel.org>; Tue, 01 Feb 2022 03:48:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=o1EGYrWsRqx/bd/p11jiwzAPNZIWt1CcXa2YB+SDcqU=;
-        b=v/f7UUOv27xicGctYCKw/od5K3zON5rEcga/zbri52xcx1BGh/cjWTMkvJhw9IiVCa
-         xUeVjuAq2q6szbVjEAx4Cwy1JQ/Rp2oXcKLdx3IEW0x761qDaGShUSM1GXnvm4sBgr4Q
-         Y7Q4pE76ql9LWuDzcoQZrSfTrlUj2ZxhFGRh2E0r1Gjq9eQtR6RZ07T7KZpDZAMYjs/L
-         Sksbpj9gNrepAE35SScJBWCtQEKI7qSfDb2EdXL8rWSuMsPVVfO5gQwIw15mdE1D3u1p
-         /fcdFSZL+oGM6ncNLAav3l/EC+dDqaJwEYI09P5HB7ok5bdQLiL1UK4Rc/fpkzpM1wAh
-         d5Kg==
-X-Gm-Message-State: AOAM533IwSYWmo6R8snr29JP30Zj4td/j9/XoSvmsHcIgkwLrEaIGpTb
-        9TFTlDwtt8b4lP75hCyUjhh0psF4khz4bBmeFCpcIpwnOIykdhgK6E1EkpN/CUPys8e1dvPsoYl
-        +A33TtYRz3wm/tymyIujmU2+sctvxrZngyAz2XNM=
-X-Received: by 2002:a05:6402:c8f:: with SMTP id cm15mr11990020edb.142.1643716109125;
-        Tue, 01 Feb 2022 03:48:29 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwraRAjhC9I6DY9xAnWWXt1339RlIYhSluQ5JrwhO0g6NxEHo1NIp7ivDOtxHqLqCBE3vpCHQ==
-X-Received: by 2002:a05:6402:c8f:: with SMTP id cm15mr11990002edb.142.1643716108971;
-        Tue, 01 Feb 2022 03:48:28 -0800 (PST)
+        bh=OuVWT+OxqE323DEVUlu5DyHs7hHuGTLMdHDm6pwqNSI=;
+        b=BgW2hyAm0zS0ce90w760OL9ne1LfJhW/pXYa6SlvlQhEkv54U7g8VE9wLGNrvxfoGf
+         M9tp/yPvw0tq+t+tJpTEEWv2CO0bUcYe/wKdxRuAGFXqIuy822BjL/A/UAl5vOMBci7M
+         xju81vDGbM/VZQ+IS8UWr4gyROXnsyC5oV3cxZKJGCXydtE9EGKibOTU4zIEAbXqN+Em
+         XSfMPrTNIoB7qHPu0p/lKzP2eTQht7MExxWfhHzBdrZin8QEMwFn9R4WtSwHdscsxq4D
+         Fsp3r7AMLcj4Zhb5Cdz7GU6J6v0BuDW0C+l2K6mBC0ZCLCbZb6M33ddy1FwoBkrTbUGS
+         ojBw==
+X-Gm-Message-State: AOAM532yzVk6bcgwNz67n1XF8hpegNhz+yJ81KFNyRw0+YHYKpCn7b6k
+        Z2/7UIl6pWABnTY3jH1+pAkXs9BF4dlUJGmuoKIQP/q357ooh8/O6jxdURZJs5aYn4Y7zwsr9wx
+        YAwADsVN6IjJGr5bowBWRTXWXUnFC89nXpSrHQvo=
+X-Received: by 2002:a17:907:d9f:: with SMTP id go31mr21604850ejc.282.1643716111079;
+        Tue, 01 Feb 2022 03:48:31 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz4hxffkdEDnSRNHd8A4Uy3TqYuAKbZF4KOrK7b4i45cPu6GWoai3jbLk/RRWS+LN17FX6K9Q==
+X-Received: by 2002:a17:907:d9f:: with SMTP id go31mr21604841ejc.282.1643716110925;
+        Tue, 01 Feb 2022 03:48:30 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id bo19sm17954484edb.56.2022.02.01.03.48.28
+        by smtp.gmail.com with ESMTPSA id bo19sm17954484edb.56.2022.02.01.03.48.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Feb 2022 03:48:28 -0800 (PST)
+        Tue, 01 Feb 2022 03:48:30 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -61,9 +61,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 3/6] dt-bindings: memory: lpddr3: adjust IO width to spec
-Date:   Tue,  1 Feb 2022 12:47:46 +0100
-Message-Id: <20220201114749.88500-3-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 4/6] dt-bindings: memory: lpddr3: deprecated manufacturer ID
+Date:   Tue,  1 Feb 2022 12:47:47 +0100
+Message-Id: <20220201114749.88500-4-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220201114749.88500-1-krzysztof.kozlowski@canonical.com>
 References: <20220201114749.88500-1-krzysztof.kozlowski@canonical.com>
@@ -73,30 +73,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to JEDEC Standard No. 209-3 (table 3.4.1 "Mode Register
-Assignment and Definition in LPDDR3 SDRAM"), the LPDDR3 supports only
-16- and 32-bit IO width.  Drop the unsupported others.
+The memory manufacturer should be described in vendor part of
+compatible, so there is no need to duplicate it in separate property.
+Similarly is done in LPDDR2 bindings.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../bindings/memory-controllers/ddr/jedec,lpddr3.yaml           | 2 --
- 1 file changed, 2 deletions(-)
+ .../bindings/memory-controllers/ddr/jedec,lpddr3.yaml         | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
-index c8577186324a..0c8353c11767 100644
+index 0c8353c11767..138c57d8a375 100644
 --- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
 +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
-@@ -34,10 +34,8 @@ properties:
-     description: |
-       IO bus width in bits of SDRAM chip.
-     enum:
--      - 64
-       - 32
-       - 16
--      - 8
- 
+@@ -40,7 +40,9 @@ properties:
    manufacturer-id:
      $ref: /schemas/types.yaml#/definitions/uint32
+     description: |
+-      Manufacturer ID value read from Mode Register 5.
++      Manufacturer ID value read from Mode Register 5.  The property is
++      deprecated, manufacturer should be derived from the compatible.
++    deprecated: true
+ 
+   revision-id:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
 -- 
 2.32.0
 
