@@ -2,129 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80EEB4A6845
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 23:56:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D02104A6895
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 00:37:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241098AbiBAW4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 17:56:39 -0500
-Received: from esa2.hgst.iphmx.com ([68.232.143.124]:38560 "EHLO
-        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242390AbiBAW4j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 17:56:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1643756199; x=1675292199;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=JEXkrnQvPN5XB3Pk+Ih5O9VSg3x9zd2WVW69XYIHQXo=;
-  b=pe4zeJ3DU2e2urRIpXNQZrXNjO4InCrtsTtkIbUqBQSrGtobhw8WSzjb
-   TA6AOT9TjX9hmXAmJ7yeeHszXcvvad5K24OepmdMzAsZrI2KhqPpVHdty
-   igZTs0EkXDcU10JAyR43Nxt54miMCpUrgec/D9/SF8OJg5X6mlpIC8/uZ
-   fpxIHHItOxe4gw0kH/e7KdKLcP5sGRzZOZ5G1UWMMYQejqvTqSHViISu4
-   J1Qhb4fYj/XWHt1AzM0GCLdh5TkW+mXwki5SjQWb5YerrxWFebRZ8Mwyb
-   Ib6hz65Gde5nkQ6c+M7EQgnJ/d2iejvLt/vT8+MJmw3twBqe9Ukcqepre
-   A==;
-X-IronPort-AV: E=Sophos;i="5.88,335,1635177600"; 
-   d="scan'208";a="296012929"
-Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 02 Feb 2022 06:56:38 +0800
-IronPort-SDR: yXtlPeXGEAA2C0OG+okkZpccRKxR+ZAkpIOHBvY234sFYQKInkJv+QdKwvVxWXC++lwMelhRJS
- RMbqU0sxmmojodEzwlRPrrQS6S3GazWNMPSBoNOAXwHTVd2023UYDUQvPLLfJ8WTkIRZVANJlV
- ZE777I5qF1qucODfK0FGLJNHVI2hco8unrr7Z0Vmu7oj/u+r4T5T1AU6Knf+ixBXPeUsdLTbu5
- 0S4d/ZLvXgEhUBFu70no2iURqAVYS2b/SFIz/XXlZzYt8nFJDMkvq8Eq+2r9nHVGZkg5/KgemF
- CM3zkFa8wm6aZ/3oxcUykbVN
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2022 14:28:36 -0800
-IronPort-SDR: D9FUWuZ14AajnENOfvZzJ21spDpyV2Fh/SUlWN4q2HysOY1Ut5IVjkYbs2fDD1ZBShbRPnXVK5
- qJ+NQYOl17t4hpn5u6rshYJoQgtK43JCKwTaLUNS7IZAjcoenqktpJFnZO87jCT1LDvVkczHP5
- 4ZOUGxqX+xe8X47rqv6fHDSHmzH3fC3K1pD4FP5eTeD9q+UI/n7VfcP9PGEMoE83n1K3/W8et/
- SM+aZw8jxNyUZsj/yK9JCE3Ufk+B9/jdY658eUrKrIlylY6ftJTRlZCpysWSYfjn/A3e0kXiyO
- 32U=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2022 14:56:40 -0800
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4JpL064bHjz1SVnx
-        for <devicetree@vger.kernel.org>; Tue,  1 Feb 2022 14:56:38 -0800 (PST)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1643756198; x=1646348199; bh=JEXkrnQvPN5XB3Pk+Ih5O9VSg3x9zd2WVW6
-        9XYIHQXo=; b=JAcVQ7YyIMFXVN6X56CITpdVT2t9cAumbhzIvWWg2laLykayK8x
-        Yi1c9BDGwQqB7V+sE0mGtwPayADdz1T82ksV7zeJQndSd/dPUPYySCvIaknko/ua
-        azM02t1ugCpfOhZkns2a0VOAqQRvJ28yfJkhUGc9Z34n9YacqqreRSZ1/b1zSSiS
-        5gZsj51kTUIqlHULtEClRjWUOUYVZ0FxjsFuSN16cKaEq0rq7muEegYsihKjHqr4
-        qI/QggMkNH+dqfnlE9KNTa2ElEegR9KK0vVSajj+8JORE/wfdf5r4vYm9nhY2U7i
-        C+b9lk30g3clJl9ioafig1yTdOtFzUN7dfQ==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 5xFLigcNY-Q4 for <devicetree@vger.kernel.org>;
-        Tue,  1 Feb 2022 14:56:38 -0800 (PST)
-Received: from [10.225.54.48] (unknown [10.225.54.48])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4JpL0515WZz1RvlN;
-        Tue,  1 Feb 2022 14:56:36 -0800 (PST)
-Message-ID: <5a1d66d3-d3c2-ab77-f874-c3d6b10a0d2b@opensource.wdc.com>
-Date:   Wed, 2 Feb 2022 07:56:35 +0900
+        id S230072AbiBAXhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 18:37:21 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:36594 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230039AbiBAXhU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 18:37:20 -0500
+Received: by mail-oi1-f180.google.com with SMTP id s185so36558874oie.3;
+        Tue, 01 Feb 2022 15:37:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1wzPNNppKnRmG7GhdaVHcFdeObKPyXncbl2olgh+vYk=;
+        b=mA5s93Tog9xUVZEv2R90wAlFVxmYEGBAjUCbTIeJa3sGzK3dI2a6L8B1wtDTO97a3h
+         t52zJMgNHiaQ5NxOUX9xgUFz1G7FsWryQww7RIcUxFff/PZ+WhoZTAfZwpH1veq+VubC
+         Aygp1bYS8Iakbej+kJo40XdKhHqs46Tty61YEVQn4G0LIqwQEVAilWN7k7/7qv9xVzQq
+         JRqGsA9gjP5ZFbvVuKY1UV5DUp8ajkaYPqvH8lQd3LmSZxQ1ICKWsAvxlDJRv9mMwhoe
+         XjTgH7IQ5CzMdUNSoCnKUS0+JZQZr6MlU2MDWOMjOGbUxnX5YkjknJT6ZQHD+y+6IzH6
+         rxjw==
+X-Gm-Message-State: AOAM532NUIfL5TZj1+ao/Nyl3yY5RczLn+TazpghaphL+ZyG3aVcLZeV
+        n70VA0zfSU8+lizXTRvKgA==
+X-Google-Smtp-Source: ABdhPJxLSN6/Tsa9g3DSUOocW9OA1MD7EGtHI9BNYU9duePeHbY2ZHUOdFd/pN4CgpfQRCO1NKorOA==
+X-Received: by 2002:a05:6808:1522:: with SMTP id u34mr2990481oiw.158.1643758639943;
+        Tue, 01 Feb 2022 15:37:19 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j9sm15051021otp.23.2022.02.01.15.37.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Feb 2022 15:37:19 -0800 (PST)
+Received: (nullmailer pid 969883 invoked by uid 1000);
+        Tue, 01 Feb 2022 23:37:18 -0000
+Date:   Tue, 1 Feb 2022 17:37:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Joseph CHAMG <josright123@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, joseph_chang@davicom.com.tw,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
+        andrew@lunn.ch, leon@kernel.org
+Subject: Re: [PATCH v13, 1/2] yaml: Add dm9051 SPI network yaml file
+Message-ID: <YfnELnLfr6K0fNVY@robh.at.kernel.org>
+References: <20220125085837.10357-1-josright123@gmail.com>
+ <20220125085837.10357-2-josright123@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.5.1
-Subject: Re: [PATCH] dt-bindings: ata: convert ata/cortina,gemini-sata-bridge
- to yaml
-Content-Language: en-US
-To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Corentin Labbe <clabbe@baylibre.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220129204004.1009571-1-clabbe@baylibre.com>
- <CACRpkdb9R-BwdVzyeaQOjagsQU=2-06VNqKPG9fMa7C93eDC7A@mail.gmail.com>
- <2b0fa854-16e7-3d0b-a04a-971249646fab@opensource.wdc.com>
- <bc80cd49-c95e-6b9a-1210-7d3832766b02@gmail.com>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <bc80cd49-c95e-6b9a-1210-7d3832766b02@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220125085837.10357-2-josright123@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/02/02 2:36, Sergei Shtylyov wrote:
-> On 1/31/22 2:56 AM, Damien Le Moal wrote:
-> 
->>> Thanks for doing this Corentin!
->>>
->>> On Sat, Jan 29, 2022 at 9:40 PM Corentin Labbe <clabbe@baylibre.com> wrote:
->>>
->>>> This patch converts ata/cortina,gemini-sata-bridge binding to yaml
->>>>
->>>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
->>>
->>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->>>
->>> Knowing that drivers/ata is a bit sparsely maintained I suggest that Rob apply
->>> this patch when he feels it looks good.
->>
->> What do you mean ? I am doing my best here to maintain ata !
->> But I definitely do not have all the hardware supported for testing :)
-> 
->    I can probably help reviewing the PATA drivers if you want, just like Bart Z. did.
-> But I don't have much of the PATA hardware (what I have is in my old PCs I haven't
-> booted in a long while)...
+On Tue, Jan 25, 2022 at 04:58:36PM +0800, Joseph CHAMG wrote:
+> From: JosephCHANG <josright123@gmail.com>
 
-More reviews are always welcome ! Thanks !
+Follow the naming convention of the subsystem for the subject line (use 
+'git log --oneline'):
+
+dt-bindings: net: Add Davicom dm9051 SPI ethernet controller
 
 > 
-> [...]
+> This is a new yaml base data file for configure davicom dm9051 with
+> device tree
 > 
-> MBR, Sergey
-
-
--- 
-Damien Le Moal
-Western Digital Research
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: JosephCHANG <josright123@gmail.com>
+> ---
+>  .../bindings/net/davicom,dm9051.yaml          | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/davicom,dm9051.yaml b/Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+> new file mode 100644
+> index 000000000000..52e852fef753
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/davicom,dm9051.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Davicom DM9051 SPI Ethernet Controller
+> +
+> +maintainers:
+> +  - Joseph CHANG <josright123@gmail.com>
+> +
+> +description: |
+> +  The DM9051 is a fully integrated and cost-effective low pin count single
+> +  chip Fast Ethernet controller with a Serial Peripheral Interface (SPI).
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: davicom,dm9051
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 45000000
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  local-mac-address: true
+> +
+> +  mac-address: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-max-frequency
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Raspberry Pi platform
+> +  - |
+> +    /* for Raspberry Pi with pin control stuff for GPIO irq */
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ethernet@0 {
+> +            compatible = "davicom,dm9051";
+> +            reg = <0>; /* spi chip select */
+> +            local-mac-address = [00 00 00 00 00 00];
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+> +            spi-max-frequency = <31200000>;
+> +        };
+> +    };
+> -- 
+> 2.20.1
+> 
+> 
