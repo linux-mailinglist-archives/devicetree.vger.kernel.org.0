@@ -2,62 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B9D94A562A
+	by mail.lfdr.de (Postfix) with ESMTP id C57284A562C
 	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:20:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233639AbiBAFUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233695AbiBAFUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 1 Feb 2022 00:20:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42148 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233672AbiBAFUP (ORCPT
+        with ESMTP id S233686AbiBAFUP (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:20:15 -0500
 Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B40C061741
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:13 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id g15-20020a9d6b0f000000b005a062b0dc12so15161338otp.4
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:13 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE848C06174E
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:14 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id b12-20020a9d754c000000b0059eb935359eso15171990otl.8
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cx8fEVB8X8EesF6Bvy5LtHeQjU0eGcRlsykwpkoHgGI=;
-        b=Z/ivLjWz+XanTM1yK2Y63SsPtGhseJijnN2oCrexxO25T1gu1UhPkFJzZDM41C+iHE
-         znhJHmlsLfZqIucqi6bn8UpnIzctLLZXC69GWcB14OI5dMVqcf/5mK2JzkU2xsNX8pgr
-         FpM/qld4PzQ7bQeo65KKusFAyM75ymaF6Lk8tZrqRQh95A50YUhFNc4m5HWUbvyDLm/N
-         +Ay0cWt/8DqiZ6JYM1nqitVQB1Q6/WsKQNBN19tMBfwPwEtls9O8MiUHGWFWMkz/F77A
-         7uI9y+OG9PWJZql2Xrb+4xMBw3gUEXWicbM80LCfnVRrY8rdgIpy5mpzTa9K1kJOTve/
-         wWRw==
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=2apFGkxfX1t4PMALufUaS94H8GBvvJ1PAJONADrD3HA=;
+        b=tUTMlzNzqdIuNJ6Ptljfy7CmsubEreZ54a6f/DWBTM/N4m5aTHNudHdz0kesj5QnHW
+         bn30VzL9qvmS24D8AYxuBoj5TARj/dP9zpamcMkad5Xi6bZWQv88H31YDRjRZV5DxUfX
+         dR6T+jSwabIPkse6AfvZFy8gJOINPBTvc2doaUvHRHVAlEJCTjFu8ZEHaPorqIVyB+Vu
+         v/NxOE46ChnmEHXYs6/KzyqZfOXOFwNXGUGQgF7uZZts1cQ/TbxpdSyg8NaVsb93scn4
+         ydR4HKFksdLdoDOD0QGr2TtGljB+22WwBPd6k9XbKMOfMIcYCS98DIUY5yNtyEAY4IX4
+         rO0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=cx8fEVB8X8EesF6Bvy5LtHeQjU0eGcRlsykwpkoHgGI=;
-        b=2vfq3IlZBaaRYDzRDzLmOKisoLVNPBGCh0k0eC8TkQ63jUqcabC6ZwoJ2eW8h3teNj
-         2glNvnFw/UnzczK6UIfBQEEulk+PtlaGRHphbLSQlS1gABl2HcAA7WMprzO8uiCMk7Jj
-         G3Zr3HtbW1lmxfp/uArGPDmMDxG+4+CPOVx3lykvXdagTeez6PeDOi/5jxq+fsSBWjCq
-         sV76FppuGZEKiQ/Lm/Ct3Si9HXY0FlkqKA2hz90YMnQtYI5gndUdXN1iU9gQBJ+4gWgy
-         Zx64b+LnKsYeBmW6vqN4o9lyBKJbX3M6O36N32wkRLcOyNOUOFcv4aTqC0j2ftdkRG8T
-         ofGA==
-X-Gm-Message-State: AOAM533DEguwEpBxqZy2acRsQ67j3mdXUzLZ/fFL6DObXxhFQaqkXT1a
-        ewFH6R2aubmAvovatcv2uzyqyMmsIenQow==
-X-Google-Smtp-Source: ABdhPJy0LfI4jZMHzaml2YQNVRzNO2LuHftEv2Pju3MWi2mzlanzeFfH3V4ky9Z76VrJ27FL7e6aUQ==
-X-Received: by 2002:a9d:6d07:: with SMTP id o7mr13214068otp.363.1643692812815;
-        Mon, 31 Jan 2022 21:20:12 -0800 (PST)
+        bh=2apFGkxfX1t4PMALufUaS94H8GBvvJ1PAJONADrD3HA=;
+        b=6PwUKVO+fai9rVomxfqh7Uy2zUCBns/hAELh22wI3S6NQhE8bHNh3Bt2JgdpiEf2wf
+         cwgkil+hPQPPzFv1pgLcKWuwgQdqDp4jd97IAYZmKo8QxH00SlvfCR2zHIIHN3pXQAsC
+         8nV8Pr1OOSPRXwkNEIqa8xxMXdN+TPxGciX7X4KumIPP05T9XOb9h9OnANpiEKz60LBr
+         Y50vyCPe6/VMSN4aQFYh4NCw2vU/vmsQr5aWOaF/z6HseAbW4hBTULnEZjq0OHGQRmj2
+         Hpuf/xxVKfZqFv1V3+e0t89UAZCF6WL3U1nFUB1TTp3L1+PHoPmCz6f1N6w6MnjcJD3I
+         g3qw==
+X-Gm-Message-State: AOAM53091SbVNPSKQc4qBtUCZxWTztrBlZe1cRkE6AE4UwpsiWox160Y
+        T3cvsAtXfY1oSiWsqdbm7EBiDQ==
+X-Google-Smtp-Source: ABdhPJwrwYQAU5d3Yj0PCUyCjhiEO5uCs7OlDffQ/EpXZzX94VloxaC1wZq5SDTsavGNI9/VFOzR2w==
+X-Received: by 2002:a9d:7604:: with SMTP id k4mr9461316otl.86.1643692814062;
+        Mon, 31 Jan 2022 21:20:14 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.11
+        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 21:20:12 -0800 (PST)
+        Mon, 31 Jan 2022 21:20:13 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8350: Correct UFS symbol clocks
-Date:   Mon, 31 Jan 2022 23:19:22 -0600
-Message-Id: <164369277342.3095904.16603287886524385869.b4-ty@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, linux-arm-msm@vger.kernel.org,
+        Kees Cook <keescook@chromium.org>,
+        dri-devel@lists.freedesktop.org,
+        Harigovindan P <harigovi@codeaurora.org>,
+        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-input@vger.kernel.org,
+        Alexander Martinz <amartinz@shiftphones.com>,
+        Colin Cross <ccross@android.com>
+Subject: Re: (subset) [PATCH 6/6] arm64: dts: qcom: sdm845: add device tree for SHIFT6mq
+Date:   Mon, 31 Jan 2022 23:19:23 -0600
+Message-Id: <164369277345.3095904.2460167653068866280.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211222162058.3418902-1-bjorn.andersson@linaro.org>
-References: <20211222162058.3418902-1-bjorn.andersson@linaro.org>
+In-Reply-To: <20220123173650.290349-7-caleb@connolly.tech>
+References: <20220123173650.290349-7-caleb@connolly.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -65,22 +78,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Dec 2021 08:20:58 -0800, Bjorn Andersson wrote:
-> The introduction of '9a61f813fcc8 ("clk: qcom: regmap-mux: fix parent
-> clock lookup")' broke UFS support on SM8350.
+On Sun, 23 Jan 2022 17:38:15 +0000, Caleb Connolly wrote:
+> From: Alexander Martinz <amartinz@shiftphones.com>
 > 
-> The cause for this is that the symbol clocks have a specified rate in
-> the "freq-table-hz" table in the UFS node, which causes the UFS code to
-> request a rate change, for which the "bi_tcxo" happens to provide the
-> closest rate.  Prior to the change in regmap-mux it was determined
-> (incorrectly) that no change was needed and everything worked.
+> Add initial support for the SHIFT SHIFT6mq (axolotl) based on
+> the sdm845-mtp DT.
+> 
+> Currently supported features:
+> * Buttons (power, volume)
+> * Bluetooth, DSPs and modem
+> * Display and GPU
+> * Touch
+> * UART
+> * USB peripheral mode
+> * WLAN
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sm8350: Correct UFS symbol clocks
-      commit: 0fd4dcb607ce29110d6c0b481a98c4ff3d300551
+[6/6] arm64: dts: qcom: sdm845: add device tree for SHIFT6mq
+      commit: 45882459159deb792718786514bc677c8a6b1f53
 
 Best regards,
 -- 
