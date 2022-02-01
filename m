@@ -2,80 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D1F24A56AB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:23:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10C0D4A56E7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:27:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231184AbiBAFXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 00:23:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42414 "EHLO
+        id S229718AbiBAF07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 00:26:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234675AbiBAFVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:21:30 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C668C061395
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:56 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id t199so14580601oie.10
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4U0RnhJf2qy4ekypISTjLXa/8Onef48oMVP4y/5HaIs=;
-        b=PQ3SlmjeOj5hN/aYuLMmXFv3pZoPhRe8coaMImsJ5jYHm02oFj9M3djEEMhm0Q6kXy
-         sozuPbimKTZhDdEKQOj8NZv1uZpPs3r+EwEJM0mlKW9Bf3AcRvTOSETJ/EQpMzzcDux1
-         VCCfnkpr0LH0grIkhjcTF8vCUWAQOifCdgMSNgCvZfe7AH7ytmHpHvaU1MyR0U6npzXw
-         rF4AoYLHCKExNEVjsr/dhgEi+okrQDf+X4TZRaPN1V3UJpRV/YgBOKclC+YNr5r/fPRs
-         97qDmgIjUOiWjYOPwkPve/AQaveWGczjMm7klTRfa8RdF64q/6aOP5fy9oNPKFKQYdd6
-         nY9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4U0RnhJf2qy4ekypISTjLXa/8Onef48oMVP4y/5HaIs=;
-        b=4RnJqsbBlkhtoo8CXXOTXpswc3llNwwhXtSWfLQHLqpqV03iH3HCppGc2qQDcrqjHy
-         lCRxy2AQN8JR56wHNpQNR3xQOW88aPmkrQ8CSjhTj+S3NkxKgdilHnVPX+Jy0huGGght
-         SZqgMdeKx0kslfiagtuJzJr1qRh3fi+aPXo6YXJc4q7pTXqmNK8tnqMujFsdqvAX/4H9
-         MoaW1vm3gWUQTsmsksdS3rzWOek11vHEGMzQ1ORrAKC1VvVA5MhXKQ7hRdkNXQGvCybj
-         NW7ulrjze8ccNw3tuRZrvlJ1UgNewZJyYFmXA25jXMOMDCaGqV6FrlHlyp712ddpmgTJ
-         rZZg==
-X-Gm-Message-State: AOAM533FVuvAn55PoOTq5BEkBFWrXhFpPTUfrUunFT+VfXc8ghxwIsok
-        PkmKHcKJkaRnErGlpnNTfK7phg==
-X-Google-Smtp-Source: ABdhPJw4Mbd6LiKmJVsOiaZ+mqz4qMQ5yCJAqQ6zW5zg6f0Sv2CM6YaobrL1V8Xf6WhlhrgA01+uFQ==
-X-Received: by 2002:aca:bd46:: with SMTP id n67mr212759oif.168.1643692856066;
-        Mon, 31 Jan 2022 21:20:56 -0800 (PST)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 21:20:55 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: (subset) [PATCH] arm64: dts: qcom: sm8250: add description of dcvsh interrupts
-Date:   Mon, 31 Jan 2022 23:20:06 -0600
-Message-Id: <164369277343.3095904.9732101469044043644.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211223075640.2924569-1-vladimir.zapolskiy@linaro.org>
-References: <20211223075640.2924569-1-vladimir.zapolskiy@linaro.org>
+        with ESMTP id S229610AbiBAF07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:26:59 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7A6C061714
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:26:58 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nElgr-0006gu-WF; Tue, 01 Feb 2022 06:26:54 +0100
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nElgo-00085c-RL; Tue, 01 Feb 2022 06:26:50 +0100
+Date:   Tue, 1 Feb 2022 06:26:50 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        dri-devel@lists.freedesktop.org,
+        Robin van der Gracht <robin@protonic.nl>,
+        David Airlie <airlied@linux.ie>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Jander <david@protonic.nl>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 4/5] ARM: dts: imx6dl: plym2m, prtvt7, victgo: make
+ use of new resistive-adc-touch driver
+Message-ID: <20220201052650.GA29389@pengutronix.de>
+References: <20220131102841.1955032-1-o.rempel@pengutronix.de>
+ <20220131102841.1955032-5-o.rempel@pengutronix.de>
+ <YfgDToubMLxZsy34@ravnborg.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YfgDToubMLxZsy34@ravnborg.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 06:19:47 up 52 days, 14:05, 47 users,  load average: 0.17, 0.16,
+ 0.12
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Dec 2021 09:56:40 +0200, Vladimir Zapolskiy wrote:
-> The change adds SM8250 cpufreq-epss controller interrupts for each
-> CPU core cluster.
+Hi Sam,
+
+On Mon, Jan 31, 2022 at 04:42:06PM +0100, Sam Ravnborg wrote:
+> On Mon, Jan 31, 2022 at 11:28:40AM +0100, Oleksij Rempel wrote:
+> > The tsc2046 is an ADC used as touchscreen controller. To share as mach
+>                                                                     much
+> > code as possible, we should use it as actual ADC + virtual touchscreen
+> > controller.
+> > With this patch we make use of the new kernel IIO and HID infrastructure.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> >  arch/arm/boot/dts/imx6dl-plym2m.dts | 59 +++++++++++++++++++++--------
+> >  arch/arm/boot/dts/imx6dl-prtvt7.dts | 57 +++++++++++++++++++++-------
+> >  arch/arm/boot/dts/imx6dl-victgo.dts | 59 ++++++++++++++++++++++-------
+> >  3 files changed, 132 insertions(+), 43 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/imx6dl-plym2m.dts b/arch/arm/boot/dts/imx6dl-plym2m.dts
+> > index 60fe5f14666e..73c7622bfe0f 100644
+> > --- a/arch/arm/boot/dts/imx6dl-plym2m.dts
+> > +++ b/arch/arm/boot/dts/imx6dl-plym2m.dts
+> > @@ -101,6 +101,18 @@ reg_12v0: regulator-12v0 {
+> >  		regulator-min-microvolt = <12000000>;
+> >  		regulator-max-microvolt = <12000000>;
+> >  	};
+> > +
+> > +	touchscreen {
+> > +		compatible = "resistive-adc-touch";
+> > +		io-channels = <&adc_ts 1>, <&adc_ts 3>, <&adc_ts 4>,
+> > +                              <&adc_ts 5>;
+> > +		io-channel-names = "y", "z1", "z2", "x";
+> > +		touchscreen-min-pressure = <64687>;
+> > +		touchscreen-inverted-x;
+> > +		touchscreen-inverted-y;
+> > +		touchscreen-x-plate-ohms = <300>;
+> > +		touchscreen-y-plate-ohms = <800>;
+> > +	};
+> >  };
+> >  
+> >  &can1 {
+> > @@ -129,26 +141,41 @@ &ecspi2 {
+> >  	pinctrl-0 = <&pinctrl_ecspi2>;
+> >  	status = "okay";
+> >  
+> > -	touchscreen@0 {
+> > -		compatible = "ti,tsc2046";
+> > +	adc_ts: adc@0 {
+> > +		compatible = "ti,tsc2046e-adc";
+> >  		reg = <0>;
+> >  		pinctrl-0 = <&pinctrl_tsc2046>;
+> >  		pinctrl-names ="default";
+> > -		spi-max-frequency = <100000>;
+> > -		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
+> > -		pendown-gpio = <&gpio3 20 GPIO_ACTIVE_LOW>;
+> > +		spi-max-frequency = <1000000>;
+> > +		interrupts-extended = <&gpio3 20 IRQ_TYPE_LEVEL_LOW>;
+> > +		#io-channel-cells = <1>;
 > 
-> 
+> I quickly skimmed the patch - we seem to loose the pendown-gpio in most
+> of the patches - I do not see it replaced.
 
-Applied, thanks!
+pendown-gpio is not used by the new driver. It is replace by the IIO
+trigger. Please see this comment:
+https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/tree/drivers/iio/adc/ti-tsc2046.c?h=testing#n521
 
-[1/1] arm64: dts: qcom: sm8250: add description of dcvsh interrupts
-      commit: ffd6cc92ab9cb426896481fa8372d38cbe53f76b
-
-Best regards,
+Regards,
+Oleksij
 -- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
