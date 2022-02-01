@@ -2,308 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EF1A4A5B81
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 12:48:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AD734A5BD5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 13:06:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237507AbiBALsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 06:48:39 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:56578
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237487AbiBALsi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 06:48:38 -0500
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id EF07B3F1FD
-        for <devicetree@vger.kernel.org>; Tue,  1 Feb 2022 11:48:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643716115;
-        bh=T/Y7vvIm1vNgiOBuzuvlSLr7bPQM9EpmEANjJNIACK4=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=fWaCjtCFAId5QA4V1GCSRDXFqhjgZdckceaY7/K7nWrs91XpBTgGnt8z5ZfcpwTHM
-         MaX7nbdOUCfRb2r6RuILJM53indPFVkhoShvL+mprqGPFloP7i6vK1LbLA3pIKJhu1
-         I7Oy0FUxuSx+gnFlj4YzhY1l3PpPVx+e0Ek2opKnbu6xZrsuEwBBya70d7r3unTPpN
-         dc5ob/WtlDGqtC6IZ4FdbqdiASRmmwedERcD0aox4co/7gawzQgwO44i0oQSChOg90
-         LXyNMPQddwjhVN1w7rlavEyCbTyHkkXlbnfkpY3P1+F/ElX55dTXxA77IRXJwBpDUJ
-         cmOYfvSkOC5Vw==
-Received: by mail-ed1-f71.google.com with SMTP id f21-20020a50d555000000b00407a8d03b5fso8487177edj.9
-        for <devicetree@vger.kernel.org>; Tue, 01 Feb 2022 03:48:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=T/Y7vvIm1vNgiOBuzuvlSLr7bPQM9EpmEANjJNIACK4=;
-        b=lBtBIUWKfepgx4jNPEdPlMUbc7m+GwsxFSwbEY2mMDSwii5lNMZ8Omaie5E6cBkaaF
-         zo/iDRmLOsPbSfTbWRkO3RdhH+Dp8huNJHP6zaA50R5n/zRcCbSl0yxv2ZXlVL90RMPH
-         8Tvm8s6wmbTvAhi1jRjepoGdSoUKZjhx6KVhDAwuIimGWhPASaQ8movW+fWDUbvko2XS
-         XS7aPIJap5JwYFzrSHBftraBS4Sd4y5r4WQmz57cpNaMvGolIJiYnjGLpJ+1I/mzM8dF
-         aC0ZYv0uJMeWQ+xrvaHPrcN6Np9gV8aeihiokIXJrsj418f1gHDApNyNcE4d/0HFHYBQ
-         QmyA==
-X-Gm-Message-State: AOAM530o3gyAdnE2djPnHKPFzl3d9X/l6PwMFi7vrnFyNAfPDyFH+GZk
-        PgFLnyOzdBsqQ0P5xQM3Oll++iBK9UU7vkjFiwQtZHGl3U+/2N1EdpWkucyPnz/fWzedFlUTU85
-        8lyw0IKZtqmkxxvw/t773wFVtZjAaBXezQUpfZ8M=
-X-Received: by 2002:a17:907:7ea3:: with SMTP id qb35mr20935345ejc.553.1643716114004;
-        Tue, 01 Feb 2022 03:48:34 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxBVg7XQAKdtCkCWKY7svrC9N0kglErPiZRvcZ3T1qESNacpBeH/7PKHB+m0oeeHfjiu1i0cQ==
-X-Received: by 2002:a17:907:7ea3:: with SMTP id qb35mr20935333ejc.553.1643716113773;
-        Tue, 01 Feb 2022 03:48:33 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id bo19sm17954484edb.56.2022.02.01.03.48.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Feb 2022 03:48:33 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 6/6] dt-bindings: memory: lpddr2-timings: convert to dtschema
-Date:   Tue,  1 Feb 2022 12:47:49 +0100
-Message-Id: <20220201114749.88500-6-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220201114749.88500-1-krzysztof.kozlowski@canonical.com>
-References: <20220201114749.88500-1-krzysztof.kozlowski@canonical.com>
+        id S237697AbiBAMF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 07:05:59 -0500
+Received: from mail-mw2nam12on2073.outbound.protection.outlook.com ([40.107.244.73]:45089
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S237573AbiBAMF7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 1 Feb 2022 07:05:59 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iCHuS6+gbItQDSeOdNNtjBkmB6vYgSyUx5HWVP6D8VQuT9kSj1dW32khcGK3KRA9KWOakedj2d4m0baV8BKH8GtbfscCWODZ+jdk0SpQLFtmu5fdyE3qIj1K3iUY5F+FxFx3kYz8mp45i/lprmXvhpGdI4IlfsDkIECYMxQIdO4UnlnnMgwDk+NMO1J21E0HQAqYzdFKqiAVbl00/6Ta4cA2NgiJOTc/HIMl9L9Mfl3a6f2yVl4u8FsqM6iWNPTYJ+fKCDSqlFhAI7NRTciRVIVBE1QSIzjo+B5D8t94/t+nyj2XNuDo64UaGPjMBpupki7ZNKUU7ArR2VSD6Su91Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bcNxyrELPj8/xfW69ZYVCkKZN4wqwVcTMJABurdkSLs=;
+ b=am6o/I6iJNNQ1C2Ds6K3Vuw5yKwoEXSD7mdnUgnsFmlX/ogbPKCxtr7jNvBgFVe44jdjdttrvSlRSfStosRkXQpoc+tJj5C7XM6iiESQfi3+3+FgpS2elCsnnI6ncN/VcoCi2QKFd5ShAJ9qAOppEespifqGTyHu7UdxZDJ+5h0M+1c356VH0Av1AzCee3mTcdeCSvW+KAgtr0Agdb5XVEgoTMcKWofN/gJnNhT1HQtrfBj+JWa6TkgbVWPCRxlywDQsYzqRKOQ8iP6sGyG0goLkFFvCWSqe1HcaCCDCgvDteeo3MuRN0xrekfY72JWG+ryVmKQ/R/ScoJ15yokzAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bcNxyrELPj8/xfW69ZYVCkKZN4wqwVcTMJABurdkSLs=;
+ b=lY1aNPXZco44Tyxf6KM7EOQiNa+MIybrMYby/rCU9ShoG6JNSMN+eHPd2L3qG1Fj+axLGxtZ7a0Syr7LBthaE4FEAFurV3PwIWt1NRBQKc9WwtHKSo0Piu9U7Zm79e2rOlEjiZJ2sEtTs0WA3XnSSObytZj6Omd/ce37Q+xhmXyVbKYI0D28b/7Gw3sQ65PY1JjLjvKX599QioIT4EJHiQlaTm7uPiFpN3xBtefUh9nWFbrZLLpRw8oo3CTyUEH7ue/kiCwz3aiSSl+tpA485/vEhn2Sza2cG3Pzi/t9NJRGDF5ukE7fN28P4gzfLsQPNZyaedH4Ux38Jvko376zbw==
+Received: from DM5PR12MB1850.namprd12.prod.outlook.com (2603:10b6:3:108::23)
+ by MN2PR12MB4159.namprd12.prod.outlook.com (2603:10b6:208:1da::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17; Tue, 1 Feb
+ 2022 12:05:57 +0000
+Received: from DM5PR12MB1850.namprd12.prod.outlook.com
+ ([fe80::94d8:5850:e33d:b133]) by DM5PR12MB1850.namprd12.prod.outlook.com
+ ([fe80::94d8:5850:e33d:b133%4]) with mapi id 15.20.4930.022; Tue, 1 Feb 2022
+ 12:05:57 +0000
+From:   Akhil R <akhilrajeev@nvidia.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Rajesh Gumasta <rgumasta@nvidia.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Pavan Kunapuli <pkunapuli@nvidia.com>
+Subject: RE: [PATCH v17 2/4] dmaengine: tegra: Add tegra gpcdma driver
+Thread-Topic: [PATCH v17 2/4] dmaengine: tegra: Add tegra gpcdma driver
+Thread-Index: AQHYFS8ttZm9vnsYMkmLjfwGSkse9qx7V3sAgABn8UCAAHOwgIAAU3IwgAAqZYCAACYYkIAABPUAgABaxWCAABhugIABTS6Q
+Date:   Tue, 1 Feb 2022 12:05:57 +0000
+Message-ID: <DM5PR12MB1850689286F20C18B12ADF1DC0269@DM5PR12MB1850.namprd12.prod.outlook.com>
+References: <1643474453-32619-1-git-send-email-akhilrajeev@nvidia.com>
+ <1643474453-32619-3-git-send-email-akhilrajeev@nvidia.com>
+ <ba109465-d7ee-09cb-775b-9b702a3910b0@gmail.com>
+ <DM5PR12MB1850D836ACDF95008EF74CC7C0249@DM5PR12MB1850.namprd12.prod.outlook.com>
+ <08f6571e-af75-b6b3-443e-e86e3bdb365b@gmail.com>
+ <DM5PR12MB1850FD5F3EF5CBFEA97B3611C0259@DM5PR12MB1850.namprd12.prod.outlook.com>
+ <20220131094205.73f5f8c3@dimatab>
+ <DM5PR12MB1850D677140466EC74C621A4C0259@DM5PR12MB1850.namprd12.prod.outlook.com>
+ <8abf2da8-9a11-8f16-b495-d8ef2d00ab51@gmail.com>
+ <DM5PR12MB18505C4CB4A34F96E74BF28FC0259@DM5PR12MB1850.namprd12.prod.outlook.com>
+ <6dfdfd02-bfc3-1626-f819-7ddcc8bf9c1c@gmail.com>
+In-Reply-To: <6dfdfd02-bfc3-1626-f819-7ddcc8bf9c1c@gmail.com>
+Accept-Language: en-IN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7543c9da-97f1-4710-4493-08d9e57b3498
+x-ms-traffictypediagnostic: MN2PR12MB4159:EE_
+x-microsoft-antispam-prvs: <MN2PR12MB41594DCCAC06A8A35FE7B11BC0269@MN2PR12MB4159.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: SgN7DZOD1RodQf609nCORsmfvJhizD6TfiuIZtfaoV/QEBApAbJULbFZxT3dZeh2Qu2XdKJfInpgt8qLXWrUiTO8VnXfGKb3o5rB9e5KrzXoylDR9I7GQ2PiQobJo2hm1scU3A9irBcg2sUKDwH8JYuY0g/vk1SX09biuPcGxBGpYkWdwRDle+F7IcH6lHF89kgkBJQZgf4UBSWRZEe1aHgtDhW0bmRk9qR8tMFrB/RBFsSNO9I4m9yAhFOE+IjyuLaWKCv2hK85QtgrfL72pDetodQJ4Nq1x1S4aFEOsI8bM+qIXwZxwAP2ll5DjSQBJOWrIneTP7nR3t/gMQS/Wj/Q45SksGU8m350li4tck+1gvwDRJDhQ6hVf2w7hQGGrGPe6lWa2NCnirGMH/q/wsMFFR9qKQtOqyjV5OY52Lq5cH81uplV45sA06qbmyacv0r8MMSqrFk0bP3kCZTbfrQVoeO2/XC51Pujl/ngG/PpBkHp/mlf42j0GBlgDxhIT58O3baOn8hJRyWAI4eW0BNOmcZApVE0esYbu2iRmroYzPjze2m4A3kdfvsgoGMt1DnH6Gk6j1xMNp4OpUX8aX7Ta5aMBrel94+PWl1nY95OrKZFfxUPhmwPNiBeBLpOQmHSRtTzQ7NTzcuT0U3O37eAwLRaSnOBk4w1MjrGsDmHSScj/V7BvlK4AsuVyqKyAvuTvaPAaEmCBxte6ZCQ2A==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR12MB1850.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(26005)(7696005)(38070700005)(107886003)(6506007)(55236004)(186003)(38100700002)(66446008)(66946007)(316002)(76116006)(66476007)(64756008)(508600001)(66556008)(8936002)(8676002)(54906003)(5660300002)(71200400001)(6916009)(33656002)(52536014)(83380400001)(2906002)(86362001)(9686003)(55016003)(122000001)(4326008)(20210929001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?d0VJdWtBN3VuNk82WllYM1JpQXBRbXZCeWdFTW45VUFPNHM3QXFnWXJnU2J1?=
+ =?utf-8?B?NHhaNnFoLzJFTVNPK3RKc2dPVVR1MHVLWnl0ZzhUemx1RDhaMGJoakFqbnlx?=
+ =?utf-8?B?UjIrcHE1OFNWUUZ3MEthaFE4THZBbVZBUzNnSmg0Q0VrQkJxUzB1TTQ5Zmk3?=
+ =?utf-8?B?ODJuaGNoVkVaNFNjME1CUk94YkQzVFRyY3l3VFh0RDF6ZjE5MURsNXVlVE9a?=
+ =?utf-8?B?NitvRWhid2toNVg1ejBYaVdZNWhkcDZONVJOQy9ZdC9aOU9BQUZmQmlDNWlj?=
+ =?utf-8?B?ZTFMeklWRzhtNGdoa01sLzVFMGl3VkZBOE56UUF6SmJoQ3dSUldpa2hCeEJt?=
+ =?utf-8?B?d05pWi96Y083dDNqZzZBN3kxMVp2L2ppNjhIUTlic2l5ZElzUm9MSHIrZ3ly?=
+ =?utf-8?B?Z2dNUDc4K3F2WE1UZUtPRnBiL3BYaWp0MnZKUUh2ODA4dG10MnEweGxFQzNu?=
+ =?utf-8?B?SXl1enIzWlQyQlp6SFpxOHMwR21GRG44OUJEK1lENE10MlF5VFhzN2dwTVBE?=
+ =?utf-8?B?TWU1bVg2VXRhTUIvR24vOUhkM1hSTU15eFRnTy8xTHErU3o5a2MzcmZUZ3d3?=
+ =?utf-8?B?a1lzdTNDRnVmdDJPY0VNTk1sdHpwLzNRUCtRbm96RjBTWThHejZBMnhPQUE4?=
+ =?utf-8?B?cEFzK1Z3citGS1puczVCZmtHZWRLY3hEYjhZUXlraytnczRtQ3hRaXk4MVo3?=
+ =?utf-8?B?TnhCbDRpSTIwUlFYMlhkMnZsRUFYZ1BWby9scHlMT1FmMmQzRzh1N0NSSnBC?=
+ =?utf-8?B?N0gwN0M4aUtVbTd5blVhK2pTVWtaKzZIM3NCRzgvUndYUnlWWG9sQ0NwMHlW?=
+ =?utf-8?B?dkZQNlM0aE1SQXZFWVZYUUlYQ3FDNEswY3FlblJHUHFXdVlsbm1oQjdneE5J?=
+ =?utf-8?B?ODBHK1h5QVY2eFVsS3FsNW54SzBBeStzOUpOU1kvdGdJVFVrdzlaOWRpSTV4?=
+ =?utf-8?B?UXBRcExiM2w4L08ydkJ4TjBJMXNsY1J3OEY2ZUFQWW1vWG5UWVRlTmJUamE1?=
+ =?utf-8?B?NEt3QVhBZmdSRHlGVXBnYTR5THpOckx6RDYxWnRFRXdTQjV5a1RCMVgwT2Rv?=
+ =?utf-8?B?bGtNNnY4ZjJCU0ZNRHlLL0NrVXhialMxYlRxbCtXcXc3bTRUdFdIRmZUdklL?=
+ =?utf-8?B?QXpIaUNQUVRGRm1XUWNwVTdKVHpxdzJ2a2c3OGhob3J4cmFmbElDRUxicW9T?=
+ =?utf-8?B?NzZLMlJMN1NKbzZnOXFhaWF5SlVIdkpJakRZazJSUllrcCtFYkNFV1RPY1ZU?=
+ =?utf-8?B?MHhZMytUVU96anJXb3FaRGJpTGp5V2xMa0NIYW04MWwwSlRyZVIxYmhkK0FI?=
+ =?utf-8?B?ZjNzZEx1UW9qbDZtNlNzRkkwYmNCQzFCMm9jMUZTcG9FcjdlWGFQaE90RzRZ?=
+ =?utf-8?B?QndvTzJaVERSSjVma2tQK0tiTnBKOUNEdmFiNkhtNmlQT3lVcEFsN1dnNG1m?=
+ =?utf-8?B?d1B5VmEzWk1tTFJ6L1lSZy8rNEtEMHBzcXovRnVRdTQ1d3p4Q3lTOW8vRlZr?=
+ =?utf-8?B?QytTYkk1d0pUR25uQnd6dDNSemZPYjhJb2V6dDY2YXF4dzY1WEtWNWNhSVdt?=
+ =?utf-8?B?aXZNaDl4NWIzcWRoQzVBZ2J5QXZ5YjBwN0h1MHNrQ0s0VWxmZFh5ck0zZXZD?=
+ =?utf-8?B?d3h0cy9RREk0UUJlWkN2S1dCWU96ZzhIc1NlMkJHMzdObS92aHJKdzdnRVBT?=
+ =?utf-8?B?Z3lvc2ZSWXhna05CRHVWTkNrVmMyQVZiUEphOFZGWXVlMEd5QlhBelp3S1hO?=
+ =?utf-8?B?aFliTU5PNkp2YWlkQVE3OUVIMGZkUTZsaXNZUGFvcWp0RFRLcFpuMnloUmlm?=
+ =?utf-8?B?dEZ5WXI0ZjQ0ZlVPTTR6SEkyQ0xsdHRNOEJJTjR5NDRxcjlkNTlETktWSm0w?=
+ =?utf-8?B?RG1TSTBEMXpzNU1sVUhmOTNCU2VpRzdLVlh3QU8reWllTTdKMTdyenpDNHRi?=
+ =?utf-8?B?N1J4VFlkUTUwY3lMVytrRis5WXNiTVhqYzdKcFh0MHVITmVtVmJGdDNSOEVh?=
+ =?utf-8?B?OUdwZmRueHA1YlJ3aUcveDNlMlArUTZHUTYxZkJGMVhjVlJ1ZkZjbi8xb1Az?=
+ =?utf-8?B?aFpZaFloUWRuRUJ2SC9WYW1VeFQ3ak0vYTgvblZEZnpmaTlVQ2FtZDFsSnBY?=
+ =?utf-8?B?Y1grNW1NNk8yMUZlcm5VQ055cmYvbEU0SUNDQldKc1BBWEI3YnRVODROUDlJ?=
+ =?utf-8?Q?1S1aV6Z5muvBJZfY8B46oqQ=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1850.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7543c9da-97f1-4710-4493-08d9e57b3498
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Feb 2022 12:05:57.3893
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PZufYBUdl/tf0bSJHxobGqJULEln55THWQ4UCTBrTBVjfeeH7eevNZRjj8UfQzsWcFMu4wH1LCDKIXDcsjjbog==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4159
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the LPDDR2 memory timings bindings to DT schema format.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../ddr/jedec,lpddr2-timings.yaml             | 135 ++++++++++++++++++
- .../memory-controllers/ddr/jedec,lpddr2.yaml  |   6 +-
- .../memory-controllers/ddr/lpddr2-timings.txt |  52 -------
- 3 files changed, 137 insertions(+), 56 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
- delete mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
-
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
-new file mode 100644
-index 000000000000..7cc3021decfe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
-@@ -0,0 +1,135 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr2-timings.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LPDDR2 SDRAM AC timing parameters for a given speed-bin
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+
-+properties:
-+  compatible:
-+    const: jedec,lpddr2-timings
-+
-+  max-freq:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Maximum DDR clock frequency for the speed-bin, in Hz.
-+
-+  min-freq:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Minimum DDR clock frequency for the speed-bin, in Hz.
-+
-+  tCKESR:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      CKE minimum pulse width during SELF REFRESH (low pulse width during
-+      SELF REFRESH) in pico seconds.
-+
-+  tDQSCK-max:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      DQS output data access time from CK_t/CK_c in pico seconds.
-+
-+  tDQSCK-max-derated:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      DQS output data access time from CK_t/CK_c, temperature de-rated, in pico
-+      seconds.
-+
-+  tFAW:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Four-bank activate window in pico seconds.
-+
-+  tRAS-max-ns:
-+    description: |
-+      Row active time in nano seconds.
-+
-+  tRAS-min:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Row active time in pico seconds.
-+
-+  tRCD:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      RAS-to-CAS delay in pico seconds.
-+
-+  tRPab:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Row precharge time (all banks) in pico seconds.
-+
-+  tRRD:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Active bank A to active bank B in pico seconds.
-+
-+  tRTP:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Internal READ to PRECHARGE command delay in pico seconds.
-+
-+  tWR:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      WRITE recovery time in pico seconds.
-+
-+  tWTR:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Internal WRITE-to-READ command delay in pico seconds.
-+
-+  tXP:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Exit power-down to next valid command delay in pico seconds.
-+
-+  tZQCL:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      SELF REFRESH exit to next valid command delay in pico seconds.
-+
-+  tZQCS:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      SELF REFRESH exit to next valid command delay in pico seconds.
-+
-+  tZQinit:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      SELF REFRESH exit to next valid command delay in pico seconds.
-+
-+required:
-+  - compatible
-+  - min-freq
-+  - max-freq
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    timings {
-+        compatible = "jedec,lpddr2-timings";
-+        min-freq = <10000000>;
-+        max-freq = <400000000>;
-+        tCKESR = <15000>;
-+        tDQSCK-max = <5500>;
-+        tFAW = <50000>;
-+        tRAS-max-ns = <70000>;
-+        tRAS-min = <42000>;
-+        tRPab = <21000>;
-+        tRCD = <18000>;
-+        tRRD = <10000>;
-+        tRTP = <7500>;
-+        tWR = <15000>;
-+        tWTR = <7500>;
-+        tXP = <7500>;
-+        tZQCL = <360000>;
-+        tZQCS = <90000>;
-+        tZQinit = <1000000>;
-+    };
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-index 25ed0266f6dd..2d8a701e2a05 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-@@ -142,14 +142,12 @@ properties:
- 
- patternProperties:
-   "^lpddr2-timings":
--    type: object
-+    $ref: jedec,lpddr2-timings.yaml
-     description: |
-       The lpddr2 node may have one or more child nodes of type "lpddr2-timings".
-       "lpddr2-timings" provides AC timing parameters of the device for
-       a given speed-bin. The user may provide the timings for as many
--      speed-bins as is required. Please see Documentation/devicetree/
--      bindings/memory-controllers/ddr/lpddr2-timings.txt for more information
--      on "lpddr2-timings".
-+      speed-bins as is required.
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt b/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
-deleted file mode 100644
-index 9ceb19e0c7fd..000000000000
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--* AC timing parameters of LPDDR2(JESD209-2) memories for a given speed-bin
--
--Required properties:
--- compatible : Should be "jedec,lpddr2-timings"
--- min-freq : minimum DDR clock frequency for the speed-bin. Type is <u32>
--- max-freq : maximum DDR clock frequency for the speed-bin. Type is <u32>
--
--Optional properties:
--
--The following properties represent AC timing parameters from the memory
--data-sheet of the device for a given speed-bin. All these properties are
--of type <u32> and the default unit is ps (pico seconds). Parameters with
--a different unit have a suffix indicating the unit such as 'tRAS-max-ns'
--- tRCD
--- tWR
--- tRAS-min
--- tRRD
--- tWTR
--- tXP
--- tRTP
--- tDQSCK-max
--- tFAW
--- tZQCS
--- tZQinit
--- tRPab
--- tZQCL
--- tCKESR
--- tRAS-max-ns
--- tDQSCK-max-derated
--
--Example:
--
--timings_elpida_ECB240ABACN_400mhz: lpddr2-timings@0 {
--	compatible	= "jedec,lpddr2-timings";
--	min-freq	= <10000000>;
--	max-freq	= <400000000>;
--	tRPab		= <21000>;
--	tRCD		= <18000>;
--	tWR		= <15000>;
--	tRAS-min	= <42000>;
--	tRRD		= <10000>;
--	tWTR		= <7500>;
--	tXP		= <7500>;
--	tRTP		= <7500>;
--	tCKESR		= <15000>;
--	tDQSCK-max	= <5500>;
--	tFAW		= <50000>;
--	tZQCS		= <90000>;
--	tZQCL		= <360000>;
--	tZQinit		= <1000000>;
--	tRAS-max-ns	= <70000>;
--};
--- 
-2.32.0
-
+PiAzMS4wMS4yMDIyIDE4OjM4LCBBa2hpbCBSINC/0LjRiNC10YI6DQo+ID4gRG9lcyB0aGUgYmVs
+b3cgbWV0aG9kIGxvb2sgZ29vZD8gYnl0ZXNfeGZlciBpcyB1cGRhdGVkIG9uIGV2ZXJ5IElTUiBh
+bmQgaW4NCj4gPiB0eF9zdGF0dXMoKSwgdGhlIHdjb3VudCBpcyByZWFkIHRvIGNhbGN1bGF0ZSB0
+aGUgaW50ZXJtaXR0ZW50IHZhbHVlLiBJZiB0aGUNCj4gdHJhbnNmZXINCj4gPiBnZXQgY29tcGxl
+dGUgaW4gYmV0d2VlbiwgdXNlIHdjb3VudCBhcyAwIHRvIGFkZCBzZ19yZXEubGVuIHRvIGJ5dGVz
+X3hmZXINCj4gPg0KPiA+IHN0YXRpYyBpbnQgdGVncmFfZG1hX2dldF9yZXNpZHVhbChzdHJ1Y3Qg
+dGVncmFfZG1hX2NoYW5uZWwgKnRkYykNCj4gPiB7DQo+ID4gICAgICAgdW5zaWduZWQgbG9uZyB3
+Y291bnQgPSAwLCBzdGF0dXM7DQo+ID4gICAgICAgdW5zaWduZWQgaW50IGJ5dGVzX3hmZXIsIHJl
+c2lkdWFsOw0KPiA+ICAgICAgIHN0cnVjdCB0ZWdyYV9kbWFfZGVzYyAqZG1hX2Rlc2MgPSB0ZGMt
+PmRtYV9kZXNjOw0KPiA+ICAgICAgIHN0cnVjdCB0ZWdyYV9kbWFfc2dfcmVxICpzZ19yZXEgPSBk
+bWFfZGVzYy0+c2dfcmVxOw0KPiA+DQo+ID4gICAgICAgLyoNCj4gPiAgICAgICAgKiBEbyBub3Qg
+cmVhZCBmcm9tIENIQU5fWEZFUl9DT1VOVCBpZiBFT0MgYml0IGlzIHNldA0KPiA+ICAgICAgICAq
+IGFzIHRoZSB0cmFuc2ZlciB3b3VsZCBoYXZlIGFscmVhZHkgY29tcGxldGVkIGFuZA0KPiA+ICAg
+ICAgICAqIHRoZSByZWdpc3RlciBjb3VsZCBoYXZlIHVwZGF0ZWQgZm9yIG5leHQgdHJhbnNmZXIN
+Cj4gPiAgICAgICAgKiBpbiBjYXNlIG9mIGN5Y2xpYyB0cmFuc2ZlcnMuDQo+ID4gICAgICAgICov
+DQo+ID4gICAgICAgc3RhdHVzID0gdGRjX3JlYWQodGRjLCBURUdSQV9HUENETUFfQ0hBTl9TVEFU
+VVMpOw0KPiA+ICAgICAgIGlmICghKHN0YXR1cyAmIFRFR1JBX0dQQ0RNQV9TVEFUVVNfSVNFX0VP
+QykpDQo+ID4gICAgICAgICAgICAgICB3Y291bnQgPSB0ZGNfcmVhZCh0ZGMsIFRFR1JBX0dQQ0RN
+QV9DSEFOX1hGRVJfQ09VTlQpOw0KPiANCj4gWW91IGNhbid0IHJlYWQgV0NPVU5UIGFmdGVyIHRo
+ZSBTVEFUVVMgd2l0aG91dCByYWNpbmcgd2l0aCB0aGUgU1RBVFVTDQo+IHVwZGF0ZXMgbWFkZSBi
+eSBoL3cuIFlvdSBzaG91bGQgcmVhZCB0aGUgV0NPVU5UIGZpcnN0IGFuZCBvbmx5IHRoZW4NCj4g
+Y2hlY2sgdGhlIFNUQVRVUy4NCj4gDQo+IFlvdSBzaG91bGQgYWxzbyBjaGVjayB3aGV0aGVyIFQy
+MCB0ZWdyYV9kbWFfc2dfYnl0ZXNfeGZlcnJlZCgpDQo+IHdvcmthcm91bmRzIGFwcGx5IHRvIG5l
+d2VyIGgvdy4gSSBzZWUgdGhhdCB0aGUgaC93IGJhc2UgaGFzbid0IGNoYW5nZWQNCj4gbXVjaCBz
+aW5jZSBUMjAuDQpUaGUgY2FsY3VsYXRpb24gaW4gVDIwIGRyaXZlciBpcyBub3QgYXBwbGljYWJs
+ZSBoZXJlLiBUaGUgcmVnaXN0ZXIgc2hvd3MgdGhlDQphY3R1YWwgbnVtYmVyIG9mIHdvcmRzIHJl
+bWFpbmluZyB0byBiZSB0cmFuc2ZlcnJlZCBhcyBmYXIgYXMgSSB1bmRlcnN0YW5kLg0KDQpUaGFu
+a3MsDQpBa2hpbA0KDQo=
