@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96B174A564C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:20:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 847254A5651
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 06:20:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233887AbiBAFUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 00:20:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42250 "EHLO
+        id S233899AbiBAFUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 00:20:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233809AbiBAFU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:20:27 -0500
-Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85FFAC06174A
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:27 -0800 (PST)
-Received: by mail-oo1-xc32.google.com with SMTP id b15-20020a4a878f000000b002dccc412166so3863248ooi.11
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:27 -0800 (PST)
+        with ESMTP id S233682AbiBAFU2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 00:20:28 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 333FEC06173E
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:28 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id 4so6754589oil.11
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 21:20:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ZassdhbOweR1oi2cZZIy1r7HKbXULdoGBaGaFs2blw0=;
-        b=Lz5GWxYpQbinhGdNi7JuruPLYoTELOLW7F++UC2U73ksKBEuc34hmE3iP3KEBdShX6
-         C0JpTs8Z6hEpZf+EgQ/7xUHEsV9Iuca3LszLrySwa6uKAhl5kqiNqoRX2s2OYBi0+VjQ
-         9+I6pibzwqYoyF8ZxS7eePsOcL8TyNJ0z6LcEsBXjXU5v4Luz0m2xkdhuvux/j6WdR/2
-         s9bj3KGjJGdUO0/Jlfz1zPdSmsje/MI3zP5HcDfGt4U632gO1hnOMU1PSPNHMPn6KVlC
-         Vt/t59crjfc5MFyskd7RPlkU09WpGo8j7lvT8AFk0QymP/P+bKTeKfiV4OhC4JUjBIlC
-         PcLQ==
+        bh=K9k0fEMrplIBv4yHUTFJ2cd0nOIylSEMszPUC7KqNoQ=;
+        b=Dt87S1huMNfwYDH8j8Zd+QCp3AvXyfMHX8bpnFnjBdQqmN9XoMJcxp2S+h9zp+LUiP
+         PBLVDmZITxlaoR7xGwKReWl+vGlsbPszPi0UP9TECgxhkx5GG3DjMR8EH04CUu3SMdPC
+         1lfP5n/fM1RGs8U6UDQbrxV0IW80vl/PaGhRswag0cdIO3sZ4HSRGcdMWEsSw6MjISrF
+         ucuvFz0gF3ITURkAw+X5e+szhkfv7lSqCPJoTKaEPVa0HW6Fplq7u3tNjnDagoD3oBxL
+         f1m4NuHZclFze4Jb1/RN/UmqKseCHKWC14gnq0Q9SSeiSH8gbx6FgN77K31eBknNq6f0
+         1hfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ZassdhbOweR1oi2cZZIy1r7HKbXULdoGBaGaFs2blw0=;
-        b=OrPgtcqFRFUj2jqGrpKV1QN8r2cjlFySgAEairHFI0LwGZUW8aray/p+zYmX7XNNf0
-         XmFnvAQ19Npik8DHL+bOTeVlrKqbhQ6GgSbJ4dg1nJ1V7NIW5P/lG7xyvEd5l1IfQJYU
-         px64vz3HDDKPpyCYDAavP790JJftIEW5yAaW07tH02homkHpIxVxWwYoGI1L/aGg7eAf
-         w5GoDQaAIB+yIge0AHHkgATGbt2F+Cl01lJQMIAeAb4sRRRzdSHnRXH2ydvwdM7BgJmr
-         YhHBA8wDdgQxHEDgec/8Xz0hQMwXOQFA0BJ2Vj914pQ8v/Lza5WfygMg8G1OHmrSTCZQ
-         ZJAQ==
-X-Gm-Message-State: AOAM5303KLB/mQnCdYPCcFxrqcAV0TiSBAg+AhTnb1GduWwZrJj+zLRK
-        F1QjhUX8UGgT77p29vgXZj6P8w==
-X-Google-Smtp-Source: ABdhPJx+ZyDGd0CtW2TVY+f2IWgHRpkH/cJtGLJIonkpYQmp9+ibt135+7LNjJEhdVHWOOGOIthokg==
-X-Received: by 2002:a4a:a541:: with SMTP id s1mr11748552oom.49.1643692826589;
-        Mon, 31 Jan 2022 21:20:26 -0800 (PST)
+        bh=K9k0fEMrplIBv4yHUTFJ2cd0nOIylSEMszPUC7KqNoQ=;
+        b=fBniSqZBTZF4ETEH6yIC3IEft65QCXTM6Q225uWrlX9jBRau+qhq+CbsKJlM2zDkDl
+         m/lWttfiGnjLPaG/ftVJzcXUxjsdgAmjm0VhG4mICZnvxRTOqtwYce6V+BRsV5ttaWb4
+         dPFhlPO6fxWVhvN3iApzEZehEFB1mZzbPT2Scjs6prH3Cef0BMig0MbxgOVIsLoXBuNK
+         BrLmPvTs7WDflXhatCdWDvv3Get8jq1CvpFP8LIxOq63iWMX8VSZmw/4ZiHfStubAajm
+         GklC8B2D0MElID16vJvK8co4sghW4dg/7JCDIkjrruzwpUn+n+pUBhA+V5siBvv7jilr
+         Tq1A==
+X-Gm-Message-State: AOAM532EBezAK1K8MKhPNfrJzfQE8wk31/8FVMPhqsVx6Ng6FFIY1RSP
+        3BScYhSQJLfviDvlL8GwBlrCdInRoMY03A==
+X-Google-Smtp-Source: ABdhPJxrV+jVyUIF1Il0Qyr2nkfXaM4byEBLLXtIPWA257LIfz6ucOsipquKHBw7CU4Sh6QQeHzRrA==
+X-Received: by 2002:aca:320b:: with SMTP id y11mr199074oiy.273.1643692827615;
+        Mon, 31 Jan 2022 21:20:27 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.23
+        by smtp.gmail.com with ESMTPSA id u3sm8193107ooh.19.2022.01.31.21.20.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 21:20:23 -0800 (PST)
+        Mon, 31 Jan 2022 21:20:27 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
         David Heidelberg <david@ixit.cz>
 Cc:     devicetree@vger.kernel.org, ~okias/devicetree@lists.sr.ht,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH] ARM: dts: apq8064: adjust dsi node name to match dt-schema
-Date:   Mon, 31 Jan 2022 23:19:34 -0600
-Message-Id: <164369277343.3095904.15951760576780695659.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH] ARM: dts: apq8064: correct ranges values
+Date:   Mon, 31 Jan 2022 23:19:35 -0600
+Message-Id: <164369277343.3095904.15448597502643166527.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211225131357.13751-1-david@ixit.cz>
-References: <20211225131357.13751-1-david@ixit.cz>
+In-Reply-To: <20211224182031.66509-1-david@ixit.cz>
+References: <20211224182031.66509-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -65,20 +65,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Dec 2021 14:13:56 +0100, David Heidelberg wrote:
-> Adjust node naming to match requirements from dt-schema.
-> Also add only and default required PHY name "dsi" to the node.
+On Fri, 24 Dec 2021 19:20:31 +0100, David Heidelberg wrote:
+> Define start and end of the ranges for PCI node.
 > 
-> Fixes warnings generated by `make qcom-apq8064-asus-nexus7-flo.dtb`:
-> arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml: mdss_dsi@4700000: $nodename:0: 'mdss_dsi@4700000' does not match '^dsi(@.*)?$'
-> 	From schema: Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> Fixes warning generated by `make qcom-apq8064-asus-nexus7-flo.dtb`:
+> arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml: pci@1b500000: ranges: 'oneOf' conditional failed, one must be fixed:
+> 		[[2164260864, 0, 0, 266338304, 0, 1048576, 2181038080, 0, 134217728, 134217728, 0, 132120576]] is not of type 'boolean'
+> 		True was expected
+> 		[[2164260864, 0, 0, 266338304, 0, 1048576, 2181038080, 0, 134217728, 134217728, 0, 132120576]] is not of type 'null'
+> 	[2164260864, 0, 0, 266338304, 0, 1048576, 2181038080, 0, 134217728, 134217728, 0, 132120576] is too long
+> 	From schema: /schemas/pci/pci-bus.yaml
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] ARM: dts: apq8064: adjust dsi node name to match dt-schema
-      commit: af7a84eb9f923f8380a00b2e3a6adf2361e3ee19
+[1/1] ARM: dts: apq8064: correct ranges values
+      commit: 6d3cb248e498989af7483b216325a90d0cecd419
 
 Best regards,
 -- 
