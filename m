@@ -2,130 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44BBF4A70F4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 13:41:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AA644A7102
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 13:48:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344183AbiBBMlg convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Feb 2022 07:41:36 -0500
-Received: from aposti.net ([89.234.176.197]:46104 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240128AbiBBMlf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Feb 2022 07:41:35 -0500
-Date:   Wed, 02 Feb 2022 12:41:21 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v12 2/9] drm/ingenic: Add support for JZ4780 and HDMI
- output
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
+        id S232642AbiBBMrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 07:47:39 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:54740 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231931AbiBBMri (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 07:47:38 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5507E2F3;
+        Wed,  2 Feb 2022 13:47:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1643806057;
+        bh=vxrKHYLRLRSd0fhsytxUL5v7RlRzVqtc6x5bPMRHLBU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sHlJXBASzjtmta9GQ+9+7/Qimi4muJrWaUIKcIT/ylwCrO2SRorcQupEy0xs4B87A
+         RJaEfE5NetKx/iVFRZODvu1dSXejJlbKgYrB5Qurl1RrgfAY+ACLmGyeFtI0oDEnFF
+         vCyBEE3ir5bOpytJ23YcV7JZTGbVNFPSnhriDx1M=
+Date:   Wed, 2 Feb 2022 14:47:14 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Message-Id: <XKGO6R.LTTYDEGZ8RJH3@crapouillou.net>
-In-Reply-To: <78F51BD7-112A-458D-8FCE-6A67572A182B@goldelico.com>
-References: <cover.1643632014.git.hns@goldelico.com>
-        <6a7b188769a7ad477bf8cb71e1b9bc086b92388d.1643632014.git.hns@goldelico.com>
-        <N7AO6R.7I6FABF106MT1@crapouillou.net>
-        <1F27171F-DFCA-4707-8F50-D1A343F6D78E@goldelico.com>
-        <CYEO6R.2QDXEFO5G1WQ3@crapouillou.net>
-        <37CB6D86-4295-4281-BF3E-3E4B40E74196@goldelico.com>
-        <5ZFO6R.M6Z7S3EBA1YC1@crapouillou.net>
-        <78F51BD7-112A-458D-8FCE-6A67572A182B@goldelico.com>
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 2/2] dt-bindings: panel: Introduce a panel-lvds binding
+Message-ID: <Yfp9UhwWZbHpDjpL@pendragon.ideasonboard.com>
+References: <20220111110635.804371-1-maxime@cerno.tech>
+ <20220111110635.804371-2-maxime@cerno.tech>
+ <Yd2Ahn3+FVv/Aks7@pendragon.ideasonboard.com>
+ <20220127142215.fesipdslabur43sx@houat>
+ <20220202094845.r7td65zxfo5uqg5x@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220202094845.r7td65zxfo5uqg5x@houat>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Maxime,
 
+On Wed, Feb 02, 2022 at 10:48:45AM +0100, Maxime Ripard wrote:
+> On Thu, Jan 27, 2022 at 03:22:15PM +0100, Maxime Ripard wrote:
+> > On Tue, Jan 11, 2022 at 03:05:10PM +0200, Laurent Pinchart wrote:
+> > > On Tue, Jan 11, 2022 at 12:06:35PM +0100, Maxime Ripard wrote:
+> > > > Following the previous patch, let's introduce a generic panel-lvds
+> > > > binding that documents the panels that don't have any particular
+> > > > constraint documented.
+> > > > 
+> > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > > > 
+> > > > ---
+> > > > 
+> > > > Changes from v2:
+> > > >   - Added a MAINTAINERS entry
+> > > > 
+> > > > Changes from v1:
+> > > >   - Added missing compatible
+> > > >   - Fixed lint
+> > > > ---
+> > > >  .../bindings/display/panel/panel-lvds.yaml    | 57 +++++++++++++++++++
+> > > >  MAINTAINERS                                   |  1 +
+> > > >  2 files changed, 58 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..fcc50db6a812
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+> > > > @@ -0,0 +1,57 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Generic LVDS Display Panel Device Tree Bindings
+> > > > +
+> > > > +maintainers:
+> > > > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > +  - Thierry Reding <thierry.reding@gmail.com>
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: panel-common.yaml#
+> > > > +  - $ref: /schemas/display/lvds.yaml/#
+> > > > +
+> > > > +select:
+> > > > +  properties:
+> > > > +    compatible:
+> > > > +      contains:
+> > > > +        const: panel-lvds
+> > > > +
+> > > > +  not:
+> > > > +    properties:
+> > > > +      compatible:
+> > > > +        contains:
+> > > > +          enum:
+> > > > +            - advantech,idk-1110wr
+> > > > +            - advantech,idk-2121wr
+> > > > +            - innolux,ee101ia-01d
+> > > > +            - mitsubishi,aa104xd12
+> > > > +            - mitsubishi,aa121td01
+> > > > +            - sgd,gktw70sdae4se
+> > > 
+> > > I still don't like this :-( Couldn't we instead do
+> > > 
+> > > select:
+> > >   properties:
+> > >     compatible:
+> > >       contains:
+> > >         enum:
+> > >           - auo,b101ew05
+> > >           - tbs,a711-panel
+> > > 
+> > > ?
+> > 
+> > That works too, I'll send another version.
+> 
+> Actually, no, it doesn't work.
+> 
+> If we do this, if we were to have a panel that has panel-lvds but none
+> of the other compatible (because of a typo, or downright invalid
+> binding) we won't validate it and report any error.
+> 
+> I'll merge this version (together with the v4 version of patch 1)
 
-Le mer., févr. 2 2022 at 13:33:15 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> 
-> 
->>  Am 02.02.2022 um 13:28 schrieb Paul Cercueil <paul@crapouillou.net>:
->> 
->> 
->> 
->>  Le mer., févr. 2 2022 at 13:17:14 +0100, H. Nikolaus Schaller 
->> <hns@goldelico.com> a écrit :
->>>  Hi Paul,
->>>>  Am 02.02.2022 um 13:06 schrieb Paul Cercueil 
->>>> <paul@crapouillou.net>:
->>>>  Hi Nikolaus,
->>>>>>>  @@ -446,6 +454,9 @@ static int 
->>>>>>> ingenic_drm_plane_atomic_check(struct drm_plane *plane,
->>>>>>>  	if (!crtc)
->>>>>>>  		return 0;
->>>>>>>  +	if (plane == &priv->f0)
->>>>>>>  +		return -EINVAL;
->>>>>>  This will break JZ4725B -> JZ4770 SoCs, the f0 plane is 
->>>>>> perfectly usable there.
->>>>>  Hm. I think it was your request/proposal to add this [1]?
->>>>  Because otherwise with your current patchset the f0 plane does 
->>>> not work *on JZ4780*.
->>>  Not that I am eager to fix that, but...
->>>  maybe it could be better to fix than having the check and -EINVAL 
->>> depend on SoC compatible string
->>>  (or some new flag in soc_info. plane_f0_not_working)?
->> 
->>  Totally agree! A proper fix would be much better. A 
->> "plane_f0_not_working" in the meantime is OK with me.
-> 
-> Ok, then I'll prepare a v13 with plane_f0_not_working.
-> 
->> 
->>  Note that there are other things not working with your current 
->> implementation, for instance you cannot set the X/Y start position 
->> of the f1 plane, which means it's only really usable for fullscreen 
->> desktop/windows.
-> 
-> Is setting x/y possible for the other SoC?
+I'm sorry but I *really* *really* dislike this. Having to list all other
+compatible values in this file is a sign that something is wrong in the
+validation infrastructure. People will forget to update it when adding
+new bindings, and will get confused by the result. If I were a
+maintainer for DT bindings I'd nack this.
 
-Yes. They support different x/y positions, sizes, and pixel format for 
-both f0, f1 and IPU planes.
+If a DT has panel-lvds and no other compatible string, or invalid ones,
+won't the validation report that the compatible isn't understood ? I
+think that would be enough.
 
--Paul
+-- 
+Regards,
 
->> 
->>>>  It does work on older SoCs.
->>>>>  What I have forgotten is why the f0 plane should not be usable 
->>>>> for jz4780.
->>>>  We return an error here to prevent userspace from using the f0 
->>>> plane until it's effectively working on the JZ4780.
->>>  Well, what would be not working with that plane if user-space 
->>> would try to use it?
->> 
->>  From what I remember, it wouldn't show anything on screen, and 
->> after that trying to use the f1 plane wouldn't work either.
-> 
-> Ok. That may become a big project to fix. So let's do step 1 first.
-> 
-> BR and thanks,
-> NIkolaus
-> 
-
-
+Laurent Pinchart
