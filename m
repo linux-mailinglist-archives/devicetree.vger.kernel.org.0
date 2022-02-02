@@ -2,68 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9534A7BD1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 00:39:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0407F4A7BE1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 00:51:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241361AbiBBXjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 18:39:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55460 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230315AbiBBXjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 18:39:06 -0500
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48401C06173D
-        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 15:39:06 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id c6so3589581ybk.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 15:39:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jpbPkbhHKCL1jkMxCSu3j+IP3px1jyA2L5DaQThLjmM=;
-        b=PRqEoX3NALne9rfjrS/rhhQhS2eaw4PRm8+rovUvPFO4Whq3cFEB+0Ejkgrh6Ktu57
-         Oop4fa3n4++zl26aG/T/LHmq2G6NP5V32/bAujhZZ6iCmd9mTsFwEPI0DKd7SeGY65PF
-         xehwwJi6gyZqN7rSQcFRk9K2jJe3yjiMfE5M+h0piCM0qLugR4GOoaz5fIVuYz4bcKLc
-         uc/tLKNY5s8MSk9ZBpyYqTyPlEpa+S0Nel/0eFDqpafpKnTzlGlCWsPYwB+5RzfyxqSW
-         FJ7xzPjyz0PnWEEaXcjdIO2lk4wSHBtMfTB7SxCEtCLCMRJiIGFMJMp/qpCW+fxWWHRZ
-         lb/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jpbPkbhHKCL1jkMxCSu3j+IP3px1jyA2L5DaQThLjmM=;
-        b=axaglF/M9R6eSyR5C3F2gW9trxTZAOB6VF+Vn6vXk9lIg39szPZa3P/5kFKEVayWrP
-         t+OuHJh/peOJIPCAT/YcM09foibgobbeQfepn51NSvEYd5PhxuLha776/OiOTxugIbaO
-         fgeSxUYv3RD5zmOinW374Mv0ZYz9pWqCZ07/tDG6x+Nz+v6U7gZQlcL82+ZIv+m4tMJs
-         K69EbXyaLUNomJ7pJLNM/eCfYkp1HICH9EWelvH+HVHTGlWSIegVnd4UW1M/uZ5J35wI
-         xCZX31mih0o35IfCFSkpT1spFAIOEs3LtPfeOdS7oINWu8U7vLOdyFhedNG4lZUzI2nl
-         KNHQ==
-X-Gm-Message-State: AOAM5311yGnIpqY58fzrAJIlwQz25FMnn0qyaFgUe9UVyraiNB7DkQwH
-        OF5rtPbnoL0EaYlrm7eT/sOaXLBO/SKuHDmUXTTOfA==
-X-Google-Smtp-Source: ABdhPJz/jjrriNNle4c10Xmkx/FGjzD6biAb60s26WMECGdM0QTrPdZRScnMt2kXh6S0nM/yMScoiApfxnv6vdSXwkk=
-X-Received: by 2002:a25:5143:: with SMTP id f64mr47044018ybb.520.1643845145451;
- Wed, 02 Feb 2022 15:39:05 -0800 (PST)
+        id S1348132AbiBBXvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 18:51:05 -0500
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:51415 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S239716AbiBBXuv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 18:50:51 -0500
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 4F6C55C01D4;
+        Wed,  2 Feb 2022 18:50:51 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 02 Feb 2022 18:50:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to; s=fm1; bh=G3uMJoiuyTNYSzQLHkBtYHuRGGlAUi5KOnThdB
+        0YcG8=; b=NXJUF3YhKRU8bfeCGs/x/X2JQdeLsluEgkicQJx6DgojU5K1kP1egf
+        MjvBexuh379F9p7Hr4QkjeDfPjE7jLlYpXnA1EPaJ19oF2CbNNG2SBOhhvNyuyQv
+        D7ruPgB3BaHr37k7Q3/dKrASPaQqFCDDxpYLbQsoDNhEFTN6nwRBB6d6GnOPQTe2
+        r252aLGGfKgYE2rtu1Ok1VdvI3h7mSa+V6pHiIWAV46SDEEP+v2oTcGvrdQAediW
+        zCFM9acWwtLAdznMqKjlYINtKITMbm8Y7qWf96JUYVr1Zcv++ImPgDlSySBvtnwV
+        d9tEjmSWYcW7Kiypgq2VrYAAaX2Cje2g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=G3uMJo
+        iuyTNYSzQLHkBtYHuRGGlAUi5KOnThdB0YcG8=; b=MIKrEs6WfmCWJ7tQql0C80
+        WHMokSU/wQi3Xs0D+OzuLb7WpxE993bmu2xDWxOPv7CD5/UzlaDizng73KhrG+Im
+        T+utaLt4xjJ8azlv/z9airUp9fRigZOI5tMiBcB3O8HRvTc8/2uuc04HO/AAWIAo
+        huR7yIH+mydfbKdADO+CqkzjmbjBQSn9wN46ptZgnQ9rP4hvMMTLcFuRBCUUW1zV
+        v0VcMZLlWbb6uvaSdDoEc6yEpIg/xoCJCzufplkqmPKtKJoQBqScgrgNR4xxG2mX
+        tYoQreaKvZDRtqs8CMAsPzG9Tp5aXFd1/P1csPDy9qWnLd161pf8+rCRabOWFU6A
+        ==
+X-ME-Sender: <xms:2hj7YVtOiVGqZ2pZ55PmWyi7jPOog0EOPBsseY4c0ErmU8m-PAJ2lQ>
+    <xme:2hj7Yec6toGLUbgOYviI0ZPpuFgHdzq_7xfXm3j8RZKQ6E36EvZ_oUSK4mUpSfwnM
+    VO2Vpc6BR5kIOnN1Q>
+X-ME-Received: <xmr:2hj7YYz21onOCS5Gy_x_fWyGDaGxdyN9yzaiwh-eImjlfkD-E1IE2FpXjd-R_JRSeIMB4xQ_o4Q2nXe7sMClgR_h3HEzQZqZojBRTLnm_RHdVRqZKJjhBkCC_qx75BFFwluirg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgeeigdduvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofggtgfgsehtkeertdertdejnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpedvleefveegvefghfegheeghfehtdeigeejfefhvedvueekieefheetfffg
+    veethfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:2hj7YcMt_MdI0rrH2DIeCHb7e1Mr7yHSJuxGyVx15C06csFGZy-_fg>
+    <xmx:2hj7YV9yhD214nDm-krfaw8GMwfCx5b1COQwiYoOsrLLMbYoHrIavA>
+    <xmx:2hj7YcWooIKl7elu2kANYbtxeNxftV4qNYWyuwpPXoPM1xpJV_kdDQ>
+    <xmx:2xj7YeNM0J5PlIMVIm2-wDTYVw3NZx9Iw1du4tVNBTdB4BfVCurOoA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 2 Feb 2022 18:50:50 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Denis Ciocca <denis.ciocca@st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Samuel Holland <samuel@sholland.org>
+Subject: [PATCH v2 0/3] iio: Silan SC7A20 accelerometer support
+Date:   Wed,  2 Feb 2022 17:50:45 -0600
+Message-Id: <20220202235049.8051-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <20220125131858.309237-1-horatiu.vultur@microchip.com>
-In-Reply-To: <20220125131858.309237-1-horatiu.vultur@microchip.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 3 Feb 2022 00:38:54 +0100
-Message-ID: <CACRpkdaCq7wwh4cObQ4zsw3uyf3_-M8RHtsF43csTpmQV9v3Cg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] pinctrl: ocelot Add support for ServalT
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 25, 2022 at 2:18 PM Horatiu Vultur
-<horatiu.vultur@microchip.com> wrote:
+This chip is register-compatible with an ST part, so it works without
+any issues when added to the existing driver.
 
-> This patch series adds support for ServalT pinctrl.
+Previously I called it a clone, but it's not really a clone, because
+it's not a drop-in replacement for the other chips. The software
+interface matches the ST parts, but the pinout does not. Instead, the
+pinout matches the Kionix KX122 and KX132.
 
-Patches applied!
+Changes in v2:
+ - Move the new compatible to its own section
+ - Add a comment about the WAI value
+ - Update commit messages
 
-Yours,
-Linus Walleij
+Samuel Holland (3):
+  dt-bindings: vendor-prefixes: Add silan vendor prefix
+  dt-bindings: iio: st: Add Silan SC7A20 accelerometer
+  iio: accel: st_accel: Add support for Silan SC7A20
+
+ .../bindings/iio/st,st-sensors.yaml           |  3 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ drivers/iio/accel/st_accel.h                  |  2 +
+ drivers/iio/accel/st_accel_core.c             | 83 +++++++++++++++++++
+ drivers/iio/accel/st_accel_i2c.c              |  5 ++
+ 5 files changed, 95 insertions(+)
+
+-- 
+2.33.1
+
