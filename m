@@ -2,103 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C261F4A6C9D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 09:07:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3D8A4A6CD2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 09:22:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238767AbiBBIHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 03:07:19 -0500
-Received: from vps.xff.cz ([195.181.215.36]:38672 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237918AbiBBIHT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Feb 2022 03:07:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1643789237; bh=DMb83cDhQ9rKfuJDRxlbrgx/yp3Sg6TPsG7z/FqFLqM=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=SMjCuZQl5MJHcizfaQRtdVjolGreh3bV4fJivIFWoZsfsEEKAP0D1DUyV4VoJ2iHq
-         TBRUIYt2dJeggUIFbVk2gOghjgcQWHndb/PmwhQMSPnbf/pM+rmQGYtGhGGh0S9MSO
-         8chZOfzkHoI3bOtbVWS2bYGKvi0zx/d8JSgV5TBE=
-Date:   Wed, 2 Feb 2022 09:07:17 +0100
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
-Subject: Re: [PATCH 2/5] Input: pinephone-keyboard - Add PinePhone keyboard
- driver
-Message-ID: <20220202080717.fai74mkjxdykqhht@core.my.home>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>,
-        Samuel Holland <samuel@sholland.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20220129230043.12422-1-samuel@sholland.org>
- <20220129230043.12422-3-samuel@sholland.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220129230043.12422-3-samuel@sholland.org>
+        id S240990AbiBBIWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 03:22:03 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:2033 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240949AbiBBIWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 03:22:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1643790124; x=1675326124;
+  h=from:to:cc:subject:date:message-id;
+  bh=xj1PMTdKP6FJfcRFDIwPOspQGBNZZNI40X619K+1Jks=;
+  b=ccLXNwiH+oqD7VvJ+Z5HBwX2s7zvoJdb8ESVyz/zSU906t4inZcUdPzP
+   tSFYX3kxyEzKQgNfFpgaX+sPgnaFDIX4wpc7lh0OcbdO9tXK5tc2vbyUY
+   pK62eKdjC1/hO9U1rCU3L0W8Iy9FLfjyCFE2sAW4FZnBpKtjqlCUbYqsy
+   c=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 02 Feb 2022 00:22:03 -0800
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 02 Feb 2022 00:21:46 -0800
+X-QCInternal: smtphost
+Received: from pmaliset-linux.qualcomm.com ([10.206.64.233])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 02 Feb 2022 13:51:28 +0530
+Received: by pmaliset-linux.qualcomm.com (Postfix, from userid 3848298)
+        id 0C6C721195; Wed,  2 Feb 2022 13:51:26 +0530 (IST)
+From:   Prasad Malisetty <quic_pmaliset@quicinc.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        lorenzo.pieralisi@arm.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh@kernel.org, kw@linux.com,
+        bhelgaas@google.com, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com,
+        manivannan.sadhasivam@linaro.org, swboyd@chromium.org,
+        Prasad Malisetty <quic_pmaliset@quicinc.com>
+Subject: [PATCH v1] arm64: dts: qcom: sc7280: Fix pcie gpio entries
+Date:   Wed,  2 Feb 2022 13:51:22 +0530
+Message-Id: <1643790082-18417-1-git-send-email-quic_pmaliset@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Samuel,
+Current gpio's in IDP file are not mapping properly,
+seeing device timedout failures.
 
-On Sat, Jan 29, 2022 at 05:00:39PM -0600, Samuel Holland wrote:
-> The official Pine64 PinePhone keyboard case contains a matrix keypad and
-> a MCU which runs a libre firmware. Add support for its I2C interface.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
+Corrected pcie gpio entries in dtsi files.
 
-> [...]
+Fixes: 4e24d227aa77 ("arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board")
 
-> +
-> +	ppkb->buf_swap = !ppkb->buf_swap;
-> +
-> +	keymap = ppkb->fn_state ? ppkb->fn_keymap : ppkb->input->keycode;
-> +	for (col = 0; col < ppkb->cols; ++col) {
-> +		u8 old = *(++old_buf);
-> +		u8 new = *(++new_buf);
-> +		u8 changed = old ^ new;
-> +
-> +		for (row = 0; row < ppkb->rows; ++row) {
-> +			int code = MATRIX_SCAN_CODE(row, col, ppkb->row_shift);
-> +			int value = new & BIT(row);
-> +
-> +			if (!(changed & BIT(row)))
-> +				continue;
-> +
-> +			dev_dbg(dev, "row %u col %u %sed\n",
-> +				row, col, value ? "press" : "releas");
-> +			if (keymap[code] == KEY_FN) {
-> +				dev_dbg(dev, "FN is now %sed\n",
-> +					value ? "press" : "releas");
-> +				keymap = value ? ppkb->fn_keymap
-> +					       : ppkb->input->keycode;
-> +				ppkb->fn_state = value;
-> +			}
-> +			input_event(ppkb->input, EV_MSC, MSC_SCAN, code);
-> +			input_report_key(ppkb->input, keymap[code], value);
+Signed-off-by: Prasad Malisetty <quic_pmaliset@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 35 ++++++++++++++------------------
+ arch/arm64/boot/dts/qcom/sc7280.dtsi     | 10 ++++++++-
+ 2 files changed, 24 insertions(+), 21 deletions(-)
 
-I think there's a logic issue here with the Fn layer. Consider what happens
-when you press Fn press F1 and then release Fn and release F1. In that case
-input_report_key will report press of F1 (in fn layer) but release of '1'
-which is not in Fn layer, because Fn layer was de-activated before releasing
-the modified key.
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index 78da9ac..84bf9d2 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -243,9 +243,6 @@
+ 	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
+ 
+ 	vddpe-3v3-supply = <&nvme_3v3_regulator>;
+-
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pcie1_reset_n>, <&pcie1_wake_n>;
+ };
+ 
+ &pcie1_phy {
+@@ -360,6 +357,21 @@
+ 
+ /* PINCTRL - additions to nodes defined in sc7280.dtsi */
+ 
++&pcie1_reset_n {
++	pins = "gpio2";
++
++	drive-strength = <16>;
++	output-low;
++	bias-disable;
++};
++
++&pcie1_wake_n {
++	pins = "gpio3";
++
++	drive-strength = <2>;
++	bias-pull-up;
++};
++
+ &pm7325_gpios {
+ 	key_vol_up_default: key-vol-up-default {
+ 		pins = "gpio6";
+@@ -436,23 +448,6 @@
+ 		function = "gpio";
+ 	};
+ 
+-	pcie1_reset_n: pcie1-reset-n {
+-		pins = "gpio2";
+-		function = "gpio";
+-
+-		drive-strength = <16>;
+-		output-low;
+-		bias-disable;
+-	};
+-
+-	pcie1_wake_n: pcie1-wake-n {
+-		pins = "gpio3";
+-		function = "gpio";
+-
+-		drive-strength = <2>;
+-		bias-pull-up;
+-	};
+-
+ 	qup_uart7_sleep_cts: qup-uart7-sleep-cts {
+ 		pins = "gpio28";
+ 		function = "gpio";
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index d4009cc..2e14c37 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -1640,7 +1640,7 @@
+ 			phy-names = "pciephy";
+ 
+ 			pinctrl-names = "default";
+-			pinctrl-0 = <&pcie1_clkreq_n>;
++			pinctrl-0 = <&pcie1_clkreq_n>, <&pcie1_reset_n>, <&pcie1_wake_n>;
+ 
+ 			iommus = <&apps_smmu 0x1c80 0x1>;
+ 
+@@ -3272,6 +3272,14 @@
+ 				bias-pull-up;
+ 			};
+ 
++			pcie1_reset_n: pcie1-reset-n {
++				function = "gpio";
++			};
++
++			pcie1_wake_n: pcie1-wake-n {
++				function = "gpio";
++			};
++
+ 			dp_hot_plug_det: dp-hot-plug-det {
+ 				pins = "gpio47";
+ 				function = "dp_hot";
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
-From the PoV of the user, this will probably lead to auto-repeat of F1 and
-spurious '1' release without preceding press event. So the userspace sees
-F1 as stuck and auto-repeats it.
-
-kind regards,
-	o.
-
-> +		}
-> +	}
-> +	input_sync(ppkb->input);
-> +}
-> +
