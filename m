@@ -2,139 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73F2E4A78C6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 20:33:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B14A4A78D9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 20:45:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346911AbiBBTdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 14:33:54 -0500
-Received: from relmlor2.renesas.com ([210.160.252.172]:39684 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1346913AbiBBTdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 14:33:54 -0500
-X-IronPort-AV: E=Sophos;i="5.88,337,1635174000"; 
-   d="scan'208";a="109157436"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 03 Feb 2022 04:33:53 +0900
-Received: from localhost.localdomain (unknown [10.226.92.2])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id B11F740F8ACC;
-        Thu,  3 Feb 2022 04:33:51 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
+        id S235096AbiBBTpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 14:45:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229889AbiBBTpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 14:45:24 -0500
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F1BC061714;
+        Wed,  2 Feb 2022 11:45:24 -0800 (PST)
+Received: by mail-qv1-xf35.google.com with SMTP id e20so571351qvu.7;
+        Wed, 02 Feb 2022 11:45:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zvZjFpyIkbMZ/ze0qgMESQH0VN7MsTwLvLVU0S1wAiQ=;
+        b=ZjZZWUpbJ4YlRq/+yUqkwRremL1orcOhbUOfoJdo7VKeZOMKKWQ3Eqcb0mTxCFyyf+
+         /dSoFi0zX1Rx1vZqWcFPY9e/e0ev9Q6dFxZU3xdLqx+sa2JPG6kQBkZPLzIn7PlU7TDK
+         4VsQgIf7xkNz39RjWwKafCd9nrKUbF+X/wbCP2vGJca07c/ATZ+vkPk7ri0s7Oge2a4Z
+         bSiqTc6Zg0KlzAdDZW5jUyvXthTFS+B/Rng63lb2hsNOonWe0hxBEb21/pZRR7TUUdIs
+         T64s5Fff6ypHmpevHkE2zfZQu3w6i8eWoTTJ2B20fvlW93RubBS+JdvUCvJ2+xh2uGOf
+         eqpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zvZjFpyIkbMZ/ze0qgMESQH0VN7MsTwLvLVU0S1wAiQ=;
+        b=O/Em12WM07dvlNxgAa6aLyGLEJU/dPwlHSpcO2/FXri9urrfttQ3tx0YAsYSyFrST4
+         o69B7dJBXQ0B5BGh/L2dBGdy9fFqCpo13ygXCI4Nv6urrvG7TFpMMhEeNngZh2Q6yTr/
+         rfwiBThKtmSDhad+sbLtiFuv04aHD7CYBu/ctW2gCWYSoA8oGYnotOQMjBm1ddch5vYn
+         9NH93+7eVN+NHreWCrjSNWb8rtuRQDYQJXXFxid8gdRYCGvSS1SiOklrisqitlYbRuhU
+         cETxFhgFEHSXelUv7Q+wR3aGwlc07Fdz31Thklmiq/Ub94beJ+ZGf+c88iVa/dFD45lm
+         OSzQ==
+X-Gm-Message-State: AOAM531znMMkDkI7BGzwuWGqvxPtQzm4EAInbrfOUNY39zAm29pdm9Gn
+        AhCRLCAUiNH89eiuypf9ATUt5CEO8F4=
+X-Google-Smtp-Source: ABdhPJxMlYPNb3Wz/7Db4weEwB61I8vPWSanIMN61TUGOJytV74HXU2jDPn145Ge8efptHJNV1J6Dg==
+X-Received: by 2002:ad4:5bae:: with SMTP id 14mr27585672qvq.69.1643831123186;
+        Wed, 02 Feb 2022 11:45:23 -0800 (PST)
+Received: from localhost.localdomain (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id y16sm1907888qta.11.2022.02.02.11.45.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Feb 2022 11:45:22 -0800 (PST)
+From:   frowand.list@gmail.com
 To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 4/4] arm64: dts: renesas: rzg2lc-smarc: Enable CANFD channel 1
-Date:   Wed,  2 Feb 2022 19:33:39 +0000
-Message-Id: <20220202193339.22441-5-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220202193339.22441-1-biju.das.jz@bp.renesas.com>
-References: <20220202193339.22441-1-biju.das.jz@bp.renesas.com>
+Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Anders Roxell <anders.roxell@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] of: unittest: config option - print pass message at same level as fail
+Date:   Wed,  2 Feb 2022 13:45:13 -0600
+Message-Id: <20220202194513.2840070-1-frowand.list@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On RZ/G2LC SMARC EVK, CAN0 is not populated.
+From: Frank Rowand <frank.rowand@sony.com>
 
-CAN1 is multiplexed with SCIF1 using SW1[3] or RSPI using SW1[4].
+Printing the devicetree unittest pass message for each passed test
+creates much console verbosity.  The existing pass messages are
+printed at loglevel KERN_DEBUG so they will not print by default.
 
-This patch adds support for the CAN1 interface on RZ/G2LC SMARC EVK.
+The test community expects either a pass or a fail message for each
+test in a test suite.  The messages are typically post-processed to
+report pass/fail results.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+The pass messages can currently be reported by enabling KERN_DEBUG
+loglevel for the console, but this also results in other additional
+messages.  Create OF_UNITTEST_SHOW_PASS to enable printing the pass
+messages at the same loglevel as the fail messages.
+
+Signed-off-by: Frank Rowand <frank.rowand@sony.com>
 ---
-v1->v2: No change
----
- .../boot/dts/renesas/r9a07g044c2-smarc.dts    |  6 -----
- .../dts/renesas/rzg2lc-smarc-pinfunction.dtsi | 23 +++++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 13 +++++++++++
- 3 files changed, 36 insertions(+), 6 deletions(-)
+ drivers/of/Kconfig    | 10 ++++++++++
+ drivers/of/unittest.c |  5 ++++-
+ 2 files changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-index 50abdabc374a..5a5cea82a5d9 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-@@ -14,12 +14,6 @@
- 	compatible = "renesas,smarc-evk", "renesas,r9a07g044c2", "renesas,r9a07g044";
- };
+diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+index 80b5fd44ab1c..6ad05df4f7d4 100644
+--- a/drivers/of/Kconfig
++++ b/drivers/of/Kconfig
+@@ -25,6 +25,16 @@ config OF_UNITTEST
  
--&canfd {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
- &ehci0 {
- 	/delete-property/ pinctrl-0;
- 	/delete-property/ pinctrl-names;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-index ec9e08ec0822..bff56d696936 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-@@ -17,6 +17,14 @@
- 			 <RZG2L_PORT_PINMUX(38, 1, 1)>;	/* RxD */
- 	};
+ 	  If unsure, say N here, but this option is safe to enable.
  
-+#if SW_SCIF_CAN
-+	/* SW8 should be at position 2->1 */
-+	can1_pins: can1 {
-+		pinmux = <RZG2L_PORT_PINMUX(40, 0, 3)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(40, 1, 3)>; /* RxD */
-+	};
-+#endif
++config OF_UNITTEST_SHOW_PASS
++	bool "Device Tree runtime unit tests, report each pass"
++	depends on OF_UNITTEST
++	help
++	  The messages reporting an individual test pass are normally
++	  printed at loglevel KERN_DEBUG.  Enable this option to print
++	  the PASS messages at the same loglevel as the FAIL messages.
 +
- 	scif1_pins: scif1 {
- 		pinmux = <RZG2L_PORT_PINMUX(40, 0, 1)>, /* TxD */
- 			 <RZG2L_PORT_PINMUX(40, 1, 1)>, /* RxD */
-@@ -24,6 +32,21 @@
- 			 <RZG2L_PORT_PINMUX(41, 1, 1)>; /* RTS# */
- 	};
- 
-+#if SW_RSPI_CAN
-+	/* SW8 should be at position 2->3 so that GPIO9_CAN1_STB line is activated */
-+	can1-stb {
-+		gpio-hog;
-+		gpios = <RZG2L_GPIO(44, 3) GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "can1_stb";
-+	};
++	  If unsure, say N here, but this option is safe to enable.
 +
-+	can1_pins: can1 {
-+		pinmux = <RZG2L_PORT_PINMUX(44, 0, 3)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(44, 1, 3)>; /* RxD */
-+	};
-+#endif
-+
- 	sd1-pwr-en-hog {
- 		gpio-hog;
- 		gpios = <RZG2L_GPIO(39, 2) GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 1b59ef376296..28f21c287ba3 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -44,6 +44,19 @@
- 	};
- };
- 
-+#if (SW_SCIF_CAN || SW_RSPI_CAN)
-+&canfd {
-+	pinctrl-0 = <&can1_pins>;
-+	/delete-node/ channel@0;
-+};
-+#else
-+&canfd {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+#endif
-+
- /*
-  * To enable SCIF1 (SER0) on PMOD1 (CN7), On connector board
-  * SW1 should be at position 2->3 so that SER0_CTS# line is activated
+ config OF_ALL_DTBS
+ 	bool "Build all Device Tree Blobs"
+ 	depends on COMPILE_TEST
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 70992103c07d..efcec1c6c895 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -44,7 +44,10 @@ static struct unittest_results {
+ 		pr_err("FAIL %s():%i " fmt, __func__, __LINE__, ##__VA_ARGS__); \
+ 	} else { \
+ 		unittest_results.passed++; \
+-		pr_debug("pass %s():%i\n", __func__, __LINE__); \
++		if (IS_ENABLED(CONFIG_OF_UNITTEST_SHOW_PASS)) \
++			pr_err("pass %s():%i\n", __func__, __LINE__); \
++		else \
++			pr_debug("pass %s():%i\n", __func__, __LINE__); \
+ 	} \
+ 	failed; \
+ })
 -- 
-2.17.1
+Frank Rowand <frank.rowand@sony.com>
 
