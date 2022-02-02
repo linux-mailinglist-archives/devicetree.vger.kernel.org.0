@@ -2,75 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 247C94A76A1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 18:17:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 741D54A76CB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 18:25:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230243AbiBBRRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 12:17:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52980 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbiBBRRt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 12:17:49 -0500
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F37CC061714
-        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 09:17:49 -0800 (PST)
-Received: by mail-yb1-xb29.google.com with SMTP id i10so599436ybt.10
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 09:17:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=rAm5SMAk+NfVJA+Z0hOZyzuo0HihOBhilsRwd+A1UyI=;
-        b=qlQ2+5CFT82y0jnfP0ehZ4+ENC+AgLFnhZ852W9HNUAGX1TOnEalPXA+1recGa6AOH
-         aRuizWW64cDIwBLvxLJ2RmEsUuwYcSnjM5Ux1TeOE+f/CXyopGWPSQ9sy5ONlusvRyI0
-         BizJ6Q9K3rXfcBOAtRxkvE1mINbW5fo4ejpetrAkwrj1w7pmLxsXKG10PKfsRJODMD/s
-         XqAeKVLDBjSglAyiyTSDh9753d3jL7Bo5H6ehNtJTek6bN/fjNdVU+pSx3cgauTagzRP
-         a0AnCHFJIkUZPM6w2tQSUCeBAmDFZnimMJcjuhtpVSUdlHrjD08XxvGb2zaszmCBsQX3
-         pwDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=rAm5SMAk+NfVJA+Z0hOZyzuo0HihOBhilsRwd+A1UyI=;
-        b=zNmXqos2hAXltNuga3ku82SnYoVIrgwhcG3jR9izLOzrV9Lwj2QUJeHXvO/DyNiUBF
-         sEprgQKdYh1RMACdHsWxAHwYXZgYSuzYFWzbUseXGX3L2svV8lJFHsng7McAo33Dv3X6
-         WDbtPcw3aGuxGR6d4RassHM7YSykupFPGJ4KpOp/qtRcheaZCmMZrBfvD7FqS1C3C9OW
-         EfgFQHKOpXmVJBl82Ol0/PudHC+4Zo3Ka7Is/lDXYPY72p4G0AnEyM7BjXoPowcCIweb
-         IbFmikzaJ+7WJlvDkYnmbYsxN3fCaziNRId4GYlKHwIg6YRlPQJ+tnqaAAOlZEx1PhQj
-         8TMw==
-X-Gm-Message-State: AOAM533CuLJLq7U9YqH8gGhjxESOrdYdHjbJJDVMQHNdET6s/ALaYvh+
-        E1+mtOVs8Uqn5KFwriJVQNcnvx/4lPmDT91WNck=
-X-Google-Smtp-Source: ABdhPJxtACGoxJgdAp2N+CQhmnfpheMgZNAto0JcsLdZMuzG1bRGBGUp0LS9hHGkYojSAraBHSMAaWq57lSM763+Ykc=
-X-Received: by 2002:a25:6089:: with SMTP id u131mr41598082ybb.67.1643822267396;
- Wed, 02 Feb 2022 09:17:47 -0800 (PST)
-MIME-Version: 1.0
-Received: by 2002:a05:7000:51cd:0:0:0:0 with HTTP; Wed, 2 Feb 2022 09:17:46
- -0800 (PST)
-Reply-To: fileoffice9543@aol.com
-From:   Mr JOHN Mark <anaekwepaul344@gmail.com>
-Date:   Wed, 2 Feb 2022 09:17:46 -0800
-Message-ID: <CAMGjvWdCUffdcERi=vFr-7JdMDrHLDK09WNyaFQ+2r8nigwwHA@mail.gmail.com>
-Subject: Your ATM visa card worth USD $4.5M was with DHL
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+        id S244839AbiBBRZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 12:25:57 -0500
+Received: from so254-9.mailgun.net ([198.61.254.9]:33487 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237656AbiBBRZ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 12:25:56 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1643822756; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=CNruI/g+gBVAdYPEy22ABVFeKz4l119XLs0dajq3y/Y=; b=AsjW6C6Ji2E9m4fa9uUykhTpuzjGWezJADzBJGKALqoowpWdRECWy9RywjpDIhUKYjCKPoiq
+ EeXfyJ81CLdfu8flj7USFDt/ELvfXxn56Pa4mmqdFmkTLfC9fuIyJseGAuTNNHRViedx/qpx
+ DjIVTNu4O85LHJhkYSv6VL2KuzU=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 61fabea242b0db82d29c865f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 02 Feb 2022 17:25:54
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 97D72C4360C; Wed,  2 Feb 2022 17:25:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-tdas-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 636AEC4338F;
+        Wed,  2 Feb 2022 17:25:49 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 636AEC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v2 1/2] clk: qcom: clk-rcg2: Update logic to calculate D value for RCG
+Date:   Wed,  2 Feb 2022 22:55:39 +0530
+Message-Id: <20220202172540.2458-1-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I have registered your Package with Dhl this morning and we agreed up
-that your USD $4.5M in ATM CARD delivery will take place Tomorrow
-morning.
-so kindly reconfirm you full information:
+The current implementation does not check for D value is within
+the accepted range for a given M & N value. Update the logic to
+calculate the final D value based on the range.
 
-Your Full name:
-Your Address:
-Your Country:
-Your Cell Number:
-Your I D ;;;
+Fixes: 99cbd064b059f ("clk: qcom: Support display RCG clocks")
+Signed-off-by: Taniya Das <tdas@codeaurora.org>
+---
+* Split the patch and update the Fixes tag.
 
-Contact Mr,Gill Tony
-(fileoffice9543@aol.com)
+ drivers/clk/qcom/clk-rcg2.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-Text +1 (724) 400-3673 ,Whats-app +1 (724) 400-3673
+diff --git a/drivers/clk/qcom/clk-rcg2.c b/drivers/clk/qcom/clk-rcg2.c
+index e1b1b426fae4..34251ec98def 100644
+--- a/drivers/clk/qcom/clk-rcg2.c
++++ b/drivers/clk/qcom/clk-rcg2.c
+@@ -264,7 +264,7 @@ static int clk_rcg2_determine_floor_rate(struct clk_hw *hw,
 
-REGARDS
-Mr JOHN Mark
+ static int __clk_rcg2_configure(struct clk_rcg2 *rcg, const struct freq_tbl *f)
+ {
+-	u32 cfg, mask;
++	u32 cfg, mask, d_val, not2d_val;
+ 	struct clk_hw *hw = &rcg->clkr.hw;
+ 	int ret, index = qcom_find_src_index(hw, rcg->parent_map, f->src);
+
+@@ -283,8 +283,18 @@ static int __clk_rcg2_configure(struct clk_rcg2 *rcg, const struct freq_tbl *f)
+ 		if (ret)
+ 			return ret;
+
++		/* Calculate 2d value */
++		d_val = f->n;
++
++		if (d_val > ((f->n - f->m) * 2))
++			d_val = (f->n - f->m) * 2;
++		else if (d_val < f->m)
++			d_val = f->m;
++
++		not2d_val = ~d_val & mask;
++
+ 		ret = regmap_update_bits(rcg->clkr.regmap,
+-				RCG_D_OFFSET(rcg), mask, ~f->n);
++				RCG_D_OFFSET(rcg), mask, not2d_val);
+ 		if (ret)
+ 			return ret;
+ 	}
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
+
