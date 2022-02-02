@@ -2,134 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29FEC4A70EB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 13:40:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44BBF4A70F4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 13:41:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344112AbiBBMkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 07:40:22 -0500
-Received: from mout.gmx.net ([212.227.17.21]:59757 "EHLO mout.gmx.net"
+        id S1344183AbiBBMlg convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Feb 2022 07:41:36 -0500
+Received: from aposti.net ([89.234.176.197]:46104 "EHLO aposti.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231748AbiBBMkV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Feb 2022 07:40:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1643805612;
-        bh=lZ4316Q44PluVsj1sPcy2CFLDYO7r+nhpKEFqWsIIjg=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=NdkqWDdn0NXzC/h0pU0+zBc2tw3R3Lai9pmWTF8lgCOr3eUGgnZDsZJ88V8z0/E4t
-         fFDfHWPUoEe/BLNkpf1YgfAR83ZxU9fpxilpfak2Kvgv1muIfs/kR5Mmy7UNKedCQ8
-         Yf82lDuZkvnHxmRUmMCgsJFxmxTp7YY4mDhhzdEU=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MMGRK-1my7mk0F4I-00JLCU; Wed, 02
- Feb 2022 13:40:12 +0100
-Date:   Wed, 2 Feb 2022 13:40:10 +0100
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Joel Stanley <joel@jms.id.au>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>
-Subject: Re: [PATCH v5 0/9] Nuvoton WPCM450 pinctrl and GPIO driver
-Message-ID: <Yfp7qni4djRCr52u@latitude>
-References: <20220129115228.2257310-1-j.neuschaefer@gmx.net>
- <CACRpkdYEigGHkoGfBg15tFXadgpXUAjDOnw7ePXhmvHJqPEJXw@mail.gmail.com>
- <YfZkis8M81Ejpagq@latitude>
- <CACPK8XdFXRQf3MpPh3z=EMAKtnQSHL+iwwMCVYc5dP9DfQEN+Q@mail.gmail.com>
- <YfpyjDBH83FE7r4o@latitude>
- <CAHp75Vdg8zFSHaTP_8jQua5QfRYbvZ4_rLdCtt3ks8YEibseTg@mail.gmail.com>
+        id S240128AbiBBMlf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Feb 2022 07:41:35 -0500
+Date:   Wed, 02 Feb 2022 12:41:21 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v12 2/9] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Message-Id: <XKGO6R.LTTYDEGZ8RJH3@crapouillou.net>
+In-Reply-To: <78F51BD7-112A-458D-8FCE-6A67572A182B@goldelico.com>
+References: <cover.1643632014.git.hns@goldelico.com>
+        <6a7b188769a7ad477bf8cb71e1b9bc086b92388d.1643632014.git.hns@goldelico.com>
+        <N7AO6R.7I6FABF106MT1@crapouillou.net>
+        <1F27171F-DFCA-4707-8F50-D1A343F6D78E@goldelico.com>
+        <CYEO6R.2QDXEFO5G1WQ3@crapouillou.net>
+        <37CB6D86-4295-4281-BF3E-3E4B40E74196@goldelico.com>
+        <5ZFO6R.M6Z7S3EBA1YC1@crapouillou.net>
+        <78F51BD7-112A-458D-8FCE-6A67572A182B@goldelico.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="R5woTQRwH04BjSJ1"
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vdg8zFSHaTP_8jQua5QfRYbvZ4_rLdCtt3ks8YEibseTg@mail.gmail.com>
-X-Provags-ID: V03:K1:manlM35z/hW/kYRc4Z+Fu1gQic/531v5Rk2b8zODaOSCQ/pEik9
- 9OmFYjoMPaoibAtxV3rpuIo1t+FoURAzkDZfDn4YnR0G2ZZAiHFDCVwfe9RlujHs0lgSMVN
- guJn3RP410fuecCTPK4ZYk18IaDuRcgvIciVGf07XOT7b8PiminOY2t5E36dZS0gWQ95UuS
- 3q67h/iyI/UvyyZriOUxA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:UeiIv49JUjY=:DRkoabxXjIY4rxCd709AjA
- eCkHW91FMqYuvUm0vn4MnIIljx9nwYDCIHNqNU7KPbx6/h5jHw7ognyt4pZGal4FIb+QZ4fI9
- FS3ZtFXnn6RlmlIVR5QkcsEqaPcxqravCn9H5j/kdaPHi1sThm9Pj3c6y8loGy04dEmEM3dkQ
- 9OKZNv71pxxAqFCHp1zM6xL46ImCaFbcS8guI680/aOpx8qf7eWzqrDx/IJuuSD0VGFrlCs5E
- KZ8lm6jVCG+60juJMUJNxHwHNQo6Z6wmwKezaC4y7r6ed5SdwROPYfNJxJvRanGrucVNw4qz1
- HMKLW4j1ns0JYtsdC45s5G3ISWa7P3C/J8tnBf2cNRn10Mqbr5V4Vi4OBCmxxdMJpdpRUgVNW
- GhsAdQ6cZG/0kjl3ZE8X6A0yMBBfFHjEkft0dbkwIP2Gx1A2bZfV2w6POpWtbFxSwRrjG/qFy
- 6ULfZWugq7GXreMzaLoGDsRzFkOyBPfjYi4FjCJK8hUKH9PhTQNL5vWHEliyyxl6jEFMIdzUZ
- WVp+5ikh278qipsoQnm06gSaGXFUf05poT8lTQev5romc1KwM4GtmgOYgEWkKxorqblHtj+az
- yh8e0h9oT55Hog6fnILe3ew6qw57maEZ5jjsvK8pNSltAwhygcmNXlXwtck6y1Vk9gUkJOZ44
- 96biw3PcpOBhv90C+OeInckVwAsgYoWR89DM6ECoGftHbIiSAJd0oRUOcgQ/NT2fXmRD8zCfA
- C4qba5wUtNZ5ssK8+69G5ZpRzEnIu6O5gCCUI92yoSInzBEJaZ/8cOAYxtYdjilHgVl/KDJUg
- dDELl7H4x3iaueYp9Qyp6fJRpCXnJMtxLoiC+B02cPG1ojz5RH0f3xayGfWH1qQStVyRmhGav
- b8zcChswCJi8d3qNtrBjfCVZTwSZDUiufSRi24kBgyT5GDAu0LrfUdIpy90Ghtqfkv/DXhgOz
- WWkjYvdsJtN4jq2h79xXolebIFeXHL6XogBg754r5unz1seB3BBF5MN2yYXo3Y74yzy8wwxiU
- ppnNtGrDN14QbNisxUXOsIBrXMGTG6StbrtUUJf3BmM/xCjUPsqrVzCiIUKzrDu6AZ9QATkEe
- jX/7V4Hq+q41Es=
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---R5woTQRwH04BjSJ1
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 02, 2022 at 02:10:44PM +0200, Andy Shevchenko wrote:
-> On Wed, Feb 2, 2022 at 2:01 PM Jonathan Neusch=C3=A4fer
-> <j.neuschaefer@gmx.net> wrote:
-> > On Tue, Feb 01, 2022 at 11:42:11PM +0000, Joel Stanley wrote:
-> > > On Tue, 1 Feb 2022 at 13:05, Jonathan Neusch=C3=A4fer <j.neuschaefer@=
-gmx.net> wrote:
->=20
-> ...
->=20
-> > > I assume you're sending a v6 to fix some of the warnings?
-> >
-> > No, the warnings are fairly independent of this patchset, it's just that
-> > the adjacent pinctrl-npcm7xx driver started to be built by the bot, due
-> > to my Kconfig change. I'll fix them in a separate patchset.
->=20
-> I guess you need to fix that first.
->=20
-> Because now and then all CIs will complain to your patch and confuse peop=
-le.
+Le mer., févr. 2 2022 at 13:33:15 +0100, H. Nikolaus Schaller 
+<hns@goldelico.com> a écrit :
+> 
+> 
+>>  Am 02.02.2022 um 13:28 schrieb Paul Cercueil <paul@crapouillou.net>:
+>> 
+>> 
+>> 
+>>  Le mer., févr. 2 2022 at 13:17:14 +0100, H. Nikolaus Schaller 
+>> <hns@goldelico.com> a écrit :
+>>>  Hi Paul,
+>>>>  Am 02.02.2022 um 13:06 schrieb Paul Cercueil 
+>>>> <paul@crapouillou.net>:
+>>>>  Hi Nikolaus,
+>>>>>>>  @@ -446,6 +454,9 @@ static int 
+>>>>>>> ingenic_drm_plane_atomic_check(struct drm_plane *plane,
+>>>>>>>  	if (!crtc)
+>>>>>>>  		return 0;
+>>>>>>>  +	if (plane == &priv->f0)
+>>>>>>>  +		return -EINVAL;
+>>>>>>  This will break JZ4725B -> JZ4770 SoCs, the f0 plane is 
+>>>>>> perfectly usable there.
+>>>>>  Hm. I think it was your request/proposal to add this [1]?
+>>>>  Because otherwise with your current patchset the f0 plane does 
+>>>> not work *on JZ4780*.
+>>>  Not that I am eager to fix that, but...
+>>>  maybe it could be better to fix than having the check and -EINVAL 
+>>> depend on SoC compatible string
+>>>  (or some new flag in soc_info. plane_f0_not_working)?
+>> 
+>>  Totally agree! A proper fix would be much better. A 
+>> "plane_f0_not_working" in the meantime is OK with me.
+> 
+> Ok, then I'll prepare a v13 with plane_f0_not_working.
+> 
+>> 
+>>  Note that there are other things not working with your current 
+>> implementation, for instance you cannot set the X/Y start position 
+>> of the f1 plane, which means it's only really usable for fullscreen 
+>> desktop/windows.
+> 
+> Is setting x/y possible for the other SoC?
 
-Hm, right.
+Yes. They support different x/y positions, sizes, and pixel format for 
+both f0, f1 and IPU planes.
 
-I'll send the pinctrl-npcm7xx fixes, and then a version 6 of this
-patchset if necessary.
+-Paul
+
+>> 
+>>>>  It does work on older SoCs.
+>>>>>  What I have forgotten is why the f0 plane should not be usable 
+>>>>> for jz4780.
+>>>>  We return an error here to prevent userspace from using the f0 
+>>>> plane until it's effectively working on the JZ4780.
+>>>  Well, what would be not working with that plane if user-space 
+>>> would try to use it?
+>> 
+>>  From what I remember, it wouldn't show anything on screen, and 
+>> after that trying to use the f1 plane wouldn't work either.
+> 
+> Ok. That may become a big project to fix. So let's do step 1 first.
+> 
+> BR and thanks,
+> NIkolaus
+> 
 
 
-Jonathan
-
---R5woTQRwH04BjSJ1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmH6e4MACgkQCDBEmo7z
-X9vqjA//XOr8yfUq5cP1/TPoekmsBBV4OcpprXWKtONJX8zrJhuLbde1yIrOpoD2
-L91zOk8aZysJxABmHucetpGBBtvM/ddJbX4PV0B308hrmSQ2sOY4Y3ZDMTsyd1kr
-k2J6wna7RAC9AToOk7VGEg4XXbEu5FDFIdkcSBfa16sKIZU3MzlHhl2Z1Wwckf+Z
-duzmJSpaDlTQxaDPwTr5fN3QYJ9Q56EgPBXuPa83ZMsal1VBZf5MrzoDBbAveN9j
-Z+oeurb761NmtjT15ioLeug+Ym1v2Dr3fhjpoj8cdXkL2FJsIqV7S+Dxdqe6ApoL
-RKYA0yGdZglW4XjLIjudGU+T68u4slrvl+OUs99YA7pV+MhG40heSGP8PdEeDIpS
-XRNGboQV0mqgtIREoczo8Y3hJLBA3HfKL1jLUa9QXD1sNCTxiBp8ELnSfFY4xOtN
-JXvks9+4hRw8C4ML3SWLjgqJfnlrBYPHDZWe4pctVdYqL13hLdv6qIe3hzI7MHdk
-CfEhgf5KqSaJp3bz/YaGtIdmA8e7j3tIqt3VqmxsJEYH+i39VRywtM4dfuIxVA0U
-c+YSPU531ARyTmssDLNwzZpXjXtjEIwXf8OA0Fzfz3GHqkaqHXLdT82CRo8+XTKK
-IyDcNhp1R5oXdVfk7O6bhniQo3xN5H1xKYx6ijQoHlH9G0lkqDM=
-=nFA4
------END PGP SIGNATURE-----
-
---R5woTQRwH04BjSJ1--
