@@ -2,103 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D63534A6C1D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 08:09:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AF974A6C94
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 09:03:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231797AbiBBHJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 02:09:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54726 "EHLO
+        id S233883AbiBBIDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 03:03:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231352AbiBBHJK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 02:09:10 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCAA6C061714
-        for <devicetree@vger.kernel.org>; Tue,  1 Feb 2022 23:09:09 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id o1-20020a1c4d01000000b0034d95625e1fso3790344wmh.4
-        for <devicetree@vger.kernel.org>; Tue, 01 Feb 2022 23:09:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=zOHJbgxEeKcTUS1M3dbg/CCHL8zxNc7o7Y1pwSiNVNQ=;
-        b=i7NfKdCKy6Ar7Vi8r499Jifh4kOY8GRMCrmoJfKMCxNR2bsyyLd48TLsO+LYvkJ9EC
-         j/0MjC4KbZ/VMUT1YVnXDE4Eqk1244J1oz4DZWorefGM3XkrC7g6FNhATuzDHEFXjgRY
-         oI6hZBlKh+QtZE8ONTn0jr+VGNy3r1/CZleBEurZSVIni0LdaKVMEK4ebycoaBCFhZD2
-         yrn8sWEAfD3NZm9piBof9ouMAo1CFDt50BxN+QL7MszfRJJ0q/mj/TUZWP9tqNh7RZLO
-         nEnHCLJah1qWzwxTQOW4IvHxEibo57nb0ZSWajF0lrn9Pm1XVfyBlY8zNOALNx8sSdlH
-         wnTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to:content-transfer-encoding;
-        bh=zOHJbgxEeKcTUS1M3dbg/CCHL8zxNc7o7Y1pwSiNVNQ=;
-        b=3RQ3i7VPYxKQ+MIf6oYDlv1g+e1ug2+gioosEkYsaDWeoXEEqRhvYBnpWqdNebcmji
-         ZbGlXmPJqTucJZl/yv+nl8YlQjZB7rUwmY1M7lnf9CGOgOXQOOeZHkBgZ12PDcwsmM5z
-         Xn0WeKPy0NWSXl/aL29eMuRRkWJz0zNTcMSp0Z4jc4lYPIdtxD2hvB5+xpyigFxJIl6o
-         qV6wXs8EHHlTPlWKgK+7tKFt8/Y8h0z2d487Wzdu6uJNinHTxCytClyZnByw2WE6cm3i
-         UBS6PppMbkVKAINyP3qpNTDRwDjBIT9TqZRqTKol4vppXNKE9Oi9XGU4YLKAgPwAzmke
-         fZoA==
-X-Gm-Message-State: AOAM533uDQhGM9A8MJtCJgf0jeYEXYSs8hZZdj/AXvKvXO6Wi+bsVKR9
-        PT7ap/m63FdZQTvle+F3H04JWGzTfflK8aFKNkA=
-X-Google-Smtp-Source: ABdhPJy6MPPFmbHODO1edL7tpdv/jmdX78hEGWFUzqfJR36rIZI7ZpAqjeOalBasoSxqBCMcqNpO1gEAhWjWSila0dA=
-X-Received: by 2002:a05:600c:3d0c:: with SMTP id bh12mr4977151wmb.179.1643785748285;
- Tue, 01 Feb 2022 23:09:08 -0800 (PST)
+        with ESMTP id S241559AbiBBIDO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 03:03:14 -0500
+Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7A06C06173D;
+        Wed,  2 Feb 2022 00:03:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
+        s=the; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:
+        Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=seEgaVlgz/Vp+D6vXdUCwzahcTfzufMMD8/HyxzkVJk=; b=YipIM99ngR8F00+RNu2Nn/sD4t
+        6IdBK9yQHpPyr69n1jrcw+F3WlA2dibRL3Qv2e9PKjHc93gyHAF4F5619u32MhCf6+ulIzHncaVyF
+        ZIjFORI1C9hwiAINgBx0PFlUDkBPMqKeNjJJyVQoLel9wsebdMpVvQU3/yZ5cEwxqD/EqLUgVee1H
+        bk0E8uXIwWkNqSW2FU8YnhCE95NBRDpyt4VdsAKZPbTo5pgvvlLIAqA0R7SvYJgjQ0USLDrL/u9/V
+        WcGS0bEF9OO81qCe1TVI0SVvA9uhlVLU/YO/9AqNCbV14w36eXO12446cFY7b26tE0soL+0m0CG73
+        CwnuTENA==;
+Received: from noodles by the.earth.li with local (Exim 4.94.2)
+        (envelope-from <noodles@earth.li>)
+        id 1nFAbe-00ClBn-TT; Wed, 02 Feb 2022 08:03:10 +0000
+Date:   Wed, 2 Feb 2022 08:03:10 +0000
+From:   Jonathan McDowell <noodles@earth.li>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 03/17] ARM: dts: qcom: add missing rpm regulators and
+ cells for ipq8064
+Message-ID: <Yfo6vgdTR4ZLGZZ4@earth.li>
+References: <20220118012051.21691-1-ansuelsmth@gmail.com>
+ <20220118012051.21691-4-ansuelsmth@gmail.com>
+ <Yfhmum8BnB1JIALP@builder.lan>
+ <YflGGM45F3TqERNj@earth.li>
+ <YfmtHFfW00Qr2cLc@Ansuel-xps.localdomain>
 MIME-Version: 1.0
-Sender: donnalouisemchince@gmail.com
-Received: by 2002:a5d:6dc8:0:0:0:0:0 with HTTP; Tue, 1 Feb 2022 23:09:07 -0800 (PST)
-From:   DINA MCKENNA <dinamckennahowley@gmail.com>
-Date:   Wed, 2 Feb 2022 07:09:07 +0000
-X-Google-Sender-Auth: iN0NEfy766VhZNVK6qGw0RF13ZM
-Message-ID: <CA+4RuvtteOh6yjWT_knB0ZRHm+6ZJFWhBXpJrz+XYT7nfBPQ7A@mail.gmail.com>
-Subject: Calvary greetings.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YfmtHFfW00Qr2cLc@Ansuel-xps.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello my dear,
+On Tue, Feb 01, 2022 at 10:58:52PM +0100, Ansuel Smith wrote:
+> On Tue, Feb 01, 2022 at 02:39:20PM +0000, Jonathan McDowell wrote:
+> > On Mon, Jan 31, 2022 at 04:46:18PM -0600, Bjorn Andersson wrote:
+> > > On Mon 17 Jan 19:20 CST 2022, Ansuel Smith wrote:
+> > > 
+> > > > Add cells definition for rpm node and add missing regulators for the 4
+> > > > regulator present on ipq8064. There regulators are controlled by rpm and
+> > > > to correctly works gsbi4_i2c require to be NEVER disabled or rpm will
+> > > > reject any regulator change request.
+> > > > 
+> > > 
+> > > Is the SMB208 mandatory on all ipq8064 designs, or should this be pushed
+> > > out to the device dts?
+> > 
+> > It's not; the RB3011 uses a different regulator (a TPS563900).
+> >
+> 
+> Fact is that that's a special case. We have 20 devices based on ipq806x
+> and they all have smb208 regulators.
 
- I sent this mail praying it will get to you in a good condition of
-health, since I myself are in a very critical health condition in
-which I sleep every night without knowing if I may be alive to see the
-next day. I bring peace and love to you. It is by the grace of God, I
-had no choice than to do what is lawful and right in the sight of God
-for eternal life and in the sight of man, for witness of God=E2=80=99s merc=
-y
-and glory upon my life. I am Mrs. Dina. Howley Mckenna, a widow. I am
-suffering from a long time brain tumor, It has defiled all forms of
-medical treatment, and right now I have about a few months to leave,
-according to medical experts. The situation has gotten complicated
-recently with my inability to hear proper, am communicating with you
-with the help of the chief nurse herein the hospital, from all
-indication my conditions is really deteriorating and it is quite
-obvious that, according to my doctors they have advised me that I may
-not live too long, Because this illness has gotten to a very bad
-stage. I plead that you will not expose or betray this trust and
-confidence that I am about to repose on you for the mutual benefit of
-the orphans and the less privilege. I have some funds I inherited from
-my late husband, the sum of ($ 11,000,000.00, Eleven Million Dollars).
-Having known my condition, I decided to donate this fund to you
-believing that you will utilize it the way i am going to instruct
-herein. I need you to assist me and reclaim this money and use it for
-Charity works therein your country  for orphanages and gives justice
-and help to the poor, needy and widows says The Lord." Jeremiah
-22:15-16.=E2=80=9C and also build schools for less privilege that will be
-named after my late husband if possible and to promote the word of God
-and the effort that the house of God is maintained. I do not want a
-situation where this money will be used in an ungodly manner. That's
-why I'm taking this decision. I'm not afraid of death, so I know where
-I'm going. I accept this decision because I do not have any child who
-will inherit this money after I die.. Please I want your sincerely and
-urgent answer to know if you will be able to execute this project for
-the glory of God, and I will give you more information on how the fund
-will be transferred to your bank account. May the grace, peace, love
-and the truth in the Word of God be with you and all those that you
-love and care for.
+Indeed, it's another Mikrotik special unfortunately (I haven't managed
+to get the SMEM driver to work on the platform either).
 
-I'm waiting for your immediate reply..
+> Is the TPS563900 also controlled by rpm?
 
-May God Bless you,
-Mrs. Dina. Howley Mckenna.
+AFAICT it's CPU controlled via I2C. It looks like one output is shared
+for the CPU cores etc and the other is for the NSS cores, rather than
+the full control the smb208 offers.
+
+> Anyway should we use a dedicated dtsi to declare the correct regulators?
+
+I've got no problem with smb208 being the default, but please add any
+appropriate disabling of it to the RB3011 DTS.
+
+> > > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > > > ---
+> > > >  arch/arm/boot/dts/qcom-ipq8064.dtsi | 35 +++++++++++++++++++++++++++++
+> > > >  1 file changed, 35 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> > > > index 094125605bea..824cf13dd037 100644
+> > > > --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> > > > +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> > > > @@ -829,10 +829,45 @@ rpm: rpm@108000 {
+> > > >  			clocks = <&gcc RPM_MSG_RAM_H_CLK>;
+> > > >  			clock-names = "ram";
+> > > >  
+> > > > +			#address-cells = <1>;
+> > > > +			#size-cells = <0>;
+> > > > +
+> > > >  			rpmcc: clock-controller {
+> > > >  				compatible = "qcom,rpmcc-ipq806x", "qcom,rpmcc";
+> > > >  				#clock-cells = <1>;
+> > > >  			};
+> > > > +
+> > > > +			regulators {
+> > > > +				compatible = "qcom,rpm-smb208-regulators";
+> > > > +
+> > > > +				smb208_s1a: s1a {
+> > > > +					regulator-min-microvolt = <1050000>;
+> > > > +					regulator-max-microvolt = <1150000>;
+> > > > +
+> > > > +					qcom,switch-mode-frequency = <1200000>;
+> > > > +				};
+> > > > +
+> > > > +				smb208_s1b: s1b {
+> > > > +					regulator-min-microvolt = <1050000>;
+> > > > +					regulator-max-microvolt = <1150000>;
+> > > > +
+> > > > +					qcom,switch-mode-frequency = <1200000>;
+> > > > +				};
+> > > > +
+> > > > +				smb208_s2a: s2a {
+> > > > +					regulator-min-microvolt = < 800000>;
+> > > > +					regulator-max-microvolt = <1250000>;
+> > > > +
+> > > > +					qcom,switch-mode-frequency = <1200000>;
+> > > > +				};
+> > > > +
+> > > > +				smb208_s2b: s2b {
+> > > > +					regulator-min-microvolt = < 800000>;
+> > > > +					regulator-max-microvolt = <1250000>;
+> > > > +
+> > > > +					qcom,switch-mode-frequency = <1200000>;
+> > > > +				};
+> > > > +			};
+> > > >  		};
+> > > >  
+> > > >  		tcsr: syscon@1a400000 {
+> > > > -- 
+> > > > 2.33.1
+
+J.
+
+-- 
+/-\                             | 101 things you can't have too much
+|@/  Debian GNU/Linux Developer |         of : 13 - Holidays.
+\-                              |
