@@ -2,120 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 569384A6F70
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 12:03:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 745914A6F95
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 12:07:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232537AbiBBLDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 06:03:08 -0500
-Received: from relay06.th.seeweb.it ([5.144.164.167]:36209 "EHLO
-        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbiBBLDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 06:03:07 -0500
-Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 76B593F7DF;
-        Wed,  2 Feb 2022 12:03:06 +0100 (CET)
-Date:   Wed, 2 Feb 2022 12:03:05 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Subbaraman Narayanamurthy <subbaram@codeaurora.org>
-Subject: Re: [PATCH v10 2/2] leds: Add driver for Qualcomm LPG
-Message-ID: <20220202110305.gbow3e3stolb67v5@SoMainline.org>
-References: <20211010043912.136640-1-bjorn.andersson@linaro.org>
- <20211010043912.136640-2-bjorn.andersson@linaro.org>
- <YXL0DyyPkS4/wfB7@ripper>
- <20211027211928.tjybwy2lokj6eoun@SoMainline.org>
- <YfSPYkbTXMOUGKkG@yoga>
+        id S240384AbiBBLHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 06:07:37 -0500
+Received: from mail-ua1-f46.google.com ([209.85.222.46]:35605 "EHLO
+        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229552AbiBBLHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 06:07:36 -0500
+Received: by mail-ua1-f46.google.com with SMTP id m90so18436359uam.2;
+        Wed, 02 Feb 2022 03:07:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+pDjZAPvO1sIIYvozittsGRvtSXtsnf48hAKVptlQVE=;
+        b=hZ7ngDcz+S6iWjzqBnlIGNeNUYGBLQ8PwawI8rxveuSv2Ay1O3+JEeG7OB+aUGvf2s
+         DL71mJMRQTMtz4bxhHFPqIe+NmUwAUQ/XfZXTeSq84y8RQHARw9qmAYT/VHNcvUtPwbr
+         tPTbW0wPd9aRUzdZuZZAmUCjyzPikpflqjt7BLuFr2jMsp03a+fal4CcHMOFGL32M5FN
+         5tXwg9/2nXdkOjPtyJtDDh3K824gqTSjyQm9iZQoMIoQHjkpbm92EIQP2ndiQ9KlPgoJ
+         f56faiGqm/Nr++Gv7OMAqlWH7RSBVGOn9+cnO7pVe3CZ4pI8dSUUpHwggGrsd+owwXhE
+         fYMA==
+X-Gm-Message-State: AOAM532JBMLINSsLv+OCkFxJPI287ZEqb2DwabfTndoGMlcHjvtUsn7C
+        5x+3u0to3QezEDmeQiRgLi3+QTT4/dRBoQ==
+X-Google-Smtp-Source: ABdhPJzz3TsZCxklHNPKGtKUCzNgvf3BWiniYNby0f1PYMQwH2gdrbeNPU+eIoGo1aBTtmWugIHsZA==
+X-Received: by 2002:ab0:6946:: with SMTP id c6mr11669071uas.134.1643800055972;
+        Wed, 02 Feb 2022 03:07:35 -0800 (PST)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id x7sm5508898vkg.31.2022.02.02.03.07.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Feb 2022 03:07:35 -0800 (PST)
+Received: by mail-ua1-f41.google.com with SMTP id p26so10150112uaa.11;
+        Wed, 02 Feb 2022 03:07:35 -0800 (PST)
+X-Received: by 2002:ab0:44c:: with SMTP id 70mr12371172uav.78.1643800055391;
+ Wed, 02 Feb 2022 03:07:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YfSPYkbTXMOUGKkG@yoga>
+References: <20220125125602.4144793-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220125125602.4144793-3-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdXmievc1U0PXfv01wsibUs+B+5U6kPbcE8=v2GKTvFbTA@mail.gmail.com> <TYBPR01MB5341422A4238B937BFEBD0D6D8279@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYBPR01MB5341422A4238B937BFEBD0D6D8279@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 2 Feb 2022 12:07:24 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUkB6+kYWewxHHSkgapioiu2s+A=32me72H4+tQU0+bDA@mail.gmail.com>
+Message-ID: <CAMuHMdUkB6+kYWewxHHSkgapioiu2s+A=32me72H4+tQU0+bDA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] iommu/ipmmu-vmsa: Add support for R-Car Gen4
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-01-28 18:50:42, Bjorn Andersson wrote:
-> On Wed 27 Oct 16:19 CDT 2021, Marijn Suijten wrote:
-> 
-> > Hi Bjorn,
-> > 
-> > On 2021-10-22 10:25:35, Bjorn Andersson wrote:
-> > > On Sat 09 Oct 21:39 PDT 2021, Bjorn Andersson wrote:
-> > > 
-> > > > The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
-> > > > PMICs from Qualcomm. These PMICs typically comes with 1-8 LPG instances,
-> > > > with their output being routed to various other components, such as
-> > > > current sinks or GPIOs.
-> > > > 
-> > > > Each LPG instance can operate on fixed parameters or based on a shared
-> > > > lookup-table, altering the duty cycle over time. This provides the means
-> > > > for hardware assisted transitions of LED brightness.
-> > > > 
-> > > > A typical use case for the fixed parameter mode is to drive a PWM
-> > > > backlight control signal, the driver therefor allows each LPG instance
-> > > > to be exposed to the kernel either through the LED framework or the PWM
-> > > > framework.
-> > > > 
-> > > > A typical use case for the LED configuration is to drive RGB LEDs in
-> > > > smartphones etc, for which the driver support multiple channels to be
-> > > > ganged up to a MULTICOLOR LED. In this configuration the pattern
-> > > > generators will be synchronized, to allow for multi-color patterns.
-> > > > 
-> > > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > > ---
-> > > 
-> > > Any feedback on this?
-> > 
-> > I asked in #linux-msm whether anything is wrong with the patterns,
-> > since my Sony Discovery (sdm630 with a pm660l) blinks way quicker on a
-> > pattern that's supposed to stay on for 1s and off for 1s:
-> > 
-> >     echo "0 1000 255 1000" > /sys/class/leds/rgb\:status/hw_pattern
-> > 
-> > It however seems to be broken in the same way on an older version now
-> > (this might be v9 or v8) which I don't remember to be the case.  Can you
-> > double-check if this is all working fine on your side?  If so, I'll have
-> > to find some time to debug it on my end.
-> > 
-> 
-> I had missed the fact that LPG_RAMP_DURATION_REG is two registers for
-> msg and lsb, for a total of 9 bits of duration. So what you saw was
-> probably ticking at 232ms.
-> 
-> Note though that the pattern uses the last time as "high pause", so I
-> expect that you should have seen 232 ms of off, followed by 464ms of
-> light.
+Hi Shimoda-san,
 
-Visual inspection seems to confirm those numbers indeed!
+On Wed, Feb 2, 2022 at 11:48 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> > From: Geert Uytterhoeven, Sent: Wednesday, February 2, 2022 6:24 PM
+> > On Tue, Jan 25, 2022 at 6:36 PM Yoshihiro Shimoda
+> > <yoshihiro.shimoda.uh@renesas.com> wrote:
+> > > Add support for R-Car Gen4 like r8a779f0 (R-Car S4-8). The IPMMU
+> > > hardware design of r8a779f0 is the same as r8a779a0. So, rename
+> > > "r8a779a0" to "rcar_gen4".
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/drivers/iommu/ipmmu-vmsa.c
+> > > +++ b/drivers/iommu/ipmmu-vmsa.c
+> >
+> > > @@ -743,7 +744,7 @@ static bool ipmmu_device_is_allowed(struct device *dev)
+> > >         unsigned int i;
+> > >
+> > >         /*
+> > > -        * R-Car Gen3 and RZ/G2 use the allow list to opt-in devices.
+> > > +        * R-Car Gen3, Gen4 and RZ/G2 use the allow list to opt-in devices.
+> > >          * For Other SoCs, this returns true anyway.
+> > >          */
+> > >         if (!soc_device_match(soc_needs_opt_in))
+> >
+> > There are a few more references to "Gen3" that can be extended.
+>
+> I'm afraid, but I could not understand this mean.
 
-> I've fixed this for v11, both rejecting invalid input and writing out
-> all 9 bits.
+I'm sorry. I mean comments that currently say "Gen3", while they are
+applicable to R-Car Gen4, too. I think it would be good to update them
+to "Gen3/4".
 
-Doesn't that 512ms limit, together with using only the last value for
-hi_pause (and not the first value for lo_pause) force users to write
-patterns in a certain way which is not easily conveyed to the caller
-except by reading the comment in the driver?  I'd guess lo_pause can be
-used even if not in ping-pong mode, it should just hold at the first
-value for the given duration?
+Gr{oetje,eeting}s,
 
-(That said hw_pattern is anyway already riddled with device-specific
-information, such as only having one `delta_t` which functions as the
-step size for every entry, and with the change above would need to be
-sourced from another step that's not the first.)
+                        Geert
 
-Bit of a stretch, but perhaps worth noting anyway: should this be
-written in documentation somewhere, together with pattern examples and
-their desired outcome to function as testcases too?
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-- Marijn
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
