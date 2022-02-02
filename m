@@ -2,175 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 387734A7AAE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 22:55:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 756114A7AB2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 23:01:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347476AbiBBVzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 16:55:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60544 "EHLO
+        id S1347737AbiBBWBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 17:01:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347728AbiBBVzy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:55:54 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94555C06173D
-        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 13:55:54 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id s6-20020a0568301e0600b0059ea5472c98so751006otr.11
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 13:55:54 -0800 (PST)
+        with ESMTP id S231777AbiBBWBx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 17:01:53 -0500
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE3C0C061714
+        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 14:01:52 -0800 (PST)
+Received: by mail-qt1-x82c.google.com with SMTP id p14so596151qtx.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 14:01:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=2HuhD4BMwOpT0StEKJZI/a0PbP6Mi96M+kUVshgnr/o=;
-        b=aNCJxs4oY7GADhu6PAbbAp8A3qFy94oEH52OJrJAf6y5xuX9bcFTi3Q/ZTVLF3kSd3
-         SFFRG/WRM+gt8VKGmjxGvJEZgZf61SvDFC7Qm8QdaQCALQvpVYr8om6Qxxn87U7+Uk7G
-         XAuUzLEAZ57FPAjhfAPjkvFQhkxRfnK4jcltQ/LkbVw9+02CITJ1hcyAQd3Lfm+U4VdL
-         PavKxgRCOB4YHWSBZYO09eWdXIaS/F8FBpjEz8fWJOCcyUR37QchAHXvSLMuw57FG4zu
-         dpubgHPp9tT0zJPh0SoAJs5V5NwIDsyTG0xdsmJbIQ5BpLkDqH/XpbQ6gNS0sQpRPQGG
-         f2Tg==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ASt2vrZbBYwRau7lx5PiBVFL+QKvgxL2m71DDDersUo=;
+        b=BYjh9wZfjVMx0RmMHWRDhp+84JGAcHZltZ1KBS0+5uPaBpf5HDt99Ig703HWUmRFgS
+         1BC7GEdv/uPWMBJwyqbtNKVErrnGXS+UknOCu4xpCyZ8Gw5Uq8M9JV+NfENZGITnYXg2
+         JRM4oz8H1CD0DAIiwgfXo0QWCLUjU604/8b9o8c9cxnbtltTXm/Biypd9VYuFBrJfWJ4
+         yRfzRCMHwcaD1/om0aW1vDkh5Chp2iSU5v0oRauXQldIhYb8jMcNkNJmEwdjBI8cfth9
+         K3FbQcH74o7Tw/SDrfN8wucZEhNjtYAiryGrTFcdNRNBYyR4d7l3D+0PZayOMRncu8yn
+         IW9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2HuhD4BMwOpT0StEKJZI/a0PbP6Mi96M+kUVshgnr/o=;
-        b=c5rEPwkkO/LMNyZn2LSZ3lcNiYS4RSWtI3aL1hNUjOfX/GZHPcFMSOmzb/3qMITM/b
-         tH9FgzXqtGeXwGIXJpC9r5ClOckEcWNEezAGIaqOHg3LboG4oUireKV0wNpufb41GcQM
-         5mIbwsAAjC7/923sXtyRNGL44mInjMJ8i6fz4DpzCk8F1lRRy7sEgStCdqML1tlleXSi
-         GX5q1h0hLLbjFvl/H3vWKrLk0Ft1+DBtNzfkHjU+H6t78UHg7zE4WwoPI3du+HMx3gUX
-         HFp9dIA4NL8+tcbEmQRpHlbh/PQAl4E8PEoNQVnIICR72lvPpSWTiciR414wcIc7TE9g
-         7fkw==
-X-Gm-Message-State: AOAM530xAJ/uouOZpFw5dN+iBvg7DjIl+/u0+vCTuW8EcoifHwweQ/D1
-        5UPlq8I4PuLHiXUBz9X+ftgqWQeQrsPLjg==
-X-Google-Smtp-Source: ABdhPJw0rMjfqQN4DfYNpGSTiQviBwFuellzRA/PGvVSnJLYJLZ2E5dqc5U7wnfsrlGuC9Wv3cU+wg==
-X-Received: by 2002:a05:6830:3145:: with SMTP id c5mr5977160ots.380.1643838953582;
-        Wed, 02 Feb 2022 13:55:53 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id a19sm15587772otf.27.2022.02.02.13.55.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Feb 2022 13:55:52 -0800 (PST)
-Date:   Wed, 2 Feb 2022 13:56:10 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Subbaraman Narayanamurthy <subbaram@codeaurora.org>
-Subject: Re: [PATCH v10 2/2] leds: Add driver for Qualcomm LPG
-Message-ID: <Yfr9+jvGIyB2ynMS@ripper>
-References: <20211010043912.136640-1-bjorn.andersson@linaro.org>
- <20211010043912.136640-2-bjorn.andersson@linaro.org>
- <YXL0DyyPkS4/wfB7@ripper>
- <20211027211928.tjybwy2lokj6eoun@SoMainline.org>
- <YfSPYkbTXMOUGKkG@yoga>
- <20220202110305.gbow3e3stolb67v5@SoMainline.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ASt2vrZbBYwRau7lx5PiBVFL+QKvgxL2m71DDDersUo=;
+        b=gnbt0zh9UsDuXPrKeJzohx1KX70fk6icLJ22aD91vPE4kelBkQc9EPMp/hxGQXc/FL
+         myGVAPhXQY5VnH/Yvsu3f00UAr7p7SBOdOXgEF2VSYMUaEBfHDkO1dzuodPTn8yTVGmt
+         jS56r97qRseX/6gmCDHwFHsCM/KKFMg+S0HEsWDCi39CCP7bxlup0Nt6B90lrotGU2py
+         yp9s3gJ3S+fc/tfpFnIpWeNl8epy3E2/rkyDFZIWPDHwHKjFFuDFoi4C4WtMWepMNBr9
+         TGi8vaaRSTOR+bQZ/hO2g53lhcLrNpO5KOohcIJ0JmrVSv2kURFLPOGM/q3lPwcHh5W8
+         p+bQ==
+X-Gm-Message-State: AOAM532VLlLWV3bSW4XayyOcLgLl6eZJkve2VhqfV4pQCBMKkxgZ9FME
+        mJf1lQ1FKBG96UeTlz8rTZM=
+X-Google-Smtp-Source: ABdhPJwI9w105YjsyNpt/EnuDERS15GsU5qYgznzp/1nhvWMsFQ87wp8H1j0O2xsi52/40jZRMo2Dg==
+X-Received: by 2002:a05:622a:1714:: with SMTP id h20mr24800824qtk.92.1643839311941;
+        Wed, 02 Feb 2022 14:01:51 -0800 (PST)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id u6sm13159115qki.136.2022.02.02.14.01.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Feb 2022 14:01:51 -0800 (PST)
+Subject: Re: Device Tree runtime unit tests: Harmonisation
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Anders Roxell <anders.roxell@linaro.org>
+References: <CA+G9fYubR5A4f_0hDN1=Jaj_A-0GhMAcTc+TfJb5sgf0hRik8Q@mail.gmail.com>
+ <0b6ab190-4c35-94fc-6565-6382d461ae84@gmail.com>
+ <CAL_JsqLnv_=mcs+pAXRArSg7uccPFpDhcbBOpHGaWwjOZdt9DQ@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <a6c785b1-2382-d6f5-d57b-d7ed3610050a@gmail.com>
+Date:   Wed, 2 Feb 2022 16:01:50 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220202110305.gbow3e3stolb67v5@SoMainline.org>
+In-Reply-To: <CAL_JsqLnv_=mcs+pAXRArSg7uccPFpDhcbBOpHGaWwjOZdt9DQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 02 Feb 03:03 PST 2022, Marijn Suijten wrote:
-
-> On 2022-01-28 18:50:42, Bjorn Andersson wrote:
-> > On Wed 27 Oct 16:19 CDT 2021, Marijn Suijten wrote:
-> > 
-> > > Hi Bjorn,
-> > > 
-> > > On 2021-10-22 10:25:35, Bjorn Andersson wrote:
-> > > > On Sat 09 Oct 21:39 PDT 2021, Bjorn Andersson wrote:
-> > > > 
-> > > > > The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
-> > > > > PMICs from Qualcomm. These PMICs typically comes with 1-8 LPG instances,
-> > > > > with their output being routed to various other components, such as
-> > > > > current sinks or GPIOs.
-> > > > > 
-> > > > > Each LPG instance can operate on fixed parameters or based on a shared
-> > > > > lookup-table, altering the duty cycle over time. This provides the means
-> > > > > for hardware assisted transitions of LED brightness.
-> > > > > 
-> > > > > A typical use case for the fixed parameter mode is to drive a PWM
-> > > > > backlight control signal, the driver therefor allows each LPG instance
-> > > > > to be exposed to the kernel either through the LED framework or the PWM
-> > > > > framework.
-> > > > > 
-> > > > > A typical use case for the LED configuration is to drive RGB LEDs in
-> > > > > smartphones etc, for which the driver support multiple channels to be
-> > > > > ganged up to a MULTICOLOR LED. In this configuration the pattern
-> > > > > generators will be synchronized, to allow for multi-color patterns.
-> > > > > 
-> > > > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > > > ---
-> > > > 
-> > > > Any feedback on this?
-> > > 
-> > > I asked in #linux-msm whether anything is wrong with the patterns,
-> > > since my Sony Discovery (sdm630 with a pm660l) blinks way quicker on a
-> > > pattern that's supposed to stay on for 1s and off for 1s:
-> > > 
-> > >     echo "0 1000 255 1000" > /sys/class/leds/rgb\:status/hw_pattern
-> > > 
-> > > It however seems to be broken in the same way on an older version now
-> > > (this might be v9 or v8) which I don't remember to be the case.  Can you
-> > > double-check if this is all working fine on your side?  If so, I'll have
-> > > to find some time to debug it on my end.
-> > > 
-> > 
-> > I had missed the fact that LPG_RAMP_DURATION_REG is two registers for
-> > msg and lsb, for a total of 9 bits of duration. So what you saw was
-> > probably ticking at 232ms.
-> > 
-> > Note though that the pattern uses the last time as "high pause", so I
-> > expect that you should have seen 232 ms of off, followed by 464ms of
-> > light.
+On 2/2/22 2:29 PM, Rob Herring wrote:
+> On Wed, Feb 2, 2022 at 12:38 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>
+>> On 2/2/22 5:31 AM, Naresh Kamboju wrote:
+>>> Linaro started doing Linux kernel Functional Validation (LKFT).
+>>> As part of LKFT recently we have enabled CONFIG_OF_UNITTEST=y in our
+>>> daily test CI.
+>>>
+>>> The output of the test looks as below. The current problem is that we
+>>> have a hard time to see (grep) pass/fail for each individual test. We
+>>> only see a summary at the end with x pass and y fails.
+>>
+>> The FAIL messages are printed at loglevel KERN_ERR.  The pass messages
+>> are printed at loglevel KERN_DEBUG.  To see the pass messages, set the
+>> loglevel to allow debug output.
 > 
-> Visual inspection seems to confirm those numbers indeed!
+> That alone is not enough. Unless there's a DEBUG define, the
+> pr_debug() is going to print nothing.
+
+I almost mentioned that detail, but decided I didn't need to given my
+reference below to dynamic debug.
+
 > 
-> > I've fixed this for v11, both rejecting invalid input and writing out
-> > all 9 bits.
+>> Unfortunately this can add lots of debug output, unless you use dynamic
+>> debug to only enable debug for drivers/of/unittest.o.  There are only
+>> a few other pr_debug() messages in unittest.
 > 
-> Doesn't that 512ms limit, together with using only the last value for
-> hi_pause (and not the first value for lo_pause) force users to write
-> patterns in a certain way which is not easily conveyed to the caller
-> except by reading the comment in the driver?  I'd guess lo_pause can be
-> used even if not in ping-pong mode, it should just hold at the first
-> value for the given duration?
+> Dynamic debug is one option. Another would be a module param to enable
+> running the tests
+
+I could implement that.
+
+But that does not address the issue of the individual test pass messages
+being printed at loglevel KERN_DEBUG.  Are you thinking I should add a
+second module param that would enable printing the test pass messages
+at the same loglevel as the test fail messages?
+
+I'm not up to date on module params.  I'm assuming that I can pass these
+new params on the boot command line if I build unittest as a built-in
+instead of as a module.
+
+> Then it can be built, but has to be explicitly
+> enabled at boot time.
+
+> A 3rd option is making it work as a module, then
+> it's run when loaded. (That was the original plan.)
 > 
-> (That said hw_pattern is anyway already riddled with device-specific
-> information, such as only having one `delta_t` which functions as the
-> step size for every entry, and with the change above would need to be
-> sourced from another step that's not the first.)
+>> I think a better solution would be to add a config option, something
+>> like CONFIG_OF_UNITTEST_VERBOSE, that would print the pass messages
+>> at loglevel KERN_ERR.  I'll submit a patch for that and see what the
+>> review responses are.
 > 
+> Nak for another config option.
 
-Perhaps we should clarify the single delta_t by requiring all those
-delta_t to be the same, rather than ignoring their value.
+Because?
 
-I.e. we make the ping-pong pattern:
+> 
+>>> We would like to get your opinion of how hard it would be to include
+>>> that in the output per test. Maybe like TAP version 14?
+>>> Another question would be how hard do you think it would be to rewrite
+>>> this to a kunit test, if even applicable? I have provided the kunit
+>>> output links at the end of this email.
+>>
+>> Devicetree unittests were suggested as a good candidate as a first
+>> test to convert to kunit when kunit was implemented.  Brendan tried
+>> to convert it, and we quickly saw that it was not a good candidate.
+>> Devicetree unittests do not fit the unit test mold; they are a very
+>> different creature.  Brendan has a good term for this type of test
+>> (Brendan, was it "acceptance" test?).
+> 
+> I thought you ended up agreeing with using kunit? Whatever you want to
 
-<value> <lopause+t> ... <value[N/2-1]> <t> <value[N/2]> <hipause+t> <value[N/2-1]> <t> ... <value> <t>
+Not the kunit _framework_.
 
-And for non-ping-pong:
+> call the DT tests, there's not really any good reason to do our own
+> pass/fail messages.
 
-<value> <lopause+t> <value> <t> ... <value> <t> <value> <hipause + t>
+Yes, I would like to change the pass fail messages to follow the same
+standard as kunit, so that the test frameworks could easily process
+the unittest results.  That has been on my todo list.
 
-
-What do you think?
-
-> Bit of a stretch, but perhaps worth noting anyway: should this be
-> written in documentation somewhere, together with pattern examples and
-> their desired outcome to function as testcases too?
+> 
+> Rob
+> .
 > 
 
-There's a comment in lpg_pattern_set() where I tried to capture this.
-
-I don't think it's worth documenting the behavior/structure away from
-the driver. But let's make sure it's captured properly there.
-
-Regards,
-Bjorn
