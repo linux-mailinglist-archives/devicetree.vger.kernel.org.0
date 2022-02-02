@@ -2,132 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 401C24A6B13
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 05:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACCD54A6B1E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 05:58:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243826AbiBBEv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 23:51:28 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:42098 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231474AbiBBEv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 23:51:27 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6B3AE6170A;
-        Wed,  2 Feb 2022 04:51:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 603D8C004E1;
-        Wed,  2 Feb 2022 04:51:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643777486;
-        bh=jAsmf+yg+yTEjfozNxKTPJAkY11OeZStMsb+udKaqnM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=qkm/nWUO6J9yVevumHHkYMrdh/l/btpaE1dGYxWOqAUHmlhoJcNPsQ5znOEC80PWS
-         FEAHHyBFTD2uIpsTj/b5qgkmp1h+h8VoII7oyMXQQ+qoLwhEE5lRv6t8UQdtBYRDEk
-         AyS6nh8FIhwkaAmFX7S5CGEPR3ChGscERPZZ2WtB143oympV9iOnhqXtH0jTsoG1U/
-         vNcoZfYlctdF2sjUgW7b+aYlx8t4lSoeKkKDdZk7yepCtTqg9lrJmttZ9oKPQyORwX
-         5Z+fmwlVJzeIAUkRD+7pw3bFDmCiJEWyaoyyACqMQyOO8K/0ADts0VbyMpsrtdDlFv
-         kH2+5ANxQE4Qg==
-Date:   Tue, 1 Feb 2022 20:51:25 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Joseph CHAMG <josright123@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
-        andrew@lunn.ch, leon@kernel.org
-Subject: Re: [PATCH v16, 2/2] net: Add dm9051 driver
-Message-ID: <20220201205125.54a28bca@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20220129164346.5535-3-josright123@gmail.com>
-References: <20220129164346.5535-1-josright123@gmail.com>
-        <20220129164346.5535-3-josright123@gmail.com>
+        id S244697AbiBBE6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 23:58:38 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:40643 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S244707AbiBBE6e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 23:58:34 -0500
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 8823C5C0184;
+        Tue,  1 Feb 2022 23:58:33 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Tue, 01 Feb 2022 23:58:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm1; bh=2jdX86hShpK/UN
+        KvzNeZzw/hOLvdtjRA6nKA8Ea2EIU=; b=BBiHsZDxoK8fQp8v6Wip5Ct50N64+W
+        iNqUAxjX8lIiNWjQs9bu0YbEUbmPm/LerinAikcIepSZZ8b7WxiF14MNhZoKrfVq
+        OR5BRsNNuyG2ocUaEdRc+HquHEpcHrMNEbzmEmYlPbWwK1ogVyJt4hZOt28suNMQ
+        OKj+n4k/TVTE6ad+6p3hQSWBH9K25cwM+5VmA3ygwGd3zkk2swRdOLY0LI3fS/Eq
+        4bL/Fr9Cyr08VmxmnvIY2u/yjibQ+B46XpQOX2tgWz9e+ZZ6fd3gIRVYHV+66Lov
+        IRdMt0FD+Ztl656ZlWg63yAe7KUDbbz2JbS2RYoJU9w04fRwgYmvRIog==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=2jdX86hShpK/UNKvzNeZzw/hOLvdtjRA6nKA8Ea2E
+        IU=; b=XkjyV4kHYVT7Hqad2C9cl6hoL4PimBhA2g9sZmZZQ7HASxZZC2pyyeBml
+        surG0mQhNrSwGVORBPh/0mCJMALiCBbTCDsCIYpKQS+OKETS2LrjayIUr8ybfEJa
+        Jig93DRpUkzgSkWBoEXc02tk4Ea6diyBwiNZvLhgiOAV/W6Xc3RnHf7ZLTvxdbKH
+        vOKHKyvtolPMtWYE8izaFtNPOTTSWqd5lZk/UBvWjU109alZ25gF52pPTcdw0YrV
+        c/AMpL9bQOULHpLA0NgzBHzGqcn+VWxDOLXcAB6sgHfA8fOIqQ/0/EYsAHBvbF4u
+        jDu6P+xtdu55JL6Bt/v+EZ5nTlSFg==
+X-ME-Sender: <xms:eQ_6YdaeOcTQIwz2QmPsAr1ftXNNgUr_wOfWqGAikhPhzAHQKNhhKA>
+    <xme:eQ_6YUYBe5oB0Qo9nwZ2jLxLj2IR1PefvMz8Pbc0ds6uyFZH6q-zWr1U1YIDCNXzK
+    czaHNGBvwABkZrdmA>
+X-ME-Received: <xmr:eQ_6Yf_GbCFwlf2xX1EVRK3Uh3n0OCw7xR3brmR0aTO0J8czkn9gb2e9FIY-E0OwnTbr-ds7oO0CXHM_yYxTv6TgSDEu2UalpWjp6_Y-jDsrAqqMhPHRu_a9Jg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgeeggdejvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpefgveffteelheffjeeukedvkedviedtheevgeefkeehueeiieeuteeu
+    gfettdeggeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:eQ_6YbpAEdC9o9rsrqiCIs1Plfu69IqrUT_Qz-a10D9wkONOcFCBCw>
+    <xmx:eQ_6YYpvO0t_V1Ib1kkj8f84BoisJhxA65S8kRnuZRNRrctoYVzLiw>
+    <xmx:eQ_6YRQWo24zBiZfSFV-xi_BXWzGl07jMPeGBZakEJLek-CiHHtbQw>
+    <xmx:eQ_6YZdlRCp2NIjYfgJrgJowsKqGmMyeUSstjolH6vvkPesBxITq_g>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 1 Feb 2022 23:58:32 -0500 (EST)
+Subject: Re: [PATCH 3/5] Input: pinephone-keyboard - Build in the default
+ keymap
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
+        Ondrej Jirman <x@xff.cz>
+References: <20220129230043.12422-1-samuel@sholland.org>
+ <20220129230043.12422-4-samuel@sholland.org> <Yfg8crUuCLO0SxVj@google.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <cf0f85bb-c4ff-a061-ff66-289fe10511c5@sholland.org>
+Date:   Tue, 1 Feb 2022 22:58:32 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <Yfg8crUuCLO0SxVj@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 30 Jan 2022 00:43:46 +0800 Joseph CHAMG wrote:
-> +		rdptr = skb_put(skb, rxlen - 4);
-> +		ret = regmap_noinc_read(db->regmap_dm, DM_SPI_MRCMD, rdptr, rxlen);
-> +		if (ret) {
+Hi,
 
-should be counted as rx_error
+On 1/31/22 1:45 PM, Dmitry Torokhov wrote:
+> Hi Samuel,
+> 
+> On Sat, Jan 29, 2022 at 05:00:40PM -0600, Samuel Holland wrote:
+>> The PinePhone keyboard comes with removable keys, but there is a default
+>> layout labeled from the factory. Use this keymap if none is provided in
+>> the devicetree.
+> 
+> Why can't we require to have it in device tree?
 
-> +			dev_kfree_skb(skb);
-> +			return ret;
-> +		}
-> +
-> +		ret = regmap_write(db->regmap_dm, DM9051_ISR, 0xff); /* to stop mrcmd */
-> +		if (ret)
-> +			return ret;
+We can. I am okay with dropping this patch and making the properties required if
+that is preferred.
 
-leaks skb, also should be counted as rx_error
+The keyboard is supported on at least four device trees (three revisions of
+PinePhone, plus the PinePhone Pro), so moving the default keymap to the driver
+avoids duplicating that block of data in each device tree/overlay.
 
-> +		skb->protocol = eth_type_trans(skb, db->ndev);
-> +		if (db->ndev->features & NETIF_F_RXCSUM)
-> +			skb_checksum_none_assert(skb);
-> +		netif_rx_ni(skb);
-> +		db->ndev->stats.rx_bytes += rxlen;
-> +		db->ndev->stats.rx_packets++;
-> +		scanrr++;
-> +	} while (!ret);
-> +
-> +	return scanrr;
-> +}
-> +
-> +/* transmit a packet,
-> + * return value,
-> + *   0 - succeed
-> + *  -ETIMEDOUT - timeout error
-> + */
-> +static int dm9051_single_tx(struct board_info *db, u8 *buff, unsigned int len)
-> +{
-> +	int ret;
-> +
-> +	ret = dm9051_map_xmitpoll(db);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_noinc_write(db->regmap_dm, DM_SPI_MWCMD, buff, len);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_bulk_write(db->regmap_dmbulk, DM9051_TXPLL, &len, 2);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return regmap_write(db->regmap_dm, DM9051_TCR, TCR_TXREQ);
-> +}
-> +
-> +static int dm9051_loop_tx(struct board_info *db)
-> +{
-> +	struct net_device *ndev = db->ndev;
-> +	int ntx = 0;
-> +	int ret;
-> +
-> +	while (!skb_queue_empty(&db->txq)) {
-> +		struct sk_buff *skb;
-> +
-> +		skb = skb_dequeue(&db->txq);
-> +		if (skb) {
-> +			ntx++;
-> +			ret = dm9051_single_tx(db, skb->data, skb->len);
-> +			dev_kfree_skb(skb);
-> +			if (ret < 0)
-> +				return 0;
-
-Should be counted as tx error?
-
-> +			ndev->stats.tx_bytes += skb->len;
-> +			ndev->stats.tx_packets++;
-> +		}
-> +
-> +		if (netif_queue_stopped(ndev) &&
-> +		    (skb_queue_len(&db->txq) < DM9051_TX_QUE_LO_WATER))
-> +			netif_wake_queue(ndev);
-> +	}
-> +
-> +	return ntx;
-
+Regards,
+Samuel
