@@ -2,94 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 902BA4A7A00
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 22:07:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85DCA4A7A14
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 22:14:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347403AbiBBVG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 16:06:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49010 "EHLO
+        id S237316AbiBBVN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 16:13:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241103AbiBBVG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:06:26 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91DCDC061714;
-        Wed,  2 Feb 2022 13:06:26 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9FEB72F3;
-        Wed,  2 Feb 2022 22:06:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1643835983;
-        bh=kAgJCcK6S3DpuWQW4M0Qtks0xL7Wq1FZNMArkgnQQjo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mTMYJIpyA5Crpsg7VCHJPOUqZ9mbVVeHz92oz3n8tg8IIjOGLViwJh6nPlbPTfewi
-         JEzcXYmR3U7Qhsq6ipu5BEcdJrij3GTOxv8kPdrHy19qELjJgXSqAFKQJZWo0AZJsf
-         TfHIUPdgX6rDISB16rk5QITj/OcKPKY6rX8Uhr/M=
-Date:   Wed, 2 Feb 2022 23:06:00 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-Cc:     dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
-        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
-        tomi.valkeinen@ideasonboard.com
-Subject: Re: [RFC PATCH v3 01/11] media: v4l: Add V4L2-PIX-FMT-Y12P format
-Message-ID: <YfryOKmX+Qc6WYce@pendragon.ideasonboard.com>
-References: <20220202175639.149681-1-jeanmichel.hautbois@ideasonboard.com>
- <20220202175639.149681-2-jeanmichel.hautbois@ideasonboard.com>
+        with ESMTP id S239968AbiBBVNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:13:55 -0500
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C304C061714;
+        Wed,  2 Feb 2022 13:13:55 -0800 (PST)
+Received: by mail-qt1-x835.google.com with SMTP id y8so424948qtn.8;
+        Wed, 02 Feb 2022 13:13:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=aKbhLaruFzJihRr6tuHWqUwiyv5AacGBfXx3Ff7B0io=;
+        b=SYedvhKztxYN6/73vqzNbvu0Qr5H5hpvoKUwVsBTwGsvFLq1GKGs5oF77oWeMy1gtR
+         17RhhPxDJRo/NdyISTDSIRI84kFh9x1D7x5M2AFL5lE4MbIwN3H7z+rCsPHiyXGLgutB
+         Tv9wbPZUtLpfcFYANRdDAlsIWXzVX0fG6Y9i+o+HIHoGPAH19h5yjZuuf/vpf/29MY7x
+         zEjRwyoQgzUhTwtVQhyLkWZfXCY6FaS+wcfgnU2DXEB8UtrVj4x2FbPE4Cq2RHXf38Np
+         FgBiMBqrAM74b+jQIv1f0AhXr3LqMAiDrUex57Ze6sVUDvkISJAHqSu6eYdWwUrlFL1X
+         s8nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=aKbhLaruFzJihRr6tuHWqUwiyv5AacGBfXx3Ff7B0io=;
+        b=0PDyigdySpBSHsn7i3U8JBMyUg1cRmmkC5bqOp5BnpC90s3Z7NuCjTbI+g8ri8LtkE
+         LcRJYh/GJmOSQhqCGg87Un1uG7xI1nP5WhFnKbp+ePXE/ZGGpu2t0vuzBUNT18xma8LL
+         oJikVmp1utAatxkJI4Rxp3lsMg8J1Rv4DXERUTJv+32dhcV+Vb3wQG1rzCuAKusMlvOk
+         VvwT/UtG9wvMjz7uuZ/tHGmwA0sW0zLuAUyrRtVlkheTpeANYLKN7CBi36qR2AuemiCD
+         pik9uWzIfzRkcP/MCNCXn9emrZ6vuZlN/C0aRwS85XZMnfFqL3vKNFAyy8JceqXifOu8
+         HOwA==
+X-Gm-Message-State: AOAM531lF61k0/Up7lG0BMX/SEqvDgxtrzcUdrlA5X8egw7OqvbTXCVP
+        FEA0ku8ZkE5UUXwZOcnORXJqEXgpxqA=
+X-Google-Smtp-Source: ABdhPJxFYaSprVyP6Y01tg0cALKPhGKkbkgEwLvuLUBcJPUVAI8RstL1ZwH9nCGZN7X25+ma9ES2aw==
+X-Received: by 2002:ac8:7d55:: with SMTP id h21mr24439359qtb.331.1643836434380;
+        Wed, 02 Feb 2022 13:13:54 -0800 (PST)
+Received: from shaak (modemcable055.92-163-184.mc.videotron.ca. [184.163.92.55])
+        by smtp.gmail.com with ESMTPSA id w4sm13542192qko.123.2022.02.02.13.13.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Feb 2022 13:13:53 -0800 (PST)
+Date:   Wed, 2 Feb 2022 16:13:51 -0500
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Peter Rosin <peda@axentia.se>
+Cc:     jic23@kernel.org, andy.shevchenko@gmail.com, lars@metafoo.de,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v13 02/11] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
+ support
+Message-ID: <Yfr0D3MabWcGLOde@shaak>
+References: <20220130161101.1067691-1-liambeguin@gmail.com>
+ <20220130161101.1067691-3-liambeguin@gmail.com>
+ <8347a069-c36c-cb30-a0be-5b38f3c59b32@axentia.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220202175639.149681-2-jeanmichel.hautbois@ideasonboard.com>
+In-Reply-To: <8347a069-c36c-cb30-a0be-5b38f3c59b32@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jean-Michel,
-
-On Wed, Feb 02, 2022 at 06:56:29PM +0100, Jean-Michel Hautbois wrote:
-> This is a packed grey-scale image format with a depth of 12 bits per
-> pixel. Two consecutive pixels are packed into 3 bytes. The first 2 bytes
-> contain the 8 high order bits of the pixels, and the 3rd byte contains
-> the 4 least significants bits of each pixel, in the same order.
+Hi Peter,
+On Wed, Feb 02, 2022 at 06:04:25PM +0100, Peter Rosin wrote:
+> Hi!
 > 
-> Add the entry in userspace API, and document it.
-
-I only see documentation. At a quick glance this is caused by rebasing
-on top of the ISP support. Don't. Please rebase this correctly on top of
-linux-media/master with *only* the V4L2 streams series added to it, and
-send a v4. I'll skip review of v3.
-
-> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../userspace-api/media/v4l/pixfmt-yuv-luma.rst       | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> On 2022-01-30 17:10, Liam Beguin wrote:
+> > Some ADCs use IIO_VAL_INT_PLUS_{NANO,MICRO} scale types.
+> > Add support for these to allow using the iio-rescaler with them.
+> > 
+> > Signed-off-by: Liam Beguin <liambeguin@gmail.com>
+> > Reviewed-by: Peter Rosin <peda@axentia.se>
+> > ---
+> >  drivers/iio/afe/iio-rescale.c | 35 +++++++++++++++++++++++++++++++++++
+> >  1 file changed, 35 insertions(+)
+> > 
+> > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescale.c
+> > index 65832dd09249..f833eb38f8bb 100644
+> > --- a/drivers/iio/afe/iio-rescale.c
+> > +++ b/drivers/iio/afe/iio-rescale.c
+> > @@ -14,6 +14,7 @@
+> >  #include <linux/of_device.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/property.h>
+> > +#include <linux/units.h>
 > 
-> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-yuv-luma.rst b/Documentation/userspace-api/media/v4l/pixfmt-yuv-luma.rst
-> index 8ebd58c3588f..d37ce6027095 100644
-> --- a/Documentation/userspace-api/media/v4l/pixfmt-yuv-luma.rst
-> +++ b/Documentation/userspace-api/media/v4l/pixfmt-yuv-luma.rst
-> @@ -92,6 +92,17 @@ are often referred to as greyscale formats.
->        - ...
->        - ...
->  
-> +    * .. _V4L2-PIX-FMT-Y12P:
-> +
-> +      - ``V4L2_PIX_FMT_Y12P``
-> +      - 'Y12P'
-> +
-> +      - Y'\ :sub:`0`\ [11:4]
-> +      - Y'\ :sub:`1`\ [11:4]
-> +      - Y'\ :sub:`1`\ [3:0] Y'\ :sub:`0`\ [3:0]
-> +      - ...
-> +      - ...
-> +
->      * .. _V4L2-PIX-FMT-Y14:
->  
->        - ``V4L2_PIX_FMT_Y14``
+> This include should be moved to the first patch that uses stuff from
+> it.
 
--- 
-Regards,
+Some defines are used a bit further down in mult
 
-Laurent Pinchart
+(copied back from the original message):
+> >	case IIO_VAL_INT_PLUS_NANO:
+> >	case IIO_VAL_INT_PLUS_MICRO:
+> >		mult = scale_type == IIO_VAL_INT_PLUS_NANO ? GIGA : MEGA;
+
+> Cheers,
+> Peter
+> 
+> *snip*
+
+Cheers,
+Liam
