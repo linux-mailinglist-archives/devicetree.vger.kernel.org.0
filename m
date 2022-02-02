@@ -2,85 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D639E4A6970
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 01:58:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9133A4A6973
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 02:00:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243245AbiBBA6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 19:58:44 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:33397 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229994AbiBBA6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 19:58:44 -0500
-Received: by mail-oi1-f175.google.com with SMTP id x193so36972109oix.0;
-        Tue, 01 Feb 2022 16:58:44 -0800 (PST)
+        id S243534AbiBBBAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 20:00:03 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:47027 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229994AbiBBBAD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 20:00:03 -0500
+Received: by mail-oi1-f179.google.com with SMTP id y23so36734777oia.13;
+        Tue, 01 Feb 2022 17:00:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=yzfs4LNIKjvTvq/VJT/9v6I3gbO+hNt8P5WQ2zknsck=;
-        b=2qLp1IlDHHga962zSpoiv18iNyG6GLgFx9DJOfQzWLZM7QgCxwUFRG6DlnzLdBrGJZ
-         dq03Gy0j5LilWCKJHXPlSH4Lunyjq1Xbjfi6OPLKLlJpO+s67Oy9yjPhHRouxP7mtisc
-         fXxWfc0clMMvNW0zw5Yl26K6B+hWGLBCGi20H6PvdYvPfs1MtiCllbFhfD5xN47iQN54
-         dF+TcO3HMf6Sv5SSSqGW+1tTHsRgKpVMTFSnHZ1Yl7AXctaZEjhuvYuS6KQhYVudGsj+
-         lxDsM+D2rxieLMg6yeN5P2RP9wcIPQuLy0vPCcFIwYA/I1ASQZ0VLz4iuwCOsO4ZQD/V
-         eEAw==
-X-Gm-Message-State: AOAM530CgUcEOgqEQEppYG9aglaNyA7IqqNk2M65w7vAXUhdtuDM2PMV
-        +OvshPojXNqcF+m7975/SPGTdDFP/Q==
-X-Google-Smtp-Source: ABdhPJwKJ4qi7HZXj0JZZjlNCdAZoxORfThV50l0jUgTfCjV4wtw3+Enm9o8cNcsvwr8HraUDQ2MaQ==
-X-Received: by 2002:aca:2304:: with SMTP id e4mr3133590oie.167.1643763523866;
-        Tue, 01 Feb 2022 16:58:43 -0800 (PST)
+        bh=FwmA6JKPlfYdb8O53eG4VPOnrHtZJfiTdm/qzeAbUSI=;
+        b=SYQ96a8I1nh6Jzf6qWyO925ysIHvdFYAPVH2RGa6gSdKUydWKECsAPmW2jfA+4mMAh
+         Le74n8R3uS+NrvIzlmn8TdqodGsxSkjhbt4AKBPioMbQLfid6Rf9hfb9Lk7sLdSzH4cP
+         uxHqNR8kOIYsKN6TmSD30nj87k2BByPzToHTsh61oKnl+s8isXTS1uzuSU7YkhhjLTl1
+         0pibU752N31Zb9Wcj19SUWxoPkV24MbtzbV3LwBUHrvD1++khs+8CnaRrLkrwmB+l4ac
+         Y5phY7PgF/lfvkpjl0rynJMV31aOqwIKoqM7oefDLADcewzDXZaQiqaHRU/Pp6bW44vb
+         6V2g==
+X-Gm-Message-State: AOAM5331ZSRuCmjr1eQZ787ClfMa7rpev0q4/SuFTQxOpdK+B59E+W8Z
+        n9SscHbuoppVOJONBw5VfOTsliQEuA==
+X-Google-Smtp-Source: ABdhPJx94mzW80s1AVWpJttUhCzADCAhxdp8POgQUBSKTXkKjvBSI6IyPsZx17pLj82OsvpC+Wqtxg==
+X-Received: by 2002:a05:6808:1645:: with SMTP id az5mr3359794oib.313.1643763602315;
+        Tue, 01 Feb 2022 17:00:02 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s13sm746674ooh.43.2022.02.01.16.58.42
+        by smtp.gmail.com with ESMTPSA id bc36sm5100831oob.45.2022.02.01.17.00.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Feb 2022 16:58:43 -0800 (PST)
-Received: (nullmailer pid 1099482 invoked by uid 1000);
-        Wed, 02 Feb 2022 00:58:42 -0000
-Date:   Tue, 1 Feb 2022 18:58:42 -0600
+        Tue, 01 Feb 2022 17:00:01 -0800 (PST)
+Received: (nullmailer pid 1101236 invoked by uid 1000);
+        Wed, 02 Feb 2022 01:00:00 -0000
+Date:   Tue, 1 Feb 2022 19:00:00 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Robert Hancock <robert.hancock@calian.com>
-Cc:     linux-usb@vger.kernel.org, balbi@kernel.org,
-        gregkh@linuxfoundation.org, michal.simek@xilinx.com,
-        manish.narani@xilinx.com, sean.anderson@seco.com,
-        devicetree@vger.kernel.org, piyush.mehta@xilinx.com
-Subject: Re: [PATCH v8 2/3] dt-bindings: usb: dwc3-xilinx: Added reset-gpios
-Message-ID: <YfnXQumE1TOWur5p@robh.at.kernel.org>
-References: <20220126234017.3619108-1-robert.hancock@calian.com>
- <20220126234017.3619108-3-robert.hancock@calian.com>
+To:     guoren@kernel.org
+Cc:     anup@brainfault.org, Guo Ren <guoren@linux.alibaba.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
+        maz@kernel.org, tglx@linutronix.de,
+        Rob Herring <robh+dt@kernel.org>, palmer@dabbelt.com,
+        samuel@sholland.org
+Subject: Re: [PATCH V7 1/2] dt-bindings: update riscv plic compatible string
+Message-ID: <YfnXkO98mpm9O0zH@robh.at.kernel.org>
+References: <20220130135634.1213301-1-guoren@kernel.org>
+ <20220130135634.1213301-2-guoren@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220126234017.3619108-3-robert.hancock@calian.com>
+In-Reply-To: <20220130135634.1213301-2-guoren@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 05:40:16PM -0600, Robert Hancock wrote:
-> Update DT binding to reflect new reset-gpios property.
+On Sun, 30 Jan 2022 21:56:33 +0800, guoren@kernel.org wrote:
+> From: Guo Ren <guoren@linux.alibaba.com>
 > 
-> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
+> Add the compatible string "thead,c900-plic" to the riscv plic
+> bindings to support allwinner d1 SOC which contains c906 core.
+> 
+> Signed-off-by: Guo Ren <guoren@linux.alibaba.com>
+> Cc: Anup Patel <anup@brainfault.org>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Palmer Dabbelt <palmer@dabbelt.com>
+> Cc: Samuel Holland <samuel@sholland.org>
 > ---
->  Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../sifive,plic-1.0.0.yaml                    | 21 +++++++++++++------
+>  1 file changed, 15 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> index f77c16e203d5..823ce731e95f 100644
-> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> @@ -59,6 +59,10 @@ properties:
->        - const: usb_hibrst
->        - const: usb_apbrst
->  
-> +  reset-gpios:
-> +    description: Optional GPIO connected to ULPI PHY reset line.
-> +    maxItems: 1
 
-Reset for the PHY belongs in the PHY node.
-
-> +
->    phys:
->      minItems: 1
->      maxItems: 2
-> -- 
-> 2.31.1
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
