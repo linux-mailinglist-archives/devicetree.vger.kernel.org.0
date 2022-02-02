@@ -2,167 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D60D4A6DA3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 10:17:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C272A4A6DBD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 10:23:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245396AbiBBJRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 04:17:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55190 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245392AbiBBJRH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 04:17:07 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677C2C061714
-        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 01:17:07 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id m4so63473906ejb.9
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 01:17:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=x9rntTeDhb6XRDh9/nW9Vd6mnOlOZBc9Iqn9gcca+t4=;
-        b=BHT96a9j020XxUsQWDK20Qo2NUtO20lg55wm++jPoJnYThjUUezbh67CjJK7F0rhHM
-         WMR0SlUFQ67HKnd5UAq3t8wQw0/IcfiDR64E3Bl3ek5iU+rwGtlsQZv4EhHS3HlLll70
-         vz81NfQyhvIr/DEWlvNCdVHwVdrYwjwE9rJGuyve+JUZRxMWWVM4Ob6EneixpLbaAEL3
-         mL8ezHkwZky0WbKNDvZRzGI3ZK6UaCQ70KIPB4ePlH3jMJWTS1GZycbEkrbm1j6fw1Um
-         8sXv5bQxeCXb57VdMFBZNPF2Oeyyi4RN6dtQaE8SAPEe1FFoplZ5LDWHWcIAME4ULSu0
-         Kj/A==
+        id S245437AbiBBJXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 04:23:50 -0500
+Received: from mail-vk1-f173.google.com ([209.85.221.173]:36708 "EHLO
+        mail-vk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234059AbiBBJXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 04:23:50 -0500
+Received: by mail-vk1-f173.google.com with SMTP id u25so8842304vkk.3;
+        Wed, 02 Feb 2022 01:23:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=x9rntTeDhb6XRDh9/nW9Vd6mnOlOZBc9Iqn9gcca+t4=;
-        b=oCr5NIY7HmbCvXDcZQ5Xz8hMHscISEEUUwzjoynlxR9JkCUgI8r83J1pFC0/yitd+J
-         CAkrE0pC0DZdXe8eCnlsKYibbb/x39/8y8Koeai4jKaFQD848pnAFM5YZIneHWouIWTh
-         yVYSlUBv02zdweZcHer1NdtO93O0oGjN/m33HTrWEC3grghmmGPUC7aGc05+u5u9CXmT
-         rzVPCF5kcp02j7plSaUyai6HxTap00kWI9amijdKApJL+HAvKviPFtZZUPLr7oKgCJux
-         G+2i36POK3OzbSHsBBFNCB7j8tFqQu56GDrkueQtpsLykQl+4BY+tW16ncE/gfTHLQB/
-         YW4w==
-X-Gm-Message-State: AOAM532AQlwM6OvSFOc3ZbjmFDCuVmQdmK8r0/H5A9WIPX7OynS/3+VL
-        E7ZoNGfnjbnH7hiD4ExE0KtvVZikaDvn4KPnHl7TNA==
-X-Google-Smtp-Source: ABdhPJxO+YT7KVoH0Asl2I194MEaiGQV+55OzPqr2jrXyPvrkGNsigRcmzQHLC5k4+p9ZlceBbVedREV04aU+lGUj4w=
-X-Received: by 2002:a17:907:6e1f:: with SMTP id sd31mr24802407ejc.286.1643793425982;
- Wed, 02 Feb 2022 01:17:05 -0800 (PST)
+        bh=hCUm6YJgeaBSW2LffvWnBA0o47V64tlsOuuAWMjoV6M=;
+        b=HUGQGUQIvvd8cF4Gt5lrI/cx0Dq8oFrAfjgU0FiSenwWE6raJL6ZJpW3rckJGaYukh
+         ocCkdewXwJf5x5NxFkNbh3mxw6lBvSg0O8tYCBQFbrRqcuS5RCc36lXWKyUntiHomGlk
+         gjSWMZAZsnZAYYsE1240r5vEv623QcKs6b/xRHIE6gsNpSZc6AvVF3Hfuci5Fjt5+Xz8
+         BhSTszRV/mEycUH2tcWF2PPLY+ykCqcwMPZrkSNbPKWL91xHPJFYfGi2ZDxKt/01so+K
+         aZP9eGnDNQrI5fSTZLM7QmB2iO1Gm9EkldycowXUBUMxyLQqbQqqFyrau79darGVjSXx
+         F+MA==
+X-Gm-Message-State: AOAM531LxJL8/D0c1Jy9Gq6Y/fSrEuCCnr0c4fKVZmdtNkdcXsxWZ+pd
+        LHs6e1Vu01dDrQn3AulenM9VNEYKhwJD0g==
+X-Google-Smtp-Source: ABdhPJyusAZaeIpQR2yczMEy4TTTrc3XGnOmJElFX6KGORzcMsZODr3iTKoj3jpjLVt2IqnNPHIFvA==
+X-Received: by 2002:a05:6122:d07:: with SMTP id az7mr12150708vkb.35.1643793829441;
+        Wed, 02 Feb 2022 01:23:49 -0800 (PST)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id r4sm4718925vsk.2.2022.02.02.01.23.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Feb 2022 01:23:49 -0800 (PST)
+Received: by mail-ua1-f42.google.com with SMTP id r8so4923266uaj.0;
+        Wed, 02 Feb 2022 01:23:49 -0800 (PST)
+X-Received: by 2002:a67:5f83:: with SMTP id t125mr10939867vsb.68.1643793828948;
+ Wed, 02 Feb 2022 01:23:48 -0800 (PST)
 MIME-Version: 1.0
-References: <20220130145116.88406-1-nbd@nbd.name> <20220130145116.88406-12-nbd@nbd.name>
-In-Reply-To: <20220130145116.88406-12-nbd@nbd.name>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 2 Feb 2022 10:16:55 +0100
-Message-ID: <CAMRc=McAvYmjvCU8-OA3Yb+YuXF7KaGC6E3RnFMN7eSUXiUz+Q@mail.gmail.com>
-Subject: Re: [PATCH v9 11/13] dt-bindings: arm: airoha: Add binding for Airoha
- GPIO controller
-To:     Felix Fietkau <nbd@nbd.name>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+References: <20220125125602.4144793-1-yoshihiro.shimoda.uh@renesas.com> <20220125125602.4144793-3-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220125125602.4144793-3-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 2 Feb 2022 10:23:38 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXmievc1U0PXfv01wsibUs+B+5U6kPbcE8=v2GKTvFbTA@mail.gmail.com>
+Message-ID: <CAMuHMdXmievc1U0PXfv01wsibUs+B+5U6kPbcE8=v2GKTvFbTA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] iommu/ipmmu-vmsa: Add support for R-Car Gen4
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        John Crispin <john@phrozen.org>, soc@kernel.org,
-        "moderated list:ARM/Mediatek SoC..." 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 30, 2022 at 3:54 PM Felix Fietkau <nbd@nbd.name> wrote:
->
-> From: John Crispin <john@phrozen.org>
->
-> Airoha's GPIO controller on their ARM EN7523 SoCs consists of two banks of 32
-> GPIOs
->
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Felix Fietkau <nbd@nbd.name>
-> ---
->  .../bindings/gpio/airoha,en7523-gpio.yaml     | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/airoha,en7523-gpio.yaml
->
-> diff --git a/Documentation/devicetree/bindings/gpio/airoha,en7523-gpio.yaml b/Documentation/devicetree/bindings/gpio/airoha,en7523-gpio.yaml
-> new file mode 100644
-> index 000000000000..66c00ec85731
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/airoha,en7523-gpio.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/airoha,en7523-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Airoha EN7523 GPIO controller
-> +
-> +maintainers:
-> +  - John Crispin <john@phrozen.org>
-> +
-> +description: |
-> +  Airoha's GPIO controller on their ARM EN7523 SoCs consists of two banks of 32
-> +  GPIOs.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^gpio@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    items:
-> +      - const: airoha,en7523-gpio
-> +
-> +  reg:
-> +    description: |
-> +      The first tuple points to the input register.
-> +      The second and third tuple point to the direction registers
-> +      The fourth tuple points to the output register
-> +    maxItems: 4
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#gpio-cells"
-> +  - gpio-controller
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    gpio0: gpio@1fbf0200 {
-> +        compatible = "airoha,en7523-gpio";
-> +        reg = <0x1fbf0204 0x4>,
-> +              <0x1fbf0200 0x4>,
-> +              <0x1fbf0220 0x4>,
-> +              <0x1fbf0214 0x4>;
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +    };
-> +
-> +    gpio1: gpio@1fbf0270 {
-> +        compatible = "airoha,en7523-gpio";
-> +        reg = <0x1fbf0270 0x4>,
-> +              <0x1fbf0260 0x4>,
-> +              <0x1fbf0264 0x4>,
-> +              <0x1fbf0278 0x4>;
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +    };
-> +
-> +
+Hi Shimoda-san,
 
-I removed this unnecessary newline when applying.
-
-> +...
-> --
-> 2.32.0 (Apple Git-132)
+On Tue, Jan 25, 2022 at 6:36 PM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add support for R-Car Gen4 like r8a779f0 (R-Car S4-8). The IPMMU
+> hardware design of r8a779f0 is the same as r8a779a0. So, rename
+> "r8a779a0" to "rcar_gen4".
 >
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Queued for next, thanks!
+Thanks for your patch!
 
-Bart
+> --- a/drivers/iommu/ipmmu-vmsa.c
+> +++ b/drivers/iommu/ipmmu-vmsa.c
+
+> @@ -743,7 +744,7 @@ static bool ipmmu_device_is_allowed(struct device *dev)
+>         unsigned int i;
+>
+>         /*
+> -        * R-Car Gen3 and RZ/G2 use the allow list to opt-in devices.
+> +        * R-Car Gen3, Gen4 and RZ/G2 use the allow list to opt-in devices.
+>          * For Other SoCs, this returns true anyway.
+>          */
+>         if (!soc_device_match(soc_needs_opt_in))
+
+There are a few more references to "Gen3" that can be extended.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
