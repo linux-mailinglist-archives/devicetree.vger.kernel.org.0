@@ -2,166 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C48924A7A2C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 22:22:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E37D4A7A31
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 22:24:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347316AbiBBVVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 16:21:55 -0500
-Received: from mout.kundenserver.de ([217.72.192.75]:42181 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234693AbiBBVVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:21:54 -0500
-Received: from mail-wr1-f48.google.com ([209.85.221.48]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1M1ZQT-1nCuEd2ox9-0034cF; Wed, 02 Feb 2022 22:21:52 +0100
-Received: by mail-wr1-f48.google.com with SMTP id u15so998745wrt.3;
-        Wed, 02 Feb 2022 13:21:52 -0800 (PST)
-X-Gm-Message-State: AOAM532zB+zo8o95mEGw6P6yZjVHzs9iSsI52nX2RELW2SSAOILCjY3M
-        EtbBsSxZIdSg+Ty40Jn6TpilUzZ1IafL27FlLZQ=
-X-Google-Smtp-Source: ABdhPJyS0pXYjoI1KSj8v4HS5DRpiR5z8Z+MmivHV59Rfz0qHTXBAOHLhOORnhnqrVG7qMP59ls3cQTx3h8P+oStNX4=
-X-Received: by 2002:a05:6000:3c6:: with SMTP id b6mr26662700wrg.12.1643836901999;
- Wed, 02 Feb 2022 13:21:41 -0800 (PST)
+        id S239648AbiBBVYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 16:24:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52974 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238553AbiBBVYK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:24:10 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A1EEC06173B
+        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 13:24:10 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id 133so606641pgb.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 13:24:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BzO4x0egfL+lkgiS2KouKfqLrj3n7wywW/JicE40S5U=;
+        b=EgxhRhjfIGWrGUq350wVEc1i/OZ+YrTYVF7kqrszFu4GlGi1H0Eq7z87hk8Suro3mu
+         jh9dljYpRoW9TznUkvre7B9lBRJ+wkk5olfhDNUyZ1A0H3Kd91MOb3sSvaFYcvZyTwph
+         LH5hGty/A0L1l37YOEVmn3KwioIEVHZmMAUWc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BzO4x0egfL+lkgiS2KouKfqLrj3n7wywW/JicE40S5U=;
+        b=azu4TdhhbmwqeUJWuH+qhaECZYxd5FxRmGnAf6oLMFlxnIH6bmVCUwQg05EdAb329P
+         eE6Icf4O0y4KLORyMFLsAUNovMTces+SUlZEYja6DKTP4Ny00PXiCrSfpSm8ShK+16ed
+         FaTBTgrKpWIMqra6koPly0mzBqIl9XibUsUMQp2RApxOx5nXXdjhZaTBrXYK8O+jOANg
+         zvEuymA0fujbC5L+VR8H3ljaxyf6aPkZ+4twR9qr/Cq9x0fSex9XtMesDkYtblKssx36
+         Wsf2l+kcJcl+fhV+ZIUclf6Fql5WxuR+zGfS5Q+rm+AryxE9MvTtuoYIhh8d4f8qevVF
+         qdKA==
+X-Gm-Message-State: AOAM5302IYR6bTB19AuAlb8FYPre6RpDxsOuGaSRf92ZbUpFgrSDOaI/
+        xjN0CpEctFJ8qRNHvnwiqqLA0A==
+X-Google-Smtp-Source: ABdhPJw2mY35yY30htTIyURARV2lwbwXWo9JdHo/Rhjfq2KKmY/oRs7iA2c6EKIvCKRbK8C2pAQDjg==
+X-Received: by 2002:a05:6a00:230e:: with SMTP id h14mr31840769pfh.10.1643837049816;
+        Wed, 02 Feb 2022 13:24:09 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:f1c4:10b6:b4ef:16e5])
+        by smtp.gmail.com with ESMTPSA id on9sm7627983pjb.16.2022.02.02.13.24.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Feb 2022 13:24:09 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     pmaliset@codeaurora.org, mka@chromium.org,
+        quic_rjendra@quicinc.com,
+        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
+        kgodara@codeaurora.org, konrad.dybcio@somainline.org,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        sibis@codeaurora.org, swboyd@chromium.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 00/14] arm64: dts: qcom: sc7x80: A smattering of misc dts cleanups + herobrine-rev1
+Date:   Wed,  2 Feb 2022 13:23:34 -0800
+Message-Id: <20220202212348.1391534-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.35.0.rc2.247.g8bbb082509-goog
 MIME-Version: 1.0
-References: <nick.hawkins@hpe.com> <20220202165315.18282-1-nick.hawkins@hpe.com>
- <20220202175635.GC2091156@minyard.net> <3E9905F2-1576-4826-ADC2-85796DE0F4DB@hpe.com>
-In-Reply-To: <3E9905F2-1576-4826-ADC2-85796DE0F4DB@hpe.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 2 Feb 2022 22:21:25 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a3itj=nshdRCoFQQh5fg-RsEaqj1PdBxfeN2-TzqmoPpQ@mail.gmail.com>
-Message-ID: <CAK8P3a3itj=nshdRCoFQQh5fg-RsEaqj1PdBxfeN2-TzqmoPpQ@mail.gmail.com>
-Subject: Re: [PATCH] HPE BMC GXP SUPPORT
-To:     "Verdun, Jean-Marie" <verdun@hpe.com>
-Cc:     "minyard@acm.org" <minyard@acm.org>,
-        "Hawkins, Nick" <nick.hawkins@hpe.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        "soc@kernel.org" <soc@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Hao Fang <fanghao11@huawei.com>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Wang Kefeng <wangkefeng.wang@huawei.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "openipmi-developer@lists.sourceforge.net" 
-        <openipmi-developer@lists.sourceforge.net>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:gK4kJGmaPJTnzdv7k98A4OSN3fUDOxO3RtoLu0egpenNGWFv/C5
- V995DjVYdC6dKk0g74OfUo06jH23jyDlPUHQwd1hB6grkGGwfA+TdnQgozHnYQJxZIZ49Cp
- 4BHlThzvFN+VxmaurNMi6sCyiT1Zc0DukvJigPRvkYJnXB3/sm2Nm7/rcUygxIVbJqzS/jf
- 4LHn5gZ5ZR9r/EKAlhlSQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:G76G9KO31wA=:3jOs4uOW8/8/lGzgYu1VlV
- MvHbzXiCqDYFYFWUuClTtKR83dVV9tzv7aRPgtsKrnkaKLm+jZBQpA92zbUzZ0uxEFlWbOq9U
- aaLzsEly+PtX+hWhP3dgBTVYdx06yPIQJu8u5UaMUwow+2SCH1MYFXTHkr42D/bifcHeCqq29
- hBbtAOqPW0yf4CfRBCO2wSrf47/62FHZsrujj68pyfs+0kBdHwkSVYAx/xw+5oRSeKgDDApZG
- 95yoUw4xwVitmpEqID8DpkaXCQfIE+C5lAAYBbG2Oa+gCQT9jCS548JhtPe97hx5lP7vvXgTS
- MqW1mteqd8CRpPE3MJHXFITCYmHFsfGA6HVQsmsges4dDp+AFs/1buiWsBR9XQk/dpT+7t6he
- rt8FH7lLgmbpy3cmcX2+wUnZ++i7KIFYavZnwvGw1e+YRaHQpbqPaNWYLImQ4mPuTXn4KkMKa
- akg0ZZVEPHkrf7mQFQWBl7TMf1LFz+nqSiYLyX1jLxQf/pAX+RC7lTZSIpynIFLhvvkjrhW0L
- VyjxlFXgtPVyNJ1bUwRqUk/7o8XXj6lQ7XZVykhBO6u7Pjf6EZUwCdlJvikrZpXcvz+k1jMse
- wk9GTD4hGm1rfH+x84az5y+AHxM7nE8BBT9VuCZT5TK4tGB1HheFxLUfM0RqsGJOwWrhRIrJT
- Zo314l1vu9NPjZlvfYBjWxrFbMUN9JKgJPRI7FlwVDPd7/XetTBd8bQ1abkJckEwNdsBxySNr
- I87B9MMCKCcjY0R5YOA8Y2cnpEtVlDYfXQKN8tvAm3KH936xUfbFIM/ZEgPaSdUhmrltswLX7
- /EH16jCUq4vWAmmctq/C1ENYgbIcBBLR1WlSr4MQ/yGH2Z4ObI=
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 2, 2022 at 7:14 PM Verdun, Jean-Marie <verdun@hpe.com> wrote:
->
-> > This is far too big for a single patch.  It needs to be broken into
-> > functional chunks that can be reviewed individually.  Each driver and
-> > each device tree change along with it's accompanying code need to be
-> > done in individual patches.  The way it is it can't be reviewed in any
-> > sane manner.
->
-> > -corey
->
-> Thanks for your feedback. We are getting a little bit lost here, as our plan was to submit initial
->
-> - bindings
-> - dts for SoC and 1 board
-> - initial platform init code
->
-> Then drivers code avoiding to send many dts updates which might complexify the
-> review. We wanted to send all drivers code to relevant reviewers by tomorrow.
->
-> So, what you are asking ( do not worry I am not trying to negotiate, I just want
-> to avoid English misunderstandings as I am French) is to send per driver
->
-> - binding
-> - dts update
-> - driver code
->
-> For each driver through different submission (with each of them containing the
-> 3 associated parts) ?
->
-> What shall be the initial one in our case as we are introducing a platform ?
-> An empty dts infrastructure and then we make it grow one step at a time ?
+This series is "v2" of my "smattering of misc dts cleanups" series
+plus v3 of the tail end of the series adding herobrine-rev1. I've set
+the version number to the larger of the two to (I hope) help
+allevitate confusion.
 
-Ideally, what I prefer to see is a series of patches for all "essential" drivers
-and the platform code that includes:
+For the cleanups, there's not a lot holding this series together
+except that it fixes a smattering of random dts stuff that I noticed
+recently. There are not a lot of dependencies and some of the patches
+could be reordered if desired.
 
-- one patch for each new binding
-- one patch for each new driver
-- one patch that hooks up arch/arm/mach-hpe/, MAINTAINERS
-  and any other changes to arch/arm/ other than dts
-- one patch that adds the initial .dts and .dtsi files, with all the
-  devices added that have a valid binding, no need to split this
-  up any further
+Hopefully these look OK and can be applied quickly to avoid conflicts
+with other work going on.
 
-This should include everything you need to boot into an initramfs
-shell, typically cpu, serial, timer, clk, pinctrl,  gpio, irqchip. We will
-merge these as a git branch in the soc tree.
+For herobrine-rev1, it can be noted that it's likely
+that with the introduction of -rev1 we can drop -rev0 support, but
+we'll keep it for now (though we won't try to "fit it in" and share
+code with it). This series is confirmed to boot atop the top of
+the linux qualcomm tree, commit a5ee6b7720cb ("Merge branches
+'arm64-defconfig-for-5.18', 'arm64-for-5.18', 'dts-for-5.18',
+'arm64-fixes-for-5.17' and 'dts-fixes-for-5.17' into for-next")
 
-In parallel, you can work with subsystem maintainers for the
-"non-essential" drivers to review any other driver and binding,
-e.g. drm/kms, network, i2c, pci, usb, etc. The patches for
-the corresponding .dts additions also go through the soc tree,
-but to make things simpler, you can send those in for a later
-release.
+Changes in v3:
+- Removed extra blank lines
+- ("Fix sort order of dp_hot_plug_det") new for v3.
+- ("Add edp_out port and HPD lines") new for v3.
+- ("Move pcie1_clkreq pull / drive str to boards") new for v3.
+- ("sc7280-idp: Disable pull from pcie1_clkreq") new for v3.
+- ("Remove dp_hot_plug_det pull from SoC dtsi file") new for v3.
+- ("Add a blank line in the dp node") new for v3.
+- Rebased atop dts cleanup patches.
+- Add regulator suffix as per dts cleanup patches.
+- Set PCIe bias / pull as per dts cleanup patches.
+- Add dp_hot_plug_det pull as per dts cleanup patches.
+- Setup SD card same as dts cleanup patches.
+- ("sc7280: Add the CPU compatible to the soc@0 node") new for v3.
+- ("Remove "qcom,sc7280" from top-level") patch new for v3.
 
-          Arnd
+Changes in v2:
+- Herobrine compatible on one line, not two
+- Wording change in comments for components enabled per-board
+- Always sort "bias" above "drive-strength" in pinctrl.
+- Properly sort "hub_en" pinctrl.
+- Two comments moved from multiline to single line.
+- Space after "/delete-property/"
+
+Douglas Anderson (14):
+  arm64: dts: qcom: sc7180-trogdor: Add "-regulator" suffix to
+    pp3300_hub
+  arm64: dts: qcom: sc7280-herobrine: Consistently add "-regulator"
+    suffix
+  arm64: dts: qcom: sc7280: Properly sort sdc pinctrl lines
+  arm64: dts: qcom: sc7280: Clean up sdc1 / sdc2 pinctrl
+  arm64: dts: qcom: sc7280-idp: No need for "input-enable" on sw_ctrl
+  arm64: dts: qcom: sc7280: Fix sort order of dp_hot_plug_det /
+    pcie1_clkreq_n
+  arm64: dts: qcom: sc7280: Add edp_out port and HPD lines
+  arm64: dts: qcom: sc7280: Move pcie1_clkreq pull / drive str to boards
+  arm64: dts: qcom: sc7280: Disable pull from pcie1_clkreq
+  arm64: dts: qcom: sc7280: Move dp_hot_plug_det pull from SoC dtsi file
+  arm64: dts: qcom: sc7280: Add a blank line in the dp node
+  arm64: dts: qcom: sc7280: Add herobrine-r1
+  arm64: dts: qcom: sc7280: Add the CPU compatible to the soc@0 node
+  arm64: dts: qcom: sc7280: Remove "qcom,sc7280" from top-level of
+    boards
+
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |   2 +-
+ arch/arm64/boot/dts/qcom/sc7280-crd.dts       |   2 +-
+ .../qcom/sc7280-herobrine-herobrine-r0.dts    |  97 +--
+ .../qcom/sc7280-herobrine-herobrine-r1.dts    | 313 +++++++
+ .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 785 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts       |   2 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |  99 +--
+ arch/arm64/boot/dts/qcom/sc7280-idp2.dts      |   2 +-
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    | 547 ++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          | 182 ++--
+ 11 files changed, 1845 insertions(+), 187 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+
+-- 
+2.35.0.rc2.247.g8bbb082509-goog
+
