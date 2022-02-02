@@ -2,94 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3C964A6E39
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 10:56:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 119C64A6E49
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 10:59:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230444AbiBBJ4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 04:56:13 -0500
-Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:56559 "EHLO
-        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240012AbiBBJ4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 04:56:12 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 4F8DE2B00BC1;
-        Wed,  2 Feb 2022 04:56:11 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 02 Feb 2022 04:56:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; bh=Z7i/gIstVFNk3d
-        lHdldAzj/PWqAnuJPMeVFtRzRDtHI=; b=sLLaQHuTaKh7hSojtE+OombaR+llsl
-        t4WjAErLuJ/pyW9RidA5aR/EyRH7v1b2Waf09BnPTHr1VEIwqH5B3/pVbQK6VxhU
-        /jaRBSk92vznEktMiPyBvqAfhfSW8bT9ncxCDOQ50y+9MyxIB4spvgmr7BMIfICk
-        CP0ZiKK3ye+bpqqJeP0keBPCZsBUHdOrqWhD8Wdw89QeCaPJBkaaNWnFaNo8LKFM
-        hurvyOG0ST08CrIBKx+7QFk0Sra1DeLyg5rgv6Q6OHw73MO2qT4l5aoWU0jiBE2U
-        KKeqfZPzqp3buT93q24OvDMeLIardd8nwHxqWfGHOl7q1JFTYuC8seuQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=Z7i/gIstVFNk3dlHdldAzj/PWqAnuJPMeVFtRzRDt
-        HI=; b=QCqni5/zkxBxJ0hKKeNCB1g1Gc8tp1peW3j5ND3J/EggNr2tzqwYXm8dT
-        sbWY6tKQEkrPEYLRQRDnj0sM26PlFtTh08NDtcxdCtozoj4s3xmohkh5XnWMDs2u
-        sloMS2uBZMX5qWCaTGolHBbJ5D4d5/JWopvmsiorxfpV+opKRzgbW/biuwfxyBdj
-        4RsMjwYtlFKedmqJulgk3n/wgVGArxPBEzo2meWT2yOoLoNbDNrjuT19VivjDl0z
-        kU1AMxFBUbNsK6xzKFD85g2Y+o/LusvkmPqFVzugVSVeO85vk8wMywZSBSBzDumr
-        eGUNoNvZxttYLFxjNP2ErkEgJJo4w==
-X-ME-Sender: <xms:OlX6YRfgG51AxYKO9uSxy8kUACA6CLuwFWUlhC_mqK77pCZTouyBXw>
-    <xme:OlX6YfMvXb_pU4PVhrV65KNAuNrd5BFplC_OUO_h3niiMZ1n_ALZvYI8LRoL6nOlh
-    nO3CLVanMrA-cJ0StI>
-X-ME-Received: <xmr:OlX6YagUJhlZXOdyqPzJ7WpES-vBLB0laEPNRCWQxQNbe80TPgaPY4dDRrdNiG9EgxoI8RTtAEJYISY4X6GP4WX3WBDbMVNoi-tdcx0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgeehgddtlecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfefgeei
-    keeknecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:OlX6Ya8nies6XSA8E7Ju9K3FmDNjKXZdej9iCY42J26zR2hhIy5pZA>
-    <xmx:OlX6YdvjpBbG7FyOZiKYCneVxOyWBxJ-tCysii3hSrqjRlSH6EeuVg>
-    <xmx:OlX6YZFitkGckvqch-664oSkSzxj2eaWTtKs4h4jHmQw0LeIilU-Ag>
-    <xmx:OlX6YTKSg5hopIhem9-7kBiiGXqFTajbcPHr2YKFkZwwQ7ZcUwBNHO1tN3Y>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 2 Feb 2022 04:56:10 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        id S232220AbiBBJ7Q convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Feb 2022 04:59:16 -0500
+Received: from aposti.net ([89.234.176.197]:39124 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229741AbiBBJ7Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Feb 2022 04:59:16 -0500
+Date:   Wed, 02 Feb 2022 09:59:01 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v12 3/9] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
+ DT Schema
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
         David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
         Maxime Ripard <maxime@cerno.tech>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: (subset) [PATCH v4 1/2] dt-bindings: display: Turn lvds.yaml into a generic schema
-Date:   Wed,  2 Feb 2022 10:56:00 +0100
-Message-Id: <164379573892.876896.5996086983408978566.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220127143045.310199-1-maxime@cerno.tech>
-References: <20220127143045.310199-1-maxime@cerno.tech>
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh@kernel.org>
+Message-Id: <D29O6R.3788L9G5J66L@crapouillou.net>
+In-Reply-To: <2386420a975e0a6c17393828af776991f3d17c01.1643632014.git.hns@goldelico.com>
+References: <cover.1643632014.git.hns@goldelico.com>
+        <2386420a975e0a6c17393828af776991f3d17c01.1643632014.git.hns@goldelico.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Jan 2022 15:30:44 +0100, Maxime Ripard wrote:
-> The lvds.yaml file so far was both defining the generic LVDS properties
-> (such as data-mapping) that could be used for any LVDS sink, but also
-> the panel-lvds binding.
-> 
-> That last binding was to describe LVDS panels simple enough, and had a
-> number of other bindings using it as a base to specialise it further.
-> 
-> [...]
+Hi Nikolaus,
 
-Applied to drm/drm-misc (drm-misc-next).
+Le lun., janv. 31 2022 at 13:26:49 +0100, H. Nikolaus Schaller 
+<hns@goldelico.com> a écrit :
+> From: Sam Ravnborg <sam@ravnborg.org>
+> 
+> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
+> Based on .txt binding from Zubair Lutfullah Kakakhel
+> 
+> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> ---
+>  .../display/bridge/ingenic,jz4780-hdmi.yaml   | 83 
+> +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 
+> Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+> 
+> diff --git 
+> a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml 
+> b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+> new file mode 100644
+> index 0000000000000..5a2767308c0ab
+> --- /dev/null
+> +++ 
+> b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: 
+> http://devicetree.org/schemas/display/bridge/ingenic,jz4780-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bindings for Ingenic JZ4780 HDMI Transmitter
+> +
+> +maintainers:
+> +  - H. Nikolaus Schaller <hns@goldelico.com>
+> +
+> +description: |
+> +  The HDMI Transmitter in the Ingenic JZ4780 is a Synopsys 
+> DesignWare HDMI 1.4
+> +  TX controller IP with accompanying PHY IP.
+> +
+> +allOf:
+> +  - $ref: synopsys,dw-hdmi.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ingenic,jz4780-dw-hdmi
+> +
+> +  reg-io-width:
+> +    const: 4
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Input from LCD controller output.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Link to the HDMI connector.
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - ports
+> +  - reg-io-width
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/ingenic,jz4780-cgu.h>
+> +
+> +    hdmi: hdmi@10180000 {
+> +        compatible = "ingenic,jz4780-dw-hdmi";
+> +        reg = <0x10180000 0x8000>;
+> +        reg-io-width = <4>;
+> +        ddc-i2c-bus = <&i2c4>;
+> +        interrupt-parent = <&intc>;
+> +        interrupts = <3>;
+> +        clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
+> +        clock-names = "iahb", "isfr";
+> +        hdmi-5v-supply = <&hdmi_power>;
 
-Thanks!
-Maxime
+Where is this property defined?
+
+Cheers,
+-Paul
+
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            hdmi_in: port@0 {
+> +                reg = <0>;
+> +                dw_hdmi_in: endpoint {
+> +                    remote-endpoint = <&jz4780_lcd_out>;
+> +                };
+> +            };
+> +            hdmi_out: port@1 {
+> +                reg = <1>;
+> +                dw_hdmi_out: endpoint {
+> +                    remote-endpoint = <&hdmi_con>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> --
+> 2.33.0
+> 
+
+
