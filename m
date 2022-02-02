@@ -2,116 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8A2E4A6AF6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 05:40:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F0364A6B00
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 05:42:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244465AbiBBEkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 23:40:04 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:38288 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242010AbiBBEkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 23:40:04 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2124dsTV004752;
-        Tue, 1 Feb 2022 22:39:54 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1643776794;
-        bh=MIjtlT3LVVFPZOZkCNssvMeg8BFmBRKFOpHzYs2Kje8=;
-        h=From:To:CC:Subject:Date;
-        b=g9yfXQJttCYy4CBX1isel6Le0C/bwwCkKjnOuqHh7mbeNHlQh78JgTfu0Wk6UTKoB
-         jL/dII1awy+wz1w2L0792JFKqWGuE/IhD3iWW0NtCqZ+IVaNDVg3uTVyffAuup+W32
-         iX/8K28R8DQ+ydCRrgfHKKa1r+l1rF7RIZdLVgEo=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2124dsgv068180
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Feb 2022 22:39:54 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 1
- Feb 2022 22:39:53 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 1 Feb 2022 22:39:53 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2124dnm2068932;
-        Tue, 1 Feb 2022 22:39:49 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Aswath Govindraju <a-govindraju@ti.com>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] arm64: dts: ti: k3-j721e-common-proc-board: Enable PCIe + QSGMII multilink configuration
-Date:   Wed, 2 Feb 2022 10:09:44 +0530
-Message-ID: <20220202043944.11351-1-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S232288AbiBBEml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 23:42:41 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:38423 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232239AbiBBEml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 23:42:41 -0500
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id D1C185C0184;
+        Tue,  1 Feb 2022 23:42:40 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Tue, 01 Feb 2022 23:42:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm1; bh=9Fu1L53JHD2BEq
+        uVl2Vb9y1iwWCLUhaDxYdzJpr+2wE=; b=BDVSa4hqtdY7r/REsB0e0BXP8Hasa6
+        CbaqI+zUOXhJu05PbU0qhSifaba0XAfh5BJ57upqgxkH9fv5KdnZH/ogZB9DQTFr
+        wALf6OIjsl+LRi6HLrCNBg+BNN7whGyT84FqcXdNEhMAam0grHWjyWUAmXP59nwU
+        Le3QNF7AhiMsYjiqveZGNK/E9e2P+RoqQErRJzL+FeoyOkabxXwsunfIQ5p7gT8q
+        8/x5217dGqiAP7FLKE+xdfOySoQzq+bd328eyE3xNq8ga0hANxfihNrdKshu6O/4
+        4Wd3J3JpkDjeOZQb4yTSG0fLRPK/TrUZFsdOZnKZTV15kJbx1K8yQ81g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=9Fu1L53JHD2BEquVl2Vb9y1iwWCLUhaDxYdzJpr+2
+        wE=; b=l7KNIHbrNbXzv+IWa2surYD6hdI0IJKWRHWB9fWYNUA1idZSiCTnE5MFR
+        0BWPpRp8VhcXtFH11dQql2RPXx9xITjfXLMjWqcqkYV4kV3AWVcbYLzVW/iqEQNF
+        qU4JRe/IJEYw8eBCMjzA7XIsv5u/g8iNBg7fMqouVOZLwGURBm1meJ/ttjh+H41U
+        y1EA0f+Kk58PEW0Pi6x9yzQF+/9Fqyb6cV+Zqnuj7j0/+myzefH3pZS+R7qzw74f
+        4JssGBJjdGiaUzfZeHI47iJTMv4fGQtm+U/tk8XJ6xf6aBpct6goEzLpu+516NTk
+        K/iDlqAbUGEdCi6xTn5fODtMk5vaQ==
+X-ME-Sender: <xms:wAv6YfmkX_C2NBCj6HdyDD3Ir4MQw1mdmqDUv3HQokxCNSy1q8xV2w>
+    <xme:wAv6YS0Qc5KbUUKVCUTzC7NIeBXlm7qF44ZSZ16WpxARR6acqhU4My_VACCiIzT3_
+    U62SwQ0mlQnUy77fA>
+X-ME-Received: <xmr:wAv6YVqpYqI1lWztmNXamkecB0CZBhWO3PQy-P6fDl97hm-PsorqhoIYBJkNiL5KEpHumDqtiChlMuxpVPpkwQDxuSxKkWYxBo8taemFARPSEs0vY1U_I3G3UQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgeeggdeilecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpeetteffjeefhfegtdduledutdegudffleduueeftddvlefgieffveef
+    hfdukeegvdenucffohhmrghinhepghhithhhuhgsrdgtohhmnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
+    ugdrohhrgh
+X-ME-Proxy: <xmx:wAv6YXljBDhCAtteqD95c67VcXf6h8e1iK3JzYX1RgjG4RbRu7lbaw>
+    <xmx:wAv6Yd3UDKk7klR5igU7bXlI87p5Ek9zdki3rOfBUmEjekRykVdG6A>
+    <xmx:wAv6YWvMV-Rybu2E3cwjLvkIwEDgyKAHm3NGLfs0_QOGOv0BmOCiOQ>
+    <xmx:wAv6Yan_JDwM8TA2yRtJOg34nYyInzX53zBXGbZtKKgv0kYGOE8ixQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 1 Feb 2022 23:42:39 -0500 (EST)
+Subject: Re: [PATCH V7 2/2] irqchip/sifive-plic: Fixup thead,c900-plic DT
+ parse missing
+To:     guoren@kernel.org
+Cc:     anup@brainfault.org, maz@kernel.org, tglx@linutronix.de,
+        palmer@dabbelt.com, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Guo Ren <guoren@linux.alibaba.com>
+References: <20220130135634.1213301-1-guoren@kernel.org>
+ <20220130135634.1213301-3-guoren@kernel.org>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <5b59a816-a1a2-1e75-9c78-8bc9be18f70d@sholland.org>
+Date:   Tue, 1 Feb 2022 22:42:39 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <20220130135634.1213301-3-guoren@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Swapnil Jakhade <sjakhade@cadence.com>
+On 1/30/22 7:56 AM, guoren@kernel.org wrote:
+> From: Guo Ren <guoren@linux.alibaba.com>
+> 
+> The thead,c900-plic has been used in opensbi to distinguish
+> PLIC [1]. Although PLICs have the same behaviors in Linux,
+> they are different hardware with some custom initializing in
+> firmware(opensbi).
+> 
+> Qute opensbi patch commit-msg by Samuel:
+> 
+>   The T-HEAD PLIC implementation requires setting a delegation bit
+>   to allow access from S-mode. Now that the T-HEAD PLIC has its own
+>   compatible string, set this bit automatically from the PLIC driver,
+>   instead of reaching into the PLIC's MMIO space from another driver.
+> 
+> [1]: https://github.com/riscv-software-src/opensbi/commit/78c2b19218bd62653b9fb31623a42ced45f38ea6
+> 
+> Signed-off-by: Guo Ren <guoren@linux.alibaba.com>
+> Cc: Anup Patel <anup@brainfault.org>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Palmer Dabbelt <palmer@dabbelt.com>
+> Cc: Samuel Holland <samuel@sholland.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> ---
+>  drivers/irqchip/irq-sifive-plic.c | 1 +
+>  1 file changed, 1 insertion(+)
 
-The zeroth instance of SerDes on J721E common processor board will be
-shared between PCIe and QSGMII. Therefore, add support for enabling this.
-
-Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
-
-changes since v1:
-- Fixed the commit message.
-
- .../boot/dts/ti/k3-j721e-common-proc-board.dts    | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 2d7596911b27..157d86dc2824 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -431,7 +431,7 @@
- };
- 
- &serdes_ln_ctrl {
--	idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_PCIE0_LANE1>,
-+	idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_QSGMII_LANE2>,
- 		      <J721E_SERDES1_LANE0_PCIE1_LANE0>, <J721E_SERDES1_LANE1_PCIE1_LANE1>,
- 		      <J721E_SERDES2_LANE0_PCIE2_LANE0>, <J721E_SERDES2_LANE1_PCIE2_LANE1>,
- 		      <J721E_SERDES3_LANE0_USB3_0_SWAP>, <J721E_SERDES3_LANE1_USB3_0>,
-@@ -757,8 +757,8 @@
- };
- 
- &serdes0 {
--	assigned-clocks = <&serdes0 CDNS_SIERRA_PLL_CMNLC>;
--	assigned-clock-parents = <&wiz0_pll1_refclk>;
-+	assigned-clocks = <&serdes0 CDNS_SIERRA_PLL_CMNLC>, <&serdes0 CDNS_SIERRA_PLL_CMNLC1>;
-+	assigned-clock-parents = <&wiz0_pll1_refclk>, <&wiz0_pll1_refclk>;
- 
- 	serdes0_pcie_link: phy@0 {
- 		reg = <0>;
-@@ -767,6 +767,15 @@
- 		cdns,phy-type = <PHY_TYPE_PCIE>;
- 		resets = <&serdes_wiz0 1>;
- 	};
-+
-+	serdes0_qsgmii_link: phy@1 {
-+		reg = <1>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_QSGMII>;
-+		resets = <&serdes_wiz0 2>;
-+	};
-+
- };
- 
- &serdes1 {
--- 
-2.17.1
-
+Tested-by: Samuel Holland <samuel@sholland.org>
