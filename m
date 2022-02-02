@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 756114A7AB2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 23:01:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 061804A7AC2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 23:04:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347737AbiBBWBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 17:01:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33690 "EHLO
+        id S1347775AbiBBWE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 17:04:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231777AbiBBWBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 17:01:53 -0500
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE3C0C061714
-        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 14:01:52 -0800 (PST)
-Received: by mail-qt1-x82c.google.com with SMTP id p14so596151qtx.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 14:01:52 -0800 (PST)
+        with ESMTP id S235073AbiBBWE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 17:04:27 -0500
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91F40C061714
+        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 14:04:26 -0800 (PST)
+Received: by mail-qt1-x832.google.com with SMTP id b5so520213qtq.11
+        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 14:04:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ASt2vrZbBYwRau7lx5PiBVFL+QKvgxL2m71DDDersUo=;
-        b=BYjh9wZfjVMx0RmMHWRDhp+84JGAcHZltZ1KBS0+5uPaBpf5HDt99Ig703HWUmRFgS
-         1BC7GEdv/uPWMBJwyqbtNKVErrnGXS+UknOCu4xpCyZ8Gw5Uq8M9JV+NfENZGITnYXg2
-         JRM4oz8H1CD0DAIiwgfXo0QWCLUjU604/8b9o8c9cxnbtltTXm/Biypd9VYuFBrJfWJ4
-         yRfzRCMHwcaD1/om0aW1vDkh5Chp2iSU5v0oRauXQldIhYb8jMcNkNJmEwdjBI8cfth9
-         K3FbQcH74o7Tw/SDrfN8wucZEhNjtYAiryGrTFcdNRNBYyR4d7l3D+0PZayOMRncu8yn
-         IW9g==
+        bh=juSv3A3zA/IV1hKWpoPZ41zBlXOU2nAmqhVo+hgk77k=;
+        b=G/mmcX5aPLULdEJEs9m+s3snNReQNxbTdU2CRfpjt4nKP4XFlf+T6dU9eX+gZk81uc
+         1WciFyM4gwnN+8OFjInCsXgX/+lMc+tWYXi9YyMPohe52Cvb6xHY89PtPyd+FJYo1L4t
+         TOyiHj3OqlC58PYytawZDPYFR81BASjf9fcKXqQT/5d0nQLVGItXQ5sinDKvx0gLc/3x
+         gM8b1MuGTV1yRtq+3sMdsvIqZBA1/xphZ2Sfuy2UTGmU8vnsr4ZPjzB43NEd77doeEjU
+         7wszNcEurpwlT4KKTzVotVTu8omrxv1CsqXhtOorMfXBhBiehu2ImAvLKiDeYt6r/1vI
+         DN7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=ASt2vrZbBYwRau7lx5PiBVFL+QKvgxL2m71DDDersUo=;
-        b=gnbt0zh9UsDuXPrKeJzohx1KX70fk6icLJ22aD91vPE4kelBkQc9EPMp/hxGQXc/FL
-         myGVAPhXQY5VnH/Yvsu3f00UAr7p7SBOdOXgEF2VSYMUaEBfHDkO1dzuodPTn8yTVGmt
-         jS56r97qRseX/6gmCDHwFHsCM/KKFMg+S0HEsWDCi39CCP7bxlup0Nt6B90lrotGU2py
-         yp9s3gJ3S+fc/tfpFnIpWeNl8epy3E2/rkyDFZIWPDHwHKjFFuDFoi4C4WtMWepMNBr9
-         TGi8vaaRSTOR+bQZ/hO2g53lhcLrNpO5KOohcIJ0JmrVSv2kURFLPOGM/q3lPwcHh5W8
-         p+bQ==
-X-Gm-Message-State: AOAM532VLlLWV3bSW4XayyOcLgLl6eZJkve2VhqfV4pQCBMKkxgZ9FME
-        mJf1lQ1FKBG96UeTlz8rTZM=
-X-Google-Smtp-Source: ABdhPJwI9w105YjsyNpt/EnuDERS15GsU5qYgznzp/1nhvWMsFQ87wp8H1j0O2xsi52/40jZRMo2Dg==
-X-Received: by 2002:a05:622a:1714:: with SMTP id h20mr24800824qtk.92.1643839311941;
-        Wed, 02 Feb 2022 14:01:51 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id u6sm13159115qki.136.2022.02.02.14.01.51
+        bh=juSv3A3zA/IV1hKWpoPZ41zBlXOU2nAmqhVo+hgk77k=;
+        b=QXL/J/DopJei6Ppr299P5BlYcni+pSPNhgGaPpY0f/5nFVwM6uV4qV6fy+yIQnNDMu
+         kqLs3jKguUvDpKE3wkPZjZQ0IT1naNVMSXBEZ30PXFLLtN5UzsI35mWCopK/ln8AHeUq
+         tIUIOnKOqOWo/TIM02X/1L+htZ9pw7rDVbDaJabYPia26b6v8otERZEzdnHAHjfDgu3Z
+         EMVlAsuawQUF34yppoImSV4VoayNVho/V23U/E6jPnuH99NU89EXTKubrOKttJH14zQb
+         DajUuv8Bhgs0MGwB4aaok38VZCDpUd1iY3xcDOhx+pO3QLULLJJqIB19z8SJwBNf5fOQ
+         qCbg==
+X-Gm-Message-State: AOAM533xa3D3QGp7JK3o27hVi0LKFDUnBbVKm/FLLPDZDKSuG9o2jNHz
+        e20v9NVayvTSz72OkUiU7Lg=
+X-Google-Smtp-Source: ABdhPJwdQbn2XZ/Q7CtuzJLEol5fv2GmfEKwXbN1vAjV/mGyxEy/PeTOGgbtQb1k5Dltt/mRQDFpiA==
+X-Received: by 2002:a05:622a:646:: with SMTP id a6mr6368577qtb.77.1643839465659;
+        Wed, 02 Feb 2022 14:04:25 -0800 (PST)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id g11sm10320163qtg.49.2022.02.02.14.04.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Feb 2022 14:01:51 -0800 (PST)
+        Wed, 02 Feb 2022 14:04:25 -0800 (PST)
 Subject: Re: Device Tree runtime unit tests: Harmonisation
-To:     Rob Herring <robh+dt@kernel.org>
+To:     Brendan Higgins <brendanhiggins@google.com>
 Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         Anders Roxell <anders.roxell@linaro.org>
 References: <CA+G9fYubR5A4f_0hDN1=Jaj_A-0GhMAcTc+TfJb5sgf0hRik8Q@mail.gmail.com>
  <0b6ab190-4c35-94fc-6565-6382d461ae84@gmail.com>
- <CAL_JsqLnv_=mcs+pAXRArSg7uccPFpDhcbBOpHGaWwjOZdt9DQ@mail.gmail.com>
+ <CAFd5g44U54P3=JxpiBhXKeqXFACRe08AYvBxDN2h=W4d_+bP3g@mail.gmail.com>
 From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <a6c785b1-2382-d6f5-d57b-d7ed3610050a@gmail.com>
-Date:   Wed, 2 Feb 2022 16:01:50 -0600
+Message-ID: <e5c1ca0c-0282-27e2-a470-756fbd2c7f84@gmail.com>
+Date:   Wed, 2 Feb 2022 16:04:24 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLnv_=mcs+pAXRArSg7uccPFpDhcbBOpHGaWwjOZdt9DQ@mail.gmail.com>
+In-Reply-To: <CAFd5g44U54P3=JxpiBhXKeqXFACRe08AYvBxDN2h=W4d_+bP3g@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -72,8 +72,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/2/22 2:29 PM, Rob Herring wrote:
-> On Wed, Feb 2, 2022 at 12:38 PM Frank Rowand <frowand.list@gmail.com> wrote:
+On 2/2/22 2:54 PM, Brendan Higgins wrote:
+> On Wed, Feb 2, 2022 at 1:38 PM Frank Rowand <frowand.list@gmail.com> wrote:
 >>
 >> On 2/2/22 5:31 AM, Naresh Kamboju wrote:
 >>> Linaro started doing Linux kernel Functional Validation (LKFT).
@@ -87,48 +87,16 @@ On 2/2/22 2:29 PM, Rob Herring wrote:
 >> The FAIL messages are printed at loglevel KERN_ERR.  The pass messages
 >> are printed at loglevel KERN_DEBUG.  To see the pass messages, set the
 >> loglevel to allow debug output.
-> 
-> That alone is not enough. Unless there's a DEBUG define, the
-> pr_debug() is going to print nothing.
-
-I almost mentioned that detail, but decided I didn't need to given my
-reference below to dynamic debug.
-
-> 
+>>
 >> Unfortunately this can add lots of debug output, unless you use dynamic
 >> debug to only enable debug for drivers/of/unittest.o.  There are only
 >> a few other pr_debug() messages in unittest.
-> 
-> Dynamic debug is one option. Another would be a module param to enable
-> running the tests
-
-I could implement that.
-
-But that does not address the issue of the individual test pass messages
-being printed at loglevel KERN_DEBUG.  Are you thinking I should add a
-second module param that would enable printing the test pass messages
-at the same loglevel as the test fail messages?
-
-I'm not up to date on module params.  I'm assuming that I can pass these
-new params on the boot command line if I build unittest as a built-in
-instead of as a module.
-
-> Then it can be built, but has to be explicitly
-> enabled at boot time.
-
-> A 3rd option is making it work as a module, then
-> it's run when loaded. (That was the original plan.)
-> 
+>>
 >> I think a better solution would be to add a config option, something
 >> like CONFIG_OF_UNITTEST_VERBOSE, that would print the pass messages
 >> at loglevel KERN_ERR.  I'll submit a patch for that and see what the
 >> review responses are.
-> 
-> Nak for another config option.
-
-Because?
-
-> 
+>>
 >>> We would like to get your opinion of how hard it would be to include
 >>> that in the output per test. Maybe like TAP version 14?
 >>> Another question would be how hard do you think it would be to rewrite
@@ -142,19 +110,69 @@ Because?
 >> different creature.  Brendan has a good term for this type of test
 >> (Brendan, was it "acceptance" test?).
 > 
-> I thought you ended up agreeing with using kunit? Whatever you want to
+> I understood that it was either an integration test or end-to-end test
+> (probably an integration test): https://lkml.org/lkml/2019/3/21/1124
 
-Not the kunit _framework_.
+Yes, thanks.  Those are the terms I was trying to remember.
 
-> call the DT tests, there's not really any good reason to do our own
-> pass/fail messages.
-
-Yes, I would like to change the pass fail messages to follow the same
-standard as kunit, so that the test frameworks could easily process
-the unittest results.  That has been on my todo list.
+-Frank
 
 > 
-> Rob
-> .
+> Standardizing integration tests in the kernel is still something that
+> hasn't happened yet, but there are some examples of integration tests
+> being written in KUnit (the KASAN KUnit test is probably the most
+> notable example). There are definitely some others written in
+> kselftest. It's kind of a tough area because integration tests are
+> kind of defined by being in between unit tests and end-to-end tests.
 > 
+>>> Test output:
+>>> ------------
+>>> [    0.000000] Booting Linux on physical CPU 0x0000000100 [0x410fd033]
+>>> [    0.000000] Linux version 5.17.0-rc1-next-20220127
+>>> (tuxmake@tuxmake) (aarch64-linux-gnu-gcc (Debian 11.2.0-9) 11.2.0, GNU
+>>> ld (GNU Binutils for Debian) 2.37) #1 SMP PREEMPT @1643255563
+>>> [    0.000000] Machine model: ARM Juno development board (r2)
+>>>
+>>> <trimmed output>
+>>>
+>>> [    3.285226] ### dt-test ### start of unittest - you will see error messages
+>>> [    3.293269] ### dt-test ### EXPECT \ : Duplicate name in
+>>> testcase-data, renamed to \"duplicate-name#1\"
+>>> [    3.293456] Duplicate name in testcase-data, renamed to \"duplicate-name#1\"
+>>> [    3.313367] ### dt-test ### EXPECT / : Duplicate name in
+>>> testcase-data, renamed to \"duplicate-name#1\"
+>>> [    3.314709] ### dt-test ### EXPECT \ : OF:
+>>> /testcase-data/phandle-tests/consumer-a: could not get
+>>> #phandle-cells-missing for /testcase-data/phandle-tests/provider1
+>>> [    3.323968] OF: /testcase-data/phandle-tests/consumer-a: could not
+>>> get #phandle-cells-missing for /testcase-data/phandle-tests/provider1
+>>>
+>>> <trimmed output>
+>>>
+>>> [    5.118400] ### dt-test ### EXPECT / : OF: overlay: ERROR: multiple
+>>> fragments add and/or delete node
+>>> /testcase-data-2/substation@100/motor-1/electric
+>>> [    5.121358] atkbd serio1: keyboard reset failed on 1c070000.kmi
+>>> [    5.134160] ### dt-test ### end of unittest - 257 passed, 0 failed
+>>>
+>>>
+>>> Ref:
+>>> Full test output of of-unittest
+>>> https://lkft.validation.linaro.org/scheduler/job/4458582#L1019
+>>> https://lkft.validation.linaro.org/scheduler/job/4404330#L428
+>>>
+>>> Kunit example test output that we are running in our daily CI loop.
+>>> https://qa-reports.linaro.org/lkft/linux-stable-rc-linux-5.10.y/build/v5.10.70/testrun/5965109/suite/kunit/tests/
+>>>
+>>> Kunit Full test logs:
+>>> https://lkft.validation.linaro.org/scheduler/job/3643324
+>>>
+>>> https://qa-reports.linaro.org/lkft/linux-stable-rc-linux-5.10.y/build/v5.10.70/testrun/5965109/suite/kunit/test/kunit_log_test/log
+>>>
+>>>
+>>> --
+>>> Linaro LKFT
+>>> https://lkft.linaro.org
+>>>
+>>
 
