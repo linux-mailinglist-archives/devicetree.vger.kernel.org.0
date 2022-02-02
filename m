@@ -1,134 +1,138 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 061554A6B81
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 06:32:25 +0100 (CET)
+Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
+	by mail.lfdr.de (Postfix) with ESMTP id 5FCF34A6C6B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 08:45:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244533AbiBBFcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 00:32:23 -0500
-Received: from so254-9.mailgun.net ([198.61.254.9]:10921 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231891AbiBBFcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 00:32:22 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1643779942; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=+8A3HqRShnpoP+gZhCSNyFS6qiL0RZHDQAAX0f9uISA=; b=aa3VkdSyXWP9+VYAcX7nq8jYTDoXKoxYsUdDkE+Os9UByA5cP4jbH+fHlKOz8ItGaXHZMS2h
- pdNbDyyJuiSeHBZup1YrjCUOvRYy029gewfiitml/fGusQSWjzqWGNyNUJpk2OC1hZx9w6mh
- Wz+GLa6dl6JQQFyLbH03IVuGrE8=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 61fa1766e46e09ccb695233c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 02 Feb 2022 05:32:22
- GMT
-Sender: tdas=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8B173C4338F; Wed,  2 Feb 2022 05:32:21 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.0
-Received: from hu-tdas-hyd.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E19E4C4338F;
-        Wed,  2 Feb 2022 05:32:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org E19E4C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Taniya Das <tdas@codeaurora.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-Subject: [PATCH v3] arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio clock controllers
-Date:   Wed,  2 Feb 2022 11:02:07 +0530
-Message-Id: <20220202053207.14256-1-tdas@codeaurora.org>
-X-Mailer: git-send-email 2.17.1
+        id S239560AbiBBHpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 02:45:06 -0500
+Received: from mga11.intel.com ([192.55.52.93]:20531 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234558AbiBBHpG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Feb 2022 02:45:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1643787906; x=1675323906;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mUhOSEsTR510GwEtGL9hBhvUnZQ9NLqY2OCniJGKvBw=;
+  b=Z5geL2vs8osyZE/CbfjUOswXcEjH7VloL6GPjvX3oCxODwkf+h7bAoii
+   fpzMTff/QHrIH7uB1SFijTc2TAqI5spvoTuhh6Q5DxflXm6bar1yLRFqw
+   7M6APegKq96aLQzjiSlC9Wi52dS78duAmG8sEtmXzoSZme3Qc8rMKRb9e
+   8tFP+hPONRC1t8dcp9WXdeLTx7T06czQcQN9evxNOm7RZ1X4HiTKUY/kx
+   UYB4GHZGCchab42T/81K5ShEEy9pf2IVuXlnBqZnVGjU+BvUndWqVI1fT
+   cCCcJyQ9SGr6aLOk3xNNgBd2E68IG4N1FZH+05hJFLS46gAaVwYTfHoR+
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10245"; a="245453443"
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; 
+   d="scan'208";a="245453443"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2022 22:22:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,336,1635231600"; 
+   d="scan'208";a="480001246"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 01 Feb 2022 22:22:41 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nF92O-000UDY-HZ; Wed, 02 Feb 2022 06:22:40 +0000
+Date:   Wed, 2 Feb 2022 14:22:27 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Samuel Holland <samuel@sholland.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH 3/4] usb: typec: Factor out non-PD fwnode properties
+Message-ID: <202202021458.xcH4F4SQ-lkp@intel.com>
+References: <20220201032440.5196-3-samuel@sholland.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220201032440.5196-3-samuel@sholland.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the low pass audio clock controller device nodes.
+Hi Samuel,
 
-Signed-off-by: Taniya Das <tdas@codeaurora.org>
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on usb/usb-testing]
+[also build test WARNING on robh/for-next v5.17-rc2 next-20220202]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Samuel-Holland/dt-bindings-vendor-prefixes-Add-willsemi/20220201-112541
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+config: openrisc-randconfig-m031-20220201 (https://download.01.org/0day-ci/archive/20220202/202202021458.xcH4F4SQ-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 11.2.0
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+smatch warnings:
+drivers/usb/typec/class.c:1919 typec_get_fw_cap() warn: unsigned 'cap->type' is never less than zero.
+drivers/usb/typec/class.c:1926 typec_get_fw_cap() warn: unsigned 'cap->data' is never less than zero.
+
+vim +1919 drivers/usb/typec/class.c
+
+  1896	
+  1897	int typec_get_fw_cap(struct typec_capability *cap,
+  1898			     struct fwnode_handle *fwnode)
+  1899	{
+  1900		const char *cap_str;
+  1901		int ret;
+  1902	
+  1903		/*
+  1904		 * This fwnode has a "compatible" property, but is never populated as a
+  1905		 * struct device. Instead we simply parse it to read the properties.
+  1906		 * This it breaks fw_devlink=on. To maintain backward compatibility
+  1907		 * with existing DT files, we work around this by deleting any
+  1908		 * fwnode_links to/from this fwnode.
+  1909		 */
+  1910		fw_devlink_purge_absent_suppliers(fwnode);
+  1911	
+  1912		cap->fwnode = fwnode;
+  1913	
+  1914		ret = fwnode_property_read_string(fwnode, "power-role", &cap_str);
+  1915		if (ret < 0)
+  1916			return ret;
+  1917	
+  1918		cap->type = typec_find_port_power_role(cap_str);
+> 1919		if (cap->type < 0)
+  1920			return cap->type;
+  1921	
+  1922		/* USB data support is optional */
+  1923		ret = fwnode_property_read_string(fwnode, "data-role", &cap_str);
+  1924		if (ret == 0) {
+  1925			cap->data = typec_find_port_data_role(cap_str);
+> 1926			if (cap->data < 0)
+  1927				return cap->data;
+  1928		}
+  1929	
+  1930		/* Get the preferred power role for a DRP */
+  1931		if (cap->type == TYPEC_PORT_DRP) {
+  1932			cap->prefer_role = TYPEC_NO_PREFERRED_ROLE;
+  1933	
+  1934			ret = fwnode_property_read_string(fwnode, "try-power-role", &cap_str);
+  1935			if (ret == 0) {
+  1936				cap->prefer_role = typec_find_power_role(cap_str);
+  1937				if (cap->prefer_role < 0)
+  1938					return cap->prefer_role;
+  1939			}
+  1940		}
+  1941	
+  1942		return 0;
+  1943	}
+  1944	EXPORT_SYMBOL_GPL(typec_get_fw_cap);
+  1945	
+
 ---
- * Fix unwanted extra spaces in reg property.
- * Fix lpass_aon node clock phandle <&lpasscc> to <&lpasscore>
-
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 43 ++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 937c2e0e93eb..0d8a0d9d0f89 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -8,6 +8,8 @@
- #include <dt-bindings/clock/qcom,dispcc-sc7280.h>
- #include <dt-bindings/clock/qcom,gcc-sc7280.h>
- #include <dt-bindings/clock/qcom,gpucc-sc7280.h>
-+#include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
-+#include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,videocc-sc7280.h>
- #include <dt-bindings/interconnect/qcom,sc7280.h>
-@@ -1744,6 +1746,47 @@
- 			#clock-cells = <1>;
- 		};
-
-+		lpass_audiocc: clock-controller@3300000 {
-+			compatible = "qcom,sc7280-lpassaudiocc";
-+			reg = <0 0x03300000 0 0x30000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+			       <&lpass_aon LPASS_AON_CC_MAIN_RCG_CLK_SRC>;
-+			clock-names = "bi_tcxo", "lpass_aon_cc_main_rcg_clk_src";
-+			power-domains = <&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		lpass_aon: clock-controller@3380000 {
-+			compatible = "qcom,sc7280-lpassaoncc";
-+			reg = <0 0x03380000 0 0x30000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+			       <&rpmhcc RPMH_CXO_CLK_A>,
-+			       <&lpasscore LPASS_CORE_CC_CORE_CLK>;
-+			clock-names = "bi_tcxo", "bi_tcxo_ao", "iface";
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		lpasscore: clock-controller@3900000 {
-+			compatible = "qcom,sc7280-lpasscorecc";
-+			reg = <0 0x03900000 0 0x50000>;
-+			clocks =  <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "bi_tcxo";
-+			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>;
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		lpass_hm: clock-controller@3c00000 {
-+			compatible = "qcom,sc7280-lpasshm";
-+			reg = <0 0x3c00000 0 0x28>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "bi_tcxo";
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		lpass_ag_noc: interconnect@3c40000 {
- 			reg = <0 0x03c40000 0 0xf080>;
- 			compatible = "qcom,sc7280-lpass-ag-noc";
---
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the  Linux Foundation.
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
