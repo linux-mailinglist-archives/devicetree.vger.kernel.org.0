@@ -2,94 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13A654A74EE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 16:49:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C97D4A756E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 17:06:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241679AbiBBPte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 10:49:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60514 "EHLO
+        id S1345625AbiBBQGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 11:06:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231840AbiBBPtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 10:49:33 -0500
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CEFFC061714
-        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 07:49:33 -0800 (PST)
-Received: by mail-yb1-xb33.google.com with SMTP id i10so62316098ybt.10
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 07:49:33 -0800 (PST)
+        with ESMTP id S238621AbiBBQGI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 11:06:08 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9AF7C061714
+        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 08:06:08 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id l13so10068651plg.9
+        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 08:06:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/siAlN12aLkICP6/rrLm39IlMfBgQE7j1j4GTBXCe9o=;
-        b=gWjNQ8FVYVcHiCwRtEAS7NrkTAvIjJU/VrqAnes2yv01NsrE4rU3dpRu7fG4gVfjgU
-         /ldWfg/vwbb75BTcEVAcLJVjaZfofykrHQyaul9ew9uYl1kou+/3sWInfm6OO633wvB3
-         FeIGnPC/6msmeS/tBY0ftUubEMYtZfRzK1E1E=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ComyNVKqoyy5Ml0gbYTNF5CGFuK1LECSfgHPd03rA/Q=;
+        b=KnrN3RISEqRmj5VLldmhh/9I02hGHvjKYYy4qI0kSbIuw3Xldd5qGv3KXcV5gum0Vh
+         LnvVC0/kaiuORsCsjK2N+7qCGBhpGQBxDaDQEwALEGpEOqx0qxAhFphYtnoqROeJtkzH
+         +LIivfCX2jI5ESjCYjMz0GOzp4lSnuFieVkIU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/siAlN12aLkICP6/rrLm39IlMfBgQE7j1j4GTBXCe9o=;
-        b=QtX1o/0oTvymIVeDRS53R8Ta+FfU8iVZnG92BtrobMtbDGYzRWO4ykKkZUMqLIxedU
-         IJkueZ7iJJqpGbxJZbpR+PiwBmodUdxGRjMN6dXZiRj4YhAcX8+DI/61VHrAbP4L492X
-         SoGwpuW2GtJvi3NRScdJ/zKjx9Mn0JATN0Uwa1EgI+U1y3d3D0qg/cpIsQy2PJDU/Fsp
-         7KRIbUHjVhYP82trdz6RuL8Ehf9LWiPY1HZFeT5IW4/1vXRngWXcp2zI0Ete8/ty6OVF
-         8o9JPn/c4FdMCX11MpVm0V/QZpaTzmytriqiB+PDH35EJS5zWhdqGTExETHwsrP/hBBO
-         67UA==
-X-Gm-Message-State: AOAM530xJ0GG6VLKFpHP0X2bbb1ozdld4Zsua/9JBdY+7An4Lm0lJspv
-        DUNYs0fTkLMj9qE6V8HotNj1iW2ZbIfLA8EETVxIag==
-X-Google-Smtp-Source: ABdhPJzOI+CAspMP7aHP0upHc/wxFpkGCHDf+XfXkFWd8wWK8Qi+Y/Kt+hJfo9SkDJmj5/uVRZvSOUFn0/NVB3IqdOw=
-X-Received: by 2002:a25:c709:: with SMTP id w9mr42995658ybe.296.1643816972414;
- Wed, 02 Feb 2022 07:49:32 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ComyNVKqoyy5Ml0gbYTNF5CGFuK1LECSfgHPd03rA/Q=;
+        b=QFGHRRWjCgrLxy1HMOlMDKB7TuxdcMCVtsz8pKch+5EAPI0kRQGnSSsAjQJSyzG5YE
+         80W+IVvV0VQU3V8W/IfjJcr0mvZpi6+jXx/7255c2fnRde+/WhrC2omQ49p8jHex3obb
+         sI2rPyYAN6nUxs5gGk8hJ2lG6oNxn2O8mkwN8uEMtE+HkYuxNzIV8SVQHLg9e1do3PC0
+         /6jMrVvaPnJStuonfOKQfvXNAyLjitkvCBWajVqaRRli7osNe4/faySiN352m3SbVN+l
+         /d92smnq6avRWm46UbYRkFKikr62AzlHLxeplBhvJdjnfe/YeyoEhPhCm3jYTpUCVCyx
+         4/5w==
+X-Gm-Message-State: AOAM532+JRzaXgAcQviw4bwWN/Wd+xQ1DHHgl0dUUTc5hJwOimZSqznG
+        fYcIv7qRsmKKQnYqkUu++SoFOA==
+X-Google-Smtp-Source: ABdhPJzpGYUc0+rAyDL6+8pgErzLvRA3W8Ov6ZosJkU6OSOORfwQKG9HGsXfQSSBilrwmBcQtUtxjQ==
+X-Received: by 2002:a17:90b:4b05:: with SMTP id lx5mr8845331pjb.128.1643817968126;
+        Wed, 02 Feb 2022 08:06:08 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:7ce0:466c:be86:774])
+        by smtp.gmail.com with ESMTPSA id g5sm14722397pgc.51.2022.02.02.08.06.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Feb 2022 08:06:07 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>
+Subject: [PATCH RESEND v5 1/4] drm/bridge: anx7625: send DPCD command to downstream
+Date:   Thu,  3 Feb 2022 00:05:59 +0800
+Message-Id: <20220202160602.440792-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.35.0.rc2.247.g8bbb082509-goog
 MIME-Version: 1.0
-References: <20220121060120.10683-1-guodong.liu@mediatek.com> <CACRpkdaL_cUj2rbQUSzVj+ViEuNWiQbsakChNkaj6FK+fE76FA@mail.gmail.com>
-In-Reply-To: <CACRpkdaL_cUj2rbQUSzVj+ViEuNWiQbsakChNkaj6FK+fE76FA@mail.gmail.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 2 Feb 2022 23:49:21 +0800
-Message-ID: <CAGXv+5E6bq-veUQ6bEPgKwUULpWvZPu9GZ9cGkDS3OKD5Z8KFQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] pinctrl: mediatek: Support pinctrl driver on mt8186
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Guodong Liu <guodong.liu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Xin Ji <xji@analogixsemi.com>
 
-On Sun, Jan 30, 2022 at 9:43 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Fri, Jan 21, 2022 at 7:01 AM Guodong Liu <guodong.liu@mediatek.com> wrote:
->
-> > changes since v1:
-> > - add default pinctrl config to consistent with other MTK pinctrl drivers
-> >
-> > Patch 1 add pinctrl file and binding document.
-> >
-> > Patch 2 add pinctrl chip driver on mt8186.
-> >
-> > Guodong Liu (2):
-> >   dt-bindings: pinctrl: mt8186: add pinctrl file and binding document
-> >   pinctrl: add pinctrl driver on mt8186
->
-> Looks good to me, just wanna loop this by Chen-Yu Tsai for a check that
-> it looks good to him too.
+Send DPCD command to downstream before anx7625 power down,
+let downstream monitor enter into standby mode.
 
-I'm still on vacation, and even after that, I might not have the cycles to
-do an in depth review of the hardware bits this month.
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+v3->v4:
+Use common DP_AUX_NATIVE_READ/WRITE
 
-Since Angelo already gave an ack (which somehow was not added in v2), and
-AFAIK the driver does work downstream in ChromeOS, I wouldn't block it.
+Previously in:
+https://patchwork.kernel.org/project/dri-devel/patch/1f36f8bf0a48fb2bba17bacec23700e58c1d407d.1641891874.git.xji@analogixsemi.com/
+---
+ drivers/gpu/drm/bridge/analogix/anx7625.c | 42 +++++++++++++++++++----
+ drivers/gpu/drm/bridge/analogix/anx7625.h |  2 --
+ 2 files changed, 35 insertions(+), 9 deletions(-)
 
-However, there's an error in the DT binding that should be fixed sooner
-than later.
+diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+index 76662fce4ce61d..17b23940549a42 100644
+--- a/drivers/gpu/drm/bridge/analogix/anx7625.c
++++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+@@ -129,6 +129,23 @@ static int anx7625_reg_write(struct anx7625_data *ctx,
+ 	return ret;
+ }
+ 
++static int anx7625_reg_block_write(struct anx7625_data *ctx,
++				   struct i2c_client *client,
++				   u8 reg_addr, u8 len, u8 *buf)
++{
++	int ret;
++	struct device *dev = &client->dev;
++
++	i2c_access_workaround(ctx, client);
++
++	ret = i2c_smbus_write_i2c_block_data(client, reg_addr, len, buf);
++	if (ret < 0)
++		dev_err(dev, "write i2c block failed id=%x\n:%x",
++			client->addr, reg_addr);
++
++	return ret;
++}
++
+ static int anx7625_write_or(struct anx7625_data *ctx,
+ 			    struct i2c_client *client,
+ 			    u8 offset, u8 mask)
+@@ -214,8 +231,8 @@ static int wait_aux_op_finish(struct anx7625_data *ctx)
+ 	return 0;
+ }
+ 
+-static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
+-				 u32 address, u8 len, u8 *buf)
++static int anx7625_aux_dpcd_trans(struct anx7625_data *ctx, u8 op,
++				  u32 address, u8 len, u8 *buf)
+ {
+ 	struct device *dev = &ctx->client->dev;
+ 	int ret;
+@@ -231,8 +248,7 @@ static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
+ 	addrm = (address >> 8) & 0xFF;
+ 	addrh = (address >> 16) & 0xFF;
+ 
+-	cmd = DPCD_CMD(len, DPCD_READ);
+-	cmd = ((len - 1) << 4) | 0x09;
++	cmd = DPCD_CMD(len, op);
+ 
+ 	/* Set command and length */
+ 	ret = anx7625_reg_write(ctx, ctx->i2c.rx_p0_client,
+@@ -246,6 +262,9 @@ static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
+ 	ret |= anx7625_reg_write(ctx, ctx->i2c.rx_p0_client,
+ 				 AP_AUX_ADDR_19_16, addrh);
+ 
++	if (op == DP_AUX_NATIVE_WRITE)
++		ret |= anx7625_reg_block_write(ctx, ctx->i2c.rx_p0_client,
++					       AP_AUX_BUFF_START, len, buf);
+ 	/* Enable aux access */
+ 	ret |= anx7625_write_or(ctx, ctx->i2c.rx_p0_client,
+ 				AP_AUX_CTRL_STATUS, AP_AUX_CTRL_OP_EN);
+@@ -255,14 +274,17 @@ static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
+ 		return -EIO;
+ 	}
+ 
+-	usleep_range(2000, 2100);
+-
+ 	ret = wait_aux_op_finish(ctx);
+ 	if (ret) {
+ 		dev_err(dev, "aux IO error: wait aux op finish.\n");
+ 		return ret;
+ 	}
+ 
++	/* Write done */
++	if (op == DP_AUX_NATIVE_WRITE)
++		return 0;
++
++	/* Read done, read out dpcd data */
+ 	ret = anx7625_reg_block_read(ctx, ctx->i2c.rx_p0_client,
+ 				     AP_AUX_BUFF_START, len, buf);
+ 	if (ret < 0) {
+@@ -845,7 +867,7 @@ static int anx7625_hdcp_enable(struct anx7625_data *ctx)
+ 	}
+ 
+ 	/* Read downstream capability */
+-	anx7625_aux_dpcd_read(ctx, 0x68028, 1, &bcap);
++	anx7625_aux_dpcd_trans(ctx, DP_AUX_NATIVE_READ, 0x68028, 1, &bcap);
+ 	if (!(bcap & 0x01)) {
+ 		pr_warn("downstream not support HDCP 1.4, cap(%x).\n", bcap);
+ 		return 0;
+@@ -918,6 +940,7 @@ static void anx7625_dp_stop(struct anx7625_data *ctx)
+ {
+ 	struct device *dev = &ctx->client->dev;
+ 	int ret;
++	u8 data;
+ 
+ 	DRM_DEV_DEBUG_DRIVER(dev, "stop dp output\n");
+ 
+@@ -929,6 +952,11 @@ static void anx7625_dp_stop(struct anx7625_data *ctx)
+ 	ret |= anx7625_write_and(ctx, ctx->i2c.tx_p2_client, 0x08, 0x7f);
+ 
+ 	ret |= anx7625_video_mute_control(ctx, 1);
++
++	dev_dbg(dev, "notify downstream enter into standby\n");
++	/* Downstream monitor enter into standby mode */
++	data = 2;
++	ret |= anx7625_aux_dpcd_trans(ctx, DP_AUX_NATIVE_WRITE, 0x000600, 1, &data);
+ 	if (ret < 0)
+ 		DRM_DEV_ERROR(dev, "IO error : mute video fail\n");
+ 
+diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
+index 56165f5b254c14..64a8ab56529404 100644
+--- a/drivers/gpu/drm/bridge/analogix/anx7625.h
++++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
+@@ -242,8 +242,6 @@
+ 
+ #define AP_AUX_COMMAND	0x27  /* com+len */
+ #define LENGTH_SHIFT	4
+-#define DPCD_READ	0x09
+-#define DPCD_WRITE	0x08
+ #define DPCD_CMD(len, cmd)	((((len) - 1) << LENGTH_SHIFT) | (cmd))
+ 
+ /* Bit 0&1: 3D video structure */
+-- 
+2.35.0.rc2.247.g8bbb082509-goog
 
-
-Thanks
-ChenYu
