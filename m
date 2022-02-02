@@ -2,179 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 119C64A6E49
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 10:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC81B4A6E65
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 11:10:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232220AbiBBJ7Q convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Feb 2022 04:59:16 -0500
-Received: from aposti.net ([89.234.176.197]:39124 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229741AbiBBJ7Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Feb 2022 04:59:16 -0500
-Date:   Wed, 02 Feb 2022 09:59:01 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v12 3/9] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
- DT Schema
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh@kernel.org>
-Message-Id: <D29O6R.3788L9G5J66L@crapouillou.net>
-In-Reply-To: <2386420a975e0a6c17393828af776991f3d17c01.1643632014.git.hns@goldelico.com>
-References: <cover.1643632014.git.hns@goldelico.com>
-        <2386420a975e0a6c17393828af776991f3d17c01.1643632014.git.hns@goldelico.com>
+        id S245729AbiBBKKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 05:10:03 -0500
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:52011 "EHLO
+        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232791AbiBBKJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 05:09:57 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id B372C320209C;
+        Wed,  2 Feb 2022 05:09:56 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Wed, 02 Feb 2022 05:09:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; bh=5DbPeJMozNaU240qUNLzxx93csQDF44f90Lclb
+        ERxnQ=; b=tfnzbixzjf+jgcPCPk134Q8KdrbexefMlV1Er7CiED/iV1g8npAQSA
+        d0X0QLQHhyHwyLwnveR8c3hH9V1I+qp5aTrKHbebvv+pHZ2BkZfhSsl9bVwbetp8
+        /0H+VJh2ieuQreR1C29ghNTkJMdLrMGEPTtM98tJuZQUuDmGtPmD/Hj4M0yn67BM
+        8uS3IulIf/6zh1wOH7NKWUiiORbE0/hOfQOtCwmyJ58zWjFjNb2N5ZiqY3gfDb6i
+        ozKIgufoDPppiFd87QZoV5VoEYiJtRFhwIW7FNd41dB33Cr7VXPMOHzcu9goErT1
+        ubBasUArqNAtw6OP9dtK1pf3wHQoxB5A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=5DbPeJMozNaU240qU
+        NLzxx93csQDF44f90LclbERxnQ=; b=NIyzfVAyRece//qIcauOxUGapQPlxr+GC
+        l4ZIvb1rf0/U2Ceq4UP6rc+ZG3BemKQJvWI93o+UFkADzeCJFe/YVQ+uE6cG2zUK
+        XqVgfanhvLe9qjVl/aj1zatArwJe5CAkNP1pErPGOPXmaOzsd+MegstfNzk1Pr76
+        iGZ5A3gsC2oQjo2XFK00/enjCLQDgtEtFiW7ZNdObutu5DRJ8sQ6LGig4jm0lgru
+        iP5pHUcSMYxea2KtdFb/oZIh5f+2CAAJrkdwAWg2T/JXgVl5YP8BZNyt23qPhYMP
+        d4V9VBmY11NE/Ldnp/hp517qWdh4FT0YH/BHYIhzqE4UmkI1Z/91A==
+X-ME-Sender: <xms:c1j6YYyEomhAKVR9GkgSbUvDB32b1m6q-eoDMObTEsUtskWnwbiX7A>
+    <xme:c1j6YcRTTnGIbC81Ce_NmJkkPi3D0ka98gpZjjc5Zwh_LH79t7Qd-K7d1Pfcj0EXD
+    7PoC1gKHt0m_97VMKA>
+X-ME-Received: <xmr:c1j6YaUarMW9xAePok6XxvcCbapzSD4t6qUjSxaLtOs3CaXpbjoxFs__p65EwT1p4EBMm71TMINKw5Mys5kHyIIo3sEPMKLExWKyEz8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgeehgddufecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
+    veenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:c1j6YWgCN7WtE5kTGGyPXNBZfCiINeVyogv7Fnuot99XXwwxW5i3Dg>
+    <xmx:c1j6YaA6uTggvy6re-AI9jwCIcROjakPqIxiDj7Uz9_t5Pztum5Gsg>
+    <xmx:c1j6YXJS8N3MEWAqYjgosjKe6QhLpjY9hqMoYiYIHjocm9bLa1omdg>
+    <xmx:dFj6Yc0kKhE4fsYLnqfZ4PNQeWZGmX7grZcIsGxsAaLx_flwxSMFHg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 2 Feb 2022 05:09:55 -0500 (EST)
+Date:   Wed, 2 Feb 2022 11:09:53 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc:     robh+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 3/3] drm/panel: Add MIPI DBI compatible SPI driver
+Message-ID: <20220202100953.pymb6blsqlaw7jv6@houat>
+References: <20220125175700.37408-1-noralf@tronnes.org>
+ <20220125175700.37408-4-noralf@tronnes.org>
+ <20220127100452.bmxcgf6ye3nxrgtq@houat>
+ <fff71d01-e1c9-2b0f-e4b2-9abb107f7770@tronnes.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="k7kodxa7vws5utl3"
+Content-Disposition: inline
+In-Reply-To: <fff71d01-e1c9-2b0f-e4b2-9abb107f7770@tronnes.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
 
-Le lun., janv. 31 2022 at 13:26:49 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> From: Sam Ravnborg <sam@ravnborg.org>
-> 
-> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
-> Based on .txt binding from Zubair Lutfullah Kakakhel
-> 
-> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> ---
->  .../display/bridge/ingenic,jz4780-hdmi.yaml   | 83 
-> +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 
-> Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> 
-> diff --git 
-> a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml 
-> b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> new file mode 100644
-> index 0000000000000..5a2767308c0ab
-> --- /dev/null
-> +++ 
-> b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: 
-> http://devicetree.org/schemas/display/bridge/ingenic,jz4780-hdmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for Ingenic JZ4780 HDMI Transmitter
-> +
-> +maintainers:
-> +  - H. Nikolaus Schaller <hns@goldelico.com>
-> +
-> +description: |
-> +  The HDMI Transmitter in the Ingenic JZ4780 is a Synopsys 
-> DesignWare HDMI 1.4
-> +  TX controller IP with accompanying PHY IP.
-> +
-> +allOf:
-> +  - $ref: synopsys,dw-hdmi.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ingenic,jz4780-dw-hdmi
-> +
-> +  reg-io-width:
-> +    const: 4
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input from LCD controller output.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Link to the HDMI connector.
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - ports
-> +  - reg-io-width
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/ingenic,jz4780-cgu.h>
-> +
-> +    hdmi: hdmi@10180000 {
-> +        compatible = "ingenic,jz4780-dw-hdmi";
-> +        reg = <0x10180000 0x8000>;
-> +        reg-io-width = <4>;
-> +        ddc-i2c-bus = <&i2c4>;
-> +        interrupt-parent = <&intc>;
-> +        interrupts = <3>;
-> +        clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
-> +        clock-names = "iahb", "isfr";
-> +        hdmi-5v-supply = <&hdmi_power>;
+--k7kodxa7vws5utl3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Where is this property defined?
+On Thu, Jan 27, 2022 at 06:53:48PM +0100, Noralf Tr=F8nnes wrote:
+> >> +struct panel_mipi_dbi_config {
+> >> +	/* Magic string: panel_mipi_dbi_magic */
+> >> +	u8 magic[15];
+> >> +
+> >> +	/* Config file format version */
+> >> +	u8 file_format_version;
+> >> +
+> >> +	/* Width in pixels */
+> >> +	__be16 width;
+> >> +	/* Height in pixels */
+> >> +	__be16 height;
+> >> +
+> >> +	/* Width in millimeters (optional) */
+> >> +	__be16 width_mm;
+> >> +	/* Height in millimeters (optional) */
+> >> +	__be16 height_mm;
+> >> +
+> >> +	/* X-axis panel offset */
+> >> +	__be16 x_offset;
+> >> +	/* Y-axis panel offset */
+> >> +	__be16 y_offset;
+> >> +
+> >> +	/* 4 pad bytes, must be zero */
+> >> +	u8 pad[4];
+> >> +
+> >> +	/*
+> >> +	 * Optional MIPI commands to execute when the display pipeline is en=
+abled.
+> >> +	 * This can be used to configure the display controller.
+> >> +	 *
+> >> +	 * The commands are stored in a byte array with the format:
+> >> +	 *     command, num_parameters, [ parameter, ...], command, ...
+> >> +	 *
+> >> +	 * Some commands require a pause before the next command can be rece=
+ived.
+> >> +	 * Inserting a delay in the command sequence is done by using the NO=
+P command with one
+> >> +	 * parameter: delay in miliseconds (the No Operation command is part=
+ of the MIPI Display
+> >> +	 * Command Set where it has no parameters).
+> >> +	 *
+> >> +	 * Example:
+> >> +	 *     command 0x11
+> >> +	 *     sleep 120ms
+> >> +	 *     command 0xb1 parameters 0x01, 0x2c, 0x2d
+> >> +	 *     command 0x29
+> >> +	 *
+> >> +	 * Byte sequence:
+> >> +	 *     0x11 0x00
+> >> +	 *     0x00 0x01 0x78
+> >> +	 *     0xb1 0x03 0x01 0x2c 0x2d
+> >> +	 *     0x29 0x00
+> >> +	 */
+> >> +	u8 commands[];
+> >> +};
+> >=20
+> > I'm not really a fan of parsing raw data in the kernel. I guess we can't
+> > really avoid the introduction of a special case to sleep, but we already
+> > have dt properties for all of the other properties (but X and Y offset,
+> > maybe?)
+> >=20
+> > Maybe we should use those instead?
+>
+> I don't understand your reluctance to parsing data, lots of ioctls do
+> it.
 
-Cheers,
--Paul
+The reluctance comes from the parsing itself: you need to have input
+validation, and it's hard to get right. The less we have, the easier it
+gets.
 
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            hdmi_in: port@0 {
-> +                reg = <0>;
-> +                dw_hdmi_in: endpoint {
-> +                    remote-endpoint = <&jz4780_lcd_out>;
-> +                };
-> +            };
-> +            hdmi_out: port@1 {
-> +                reg = <1>;
-> +                dw_hdmi_out: endpoint {
-> +                    remote-endpoint = <&hdmi_con>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> --
-> 2.33.0
-> 
+> And this data can only be loaded by root. What I like about having
+> these properties in the config file is that the binding becomes a
+> fallback binding that can actually be made to work without changing the
+> Device Tree.
+>=20
+> For arguments sake let's say tiny/st7735r.c was not built and we had
+> this node:
+>=20
+> display@0{
+> 	compatible =3D "jianda,jd-t18003-t01", "sitronix,st7735r",
+> "panel-mipi-dbi-spi";
+> };
+>=20
+> It will still be possible to use this display without changing the
+> Device Tree. Just add a firmware/config file.
+>=20
+> Having the properties in DT it would have to look like this for the
+> fallback to work:
+>=20
+> display@0{
+> 	compatible =3D "jianda,jd-t18003-t01", "sitronix,st7735r",
+> "panel-mipi-dbi-spi";
+> 	panel-timing =3D {
+> 		hactive =3D <128>;
+> 		vactive =3D <128>;
+> 	};
+> 	width-mm =3D <25>;
+> 	height-mm =3D <26>;
+> 	x-offset =3D <2>;
+> 	y-offset =3D <3>;
+> };
+>=20
+> Is this important, I'm not sure. What do you think?
 
+Parts of it is ergonomics I guess. We're used to having all those
+properties either in the DT or the driver, but here we introduce a new
+way that isn't done anywhere else.
 
+And I don't see any real downside to putting it in the DT? It's going to
+be in an overlay, under the user's control anyway, right?
+
+Maxime
+
+--k7kodxa7vws5utl3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYfpYcQAKCRDj7w1vZxhR
+xVNIAP9lqwOdLp6XqZji1ZbnVE9RmaNIYURZr+51v750hgHvcAEA30sE3FTTzbJ0
+xW7ZhdmyOTEV/N5CO9/PUockqc4Y8AQ=
+=c08z
+-----END PGP SIGNATURE-----
+
+--k7kodxa7vws5utl3--
