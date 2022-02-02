@@ -2,131 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80A3F4A75D6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 17:31:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83D604A7604
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 17:35:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236699AbiBBQbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 11:31:38 -0500
-Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.124]:42693 "EHLO
-        mo4-p04-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345850AbiBBQbf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 11:31:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1643819491;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=SB7WF+uS6P5/t2dwpOjYUkPlGzh1hZqHZTK2na9w/fI=;
-    b=m6WElPFa5wwUetkXYni87eezOdYWqUP3earTSuvG3Z4jqwrVy2d/IWZ8rHT/2yofNT
-    n4g7NMdJDfkirCo/78xo4waPkUNibWep1MT6i1dYiN3Bv0cYkyJDfnMHqgHTEe/KuOka
-    9hj6fsT+Tdq9Dv4QHI1+YD0YqaVj2I/BxHnFOgJYtyEs20Vkqx+o44UMceL6Icb3Bm2C
-    mzVBfZWz0LoipC5XuqOWkgpkVMbSBHR6H4DbqR0L1UHUnPkQxatsnmVMTnEt4VCdB+WB
-    /vUnttSfiqT2uL5QZ7XS1mqOE3xo9+jW9QB7dhpqOPPdrqx2wWo5JVGHH91rWKUucGOP
-    tBhQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1OAA2UMf2MwPVbjc9Y="
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-    by smtp.strato.de (RZmta 47.39.0 DYNA|AUTH)
-    with ESMTPSA id L29417y12GVUBmt
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Wed, 2 Feb 2022 17:31:30 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH v13 8/9] MIPS: DTS: CI20: fix how ddc power is enabled
-Date:   Wed,  2 Feb 2022 17:31:22 +0100
-Message-Id: <0e5dc9a7c67b1cdfdb4427f631a8caa43777270e.1643819482.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <cover.1643819482.git.hns@goldelico.com>
-References: <cover.1643819482.git.hns@goldelico.com>
+        id S233295AbiBBQfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 11:35:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43262 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236774AbiBBQfx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 11:35:53 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D77FC06173B;
+        Wed,  2 Feb 2022 08:35:53 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id c24so43714746edy.4;
+        Wed, 02 Feb 2022 08:35:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rolQc+QeV6/sWeHuoVWITOz2rFwUTuSxmkxEOlEseaw=;
+        b=gejAnHy0niTm6ryHaBOrZMXupGOWpng/HKnLZPpUJD3zqobwsXOV17Xmtf8tHZmTMN
+         xGAbwZyLrwMhQzrkKAURJiWApWMWHARvmXtDPhGo7qPHz8P2j9m7z2GWyzu5BPeCwyC9
+         bxIt6uEK1Kk3Kv+FfwmS+Crusw/Yo9yuCaNGQvAsht54CChxrnR7+3e35bQxWudnEo30
+         qGLh/kc0eLnyylMr8o8GPgkU+SvMuJHCAc/Dl95J2gvItadkKaTVK/rqcP8lT3NoCPuE
+         ZMPgUV1H6zJhh06PUdyGuExmRkc/T/wZJ4meGgY5JjodFvb8rUisCn2Opj9gqQaF/NEN
+         4vGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rolQc+QeV6/sWeHuoVWITOz2rFwUTuSxmkxEOlEseaw=;
+        b=Ecp23G3fEHC4stZVyJgv+tIoQlYCEIdNhjhgAZJXuUoE4o09v1CsLfbXYoXdrItf9Q
+         cw0ZAdeBIKlpKvvPySLTj0WRfw5JATGbm9t8shrcRS1SCiCl5JGWFYlqe2gmcNKBJhk2
+         fgTCgw67q5RC0UvivkaWcNBda2lZ0thFD/rCJwF3CVNFYMREy78M7Lxoqts8n+3a87Qy
+         7Pk1lJZcZ1AXKHC5fw5lNLX2WewGd3AGfpktWUb5ozvyHxX8bAy3gTMHfwUaq+lFkH1X
+         0RBLgWzevzMV4Doi7Kw9YGGFcpe4JCwqXI9My7VIu8wnR930e7PEy0PMWPR8ZZd2WS64
+         Pmwg==
+X-Gm-Message-State: AOAM5317OqonlE2cosIs7F31FkOwSa4ilTCyZVoSgR6u6248k3L+9uzN
+        FuDafwvn7BbVeSzGnYadSPY=
+X-Google-Smtp-Source: ABdhPJwFlGZfn+kMbwxHye6FyfkNQU+NCfAvvYTMvd0GGVS3QiH5QHxa4gtDRQtgqtohXSLx3IsWCw==
+X-Received: by 2002:aa7:d913:: with SMTP id a19mr30936284edr.123.1643819752031;
+        Wed, 02 Feb 2022 08:35:52 -0800 (PST)
+Received: from adroid (027-177-184-091.ip-addr.vsenet.de. [91.184.177.27])
+        by smtp.gmail.com with ESMTPSA id lc22sm15806551ejc.76.2022.02.02.08.35.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Feb 2022 08:35:51 -0800 (PST)
+From:   =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
+Subject: [PATCH 1/3] ARM: dts: exynos: add smb347 charger to p4note
+Date:   Wed,  2 Feb 2022 17:34:12 +0100
+Message-Id: <5d15937b6a7c4ae82a8f0d164fa28a4d4ad46325.1643757744.git.martin.juecker@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Originally we proposed a new hdmi-5v-supply regulator reference
-for CI20 device tree but that was superseded by a better idea to use
-the already defined "ddc-en-gpios" property of the "hdmi-connector".
+Add device tree entry to support the Summit SMB347 charger which is
+built into the p4note devices.
 
-Since "MIPS: DTS: CI20: Add DT nodes for HDMI setup" has already
-been applied to v5.17-rc1, we add this on top.
-
-Fixes: ae1b8d2c2de9 ("MIPS: DTS: CI20: Add DT nodes for HDMI setup")
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
+Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
 ---
- arch/mips/boot/dts/ingenic/ci20.dts | 15 ++-------------
- 1 file changed, 2 insertions(+), 13 deletions(-)
+ arch/arm/boot/dts/exynos4412-p4note.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
-index 3e336b3dbb109..ab6e3dc0bc1d0 100644
---- a/arch/mips/boot/dts/ingenic/ci20.dts
-+++ b/arch/mips/boot/dts/ingenic/ci20.dts
-@@ -83,6 +83,8 @@ hdmi_out: connector {
- 		label = "HDMI OUT";
- 		type = "a";
+diff --git a/arch/arm/boot/dts/exynos4412-p4note.dtsi b/arch/arm/boot/dts/exynos4412-p4note.dtsi
+index b386a9b8e188..63459db653ea 100644
+--- a/arch/arm/boot/dts/exynos4412-p4note.dtsi
++++ b/arch/arm/boot/dts/exynos4412-p4note.dtsi
+@@ -16,6 +16,7 @@
+ #include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/pinctrl/samsung.h>
++#include <dt-bindings/power/summit,smb347-charger.h>
  
-+		ddc-en-gpios = <&gpa 25 GPIO_ACTIVE_HIGH>;
-+
- 		port {
- 			hdmi_con: endpoint {
- 				remote-endpoint = <&dw_hdmi_out>;
-@@ -114,17 +116,6 @@ otg_power: fixedregulator@2 {
- 		gpio = <&gpf 14 GPIO_ACTIVE_LOW>;
- 		enable-active-high;
+ / {
+ 	compatible = "samsung,p4note", "samsung,exynos4412", "samsung,exynos4";
+@@ -182,6 +183,27 @@ stmpe_adc {
+ 			};
+ 		};
  	};
--
--	hdmi_power: fixedregulator@3 {
--		compatible = "regulator-fixed";
--
--		regulator-name = "hdmi_power";
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--
--		gpio = <&gpa 25 0>;
--		enable-active-high;
--	};
++
++	i2c-gpio-4 {
++		compatible = "i2c-gpio";
++		sda-gpios = <&gpm2 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++		scl-gpios = <&gpm2 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++
++		i2c-gpio,delay-us = <2>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		charger@6 {
++			compatible = "summit,smb347";
++			reg = <0x6>;
++			summit,enable-usb-charging;
++			summit,enable-charge-control = <SMB3XX_CHG_ENABLE_SW>;
++			summit,fast-voltage-threshold-microvolt = <2600000>;
++			summit,chip-temperature-threshold-celsius = <130>;
++			summit,usb-current-limit-microamp = <1800000>;
++		};
++	};
++
  };
  
- &ext {
-@@ -576,8 +567,6 @@ &hdmi {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pins_hdmi_ddc>;
- 
--	hdmi-5v-supply = <&hdmi_power>;
--
- 	ports {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+ &adc {
 -- 
-2.33.0
+2.25.1
 
