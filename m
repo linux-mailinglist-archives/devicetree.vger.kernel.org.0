@@ -2,194 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FFF94A6E10
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 10:48:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EDF94A6E36
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 10:56:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245566AbiBBJst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 04:48:49 -0500
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:45779 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S245565AbiBBJst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 04:48:49 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 65CF132022E7;
-        Wed,  2 Feb 2022 04:48:48 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Wed, 02 Feb 2022 04:48:49 -0500
+        id S234981AbiBBJ4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 04:56:10 -0500
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:57279 "EHLO
+        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230444AbiBBJ4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 04:56:09 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.west.internal (Postfix) with ESMTP id C460F2B00960;
+        Wed,  2 Feb 2022 04:56:07 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Wed, 02 Feb 2022 04:56:08 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; bh=mvttCoDxEmNSX3VfTvVqa/R3/CbmzT2hj3kMEv
-        HCk0Y=; b=tHMBvloRnmuWkysYytaejOfMmrUlaS05Gy6WvAMaFKSCHQGbTyKT46
-        +mttsXFlVcfXP8s5l1dXFMFQ7dojoGxunaeYZUkwmAxGLW8kQ+qxTz1oHjnz0Blw
-        /Y0jkaI/YtsE503hS6y1dC9el0qpAWRoFRDJIYW/GJSUc7+TAPcx5OhK7BwSJGd4
-        eX0JHgEXJYFx7VVP0Da5nZMZuafiQ1mGlkj2s/otgKlE00WsmkQjL6J17To53yFE
-        6k1QlEzpwzg7YfLGXrMmQNafbqW6kucxVszajMFqd2RkFU2AUt/NhvJDCuVpdG6f
-        ByAt7eGrr+zlpT3yqzG4EvVYKrAnokow==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :cc:content-transfer-encoding:content-type:date:date:from:from
         :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=mvttCoDxEmNSX3VfT
-        vVqa/R3/CbmzT2hj3kMEvHCk0Y=; b=olO5y7TULxYTntOJ/dc27lHM1ELkRlDk5
-        x21iZGqsQQBCHMnoF18lTKg258exO//Tk/pINWLFSyD9Mm6/BCYfpHZRcSp3xHnm
-        EuS0LnTW1cVgztoeS1XGArJ2OSO4wWrXugUquU15aQcRjbdNMIlHeEXx4zZ3RkVi
-        WmRM/+How3+nxCv3xhwgAjSRCwvULxU0nQuNHqk/V4KEMCAIjumrZLjnQk8c60pX
-        EuA1HPx9e1BXYmzaCXjSxc9DP+EcbzxGJOtw1W8bACFdnTIVYnfWxabFrBMltHz9
-        GhCIAMx40bd9ZppiOg8fHUVcmQgfuWPgjVC73WEO2PJoNOY1+Z1rQ==
-X-ME-Sender: <xms:f1P6YdKqxLLHSo68jLA8f1yWaMqgGC04k5yTp2IafVZrNGlL-enwBw>
-    <xme:f1P6YZKDw6zFOOVGD3kvYhyVYubNeYUP3313wa_Z9lT0U974KN2D_i2H9Z2H38OtW
-    HrOMSPybR96VXj076w>
-X-ME-Received: <xmr:f1P6YVuJbBWYYwvuUUAi_xoKwjCPxqX9Qq-K-yw_5No_4YdIlJKJ5o7wth3QFosrANWqtg4VhP0TcP7GEpMi7E2Jd6hDaL1lqbTxrUk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgeehgddtkecutefuodetggdotefrodftvf
+        :reply-to:sender:subject:subject:to:to; s=fm2; bh=BMNTBUbITcyY1t
+        HRIQ8pPnuvBE2aEE21EUQWnUzzWHU=; b=bHEHVyEUBkl9wGmw6beg/PXTVreHdq
+        6FY6Fsm0P+r4HVvmhnXwMKkh6dfndrVILf9/jnCNiyDLgImuASzjFUBGFBiaxKb4
+        CJZzVXrflRSGCqYh5KYHLZFOgNPvPgXBDPxY8+aCty9+Ropz4OAH8IZln/7vb15W
+        yXXPvC/juuKOL1OBKxu3wIFPT/FRU6VZFBpxJfhqEOE6Y0W4+NtFRmB9bcWu7U0j
+        KmCnXHuj0ijUgroQafTxsH+Avlqwf/AelqYnosCsQwfo+kvAy5YXwdY9LY0vRQ21
+        v+CmZDJxH0MmOKiR/jYctubY7TYT30ie60IiLZqPyRjsPd7DGlLsaNrQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=BMNTBUbITcyY1tHRIQ8pPnuvBE2aEE21EUQWnUzzW
+        HU=; b=bOng5vL/WBRkkVokyohffCDdb+rOgqVejnvflOdDmFCJz6tmjRbQ3Ybbk
+        0gIPp+5zmJmV47qnFw4GPL9LNYhVt4JfDC+olmNlDbYkf9s2K/BhPs8UW7t83d5a
+        f3B1Q69Jn8+GEcFsOfnB1aF4dEAP40KFqohCX8Gq4CPmwnQcBZBEd2n/3KuIU880
+        RUlRmDuY6z0EYQmHu/WB5P9Dv92+p8D5848laJnZDlQ1mTfLuNvyHYTsQsyLttzM
+        9+EK8e4s21RYJuxbdfyI9v2qEBou66HHrKQdG6XvyIbKVLsHlXaW5bB/QO8C7lqi
+        zIGKVJLzaAlAUagCW/w8Q9VVrsubg==
+X-ME-Sender: <xms:N1X6YVpOvpuSbNvvUO5-j0e4nYO5rquo9yHCI8NmLuLcv4lhwu4GTw>
+    <xme:N1X6YXpUWtmGx5eu2Bp4RwZQ1Ob5tMoLXzRUu8DRL6-GbzWrmu0Bo9NTB87izEeMk
+    C4aPwwPIwmGaL5GeoM>
+X-ME-Received: <xmr:N1X6YSPsM1eN6qYruG3zSmSPFXF2Maql1Dt-QORqENaBRHoj79AxkLO5OqXs0eyRt9gbXvvkpKF-LHPE62dvLJN0zvkRoE4_1qi41ro>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgeehgddutdcutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeffteetveeijeetuefhffegkeetgffhieelheehtdduudethffhjedtvddtudel
-    vdenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
-    vggthh
-X-ME-Proxy: <xmx:f1P6YeapZXF351_fmv_i83cSJdf1XU6ZZOXBsffO0SdDqlE3a0PWQw>
-    <xmx:f1P6YUa_Oe_HXYLIpLIIZgzL0JhzDJHku6VQFm46RJGikgFlrOmUAg>
-    <xmx:f1P6YSDx3UZqK3A_VnnsB8OO1qMMfqS2WXwESTH8e8AsZoYkPAq7vg>
-    <xmx:f1P6YaN-jN5pjxggdBLqo9JTqDzMcVD8JPmfHL-s_KYo-wOmokxUyw>
+    fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfefgeei
+    keeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:N1X6YQ5pahY7mc_BYGpGHPo0tLke9BpFfZvG_y6Ij5Xfdy_le2MTPQ>
+    <xmx:N1X6YU4T3V5uTG-6fPoLi-B589VI8q61KxnFjG0zPZqKmv52a8ZtLQ>
+    <xmx:N1X6YYjoR_QucgCdIxivj3akJopH8T6qv5OtKyIr13dXghZ-GtVw8g>
+    <xmx:N1X6YVHpQ30xAQS5RqU6ZyLhMpgaGv8i0G47L17mrwLFJ2Wtg0OjWX4IOqY>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 2 Feb 2022 04:48:47 -0500 (EST)
-Date:   Wed, 2 Feb 2022 10:48:45 +0100
+ 2 Feb 2022 04:56:06 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: panel: Introduce a panel-lvds binding
-Message-ID: <20220202094845.r7td65zxfo5uqg5x@houat>
-References: <20220111110635.804371-1-maxime@cerno.tech>
- <20220111110635.804371-2-maxime@cerno.tech>
- <Yd2Ahn3+FVv/Aks7@pendragon.ideasonboard.com>
- <20220127142215.fesipdslabur43sx@houat>
+Subject: Re: (subset) [PATCH v3 2/2] dt-bindings: panel: Introduce a panel-lvds binding
+Date:   Wed,  2 Feb 2022 10:55:59 +0100
+Message-Id: <164379573891.876896.16153204787533367742.b4-ty@cerno.tech>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220111110635.804371-2-maxime@cerno.tech>
+References: <20220111110635.804371-1-maxime@cerno.tech> <20220111110635.804371-2-maxime@cerno.tech>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="56zeyuukc3asnzuk"
-Content-Disposition: inline
-In-Reply-To: <20220127142215.fesipdslabur43sx@houat>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 11 Jan 2022 12:06:35 +0100, Maxime Ripard wrote:
+> Following the previous patch, let's introduce a generic panel-lvds
+> binding that documents the panels that don't have any particular
+> constraint documented.
+> 
+> 
 
---56zeyuukc3asnzuk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to drm/drm-misc (drm-misc-next).
 
-On Thu, Jan 27, 2022 at 03:22:15PM +0100, Maxime Ripard wrote:
-> Hi Laurent,
->=20
-> On Tue, Jan 11, 2022 at 03:05:10PM +0200, Laurent Pinchart wrote:
-> > On Tue, Jan 11, 2022 at 12:06:35PM +0100, Maxime Ripard wrote:
-> > > Following the previous patch, let's introduce a generic panel-lvds
-> > > binding that documents the panels that don't have any particular
-> > > constraint documented.
-> > >=20
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > >=20
-> > > ---
-> > >=20
-> > > Changes from v2:
-> > >   - Added a MAINTAINERS entry
-> > >=20
-> > > Changes from v1:
-> > >   - Added missing compatible
-> > >   - Fixed lint
-> > > ---
-> > >  .../bindings/display/panel/panel-lvds.yaml    | 57 +++++++++++++++++=
-++
-> > >  MAINTAINERS                                   |  1 +
-> > >  2 files changed, 58 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/display/panel/p=
-anel-lvds.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/display/panel/panel-lv=
-ds.yaml b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> > > new file mode 100644
-> > > index 000000000000..fcc50db6a812
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> > > @@ -0,0 +1,57 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Generic LVDS Display Panel Device Tree Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > +  - Thierry Reding <thierry.reding@gmail.com>
-> > > +
-> > > +allOf:
-> > > +  - $ref: panel-common.yaml#
-> > > +  - $ref: /schemas/display/lvds.yaml/#
-> > > +
-> > > +select:
-> > > +  properties:
-> > > +    compatible:
-> > > +      contains:
-> > > +        const: panel-lvds
-> > > +
-> > > +  not:
-> > > +    properties:
-> > > +      compatible:
-> > > +        contains:
-> > > +          enum:
-> > > +            - advantech,idk-1110wr
-> > > +            - advantech,idk-2121wr
-> > > +            - innolux,ee101ia-01d
-> > > +            - mitsubishi,aa104xd12
-> > > +            - mitsubishi,aa121td01
-> > > +            - sgd,gktw70sdae4se
-> >=20
-> > I still don't like this :-( Couldn't we instead do
-> >=20
-> > select:
-> >   properties:
-> >     compatible:
-> >       contains:
-> >         enum:
-> >           - auo,b101ew05
-> >           - tbs,a711-panel
-> >=20
-> > ?
->=20
-> That works too, I'll send another version.
-
-Actually, no, it doesn't work.
-
-If we do this, if we were to have a panel that has panel-lvds but none
-of the other compatible (because of a typo, or downright invalid
-binding) we won't validate it and report any error.
-
-I'll merge this version (together with the v4 version of patch 1)
-
+Thanks!
 Maxime
-
---56zeyuukc3asnzuk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYfpTfQAKCRDj7w1vZxhR
-xVS5AP43Ygo51GOlm2AVd9y0d5io7X75oqP7eO0QejtACduRxwEA/mTSShcWWSTX
-n262O8BX2oXwr8En6g34f7pBOZt1DAU=
-=A7Ja
------END PGP SIGNATURE-----
-
---56zeyuukc3asnzuk--
