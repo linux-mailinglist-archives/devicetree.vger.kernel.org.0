@@ -2,177 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 061804A7AC2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 23:04:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D4484A7AC6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 23:08:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347775AbiBBWE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 17:04:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34290 "EHLO
+        id S1347776AbiBBWIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 17:08:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235073AbiBBWE1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 17:04:27 -0500
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91F40C061714
-        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 14:04:26 -0800 (PST)
-Received: by mail-qt1-x832.google.com with SMTP id b5so520213qtq.11
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 14:04:26 -0800 (PST)
+        with ESMTP id S235073AbiBBWIn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 17:08:43 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C99CC06173D
+        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 14:08:43 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id n10so1443799edv.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 14:08:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=juSv3A3zA/IV1hKWpoPZ41zBlXOU2nAmqhVo+hgk77k=;
-        b=G/mmcX5aPLULdEJEs9m+s3snNReQNxbTdU2CRfpjt4nKP4XFlf+T6dU9eX+gZk81uc
-         1WciFyM4gwnN+8OFjInCsXgX/+lMc+tWYXi9YyMPohe52Cvb6xHY89PtPyd+FJYo1L4t
-         TOyiHj3OqlC58PYytawZDPYFR81BASjf9fcKXqQT/5d0nQLVGItXQ5sinDKvx0gLc/3x
-         gM8b1MuGTV1yRtq+3sMdsvIqZBA1/xphZ2Sfuy2UTGmU8vnsr4ZPjzB43NEd77doeEjU
-         7wszNcEurpwlT4KKTzVotVTu8omrxv1CsqXhtOorMfXBhBiehu2ImAvLKiDeYt6r/1vI
-         DN7Q==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HlraHmNgdumj40y+Vxj8nJOCtHX98SAfTtbNfZ64dtc=;
+        b=yWO2Xpa2CCWLLJb5WHskpjn5ZNPJ/SJ+AOhMyUg5xDbi75ZZhWweuQFle7wYLU4M8D
+         fvyHZSTOE+nAgE9ATzz7pArYZV4gxHZhHzKlHiDXUgXFcOlYCojCjCGlpirLz4MGUhDQ
+         MURclDksMefKRG8nXCl9XVfWTzeD20uzS6M/EzsF1ljdSgzEkmr5DpjVVq8Ca+rTUe9q
+         WhXFwcSNP/efg0S9o+bEOQmnIFtWelEWRhlr7iJYNcAodLqZS+583KP/lhXLlKnZRQE9
+         TWPsmQyj4c+34zeOudEqMi4j9H0RPJn03T1e7v2bD0xzjLD6PGOE6adR1FZsuuyFnYBM
+         zfXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=juSv3A3zA/IV1hKWpoPZ41zBlXOU2nAmqhVo+hgk77k=;
-        b=QXL/J/DopJei6Ppr299P5BlYcni+pSPNhgGaPpY0f/5nFVwM6uV4qV6fy+yIQnNDMu
-         kqLs3jKguUvDpKE3wkPZjZQ0IT1naNVMSXBEZ30PXFLLtN5UzsI35mWCopK/ln8AHeUq
-         tIUIOnKOqOWo/TIM02X/1L+htZ9pw7rDVbDaJabYPia26b6v8otERZEzdnHAHjfDgu3Z
-         EMVlAsuawQUF34yppoImSV4VoayNVho/V23U/E6jPnuH99NU89EXTKubrOKttJH14zQb
-         DajUuv8Bhgs0MGwB4aaok38VZCDpUd1iY3xcDOhx+pO3QLULLJJqIB19z8SJwBNf5fOQ
-         qCbg==
-X-Gm-Message-State: AOAM533xa3D3QGp7JK3o27hVi0LKFDUnBbVKm/FLLPDZDKSuG9o2jNHz
-        e20v9NVayvTSz72OkUiU7Lg=
-X-Google-Smtp-Source: ABdhPJwdQbn2XZ/Q7CtuzJLEol5fv2GmfEKwXbN1vAjV/mGyxEy/PeTOGgbtQb1k5Dltt/mRQDFpiA==
-X-Received: by 2002:a05:622a:646:: with SMTP id a6mr6368577qtb.77.1643839465659;
-        Wed, 02 Feb 2022 14:04:25 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id g11sm10320163qtg.49.2022.02.02.14.04.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Feb 2022 14:04:25 -0800 (PST)
-Subject: Re: Device Tree runtime unit tests: Harmonisation
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Anders Roxell <anders.roxell@linaro.org>
-References: <CA+G9fYubR5A4f_0hDN1=Jaj_A-0GhMAcTc+TfJb5sgf0hRik8Q@mail.gmail.com>
- <0b6ab190-4c35-94fc-6565-6382d461ae84@gmail.com>
- <CAFd5g44U54P3=JxpiBhXKeqXFACRe08AYvBxDN2h=W4d_+bP3g@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <e5c1ca0c-0282-27e2-a470-756fbd2c7f84@gmail.com>
-Date:   Wed, 2 Feb 2022 16:04:24 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HlraHmNgdumj40y+Vxj8nJOCtHX98SAfTtbNfZ64dtc=;
+        b=LTmGp2O59JtDdbU5nVtbWcJ4fVj5r42HJBNSQsi0GiVfoZGRZ1A+c6RNvB4+oCWxzf
+         1tSzQr/sGGCYra8GWU7pVLTJTygcoxMpuZIWIgNoaTQFLwOZP41WiPkARRuElwoy01kh
+         zpHEunBs3EyVccEU6/OgR5qSnSlhfBJ9NoyqSTbKN0YXmlf4Kw+Vxkrdp9RNPFHSnw7P
+         obCfIFkUli4gzSDh/lNS8FfrYgNyqfVgay7inj61z0YYvapdfhL+RcDV2Klx7M8Nm80F
+         5dsa95V3MjDutGi0oONkirOTCJEKMlisLMl+d2NaUTg1Hpv/L50G730CsGQnATQPb6qb
+         sLBw==
+X-Gm-Message-State: AOAM532hbudCmIITDdXDrdf1nuiv/KTIpb8Le4qjyJ5/UEZgTirfedVt
+        56xnbhH6Vy9LwjSp/Bt2hPB8HT88wvl0aq5IynYZ3Q==
+X-Google-Smtp-Source: ABdhPJxU13IvMNJB9CLX9RID5RdpALDQmWnXhxjxw3ECF0QxhrvMFXS5K8yqGKyoBUl9QipAitnbbCsrxrqrphUFvGs=
+X-Received: by 2002:a05:6402:50cf:: with SMTP id h15mr25388003edb.102.1643839721825;
+ Wed, 02 Feb 2022 14:08:41 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAFd5g44U54P3=JxpiBhXKeqXFACRe08AYvBxDN2h=W4d_+bP3g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20220129005429.754727-1-bjorn.andersson@linaro.org>
+ <20220129005429.754727-2-bjorn.andersson@linaro.org> <20220202111833.ibeq3udj37dkfv6l@SoMainline.org>
+ <Yfrj7DnXET6fT3BX@ripper>
+In-Reply-To: <Yfrj7DnXET6fT3BX@ripper>
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+Date:   Wed, 2 Feb 2022 16:08:29 -0600
+Message-ID: <CAOCOHw7LS=NALXzHMN6LauEqrjDk2y27VoQtaT4tkHJiYxM7MQ@mail.gmail.com>
+Subject: Re: [PATCH v11 2/2] leds: Add driver for Qualcomm LPG
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        "Uwe Kleine-K?nig" <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Satya Priya Kakitapalli <c_skakit@qti.qualcomm.com>,
+        Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh+dt@kernel.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/2/22 2:54 PM, Brendan Higgins wrote:
-> On Wed, Feb 2, 2022 at 1:38 PM Frank Rowand <frowand.list@gmail.com> wrote:
->>
->> On 2/2/22 5:31 AM, Naresh Kamboju wrote:
->>> Linaro started doing Linux kernel Functional Validation (LKFT).
->>> As part of LKFT recently we have enabled CONFIG_OF_UNITTEST=y in our
->>> daily test CI.
->>>
->>> The output of the test looks as below. The current problem is that we
->>> have a hard time to see (grep) pass/fail for each individual test. We
->>> only see a summary at the end with x pass and y fails.
->>
->> The FAIL messages are printed at loglevel KERN_ERR.  The pass messages
->> are printed at loglevel KERN_DEBUG.  To see the pass messages, set the
->> loglevel to allow debug output.
->>
->> Unfortunately this can add lots of debug output, unless you use dynamic
->> debug to only enable debug for drivers/of/unittest.o.  There are only
->> a few other pr_debug() messages in unittest.
->>
->> I think a better solution would be to add a config option, something
->> like CONFIG_OF_UNITTEST_VERBOSE, that would print the pass messages
->> at loglevel KERN_ERR.  I'll submit a patch for that and see what the
->> review responses are.
->>
->>> We would like to get your opinion of how hard it would be to include
->>> that in the output per test. Maybe like TAP version 14?
->>> Another question would be how hard do you think it would be to rewrite
->>> this to a kunit test, if even applicable? I have provided the kunit
->>> output links at the end of this email.
->>
->> Devicetree unittests were suggested as a good candidate as a first
->> test to convert to kunit when kunit was implemented.  Brendan tried
->> to convert it, and we quickly saw that it was not a good candidate.
->> Devicetree unittests do not fit the unit test mold; they are a very
->> different creature.  Brendan has a good term for this type of test
->> (Brendan, was it "acceptance" test?).
-> 
-> I understood that it was either an integration test or end-to-end test
-> (probably an integration test): https://lkml.org/lkml/2019/3/21/1124
+On Wed, Feb 2, 2022 at 2:04 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Wed 02 Feb 03:18 PST 2022, Marijn Suijten wrote:
+>
+> > On 2022-01-28 16:54:29, Bjorn Andersson wrote:
+> > > The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
+> > > PMICs from Qualcomm. These PMICs typically comes with 1-8 LPG instances,
+> > > with their output being routed to various other components, such as
+> > > current sinks or GPIOs.
+> > >
+> > > Each LPG instance can operate on fixed parameters or based on a shared
+> > > lookup-table, altering the duty cycle over time. This provides the means
+> > > for hardware assisted transitions of LED brightness.
+> > >
+> > > A typical use case for the fixed parameter mode is to drive a PWM
+> > > backlight control signal, the driver therefor allows each LPG instance
+> > > to be exposed to the kernel either through the LED framework or the PWM
+> > > framework.
+> > >
+> > > A typical use case for the LED configuration is to drive RGB LEDs in
+> > > smartphones etc, for which the driver support multiple channels to be
+> > > ganged up to a MULTICOLOR LED. In this configuration the pattern
+> > > generators will be synchronized, to allow for multi-color patterns.
+> > >
+> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >
+> > Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> >
+> > There may still be some things to improve based on whether lo_pause
+> > works in non-ping-pong mode - to alleviate the requirement for the first
+> > delta_t to be at most 512ms - but this patch should not be delayed much
+> > longer and that's perhaps for a followup patch.  Same for my request for
+> > documentation and examples which at the same time serve as some form of
+> > tests to see if everything works as desired.
+> >
+>
+> I've been considering lopause to be the value before we start the
+> pattern, but I think you're right in that it denotes how long we should
+> hold the first value.
+>
+> So I think it might make sense in the predefined "<value> <delay> <value>
+> <delay>" scheme to use first <delay> as to calculate lo-pause. I think
+> it has to be calculated, because the first value will iiuc be held
+> for (lopause + 1) * delay ms.
+>
+> > I also vaguely remember other (downstream) drivers to support more than
+> > 512ms per step by (drastically?) changing PWM period, but not sure how
+> > that worked again nor if it was reliable.
+> >
+>
+> Thinking about it again, while 512 is the 9th bit, we should be able to
+> represent [0..1023] with 9 bits...
+>
 
-Yes, thanks.  Those are the terms I was trying to remember.
+Sorry, my mind was elsewhere as I wrote that. [0..511] is what we got.
 
--Frank
-
-> 
-> Standardizing integration tests in the kernel is still something that
-> hasn't happened yet, but there are some examples of integration tests
-> being written in KUnit (the KASAN KUnit test is probably the most
-> notable example). There are definitely some others written in
-> kselftest. It's kind of a tough area because integration tests are
-> kind of defined by being in between unit tests and end-to-end tests.
-> 
->>> Test output:
->>> ------------
->>> [    0.000000] Booting Linux on physical CPU 0x0000000100 [0x410fd033]
->>> [    0.000000] Linux version 5.17.0-rc1-next-20220127
->>> (tuxmake@tuxmake) (aarch64-linux-gnu-gcc (Debian 11.2.0-9) 11.2.0, GNU
->>> ld (GNU Binutils for Debian) 2.37) #1 SMP PREEMPT @1643255563
->>> [    0.000000] Machine model: ARM Juno development board (r2)
->>>
->>> <trimmed output>
->>>
->>> [    3.285226] ### dt-test ### start of unittest - you will see error messages
->>> [    3.293269] ### dt-test ### EXPECT \ : Duplicate name in
->>> testcase-data, renamed to \"duplicate-name#1\"
->>> [    3.293456] Duplicate name in testcase-data, renamed to \"duplicate-name#1\"
->>> [    3.313367] ### dt-test ### EXPECT / : Duplicate name in
->>> testcase-data, renamed to \"duplicate-name#1\"
->>> [    3.314709] ### dt-test ### EXPECT \ : OF:
->>> /testcase-data/phandle-tests/consumer-a: could not get
->>> #phandle-cells-missing for /testcase-data/phandle-tests/provider1
->>> [    3.323968] OF: /testcase-data/phandle-tests/consumer-a: could not
->>> get #phandle-cells-missing for /testcase-data/phandle-tests/provider1
->>>
->>> <trimmed output>
->>>
->>> [    5.118400] ### dt-test ### EXPECT / : OF: overlay: ERROR: multiple
->>> fragments add and/or delete node
->>> /testcase-data-2/substation@100/motor-1/electric
->>> [    5.121358] atkbd serio1: keyboard reset failed on 1c070000.kmi
->>> [    5.134160] ### dt-test ### end of unittest - 257 passed, 0 failed
->>>
->>>
->>> Ref:
->>> Full test output of of-unittest
->>> https://lkft.validation.linaro.org/scheduler/job/4458582#L1019
->>> https://lkft.validation.linaro.org/scheduler/job/4404330#L428
->>>
->>> Kunit example test output that we are running in our daily CI loop.
->>> https://qa-reports.linaro.org/lkft/linux-stable-rc-linux-5.10.y/build/v5.10.70/testrun/5965109/suite/kunit/tests/
->>>
->>> Kunit Full test logs:
->>> https://lkft.validation.linaro.org/scheduler/job/3643324
->>>
->>> https://qa-reports.linaro.org/lkft/linux-stable-rc-linux-5.10.y/build/v5.10.70/testrun/5965109/suite/kunit/test/kunit_log_test/log
->>>
->>>
->>> --
->>> Linaro LKFT
->>> https://lkft.linaro.org
->>>
->>
-
+Regards,
+Bjorn
