@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 052044A7A51
+	by mail.lfdr.de (Postfix) with ESMTP id AC0D04A7A53
 	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 22:25:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347652AbiBBVY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 16:24:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53180 "EHLO
+        id S242803AbiBBVZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 16:25:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347667AbiBBVYn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:24:43 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 253EBC06175D
-        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 13:24:25 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id s16so526823pgs.13
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 13:24:25 -0800 (PST)
+        with ESMTP id S1347677AbiBBVYr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:24:47 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DB4C06173E
+        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 13:24:26 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id a8so413190pfa.6
+        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 13:24:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ByszmS3++VzU56DysBqUHdS0730VZ9qlutiOkG62SSc=;
-        b=nR2MvYfzs5o5IAQK/n8ImikISS87gNJVo5eSON5hLyblMqv0Z0NdUA6xvk1zR4Og7r
-         uhuAkK8C4ctlhY4Ta2kFhceB1NHDF6ilUOsM3X9CfGp84hCMXujqEYTQ4lyN2qDClMKN
-         YpZ+IG5EWjEfwmazwvX9m9iUzj/oxE3OBu1KM=
+        bh=QSQlZvmcfCUBtm2+1cc0/YI7EprizXuuLYmIUMgnJ1M=;
+        b=aIwkVjBccvew/dDC0tK8r+6HvM9pbDPy/F/NTIwKQJAj5sMk4Gc71ec4/KSRn/Nznw
+         g3QkUWrXL8l//0rXWVbGFu8idgrevedB4BZ87PnimGoJCFNuJwVXEGCBtJ8QKEhIc26q
+         wP3xGCxgBwYEUIAUU6jvYmcS6WVY7KcroNQlc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ByszmS3++VzU56DysBqUHdS0730VZ9qlutiOkG62SSc=;
-        b=Mn4DKaeGfWJyiqEuvfNBJDFBwdc1puP5gm4gkWb8/lFR8QNraql1fyM64HidOkKnIF
-         EEuSABKqcmo1SGuGj0YljoHo49PPQ1Djl+QF6TZ9qi/OUivuDtUIWO8PAVoVHuM9ogl4
-         srpN5Qo/YpVt+9Bd71QXxBtAwiVSRDEuQDAIGjbnQjSDK9JjblX6DUBbPebXCldJwqpE
-         sJJOC4cl0e3UgkgCx3R4ceKWu0CbU9+9hk/H5A60Gxi9SR/3cGY63HFRRTWpm/ISp70y
-         KCpHcln2TAXcX40xaEEV4YnJ7ERmJ6/Z/LZaSm4a2dJdxHXXVH8ROf+80d3G1uiobE8F
-         iEIw==
-X-Gm-Message-State: AOAM532CsO3h7/NPmJxPk4sxejPkAgePoiXTF+DGW70erm1Aaf4gs7cH
-        CF5UB7zs4vrn5EZye0kW5LpkbQ==
-X-Google-Smtp-Source: ABdhPJzVsb8lfDnT0uBdj+He/AFpZcfXHtpW/Ppb3qs9pGrZ/r77umcD1G4sWWnwf/2ezbIPN9s0zw==
-X-Received: by 2002:a63:2bc5:: with SMTP id r188mr13767481pgr.363.1643837064608;
-        Wed, 02 Feb 2022 13:24:24 -0800 (PST)
+        bh=QSQlZvmcfCUBtm2+1cc0/YI7EprizXuuLYmIUMgnJ1M=;
+        b=d44G2tqrfIbqZ5j0uHNK/lo+fqq/4QwHHgFztpkFY8LkkFgdO8ivD6C66dgBRW50LU
+         qvxoKIGedMJoV+/sC5OVcrpdsyXfQiGlImbkUE/zwRSJYmLs67mjtp+jlqHnpS7I3bOK
+         TjB1nIC0chKBJVe1gfWKAme95MKUzUgADCm1mSEHd9Hxj2vXSZZPRFaHwuxXT6MTKwMJ
+         Qa7VYELtsTpB5v/cJ/VPpxefs0EI9MuQ+R5ZqsfYCrhz1rTE/aXsOukQ/Hu7pizCwE/5
+         YxWffrHSDB9ZlfQJM4Gv/RsPeTfZj+p7o7UIbLp0hFTP1zFkSlgyI0TQBDvUvzv7TS9u
+         2hgg==
+X-Gm-Message-State: AOAM532i85tWn7yH4hUAoZZdKq0AS/Z6UgjfBl6lggt5Ghc/lPZubCym
+        UUYZ96ypv1vYLI7SAxw63YxvJA==
+X-Google-Smtp-Source: ABdhPJxOSvm1ORQ5ZJ7OP5XJCoTg2tk65Q/XaLvG6ggqU47X2hPk6pzL+R3Xrc7ROOeCOlcT33ITaw==
+X-Received: by 2002:a63:85c3:: with SMTP id u186mr25500220pgd.199.1643837066067;
+        Wed, 02 Feb 2022 13:24:26 -0800 (PST)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:f1c4:10b6:b4ef:16e5])
-        by smtp.gmail.com with ESMTPSA id on9sm7627983pjb.16.2022.02.02.13.24.23
+        by smtp.gmail.com with ESMTPSA id on9sm7627983pjb.16.2022.02.02.13.24.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Feb 2022 13:24:24 -0800 (PST)
+        Wed, 02 Feb 2022 13:24:25 -0800 (PST)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     pmaliset@codeaurora.org, mka@chromium.org,
@@ -56,9 +56,9 @@ Cc:     pmaliset@codeaurora.org, mka@chromium.org,
         Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 10/14] arm64: dts: qcom: sc7280: Move dp_hot_plug_det pull from SoC dtsi file
-Date:   Wed,  2 Feb 2022 13:23:44 -0800
-Message-Id: <20220202132301.v3.10.Id346b23642f91e16d68d75f44bcdb5b9fbd155ea@changeid>
+Subject: [PATCH v3 11/14] arm64: dts: qcom: sc7280: Add a blank line in the dp node
+Date:   Wed,  2 Feb 2022 13:23:45 -0800
+Message-Id: <20220202132301.v3.11.Iecb7267402e697a5cfef4cd517116ea5b308ac9e@changeid>
 X-Mailer: git-send-email 2.35.0.rc2.247.g8bbb082509-goog
 In-Reply-To: <20220202212348.1391534-1-dianders@chromium.org>
 References: <20220202212348.1391534-1-dianders@chromium.org>
@@ -68,65 +68,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pulls should be in the board files, not in the SoC dtsi
-file. Remove. Even though the sc7280 boards don't currently refer to
-dp_hot_plug_det, let's re-add the pulls there just to keep this as a
-no-op change. If boards don't need this / don't want it later then we
-can remove it from them.
+It's weird that there's a blank line between the two port nodes but
+not between the attributes and the first port node. Add an extra blank
+line to make it look right.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
 Changes in v3:
-- ("Remove dp_hot_plug_det pull from SoC dtsi file") new for v3.
+- ("Add a blank line in the dp node") new for v3.
 
- arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts | 4 ++++
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi                   | 4 ++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi                       | 1 -
- 3 files changed, 8 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts
-index 3c5aab225748..bdc3f341ecf6 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r0.dts
-@@ -826,6 +826,10 @@ &usb_2_hsphy {
- 
- /* PINCTRL - additions to nodes defined in sc7280.dtsi */
- 
-+&dp_hot_plug_det {
-+	bias-disable;
-+};
-+
- &pcie1_clkreq_n {
- 	bias-disable;
- 	drive-strength = <2>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 9140dca3b72a..325f50925451 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -355,6 +355,10 @@ bluetooth: bluetooth {
- 
- /* PINCTRL - additions to nodes defined in sc7280.dtsi */
- 
-+&dp_hot_plug_det {
-+	bias-disable;
-+};
-+
- &pm7325_gpios {
- 	key_vol_up_default: key-vol-up-default {
- 		pins = "gpio6";
 diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index a2e3aa6ecdd3..1776523e169a 100644
+index 1776523e169a..618ae0407cd6 100644
 --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -3282,7 +3282,6 @@ tlmm: pinctrl@f100000 {
- 			dp_hot_plug_det: dp-hot-plug-det {
- 				pins = "gpio47";
- 				function = "dp_hot";
--				bias-disable;
- 			};
- 
- 			edp_hot_plug_det: edp-hot-plug-det {
+@@ -3147,6 +3147,7 @@ mdss_dp: displayport-controller@ae90000 {
+ 				ports {
+ 					#address-cells = <1>;
+ 					#size-cells = <0>;
++
+ 					port@0 {
+ 						reg = <0>;
+ 						dp_in: endpoint {
 -- 
 2.35.0.rc2.247.g8bbb082509-goog
 
