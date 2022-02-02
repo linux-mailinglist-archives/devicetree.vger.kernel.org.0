@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E37D4A7A31
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 22:24:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6244F4A7A33
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 22:24:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239648AbiBBVYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 16:24:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52974 "EHLO
+        id S1347500AbiBBVYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 16:24:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238553AbiBBVYK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:24:10 -0500
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A1EEC06173B
-        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 13:24:10 -0800 (PST)
-Received: by mail-pg1-x529.google.com with SMTP id 133so606641pgb.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 13:24:10 -0800 (PST)
+        with ESMTP id S1347494AbiBBVYL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:24:11 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4F24C06173D
+        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 13:24:11 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id d187so396385pfa.10
+        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 13:24:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=BzO4x0egfL+lkgiS2KouKfqLrj3n7wywW/JicE40S5U=;
-        b=EgxhRhjfIGWrGUq350wVEc1i/OZ+YrTYVF7kqrszFu4GlGi1H0Eq7z87hk8Suro3mu
-         jh9dljYpRoW9TznUkvre7B9lBRJ+wkk5olfhDNUyZ1A0H3Kd91MOb3sSvaFYcvZyTwph
-         LH5hGty/A0L1l37YOEVmn3KwioIEVHZmMAUWc=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=i4WGKpLM5d225Yy80Ebf/msPm9bZWnw4jLfGHHCULaY=;
+        b=kvdClqHx9m5Fx5WsiTKBnO5iR5fKTkWEyaXLdb/SgjByx/xI49QFUeoIRKzrGmHU33
+         3WBiT7Pb0Y37Mbr1dNzyQMpdkngEwHguZs9gwi758yqDVAOXsRHR1UDrHhRInPx8OS+n
+         2KyC/i4HRLegFrYfWGFjt5P9mnubLeCRk4Wo4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=BzO4x0egfL+lkgiS2KouKfqLrj3n7wywW/JicE40S5U=;
-        b=azu4TdhhbmwqeUJWuH+qhaECZYxd5FxRmGnAf6oLMFlxnIH6bmVCUwQg05EdAb329P
-         eE6Icf4O0y4KLORyMFLsAUNovMTces+SUlZEYja6DKTP4Ny00PXiCrSfpSm8ShK+16ed
-         FaTBTgrKpWIMqra6koPly0mzBqIl9XibUsUMQp2RApxOx5nXXdjhZaTBrXYK8O+jOANg
-         zvEuymA0fujbC5L+VR8H3ljaxyf6aPkZ+4twR9qr/Cq9x0fSex9XtMesDkYtblKssx36
-         Wsf2l+kcJcl+fhV+ZIUclf6Fql5WxuR+zGfS5Q+rm+AryxE9MvTtuoYIhh8d4f8qevVF
-         qdKA==
-X-Gm-Message-State: AOAM5302IYR6bTB19AuAlb8FYPre6RpDxsOuGaSRf92ZbUpFgrSDOaI/
-        xjN0CpEctFJ8qRNHvnwiqqLA0A==
-X-Google-Smtp-Source: ABdhPJw2mY35yY30htTIyURARV2lwbwXWo9JdHo/Rhjfq2KKmY/oRs7iA2c6EKIvCKRbK8C2pAQDjg==
-X-Received: by 2002:a05:6a00:230e:: with SMTP id h14mr31840769pfh.10.1643837049816;
-        Wed, 02 Feb 2022 13:24:09 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=i4WGKpLM5d225Yy80Ebf/msPm9bZWnw4jLfGHHCULaY=;
+        b=nKyMvHVsuIPR63afNoi6j0GsGN4U6VYxeYVBguR2+EDVbHgWeUWndiwBGh1VN347ID
+         M2OYy7vod7n3jnxtBlHNq1EZ5IN/hANEm/IST9ekL5keIkA+sR7vVhwZoKpRdRRXLpDt
+         4oQGZFiCd4XyL6WYPyqzBJd0bdx6FFNFz0HeRnn+GGHgnVuqBV6BiX7Fw4C0KL/0BObo
+         Yotf9JEQZBVQnVFAZPebfKF6rbu/+WDE0c0/j/8BoS5BDdbqnW/y9fS+agRlm3a9+LeA
+         vQZ+cpebD+N8bmbyRw67w9Y3FgpByK68AuNJUdcxLlrsLklPK/nQIdftCM0/vLMIYNG3
+         MrhQ==
+X-Gm-Message-State: AOAM531/QEVOoq2CuGQ0eMiwQ09jN1ZFJBUYYFdeuLpnyVF1DaOfhUrV
+        QHbfo6hymiOgm/XSV2W6tgBR1A==
+X-Google-Smtp-Source: ABdhPJykoMzCtnDv2hPHTz2HWWXMhhw2FS1TINJjCXvSh3UzfrQ40FYv+iRPnS3ADvp6imgLpzgtNQ==
+X-Received: by 2002:a05:6a00:8d2:: with SMTP id s18mr30930242pfu.5.1643837051273;
+        Wed, 02 Feb 2022 13:24:11 -0800 (PST)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:f1c4:10b6:b4ef:16e5])
-        by smtp.gmail.com with ESMTPSA id on9sm7627983pjb.16.2022.02.02.13.24.08
+        by smtp.gmail.com with ESMTPSA id on9sm7627983pjb.16.2022.02.02.13.24.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Feb 2022 13:24:09 -0800 (PST)
+        Wed, 02 Feb 2022 13:24:10 -0800 (PST)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     pmaliset@codeaurora.org, mka@chromium.org,
@@ -56,97 +56,43 @@ Cc:     pmaliset@codeaurora.org, mka@chromium.org,
         Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 00/14] arm64: dts: qcom: sc7x80: A smattering of misc dts cleanups + herobrine-rev1
-Date:   Wed,  2 Feb 2022 13:23:34 -0800
-Message-Id: <20220202212348.1391534-1-dianders@chromium.org>
+Subject: [PATCH v3 01/14] arm64: dts: qcom: sc7180-trogdor: Add "-regulator" suffix to pp3300_hub
+Date:   Wed,  2 Feb 2022 13:23:35 -0800
+Message-Id: <20220202132301.v3.1.I7b284531f1c992932f7eef8abaf7cc5548064f33@changeid>
 X-Mailer: git-send-email 2.35.0.rc2.247.g8bbb082509-goog
+In-Reply-To: <20220202212348.1391534-1-dianders@chromium.org>
+References: <20220202212348.1391534-1-dianders@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series is "v2" of my "smattering of misc dts cleanups" series
-plus v3 of the tail end of the series adding herobrine-rev1. I've set
-the version number to the larger of the two to (I hope) help
-allevitate confusion.
+All of the other fixed regulators have the "-regulator" suffix. Add it
+to pp3300_hub to match.
 
-For the cleanups, there's not a lot holding this series together
-except that it fixes a smattering of random dts stuff that I noticed
-recently. There are not a lot of dependencies and some of the patches
-could be reordered if desired.
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+---
 
-Hopefully these look OK and can be applied quickly to avoid conflicts
-with other work going on.
+(no changes since v1)
 
-For herobrine-rev1, it can be noted that it's likely
-that with the introduction of -rev1 we can drop -rev0 support, but
-we'll keep it for now (though we won't try to "fit it in" and share
-code with it). This series is confirmed to boot atop the top of
-the linux qualcomm tree, commit a5ee6b7720cb ("Merge branches
-'arm64-defconfig-for-5.18', 'arm64-for-5.18', 'dts-for-5.18',
-'arm64-fixes-for-5.17' and 'dts-fixes-for-5.17' into for-next")
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes in v3:
-- Removed extra blank lines
-- ("Fix sort order of dp_hot_plug_det") new for v3.
-- ("Add edp_out port and HPD lines") new for v3.
-- ("Move pcie1_clkreq pull / drive str to boards") new for v3.
-- ("sc7280-idp: Disable pull from pcie1_clkreq") new for v3.
-- ("Remove dp_hot_plug_det pull from SoC dtsi file") new for v3.
-- ("Add a blank line in the dp node") new for v3.
-- Rebased atop dts cleanup patches.
-- Add regulator suffix as per dts cleanup patches.
-- Set PCIe bias / pull as per dts cleanup patches.
-- Add dp_hot_plug_det pull as per dts cleanup patches.
-- Setup SD card same as dts cleanup patches.
-- ("sc7280: Add the CPU compatible to the soc@0 node") new for v3.
-- ("Remove "qcom,sc7280" from top-level") patch new for v3.
-
-Changes in v2:
-- Herobrine compatible on one line, not two
-- Wording change in comments for components enabled per-board
-- Always sort "bias" above "drive-strength" in pinctrl.
-- Properly sort "hub_en" pinctrl.
-- Two comments moved from multiline to single line.
-- Space after "/delete-property/"
-
-Douglas Anderson (14):
-  arm64: dts: qcom: sc7180-trogdor: Add "-regulator" suffix to
-    pp3300_hub
-  arm64: dts: qcom: sc7280-herobrine: Consistently add "-regulator"
-    suffix
-  arm64: dts: qcom: sc7280: Properly sort sdc pinctrl lines
-  arm64: dts: qcom: sc7280: Clean up sdc1 / sdc2 pinctrl
-  arm64: dts: qcom: sc7280-idp: No need for "input-enable" on sw_ctrl
-  arm64: dts: qcom: sc7280: Fix sort order of dp_hot_plug_det /
-    pcie1_clkreq_n
-  arm64: dts: qcom: sc7280: Add edp_out port and HPD lines
-  arm64: dts: qcom: sc7280: Move pcie1_clkreq pull / drive str to boards
-  arm64: dts: qcom: sc7280: Disable pull from pcie1_clkreq
-  arm64: dts: qcom: sc7280: Move dp_hot_plug_det pull from SoC dtsi file
-  arm64: dts: qcom: sc7280: Add a blank line in the dp node
-  arm64: dts: qcom: sc7280: Add herobrine-r1
-  arm64: dts: qcom: sc7280: Add the CPU compatible to the soc@0 node
-  arm64: dts: qcom: sc7280: Remove "qcom,sc7280" from top-level of
-    boards
-
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |   2 +-
- arch/arm64/boot/dts/qcom/sc7280-crd.dts       |   2 +-
- .../qcom/sc7280-herobrine-herobrine-r0.dts    |  97 +--
- .../qcom/sc7280-herobrine-herobrine-r1.dts    | 313 +++++++
- .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 785 ++++++++++++++++++
- arch/arm64/boot/dts/qcom/sc7280-idp.dts       |   2 +-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |  99 +--
- arch/arm64/boot/dts/qcom/sc7280-idp2.dts      |   2 +-
- arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    | 547 ++++++++++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi          | 182 ++--
- 11 files changed, 1845 insertions(+), 187 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 7d8bf66e8ffe..78296ed6fd29 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -284,7 +284,7 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
+ 		vin-supply = <&pp3300_a>;
+ 	};
+ 
+-	pp3300_hub: pp3300-hub {
++	pp3300_hub: pp3300-hub-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "pp3300_hub";
+ 
 -- 
 2.35.0.rc2.247.g8bbb082509-goog
 
