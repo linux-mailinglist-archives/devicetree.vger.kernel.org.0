@@ -2,152 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AF974A6C94
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 09:03:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C261F4A6C9D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 09:07:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233883AbiBBIDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 03:03:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38690 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241559AbiBBIDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 03:03:14 -0500
-Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7A06C06173D;
-        Wed,  2 Feb 2022 00:03:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
-        s=the; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:
-        Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=seEgaVlgz/Vp+D6vXdUCwzahcTfzufMMD8/HyxzkVJk=; b=YipIM99ngR8F00+RNu2Nn/sD4t
-        6IdBK9yQHpPyr69n1jrcw+F3WlA2dibRL3Qv2e9PKjHc93gyHAF4F5619u32MhCf6+ulIzHncaVyF
-        ZIjFORI1C9hwiAINgBx0PFlUDkBPMqKeNjJJyVQoLel9wsebdMpVvQU3/yZ5cEwxqD/EqLUgVee1H
-        bk0E8uXIwWkNqSW2FU8YnhCE95NBRDpyt4VdsAKZPbTo5pgvvlLIAqA0R7SvYJgjQ0USLDrL/u9/V
-        WcGS0bEF9OO81qCe1TVI0SVvA9uhlVLU/YO/9AqNCbV14w36eXO12446cFY7b26tE0soL+0m0CG73
-        CwnuTENA==;
-Received: from noodles by the.earth.li with local (Exim 4.94.2)
-        (envelope-from <noodles@earth.li>)
-        id 1nFAbe-00ClBn-TT; Wed, 02 Feb 2022 08:03:10 +0000
-Date:   Wed, 2 Feb 2022 08:03:10 +0000
-From:   Jonathan McDowell <noodles@earth.li>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 03/17] ARM: dts: qcom: add missing rpm regulators and
- cells for ipq8064
-Message-ID: <Yfo6vgdTR4ZLGZZ4@earth.li>
-References: <20220118012051.21691-1-ansuelsmth@gmail.com>
- <20220118012051.21691-4-ansuelsmth@gmail.com>
- <Yfhmum8BnB1JIALP@builder.lan>
- <YflGGM45F3TqERNj@earth.li>
- <YfmtHFfW00Qr2cLc@Ansuel-xps.localdomain>
+        id S238767AbiBBIHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 03:07:19 -0500
+Received: from vps.xff.cz ([195.181.215.36]:38672 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237918AbiBBIHT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Feb 2022 03:07:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1643789237; bh=DMb83cDhQ9rKfuJDRxlbrgx/yp3Sg6TPsG7z/FqFLqM=;
+        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+        b=SMjCuZQl5MJHcizfaQRtdVjolGreh3bV4fJivIFWoZsfsEEKAP0D1DUyV4VoJ2iHq
+         TBRUIYt2dJeggUIFbVk2gOghjgcQWHndb/PmwhQMSPnbf/pM+rmQGYtGhGGh0S9MSO
+         8chZOfzkHoI3bOtbVWS2bYGKvi0zx/d8JSgV5TBE=
+Date:   Wed, 2 Feb 2022 09:07:17 +0100
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
+Subject: Re: [PATCH 2/5] Input: pinephone-keyboard - Add PinePhone keyboard
+ driver
+Message-ID: <20220202080717.fai74mkjxdykqhht@core.my.home>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>,
+        Samuel Holland <samuel@sholland.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20220129230043.12422-1-samuel@sholland.org>
+ <20220129230043.12422-3-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YfmtHFfW00Qr2cLc@Ansuel-xps.localdomain>
+In-Reply-To: <20220129230043.12422-3-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 01, 2022 at 10:58:52PM +0100, Ansuel Smith wrote:
-> On Tue, Feb 01, 2022 at 02:39:20PM +0000, Jonathan McDowell wrote:
-> > On Mon, Jan 31, 2022 at 04:46:18PM -0600, Bjorn Andersson wrote:
-> > > On Mon 17 Jan 19:20 CST 2022, Ansuel Smith wrote:
-> > > 
-> > > > Add cells definition for rpm node and add missing regulators for the 4
-> > > > regulator present on ipq8064. There regulators are controlled by rpm and
-> > > > to correctly works gsbi4_i2c require to be NEVER disabled or rpm will
-> > > > reject any regulator change request.
-> > > > 
-> > > 
-> > > Is the SMB208 mandatory on all ipq8064 designs, or should this be pushed
-> > > out to the device dts?
-> > 
-> > It's not; the RB3011 uses a different regulator (a TPS563900).
-> >
+Hello Samuel,
+
+On Sat, Jan 29, 2022 at 05:00:39PM -0600, Samuel Holland wrote:
+> The official Pine64 PinePhone keyboard case contains a matrix keypad and
+> a MCU which runs a libre firmware. Add support for its I2C interface.
 > 
-> Fact is that that's a special case. We have 20 devices based on ipq806x
-> and they all have smb208 regulators.
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
 
-Indeed, it's another Mikrotik special unfortunately (I haven't managed
-to get the SMEM driver to work on the platform either).
+> [...]
 
-> Is the TPS563900 also controlled by rpm?
+> +
+> +	ppkb->buf_swap = !ppkb->buf_swap;
+> +
+> +	keymap = ppkb->fn_state ? ppkb->fn_keymap : ppkb->input->keycode;
+> +	for (col = 0; col < ppkb->cols; ++col) {
+> +		u8 old = *(++old_buf);
+> +		u8 new = *(++new_buf);
+> +		u8 changed = old ^ new;
+> +
+> +		for (row = 0; row < ppkb->rows; ++row) {
+> +			int code = MATRIX_SCAN_CODE(row, col, ppkb->row_shift);
+> +			int value = new & BIT(row);
+> +
+> +			if (!(changed & BIT(row)))
+> +				continue;
+> +
+> +			dev_dbg(dev, "row %u col %u %sed\n",
+> +				row, col, value ? "press" : "releas");
+> +			if (keymap[code] == KEY_FN) {
+> +				dev_dbg(dev, "FN is now %sed\n",
+> +					value ? "press" : "releas");
+> +				keymap = value ? ppkb->fn_keymap
+> +					       : ppkb->input->keycode;
+> +				ppkb->fn_state = value;
+> +			}
+> +			input_event(ppkb->input, EV_MSC, MSC_SCAN, code);
+> +			input_report_key(ppkb->input, keymap[code], value);
 
-AFAICT it's CPU controlled via I2C. It looks like one output is shared
-for the CPU cores etc and the other is for the NSS cores, rather than
-the full control the smb208 offers.
+I think there's a logic issue here with the Fn layer. Consider what happens
+when you press Fn press F1 and then release Fn and release F1. In that case
+input_report_key will report press of F1 (in fn layer) but release of '1'
+which is not in Fn layer, because Fn layer was de-activated before releasing
+the modified key.
 
-> Anyway should we use a dedicated dtsi to declare the correct regulators?
+From the PoV of the user, this will probably lead to auto-repeat of F1 and
+spurious '1' release without preceding press event. So the userspace sees
+F1 as stuck and auto-repeats it.
 
-I've got no problem with smb208 being the default, but please add any
-appropriate disabling of it to the RB3011 DTS.
+kind regards,
+	o.
 
-> > > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > > ---
-> > > >  arch/arm/boot/dts/qcom-ipq8064.dtsi | 35 +++++++++++++++++++++++++++++
-> > > >  1 file changed, 35 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > > > index 094125605bea..824cf13dd037 100644
-> > > > --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > > > +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > > > @@ -829,10 +829,45 @@ rpm: rpm@108000 {
-> > > >  			clocks = <&gcc RPM_MSG_RAM_H_CLK>;
-> > > >  			clock-names = "ram";
-> > > >  
-> > > > +			#address-cells = <1>;
-> > > > +			#size-cells = <0>;
-> > > > +
-> > > >  			rpmcc: clock-controller {
-> > > >  				compatible = "qcom,rpmcc-ipq806x", "qcom,rpmcc";
-> > > >  				#clock-cells = <1>;
-> > > >  			};
-> > > > +
-> > > > +			regulators {
-> > > > +				compatible = "qcom,rpm-smb208-regulators";
-> > > > +
-> > > > +				smb208_s1a: s1a {
-> > > > +					regulator-min-microvolt = <1050000>;
-> > > > +					regulator-max-microvolt = <1150000>;
-> > > > +
-> > > > +					qcom,switch-mode-frequency = <1200000>;
-> > > > +				};
-> > > > +
-> > > > +				smb208_s1b: s1b {
-> > > > +					regulator-min-microvolt = <1050000>;
-> > > > +					regulator-max-microvolt = <1150000>;
-> > > > +
-> > > > +					qcom,switch-mode-frequency = <1200000>;
-> > > > +				};
-> > > > +
-> > > > +				smb208_s2a: s2a {
-> > > > +					regulator-min-microvolt = < 800000>;
-> > > > +					regulator-max-microvolt = <1250000>;
-> > > > +
-> > > > +					qcom,switch-mode-frequency = <1200000>;
-> > > > +				};
-> > > > +
-> > > > +				smb208_s2b: s2b {
-> > > > +					regulator-min-microvolt = < 800000>;
-> > > > +					regulator-max-microvolt = <1250000>;
-> > > > +
-> > > > +					qcom,switch-mode-frequency = <1200000>;
-> > > > +				};
-> > > > +			};
-> > > >  		};
-> > > >  
-> > > >  		tcsr: syscon@1a400000 {
-> > > > -- 
-> > > > 2.33.1
-
-J.
-
--- 
-/-\                             | 101 things you can't have too much
-|@/  Debian GNU/Linux Developer |         of : 13 - Holidays.
-\-                              |
+> +		}
+> +	}
+> +	input_sync(ppkb->input);
+> +}
+> +
