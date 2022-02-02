@@ -2,104 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E81CF4A6DC1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 10:24:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47DE44A6DE9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 10:37:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234059AbiBBJY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 04:24:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56834 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230315AbiBBJY3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 04:24:29 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB27C061714;
-        Wed,  2 Feb 2022 01:24:28 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id t9so27924423lji.12;
-        Wed, 02 Feb 2022 01:24:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=k7rKG9vK8KAeckLEPJ3xDWbNcURPWfZL8ylGLwhBET4=;
-        b=c61SCeWHdR4QIvDSi9hI9zd0gXzT4pY/4ivMXBib+r+2LbNMWmk1ahE2KAXI3uZjuG
-         Xli6xPBTF9HogWNEKb+aHgOZhADHUjOKv9dc2ZPVABEU401Z5eJiN8I5Blhk7mjutx3O
-         uxEtnrM4mIpGxf+vKoSQ+ThCT0BbqTidm+/oIyqMawcjq2jTJ/r806kKZRyGxl9VFGfA
-         obWB+heoMYvfZUwwffuqJhvEEDOgjBW5tG1bfeofccq3++M1R0u95DebosvNA6UJ9Bqh
-         hYWRTlwDxcKEkL3MQQKr2ODhdTEomo7pgHHH+xs3ZPzFkOJQ/lzCOKh3XbuxDV2Dc7h3
-         dEaQ==
+        id S233108AbiBBJhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 04:37:03 -0500
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:45894 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232002AbiBBJhC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 04:37:02 -0500
+Received: by mail-ua1-f41.google.com with SMTP id b37so17946560uad.12;
+        Wed, 02 Feb 2022 01:37:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=k7rKG9vK8KAeckLEPJ3xDWbNcURPWfZL8ylGLwhBET4=;
-        b=cXdp0daq+8HIvfFn0lh7aqX0RMb+zTwSsWdmG7yD0pARX7piWH8v0J+me7wxp6TMnT
-         FZdYxhOyvcBMwWxfz2syLkmnKO8f6umhBoidjmnMmhEqEgz0OW+ENOImFtbi+ysLTaMw
-         4R+30TWlm4ohHmgMjieN+26Qjgf0+RgWXRJWCCEJJgFhcJ6QYQp1ryoeBHMITwezNfro
-         9B822ZQGGwKJDh44NXEXMYbhBn2B6dFsrooSBJhSPNRciiqpgXOlK4ASDUjjJc3+7tWQ
-         gnhd8DMHlC1Gs3/js8zKttjwFGGsBRRM/1JqeeqiP5bZBBx1GVZGhnYOugMYbeOEmmxQ
-         XVWA==
-X-Gm-Message-State: AOAM532ylguP6X2JclxsmPLkPDJlVRwg9CfnQ/SLzC/WzffRiwjjYmEv
-        3sueQxvMMhaBAwVDJq9YYp7oLI79oRw=
-X-Google-Smtp-Source: ABdhPJzOEn6nF9mbFXLIjyrz5p5pQGIfuN2KJkvLL07omtZP0xzY/qGMmjItUuPscJrKnQydwmWtng==
-X-Received: by 2002:a2e:b988:: with SMTP id p8mr9001583ljp.435.1643793866661;
-        Wed, 02 Feb 2022 01:24:26 -0800 (PST)
-Received: from [192.168.1.103] ([178.176.72.208])
-        by smtp.gmail.com with ESMTPSA id f19sm2424170lfa.52.2022.02.02.01.24.25
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=f7pw+B6zWmFJaMU+pROxATX0iaRAJWkl6aIXWssYesQ=;
+        b=xlAWGSdFKSspX9HpyE1vRtVpikQLl5zjvfqnprqzlU5XMZEsNhg6AMP3kfiDQoUK4H
+         rY+c2Ap0iwhbcPvk1v6JWtIAnNs+LGZmGTwZ4UoGLVFmdqRKQEzS65zhA1KHWuoA4bhG
+         TOJlKkaCW+2Y4ddm9HOv17LmN/y2IWxeNrmzCUtpjcxD1nlfmj8StSJHRGxxQFoXhPQ1
+         SEmLXGrue3O9Pheunhg/3ixpsvEDxuqQQKJTi0TqMFeV/RZbFZwmCxksYV7V2AVxxTTo
+         C4WC9vCDYcIYzlslv9VTZSNIaD+cSHA5HZUp5rgS+GEbXRg27txXbsuD7SH3EqnbIfo7
+         LaWQ==
+X-Gm-Message-State: AOAM531g6KiQjOATM77Y7qBs82njSj0LrKzaBBZIfHLki3thC8YIW+Ba
+        rc+KE6n5NGxFFi/LZuDUonm9OejgobIDtw==
+X-Google-Smtp-Source: ABdhPJzLfXnpjC6NFAn3pCeCCsU1x+ni5GJzGHo3f5IFKewtqmLYFx7zViRXhcSXVFLe2TcTG28JBQ==
+X-Received: by 2002:a67:d917:: with SMTP id t23mr11088243vsj.48.1643794622062;
+        Wed, 02 Feb 2022 01:37:02 -0800 (PST)
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
+        by smtp.gmail.com with ESMTPSA id 67sm4826833vsh.9.2022.02.02.01.37.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Feb 2022 01:24:26 -0800 (PST)
-Subject: Re: [PATCH] dt-bindings: ata: convert ata/cortina,gemini-sata-bridge
- to yaml
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Corentin Labbe <clabbe@baylibre.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220129204004.1009571-1-clabbe@baylibre.com>
- <CACRpkdb9R-BwdVzyeaQOjagsQU=2-06VNqKPG9fMa7C93eDC7A@mail.gmail.com>
- <2b0fa854-16e7-3d0b-a04a-971249646fab@opensource.wdc.com>
- <bc80cd49-c95e-6b9a-1210-7d3832766b02@gmail.com>
- <5a1d66d3-d3c2-ab77-f874-c3d6b10a0d2b@opensource.wdc.com>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <d16a1be7-d856-f6b7-5a1a-9f09f42195ee@gmail.com>
-Date:   Wed, 2 Feb 2022 12:24:24 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        Wed, 02 Feb 2022 01:37:01 -0800 (PST)
+Received: by mail-vk1-f178.google.com with SMTP id m131so12232912vkm.7;
+        Wed, 02 Feb 2022 01:37:01 -0800 (PST)
+X-Received: by 2002:a05:6122:c8f:: with SMTP id ba15mr12396345vkb.39.1643794621176;
+ Wed, 02 Feb 2022 01:37:01 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <5a1d66d3-d3c2-ab77-f874-c3d6b10a0d2b@opensource.wdc.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20220125125602.4144793-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220125125602.4144793-2-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdXgg8XApJETkN1oDDSy=N01kJaTz4DADyD9ZOM0ZXXttA@mail.gmail.com> <TYBPR01MB5341EA35142A1AFCF75F591FD8229@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYBPR01MB5341EA35142A1AFCF75F591FD8229@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 2 Feb 2022 10:36:50 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWSCpu0djVJeirGZP-WDSuzvnaWAHWG5wAviX9+Kt2aRQ@mail.gmail.com>
+Message-ID: <CAMuHMdWSCpu0djVJeirGZP-WDSuzvnaWAHWG5wAviX9+Kt2aRQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779f0 support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Magnus Damm <magnus.damm@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/2/22 1:56 AM, Damien Le Moal wrote:
+Hi Shimoda-san,
 
->>>> Thanks for doing this Corentin!
->>>>
->>>> On Sat, Jan 29, 2022 at 9:40 PM Corentin Labbe <clabbe@baylibre.com> wrote:
->>>>
->>>>> This patch converts ata/cortina,gemini-sata-bridge binding to yaml
->>>>>
->>>>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
->>>>
->>>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->>>>
->>>> Knowing that drivers/ata is a bit sparsely maintained I suggest that Rob apply
->>>> this patch when he feels it looks good.
->>>
->>> What do you mean ? I am doing my best here to maintain ata !
->>> But I definitely do not have all the hardware supported for testing :)
->>
->>    I can probably help reviewing the PATA drivers if you want, just like Bart Z. did.
->> But I don't have much of the PATA hardware (what I have is in my old PCs I haven't
->> booted in a long while)...
-> 
-> More reviews are always welcome ! Thanks !
+On Fri, Jan 28, 2022 at 1:09 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> > From: Geert Uytterhoeven, Sent: Thursday, January 27, 2022 8:06 PM
+>
+> > On Tue, Jan 25, 2022 at 6:33 PM Yoshihiro Shimoda
+> > <yoshihiro.shimoda.uh@renesas.com> wrote:
+> > > Document the compatible values for the IPMMU-VMSA blocks in
+> > > the Renesas R-Car S4-8 (R8A779F0) SoC and R-Car Gen4.
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-   How about me submitting an "official" PATA reviewer entry in MAINTAINERS?
+> > > --- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+> > > +++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+> > > @@ -44,6 +44,10 @@ properties:
+> > >                - renesas,ipmmu-r8a77990 # R-Car E3
+> > >                - renesas,ipmmu-r8a77995 # R-Car D3
+> > >                - renesas,ipmmu-r8a779a0 # R-Car V3U
+> > > +      - items:
+> > > +          - enum:
+> > > +              - renesas,ipmmu-r8a779f0 # R-Car S4-8
+> > > +          - const: renesas,rcar-gen4-ipmmu-vmsa  # R-Car Gen4
+> > >
+> >
+> > I'm wondering if we need the family-specific fallback.
+> > For R-Car Gen3, we don't have it, and match on (all) the SoC-specific
+> > compatible values instead.
+> > Do you remember why we decided to do it that way?
+> >
+> > At least R-Car V3M/V3H/D3 have slight differences in the register bits,
+> > but I don't think that was the reason.
+>
+> I don't remember why... Maybe, we had never discussed this topic?
+> I searched this topic a little on the ML archive, but I could not find it...
 
-[...]
+Indeed. I also couldn't find a discussion, and most IPMMUs on R-Car
+Gen3 SoCs are identical (although there are differences in parts we
+don't use in the driver). The IPMMUs in early R-Car Gen3 SoCs also had
+issues, so that's probably why we never went with a family-specific
+compatible value. And adding it now wouldn't gain us much.
 
-MBR, Sergey
+> Since upcoming R-Car Gen4 SoC's IPMMU is the same specification with r8a779f0,
+> I believe renesas,rcar-gen4-ipmmu-vmsa is helpful to support it.
+
+Agreed.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
