@@ -2,106 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52A5F4A702B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 12:40:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E556E4A7031
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 12:43:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240080AbiBBLkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 06:40:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59702 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233698AbiBBLkj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 06:40:39 -0500
-Received: from mxd2.seznam.cz (mxd2.seznam.cz [IPv6:2a02:598:2::210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21160C061714;
-        Wed,  2 Feb 2022 03:40:38 -0800 (PST)
-Received: from email.seznam.cz
-        by email-smtpc21a.ng.seznam.cz (email-smtpc21a.ng.seznam.cz [10.23.18.26])
-        id 5c6f5da1076109c85dc691ff;
-        Wed, 02 Feb 2022 12:40:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1643802031; bh=02935uyFlquI0a4iDdhDg5jx81ktMgh7hUVtFT1zXbw=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding:X-szn-frgn:
-         X-szn-frgc;
-        b=DWzDVIrpD6b9nOplggA/JtU0A23MqTrYHVMaY63n4BgeRQ60riTuQkPvzEfUryXY5
-         b44ijX1qbhQ6RpKDPPbeEn14hy9e7DLJWPHe1Oce6KK3ZFxez1qt4TAC1wLkTZu2pA
-         j9/4FZODB4/4JyN1mEs4u5sGFnIngZzBmN4IJkYo=
-Received: from localhost.localdomain (ip-111-27.static.ccinternet.cz [147.161.27.111])
-        by email-relay25.ng.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Wed, 02 Feb 2022 12:39:52 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, Michael Srba <michael.srba@seznam.cz>,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [PATCH v5 5/5] arm64: dts: qcom: msm8998: reserve potentially inaccessible clocks
-Date:   Wed,  2 Feb 2022 12:37:22 +0100
-Message-Id: <20220202113722.7550-5-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220202113722.7550-1-michael.srba@seznam.cz>
-References: <20220202113722.7550-1-michael.srba@seznam.cz>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <9991ae1e-5145-46dc-b41e-c462e151b124>
-X-szn-frgc: <0>
+        id S234938AbiBBLnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 06:43:06 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.82]:44455 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232404AbiBBLnG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 06:43:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1643802160;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=n/+OoiD2EtJ/gyEyNk035kAVFiSn2QxqLnT+ENLSWd4=;
+    b=ds8F5aCDXZ8u4Nf7Kmb+iqGPNf+z6oUXosCOsjFngM7JzOaLqHskBecB6SpRRMjb8j
+    z9n4kYIsMiHzr2XHDFNtiY7GIa286UkewAItxFZpAAq6tmpBwOA5KB6Pum5x3874MhcX
+    04WDxtoa+cRgXP4F+YAq7z/HPUpYP+MFYk8nap3bikD4ph8vsyssD28dz4okwcdLll5u
+    7L6V/9wwdzP5QNhXqmJzP8Xj2YAn2clxtTU7fAVIgjFa+fdc7U2Eyx3S6iDVXQQsgknt
+    mmlWeaGaf0coKdCp6bIe0DFVWBZxqFe+SGQh/f5APxIOJsdKizXD+x/gqWw14jS3YZ61
+    6GwQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NIGH/jrwDCocQ=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.39.0 DYNA|AUTH)
+    with ESMTPSA id L29417y12Bgc9fi
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Wed, 2 Feb 2022 12:42:38 +0100 (CET)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v12 4/9] drm/ingenic: Add dw-hdmi driver specialization
+ for jz4780
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <1W9O6R.U3T9L7GOJNE81@crapouillou.net>
+Date:   Wed, 2 Feb 2022 12:42:37 +0100
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <8126F638-201E-4EB4-A0D9-847A6A6609EF@goldelico.com>
+References: <cover.1643632014.git.hns@goldelico.com>
+ <d723efc7c2544db945698246ae4644ecb8fae1a3.1643632014.git.hns@goldelico.com>
+ <1W9O6R.U3T9L7GOJNE81@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <michael.srba@seznam.cz>
+Hi Paul,
 
-With the gcc driver now being more complete and describing clocks which
-might not always be write-accessible to the OS, conservatively specify
-all such clocks as protected in the SoC dts.
-The board dts - or even user-supplied dts - can override this property
-to reflect the actual configuration.
+> Am 02.02.2022 um 11:16 schrieb Paul Cercueil <paul@crapouillou.net>:
+>=20
+> Hi Nikolaus,
+>=20
+> Le lun., janv. 31 2022 at 13:26:50 +0100, H. Nikolaus Schaller =
+<hns@goldelico.com> a =C3=A9crit :
+>> From: Paul Boddie <paul@boddie.org.uk>
+>> A specialisation of the generic Synopsys HDMI driver is employed for
+>> JZ4780 HDMI support. This requires a new driver, plus device tree and
+>> configuration modifications.
+>> Here we add Kconfig DRM_INGENIC_DW_HDMI, Makefile and driver code.
+>> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
+>> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>> ---
+>> drivers/gpu/drm/ingenic/Kconfig           |   9 ++
+>> drivers/gpu/drm/ingenic/Makefile          |   1 +
+>> drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c | 104 =
+++++++++++++++++++++++
+>> 3 files changed, 114 insertions(+)
+>> create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
+>> diff --git a/drivers/gpu/drm/ingenic/Kconfig =
+b/drivers/gpu/drm/ingenic/Kconfig
+>> index 001f59fb06d56..ba4a650869cd8 100644
+>> --- a/drivers/gpu/drm/ingenic/Kconfig
+>> +++ b/drivers/gpu/drm/ingenic/Kconfig
+>> @@ -24,4 +24,13 @@ config DRM_INGENIC_IPU
+>> 	  The Image Processing Unit (IPU) will appear as a second =
+primary plane.
+>> +config DRM_INGENIC_DW_HDMI
+>> +	tristate "Ingenic specific support for Synopsys DW HDMI"
+>> +	depends on MACH_JZ4780
+>> +	select DRM_DW_HDMI
+>> +	help
+>> +	  Choose this option to enable Synopsys DesignWare HDMI based =
+driver.
+>> +	  If you want to enable HDMI on Ingenic JZ4780 based SoC, you =
+should
+>> +	  select this option..
+>=20
+> One dot is enough.
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
----
- CHANGES:
- - v2: add this patch
- - v3: fix missing Signed-off-by
- - v4: add a proper explanation as per review, (hopefully) fix the subject and commit message
- - v5: none
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Ok, will fix.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index f273bc1ff629..16dccf9d881e 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -863,6 +863,21 @@ gcc: clock-controller@100000 {
- 
- 			clock-names = "xo", "sleep_clk";
- 			clocks = <&xo>, <&sleep_clk>;
-+
-+			/*
-+			 * The hypervisor typically configures the memory region where these clocks
-+			 * reside as read-only for the HLOS. If the HLOS tried to enable or disable
-+			 * these clocks on a device with such configuration (e.g. because they are
-+			 * enabled but unused during boot-up), the device will most likely decide
-+			 * to reboot.
-+			 * In light of that, we are conservative here and we list all such clocks
-+			 * as protected. The board dts (or a user-supplied dts) can override the
-+			 * list of protected clocks if it differs from the norm, and it is in fact
-+			 * desired for the HLOS to manage these clocks
-+			 */
-+			protected-clocks = <AGGRE2_SNOC_NORTH_AXI>,
-+					   <SSC_XO>,
-+					   <SSC_CNOC_AHBS_CLK>;
- 		};
- 
- 		rpm_msg_ram: sram@778000 {
--- 
-2.34.1
+>=20
+>> +
+>> endif
+>> diff --git a/drivers/gpu/drm/ingenic/Makefile =
+b/drivers/gpu/drm/ingenic/Makefile
+>> index d313326bdddbb..f10cc1c5a5f22 100644
+>> --- a/drivers/gpu/drm/ingenic/Makefile
+>> +++ b/drivers/gpu/drm/ingenic/Makefile
+>> @@ -1,3 +1,4 @@
+>> obj-$(CONFIG_DRM_INGENIC) +=3D ingenic-drm.o
+>> ingenic-drm-y =3D ingenic-drm-drv.o
+>> ingenic-drm-$(CONFIG_DRM_INGENIC_IPU) +=3D ingenic-ipu.o
+>> +obj-$(CONFIG_DRM_INGENIC_DW_HDMI) +=3D ingenic-dw-hdmi.o
+>> diff --git a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c =
+b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
+>> new file mode 100644
+>> index 0000000000000..34e986dd606cf
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
+>> @@ -0,0 +1,104 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/* Copyright (C) 2011-2013 Freescale Semiconductor, Inc.
+>> + * Copyright (C) 2019, 2020 Paul Boddie <paul@boddie.org.uk>
+>> + *
+>> + * Derived from dw_hdmi-imx.c with i.MX portions removed.
+>> + * Probe and remove operations derived from rcar_dw_hdmi.c.
+>> + */
+>> +
+>> +#include <linux/module.h>
+>> +#include <linux/of_platform.h>
+>> +#include <linux/platform_device.h>
+>> +
+>> +#include <drm/bridge/dw_hdmi.h>
+>> +#include <drm/drm_of.h>
+>> +#include <drm/drm_print.h>
+>> +
+>> +static const struct dw_hdmi_mpll_config ingenic_mpll_cfg[] =3D {
+>> +	{ 45250000,  { { 0x01e0, 0x0000 }, { 0x21e1, 0x0000 }, { 0x41e2, =
+0x0000 } } },
+>> +	{ 92500000,  { { 0x0140, 0x0005 }, { 0x2141, 0x0005 }, { 0x4142, =
+0x0005 } } },
+>> +	{ 148500000, { { 0x00a0, 0x000a }, { 0x20a1, 0x000a }, { 0x40a2, =
+0x000a } } },
+>> +	{ 216000000, { { 0x00a0, 0x000a }, { 0x2001, 0x000f }, { 0x4002, =
+0x000f } } },
+>> +	{ ~0UL,      { { 0x0000, 0x0000 }, { 0x0000, 0x0000 }, { 0x0000, =
+0x0000 } } }
+>> +};
+>> +
+>> +static const struct dw_hdmi_curr_ctrl ingenic_cur_ctr[] =3D {
+>> +	/*pixelclk     bpp8    bpp10   bpp12 */
+>> +	{ 54000000,  { 0x091c, 0x091c, 0x06dc } },
+>> +	{ 58400000,  { 0x091c, 0x06dc, 0x06dc } },
+>> +	{ 72000000,  { 0x06dc, 0x06dc, 0x091c } },
+>> +	{ 74250000,  { 0x06dc, 0x0b5c, 0x091c } },
+>> +	{ 118800000, { 0x091c, 0x091c, 0x06dc } },
+>> +	{ 216000000, { 0x06dc, 0x0b5c, 0x091c } },
+>> +	{ ~0UL,      { 0x0000, 0x0000, 0x0000 } },
+>> +};
+>> +
+>> +/*
+>> + * Resistance term 133Ohm Cfg
+>> + * PREEMP config 0.00
+>> + * TX/CK level 10
+>> + */
+>> +static const struct dw_hdmi_phy_config ingenic_phy_config[] =3D {
+>> +	/*pixelclk   symbol   term   vlev */
+>> +	{ 216000000, 0x800d, 0x0005, 0x01ad},
+>> +	{ ~0UL,      0x0000, 0x0000, 0x0000}
+>> +};
+>> +
+>> +static enum drm_mode_status
+>> +ingenic_dw_hdmi_mode_valid(struct dw_hdmi *hdmi, void *data,
+>> +			   const struct drm_display_info *info,
+>> +			   const struct drm_display_mode *mode)
+>> +{
+>> +	if (mode->clock < 13500)
+>> +		return MODE_CLOCK_LOW;
+>> +	/* FIXME: Hardware is capable of 270MHz, but setup data is =
+missing. */
+>> +	if (mode->clock > 216000)
+>> +		return MODE_CLOCK_HIGH;
+>> +
+>> +	return MODE_OK;
+>> +}
+>> +
+>> +static struct dw_hdmi_plat_data ingenic_dw_hdmi_plat_data =3D {
+>> +	.mpll_cfg   =3D ingenic_mpll_cfg,
+>> +	.cur_ctr    =3D ingenic_cur_ctr,
+>> +	.phy_config =3D ingenic_phy_config,
+>> +	.mode_valid =3D ingenic_dw_hdmi_mode_valid,
+>> +	.output_port	=3D 1,
+>> +};
+>> +
+>> +static const struct of_device_id ingenic_dw_hdmi_dt_ids[] =3D {
+>> +	{ .compatible =3D "ingenic,jz4780-dw-hdmi" },
+>> +	{ /* Sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, ingenic_dw_hdmi_dt_ids);
+>> +
+>> +static void ingenic_dw_hdmi_cleanup(void *data)
+>> +{
+>> +	struct dw_hdmi *hdmi =3D (struct dw_hdmi *)data;
+>> +
+>> +	dw_hdmi_remove(hdmi);
+>> +}
+>> +
+>> +static int ingenic_dw_hdmi_probe(struct platform_device *pdev)
+>> +{
+>> +	struct dw_hdmi *hdmi;
+>> +
+>> +	hdmi =3D dw_hdmi_probe(pdev, &ingenic_dw_hdmi_plat_data);
+>> +	if (IS_ERR(hdmi))
+>> +		return PTR_ERR(hdmi);
+>> +
+>> +	return devm_add_action_or_reset(&pdev->dev, =
+ingenic_dw_hdmi_cleanup, hdmi);
+>=20
+> Nitpick, but your probe function is so simple, you could just have a =
+.remove callback
+
+Well, we did have one in v5 or so (haven't looked back) and it was your =
+suggestion to
+add an action handler. Well at that point it was a little more to do.
+
+> instead of registering a devm action. Then you can just return =
+PTR_ERR_OR_ZERO(hdmi).
+>=20
+> Cheers,
+> -Paul
 
