@@ -2,204 +2,339 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAEB84A705C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 12:54:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F29344A7064
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 12:57:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235513AbiBBLyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 06:54:25 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:54578 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231839AbiBBLyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 06:54:24 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 212BrUQD124243;
-        Wed, 2 Feb 2022 05:53:30 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1643802810;
-        bh=ZCiOlYN6uGVwo49DCOPGVRgsHZSeZjio+2Askyn+jEU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Oe8FV/lTfcLmVGZDXiBYYSuW6er4n7IOenQBNpF3uJA3Dliw3ACK1iPNIxt0N2QyQ
-         jh+YwlBhPdJpCiwuMEwjWK5yOKR3O7ipo1ZObkANAFh4AR+GmNoNVyOvaIqyGhE3Wx
-         O4O1XKiw/cpSgYNtNsnRfLK1U8nX9HHvKLsVAhTI=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 212BrU9N004577
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Feb 2022 05:53:30 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 2
- Feb 2022 05:53:28 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 2 Feb 2022 05:53:28 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 212BrRl5023205;
-        Wed, 2 Feb 2022 05:53:28 -0600
-Date:   Wed, 2 Feb 2022 17:23:27 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Christophe Kerello <christophe.kerello@foss.st.com>
-CC:     Miquel Raynal <miquel.raynal@bootlin.com>, <richard@nod.at>,
-        <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <linux-mtd@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>, <chenshumin86@sina.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Khouloud Touil <ktouil@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: Re: [PATCH v2 4/4] mtd: core: Fix a conflict between MTD and NVMEM
- on wp-gpios property
-Message-ID: <20220202115327.53oqg5n7tx6b6q7u@ti.com>
-References: <20220131095755.8981-1-christophe.kerello@foss.st.com>
- <20220131095755.8981-5-christophe.kerello@foss.st.com>
- <20220131144309.0ffe7cc8@xps13>
- <20220201104727.7xvcyexf3yucegcb@ti.com>
- <eebfa629-ead2-d63f-9cfb-4cafc1534678@foss.st.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <eebfa629-ead2-d63f-9cfb-4cafc1534678@foss.st.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S244843AbiBBL5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 06:57:00 -0500
+Received: from mo4-p03-ob.smtp.rzone.de ([85.215.255.103]:32989 "EHLO
+        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233546AbiBBL5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 06:57:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1643802997;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=P1UU9/Rd4PWE6S/mNmRynY70CMbHTFJdQ7fBfwQCW4Q=;
+    b=EFC+nZZfHUsltYdOFwdou7RTL0skLnR4kDUCYa9O2IwgpkayuqowhnH/j7gd3wRB9J
+    ye0BJgdgh5yoZUt4KcPkSUMF8eufiGc3YbrHzysjBJ/j/1lI+eXmmwCEgUj7w3Tvqt1F
+    NPeBbsWIN7F5dLVI/nRLKZ+SqxLm8eu+b7FkVxctQw/0REqHDlPTwFrKgTJaf/7qTcJ/
+    AyjKjzECdRXD+ZqqVXCy0/e1rFZujH2VkFJzOGIAujCDBXrnxRuvW86C0X6YoJ1LUhYe
+    wt11AWneSPalu8dn1Zl7jgKLdSVJWP9F6KLRPyNlMHINxqyAW9pPWFxQ+bQzT+JkAjxD
+    GC9w==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NIGH/jrwDCocQ=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.39.0 DYNA|AUTH)
+    with ESMTPSA id L29417y12Bua9kq
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Wed, 2 Feb 2022 12:56:36 +0100 (CET)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v12 2/9] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <N7AO6R.7I6FABF106MT1@crapouillou.net>
+Date:   Wed, 2 Feb 2022 12:56:35 +0100
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <1F27171F-DFCA-4707-8F50-D1A343F6D78E@goldelico.com>
+References: <cover.1643632014.git.hns@goldelico.com>
+ <6a7b188769a7ad477bf8cb71e1b9bc086b92388d.1643632014.git.hns@goldelico.com>
+ <N7AO6R.7I6FABF106MT1@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Khouloud, Linus, Bartosz
+Hi Paul,
+thanks for the reviews. Looks as if we are close to making a goal.
 
-On 02/02/22 11:44AM, Christophe Kerello wrote:
-> Hi,
-> 
-> On 2/1/22 11:47, Pratyush Yadav wrote:
-> > On 31/01/22 02:43PM, Miquel Raynal wrote:
-> > > Hi Vignesh, Tudory, Pratyush,
-> > > 
-> > > + Tudor and Pratyush
-> > > 
-> > > christophe.kerello@foss.st.com wrote on Mon, 31 Jan 2022 10:57:55 +0100:
-> > > 
-> > > > Wp-gpios property can be used on NVMEM nodes and the same property can
-> > > > be also used on MTD NAND nodes. In case of the wp-gpios property is
-> > > > defined at NAND level node, the GPIO management is done at NAND driver
-> > > > level. Write protect is disabled when the driver is probed or resumed
-> > > > and is enabled when the driver is released or suspended.
-> > > > 
-> > > > When no partitions are defined in the NAND DT node, then the NAND DT node
-> > > > will be passed to NVMEM framework. If wp-gpios property is defined in
-> > > > this node, the GPIO resource is taken twice and the NAND controller
-> > > > driver fails to probe.
-> > > > 
-> > > > A new Boolean flag named skip_wp_gpio has been added in nvmem_config.
-> > > > In case skip_wp_gpio is set, it means that the GPIO is handled by the
-> > > > provider. Lets set this flag in MTD layer to avoid the conflict on
-> > > > wp_gpios property.
-> > > > 
-> > > > Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
-> > > > ---
-> > > >   drivers/mtd/mtdcore.c | 2 ++
-> > > >   1 file changed, 2 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-> > > > index 70f492dce158..e6d251594def 100644
-> > > > --- a/drivers/mtd/mtdcore.c
-> > > > +++ b/drivers/mtd/mtdcore.c
-> > > > @@ -546,6 +546,7 @@ static int mtd_nvmem_add(struct mtd_info *mtd)
-> > > >   	config.stride = 1;
-> > > >   	config.read_only = true;
-> > > >   	config.root_only = true;
-> > > > +	config.skip_wp_gpio = true;
-> > > >   	config.no_of_node = !of_device_is_compatible(node, "nvmem-cells");
-> > > >   	config.priv = mtd;
-> > > > @@ -833,6 +834,7 @@ static struct nvmem_device *mtd_otp_nvmem_register(struct mtd_info *mtd,
-> > > >   	config.owner = THIS_MODULE;
-> > > >   	config.type = NVMEM_TYPE_OTP;
-> > > >   	config.root_only = true;
-> > > > +	config.skip_wp_gpio = true;
-> > > >   	config.reg_read = reg_read;
-> > > >   	config.size = size;
-> > > >   	config.of_node = np;
-> > > 
-> > > TLDR: There is a conflict between MTD and NVMEM, who should handle the
-> > > WP pin when there is one? At least for raw NAND devices, I don't want
-> > > the NVMEM core to handle the wp pin. So we've introduced this
-> > > skip_wp_gpio nvmem config option. But there are two places where this
-> > > boolean can be set and one of these is for otp regions (see above). In
-> > > this case, I don't know if it is safe or if CFI/SPI-NOR rely on the
-> > > nvmem protection. Please tell us if you think this is fine for you.
-> > 
-> > Why does NVMEM touch hardware write protection in the first place? The
-> > purpose of the framework is to provide a way to retrieve config stored
-> > in memory. It has no business dealing with details of the chip like the
-> > WP line. That should be MTD's job (which it should delegate to SPI NOR,
-> > SPI NAND, etc.). If you want to write protect a cell then do it in
-> > software. I don't see why NVMEM should be dealing with hardware directly
-> > at all.
-> > 
-> > That is my mental model of how things _should_ work. I have not spent
-> > much time digging into how things actually work currently.
-> > 
-> 
-> Wp-gpios property management was added in MVMEM framework in January 2020 =>
-> sha1: 2a127da461a9d8d97782d6e82b227041393eb4d2
-> "
->     nvmem: add support for the write-protect pin
-> 
->     The write-protect pin handling looks like a standard property that
->     could benefit other users if available in the core nvmem framework.
-> 
->     Instead of modifying all the memory drivers to check this pin, make
->     the NVMEM subsystem check if the write-protect GPIO being passed
->     through the nvmem_config or defined in the device tree and pull it
->     low whenever writing to the memory.
-> "
-> 
-> And this modification was done for EEPROMs flashes => sha1:
-> 1c89074bf85068d1b86f2e0f0c2110fdd9b83c9f
-> "
->     eeprom: at24: remove the write-protect pin support
-> 
->     NVMEM framework is an interface for the at24 EEPROMs as well as for
->     other drivers, instead of passing the wp-gpios over the different
->     drivers each time, it would be better to pass it over the NVMEM
->     subsystem once and for all.
-> 
->     Removing the support for the write-protect pin after adding it to
->     the NVMEM subsystem.
-> "
-> 
-> Current NVMEM framework implementation toggles the WP GPIO when reg_write
-> nvmem_config API is defined. In case of MTD framework, reg_write is not
-> defined in nvmem_config.
+> Am 02.02.2022 um 11:23 schrieb Paul Cercueil <paul@crapouillou.net>:
+>=20
+> Hi Nikolaus,
+>=20
+> Le lun., janv. 31 2022 at 13:26:48 +0100, H. Nikolaus Schaller =
+<hns@goldelico.com> a =C3=A9crit :
+>> From: Paul Boddie <paul@boddie.org.uk>
+>> Add support for the LCD controller present on JZ4780 SoCs.
+>> This SoC uses 8-byte descriptors which extend the current
+>> 4-byte descriptors used for other Ingenic SoCs.
+>> Tested on MIPS Creator CI20 board.
+>> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
+>> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>> ---
+>> drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 61 =
+++++++++++++++++++++++-
+>> drivers/gpu/drm/ingenic/ingenic-drm.h     | 38 ++++++++++++++
+>> 2 files changed, 98 insertions(+), 1 deletion(-)
+>> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c =
+b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+>> index 9c60fc4605e4b..ccdb9eedd9247 100644
+>> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+>> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+>> @@ -6,6 +6,7 @@
+>> #include "ingenic-drm.h"
+>> +#include <linux/bitfield.h>
+>> #include <linux/component.h>
+>> #include <linux/clk.h>
+>> #include <linux/dma-mapping.h>
+>> @@ -49,6 +50,11 @@ struct ingenic_dma_hwdesc {
+>> 	u32 addr;
+>> 	u32 id;
+>> 	u32 cmd;
+>> +	/* extended hw descriptor for jz4780 */
+>> +	u32 offsize;
+>> +	u32 pagewidth;
+>> +	u32 cpos;
+>> +	u32 dessize;
+>> } __aligned(16);
+>> struct ingenic_dma_hwdescs {
+>> @@ -59,7 +65,9 @@ struct ingenic_dma_hwdescs {
+>> struct jz_soc_info {
+>> 	bool needs_dev_clk;
+>> 	bool has_osd;
+>> +	bool has_alpha;
+>> 	bool map_noncoherent;
+>> +	bool use_extended_hwdesc;
+>> 	unsigned int max_width, max_height;
+>> 	const u32 *formats_f0, *formats_f1;
+>> 	unsigned int num_formats_f0, num_formats_f1;
+>> @@ -446,6 +454,9 @@ static int ingenic_drm_plane_atomic_check(struct =
+drm_plane *plane,
+>> 	if (!crtc)
+>> 		return 0;
+>> +	if (plane =3D=3D &priv->f0)
+>> +		return -EINVAL;
+>=20
+> This will break JZ4725B -> JZ4770 SoCs, the f0 plane is perfectly =
+usable there.
 
-Thanks for digging these up. I think this was the wrong decision to 
-make. NVMEM should just provide the APIs for handling read/write, and 
-leave the rest to the drivers.
+Hm. I think it was your request/proposal to add this [1]?
 
-It might be convenient for some drivers to put the WP GPIO handling to 
-NVMEM core but I just don't think it is the job of the framework to deal 
-with this, and it just does not know enough about the device to deal 
-with correctly and completely anyway. For example, wp-gpio is only one 
-of the ways to write protect a chip. SPI NOR flashes have a WP# pin that 
-is often toggled via the SPI controller. There could also be registers 
-that do the write protection.
+What I have forgotten is why the f0 plane should not be usable for =
+jz4780.
 
-One would have to make strong justifications for making nvmem directly 
-deal with hardware level details to convince me it is a good idea. IMHO 
-if AT24 EEPROM is the only driver relying on this as of now then we 
-should just revert the patches and not have to deal with the 
-skip_wp_gpio hackery.
+BR and thanks,
+Nikolaus
 
-> 
-> Based on the comments made, it seems that we also agree that this write
-> protection should be handled by MTD subsystems or associated drivers and not
-> by MVMEN framework for MTD use cases.
-> 
-> The proposal implementation should solve this conflict for MTD framework
-> without breaking anything for others NVMEM users (EEPROMs flashes for
-> example).
+[1] end of =
+https://patchwork.kernel.org/project/dri-devel/patch/2c7d0aa7d3ef480ebb996=
+d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com/#24578683
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+
+>=20
+> Cheers,
+> -Paul
+>=20
+>> +
+>> 	crtc_state =3D drm_atomic_get_existing_crtc_state(state,
+>> 							crtc);
+>> 	if (WARN_ON(!crtc_state))
+>> @@ -662,6 +673,33 @@ static void =
+ingenic_drm_plane_atomic_update(struct drm_plane *plane,
+>> 		hwdesc->cmd =3D JZ_LCD_CMD_EOF_IRQ | (width * height * =
+cpp / 4);
+>> 		hwdesc->next =3D dma_hwdesc_addr(priv, next_id);
+>> +		if (priv->soc_info->use_extended_hwdesc) {
+>> +			hwdesc->cmd |=3D JZ_LCD_CMD_FRM_ENABLE;
+>> +
+>> +			/* Extended 8-byte descriptor */
+>> +			hwdesc->cpos =3D 0;
+>> +			hwdesc->offsize =3D 0;
+>> +			hwdesc->pagewidth =3D 0;
+>> +
+>> +			switch (newstate->fb->format->format) {
+>> +			case DRM_FORMAT_XRGB1555:
+>> +				hwdesc->cpos |=3D JZ_LCD_CPOS_RGB555;
+>> +				fallthrough;
+>> +			case DRM_FORMAT_RGB565:
+>> +				hwdesc->cpos |=3D JZ_LCD_CPOS_BPP_15_16;
+>> +				break;
+>> +			case DRM_FORMAT_XRGB8888:
+>> +				hwdesc->cpos |=3D JZ_LCD_CPOS_BPP_18_24;
+>> +				break;
+>> +			}
+>> +			hwdesc->cpos |=3D (JZ_LCD_CPOS_COEFFICIENT_1 <<
+>> +					 =
+JZ_LCD_CPOS_COEFFICIENT_OFFSET);
+>> +			hwdesc->dessize =3D
+>> +				(0xff << JZ_LCD_DESSIZE_ALPHA_OFFSET) |
+>> +				FIELD_PREP(JZ_LCD_DESSIZE_HEIGHT_MASK, =
+height - 1) |
+>> +				FIELD_PREP(JZ_LCD_DESSIZE_WIDTH_MASK, =
+width - 1);
+>> +		}
+>> +
+>> 		if (drm_atomic_crtc_needs_modeset(crtc_state)) {
+>> 			fourcc =3D newstate->fb->format->format;
+>> @@ -693,6 +731,9 @@ static void =
+ingenic_drm_encoder_atomic_mode_set(struct drm_encoder *encoder,
+>> 		    | JZ_LCD_CFG_SPL_DISABLE | JZ_LCD_CFG_REV_DISABLE;
+>> 	}
+>> +	if (priv->soc_info->use_extended_hwdesc)
+>> +		cfg |=3D JZ_LCD_CFG_DESCRIPTOR_8;
+>> +
+>> 	if (mode->flags & DRM_MODE_FLAG_NHSYNC)
+>> 		cfg |=3D JZ_LCD_CFG_HSYNC_ACTIVE_LOW;
+>> 	if (mode->flags & DRM_MODE_FLAG_NVSYNC)
+>> @@ -1015,6 +1056,7 @@ static int ingenic_drm_bind(struct device *dev, =
+bool has_components)
+>> 	long parent_rate;
+>> 	unsigned int i, clone_mask =3D 0;
+>> 	int ret, irq;
+>> +	u32 osdc =3D 0;
+>> 	soc_info =3D of_device_get_match_data(dev);
+>> 	if (!soc_info) {
+>> @@ -1272,7 +1314,10 @@ static int ingenic_drm_bind(struct device =
+*dev, bool has_components)
+>> 	/* Enable OSD if available */
+>> 	if (soc_info->has_osd)
+>> -		regmap_write(priv->map, JZ_REG_LCD_OSDC, =
+JZ_LCD_OSDC_OSDEN);
+>> +		osdc |=3D JZ_LCD_OSDC_OSDEN;
+>> +	if (soc_info->has_alpha)
+>> +		osdc |=3D JZ_LCD_OSDC_ALPHAEN;
+>> +	regmap_write(priv->map, JZ_REG_LCD_OSDC, osdc);
+>> 	mutex_init(&priv->clk_mutex);
+>> 	priv->clock_nb.notifier_call =3D ingenic_drm_update_pixclk;
+>> @@ -1468,10 +1513,24 @@ static const struct jz_soc_info =
+jz4770_soc_info =3D {
+>> 	.num_formats_f0 =3D ARRAY_SIZE(jz4770_formats_f0),
+>> };
+>> +static const struct jz_soc_info jz4780_soc_info =3D {
+>> +	.needs_dev_clk =3D true,
+>> +	.has_osd =3D true,
+>> +	.has_alpha =3D true,
+>> +	.use_extended_hwdesc =3D true,
+>> +	.max_width =3D 4096,
+>> +	.max_height =3D 2048,
+>> +	.formats_f1 =3D jz4770_formats_f1,
+>> +	.num_formats_f1 =3D ARRAY_SIZE(jz4770_formats_f1),
+>> +	.formats_f0 =3D jz4770_formats_f0,
+>> +	.num_formats_f0 =3D ARRAY_SIZE(jz4770_formats_f0),
+>> +};
+>> +
+>> static const struct of_device_id ingenic_drm_of_match[] =3D {
+>> 	{ .compatible =3D "ingenic,jz4740-lcd", .data =3D =
+&jz4740_soc_info },
+>> 	{ .compatible =3D "ingenic,jz4725b-lcd", .data =3D =
+&jz4725b_soc_info },
+>> 	{ .compatible =3D "ingenic,jz4770-lcd", .data =3D =
+&jz4770_soc_info },
+>> +	{ .compatible =3D "ingenic,jz4780-lcd", .data =3D =
+&jz4780_soc_info },
+>> 	{ /* sentinel */ },
+>> };
+>> MODULE_DEVICE_TABLE(of, ingenic_drm_of_match);
+>> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm.h =
+b/drivers/gpu/drm/ingenic/ingenic-drm.h
+>> index 22654ac1dde1c..cb1d09b625881 100644
+>> --- a/drivers/gpu/drm/ingenic/ingenic-drm.h
+>> +++ b/drivers/gpu/drm/ingenic/ingenic-drm.h
+>> @@ -44,8 +44,11 @@
+>> #define JZ_REG_LCD_XYP1				0x124
+>> #define JZ_REG_LCD_SIZE0			0x128
+>> #define JZ_REG_LCD_SIZE1			0x12c
+>> +#define JZ_REG_LCD_PCFG				0x2c0
+>> #define JZ_LCD_CFG_SLCD				BIT(31)
+>> +#define JZ_LCD_CFG_DESCRIPTOR_8			BIT(28)
+>> +#define JZ_LCD_CFG_RECOVER_FIFO_UNDERRUN	BIT(25)
+>> #define JZ_LCD_CFG_PS_DISABLE			BIT(23)
+>> #define JZ_LCD_CFG_CLS_DISABLE			BIT(22)
+>> #define JZ_LCD_CFG_SPL_DISABLE			BIT(21)
+>> @@ -63,6 +66,7 @@
+>> #define JZ_LCD_CFG_DE_ACTIVE_LOW		BIT(9)
+>> #define JZ_LCD_CFG_VSYNC_ACTIVE_LOW		BIT(8)
+>> #define JZ_LCD_CFG_18_BIT			BIT(7)
+>> +#define JZ_LCD_CFG_24_BIT			BIT(6)
+>> #define JZ_LCD_CFG_PDW				(BIT(5) | =
+BIT(4))
+>> #define JZ_LCD_CFG_MODE_GENERIC_16BIT		0
+>> @@ -132,6 +136,7 @@
+>> #define JZ_LCD_CMD_SOF_IRQ			BIT(31)
+>> #define JZ_LCD_CMD_EOF_IRQ			BIT(30)
+>> #define JZ_LCD_CMD_ENABLE_PAL			BIT(28)
+>> +#define JZ_LCD_CMD_FRM_ENABLE			BIT(26)
+>> #define JZ_LCD_SYNC_MASK			0x3ff
+>> @@ -153,6 +158,7 @@
+>> #define JZ_LCD_RGBC_EVEN_BGR			(0x5 << 0)
+>> #define JZ_LCD_OSDC_OSDEN			BIT(0)
+>> +#define JZ_LCD_OSDC_ALPHAEN			BIT(2)
+>> #define JZ_LCD_OSDC_F0EN			BIT(3)
+>> #define JZ_LCD_OSDC_F1EN			BIT(4)
+>> @@ -176,6 +182,38 @@
+>> #define JZ_LCD_SIZE01_WIDTH_LSB			0
+>> #define JZ_LCD_SIZE01_HEIGHT_LSB		16
+>> +#define JZ_LCD_DESSIZE_ALPHA_OFFSET		24
+>> +#define JZ_LCD_DESSIZE_HEIGHT_MASK		GENMASK(23, 12)
+>> +#define JZ_LCD_DESSIZE_WIDTH_MASK		GENMASK(11, 0)
+>> +
+>> +#define JZ_LCD_CPOS_BPP_15_16			(4 << 27)
+>> +#define JZ_LCD_CPOS_BPP_18_24			(5 << 27)
+>> +#define JZ_LCD_CPOS_BPP_30			(7 << 27)
+>> +#define JZ_LCD_CPOS_RGB555			BIT(30)
+>> +#define JZ_LCD_CPOS_PREMULTIPLY_LCD		BIT(26)
+>> +#define JZ_LCD_CPOS_COEFFICIENT_OFFSET		24
+>> +#define JZ_LCD_CPOS_COEFFICIENT_0		0
+>> +#define JZ_LCD_CPOS_COEFFICIENT_1		1
+>> +#define JZ_LCD_CPOS_COEFFICIENT_ALPHA1		2
+>> +#define JZ_LCD_CPOS_COEFFICIENT_1_ALPHA1	3
+>> +
+>> +#define JZ_LCD_RGBC_RGB_PADDING			BIT(15)
+>> +#define JZ_LCD_RGBC_RGB_PADDING_FIRST		BIT(14)
+>> +#define JZ_LCD_RGBC_422				BIT(8)
+>> +#define JZ_LCD_RGBC_RGB_FORMAT_ENABLE		BIT(7)
+>> +
+>> +#define JZ_LCD_PCFG_PRI_MODE			BIT(31)
+>> +#define JZ_LCD_PCFG_HP_BST_4			(0 << 28)
+>> +#define JZ_LCD_PCFG_HP_BST_8			(1 << 28)
+>> +#define JZ_LCD_PCFG_HP_BST_16			(2 << 28)
+>> +#define JZ_LCD_PCFG_HP_BST_32			(3 << 28)
+>> +#define JZ_LCD_PCFG_HP_BST_64			(4 << 28)
+>> +#define JZ_LCD_PCFG_HP_BST_16_CONT		(5 << 28)
+>> +#define JZ_LCD_PCFG_HP_BST_DISABLE		(7 << 28)
+>> +#define JZ_LCD_PCFG_THRESHOLD2_OFFSET		18
+>> +#define JZ_LCD_PCFG_THRESHOLD1_OFFSET		9
+>> +#define JZ_LCD_PCFG_THRESHOLD0_OFFSET		0
+>> +
+>> struct device;
+>> struct drm_plane;
+>> struct drm_plane_state;
+>> --
+>> 2.33.0
+>=20
+>=20
+
