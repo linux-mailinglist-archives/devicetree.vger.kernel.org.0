@@ -2,117 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F404A729F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 15:03:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C663D4A72FF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 15:27:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236294AbiBBOC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 09:02:57 -0500
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:34337 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232855AbiBBOC5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 09:02:57 -0500
-Received: by mail-oi1-f182.google.com with SMTP id i5so2074209oih.1;
-        Wed, 02 Feb 2022 06:02:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=zULRLQpcJWbF7S4BmPAAlkw3ALyvA8RPOoLUEYmEAB8=;
-        b=wIes07ZO+zS+qPuRL9goBWjvVN8i8MBL57LY03ROg9aKP9y2PZVV+Df03XH90z9341
-         FrU5X/kd7md6CaBTdwL5+6y3mXPbwHCQjjyPv3cPZNwo5avUB1XA7d6uFDXDv5l1Gxyl
-         deeI1ZHTla/QfQ7i9ykpMuFj7y+f+2Js1VeEhzjRsClkM3lbQnyMtDG29ztIuwut71rQ
-         nTaos6+owGlk3C0KOa/k88oa4p5UnTEPHSo7jUyQffY8qWu2YuRgcBPQh1WxVW3uoh6f
-         Ihj27kfZeKU+9PvtxvllRsS+chtvyCR8rN5yfzKj0p/mCuLieq8D5DTLH45OzKRwXCMQ
-         CFVw==
-X-Gm-Message-State: AOAM530PTDZuuC8tVmENDSXlMM8IouMZSbi5EhvLgWk0N4BVKEr6F/Ni
-        qx4ZTks7WsK/f2MaR76geqt+NN92rQ==
-X-Google-Smtp-Source: ABdhPJwbTVOOGbJ3u4w4TpdhGw7J1oL86U+BXox0mdkJbrwx4e/c1mPVAJH+sgGkpvyZhr2CeHVJZQ==
-X-Received: by 2002:aca:e0d7:: with SMTP id x206mr4225281oig.195.1643810576345;
-        Wed, 02 Feb 2022 06:02:56 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l15sm6842536ots.28.2022.02.02.06.02.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Feb 2022 06:02:55 -0800 (PST)
-Received: (nullmailer pid 2312325 invoked by uid 1000);
-        Wed, 02 Feb 2022 14:02:54 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     michael.srba@seznam.cz
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Srba <Michael.Srba@seznam.cz>
-In-Reply-To: <20220202113722.7550-3-michael.srba@seznam.cz>
-References: <20220202113722.7550-1-michael.srba@seznam.cz> <20220202113722.7550-3-michael.srba@seznam.cz>
-Subject: Re: [PATCH v5 3/5] dt-bindings: bus: add device tree bindings for qcom,ssc-block-bus
-Date:   Wed, 02 Feb 2022 08:02:54 -0600
-Message-Id: <1643810574.466782.2312324.nullmailer@robh.at.kernel.org>
+        id S1344907AbiBBO0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 09:26:35 -0500
+Received: from foss.arm.com ([217.140.110.172]:34440 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237320AbiBBO0f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 2 Feb 2022 09:26:35 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D13A0ED1;
+        Wed,  2 Feb 2022 06:26:34 -0800 (PST)
+Received: from [10.57.68.47] (unknown [10.57.68.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 02D393F718;
+        Wed,  2 Feb 2022 06:26:32 -0800 (PST)
+Message-ID: <6f0e58dc-4b81-d819-13e3-9e0f79ba279c@arm.com>
+Date:   Wed, 2 Feb 2022 14:26:28 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v10 2/6] dt-bindings: gpio: logicvc: Add a compatible with
+ major version only
+Content-Language: en-GB
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@linux.ie>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>
+References: <20220120150024.646714-1-paul.kocialkowski@bootlin.com>
+ <20220120150024.646714-3-paul.kocialkowski@bootlin.com>
+ <CACRpkdbnEKeDNmFCuUCLaySs6AtD9MPtxV+9JDxKuXvTs9iMVQ@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CACRpkdbnEKeDNmFCuUCLaySs6AtD9MPtxV+9JDxKuXvTs9iMVQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Feb 2022 12:37:20 +0100, michael.srba@seznam.cz wrote:
-> From: Michael Srba <Michael.Srba@seznam.cz>
+On 2022-01-30 00:46, Linus Walleij wrote:
+> On Thu, Jan 20, 2022 at 4:00 PM Paul Kocialkowski
+> <paul.kocialkowski@bootlin.com> wrote:
 > 
-> This patch adds bindings for the AHB bus which exposes the SCC block in
-> the global address space. This bus (and the SSC block itself) is present
-> on certain qcom SoCs.
+>> There are lots of different versions of the logicvc block and it
+>> makes little sense to list them all in compatibles since all versions
+>> with the same major are found to be register-compatible.
 > 
-> In typical configuration, this bus (as some of the clocks and registers
-> that we need to manipulate) is not accessible to the OS, and the
-> resources on this bus are indirectly accessed by communicating with a
-> hexagon CPU core residing in the SSC block. In this configuration, the
-> hypervisor is the one performing the bus initialization for the purposes
-> of bringing the haxagon CPU core out of reset.
+> The reason we try to be precise is because sometime, long after the driver
+> has been merged and maintained for a few years, a bug is discovered
+> in a specific version of the silicon.
 > 
-> However, it is possible to change the configuration, in which case this
-> binding serves to allow the OS to initialize the bus.
+> What happens is that a fix is applied on all silicon whether it is needed
+> or not.
 > 
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-> ---
->  CHANGES:
->  - v2: fix issues caught by by dt-schema
->  - v3: none
->  - v4: address the issues pointed out in the review
->  - v5: clarify type of additional properties; remove ssc_tlmm node for now
-> ---
->  .../bindings/bus/qcom,ssc-block-bus.yaml      | 143 ++++++++++++++++++
->  1 file changed, 143 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml
-> 
+> If you have the precise silicon compatible, you can avoid this and target
+> only a specific version.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Indeed, the better approach would be something like:
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml:86:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+   compatible:
+     oneOf:
+       - items:
+           - enum:
+               - foo,bar-v1.0
+               - foo,bar,v1.1
+           - const: foo,bar-v1
+       - items:
+           - enum:
+               - foo,bar-v2.0
+           - const: foo,bar-v2
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.example.dts:39.32-33 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:378: Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1398: dt_binding_check] Error 2
+That way the DTs are future-proof, while drivers can still match on only 
+the less-specific strings until a need arises. Plus it avoids the 
+problem that if an existing OS that only understands "foo,bar-v1.0" is 
+given a new DT with only "foo,bar-v1" for v1.0 hardware it won't be able 
+to use the device, even though it's *functionally* capable of doing so.
 
-doc reference errors (make refcheckdocs):
+However, from skimming patch #5, it looks possible that none of these 
+changes are needed at all. If LOGICVC_IP_VERSION_REG tells you the exact 
+revision, and is always present (as the unconditional reading of it 
+implies), then the only reason for adding new compatibles would be if, 
+say, v5 has more clocks from v4 and you want the binding to enforce 
+that; otherwise, newer versions are literally compatible with the 
+currently-defined binding and therefore should continue to bind against 
+the existing string(s) to maximise forward- and backward-compatibility. 
+Sure, it's not the prettiest thing for a "generic" compatible to be 
+based on an oddly-specific version number that doesn't necessarily match 
+the actual software-discoverable version, but what's done is done and 
+that's the cost of ABI.
 
-See https://patchwork.ozlabs.org/patch/1587590
+Cheers,
+Robin.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+(also, nitpick for that part of patch #5 since I'm here: please include 
+linux/bitfield.h rather than reinventing FIELD_GET() locally)
