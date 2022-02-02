@@ -2,190 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86C4D4A7169
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 14:21:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70CF74A7190
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 14:29:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233464AbiBBNVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 08:21:30 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:54984 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232991AbiBBNV3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 08:21:29 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 606D32F3;
-        Wed,  2 Feb 2022 14:21:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1643808088;
-        bh=FqKenBjNbq4zSMVmLeUp/7sVaZ1CqbTSvpM5ifvH/To=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZKBLGmUUgFG0fMUN2yAshHA0C4pIIN+mSlGUC5zaGZE/jgAjyxN5TLNAIH/gjTtwb
-         VxWnKDAuOYv8MUetZ+Q4jpesbLxNjg4mMGbTTaP8s1kVraupBZbQvItmoQHTAVgx6X
-         FEfP5mskaGc4vsr46LBnwLmjZETOQtE7f/rxBsY4=
-Date:   Wed, 2 Feb 2022 15:21:05 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: panel: Introduce a panel-lvds binding
-Message-ID: <YfqFQRaeRwAlyyHV@pendragon.ideasonboard.com>
-References: <20220111110635.804371-1-maxime@cerno.tech>
- <20220111110635.804371-2-maxime@cerno.tech>
- <Yd2Ahn3+FVv/Aks7@pendragon.ideasonboard.com>
- <20220127142215.fesipdslabur43sx@houat>
- <20220202094845.r7td65zxfo5uqg5x@houat>
- <Yfp9UhwWZbHpDjpL@pendragon.ideasonboard.com>
- <20220202131623.3vfbtuyeemzcxe4k@houat>
+        id S1344355AbiBBN3C convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 2 Feb 2022 08:29:02 -0500
+Received: from mail-ua1-f44.google.com ([209.85.222.44]:39841 "EHLO
+        mail-ua1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344349AbiBBN3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 08:29:01 -0500
+Received: by mail-ua1-f44.google.com with SMTP id p7so19091666uao.6;
+        Wed, 02 Feb 2022 05:29:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=trhdKZIi8I2pglvejnlK+EON8M6pVXEzurOEfFekmwA=;
+        b=NDIuG5Pi0RdZNClC6AFzmJq+zx47L+ZZZjLB2ZFaV6XrOF3ywZH+eiY2bVFLsGSMrs
+         O4DRqoCyI6KEWdCbmdwUFKch1il2Qtz/HSVlPo3XicEQrluhlmmpug4ldYDTV4kfnrPu
+         QZG9puHGwLxTgxqt/sOxUywruSr79hqJdYFJH3iXkSIvL9wJj80vl3WEUj3ivYCv6Glb
+         FRHYMcTBcQdQZVpkKu11OOm6vCk4wvhbX1Lk431h3fNhG3xivZsuhcptT3yVpbRSzn5V
+         P5D3Ayk4w778vx4y0VJBVMnFfjF3+rPcChOHgmT4e9T9grh1sKXh4+nJQXQwRMUBIVIM
+         X1SA==
+X-Gm-Message-State: AOAM532BgyTnqVM6Dt47WKltyeLBfzEvwaS/0JMdFxymQWjA7MHkS/xh
+        HDF9ssRoQp4g2yPolL6Ciejl3iNtfwAY3g==
+X-Google-Smtp-Source: ABdhPJwOCYEB0n0smzN8MUREPyW9ujuCeDrEIwHTWP/Cw+4jPYq/YplrVxvwMHSN7Ip3AGfOlIuXSQ==
+X-Received: by 2002:a05:6102:2416:: with SMTP id j22mr12057554vsi.8.1643808540650;
+        Wed, 02 Feb 2022 05:29:00 -0800 (PST)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id 17sm3369288vky.10.2022.02.02.05.28.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Feb 2022 05:29:00 -0800 (PST)
+Received: by mail-ua1-f54.google.com with SMTP id b37so19051548uad.12;
+        Wed, 02 Feb 2022 05:28:59 -0800 (PST)
+X-Received: by 2002:a67:5f83:: with SMTP id t125mr11229610vsb.68.1643808539621;
+ Wed, 02 Feb 2022 05:28:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220202131623.3vfbtuyeemzcxe4k@houat>
+References: <20220201075824.aixrvkvmjde2ihxx@pengutronix.de> <20220202123542.3721512-1-conor.dooley@microchip.com>
+In-Reply-To: <20220202123542.3721512-1-conor.dooley@microchip.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 2 Feb 2022 14:28:48 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWrmuY7pwY8U0t9LumEvUTBEA06uV7hNyKFAPMQtE98_A@mail.gmail.com>
+Message-ID: <CAMuHMdWrmuY7pwY8U0t9LumEvUTBEA06uV7hNyKFAPMQtE98_A@mail.gmail.com>
+Subject: Re: [PATCH v5 06/12] dt-bindings: pwm: add microchip corepwm binding
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Atish Patra <atishp@rivosinc.com>,
+        Bin Meng <bin.meng@windriver.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        daire.mcnamara@microchip.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        ivan.griffin@microchip.com, Jassi Brar <jassisinghbrar@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Lewis Hanly <lewis.hanly@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-rtc@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 02, 2022 at 02:16:23PM +0100, Maxime Ripard wrote:
-> On Wed, Feb 02, 2022 at 02:47:14PM +0200, Laurent Pinchart wrote:
-> > On Wed, Feb 02, 2022 at 10:48:45AM +0100, Maxime Ripard wrote:
-> > > On Thu, Jan 27, 2022 at 03:22:15PM +0100, Maxime Ripard wrote:
-> > > > On Tue, Jan 11, 2022 at 03:05:10PM +0200, Laurent Pinchart wrote:
-> > > > > On Tue, Jan 11, 2022 at 12:06:35PM +0100, Maxime Ripard wrote:
-> > > > > > Following the previous patch, let's introduce a generic panel-lvds
-> > > > > > binding that documents the panels that don't have any particular
-> > > > > > constraint documented.
-> > > > > > 
-> > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > > > > > 
-> > > > > > ---
-> > > > > > 
-> > > > > > Changes from v2:
-> > > > > >   - Added a MAINTAINERS entry
-> > > > > > 
-> > > > > > Changes from v1:
-> > > > > >   - Added missing compatible
-> > > > > >   - Fixed lint
-> > > > > > ---
-> > > > > >  .../bindings/display/panel/panel-lvds.yaml    | 57 +++++++++++++++++++
-> > > > > >  MAINTAINERS                                   |  1 +
-> > > > > >  2 files changed, 58 insertions(+)
-> > > > > >  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> > > > > > 
-> > > > > > diff --git a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..fcc50db6a812
-> > > > > > --- /dev/null
-> > > > > > +++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> > > > > > @@ -0,0 +1,57 @@
-> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > > +%YAML 1.2
-> > > > > > +---
-> > > > > > +$id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
-> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > +
-> > > > > > +title: Generic LVDS Display Panel Device Tree Bindings
-> > > > > > +
-> > > > > > +maintainers:
-> > > > > > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > > +  - Thierry Reding <thierry.reding@gmail.com>
-> > > > > > +
-> > > > > > +allOf:
-> > > > > > +  - $ref: panel-common.yaml#
-> > > > > > +  - $ref: /schemas/display/lvds.yaml/#
-> > > > > > +
-> > > > > > +select:
-> > > > > > +  properties:
-> > > > > > +    compatible:
-> > > > > > +      contains:
-> > > > > > +        const: panel-lvds
-> > > > > > +
-> > > > > > +  not:
-> > > > > > +    properties:
-> > > > > > +      compatible:
-> > > > > > +        contains:
-> > > > > > +          enum:
-> > > > > > +            - advantech,idk-1110wr
-> > > > > > +            - advantech,idk-2121wr
-> > > > > > +            - innolux,ee101ia-01d
-> > > > > > +            - mitsubishi,aa104xd12
-> > > > > > +            - mitsubishi,aa121td01
-> > > > > > +            - sgd,gktw70sdae4se
-> > > > > 
-> > > > > I still don't like this :-( Couldn't we instead do
-> > > > > 
-> > > > > select:
-> > > > >   properties:
-> > > > >     compatible:
-> > > > >       contains:
-> > > > >         enum:
-> > > > >           - auo,b101ew05
-> > > > >           - tbs,a711-panel
-> > > > > 
-> > > > > ?
-> > > > 
-> > > > That works too, I'll send another version.
-> > > 
-> > > Actually, no, it doesn't work.
-> > > 
-> > > If we do this, if we were to have a panel that has panel-lvds but none
-> > > of the other compatible (because of a typo, or downright invalid
-> > > binding) we won't validate it and report any error.
-> > > 
-> > > I'll merge this version (together with the v4 version of patch 1)
-> > 
-> > I'm sorry but I *really* *really* dislike this. Having to list all other
-> > compatible values in this file is a sign that something is wrong in the
-> > validation infrastructure. People will forget to update it when adding
-> > new bindings, and will get confused by the result. If I were a
-> > maintainer for DT bindings I'd nack this.
-> 
-> The validation infrastructure is what it is, and we can't change that.
-> Rewriting one from scratch isn't reasonable either. That being said, the
-> *only* case where this has been a problem are the panels because there's
-> so many pointless schemas which should really be a single schema.
-> 
-> That's the root cause.
-> 
-> I tried to merge all of them, but once again panels seem to be special,
-> and it was shot down. So be it. But at the end of the day, there's not a
-> lot of solutions to do what we are doing for every other case out there.
-> 
-> > If a DT has panel-lvds and no other compatible string, or invalid ones,
-> > won't the validation report that the compatible isn't understood ? I
-> > think that would be enough.
-> 
-> That's just worse. How would you not get confused if there's an error
-> that the compatible isn't documented, you search for it, and it's
-> actually documented there?
+Hi Conor,
 
-Is that any different than a binding that would have
+On Wed, Feb 2, 2022 at 1:33 PM <conor.dooley@microchip.com> wrote:
+> >On 01/02/2022 07:58, Uwe Kleine-König wrote:
+> >> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> >> On Mon, Jan 31, 2022 at 11:47:21AM +0000, conor.dooley@microchip.com wrote:
+> >> From: Conor Dooley <conor.dooley@microchip.com>
+> >>
+> >> Add device tree bindings for the Microchip fpga fabric based "core" PWM
+> >> controller.
+> >>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>
+> >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> >> ---
+> >> .../bindings/pwm/microchip,corepwm.yaml       | 75 +++++++++++++++++++
 
-properties:
-  compatible:
-    items:
-      enum:
-        - foo,bar
-        - foo,baz
-      const: foo,base
+> >> +  microchip,sync-update:
+> >> +    description: |
+> >> +      In synchronous mode, all channels are updated at the beginning of the PWM period.
+> >> +      Asynchronous mode is relevant to applications such as LED control, where
+> >> +      synchronous updates are not required. Asynchronous mode lowers the area size,
+> >> +      reducing shadow register requirements. This can be set at run time, provided
+> >> +      SHADOW_REG_EN is asserted. SHADOW_REG_EN is set by the FPGA bitstream programmed
+> >> +      to the device.
+> >> +      Each bit corresponds to a PWM channel & represents whether synchronous mode is
+> >> +      possible for the PWM channel.
+> >> +
+> >> +    $ref: /schemas/types.yaml#/definitions/uint16
+> >> +    default: 0
+> >
+> >I'm not sure I understand this correctly. This is a soft-core and you
+> >can synthesize it either with or without the ability to do synchronous
+> >updates or not, right? All 16 channels share the same period length and
+> >in the simple implementation changing the duty cycle is done at once
+> >(maybe introducing a glitch) and in the more expensive implementation
+> >there is a register to implement both variants?
+>
+> Correct. If the IP is instantiated with SHADOW_REG_ENx=1, both
+> registers that control the duty cycle for channel x have a second
+> "shadow reg" synthesised. At runtime a bit wide register exposed to
+> APB can be used to toggle on/off synchronised mode for all channels
+> it has been synthesised for.
+>
+> I will reword this description since it is not clear.
 
-and a device tree that would set compatible = "foo,base"; ? This type of
-binding is very common, and I haven't heard anyone complaining that the
-resulting validation error is an issue.
+Shouldn't it use a different compatible value instead?
+Differentiation by properties is not recommended, as it's easy to
+miss a difference.
 
-> We really have two solutions:
-> 
->   - Either we merge all the panel-lvds schemas in one,
-> 
->   - Or we have this.
-> 
-> The first was shot down, only the latter remains.
+Gr{oetje,eeting}s,
 
--- 
-Regards,
+                        Geert
 
-Laurent Pinchart
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
