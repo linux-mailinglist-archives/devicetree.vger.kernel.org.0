@@ -2,144 +2,376 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C52DA4A7A81
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 22:33:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49CA04A7A97
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 22:40:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347614AbiBBVc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 16:32:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55384 "EHLO
+        id S1347670AbiBBVkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 16:40:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237135AbiBBVcw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:32:52 -0500
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E264FC061714
-        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 13:32:50 -0800 (PST)
-Received: by mail-io1-xd31.google.com with SMTP id 9so791672iou.2
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 13:32:50 -0800 (PST)
+        with ESMTP id S1346750AbiBBVkF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 16:40:05 -0500
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CAD7C06173D
+        for <devicetree@vger.kernel.org>; Wed,  2 Feb 2022 13:40:05 -0800 (PST)
+Received: by mail-ot1-x330.google.com with SMTP id j38-20020a9d1926000000b0059fa6de6c71so721561ota.10
+        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 13:40:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kGTOdXpCfpyaz8M+/fYDUe/NgCW7SBGMlvp2i1b84zI=;
-        b=Tpp8U7y5JxXRpmOYMr1x6CrNjgnKiBuTzJX3FpA7ZFqWHBbpr7Xt2eJEQhhf152wL9
-         1rhMAUwEr0J17TUBUT6E420HKMR5YbJ8Yd3vhp89mjsl6gsM/o41Me9RR5nd1ZTqDpae
-         N7zok0/JgckZdLtIXwwUYYwbpc/zRtHuxP7Wc=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=tMJm7rUkBaw98tkeDjYJTHlP89IJwdWSqnzx8mCujK8=;
+        b=CgWPPdoUoa+gTuGv8BwsjRnqlcCWz12gRIWvBZJvc6rvJ+tuVRMwXF1hXPTtSM6wRz
+         LiH1co14vC/fBKTFJdixlesrEtnTnftmpkfTy+voAXpvTmG7oRNQFff1PcFzwcpLaTCj
+         IBtJLNyORc0We2Nsq/sEAvjXmqF6vQFCfJ71+mHBketjDirnGfeh7pzZ5SMRHql5q3Pi
+         fmSlX3gTpR3noouKDayh5KJTrBGSckVwvSPy/vZU5JHAKh6cwP2IMFpx1JrRRGK677P/
+         oUbkpkHR11kf+cc4DdobC9WtivPKlnd7NULKYVR0x3zZlHzG8dklNTJcfPcTojCr5C2I
+         ZGLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kGTOdXpCfpyaz8M+/fYDUe/NgCW7SBGMlvp2i1b84zI=;
-        b=5fENhhdbMu/oR71aKheKVIJSt+3bZwwxeE21BfrRW3rbmXqahyQQObj3EKXcYdPZc5
-         jObYGVjAZzuNaIb3YTH7fq9l87D/V38011s4zo7W62RQwlaH3xrCAO2R6QuCO4NNFPhw
-         K2sebPvkKepfTAtXuHAWOrKfUmBxokqMZ9dpXlj2uDdfIq2LRBmTPLB89KkeA0+zbc++
-         DyWZynU20B3LcBQu26//LSF3zC1sBclR9tXhFy8lb1IUXsW3hgUW0JCQ6vSC3QFVZmD0
-         DdXa3V3UugFU3Yi9J9YfhuwLGsQSJZDaCRuoaGeRBHPX0fjzordQWHJddyaWZAV7abyr
-         C60g==
-X-Gm-Message-State: AOAM531ikOh6z10ikKRbeQOLTZD8PsKSYldjNiHQbMu3O+COdhKTzr3/
-        k7xuRT1K55Tvx0Mf2V0Y7i1cYa/KllIJhg==
-X-Google-Smtp-Source: ABdhPJwvtaCwvDXj4yzVSeG6sYSrGM2UjPEPAAY9yDDSTpTQ35mgN68dUTn3vTciMdQIGWCAzv3qag==
-X-Received: by 2002:a05:6638:4193:: with SMTP id az19mr14760102jab.138.1643837570197;
-        Wed, 02 Feb 2022 13:32:50 -0800 (PST)
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com. [209.85.166.172])
-        by smtp.gmail.com with ESMTPSA id t6sm23276400iov.39.2022.02.02.13.32.48
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Feb 2022 13:32:48 -0800 (PST)
-Received: by mail-il1-f172.google.com with SMTP id m2so474971ilg.11
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 13:32:48 -0800 (PST)
-X-Received: by 2002:a05:6e02:1bed:: with SMTP id y13mr2711266ilv.27.1643837568176;
- Wed, 02 Feb 2022 13:32:48 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=tMJm7rUkBaw98tkeDjYJTHlP89IJwdWSqnzx8mCujK8=;
+        b=JWyZ5Xl6/KDdwIaYLjh4AudtH1brmtptwwrhDipnFvNlvHN+KxVlvQbkCdOdCoJvva
+         Y9HukRW7qVrVP6oz09UiTLQ6GGV/wjRO9pTUfSmhkwx9D6jeGPzwDOquntgdLJ8xsnwp
+         vGMK0PAWBXohCnEVAk5qHsDB8F2tcb/fvBxthj3+Opwpe2XODCIs6OGv3VB7Rl5ao/Ha
+         Wzr4fblrWGpqIGsZpVhIWHe9YYqaOmFaaZSc9dQebxzM2E064Sl6cDOx0nN4VpC59TG2
+         xn4HuP6S8YAdGAIEAC7mJgxiqr1oaMgteyC9RESaMC64vGcmApg3+wK6PTeKItwY1fxE
+         q1RQ==
+X-Gm-Message-State: AOAM533ZuWPyH4XRRblir1+uQPtbIzgu/0A8Qlp4aiLEAq40kuc1yPEB
+        KIu2Cnm3dgAHM3ag8SuWSDFmVg==
+X-Google-Smtp-Source: ABdhPJwvUGXQQBFJHRuewTxDd+tZJ8n0xjnlmdLs40wK8QaHygFkxIL2nvV0PegNjtDMPAkg9o/Bkg==
+X-Received: by 2002:a9d:58c8:: with SMTP id s8mr878984oth.294.1643838004310;
+        Wed, 02 Feb 2022 13:40:04 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id ay42sm4488798oib.5.2022.02.02.13.40.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Feb 2022 13:40:03 -0800 (PST)
+Date:   Wed, 2 Feb 2022 13:40:21 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Satya Priya Kakitapalli <c_skakit@qti.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh+dt@kernel.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v11 2/2] leds: Add driver for Qualcomm LPG
+Message-ID: <Yfr6RQwJMZY5RZGr@ripper>
+References: <20220129005429.754727-1-bjorn.andersson@linaro.org>
+ <20220129005429.754727-2-bjorn.andersson@linaro.org>
+ <20220202162930.24zcediw44t2jzqf@pengutronix.de>
 MIME-Version: 1.0
-References: <20220125224422.544381-1-dianders@chromium.org>
- <20220125144316.v2.5.I5604b7af908e8bbe709ac037a6a8a6ba8a2bfa94@changeid>
- <CAE-0n528Bxdj+DKhi2Lan4qR_=4KHD7A1Zkr15tmu+MchryJ1A@mail.gmail.com>
- <CAD=FV=UcpKaLQ31CGKUnaNnZcYnM4N_t8VC43FPGktoYDiMfsw@mail.gmail.com>
- <YfC5i2jR5N+pmHoZ@ripper> <CAE-0n50sX9-0MxcpF+3Rwqm75jSw5=aNwdsitLwE2sEA69jLJw@mail.gmail.com>
- <YfgRS/UtRn6Ewwhj@builder.lan> <CAD=FV=V=pbmP-wKhAOVRBC0M=YjYm3Ym-022g8uBEZOxKW-8BQ@mail.gmail.com>
- <CAD=FV=WQ0gR18x9rhioLtYGO3oWtny1c52YaiZHUG=PG03d+OQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=WQ0gR18x9rhioLtYGO3oWtny1c52YaiZHUG=PG03d+OQ@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 2 Feb 2022 13:32:36 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=URxmrQmC4snL7QoZyDQxdcFHy=c9yXkfE+sW2fN447bg@mail.gmail.com>
-Message-ID: <CAD=FV=URxmrQmC4snL7QoZyDQxdcFHy=c9yXkfE+sW2fN447bg@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sc7280: Add herobrine-r1
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        kgodara@codeaurora.org, Matthias Kaehlcke <mka@chromium.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Prasad Malisetty <pmaliset@codeaurora.org>,
-        quic_rjendra@quicinc.com, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220202162930.24zcediw44t2jzqf@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed 02 Feb 08:29 PST 2022, Uwe Kleine-K?nig wrote:
 
-On Mon, Jan 31, 2022 at 5:01 PM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Mon, Jan 31, 2022 at 8:50 AM Doug Anderson <dianders@chromium.org> wrote:
-> >
-> > > Either we leave it as is - which follows my interpretation of what the DT
-> > > spec says - or we (and the DT maitainers) agree that it shouldn't be
-> > > there (because this dtb won't run on any random qcom,sc7180 anyways) at
-> > > all.
-> >
-> > I'm curious what part of the DT spec says that we should have the SoC
-> > in there? I know I've always done it, but it's always just been
-> > following the examples of what was done before. When talking about the
-> > root node, I see this in the `devicetree-specification-v0.4-rc1` spec:
-> >
+> Hello,
+> 
+> did you consider my earlier feedback "It would also be good if the PWM
+> code could live in drivers/pwm"?
+> (https://lore.kernel.org/r/20210505051958.e5lvwfxuo2skdu2q@pengutronix.de)
+> 
+
+Yes, I did consider this. Because the downstream driver is (at least was
+when I looked at it originally) split like that.
+
+
+We have a number of different Qualcomm PMICs containing the LPG modules,
+which consists of N PWM channels, a pattern lookup table and a set of
+current sinks.
+
+Each PWM channel can either be used as a traditional PWM, a LED or be
+grouped together with other channels to form a multicolor LED. So we
+need a design that allows different boards using a particular PMIC to
+freely use the N channels according to one of these three operational
+modes.
+
+The pattern lookup table is a shared resource containing duty cycle
+values and each of the PWM channels can be configured to have their duty
+cycle modified from the lookup table on some configured cadence.
+
+In the even that multiple PWM channels are ganged together to form a
+multicolor LED, which is driven by a pattern, the pattern generator for
+the relevant channels needs to be synchronized.
+
+
+If we consider the PWM channel to be the basic primitive we need some
+mechanism to configure the pattern properties for each of the channels
+and we need some mechanism to synchronize the pattern generators for
+some subset of the PWM channels.
+
+
+In other words we need some custom API between the LED driver part and
+the PWM driver, to configure these properties. This was the design
+of the downstream driver when I started looking at this driver.
+
+
+Another alternative that has been considered is to create two
+independent drivers - for the same hardware. This would allow the system
+integrator to pick the right driver for each of the channels.
+
+One problem with this strategy is that the DeviceTree description of the
+LPG hardware will have to be modified depending on the use case. In
+particular this prevents me from writing a platform dtsi describing the
+LPG hardware and then describe the LEDs and pwm channels in a board dts.
+
+And we can't express the individual channels, because the multicolor
+definition needs to span multiple channels.
+
+
+So among all the options, implementing the pwm_chip in the LED driver
+makes it possible for us to describe the LPG as one entity, with
+board-specific LEDs and a set of PWM channels.
+
+> At least splitting in two patches would be good IMHO.
+> 
+
+I guess I can split out the parts related to the pwmchip in a separate
+patch. Seems to be a rather small portion of the code though. Is that
+what you have in mind?
+
+> On Fri, Jan 28, 2022 at 04:54:29PM -0800, Bjorn Andersson wrote:
+> > The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
+> > PMICs from Qualcomm. These PMICs typically comes with 1-8 LPG instances,
+> > with their output being routed to various other components, such as
+> > current sinks or GPIOs.
+> > 
+> > Each LPG instance can operate on fixed parameters or based on a shared
+> > lookup-table, altering the duty cycle over time. This provides the means
+> > for hardware assisted transitions of LED brightness.
+> > 
+> > A typical use case for the fixed parameter mode is to drive a PWM
+> > backlight control signal, the driver therefor allows each LPG instance
+> > to be exposed to the kernel either through the LED framework or the PWM
+> > framework.
+> > 
+> > A typical use case for the LED configuration is to drive RGB LEDs in
+> > smartphones etc, for which the driver support multiple channels to be
+> > ganged up to a MULTICOLOR LED. In this configuration the pattern
+> > generators will be synchronized, to allow for multi-color patterns.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > > ---
-> >
-> > Specifies a list of platform architectures with which this platform is
-> > compatible. This property can be used by operating systems in
-> > selecting platform specific code. The recommended form of the property
-> > value is: "manufacturer,model"
-> >
-> > For example:
-> > compatible = "fsl,mpc8572ds"
-> >
-> > ---
-> >
-> > That doesn't say anything about putting the SoC there.
-> >
-> >
-> > I would also note that I'd be at least moderately inclined to land
-> > things as-is and deal with this in a follow-up patch, though I'm happy
-> > to spin if that's what people agree upon too. This is not a new
-> > problem and so it doesn't seem like it makes sense to glom dealing
-> > with it into this patch series...
->
-> I noticed that you applied the first 4 patches in the series (thanks!)
-> but not this one. Are we waiting to get agreement on this before
-> landing? As per above, I think it'd be OK to land as-is and then I'm
-> happy to do a follow-up patch to clean this up since this isn't a new
-> issue. Having this patch outstanding makes it a little confusing with
-> the other cleanup patches that I'm posting... ;-)
+[..]
+> > diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
+[..]
+> > +static int lpg_calc_freq(struct lpg_channel *chan, uint64_t period)
+> > +{
+> > +	unsigned int clk, best_clk = 0;
+> > +	unsigned int div, best_div = 0;
+> > +	unsigned int m, best_m = 0;
+> > +	unsigned int error;
+> > +	unsigned int best_err = UINT_MAX;
+> > +	u64 best_period = 0;
+> > +
+> > +	/*
+> > +	 * The PWM period is determined by:
+> > +	 *
+> > +	 *          resolution * pre_div * 2^M
+> > +	 * period = --------------------------
+> > +	 *                   refclk
+> > +	 *
+> > +	 * With resolution fixed at 2^9 bits, pre_div = {1, 3, 5, 6} and
+> > +	 * M = [0..7].
+> > +	 *
+> > +	 * This allows for periods between 27uS and 384s, as the PWM framework
+> > +	 * wants a period of equal or lower length than requested, reject
+> > +	 * anything below 27uS.
+> > +	 */
+> > +	if (period <= (u64)NSEC_PER_SEC * LPG_RESOLUTION / 19200000)
+> 
+> u64 divisions must not be done by / in the kernel. Also I wonder if the
+> following would be more correct (though with the same semantic):
+> 
+> 	if (period < DIV64_U64_ROUND_UP((u64)NSEC_PER_SEC * LPG_RESOLUTION, 19200000))
+> 
 
-I didn't hear anything and I was sending a new version of the cleanup
-patch series, so I:
+Thanks for spotting that.
 
-* Added this last patch to the end of the cleanup series.
+> 
+> > +		return -EINVAL;
+> > +
+> > +	/* Limit period to largest possible value, to avoid overflows */
+> > +	if (period > (u64)NSEC_PER_SEC * LPG_RESOLUTION * 6 * (1 << LPG_MAX_M) / 1024)
+> > +		period = (u64)NSEC_PER_SEC * LPG_RESOLUTION * 6 * (1 << LPG_MAX_M) / 2014;
+> > +
+> > +	/*
+> > +	 * Search for the pre_div, clk and M by solving the rewritten formula
+> > +	 * for each clk and pre_div value:
+> > +	 *
+> > +	 *                       period * clk
+> > +	 * M = log2 -------------------------------------
+> > +	 *           NSEC_PER_SEC * pre_div * resolution
+> > +	 */
+> > +	for (clk = 0; clk < ARRAY_SIZE(lpg_clk_rates); clk++) {
+> > +		u64 nom = period * lpg_clk_rates[clk];
+> > +
+> > +		for (div = 0; div < ARRAY_SIZE(lpg_pre_divs); div++) {
+> > +			u64 denom = (u64)NSEC_PER_SEC * lpg_pre_divs[div] * (1 << 9);
+> > +			u64 actual;
+> > +			u64 ratio;
+> > +
+> > +			if (nom < denom)
+> > +				continue;
+> > +
+> > +			ratio = div64_u64(nom, denom);
+> > +			m = ilog2(ratio);
+> > +			if (m > LPG_MAX_M)
+> > +				m = LPG_MAX_M;
+> > +
+> > +			actual = DIV_ROUND_UP_ULL(denom * (1 << m), lpg_clk_rates[clk]);
+> > +
+> > +			error = period - actual;
+> 
+> This looks good, though I didn't revalidate the calculation (e.g. to
+> convince myself that error is always >= 0)
+> 
 
-* Addressed the "-regulator" suffix issue that Stephen pointed out.
+We spent considerable time going through this last time, so I hope we're
+good :)
 
-* Didn't remove the SoC compatible from the top-level node in this
-patch, but added follow-on patches in the series that do it.
+> > +			if (error < best_err) {
+> > +				best_err = error;
+> > +
+> > +				best_div = div;
+> > +				best_m = m;
+> > +				best_clk = clk;
+> > +				best_period = actual;
+> > +			}
+> > +		}
+> > +	}
+> > +
+> > +	chan->clk = best_clk;
+> > +	chan->pre_div = best_div;
+> > +	chan->pre_div_exp = best_m;
+> > +	chan->period = best_period;
+> > +
+> > +	return 0;
+> > +}
+[..]
+> > +static int lpg_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
+> > +{
+> > +	struct lpg *lpg = container_of(chip, struct lpg, pwm);
+> > +	struct lpg_channel *chan = &lpg->channels[pwm->hwpwm];
+> > +
+> > +	return chan->in_use ? -EBUSY : 0;
+> > +}
+> > +
+> > +/*
+> > + * Limitations:
+> > + * - Updating both duty and period is not done atomically, so the output signal
+> > + *   will momentarily be a mix of the settings.
+> 
+> Is the PWM well-behaved? (i.e. does it emit the inactive level when
+> disabled?)
 
-Hopefully that looks good to everyone. I removed both of Stephen's and
-Matthias's review tags from the v3 version.
+Yes, a disabled channel outputs a logical 0.
 
-https://lore.kernel.org/r/20220202132301.v3.12.I5604b7af908e8bbe709ac037a6a8a6ba8a2bfa94@changeid
+> Does it complete a period before switching to the new
+> setting?
+> 
 
--Doug
+I see nothing indicating the answer to this, in either direction...
+
+> Did you test with PWM_DEBUG enabled?
+> 
+
+For previous iterations of the patch yes, v11 didn't touch any of that
+so I omitted that step... Will enable it again as I respin v12.
+
+> > + */
+> > +static int lpg_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> > +			 const struct pwm_state *state)
+> > +{
+> > +	struct lpg *lpg = container_of(chip, struct lpg, pwm);
+> > +	struct lpg_channel *chan = &lpg->channels[pwm->hwpwm];
+> > +	int ret;
+> > +
+> > +	if (state->polarity != PWM_POLARITY_NORMAL)
+> > +		return -EINVAL;
+> > +
+> > +	ret = lpg_calc_freq(chan, state->period);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	lpg_calc_duty(chan, state->duty_cycle);
+> > +	chan->enabled = state->enabled;
+> > +
+> > +	lpg_apply(chan);
+> > +
+> > +	triled_set(lpg, chan->triled_mask, chan->enabled ? chan->triled_mask : 0);
+> > +
+> > +	return 0;
+> 
+> Would it make sense to skip the calculation if state->enabled is false?
+> 
+
+Yes.
+
+> > +}
+> > +
+> > +static void lpg_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+> > +			      struct pwm_state *state)
+> > +{
+> > +	struct lpg *lpg = container_of(chip, struct lpg, pwm);
+> > +	struct lpg_channel *chan = &lpg->channels[pwm->hwpwm];
+> > +	u64 duty = DIV_ROUND_UP_ULL(chan->pwm_value * chan->period, LPG_RESOLUTION - 1);
+> > +
+> > +	state->period = chan->period;
+> > +	state->duty_cycle = duty;
+> > +	state->polarity = PWM_POLARITY_NORMAL;
+> > +	state->enabled = chan->enabled;
+> 
+> This doesn't work if .get_state() is called before .apply() was called,
+> does it?
+> 
+
+You mean that I would return some bogus state and not the actual
+hardware state?
+
+> > +}
+> > +
+> > +static const struct pwm_ops lpg_pwm_ops = {
+> > +	.request = lpg_pwm_request,
+> > +	.apply = lpg_pwm_apply,
+> > +	.get_state = lpg_pwm_get_state,
+> > +	.owner = THIS_MODULE,
+> > +};
+> > +
+> > +static int lpg_add_pwm(struct lpg *lpg)
+> > +{
+> > +	int ret;
+> > +
+> > +	lpg->pwm.base = -1;
+> 
+> I already asked in May to drop this ...
+> 
+
+Sorry about that, thought I had resolved that already.
+
+Thanks,
+Bjorn
+
+> > +	lpg->pwm.dev = lpg->dev;
+> > +	lpg->pwm.npwm = lpg->num_channels;
+> > +	lpg->pwm.ops = &lpg_pwm_ops;
+> > +
+> 
+> Best regards
+> Uwe
+> 
+> -- 
+> Pengutronix e.K.                           | Uwe Kleine-König            |
+> Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+
