@@ -2,91 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B5924A6A95
-	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 04:40:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8A2E4A6AF6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Feb 2022 05:40:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244056AbiBBDko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Feb 2022 22:40:44 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:46048 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243770AbiBBDkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 22:40:42 -0500
-Received: by mail-oi1-f169.google.com with SMTP id m9so37350911oia.12;
-        Tue, 01 Feb 2022 19:40:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=6M/HoWEUP68v359RfQJWkPc7thFvVcT0dU0JkzkDdHE=;
-        b=mGA8ZiiUCt/DzKQl6X8vJbpeFALKKYrrdUjwUyNdgfWVMb6FvobDiFLrQzoK9LshP0
-         R7WYyQZlv0QYF8DJylxEKKf20TkJJYd3zXQYYVFnF0qMxotdnbu5QWyjnoweDPnfeWGM
-         KhGiVBcb9gSlKhfD5nsiHL2m1eaV7E7X8Yhm6n09kU5QiyAs0pq6IIhItMcYlxsKkNWf
-         PO4yeC/HkcD/D3gx4B7CXVoyoLiJRIpB+uVPGtmYlJZgPn8fRCdzFhG/SWZLstiGP0QA
-         KPwa1+jwmDByDRQulSbpCSJ5znOUCGXpQWcVnFV/eUq5OZNhqtm2rT6ATRVvF+9C+JHQ
-         stgg==
-X-Gm-Message-State: AOAM53075SsIn76jMO2WlNfu1T4MSgDu5JhRO5ALd7CkvDIobfEH6uln
-        gx2cWVqQKKcpldtm4j/xNw==
-X-Google-Smtp-Source: ABdhPJxZJ5hzAwugv6TPI/S5uWds3EorF/S9+nvGDzjtLgkzhIj2pDzP4wI2Mlw8TmD8orNaV5ZusQ==
-X-Received: by 2002:a05:6808:14c1:: with SMTP id f1mr3424374oiw.129.1643773242362;
-        Tue, 01 Feb 2022 19:40:42 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l19sm10925400ooa.7.2022.02.01.19.40.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Feb 2022 19:40:41 -0800 (PST)
-Received: (nullmailer pid 1397926 invoked by uid 1000);
-        Wed, 02 Feb 2022 03:40:40 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     devicetree@vger.kernel.org, jic23@kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        robh+dt@kernel.org
-In-Reply-To: <20220201162351.53520-1-cristian.pop@analog.com>
-References: <20220201162351.53520-1-cristian.pop@analog.com>
-Subject: Re: [PATCH v2 1/2] dt:bindings:iio:frequency: Add ADMV4420 doc
-Date:   Tue, 01 Feb 2022 21:40:40 -0600
-Message-Id: <1643773240.843870.1397925.nullmailer@robh.at.kernel.org>
+        id S244465AbiBBEkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Feb 2022 23:40:04 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:38288 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242010AbiBBEkE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Feb 2022 23:40:04 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2124dsTV004752;
+        Tue, 1 Feb 2022 22:39:54 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1643776794;
+        bh=MIjtlT3LVVFPZOZkCNssvMeg8BFmBRKFOpHzYs2Kje8=;
+        h=From:To:CC:Subject:Date;
+        b=g9yfXQJttCYy4CBX1isel6Le0C/bwwCkKjnOuqHh7mbeNHlQh78JgTfu0Wk6UTKoB
+         jL/dII1awy+wz1w2L0792JFKqWGuE/IhD3iWW0NtCqZ+IVaNDVg3uTVyffAuup+W32
+         iX/8K28R8DQ+ydCRrgfHKKa1r+l1rF7RIZdLVgEo=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2124dsgv068180
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 1 Feb 2022 22:39:54 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 1
+ Feb 2022 22:39:53 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 1 Feb 2022 22:39:53 -0600
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2124dnm2068932;
+        Tue, 1 Feb 2022 22:39:49 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Aswath Govindraju <a-govindraju@ti.com>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2] arm64: dts: ti: k3-j721e-common-proc-board: Enable PCIe + QSGMII multilink configuration
+Date:   Wed, 2 Feb 2022 10:09:44 +0530
+Message-ID: <20220202043944.11351-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 01 Feb 2022 18:23:50 +0200, Cristian Pop wrote:
-> Add device tree bindings for the ADMV4420 K band downconverter.
-> 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
-> ---
-> changes in v2:
->  - Fix indentation
->  - Remove '|', there is no formatting to persevere
->  - Add plank line before 'properties:'
->  - replace '_' with '-' in property names
->  .../bindings/iio/frequency/adi,admv4420.yaml  | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
-> 
+From: Swapnil Jakhade <sjakhade@cadence.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The zeroth instance of SerDes on J721E common processor board will be
+shared between PCIe and QSGMII. Therefore, add support for enabling this.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml:13:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
+Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+---
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.example.dt.yaml: admv4420@0: adi,lo-freq-hz: 'anyOf' conditional failed, one must be fixed:
-	16743700000 is greater than the maximum of 4294967295
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/property-units.yaml
+changes since v1:
+- Fixed the commit message.
 
-doc reference errors (make refcheckdocs):
+ .../boot/dts/ti/k3-j721e-common-proc-board.dts    | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-See https://patchwork.ozlabs.org/patch/1587310
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+index 2d7596911b27..157d86dc2824 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+@@ -431,7 +431,7 @@
+ };
+ 
+ &serdes_ln_ctrl {
+-	idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_PCIE0_LANE1>,
++	idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_QSGMII_LANE2>,
+ 		      <J721E_SERDES1_LANE0_PCIE1_LANE0>, <J721E_SERDES1_LANE1_PCIE1_LANE1>,
+ 		      <J721E_SERDES2_LANE0_PCIE2_LANE0>, <J721E_SERDES2_LANE1_PCIE2_LANE1>,
+ 		      <J721E_SERDES3_LANE0_USB3_0_SWAP>, <J721E_SERDES3_LANE1_USB3_0>,
+@@ -757,8 +757,8 @@
+ };
+ 
+ &serdes0 {
+-	assigned-clocks = <&serdes0 CDNS_SIERRA_PLL_CMNLC>;
+-	assigned-clock-parents = <&wiz0_pll1_refclk>;
++	assigned-clocks = <&serdes0 CDNS_SIERRA_PLL_CMNLC>, <&serdes0 CDNS_SIERRA_PLL_CMNLC1>;
++	assigned-clock-parents = <&wiz0_pll1_refclk>, <&wiz0_pll1_refclk>;
+ 
+ 	serdes0_pcie_link: phy@0 {
+ 		reg = <0>;
+@@ -767,6 +767,15 @@
+ 		cdns,phy-type = <PHY_TYPE_PCIE>;
+ 		resets = <&serdes_wiz0 1>;
+ 	};
++
++	serdes0_qsgmii_link: phy@1 {
++		reg = <1>;
++		cdns,num-lanes = <1>;
++		#phy-cells = <0>;
++		cdns,phy-type = <PHY_TYPE_QSGMII>;
++		resets = <&serdes_wiz0 2>;
++	};
++
+ };
+ 
+ &serdes1 {
+-- 
+2.17.1
 
