@@ -2,180 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 334334A8AD2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:51:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28C4C4A8B2C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 19:05:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353201AbiBCRvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 12:51:04 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:59002 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353235AbiBCRuu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:50:50 -0500
-Received: from tatooine.ideasonboard.com (unknown [IPv6:2a01:e0a:169:7140:5173:4d3f:4ddc:2012])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E60E01C4C;
-        Thu,  3 Feb 2022 18:50:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1643910630;
-        bh=3lrGwNeqv8zUuSa8vZIr+ceF4CcaJqG9pp3tPlC2K/U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=eVSBrSufYzDbkdy3RP2C9vBMveY7RjztG8OuOAiX9EsU5MJqPqLI5lQymotrPc03T
-         WAu748J89PIwUOjSw4M66got0kEFdywOCuPvzTOTf0SxgB5nC6y5MRkMATQPzvWAss
-         yR3QRHB899ZKwc8E3J0PwGfaXiX2JSqkKkiIiVOc=
-From:   Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-To:     jeanmichel.hautbois@ideasonboard.com
-Cc:     dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        kernel-list@raspberrypi.com, laurent.pinchart@ideasonboard.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        lukasz@jany.st, mchehab@kernel.org, naush@raspberrypi.com,
-        robh@kernel.org, tomi.valkeinen@ideasonboard.com,
-        nsaenz@kernel.org, bcm-kernel-feedback-list@broadcom.com
-Subject: [RFC PATCH v4 12/12] media: bcm283x: Include the imx219 node
-Date:   Thu,  3 Feb 2022 18:50:09 +0100
-Message-Id: <20220203175009.558868-13-jeanmichel.hautbois@ideasonboard.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220203175009.558868-1-jeanmichel.hautbois@ideasonboard.com>
-References: <20220203175009.558868-1-jeanmichel.hautbois@ideasonboard.com>
+        id S1353219AbiBCSFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 13:05:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52400 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353183AbiBCSFt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 13:05:49 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B8EBC06173D
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 10:05:49 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id q63so3173399pja.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 10:05:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HlhPGWE5bdGNLYD2rLHTqQvYoa01TULW+puGjVO5vSQ=;
+        b=VtLsiCCk158cnWh1hhk4hcAu7akeN1un0UoiIYtmE5BUwwcvATGuybGt4H+8Rx5GTd
+         1z3bqgJ50552OdIa0vByKWASS/00Y3E5FSjIQC/+0ni8LCjdGYD1Viv+5Wlp+OGXaqcz
+         tDShm8qyl098X8w2HGMlTAzsi2yYmIPJOOhYw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HlhPGWE5bdGNLYD2rLHTqQvYoa01TULW+puGjVO5vSQ=;
+        b=v0zwIKBt/dlD4aL/jWjXGT69DuplHapKLicVSVkOkveLYaHEggefQJ0FFbMixYpJ1u
+         abHzTCQ9b+zaI9sAfyd9vLuKbOc+n+9v0aWmyckertbLTrAqC2m7SJ286gJ0VIXSvaQx
+         2RBWIJnWile03/WXgdaj4USFthCLmV1U7Uc0uvFdc9RJrb95UP5MQ9/vwM9tGwGF3OEp
+         hsPwEDTGlabHrk4w4WGDGoZq+w7Uzq272M41CM2xYseiVsP7zoM8u+JSMFEQH4kmwe5j
+         uMAQA+4hfnVKIx/4asuKJN3OQ2uh8hv6AgW3SmPKp5K3lU7H2KXIbBjKjZZUPxIN4hqr
+         RMmQ==
+X-Gm-Message-State: AOAM533JEoAuJuttl9wuFWF4r4raDcaGZ7tEnwRE2kjjWgbKn9jaNtlk
+        IEQoOExqjYnzv2cy+B4Cf0LkNg==
+X-Google-Smtp-Source: ABdhPJz1UINvG9Evq//eD92215fo53RODE2NVBvGZPKEMKJbnw7X1TLafReBfjtN0hTRcqLS5mbWtw==
+X-Received: by 2002:a17:902:ed82:: with SMTP id e2mr36674770plj.55.1643911548721;
+        Thu, 03 Feb 2022 10:05:48 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:c0cb:3065:aa0:d6c9])
+        by smtp.gmail.com with UTF8SMTPSA id 19sm10327466pjb.42.2022.02.03.10.05.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Feb 2022 10:05:48 -0800 (PST)
+Date:   Thu, 3 Feb 2022 10:05:46 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        pmaliset@codeaurora.org, quic_rjendra@quicinc.com,
+        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
+        kgodara@codeaurora.org, konrad.dybcio@somainline.org,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        sibis@codeaurora.org, swboyd@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 12/14] arm64: dts: qcom: sc7280: Add herobrine-r1
+Message-ID: <YfwZeq7VQpFO8yPH@google.com>
+References: <20220202212348.1391534-1-dianders@chromium.org>
+ <20220202132301.v3.12.I5604b7af908e8bbe709ac037a6a8a6ba8a2bfa94@changeid>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220202132301.v3.12.I5604b7af908e8bbe709ac037a6a8a6ba8a2bfa94@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-WARNING:
-This patch is only used to demonstrate how the imx219 node is included
-in the bcm2711-rpi-4-b device tree, and is not intended to be merged.
+On Wed, Feb 02, 2022 at 01:23:46PM -0800, Douglas Anderson wrote:
+> Add the new herobrine-r1. Note that this is pretty much a re-design
+> compared to herobrine-r0 so we don't attempt any dtsi to share stuff
+> between them.
+> 
+> This patch attempts to define things at 3 levels:
+> 
+> 1. The Qcard level. Herobrine includes a Qcard PCB and the Qcard PCB
+>    is supposed to be the same (modulo stuffing options) across
+>    multiple boards, so trying to define what's there hopefully makes
+>    sense. NOTE that newer "CRD" boards from Qualcomm also use
+>    Qcard. When support for CRD3 is added hopefully it can use the
+>    Qcard include (and perhaps we should even evaluate it using
+>    herobrine.dtsi?)
+> 2. The herobrine "baseboard" level. Right now most stuff is here with
+>    the exception of things that we _know_ will be different per
+>    board. We know that not all boards will have the same set of eMMC,
+>    nvme, and SD. We also know that the exact pin names are likely to
+>    be different.
+> 3. The actual "board" level, AKA herobrine-rev1.
+> 
+> NOTES:
+> - This boots to command prompt. We're still waiting on the PWM driver.
+> - This assumes LTE for now. Once it's clear how WiFi-only SKUs will
+>   work we expect some small changes.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-Configure the csi1 endpoint, add the imx219 node and connect it through
-the i2c mux.
-
-Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
----
- arch/arm/boot/dts/bcm2711-rpi-4-b.dts     |   1 +
- arch/arm/boot/dts/bcm283x-rpi-imx219.dtsi | 102 ++++++++++++++++++++++
- 2 files changed, 103 insertions(+)
- create mode 100644 arch/arm/boot/dts/bcm283x-rpi-imx219.dtsi
-
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-index 4432412044de..f7625b70fe57 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-+++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-@@ -4,6 +4,7 @@
- #include "bcm2711-rpi.dtsi"
- #include "bcm283x-rpi-usb-peripheral.dtsi"
- #include "bcm283x-rpi-wifi-bt.dtsi"
-+#include "bcm283x-rpi-imx219.dtsi"
- 
- / {
- 	compatible = "raspberrypi,4-model-b", "brcm,bcm2711";
-diff --git a/arch/arm/boot/dts/bcm283x-rpi-imx219.dtsi b/arch/arm/boot/dts/bcm283x-rpi-imx219.dtsi
-new file mode 100644
-index 000000000000..f2c6a85fd731
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm283x-rpi-imx219.dtsi
-@@ -0,0 +1,102 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include <dt-bindings/clock/bcm2835.h>
-+
-+/ {
-+	compatible = "brcm,bcm2835";
-+
-+	imx219_vdig: fixedregulator@1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx219_vdig";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	imx219_vddl: fixedregulator@2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx219_vddl";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+	};
-+
-+	imx219_clk: imx219_clk {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "24MHz-clock";
-+	};
-+
-+	cam1_reg: cam1_reg {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx219_vana";
-+		enable-active-high;
-+		status = "okay";
-+		gpio = <&expgpio 5 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	i2c0mux {
-+		compatible = "i2c-mux-pinctrl";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c-parent = <&i2c0>;
-+
-+		pinctrl-names = "i2c0", "i2c_csi_dsi";
-+		pinctrl-0 = <&i2c0_gpio0>;
-+		pinctrl-1 = <&i2c0_gpio44>;
-+
-+		i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			imx219: sensor@10 {
-+				compatible = "sony,imx219";
-+				reg = <0x10>;
-+				status = "okay";
-+
-+				clocks = <&imx219_clk>;
-+				clock-names = "xclk";
-+
-+				VANA-supply = <&cam1_reg>;   /* 2.8v */
-+				VDIG-supply = <&imx219_vdig>;   /* 1.8v */
-+				VDDL-supply = <&imx219_vddl>;   /* 1.2v */
-+
-+				rotation = <0>;
-+				orientation = <0>;
-+
-+				port {
-+					imx219_0: endpoint {
-+						remote-endpoint = <&csi1_ep>;
-+						clock-lanes = <0>;
-+						data-lanes = <1 2>;
-+						clock-noncontinuous;
-+						link-frequencies = /bits/ 64 <456000000>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&csi1 {
-+	status="okay";
-+	num-data-lanes = <2>;
-+	port {
-+		csi1_ep: endpoint {
-+			remote-endpoint = <&imx219_0>;
-+			data-lanes = <1 2>;
-+			clock-lanes = <0>;
-+		};
-+	};
-+};
-+
-+&i2c0 {
-+	/delete-property/ pinctrl-names;
-+	/delete-property/ pinctrl-0;
-+};
-+
--- 
-2.32.0
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
