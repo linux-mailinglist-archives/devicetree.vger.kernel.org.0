@@ -2,98 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28C4C4A8B2C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 19:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6B6F4A8B71
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 19:20:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353219AbiBCSFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 13:05:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52400 "EHLO
+        id S1353340AbiBCSUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 13:20:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353183AbiBCSFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 13:05:49 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B8EBC06173D
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 10:05:49 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id q63so3173399pja.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 10:05:49 -0800 (PST)
+        with ESMTP id S1353343AbiBCSUF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 13:20:05 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5EF6C06173B
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 10:20:04 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id b17-20020a9d4791000000b005a17fc2dfc1so3301068otf.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 10:20:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=HlhPGWE5bdGNLYD2rLHTqQvYoa01TULW+puGjVO5vSQ=;
-        b=VtLsiCCk158cnWh1hhk4hcAu7akeN1un0UoiIYtmE5BUwwcvATGuybGt4H+8Rx5GTd
-         1z3bqgJ50552OdIa0vByKWASS/00Y3E5FSjIQC/+0ni8LCjdGYD1Viv+5Wlp+OGXaqcz
-         tDShm8qyl098X8w2HGMlTAzsi2yYmIPJOOhYw=
+        bh=FCGv/qYKeyIfFckxFA2H8QoH1f78f7u1cBQ9C1Sjl3M=;
+        b=eF5N1ay0x01zbCkcH51YulCjlbhEz3kuA1OuFLPpYD06veDb//xhGfkMg66RE1E7cM
+         RXivflDbMlN/+L96DUHKvaL/WzBE+5OQwylRvm5Nr8Nz6bfZHtBrn51QRqndqNBUOqmY
+         XNLOYbDTOC6rIydYZgoJWdk7zx8nzbetY1GzohlLLRh+VqdnKO6TqsPQT8nqZ9YJ4FWq
+         ibNHoEZ3MyBsTJVKaIfyZlHW/zHh5dOnWTgg9YcNZdDdHUc+v/thpYW5HfkanOU7QYxZ
+         5vWVO5umEUNLp4nbmCXz1wcRoutZfkOM/wN48fx/yQ97mmaWp7h9qb0GIJ9VVhig+9WE
+         KL/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=HlhPGWE5bdGNLYD2rLHTqQvYoa01TULW+puGjVO5vSQ=;
-        b=v0zwIKBt/dlD4aL/jWjXGT69DuplHapKLicVSVkOkveLYaHEggefQJ0FFbMixYpJ1u
-         abHzTCQ9b+zaI9sAfyd9vLuKbOc+n+9v0aWmyckertbLTrAqC2m7SJ286gJ0VIXSvaQx
-         2RBWIJnWile03/WXgdaj4USFthCLmV1U7Uc0uvFdc9RJrb95UP5MQ9/vwM9tGwGF3OEp
-         hsPwEDTGlabHrk4w4WGDGoZq+w7Uzq272M41CM2xYseiVsP7zoM8u+JSMFEQH4kmwe5j
-         uMAQA+4hfnVKIx/4asuKJN3OQ2uh8hv6AgW3SmPKp5K3lU7H2KXIbBjKjZZUPxIN4hqr
-         RMmQ==
-X-Gm-Message-State: AOAM533JEoAuJuttl9wuFWF4r4raDcaGZ7tEnwRE2kjjWgbKn9jaNtlk
-        IEQoOExqjYnzv2cy+B4Cf0LkNg==
-X-Google-Smtp-Source: ABdhPJz1UINvG9Evq//eD92215fo53RODE2NVBvGZPKEMKJbnw7X1TLafReBfjtN0hTRcqLS5mbWtw==
-X-Received: by 2002:a17:902:ed82:: with SMTP id e2mr36674770plj.55.1643911548721;
-        Thu, 03 Feb 2022 10:05:48 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:c0cb:3065:aa0:d6c9])
-        by smtp.gmail.com with UTF8SMTPSA id 19sm10327466pjb.42.2022.02.03.10.05.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Feb 2022 10:05:48 -0800 (PST)
-Date:   Thu, 3 Feb 2022 10:05:46 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        pmaliset@codeaurora.org, quic_rjendra@quicinc.com,
-        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        kgodara@codeaurora.org, konrad.dybcio@somainline.org,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        sibis@codeaurora.org, swboyd@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 12/14] arm64: dts: qcom: sc7280: Add herobrine-r1
-Message-ID: <YfwZeq7VQpFO8yPH@google.com>
-References: <20220202212348.1391534-1-dianders@chromium.org>
- <20220202132301.v3.12.I5604b7af908e8bbe709ac037a6a8a6ba8a2bfa94@changeid>
+        bh=FCGv/qYKeyIfFckxFA2H8QoH1f78f7u1cBQ9C1Sjl3M=;
+        b=6NY5rxHbcu32XMCgeiVi/VBWr3xzFxvX6orNmydgzyo+ls18VmS41fPxQfdbAQshC1
+         PpuN2xXrVkD8LX7g77guv7QAAmwC5cetPRmxfWUFVQcQEwT5uLu/4lRacDcsJR2Us31w
+         l6ylmOs8n8Tn/HmpSfkbQAoarImky/hVIFmWwXI4+vXh/X3S+w9UUJHzDJ5ys0B8N+Sw
+         T2/XlqJ7mitdxyvuH2TSQWda+pFaK6A55ey+Fql2oUtXLsBnm1TApk1FFCxIYPYsh5SF
+         kq5PYc3KPdYhtSGHq2GUqtx5HsWMQKFiJAdHoPf8fd1F+tzhey9teTqH4HTOjuYVD51O
+         NPzQ==
+X-Gm-Message-State: AOAM530j3Cy9j9AL2BcUzy0FOQmtMvpwmTt0OWwUj8p7zze5am03PAW0
+        84GzeRw4DGTucN1UA4kLEvjZvQ==
+X-Google-Smtp-Source: ABdhPJwIMo1ObNoIxykn8Wni8kH14hmmZ6CyaP0CsL8r060Q8Mrt4EjdgnqBRcqUNAj85m5E+K8NOQ==
+X-Received: by 2002:a05:6830:42:: with SMTP id d2mr19692222otp.27.1643912404228;
+        Thu, 03 Feb 2022 10:20:04 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id r186sm13107645oie.23.2022.02.03.10.20.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Feb 2022 10:20:03 -0800 (PST)
+Date:   Thu, 3 Feb 2022 10:20:20 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/13] soc: qcom: mdt_loader: Support Qualcomm SM8450
+Message-ID: <Yfwc5NG2sB5LNWut@ripper>
+References: <20220128025513.97188-1-bjorn.andersson@linaro.org>
+ <8ee1cea3-00f3-7a9c-dbd9-aaf8160db006@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220202132301.v3.12.I5604b7af908e8bbe709ac037a6a8a6ba8a2bfa94@changeid>
+In-Reply-To: <8ee1cea3-00f3-7a9c-dbd9-aaf8160db006@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 02, 2022 at 01:23:46PM -0800, Douglas Anderson wrote:
-> Add the new herobrine-r1. Note that this is pretty much a re-design
-> compared to herobrine-r0 so we don't attempt any dtsi to share stuff
-> between them.
-> 
-> This patch attempts to define things at 3 levels:
-> 
-> 1. The Qcard level. Herobrine includes a Qcard PCB and the Qcard PCB
->    is supposed to be the same (modulo stuffing options) across
->    multiple boards, so trying to define what's there hopefully makes
->    sense. NOTE that newer "CRD" boards from Qualcomm also use
->    Qcard. When support for CRD3 is added hopefully it can use the
->    Qcard include (and perhaps we should even evaluate it using
->    herobrine.dtsi?)
-> 2. The herobrine "baseboard" level. Right now most stuff is here with
->    the exception of things that we _know_ will be different per
->    board. We know that not all boards will have the same set of eMMC,
->    nvme, and SD. We also know that the exact pin names are likely to
->    be different.
-> 3. The actual "board" level, AKA herobrine-rev1.
-> 
-> NOTES:
-> - This boots to command prompt. We're still waiting on the PWM driver.
-> - This assumes LTE for now. Once it's clear how WiFi-only SKUs will
->   work we expect some small changes.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+On Thu 03 Feb 07:11 PST 2022, Dmitry Baryshkov wrote:
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> On 28/01/2022 05:55, Bjorn Andersson wrote:
+> > The Qualcomm SM8450 platform comes with both some smaller changes in the
+> > firmware packaging and a new requirement to hold onto the metadata buffer until
+> > PAS auth_and_reset has been completed.
+> > 
+> > Extend the PAS api and rework the mdt_loader to meet these new requirements,
+> > then wire this up with the PAS remoteproc driver and finally add the SM8450
+> > remoteproc instances.
+> > 
+> > Bjorn Andersson (13):
+> >    firmware: qcom: scm: Introduce pas_metadata context
+> >    soc: qcom: mdt_loader: Split out split-file-loader
+> >    soc: qcom: mdt_loader: Allow hash segment to be split out
+> >    soc: qcom: mdt_loader: Allow hash to reside in any segment
+> >    soc: qcom: mdt_loader: Extend check for split firmware
+> >    soc: qcom: mdt_loader: Reorder parts of __qcom_mdt_load()
+> >    soc: qcom: mdt_loader: Always invoke PAS mem_setup
+> >    soc: qcom: mdt_loader: Extract PAS operations
+> >    remoteproc: qcom: pas: Carry PAS metadata context
+> >    dt-bindings: remoteproc: qcom: pas: Add SM8450 PAS compatibles
+> >    remoteproc: qcom: pas: Add SM8450 remoteproc support
+> >    arm64: dts: qcom: sm8450: Add remoteproc enablers and instances
+> >    arm64: dts: qcom: sm8450-qrd: Enable remoteproc instances
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+
+Thanks.
+
+> Minor nitpicks:
+>  - I'd reorder the series by moving patch 1 (pas_metadata) closer to patch
+> 8&9 (pas metadata usage)
+
+For a while the design where such that I would merge the first patch
+into a immutable branch and then merge the soc/qcom and remoteproc
+changes separately.
+
+But as you can see, in the end the remoteproc patch ended up depending
+on the mdt_loader changes.
+
+I like your suggestion, so I can move the scm change down to keep things
+together.
+
+>  - I would have added pas_metadata as an argument to qcom_mdt_load().
+> However I see, why you didn't want to add another argument to the list.
+> 
+
+I looked at that, but I was already unhappy with the argument explosion
+in that function prototype.
+
+By splitting out the difference between qcom_mdt_load() and
+qcom_mdt_load_no_init() into a separate function will allow some cleanup
+and better reuse in the client drivers.
+
+As we bring up the various clients on SM8450 we will need to perform the
+same modifications that was done to the remoteproc driver, by doing it
+like this we don't need to change the prototype twice.
+
+Regards,
+Bjorn
+
+> > 
+> >   .../bindings/remoteproc/qcom,adsp.yaml        |  16 +
+> >   arch/arm64/boot/dts/qcom/sm8450-qrd.dts       |  20 ++
+> >   arch/arm64/boot/dts/qcom/sm8450.dtsi          | 297 ++++++++++++++++++
+> >   drivers/firmware/qcom_scm.c                   |  39 ++-
+> >   drivers/remoteproc/qcom_q6v5_mss.c            |   7 +-
+> >   drivers/remoteproc/qcom_q6v5_pas.c            |  36 ++-
+> >   drivers/soc/qcom/mdt_loader.c                 | 232 +++++++++-----
+> >   include/linux/qcom_scm.h                      |  10 +-
+> >   include/linux/soc/qcom/mdt_loader.h           |  17 +-
+> >   9 files changed, 579 insertions(+), 95 deletions(-)
+> > 
+> 
+> 
+> -- 
+> With best wishes
+> Dmitry
