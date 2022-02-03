@@ -2,176 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A527C4A841A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 13:52:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B6804A846A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 14:04:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350643AbiBCMwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 07:52:22 -0500
-Received: from mail-eopbgr60061.outbound.protection.outlook.com ([40.107.6.61]:10304
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1350641AbiBCMwT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Feb 2022 07:52:19 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a1ACmpM4vvNFV1HBJXXOPzTPB4ycvrs3vaApSV5XC+LWI2R3vd8/+2umBCR/NGn/V0xfadGQp7EAYcVCKpUbrGV/IARmxTljVF1sl19VPxAnm7k8wutOqHN4uJB40AhRqsyDbPNmruF5lAfGngxUjS4y1b5a6wLodW7i0em9y3aCgHGbDUJeT9Bt6QHalDiCH6Vb/5wNufHbJuc5LsMeDve2dWKM7UwBLoz+6/jeNmjslvQugmeWDLLMk4fraUY+MCRITKHEldBHIL++aLM+DtnLAV7VQmlkKEwvlgeb9lCRf7nWiZoQwPYsx6ydbHpp+FQbg+k+0NP9YmELemj+mw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0dEp55POGUB0SgbmBuHArd2zaMGuxhI11aLePlwF/tU=;
- b=U5WxhniTORKvxAUcTtf8OKO57U/5KMiFqW4aG8GF4waZrrq99PmXvjoc58tJk11XzGxf8Hqvo2qtlz6c/CBQz5MifqlFcizQO5YAb59tTnyHgbdx/cA1bX1I1J/GcwCaxtC4oArPwjQ7jvjH89Q+bLnfy0s84lxg2TFUhTxRVIAXhK/LWJ0qlW1m+hBHxxvJJLGp9RHrXSJAKejITU6j1dMJd8gixrllky/aOlnCnw5SmJGHQ/cqRVUOaI6WzaeMFT/zzaFIR9XQ/WW4UEFbLLF3VWwP6nzvznRdNfWMWU2cBuK1EWmFR6q7leC8RX6ND+5cqRJaGJMT/rULfLfq0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 194.138.21.70) smtp.rcpttodomain=ew.tq-group.com smtp.mailfrom=siemens.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=siemens.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0dEp55POGUB0SgbmBuHArd2zaMGuxhI11aLePlwF/tU=;
- b=TiGmmilLV6XGXSAhc2jbsD+nLC653pb8iGXXOK8UtojWMGMSddL2mgrY35X7cTwV9r/al5G8BOOHnqHnkydNrG+sevBLkeudaXxlZQAVYi2KFgMlXmZugU77Kno6zU592ulSdDZigWZ5zeXHtD0OwFHYH6p7arIvrA8W0uRCSffq8Q4uOHQaeyNHXBe04LUm0CSlYsjgQYkrOUSxwdxAp0ieyX6lcQqCiHy/gTFb1zZFh9b5xzqssq2qoOQcWleEF5UAuKHdwyHPSZLUq13RGJDjmGabRvVm33juRfJITR68CYmZr32fZxMl9XD5+7H0WzoWu/my+FSm8VluT8NaoQ==
-Received: from FR3P281CA0059.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:4b::21)
- by DBAPR10MB4044.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:1ce::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Thu, 3 Feb
- 2022 12:52:18 +0000
-Received: from VE1EUR01FT004.eop-EUR01.prod.protection.outlook.com
- (2603:10a6:d10:4b:cafe::f4) by FR3P281CA0059.outlook.office365.com
- (2603:10a6:d10:4b::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.5 via Frontend
- Transport; Thu, 3 Feb 2022 12:52:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 194.138.21.70)
- smtp.mailfrom=siemens.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=siemens.com;
-Received-SPF: Pass (protection.outlook.com: domain of siemens.com designates
- 194.138.21.70 as permitted sender) receiver=protection.outlook.com;
- client-ip=194.138.21.70; helo=hybrid.siemens.com;
-Received: from hybrid.siemens.com (194.138.21.70) by
- VE1EUR01FT004.mail.protection.outlook.com (10.152.2.101) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4951.12 via Frontend Transport; Thu, 3 Feb 2022 12:52:17 +0000
-Received: from DEMCHDC8A0A.ad011.siemens.net (139.25.226.106) by
- DEMCHDC9SJA.ad011.siemens.net (194.138.21.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.18; Thu, 3 Feb 2022 13:52:17 +0100
-Received: from [167.87.72.47] (167.87.72.47) by DEMCHDC8A0A.ad011.siemens.net
- (139.25.226.106) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 3 Feb
- 2022 13:52:16 +0100
-Message-ID: <61bec34c-0861-f042-09bd-d30fd0cafb8f@siemens.com>
-Date:   Thu, 3 Feb 2022 13:52:15 +0100
+        id S1350683AbiBCNEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 08:04:42 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:40760 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236030AbiBCNEl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Feb 2022 08:04:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=gNZWKIVJLKNO/IJY+cF5TQndrBUPBqO7gHfrucPm70E=; b=VS8tdWHewiArNhUVu6VGqBayCE
+        6h7xECrvPRTVJOY5on5d/h21a7hWmC/n657vSzkE4eWdWBUNblNqgCLGnE3IlOE3A3Ad57uK+qonu
+        cgl/iVYfynfK/gu5rwOril0Ka92vyY18ATTgu7SUFt+dGvAKzzeWegqE2QFGq4m10SKg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nFbmm-004757-1e; Thu, 03 Feb 2022 14:04:28 +0100
+Date:   Thu, 3 Feb 2022 14:04:28 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sergey Ryazanov <ryazanov.s.a@gmail.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Oliver Neukum <oneukum@suse.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-usb@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Subject: Re: [PATCH net-next v1 4/4] usbnet: add support for label from
+ device tree
+Message-ID: <YfvS3F6kHUyxs6D0@lunn.ch>
+References: <20220127104905.899341-1-o.rempel@pengutronix.de>
+ <20220127104905.899341-5-o.rempel@pengutronix.de>
+ <YfJ6lhZMAEmetdad@kroah.com>
+ <20220127112305.GC9150@pengutronix.de>
+ <YfKCTG7N86yy74q+@kroah.com>
+ <20220127120039.GE9150@pengutronix.de>
+ <YfKcYXjfhVKUKfzY@kroah.com>
+ <CAHNKnsTY0cV4=V7t0Q3p4-hO5t9MbWWM-X0MJFRKCZ1SG0ucUg@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am65*: remove
- #address-cells/#size-cells from flash nodes
-Content-Language: en-US
-To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <5beef188724ef42b0c2147ca9bf6e6ca25c75dec.1641900122.git.matthias.schiffer@ew.tq-group.com>
- <6e245e545a2927d2bd4bbc7df9197e6669ccce93.1641900122.git.matthias.schiffer@ew.tq-group.com>
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-In-Reply-To: <6e245e545a2927d2bd4bbc7df9197e6669ccce93.1641900122.git.matthias.schiffer@ew.tq-group.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [167.87.72.47]
-X-ClientProxiedBy: DEMCHDC89YA.ad011.siemens.net (139.25.226.104) To
- DEMCHDC8A0A.ad011.siemens.net (139.25.226.106)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ce748b6e-cd97-4a22-09b2-08d9e71402a6
-X-MS-TrafficTypeDiagnostic: DBAPR10MB4044:EE_
-X-Microsoft-Antispam-PRVS: <DBAPR10MB40449208A1EDCB98FA498E9A95289@DBAPR10MB4044.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Wst0Wexb5u7g226fJii+s7/Sa9AwJMEOiQELWOUUcaBeYv2K3R/h6LoscSsslUdYD35ILO0wgyII4my/DpOIvhoMoNGNz3zKONb+5mxv0GYnJeRgGg2tihbos3sr40n04sWUINDAPLdae41Vti0aBFJyiQS+LM8KnoOzy7dvwNF4H3IVDF06NtZwDhFmWe05rzGSoN5BIC2CKb/bXIqM4MUzhw6PQ6OtLc565cUuxCaNi1hehKF/hlcfvVrjqQrexIljlFSZI47H1xsNVfnGpttI4RxinTfuhPR8RoKm5847KCrfuiLoEFIqYMKlDcfZqQNZ8g4H0op6mYrCs2gDbRWi0AKJAB8d9vZyqrPxv5K7AJXrpVdNeHI/vfyGD82rKi6fQPW5rHIdPmAKPOTaoDOgkVc8xDYlH4CC26bGe4AttLe7NBXcPdVWpbQd1cB9uQqUyWSs+ssouOsnk/bco3qf+Dh5NK/g8vKJd3O5531kOuB4ph4eHnZJDrPc3tkG9lFhvjrz92aL6J5gPkEZZDxvJErBrh6u4zUTFtpIpmspcDfFxYZv72o86kkHPpHe6Cqohc0o+fc/l44H6lwfM580XExbaLaOR1QggHHOQIT/uX0ixNNZQxff1jFd6mqqAZxj9OwD7HrPAVy1cBNs2JKfSAozj2IGjyV0AV6k4gYPCb6JS1MlVA3RL1qHepw/e+3XDXnBloufLmrjXY7XT4sM2Qj/J7l7MMiNBcb/JPZIUeM/opGefFgyJ1eh14gM
-X-Forefront-Antispam-Report: CIP:194.138.21.70;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:hybrid.siemens.com;PTR:hybrid.siemens.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(16526019)(5660300002)(186003)(83380400001)(26005)(356005)(336012)(7596003)(47076005)(31686004)(82960400001)(36756003)(44832011)(7636003)(2906002)(53546011)(70586007)(86362001)(8936002)(8676002)(82310400004)(956004)(31696002)(6706004)(110136005)(54906003)(40460700003)(70206006)(2616005)(508600001)(316002)(4326008)(16576012)(36860700001)(3940600001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2022 12:52:17.8965
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce748b6e-cd97-4a22-09b2-08d9e71402a6
-X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;Ip=[194.138.21.70];Helo=[hybrid.siemens.com]
-X-MS-Exchange-CrossTenant-AuthSource: VE1EUR01FT004.eop-EUR01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR10MB4044
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHNKnsTY0cV4=V7t0Q3p4-hO5t9MbWWM-X0MJFRKCZ1SG0ucUg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.01.22 12:25, Matthias Schiffer wrote:
-> Specifying partitions directly in the flash node is deprecated, a
-> fixed-partitions node should be used instead. Therefore, it doesn't make
-> sense to have these properties in the flash nodes.
+On Thu, Feb 03, 2022 at 05:20:34AM +0300, Sergey Ryazanov wrote:
+> Hello Greg,
 > 
-> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 2 --
->  arch/arm64/boot/dts/ti/k3-am654-base-board.dts     | 8 ++------
->  2 files changed, 2 insertions(+), 8 deletions(-)
+> if I may be allowed, I would like to make a couple of points about
+> specifying network interface names in DT. As in previous mail, not to
+> defend this particular patch, but to talk about names assignment in
+> general.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> index 873c123c611e..7eca697e1ca1 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-> @@ -623,8 +623,6 @@ flash@0 {
->  		cdns,tchsh-ns = <60>;
->  		cdns,tslch-ns = <60>;
->  		cdns,read-delay = <2>;
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
->  	};
->  };
->  
-> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> index 821ee7f2eff0..9c06da9d6d8f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> @@ -340,14 +340,12 @@ &main_spi0 {
->  	ti,pindir-d0-out-d1-in;
->  	status = "okay";
->  
-> -	flash@0{
-> +	flash@0 {
->  		compatible = "jedec,spi-nor";
->  		reg = <0x0>;
->  		spi-tx-bus-width = <1>;
->  		spi-rx-bus-width = <1>;
->  		spi-max-frequency = <48000000>;
-> -		#address-cells = <1>;
-> -		#size-cells= <1>;
->  	};
->  };
->  
-> @@ -442,7 +440,7 @@ &ospi0 {
->  	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
->  	status = "okay";
->  
-> -	flash@0{
-> +	flash@0 {
->  		compatible = "jedec,spi-nor";
->  		reg = <0x0>;
->  		spi-tx-bus-width = <8>;
-> @@ -453,8 +451,6 @@ flash@0{
->  		cdns,tchsh-ns = <60>;
->  		cdns,tslch-ns = <60>;
->  		cdns,read-delay = <0>;
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
->  	};
->  };
->  
+> I may be totally wrong, so consider my words as a request for
+> discussion. I have been thinking about an efficient way for network
+> device names assignment for routers with a fixed configuration and
+> have always come to a conclusion that DT is a good place for names
+> storage. Recent DSA capability to assign names from labels and this
+> patch by Oleksij show that I am not alone.
 
-For the iot2050 bits:
+DSA doing this is not recent. The first patch implementing DSA in 2008
+had the ability to set the interface names. This was long before the
+idea that userspace should set interface names became the 'correct'
+way to do this.
 
-Acked-by: Jan Kiszka <jan.kiszka@siemens.com>
+The current thinking for routers which don't make use of the DSA
+framework, it to use interface names like swXpY, where X is the switch
+number and Y is the port number. udev can make use of for example
+/sys/class/net/*/phys_port_name to get the pY bit to give the
+interface its full name.
 
--- 
-Siemens AG, Technology
-Competence Center Embedded Linux
+	Andrew
