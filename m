@@ -2,107 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 297194A89E7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:25:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B465D4A89EA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:25:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236983AbiBCRZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 12:25:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42354 "EHLO
+        id S1352803AbiBCRZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 12:25:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231916AbiBCRZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:25:08 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC69C061714;
-        Thu,  3 Feb 2022 09:25:08 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 32E1181F0B;
-        Thu,  3 Feb 2022 18:25:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1643909104;
-        bh=m+N3MoX1/LE+15s/+NTNTKxRDOY/z4DDw+htkzNgE3M=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bjoCLfODyyae88W21rRnORrVj+1mQQh9CW3ha4R4Gvo6vqM6j7YWesMa/Y5/pCFMy
-         DHhx4WHz5jChtGRckwKV3B/SkN+ta4efiguIbI3OXY+KAw2xGbZJgLolGYvJA3s/ab
-         J5GN164KC1qhxoLbox4UW1kyhTmRkcA0CnIna3Z0us1J0l5DeKMr1pHLQ7MCvG/tSD
-         vi/fvJmH7/myw2w23DIG+nSxGrTRf+vFS0Efnk+2MmuazgRKOpgXZ5CZlfLTyUHUL+
-         vs8KISFPwmT6r87KyjfHLMdnL9K/XRMnQGsmyobopttpgnIrpKMLzGl7MFPgtlfync
-         iW2TNft8rPn6g==
-Message-ID: <0b0cdffe-b4cc-e125-f3ea-4ece582f806b@denx.de>
-Date:   Thu, 3 Feb 2022 18:25:03 +0100
+        with ESMTP id S1352472AbiBCRZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:25:52 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B97FC061714
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 09:25:52 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1nFfrd-0002xF-6f; Thu, 03 Feb 2022 18:25:45 +0100
+Message-ID: <cc7633c5-de5f-0abf-4ac8-64a74633dfcc@pengutronix.de>
+Date:   Thu, 3 Feb 2022 18:25:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH 16/16] ARM: dts: stm32: keep uart nodes behavior on
- stm32mp15xx-dhcor-avenger96
-Content-Language: en-US
+ Thunderbird/91.5.0
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH 00/16] STM32 configure UART nodes for DMA
 To:     Erwan Le Ray <erwan.leray@foss.st.com>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marek Vasut <marex@denx.de>,
         Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
         Jagan Teki <jagan@amarulasolutions.com>,
         devicetree@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
 References: <20220203171114.10888-1-erwan.leray@foss.st.com>
- <20220203171114.10888-17-erwan.leray@foss.st.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220203171114.10888-17-erwan.leray@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Language: en-US
+In-Reply-To: <20220203171114.10888-1-erwan.leray@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/3/22 18:11, Erwan Le Ray wrote:
-> DMA configuration is added to uart nodes in stm32mp15x device tree.
-> Delete uart4 DMA property in stm32mp15xx-dhcor-avenger96 board device
-> tree to keep console in irq mode, as DMA support for console has been
-> removed from the driver by commit e359b4411c28 ("serial: stm32: fix
-> threaded interrupt handling").
-> Delete also usart2 and uart7 DMA property to keep current behavior.
-> 
-> Signed-off-by: Erwan Le Ray <erwan.leray@foss.st.com>
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> index 6885948f3024..61e17f44ce81 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> @@ -376,6 +376,8 @@
->   	label = "LS-UART1";
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&uart4_pins_b>;
-> +	/delete-property/dmas;
-> +	/delete-property/dma-names;
->   	status = "okay";
->   };
->   
-> @@ -385,6 +387,8 @@
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&uart7_pins_a>;
->   	uart-has-rtscts;
-> +	/delete-property/dmas;
-> +	/delete-property/dma-names;
->   	status = "okay";
->   };
->   
-> @@ -394,6 +398,8 @@
->   	pinctrl-0 = <&usart2_pins_a>;
->   	pinctrl-1 = <&usart2_sleep_pins_a>;
->   	st,hw-flow-ctrl;
-> +	/delete-property/dmas;
-> +	/delete-property/dma-names;
->   	status = "okay";
->   
->   	bluetooth {
+Hello Erwan,
 
-Maybe you can squash all the DHSOM board changes into a single patch ?
+On 03.02.22 18:10, Erwan Le Ray wrote:
+> Add DMA configuration to UART nodes in stm32mp15x (SOC level) and
+> remove it at board level to keep current PIO behavior when needed.
+> For stm32-ed1 and stm32-dkx boards, UART4 (console) and UART7
+> (no HW flow control pin available) are kept in PIO mode, while USART3
+> is now configured in DMA mode.
+> UART4 (console UART) has to be kept in irq mode, as DMA support for
+> console has been removed from the driver by commit e359b4411c28 
+> ("serial: stm32: fix threaded interrupt handling"). 
 
-That said, the change is fine on DHSOM.
+Do I understand correctly that your first patch breaks consoles of
+most/all boards, because they will briefly use DMA, which is refused
+by the stm32-usart driver and then you add a patch for each board
+to fix that breakage?
+
+Such intermittent breakage makes bisection a hassle. /delete-property/
+is a no-op when the property doesn't exist, so you could move the first
+patch to the very end to avoid intermittent breakage.
+
+I also think that the driver's behavior is a bit harsh. I think it would
+be better for the UART driver to print a warning and fall back to
+PIO for console instead of outright refusing and rendering the system
+silent. That's not mutually exclusive with your patch series here, of course.
+
+Cheers,
+Ahmad
+
+> 
+> For other stm32mp15x-based boards, current configuration is kept for
+> all UART instances.
+> 
+> Erwan Le Ray (16):
+>   ARM: dts: stm32: add DMA configuration to UART nodes on stm32mp151
+>   ARM: dts: stm32: keep uart4 behavior on stm32mp157c-ed1
+>   ARM: dts: stm32: keep uart4 and uart7 behavior on stm32mp15xx-dkx
+>   ARM: dts: stm32: keep uart4 behavior on icore-stm32mp1-ctouch2
+>   ARM: dts: stm32: keep uart4 behavior on icore-stm32mp1-edimm2.2
+>   ARM: dts: stm32: keep uart4 behavior on stm32mp157a-iot-box
+>   ARM: dts: stm32: keep uart nodes behavior on stm32mp1-microdev2.0-of7
+>   ARM: dts: stm32: keep uart nodes behavior on stm32mp1-microdev2.0
+>   ARM: dts: stm32: keep uart nodes behavior on stm32mp157a-stinger96
+>   ARM: dts: stm32: keep uart4 behavior on stm32mp157c-lxa-mc1
+>   ARM: dts: stm32: keep uart4 behavior on stm32mp157c-odyssey
+>   ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-drc02
+>   ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-pdk2
+>   ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-picoitx
+>   ARM: dts: stm32: keep uart4 behavior on stm32mp15xx-dhcom-som
+>   ARM: dts: stm32: keep uart nodes behavior on
+>     stm32mp15xx-dhcor-avenger96
+> 
+>  arch/arm/boot/dts/stm32mp151.dtsi             | 21 +++++++++++++++++++
+>  .../stm32mp157a-icore-stm32mp1-ctouch2.dts    |  2 ++
+>  .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   |  2 ++
+>  arch/arm/boot/dts/stm32mp157a-iot-box.dts     |  2 ++
+>  ...157a-microgea-stm32mp1-microdev2.0-of7.dts |  4 ++++
+>  ...32mp157a-microgea-stm32mp1-microdev2.0.dts |  4 ++++
+>  arch/arm/boot/dts/stm32mp157a-stinger96.dtsi  |  6 ++++++
+>  arch/arm/boot/dts/stm32mp157c-ed1.dts         |  2 ++
+>  arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts     |  2 ++
+>  arch/arm/boot/dts/stm32mp157c-odyssey.dts     |  2 ++
+>  .../arm/boot/dts/stm32mp15xx-dhcom-drc02.dtsi |  4 ++++
+>  arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi |  4 ++++
+>  .../boot/dts/stm32mp15xx-dhcom-picoitx.dtsi   |  4 ++++
+>  arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi  |  2 ++
+>  .../boot/dts/stm32mp15xx-dhcor-avenger96.dtsi |  6 ++++++
+>  arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        |  4 ++++
+>  16 files changed, 71 insertions(+)
+> 
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
