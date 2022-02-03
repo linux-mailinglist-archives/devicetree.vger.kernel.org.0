@@ -2,112 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C47C84A89BB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:16:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDBA44A89CA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:20:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352742AbiBCRQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 12:16:44 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:58168 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237917AbiBCRQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:16:41 -0500
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 213EhamF031133;
-        Thu, 3 Feb 2022 18:14:32 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=oJsVc/G0V4FvZjE6ehLE8WHxeNAr1eqH/qcfE5+Oq3A=;
- b=oyACJjYaOyVVCeGQn+TtxgMMN1USwMEfUUu2w6r7s6lWpStqSrXgV0Cc1uSEHgPJ3Pi+
- yx6heCSTxVm1Tp45yzT/vXnfV85xBSFDfHbCeWAMjCphrrE7lf0BPyXN0v+rw86EeQAx
- CLR+NrvIpCbx4/Ivv7fADOoAcRfCdmv9hU+XL0h4O6ClTfJljtJLQyfGM4zto9J8xTZW
- FpZRNtzTGuobNCgcuXUQjhpYcZ3GpJYRN0V46pebbRP9RrUAkWzlJdCPuQczKM8aCnoV
- DiprXZ6ZoReE608wfeGr3p32/u1BtgLKg2mx3KSA8M0xmMBEVz5d66PQk0+vXK0+/89a Fg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e01qkcyq6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 03 Feb 2022 18:14:32 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E8F8A10002A;
-        Thu,  3 Feb 2022 18:14:31 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E0F2222F7AB;
-        Thu,  3 Feb 2022 18:14:31 +0100 (CET)
-Received: from localhost (10.75.127.44) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 3 Feb 2022 18:14:31
- +0100
-From:   Erwan Le Ray <erwan.leray@foss.st.com>
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Erwan Le Ray <erwan.leray@foss.st.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marek Vasut <marex@denx.de>,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 16/16] ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcor-avenger96
-Date:   Thu, 3 Feb 2022 18:11:14 +0100
-Message-ID: <20220203171114.10888-17-erwan.leray@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220203171114.10888-1-erwan.leray@foss.st.com>
-References: <20220203171114.10888-1-erwan.leray@foss.st.com>
+        id S1352765AbiBCRUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 12:20:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41130 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240278AbiBCRUQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:20:16 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D940C06173B
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 09:20:16 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id d1so2685541plh.10
+        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 09:20:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=PBScQedjQsJUD7zIshQCOQWAkiVB3CKCT3jKw7sdwEI=;
+        b=LQ+1tVGqnoiCz4In7FgL8RYfgvEEBWaRO+VkrlDk2K5K3MzrcAy2PC/epsgRJIVsFr
+         YvWruhMeSn8CP6Pz2Q77tAkVpsN+Rz5GuO7oUj6w3qCJhT2EJ9Le0q3fKJuGicOns3+H
+         OlWGUOz9FxyKOYlh4UCQIMjJ+xuOGSuDdUEGg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=PBScQedjQsJUD7zIshQCOQWAkiVB3CKCT3jKw7sdwEI=;
+        b=kdy3p7TjjwF/YqFkZDmfNynDpsH1qK+xRorrvW0MY2Ga/kzoZ3xoRw4T5B1QYky0r5
+         Um6xtZyAuqe294FwuYoPxjb5qKF32NA74tiJ9MJ87aOJWJ3I805hVOv1dRr7W9qAn6B3
+         XlAXY3ekAqqQugUMss31/l7nn+UwQm9TfoHnAGN0UYok7abT4/cpK2ZJeCCOkZiqhP0h
+         6Jidb4UGaTx/c8eywpSg2c74bPsnNsjt+JLLQSvuFXVO4XTLl1IFwDXh6Va3YzvsUBN6
+         WepOI256EsTHZOqLuWtdXJWFVwWSephlsPoTmo1LQSmLHJwrK7bejGquIZiNsOjZaVS7
+         zGlQ==
+X-Gm-Message-State: AOAM530kNwF2od0fPZH88fg6Y5ihESl6KOEJnyymE+i0/2yDJXjnTt1O
+        qgUxBVHYaNH7a6eWX3sbQDyF4A==
+X-Google-Smtp-Source: ABdhPJy500NuFjqwp00AVO85/fDzxFW/sTqua/T06bMcxxtDqRkqUwOzz8ZW+UnMjaxoumi+ZxwlOg==
+X-Received: by 2002:a17:902:cec8:: with SMTP id d8mr36025317plg.98.1643908816120;
+        Thu, 03 Feb 2022 09:20:16 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:c0cb:3065:aa0:d6c9])
+        by smtp.gmail.com with UTF8SMTPSA id a14sm31533363pfv.212.2022.02.03.09.20.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Feb 2022 09:20:15 -0800 (PST)
+Date:   Thu, 3 Feb 2022 09:20:13 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        pmaliset@codeaurora.org, quic_rjendra@quicinc.com,
+        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
+        kgodara@codeaurora.org, konrad.dybcio@somainline.org,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        sibis@codeaurora.org, swboyd@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 09/14] arm64: dts: qcom: sc7280: Disable pull from
+ pcie1_clkreq
+Message-ID: <YfwOzZNVlymi/w2c@google.com>
+References: <20220202212348.1391534-1-dianders@chromium.org>
+ <20220202132301.v3.9.I5f367dcce8107f2186b2aad4aef0dfcfafa034b9@changeid>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-03_06,2022-02-03_01,2021-12-02_01
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220202132301.v3.9.I5f367dcce8107f2186b2aad4aef0dfcfafa034b9@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DMA configuration is added to uart nodes in stm32mp15x device tree.
-Delete uart4 DMA property in stm32mp15xx-dhcor-avenger96 board device
-tree to keep console in irq mode, as DMA support for console has been
-removed from the driver by commit e359b4411c28 ("serial: stm32: fix
-threaded interrupt handling").
-Delete also usart2 and uart7 DMA property to keep current behavior.
+On Wed, Feb 02, 2022 at 01:23:43PM -0800, Douglas Anderson wrote:
+> I believe that the PCIe clkreq pin is an output. That means we
+> shouldn't have a pull enabled for it. Turn it off.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-Signed-off-by: Erwan Le Ray <erwan.leray@foss.st.com>
-
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-index 6885948f3024..61e17f44ce81 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-@@ -376,6 +376,8 @@
- 	label = "LS-UART1";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart4_pins_b>;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
- 	status = "okay";
- };
- 
-@@ -385,6 +387,8 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart7_pins_a>;
- 	uart-has-rtscts;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
- 	status = "okay";
- };
- 
-@@ -394,6 +398,8 @@
- 	pinctrl-0 = <&usart2_pins_a>;
- 	pinctrl-1 = <&usart2_sleep_pins_a>;
- 	st,hw-flow-ctrl;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
- 	status = "okay";
- 
- 	bluetooth {
--- 
-2.17.1
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
