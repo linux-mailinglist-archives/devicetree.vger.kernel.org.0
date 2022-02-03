@@ -2,147 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6B6F4A8B71
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 19:20:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B9924A8B7E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 19:22:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353340AbiBCSUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 13:20:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55808 "EHLO
+        id S237991AbiBCSWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 13:22:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353343AbiBCSUF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 13:20:05 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5EF6C06173B
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 10:20:04 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id b17-20020a9d4791000000b005a17fc2dfc1so3301068otf.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 10:20:04 -0800 (PST)
+        with ESMTP id S233836AbiBCSWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 13:22:52 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678AFC061714;
+        Thu,  3 Feb 2022 10:22:52 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id u6so7725370lfm.10;
+        Thu, 03 Feb 2022 10:22:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=FCGv/qYKeyIfFckxFA2H8QoH1f78f7u1cBQ9C1Sjl3M=;
-        b=eF5N1ay0x01zbCkcH51YulCjlbhEz3kuA1OuFLPpYD06veDb//xhGfkMg66RE1E7cM
-         RXivflDbMlN/+L96DUHKvaL/WzBE+5OQwylRvm5Nr8Nz6bfZHtBrn51QRqndqNBUOqmY
-         XNLOYbDTOC6rIydYZgoJWdk7zx8nzbetY1GzohlLLRh+VqdnKO6TqsPQT8nqZ9YJ4FWq
-         ibNHoEZ3MyBsTJVKaIfyZlHW/zHh5dOnWTgg9YcNZdDdHUc+v/thpYW5HfkanOU7QYxZ
-         5vWVO5umEUNLp4nbmCXz1wcRoutZfkOM/wN48fx/yQ97mmaWp7h9qb0GIJ9VVhig+9WE
-         KL/g==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=bng1VAntY/a3MWNMO6+RyoYVA2d8DbBn++5DPIHqtuE=;
+        b=oUvg3YIN+C0100TFCoV/mVO86/Yq4luRNsxS6SFksfs2C5x06U7fRzh0nfJCu2979d
+         Yo6Cx8hO0BldiQfZQsUOR9xbBocmoaYRNuJ9rCM5YNkLNGFD+2E3uYMiNc8byQixijs7
+         DX0uCXEY8A0PRyMIkh9Bq/RBmLlu7w5e5TWv1m7x/G1uAC2iPFedObhXYVN54UCMOwVp
+         ZnrZFAoKsG/7Z/1GQU0uLo7o36gqNmMtbgsaGQ6LZuZSlPFW+QmLPWO3tZN1CbcvlW/Z
+         xKk4yx1pHU62LGb4FGzUkNQyTk2AeWo5DSYd49sDLdlJO4UhrzAlqxy+JRbc8LHxgS8M
+         pZow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FCGv/qYKeyIfFckxFA2H8QoH1f78f7u1cBQ9C1Sjl3M=;
-        b=6NY5rxHbcu32XMCgeiVi/VBWr3xzFxvX6orNmydgzyo+ls18VmS41fPxQfdbAQshC1
-         PpuN2xXrVkD8LX7g77guv7QAAmwC5cetPRmxfWUFVQcQEwT5uLu/4lRacDcsJR2Us31w
-         l6ylmOs8n8Tn/HmpSfkbQAoarImky/hVIFmWwXI4+vXh/X3S+w9UUJHzDJ5ys0B8N+Sw
-         T2/XlqJ7mitdxyvuH2TSQWda+pFaK6A55ey+Fql2oUtXLsBnm1TApk1FFCxIYPYsh5SF
-         kq5PYc3KPdYhtSGHq2GUqtx5HsWMQKFiJAdHoPf8fd1F+tzhey9teTqH4HTOjuYVD51O
-         NPzQ==
-X-Gm-Message-State: AOAM530j3Cy9j9AL2BcUzy0FOQmtMvpwmTt0OWwUj8p7zze5am03PAW0
-        84GzeRw4DGTucN1UA4kLEvjZvQ==
-X-Google-Smtp-Source: ABdhPJwIMo1ObNoIxykn8Wni8kH14hmmZ6CyaP0CsL8r060Q8Mrt4EjdgnqBRcqUNAj85m5E+K8NOQ==
-X-Received: by 2002:a05:6830:42:: with SMTP id d2mr19692222otp.27.1643912404228;
-        Thu, 03 Feb 2022 10:20:04 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id r186sm13107645oie.23.2022.02.03.10.20.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Feb 2022 10:20:03 -0800 (PST)
-Date:   Thu, 3 Feb 2022 10:20:20 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 00/13] soc: qcom: mdt_loader: Support Qualcomm SM8450
-Message-ID: <Yfwc5NG2sB5LNWut@ripper>
-References: <20220128025513.97188-1-bjorn.andersson@linaro.org>
- <8ee1cea3-00f3-7a9c-dbd9-aaf8160db006@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=bng1VAntY/a3MWNMO6+RyoYVA2d8DbBn++5DPIHqtuE=;
+        b=Mh3Xu1w77z8CAVhHAgpzOG5SPP5n/cdvMw5tiPLZL2zIg45u9KAJNbRCtQojxuYw23
+         w8/YCf7ZOnX4MZG8FuiOH6l3TLjBQ6pC36NPUg3kgv2iVhJ+Ry84Hb+tG5trRNse+74e
+         /QVxeqzQUiK5QVyncUEz7KitCAmjVwKUlWIbM0kzNeD5xMks8FzNF4CUUuh+OaRh6hxI
+         pH37AZx8NweQZuOppTxpIM7oEJG0Br/lEvajYqOSVhFzbZj/DLXulTqmmE0pFyEbSgSG
+         X0GZq6ksFGt1xq8UGeI7cksj9zhhCPTLWNr75sRffiD5hOjiVgxW4TFIpyDgWoZEqlTH
+         HI8g==
+X-Gm-Message-State: AOAM531XnA3+eWTMSfveJh0MMeHwCZxklTzn1rJQ/HQSD87jgExd2qgG
+        aJY+sLPyqPKrmKSpWITk/gg=
+X-Google-Smtp-Source: ABdhPJyV14em01gGXmQXgKKTGilU91Wd86iUbuo0lyi5ZsD93O/rCDbCKeIysAnznWdx7ZJ2Ek8c7A==
+X-Received: by 2002:ac2:4e08:: with SMTP id e8mr27847098lfr.266.1643912570622;
+        Thu, 03 Feb 2022 10:22:50 -0800 (PST)
+Received: from [192.168.2.145] (109-252-138-165.dynamic.spd-mgts.ru. [109.252.138.165])
+        by smtp.googlemail.com with ESMTPSA id s16sm4319314lfp.197.2022.02.03.10.22.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Feb 2022 10:22:50 -0800 (PST)
+Message-ID: <d6d70e52-a984-d973-f3bb-f70f1a4ce95d@gmail.com>
+Date:   Thu, 3 Feb 2022 21:22:49 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8ee1cea3-00f3-7a9c-dbd9-aaf8160db006@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v18 2/4] dmaengine: tegra: Add tegra gpcdma driver
+Content-Language: en-US
+To:     Akhil R <akhilrajeev@nvidia.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Rajesh Gumasta <rgumasta@nvidia.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>
+Cc:     Pavan Kunapuli <pkunapuli@nvidia.com>
+References: <1643729199-19161-1-git-send-email-akhilrajeev@nvidia.com>
+ <1643729199-19161-3-git-send-email-akhilrajeev@nvidia.com>
+ <3feaa359-31bb-bb07-75d7-2a39c837a7a2@gmail.com>
+ <DM5PR12MB18509939C17ABEB5EEA825FFC0289@DM5PR12MB1850.namprd12.prod.outlook.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <DM5PR12MB18509939C17ABEB5EEA825FFC0289@DM5PR12MB1850.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 03 Feb 07:11 PST 2022, Dmitry Baryshkov wrote:
+03.02.2022 06:44, Akhil R пишет:
+>> But why do you need to pause at all here and can't use
+>> tegra_dma_stop_client() even if pause is supported?
+> The recommended method to terminate a transfer in
+> between is to pause the channel first and then disable it.
+> This is more graceful and stable for the hardware.
+> stop_client() is more abrupt, though it does the job.
 
-> On 28/01/2022 05:55, Bjorn Andersson wrote:
-> > The Qualcomm SM8450 platform comes with both some smaller changes in the
-> > firmware packaging and a new requirement to hold onto the metadata buffer until
-> > PAS auth_and_reset has been completed.
-> > 
-> > Extend the PAS api and rework the mdt_loader to meet these new requirements,
-> > then wire this up with the PAS remoteproc driver and finally add the SM8450
-> > remoteproc instances.
-> > 
-> > Bjorn Andersson (13):
-> >    firmware: qcom: scm: Introduce pas_metadata context
-> >    soc: qcom: mdt_loader: Split out split-file-loader
-> >    soc: qcom: mdt_loader: Allow hash segment to be split out
-> >    soc: qcom: mdt_loader: Allow hash to reside in any segment
-> >    soc: qcom: mdt_loader: Extend check for split firmware
-> >    soc: qcom: mdt_loader: Reorder parts of __qcom_mdt_load()
-> >    soc: qcom: mdt_loader: Always invoke PAS mem_setup
-> >    soc: qcom: mdt_loader: Extract PAS operations
-> >    remoteproc: qcom: pas: Carry PAS metadata context
-> >    dt-bindings: remoteproc: qcom: pas: Add SM8450 PAS compatibles
-> >    remoteproc: qcom: pas: Add SM8450 remoteproc support
-> >    arm64: dts: qcom: sm8450: Add remoteproc enablers and instances
-> >    arm64: dts: qcom: sm8450-qrd: Enable remoteproc instances
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
-
-Thanks.
-
-> Minor nitpicks:
->  - I'd reorder the series by moving patch 1 (pas_metadata) closer to patch
-> 8&9 (pas metadata usage)
-
-For a while the design where such that I would merge the first patch
-into a immutable branch and then merge the soc/qcom and remoteproc
-changes separately.
-
-But as you can see, in the end the remoteproc patch ended up depending
-on the mdt_loader changes.
-
-I like your suggestion, so I can move the scm change down to keep things
-together.
-
->  - I would have added pas_metadata as an argument to qcom_mdt_load().
-> However I see, why you didn't want to add another argument to the list.
-> 
-
-I looked at that, but I was already unhappy with the argument explosion
-in that function prototype.
-
-By splitting out the difference between qcom_mdt_load() and
-qcom_mdt_load_no_init() into a separate function will allow some cleanup
-and better reuse in the client drivers.
-
-As we bring up the various clients on SM8450 we will need to perform the
-same modifications that was done to the remoteproc driver, by doing it
-like this we don't need to change the prototype twice.
-
-Regards,
-Bjorn
-
-> > 
-> >   .../bindings/remoteproc/qcom,adsp.yaml        |  16 +
-> >   arch/arm64/boot/dts/qcom/sm8450-qrd.dts       |  20 ++
-> >   arch/arm64/boot/dts/qcom/sm8450.dtsi          | 297 ++++++++++++++++++
-> >   drivers/firmware/qcom_scm.c                   |  39 ++-
-> >   drivers/remoteproc/qcom_q6v5_mss.c            |   7 +-
-> >   drivers/remoteproc/qcom_q6v5_pas.c            |  36 ++-
-> >   drivers/soc/qcom/mdt_loader.c                 | 232 +++++++++-----
-> >   include/linux/qcom_scm.h                      |  10 +-
-> >   include/linux/soc/qcom/mdt_loader.h           |  17 +-
-> >   9 files changed, 579 insertions(+), 95 deletions(-)
-> > 
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
+If there is no real practical difference, then I'd use the common method
+only. This will make code cleaner and simpler a tad.
