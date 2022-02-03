@@ -2,93 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92B144A8901
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 17:47:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7470D4A88F7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 17:47:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbiBCQqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 11:46:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33116 "EHLO
+        id S1352367AbiBCQqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 11:46:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240972AbiBCQqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 11:46:37 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91615C061714
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 08:46:37 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id i34so7287310lfv.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 08:46:37 -0800 (PST)
+        with ESMTP id S1347468AbiBCQqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 11:46:38 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18D84C06173E
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 08:46:38 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id t9so4700958lji.12
+        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 08:46:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ie1OHE8dynoeStzKHWtxsQXqjLNlKsrhQFt6sTADfMA=;
-        b=M7p2IigGIIkJiS1rj/2sNK1ODqHrIF5SlWms7dSmhOACxEDQV2jqqiF77MyXoWjfLe
-         G2FVtRW/SSwZvA/NPvbxjmkJI7CzIneHelEpx84rgdj4dQRkeBr7m+nKxRQFAENiz5Tu
-         v/bObx6aY6C2x4ke4oesFrbpi6W5OH1EtrIdk/C9F5q6MnXn0xxyO/IMYI3rjARQUCeR
-         GsPXS4wts77pJbeLNx4xkxsR91sJ74YOCkTC0TPSlammkONInMBIqgU68PLS7Q7kpfrT
-         yq/E9+IkXS0mf8w3qeepus7LeK/tnbEYRlO4JYY7VyeSwCGjcNKAR+M0C8LLVJWBK46q
-         NWEg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=8jB3QWFPq4tYyo9a6LQnVJfW1OWpkZK4X0yVs9VUaIA=;
+        b=upiZmsHDarYV6iwQW1DlW79cmGmkJb2uWOokRc4WAwcuONG8v0taVQDKEwJheifFhp
+         g/RzSBJtmQhsLPkhCKD/fXfkYe0ij4W/YO/gXQqZBP7EGG4D1TiO126bhJjo6EsBP0+3
+         ypqXqeo84EhpiAFNVehcXO87sfGdQ/43EgRLxaWrpmqDmdqj7d/tMwRYdSC2rSmrCb/7
+         5EOqURXReMMC4ACx2CxRMofbhlL7WEWmupdIZPKx8rItraA3sUt7WVKP8+UOBMHVwJlf
+         xo6kog77+QKuQqh0x7PJ7xTVFsAfQ6QOQHug5wxxZlJmm+z2+viYl1dAdWeqCzADi5Ey
+         TY2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ie1OHE8dynoeStzKHWtxsQXqjLNlKsrhQFt6sTADfMA=;
-        b=OORRTfeYtUAew7V2+J0K0b0+e7v1YXM4xGgNNm9mvzFWjNeU0dDYU6OWpPdfqCNKgo
-         Nnk5ghCOoSS/KAUApj1QhJUkpukZOEe/wBtul+RftbqUrIiysITsSkef7N6k0AJiT3SN
-         egO2tbIaPKWcCHBVPhqy3jdXnJFexpR5kcgVMnwdlRSE3m9y2uP76tqSTs0YDkoGeAIH
-         J3LoevKEBAFUoJnlx3I9RH7UYF4xjx3T8xxvPN5W09ixwtsXmfoRwELTuSH1Pw3UuPJ6
-         xV15lq1LmdSzNh/zCW/3l4pQAss7X2gexLluoE6V5AZS+O6eQkF4SlB2AgLvgAZ2ldum
-         oh/A==
-X-Gm-Message-State: AOAM533+KF4E9hUPZ7qBfgtSSO+YjNOPjOtRadFmN3i5VnZgxDQMzq5R
-        l938jYalWlmMmLfJmVycnkW2RCV2h9xMwFfT
-X-Google-Smtp-Source: ABdhPJz4iO8ubgZ56ej9rjRRI92NoRvioTzKBRhVXGP3nBxWdRughDp5LXUfUf8Gd0HmY3Wubghf4w==
-X-Received: by 2002:a19:5219:: with SMTP id m25mr28305305lfb.502.1643906795816;
-        Thu, 03 Feb 2022 08:46:35 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=8jB3QWFPq4tYyo9a6LQnVJfW1OWpkZK4X0yVs9VUaIA=;
+        b=3zTewide5TAsGAh03Zt9QK/uTkdn9Y3S/Z4NsvSd37sBc5WWk4KJzxFCYQXjhwUAc2
+         TUoK386QbCzCMkvc4vOET7OXTffbjtoIBigjG9zO4+t8KzJ9FZT59oU6WEnM6sRGzm8n
+         DDIFShGPrLf/nt6PqvJ4X1/Z4eOlJc8TYIDhLUM1QJ9U50QdoOOoDZT8RE2v9XQU0/Iz
+         xvjOTeozJdrXSxu270b0cwBA6qzMW3ZANrr0rlgf9aLhm3n68Y3WNmhJgIsjHn520SFx
+         yXBvtrj+wocna0GSQhR70NhWFRc3msJTdJ21QWppH8Y05StpGD5d8UflF6/G6u8gxldr
+         5cug==
+X-Gm-Message-State: AOAM532dV0Vq8SyX2/QWYDLJjk7bhPxmfvkxeePaIDkr3N7RhOB6sPDs
+        vo76DkCWFY/EhOwV5V/2cm0omg==
+X-Google-Smtp-Source: ABdhPJwIkL4AyrPYHs2BAQP+p95jSYywBKSJ62hIbgp1eN1PcZEpj4nIVyw/Q0DNp1Tv1rxo0HOE1A==
+X-Received: by 2002:a2e:5ca:: with SMTP id 193mr23681605ljf.213.1643906796460;
+        Thu, 03 Feb 2022 08:46:36 -0800 (PST)
 Received: from localhost.localdomain (88-113-46-102.elisa-laajakaista.fi. [88.113.46.102])
-        by smtp.gmail.com with ESMTPSA id h6sm269999lfm.237.2022.02.03.08.46.34
+        by smtp.gmail.com with ESMTPSA id h6sm269999lfm.237.2022.02.03.08.46.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Feb 2022 08:46:35 -0800 (PST)
+        Thu, 03 Feb 2022 08:46:36 -0800 (PST)
 From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 To:     Loic Poulain <loic.poulain@linaro.org>,
         Robert Foss <robert.foss@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 0/9] i2c: qcom-cci: fixes and updates
-Date:   Thu,  3 Feb 2022 18:46:27 +0200
-Message-Id: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
+Subject: [PATCH 1/9] dt-bindings: i2c: qcom-cci: add QCOM SM8450 compatible
+Date:   Thu,  3 Feb 2022 18:46:28 +0200
+Message-Id: <20220203164629.1711958-2-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
+References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The main intention of the patch series is to add support of vbus
-regulators, which are commonly connected to CCI I2C busses.
+The change adds QCOM SM8450 compatible value to the list of QCOM CCI
+controller compatibles, the controller found on the SoC is equal to
+the ones found on previous SoC generations.
 
-The new bus adapter specific bus_regulator from commit 5a7b95fb993e
-("i2c: core: support bus regulator controlling in adapter") is reused,
-however its control is connected to runtime pm of the I2C master
-controller rather than runtime pm of slaves.
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+---
+ Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-In addition the series adds new compatible value for CCI found on QCOM
-SM8450 SoC.
-
-Vladimir Zapolskiy (9):
-  dt-bindings: i2c: qcom-cci: add QCOM SM8450 compatible
-  dt-bindings: i2c: qcom-cci: add description of a vbus-supply property
-  i2c: qcom-cci: don't delete an unregistered adapter
-  i2c: qcom-cci: don't put a device tree node before i2c_add_adapter()
-  i2c: qcom-cci: initialize CCI controller after registration of adapters
-  i2c: qcom-cci: simplify probe by removing one loop over busses
-  i2c: qcom-cci: simplify access to bus data structure
-  i2c: qcom-cci: add support of optional vbus-supply regulators
-  i2c: qcom-cci: add sm8450 compatible
-
- .../devicetree/bindings/i2c/i2c-qcom-cci.txt  |   9 +-
- drivers/i2c/busses/i2c-qcom-cci.c             | 159 ++++++++++++------
- 2 files changed, 114 insertions(+), 54 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt b/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt
+index 7b9fc0c22eaf..924ad8c03464 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt
++++ b/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt
+@@ -10,6 +10,7 @@ PROPERTIES:
+ 		"qcom,msm8996-cci"
+ 		"qcom,sdm845-cci"
+ 		"qcom,sm8250-cci"
++		"qcom,sm8450-cci"
+ 
+ - reg
+ 	Usage: required
+@@ -43,7 +44,8 @@ PROPERTIES:
+ SUBNODES:
+ 
+ The CCI provides I2C masters for one (msm8916) or two i2c busses (msm8996,
+-sdm845 and sm8250), described as subdevices named "i2c-bus@0" and "i2c-bus@1".
++sdm845, sm8250 and sm8450), described as subdevices named "i2c-bus@0" and
++"i2c-bus@1".
+ 
+ PROPERTIES:
+ 
 -- 
 2.33.0
 
