@@ -2,193 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B59054A8FCD
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 22:25:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59DA94A8FE1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 22:28:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354925AbiBCVY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 16:24:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42490 "EHLO
+        id S1355025AbiBCV2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 16:28:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354908AbiBCVY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 16:24:58 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBDF3C06173D
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 13:24:58 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id x193so6269648oix.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 13:24:58 -0800 (PST)
+        with ESMTP id S232038AbiBCV2C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 16:28:02 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B974CC06173D
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 13:28:02 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id x193so6280676oix.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 13:28:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=OEizoFh5dGc7xn7ZM0x/sSSf+5firRY6kzhR6U0etz8=;
-        b=zLqLrDtpuptuWwv84+9kX/SWihv+uz4HW3FclIPcLVDqM6MV+np5qvarTHxcQvS9rL
-         jwh1DQnbELQSjoTucnFJUQRilAYuqHawNRWztdEekA0hgL2+/r9NtGWCKLKvLySQHeD6
-         x9BuapDp0ONHxiHjHXjafwVvSMt/8EKrcDyV+qUwNiAzRK1oiq/ogPNxS9RBCf7s1qJ5
-         Oy9k8Sce95HYhE5cTK0WOHHEUnlvjFm41XAi19GCdcLedYWxwGL7o8VBSyM4IHXwvh7s
-         tQOp1la/lFy3USIGoP4IXbGvGJ8sz0RRHgA0irPG23pA75XCHnmJkdNMM41I/Dnu59WA
-         p5jA==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=6VplieGMJAR9UNduIPc0+Hmk4xJP3Y1QDTbjYLcBmE8=;
+        b=C3cZahKkdjZzC2AhHhwwKQNR1OVsiw4vU8GHVmm59kXb7HIsQ1/v9bY3Mtlps8XMXH
+         XWV2aexgvt2i5tbbGQWxI07NXbsWXybbLu6DEDqBdtLAlOVU5KaeTiMscJfb1xCWfRkF
+         2e4LUcdbEptCWXlNBe0GOm3sG1Q4kmwo4+SkU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OEizoFh5dGc7xn7ZM0x/sSSf+5firRY6kzhR6U0etz8=;
-        b=025jnu1hBZAnTI4RIodA4pefw+PUPJA9npSd00jN4vAioyeEcaWMZVrxVWm/P1RsMa
-         O3/UHY4gkCgi/5Du/+jbegGUkE+IsSlRevzLhQEpsfIjWNiSh7Irse+OVvIaYeHBsLJF
-         3Rklw9asxo5KJi2FLP76tu4Xgv4+JDI3Poa5eYwWPBRbs+yvAQxJWq2xUeE91mLnvDEH
-         b9hEYZ3e9sTIjoIqRGgIQonT2TC6ame8UHGp/sIGtL1N6aG20h/mnsLofVQcPlazuffi
-         4/cgWYXTIggI22nwU+juQWQOZ0iNpqLIcwkpH91ngqGiYMoqV17Irnx5156zC1q+x3wO
-         FCQw==
-X-Gm-Message-State: AOAM533vxHb4qb7ecJN4wF8c+xaE11AzqTcktArDktzT+t49qMGBWX/u
-        mn+T5NrqP8tv736Ul6soEFnyFw==
-X-Google-Smtp-Source: ABdhPJwznJ+hNC51HjfS5K4o3FOZsiPb1GJ7p6T9dwIUEGGWZU6vree76K+goH40Ccbm5MQVUXas7Q==
-X-Received: by 2002:aca:3657:: with SMTP id d84mr8941592oia.212.1643923498231;
-        Thu, 03 Feb 2022 13:24:58 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id y16sm1915oac.4.2022.02.03.13.24.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Feb 2022 13:24:57 -0800 (PST)
-Date:   Thu, 3 Feb 2022 13:25:14 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Prasad Malisetty <quic_pmaliset@quicinc.com>
-Cc:     agross@kernel.org, lorenzo.pieralisi@arm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org, kw@linux.com, bhelgaas@google.com,
-        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com,
-        manivannan.sadhasivam@linaro.org, swboyd@chromium.org
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Fix pcie gpio entries
-Message-ID: <YfxIOi9ZhVoUNvQJ@ripper>
-References: <1643790082-18417-1-git-send-email-quic_pmaliset@quicinc.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=6VplieGMJAR9UNduIPc0+Hmk4xJP3Y1QDTbjYLcBmE8=;
+        b=Fp+3K5MEsYoT2ZuadbkpQglc1E1HjZ3FcEawzbwPJTVT8TbxVzNUCOV+BTn9odwP+/
+         Qpeh3gqePCSQGstaPGVrHR52gGRfAT+RTGAZ69SGKcNj8PAlrgMvSgQUmCWi+mXVqG6w
+         GTY9+PH7gaVQSMO8C55OhcL0ESmioVk4s1DRc2RjIL3uC0n0ftlLCoCw0q8MgdizHV1d
+         nMFezKmkdJEqA1V3/XqvMnqhGJrH1tr30opx7XGSvYTUhX9OPVqzc+lUEAa8/wAK9rvI
+         X+H/tX56GhD+jyWJhDa/Je2yhiyVe373AHarLKypez9+fHzMvfykLwYnzlHraF1+2gTR
+         kupw==
+X-Gm-Message-State: AOAM531ePX3pxSkVuNkpQLn7dojZwcqNTVecJ+SzfRkoDLC7M6tufdtd
+        z9Hq1Vo1xBYBqVaw4sxFnwpCoOhbDcEshwdjLDCg4w==
+X-Google-Smtp-Source: ABdhPJyRGGh5o3RQEE4N30LJAoPRh1VFd99uBGzTml3OZn6L9Hkq2Au4hX556EyY3v8cR0CPMV4NBudGKeghR/0q+o8=
+X-Received: by 2002:aca:df82:: with SMTP id w124mr8788790oig.112.1643923682140;
+ Thu, 03 Feb 2022 13:28:02 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 3 Feb 2022 21:28:01 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1643790082-18417-1-git-send-email-quic_pmaliset@quicinc.com>
+In-Reply-To: <20220202132301.v3.4.I79baad7f52351aafb470f8b21a9fa79d7031ad6a@changeid>
+References: <20220202212348.1391534-1-dianders@chromium.org> <20220202132301.v3.4.I79baad7f52351aafb470f8b21a9fa79d7031ad6a@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 3 Feb 2022 21:28:01 +0000
+Message-ID: <CAE-0n50+AzZv2Q7Uda0OpEKxkbSY_-S8_CZeScjicChm94Dtjg@mail.gmail.com>
+Subject: Re: [PATCH v3 04/14] arm64: dts: qcom: sc7280: Clean up sdc1 / sdc2 pinctrl
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>
+Cc:     pmaliset@codeaurora.org, mka@chromium.org,
+        quic_rjendra@quicinc.com,
+        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
+        kgodara@codeaurora.org, konrad.dybcio@somainline.org,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        sibis@codeaurora.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 02 Feb 00:21 PST 2022, Prasad Malisetty wrote:
-
-> Current gpio's in IDP file are not mapping properly,
-> seeing device timedout failures.
-> 
-
-It's not obvious from the proposed patch which part fixes this and which
-part relates to moving part of the nodes between dtsi and dts.
-
-> Corrected pcie gpio entries in dtsi files.
-> 
-> Fixes: 4e24d227aa77 ("arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board")
-> 
-
-There's not supposed to be a blank line here.
-
-> Signed-off-by: Prasad Malisetty <quic_pmaliset@quicinc.com>
+Quoting Douglas Anderson (2022-02-02 13:23:38)
+> This patch makes a few improvements to the way that sdc1 / sdc2
+> pinctrl is specified on sc7280:
+>
+> 1. There's no reason to "group" the sdc pins into one overarching node
+> and there's a downside: we have to replicate the hierarchy in the
+> board device tree files. Let's clean this up.
+>
+> 2. There's really not a lot of reason not to list the "pinctrl" for
+> sdc1 (eMMC) in the SoC dtsi file. These aren't GPIO pins and
+> everyone's going to specify the same pins.
+>
+> 3. Even though it's likely that boards will need to override pinctrl
+> for sdc2 (SD card) to add the card detect GPIO, we can be symmetric
+> and add it to the SoC dsti file.
+>
+> 4. Let's get rid of the word "on" from the normal config and add a
+> "sleep" suffix to the sleep config. This looks cleaner to me.
+>
+> This is intended to be a no-op change but it could plausibly change
+> behavior depending on how the pinctrl code parses things. One thing to
+> note is that "SD card detect" is explicitly listed now as keeping its
+> pull enabled in sleep since we still want to detect card insertions
+> even if the controller is suspended (because no card is inserted). The
+> pinctrl framework likely did this anyway, but it's nice to see it
+> explicit.
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 35 ++++++++++++++------------------
->  arch/arm64/boot/dts/qcom/sc7280.dtsi     | 10 ++++++++-
->  2 files changed, 24 insertions(+), 21 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 78da9ac..84bf9d2 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -243,9 +243,6 @@
->  	perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
->  
->  	vddpe-3v3-supply = <&nvme_3v3_regulator>;
-> -
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pcie1_reset_n>, <&pcie1_wake_n>;
->  };
->  
->  &pcie1_phy {
-> @@ -360,6 +357,21 @@
->  
->  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
->  
-> +&pcie1_reset_n {
-> +	pins = "gpio2";
-> +
-> +	drive-strength = <16>;
-> +	output-low;
-> +	bias-disable;
-> +};
-> +
-> +&pcie1_wake_n {
-> +	pins = "gpio3";
-> +
-> +	drive-strength = <2>;
-> +	bias-pull-up;
-> +};
-> +
->  &pm7325_gpios {
->  	key_vol_up_default: key-vol-up-default {
->  		pins = "gpio6";
-> @@ -436,23 +448,6 @@
->  		function = "gpio";
->  	};
->  
-> -	pcie1_reset_n: pcie1-reset-n {
-> -		pins = "gpio2";
-> -		function = "gpio";
-> -
-> -		drive-strength = <16>;
-> -		output-low;
-> -		bias-disable;
-> -	};
-> -
-> -	pcie1_wake_n: pcie1-wake-n {
-> -		pins = "gpio3";
-> -		function = "gpio";
-> -
-> -		drive-strength = <2>;
-> -		bias-pull-up;
-> -	};
-> -
->  	qup_uart7_sleep_cts: qup-uart7-sleep-cts {
->  		pins = "gpio28";
->  		function = "gpio";
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index d4009cc..2e14c37 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -1640,7 +1640,7 @@
->  			phy-names = "pciephy";
->  
->  			pinctrl-names = "default";
-> -			pinctrl-0 = <&pcie1_clkreq_n>;
-> +			pinctrl-0 = <&pcie1_clkreq_n>, <&pcie1_reset_n>, <&pcie1_wake_n>;
->  
->  			iommus = <&apps_smmu 0x1c80 0x1>;
->  
-> @@ -3272,6 +3272,14 @@
->  				bias-pull-up;
->  			};
->  
-> +			pcie1_reset_n: pcie1-reset-n {
 
-I find the idea of partially describing the state in two files hard to
-follow - in particular you need to read both parts of &pcie1_reset_n to
-understand what the state this represents.
-
-Keep it as it was, and fix the problem you're seeing, without the
-refactoring.
-
-Regards,
-Bjorn
-
-> +				function = "gpio";
-> +			};
-> +
-> +			pcie1_wake_n: pcie1-wake-n {
-> +				function = "gpio";
-> +			};
-> +
->  			dp_hot_plug_det: dp-hot-plug-det {
->  				pins = "gpio47";
->  				function = "dp_hot";
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
