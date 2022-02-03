@@ -2,140 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75C3C4A8945
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:07:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 527024A8948
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:07:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbiBCRG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 12:06:56 -0500
-Received: from relmlor2.renesas.com ([210.160.252.172]:40671 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1352501AbiBCRGx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:06:53 -0500
-X-IronPort-AV: E=Sophos;i="5.88,340,1635174000"; 
-   d="scan'208";a="109262256"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 04 Feb 2022 02:06:53 +0900
-Received: from localhost.localdomain (unknown [10.226.92.2])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 2E4B940B184E;
-        Fri,  4 Feb 2022 02:06:50 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 4/4] arm64: dts: renesas: rzg2lc-smarc: Enable CANFD channel 1
-Date:   Thu,  3 Feb 2022 17:06:36 +0000
-Message-Id: <20220203170636.7747-5-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220203170636.7747-1-biju.das.jz@bp.renesas.com>
-References: <20220203170636.7747-1-biju.das.jz@bp.renesas.com>
+        id S1350681AbiBCRH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 12:07:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37834 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1352479AbiBCRH2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:07:28 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26BBCC061714
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 09:07:27 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id m7so3038235pjk.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 09:07:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LJp09xp8M+uPz3Zlp081AW6/VRw1By1H8gO/Cef3cHM=;
+        b=Adjh+T+uMn674K4lzSPEJAOpNaiO0jvKaXqteiO+51Q25gNHZ0YDnj8MXXM2f6ibRN
+         XWE1E3TNYEGYF4gqqPa6wBgMUEggrkOkie5/EOw77olyQeOmi8/yiRbc5pwWanV02BRY
+         L+6njpOsMrmUmGjN6zB6Rn8Z+b18QkFYGZWVw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LJp09xp8M+uPz3Zlp081AW6/VRw1By1H8gO/Cef3cHM=;
+        b=f+woWYrqSWdeCYTxQcQN/tBPqs5zGe2rRkA0VMmQpNXE/bHfjmxI1O9ccWHHZHgBRz
+         HWnPoIyyTx7NtCKZZUBiEF1p2+jBL5olEPzaVcXyVZKDZlMhH3w6FryULoFw3qrFsZEV
+         5GtJJrncl4e0cgPf3X1Az461LnihC+/QL8xStwD7rGM5RDElJ498b9hqQ+NY6Qn18Qkj
+         pOHAFa2nFvVuFnUWabMCY5UrUJtH6RJ7uwN14kNdOBZ9M8Oh4X3XnKcxal6A8VWG9/b7
+         RFyn+lDLp1ioSZcBzehbChBH4UWOSfIGyNUkudbd2T+UM8UtL9prEKnB+kuh7BRyptvP
+         7G3g==
+X-Gm-Message-State: AOAM533UCTiHKDERbX8A3JzhlebkoS2ul51ole81QwWS3Lok+s2FvfEl
+        B0uttvkUfMBhfhQNnGEWwSdFAQ==
+X-Google-Smtp-Source: ABdhPJwlQtEnkwSVb6H/ujF0qK6GiHZBbZkSdS5LPsi/mn5p/6hLJIxQDWBkk3LMCBzm6bPY7W1VsA==
+X-Received: by 2002:a17:90b:33d2:: with SMTP id lk18mr14724761pjb.224.1643908046695;
+        Thu, 03 Feb 2022 09:07:26 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:c0cb:3065:aa0:d6c9])
+        by smtp.gmail.com with UTF8SMTPSA id mi11sm10907797pjb.37.2022.02.03.09.07.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Feb 2022 09:07:26 -0800 (PST)
+Date:   Thu, 3 Feb 2022 09:07:24 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        pmaliset@codeaurora.org, quic_rjendra@quicinc.com,
+        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
+        kgodara@codeaurora.org, konrad.dybcio@somainline.org,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        sibis@codeaurora.org, swboyd@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 08/14] arm64: dts: qcom: sc7280: Move pcie1_clkreq
+ pull / drive str to boards
+Message-ID: <YfwLzJP/QuBJasAq@google.com>
+References: <20220202212348.1391534-1-dianders@chromium.org>
+ <20220202132301.v3.8.Iffff0c12440a047212a164601e637b03b9d2fc78@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220202132301.v3.8.Iffff0c12440a047212a164601e637b03b9d2fc78@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On RZ/G2LC SMARC EVK, CAN0 is not populated.
+On Wed, Feb 02, 2022 at 01:23:42PM -0800, Douglas Anderson wrote:
+> Pullups and drive strength don't belong in the SoC dtsi file. Move to
+> the board file.
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-CAN1 is multiplexed with SCIF1 using SW1[3] or RSPI using SW1[4].
-
-This patch adds support for the CAN1 interface on RZ/G2LC SMARC EVK.
-
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v2->v3: No change
-v1->v2: No change
----
- .../boot/dts/renesas/r9a07g044c2-smarc.dts    |  6 -----
- .../dts/renesas/rzg2lc-smarc-pinfunction.dtsi | 23 +++++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 13 +++++++++++
- 3 files changed, 36 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-index 50abdabc374a..5a5cea82a5d9 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-@@ -14,12 +14,6 @@
- 	compatible = "renesas,smarc-evk", "renesas,r9a07g044c2", "renesas,r9a07g044";
- };
- 
--&canfd {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
- &ehci0 {
- 	/delete-property/ pinctrl-0;
- 	/delete-property/ pinctrl-names;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-index ec9e08ec0822..bff56d696936 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-@@ -17,6 +17,14 @@
- 			 <RZG2L_PORT_PINMUX(38, 1, 1)>;	/* RxD */
- 	};
- 
-+#if SW_SCIF_CAN
-+	/* SW8 should be at position 2->1 */
-+	can1_pins: can1 {
-+		pinmux = <RZG2L_PORT_PINMUX(40, 0, 3)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(40, 1, 3)>; /* RxD */
-+	};
-+#endif
-+
- 	scif1_pins: scif1 {
- 		pinmux = <RZG2L_PORT_PINMUX(40, 0, 1)>, /* TxD */
- 			 <RZG2L_PORT_PINMUX(40, 1, 1)>, /* RxD */
-@@ -24,6 +32,21 @@
- 			 <RZG2L_PORT_PINMUX(41, 1, 1)>; /* RTS# */
- 	};
- 
-+#if SW_RSPI_CAN
-+	/* SW8 should be at position 2->3 so that GPIO9_CAN1_STB line is activated */
-+	can1-stb {
-+		gpio-hog;
-+		gpios = <RZG2L_GPIO(44, 3) GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "can1_stb";
-+	};
-+
-+	can1_pins: can1 {
-+		pinmux = <RZG2L_PORT_PINMUX(44, 0, 3)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(44, 1, 3)>; /* RxD */
-+	};
-+#endif
-+
- 	sd1-pwr-en-hog {
- 		gpio-hog;
- 		gpios = <RZG2L_GPIO(39, 2) GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 1b59ef376296..28f21c287ba3 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -44,6 +44,19 @@
- 	};
- };
- 
-+#if (SW_SCIF_CAN || SW_RSPI_CAN)
-+&canfd {
-+	pinctrl-0 = <&can1_pins>;
-+	/delete-node/ channel@0;
-+};
-+#else
-+&canfd {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+#endif
-+
- /*
-  * To enable SCIF1 (SER0) on PMOD1 (CN7), On connector board
-  * SW1 should be at position 2->3 so that SER0_CTS# line is activated
--- 
-2.17.1
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
