@@ -2,159 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61DF34A7FF7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 08:42:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28EC54A8025
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 09:13:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349433AbiBCHmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 02:42:14 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:50868
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1349435AbiBCHmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 02:42:12 -0500
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0CF0A4003E
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 07:42:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643874131;
-        bh=69oC9K6bP5zXfYZ3RPqGsmz6Po3E4WX3hDMRIgEHu/M=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=aWw8O7kot+Xlph+PwsqCq3X4ckfyJIq5F+8uJRN/lAJtodSvbBk75Q7Xs9RgmpS51
-         /HmJTkTpujlL/Opvyl5gmByIy+64MhUt3BP5weSjtlpOaJwdsBm0Q1yt4MSBbIf90t
-         SyjaUw099stQLswmhWaxzT8VRjHrPAzwx4RpMeFcaobzd9f1PKMNEUKLZWYLYizWle
-         Kh1Xc2TgCR3suePo8/fl9rFlMDOoXDtAgaoHpnSlDj7x+85WyZSI3F9dOEp5q43OwJ
-         84W5510z+boTtWwaQeHHC1Q3mKsvEttKYP5IuPVLniIenD34RqxgmeziPeB1wPxB+R
-         T/LwP5q54kXtA==
-Received: by mail-wr1-f69.google.com with SMTP id r27-20020adfb1db000000b001d7567e33baso345700wra.12
-        for <devicetree@vger.kernel.org>; Wed, 02 Feb 2022 23:42:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=69oC9K6bP5zXfYZ3RPqGsmz6Po3E4WX3hDMRIgEHu/M=;
-        b=s9SAlDVAwIWemP/QRMinWM/SNgpmiEkRT49DzhFK6NKjdavN8z4ska+MHTYP0PMsIJ
-         vQjXR/b/pMTgDegCVmjHWMuKhMCN+fxCOD4ZClBqD5v9uQZkLtTa2umoZrJD7EpzuyXg
-         1AIQ+WsIssOdclS6MmhLeoU24MyGr8vG97kQTKRPyKyYb/0HYTGHBmglK0qcWqIeHALO
-         YDqw+aTJ2V6pzjqbxDKeNGvOwg7L4o3Qlym02rTfwe3ruNEF7aovJYfwSZydNr4EdMKR
-         k0NPz3KTfKgA5ZXo9TY7/9R8aSTyFItibkIQ5JwDj0AUsma+16P1diOeE4QVftUoFHaA
-         /hlQ==
-X-Gm-Message-State: AOAM531Pmq707ySQNRq/wxddD/XXcWL3MM+wpv79R5uKBz+OSvoQa0F/
-        FfRdBzYVZCG7q/F3bLgalYA2JiBzVxUERGey48f7IgKq/8DxAEeAxVv3KJMtn9IA9KcSaUe4XxJ
-        1xUlsDyXzJW9CZU9sbQDLuXMvaggn5OgGm+54sRk=
-X-Received: by 2002:a05:6000:10cf:: with SMTP id b15mr28156902wrx.70.1643874119532;
-        Wed, 02 Feb 2022 23:41:59 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwInkGYx0bCKYBNdkDDYX+ptQNyAD6vMUiS8CqzI/xYfseOfTNCURA5lpsX4JtSbcPIAvyzjw==
-X-Received: by 2002:a05:6000:10cf:: with SMTP id b15mr28156886wrx.70.1643874119363;
-        Wed, 02 Feb 2022 23:41:59 -0800 (PST)
-Received: from [192.168.0.80] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id t18sm19832712wri.34.2022.02.02.23.41.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Feb 2022 23:41:58 -0800 (PST)
-Message-ID: <1d549a00-b9f5-d60f-2d5b-798e92139f86@canonical.com>
-Date:   Thu, 3 Feb 2022 08:41:56 +0100
+        id S235492AbiBCINk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 03:13:40 -0500
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:46103 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231836AbiBCINj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 03:13:39 -0500
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id B3BED32020F0;
+        Thu,  3 Feb 2022 03:13:37 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Thu, 03 Feb 2022 03:13:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; bh=h+F9A27NvIA+GKJCYuxpPOGt5GYFFmLQcgR5pl
+        DO8E8=; b=Cdsyg0Pn3Ab6xErlAntB5MyGCgXAkk+uF09GN826cSXJp1nX39LKSn
+        QnpArFTJMqTf90vRHT5lV7nBTPMKViGa6U9Ca5eTl6lRrC5qOkI5+qDXohCcvuet
+        SZu/A3BzcDV2ID/A8L+Xxt7/92B2cYliI9OJ5XgRlhNatuH0XlgZK0pGHt/G3TRh
+        ZuCm6YNwGCheBVSTUkv2M37YxzxwqX/w1tE0GMqSA1D577Y3IoI18qvL/uf+duPO
+        imVwS5NCmigRFxxqWquEukcEO2Jbbyb3kD+ywJd05tLun7CESMeDpbTlARXY1NTI
+        S6TQRmVh3UlfXo6yatYJqJxQ1ZMXrOkw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=h+F9A27NvIA+GKJCY
+        uxpPOGt5GYFFmLQcgR5plDO8E8=; b=F5AFmheXYgFSOpakvoALGRVa0zVirxzRR
+        k5gmm198NMnClY00YwdSrF8U/CvukeyjO3jFSGbGSNE3eiNASVktWwkONMuj1JXk
+        crbBfwz5/Gp2gMhzst74OeTI9kWnSpPEz0swHxrSgANbwQcq7q/kXWMQZi69E5kF
+        LivQDWE9TPOpqlCuSL4/Mb0kJJDXAl7Jb+ftvFd6O03KVY5+9n4AtJc3t23XPYcy
+        +sKDk1/Z+cxpIlCK+PIh23yxFc7Uvk0IJFi+FliRQtpXoIoNIBRrijsvAkaB4smu
+        gAG0uZEvgN87ErXQECWNDckFLUC3S5gAcwZdgj3itvt3QPXPXNE1g==
+X-ME-Sender: <xms:sI77YcxhL75k8W8K0u04e4pYItRNKXdRVgwHRB9jGO36bUbCaKdfuw>
+    <xme:sI77YQQIEOR0oDxF1FxJxVY89vs-YwmbaWdJrzU5j8h4Mf_Gb3y3vOBIyhO52X2sz
+    IjmyS7APSIFu0-wX3c>
+X-ME-Received: <xmr:sI77YeVZF1UoOeRktb6FzpQFiSfd69_8E7mQBKRgPyRhjUoDWeqjn3QFH0oan7fRFUbVPSyKb3jcYxRXbueXhQhtHLf33T5fuFWt9hw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgeeigdduudehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:sI77YahwtO8cMS1cPg9153h7U8dRjBbntU9a4j9SNcpsAyYJSlCrAw>
+    <xmx:sI77YeCrLvRZ1BOkBxWuH14FkG8K3uy-dpiV6xAh0aC48g4j6DbZlQ>
+    <xmx:sI77YbIKsRmFJlXWevFcNV-I6BhsqT4FVcpRS_MALk1xuO-2Cyxsbg>
+    <xmx:sY77YUCbWxw9vejeNnCW4z_95HC7isoQxLBb-OvfhHE7zfvD9yzvBA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 3 Feb 2022 03:13:36 -0500 (EST)
+Date:   Thu, 3 Feb 2022 09:13:33 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: SID: Add compatible for D1
+Message-ID: <20220203081333.au4iblrlktqixgwk@houat>
+References: <20220203012502.10661-1-samuel@sholland.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] HPE BMC GXP SUPPORT
-Content-Language: en-US
-To:     nick.hawkins@hpe.com, verdun@hpe.com
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Corey Minyard <minyard@acm.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Hao Fang <fanghao11@huawei.com>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Wang Kefeng <wangkefeng.wang@huawei.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-i2c@vger.kernel.org,
-        openipmi-developer@lists.sourceforge.net,
-        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <nick.hawkins@hpe.com>
- <20220202165315.18282-1-nick.hawkins@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220202165315.18282-1-nick.hawkins@hpe.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jikoomnds2xtwx5p"
+Content-Disposition: inline
+In-Reply-To: <20220203012502.10661-1-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2022 17:52, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> GXP is the name of the HPE SoC.
-> This SoC is used to implement BMC features of HPE servers
-> (all ProLiant, Synergy, and many Apollo, and Superdome machines)
-> It does support many features including:
-> 	ARMv7 architecture, and it is based on a Cortex A9 core
-> 	Use an AXI bus to which
-> 		a memory controller is attached, as well as
->                  multiple SPI interfaces to connect boot flash,
->                  and ROM flash, a 10/100/1000 Mac engine which
->                  supports SGMII (2 ports) and RMII
-> 		Multiple I2C engines to drive connectivity with a host infrastructure
-> 		A video engine which support VGA and DP, as well as
->                  an hardware video encoder
-> 		Multiple PCIe ports
-> 		A PECI interface, and LPC eSPI
-> 		Multiple UART for debug purpose, and Virtual UART for host connectivity
-> 		A GPIO engine
-> This Patch Includes:
-> 	Documentation for device tree bindings
-> 	Device Tree Bindings
-> 	GXP Timer Support
-> 	GXP Architecture Support
-> 
 
-1. Please version your patchses and document the changes under ---.
+--jikoomnds2xtwx5p
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-2. With your v1 I responded what has to be separate patch. This was
-totally ignored here, so no. You have to follow this.
+On Wed, Feb 02, 2022 at 07:25:00PM -0600, Samuel Holland wrote:
+> D1 has a SID like other Allwinner SoCs, but with a unique eFuse layout.
+> Add a new compatible string for it.
+>=20
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-3. Please run checkpatch and be sure there are no warnings.
+Acked-by: Maxime Ripard <maxime@cerno.tech>
 
-4. Bindings in dtschema, not in text.
+Maxime
 
-Best regards,
-Krzysztof
+--jikoomnds2xtwx5p
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Krzysztof
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYfuOrQAKCRDj7w1vZxhR
+xVwcAQD18T5ARVFWMMXn8UrNE5dT0w2s+SM2DU9z03hLPLFilAD7BAezRRhjaUDk
+fKpizMoqTnZEnuFb6nepiOHApT7MfQ8=
+=fo+u
+-----END PGP SIGNATURE-----
+
+--jikoomnds2xtwx5p--
