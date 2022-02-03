@@ -2,78 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82F9B4A89F4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:26:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62BA04A8A01
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:28:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352818AbiBCR0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 12:26:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42692 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233855AbiBCR0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:26:30 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1A2C061714
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 09:26:30 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id s2-20020a17090ad48200b001b501977b23so10676942pju.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 09:26:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Z6SpS9QptYU96quW9luTzw9ThNaE1HmoUOVZScoX36g=;
-        b=cO9S4L0SWPKMhccbTIdc21tAwBVZPYZ4V/QD1uCNuaf8SjIddwmhxjQ6H7i8G2itm6
-         Gde0gmJqNuKFz9twkijoCNPsB4Qlc4w0SDxyMVgLyRoXTWv87D4B/pHarhhAq4F+SGil
-         UNM2+dhoTFjYs93VsquHUmK1z2Gei7SCykZps=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Z6SpS9QptYU96quW9luTzw9ThNaE1HmoUOVZScoX36g=;
-        b=x7Lf2AN+61N7F9Yl+wGNgFt61L9PtOEgmVsVBSQpG04qyWXwlwwrSuT4R0jLc1exBW
-         vSNnlBGF9Ji6yxPQtQevkGEM6OYESxezzzRXbRd4bhzzVLc+2TyUrKD8x01llbQt0eyd
-         lUrzWjFpxLIxpbPEwf/JGWwHk2BaxjDynZHXTPjmuogTLHhuh3gGMLL1qJOKN6Ppu7Vg
-         1Dm3aE+fR1U2Wh2+N9zCt45ZMlAmw9No2hF/8JbU53UBYeRCFJkgEJ37zNYs6A+J6kH/
-         t5lOPCGwO8/P+Qe5aDTSuap8TY6hLxc7lr/uE3ucZlSo2gwiQ76ZxvdJsa1ZkP18ip5f
-         C9jA==
-X-Gm-Message-State: AOAM530cVLw2P71PnrTIIye+vhl2nsqUAuQw9WQ2ERPTOXzYQURyV5+e
-        9nV5PeSIEq+mAhJUF2uGZYPyzQ==
-X-Google-Smtp-Source: ABdhPJzeGUouAj32o44EnwlqzqpqVfqvlA0LCa8FGONduH5+BYREFp7ZXfsLIql1Ruv5KJfLE/mpqg==
-X-Received: by 2002:a17:90b:350c:: with SMTP id ls12mr14795500pjb.44.1643909189886;
-        Thu, 03 Feb 2022 09:26:29 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:c0cb:3065:aa0:d6c9])
-        by smtp.gmail.com with UTF8SMTPSA id ip5sm11220315pjb.13.2022.02.03.09.26.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Feb 2022 09:26:29 -0800 (PST)
-Date:   Thu, 3 Feb 2022 09:26:27 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        pmaliset@codeaurora.org, quic_rjendra@quicinc.com,
-        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        kgodara@codeaurora.org, konrad.dybcio@somainline.org,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        sibis@codeaurora.org, swboyd@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 11/14] arm64: dts: qcom: sc7280: Add a blank line in
- the dp node
-Message-ID: <YfwQQ4vVfFr13lNc@google.com>
-References: <20220202212348.1391534-1-dianders@chromium.org>
- <20220202132301.v3.11.Iecb7267402e697a5cfef4cd517116ea5b308ac9e@changeid>
+        id S238831AbiBCR2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 12:28:17 -0500
+Received: from mail-eopbgr60078.outbound.protection.outlook.com ([40.107.6.78]:46992
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S238751AbiBCR2Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Feb 2022 12:28:16 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HRZj6mhy2YexG6aaO6XdB9MpY0nrI4rNUIBMR0JkHlgqpw+u73s8AiR15/190uzE5T8TW2IIYE/93xRT00o0BJGZlsaWn/xvPEhyZWpbeTAEMCxyECFBv/eYrVXSxBMfg7R+Ck8TJH1f+SFGFzWFq9vJdebPQRK+KqJc+vs/0A2Kqll4Ee8giKfNmiDJ6az/a4QdKHVl8JTWzryGC6y5LLkjgTUnotM5doPl0dHYOtAGwH7Fm0XOIMIjc4xLGc0UWlJMMc1BdqzXQ7HAjI2I7hq8DOqRK3tTgRMFB489Grut40ArQzIOfeCJ/SRckxO9UXtGKyfj8KVex82PpaKsrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Hk1V7SziqmPF1A71FHrrOkpjJ0MYbIEt7n69gtx/qnA=;
+ b=jZZKrAnS5g1jsF55g+ovS1yUSEutoWYEbgu05tWw/NeIBezbQUMN/22P+wFh4PdyF1x4xpb2I7FA9TVR9RkHTOHMyMWn9mjxSbwqyvhQcDcvda5TDI/QCQ9e/sNdpPJyP6zAPEOxHT32GllVkXbKjHEwEz3SkbhzcK7LbKKYDdHr8d9+EEfULTZL8GOxvJoLWiUWTC6x+mq1OtvUsZ+Nws6DGugfE7esB0sEgfniVq9cnxpNM7FB8yqfU1n5Xd2EbazcjGsMXDingUQy3kh+R2eaBIIAK9hp7TQhABhdiZnMekxjEzzSbLz3oXRqvDOuzXj2kjN/Q+MAisfQRyGCxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 194.138.21.70) smtp.rcpttodomain=ew.tq-group.com smtp.mailfrom=siemens.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=siemens.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Hk1V7SziqmPF1A71FHrrOkpjJ0MYbIEt7n69gtx/qnA=;
+ b=yArajqWfr8FKK4lk8YV7BgGK1AOFv71otMQA1s7bCRWajephZCtVz7MKbXhzRtSOQy/UDOHdZsV4XMcdrzogbmUCe9m4VItoBhb4n9StR3/erfq22pz8Zi6Ymi+MA7YwL8cwvmEu4lldYonhmksaIUkwElmmTexog8Yg8GFEdhR+oeYvg3XBIW65tBxghYFvJNEpcIPXu1P3xjB59X3vQeYNUoseuFDDOH5B1ErphuMO2tGktDgZbhY0nNROabpb/23JuEuUYFKZKOTLEQOMmfrywg5eThABlHuENVEBAmCWHxI4fR2rIafxrjQXHoPdeYswKR8+LJNBcpUa8RgPGg==
+Received: from DB8PR09CA0005.eurprd09.prod.outlook.com (2603:10a6:10:a0::18)
+ by AS8PR10MB4805.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:337::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Thu, 3 Feb
+ 2022 17:28:14 +0000
+Received: from DB5EUR01FT030.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:10:a0:cafe::e4) by DB8PR09CA0005.outlook.office365.com
+ (2603:10a6:10:a0::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12 via Frontend
+ Transport; Thu, 3 Feb 2022 17:28:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 194.138.21.70)
+ smtp.mailfrom=siemens.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=siemens.com;
+Received-SPF: Pass (protection.outlook.com: domain of siemens.com designates
+ 194.138.21.70 as permitted sender) receiver=protection.outlook.com;
+ client-ip=194.138.21.70; helo=hybrid.siemens.com;
+Received: from hybrid.siemens.com (194.138.21.70) by
+ DB5EUR01FT030.mail.protection.outlook.com (10.152.4.254) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4951.12 via Frontend Transport; Thu, 3 Feb 2022 17:28:13 +0000
+Received: from DEMCHDC8A0A.ad011.siemens.net (139.25.226.106) by
+ DEMCHDC9SJA.ad011.siemens.net (194.138.21.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.18; Thu, 3 Feb 2022 18:28:12 +0100
+Received: from [167.87.72.47] (167.87.72.47) by DEMCHDC8A0A.ad011.siemens.net
+ (139.25.226.106) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 3 Feb
+ 2022 18:28:11 +0100
+Message-ID: <2e375860-83d6-c5bb-3ab4-1b02e672c2e5@siemens.com>
+Date:   Thu, 3 Feb 2022 18:28:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220202132301.v3.11.Iecb7267402e697a5cfef4cd517116ea5b308ac9e@changeid>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am65: disable optional peripherals
+ by default
+Content-Language: en-US
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Nishanth Menon <nm@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <5beef188724ef42b0c2147ca9bf6e6ca25c75dec.1641900122.git.matthias.schiffer@ew.tq-group.com>
+ <20220202203217.sf2cr4orwl4usvyf@starry>
+ <e427670b-0570-df33-c114-fd0633ac1d44@siemens.com>
+ <76703db31c4562dba1301e839c70381cf8e403b3.camel@ew.tq-group.com>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+In-Reply-To: <76703db31c4562dba1301e839c70381cf8e403b3.camel@ew.tq-group.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [167.87.72.47]
+X-ClientProxiedBy: DEMCHDC8A0A.ad011.siemens.net (139.25.226.106) To
+ DEMCHDC8A0A.ad011.siemens.net (139.25.226.106)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ab1f7684-e9f3-448a-f675-08d9e73a8e88
+X-MS-TrafficTypeDiagnostic: AS8PR10MB4805:EE_
+X-Microsoft-Antispam-PRVS: <AS8PR10MB48050036B2F017EDF68007D495289@AS8PR10MB4805.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yYW2ke4C9kQtLbIKkkjG69Ea6pm1j2BaSqOscAJ+sxXg8TM31Oa4aRbXfLIPEfesoVIJ6oq5YjnyWh6M/GdG/TwHYCZL7WY0oQE2ES03RkUSxEtMNYLVaVAMLjyHZpCPyZnXXgYhMXYM6Nmor2cF6mbnqODHY/E+Cgs3uSgCw3xjyED+NOYRbnU92SIncrvnidlMdI4pYHadvL75FzYuwlwma/S0LElMql0AIB8w4VaOmZfvUO/RoHq8MX4yuKSsWNmGL//AsGOBNkObagK2ZD8sa0jjL1+5uNyuhZpSXYFAQ7xerSqjcNzEG/Y9zA8eEAzqbeHvrVi0O9CwJS5L7jeBlUXjdx/koTNqBLsXma4EYPPNOX/6i1YILBrYScAxsod0pZB7JPGHWaDzBO3C3YP17g+W3EVFVX5SR9/ZhDYVXsu7tVQ9aRaiLZ61sdsMytH4cLpjLfmXGY5RKmqmVOteJOEpsQu3k/IueZR6Bz16q8i774rLAe7nRf8M2GozpwJ0/R5/JjfDtTesMikFLA5/fSZqXfm463zEFcvlVyy4Sb1WKM6s0nUeEjt9U6n/EWiV7W8MdUeuFCM79eLh9KBAApAxwVTwX6mmI7ir4/MPDAhTUio0U0wEoWNk8gA5GGg+/q7J+MtWvRE47DOLfcoZXzvvNsAs9EQURzdXDtAcSKLF9SLDKNaGcOkxd1bGyC3QjquZVIrVLAULs7pu4vTqjhWli5c8QhAB499KRfR8to2RsSM3T4lsBB1NKrPu
+X-Forefront-Antispam-Report: CIP:194.138.21.70;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:hybrid.siemens.com;PTR:hybrid.siemens.com;CAT:NONE;SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(36860700001)(31686004)(83380400001)(53546011)(2616005)(956004)(336012)(186003)(16526019)(26005)(36756003)(47076005)(2906002)(5660300002)(31696002)(8676002)(8936002)(70586007)(110136005)(86362001)(70206006)(4326008)(44832011)(82960400001)(508600001)(316002)(40460700003)(6706004)(16576012)(82310400004)(7636003)(356005)(7596003)(54906003)(3940600001)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2022 17:28:13.4470
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ab1f7684-e9f3-448a-f675-08d9e73a8e88
+X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;Ip=[194.138.21.70];Helo=[hybrid.siemens.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB5EUR01FT030.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB4805
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 02, 2022 at 01:23:45PM -0800, Douglas Anderson wrote:
-> It's weird that there's a blank line between the two port nodes but
-> not between the attributes and the first port node. Add an extra blank
-> line to make it look right.
+On 03.02.22 14:06, Matthias Schiffer wrote:
+> On Thu, 2022-02-03 at 12:39 +0100, Jan Kiszka wrote:
+>> On 02.02.22 21:32, Nishanth Menon wrote:
+>>> On 12:25-20220111, Matthias Schiffer wrote:
+>>>> All peripharals that require pinmuxing or other configuration to
+>>>> work
+>>>> should be disabled by default. Dependent DTS are adjusted
+>>>> accordingly.
+>>>>
+>>>> The following nodes are now "disabled" according to dtx_diff and
+>>>> were not
+>>>> overridden to "okay", as they define no pinctrl:
+>>>>
+>>>> k3-am654-base-board:
+>>>> - mcu_i2c0
+>>>> - mcu_spi0..2
+>>>> - cal
+>>>> - main_i2c3
+>>>> - ehrpwm0..5
+>>>> - main_uart1..2
+>>>> - main_spi1..4
+>>>>
+>>>> k3-am65-iot2050*:
+>>>> - mci_spi1..2
+>>>> - cal
+>>>> - ehrpwm0..5
+>>>> - main_spi0..4
+>>>>
+>>>> Signed-off-by: Matthias Schiffer <
+>>>> matthias.schiffer@ew.tq-group.com>
+>>>
+>>> Jan: you ok with this series? Please ack.
+>>>
+>>
+>> Just rebased the still-too-long backlog to our system fully working
+>> over 
+>> mainline.
 > 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Thanks for testing. As noted earlier, I will send a v2 of this patch
+> that fixes one more inconsistency.
+> 
+>> Basically looks good, but this might be a regression of the 
+>> patch:
+>>
+>> [    1.810083] OF: /bus@100000/pcie@5600000: phandle pcie-mode@4070
+>> needs 1, found 0
+>> ...
+>> [    1.854840] OF: /bus@100000/pcie@5600000: phandle pcie-devid@210
+>> needs 1, found 0
+>>
+>> Jan
+>>
+> 
+> That seems to be an older issue, rather than a regression of this
+> patch:
+> 
+> k3-am65-main.dtsi defines:
+> 
+>     ti,syscon-pcie-id = <&pcie_devid>;
+>     ti,syscon-pcie-mode = <&pcie0_mode>
+> 
+> While according the driver binding docs something like the following is
+> expected:
+> 
+>     ti,syscon-pcie-id = <&scm_conf 0x0210>;
+>     ti,syscon-pcie-mode = <&scm_conf 0x4060>;
+> 
+> I assume that the k3-am65-main.dtsi section was imported from ti-linux
+> without accounting for the mainline driver's different binding.
+> 
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Yep, 7dcf07ac88676a365ce3245b44af2be432f21120 caused it, and this seems 
+to be the fix (though I cannot find a negative impact yet, except for 
+the warning):
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index 09cfdc72c64b..be79c0bc1776 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -694,8 +694,8 @@ pcie0_rc: pcie@5500000 {
+ 		#size-cells = <2>;
+ 		ranges = <0x81000000 0 0          0x0 0x10020000 0 0x00010000>,
+ 			 <0x82000000 0 0x10030000 0x0 0x10030000 0 0x07FD0000>;
+-		ti,syscon-pcie-id = <&pcie_devid>;
+-		ti,syscon-pcie-mode = <&pcie0_mode>;
++		ti,syscon-pcie-id = <&scm_conf 0x0210>;
++		ti,syscon-pcie-mode = <&scm_conf 0x4060>;
+ 		bus-range = <0x0 0xff>;
+ 		num-viewport = <16>;
+ 		max-link-speed = <2>;
+@@ -723,7 +723,7 @@ pcie0_ep: pcie-ep@5500000 {
+ 		reg =  <0x0 0x5500000 0x0 0x1000>, <0x0 0x5501000 0x0 0x1000>, <0x0 0x10000000 0x0 0x8000000>, <0x0 0x5506000 0x0 0x1000>;
+ 		reg-names = "app", "dbics", "addr_space", "atu";
+ 		power-domains = <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
+-		ti,syscon-pcie-mode = <&pcie0_mode>;
++		ti,syscon-pcie-mode = <&scm_conf 0x4060>;
+ 		num-ib-windows = <16>;
+ 		num-ob-windows = <16>;
+ 		max-link-speed = <2>;
+@@ -740,8 +740,8 @@ pcie1_rc: pcie@5600000 {
+ 		#size-cells = <2>;
+ 		ranges = <0x81000000 0 0          0x0   0x18020000 0 0x00010000>,
+ 			 <0x82000000 0 0x18030000 0x0   0x18030000 0 0x07FD0000>;
+-		ti,syscon-pcie-id = <&pcie_devid>;
+-		ti,syscon-pcie-mode = <&pcie1_mode>;
++		ti,syscon-pcie-id = <&scm_conf 0x0210>;
++		ti,syscon-pcie-mode = <&scm_conf 0x4070>;
+ 		bus-range = <0x0 0xff>;
+ 		num-viewport = <16>;
+ 		max-link-speed = <2>;
+@@ -769,7 +769,7 @@ pcie1_ep: pcie-ep@5600000 {
+ 		reg =  <0x0 0x5600000 0x0 0x1000>, <0x0 0x5601000 0x0 0x1000>, <0x0 0x18000000 0x0 0x4000000>, <0x0 0x5606000 0x0 0x1000>;
+ 		reg-names = "app", "dbics", "addr_space", "atu";
+ 		power-domains = <&k3_pds 121 TI_SCI_PD_EXCLUSIVE>;
+-		ti,syscon-pcie-mode = <&pcie1_mode>;
++		ti,syscon-pcie-mode = <&scm_conf 0x4070>;
+ 		num-ib-windows = <16>;
+ 		num-ob-windows = <16>;
+ 		max-link-speed = <2>;
+
+Jan
+
+-- 
+Siemens AG, Technology
+Competence Center Embedded Linux
