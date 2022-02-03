@@ -2,83 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 238A34A8363
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 12:54:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 884E34A83C6
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 13:24:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240601AbiBCLyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 06:54:36 -0500
-Received: from foss.arm.com ([217.140.110.172]:41762 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1350340AbiBCLyd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Feb 2022 06:54:33 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D699B11D4;
-        Thu,  3 Feb 2022 03:54:32 -0800 (PST)
-Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 371BE3F774;
-        Thu,  3 Feb 2022 03:54:31 -0800 (PST)
-Date:   Thu, 3 Feb 2022 11:54:25 +0000
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S231842AbiBCMYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 07:24:05 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:46019 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229998AbiBCMYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 07:24:04 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 0A89F5C0243;
+        Thu,  3 Feb 2022 07:24:03 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Thu, 03 Feb 2022 07:24:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; bh=oQyYzuxfRo1lv3aZziCYCKmjnEZTyFbwm+bQ26
+        UfYtU=; b=LLfL9y2buVmXgx2XXH+Yz9EiosRWdsOr21JtzlBTngiTHrCK8il/mx
+        rduycpSuElYt/8h+VbRFOuAnHzKugnJXZPwCWDNTvNTVClvkb2eos6mlWBEXK95Q
+        QOJhLTHZu2xXcFRKPTbrxsxBiIU6KtPwDpsXEgJNNdQSVQP2uHk/FvSSIU5dhOZs
+        0j5pBsU8FY3yJzPWZkn3T1zvZmkG2nBU39jtMV6E+99FQK+VUe3s/gxWg4llcIKe
+        6bMN0f+gKvGcLNjsOIlyl0KrqACcjaJitwAb7k5CYrz27biEJ5gaxTTiyPIhnDs/
+        eRoi3YXAa4biAlGiPHlo3NozH7NTXziQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=oQyYzuxfRo1lv3aZz
+        iCYCKmjnEZTyFbwm+bQ26UfYtU=; b=cxxWAuNfLbOG8+X/VOw6i+m6sCU/20TLO
+        UxTPd0M738bZ2Y8arVS3x4uV/LJWziwphbr5kps3gEOaHftrK7ynaTbcCYqK/3m/
+        XZpFzmCPSQnz/bKUU/MH9twk6FFN7rKNQrPF5IeJ7qsF0EXRPedP1iRSkOiHcv4B
+        B3NmgJ0hRySbOsUetcjPQbmi5cDC4VfKylIN4dfAtud3ONC245yGwHJmdsXeIi0a
+        JAXWenEr57Mnr+QR0xPZC4MZ+XVdhnsx8wXWGKr8IlVp32klOOE0l4w1A1TeQMn6
+        sUfDnc8Ti1DMdlkftGDHiz4FjJu5fcUfRyrvJJ5tgQY1hFf5VreuQ==
+X-ME-Sender: <xms:Ycn7YcRFW_fmww8_XNIRnBSLSiXDi0e8zvKzCBiXvGfmREvwdjbnzA>
+    <xme:Ycn7YZzoMOMPPSDVhOAEbCQpARSQOVL7HsZq8a-eicvdFyW7s9cGraDfyLviIUf4R
+    iBQgI4cEcjEslKxkZk>
+X-ME-Received: <xmr:Ycn7YZ2K_1sQHNFxq_FiEQZ28B618gkfH77CzsB9qq6CFZoO-ds_5pXu-NI-QiRNwGRurTZWkfhxIke_-bIcP_vAa0JlmSbWcGJNLCU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgeejgdefkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:Ycn7YQB_9vVks4eaZtNBJb1gz0Fec2rBdvPwZkNUQhTonWUyLJe7lg>
+    <xmx:Ycn7YVjXUYAmwpoCzdL2cHVws2jhm1NrhvR-sK5YhBWuXG7Zv74QAw>
+    <xmx:Ycn7YcpcWIA7LM9UwDVRMVlcuIc5wnrYqZPesi9zMq6Y2zdDqmnnKQ>
+    <xmx:Y8n7YWVUykFkYdX9DedhGurqZPmj4hk2QXyXP-P6QxPhvzuK4bU4ug>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 3 Feb 2022 07:24:01 -0500 (EST)
+Date:   Thu, 3 Feb 2022 13:23:59 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org,
+        Andrzej Hajda <a.hajda@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 0/5] qcom: add support for PCIe on SM8450 platform
-Message-ID: <20220203115425.GA24443@lpieralisi>
-References: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH 1/4] dt-bindings: display: bridge: tc358867: Document DPI
+ output support
+Message-ID: <20220203122359.g3rvyzxcz5szkis2@houat>
+References: <20211127032405.283435-1-marex@denx.de>
+ <Ya+PRMvq3cjJ46s/@pendragon.ideasonboard.com>
+ <1a7967f0-ed4b-9cd2-28c8-eb9d181448ae@denx.de>
+ <Ya+T7zPigqtBzdR+@pendragon.ideasonboard.com>
+ <df2e18b3-d35a-2079-5f7b-b2574cbb46fd@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xwemckzdmww4pmcb"
 Content-Disposition: inline
-In-Reply-To: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <df2e18b3-d35a-2079-5f7b-b2574cbb46fd@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 18, 2021 at 05:10:19PM +0300, Dmitry Baryshkov wrote:
-> There are two different PCIe controllers and PHYs on SM8450, one having
-> one lane and another with two lanes. Add support for both PCIe
-> controllers
-> 
-> Dependencies:
->  - https://lore.kernel.org/linux-arm-msm/20211218140223.500390-1-dmitry.baryshkov@linaro.org/
-> 
-> Changes since v4:
->  - Add PCIe1 support
->  - Change binding accordingly, to use qcom,pcie-sm8450-pcie0 and
->    qcom,pcie-sm8450-pcie1 compatibility strings
->  - Rebase on top of (pending) pipe_clock cleanup/rework patchset
-> 
-> Changes since v3:
->  - Fix pcie gpios to follow defined schema as noted by Rob
->  - Fix commit message according to Bjorn's suggestions
-> 
-> Changes since v2:
->  - Remove unnecessary comment in struct qcom_pcie_cfg
-> 
-> Changes since v1:
->  - Fix capitalization/wording of PCI patch subjects
->  - Add missing gen3x1 specification to PHY table names
-> 
-> ----------------------------------------------------------------
-> Dmitry Baryshkov (5):
->       dt-bindings: pci: qcom: Document PCIe bindings for SM8450
->       PCI: qcom: Remove redundancy between qcom_pcie and qcom_pcie_cfg
->       PCI: qcom: Add ddrss_sf_tbu flag
->       PCI: qcom: Add interconnect support to 2.7.0/1.9.0 ops
->       PCI: qcom: Add SM8450 PCIe support
-> 
->  .../devicetree/bindings/pci/qcom,pcie.txt          |  22 ++++-
->  drivers/pci/controller/dwc/pcie-qcom.c             | 101 ++++++++++++++-------
->  2 files changed, 91 insertions(+), 32 deletions(-)
 
-Need an ACK from pci-qcom maintainers, thanks.
+--xwemckzdmww4pmcb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Lorenzo
+On Tue, Dec 07, 2021 at 06:32:38PM +0100, Marek Vasut wrote:
+> On 12/7/21 18:03, Laurent Pinchart wrote:
+> > On Tue, Dec 07, 2021 at 05:47:29PM +0100, Marek Vasut wrote:
+> > > On 12/7/21 17:43, Laurent Pinchart wrote:
+> > >=20
+> > > [...]
+> > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/display/bridge/tos=
+hiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshi=
+ba,tc358767.yaml
+> > > > > index f1541cc05297..5cfda6f2ba69 100644
+> > > > > --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc=
+358767.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc=
+358767.yaml
+> > > > > @@ -61,8 +61,8 @@ properties:
+> > > > >          port@1:
+> > > > >            $ref: /schemas/graph.yaml#/properties/port
+> > > > >            description: |
+> > > > > -            DPI input port. The remote endpoint phandle should b=
+e a
+> > > > > -            reference to a valid DPI output endpoint node
+> > > > > +            DPI input/output port. The remote endpoint phandle s=
+hould be a
+> > > > > +            reference to a valid DPI output or input endpoint no=
+de.
+> > > >=20
+> > > > I assume the mode of operation (input or output) will be fixed for a
+> > > > given hardware design. Isn't this something that should be recorded=
+ in
+> > > > DT ? It would simplify configuration of the device in the driver.
+> > >=20
+> > > Currently the configuration (DSI-to-DPI / DPI-to-eDP) is inferred from
+> > > the presence of DPI panel. If DPI panel present, DSI-to-DPI, else,
+> > > DPI-to-eDP.
+> >=20
+> > I've had a look at the driver side, and it seems to complicate things
+> > quite a bit. It seems that specifying the mode of operation explicitly
+> > in DT could make software implementations quite a bit simpler.
+>=20
+> Do you have any specific suggestion ? I explored multiple options while
+> writing that DSI-to-DPI driver code, this one was the simplest and least
+> redundant one.
+
+Can we leverage the bus-type property of endpoints?
+
+Maxime
+
+--xwemckzdmww4pmcb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYfvJXwAKCRDj7w1vZxhR
+xR0xAP9cvS1rL5CYslvpYO/TPI9PxFzkq+8yxBU310IlpwF4kgD8D5zRy7IBsyeW
+Yhdlq+QNhzdxaKgLYC6KBJ62ucEaBgw=
+=HxOl
+-----END PGP SIGNATURE-----
+
+--xwemckzdmww4pmcb--
