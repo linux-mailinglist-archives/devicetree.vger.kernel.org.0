@@ -2,137 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24CF24A8984
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:11:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60BB54A89A4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:14:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352694AbiBCRLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 12:11:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38786 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352811AbiBCRLF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:11:05 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23625C0613E4
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 09:10:52 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id r27so5064036oiw.4
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 09:10:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=iyTnLRq74SMNTbBGSC7BPrM96WbFmvv/b/YCqRhJKOE=;
-        b=thfJm2vpV7VaNu1lzrEG23OTmJsIHNzwHkX5JsY7aQhT0djoFZQjP4WbvWmzgMX1cE
-         RgB7VYmGPR90SJr5tBbfTbSqWyV3Zq1VGeheW+VcHDGI1pBPHdYoo0xncHYi5bxIm0z/
-         FJttwfCXgr+iSUbkSSpGH54np+ONYksPsh3OcSz3nhPuEZvH7QMawaWaVhPcczB/qcoh
-         byuE8Cu4teph0I2bnsxg88DB6rHFQavLj1aUAoJQiqbdR2R7NKAguLy1140kcERS6BLk
-         apaz7j+GBcmfVF31LgOSeYGL1zbvLVee1nLE+vyhb9e7RQFwEhg8m65karUqF9STUz+E
-         9uDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iyTnLRq74SMNTbBGSC7BPrM96WbFmvv/b/YCqRhJKOE=;
-        b=Ynk6uHFZAvGfep8ylq1EoZ0c8BVpi9xLmjQKmLInQVE9/ytDBrB7ADBDiFx1x8iqQ2
-         M8o88Fgb1UGlITGD+M7vKt32Nvhna+Ylvg3MKMRhJS2MhqXaTjxyol0nQfVNxzjllTP0
-         HCVdscQxKMX7UtyS3+0XO70++6dpuOSGSDWpIw3XXGSOIv6ziNuyCGC/heBXM7HCDZI7
-         blHzuIu9djuYTCdlgHM3gOffq3DOeeSr3f59utbnNpkP5JUMq6QiIgC5e6d2sfkvFXuO
-         KAqSF8LVQIZmO27w/tPT01a6Sri5zxWDbqfhUf/QBRRAOXFHK1jAdbWAHAygmjonFkXD
-         1Fag==
-X-Gm-Message-State: AOAM5329vngFNAL/mIisFobuXmeWzL1fxjALpufBzhycoM958kDxHg7g
-        fY5Bg3Sh/DBQVCND7YiDdDEPQA==
-X-Google-Smtp-Source: ABdhPJwK5V2IWgDRWmJUgoelR05uxNUjVGwc6M3avl68/CttOm1hmc7QnHQECMSMDwdigQmIe1SNdA==
-X-Received: by 2002:a05:6808:1590:: with SMTP id t16mr8091182oiw.215.1643908250910;
-        Thu, 03 Feb 2022 09:10:50 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id g4sm19145118otl.1.2022.02.03.09.10.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Feb 2022 09:10:50 -0800 (PST)
-Date:   Thu, 3 Feb 2022 09:11:07 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Wilczy??ski <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 1/5] dt-bindings: pci: qcom: Document PCIe bindings
- for SM8450
-Message-ID: <YfwMq/kjmjr4d4t4@ripper>
-References: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
- <20211218141024.500952-2-dmitry.baryshkov@linaro.org>
+        id S1352599AbiBCROq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 12:14:46 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:57216 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1349364AbiBCROn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:14:43 -0500
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 213EsL4s031121;
+        Thu, 3 Feb 2022 18:12:23 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=selector1;
+ bh=1+QJ5oEvylUz9bEFhzaibFMOVv0PysPkdqyGfxvBhnM=;
+ b=rT5HtZEMoHTV23MCmvGJbJEFZGCvBpNWOc76D8txvowUw3+b/CSauOPGfz47TYv0Lv+0
+ A8jnxyPdBv0z7LYW28QHPlheKY4ExbIQo2ZRJB7rfABEDj5CcKYI2/e6UOe2YmEjiGye
+ WhzlG4p0/PEz9uZBU/31YQb8/5lpqJDei4id89A4JQg1iQ5FAIee1PJVuNuc/tOVpu/l
+ oI5zjgG5TMiWKxsZMHXwdwbwwfGTKrQzhkqu0e2fArFoRXsUYjmjY9+bqOg7GrRagNtg
+ vOwy4jnUobRnFUGSKYsrGUJecgHki3YkXNVj3i+5ANZvHwHutMeRe4tCZHY7vLj9xQLQ 7g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e01qkcyeq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Feb 2022 18:12:23 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4EF96100034;
+        Thu,  3 Feb 2022 18:12:23 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4673722F7A5;
+        Thu,  3 Feb 2022 18:12:23 +0100 (CET)
+Received: from localhost (10.75.127.45) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 3 Feb 2022 18:12:22
+ +0100
+From:   Erwan Le Ray <erwan.leray@foss.st.com>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Erwan Le Ray <erwan.leray@foss.st.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marek Vasut <marex@denx.de>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 09/16] ARM: dts: stm32: keep uart nodes behavior on stm32mp157a-stinger96
+Date:   Thu, 3 Feb 2022 18:11:07 +0100
+Message-ID: <20220203171114.10888-10-erwan.leray@foss.st.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220203171114.10888-1-erwan.leray@foss.st.com>
+References: <20220203171114.10888-1-erwan.leray@foss.st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211218141024.500952-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-03_06,2022-02-03_01,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 18 Dec 06:10 PST 2021, Dmitry Baryshkov wrote:
+DMA configuration is added to uart nodes in stm32mp15x device tree.
+Delete uart4 DMA property in stm32mp157a-stinger96 board device tree to
+keep console in irq mode, as DMA support for console has been removed
+from the driver by commit e359b4411c28 ("serial: stm32: fix threaded
+interrupt handling").
+Delete also usart2 and uart7 DMA property to keep current behavior.
 
-> Document the PCIe DT bindings for SM8450 SoC. The PCIe IP is similar
-> to the one used on SM8250, however unlike SM8250, PCIe0 and PCIe1 use
-> different set of clocks, so two compatible entries are required.
-> 
+Signed-off-by: Erwan Le Ray <erwan.leray@foss.st.com>
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+diff --git a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
+index a4b14ef3caee..3a36f7fe0a2c 100644
+--- a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
++++ b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
+@@ -288,6 +288,8 @@
+ 	pinctrl-0 = <&usart2_pins_b>;
+ 	pinctrl-1 = <&usart2_sleep_pins_b>;
+ 	st,hw-flow-ctrl;
++	/delete-property/dmas;
++	/delete-property/dma-names;
+ 	status = "okay";
+ };
+ 
+@@ -296,6 +298,8 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart4_pins_c>;
+ 	st,hw-flow-ctrl;
++	/delete-property/dmas;
++	/delete-property/dma-names;
+ 	status = "okay";
+ };
+ 
+@@ -303,6 +307,8 @@
+ &uart7 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart7_pins_b>;
++	/delete-property/dmas;
++	/delete-property/dma-names;
+ 	status = "okay";
+ };
+ 
+-- 
+2.17.1
 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/pci/qcom,pcie.txt     | 22 ++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> index a0ae024c2d0c..0adb56d5645e 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> @@ -15,6 +15,8 @@
->  			- "qcom,pcie-sc8180x" for sc8180x
->  			- "qcom,pcie-sdm845" for sdm845
->  			- "qcom,pcie-sm8250" for sm8250
-> +			- "qcom,pcie-sm8450-pcie0" for PCIe0 on sm8450
-> +			- "qcom,pcie-sm8450-pcie1" for PCIe1 on sm8450
->  			- "qcom,pcie-ipq6018" for ipq6018
->  
->  - reg:
-> @@ -169,6 +171,24 @@
->  			- "ddrss_sf_tbu" PCIe SF TBU clock
->  			- "pipe"	PIPE clock
->  
-> +- clock-names:
-> +	Usage: required for sm8450-pcie0 and sm8450-pcie1
-> +	Value type: <stringlist>
-> +	Definition: Should contain the following entries
-> +			- "aux"         Auxiliary clock
-> +			- "cfg"         Configuration clock
-> +			- "bus_master"  Master AXI clock
-> +			- "bus_slave"   Slave AXI clock
-> +			- "slave_q2a"   Slave Q2A clock
-> +			- "tbu"         PCIe TBU clock
-> +			- "ddrss_sf_tbu" PCIe SF TBU clock
-> +			- "pipe"        PIPE clock
-> +			- "pipe_mux"    PIPE MUX
-> +			- "phy_pipe"    PIPE output clock
-> +			- "ref"         REFERENCE clock
-> +			- "aggre0"	Aggre NoC PCIe0 AXI clock, only for sm8450-pcie0
-> +			- "aggre1"	Aggre NoC PCIe1 AXI clock
-> +
->  - resets:
->  	Usage: required
->  	Value type: <prop-encoded-array>
-> @@ -246,7 +266,7 @@
->  			- "ahb"			AHB reset
->  
->  - reset-names:
-> -	Usage: required for sc8180x, sdm845 and sm8250
-> +	Usage: required for sc8180x, sdm845, sm8250 and sm8450
->  	Value type: <stringlist>
->  	Definition: Should contain the following entries
->  			- "pci"			PCIe core reset
-> -- 
-> 2.34.1
-> 
