@@ -2,124 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 263C24A8314
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 12:25:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 098DF4A831B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 12:29:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350204AbiBCLXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 06:23:48 -0500
-Received: from muru.com ([72.249.23.125]:45940 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1350189AbiBCLXp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Feb 2022 06:23:45 -0500
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id C8CD7817C;
-        Thu,  3 Feb 2022 11:23:28 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-kernel@vger.kernel.org
+        id S1349740AbiBCL2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 06:28:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44650 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238011AbiBCL2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 06:28:38 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DC4C061714;
+        Thu,  3 Feb 2022 03:28:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EEA19B8339D;
+        Thu,  3 Feb 2022 11:28:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CDEFC340E4;
+        Thu,  3 Feb 2022 11:28:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643887715;
+        bh=COBWLwcvaTKIWzrOUANpuFO9WSzhU9FhS0VUHIshlV4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KX4egKwcJHnFYFMcluZjjHnbkdk1/gVrGHQHLahtyR3oV2gFSQSskLLiR6xgRoy8Z
+         X+nA7fl5bITNU3brrXT7HvyrL/ncs1/2xOwr8EGf+Dzy7k228bLkzWaFqCOnNMBVQQ
+         vZUIMXUQLdDmL33jTUg7cCn2NWMi7xB6UGyG/T7Sdt7aJ6mKK9Sd/b1FK5FWzvgq+Y
+         mY3stX9tHGzc/whzQfnKrFQRfG2J0sy/ac4u2qfBlStBpkhan8sCw5zEMKx6KG7cen
+         pBN9KQtNRULx9zjr+Y9pJ18U6Ea+9NaM1HUaSa7Cdv6AIklINZUrgfDvCysGm/bPsv
+         WElpX3oY6h8Cg==
+Date:   Thu, 3 Feb 2022 11:28:30 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     David Collins <quic_collinsd@quicinc.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Tero Kristo <kristo@kernel.org>
-Subject: [PATCH 3/3] dt-bindings: clock: ti: Add clock-output-names for TI composite clocks
-Date:   Thu,  3 Feb 2022 13:23:37 +0200
-Message-Id: <20220203112337.19821-3-tony@atomide.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220203112337.19821-1-tony@atomide.com>
-References: <20220203112337.19821-1-tony@atomide.com>
+        Sudeep Holla <sudeep.holla@arm.com>,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: firmware: arm,scmi: define
+ support for name based regulators
+Message-ID: <Yfu8XulvWQbpQoBR@sirena.org.uk>
+References: <cover.1643069954.git.quic_collinsd@quicinc.com>
+ <fcd130891cc1d52cb09b8bfc866ab7ef1ce3b2a1.1643069954.git.quic_collinsd@quicinc.com>
+ <YfREsxeSSX2pbALf@sirena.org.uk>
+ <8355035c-6d90-adfd-c4e1-7bb37a2d8055@quicinc.com>
+ <YfrBharI91QYkPR1@sirena.org.uk>
+ <532aa931-2471-8fb3-0db4-7ab8a60333e8@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="FHEHOoLIGiZXymy0"
+Content-Disposition: inline
+In-Reply-To: <532aa931-2471-8fb3-0db4-7ab8a60333e8@quicinc.com>
+X-Cookie: Prices higher in Alaska and Hawaii.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For the TI composite clocks, we currently have only the divider clock
-list clock-output-names as an optional devicetree property. Let's add
-clock-output-names for all the TI composite clock bindings.
 
-This allows us to use clock-output-names for the clockctrl instance name
-instead of relying on a custom compatible or non-standard node names.
+--FHEHOoLIGiZXymy0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: Tero Kristo <kristo@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- Documentation/devicetree/bindings/clock/ti/clockdomain.txt     | 3 +++
- Documentation/devicetree/bindings/clock/ti/composite.txt       | 3 +++
- .../devicetree/bindings/clock/ti/fixed-factor-clock.txt        | 1 +
- Documentation/devicetree/bindings/clock/ti/gate.txt            | 1 +
- Documentation/devicetree/bindings/clock/ti/interface.txt       | 1 +
- Documentation/devicetree/bindings/clock/ti/mux.txt             | 1 +
- 6 files changed, 10 insertions(+)
+On Wed, Feb 02, 2022 at 04:09:43PM -0800, David Collins wrote:
+> On 2/2/22 9:38 AM, Mark Brown wrote:
 
-diff --git a/Documentation/devicetree/bindings/clock/ti/clockdomain.txt b/Documentation/devicetree/bindings/clock/ti/clockdomain.txt
---- a/Documentation/devicetree/bindings/clock/ti/clockdomain.txt
-+++ b/Documentation/devicetree/bindings/clock/ti/clockdomain.txt
-@@ -17,6 +17,9 @@ Required properties:
- - #clock-cells : from common clock binding; shall be set to 0.
- - clocks : link phandles of clocks within this domain
- 
-+Optional properties:
-+- clock-output-names : from common clock binding.
-+
- Examples:
- 	dss_clkdm: dss_clkdm {
- 		compatible = "ti,clockdomain";
-diff --git a/Documentation/devicetree/bindings/clock/ti/composite.txt b/Documentation/devicetree/bindings/clock/ti/composite.txt
---- a/Documentation/devicetree/bindings/clock/ti/composite.txt
-+++ b/Documentation/devicetree/bindings/clock/ti/composite.txt
-@@ -27,6 +27,9 @@ Required properties:
- - clocks : link phandles of component clocks
- - #clock-cells : from common clock binding; shall be set to 0.
- 
-+Optional properties:
-+- clock-output-names : from common clock binding.
-+
- Examples:
- 
- usb_l4_gate_ick: usb_l4_gate_ick {
-diff --git a/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt b/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
---- a/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
-+++ b/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
-@@ -16,6 +16,7 @@ Required properties:
- - clocks: parent clock.
- 
- Optional properties:
-+- clock-output-names : from common clock binding.
- - ti,autoidle-shift: bit shift of the autoidle enable bit for the clock,
-   see [2]
- - reg: offset for the autoidle register of this clock, see [2]
-diff --git a/Documentation/devicetree/bindings/clock/ti/gate.txt b/Documentation/devicetree/bindings/clock/ti/gate.txt
---- a/Documentation/devicetree/bindings/clock/ti/gate.txt
-+++ b/Documentation/devicetree/bindings/clock/ti/gate.txt
-@@ -36,6 +36,7 @@ Required properties:
- 	ti,clkdm-gate-clock type
- 
- Optional properties:
-+- clock-output-names : from common clock binding.
- - ti,bit-shift : bit shift for programming the clock gate, invalid for
- 		 ti,clkdm-gate-clock type
- - ti,set-bit-to-disable : inverts default gate programming. Setting the bit
-diff --git a/Documentation/devicetree/bindings/clock/ti/interface.txt b/Documentation/devicetree/bindings/clock/ti/interface.txt
---- a/Documentation/devicetree/bindings/clock/ti/interface.txt
-+++ b/Documentation/devicetree/bindings/clock/ti/interface.txt
-@@ -28,6 +28,7 @@ Required properties:
- - reg : base address for the control register
- 
- Optional properties:
-+- clock-output-names : from common clock binding.
- - ti,bit-shift : bit shift for the bit enabling/disabling the clock (default 0)
- 
- Examples:
-diff --git a/Documentation/devicetree/bindings/clock/ti/mux.txt b/Documentation/devicetree/bindings/clock/ti/mux.txt
---- a/Documentation/devicetree/bindings/clock/ti/mux.txt
-+++ b/Documentation/devicetree/bindings/clock/ti/mux.txt
-@@ -42,6 +42,7 @@ Required properties:
- - reg : register offset for register controlling adjustable mux
- 
- Optional properties:
-+- clock-output-names : from common clock binding.
- - ti,bit-shift : number of bits to shift the bit-mask, defaults to
-   0 if not present
- - ti,index-starts-at-one : valid input select programming starts at 1, not
--- 
-2.35.1
+> > This seems like a scenario where the DT should be being generated at
+> > runtime along with the virtualisation of the platform?  TBH a setup
+> > where this is an issue feels like it's asking for trouble.
+
+> I'm not familiar with runtime device tree generation.  Could you please
+> point to an example of it or documentation for it?  How would this
+> handle kernel devices on the VM side which need a phandle to an
+> scmi-regulator DT subnode in order to get a pointer to the corresponding
+> regulator device at runtime via devm_regulator_get()?
+
+I believe qemu does this for the virt machine.  I'm not sure what you're
+seeing as particularly complex about generating regulator links in
+particular though?
+
+--FHEHOoLIGiZXymy0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmH7vF0ACgkQJNaLcl1U
+h9DDlQf/YzYI3j06uft9Q3I/6yHQsgA1u1k5QKi5P1/6CCVe1u9jdfsaqOkfERqv
+9ccQrebFf9XObnh7/UjdJmQn9+QrDN9iWRah/6relqDKvVBZY8dtsRVhPNnDhr9w
+U+GBwujVRrY/F6mVxK2wst8PqsWlxpf8BC12NY52c7fKgF8cm54mEUVNpIBrAGun
+9eGAl5GqqfFw0a1FlS3eCzDUmv1ptqI+DWXanrUQLhLejUpfiVwLxQmFqXkOitL5
+6uH+oZ8/xYYOHS37NK4nXzVY+uonIvw5AghpXC0c3cGHGqHjTGE6AVlDfkG+9jGW
+leW8W1h5fAeK60ebJ7sOibX+OoIU/w==
+=xs8h
+-----END PGP SIGNATURE-----
+
+--FHEHOoLIGiZXymy0--
