@@ -2,140 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15A914A85AC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 15:03:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5798D4A85D5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 15:10:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350966AbiBCOC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 09:02:57 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:7570 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1350961AbiBCOC4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 3 Feb 2022 09:02:56 -0500
+        id S1351023AbiBCOKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 09:10:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52904 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351019AbiBCOKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 09:10:31 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC22C061714
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 06:10:31 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id d186so2358019pgc.9
+        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 06:10:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1643896976; x=1675432976;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=CCsnc0uOCN0qsb/m7VDLjeBcg1llYDl/BF35hm4GcvI=;
-  b=QNG3LlT2ZB8+uTtFNEHzasOa5pxQdMaYJ9JBYsCyIOgtmwEVjvVfI5/o
-   NyH90mv17R/4opH8nvZcEL56IGY0X6Xl96lJXQ391JYYXg5bksalFG0K6
-   0U4d+xGOJ7bgIXrgT1VrmjTmX77eprxY3L+Pf8VXQdjMA62uXM6UCD/kX
-   GXvA/kSEPA3HzRfIjeiCcuru9ZISYSLLM3+Ad1MSyzYT43QnTbEWb5P79
-   8CMMmO5mY2QEyQd8zeqAy943+XM+Wvdp698DScOYgj98OjBXq89grPJyF
-   8jUq6pO73np+uXuBbfQQ0zEJPD3WH53VTPS4o2DHzM1cx5mfyVUAzRydi
-   g==;
-X-IronPort-AV: E=Sophos;i="5.88,340,1635199200"; 
-   d="scan'208";a="21881445"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 03 Feb 2022 15:02:53 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 03 Feb 2022 15:02:53 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 03 Feb 2022 15:02:53 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1643896973; x=1675432973;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=CCsnc0uOCN0qsb/m7VDLjeBcg1llYDl/BF35hm4GcvI=;
-  b=PN0zbIDRnbGk0Obm3OQjSX0OkgUvicBfLaOyoV3EmBRmE3BPLajjYuxj
-   O9Y3mVUTzn6nt0+ddcwyVZPKbOeKp6Jl1Q6jlMmFPtc64eZPMYvqdTxXW
-   CECVAoZsr1qlAGvhk48w13GGWfN9K4rO4ilhIRKRHj+3kwBx80SYyQ33i
-   4H+yqQYs/CBILvbPHSk7uCX5JBjmFUo/Zh8IAZ1f0G9VjZe5ay+4Aj/MX
-   I1relw+FCbFpwWwugNsB3blnB/w19qdP6L+AMZHseEOrKa352o1+vGQnc
-   JWiyDw19y19nFoQkwovwA5LaG3v9Zo4XJUpCopWYr8bU5Bc7KbHM6ZC24
-   w==;
-X-IronPort-AV: E=Sophos;i="5.88,340,1635199200"; 
-   d="scan'208";a="21881444"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 03 Feb 2022 15:02:53 +0100
-Received: from localhost.localdomain (SCHIFFERM-M2.tq-net.de [10.121.201.138])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 0269B280075;
-        Thu,  3 Feb 2022 15:02:52 +0100 (CET)
-From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, jan.kiszka@siemens.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ComyNVKqoyy5Ml0gbYTNF5CGFuK1LECSfgHPd03rA/Q=;
+        b=lwNBqWPI4rgoTL6ehS5NS0AXpY84DNtnO6gOru998z78w/p8MBR4eUDxluL7irigNu
+         pwSbcVKgnQ83sihiAjyYGHGuCv6xO4Zew6zg9ifqebZ1nQF9Ad4T0MmSam4viUtXSt1J
+         bBKms714hVeHVJgyRNmv3MT4n3HHNXkd/3LZY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ComyNVKqoyy5Ml0gbYTNF5CGFuK1LECSfgHPd03rA/Q=;
+        b=4Ls8GWAZpesDb6+XIZzWvr81CdcAdy9uxTE1d0HY0X4vM4jB+2/hDeTiDTX7CwwUD0
+         41T21mWvN3k9XLJSgHLi21ZiZsXxN3fmReVckau2ww2ho6uhwF5A6B89yqlFNlgg+QaL
+         IJOQNbKyQg5xsbopnb+X0dH7WlAwn3iT2f42CQqT10zHBbAuXPoGYmd5gV7/7CZ25HmB
+         WLeM/VHcSTJGFQfaM5Qtjx/7v6mgqJ5YzoAREU0CSq5JVnR7HQyRrl/h2uXo0Cqofx5X
+         c/PuMBXA3jFf9nartO8yaskJmsO01rWbCL5UJAKIhFFAWOg7PYuRSveX0hmH4nFKy8zn
+         xHSA==
+X-Gm-Message-State: AOAM531ZE0sC3d81a3c3ecSJhL5Rkda1qmDTpYEyrkFLZVQNNvVJj/5/
+        csziBjlv47LUL3zEKDKbWRYtEg==
+X-Google-Smtp-Source: ABdhPJzpoQR1eaFrCbTkqeWwLPMwSBtfaLsvHZ84KEa0sw5zPwKsIj6OVEbFMB96fY9zbfKOnmZWyg==
+X-Received: by 2002:a63:1d4:: with SMTP id 203mr19214395pgb.462.1643897430530;
+        Thu, 03 Feb 2022 06:10:30 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:cbdf:65ae:127:f762])
+        by smtp.gmail.com with ESMTPSA id w11sm29532818pfu.50.2022.02.03.06.10.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Feb 2022 06:10:29 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-am65*: remove #address-cells/#size-cells from flash nodes
-Date:   Thu,  3 Feb 2022 15:02:40 +0100
-Message-Id: <20220203140240.973690-2-matthias.schiffer@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220203140240.973690-1-matthias.schiffer@ew.tq-group.com>
-References: <20220203140240.973690-1-matthias.schiffer@ew.tq-group.com>
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>
+Subject: [PATCH v6 1/4] drm/bridge: anx7625: send DPCD command to downstream
+Date:   Thu,  3 Feb 2022 22:10:20 +0800
+Message-Id: <20220203141023.570180-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.35.0.rc2.247.g8bbb082509-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Specifying partitions directly in the flash node is deprecated, a
-fixed-partitions node should be used instead. Therefore, it doesn't make
-sense to have these properties in the flash nodes.
+From: Xin Ji <xji@analogixsemi.com>
 
-Acked-by: Jan Kiszka <jan.kiszka@siemens.com>
-Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Send DPCD command to downstream before anx7625 power down,
+let downstream monitor enter into standby mode.
+
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 2 --
- arch/arm64/boot/dts/ti/k3-am654-base-board.dts     | 8 ++------
- 2 files changed, 2 insertions(+), 8 deletions(-)
+v3->v4:
+Use common DP_AUX_NATIVE_READ/WRITE
 
-v2: no changes, added Jan's Acked-by
+Previously in:
+https://patchwork.kernel.org/project/dri-devel/patch/1f36f8bf0a48fb2bba17bacec23700e58c1d407d.1641891874.git.xji@analogixsemi.com/
+---
+ drivers/gpu/drm/bridge/analogix/anx7625.c | 42 +++++++++++++++++++----
+ drivers/gpu/drm/bridge/analogix/anx7625.h |  2 --
+ 2 files changed, 35 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-index 873c123c611ed..7eca697e1ca14 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-@@ -623,8 +623,6 @@ flash@0 {
- 		cdns,tchsh-ns = <60>;
- 		cdns,tslch-ns = <60>;
- 		cdns,read-delay = <2>;
--		#address-cells = <1>;
--		#size-cells = <1>;
- 	};
- };
+diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+index 76662fce4ce61d..17b23940549a42 100644
+--- a/drivers/gpu/drm/bridge/analogix/anx7625.c
++++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+@@ -129,6 +129,23 @@ static int anx7625_reg_write(struct anx7625_data *ctx,
+ 	return ret;
+ }
  
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index 821ee7f2eff04..9c06da9d6d8f7 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -340,14 +340,12 @@ &main_spi0 {
- 	ti,pindir-d0-out-d1-in;
- 	status = "okay";
++static int anx7625_reg_block_write(struct anx7625_data *ctx,
++				   struct i2c_client *client,
++				   u8 reg_addr, u8 len, u8 *buf)
++{
++	int ret;
++	struct device *dev = &client->dev;
++
++	i2c_access_workaround(ctx, client);
++
++	ret = i2c_smbus_write_i2c_block_data(client, reg_addr, len, buf);
++	if (ret < 0)
++		dev_err(dev, "write i2c block failed id=%x\n:%x",
++			client->addr, reg_addr);
++
++	return ret;
++}
++
+ static int anx7625_write_or(struct anx7625_data *ctx,
+ 			    struct i2c_client *client,
+ 			    u8 offset, u8 mask)
+@@ -214,8 +231,8 @@ static int wait_aux_op_finish(struct anx7625_data *ctx)
+ 	return 0;
+ }
  
--	flash@0{
-+	flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0x0>;
- 		spi-tx-bus-width = <1>;
- 		spi-rx-bus-width = <1>;
- 		spi-max-frequency = <48000000>;
--		#address-cells = <1>;
--		#size-cells= <1>;
- 	};
- };
+-static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
+-				 u32 address, u8 len, u8 *buf)
++static int anx7625_aux_dpcd_trans(struct anx7625_data *ctx, u8 op,
++				  u32 address, u8 len, u8 *buf)
+ {
+ 	struct device *dev = &ctx->client->dev;
+ 	int ret;
+@@ -231,8 +248,7 @@ static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
+ 	addrm = (address >> 8) & 0xFF;
+ 	addrh = (address >> 16) & 0xFF;
  
-@@ -442,7 +440,7 @@ &ospi0 {
- 	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
- 	status = "okay";
+-	cmd = DPCD_CMD(len, DPCD_READ);
+-	cmd = ((len - 1) << 4) | 0x09;
++	cmd = DPCD_CMD(len, op);
  
--	flash@0{
-+	flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0x0>;
- 		spi-tx-bus-width = <8>;
-@@ -453,8 +451,6 @@ flash@0{
- 		cdns,tchsh-ns = <60>;
- 		cdns,tslch-ns = <60>;
- 		cdns,read-delay = <0>;
--		#address-cells = <1>;
--		#size-cells = <1>;
- 	};
- };
+ 	/* Set command and length */
+ 	ret = anx7625_reg_write(ctx, ctx->i2c.rx_p0_client,
+@@ -246,6 +262,9 @@ static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
+ 	ret |= anx7625_reg_write(ctx, ctx->i2c.rx_p0_client,
+ 				 AP_AUX_ADDR_19_16, addrh);
  
++	if (op == DP_AUX_NATIVE_WRITE)
++		ret |= anx7625_reg_block_write(ctx, ctx->i2c.rx_p0_client,
++					       AP_AUX_BUFF_START, len, buf);
+ 	/* Enable aux access */
+ 	ret |= anx7625_write_or(ctx, ctx->i2c.rx_p0_client,
+ 				AP_AUX_CTRL_STATUS, AP_AUX_CTRL_OP_EN);
+@@ -255,14 +274,17 @@ static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
+ 		return -EIO;
+ 	}
+ 
+-	usleep_range(2000, 2100);
+-
+ 	ret = wait_aux_op_finish(ctx);
+ 	if (ret) {
+ 		dev_err(dev, "aux IO error: wait aux op finish.\n");
+ 		return ret;
+ 	}
+ 
++	/* Write done */
++	if (op == DP_AUX_NATIVE_WRITE)
++		return 0;
++
++	/* Read done, read out dpcd data */
+ 	ret = anx7625_reg_block_read(ctx, ctx->i2c.rx_p0_client,
+ 				     AP_AUX_BUFF_START, len, buf);
+ 	if (ret < 0) {
+@@ -845,7 +867,7 @@ static int anx7625_hdcp_enable(struct anx7625_data *ctx)
+ 	}
+ 
+ 	/* Read downstream capability */
+-	anx7625_aux_dpcd_read(ctx, 0x68028, 1, &bcap);
++	anx7625_aux_dpcd_trans(ctx, DP_AUX_NATIVE_READ, 0x68028, 1, &bcap);
+ 	if (!(bcap & 0x01)) {
+ 		pr_warn("downstream not support HDCP 1.4, cap(%x).\n", bcap);
+ 		return 0;
+@@ -918,6 +940,7 @@ static void anx7625_dp_stop(struct anx7625_data *ctx)
+ {
+ 	struct device *dev = &ctx->client->dev;
+ 	int ret;
++	u8 data;
+ 
+ 	DRM_DEV_DEBUG_DRIVER(dev, "stop dp output\n");
+ 
+@@ -929,6 +952,11 @@ static void anx7625_dp_stop(struct anx7625_data *ctx)
+ 	ret |= anx7625_write_and(ctx, ctx->i2c.tx_p2_client, 0x08, 0x7f);
+ 
+ 	ret |= anx7625_video_mute_control(ctx, 1);
++
++	dev_dbg(dev, "notify downstream enter into standby\n");
++	/* Downstream monitor enter into standby mode */
++	data = 2;
++	ret |= anx7625_aux_dpcd_trans(ctx, DP_AUX_NATIVE_WRITE, 0x000600, 1, &data);
+ 	if (ret < 0)
+ 		DRM_DEV_ERROR(dev, "IO error : mute video fail\n");
+ 
+diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
+index 56165f5b254c14..64a8ab56529404 100644
+--- a/drivers/gpu/drm/bridge/analogix/anx7625.h
++++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
+@@ -242,8 +242,6 @@
+ 
+ #define AP_AUX_COMMAND	0x27  /* com+len */
+ #define LENGTH_SHIFT	4
+-#define DPCD_READ	0x09
+-#define DPCD_WRITE	0x08
+ #define DPCD_CMD(len, cmd)	((((len) - 1) << LENGTH_SHIFT) | (cmd))
+ 
+ /* Bit 0&1: 3D video structure */
 -- 
-2.25.1
+2.35.0.rc2.247.g8bbb082509-goog
 
