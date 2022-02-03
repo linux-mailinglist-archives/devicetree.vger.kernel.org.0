@@ -2,237 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 654AF4A7CDD
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 01:26:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 988E34A7CE1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 01:29:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348555AbiBCA0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 19:26:11 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:48102 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1348575AbiBCA0J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 19:26:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1643847969;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hUs9xNWmt9WhjQnC9DXbjWYNlVBZzZ3mJ6n8NPsFFAE=;
-        b=BdwpFuEOi5OC1nXW4vjpgW820XOwD94MrgzzmSCwyR4meD9SsQY5bqsZNvCQufz+0XhtZf
-        SStPe8gDjDk+2nsoYXaZB9xX/s8hyjFw+mf+Cz1JHfm0ev59De9QwrXAirlygDTQ4f8Aa9
-        MLUSm8Q3pUptOKp8o+3F2NvyWJEJBVE=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-62-YZkSLdrTM-KtHOl4B05_Bw-1; Wed, 02 Feb 2022 19:26:03 -0500
-X-MC-Unique: YZkSLdrTM-KtHOl4B05_Bw-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com [10.5.11.15])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        id S234516AbiBCA3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 19:29:49 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:49480 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229976AbiBCA3t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 19:29:49 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id EB674814246;
-        Thu,  3 Feb 2022 00:26:01 +0000 (UTC)
-Received: from cmirabil.remote.csb (unknown [10.22.8.140])
-        by smtp.corp.redhat.com (Postfix) with ESMTP id 1233856A81;
-        Thu,  3 Feb 2022 00:25:59 +0000 (UTC)
-From:   Charles Mirabile <cmirabil@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Charles Mirabile <cmirabil@redhat.com>,
-        Serge Schneider <serge@raspberrypi.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Nicolas Saenz Julienne <nsaenzju@redhat.com>,
-        Mattias Brugger <mbrugger@suse.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, fedora-rpi@googlegroups.com,
-        Miguel Ojeda <ojeda@kernel.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E5C0460F70;
+        Thu,  3 Feb 2022 00:29:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0DAFC004E1;
+        Thu,  3 Feb 2022 00:29:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643848188;
+        bh=qbauBxRZfFJXJcEvFeOVzCSZEL6mvF1hBgdnTbdFeI8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kGoMuLq8TOLnaZPtZaJWBw63kgW2ytM5niYrgefeCG7FKn4V6YysUgbS6L2NOUKRC
+         kbj7w+KQtcZiBa0BXa+0mnuYyAVrqzuwJjyTEkKyhA8U3jf3xGL8rSlPz4SVqjB8ZT
+         fNqc7XpWFFSdQlQBLglww+EJXWgUbKCqzdCkqRC/O04GcecpqmvWFG4BvzgKpMd0rz
+         QfvEII4p0jZvFbGOi5/37fvBVZi3R0+/BPvWEoo0J7QcUvQbrSaMMc72iZbBjFu2mC
+         C0hOLaO4K2aOGZMysjurlwzjaDBIm4/VN6g4C2ZB6u7hfbCO3GeQXqUzz9qd1QFXrR
+         IdVmyY7Yt9XMQ==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        Mwesigwa Guma <mguma@redhat.com>,
-        Joel Savitz <jsavitz@redhat.com>
-Subject: [PATCH 4/6] dt-bindings: mfd: sensehat: Add Raspberry Pi Sense HAT schema
-Date:   Wed,  2 Feb 2022 19:25:19 -0500
-Message-Id: <20220203002521.162878-5-cmirabil@redhat.com>
-In-Reply-To: <20220203002521.162878-1-cmirabil@redhat.com>
-References: <20220203002521.162878-1-cmirabil@redhat.com>
+        Georgi Djakov <djakov@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: qcom: sm8450: add interconnect nodes
+Date:   Thu,  3 Feb 2022 05:59:36 +0530
+Message-Id: <20220203002936.3009402-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the device tree bindings for the Sense HAT
-and each of its children devices in yaml form.
+And the various interconnect nodes found in SM8450 SoC and use it for
+UFS controller.
 
-Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
-Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
-Co-developed-by: Joel Savitz <jsavitz@redhat.com>
-Signed-off-by: Joel Savitz <jsavitz@redhat.com>
-Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
 ---
- .../raspberrypi,sensehat-display.yaml         | 32 +++++++++
- .../input/raspberrypi,sensehat-joystick.yaml  | 37 ++++++++++
- .../bindings/mfd/raspberrypi,sensehat.yaml    | 68 +++++++++++++++++++
- 3 files changed, 137 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
- create mode 100644 Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
- create mode 100644 Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
 
-diff --git a/Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml b/Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
-new file mode 100644
-index 000000000000..8937adba1c4b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
-@@ -0,0 +1,32 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+$id: http://devicetree.org/schemas/auxdisplay/raspberrypi,sensehat-display.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+Changes in v2:
+	- Fix the mc_virt node
+	- Add clk_virt node
+	- Rebase to rc1
+
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 85 ++++++++++++++++++++++++++++
+ 1 file changed, 85 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 10c25ad2d0c7..ccc67918c46a 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -8,6 +8,7 @@
+ #include <dt-bindings/clock/qcom,rpmh.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/power/qcom-rpmpd.h>
++#include <dt-bindings/interconnect/qcom,sm8450.h>
+ #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+ 
+ / {
+@@ -250,6 +251,18 @@ scm: scm {
+ 		};
+ 	};
+ 
++	clk_virt: interconnect@0 {
++		compatible = "qcom,sm8450-clk-virt";
++		#interconnect-cells = <2>;
++		qcom,bcm-voters = <&apps_bcm_voter>;
++	};
 +
-+title: Raspberry Pi Sensehat Display
++	mc_virt: interconnect@1 {
++		compatible = "qcom,sm8450-mc-virt";
++		#interconnect-cells = <2>;
++		qcom,bcm-voters = <&apps_bcm_voter>;
++	};
 +
-+maintainers:
-+  - Charles Mirabile <cmirabil@redhat.com>
-+  - Mwesigwa Guma <mguma@redhat.com>
-+  - Joel Savitz <jsavitz@redhat.com>
+ 	memory@a0000000 {
+ 		device_type = "memory";
+ 		/* We expect the bootloader to fill in the size */
+@@ -620,6 +633,54 @@ i2c14: i2c@a98000 {
+ 			};
+ 		};
+ 
++		config_noc: interconnect@1500000 {
++			compatible = "qcom,sm8450-config-noc";
++			reg = <0 0x01500000 0 0x1c000>;
++			#interconnect-cells = <2>;
++			qcom,bcm-voters = <&apps_bcm_voter>;
++		};
 +
-+description:
-+  This device is part of the sensehat multi function device.
-+  For more information see ../mfd/raspberrypi,sensehat.yaml.
++		system_noc: interconnect@1680000 {
++			compatible = "qcom,sm8450-system-noc";
++			reg = <0 0x01680000 0 0x1e200>;
++			#interconnect-cells = <2>;
++			qcom,bcm-voters = <&apps_bcm_voter>;
++		};
 +
-+  This device features a programmable 8x8 RGB LED matrix.
++		pcie_noc: interconnect@16c0000 {
++			compatible = "qcom,sm8450-pcie-anoc";
++			reg = <0 0x016c0000 0 0xe280>;
++			#interconnect-cells = <2>;
++			qcom,bcm-voters = <&apps_bcm_voter>;
++		};
 +
-+properties:
-+  compatible:
-+    const: raspberrypi,sensehat-display
++		aggre1_noc: interconnect@16e0000 {
++			compatible = "qcom,sm8450-aggre1-noc";
++			reg = <0 0x016e0000 0 0x1c080>;
++			#interconnect-cells = <2>;
++			clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
++				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
++			qcom,bcm-voters = <&apps_bcm_voter>;
++		};
 +
-+  reg:
-+    items:
-+      - description: |
-+          smb register number for the first component of the fist
-+          pixel in the range.
++		aggre2_noc: interconnect@1700000 {
++			compatible = "qcom,sm8450-aggre2-noc";
++			reg = <0 0x01700000 0 0x31080>;
++			#interconnect-cells = <2>;
++			qcom,bcm-voters = <&apps_bcm_voter>;
++			clocks = <&gcc GCC_AGGRE_NOC_PCIE_0_AXI_CLK>,
++				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>,
++				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
++				 <&rpmhcc RPMH_IPA_CLK>;
++		};
 +
-+required:
-+  - compatible
-+  - reg
++		mmss_noc: interconnect@1740000 {
++			compatible = "qcom,sm8450-mmss-noc";
++			reg = <0 0x01740000 0 0x1f080>;
++			#interconnect-cells = <2>;
++			qcom,bcm-voters = <&apps_bcm_voter>;
++		};
 +
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml b/Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
-new file mode 100644
-index 000000000000..a6d95c903b04
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+$id: http://devicetree.org/schemas/input/raspberrypi,sensehat-joystick.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 		tcsr_mutex: hwlock@1f40000 {
+ 			compatible = "qcom,tcsr-mutex";
+ 			reg = <0x0 0x01f40000 0x0 0x40000>;
+@@ -988,6 +1049,13 @@ cpufreq_hw: cpufreq@17d91000 {
+ 			#freq-domain-cells = <1>;
+ 		};
+ 
++		gem_noc: interconnect@19100000 {
++			compatible = "qcom,sm8450-gem-noc";
++			reg = <0 0x19100000 0 0xbb800>;
++			#interconnect-cells = <2>;
++			qcom,bcm-voters = <&apps_bcm_voter>;
++		};
 +
-+title: Raspberry Pi Sensehat Joystick
+ 		ufs_mem_hc: ufshc@1d84000 {
+ 			compatible = "qcom,sm8450-ufshc", "qcom,ufshc",
+ 				     "jedec,ufs-2.0";
+@@ -1004,6 +1072,9 @@ ufs_mem_hc: ufshc@1d84000 {
+ 
+ 			iommus = <&apps_smmu 0xe0 0x0>;
+ 
++			interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
++					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
++			interconnect-names = "ufs-ddr", "cpu-ufs";
+ 			clock-names =
+ 				"core_clk",
+ 				"bus_aggr_clk",
+@@ -1102,6 +1173,20 @@ usb_1_dwc3: usb@a600000 {
+ 				phy-names = "usb2-phy", "usb3-phy";
+ 			};
+ 		};
 +
-+maintainers:
-+  - Charles Mirabile <cmirabil@redhat.com>
-+  - Mwesigwa Guma <mguma@redhat.com>
-+  - Joel Savitz <jsavitz@redhat.com>
++		nsp_noc: interconnect@320c0000 {
++			compatible = "qcom,sm8450-nsp-noc";
++			reg = <0 0x320c0000 0 0x10000>;
++			#interconnect-cells = <2>;
++			qcom,bcm-voters = <&apps_bcm_voter>;
++		};
 +
-+description:
-+  This device is part of the sensehat multi function device.
-+  For more information see ../mfd/raspberrypi,sensehat.yaml.
-+
-+  This device features a five button joystick (up, down,left,
-+  right, click)
-+
-+properties:
-+  compatible:
-+    const: raspberrypi,sensehat-joystick
-+
-+  reg:
-+    items:
-+      - description: |
-+          smb register number for accessing the state of the buttons
-+
-+  interrupts:
-+    items:
-+      - description: pin number for joystick interrupt
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml b/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
-new file mode 100644
-index 000000000000..89037be87c10
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+$id: http://devicetree.org/schemas/mfd/raspberrypi,sensehat.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Raspberry Pi Sensehat
-+
-+maintainers:
-+  - Charles Mirabile <cmirabil@redhat.com>
-+  - Mwesigwa Guma <mguma@redhat.com>
-+  - Joel Savitz <jsavitz@redhat.com>
-+
-+description:
-+  The Raspberry Pi Sensehat is an addon board originally developed
-+  for the Raspberry Pi that has a joystick and an 8x8 RGB LED display
-+  as well as several environmental sensors. It connects via i2c and
-+  a gpio for irq.
-+
-+properties:
-+  compatible:
-+    const: raspberrypi,sensehat
-+
-+  reg:
-+    items:
-+      - description: i2c device address
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^joystick(@[0-9a-f]+)?$":
-+    $ref: ../input/raspberrypi,sensehat-joystick.yaml
-+
-+  "^display(@[0-9a-f]+)?$":
-+    $ref: ../auxdisplay/raspberrypi,sensehat-display.yaml
-+
-+required:
-+  - "#address-cells"
-+  - "#size-cells"
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      sensehat@46 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        compatible = "raspberrypi,sensehat";
-+        reg = <0x46>;
-+        display@0 {
-+          compatible = "raspberrypi,sensehat-display";
-+          reg = <0x0>;
-+        };
-+        joystick@f2 {
-+          compatible = "raspberrypi,sensehat-joystick";
-+          reg = <0x0>;
-+          interrupts = <23 GPIO_ACTIVE_HIGH>;
-+        };
-+      };
-+    };
++		lpass_ag_noc: interconnect@3c40000 {
++			compatible = "qcom,sm8450-lpass-ag-noc";
++			reg = <0 0x3c40000 0 0x17200>;
++			#interconnect-cells = <2>;
++			qcom,bcm-voters = <&apps_bcm_voter>;
++		};
+ 	};
+ 
+ 	timer {
 -- 
 2.31.1
 
