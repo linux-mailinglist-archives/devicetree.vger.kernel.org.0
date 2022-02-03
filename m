@@ -2,387 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98D644A7FD8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 08:27:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A67E4A7FEA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 08:39:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349394AbiBCH1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 02:27:08 -0500
-Received: from mail-40137.protonmail.ch ([185.70.40.137]:33692 "EHLO
-        mail-40137.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239028AbiBCH1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 02:27:07 -0500
-Date:   Thu, 03 Feb 2022 07:26:58 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail2; t=1643873225;
-        bh=rjXtv8DjIMsE13KIuztdA6i3i1h+3p2yBsgPSWpIkBY=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
-         References:From:To:Cc;
-        b=fdx50OH7O+EHnMXixx5811cAZUJ0AvsFBcxY3fVDup3oKxgAfOIYB+dnWyxFaSqKM
-         zI5IR+p5Uir/ujU1I8X5YrEfAfVUE+2aBcoF4g19gEAoGJBDBsKPR/5G+3AE96h2+Z
-         /0EZdfZwVDEOWNyjNYW6epbtoMPHsUr/LJEPCMuB0nVmlnVdr4/xNGHDjpmTR1Q1rQ
-         bz+aUqih5CwbXV7skLoNHygXWzYdpK/g/gl86Y4gmTzX4zwcnpA4GVT3JOUnzRBy5H
-         YEzD56ezVzKOqBurO/32ipIshlXPDuYlGNdHUH9EVTYipK+9WnYle59h0v5mSN7Ewo
-         v/WIQqYQEtQTA==
-To:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-kernel@vger.kernel.org
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: [PATCH RESEND v3 7/7] dt-bindings: power: avs: qcom,cpr: Convert to DT schema
-Message-ID: <20220203072226.51482-8-y.oudjana@protonmail.com>
-In-Reply-To: <20220203072226.51482-1-y.oudjana@protonmail.com>
-References: <20220203072226.51482-1-y.oudjana@protonmail.com>
+        id S231549AbiBCHjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 02:39:37 -0500
+Received: from muru.com ([72.249.23.125]:45812 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230204AbiBCHjh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 3 Feb 2022 02:39:37 -0500
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 411DD80EE;
+        Thu,  3 Feb 2022 07:39:21 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, Tero Kristo <kristo@kernel.org>
+Subject: [PATCHv2] dt-bindings: clock: Add binding for TI clksel
+Date:   Thu,  3 Feb 2022 09:39:29 +0200
+Message-Id: <20220203073929.59296-1-tony@atomide.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        T_SCC_BODY_TEXT_LINE shortcircuit=no autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert qcom,cpr.txt to DT schema format.
+In order to prepare for fixing lots of devicetree unique_unit_address
+warnings for the TI clock nodes, let's add a binding for the TI clksel
+clocks. This allows us to move the overlapping reg properties for the
+component clocks to be children of the related clksel nodes. And with
+that we need the reg property only for the parent clksel node making
+the reg property unique like it should be.
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+We want to set #clock-cells = <2> in case we ever start parsing ranges
+of clkcsel instances directly using a clksel driver rather than using the
+existing component clock drivers and child nodes.
+
+And before the devicetree files can be updated, we need to update the
+TI clock drivers to get the IO address from the parent clksel node.
+
+Cc: Tero Kristo <kristo@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
-Changes since v1:
- - Remove allOf from compatible.
 
- .../bindings/power/avs/qcom,cpr.txt           | 130 --------------
- .../bindings/power/avs/qcom,cpr.yaml          | 160 ++++++++++++++++++
- MAINTAINERS                                   |   2 +-
- 3 files changed, 161 insertions(+), 131 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.tx=
-t
- create mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.ya=
-ml
+Changes since V1:
 
-diff --git a/Documentation/devicetree/bindings/power/avs/qcom,cpr.txt b/Doc=
-umentation/devicetree/bindings/power/avs/qcom,cpr.txt
-deleted file mode 100644
-index ab0d5ebbad4e..000000000000
---- a/Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
-+++ /dev/null
-@@ -1,130 +0,0 @@
--QCOM CPR (Core Power Reduction)
--
--CPR (Core Power Reduction) is a technology to reduce core power on a CPU
--or other device. Each OPP of a device corresponds to a "corner" that has
--a range of valid voltages for a particular frequency. While the device is
--running at a particular frequency, CPR monitors dynamic factors such as
--temperature, etc. and suggests adjustments to the voltage to save power
--and meet silicon characteristic requirements.
--
--- compatible:
--=09Usage: required
--=09Value type: <string>
--=09Definition: should be "qcom,qcs404-cpr", "qcom,cpr" for qcs404
--
--- reg:
--=09Usage: required
--=09Value type: <prop-encoded-array>
--=09Definition: base address and size of the rbcpr register region
--
--- interrupts:
--=09Usage: required
--=09Value type: <prop-encoded-array>
--=09Definition: should specify the CPR interrupt
--
--- clocks:
--=09Usage: required
--=09Value type: <prop-encoded-array>
--=09Definition: phandle to the reference clock
--
--- clock-names:
--=09Usage: required
--=09Value type: <stringlist>
--=09Definition: must be "ref"
--
--- vdd-apc-supply:
--=09Usage: required
--=09Value type: <phandle>
--=09Definition: phandle to the vdd-apc-supply regulator
--
--- #power-domain-cells:
--=09Usage: required
--=09Value type: <u32>
--=09Definition: should be 0
--
--- operating-points-v2:
--=09Usage: required
--=09Value type: <phandle>
--=09Definition: A phandle to the OPP table containing the
--=09=09    performance states supported by the CPR
--=09=09    power domain
--
--- acc-syscon:
--=09Usage: optional
--=09Value type: <phandle>
--=09Definition: phandle to syscon for writing ACC settings
--
--- nvmem-cells:
--=09Usage: required
--=09Value type: <phandle>
--=09Definition: phandle to nvmem cells containing the data
--=09=09    that makes up a fuse corner, for each fuse corner.
--=09=09    As well as the CPR fuse revision.
--
--- nvmem-cell-names:
--=09Usage: required
--=09Value type: <stringlist>
--=09Definition: should be "cpr_quotient_offset1", "cpr_quotient_offset2",
--=09=09    "cpr_quotient_offset3", "cpr_init_voltage1",
--=09=09    "cpr_init_voltage2", "cpr_init_voltage3", "cpr_quotient1",
--=09=09    "cpr_quotient2", "cpr_quotient3", "cpr_ring_osc1",
--=09=09    "cpr_ring_osc2", "cpr_ring_osc3", "cpr_fuse_revision"
--=09=09    for qcs404.
--
--Example:
--
--=09cpr_opp_table: cpr-opp-table {
--=09=09compatible =3D "operating-points-v2-qcom-level";
--
--=09=09cpr_opp1: opp1 {
--=09=09=09opp-level =3D <1>;
--=09=09=09qcom,opp-fuse-level =3D <1>;
--=09=09};
--=09=09cpr_opp2: opp2 {
--=09=09=09opp-level =3D <2>;
--=09=09=09qcom,opp-fuse-level =3D <2>;
--=09=09};
--=09=09cpr_opp3: opp3 {
--=09=09=09opp-level =3D <3>;
--=09=09=09qcom,opp-fuse-level =3D <3>;
--=09=09};
--=09};
--
--=09power-controller@b018000 {
--=09=09compatible =3D "qcom,qcs404-cpr", "qcom,cpr";
--=09=09reg =3D <0x0b018000 0x1000>;
--=09=09interrupts =3D <0 15 IRQ_TYPE_EDGE_RISING>;
--=09=09clocks =3D <&xo_board>;
--=09=09clock-names =3D "ref";
--=09=09vdd-apc-supply =3D <&pms405_s3>;
--=09=09#power-domain-cells =3D <0>;
--=09=09operating-points-v2 =3D <&cpr_opp_table>;
--=09=09acc-syscon =3D <&tcsr>;
--
--=09=09nvmem-cells =3D <&cpr_efuse_quot_offset1>,
--=09=09=09<&cpr_efuse_quot_offset2>,
--=09=09=09<&cpr_efuse_quot_offset3>,
--=09=09=09<&cpr_efuse_init_voltage1>,
--=09=09=09<&cpr_efuse_init_voltage2>,
--=09=09=09<&cpr_efuse_init_voltage3>,
--=09=09=09<&cpr_efuse_quot1>,
--=09=09=09<&cpr_efuse_quot2>,
--=09=09=09<&cpr_efuse_quot3>,
--=09=09=09<&cpr_efuse_ring1>,
--=09=09=09<&cpr_efuse_ring2>,
--=09=09=09<&cpr_efuse_ring3>,
--=09=09=09<&cpr_efuse_revision>;
--=09=09nvmem-cell-names =3D "cpr_quotient_offset1",
--=09=09=09"cpr_quotient_offset2",
--=09=09=09"cpr_quotient_offset3",
--=09=09=09"cpr_init_voltage1",
--=09=09=09"cpr_init_voltage2",
--=09=09=09"cpr_init_voltage3",
--=09=09=09"cpr_quotient1",
--=09=09=09"cpr_quotient2",
--=09=09=09"cpr_quotient3",
--=09=09=09"cpr_ring_osc1",
--=09=09=09"cpr_ring_osc2",
--=09=09=09"cpr_ring_osc3",
--=09=09=09"cpr_fuse_revision";
--=09};
-diff --git a/Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml b/Do=
-cumentation/devicetree/bindings/power/avs/qcom,cpr.yaml
+- Set additionalProperties to type object as suggested by Rob
+
+- Changed #clock-cells to 2 for parsing ranges of clksel instances
+
+- Updated patch description for more info on why this is needed
+
+ .../bindings/clock/ti/ti,clksel.yaml          | 51 +++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
+
+diff --git a/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml b/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
 new file mode 100644
-index 000000000000..3301fa0c2653
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
-@@ -0,0 +1,160 @@
++++ b/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
+@@ -0,0 +1,51 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/power/avs/qcom,cpr.yaml#
++$id: http://devicetree.org/schemas/clock/ti/ti,clksel.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm Core Power Reduction (CPR) bindings
++title: Binding for TI clksel clock
 +
 +maintainers:
-+  - Niklas Cassel <nks@flawful.org>
++  - Tony Lindgren <tony@atomide.com>
 +
 +description: |
-+  CPR (Core Power Reduction) is a technology to reduce core power on a CPU
-+  or other device. Each OPP of a device corresponds to a "corner" that has
-+  a range of valid voltages for a particular frequency. While the device i=
-s
-+  running at a particular frequency, CPR monitors dynamic factors such as
-+  temperature, etc. and suggests adjustments to the voltage to save power
-+  and meet silicon characteristic requirements.
++  The TI CLKSEL clocks consist of consist of input clock mux bits, and in some
++  cases also has divider, multiplier and gate bits.
 +
 +properties:
 +  compatible:
-+    items:
-+      - enum:
-+          - qcom,qcs404-cpr
-+      - const: qcom,cpr
++    const: ti,clksel
 +
 +  reg:
-+    description: Base address and size of the RBCPR register region.
 +    maxItems: 1
++    description: The CLKSEL register range
 +
-+  interrupts:
-+    maxItems: 1
++  '#address-cells':
++    enum: [ 0, 1, 2 ]
 +
-+  clocks:
-+    items:
-+      - description: Reference clock.
++  '#size-cells':
++    enum: [ 0, 1, 2 ]
 +
-+  clock-names:
-+    items:
-+      - const: ref
++  ranges: true
 +
-+  vdd-apc-supply:
-+    description: APC regulator supply.
-+
-+  '#power-domain-cells':
-+    const: 0
-+
-+  operating-points-v2:
-+    description: |
-+      A phandle to the OPP table containing the performance states
-+      supported by the CPR power domain.
-+
-+  acc-syscon:
-+    description: A phandle to the syscon used for writing ACC settings.
-+
-+  nvmem-cells:
-+    items:
-+      - description: Corner 1 quotient offset
-+      - description: Corner 2 quotient offset
-+      - description: Corner 3 quotient offset
-+      - description: Corner 1 initial voltage
-+      - description: Corner 2 initial voltage
-+      - description: Corner 3 initial voltage
-+      - description: Corner 1 quotient
-+      - description: Corner 2 quotient
-+      - description: Corner 3 quotient
-+      - description: Corner 1 ring oscillator
-+      - description: Corner 2 ring oscillator
-+      - description: Corner 3 ring oscillator
-+      - description: Fuse revision
-+
-+  nvmem-cell-names:
-+    items:
-+      - const: cpr_quotient_offset1
-+      - const: cpr_quotient_offset2
-+      - const: cpr_quotient_offset3
-+      - const: cpr_init_voltage1
-+      - const: cpr_init_voltage2
-+      - const: cpr_init_voltage3
-+      - const: cpr_quotient1
-+      - const: cpr_quotient2
-+      - const: cpr_quotient3
-+      - const: cpr_ring_osc1
-+      - const: cpr_ring_osc2
-+      - const: cpr_ring_osc3
-+      - const: cpr_fuse_revision
++  "#clock-cells":
++    const: 2
++    description: The CLKSEL register and bit offset
 +
 +required:
 +  - compatible
 +  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - vdd-apc-supply
-+  - '#power-domain-cells'
-+  - operating-points-v2
-+  - nvmem-cells
-+  - nvmem-cell-names
++  - "#clock-cells"
 +
-+additionalProperties: false
++additionalProperties:
++  type: object
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    cpr_opp_table: opp-table-cpr {
-+        compatible =3D "operating-points-v2-qcom-level";
-+
-+        cpr_opp1: opp1 {
-+            opp-level =3D <1>;
-+            qcom,opp-fuse-level =3D <1>;
-+        };
-+        cpr_opp2: opp2 {
-+            opp-level =3D <2>;
-+            qcom,opp-fuse-level =3D <2>;
-+        };
-+        cpr_opp3: opp3 {
-+            opp-level =3D <3>;
-+            qcom,opp-fuse-level =3D <3>;
-+        };
++    clksel_gfx_fclk: clock@52c {
++      compatible = "ti,clksel";
++      reg = <0x25c 0x4>;
++      #clock-cells = <2>;
 +    };
-+
-+    power-controller@b018000 {
-+        compatible =3D "qcom,qcs404-cpr", "qcom,cpr";
-+        reg =3D <0x0b018000 0x1000>;
-+        interrupts =3D <0 15 IRQ_TYPE_EDGE_RISING>;
-+        clocks =3D <&xo_board>;
-+        clock-names =3D "ref";
-+        vdd-apc-supply =3D <&pms405_s3>;
-+        #power-domain-cells =3D <0>;
-+        operating-points-v2 =3D <&cpr_opp_table>;
-+        acc-syscon =3D <&tcsr>;
-+
-+        nvmem-cells =3D <&cpr_efuse_quot_offset1>,
-+            <&cpr_efuse_quot_offset2>,
-+            <&cpr_efuse_quot_offset3>,
-+            <&cpr_efuse_init_voltage1>,
-+            <&cpr_efuse_init_voltage2>,
-+            <&cpr_efuse_init_voltage3>,
-+            <&cpr_efuse_quot1>,
-+            <&cpr_efuse_quot2>,
-+            <&cpr_efuse_quot3>,
-+            <&cpr_efuse_ring1>,
-+            <&cpr_efuse_ring2>,
-+            <&cpr_efuse_ring3>,
-+            <&cpr_efuse_revision>;
-+        nvmem-cell-names =3D "cpr_quotient_offset1",
-+            "cpr_quotient_offset2",
-+            "cpr_quotient_offset3",
-+            "cpr_init_voltage1",
-+            "cpr_init_voltage2",
-+            "cpr_init_voltage3",
-+            "cpr_quotient1",
-+            "cpr_quotient2",
-+            "cpr_quotient3",
-+            "cpr_ring_osc1",
-+            "cpr_ring_osc2",
-+            "cpr_ring_osc3",
-+            "cpr_fuse_revision";
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8a024490a1f8..e365a6903787 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15889,7 +15889,7 @@ M:=09Niklas Cassel <nks@flawful.org>
- L:=09linux-pm@vger.kernel.org
- L:=09linux-arm-msm@vger.kernel.org
- S:=09Maintained
--F:=09Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
-+F:=09Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
- F:=09drivers/soc/qcom/cpr.c
-=20
- QUALCOMM CPUFREQ DRIVER MSM8996/APQ8096
---=20
-2.34.1
-
-
++...
+-- 
+2.35.1
