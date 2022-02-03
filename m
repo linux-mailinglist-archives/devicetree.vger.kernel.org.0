@@ -2,123 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55F2E4A87C3
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 16:38:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF5924A87E7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 16:47:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237928AbiBCPiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 10:38:23 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41438
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229526AbiBCPiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 10:38:21 -0500
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9777840031
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 15:38:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643902700;
-        bh=ceC2gcL0mrIihsL0BnsbH0nguKuEzDfg49WOJYvpHjs=;
-        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-         In-Reply-To:Content-Type;
-        b=d24i9Wp72B6oQp0vlVqbNUMsJTOGyMswoJIb/IOkDL+6n8Wn/PTd1JoxxaUU7RxGz
-         WkYcBImELW42uRB+h7Cp7M/NRyfvDa7ywtSHUrWDaKE/5vpFDZT0l62+g6lBJCg+xy
-         e4+SeF+7iadxTmp6hwfpHzVnvpNt9XStk0jMcpWcrdhh/C/lEO1bga4foLP9LeiKSo
-         tn5UESfR9k/+lv5KM7tOG/xxnklkUS/Kh7zltM7BwQnH8m516m1n/qoFxtv8bSxrj8
-         QdBkV798UhRHNnhbFXk7hr0r9H112ZfsJZ5munA9bhNXtYxtFqyRI9pViZXyyRZ2qv
-         3bQBIPmbFRRhw==
-Received: by mail-ed1-f71.google.com with SMTP id c23-20020a056402159700b00406aa42973eso1663171edv.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 07:38:20 -0800 (PST)
+        id S243495AbiBCPrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 10:47:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242771AbiBCPrF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 10:47:05 -0500
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC75EC06173E
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 07:47:04 -0800 (PST)
+Received: by mail-ot1-x336.google.com with SMTP id b17-20020a9d4791000000b005a17fc2dfc1so2937815otf.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 07:47:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8FrWpPu5qbqNeRR4utPcGWY/d5SeN3jaIZbvirN1ZeY=;
+        b=hzflAUWbERV6Oz8blFR1GSVZRre0yUiQW8Iq1bcV0B3aGScfjNZzKTwT4u/6Clvce7
+         AICroH8fFXBDplFdZ7sEwkKJD7xiWlWfZqAQQIbrJQkeburOWxiLVtzI8m4M57/VatPr
+         MBq1UVghTsHttESmvfhMgO6q9NU00XTR87UmaBMF7P2NbLLIsqe4VfM6GXRWKinibVuX
+         GkVNo7ov7PRes7SiH+E8bONY0I7gq0xeGxVH4qvZxPjnvk6mex8t+m6W/NdTnvUPx/db
+         L6OHh7nFbHI/hliX+4MEk+86nRwsAvY22IDFXRyAQkfE8YChKioeqihCvG8rguIqi+PB
+         Yuug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ceC2gcL0mrIihsL0BnsbH0nguKuEzDfg49WOJYvpHjs=;
-        b=mzpCxHgT4dcZ7/ASML16GUNcjGK8BikRBlKkOXSnWshZnAOoRrKW8U1ZiDPUbVOr1D
-         Mb5hEdZEinZwvO5dtdRiN2bxyCP+sg8LhoOo/8XAOl2wmLZz3bZx4vinoJLJXIXtZZgO
-         l4aP0bLtZ1ouP59IPJvNNdWk7DCU3wVgWKYffa0P+vuqh7sUH8xWVYeEZam89QaFV4vr
-         HJ6VUcdbb/yQ720pt0ph8GKkLZOENaTe9OSQU4nGjperRBDORuZ+wXW3ritdrYIj4Oom
-         O/qjF7GCkd9l6xq2BeW2RYo/zv9F2J07w55fenHWa33Mc2xP68bwto0eZZFJidGRURrp
-         gPmw==
-X-Gm-Message-State: AOAM530cx/cf8DzkW+KZpGJNsYEowFmSZwVYsa/NWXuXXaIIx2hJ/2VI
-        Z8uFpF5gjGe6afftCvgOGEyUU2Ps0TAU44v0BgffHBRFK5vINT5lI+CdVcdEUxarZ3kiyEe4uAS
-        /h3bvReouRWSqj98mwPSrvshPaHiD2I4flIzfkOk=
-X-Received: by 2002:a17:907:72c6:: with SMTP id du6mr30002400ejc.220.1643902700241;
-        Thu, 03 Feb 2022 07:38:20 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwAlF4VO+3+huXx+8cZu7b5cA+B5MxPjq2AnlQQoxec/Nz+wrYqg6yvzwA6CuuoFJ6CoCaqQg==
-X-Received: by 2002:a17:907:72c6:: with SMTP id du6mr30002391ejc.220.1643902700086;
-        Thu, 03 Feb 2022 07:38:20 -0800 (PST)
-Received: from [192.168.0.81] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id h7sm16852146ejk.69.2022.02.03.07.38.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Feb 2022 07:38:19 -0800 (PST)
-Message-ID: <2f85f510-4ba4-f178-4c50-e4202a9a8f58@canonical.com>
-Date:   Thu, 3 Feb 2022 16:38:19 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8FrWpPu5qbqNeRR4utPcGWY/d5SeN3jaIZbvirN1ZeY=;
+        b=yLb2OWAbh5nkjFwAu8aCNwmieJUmJh+6dYM0qcSKUf77ml9e4mGzNtOh/5vt9huOAi
+         zTW3eSR8BsqZR/KPrRtOXJubtMG9xQ+I4pLjbLjW/KWn0BXcqub8RGFvrcA3+zt+bHLV
+         H9vDkaBEQOveypVc+PkE5g9BUH5n4x+OJNzMDhur0EPDeGJxscSUqdXNW9NEq/p6o+0X
+         OZpMCWLSlZ3KCuJvd+mp3NJhpf8r+qNImU7uqNVL6P4QglPOO1/xD1C0as4CNyEeOGs1
+         Qwhw8tPndWTDKo5R2YCt0xMhhtwY2lREyrTpy2cmh11gEmxOZ9ODMyAyEm4H/jp4DTMM
+         ekiw==
+X-Gm-Message-State: AOAM531KIxIzX7KSp9muOefmdqziepBJMdMF6eOlv96D2JTydcXCYmlu
+        JqlFlMLm+03k6E2BvWj7SsMQnw==
+X-Google-Smtp-Source: ABdhPJyJi4QTZpyyU9/EKW4RaU+cJgbNbGo7KG2cOTmBJPYbC2MlQ4zyB4yEmiX7xC3Regx/MlnP0A==
+X-Received: by 2002:a9d:2f25:: with SMTP id h34mr18912063otb.346.1643903223960;
+        Thu, 03 Feb 2022 07:47:03 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id ay32sm13499901oob.16.2022.02.03.07.47.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Feb 2022 07:47:03 -0800 (PST)
+Date:   Thu, 3 Feb 2022 07:47:20 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Wilczy??ski <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v5 2/5] PCI: qcom: Remove redundancy between qcom_pcie
+ and qcom_pcie_cfg
+Message-ID: <Yfv5CEex29bIX3D9@ripper>
+References: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
+ <20211218141024.500952-3-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 3/3] ARM: defconfig: add smb347 charger driver for p4note
-Content-Language: en-US
-To:     =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Russell King <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <5d15937b6a7c4ae82a8f0d164fa28a4d4ad46325.1643757744.git.martin.juecker@gmail.com>
- <aba0d1ffe6a34ed09022cb8ea6e780b01b7d70c0.1643757744.git.martin.juecker@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <aba0d1ffe6a34ed09022cb8ea6e780b01b7d70c0.1643757744.git.martin.juecker@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211218141024.500952-3-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/02/2022 17:34, Martin Jücker wrote:
-> The Summit SMB347 charger has been added to the p4note device tree,
-> enable the driver in exynos and multi_v7 defconfigs.
+On Sat 18 Dec 06:10 PST 2021, Dmitry Baryshkov wrote:
 
-These commits go via different paths and are loosely related, so the
-moment this is applied, the SMB347 charger is not yet in P4Note DTS.
-
-Just write that SMB347 is being used by P4Note family of devices, e.g.
-Samsung Galaxy Note 10.1 (GT-N8010/N8013).
-
+> In preparation to adding more flags to configuration data, use pointer
+> to struct qcom_pcie_cfg directly inside struct qcom_pcie, rather than
+> duplicating all its fields. This would save us from the boilerplate code
+> that just copies flag values from one struct to another one.
 > 
-> Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Regards,
+Bjorn
+
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  arch/arm/configs/exynos_defconfig   | 1 +
->  arch/arm/configs/multi_v7_defconfig | 1 +
->  2 files changed, 2 insertions(+)
+>  drivers/pci/controller/dwc/pcie-qcom.c | 31 +++++++++++---------------
+>  1 file changed, 13 insertions(+), 18 deletions(-)
 > 
-> diff --git a/arch/arm/configs/exynos_defconfig b/arch/arm/configs/exynos_defconfig
-> index c58877cfdc9d..9d3191de96b6 100644
-> --- a/arch/arm/configs/exynos_defconfig
-> +++ b/arch/arm/configs/exynos_defconfig
-> @@ -159,6 +159,7 @@ CONFIG_CHARGER_MAX14577=y
->  CONFIG_CHARGER_MAX77693=y
->  CONFIG_CHARGER_MAX8997=y
->  CONFIG_CHARGER_MAX8998=y
-> +CONFIG_CHARGER_SMB347=y
->  CONFIG_CHARGER_TPS65090=y
->  CONFIG_SENSORS_LM90=y
->  CONFIG_SENSORS_NTC_THERMISTOR=y
-> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-> index 1c2c3e9f0e05..bfbcb57e2083 100644
-> --- a/arch/arm/configs/multi_v7_defconfig
-> +++ b/arch/arm/configs/multi_v7_defconfig
-> @@ -510,6 +510,7 @@ CONFIG_CHARGER_MAX14577=m
->  CONFIG_CHARGER_MAX77693=m
->  CONFIG_CHARGER_MAX8997=m
->  CONFIG_CHARGER_MAX8998=m
-> +CONFIG_CHARGER_SMB347=m
->  CONFIG_CHARGER_TPS65090=y
->  CONFIG_SENSORS_ARM_SCMI=y
->  CONFIG_SENSORS_ASPEED=m
-
-
-Best regards,
-Krzysztof
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 4e668da96ef4..1204011c96ee 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -200,8 +200,7 @@ struct qcom_pcie {
+>  	union qcom_pcie_resources res;
+>  	struct phy *phy;
+>  	struct gpio_desc *reset;
+> -	const struct qcom_pcie_ops *ops;
+> -	unsigned int pipe_clk_need_muxing:1;
+> +	const struct qcom_pcie_cfg *cfg;
+>  };
+>  
+>  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
+> @@ -225,8 +224,8 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
+>  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+>  
+>  	/* Enable Link Training state machine */
+> -	if (pcie->ops->ltssm_enable)
+> -		pcie->ops->ltssm_enable(pcie);
+> +	if (pcie->cfg->ops->ltssm_enable)
+> +		pcie->cfg->ops->ltssm_enable(pcie);
+>  
+>  	return 0;
+>  }
+> @@ -1145,7 +1144,7 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	if (pcie->pipe_clk_need_muxing) {
+> +	if (pcie->cfg->pipe_clk_need_muxing) {
+>  		res->pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+>  		if (IS_ERR(res->pipe_clk_src))
+>  			return PTR_ERR(res->pipe_clk_src);
+> @@ -1180,7 +1179,7 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
+>  	}
+>  
+>  	/* Set pipe clock as clock source for pcie_pipe_clk_src */
+> -	if (pcie->pipe_clk_need_muxing)
+> +	if (pcie->cfg->pipe_clk_need_muxing)
+>  		clk_set_parent(res->pipe_clk_src, res->phy_pipe_clk);
+>  
+>  	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
+> @@ -1243,7 +1242,7 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
+>  	clk_bulk_disable_unprepare(res->num_clks, res->clks);
+>  
+>  	/* Set TCXO as clock source for pcie_pipe_clk_src */
+> -	if (pcie->pipe_clk_need_muxing)
+> +	if (pcie->cfg->pipe_clk_need_muxing)
+>  		clk_set_parent(res->pipe_clk_src, res->ref_clk_src);
+>  
+>  	regulator_bulk_disable(ARRAY_SIZE(res->supplies), res->supplies);
+> @@ -1336,7 +1335,7 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
+>  
+>  	qcom_ep_reset_assert(pcie);
+>  
+> -	ret = pcie->ops->init(pcie);
+> +	ret = pcie->cfg->ops->init(pcie);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -1346,8 +1345,8 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
+>  
+>  	qcom_ep_reset_deassert(pcie);
+>  
+> -	if (pcie->ops->config_sid) {
+> -		ret = pcie->ops->config_sid(pcie);
+> +	if (pcie->cfg->ops->config_sid) {
+> +		ret = pcie->cfg->ops->config_sid(pcie);
+>  		if (ret)
+>  			goto err;
+>  	}
+> @@ -1358,7 +1357,7 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
+>  	qcom_ep_reset_assert(pcie);
+>  	phy_power_off(pcie->phy);
+>  err_deinit:
+> -	pcie->ops->deinit(pcie);
+> +	pcie->cfg->ops->deinit(pcie);
+>  
+>  	return ret;
+>  }
+> @@ -1468,7 +1467,6 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  	struct pcie_port *pp;
+>  	struct dw_pcie *pci;
+>  	struct qcom_pcie *pcie;
+> -	const struct qcom_pcie_cfg *pcie_cfg;
+>  	int ret;
+>  
+>  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+> @@ -1485,15 +1483,12 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  
+>  	pcie->pci = pci;
+>  
+> -	pcie_cfg = of_device_get_match_data(dev);
+> -	if (!pcie_cfg || !pcie_cfg->ops) {
+> +	pcie->cfg = of_device_get_match_data(dev);
+> +	if (!pcie->cfg || !pcie->cfg->ops) {
+>  		dev_err(dev, "Invalid platform data\n");
+>  		return -EINVAL;
+>  	}
+>  
+> -	pcie->ops = pcie_cfg->ops;
+> -	pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
+> -
+>  	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
+>  	if (IS_ERR(pcie->reset))
+>  		return PTR_ERR(pcie->reset);
+> @@ -1510,7 +1505,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  	if (IS_ERR(pcie->phy))
+>  		return PTR_ERR(pcie->phy);
+>  
+> -	ret = pcie->ops->get_resources(pcie);
+> +	ret = pcie->cfg->ops->get_resources(pcie);
+>  	if (ret)
+>  		return ret;
+>  
+> -- 
+> 2.34.1
+> 
