@@ -2,154 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E61AE4A8823
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 16:57:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 626264A88A4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 17:35:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352053AbiBCP5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 10:57:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49782 "EHLO
+        id S1352240AbiBCQfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 11:35:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352047AbiBCP5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 10:57:39 -0500
-Received: from mail-oo1-xc2c.google.com (mail-oo1-xc2c.google.com [IPv6:2607:f8b0:4864:20::c2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17408C061714
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 07:57:39 -0800 (PST)
-Received: by mail-oo1-xc2c.google.com with SMTP id v17-20020a4ac911000000b002eac41bb3f4so1827417ooq.10
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 07:57:39 -0800 (PST)
+        with ESMTP id S242530AbiBCQfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 11:35:22 -0500
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9049C06173B
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 08:35:21 -0800 (PST)
+Received: by mail-yb1-xb35.google.com with SMTP id j2so10842317ybu.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 08:35:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=u8SvSzbd59UmkycNsXmpgzI9yGmgfD5pZgAqD9SL4Iw=;
-        b=vHPVc7chXEK8xfd2k1jjj63JAbn72kRdFJAAgZDPEdRgClwYz2gFK3MVI/kcx/lNlZ
-         0x+2yDywbAfAoSJl5cmnHcOnsYdWOfGcoyMptTMYPLcUFTWT+7Qv6FO5+JN/5mlHc0ja
-         t4YU25OS6mwYqzBpxUTf/oD2czM7k+9/hD4ZNILagelBCJntBvvFR6UZwNi81mJ2H9zU
-         qrzTjWes2UpWY+zKcuuTj2UOKD/jMaqURTsKCI3+dL+qFjFu95trOZF8FBMVEWLHAvJV
-         q0+Sk720Ka6zNsRCjXiXUL8IXsguNbHobXXlmmabSK6WiaCo/T7A5wstEv1u8+5GxGdA
-         g3fQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oPyaAvEtdJH++WDtQsfHJFEBuo6QHijQrPaLImzUuV0=;
+        b=iodhaaRiTSlJsMrQ2rysn98rztbb0JF1+3C/qdYn8eZ205G9o7D2xLCIkj1jlnAej3
+         Jth01jXJ8hH08JyaRAdFEpE6PK3jaqz+CVn5H2PECYchKHpmIAZ+Nwuh5VI2vTtwZQbd
+         F+ZIX47vK3Gx5IbW/GTsSIte+M+SlXKQ3vLlZMp+9vLdbynEFBsPh5m1F72Ss2QEyFKT
+         FYOc5WSZ3yYzqQRZ1ojfTwAzFG43BfAO+st3XUrrL9B6DoB+//cQ45lE4D4UjvIFKRkq
+         3VEFJT3f+/6DPWSmpLRco78ulXYmQymcuBBzBcbEWqI6XchkTF4E63/8daccPFOaHmr2
+         4OXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=u8SvSzbd59UmkycNsXmpgzI9yGmgfD5pZgAqD9SL4Iw=;
-        b=B1uJIY/cfPHQ0bUym8Tk6+oYrseKNV6Txa8WEgKgzKWPCghkHaUSupV7S2TwEDP+h5
-         Dh4v2sMBb30+jRhMod+qqkexcgWvhTtXZ8ghcF/fwv0pGm5zgDa72JlraEyI+yAi60/b
-         QgOrH3M3JWid73scUzz7Cu/fNuyWcWwLTHt1ties8yn+aF/CK66xY53VfmbgL/wZehW+
-         6oZfwd6/l5Sb8kZ4qvGLZLq93LZUUj19kh7MTjngDQt06Gt0uzHCpuOCigaLQzlYOrNB
-         vbBX/CCvpZWWzficKSglIDkNTqxQhyvbuBG/b8oPpiMtXR2Xun+HNYlXzYEM+29sDmgV
-         St1Q==
-X-Gm-Message-State: AOAM531wpcn6rBCFp/KJ4VnSNMdqkJ121GKGH2Zw4WCAal5kbHq8Pu5E
-        63Ngp6qHkBpG829waMLw31hX5w==
-X-Google-Smtp-Source: ABdhPJyODJF45Cjmx4GtfDCTKc1xrrSopNuENSJ88j7tav9mvUwxZNuYbBU+4agG/vPbg4gbPy77lw==
-X-Received: by 2002:a4a:94b0:: with SMTP id k45mr17349233ooi.64.1643903858451;
-        Thu, 03 Feb 2022 07:57:38 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id a26sm20524555oiy.26.2022.02.03.07.57.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Feb 2022 07:57:37 -0800 (PST)
-Date:   Thu, 3 Feb 2022 07:57:54 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Wilczy??ski <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 4/5] PCI: qcom: Add interconnect support to
- 2.7.0/1.9.0 ops
-Message-ID: <Yfv7gh8YycxH2Wtm@ripper>
-References: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
- <20211218141024.500952-5-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oPyaAvEtdJH++WDtQsfHJFEBuo6QHijQrPaLImzUuV0=;
+        b=TEJWlMPzmHof7nJ6noYUx59kyqiTBrr6lyyUTYgZBUxLEAj9K2GuGWJhBBa/o+QuH9
+         nR6uhffi1s7P0KWZO8P8fU9QLMLgpZ5amcERYpAPNo2ctcV/AMmmowQccmaPP+qH4SXG
+         qQTytRxmyRmWWzdbgRgcrgKHtdc+4yijnG6hC3Z1yY2XYZqmSTOuEsBbymy1G8T2oTe5
+         3xaYoubliK0CqFPfRhtXkivXe8xwuu+Ev5eGPM1/UAx+/8WmIZBLerm1BS6SXKUxK6bI
+         FAv9wFD4SureW0saaEpMTdAaVVOPAnlRQvn9EL1WCdgn67svGRSHqb0WxLvbNaHFUb+6
+         MWCw==
+X-Gm-Message-State: AOAM530GOmUb/rSvIAszG+RpUarmZaK5e9YsSasQ8usk0rS1HSSqiu3o
+        w0qHZVaEnBCoAnHtIilTXmdoW/WEMgCZ1qQbqrbdiw==
+X-Google-Smtp-Source: ABdhPJwPpV0qhSSOjoMf2U6ukA+nrGwkJ2vJrhfhKQI75mWoHXb0/OVQxxUCPt0pr1lBInb2g522JrAti/o5iVL3NnE=
+X-Received: by 2002:a81:6686:: with SMTP id a128mr4995423ywc.541.1643906121126;
+ Thu, 03 Feb 2022 08:35:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211218141024.500952-5-dmitry.baryshkov@linaro.org>
+References: <20220202235049.8051-1-samuel@sholland.org> <20220202235049.8051-2-samuel@sholland.org>
+In-Reply-To: <20220202235049.8051-2-samuel@sholland.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 3 Feb 2022 17:35:09 +0100
+Message-ID: <CACRpkdbS_LZTsB8M5mJ3GGrSeYD4Eouttj1PgUGSdMAm4yp=Lg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add silan vendor prefix
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Denis Ciocca <denis.ciocca@st.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 18 Dec 06:10 PST 2021, Dmitry Baryshkov wrote:
+On Thu, Feb 3, 2022 at 12:50 AM Samuel Holland <samuel@sholland.org> wrote:
 
-> Add optional interconnect support for the 2.7.0/1.9.0 hosts. Set the
-> bandwidth according to the values from the downstream driver.
-> 
+> Hangzhou Silan Microelectronics Co., Ltd. (http://www.silan.com.cn/) is
+> a manufacturer of ICs, including MEMS sensors.
+>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-What memory transactions will travel this path? I would expect there to
-be two different paths involved, given the rather low bw numbers I
-presume this is the config path?
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Is there no vote for the data path?
-
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index d8d400423a0a..55ac3caa6d7d 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -12,6 +12,7 @@
->  #include <linux/crc8.h>
->  #include <linux/delay.h>
->  #include <linux/gpio/consumer.h>
-> +#include <linux/interconnect.h>
->  #include <linux/interrupt.h>
->  #include <linux/io.h>
->  #include <linux/iopoll.h>
-> @@ -167,6 +168,7 @@ struct qcom_pcie_resources_2_7_0 {
->  	struct clk *pipe_clk_src;
->  	struct clk *phy_pipe_clk;
->  	struct clk *ref_clk_src;
-> +	struct icc_path *path;
->  };
->  
->  union qcom_pcie_resources {
-> @@ -1121,6 +1123,10 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->  	if (IS_ERR(res->pci_reset))
->  		return PTR_ERR(res->pci_reset);
->  
-> +	res->path = devm_of_icc_get(dev, "pci");
-
-The paths are typically identified using a string of the form
-<source>-<destination>.
-
-
-I don't see the related update to the DT binding for the introduction of
-the interconnect.
-
-Regards,
-Bjorn
-
-> +	if (IS_ERR(res->path))
-> +		return PTR_ERR(res->path);
-> +
->  	res->supplies[0].supply = "vdda";
->  	res->supplies[1].supply = "vddpe-3v3";
->  	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(res->supplies),
-> @@ -1183,6 +1189,9 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
->  	if (pcie->cfg->pipe_clk_need_muxing)
->  		clk_set_parent(res->pipe_clk_src, res->phy_pipe_clk);
->  
-> +	if (res->path)
-> +		icc_set_bw(res->path, 500, 800);
-> +
->  	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
->  	if (ret < 0)
->  		goto err_disable_regulators;
-> @@ -1241,6 +1250,8 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
->  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
->  
->  	clk_bulk_disable_unprepare(res->num_clks, res->clks);
-> +	if (res->path)
-> +		icc_set_bw(res->path, 0, 0);
->  
->  	/* Set TCXO as clock source for pcie_pipe_clk_src */
->  	if (pcie->cfg->pipe_clk_need_muxing)
-> -- 
-> 2.34.1
-> 
+Yours,
+Linus Walleij
