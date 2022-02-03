@@ -2,214 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6939A4A897A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:10:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AD3F4A8995
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 18:13:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352582AbiBCRKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 12:10:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352592AbiBCRJu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:09:50 -0500
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54EF4C061401
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 09:09:50 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id u13so5049011oie.5
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 09:09:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Dp+Q+BZVAFYUKDakoDDrpzKynjH1KfyR67RxEPsBMUQ=;
-        b=X6RuS7hnFE8QuQc6ecdjMqJ+R578JtgLxsgVBJmE3PeHe8x5fQZXptZLzYUR+mDZvk
-         ygetmkszh7JvJgXWgugdVCM/RRpYVmyOreWdafireVRIVW9FYuLhm9KoIisAIyvR6BEZ
-         X2wKXoEJd34ewsB1/7COIOI9zdHY1lFPjh0O+iTOgztDukF6ZkkMEWC85znnOmHzqBnQ
-         4jfb3aS/2pfRNHOlW6ZHBBNDOz/mVsY0sszrIENqPV6NHCRREZMQtoEOv0SDbO55VDnS
-         xOpU2tFAFQA4vXhHZCTYwybTBQnLsmIZVMQfBflf77l4bvY89SdQqehmIPIsvUhURZLq
-         a7Ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Dp+Q+BZVAFYUKDakoDDrpzKynjH1KfyR67RxEPsBMUQ=;
-        b=gxRfm/nfaL742H57eZoS0ce13Oou+qGMcNe7xu1tZQB2z4n1cDgtWajJdPt2K2sT3r
-         y7xYr+5wpfl3nMjmI1GU/3UhlWzORKCouiPzqWtQdguJXelvalCwuEJPUxG5hsPf4Pct
-         YkFhfWBjLi1luuDQNWK3dlQ4oqZ1113riYaWLGB8omgxeOAkW3sA0Tn6Wr8hLI8pWcfZ
-         9KGd59vd6CmEYiT5czAagY/crtDp65Xkciy+MYY4xUPB1AGqYLAenWckj1OPNd3ceoal
-         eHvCZD1HGb6lapHE75sDvKG8sol7Kl456b6BWtRSXizTTocv7R++aUGzM4xwjig/8wcp
-         4bQw==
-X-Gm-Message-State: AOAM531h5H2jAzXeVy/jcfk/u56EcZlUJSmwj9tBezGoJj/P7B9PMA2H
-        qfB3oIaWKaKzk13Qs0HnuOA3yQ==
-X-Google-Smtp-Source: ABdhPJwiW154TEn1eBOojokeZf7L7OXCy0vVk/5RBOHgj1iBKXRk6RDh1M6hqoXLB69JlzZ5h/czDw==
-X-Received: by 2002:aca:eb03:: with SMTP id j3mr8143556oih.43.1643908189732;
-        Thu, 03 Feb 2022 09:09:49 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id z4sm14340958ota.7.2022.02.03.09.09.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Feb 2022 09:09:49 -0800 (PST)
-Date:   Thu, 3 Feb 2022 09:10:06 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Wilczy??ski <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 5/5] PCI: qcom: Add SM8450 PCIe support
-Message-ID: <YfwMbqG6ovrPbDhx@ripper>
-References: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
- <20211218141024.500952-6-dmitry.baryshkov@linaro.org>
+        id S237738AbiBCRNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 12:13:47 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:40708 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S234749AbiBCRNp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 12:13:45 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 213BqhKf011945;
+        Thu, 3 Feb 2022 18:11:20 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=+3SMJdk/i10Ni8hFboTXLiEzVYQL+60qZcJKfQoAgCc=;
+ b=EnZLGX/kzXO4QKhpFjpHI3Iw1HpOvVvYldfcPtrue7M0Aojs5VIkzoKbM6ilqPkofdBs
+ IE4wkKIuFBUnIlWNNab9qDPyGQJVLBeRTuej+szjAC9559TUvn9qc7KRXjzsrYIc6zHh
+ tOWvEKcdlTaZPKibX3zCyToGUnvdjnN1Bjwx9nyf8vi7epGlyk7PZag4nRd4VPKmSzuC
+ C22nfLg1/eeJILL+mPUaMN/LMxU7een2KIEqzWdfGCwPWPy8vmvfyhPHudqIvbjmbtDR
+ F6rbZyWX04c3axqA1U6C+LOhtDEt9vB9CpgZS9Foz9JLyG7MIdp/BQSV1SyCUOe9nO7L xw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e0ejj9g4t-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Feb 2022 18:11:20 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7FD2F100034;
+        Thu,  3 Feb 2022 18:11:18 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6441F22F7A3;
+        Thu,  3 Feb 2022 18:11:18 +0100 (CET)
+Received: from localhost (10.75.127.47) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 3 Feb 2022 18:11:18
+ +0100
+From:   Erwan Le Ray <erwan.leray@foss.st.com>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Erwan Le Ray <erwan.leray@foss.st.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marek Vasut <marex@denx.de>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 00/16] STM32 configure UART nodes for DMA
+Date:   Thu, 3 Feb 2022 18:10:58 +0100
+Message-ID: <20220203171114.10888-1-erwan.leray@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211218141024.500952-6-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-03_06,2022-02-03_01,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 18 Dec 06:10 PST 2021, Dmitry Baryshkov wrote:
+Add DMA configuration to UART nodes in stm32mp15x (SOC level) and
+remove it at board level to keep current PIO behavior when needed.
+For stm32-ed1 and stm32-dkx boards, UART4 (console) and UART7
+(no HW flow control pin available) are kept in PIO mode, while USART3
+is now configured in DMA mode.
+UART4 (console UART) has to be kept in irq mode, as DMA support for
+console has been removed from the driver by commit e359b4411c28 
+("serial: stm32: fix threaded interrupt handling"). 
 
-> On SM8450 platform PCIe hosts do not use all the clocks (and add several
-> additional clocks), so expand the driver to handle these requirements.
-> 
-> PCIe0 and PCIe1 hosts use different sets of clocks, so separate entries
-> are required.
-> 
+For other stm32mp15x-based boards, current configuration is kept for
+all UART instances.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Erwan Le Ray (16):
+  ARM: dts: stm32: add DMA configuration to UART nodes on stm32mp151
+  ARM: dts: stm32: keep uart4 behavior on stm32mp157c-ed1
+  ARM: dts: stm32: keep uart4 and uart7 behavior on stm32mp15xx-dkx
+  ARM: dts: stm32: keep uart4 behavior on icore-stm32mp1-ctouch2
+  ARM: dts: stm32: keep uart4 behavior on icore-stm32mp1-edimm2.2
+  ARM: dts: stm32: keep uart4 behavior on stm32mp157a-iot-box
+  ARM: dts: stm32: keep uart nodes behavior on stm32mp1-microdev2.0-of7
+  ARM: dts: stm32: keep uart nodes behavior on stm32mp1-microdev2.0
+  ARM: dts: stm32: keep uart nodes behavior on stm32mp157a-stinger96
+  ARM: dts: stm32: keep uart4 behavior on stm32mp157c-lxa-mc1
+  ARM: dts: stm32: keep uart4 behavior on stm32mp157c-odyssey
+  ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-drc02
+  ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-pdk2
+  ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-picoitx
+  ARM: dts: stm32: keep uart4 behavior on stm32mp15xx-dhcom-som
+  ARM: dts: stm32: keep uart nodes behavior on
+    stm32mp15xx-dhcor-avenger96
 
-Regards,
-Bjorn
+ arch/arm/boot/dts/stm32mp151.dtsi             | 21 +++++++++++++++++++
+ .../stm32mp157a-icore-stm32mp1-ctouch2.dts    |  2 ++
+ .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   |  2 ++
+ arch/arm/boot/dts/stm32mp157a-iot-box.dts     |  2 ++
+ ...157a-microgea-stm32mp1-microdev2.0-of7.dts |  4 ++++
+ ...32mp157a-microgea-stm32mp1-microdev2.0.dts |  4 ++++
+ arch/arm/boot/dts/stm32mp157a-stinger96.dtsi  |  6 ++++++
+ arch/arm/boot/dts/stm32mp157c-ed1.dts         |  2 ++
+ arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts     |  2 ++
+ arch/arm/boot/dts/stm32mp157c-odyssey.dts     |  2 ++
+ .../arm/boot/dts/stm32mp15xx-dhcom-drc02.dtsi |  4 ++++
+ arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi |  4 ++++
+ .../boot/dts/stm32mp15xx-dhcom-picoitx.dtsi   |  4 ++++
+ arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi  |  2 ++
+ .../boot/dts/stm32mp15xx-dhcor-avenger96.dtsi |  6 ++++++
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        |  4 ++++
+ 16 files changed, 71 insertions(+)
 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 57 ++++++++++++++++++++------
->  1 file changed, 44 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 55ac3caa6d7d..fe6ed1e0415a 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -161,7 +161,7 @@ struct qcom_pcie_resources_2_3_3 {
->  
->  /* 6 clocks typically, 7 for sm8250 */
->  struct qcom_pcie_resources_2_7_0 {
-> -	struct clk_bulk_data clks[7];
-> +	struct clk_bulk_data clks[9];
->  	int num_clks;
->  	struct regulator_bulk_data supplies[2];
->  	struct reset_control *pci_reset;
-> @@ -193,7 +193,10 @@ struct qcom_pcie_ops {
->  struct qcom_pcie_cfg {
->  	const struct qcom_pcie_ops *ops;
->  	unsigned int pipe_clk_need_muxing:1;
-> +	unsigned int has_tbu_clk:1;
->  	unsigned int has_ddrss_sf_tbu_clk:1;
-> +	unsigned int has_aggre0_clk:1;
-> +	unsigned int has_aggre1_clk:1;
->  };
->  
->  struct qcom_pcie {
-> @@ -1117,6 +1120,7 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
->  	struct dw_pcie *pci = pcie->pci;
->  	struct device *dev = pci->dev;
-> +	unsigned int idx;
->  	int ret;
->  
->  	res->pci_reset = devm_reset_control_get_exclusive(dev, "pci");
-> @@ -1134,18 +1138,22 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->  	if (ret)
->  		return ret;
->  
-> -	res->clks[0].id = "aux";
-> -	res->clks[1].id = "cfg";
-> -	res->clks[2].id = "bus_master";
-> -	res->clks[3].id = "bus_slave";
-> -	res->clks[4].id = "slave_q2a";
-> -	res->clks[5].id = "tbu";
-> -	if (pcie->cfg->has_ddrss_sf_tbu_clk) {
-> -		res->clks[6].id = "ddrss_sf_tbu";
-> -		res->num_clks = 7;
-> -	} else {
-> -		res->num_clks = 6;
-> -	}
-> +	idx = 0;
-> +	res->clks[idx++].id = "aux";
-> +	res->clks[idx++].id = "cfg";
-> +	res->clks[idx++].id = "bus_master";
-> +	res->clks[idx++].id = "bus_slave";
-> +	res->clks[idx++].id = "slave_q2a";
-> +	if (pcie->cfg->has_tbu_clk)
-> +		res->clks[idx++].id = "tbu";
-> +	if (pcie->cfg->has_ddrss_sf_tbu_clk)
-> +		res->clks[idx++].id = "ddrss_sf_tbu";
-> +	if (pcie->cfg->has_aggre0_clk)
-> +		res->clks[idx++].id = "aggre0";
-> +	if (pcie->cfg->has_aggre1_clk)
-> +		res->clks[idx++].id = "aggre1";
-> +
-> +	res->num_clks = idx;
->  
->  	ret = devm_clk_bulk_get(dev, res->num_clks, res->clks);
->  	if (ret < 0)
-> @@ -1210,6 +1218,9 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
->  		goto err_disable_clocks;
->  	}
->  
-> +	/* Wait for reset to complete, required on SM8450 */
-> +	usleep_range(1000, 1500);
-> +
->  	/* configure PCIe to RC mode */
->  	writel(DEVICE_TYPE_RC, pcie->parf + PCIE20_PARF_DEVICE_TYPE);
->  
-> @@ -1457,15 +1468,33 @@ static const struct qcom_pcie_cfg ipq4019_cfg = {
->  
->  static const struct qcom_pcie_cfg sdm845_cfg = {
->  	.ops = &ops_2_7_0,
-> +	.has_tbu_clk = true,
->  };
->  
->  static const struct qcom_pcie_cfg sm8250_cfg = {
-> +	.ops = &ops_1_9_0,
-> +	.has_tbu_clk = true,
-> +	.has_ddrss_sf_tbu_clk = true,
-> +};
-> +
-> +static const struct qcom_pcie_cfg sm8450_pcie0_cfg = {
->  	.ops = &ops_1_9_0,
->  	.has_ddrss_sf_tbu_clk = true,
-> +	.pipe_clk_need_muxing = true,
-> +	.has_aggre0_clk = true,
-> +	.has_aggre1_clk = true,
-> +};
-> +
-> +static const struct qcom_pcie_cfg sm8450_pcie1_cfg = {
-> +	.ops = &ops_1_9_0,
-> +	.has_ddrss_sf_tbu_clk = true,
-> +	.pipe_clk_need_muxing = true,
-> +	.has_aggre1_clk = true,
->  };
->  
->  static const struct qcom_pcie_cfg sc7280_cfg = {
->  	.ops = &ops_1_9_0,
-> +	.has_tbu_clk = true,
->  	.pipe_clk_need_muxing = true,
->  };
->  
-> @@ -1564,6 +1593,8 @@ static const struct of_device_id qcom_pcie_match[] = {
->  	{ .compatible = "qcom,pcie-sdm845", .data = &sdm845_cfg },
->  	{ .compatible = "qcom,pcie-sm8250", .data = &sm8250_cfg },
->  	{ .compatible = "qcom,pcie-sc8180x", .data = &sm8250_cfg },
-> +	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &sm8450_pcie0_cfg },
-> +	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &sm8450_pcie1_cfg },
->  	{ .compatible = "qcom,pcie-sc7280", .data = &sc7280_cfg },
->  	{ }
->  };
-> -- 
-> 2.34.1
-> 
+-- 
+2.17.1
+
