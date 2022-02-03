@@ -2,201 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59B7D4A7CEF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 01:36:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6E284A7D0D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Feb 2022 02:00:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348157AbiBCAgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Feb 2022 19:36:39 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:39928 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235935AbiBCAgi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 2 Feb 2022 19:36:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=ttsIhF/ph2eBwd0E85uNu2nSTC/noJxE0o8Desy50mU=; b=tqPk2kfziTJbUX6cUB8YgqjijY
-        YLuHg5J6mY2hM9UTfTlr1jFrI6bnUXBVIohKe5j5DTLsaHigD5oUeZ6ajAoZBcMT3TwrZILPVbEVh
-        MNgJwBC9rmaIPuWRf+i79gQKLuWbi/b2bf9qUxLv/7Rna7xdvPj/wKmfUbsFlrAEZX5c=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nFQ6s-0042PT-S2; Thu, 03 Feb 2022 01:36:26 +0100
-Date:   Thu, 3 Feb 2022 01:36:26 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Joseph CHAMG <josright123@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
-        leon@kernel.org
-Subject: Re: [PATCH v16, 2/2] net: Add dm9051 driver
-Message-ID: <Yfsjigm19BtSfZcD@lunn.ch>
-References: <20220129164346.5535-1-josright123@gmail.com>
- <20220129164346.5535-3-josright123@gmail.com>
+        id S238120AbiBCBAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Feb 2022 20:00:24 -0500
+Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:50129 "EHLO
+        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230037AbiBCBAY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Feb 2022 20:00:24 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.west.internal (Postfix) with ESMTP id E3E4A2B001A2;
+        Wed,  2 Feb 2022 20:00:22 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Wed, 02 Feb 2022 20:00:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm1; bh=ghqGX3/+yOOHb2cOr1Jt9KBI+S4cLLds/M5rhcvfosE=; b=bqg5P
+        3LfxBT9QfWHEeZu4P2PeC5KtJQcu477uZdXAKwDzwJ6zuYgmbeof372Lr4nz3KM+
+        7TXIPrDgRyLwGADhiHsHwHp3NTMPd9S1lUR4dhT35qCjPR7O6XZ008FFftbfgAXd
+        C4rHOPwbxNc3tqcECIrF/7bJvvXtYuhWrhY4nKKo3KOZlzq+yoqXMUFQu4svRYvR
+        YNiuIN6eJd4rr+F123RclySMHAFqilbmYdIx85Q9fhKJ0sPZdmtqPiIQOhANb2GL
+        3XZhwzjHzaDAOswYCc8acn5v22HFagluowvb6WAaIZrPA7JDUEK9+chH68CJeP65
+        w+/2ODChvaKQj0CUA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
+        :x-me-sender:x-sasl-enc; s=fm2; bh=ghqGX3/+yOOHb2cOr1Jt9KBI+S4cL
+        Lds/M5rhcvfosE=; b=JvJGlb5IUQsk0DkjjbQKbnPcKjfpRbTct6esJ0QUjMGCZ
+        R66US/8aSAwOn7VEt3bV1RGYi2i/VdQ0eXT/is3wtFXJ2L35hX2WZ8MCq8JxHhn8
+        X+zpBjvcuBO68LEVO7+eMHhR+4sP9jPUmmKjWahIllTi6OSTj442Xw1cWj7C0FOJ
+        HfHKMb2qC9Uo9zXN4yTKmYkl8jW6nIY0T8Q+CnFHToLRfKOMmP7Z227QMEiC1AgP
+        j1ftJiyKFiTvb7g8d03ek2i3wuqDsYsGzxKC6O3wqE2NGqeDZvL+UzDyo1zo642T
+        /mwTgIgckTUXsN8ifH+UQCj9iOxh5mF3ypUjVGGmA==
+X-ME-Sender: <xms:JSn7YbWoye-gmceZB3uyNr1SnsXC3J_9TH6cUJ9Fv3AD0A8C-tIc7w>
+    <xme:JSn7YTmPQQsq6RGQWZ-y4OZ0FQILEp8w0cvaRQAhiKtQxeGUEEgzNsYn3YM0Wl9jc
+    hO6LNGIvO6MmPh9fg>
+X-ME-Received: <xmr:JSn7YXaJgx98ge3DtOzx24_6B5pquH1CmE-rv6Dj7w0Ded3y7wGSm6vXgrdtpl_3G0I0ts_t69Y0R__sgQc8EBBgYZZB3XTj2vXVj_myvv6NOyP_Y6yqaP_gqn8VF8o1lGCvjQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgeeigddvjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenog
+    evohgrshhtrghlqdfhgeduvddqtddvucdludehtddmnecujfgurhephffvufffkffoggfg
+    sedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcujfholhhlrghnugcuoehsrghmuh
+    gvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrghtthgvrhhnpeegffdtvdevgfel
+    jeduveefgfefffejhfdtudeiudejueehtdelgefgjeeuffduueenucffohhmrghinhepug
+    gvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghm
+    pehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:JSn7YWX3LOq0pdzQnjfyYXRKAsGnQ5kflGk0dzr6Jm2rGFSQQv0Qtw>
+    <xmx:JSn7YVnYyf6mXcTbikgSAQjHEIfnn7WvTGvMs6aedO-6a0wKFbOA4g>
+    <xmx:JSn7YTewQ_Uq4JX0bm6KlsD6VGAlgDOe0hebpfPL-BSrm17FMRbntA>
+    <xmx:Jin7Ybc-EoVj_bUM2RpPx-BjAsaZP8AQsLT3wk5-gTtgouT9e9PgRiAJ1wU>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 2 Feb 2022 20:00:20 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 1/2] dt-bindings: leds: Add Allwinner R329/D1 LED controller
+Date:   Wed,  2 Feb 2022 19:00:18 -0600
+Message-Id: <20220203010020.9924-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220129164346.5535-3-josright123@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static int dm9051_update_fcr(struct board_info *db)
-> +{
-> +	u8 fcr = 0;
-> +	int ret;
-> +
-> +	if (db->pause.rx_pause)
-> +		fcr |= FCR_BKPM | FCR_FLCE;
-> +	if (db->pause.tx_pause)
-> +		fcr |= FCR_TXPEN;
-> +
-> +	ret = regmap_update_bits(db->regmap_dm, DM9051_FCR, 0xff, fcr);
+The Allwinner R329 and D1 SoCs contain an LED controller designed to
+drive a series of RGB LED pixels. It supports PIO and DMA transfers, and
+has configurable timing and pixel format.
 
-Is 0xff correct here? You only seem interested in FCR_BKPM, FCR_FLCE,
-FCR_TXPEN so i would of expected a value based around those.
+Acked-by: Maxime Ripard <maxime@cerno.tech>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+---
 
-> +	if (ret)
-> +		netif_err(db, drv, db->ndev, "%s: error %d update bits reg %02x\n",
-> +			  __func__, ret, DM9051_FCR);
-> +	return ret;
-> +}
-> +
-> +static int dm9051_set_fcr(struct board_info *db)
-> +{
-> +	u8 fcr = 0;
-> +	int ret;
-> +
-> +	if (db->pause.rx_pause)
-> +		fcr |= FCR_BKPM | FCR_FLCE;
-> +	if (db->pause.tx_pause)
-> +		fcr |= FCR_TXPEN;
-> +
-> +	ret = regmap_write(db->regmap_dm, DM9051_FCR, fcr);
-> +	if (ret)
-> +		netif_err(db, drv, db->ndev, "%s: error %d write reg %02x\n",
-> +			  __func__, ret, DM9051_FCR);
-> +	return ret;
+Changes in v4:
+ - Use "default" instead of "maxItems" for timing properties
 
-I guess you can combine this code somehow, make one call the other?
+Changes in v3:
+ - Removed quotes from enumeration values
+ - Added vendor prefix to timing/format properties
+ - Renamed "format" property to "pixel-format" for clarity
+ - Dropped "vled-supply" as it is unrelated to the controller hardware
 
-> +static int dm9051_mdio_register(struct board_info *db)
-> +{
-> +	struct spi_device *spi = db->spidev;
-> +	int ret;
-> +
-> +	db->mdiobus = devm_mdiobus_alloc(&spi->dev);
-> +	if (!db->mdiobus)
-> +		return -ENOMEM;
-> +
-> +	db->mdiobus->priv = db;
-> +	db->mdiobus->read = dm9051_mdiobus_read;
-> +	db->mdiobus->write = dm9051_mdiobus_write;
-> +	db->mdiobus->name = "dm9051-mdiobus";
-> +	db->mdiobus->phy_mask = (u32)~GENMASK(1, 1);
-> +	db->mdiobus->parent = &spi->dev;
-> +	snprintf(db->mdiobus->id, MII_BUS_ID_SIZE,
-> +		 "dm9051-%s.%u", dev_name(&spi->dev), spi->chip_select);
-> +
-> +	ret = devm_mdiobus_register(&spi->dev, db->mdiobus);
-> +	if (ret)
-> +		dev_err(&spi->dev, "Could not register MDIO bus\n");
-> +
-> +	return 0;
+Changes in v2:
+ - Fixed typo leading to duplicate t1h-ns property
+ - Removed "items" layer in definition of dmas/dma-names
+ - Replaced uint32 type reference with maxItems in timing properties
 
-You should return ret here, since an error might of occurred.
+ .../leds/allwinner,sun50i-r329-ledc.yaml      | 137 ++++++++++++++++++
+ 1 file changed, 137 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/allwinner,sun50i-r329-ledc.yaml
 
-> +static void dm9051_handle_link_change(struct net_device *ndev)
-> +{
-> +	struct board_info *db = to_dm9051_board(ndev);
-> +	int lcl_adv, rmt_adv;
-> +
-> +	phy_print_status(db->phydev);
-> +
-> +	/* only write pause settings to mac. since mac and phy are integrated
-> +	 * together, such as link state, speed and duplex are sync already
-> +	 */
-> +	if (db->phydev->link) {
-> +		if (db->pause.autoneg == AUTONEG_ENABLE) {
-> +			lcl_adv = linkmode_adv_to_mii_adv_t(db->phydev->advertising);
-> +			rmt_adv = linkmode_adv_to_mii_adv_t(db->phydev->lp_advertising);
-> +
-> +			if (lcl_adv & rmt_adv & ADVERTISE_PAUSE_CAP) {
-> +				db->pause.rx_pause = true;
-> +				db->pause.tx_pause = true;
-> +			}
+diff --git a/Documentation/devicetree/bindings/leds/allwinner,sun50i-r329-ledc.yaml b/Documentation/devicetree/bindings/leds/allwinner,sun50i-r329-ledc.yaml
+new file mode 100644
+index 000000000000..3db3fe766e6a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/allwinner,sun50i-r329-ledc.yaml
+@@ -0,0 +1,137 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/allwinner,sun50i-r329-ledc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Allwinner R329 LED Controller Bindings
++
++maintainers:
++  - Samuel Holland <samuel@sholland.org>
++
++description:
++  The LED controller found in Allwinner sunxi SoCs uses a one-wire serial
++  interface to drive up to 1024 RGB LEDs.
++
++properties:
++  compatible:
++    oneOf:
++      - const: allwinner,sun50i-r329-ledc
++      - items:
++          - enum:
++              - allwinner,sun20i-d1-ledc
++          - const: allwinner,sun50i-r329-ledc
++
++  reg:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  clocks:
++    items:
++      - description: Bus clock
++      - description: Module clock
++
++  clock-names:
++    items:
++      - const: bus
++      - const: mod
++
++  resets:
++    maxItems: 1
++
++  dmas:
++    maxItems: 1
++    description: TX DMA channel
++
++  dma-names:
++    const: tx
++
++  interrupts:
++    maxItems: 1
++
++  allwinner,pixel-format:
++    description: Pixel format (subpixel transmission order), default is "grb"
++    enum:
++      - bgr
++      - brg
++      - gbr
++      - grb
++      - rbg
++      - rgb
++
++  allwinner,t0h-ns:
++    default: 336
++    description: Length of high pulse when transmitting a "0" bit
++
++  allwinner,t0l-ns:
++    default: 840
++    description: Length of low pulse when transmitting a "0" bit
++
++  allwinner,t1h-ns:
++    default: 882
++    description: Length of high pulse when transmitting a "1" bit
++
++  allwinner,t1l-ns:
++    default: 294
++    description: Length of low pulse when transmitting a "1" bit
++
++  allwinner,treset-ns:
++    default: 300000
++    description: Minimum delay between transmission frames
++
++patternProperties:
++  "^multi-led@[0-9a-f]+$":
++    type: object
++    $ref: leds-class-multicolor.yaml#
++    properties:
++      reg:
++        minimum: 0
++        maximum: 1023
++        description: Index of the LED in the series (must be contiguous)
++
++    required:
++      - reg
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - dmas
++  - dma-names
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/leds/common.h>
++
++    ledc: led-controller@2008000 {
++      compatible = "allwinner,sun20i-d1-ledc",
++                   "allwinner,sun50i-r329-ledc";
++      reg = <0x2008000 0x400>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++      clocks = <&ccu 12>, <&ccu 34>;
++      clock-names = "bus", "mod";
++      resets = <&ccu 12>;
++      dmas = <&dma 42>;
++      dma-names = "tx";
++      interrupts = <36 IRQ_TYPE_LEVEL_HIGH>;
++
++      multi-led@0 {
++        reg = <0x0>;
++        color = <LED_COLOR_ID_RGB>;
++        function = LED_FUNCTION_INDICATOR;
++      };
++    };
++
++...
+-- 
+2.33.1
 
-Please look at phydev->pause. It gives you the resolved value, you
-don't need to work it out for yourself.  phydev->asym_pause tells you
-about asymmetric pause, but you hardware does not support that, so you
-don't need it.
-
-
-> +static int dm9051_set_pauseparam(struct net_device *ndev,
-> +				 struct ethtool_pauseparam *pause)
-> +{
-> +	struct board_info *db = to_dm9051_board(ndev);
-> +
-> +	db->pause = *pause;
-> +
-> +	if (pause->autoneg == AUTONEG_DISABLE) {
-> +		db->phydev->autoneg = AUTONEG_DISABLE;
-
-As i said before, ksetting is used to change this, not pause. Please
-don't set phydev->autoneg like this.
-
-> +		return dm9051_update_fcr(db);
-> +	}
-> +
-> +	db->phydev->autoneg = AUTONEG_ENABLE;
-
-Nor here.
-
-> +	phy_set_sym_pause(db->phydev, pause->rx_pause, pause->tx_pause,
-> +			  pause->autoneg);
-> +	phy_start_aneg(db->phydev);
-> +	return 0;
-> +}
-
-> +static irqreturn_t dm9051_rx_threaded_irq(int irq, void *pw)
-> +{
-> +	struct board_info *db = pw;
-> +	int result, result_tx;
-> +
-> +	mutex_lock(&db->spi_lockm);
-> +	if (netif_carrier_ok(db->ndev)) {
-
-Why is carrier relevant here? Maybe the device is trying to give you
-the last packets before the carrier went down?
-
-It is also interesting that you don't look at the interrupt service
-register. Often you need to clear the interrupt by reading the
-interrupt service register.
-
-> +		result = regmap_write(db->regmap_dm, DM9051_IMR, IMR_PAR); /* disable int */
-> +		if (result)
-> +			goto spi_err;
-> +
-> +		do {
-> +			result = dm9051_loop_rx(db); /* threaded irq rx */
-> +			if (result < 0)
-> +				goto spi_err;
-> +			result_tx = dm9051_loop_tx(db); /* more tx better performance */
-> +			if (result_tx < 0)
-> +				goto spi_err;
-> +		} while (result > 0);
-> +
-> +		result = regmap_write(db->regmap_dm, DM9051_IMR, db->imr_all); /* enable int */
-> +		if (result)
-> +			goto spi_err;
-> +	}
-> +spi_err:
-> +	mutex_unlock(&db->spi_lockm);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-
-  Andrew
