@@ -2,110 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 349764A9A32
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 14:44:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E32C4A9A45
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 14:47:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358593AbiBDNoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 08:44:03 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:60682 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1358957AbiBDNoC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 08:44:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1643982242;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FGn+B4gE3kkARtCZwbp34WsdN+cmoVNQCk7A1PY1HEE=;
-        b=V8sYz3kerk612RAAe34VV4DkgYeqoYk7ePM5K/vwxruz3Bg823HQOhjRpb8mE8k0dBlxHN
-        f5dgmmUcYR4fg4VQ6BveJrSohIhH8p2TLBEauixF7ujDCZqPb0HowBWoazZYtvFb+gyeQF
-        aldspePTdcqwc+k+1OToGOzmNiz4D5A=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-601-VesDiL5YOCeISHWuTjwVNQ-1; Fri, 04 Feb 2022 08:44:01 -0500
-X-MC-Unique: VesDiL5YOCeISHWuTjwVNQ-1
-Received: by mail-wm1-f72.google.com with SMTP id t2-20020a7bc3c2000000b003528fe59cb9so2403121wmj.5
-        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 05:44:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FGn+B4gE3kkARtCZwbp34WsdN+cmoVNQCk7A1PY1HEE=;
-        b=8D7od5Yb8c6ir4jhks4hUudv6PTuK/K+mgIoizQAvMddWalA02SpzdS+VKMVO6l2hk
-         MCdNoan3imLKJqO4k8y8t2wqtRxz+grEUutE3K2l+qcxPp2TLr0aa5RQWrAqD0fDMEGG
-         Vf/uTL8cSRWfHh5k67HsTP55s7xhPjOMjBJDO60FngWYuXWiz2GTx3bbvCzzki6iCojD
-         ZVwD/VGCy2TEp8MmoZMV/1cqsVmQ43YLu1O5F5DOWAuG6jqiYN/ZBqEBQSXw7xyFjz4c
-         8o0PzkF8m6piJPhCL2syqsVgh/+1+TH8NqZ+zQuD8ojY2YxJU11Oq1cqPpY9qZ/reQMz
-         qo+A==
-X-Gm-Message-State: AOAM532jbgyNL6n0qlLEdSE7SUIlII/JYaXM4eta0sWJ9tYyoci4+A4A
-        KLieN8pexAiYxNZ4tRijiP/2A/uvdIvFha2nJumVPLtd8kWZ1SFXe3JKYf2zUF1uwFqBul0cQqO
-        MlmWVKMvHbZhPbbfYq0My5g==
-X-Received: by 2002:adf:db4d:: with SMTP id f13mr2526487wrj.329.1643982239873;
-        Fri, 04 Feb 2022 05:43:59 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxIH15SYdGMCJPbF9406dm+rwJsqjp0GPK+4c7vxU052qmuPNJJZFqWRduDtlttxDXm3iBi5w==
-X-Received: by 2002:adf:db4d:: with SMTP id f13mr2526479wrj.329.1643982239695;
-        Fri, 04 Feb 2022 05:43:59 -0800 (PST)
-Received: from minerva.home ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id r3sm1871692wrt.102.2022.02.04.05.43.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Feb 2022 05:43:59 -0800 (PST)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-fbdev@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org,
-        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 4/4] dt-bindings: display: ssd1307fb: Add myself as binding co-maintainer
-Date:   Fri,  4 Feb 2022 14:43:47 +0100
-Message-Id: <20220204134347.1187749-5-javierm@redhat.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220204134347.1187749-1-javierm@redhat.com>
-References: <20220204134347.1187749-1-javierm@redhat.com>
+        id S1345555AbiBDNrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 08:47:46 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:40974 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229506AbiBDNrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 08:47:45 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 69D6361C24;
+        Fri,  4 Feb 2022 13:47:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BEB9C004E1;
+        Fri,  4 Feb 2022 13:47:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643982464;
+        bh=iuYAQR81rHR1Tyl9iL+h45RpntYsIYEQMeGVkHwsV3U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rhoveJj2Rsk204CRZ7uVsbiYKD4taXHOnOJHNL083wndzUG4H0A6F+14Fjc++wedt
+         CU9gnM1WngkzKPti5VH2VUN+6sYX3j9lkQcKEn9Ud9yHoykNhu7eGK6ZXTQT/RHVNM
+         gFEAktAGJC9StR5zSK17GKYbnsubp4qoc9tbPStrg/5E4/+GKIlIDEe+oFayakwa3p
+         I9MH8dujAYqsg97kx3LJBZGCh+8CEGXZ7GT2DFwKOKOYGgbGHNOkkCCpw3wj9vDTCB
+         nR8DqmenP9dzr7mBNjXcRGYEBT+jLFCGh7Q++ZbbWNu4c0se8egDG6gSPABnSIrhSl
+         JeoisgZqSw+KA==
+Date:   Fri, 4 Feb 2022 13:47:38 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org,
+        skomatineni@nvidia.com, ldewangan@nvidia.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de
+Subject: Re: [PATCH 5/6] dt-bindings: spi: Tegra QUAD SPI combined sequence
+Message-ID: <Yf0uehfkEOeladlE@sirena.org.uk>
+References: <1643970576-31503-1-git-send-email-kyarlagadda@nvidia.com>
+ <1643970576-31503-6-git-send-email-kyarlagadda@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="BPrcS7UDX2/GdqkJ"
+Content-Disposition: inline
+In-Reply-To: <1643970576-31503-6-git-send-email-kyarlagadda@nvidia.com>
+X-Cookie: Torque is cheap.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ssd130x DRM driver also makes use of this Device Tree binding to allow
-existing users of the fbdev driver to migrate without the need to change
-their Device Trees.
 
-Add myself as another maintainer of the binding, to make sure that I will
-be on Cc when patches are proposed for it.
+--BPrcS7UDX2/GdqkJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Suggested-by: Sam Ravnborg <sam@ravnborg.org>
-Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
----
+On Fri, Feb 04, 2022 at 03:59:35PM +0530, Krishna Yarlagadda wrote:
 
-(no changes since v1)
+> +  nvidia,cmb-xfer:
+> +    description:
+> +      Enable combined sequence transfers for read and program sequence
+> +      if supported by hardware. Tegra194 and later chips support this
+> +      feature. Default is non combined sequence. SPI message should
+> +      contain CMD-ADDR-DATA transfers to combine and send to hardware.
+> +    type: boolean
 
- Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Why is this a DT property - why would systems not wish to use this
+feature if it is available?
 
-diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-index 2ed2a7d0ca2f..9baafd0c42dd 100644
---- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-+++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-@@ -8,6 +8,7 @@ title: Solomon SSD1307 OLED Controller Framebuffer
- 
- maintainers:
-   - Maxime Ripard <mripard@kernel.org>
-+  - Javier Martinez Canillas <javierm@redhat.com>
- 
- properties:
-   compatible:
--- 
-2.34.1
+--BPrcS7UDX2/GdqkJ
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmH9LnoACgkQJNaLcl1U
+h9DLVwf9ESZ9zwUH/6myb7lIIE0RShnSmYP9ivbcTEMnmYpRgJ1nuLz5EdNbA1/U
+fRUjukneaBFlPoIMvnCXd6h+rF1pT1Pk58kpzFXnUpH8xCeOYhNIMDmVT6pCCAkG
+zHx9Zr0GN9VRxwpYRkOrz2AarvBCglnrS7fAcTWL9Og+ITS8PX+3yMMIy0QBcPLp
+Jvrp56JNc9Ma0MLtnIcRT06ohs5yaiOMOhkGyqucZyg3WXwMVtmjgH/mH7vYbscC
+8z56oQuLQ6le1p49MOUqkxCe1Fvhw8ql3v0LmTq+ZvNKTUJZCztlszFbdqBDoFeU
+30PVUfUr8rOC03ZcYXuSnm5hionI8A==
+=lmIL
+-----END PGP SIGNATURE-----
+
+--BPrcS7UDX2/GdqkJ--
