@@ -2,57 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D20894A9B04
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 15:31:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 840EB4A9B17
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 15:37:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359323AbiBDObt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 09:31:49 -0500
-Received: from mail-ua1-f41.google.com ([209.85.222.41]:37758 "EHLO
-        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343911AbiBDObs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 09:31:48 -0500
-Received: by mail-ua1-f41.google.com with SMTP id b16so11144137uaq.4;
-        Fri, 04 Feb 2022 06:31:48 -0800 (PST)
+        id S1359362AbiBDOhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 09:37:32 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:21960 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1359356AbiBDOha (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 09:37:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1643985449;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=YjU7W9LODb2lvWvbKWQ9iW4O2+zTIEYm3yk17PblSiY=;
+        b=LMn6J936QHZ+vPjwXQNbXCeNYtsBPkfSo8K8Np7K32HuDOYP3lhhzTvanj6P9TfSEgdVmj
+        zQHx1siEcJCUbI3L42BWFcFhPqp9yeL95MR62x2FOd8dhvxkveB18vwxhkrtMec4vSfzZw
+        JYvZfu/Wvj3r9qtcMLOfzEpytJbu9EE=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-532-rqvCRqf9NbCUqphfqOK9WA-1; Fri, 04 Feb 2022 09:37:27 -0500
+X-MC-Unique: rqvCRqf9NbCUqphfqOK9WA-1
+Received: by mail-wr1-f69.google.com with SMTP id r2-20020adfa142000000b001e176ac1ec3so2111611wrr.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 06:37:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aVjVsdLr/YeumyNFWKCtu2VuB2Qk2ba3Q9UmWUGtgwc=;
-        b=a8qv1Ms1wO89gt9oAk61jaLCI1Xm9FwQYG0j3cRMIXTDskuviw2xYc+Z7y4GkWe1g4
-         mH9jEH5h9KxA0xq6Jxz9UXa370MCwOCyCW7ojycut5bgrXMolT/p1LB698pWNg/osg/f
-         pM7Nw4aynOOylwcJg/FCuLsMEVLcxjjHz48CbFyOcw3XEg2JikfBh2l3ufho9+y7F/fB
-         9sjyXbYbKL9DTpq1W07ppybKCuA9eUc39sQAve4uoZHDd4A3/Xrx5mMUvwXMIuBXQ88N
-         J7nSLpm7Z6rqSRGHGiKK5kz2FcM8c/kh5nBoQAztfmLfIhrI12xXgbgNFkhX8YXUZw7x
-         bTjA==
-X-Gm-Message-State: AOAM531LBGN3GShbH8Ub0hu/cUYBgjjQ9LrMCy9knI2j65bs1ZvxkHvb
-        Mlfu/rUkdrf3FpUIRnwkd2eTe6jc9/Q5/g==
-X-Google-Smtp-Source: ABdhPJxwLos4c8K6jyKkNtYiUrr0ity7E6S0V3cAArRKHASIGJJr1Vm319LfD2BfGG2H9VCkSd+32w==
-X-Received: by 2002:ab0:2786:: with SMTP id t6mr985319uap.75.1643985107824;
-        Fri, 04 Feb 2022 06:31:47 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id y18sm570947ual.15.2022.02.04.06.31.46
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=YjU7W9LODb2lvWvbKWQ9iW4O2+zTIEYm3yk17PblSiY=;
+        b=SZq3tfL2iTeci/WX2hgqNNnHqHieJ/e/gcGwvTj7GzGrzCDm1cGaiBf/Gdq56Mk0Q7
+         jPRQKdluJ3EvyQhVRS4BLbv9uvNjddZUxA8P5uKp9YXnS+XiuT/NTHtBL0lwzlSvlTOl
+         3HZqf9ckMbW9rrS5sdBE/wSAaIHtpoD6qnUpdf9k9sluW7BzlW/EufJvYNS/LHkB09+R
+         5jwvKtVOieQbOmC3nvQ/3ypW8ce+daRbvsSdrCRKx84N6xteDsF37dKk/WRgVMUb/tqn
+         rravIsMYuAaATzMkj2Xero58pGhFiZbllxrTeuiXjs4wJc8FMxhejxw2YYpj96KT7VqI
+         uoFw==
+X-Gm-Message-State: AOAM5301g7ThClVdasXyCEsQASpveYBWu73GTIWgMs80XMHYBjWPuacs
+        xLuQqv97jqii/qcm6uKWUpV9LPO4h1UIIZQoEA6Ldk7Jg0gRxcajMBKsyJRIPo0WwbtQ0oYwWnc
+        RdKU50finq6aaeh4ZC321Qw==
+X-Received: by 2002:a05:600c:434c:: with SMTP id r12mr2489879wme.140.1643985446207;
+        Fri, 04 Feb 2022 06:37:26 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxkGFdJ6hDsKtVrBob4zscnjoipPqd5Nz/eKLnnFx09MVW96jWfTBPMl2XcPzkr/EqQQfzppA==
+X-Received: by 2002:a05:600c:434c:: with SMTP id r12mr2489866wme.140.1643985446002;
+        Fri, 04 Feb 2022 06:37:26 -0800 (PST)
+Received: from [192.168.1.102] ([92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id c8sm2004710wmq.34.2022.02.04.06.37.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Feb 2022 06:31:46 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id b16so11144008uaq.4;
-        Fri, 04 Feb 2022 06:31:46 -0800 (PST)
-X-Received: by 2002:a67:c198:: with SMTP id h24mr922470vsj.5.1643985106337;
- Fri, 04 Feb 2022 06:31:46 -0800 (PST)
+        Fri, 04 Feb 2022 06:37:25 -0800 (PST)
+Message-ID: <f81d3d89-c892-9397-71d0-3d0ab99dd479@redhat.com>
+Date:   Fri, 4 Feb 2022 15:37:24 +0100
 MIME-Version: 1.0
-References: <20220204134347.1187749-1-javierm@redhat.com>
-In-Reply-To: <20220204134347.1187749-1-javierm@redhat.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 4 Feb 2022 15:31:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWoBc8amsg009oQGqUST8bN=8WqPM96SkUzcv=P1uRbfA@mail.gmail.com>
-Message-ID: <CAMuHMdWoBc8amsg009oQGqUST8bN=8WqPM96SkUzcv=P1uRbfA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED displays
-To:     Javier Martinez Canillas <javierm@redhat.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED
+ displays
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Daniel Vetter <daniel.vetter@ffwll.ch>,
         Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
         Sam Ravnborg <sam@ravnborg.org>,
         DRI Development <dri-devel@lists.freedesktop.org>,
-        =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
         Thomas Zimmermann <tzimmermann@suse.de>,
         Maxime Ripard <maxime@cerno.tech>,
         Daniel Vetter <daniel@ffwll.ch>,
@@ -64,44 +79,58 @@ Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Maxime Ripard <mripard@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         Linux PWM List <linux-pwm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+References: <20220204134347.1187749-1-javierm@redhat.com>
+ <CAMuHMdWoBc8amsg009oQGqUST8bN=8WqPM96SkUzcv=P1uRbfA@mail.gmail.com>
+From:   Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <CAMuHMdWoBc8amsg009oQGqUST8bN=8WqPM96SkUzcv=P1uRbfA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Javier,
+Hello Geert,
 
-On Fri, Feb 4, 2022 at 2:43 PM Javier Martinez Canillas
-<javierm@redhat.com> wrote:
-> This patch series adds a DRM driver for the Solomon OLED SSD1305, SSD1306,
-> SSD1307 and SSD1309 displays. It is a port of the ssd1307fb fbdev driver.
+On 2/4/22 15:31, Geert Uytterhoeven wrote:
+> Hi Javier,
+> 
+> On Fri, Feb 4, 2022 at 2:43 PM Javier Martinez Canillas
+> <javierm@redhat.com> wrote:
+>> This patch series adds a DRM driver for the Solomon OLED SSD1305, SSD1306,
+>> SSD1307 and SSD1309 displays. It is a port of the ssd1307fb fbdev driver.
+> 
+> [...]
+> 
+>> This is a v2 that addresses all the issues pointed in v1, thanks a lot
+>> to everyone that gave me feedback and reviews. I tried to not miss any
+>> comment, but there were a lot so forgive me if something is not there.
+> 
+> Thanks for the update!
+>
 
-[...]
+You are welcome!
+ 
+>> Changes in v2:
+> 
+> [...]
+> 
+> Note that the individual patches say "(no changes since v1)"?
+> 
 
-> This is a v2 that addresses all the issues pointed in v1, thanks a lot
-> to everyone that gave me feedback and reviews. I tried to not miss any
-> comment, but there were a lot so forgive me if something is not there.
+That's due patman (the tool I use to post patches) not being that smart.
 
-Thanks for the update!
+I only added the v2 changelog in the cover letter and not the individual
+patches to avoid adding noise, since there are a lot of changes since v1.
 
-> Changes in v2:
+But patman then thought that means individual patches had no changes...
 
-[...]
+Best regards,
+-- 
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
 
-Note that the individual patches say "(no changes since v1)"?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
