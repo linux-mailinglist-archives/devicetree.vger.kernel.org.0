@@ -2,122 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E3314A9AB4
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 15:09:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81EEC4A9AFE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 15:31:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358924AbiBDOJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 09:09:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232803AbiBDOJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 09:09:29 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E988C061714;
-        Fri,  4 Feb 2022 06:09:29 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E89A8B83742;
-        Fri,  4 Feb 2022 14:09:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 554A5C004E1;
-        Fri,  4 Feb 2022 14:09:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643983766;
-        bh=0Uun2P4TB48A1jqJfMKkkYNWDxl6cd7nzbvPWMj5TEo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XPui98YVAgK0vBO5CTHh7ceNAxtmay7KvmcVs0vev5W1dgzvqD4pfTGgf/Ym8X5Kp
-         uC1r/vT7gRFYUzq+61s1jtZsTH9xLMO5nsTuT7uVkFc6Bm8aBGP2e6zd0JOV/G5tfM
-         u0vk/GLCJeLfCT/dHRA0ySQH2PRR0p/oL94eimjr0ViJKlXrr7UwKGjz1OChRbnqhu
-         6CuzEa6jVzClu7EF1KI6VSmdmsxOpV6lspveiDZRaVHIoCTtohrN/jdzaQ1s5R6DnZ
-         mT12qVrhpkHZ/J9Y4sMkMHnGEJqzrKxjZhyfThMeuotDur8cfqDQeDyhxYvwNTTspL
-         Cj+C4RBRZf0GA==
-Date:   Fri, 4 Feb 2022 14:09:21 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org,
-        skomatineni@nvidia.com, ldewangan@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de
-Subject: Re: [PATCH 6/6] spi: tegra210-quad: combined sequence mode
-Message-ID: <Yf0zkdS2nqHOZjMG@sirena.org.uk>
-References: <1643970576-31503-1-git-send-email-kyarlagadda@nvidia.com>
- <1643970576-31503-7-git-send-email-kyarlagadda@nvidia.com>
+        id S231482AbiBDOb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 09:31:26 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:55082 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1359316AbiBDObZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 09:31:25 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 214EV9Zp051915;
+        Fri, 4 Feb 2022 08:31:09 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1643985069;
+        bh=EVPxkx563eY9pKGLzAMKeoMwB4VmQ09hAOPqEf69704=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=RNvvrMeVPAQLEsExh+9uc8yQorORMcDdiCIiVVFiEBCuIy3V2hAQyg6sOa/lScykO
+         K+m0MxQYJxp75/YT1TX986ICjIbgAMwwOsxG5TXH+z8CzD1XN9T1MlrYSkplhUN6aY
+         TIegW2hLJsTkI9vZMqxaEpfi9yrFQSu5UQWid8wo=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 214EV9jf120799
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Feb 2022 08:31:09 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 4
+ Feb 2022 08:31:08 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 4 Feb 2022 08:31:08 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 214EV8mC016025;
+        Fri, 4 Feb 2022 08:31:08 -0600
+Date:   Fri, 4 Feb 2022 08:31:08 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>, <tony@atomide.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        <soc@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <jan.kiszka@siemens.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am65: disable optional
+ peripherals by default
+Message-ID: <20220204143108.653qk2ihnlhsr5aa@prior>
+References: <20220203140240.973690-1-matthias.schiffer@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="a24AQkG5lH/zcdwt"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1643970576-31503-7-git-send-email-kyarlagadda@nvidia.com>
-X-Cookie: Torque is cheap.
+In-Reply-To: <20220203140240.973690-1-matthias.schiffer@ew.tq-group.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Rob, Tony, Arnd, SoC maintainers,
 
---a24AQkG5lH/zcdwt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 15:02-20220203, Matthias Schiffer wrote:
+> All peripherals that require pinmuxing or other configuration to work
+> should be disabled by default. Dependent DTS are adjusted accordingly.
 
-On Fri, Feb 04, 2022 at 03:59:36PM +0530, Krishna Yarlagadda wrote:
+https://lore.kernel.org/linux-arm-kernel/20201112183538.6805-1-nm@ti.com/
+reversal all over again.
 
-> +	/* Process individual transfer list */
-> +	list_for_each_entry(xfer, &msg->transfers, transfer_list) {
-> +		if (transfer_phase == CMD_TRANSFER) {
+Is there a specific pattern we are intending to use here? Because, if we
+are going down this path (which would be a major churn across multiple
+downstream trees as well) - I'd rather have this as a documented
+standard and not just a TI approach and will need to be done across all
+K3 devices.
 
-> +		} else if (transfer_phase == ADDR_TRANSFER) {
+Are you aware of such a documented guideline, rather than "word of
+mouth"? Maybe I have'nt looked deep enough, but checking..
 
-> +		} else {
+> 
+> The following nodes are now "disabled" according to dtx_diff and were not
+> overridden to "okay", as they define no pinctrl:
 
-Looks like you're writing a switch statement here...
 
-> +			/* X1 SDR mode */
-> +			cmd_config = tegra_qspi_cmd_config(false, 0,
-> +							   xfer->len);
-> +			cmd_value = *((const u8 *)(xfer->tx_buf));
-> +
-> +			len = xfer->len;
+> k3-am654-base-board:
+> - mcu_i2c0
+> - mcu_spi0..2
+> - mcu_uart0
+> - cal
+> - main_i2c3
+> - ehrpwm0..5
+> - main_uart1..2
+> - main_spi1..4
+> 
+> k3-am65-iot2050*:
+> - mci_spi1..2
+> - cal
+> - ehrpwm0..5
+> - main_spi0..4
+> 
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> ---
+[...]
 
-> +			/* X1 SDR mode */
-> +			addr_config = tegra_qspi_addr_config(false, 0,
-> +							     xfer->len);
-> +			address_value = *((const u32 *)(xfer->tx_buf));
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index ce8bb4a61011e..5aa425d1ba802 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -64,6 +64,7 @@ serdes0: serdes@900000 {
+>  		ti,serdes-clk = <&serdes0_clk>;
 
-> +			/* Program Command, Address value in register */
-> +			tegra_qspi_writel(tqspi, cmd_value, QSPI_CMB_SEQ_CMD);
-> +			tegra_qspi_writel(tqspi, address_value,
-> +					  QSPI_CMB_SEQ_ADDR);
-> +			/* Program Command and Address config in register */
-> +			tegra_qspi_writel(tqspi, cmd_config,
-> +					  QSPI_CMB_SEQ_CMD_CFG);
-> +			tegra_qspi_writel(tqspi, addr_config,
-> +					  QSPI_CMB_SEQ_ADDR_CFG);
+[...]
 
-It looks like the command and address have to be specific lengths?  If
-that's the case then
+> @@ -1337,6 +1388,7 @@ icssg2_mdio: mdio@32400 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			bus_freq = <1000000>;
+> +			status = "disabled";
+>  		};
+>  	};
+>  };
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> index 8d592bf41d6f1..57ac3a493adbe 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
+> @@ -22,11 +22,12 @@ phy_gmii_sel: phy@4040 {
+>  
+>  	mcu_uart0: serial@40a00000 {
+>  		compatible = "ti,am654-uart";
+> -			reg = <0x00 0x40a00000 0x00 0x100>;
+> -			interrupts = <GIC_SPI 565 IRQ_TYPE_LEVEL_HIGH>;
+> -			clock-frequency = <96000000>;
+> -			current-speed = <115200>;
+> -			power-domains = <&k3_pds 149 TI_SCI_PD_EXCLUSIVE>;
+> +		reg = <0x00 0x40a00000 0x00 0x100>;
+> +		interrupts = <GIC_SPI 565 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <96000000>;
+> +		current-speed = <115200>;
+> +		power-domains = <&k3_pds 149 TI_SCI_PD_EXCLUSIVE>;
 
-> +	if (cdata->is_cmb_xfer && transfer_count == 3)
-> +		ret = tegra_qspi_combined_seq_xfer(tqspi, msg);
-> +	else
-> +		ret = tegra_qspi_non_combined_seq_xfer(tqspi, msg);
+When doing these kind of changes, do not include ancillary tab cleanups.
+keep such cleanups separate patch.
 
-This check needs to be more specific.  But like I said in reply to the
-binding patch I don't see why we can't just pattern match on the data
-without requiring a property here, we'd need to check that the message
-is suitable no matter what.
+> +		status = "disabled";
 
---a24AQkG5lH/zcdwt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmH9M5AACgkQJNaLcl1U
-h9CHWAf9Fv7WpqdKpI5qGpLRrspS+onHqhjxBDK3qP8XYNE8GGIoewvk/y93TrmP
-PT7a/zw1UGFtvHomlXqcnvm7KxGfbsOr+JfBbWQ8hrddfbof84GSaWNyRiJl80Y7
-gmMNPp1WfNen9c5z0wwyH0LS2c+6W4PdOwgipGoGQd4gh1vVzM1zRCja47CM1BD6
-r8WiE3UnnBch6gpC20Ggrb4qjb2piUie7wAdBcvf8Ol9CCU8olylsE9mkE8yTPXR
-5LJ02ayJG9HxTRxlhTG8zEGlhXTq/MI/is7a14BFQt2E3r92WqQBt26dp3jKcmlS
-k9jlTRaQCxNF0WpexPzjM5jpjPZefA==
-=0qb3
------END PGP SIGNATURE-----
-
---a24AQkG5lH/zcdwt--
+>  	};
+>  
+>  	mcu_ram: sram@41c00000 {
+> @@ -46,6 +47,7 @@ mcu_i2c0: i2c@40b00000 {
+>  		clock-names = "fck";
+>  		clocks = <&k3_clks 114 1>;
+>  		power-domains = <&k3_pds 114 TI_SCI_PD_EXCLUSIVE>;
+> +		status = "disabled";
+>  	};
+>  
+>  	mcu_spi0: spi@40300000 {
+> @@ -56,6 +58,7 @@ mcu_spi0: spi@40300000 {
+>  		power-domains = <&k3_pds 142 TI_SCI_PD_EXCLUSIVE>;
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> +		status = "disabled";
+>  	};
+>  
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
