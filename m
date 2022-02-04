@@ -2,100 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98DC64A9B00
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 15:31:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D20894A9B04
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 15:31:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359322AbiBDObi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 09:31:38 -0500
-Received: from relmlor1.renesas.com ([210.160.252.171]:41630 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1359321AbiBDObh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 09:31:37 -0500
-X-IronPort-AV: E=Sophos;i="5.88,342,1635174000"; 
-   d="scan'208";a="108810657"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 04 Feb 2022 23:31:36 +0900
-Received: from localhost.localdomain (unknown [10.226.92.77])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 8E54B400C75E;
-        Fri,  4 Feb 2022 23:31:34 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: rzg2lc-smarc: Use SW_SD0_DEV_SEL macro for eMMC/SDHI device selection
-Date:   Fri,  4 Feb 2022 14:31:32 +0000
-Message-Id: <20220204143132.3608-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
+        id S1359323AbiBDObt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 09:31:49 -0500
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:37758 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343911AbiBDObs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 09:31:48 -0500
+Received: by mail-ua1-f41.google.com with SMTP id b16so11144137uaq.4;
+        Fri, 04 Feb 2022 06:31:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aVjVsdLr/YeumyNFWKCtu2VuB2Qk2ba3Q9UmWUGtgwc=;
+        b=a8qv1Ms1wO89gt9oAk61jaLCI1Xm9FwQYG0j3cRMIXTDskuviw2xYc+Z7y4GkWe1g4
+         mH9jEH5h9KxA0xq6Jxz9UXa370MCwOCyCW7ojycut5bgrXMolT/p1LB698pWNg/osg/f
+         pM7Nw4aynOOylwcJg/FCuLsMEVLcxjjHz48CbFyOcw3XEg2JikfBh2l3ufho9+y7F/fB
+         9sjyXbYbKL9DTpq1W07ppybKCuA9eUc39sQAve4uoZHDd4A3/Xrx5mMUvwXMIuBXQ88N
+         J7nSLpm7Z6rqSRGHGiKK5kz2FcM8c/kh5nBoQAztfmLfIhrI12xXgbgNFkhX8YXUZw7x
+         bTjA==
+X-Gm-Message-State: AOAM531LBGN3GShbH8Ub0hu/cUYBgjjQ9LrMCy9knI2j65bs1ZvxkHvb
+        Mlfu/rUkdrf3FpUIRnwkd2eTe6jc9/Q5/g==
+X-Google-Smtp-Source: ABdhPJxwLos4c8K6jyKkNtYiUrr0ity7E6S0V3cAArRKHASIGJJr1Vm319LfD2BfGG2H9VCkSd+32w==
+X-Received: by 2002:ab0:2786:: with SMTP id t6mr985319uap.75.1643985107824;
+        Fri, 04 Feb 2022 06:31:47 -0800 (PST)
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
+        by smtp.gmail.com with ESMTPSA id y18sm570947ual.15.2022.02.04.06.31.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Feb 2022 06:31:46 -0800 (PST)
+Received: by mail-ua1-f50.google.com with SMTP id b16so11144008uaq.4;
+        Fri, 04 Feb 2022 06:31:46 -0800 (PST)
+X-Received: by 2002:a67:c198:: with SMTP id h24mr922470vsj.5.1643985106337;
+ Fri, 04 Feb 2022 06:31:46 -0800 (PST)
+MIME-Version: 1.0
+References: <20220204134347.1187749-1-javierm@redhat.com>
+In-Reply-To: <20220204134347.1187749-1-javierm@redhat.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 4 Feb 2022 15:31:35 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWoBc8amsg009oQGqUST8bN=8WqPM96SkUzcv=P1uRbfA@mail.gmail.com>
+Message-ID: <CAMuHMdWoBc8amsg009oQGqUST8bN=8WqPM96SkUzcv=P1uRbfA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED displays
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch replaces EMMC/SDHI macros with SW_SD0_DEV_SEL DIP-Switch
-macro for eMMC/SDHI device selection.
+Hi Javier,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi | 14 ++------------
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi     |  2 ++
- 2 files changed, 4 insertions(+), 12 deletions(-)
+On Fri, Feb 4, 2022 at 2:43 PM Javier Martinez Canillas
+<javierm@redhat.com> wrote:
+> This patch series adds a DRM driver for the Solomon OLED SSD1305, SSD1306,
+> SSD1307 and SSD1309 displays. It is a port of the ssd1307fb fbdev driver.
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
-index 6ebda3724f2c..90cb7ec45751 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
-@@ -8,16 +8,6 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
- 
--/* SW1[2] should be at OFF position to enable 64 GB eMMC */
--#define EMMC	1
--
--/*
-- * To enable uSD card on CN3,
-- * SW1[2] should be at ON position.
-- * Disable eMMC by setting "#define EMMC	0" above.
-- */
--#define SDHI	(!EMMC)
--
- / {
- 	aliases {
- 		ethernet0 = &eth0;
-@@ -185,7 +175,7 @@
- 	};
- };
- 
--#if SDHI
-+#if (!SW_SD0_DEV_SEL)
- &sdhi0 {
- 	pinctrl-0 = <&sdhi0_pins>;
- 	pinctrl-1 = <&sdhi0_pins_uhs>;
-@@ -200,7 +190,7 @@
- };
- #endif
- 
--#if EMMC
-+#if SW_SD0_DEV_SEL
- &sdhi0 {
- 	pinctrl-0 = <&sdhi0_emmc_pins>;
- 	pinctrl-1 = <&sdhi0_emmc_pins>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 28f21c287ba3..df7631fe5fac 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -18,6 +18,8 @@
-  * Please change below macros according to SW1 setting
-  */
- 
-+#define SW_SD0_DEV_SEL	1
-+
- #define SW_SCIF_CAN	0
- #if (SW_SCIF_CAN)
- /* Due to HW routing, SW_RSPI_CAN is always 0 when SW_SCIF_CAN is set to 1 */
--- 
-2.17.1
+[...]
 
+> This is a v2 that addresses all the issues pointed in v1, thanks a lot
+> to everyone that gave me feedback and reviews. I tried to not miss any
+> comment, but there were a lot so forgive me if something is not there.
+
+Thanks for the update!
+
+> Changes in v2:
+
+[...]
+
+Note that the individual patches say "(no changes since v1)"?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
