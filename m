@@ -2,116 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F0E74A956B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 09:46:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A5EA4A9589
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 09:50:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235803AbiBDIqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 03:46:03 -0500
-Received: from smtp1.axis.com ([195.60.68.17]:20396 "EHLO smtp1.axis.com"
+        id S236221AbiBDIuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 03:50:11 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:64161 "EHLO mx1.tq-group.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235756AbiBDIqD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Feb 2022 03:46:03 -0500
+        id S231864AbiBDIuL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Feb 2022 03:50:11 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1643964363;
-  x=1675500363;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=+WJXaaYTWvGTYUWj6AjXrl5/pM76HmM1GRYPd9ZH9jI=;
-  b=eZOaipyXU2nmlCdq8Cnt2McpEEN0fR7KgS/gEz+A152FcMxZ4ukFFJPV
-   RsY15pNMMY16m3nJDCxeYq4INo3VqcrFttBGDb4I7xuK+u1XzMTY4sEBB
-   iYC/XMbUU+Gp7rVr/VtLDAyK3qT+Q7lMihFyycHp7aRPVGkOYHFFOJJB0
-   ks5b2qjrUlvrz1X0XoyYGzoUPOg7mJ/+EUxh2MoUNbzTyfqaOOYsrKuXx
-   xW1W/U8GiloKVQPhUAMPlsymGV8N5tpxpKnZuz70gG9ioWv+fqM/DEPLq
-   0r4YPs1YoG1TwEGkus86WNDG4QUi88YSxLgr4lYnV0S3w/XUqkCizPu3m
-   Q==;
-From:   =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
-        =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
-Subject: [PATCH] of: dma_configure: Free old DMA map range
-Date:   Fri, 4 Feb 2022 09:45:56 +0100
-Message-ID: <20220204084556.3033351-1-marten.lindahl@axis.com>
-X-Mailer: git-send-email 2.30.2
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1643964611; x=1675500611;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=FEiAmArkdBv5Nr5bScLf7yMPKGQOzBiK4SXXg3DXbKc=;
+  b=hJvlIiATsOH6y0o2tsbPCNNCwuZtlPYLuly5juQI1cgjyPmArLv23hFe
+   cOjScsDFGLfy58b87SjqtD5YwRonXX1g91PEO/M5mm+Lm2bbkXn5cWU7e
+   ozrCfqj+ryVgtuN4hjgm116411kREwCc1S4F1+Md2NUahIEnw/g/uIOIz
+   t3tc+Uyf3oPV1+Vln4dzn3R1sQm+n4mpQzBxPYmRGihdgEvVuOlWwYhOn
+   Hr9XN8cpOKTgkt6e/7OJin3qGwLDCRJdWF/njKm2l94Glw9VxaIXDoMVh
+   nmsWjL0Q9vLUnrGt3NE3LjmC1RycsPvn6G1OqOpzN5NQrh54WMDJSWttq
+   A==;
+X-IronPort-AV: E=Sophos;i="5.88,342,1635199200"; 
+   d="scan'208";a="21897267"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 04 Feb 2022 09:50:09 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 04 Feb 2022 09:50:10 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 04 Feb 2022 09:50:10 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1643964609; x=1675500609;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=FEiAmArkdBv5Nr5bScLf7yMPKGQOzBiK4SXXg3DXbKc=;
+  b=m1ad6t2Ae689xQbgfWogQCOFihM9WrlUxXEoa3w0WyqOZDiY6vkjDsFK
+   QqofJ9ZQ6wcSCiVh+E2anFAB1KUfiE/0/m8FK8ahMvRNED7No8X2B1QML
+   Snk9bdFBDN4RusocIG+CbfZVmpUEOyLsxcsujY3DXHeTRKJviyqG/ap+e
+   SSMIaVyWoFeElJ9PasthFKePt67Nq3golZgKUsMZq/kPni02McM7kxaN+
+   3lw/AHYPMsiAWq3ivDy465Wo5nPki36DB6wsmc3ptqmqXcc6gMsC+My4z
+   QRTrqWRUdGlu73ywySvLozh2o1t5asAjGrtwNwxoJbmd5NfAxhbb7rNAT
+   g==;
+X-IronPort-AV: E=Sophos;i="5.88,342,1635199200"; 
+   d="scan'208";a="21897266"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 04 Feb 2022 09:50:09 +0100
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 5F866280065;
+        Fri,  4 Feb 2022 09:50:09 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     jeanmichel.hautbois@ideasonboard.com,
+        Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        kernel-list@raspberrypi.com, laurent.pinchart@ideasonboard.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        lukasz@jany.st, mchehab@kernel.org, naush@raspberrypi.com,
+        robh@kernel.org, tomi.valkeinen@ideasonboard.com,
+        nsaenz@kernel.org, bcm-kernel-feedback-list@broadcom.com
+Subject: Re: (EXT) [RFC PATCH v4 03/12] dt-bindings: media: Add bindings for bcm2835-unicam
+Date:   Fri, 04 Feb 2022 09:50:06 +0100
+Message-ID: <7954256.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220203175009.558868-4-jeanmichel.hautbois@ideasonboard.com>
+References: <20220203175009.558868-1-jeanmichel.hautbois@ideasonboard.com> <20220203175009.558868-4-jeanmichel.hautbois@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When unbinding/binding a driver with DMA mapped memory, the DMA map is
-not freed when the driver is reloaded. This leads to a memory leak when
-the DMA map is overwritten when reprobing the driver.
+Am Donnerstag, 3. Februar 2022, 18:50:00 CET schrieb Jean-Michel Hautbois:
+> Introduce the dt-bindings documentation for bcm2835 CCP2/CSI2 Unicam
+> camera interface. Also add a MAINTAINERS entry for it.
+> 
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> 
+> ---
+> v4:
+> - make MAINTAINERS its own patch
+> - describe the reg and clocks correctly
+> - use a vendor entry for the number of data lanes
+> ---
+>  .../bindings/media/brcm,bcm2835-unicam.yaml   | 110 ++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml new file
+> mode 100644
+> index 000000000000..0725a0267c60
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/brcm,bcm2835-unicam.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM283x Camera Interface (Unicam)
+> +
+> +maintainers:
+> +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+> +
+> +description: |-
+> +  The Unicam block on BCM283x SoCs is the receiver for either
+> +  CSI-2 or CCP2 data from image sensors or similar devices.
+> +
+> +  The main platform using this SoC is the Raspberry Pi family of boards.
+> +  On the Pi the VideoCore firmware can also control this hardware block,
+> +  and driving it from two different processors will cause issues.
+> +  To avoid this, the firmware checks the device tree configuration
+> +  during boot. If it finds device tree nodes starting by csi then
+> +  it will stop the firmware accessing the block, and it can then
+> +  safely be used via the device tree binding.
+> +
+> +properties:
+> +  compatible:
+> +    const: brcm,bcm2835-unicam
+> +
+> +  reg:
+> +    items:
+> +      - description: Unicam block.
+> +      - description: Clock Manager Image (CMI) block.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Clock to drive the LP state machine of Unicam.
+> +      - description: Clock for the vpu (core clock).
+> +
+> +  clock-names:
+> +    items:
+> +      - const: lp
+> +      - const: vpu
+> +
+> +  power-domains:
+> +    items:
+> +      - description: Unicam power domain
+> +
+> +  brcm,num-data-lanes:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 2, 4 ]
+> +    description: Number of data lanes on the csi bus
 
-This can be reproduced with a platform driver having a dma-range:
+There is already data-lanes in Documentation/devicetree/bindings/media/video-
+interfaces.yaml. AFAICS these two are identical. Can't the video-
+interface.yaml be used for this? I'm no expert TBH.
 
-dummy {
-	...
-	#address-cells = <0x2>;
-	#size-cells = <0x2>;
-	ranges;
-	dma-ranges = <...>;
-	...
-};
+Regards,
+Alexander
 
-and then unbinding/binding it:
-
-~# echo soc:dummy >/sys/bus/platform/drivers/<driver>/unbind
-
-DMA map object 0xffffff800b0ae540 still being held by &pdev->dev
-
-~# echo soc:dummy >/sys/bus/platform/drivers/<driver>/bind
-~# echo scan > /sys/kernel/debug/kmemleak
-~# cat /sys/kernel/debug/kmemleak
-unreferenced object 0xffffff800b0ae540 (size 64):
-  comm "sh", pid 833, jiffies 4295174550 (age 2535.352s)
-  hex dump (first 32 bytes):
-    00 00 00 80 00 00 00 00 00 00 00 00 00 00 00 00  ................
-    00 00 00 80 00 00 00 00 00 00 00 80 00 00 00 00  ................
-  backtrace:
-    [<ffffffefd1694708>] create_object.isra.0+0x108/0x344
-    [<ffffffefd1d1a850>] kmemleak_alloc+0x8c/0xd0
-    [<ffffffefd167e2d0>] __kmalloc+0x440/0x6f0
-    [<ffffffefd1a960a4>] of_dma_get_range+0x124/0x220
-    [<ffffffefd1a8ce90>] of_dma_configure_id+0x40/0x2d0
-    [<ffffffefd198b68c>] platform_dma_configure+0x5c/0xa4
-    [<ffffffefd198846c>] really_probe+0x8c/0x514
-    [<ffffffefd1988990>] __driver_probe_device+0x9c/0x19c
-    [<ffffffefd1988cd8>] device_driver_attach+0x54/0xbc
-    [<ffffffefd1986634>] bind_store+0xc4/0x120
-    [<ffffffefd19856e0>] drv_attr_store+0x30/0x44
-    [<ffffffefd173c9b0>] sysfs_kf_write+0x50/0x60
-    [<ffffffefd173c1c4>] kernfs_fop_write_iter+0x124/0x1b4
-    [<ffffffefd16a013c>] new_sync_write+0xdc/0x160
-    [<ffffffefd16a256c>] vfs_write+0x23c/0x2a0
-    [<ffffffefd16a2758>] ksys_write+0x64/0xec
-
-Prevent overwriting the dma_range_map by freeing it before saving the
-new map.
-
-Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
----
- drivers/of/device.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 874f031442dc..a67703d09bfd 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -156,6 +156,12 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 			kfree(map);
- 			return -EINVAL;
- 		}
-+
-+		/*
-+		 * Since we are about to set a new range map we should make sure we
-+		 * do not overwrite any existing one without having freed it first.
-+		 */
-+		kfree(dev->dma_range_map);
- 	}
- 
- 	/*
--- 
-2.30.2
 
