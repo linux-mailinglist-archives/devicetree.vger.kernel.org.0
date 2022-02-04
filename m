@@ -2,83 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 931B04AA314
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 23:21:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7A174AA326
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 23:33:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348875AbiBDWVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 17:21:44 -0500
-Received: from mail-oo1-f48.google.com ([209.85.161.48]:38488 "EHLO
-        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348884AbiBDWVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 17:21:44 -0500
-Received: by mail-oo1-f48.google.com with SMTP id i10-20020a4aab0a000000b002fccf890d5fso6235636oon.5;
-        Fri, 04 Feb 2022 14:21:43 -0800 (PST)
+        id S245547AbiBDWdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 17:33:45 -0500
+Received: from mail-oo1-f54.google.com ([209.85.161.54]:47066 "EHLO
+        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241600AbiBDWdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 17:33:45 -0500
+Received: by mail-oo1-f54.google.com with SMTP id o192-20020a4a2cc9000000b00300af40d795so6247023ooo.13;
+        Fri, 04 Feb 2022 14:33:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=VSSqlk1OwbpfMCFflvyzMx5ImvnYHmqQIDxXeCyLZws=;
-        b=ih4pQoNFT9Q6Rsqbz7fay34HBoHssB7nOSF9OoueXB5jHmy5TMxNnO9z3FZ8IOdb11
-         wbYj75HozNp15KEB8XwXTPst5+D1YcOqaD6NTqxiurmK/XvBkQh8IbNTtIkK4zPUDrVx
-         G4KABHxDNt0DqleFAFqA+aP00G3+N/6FhRxgNGKuFz71PMrz79VO3+9+HxMWZ2JpZk8l
-         1qrS8C/JMfTfBLEz/O8nxHx+6Cq5Hxyz2B2Sz29AgKoahN0J68o+Mk7JhztAw/ytJWcz
-         irKdHhC4l3NYWmo08ftIBASb5nlK3BVVkiS7V+laWcki0xhPZsJAFvCYylVt6IuiYMJI
-         f8Pw==
-X-Gm-Message-State: AOAM533zEND7xMcCOEomcJCBM6576kHnRO0wlWN4A2o/OcxfUddgKG7K
-        ajcR3XCl3VHxeyDDkAlxYw==
-X-Google-Smtp-Source: ABdhPJzBiBKs5CGPfpkFRLuyyWzKtB05ObCQJbQKHDPTM77tzihcGsXN38Eqvb7S3cWiaJbAXwJdoQ==
-X-Received: by 2002:a05:6870:a242:: with SMTP id g2mr1230497oai.305.1644013303426;
-        Fri, 04 Feb 2022 14:21:43 -0800 (PST)
+        bh=Q4Gn8/JIPxPBAROIKOguet0/WP6sycYjFPMRswgQQ08=;
+        b=QqLiev350pJ7HKYG0c6KQuJfdMSx+uoRyjc5K75IzCkRO03PIlTHtNLJkRRCoOq3+v
+         bI/uWAaR6BbewDeavvdH4JlFCKMDOVLj+Tum1x5DKxt6UY0VdY94ONoVyfpaJkmyoXQW
+         2p36jsLy0QW+H2SinZlyq+a9FKUYit/QuAC5SXG52wIo2mGJv2tutY/l0SeVe7HQNEjv
+         5/wa7+5hDwo6m98qYuveFqAFYEjvGqhEJeK+gbpRVYtcgVfIkWGQlS5WxZBdfkTlBgEF
+         4GySQf+28NlbCy22Ymq4HMJD7HZHvbmwwthIU1IcK2DMo0XKI9/y4eCV0+nFenIRS5VQ
+         KlGg==
+X-Gm-Message-State: AOAM532ucZvNPAcJDtN8ughIqRnvGp2ACoACRvo+YyJb6KFucAC4ROmt
+        /1GaakOUSE3iaoP7TcM7pA==
+X-Google-Smtp-Source: ABdhPJxxGFbL+dwr9YXVucvOXSlOKzQXJ55WMPaQbBqLsMQeJKRuakTQZ//ZngXJ3zGtnHxq3V5LEQ==
+X-Received: by 2002:a05:6870:d88c:: with SMTP id dv12mr474170oab.113.1644014024814;
+        Fri, 04 Feb 2022 14:33:44 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a13sm1023373oan.11.2022.02.04.14.21.41
+        by smtp.gmail.com with ESMTPSA id 127sm1309058oih.8.2022.02.04.14.33.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Feb 2022 14:21:42 -0800 (PST)
-Received: (nullmailer pid 3287001 invoked by uid 1000);
-        Fri, 04 Feb 2022 22:21:41 -0000
-Date:   Fri, 4 Feb 2022 16:21:41 -0600
+        Fri, 04 Feb 2022 14:33:44 -0800 (PST)
+Received: (nullmailer pid 3305687 invoked by uid 1000);
+        Fri, 04 Feb 2022 22:33:42 -0000
+Date:   Fri, 4 Feb 2022 16:33:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        linux-kernel@vger.kernel.org,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, Eric Biggers <ebiggers@google.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Tian Tao <tiantao6@hisilicon.com>,
-        Lucas Stach <dev@lynxeye.de>, Yue Hu <huyue2@yulong.com>,
-        angelogioacchino.delregno@collabora.com,
-        Satya Tangirala <satyat@google.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: mmc: add cap-sdio-async-irq flag
-Message-ID: <Yf2m9Y0DAo3rVlyR@robh.at.kernel.org>
-References: <20220121071942.11601-1-axe.yang@mediatek.com>
- <20220121071942.11601-2-axe.yang@mediatek.com>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     palmer@dabbelt.com, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wefu@redhat.com, liush@allwinnertech.com, guoren@kernel.org,
+        atishp@atishpatra.org, anup@brainfault.org, drew@beagleboard.org,
+        hch@lst.de, arnd@arndb.de, wens@csie.org, maxime@cerno.tech,
+        dlustig@nvidia.com, gfavor@ventanamicro.com,
+        andrea.mondelli@huawei.com, behrensj@mit.edu, xinhaoqu@huawei.com,
+        huffman@cadence.com, mick@ics.forth.gr,
+        allen.baum@esperantotech.com, jscheid@ventanamicro.com,
+        rtrauben@gmail.com, samuel@sholland.org, cmuellner@linux.com,
+        philipp.tomsich@vrull.eu
+Subject: Re: [PATCH v5 11/14] dt-bindings: riscv: add MMU Standard Extensions
+ support for Svpbmt
+Message-ID: <Yf2pxvmG0t6eugOz@robh.at.kernel.org>
+References: <20220121163618.351934-1-heiko@sntech.de>
+ <20220121163618.351934-12-heiko@sntech.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220121071942.11601-2-axe.yang@mediatek.com>
+In-Reply-To: <20220121163618.351934-12-heiko@sntech.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jan 2022 15:19:40 +0800, Axe Yang wrote:
-> Asynchronous interrupt is a mechanism that allow SDIO devices alarm
-> interrupt when host stop providing clock to card. Add a DT flag to
-> enable this feature if it is supported by SDIO card.
+On Fri, Jan 21, 2022 at 05:36:15PM +0100, Heiko Stuebner wrote:
+> From: Wei Fu <wefu@redhat.com>
 > 
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> Previous patch has added svpbmt in arch/riscv and add "riscv,svpmbt"
+> in the DT mmu node. Update dt-bindings related property here.
+> 
+> Signed-off-by: Wei Fu <wefu@redhat.com>
+> Co-developed-by: Guo Ren <guoren@kernel.org>
+> Signed-off-by: Guo Ren <guoren@kernel.org>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> Cc: Anup Patel <anup@brainfault.org>
+> Cc: Palmer Dabbelt <palmer@dabbelt.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
 > ---
->  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> index aa5fb64d57eb..3ad2593f1400 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -63,6 +63,16 @@ properties:
+>        - riscv,sv48
+>        - riscv,none
+>  
+> +  mmu:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+riscv,mmu
+
+> +    description:
+> +      Describes the CPU's MMU Standard Extensions support.
+> +      These values originate from the RISC-V Privileged
+> +      Specification document, available from
+> +      https://riscv.org/specifications/
+> +    $ref: '/schemas/types.yaml#/definitions/string'
+> +    enum:
+> +      - riscv,svpbmt
+
+Are there per vendor MMU extensions? If not, drop the 'riscv,' part. 
+
+> +
+>    riscv,isa:
+>      description:
+>        Identifies the specific RISC-V instruction set architecture
+> -- 
+> 2.30.2
+> 
+> 
