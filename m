@@ -2,152 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88D724A9143
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 00:42:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43ABC4A919D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 01:28:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356039AbiBCXmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 18:42:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45398 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbiBCXmw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 18:42:52 -0500
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7A97C061714
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 15:42:52 -0800 (PST)
-Received: by mail-io1-xd33.google.com with SMTP id w7so5382433ioj.5
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 15:42:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=HBIR3SgcCgpJJdWb5kZtiaVw7ysO23qQm40mLVGeDCM=;
-        b=Hz7fL4YFJIgd4+XEZGvHvaiwSYWJSSUoPgO41PSAjwvQO7gmi+oAhS9Wj52NWzTJWu
-         E0vNjKLmXD6aZX5zY0CLcrkmVwzMapb+YV9+j42fd1oiPqXkQEOe4ILoMBAbzVieskgH
-         zUjpKzlfr9tR48i3u24t27ZTdj7XOlLYN5a1M=
+        id S1356236AbiBDA2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 19:28:10 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:42515 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351466AbiBDA2J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 19:28:09 -0500
+Received: by mail-oi1-f178.google.com with SMTP id v67so6647247oie.9;
+        Thu, 03 Feb 2022 16:28:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=HBIR3SgcCgpJJdWb5kZtiaVw7ysO23qQm40mLVGeDCM=;
-        b=PL1xuac03x3+7FtSf+ThleYo8LFveqcNoTDZt+idFQa4QUTSZOC/81iHYDvGexEHp0
-         4hBhboKj9ifzY4mZbLFRygAc0w4GQ5QQt9tgauaNT/u1PVz58UoCXTevpRAmTg+C1Z40
-         2phR5ORO1gjjF4NrMzG1aBvSBBu/FePEbpskQiRidvVEgb9jeZee6kSaLOw0W1/4ePdM
-         xgspIgjxQjF/vRVwYIjq3tZTKICSBU8l5DJe5bhElifVrWwWVbExZpj3kgMsKj2HEdaN
-         Y/LjYpfG5csjxS1QdsWob/7f2SWyihxFlqmzGcS8eoK9fCc9HVePvtX4+UEHVPP53x01
-         3w1w==
-X-Gm-Message-State: AOAM531aaQ0Y/fz6542/w3yr+fumnMLHrXUP+MtFkTLRdNZwaIOFjIKj
-        LTTmQzEKjNDWF2Y1pr8wBj9u7sRR1aCMiA==
-X-Google-Smtp-Source: ABdhPJy4+nW0pwN1fYJuUVgu0uWU9KQ4FNgizXBFJNwHsWur4TX3RtdklumN7xxvNMmp12z3xeLcpg==
-X-Received: by 2002:a5e:a806:: with SMTP id c6mr157361ioa.104.1643931771904;
-        Thu, 03 Feb 2022 15:42:51 -0800 (PST)
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com. [209.85.166.174])
-        by smtp.gmail.com with ESMTPSA id q16sm108028ion.27.2022.02.03.15.42.50
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Feb 2022 15:42:50 -0800 (PST)
-Received: by mail-il1-f174.google.com with SMTP id x6so3453313ilg.9
-        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 15:42:50 -0800 (PST)
-X-Received: by 2002:a05:6e02:1bed:: with SMTP id y13mr195347ilv.27.1643931769767;
- Thu, 03 Feb 2022 15:42:49 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8HtB4xB7o6hXbgLfwRbUeCoDsxhbCbtJSWGozDMovVk=;
+        b=sZspG7xn+/kOHcJyGjcj6OfrRNYMLTynL8SE4TS1veq6g4+Uagfe/gwCGifoj28RMD
+         IjRGQSDsTmN5JIh/pu2OqKauvIcBCXbzMPqsLMY5Nd1vjkWfEqAWsTDJ/0+SWjl2auBS
+         YJFeJQEINEQ/OiWz8zwnOUjyj/KFLVv+KHiuRjLDh4vjxcfby9Heu3/3N5VLVbX/c9Fo
+         RiK8dmvAg79aXN71KkyvSxZ2x5R/BiRIq5BDgdUknuvGiBjIUUgnP+O+4twuIQajbPvI
+         1e09+9MEGrNlrCcIGc49Dq3N0jlGzsDOTOVcjR+2/NkplRLiZ723DqlH94G28u27+Kpt
+         e4aQ==
+X-Gm-Message-State: AOAM531lehPeYMUitIosskHf5y+hrEbrE8c49LBRtUhI8nUPdt4fsBCV
+        w5ZRZsnpSYCLPzNO4DzPvg==
+X-Google-Smtp-Source: ABdhPJw2Dg0v+X6ZepvOu6aani78Em/DxuFa5e5HsctFjHeKIC9FX4la9ddS6qjjU38YaYQT3enVVw==
+X-Received: by 2002:a05:6808:20a2:: with SMTP id s34mr113274oiw.295.1643934489148;
+        Thu, 03 Feb 2022 16:28:09 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id v10sm178184oto.53.2022.02.03.16.28.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Feb 2022 16:28:08 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: sun8i-h3: Drop args in 'thermal-sensors'
+Date:   Thu,  3 Feb 2022 18:28:01 -0600
+Message-Id: <20220204002802.1214602-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20220202212348.1391534-1-dianders@chromium.org>
- <20220202132301.v3.9.I5f367dcce8107f2186b2aad4aef0dfcfafa034b9@changeid>
- <CAE-0n51N4wB7aTRbZR3zh3hjz56vdkFNwOSuKjU7n9gd_JDcvA@mail.gmail.com>
- <CAD=FV=UKKZaHHz3-idahLg-ey3xmSZWKeTVVipzpZNQAkUVKmQ@mail.gmail.com> <CAE-0n50Xb2qwDDOCaLwZPr5-YES3gYyA+7218=EXa4ZSJuFGjw@mail.gmail.com>
-In-Reply-To: <CAE-0n50Xb2qwDDOCaLwZPr5-YES3gYyA+7218=EXa4ZSJuFGjw@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 3 Feb 2022 15:42:37 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=X-Bu=r+Le2DRbBUuKik-Vo6mMu8QFaAGa7U910BXdY0A@mail.gmail.com>
-Message-ID: <CAD=FV=X-Bu=r+Le2DRbBUuKik-Vo6mMu8QFaAGa7U910BXdY0A@mail.gmail.com>
-Subject: Re: [PATCH v3 09/14] arm64: dts: qcom: sc7280: Disable pull from pcie1_clkreq
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Prasad Malisetty <pmaliset@codeaurora.org>,
-        Matthias Kaehlcke <mka@chromium.org>, quic_rjendra@quicinc.com,
-        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        kgodara@codeaurora.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The "allwinner,sun8i-h3-ths" thermal sensor has 0 argument cells, but
+the consumer has an argument cell. It is ignored by the code, but the
+error was found with some upcoming schema validation changes. The schema
+and code both agree that 0 cells is correct.
 
-On Thu, Feb 3, 2022 at 1:59 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Doug Anderson (2022-02-03 13:53:09)
-> > Hi,
-> >
-> > On Thu, Feb 3, 2022 at 1:42 PM Stephen Boyd <swboyd@chromium.org> wrote=
-:
-> > >
-> > > Quoting Douglas Anderson (2022-02-02 13:23:43)
-> > > > I believe that the PCIe clkreq pin is an output. That means we
-> > > > shouldn't have a pull enabled for it. Turn it off.
-> > >
-> > > It sounds like it's a request from the PCI device to the PCI phy that
-> > > the clk should be on. I googled pcie clkreq open drain and this pdf[1=
-]
-> > > says
-> > >
-> > > "The CLKREQ# signal is an open drain, active low signal that is drive=
-n
-> > > low by the PCI Express M.2 add-I Card function to request that the PC=
-I
-> > > Express reference clock be available (active clock state) in order to
-> > > allow the PCI Express interface to send/receive data"
-> > >
-> > > so presumably if there isn't an external pull on the signal the open
-> > > drain feature will not work and the PCIe device won't be able to driv=
-e
-> > > it low.
-> > >
-> > > [1] https://advdownload.advantech.com/productfile/PIS/96FD80-P512-LIS=
-/Product%20-%20Datasheet/96FD80-P512-LIS_datasheet20180110154919.pdf
-> >
-> > Yeah, I had some trouble figuring this out too, so if someone knows
-> > better than me then I'm more than happy to take advice here. I thought
-> > I had found something claiming that "clkreq" was an output and on the
-> > schematic I have from Qualcomm it shows an arrow going out from the
-> > SoC for this signal indicating that it's an output from the SoC. Of
-> > course, those arrows are notoriously wrong but at least it's one piece
-> > of evidence that someone thought this was an output from the SoC.
-> >
-> > Hrm, but I just checked the sc7280 "datasheet" which claims that this
-> > is an input. Sigh.
-> >
-> > I guess the options are:
-> > * If we're sure this is an input to the SoC then I think we should
-> > remove the drive-strength, right?
-> > * If we don't know then I guess we can leave both?
->
-> I'll wait for qcom folks to confirm. Maybe it's bidirectional because it
-> is an open drain signal. I'm showing my cards that I'm no PCIe expert :)
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ arch/arm/boot/dts/sun8i-h3.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Ah ha! I searched some more and found a Qualcomm PCIe user guide on this!
+diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3.dtsi
+index 845f25235407..eac2349a2380 100644
+--- a/arch/arm/boot/dts/sun8i-h3.dtsi
++++ b/arch/arm/boot/dts/sun8i-h3.dtsi
+@@ -245,7 +245,7 @@ thermal-zones {
+ 		cpu_thermal: cpu-thermal {
+ 			polling-delay-passive = <0>;
+ 			polling-delay = <0>;
+-			thermal-sensors = <&ths 0>;
++			thermal-sensors = <&ths>;
+ 
+ 			trips {
+ 				cpu_hot_trip: cpu-hot {
+-- 
+2.32.0
 
-CLKREQ# signal properties =E2=80=93 Bi-directional clock request signals
-whether the RC or AP requires control
-
-So it sounds as if leaving it as pull-up and having drive-strength as
-2 is right.  tl;dr: drop this patch from the series...
-
-> > In any case, for now we can just drop this patch?
-> >
->
-> Sounds good to me. It needs to be resolved through for herobrine-r1?
-
-Yup. I responded to that patch and for now I'll wait for Bjorn to give
-me direction on how to handle it.
-
--Doug
