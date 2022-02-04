@@ -2,105 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 648874A9C03
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 16:33:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C73944A9C2D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 16:44:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359754AbiBDPdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 10:33:45 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:30192 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359758AbiBDPdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 10:33:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1643988825; x=1675524825;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=cMuHKZNdUu+zY6CdLdDCUWTRhz2pGKkgXeGpnTamYJQ=;
-  b=2h8fXKgOVw91o8ltCvmi9EnCnVk9H+MjBoWN/ddCMyTdlbtMu5FlQ9jg
-   tP2ZwmDrB1EHe28ndsVwHQQEztx0wf2UYoimkWqv4ieRm1gIojs6rKKJN
-   Xo3EfU9qiMqQ3l86bJlGZk9geGRlWteSN/KmtqVdcRFXwYaNvpCDVuxUP
-   btkX6bpx5V0ZJZ2+rYO9v4XRw7y8RfDsr7O7vLGzRx9qv4EvGOV4uAc5/
-   +I4x3rxzsJwCfnTy2Khfw/b04mb7khbrhwScLAKVcM36SqAUkvndAKXoW
-   HdeDKNKl1xkPsPwidIdQt1dWwVdYTcw5kHST9Sh97PRxY3m9bX84GzCa+
-   A==;
-IronPort-SDR: zpZdcWx37nKUNCq1otdCfN9xDfpo9XBmq4KvCYeAQV+8TuLvlspfalhFwIiH8pGgnTHshrIjjp
- OURIJqpcWtTPf+RZ5NTrz1hzdnQTbmIugMAT+VL9SuLhJ0JYP59d7kQNqNl132NfS/QJOxLuQg
- I+hRQCDIicV/4dovh7IQONReCDyTJk3feoq7mhRHjdzY3wY6J6i0y7sSomGy3XHYGVITkcnTkw
- y0wQTffP9lxZb6TNYFuHyT+qCWNyWXZadqOJPHIJjWlB6JASRAT6qQT/thOq9RX9ehT1IExfcH
- pAGFoszifsopF/mXTr34MzTg
-X-IronPort-AV: E=Sophos;i="5.88,343,1635231600"; 
-   d="scan'208";a="147655033"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Feb 2022 08:33:44 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 4 Feb 2022 08:33:44 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Fri, 4 Feb 2022 08:33:42 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        id S243444AbiBDPoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 10:44:18 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:49076 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230391AbiBDPoR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 10:44:17 -0500
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 214EF34A014088;
+        Fri, 4 Feb 2022 16:41:57 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=rJOveNVJGX7DUGKosJTj/eP0Rf6Ql1gp9b9F/RL8EE8=;
+ b=UZzJOO+hHBvX7Hedp1IyXXl4kFp9uLhmE78AG2xYPWkZ93swtWDb2NbbKgtmbq1qUINs
+ 4YlA49z5DOgaP5F651pgTwWOEHD6noSkHafNJwO1ui2mGjpxS6uWLtvuDw5PE3pL9Tq8
+ 0StRDCGl6Edl4BrudAD1E1SonnOl8sQkgfKCdIra1AHg4PpF1ypCsn7/rbI6DvNEQLg/
+ /rLXRjDEVEfTEb1vZICw8Xh8s/DOn8kTLrmoDDf/aoQVuzL/Bs5DfPUg+nuBVmNmIxqi
+ dQqHoRyHOTrMiKiQRqlVvo42dKpF6So4uBxZAWA4yHlKZeedhIB/N+zJxrivUbjdf4QB mA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e0n4e4paj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 04 Feb 2022 16:41:57 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A015E10002A;
+        Fri,  4 Feb 2022 16:41:56 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9328D229A8C;
+        Fri,  4 Feb 2022 16:41:56 +0100 (CET)
+Received: from lmecxl0566.lme.st.com (10.75.127.49) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Fri, 4 Feb
+ 2022 16:41:55 +0100
+Subject: Re: [PATCH 00/16] STM32 configure UART nodes for DMA
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marek Vasut <marex@denx.de>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-        <lars.povlsen@microchip.com>, <Steen.Hegelund@microchip.com>,
-        <UNGLinuxDriver@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH 2/2] arm64: dts: sparx5: Fix for sgpio nodes
-Date:   Fri, 4 Feb 2022 16:35:35 +0100
-Message-ID: <20220204153535.465827-3-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220204153535.465827-1-horatiu.vultur@microchip.com>
-References: <20220204153535.465827-1-horatiu.vultur@microchip.com>
+        <linux-kernel@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20220203171114.10888-1-erwan.leray@foss.st.com>
+ <cc7633c5-de5f-0abf-4ac8-64a74633dfcc@pengutronix.de>
+ <f5aec360-c33c-0145-6596-541003e305b2@foss.st.com>
+From:   Erwan LE RAY <erwan.leray@foss.st.com>
+Message-ID: <98823363-710c-6286-8e63-ba8e5dcadeba@foss.st.com>
+Date:   Fri, 4 Feb 2022 16:41:55 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <f5aec360-c33c-0145-6596-541003e305b2@foss.st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-04_07,2022-02-03_01,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When the support for irqs was added for sgpio driver the memory size was
-not updated. Because the irq registers are found at address 0x108.
+Hi Ahmad,
 
-Fixes: d0f482bb06f944 ("arm64: dts: sparx5: Add the Sparx5 switch node")
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 787ebcec121d..b9f2e2fa3d43 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -305,7 +305,7 @@ sgpio0: gpio@61101036c {
- 			pinctrl-names = "default";
- 			resets = <&reset 0>;
- 			reset-names = "switch";
--			reg = <0x6 0x1101036c 0x100>;
-+			reg = <0x6 0x1101036c 0x118>;
- 			sgpio_in0: gpio@0 {
- 				compatible = "microchip,sparx5-sgpio-bank";
- 				reg = <0>;
-@@ -335,7 +335,7 @@ sgpio1: gpio@611010484 {
- 			pinctrl-names = "default";
- 			resets = <&reset 0>;
- 			reset-names = "switch";
--			reg = <0x6 0x11010484 0x100>;
-+			reg = <0x6 0x11010484 0x118>;
- 			sgpio_in1: gpio@0 {
- 				compatible = "microchip,sparx5-sgpio-bank";
- 				reg = <0>;
-@@ -365,7 +365,7 @@ sgpio2: gpio@61101059c {
- 			pinctrl-names = "default";
- 			resets = <&reset 0>;
- 			reset-names = "switch";
--			reg = <0x6 0x1101059c 0x100>;
-+			reg = <0x6 0x1101059c 0x118>;
- 			sgpio_in2: gpio@0 {
- 				reg = <0>;
- 				compatible = "microchip,sparx5-sgpio-bank";
--- 
-2.33.0
+On 2/4/22 2:22 PM, Alexandre TORGUE wrote:
+> Hi Ahmad
+> 
+> On 2/3/22 18:25, Ahmad Fatoum wrote:
+>> Hello Erwan,
+>>
+>> On 03.02.22 18:10, Erwan Le Ray wrote:
+>>> Add DMA configuration to UART nodes in stm32mp15x (SOC level) and
+>>> remove it at board level to keep current PIO behavior when needed.
+>>> For stm32-ed1 and stm32-dkx boards, UART4 (console) and UART7
+>>> (no HW flow control pin available) are kept in PIO mode, while USART3
+>>> is now configured in DMA mode.
+>>> UART4 (console UART) has to be kept in irq mode, as DMA support for
+>>> console has been removed from the driver by commit e359b4411c28
+>>> ("serial: stm32: fix threaded interrupt handling").
+>>
+>> Do I understand correctly that your first patch breaks consoles of
+>> most/all boards, because they will briefly use DMA, which is refused
+>> by the stm32-usart driver and then you add a patch for each board
+>> to fix that breakage?
+> 
+> We have two solutions and both have pro/drawbacks. The first one (Erwan 
+> ones, can break the boot if the patch is taken "alone". Your proposition 
+> avoids this breakage but deletes a non define property (which is a bit 
+> weird). However I prefer to keep a functional behavior, and keep Ahmad 
+> proposition. Ahmad, just one question, dt-bindings check doesn't 
+> complain about it ?
+> 
+> Cheers
+> Alex
+> 
+>>
+>> Such intermittent breakage makes bisection a hassle. /delete-property/
+>> is a no-op when the property doesn't exist, so you could move the first
+>> patch to the very end to avoid intermittent breakage.
+>>
+>> I also think that the driver's behavior is a bit harsh. I think it would
+>> be better for the UART driver to print a warning and fall back to
+>> PIO for console instead of outright refusing and rendering the system
+>> silent. That's not mutually exclusive with your patch series here, of 
+>> course.
+>>
+>> Cheers,
+>> Ahmad
+>>
 
+The driver implementation will consider the request to probe the UART 
+console in DMA mode as an error (-ENODEV), and will fallback this UART 
+probe in irq mode.
+Whatever the patch ordering, the boot will never be broken. The board dt 
+patches aim to get a "proper" implementation, but from functional 
+perspective the driver will manage a request to probe an UART console in 
+DMA mode as an error and fall it back in irq mode.
+
+Cheers, Erwan.
+
+>>>
+>>> For other stm32mp15x-based boards, current configuration is kept for
+>>> all UART instances.
+>>>
+>>> Erwan Le Ray (16):
+>>>    ARM: dts: stm32: add DMA configuration to UART nodes on stm32mp151
+>>>    ARM: dts: stm32: keep uart4 behavior on stm32mp157c-ed1
+>>>    ARM: dts: stm32: keep uart4 and uart7 behavior on stm32mp15xx-dkx
+>>>    ARM: dts: stm32: keep uart4 behavior on icore-stm32mp1-ctouch2
+>>>    ARM: dts: stm32: keep uart4 behavior on icore-stm32mp1-edimm2.2
+>>>    ARM: dts: stm32: keep uart4 behavior on stm32mp157a-iot-box
+>>>    ARM: dts: stm32: keep uart nodes behavior on stm32mp1-microdev2.0-of7
+>>>    ARM: dts: stm32: keep uart nodes behavior on stm32mp1-microdev2.0
+>>>    ARM: dts: stm32: keep uart nodes behavior on stm32mp157a-stinger96
+>>>    ARM: dts: stm32: keep uart4 behavior on stm32mp157c-lxa-mc1
+>>>    ARM: dts: stm32: keep uart4 behavior on stm32mp157c-odyssey
+>>>    ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-drc02
+>>>    ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-pdk2
+>>>    ARM: dts: stm32: keep uart nodes behavior on 
+>>> stm32mp15xx-dhcom-picoitx
+>>>    ARM: dts: stm32: keep uart4 behavior on stm32mp15xx-dhcom-som
+>>>    ARM: dts: stm32: keep uart nodes behavior on
+>>>      stm32mp15xx-dhcor-avenger96
+>>>
+>>>   arch/arm/boot/dts/stm32mp151.dtsi             | 21 +++++++++++++++++++
+>>>   .../stm32mp157a-icore-stm32mp1-ctouch2.dts    |  2 ++
+>>>   .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   |  2 ++
+>>>   arch/arm/boot/dts/stm32mp157a-iot-box.dts     |  2 ++
+>>>   ...157a-microgea-stm32mp1-microdev2.0-of7.dts |  4 ++++
+>>>   ...32mp157a-microgea-stm32mp1-microdev2.0.dts |  4 ++++
+>>>   arch/arm/boot/dts/stm32mp157a-stinger96.dtsi  |  6 ++++++
+>>>   arch/arm/boot/dts/stm32mp157c-ed1.dts         |  2 ++
+>>>   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts     |  2 ++
+>>>   arch/arm/boot/dts/stm32mp157c-odyssey.dts     |  2 ++
+>>>   .../arm/boot/dts/stm32mp15xx-dhcom-drc02.dtsi |  4 ++++
+>>>   arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi |  4 ++++
+>>>   .../boot/dts/stm32mp15xx-dhcom-picoitx.dtsi   |  4 ++++
+>>>   arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi  |  2 ++
+>>>   .../boot/dts/stm32mp15xx-dhcor-avenger96.dtsi |  6 ++++++
+>>>   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        |  4 ++++
+>>>   16 files changed, 71 insertions(+)
+>>>
+>>
+>>
+> 
