@@ -2,86 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E80774A9717
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 10:46:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29FBE4A973D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 10:57:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357454AbiBDJqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 04:46:16 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:56577 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242703AbiBDJqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 04:46:15 -0500
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 3A04324000D;
-        Fri,  4 Feb 2022 09:46:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1643967974;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=GeZ3RTrEGPyDxaCxWgqBxzeCFQNbWVTVIwN4+w/oDeM=;
-        b=CuXaJ2xofz/y/RuNSua2NOHdaZ5uD8u78AmLi3uWgejx5P1SFkDnTyRjvK+4E1g24BXS8O
-        InIVqhWzGfZHtJIdUbssUyEtbNJ+OPc7TM7xx5mGjE/d/TKaK11ecaMAAop7AMT5NpkKBK
-        hNoss69P2NEhe2dJ5jA5ZKZumDCLFX/jCbkYDQGAt6++ICajuVh43Z7n1N/By8RxSlsaGb
-        z7wtwhZQjnhFQiI5GH7wkwzqdHT5TtrKzZ+1kNg8msxsVJaEmiP50NCQLhWezjaOpGkcSm
-        vD4BURSzPIfamySBh0Hz4Iy873bo57P/nDiyCJie5DcFXoHngSwOHRkyau+bsA==
-Date:   Fri, 4 Feb 2022 10:46:14 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     robh+dt@kernel.org, nicolas.ferre@microchip.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, clement.leger@bootlin.com
-Subject: Re: [PATCH] dt-bindings: microchip: atmel,at91rm9200-tcb: remove
- mandatory interrupts property
-Message-ID: <Yfz15ta50G5WC158@piout.net>
-References: <20220204081446.474991-1-eugen.hristev@microchip.com>
+        id S1357919AbiBDJ5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 04:57:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41370 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1357912AbiBDJ5u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 04:57:50 -0500
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24079C06173E
+        for <devicetree@vger.kernel.org>; Fri,  4 Feb 2022 01:57:50 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id m4so17751023ejb.9
+        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 01:57:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20210112.gappssmtp.com; s=20210112;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TxfD0UgE96vrL30pUVU0FAbTN615U3BGwMMRqFNLsKM=;
+        b=l3PoTKI1GCpIJezXfi5avA1DKNi4n8bOq69QBqoo8FmHj7aJWRRGOA6bmk8oLuS5mR
+         FCzNKKu7JaA4fWDCRqbevWIGkJhNG3JH4c0gr651ai1f3wYcKR3nTfHdBCIK7Dzd+KzY
+         bfymTQqCBxjZZCBbNEfHVLNBmXcb91MC/vEBlMHiblSMzFBTMqTtcDzGB+PTAWiY8oMy
+         MJ5ZQVysXZbl9/wn/K2SpUlyx4wCyWfwp6AqqU2S6ODyKAIX921mJ2vSiGGeagn2KR7e
+         mut+qFNj/4IOC5EGqsUSsVyy5gwtDndk0L6sCJF3ONNmYOyrGrFRA8RBxGIcEie9N58N
+         A6XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=TxfD0UgE96vrL30pUVU0FAbTN615U3BGwMMRqFNLsKM=;
+        b=u9Owj+j6Sv7mELo3rvOugTtuybHMmiIX7HcXCLZ7Ht2pW8zJyzrpppEImJAp75baI6
+         tT5aMv4l6h0KVg9Yv0ua+RdeL7umJOP3VRitbugSW4MKVps7cZDcf9RaUccSsex777l6
+         7IJAxSfmBjg86bRuD0Zt4iC5Q2qjdWfaSnet6Vohh6HVie+QJ3FrnOEknLpF2SWU3V3U
+         jdgoXi8ZP0K+E31mgzpCNEI4vAtqs8MDgI+48Ig4AJ9+npeZ9tLvTeR/ZlMDeDVl5ox4
+         p3RJsZtslJ2USqr42HYLcmEdZ7GZ+HjD74cEtV/EkOGL8SZZ8r2wuqMjeuWSFlr/r2tT
+         DhgQ==
+X-Gm-Message-State: AOAM530EywGum6PU/qh2t4vTw4Dcdvori0KGl7t2AYJLLpNK6woKGuvW
+        T2bwzu6OgVSdKBaDmAqfHBZH9A==
+X-Google-Smtp-Source: ABdhPJwY3DBC3lKZo17PJVeaUfBx1jO0gC0bwu2XVtreCP0t7qWBYF5tvLwnwFYx3oPEuNRb5+sroQ==
+X-Received: by 2002:a17:907:2ce6:: with SMTP id hz6mr1780120ejc.89.1643968668723;
+        Fri, 04 Feb 2022 01:57:48 -0800 (PST)
+Received: from localhost ([2a02:768:2307:40d6::f9e])
+        by smtp.gmail.com with ESMTPSA id n21sm617619edq.27.2022.02.04.01.57.48
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 04 Feb 2022 01:57:48 -0800 (PST)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Alex Helms <alexander.helms.jy@renesas.com>,
+        David Cater <david.cater.jc@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v9 0/2] Renesas 8T49N241 device driver
+Date:   Fri,  4 Feb 2022 10:57:37 +0100
+Message-Id: <cover.1643968653.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220204081446.474991-1-eugen.hristev@microchip.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/02/2022 10:14:46+0200, Eugen Hristev wrote:
-> The timer block can be used only to be read and to measure time in a polling
-> fashion. This can be used by Linux like this for example, or it can be used
-> by different projects which do not have interrupt controllers, or do not
-> wish to enable them (e.g. U-boot).
-> As DT is ABI, the binding should relate to all possible use cases and describe
-> the hardware and the requirements.
-> The interrupt is not a hard requirement for the timer to function in a
-> specific way.
-> Thus, choose to remove the interrupts property from the mandatory list of
-> properties.
-> 
+Hi,
 
-The correct hardware description is that the interrupt is present on the
-IP. Having software behave differently depending on the presence of that
-property is configuration, not hardware description.
+driver is under review for quite a long time with very small change
+required. I have added that reported changes to driver and sending new
+version.
 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> ---
->  .../devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml  | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-> index 597d67fba92f..27f78459b892 100644
-> --- a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-> +++ b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-> @@ -134,7 +134,6 @@ allOf:
->  required:
->    - compatible
->    - reg
-> -  - interrupts
->    - clocks
->    - clock-names
->    - '#address-cells'
-> -- 
-> 2.25.1
-> 
+Please also ignore "No changes since v1) in patches. It is created by
+patman (tool I use for sending patches).
+
+Thanks,
+Michal
+
+Changes in v9:
+- Integrate issues reported by Dan
+  https://lore.kernel.org/all/202110281624.lV6hDzvG-lkp@intel.com/
+Changes in v8:
+ * Use __ffs instead of ffs
+ * Change from 64 bit to 32 bit division
+ * Minor math changes to avoid possible overflow
+Changes in v7:
+ * Rebase on v5.15-rc6
+ * Rename renesas24x_* functions to r8t49n24x_*
+ * Implement determine_rate instead of round_rate
+ * Implement prepare/unprepare
+ * Use devm_clk_get_optional and ensure clk0, clk1, and xtal are attempted before dev_err_probe
+ * Use ffs() in __renesas_bits_to_shift
+ * Remove regmap read/write retry
+ * More consistent debug logging
+ * Resolved many C related naming and initialization issues
+Changes in v6:
+ * Rebase on v5.15-rc1
+ * Ensure Rob's Reviewed-by tag is included
+Changes in v5:
+ * Rebase on v5.14-rc2
+ * Move driver files from clk/renesas to clk
+Changes in v4:
+ * Add vendor prefix to dt binding compatible property
+ * Remove clock-names description in dt binding
+ * Remove redundant 'input-' prefix on clock names
+ * Clarify the settings property in dt binding, add data type
+ * Fix define spacing
+Changes in v3:
+ * Clarify settings property in device tree bindings schema is optional
+Changes in v2:
+ * Correct missing semicolon in 8t49n24x-core.c
+
+(no changes since v1)
+
+Alex Helms (2):
+  dt-bindings: Add binding for Renesas 8T49N241
+  clk: Add ccf driver for Renesas 8T49N241
+
+ .../bindings/clock/renesas,8t49n241.yaml      | 190 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/clk/8t49n24x-core.c                   | 752 ++++++++++++++++++
+ drivers/clk/8t49n24x-core.h                   | 242 ++++++
+ drivers/clk/8t49n24x.c                        | 565 +++++++++++++
+ drivers/clk/Kconfig                           |  21 +
+ drivers/clk/Makefile                          |   2 +
+ 7 files changed, 1779 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml
+ create mode 100644 drivers/clk/8t49n24x-core.c
+ create mode 100644 drivers/clk/8t49n24x-core.h
+ create mode 100644 drivers/clk/8t49n24x.c
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.35.0
+
