@@ -2,123 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BBF54A94A8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 08:39:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFECF4A94BC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 08:49:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353162AbiBDHjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 02:39:47 -0500
-Received: from esa6.hgst.iphmx.com ([216.71.154.45]:32409 "EHLO
-        esa6.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232302AbiBDHjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 02:39:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1643960387; x=1675496387;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=J6+qN6zsOJBC7+d5Jwdax1VP3UtUI3MibMV/k5DnLLY=;
-  b=pckx+LT9MspWjHF6thfg7YZKZ29KdoOOy4uByfR+DZmJSb4U1csH7CCx
-   99oinIDbxwtnG3O9PXI84fJoU7rZ3efvtM7LxeJnRE2LUTq4wZLNtd5+o
-   Y6Hx6cCiaJpIl+cDoBvozHnhcrs0iP1P/7tnrToolYFmtzVGs8SZykv6A
-   V2AZ/00pJJ3EJOZkgxOCQCR9tKOx+S3GuGINt1mLnJz2+1pRoQw3nTrOD
-   5WGk8Nt8xHLDT25ylv29jbozMX+tC3ROcma9yAJIV8V3BERnZ9R+EyAzl
-   3lUOoHG194z/Zn0ayL302jE+/MP4t723rAFxdLNrk7H50ALaK8ncOlq6z
-   A==;
-X-IronPort-AV: E=Sophos;i="5.88,342,1635177600"; 
-   d="scan'208";a="193136068"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 04 Feb 2022 15:39:47 +0800
-IronPort-SDR: FV9ElHPOKor2P3yyNDKyqPB6t80fi5HfuoH/B6vMpyAXY9NcCP/Ik5JQsokf++dBPTj9O6UerN
- kEjjCtqzAHbHSqzmgecrAzwTGLC8qg2lhSbZaML1842K43rBBWZxmAdH6yi4VXyojV4WNfrBp0
- YiO8XFD8MmYCNGHAHKgyohWozQOgDl0+wLs8ov/HS5y4rHVuG0BpybF4GsJlqwrvubXhnsSkOf
- We7xsuHF5Kx4h1lnl4hWOiwSYf9rjvTEDcZ9Wi0RmiE+A0cnbO4sdtZSJVbcQQROoqPuWLVEkQ
- KqnoRJeaCV8EMhFrjFLuTmk3
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2022 23:11:41 -0800
-IronPort-SDR: H/t3Z/GCOa0whIiOpe5xnjWLYJLAJ+weFBHkDCbqPWGbMrbXaFpB9tpH/bEYZSTeD2N73UEb0r
- U2uPER76HCDPLRZzI5yiw3Wy7KWJJ9xV0vkUaDRZKxd2akGBW8O726ER8X2X+yo4G/bGpSItul
- 63Ocazu5alQCQiONWdnsQjKcQlUD8dSndPSxFe0P4QeJwoSFe368J7D0MbaQp+2R4Hf0rHmN2C
- czRq3A8cTpx7k70hPgup/0emwt9Szdy258L7c+U23KzAPF/uDY1whZfqdZpo+zNsIYdn1IpQck
- JCw=
-WDCIronportException: Internal
-Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
-  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2022 23:39:47 -0800
-Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4JqnVp0TJfz1SVnx
-        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 23:39:46 -0800 (PST)
-Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
-        reason="pass (just generated, assumed good)"
-        header.d=opensource.wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
-        opensource.wdc.com; h=content-transfer-encoding:content-type
-        :in-reply-to:organization:from:references:to:content-language
-        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
-        1643960385; x=1646552386; bh=J6+qN6zsOJBC7+d5Jwdax1VP3UtUI3MibMV
-        /k5DnLLY=; b=cKkiE+OO/gzHXbSF81Wa4IT3u7PcsauMZg5oAaIR+kJ0PjmRmEy
-        e3iyAWWLzTkzdvbiX4LE2L/X9wORAHlZvXXQmCCoASoT83+DnDO/0tHWfTixx/cE
-        zlZvv2cwASBIwXRhDlUSW7XY1aAu+Gzn+q9GvxxUpznMaPlERDQaMUDWonckUXtL
-        gzhsjlHn0DOZ2NTI1rnrVI69ds9Mb5lJ4Z6V1zabSjUZk6D3Mcx1+P4zm0i6rbIe
-        PxcILUyz0fIVAcpa1s6q/GhRykpx59Np/eU8s+5bnakQ2Zet7pYt+NZtiXpDT2V/
-        ebNfqYR+UZtJLxYuy4wPokAsfM4+ApqN3hA==
-X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
-Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
-        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id nmnCib7c52RW for <devicetree@vger.kernel.org>;
-        Thu,  3 Feb 2022 23:39:45 -0800 (PST)
-Received: from [10.225.163.63] (unknown [10.225.163.63])
-        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4JqnVm3tn8z1Rwrw;
-        Thu,  3 Feb 2022 23:39:44 -0800 (PST)
-Message-ID: <ef0e2e03-aeee-107a-4520-701ee55d13c0@opensource.wdc.com>
-Date:   Fri, 4 Feb 2022 16:39:43 +0900
+        id S236279AbiBDHsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 02:48:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39454 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232153AbiBDHsi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 02:48:38 -0500
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F8F3C06173D
+        for <devicetree@vger.kernel.org>; Thu,  3 Feb 2022 23:48:38 -0800 (PST)
+Received: by mail-yb1-xb2a.google.com with SMTP id 124so15672586ybw.6
+        for <devicetree@vger.kernel.org>; Thu, 03 Feb 2022 23:48:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FIpf4uvWApsh/ceG6pW+nvDB0Myo7yE0BrCqz+r4aRU=;
+        b=Ko6+QR3SFKvHg4SSgkszZ4jODIJ11+H3RDlwjgPybirCTYR/6laIQjh6XPghVMbG1K
+         8JMiVEuyCaRTkbjnbNDcL5cuYzFmULSwr9YHKmZmIo7X5lNr9OoJ9ChBqjh5q0fCz4mc
+         2jEgsbnT3jBPks7HwE6BfzS+T2IfEap3Kuz67dokUCGqwBDSWx6og7W9HVt7oKzqLzTj
+         muymnG+jv4LcQ3wHEAZWPvUd8+0iexVt3GRuX4uiwmMUGFIxavcIFjpMTNu8wyv296wb
+         FR+DDkOhHvsl94ikJaqDef15dquXVjxGtdpY5eZmbFocHVQfWbNJJwwHVFf46/1JkkzW
+         WnbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FIpf4uvWApsh/ceG6pW+nvDB0Myo7yE0BrCqz+r4aRU=;
+        b=73JWXNuuXYAIuKNST20qUFNqnoLze6w5FZ3dJXz1AFMmHspKc8AoIy9B+DiZYAmtQb
+         aIdeKtUz0iGrOJ+4IuNhoCD5uanyyGWSFRzcfR+F3xmT4F4OcaO5zUrM8aRJ9VnZ5Za7
+         xGT1Tiq/RE6GT0Qjnd+L01r5c6UPqVO93jJZEvB/NezYhF2EDNSN1+PxSATntoY6h++R
+         jBqajgn13vwIX2VDcpYZV5wSmV0CAHwPslb1hrH5lWZDEw7rAaJNTFpk2TSLF4blSfm5
+         FkalIVwVUFB1UuDWk+ZR3Ao33mwiY+j7sL8R2XpL6HDkzRLKSG7w9BPcDszdNHsgtdOw
+         vVgw==
+X-Gm-Message-State: AOAM5309Uk00MIpEnTx+dZxEz963B0ta6zP8WOAGsW4IHRDNgvIPSAfH
+        MKq+ydxo7Dr2PsD/LlzrbGLtZV08ZigAjWDFY26ACw==
+X-Google-Smtp-Source: ABdhPJxhYkG8kt166e8BIyfcFNvrkv1EXmgM2pVRAPQ1fWZMhgc4LoTlurfNWXfew+edKAsuJv+VM8vccVUqhDLXVgI=
+X-Received: by 2002:a25:5143:: with SMTP id f64mr1813491ybb.520.1643960917186;
+ Thu, 03 Feb 2022 23:48:37 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH resend] dt-bindings: ata: renesas,rcar-sata: Add r8a774e1
- support
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
+References: <20220203211150.2912192-1-frowand.list@gmail.com>
+In-Reply-To: <20220203211150.2912192-1-frowand.list@gmail.com>
+From:   Naresh Kamboju <naresh.kamboju@linaro.org>
+Date:   Fri, 4 Feb 2022 13:18:25 +0530
+Message-ID: <CA+G9fYsdpm+PwSkLF5qkfnL_jY7HEh5cDapQXteWa7Og+WgoVA@mail.gmail.com>
+Subject: Re: [PATCH 1/1] of: unittest: print pass messages at same loglevel as fail
+To:     frowand.list@gmail.com
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <507cc45f44603afa6a70c05a3956fb7b13b49ed9.1643896347.git.geert+renesas@glider.be>
-From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Organization: Western Digital Research
-In-Reply-To: <507cc45f44603afa6a70c05a3956fb7b13b49ed9.1643896347.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Brendan Higgins <brendanhiggins@google.com>,
+        Anders Roxell <anders.roxell@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/3/22 22:58, Geert Uytterhoeven wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Document SATA support for the RZ/G2H SoC, no driver change required.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Fri, 4 Feb 2022 at 02:42, <frowand.list@gmail.com> wrote:
+>
+> From: Frank Rowand <frank.rowand@sony.com>
+>
+> Printing the devicetree unittest pass message for each passed test
+> creates much console verbosity.  The existing pass messages are
+> printed at loglevel KERN_DEBUG so they will not print by default.
+>
+> Change default to print the pass messages at the same loglevel as
+> the fail messages.
+>
+> The test community expects either a pass or a fail message for each
+> test in a test suite.  The messages are typically post-processed to
+> report pass/fail results.
+>
+> Suppressing printing the pass message for each individual test is
+> available via the kernel command line parameter unittest.hide_pass.
+>
+> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+
+Tested-by: Linux Kernel Functional Testing <lkft@linaro.org>
+
+After this patch applied I see the change in test output log
+from the dmesg,
+
+It would be great if you could add fail and skip cases.
+When we find failures / regressions or when tests change from pass to fail
+we will report those on the mailing list.
+
+output:
+-------
+[    3.290336] ### dt-test ### start of unittest - you will see error messages
+[    3.298352] ### dt-test ### EXPECT \ : Duplicate name in
+testcase-data, renamed to \"duplicate-name#1\"
+[    3.298535] Duplicate name in testcase-data, renamed to \"duplicate-name#1\"
+[    3.318485] ### dt-test ### EXPECT / : Duplicate name in
+testcase-data, renamed to \"duplicate-name#1\"
+[    3.319418] ### dt-test ### pass of_unittest_check_tree_linkage():278
+[    3.335123] ### dt-test ### pass of_unittest_check_tree_linkage():279
+[    3.341662] ### dt-test ### pass of_unittest_check_phandles():387
+
+Test job:
+https://lkft.validation.linaro.org/scheduler/job/4473059#L1019
+
 > ---
->  Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> index c060c7914cae6573..c4e4a9eab658056d 100644
-> --- a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> +++ b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-> @@ -26,6 +26,7 @@ properties:
->        - items:
->            - enum:
->                - renesas,sata-r8a774b1     # RZ/G2N
-> +              - renesas,sata-r8a774e1     # RZ/G2H
->                - renesas,sata-r8a7795      # R-Car H3
->                - renesas,sata-r8a77965     # R-Car M3-N
->            - const: renesas,rcar-gen3-sata # generic R-Car Gen3 or RZ/G2
+>  Documentation/admin-guide/kernel-parameters.txt |  4 ++++
+>  drivers/of/unittest.c                           | 17 ++++++++++++++++-
+>  2 files changed, 20 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+> index f5a27f067db9..045455f9b7e1 100644
+> --- a/Documentation/admin-guide/kernel-parameters.txt
+> +++ b/Documentation/admin-guide/kernel-parameters.txt
+> @@ -5997,6 +5997,10 @@
+>                         Note that genuine overcurrent events won't be
+>                         reported either.
+>
+> +       unittest.hide_pass
+> +                       Disable printing individual drivers/of/unittest test
+> +                       pass messages.
+> +
+>         unknown_nmi_panic
+>                         [X86] Cause panic on unknown NMI.
+>
+> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+> index 70992103c07d..2cfbdc6b29ac 100644
+> --- a/drivers/of/unittest.c
+> +++ b/drivers/of/unittest.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/errno.h>
+>  #include <linux/hashtable.h>
+>  #include <linux/libfdt.h>
+> +#include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_fdt.h>
+> @@ -32,6 +33,19 @@
+>
+>  #include "of_private.h"
+>
+> +MODULE_LICENSE("GPL v2");
+> +static bool hide_pass;
+> +
+> +static int __init hide_pass_setup(char *str)
+> +{
+> +       hide_pass = true;
+> +       return 0;
+> +}
+> +
+> +early_param("hide_pass", hide_pass_setup);
+> +module_param(hide_pass, bool, 0);
+> +MODULE_PARM_DESC(hide_pass, "Disable printing individual of unittest pass messages");
+> +
+>  static struct unittest_results {
+>         int passed;
+>         int failed;
+> @@ -44,7 +58,8 @@ static struct unittest_results {
+>                 pr_err("FAIL %s():%i " fmt, __func__, __LINE__, ##__VA_ARGS__); \
+>         } else { \
+>                 unittest_results.passed++; \
+> -               pr_debug("pass %s():%i\n", __func__, __LINE__); \
+> +               if (!hide_pass) \
+> +                       pr_err("pass %s():%i\n", __func__, __LINE__); \
+>         } \
+>         failed; \
+>  })
+> --
+> Frank Rowand <frank.rowand@sony.com>
 
-Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
 
--- 
-Damien Le Moal
-Western Digital Research
+--
+Linaro LKFT
+https://lkft.linaro.org
