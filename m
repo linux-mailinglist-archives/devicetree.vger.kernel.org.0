@@ -2,96 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22D114AA023
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 20:32:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECF764AA050
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 20:44:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234052AbiBDTcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 14:32:55 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:48588 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233950AbiBDTcz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 14:32:55 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 20C2DB83804;
-        Fri,  4 Feb 2022 19:32:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5ED5C004E1;
-        Fri,  4 Feb 2022 19:32:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644003172;
-        bh=uTj62FLingKqWAQg9C6R9/t1yTvVZAR768Wmtl4AJL0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SbAGSW52xlz9sQkqgItDjXwZT69TRZFbz4qItHTHUKdpglLkKnguZsF3oIb7qsT4t
-         Q4H39hOP2MJcRU2oAtEUUmig/Vf8HjWWkJD8N9WGCmjJ6WqykBNPSZ7/JfOSVCh9uO
-         FH2tdYI0CHUGHZniTx0xMX5gKZzAlNWZz/BiU4dCcMGyQ2CrEghH9atNAPJUTUGCCk
-         0punO8bs3BRVcmoxLQdtnPcojvF0uWxNeUfClqcKwlMFkRVyPtGSDHlnn61KDyE35u
-         tNhJmn7u8he6Cx+8Si11X++NJsbrCZ1RbpAmnTgYaQ+S/I6uEwDCujCStlr9EZ1F9x
-         ZPBMxjy0KgWoQ==
-Date:   Fri, 4 Feb 2022 19:32:47 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linus.walleij@linaro.org, Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: i2c: qcom-cci: add description of a
- vbus-supply property
-Message-ID: <Yf1/X1rXm4QbyoFN@sirena.org.uk>
-References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
- <20220203164629.1711958-3-vladimir.zapolskiy@linaro.org>
- <Yf1q+wlXo2LAeZX+@ripper>
- <Yf1zhojUSxlMNZgV@sirena.org.uk>
- <Yf14LADJ26G9ByZu@ripper>
+        id S234589AbiBDTor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 14:44:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35526 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231869AbiBDToq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 14:44:46 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A2CBC061714;
+        Fri,  4 Feb 2022 11:44:46 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id a25so9904439lji.9;
+        Fri, 04 Feb 2022 11:44:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=EY/HGBtjW2B/xy2aoc3hN23r1qYr7cNBzDYndqWrzTw=;
+        b=g+8K/t28gvBP8URI8gyn4xeM/nJJS2QwgsRYS3m+nn5wE6bV1tdLD15pD4Q9hqExde
+         GEKOH3GC2473wsep4KA3cfw4VNnu5m/EVQTQ+BJuJyPwcMtvhYbBg04AcJbO7/DZlZtu
+         J1vYmhIOWlkDNUwVqBzwPczyxsarhszAGNPb+nf4ZOnEprZl7gK2jafRTR51+Mevo8um
+         Wongj1+XUkHXQa2ydsqiEqrOTPWmweJI+Pdg5jCSxON7aCAygArzIyFqSA4358CVO8gY
+         znF7Ghymc/oZG9TxrpvmC6khfi2ujauXcgV/dH1swrgXLu/5NVxrnOGlB8b4rTq6+Kkm
+         CJ7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=EY/HGBtjW2B/xy2aoc3hN23r1qYr7cNBzDYndqWrzTw=;
+        b=NzsBb1fTrlJuS1bltIH9xgar7bfzmY5O35d6HtTosAanxK3BXgiNbjB7aCfUS2t9Hp
+         KPvsPt8Mu2yf1Cu69mcSLaOEae757CP6GyR/ksAk3BbRMxpF6Tt5lKSo8guNFJVBwTP6
+         Wbg46PpTH3v9gL7BYRI2BSsOnqWjIZntINK3uMytzO1/BRkx4ksbStJsxwC48nXtOXg2
+         jSQINL64K62VjeHWotOO+DAbz1xnabNHxmsZyRG24+KiEqnA3uqOa8DMcaJOIy0d4chs
+         TdUXIyB4Ubw3eOw297ILz9thF0oMCiqo+Yg/B8/wCk6cmXN0Xao0qwNAbGMlHg2T7A//
+         QZ7Q==
+X-Gm-Message-State: AOAM532f4Al+ySHAyePqaqbGEU0v7UMTe1J8znJcGkLdtW0DNYaRFIig
+        3bx+p7zoxggMS+Rg60F6F98=
+X-Google-Smtp-Source: ABdhPJxuOUF8waFjTreKMFJweys4aydLGd4j/jKLivhxUQ2oV+ll9crRaDGma8C3NlJDBZX9tYWQbQ==
+X-Received: by 2002:a05:651c:1543:: with SMTP id y3mr298803ljp.152.1644003884581;
+        Fri, 04 Feb 2022 11:44:44 -0800 (PST)
+Received: from [192.168.2.145] (109-252-138-165.dynamic.spd-mgts.ru. [109.252.138.165])
+        by smtp.googlemail.com with ESMTPSA id g7sm377390ljk.83.2022.02.04.11.44.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Feb 2022 11:44:43 -0800 (PST)
+Message-ID: <c18415c6-a8eb-0d5e-8ac1-aba57ceba764@gmail.com>
+Date:   Fri, 4 Feb 2022 22:44:42 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lSHQgVPpfOtQnKGc"
-Content-Disposition: inline
-In-Reply-To: <Yf14LADJ26G9ByZu@ripper>
-X-Cookie: Torque is cheap.
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 6/6] dt-bindings: memory: lpddr2-timings: convert to
+ dtschema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20220201114749.88500-1-krzysztof.kozlowski@canonical.com>
+ <20220201114749.88500-6-krzysztof.kozlowski@canonical.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20220201114749.88500-6-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+01.02.2022 14:47, Krzysztof Kozlowski пишет:
+> Convert the LPDDR2 memory timings bindings to DT schema format.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  .../ddr/jedec,lpddr2-timings.yaml             | 135 ++++++++++++++++++
+>  .../memory-controllers/ddr/jedec,lpddr2.yaml  |   6 +-
+>  .../memory-controllers/ddr/lpddr2-timings.txt |  52 -------
+>  3 files changed, 137 insertions(+), 56 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
 
---lSHQgVPpfOtQnKGc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+It takes some effort to extract a concise descriptions of all the
+properties from memory datasheets. Thank you doing that! Nice to see
+that no txts left :)
 
-On Fri, Feb 04, 2022 at 11:02:04AM -0800, Bjorn Andersson wrote:
-> On Fri 04 Feb 10:42 PST 2022, Mark Brown wrote:
-> > On Fri, Feb 04, 2022 at 10:05:47AM -0800, Bjorn Andersson wrote:
-
-> > > Typically we don't don't mention the bus-supply because it happens to be
-> > > pulled up either by io-supply for the block, or by some always-on
-> > > regulator in the system.
-
-> > If the bus is being pulled up to some supply other than the supply that
-> > the bus is referenced to that doesn't sound like the greatest electrical
-> > engineering ever...  without any context it's hard to comment about this
-> > particular system.
-
-> That's what the schematics says...
-
-Oh, good.  I forsee no problems here.  Probably this is something that
-should be in the I2C core if it's going to be dynamically managed,
-though just setting the supply as always on is probably more expedient.
-
---lSHQgVPpfOtQnKGc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmH9f14ACgkQJNaLcl1U
-h9B6iQf/byV4+e+uFBM6wEtccDusBqTglW0hQhfar5lUjuwIB9B59eKV7EsYb7k5
-xKR+Fdi3tesx6q+OJpQZ4VGUfOPM/ISNdfT/tLWimfH6DCNEe1aOZwedHHlogEFP
-2uovVtGrJ6KYJAm+yDK+k8PsJZV3HaCxU+ZjrL9Mp8i0W9AcbIMZW5yiABpi7dq2
-Whamy9IW1CQmSCfPKU1Jrsx/eXusl+NeahbhqCTqkwxFHjr6yamJCRPS0z6OeN8F
-dTkoYfS1eUkUKUFfmtJF6MFztp5UHX/kJGgEdw0qqV35LMtBsYNBG1jmRNEzLtdd
-udPtQuWAR3NHMiWHrCM1+Esj5LCTJA==
-=UVPL
------END PGP SIGNATURE-----
-
---lSHQgVPpfOtQnKGc--
