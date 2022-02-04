@@ -2,88 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB2C14A9F18
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 19:35:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30D5C4A9F5F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 19:42:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377566AbiBDSf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 13:35:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47644 "EHLO
+        id S1377661AbiBDSmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 13:42:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377561AbiBDSf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 13:35:28 -0500
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1415C06173D
-        for <devicetree@vger.kernel.org>; Fri,  4 Feb 2022 10:35:28 -0800 (PST)
-Received: by mail-oo1-xc29.google.com with SMTP id t75-20020a4a3e4e000000b002e9c0821d78so5618625oot.4
-        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 10:35:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KZ34fdHu8Q3424gbiZjFrV05OxGvkiCw9Gj/tnbBpXU=;
-        b=mG5JZPffX9dhTRwJXtsHTFER/a2rf7XORYsrqgBgDNs/2xlmo3TXr+PqdjFzfy84R+
-         1t9LitqauaO9Kt5qqaPg+cz2g1bvni34qPxjZWxPZU5Dn3CzrbKab9848/cq/LqYSW/w
-         JNzmYXmDBc5eoMSW8cEx1DgeGhpeVxVZmd2f98iQtwMVRsYB/dEhl8+hwKc9HbXJe8o5
-         V56qHuDXqShqancsRCCgreWyqWYpxrFWBrL5ZZCvgtV09wiFzHk6GEHOQ9Qo3sU9htVW
-         GP6qk5gKYcPD16i9gg1g1ecVYDpcK07miRHrvAsgpE+tbWwynu0SbBCzXN5QEFNaPE4Q
-         vqjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KZ34fdHu8Q3424gbiZjFrV05OxGvkiCw9Gj/tnbBpXU=;
-        b=Uv6YN2h8QKcfxa90xAzQcJGBUUgdDsGQHQjVSYwRIZDQnieh1JAS18msDjQbBPUjSY
-         JBMfC1sI+Ago8f0iQatNt0C1oDZHkhyx5M/TTLj8IWpIZ3t4zs2BQuh54FL9JuCYmhP7
-         kpFIyPlwaXTdA1yfAw+oehm4MedNf8VNzCq1wGPSWQs72/LUTJN4Eh6hMsU622Dpq/yN
-         0qJyq7rX7saHxI0S48xZK20FC5MXHdXAqMkf1/nFbZM6DsGUBN5iJ2pfxTH+Iuhy7nA2
-         KnSDYn/8mmPib+9m56R6U9c9xuGZes+GNdkcqLI0UVc8DH3qFCLN4BYyyLiyLPoyDHPQ
-         cXNA==
-X-Gm-Message-State: AOAM5324RBqiasbs5ort587aD9p55j8dOSMa6LcWCJxaz5QboGu1OGi5
-        XErMvkJSa84BF9iTqR+eHTyGxw==
-X-Google-Smtp-Source: ABdhPJwYwe+/9ygm04AiGDLUcSTS24Yu4hEPP1GHPcqb2iD7c53MI/c1KwsZeHFnKB3l0CZ1tE2pXA==
-X-Received: by 2002:a05:6870:d2a6:: with SMTP id d38mr1008822oae.65.1643999728119;
-        Fri, 04 Feb 2022 10:35:28 -0800 (PST)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id 100sm1044182oth.75.2022.02.04.10.35.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Feb 2022 10:35:27 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH 00/13] soc: qcom: mdt_loader: Support Qualcomm SM8450
-Date:   Fri,  4 Feb 2022 12:35:16 -0600
-Message-Id: <164399969245.3386915.6870326931875089818.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220128025513.97188-1-bjorn.andersson@linaro.org>
-References: <20220128025513.97188-1-bjorn.andersson@linaro.org>
+        with ESMTP id S1377640AbiBDSmX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 13:42:23 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED393C06173D;
+        Fri,  4 Feb 2022 10:42:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 6A9ACCE23D2;
+        Fri,  4 Feb 2022 18:42:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 800C6C004E1;
+        Fri,  4 Feb 2022 18:42:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644000139;
+        bh=gbXlMQkTm6wk7+jYJvwk8s0/hMYzA2jyIoBYYozqmyA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dGWkBTcMQktwcODnovOxids+lkqYf6w6wqbtDvlu51ixa3+5XGKWPXquW/srC25Q0
+         bMaReUQYWC/zycxF12aq1/o85PINE5Eb1pfaa66382MgvoF+pE06XpZzmtXdIOnDtX
+         1K74SR0l6L0tgkt+GhSgMKi/ujNp+7eMnUmAFCugyQm27OpFci1jHWraMNlC18x9vY
+         HcTyqlbcaMDdSmEs1dDV/mKtBhboEzMy+bQU5OUIGgZUD1zKX6Nim+Kjucq2CkkHo9
+         hThdYWCXtzVcn20bIlOMQLRl0Lpm0nbQOMgkz3sb4ILVH5fOv+YtJLDeHXrVaYq+Mj
+         9UFuzTrFSMO3w==
+Date:   Fri, 4 Feb 2022 18:42:14 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linus.walleij@linaro.org, Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/9] dt-bindings: i2c: qcom-cci: add description of a
+ vbus-supply property
+Message-ID: <Yf1zhojUSxlMNZgV@sirena.org.uk>
+References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
+ <20220203164629.1711958-3-vladimir.zapolskiy@linaro.org>
+ <Yf1q+wlXo2LAeZX+@ripper>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="d/jMTsDZb3DWepCt"
+Content-Disposition: inline
+In-Reply-To: <Yf1q+wlXo2LAeZX+@ripper>
+X-Cookie: Torque is cheap.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Jan 2022 18:55:00 -0800, Bjorn Andersson wrote:
-> The Qualcomm SM8450 platform comes with both some smaller changes in the
-> firmware packaging and a new requirement to hold onto the metadata buffer until
-> PAS auth_and_reset has been completed.
-> 
-> Extend the PAS api and rework the mdt_loader to meet these new requirements,
-> then wire this up with the PAS remoteproc driver and finally add the SM8450
-> remoteproc instances.
-> 
-> [...]
 
-Applied, thanks!
+--d/jMTsDZb3DWepCt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[12/13] arm64: dts: qcom: sm8450: Add remoteproc enablers and instances
-        commit: e57f31b02784bdafd35940ea2592df8151ea1190
-[13/13] arm64: dts: qcom: sm8450-qrd: Enable remoteproc instances
-        commit: b48007d6d098dfeb57888c7bc50fbfb99e4e3695
+On Fri, Feb 04, 2022 at 10:05:47AM -0800, Bjorn Andersson wrote:
+> On Thu 03 Feb 08:46 PST 2022, Vladimir Zapolskiy wrote:
 
-Best regards,
--- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+> > +- vbus-supply:
+
+> I don't think "vbus" is an appropriate name for his. Perhaps "vddio" or
+> something like that would be better.
+
+> But there's a bigger question here, this is not a supply for the
+> i2c master, it's simply a supply for pulling up the bus. So it's not
+> entirely correct to specify it as a supply for the CCI node (which is
+> also the reason why the name isn't obvious).
+
+Does the device (controller?) not have a supply that the I2C bus is
+referenced to?  If so that supply should be named.
+
+> Typically we don't don't mention the bus-supply because it happens to be
+> pulled up either by io-supply for the block, or by some always-on
+> regulator in the system.
+
+If the bus is being pulled up to some supply other than the supply that
+the bus is referenced to that doesn't sound like the greatest electrical
+engineering ever...  without any context it's hard to comment about this
+particular system.
+
+--d/jMTsDZb3DWepCt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmH9c4UACgkQJNaLcl1U
+h9CM6Qf/WkwweKjs1czu0qwHwz5DI1EMVc0CWDqBRE/GBJQ7YC6Rle27N/g6Kff/
+IftkieaWxTG5zJsP9y5vs3BJd2I1ArDug4kfZFjg00PeUuizJ/5VcTmo/bLlYz4o
+UWCH0CSX3SJ6kPXxzx+9NBzYy/rytf82p4yWEJDg3D4bHwqVCbNTSAUN/IL82kXx
+D+ao+thL+lEN51KyPlhCtsCUXlua4TPYMuDBoFXOFV7NyWRcamyz0YFPVvEPmBGL
+JsDe7uH2rkj697orgYRYkyZFOlkvee5pFS/uIFamTXNg2kUGby+0bbjXAmGTQu0i
+8esmqS0psl9WN6h+VKqW+NA5v6VuZw==
+=ueXi
+-----END PGP SIGNATURE-----
+
+--d/jMTsDZb3DWepCt--
