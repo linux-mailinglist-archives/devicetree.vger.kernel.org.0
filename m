@@ -2,115 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B71BF4A99FD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 14:33:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 598544A9A15
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 14:37:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358843AbiBDNdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 08:33:38 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:42488 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1356417AbiBDNdh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Feb 2022 08:33:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=4Ca9I/sAMzQIMCAYXBkIkytKRwdb7KuHMc9w1XGE+7A=; b=0N30fHOeJKKiEmBzHSSAjOwTCo
-        NpvFMTne+ReR7L/rMoQIq2d5/1hRKjsDPqIORGjajQW+UTS2E2q3Z/w61nDp6gVZ6OVzpiYsw2EyW
-        pLoL11FZdneTXfJN6pJjgvs7Ay984ejA0+yx0g4+Hjhydr9jhY9l2gbt/i994/BsW7lk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nFyhL-004Gxv-Fm; Fri, 04 Feb 2022 14:32:23 +0100
-Date:   Fri, 4 Feb 2022 14:32:23 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     nick.hawkins@hpe.com, verdun@hpe.com,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Corey Minyard <minyard@acm.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Brown <broonie@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Hao Fang <fanghao11@huawei.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Wang Kefeng <wangkefeng.wang@huawei.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-i2c@vger.kernel.org,
-        openipmi-developer@lists.sourceforge.net,
-        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] HPE BMC GXP SUPPORT
-Message-ID: <Yf0q5/Jus+mz0B2E@lunn.ch>
-References: <nick.hawkins@hpe.com>
- <20220202165315.18282-1-nick.hawkins@hpe.com>
- <Yf0Wm1kOV1Pss9HJ@shell.armlinux.org.uk>
+        id S235991AbiBDNh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 08:37:57 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:34457 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229609AbiBDNh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 08:37:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1643981878; x=1675517878;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ins3wjr1yw8GLN2RCWCRKZ7wEA5SACV7Eby0ebdTizI=;
+  b=sWn5O4a4SYHLdOHjcBsJ50RkdQbtMDls8nK6/71RgJBLUnKrgHYE4n9O
+   MDA6tjxJcIbXge9bEqvX50aQRE6quuUMJJpAL9zuwHnRxLibZSIdNeCtP
+   sfhpqtfQtAMmn/+NjNZA2IXO1lmdGchef4FuosqseHhxHPrOU2nyzuvkh
+   92x7b1MdymFb40g/x3FMx39iNyD+jf3KYWNexo6VBzHiuq/c7AX0rW1hY
+   Tgh9ugMLCfgN3FswojdSIWi+hodkaEhlq2Wd+V0i+RMi43fHbwqTbLg6d
+   TygcGbFEasLHsiLVX+caZV6kx7XTljgDerd/5PPnBbhXRXRvaKlDrN4Yw
+   w==;
+IronPort-SDR: GObYwLT3RkKPIG3eW2ryvclkpvDVyYLSnseXNQyBoxcdlZqG7iYDfbA78TqWZlI/fA/V29BBUc
+ AO1vAstjEm15yCGEJnzERVSdRfx4UXRfDH9061Yynk3kUry9MZiba8ux1s6wJ83mTNe62aLDVX
+ HJRusjsYSsGemgtokY6b+f7YINMnPLo1QS86FSHXDV3fS81yQ0pZOaiAd12U1s2xU9S5DKuTbl
+ K44t8qseYgNnwYpnceHMqxGLp6vhAaYLkUdM8ozCgu/HoWi13WB2y7mTQDQlJQk7fnCQZ1jcb/
+ +BCHye7jOGWujiJQ9SRRvJh8
+X-IronPort-AV: E=Sophos;i="5.88,342,1635231600"; 
+   d="scan'208";a="151967375"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Feb 2022 06:37:58 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 4 Feb 2022 06:37:56 -0700
+Received: from ROB-ULT-M18064N.mchp-main.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Fri, 4 Feb 2022 06:37:54 -0700
+From:   Tudor Ambarus <tudor.ambarus@microchip.com>
+To:     <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, Tudor Ambarus <tudor.ambarus@microchip.com>
+Subject: [PATCH] ARM: dts: at91: sama7g5: Add crypto nodes
+Date:   Fri, 4 Feb 2022 15:37:51 +0200
+Message-ID: <20220204133751.498600-1-tudor.ambarus@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yf0Wm1kOV1Pss9HJ@shell.armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +#include <linux/init.h>
-> > +#include <asm/mach/arch.h>
-> > +#include <asm/mach/map.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/clocksource.h>
-> 
-> It's normal to list all linux/ includes before asm/ includes. Please
-> rearrange.
+Describe and enable the AES, SHA and TDES crypto IPs.
 
-Hi Nick
+Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+---
+ arch/arm/boot/dts/sama7g5.dtsi | 35 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-Since you are new to the kernel, please let me point out, you should
-consider Russell comments for all your code, not just this one file.
-Many of the comments are generic to code anywhere in the kernel. So it
-would be good to fix the same issues in the rest of your code base
-before submitting them.
+diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
+index 7972cb8c2562..1f2731a64139 100644
+--- a/arch/arm/boot/dts/sama7g5.dtsi
++++ b/arch/arm/boot/dts/sama7g5.dtsi
+@@ -393,6 +393,29 @@ pit64b1: timer@e1804000 {
+ 			clock-names = "pclk", "gclk";
+ 		};
+ 
++		aes: aes@e1810000 {
++			compatible = "atmel,at91sam9g46-aes";
++			reg = <0xe1810000 0x100>;
++			interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
++			dmas = <&dma0 AT91_XDMAC_DT_PERID(1)>,
++			       <&dma0 AT91_XDMAC_DT_PERID(2)>;
++			dma-names = "tx", "rx";
++			clocks = <&pmc PMC_TYPE_PERIPHERAL 27>;
++			clock-names = "aes_clk";
++			status = "okay";
++		};
++
++		sha: sha@e1814000 {
++			compatible = "atmel,at91sam9g46-sha";
++			reg = <0xe1814000 0x100>;
++			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
++			dmas = <&dma0 AT91_XDMAC_DT_PERID(48)>;
++			dma-names = "tx";
++			clocks = <&pmc PMC_TYPE_PERIPHERAL 83>;
++			clock-names = "sha_clk";
++			status = "okay";
++		};
++
+ 		flx0: flexcom@e1818000 {
+ 			compatible = "atmel,sama5d2-flexcom";
+ 			reg = <0xe1818000 0x200>;
+@@ -475,6 +498,18 @@ trng: rng@e2010000 {
+ 			status = "disabled";
+ 		};
+ 
++		tdes@e2014000 {
++			compatible = "atmel,at91sam9g46-tdes";
++			reg = <0xe2014000 0x100>;
++			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
++			dmas = <&dma0 AT91_XDMAC_DT_PERID(54)>,
++			       <&dma0 AT91_XDMAC_DT_PERID(53)>;
++			dma-names = "tx", "rx";
++			clocks = <&pmc PMC_TYPE_PERIPHERAL 96>;
++			clock-names = "tdes_clk";
++			status = "okay";
++		};
++
+ 		flx4: flexcom@e2018000 {
+ 			compatible = "atmel,sama5d2-flexcom";
+ 			reg = <0xe2018000 0x200>;
+-- 
+2.25.1
 
-I would also suggest that when you start submitting drivers, submit
-just one or two to start with. You will learn a lot from the feedback
-you get, and you can apply what you have learnt to the rest of your
-code before you post them for review.
-
-I would also suggest you spend 30 minutes a day just reading comments
-other patches receive. You can also learn a lot that way, see if the
-comments apply to your own code. You will also learn about processes
-this way, which can be just as challenging to get right as code.
-
-     Andrew
