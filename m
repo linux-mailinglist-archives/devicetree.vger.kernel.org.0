@@ -2,146 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B97054A9EBE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 19:15:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB2C14A9F18
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 19:35:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350695AbiBDSPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 13:15:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42964 "EHLO
+        id S1377566AbiBDSf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 13:35:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239558AbiBDSPB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 13:15:01 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC79C061714;
-        Fri,  4 Feb 2022 10:15:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=EoClmycGC2pyssAFQ3Yd/jSMUhwQjb+AViIrm00DoVU=; b=SQdS0bxn/g56/JVHYSjn4rLkwu
-        EwJCCvdwJZI/CKQ+QDAkn+D3r/3FJKUE9z4E+/gXqKT9o+uke0EYvQEBn0kKQUKdp3rHmSMZ+bM1j
-        2r9+oacfSB5vuQ2h/EQZXTggH7uLED+ZmGr2EHyc8hfVcfepn5cQS4HyuXPI0XqnBNNGJxSwg7Qrm
-        7Mp+KVpl8FZlYufRBC7S34jdvI6uqTfZbYdH/sDRNZIG2KlF/1FMwYiEw1ENqUOVatntsPm+p5QU1
-        VFu0OiF3EPa89sr4vV6nEK1zHQaKP447pKrfWQxK7s6ijb+8X5TsAvi8aq26BCObERgPeo1HzqxBJ
-        Jo/NZq1Q==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:57044)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1nG36l-000580-1g; Fri, 04 Feb 2022 18:14:55 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1nG36j-0005C0-4M; Fri, 04 Feb 2022 18:14:53 +0000
-Date:   Fri, 4 Feb 2022 18:14:53 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, olteanv@gmail.com,
-        robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
-        Woojung.Huh@microchip.com, hkallweit1@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        with ESMTP id S1377561AbiBDSf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 13:35:28 -0500
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1415C06173D
+        for <devicetree@vger.kernel.org>; Fri,  4 Feb 2022 10:35:28 -0800 (PST)
+Received: by mail-oo1-xc29.google.com with SMTP id t75-20020a4a3e4e000000b002e9c0821d78so5618625oot.4
+        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 10:35:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=KZ34fdHu8Q3424gbiZjFrV05OxGvkiCw9Gj/tnbBpXU=;
+        b=mG5JZPffX9dhTRwJXtsHTFER/a2rf7XORYsrqgBgDNs/2xlmo3TXr+PqdjFzfy84R+
+         1t9LitqauaO9Kt5qqaPg+cz2g1bvni34qPxjZWxPZU5Dn3CzrbKab9848/cq/LqYSW/w
+         JNzmYXmDBc5eoMSW8cEx1DgeGhpeVxVZmd2f98iQtwMVRsYB/dEhl8+hwKc9HbXJe8o5
+         V56qHuDXqShqancsRCCgreWyqWYpxrFWBrL5ZZCvgtV09wiFzHk6GEHOQ9Qo3sU9htVW
+         GP6qk5gKYcPD16i9gg1g1ecVYDpcK07miRHrvAsgpE+tbWwynu0SbBCzXN5QEFNaPE4Q
+         vqjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=KZ34fdHu8Q3424gbiZjFrV05OxGvkiCw9Gj/tnbBpXU=;
+        b=Uv6YN2h8QKcfxa90xAzQcJGBUUgdDsGQHQjVSYwRIZDQnieh1JAS18msDjQbBPUjSY
+         JBMfC1sI+Ago8f0iQatNt0C1oDZHkhyx5M/TTLj8IWpIZ3t4zs2BQuh54FL9JuCYmhP7
+         kpFIyPlwaXTdA1yfAw+oehm4MedNf8VNzCq1wGPSWQs72/LUTJN4Eh6hMsU622Dpq/yN
+         0qJyq7rX7saHxI0S48xZK20FC5MXHdXAqMkf1/nFbZM6DsGUBN5iJ2pfxTH+Iuhy7nA2
+         KnSDYn/8mmPib+9m56R6U9c9xuGZes+GNdkcqLI0UVc8DH3qFCLN4BYyyLiyLPoyDHPQ
+         cXNA==
+X-Gm-Message-State: AOAM5324RBqiasbs5ort587aD9p55j8dOSMa6LcWCJxaz5QboGu1OGi5
+        XErMvkJSa84BF9iTqR+eHTyGxw==
+X-Google-Smtp-Source: ABdhPJwYwe+/9ygm04AiGDLUcSTS24Yu4hEPP1GHPcqb2iD7c53MI/c1KwsZeHFnKB3l0CZ1tE2pXA==
+X-Received: by 2002:a05:6870:d2a6:: with SMTP id d38mr1008822oae.65.1643999728119;
+        Fri, 04 Feb 2022 10:35:28 -0800 (PST)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id 100sm1044182oth.75.2022.02.04.10.35.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Feb 2022 10:35:27 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 net-next 06/10] net: dsa: microchip: add support for
- phylink management
-Message-ID: <Yf1tHUaecq2DLgcE@shell.armlinux.org.uk>
-References: <20220204174500.72814-1-prasanna.vengateshan@microchip.com>
- <20220204174500.72814-7-prasanna.vengateshan@microchip.com>
+Subject: Re: (subset) [PATCH 00/13] soc: qcom: mdt_loader: Support Qualcomm SM8450
+Date:   Fri,  4 Feb 2022 12:35:16 -0600
+Message-Id: <164399969245.3386915.6870326931875089818.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220128025513.97188-1-bjorn.andersson@linaro.org>
+References: <20220128025513.97188-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220204174500.72814-7-prasanna.vengateshan@microchip.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 27 Jan 2022 18:55:00 -0800, Bjorn Andersson wrote:
+> The Qualcomm SM8450 platform comes with both some smaller changes in the
+> firmware packaging and a new requirement to hold onto the metadata buffer until
+> PAS auth_and_reset has been completed.
+> 
+> Extend the PAS api and rework the mdt_loader to meet these new requirements,
+> then wire this up with the PAS remoteproc driver and finally add the SM8450
+> remoteproc instances.
+> 
+> [...]
 
-On Fri, Feb 04, 2022 at 11:14:56PM +0530, Prasanna Vengateshan wrote:
-> +static void lan937x_phylink_mac_link_up(struct dsa_switch *ds, int port,
-> +					unsigned int mode,
-> +					phy_interface_t interface,
-> +					struct phy_device *phydev,
-> +					int speed, int duplex,
-> +					bool tx_pause, bool rx_pause)
-> +{
-> +	struct ksz_device *dev = ds->priv;
-> +
-> +	/* Internal PHYs */
-> +	if (lan937x_is_internal_phy_port(dev, port))
-> +		return;
-> +
-> +	if (phylink_autoneg_inband(mode)) {
-> +		dev_err(ds->dev, "In-band AN not supported!\n");
-> +		return;
-> +	}
+Applied, thanks!
 
-No need to check this in the link_up() method - if this were true,
-you've already printed an error in the mac_config() method and this
-one doesn't provide any additional useful information.
+[12/13] arm64: dts: qcom: sm8450: Add remoteproc enablers and instances
+        commit: e57f31b02784bdafd35940ea2592df8151ea1190
+[13/13] arm64: dts: qcom: sm8450-qrd: Enable remoteproc instances
+        commit: b48007d6d098dfeb57888c7bc50fbfb99e4e3695
 
-> +
-> +	lan937x_config_interface(dev, port, speed, duplex,
-> +				 tx_pause, rx_pause);
-> +}
-> +
-> +static void lan937x_phylink_get_caps(struct dsa_switch *ds, int port,
-> +				     struct phylink_config *config)
-> +{
-> +	struct ksz_device *dev = ds->priv;
-> +
-> +	config->mac_capabilities = MAC_100FD;
-> +
-> +	/* internal T1 PHY */
-> +	if (lan937x_is_internal_base_t1_phy_port(dev, port)) {
-> +		__set_bit(PHY_INTERFACE_MODE_INTERNAL,
-> +			  config->supported_interfaces);
-> +	} else {
-> +		/* MII/RMII/RGMII ports */
-> +		if (!lan937x_is_internal_base_tx_phy_port(dev, port)) {
-
-Please consider:
-
-	} else if (!lan937x_is_internal_base_tx_phy_port(dev, port)) {
-		/* MII/RMII/RGMII ports */
-		...
-	}
-
-to avoid needing two tabs to indent, which probably makes:
-
-> +			config->mac_capabilities |= MAC_100HD | MAC_SYM_PAUSE |
-> +						    MAC_ASYM_PAUSE | MAC_10 |
-> +						    MAC_1000FD;
-
-able to be laid out with the two pause modes first followed by the
-speeds.
-
-> +			phy_interface_set_rgmii(config->supported_interfaces);
-> +
-> +			__set_bit(PHY_INTERFACE_MODE_MII,
-> +				  config->supported_interfaces);
-> +			__set_bit(PHY_INTERFACE_MODE_RMII,
-> +				  config->supported_interfaces);
-> +		}
-> +	}
-
-You seem to be a non-legacy driver in this patch (good!) so please also
-add:
-
-	config->legacy_pre_march2020 = false;
-
-while DSA is transitioned over. Thanks.
-
-> +}
-> +
->  const struct dsa_switch_ops lan937x_switch_ops = {
->  	.get_tag_protocol = lan937x_get_tag_protocol,
->  	.setup = lan937x_setup,
-
-Thanks.
-
+Best regards,
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Bjorn Andersson <bjorn.andersson@linaro.org>
