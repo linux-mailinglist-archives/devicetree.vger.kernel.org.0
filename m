@@ -1,99 +1,64 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C44C94AA066
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 20:48:47 +0100 (CET)
+Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
+	by mail.lfdr.de (Postfix) with ESMTP id B98CC4AA132
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 21:33:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234401AbiBDTsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 14:48:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36412 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231869AbiBDTsq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 14:48:46 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1D3CC061714;
-        Fri,  4 Feb 2022 11:48:45 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id z7so9948714ljj.4;
-        Fri, 04 Feb 2022 11:48:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=duHpmFxlBbFk1XIYiQ3pxMiqpbVYnao3doZJUxGlgw0=;
-        b=iW/MKdWog0NT3R/KNWxkTEvpMxLjViZJy4lj2FmGfRo4aUpWuJwFHxvTYUx77KylaI
-         VlNaZ3GGHUn8lcI0l+P1gS92Iz9PfqFB/XQfx1MO9T9diAo7y4dKt6sBeJnfP4yWBzlZ
-         6mC/CSLc0en48qVt5P+NQYJm5i0Pw3wVQJcGUsBjpqmfyE9b6Rn4sS7h42ci4xQNThwn
-         sSjXutk/Ot1/WltbS8umyy/utVAmVVbbWuV1eiLn89fsqfimKj5erfNDz8RY4554fKXD
-         vPyaSlr6qDglUw2hFh9dZLOFko28pzQr1VWo2SoLLogUq4lnT04vC9Ip/KSsyjXGWd8g
-         nFfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=duHpmFxlBbFk1XIYiQ3pxMiqpbVYnao3doZJUxGlgw0=;
-        b=U9WSdUVIatvmZ5VzwuFjKztmFoeJpNnkj2WM0fHKQZ5e46PYZSz0c8UNcvyBkLPQ+0
-         IOnZoGAEe9GvzBJFvofH9HYdHegJVQVQN7c5jJkV1s2BegxclyyjdLKjHLJSXedz2U03
-         daMc/18Z2YmBUze+pKJoZZQiKB/X3RbyX/qqY/cUu4hh05naJz+ds9U09YE3whMD25+4
-         V1K7hFH/ctxYRB3S3XAZXcd7wctoYCpkMZeZ98lLV3FyF7MvR3U1n5Xyh+i2VjvT7+yv
-         IbLZbShEGv1H70E7dMSYQPOnL7aWTUWqjjoRKI7fbb0vF2mfriPS4Ay/l970vg9GT/6A
-         YhGg==
-X-Gm-Message-State: AOAM53363vaxp4iJygh2DdjATM5MCVmtd07Q/CCNVGUwaWhSjJIQqLud
-        E/2TuXfI+yHoB9WryOuXOeg=
-X-Google-Smtp-Source: ABdhPJwPWlZyp8vfQtVc5hmYtdbn1UjQfKbidce8/vheQguoDAKZYgg7P0sLNkT7rtJfzl1flMjFyQ==
-X-Received: by 2002:a2e:3218:: with SMTP id y24mr281398ljy.260.1644004124302;
-        Fri, 04 Feb 2022 11:48:44 -0800 (PST)
-Received: from [192.168.2.145] (109-252-138-165.dynamic.spd-mgts.ru. [109.252.138.165])
-        by smtp.googlemail.com with ESMTPSA id j23sm435661lfh.35.2022.02.04.11.48.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Feb 2022 11:48:43 -0800 (PST)
-Message-ID: <23d38615-6b75-8715-0f83-fc93755a708b@gmail.com>
-Date:   Fri, 4 Feb 2022 22:48:43 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 6/6] dt-bindings: memory: lpddr2-timings: convert to
- dtschema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220201114749.88500-1-krzysztof.kozlowski@canonical.com>
- <20220201114749.88500-6-krzysztof.kozlowski@canonical.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20220201114749.88500-6-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S233726AbiBDUdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 15:33:14 -0500
+Received: from [106.75.181.135] ([106.75.181.135]:58468 "EHLO
+        mail.uccard.co.jp" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S238566AbiBDUdN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 15:33:13 -0500
+Date:   Sat, 5 Feb 2022 04:33:00 +0800
+From:   =?utf-8?B?44Ki44OD44OI44Om44O844ON44OD44OI?= 
+        <atu@mail.uccard.co.jp>
+To:     <devicetree@vger.kernel.org>
+Subject: =?utf-8?B?44CQ44Om44O844K344O844Kr44O844OJ44CR44GU5pys5Lq65qeY56K66KqN5a6M5LqG44Gu44GU6YCj?=
+        =?utf-8?B?57Wh?=
+Message-ID: <20220205043313788086@mail.uccard.co.jp>
+X-mailer: Foxmail 6, 13, 102, 15 [en]
+Mime-Version: 1.0
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-01.02.2022 14:47, Krzysztof Kozlowski пишет:
-> +  tZQCL:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      SELF REFRESH exit to next valid command delay in pico seconds.
-> +
-> +  tZQCS:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      SELF REFRESH exit to next valid command delay in pico seconds.
-> +
-> +  tZQinit:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      SELF REFRESH exit to next valid command delay in pico seconds.
+44GT44Gu44Gf44G044Gv44CBVUPjgqvjg7zjg4njgpLjgZTliKnnlKjjgYTjgZ/jgaDjgY3jgYLj
+gorjgYzjgajjgYbjgZTjgZbjgYTjgb7jgZnjgIINCg0K44GU5pys5Lq65qeY56K66KqN44Gu44Gf
+44KB44Gu6KqN6Ki844GM6KGM44KP44KM44G+44GX44Gf44Gu44Gn44CB44GK55+l44KJ44Gb44GE
+44Gf44GX44G+44GZ44CCDQoNCuacrOOCteODvOODk+OCueOBr+OAgeS4h+OBjOS4gOOAgeOBlOac
+rOS6uuanmOS7peWkluOBq+OCiOOCi+S4jeato+ODreOCsOOCpOODs8K35pON5L2c562J44GM44GC
+44Gj44Gf5aC05ZCI44Gr44CB44GK5a6i5qeY44GM6YCf44KE44GLDQrjgavnorroqo3jgafjgY3j
+govjgojjgYbjgIHov73liqDoqo3oqLzjga7pg73luqbjgIHjg6Hjg7zjg6vjgpLpgIHkv6HjgZnj
+govjgrXjg7zjg5PjgrnjgafjgZnjgIINCg0K44GK5b+D5b2T44KK44Gu44Gq44GE5aC05ZCI44KE
+5LiN5a+p44Gq54K5562J44GU44GW44GE44G+44GX44Gf44KJ44CB5b6h5pep44KB44Gr56K66KqN
+44GX44Gm44GP44Gg44GV44GE44CCDQrjgIrmnKzkurrnorroqo3jga7mlrnms5XjgIsNCg0K4pa8
+44Oe44Kk44Oa44O844K444KI44KK5pys5Lq656K66KqN44KS5a6f5pa944GZ44KLDQogaHR0cHM6
+Ly9hcGktc2Fpc29uY2FyZC1jby1qcC51Y2NhcmQyLnh5eg0KDQoNCg0K77yc44GK5ZWP5ZCI44Gb
+5YWI77yeDQrjgJDmoKrlvI/kvJrnpL7jgq/jg6zjg4fjgqPjgrvjgr7jg7PnmbrooYzjga5VQ+OC
+q+ODvOODieOCkuOBiuaMgeOBoeOBruaWueOAkQ0K44CA44CA5p2x5Lqs44CA44CAMDMtNjg5My04
+MjAwDQrjgIDjgIDlpKfpmKrjgIDjgIAwNi03NzA5LTg1NTUNCuOAgOWWtualreaZgumWk+OAgDk6
+MDDvvZ4xNzowMOOAgDEvMeS8keOBvw0KDQrjgJDmoKrlvI/kvJrnpL7jgq/jg6zjg4fjgqPjgrvj
+gr7jg7PnmbrooYzku6XlpJbjga5VQ+OCq+ODvOODieOCkuOBiuaMgeOBoeOBruaWueOAkQ0K44CA
+44CA5p2x5Lqs44CA44CAMDMtNjg5My00MjcwDQrjgIDjgIDlpKfpmKrjgIDjgIAwNi03NzA5LTgy
+MjMNCuOAgOWWtualreaZgumWk+OAgDk6MDDvvZ4xNzowMOOAgDEvMeS8keOBvw0KDQrjg7vjg7vj
+g7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vj
+g7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vj
+g7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vj
+g7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7sNCuKAu+OBk+OB
+ruODoeODvOODq+OBr+OAjOOCouODg+ODiOODpuODvOODjeODg+ODiO+8geOAjeOBi+OCieiHquWL
+lemFjeS/oeOBl+OBpuOBiuOCiuOBvuOBmeOAgg0K4oC75pys44Oh44O844Or44Gr44GU6L+U5L+h
+44GE44Gf44Gg44GN44G+44GX44Gm44KC44CB44GU6LOq5ZWP44O744GU5L6d6aC844Gq44Gp44Gr
+DQrjgIDjgYrnrZTjgYjjgafjgY3jgb7jgZvjgpPjga7jgafjgIHjgYLjgonjgYvjgZjjgoHjgZTk
+uobmib/jgY/jgaDjgZXjgYTjgIINCuODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+OD
+u+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+OD
+u+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+OD
+u+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+OD
+u+ODu+ODu+ODu+ODu+ODu+ODuw0K44Ki44OD44OI44Om44O844ON44OD44OIDQoNCjIwMjIvMi81
+NDozMzoxMg0K
 
-Hm.. these look incorrect.
 
-tZQCL is Long Calibration Time
-
-tZQCS is Short Calibration Time
-
-tZQinit is Initialization Calibration Time
-
-No?
