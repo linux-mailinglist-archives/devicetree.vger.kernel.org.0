@@ -2,63 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B98CC4AA132
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 21:33:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C62A24AA29C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 22:51:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233726AbiBDUdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 15:33:14 -0500
-Received: from [106.75.181.135] ([106.75.181.135]:58468 "EHLO
-        mail.uccard.co.jp" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S238566AbiBDUdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 15:33:13 -0500
-Date:   Sat, 5 Feb 2022 04:33:00 +0800
-From:   =?utf-8?B?44Ki44OD44OI44Om44O844ON44OD44OI?= 
-        <atu@mail.uccard.co.jp>
-To:     <devicetree@vger.kernel.org>
-Subject: =?utf-8?B?44CQ44Om44O844K344O844Kr44O844OJ44CR44GU5pys5Lq65qeY56K66KqN5a6M5LqG44Gu44GU6YCj?=
-        =?utf-8?B?57Wh?=
-Message-ID: <20220205043313788086@mail.uccard.co.jp>
-X-mailer: Foxmail 6, 13, 102, 15 [en]
-Mime-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S243411AbiBDVvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 16:51:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44134 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244145AbiBDVvt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 16:51:49 -0500
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDE0C061714
+        for <devicetree@vger.kernel.org>; Fri,  4 Feb 2022 13:51:48 -0800 (PST)
+Received: by mail-ot1-x32d.google.com with SMTP id o9-20020a9d7189000000b0059ee49b4f0fso6103010otj.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 13:51:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=O2+sVRpdHPYQoxVHI59ztnDEc6w2w5/2mmrQawOpXNE=;
+        b=iqFWBf7gzQtaq+GgoHczFWRaBXshUkQK0uHiLVzfb6y9h0/ms/gkgl492dbJGkmDe7
+         Y1InhFuQIM/5aabeRUuiOW/G/WSU9B4p3afeyAkRIsM3HFFbeOrSWMV47jZpPv02lEbx
+         tIuFhWxLmuo3SKiz9zcZnlpp6xTo6GSGv1sn32JepTQU+zWeQFKN/AGuZwnBIPPtlNYr
+         29O9Mpo3VBNNtaenT+Ogb0M0PDi1m2y0cIqlYLXHupc5LYQm4aYhGc79vHRqtNDDqKdA
+         GQlPWbQ2BpFfjWxnbftDcvEevW5aUxdPtvJnlhXceO8VSeRQL7cPTrFZvUc8JQ2IRIOf
+         n+MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=O2+sVRpdHPYQoxVHI59ztnDEc6w2w5/2mmrQawOpXNE=;
+        b=6A1ucV5q9DkGGs/5GeurvwO3vX4Mh2F5oIhFz8B4VxrW0WDqa5pjGzwxPOai91fpob
+         zw3c6pl0PWxcGwT8r2lYs+vyVpIsyiO/rvR4RGAMYuGV8NHEggtYfPl4KK99GJdwfIA4
+         p91WPMU8jDxIMiwnc/qTevlcDoJw1N+359tWg6VvmXbYKF4RajJ0L2Q+4wqDW0aLhnsu
+         qTfKnrPh/FcWXd5Ai4k1gN7Wi9s3m7YdKNFKCn7WjK2LBbO9d0cyYs3pqyRKlqzDoUe5
+         MewNvNvwWxM6amy6eqM9ujBNOA2TC+jvYGkFGwluoDRL4uNVT8zlaBgbW9oW/bhapFD7
+         KFBA==
+X-Gm-Message-State: AOAM530xALc3DwD7xDilF513O2nVNvUo24mZ5Evg0Y4yFXdBmduPJCKT
+        DH8/8zhSkV7F2j/wT2pevOJEcfcalDOXKA==
+X-Google-Smtp-Source: ABdhPJwgDaID5lNoBN2g/qxi4lyV59pbUBQVCse82d4EAmJt7DbANA3S7fVKR6KuNzdyNBnklI8RrQ==
+X-Received: by 2002:a9d:104:: with SMTP id 4mr381180otu.191.1644011507408;
+        Fri, 04 Feb 2022 13:51:47 -0800 (PST)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id bj8sm1429873oib.20.2022.02.04.13.51.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Feb 2022 13:51:46 -0800 (PST)
+Date:   Fri, 4 Feb 2022 15:51:44 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     pmaliset@codeaurora.org, mka@chromium.org,
+        quic_rjendra@quicinc.com,
+        Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
+        kgodara@codeaurora.org, konrad.dybcio@somainline.org,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        sibis@codeaurora.org, swboyd@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 13/14] arm64: dts: qcom: sc7280: Add the CPU
+ compatible to the soc@0 node
+Message-ID: <Yf2f8Az5v1TtlAjd@builder.lan>
+References: <20220202212348.1391534-1-dianders@chromium.org>
+ <20220202132301.v3.13.I7924ce4592e3e75b2293804d8a3f8a4dae44646e@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220202132301.v3.13.I7924ce4592e3e75b2293804d8a3f8a4dae44646e@changeid>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+        DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-44GT44Gu44Gf44G044Gv44CBVUPjgqvjg7zjg4njgpLjgZTliKnnlKjjgYTjgZ/jgaDjgY3jgYLj
-gorjgYzjgajjgYbjgZTjgZbjgYTjgb7jgZnjgIINCg0K44GU5pys5Lq65qeY56K66KqN44Gu44Gf
-44KB44Gu6KqN6Ki844GM6KGM44KP44KM44G+44GX44Gf44Gu44Gn44CB44GK55+l44KJ44Gb44GE
-44Gf44GX44G+44GZ44CCDQoNCuacrOOCteODvOODk+OCueOBr+OAgeS4h+OBjOS4gOOAgeOBlOac
-rOS6uuanmOS7peWkluOBq+OCiOOCi+S4jeato+ODreOCsOOCpOODs8K35pON5L2c562J44GM44GC
-44Gj44Gf5aC05ZCI44Gr44CB44GK5a6i5qeY44GM6YCf44KE44GLDQrjgavnorroqo3jgafjgY3j
-govjgojjgYbjgIHov73liqDoqo3oqLzjga7pg73luqbjgIHjg6Hjg7zjg6vjgpLpgIHkv6HjgZnj
-govjgrXjg7zjg5PjgrnjgafjgZnjgIINCg0K44GK5b+D5b2T44KK44Gu44Gq44GE5aC05ZCI44KE
-5LiN5a+p44Gq54K5562J44GU44GW44GE44G+44GX44Gf44KJ44CB5b6h5pep44KB44Gr56K66KqN
-44GX44Gm44GP44Gg44GV44GE44CCDQrjgIrmnKzkurrnorroqo3jga7mlrnms5XjgIsNCg0K4pa8
-44Oe44Kk44Oa44O844K444KI44KK5pys5Lq656K66KqN44KS5a6f5pa944GZ44KLDQogaHR0cHM6
-Ly9hcGktc2Fpc29uY2FyZC1jby1qcC51Y2NhcmQyLnh5eg0KDQoNCg0K77yc44GK5ZWP5ZCI44Gb
-5YWI77yeDQrjgJDmoKrlvI/kvJrnpL7jgq/jg6zjg4fjgqPjgrvjgr7jg7PnmbrooYzjga5VQ+OC
-q+ODvOODieOCkuOBiuaMgeOBoeOBruaWueOAkQ0K44CA44CA5p2x5Lqs44CA44CAMDMtNjg5My04
-MjAwDQrjgIDjgIDlpKfpmKrjgIDjgIAwNi03NzA5LTg1NTUNCuOAgOWWtualreaZgumWk+OAgDk6
-MDDvvZ4xNzowMOOAgDEvMeS8keOBvw0KDQrjgJDmoKrlvI/kvJrnpL7jgq/jg6zjg4fjgqPjgrvj
-gr7jg7PnmbrooYzku6XlpJbjga5VQ+OCq+ODvOODieOCkuOBiuaMgeOBoeOBruaWueOAkQ0K44CA
-44CA5p2x5Lqs44CA44CAMDMtNjg5My00MjcwDQrjgIDjgIDlpKfpmKrjgIDjgIAwNi03NzA5LTgy
-MjMNCuOAgOWWtualreaZgumWk+OAgDk6MDDvvZ4xNzowMOOAgDEvMeS8keOBvw0KDQrjg7vjg7vj
-g7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vj
-g7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vj
-g7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vj
-g7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7vjg7sNCuKAu+OBk+OB
-ruODoeODvOODq+OBr+OAjOOCouODg+ODiOODpuODvOODjeODg+ODiO+8geOAjeOBi+OCieiHquWL
-lemFjeS/oeOBl+OBpuOBiuOCiuOBvuOBmeOAgg0K4oC75pys44Oh44O844Or44Gr44GU6L+U5L+h
-44GE44Gf44Gg44GN44G+44GX44Gm44KC44CB44GU6LOq5ZWP44O744GU5L6d6aC844Gq44Gp44Gr
-DQrjgIDjgYrnrZTjgYjjgafjgY3jgb7jgZvjgpPjga7jgafjgIHjgYLjgonjgYvjgZjjgoHjgZTk
-uobmib/jgY/jgaDjgZXjgYTjgIINCuODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+OD
-u+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+OD
-u+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+OD
-u+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+ODu+OD
-u+ODu+ODu+ODu+ODu+ODu+ODuw0K44Ki44OD44OI44Om44O844ON44OD44OIDQoNCjIwMjIvMi81
-NDozMzoxMg0K
+On Wed 02 Feb 15:23 CST 2022, Douglas Anderson wrote:
 
+> We'd like to start including the CPU name as the compatible under the
+> "soc" node so that we can get rid of it from the top-level compatible
+> string.
+> 
+> Suggested-by: Stephen Boyd <swboyd@chromium.org>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+> Probably needs a .yaml file somewhere?
+> 
+> Changes in v3:
+> - ("sc7280: Add the CPU compatible to the soc@0 node") new for v3.
+> 
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 618ae0407cd6..2bfc919d4018 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -573,7 +573,7 @@ soc: soc@0 {
+>  		#size-cells = <2>;
+>  		ranges = <0 0 0 0 0x10 0>;
+>  		dma-ranges = <0 0 0 0 0x10 0>;
+> -		compatible = "simple-bus";
+> +		compatible = "qcom,sc7280", "simple-bus";
 
+To me this implies that /soc represents the sc7280, but as noted earlier
+I don't think that's accurate. E.g. if this node represents the sc7280,
+why are the cpus described outside this node?
+
+Further more, if we look at the reg nodes on this bus it's clear that
+this is some mmio bus, which per the ranges has 36 bit address width.
+But not all buses in the sc7280 has 36 bit address width, so it's not
+inconceivable that one would actually have to split /soc into more than
+one entity with different dma-ranges. Perhaps not today, but I don't
+like the precedence it sets.
+
+Regards,
+Bjorn
+
+>  
+>  		gcc: clock-controller@100000 {
+>  			compatible = "qcom,gcc-sc7280";
+> -- 
+> 2.35.0.rc2.247.g8bbb082509-goog
+> 
