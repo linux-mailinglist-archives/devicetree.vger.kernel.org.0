@@ -2,83 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11C2D4A9C38
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 16:49:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97B924A9C41
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 16:52:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358735AbiBDPta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 10:49:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37260 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230391AbiBDPt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 10:49:27 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4895FC061714
-        for <devicetree@vger.kernel.org>; Fri,  4 Feb 2022 07:49:27 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1nG0pu-0003Cd-6d; Fri, 04 Feb 2022 16:49:22 +0100
-Message-ID: <6439e94e-ad3b-1e4d-e724-235121f40bc6@pengutronix.de>
-Date:   Fri, 4 Feb 2022 16:49:20 +0100
+        id S1359869AbiBDPwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 10:52:45 -0500
+Received: from smtp1.axis.com ([195.60.68.17]:59064 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1359859AbiBDPwo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Feb 2022 10:52:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1643989964;
+  x=1675525964;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=J7zmOHNIf3yGWYx96QvhBghS0wq+3yhqpRX+G3DifnQ=;
+  b=mdLqc8j3JyJNT8DAvtss5w1t37jacxS0voVnims9IxqxB94HljXyfhi8
+   k+uZy48M7rl9kNdkcLoT4lwczFFJYymoNxbLLgyeHzda3nnWOv3jmq/1/
+   66V1Mlvs3l/yhUbW5ncCzQjUlhY+74iP0PhWLGWr76uhalps12Ndp02sc
+   h08/lJUNanhw21kqeNWbODoIHudNCuLNdqUPsGn+QVDNE47lVuogu6fNR
+   inkdNxLE9TgwxTYDbj7+oGnfm7livuY+WIlxyFFkaUTkKm3j3AKwyehAA
+   8KBkzjm8CUmEunXOELnmsoXVx4sA9zHlcCPhlFKQmCBV4IEpXwRDgwxoV
+   w==;
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>
+CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>
+Subject: [PATCH 0/2] regulator: Add support for TPS6286x
+Date:   Fri, 4 Feb 2022 16:52:39 +0100
+Message-ID: <20220204155241.576342-1-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 10/16] ARM: dts: stm32: keep uart4 behavior on
- stm32mp157c-lxa-mc1
-Content-Language: en-US
-To:     Erwan Le Ray <erwan.leray@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marek Vasut <marex@denx.de>,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220203171114.10888-1-erwan.leray@foss.st.com>
- <20220203171114.10888-11-erwan.leray@foss.st.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20220203171114.10888-11-erwan.leray@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03.02.22 18:11, Erwan Le Ray wrote:
-> DMA configuration is added to uart nodes in stm32mp15x device tree.
-> Delete uart4 DMA property in stm32mp157c-lxa-mc1 board device tree to
-> keep console in irq mode, as DMA support for console has been removed
-> from the driver by commit e359b4411c28 ("serial: stm32: fix threaded
-> interrupt handling").
-> 
-> Signed-off-by: Erwan Le Ray <erwan.leray@foss.st.com>
+TI's TPS62864/TPS6286/TPS62868/TPS62869 are high-frequency synchronous
+step-down converters controlled via I2C.  There are differences in the
+electrical characteristics and packaging between the variants, but the
+register interfaces are identical.
 
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+This series adds basic support for these chips.
 
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> index 1e9bf7eea0f1..e8d2ec41d537 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> @@ -248,5 +248,7 @@
->  &uart4 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&uart4_pins_a>;
-> +	/delete-property/dmas;
-> +	/delete-property/dma-names;
->  	status = "okay";
->  };
+Vincent Whitchurch (2):
+  regulator: Add bindings for TPS62864x
+  regulator: Add support for TPS6286x
 
+ .../bindings/regulator/ti,tps62864.yaml       |  62 +++++++
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/tps6286x-regulator.c        | 159 ++++++++++++++++++
+ include/dt-bindings/regulator/ti,tps62864.h   |   9 +
+ 5 files changed, 240 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/ti,tps62864.yaml
+ create mode 100644 drivers/regulator/tps6286x-regulator.c
+ create mode 100644 include/dt-bindings/regulator/ti,tps62864.h
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.34.1
+
