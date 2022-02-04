@@ -2,135 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 840EB4A9B17
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 15:37:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46FA54A9B1E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 15:38:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359362AbiBDOhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 09:37:32 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:21960 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1359356AbiBDOha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 09:37:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1643985449;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=YjU7W9LODb2lvWvbKWQ9iW4O2+zTIEYm3yk17PblSiY=;
-        b=LMn6J936QHZ+vPjwXQNbXCeNYtsBPkfSo8K8Np7K32HuDOYP3lhhzTvanj6P9TfSEgdVmj
-        zQHx1siEcJCUbI3L42BWFcFhPqp9yeL95MR62x2FOd8dhvxkveB18vwxhkrtMec4vSfzZw
-        JYvZfu/Wvj3r9qtcMLOfzEpytJbu9EE=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-532-rqvCRqf9NbCUqphfqOK9WA-1; Fri, 04 Feb 2022 09:37:27 -0500
-X-MC-Unique: rqvCRqf9NbCUqphfqOK9WA-1
-Received: by mail-wr1-f69.google.com with SMTP id r2-20020adfa142000000b001e176ac1ec3so2111611wrr.3
-        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 06:37:27 -0800 (PST)
+        id S1359363AbiBDOih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 09:38:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49138 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234683AbiBDOih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 09:38:37 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0F73C061714
+        for <devicetree@vger.kernel.org>; Fri,  4 Feb 2022 06:38:36 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id a28so13006047lfl.7
+        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 06:38:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=8zmIWe+6ZwBu7ElBid2Px0vQ+Pa6/XPVpcBYjuu3N/Y=;
+        b=xEJAnONiEBCWTzLctXlczL2oH3jQiNS3rR/C6Rc9m6wOp/SfE2B3mCL4BOFn/bHPue
+         hAnmhq92b4rL9aI/ZPX6bg4okODwroyBRmHC1p5BhoVH+sLpl21j3IKkD4ioNB5D/Kqh
+         Z955KoEao68ecTtQ7Wv4ZDuatYnVij3yfE5+dv1TstDNHY3kV1Ynf9g2FuoArZdTFXqW
+         oBczg/+ZDyAEfip6y24rWkJ2IvKKJHCWhFRft8llJSyFWf4SnCdlb47a6gpAiJSERVKS
+         KBEJqS2UD+Ez/rh4MPyAJ8FeUp8Xyh+3IANXBNmbbTPRiu0Vz+xXbzSkbzU6RR/mupKj
+         Uadg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=YjU7W9LODb2lvWvbKWQ9iW4O2+zTIEYm3yk17PblSiY=;
-        b=SZq3tfL2iTeci/WX2hgqNNnHqHieJ/e/gcGwvTj7GzGrzCDm1cGaiBf/Gdq56Mk0Q7
-         jPRQKdluJ3EvyQhVRS4BLbv9uvNjddZUxA8P5uKp9YXnS+XiuT/NTHtBL0lwzlSvlTOl
-         3HZqf9ckMbW9rrS5sdBE/wSAaIHtpoD6qnUpdf9k9sluW7BzlW/EufJvYNS/LHkB09+R
-         5jwvKtVOieQbOmC3nvQ/3ypW8ce+daRbvsSdrCRKx84N6xteDsF37dKk/WRgVMUb/tqn
-         rravIsMYuAaATzMkj2Xero58pGhFiZbllxrTeuiXjs4wJc8FMxhejxw2YYpj96KT7VqI
-         uoFw==
-X-Gm-Message-State: AOAM5301g7ThClVdasXyCEsQASpveYBWu73GTIWgMs80XMHYBjWPuacs
-        xLuQqv97jqii/qcm6uKWUpV9LPO4h1UIIZQoEA6Ldk7Jg0gRxcajMBKsyJRIPo0WwbtQ0oYwWnc
-        RdKU50finq6aaeh4ZC321Qw==
-X-Received: by 2002:a05:600c:434c:: with SMTP id r12mr2489879wme.140.1643985446207;
-        Fri, 04 Feb 2022 06:37:26 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxkGFdJ6hDsKtVrBob4zscnjoipPqd5Nz/eKLnnFx09MVW96jWfTBPMl2XcPzkr/EqQQfzppA==
-X-Received: by 2002:a05:600c:434c:: with SMTP id r12mr2489866wme.140.1643985446002;
-        Fri, 04 Feb 2022 06:37:26 -0800 (PST)
-Received: from [192.168.1.102] ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id c8sm2004710wmq.34.2022.02.04.06.37.24
+        bh=8zmIWe+6ZwBu7ElBid2Px0vQ+Pa6/XPVpcBYjuu3N/Y=;
+        b=7+dIC38IvHZ/9dXwxG1mG1RZoJFmj/WgRq0+E+CTiMlvzo5COIdpWnRtu8DLQ2nLRW
+         lETKSZK64wsCjVkBxEqUfnEEs20vpnAKE9j9C35tLKV7UjJ4/+PD77eUm/cythBFk8Gg
+         2iGOfs3G/F2M7WG8CYehwtiiCeyzVr1zXfMBfA+ymjchPL3/iqId8L9LPVSJ4yDbySCR
+         Tbnlp8PbAyORAa67KdF/GM4xOCXQ/+psdghg9a8VEbOxFEPXLDL3CD95HAxUXi4jeUPX
+         Vqir+Q59bgWgKSt7tp12ahugds9Sis9PgopwEpyXoSIFXxDgT4wwRPdYOYwgTeHnc9tu
+         3nBA==
+X-Gm-Message-State: AOAM532yZegCbXfkfMhnigNrXfBPrryvpFfUwZ6havkGYImxDZ29XZRE
+        R7I2YvpOurZ5ljGMNEJqfkHazw==
+X-Google-Smtp-Source: ABdhPJxaOed+hkjLmis4Oxp5ciR43zWuYlWqvxBvSM148L1K53n1haqeyQTUxW2xT8nTeLwmAePC/Q==
+X-Received: by 2002:a05:6512:224f:: with SMTP id i15mr2506943lfu.446.1643985515153;
+        Fri, 04 Feb 2022 06:38:35 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id u4sm339972lfg.239.2022.02.04.06.38.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Feb 2022 06:37:25 -0800 (PST)
-Message-ID: <f81d3d89-c892-9397-71d0-3d0ab99dd479@redhat.com>
-Date:   Fri, 4 Feb 2022 15:37:24 +0100
+        Fri, 04 Feb 2022 06:38:34 -0800 (PST)
+Message-ID: <527f0365-1544-ad73-cf49-b839ae629340@linaro.org>
+Date:   Fri, 4 Feb 2022 17:38:33 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED
- displays
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>
-References: <20220204134347.1187749-1-javierm@redhat.com>
- <CAMuHMdWoBc8amsg009oQGqUST8bN=8WqPM96SkUzcv=P1uRbfA@mail.gmail.com>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <CAMuHMdWoBc8amsg009oQGqUST8bN=8WqPM96SkUzcv=P1uRbfA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v5 4/5] PCI: qcom: Add interconnect support to 2.7.0/1.9.0
+ ops
+Content-Language: en-GB
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Wilczy??ski <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
+ <20211218141024.500952-5-dmitry.baryshkov@linaro.org>
+ <Yfv7gh8YycxH2Wtm@ripper>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <Yfv7gh8YycxH2Wtm@ripper>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Geert,
+On 03/02/2022 18:57, Bjorn Andersson wrote:
+> On Sat 18 Dec 06:10 PST 2021, Dmitry Baryshkov wrote:
+> 
+>> Add optional interconnect support for the 2.7.0/1.9.0 hosts. Set the
+>> bandwidth according to the values from the downstream driver.
+>>
+> 
+> What memory transactions will travel this path? I would expect there to
+> be two different paths involved, given the rather low bw numbers I
+> presume this is the config path?
 
-On 2/4/22 15:31, Geert Uytterhoeven wrote:
-> Hi Javier,
-> 
-> On Fri, Feb 4, 2022 at 2:43 PM Javier Martinez Canillas
-> <javierm@redhat.com> wrote:
->> This patch series adds a DRM driver for the Solomon OLED SSD1305, SSD1306,
->> SSD1307 and SSD1309 displays. It is a port of the ssd1307fb fbdev driver.
-> 
-> [...]
-> 
->> This is a v2 that addresses all the issues pointed in v1, thanks a lot
->> to everyone that gave me feedback and reviews. I tried to not miss any
->> comment, but there were a lot so forgive me if something is not there.
-> 
-> Thanks for the update!
->
+I think so. Downstream votes on this path for most of the known SoCs. 
+Two spotted omissions are ipq8074 and qcs404.
 
-You are welcome!
- 
->> Changes in v2:
 > 
-> [...]
+> Is there no vote for the data path?
+
+CNSS devices can vote additionally on the MASTER_PCI to memory paths:
+For sm845 (45 = MASTER_PCIE):
+                 qcom,msm-bus,vectors-KBps =
+                         <45 512 0 0>,
+                         <45 512 600000 800000>; /* ~4.6Gbps (MCS12) */
+
+On sm8150/sm8250 qca bindings do not contain a vote, but wil6210 does 
+(100 = MASTER_PCIE_1):
+                 qcom,msm-bus,vectors-KBps =
+                         <100 512 0 0>,
+                         <100 512 600000 800000>; /* ~4.6Gbps (MCS12) */
+
+For sm8450 there are two paths used by cnss:
+		<&pcie_noc MASTER_PCIE_0 &pcie_noc SLAVE_ANOC_PCIE_GEM_NOC>,
+		<&gem_noc MASTER_ANOC_PCIE_GEM_NOC &mc_virt SLAVE_EBI1>;
+
+with multiple entries per each path.
+
+So, I'm not sure about these values.
+
 > 
-> Note that the individual patches say "(no changes since v1)"?
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   drivers/pci/controller/dwc/pcie-qcom.c | 11 +++++++++++
+>>   1 file changed, 11 insertions(+)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>> index d8d400423a0a..55ac3caa6d7d 100644
+>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>> @@ -12,6 +12,7 @@
+>>   #include <linux/crc8.h>
+>>   #include <linux/delay.h>
+>>   #include <linux/gpio/consumer.h>
+>> +#include <linux/interconnect.h>
+>>   #include <linux/interrupt.h>
+>>   #include <linux/io.h>
+>>   #include <linux/iopoll.h>
+>> @@ -167,6 +168,7 @@ struct qcom_pcie_resources_2_7_0 {
+>>   	struct clk *pipe_clk_src;
+>>   	struct clk *phy_pipe_clk;
+>>   	struct clk *ref_clk_src;
+>> +	struct icc_path *path;
+>>   };
+>>   
+>>   union qcom_pcie_resources {
+>> @@ -1121,6 +1123,10 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+>>   	if (IS_ERR(res->pci_reset))
+>>   		return PTR_ERR(res->pci_reset);
+>>   
+>> +	res->path = devm_of_icc_get(dev, "pci");
 > 
+> The paths are typically identified using a string of the form
+> <source>-<destination>.
+> 
+> 
+> I don't see the related update to the DT binding for the introduction of
+> the interconnect.
+> 
+> Regards,
+> Bjorn
+> 
+>> +	if (IS_ERR(res->path))
+>> +		return PTR_ERR(res->path);
+>> +
+>>   	res->supplies[0].supply = "vdda";
+>>   	res->supplies[1].supply = "vddpe-3v3";
+>>   	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(res->supplies),
+>> @@ -1183,6 +1189,9 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
+>>   	if (pcie->cfg->pipe_clk_need_muxing)
+>>   		clk_set_parent(res->pipe_clk_src, res->phy_pipe_clk);
+>>   
+>> +	if (res->path)
+>> +		icc_set_bw(res->path, 500, 800);
+>> +
+>>   	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
+>>   	if (ret < 0)
+>>   		goto err_disable_regulators;
+>> @@ -1241,6 +1250,8 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
+>>   	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+>>   
+>>   	clk_bulk_disable_unprepare(res->num_clks, res->clks);
+>> +	if (res->path)
+>> +		icc_set_bw(res->path, 0, 0);
+>>   
+>>   	/* Set TCXO as clock source for pcie_pipe_clk_src */
+>>   	if (pcie->cfg->pipe_clk_need_muxing)
+>> -- 
+>> 2.34.1
+>>
 
-That's due patman (the tool I use to post patches) not being that smart.
 
-I only added the v2 changelog in the cover letter and not the individual
-patches to avoid adding noise, since there are a lot of changes since v1.
-
-But patman then thought that means individual patches had no changes...
-
-Best regards,
 -- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
-
+With best wishes
+Dmitry
