@@ -2,119 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BD844A9F8E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 19:59:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 188564A9FAC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 20:03:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiBDS67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 13:58:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52622 "EHLO
+        id S230233AbiBDTD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 14:03:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbiBDS40 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 13:56:26 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82DFBC06173D
-        for <devicetree@vger.kernel.org>; Fri,  4 Feb 2022 10:56:23 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id t9so3711486plg.13
-        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 10:56:23 -0800 (PST)
+        with ESMTP id S232573AbiBDTBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 14:01:51 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4013C061401
+        for <devicetree@vger.kernel.org>; Fri,  4 Feb 2022 11:01:51 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id u13so9595029oie.5
+        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 11:01:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Jg17IORQiX50k9hzchIY/5BxWqpFAaTYJl32S7Q4Sbg=;
-        b=uPCBA5viYD0QY7M/Rk2spN+UqATL+2sZOvKQcSrR4zPjEW8JpEMsNra2IDMdJN9IFZ
-         BYaxujrLvUFl/sMTSX2rkGMLjT0+NSDY734GgVVQ4Dsg43Nj2oFOjdRafThSkGAgFH5l
-         mpNkDd2Qa/R25MLGEYLjum9O3COWIlqByeP0h4mvo66JhYflXvWEKPZTxfXDEiCk6KUs
-         9DeKMHJf9vbBqzFVxLRVLBrhtBN3QkkZuEGOzyBDmJDtXWT+0xGI9XxlrhvI1K9dtGfd
-         VU0yIxCI82FBO6Abcczrit4gG0k1Wvvu8R2S5E6dddfzHuv+eaMnjGDAfSxDh1eDN8GN
-         468A==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=STmuphEeKV4glW0tR02UwdQ/ruA9FWAezAaaGoRUMrY=;
+        b=M3Sxo5KlnwDXBniwpLFcbK0MSCv2KOPSv/wJ6QtvfGAPQgP+v8MXw2akdkS44GgJ6r
+         yugppdVfaVGEeF7O7JN/purjrWmxbRp4nYVSKDI99Bj5OVOkdXQuBmGEza5Obz4MHXjr
+         LlMfBQlDHegS7R8groObqIg2uy1AsBHTDEUNbOTL9Uxc2/Nrvd2M6CONfuwAL2/W0L77
+         D3h71SSbA+UwnB0KvK+XkhV7bSLgzeQt+ovu006SPyttpQI2jX7P8WISOiMz/vbB8V3V
+         HpiuEcGiYOqz0F7e9XwJiISc/ro5/nGfvo70PhlhlexPIwIFBVSkFoPGk4wJIt9LiRmI
+         KvZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=Jg17IORQiX50k9hzchIY/5BxWqpFAaTYJl32S7Q4Sbg=;
-        b=tjDA65N4cfPCrj0YQ+neWimeSZ1MTnSHjqpibbz/B9B4LVIbD/hPonHw/vrHczIgHA
-         WUkZ5In2ndd1BwQ75PbTD3t37Zi18VTAkIDhvoLIIN3zYiFmrJeeIjwnmG1ojrqyFIr7
-         d6ABvH476eb6phqcYqCUbRBqGFZ5QX7aY5CrqADAECimeM6s87j0mzmYRJBVbnvq+KT2
-         lvVwuL+xwRuWtpn4R4TotlWb6rAuGx2qm197qu4PfIHBCmMjGjn8SwwjoLGUirzJbG+f
-         Ayr2FTyM64+LmntykWfaSe0ficEdhzBo85a9yDJreGNQKwVL+NXBZXMevO055AXhMQrK
-         /kyw==
-X-Gm-Message-State: AOAM530oQrt9SUK0y8OrjXm8aYkYeqsXmIS4gItjFfZRl7Bo9kiM6VUY
-        rfmN3T3NfPEU38VsvpupGWg/aw==
-X-Google-Smtp-Source: ABdhPJzT7RTMUBVz+1BYpBITNrUEw6VSIBcSnFJFo16PdfPLdPCpcPdkajv5i36AHs82/DM/7IfWOg==
-X-Received: by 2002:a17:90a:d144:: with SMTP id t4mr4663574pjw.18.1644000982761;
-        Fri, 04 Feb 2022 10:56:22 -0800 (PST)
-Received: from localhost ([12.3.194.138])
-        by smtp.gmail.com with ESMTPSA id h3sm3069688pfo.66.2022.02.04.10.56.21
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=STmuphEeKV4glW0tR02UwdQ/ruA9FWAezAaaGoRUMrY=;
+        b=4RILgUOE/lL+Zzv5mVy/V2bYLIUoAdueSsphR+Arl0K2UClhPwPPidkDN1FMbN+nyw
+         6KwNYxwzHoVL2y8mJaR1nLnIVCnwGdKgqCvEvhUu16WBI0WvyhcXcH3uQtVEbDOAbBwe
+         gwq8trCVPisZIzLBZ/+/0VfsL11urQoPa01jCWXcoyja41MLXAGz72F7cEg/HtysoI4t
+         UoIufu7HLgswt7kNEfeehPM6NR3f/PIeHcgFt41qMOfbOfLMcX0DH8EC/coMdZMdyNpU
+         NnlQ+WG8f+58gaZ3rV3VghN828zGtdy4Gardew/uAsH+au6X8vt0O7FwWqbZxE4A1Ytc
+         O9og==
+X-Gm-Message-State: AOAM532Ef2B4Co561+wODqfF1St5/Ai2j1VyyQkutCtLOorqj+cvXGAI
+        YBBjbLR/9WqZjm9W0xefJClPyg==
+X-Google-Smtp-Source: ABdhPJyahrucDHaS5EfWeDgdeVUUwg2cLUTwdBVarxOCy1XhXsmrz83trRzACc/B3MLTs8XrXKO0Rg==
+X-Received: by 2002:a05:6808:1792:: with SMTP id bg18mr2083854oib.90.1644001310180;
+        Fri, 04 Feb 2022 11:01:50 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id n12sm1055597oop.5.2022.02.04.11.01.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Feb 2022 10:56:21 -0800 (PST)
-Date:   Fri, 04 Feb 2022 10:56:21 -0800 (PST)
-X-Google-Original-Date: Fri, 04 Feb 2022 10:46:13 PST (-0800)
-Subject:     Re: [PATCH 0/4] Refactor the PRCI driver to reduce the complexity
-In-Reply-To: <cover.1642582832.git.zong.li@sifive.com>
-CC:     mturquette@baylibre.com, sboyd@kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>, lee.jones@linaro.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, zong.li@sifive.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     zong.li@sifive.com
-Message-ID: <mhng-ffd770d4-8f8a-417a-a589-f14d09f55282@palmer-ri-x1c9>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Fri, 04 Feb 2022 11:01:49 -0800 (PST)
+Date:   Fri, 4 Feb 2022 11:02:04 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linus.walleij@linaro.org, Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/9] dt-bindings: i2c: qcom-cci: add description of a
+ vbus-supply property
+Message-ID: <Yf14LADJ26G9ByZu@ripper>
+References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
+ <20220203164629.1711958-3-vladimir.zapolskiy@linaro.org>
+ <Yf1q+wlXo2LAeZX+@ripper>
+ <Yf1zhojUSxlMNZgV@sirena.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yf1zhojUSxlMNZgV@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 19 Jan 2022 01:28:37 PST (-0800), zong.li@sifive.com wrote:
-> This patch set tries to improve the PRCI driver to reduce the
-> complexity, we remove the SoCs C files by putting putting all stuff in
-> each SoCs header file, and include these SoCs-specific header files in
-> core of PRCI. It can also avoid the W=1 kernel build warnings about
-> variable defined but not used [-Wunused-const-variable=], like 'commit
-> 487dc7bb6a0c ("clk: sifive:fu540-prci: Declare static const variable
-> 'prci_clk_fu540' where it's used")' does.
->
-> This patch set also contains the dt-bindings and dts change, because
-> we change the macro name for fu540 and fu740 by adding the prefix
-> respectively.
->
-> Thanks all for your review and suggestions.
->
-> Zong Li (4):
->   dt-bindings: change the macro name of prci in header files and example
->   riscv: dts: Change the macro name of prci in each device node
->   clk: sifive: Add SoCs prefix in each SoCs-dependent data
+On Fri 04 Feb 10:42 PST 2022, Mark Brown wrote:
 
-IIUC these there aren't bisectable: the bindings change will break 
-builds of the DTs and drivers.  I'm not sure what's generally the way to 
-go with these, but I always try to avoid broken builds in the middle of 
-patch sets.
+> On Fri, Feb 04, 2022 at 10:05:47AM -0800, Bjorn Andersson wrote:
+> > On Thu 03 Feb 08:46 PST 2022, Vladimir Zapolskiy wrote:
+> 
+> > > +- vbus-supply:
+> 
+> > I don't think "vbus" is an appropriate name for his. Perhaps "vddio" or
+> > something like that would be better.
+> 
+> > But there's a bigger question here, this is not a supply for the
+> > i2c master, it's simply a supply for pulling up the bus. So it's not
+> > entirely correct to specify it as a supply for the CCI node (which is
+> > also the reason why the name isn't obvious).
+> 
+> Does the device (controller?) not have a supply that the I2C bus is
+> referenced to?  If so that supply should be named.
+> 
 
-Aside from that this generally looks good to me, but the DT and clock 
-folks are probably a better bet for a proper review here.  Happy to take 
-this through the RISC-V tree, but IMO it's a better candidate for the 
-clock tree so
+No, for some reason the regulator in question is not connected to either
+the master or the client devices, it's only used for pull up of a few
+of the i2c busses.
 
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com> # aside from breaking bisect
+> > Typically we don't don't mention the bus-supply because it happens to be
+> > pulled up either by io-supply for the block, or by some always-on
+> > regulator in the system.
+> 
+> If the bus is being pulled up to some supply other than the supply that
+> the bus is referenced to that doesn't sound like the greatest electrical
+> engineering ever...  without any context it's hard to comment about this
+> particular system.
 
-Thanks!
+That's what the schematics says...
 
->   clk: sifive: Move all stuff into SoCs header files from C files
->
->  .../devicetree/bindings/gpio/sifive,gpio.yaml |   2 +-
->  .../bindings/pci/sifive,fu740-pcie.yaml       |   2 +-
->  .../bindings/serial/sifive-serial.yaml        |   2 +-
->  arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  22 +--
->  arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  26 ++--
->  drivers/clk/sifive/Makefile                   |   2 +-
->  drivers/clk/sifive/fu540-prci.c               |  89 ------------
->  drivers/clk/sifive/fu540-prci.h               |  91 +++++++++++-
->  drivers/clk/sifive/fu740-prci.c               | 134 ------------------
->  drivers/clk/sifive/fu740-prci.h               | 130 ++++++++++++++++-
->  drivers/clk/sifive/sifive-prci.c              |   5 -
->  include/dt-bindings/clock/sifive-fu540-prci.h |   8 +-
->  include/dt-bindings/clock/sifive-fu740-prci.h |  18 +--
->  13 files changed, 254 insertions(+), 277 deletions(-)
->  delete mode 100644 drivers/clk/sifive/fu540-prci.c
->  delete mode 100644 drivers/clk/sifive/fu740-prci.c
+Regards,
+Bjorn
