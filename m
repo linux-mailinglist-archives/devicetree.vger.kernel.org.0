@@ -2,153 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1730E4AA36D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 23:46:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D5B74AA37C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 23:47:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238007AbiBDWqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 17:46:47 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:34653 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234792AbiBDWqq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 17:46:46 -0500
-Received: by mail-oi1-f181.google.com with SMTP id i5so10272044oih.1;
-        Fri, 04 Feb 2022 14:46:46 -0800 (PST)
+        id S1353060AbiBDWrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 17:47:23 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:39593 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1352937AbiBDWrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 17:47:23 -0500
+Received: by mail-oi1-f179.google.com with SMTP id s24so2563048oic.6;
+        Fri, 04 Feb 2022 14:47:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=L8b72xGfF9umAJJg7tsHu1AkAehHlvUS7fj1GSuG6R0=;
-        b=SsmQdf125ZC7D7bi5po4392pweglzD3wfDKfWzcCv2vI8/ax1/BW8zQDr5ebUnErBi
-         PBq1O/oaFCoskp6eAMSCc4Q9NgVicvHEEer2IjK6eL0L+cEbdCe3bT6mQ9vD7a2LfT5A
-         4XP0IIitkTeslRv+CyGUf4v4nTYSgv7X9NChbVTUyLsQNiPDRKDZ3wWjpFteRUObC0Dz
-         kFk1VGIbyMXQvfP1i1sXiaRFq5YAfTu9VzzvBjZoRQt58WvXkczNVM3eo3F5FrS32SkB
-         3JPtts0YMY+mUcgyA5oXCmO+vXa2aTwCv4sTmbNmRACHcFirfNdmupB7mfoUO2Hk3TOR
-         372A==
-X-Gm-Message-State: AOAM532ucfgIb+p7QszOXiJB9HT6UBEfMzruTiccOXfq5KbaHWuND8sV
-        QcPAG51saYiR3z6dDCCNscU6p5sbyQ==
-X-Google-Smtp-Source: ABdhPJwxV7g+49b86KSwvPAvbdlz385/Vu9mnW4I2sV9P9k4qH3MueJC6HWx5Bhq3KvuLey/MH/2Zw==
-X-Received: by 2002:a05:6808:1981:: with SMTP id bj1mr2364232oib.213.1644014806196;
-        Fri, 04 Feb 2022 14:46:46 -0800 (PST)
+        bh=HZfguTfgWCuKRWP+WHKK6V4whe3Vz4TRGXSVnClY05U=;
+        b=JrEX20OQFjFtuJ/01FxyII9O9Q1QDFb9M6zH/ztR592TrCWYbOsFMybWiMgdhHvHP/
+         CXETQADg18wYwnGtvI8P3t69+sxuJN9tzX4RdXQlnQJpCeKRKAZVgUlI36qSenrKx/LM
+         sBRmuj8unvXvAb+ICuvpKrIcJvzO/tT9kY39KjPMbGBnj/HexAlUNOjJeOhfrVfk49tD
+         WnoOOsLJuqmQnKI5ETJ1/O0ivUhk5wbSjsIpmeur0K5VGDh4eQs5ZaOoiY01i1ZUHIGw
+         yhcQvvrEzQyXuHrgxTXciPw8wAsoC6GPMXYvNH8Ehwwd0WDPW/jJD5Fho+Cfv4IGPKZA
+         vc3Q==
+X-Gm-Message-State: AOAM532kDUBD9HkcKT0nOtzS2y0H6MI6hWmGwqZ0urI31rF6YTul0nSG
+        DvY0J+aBaoXVCf3X9PaqZHTtmghC/A==
+X-Google-Smtp-Source: ABdhPJym47lqoiLpf4qFOuNW6OqTZBhPrY56JuMU7Dk3JPNFbrMFmZFNzpuXSV35NKFr9BGpwx6riA==
+X-Received: by 2002:a05:6808:a96:: with SMTP id q22mr602980oij.276.1644014842789;
+        Fri, 04 Feb 2022 14:47:22 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m7sm1268743ots.32.2022.02.04.14.46.44
+        by smtp.gmail.com with ESMTPSA id a42sm1035808oap.6.2022.02.04.14.47.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Feb 2022 14:46:45 -0800 (PST)
-Received: (nullmailer pid 3324348 invoked by uid 1000);
-        Fri, 04 Feb 2022 22:46:43 -0000
-Date:   Fri, 4 Feb 2022 16:46:43 -0600
+        Fri, 04 Feb 2022 14:47:22 -0800 (PST)
+Received: (nullmailer pid 3325251 invoked by uid 1000);
+        Fri, 04 Feb 2022 22:47:21 -0000
+Date:   Fri, 4 Feb 2022 16:47:21 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     conor.dooley@microchip.com
-Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, jassisinghbrar@gmail.com,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        lee.jones@linaro.org, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, geert@linux-m68k.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-riscv@lists.infradead.org, krzysztof.kozlowski@canonical.com,
-        bin.meng@windriver.com, heiko@sntech.de, lewis.hanly@microchip.com,
-        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
-        atishp@rivosinc.com
-Subject: Re: [PATCH v5 04/12] dt-bindings: rtc: add bindings for microchip
- mpfs rtc
-Message-ID: <Yf2s0w4Yi6rcxukj@robh.at.kernel.org>
-References: <20220131114726.973690-1-conor.dooley@microchip.com>
- <20220131114726.973690-5-conor.dooley@microchip.com>
+To:     michael.srba@seznam.cz
+Cc:     Michael Srba <Michael.Srba@seznam.cz>,
+        linux-arm-msm@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Saravana Kannan <saravanak@google.com>,
+        linux-clk@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: [PATCH v5 1/5] dt-bindings: clock: gcc-msm8998: Add definitions
+ of SSC-related clocks
+Message-ID: <Yf2s+RlIHZOnoyv8@robh.at.kernel.org>
+References: <20220202113722.7550-1-michael.srba@seznam.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220131114726.973690-5-conor.dooley@microchip.com>
+In-Reply-To: <20220202113722.7550-1-michael.srba@seznam.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 31, 2022 at 11:47:19AM +0000, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Wed, 02 Feb 2022 12:37:18 +0100, michael.srba@seznam.cz wrote:
+> From: Michael Srba <Michael.Srba@seznam.cz>
 > 
-> Add device tree bindings for the real time clock on
-> the Microchip PolarFire SoC.
+> This patch adds definitions of four clocks which need to be manipulated
+> in order to initialize the AHB bus which exposes the SCC block in the
+> global address space.
 > 
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
 > ---
->  .../bindings/rtc/microchip,mfps-rtc.yaml      | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+>  CHANGES:
+>  - v2: none
+>  - v3: none
+>  - v4: none
+>  - v5: none
+> ---
+>  include/dt-bindings/clock/qcom,gcc-msm8998.h | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
-> new file mode 100644
-> index 000000000000..f35cca4e8656
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/microchip,mfps-rtc.yaml#
-> +
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip PolarFire Soc (MPFS) RTC Device Tree Bindings
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +
-> +maintainers:
-> +  - Daire McNamara <daire.mcnamara@microchip.com>
-> +  - Lewis Hanly <lewis.hanly@microchip.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,mpfs-rtc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: |
-> +      The RTC on the PolarFire SoC has a pair of interrupts. The first is the
-> +      RTC_WAKEUP interrupt. The second, RTC_MATCH, is asserted when the
-> +      content of the Alarm register is equal to that of the RTC's count.
-> +    maxItems: 2
 
-Rework something like this:
-
-items:
-  - description: RTC_WAKEUP interrupt
-  - description: RTC_MATCH, is asserted when the content of the Alarm 
-      register is equal to that of the RTC's count.
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: rtc
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/microchip,mpfs-clock.h>
-> +    rtc@20124000 {
-> +        compatible = "microchip,mpfs-rtc";
-> +        reg = <0x20124000 0x1000>;
-> +        clocks = <&clkcfg CLK_RTC>;
-> +        clock-names = "rtc";
-> +        interrupts = <80>, <81>;
-> +    };
-> +...
-> -- 
-> 2.35.0
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
