@@ -2,40 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 000B24A9239
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 03:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A59634A925A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 03:41:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356589AbiBDCKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 21:10:40 -0500
-Received: from lgeamrelo12.lge.com ([156.147.23.52]:54365 "EHLO
-        lgeamrelo11.lge.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1353649AbiBDCKj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 21:10:39 -0500
-Received: from unknown (HELO lgeamrelo02.lge.com) (156.147.1.126)
-        by 156.147.23.52 with ESMTP; 4 Feb 2022 11:10:37 +0900
-X-Original-SENDERIP: 156.147.1.126
-X-Original-MAILFROM: chanho.min@lge.com
-Received: from unknown (HELO localhost.localdomain) (10.178.31.96)
-        by 156.147.1.126 with ESMTP; 4 Feb 2022 11:10:37 +0900
-X-Original-SENDERIP: 10.178.31.96
-X-Original-MAILFROM: chanho.min@lge.com
-From:   Chanho Min <chanho.min@lge.com>
-To:     krzysztof.kozlowski@canonical.com
-Cc:     chanho.min@lge.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, gunho.lee@lge.com
-Subject: Re: [PATCH 2/2] arm64: dts: lg: align pl330 node name with dtschema
-Date:   Fri,  4 Feb 2022 11:10:37 +0900
-Message-Id: <20220204021037.44331-1-chanho.min@lge.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220129175514.298942-2-krzysztof.kozlowski@canonical.com>
-References: <20220129175514.298942-2-krzysztof.kozlowski@canonical.com>
+        id S1356638AbiBDClQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 21:41:16 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:38780 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232591AbiBDClQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 21:41:16 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3E7E75D;
+        Fri,  4 Feb 2022 03:41:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1643942474;
+        bh=gm3VPwGfySIA6bfsEf09CQTmh9DJS/6sCCO2gi3LOn8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fHrfglMtr+G1bJARrqbamxuh5V51PhfZpPvZ2vCCNm3sDBcb6AMadKMk+KprPak/M
+         PxjM4rA2qTXzmFoFBnmno4+9IUmCCCBAWK/2/7bhQW7biarT+HKzJ1D7afywYjbrSI
+         D4J36asHABdqSRI7cvz2zTsC8AFb82+ky3SA+624=
+Date:   Fri, 4 Feb 2022 04:40:50 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+Cc:     dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
+        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
+        tomi.valkeinen@ideasonboard.com, nsaenz@kernel.org,
+        bcm-kernel-feedback-list@broadcom.com
+Subject: Re: [RFC PATCH v4 04/12] media: MAINTAINERS: add bcm2835 unicam
+ driver
+Message-ID: <YfySMufB8GE/ztFB@pendragon.ideasonboard.com>
+References: <20220203175009.558868-1-jeanmichel.hautbois@ideasonboard.com>
+ <20220203175009.558868-5-jeanmichel.hautbois@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220203175009.558868-5-jeanmichel.hautbois@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Fixes dtbs_check warnings like:
+Hi Jean-Michel,
 
->  dma@c1128000: $nodename:0: 'dma@c1128000' does not match '^dma-controller(@.*)?$'
+Thank you for the patch.
 
-Acked-by: Chanho Min <chanho.min@lge.com>
+On Thu, Feb 03, 2022 at 06:50:01PM +0100, Jean-Michel Hautbois wrote:
+> Add the BCM2835 Camera driver named Unicam in the list.
+> 
+> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> ---
+>  MAINTAINERS | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1868a6002df8..740cf86c56dc 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3670,6 +3670,13 @@ N:	bcm113*
+>  N:	bcm216*
+>  N:	kona
+>  
+> +BROADCOM BCM2835 CAMERA DRIVER
+> +M:	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> +F:	arch/arm/boot/dts/bcm283x*
+
+Add the driver here, and move this patch later in the series after
+adding all the files listed above. With this fixed,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +
+>  BROADCOM BCM47XX MIPS ARCHITECTURE
+>  M:	Hauke Mehrtens <hauke@hauke-m.de>
+>  M:	Rafał Miłecki <zajec5@gmail.com>
+
+-- 
+Regards,
+
+Laurent Pinchart
