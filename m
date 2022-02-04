@@ -2,160 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 732DA4A99E2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 14:25:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B71BF4A99FD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 14:33:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358772AbiBDNZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 08:25:36 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:40146 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S235551AbiBDNZa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 08:25:30 -0500
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2148QohX011944;
-        Fri, 4 Feb 2022 14:23:04 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=897N+JwPn9HsR13TZ+mpUH1Tpgf2LXHOh1v74lWbI7w=;
- b=rMWmSOZjQUwurdCMNkuWKpT9S3b+GmYyH+Tcs0lvO7Jgg+w8iTiuO25GnbHBuofyqj5z
- iS25mFWBXml+bJa4CntOfU7MnS+bWdP05bEGTjJGbbKftmFT6gAQiXavfW6TVpgLZ7TB
- /EmywQkiHZeU13/xbsTUYO/7Ut9Wq8UmREeZUhWpUjuN/nMq4F2CcoL3tZQI0PxxxZfJ
- jRvqwSLNkIZUK+kXdv/Kjj4TlQ0ViEH6AZh2Wu5LFl7T7YlF52O2WkTT3K1FLiU2B9so
- GvV/Lfy3PPxxsMKoxi6hceKRJuEYjwvnVEZCKbZcvoTgT2hx3WRxIe7xEoQazwqzLbEQ gg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e0ejje7de-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 04 Feb 2022 14:23:04 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D3BAA10002A;
-        Fri,  4 Feb 2022 14:23:02 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C47AE21FE8A;
-        Fri,  4 Feb 2022 14:23:02 +0100 (CET)
-Received: from [10.48.0.252] (10.75.127.47) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Fri, 4 Feb
- 2022 14:23:02 +0100
-Message-ID: <f5aec360-c33c-0145-6596-541003e305b2@foss.st.com>
-Date:   Fri, 4 Feb 2022 14:22:56 +0100
+        id S1358843AbiBDNdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 08:33:38 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:42488 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1356417AbiBDNdh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 4 Feb 2022 08:33:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=4Ca9I/sAMzQIMCAYXBkIkytKRwdb7KuHMc9w1XGE+7A=; b=0N30fHOeJKKiEmBzHSSAjOwTCo
+        NpvFMTne+ReR7L/rMoQIq2d5/1hRKjsDPqIORGjajQW+UTS2E2q3Z/w61nDp6gVZ6OVzpiYsw2EyW
+        pLoL11FZdneTXfJN6pJjgvs7Ay984ejA0+yx0g4+Hjhydr9jhY9l2gbt/i994/BsW7lk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nFyhL-004Gxv-Fm; Fri, 04 Feb 2022 14:32:23 +0100
+Date:   Fri, 4 Feb 2022 14:32:23 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     nick.hawkins@hpe.com, verdun@hpe.com,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Corey Minyard <minyard@acm.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Hao Fang <fanghao11@huawei.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Wang Kefeng <wangkefeng.wang@huawei.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] HPE BMC GXP SUPPORT
+Message-ID: <Yf0q5/Jus+mz0B2E@lunn.ch>
+References: <nick.hawkins@hpe.com>
+ <20220202165315.18282-1-nick.hawkins@hpe.com>
+ <Yf0Wm1kOV1Pss9HJ@shell.armlinux.org.uk>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 00/16] STM32 configure UART nodes for DMA
-Content-Language: en-US
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Erwan Le Ray <erwan.leray@foss.st.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marek Vasut <marex@denx.de>,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20220203171114.10888-1-erwan.leray@foss.st.com>
- <cc7633c5-de5f-0abf-4ac8-64a74633dfcc@pengutronix.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <cc7633c5-de5f-0abf-4ac8-64a74633dfcc@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-04_05,2022-02-03_01,2021-12-02_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yf0Wm1kOV1Pss9HJ@shell.armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ahmad
+> > +#include <linux/init.h>
+> > +#include <asm/mach/arch.h>
+> > +#include <asm/mach/map.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_platform.h>
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/clocksource.h>
+> 
+> It's normal to list all linux/ includes before asm/ includes. Please
+> rearrange.
 
-On 2/3/22 18:25, Ahmad Fatoum wrote:
-> Hello Erwan,
-> 
-> On 03.02.22 18:10, Erwan Le Ray wrote:
->> Add DMA configuration to UART nodes in stm32mp15x (SOC level) and
->> remove it at board level to keep current PIO behavior when needed.
->> For stm32-ed1 and stm32-dkx boards, UART4 (console) and UART7
->> (no HW flow control pin available) are kept in PIO mode, while USART3
->> is now configured in DMA mode.
->> UART4 (console UART) has to be kept in irq mode, as DMA support for
->> console has been removed from the driver by commit e359b4411c28
->> ("serial: stm32: fix threaded interrupt handling").
-> 
-> Do I understand correctly that your first patch breaks consoles of
-> most/all boards, because they will briefly use DMA, which is refused
-> by the stm32-usart driver and then you add a patch for each board
-> to fix that breakage?
+Hi Nick
 
-We have two solutions and both have pro/drawbacks. The first one (Erwan 
-ones, can break the boot if the patch is taken "alone". Your proposition 
-avoids this breakage but deletes a non define property (which is a bit 
-weird). However I prefer to keep a functional behavior, and keep Ahmad 
-proposition. Ahmad, just one question, dt-bindings check doesn't 
-complain about it ?
+Since you are new to the kernel, please let me point out, you should
+consider Russell comments for all your code, not just this one file.
+Many of the comments are generic to code anywhere in the kernel. So it
+would be good to fix the same issues in the rest of your code base
+before submitting them.
 
-Cheers
-Alex
+I would also suggest that when you start submitting drivers, submit
+just one or two to start with. You will learn a lot from the feedback
+you get, and you can apply what you have learnt to the rest of your
+code before you post them for review.
 
-> 
-> Such intermittent breakage makes bisection a hassle. /delete-property/
-> is a no-op when the property doesn't exist, so you could move the first
-> patch to the very end to avoid intermittent breakage.
-> 
-> I also think that the driver's behavior is a bit harsh. I think it would
-> be better for the UART driver to print a warning and fall back to
-> PIO for console instead of outright refusing and rendering the system
-> silent. That's not mutually exclusive with your patch series here, of course.
-> 
-> Cheers,
-> Ahmad
-> 
->>
->> For other stm32mp15x-based boards, current configuration is kept for
->> all UART instances.
->>
->> Erwan Le Ray (16):
->>    ARM: dts: stm32: add DMA configuration to UART nodes on stm32mp151
->>    ARM: dts: stm32: keep uart4 behavior on stm32mp157c-ed1
->>    ARM: dts: stm32: keep uart4 and uart7 behavior on stm32mp15xx-dkx
->>    ARM: dts: stm32: keep uart4 behavior on icore-stm32mp1-ctouch2
->>    ARM: dts: stm32: keep uart4 behavior on icore-stm32mp1-edimm2.2
->>    ARM: dts: stm32: keep uart4 behavior on stm32mp157a-iot-box
->>    ARM: dts: stm32: keep uart nodes behavior on stm32mp1-microdev2.0-of7
->>    ARM: dts: stm32: keep uart nodes behavior on stm32mp1-microdev2.0
->>    ARM: dts: stm32: keep uart nodes behavior on stm32mp157a-stinger96
->>    ARM: dts: stm32: keep uart4 behavior on stm32mp157c-lxa-mc1
->>    ARM: dts: stm32: keep uart4 behavior on stm32mp157c-odyssey
->>    ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-drc02
->>    ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-pdk2
->>    ARM: dts: stm32: keep uart nodes behavior on stm32mp15xx-dhcom-picoitx
->>    ARM: dts: stm32: keep uart4 behavior on stm32mp15xx-dhcom-som
->>    ARM: dts: stm32: keep uart nodes behavior on
->>      stm32mp15xx-dhcor-avenger96
->>
->>   arch/arm/boot/dts/stm32mp151.dtsi             | 21 +++++++++++++++++++
->>   .../stm32mp157a-icore-stm32mp1-ctouch2.dts    |  2 ++
->>   .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   |  2 ++
->>   arch/arm/boot/dts/stm32mp157a-iot-box.dts     |  2 ++
->>   ...157a-microgea-stm32mp1-microdev2.0-of7.dts |  4 ++++
->>   ...32mp157a-microgea-stm32mp1-microdev2.0.dts |  4 ++++
->>   arch/arm/boot/dts/stm32mp157a-stinger96.dtsi  |  6 ++++++
->>   arch/arm/boot/dts/stm32mp157c-ed1.dts         |  2 ++
->>   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts     |  2 ++
->>   arch/arm/boot/dts/stm32mp157c-odyssey.dts     |  2 ++
->>   .../arm/boot/dts/stm32mp15xx-dhcom-drc02.dtsi |  4 ++++
->>   arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi |  4 ++++
->>   .../boot/dts/stm32mp15xx-dhcom-picoitx.dtsi   |  4 ++++
->>   arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi  |  2 ++
->>   .../boot/dts/stm32mp15xx-dhcor-avenger96.dtsi |  6 ++++++
->>   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        |  4 ++++
->>   16 files changed, 71 insertions(+)
->>
-> 
-> 
+I would also suggest you spend 30 minutes a day just reading comments
+other patches receive. You can also learn a lot that way, see if the
+comments apply to your own code. You will also learn about processes
+this way, which can be just as challenging to get right as code.
 
+     Andrew
