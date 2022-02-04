@@ -2,118 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAE924A9EA0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 19:05:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DB394A9EAD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 19:09:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377352AbiBDSFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 13:05:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40776 "EHLO
+        id S1377389AbiBDSJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 13:09:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377359AbiBDSFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 13:05:33 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F200EC06173E
-        for <devicetree@vger.kernel.org>; Fri,  4 Feb 2022 10:05:32 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id m9so9351620oia.12
-        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 10:05:32 -0800 (PST)
+        with ESMTP id S1377382AbiBDSJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 13:09:49 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47885C061741
+        for <devicetree@vger.kernel.org>; Fri,  4 Feb 2022 10:09:49 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id p22-20020a17090adf9600b001b8783b2647so626650pjv.5
+        for <devicetree@vger.kernel.org>; Fri, 04 Feb 2022 10:09:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=FjF+sGZpg2iaH76PumvDp14W7fNNxKuPMZR+Us0rVMQ=;
-        b=WDWuvGT/OxA9GID0EgK9YDidQPh+HAa1en+YRr+jT4ZUb4X+eK3H8R6beO+FEvnyDG
-         BZSlJT5PvdgA1sBVwVVVMTQFtMesxbeA9ZwEY//5gfvsSRzU4LZNMFcRnunjU7KSfjcZ
-         okhZlE/GB/zmFuVhvn13M8n5tp8aIG4cwM6rTtTKLGfz+0zyQ3GmM814MUXEv9FgBUhD
-         dWY+Fk4FpY3WU2Qi+JuDc2d2fC71MzEM5cXKgW7RapBc+IXMRjbtd+3uYN9ThXNgYvln
-         HEeM7H/wbzGuKzDXOiKGAgXcNQ2U8NDGW/x6HhrTlnLNiQRLZj/hP+shOOrCFwDFj3L/
-         j5rg==
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5GJVqdK9AZJLVzh5THjIdv7Tb4wUElki413J5iZNmTM=;
+        b=HX/d5JdjvzattE8CDmmyZ7MPKQWBzw6CS4rweJoHjNvR26Mi/E3AeSnf2Qdi4PBkxe
+         F/YpYZWCkAbovrkgsEghglG/A9KpdOiXRXrJwHsc1oR+R8IwHBCzYBjdQIW2lsDwugye
+         /cpAQ3UJxW5aNIBFAVcbCmefpO4ofSixhKAFBt6jl/bOsRo5XW+bD8R/ML814CRWS+Jk
+         IAn4IkIOCEImsV64jEiMr2DLsIsWasuZMKldqSrEEwT1eI9PsHmu9+C96nMPh9/3aiXZ
+         4vJ88Mo3+fxokgxrL8bm/VaUuu3z3qC8MaDGS0p577cBt809JXVnwQDVslOiXlSLHOvu
+         y5iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FjF+sGZpg2iaH76PumvDp14W7fNNxKuPMZR+Us0rVMQ=;
-        b=OTB104yl7+pRhXEuCnG5xitBKxCYM76qNX5SQ2mFDPNNg/cE6aZ4aRp9nesdP7g1fr
-         CxKBMsr2WdPqQCOIezhljYQ8dd2ZH1M9yVgkA8RJ/JO9gD5YGyTUjCxinUvuroIZ4Z32
-         argKUi5Dj1xxTlgmzDB7SOMHw3wxfLaa2gcL6gtx7Lg8icFRvx2VoFL7RKRqkVjXQnyO
-         EyNOYSycLoiuSemo11i20y3FfCdPhOZlntPF8otkoXRW8PiXMgX7I+XUi6+1QqYT6lky
-         kIdzIEwd1IswLDhPCS3xq1J68Kqfwn+oVuEjwyV/dmFXCNLEXEeChle8tvrGbxNHq47y
-         CPeA==
-X-Gm-Message-State: AOAM530Qy6dOclERBgWXfeEnIpoiSS1OM7v8tseKf4WNWTP2epmvLF8d
-        yu1t+SC0iY3Txq0l8Lv5PmXQLQ==
-X-Google-Smtp-Source: ABdhPJylpcEz5omTCtvVVTdyfF1+oj/R9wH56W4rthEOGLG4g7VSkPI6Ojv1x35a8V+C7gXtZf9Ksw==
-X-Received: by 2002:a05:6808:ecf:: with SMTP id q15mr1881768oiv.130.1643997932289;
-        Fri, 04 Feb 2022 10:05:32 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id a15sm1114445oil.13.2022.02.04.10.05.31
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=5GJVqdK9AZJLVzh5THjIdv7Tb4wUElki413J5iZNmTM=;
+        b=GEJFnmE92ZRr2aDU7aV2tG7E8aezEgkqVRgfrRbORDEsUvMGgyCETCzl7cvEo4UnyZ
+         wD/UaZgfMw/ivuYjt6cIg4y/m4m8wpIkU/KpViflFOv960gjgdQ6l/aBeWbpCDSSxllF
+         bzY1I99JOFnFxdeBXSJgottF5d6GHgRqe2R3Ku2U2mSxnzXEcl0Z1eY39C7Tfm9DX1uw
+         36l3rZN8J4UMtb0Nea+srW+xqovF6j0hvq9V25u88jKlcUz4CtFoaFqKB9Ce8tI/bHii
+         FotK5TE65llwgHEJd5YZgyzUdLwu+u8HPCz8VPxKNEXVak4Y27Gq0hTqb+aMqXZVYRTq
+         0TYw==
+X-Gm-Message-State: AOAM531M9S0k+XhZnvWc8fsvVrpSslotUd7iOyDKmXmoOzEgH+IILvYZ
+        BN+LS/1v0CbmAQYq09zz2p+1SQ==
+X-Google-Smtp-Source: ABdhPJwq5eAXGJ3elIXn36dtCEJkNMZyb4zlD13QPFCAjEzIcC3itN/YiwwtnCDGtGpB44AxXeb1hw==
+X-Received: by 2002:a17:902:8c84:: with SMTP id t4mr4327588plo.78.1643998188528;
+        Fri, 04 Feb 2022 10:09:48 -0800 (PST)
+Received: from localhost ([12.3.194.138])
+        by smtp.gmail.com with ESMTPSA id kx11sm2720754pjb.1.2022.02.04.10.09.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Feb 2022 10:05:31 -0800 (PST)
-Date:   Fri, 4 Feb 2022 10:05:47 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linus.walleij@linaro.org, broonie@kernel.org
-Cc:     Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: i2c: qcom-cci: add description of a
- vbus-supply property
-Message-ID: <Yf1q+wlXo2LAeZX+@ripper>
-References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
- <20220203164629.1711958-3-vladimir.zapolskiy@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220203164629.1711958-3-vladimir.zapolskiy@linaro.org>
+        Fri, 04 Feb 2022 10:09:47 -0800 (PST)
+Date:   Fri, 04 Feb 2022 10:09:47 -0800 (PST)
+X-Google-Original-Date: Fri, 04 Feb 2022 10:09:09 PST (-0800)
+Subject:     Re: [PATCH v5 00/12] Update the Icicle Kit device tree
+In-Reply-To: <20220131114726.973690-1-conor.dooley@microchip.com>
+CC:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, geert@linux-m68k.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-riscv@lists.infradead.org, krzysztof.kozlowski@canonical.com,
+        bin.meng@windriver.com, heiko@sntech.de, lewis.hanly@microchip.com,
+        conor.dooley@microchip.com, daire.mcnamara@microchip.com,
+        ivan.griffin@microchip.com, Atish Patra <atishp@rivosinc.com>
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     conor.dooley@microchip.com
+Message-ID: <mhng-2b6f8784-4c0c-432f-a6e7-97052ab900e7@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 03 Feb 08:46 PST 2022, Vladimir Zapolskiy wrote:
+On Mon, 31 Jan 2022 03:47:15 PST (-0800), conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> This series updates the Microchip Icicle Kit device tree by adding a
+> host of peripherals, and some updates to the memory map. In addition,
+> the device tree has been split into a third part, which contains "soft"
+> peripherals that are in the fpga fabric.
+>
+> Several of the entries are for peripherals that have not get had their
+> drivers upstreamed, so in those cases the dt bindings are included where
+> appropriate in order to avoid the many "DT compatible string <x> appears
+> un-documented" errors.
+>
+> Depends on mpfs clock driver binding (on clk/next) to provide
+> dt-bindings/clock/microchip,mpfs-clock.h
+> and on the other changes to the icicle/mpfs device tree from geert
+> that are already in linux/riscv/for-next.
+>
+> Additionally, the interrupt-extended warnings on the plic/clint are
+> cleared by [1] & [2].
+>
+> [1] https://lore.kernel.org/linux-riscv/cover.1639744468.git.geert@linux-m68k.org/
+> [2] https://lore.kernel.org/linux-riscv/cover.1639744106.git.geert@linux-m68k.org/
+>
+> Changes from v4:
+> - dont include icicle_kit_defconfig, accidentally added in v3
+> - drop prescaler from mpfs-rtc & calculate the value instead
+> - use corei2c as a fallback device for mpfs-i2c
+> - drop spi dt-binding (on spi-next)
+>   commit 2da187304e556ac59cf2dacb323cc78ded988169
+> - drop usb dt-binding (on usb-next)
+>
+> Changes from v3:
+> - drop "mailbox: change mailbox-mpfs compatible string", already upstream:
+>   commit f10b1fc0161cd99e ("mailbox: change mailbox-mpfs compatible string")
+> - fix copy paste error in microchip,mpfs-mailbox dt-binding
+> - remove whitespace in syscontroller dt entry
+>
+> Changes from v2:
+> - dropped plic int header & corresponding defines in dts{,i}
+> - use $ref to drmode in mpfs-musb binding
+> - split changes to dts{,i} again: functional changes to existing
+>   elements now are in a new patch
+> - drop num-cs property in mpfs-spi binding
+> - dont make the system controller a simple-mfd
+> - move the separate bindings for rng/generic system services into the
+>   system controller binding
+> - added an instance corei2c as i2c2 in the fabric dtsi
+> - add version numbering to corepwm and corei2c compat string (-rtl-vN)
+>
+> Conor Dooley (12):
+>   dt-bindings: soc/microchip: update syscontroller compatibles
+>   dt-bindings: soc/microchip: add services as children of sys ctrlr
+>   dt-bindings: i2c: add bindings for microchip mpfs i2c
+>   dt-bindings: rtc: add bindings for microchip mpfs rtc
+>   dt-bindings: gpio: add bindings for microchip mpfs gpio
+>   dt-bindings: pwm: add microchip corepwm binding
+>   riscv: dts: microchip: use clk defines for icicle kit
+>   riscv: dts: microchip: add fpga fabric section to icicle kit
+>   riscv: dts: microchip: refactor icicle kit device tree
+>   riscv: dts: microchip: update peripherals in icicle kit device tree
+>   riscv: dts: microchip: add new peripherals to icicle kit device tree
+>   MAINTAINERS: update riscv/microchip entry
+>
+>  .../bindings/gpio/microchip,mpfs-gpio.yaml    |  80 ++++++
+>  .../bindings/i2c/microchip,mpfs-i2c.yaml      |  57 ++++
+>  ...ilbox.yaml => microchip,mpfs-mailbox.yaml} |   6 +-
+>  .../bindings/pwm/microchip,corepwm.yaml       |  75 +++++
+>  .../bindings/rtc/microchip,mfps-rtc.yaml      |  58 ++++
+>  .../microchip,mpfs-sys-controller.yaml        |  72 +++++
+>  ...icrochip,polarfire-soc-sys-controller.yaml |  35 ---
+>  MAINTAINERS                                   |   2 +
+>  .../dts/microchip/microchip-mpfs-fabric.dtsi  |  25 ++
+>  .../microchip/microchip-mpfs-icicle-kit.dts   | 115 ++++++--
+>  .../boot/dts/microchip/microchip-mpfs.dtsi    | 262 +++++++++++++++---
+>  11 files changed, 683 insertions(+), 104 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+>  create mode 100644 Documentation/devicetree/bindings/i2c/microchip,mpfs-i2c.yaml
+>  rename Documentation/devicetree/bindings/mailbox/{microchip,polarfire-soc-mailbox.yaml => microchip,mpfs-mailbox.yaml} (82%)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/microchip,corepwm.yaml
+>  create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
+>  create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-fabric.dtsi
 
-> Quite regularly I2C bus lines on QCOM CCI controller require an external
-> pull-up to a regulator powered line, to be able to define all such
-> cases an additional vbus-supply property of a bus subnode is wanted.
-> 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt b/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt
-> index 924ad8c03464..9f5b321748f1 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt
-> @@ -60,6 +60,11 @@ PROPERTIES:
->  	Definition: Desired I2C bus clock frequency in Hz, defaults to 100
->  		    kHz if omitted.
->  
-> +- vbus-supply:
+Looks like Rob still has some feedback that still needs to be addressed.  
+I'm happy to take these via the RISC-V tree when the bindings are set 
+(assuming the DTs match whatever gets agreed upons), but also fine if 
+someone else wants to take it so
 
-I don't think "vbus" is an appropriate name for his. Perhaps "vddio" or
-something like that would be better.
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-But there's a bigger question here, this is not a supply for the
-i2c master, it's simply a supply for pulling up the bus. So it's not
-entirely correct to specify it as a supply for the CCI node (which is
-also the reason why the name isn't obvious).
+Either way, I'm going to drop this (and the v4, which was at the top of 
+my inbox) as it looks like there'll be at least a v6.
 
-Typically we don't don't mention the bus-supply because it happens to be
-pulled up either by io-supply for the block, or by some always-on
-regulator in the system.
-
-Looping in Linus and Mark in hope they have seen this need elsewhere.
-
-Regards,
-Bjorn
-
-> +	Usage: optional
-> +	Value type: phandle
-> +	Definition: Regulator that provides power to SCL/SDA lines
-> +
->  Example:
->  
->  	cci@a0c000 {
-> -- 
-> 2.33.0
-> 
+Thanks!
