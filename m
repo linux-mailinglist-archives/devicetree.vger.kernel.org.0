@@ -2,89 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5D274A9CC0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 17:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C877E4A9CBD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 17:18:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376423AbiBDQST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 11:18:19 -0500
-Received: from smtpout1.mo3004.mail-out.ovh.net ([79.137.123.219]:48897 "EHLO
-        smtpout1.mo3004.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234695AbiBDQST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 11:18:19 -0500
-Received: from pro2.mail.ovh.net (unknown [10.109.143.120])
-        by mo3004.mail-out.ovh.net (Postfix) with ESMTPS id D1098241C84;
-        Fri,  4 Feb 2022 16:18:14 +0000 (UTC)
+        id S1355509AbiBDQSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 11:18:18 -0500
+Received: from smtpout1.mo528.mail-out.ovh.net ([46.105.34.251]:55197 "EHLO
+        smtpout1.mo528.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238920AbiBDQSS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 11:18:18 -0500
+Received: from pro2.mail.ovh.net (unknown [10.108.1.178])
+        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 7C09CE1D4880;
+        Fri,  4 Feb 2022 17:18:16 +0100 (CET)
 Received: from localhost.localdomain (88.125.132.78) by DAG1EX2.emp2.local
  (172.16.2.2) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 4 Feb
- 2022 17:18:13 +0100
+ 2022 17:18:15 +0100
 From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-To:     <geert+renesas@glider.be>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     <geert+renesas@glider.be>, <linux-kernel@vger.kernel.org>
 CC:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
-        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: [PATCH 0/6] ARM: r9a06g032: add support for the watchdogs
-Date:   Fri, 4 Feb 2022 17:17:58 +0100
-Message-ID: <20220204161806.3126321-1-jjhiblot@traphandler.com>
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH 2/6] dt-bindings: clock: r9a06g032: Add the definition of the watchdog clock
+Date:   Fri, 4 Feb 2022 17:18:00 +0100
+Message-ID: <20220204161806.3126321-3-jjhiblot@traphandler.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220204161806.3126321-1-jjhiblot@traphandler.com>
+References: <20220204161806.3126321-1-jjhiblot@traphandler.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7BIT
 Content-Type:   text/plain; charset=US-ASCII
 X-Originating-IP: [88.125.132.78]
 X-ClientProxiedBy: DAG2EX1.emp2.local (172.16.2.11) To DAG1EX2.emp2.local
  (172.16.2.2)
-X-Ovh-Tracer-Id: 5892678638484994517
+X-Ovh-Tracer-Id: 5893241588116830497
 X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrgeelgdekjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvffufffkofgggfgtihesthekredtredttdenucfhrhhomheplfgvrghnqdflrggtqhhuvghsucfjihgslhhothcuoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqnecuggftrfgrthhtvghrnhepjedugfffleelheehveevuedtjeffgfejkedukeekudfguedtfeefuefhueevheeinecuffhomhgrihhnpehgihhthhhusgdrtghomhenucfkpheptddrtddrtddrtddpkeekrdduvdehrddufedvrdejkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqtghlkhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrgeelgdekiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhephffvufffkffojghfggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeefueeggfeiuedthfdvgeevtedvueevgfevgeelieelveevheefjeejfffguddukeenucfkpheptddrtddrtddrtddpkeekrdduvdehrddufedvrdejkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+This clock is actually the REF_SYNC_D8 clock.
 
-This series adds support for the watchdog timers of the RZ/N1.
-The watchdog driver (rzn1-wdt.c) is derived from the driver available at
-https://github.com/renesas-rz/rzn1_linux.git with a few modifications
-(devm watchdog API usage and WDIOF_MAGICCLOSE option)
+Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+---
+ include/dt-bindings/clock/r9a06g032-sysctrl.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-In order to be able to reset the board when a watchdog timer expires,
-the RSTEN register must be configured. This is done in the clock
-driver of the r9a06g032. The rationnal is that this driver is the only one
-that handles the sysctrl for this platform and there are a couple of other
-clock drivers that also handle resets/reboot. I intend to later post
-another patch to add software-triggered reboot capability that will
-leverage this change.
-
-
-Jean-Jacques Hiblot (5):
-  clk: renesas: r9a06g032: Enable the watchdog reset sources
-  dt-bindings: clock: r9a06g032: Add the definition of the watchdog
-    clock
-  dt-bindings: watchdog: renesas,wdt: Add support for RZ/N1
-  ARM: dts: r9a06g032: Add the watchdog nodes
-  ARM: dts: r9a06g032-rzn1d400-db: Enable watchdog0 with a 10s timeout
-
-Phil Edworthy (1):
-  watchdog: Add Renesas RZ/N1 Watchdog driver
-
- .../bindings/watchdog/renesas,wdt.yaml        |   4 +
- arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts   |   5 +
- arch/arm/boot/dts/r9a06g032.dtsi              |  16 ++
- drivers/clk/renesas/r9a06g032-clocks.c        |  33 +++
- drivers/watchdog/Kconfig                      |   8 +
- drivers/watchdog/Makefile                     |   1 +
- drivers/watchdog/rzn1_wdt.c                   | 197 ++++++++++++++++++
- include/dt-bindings/clock/r9a06g032-sysctrl.h |   1 +
- 8 files changed, 265 insertions(+)
- create mode 100644 drivers/watchdog/rzn1_wdt.c
-
+diff --git a/include/dt-bindings/clock/r9a06g032-sysctrl.h b/include/dt-bindings/clock/r9a06g032-sysctrl.h
+index 90c0f3dc1ba1..d9d7b8b4f426 100644
+--- a/include/dt-bindings/clock/r9a06g032-sysctrl.h
++++ b/include/dt-bindings/clock/r9a06g032-sysctrl.h
+@@ -74,6 +74,7 @@
+ #define R9A06G032_CLK_DDRPHY_PCLK	81	/* AKA CLK_REF_SYNC_D4 */
+ #define R9A06G032_CLK_FW		81	/* AKA CLK_REF_SYNC_D4 */
+ #define R9A06G032_CLK_CRYPTO		81	/* AKA CLK_REF_SYNC_D4 */
++#define R9A06G032_CLK_WATCHDOG		82	/* AKA CLK_REF_SYNC_D8 */
+ #define R9A06G032_CLK_A7MP		84	/* AKA DIV_CA7 */
+ #define R9A06G032_HCLK_CAN0		85
+ #define R9A06G032_HCLK_CAN1		86
 -- 
 2.25.1
 
