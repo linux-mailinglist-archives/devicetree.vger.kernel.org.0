@@ -2,68 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 060754AA3DC
-	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 00:00:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F514AA3E4
+	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 00:02:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358637AbiBDXAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 18:00:03 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:44618 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359282AbiBDXAA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 18:00:00 -0500
-Received: by mail-oi1-f178.google.com with SMTP id 4so10192573oil.11;
-        Fri, 04 Feb 2022 15:00:00 -0800 (PST)
+        id S1377790AbiBDXCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 18:02:35 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:40827 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242439AbiBDXCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 18:02:34 -0500
+Received: by mail-oi1-f171.google.com with SMTP id q8so10255475oiw.7;
+        Fri, 04 Feb 2022 15:02:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=STXGDBPnP0RX9U6EDzL7J0c/K6aSJxvfGk5fwnYV+K4=;
-        b=qaBkwcVgO2Wk7wHie2ZLkW9Ve8KXRJlNHLMr8qMnCE6erxCJ+22zzKt6uahs4Nnu7B
-         9th08crP95s7bYdfGcwKwJncQonwhBhEU71gTxKym6XP+ggC9QkOBAYF0I3xW5OwN2Zp
-         vWoPOPpyi6wKD4gA0K6i/qLPxl7sd/KYFebws+oltN/wmhJHa97S+JetawaOOSd1iqfk
-         LWzIBLwdwecLJ50qEYKfDDFT6HrzIR9BYs96VgxIb4kFWA9goL27a1BKyf1NSB+I9bBD
-         USBJ2LAMWZMQD8rd81yapYRqvZdEZZTMF9cm5NVJimIyVzl8FwiFWcUPzlpt9D4mTTWa
-         k2fw==
-X-Gm-Message-State: AOAM533ubsxz5ZYXxb9IYRIF3BErzKfk3BOk4f2dfaORQ6ddc/BVPXc/
-        IbLcLRtCM8AqKcfxZ9a9gA==
-X-Google-Smtp-Source: ABdhPJwOCjh7ByHzDx16JRhBZO6cJ4zV+NShLss8PjVDzgeavJ9Lw93uh+T3zobTfz+ll9W5LpNWSg==
-X-Received: by 2002:a05:6808:1688:: with SMTP id bb8mr651517oib.163.1644015599923;
-        Fri, 04 Feb 2022 14:59:59 -0800 (PST)
+        bh=so7WBDjA3xCDjc/S+xxRptDS0jNCba5tDsjIbD3vNJs=;
+        b=XjiOBDvzYDcMrJZDmgNOc7q10fOmDWj5d9rr3UF8ZPuMY5pIWwwPhKkaRy31z6UUQ6
+         f1D6bGt7I/uHTzob4TBLpb/5InEvK/zuOhtugKcgQ3OMfny9YKUMAdHqVzJKpG/Edszq
+         ZRVcDau8efR14b1S4e3hk2QTdmevYGljt9jLHWc+8wY37QK3MsknMWelktp7utFh1kc0
+         +r0EI6S2L9Wyr86lHUqNZuwajpMtwHGyqWIiOyk8lhaGnpibjAaDgl+CqfAQdGzcUhhP
+         DmjQBAU/jDQ9PuiFyR93cPWhWx8q1d60zy0W+7UxuBQ5v8fqqSqSShFE8u0aambh8751
+         gHhw==
+X-Gm-Message-State: AOAM530FwVMCsMIAJeWw3iKgnSm44he5MgxRdnL379Lw2atkzNNhekho
+        6SbYYa8Hi0KPW9OHZWttCQ==
+X-Google-Smtp-Source: ABdhPJw4Mo+JilQCIGEVwlEMmR/R7KpCERHXyFXB8K0h/yrIireDfpOeZwMkC+s/O+oo1VT77exLRw==
+X-Received: by 2002:a05:6808:aa5:: with SMTP id r5mr622455oij.115.1644015754037;
+        Fri, 04 Feb 2022 15:02:34 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o19sm1072371oae.36.2022.02.04.14.59.58
+        by smtp.gmail.com with ESMTPSA id x1sm1277327oto.38.2022.02.04.15.02.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Feb 2022 14:59:59 -0800 (PST)
-Received: (nullmailer pid 3342703 invoked by uid 1000);
-        Fri, 04 Feb 2022 22:59:58 -0000
-Date:   Fri, 4 Feb 2022 16:59:58 -0600
+        Fri, 04 Feb 2022 15:02:33 -0800 (PST)
+Received: (nullmailer pid 3346874 invoked by uid 1000);
+        Fri, 04 Feb 2022 23:02:32 -0000
+Date:   Fri, 4 Feb 2022 17:02:32 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     robh+dt@kernel.org, linux-media@vger.kernel.org,
-        nicolas.ferre@microchip.com, jacopo+renesas@jmondi.org,
-        devicetree@vger.kernel.org, sakari.ailus@iki.fi,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        laurent.pinchart@ideasonboard.com, hverkuil-cisco@xs4all.nl
-Subject: Re: [PATCH v4 08/11] dt-bindings: media: microchip,xisc: add
- bus-width of 14
-Message-ID: <Yf2v7owZpEDmkdiy@robh.at.kernel.org>
-References: <20220121131416.603972-1-eugen.hristev@microchip.com>
- <20220121131416.603972-9-eugen.hristev@microchip.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: Re: [PATCH v4 03/10] dt-bindings: apple,aic: Add affinity
+ description for per-cpu pseudo-interrupts
+Message-ID: <Yf2wiMTUV6XUqWh0@robh.at.kernel.org>
+References: <20220124201231.298961-1-maz@kernel.org>
+ <20220124201231.298961-4-maz@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220121131416.603972-9-eugen.hristev@microchip.com>
+In-Reply-To: <20220124201231.298961-4-maz@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jan 2022 15:14:13 +0200, Eugen Hristev wrote:
-> The Microchip XISC supports a bus width of 14 bits.
-> Add it to the supported bus widths.
+On Mon, Jan 24, 2022 at 08:12:24PM +0000, Marc Zyngier wrote:
+> Some of the FIQ per-cpu pseudo-interrupts are better described with
+> a specific affinity, the most obvious candidate being the CPU PMUs.
 > 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> Augment the AIC binding to be able to specify that affinity in the
+> interrupt controller node.
+> 
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
 > ---
->  Documentation/devicetree/bindings/media/microchip,xisc.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../interrupt-controller/apple,aic.yaml       | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+> index c7577d401786..d97683eb2c54 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+> @@ -70,6 +70,33 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  affinities:
+> +    type: object
 
-Acked-by: Rob Herring <robh@kernel.org>
+       additionalProperties: false
+
+> +    description:
+> +      FIQ affinity can be expressed as a single "affinities" node,
+> +      containing a set of sub-nodes, one per FIQ with a non-default
+> +      affinity.
+> +    patternProperties:
+> +      "^.+-affinity$":
+> +        type: object
+
+           additionalProperties: false
+
+> +        properties:
+> +          fiq-index:
+
+apple,fiq-index
+
+With that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +            description:
+> +              The interrupt number specified as a FIQ, and for which
+> +              the affinity is not the default.
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            maximum: 5
+> +
+> +          cpus:
+> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+> +            description:
+> +              Should be a list of phandles to CPU nodes (as described in
+> +              Documentation/devicetree/bindings/arm/cpus.yaml).
+> +
+> +        required:
+> +          - fiq-index
+> +          - cpus
+> +
+>  required:
+>    - compatible
+>    - '#interrupt-cells'
+> -- 
+> 2.30.2
+> 
+> 
