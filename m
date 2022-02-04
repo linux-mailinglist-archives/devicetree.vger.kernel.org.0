@@ -2,109 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FC9C4A97E2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 11:36:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2662D4A980D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 11:53:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231259AbiBDKgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 05:36:06 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:39817 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229883AbiBDKgG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 05:36:06 -0500
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id B0319240002;
-        Fri,  4 Feb 2022 10:36:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1643970965;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=qMxcVPsdmhWvTGX23bq2bnDt9bInTpit0TJ0BdWBSkM=;
-        b=c9Y0y4t92Y1oTOGSK5FqtxRpMl++eZdypLIHpCg/2bZ0s8R3t7LcSfqWxQnrYEPwzwV8E7
-        tZK/tKVyJS7zYGdaxowQjEDI2TEEFfHh0zgHmo9VHB5pQ/9fdV/Xlo323fM3qUsxF9ncrp
-        7JcvsthkimsJx99o8ZbvQC+ewNFBHCOT/Hc2BRNcZzuyoYCsuTJMBxYOUaETdtmkcvmctv
-        tjipPnty/CQ7/8cH+gAv2PJCA164U1gE/fjPzG5iL4mdc5B7aDZdJ4UZXDPliPeZo9MD16
-        7XJp8Qnr/kvb4ZWT1wjC7rkKZMQwxLoPkNAVE8l7Mb3HnG1QIsk4LefDu1V1kg==
-Date:   Fri, 4 Feb 2022 11:36:02 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Eugen.Hristev@microchip.com
-Cc:     robh+dt@kernel.org, Nicolas.Ferre@microchip.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, clement.leger@bootlin.com
-Subject: Re: [PATCH] dt-bindings: microchip: atmel,at91rm9200-tcb: remove
- mandatory interrupts property
-Message-ID: <Yf0Bkh4pXKORmNkG@piout.net>
-References: <20220204081446.474991-1-eugen.hristev@microchip.com>
- <Yfz15ta50G5WC158@piout.net>
- <e939a0df-052c-43a6-8be6-51848d3fe5e5@microchip.com>
+        id S244302AbiBDKxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 05:53:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54000 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230164AbiBDKxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 05:53:50 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FBE0C061714;
+        Fri,  4 Feb 2022 02:53:49 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id a25so7896570lji.9;
+        Fri, 04 Feb 2022 02:53:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=MCd5FvTHoJXq79AcAX0dk9oGdW9cYwxE282nBZk47JA=;
+        b=m3enqia+QjfqXIdfC9C0O99EZV+yUD5ggbnRGgMmoBEpJsEBXfFmwjCINqtSbW9kyk
+         1FoMHA2fW9LyYoQPlCPh1weQzaEG+saZ7g0xbKjf7XjqcHNaYGjr27124Tvv6Cvzg9rJ
+         RsVhRv8P61aK17kb6IJv/lu/oTw2iXEvjDj3vAbJUr1k3Q5TFO0VFnAwJWeHCsiC69lh
+         OQpLHm0/c8iw2A5Wb/SHyq3ROPFEKRs3ztdEkAcKynLInJD0FCr4+ixcp6PwnrjJC7uu
+         hPp4P4mySZBINfVms4gxyakPfT0f4OIBIfbxgYK0aIpkdlnQ32DLxnZBn0YR9/feu6MQ
+         eXtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=MCd5FvTHoJXq79AcAX0dk9oGdW9cYwxE282nBZk47JA=;
+        b=eNAYuEXbq2suogFl7W5+OvkuwMJUVOna+OCamSlZCmGiDA2zv9cNgcwRj9MqXnysxN
+         2YoTd+NTSzK/ivfme3mjIL/uSuiU/1bZb+tMPQUrcCiWNCsVbbqgoWp+u/MJJnzClF7/
+         FoVGQBScI0sLrbvFCsd8rw2V1n/itvaiDstY/URW31mBkU8YLXzZ9YSnpeVGcvRLuhiL
+         a4CKWNoGInIVdOtQyo3JKHjZYbcdkpiN8Bpc2GzsAr3wkT6QGg9pmJc+tWZicNpqSLJO
+         j7ZF9r6TnarYwFv6UUmO0cnk9be2s9W1Av8fYxteus8BtUqcnmbZAk4EuBagO4jEI8G9
+         xCUQ==
+X-Gm-Message-State: AOAM5328IoW9/LecLmpjVY4/V/q1o+Ouk7Gn1QVFYQMjFDGqRVmIFtTO
+        BpUJ9SWGox65GTRaY/dbE5k4WvSKrPk=
+X-Google-Smtp-Source: ABdhPJwNPZVbMWpgWXGqKc9QooQhS/Rp+GFP+v/cpmkXs+b2z6hM/2I3YfyLji+7lqc15elscD3MMg==
+X-Received: by 2002:a05:651c:50f:: with SMTP id o15mr1393279ljp.119.1643972027273;
+        Fri, 04 Feb 2022 02:53:47 -0800 (PST)
+Received: from [192.168.1.103] ([31.173.86.75])
+        by smtp.gmail.com with ESMTPSA id j16sm257976lfp.306.2022.02.04.02.53.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Feb 2022 02:53:46 -0800 (PST)
+Subject: Re: [PATCH resend] dt-bindings: ata: renesas,rcar-sata: Add r8a774e1
+ support
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-ide@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <507cc45f44603afa6a70c05a3956fb7b13b49ed9.1643896347.git.geert+renesas@glider.be>
+ <99ac1fc9-fa12-325c-3b54-eb3cb996a5df@gmail.com>
+ <CAMuHMdXvsUevw8dHTracUHn5Uu4XsbtBssOKss_txH87rtUV7w@mail.gmail.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <1cec2ed2-23cb-c838-f25c-f86d7b74d380@gmail.com>
+Date:   Fri, 4 Feb 2022 13:53:45 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e939a0df-052c-43a6-8be6-51848d3fe5e5@microchip.com>
+In-Reply-To: <CAMuHMdXvsUevw8dHTracUHn5Uu4XsbtBssOKss_txH87rtUV7w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/02/2022 10:28:43+0000, Eugen.Hristev@microchip.com wrote:
-> On 2/4/22 11:46 AM, Alexandre Belloni wrote:
-> > On 04/02/2022 10:14:46+0200, Eugen Hristev wrote:
-> >> The timer block can be used only to be read and to measure time in a polling
-> >> fashion. This can be used by Linux like this for example, or it can be used
-> >> by different projects which do not have interrupt controllers, or do not
-> >> wish to enable them (e.g. U-boot).
-> >> As DT is ABI, the binding should relate to all possible use cases and describe
-> >> the hardware and the requirements.
-> >> The interrupt is not a hard requirement for the timer to function in a
-> >> specific way.
-> >> Thus, choose to remove the interrupts property from the mandatory list of
-> >> properties.
-> >>
-> > 
-> > The correct hardware description is that the interrupt is present on the
-> > IP. Having software behave differently depending on the presence of that
-> > property is configuration, not hardware description.
+On 2/4/22 10:32 AM, Geert Uytterhoeven wrote:
+
+[...]
+>>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>> Document SATA support for the RZ/G2H SoC, no driver change required.
+>>
+>>    I don't have the RZ/G2H manual, is it available online somewhere?
 > 
-> I agree. The interrupt is present on the IP, thus the property exists 
-> and it's described.
-> However, the interrupt is not mandatory for IP operations. Thus it 
-> should not be in the list of mandatory properties.
+> https://www.renesas.com/eu/en/products/microcontrollers-microprocessors/rz-cortex-a-mpus/rzg-linux-platform/rzg-marketplace/document
+> You do have to register at the website before you can download it.
+
+   Yeah, was able to download, thank you! Looking at the manuals...
+
+> Gr{oetje,eeting}s,
 > 
+>                         Geert
 
-If the interrupt is always present, it is mandatory, it doesn't matter
-whether is is used or necessary to get the IP to work.
-
-
-
-> > 
-> >> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> >> ---
-> >>   .../devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml  | 1 -
-> >>   1 file changed, 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-> >> index 597d67fba92f..27f78459b892 100644
-> >> --- a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-> >> +++ b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-> >> @@ -134,7 +134,6 @@ allOf:
-> >>   required:
-> >>     - compatible
-> >>     - reg
-> >> -  - interrupts
-> >>     - clocks
-> >>     - clock-names
-> >>     - '#address-cells'
-> >> --
-> >> 2.25.1
-> >>
-> > 
-> > --
-> > Alexandre Belloni, co-owner and COO, Bootlin
-> > Embedded Linux and Kernel engineering
-> > https://bootlin.com
-> > 
-> 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+MBR, Sergey
