@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43ABC4A919D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 01:28:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D5874A91AF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Feb 2022 01:38:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356236AbiBDA2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Feb 2022 19:28:10 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:42515 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351466AbiBDA2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 19:28:09 -0500
-Received: by mail-oi1-f178.google.com with SMTP id v67so6647247oie.9;
-        Thu, 03 Feb 2022 16:28:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8HtB4xB7o6hXbgLfwRbUeCoDsxhbCbtJSWGozDMovVk=;
-        b=sZspG7xn+/kOHcJyGjcj6OfrRNYMLTynL8SE4TS1veq6g4+Uagfe/gwCGifoj28RMD
-         IjRGQSDsTmN5JIh/pu2OqKauvIcBCXbzMPqsLMY5Nd1vjkWfEqAWsTDJ/0+SWjl2auBS
-         YJFeJQEINEQ/OiWz8zwnOUjyj/KFLVv+KHiuRjLDh4vjxcfby9Heu3/3N5VLVbX/c9Fo
-         RiK8dmvAg79aXN71KkyvSxZ2x5R/BiRIq5BDgdUknuvGiBjIUUgnP+O+4twuIQajbPvI
-         1e09+9MEGrNlrCcIGc49Dq3N0jlGzsDOTOVcjR+2/NkplRLiZ723DqlH94G28u27+Kpt
-         e4aQ==
-X-Gm-Message-State: AOAM531lehPeYMUitIosskHf5y+hrEbrE8c49LBRtUhI8nUPdt4fsBCV
-        w5ZRZsnpSYCLPzNO4DzPvg==
-X-Google-Smtp-Source: ABdhPJw2Dg0v+X6ZepvOu6aani78Em/DxuFa5e5HsctFjHeKIC9FX4la9ddS6qjjU38YaYQT3enVVw==
-X-Received: by 2002:a05:6808:20a2:: with SMTP id s34mr113274oiw.295.1643934489148;
-        Thu, 03 Feb 2022 16:28:09 -0800 (PST)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id v10sm178184oto.53.2022.02.03.16.28.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Feb 2022 16:28:08 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: sun8i-h3: Drop args in 'thermal-sensors'
-Date:   Thu,  3 Feb 2022 18:28:01 -0600
-Message-Id: <20220204002802.1214602-1-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
+        id S1356233AbiBDAit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Feb 2022 19:38:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57992 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236660AbiBDAiq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Feb 2022 19:38:46 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A63C061714;
+        Thu,  3 Feb 2022 16:38:46 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EC42049C;
+        Fri,  4 Feb 2022 01:38:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1643935124;
+        bh=x79wgQfEJfv0EeWkYy8ffcc5rx2aj3gmAeMONQ+Np/c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=n5+J636Wda49VRNBpSSjR+A/VLEcBvD1SFFqaokXvyGm+pm46ytwdiGWKRdThgNH6
+         fAQc92e0dLU1r4nLHlbq8gmMLluY5JdjZ3s8DY9Vz+5fYQ7qzb/f8KjBzvbpXAiB/l
+         VecmrJIa921C3wgEfe9AB9nQshfyAspSA9aeMlyY=
+Date:   Fri, 4 Feb 2022 02:38:20 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
+        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
+        tomi.valkeinen@ideasonboard.com, nsaenz@kernel.org,
+        bcm-kernel-feedback-list@broadcom.com
+Subject: Re: [RFC PATCH v4 00/12] Add support for BCM2835 camera interface
+ (unicam)
+Message-ID: <Yfx1fDmf4NajOpXq@pendragon.ideasonboard.com>
+References: <20220203175009.558868-1-jeanmichel.hautbois@ideasonboard.com>
+ <d72273ca-664c-3eb2-74d0-845d956b0672@i2se.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <d72273ca-664c-3eb2-74d0-845d956b0672@i2se.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "allwinner,sun8i-h3-ths" thermal sensor has 0 argument cells, but
-the consumer has an argument cell. It is ignored by the code, but the
-error was found with some upcoming schema validation changes. The schema
-and code both agree that 0 cells is correct.
+Hi Stefan,
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- arch/arm/boot/dts/sun8i-h3.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Thu, Feb 03, 2022 at 08:55:42PM +0100, Stefan Wahren wrote:
+> Am 03.02.22 um 18:49 schrieb Jean-Michel Hautbois:
+> > Hello !
+> >
+> > This patch series adds the BCM2835 CCP2/CSI2 camera interface named
+> > unicam. This driver is already used in the out-of-tree linux-rpi
+> > repository [1], and this work aims to support it in mainline.
+> >
+> > The series is based on top of:
+> > - Rebased on top of 5.16 Tomi Valkeinen's multiplexed stream work, on
+> >   his multistream/work branch [2] which has been submitted as v10 at the
+> >   time of this writing. The objective is to demonstrate the use of
+> >   multiplexed streams on a real world widely used example as well as
+> >   supporting unicam mainline.
+> > - The "Add 12bit and 14bit luma-only formats" series [3] is partly
+> >   applied (the Y10P format bug) the new formats are now part of this
+> >   series.
+>
+> i understand, that you want to have this integrated fast but you send v3
+> of this series yesterday. This is not enough time for reviewers. Usually
+> 1 to 2 weeks.
 
-diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3.dtsi
-index 845f25235407..eac2349a2380 100644
---- a/arch/arm/boot/dts/sun8i-h3.dtsi
-+++ b/arch/arm/boot/dts/sun8i-h3.dtsi
-@@ -245,7 +245,7 @@ thermal-zones {
- 		cpu_thermal: cpu-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
--			thermal-sensors = <&ths 0>;
-+			thermal-sensors = <&ths>;
- 
- 			trips {
- 				cpu_hot_trip: cpu-hot {
+v3 was incorrectly based on the out-of-tree ISP driver, which caused
+some patches to not apply correctly on top of mainline. I've asked
+Jean-Michel to fix this and send a v4, as it was difficult to review v3.
+
 -- 
-2.32.0
+Regards,
 
+Laurent Pinchart
