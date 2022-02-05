@@ -2,101 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92F394AAA28
-	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 17:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C20F34AAA7D
+	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 18:19:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241852AbiBEQ0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Feb 2022 11:26:45 -0500
-Received: from mga14.intel.com ([192.55.52.115]:33637 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230210AbiBEQ0p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Feb 2022 11:26:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1644078405; x=1675614405;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=aIWDnW5/xzFVkdpCWOCZYXAUphgpi3nt59tjEtGeeA4=;
-  b=fB8tmvzmvlrn22K/aZM7BOhs/RM4qxe9Bry0HUKM8YJ5yu5zK6jimaLC
-   k2T/zmpo41cKrHaSFJwmZZYETqRQZGmn8rC//GQSBOAo3uLpaRf/DstRl
-   XcGo0cwB+UuAsNDqIXcwGk+5kFJf9F7rlXH/+/J3TDmffa9HMFIKZLZ66
-   SPreqpfrn/pMMWibleFq00NFVUzuBZGoQLm33tmHn65ls5wGvK9+5Hscf
-   6XAcco+gwkczw8RI41gx70OzaLqXy/WLXO2aAZbnGtuQs0/rjRsgPPltY
-   XVawq3ezjTPPD5FtaBkViofHR0x3G4p5wsIcnuwZxz5Mh+JdHaR4dVWrc
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10248"; a="248736110"
-X-IronPort-AV: E=Sophos;i="5.88,345,1635231600"; 
-   d="scan'208";a="248736110"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2022 08:26:44 -0800
-X-IronPort-AV: E=Sophos;i="5.88,345,1635231600"; 
-   d="scan'208";a="632005384"
-Received: from smile.fi.intel.com ([10.237.72.61])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2022 08:26:42 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1nGNsc-001JcW-7c;
-        Sat, 05 Feb 2022 18:25:42 +0200
-Date:   Sat, 5 Feb 2022 18:25:41 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v3 2/3] iio: ABI: add ABI file for the LTC2688 DAC
-Message-ID: <Yf6lBVpN3dFjC4Fg@smile.fi.intel.com>
-References: <20220121142501.151-1-nuno.sa@analog.com>
- <20220121142501.151-3-nuno.sa@analog.com>
+        id S1350165AbiBERTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Feb 2022 12:19:13 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:56756 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349672AbiBERTM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Feb 2022 12:19:12 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 3F90BCE0022;
+        Sat,  5 Feb 2022 17:19:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 288E1C340E8;
+        Sat,  5 Feb 2022 17:19:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644081549;
+        bh=9uPsPRBOdWeN7FKceOH+/umSJ3yFTYon1ZxpSNcTeZ8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=pvC8dh/NjZOYXVCwyHPyc431YQxRxFKYgin9D5qh7REoteUdCeN6Bw3uvTYQDmQKY
+         nwl9VVncfrZw5WrHBIpm5LeOsqUkSEi5V1NmyFWZ1rxxf/x4NJMWVFO9MqgbyYJ8K+
+         cAepQ96R3mWpnyyra2gDUt55MQ55GrwxPsOnZXCg8yKSLxGPDHPZ+vbR2VXIzHRYdw
+         zhC1ciJk/1Ar0aIqAup2CwM2jHktKuM6oZSmdlq7c7LnBS+kmqmYfweST9OYDK/JfC
+         UPTuB8TowM/hhbaMsaGtQDuBxBY1bHOJViSM805aqe6h7cANhrGUtfU4B6YX/zA/T3
+         axFldYNI2Aojg==
+Date:   Sat, 5 Feb 2022 17:25:39 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Denis Ciocca <denis.ciocca@st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] iio: Silan SC7A20 accelerometer support
+Message-ID: <20220205172539.18e0ad49@jic23-huawei>
+In-Reply-To: <20220202235049.8051-1-samuel@sholland.org>
+References: <20220202235049.8051-1-samuel@sholland.org>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220121142501.151-3-nuno.sa@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 21, 2022 at 03:25:00PM +0100, Nuno Sá wrote:
-> Define the sysfs interface for toggle or dither capable channels. Dither
-> capable channels will have the extended interface:
-> 
->  * out_voltageY_dither_en
->  * out_voltageY_dither_raw
->  * out_voltageY_dither_offset
->  * out_voltageY_dither_raw_available
->  * out_voltageY_dither_frequency
->  * out_voltageY_dither_frequency_available
->  * out_voltageY_dither_phase
->  * out_voltageY_dither_phase_available
-> 
-> Toggle enabled channels will have:
-> 
->  * out_voltageY_toggle_en
->  * out_voltageY_raw0
->  * out_voltageY_raw1
->  * out_voltageY_symbol
-> 
-> The common interface present in all channels is:
-> 
->  * out_voltageY_raw (not present in toggle enabled channels)
->  * out_voltageY_raw_available
->  * out_voltageY_powerdown
->  * out_voltageY_scale
->  * out_voltageY_offset
->  * out_voltageY_calibbias
->  * out_voltageY_calibscale
+On Wed,  2 Feb 2022 17:50:45 -0600
+Samuel Holland <samuel@sholland.org> wrote:
 
-...
+> This chip is register-compatible with an ST part, so it works without
+> any issues when added to the existing driver.
+> 
+> Previously I called it a clone, but it's not really a clone, because
+> it's not a drop-in replacement for the other chips. The software
+> interface matches the ST parts, but the pinout does not. Instead, the
+> pinout matches the Kionix KX122 and KX132.
+Weird :)
 
-> +KernelVersion:	5.17
+I'm fine with the series, but as it contains a new vendor ID and the
+dt-binding update I'll leave it on list for a bit longer to give
+Rob time to sanity check that.
 
-v5.17 alredy gone for new features.
+Thanks,
 
--- 
-With Best Regards,
-Andy Shevchenko
+Jonathan
 
+> 
+> Changes in v2:
+>  - Move the new compatible to its own section
+>  - Add a comment about the WAI value
+>  - Update commit messages
+> 
+> Samuel Holland (3):
+>   dt-bindings: vendor-prefixes: Add silan vendor prefix
+>   dt-bindings: iio: st: Add Silan SC7A20 accelerometer
+>   iio: accel: st_accel: Add support for Silan SC7A20
+> 
+>  .../bindings/iio/st,st-sensors.yaml           |  3 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  drivers/iio/accel/st_accel.h                  |  2 +
+>  drivers/iio/accel/st_accel_core.c             | 83 +++++++++++++++++++
+>  drivers/iio/accel/st_accel_i2c.c              |  5 ++
+>  5 files changed, 95 insertions(+)
+> 
 
