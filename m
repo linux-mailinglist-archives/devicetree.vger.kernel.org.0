@@ -2,66 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58D514AA5B7
-	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 03:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 711994AA5BB
+	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 03:28:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240773AbiBEC1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 21:27:19 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:38444 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236832AbiBEC1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 21:27:19 -0500
-Received: by mail-oi1-f176.google.com with SMTP id u13so10669412oie.5;
-        Fri, 04 Feb 2022 18:27:19 -0800 (PST)
+        id S1359439AbiBEC2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 21:28:19 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:42545 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236243AbiBEC2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 21:28:18 -0500
+Received: by mail-oi1-f177.google.com with SMTP id v67so10641394oie.9;
+        Fri, 04 Feb 2022 18:28:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WNwkkIEk6nRKmulDkMvX+n5bN8drj3YdUVmvLLda57E=;
-        b=wqQ66cCrpHX1+wyzAr4xNwIL4otXiCpinjhNKTTlU46KW6ERDZ9pr8x8rdJSdLTkpC
-         RMATWx/yeVsSk2UA4ciFTiu+EnAjMKiqG24xcQRl3oxOVuvQhj1rdEH2JUU1BX105a9U
-         2TtXPKJugBhi+hSHW1OI6o7V3TnuDodadSPdJ+pN/8LhFoO3vf7gatUTynx/LLoXNYFQ
-         o6mClm591o8XdELmbmq0CPZGx3kwBE3sm1J2H8TWfoUfWg0AiYRPTowCpW/7dVnVIzTb
-         q15MNmSik54Ql8nPOcgYafPiSSI8rpMEUiVJdV+9xplJ8OYlJASuqMmG40Kx0PnY9Q7H
-         XRQw==
-X-Gm-Message-State: AOAM533FvzWn6BwtCPtsI9W+7ey+LnDOYyxLn2BZKl0DUaOXgtK4tHz1
-        ht+4oEtOULByOpkqwJc5jz6EEXK4rQ==
-X-Google-Smtp-Source: ABdhPJy16m5SteHRuJQ3WB7ERG1gtj3NB/98hs8UODPsf0AwmR0N+op2pmHZdgA0H1jo4Ijf6X2org==
-X-Received: by 2002:a05:6808:e87:: with SMTP id k7mr2729190oil.34.1644028038744;
-        Fri, 04 Feb 2022 18:27:18 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=JmvBIhMKnhgkGxggrbFqkk5PJMlahpRLZSGojBlhXrk=;
+        b=NwJOtnh3zpNKhBT4fdslKa/QeGAIQalM3CZdHjMz5qHSSx5REaWUWBYHCWuE+WBnnb
+         jxB8q374kDCIT9Z9Ltcn885m7xWBavZ8YAxb8KNgt4/4LPytC6TjNJb6t7EQDYKUezgF
+         TKd2o0lZhHdb6vgmgSsRftWITiCglZPxtfVBBOleTR2QFWwbV+uV2g7xOTbZBZdn70H7
+         Wp1/K2zyrEakj5qTuJsJ0a6CTuaBA3SkyfB2Z0NAlOPJDRvUbWztYoSu/V0zxrPNTj7X
+         Z7+Tz0ANgSgpDJH1uFo+oCf40AQNha177Cy0cLV/8JhaUu4GeZ9eSuZFea8Bh2E7mGan
+         a3pA==
+X-Gm-Message-State: AOAM5300KoPvVyTDIAdOPlfO3hWHqtnRT7lpEgC13cqJMrGGdr3qWexs
+        iWBaZrkzqLtLfEKTKuhGRk41c9c3Ew==
+X-Google-Smtp-Source: ABdhPJxNZGun10NRnauK03pavyGA7GRMeX6PA2KRoaELKK2dSfBdQ133efI49l2RW6X4C7eoyGypJg==
+X-Received: by 2002:a05:6808:1b07:: with SMTP id bx7mr2957213oib.5.1644028098401;
+        Fri, 04 Feb 2022 18:28:18 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x22sm1377230ooq.27.2022.02.04.18.27.17
+        by smtp.gmail.com with ESMTPSA id e7sm1515753oow.47.2022.02.04.18.28.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Feb 2022 18:27:18 -0800 (PST)
-Received: (nullmailer pid 3637443 invoked by uid 1000);
-        Sat, 05 Feb 2022 02:27:17 -0000
-Date:   Fri, 4 Feb 2022 20:27:17 -0600
+        Fri, 04 Feb 2022 18:28:17 -0800 (PST)
+Received: (nullmailer pid 3639087 invoked by uid 1000);
+        Sat, 05 Feb 2022 02:28:17 -0000
+Date:   Fri, 4 Feb 2022 20:28:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Xin Ji <xji@analogixsemi.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        qwen@analogixsemi.com, linux-usb@vger.kernel.org,
-        bliang@analogixsemi.com, jli@analogixsemi.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add analogix anx7411 PD binding
-Message-ID: <Yf3ghczy+I2ZMcvt@robh.at.kernel.org>
-References: <20220121061856.2038958-1-xji@analogixsemi.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v3 3/3] dt-bindings: iio: Add ltc2688 documentation
+Message-ID: <Yf3gwRNv7RI7v7eb@robh.at.kernel.org>
+References: <20220121142501.151-1-nuno.sa@analog.com>
+ <20220121142501.151-4-nuno.sa@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220121061856.2038958-1-xji@analogixsemi.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220121142501.151-4-nuno.sa@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jan 2022 14:18:55 +0800, Xin Ji wrote:
-> Add analogix PD chip anx7411 device binding
+On Fri, 21 Jan 2022 15:25:01 +0100, Nuno Sá wrote:
+> Document the LTC2688 devicetree properties.
 > 
-> Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
 > ---
->  .../bindings/usb/analogix,anx7411.yaml        | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+>  .../bindings/iio/dac/adi,ltc2688.yaml         | 146 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 147 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
