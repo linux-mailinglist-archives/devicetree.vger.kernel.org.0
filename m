@@ -2,99 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A9DF4AAC23
-	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 20:01:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26FBD4AAC27
+	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 20:02:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230518AbiBETBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Feb 2022 14:01:39 -0500
-Received: from mga12.intel.com ([192.55.52.136]:35881 "EHLO mga12.intel.com"
+        id S241421AbiBETCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Feb 2022 14:02:09 -0500
+Received: from mout.gmx.net ([212.227.15.18]:40037 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1382860AbiBETBP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Feb 2022 14:01:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1644087675; x=1675623675;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RPTYqe6PAP+xAsk6gDKIccqhay0CazxZLMQxmkYLCFI=;
-  b=ZMD2FZ94BjpU2n4KHrAUNwwAsFZ4UjjSxZ+5fftz6jx6HsdeCTEgTSX/
-   1KwtSYmf1NrhI+WwPXk/u2JDBW/OlLwCYMkWWd4gap3tL0FMeitRtfrJl
-   6YIKw6GJpHH9gnaMQ7NSOpWaFJ75AVU4S6QeHmhFv995yGWAH8gKx39W3
-   6L1lMDZeulQja4kz1VbDY/ZfjDNK+PkgTYLpFPAj7p7PRFpmcctoSKODt
-   VDM4OuLbyCXxQ9FlRYIVUGdBnOkekPyeMaqJ+93KeEq/ulwgsecds7AmZ
-   gV2C1NJb/1BmQdUtXdjdL8CDV8+l7Iku2YXW+c6TLwXm3oN68cz0goqhy
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10248"; a="228500829"
-X-IronPort-AV: E=Sophos;i="5.88,346,1635231600"; 
-   d="scan'208";a="228500829"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2022 10:59:30 -0800
-X-IronPort-AV: E=Sophos;i="5.88,346,1635231600"; 
-   d="scan'208";a="481154887"
-Received: from smile.fi.intel.com ([10.237.72.61])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2022 10:59:28 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nGQGQ-001Lr9-Re;
-        Sat, 05 Feb 2022 20:58:26 +0200
-Date:   Sat, 5 Feb 2022 20:58:12 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v3 1/3] iio: dac: add support for ltc2688
-Message-ID: <Yf7IxJKmAtgqT2rB@smile.fi.intel.com>
-References: <20220121142501.151-1-nuno.sa@analog.com>
- <20220121142501.151-2-nuno.sa@analog.com>
- <Yf60A1UkbBtQ68qv@smile.fi.intel.com>
- <20220205184459.7aa8e5d5@jic23-huawei>
- <Yf7G91IuwAw0trgz@smile.fi.intel.com>
+        id S1381921AbiBES74 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Feb 2022 13:59:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1644087575;
+        bh=Aw2WMDEbEhlH/mZNLfkFzJ3FjsJZHx67MeYHGf5Ed1c=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=E0SpvTtVR4zB+1sVAyIeA5Yex7HrM8hnFx8yFn76GNvJQ3xPdTEtV2PiicJSTPssn
+         CTs6y7cPyf9lyRjSz6pmToOCU7cQgebUk3lLq3spvAKBRyWrfOsQK8kfb7YDDWD9nF
+         eQBMy12TPbgTLLb5QeMLjwl7rkugiF0vqSNVWmG4=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.75.80] ([80.245.75.80]) by web-mail.gmx.net
+ (3c-app-gmx-bs06.server.lan [172.19.170.55]) (via HTTP); Sat, 5 Feb 2022
+ 19:59:35 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yf7G91IuwAw0trgz@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <trinity-7a0de29e-ada7-43b1-ae8f-50da4736f2b1-1644087575012@3c-app-gmx-bs06>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Aw: [PATCH v2 1/2] dt-bindings: rockchip: Add BananaPi R2 Pro Board
+Content-Type: text/plain; charset=UTF-8
+Date:   Sat, 5 Feb 2022 19:59:35 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20220123135116.136846-2-linux@fw-web.de>
+References: <20220123135116.136846-1-linux@fw-web.de>
+ <20220123135116.136846-2-linux@fw-web.de>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:wtFtw4+ksp83Q2y92etl/kbPoD8QWRWOUoK1ywDfvhrdYz68Xyd1uZItuW7+kN2NdNUoZ
+ aPdebyWl5vMRsIAgFgy2jS4UjyDJt2ehF1gPcG0EyypqLdZUo9lpFfuHqqK8yWGUt0TftMCzK9mE
+ VugotwAhJxGnC+WVlRMwio86X5WDPXg0auY1pKBAsUdfCK9EJ3H6ZbPM7u/oqbyjOsxJqulSL2bp
+ ksL3Q432k+Xa+z1EeJdydiVlK5Y+0eGYvqekkNLVKfjsbyrXzxQdah5C3LsfbXrU8sBpuUEtcvnI
+ Tw=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ZfuXrw71q/4=:ChBe3CXdNiA+BE9kiEo7w9
+ 6N/3blfcGwR9VfGH6FRU6JZ4bkHlQp8ry/OLIGjGqizYBCx1KwIXkWdiOfGyVcCzIEuj4eRwT
+ 8hlmsJIdNsnV0SCD9Et9KMWgUQUHlcaxcHzExdftklMxsnCdyhXiS7d+S9+cLsLcGEYoX+8cx
+ Bl91e/9oY/yZuZdDVpVuTc0bOOxiWuEtxoWCxRrlLo9BiUVQiL3dgrHwi/kXXuZTV/14LL1PU
+ K+uA932PyYEvqHxRmAuNRpGsvh5pTmHSjHnhM1sauyqvI75UcXxI50Ar8FDb0mg35vbG69M5J
+ u6/Mr/zq0ibXqCse/6mHpOZPmNE1yOo+DXkWPtyHkHjLq1zggYNc1qW0ZhvGTtN+YgiCPOraJ
+ S/N1WBC2j928AP+lz4XeffXTOBqNpwrHRr2IJUXoF5offlKluhkdi4Mu5SIFYJxqCMNpvUR9c
+ 42eEDDJ96jhAZecSKv6oM358msy7m1hxS1NTolGXr0v6WA9uh5RgIY6eHwX9G4mfCpH5MQmDn
+ y8DL34GJvXVnB8WmXSqsvjxPGuQ0/A6/iARRDOSEwmfrveywYIViAPcOJqNR0mNnhyE7vITA5
+ PjNF6PSOQLyLe8IUt4PzWBCNaRg1S/jLrN1uC7eLnwUNOkc2jE0zOD4SmfgNPZOWnUnYmnULo
+ iDb7a3DbcUfRE5rZ2/1TIdWAEZOLIY6w2YBoz2XLD1aO0R07Pzq9VE8tuxF8Fr+qD/UkYgSGI
+ ryq/tMgBIpso2/vYpbXDmxsAZPGJ9HhlZKhwKANMQ+aELB35qH9lmMyVldNSV5ZLttbf2uZnL
+ Pc7gl2l
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 05, 2022 at 08:50:31PM +0200, Andy Shevchenko wrote:
-> On Sat, Feb 05, 2022 at 06:44:59PM +0000, Jonathan Cameron wrote:
-> > On Sat, 5 Feb 2022 19:29:39 +0200
-> > Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-> > 
-> > A few comments from me, mostly because I couldn't resist jumping in ;)
-> > Note this is only some of the things Andy raised....
-> 
-> ...
-> 
-> > > > +static int ltc2688_channel_config(struct ltc2688_state *st)
-> > > > +{
-> > > > +	struct device *dev = &st->spi->dev;
-> > > > +	struct device_node *child;
-> > > > +	u32 reg, clk_input, val, tmp[2];
-> > > > +	int ret, span;
-> > > > +
-> > > > +	for_each_available_child_of_node(dev->of_node, child) {  
-> > > 
-> > > device_for_each_child_node()
-> > 
-> > This is the old issue with missing
-> > device_for_each_available_child_node()
-> > though can just add a check on whether it's available inside the loop.
-> 
-> Didn't we discuss this with Rob and he told that device_for_each_child_node()
-> is already for available only?
+Hi
 
-https://lore.kernel.org/lkml/20211205190101.26de4a57@jic23-huawei/T/#u
+just want to send a friendly ping ;)
 
-So, the fwnode has a correct implementation, and we may use it here.
-
--- 
-With Best Regards,
-Andy Shevchenko
+regards Frank
 
 
+> Gesendet: Sonntag, 23. Januar 2022 um 14:51 Uhr
+> Von: "Frank Wunderlich" <linux@fw-web.de>
+> An: linux-rockchip@lists.infradead.org
+> Cc: "Frank Wunderlich" <frank-w@public-files.de>, "Rob Herring" <robh+dt=
+@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Peter Geis" <pgwipeout@=
+gmail.com>, "Johan Jonker" <jbx6244@gmail.com>, devicetree@vger.kernel.org=
+, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+> Betreff: [PATCH v2 1/2] dt-bindings: rockchip: Add BananaPi R2 Pro Board
+>
+> From: Frank Wunderlich <frank-w@public-files.de>
+>
+> Add Devicetree Binding for Bananapi R2 Pro Board based on rk3568 SoC
+>
+> Co-developed-by: Peter Geis <pgwipeout@gmail.com>
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Docum=
+entation/devicetree/bindings/arm/rockchip.yaml
+> index 4aed16176434..33d6423fe6c3 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -651,6 +651,11 @@ properties:
+>            - const: rockchip,rk3568-evb1-v10
+>            - const: rockchip,rk3568
+>
+> +      - description: Rockchip RK3568 Banana Pi R2 Pro
+> +        items:
+> +          - const: rockchip,rk3568-bpi-r2pro
+> +          - const: rockchip,rk3568
+> +
+>  additionalProperties: true
+>
+>  ...
+> --
+> 2.25.1
+>
+>
