@@ -2,305 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B53E4AA883
-	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 13:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9400E4AA8CF
+	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 13:48:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379769AbiBEMBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Feb 2022 07:01:06 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:51926
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1379768AbiBEMA7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Feb 2022 07:00:59 -0500
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9BF3E3FE4B
-        for <devicetree@vger.kernel.org>; Sat,  5 Feb 2022 12:00:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644062458;
-        bh=g79GJtLoFuJ8U8Z2lTNpbcsjEt2E+NY0Ue5nQV27Nic=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=tABg2deBDOrojsLWYyxJt4k0cRiRdRF8f8Yq8DyhZT9PFYKdoRbFSf9DYrwaQ0wSb
-         N9CVkIAsms0Z/CmNZf1kRlE6aak/spqC5T/JSK3SFAzLLWajBwpmnMU851e1Q1+Zto
-         DZmMG0wKcWLVo121sYl91C3TFpK5fYOfnglqG9CRm9bzSBy5CdMYM84jCUbhVqmYCE
-         vJv2Ys5oCcB8QLcKDnw4ohiTufTR0nLPncikjtwSez4jIGDkCHbNqlr+NA97no3yBU
-         wPaSVT7FueL1RBIQILqgDTDvFE8sLFNWIBH6lKdif5TLP/Qim+ub4zQFyVrkn/O91+
-         sFUKIQ+k/DRFw==
-Received: by mail-ed1-f71.google.com with SMTP id en7-20020a056402528700b00404aba0a6ffso4576804edb.5
-        for <devicetree@vger.kernel.org>; Sat, 05 Feb 2022 04:00:58 -0800 (PST)
+        id S1379821AbiBEMsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Feb 2022 07:48:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44730 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1377682AbiBEMsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Feb 2022 07:48:08 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71F3EC061346
+        for <devicetree@vger.kernel.org>; Sat,  5 Feb 2022 04:48:06 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id l12-20020a7bc34c000000b003467c58cbdfso11237992wmj.2
+        for <devicetree@vger.kernel.org>; Sat, 05 Feb 2022 04:48:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=+LPvcJ2sd5T7CufgUritnA87r/Y5fUmsfeCEUXpPT6E=;
+        b=ef9uwCGIArsx4B0HtycPruLj7UAWV4CigNy4UIbrAY3TClE0iuhryFmiNJKx4dleOg
+         yyA8XqUKF5FM5R0ZmQ30vYByA8DSGJmY1TsX6/zSWJZFfk0llkoBeDYYfGosdLSfS1Qk
+         ehwqDZwKdRwafW/+lg86kz2XUanNm8jZ2g1Tq7SHg0v14EVQKAHRJo/skJ8OeVrzD+qe
+         INtz/+NvmVRRRwzbvAvsNRauN2oObdpKRtrpXXNHFSpmjS9UzLj2X4Y5eLvobCaKL1lB
+         pNd8r5wOZfbFPBEjDbWF5O1+0RDhRc7+e1YfuhSc0UOQQWl8ouLqrtx+n2EqpOuOXDST
+         UQ+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=g79GJtLoFuJ8U8Z2lTNpbcsjEt2E+NY0Ue5nQV27Nic=;
-        b=PtZ5/nVajNUh70hOZk24R8rxhG3KCNHNuLVcReS7Z9yiRWXhbUDdyfV20PoyrSDevJ
-         R2vaMdfhNauIXa7wJWFPUzVr/CbVlH5on6Ew9csLsHy203J5Oq4QYxvd08w8zytP0Y8e
-         aGq4wZTZOd8w/zqwCV28CXAZ4cpwIdrk3oed2eY2EkiGRiFmhEoz62RdjJHXLnOO9h3f
-         CyhaBI1mNfQmEsPFkKBV8eMO0wB/JaGHZwSBUk6x/MlHxW0vVf45AGZ3eAg8ezA9DBR0
-         vG2Db/aHLnZ9PThxndU4nOnyYTDfGKqx50SGAc/0Gi5jVaPgOssJCJ0hWwAqLtVYP3Wu
-         8Ghw==
-X-Gm-Message-State: AOAM532jNhHXxc3UJJ02HBRdcDDSo/baKAQejB5XYH2LJjSGgsy4iSO3
-        neRhMuBJk2bRwBitu+Tam6KHc6589QRXSEvsYF0jQsDNgvc0iDvkVZTC4MWwuHrMluFkvHUkYpj
-        NFTq31AuQAIR9AlceiX7DarpAlvVLVzBMgKR9e68=
-X-Received: by 2002:a17:907:8a0b:: with SMTP id sc11mr2782010ejc.310.1644062458104;
-        Sat, 05 Feb 2022 04:00:58 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwI6v3KzvqmMl2uZY105l1wUXzopbwZdOW3CekXIXGfOpnK+CNN19iiDFIAfjEEs6/DTmgfdA==
-X-Received: by 2002:a17:907:8a0b:: with SMTP id sc11mr2781997ejc.310.1644062457861;
-        Sat, 05 Feb 2022 04:00:57 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id m12sm1534185ejr.218.2022.02.05.04.00.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Feb 2022 04:00:56 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 5/5] dt-bindings: memory: lpddr2-timings: convert to dtschema
-Date:   Sat,  5 Feb 2022 13:00:43 +0100
-Message-Id: <20220205120043.8337-6-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220205120043.8337-1-krzysztof.kozlowski@canonical.com>
-References: <20220205120043.8337-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=+LPvcJ2sd5T7CufgUritnA87r/Y5fUmsfeCEUXpPT6E=;
+        b=eBueTxC6d9a4ssJfoREh28rNWOVfWtXl5qO8fVXBPQG5c3N+lUBc9iI+1g6PHKbVml
+         jCRZLPSXBVpuA29pC8nH235fj0BxI6Jqfr2PtJt2I+qbQvbOUrCsjmavSf37VVmj1q/X
+         udZOjHt0dr2cZYtOclG0OmkPD5GEKjh1piwNODW8EfFT/1n7I0B2rPdowHoIMzljl25S
+         hRgfCMLrU3O1B7C/VxvAo3Q/6uHRFjkhTKBkVy4zDNMKWup0dmGOq8ofMmdCeyG8H81k
+         mXgXfxnVc83OfEWaMfN3AMjzMJxmmR9YZMUeYrbJAMqptbBYVSgbkbUF0vuxHwC2aMrf
+         xp3w==
+X-Gm-Message-State: AOAM530egsSO3VTnKXIxBbCFUXlC+nSDqmBelf9f0hkRemZTbGwLtJJg
+        6fbwLeOQaxvfhxwXMgppJD1xlg==
+X-Google-Smtp-Source: ABdhPJxpq/DFWpEEyQIsjuuaVvilLjogf6JlPr9dXqoGfRGP3jRw+knIrG8WTJYlwwMgH5tU0Wc1Vw==
+X-Received: by 2002:a05:600c:3217:: with SMTP id r23mr2998357wmp.159.1644065284763;
+        Sat, 05 Feb 2022 04:48:04 -0800 (PST)
+Received: from [192.168.2.116] ([109.78.72.167])
+        by smtp.gmail.com with ESMTPSA id m8sm4429538wrn.106.2022.02.05.04.48.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 05 Feb 2022 04:48:04 -0800 (PST)
+Message-ID: <c610ce52-e1ef-393c-0948-57a4c6f07d72@conchuod.ie>
+Date:   Sat, 5 Feb 2022 12:48:02 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v5 06/12] dt-bindings: pwm: add microchip corepwm binding
+Content-Language: en-US
+To:     Conor.Dooley@microchip.com, geert@linux-m68k.org,
+        u.kleine-koenig@pengutronix.de
+Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        aou@eecs.berkeley.edu, atishp@rivosinc.com, bin.meng@windriver.com,
+        brgl@bgdev.pl, Daire.McNamara@microchip.com,
+        devicetree@vger.kernel.org, heiko@sntech.de,
+        Ivan.Griffin@microchip.com, jassisinghbrar@gmail.com,
+        krzysztof.kozlowski@canonical.com, lee.jones@linaro.org,
+        Lewis.Hanly@microchip.com, linus.walleij@linaro.org,
+        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-rtc@vger.kernel.org,
+        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+        robh@kernel.org, thierry.reding@gmail.com
+References: <20220201075824.aixrvkvmjde2ihxx@pengutronix.de>
+ <20220202123542.3721512-1-conor.dooley@microchip.com>
+ <CAMuHMdWrmuY7pwY8U0t9LumEvUTBEA06uV7hNyKFAPMQtE98_A@mail.gmail.com>
+ <3862e358-901c-e848-71af-01eceed26f74@microchip.com>
+ <CAMuHMdXvw9cNNzBhp-sSMTXxP2eALhB=fD78Wgx-kks7wr6oiQ@mail.gmail.com>
+ <fa747594-a112-d313-5de3-2330bf5ddc8a@microchip.com>
+From:   Conor Dooley <mail@conchuod.ie>
+In-Reply-To: <fa747594-a112-d313-5de3-2330bf5ddc8a@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the LPDDR2 memory timings bindings to DT schema format.
+Geert, Uwe,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../ddr/jedec,lpddr2-timings.yaml             | 135 ++++++++++++++++++
- .../memory-controllers/ddr/jedec,lpddr2.yaml  |   6 +-
- .../memory-controllers/ddr/lpddr2-timings.txt |  52 -------
- 3 files changed, 137 insertions(+), 56 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
- delete mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
+Hopefully the following does a better job of explaining the two parameters?
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
-new file mode 100644
-index 000000000000..f3e62ee07126
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
-@@ -0,0 +1,135 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr2-timings.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LPDDR2 SDRAM AC timing parameters for a given speed-bin
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+
-+properties:
-+  compatible:
-+    const: jedec,lpddr2-timings
-+
-+  max-freq:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Maximum DDR clock frequency for the speed-bin, in Hz.
-+
-+  min-freq:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Minimum DDR clock frequency for the speed-bin, in Hz.
-+
-+  tCKESR:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      CKE minimum pulse width during SELF REFRESH (low pulse width during
-+      SELF REFRESH) in pico seconds.
-+
-+  tDQSCK-max:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      DQS output data access time from CK_t/CK_c in pico seconds.
-+
-+  tDQSCK-max-derated:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      DQS output data access time from CK_t/CK_c, temperature de-rated, in pico
-+      seconds.
-+
-+  tFAW:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Four-bank activate window in pico seconds.
-+
-+  tRAS-max-ns:
-+    description: |
-+      Row active time in nano seconds.
-+
-+  tRAS-min:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Row active time in pico seconds.
-+
-+  tRCD:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      RAS-to-CAS delay in pico seconds.
-+
-+  tRPab:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Row precharge time (all banks) in pico seconds.
-+
-+  tRRD:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Active bank A to active bank B in pico seconds.
-+
-+  tRTP:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Internal READ to PRECHARGE command delay in pico seconds.
-+
-+  tWR:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      WRITE recovery time in pico seconds.
-+
-+  tWTR:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Internal WRITE-to-READ command delay in pico seconds.
-+
-+  tXP:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Exit power-down to next valid command delay in pico seconds.
-+
-+  tZQCL:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Long calibration time in pico seconds.
-+
-+  tZQCS:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Short calibration time in pico seconds.
-+
-+  tZQinit:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Initialization calibration time in pico seconds.
-+
-+required:
-+  - compatible
-+  - min-freq
-+  - max-freq
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    timings {
-+        compatible = "jedec,lpddr2-timings";
-+        min-freq = <10000000>;
-+        max-freq = <400000000>;
-+        tCKESR = <15000>;
-+        tDQSCK-max = <5500>;
-+        tFAW = <50000>;
-+        tRAS-max-ns = <70000>;
-+        tRAS-min = <42000>;
-+        tRPab = <21000>;
-+        tRCD = <18000>;
-+        tRRD = <10000>;
-+        tRTP = <7500>;
-+        tWR = <15000>;
-+        tWTR = <7500>;
-+        tXP = <7500>;
-+        tZQCL = <360000>;
-+        tZQCS = <90000>;
-+        tZQinit = <1000000>;
-+    };
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-index 25ed0266f6dd..2d8a701e2a05 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-@@ -142,14 +142,12 @@ properties:
- 
- patternProperties:
-   "^lpddr2-timings":
--    type: object
-+    $ref: jedec,lpddr2-timings.yaml
-     description: |
-       The lpddr2 node may have one or more child nodes of type "lpddr2-timings".
-       "lpddr2-timings" provides AC timing parameters of the device for
-       a given speed-bin. The user may provide the timings for as many
--      speed-bins as is required. Please see Documentation/devicetree/
--      bindings/memory-controllers/ddr/lpddr2-timings.txt for more information
--      on "lpddr2-timings".
-+      speed-bins as is required.
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt b/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
-deleted file mode 100644
-index 9ceb19e0c7fd..000000000000
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--* AC timing parameters of LPDDR2(JESD209-2) memories for a given speed-bin
--
--Required properties:
--- compatible : Should be "jedec,lpddr2-timings"
--- min-freq : minimum DDR clock frequency for the speed-bin. Type is <u32>
--- max-freq : maximum DDR clock frequency for the speed-bin. Type is <u32>
--
--Optional properties:
--
--The following properties represent AC timing parameters from the memory
--data-sheet of the device for a given speed-bin. All these properties are
--of type <u32> and the default unit is ps (pico seconds). Parameters with
--a different unit have a suffix indicating the unit such as 'tRAS-max-ns'
--- tRCD
--- tWR
--- tRAS-min
--- tRRD
--- tWTR
--- tXP
--- tRTP
--- tDQSCK-max
--- tFAW
--- tZQCS
--- tZQinit
--- tRPab
--- tZQCL
--- tCKESR
--- tRAS-max-ns
--- tDQSCK-max-derated
--
--Example:
--
--timings_elpida_ECB240ABACN_400mhz: lpddr2-timings@0 {
--	compatible	= "jedec,lpddr2-timings";
--	min-freq	= <10000000>;
--	max-freq	= <400000000>;
--	tRPab		= <21000>;
--	tRCD		= <18000>;
--	tWR		= <15000>;
--	tRAS-min	= <42000>;
--	tRRD		= <10000>;
--	tWTR		= <7500>;
--	tXP		= <7500>;
--	tRTP		= <7500>;
--	tCKESR		= <15000>;
--	tDQSCK-max	= <5500>;
--	tFAW		= <50000>;
--	tZQCS		= <90000>;
--	tZQCL		= <360000>;
--	tZQinit		= <1000000>;
--	tRAS-max-ns	= <70000>;
--};
--- 
-2.32.0
+Thanks,
+Conor.
 
+microchip,sync-update-mask:
+   description: |
+     Depending on how the IP is instantiated, there are two modes of
+     operation. In synchronous mode, all channels are updated at the
+     beginning of the PWM period, and in asynchronous mode updates
+     happen as the control registers are written. A 16 bit wide
+     "SHADOW_REG_EN" parameter of the IP core controls whether
+     synchronous mode is possible for each channel, and is set by the
+     bitstream programmed to the FPGA. If the IP core is instantiated
+     with SHADOW_REG_ENx=1, both registers that control the duty cycle
+     for channel x have a second "shadow"/buffer reg synthesised.
+     At runtime a bit wide register exposed to APB can be used to toggle
+     on/off synchronised mode for all channels it has been synthesised
+     for.
+     Each bit corresponds to a PWM channel & represents whether
+     synchronous mode is possible for that channel.
+
+   $ref: /schemas/types.yaml#/definitions/uint32
+   default: 0
+
+microchip,dac-mode-mask:
+   description: |
+     Optional, per-channel Low Ripple DAC mode is possible on this IP
+     core. It creates a minimum period pulse train whose High/Low
+     average is that of the chosen duty cycle. This "DAC" will have far
+     better bandwidth and ripple performance than the standard PWM
+     algorithm can achieve. A 16 bit DAC_MODE module parameter of the IP
+     core, set at instantiation and by the bitstream programmed to the
+     FPGA, determines whether a given channel operates in regular PWM or
+     DAC mode.
+     Each bit corresponds to a PWM channel & represents whether DAC mode
+     is enabled for that channel.
+
+   $ref: /schemas/types.yaml#/definitions/uint32
+   default: 0
+
+On 02/02/2022 14:37, Conor.Dooley@microchip.com wrote:
+> On 02/02/2022 14:02, Geert Uytterhoeven wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>> On Wed, Feb 2, 2022 at 2:46 PM <Conor.Dooley@microchip.com> wrote:
+>>> On 02/02/2022 13:28, Geert Uytterhoeven wrote:
+>>>> On Wed, Feb 2, 2022 at 1:33 PM <conor.dooley@microchip.com> wrote:
+>>>>>> On 01/02/2022 07:58, Uwe Kleine-König wrote:
+>>>>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>>>>>> On Mon, Jan 31, 2022 at 11:47:21AM +0000, conor.dooley@microchip.com wrote:
+>>>>>>> From: Conor Dooley <conor.dooley@microchip.com>
+>>>>>>>
+>>>>>>> Add device tree bindings for the Microchip fpga fabric based "core" PWM
+>>>>>>> controller.
+>>>>>>>
+>>>>>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>>>>>>
+>>>>>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>>>>>>> ---
+>>>>>>> .../bindings/pwm/microchip,corepwm.yaml       | 75 +++++++++++++++++++
+>>>>
+>>>>>>> +  microchip,sync-update:
+>>>>>>> +    description: |
+>>>>>>> +      In synchronous mode, all channels are updated at the beginning of the PWM period.
+>>>>>>> +      Asynchronous mode is relevant to applications such as LED control, where
+>>>>>>> +      synchronous updates are not required. Asynchronous mode lowers the area size,
+>>>>>>> +      reducing shadow register requirements. This can be set at run time, provided
+>>>>>>> +      SHADOW_REG_EN is asserted. SHADOW_REG_EN is set by the FPGA bitstream programmed
+>>>>>>> +      to the device.
+>>>>>>> +      Each bit corresponds to a PWM channel & represents whether synchronous mode is
+>>>>>>> +      possible for the PWM channel.
+>>>>>>> +
+>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint16
+>>>>>>> +    default: 0
+>>>>>>
+>>>>>> I'm not sure I understand this correctly. This is a soft-core and you
+>>>>>> can synthesize it either with or without the ability to do synchronous
+>>>>>> updates or not, right? All 16 channels share the same period length and
+>>>>>> in the simple implementation changing the duty cycle is done at once
+>>>>>> (maybe introducing a glitch) and in the more expensive implementation
+>>>>>> there is a register to implement both variants?
+>>>>>
+>>>>> Correct. If the IP is instantiated with SHADOW_REG_ENx=1, both
+>>>>> registers that control the duty cycle for channel x have a second
+>>>>> "shadow reg" synthesised. At runtime a bit wide register exposed to
+>>>>> APB can be used to toggle on/off synchronised mode for all channels
+>>>>> it has been synthesised for.
+>>>>>
+>>>>> I will reword this description since it is not clear.
+>>>>
+>>>> Shouldn't it use a different compatible value instead?
+>>>> Differentiation by properties is not recommended, as it's easy to
+>>>> miss a difference.
+>>>
+>>> Either you have something in mind that I've not thought of, or I've done
+>>> a bad job of explaining again. The buffer/"shadow" registers are
+>>> synthesised on a per channel basis, so any combination of the 16
+>>> channels may have this capability. The same applies to the DAC mode, per
+>>> channel there too.
+>>
+>> Oops, hadn't noticed this is per channel. Indeed, then a different
+>> compatible value is futile.
+>> So since "microchip,sync-update" is a bitmask, perhaps it should be
+>> called "microchip,sync-update-mask"?
+>> Same for "microchip,dac-mode" -> "microchip,dac-mode-mask"?
+> 
+> Adding -mask sounds good to me.
+> 
+>> Also, using different integer sizes than uint32 is frowned upon, unless
+>> there is a very good reason to do so. I can imagine a future version
+>> would support more channels, and then uint16 becomes a limitation.
+> 
+> Sure, uint32 it is.
+> 
+>> For both: Rob?
+> 
+> Both of these properties fall under the "DO attempt to make bindings
+> complete even if a driver doesn’t support some features" category, so I
+> am perfectly happy to change these properties to whatever is convention
+> (or ultimately drop them for the sake of the remainder of the series).
+> 
+> Thanks,
+> Conor.
+> 
