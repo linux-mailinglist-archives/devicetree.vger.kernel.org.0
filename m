@@ -2,106 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 350914AA61E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 04:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15E834AA628
+	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 04:18:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379112AbiBEDD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Feb 2022 22:03:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50698 "EHLO
+        id S1359441AbiBEDSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Feb 2022 22:18:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233604AbiBEDD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 22:03:57 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3397C061346;
-        Fri,  4 Feb 2022 19:03:56 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8242060C17;
-        Sat,  5 Feb 2022 03:03:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF26FC004E1;
-        Sat,  5 Feb 2022 03:03:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644030235;
-        bh=B779VCbNhc940fOx/ZsWJA+XO5L+RfvVX2YwUFvKb/0=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=NU5XRUF2wnZPyDh8CjvW69c1iV1XyW1i0aVTY+koKIiQJN6rzXd/VDdh68XXSqhsg
-         /kO+LHNQZueeOydiUnzAnm/LtZ6dSizWkEZDr9ZxWSZno7Iz+YY63xd3PemcoqQz4A
-         uW6TKEY29XGJ4pRnga+/zDNOgCVXDUZym3kI16aNlTFFFyxT4g9M6Adh3CVHtlPA1S
-         FWFf7zg43fUs6vY9qowJtoTOnaF0TOi9vHX3AxO/7MHSLA6rqvkcUSJjiWn6EjNSNH
-         awx4ZHrAxMGDOBX+p8TQnoK+ZqlIlW7SJYkzx07yDIGsRrDBx+YSgTtbi6Z6LF7Y79
-         BTy4M+9uZ3Vug==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S238357AbiBEDSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Feb 2022 22:18:32 -0500
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B76C061346;
+        Fri,  4 Feb 2022 19:18:31 -0800 (PST)
+Received: by mail-pf1-x42c.google.com with SMTP id n32so6675998pfv.11;
+        Fri, 04 Feb 2022 19:18:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=R7incvgluYs5dTKR2o83cZ4xjLUlYz2zw4AZmoxYKh0=;
+        b=CruTIdnN0MOxwfdWronF0oZDLrIx9+ejQZH03EMu/p/DMVEu2ZYE9W28nRI2xeCuuz
+         9PQ9G43A0iq58Q7HnnjhtuXnltzAynm1kAw6Eyq6hbu6W7NxjTwN4CLeKL1ytizDGPuq
+         FnqX8WUTNOJDS9lpIdYS/VTLHnsc0LPXj0ro0JO30Gly3KKWwMsO3qTRYk9fay89dKKe
+         HVaBVptsa70kgMMMZ9+qB5JWVRfkuyljPQw853tTksh8CBHwtNQeHtL/aDDzhKgOhM7R
+         gHFnw0t26rvNApUUdVZnhnQr8Cwf3cqNWHGfTowxXT4tUYXQsbFUKI8qx1Ob+1TC2GcB
+         efjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=R7incvgluYs5dTKR2o83cZ4xjLUlYz2zw4AZmoxYKh0=;
+        b=fyWYv1k/92krQel7L+7KzcpWYjBaEwBrFg3CAHTTbgqlXruD5LsnNLQ1EaapFH0Dq+
+         8D3EkJOUO9cqKBRHUY84aEoHy8TTlGDW4tjTey9VUshZwVHyQCFdlfwIVYnaJN+I9kFR
+         l1/SrwXkgmQLK/M4m0GbxehqsRwxits2cTYyIQhBy07oj5WfkoZaNqQSC9l1NN8iiaOC
+         74ZDDQZv87tPgA1+Zxn2lq1O8LG8NjcU9TdHY4uyLvW3Pd7fRowSi9/6wl1LPZLDqBgq
+         V9CgycRf5HDphq51J1NY4TheZLfLgPlXUNIpvTXQbS3FDNFqQrPScX8BZsNafGplojBl
+         NKxw==
+X-Gm-Message-State: AOAM532pACOu6cBmxCQoiQgZipKWwCtYmKetnY2RysgWMKOyKlnM1CDg
+        +yENJ8RcoWTWrEYapOaAIjQ=
+X-Google-Smtp-Source: ABdhPJz0qcDgW8+C4I/2MCh/cmTTsVEqPv/CztD4vzde27m+23EhRqV4bgrd6uiOBpW+l1Xcx0V59w==
+X-Received: by 2002:a63:8ac9:: with SMTP id y192mr1630526pgd.598.1644031110164;
+        Fri, 04 Feb 2022 19:18:30 -0800 (PST)
+Received: from ?IPV6:2600:8802:b00:4a48:d9cb:da6e:2448:2d1c? ([2600:8802:b00:4a48:d9cb:da6e:2448:2d1c])
+        by smtp.gmail.com with ESMTPSA id s6sm2682161pgk.44.2022.02.04.19.18.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Feb 2022 19:18:29 -0800 (PST)
+Message-ID: <d34fc733-d8ee-5e11-92b2-11a948d656cf@gmail.com>
+Date:   Fri, 4 Feb 2022 19:18:27 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <YfmtxA7fCmbBWK0Z@Ansuel-xps.localdomain>
-References: <20220121210340.32362-1-ansuelsmth@gmail.com> <20220121210340.32362-11-ansuelsmth@gmail.com> <20220125204555.91DB4C340E0@smtp.kernel.org> <61f065b9.1c69fb81.ed14d.b9e2@mx.google.com> <20220125221825.D9B78C340E0@smtp.kernel.org> <YfmtxA7fCmbBWK0Z@Ansuel-xps.localdomain>
-Subject: Re: [PATCH v3 10/15] drivers: clk: qcom: gcc-ipq806x: add additional freq for sdc table
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Date:   Fri, 04 Feb 2022 19:03:54 -0800
-User-Agent: alot/0.10
-Message-Id: <20220205030355.CF26FC004E1@smtp.kernel.org>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH devicetree v3] dt-bindings: phy: Add `tx-p2p-microvolt`
+ property binding
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
+        devicetree@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
+        Holger Brunck <holger.brunck@hitachienergy.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+References: <20220119131117.30245-1-kabel@kernel.org>
+ <74566284-ff3f-8e69-5b7d-d8ede75b78ad@gmail.com>
+ <Yf3egEVYyyXUkklM@robh.at.kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <Yf3egEVYyyXUkklM@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Ansuel Smith (2022-02-01 14:01:40)
-> On Tue, Jan 25, 2022 at 02:18:24PM -0800, Stephen Boyd wrote:
-> > Quoting Ansuel Smith (2022-01-25 13:03:52)
-> > > On Tue, Jan 25, 2022 at 12:45:53PM -0800, Stephen Boyd wrote:
-> > > > Quoting Ansuel Smith (2022-01-21 13:03:35)
-> > > > > Add additional freq supported for the sdc table.
-> > > > >=20
-> > > > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > > > ---
-> > > > >  drivers/clk/qcom/gcc-ipq806x.c | 1 +
-> > > > >  1 file changed, 1 insertion(+)
-> > > > >=20
-> > > > > diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gc=
-c-ipq806x.c
-> > > > > index 77bc3d94f580..dbd61e4844b0 100644
-> > > > > --- a/drivers/clk/qcom/gcc-ipq806x.c
-> > > > > +++ b/drivers/clk/qcom/gcc-ipq806x.c
-> > > > > @@ -1292,6 +1292,7 @@ static const struct freq_tbl clk_tbl_sdc[] =
-=3D {
-> > > > >         {  20210000, P_PLL8,  1, 1,  19 },
-> > > > >         {  24000000, P_PLL8,  4, 1,   4 },
-> > > > >         {  48000000, P_PLL8,  4, 1,   2 },
-> > > > > +       {  52000000, P_PLL8,  1, 2,  15 }, /* 51.2 Mhz */
-> > > >=20
-> > > > Why the comment and fake rate? Can it be 51200000 instead and drop =
-the
-> > > > comment?
-> > >=20
-> > > I will add the related reason in the commit.
-> > >=20
-> > > We cannot achieve exact 52Mhz(jitter free) clock using PLL8.
-> > > As per the MND calculator the closest possible jitter free clock
-> > > using PLL8 is 51.2Mhz. This patch adds the values, which will provide
-> > > jitter free 51.2Mhz when the requested frequency is 52mhz.
-> >=20
-> > Sounds like this clk should use the round down clk_ops instead of the
-> > round up ones. Then the actual frequency can be in the table.
->=20
-> Some hint on how to do that? This use the rcg generic ops that doesn't
-> use any round. Should I crate some special ops in the rcg driver to
-> implement the round ops?
->=20
 
-Use the clk_rcg2_floor_ops, or if this isn't an rcg2 clk, then make a
-duplicate clk_rcg_floor_ops that does the same thing.
+
+On 2/4/2022 6:18 PM, Rob Herring wrote:
+> On Fri, Jan 21, 2022 at 11:18:09AM -0800, Florian Fainelli wrote:
+>> On 1/19/22 5:11 AM, Marek Behún wrote:
+>>> Common PHYs and network PCSes often have the possibility to specify
+>>> peak-to-peak voltage on the differential pair - the default voltage
+>>> sometimes needs to be changed for a particular board.
+>>>
+>>> Add properties `tx-p2p-microvolt` and `tx-p2p-microvolt-names` for this
+>>> purpose. The second property is needed to specify the mode for the
+>>> corresponding voltage in the `tx-p2p-microvolt` property, if the voltage
+>>> is to be used only for speficic mode. More voltage-mode pairs can be
+>>> specified.
+>>>
+>>> Example usage with only one voltage (it will be used for all supported
+>>> PHY modes, the `tx-p2p-microvolt-names` property is not needed in this
+>>> case):
+>>>
+>>>    tx-p2p-microvolt = <915000>;
+>>>
+>>> Example usage with voltages for multiple modes:
+>>>
+>>>    tx-p2p-microvolt = <915000>, <1100000>, <1200000>;
+>>>    tx-p2p-microvolt-names = "2500base-x", "usb", "pcie";
+>>>
+>>> Add these properties into a separate file phy/transmit-amplitude.yaml,
+>>> which should be referenced by any binding that uses it.
+>>
+>> p2p commonly means peer to peer which incidentally could be confusing,
+>> can you spell out the property entire:
+>>
+>> tx-peaktopeak-microvolt or:
+>>
+>> tx-pk2pk-microvolt for a more compact name maybe?
+> 
+> Peer to peer makes little sense in terms of a voltage. I think this is
+> fine as-is.
+
+Understood, my point was that peer is a word that is commonly used in an 
+environment where you are talking about networking equipment at large. 
+Anyway, feel free to ignore it.
+-- 
+Florian
