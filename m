@@ -2,128 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 156B24AA873
-	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 12:53:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 454294AA879
+	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 13:00:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376453AbiBELxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Feb 2022 06:53:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60068 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358818AbiBELxR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Feb 2022 06:53:17 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0FEDC06109E
-        for <devicetree@vger.kernel.org>; Sat,  5 Feb 2022 03:53:14 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id q198-20020a1ca7cf000000b0037bb52545c6so545424wme.1
-        for <devicetree@vger.kernel.org>; Sat, 05 Feb 2022 03:53:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=rtVdDv1SeuwFPst+Z3HZwK7VoU9zHizWiVCZ6cJ+BIo=;
-        b=cITyTzHhFb0YMzr+7/e0HR4JRCbfeP0KZUPmTysb/4NCGjw33dKpu8L8wjGdrraAy3
-         gV0ontgxmFJZX9kz8NpfJuYkSi6dCKmFGv7wOyu0tLnIIAzj1iyKmi12nCzjq6HauMdu
-         Mobbeh7Myhso5XnpHy2OQnfrc7DX76yyUQX02j1eDINyAdE8cSsvDhwHPpJ2uKiUgjRo
-         VkGC3wQDdc6Vx7VTELanwNrv6LBW+AQIKz8nLyweRXKMiLW3uld6/Vna14X8txEtoDzz
-         +yqWSte/QpfEf0iIq7hgR3lplxyZhXVkBYzF3GmJGCfSmPdfrxqMt0FChwfmBf+GDV3u
-         XEDg==
+        id S1357608AbiBEMAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Feb 2022 07:00:51 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:51870
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1356134AbiBEMAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Feb 2022 07:00:50 -0500
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 0E2633F199
+        for <devicetree@vger.kernel.org>; Sat,  5 Feb 2022 12:00:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644062450;
+        bh=8wAviCrGHuoenIiFKnf3hRWDAAKCr7OKFFOofFuNyGY=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=SqFKeAEcZeOBouql39ZqpkY2cyCjGVTr9JW32Bwu6tgAqEqHQBVpnr1RiGkHMufQd
+         6ma3i30C/Xro/J3GBd6cKuYBSdDNpRaoeemP8JOiMdAGgdPwb/81Z5DZRXFD8wSc4l
+         SN8juFU4rsKq91d5D2wu50ctbmmySLC/VnADZBopNIKXgPiRbP9MVccqqmFJSoi6h5
+         yWsc4D8oDUH1YVRLlnB0NyEmQPS3Er0nnAAoQDTHIutNR9UHxNcCXAFuIbXiOaD+25
+         0HqdBNEkffg4ZTRXl07XXI3psdUgQrywpKlmyUcBIIEFTHO4Q5m3WD3dLvbQv5Y3HO
+         mch7h3I3kEO3g==
+Received: by mail-ed1-f71.google.com with SMTP id o25-20020a056402039900b0040631c2a67dso4505313edv.19
+        for <devicetree@vger.kernel.org>; Sat, 05 Feb 2022 04:00:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=rtVdDv1SeuwFPst+Z3HZwK7VoU9zHizWiVCZ6cJ+BIo=;
-        b=kELNR/UHrqkxP93+3fd7bt1AvsfQ2wvlzdK5NxwgZStyysZzJs+Gy0BIxITX2tROYg
-         bYmc8CBiyxm/985e66nUQf6JH+HSvx85lb+rxJ6IXAwWN7j/7Lblh+8oe3DYDKw/ThYI
-         eXq6DsWCuIp/mk61arzByqc5aq7tTuR67lZ1UAk3S2BJyHB3RCwyJg+X7kbuylbAC9dT
-         tnZ492kzj3c9rcXnsIUSYV/CO5XT33qQpL6Ze7k+Hnt6GobJ2xYLsMKaXvMaFuAizufX
-         DZWTI4BuJuwKleREe+WlS/JU/p7FeN1HmhWUcsSJ9nJ7e86buvRSDCfjhd0AjizBUcWv
-         cO/Q==
-X-Gm-Message-State: AOAM5324gBZ1/b5BoDoZYyPwHb2FwdH94hAVAQANsPr/vrzLQFNcPaWi
-        c+z414t1d98jgsUZPXkth8vThw==
-X-Google-Smtp-Source: ABdhPJxeJTKPg8tXjCf0sXV/a7RsIqYexP/xQzazsuPTUGiHexWKDv2XfFJqtgOghrL+rcR9WPkPWg==
-X-Received: by 2002:a1c:4e07:: with SMTP id g7mr6209206wmh.38.1644061993045;
-        Sat, 05 Feb 2022 03:53:13 -0800 (PST)
-Received: from [192.168.2.116] ([109.78.72.167])
-        by smtp.gmail.com with ESMTPSA id o2sm12859992wmq.21.2022.02.05.03.53.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 05 Feb 2022 03:53:12 -0800 (PST)
-Message-ID: <81cb8c53-c703-1a44-11cd-9f79e169147d@conchuod.ie>
-Date:   Sat, 5 Feb 2022 11:53:10 +0000
+        bh=8wAviCrGHuoenIiFKnf3hRWDAAKCr7OKFFOofFuNyGY=;
+        b=2iApdkKBo7RI8lsez/rGdwGdBBYZ0AMJR1yOP4I/C9uYD7UJKSLVYoaMaOd2JVSac/
+         8vhd8fpO8yuyODA+XFtu/XBnzMh+gF6+B4kuKrxrXb7J8sSD4XAluVHnHJugRrgXRACl
+         4hhmQGovL7w48EZXr1VYzy8TlURJ3/x0c8Cfbg0S69uqP1/NtjtLdB20p9185XO031lo
+         c9WNA/bf2pb5vMwG3z7G04gSVZ6RBL6VZrzoN4XGmCZZFpqKDWSKdYbE9q6W3wuetImq
+         cb5GnDpjTPvqTlj2EzyFr+mhuhvz2Mjm3kyhp+T2AGvaHHtan7aHpUcN3n/O/KbM+azE
+         hZRw==
+X-Gm-Message-State: AOAM531SY7hK8wSoCn90QdaXXjQOaAG3DOuCYl0PbE+6CGuzl3XwXCwz
+        nys3Uc/udZHBG3DIP6JykNUaHnCUDnRbe1v6fm9ARh9YZpAjksVtp9q93O03CKLdqPT0VgvirJC
+        Rwej0lhWRIb5KmhILtBBGPBoy/U2sPtdcJ9qDYt0=
+X-Received: by 2002:a17:907:6d8d:: with SMTP id sb13mr2866367ejc.5.1644062449704;
+        Sat, 05 Feb 2022 04:00:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJy42lu0XD09NIeU/WCEo08QuiM9SqE6oFHO3LNiz0b5WmMfck8Xm2lLt5OxUpWLoNt2kE76iQ==
+X-Received: by 2002:a17:907:6d8d:: with SMTP id sb13mr2866347ejc.5.1644062449471;
+        Sat, 05 Feb 2022 04:00:49 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id m12sm1534185ejr.218.2022.02.05.04.00.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Feb 2022 04:00:48 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/5] dt-bindings: memory: convert to dtschema
+Date:   Sat,  5 Feb 2022 13:00:38 +0100
+Message-Id: <20220205120043.8337-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v5 03/12] dt-bindings: i2c: add bindings for microchip
- mpfs i2c
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Conor.Dooley@microchip.com
-Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, jassisinghbrar@gmail.com,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        lee.jones@linaro.org, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, geert@linux-m68k.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-riscv@lists.infradead.org, krzysztof.kozlowski@canonical.com,
-        bin.meng@windriver.com, heiko@sntech.de, Lewis.Hanly@microchip.com,
-        Daire.McNamara@microchip.com, Ivan.Griffin@microchip.com,
-        atishp@rivosinc.com
-References: <20220131114726.973690-1-conor.dooley@microchip.com>
- <20220131114726.973690-4-conor.dooley@microchip.com>
- <CAL_JsqJkFaGmpAi3eEUROWyOr_PQEZ209TneLhsOkpf3w8jQdw@mail.gmail.com>
- <84e1d43f-4d3d-1501-5bc1-c982272e1ce3@microchip.com>
- <Yf2scqKFRFwWBIlC@robh.at.kernel.org>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <Yf2scqKFRFwWBIlC@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes since v1:
+1. Drop patch 1 (ARM dts) - applied.
+2. Correct description in lpddr2-timings (Dmitry).
 
+Best regards,
+Krzysztof
 
-On 04/02/2022 22:45, Rob Herring wrote:
-> On Mon, Jan 31, 2022 at 03:55:32PM +0000, Conor.Dooley@microchip.com wrote:
->> On 31/01/2022 15:39, Rob Herring wrote:
->>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>
->>> On Mon, Jan 31, 2022 at 5:45 AM <conor.dooley@microchip.com> wrote:
->>>>
->>>> From: Conor Dooley <conor.dooley@microchip.com>
->>>>
->>>> Add device tree bindings for the i2c controller on
->>>> the Microchip PolarFire SoC.
->>>>
->>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>>
->>>
->>> There should not be a blank line here.
->>>
->>> Also, tags should be in chronological order typically. If Daire sent
->>> this patch out with my tag, then the order is correct. If I gave it on
->>> a version you sent, then it goes between Daire's and your S-o-b which
->>> is the case here.
->> Oh, thanks. Probably been messing this up right/left/centre.
->>
->> On another note, I know I'm still missing a RB still on some of the
->> bindings, but what is the acceptance path for this series?
->> Any left over bindings not taken by subsystems via yourself and the dts
->> changes via Palmer's tree?
-> 
-> They should go via subsystems. I can take if you want, but not with
-> missing dependencies. I need my tree working.
+Krzysztof Kozlowski (5):
+  dt-bindings: memory: lpddr3: convert to dtschema
+  dt-bindings: memory: lpddr3: adjust IO width to spec
+  dt-bindings: memory: lpddr3: deprecated manufacturer ID
+  dt-bindings: memory: lpddr3-timings: convert to dtschema
+  dt-bindings: memory: lpddr2-timings: convert to dtschema
 
-I should just drop the dependency on the clock binding from the 
-examples, not really much reason to have it there. Still a dep. for the 
-device tree itself but would just make it easier for the bindings 
-themselves.
+ .../ddr/jedec,lpddr2-timings.yaml             | 135 +++++++++
+ .../memory-controllers/ddr/jedec,lpddr2.yaml  |   6 +-
+ .../ddr/jedec,lpddr3-timings.yaml             | 153 ++++++++++
+ .../memory-controllers/ddr/jedec,lpddr3.yaml  | 265 ++++++++++++++++++
+ .../memory-controllers/ddr/lpddr2-timings.txt |  52 ----
+ .../memory-controllers/ddr/lpddr3-timings.txt |  58 ----
+ .../memory-controllers/ddr/lpddr3.txt         | 107 -------
+ 7 files changed, 555 insertions(+), 221 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2-timings.yaml
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3-timings.yaml
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/lpddr2-timings.txt
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3-timings.txt
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
 
-Conor.
+-- 
+2.32.0
+
