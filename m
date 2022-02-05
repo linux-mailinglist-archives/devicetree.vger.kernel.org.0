@@ -2,97 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFD384AA943
-	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 15:04:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 607294AA9AF
+	for <lists+devicetree@lfdr.de>; Sat,  5 Feb 2022 16:36:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245487AbiBEOEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Feb 2022 09:04:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34266 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238816AbiBEOEo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Feb 2022 09:04:44 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB2DC061346
-        for <devicetree@vger.kernel.org>; Sat,  5 Feb 2022 06:04:41 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id y5-20020a17090aca8500b001b8127e3d3aso8860380pjt.3
-        for <devicetree@vger.kernel.org>; Sat, 05 Feb 2022 06:04:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DSxtWuVyjxBp3vSmV+sz2Wj0h6lAL5DSYj6mAV0ueBc=;
-        b=SyQ+u2WVKQIpLU30ixGAIhEbL3v3I7u6z1w3HyID3Nvm7DCJCV36Nw9+MO5agPe4fZ
-         iOWdhqRH+pcjUtP7pGrMIfN4/JLB+5zZ2IksPp+61aHZWveY5dZMV6bp2FsmCAkmDEeV
-         Yv893IT3JzWmZVyZOcZyafTum7CI/mwoHMyKnWjC5dfQsTebqLal3csthP+QxMr+7Uff
-         Qb7xtgfCcFyfomNx0IVIxLAHFGQVBTb+gCTrWg9i95tlQ1y5vV7SoMD+2Q5D3yARxruN
-         8sjE3UUvpKGAVj5e18wZl6t8iZ4bfgMhLZVynVvddQ4gMHhtV8uEft8SQoGrgY2cBVIr
-         4z6Q==
+        id S241912AbiBEPgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Feb 2022 10:36:23 -0500
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:43654 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232649AbiBEPgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Feb 2022 10:36:23 -0500
+Received: by mail-oi1-f173.google.com with SMTP id t199so12158292oie.10;
+        Sat, 05 Feb 2022 07:36:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DSxtWuVyjxBp3vSmV+sz2Wj0h6lAL5DSYj6mAV0ueBc=;
-        b=SPOMMsnOjq5N7Tq3Z96ewGFyVZmPncKzI7b5TYKLaPnb0k9BhJ28zW68taoAHQb4OY
-         Nh7lAigRQsgtvgeNR6yD8PO/k450A7JMZXoaSnQGSn6OTu8D0EvFSSemgDpST7thC78R
-         gmWLPKV6tQ02+29p2Eceo3JaRnsyaacYzjwGgl2L9QU7nCnBAUJL1+sOWrbr95CkSoG5
-         PT0hRDsIzcSxQ6wHvHBx7R6AdnU07dn+ugBLQzbXttEdqV/4XffdLUhaybD7rToGm/El
-         oSnSNHjix0uIj9lvrqen3RNbAotb8hEHOpaWvBnmM6vi23JuaTMCjCAecHsme1foVJwB
-         Q+BA==
-X-Gm-Message-State: AOAM531M29zPwZsvJ48J9hJJHTJASm4eeLqUrR0IbtmNVsDwEW/hFzKZ
-        j/vU/TdOMQBt20kH33xOte/uyqDSVXk=
-X-Google-Smtp-Source: ABdhPJxv2xTlA7gQM7K4gKIN8kEuup9rNGWRePPE89JQqMeVbPThd9lvlzGSThU/f9CNAciT37n6Iw==
-X-Received: by 2002:a17:902:8f92:: with SMTP id z18mr8179775plo.42.1644069880204;
-        Sat, 05 Feb 2022 06:04:40 -0800 (PST)
-Received: from geminid.DooM ([118.211.233.122])
-        by smtp.gmail.com with ESMTPSA id a38sm6191630pfx.75.2022.02.05.06.04.36
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Y2Qv/CaLIFl6ThWPqox5+Cd+VEGPcdfkgPqDQlBgUio=;
+        b=SKENTsSH9A7zzzEZU3OHtzUe+ZAZfQtOk0+1gLXBfNjgOHQ246KQ6vNm1YOYPrhool
+         zpAdAopMfX0ot2reocgA/z6Dn/UyI20YJz+qacQbMXVdA+EAnLI1izFDXDt3tUG0HTmL
+         1i6Yd79/fbz2luH7XDVCdzA5LQJCydmL6hoyBazJnkiobtdPKcNL6E8TMkSWMudmGaXU
+         T18OwksJkaK21URntLFqZV1rjNtDay6nEcD3iZg4qiIrJbzmnWo7VgmaW9NwYygku0Uw
+         RN7zvq70yRn9hFgPF7NfvQjh7jjBnoD3Lu1ki406c36+ihm4ClmmHWvo262jTj2xVedQ
+         Ftng==
+X-Gm-Message-State: AOAM532pKfTxYnu2SEe4OIwzGpH+O9n/MjbfDSFYloKHK/yrCkPwGpG3
+        orMLdUgVwBkZT38i3gnTJxfc1ZeJjA==
+X-Google-Smtp-Source: ABdhPJyDreVR/y7GuACHhMt7r5+pIjIs7ZZ0nwWWaGud+7VMpAvtUIzeQzwJGJqTK9DuenoOVznIBw==
+X-Received: by 2002:a05:6808:1184:: with SMTP id j4mr1911329oil.73.1644075382872;
+        Sat, 05 Feb 2022 07:36:22 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 100sm1962743oth.75.2022.02.05.07.36.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Feb 2022 06:04:39 -0800 (PST)
-From:   Michael Saunders <mick.saunders@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, heiko@sntech.de,
-        Michael Saunders <mick.saunders@gmail.com>
-Subject: [PATCH] Make Firefly RK3399 enable the mali GPU
-Date:   Sat,  5 Feb 2022 23:33:41 +0930
-Message-Id: <20220205140340.109118-1-mick.saunders@gmail.com>
-X-Mailer: git-send-email 2.35.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
+        Sat, 05 Feb 2022 07:36:22 -0800 (PST)
+Received: (nullmailer pid 542296 invoked by uid 1000);
+        Sat, 05 Feb 2022 15:36:21 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20220205120043.8337-2-krzysztof.kozlowski@canonical.com>
+References: <20220205120043.8337-1-krzysztof.kozlowski@canonical.com> <20220205120043.8337-2-krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: memory: lpddr3: convert to dtschema
+Date:   Sat, 05 Feb 2022 09:36:21 -0600
+Message-Id: <1644075381.224411.542295.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Firefly RK3399 device tree had the GPU status set to disabled as per
-the default from the rk3399.dtsi. This patch sets the status in the
-firefly dts to enable it  for use. I've tested this successfully on my
-2GB Firefly RK3399 board.
+On Sat, 05 Feb 2022 13:00:39 +0100, Krzysztof Kozlowski wrote:
+> Convert the LPDDR3 memory bindings to DT schema format.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  .../memory-controllers/ddr/jedec,lpddr3.yaml  | 266 ++++++++++++++++++
+>  .../memory-controllers/ddr/lpddr3.txt         | 107 -------
+>  2 files changed, 266 insertions(+), 107 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
+> 
 
-Signed-off-by: Michael Saunders <mick.saunders@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-firefly.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-index c4dd2a6b4836..f7b8da4953be 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-@@ -298,6 +298,11 @@ &gmac {
- 	status = "okay";
- };
- 
-+&gpu {
-+  mali-supply = <&vdd_gpu>;
-+  status = "okay";
-+};
-+
- &hdmi {
- 	ddc-i2c-bus = <&i2c3>;
- 	pinctrl-names = "default";
--- 
-2.35.1
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr3.example.dt.yaml:0:0: /example-0/lpddr3/timings@800000000: failed to match any schema with compatible: ['jedec,lpddr3-timings']
+
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml references a file that doesn't exist: Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
+Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml: Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
+
+See https://patchwork.ozlabs.org/patch/1588734
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
