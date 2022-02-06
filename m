@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E3434AAFB0
-	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 14:58:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92CB54AAFC8
+	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 15:00:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241294AbiBFN6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Feb 2022 08:58:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51654 "EHLO
+        id S238571AbiBFN7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Feb 2022 08:59:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241096AbiBFN62 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 08:58:28 -0500
+        with ESMTP id S242495AbiBFN7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 08:59:36 -0500
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A6CC0401DA
-        for <devicetree@vger.kernel.org>; Sun,  6 Feb 2022 05:58:23 -0800 (PST)
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56CBCC0401E2
+        for <devicetree@vger.kernel.org>; Sun,  6 Feb 2022 05:59:23 -0800 (PST)
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 27313405C7
-        for <devicetree@vger.kernel.org>; Sun,  6 Feb 2022 13:58:22 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C2F773F22B
+        for <devicetree@vger.kernel.org>; Sun,  6 Feb 2022 13:59:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644155902;
-        bh=SAhW/a84WS23pzYvstDyhGEwqpxke2RgUd70WOPmdjA=;
+        s=20210705; t=1644155962;
+        bh=SJklMGC7T/EUcj3Xgr8zoxCnRlerqEqIREG1cOIIgnU=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=EdbytoSxKuFL0gCSNSUWXKB0ecI16UBj7SAp6Xm5g4WGxlnWexL014KKwNxcu3JdP
-         AZcWefsI8qeL9azSWx4O/wfUvejBD6yQjLxa/DMV+gltDizLRpF8DpICxrIPEbCI+F
-         BU7/u+TzRaIcJ7AlpmzKtIuBkcNRHOGN8USDHlqlSsEv/60NnERgUaNld3wHjNE1t8
-         UJFiJtQlLDu4haVoohHFfm4vALtcDxeQlvIfd8u1cnEHU6QfLTBG+oKob43Iz9g09V
-         a/eVADGTejVryn3l//zephXasmubqWdLYFpuvvMENl0sODP6bidHEwocTrva+w4lSr
-         5gOeBssEWWNGA==
-Received: by mail-wm1-f72.google.com with SMTP id a8-20020a7bc1c8000000b0037bc4c62e97so503009wmj.0
-        for <devicetree@vger.kernel.org>; Sun, 06 Feb 2022 05:58:22 -0800 (PST)
+        b=YW11ea5uXVN444CaJ2jZT7W4kgqT1ZRyL2/QzBK50Z2ItGNbp+ceYLP6v8vYtNBK6
+         U2JdUAWg1IE3U0PzRMjfB6AMOibK7+VGFN28FFIBwGG4XvqwgkrWDxZgkHIIXSf/X+
+         A5QHfOxl6UR1iRdWZqi/iKhGRmqC5s9IlN+8Z34aXqq0D7gOoMb3PrOSANnNJt5+NP
+         4AbAshSsf5doUktYI6SbPEdqb77D3X9xEdFCzZJJQZnbdf0BmWtrjzTIRjKWyliGsd
+         5tW9Y4mVSJytwFXjWjtjWHQ+Q9ECgjeH5W3sDx1vMmk4Uvz556riByr72IBzooj84w
+         gj5tCzNuTKidA==
+Received: by mail-wm1-f71.google.com with SMTP id r8-20020a7bc088000000b0037bbf779d26so821693wmh.7
+        for <devicetree@vger.kernel.org>; Sun, 06 Feb 2022 05:59:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=SAhW/a84WS23pzYvstDyhGEwqpxke2RgUd70WOPmdjA=;
-        b=b27ybOZJjKrW2vB+MX+eEJe8yDNmOlNdevvrdhvrA5ZxsXmfvvFyTJLi+rjS4owNSz
-         YJYpKnKmiXyUeC3oBsNPmbRVFNTRPuJzqxMF0kWzdMlsbJfDK2oLyfLADBJQ7y07WbqN
-         Mt0l/so75HjFVz5rYRTUNP05SPlE/ZKZVD4GdoTvtI08J45HxjrG5NZYSgPbW6qOXTeZ
-         tyHqjaZM0zrILmwv5eFxdEWt/02V/EFxsYgcrKWk2r7Vyt2TZISN5H06yTheSJhBbcBR
-         xYuPqPt1d1Qw+n503mFoQrmMkLx04j8RKe+hdzBe+yfeh2APigVLEHWX9H0HNmF1aR9k
-         f77A==
-X-Gm-Message-State: AOAM531YV/1wWKkJxdj7leHergucrLvshcCOJFxWHy4o73b4KUcMpS7E
-        NgAOelgohc3ts9j3M434gu2DZNwJ92cmovirUUnHZg3xW82TNekf4zLqoxrwa+4G31cYyV2nLk3
-        aL5LPcY+Q9b9xjmEwwEbWhfHZqcPWXKaB+PZBaVQ=
-X-Received: by 2002:a5d:5981:: with SMTP id n1mr6623849wri.354.1644155900203;
-        Sun, 06 Feb 2022 05:58:20 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJytvwW46TDkRhn6fTvRn7j0B7m4/zg+NDrjv6/9KG89d6habuNMjHscp6X1w/nZLrHXawIU3w==
-X-Received: by 2002:a5d:5981:: with SMTP id n1mr6623839wri.354.1644155900042;
-        Sun, 06 Feb 2022 05:58:20 -0800 (PST)
+        bh=SJklMGC7T/EUcj3Xgr8zoxCnRlerqEqIREG1cOIIgnU=;
+        b=D46oLVXZ+6TvhRPeTHvYsVsSZNt1BATPQmOX6CnbJydvOj5EAOk8mDfspHRa1Ai8bc
+         8n1GNbQdCmhQyPXfdbrDYPZgrTKCFxhbJH+cYj5WC3AfXNREdnErmJvXoYrydGUfFbeV
+         QPLnWZtNsxy+2M3gFvlSq7D2U514EfJkEMRPj0AGncwcdSHZkO5zk79LrkUrQhy3O9dz
+         x/dOsBK1xDE1MSLwG/illtpvLJCNC+dW600aTzt9s6oJGmYCQ51Bee9ZXMez+9gVp3yj
+         5N/O7gNe+lIzYNZEcNdZfIofrTjPaGU3/hrNruiJULKwLeTik0D0CIQqAwiBb+k5SC4a
+         Lzzg==
+X-Gm-Message-State: AOAM533Bwb+DZFS6w/mgllIQOdrBTSdHw5aLSafwwBxIhZnqidu+fmha
+        mqveWwlvdTIezysSl4A4t+/bGS/jmf0KbLqFoPJN08VixKY3k6LufZ0Z5mAtypzh1k5jnSGm/nm
+        CxIE5DU+0iTzcXsAOmBggoH8Y4vV1P36/Xsfb6zk=
+X-Received: by 2002:a05:600c:502b:: with SMTP id n43mr10478968wmr.67.1644155962525;
+        Sun, 06 Feb 2022 05:59:22 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzUW+CjZnoeRLOh3DLXJaGbc+rfq4URa9GWOKXq/P5jT8JUcEp9PlU4lZBC6zLP0TImsGzKjQ==
+X-Received: by 2002:a05:600c:502b:: with SMTP id n43mr10478958wmr.67.1644155962408;
+        Sun, 06 Feb 2022 05:59:22 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id e9sm8296888wrg.60.2022.02.06.05.58.18
+        by smtp.gmail.com with ESMTPSA id m14sm9018167wrp.4.2022.02.06.05.59.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Feb 2022 05:58:19 -0800 (PST)
+        Sun, 06 Feb 2022 05:59:21 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,9 +65,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 7/8] memory: of: parse max-freq property
-Date:   Sun,  6 Feb 2022 14:58:06 +0100
-Message-Id: <20220206135807.211767-8-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v3 8/8] ARM: dts: exynos: remove deprecated unit address for LPDDR3 timings on Odroid
+Date:   Sun,  6 Feb 2022 14:59:18 +0100
+Message-Id: <20220206135918.211990-1-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com>
 References: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com>
@@ -75,7 +75,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,32 +83,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Passing the memory timings maximum frequency as an unit address was
-a workaround and instead 'max-freq' is preferred.  Look for 'max-freq'
-first and then fallback to 'reg'.
+Passing maximum frequency of LPDDR3 memory timings as unit address was
+deprecated in favor of 'max-freq' property.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- drivers/memory/of_memory.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/memory/of_memory.c b/drivers/memory/of_memory.c
-index b94408954d85..bac5c7f34936 100644
---- a/drivers/memory/of_memory.c
-+++ b/drivers/memory/of_memory.c
-@@ -212,8 +212,10 @@ static int of_lpddr3_do_get_timings(struct device_node *np,
- {
- 	int ret;
+diff --git a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
+index 2f65dcf6ba73..35818c4cd852 100644
+--- a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
++++ b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
+@@ -333,8 +333,6 @@ samsung_K3QF2F20DB: lpddr3 {
+ 		compatible	= "samsung,K3QF2F20DB", "jedec,lpddr3";
+ 		density		= <16384>;
+ 		io-width	= <32>;
+-		#address-cells	= <1>;
+-		#size-cells	= <0>;
  
--	/* The 'reg' param required since DT has changed, used as 'max-freq' */
--	ret = of_property_read_u32(np, "reg", &tim->max_freq);
-+	ret = of_property_read_u32(np, "max-freq", &tim->max_freq);
-+	if (ret)
-+		/* Deprecated way of passing max-freq as 'reg' */
-+		ret = of_property_read_u32(np, "reg", &tim->max_freq);
- 	ret |= of_property_read_u32(np, "min-freq", &tim->min_freq);
- 	ret |= of_property_read_u32(np, "tRFC", &tim->tRFC);
- 	ret |= of_property_read_u32(np, "tRRD", &tim->tRRD);
+ 		tRFC-min-tck		= <17>;
+ 		tRRD-min-tck		= <2>;
+@@ -358,10 +356,9 @@ samsung_K3QF2F20DB: lpddr3 {
+ 		tCKESR-min-tck		= <2>;
+ 		tMRD-min-tck		= <5>;
+ 
+-		timings_samsung_K3QF2F20DB_800mhz: timings@800000000 {
++		timings_samsung_K3QF2F20DB_800mhz: timings {
+ 			compatible	= "jedec,lpddr3-timings";
+-			/* workaround: 'reg' shows max-freq */
+-			reg		= <800000000>;
++			max-freq	= <800000000>;
+ 			min-freq	= <100000000>;
+ 			tRFC		= <65000>;
+ 			tRRD		= <6000>;
 -- 
 2.32.0
 
