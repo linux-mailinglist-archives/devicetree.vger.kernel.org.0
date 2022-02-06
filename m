@@ -2,79 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 059234AB16D
-	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 19:53:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A2644AB1B5
+	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 20:36:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347264AbiBFSxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Feb 2022 13:53:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59438 "EHLO
+        id S234807AbiBFTgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Feb 2022 14:36:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347243AbiBFSxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 13:53:05 -0500
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A7129C043185;
-        Sun,  6 Feb 2022 10:53:03 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.88,348,1635174000"; 
-   d="scan'208";a="110316725"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 07 Feb 2022 03:48:00 +0900
-Received: from localhost.localdomain (unknown [10.226.92.17])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 41DD04007554;
-        Mon,  7 Feb 2022 03:47:58 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: serial: renesas,sci: Document RZ/G2UL SoC
-Date:   Sun,  6 Feb 2022 18:47:49 +0000
-Message-Id: <20220206184749.11532-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220206184749.11532-1-biju.das.jz@bp.renesas.com>
-References: <20220206184749.11532-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S230064AbiBFTgJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 14:36:09 -0500
+Received: from mail.schwermer.no (mail.schwermer.no [49.12.228.226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A40BCC06173B;
+        Sun,  6 Feb 2022 11:36:04 -0800 (PST)
+From:   sven@svenschwermer.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=svenschwermer.de;
+        s=mail; t=1644176162;
+        bh=CmVyaRxshIe2DY0x1/NgVOSye1m7rKH8NUHcOZu0m9Q=;
+        h=From:To:Cc:Subject;
+        b=K8kNle2l/UI6tXKI/0usxHXDVsWSmTohpeoh2BVCFPPhs9gqV31m0NgAG59+8srbH
+         FatxJZWlkU5w7jaBbA/wpnh92KSbuXFyCFw89k//OuZJb4u7A685x/vA797ySlUdS4
+         eTv1hF46w7Ha5OQiZPSM8xRk7mDTGgTP+YniOGQZyQBG7ABP3p1X2igfnWxrVnKDgd
+         gHBjzvFuDJeX+lD3robyU2bK7i6jx0ta1c1RSZ/Nl2G34oyNQsJ3BY7s4tSIQvjAt6
+         qwFUeRC+hlIHs9vHll8/DOIsbpJlcYqvBSm/2mrYUPhqaXKUcLaAUFkAnRgYnJ+rVm
+         xvGkMMlmqnZNw==
+To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Cc:     Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        post@lespocky.de, andy.shevchenko@gmail.com
+Subject: [PATCH v4 0/2] Multicolor PWM LED support
+Date:   Sun,  6 Feb 2022 20:35:52 +0100
+Message-Id: <20220206193554.171070-1-sven@svenschwermer.de>
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SCI binding documentation for Renesas RZ/G2UL SoC. No driver changes
-are required as generic compatible string "renesas,sci" will be used as
-a fallback.
+From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- Documentation/devicetree/bindings/serial/renesas,sci.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Hi,
 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,sci.yaml b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-index 8dda4e10e09d..bf7708a7a2c0 100644
---- a/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
-@@ -17,6 +17,7 @@ properties:
-     oneOf:
-       - items:
-           - enum:
-+              - renesas,r9a07g043-sci     # RZ/G2UL
-               - renesas,r9a07g044-sci     # RZ/G2{L,LC}
-               - renesas,r9a07g054-sci     # RZ/V2L
-           - const: renesas,sci            # generic SCI compatible UART
-@@ -67,6 +68,7 @@ if:
-     compatible:
-       contains:
-         enum:
-+          - renesas,r9a07g043-sci
-           - renesas,r9a07g044-sci
-           - renesas,r9a07g054-sci
- then:
+This patch series is getting mature. I have removed the RFC tag for this
+version. The initial discussion happened here [1].
+
+I would appreciate if anyone would test this code. It runs on my
+i.MX6ULL-based hardware.
+
+Best regards,
+Sven
+
+[1]:https://lore.kernel.org/linux-leds/37540afd-f2f1-52dd-f4f1-6e7b436e9595@svenschwermer.de/
+
+Sven Schwermer (2):
+  dt-bindings: leds: Add multicolor PWM LED bindings
+  leds: Add PWM multicolor driver
+
+ .../bindings/leds/leds-pwm-multicolor.yaml    |  75 ++++++++
+ drivers/leds/Kconfig                          |  11 ++
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-pwm-multicolor.c            | 170 ++++++++++++++++++
+ 4 files changed, 257 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+ create mode 100644 drivers/leds/leds-pwm-multicolor.c
+
+Interdiff against v3:
+diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+index bae1f63f6195..e70a46704076 100644
+--- a/drivers/leds/Kconfig
++++ b/drivers/leds/Kconfig
+@@ -560,6 +560,9 @@ config LEDS_PWM_MULTICOLOR
+ 	  This option enables support for PWM driven monochrome LEDs that are
+ 	  grouped into multicolor LEDs.
+ 
++	  To compile this driver as a module, choose M here: the module
++	  will be called leds-pwm-multicolor.
++
+ config LEDS_REGULATOR
+ 	tristate "REGULATOR driven LED support"
+ 	depends on LEDS_CLASS
+diff --git a/drivers/leds/leds-pwm-multicolor.c b/drivers/leds/leds-pwm-multicolor.c
+index bc4d21ddd74a..96712b8ca98e 100644
+--- a/drivers/leds/leds-pwm-multicolor.c
++++ b/drivers/leds/leds-pwm-multicolor.c
+@@ -9,9 +9,11 @@
+ #include <linux/kernel.h>
+ #include <linux/led-class-multicolor.h>
+ #include <linux/leds.h>
++#include <linux/mod_devicetable.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+ #include <linux/platform_device.h>
++#include <linux/property.h>
+ #include <linux/pwm.h>
+ 
+ struct pwm_led {
+@@ -28,17 +30,17 @@ struct pwm_mc_led {
+ static int led_pwm_mc_set(struct led_classdev *cdev,
+ 			  enum led_brightness brightness)
+ {
+-	int i;
+-	unsigned long long duty;
+-	int ret = 0;
+ 	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
+ 	struct pwm_mc_led *priv = container_of(mc_cdev, struct pwm_mc_led, mc_cdev);
++	unsigned long long duty;
++	int ret = 0;
++	int i;
+ 
+ 	led_mc_calc_color_components(mc_cdev, brightness);
+ 
+ 	mutex_lock(&priv->lock);
+ 
+-	for (i = 0; i < mc_cdev->num_colors; ++i) {
++	for (i = 0; i < mc_cdev->num_colors; i++) {
+ 		duty = priv->leds[i].state.period;
+ 		duty *= mc_cdev->subled_info[i].brightness;
+ 		do_div(duty, cdev->max_brightness);
+@@ -59,25 +61,23 @@ static int led_pwm_mc_set(struct led_classdev *cdev,
+ static int led_pwm_mc_probe(struct platform_device *pdev)
+ {
+ 	struct fwnode_handle *mcnode, *fwnode;
+-	int count = 0;
+-	struct pwm_mc_led *priv;
+-	struct mc_subled *subled;
++	struct led_init_data init_data = {};
+ 	struct led_classdev *cdev;
++	struct mc_subled *subled;
++	struct pwm_mc_led *priv;
+ 	struct pwm_led *pwmled;
+-	u32 color;
++	int count = 0;
+ 	int ret = 0;
+-	struct led_init_data init_data = {};
++	u32 color;
+ 
+ 	mcnode = device_get_named_child_node(&pdev->dev, "multi-led");
+-	if (!mcnode) {
+-		dev_err(&pdev->dev, "expected multi-led node\n");
+-		ret = -ENODEV;
+-		goto out;
+-	}
++	if (!mcnode)
++		return dev_err_probe(&pdev->dev, -ENODEV,
++				     "expected multi-led node\n");
+ 
+ 	/* count the nodes inside the multi-led node */
+ 	fwnode_for_each_child_node(mcnode, fwnode)
+-		++count;
++		count++;
+ 
+ 	priv = devm_kzalloc(&pdev->dev, struct_size(priv, leds, count),
+ 			    GFP_KERNEL);
+@@ -90,7 +90,7 @@ static int led_pwm_mc_probe(struct platform_device *pdev)
+ 	subled = devm_kcalloc(&pdev->dev, count, sizeof(*subled), GFP_KERNEL);
+ 	if (!subled) {
+ 		ret = -ENOMEM;
+-		goto destroy_mutex;
++		goto release_mcnode;
+ 	}
+ 	priv->mc_cdev.subled_info = subled;
+ 
+@@ -109,7 +109,7 @@ static int led_pwm_mc_probe(struct platform_device *pdev)
+ 			ret = PTR_ERR(pwmled->pwm);
+ 			dev_err(&pdev->dev, "unable to request PWM: %d\n", ret);
+ 			fwnode_handle_put(fwnode);
+-			goto destroy_mutex;
++			goto release_mcnode;
+ 		}
+ 		pwm_init_state(pwmled->pwm, &pwmled->state);
+ 
+@@ -117,11 +117,11 @@ static int led_pwm_mc_probe(struct platform_device *pdev)
+ 		if (ret) {
+ 			dev_err(&pdev->dev, "cannot read color: %d\n", ret);
+ 			fwnode_handle_put(fwnode);
+-			goto destroy_mutex;
++			goto release_mcnode;
+ 		}
+ 
+ 		subled[priv->mc_cdev.num_colors].color_index = color;
+-		++priv->mc_cdev.num_colors;
++		priv->mc_cdev.num_colors++;
+ 	}
+ 
+ 	init_data.fwnode = mcnode;
+@@ -132,50 +132,36 @@ static int led_pwm_mc_probe(struct platform_device *pdev)
+ 		dev_err(&pdev->dev,
+ 			"failed to register multicolor PWM led for %s: %d\n",
+ 			cdev->name, ret);
+-		goto destroy_mutex;
++		goto release_mcnode;
+ 	}
+ 
+ 	ret = led_pwm_mc_set(cdev, cdev->brightness);
+-	if (ret) {
+-		dev_err(&pdev->dev, "failed to set led PWM value for %s: %d",
+-			cdev->name, ret);
+-		goto destroy_mutex;
+-	}
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret,
++				     "failed to set led PWM value for %s: %d",
++				     cdev->name, ret);
+ 
+ 	platform_set_drvdata(pdev, priv);
+ 	return 0;
+ 
+-destroy_mutex:
+-	mutex_destroy(&priv->lock);
+ release_mcnode:
+ 	fwnode_handle_put(mcnode);
+-out:
+ 	return ret;
+ }
+ 
+-static int led_pwm_mc_remove(struct platform_device *pdev)
+-{
+-	struct pwm_mc_led *priv = platform_get_drvdata(pdev);
+-
+-	mutex_destroy(&priv->lock);
+-	return 0;
+-}
+-
+ static const struct of_device_id of_pwm_leds_mc_match[] = {
+ 	{ .compatible = "pwm-leds-multicolor", },
+-	{},
++	{}
+ };
+ MODULE_DEVICE_TABLE(of, of_pwm_leds_mc_match);
+ 
+ static struct platform_driver led_pwm_mc_driver = {
+ 	.probe		= led_pwm_mc_probe,
+-	.remove		= led_pwm_mc_remove,
+ 	.driver		= {
+ 		.name	= "leds_pwm_multicolor",
+ 		.of_match_table = of_pwm_leds_mc_match,
+ 	},
+ };
+-
+ module_platform_driver(led_pwm_mc_driver);
+ 
+ MODULE_AUTHOR("Sven Schwermer <sven.schwermer@disruptive-technologies.com>");
 -- 
-2.17.1
+2.35.1
 
