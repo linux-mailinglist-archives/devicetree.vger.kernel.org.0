@@ -2,86 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 949A54AAE5A
-	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 09:20:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BE214AAE94
+	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 10:26:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231201AbiBFIU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Feb 2022 03:20:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41990 "EHLO
+        id S232565AbiBFJ0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Feb 2022 04:26:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231131AbiBFIUz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 03:20:55 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CFCBC0401D5;
-        Sun,  6 Feb 2022 00:20:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:
-        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=UZ2JAMX8nDSsRCnVWafI2U6JO6ZmkGBfyN3BR9SHP0Y=; b=fI8nVfDG18tKT4U9QVgGHhoT4r
-        trzSqJIvJgJK+WyYfGot9+K/Q1KM4RjIVLG3FDeDdctHGCiN7ne8NdZ32efXCElFe7KpQRoMvWi8A
-        +6n3Twb5iYS/z9pWyKR0dGK7SvEjRaPx59aopP15nxHCHAdUj9lVq85Fk+dWzZyNZm+Q=;
-Received: from p200300ccff05f6001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff05:f600:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1nGcTL-0006Vm-Pi; Sun, 06 Feb 2022 09:00:36 +0100
-Received: from andi by aktux with local (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1nGcTL-003LEw-8P; Sun, 06 Feb 2022 09:00:35 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, andreas@kemnade.info,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        alistair@alistair23.me, samuel@sholland.org, josua.mayer@jm0.eu,
-        letux-kernel@openphoenux.org
-Subject: [RFC PATCH 6/6] arm: dts: imx6sl: Add EPDC
-Date:   Sun,  6 Feb 2022 09:00:16 +0100
-Message-Id: <20220206080016.796556-7-andreas@kemnade.info>
+        with ESMTP id S232355AbiBFJ0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 04:26:15 -0500
+Received: from hillosipuli.retiisi.eu (retiisi.eu [95.216.213.190])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C87F4C06109E;
+        Sun,  6 Feb 2022 01:26:14 -0800 (PST)
+Received: from lanttu.localdomain (unknown [IPv6:fd35:1bc8:1a6:d3d5::e1:3])
+        by hillosipuli.retiisi.eu (Postfix) with ESMTP id E140E634C90;
+        Sun,  6 Feb 2022 11:18:19 +0200 (EET)
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     linux-acpi@vger.kernel.org
+Cc:     andriy.shevchenko@linux.intel.com, devicetree@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [PATCH 0/4] Shovel firmware specific code to appropriate locations
+Date:   Sun,  6 Feb 2022 11:16:39 +0200
+Message-Id: <20220206091643.276833-1-sakari.ailus@linux.intel.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220206080016.796556-1-andreas@kemnade.info>
-References: <20220206080016.796556-1-andreas@kemnade.info>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Score: -1.0 (-)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend definition of EPDC.
+Hi folks,
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/imx6sl.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+This set moves the implementation of recently added device property API
+functions to OF and ACPI frameworks, where the rest of such functionality
+resides.
 
-diff --git a/arch/arm/boot/dts/imx6sl.dtsi b/arch/arm/boot/dts/imx6sl.dtsi
-index c7d907c5c352..919e86e4fc74 100644
---- a/arch/arm/boot/dts/imx6sl.dtsi
-+++ b/arch/arm/boot/dts/imx6sl.dtsi
-@@ -765,8 +765,11 @@ pxp: pxp@20f0000 {
- 			};
- 
- 			epdc: epdc@20f4000 {
-+				compatible = "fsl,imx6sl-epdc";
- 				reg = <0x020f4000 0x4000>;
- 				interrupts = <0 97 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clks IMX6SL_CLK_EPDC_AXI>, <&clks IMX6SL_CLK_EPDC_PIX>;
-+				clock-names = "axi", "pix";
- 			};
- 
- 			lcdif: lcdif@20f8000 {
+Compile tested.
+
+Note that after some initial confusion, this set actually does depend on
+Andy's patch "device property: Don't split fwnode_get_irq*() APIs in the
+code" to appear in the linux-acpi tree.
+
+Sakari Ailus (4):
+  device property: Convert device_{dma_supported,get_dma_attr} to fwnode
+  ACPI: property: Move acpi_fwnode_device_get_match_data() up
+  device property: Add iomap to fwnode operations
+  device property: Add irq_get to fwnode operation
+
+ drivers/acpi/property.c | 36 +++++++++++++++++++++++++++++++----
+ drivers/base/property.c | 42 ++++++-----------------------------------
+ drivers/of/property.c   | 31 ++++++++++++++++++++++++++++++
+ include/linux/fwnode.h  |  5 +++++
+ 4 files changed, 74 insertions(+), 40 deletions(-)
+
 -- 
 2.30.2
+
 
