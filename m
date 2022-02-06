@@ -2,69 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02B6F4AAD14
-	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 00:46:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 453674AAE59
+	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 09:20:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229613AbiBEXqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Feb 2022 18:46:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60106 "EHLO
+        id S231244AbiBFIUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Feb 2022 03:20:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiBEXqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Feb 2022 18:46:12 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B41C061348;
-        Sat,  5 Feb 2022 15:46:11 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id v19so3236253wrv.6;
-        Sat, 05 Feb 2022 15:46:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=67amdkFUWuBIO08FKhiKfYXgae2z4MWbXEmfuMC+Qms=;
-        b=hKd4wQxWYrhyf+D1JwRfBmwl31Li6YTh8CeanNmEuYWH1jA5xkX1btXPhrnlZ+TNF3
-         jncAg39V9i9/r0zLLyAzyVCUTWNAAnLLUwMIWCrmUcoE7a+lk19X7KaxQONts2+XS7Q4
-         1BItkXSo/QmXqPmr1m0r8+/UnIObs2fTrXD9tmbK6qFzRPU5tMNh44A/bpsFwbiIoawi
-         SnAyAbmARi3VFG9wxCFtbkxmKszVdcK9xD4Ka1XI+cn/tU5BM7eC25m1PPTWhS0W0BGs
-         QauHvlK7GWcHemrbdZssXSRvCllMvcufR3X/gLlKR+29do9N7CSOlISIPCC7bg3Dkr0o
-         +stQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=67amdkFUWuBIO08FKhiKfYXgae2z4MWbXEmfuMC+Qms=;
-        b=Gxmz2UHUH7i2qkzW1gioHsnRdUVIhc1iwtllZrPWCWlW/er8axdl45wHoBM9hNJ27T
-         eS8olHAYV2dsTAD6Bd8emYL1YGSXrkd1zAF6CWPegdTTZyOx5Gxv5ts+Sm0GguSPmJr3
-         /TyW5jAuGtWtT6pJtYhw8BxRf7A+Tl78FIFr4NbS+RPzc24uBF3ZgCFQ996zGiSKOs6F
-         hpdAE9kf8ATNw9dHMAtJ8WzBtjJGUS+qv5HeH/K4nknXLCVOvzYES+vLSOZ243tDc5nQ
-         rXzRCs1aHrX4ehP8oDls+AqbR13k5/xsgLsAEC1dHho8/0Wn2xA69CpB1cRtzk/dfan2
-         1p8w==
-X-Gm-Message-State: AOAM530IjAgFjJ8yXsUAhidXezPXcRf2Y7kEWVj1vo5dsafU6vaoQVX2
-        yGXxBoRZMhHdJqDgvKlBODc=
-X-Google-Smtp-Source: ABdhPJzy8C11TxTT6dFAauGMg+9yI6/z23grQTnVgtPIhn4CY4AWhnII3nZsbSeEJBS2VbCqfqRx+g==
-X-Received: by 2002:a05:6000:178b:: with SMTP id e11mr4513123wrg.634.1644104770317;
-        Sat, 05 Feb 2022 15:46:10 -0800 (PST)
-Received: from localhost.localdomain (cpc92882-cmbg20-2-0-cust452.5-4.cable.virginm.net. [86.31.103.197])
-        by smtp.gmail.com with ESMTPSA id t14sm13644588wmq.43.2022.02.05.15.46.09
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Sat, 05 Feb 2022 15:46:10 -0800 (PST)
-From:   Benjamin Mordaunt <crawford.benjamin15@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Benjamin Mordaunt <crawford.benjamin15@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] add pmu to amlogic meson sm1
-Date:   Sat,  5 Feb 2022 23:45:54 +0000
-Message-Id: <20220205234554.4403-1-crawford.benjamin15@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231201AbiBFIUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 03:20:48 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45719C043185;
+        Sun,  6 Feb 2022 00:20:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=sJ7qWapDIULPUzlvOfkdyR8gpp70UZkOGBb/dECClOU=; b=BM2z0GWY6nd9+LRAz9HQWcpkJc
+        3mDdVyRQP3zqcHsRpHTElNFVxXbuDB1R95YqRuL+rWQj1DoitwUMe9rVtCU4/kXDYpH/SQvsByZ7Q
+        zSZE3bmbdRp4wlq0xt9ni28vcNTboMmF0LHIVap1BlJ1iwcIxbnt4VQp3m5DWPnMY1J4=;
+Received: from p200300ccff05f6001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff05:f600:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1nGcTG-0006Uv-Na; Sun, 06 Feb 2022 09:00:30 +0100
+Received: from andi by aktux with local (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1nGcTG-003LEZ-3I; Sun, 06 Feb 2022 09:00:30 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, andreas@kemnade.info,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alistair@alistair23.me, samuel@sholland.org, josua.mayer@jm0.eu,
+        letux-kernel@openphoenux.org
+Subject: [RFC PATCH 0/6] drm: EPDC driver for i.MX6
+Date:   Sun,  6 Feb 2022 09:00:10 +0100
+Message-Id: <20220206080016.796556-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,41 +57,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
----
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+Add a driver for the Electrophoretic Display Controller found in the
+i.MX6 SoCs.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-index 3d8b1f4f2..4147eecd2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-@@ -6,6 +6,8 @@
- 
- #include "meson-g12-common.dtsi"
- #include <dt-bindings/clock/axg-audio-clkc.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/meson-sm1-power.h>
- #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
- #include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
-@@ -90,7 +92,16 @@ l2: l2-cache0 {
- 			compatible = "cache";
- 		};
- 	};
--
-+	
-+	arm-pmu {
-+		compatible = "arm,cortex-a55-pmu";
-+		interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-+	};
-+	
- 	cpu_opp_table: opp-table {
- 		compatible = "operating-points-v2";
- 		opp-shared;
+In combination with a driver for an EPD PMIC (like the TPS65185 or the
+SY7636A), it works with the EPDC found in i.MX6SLL based devices and the
+EPDC found in i.MX6SL devices.
+
+Support for waveforms might be limited, there was no 4bit waveform found
+which works with the 6SLL but it works with the vendor waveforms of the
+Kobo Clara HD (6SLL), the Tolino Shine 2/3 (6SL).
+On the 6SL devices, also the epdc_E060SCM.fw works but not as brilliant
+as the vendor one.
+
+It does not involve the PXP yet. The NXP/Freescale kernel fork uses that
+for rotation and mysterious waveform handling. That is not planed to be
+upstreamed in the first step.
+
+Also it does not provide any special userspace API to fine-tune updates.
+That is also IMHO something for a second step.
+
+Andreas Kemnade (6):
+  dt-bindings: display: imx: Add EPDC
+  drm: Add skeleton for EPDC driver
+  drm: mxc-epdc: Add display and waveform initialisation
+  drm: mxc-epdc: Add update management
+  ARM: dts: imx6sll: add EPDC
+  arm: dts: imx6sl: Add EPDC
+
+ .../bindings/display/imx/fsl,mxc-epdc.yaml    |  159 +++
+ arch/arm/boot/dts/imx6sl.dtsi                 |    3 +
+ arch/arm/boot/dts/imx6sll.dtsi                |    9 +
+ drivers/gpu/drm/Kconfig                       |    2 +
+ drivers/gpu/drm/Makefile                      |    1 +
+ drivers/gpu/drm/mxc-epdc/Kconfig              |   15 +
+ drivers/gpu/drm/mxc-epdc/Makefile             |    5 +
+ drivers/gpu/drm/mxc-epdc/epdc_hw.c            |  497 +++++++
+ drivers/gpu/drm/mxc-epdc/epdc_hw.h            |    8 +
+ drivers/gpu/drm/mxc-epdc/epdc_regs.h          |  442 ++++++
+ drivers/gpu/drm/mxc-epdc/epdc_update.c        | 1210 +++++++++++++++++
+ drivers/gpu/drm/mxc-epdc/epdc_update.h        |    9 +
+ drivers/gpu/drm/mxc-epdc/epdc_waveform.c      |  189 +++
+ drivers/gpu/drm/mxc-epdc/epdc_waveform.h      |    7 +
+ drivers/gpu/drm/mxc-epdc/mxc_epdc.h           |  151 ++
+ drivers/gpu/drm/mxc-epdc/mxc_epdc_drv.c       |  373 +++++
+ 16 files changed, 3080 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
+ create mode 100644 drivers/gpu/drm/mxc-epdc/Kconfig
+ create mode 100644 drivers/gpu/drm/mxc-epdc/Makefile
+ create mode 100644 drivers/gpu/drm/mxc-epdc/epdc_hw.c
+ create mode 100644 drivers/gpu/drm/mxc-epdc/epdc_hw.h
+ create mode 100644 drivers/gpu/drm/mxc-epdc/epdc_regs.h
+ create mode 100644 drivers/gpu/drm/mxc-epdc/epdc_update.c
+ create mode 100644 drivers/gpu/drm/mxc-epdc/epdc_update.h
+ create mode 100644 drivers/gpu/drm/mxc-epdc/epdc_waveform.c
+ create mode 100644 drivers/gpu/drm/mxc-epdc/epdc_waveform.h
+ create mode 100644 drivers/gpu/drm/mxc-epdc/mxc_epdc.h
+ create mode 100644 drivers/gpu/drm/mxc-epdc/mxc_epdc_drv.c
+
 -- 
-2.34.1
+2.30.2
 
