@@ -2,79 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92CB54AAFC8
-	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 15:00:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD7534AAFE1
+	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 15:13:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238571AbiBFN7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Feb 2022 08:59:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52256 "EHLO
+        id S237569AbiBFON3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Feb 2022 09:13:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242495AbiBFN7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 08:59:36 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56CBCC0401E2
-        for <devicetree@vger.kernel.org>; Sun,  6 Feb 2022 05:59:23 -0800 (PST)
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S236302AbiBFON3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 09:13:29 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7170BC06173B;
+        Sun,  6 Feb 2022 06:13:28 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C2F773F22B
-        for <devicetree@vger.kernel.org>; Sun,  6 Feb 2022 13:59:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644155962;
-        bh=SJklMGC7T/EUcj3Xgr8zoxCnRlerqEqIREG1cOIIgnU=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=YW11ea5uXVN444CaJ2jZT7W4kgqT1ZRyL2/QzBK50Z2ItGNbp+ceYLP6v8vYtNBK6
-         U2JdUAWg1IE3U0PzRMjfB6AMOibK7+VGFN28FFIBwGG4XvqwgkrWDxZgkHIIXSf/X+
-         A5QHfOxl6UR1iRdWZqi/iKhGRmqC5s9IlN+8Z34aXqq0D7gOoMb3PrOSANnNJt5+NP
-         4AbAshSsf5doUktYI6SbPEdqb77D3X9xEdFCzZJJQZnbdf0BmWtrjzTIRjKWyliGsd
-         5tW9Y4mVSJytwFXjWjtjWHQ+Q9ECgjeH5W3sDx1vMmk4Uvz556riByr72IBzooj84w
-         gj5tCzNuTKidA==
-Received: by mail-wm1-f71.google.com with SMTP id r8-20020a7bc088000000b0037bbf779d26so821693wmh.7
-        for <devicetree@vger.kernel.org>; Sun, 06 Feb 2022 05:59:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SJklMGC7T/EUcj3Xgr8zoxCnRlerqEqIREG1cOIIgnU=;
-        b=D46oLVXZ+6TvhRPeTHvYsVsSZNt1BATPQmOX6CnbJydvOj5EAOk8mDfspHRa1Ai8bc
-         8n1GNbQdCmhQyPXfdbrDYPZgrTKCFxhbJH+cYj5WC3AfXNREdnErmJvXoYrydGUfFbeV
-         QPLnWZtNsxy+2M3gFvlSq7D2U514EfJkEMRPj0AGncwcdSHZkO5zk79LrkUrQhy3O9dz
-         x/dOsBK1xDE1MSLwG/illtpvLJCNC+dW600aTzt9s6oJGmYCQ51Bee9ZXMez+9gVp3yj
-         5N/O7gNe+lIzYNZEcNdZfIofrTjPaGU3/hrNruiJULKwLeTik0D0CIQqAwiBb+k5SC4a
-         Lzzg==
-X-Gm-Message-State: AOAM533Bwb+DZFS6w/mgllIQOdrBTSdHw5aLSafwwBxIhZnqidu+fmha
-        mqveWwlvdTIezysSl4A4t+/bGS/jmf0KbLqFoPJN08VixKY3k6LufZ0Z5mAtypzh1k5jnSGm/nm
-        CxIE5DU+0iTzcXsAOmBggoH8Y4vV1P36/Xsfb6zk=
-X-Received: by 2002:a05:600c:502b:: with SMTP id n43mr10478968wmr.67.1644155962525;
-        Sun, 06 Feb 2022 05:59:22 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzUW+CjZnoeRLOh3DLXJaGbc+rfq4URa9GWOKXq/P5jT8JUcEp9PlU4lZBC6zLP0TImsGzKjQ==
-X-Received: by 2002:a05:600c:502b:: with SMTP id n43mr10478958wmr.67.1644155962408;
-        Sun, 06 Feb 2022 05:59:22 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id m14sm9018167wrp.4.2022.02.06.05.59.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Feb 2022 05:59:21 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 8/8] ARM: dts: exynos: remove deprecated unit address for LPDDR3 timings on Odroid
-Date:   Sun,  6 Feb 2022 14:59:18 +0100
-Message-Id: <20220206135918.211990-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com>
-References: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com>
+        by sin.source.kernel.org (Postfix) with ESMTPS id AB5EECE0C07;
+        Sun,  6 Feb 2022 14:13:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F924C340E9;
+        Sun,  6 Feb 2022 14:13:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644156805;
+        bh=6rEPcZDOEiCqd5h93cPWysUEW/ILdSQersDA3Eqm4dA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DcbA1bDNsD5FREkupR/LnejDuqnZYgVFEvdjq3BeqiyfGBmbADbQTBiP8tsnYdITW
+         Ripa7CCJWKxvOq8ff1tT7LrSI3Oi4OAJO2K2447DymG1FmHk0MSj4X0h0tF3c6YQS7
+         FCjB8qnaNyAqcbKzmdYB46UhxEH/9eN5liC5nUlJGpd8wMOABo1Qy0kSch0BHrYzcD
+         i/E26onpyyrZQZNBpBJsRouNvOtWrqrLCL7GP4kVhkR9D9RQK0/BtX576gMo3UUSlD
+         kX1PkDP9I5QZps5SpGtWjU1J6gr7mhxW5o2PDNXgtU5KvQ6OmAUdFmE9Ww/BFkivkM
+         OIjfYGBWpZdCg==
+Date:   Sun, 6 Feb 2022 19:43:20 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Prasad <quic_psodagud@quicinc.com>
+Subject: Re: [PATCHv2 0/9] soc: qcom: llcc: Add LLCC support for SM8450 SoC
+Message-ID: <Yf/XgGSHE9PwYrz0@matsya>
+References: <cover.1643355594.git.quic_saipraka@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1643355594.git.quic_saipraka@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,40 +58,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Passing maximum frequency of LPDDR3 memory timings as unit address was
-deprecated in favor of 'max-freq' property.
+On 28-01-22, 13:17, Sai Prakash Ranjan wrote:
+> This patch series adds support for LLCC on SM8450 SoC. It mainly
+> consists of LLCC driver changes to incorporate newer LLCC HW found
+> on SM8450 SoC and the corresponding DT bits to enable LLCC.
+> Based on qcom/for-next branch.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- arch/arm/boot/dts/exynos5422-odroid-core.dtsi | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+I have tested this on SM8450 QRD and MTP
 
-diff --git a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-index 2f65dcf6ba73..35818c4cd852 100644
---- a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-+++ b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-@@ -333,8 +333,6 @@ samsung_K3QF2F20DB: lpddr3 {
- 		compatible	= "samsung,K3QF2F20DB", "jedec,lpddr3";
- 		density		= <16384>;
- 		io-width	= <32>;
--		#address-cells	= <1>;
--		#size-cells	= <0>;
- 
- 		tRFC-min-tck		= <17>;
- 		tRRD-min-tck		= <2>;
-@@ -358,10 +356,9 @@ samsung_K3QF2F20DB: lpddr3 {
- 		tCKESR-min-tck		= <2>;
- 		tMRD-min-tck		= <5>;
- 
--		timings_samsung_K3QF2F20DB_800mhz: timings@800000000 {
-+		timings_samsung_K3QF2F20DB_800mhz: timings {
- 			compatible	= "jedec,lpddr3-timings";
--			/* workaround: 'reg' shows max-freq */
--			reg		= <800000000>;
-+			max-freq	= <800000000>;
- 			min-freq	= <100000000>;
- 			tRFC		= <65000>;
- 			tRRD		= <6000>;
+Tested-by: Vinod Koul <vkoul@kernel.org>
+
 -- 
-2.32.0
-
+~Vinod
