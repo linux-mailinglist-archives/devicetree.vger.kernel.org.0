@@ -2,118 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAD2B4AB043
-	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 16:35:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A2774AB0AF
+	for <lists+devicetree@lfdr.de>; Sun,  6 Feb 2022 17:42:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235777AbiBFPfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Feb 2022 10:35:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54450 "EHLO
+        id S244988AbiBFQmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Feb 2022 11:42:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233954AbiBFPfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 10:35:53 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44210C06173B;
-        Sun,  6 Feb 2022 07:35:51 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id u6so22282317lfm.10;
-        Sun, 06 Feb 2022 07:35:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=lXH9W2UPYnqV3aAat/o8IqUOFsVADH6rgPsLKGvLDNw=;
-        b=YpuqMo0/ZVHVPkxA/ddPz72Wo0vzlX3wUJiTWGevARBQDfOpYTwBwWe0gcU2+NKaYk
-         RxDUrPyXt1iYPgt3Eu8buAKGyQ1Wj38K1cV/OB/yDcKLI1v3otJVoZvjz3jw4g6jZPb6
-         3nvS137TwRxStoNb4FDHglQLHGF6IGuxnZR+A+Ol8umrLfB3/Zsmbft0ZPQ8a/tJpWyp
-         /oo3L50nEPHSjT1HLTYK1vHq5dt5b3plSDD7kBy9YWcjCuc1Z77qRU3BQlErt2aQPlae
-         7OMaeKtzqmdlaT5BclZMrf6vvAcBPe466QvyYaV/u/AZyzkUDktosCUNMqf/VrZxLRou
-         pWuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=lXH9W2UPYnqV3aAat/o8IqUOFsVADH6rgPsLKGvLDNw=;
-        b=NNLouzNRRzvlA2uu8yM/bK/7t0MC1A140wh08Fkbwq6kJ14rJNGT+xTe0qhUhTWVJn
-         1H5RnuZ+9khRHtLJoNcQCCFxby7+4aPpY7p7XnpxgL89J+jQfEaO7+sB3+X3eNUD6DIa
-         ybGUB51+cYtQXb0CDveJFmJfZm+aY4YFv9kVW9SdcwXUr9qzv/oSAZvQclI1wwbnywlh
-         771LDv+OEHZRfLDG/pUL+r/VELjwa/rw0AVV/6DjfNrz04RipXy8MZheFamPvx1eXqBA
-         Uba+aaJd1B09tAzFRvhUPTmCgERCosOdnGcnGP4EBh2kw8kpEQqZ/UamH8vEn9Wyk9cG
-         mTUw==
-X-Gm-Message-State: AOAM532+jdMuwqpCXbioQQhs9xzY5Zk06qqgwGJH++8IoIgqlrVcAiDc
-        9+slgtx9ioyEvNtJUSN204Q=
-X-Google-Smtp-Source: ABdhPJxc2cNeHKXgw3XaDtDkn1pg8+BRyC2PfbVRpVXxUhMCENtGewUFb0Z4gBJ8D8RSVl6ao9IvTw==
-X-Received: by 2002:a05:6512:3f13:: with SMTP id y19mr5658866lfa.25.1644161749697;
-        Sun, 06 Feb 2022 07:35:49 -0800 (PST)
-Received: from [192.168.2.145] (109-252-138-165.dynamic.spd-mgts.ru. [109.252.138.165])
-        by smtp.googlemail.com with ESMTPSA id t10sm1129565lfe.215.2022.02.06.07.35.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Feb 2022 07:35:49 -0800 (PST)
-Message-ID: <255e0ce7-f9dd-8fa7-db5b-0dac69310ed6@gmail.com>
-Date:   Sun, 6 Feb 2022 18:35:48 +0300
+        with ESMTP id S244829AbiBFQmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 11:42:04 -0500
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F289C0401C1
+        for <devicetree@vger.kernel.org>; Sun,  6 Feb 2022 08:42:03 -0800 (PST)
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eafe:c901:f5f1:f284:117e:4f61])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 7788429DB9A;
+        Sun,  6 Feb 2022 17:42:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1644165720;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=2tUGuwnHub3ohgaQu7AuDy49z5IJSV+VEq/ifqJrvOk=;
+        b=HCeuvXG6e7l7YfnF9qmNsumlTNKIJ8qn+TTtTcvmcAgneaYBWlSBJ2LpAZpJydtTmw89Qo
+        lV+vqCpkoNN66t/jc93t+W4iWsBMI83icqfMeJCCeZw0OMMfblUz+xyr29JICm509eC8tV
+        tY22nJUI2AZaDA1QhrkFrecO2afC1HyULQxP5gaO5Y2McatqdXad4rTUYkGyCSsFN5FRRz
+        Hh0gHFM98Iy9KHnVs/WyvVLODyYgKgaaiO2xTBVe9WsW5wyOKA+jESpXIhEEVJqREuZUEA
+        W+h65Jb/IT88RQJRjfaOU4hQyo0GQ3vHsu3JdlTVu5NCyehz9DGWUPKbKUreTg==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org,
+        Sander Vanheule <sander@svanheule.net>
+Subject: [PATCH v4 0/3] Per-parent domains for realtek-rtl IRQ driver
+Date:   Sun,  6 Feb 2022 17:41:50 +0100
+Message-Id: <cover.1644165421.git.sander@svanheule.net>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 8/8] ARM: dts: exynos: remove deprecated unit address
- for LPDDR3 timings on Odroid
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com>
- <20220206135918.211990-1-krzysztof.kozlowski@canonical.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20220206135918.211990-1-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-06.02.2022 16:59, Krzysztof Kozlowski пишет:
-> Passing maximum frequency of LPDDR3 memory timings as unit address was
-> deprecated in favor of 'max-freq' property.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  arch/arm/boot/dts/exynos5422-odroid-core.dtsi | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-> index 2f65dcf6ba73..35818c4cd852 100644
-> --- a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-> +++ b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-> @@ -333,8 +333,6 @@ samsung_K3QF2F20DB: lpddr3 {
->  		compatible	= "samsung,K3QF2F20DB", "jedec,lpddr3";
->  		density		= <16384>;
->  		io-width	= <32>;
-> -		#address-cells	= <1>;
-> -		#size-cells	= <0>;
->  
->  		tRFC-min-tck		= <17>;
->  		tRRD-min-tck		= <2>;
-> @@ -358,10 +356,9 @@ samsung_K3QF2F20DB: lpddr3 {
->  		tCKESR-min-tck		= <2>;
->  		tMRD-min-tck		= <5>;
->  
-> -		timings_samsung_K3QF2F20DB_800mhz: timings@800000000 {
-> +		timings_samsung_K3QF2F20DB_800mhz: timings {
->  			compatible	= "jedec,lpddr3-timings";
-> -			/* workaround: 'reg' shows max-freq */
-> -			reg		= <800000000>;
-> +			max-freq	= <800000000>;
->  			min-freq	= <100000000>;
->  			tRFC		= <65000>;
->  			tRRD		= <6000>;
+The original implementation for this interrupt controller/router used
+an interrupt-map parser to determine which parent interrupts were
+present. However, this controller is not transparent, so a list of
+parent interrupts seems more appropriate, while also getting rid of the
+assumed routing to parent interrupts.
 
-Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+Additionally, N real cascaded interrupts are implemented, instead of
+handling all input interrupts with one cascaded interrupt. Otherwise it
+is possible that the priority of the parent interrupts is not respected.
+
+Changes since v3:
+Link: https://lore.kernel.org/all/cover.1641739718.git.sander@svanheule.net/
+
+- Patches with fixes were merged, so these are no longer included.
+- Update the devicetree changes to more clearly indicate the controller
+  is not transparent.
+
+Changes since v2 (RFC):
+Link: https://lore.kernel.org/all/cover.1640548009.git.sander@svanheule.net/
+
+- Define new, two-part compatibles for devicetree bindings. The existing format
+  is kept for the old one-part compatible, but deprecated. New compatibles will
+  require a different way of specifying parent interrupts and interrupt routing.
+- Add change to handle all pending SoC interrupts in one go.
+
+Changes since v1 (RFC):
+Link: https://lore.kernel.org/all/cover.1640261161.git.sander@svanheule.net/
+
+- Split some of the changes to limit the patch scope to one issue.
+- Dropped some small (spurious or unneeded) changes
+- Instead of dropping/replacing interrupt-map, the last patches now provide an
+  implementation that amends the current situtation.
+
+Sander Vanheule (3):
+  dt-bindings: interrupt-controller: realtek,rtl-intc: require parents
+  irqchip/realtek-rtl: use parent interrupts
+  irqchip/realtek-rtl: use per-parent domains
+
+ .../realtek,rtl-intc.yaml                     |  82 +++++--
+ drivers/irqchip/irq-realtek-rtl.c             | 231 ++++++++++++------
+ 2 files changed, 221 insertions(+), 92 deletions(-)
+
+-- 
+2.34.1
 
