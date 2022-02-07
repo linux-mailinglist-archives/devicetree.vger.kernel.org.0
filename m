@@ -2,120 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 872FE4ACC01
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 23:21:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57F454ACC1B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 23:39:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244226AbiBGWVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 17:21:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48238 "EHLO
+        id S244609AbiBGWjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 17:39:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242361AbiBGWVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 17:21:36 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C869C06109E;
-        Mon,  7 Feb 2022 14:21:35 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id k18so9749453lji.12;
-        Mon, 07 Feb 2022 14:21:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=dkktLNRU0zmH3cyCEBpe0WEVGWBqGQdfPJQTXBunhSM=;
-        b=hc73tZIWVTZrpAaE4nYlhbUXTRHpuPeIsm/DVzNGGAtNIYKnqKJm38R3lHv/YAZZoe
-         6dumvGazH/DcNklK7C/a2KYRilogiuQE67nQiwDTQXEW+h8RvnvutQUaPNDKrEtlqITV
-         BQUYhHahwRfy9S+z4dGvDPbq4M4mN6v7hCchX7TuqbJVXcpp/4iu4x04EmUVEYxDQ4eT
-         3SlGBwY/LeCES07hoFL1H3GGLx/WNmrpBowUEpuL8n9qkuD3pGLqmxYR/YUf4KpTIkCQ
-         KHFz9BfHnfonI4We0ThJoKxWtfentbyXvGK4XE7po4M0mppcQIBhKbqokvllonrjEnfT
-         ejAA==
+        with ESMTP id S233030AbiBGWjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 17:39:13 -0500
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04EF8C061355;
+        Mon,  7 Feb 2022 14:39:11 -0800 (PST)
+Received: by mail-oo1-f48.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso10096896ooi.1;
+        Mon, 07 Feb 2022 14:39:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=dkktLNRU0zmH3cyCEBpe0WEVGWBqGQdfPJQTXBunhSM=;
-        b=Al5FH8KYAOwHAoN91hZh+X8Hqp9HJpqJuDrltfb6gcku43gyEH4Le1/BPKKwxLoIHe
-         NvJdrZTafn9rKW54+R/CVxACpOWtg2EsXlZmVytgyuOi64Invq+Mt/p4yt9ejf0KBBmx
-         ujAOoaHxwcE/+zhkITRHgMo/scisp0IkNp7aXe24G5wdhgWyPb1JvooEttxRl+XTYOv1
-         VMZN+ictq6/kTfuq6HKFZzbGk2cn/aL/8CiHQvgXed1fbhE3s97t/8eUOIT389LFzfS7
-         dAGYZ+f3vH+0ycbJ7x2kLqfAqYaMNN5DV6MC2N7EgZMcF36BGXE8eF3/YpA9MP6rXeei
-         xQ5A==
-X-Gm-Message-State: AOAM531QcxcTBWfK4Ur96AGF0i/+7jAzh9ibentkZ4TsQ6AFLjxPnncB
-        9QzqBaN/lAcv8M6PwAKQ8ds=
-X-Google-Smtp-Source: ABdhPJy0lK8u0HHeZcS4g5cUIhdkvfCDkT1m8RTeI08c9XX9m06IH6BoZaQ/qPjFO9p38tWv4GXRBQ==
-X-Received: by 2002:a05:651c:17a7:: with SMTP id bn39mr960859ljb.26.1644272493832;
-        Mon, 07 Feb 2022 14:21:33 -0800 (PST)
-Received: from [192.168.2.145] (109-252-138-165.dynamic.spd-mgts.ru. [109.252.138.165])
-        by smtp.googlemail.com with ESMTPSA id d5sm117513lji.61.2022.02.07.14.21.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Feb 2022 14:21:33 -0800 (PST)
-Message-ID: <4d1051bc-fbfa-48d8-79db-52406bc19018@gmail.com>
-Date:   Tue, 8 Feb 2022 01:21:32 +0300
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IAEYoU4WZxdzQ0AUueUGdr4Y36PIDteHLs+fgzky9iM=;
+        b=vmF4zWkcjwU8fkdon331Rrmk5+h5UQg1hbhVBASsyz/+BeO6/9J90mOlOOdaZdpT/g
+         ipPQz06HOZRungtN0flqifllTQ4JP5CBXbT2ZUJzlDh3XVI2JnS9btarU7JmkX6CqHDj
+         XYiIYteeAHsW6yaSoFAiZZJVrXlhJnCPAM1OBGUdQDAE8Qdp+NMy+xMhNux2UQFih6IG
+         nRZXHsYqO0LVO8JcBQqNs3PEJ/R1S073ZBtU1Qs9NjVNLa8ZdviZQAnhHTggJIGTnGGM
+         EL332KIRMVbRhZehWk8HDihFs9VYbSbzGvLhxMpcmWqZcWD8zFDPylt9tzUTs9aQMCzH
+         rRbA==
+X-Gm-Message-State: AOAM532dXHB/e0MNcCFjVyXTZ8PtTcBfIIWu+FPYKNvR71KfUJkyxmiI
+        iWtvRRlBxQ7c8TMrbNNA9w==
+X-Google-Smtp-Source: ABdhPJwrzNc6Ap2gVpUxGZc3Zd+7+dYFX8JCN6v0gc3cl9vHCFnkatJXSpImX8EOHFpqnEQGN8Wxrg==
+X-Received: by 2002:a4a:d303:: with SMTP id g3mr759382oos.70.1644273550228;
+        Mon, 07 Feb 2022 14:39:10 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id c6sm4405840ooo.19.2022.02.07.14.39.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Feb 2022 14:39:09 -0800 (PST)
+Received: (nullmailer pid 1056937 invoked by uid 1000);
+        Mon, 07 Feb 2022 22:39:08 -0000
+Date:   Mon, 7 Feb 2022 16:39:08 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>, Jacopo Mondi <jacopo@jmondi.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [RFC PATCH v2 2/4] media: dt-bindings: media: Document RZ/G2L CRU
+Message-ID: <YgGfjMttGecxcuv+@robh.at.kernel.org>
+References: <20220121010543.31385-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220121010543.31385-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 0/3] Support Sharp LQ101R1SX03 and HannStar HSD101PWW2
- panels
-Content-Language: en-US
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Anton Bambura <jenneron@protonmail.com>
-References: <20220131181208.27101-1-digetx@gmail.com>
-In-Reply-To: <20220131181208.27101-1-digetx@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220121010543.31385-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-31.01.2022 21:12, Dmitry Osipenko пишет:
-> This series adds support for Sharp LQ101R1SX03 and HannStar HSD101PWW2
-> display panels that are used by Asus Transformer tablets, which we're
-> planning to support since 5.17 kernel.
+On Fri, Jan 21, 2022 at 01:05:41AM +0000, Lad Prabhakar wrote:
+> Document the CRU block found on Renesas RZ/G2L SoC's.
 > 
-> Changelog:
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v1->v2
+> * Dropped CSI
+> ---
+>  .../bindings/media/renesas,rzg2l-cru.yaml     | 152 ++++++++++++++++++
+>  1 file changed, 152 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
 > 
-> v4: - Added r-b from Rob Herring that he gave to the LQ101R1SX01 DT patch
->       of v2. I missed to add it to the v3 by accident.
-> 
-> v3: - No changes. Re-sending for 5.18. Device-trees of devices that use
->       these panels were merged to 5.17, so we're missing the display support.
-> 
-> v2: - Added ack from Rob Herring to the HSD101PWW2 binding.
-> 
->     - Updated LQ101R1SX01 binding, like it was suggested by Rob Herring,
->       making LQ101R1SX03 directly compatible with the LQ101R1SX01.
->       Such that ["sharp,lq101r1sx03", "sharp,lq101r1sx01"] could be
->       used in DT. This removes need to update panel driver with the new
->       compatible.
-> 
->     - Improved commit message of the LQ101R1SX03 patch.
-> 
->     - Added my s-o-b to all patches.
-> 
-> Anton Bambura (1):
->   dt-bindings: sharp,lq101r1sx01: Add compatible for LQ101R1SX03
-> 
-> Svyatoslav Ryhel (2):
->   dt-bindings: display: simple: Add HannStar HSD101PWW2
->   drm/panel: simple: Add support for HannStar HSD101PWW2 panel
-> 
->  .../bindings/display/panel/panel-simple.yaml  |  2 ++
->  .../display/panel/sharp,lq101r1sx01.yaml      |  7 ++++-
->  drivers/gpu/drm/panel/panel-simple.c          | 28 +++++++++++++++++++
->  3 files changed, 36 insertions(+), 1 deletion(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> new file mode 100644
+> index 000000000000..a03fc6ef0117
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> @@ -0,0 +1,152 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) 2022 Renesas Electronics Corp.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/renesas,rzg2l-cru.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G2L Camera Data Receiving Unit (CRU)
+> +
+> +maintainers:
+> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> +
+> +description:
+> +  The RZ/G2L Camera Data Receiving Unit (CRU) device provides video input
+> +  capabilities for the Renesas RZ/G2L family of devices.
+> +
+> +  Depending on the instance the Image Processing input is connected to
+> +  external SoC pins or to a CSI-2 receiver.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
 
-Sam, could you please take care of this series? Will be great to see it
-in 5.18 and have the panel to light up Asus TF201 tablet, thanks in advance!
+Don't need oneOf when there is only 1 entry.
+
+> +          - enum:
+> +              - renesas,r9a07g044-cru     # RZ/G2{L,LC}
+> +          - const: renesas,rzg2l-cru
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: image_conv
+> +      - const: image_conv_err
+> +      - const: axi_mst_err
+> +
+> +  clocks:
+> +    items:
+> +      - description: CRU Main clock
+> +      - description: CPU Register access clock
+> +      - description: CRU image transfer clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: vclk
+> +      - const: pclk
+> +      - const: aclk
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: CRU_PRESETN reset terminal
+> +      - description: CRU_ARESETN reset terminal
+> +
+> +  reset-names:
+> +    items:
+> +      - const: presetn
+> +      - const: aresetn
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port node, single endpoint describing a parallel input source.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              hsync-active: true
+> +              vsync-active: true
+> +              bus-width: true
+> +              data-shift: true
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Output port node, describing the RZ/G2L Image Processing module
+> +          connected the CSI-2 receiver
+
+> +
+> +        properties:
+> +          endpoint@0:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description: Endpoint connected to CSI2.
+> +
+> +        anyOf:
+> +          - required:
+> +              - endpoint@0
+
+You can drop all the endpoint stuff. Just 'endpoint' should be valid as 
+well for example. The graph schema covers all that.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - power-domains
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Device node example with CSI-2
+> +  - |
+> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    cru: video@10830000 {
+> +            compatible = "renesas,r9a07g044-cru", "renesas,rzg2l-cru";
+> +            reg = <0x10830000 0x400>;
+> +            interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "image_conv", "image_conv_err", "axi_mst_err";
+> +            clocks = <&cpg CPG_MOD R9A07G044_CRU_VCLK>,
+> +                     <&cpg CPG_MOD R9A07G044_CRU_PCLK>,
+> +                     <&cpg CPG_MOD R9A07G044_CRU_ACLK>;
+> +            clock-names = "vclk", "pclk", "aclk";
+> +            power-domains = <&cpg>;
+> +            resets = <&cpg R9A07G044_CRU_PRESETN>,
+> +                     <&cpg R9A07G044_CRU_ARESETN>;
+> +            reset-names = "presetn", "aresetn";
+> +
+> +            ports {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +
+> +                    port@1 {
+> +                            #address-cells = <1>;
+> +                            #size-cells = <0>;
+> +
+> +                            reg = <1>;
+> +
+> +                            crucsi2: endpoint@0 {
+> +                                    reg = <0>;
+> +                                    remote-endpoint= <&csi2cru>;
+> +                            };
+> +                    };
+> +            };
+> +    };
+> -- 
+> 2.17.1
+> 
+> 
