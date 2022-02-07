@@ -2,99 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E5804ACA5C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 21:26:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7732E4ACA82
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 21:47:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239670AbiBGU0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 15:26:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49520 "EHLO
+        id S229705AbiBGUq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 15:46:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232631AbiBGUYY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 15:24:24 -0500
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E73FCC0401DA;
-        Mon,  7 Feb 2022 12:24:23 -0800 (PST)
-Received: by mail-ot1-f51.google.com with SMTP id w27-20020a9d5a9b000000b005a17d68ae89so11720869oth.12;
-        Mon, 07 Feb 2022 12:24:23 -0800 (PST)
+        with ESMTP id S234251AbiBGU35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 15:29:57 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17970C0401E2;
+        Mon,  7 Feb 2022 12:29:57 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id k25so45212777ejp.5;
+        Mon, 07 Feb 2022 12:29:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=Uq36/CKE/ycVYZTxoYXlgWFz/oj0znO89myMVuBbsjA=;
+        b=BLJbVy/Muk9/3SZFWBdIw3LB7Rriy6diLil3rL1D88f/rLVmPTZ8M5cWEH8r7VGnOS
+         +E8ZBwWhtwTCrChXrY6fK/ql67Tn9MPvx/Z3YTBg3icoGxuQsJ+S5HdGPz2D6L8A4NEi
+         uZ6EeGtt21xRBUxAAu6/OPKsKBsOJ0HunSqhC1wz6bkjlo4r8kpMyY81MSJ5wZ3mXl5y
+         6Xdo6/IZuE8GqQIh7ayLT+1Q7MEwEnlRUVs4/xw+c7bDU/uEah575VVNewZdE/t3gLVm
+         LwLbx+OJwLPjaaJ8kULa1QNsawqJjNPMlEmiklIbP86wH3nThOmDu24NXBPPrseJOuq8
+         NwbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EFWtFTnJpSwgLhq6r6w4pljMn11UZ/W2WRxEYkJ+EFo=;
-        b=EWQYWDvMP14NMq9n9nT2w0JNJOKihtGznqMZHqLmgc2GI2r07Wx+d/ZEZnmhOPtIMk
-         LWqwsCXx1KfgMp60WtJ3DFBGUsXkGHo8sPpzDn1+FtPYuDoLY/3NDrS51w2m0XngiNoR
-         wPA4kubFYLDH0WfrN+NI1KaDANN75+bjcOE76QoLyxzB7eC5Ca7VgnsRcUeASwX8/yq+
-         5MllNMpsy0G3VuRw9pvefvWnqhUFNANPHaQxtuC312R+K0MzNW0Nws6eViAizdO4+wRb
-         ePqCvG6F+uBaMW2AAsyU4Qi8wffMK2V3hdzrD1P6U6KvQfLSzN9lsJif74al3l7OOX1/
-         dECA==
-X-Gm-Message-State: AOAM531r/GHZpkl+DAUUyEtTafBdCOIwRiy7F0S1bMYM4an5Rj/5f1F3
-        fuS/09ZxqICGhyax1Ig6OA==
-X-Google-Smtp-Source: ABdhPJzIJJnRLqMqAko/qcvW1Ml8GLbpjAmJwz23gPjyPp+3wC0WwIXhPvIoYhJfcemgMiOGVIFG9g==
-X-Received: by 2002:a9d:6d07:: with SMTP id o7mr609746otp.363.1644265463239;
-        Mon, 07 Feb 2022 12:24:23 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c6sm4282542ooo.19.2022.02.07.12.24.21
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=Uq36/CKE/ycVYZTxoYXlgWFz/oj0znO89myMVuBbsjA=;
+        b=MZhjwWGSuj/vCJte4ZRtxOwMLTxjFMHE1fItAWrFsWG4MKxNBF2PVsSlGrkqZtGKAb
+         XNuvTwyBx0/2Rtij8H2ybOUIsz1xmcoJ5ahsAw4zsvKau6+850rC0MKICdzNfhVVH7ux
+         Gt++JOSS1/pbWGAaCzVlc7RKztwWQmNJNbc3fYv/0Tm1l23fpj9PHGfeJeEznrxnCYKc
+         LLMF0xg3Gur5tIWQmWMBrBMV8rJ7rbvpHGnb79CuQLVBVMmcu83I4Atz9d1ntjSOWOo8
+         Q5mzHbXteKM9tfEFYneXPGQjyVUPuwNDMcDs5g40OrutcZ4EfDF6B9DCvKUegCydkW1f
+         /pNw==
+X-Gm-Message-State: AOAM532Qbil82J1nE12fU+Oi0FjnZZWjaT4iDiDD/ZUrvbcd/lqqooGF
+        t6DvbIMMhr8XbsCOGKziyWnnttL4rkFSIA==
+X-Google-Smtp-Source: ABdhPJxz7uqc45TMfjTsjZw3nOSngAHXEzBxf7rDzRghYIfwq/UBYUgULxijuRX2Fuq2NA5D+cxxiA==
+X-Received: by 2002:a17:907:a40a:: with SMTP id sg10mr1177185ejc.44.1644265795587;
+        Mon, 07 Feb 2022 12:29:55 -0800 (PST)
+Received: from ?IPv6:2001:a61:24f7:5701:1b0:e3f1:2182:d29c? ([2001:a61:24f7:5701:1b0:e3f1:2182:d29c])
+        by smtp.gmail.com with ESMTPSA id q7sm2806672eds.78.2022.02.07.12.29.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Feb 2022 12:24:22 -0800 (PST)
-Received: (nullmailer pid 846789 invoked by uid 1000);
-        Mon, 07 Feb 2022 20:24:21 -0000
-Date:   Mon, 7 Feb 2022 14:24:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     John Crispin <john@phrozen.org>, Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Bert Vermeulen <bert@biot.com>,
-        Birger Koblitz <mail@birger-koblitz.de>
-Subject: Re: [PATCH v4 1/3] dt-bindings: interrupt-controller:
- realtek,rtl-intc: require parents
-Message-ID: <YgF/9bUh5WOjbd1e@robh.at.kernel.org>
-References: <cover.1644165421.git.sander@svanheule.net>
- <d1920b7b0b882512e628b4e4e93fa8fef1b5364a.1644165421.git.sander@svanheule.net>
+        Mon, 07 Feb 2022 12:29:55 -0800 (PST)
+Message-ID: <e59fce3747428f30afdf77f9839910664e3e8524.camel@gmail.com>
+Subject: Re: [PATCH v5 1/4] iio:frequency:admv1014: add support for ADMV1014
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc:     jic23@kernel.org, robh+dt@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Mon, 07 Feb 2022 21:29:54 +0100
+In-Reply-To: <Yf7AjXsRuhFeFTpD@smile.fi.intel.com>
+References: <20220131100102.15372-1-antoniu.miclaus@analog.com>
+         <Yf7AjXsRuhFeFTpD@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.3 (3.42.3-1.fc35) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d1920b7b0b882512e628b4e4e93fa8fef1b5364a.1644165421.git.sander@svanheule.net>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 06 Feb 2022 17:41:51 +0100, Sander Vanheule wrote:
-> The interrupt router has 32 inputs, and up to 15 outputs connected to
-> the MIPS CPU's interrupts. The way these are mapped to each other is
-> runtime configurable. This controller can also mask individual interrupt
-> sources, and has a status register to indicate pending interrupts. This
-> means the controller is not transparent, and the use of "interrupt-map"
-> inappropriate. Instead, a list of parent interrupts should be specified.
+On Sat, 2022-02-05 at 20:23 +0200, Andy Shevchenko wrote:
+> On Mon, Jan 31, 2022 at 12:00:59PM +0200, Antoniu Miclaus wrote:
+> > The ADMV1014 is a silicon germanium (SiGe), wideband,
+> > microwave downconverter optimized for point to point microwave
+> > radio designs operating in the 24 GHz to 44 GHz frequency range.
 > 
-> Two-part compatibles are introduced to be able to require "interrupts"
-> for new devicetrees. The relevant descriptions are extended or added to
-> more clearly describe the functionality of this controller. The old
-> compatible, with "interrupt-map" and "#address-cells", is deprecated.
-> Interrupt specifiers for new compatibles will require two cells, to
-> indicate the output selection.
+> Excellent job!
+> A few comments / questions below.
 > 
-> To prevent spurious changes to the binding when more SoCs are added,
-> "allOf" is used with one "if", and the compatible enum only has one
-> item.
+> ...
 > 
-> The example is updated to provide a correct example for RTL8380 SoCs.
+> > +config ADMV1014
+> > +       tristate "Analog Devices ADMV1014 Microwave Downconverter"
+> > +       depends on SPI && COMMON_CLK && 64BIT
 > 
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
-> ---
-> Changes in v4:
-> - Indicate more clearly that the controller is not transparent.
-> ---
->  .../realtek,rtl-intc.yaml                     | 82 ++++++++++++++-----
->  1 file changed, 62 insertions(+), 20 deletions(-)
+> Why 64BIT only?
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Could not resist on this one... The thing is that CCF uses unsigned
+long for rates and this part operates in high GHz values. That means,
+as CCF stands, this cannot work on 32bit.
+
+- Nuno Sá
+
+
