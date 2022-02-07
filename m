@@ -2,285 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 159424ACD33
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 02:07:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 209FE4ACD39
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 02:07:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344445AbiBHBDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1344454AbiBHBDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 7 Feb 2022 20:03:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37316 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233015AbiBGXKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 18:10:33 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07A56C061355;
-        Mon,  7 Feb 2022 15:10:32 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9846C60E88;
-        Mon,  7 Feb 2022 23:10:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F9EDC340F2;
-        Mon,  7 Feb 2022 23:10:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644275432;
-        bh=Lcdb4q3h6FG1qReWPKtwv14iRj024HvkZtSOCVum3ZE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=A9I3mZ5okqwJnmnOvQ5mSBofABVE4y5mO0TcPlGxxOBsbAHawMshH3hLUNui6Ji7e
-         WN67qJAu3A+o3B/w3PUKnpyAFgflRbmISStnyKcUB5Re4kAYc8CsHMHbQA+mGzhIVQ
-         IqZKy2dHfrqN98Hi7Beppm3F0UGBrr7RLd4xV3UVW6V1UOOEg6vPRS59NVKWu7GSBX
-         1V30BIBHDRrtdRdOtHkTUieqT9DuO4jYxhRXyKr+JTAKXpKomuZM2dPFolgrf1j6J+
-         RRWjJzHKPUVN6UwnqF0nZHxBNl3M+t9NJTiBZJrRsTrxALGwb2u6RHDnwnhuSuKkVn
-         xPnw2jcz7RnOA==
-Received: by mail-ej1-f54.google.com with SMTP id k25so46267693ejp.5;
-        Mon, 07 Feb 2022 15:10:31 -0800 (PST)
-X-Gm-Message-State: AOAM533UIG/Of2SSaqwKQc3Bk1lgBK48hFg322eylUEnlFMFLYWycq3Z
-        EPkUi57qJUEcu0upsHO/YsdM1/Mr81qlz0naaQ==
-X-Google-Smtp-Source: ABdhPJz7Qj0TuFoWxZhb8cva0V6D9Wp6M2Hdt+CzzUkPA0uqFFqcscoQvCYXutPCout4QIFnwq1QIvKZFgtuPsC7bWE=
-X-Received: by 2002:a17:906:2744:: with SMTP id a4mr1476727ejd.510.1644275430253;
- Mon, 07 Feb 2022 15:10:30 -0800 (PST)
+        with ESMTP id S245636AbiBGXRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 18:17:10 -0500
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82885C061355;
+        Mon,  7 Feb 2022 15:17:09 -0800 (PST)
+Received: by mail-oi1-x231.google.com with SMTP id 4so18697393oil.11;
+        Mon, 07 Feb 2022 15:17:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:content-language:to
+         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=TypSkgHClNw9laVafBd03ztbkjhilyidCbfBGVWWAyM=;
+        b=gLksK20ghnNV76ORBpB0huHY6qnK9H0AMXd8Pob0+FUbavvWLxTgrC+nw4XM7/N3VJ
+         QNTkHT3YfsxI8gYf6ne3m+sGXZ6seaWiZfNBJ/AO+BIDm96lV3cyKkyKthywmO60sQiU
+         evnVhjLKQGJzKvWHUjz3Ah1LUEq7q0NcpWOTRxFR8VZb0tGZk6htmesSum4fFKbPAR1u
+         Y+PhwmsBft3ztd0Kx/77aGvDsdKWulQMym6R8Zw3/c7KJWFI389xF22hZSvZjb9GSUcX
+         Q/6eSAIwtzYXpf45/YYgQhpG4a1ZPMQ3BBagT87c6LmotH7dl2ZoSa0GGxTqf2UJR9jD
+         x24Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=TypSkgHClNw9laVafBd03ztbkjhilyidCbfBGVWWAyM=;
+        b=KSu2oXzPQi7R4aFg+rB7SbXrD6XYVy2BsouCx8I70uj0Rmn3eLBM7gYN5MNiPYliXw
+         AgZo35+PdPMhmbtcyBilz4LTVSK/LZsBQKtOgQ9AOTXW+NiQytOXP+bZBaemuWQq8fL8
+         dWXHPootpkyv97T8sk6rAvDNtI8F0tuq50vQ36brLB7IAIg0WcnMdxbUvncJy9jEgk5l
+         h16aDrx/Hz8tisUz+LuiP1+iQO+pB5dN0DSlwoQG9ltHECya6uJajZPDS5g/9t/R43la
+         llUc0zhHFVfB2UzpSpkTXMT7fkSoowMC5h86lah2uiGK1fyRqzKdxF7Ks4sGgLF6nRsx
+         K+Ww==
+X-Gm-Message-State: AOAM5337uoGgg5WNLB8BvTAEVKAH2SLb1OToruvU4wITK+BH2KdKRR3R
+        hJVngqsNm96U9iAu5H7GaWg8AdX2+DrJJg==
+X-Google-Smtp-Source: ABdhPJw4BfJc80bEgjfrJqZfP4rCzZ1d2OWzW/BMN4K4gjDZXC3F1+CKyB4i8vKHnr/e7uAKXeOx1A==
+X-Received: by 2002:a05:6808:d52:: with SMTP id w18mr608556oik.133.1644275828888;
+        Mon, 07 Feb 2022 15:17:08 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id l4sm4591002otq.50.2022.02.07.15.17.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Feb 2022 15:17:08 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <d6c0649c-db38-49a0-56f5-432db39a99ab@roeck-us.net>
+Date:   Mon, 7 Feb 2022 15:17:06 -0800
 MIME-Version: 1.0
-References: <20220126071932.32615-1-jason-jh.lin@mediatek.com> <20220126071932.32615-7-jason-jh.lin@mediatek.com>
-In-Reply-To: <20220126071932.32615-7-jason-jh.lin@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Tue, 8 Feb 2022 07:10:18 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9oGmop6nKfpHgNgRb6JaJ2CukOyP-vdrBM1G5sxMAkrA@mail.gmail.com>
-Message-ID: <CAAOTY_9oGmop6nKfpHgNgRb6JaJ2CukOyP-vdrBM1G5sxMAkrA@mail.gmail.com>
-Subject: Re: [PATCH v15 06/12] dt-bindings: display: mediatek: add mt8195 SoC
- binding for vdosys0
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fei Shao <fshao@chromium.org>,
-        Moudy Ho <moudy.ho@mediatek.com>, roy-cw.yeh@mediatek.com,
-        CK Hu <ck.hu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
-        DTML <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     sylv <sylv@sylv.io>, Rob Herring <robh@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Roland Stigge <stigge@antcom.de>, devicetree@vger.kernel.org
+References: <cover.1643299570.git.sylv@sylv.io>
+ <224e73b57101aa744244bd396a700d5365eb72ec.1643299570.git.sylv@sylv.io>
+ <Yf23k5vrZ8CEAKda@robh.at.kernel.org>
+ <b55f673b2ba25dbdfeafd4558f5cd2ba2ca0ee39.camel@sylv.io>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v4 3/4] dt-bindings: hwmon: Add binding for max6639
+In-Reply-To: <b55f673b2ba25dbdfeafd4558f5cd2ba2ca0ee39.camel@sylv.io>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jason:
+On 2/7/22 02:03, sylv wrote:
+> On Fri, 2022-02-04 at 17:32 -0600, Rob Herring wrote:
+>> On Thu, Jan 27, 2022 at 05:17:29PM +0100, Marcello Sylvester Bauer
+>> wrote:
+>>> Add Devicetree binding documentation for Maxim MAX6639 temperature
+>>> monitor with PWM fan-speed controller.
+>>>
+>>> The devicetree documentation for the SD3078 device tree.
+>>>
+>>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+>>> ---
+>>>   .../bindings/hwmon/maxim,max6639.yaml         | 112
+>>> ++++++++++++++++++
+>>>   1 file changed, 112 insertions(+)
+>>>   create mode 100644
+>>> Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>> b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>> new file mode 100644
+>>> index 000000000000..570e9fe07503
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>> @@ -0,0 +1,112 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +
+>>> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Maxim max6639
+>>> +
+>>> +maintainers:
+>>> +  - Roland Stigge <stigge@antcom.de>
+>>> +
+>>> +description: |
+>>> +  The MAX6639 is a 2-channel temperature monitor with dual,
+>>> automatic, PWM
+>>> +  fan-speed controller.  It monitors its own temperature and one
+>>> external
+>>> +  diode-connected transistor or the temperatures of two external
+>>> diode-connected
+>>> +  transistors, typically available in CPUs, FPGAs, or GPUs.
+>>> +
+>>> +  Datasheets:
+>>> +
+>>> https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - maxim,max6639
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  '#address-cells':
+>>> +    const: 1
+>>> +
+>>> +  '#size-cells':
+>>> +    const: 0
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - "channel@0"
+>>> +  - "channel@1"
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +patternProperties:
+>>> +  "^channel@[0-1]$":
+>>
+>> fan@...
+> 
+> Makes sense. Looks like i have to adapt the driver code too.
+> 
+>>
+>>> +    type: object
+>>> +    description: |
+>>> +      Represents the two fans and their specific configuration.
+>>> +
+>>> +    properties:
+>>> +      reg:
+>>> +        description: |
+>>> +          The fan number.
+>>> +        items:
+>>> +          minimum: 0
+>>> +          maximum: 1
+>>> +
+>>> +      pwm-polarity:
+>>
+>> See PWM_POLARITY_INVERTED
+>>
+> 
+> Indeed, Thanks.
+> 
+>>
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>>> +        enum: [0, 1]
+>>> +        default: 1
+>>> +        description:
+>>> +          PWM output is low at 100% duty cycle when this bit is
+>>> set to zero. PWM
+>>> +          output is high at 100% duty cycle when this bit is set
+>>> to 1.
+>>> +
+>>> +      pulses-per-revolution:
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>>> +        enum: [1, 2, 3, 4]
+>>> +        default: 2
+>>> +        description:
+>>> +          Value specifying the number of pulses per revolution of
+>>> the controlled
+>>> +          FAN.
+>>> +
+>>> +      rpm-max:
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>>> +        enum: [2000, 4000, 8000, 16000]
+>>> +        default: 4000
+>>> +        description:
+>>> +          Scales the tachometer counter by setting the maximum
+>>> (full-scale) value
+>>> +          of the RPM range.
+>>
+>> Why do you need to know the max? I don't recall needing this for
+>> other
+>> fan controller bindings.
+> 
+> This information is required for setting the internal clock of the
+> tachometer. (See: page 8 table 3). However, we could make it a vendor
+> specific property. In this case i would rather call it "maxim,rpm-
+> range", since this is how it is referred to.
+> 
 
-jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2022=E5=B9=B41=E6=9C=882=
-6=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:19=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Add mt8195 SoC binding to AAL, CCORR, COLOR, DITHER, GAMMA, MERGE,
-> MUTEX, OVL and RDMA yaml schema for vdosys0.
+The maximum fan speed is a common property of fan controllers.
+Exceeding the configured value would typically generate an alarm.
+The same applies to minimum fan speed. As an example, ADT7470
+supports both minimum and maximum fan speed and generates an alarm
+if the fan speed is too low and if it is too high.
 
-Applied to mediatek-drm-next [1], thanks.
+At some point we will need properties for both the minimum and for
+the maximum fan speed. Seems to me we might as well define it now.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
-
-Regards,
-Chun-Kuang
-
->
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> ---
->  .../devicetree/bindings/display/mediatek/mediatek,aal.yaml   | 1 +
->  .../devicetree/bindings/display/mediatek/mediatek,ccorr.yaml | 5 +++++
->  .../devicetree/bindings/display/mediatek/mediatek,color.yaml | 1 +
->  .../bindings/display/mediatek/mediatek,dither.yaml           | 1 +
->  .../devicetree/bindings/display/mediatek/mediatek,gamma.yaml | 1 +
->  .../devicetree/bindings/display/mediatek/mediatek,merge.yaml | 2 ++
->  .../devicetree/bindings/display/mediatek/mediatek,mutex.yaml | 5 +++--
->  .../devicetree/bindings/display/mediatek/mediatek,ovl.yaml   | 5 +++++
->  .../devicetree/bindings/display/mediatek/mediatek,rdma.yaml  | 2 ++
->  9 files changed, 21 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.=
-yaml
-> index 044331f5aacb..225f9dd726d2 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yam=
-l
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yam=
-l
-> @@ -28,6 +28,7 @@ properties:
->                - mediatek,mt2712-disp-aal
->                - mediatek,mt8183-disp-aal
->                - mediatek,mt8192-disp-aal
-> +              - mediatek,mt8195-disp-aal
->            - enum:
->                - mediatek,mt8173-disp-aal
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,cc=
-orr.yaml
-> index ea45b40edee7..6894b6999412 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.y=
-aml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.y=
-aml
-> @@ -25,6 +25,11 @@ properties:
->            - const: mediatek,mt8183-disp-ccorr
->        - items:
->            - const: mediatek,mt8192-disp-ccorr
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt8195-disp-ccorr
-> +          - enum:
-> +              - mediatek,mt8192-disp-ccorr
->
->    reg:
->      maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-color.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,co=
-lor.yaml
-> index 13628f346718..bc83155b3b4c 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.y=
-aml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,color.y=
-aml
-> @@ -38,6 +38,7 @@ properties:
->            - enum:
->                - mediatek,mt8183-disp-color
->                - mediatek,mt8192-disp-color
-> +              - mediatek,mt8195-disp-color
->            - enum:
->                - mediatek,mt8173-disp-color
->    reg:
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-dither.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,d=
-ither.yaml
-> index 2c05e3019c75..9d89297f5f1d 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.=
-yaml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.=
-yaml
-> @@ -27,6 +27,7 @@ properties:
->        - items:
->            - enum:
->                - mediatek,mt8192-disp-dither
-> +              - mediatek,mt8195-disp-dither
->            - enum:
->                - mediatek,mt8183-disp-dither
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-gamma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ga=
-mma.yaml
-> index 89ccb8dbadd7..247baad147b3 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.y=
-aml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.y=
-aml
-> @@ -28,6 +28,7 @@ properties:
->        - items:
->            - enum:
->                - mediatek,mt8192-disp-gamma
-> +              - mediatek,mt8195-disp-gamma
->            - enum:
->                - mediatek,mt8183-disp-gamma
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,me=
-rge.yaml
-> index fae106cf1753..60b21ef5549b 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
-aml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
-aml
-> @@ -23,6 +23,8 @@ properties:
->      oneOf:
->        - items:
->            - const: mediatek,mt8173-disp-merge
-> +      - items:
-> +          - const: mediatek,mt8195-disp-merge
->
->    reg:
->      maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-mutex.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mu=
-tex.yaml
-> index 90f11e12a55e..6eca525eced0 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.y=
-aml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.y=
-aml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/display/mediatek/mediatek,mutex.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->
-> -title: Mediatek display mutex
-> +title: Mediatek mutex
->
->  maintainers:
->    - Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> @@ -36,7 +36,8 @@ properties:
->            - const: mediatek,mt8183-disp-mutex
->        - items:
->            - const: mediatek,mt8192-disp-mutex
-> -
-> +      - items:
-> +          - const: mediatek,mt8195-disp-mutex
->    reg:
->      maxItems: 1
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-ovl.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.=
-yaml
-> index 8e4a62cb9c81..e71f79bc2dee 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yam=
-l
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yam=
-l
-> @@ -35,6 +35,11 @@ properties:
->                - mediatek,mt2712-disp-ovl
->            - enum:
->                - mediatek,mt2701-disp-ovl
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt8195-disp-ovl
-> +          - enum:
-> +              - mediatek,mt8183-disp-ovl
->
->    reg:
->      maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-rdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdm=
-a.yaml
-> index a3c5f4c9fbcd..8ef821641672 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.ya=
-ml
-> @@ -29,6 +29,8 @@ properties:
->            - const: mediatek,mt8173-disp-rdma
->        - items:
->            - const: mediatek,mt8183-disp-rdma
-> +      - items:
-> +          - const: mediatek,mt8195-disp-rdma
->        - items:
->            - enum:
->                - mediatek,mt7623-disp-rdma
-> --
-> 2.18.0
->
+Guenter
