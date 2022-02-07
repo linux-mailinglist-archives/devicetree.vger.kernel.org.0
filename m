@@ -2,87 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7FAB4AC148
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 15:32:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E5084AC24B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 16:02:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1392394AbiBGOaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 09:30:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42792 "EHLO
+        id S231233AbiBGPBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 10:01:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1392302AbiBGO1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 09:27:17 -0500
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5188C0401C2;
-        Mon,  7 Feb 2022 06:27:16 -0800 (PST)
-Received: by mail-vk1-f176.google.com with SMTP id v192so7914484vkv.4;
-        Mon, 07 Feb 2022 06:27:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cjodH+zCyALNPMiBPcK9ULdaejBlXthJyh10D4W5H+s=;
-        b=EbUwSmYFvCtuMoAYBKb2JmNIAewpH6wpfwLzCk0WtvhgjZSLU98Dej1DqbKDauI0OL
-         F09j6drPMHHOXh9bmRjrmDNpxoZAMchEZ4p81UdlMVhh4QIqdlIyPiuziNi9w55HwUTQ
-         +WT1g68kYn3n2xpKw/UOQBxy8BfINJypVEVY4bhLIsQNaZ0m5JZYUt7SmJw2gahSV87L
-         KInJq8RvpW2sybfVl3ex8hXqaNO5lh/rLGhSfqsPmJCXJZJ2h48DDdmzSKykTCwlTwPG
-         XhZhpiDHPh63dpshPgCKONGW1jVOd+S98HOnNREOJH4ioSBgOvsvWrmpEAdcgfB/khQm
-         qABQ==
-X-Gm-Message-State: AOAM532x2pLqdeb3Ct8PGGV8VYUGihOHxPLVRkPJ2Phfbgs6p1gHprG3
-        ziK2IkRCbf9hUvJ52WEn7XCdTS4HAouWbg==
-X-Google-Smtp-Source: ABdhPJxjzlMFKp+AB697Yl9V7tjMIKQZFdvARTj3tr+Gyp0C7v/ezPCntVf43izyDpJC7NBDSUvWGQ==
-X-Received: by 2002:a05:6122:d0b:: with SMTP id az11mr4987562vkb.41.1644244035885;
-        Mon, 07 Feb 2022 06:27:15 -0800 (PST)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
-        by smtp.gmail.com with ESMTPSA id 143sm4737vkw.11.2022.02.07.06.27.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Feb 2022 06:27:15 -0800 (PST)
-Received: by mail-ua1-f45.google.com with SMTP id w18so19759509uar.8;
-        Mon, 07 Feb 2022 06:27:15 -0800 (PST)
-X-Received: by 2002:a67:c198:: with SMTP id h24mr4669413vsj.5.1644244035167;
- Mon, 07 Feb 2022 06:27:15 -0800 (PST)
-MIME-Version: 1.0
-References: <20220204125653.1194249-1-yoshihiro.shimoda.uh@renesas.com> <20220204125653.1194249-3-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20220204125653.1194249-3-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 7 Feb 2022 15:27:04 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXmcbv2Foo8njcCv2hrbG=09uff=WduVa3VDRn331LQSw@mail.gmail.com>
-Message-ID: <CAMuHMdXmcbv2Foo8njcCv2hrbG=09uff=WduVa3VDRn331LQSw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iommu/ipmmu-vmsa: Add support for R-Car Gen4
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        with ESMTP id S1344888AbiBGOj7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 09:39:59 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFC9C0401C1;
+        Mon,  7 Feb 2022 06:39:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 96D4EB8112E;
+        Mon,  7 Feb 2022 14:39:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B541C004E1;
+        Mon,  7 Feb 2022 14:39:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644244796;
+        bh=KEW37Vn+2cncY49KIS7D8oNYHpFzch4EB7d0Q7QeRPg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MeGzrROZZMRJg4xl0aSowKugN09rsNvvnbp4X1900GGg3KfcSeEJXtaxZBLCFEkK5
+         OK93IOZOvBQNbxwN8yfiSdjcYGyWjYhIt7rZQmzLZ8LFWenpxsyblPuK+95OpW2RQa
+         AqcA+6oqCztzfkp5YZlbARZ8vh8jcwTIjb8N+mJjijoQqUmH0aOCuPODb+mVQTFFcl
+         S3Mg3ROU+Hyf5/MJuhmLFFMLVI6QdrpLjOUST6oeujlKdGAReo4+UQnmvJIhQKyzAw
+         L7JzFeWV3ZkuGXilFg8HxzSkIaL3HymSMxVKteFs6iFX24dvTzws7fi2vNd1HBqAEh
+         JUO+Qafukj3Cg==
+Date:   Mon, 7 Feb 2022 14:39:51 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linus.walleij@linaro.org, Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/9] dt-bindings: i2c: qcom-cci: add description of a
+ vbus-supply property
+Message-ID: <YgEvN0lXXu4lDCN5@sirena.org.uk>
+References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
+ <20220203164629.1711958-3-vladimir.zapolskiy@linaro.org>
+ <Yf1q+wlXo2LAeZX+@ripper>
+ <Yf1zhojUSxlMNZgV@sirena.org.uk>
+ <Yf14LADJ26G9ByZu@ripper>
+ <Yf1/X1rXm4QbyoFN@sirena.org.uk>
+ <846cdc17-891d-2ee4-fc89-7cf6fbdebc1d@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="77v6i4keSC7gNdpP"
+Content-Disposition: inline
+In-Reply-To: <846cdc17-891d-2ee4-fc89-7cf6fbdebc1d@linaro.org>
+X-Cookie: Never give an inch!
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 4, 2022 at 4:49 PM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add support for R-Car Gen4 like r8a779f0 (R-Car S4-8). The IPMMU
-> hardware design of r8a779f0 is the same as r8a779a0. So, rename
-> "r8a779a0" to "rcar_gen4".
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+--77v6i4keSC7gNdpP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Gr{oetje,eeting}s,
+On Mon, Feb 07, 2022 at 04:08:01PM +0200, Vladimir Zapolskiy wrote:
+> On 2/4/22 9:32 PM, Mark Brown wrote:
 
-                        Geert
+> > Oh, good.  I forsee no problems here.  Probably this is something that
+> > should be in the I2C core if it's going to be dynamically managed,
+> > though just setting the supply as always on is probably more expedient.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> vbus-supply property has been added recently to another I2C master controller,
+> see commit c021087c43c8 ("dt-binding: i2c: mt65xx: add vbus-supply property").
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Note that some devices do have supplies that I/O is referenced against
+and it's not clear that this isn't what's goin on here.
+
+> It serves right the same purpose, and its handling is going to be done in i2c
+> core, however since the latter is not yet completed, I would propose to add
+> the property to i2c-bus subnodes of QCOM CCI and its support in the driver,
+> later on both the property and its generic support would be better to see in
+> i2c core.
+
+The bindings are ABI, it doesn't seem like a good idea to add new ABI as
+a temporary bodge.
+
+--77v6i4keSC7gNdpP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIBLzYACgkQJNaLcl1U
+h9AZnQf9EBbe+W5UTJ58SN3Gpo0BI23htPJNTI2R5EO1t8pAc7fps33bC4FBr76S
+e3GF59XlxIa+y2O+z/7WFenvfBs5YK6GD9a7OK6mFEs1YWDZ21KwqqqAR2FU/44y
+vrCys6ppaxHFyzmCb5ZBNpk2uZYj+RI4IadtYECMukVT1/a+HOnqadFmLWH8VGjE
++PSBQKw0uCMr5yQWmsclbWLxo8e9fTvdq75dCwIouZdQtBzpx7xp9xgBdLEnLnQO
++l1dkjjk919CbKOysa7+B7Jhx1ZiOBQE1ee9pAWHD2c09WaDfexAsaMkgeovZt7O
+9CFtIDrevwLJ3wdtXKwPNfdRSy/HBQ==
+=x0wC
+-----END PGP SIGNATURE-----
+
+--77v6i4keSC7gNdpP--
