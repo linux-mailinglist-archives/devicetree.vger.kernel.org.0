@@ -2,137 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DD1F4AB833
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:01:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48ADB4AB863
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:13:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245573AbiBGJvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 04:51:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37376 "EHLO
+        id S229740AbiBGKJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 05:09:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245353AbiBGJrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:47:04 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D85FC043188
-        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 01:47:03 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 12B8A3F203
-        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 09:47:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644227222;
-        bh=RpKisFMVOYgXhr4OBFF0I13PIr7NXdi+wKM2xMCNQ4M=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=Gn7MshsG9J1Ke5+3eCcwYpe5i0jScbu/mOcDCL99CFtmDJW5F7VjB3Z4OhybMxt55
-         LBbvP3QIlqGYuHolUrorzj+1xQHrIfG9A+cV82DAnW5YresuS9FOPa17xEHNfpxyAi
-         Yqw+Ac2081joSDl9Gdx9ktZDmLibh6CPYFnzxBLLK6AoRp/sqQi6H30k6HjJ/P2mGg
-         hp1gjJoV+O6Xxdvb5K8pe5Z9O8gK6gURhmTYNqiDECPhCwONKzELK2SuKRiZBWgTqE
-         Bxax7DtsvHf4Tk5QsYO+ZtRlFEpfhOf0/XzVizRFaPWNg1GGC6y4g3Ihbl9Gi6vH5P
-         Qo+npaKNuKHXA==
-Received: by mail-ed1-f69.google.com with SMTP id f6-20020a0564021e8600b0040f662b99ffso1573959edf.7
-        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 01:47:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=RpKisFMVOYgXhr4OBFF0I13PIr7NXdi+wKM2xMCNQ4M=;
-        b=Y8rxa8urlXlLS6H2lLbynhH/0K6oHAWSeJsLvnVyCdRt+BW59Y5r7jOqg0PU9v+O7Y
-         damtQqRCYu8ihh2tOw49VkUNf3FN+6e7LX6YCtaQRiuI3xF9wYsTgoUtMc1WlwS5ANUB
-         6l/T8u0cvfHKz4Oi6xl7kZXV93AUbMRj+AJ8poVMJbred+C2KU4YhvBqhYq8qXObC7sX
-         +hglR1xXrvoIXW+FFMfKDOWIig6wUwImgXh0JJBRfwCm/iGd5cJNfUNGv7r54KFRVoUA
-         4vPXF1tkeJYHNmjfziDAlWFHNmI82FcEyCNzSIKv//uCg+ZJWDrElubV7C0o4e2P8HWx
-         9ygQ==
-X-Gm-Message-State: AOAM532zNVrSFTAvSioT8iSYWVuA0Wh14M3qsN0kZZldhJI+cetla6wN
-        hxTwDypMfrwH8xPOf0SCarFGSK0p1Ndu/5eY0rIbdg+TH40R2UmU5ghmnJRQn4Gxt5jMSiaJTZn
-        uyiweGwcy3rLpVp111nlMTRFgT9/qTUA/ElITTjI=
-X-Received: by 2002:a17:907:3da1:: with SMTP id he33mr9059618ejc.603.1644227221799;
-        Mon, 07 Feb 2022 01:47:01 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJw1BoRtqvleLXKJ94x9jr4A9T/K/xfXE9FqqRN0ilJdw6S1IME3NnflwItPXK1N2kfs64wGqQ==
-X-Received: by 2002:a17:907:3da1:: with SMTP id he33mr9059600ejc.603.1644227221642;
-        Mon, 07 Feb 2022 01:47:01 -0800 (PST)
-Received: from [192.168.0.86] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id o3sm108814edt.67.2022.02.07.01.47.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Feb 2022 01:47:01 -0800 (PST)
-Message-ID: <88fcdbe6-5fef-d9cc-a645-69e35230cdeb@canonical.com>
-Date:   Mon, 7 Feb 2022 10:47:00 +0100
+        with ESMTP id S1351034AbiBGJzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:55:42 -0500
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com [66.111.4.224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA1C6C043181;
+        Mon,  7 Feb 2022 01:55:40 -0800 (PST)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 3A1B65801B4;
+        Mon,  7 Feb 2022 04:55:40 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 07 Feb 2022 04:55:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; bh=LzpW5U29/mV3TnArXep7XidAoi+6P2KaOjL2Uu
+        SGyY8=; b=MwrJLKGMyPYfjGSbDCS1Bf2SMrC4nOsXhJrjqKdZd8qTYTpfxFpND3
+        /gsSGltSjOBoQkC5J+m/YTzVMLI1mmXh+5+Q7mtXzUvgmm7t9V52tqKFcEbkw4O7
+        Q3N7WqUigvXrK/4VjQgdBAvxpcNzTRvBxF2csTyNz68ZthjZ/XEQTPwSXPvXJIQJ
+        vP3qaDy5m0exlpNtsVHI/m6tSUU6yHnYrggo5LX7AAc+Q+FmmNCKwuEWt2KBhEUs
+        9IZiCOxQp1WUR4fMwgFjBTLDbiUmezRa5+S/J/pC1Vh9PKGrplN9PmtuZtUOHz3u
+        LkzM/UkUdr40WIWgRTwBGIDlyoNBmcrg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=LzpW5U29/mV3TnArX
+        ep7XidAoi+6P2KaOjL2UuSGyY8=; b=Y1H9v6AU1pfVmn3nNPk08l9+B0J+9pnKa
+        ZdiHbNsx/uiyxDrhDBw7CzGOtP9+Kb5rwIZviATjfFSqLYnFsw4M1p0KNG0kF3cA
+        nIr35V2XkfxDylGVAmNHwoMXfREpbtbhsj5jJwdTOVj0nUj1p/vQ1RhvkJ8vtsRk
+        glIk5rqme0zB7Zo05AGElNuMItJyD3AWIXQ+IEDb9YqXayoD3ofbrY36N8q3Uxt0
+        afK9Mmb3Pies1SrH2FzMX9hmZ6hguz1aNUpRkh0hlO6ap0HcoRSIdT3Z6K1EODwm
+        74lLGaCBl3U1Os+F1fic0CaLmu0zQ+g9wQW3W0dDGQ4Gq8XxG2TOA==
+X-ME-Sender: <xms:muwAYnnfH21w3ZcYr9vUpgzcYUGx-F97VwZGwYnhXbtwy5sjkbjmlQ>
+    <xme:muwAYq342lI5EVIWLeSOgymB5EkMPpM83WSbTo2S1Ddf1QJ8YI4_vTvy-qqLcqMe5
+    25lNsFX3peeqlY8BSc>
+X-ME-Received: <xmr:muwAYtqngz_qQbtbcklfBTqPSDbjELfpHcmEOdPhIp7zo5lxGBSTdL6SPfFktGE0VAJqm1TRsBCVotVZouaprw9NlmTI9CDbtEgJupw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrheehgddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:muwAYvm_t2Eh25_r1lKUHHTlvfu7vKe8Hy4YNn4zFvateXTN_9PEgg>
+    <xmx:muwAYl03htUu29oGMPledVUjxdmcSi0sIAWKVMU18XH9LVClhf96fw>
+    <xmx:muwAYuu8hbBa_2DGNEEwR7-AmlflacezEtyRO2ZJtIF__L1_t4yamQ>
+    <xmx:nOwAYsue7NANvZAY5nXD7ySAL8rq_35RGFbNNtBo5k9smbwHLxm1mg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 7 Feb 2022 04:55:38 -0500 (EST)
+Date:   Mon, 7 Feb 2022 10:55:35 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
+        Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 23/66] media: sun6i-csi: Tidy up v4l2 code
+Message-ID: <20220207095535.bvkenjwnrawbh66j@houat>
+References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
+ <20220205185429.2278860-24-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 0/5] mfd/extcon/regulators: max77843: add
- dtschema/bindings
-Content-Language: en-US
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>
-References: <20220111174805.223732-1-krzysztof.kozlowski@canonical.com>
- <1bebedb9-644f-783d-492c-84a5de91720d@canonical.com>
- <YgDnUNCNCO+JLyHU@google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <YgDnUNCNCO+JLyHU@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="z2k626xkldr63pmc"
+Content-Disposition: inline
+In-Reply-To: <20220205185429.2278860-24-paul.kocialkowski@bootlin.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2022 10:33, Lee Jones wrote:
-> On Sun, 06 Feb 2022, Krzysztof Kozlowski wrote:
-> 
->> On 11/01/2022 18:48, Krzysztof Kozlowski wrote:
->>> Hi,
->>>
->>> The max77843 shares some parts with max77693 but it lacked bindings.  All
->>> its compatibles were undocumented.  Add basic bindings for max77843,
->>> matching existing devicetree.  These are not complete bindings, but
->>> rather reverse-engineered to match current state.
->>>
->>> I do not have access to device with MAX77843, so if anyone else
->>> volunteers to be the bindings maintainer, please join.
->>>
->>> Changes since v1
->>> ================
->>> 1. MFD: Use absolute path to schemas.
->>> 2. Regulator: mention all allowed properties,
->>>    additionalProperties=false, add min/max values for voltages and
->>>    current, don't use patternProperties when not needed.
->>> 3. extcon: Use absolute path to schemas.
->>>
->>> Dependencies
->>> ============
->>> 1. Patch 1/5 (dts): nothing depends on it, sending here so Rob's automatic
->>>    checker won't complain about DTS.
->>>    I will take it via Samsung SoC tree.
->>>
->>> 2. The patch 4/5 (mfd bindings) depends on regulator and extcon, so they
->>>    should come together (2+3+4+5).
->>>
->> Dear Lee,
->>
->> This patchset was reviewed and there are no outstanding issues. Could
->> you pick up patches 2-5 (skipping DTS patch) via MFD tree?
-> 
-> Are the subsystem maintainers not going to review/ack?
-> 
 
-Would be nice to have them, but maybe since these are dt-bindings maybe
-they were skipped? Or maybe it was the end-of-year holidays?
+--z2k626xkldr63pmc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I can resend hoping it will trigger more acks. Do you wish me to resend?
+On Sat, Feb 05, 2022 at 07:53:46PM +0100, Paul Kocialkowski wrote:
+> Various cosmetic improvements to the v4l2 registration code, with
+> renames, lowerings, etc. The cleanup function is moved down after
+> setup. No functional change intended.
+>=20
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 
-Best regards,
-Krzysztof
+Reviewed-by: Maxime Ripard <maxime@cerno.tech>
+
+Maxime
+
+--z2k626xkldr63pmc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYgDslwAKCRDj7w1vZxhR
+xYUzAP0ej+2jY/iJRXJJW8CJHTu9z9F4r55daJfJr9TYHTjmzAD/T7cUtfZlL39G
+0syT9Uej1bcktNVjzCz1cIxmQn9AFAo=
+=3IsS
+-----END PGP SIGNATURE-----
+
+--z2k626xkldr63pmc--
