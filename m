@@ -2,146 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62E4A4AB72B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:08:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 878634AB6F3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:07:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232392AbiBGIwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 03:52:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36376 "EHLO
+        id S242094AbiBGIwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 03:52:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243028AbiBGInx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 03:43:53 -0500
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5CA1C043181;
-        Mon,  7 Feb 2022 00:43:50 -0800 (PST)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7BAC8E000C;
-        Mon,  7 Feb 2022 08:43:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1644223426;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=aqtEkkE4CxAPCqiyjvQlRqA4fyM6M/H+WbMg+4em3bk=;
-        b=b/8uLavJfT0Pt7E5NoIji6JTEqyrnFW8AjRy2crSYjYa2+QxdwCGQc+rmkX8TpLU5/QH2B
-        uXn/ZDuogrQ6mrqVH7TXf8npZfUUAvpaAkd7mavWrTl8CLvuYVYlLmJiQLtaw8z3KSzzHh
-        0dClE6y7UCGqM1NJDXiyE8WDFc/dV6WZNEG7TJBNCL4fJmBdtmMsgNJEB/BHqTf5ryGxfR
-        3y7pKlclTbaRTjTWl94cEd38+jWj3JUtyi6B+JFfjXc/S9vXarXeekHfSn1K95ltQdwScI
-        KtNMhUPRgqM/sKC1j20xCDvOlzNXAmuXMF4bCE3bSsX+SdJGU3T7pWgvuBjZfA==
-Date:   Mon, 7 Feb 2022 09:43:43 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 02/66] dt-bindings: interconnect: sunxi: Add V3s mbus
- compatible
-Message-ID: <YgDbv8aQEOOjwTb0@aptenodytes>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <20220205185429.2278860-3-paul.kocialkowski@bootlin.com>
- <5386b1f5-9e75-4ce3-6641-bd7667c85d42@sholland.org>
+        with ESMTP id S1349277AbiBGIqk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 03:46:40 -0500
+X-Greylist: delayed 64 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 00:46:38 PST
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A5EFC043181;
+        Mon,  7 Feb 2022 00:46:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1644223598; x=1675759598;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ttltnOpaolu1Yl4FfVEtOxItkj60WBcQ3cFt1tKPFdY=;
+  b=eET9b4CeoBwBvXbyY/12mm94tG5cxdNur837wsMD4XmmChBQcODeCNw1
+   OuNsDYfgXzgop24OwrmsvRF4a489044BU4CVU/EhzTfWaN022y9/l3Bgi
+   Q2MukgDIQ7yapa0b7MnBKLUN1ZFggBDIt578+FQVLdnL6K0Z0eVTg5OvU
+   QSWcFqEtvaRm4VqReg+omfIz65qDtoQj7e/EUu4k/dKkKAZ7ayLJsuO/x
+   qprRfWuhx5C6u3WXS55Op9wwLEiuMPITwutX3/qLSRotLpaN81A+j0n46
+   hqwKgqLNd+VeFcPGHfbsJGY+EZaEBfFqkqKvvb+9Ocvp3dQdbUSjOtQs4
+   w==;
+X-IronPort-AV: E=Sophos;i="5.88,349,1635199200"; 
+   d="scan'208";a="21925656"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 07 Feb 2022 09:45:32 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 07 Feb 2022 09:45:32 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 07 Feb 2022 09:45:32 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1644223532; x=1675759532;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ttltnOpaolu1Yl4FfVEtOxItkj60WBcQ3cFt1tKPFdY=;
+  b=BcOAR5lDe/3PVPsYDDNWXHBGAXPVZaPTfn1VEdC1COFf9jwMxaeZM2vZ
+   WqCq5PEHYT9UTd4UC/nuDUPK5JjV/LPrZIeuq+KaBfGULRzbEWOK5s4d2
+   LWB5bHFo6TVcm+lE0undKhTsrV2GhsQMqo12fJP70W17nSLdc2wmgF7J+
+   +IyULwwlV8z4js2vkP6JHtqVo42u9sY/GdswjISHHHM5P6pNfI6AiGHIH
+   7H9S/HqnQS0H22dHedBQppZiXVcpiPOf7DYWJFvlRmWAf8BjNONqoVHqp
+   hM251iXhJwHpZeIu4E6pw6IK7kMkqfptG9waxWMjV4vnL/x7r/o+0lWml
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.88,349,1635199200"; 
+   d="scan'208";a="21925655"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Feb 2022 09:45:32 +0100
+Received: from schifferm-ubuntu (SCHIFFERM-M2.tq-net.de [10.121.201.138])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id D1266280065;
+        Mon,  7 Feb 2022 09:45:31 +0100 (CET)
+Message-ID: <5944ba0ce568eaf507917799b1dfd89a3d0ca492.camel@ew.tq-group.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am65: disable optional
+ peripherals by default
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, jan.kiszka@siemens.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>
+Date:   Mon, 07 Feb 2022 09:45:29 +0100
+In-Reply-To: <YgDCLaBHA3DDQAUd@atomide.com>
+References: <20220203140240.973690-1-matthias.schiffer@ew.tq-group.com>
+         <20220204143108.653qk2ihnlhsr5aa@prior> <YgDCLaBHA3DDQAUd@atomide.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5-0ubuntu1 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="siWsic/QuhUMqNlN"
-Content-Disposition: inline
-In-Reply-To: <5386b1f5-9e75-4ce3-6641-bd7667c85d42@sholland.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 2022-02-07 at 08:54 +0200, Tony Lindgren wrote:
+> Hi,
+> 
+> * Nishanth Menon <nm@ti.com> [220204 14:30]:
+> > Rob, Tony, Arnd, SoC maintainers,
+> > 
+> > On 15:02-20220203, Matthias Schiffer wrote:
+> > > All peripherals that require pinmuxing or other configuration to
+> > > work
+> > > should be disabled by default. Dependent DTS are adjusted
+> > > accordingly.
+> 
+> Disabling SoC internal devices by default is not a good policy. The
+> devices are available even if not pinned out. Disabling device by
+> default
+> causes runtime PM to not work as the kernel will completely ignore
+> the
+> disabled devices. And this means you add a dependency to some certain
+> version of a bootloader for PM to work.
+> 
+> Additionally tagging devices as disabled by default (and then again
+> re-enabling them in the board specific dts files) is just pointless
+> churn and bloat. See for example commit 12afc0cf8121 ("ARM: dts: Drop
+> pointless status changing for am3 musb") :)
+> 
+> If you really want to disable some devices for memory usage or other
+> reasons, do it in the board specific dts files.
 
---siWsic/QuhUMqNlN
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Attempting to use unmuxed peripherals often leads to ugly errors - I2C
+without pullups appearing busy, UARTs in endless break condition, ...
+Such errors are often seen as defects in hardware or software by people
+who aren't familiar with the internals.
 
-Hi,
+I can see the issue with bootloaders leaving peripherals in an unknown
+state, but I'm not happy with keeping such devices enabled in the
+kernel either.
 
-On Sat 05 Feb 22, 14:14, Samuel Holland wrote:
-> On 2/5/22 12:53 PM, Paul Kocialkowski wrote:
-> > Since the V3s uses the internal mbus, document its compatible.
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > ---
-> >  .../devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-mbus.yaml  | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4=
-i-a10-mbus.yaml b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun=
-4i-a10-mbus.yaml
-> > index 29c9961ee2d8..b67bf9261a6a 100644
-> > --- a/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-m=
-bus.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-m=
-bus.yaml
-> > @@ -31,6 +31,7 @@ properties:
-> >        - allwinner,sun5i-a13-mbus
-> >        - allwinner,sun8i-h3-mbus
-> >        - allwinner,sun8i-r40-mbus
-> > +      - allwinner,sun8i-v3s-mbus
->=20
-> Please enable the expanded binding added in commit 245578ba9f03 ("dt-bind=
-ings:
-> arm: sunxi: Expand MBUS binding")[1] by adding the new compatible to the =
-"if"
-> block lower in the file. That way we can add V3S devfreq support in the f=
-uture
-> without changing that binding.
+Generally I think that it's a bootloader's responsiblity to disable
+unneeded devices - the kernel may not even have a driver for some
+peripherals, leading to the same behaviour as a "disabled" status. For
+this reason I believe that it should always be okay to set unneeded
+devices to "disabled", and it should be considered a safe default.
 
-I had missed that new driver but surely I will expand the updated binding.
+I'm not sure what the consensus on these issues is. I'm more familiar
+with NXP's i.MX and Layerscape SoCs, where it's common to have all
+muxable peripherals set to "disabled" in the base DTSI, and a quick
+grep through a few dts directories gives me the impression that this is
+the case for most other vendors as well.
 
-By the way do you have an explanation about the cell index given to the
-interconnects (after &mbus)?
+Regards,
+Matthias
 
-Paul
 
+> 
+> > https://lore.kernel.org/linux-arm-kernel/20201112183538.6805-1-nm@ti.com/
+> > reversal all over again.
+> > 
+> > Is there a specific pattern we are intending to use here? Because,
+> > if we
+> > are going down this path (which would be a major churn across
+> > multiple
+> > downstream trees as well) - I'd rather have this as a documented
+> > standard and not just a TI approach and will need to be done across
+> > all
+> > K3 devices.
+> > 
+> > Are you aware of such a documented guideline, rather than "word of
+> > mouth"? Maybe I have'nt looked deep enough, but checking..
+> 
+> For SoCs that don't implement runtime PM the policy can be different
+> without causing any harm. But for any SoCs implementing runtime PM,
+> an
+> unknown state from the bootloader is not going to work.
+> 
 > Regards,
-> Samuel
->=20
-> [1]: https://git.kernel.org/torvalds/c/245578ba9f03
->=20
-> >        - allwinner,sun50i-a64-mbus
-> > =20
-> >    reg:
-> >=20
->=20
+> 
+> Tony
 
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
 
---siWsic/QuhUMqNlN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmIA274ACgkQ3cLmz3+f
-v9Hedwf/dd7O5weguOH+OM1fWPM+D01os8bCMg2BVi/eJAzHIsTRwpzNVnuC5GkL
-jEPrckhWzLYI9QVdh9sxYGDe3WtMpG5L0mXxvfM0AruEZ8OA9Up1eZ/4a/pXtjmp
-ge2AkXEcmDd2BbtlMHe8obvpO9se0uDYHjA1MgApK8F5fVwRNn2dmu1zE5dAhufc
-GF3GDEPpS7MLe7ReDnGd9wAt109SEIxDgJ9XeiC1XdumNE5BAnT49+7Qq2Wy4zjf
-HDyDxIoHke+4+66Gf03JpeGikvOIW/8C/rwwh8AWLopLrcNVzyh1AM4BVI83Yaf2
-DMLRURk+Ae/bMrUUReDsYsgpsKZ42w==
-=B81B
------END PGP SIGNATURE-----
-
---siWsic/QuhUMqNlN--
