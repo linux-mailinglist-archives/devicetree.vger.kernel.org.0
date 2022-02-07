@@ -2,118 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7641A4AC82C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 19:03:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B0EE4AC81E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 19:02:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358403AbiBGSCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 13:02:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39304 "EHLO
+        id S1346409AbiBGSCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 13:02:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344764AbiBGSAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 13:00:19 -0500
-X-Greylist: delayed 339 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 10:00:16 PST
-Received: from fwd1.porkbun.com (fwd1.porkbun.com [52.10.174.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43ED9C0401D9;
-        Mon,  7 Feb 2022 10:00:16 -0800 (PST)
-Received: by fwd1.porkbun.com (Postfix, from userid 497)
-        id E276741D09; Mon,  7 Feb 2022 17:49:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh;
-        s=default; t=1644256477;
-        bh=WgWSC1IOBKQNEaPKc/yuujz/f2ZwdXMi8BgaxzlEwSc=;
-        h=From:To:Cc:Subject:Date;
-        b=bZkiW7qxwSd1k0xDaVddX2Tk+1rI1P9NjCWXzvxS8z2g/f3lS5lCO3TOJ+9QtIKBN
-         kcwqYqWWTurFN2sOUNKYbldSCYZrRbTh5mxGeEVPOMLIHMqTrG5IfGibqvkkddsBKm
-         YVNto8jd+Qaqk4f6y/3A2p0rqd6qo8GU5VmXBMSc=
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
-Received: from rayyan-pc.broadband (unknown [90.242.138.108])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: rayyan@ansari.sh)
-        by fwd1.porkbun.com (Postfix) with ESMTPSA id 91D7B43726;
-        Mon,  7 Feb 2022 17:49:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh;
-        s=default; t=1644256189;
-        bh=WgWSC1IOBKQNEaPKc/yuujz/f2ZwdXMi8BgaxzlEwSc=;
-        h=From:To:Cc:Subject:Date;
-        b=J14q/+x9mBBTBYPjjvrMpK/SRO55KDxwG+mHiLf7IBPB1URuD9fc3rQdFKSXGcbSx
-         7XIkIX18mC4m2VLDQ3AsgjOLxBVgBZ+Vn3v8xvuNtNfnUAfgLj7Q63+/Twn7KYd8os
-         MHmO4hCdmqvkA3+Kt1+/twuN6B4aeiqkhsxuEZ5I=
-From:   Rayyan Ansari <rayyan@ansari.sh>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Rayyan Ansari <rayyan@ansari.sh>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S242367AbiBGRz6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 12:55:58 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB7EC0401D9
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 09:55:55 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id EA0283F1E6
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 17:55:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644256552;
+        bh=/iBTMJ+6ky1LxQGNpybYW4PAzENXOdLtJcm5RBsECOE=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=H0pp7Mk2xD8HD259gix62S/VS7HQXH6GhRVFABQ17Wg6mn+hdXGbPNbLMjwoLpGR7
+         b3egBrHX0JTehxf1uTzxd/SyH4uPxSjh8J8gbmWOG9zg4DScr+DGRnRv8avCls2jgb
+         58BrSlOjynbEp1xjthw7ajIJgqf0P62NlZTwLtK6sP8DdMm6oJuBenJ0etlFB7CZU+
+         0AUrJmBhdpDeYFPjcDaDxi16ghGH466u+QCCnlC+ULvEa9F26uUPFsRd82rwfmv8If
+         e4utgMxJqmgHN6rSgFovOvC/TDJLLGNXmErUd8xVDNC3iu988dxdH9lQApyJ5oEd8a
+         fOQqfrLcZ2cCQ==
+Received: by mail-ed1-f69.google.com with SMTP id dn20-20020a05640222f400b0040f8cdfb542so807977edb.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 09:55:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/iBTMJ+6ky1LxQGNpybYW4PAzENXOdLtJcm5RBsECOE=;
+        b=qUN8nIveQifxuse02n6xv0baL5G0Let0dtwPfMKQsvSazDCfqVq9HziIWNklFA0WTM
+         gH4rWrF08+AHtS9+DZonfujBS+uWT0CFUASIJFmK+hfctVE5hazBgv3Rnshcdz8u26Fi
+         AkhvqDIZgrh8fGKmAmov2n2lkEgV4StHwQRzP9s5dL90i37nsmq6qfUSVA9I78GG8+CD
+         pzAXYyj4MViFCEIspS9FHWu64WVJDlgBr493qen+NGuzz2BcD1yQ/2JcfGh98AYQshLb
+         y8pXOb+w5Ynov9BSCIWJCf3dtKym7x30rOPL7xSBdsbKNfIsR2vajqLwawdQHQX8WU+X
+         q6aA==
+X-Gm-Message-State: AOAM5306C0HA53hMb0ghqy4SSkj540TuIfZz5vAxJ91Z3TrFf+aQyNF6
+        3e+VzEGoE/sFYTQunfF7LP7uHX0zYMvCZahAurYkMtf9zPIkQSCyDaIGx1aaiW/qlx1PsNWo8kg
+        i5uJYtGjq9TrOlVRAQ6ndqdUdRcLyHKxupysA3u4=
+X-Received: by 2002:a05:6402:26c2:: with SMTP id x2mr645536edd.354.1644256552640;
+        Mon, 07 Feb 2022 09:55:52 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwfa4i/V4nQftL4p3cvH4Fqz5Bqxsqs8spXP4wBR5nEJrSoNdf/WpjgVi+7ZOVjQ3pIOe/m6w==
+X-Received: by 2002:a05:6402:26c2:: with SMTP id x2mr645526edd.354.1644256552505;
+        Mon, 07 Feb 2022 09:55:52 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id c20sm3765210edy.41.2022.02.07.09.55.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Feb 2022 09:55:51 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: qcom: pm8226: Add VADC node
-Date:   Mon,  7 Feb 2022 17:49:33 +0000
-Message-Id: <20220207174933.20909-1-rayyan@ansari.sh>
-X-Mailer: git-send-email 2.34.1
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 1/2] MAINTAINERS: arm: samsung: add Git tree and IRC
+Date:   Mon,  7 Feb 2022 18:55:02 +0100
+Message-Id: <20220207175503.425200-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a node for the voltage ADC (VADC) found in PM8226.
+Add already used Krzysztof Kozlowski's Git tree for Samsung
+S3C/S5P/Exynos ARM sub-architecture and IRC channel (#linux-exynos at
+Libera).  This documents purely existing state.
 
-Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm/boot/dts/qcom-pm8226.dtsi | 33 ++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+ MAINTAINERS | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/boot/dts/qcom-pm8226.dtsi b/arch/arm/boot/dts/qcom-pm8226.dtsi
-index b3d0f7b5874d..a651b4c941b8 100644
---- a/arch/arm/boot/dts/qcom-pm8226.dtsi
-+++ b/arch/arm/boot/dts/qcom-pm8226.dtsi
-@@ -40,6 +40,39 @@ smbb: charger@1000 {
- 			chg_otg: otg-vbus { };
- 		};
- 
-+		pm8226_vadc: adc@3100 {
-+			compatible = "qcom,spmi-vadc";
-+			reg = <0x3100>;
-+			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#io-channel-cells = <1>;
-+
-+			adc-chan@7 {
-+				reg = <VADC_VSYS>;
-+				qcom,pre-scaling = <1 3>;
-+				label = "vph_pwr";
-+			};
-+			adc-chan@8 {
-+				reg = <VADC_DIE_TEMP>;
-+				label = "die_temp";
-+			};
-+			adc-chan@9 {
-+				reg = <VADC_REF_625MV>;
-+				label = "ref_625mv";
-+			};
-+			adc-chan@a {
-+				reg = <VADC_REF_1250MV>;
-+				label = "ref_1250mv";
-+			};
-+			adc-chan@e {
-+				reg = <VADC_GND_REF>;
-+			};
-+			adc-chan@f {
-+				reg = <VADC_VDD_VADC>;
-+			};
-+		};
-+
- 		pm8226_mpps: mpps@a000 {
- 			compatible = "qcom,pm8226-mpp", "qcom,spmi-mpp";
- 			reg = <0xa000>;
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 49c897fa56af..e219ba2c5ac9 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2577,7 +2577,9 @@ R:	Alim Akhtar <alim.akhtar@samsung.com>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ L:	linux-samsung-soc@vger.kernel.org
+ S:	Maintained
++C:	irc://irc.libera.chat/linux-exynos
+ Q:	https://patchwork.kernel.org/project/linux-samsung-soc/list/
++T:	git git://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git
+ F:	Documentation/arm/samsung/
+ F:	Documentation/devicetree/bindings/arm/samsung/
+ F:	Documentation/devicetree/bindings/power/pd-samsung.yaml
+@@ -15346,6 +15348,7 @@ R:	Alim Akhtar <alim.akhtar@samsung.com>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ L:	linux-samsung-soc@vger.kernel.org
+ S:	Maintained
++C:	irc://irc.libera.chat/linux-exynos
+ Q:	https://patchwork.kernel.org/project/linux-samsung-soc/list/
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/pinctrl/samsung.git
+ F:	Documentation/devicetree/bindings/pinctrl/samsung,pinctrl*yaml
 -- 
-2.34.1
+2.32.0
 
