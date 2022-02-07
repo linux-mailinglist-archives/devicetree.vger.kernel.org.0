@@ -2,186 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FF3B4AC141
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 15:32:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B472E4AC13E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 15:31:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1392385AbiBGOaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 09:30:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38860 "EHLO
+        id S1358174AbiBGO37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 09:29:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1391910AbiBGOWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 09:22:45 -0500
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A64C0401C5;
-        Mon,  7 Feb 2022 06:22:43 -0800 (PST)
-Received: by mail-oo1-f46.google.com with SMTP id f11-20020a4abb0b000000b002e9abf6bcbcso13792088oop.0;
-        Mon, 07 Feb 2022 06:22:43 -0800 (PST)
+        with ESMTP id S241651AbiBGO0o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 09:26:44 -0500
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA425C0401C1;
+        Mon,  7 Feb 2022 06:26:41 -0800 (PST)
+Received: by mail-ua1-f51.google.com with SMTP id w18so19756437uar.8;
+        Mon, 07 Feb 2022 06:26:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=QIbiP35GQSEEEaU8+SHxv92w3MHEG9bQFU7JRjEoZlY=;
-        b=brozXX9fSBUx2wiyZ45jMCF1zbhTF5Jiiiq/1qNhNEISHbW9idPfyEbk388ryHClRI
-         0nU/I8STgLK1hbT0plPcwny50flkQzxCjsi6LK1snw4iaT282uNMsVQYt3xavJMk9rR+
-         kmLWZYT/g1ay7JqscV/Nfdsh8TqmCQ+1myJ/rKWsopNPrpeC27KI6joXYQuFsXwZu+sJ
-         XrWEqu88NKNf1lc/JCcPGyDLtxIRNHMdEpBZeuDCCGdJbGc2jBn7tV0qeZt18snSUbkX
-         ZQOcuYijB/0aopkICz3ZKm+TMRcz7NFg64I+yiesfeDxG8Muf8DR/v4I4nZtVFv8udTA
-         NMxw==
-X-Gm-Message-State: AOAM532iigGs7hIrfCwwGBbQ6avAsAOcehmfXMqTJBdZFnra8h/l5REp
-        fW9LagM5g+a/gusyp1cm5Q==
-X-Google-Smtp-Source: ABdhPJxfXZdsGyfmTD5R1VDT1P4brg4JwOcmWmQsyw1NxMpW2nnJoH8Cy0v4BgETqUhZfQJQxbm3pg==
-X-Received: by 2002:a05:6870:44:: with SMTP id 4mr3436859oaz.68.1644243762896;
-        Mon, 07 Feb 2022 06:22:42 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t31sm4334410oaa.9.2022.02.07.06.22.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Feb 2022 06:22:42 -0800 (PST)
-Received: (nullmailer pid 320510 invoked by uid 1000);
-        Mon, 07 Feb 2022 14:22:40 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Tyrone Ting <warp5tw@gmail.com>
-Cc:     Avi.Fishman@nuvoton.com, openbmc@lists.ozlabs.org,
-        lukas.bulwahn@gmail.com, bence98@sch.bme.hu, sven@svenpeter.dev,
-        devicetree@vger.kernel.org, tali.perry1@gmail.com,
-        krzysztof.kozlowski@canonical.com, arnd@arndb.de,
-        benjaminfair@google.com, tmaimon77@gmail.com, yuenn@google.com,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        semen.protsenko@linaro.org, olof@lixom.net, venture@google.com,
-        wsa@kernel.org, avifishman70@gmail.com, jie.deng@intel.com,
-        robh+dt@kernel.org, linux-i2c@vger.kernel.org, kfting@nuvoton.com,
-        tali.perry@nuvoton.com, yangyicong@hisilicon.com,
-        linux-kernel@vger.kernel.org, andriy.shevchenko@linux.intel.com
-In-Reply-To: <20220207063338.6570-2-warp5tw@gmail.com>
-References: <20220207063338.6570-1-warp5tw@gmail.com> <20220207063338.6570-2-warp5tw@gmail.com>
-Subject: Re: [PATCH v1 1/6] dt-bindings: i2c: npcm: support NPCM845
-Date:   Mon, 07 Feb 2022 08:22:40 -0600
-Message-Id: <1644243760.823059.320509.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qJ6gtmWsE0qbWiYsJQ66pdtMsX/wOuo4autMcLLjsHk=;
+        b=yLfC5NMkkPnrn3ke6WnCheLPiGtqEgDey5acbXD/5UeLT4r3RNfKSyBGetR9525ymJ
+         bySJullSgquaDjjIbcQoN81RAoZZq1IbxzttjU4wzlQ9+mcXXZWbtzOoSTXoEAJcTb19
+         uGB79oZi9cBnVU53IQL5VCiWDLiirY7xyaQojjMxdkVhhTM5mh4z8HCsHmYyY6dXTM29
+         oj3WGG47xwN9OueUhqFGna7YiyC8hhDNrFXyQP7nQg5oHboMXdQkAz+xCvmZbKDfPRbh
+         /axmiYOXhTlTajR2Kil+QQcdVDQckiKjGllLxfidt5yrzLrbGdFVyfp9gELpmhKuBERL
+         aPhQ==
+X-Gm-Message-State: AOAM530DNhMsKq8APxGPrKYbz0Z0fZ0Os7nltMYaLo6y8CArQ46U4jSD
+        HDEpdk6KNUGaDam6AHyeWTNLGFjwSS2PEw==
+X-Google-Smtp-Source: ABdhPJwx2uSYqpA1T+lFsVoZefQiRIY0h3cX4jsDIjidhJcyB/GDZsgfWGPWf9KxAMV0oXfw+YG3Og==
+X-Received: by 2002:ab0:1d03:: with SMTP id j3mr2219952uak.100.1644244000925;
+        Mon, 07 Feb 2022 06:26:40 -0800 (PST)
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
+        by smtp.gmail.com with ESMTPSA id d19sm2163794vsh.18.2022.02.07.06.26.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Feb 2022 06:26:40 -0800 (PST)
+Received: by mail-ua1-f43.google.com with SMTP id c36so23009964uae.13;
+        Mon, 07 Feb 2022 06:26:40 -0800 (PST)
+X-Received: by 2002:a67:fd63:: with SMTP id h3mr4173263vsa.77.1644244000192;
+ Mon, 07 Feb 2022 06:26:40 -0800 (PST)
+MIME-Version: 1.0
+References: <20220204125653.1194249-1-yoshihiro.shimoda.uh@renesas.com> <20220204125653.1194249-2-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220204125653.1194249-2-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 7 Feb 2022 15:26:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUc_VmwR43CgYhwKZ+t_GCXzj9+9vaEBZR-2-ui1PC-1Q@mail.gmail.com>
+Message-ID: <CAMuHMdUc_VmwR43CgYhwKZ+t_GCXzj9+9vaEBZR-2-ui1PC-1Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iommu: renesas,ipmmu-vmsa: add
+ r8a779f0 support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Feb 2022 14:33:33 +0800, Tyrone Ting wrote:
-> From: Tyrone Ting <kfting@nuvoton.com>
-> 
-> This commit adds compatible and syscon description for NPCM845 i2c module.
-> 
-> Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controller driver")
-> Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
-> Signed-off-by: Tali Perry <tali.perry1@gmail.com>
-> ---
->  .../bindings/i2c/nuvoton,npcm7xx-i2c.yaml     | 21 ++++++++++++++-----
->  1 file changed, 16 insertions(+), 5 deletions(-)
-> 
+On Fri, Feb 4, 2022 at 2:54 PM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Document the compatible values for the IPMMU-VMSA blocks in
+> the Renesas R-Car S4-8 (R8A779F0) SoC and R-Car Gen4.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> 3fbefb9570325500dbf3faff80ded6d0d46f48b2
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+Gr{oetje,eeting}s,
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1589171
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-i2c@80000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-
-i2c@81000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-gsj.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@82000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-gsj.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@83000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gsj.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@84000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gsj.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@85000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@86000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@87000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@88000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-gsj.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@89000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-gsj.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@8a000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-gsj.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@8b000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-gsj.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@8c000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-gsj.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@8d000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dt.yaml
-
-i2c@8e000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gbs.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm750-evb.dt.yaml
-
-i2c@8f000: 'syscon' is a required property
-	arch/arm/boot/dts/nuvoton-npcm730-gsj.dt.yaml
-	arch/arm/boot/dts/nuvoton-npcm730-kudo.dt.yaml
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
