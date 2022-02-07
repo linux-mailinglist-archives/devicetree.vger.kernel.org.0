@@ -2,247 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 199BB4AB8A8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:30:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7355C4AB8B5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:30:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234456AbiBGKXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S234613AbiBGKXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 7 Feb 2022 05:23:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46410 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353031AbiBGKJg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 05:09:36 -0500
-X-Greylist: delayed 325 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 02:09:35 PST
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [IPv6:2001:67c:2050::465:103])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BA60C0401D5;
-        Mon,  7 Feb 2022 02:09:34 -0800 (PST)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:105:465:1:3:0])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4JshYw4RfSz9sm4;
-        Mon,  7 Feb 2022 11:04:04 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
-        t=1644228242;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=lN4utUrYnahAfNJMengCSqnxamFQ+RDYj7VC6iGzs8o=;
-        b=uaDu06mkyWWu6fHMfq9g7S/EROLb6UanxWi5afFEYrUdoCRlF+PErJmMIp/RejFc0TKGeB
-        8LFqvUnBk1cKjQU0Q/+e+ajKUo7306gw/NNzJjXpiXxKsplT9aSGc4k2Qhhz7K4DRNzJxC
-        l1/Rc/rFLLtmVbk4WDe69znnkEg+ypmqqgEG8tKIR/jJesAAw11jBh357Kej1AjR6s9CtC
-        DE7xuwUSusIE49rHopdhFwrT78oDCBtPQjRtLT4amH4vM7SjjDKzWEBbf65BzPoAKKos0N
-        7oV+t1w47U9NSWsGLL+JwNAnqogO1JExWdy1Vc2Vpz+G8OEbLoTmPVT9Xd61vA==
-Message-ID: <b55f673b2ba25dbdfeafd4558f5cd2ba2ca0ee39.camel@sylv.io>
-Subject: Re: [PATCH v4 3/4] dt-bindings: hwmon: Add binding for max6639
-From:   sylv <sylv@sylv.io>
-To:     Rob Herring <robh@kernel.org>, Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Roland Stigge <stigge@antcom.de>, devicetree@vger.kernel.org
-Date:   Mon, 07 Feb 2022 11:03:54 +0100
-In-Reply-To: <Yf23k5vrZ8CEAKda@robh.at.kernel.org>
-References: <cover.1643299570.git.sylv@sylv.io>
-         <224e73b57101aa744244bd396a700d5365eb72ec.1643299570.git.sylv@sylv.io>
-         <Yf23k5vrZ8CEAKda@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S1357040AbiBGKL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 05:11:26 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08A96C0401E1
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 02:11:09 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id v19so8850509wrv.6
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 02:11:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=t1grJfuaAdS3B1XhyLaLbix7QKdpfthiiXC5enSQ1wU=;
+        b=wPpS1R/uWVlqPEkanPeqJeH/0D36BtOQVNLC6MxnxsReockDsvWqZG0Z1ByYDDuvM7
+         4wItKYbdClpjxyuOyRK9/gJfr5YryUe5EgYLsk6JfeJMCd3XkXMnnxdp9JqUXD/1UkV8
+         t0mtIzGSIsgctau6xdm1KHCMbGvMNEL/JVAUQjalNg9u+oU7LrHc3Wn3uSNTw5lbgYUd
+         DpByqvFXqb50PDV3lL8IoxrzzsNtFipGmOWCNjjpRAvXUMLeFiYICD19OtjrI4lXaS4R
+         V0LkGJa1SmI6gGzOs8S5qtFDYA0i7YfRY+bvGhZQkICcuObnwhNHAjilL2KENHyKeg7s
+         CLCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=t1grJfuaAdS3B1XhyLaLbix7QKdpfthiiXC5enSQ1wU=;
+        b=OIy2Y695/1iNo6e93RYtkW8krWa6lfAH9bRAjMiAGmODm/aQA1pSr/CgWaFOQRmxNO
+         NTVamKbvupq2qiV2QPuravND+XlAIY7eEJofVE2XvFyEOnNGKOWknr0kBo4da23EeazD
+         ScbjUbhObyqGsy7oauyKD2GCJipwzHWWUNOUblIx9IC1MNTcd2g5gXC/vcrkMOsWj9CZ
+         Ld3WzFcCdbwqC2AT/HfktHyDwg6lJoUVTc/b9XyFvuexiM97YiaXRR0JurOI7oniUZsp
+         lER7nx7bd3wbci5Q7V0a+kX5QXQ8yU3Vvh5y/pISEpLck2ovAzbxwnfHJP/gXHLbYiad
+         OC1g==
+X-Gm-Message-State: AOAM5316QXmVlcJYScG50hJIgAPlJRueQx950pKRTxylEeipVlenWuP3
+        w+BtUwEwP/Ige668Yq4cTPPQLw==
+X-Google-Smtp-Source: ABdhPJyfPm5Ul6/cWxD2ilu20wXd7IFB/LmDVwLybcoxL+DwkSm+3qkAcNf1ZOyzjv+UAG62JG50qg==
+X-Received: by 2002:a05:6000:1548:: with SMTP id 8mr9155762wry.254.1644228667605;
+        Mon, 07 Feb 2022 02:11:07 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id c13sm9620833wrv.24.2022.02.07.02.11.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Feb 2022 02:11:07 -0800 (PST)
+Date:   Mon, 7 Feb 2022 10:11:05 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Subject: Re: [PATCH v2 0/5] mfd/extcon/regulators: max77843: add
+ dtschema/bindings
+Message-ID: <YgDwOWRpfVBfcXxs@google.com>
+References: <20220111174805.223732-1-krzysztof.kozlowski@canonical.com>
+ <1bebedb9-644f-783d-492c-84a5de91720d@canonical.com>
+ <YgDnUNCNCO+JLyHU@google.com>
+ <88fcdbe6-5fef-d9cc-a645-69e35230cdeb@canonical.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <88fcdbe6-5fef-d9cc-a645-69e35230cdeb@canonical.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-02-04 at 17:32 -0600, Rob Herring wrote:
-> On Thu, Jan 27, 2022 at 05:17:29PM +0100, Marcello Sylvester Bauer
-> wrote:
-> > Add Devicetree binding documentation for Maxim MAX6639 temperature
-> > monitor with PWM fan-speed controller.
+On Mon, 07 Feb 2022, Krzysztof Kozlowski wrote:
+
+> On 07/02/2022 10:33, Lee Jones wrote:
+> > On Sun, 06 Feb 2022, Krzysztof Kozlowski wrote:
 > > 
-> > The devicetree documentation for the SD3078 device tree.
+> >> On 11/01/2022 18:48, Krzysztof Kozlowski wrote:
+> >>> Hi,
+> >>>
+> >>> The max77843 shares some parts with max77693 but it lacked bindings.  All
+> >>> its compatibles were undocumented.  Add basic bindings for max77843,
+> >>> matching existing devicetree.  These are not complete bindings, but
+> >>> rather reverse-engineered to match current state.
+> >>>
+> >>> I do not have access to device with MAX77843, so if anyone else
+> >>> volunteers to be the bindings maintainer, please join.
+> >>>
+> >>> Changes since v1
+> >>> ================
+> >>> 1. MFD: Use absolute path to schemas.
+> >>> 2. Regulator: mention all allowed properties,
+> >>>    additionalProperties=false, add min/max values for voltages and
+> >>>    current, don't use patternProperties when not needed.
+> >>> 3. extcon: Use absolute path to schemas.
+> >>>
+> >>> Dependencies
+> >>> ============
+> >>> 1. Patch 1/5 (dts): nothing depends on it, sending here so Rob's automatic
+> >>>    checker won't complain about DTS.
+> >>>    I will take it via Samsung SoC tree.
+> >>>
+> >>> 2. The patch 4/5 (mfd bindings) depends on regulator and extcon, so they
+> >>>    should come together (2+3+4+5).
+> >>>
+> >> Dear Lee,
+> >>
+> >> This patchset was reviewed and there are no outstanding issues. Could
+> >> you pick up patches 2-5 (skipping DTS patch) via MFD tree?
 > > 
-> > Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> > ---
-> >  .../bindings/hwmon/maxim,max6639.yaml         | 112
-> > ++++++++++++++++++
-> >  1 file changed, 112 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> > Are the subsystem maintainers not going to review/ack?
 > > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> > b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> > new file mode 100644
-> > index 000000000000..570e9fe07503
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> > @@ -0,0 +1,112 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +
-> > +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Maxim max6639
-> > +
-> > +maintainers:
-> > +  - Roland Stigge <stigge@antcom.de>
-> > +
-> > +description: |
-> > +  The MAX6639 is a 2-channel temperature monitor with dual,
-> > automatic, PWM
-> > +  fan-speed controller.  It monitors its own temperature and one
-> > external
-> > +  diode-connected transistor or the temperatures of two external
-> > diode-connected
-> > +  transistors, typically available in CPUs, FPGAs, or GPUs.
-> > +
-> > +  Datasheets:
-> > +   
-> > https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - maxim,max6639
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "channel@0"
-> > +  - "channel@1"
-> > +
-> > +additionalProperties: false
-> > +
-> > +patternProperties:
-> > +  "^channel@[0-1]$":
 > 
-> fan@...
+> Would be nice to have them, but maybe since these are dt-bindings maybe
+> they were skipped? 
 
-Makes sense. Looks like i have to adapt the driver code too.
+Agreed, not required, but nice to have to avoid possible conflict.
 
-> 
-> > +    type: object
-> > +    description: |
-> > +      Represents the two fans and their specific configuration.
-> > +
-> > +    properties:
-> > +      reg:
-> > +        description: |
-> > +          The fan number.
-> > +        items:
-> > +          minimum: 0
-> > +          maximum: 1
-> > +
-> > +      pwm-polarity:
-> 
-> See PWM_POLARITY_INVERTED
-> 
+> Or maybe it was the end-of-year holidays?
 
-Indeed, Thanks.
+> I can resend hoping it will trigger more acks. Do you wish me to resend?
 
-> 
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        enum: [0, 1]
-> > +        default: 1
-> > +        description:
-> > +          PWM output is low at 100% duty cycle when this bit is
-> > set to zero. PWM
-> > +          output is high at 100% duty cycle when this bit is set
-> > to 1.
-> > +
-> > +      pulses-per-revolution:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        enum: [1, 2, 3, 4]
-> > +        default: 2
-> > +        description:
-> > +          Value specifying the number of pulses per revolution of
-> > the controlled
-> > +          FAN.
-> > +
-> > +      rpm-max:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        enum: [2000, 4000, 8000, 16000]
-> > +        default: 4000
-> > +        description:
-> > +          Scales the tachometer counter by setting the maximum
-> > (full-scale) value
-> > +          of the RPM range.
-> 
-> Why do you need to know the max? I don't recall needing this for
-> other 
-> fan controller bindings.
+That shouldn't be necessary.
 
-This information is required for setting the internal clock of the
-tachometer. (See: page 8 table 3). However, we could make it a vendor
-specific property. In this case i would rather call it "maxim,rpm-
-range", since this is how it is referred to.
+I'll give the guys a little while to protest/ack, then I'll merge.
 
-Or is there a better how to define this information inside dt?
-
-> 
-> All this needs to be pulled out to a common schema fan that is 
-> referenced.
-
-Ack
-
-thanks,
-Marcello
-
-> 
-> > +
-> > +    required:
-> > +      - reg
-> 
-> This should all be in a common fan schema that can be re
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      max6639@10 {
-> > +        compatible = "maxim,max6639";
-> > +        reg = <0x10>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        channel@0 {
-> > +          reg = <0x0>;
-> > +          pwm-polarity = <1>;
-> > +          pulses-per-revolution = <2>;
-> > +          rpm-range = <4000>;
-> > +        };
-> > +
-> > +        channel@1 {
-> > +          reg = <0x1>;
-> > +          pwm-polarity = <1>;
-> > +          pulses-per-revolution = <2>;
-> > +          rpm-range = <4000>;
-> > +        };
-> > +      };
-> > +    };
-> > +...
-> > -- 
-> > 2.34.1
-> > 
-> > 
-
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
