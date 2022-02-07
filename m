@@ -2,136 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 651954AC44A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 16:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BCEA4AC494
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 16:59:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231841AbiBGPtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 10:49:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57722 "EHLO
+        id S233548AbiBGP6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 10:58:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386002AbiBGPpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 10:45:32 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35881C0401D0
-        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 07:45:29 -0800 (PST)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E35533F22B
-        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 15:45:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644248727;
-        bh=6Y+2dKF+oax8zT1A/qm081V7yzQIygshkjwkuuK0Jjs=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=F5sdoN99jDXmL8UXS/ktdHtnrtFD4aUhV1WFbbu0gTrFu8CIJA7YQkYA+KSlyW7zD
-         Eqj103CXyVKCGDjCFEchjVeQR/LNNk9F/Jgj+gNfV5eNq4ZQJJKv6H9EgMieX6p6Ic
-         ICKoVWGym6a0+qTZP1dypHALE1eb/0mGQIBN4C/JjsklDDyV4sc4GZfnwoStwZFH7x
-         ERBd5zTwqd6mgKcRem2PHgvaXl0plVSx+HNBy05yn6MVqeNdgxto1dYGCvnGxZoEnC
-         OYO7k/3IcZLquftntssPG5ahaTrmtld5d4JO1sH3MbF/qt5mPbWhNOaIYxGZk1qVMA
-         6MCDN9YvhCcNw==
-Received: by mail-ej1-f71.google.com with SMTP id qo24-20020a170907213800b006c7479720ddso1725751ejb.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 07:45:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6Y+2dKF+oax8zT1A/qm081V7yzQIygshkjwkuuK0Jjs=;
-        b=4cFhgAB+gE/SEIbCvZ0NDeAfLL66uSmyvkRt6Q1M8K7vY9pfp1tLVz2ayAIMs0Cc7e
-         Eco2UodMbu9wnI12H0Xj31V30IHpWcmTCAg/QeLzd8WxO7cYdB1IGDk4atp+efs9MWeW
-         EMnYt8Cq2Nqly7+yiP0+Fko8T+bgSyvn92FWYJZWdB7I3KbfOwF2UiIjUS4AOrHBSdpR
-         u0fvhy/oCySLshv+ynRKJnosyVptD3wihydU4Ez+v7RGGExew8CpQrMy08+o9uVM/hOE
-         gQ7DAPFEXQPKH0x/sQSYRfIOOswcaAY1tD9eUjh9XHzQnTOITUHEXjpG5ZwOAQBErSCr
-         KHGQ==
-X-Gm-Message-State: AOAM531YhVe3Sm9m1wrQIVx9wTwDdYUebaSpPzChmkxYsADQwJE9ZzXX
-        YKmjWm+yCT7wTH0EhFNgdHfJludalFqSMslXUYeY4f88O6bwVCRf+16NZD4C2+aSHzbB2bg58Yz
-        3/9KYE4Vr6URZL9+vnEIerrENEe7fwqvnxuhvJyM=
-X-Received: by 2002:a17:907:7241:: with SMTP id ds1mr253306ejc.491.1644248727439;
-        Mon, 07 Feb 2022 07:45:27 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyWwLB3X8srR0F9tgq40qKr7ABY3oB3F7i+C8YvII4SCUp1VGjoXcEv3mNNgvu3qM4y28Q/Ww==
-X-Received: by 2002:a17:907:7241:: with SMTP id ds1mr253275ejc.491.1644248727021;
-        Mon, 07 Feb 2022 07:45:27 -0800 (PST)
-Received: from [192.168.0.90] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id h7sm1280103ejb.40.2022.02.07.07.45.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Feb 2022 07:45:26 -0800 (PST)
-Message-ID: <a49f77c8-3d92-8c84-28fe-0e6735f09610@canonical.com>
-Date:   Mon, 7 Feb 2022 16:45:25 +0100
+        with ESMTP id S1345569AbiBGPv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 10:51:27 -0500
+X-Greylist: delayed 52220 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 07:51:25 PST
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A201AC0401CE;
+        Mon,  7 Feb 2022 07:51:25 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 54D34340;
+        Mon,  7 Feb 2022 16:51:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1644249083;
+        bh=Kg8KkyXqodwxnkoOUnTFgILuDislMphNhCMp4Cyt3k0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=d+p/yyLLVWoFHaQMa3PKOYne2f5NsLX/aSXsN5whwh5fbgyeQpYs8XdYey0+Cmdzm
+         wzUhiqC1tH8lsKZPl6Eninn4/oSoKEz/NKHoSjt3wcCtb6Np67rcbw0PDyekIXy8+L
+         kBpaesRvFQGudsLOVg3bNSdwSx4HeFms+1kyhIT4=
+Date:   Mon, 7 Feb 2022 17:51:21 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
+        Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 61/66] dt-bindings: media: Add Allwinner A31 ISP
+ bindings documentation
+Message-ID: <YgE/+UmP4nJVxtRT@pendragon.ideasonboard.com>
+References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
+ <20220205185429.2278860-62-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH next] dt-bindings:spi: Fix test error for sp7021.
-Content-Language: en-US
-To:     Li-hao Kuo <lhjeff911@gmail.com>, broonie@kernel.org,
-        robh+dt@kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com
-References: <b8a94fbfcab68b1279b09b6297099310c209927b.1644198244.git.lhjeff911@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <b8a94fbfcab68b1279b09b6297099310c209927b.1644198244.git.lhjeff911@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220205185429.2278860-62-paul.kocialkowski@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/02/2022 02:46, Li-hao Kuo wrote:
-> Remove the include path and modify parameters for fix error for bt binding test
+Hi Paul,
 
-1. No trailing dots in commit title. Space after each ":".
-2. s/bt/dt/
-3. Wrap the commit msg:
-https://elixir.bootlin.com/linux/v5.13/source/Documentation/process/submitting-patches.rst#L124
+Thank you for the patch.
 
-4. What is exactly the error you are fixing?
-
+On Sat, Feb 05, 2022 at 07:54:24PM +0100, Paul Kocialkowski wrote:
+> This introduces YAML bindings documentation for the Allwinner A31 Image
+> Signal Processor (ISP).
 > 
-> Fixes: a708078eeb99  ("spi: Add Sunplus SP7021 schema")
-
-5. Only one space after SHA.
-
-6. Wasn't it reported to you? Looks like it was, so you need to add
-"Reported-by" tag:
-https://lore.kernel.org/all/CAL_JsqKwg_bzJmehTG8tR2cpr+HwwvpF_cpoESidZouc_SpKcQ@mail.gmail.com/
-
-> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 > ---
->  Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
+>  .../media/allwinner,sun6i-a31-isp.yaml        | 117 ++++++++++++++++++
+>  1 file changed, 117 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
-> index 38589fd..298eac2 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
-> @@ -59,8 +59,6 @@ unevaluatedProperties: false
->  
->  examples:
->    - |
-> -    #include <dt-bindings/clock/sp-sp7021.h>
-> -    #include <dt-bindings/reset/sp-sp7021.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
->      spi@9C002D80 {
->          compatible = "sunplus,sp7021-spi";
-> @@ -73,8 +71,8 @@ examples:
->          interrupts = <144 IRQ_TYPE_LEVEL_HIGH>,
->                       <146 IRQ_TYPE_LEVEL_HIGH>,
->                       <145 IRQ_TYPE_LEVEL_HIGH>;
-> -        clocks = <&clkc SPI_COMBO_0>;
-> -        resets = <&rstc RST_SPI_COMBO_0>;
-> +        clocks = <&clkc 0x32>;
-> +        resets = <&rstc 0x22>;
->          pinctrl-names = "default";
->          pinctrl-0 = <&pins_spi0>;
->      };
+> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> new file mode 100644
+> index 000000000000..2d87022c43ce
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> @@ -0,0 +1,117 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree Bindings
+> +
+> +maintainers:
+> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - allwinner,sun6i-a31-isp
+> +      - allwinner,sun8i-v3s-isp
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Bus Clock
+> +      - description: Module Clock
+> +      - description: DRAM Clock
 
+That's interesting, does the ISP have a dedicated DRAM ?
 
-Best regards,
-Krzysztof
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bus
+> +      - const: mod
+> +      - const: ram
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: CSI0 input port
+> +
+> +        properties:
+> +          reg:
+> +            const: 0
+> +
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+
+If no other property than remote-endpoint are allowed, I'd write
+
+          endpoint:
+            $ref: video-interfaces.yaml#
+	    remote-endpoint: true
+            additionalProperties: false
+
+Same below.
+
+> +
+> +        additionalProperties: false
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: CSI1 input port
+> +
+> +        properties:
+> +          reg:
+> +            const: 0
+
+This should be 1.
+
+> +
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +        additionalProperties: false
+> +
+> +    anyOf:
+> +      - required:
+> +        - port@0
+> +      - required:
+> +        - port@1
+
+As ports are an intrinsic property of the ISP, both should be required,
+but they don't have to be connected.
+
+By the way, how do you select at runtime which CSI-2 RX the ISP gets its
+image stream from ? Is it configured through registers of the ISP ?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
+> +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
+> +
+> +    isp: isp@1cb8000 {
+> +        compatible = "allwinner,sun8i-v3s-isp";
+> +        reg = <0x01cb8000 0x1000>;
+> +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&ccu CLK_BUS_CSI>,
+> +             <&ccu CLK_CSI1_SCLK>,
+> +             <&ccu CLK_DRAM_CSI>;
+> +        clock-names = "bus", "mod", "ram";
+> +        resets = <&ccu RST_BUS_CSI>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +
+> +                isp_in_csi0: endpoint {
+> +                    remote-endpoint = <&csi0_out_isp>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+
+-- 
+Regards,
+
+Laurent Pinchart
