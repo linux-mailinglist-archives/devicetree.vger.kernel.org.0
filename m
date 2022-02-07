@@ -2,98 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8EB84AB7D5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:41:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66A054AB7A4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:41:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245456AbiBGJeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 04:34:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55678 "EHLO
+        id S245384AbiBGJeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 04:34:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345113AbiBGJYk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:24:40 -0500
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8019AC043181;
-        Mon,  7 Feb 2022 01:24:40 -0800 (PST)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 2F1BC5C004E;
-        Mon,  7 Feb 2022 04:24:38 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 07 Feb 2022 04:24:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; bh=5u2gDx2Jv1BB9+
-        oD6pkaVUCAX+p6JTFrufAW9YUCSWg=; b=pVsh8iT1cLGmJQt83gL0hn2I8fvxO6
-        bp/zynf4goHePHg0JTUOL9CM2KXo2TnvAhJPuMZCmRuRB5nFswrbsqMKgot8coDj
-        hlfQHIqcV4Bv+DHBqw8Jp2MbaGOhBdzpVxYcTSh/Af3HZ7X7rupEmAmnHcyKpNGO
-        69qOGW9bSh6oADNTX36KrnsyQ4ZtN3X6p1CpZ0q9aLLnlymyQv5az8aejfxcI+Gg
-        f/ykjiLHlc5EhEKzlmlWvfeXQCEXK4u6+6UyoonfHDPP0t7syS6pxKOYKgDJl9dj
-        2VACZXulZP9PMvTzYqaCpw3dFeNPiU6nPDOp5Hd2Exzm1uCAztsC9dcg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=5u2gDx2Jv1BB9+oD6pkaVUCAX+p6JTFrufAW9YUCS
-        Wg=; b=SVuyVJy8OJCqIV1QhN06nguuZyc4enO12NqobzBh+EqinLIsghWhi35po
-        inRQ+QbNyjyhklXGUJmAdtPR+BJtP9Zi3eML1152dTFD8ruIpk0xC2FcchPuJ6Dw
-        7m38GN0aa15C3RX/A1BMWvvydNHGm/D2OvF4cD6XOwvr0hDGkbx7MAYGNewwfoXG
-        VCEMVWe1DWVBw/DVYCVDVsId3R1g2rP0LgoL0zoB8/DtvXHNjvexOEVwYD8FEtOu
-        fSV1HGXMIKVQGhRW52mM4hEMSvJiubfcMjIcGX5v3Kng4n7khuuXm85qNnn9KQ7L
-        tr/qJyiwB3zecw8U7AEDIXQgueiog==
-X-ME-Sender: <xms:VuUAYjaAagIvhCJavzBS_WhS7AERZoDrs7aVaQZnYD932vPowaxNsg>
-    <xme:VuUAYiY3RwQbsNFSrKiGvfNWJIQ0odTkoGv2rNwwUEeFAhN466_LyRznCz1O7oeZu
-    jzBpW81yg7wqflrXa8>
-X-ME-Received: <xmr:VuUAYl_3RpDUl2I9JX4xljX71pdPnY1FjGW5gkehyR7F4_qlwRIoaDqFkI8i90_yeFRkhY0rJ8XfRghjFA-zt6YkugUhtgWV1wcWApk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrheehgddtudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfefgeei
-    keeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:VuUAYpoZ7uLHcwRGkkoGsW-P4HZvNJ612yhGsMHN4OtCJxsMKj9w_g>
-    <xmx:VuUAYuoGneyOS8bNcxQSOwgRtmg1Yo1XLwVsP9xXeFfgqNKsujHXvw>
-    <xmx:VuUAYvTJsJ9lIy5IaxeGqpaYa5AXgJA2OsDpVLiZQCMGfjzyiH841Q>
-    <xmx:VuUAYuLWJNSR5x-2JfLd4GZZ91MYi_6ytYJltJYJVSkcjKA53Y1Tqw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 7 Feb 2022 04:24:37 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Cc:     Maxime Ripard <maxime@cerno.tech>, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH] ARM: dts: sun8i-h3: Drop args in 'thermal-sensors'
-Date:   Mon,  7 Feb 2022 10:24:32 +0100
-Message-Id: <164422586926.25686.332222517638922550.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220204002802.1214602-1-robh@kernel.org>
-References: <20220204002802.1214602-1-robh@kernel.org>
+        with ESMTP id S1350465AbiBGJ2A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:28:00 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE758C043181
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 01:27:59 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nH0JP-0008FG-HX; Mon, 07 Feb 2022 10:27:55 +0100
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nH0JN-0004kE-R4; Mon, 07 Feb 2022 10:27:53 +0100
+Date:   Mon, 7 Feb 2022 10:27:53 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     alexandru.tachici@analog.com, davem@davemloft.net,
+        devicetree@vger.kernel.org, hkallweit1@gmail.com, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v4 4/7] net: phy: Add 10BASE-T1L support in phy-c45
+Message-ID: <20220207092753.GC23727@pengutronix.de>
+References: <20211210110509.20970-1-alexandru.tachici@analog.com>
+ <20211210110509.20970-5-alexandru.tachici@analog.com>
+ <YbUTJdKN9kQAJzqA@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YbUTJdKN9kQAJzqA@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:26:12 up 58 days, 18:11, 81 users,  load average: 0.28, 0.29,
+ 0.50
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Feb 2022 18:28:01 -0600, Rob Herring wrote:
-> The "allwinner,sun8i-h3-ths" thermal sensor has 0 argument cells, but
-> the consumer has an argument cell. It is ignored by the code, but the
-> error was found with some upcoming schema validation changes. The schema
-> and code both agree that 0 cells is correct.
+Hi Alexandru,
+
+On Sat, Dec 11, 2021 at 10:07:49PM +0100, Andrew Lunn wrote:
+> > +		ret = phy_read_mmd(phydev, MDIO_MMD_PMAPMD, MDIO_PMA_EXTABLE);
+> > +		if (ret < 0)
+> > +			return ret;
+> > +
+> > +		if (ret & MDIO_PMA_EXTABLE_BT1)
 > 
 > 
+> This pattern of reading the MDIO_PMA_EXTABLE register and then looking
+> for bit MDIO_PMA_EXTABLE_BT1 happens a lot. It is not something which
+> is expected to change is it? So i wounder if it should be read once
+> and stored away?
 
-Applied to sunxi/linux.git (sunxi/dt-for-5.18).
+What is the state of this patches? Will you be able to make requested
+changes and send new version?
 
-Thanks!
-Maxime
+Regards,
+Oleskij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
