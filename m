@@ -2,183 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCBF14AB82B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:01:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B70F4AB814
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:01:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351381AbiBGJvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 04:51:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36732 "EHLO
+        id S1350648AbiBGJvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 04:51:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236505AbiBGJoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:44:23 -0500
-X-Greylist: delayed 3633 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 01:44:21 PST
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8400AC043181;
-        Mon,  7 Feb 2022 01:44:21 -0800 (PST)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7CCA8240008;
-        Mon,  7 Feb 2022 09:44:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1644227059;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=6KUt7aT0vf3HkBvqg1m3IH1dZxNe1djrpK9xW+fnoQw=;
-        b=NkrfXNXYCHbTieByp9pVKjdSsJHaXqLnlqhNJGbny2eQ/2CsZrUdW2mSW8BFideJw1mHR7
-        15E1pOBLcS9Zp/1a1+f6oN2t/XT5OKikI5lpiYSLG2Zsg02H2FT2KS4iKkG/crYs0wRf/d
-        LdAbBUGvjGFfl0ceKgyWRSvFGkoenC8W/DHCeWzBHaqNAWaq5hcmZziIcYMn2MBYgGQERM
-        SJJqkl47m6fRQi+eSFynQYJiS+deVZKhB4CRpVfmFn9Iveedvri6/XWxuSJSUDSrowXNWy
-        N2qKe3FTk9/WTFe/Qpb4KssN0vY9p4sxkx+Snv5XDpdBc1wcZwbKDvlk4nw8Nw==
-Date:   Mon, 7 Feb 2022 10:44:16 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     Samuel Holland <samuel@sholland.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-staging@lists.linux.dev, Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 02/66] dt-bindings: interconnect: sunxi: Add V3s mbus
- compatible
-Message-ID: <YgDp8HzmcS8Nkn0q@aptenodytes>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <5386b1f5-9e75-4ce3-6641-bd7667c85d42@sholland.org>
- <YgDbv8aQEOOjwTb0@aptenodytes>
- <8021451.T7Z3S40VBb@jernej-laptop>
+        with ESMTP id S245311AbiBGJql (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:46:41 -0500
+X-Greylist: delayed 1740 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 01:46:40 PST
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0982CC043181;
+        Mon,  7 Feb 2022 01:46:39 -0800 (PST)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2177eoFF028141;
+        Mon, 7 Feb 2022 10:46:31 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=oOSVeuiwVcknZy/uywJxudXEDah2iCuCkHFyhcMZmdY=;
+ b=1rQn7010jrDIA5RFqb16ksXRsTaa3Qj53EtAqUiQd2MQKR9ifK/kzSK4oqy+lvdl+eVe
+ k9FepXUCrEvLcksBBVmNB0lRC/ey9iALP8IQW9M+gvfdSWGi5BhR59UDnIfygkbsRAL7
+ CmUqaIn/XfTIwJpH5LLgM6DRlWDpZQBs5xPzb089c9lMx9InYHpbYz90a0lIEAdvWqqJ
+ IcOVCr9HgksQ3AcRS8C2P+LV8AMqVSdVbqctwrqlUZaWeNsTKOu/Un3RovFj9I/JIuaN
+ ulizCyvlnIQYQSI/Ig0LkBo++rt+ZCVXgagN4u12l6dTcFHTYx8sjYZAp2dGwSSAsynA mw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e2fg5kd26-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 07 Feb 2022 10:46:31 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A345A10002A;
+        Mon,  7 Feb 2022 10:46:30 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 807962138C1;
+        Mon,  7 Feb 2022 10:46:30 +0100 (CET)
+Received: from [10.48.0.252] (10.75.127.45) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Mon, 7 Feb
+ 2022 10:46:29 +0100
+Message-ID: <c6091ca7-2c82-7169-4a76-e1506212439a@foss.st.com>
+Date:   Mon, 7 Feb 2022 10:46:29 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="10LvNQVJYUIIwFrj"
-Content-Disposition: inline
-In-Reply-To: <8021451.T7Z3S40VBb@jernej-laptop>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 0/2] new emtrion hardware emSBC-Argon
+Content-Language: en-US
+To:     <reinhold.mueller@emtrion.com>, <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20211209104947.4647-1-reinhold.mueller@emtrion.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20211209104947.4647-1-reinhold.mueller@emtrion.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-07_03,2022-02-07_01,2021-12-02_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Reinhold
 
---10LvNQVJYUIIwFrj
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 12/9/21 11:49, reinhold.mueller@emtrion.com wrote:
+> From: Reinhold Mueller <reinhold.mueller@emtrion.com>
+> 
+> This patch series adds support for the emtrion emSBC-Argon
+> 
+> Changes
+> 
+> v2:
+> [PATCH 1/2]
+> 	- replaced enum by const
+> [PATCH 2/2]
+> 	- no fixes
+> 
+> v1:
+> [PATCH 0/2]
+> 	- split former patch in dts -and yaml patches
+> [PATCH 1/2]
+> 	- no fixes
+> [PATCH 2/2]
+> 	- small modification in subject name
+> 	- node name for leds moved to led-X
+> 	- update of clocknames removed,
+> 		already defined in stm32mp151.dtsi
+> 	- removing some unneeded entries status = "disabled"
+> 	- moved pin configurations to stm32mp15-pinctrl
+> 
+> Reinhold Mueller (2):
+>    dt-binding: arm/stm32: Add emtrion hardware emSBC-Argon
+>    ARM: dts: stm32: Add support for the emtrion emSBC-Argon
+> 
+>   .../devicetree/bindings/arm/stm32/stm32.yaml  |   6 +
+>   arch/arm/boot/dts/Makefile                    |   1 +
+>   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      |  92 +++
+>   arch/arm/boot/dts/stm32mp157c-emsbc-argon.dts |  53 ++
+>   .../boot/dts/stm32mp157c-emstamp-argon.dtsi   | 552 ++++++++++++++++++
+>   5 files changed, 704 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/stm32mp157c-emsbc-argon.dts
+>   create mode 100644 arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
+> 
 
-Hi Jernej,
+Thanks to add new STM32 board! Series applied on stm32-next.
 
-On Mon 07 Feb 22, 09:50, Jernej =C5=A0krabec wrote:
-> Hi Paul,
->=20
-> Dne ponedeljek, 07. februar 2022 ob 09:43:43 CET je Paul Kocialkowski=20
-> napisal(a):
-> > Hi,
-> >=20
-> > On Sat 05 Feb 22, 14:14, Samuel Holland wrote:
-> > > On 2/5/22 12:53 PM, Paul Kocialkowski wrote:
-> > > > Since the V3s uses the internal mbus, document its compatible.
-> > > >=20
-> > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > > ---
-> > > >=20
-> > > >  .../devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-mbus.yaml  |=
- 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >=20
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-m=
-bus.
-> > > > yaml
-> > > > b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-m=
-bus.
-> > > > yaml index 29c9961ee2d8..b67bf9261a6a 100644
-> > > > ---
-> > > > a/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-m=
-bus.
-> > > > yaml +++
-> > > > b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-m=
-bus.
-> > > > yaml> >=20
-> > > > @@ -31,6 +31,7 @@ properties:
-> > > >        - allwinner,sun5i-a13-mbus
-> > > >        - allwinner,sun8i-h3-mbus
-> > > >        - allwinner,sun8i-r40-mbus
-> > > >=20
-> > > > +      - allwinner,sun8i-v3s-mbus
-> > >=20
-> > > Please enable the expanded binding added in commit 245578ba9f03
-> > > ("dt-bindings: arm: sunxi: Expand MBUS binding")[1] by adding the new
-> > > compatible to the "if" block lower in the file. That way we can add V=
-3S
-> > > devfreq support in the future without changing that binding.
-> >=20
-> > I had missed that new driver but surely I will expand the updated bindi=
-ng.
-> >=20
-> > By the way do you have an explanation about the cell index given to the
-> > interconnects (after &mbus)?
->=20
-> This is mbus channel. You can find appropriate one checking DRAM driver i=
-n U-
-> Boot, where mbus is configured.
+Arnd,
+This series introduces new dtbs_check errors mainly because it re-use
+nodes from existing STM32 boards. I think it is acceptable to merge it 
+as it is not "new' errors but replication of existing errors.
 
-Thanks, that's exactly what I was looking for! Looks like in my case
-MBUS_PORT_CSI will be used both for CSI and ISP.
-
-For the record it's also defined in the BSP kernel at:
-include/linux/sunxi_mbus.h
-
-Thanks,
-
-Paul
-
-> Best regards,
-> Jernej
->=20
-> >=20
-> > Paul
-> >=20
-> > > Regards,
-> > > Samuel
-> > >=20
-> > > [1]: https://git.kernel.org/torvalds/c/245578ba9f03
-> > >=20
-> > > >        - allwinner,sun50i-a64-mbus
-> > > >   =20
-> > > >    reg:
->=20
->=20
->=20
->=20
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---10LvNQVJYUIIwFrj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmIA6fAACgkQ3cLmz3+f
-v9Fywwf/eKwq4XMLDo180gX6Pm1kgA2v/uxUB0R0xsoXaELb6IluwiuPO0jVvNCN
-rYT26DH13eSTfZtHD9UlCMb7J1PO4lGT+FeVURUWx7tnX8m5r2H0H66VqyAdlPUT
-mOunobehDH81Sl2Pj7FDVa1jyA8Bg/CZwnCxKi7cwLyg4EvFxQCYG3AxKb30UZya
-WcQcmj84SGHps/X1XdbS1vnllGv9e9mE9FvaVdi+WZ4iUzcQOwCXpMsYiWoc0YdV
-LhUCUeGeAqr9STaTz7ZDCPBMUjNtnONtTiDcyDIMcAIWshytEl2S2sKkpy4o8c8V
-caHW8IBvVlyHHv9YjOnNRf5ysP3T7g==
-=vjaa
------END PGP SIGNATURE-----
-
---10LvNQVJYUIIwFrj--
+Thanks
+Alex
