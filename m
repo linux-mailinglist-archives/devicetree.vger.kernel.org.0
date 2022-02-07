@@ -2,82 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EC654ACD29
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 02:07:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5A1F4ACCF5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 02:06:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344490AbiBHBDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 20:03:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42652 "EHLO
+        id S1344496AbiBHBDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 20:03:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241653AbiBGXdp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 18:33:45 -0500
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F240AC061355;
-        Mon,  7 Feb 2022 15:33:44 -0800 (PST)
-Received: by mail-oo1-f52.google.com with SMTP id q145-20020a4a3397000000b002e85c7234b1so15604687ooq.8;
-        Mon, 07 Feb 2022 15:33:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eD+WbFNgoiVOWs2+mRiGqAg5p4oZ63XL14CKRP0Hztk=;
-        b=yw1+RUppI70W6ANKDtxpI2/MxQ3fQ4yjS1OsC+DqDRas5+ukbmAP9sxlvgyUR08HEs
-         7aYwtSAqGyxj5mYZTA28ah+cTvFPRObY0jGPtxIaDIMKd6obsznFpCGtEd4jM81/PSwA
-         Ghs8EkeZHBL4nf6BlCD3WCIODzH5ou0JpKGEp1lcY829cSymnK/C2aZG+eI5v4sogrri
-         r60T8b+85Ez7mROkH/a96ssyoFsk1BC9+CVyNogt4kTLjsm0EC3o50ECR+0Zx8Zg80Ab
-         fFyskRdjv5GmPmVZWioLKdF/ak0gvqNOFEVIboVkM3Ri8Zppun558nIj1LgfkFUkh0Xf
-         /07g==
-X-Gm-Message-State: AOAM531v32t31sf6fBfUv1xRUn5HT/+jTo2ndwmcscysPvc3Pb9lLFJK
-        2scTs3x/mSzAUOouYzwaOQ==
-X-Google-Smtp-Source: ABdhPJwfq4DJq1b0SJyD+QTW8RjwU7x0Hk110ctjUsDCjQw3ledmXS2oTNIV7EBNIzAK1+oIhAQQUw==
-X-Received: by 2002:a05:6870:1942:: with SMTP id m2mr448317oak.152.1644276824260;
-        Mon, 07 Feb 2022 15:33:44 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v78sm4844873oie.18.2022.02.07.15.33.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Feb 2022 15:33:43 -0800 (PST)
-Received: (nullmailer pid 1136265 invoked by uid 1000);
-        Mon, 07 Feb 2022 23:33:42 -0000
-Date:   Mon, 7 Feb 2022 17:33:42 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: Add bindings for Azoteq
- IQS7222A/B/C
-Message-ID: <YgGsVmxoA2szjJqv@robh.at.kernel.org>
-References: <20220126030723.223809-1-jeff@labundy.com>
- <20220126030723.223809-2-jeff@labundy.com>
+        with ESMTP id S1343872AbiBHAA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 19:00:59 -0500
+X-Greylist: delayed 406 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 16:00:55 PST
+Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com [64.147.123.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF1FCC0612A4;
+        Mon,  7 Feb 2022 16:00:55 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.west.internal (Postfix) with ESMTP id 5FB362B001F4;
+        Mon,  7 Feb 2022 18:54:06 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Mon, 07 Feb 2022 18:54:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm1; bh=7T1gb9q/dG3+e+
+        HVYc4URRtl0zI51K/MI/cYy1EcerM=; b=SDYv224gBZ5TT66LpyAI9ivK3tYsVZ
+        GBDiKxzdAELBE+LHIad5qxjwoVvgShjRZqvs1T+iE1ug4DfXaHnPXWqu3w3dW6iS
+        VWYhOUl/EqRiKCBjT+8acRD/NDUoFmg5rDbRyxEem25KtRpeEtsIn3OmVvQ1o06O
+        /uqL4Hxvu1eOldEvKivAb8tYgEdUAQSxU1Mkq6qXmntsEwnrRGo26NV31u68KB62
+        pUUkKRlaMcTRtlWJ21rw2p46tK/w0LVXTHjN6vY6X7GLaePGA86U3dyc2+cE58bi
+        p4llC4FgLAdhQXgDDIqSD7J/XMQiPkeJqz7AKEjiOTDKs39DBr95K10g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=7T1gb9q/dG3+e+HVYc4URRtl0zI51K/MI/cYy1Ece
+        rM=; b=dLl3ZpuPFU64fHFzudMdRGhNEh23o8k+blqkqXrk485ZDHglhYjDWyueC
+        5REvXvS1FtUvdEeK4if4sRQffIpOKH7TEaO+zUNr+oqz4k5vHKGcV3VWNNpmM1mx
+        NX5EkDA1FyaHWQTEKowbGpsbqvyhCJM9q55+c3e1dOLBzDS4VXQQM2f0ZrUZ3vnL
+        m4BPwW+hlb7MdHrWwZc6R/Pq7jca+ihKDFWK59yYtCMUr5CdDixJsYXdhTX9L/es
+        yqH0pAQTvLaBul6yAU/SIpiJLEYxfAGmIw6zcqG7DMHNGiLMp1yDaSbNwN/o/Gmz
+        H2HlSD5bqBi3RplwL/SnkD0wD0KUQ==
+X-ME-Sender: <xms:HLEBYg6jw33gP6tAXBkbbBPNm4gGLbfE98ysR-hGoL_Ozu60Rylstw>
+    <xme:HLEBYh4dqQ3adV6Qd1t2gCrgiDnlBoAzzy10EMDTx_34cils8jIJ2dFvr7LpOjpgw
+    OkkCQNwtrwns3djTA>
+X-ME-Received: <xmr:HLEBYvexMpT1Ym7Mbdz_UUlt-gJcQg9yRVtICaIGsb8uWm1ySPLnl9dFPKc6UB_tgm8zQRI_kif1DqEn5HzNmLdboZvH6x0-qMysB0BXYv2pXglTTIPAfvhT_w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrheeigddugecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpefgveffteelheffjeeukedvkedviedtheevgeefkeehueeiieeuteeu
+    gfettdeggeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:HLEBYlIcESxYubPnsfJoYBFrpQV7Eca9oPiwAtrBPV0poWN-8a0Tew>
+    <xmx:HLEBYkJ_lpYGg0JrkD8SfUuIEutebjO3VnO7aYSFpLvmu_rCRQzf0w>
+    <xmx:HLEBYmwXKGJNpft6ZS79msn9_tfLg7HwdqRIBM_EBdjbuyZTxtrRXg>
+    <xmx:HbEBYnZPQRdSjNs7ec0qiolHyDVZ8LMFS3OghivBTbNnBGrprWFMS9OcNV8>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 7 Feb 2022 18:54:03 -0500 (EST)
+Subject: Re: (subset) [PATCH v3 5/6] clk: sunxi-ng: Add support for the sun6i
+ RTC clocks
+To:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
+        linux-sunxi@lists.linux.dev, Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>
+References: <20220203021736.13434-1-samuel@sholland.org>
+ <20220203021736.13434-6-samuel@sholland.org>
+ <164422443570.21572.13511859513410998733.b4-ty@cerno.tech>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <bb05bc64-2a9e-fe21-5a69-0ea31134e978@sholland.org>
+Date:   Mon, 7 Feb 2022 17:54:02 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220126030723.223809-2-jeff@labundy.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <164422443570.21572.13511859513410998733.b4-ty@cerno.tech>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Jan 2022 21:07:22 -0600, Jeff LaBundy wrote:
-> This patch adds bindings for the Azoteq IQS7222A/B/C family of
-> capacitive touch controllers.
-> 
-> Signed-off-by: Jeff LaBundy <jeff@labundy.com>
-> ---
-> Changes in v2:
->  - Renamed binding to include vendor prefix
->  - Corrected error in channel node name regex
->  - Removed superfluous '#address-cells' and '#size-cells' properties
->  - Added more detail to 'azoteq,max-counts' property
-> 
->  .../bindings/input/azoteq,iqs7222.yaml        | 960 ++++++++++++++++++
->  1 file changed, 960 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/azoteq,iqs7222.yaml
-> 
+Hi Maxime,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 2/7/22 3:00 AM, Maxime Ripard wrote:
+> On Wed, 2 Feb 2022 20:17:35 -0600, Samuel Holland wrote:
+>> The RTC power domain in sun6i and newer SoCs manages the 16 MHz RC
+>> oscillator (called "IOSC" or "osc16M") and the optional 32 kHz crystal
+>> oscillator (called "LOSC" or "osc32k"). Starting with the H6, this power
+>> domain also handles the 24 MHz DCXO (called variously "HOSC", "dcxo24M",
+>> or "osc24M") as well. The H6 also adds a calibration circuit for IOSC.
+>>
+>> Later SoCs introduce further variations on the design:
+>>  - H616 adds an additional mux for the 32 kHz fanout source.
+>>  - R329 adds an additional mux for the RTC timekeeping clock, a clock
+>>    for the SPI bus between power domains inside the RTC, and removes the
+>>    IOSC calibration functionality.
+>>
+>> [...]
+> 
+> Applied to local tree (sunxi/clk-for-5.18).
+
+Part of the build failures were because this patch depends on patch 3. Is that
+okay, or should I update this patch to be independent?
+
+Regards,
+Samuel
