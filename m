@@ -2,130 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE4CC4AB83D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:01:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB3DA4AB794
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:41:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245476AbiBGJvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 04:51:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34878 "EHLO
+        id S245401AbiBGJeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 04:34:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352862AbiBGJim (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:38:42 -0500
-Received: from mx.tkos.co.il (guitar.tcltek.co.il [84.110.109.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E4DC0401C0;
-        Mon,  7 Feb 2022 01:38:40 -0800 (PST)
-Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id 4065A4409ED;
-        Mon,  7 Feb 2022 11:30:38 +0200 (IST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1644226238;
-        bh=Kd4KB7a0IuAHNoAFfdMAc3/6q6mBt1QnffvQOUL1hCQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SLYQTmZwAI35PLILedReLiOLWqqwYeZ6PrJVwvNyh+0cqdyI1dspGQL7N5l9fpHgn
-         NqFTwIASdoV6ghUVc9qN0yy4rAuyHCy890rchFaRczeZ4s1Ul3JLaHOMxDFXKCKNem
-         BVuWd0jN70fuGsTGr255julMy5/yqE2ogy+kmgOwIA79f0MxMKvnUiY5oANiqDNSNr
-         0oVNTNroptYTK3DV9+eEyLvWUJPAKs1vdx+WWRTp70uhe3V6fAwQdPSjjRLhxRnllP
-         iwlbae/vnwN2tiiRl3HJulay8YOX4o7JYrBGoHYR6q7JLEcUGysscN1PUCGzNVk8uH
-         Gf4Rzo0ut9VXg==
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Baruch Siach <baruch.siach@siklu.com>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/3] arm64: dts: ipq6018: add pwm node
-Date:   Mon,  7 Feb 2022 11:30:45 +0200
-Message-Id: <989c681a730f38b1a5f09dbb31552d9b974e400e.1644226245.git.baruch@tkos.co.il>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <17dd231f496d09ed8502bdd505eaa77bb6637e4b.1644226245.git.baruch@tkos.co.il>
-References: <17dd231f496d09ed8502bdd505eaa77bb6637e4b.1644226245.git.baruch@tkos.co.il>
+        with ESMTP id S241177AbiBGJdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:33:09 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61BE3C043189
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 01:33:08 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id s10so20982681wra.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 01:33:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=rBjYYVDfPJSH1BVq77LHmUbf5zvWji8qdpdwUm64Pcg=;
+        b=NhD4MFPycqIBpOhwd8+jvRql2upsyK034+tQKBWW1HDFvOTTuQu0lom4xl1l/YGYdR
+         NS1mJLu0MwwG2vZFKOi4k1tQe0gWQyfu6+frcfpc8aZn02P2FBH/i7fTXAcTqybXMdyY
+         M9y0VZCQTuVie/Ex71UrKktMQgwYKAkbLftxT16PBRxcpAKqo1gu/MqVsEX+SpExYs4w
+         9nw25Jry6zgct9e81Q/BH4tpx3K5mk1/MNcc3hugjKLMTIXSXzAWlj2QOUs6GFzEXo0+
+         VkZZ6LFjm6JdVv3KcHaIxJJlugJq4i/iRM77D/PWhnDYVSn6ObiL7Xt4VoqS2tQl3/zQ
+         aL8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=rBjYYVDfPJSH1BVq77LHmUbf5zvWji8qdpdwUm64Pcg=;
+        b=v52ypyhzscWOojqS5fPm80H+HAVCA/VOZjd5VHtvBw8ELXaIVmmOtLVZ0ImIMPqs7h
+         itEXmywNd7j+eQ6AIfCLnPCg1f3zJYYbKy4bampwQ267yZLddM6VhCF+cFMa7xUUCqBl
+         eV/xN3OXUFT7bnRzN/VZQxhoW2pIF0tFcbcnBmAM5ywqqvYqV39Ac/HLGVxBra9JSDrZ
+         VqPqcDgZI1PzaVDXRgZIT7S98EGxKx3FO4ne1yh5KygyL29tmJna5NsOTKdQd0wHz2dK
+         Dd655jiUAVStFggNPgwaPRACScjRhihW4g5WIqB8Ft/3cXOTq30HmSF5VRMy2OX84IBs
+         f3Gg==
+X-Gm-Message-State: AOAM530dec4xu0C2P0GE29c8SKe9GUDpochrbCi6lydNcMYMdz7KJGq1
+        A9cfRYyo649gEa2Ucq/NDsDbRIqru+eYRg==
+X-Google-Smtp-Source: ABdhPJxh2mvqeGHI9VwpCnxoxf60eD/D/VwhohJSXRkLkwKmdyolRzDLR+7kmAJg4PiqtpZcypaOOQ==
+X-Received: by 2002:adf:e4c4:: with SMTP id v4mr9166828wrm.332.1644226386982;
+        Mon, 07 Feb 2022 01:33:06 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id 5sm10359004wrb.113.2022.02.07.01.33.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Feb 2022 01:33:06 -0800 (PST)
+Date:   Mon, 7 Feb 2022 09:33:04 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Subject: Re: [PATCH v2 0/5] mfd/extcon/regulators: max77843: add
+ dtschema/bindings
+Message-ID: <YgDnUNCNCO+JLyHU@google.com>
+References: <20220111174805.223732-1-krzysztof.kozlowski@canonical.com>
+ <1bebedb9-644f-783d-492c-84a5de91720d@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1bebedb9-644f-783d-492c-84a5de91720d@canonical.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Baruch Siach <baruch.siach@siklu.com>
+On Sun, 06 Feb 2022, Krzysztof Kozlowski wrote:
 
-Describe the PWM block on IPQ6018.
+> On 11/01/2022 18:48, Krzysztof Kozlowski wrote:
+> > Hi,
+> > 
+> > The max77843 shares some parts with max77693 but it lacked bindings.  All
+> > its compatibles were undocumented.  Add basic bindings for max77843,
+> > matching existing devicetree.  These are not complete bindings, but
+> > rather reverse-engineered to match current state.
+> > 
+> > I do not have access to device with MAX77843, so if anyone else
+> > volunteers to be the bindings maintainer, please join.
+> > 
+> > Changes since v1
+> > ================
+> > 1. MFD: Use absolute path to schemas.
+> > 2. Regulator: mention all allowed properties,
+> >    additionalProperties=false, add min/max values for voltages and
+> >    current, don't use patternProperties when not needed.
+> > 3. extcon: Use absolute path to schemas.
+> > 
+> > Dependencies
+> > ============
+> > 1. Patch 1/5 (dts): nothing depends on it, sending here so Rob's automatic
+> >    checker won't complain about DTS.
+> >    I will take it via Samsung SoC tree.
+> > 
+> > 2. The patch 4/5 (mfd bindings) depends on regulator and extcon, so they
+> >    should come together (2+3+4+5).
+> > 
+> Dear Lee,
+> 
+> This patchset was reviewed and there are no outstanding issues. Could
+> you pick up patches 2-5 (skipping DTS patch) via MFD tree?
 
-The PWM is in the TCSR area. Make &tcsr "simple-mfd" compatible, and add
-&pwm as child of &tcsr.
+Are the subsystem maintainers not going to review/ack?
 
-Add also ipq6018 specific compatible string.
-
-Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
----
-v9:
-
-  Add 'ranges' property (Rob)
-
-v8:
-
-  Add size cell to 'reg' (Rob)
-
-v7:
-
-  Use 'reg' instead of 'offset' (Rob)
-
-  Add qcom,tcsr-ipq6018 (Rob)
-
-  Drop clock-names (Bjorn)
-
-v6:
-
-  Make the PWM node child of TCSR (Rob Herring)
-
-  Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-
-v5: Use qcom,pwm-regs for TCSR phandle instead of direct regs
-
-v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 66ec5615651d..a717fc17523d 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -258,8 +258,21 @@ tcsr_mutex_regs: syscon@1905000 {
- 		};
- 
- 		tcsr: syscon@1937000 {
--			compatible = "syscon";
-+			compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
- 			reg = <0x0 0x01937000 0x0 0x21000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x0 0x01937000 0x21000>;
-+
-+			pwm: pwm@a010 {
-+				compatible = "qcom,ipq6018-pwm";
-+				reg = <0xa010 0x20>;
-+				clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+				assigned-clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+				assigned-clock-rates = <100000000>;
-+				#pwm-cells = <2>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		blsp_dma: dma-controller@7884000 {
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
