@@ -2,110 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A7B54AB70D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:08:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C32704AB7CC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:41:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236872AbiBGJCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 04:02:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44834 "EHLO
+        id S1345994AbiBGJSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 04:18:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349805AbiBGJAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:00:52 -0500
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E4CC043181;
-        Mon,  7 Feb 2022 01:00:50 -0800 (PST)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 31E9E58018B;
-        Mon,  7 Feb 2022 04:00:50 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Mon, 07 Feb 2022 04:00:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; bh=LlmYXeK2fC2UdJ
-        0/MsJYEQrTJxKAOlqRD+axqJoLm3I=; b=fm5k1dGy1PeO02r1/TlAHJNiPhTGWE
-        5Iz8JgwP01EUiauX3iYERT0YPoAlmiNhvh3zHn48pU5ZR7i50wdIqMi2TqDT6zwS
-        hSIARHAQBic+WMq594pw+r1hdkJH4foiJ/v+za5CYtlxOHDk/rYnjJ62V9U2/ukk
-        R3ewIPTVnznf+fpkdJ/DJZMLouLKFrfDOanqmzwMjhr8CK/tWD65z3sO/CnpyEKO
-        fldsssTSz1jV+UAAVeaAblRuLVmN8hZUZ0VnWsFFq27v9+RX3ZCcaLoT52X32/KW
-        UatXs76ZJTfxBlcK/Hc3RYGiYWUjHrc7YN7Ksm1/YyQZN9WQa13550lw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=LlmYXeK2fC2UdJ0/MsJYEQrTJxKAOlqRD+axqJoLm
-        3I=; b=adMfYwoaQ/+F0Adw54uNBbogBqWCNOpwNoQ9vM7kPwDVtliGcE/0sJW5T
-        GSkPw8fKguIjcu3WS6SwiePhrbtPoapSJKd278hw9l2tAE/4SvgN9Kgdr6/zer0p
-        A6PTNSUunpLYmjfPgmCuXdOvtVnzckBrHJs1f6PbP1WMrBR2ZJGyNx4VBsi4cBzm
-        eWcn6BqdpcHjNov6rWoYYhZfXlzkoFhtDP7lZuQR/ySkBo6afBQJYlWgJOg6lPma
-        VaQ5opIv7rqfHGUpqYb3c0/pWUsLWRQ8cZf27BEA9hvk78RevuqoSUyunTfG2SVC
-        7fHlzXXpXiu1lF9InYRRu7WoiVb8A==
-X-ME-Sender: <xms:wt8AYvpYzksObIQVOstgSzXW_j7vTFG4na98z1tyat7OAlBQVMWVAg>
-    <xme:wt8AYpqaOsWE4i3N_9ZNkIZLPgSfeoklFLKzjhLbeUSB542-49RtnhvuFn84nDMCD
-    K-d_uqCQ0a0HTq-2Mw>
-X-ME-Received: <xmr:wt8AYsOHMqrHXEo3mqTx-DPOHWLrrIzBhHpR67W2xZSY-b0oBFO7OgzQ1heB2KGO1LjxAipzrsiiEftZuklxmByAIK4CMiZ884aFoCw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrheeggdduvddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfgggtgfesthekredtredtjeenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeejuefggeekfffgueevtddvudffhfejffejjedvvdduudethefhfefhfeeg
-    ieekkeenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:wt8AYi5sJGTaHdSyOFBTpB5GBdyKWj7W4q2Qx6G4ow6j7a3Ngk9u8w>
-    <xmx:wt8AYu4nXzcilGfFlbSU8FeohOslwB1MibQ6UJwKse6CAHxnRQI0MA>
-    <xmx:wt8AYqhwssUi8JB6SACMjFKALBnoIooSAjNSWdHq-vI-PfVYgLIm0Q>
-    <xmx:wt8AYtQUyHpHBiDSq0K7o6o4idoY_DwsL7FYrbumcamqnkqPLVPQxg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 7 Feb 2022 04:00:49 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Maxime Ripard <maxime@cerno.tech>, Stephen Boyd <sboyd@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>
-Subject: Re: (subset) [PATCH v3 5/6] clk: sunxi-ng: Add support for the sun6i RTC clocks
-Date:   Mon,  7 Feb 2022 10:00:45 +0100
-Message-Id: <164422443570.21572.13511859513410998733.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220203021736.13434-6-samuel@sholland.org>
-References: <20220203021736.13434-1-samuel@sholland.org> <20220203021736.13434-6-samuel@sholland.org>
+        with ESMTP id S237688AbiBGJJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:09:36 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5669AC043189;
+        Mon,  7 Feb 2022 01:09:35 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id d9-20020a17090a498900b001b8bb1d00e7so2102931pjh.3;
+        Mon, 07 Feb 2022 01:09:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZQZhXFdp9tD0c0jU395inttU68UAXVyx1JvLcWnp9yk=;
+        b=HByNIbTXkeLBMWlMVsGX3Ar2pC17mvgYsfavk5QlAl7gwkBwf56yZtMG5sSMCvC6dX
+         AqrLpO6F2M5LbddCDqS/L2Djcs3icTMTlLWWj1OgQVCD7G1bfN6wUPiPSUPBDUAKEH+6
+         6x42+rx4aFiGmKO3nUskZYaRd+UDTDxVwDrvQuQu/b/ekcrmJltB/zQ3v1VuN8NOUNAz
+         rPXMDm+BgK1PyCIPlvQeRSA8yk08NFKNyfZld5cu2qxWLwPLG7A3eY3dhCWGUAM6Jtvg
+         AI+1b3rgd4iP3AAlJodd6pACOEJso2TqXaJlO0B3s4Qv7QQTJJ0szNFAaNgPLAuSzTqG
+         uHQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZQZhXFdp9tD0c0jU395inttU68UAXVyx1JvLcWnp9yk=;
+        b=RjKmiYPr9P1SgR+si5QmOgMpn15WB1YomVNPbpcfu7y1bb7fj9QbwZB6Cvn/BBo4th
+         LcpL9yS2DtR5+5oHBanWULOqpVbRLEcPh4muAWo9KUZgNyxv2kXBg3OsxwhqMF2QiixV
+         PM18RKU1mRoOPq8gtus2j7Qsd5eY4QgZZJJwkoGzUQv0PEg77/ESTHRofDB9t6xbZu3m
+         6uN451RZBWP1TgV/WXEAW0VNYdZhu441uoXXpL1hwnvXJOQQnbTdRf7SBPinbk+ipqYY
+         yE1ZmxqbxjmfkYl/oMwk5NpvqiLotLJ5dggd69w+eA5t9nJLqMnwDoaRKNUT7TZYMhHi
+         5lZA==
+X-Gm-Message-State: AOAM532szU9HPAdj5cxE3vpTO23ZqmIojI3kWUrkxra5CEBRm5jU3WUD
+        QNYc0SzyomHHyJVkKvpKIS4=
+X-Google-Smtp-Source: ABdhPJzP8hxShwPPwZilsQyPlrVinXOBWypQfCA3vqAyXcJU6phRDDOBPpKaOoH4z4noDLWJyhwQYg==
+X-Received: by 2002:a17:902:ac88:: with SMTP id h8mr2213536plr.128.1644224974625;
+        Mon, 07 Feb 2022 01:09:34 -0800 (PST)
+Received: from localhost.localdomain (61-231-109-204.dynamic-ip.hinet.net. [61.231.109.204])
+        by smtp.gmail.com with ESMTPSA id x187sm7796724pgx.10.2022.02.07.01.09.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Feb 2022 01:09:34 -0800 (PST)
+From:   Joseph CHAMG <josright123@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joseph CHANG <josright123@gmail.com>,
+        joseph_chang@davicom.com.tw
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
+        andrew@lunn.ch, leon@kernel.org
+Subject: [PATCH v18, 0/2] ADD DM9051 ETHERNET DRIVER
+Date:   Mon,  7 Feb 2022 17:09:04 +0800
+Message-Id: <20220207090906.11156-1-josright123@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Feb 2022 20:17:35 -0600, Samuel Holland wrote:
-> The RTC power domain in sun6i and newer SoCs manages the 16 MHz RC
-> oscillator (called "IOSC" or "osc16M") and the optional 32 kHz crystal
-> oscillator (called "LOSC" or "osc32k"). Starting with the H6, this power
-> domain also handles the 24 MHz DCXO (called variously "HOSC", "dcxo24M",
-> or "osc24M") as well. The H6 also adds a calibration circuit for IOSC.
-> 
-> Later SoCs introduce further variations on the design:
->  - H616 adds an additional mux for the 32 kHz fanout source.
->  - R329 adds an additional mux for the RTC timekeeping clock, a clock
->    for the SPI bus between power domains inside the RTC, and removes the
->    IOSC calibration functionality.
-> 
-> [...]
+DM9051 is a spi interface chip,
+need cs/mosi/miso/clock with an interrupt gpio pin
 
-Applied to local tree (sunxi/clk-for-5.18).
+Joseph CHAMG (2):
+  dt-bindings: net: Add Davicom dm9051 SPI ethernet controller
+  net: Add dm9051 driver
 
-Thanks!
-Maxime
+ .../bindings/net/davicom,dm9051.yaml          |   62 +
+ drivers/net/ethernet/davicom/Kconfig          |   31 +
+ drivers/net/ethernet/davicom/Makefile         |    1 +
+ drivers/net/ethernet/davicom/dm9051.c         | 1256 +++++++++++++++++
+ drivers/net/ethernet/davicom/dm9051.h         |  162 +++
+ 5 files changed, 1512 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.c
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.h
+
+
+base-commit: 9d922f5df53844228b9f7c62f2593f4f06c0b69b
+-- 
+2.20.1
+
