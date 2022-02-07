@@ -2,101 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BCEA4AC494
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 16:59:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D71C4AC49A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 17:00:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233548AbiBGP6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 10:58:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33800 "EHLO
+        id S239692AbiBGP7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 10:59:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345569AbiBGPv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 10:51:27 -0500
-X-Greylist: delayed 52220 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 07:51:25 PST
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A201AC0401CE;
-        Mon,  7 Feb 2022 07:51:25 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 54D34340;
-        Mon,  7 Feb 2022 16:51:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1644249083;
-        bh=Kg8KkyXqodwxnkoOUnTFgILuDislMphNhCMp4Cyt3k0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=d+p/yyLLVWoFHaQMa3PKOYne2f5NsLX/aSXsN5whwh5fbgyeQpYs8XdYey0+Cmdzm
-         wzUhiqC1tH8lsKZPl6Eninn4/oSoKEz/NKHoSjt3wcCtb6Np67rcbw0PDyekIXy8+L
-         kBpaesRvFQGudsLOVg3bNSdwSx4HeFms+1kyhIT4=
-Date:   Mon, 7 Feb 2022 17:51:21 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 61/66] dt-bindings: media: Add Allwinner A31 ISP
- bindings documentation
-Message-ID: <YgE/+UmP4nJVxtRT@pendragon.ideasonboard.com>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <20220205185429.2278860-62-paul.kocialkowski@bootlin.com>
+        with ESMTP id S1377875AbiBGP5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 10:57:01 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2870AC0401CF
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 07:57:00 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BF4C83F1B4
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 15:56:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644249418;
+        bh=3KCJtIIAHid1u1Ypwj6pcJ1BKiFWLA7ETi2tEpWd/KM=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=d3zYrg8/QwD5CAPs29nqw1oSk42TU4EDHDXDvbIJfOkP3OHO0KGY5Ay4x3iBxtmhR
+         bo0lvQiVA1GRvjqzCWdEk5l5ggl53NysepRAOzq60aEQJ4h4k8QmE9XsvYz/zNlprS
+         alcWO5kK9g+EJ67kQvqcffhUV6djdDrCveI5+4F7qLGqx5y0mEUFxqap3rhajbuuRK
+         Q/7hp5dwu7dPnL8NbT2mMCYj8UgAOk6pbeI9vluwK0geu2zGIlDNyr6vHBiSCPC8dI
+         fchcJ8zu5gC2jXXv7U67H5/qq9CGhQuoelrVJ07dEFL/Qzx8YDk86O9mx5gMnDY+XS
+         RYsNGfgCHR8/A==
+Received: by mail-ej1-f70.google.com with SMTP id qq4-20020a17090720c400b006c6a6c55ed6so1873128ejb.12
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 07:56:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3KCJtIIAHid1u1Ypwj6pcJ1BKiFWLA7ETi2tEpWd/KM=;
+        b=4SEpbg8Sc/dVytAuTQigvR5aFf5y1JepRXknXOpueR2D/6up0fFz1BAGq9HdLF5bfA
+         8abu/Rxj6J8J5dlND09aZ5DN8kT2L5iv648Ie7+Uh/PUSdNJbGbKrRnoPKsAMvQamh3C
+         +cY3ESPjI9DPb4Lr6O1r2JM6eHHS8gdAi1OWlee10NauQvl2ggIsCCknkA+bUwMFn59d
+         cyLvhfnFs9gkitUhTUYJJYGjm8ua/YbjNyoHQ/iqyQn4GvI0NP4CSIg+69o22aEvUniM
+         /+ltR+5aCWVKzVIRmorFuE8V/SID8jv9IHeqQLcExv6+ABNk4F9CfbE/QviBmr0cukCT
+         BomA==
+X-Gm-Message-State: AOAM532b92gLxxPI/KNdaHwtxc2F++tTfgvNjbaEq6X5SuExcYJLWvnZ
+        99mdn1WuqeyOenkBdrtBD9ErM/toxk/K4HsiQfn3/RvcwDJV0UNqycuau3DLg0Toa6iS7T2zgEe
+        7D9ImsTvXkgkgiwMyfPhuj0G752HVL1meqH2TQ9o=
+X-Received: by 2002:a17:907:ca6:: with SMTP id gi38mr290859ejc.353.1644249418353;
+        Mon, 07 Feb 2022 07:56:58 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxNtGmRyRii7O51uydqBLa9NhyKzrDOTW8Z28l8gq9kBDum2SUHT7YCiJHTkDya3nBusEaO7g==
+X-Received: by 2002:a17:907:ca6:: with SMTP id gi38mr290850ejc.353.1644249418176;
+        Mon, 07 Feb 2022 07:56:58 -0800 (PST)
+Received: from [192.168.0.90] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id v19sm3356879edw.39.2022.02.07.07.56.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Feb 2022 07:56:57 -0800 (PST)
+Message-ID: <f8387f12-24f9-4a39-e9b8-3b83f1de078d@canonical.com>
+Date:   Mon, 7 Feb 2022 16:56:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220205185429.2278860-62-paul.kocialkowski@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/3] dt-bindings: crypto: Convert Atmel AES to yaml
+Content-Language: en-US
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        herbert@gondor.apana.org.au, robh+dt@kernel.org
+Cc:     davem@davemloft.net, nicolas.ferre@microchip.com,
+        claudiu.beznea@microchip.com, alexandre.belloni@bootlin.com,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220207032405.70733-1-tudor.ambarus@microchip.com>
+ <20220207032405.70733-2-tudor.ambarus@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220207032405.70733-2-tudor.ambarus@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
-
-Thank you for the patch.
-
-On Sat, Feb 05, 2022 at 07:54:24PM +0100, Paul Kocialkowski wrote:
-> This introduces YAML bindings documentation for the Allwinner A31 Image
-> Signal Processor (ISP).
+On 07/02/2022 04:24, Tudor Ambarus wrote:
+> Convert Atmel AES documentation to yaml format. With the conversion the
+> clock and clock-names properties are made mandatory. The driver returns
+> -EINVAL if "aes_clk" is not found, reflect that in the bindings and make
+> the clock and clock-names properties mandatory. Update the example to
+> better describe how one should define the dt node.
 > 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
 > ---
->  .../media/allwinner,sun6i-a31-isp.yaml        | 117 ++++++++++++++++++
->  1 file changed, 117 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+>  .../devicetree/bindings/crypto/atmel,aes.yaml | 65 +++++++++++++++++++
+>  .../bindings/crypto/atmel-crypto.txt          | 20 ------
+>  2 files changed, 65 insertions(+), 20 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/atmel,aes.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> diff --git a/Documentation/devicetree/bindings/crypto/atmel,aes.yaml b/Documentation/devicetree/bindings/crypto/atmel,aes.yaml
 > new file mode 100644
-> index 000000000000..2d87022c43ce
+> index 000000000000..f77ec04dbabe
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
-> @@ -0,0 +1,117 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/crypto/atmel,aes.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
+> +$id: http://devicetree.org/schemas/crypto/atmel,aes.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree Bindings
+> +title: Atmel Advanced Encryption Standard (AES) HW cryptographic accelerator
 > +
 > +maintainers:
-> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> +  - Tudor Ambarus <tudor.ambarus@microchip.com>
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - allwinner,sun6i-a31-isp
-> +      - allwinner,sun8i-v3s-isp
+> +    const: atmel,at91sam9g46-aes
 > +
 > +  reg:
 > +    maxItems: 1
@@ -105,80 +128,20 @@ On Sat, Feb 05, 2022 at 07:54:24PM +0100, Paul Kocialkowski wrote:
 > +    maxItems: 1
 > +
 > +  clocks:
-> +    items:
-> +      - description: Bus Clock
-> +      - description: Module Clock
-> +      - description: DRAM Clock
-
-That's interesting, does the ISP have a dedicated DRAM ?
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bus
-> +      - const: mod
-> +      - const: ram
-> +
-> +  resets:
 > +    maxItems: 1
 > +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
+> +  clock-names:
+> +    const: aes_clk
 > +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        description: CSI0 input port
+> +  dmas:
+> +    items:
+> +      - description: TX DMA Channel
+> +      - description: RX DMA Channel
 > +
-> +        properties:
-> +          reg:
-> +            const: 0
-> +
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-
-If no other property than remote-endpoint are allowed, I'd write
-
-          endpoint:
-            $ref: video-interfaces.yaml#
-	    remote-endpoint: true
-            additionalProperties: false
-
-Same below.
-
-> +
-> +        additionalProperties: false
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        description: CSI1 input port
-> +
-> +        properties:
-> +          reg:
-> +            const: 0
-
-This should be 1.
-
-> +
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +        additionalProperties: false
-> +
-> +    anyOf:
-> +      - required:
-> +        - port@0
-> +      - required:
-> +        - port@1
-
-As ports are an intrinsic property of the ISP, both should be required,
-but they don't have to be connected.
-
-By the way, how do you select at runtime which CSI-2 RX the ISP gets its
-image stream from ? Is it configured through registers of the ISP ?
-
+> +  dma-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
 > +
 > +required:
 > +  - compatible
@@ -186,43 +149,36 @@ image stream from ? Is it configured through registers of the ISP ?
 > +  - interrupts
 > +  - clocks
 > +  - clock-names
-> +  - resets
+> +  - dmas
+> +  - dma-names
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
 > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
-> +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
-> +
-> +    isp: isp@1cb8000 {
-> +        compatible = "allwinner,sun8i-v3s-isp";
-> +        reg = <0x01cb8000 0x1000>;
-> +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&ccu CLK_BUS_CSI>,
-> +             <&ccu CLK_CSI1_SCLK>,
-> +             <&ccu CLK_DRAM_CSI>;
-> +        clock-names = "bus", "mod", "ram";
-> +        resets = <&ccu RST_BUS_CSI>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +
-> +                isp_in_csi0: endpoint {
-> +                    remote-endpoint = <&csi0_out_isp>;
-> +                };
-> +            };
-> +        };
+> +    #include <dt-bindings/clock/at91.h>
+> +    #include <dt-bindings/dma/at91.h>
+
+One empty line for readability.
+
+> +    aes: aes@f8038000 {
+
+Generic node name, so "crypto".
+
+> +      compatible = "atmel,at91sam9g46-aes";
+> +      reg = <0xe1810000 0x100>;
+> +      interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+> +      clocks = <&pmc PMC_TYPE_PERIPHERAL 27>;
+> +      clock-names = "aes_clk";
+> +      dmas = <&dma0 AT91_XDMAC_DT_PERID(1)>,
+> +             <&dma0 AT91_XDMAC_DT_PERID(2)>;
+> +      dma-names = "tx", "rx";
+> +      status= "okay";
 > +    };
-> +
-> +...
 
--- 
-Regards,
+Drop the status property.
 
-Laurent Pinchart
+Best regards,
+Krzysztof
