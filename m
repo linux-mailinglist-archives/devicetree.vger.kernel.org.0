@@ -2,43 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D98B24AB30F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 02:21:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E920E4AB32C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 02:46:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243610AbiBGBVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Feb 2022 20:21:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54232 "EHLO
+        id S244520AbiBGBqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Feb 2022 20:46:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243582AbiBGBVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 20:21:09 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B445C061348;
-        Sun,  6 Feb 2022 17:21:07 -0800 (PST)
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5E738499;
-        Mon,  7 Feb 2022 02:21:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1644196863;
-        bh=KCArg2ftcWh8Mgi925rN1eNL9paFn/uGTQw8SvY2Iis=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bmXdtmfnoD0KRI9975Xz1mARM0MsaaPDRqjC6zEZb1CX/evua1n793f4udqnOpYq7
-         2eTWTtvPndSsOMGiYACyKcszaDux2jt0V9o8s6BwK39oY2vv8I68X14c9IesZvM3zJ
-         igM78oK0GRyz5f20YFOUrC5nk+5r2q0ek9D8ikHE=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     linux-media@vger.kernel.org
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] media: dt-bindings: media: i2c: Add MT9M114 camera sensor binding
-Date:   Mon,  7 Feb 2022 03:20:54 +0200
-Message-Id: <20220207012055.15158-2-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220207012055.15158-1-laurent.pinchart@ideasonboard.com>
-References: <20220207012055.15158-1-laurent.pinchart@ideasonboard.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        with ESMTP id S235981AbiBGBqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Feb 2022 20:46:22 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD1A9C061348;
+        Sun,  6 Feb 2022 17:46:20 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id e28so10388095pfj.5;
+        Sun, 06 Feb 2022 17:46:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=9Q5/F8EmWvdY2BVBPwxUCP4JTGecrqYUq+/uZOYIhBk=;
+        b=awv32MCVB6xoA8hpTDqMvERErV8/3s6P/y8YvJbYK4x+foi07jjUmTSf3PCarpaTPZ
+         BTM2eGhHnAxAzpGZOicz+GfXFDgDgKfCJ6onRXJ9ROP+BKa+hMOnILXrzkZ1syBgRkL6
+         /C/JbTSluSQH3dJeNJcI6O2HRgJvnb2ZEiNWmY3lPmOVbV2d5bUhn2FkpCrUaibfbeCR
+         MckwQjxpTcH5ZCwJ42xi/K+HHtmbJRTFD53kdLTTG3CUypVNT03OI4C1H9IZZdwjNHJN
+         jNMAb7zLctwukNUTaEjJL18QLZflGl55TXwcDZC1RsIUk+FQzIvsk8eJ+9WfBWIGJPnc
+         Xtug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=9Q5/F8EmWvdY2BVBPwxUCP4JTGecrqYUq+/uZOYIhBk=;
+        b=1YkGqz+rptUYcKwqtMtRcgve7dsC5eCD21IfJHFLOQ7tW5UkNA+ftN5qyPNLPkjxc3
+         u5i3+SYAJvVTqkDnfs1DJcPMt7Tg8ru0Ned1u1HTJJ11PttDHhGObVWQJWXziYY8jXIc
+         sMoF+9tXzCJFEFGq+Y8MTFgn6nIjgZS+Jds1azXF5ahQ8Q/Ot9NBpgZ3WFUhgQvcAVMP
+         pR56Xnei8nQS0PN+qchyKKSPi7YaWht/mzQTFyowwnORGx51a9AODscvfO3KrY5084aR
+         srCUplQR8YfpeFhxmfMvylhperVhYQgsrhz43U0YGjBhGhLttSCwvlMzwD4Y8LWcvTyX
+         c2jQ==
+X-Gm-Message-State: AOAM531nkc57ha3qDIEKAh32gVPd3EQDG+aeoHXqxREyLj2jqG5Dg+Gh
+        wm+yxxbIfC0pg56iYSu3I6I=
+X-Google-Smtp-Source: ABdhPJzcXjq4UIXHIcwYc3lcDZJhfbJ3ZQf6vzr+6w38knHEzAa4wIZGvrfnDItDhT5sg6FBpanz4A==
+X-Received: by 2002:a63:5144:: with SMTP id r4mr7643965pgl.382.1644198380016;
+        Sun, 06 Feb 2022 17:46:20 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id g1sm9690899pfu.32.2022.02.06.17.46.18
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 06 Feb 2022 17:46:19 -0800 (PST)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
+        Li-hao Kuo <lhjeff911@gmail.com>
+Subject: [PATCH next] dt-bindings:spi: Fix test error for sp7021.
+Date:   Mon,  7 Feb 2022 09:46:34 +0800
+Message-Id: <b8a94fbfcab68b1279b09b6297099310c209927b.1644198244.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,157 +64,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree binding for the onsemi MT9M114 CMOS camera sensor.
+Remove the include path and modify parameters for fix error for bt binding test
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Fixes: a708078eeb99  ("spi: Add Sunplus SP7021 schema")
+Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
 ---
-Changes since v1:
+ Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-- Use graph schema
-- Drop unneeded properties
-- Rename ON Semiconductor to onsemi
----
- .../bindings/media/i2c/onnn,mt9m114.yaml      | 110 ++++++++++++++++++
- MAINTAINERS                                   |   7 ++
- 2 files changed, 117 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-new file mode 100644
-index 000000000000..55b67833f9a1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/onnn,mt9m114.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: onsemi 1/6-inch 720p CMOS Digital Image Sensor
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+
-+description: |-
-+  The onsemi MT9M114 is a 1/6-inch 720p (1.26 Mp) CMOS digital image sensor
-+  with an active pixel-array size of 1296H x 976V. It is programmable through
-+  an I2C interface and outputs image data over a 8-bit parallel or 1-lane MIPI
-+  CSI-2 connection.
-+
-+properties:
-+  compatible:
-+    const: onnn,mt9m114
-+
-+  reg:
-+    description: I2C device address
-+    enum:
-+      - 0x48
-+      - 0x5d
-+
-+  clocks:
-+    description: EXTCLK clock signal
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description:
-+      Core digital voltage supply, 1.8V
-+
-+  vddio-supply:
-+    description:
-+      I/O digital voltage supply, 1.8V or 2.8V
-+
-+  vaa-supply:
-+    description:
-+      Analog voltage supply, 2.8V
-+
-+  reset-gpios:
-+    description: |-
-+      Reference to the GPIO connected to the RESET_BAR pin, if any (active
-+      low).
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        additionalProperties: false
-+
-+        properties:
-+          bus-type:
-+            enum: [4, 5, 6]
-+
-+          remote-endpoint: true
-+
-+          # The number and mapping of lanes (for CSI-2), and the bus width and
-+          # signal polarities (for parallel and BT.656) are fixed and must not
-+          # be specified.
-+
-+        required:
-+          - bus-type
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - vdd-supply
-+  - vddio-supply
-+  - vaa-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        sensor@48 {
-+            compatible = "onnn,mt9m114";
-+            reg = <0x48>;
-+
-+            clocks = <&clk24m 0>;
-+
-+            reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
-+
-+            vddio-supply = <&reg_cam_1v8>;
-+            vdd-supply = <&reg_cam_1v8>;
-+            vaa-supply = <&reg_2p8v>;
-+
-+            port {
-+                endpoint {
-+                    bus-type = <4>;
-+                    remote-endpoint = <&mipi_csi_in>;
-+                };
-+            };
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f41088418aae..e9919a359c12 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13096,6 +13096,13 @@ T:	git git://linuxtv.org/media_tree.git
- F:	drivers/media/i2c/mt9m032.c
- F:	include/media/i2c/mt9m032.h
+diff --git a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+index 38589fd..298eac2 100644
+--- a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+@@ -59,8 +59,6 @@ unevaluatedProperties: false
  
-+MT9M114 ONSEMI SENSOR DRIVER
-+M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c.onnn,mt9m114.yaml
-+
- MT9P031 APTINA CAMERA SENSOR
- M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
- L:	linux-media@vger.kernel.org
+ examples:
+   - |
+-    #include <dt-bindings/clock/sp-sp7021.h>
+-    #include <dt-bindings/reset/sp-sp7021.h>
+     #include <dt-bindings/interrupt-controller/irq.h>
+     spi@9C002D80 {
+         compatible = "sunplus,sp7021-spi";
+@@ -73,8 +71,8 @@ examples:
+         interrupts = <144 IRQ_TYPE_LEVEL_HIGH>,
+                      <146 IRQ_TYPE_LEVEL_HIGH>,
+                      <145 IRQ_TYPE_LEVEL_HIGH>;
+-        clocks = <&clkc SPI_COMBO_0>;
+-        resets = <&rstc RST_SPI_COMBO_0>;
++        clocks = <&clkc 0x32>;
++        resets = <&rstc 0x22>;
+         pinctrl-names = "default";
+         pinctrl-0 = <&pins_spi0>;
+     };
 -- 
-Regards,
-
-Laurent Pinchart
+2.7.4
 
