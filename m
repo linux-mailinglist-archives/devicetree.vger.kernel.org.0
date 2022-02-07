@@ -2,62 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E5084AC24B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 16:02:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90E674AC25F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 16:05:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbiBGPBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 10:01:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47506 "EHLO
+        id S241647AbiBGPCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 10:02:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344888AbiBGOj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 09:39:59 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFC9C0401C1;
-        Mon,  7 Feb 2022 06:39:58 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 96D4EB8112E;
-        Mon,  7 Feb 2022 14:39:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B541C004E1;
-        Mon,  7 Feb 2022 14:39:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644244796;
-        bh=KEW37Vn+2cncY49KIS7D8oNYHpFzch4EB7d0Q7QeRPg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MeGzrROZZMRJg4xl0aSowKugN09rsNvvnbp4X1900GGg3KfcSeEJXtaxZBLCFEkK5
-         OK93IOZOvBQNbxwN8yfiSdjcYGyWjYhIt7rZQmzLZ8LFWenpxsyblPuK+95OpW2RQa
-         AqcA+6oqCztzfkp5YZlbARZ8vh8jcwTIjb8N+mJjijoQqUmH0aOCuPODb+mVQTFFcl
-         S3Mg3ROU+Hyf5/MJuhmLFFMLVI6QdrpLjOUST6oeujlKdGAReo4+UQnmvJIhQKyzAw
-         L7JzFeWV3ZkuGXilFg8HxzSkIaL3HymSMxVKteFs6iFX24dvTzws7fi2vNd1HBqAEh
-         JUO+Qafukj3Cg==
-Date:   Mon, 7 Feb 2022 14:39:51 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linus.walleij@linaro.org, Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: i2c: qcom-cci: add description of a
- vbus-supply property
-Message-ID: <YgEvN0lXXu4lDCN5@sirena.org.uk>
-References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
- <20220203164629.1711958-3-vladimir.zapolskiy@linaro.org>
- <Yf1q+wlXo2LAeZX+@ripper>
- <Yf1zhojUSxlMNZgV@sirena.org.uk>
- <Yf14LADJ26G9ByZu@ripper>
- <Yf1/X1rXm4QbyoFN@sirena.org.uk>
- <846cdc17-891d-2ee4-fc89-7cf6fbdebc1d@linaro.org>
+        with ESMTP id S1442467AbiBGOvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 09:51:03 -0500
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC84BC0401C1;
+        Mon,  7 Feb 2022 06:51:02 -0800 (PST)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 217Cm044006544;
+        Mon, 7 Feb 2022 08:15:35 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3e1ky9n088-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 07 Feb 2022 08:15:35 -0500
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 217DFYUX062636
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Feb 2022 08:15:34 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 7 Feb 2022 08:15:33 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 7 Feb 2022 08:15:33 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 7 Feb 2022 08:15:33 -0500
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.131])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 217DFMUV004584;
+        Mon, 7 Feb 2022 08:15:29 -0500
+From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v6 3/4] Documentation:ABI:testing:admv1014: add ABI docs
+Date:   Mon, 7 Feb 2022 15:05:48 +0200
+Message-ID: <20220207130549.98415-3-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220207130549.98415-1-antoniu.miclaus@analog.com>
+References: <20220207130549.98415-1-antoniu.miclaus@analog.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="77v6i4keSC7gNdpP"
-Content-Disposition: inline
-In-Reply-To: <846cdc17-891d-2ee4-fc89-7cf6fbdebc1d@linaro.org>
-X-Cookie: Never give an inch!
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: cmZiIwa0rYwwF_CC0nG1EoM5H1SuwDpr
+X-Proofpoint-GUID: cmZiIwa0rYwwF_CC0nG1EoM5H1SuwDpr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-07_05,2022-02-07_02,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ mlxscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ malwarescore=0 phishscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=999
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2201110000 definitions=main-2202070086
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,46 +73,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add documentation for the use of the Digital Attenuator gain.
 
---77v6i4keSC7gNdpP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+---
+no changes in v6.
+ Documentation/ABI/testing/sysfs-bus-iio       |  1 +
+ .../testing/sysfs-bus-iio-frequency-admv1014  | 23 +++++++++++++++++++
+ 2 files changed, 24 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1014
 
-On Mon, Feb 07, 2022 at 04:08:01PM +0200, Vladimir Zapolskiy wrote:
-> On 2/4/22 9:32 PM, Mark Brown wrote:
+diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
+index c551301b33f1..2b5770017a84 100644
+--- a/Documentation/ABI/testing/sysfs-bus-iio
++++ b/Documentation/ABI/testing/sysfs-bus-iio
+@@ -476,6 +476,7 @@ What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_i_calibscale
+ What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_q_calibscale
+ What:		/sys/bus/iio/devices/iio:deviceX/in_voltage_i_calibscale
+ What:		/sys/bus/iio/devices/iio:deviceX/in_voltage_q_calibscale
++What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage_calibscale
+ What:		/sys/bus/iio/devices/iio:deviceX/in_voltage_calibscale
+ What:		/sys/bus/iio/devices/iio:deviceX/in_accel_x_calibscale
+ What:		/sys/bus/iio/devices/iio:deviceX/in_accel_y_calibscale
+diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1014 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1014
+new file mode 100644
+index 000000000000..395010a0ef8b
+--- /dev/null
++++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1014
+@@ -0,0 +1,23 @@
++What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_i_calibscale_coarse
++KernelVersion: 5.18
++Contact:	linux-iio@vger.kernel.org
++Description:
++		Read/write value for the digital attenuator gain (IF_I) with coarse steps.
++
++What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_q_calibscale_coarse
++KernelVersion: 5.18
++Contact:	linux-iio@vger.kernel.org
++Description:
++		Read/write value for the digital attenuator gain (IF_Q) with coarse steps.
++
++What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_i_calibscale_fine
++KernelVersion: 5.18
++Contact:	linux-iio@vger.kernel.org
++Description:
++		Read/write value for the digital attenuator gain (IF_I) with fine steps.
++
++What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_q_calibscale_fine
++KernelVersion: 5.18
++Contact:	linux-iio@vger.kernel.org
++Description:
++		Read/write value for the digital attenuator gain (IF_Q) with fine steps.
+-- 
+2.35.1
 
-> > Oh, good.  I forsee no problems here.  Probably this is something that
-> > should be in the I2C core if it's going to be dynamically managed,
-> > though just setting the supply as always on is probably more expedient.
-
-> vbus-supply property has been added recently to another I2C master controller,
-> see commit c021087c43c8 ("dt-binding: i2c: mt65xx: add vbus-supply property").
-
-Note that some devices do have supplies that I/O is referenced against
-and it's not clear that this isn't what's goin on here.
-
-> It serves right the same purpose, and its handling is going to be done in i2c
-> core, however since the latter is not yet completed, I would propose to add
-> the property to i2c-bus subnodes of QCOM CCI and its support in the driver,
-> later on both the property and its generic support would be better to see in
-> i2c core.
-
-The bindings are ABI, it doesn't seem like a good idea to add new ABI as
-a temporary bodge.
-
---77v6i4keSC7gNdpP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIBLzYACgkQJNaLcl1U
-h9AZnQf9EBbe+W5UTJ58SN3Gpo0BI23htPJNTI2R5EO1t8pAc7fps33bC4FBr76S
-e3GF59XlxIa+y2O+z/7WFenvfBs5YK6GD9a7OK6mFEs1YWDZ21KwqqqAR2FU/44y
-vrCys6ppaxHFyzmCb5ZBNpk2uZYj+RI4IadtYECMukVT1/a+HOnqadFmLWH8VGjE
-+PSBQKw0uCMr5yQWmsclbWLxo8e9fTvdq75dCwIouZdQtBzpx7xp9xgBdLEnLnQO
-+l1dkjjk919CbKOysa7+B7Jhx1ZiOBQE1ee9pAWHD2c09WaDfexAsaMkgeovZt7O
-9CFtIDrevwLJ3wdtXKwPNfdRSy/HBQ==
-=x0wC
------END PGP SIGNATURE-----
-
---77v6i4keSC7gNdpP--
