@@ -2,173 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCA9A4AB4F7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 07:41:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 234974AB4D3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 07:41:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242149AbiBGGfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 01:35:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60678 "EHLO
+        id S234678AbiBGGgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 01:36:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236941AbiBGGbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 01:31:17 -0500
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0FAEC0401C3
-        for <devicetree@vger.kernel.org>; Sun,  6 Feb 2022 22:30:57 -0800 (PST)
-Received: by mail-pf1-x42a.google.com with SMTP id u130so11319962pfc.2
-        for <devicetree@vger.kernel.org>; Sun, 06 Feb 2022 22:30:57 -0800 (PST)
+        with ESMTP id S241627AbiBGGds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 01:33:48 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B081C043181;
+        Sun,  6 Feb 2022 22:33:47 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id t4-20020a17090a510400b001b8c4a6cd5dso1169324pjh.5;
+        Sun, 06 Feb 2022 22:33:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=NsFZzRzWxi9SLwITfrc8E6h9ajUabmlo1GhXmJ+C3hc=;
-        b=WAlvS5EXiVRFIZe8CQYOYmWuBeX252Ah939fQC4xFyJiOgiQOqKLCEZ9w/rsR6+gi6
-         9ofS/fBv7QwPpn/VyFviNxUjm4OSgt5WaUQ38ohiXY8yU3zjlUJ1Yvbtqkq/Q0hEdem+
-         vOL4LBrdoiDalFZWuSYY69OLG3uLZfb1ktFR1Bo8AZaDqbbY/rsgggVvLIGRaCKEw8tO
-         M6ffn1560ArOL3Xpl5xg0EVvQnm6FsEePBN54U5qe7xAaGTB4ob9FbVdBbdf9fWl+Xe5
-         0rS+pkIIUcoKVFmz3iMt4cxeBgkdGefflHbs0Y4BJCec9H7Tu+D3zt+hkDIKrAumXmsr
-         epUg==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=5w4/ennwCAEEkQywko6dYbRCf/YpCkpMTELAq3SETZ0=;
+        b=Hh53y7v9NqRMkLkoNG8j78dhkJPtGq5sFnpbaHmwv98uBLw3f32oI311L5p3FsJKJ3
+         IgrPn3pu9YeOnJzCeFAgfkY9+N8XVvBodUNzDn+qfjnrk/4nx0g/L9pyLyBsTMjfrZ/D
+         34Eb2vBm+bm+FF7/WxOe/zU/utjATQBnpvQiEf1XRkuAyaDtQXGOSRla9Rx36lSnSFCl
+         Kz/cEyzX+XqzrcnXtwAMRKwYkscyU0U+9pzEy23Rd0t7zzMfFKAAKNA/iop5FskRk39L
+         JOk5Ut+nY244dW4vzbXVIg8BJiCeT1yfuxCNAR7SEZi5s6zwM30kAYnVHR0rD06KNikt
+         Bhtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=NsFZzRzWxi9SLwITfrc8E6h9ajUabmlo1GhXmJ+C3hc=;
-        b=ZCNAZwd7sDYu6rsw+nBq0lxEN+Km4RKaA5m2peu+x0QIShEbOYItufNu3+kd8sExmd
-         aY8sonPITQoX0qSGQasdp+iGS/7LJwHHntVQgUFSicGfsH+S8YUcM+dqNPQgZOxjUiK5
-         spKDPzc4JVeOvLz9TjgWdbm4Uvy3zi0iju7dsQqNAJFc4d2tsC1bDmALlw6x0ijpbe2A
-         A2cfmuGqR4cI5XJEKU8mRBY+CGRX8BL4jhYgf5iuAR3xy03rInNFcrepfa/dZ+c8VkPj
-         7Zeq5MspcaJmEENfeF/gAIpJ8c0AvhxIfaecOItXEoeeunlhbzTIapDqzFLNNrXq7nhG
-         vQZQ==
-X-Gm-Message-State: AOAM5338Jyy10fZaJJjiPeqwKBfLobYuRq15DkNq5YY8aug3TN/89ggM
-        ACqqPGLo2xSDcRphY2D6+zM2yA==
-X-Google-Smtp-Source: ABdhPJztzK0ckN9GMQ0TxEmrpCSlWLQmxoXoG9PxqUVTiaqQJQd7I9kf9tGQI9fcbpFkt9zsEeErKA==
-X-Received: by 2002:aa7:84d5:: with SMTP id x21mr14270143pfn.72.1644215456964;
-        Sun, 06 Feb 2022 22:30:56 -0800 (PST)
-Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id i10sm5266634pjd.2.2022.02.06.22.30.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Feb 2022 22:30:56 -0800 (PST)
-From:   Zong Li <zong.li@sifive.com>
-To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
-        conor.dooley@microchip.com, geert@linux-m68k.org,
-        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH v5 3/3] dmaengine: sf-pdma: Get number of channel by device tree
-Date:   Mon,  7 Feb 2022 14:30:40 +0800
-Message-Id: <df6c8d1c701b33fa735dd072de3cb585dc60f2c9.1644215230.git.zong.li@sifive.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1644215230.git.zong.li@sifive.com>
-References: <cover.1644215230.git.zong.li@sifive.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=5w4/ennwCAEEkQywko6dYbRCf/YpCkpMTELAq3SETZ0=;
+        b=dCt7ZUL5730M22Et2LAnpJRsHW0fccyGP29nPWAIGB7m3oRGQ50+70+BAsz0dkVlge
+         uHIlq3LnN/DFby+03Ns1uMVbSrpGzWHjzdH8hv0FzfzH1LGj7imlJtsbrSFwCzSN/5wK
+         HeVtwUQ6eLcgONkvppzUL6xlPZj6h1XbobFh9XzdZvCd8yWitcUUksZ6PVjMosmUeG5x
+         PGq3gv9zrtOZpjRFUqVPSEgnghMYFOwFSe1scdGDxnXIlELdGpK2QYxbcWAJnTwKVhdC
+         FG98TRErmjNUajm47UVPorw2J6wvS0dDkY0NbJJUkxwsbvZLPC5vvtED950q4ERqzGUS
+         okGg==
+X-Gm-Message-State: AOAM530qgtik2pOVBfIyA9C3e5p6bwA8r8Q5df1ZQW8Su4ZYQs8sNDS8
+        At+ZAFnaHHq3Sx8xSUweEg==
+X-Google-Smtp-Source: ABdhPJwAH1K+CWgey8aVJCIHJ53hQkGzwDi9PAMPA/2HOH43X+MSCDHXYztTHNJXL8NB9GZijsI3XQ==
+X-Received: by 2002:a17:90b:351:: with SMTP id fh17mr5008108pjb.28.1644215627026;
+        Sun, 06 Feb 2022 22:33:47 -0800 (PST)
+Received: from localhost ([2401:e180:8894:9737:7848:1ec7:b697:7d50])
+        by smtp.gmail.com with ESMTPSA id d13sm2803452pfj.205.2022.02.06.22.33.46
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 06 Feb 2022 22:33:46 -0800 (PST)
+From:   Tyrone Ting <warp5tw@gmail.com>
+To:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        semen.protsenko@linaro.org, yangyicong@hisilicon.com,
+        wsa@kernel.org, jie.deng@intel.com, sven@svenpeter.dev,
+        bence98@sch.bme.hu, lukas.bulwahn@gmail.com, arnd@arndb.de,
+        olof@lixom.net, andriy.shevchenko@linux.intel.com,
+        warp5tw@gmail.com, tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com
+Cc:     openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/6] i2c: npcm: Bug fixes timeout, spurious interrupts
+Date:   Mon,  7 Feb 2022 14:33:32 +0800
+Message-Id: <20220207063338.6570-1-warp5tw@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It currently assumes that there are always four channels, it would
-cause the error if there is actually less than four channels. Change
-that by getting number of channel from device tree.
+From: Tyrone Ting <kfting@nuvoton.com>
 
-For backwards-compatibility, it uses the default value (i.e. 4) when
-there is no 'dma-channels' information in dts.
+This patchset includes the following fixes:
 
-Signed-off-by: Zong Li <zong.li@sifive.com>
----
- drivers/dma/sf-pdma/sf-pdma.c | 21 ++++++++++++++-------
- drivers/dma/sf-pdma/sf-pdma.h |  8 ++------
- 2 files changed, 16 insertions(+), 13 deletions(-)
+- Add dt-bindings description for NPCM845.
+- Bug fix for timeout calculation.
+- Better handling of spurious interrupts.
+- Fix for event type in slave mode.
+- Removal of own slave addresses [2:10].
+- Support for next gen BMC (NPCM845).
 
-diff --git a/drivers/dma/sf-pdma/sf-pdma.c b/drivers/dma/sf-pdma/sf-pdma.c
-index f12606aeff87..2ae10b61dfa1 100644
---- a/drivers/dma/sf-pdma/sf-pdma.c
-+++ b/drivers/dma/sf-pdma/sf-pdma.c
-@@ -482,9 +482,7 @@ static void sf_pdma_setup_chans(struct sf_pdma *pdma)
- static int sf_pdma_probe(struct platform_device *pdev)
- {
- 	struct sf_pdma *pdma;
--	struct sf_pdma_chan *chan;
- 	struct resource *res;
--	int len, chans;
- 	int ret;
- 	const enum dma_slave_buswidth widths =
- 		DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
-@@ -492,13 +490,21 @@ static int sf_pdma_probe(struct platform_device *pdev)
- 		DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
- 		DMA_SLAVE_BUSWIDTH_64_BYTES;
- 
--	chans = PDMA_NR_CH;
--	len = sizeof(*pdma) + sizeof(*chan) * chans;
--	pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
-+	pdma = devm_kzalloc(&pdev->dev, sizeof(*pdma), GFP_KERNEL);
- 	if (!pdma)
- 		return -ENOMEM;
- 
--	pdma->n_chans = chans;
-+	ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
-+				   &pdma->n_chans);
-+	if (ret) {
-+		dev_notice(&pdev->dev, "set number of channels to default value: 4\n");
-+		pdma->n_chans = PDMA_MAX_NR_CH;
-+	}
-+
-+	if (pdma->n_chans > PDMA_MAX_NR_CH) {
-+		dev_err(&pdev->dev, "the number of channels exceeds the maximum\n");
-+		return -EINVAL;
-+	}
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	pdma->membase = devm_ioremap_resource(&pdev->dev, res);
-@@ -556,7 +562,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
- 	struct sf_pdma_chan *ch;
- 	int i;
- 
--	for (i = 0; i < PDMA_NR_CH; i++) {
-+	for (i = 0; i < pdma->n_chans; i++) {
- 		ch = &pdma->chans[i];
- 
- 		devm_free_irq(&pdev->dev, ch->txirq, ch);
-@@ -574,6 +580,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
- 
- static const struct of_device_id sf_pdma_dt_ids[] = {
- 	{ .compatible = "sifive,fu540-c000-pdma" },
-+	{ .compatible = "sifive,pdma0" },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, sf_pdma_dt_ids);
-diff --git a/drivers/dma/sf-pdma/sf-pdma.h b/drivers/dma/sf-pdma/sf-pdma.h
-index 0c20167b097d..8127d792f639 100644
---- a/drivers/dma/sf-pdma/sf-pdma.h
-+++ b/drivers/dma/sf-pdma/sf-pdma.h
-@@ -22,11 +22,7 @@
- #include "../dmaengine.h"
- #include "../virt-dma.h"
- 
--#define PDMA_NR_CH					4
--
--#if (PDMA_NR_CH != 4)
--#error "Please define PDMA_NR_CH to 4"
--#endif
-+#define PDMA_MAX_NR_CH					4
- 
- #define PDMA_BASE_ADDR					0x3000000
- #define PDMA_CHAN_OFFSET				0x1000
-@@ -118,7 +114,7 @@ struct sf_pdma {
- 	void __iomem            *membase;
- 	void __iomem            *mappedbase;
- 	u32			n_chans;
--	struct sf_pdma_chan	chans[PDMA_NR_CH];
-+	struct sf_pdma_chan	chans[PDMA_MAX_NR_CH];
- };
- 
- #endif /* _SF_PDMA_H */
+The NPCM I2C driver is tested on NPCM750 and NPCM845 evaluation boards.
+
+Tali Perry (4):
+  i2c: npcm: Fix timeout calculation
+  i2c: npcm: Add tx complete counter
+  i2c: npcm: Handle spurious interrupts
+  i2c: npcm: Remove own slave addresses 2:10
+
+Tyrone Ting (2):
+  dt-bindings: i2c: npcm: support NPCM845
+  i2c: npcm: Support NPCM845
+
+ .../bindings/i2c/nuvoton,npcm7xx-i2c.yaml     |  21 +-
+ drivers/i2c/busses/Kconfig                    |   8 +-
+ drivers/i2c/busses/Makefile                   |   2 +-
+ drivers/i2c/busses/i2c-npcm7xx.c              | 191 ++++++++++++------
+ 4 files changed, 149 insertions(+), 73 deletions(-)
+
 -- 
-2.31.1
+2.17.1
 
