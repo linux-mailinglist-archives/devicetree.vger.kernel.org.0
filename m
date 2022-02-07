@@ -2,90 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F614ABF7B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 14:25:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C17D4AC0BE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 15:12:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235963AbiBGNSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 08:18:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53268 "EHLO
+        id S229529AbiBGNyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 08:54:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386897AbiBGNQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 08:16:43 -0500
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B2FC0401E6;
-        Mon,  7 Feb 2022 05:16:34 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id g15so8414459uap.11;
-        Mon, 07 Feb 2022 05:16:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DNVoXvat1/oQDV0gxOtXkAL2AeofRM0ulhZnPcz1YuM=;
-        b=oYIMguteDC/GuVDgXs5djH/X5kDFF7ejg95w1kUId+BEH7hJMsJ/pagjGfyskPMPbF
-         /4A4ZUZfTTiVwOuMWOgN543rvoUE+D6s6nAZ++S20HMUVfpyZ7wp66FPbBYi5klUS7ZE
-         itm8GmXWIOP2je8j1BLVSGqCzrhWrA5Q4xU/w0bOE3Ca7a41T+AZKs1AGRaszN3GY3ZI
-         xRCJUPGw03REuaFcgpj6jiMMNJh14A85l5+fe3V81GCg8sRaTpTnDg7AvGtgkhfGL56/
-         xTldOAaw+lZq5mZS/xa10fxJv/4IElBhjA+M6IC1a1/tJVkBXhiT7x2PhEGzLs5odH7W
-         F/tQ==
-X-Gm-Message-State: AOAM530IpawBibYlRWCS/lzeMiTbzCNZYrpXH4NnoCQi1228WxvxaZ5j
-        kxeEgO0E9/OL/e+pxYsc91A3EoIQCV0HGA==
-X-Google-Smtp-Source: ABdhPJw99oZ8ccbCYtQGJAY7JlaQcRlq7jxLnz+tULBHViQAYcR7Zb1v0n1uWQYgGviCf32MqMNZvg==
-X-Received: by 2002:a05:6102:34cd:: with SMTP id a13mr4770358vst.64.1644239793469;
-        Mon, 07 Feb 2022 05:16:33 -0800 (PST)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
-        by smtp.gmail.com with ESMTPSA id h30sm2228612vsq.7.2022.02.07.05.16.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Feb 2022 05:16:33 -0800 (PST)
-Received: by mail-ua1-f44.google.com with SMTP id 103so9105494uag.4;
-        Mon, 07 Feb 2022 05:16:32 -0800 (PST)
-X-Received: by 2002:a67:5f83:: with SMTP id t125mr4218270vsb.68.1644239792795;
- Mon, 07 Feb 2022 05:16:32 -0800 (PST)
+        with ESMTP id S1380484AbiBGN2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 08:28:35 -0500
+X-Greylist: delayed 485 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 05:28:33 PST
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E05F5C043181;
+        Mon,  7 Feb 2022 05:28:33 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 73CC511D4;
+        Mon,  7 Feb 2022 05:20:28 -0800 (PST)
+Received: from [10.57.70.156] (unknown [10.57.70.156])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 223483F70D;
+        Mon,  7 Feb 2022 05:20:25 -0800 (PST)
+Message-ID: <65cde84a-8f8b-ac57-9b66-2b8d6378dbfa@arm.com>
+Date:   Mon, 7 Feb 2022 13:20:22 +0000
 MIME-Version: 1.0
-References: <20220206184749.11532-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220206184749.11532-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 7 Feb 2022 14:16:21 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVHF+Cv7=YqwP8riNGQA8ZDm9-RVgS8fH0cMRUBf9=eWQ@mail.gmail.com>
-Message-ID: <CAMuHMdVHF+Cv7=YqwP8riNGQA8ZDm9-RVgS8fH0cMRUBf9=eWQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: serial: renesas,scif: Remove redundant renesas,scif-r9a07g054
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v2] add pmu to amlogic meson sm1
+Content-Language: en-GB
+To:     Neil Armstrong <narmstrong@baylibre.com>,
+        Benjamin Mordaunt <crawford.benjamin15@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220205234554.4403-1-crawford.benjamin15@gmail.com>
+ <20220206144343.2194-1-crawford.benjamin15@gmail.com>
+ <42c51f9d-d122-2d09-cdcd-f733cbc60d5b@baylibre.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <42c51f9d-d122-2d09-cdcd-f733cbc60d5b@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 6, 2022 at 7:48 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> This patch removes redundant "renesas,scif-r9a07g054" from binding
-> documentation as it uses renesas,scif-r9a07g044 fallback.
->
-> Whilst remove the additional renesas,scif-r9a07g054 from Items.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On 2022-02-07 08:14, Neil Armstrong wrote:
+> Hi,
+> 
+> On 06/02/2022 15:43, Benjamin Mordaunt wrote:
+>> ---
+>> The dts for meson sm1 appears to omit the SoC's PMU,
+>> which is essential for accessing perf events regarding
+>> e.g. cache on e.g. the Odroid C4 platform. Add it.
+>>
+>>   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 13 ++++++++++++-
+>>   1 file changed, 12 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi 
+>> b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+>> index 3d8b1f4f2..4147eecd2 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+>> @@ -6,6 +6,8 @@
+>>   #include "meson-g12-common.dtsi"
+>>   #include <dt-bindings/clock/axg-audio-clkc.h>
+>> +#include <dt-bindings/interrupt-controller/irq.h>
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>   #include <dt-bindings/power/meson-sm1-power.h>
+>>   #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
+>>   #include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
+>> @@ -90,7 +92,16 @@ l2: l2-cache0 {
+>>               compatible = "cache";
+>>           };
+>>       };
+>> -
+>> +
+>> +    arm-pmu {
+>> +        compatible = "arm,cortex-a55-pmu";
+>> +        interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
+>> +        interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+>> +    };
+>> +
+>>       cpu_opp_table: opp-table {
+>>           compatible = "operating-points-v2";
+>>           opp-shared;
+> 
+> Please see Marc's comments about PMU support:
+> http://lore.kernel.org/r/8735pcq63o.wl-maz@kernel.org
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+If SM1 actually has distinct per-core interrupts as the patch implies 
+then it's fine - it's only G12B and anything else that combines multiple 
+PMU IRQs into a single SPI which are unsupportable.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Robin.
