@@ -2,71 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84F5A4AB818
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:01:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 877974AB7DD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:41:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351434AbiBGJvL convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 7 Feb 2022 04:51:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34972 "EHLO
+        id S233340AbiBGJfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 04:35:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352895AbiBGJjE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:39:04 -0500
-X-Greylist: delayed 305 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 01:39:03 PST
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B9E2C043185
-        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 01:39:02 -0800 (PST)
-Received: from mail-wr1-f54.google.com ([209.85.221.54]) by
- mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1M7sM0-1nLyDu3Ana-004xxj; Mon, 07 Feb 2022 10:33:56 +0100
-Received: by mail-wr1-f54.google.com with SMTP id i15so1171093wrb.3;
-        Mon, 07 Feb 2022 01:33:56 -0800 (PST)
-X-Gm-Message-State: AOAM531FVzFiYBe9oQoUjUVtdbeJA9dkRPw65ncxvITmdjOEmQMNpBFx
-        1mLTJlJS3oe/xYPJJVIVc/WOvUtmkVJ3INnKl9s=
-X-Google-Smtp-Source: ABdhPJxjtwwhO8HbrAZC+pe3xlqcwLMS67h5t8QPdUjoAiwcCe9JR65SOdpgzS7AoShpWThk/xsDFtoHfw7IoFK1OEg=
-X-Received: by 2002:a5d:500c:: with SMTP id e12mr9224078wrt.219.1644226436456;
- Mon, 07 Feb 2022 01:33:56 -0800 (PST)
+        with ESMTP id S245415AbiBGJeS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:34:18 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56289C043181
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 01:34:17 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id c19so8824694wrb.10
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 01:34:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=fWbd6fo3Uh6elEYwWX8/n5Alsf0PAAp4oc4nuiJlc14=;
+        b=NEGgdpE0YteNXAqvAdCZywZx81JabuDYJhv5oKt9f/iVCIGIsiirS07sJdce/gAGSK
+         vApzqxaddW7a/eeUoyYxPsxj6KjShxKo49HmdjGUV3AQr/oo3SFPWcEUST2A4Gm7o7KA
+         qPapKDSzxjK6prAwWAugXRD41UMARf2LIprkIUqS0HbfGc7DYHJulfelAEHaj8AB6X92
+         uRz7KEZeiJrxWoz3VPKcLttwW9fJINur1acpAxMcUNCv7C0ejFEqZwBjeahUy4+JAVWs
+         7flAOM5AJi/kuo7jY0wL01ZpcfliP43NfgzzEa31Czza9hd/QG2vPAb91pBQ4A51Xx1M
+         sKGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=fWbd6fo3Uh6elEYwWX8/n5Alsf0PAAp4oc4nuiJlc14=;
+        b=mnvIIt84zd/5fxuf72m9lXi67BuOS3enOOIBnoGBkvmcH7cFNkLU6TNSsMUn193/GB
+         t6NAxPCY6VQ1VpGcL4l+69S7IRZsEuANQo8N1M4jSBOFtZK/5VUItxdXgLnDySFbFE+b
+         r+Nzb33YwBehnwTyEsJlosNRG0MMiNCFC5kqhQDAkInYTT7Wf/0BV2j0ptFJrJzCl2em
+         aKXJIUWOFGH1kPkRlaZ/3FTnESeHbYDtv4yHMbtBEwcuKoqVKjYLRee/jx5JJ498C7Uu
+         9xDOODPmutAlcxXWLKomxRLfIbDoRXcTazPfXehjIC9UDua7uIBTIoQDo7fKekpcoLb3
+         xs0Q==
+X-Gm-Message-State: AOAM531dpqK/7qx5FlJe2kxu8X7cmFIOIhzpaiJ6Q/6jbrjYSzI014MW
+        GZVLzpQuVS/A+q5Wk25j5uTByA==
+X-Google-Smtp-Source: ABdhPJxKYic4NgP+uSbi9g5JekP9iALy92JOn8u96jXpIjv5Zk/Edl8OT9URAawxFJPZynx6LI5wZw==
+X-Received: by 2002:a05:6000:114f:: with SMTP id d15mr7344108wrx.626.1644226455907;
+        Mon, 07 Feb 2022 01:34:15 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id p8sm3410443wro.106.2022.02.07.01.34.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Feb 2022 01:34:15 -0800 (PST)
+Date:   Mon, 7 Feb 2022 09:34:13 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Subject: Re: [PATCH v2 0/4] mfd/power/regulators: dt-bindings: max14577:
+ convert to dtschema
+Message-ID: <YgDnlWKO6/BTxZh2@google.com>
+References: <20220111174337.223320-1-krzysztof.kozlowski@canonical.com>
+ <73bad620-97eb-a734-cbc8-6f001d04c18a@canonical.com>
 MIME-Version: 1.0
-References: <cover.1644212476.git.tonyhuang.sunplus@gmail.com>
- <b96f039dc071b1d32bb52fa283fd8afc6d3349cc.1644212476.git.tonyhuang.sunplus@gmail.com>
- <CAK8P3a0zNeaeOzC_tPb1KDbyktLpjUJCdEu=C6t_QX4pB9TKnQ@mail.gmail.com>
- <b440dc1dbb044a8c81d083d52774ad6b@sphcmbx02.sunplus.com.tw> <YgDar1O/CeTM8w6J@kroah.com>
-In-Reply-To: <YgDar1O/CeTM8w6J@kroah.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Mon, 7 Feb 2022 10:33:40 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a12JMhEB=qxXqRB0WFyUwvJ_VgwqMi6oWfpcgBr9OWrqQ@mail.gmail.com>
-Message-ID: <CAK8P3a12JMhEB=qxXqRB0WFyUwvJ_VgwqMi6oWfpcgBr9OWrqQ@mail.gmail.com>
-Subject: Re: [PATCH v8 2/2] misc: Add iop driver for Sunplus SP7021
-To:     gregkh <gregkh@linuxfoundation.org>
-Cc:     =?UTF-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Tony Huang <tonyhuang.sunplus@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Provags-ID: V03:K1:0J6Mjirsw0E3IG/qh0q2nAbRKNTVtM37ZcVLZVIhufKdfYTwePb
- ufaBmiVcfHThw1AX+PYgwnRQjrKJ3El1nMCbw7RfaILNYx/HAW8bUO7V3gsPkinRxt4yJzS
- J1iwCkmmsr72BleWDG6EXvtIeI38vIGIaWFhtjxFz/Uc6AJ9z97IoEwdPjL4miUYQo0h2JB
- IcVt6FjGFYyGKrmlOau6A==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:JygtWh3li58=:xqXybPfMUKlDaifbGfO6E5
- 7gWDxCCVGGOM8WW9mWLreM/Sp4qA+b5AgMGvpCW4d1FgcEHZexQyk+GHLcsl3hxqtLokyNlej
- 6iIMlNxWLyYwzCPlz3GJBmtDl29ET8ZxObk6AodHRYbIisba0DX2e0s4GFIdrcZI51NCEWvHB
- Ap5VJyL7SDRMdlXl9AHz7JoevuOAG20WJaU0tpYXewM2+IuvPXBOY1qLG9kTWx7xDW+O5r/Sa
- kzg3xm276fgbUBapj+YaMj1oG5SAFBjAJQU8DziZlf449Qp2JZK0VudaFstSOA7QyhwxUtKI1
- 0oGREHWdF4LwrRN4Djb5dyoOt/yBTUP31hWjNX+sQ9e/ZbyS/NUYLCOfdSeRRGBz5u9wLmbYv
- U3/twbPqGLrqrc65Y0LvDNgimjPngv3RNUNOx8RT8PV/dIGHQQ0Stlq6VwjNSDf5pmATUsQAM
- Lof5GHOTx3ullXl4voQdCeh1/uZcB7PwA+cKDtPAm1ACyCpw7WO56GNwjpxAOCJhBcdMbufUg
- bIB/UESJnJ50EcZCYzRkfkWSXxwNVEnwOnGFwlDoEX+2UHJ3aN7nkiHToAPySDSeX/H1Bt8+j
- OEDr6mBhwwL1S807gnJliNMeh5YQitI7rCw0wecnBst9NGdLPDAUEqWh5tvjTO2no2MGlXtiK
- kbpm6eX2vMoC9SCciV8YdP5KkRzgFZ3lxY2Jc/M/njFosbm+OJlHdVscl+ubdCUX57NdH3rQm
- H0eJ3Sun7vl9b6AjDnXfC5SHyR31rKeNIO6LyYUefaiwee8Pw7v4ui/TnnPlHrWEuUC5PeUcL
- bEQaddbOkW4PWL+ktE6Y6cs6XeiGmImY9WQAVN45JSQKhntP6o=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <73bad620-97eb-a734-cbc8-6f001d04c18a@canonical.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,38 +79,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 7, 2022 at 9:39 AM gregkh <gregkh@linuxfoundation.org> wrote:
-> On Mon, Feb 07, 2022 at 08:29:40AM +0000, Tony Huang 黃懷厚 wrote:
-> > >
-> > > As discussed before, I would suggest leaving out all custom attributes for now,
-> > > and first hooking up the driver to all the in-kernel subsystems.
-> > >
-> > > The mailbox0 register data definitely feels like an implementation detail, not
-> > > something that should be exposed to user space as an interface.
-> > >
-> > > For standby mode, this would normally be handled by the power management
-> > > subsystem in the kernel. not a custom interface. From your earlier description,
-> > > I assume this interface puts the main CPU into standby mode, not the IOP,
-> > > right?
-> > >
-> > > CPU standby is handled by the cpuidle subsystem, so you need a driver in
-> > > drivers/cpuidle/ to replace your sysfs attribute.
-> > > If you plan to hook up the driver to multiple subsystems, keeping a generic
-> > > driver file is ok, so  you'll end up with two driver modules, with one of them
-> > > calling into the other, using
-> > > EXPORT_SYMBOL() to link between them.
-> > >
-> >
-> > The purpose of adding sysfs is only for users to debug.
-> > So this is not needed?
->
-> If this is only for debugging, please put it in debugfs and not sysfs.
+On Sun, 06 Feb 2022, Krzysztof Kozlowski wrote:
 
-I don't think that works for the idle mode interface, as this is the only
-thing the driver really does at the moment.
+> On 11/01/2022 18:43, Krzysztof Kozlowski wrote:
+> > Hi,
+> > 
+> > Changes since v1
+> > ================
+> > 1. MFD: Use absolute path to schemas
+> > 2. Regulator: mention all allowed properties,
+> >    additionalProperties=false, add min/max values for voltages and
+> >    current, don't use patternProperties when not needed.
+> > 
+> > Dependencies
+> > ============
+> > 1. DTS patch 1/4: nothing depends on it, sending here so Rob's automatic
+> >    checker won't complain about DTS.
+> >    I will take it via Samsung SoC tree.
+> > 
+> > 2. Final MFD patch (4/4) depends on regulator and power, so the last
+> >    patches (2+3+4) should go via same tree.
+> > 
+> Dear Lee,
+> 
+> This patchset was reviewed and there are no outstanding issues. Could
+> you pick up patches 2-4 (skipping DTS patch) via MFD tree?
 
-In a previous review round, I already asked for the driver to implement
-at least two in-kernel interfaces before any custom user interface
-is added.
+Nothing from Mark?
 
-         Arnd
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
