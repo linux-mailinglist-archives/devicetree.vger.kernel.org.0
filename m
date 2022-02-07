@@ -2,69 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AC6E4AB438
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 07:13:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4990D4AB3DA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 07:12:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232140AbiBGFyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 00:54:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58122 "EHLO
+        id S241564AbiBGF4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 00:56:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233185AbiBGFWF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 00:22:05 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A44C6C043185
-        for <devicetree@vger.kernel.org>; Sun,  6 Feb 2022 21:22:03 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id u6so3538089lfc.3
-        for <devicetree@vger.kernel.org>; Sun, 06 Feb 2022 21:22:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OGto9Xi5kXT109TGKxmESbnUdLkURSUbKuwtAM3GVRY=;
-        b=GJYJs5kr8L0CzbroD4u7gx12y0B2e/A+Jz8EL53bOvsjtCs/mAgZDnq3jzwqzO+xl0
-         06SVvCAQ48ly9xfH1vZ6XttX+BjiM2aLz9J2QV4dBlFL8h/cyY3oUnTdJkio5YwZHtl4
-         lb/EmaT+WIxT2jh5rzhWwHE1Grpz5T517csUsI6DBroXvJtpWzAcLvbv2Ab59sf4IMbI
-         hREJpECLkM3ZhSswZ025QpXrE0kHPdHcqJU8I81V42KTMNbVLg/31QDZzz4XRZ5jNf7q
-         +FnQIDVk2DuB1eCWk9/RjawuZp2iqT8o0aj2dwGZskWk2gLHmX2BG6gkBIN0hXKS/fBu
-         6gLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OGto9Xi5kXT109TGKxmESbnUdLkURSUbKuwtAM3GVRY=;
-        b=DI9e0ubNFw/RUEEYbjja1lO5daPTZUr9sT/CqPCbbTUkbvVJ+lhmRoo6O66VgObE/B
-         xvD7eEr6Emi43aSRfVsVwhpePlw16yxtdx+1vePj5ggRn/NQoY2s0ssWW0aa1tu7NOgO
-         2mlxTQmdkdI+le4s502HRZbE+oTToP4ZCYNcXwBGAFuqOxZO2Z/9cU/87Pz6zZ4NyTGH
-         rArvntOQqMQHypDKKTAmVFQSu/Wj7zYGt5x41bYzU2kg4tTM710+nYziD5A7FnuoiBzC
-         IdJXYGlYKfwd43PZH5Jm6StB7PnOoqtJurlQbTrq0O6yLgrD+bAYLolzxyL08UX4N9U8
-         lrbw==
-X-Gm-Message-State: AOAM5321ExjHHQHv/+duWF12NhIytgtU9esEyBYS6NFLjy5IfkTKymDU
-        rNjIbqSWTeNjpE1bzMx2z1LcoCkaSwKSSAbtK3XRIr6DO3OnsUX+
-X-Google-Smtp-Source: ABdhPJxpeJtXFqUmwrOBzOQ8MX54Xs5LsU2VrMor7DxLiCWIdFLgRJ2+sq3U6j9wrfCSu7HJ7TGRQJP+lUaFlqERBQY=
-X-Received: by 2002:a05:6512:3e0b:: with SMTP id i11mr7348588lfv.510.1644211321557;
- Sun, 06 Feb 2022 21:22:01 -0800 (PST)
+        with ESMTP id S235577AbiBGF3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 00:29:45 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 262C4C043184;
+        Sun,  6 Feb 2022 21:29:44 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1FFF161140;
+        Mon,  7 Feb 2022 05:29:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1FEEC004E1;
+        Mon,  7 Feb 2022 05:29:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644211782;
+        bh=IScjOYArVNYVbJH6MdKnmqqYzf1ygoeSC6Cat/SyezM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZKr+40RwCyLTmBLqDyLA6NfttVuysn3LAXf6bwqRngyYCtAe7oBoc9d08siEND25g
+         5sEvUB6SRqwpHSyYh+Nxu/w40pGCL/ae3bklPZXBjKSsbq2Fy9xzvspbOAiqwWsp/2
+         wpi2IyOQ7oYNpXqEnC1MI8Z6kibSUmPwjpwBYM4nS+MKboN7nJo/3fSWDuChgkfdly
+         BkB/g8sXdfrB2A8/xLoir1UkQ+rMpxbs6T/9+EddJprBls4JXsBMKxd2iX7eFou+W7
+         3CCEDPnYyoxFooqYA0tLKFfAdA7Fy6+9McuGwYMZOwpfBm8XuCIrZDHnYT9Ip0EpnV
+         a2PoM7SXEh6Hg==
+Date:   Mon, 7 Feb 2022 10:59:38 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
+        Holger Brunck <holger.brunck@hitachienergy.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        linux-phy@lists.infradead.org,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: Re: [PATCH devicetree v3] dt-bindings: phy: Add `tx-p2p-microvolt`
+ property binding
+Message-ID: <YgCuQjN5tBvljrQN@matsya>
+References: <20220119131117.30245-1-kabel@kernel.org>
+ <74566284-ff3f-8e69-5b7d-d8ede75b78ad@gmail.com>
+ <Yf3egEVYyyXUkklM@robh.at.kernel.org>
+ <20220206185413.4c1ac00d@thinkpad>
 MIME-Version: 1.0
-References: <cover.1642582832.git.zong.li@sifive.com> <mhng-ffd770d4-8f8a-417a-a589-f14d09f55282@palmer-ri-x1c9>
-In-Reply-To: <mhng-ffd770d4-8f8a-417a-a589-f14d09f55282@palmer-ri-x1c9>
-From:   Zong Li <zong.li@sifive.com>
-Date:   Mon, 7 Feb 2022 13:21:50 +0800
-Message-ID: <CANXhq0pYHfsa4T1t=FK2=jM4OEfgXD=sDS5vVV4EKCpkwTz6og@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Refactor the PRCI driver to reduce the complexity
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220206185413.4c1ac00d@thinkpad>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,62 +65,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 5, 2022 at 2:56 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
->
-> On Wed, 19 Jan 2022 01:28:37 PST (-0800), zong.li@sifive.com wrote:
-> > This patch set tries to improve the PRCI driver to reduce the
-> > complexity, we remove the SoCs C files by putting putting all stuff in
-> > each SoCs header file, and include these SoCs-specific header files in
-> > core of PRCI. It can also avoid the W=1 kernel build warnings about
-> > variable defined but not used [-Wunused-const-variable=], like 'commit
-> > 487dc7bb6a0c ("clk: sifive:fu540-prci: Declare static const variable
-> > 'prci_clk_fu540' where it's used")' does.
-> >
-> > This patch set also contains the dt-bindings and dts change, because
-> > we change the macro name for fu540 and fu740 by adding the prefix
-> > respectively.
-> >
-> > Thanks all for your review and suggestions.
-> >
-> > Zong Li (4):
-> >   dt-bindings: change the macro name of prci in header files and example
-> >   riscv: dts: Change the macro name of prci in each device node
-> >   clk: sifive: Add SoCs prefix in each SoCs-dependent data
->
-> IIUC these there aren't bisectable: the bindings change will break
-> builds of the DTs and drivers.  I'm not sure what's generally the way to
-> go with these, but I always try to avoid broken builds in the middle of
-> patch sets.
->
-> Aside from that this generally looks good to me, but the DT and clock
-> folks are probably a better bet for a proper review here.  Happy to take
-> this through the RISC-V tree, but IMO it's a better candidate for the
-> clock tree so
->
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com> # aside from breaking bisect
->
-> Thanks!
->
+On 06-02-22, 18:54, Marek Behún wrote:
+> On Fri, 4 Feb 2022 20:18:40 -0600
+> Rob Herring <robh@kernel.org> wrote:
+> 
+> > On Fri, Jan 21, 2022 at 11:18:09AM -0800, Florian Fainelli wrote:
+> > > On 1/19/22 5:11 AM, Marek Behún wrote:  
+> > > > Common PHYs and network PCSes often have the possibility to specify
+> > > > peak-to-peak voltage on the differential pair - the default voltage
+> > > > sometimes needs to be changed for a particular board.
+> > > > 
+> > > > Add properties `tx-p2p-microvolt` and `tx-p2p-microvolt-names` for this
+> > > > purpose. The second property is needed to specify the mode for the
+> > > > corresponding voltage in the `tx-p2p-microvolt` property, if the voltage
+> > > > is to be used only for speficic mode. More voltage-mode pairs can be
+> > > > specified.
+> > > > 
+> > > > Example usage with only one voltage (it will be used for all supported
+> > > > PHY modes, the `tx-p2p-microvolt-names` property is not needed in this
+> > > > case):
+> > > > 
+> > > >   tx-p2p-microvolt = <915000>;
+> > > > 
+> > > > Example usage with voltages for multiple modes:
+> > > > 
+> > > >   tx-p2p-microvolt = <915000>, <1100000>, <1200000>;
+> > > >   tx-p2p-microvolt-names = "2500base-x", "usb", "pcie";
+> > > > 
+> > > > Add these properties into a separate file phy/transmit-amplitude.yaml,
+> > > > which should be referenced by any binding that uses it.  
+> > > 
+> > > p2p commonly means peer to peer which incidentally could be confusing,
+> > > can you spell out the property entire:
+> > > 
+> > > tx-peaktopeak-microvolt or:
+> > > 
+> > > tx-pk2pk-microvolt for a more compact name maybe?  
+> > 
+> > Peer to peer makes little sense in terms of a voltage. I think this is 
+> > fine as-is.
+> 
+> Cool. Should this get merged via devicetree, or via phy maintainers?
+> Or should I resend this together with patches that make use of this
+> property? (In that case can you add your Ack?)
 
-Many thanks for your review and reminding, and yes, it seems a bit
-hard there since the DT binding docs and includes need to be a
-separate patch.
+Sending with patches using this would be better.. It can go thru phy
+tree
 
-> >   clk: sifive: Move all stuff into SoCs header files from C files
-> >
-> >  .../devicetree/bindings/gpio/sifive,gpio.yaml |   2 +-
-> >  .../bindings/pci/sifive,fu740-pcie.yaml       |   2 +-
-> >  .../bindings/serial/sifive-serial.yaml        |   2 +-
-> >  arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  22 +--
-> >  arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  26 ++--
-> >  drivers/clk/sifive/Makefile                   |   2 +-
-> >  drivers/clk/sifive/fu540-prci.c               |  89 ------------
-> >  drivers/clk/sifive/fu540-prci.h               |  91 +++++++++++-
-> >  drivers/clk/sifive/fu740-prci.c               | 134 ------------------
-> >  drivers/clk/sifive/fu740-prci.h               | 130 ++++++++++++++++-
-> >  drivers/clk/sifive/sifive-prci.c              |   5 -
-> >  include/dt-bindings/clock/sifive-fu540-prci.h |   8 +-
-> >  include/dt-bindings/clock/sifive-fu740-prci.h |  18 +--
-> >  13 files changed, 254 insertions(+), 277 deletions(-)
-> >  delete mode 100644 drivers/clk/sifive/fu540-prci.c
-> >  delete mode 100644 drivers/clk/sifive/fu740-prci.c
+-- 
+~Vinod
