@@ -2,60 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6D0F4ACD15
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 02:07:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5139F4ACCE8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 02:06:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239422AbiBHBDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 20:03:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33996 "EHLO
+        id S244044AbiBHBDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 20:03:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245346AbiBGW43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 17:56:29 -0500
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF32FC061355;
-        Mon,  7 Feb 2022 14:56:28 -0800 (PST)
-Received: by mail-oo1-f51.google.com with SMTP id u47-20020a4a9732000000b00316d0257de0so12598051ooi.7;
-        Mon, 07 Feb 2022 14:56:28 -0800 (PST)
+        with ESMTP id S245370AbiBGW6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 17:58:38 -0500
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB947C061355;
+        Mon,  7 Feb 2022 14:58:36 -0800 (PST)
+Received: by mail-oo1-f42.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso10147303ooi.1;
+        Mon, 07 Feb 2022 14:58:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=BmFI+q45YMcvomfhfLrjDMiP1+XWJx7omIVN2lFQ8M0=;
-        b=H89w3LXioiTGxPy7sEEKoKQuZbxP7qqKtRE1SLq4hmv00veCDdH/F1TQLd27II9IHW
-         kF4fLoXS3uGAZP4OqbCWlqtWtAanLeZsxR4U9KZXrxM4a8C85WQ+vjZ0UZ+bVuw9FAY4
-         GRzeZkNM7dj0SyrDvPbFh0kUQMDCzzxxIuWAooslIrEAdB38ELPxkT/VpdlDHmUBr9Uv
-         1mqA8xdWm6un8X3o2q/J8VTqMSEt00R+1Y6/hCwu5iRE1kLgSUc+X42n49vZpfcfn9kT
-         UZMSkFhmNwpl371N15gsUtJOi6pswFlkT64MiAz9nvQFLnszrL4jg0bbimPzKHZSEGMw
-         OznQ==
-X-Gm-Message-State: AOAM533JUzaABUi67pHiqzBBUPj5UG1vmsprNzORCXjKGbwO2pFS2cWp
-        hqv64sbLusDEr60bdo0fvmKuVJxiAg==
-X-Google-Smtp-Source: ABdhPJwpY3DiOxQGHIBlNjzmF3SPnnu9F68MKT/GtouYtpE8Lp2q3KAgvciQZOhPYzX5nq/FLGuSTA==
-X-Received: by 2002:a05:6871:581:: with SMTP id u1mr390160oan.139.1644274588097;
-        Mon, 07 Feb 2022 14:56:28 -0800 (PST)
+        bh=OuUO/3mep0ZxwUzB1eZmsPdUautSdpAaoSsbMdDIwvk=;
+        b=xOPVbbBCNG+ykh5+lAZVxrJodpCXfYbUS4jbDtgWzoRT2Av5ykbV6zJDTdVU87WCtn
+         Qayqdt62VQ2MoOlY8hg1LsopW6dwl5MSIl9DLRXzxUVUsxRD0szVLb+oyEU0fa9bVAYf
+         6jf77RoBZ4BKXwnVsXPamJl/DzlGB3EnWInjckw/LDv4wHZWFYrPX5mpv6nijN5PWGkp
+         U7+/F7HRvcVPfwNTQYxZ5MgUb357CAkoN8QAD4Z2dklbzolGFqDzmB7HKqJ9hPamxLeH
+         yCd47AgdoIubOv+7cWfyVWClYnqoqCCkdhPNtura1huD7OyByNGw1o7JA1r/dgjTl0eJ
+         p5lw==
+X-Gm-Message-State: AOAM530V1OrxmcPh//qjqvjaQhkktDi6iUpV6rO7TwqoBQQwn8DjAaXd
+        VeQon68Fc7VnaiSpO3jIHQ==
+X-Google-Smtp-Source: ABdhPJz8tRKVh/KhZv13gwKCCkgM7u0aIme6netKeQV2jceD4HV3eIrTtFsAxLP8HBsa9x/6+GVTSw==
+X-Received: by 2002:a05:6870:e14f:: with SMTP id z15mr405692oaa.115.1644274716319;
+        Mon, 07 Feb 2022 14:58:36 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bh7sm846291oib.6.2022.02.07.14.56.26
+        by smtp.gmail.com with ESMTPSA id r19sm4645810oad.29.2022.02.07.14.58.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Feb 2022 14:56:27 -0800 (PST)
-Received: (nullmailer pid 1082342 invoked by uid 1000);
-        Mon, 07 Feb 2022 22:56:26 -0000
-Date:   Mon, 7 Feb 2022 16:56:26 -0600
+        Mon, 07 Feb 2022 14:58:35 -0800 (PST)
+Received: (nullmailer pid 1085294 invoked by uid 1000);
+        Mon, 07 Feb 2022 22:58:34 -0000
+Date:   Mon, 7 Feb 2022 16:58:34 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     linux-rockchip@lists.infradead.org,
-        Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Peter Geis <pgwipeout@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: rockchip: Add BananaPi R2 Pro Board
-Message-ID: <YgGjmtyvioH8Vjrt@robh.at.kernel.org>
-References: <20220123135116.136846-1-linux@fw-web.de>
- <20220123135116.136846-2-linux@fw-web.de>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     mripard@kernel.org, Chris Morgan <macromorgan@hotmail.com>,
+        dri-devel@lists.freedesktop.org, sam@ravnborg.org, emma@anholt.net,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, mchehab@kernel.org, daniel@ffwll.ch,
+        thierry.reding@gmail.com, airlied@linux.ie
+Subject: Re: [PATCH 1/6 v2] dt-bindings: vendor-prefixes: Add Geekworm
+Message-ID: <YgGkGvRkAH+HAKTU@robh.at.kernel.org>
+References: <20220124165526.1104-1-macroalpha82@gmail.com>
+ <20220124165526.1104-2-macroalpha82@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220123135116.136846-2-linux@fw-web.de>
+In-Reply-To: <20220124165526.1104-2-macroalpha82@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -67,17 +65,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 23 Jan 2022 14:51:15 +0100, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Mon, 24 Jan 2022 10:55:21 -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Add Devicetree Binding for Bananapi R2 Pro Board based on rk3568 SoC
+> Add vendor prefix for Geekworm (https://geekworm.com).
 > 
-> Co-developed-by: Peter Geis <pgwipeout@gmail.com>
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
