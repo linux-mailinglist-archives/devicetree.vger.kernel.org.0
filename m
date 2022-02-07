@@ -2,102 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD4984AB86E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:13:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6EB24AB7E4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:41:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351414AbiBGKJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 05:09:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39270 "EHLO
+        id S236011AbiBGJd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 04:33:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353161AbiBGJvi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:51:38 -0500
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEFD8C0401EB;
-        Mon,  7 Feb 2022 01:51:29 -0800 (PST)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21778x1Q010779;
-        Mon, 7 Feb 2022 10:15:19 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=Kkqvjurj574bD6gSsyenZFngomf2r4egE+kYpU9wKEE=;
- b=5RJjR3tqCnt97bpxcyy+Jfq4LrcLWOw7zRdNgCz1Ly3ZIjEmiRymDYVlrTLwMfELyrVA
- 05sHR8zK2e0GD7vh1ifN4HtvOW4rQCcNJO2zdhiD1lGgjTt1Dzflk4gd7rSSZGySh9rw
- pLqYAbECREKnRHD/01y2o+jF4npbtUJjkMJtI2fedNCpAtz0JaGjdY5U4qllZLYZ+bXa
- ryDbvT+5g8xlDnJt0x8jNTx72yxHFJwdYVdNkW31n3ao9ZVjgDxoz0yD0RoRQv81HWlW
- U+6tk2udkrqD7c74cqFaqgCIcw7/d+MnF8NqcWJmbh+zQE5xWw71L10Myu9t4vObzr9g PQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e2fg5k7pr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 07 Feb 2022 10:15:19 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1227F10002A;
-        Mon,  7 Feb 2022 10:15:17 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E30B9212FDF;
-        Mon,  7 Feb 2022 10:15:17 +0100 (CET)
-Received: from [10.48.0.252] (10.75.127.46) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Mon, 7 Feb
- 2022 10:15:16 +0100
-Message-ID: <6d60031b-2164-bdda-1048-ec047d9bd59e@foss.st.com>
-Date:   Mon, 7 Feb 2022 10:15:15 +0100
+        with ESMTP id S1344934AbiBGJYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:24:37 -0500
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com [66.111.4.224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BAE2C043181;
+        Mon,  7 Feb 2022 01:24:36 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id F0CBB5801A4;
+        Mon,  7 Feb 2022 04:24:35 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Mon, 07 Feb 2022 04:24:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; bh=iSknFfgihoz9cY
+        jsB49tquH7M9oK6rXonBcNar0/E6w=; b=g06c28B6jZMt5BHIajzts1tMVOsqxC
+        jd9VJqjCvqxWawTL04UEtBO402ejuO2BSppxfhK7mVpZDtWDHwYjSljNfJuEM7Nz
+        ROEPvsrFj/y9Nj+RS6owvposXMs92XTRrEUNTgF7XA7zUxkZ4V9LlUFbA/cne7xE
+        wFknzRrCOYNbooIIefbVEYPmFAiCtEphcDFpcfEqxu6Lb7hAkdidGxczqKui24LF
+        jpYRaCPNqnSJUIfOKutuAwvXw3Rl8NSwLtKu0KxIl/y+HnA5WaPKFRMvoEQMCpCP
+        HEmzcfJTGzKjduBVl+G6D7/lITGlLmm//A1I1YEHxBdOSbmnF7CgYdvA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=iSknFfgihoz9cYjsB49tquH7M9oK6rXonBcNar0/E
+        6w=; b=U1NT+MWLZ02mQOf8kBE+uK6kts+S3hxLpE3s9F/l9KARcbtBnkX24Dze9
+        0nLSgthgM4jwzWQeg2ceeqN98JQmIgTwmAUeN3kuUsLsbC9ytF+8+zIP7aNZcoXr
+        7rdrkMpLbm3lPxGj58ChTfGU1UH+wsAKRu3bJu5+/O3qbRMcK1Nt5xBqyf6tgQay
+        nMbvZ11ZjtA8eTkwk8dMzEdc6Yaa9xcR2+v9Ok52pNSzeL1J1u8GdsdYoY1KyKoH
+        zwrM8UW4grEHLGxcB5p43jwDT6LvU5XlsDI7A3MPGUciSmAmK+cza/GCH49KgNEq
+        F1/H/vKq9TjZOse52afHeqLbTAVKg==
+X-ME-Sender: <xms:U-UAYrtIwQgHFPDLxj7aSE8LhyJCOSMRhFSXzMak2ZkkS38Q2AnZLw>
+    <xme:U-UAYscV_t-YFP4sAMikMj1PTrODEkbNC_71S2rCWe7mt3r8muudddDli-aZnLb-R
+    agRmGjSfcJzjIxCZrs>
+X-ME-Received: <xmr:U-UAYuxnlEN7l3AOzw-FLDOYfanDql-QHmgM4P3C1Vux9JVwKZsIHeCarqW12AnZ0GJR4srNMjFiaTWhrIc7oLhxZeiVFPUbFsIT2PQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrheehgddtudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenog
+    fuohhrthgvugftvggtihhpvdculdegtddmnecujfgurhephffvufffkffojghfgggtgfes
+    thekredtredtjeenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrgigihhmvg
+    estggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrhhnpeejuefggeekfffgueevtddv
+    udffhfejffejjedvvdduudethefhfefhfeegieekkeenucevlhhushhtvghrufhiiigvpe
+    dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:U-UAYqOzAdYqqOUabPejPK6EimsjHVm5IoKEm3U65YxSM92QgGQXbg>
+    <xmx:U-UAYr-ypdbGSOKY6fGtF9fOWZgG6FvEfpbpe7CtxfgQncI4cD5axA>
+    <xmx:U-UAYqVRHy5_7nEa8vahYdXNkEwxhxcQgzsTDUixHv96wQJzPVVz6w>
+    <xmx:U-UAYmf9k2mUC6x-QrtJd2Lhz-x1iKtyulTQ34erSqwk9rkJCiGSXg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 7 Feb 2022 04:24:34 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     linux-sunxi@lists.linux.dev, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-staging@lists.linux.dev,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Helen Koike <helen.koike@collabora.com>,
+        Yong Deng <yong.deng@magewell.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Subject: Re: (subset) [PATCH v2 01/66] ARM: dts: sun8i: v3s: Move the csi1 block to follow address order
+Date:   Mon,  7 Feb 2022 10:24:31 +0100
+Message-Id: <164422586926.25686.14643523821893289727.b4-ty@cerno.tech>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220205185429.2278860-2-paul.kocialkowski@bootlin.com>
+References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com> <20220205185429.2278860-2-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 0/2] ARM: dts: stm32: remove timer duplicate unit-address
- on stm32f4 series
-Content-Language: en-US
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>, <robh+dt@kernel.org>
-CC:     <olivier.moysan@foss.st.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <1638959596-6656-1-git-send-email-fabrice.gasnier@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <1638959596-6656-1-git-send-email-fabrice.gasnier@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-07_03,2022-02-07_01,2021-12-02_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrice
-
-On 12/8/21 11:33, Fabrice Gasnier wrote:
-> Remove a series of warnings seen when building with W=1, like:
-> Warning (unique_unit_address): /soc/timer@40000c00: duplicate unit-address
-> (also used in node /soc/timers@40000c00)
+On Sat, 5 Feb 2022 19:53:24 +0100, Paul Kocialkowski wrote:
+> The csi1 block node was mistakenly added before the gic node, although
+> its address comes after the gic's. Move the node to its correct
+> position.
 > 
-> This approach is based on some discussions[1], to restructure the dtsi
-> and dts files.
-> [1] https://lore.kernel.org/linux-arm-kernel/Yaf4jiZIp8+ndaXs@robh.at.kernel.org/
-> 
-> Fabrice Gasnier (2):
->    ARM: dts: stm32: remove some timer duplicate unit-address on stm32f4
->      series
->    ARM: dts: stm32: remove timer5 duplicate unit-address on stm32f4
->      series
-> 
->   arch/arm/boot/dts/stm32429i-eval.dts  | 12 +++++++++
->   arch/arm/boot/dts/stm32f429-disco.dts | 12 +++++++++
->   arch/arm/boot/dts/stm32f429.dtsi      | 47 -----------------------------------
->   arch/arm/boot/dts/stm32f469-disco.dts | 12 +++++++++
->   4 files changed, 36 insertions(+), 47 deletions(-)
 > 
 
-Series applied on stm32-next.
+Applied to sunxi/linux.git (sunxi/dt-for-5.18).
 
-Thanks
-Alex
+Thanks!
+Maxime
