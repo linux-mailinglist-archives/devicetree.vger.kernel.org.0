@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 165164ACBB8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 22:59:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BD314ACBC6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 23:04:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243380AbiBGV7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 16:59:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38178 "EHLO
+        id S243440AbiBGWEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 17:04:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbiBGV7P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 16:59:15 -0500
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9F6FC061355;
-        Mon,  7 Feb 2022 13:59:14 -0800 (PST)
-Received: by mail-oi1-f177.google.com with SMTP id s24so10916851oic.6;
-        Mon, 07 Feb 2022 13:59:14 -0800 (PST)
+        with ESMTP id S243436AbiBGWEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 17:04:12 -0500
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47BD0C061355;
+        Mon,  7 Feb 2022 14:04:12 -0800 (PST)
+Received: by mail-oi1-f181.google.com with SMTP id r27so18606724oiw.4;
+        Mon, 07 Feb 2022 14:04:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1TgpekSKAIGefPlVKG3MJZI856wXlnKnhXOCP6G/TtM=;
-        b=XKW7d1zTnTOmnVeglFAhgrNhVoNy5FQ8EymfsBor3CCo3lAMOZlJgNDKH7WA031ben
-         BV51zBC8rWKLf7939v4oINfPMxHmG42q6aGv2BNkGt1lioUU27Ilu2kSPskzxeDgq3Tr
-         nZVsy27T+QA1tuCkMpbxf7NEB5ZHISEOCiN73U9NAZvYh10b9VLmzdp8UHjcJN/IWuYG
-         IUarIj7eIBPc3/OmtjOq775azOwumX+sbMF0jXPLaHVRy79ycYPZ7RtH1n4/g9ync0tk
-         R5rArLnkSRC/k0YQbXOOe4/kASopqrY04j7Y9QuHbdZyrw2NIRJJK+W6RgIkKT6YYwFG
-         6QlQ==
-X-Gm-Message-State: AOAM5313LOcL7kMeEIWJwa6vhkY/xfJ8VQSqlsBT2uEig6of48Wqt8/f
-        8fG0T1CvQtAGtUMX3UV0bE6+O22kXw==
-X-Google-Smtp-Source: ABdhPJwI0ZpUsaKMxFb0aBSe8Sw2b4RWxRlQE2ac8fEAdS7NPC5z5RDDiyWlaa1rrV7BOte7aggdtw==
-X-Received: by 2002:a05:6808:14c6:: with SMTP id f6mr453650oiw.0.1644271154024;
-        Mon, 07 Feb 2022 13:59:14 -0800 (PST)
+        bh=Q/wggRenO/vzVBS70QLnVZiNuU5fxQ5DeAwQ15+x+oU=;
+        b=DJLs3M/Nv3lDB21M0EaNn+2iR1yXn7AlF+h9tiwxg2Vhsfow7Y8YmB50HfR7kI7Fl4
+         uxGszlxmjy34xxHNbClyqrOQE47aR4E6Eh8VVdKPjMTbPqDsYE3aLhqSxzVqOZzRawEX
+         C9xtea5DAFiM8nANuz+Zo+YqA64tbjBRI84elGyFom5Oba+/MYoEB8G41j3o/JSPZFEb
+         NLHi8UG4JURSmM0gKVVVYMKgDwjp9mbuWOCjF2VQU4jM5QEIve6WR0nAWWyh1hlJgZeB
+         H7g5OXoJ5YW3hoKRhZKaEyMpWK7d9HBU4qksvFxGunTNBwSLkY+FuGsZirNC1vMgcDzL
+         2hEg==
+X-Gm-Message-State: AOAM533Qk4lbgM0mK0OUpHltOhR7tAt9ulUqZLR7H4mpT9sJAdS3PL4r
+        vNgLpy61GTer9HdZsrvZsg==
+X-Google-Smtp-Source: ABdhPJx2GaomN8+6iVxLTWHVeOW8B30rYogggWW6K4pN5aer58lexokJMRHrT3DHesQ//EEEmHQ8UQ==
+X-Received: by 2002:a05:6808:252:: with SMTP id m18mr465112oie.285.1644271451568;
+        Mon, 07 Feb 2022 14:04:11 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 127sm4703473oih.8.2022.02.07.13.59.12
+        by smtp.gmail.com with ESMTPSA id h17sm4516681otn.60.2022.02.07.14.04.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Feb 2022 13:59:12 -0800 (PST)
-Received: (nullmailer pid 998749 invoked by uid 1000);
-        Mon, 07 Feb 2022 21:59:11 -0000
-Date:   Mon, 7 Feb 2022 15:59:11 -0600
+        Mon, 07 Feb 2022 14:04:10 -0800 (PST)
+Received: (nullmailer pid 1006262 invoked by uid 1000);
+        Mon, 07 Feb 2022 22:04:09 -0000
+Date:   Mon, 7 Feb 2022 16:04:09 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        th_chuang@richtek.com, cy_huang@richtek.com,
-        gregkh@linuxfoundation.org, will_lin@richtek.com,
-        linux-kernel@vger.kernel.org, heikki.krogerus@linux.intel.com,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: usb: rt1719: Add binding for Richtek
- RT1719
-Message-ID: <YgGWL+GZo2QRUMSv@robh.at.kernel.org>
-References: <1644246970-18305-1-git-send-email-u0084500@gmail.com>
- <1644246970-18305-2-git-send-email-u0084500@gmail.com>
+To:     Henrik Grimler <henrik@grimler.se>
+Cc:     martin.juecker@gmail.com, cw00.choi@samsung.com,
+        virag.david003@gmail.com, robh+dt@kernel.org,
+        semen.protsenko@linaro.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski@canonical.com,
+        linux-samsung-soc@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, alim.akhtar@samsung.com,
+        linux-arm-kernel@lists.infradead.org, m.szyprowski@samsung.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: samsung: document chagallwifi
+ board binding
+Message-ID: <YgGXWcW2s/yMdPr3@robh.at.kernel.org>
+References: <20220115162703.699347-1-henrik@grimler.se>
+ <20220115162703.699347-2-henrik@grimler.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1644246970-18305-2-git-send-email-u0084500@gmail.com>
+In-Reply-To: <20220115162703.699347-2-henrik@grimler.se>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,16 +69,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Feb 2022 23:16:09 +0800, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On Sat, 15 Jan 2022 17:27:01 +0100, Henrik Grimler wrote:
+> Add binding for Samsung Galaxy Tab S 10.5", based on Exynos 5420 with
+> codename chagallwifi. It was released in 2014 and has several siblings
+> with similar hardware.
 > 
-> Add binding for Richtek RT1719.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> Signed-off-by: Henrik Grimler <henrik@grimler.se>
 > ---
->  .../devicetree/bindings/usb/richtek,rt1719.yaml    | 85 ++++++++++++++++++++++
->  1 file changed, 85 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/richtek,rt1719.yaml
+>  .../devicetree/bindings/arm/samsung/samsung-boards.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
