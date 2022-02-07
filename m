@@ -2,118 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CCCC4AC568
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 17:27:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D494AC56A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 17:27:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245412AbiBGQSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1345203AbiBGQSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 7 Feb 2022 11:18:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44502 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1442655AbiBGQE4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 11:04:56 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C811C0401CC;
-        Mon,  7 Feb 2022 08:04:55 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3E872340;
-        Mon,  7 Feb 2022 17:04:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1644249893;
-        bh=EBS3kkJ8BCBs5yuj170BnDdZuFVfeUksdyi/hOkIA0E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MvyY9OKI0dHBs/LuDngKy5LRwVmt4U8MI1JrSmzwEUbroZ1j66FdAKeufPHPc7msD
-         NxjUI4SKDw4w34fThGl88PBkP2eV0Y/iGXexOPDFBST9fnesGw30bWNPIqTqgpShzO
-         4YXjESc+sTvUEu1GGJ+aQxB0h7K4mhQSax2L7XJE=
-Date:   Mon, 7 Feb 2022 18:04:51 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 62/66] dt-bindings: media: sun6i-a31-csi: Add ISP
- output port
-Message-ID: <YgFDI17Q3AlZxaOi@pendragon.ideasonboard.com>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <20220205185429.2278860-63-paul.kocialkowski@bootlin.com>
+        with ESMTP id S1443857AbiBGQIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 11:08:02 -0500
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21508C0401E6;
+        Mon,  7 Feb 2022 08:07:56 -0800 (PST)
+Received: by mail-vs1-f50.google.com with SMTP id r20so138116vsn.0;
+        Mon, 07 Feb 2022 08:07:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IH36XLf83w5u+4nl2DlHKSEzZJZ+m1Rf3raz8J+6Itg=;
+        b=1QzYjFazcmACfnMDQLrEufUJe9Y7DpWVdd6XmtQ9LJm9+m4a2EuFnno3gHAJ0Ld+bd
+         SK10tf12+ZClghoCVLL+sHNipj+f01NhMCgtzlIxvObDNeX6X2dNYZi+EZEoJjryMNIE
+         dKowQpS5N5JJrmHYMjaictmEq8yVWhjrz1aQfrvpmLKp/M4Kcdt+SBSsYTH22esV8Ce3
+         GJWj63tpLmnM9Ues2QhQ4o1TqpCx3615eXM6VyD71CgQB+U/Q47BGf38awEU4p0w6n5y
+         lxIq6vmGkj8Bo6FeOM4puRkLYqLA92DdkZMAQM2wDefHCjuoP530o3/bqXbrt6+S2s7r
+         FsKA==
+X-Gm-Message-State: AOAM532dy0vuW/jfUBWE/jGdCBJUzhBqgHfCv9Xv52OB3KAG4dxU2n1X
+        OTRZaSJCzkxJ5fupvKLKgkraRdcpvqwyDg==
+X-Google-Smtp-Source: ABdhPJyG+bsBR+XO8uk9FDGc3Q2JhjXtVGeLtOnf4iQNxV539yNPl1mNAbkFgkhdTD3tDub9YW3SOA==
+X-Received: by 2002:a67:ec15:: with SMTP id d21mr95557vso.79.1644250075179;
+        Mon, 07 Feb 2022 08:07:55 -0800 (PST)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id g20sm1015104vkq.46.2022.02.07.08.07.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Feb 2022 08:07:55 -0800 (PST)
+Received: by mail-vs1-f50.google.com with SMTP id a7so138550vsc.6;
+        Mon, 07 Feb 2022 08:07:54 -0800 (PST)
+X-Received: by 2002:a67:b00e:: with SMTP id z14mr142941vse.57.1644250074734;
+ Mon, 07 Feb 2022 08:07:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220205185429.2278860-63-paul.kocialkowski@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220204161806.3126321-1-jjhiblot@traphandler.com> <20220204161806.3126321-3-jjhiblot@traphandler.com>
+In-Reply-To: <20220204161806.3126321-3-jjhiblot@traphandler.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 7 Feb 2022 17:07:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUFs_G0ZENwRttxBbnUMZZyJ5Nks12FvNJnaJjbrXYcNg@mail.gmail.com>
+Message-ID: <CAMuHMdUFs_G0ZENwRttxBbnUMZZyJ5Nks12FvNJnaJjbrXYcNg@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: clock: r9a06g032: Add the definition of
+ the watchdog clock
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 05, 2022 at 07:54:25PM +0100, Paul Kocialkowski wrote:
-> Some Allwinner devices come with an Image Signal Processor (ISP) that
-> allows processing camera data to produce good-looking images,
-> especially from raw bayer representations.
-> 
-> The ISP does not have a dedicated capture path: it is fed directly by
-> one of the CSI controllers, which can be selected at run-time.
-> 
-> Represent this possibility as a graph connection between the CSI
-> controller and the ISP in the device-tree bindings.
-> 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> ---
->  .../bindings/media/allwinner,sun6i-a31-csi.yaml    | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-> index 3cc61866ea89..7952413f98d8 100644
-> --- a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-> +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-> @@ -83,6 +83,20 @@ properties:
->  
->          additionalProperties: false
->  
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        description: ISP output port
-> +
-> +        properties:
-> +          reg:
-> +            const: 2
-> +
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
+Hi Jean-Jacques,
 
-This could be
+On Fri, Feb 4, 2022 at 5:18 PM Jean-Jacques Hiblot
+<jjhiblot@traphandler.com> wrote:
+> This clock is actually the REF_SYNC_D8 clock.
+>
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
 
-            $ref: video-interfaces.yaml#
-            remote-endpoint: true
-            additionalProperties: false
+Thanks for your patch!
 
-to reject other properties.
+> --- a/include/dt-bindings/clock/r9a06g032-sysctrl.h
+> +++ b/include/dt-bindings/clock/r9a06g032-sysctrl.h
+> @@ -74,6 +74,7 @@
+>  #define R9A06G032_CLK_DDRPHY_PCLK      81      /* AKA CLK_REF_SYNC_D4 */
+>  #define R9A06G032_CLK_FW               81      /* AKA CLK_REF_SYNC_D4 */
+>  #define R9A06G032_CLK_CRYPTO           81      /* AKA CLK_REF_SYNC_D4 */
+> +#define R9A06G032_CLK_WATCHDOG         82      /* AKA CLK_REF_SYNC_D8 */
+>  #define R9A06G032_CLK_A7MP             84      /* AKA DIV_CA7 */
+>  #define R9A06G032_HCLK_CAN0            85
+>  #define R9A06G032_HCLK_CAN1            86
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+I couldn't find this in the documentation, so I have to trust you on this.
 
-> +
-> +        additionalProperties: false
-> +
->      anyOf:
->        - required:
->          - port@0
+Gr{oetje,eeting}s,
 
--- 
-Regards,
+                        Geert
 
-Laurent Pinchart
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
