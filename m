@@ -2,228 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 209FE4ACD39
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 02:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 486604ACD3E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 02:07:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344454AbiBHBDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 20:03:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38798 "EHLO
+        id S1344465AbiBHBDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 20:03:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245636AbiBGXRK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 18:17:10 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82885C061355;
-        Mon,  7 Feb 2022 15:17:09 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id 4so18697393oil.11;
-        Mon, 07 Feb 2022 15:17:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:content-language:to
-         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=TypSkgHClNw9laVafBd03ztbkjhilyidCbfBGVWWAyM=;
-        b=gLksK20ghnNV76ORBpB0huHY6qnK9H0AMXd8Pob0+FUbavvWLxTgrC+nw4XM7/N3VJ
-         QNTkHT3YfsxI8gYf6ne3m+sGXZ6seaWiZfNBJ/AO+BIDm96lV3cyKkyKthywmO60sQiU
-         evnVhjLKQGJzKvWHUjz3Ah1LUEq7q0NcpWOTRxFR8VZb0tGZk6htmesSum4fFKbPAR1u
-         Y+PhwmsBft3ztd0Kx/77aGvDsdKWulQMym6R8Zw3/c7KJWFI389xF22hZSvZjb9GSUcX
-         Q/6eSAIwtzYXpf45/YYgQhpG4a1ZPMQ3BBagT87c6LmotH7dl2ZoSa0GGxTqf2UJR9jD
-         x24Q==
+        with ESMTP id S239667AbiBGXVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 18:21:01 -0500
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0CEFC061355
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 15:21:00 -0800 (PST)
+Received: by mail-oo1-f48.google.com with SMTP id c7-20020a4ad207000000b002e7ab4185d2so15545097oos.6
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 15:21:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=TypSkgHClNw9laVafBd03ztbkjhilyidCbfBGVWWAyM=;
-        b=KSu2oXzPQi7R4aFg+rB7SbXrD6XYVy2BsouCx8I70uj0Rmn3eLBM7gYN5MNiPYliXw
-         AgZo35+PdPMhmbtcyBilz4LTVSK/LZsBQKtOgQ9AOTXW+NiQytOXP+bZBaemuWQq8fL8
-         dWXHPootpkyv97T8sk6rAvDNtI8F0tuq50vQ36brLB7IAIg0WcnMdxbUvncJy9jEgk5l
-         h16aDrx/Hz8tisUz+LuiP1+iQO+pB5dN0DSlwoQG9ltHECya6uJajZPDS5g/9t/R43la
-         llUc0zhHFVfB2UzpSpkTXMT7fkSoowMC5h86lah2uiGK1fyRqzKdxF7Ks4sGgLF6nRsx
-         K+Ww==
-X-Gm-Message-State: AOAM5337uoGgg5WNLB8BvTAEVKAH2SLb1OToruvU4wITK+BH2KdKRR3R
-        hJVngqsNm96U9iAu5H7GaWg8AdX2+DrJJg==
-X-Google-Smtp-Source: ABdhPJw4BfJc80bEgjfrJqZfP4rCzZ1d2OWzW/BMN4K4gjDZXC3F1+CKyB4i8vKHnr/e7uAKXeOx1A==
-X-Received: by 2002:a05:6808:d52:: with SMTP id w18mr608556oik.133.1644275828888;
-        Mon, 07 Feb 2022 15:17:08 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l4sm4591002otq.50.2022.02.07.15.17.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Feb 2022 15:17:08 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <d6c0649c-db38-49a0-56f5-432db39a99ab@roeck-us.net>
-Date:   Mon, 7 Feb 2022 15:17:06 -0800
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=KTjBO+D6w51lndsehH7eTffqqV1R65NE8mNByUSg+rQ=;
+        b=5N4OWoOEFmQld4z4O8SLRmTC78mq7I65GI7OS7aThyuebKS9XyO62W7eqHuqvV25HF
+         Vf0ItYeyDfjelsOd+JBbwy6PmjAJt0wyg6WwvY0YFwt80SiRI7/zBNUHdteVDpH5OKQM
+         2JPUg13THxYmsJyxtAY8aIA+QM4dKL32lhqgMrriuvbdJM4sJ9XiETDr0rMdtMb6wl1G
+         pvcU7InZ391Q2bThfgvcsLA6DnPaphpSk3mZf43euZPoa3ijn9dbqwbb19dP/RS5UXgF
+         ommtHKlBSXJ5yCFSOpUFR/mjGNleHyH1F0dipzYkUQwyXAYasSgD9qCKx6OhIgYWupRB
+         oEuQ==
+X-Gm-Message-State: AOAM530ebT+ZdIR45rd9SFRSu7fdnrkkbTIzQ6JMxF3uAq44b5Z2BwzC
+        9SweqUuaDC22Ku/QqLZSpw==
+X-Google-Smtp-Source: ABdhPJy+cQ2hkA1Dm4VG+Ydq/wSJxDHBBmLy0jg6LEw1cMa5lAFvpNYjiXp41aiAt5BOnXDXylKtgA==
+X-Received: by 2002:a05:6870:9884:: with SMTP id eg4mr436317oab.80.1644276060289;
+        Mon, 07 Feb 2022 15:21:00 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bg10sm332272oib.33.2022.02.07.15.20.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Feb 2022 15:20:59 -0800 (PST)
+Received: (nullmailer pid 1117233 invoked by uid 1000);
+        Mon, 07 Feb 2022 23:20:58 -0000
+Date:   Mon, 7 Feb 2022 17:20:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
+        thierry.reding@gmail.com, sam@ravnborg.org,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: add bindings for MIPI DBI
+ compatible SPI panels
+Message-ID: <YgGpWo80TvfTknhx@robh.at.kernel.org>
+References: <20220125175700.37408-1-noralf@tronnes.org>
+ <20220125175700.37408-2-noralf@tronnes.org>
+ <20220127093722.hsed3ny3gzk55o7w@houat>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To:     sylv <sylv@sylv.io>, Rob Herring <robh@kernel.org>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Roland Stigge <stigge@antcom.de>, devicetree@vger.kernel.org
-References: <cover.1643299570.git.sylv@sylv.io>
- <224e73b57101aa744244bd396a700d5365eb72ec.1643299570.git.sylv@sylv.io>
- <Yf23k5vrZ8CEAKda@robh.at.kernel.org>
- <b55f673b2ba25dbdfeafd4558f5cd2ba2ca0ee39.camel@sylv.io>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v4 3/4] dt-bindings: hwmon: Add binding for max6639
-In-Reply-To: <b55f673b2ba25dbdfeafd4558f5cd2ba2ca0ee39.camel@sylv.io>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220127093722.hsed3ny3gzk55o7w@houat>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/7/22 02:03, sylv wrote:
-> On Fri, 2022-02-04 at 17:32 -0600, Rob Herring wrote:
->> On Thu, Jan 27, 2022 at 05:17:29PM +0100, Marcello Sylvester Bauer
->> wrote:
->>> Add Devicetree binding documentation for Maxim MAX6639 temperature
->>> monitor with PWM fan-speed controller.
->>>
->>> The devicetree documentation for the SD3078 device tree.
->>>
->>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
->>> ---
->>>   .../bindings/hwmon/maxim,max6639.yaml         | 112
->>> ++++++++++++++++++
->>>   1 file changed, 112 insertions(+)
->>>   create mode 100644
->>> Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>> b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>> new file mode 100644
->>> index 000000000000..570e9fe07503
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
->>> @@ -0,0 +1,112 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +
->>> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Maxim max6639
->>> +
->>> +maintainers:
->>> +  - Roland Stigge <stigge@antcom.de>
->>> +
->>> +description: |
->>> +  The MAX6639 is a 2-channel temperature monitor with dual,
->>> automatic, PWM
->>> +  fan-speed controller.  It monitors its own temperature and one
->>> external
->>> +  diode-connected transistor or the temperatures of two external
->>> diode-connected
->>> +  transistors, typically available in CPUs, FPGAs, or GPUs.
->>> +
->>> +  Datasheets:
->>> +
->>> https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - maxim,max6639
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  '#address-cells':
->>> +    const: 1
->>> +
->>> +  '#size-cells':
->>> +    const: 0
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - "channel@0"
->>> +  - "channel@1"
->>> +
->>> +additionalProperties: false
->>> +
->>> +patternProperties:
->>> +  "^channel@[0-1]$":
->>
->> fan@...
+On Thu, Jan 27, 2022 at 10:37:22AM +0100, Maxime Ripard wrote:
+> Hi,
 > 
-> Makes sense. Looks like i have to adapt the driver code too.
+> On Tue, Jan 25, 2022 at 06:56:58PM +0100, Noralf Tr�nnes wrote:
+> > Add binding for MIPI DBI compatible SPI panels.
+> > 
+> > v2:
+> > - Fix path for panel-common.yaml
+> > - Use unevaluatedProperties
+> > - Drop properties which are in the allOf section
+> > - Drop model property (Rob)
+> > 
+> > Signed-off-by: Noralf Tr�nnes <noralf@tronnes.org>
+> > ---
+> >  .../display/panel/panel-mipi-dbi-spi.yaml     | 59 +++++++++++++++++++
+> >  1 file changed, 59 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> > new file mode 100644
+> > index 000000000000..b7cbeea0f8aa
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> > @@ -0,0 +1,59 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dbi-spi.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MIPI DBI SPI Panels Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Noralf Tr�nnes <noralf@tronnes.org>
+> > +
+> > +description:
+> > +  This binding is for display panels using a MIPI DBI controller
+> > +  in SPI mode.
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: panel-mipi-dbi-spi
 > 
->>
->>> +    type: object
->>> +    description: |
->>> +      Represents the two fans and their specific configuration.
->>> +
->>> +    properties:
->>> +      reg:
->>> +        description: |
->>> +          The fan number.
->>> +        items:
->>> +          minimum: 0
->>> +          maximum: 1
->>> +
->>> +      pwm-polarity:
->>
->> See PWM_POLARITY_INVERTED
->>
-> 
-> Indeed, Thanks.
-> 
->>
->>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>> +        enum: [0, 1]
->>> +        default: 1
->>> +        description:
->>> +          PWM output is low at 100% duty cycle when this bit is
->>> set to zero. PWM
->>> +          output is high at 100% duty cycle when this bit is set
->>> to 1.
->>> +
->>> +      pulses-per-revolution:
->>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>> +        enum: [1, 2, 3, 4]
->>> +        default: 2
->>> +        description:
->>> +          Value specifying the number of pulses per revolution of
->>> the controlled
->>> +          FAN.
->>> +
->>> +      rpm-max:
->>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>> +        enum: [2000, 4000, 8000, 16000]
->>> +        default: 4000
->>> +        description:
->>> +          Scales the tachometer counter by setting the maximum
->>> (full-scale) value
->>> +          of the RPM range.
->>
->> Why do you need to know the max? I don't recall needing this for
->> other
->> fan controller bindings.
-> 
-> This information is required for setting the internal clock of the
-> tachometer. (See: page 8 table 3). However, we could make it a vendor
-> specific property. In this case i would rather call it "maxim,rpm-
-> range", since this is how it is referred to.
-> 
+> You need contains here, otherwise it will error out if you have two compatibles.
 
-The maximum fan speed is a common property of fan controllers.
-Exceeding the configured value would typically generate an alarm.
-The same applies to minimum fan speed. As an example, ADT7470
-supports both minimum and maximum fan speed and generates an alarm
-if the fan speed is too low and if it is too high.
+Shouldn't it always have 2?
 
-At some point we will need properties for both the minimum and for
-the maximum fan speed. Seems to me we might as well define it now.
+Either way, this has to be split up between a common, shareable schema 
+and specific, complete schema(s). Like this:
 
-Guenter
+- A schema for everything common (that allows additional properties)
+
+- A schema for 'panel-mipi-dbi-spi' referencing the common schema plus 
+  'unevaluatedProperties: false'
+
+- Schemas for panels with their own additional properties (regulators, 
+  GPIOs, etc.)
+
+LVDS was restructured like this IIRC.
+
+> > +  write-only:
+> > +    type: boolean
+> > +    description:
+> > +      Controller is not readable (ie. MISO is not wired up).
+> > +
+> > +  dc-gpios:
+> > +    maxItems: 1
+> > +    description: |
+> > +      Controller data/command selection (D/CX) in 4-line SPI mode.
+> > +      If not set, the controller is in 3-line SPI mode.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    spi {
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +
+> > +            display@0{
+> > +                    compatible = "panel-mipi-dbi-spi";
+> 
+> We should have two compatibles in the example too
+> 
+> Maxime
+
+
