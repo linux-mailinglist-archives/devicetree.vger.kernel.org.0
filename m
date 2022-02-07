@@ -2,55 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66A054AB7A4
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:41:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A54C44AB7BC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 10:41:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245384AbiBGJeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S236067AbiBGJeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 7 Feb 2022 04:34:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56710 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350465AbiBGJ2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:28:00 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE758C043181
-        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 01:27:59 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nH0JP-0008FG-HX; Mon, 07 Feb 2022 10:27:55 +0100
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nH0JN-0004kE-R4; Mon, 07 Feb 2022 10:27:53 +0100
-Date:   Mon, 7 Feb 2022 10:27:53 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     alexandru.tachici@analog.com, davem@davemloft.net,
-        devicetree@vger.kernel.org, hkallweit1@gmail.com, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v4 4/7] net: phy: Add 10BASE-T1L support in phy-c45
-Message-ID: <20220207092753.GC23727@pengutronix.de>
-References: <20211210110509.20970-1-alexandru.tachici@analog.com>
- <20211210110509.20970-5-alexandru.tachici@analog.com>
- <YbUTJdKN9kQAJzqA@lunn.ch>
+        with ESMTP id S1351272AbiBGJ27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:28:59 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03A4BC0401C0
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 01:28:59 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id cz16so10349278edb.8
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 01:28:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FLK2lp6TV74+ddpLQXtHe3jOczUqIhg5KCOPYjiimz0=;
+        b=W0nozGTs3WBmNHCv6hIDWxLGpDVfJILMUf2O7Q/U9PCKWMULtz2UcOLfcz//u2iceU
+         IoObxtwzO/To7yeAbTWa6r8Oi4yd7dHk8MwrAekAhX17xjmKepV9K4vOWiwoTm1TmVD0
+         eEGXAxCDM9LwgwWfUk+Fbuo7247yBhiHhW1/NgAwsRoprLDT6329unNOAaU8eYA4J1SA
+         ZvRkaqThsWYRMYFI2GRgQWRUHSeNQhUpdcoeXnRjmwmB6RefMjXwCJ0v5eux2BLm4Izq
+         e1b5OzXD76KGfSAdNASTO0nj+ilzpOsA6hGPS7Do+nWGs+FzATKtEetdHV6CN8KnjXrV
+         OIYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FLK2lp6TV74+ddpLQXtHe3jOczUqIhg5KCOPYjiimz0=;
+        b=FZ1n3sxRwen/IpmGpRSzU/5+cVRAMnYwk943QSZFFq2fX+Cu9djCY1/AoZTKGWkCsx
+         9nEdD7SVlEiPP59+FQVMelkaIXTUVd7At6nAjE+A3jfgHhGyOONq2bz2GQXpr7iqELd1
+         TfYWy/u+hXd8afxVhene92VgYlo3iej0gvzYccPOsmONgZO3Pk0HnhT6fKRWZf0M59PG
+         1M5kWCyBzy+5e968sKG2/ik7x2YmfCBly8Bs057zBCq74VLBXiUYxr7OfbaP35nXVAXp
+         2NDxeG0ZCKqElOv0f0/9ePD46h/yHs/SfHnOCjaoWCtKFiQ3Q/0XnnqSGHf9ZzhflKnX
+         1Iqw==
+X-Gm-Message-State: AOAM531wPYgVn7IVOtecwviuBqHPXBwYnpjQgCBmasjxl031GsffmXZj
+        hWSxA+2oyTep2cjNXQVnWyB+0Q==
+X-Google-Smtp-Source: ABdhPJzq7Tl8lnhKa+CHP0KNKxJ+ynu8aSyKQT7YIPwHg7TUfcTAIjzGO4fZEHCM2sksJn/flRHBUQ==
+X-Received: by 2002:a05:6402:38e:: with SMTP id o14mr9121850edv.414.1644226137585;
+        Mon, 07 Feb 2022 01:28:57 -0800 (PST)
+Received: from fedora.. (ip-088-153-139-166.um27.pools.vodafone-ip.de. [88.153.139.166])
+        by smtp.gmail.com with ESMTPSA id g9sm3487059ejm.152.2022.02.07.01.28.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Feb 2022 01:28:57 -0800 (PST)
+From:   Patrick Rudolph <patrick.rudolph@9elements.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
+        devicetree@vger.kernel.org
+Subject: [v4 0/3] Add support for Maxim MAX735x/MAX736x variants
+Date:   Mon,  7 Feb 2022 10:28:23 +0100
+Message-Id: <20220207092827.104978-1-patrick.rudolph@9elements.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YbUTJdKN9kQAJzqA@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:26:12 up 58 days, 18:11, 81 users,  load average: 0.28, 0.29,
- 0.50
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,28 +68,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandru,
+v4:
+- Add missing maxitems dt-bindings property
 
-On Sat, Dec 11, 2021 at 10:07:49PM +0100, Andrew Lunn wrote:
-> > +		ret = phy_read_mmd(phydev, MDIO_MMD_PMAPMD, MDIO_PMA_EXTABLE);
-> > +		if (ret < 0)
-> > +			return ret;
-> > +
-> > +		if (ret & MDIO_PMA_EXTABLE_BT1)
-> 
-> 
-> This pattern of reading the MDIO_PMA_EXTABLE register and then looking
-> for bit MDIO_PMA_EXTABLE_BT1 happens a lot. It is not something which
-> is expected to change is it? So i wounder if it should be read once
-> and stored away?
+v3:
+- Merge dt-bindings into i2c-mux-pca954x.yaml
 
-What is the state of this patches? Will you be able to make requested
-changes and send new version?
+v2:
+- Move dt-bindings to separate file
+- Added support for MAX736x as they are very similar
+- Fixed an issue found by kernel test robot
+- Dropped max735x property and custom IRQ check
+- Added MAX7357 config register defines instead of magic values
+- Renamed vcc-supply to vdd-supply
 
-Regards,
-Oleskij
+Patrick Rudolph (3):
+  dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
+  i2c: muxes: pca954x: Add MAX735x/MAX736x support
+  i2c: muxes: pca954x: Add regulator support
+
+ .../bindings/i2c/i2c-mux-pca954x.yaml         |  44 +++++--
+ drivers/i2c/muxes/Kconfig                     |   4 +-
+ drivers/i2c/muxes/i2c-mux-pca954x.c           | 124 ++++++++++++++++--
+ 3 files changed, 151 insertions(+), 21 deletions(-)
+
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.34.1
+
