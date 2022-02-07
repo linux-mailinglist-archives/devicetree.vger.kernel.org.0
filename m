@@ -2,137 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 284884AB91C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:54:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6924D4AB91D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:55:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235269AbiBGKyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 05:54:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37196 "EHLO
+        id S229831AbiBGKye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 05:54:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240553AbiBGKrT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 05:47:19 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2F0C043181;
-        Mon,  7 Feb 2022 02:47:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1644230838; x=1675766838;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=8+dFrGD5ia9/wAG2M41Df0aqZPqFKd4Zz5q7iDj1TDw=;
-  b=ZryZWCMvk3cd6ROBxC8+rRujXZeMRszPnRXtp5CVCHp3eT2ty3zqxqbF
-   s57k/GFcfaJEVWCSE9I+YcxP3xrNj7bW/FT0xiud/t0cvNLysuWfsYrta
-   GsYk7EZii0oUGogAfgi27FiV63ld5LF68UyEtjK/+EAO1krfDYxpahCsa
-   DV/Y374l9Jmc7W+6vrPgb59mgwvqxRg5i4pHskN9c3YbjWEUX607BrCkZ
-   EaFhrMaFak1FhPtlD7TW9L5oWCyiHDtbOfFrJ6aOrjAKIm7xBUgVRwMyr
-   3beap0itxfFGZFc9Xp3cVBm4jTB6E9INGmeHHmOI2GnkJqoEtKiLiFMdD
-   w==;
-IronPort-SDR: 1CtX/c7B6xlWtGR3wpzrSz21W2TVEZqGH4uJhjTln2ksagqdX7ERHcBMABDWWFXUhPvFOPijhM
- gl8/ggs2GUpAJDO/O0hv9xwojtxxO0d2060iO+vZREcZNwyczR+yPcZfd07zp7eNDJAlsb2pxY
- tU2pTs04Onvxcyf4tjXD9eZMgSnUDRri5k+QHrSxdNNgILa87JMaD0gPuXP0Qy5g0cfeyIYa5I
- l41yz0ptav0rwX4r0bXHEv/tjG8qjk2be9mrSc1t1yIsDzswVoGquie/BzRVQzZZTUuxcwpeK5
- f9NP5ACqdAOEBMe9ux9Ol3Fc
-X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; 
-   d="scan'208";a="84882724"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Feb 2022 03:47:17 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 7 Feb 2022 03:47:17 -0700
-Received: from ROB-ULT-M18064N.mchp-main.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Mon, 7 Feb 2022 03:47:15 -0700
-From:   Tudor Ambarus <tudor.ambarus@microchip.com>
-To:     <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>,
-        <alexandre.belloni@bootlin.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, Tudor Ambarus <tudor.ambarus@microchip.com>
-Subject: [PATCH v3] ARM: dts: at91: sama7g5: Add crypto nodes
-Date:   Mon, 7 Feb 2022 12:47:13 +0200
-Message-ID: <20220207104713.87284-1-tudor.ambarus@microchip.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S1346245AbiBGKxx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 05:53:53 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1719EC043181;
+        Mon,  7 Feb 2022 02:53:51 -0800 (PST)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2177xPBw022448;
+        Mon, 7 Feb 2022 11:51:25 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=K0w0XBABzulMwdabSun+EYASobtFwjzKISn9qecxuPY=;
+ b=k3lqLLAw5FZoLfGG2L+upiMxtNrtpMVu5eJRO4IXtjDPbTah91Kl0YEEEw42PuQWzddD
+ iunHYyNKNosVbIvPYJc8poGbeVX3jV3KrfHTx3omp+jo+oYifplTOUz3a5PNIHip9ECo
+ di8nWjQPYkmOIrOZa+W+RoKZfTFYQWTdSEPot+z8e3QgHzNs8+UCQY8C2YaO9StgkqIM
+ heGAjJv9tNFhLKbM35juaSCV/rJw9Mp7Mc9NY+1s302Ru7y2ZIVvScBbvKbgSpeVpMAs
+ fWc8WaEwW2WjC4Jq1xHL9+uPqhJf248Lpu6H8z1dr1c7cg+WSnR2PIjtdKypsd6HzATq 0A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e2nfyaxev-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 07 Feb 2022 11:51:25 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 66E7D100039;
+        Mon,  7 Feb 2022 11:51:16 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4CA2E216EDA;
+        Mon,  7 Feb 2022 11:51:16 +0100 (CET)
+Received: from [10.48.0.252] (10.75.127.45) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Mon, 7 Feb
+ 2022 11:51:15 +0100
+Message-ID: <c501d583-4293-5781-8ddd-b1d317460b05@foss.st.com>
+Date:   Mon, 7 Feb 2022 11:51:14 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v7 00/10] Add support for DMA2D of STMicroelectronics
+ STM32 Soc series
+Content-Language: en-US
+To:     Dillon Min <dillon.minfei@gmail.com>, <mchehab@kernel.org>,
+        <mchehab+huawei@kernel.org>, <hverkuil-cisco@xs4all.nl>,
+        <ezequiel@collabora.com>, <gnurou@gmail.com>,
+        <pihsun@chromium.org>, <mcoquelin.stm32@gmail.com>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <gabriel.fernandez@st.com>,
+        <gabriel.fernandez@foss.st.com>
+CC:     <patrice.chotard@foss.st.com>, <hugues.fruchet@foss.st.com>,
+        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <lkp@intel.com>, <kbuild-all@lists.01.org>, <llvm@lists.linux.dev>
+References: <1635232282-3992-1-git-send-email-dillon.minfei@gmail.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <1635232282-3992-1-git-send-email-dillon.minfei@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-07_04,2022-02-07_01,2021-12-02_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe and enable the AES, SHA and TDES crypto IPs. Tested with the
-extra run-time self tests of the registered crypto algorithms.
+Hi Dillon
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
----
-v3: remove explicit status = "okay", as it's already the default case
-when not specified at all.
+On 10/26/21 09:11, Dillon Min wrote:
+> This patchset introduces a basic support for DMA2D Interface
+> of STMicroelectronics STM32 SoC series.
+> 
+> This first basic support implements R2M, M2M, M2M_PFC
+> M2M_BLEND support will be added later on.
+> 
+> This has been tested on STM32469-DISCO board.
+> 
 
-v2:
-- add label to the tdes node
-- update commit description and specify testing method
-- put clocks and clock-names properties before dmas and dma-names
-  because the clocks are mandatory, while DMA is optional for TDES and SHA
+...
 
- arch/arm/boot/dts/sama7g5.dtsi | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ARM DT patches ([3][4]) applied on stm32-next.
 
-diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
-index 7972cb8c2562..8f0c8f42257f 100644
---- a/arch/arm/boot/dts/sama7g5.dtsi
-+++ b/arch/arm/boot/dts/sama7g5.dtsi
-@@ -393,6 +393,27 @@ pit64b1: timer@e1804000 {
- 			clock-names = "pclk", "gclk";
- 		};
- 
-+		aes: aes@e1810000 {
-+			compatible = "atmel,at91sam9g46-aes";
-+			reg = <0xe1810000 0x100>;
-+			interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&pmc PMC_TYPE_PERIPHERAL 27>;
-+			clock-names = "aes_clk";
-+			dmas = <&dma0 AT91_XDMAC_DT_PERID(1)>,
-+			       <&dma0 AT91_XDMAC_DT_PERID(2)>;
-+			dma-names = "tx", "rx";
-+		};
-+
-+		sha: sha@e1814000 {
-+			compatible = "atmel,at91sam9g46-sha";
-+			reg = <0xe1814000 0x100>;
-+			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&pmc PMC_TYPE_PERIPHERAL 83>;
-+			clock-names = "sha_clk";
-+			dmas = <&dma0 AT91_XDMAC_DT_PERID(48)>;
-+			dma-names = "tx";
-+		};
-+
- 		flx0: flexcom@e1818000 {
- 			compatible = "atmel,sama5d2-flexcom";
- 			reg = <0xe1818000 0x200>;
-@@ -475,6 +496,17 @@ trng: rng@e2010000 {
- 			status = "disabled";
- 		};
- 
-+		tdes: tdes@e2014000 {
-+			compatible = "atmel,at91sam9g46-tdes";
-+			reg = <0xe2014000 0x100>;
-+			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&pmc PMC_TYPE_PERIPHERAL 96>;
-+			clock-names = "tdes_clk";
-+			dmas = <&dma0 AT91_XDMAC_DT_PERID(54)>,
-+			       <&dma0 AT91_XDMAC_DT_PERID(53)>;
-+			dma-names = "tx", "rx";
-+		};
-+
- 		flx4: flexcom@e2018000 {
- 			compatible = "atmel,sama5d2-flexcom";
- 			reg = <0xe2018000 0x200>;
--- 
-2.25.1
+Thanks
+Alex
 
