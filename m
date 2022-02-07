@@ -2,388 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1884AC9C8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 20:43:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 943F14AC9DE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 20:49:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231863AbiBGTmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 14:42:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57728 "EHLO
+        id S236777AbiBGTsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 14:48:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240208AbiBGTkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 14:40:02 -0500
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0AFEC0401DA;
-        Mon,  7 Feb 2022 11:40:01 -0800 (PST)
-Received: by mail-oo1-f42.google.com with SMTP id t75-20020a4a3e4e000000b002e9c0821d78so14956256oot.4;
-        Mon, 07 Feb 2022 11:40:01 -0800 (PST)
+        with ESMTP id S240424AbiBGTpm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 14:45:42 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C06C0401E6
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 11:45:41 -0800 (PST)
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0D0A63F1F0
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 19:45:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644263134;
+        bh=ZFe7GrDYXMM8CLQ5SMwXw4UQni/9UZT69dDdKHMLJTo=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=CXNu75oEuLgWLAAwUIzGlsCrsh6PsFr867GTO1mueUbFGXRKvlITzZsVZddpE3JrP
+         PqizrVsInxFq/pkeoTx89IUwlMhbkfYZis3IIF4zKw1ZRd8IaVRg32nDI2mUGdcnON
+         c4kKuuU1kIsVHDgjJE9gt2n2B6X/3EHPnIaefbwB6KmMcjuNtB8jw00c5v7vP7i+Mt
+         x2SN9pMybsVyANw8uoBaUIPEWW3Pzcge2X8wAo7sscFusK3hMe58jIzX2Rr5zw8oFi
+         nQc3J3ux2ScW7S0cPLrZJMRKT4aDXynVF2Sez3CeFrlIZqSuY/IXgqimqLoEqtJhbh
+         bx25iwXfh+Xkg==
+Received: by mail-ed1-f71.google.com with SMTP id en7-20020a056402528700b00404aba0a6ffso8427494edb.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 11:45:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=DVoPlrorpOgCwVKkj2Fd5s3gbsXiXTFFi9QAYnJuhBQ=;
-        b=jDxA590vyXk7V68ZeIXfUWJUpBKYXU2s0rloPxS+eWBheQKK0Z1LDjqoILVtjXbh03
-         X89wjJxckI3Gzt3adel+5Cq2Qhh59BE6S+NYf0FnxjJy6Jv7JeSP/s14nt3u7jQ52Pqz
-         TbKpmLdN4g2Vg9xkLI6guD7yIr2hIu4DCG2GfSLOfVoU/mUnha2zsYxJKjucrY1MUjSU
-         rLEka+5WWkU00cJC/7rMcUYq8fgU4Z9vjVfgYlpgiBDbdSAEawtzG7eQC83ZvGws+702
-         fpgArJov+V1DLxKMBfBmOZ7CLZechznBMuie4751LDBsPxj8kw4J/EZNYJ/SVa9zVPZ6
-         pGlA==
-X-Gm-Message-State: AOAM533zvoKEt76t3/SHFa4fku3QiVAfZb5xUHpGLqDguE3wNpMGC0HB
-        56LZ+rUccQw+qywH6OOJ1A==
-X-Google-Smtp-Source: ABdhPJwEOqmW3gUGAMBLbLCqg94r8wnh0uNs5S+K0a/D5y2duMhiqd7HoPnsG9VQcMg0uw97eN3kcQ==
-X-Received: by 2002:a05:6870:8222:: with SMTP id n34mr167848oae.67.1644262801146;
-        Mon, 07 Feb 2022 11:40:01 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id i13sm4411438otl.46.2022.02.07.11.39.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Feb 2022 11:39:59 -0800 (PST)
-Received: (nullmailer pid 770258 invoked by uid 1000);
-        Mon, 07 Feb 2022 19:39:57 -0000
-Date:   Mon, 7 Feb 2022 13:39:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     linux-media@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Peter Rosin <peda@axentia.se>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        matti.vaittinen@fi.rohmeurope.com
-Subject: Re: [RFCv3 4/6] media: dt-bindings: add DS90UB954-Q1 video
- deserializer
-Message-ID: <YgF1ja8/Uab/8ZWt@robh.at.kernel.org>
-References: <20220206115939.3091265-1-luca@lucaceresoli.net>
- <20220206115939.3091265-5-luca@lucaceresoli.net>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ZFe7GrDYXMM8CLQ5SMwXw4UQni/9UZT69dDdKHMLJTo=;
+        b=3cyF88CubqtuHjrMLd1jytwPkMaaAPAe9wPx/R3QUHtxbMjEZ1hk6qxK6T0PYTtOGH
+         F9l8fkHznZme1lZQV6Ixhf7Daz3jcUgmXYkBReNfYzjgRswcEay/D1To0woyob4AT7gT
+         u/ehCIduExXnB6B++Gor31+VKKv2eUECxMf+5dLxIWbPALdo1s+//yN72uIFyBrNnflL
+         k0t7eAzgWXbNgTSmvKnjZqhcQicnG576ev/9U+ovYRuzDdvlb/zRX+EcJILV4zVD8hWF
+         DJAKnp8z3CvLf9lAcfj/ZJ3Mrlrfi6seUiWMCpH6k5XoG4U/WRVP01FghDIzdvUiHYrF
+         11/Q==
+X-Gm-Message-State: AOAM532rjzcJ2nmHw7OyH+V3miWrWORD35s/ZqJbF84ay38td5e4tMrJ
+        0QzAV8UPWDiDW+Aaio9bj1jolzwpu5ugAy+X1Q/UWAseuowtffc0bTRO+Tkq/u5P4cUpomsvYp8
+        Z82IGoJBOx88/8D9Czw5WjPms0NhM3sIxMzxDRLA=
+X-Received: by 2002:a17:907:98e8:: with SMTP id ke8mr968013ejc.524.1644263132764;
+        Mon, 07 Feb 2022 11:45:32 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzFbHJhhicQcTAJbCV7XtoidiI0ekXusMyI1v7J4cYe1pPDkuk3WrSncw/sfZC1Yn4c59YKVQ==
+X-Received: by 2002:a17:907:98e8:: with SMTP id ke8mr967987ejc.524.1644263132572;
+        Mon, 07 Feb 2022 11:45:32 -0800 (PST)
+Received: from [192.168.0.91] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id t22sm5595617edv.105.2022.02.07.11.45.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Feb 2022 11:45:32 -0800 (PST)
+Message-ID: <22952187-80c2-a456-f389-f70a2a30f467@canonical.com>
+Date:   Mon, 7 Feb 2022 20:45:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220206115939.3091265-5-luca@lucaceresoli.net>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v6 1/4] spi: dt-bindings: samsung: convert to dtschema
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>, Lee Jones <lee.jones@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Andi Shyti <andi@etezian.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Pratyush Yadav <p.yadav@ti.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-spi@vger.kernel.org
+References: <20220124082347.32747-1-krzysztof.kozlowski@canonical.com>
+ <20220124082347.32747-2-krzysztof.kozlowski@canonical.com>
+ <YgFgQsV2bJS6mjQs@sirena.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YgFgQsV2bJS6mjQs@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 06, 2022 at 12:59:37PM +0100, Luca Ceresoli wrote:
-> Describe the Texas Instruments DS90UB954-Q1, a 2-input MIPI CSI-2 video
-> deserializer with I2C Address Translator and remote GPIOs.
+On 07/02/2022 19:09, Mark Brown wrote:
+> On Mon, Jan 24, 2022 at 09:23:44AM +0100, Krzysztof Kozlowski wrote:
+>> Convert the Samsung SoC (S3C24xx, S3C64xx, S5Pv210, Exynos) SPI
+>> controller bindings to DT schema format.
 > 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-> 
-> ---
-> 
-> Changes RFCv2 -> RFCv3:
-> 
->  - rewrite in yaml
->  - use new layout based on remote-chips under the main deser node
->  - new clock configuration based on common clock framework
-> 
-> Changes RFCv1 -> RFCv2:
-> 
->  - add explicit aliases for the FPD-link RX ports (optional)
->  - add proper remote GPIO description
-> ---
->  .../bindings/media/i2c/ti,ds90ub954-q1.yaml   | 235 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 241 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub954-q1.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub954-q1.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub954-q1.yaml
-> new file mode 100644
-> index 000000000000..95dc3d22f5d8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub954-q1.yaml
-> @@ -0,0 +1,235 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2019 Renesas Electronics Corp.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ti,ds90ub954-q1.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments DS90UB954-Q1 dual video deserializer
-> +
-> +maintainers:
-> +  - Luca Ceresoli <luca@lucaceresoli.net>
-> +
-> +description: |
-> +  The TI DS90UB954-Q1 is a MIPI CSI-2 video deserializer that forwards
-> +  video streams from up to two FPD-Link 3 connections to a MIPI CSI-2
-> +  output. It also allows access to remote I2C and GPIO.
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,ds90ub954-q1
-> +
-> +  reg:
-> +    description: |
-> +      main I2C slave address; optionally aliases for RX port registers and
-> +      remote serializers. The main address is mandatory and must be the
-> +      first, others are optional and fall back to defaults if not
-> +      specified. See "reg-names".
+> Reviewed-by: Mark Brown <broonie@kernel.org>
 
-minItems: 1
-maxItems: 5
+Hi Mark and Lee,
 
-> +
-> +  reg-names:
-> +    description: |
-> +      Names of I2C address used to communicate with the chip, must match
-> +      the "reg" values; mandatory if there are 2 or more addresses.
-> +      "main" is the main I2C address, used to access shared registers.
-> +      "rxport0" and "rxport1" are the I2C alias to access FPD-link RX
-> +      port specific registers; must not be used by other slaves on the
-> +      same bus. "ser0" and "ser1" are the I2C alias to access the remote
-> +      serializer connected on each FPD-link RX port; must not be used by
-> +      other slaves on the same bus.
-> +    minItems: 1
-> +    maxItems: 5
-> +    items:
-> +      - const: main
-> +      - const: rxport0
-> +      - const: rxport1
-> +      - const: ser0
-> +      - const: ser1
-> +
-> +  clocks:
-> +    description: provider of the clock on the XIN/REFCLK pin
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: chip reset GPIO connected to PDB pin (active low)
+Thanks for the review. The dt-bindings part have Rob's review. I think
+this means Lee can pick up the entire set (SPI+MFD)?
 
-maxItems: 1
-
-> +
-> +  i2c-alias-pool:
-
-Needs a type.
-
-> +    description: |
-> +      list of I2C addresses that are known to be available on the "local"
-> +      (SoC-to-deser) I2C bus; they will be picked at runtime and used as
-> +      aliases to reach remote I2C chips
-> +
-> +  '#clock-cells':
-> +    description: |
-> +      the DS90UB954 provides the FPD line rate clock to the serializer
-> +    const: 0
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    patternProperties:
-> +      '^port@[01]$':
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        description: FPD-Link RX port 0 (RIN0+/RIN0- pins)
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +      '^port@2$':
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: MIPI-CSI2 TX port
-> +
-> +  remote-chips:
-> +    type: object
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +      '#size-cells':
-> +        const: 0
-> +
-> +    patternProperties:
-> +      '^remote-chip@([01]+)$':
-> +        type: object
-> +        $ref: /schemas/media/i2c/ti,ds90ub953-q1.yaml#
-> +
-> +    required:
-> +      - '#address-cells'
-> +      - '#size-cells'
-> +
-> +    additionalProperties: false
-> +
-> +  i2c-atr:
-> +    description: |
-> +      Each child describes the I2C bus on the remote side of an RX port
-> +    type: object
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +      '#size-cells':
-> +        const: 0
-> +
-> +    patternProperties:
-> +      '^i2c@([01]+)$':
-
-Only 0 or 1 is valid? Then drop the '+'.
-
-This is an i2c bus, so you need:
-
-           $ref: /schemas/i2c-controller.yaml#'
-           unevaluatedProperties: false
-
-> +        type: object
-> +
-> +        properties:
-> +          reg:
-> +            maxItems: 1
-
-> +          '#address-cells':
-> +            const: 1
-> +          '#size-cells':
-> +            const: 0
-
-You can drop these as i2c-controller.yaml covers them.
-
-> +          clock-frequency:
-> +            minimum: 1
-
-1 is already the minimum. (Well, maybe it is 0, but that's not really 
-useful.)
-
-> +            maximum: 1000000
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - ports
-> +  - remote-chips
-> +  - i2c-atr
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/media/ds90ub953.h>
-> +
-> +    i2c@0 {
-> +      reg = <0x0 0x100>;
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      deser: deser@3d {
-> +        compatible = "ti,ds90ub954-q1";
-> +        reg-names = "main", "rxport0", "rxport1", "ser0", "ser1";
-> +        reg       = <0x3d>,  <0x40>,    <0x41>,   <0x44>, <0x45>;
-> +        clocks = <&clk_25M>;
-> +        interrupt-parent = <&gic>;
-> +        interrupts = <3 1 IRQ_TYPE_LEVEL_LOW>;
-> +        reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
-> +
-> +        #clock-cells = <0>;
-> +
-> +        i2c-alias-pool = /bits/ 16 <0x4a 0x4b 0x4c 0x4d 0x4e 0x4f>;
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          port@0 {
-> +            reg = <0>;
-> +            ds90ub954_fpd3_in0: endpoint {
-> +              remote-endpoint = <&sensor_0_out>;
-> +            };
-> +          };
-> +
-> +          port@2 {
-> +            reg = <2>;
-> +            ds90ub954_mipi_out0: endpoint {
-> +                    data-lanes = <1 2 3 4>;
-> +                    link-frequencies = /bits/ 64 <400000000>;
-> +                    remote-endpoint = <&csirx_0_in>;
-> +            };
-> +          };
-> +        };
-> +
-> +        remote-chips {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          des0_ser0: remote-chip@0 {
-> +            reg = <0>;
-> +            compatible = "ti,ds90ub953-q1";
-> +            clocks = <&deser>;
-> +            ti,gpio-functions =
-> +              <DS90_GPIO_FUNC_UNUSED
-> +              DS90_GPIO_FUNC_OUTPUT_REMOTE
-> +              DS90_GPIO_FUNC_UNUSED
-> +              DS90_GPIO_FUNC_UNUSED>;
-> +
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            #clock-cells = <0>;
-> +          };
-> +        };
-> +
-> +        i2c-atr {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          remote_i2c0: i2c@0 {
-> +            reg = <0>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            sensor_0@1a {
-> +              compatible = "sony,imx274";
-> +              reg = <0x1a>;
-> +
-> +              reset-gpios = <&des0_ser0 1 GPIO_ACTIVE_LOW>;
-> +
-> +              port {
-> +                sensor_0_out: endpoint {
-> +                  remote-endpoint = <&ds90ub954_fpd3_in0>;
-> +                };
-> +              };
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4429ce035496..f0156062f788 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19097,6 +19097,12 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/media/i2c/ti,ds90ub953-q1.yaml
->  F:	include/dt-bindings/media/ds90ub953.h
->  
-> +TEXAS INSTRUMENTS DS90UB954 VIDEO DESERIALIZER DRIVER
-> +M:	Luca Ceresoli <luca@lucaceresoli.net>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/i2c/ti,ds90ub954-q1.yaml
-> +
->  TEXAS INSTRUMENTS' SYSTEM CONTROL INTERFACE (TISCI) PROTOCOL DRIVER
->  M:	Nishanth Menon <nm@ti.com>
->  M:	Tero Kristo <kristo@kernel.org>
-> -- 
-> 2.25.1
-> 
-> 
+Best regards,
+Krzysztof
