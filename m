@@ -2,85 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB8384AB816
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:01:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C56984AB81F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 11:01:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235355AbiBGJuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 04:50:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37018 "EHLO
+        id S1350707AbiBGJvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 04:51:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236371AbiBGJpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:45:38 -0500
-X-Greylist: delayed 302 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 01:45:33 PST
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EBF0C043181;
-        Mon,  7 Feb 2022 01:45:32 -0800 (PST)
-X-UUID: dd927d56bee2402fbb0e9691367e02e9-20220207
-X-UUID: dd927d56bee2402fbb0e9691367e02e9-20220207
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 265153567; Mon, 07 Feb 2022 17:40:27 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 7 Feb 2022 17:40:26 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 7 Feb 2022 17:40:26 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <nfraprado@collabora.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-Subject: [PATCH] arm64: dts: mt8192: Add watchdog node
-Date:   Mon, 7 Feb 2022 17:40:24 +0800
-Message-ID: <20220207094024.22674-1-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        with ESMTP id S235894AbiBGJnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 04:43:23 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842DEC043181
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 01:43:22 -0800 (PST)
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3E34440039
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 09:43:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644227001;
+        bh=+L6E+uDCjSN479CYKJ9gYlHkAuXqDhEQEWmjUAJvDhE=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=EehYkJpXRPjeAfAUTRGoah5C5hB5d++bxbE1a40LKh8POiNt+tO5eh6ap0osKBRWg
+         cKSIG/g2/cZXW6PCMMFChioiSThT0TPCHhL4B3wWp/jFig1blGEEY4yndBQo/4RzRY
+         LtsK1DmqdVPELoHgeOXjB02l+sukNVpO61UeNI+QR2gxOo3I4fvolhp3KlDNRlcK3o
+         o1MV/7QUYB6lqKwE4j9DyPHzCkPjZhxYheAc7+Xdqt4BC8meRNivB0tP5AA3tHQ/6l
+         7ssxN5dStQ3s+twKlXN+z/z/fKDZoczA/nNYHZftSjJgvthsMyGrREqogB7SMhLP2G
+         5U0R3UcJFZ4bQ==
+Received: by mail-wm1-f69.google.com with SMTP id a8-20020a7bc1c8000000b0037bc4c62e97so1676058wmj.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 01:43:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=+L6E+uDCjSN479CYKJ9gYlHkAuXqDhEQEWmjUAJvDhE=;
+        b=Khu4otpBI/y2S/uhOD7UpUJCMa6OFMID3Z+gIosMueGhv1NO3g4VA0B57mrXWgIYtp
+         9el2r+F4pdg6l+1moApCWmSBxjDjOTUDKjGH3Bh9NBnXcgTbkSwyu5DymbYQg90hxRXj
+         hdBDMr/2hj8RzCw3UUkMEVaDc+3iz776W5GLneL0gFJ9/DfNT3ZF002v8DpJfgaQ377u
+         Cjos9Z+VaRBhXx7JS1jEwFiC4qqX6gWM5nkeZwyubyo8Qgh8HKK/lkk91uFLUPnSHPb0
+         SdMCeDh/Cyx18q+jOY4cNeDTW4Lvgo08DNFPmykcNf7QE+UsdIWPlmGP0WszhWoKDPbi
+         f2Kg==
+X-Gm-Message-State: AOAM530puOk+Yk8pjCt4kTIYck49SalgzVhkT7sI6IpjJ2qoi9EfwSbt
+        wUuF+ens+h8BHLh4Fnz6VHAk+RWfYv3+5L+u9NMjk/SJMyya0no3uV4SXSS8Nk877574wTKFJZY
+        ij5Fl9RIZwrdy9dMi9dv3NLrZSCTCIXf1ZRynyeg=
+X-Received: by 2002:a05:600c:3516:: with SMTP id h22mr13431088wmq.143.1644227000972;
+        Mon, 07 Feb 2022 01:43:20 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwHF7dm2ZsoEJJ5VPAil3jjFNgC2lqhi4OrFY5B5qRigsPvDSfxiXW8PeX3gyanY9lg95hK0Q==
+X-Received: by 2002:a05:600c:3516:: with SMTP id h22mr13431067wmq.143.1644227000728;
+        Mon, 07 Feb 2022 01:43:20 -0800 (PST)
+Received: from [192.168.0.86] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id v5sm10694902wrx.114.2022.02.07.01.43.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Feb 2022 01:43:19 -0800 (PST)
+Message-ID: <68d1f184-bfc5-9d78-8c68-0c793b35adf4@canonical.com>
+Date:   Mon, 7 Feb 2022 10:43:19 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 0/4] mfd/power/regulators: dt-bindings: max14577:
+ convert to dtschema
+Content-Language: en-US
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chanwoo Choi <cw00.choi@samsung.com>
+References: <20220111174337.223320-1-krzysztof.kozlowski@canonical.com>
+ <73bad620-97eb-a734-cbc8-6f001d04c18a@canonical.com>
+ <YgDnlWKO6/BTxZh2@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YgDnlWKO6/BTxZh2@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+On 07/02/2022 10:34, Lee Jones wrote:
+> On Sun, 06 Feb 2022, Krzysztof Kozlowski wrote:
+> 
+>> On 11/01/2022 18:43, Krzysztof Kozlowski wrote:
+>>> Hi,
+>>>
+>>> Changes since v1
+>>> ================
+>>> 1. MFD: Use absolute path to schemas
+>>> 2. Regulator: mention all allowed properties,
+>>>    additionalProperties=false, add min/max values for voltages and
+>>>    current, don't use patternProperties when not needed.
+>>>
+>>> Dependencies
+>>> ============
+>>> 1. DTS patch 1/4: nothing depends on it, sending here so Rob's automatic
+>>>    checker won't complain about DTS.
+>>>    I will take it via Samsung SoC tree.
+>>>
+>>> 2. Final MFD patch (4/4) depends on regulator and power, so the last
+>>>    patches (2+3+4) should go via same tree.
+>>>
+>> Dear Lee,
+>>
+>> This patchset was reviewed and there are no outstanding issues. Could
+>> you pick up patches 2-4 (skipping DTS patch) via MFD tree?
+> 
+> Nothing from Mark?
 
-Add watchdog device node to MT8192 SoC.
+No, nothing. There is no other simultaneous work on these files, so I
+don't expect conflicts here. Important part is that I got review from Rob.
 
-Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+If lack of ack makes you hesitant, I can resend hoping it will help but
+it is a bit of pain.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index cc3953df0153..c1d4030e7e4b 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -301,6 +301,12 @@
- 			#interrupt-cells = <2>;
- 		};
- 
-+		watchdog: watchdog@10007000 {
-+			compatible = "mediatek,mt8192-wdt";
-+			reg = <0 0x10007000 0 0x100>;
-+			#reset-cells = <1>;
-+		};
-+
- 		apmixedsys: syscon@1000c000 {
- 			compatible = "mediatek,mt8192-apmixedsys", "syscon";
- 			reg = <0 0x1000c000 0 0x1000>;
--- 
-2.18.0
-
+Best regards,
+Krzysztof
