@@ -2,227 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 385EA4AB993
-	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 12:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F2674ABE75
+	for <lists+devicetree@lfdr.de>; Mon,  7 Feb 2022 13:16:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241318AbiBGLRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 06:17:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48812 "EHLO
+        id S1383353AbiBGMJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 07:09:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240661AbiBGLKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 06:10:13 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E45A6C043188;
-        Mon,  7 Feb 2022 03:10:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1644232212; x=1675768212;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=lBgDgsJPVQgblniIqZ1h6mpgjVw09LdoD4WkuVyF3jw=;
-  b=Fya8BTdOOSd/SQvuzigCY+si7EudWt4g09Rzj8fZWU/9tSd8xA+g3GOu
-   EyDeDxah40xfTbHE/PLh+tkVjK8m3LdANyXQl4C4eP1SLpPwCapmfnnvf
-   BSA8oYYUcfRKbBJIyOFA8H9SRN7wRpTfDiV/dZlnYLBNyzTpVEnIHlj/U
-   NLMxoP1KuFIOibmm+49eaqjtA5X4bDMyS4HQDqvzowiBUefJ7zIxf+8qG
-   nkSW8riVnP0flxNxNsrh5AQnyi+wX481HQSe79E3Y4D94iBU1OmXhxIiH
-   Oe83JL8l/Doab/xtZgGo5k5yPfA3Rc4bKuCSaXBRyMoUI01neEeJcBWNY
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10250"; a="273212523"
+        with ESMTP id S1379988AbiBGLSB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 06:18:01 -0500
+X-Greylist: delayed 122 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 03:17:58 PST
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 089C1C0401E5
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 03:17:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1644232677; x=1675768677;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=77yz6w+2DoYy2A+2tV0NicdxNLpG2DjlpVJtoMUnRe8=;
+  b=YTTMUJdL3vtFI7x++LYI5Pwq8OlM7EC6UuFdPZSiJNR49sLWNbepKUaT
+   dIgIyPMCDkvVqRiGl09yAiqF9eGhNzWOeUrRAwSnr8QMfAcPLYw8wS/eA
+   f14j/9VyK2C1u/SiYgV3fz6pBQzs0tZx7skfBvC68hFrFKcM2EpH2Et6S
+   A7z84MtDj6NV8ZFf64Cd/6u5al8yMntay7IU1FlutHEQOQpzP8sqUsABl
+   5J9/M+tH+w9r96V8TIyZw6rzD8KAmyKgF0L2xfTH2oOzZzkO0tpZpBxwj
+   KU521iq1Azw4P86C8nJvwDmCNhFKFTzCDESn6qcWNVrd3GYAeGcLXwlUd
+   g==;
+IronPort-SDR: HkrNOAK/2IZIC1gMvUR04S5wbKevSxIDqvFudKUN9SD0U0iVMXDAHNNYx+Bi3W4cePl7ZMDUHB
+ 9j05gdaDthtZuEo55QgB0zaWIhL5PXDfGNCWhqMQjNeBj9k2aCJlHwv8YKVrxvP8Vjq0VWPXW/
+ nsAEfVr5wo35ehXP9TdgvMfgxTVdVZKhZI7Z0+9VY+O04V117bN4K+zWHfatV9U3fzPGxz9lIU
+ NwimsBUmPxGF5LUhtcN8vM2qj/vcBYk1NKN5n4nfv3x5IG/muvvo0d3+pD0kJv/ObM9Pe0IZfH
+ CSrSHBnQcyu6djgKJTrvm59n
 X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; 
-   d="scan'208";a="273212523"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2022 03:10:12 -0800
-X-IronPort-AV: E=Sophos;i="5.88,349,1635231600"; 
-   d="scan'208";a="481551385"
-Received: from smile.fi.intel.com ([10.237.72.61])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2022 03:10:10 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1nH1tP-001sGz-B9;
-        Mon, 07 Feb 2022 13:09:11 +0200
-Date:   Mon, 7 Feb 2022 13:09:11 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v3 1/3] iio: dac: add support for ltc2688
-Message-ID: <YgD91zg4L1S5KH5k@smile.fi.intel.com>
-References: <20220121142501.151-1-nuno.sa@analog.com>
- <20220121142501.151-2-nuno.sa@analog.com>
- <Yf60A1UkbBtQ68qv@smile.fi.intel.com>
- <PH0PR03MB678628C341A1972BC31F5BBA992B9@PH0PR03MB6786.namprd03.prod.outlook.com>
+   d="scan'208";a="152699432"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Feb 2022 04:14:17 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 7 Feb 2022 04:14:17 -0700
+Received: from localhost.localdomain (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Mon, 7 Feb 2022 04:14:15 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH] ARM: dts: at91: remove status = "okay" from soc specific dtsi
+Date:   Mon, 7 Feb 2022 13:15:23 +0200
+Message-ID: <20220207111523.575474-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <PH0PR03MB678628C341A1972BC31F5BBA992B9@PH0PR03MB6786.namprd03.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 06, 2022 at 01:19:59PM +0000, Sa, Nuno wrote:
-> > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > Sent: Saturday, February 5, 2022 6:30 PM
-> > On Fri, Jan 21, 2022 at 03:24:59PM +0100, Nuno Sá wrote:
+Remove status = "okay" from SoC specific dtsi as this is the default
+state.
 
-...
+Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+---
+ arch/arm/boot/dts/sam9x60.dtsi | 4 ----
+ arch/arm/boot/dts/sama5d2.dtsi | 3 ---
+ arch/arm/boot/dts/sama5d4.dtsi | 3 ---
+ arch/arm/boot/dts/sama7g5.dtsi | 3 ---
+ 4 files changed, 13 deletions(-)
 
-> > > +#include <linux/of.h>
-> > 
-> > property.h please/
-> 
-> That probably means property and of both included. See below in the
-> clock_get comments...
-
-Why? OF won't be used at all.
-
-...
-
-> > > +	memcpy(st->tx_data, reg, reg_size);
-> > > +
-> > > +	ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	memcpy(val, &st->rx_data[1], val_size);
-> > > +
-> > > +	return 0;
-> > > +}
-> > 
-> > First of all, yuo have fixed len in transfer sizes, so what the purpose of
-> > the reg_size / val_size?
-> 
-> Well, reg_size is 1 byte and val_size is 2 as defined in the regmap_bus
-> struct. And that is what it must be used for the transfer to work. I 
-> could also hardcode 1 and 2 but I preferred to use the parameters. I guess
-> you can argue (and probably this is why you are complaining about this)
-> for me to use reg_size + val_size in the transfer length for consistency.
-> That's fair but I do not think this is __that__ bad...
-
-It's not bad, but I think that division between register and value is a good
-thing to have.
-
-> Can make that change though.
-
-Would be nice!
-
-...
-
-> > Second, why do you need this specific function instead of regmap bulk
-> > ops against be24/le24?
-> 
-> Not sure I'm following this one... If you mean why am I using a custom 
-> regmap_bus implementation, that was already explained in the RFC patch.
-> And IIRC, you were the one already asking 😉.
-
-Hmm... It was some time I have looked there. Any message ID to share, so
-I can find it quickly?
-
-...
-
-> > > +	ret = kstrtou16(buf, 10, &val);
-> > 
-> > In other function you have long, here u16. I would expect that the
-> > types are of
-> > the same class, e.g. if here you have u16, then there something like
-> > s32 / s64.
-> > Or here something like unsigned short.
-> > 
-> > A bit of elaboration why u16 is chosen here?
-> 
-> Well, I never really saw any enforcement here to be honest (rather than using
-> stdint types...). So I pretty much just use these in unsigned types because
-> I'm lazy and u16 is faster to type than unsigned short... In this case, unless Jonathan
-> really asks for it, I prefer not to go all over the driver and change this...
-
-This is about consistency. It may work as is, but it feels not good when for
-int (or unsigned int) one uses fixed-width types. Also it's non-written advice
-to use fixed-width variables when it's about programming registers or so, for
-the rest, use POD types.
-
-...
-
-> > > +static int ltc2688_tgp_clk_setup(struct ltc2688_state *st,
-> > > +				 struct ltc2688_chan *chan,
-> > > +				 struct device_node *np, int tgp)
-> > > +{
-> > > +	unsigned long rate;
-> > > +	struct clk *clk;
-> > > +	int ret, f;
-> > > +
-> > > +	clk = devm_get_clk_from_child(&st->spi->dev, np, NULL);
-> > > +	if (IS_ERR(clk))
-> > 
-> > Make it optional for non-OF, can be done as easy as
-> > 
-> > 	if (IS_ERR(clk)) {
-> > 		if (PTR_ERR(clk) == -ENOENT)
-> > 			clk = NULL;
-> > 		else
-> > 			return dev_err_probe(...);
-> > 	}
-> > 
-> > > +		return dev_err_probe(&st->spi->dev, PTR_ERR(clk),
-> > > +				     "failed to get tgp clk.\n");
-> 
-> Well, I might be missing the point but I think this is not so straight....
-> We will only get here if the property " adi,toggle-dither-input" is given
-> in which case having the associated clocks is __mandatory__.
-
-Ah, okay, would be a limitation for non-OF platforms.
-
-> Hence,
-> once we are here, this can never be optional. That said, we need
-> device_node 
-
-That's fine, since CCF is OF-centric API.
-
-> and hence of.h
-
-Why? This header doesn't bring anything you will use here.
-
-> to be included and this was the main reason
-> why I changed from property.h to of.h (once I started to use
-> 'devm_get_clk_from_child()'. I don’t really think that using both of and
-> property is a good idea and I raised this in the previous version of this series
-> and no one made it clear that using both of and property would be acceptable
-> so I kept my move to of in the current version.
-
-It's a good idea for sensors to be able to use them outside of OF platforms.
-CCF is PITA, but at least with the conversion to device property API, this
-become the only one (and it has a few possible workarounds).
-
-> > > +	ret = clk_prepare_enable(clk);
-> > > +	if (ret)
-> > > +		return dev_err_probe(&st->spi->dev, ret,
-> > > +				     "failed to enable tgp clk.\n");
-
-...
-
-> > > +			clear_bit(IIO_CHAN_INFO_RAW,
-> > > +				  &st-
-> > >iio_chan[reg].info_mask_separate);
-> > 
-> > Do you need atomic operation here?
-> 
-> Not really, but I still prefer to use 'clear_bit()' rather than doing it
-> by hand... Is there another utility for this?
-
-__clear_bit().
-
+diff --git a/arch/arm/boot/dts/sam9x60.dtsi b/arch/arm/boot/dts/sam9x60.dtsi
+index ec45ced3cde6..e3afa1dae207 100644
+--- a/arch/arm/boot/dts/sam9x60.dtsi
++++ b/arch/arm/boot/dts/sam9x60.dtsi
+@@ -280,7 +280,6 @@ sha: sha@f002c000 {
+ 				dma-names = "tx";
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 41>;
+ 				clock-names = "sha_clk";
+-				status = "okay";
+ 			};
+ 
+ 			trng: trng@f0030000 {
+@@ -288,7 +287,6 @@ trng: trng@f0030000 {
+ 				reg = <0xf0030000 0x100>;
+ 				interrupts = <38 IRQ_TYPE_LEVEL_HIGH 0>;
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 38>;
+-				status = "okay";
+ 			};
+ 
+ 			aes: aes@f0034000 {
+@@ -304,7 +302,6 @@ AT91_XDMAC_DT_PERID(32))>,
+ 				dma-names = "tx", "rx";
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 39>;
+ 				clock-names = "aes_clk";
+-				status = "okay";
+ 			};
+ 
+ 			tdes: tdes@f0038000 {
+@@ -320,7 +317,6 @@ AT91_XDMAC_DT_PERID(31))>,
+ 				dma-names = "tx", "rx";
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 40>;
+ 				clock-names = "tdes_clk";
+-				status = "okay";
+ 			};
+ 
+ 			classd: classd@f003c000 {
+diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
+index 09c741e8ecb8..05ab16ffa8bb 100644
+--- a/arch/arm/boot/dts/sama5d2.dtsi
++++ b/arch/arm/boot/dts/sama5d2.dtsi
+@@ -316,7 +316,6 @@ sha@f0028000 {
+ 				dma-names = "tx";
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 12>;
+ 				clock-names = "sha_clk";
+-				status = "okay";
+ 			};
+ 
+ 			aes@f002c000 {
+@@ -332,7 +331,6 @@ AT91_XDMAC_DT_PERID(26))>,
+ 				dma-names = "tx", "rx";
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 9>;
+ 				clock-names = "aes_clk";
+-				status = "okay";
+ 			};
+ 
+ 			spi0: spi@f8000000 {
+@@ -1097,7 +1095,6 @@ AT91_XDMAC_DT_PERID(28))>,
+ 				dma-names = "tx", "rx";
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 11>;
+ 				clock-names = "tdes_clk";
+-				status = "okay";
+ 			};
+ 
+ 			classd: classd@fc048000 {
+diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
+index f6e3e6f57252..4de164905e03 100644
+--- a/arch/arm/boot/dts/sama5d4.dtsi
++++ b/arch/arm/boot/dts/sama5d4.dtsi
+@@ -684,7 +684,6 @@ aes@fc044000 {
+ 				dma-names = "tx", "rx";
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 12>;
+ 				clock-names = "aes_clk";
+-				status = "okay";
+ 			};
+ 
+ 			tdes@fc04c000 {
+@@ -698,7 +697,6 @@ tdes@fc04c000 {
+ 				dma-names = "tx", "rx";
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 14>;
+ 				clock-names = "tdes_clk";
+-				status = "okay";
+ 			};
+ 
+ 			sha@fc050000 {
+@@ -710,7 +708,6 @@ sha@fc050000 {
+ 				dma-names = "tx";
+ 				clocks = <&pmc PMC_TYPE_PERIPHERAL 15>;
+ 				clock-names = "sha_clk";
+-				status = "okay";
+ 			};
+ 
+ 			hsmc: smc@fc05c000 {
+diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
+index afd3e069b382..0b1e85541f7f 100644
+--- a/arch/arm/boot/dts/sama7g5.dtsi
++++ b/arch/arm/boot/dts/sama7g5.dtsi
+@@ -83,7 +83,6 @@ securam: securam@e0000000 {
+ 			#size-cells = <1>;
+ 			ranges = <0 0xe0000000 0x4000>;
+ 			no-memory-wc;
+-			status = "okay";
+ 		};
+ 
+ 		secumod: secumod@e0004000 {
+@@ -653,13 +652,11 @@ spi11: spi@400 {
+ 		uddrc: uddrc@e3800000 {
+ 			compatible = "microchip,sama7g5-uddrc";
+ 			reg = <0xe3800000 0x4000>;
+-			status = "okay";
+ 		};
+ 
+ 		ddr3phy: ddr3phy@e3804000 {
+ 			compatible = "microchip,sama7g5-ddr3phy";
+ 			reg = <0xe3804000 0x1000>;
+-			status = "okay";
+ 		};
+ 
+ 		gic: interrupt-controller@e8c11000 {
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.32.0
 
