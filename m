@@ -2,60 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DA734AD625
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBB3F4AD62D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235141AbiBHLWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 06:22:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60096 "EHLO
+        id S1355428AbiBHLWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 06:22:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242523AbiBHKr3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 05:47:29 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A714BC03FEC0;
-        Tue,  8 Feb 2022 02:47:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 58C57B819AC;
-        Tue,  8 Feb 2022 10:47:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BDE7C004E1;
-        Tue,  8 Feb 2022 10:47:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1644317246;
-        bh=PVTw2r0OXFjvjt94d456GInBC+FByeJffOgTJjxViSo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cP0L5NT2OXZNsxnxJeUwd6zsAk+QYbuwqGUW+k50nq1fPvdjXh3Fr8FuVWcVGPqrt
-         gEtsyaKa0ntKma2AtDb/vD7vB3NEByLjIHtQnUNoD1EBBrR+QSQRCGX2bH1tcd993D
-         Uh1h9jnGRb7TT0czOqAeR+vXsfjIQRD7lqVT4jRk=
-Date:   Tue, 8 Feb 2022 11:47:23 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-usb@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>
-Subject: Re: [PATCH v20 3/5] usb: misc: Add onboard_usb_hub driver
-Message-ID: <YgJKOxGKlpS9PgvL@kroah.com>
-References: <20220119204345.3769662-1-mka@chromium.org>
- <20220119124327.v20.3.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+        with ESMTP id S1356464AbiBHKt0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 05:49:26 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E52DC03FEC0;
+        Tue,  8 Feb 2022 02:49:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1644317365; x=1675853365;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ExAnA3KUM5ihqc3qu/vjIF3YfwTPLq/0oU/0/foiKj4=;
+  b=ZtYxey7ZPPiwTzg262vm5WQ2XOteXQipgXP5GX5sm+6JZJbnOqK4vHNH
+   jiAe+dVvsKAt/M6AdKvX/rqKttanHkwR+x4k3s0iKY1xkaMaUewveaVF3
+   bZ4ehoFdmuoiqXQ7/hMJIh4Q/dta7Nw/pbsNHtSpWCIn3hyb82Qp3UaFo
+   Isi/4P4FrGt9tl/Pyg1wI+epGVORDayy6IgdZIorE7D7p6QXAOZqpa8dc
+   eoW91Q3Sl/tR6aPZc5mL1P3931ph2rhno54CZuVEpb7efl0ATVhuOlv67
+   KgT1SttCfvaVKmB0ilP8H9eWdrRuUseZ+bXW8295EmW64/STBNsoFhvpP
+   Q==;
+IronPort-SDR: CA61ojMJxtINYbptMgA/Jl1JNnAE0lc+jf1ytB3HHNzAZKYJB7/gOnPMzkPKA4tmhjMj1fflQb
+ TpI6FlDL7KnhBnUJvCBhKz1LBCfyLUfmcizyM6uy4DYhrJ01UYiV+slz5T26oxkJi4F2qBWrnH
+ rGH6cMs5E1u8qQwU3ubUTySxECXAX3R4He1c6W/Y1fcLj496gFTMm92uMvDlb0R2UdOMnp2aUE
+ URCmzAw77komXXgpnX5hkkpEHEXzwxF/kmHRt5lY8VDR/h7hNSoo76ioeEq8JFvADYiGu/luS9
+ 1StbxmIhjLItpvkImWqgCv2z
+X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; 
+   d="scan'208";a="152826392"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Feb 2022 03:49:24 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 8 Feb 2022 03:49:24 -0700
+Received: from ROB-ULT-M18064N.mchp-main.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Tue, 8 Feb 2022 03:49:21 -0700
+From:   Tudor Ambarus <tudor.ambarus@microchip.com>
+To:     <herbert@gondor.apana.org.au>, <krzysztof.kozlowski@canonical.com>
+CC:     <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <linux-crypto@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <kavyasree.kotagiri@microchip.com>,
+        <devicetree@vger.kernel.org>,
+        "Tudor Ambarus" <tudor.ambarus@microchip.com>
+Subject: [PATCH v2 0/3] crypto: Convert atmel-crypto to YAML
+Date:   Tue, 8 Feb 2022 12:49:15 +0200
+Message-ID: <20220208104918.226156-1-tudor.ambarus@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220119124327.v20.3.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,12 +68,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 19, 2022 at 12:43:43PM -0800, Matthias Kaehlcke wrote:
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
-> @@ -0,0 +1,8 @@
-> +What:		/sys/bus/platform/devices/<dev>/always_powered_in_suspend
-> +Date:		November 2021
-> +KernelVersion:	5.17
+Convert Atmel AES, TDES and SHA documentation to yaml format. There is one
+binding defined per file. Keeping all bindings under the same yaml does
+not make sense, as these are individual IPs. With the conversion the clock
+and clock-names properties are made mandatory, to reflect how the drivers
+treat them: when these properties are not provided, the drivers return
+error.
 
-Nit, these are out of date now :(
+v2:
+- use generic "crypto" node name
+- drop redundant status = "okay" - it's the default state anyway
+- introduce empty line for readability
+- be specific and rename the bindings to let room for future possible
+  lines of architectures.
+
+Tudor Ambarus (3):
+  dt-bindings: crypto: Convert Atmel AES to yaml
+  dt-bindings: crypto: Convert Atmel TDES to yaml
+  dt-bindings: crypto: Convert Atmel SHA to yaml
+
+ .../crypto/atmel,at91sam9g46-aes.yaml         | 65 ++++++++++++++++++
+ .../crypto/atmel,at91sam9g46-sha.yaml         | 59 ++++++++++++++++
+ .../crypto/atmel,at91sam9g46-tdes.yaml        | 63 +++++++++++++++++
+ .../bindings/crypto/atmel-crypto.txt          | 68 -------------------
+ 4 files changed, 187 insertions(+), 68 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-aes.yaml
+ create mode 100644 Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-sha.yaml
+ create mode 100644 Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml
+ delete mode 100644 Documentation/devicetree/bindings/crypto/atmel-crypto.txt
+
+-- 
+2.25.1
+
