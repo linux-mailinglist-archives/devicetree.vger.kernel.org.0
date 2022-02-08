@@ -2,106 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE4824ACD46
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 02:07:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A074ACCE4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 02:06:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344516AbiBHBDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 20:03:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52834 "EHLO
+        id S1344525AbiBHBDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 20:03:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343974AbiBHAR3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 19:17:29 -0500
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2C42C0612A4
-        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 16:17:28 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id n32so15867385pfv.11
-        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 16:17:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ump4WlSip5V2JlqWQTgJOZSUupb4pYUV+n/5B2TGlus=;
-        b=iaHPcaPkhBgkbkHPw3lGkAeU7GfjdIaqcg5gfIllnqQXy+yFLmejaQasUxyh+E0t6V
-         SoWmD8LzI/NWCJAY+kb9S7b3QKo6nmxuUGgn9DlYbhP33gnbjeuwH0rs6opMWpwZRd84
-         OSKxOvIWXeoxsMj/3FJxSJVc/vvuEWExu2ERY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ump4WlSip5V2JlqWQTgJOZSUupb4pYUV+n/5B2TGlus=;
-        b=eZhftscpDDmGdjVPNHPVRY6UR6XvuYxZ5S7XJOed2WlsRUjX0rphQvqNtq+MaNxVZo
-         nZUfYWiQWUixFfxwDVPhscR+pP6yhgPt9/M6+DnyLMzxAadIYBzgl+AzO4f+PodBDNwU
-         dcpLxmTUzoPGyfbnirWVvBjizP51lFu8c77RJAQ1HAbtaKSZ8178WI5lae2Hi/yEzIsW
-         at0any/1fQtbHdWgztQHg0pQWE/wnU8f/1ddWvPm89L9eP/MeEOMZimmR7/DKiDjp8lz
-         +3dyCIS7zhzjiUDB10G8FwCy+4Z8/UG2+CkmNW8e/GabAMx/MamJmaiEJUQcSj2LbbLg
-         u9PQ==
-X-Gm-Message-State: AOAM531uUez9WRIEQD4Z72AigX4Ybgm7JT6/VHvggZwwYW4ZYL3TtpOp
-        9L3VomIOHKKmN7j3bvVkKH5eZQ==
-X-Google-Smtp-Source: ABdhPJysUN14OWRaS0gjx3vzBZsCwjAimW7jy/Y/9xx2AVEP2bk4Yk+URPQwsV73f1oA9YO2VwdQmA==
-X-Received: by 2002:a63:4605:: with SMTP id t5mr399414pga.41.1644279448156;
-        Mon, 07 Feb 2022 16:17:28 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:6c4d:c442:5b4:f597])
-        by smtp.gmail.com with ESMTPSA id mz4sm456185pjb.53.2022.02.07.16.17.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Feb 2022 16:17:27 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     quic_mkrishn@quicinc.com, linux-arm-msm@vger.kernel.org,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        robdclark@gmail.com, quic_khsieh@quicinc.com,
-        quic_abhinavk@quicinc.com, linux-phy@lists.infradead.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [REPOST PATCH v1 1/3] dt-bindings: phy: Add eDP PHY compatible for sc7280
-Date:   Mon,  7 Feb 2022 16:17:02 -0800
-Message-Id: <20220207161612.REPOST.v1.1.Iee1d505f0a35c2805f0468625b117d2e0f0ad339@changeid>
-X-Mailer: git-send-email 2.35.0.263.gb82422642f-goog
-In-Reply-To: <20220208001704.367069-1-dianders@chromium.org>
-References: <20220208001704.367069-1-dianders@chromium.org>
+        with ESMTP id S1344017AbiBHAZk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 19:25:40 -0500
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E38A2C0612A4;
+        Mon,  7 Feb 2022 16:25:39 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.88,351,1635174000"; 
+   d="scan'208";a="110545972"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 08 Feb 2022 09:20:36 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 7C83A400A108;
+        Tue,  8 Feb 2022 09:20:36 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v3 0/2] iommu/ipmmu-vmsa: Add support for R-Car Gen4
+Date:   Tue,  8 Feb 2022 09:20:28 +0900
+Message-Id: <20220208002030.1319984-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=1.2 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        KHOP_HELO_FCRDNS,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+This patch series is based on renesas-drivers-2022-01-11-v5.16 [1].
+Note that we have to prepare the following registers' setting
+in a bootloader (U-Boot) because the registers are protected.
+Otherwise, data mismatch happened if dmatest with the ipmmu is running.
 
-Add compatible string for the supported eDP PHY on sc7280 platform.
+ => mw eed01500 0xc0000000; mw eed41500 0xc0000000
 
-Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+[1]
+https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/tag/?h=renesas-drivers-2022-01-11-v5.16
 
- Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Changes from v2:
+ - Add Reviewed-by tag in patch 1 and 2 (Geert-san, thanks!)
+ - Revise commit description in patch 1.
+ https://lore.kernel.org/all/20220204125653.1194249-1-yoshihiro.shimoda.uh@renesas.com/
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-index 9076e19b6417..a5850ff529f8 100644
---- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-@@ -16,7 +16,9 @@ description:
- 
- properties:
-   compatible:
--    const: qcom,sc8180x-edp-phy
-+    enum:
-+      - qcom,sc7280-edp-phy
-+      - qcom,sc8180x-edp-phy
- 
-   reg:
-     items:
+Changes from v1:
+ - Add Reviewed-by tag in patch 1. (Geert-san, thanks!)
+ - Revise a comment in patch 2.
+ https://lore.kernel.org/all/20220125125602.4144793-1-yoshihiro.shimoda.uh@renesas.com/
+
+Y
+
+Yoshihiro Shimoda (2):
+  dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779f0 support
+  iommu/ipmmu-vmsa: Add support for R-Car Gen4
+
+ .../devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml  |  4 ++++
+ drivers/iommu/ipmmu-vmsa.c                             | 10 +++++++---
+ 2 files changed, 11 insertions(+), 3 deletions(-)
+
 -- 
-2.35.0.263.gb82422642f-goog
+2.25.1
 
