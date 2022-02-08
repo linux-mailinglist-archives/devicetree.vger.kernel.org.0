@@ -2,87 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E2E24ADA5A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:47:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 684864ADB12
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 15:21:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376423AbiBHNrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 08:47:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42664 "EHLO
+        id S1377982AbiBHOUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 09:20:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348721AbiBHNrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 08:47:07 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C0D4C03FECE;
-        Tue,  8 Feb 2022 05:47:05 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id s7so10929328edd.3;
-        Tue, 08 Feb 2022 05:47:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1Uu1nmskTHfo9hf/W5wz6SlkksAW9cfa8fGOqXsoeu0=;
-        b=Gk264vUVXqULqzqf8r/V2hhm+hrlBz33ptFcQz961+WAYCu63lke2girCZMbuqBNVo
-         wQCza+VJ/CWrAWTDsf9opfmeHeZdOMPCEYWK13gurn9ek/yD7yRPAmomj0572H5kn2eX
-         FwLrdPQOhTD6SZkpLlxM7amzIjLfH0Ss/vhceG5nA/1i6PVchCUE9tWGyIIrlGnqNwlU
-         SVDhFdLdHHO1adtLeGj00RtBsyIuOdUdh8J+tYLGUtmu0v/DHfTpSocddpCVXgTzmZpf
-         LXiF8vS1aXYt/a1HakbTNovY6pOptFhAaFHlvEjXDke9KLyD9iIT52OytpJT+rk48QSN
-         PBZw==
+        with ESMTP id S1351022AbiBHOUM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 09:20:12 -0500
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA71CC03FECE;
+        Tue,  8 Feb 2022 06:20:11 -0800 (PST)
+Received: by mail-vk1-f177.google.com with SMTP id v192so9856109vkv.4;
+        Tue, 08 Feb 2022 06:20:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=1Uu1nmskTHfo9hf/W5wz6SlkksAW9cfa8fGOqXsoeu0=;
-        b=f5pylbW5EjMAhjDKg83m3fpnbCLfhnonREJzXG31Ak5XNQUdw8X9C0TNLgxIgzjv8j
-         CJ8A3+Y76X0s0lK25sHxYXJMNUtP/GpavlglQ193MldVNzt+L4jtF7taVKNgv4omm3XY
-         7mB9UYTs7DZMuKM6lECMZgY3bO7KLBV87Aay+KP5MDdieqGYuxg5wMVPIVYDt4k1+rf1
-         ZRsQ8+cU+lFq4axBtHc9uRpQ2VOxcuPF5SilTEEjeGD1tdS7y1OTS+2IN0KDOYGye72J
-         5Pfjs5z6AM/Fa2BMZGe5b4Ps68iWyqUL9TZSdsXRFRMh8r1SlVxZF0eyUFHZtIGrLfyY
-         kESg==
-X-Gm-Message-State: AOAM532JiByC42LZEE8E78NneAYSYgj/sxEuBCzOPgNpXuTQxhYy7+5N
-        fEopzdCLQ/YuoUsc8RwWY8J7pXoF+ScPRJOovsI=
-X-Google-Smtp-Source: ABdhPJz2GmTrp8kspjWPIrO//kFaIZIY6zuZ3x2Mu5vF8Z/DPZ7MBkknv+oLENEgrJA6ASawew8rshblrdr780Qg7Wc=
-X-Received: by 2002:aa7:c413:: with SMTP id j19mr3709836edq.200.1644328023983;
- Tue, 08 Feb 2022 05:47:03 -0800 (PST)
+        bh=tWsUC/Af6ywp4UcAlxa6QvBdBkZWz95sQEwSbu3EUOM=;
+        b=qviQxYjbeOWp0843ZcdnIo+y4ui8xr8+d5RFlZ4vO9LqvLY7aNgrAEuF0Pu9k2+LkX
+         aVMNog5c/XBMA2IEu32h8mknAoBQucFoDgXUg5eVqbp7hCbR5bgt66RiwwiHwQFs6xkn
+         ESSp/noBgZdE0QMgCCxyo4SS5JlmEoK3Fikbqji4pwLqS+Ddlwy1EnweXmJFMOp2jJK3
+         s9/AvTEv0mlxt+42A2Juqg6N1el6fQ89rDnsXIk5gu1ri04Jg2UaDmJhUQntEa0tIzsu
+         cBq+y2sSVZtwEL1S9LuhFmFO2rMBvbkLOHbINI7oK3MtUyf6MRY1xYTfT8C6i/k1LttM
+         fQhw==
+X-Gm-Message-State: AOAM532ARZjYISPgZ5mHK75hvuuNW2UBWe3ooav1uLWrcI7nL3HwwFEf
+        XkdYHv7OAYnh3VMzNPWvq5m/QGItcX04uw==
+X-Google-Smtp-Source: ABdhPJwNVJpS74KdYjuNT/DdBWlEgfiEbsLZQCTpCOvWFLt0cuyphOK9myV6EqAiLwQhdzAsX2qn7g==
+X-Received: by 2002:a05:6122:17a5:: with SMTP id o37mr1656708vkf.25.1644330010672;
+        Tue, 08 Feb 2022 06:20:10 -0800 (PST)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id g22sm2823278vsk.26.2022.02.08.06.20.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Feb 2022 06:20:09 -0800 (PST)
+Received: by mail-vs1-f44.google.com with SMTP id a19so3513768vsi.2;
+        Tue, 08 Feb 2022 06:20:09 -0800 (PST)
+X-Received: by 2002:a05:6102:34d9:: with SMTP id a25mr223540vst.68.1644330009205;
+ Tue, 08 Feb 2022 06:20:09 -0800 (PST)
 MIME-Version: 1.0
-References: <20220208020441.3081162-1-liambeguin@gmail.com> <20220208020441.3081162-10-liambeguin@gmail.com>
-In-Reply-To: <20220208020441.3081162-10-liambeguin@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 8 Feb 2022 15:46:27 +0200
-Message-ID: <CAHp75Vf+FkofvC3_jvNadGed+eH7mQvVYXTOiWKCzwinJ3-2-w@mail.gmail.com>
-Subject: Re: [PATCH v14 09/11] iio: afe: rescale: add temperature transducers
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
+References: <20220204134347.1187749-1-javierm@redhat.com>
+In-Reply-To: <20220204134347.1187749-1-javierm@redhat.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Feb 2022 15:19:58 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVTVX7LFay-rfv=oW96dMA24duMUVGRE62jQSNkrKtyMg@mail.gmail.com>
+Message-ID: <CAMuHMdVTVX7LFay-rfv=oW96dMA24duMUVGRE62jQSNkrKtyMg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED displays
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 8, 2022 at 4:04 AM Liam Beguin <liambeguin@gmail.com> wrote:
->
-> A temperature transducer is a device that converts a thermal quantity
-> into any other physical quantity. This patch adds support for
-> temperature to voltage (like the LTC2997) and temperature to current
-> (like the AD590) linear transducers.
-> In both cases these are assumed to be connected to a voltage ADC.
+Hi Javier,
 
-...
+On Fri, Feb 4, 2022 at 2:43 PM Javier Martinez Canillas
+<javierm@redhat.com> wrote:
+> This patch series adds a DRM driver for the Solomon OLED SSD1305, SSD1306,
+> SSD1307 and SSD1309 displays. It is a port of the ssd1307fb fbdev driver.
 
-> +       rescale->offset = div_s64((s64)offset * rescale->denominator,
-> +                                 rescale->numerator);
+I gave it a try on an Adafruit FeatherWing 128x32 OLED, connected to an
+OrangeCrab ECP5 FPGA board running a 64 MHz VexRiscv RISC-V softcore.
 
-Wonder if we can use mult_frac() here. Would it require 64-bit division?
+Findings:
+  - Kernel size increased by 349 KiB,
+  - The "Memory:" line reports 412 KiB less memory,
+  - On top of that, "free" shows ca. 92 KiB more memory in use after
+    bootup.
+  - The logo (I have a custom monochrome logo enabled) is no longer shown.
+  - The screen is empty, with a (very very slow) flashing cursor in the
+    middle of the screen, with a bogus long line next to it, which I can
+    see being redrawn.
+  - Writing text (e.g. hello) to /dev/tty0, I first see the text,
+    followed by an enlargement of some of the characters.
+  - "time ls" on the serial console (no files in the current directory,
+    so nothing to print) increases from 0.86s to 1.92s, so the system is
+    more loaded.  As ssd1307fb relied on deferred I/O too, the slowdown
+    might be (partly) due to redrawing of the visual artefacts
+    mentioned above.
 
--- 
-With Best Regards,
-Andy Shevchenko
+So while the displays seems to be initialized correctly, it looks like
+there are some serious bugs in the conversion from xrgb8888 to
+monochrome.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
