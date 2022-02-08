@@ -2,303 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F7974ADE7F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 17:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C42444ADEA5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 17:51:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383426AbiBHQml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 11:42:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60686 "EHLO
+        id S1383557AbiBHQvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 11:51:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232725AbiBHQmk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 11:42:40 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72F25C061576
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 08:42:39 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id k1so15307759wrd.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 08:42:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=iirFYwI123MfHC7aSLTWZrlvayTl2d/ajLq6G4r/EJ8=;
-        b=WR4FACdgoP4hEyrgtoj3ka4kb9i+cpSadAajW0tSivFV/LE5kcgvZcmQajpGlqRBPj
-         DkBIbgAgMo/AgYwbhTah15HoeRLD8V//nd/D9DJqadUVXQWiZ1/ARj6OAse65dWhRlgP
-         ceRTOWCgql2vWtC8fENjutGzPz2etjeDro1wUO9zgepyIHMSizVMcJryP832SS1xW2NS
-         73qBStaUCSxXVyPbjTcdHdh5sVh5K35/8aIR+JY2oE8W044OU/k9GLqnEMHYtdwdmYFr
-         lnks4bT7gx2cbfzu1HjdOyCDzBhtItVCaV5TOoEwY+MBTTuXdybQN7LYIw1RdkRO+mK9
-         VJyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=iirFYwI123MfHC7aSLTWZrlvayTl2d/ajLq6G4r/EJ8=;
-        b=YNUD8GKZUiKgSHONzbvGUtaHzs4o/QvKj81jmTkvdtSGmgP65Oq/ll9AuULD2xfD0U
-         dk867/7GUeZEEz26U9iXNKJPeQaQ7K1ecOeFSLFJKzSqTWvbG8AqhX9BcskCgiButJnn
-         KVozduuPX5biZVR82H1F3H+linynNS5snrr40lNwamrBEZSHwbh3Pfa31qJcWzhKxT76
-         djE/ZxVHF5SXp4ha0RbwAidm+b28c/0kTW1m5RGq0eXwl131KfPSwMuiqDXa9GpgV6js
-         QhTc7LHDnt05PLDJ+PR4iLrXIz6TPulUo3OJzuEXP0fcTYYCI7fPtap5YtRslBoxdEcg
-         hiJw==
-X-Gm-Message-State: AOAM530m+vyde4VLXPMPXMnndgyf2CvboXUoVMr28DyM7UmPg+5WbeVC
-        69WOoWx+o42RKm/JeiOAgm+s1g==
-X-Google-Smtp-Source: ABdhPJyVzt4XiOJDg++/YcaRhfIfLWJvT5Oyvh0T1IWswuZ6gzE9M4Q0v+oTJAQ99GBfCMXunfdWrw==
-X-Received: by 2002:a05:6000:3cf:: with SMTP id b15mr4370978wrg.82.1644338557914;
-        Tue, 08 Feb 2022 08:42:37 -0800 (PST)
-Received: from localhost.localdomain ([2a01:e0a:82c:5f0:682b:4712:4b40:6814])
-        by smtp.gmail.com with ESMTPSA id o27sm2853202wms.4.2022.02.08.08.42.37
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Feb 2022 08:42:37 -0800 (PST)
-From:   Loic Poulain <loic.poulain@linaro.org>
-To:     robdclark@gmail.com, sean@poorly.run, dmitry.baryshkov@linaro.org,
-        robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        bjorn.andersson@linaro.org, Loic Poulain <loic.poulain@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: msm: disp: add yaml schemas for QCM2290 DPU bindings
-Date:   Tue,  8 Feb 2022 17:42:32 +0100
-Message-Id: <1644338552-14426-2-git-send-email-loic.poulain@linaro.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1644338552-14426-1-git-send-email-loic.poulain@linaro.org>
-References: <1644338552-14426-1-git-send-email-loic.poulain@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1352392AbiBHQvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 11:51:06 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E91D2C061576;
+        Tue,  8 Feb 2022 08:51:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1644339065; x=1675875065;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LQ2TSOan0gGSwFS9dmZ5mUhQvRTUXTQik0dQLzJOjk0=;
+  b=PIfwvJLIL7HCmshYXmW3p4v3Xw4IHgoKMKQ44r/bOmkJ1HfwF8irsCfy
+   Xb/pyb6ID1+V7xE8WMkc/trI/Mt6ElFdRwb02mTUqzG/GR4AKsQEpzrFm
+   Dcu441DVHURBT/wuu8NlxhpGlRPdL5QYZRb6R+UNlBlhZxNmKdOBuZwoX
+   IwHlnSxybSw6Cx4xPdOcWx8tvDoy2RARQjUk6+RJRKk4LIKFu20ZQ1EuE
+   X5Vs8z8qCeHy743wPfNnTJAE55UsCcVb8kueFut1oahFi/OIusebN5/Qx
+   0dLMhXJ2nz/M8C7cpMW5MAtJWZ3ikzoAB/HmmrHdAyxiB7x8AyBQlokuw
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="273524587"
+X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; 
+   d="scan'208";a="273524587"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2022 08:51:05 -0800
+X-IronPort-AV: E=Sophos;i="5.88,353,1635231600"; 
+   d="scan'208";a="525616268"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2022 08:51:03 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 51060203BC;
+        Tue,  8 Feb 2022 18:51:01 +0200 (EET)
+Date:   Tue, 8 Feb 2022 18:51:01 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: media: i2c: Add MT9M114
+ camera sensor binding
+Message-ID: <YgKfdR72TNavj68v@paasikivi.fi.intel.com>
+References: <20220207012055.15158-1-laurent.pinchart@ideasonboard.com>
+ <20220207012055.15158-2-laurent.pinchart@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220207012055.15158-2-laurent.pinchart@ideasonboard.com>
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QCM2290 MSM Mobile Display Subsystem (MDSS) encapsulates sub-blocks
-like DPU display controller, DSI etc. Add YAML schema for DPU device
-tree bindings
+Hi Laurent,
 
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
----
- v2: no change
+On Mon, Feb 07, 2022 at 03:20:54AM +0200, Laurent Pinchart wrote:
+> Add device tree binding for the onsemi MT9M114 CMOS camera sensor.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> Changes since v1:
+> 
+> - Use graph schema
+> - Drop unneeded properties
+> - Rename ON Semiconductor to onsemi
+> ---
+>  .../bindings/media/i2c/onnn,mt9m114.yaml      | 110 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 ++
+>  2 files changed, 117 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> new file mode 100644
+> index 000000000000..55b67833f9a1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/onnn,mt9m114.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: onsemi 1/6-inch 720p CMOS Digital Image Sensor
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> +
+> +description: |-
+> +  The onsemi MT9M114 is a 1/6-inch 720p (1.26 Mp) CMOS digital image sensor
+> +  with an active pixel-array size of 1296H x 976V. It is programmable through
+> +  an I2C interface and outputs image data over a 8-bit parallel or 1-lane MIPI
+> +  CSI-2 connection.
+> +
+> +properties:
+> +  compatible:
+> +    const: onnn,mt9m114
+> +
+> +  reg:
+> +    description: I2C device address
+> +    enum:
+> +      - 0x48
+> +      - 0x5d
+> +
+> +  clocks:
+> +    description: EXTCLK clock signal
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description:
+> +      Core digital voltage supply, 1.8V
+> +
+> +  vddio-supply:
+> +    description:
+> +      I/O digital voltage supply, 1.8V or 2.8V
+> +
+> +  vaa-supply:
+> +    description:
+> +      Analog voltage supply, 2.8V
+> +
+> +  reset-gpios:
+> +    description: |-
+> +      Reference to the GPIO connected to the RESET_BAR pin, if any (active
+> +      low).
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        additionalProperties: false
+> +
+> +        properties:
+> +          bus-type:
+> +            enum: [4, 5, 6]
 
- .../bindings/display/msm/dpu-qcm2290.yaml          | 214 +++++++++++++++++++++
- 1 file changed, 214 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+With bus-type 5, shouldn't you have the parallel interface sync signal
+polarity properties? Possibly also others if the hardware supports them.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-new file mode 100644
-index 00000000..8766b13
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-@@ -0,0 +1,214 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/msm/dpu-qcm2290.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Display DPU dt properties for QCM2290 target
-+
-+maintainers:
-+  - Loic Poulain <loic.poulain@linaro.org>
-+
-+description: |
-+  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
-+  sub-blocks like DPU display controller and DSI. Device tree bindings of MDSS
-+  and DPU are mentioned for QCM2290 target.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: qcom,qcm2290-mdss
-+
-+  reg:
-+    maxItems: 1
-+
-+  reg-names:
-+    const: mdss
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Display AHB clock from gcc
-+      - description: Display AXI clock
-+      - description: Display core clock
-+
-+  clock-names:
-+    items:
-+      - const: iface
-+      - const: bus
-+      - const: core
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#address-cells": true
-+
-+  "#size-cells": true
-+
-+  "#interrupt-cells":
-+    const: 1
-+
-+  iommus:
-+    items:
-+      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port0
-+      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port1
-+
-+  ranges: true
-+
-+  interconnects:
-+    items:
-+      - description: Interconnect path specifying the port ids for data bus
-+
-+  interconnect-names:
-+    const: mdp0-mem
-+
-+patternProperties:
-+  "^display-controller@[0-9a-f]+$":
-+    type: object
-+    description: Node containing the properties of DPU.
-+
-+    properties:
-+      compatible:
-+        items:
-+          - const: qcom,qcm2290-dpu
-+
-+      reg:
-+        items:
-+          - description: Address offset and size for mdp register set
-+          - description: Address offset and size for vbif register set
-+
-+      reg-names:
-+        items:
-+          - const: mdp
-+          - const: vbif
-+
-+      clocks:
-+        items:
-+          - description: Display AXI clock from gcc
-+          - description: Display AHB clock from dispcc
-+          - description: Display core clock from dispcc
-+          - description: Display lut clock from dispcc
-+          - description: Display vsync clock from dispcc
-+
-+      clock-names:
-+        items:
-+          - const: bus
-+          - const: iface
-+          - const: core
-+          - const: lut
-+          - const: vsync
-+
-+      interrupts:
-+        maxItems: 1
-+
-+      power-domains:
-+        maxItems: 1
-+
-+      operating-points-v2: true
-+
-+      ports:
-+        $ref: /schemas/graph.yaml#/properties/ports
-+        description: |
-+          Contains the list of output ports from DPU device. These ports
-+          connect to interfaces that are external to the DPU hardware,
-+          such as DSI. Each output port contains an endpoint that
-+          describes how it is connected to an external interface.
-+
-+        properties:
-+          port@0:
-+            $ref: /schemas/graph.yaml#/properties/port
-+            description: DPU_INTF1 (DSI1)
-+
-+        required:
-+          - port@0
-+
-+    required:
-+      - compatible
-+      - reg
-+      - reg-names
-+      - clocks
-+      - interrupts
-+      - power-domains
-+      - operating-points-v2
-+      - ports
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - power-domains
-+  - clocks
-+  - interrupts
-+  - interrupt-controller
-+  - iommus
-+  - ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
-+    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interconnect/qcom,qcm2290.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    mdss: mdss@5e00000 {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        compatible = "qcom,qcm2290-mdss", "qcom,mdss";
-+        reg = <0x05e00000 0x1000>;
-+        reg-names = "mdss";
-+        power-domains = <&dispcc MDSS_GDSC>;
-+        clocks = <&gcc GCC_DISP_AHB_CLK>,
-+                 <&gcc GCC_DISP_HF_AXI_CLK>,
-+                 <&dispcc DISP_CC_MDSS_MDP_CLK>;
-+        clock-names = "iface", "bus", "core";
-+
-+        interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+
-+        interconnects = <&mmrt_virt MASTER_MDP0 &bimc SLAVE_EBI1>;
-+        interconnect-names = "mdp0-mem";
-+
-+        iommus = <&apps_smmu 0x420 0x2>,
-+                 <&apps_smmu 0x421 0x0>;
-+        ranges;
-+
-+        mdss_mdp: mdp@5e01000 {
-+                compatible = "qcom,qcm2290-dpu";
-+                reg = <0x05e01000 0x8f000>,
-+                      <0x05eb0000 0x2008>;
-+                reg-names = "mdp", "vbif";
-+
-+                clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-+                         <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+                         <&dispcc DISP_CC_MDSS_MDP_CLK>,
-+                         <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
-+                         <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+                clock-names = "bus", "iface", "core", "lut", "vsync";
-+
-+                operating-points-v2 = <&mdp_opp_table>;
-+                power-domains = <&rpmpd QCM2290_VDDCX>;
-+
-+                interrupt-parent = <&mdss>;
-+                interrupts = <0 IRQ_TYPE_NONE>;
-+
-+                ports {
-+                        #address-cells = <1>;
-+                        #size-cells = <0>;
-+
-+                        port@0 {
-+                                reg = <0>;
-+                                dpu_intf1_out: endpoint {
-+                                        remote-endpoint = <&dsi0_in>;
-+                                };
-+                        };
-+                 };
-+         };
-+...
+> +
+> +          remote-endpoint: true
+> +
+> +          # The number and mapping of lanes (for CSI-2), and the bus width and
+> +          # signal polarities (for parallel and BT.656) are fixed and must not
+> +          # be specified.
+> +
+> +        required:
+> +          - bus-type
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - vdd-supply
+> +  - vddio-supply
+> +  - vaa-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        sensor@48 {
+> +            compatible = "onnn,mt9m114";
+> +            reg = <0x48>;
+> +
+> +            clocks = <&clk24m 0>;
+> +
+> +            reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
+> +
+> +            vddio-supply = <&reg_cam_1v8>;
+> +            vdd-supply = <&reg_cam_1v8>;
+> +            vaa-supply = <&reg_2p8v>;
+> +
+> +            port {
+> +                endpoint {
+> +                    bus-type = <4>;
+> +                    remote-endpoint = <&mipi_csi_in>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f41088418aae..e9919a359c12 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -13096,6 +13096,13 @@ T:	git git://linuxtv.org/media_tree.git
+>  F:	drivers/media/i2c/mt9m032.c
+>  F:	include/media/i2c/mt9m032.h
+>  
+> +MT9M114 ONSEMI SENSOR DRIVER
+> +M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +T:	git git://linuxtv.org/media_tree.git
+> +F:	Documentation/devicetree/bindings/media/i2c.onnn,mt9m114.yaml
+> +
+>  MT9P031 APTINA CAMERA SENSOR
+>  M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>  L:	linux-media@vger.kernel.org
+
 -- 
-2.7.4
+Regards,
 
+Sakari Ailus
