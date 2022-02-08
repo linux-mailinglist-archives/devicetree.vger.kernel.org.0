@@ -2,222 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F23184AD4E4
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 10:30:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 333694AD4EB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 10:31:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237344AbiBHJ3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 04:29:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38504 "EHLO
+        id S1354786AbiBHJbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 04:31:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237653AbiBHJ3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 04:29:51 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 738C1C03FEC6
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 01:29:50 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E70D83F1CD
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 09:29:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644312588;
-        bh=Ui/6owStfQRYY+YD9HVYrRMZ2Sy2yY8RPY3JJ3hVfCQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=aMkxK1uEQsxaK/7peR0onjb7Mhj24OibpC4DvgujfsMwY/l52Oc+se79O1LC3ojFz
-         fvxCN3K2wdSM02R86k/YaREQrx6i780bs4DSjUL0SuW4YXnLAAz/uPOa1EB+AS+auZ
-         cF5Bvd6Sf6MSIdH4mGzG2PFtmEIgNunZzbFZIfCagfKW8bYCPqP2sjIwmvE0fy+r2O
-         if+PgMwWZDgLCcwdXVXp+JTly0/8tR6du/djkZPKtCoH8xoN+3iPXRpFmwOzyZPz2n
-         ypLTzX1ibGYumwvOoKdN/9M0WNQSyDSMELOyr5034rN+wtudwvMzwF1x+NykFJ9E37
-         1b9SD9oNNCiTQ==
-Received: by mail-ed1-f69.google.com with SMTP id w15-20020a056402268f00b00408234dc1dfso9362107edd.16
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 01:29:48 -0800 (PST)
+        with ESMTP id S1354767AbiBHJa7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 04:30:59 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9E5CC03FEC5
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 01:30:58 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id c19so14804203wrb.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 01:30:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=tjiJ/tFjTa3PfaScydFCb7D+sU8sg55vw7smaikiD6o=;
+        b=HxW49INp/nml/mkNGyGhLCMkCiQU8Wpv70w8rkDCjXfh/gKTpuOJ7WEiy4JLynBitO
+         drRAoz+4aaSgSFSFthohmr3sGnwVCHbQYejpqUoc8jz1LXLOhASbK38WJrbBJRknTat9
+         skzO5SsTlLXZEH+hfGjbA5AUd6K1cF0XjzP5zhopgDwkUISCXZ08YgUNVpIUGJHtkQpo
+         8ST7fgBerm5Xps0FIIctxpsrCncN7OL++/hdUipNJIgqfsgX8OgRRHzhnObJd70CEGuz
+         MPgEvM71ykbNSre0pOgUcS73+Qo+qdQlasToGxaP3oGJ4r+lGaLKh7itAtXyutHOBxNC
+         s8ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Ui/6owStfQRYY+YD9HVYrRMZ2Sy2yY8RPY3JJ3hVfCQ=;
-        b=4aw+3tjon0de8rrShizbjIQ02If6L2xGuGZ7dlRd1MEgItzErcZ60pwN9qJMbOWsEW
-         1TvNKyRWAvrAxAy51ZoPpeoKZFKfDh1t5haW+0w0H3n+quHx0Nr28if3jEOULjtlxSlC
-         +1OJn0sXlc4hxWLCmoNTNXbXUNnAlduVeW1ZielbBz7ljqddM2YdJ0mQixg9BdAmXvu2
-         csO+YqF1I2GfWUlTURFG4RLPVmMwY3tWDuN0/vWDBjT9hzTY+EiLvN67G/UKY1xGsMlz
-         OPN0LdvLcxPyETtzXuwPKSSTBvYQjNDWce/Sw1mTRraRFpR28pjautHhaONYeK3LTRvs
-         BVFQ==
-X-Gm-Message-State: AOAM5334q0zSs5dzoHdZ9gDNSX7xaEKfa8/MDCbm2hjJowhwXvbZIluw
-        uUzyz/ABw8h3dyzodrzPyfXI6i30yR8AxKbv44VXxlc1Jv/BWTXkwKetyF45PEsJBT+quW5ktFF
-        o13YdGtmewYovyItQQJIxANCeU5O7VMQjQX8SnmQ=
-X-Received: by 2002:a17:907:7246:: with SMTP id ds6mr2993395ejc.762.1644312588554;
-        Tue, 08 Feb 2022 01:29:48 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxIIcu9utR18wxFBpEWYCI6O+IiGR9UvBn6XHif4bRYF5ZPoy1sYBX8oCI5IIrFXAlpCxsc7w==
-X-Received: by 2002:a17:907:7246:: with SMTP id ds6mr2993375ejc.762.1644312588328;
-        Tue, 08 Feb 2022 01:29:48 -0800 (PST)
-Received: from [192.168.0.93] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id t22sm6339403edv.105.2022.02.08.01.29.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Feb 2022 01:29:47 -0800 (PST)
-Message-ID: <36cc734d-2120-5834-27a9-5bd37e14d862@canonical.com>
-Date:   Tue, 8 Feb 2022 10:29:46 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=tjiJ/tFjTa3PfaScydFCb7D+sU8sg55vw7smaikiD6o=;
+        b=a70jios2/inwAfTZSB2uP95t4cQMWoJzVTW+0xjUILti58jT9+wFqnM5qF9gIoBO4w
+         K8EYpM56opEr7M3+ri3TsIiOZ2jI8BD8E0pG79n1pmOASfWIHYu8AQiDndZK98rZU7xj
+         Fb2ke9GglW8U5Uvz7ZoX9v57ETCKreOefdNoeiM5aVbzKtcDyvg9R0M+/N1qKwE+uWkO
+         xILh3RKFFPC1Q9U4wbi9af79NbWzRSytVYoxWMrxTDCvLA6EHxFnN6w+xVJqGVii8iW8
+         WVT5Q+XllFGriHEj8+ViGmuJ6a0v58d5XHk/neHh2c56SrjgEkVWr9x47rliCUtDbYrS
+         JE4Q==
+X-Gm-Message-State: AOAM533dGVJ2T0lcye+p/TMKSLvaMwKC0t9purfGAdxbx43sH7bos5w2
+        TRXUvz49x1hO7XnwevTgZNkn+A==
+X-Google-Smtp-Source: ABdhPJxqrqO9SsB/BuD4bnHMYYfhif+nR7D2J0XTHgePIIWU5cfCw+50GtLNm0TkhR2QVjCGo2nd/w==
+X-Received: by 2002:a05:6000:170c:: with SMTP id n12mr2838251wrc.380.1644312657227;
+        Tue, 08 Feb 2022 01:30:57 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id l40sm1609872wms.0.2022.02.08.01.30.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Feb 2022 01:30:56 -0800 (PST)
+Date:   Tue, 8 Feb 2022 09:30:51 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     broonie@kernel.org, robh+dt@kernel.org, kernel@pengutronix.de,
+        lgirdwood@gmail.com, linux-pm@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-imx@nxp.com, rui.zhang@intel.com, alistair23@gmail.com,
+        amitk@kernel.org, linux-arm-kernel@lists.infradead.org,
+        andreas@kemnade.info, s.hauer@pengutronix.de,
+        linux-kernel@vger.kernel.org, shawnguo@kernel.org
+Subject: [GIT PULL] Immutable branch between MFD, HWMON and Regulator due for
+ the v5.18 merge window
+Message-ID: <YgI4S6vX9FrCb9/j@google.com>
+References: <20220124121009.108649-1-alistair@alistair23.me>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v1 6/6] i2c: npcm: Support NPCM845
-Content-Language: en-US
-To:     Tali Perry <tali.perry1@gmail.com>, Tyrone Ting <warp5tw@gmail.com>
-Cc:     avifishman70@gmail.com, Tomer Maimon <tmaimon77@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>, semen.protsenko@linaro.org,
-        yangyicong@hisilicon.com, Wolfram Sang <wsa@kernel.org>,
-        jie.deng@intel.com, sven@svenpeter.dev, bence98@sch.bme.hu,
-        lukas.bulwahn@gmail.com, arnd@arndb.de, olof@lixom.net,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Tali Perry <tali.perry@nuvoton.com>,
-        Avi Fishman <Avi.Fishman@nuvoton.com>,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220207063338.6570-1-warp5tw@gmail.com>
- <20220207063338.6570-7-warp5tw@gmail.com>
- <CAHb3i=vdc_+J4pCBcY--C85ZR1uXO1LG02UsttsfSnsQBDKWAg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAHb3i=vdc_+J4pCBcY--C85ZR1uXO1LG02UsttsfSnsQBDKWAg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220124121009.108649-1-alistair@alistair23.me>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2022 10:22, Tali Perry wrote:
->> On 08/02/2022 09:51, Tali Perry wrote:
->>>> On 08/02/2022 08:14, Tali Perry wrote:
->>>>>> Subject: Re: [PATCH v1 6/6] i2c: npcm: Support NPCM845
->>>>>>
->>>>>> On 07/02/2022 13:00, Jonathan Neuschäfer wrote:
->>>>>>> Hello,
->>>>>>>
->>>>>>> On Mon, Feb 07, 2022 at 02:33:38PM +0800, Tyrone Ting wrote:
->>>>>>>> From: Tyrone Ting <kfting@nuvoton.com>
->>>>>>>>
->>>>>>>> NPCM8XX uses a similar i2c module as NPCM7XX.
->>>>>>>> The only difference is that the internal HW FIFO is larger.
->>>>>>>>
->>>>>>>> Related Makefile and Kconfig files are modified to support as well.
->>>>>>>>
->>>>>>>> Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controller
->>>>>>>> driver")
->>>>>>>
->>>>>>> It's not really a bug fix, but rather an additional feature.
->>>>>>> Therefore, I suggest removing the Fixes tag from this patch.
->>>>>>>
->>>>>>>> Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
->>>>>>>> Signed-off-by: Tali Perry <tali.perry1@gmail.com>
->>>>>>>> ---
->>>>>>> [...]
->>>>>>>>  /* init register and default value required to enable module */
->>>>>>>>  #define NPCM_I2CSEGCTL 0xE4
->>>>>>>> +#ifdef CONFIG_ARCH_NPCM7XX
->>>>>>>>  #define NPCM_I2CSEGCTL_INIT_VAL 0x0333F000
->>>>>>>> +#else
->>>>>>>> +#define NPCM_I2CSEGCTL_INIT_VAL 0x9333F000
->>>>>>>> +#endif
->>>>>>>
->>>>>>> This is going to cause problems when someone tries to compile a kernel
->>>>>>> that runs on both NPCM7xx and NPCM8xx (because the driver will then
->>>>>>> only work on NPCM7xx).
->>>>>>
->>>>>> Yes, good catch.
->>>>>>
->>>>>> The NPCM7XX is multiplatform, I guess NPCM8xx will be as well, so this looks like an invalid code. How such code is supposed to work on multiplatform kernel?
->>>>>>
->>>>>
->>>>> NPCM7xx and NPCM8xx are very different devices.
->>>>> They share same driver sources for some of the modules but it's not ABI.
->>>>> Users cannot compile a single kernel with two separate DTS.
->>>>> In case of the i2c controller, the npcm7xx has a 16 byte HW FIFO,
->>>>> and the NPCM8xx has 32 bytes HW FIFO.
->>>>> This also means that registers fields are slightly different.
->>>>> For init data we can move it to the DTS, but register field sizes
->>>>> can't be handled with this approach.
->>>>>
->>>>
->>>> What do you mean they cannot compile a kernel with different DTS? Of
->>>> course they can - when we talk about multiplatform sub-architectures!
->>>> Maybe there is something specific in NPCMxxx which stops it but then it
->>>> should not be marked multiplatform.
->>>>
->>>
->>>
->>> NCPM7xx is ARM32 bit (dual core Cortex A9)
->>> NPCM8xx is ARM64 bit (quad core Cortex A35)
->>>
->>> They have completely different architecture so not ABI compliant.
->>> I2C module is similar, but the devices are quite different and have
->>> separate architectures.
->>
->> OK, in such case usually you indeed can't have both. :)
->>
->>> Sorry for the confusion.
->>> This is the first patch we try to upstream for NPCM8xx.
->>> In the coming weeks we will upstream the architecture of NPCM8xx as well.
->>
->> Still, ARCH_XXX should not be hard-coded in the drivers to change the
->> driver's behavior, even if driver won't be used simultaneously. It
->> breaks all design principles and prevents any further re-use if a new
->> use case appears.
->>
->> You can use "ifdef ARCH_XXX" to skip building of some parts of the
->> driver, but it's not the case here.
->>
-> 
-> Correct, the main change is in FIFO size:
-> +#ifdef CONFIG_ARCH_NPCM7XX
-> #define I2C_HW_FIFO_SIZE               16
-> +#else
-> +#define I2C_HW_FIFO_SIZE               32
-> +#endif /* CONFIG_ARCH_NPCM7XX */
-> 
-> NPCM7XX will always have 16 bytes, all the next gens will have 32.
-> 
-> This impact some registers sizes, like this one:
-> 
-> +#ifdef CONFIG_ARCH_NPCM7XX
-> #define NPCM_I2CRXF_STS_RX_BYTES       GENMASK(4, 0)
-> +#else
-> +#define NPCM_I2CRXF_STS_RX_BYTES       GENMASK(5, 0)
-> +#endif /*CONFIG_ARCH_NPCM7XX*/
-> 
-> For this, the FIFO size should be defined before compilation.
+Enjoy!
 
-No, it does not have to. We solved it numerous time with quirks or
-per-chip-drvdata. It's common.
+The following changes since commit e783362eb54cd99b2cac8b3a9aeac942e6f6ac07:
 
-> I also don't want to let users select FIFO size per architecture.
-> NPCM7XX has 16, NPCM8XX has 32. This is not a user selection.
-> It's part of the arch.
+  Linux 5.17-rc1 (2022-01-23 10:12:53 +0200)
 
-I understand it is part of the architecture but why Nuvoton is different
-than other architectures and requires special treatment here? With most
-of the drivers, regardless of possibility of running same build on
-different hardware, we strive to make it ifdef-independent.
+are available in the Git repository at:
 
-Please run:
-  git grep ARCH -- drivers/i2c/busses/*c
-and see how many of such ifdef patterns you see. You also won't find
-them if you grep for CONFIG...
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-hwmon-regulator-v5.18
 
-The driver should be designed in portable way. The driver should not
-have architecture-dependent code.
+for you to fetch changes up to de34a4053250781404779b567b58dd97af689ce0:
 
-Best regards,
-Krzysztof
+  hwmon: sy7636a: Add temperature driver for sy7636a (2022-02-08 09:27:33 +0000)
+
+----------------------------------------------------------------
+Immutable branch between MFD, HWMON and Regulator due for the v5.18 merge window
+----------------------------------------------------------------
+
+Alistair Francis (5):
+      dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml
+      mfd: simple-mfd-i2c: Add a Kconfig name
+      mfd: simple-mfd-i2c: Enable support for the silergy,sy7636a
+      regulator: sy7636a: Remove requirement on sy7636a mfd
+      hwmon: sy7636a: Add temperature driver for sy7636a
+ .../devicetree/bindings/mfd/silergy,sy7636a.yaml   |  82 ++++++++++++++++
+ Documentation/hwmon/index.rst                      |   1 +
+ Documentation/hwmon/sy7636a-hwmon.rst              |  26 +++++
+ drivers/hwmon/Kconfig                              |   9 ++
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/sy7636a-hwmon.c                      | 106 +++++++++++++++++++++
+ drivers/mfd/Kconfig                                |   2 +-
+ drivers/mfd/simple-mfd-i2c.c                       |  11 +++
+ drivers/regulator/Kconfig                          |   1 -
+ drivers/regulator/sy7636a-regulator.c              |   7 +-
+ include/linux/mfd/sy7636a.h                        |  34 +++++++
+ 11 files changed, 276 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+ create mode 100644 Documentation/hwmon/sy7636a-hwmon.rst
+ create mode 100644 drivers/hwmon/sy7636a-hwmon.c
+ create mode 100644 include/linux/mfd/sy7636a.h
+
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
