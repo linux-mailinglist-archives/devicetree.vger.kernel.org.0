@@ -2,452 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46DE74ADB93
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 15:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A3A64ADBB7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 15:56:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236073AbiBHOwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 09:52:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46166 "EHLO
+        id S1378862AbiBHOzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 09:55:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbiBHOwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 09:52:49 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2079C061576;
-        Tue,  8 Feb 2022 06:52:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S1378745AbiBHOzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 09:55:16 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 695C3C03FEEC
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 06:55:12 -0800 (PST)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6C80BB812A8;
-        Tue,  8 Feb 2022 14:52:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39158C340F6;
-        Tue,  8 Feb 2022 14:52:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644331965;
-        bh=GXT7yiBPI15AyWn9w7d/ljK4h/t79wwngt2JA9PE0fw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=T/Se9cH4WiAjSLc06o9ysGe1pTqhx4946iVFvI/7RvBzZsnKmwJAdr/ylgr+vGtcf
-         TQTEMVSiu+Y3voooY0Wq5nieYl3YzCT8Os2TR4nUCRHsJI5W7ZEsyazskzlhHR4bNw
-         gt2hV/CViY0AMJ+lXAgzzrjFgJgzElmlyoHt1s7m+hIft5ooyMyrqFRAZZOISM8J8O
-         A33Tcmv8FC5Q9ecnMwfKNTSkWtSEGEIPBOjKMdZPM6vSfIblpnxsEJAImWKS1/Psn0
-         CS3J/RNvnn/iAfoojyTRGSxuGGaaba53msjFNyrm7c0o/u589rFYMHSo/1Jo+wDmfL
-         g0Kr3Lw52G8Ew==
-Received: by mail-vk1-f175.google.com with SMTP id v192so9916327vkv.4;
-        Tue, 08 Feb 2022 06:52:45 -0800 (PST)
-X-Gm-Message-State: AOAM5317MAWoDoDcVwrCq+BX8X81LjVQ8rnQz6RTT1JlYQ4hB0UxSoxT
-        FnjDlaRyJ52YggUsKoNZXj9Z+J2wLIpZVKNzDLU=
-X-Google-Smtp-Source: ABdhPJzmhDt+vso37Vqb/Up4WrkCrxT3xSDVIziuo+r7z8E+Hq0MRKXuZSCaJpNovG82MH1iETjueZ9d1V/nE2oWZvM=
-X-Received: by 2002:a1f:640e:: with SMTP id y14mr1749053vkb.2.1644331964003;
- Tue, 08 Feb 2022 06:52:44 -0800 (PST)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8FF7F3F1E0
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 14:55:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644332110;
+        bh=s1IMl3bQpWn4BmhYXFrJkGqIg7SbAYtbaNCslVtkn9A=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=HMAz8B7Dwmmca22gRczJKVzfb1knOeIvmBsbxZreOTVJVcaaT3db50py4DW/FlxuD
+         PFFg1TLTIazeQ31Vyj0G1PiCPf597wcdHPLiwr3Ri1ulaZAJ0KpkGRLbhDg9URsP64
+         aOUODZm98XB+vg39V84E3jvyumQvdLY7DgKouH4upi/GKkWA2OOpvqqej3AHGEfxwj
+         9uoLnLGjumotGTq4sTXu8i81kieYfwAjJjT9z7hlhJpPusfRLIMzrJZ6VkK2OvzKq5
+         +GvEPINRZMjxl8QUeurHsMR9ToW4vTThNwh1dxGKZJ+TaIA4cFGyZNo3hEupnBO7oI
+         11fttRKcpHGrQ==
+Received: by mail-ed1-f72.google.com with SMTP id 30-20020a508e5e000000b0040f6642e814so3827940edx.19
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 06:55:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=s1IMl3bQpWn4BmhYXFrJkGqIg7SbAYtbaNCslVtkn9A=;
+        b=uYWsQYUFQR6Cgu/sMMzYWCDSp2UcCpH3oB98KMR6Xos3+OHDsxsIg3LpBjegwvNnHX
+         Sf3S2QqNYrUjElBb98VxhshW69SUe5W0fbOn3hRPhtRfI9+5TY1YvE3Pb5patO81OMgR
+         0D/IMa8c4AKEMEZwmSYxemum+LiVlutbD3xZt2IR3Znt8q5OsRTPOp0+PiTCUCbFnHik
+         VAUL+TPy8fhVjHKPaR7suWYHRGph8Pifgu9LfXH40RdU3l13g5KvTcsGk5oTiTj8RgFT
+         FHutc23HO5WwC4mv3tlVwxUZYMMKOJMXzR5IL+v1J25+0xOpDHNvmAI1+52vYYhul2Jl
+         zxbA==
+X-Gm-Message-State: AOAM533OyOC9TwHbH88H5tE0n4GyX3ZdN9jTkI96COewIh9nA1AMNBU9
+        00zKw/pbDgByrQlkYErmOpu6QACuaC8SD3HMb6hNcrQ457GBdet3yNv6tBVhDpuRdyVf3FVUE51
+        tuzAMUZYaNNmhDtC9vo6DEphO5r1DF3YT5CV0gPQ=
+X-Received: by 2002:a17:907:1c01:: with SMTP id nc1mr4166732ejc.659.1644332110285;
+        Tue, 08 Feb 2022 06:55:10 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzBDSawfyjI97i8H3epieO8DgpiikxUatxwAPQp6uSpUnl0g6llplmwOmXOOamh8buC1ms3Yg==
+X-Received: by 2002:a17:907:1c01:: with SMTP id nc1mr4166711ejc.659.1644332110105;
+        Tue, 08 Feb 2022 06:55:10 -0800 (PST)
+Received: from [192.168.0.93] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id o11sm7026147edh.75.2022.02.08.06.55.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Feb 2022 06:55:09 -0800 (PST)
+Message-ID: <bca78043-d552-a7e4-149b-087c6226d8bf@canonical.com>
+Date:   Tue, 8 Feb 2022 15:55:08 +0100
 MIME-Version: 1.0
-References: <20220126114452.692512-1-apatel@ventanamicro.com>
- <20220126114452.692512-9-apatel@ventanamicro.com> <CAJF2gTQsSn1KBgX2bg2LiSUbCmbGD3oF5KcmK5gq2Dd49BWDBQ@mail.gmail.com>
- <CAAhSdy3Dkv6ga0ZMp5rMFa8nV9EDHgOMBwuJ4z4-w52T8EaUag@mail.gmail.com>
- <CAJF2gTSLmBcgUUE3VGsEq0JCWV74Yy-pkduS66rk=VPVwxk59g@mail.gmail.com> <CAK9=C2WqczG=tH1u9zcLt7Em+fPD1ZZwtDhf1yHJ70-o-HL8OQ@mail.gmail.com>
-In-Reply-To: <CAK9=C2WqczG=tH1u9zcLt7Em+fPD1ZZwtDhf1yHJ70-o-HL8OQ@mail.gmail.com>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Tue, 8 Feb 2022 22:52:32 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTSeH6w2Cfr5QEJTJ4ho_B4q3Eo2Xi+R_2yt+7CZCa+WBg@mail.gmail.com>
-Message-ID: <CAJF2gTSeH6w2Cfr5QEJTJ4ho_B4q3Eo2Xi+R_2yt+7CZCa+WBg@mail.gmail.com>
-Subject: Re: [PATCH v10 8/8] RISC-V: Enable RISC-V SBI CPU Idle driver for
- QEMU virt machine
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Anup Patel <anup@brainfault.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        kvm-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: Convert Atmel AES to yaml
+Content-Language: en-US
+To:     Tudor.Ambarus@microchip.com, herbert@gondor.apana.org.au
+Cc:     Nicolas.Ferre@microchip.com, Claudiu.Beznea@microchip.com,
+        alexandre.belloni@bootlin.com, linux-crypto@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Kavyasree.Kotagiri@microchip.com, devicetree@vger.kernel.org
+References: <20220208104918.226156-1-tudor.ambarus@microchip.com>
+ <20220208104918.226156-2-tudor.ambarus@microchip.com>
+ <f5563605-7b61-c23e-68ec-6e315efb268d@canonical.com>
+ <d72a96a9-f99c-5204-00d0-00f78ea96772@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <d72a96a9-f99c-5204-00d0-00f78ea96772@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 8, 2022 at 9:25 PM Anup Patel <apatel@ventanamicro.com> wrote:
->
-> On Tue, Feb 8, 2022 at 3:47 PM Guo Ren <guoren@kernel.org> wrote:
-> >
-> > On Tue, Feb 8, 2022 at 4:54 PM Anup Patel <anup@brainfault.org> wrote:
-> > >
-> > > On Tue, Feb 8, 2022 at 12:16 PM Guo Ren <guoren@kernel.org> wrote:
-> > > >
-> > > > Another question:
-> > > >
-> > > > Have you put "idle-states {" in qemu's DTS? or how do you test your patches?
-> > >
-> > > I usually do the following:
-> > > 1) Dump QEMU virt machine DTB
-> > > 2) Convert QEMU virt machine DTB into DTS
-> > > 3) Add "idle-states" in QEMU virt machine DTS
-> > > 4) Create QEMU virt machine DTB with "idle-states"
-> > > 5) Use the new QEMU virt machine DTB for testing this series.
-> > >
-> > > Here's one of the DTS files which I used for testing on QEMU virt machine:
-> > >
-> > > /dts-v1/;
-> > >
-> > > / {
-> > >     #address-cells = <0x02>;
-> > >     #size-cells = <0x02>;
-> > >     compatible = "riscv-virtio";
-> > >     model = "riscv-virtio,qemu";
-> > >
-> > >     chosen {
-> > >         linux,initrd-end = <0x8855d200>;
-> > >         linux,initrd-start = <0x88200000>;
-> > >         bootargs = "root=/dev/ram rw console=ttyS0 earlycon";
-> > >         stdout-path = "/soc/uart@10000000";
-> > >     };
-> > >
-> > >     memory@80000000 {
-> > >         device_type = "memory";
-> > >         reg = <0x00 0x80000000 0x00 0x10000000>;
-> > >     };
-> > >
-> > >     cpus {
-> > >         #address-cells = <0x01>;
-> > >         #size-cells = <0x00>;
-> > >         timebase-frequency = <0x989680>;
-> > >
-> > >         cpu@0 {
-> > >             phandle = <0x07>;
-> > >             device_type = "cpu";
-> > >             reg = <0x00>;
-> > >             status = "okay";
-> > >             compatible = "riscv";
-> > >             riscv,isa = "rv64imafdcsu";
-> > >             mmu-type = "riscv,sv48";
-> > >             cpu-idle-states = <&CPU_NONRET_DEF>;
-> > >
-> > >             interrupt-controller {
-> > >                 #interrupt-cells = <0x01>;
-> > >                 interrupt-controller;
-> > >                 compatible = "riscv,cpu-intc";
-> > >                 phandle = <0x08>;
-> > >             };
-> > >         };
-> > >
-> > >         cpu@1 {
-> > >             phandle = <0x05>;
-> > >             device_type = "cpu";
-> > >             reg = <0x01>;
-> > >             status = "okay";
-> > >             compatible = "riscv";
-> > >             riscv,isa = "rv64imafdcsu";
-> > >             mmu-type = "riscv,sv48";
-> > >             cpu-idle-states = <&CPU_RET_DEF>;
-> > >
-> > >             interrupt-controller {
-> > >                 #interrupt-cells = <0x01>;
-> > >                 interrupt-controller;
-> > >                 compatible = "riscv,cpu-intc";
-> > >                 phandle = <0x06>;
-> > >             };
-> > >         };
-> > >
-> > >         cpu@2 {
-> > >             phandle = <0x03>;
-> > >             device_type = "cpu";
-> > >             reg = <0x02>;
-> > >             status = "okay";
-> > >             compatible = "riscv";
-> > >             riscv,isa = "rv64imafdcsu";
-> > >             mmu-type = "riscv,sv48";
-> > >             cpu-idle-states = <&CPU_NONRET_DEF>;
-> > >
-> > >             interrupt-controller {
-> > >                 #interrupt-cells = <0x01>;
-> > >                 interrupt-controller;
-> > >                 compatible = "riscv,cpu-intc";
-> > >                 phandle = <0x04>;
-> > >             };
-> > >         };
-> > >
-> > >         cpu@3 {
-> > >             phandle = <0x01>;
-> > >             device_type = "cpu";
-> > >             reg = <0x03>;
-> > >             status = "okay";
-> > >             compatible = "riscv";
-> > >             riscv,isa = "rv64imafdcsu";
-> > >             mmu-type = "riscv,sv48";
-> > >             cpu-idle-states = <&CPU_RET_DEF>;
-> > >
-> > >             interrupt-controller {
-> > >                 #interrupt-cells = <0x01>;
-> > >                 interrupt-controller;
-> > >                 compatible = "riscv,cpu-intc";
-> > >                 phandle = <0x02>;
-> > >             };
-> > >         };
-> > >
-> > >         cpu-map {
-> > >
-> > >             cluster0 {
-> > >
-> > >                 core0 {
-> > >                     cpu = <0x07>;
-> > >                 };
-> > >
-> > >                 core1 {
-> > >                     cpu = <0x05>;
-> > >                 };
-> > >
-> > >                 core2 {
-> > >                     cpu = <0x03>;
-> > >                 };
-> > >
-> > >                 core3 {
-> > >                     cpu = <0x01>;
-> > >                 };
-> > >             };
-> > >         };
-> > >
-> > >         idle-states {
-> > >             CPU_RET_DEF: cpu-retentive-default {
-> > >                 compatible = "riscv,idle-state";
-> > >                 riscv,sbi-suspend-param = <0x00000000>;
-> > >                 entry-latency-us = <10>;
-> > >                 exit-latency-us = <10>;
-> > >                 min-residency-us = <100>;
-> > >             };
-> > >
-> > >             CPU_NONRET_DEF: cpu-nonretentive-default {
-> > >                 compatible = "riscv,idle-state";
-> > >                 riscv,sbi-suspend-param = <0x80000000>;
-> > >                 entry-latency-us = <100>;
-> > >                 exit-latency-us = <100>;
-> > >                 min-residency-us = <1000>;
-> > >             };
-> > >         };
-> > >     };
-> > >
-> > >     soc {
-> > >         #address-cells = <0x02>;
-> > >         #size-cells = <0x02>;
-> > >         compatible = "simple-bus";
-> > >         ranges;
-> > >
-> > >         flash@20000000 {
-> > >             bank-width = <0x04>;
-> > >             reg = <0x00 0x20000000 0x00 0x2000000 0x00 0x22000000 0x00
-> > > 0x2000000>;
-> > >             compatible = "cfi-flash";
-> > >         };
-> > >
-> > >         rtc@101000 {
-> > >             interrupts = <0x0b>;
-> > >             interrupt-parent = <0x09>;
-> > >             reg = <0x00 0x101000 0x00 0x1000>;
-> > >             compatible = "google,goldfish-rtc";
-> > >         };
-> > >
-> > >         uart@10000000 {
-> > >             interrupts = <0x0a>;
-> > >             interrupt-parent = <0x09>;
-> > >             clock-frequency = <0x384000>;
-> > >             reg = <0x00 0x10000000 0x00 0x100>;
-> > >             compatible = "ns16550a";
-> > >         };
-> > >
-> > >         poweroff {
-> > >             value = <0x5555>;
-> > >             offset = <0x00>;
-> > >             regmap = <0x0a>;
-> > >             compatible = "syscon-poweroff";
-> > >         };
-> > >
-> > >         reboot {
-> > >             value = <0x7777>;
-> > >             offset = <0x00>;
-> > >             regmap = <0x0a>;
-> > >             compatible = "syscon-reboot";
-> > >         };
-> > >
-> > >         test@100000 {
-> > >             phandle = <0x0a>;
-> > >             reg = <0x00 0x100000 0x00 0x1000>;
-> > >             compatible = "sifive,test1\0sifive,test0\0syscon";
-> > >         };
-> > >
-> > >         pci@30000000 {
-> > >             interrupt-map-mask = <0x1800 0x00 0x00 0x07>;
-> > >             interrupt-map = <0x00 0x00 0x00 0x01 0x09 0x20 0x00 0x00
-> > > 0x00 0x02 0x09 0x21 0x00 0x00 0x00 0x03 0x09 0x22 0x00 0x00 0x00 0x04
-> > > 0x09 0x23 0x800 0x00 0x00 0x01 0x09 0x21 0x800 0x00 0x00 0x02 0x09
-> > > 0x22 0x800 0x00 0x00 0x03 0x09 0x23 0x800 0x00 0x00 0x04 0x09 0x20
-> > > 0x1000 0x00 0x00 0x01 0x09 0x22 0x1000 0x00 0x00 0x02 0x09 0x23 0x1000
-> > > 0x00 0x00 0x03 0x09 0x20 0x1000 0x00 0x00 0x04 0x09 0x21 0x1800 0x00
-> > > 0x00 0x01 0x09 0x23 0x1800 0x00 0x00 0x02 0x09 0x20 0x1800 0x00 0x00
-> > > 0x03 0x09 0x21 0x1800 0x00 0x00 0x04 0x09 0x22>;
-> > >             ranges = <0x1000000 0x00 0x00 0x00 0x3000000 0x00 0x10000
-> > > 0x2000000 0x00 0x40000000 0x00 0x40000000 0x00 0x40000000>;
-> > >             reg = <0x00 0x30000000 0x00 0x10000000>;
-> > >             dma-coherent;
-> > >             bus-range = <0x00 0xff>;
-> > >             linux,pci-domain = <0x00>;
-> > >             device_type = "pci";
-> > >             compatible = "pci-host-ecam-generic";
-> > >             #size-cells = <0x02>;
-> > >             #interrupt-cells = <0x01>;
-> > >             #address-cells = <0x03>;
-> > >         };
-> > >
-> > >         virtio_mmio@10008000 {
-> > >             interrupts = <0x08>;
-> > >             interrupt-parent = <0x09>;
-> > >             reg = <0x00 0x10008000 0x00 0x1000>;
-> > >             compatible = "virtio,mmio";
-> > >         };
-> > >
-> > >         virtio_mmio@10007000 {
-> > >             interrupts = <0x07>;
-> > >             interrupt-parent = <0x09>;
-> > >             reg = <0x00 0x10007000 0x00 0x1000>;
-> > >             compatible = "virtio,mmio";
-> > >         };
-> > >
-> > >         virtio_mmio@10006000 {
-> > >             interrupts = <0x06>;
-> > >             interrupt-parent = <0x09>;
-> > >             reg = <0x00 0x10006000 0x00 0x1000>;
-> > >             compatible = "virtio,mmio";
-> > >         };
-> > >
-> > >         virtio_mmio@10005000 {
-> > >             interrupts = <0x05>;
-> > >             interrupt-parent = <0x09>;
-> > >             reg = <0x00 0x10005000 0x00 0x1000>;
-> > >             compatible = "virtio,mmio";
-> > >         };
-> > >
-> > >         virtio_mmio@10004000 {
-> > >             interrupts = <0x04>;
-> > >             interrupt-parent = <0x09>;
-> > >             reg = <0x00 0x10004000 0x00 0x1000>;
-> > >             compatible = "virtio,mmio";
-> > >         };
-> > >
-> > >         virtio_mmio@10003000 {
-> > >             interrupts = <0x03>;
-> > >             interrupt-parent = <0x09>;
-> > >             reg = <0x00 0x10003000 0x00 0x1000>;
-> > >             compatible = "virtio,mmio";
-> > >         };
-> > >
-> > >         virtio_mmio@10002000 {
-> > >             interrupts = <0x02>;
-> > >             interrupt-parent = <0x09>;
-> > >             reg = <0x00 0x10002000 0x00 0x1000>;
-> > >             compatible = "virtio,mmio";
-> > >         };
-> > >
-> > >         virtio_mmio@10001000 {
-> > >             interrupts = <0x01>;
-> > >             interrupt-parent = <0x09>;
-> > >             reg = <0x00 0x10001000 0x00 0x1000>;
-> > >             compatible = "virtio,mmio";
-> > >         };
-> > >
-> > >         plic@c000000 {
-> > >             phandle = <0x09>;
-> > >             riscv,ndev = <0x35>;
-> > >             reg = <0x00 0xc000000 0x00 0x210000>;
-> > >             interrupts-extended = <0x08 0x0b 0x08 0x09 0x06 0x0b 0x06
-> > > 0x09 0x04 0x0b 0x04 0x09 0x02 0x0b 0x02 0x09>;
-> > >             interrupt-controller;
-> > >             compatible = "riscv,plic0";
-> > >             #interrupt-cells = <0x01>;
-> > >             #address-cells = <0x00>;
-> > >         };
-> > >
-> > >         clint@2000000 {
-> > >             interrupts-extended = <0x08 0x03 0x08 0x07 0x06 0x03 0x06
-> > > 0x07 0x04 0x03 0x04 0x07 0x02 0x03 0x02 0x07>;
-> > >             reg = <0x00 0x2000000 0x00 0x10000>;
-> > >             compatible = "riscv,clint0";
-> > >         };
-> > >     };
-> > > };
-> >
-> > Thx Anup, but it still couldn't work for testing suspend.
-> >
-> > # echo mem > /sys/power/state
-> > sh: write error: Function not implemented
-> >
-> > Why there is no ARCH_SUSPEND_POSSIBLE in the patch series?
->
-> You are referring to system-level suspend to RAM support whereas
-> this series adds CPU idle power management support.
-Right.
+On 08/02/2022 15:40, Tudor.Ambarus@microchip.com wrote:
+> On 2/8/22 13:58, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 08/02/2022 11:49, Tudor Ambarus wrote:
+>>> Convert Atmel AES documentation to yaml format. With the conversion the
+>>> clock and clock-names properties are made mandatory. The driver returns
+>>> -EINVAL if "aes_clk" is not found, reflect that in the bindings and make
+>>> the clock and clock-names properties mandatory. Update the example to
+>>> better describe how one should define the dt node.
+>>>
+>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+>>> ---
+>>>  .../crypto/atmel,at91sam9g46-aes.yaml         | 65 +++++++++++++++++++
+>>>  .../bindings/crypto/atmel-crypto.txt          | 20 ------
+>>>  2 files changed, 65 insertions(+), 20 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-aes.yaml
+>>>
+>>
+>> I understand that you keep the license GPL-2.0 (not recommended mix)
+>> because of example coming from previous bindings or from DTS (both GPL-2.0)?
+>>
+> 
+> The previous bindings did not have a license specified. We have DTS files with
+> these nodes that are either (GPL-2.0+ OR MIT) or GPL-2.0-or-later. The drivers
+> are GPL-2.0. I thought to follow the drivers. I see the example in [1] uses
+> (GPL-2.0-only OR BSD-2-Clause). I see the crypto bindings that are converted
+> to yaml are either (GPL-2.0-only OR BSD-2-Clause) or GPL-2.0-only. Is there
+> another guideline that I miss?
+> 
 
->
-> Adding system-level suspend to RAM will be a separate series
-> and it will re-use the non-retentive suspend infrastructure added
-> by this series.
-Do you have the plan for the feature of SUSPEND? I think you've done
-the core part by this series.
-
-In the end, thx for the work :)
-
->
-> Regards,
-> Anup
->
-> >
-> > ref arm64's:
-> > commit 166936bace056dfc11452d794209f39a5e9b0fb4
-> > Author: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> > Date:   Thu Nov 7 18:37:14 2013 +0000
-> >
-> >     arm64: kernel: add PM build infrastructure
-> >
-> >     This patch adds the required makefile and kconfig entries to enable PM
-> >     for arm64 systems.
-> >
-> >     The kernel relies on the cpu_{suspend}/{resume} infrastructure to
-> >     properly save the context for a CPU and put it to sleep, hence this
-> >     patch adds the config option required to enable cpu_{suspend}/{resume}
-> >     API.
-> >
-> >     In order to rely on the CPU PM implementation for saving and restoring
-> >     of CPU subsystems like GIC and PMU, the arch Kconfig must be also
-> >     augmented to select the CONFIG_CPU_PM option when SUSPEND or CPU_IDLE
-> >     kernel implementations are selected.
-> >
-> > >
-> > > Regards,
-> > > Anup
-> >
-> >
-> >
-> > --
-> > Best Regards
-> >  Guo Ren
-> >
-> > ML: https://lore.kernel.org/linux-csky/
+Yes, there is. Run checkpatch (your question kinds of point to the fact
+that you did not run it...):
+WARNING: DT binding documents should be licensed (GPL-2.0-only OR
+BSD-2-Clause)
 
 
+If your new bindings use copied/derivative description or DTS code which
+is licensed as only GPL-2.0, the bindings itself as derivative work
+might need to stay as GPL-2.0 as well. Unless copyright holders agree to
+re-license this as GPL2-OR-BSD. As representing company, your patch
+might be enough to re-license, but maybe other people contributed. I
+don't know.
 
--- 
-Best Regards
- Guo Ren
+I just wanted to be sure that you use GPL-2.0 in purpose, because
+GPL2-OR-BSD cannot be used.
 
-ML: https://lore.kernel.org/linux-csky/
+Best regards,
+Krzysztof
