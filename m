@@ -2,88 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44EFB4AE599
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 00:47:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 954834AE5A2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 00:50:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238243AbiBHXrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 18:47:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51106 "EHLO
+        id S238496AbiBHXuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 18:50:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238252AbiBHXrF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 18:47:05 -0500
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4061CC061577
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 15:47:04 -0800 (PST)
-Received: by mail-vs1-xe2f.google.com with SMTP id t22so778722vsa.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 15:47:04 -0800 (PST)
+        with ESMTP id S235330AbiBHXun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 18:50:43 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC3FC061577
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 15:50:42 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id u3so754850oiv.12
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 15:50:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sOZ1/HmS7XU5V/LDu5A24lCTTMFiGZWOuTFw4nQO1Pg=;
-        b=TudL7nkIKdegfN6eFSMj27XML9pjwgnS/zGcz6vWwSHZAZ2H4Vi1K6Ap/Ptslueqnp
-         NslRfwem+KjhgBV7JbfLD051SsWZ3KOI9zbw2ix4wZ6bX+iidlL1w/sZwJV1zuScQPQI
-         ao7/1kfK3gFUKqCqUs21Yp0xmEFsOoKh5bgqs=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ZfjRDOxBlYHHE14BCEgNLKQP/YKV4fajU6/9Z4+F+7A=;
+        b=BS1mRT/hnJZLCPbRnmOQrH/RP9NXql41p4yiX3I3vTpbaWa9H2QX9ueT/PbbIIpBuO
+         wKqnqoM3msoIl9hG3IiOugSaK1fQ8hoYA+r15JyTQPHg8hfVsy9t1ilb+jSAzpn6wcMK
+         gAS/tWHJXvWOtI1yFKDxXFYr2mF3e/kdxYNAAeEeMGFHRkJwhl3TCK59jaVEx76efa3A
+         DaCnejo/My5XGJocCbE3m5k8l7o9LKYrF0frYXql9fHASVIExKIvafASKEGaBPqk/WJR
+         /4Tthh1oC+i21lhVB8JNUmUR187U/N30084/wUF/y8Noy8UWZtM8jrTTKwcemIGn34+C
+         AIjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sOZ1/HmS7XU5V/LDu5A24lCTTMFiGZWOuTFw4nQO1Pg=;
-        b=MHaRYHehu6JBlYDfRhkOAyR+J6/RCjS6X6hg7rPctIThUgcM/fFV2A6YKPyCZ+FENt
-         fvqdBEev/Oq6ksbMVS5JgMtujylpowKCR74Wm+TyHbmOCR8L2D/e2bsagF+62nROecEE
-         Eln1SPG1wUYC22zDbosqN7lsPQ/+3tcFGMtB5gcOyWBWfepFcWxW28r4J6HfKRAccgt7
-         AuXOhbmotxMAy0WqqdCMFT674T7I1xMJfZdd6T4zbkXoBYty6EaPdaru9uWf3yWaGQap
-         pMqub7xmufH0kMR2ZEWi0FqbYI3qdk5vtTNfJY258lzKtG60v64dP0RJC/crCYqUM8ox
-         qmrg==
-X-Gm-Message-State: AOAM5322zwAPa/Rs/IFu+9YAzhAEeOBRbS6so9bWjpnIRtjsX/M43w/W
-        zk5BppZYvNzRLkld5DRPEdRHkYleGWL8iqeCw6x68Q==
-X-Google-Smtp-Source: ABdhPJxq1zn10SEEq0v4RMUk2mIAVq7gGoJdgGcgvoDDDy0oiG2d2D/qNJOYy9bsGYyrxOUqzUpBNPJv3+gSh2iZKZU=
-X-Received: by 2002:a05:6102:913:: with SMTP id x19mr2432786vsh.18.1644364023249;
- Tue, 08 Feb 2022 15:47:03 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZfjRDOxBlYHHE14BCEgNLKQP/YKV4fajU6/9Z4+F+7A=;
+        b=nj2+ys6etiic7VDhroDmH+jR/urIn+w53oVK/bhxv+DbwawuQ0QI1NthfXxx3zgj/r
+         dr3Bk5FMxS4yszhfMOwPR2JdNoxsFc6nDfyq4XJUT4ZRy64/k3jcLMGdqeapxk8axClP
+         X/82okkvhB8givFaOF2hYhBeQIZWfMyQggQFpjngK7fgRst3bwys2MO5Yrdn+Fd5bKSg
+         x1W/WgBMxiTZg4P4MA68CcuTJVXT8VGszdvQ9MhBcbPmgRrj1LqbD+bpsJR99T0uOEwb
+         lJQAzOMe0eDgN+OeuTgs6C4LEqXveVyX/EcFJVN6ZuJuclu8R4emCiahANTy8nJGzVkv
+         cntg==
+X-Gm-Message-State: AOAM5309LincXQVkYKLM5GPEhT0ebzsK4g3fPEjFjaFUjJHUUI6t7VXV
+        sVUVq0jQjYLbzIm0A8auKf5rtg==
+X-Google-Smtp-Source: ABdhPJwsbbOsQ2Ax/QBE65F8Xax4Q1ry58y4ohjRKiITBFnYm47y1u0Jiw5XKGU8I+Mz56JLFI6/nA==
+X-Received: by 2002:a05:6808:1920:: with SMTP id bf32mr177216oib.304.1644364241902;
+        Tue, 08 Feb 2022 15:50:41 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id d22sm5729003otp.79.2022.02.08.15.50.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Feb 2022 15:50:41 -0800 (PST)
+Date:   Tue, 8 Feb 2022 15:52:59 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        robdclark@gmail.com, seanpaul@chromium.org, swboyd@chromium.org,
+        dianders@chromium.org, krzysztof.kozlowski@canonical.com,
+        thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, quic_kalyant@quicinc.com,
+        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
+        quic_mkrishn@quicinc.com
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sc7280: Add support for eDP
+ panel on CRD
+Message-ID: <YgMCW9GrY6SRteOU@ripper>
+References: <1644333525-30920-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1644333525-30920-3-git-send-email-quic_sbillaka@quicinc.com>
 MIME-Version: 1.0
-References: <20211006224659.21434-1-digetx@gmail.com> <20211006224659.21434-4-digetx@gmail.com>
- <YWimShkkxkR+bQLK@robh.at.kernel.org> <CAODwPW-2othAhTC9a_joBdHScA86iqs-FkZJZDrK5LxrJm8F8Q@mail.gmail.com>
- <d69f99ed-75a4-9b8c-addb-3eaa2b2be6a6@canonical.com>
-In-Reply-To: <d69f99ed-75a4-9b8c-addb-3eaa2b2be6a6@canonical.com>
-From:   Julius Werner <jwerner@chromium.org>
-Date:   Tue, 8 Feb 2022 15:46:52 -0800
-Message-ID: <CAODwPW-AMqQ+ZbnvUTuxP5Bbxdcy08GSXnhcLC+V6BW=OPYaqg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/9] dt-bindings: memory: lpddr2: Add revision-id properties
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Julius Werner <jwerner@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        linux-tegra@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1644333525-30920-3-git-send-email-quic_sbillaka@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Unfortunately I have no clue what patch you talk about ("this patch").
-> There is no context here, no link except the older LPDDR3.
+On Tue 08 Feb 07:18 PST 2022, Sankeerth Billakanti wrote:
 
-Sorry, I tried to reply to
-https://lore.kernel.org/all/20211006224659.21434-4-digetx@gmail.com/
-([PATCH v5 3/9] dt-bindings: memory: lpddr2: Add revision-id
-properties) and was hoping that would automatically provide context.
-That patch added two one-cell properties `revision-id1` and
-`revision-id2` to "jedec,lpddr2". Earlier in
-https://www.spinics.net/lists/devicetree/msg413733.html ([PATCH]
-dt-bindings: ddr: Add optional manufacturer and revision ID to
-LPDDR3), I had added a single two-cell property `revision-id` for the
-same purpose to "jedec,lpddr3".
+> Enable the eDP display panel support without HPD on sc7280 platform.
+> 
+> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+> ---
+> 
+> Changes in v2:
+>   - sort node references alphabetically
+>   - improve readability
+>   - move the pwm pinctrl to pwm node
+>   - move the regulators to root
+>   - define backlight power
+>   - remove dummy regulator node
+>   - cleanup pinctrl definitions
+> 
+>  arch/arm64/boot/dts/qcom/sc7280-crd.dts | 122 ++++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi    |   2 -
+>  2 files changed, 122 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> index e2efbdd..bff2707 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> @@ -21,6 +21,34 @@
+>  	chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+> +
+> +	backlight_power: backlight-power {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "backlight_power";
+> +
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +
+> +		gpio = <&pm8350c_gpios 7 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&edp_bl_power>;
+> +	};
+> +
+> +	edp_power: edp-power {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "edp_power";
+> +
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&tlmm 80 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&edp_panel_power>;
+> +	};
+>  };
+>  
+>  &apps_rsc {
+> @@ -76,6 +104,42 @@ ap_ts_pen_1v8: &i2c13 {
+>  	};
+>  };
+>  
+> +&edp_out {
 
-I think it would be better if this was consistent between the two
-types of LPDDR memory. Should I just send a patch that replaces the
-two revision IDs in "jedec,lpddr2" with a single one according to the
-principle of "jedec,lpddr3"? Or is it too late for that now and the
-binding already considered stable and unchangeable?
+Sorry for missing this while merging changes in sc7280.dtsi. But it
+would be really nice if this was labeled mdss_edp_out instead (or
+possibly defined within the &mdss_edp node).
+
+Now you will have &edp_out and &dp_out floating around away from the edp
+and dp nodes...
+
+> +	remote-endpoint = <&edp_panel_in>;
+> +};
+> +
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+> +&mdss_edp {
+> +	status = "okay";
+> +
+> +	vdda-1p2-supply = <&vreg_l6b_1p2>;
+> +	vdda-0p9-supply = <&vreg_l10c_0p8>;
+> +};
+> +
+> +&mdss_edp_phy {
+> +	status = "okay";
+> +
+> +	vdda-1p2-supply = <&vreg_l6b_1p2>;
+> +	vdda-0p9-supply = <&vreg_l10c_0p8>;
+> +};
+> +
+> +&mdss_dp {
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&dp_hot_plug_det>;
+> +	data-lanes = <0 1>;
+> +	vdda-1p2-supply = <&vreg_l6b_1p2>;
+> +	vdda-0p9-supply = <&vreg_l1b_0p8>;
+> +};
+> +
+> +&mdss_mdp {
+> +	status = "okay";
+> +};
+> +
+>  &nvme_3v3_regulator {
+>  	gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
+>  };
+> @@ -84,7 +148,65 @@ ap_ts_pen_1v8: &i2c13 {
+>  	pins = "gpio51";
+>  };
+>  
+> +&pm8350c_pwm {
+
+This label doesn't exist, so I won't be able to merge this patch.
+
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&edp_bl_pwm>;
+> +};
+> +
+> +&pm8350c_gpios {
+> +	edp_bl_power: edp-bl-power {
+> +		pins = "gpio7";
+> +		function = "normal";
+> +		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
+> +		bias-disable;
+> +		output-low;
+> +	};
+> +
+> +	edp_bl_pwm: edp-bl-pwm {
+> +		pins = "gpio8";
+> +		function = "func1";
+> +		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
+> +		bias-disable;
+> +		output-low;
+> +	};
+> +};
+> +
+> +&soc {
+> +	edp_backlight: edp-backlight {
+> +		compatible = "pwm-backlight";
+
+This is not a device on the mmio bus, so it should not love within the
+&soc.
+
+> +
+> +		power-supply = <&backlight_power>;
+> +		pwms = <&pm8350c_pwm 3 65535>;
+> +	};
+> +
+> +	edp_panel: edp_panel {
+
+Ditto.
+
+Regards,
+Bjorn
+
+> +		compatible = "sharp,lq140m1jw46";
+> +
+> +		power-supply = <&edp_power>;
+> +		backlight = <&edp_backlight>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			port@0 {
+> +				reg = <0>;
+> +				edp_panel_in: endpoint {
+> +					remote-endpoint = <&edp_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+>  &tlmm {
+> +	edp_panel_power: edp-panel-power {
+> +		pins = "gpio80";
+> +		function = "gpio";
+> +		bias-pull-down;
+> +	};
+> +
+>  	tp_int_odl: tp-int-odl {
+>  		pins = "gpio7";
+>  		function = "gpio";
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 3572399..f8fa716 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -3012,8 +3012,6 @@
+>  
+>  			mdss_edp: edp@aea0000 {
+>  				compatible = "qcom,sc7280-edp";
+> -				pinctrl-names = "default";
+> -				pinctrl-0 = <&edp_hot_plug_det>;
+>  
+>  				reg = <0 0xaea0000 0 0x200>,
+>  				      <0 0xaea0200 0 0x200>,
+> -- 
+> 2.7.4
+> 
