@@ -2,106 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 123D44AD8C1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:16:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AD2F4AD899
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:15:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343517AbiBHNPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 08:15:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56554 "EHLO
+        id S234132AbiBHNP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 08:15:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357152AbiBHMce (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 07:32:34 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E5D2C03FEC0
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 04:32:32 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id h6so11731786wrb.9
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 04:32:32 -0800 (PST)
+        with ESMTP id S232265AbiBHMdC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 07:33:02 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06164C03FEC0
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 04:32:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:cc:from:in-reply-to:content-transfer-encoding;
-        bh=SBicExt4GJTldUNDteIIq7T7+TNr7gj099np1oZzyZ0=;
-        b=5H3MsgPIhqt39HG1qoEatzD0Vc2QJlQKfqrcrh67yioOodrsd6sq49SPYaA/6sd5Zt
-         TOy+pHA35I7ps67O93O29P57x0fxd2LOGb3w32L1+tKcxd39UzblOtVEy/igA0IFquTp
-         B9L6yj862CsH3lBhGxDWuzOSXwIkMdBXICIC6RRwev2VRYGuTbAjd9Hipev7lizyO92A
-         5G2pXnT9Tca5zRzi3NoFLZma5Vt0wOIExMGFk4ObG3UnLr4zedy+xPDsmOkOg+PupyAj
-         gPIOlUvzqYiDccI3Z66cS8rnCdQCTECCDNPGctqOAQXe6KLs4N5xzEta+q+pQjHN329W
-         34PQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:cc:from:in-reply-to
-         :content-transfer-encoding;
-        bh=SBicExt4GJTldUNDteIIq7T7+TNr7gj099np1oZzyZ0=;
-        b=Izw2PSeaLzvTa+MgYoytlCU/IyOOJchGkFQM/N+LYdCnpTgzCBZXKkQwy66ccN0GqT
-         YdrbYTBwHJ4Eo1ihQHBn5BwghuhNDpBbZhiekm0j57tOIondPXU42O7qDYfilGLcJlIY
-         oEshFAIXD6duxmRwkjGrdT3Ti3csC82Oj5Z0WmrFNv+BpHrguC52B7SFIfNM5sYDgX5s
-         nR5HDXQdvaZuPY+ElYiuny8a2fo1iohSzjVr8GXA4HfPLGOOxTgrVw6QYF5vkYq/1oQ0
-         SowyvukcRArMDAN6a7yNvq3bOMtqkilyHA7xylf6OQST9bZA+EAHzj3eHzgNcbKXT20e
-         PH5g==
-X-Gm-Message-State: AOAM532mqPAFnpui28JH99AQ9uzijHN/zWmdwExOWqsiWjdBhiuwRcWK
-        1RQc5fb5Ktg8B8m+8PO1usXzOA==
-X-Google-Smtp-Source: ABdhPJy3fWhX+fR9E4HyMnwmqx7EtColZdvMB80eL5FvssCvOs3KJLS4r509AHx9ak5lZBQdqv+rhQ==
-X-Received: by 2002:a05:6000:2c5:: with SMTP id o5mr3345728wry.130.1644323551043;
-        Tue, 08 Feb 2022 04:32:31 -0800 (PST)
-Received: from [192.168.2.116] ([109.78.72.167])
-        by smtp.gmail.com with ESMTPSA id v9sm1831062wrw.84.2022.02.08.04.32.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Feb 2022 04:32:29 -0800 (PST)
-Message-ID: <afb346dc-5119-fcf0-d95e-d7e4bd91f92f@conchuod.ie>
-Date:   Tue, 8 Feb 2022 12:32:27 +0000
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1644323580; x=1675859580;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ndSbzbbYm+RHdvPpAZuBwfHcJOdR+Q4NqIGXByVMAJU=;
+  b=OFJkpbucWlOM6lhS7tU2J31DhOEyVgjrQclamqQN4/QIW+XjnvFOOC/K
+   C8jiJVmiP3WWMZMs7qNAjbX1CxucwQEwGpdWsfWcnu+mxW7OO8GMHdQwx
+   2bS9ZMN5KyexWixjrNF9uUkKbsVGg3kRy/FzoqKgoF8o+j79UsCCFnbuB
+   A8VofOmW33NdEsplpMaO82I9JwNugOhcMqwI2XhFB9u702uUXmHiV7trZ
+   oJDxGu4Gc4/gZ5KtcXbuAAOboHira8VE05Nm/QdNtHGruQTEZBTfiLkW2
+   79blEi/8Gv4ObHV999cXov5PECYS8301G1AD5ER6s818HvkFN0LDjX/i8
+   w==;
+X-IronPort-AV: E=Sophos;i="5.88,352,1635199200"; 
+   d="scan'208";a="21960349"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 08 Feb 2022 13:32:58 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 08 Feb 2022 13:32:58 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 08 Feb 2022 13:32:58 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1644323578; x=1675859578;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ndSbzbbYm+RHdvPpAZuBwfHcJOdR+Q4NqIGXByVMAJU=;
+  b=YkhaBoRwsruYb7zMqxQG/zpOEBSWP17rwxCgAwtsAQK2hp8l1CHhYfCW
+   GrCT6f1ttXFWkdJ2S1yT1N2D94UGEQjvcJXHbMYuwHnZsCSKuuNHdHfy8
+   DhmvectkR4dRwypK9/74uYXF3U4Zp4TDuayRMdn391HFitnlQu4/rJBFb
+   WeFe1ONiBvE+KuM0xlfTW910V2tz9VgoMPrSTENV01AFzlqAE2fsOvAcL
+   hDRRVWVvB+pqrQor6gVqLvr+iBIJj9qb2iSn7ulA3tOsToALPjSHiGsz2
+   HTO3i+/YcvIiBjeGtlN56h5wDJTNNqxDQUGcvLlAHHQD6fIDAE4JRYnDn
+   w==;
+X-IronPort-AV: E=Sophos;i="5.88,352,1635199200"; 
+   d="scan'208";a="21960348"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 08 Feb 2022 13:32:58 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id EE4F5280065;
+        Tue,  8 Feb 2022 13:32:57 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/5] ARM: dts: imx6qdl-mba6: Move rtc alias to common location
+Date:   Tue,  8 Feb 2022 13:32:44 +0100
+Message-Id: <20220208123248.821826-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v6 03/12] dt-bindings: i2c: add bindings for microchip
- mpfs i2c
-Content-Language: en-US
-To:     Wolfram Sang <wsa@kernel.org>, conor.dooley@microchip.com
-References: <20220207162637.1658677-1-conor.dooley@microchip.com>
- <20220207162637.1658677-4-conor.dooley@microchip.com>
- <YgJfl5CmepRMb5He@ninjato>
-Cc:     paul.walmsley@sifive.com, linus.walleij@linaro.org, brgl@bgdev.pl,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
-        aou@eecs.berkeley.edu, palmer@dabbelt.com,
-        linux-riscv@lists.infradead.org, lee.jones@linaro.org,
-        heiko@sntech.de, Palmer Dabbelt <palmer@rivosinc.com>,
-        Rob Herring <robh@kernel.org>, atishp@rivosinc.com,
-        ivan.griffin@microchip.com, daire.mcnamara@microchip.com,
-        linux-pwm@vger.kernel.org, bin.meng@windriver.com,
-        jassisinghbrar@gmail.com, u.kleine-koenig@pengutronix.de,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        geert@linux-m68k.org, thierry.reding@gmail.com,
-        linux-rtc@vger.kernel.org, lewis.hanly@microchip.com
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <YgJfl5CmepRMb5He@ninjato>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2022 12:18, Wolfram Sang wrote:
-> On Mon, Feb 07, 2022 at 04:26:29PM +0000, conor.dooley@microchip.com wrote:
->> From: Conor Dooley <conor.dooley@microchip.com>
->>
->> Add device tree bindings for the i2c controller on
->> the Microchip PolarFire SoC.
->>
->> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> 
-> Shall this go via DT (Rob) or I2C (me) or some riscv tree?
-If you could take it, that'd be great. Rob had said via subsystems was 
-his preference for the bindings in this series.
+The rtc alias is identical for both mba6a and mba6b.
 
-Thanks,
-Conor.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm/boot/dts/imx6qdl-mba6.dtsi  | 1 +
+ arch/arm/boot/dts/imx6qdl-mba6a.dtsi | 6 ------
+ arch/arm/boot/dts/imx6qdl-mba6b.dtsi | 6 ------
+ 3 files changed, 1 insertion(+), 12 deletions(-)
+
+diff --git a/arch/arm/boot/dts/imx6qdl-mba6.dtsi b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
+index daf76345b179..8f6e1dd82ee4 100644
+--- a/arch/arm/boot/dts/imx6qdl-mba6.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
+@@ -17,6 +17,7 @@ aliases {
+ 		mmc1 = &usdhc2;
+ 		/delete-property/ mmc2;
+ 		/delete-property/ mmc3;
++		rtc0 = &rtc0;
+ 	};
+ 
+ 	chosen {
+diff --git a/arch/arm/boot/dts/imx6qdl-mba6a.dtsi b/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
+index a61f2705a340..df8fa169e9f6 100644
+--- a/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
+@@ -6,12 +6,6 @@
+  * Author: Markus Niebel <Markus.Niebel@tq-group.com>
+  */
+ 
+-/ {
+-	aliases {
+-		rtc0 = &rtc0;
+-	};
+-};
+-
+ &fec {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_enet>, <&pinctrl_enet_fix>;
+diff --git a/arch/arm/boot/dts/imx6qdl-mba6b.dtsi b/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
+index 9f9f7037c9e4..2e3407790963 100644
+--- a/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
+@@ -6,12 +6,6 @@
+  * Author: Markus Niebel <Markus.Niebel@tq-group.com>
+  */
+ 
+-/ {
+-	aliases {
+-		rtc0 = &rtc0;
+-	};
+-};
+-
+ &fec {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_enet>;
+-- 
+2.25.1
+
