@@ -2,59 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4EDD4AD637
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E1184AD63B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345297AbiBHLW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 06:22:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34944 "EHLO
+        id S1357480AbiBHLW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 06:22:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356775AbiBHLAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:00:15 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE96C03FEC0;
-        Tue,  8 Feb 2022 03:00:14 -0800 (PST)
+        with ESMTP id S1356822AbiBHLIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:08:10 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B95BC03FEC0;
+        Tue,  8 Feb 2022 03:08:10 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E8EE0B81A1C;
-        Tue,  8 Feb 2022 11:00:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DD4FC004E1;
-        Tue,  8 Feb 2022 11:00:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644318011;
-        bh=lgU6ufHve7JlUCO/BFOI9B8QpSdLnyCpTVPTeG8N3x0=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A4D4561583;
+        Tue,  8 Feb 2022 11:08:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 556ACC004E1;
+        Tue,  8 Feb 2022 11:08:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1644318489;
+        bh=qu25s2pI0bef9usPCks0SF20/3lcuZT4+ajSE0ondkM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eFdfQ5xGfudSGY9mNnEZo7SUi0EYPYpK1U7o+DGAH3uISBV0ZOoqR6KKqgMmcPYEv
-         BZaMucZRl3WH2qElqcOTZ7R0oBr2vze8l8xbJ5vLoNajpCKqauLLEhzufYa2RiEXLR
-         jmiH+dOS87X8nsj38aVpKhZ+WiB/fimqJGGEZ1LEGK2Cql7qL85GpiUW8YgywcxLys
-         t23ws9VQoGMOD6NUYPZcuqqC6dwrqxJ/kBnD1n6Y8OHmIGo+nQ8EJUMkPPIXhw4Hyy
-         e+MTFaEQ0dJJGbkQ5+N+W9s51LBGal9F22rOS/wzTHKZsjpS5JrxNzAC7F+Rl8cIEf
-         6H8PMZz8SnAIQ==
-Received: by pali.im (Postfix)
-        id D6E1FC34; Tue,  8 Feb 2022 12:00:08 +0100 (CET)
-Date:   Tue, 8 Feb 2022 12:00:08 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] of: net: Add helper function of_get_ethdev_label()
-Message-ID: <20220208110008.s7ock4pkspmulwix@pali>
-References: <20220107161222.14043-1-pali@kernel.org>
- <Ydhqa+9ya6nHsvLq@shell.armlinux.org.uk>
- <Ydhwfa/ECqTE3rLx@lunn.ch>
- <20220113182719.ixgysemitp5cuidn@pali>
+        b=arp1QXgJJRaO2ZgwEBCS04YXmhnkX1AoGwN+4Tef0YqIynclXCGBiDrpdd4BdIWaj
+         PbQLX9uUhQ4ue0sJOaRlbObuQi9wsuUf9ZHPoiyAR2anjm1+9fWCPYaLs9QChXea+a
+         qFd9pTBvdmy4LuNlg+WxYMkSefPhAXBTpmkDc8y0=
+Date:   Tue, 8 Feb 2022 12:08:06 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Iwona Winiarska <iwona.winiarska@intel.com>
+Cc:     linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Borislav Petkov <bp@alien8.de>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Zev Weiss <zweiss@equinix.com>,
+        David Muller <d.mueller@elsoft.ch>,
+        Dave Hansen <dave.hansen@intel.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+Subject: Re: [PATCH v7 07/13] peci: Add sysfs interface for PECI bus
+Message-ID: <YgJPFlr18AmWiTRY@kroah.com>
+References: <20220202144838.163875-1-iwona.winiarska@intel.com>
+ <20220202144838.163875-8-iwona.winiarska@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220113182719.ixgysemitp5cuidn@pali>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20220202144838.163875-8-iwona.winiarska@intel.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -65,53 +69,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 13 January 2022 19:27:19 Pali Rohár wrote:
-> On Friday 07 January 2022 17:55:25 Andrew Lunn wrote:
-> > On Fri, Jan 07, 2022 at 04:29:31PM +0000, Russell King (Oracle) wrote:
-> > > On Fri, Jan 07, 2022 at 05:12:21PM +0100, Pali Rohár wrote:
-> > > > Adds a new helper function of_get_ethdev_label() which sets initial name of
-> > > > specified netdev interface based on DT "label" property. It is same what is
-> > > > doing DSA function dsa_port_parse_of() for DSA ports.
-> > > > 
-> > > > This helper function can be useful for drivers to make consistency between
-> > > > DSA and netdev interface names.
-> > > > 
-> > > > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > > 
-> > > Doesn't this also need a patch to update the DT binding document
-> > > Documentation/devicetree/bindings/net/ethernet-controller.yaml ?
-> > > 
-> > > Also it needs a covering message for the series, and a well thought
-> > > out argument why this is required. Consistency with DSA probably
-> > > isn't a good enough reason.
-> > > 
-> > > >From what I remember, there have been a number of network interface
-> > > naming proposals over the years, and as you can see, none of them have
-> > > been successful... but who knows what will happen this time.
-> > 
-> > I agree with Russell here. I doubt this is going to be accepted.
-> > 
-> > DSA is special because DSA is very old, much older than DT, and maybe
-> > older than udev. The old DSA platform drivers had a mechanism to
-> > supply the interface name to the DSA core. When we added a DT binding
-> > to DSA we kept that mechanism, since that mechanism had been used for
-> > a long time.
-> > 
-> > Even if you could show there was a generic old mechanism, from before
-> > the days of DT, that allowed interface names to be set from platform
-> > drivers, i doubt it would be accepted because there is no continuity,
-> > which DSA has.
+On Wed, Feb 02, 2022 at 03:48:32PM +0100, Iwona Winiarska wrote:
+> PECI devices may not be discoverable at the time when PECI controller is
+> being added (e.g. BMC can boot up when the Host system is still in S5).
+> Since we currently don't have the capabilities to figure out the Host
+> system state inside the PECI subsystem itself, we have to rely on
+> userspace to do it for us.
 > 
-> Well, DT should universally describe HW board wiring. From HW point of
-> view, it is really does not matter if RJ45 port is connected to embedded
-> PHY on SoC itself or to the external PHY chip, or to the switch chip
-> with embedded PHY. And if board has mix of these options, also labels
-> (as printed on product box) should be in DTS described in the same way,
-> independently of which software solution / driver is used for particular
-> chip. It really should not matter for DTS if kernel is using for
-> particular HW part DSA driver or ethernet driver.
+> In the future, PECI subsystem may be expanded with mechanisms that allow
+> us to avoid depending on userspace interaction (e.g. CPU presence could
+> be detected using GPIO, and the information on whether it's discoverable
+> could be obtained over IPMI).
+> Unfortunately, those methods may ultimately not be available (support
+> will vary from platform to platform), which means that we still need
+> platform independent method triggered by userspace.
 > 
-> So there really should be some common way. And if the one which DSA is
-> using is the old mechanism, what is the new mechanism then?
+> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
+> ---
+>  Documentation/ABI/testing/sysfs-bus-peci | 16 +++++
+>  drivers/peci/Makefile                    |  2 +-
+>  drivers/peci/core.c                      |  3 +-
+>  drivers/peci/device.c                    |  1 +
+>  drivers/peci/internal.h                  |  5 ++
+>  drivers/peci/sysfs.c                     | 82 ++++++++++++++++++++++++
+>  6 files changed, 107 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-peci
+>  create mode 100644 drivers/peci/sysfs.c
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-peci b/Documentation/ABI/testing/sysfs-bus-peci
+> new file mode 100644
+> index 000000000000..56c2b2216bbd
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-peci
+> @@ -0,0 +1,16 @@
+> +What:		/sys/bus/peci/rescan
+> +Date:		July 2021
+> +KernelVersion:	5.15
 
-Hello! Any comments on this?
+5.15 was a long time ago :(
+
+
+Other than this nit, these all look semi-sane to me.  What tree are you
+wanting these to go through, mine?  If so, can you fix this up (both
+places in this file) and resend?
+
+thanks,
+
+greg k-h
