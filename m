@@ -2,141 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 319B04ADD14
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 16:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 297364ADD4E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 16:46:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381219AbiBHPkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 10:40:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51730 "EHLO
+        id S1381666AbiBHPpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 10:45:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381383AbiBHPkT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 10:40:19 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5B0F8C061576
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 07:40:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1644334817;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=R3+ygx7WT3LgjARaNLFe1zhALwKjcISILkzjd4t3g78=;
-        b=gox9DCLUt6zb4qZgacR/IkWIbwRWFPdyWHJHkVbdSDdpEWdlJ4JFDE7wHWx9CAKz+89lU4
-        x4JvwnUtTrrY2mmuqr+85TgoWhBXei+4OkWM2uo0aku/0Zcw9/8b+o4ThVT5+IELHx7fyz
-        fg8LW30skqzMtI8+IkJ6UpIeHt+sYKM=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-63-aczqBiS6P86g7mUmFd0qkA-1; Tue, 08 Feb 2022 10:40:15 -0500
-X-MC-Unique: aczqBiS6P86g7mUmFd0qkA-1
-Received: by mail-wm1-f72.google.com with SMTP id c7-20020a1c3507000000b0034a0dfc86aaso1185134wma.6
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 07:40:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=R3+ygx7WT3LgjARaNLFe1zhALwKjcISILkzjd4t3g78=;
-        b=6TzlAXjbLEKQ4qG1u38fTPS8aQtkoB9HcZsLYyTsleJ/kiAOgYQkYxX4HxDhIaPfW2
-         k14scFWrVFhSkRg3bdLrrNxbSxL5/aymQl6TP2rHvuAoUDD+nWl9F92lDA5/gDmiLL7P
-         IKMJptTCcNOMK7d6bbEDZzlz87SWXsRLd3VEow3xDRIYrVaBODMDy6xbw6yD1pwDXQmk
-         f50l8hED3kUiLjOzLQ5HR73LNoVbXyd6u5UHleDGaOwDvFI3JZdnFzj2lMiux5zrp8Z7
-         8NZHMJtv6/EpuLOGpcmgMa1dAY+JSsoszSXNetukrCV/TI6RwP0beoGf5KAeS/FOwtt2
-         ngfA==
-X-Gm-Message-State: AOAM532IHeoV3Vqd99CSQF0ugcn6YvK2O5GhwbA/S9rNf6dqik2GI5kM
-        FJ6kNqUO9SulrxqRN8H/3KcnwDOjmwzl1K0kWHjLDfahv6B5H1w4GpJsNd2xTNPOV/whL9NioN/
-        +aujFL1ru8SllmFbhcrmjaw==
-X-Received: by 2002:a5d:588e:: with SMTP id n14mr4244920wrf.45.1644334814511;
-        Tue, 08 Feb 2022 07:40:14 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwgsRW+lrC/D9yn6NeNRRQqunCaYEb9CMC26g+Mn3KPfiRrXRhLKFGC8C3j1dq2BkDZsEKSLg==
-X-Received: by 2002:a5d:588e:: with SMTP id n14mr4244901wrf.45.1644334814281;
-        Tue, 08 Feb 2022 07:40:14 -0800 (PST)
-Received: from [192.168.1.102] ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id v18sm9972089wrm.105.2022.02.08.07.40.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Feb 2022 07:40:14 -0800 (PST)
-Message-ID: <02d5b225-e1a8-77f6-7e4e-18d6a1df5e48@redhat.com>
-Date:   Tue, 8 Feb 2022 16:40:12 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED
- displays
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Mark Brown <broonie@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-References: <20220204134347.1187749-1-javierm@redhat.com>
- <CAMuHMdVTVX7LFay-rfv=oW96dMA24duMUVGRE62jQSNkrKtyMg@mail.gmail.com>
- <f178de92-7cb1-dcc5-1f60-9ccfc56bc0a4@redhat.com>
- <CAMuHMdWvrJip+W6ZZoO2ZURLc5CYmFno3=Sa2mL4xJE8gMzFqg@mail.gmail.com>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <CAMuHMdWvrJip+W6ZZoO2ZURLc5CYmFno3=Sa2mL4xJE8gMzFqg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S1346648AbiBHPpW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 10:45:22 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id ED2AEC0613CB;
+        Tue,  8 Feb 2022 07:45:15 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BB10412FC;
+        Tue,  8 Feb 2022 07:45:15 -0800 (PST)
+Received: from e120937-lin.home (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E48BA3F73B;
+        Tue,  8 Feb 2022 07:45:13 -0800 (PST)
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     sudeep.holla@arm.com, james.quinlan@broadcom.com,
+        Jonathan.Cameron@Huawei.com, f.fainelli@gmail.com,
+        etienne.carriere@linaro.org, vincent.guittot@linaro.org,
+        souvik.chakravarty@arm.com, peter.hilber@opensynergy.com,
+        igor.skalkin@opensynergy.com, cristian.marussi@arm.com,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 4/8] dt-bindings: firmware: arm,scmi: Add atomic_threshold optional property
+Date:   Tue,  8 Feb 2022 15:44:48 +0000
+Message-Id: <20220208154452.39428-5-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220208154452.39428-1-cristian.marussi@arm.com>
+References: <20220208154452.39428-1-cristian.marussi@arm.com>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/8/22 16:23, Geert Uytterhoeven wrote:
+SCMI protocols in the platform can optionally signal to the OSPM agent
+the expected execution latency for a specific resource/operation pair.
 
-[snip]
+Introduce an SCMI system wide optional property to describe a global time
+threshold which can be configured on a per-platform base to determine the
+opportunity, or not, for an SCMI command advertised to have a higher
+latency than the threshold, to be considered for atomic operations:
+high-latency SCMI synchronous commands should be preferably issued in the
+usual non-atomic mode.
 
->>>   - The logo (I have a custom monochrome logo enabled) is no longer shown.
->>
->> I was able to display your tux monochrome with ./fbtest -f /dev/fb1 test004
-> 
-> I meant the kernel's logo (FB_LOGO_*),. Obviously you need to enable
-> a smaller one, as the default 80x80 logo is too large, and thus can't
-> be drawn on your 128x64 or my 128x32 display.
->
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+---
+v1 --> v2
+- rephrased the property description
+---
+ .../devicetree/bindings/firmware/arm,scmi.yaml        | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-That makes sense.
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index eae15df36eef..646bdf2873b5 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -81,6 +81,15 @@ properties:
+   '#size-cells':
+     const: 0
  
->>>   - The screen is empty, with a (very very slow) flashing cursor in the
->>>     middle of the screen, with a bogus long line next to it, which I can
->>>     see being redrawn.
->>>   - Writing text (e.g. hello) to /dev/tty0, I first see the text,
->>>     followed by an enlargement of some of the characters.
->>
->> So far I was mostly testing using your fbtest repo tests and all of them
->> (modulo test009 that says "Screen size too small for this test").
->>
->> But I've tried now using as a VT and I see the same visual artifacts. I
->> wonder what's the difference between fbcon and the way your tests use
->> the fbdev API.
-> 
-> Fbcon does small writes to the shadow frame buffer, while fbtest
-> writes to the mmap()ed /dev/fbX, causing a full page to be updated.
->
-
-I see. Thanks for the information.
-
-Best regards, -- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
++  atomic_threshold:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      An optional time value, expressed in microseconds, representing, on this
++      platform, the threshold above which any SCMI command, advertised to have
++      an higher-than-threshold execution latency, should not be considered for
++      atomic mode of operation, even if requested.
++      If left unconfigured defaults to zero.
++
+   arm,smc-id:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+@@ -264,6 +273,8 @@ examples:
+             #address-cells = <1>;
+             #size-cells = <0>;
+ 
++            atomic_threshold = <10000>;
++
+             scmi_devpd: protocol@11 {
+                 reg = <0x11>;
+                 #power-domain-cells = <1>;
+-- 
+2.17.1
 
