@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F9BA4AE3CF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 23:24:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0989E4AE3D3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 23:24:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237352AbiBHWX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 17:23:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35124 "EHLO
+        id S1386676AbiBHWYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 17:24:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1386676AbiBHVIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 16:08:21 -0500
-Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 851CBC0612B8
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 13:08:20 -0800 (PST)
-Received: by mail-oo1-xc2f.google.com with SMTP id o192-20020a4a2cc9000000b00300af40d795so87044ooo.13
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 13:08:20 -0800 (PST)
+        with ESMTP id S1386786AbiBHVLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 16:11:49 -0500
+Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9559C0612B8
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 13:11:48 -0800 (PST)
+Received: by mail-oo1-xc31.google.com with SMTP id c7-20020a4ad207000000b002e7ab4185d2so150593oos.6
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 13:11:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=3e5u0a3XUZipDiH81TDu2p1mqGvTz/Xj7xCNvUYnc48=;
-        b=JrdRVJpooTykk1B8KBt18t1IQyUEgTydyV9eupm+jAPxd9SncOnypFGZTtPEngmpZA
-         zPF85y6VwXAERScIsGuZxlS3yhf9h4gFYzrWgEW7zFpdpj3qzaZYMFf63Mqlca0KGWbn
-         b0H2Hw8AIS3EyZyzwJl5gKblzlgFdsB2NPFlY=
+        bh=IolIE8DlbmDNUe3gGgG48U1O9vWoP4C6TXSIdX5Tgvs=;
+        b=AbUPMmzJT8mciX3qYbx/Wy97gl16cigP99mpGQx48PAxS+kyG4yRLTtflI4z6/QkEC
+         NPV2/hIi1bb5CMFGGAiFPrYcYTMQZp3w8o2qpSc/sZypMyS7ySM4bDmZ8+4uIr4iJCMb
+         LookcqAXmZ2p25+haf3s1l+u0dqp1Ozm+G878=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=3e5u0a3XUZipDiH81TDu2p1mqGvTz/Xj7xCNvUYnc48=;
-        b=pFbPvO4E2/esCypq6Cslo/LxW9Iwh13zYEOUByX+ldFrpwAQ+4HRsDG2QGuTVM9Trt
-         cc5GFDH/RJA2PzP/AIbBrCgwPRXIxGAsbtMWNh29c3Mqdfkz+VW7tdTh6iU4yrwTvSQn
-         h/qHTNgFAW3gca8ewAhbgqOm8Ukxk6xVPdqY5pvqsnQ4+ml5NB4S1FpDSwO56cYN/nIz
-         PU1f6HEo2OfPTac41bNiWk5tC9SZC37qafvKeyqkj7tkX5OLXAq6yc4mGUqToHPNaWFL
-         w1aYprYDReYt5y1GwOQDvEkLyCS+Sk7IYJTco9S5jZtziMvNZnDk5atGzVcXLUmQRKLa
-         5ypg==
-X-Gm-Message-State: AOAM5338YgjJQwdeqp+rNtfrsL2GJuqsoFVBsv+GCOhZAuJVVhiM+U2f
-        mlxmUwc46CvR+rTWVBctS8alpe8fVnRVBbLY8i6NbQ==
-X-Google-Smtp-Source: ABdhPJw5+EvIpVVqz2BaX3AzUdYsZgeCqlaaiTe1hKK5HeI7XFgoTdWGJ4fEXjeS9rfkpxFZJsz75fONZG/PTg/psTU=
-X-Received: by 2002:a05:6870:1209:: with SMTP id 9mr982427oan.8.1644354499907;
- Tue, 08 Feb 2022 13:08:19 -0800 (PST)
+        bh=IolIE8DlbmDNUe3gGgG48U1O9vWoP4C6TXSIdX5Tgvs=;
+        b=XPdQe+OHJvz097rlfHk7mk/bM/lhWs1appZ1xd4D6FFS8QP/RMfI9EKZvMuRq50RKC
+         Hb3qucXNLfkc48wPMORS8+93HZMsCjd85jbnnuXPGjPaAKDxM3OokKFQju20BmC35k3M
+         wR0a0aIWR7kkDYeae6ZHrq4s3rjVaY1Le0h2JblPtEJdWT+mtnKUbvN/EyEmFI4CeVpZ
+         2E9HSZ1Tfe7010731ow5/D98QFvWE7kFdpRv75agbleKA7xDWZk/lIa5O4xaNYWhLLA4
+         vJHEg39AileFHZ47mYC6aBxumOju7wIby/tSXjrcGvQfRr4M2YDfVwZOr7i3xz+1DsgE
+         a7kw==
+X-Gm-Message-State: AOAM533MF8QsG/Qfw+OuWFDXC263iV5meH/ZPGsY4KKz03sOJJSubgrt
+        wjuQdQaq0KD0fU6O9lE7y+q7VAMsLPtbjyjjpH8fUw==
+X-Google-Smtp-Source: ABdhPJwHNoxydd/t2CaA3EqBCm15INeCVbhxeoynL95/uM/C6nBW9vtMXvetlz1uGTkYLWiossI7SRfqhKSAUbviamc=
+X-Received: by 2002:a4a:b001:: with SMTP id f1mr2473858oon.25.1644354708042;
+ Tue, 08 Feb 2022 13:11:48 -0800 (PST)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 8 Feb 2022 13:08:19 -0800
+ HTTPREST; Tue, 8 Feb 2022 13:11:47 -0800
 MIME-Version: 1.0
-In-Reply-To: <1644334454-16719-2-git-send-email-quic_srivasam@quicinc.com>
-References: <1644334454-16719-1-git-send-email-quic_srivasam@quicinc.com> <1644334454-16719-2-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1644334454-16719-3-git-send-email-quic_srivasam@quicinc.com>
+References: <1644334454-16719-1-git-send-email-quic_srivasam@quicinc.com> <1644334454-16719-3-git-send-email-quic_srivasam@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Tue, 8 Feb 2022 13:08:19 -0800
-Message-ID: <CAE-0n50PAtGfvHXjNrvQYe6edNEfJvEc1uYZFUeW2KHxn6fsBA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sc7280: Add pinmux for I2S
- speaker and Headset
+Date:   Tue, 8 Feb 2022 13:11:47 -0800
+Message-ID: <CAE-0n52LGY2amCKo+40D4BoSsANs7JeQ0t_4QfeXNC5q64Ccwg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc7280: add lpass lpi pin
+ controller node
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         agross@kernel.org, bjorn.andersson@linaro.org,
         devicetree@vger.kernel.org, dianders@chromium.org,
@@ -69,131 +69,195 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-02-08 07:34:12)
-> Add AMP enable node and pinmux for primary and secondary I2S
-> for SC7280 based platforms.
+Quoting Srinivasa Rao Mandadapu (2022-02-08 07:34:13)
+> Add LPASS LPI pinctrl node required for Audio functionality on sc7280
+> based platforms.
 >
 > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 40 ++++++++++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi     | 40 ++++++++++++++++++++++++++++++++
->  2 files changed, 80 insertions(+)
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 150 +++++++++++++++++++++++++++++++
+>  1 file changed, 150 insertions(+)
 >
 > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index d623d71..c7d6c46 100644
+> index c7d6c46..4704a93 100644
 > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -436,6 +436,39 @@
->                 qcom,drive-strength = <3>;
+> @@ -638,3 +638,153 @@
+>                 bias-pull-up;
 >         };
 >  };
 
-Newline here
+Newline here.
 
-> +&pri_mi2s_data0 {
-> +       drive-strength = <6>;
-> +};
+> +&soc {
+> +       lpass_tlmm: pinctrl@33c0000 {
+> +               compatible = "qcom,sc7280-lpass-lpi-pinctrl";
+> +               reg = <0 0x33c0000 0x0 0x20000>,
+> +                       <0 0x3550000 0x0 0x10000>;
+> +               gpio-controller;
+> +               #gpio-cells = <2>;
+> +               gpio-ranges = <&lpass_tlmm 0 0 15>;
 > +
-> +&pri_mi2s_data1 {
-> +       drive-strength = <6>;
-> +};
-> +
-> +&pri_mi2s_mclk {
-> +       drive-strength = <6>;
-> +};
-> +
-> +&pri_mi2s_sclk {
-> +       drive-strength = <6>;
-> +};
-> +
-> +&pri_mi2s_ws {
-> +       drive-strength = <6>;
-> +};
-> +
-> +&sec_mi2s_data0 {
-> +       drive-strength = <6>;
-> +       bias-disable;
-> +};
-> +
-> +&sec_mi2s_sclk {
-> +       drive-strength = <6>;
-> +       bias-disable;
-> +};
-> +
-> +&sec_mi2s_ws {
-> +       drive-strength = <6>;
-> +};
+> +               #clock-cells = <1>;
 
-Please sort these nodes alphabetically on node name.
+Presumably this doesn't change so it should be moved to the sc7280.dtsi
+file as part of the soc node. It can be marked status = "disabled" if
+it's not commonly used, but I suspect it is commonly used on sc7280?
 
->
->  &qspi_cs0 {
->         bias-disable;
-> @@ -491,6 +524,13 @@
->  };
->
->  &tlmm {
-> +       amp_en: amp-en {
-> +               pins = "gpio63";
-> +               function = "gpio";
-> +               bias-disable;
+> +
+> +               dmic01_active: dmic01-active-pins {
 
-Is there an external pull?
+The '-pins' suffix is redundant. Please remove it.
 
-> +               drive-strength = <2>;
+> +                       clk {
+> +                               pins = "gpio6";
+> +                               function = "dmic1_clk";
+> +                               drive-strength = <8>;
+> +                               output-high;
+> +                       };
+
+Please be consistent and have a newline between nodes.
+
+> +                       data {
+> +                               pins = "gpio7";
+> +                               function = "dmic1_data";
+> +                               drive-strength = <8>;
+> +                               input-enable;
+> +                       };
+> +               };
+> +
+> +               dmic01_sleep: dmic01-sleep-pins {
+> +                       clk {
+> +                               pins = "gpio6";
+> +                               function = "dmic1_clk";
+> +                               drive-strength = <2>;
+> +                               bias-disable;
+> +                               output-low;
+> +                       };
+> +
+> +                       data {
+> +                               pins = "gpio7";
+> +                               function = "dmic1_data";
+> +                               drive-strength = <2>;
+> +                               pull-down;
+> +                               input-enable;
+
+Why does input-enable matter? It's not a gpio.
+
+> +                       };
+> +               };
+> +
+> +               dmic23_active: dmic02-active-pins {
+> +                       clk {
+> +                               pins = "gpio8";
+> +                               function = "dmic2_clk";
+> +                               drive-strength = <8>;
+> +                               output-high;
+> +                       };
+> +                       data {
+> +                               pins = "gpio9";
+> +                               function = "dmic2_data";
+> +                               drive-strength = <8>;
+> +                               input-enable;
+> +                       };
+> +               };
+> +
+> +               dmic23_sleep: dmic02-sleep-pins {
+> +                       clk {
+> +                               pins = "gpio8";
+> +                               function = "dmic2_clk";
+> +                               drive-strength = <2>;
+> +                               bias-disable;
+> +                               output-low;
+> +                       };
+> +
+> +                       data {
+> +                               pins = "gpio9";
+> +                               function = "dmic2_data";
+> +                               drive-strength = <2>;
+> +                               pull-down;
+> +                               input-enable;
+> +                       };
+> +               };
+> +
+> +               rx_swr_active: rx_swr-active-pins {
+> +                       clk {
+> +                               pins = "gpio3";
+> +                               function = "swr_rx_clk";
+> +                               drive-strength = <2>;
+> +                               slew-rate = <1>;
+> +                               bias-disable;
+> +                       };
+> +
+> +                       data {
+> +                               pins = "gpio4", "gpio5";
+> +                               function = "swr_rx_data";
+> +                               drive-strength = <2>;
+> +                               slew-rate = <1>;
+> +                               bias-bus-hold;
+> +                       };
+> +               };
+> +
+> +               rx_swr_sleep: rx_swr-sleep-pins {
+> +                       clk {
+> +                               pins = "gpio3";
+> +                               function = "swr_rx_clk";
+> +                               drive-strength = <2>;
+> +                               input-enable;
+> +                               bias-pull-down;
+> +                       };
+> +
+> +                       data {
+> +                               pins = "gpio4", "gpio5";
+> +                               function = "swr_rx_data";
+> +                               drive-strength = <2>;
+> +                               input-enable;
+> +                               bias-pull-down;
+> +                       };
+> +               };
+> +
+> +               tx_swr_active: tx_swr-active-pins {
+> +                       clk {
+> +                               pins = "gpio0";
+> +                               function = "swr_tx_clk";
+> +                               drive-strength = <2>;
+> +                               slew-rate = <1>;
+> +                               bias-disable;
+> +                       };
+> +
+> +                       data {
+> +                               pins = "gpio1", "gpio2", "gpio14";
+> +                               function = "swr_tx_data";
+> +                               drive-strength = <2>;
+> +                               slew-rate = <1>;
+> +                               bias-bus-hold;
+> +                       };
+> +               };
+> +
+> +               tx_swr_sleep: tx_swr-sleep-pins {
+
+No underscore in node names.
+
+> +                       clk {
+> +                               pins = "gpio0";
+> +                               function = "swr_tx_clk";
+> +                               drive-strength = <2>;
+> +                               input-enable;
+> +                               bias-pull-down;
+> +                       };
+> +
+> +                       data {
+> +                               pins = "gpio1", "gpio2", "gpio14";
+> +                               function = "swr_tx_data";
+> +                               drive-strength = <2>;
+> +                               input-enable;
+> +                               bias-bus-hold;
+> +                       };
+> +               };
 > +       };
-> +
->         nvme_pwren: nvme-pwren {
->                 function = "gpio";
->         };
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 937c2e0..76e73e9 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -3461,6 +3461,46 @@
->                                 };
->                         };
+> +};
+> --
+> 2.7.4
 >
-> +                       pri_mi2s_data0: pri-mi2s-data0 {
-> +                               pins = "gpio98";
-> +                               function = "mi2s0_data0";
-> +                       };
-> +
-> +                       pri_mi2s_data1: pri-mi2s-data1 {
-> +                               pins = "gpio99";
-> +                               function = "mi2s0_data1";
-> +                       };
-> +
-> +                       pri_mi2s_mclk: pri-mi2s-mclk {
-> +                               pins = "gpio96";
-> +                               function = "pri_mi2s";
-> +                       };
-> +
-> +                       pri_mi2s_sclk: pri-mi2s-sclk {
-> +                               pins = "gpio97";
-> +                               function = "mi2s0_sck";
-> +                       };
-> +
-> +                       pri_mi2s_ws: pri-mi2s-ws {
-> +                               pins = "gpio100";
-> +                               function = "mi2s0_ws";
-> +                       };
-> +
-> +                       sec_mi2s_data0: sec-mi2s-data0 {
-> +                               pins = "gpio107";
-> +                               function = "mi2s1_data0";
-> +                       };
-> +
-> +                       sec_mi2s_sclk: sec-mi2s-sclk {
-> +                               pins = "gpio106";
-> +                               function = "mi2s1_sck";
-> +                       };
-> +
-> +                       sec_mi2s_ws: sec-mi2s-ws {
-> +                               pins = "gpio108";
-> +                               function = "mi2s1_ws";
-> +                       };
-
-Please sort these nodes alphabetically on node name.
