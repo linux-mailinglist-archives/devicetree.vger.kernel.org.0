@@ -2,178 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB3DE4ADE2B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 17:20:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D43754ADE6E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 17:36:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352122AbiBHQUo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 11:20:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50042 "EHLO
+        id S1352194AbiBHQgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 11:36:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383054AbiBHQUn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 11:20:43 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCACBC061576;
-        Tue,  8 Feb 2022 08:20:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 56C4F616B8;
-        Tue,  8 Feb 2022 16:20:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63FC9C004E1;
-        Tue,  8 Feb 2022 16:20:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644337241;
-        bh=p6ssO5fKNiJOSoSBu1ARzzUWvgx5q89QAvBfdf4gyM4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=QcCLEMiE++29yOF63ODIEl4thzwLCRttGJx082qnm68+ZYEIzo/DsGkUYnxA0dfQp
-         7Kp/gMFH+1i2JcnwXf2SNUxF6qaNzOUuxEk6FA+jyzcrgNQH5RNM7rOw2FfN1V6V+R
-         aJIGZATY5PAvkUsyxT5i7SWuWhbvez7Lr1j9EbhAow9DRp2mPEdu6Xs5xXPd1RLRyb
-         M+Bn8qDuzkAXlkrnCa0VkG67A5c9/0NKOd2+okVIOsBYBcwUx856BC5Q7GGTpCTz3k
-         yXpCuUDTEvcG5No1AVKUxTSgu3rU34FghwpCqtq4ZWCyfdAu9nIYKYYjV+pO6hZaxe
-         7TffOGjuLrs7A==
-Date:   Tue, 8 Feb 2022 10:20:39 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>, bhelgaas@google.com,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] PCI: keystone: Add quirk to mark AM654 RC BAR
- flag as IORESOURCE_UNSET
-Message-ID: <20220208162039.GA477897@bhelgaas>
+        with ESMTP id S1343746AbiBHQgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 11:36:37 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 978C1C061576;
+        Tue,  8 Feb 2022 08:36:36 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5FA6E1FB;
+        Tue,  8 Feb 2022 08:36:36 -0800 (PST)
+Received: from [10.57.70.89] (unknown [10.57.70.89])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C50773F70D;
+        Tue,  8 Feb 2022 08:36:34 -0800 (PST)
+Message-ID: <4b1d6f80-db33-b2ea-7214-34b87a7e734c@arm.com>
+Date:   Tue, 8 Feb 2022 16:36:31 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220208115344.GB6233@lpieralisi>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v2] add pmu to amlogic meson sm1
+Content-Language: en-GB
+To:     Benjamin Mordaunt <crawford.benjamin15@gmail.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220205234554.4403-1-crawford.benjamin15@gmail.com>
+ <20220206144343.2194-1-crawford.benjamin15@gmail.com>
+ <42c51f9d-d122-2d09-cdcd-f733cbc60d5b@baylibre.com>
+ <65cde84a-8f8b-ac57-9b66-2b8d6378dbfa@arm.com>
+ <CANtEDzSVxnUsC05Vhr5gG3KRBAX_X564ZiY2nBSoBFoy54RQ5w@mail.gmail.com>
+ <a7adf12d-f949-9a95-9c6a-b73017107dc7@arm.com>
+ <CANtEDzQDOiLKWW7c1VwnhjE-kjZ3tWYVKxBA4j1twOOjyEPcwQ@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CANtEDzQDOiLKWW7c1VwnhjE-kjZ3tWYVKxBA4j1twOOjyEPcwQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 08, 2022 at 11:53:44AM +0000, Lorenzo Pieralisi wrote:
-> On Fri, Feb 04, 2022 at 08:38:46PM +0530, Kishon Vijay Abraham I wrote:
-> > On 11/01/22 11:53 am, Kishon Vijay Abraham I wrote:
-> > > On 04/01/22 9:27 pm, Lorenzo Pieralisi wrote:
-> > >> On Fri, Nov 26, 2021 at 02:01:18PM +0530, Kishon Vijay Abraham I wrote:
-> > >>> AM654 RootComplex has a hard coded 64 bit BAR of size 1MB and
-> > >>> also has both MSI and MSI-X capability in it's config space.
-> > >>> If PCIEPORTBUS is enabled, it tries to configure MSI-X and
-> > >>> msix_mask_all() adds about 10 Second boot up delay when it
-> > >>> tries to write to undefined location.
-
-s/AM654 RootComplex/The AM654 Root Complex/
-
-But Root Complexes are not normally materialized as PCI devices with
-their own bus/device/function address, config space, BARs, etc.
-Sounds like this might really be a Root *Port*, not a Root Complex?
-
-s/it's config/its config/
-s/10 Second/10 second/
-
-> > >>> Add quirk to mark AM654 RC BAR flag as IORESOURCE_UNSET so
-> > >>> that msix_map_region() returns NULL for Root Complex and avoid
-> > >>> un-desirable writes to MSI-X table.
-> > >>
-> > >> I don't think this is the right fix (it is not even a fix, just
-> > >> a plaster to workaround an issue).
-> > >>
-> > >> What do you mean by "writing to an undefined location" ?
-> > >>
-> > >> What does "a hard coded BAR" mean ?
-> > >>
-> > >> What happens if we _rightly_ write into it (ie to size it) ?
-> > > 
-> > > There are two parts w.r.t setting the BAR; one is during the
-> > > configuration and the other is during the enumeration.
-> > > i) During the configuration, the size of the BAR is configured
-> > >    and the inbound ATU is configured to map the BAR to a
-> > >    physical memory.
-> > > ii) During the enumeration, the size of the BAR is obtained and
-> > >     an address is allocated and programmed in the BAR.
-> > > 
-> > > In the case of RC, for (i) above, the BAR size is configured as '0'
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/dwc/pcie-designware-host.c#n556
-> > > and the inbound ATU is not programmed at all.
-> > > 
-> > > However, in the case of AM654, the HW configures BAR0 for a
-> > > fixed size of 1MB (irrespective of what SW programmed in [i]).
-> > > While this was done more for a endpoint usecase, since the same
-> > > IP is configured for both RC mode and EP mode, the fixed BAR
-> > > size is seen with RC mode as well.
-
-This doesn't seem to quite answer Lorenzo's question.  On AM654, does
-__pci_read_base() discover the 1MB size correctly for both RC and EP
-mode?
-
-What value should BAR0 contain in RC mode?  Does the device respond at
-that address?  Do we still need to ensure that 1MB address space is
-not assigned to any other device?
-
-> > > AM654 also has MSI-X capability for RC mode (the IP should have
-> > > been ideally configured to have MSI-X capability for EP mode).
-> > > This results in PCIEPORTBUS doing some undesired access in
-> > > msix_mask_all().
-
-We have several quirks that set dev->no_msi.  Maybe that would be a
-better way to prevent use of MSI-X (it would also prevent use of MSI;
-not sure whether that needs to be avoided as well)?
-
-> > > Here I configure IORESOURCE_UNSET so that memory is not
-> > > allocated for RC BAR.
-
-I guess this implies that this device (RP?  I don't think RCs have
-BARs) never responds to PCI address space described by BAR0?
-
-> > Do you need further clarifications on this?
+On 2022-02-08 16:02, Benjamin Mordaunt wrote:
+> Okay so this does appear to be behaving with some issues (unless I've
+> just got 2 of the interrupt numbers wrong, but it seems unlikely at
+> this stage).
 > 
-> There are two things here:
+> CPUs 0 and 1 seem to be behaving somewhat sensibly, while `perf stat`
+> reports `<not supported>` for caches and branches with CPUs 2 and 3.
+> Would this suggest this implementation is indeed broken?
+
+Taking a closer look, the interrupts for CPUs 2 and 3 here are clearly 
+wrong since they already belong to some audio controllers in the DTSI. I 
+looked up documentation and found an S905D3 manual from Khadas which 
+documents SPI 137 (GIC interrupt 169) as "|PMUIRQ_a[3:0]", which I can't 
+read as anything other than "logical OR of all 4 PMU IRQs". Not sure 
+about SPI 138 but I'd guess it's something that just happens to fire in 
+a manner that appears to sort of work for the PMU.
+
+Sadly it looks like Neil's instinct was right and this one is also in 
+fact dead, sorry :(
+
+Robin.
+
 > 
-> 1) As Rob mentioned, you can write it as a quirk applying only to
->    the bridge _only_
-> 2) What you want is that the BAR should not be visible to the OS
->    since it is not an actual resource. What I am questioning is
->    whether your way of doing that complies with how this is done in
->    the kernel for other devices/bridges. I need Bjorn's input on
->    this since he knows better (especially wrt IORESOURCE_UNSET
->    usage). I don't want to add any other IORESOURCE_UNSET usage that
->    deviates from what's expected from it
-
-If BAR0 should not exist at all as far as the OS is concerned, I think
-you should just set r->flags = 0.  But that assumes the device never
-uses the value in the BAR, and it never responds using whatever
-address is there, even when PCI_COMMAND_MEMORY is set.
-
-> > >>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> > >>> ---
-> > >>>  drivers/pci/controller/dwc/pci-keystone.c | 8 +++++++-
-> > >>>  1 file changed, 7 insertions(+), 1 deletion(-)
-> > >>>
-> > >>> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
-> > >>> index 52d20fe17ee9..73e6626a0d8f 100644
-> > >>> --- a/drivers/pci/controller/dwc/pci-keystone.c
-> > >>> +++ b/drivers/pci/controller/dwc/pci-keystone.c
-> > >>> @@ -557,8 +557,14 @@ static void ks_pcie_quirk(struct pci_dev *dev)
-> > >>>  		{ 0, },
-> > >>>  	};
-> > >>>  
-> > >>> -	if (pci_is_root_bus(bus))
-> > >>> +	if (pci_is_root_bus(bus)) {
-> > >>>  		bridge = dev;
-> > >>> +		if (pci_match_id(am6_pci_devids, bridge)) {
-> > >>> +			struct resource *r = &dev->resource[0];
-> > >>> +
-> > >>> +			r->flags |= IORESOURCE_UNSET;
-> > >>> +		}
-> > >>> +	}
-> > >>>  
-> > >>>  	/* look for the host bridge */
-> > >>>  	while (!pci_is_root_bus(bus)) {
-> > >>> -- 
-> > >>> 2.17.1
-> > >>>
+> Thanks,
+> Ben
+> 
+> 
+> On Mon, Feb 7, 2022 at 1:47 PM Robin Murphy <robin.murphy@arm.com> wrote:
+>>
+>> On 2022-02-07 13:33, Benjamin Mordaunt wrote:
+>>> The S905X3’s (Odroid C4) datasheet appears to report 4 individual PMUIRQs,
+>>> much in the same way as GX. If that is indeed the case, I think this patch
+>>> applies. Otherwise, is the datasheet wrong if Marc’s comments apply?
+>>
+>> A fairly solid test would be to run a sampling event (e.g. `perf stat`)
+>> taskset to a single CPU and observe the corresponding IRQ count increase
+>> in /proc/interrupts, for each core in turn. If that behaves as expected
+>> then chances are everything is indeed sane.
+>>
+>> Couple of nitpicks for the patch itself - you're almost there, but
+>> you've got spurious tabs on the blank lines, plus you need a proper
+>> commit message and your sign-off above the "---" line - anything you add
+>> below there is treated as additional commentary for reviewers' benefit
+>> and will be discarded by `git am`.
+>>
+>> Cheers,
+>> Robin.
+>>
+>>>
+>>> / Ben
+>>>
+>>> On Mon, 7 Feb 2022 at 13:20, Robin Murphy <robin.murphy@arm.com> wrote:
+>>>
+>>>> On 2022-02-07 08:14, Neil Armstrong wrote:
+>>>>> Hi,
+>>>>>
+>>>>> On 06/02/2022 15:43, Benjamin Mordaunt wrote:
+>>>>>> ---
+>>>>>> The dts for meson sm1 appears to omit the SoC's PMU,
+>>>>>> which is essential for accessing perf events regarding
+>>>>>> e.g. cache on e.g. the Odroid C4 platform. Add it.
+>>>>>>
+>>>>>>     arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 13 ++++++++++++-
+>>>>>>     1 file changed, 12 insertions(+), 1 deletion(-)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+>>>>>> b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+>>>>>> index 3d8b1f4f2..4147eecd2 100644
+>>>>>> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+>>>>>> @@ -6,6 +6,8 @@
+>>>>>>     #include "meson-g12-common.dtsi"
+>>>>>>     #include <dt-bindings/clock/axg-audio-clkc.h>
+>>>>>> +#include <dt-bindings/interrupt-controller/irq.h>
+>>>>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>>>>     #include <dt-bindings/power/meson-sm1-power.h>
+>>>>>>     #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
+>>>>>>     #include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
+>>>>>> @@ -90,7 +92,16 @@ l2: l2-cache0 {
+>>>>>>                 compatible = "cache";
+>>>>>>             };
+>>>>>>         };
+>>>>>> -
+>>>>>> +
+>>>>>> +    arm-pmu {
+>>>>>> +        compatible = "arm,cortex-a55-pmu";
+>>>>>> +        interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
+>>>>>> +                 <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
+>>>>>> +                 <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
+>>>>>> +                 <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
+>>>>>> +        interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+>>>>>> +    };
+>>>>>> +
+>>>>>>         cpu_opp_table: opp-table {
+>>>>>>             compatible = "operating-points-v2";
+>>>>>>             opp-shared;
+>>>>>
+>>>>> Please see Marc's comments about PMU support:
+>>>>> http://lore.kernel.org/r/8735pcq63o.wl-maz@kernel.org
+>>>>
+>>>> If SM1 actually has distinct per-core interrupts as the patch implies
+>>>> then it's fine - it's only G12B and anything else that combines multiple
+>>>> PMU IRQs into a single SPI which are unsupportable.
+>>>>
+>>>> Robin.
+>>>>
+>>>
