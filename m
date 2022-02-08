@@ -2,117 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E1184AD63B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E1D84AD639
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357480AbiBHLW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S237231AbiBHLW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 8 Feb 2022 06:22:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36794 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356822AbiBHLIK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:08:10 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B95BC03FEC0;
-        Tue,  8 Feb 2022 03:08:10 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A4D4561583;
-        Tue,  8 Feb 2022 11:08:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 556ACC004E1;
-        Tue,  8 Feb 2022 11:08:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1644318489;
-        bh=qu25s2pI0bef9usPCks0SF20/3lcuZT4+ajSE0ondkM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=arp1QXgJJRaO2ZgwEBCS04YXmhnkX1AoGwN+4Tef0YqIynclXCGBiDrpdd4BdIWaj
-         PbQLX9uUhQ4ue0sJOaRlbObuQi9wsuUf9ZHPoiyAR2anjm1+9fWCPYaLs9QChXea+a
-         qFd9pTBvdmy4LuNlg+WxYMkSefPhAXBTpmkDc8y0=
-Date:   Tue, 8 Feb 2022 12:08:06 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
-        linux-doc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Borislav Petkov <bp@alien8.de>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Zev Weiss <zweiss@equinix.com>,
-        David Muller <d.mueller@elsoft.ch>,
-        Dave Hansen <dave.hansen@intel.com>,
-        Billy Tsai <billy_tsai@aspeedtech.com>
-Subject: Re: [PATCH v7 07/13] peci: Add sysfs interface for PECI bus
-Message-ID: <YgJPFlr18AmWiTRY@kroah.com>
-References: <20220202144838.163875-1-iwona.winiarska@intel.com>
- <20220202144838.163875-8-iwona.winiarska@intel.com>
+        with ESMTP id S1356843AbiBHLJh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:09:37 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFE90C03FEC9
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 03:09:36 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id b13so36669800edn.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 03:09:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KQBVfVDlvCSrk6Sswzhkfx8sEJDxZvcBw31v7IjCtFQ=;
+        b=Zcfv+t1DGD3EB3HP5kz6zWh1pByYKpIDp3Q8enYRVXu63AQLAzCQugZ4SoXjF7MtVL
+         wPoRzOO0w7TcQorumE2LF1RehZcto52dZVQic+Oml3gV3bdUn5exQP5qlieY7VK772IB
+         899VBZDJodq3ijB1E4fvyfVsqH5Yv4Wvfw9r+FwTxvKuN0Gv9NsxgyWrCWSqhTgUcvlA
+         SsUtmMsqfSbJdRCSSPqUcEhsTh85nK2hsyj/xSZL1PKB+kbu1sc+t0jMHQvCn4lcflc5
+         LXdfZb+JZrjoX0m2iXKT7sAVVRTIwqpSlqCbqvYB+7glzzi2eSDHj+aHnj1g5e8Z9v1g
+         LvJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KQBVfVDlvCSrk6Sswzhkfx8sEJDxZvcBw31v7IjCtFQ=;
+        b=n4keLPIH0R+5sNqE1NGEgHP4eC9H1C/IrIn5o1UjrR8VtITvNQzadt+TDp48prV3Je
+         LgM8tCWt5DyNVvEGwVmFuKaVtYIhXMBEdXTwz9Q571LjQoLiU/a4Zu/Fqo/cklwERuHX
+         +RkLtKYKcUFOmXQhwJpRypJQ56F1+w0ncuhXiDfVDUoex4hV0jmmjpddNbuH6dEHCltJ
+         GwLRkkrukMempdTa3lio6YgvooA+/ii9F5CjuhklzzOT0/Ek/0FPL89Yk2kXr95CVVEQ
+         FpGCYv333Fxkr9OcOj1Fxo55xb7WcQwc+3iFVtaOEoPMloNe8g9M0eNRq59Y/Ol3l59z
+         AX7Q==
+X-Gm-Message-State: AOAM533SBXcRs57g6wXrB+Ef/n9dpXgQB3zI3awDGYf6LPVdUf2jELax
+        tiadXy6Z/bsAo+c6Uq42WVhOhQV6nHwLIFxLax+ATQ==
+X-Google-Smtp-Source: ABdhPJzNCw/cioLcKrAYx5rbKSd05oiNHfv+p2Mg5ic+HSw2d1l/HVOQ3hTWmd+vsyuosiASrLQGqbIOMPkET3fjF+c=
+X-Received: by 2002:a05:6402:5189:: with SMTP id q9mr3959045edd.314.1644318575241;
+ Tue, 08 Feb 2022 03:09:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220202144838.163875-8-iwona.winiarska@intel.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220207162637.1658677-1-conor.dooley@microchip.com> <20220207162637.1658677-6-conor.dooley@microchip.com>
+In-Reply-To: <20220207162637.1658677-6-conor.dooley@microchip.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 8 Feb 2022 12:09:24 +0100
+Message-ID: <CAMRc=Mc0CYCgiGqQgmCQArv=1P0M5dxCw53H+KQ92d=yX=BY4Q@mail.gmail.com>
+Subject: Re: [PATCH v6 05/12] dt-bindings: gpio: add bindings for microchip
+ mpfs gpio
+To:     conor.dooley@microchip.com
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>, aou@eecs.berkeley.edu,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        "open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>, linux-riscv@lists.infradead.org,
+        bin.meng@windriver.com, Heiko Stuebner <heiko@sntech.de>,
+        lewis.hanly@microchip.com, daire.mcnamara@microchip.com,
+        ivan.griffin@microchip.com, atishp@rivosinc.com,
+        Rob Herring <robh@kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 02, 2022 at 03:48:32PM +0100, Iwona Winiarska wrote:
-> PECI devices may not be discoverable at the time when PECI controller is
-> being added (e.g. BMC can boot up when the Host system is still in S5).
-> Since we currently don't have the capabilities to figure out the Host
-> system state inside the PECI subsystem itself, we have to rely on
-> userspace to do it for us.
-> 
-> In the future, PECI subsystem may be expanded with mechanisms that allow
-> us to avoid depending on userspace interaction (e.g. CPU presence could
-> be detected using GPIO, and the information on whether it's discoverable
-> could be obtained over IPMI).
-> Unfortunately, those methods may ultimately not be available (support
-> will vary from platform to platform), which means that we still need
-> platform independent method triggered by userspace.
-> 
-> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
+On Mon, Feb 7, 2022 at 5:24 PM <conor.dooley@microchip.com> wrote:
+>
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> Add device tree bindings for the gpio controller on
+> the Microchip PolarFire SoC.
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 > ---
->  Documentation/ABI/testing/sysfs-bus-peci | 16 +++++
->  drivers/peci/Makefile                    |  2 +-
->  drivers/peci/core.c                      |  3 +-
->  drivers/peci/device.c                    |  1 +
->  drivers/peci/internal.h                  |  5 ++
->  drivers/peci/sysfs.c                     | 82 ++++++++++++++++++++++++
->  6 files changed, 107 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-peci
->  create mode 100644 drivers/peci/sysfs.c
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-peci b/Documentation/ABI/testing/sysfs-bus-peci
-> new file mode 100644
-> index 000000000000..56c2b2216bbd
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-peci
-> @@ -0,0 +1,16 @@
-> +What:		/sys/bus/peci/rescan
-> +Date:		July 2021
-> +KernelVersion:	5.15
 
-5.15 was a long time ago :(
+Looks good.
 
-
-Other than this nit, these all look semi-sane to me.  What tree are you
-wanting these to go through, mine?  If so, can you fix this up (both
-places in this file) and resend?
-
-thanks,
-
-greg k-h
+Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
