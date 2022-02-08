@@ -2,114 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BAC64AD7EB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 094764AD7F0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:52:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356148AbiBHLv3 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 8 Feb 2022 06:51:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39314 "EHLO
+        id S232270AbiBHLwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 06:52:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356935AbiBHLuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:50:14 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F9D8C035417
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 03:41:15 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nHOrt-00014g-Pz; Tue, 08 Feb 2022 12:41:09 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 24/27] clk: rk3568: drop CLK_SET_RATE_PARENT from dclk_vop*
-Date:   Tue, 08 Feb 2022 12:41:08 +0100
-Message-ID: <2260638.yNqFStFpQL@diego>
-In-Reply-To: <20220131081042.GW23490@pengutronix.de>
-References: <20220126145549.617165-1-s.hauer@pengutronix.de> <5329207.qDA9hNt6id@diego> <20220131081042.GW23490@pengutronix.de>
+        with ESMTP id S231327AbiBHLwR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:52:17 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 69AA8C03FECA;
+        Tue,  8 Feb 2022 03:52:15 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id B60908106;
+        Tue,  8 Feb 2022 11:51:49 +0000 (UTC)
+Date:   Tue, 8 Feb 2022 13:52:13 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, jan.kiszka@siemens.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am65: disable optional
+ peripherals by default
+Message-ID: <YgJZbdOlazrde7O/@atomide.com>
+References: <20220203140240.973690-1-matthias.schiffer@ew.tq-group.com>
+ <20220204143108.653qk2ihnlhsr5aa@prior>
+ <YgDCLaBHA3DDQAUd@atomide.com>
+ <5944ba0ce568eaf507917799b1dfd89a3d0ca492.camel@ew.tq-group.com>
+ <YgEBml9HvFzSl289@atomide.com>
+ <9923df6525212389b86cb635624bcfb5c27a8bc5.camel@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9923df6525212389b86cb635624bcfb5c27a8bc5.camel@ew.tq-group.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 31. Januar 2022, 09:10:42 CET schrieb Sascha Hauer:
-> On Sat, Jan 29, 2022 at 06:48:13PM +0100, Heiko Stübner wrote:
-> > Am Mittwoch, 26. Januar 2022, 15:55:46 CET schrieb Sascha Hauer:
-> > > The pixel clocks dclk_vop[012] can be clocked from hpll, vpll, gpll or
-> > > cpll. gpll and cpll also drive many other clocks, so changing the
-> > > dclk_vop[012] clocks could change these other clocks as well. Drop
-> > > CLK_SET_RATE_PARENT to fix that. With this change the VOP2 driver can
-> > > only adjust the pixel clocks with the divider between the PLL and the
-> > > dclk_vop[012] which means the user may have to adjust the PLL clock to a
-> > > suitable rate using the assigned-clock-rate device tree property.
-> > > 
-> > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > > ---
-> > >  drivers/clk/rockchip/clk-rk3568.c | 6 +++---
-> > >  1 file changed, 3 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/clk/rockchip/clk-rk3568.c b/drivers/clk/rockchip/clk-rk3568.c
-> > > index 9d889fc46811..7687c62d1fa8 100644
-> > > --- a/drivers/clk/rockchip/clk-rk3568.c
-> > > +++ b/drivers/clk/rockchip/clk-rk3568.c
-> > > @@ -1044,13 +1044,13 @@ static struct rockchip_clk_branch rk3568_clk_branches[] __initdata = {
-> > >  			RK3568_CLKGATE_CON(20), 8, GFLAGS),
-> > >  	GATE(HCLK_VOP, "hclk_vop", "hclk_vo", 0,
-> > >  			RK3568_CLKGATE_CON(20), 9, GFLAGS),
-> > > -	COMPOSITE(DCLK_VOP0, "dclk_vop0", hpll_vpll_gpll_cpll_p, CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
-> > > +	COMPOSITE(DCLK_VOP0, "dclk_vop0", hpll_vpll_gpll_cpll_p, CLK_SET_RATE_NO_REPARENT,
+* Matthias Schiffer <matthias.schiffer@ew.tq-group.com> [220208 10:53]:
+> On Mon, 2022-02-07 at 13:25 +0200, Tony Lindgren wrote:
+> > * Matthias Schiffer <matthias.schiffer@ew.tq-group.com> [220207
+> > 08:45]:
+> > > Generally I think that it's a bootloader's responsiblity to disable
+> > > unneeded devices - the kernel may not even have a driver for some
+> > > peripherals, leading to the same behaviour as a "disabled" status.
+> > > For
+> > > this reason I believe that it should always be okay to set unneeded
+> > > devices to "disabled", and it should be considered a safe default.
 > > 
-> > hmm, I'm wondering about the use of having CLK_SET_RATE_NO_REPARENT here
-> > (and even adding it below).
+> > Not possible, think kexec for example :) How would the previous
+> > kernel
+> > even know what to disable if Linux has no idea about the devices?
+> 
+> Well, optimally, bootloader and all kernels would agree on the devices
+> that are actually available, but I get your point.
+> 
 > > 
-> > Using SET_RATE_PARENT in the following patch for the hdmi-pll, should give
-> > us at least a suitable rate for the hdmi output, so the vop using that
-> > should already find a nice rate to use.
+> > If there are issues you're seeing, it's likely a bug in some of the
+> > device drivers for not checking for the necessary resources like
+> > pinctrl for i2c lines.
+> 
+> I don't think it's common for individual drivers to care about pinctrl
+> unless switching between different pin settings is required at runtime.
+> Many drivers can be used on different hardware, some of which may
+> require pinmuxing, while others don't.
+
+Yeah that's true, some configurations only do pin muxing in the
+bootloader. So pins are not a good criteria for devicetree status enabled
+for when the device is operational.
+
+Probably a better criteria for devicetree "operational" status is the
+device can be clocked and configured or idled. Some devices like GPUs
+can render to memory with no external pin configuration for example.
+
+Following Linux running on a PC analogy.. If ACPI has some device that
+causes driver warnings on Linux boot, do we patch the ACPI table and
+pretend the device does not exist? Or do we patch the device driver to
+deal with the random buggy bootloader state for the device? :)
+
+> Also, what is the expected behavior of a driver that is probed for an
+> unusable device? Wouldn't this require some as-of-yet nonexisting
+> status between "okay" and "disabled" that conveys something like "probe
+> this device, initialize (and disable) PM, but don't register anything",
+> so no unusable devices become visible to userspace (and possibly other
+> kernel drivers)?
+
+I did some experimental patches several years ago to add devicetree
+status for incomplete, but eventually came to the conclusion that it
+was not really needed. Feel free to revisit that if you have the
+spare cycles :)
+
+Having the drivers check for the resources like clocks and then just
+idle the device after probe solved the issues I was seeing for warnings
+and kexec. In some cases the device may need to be reset or at least
+properly reconfigured in the probe as the state can be unknown from the
+bootloader. That's about all there is to it. Sure you could save some
+memory with less instances for some devices, so maybe the status =
+"incomplete" could be used to do the trick for that.
+
+> > > I'm not sure what the consensus on these issues is. I'm more
+> > > familiar
+> > > with NXP's i.MX and Layerscape SoCs, where it's common to have all
+> > > muxable peripherals set to "disabled" in the base DTSI, and a quick
+> > > grep through a few dts directories gives me the impression that
+> > > this is
+> > > the case for most other vendors as well.
 > > 
-> > The normal system-PLLs don't normally don't change their rate at runtime,
-> > so I think we should liberate the dclks to select a PLL that best matches
-> > their target rate - so drop the CLK_SET_RATE_NO_REPARENT as well.
-> > 
-> > That way the DCLKs can change to another PLL source if that provides
-> > a rate nearer to their target.
+> > This approach only works for SoCs that don't need the kernel to idle
+> > devices for runtime PM.
 > 
-> The HDMI reference clock has the CLK_SET_RATE_PARENT flag set and we
-> need that to program the HPLL clock to suitable rates for the HDMI
-> output. Now any other display choosing HPLL as parent, because that
-> provides the best rate in that point of time, hangs on a PLL which
-> changes its rate whenever the resolution is changed on the HDMI output.
+> I'm pretty sure that most modern SoCs I looked at have runtime PM, and
+> it is simply expected that unusable devices are never enabled in the
+> first place, so there is no need for the kernel to know about them.
 
-Ah, right ... the hpll is in the parent list, that changes things as you said.
-I somehow only noticed the regular PLLs that normally have a constant
-rate. So never mind ;-)
+Yeah well that assumption is the difference in getting runtime PM to
+work in a sane way across multiple SoCs and devices :)
 
+Devices tagged with status = "disabled" are completely ignored by the
+kernel. Interconnect and bus related code may not know the details on
+how to reset and idle the child devices. Relying on firmware to do the
+reset and idle of unused devices may be too generic, can be buggy, and
+probably depends on the firmware revision.
 
-Heiko
+Regards,
 
-
-> Changing parents on rate changes only works when all possible parents of
-> all the children involved have a constant rate. IMO allowing reparenting
-> on rate changes is a poorly chosen default because it's very unsafe. We
-> should rather have a CLK_SET_RATE_ALLOW_REPARENT flag.
-> 
-> Sascha
-> 
-> 
-
-
-
-
+Tony
