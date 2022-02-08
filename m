@@ -2,170 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C3194AD046
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 05:18:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF6E14AD032
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 05:12:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345536AbiBHESC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 23:18:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46630 "EHLO
+        id S1346787AbiBHEL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 23:11:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244191AbiBHESB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 23:18:01 -0500
-X-Greylist: delayed 195 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Feb 2022 20:18:00 PST
-Received: from condef-03.nifty.com (condef-03.nifty.com [202.248.20.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71F1AC0401DC;
-        Mon,  7 Feb 2022 20:18:00 -0800 (PST)
-Received: from conssluserg-03.nifty.com ([10.126.8.82])by condef-03.nifty.com with ESMTP id 2184BomB007335;
-        Tue, 8 Feb 2022 13:11:50 +0900
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52]) (authenticated)
-        by conssluserg-03.nifty.com with ESMTP id 2184BHd9013266;
-        Tue, 8 Feb 2022 13:11:17 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-03.nifty.com 2184BHd9013266
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1644293478;
-        bh=j+aPXdq2sicmNcexcHQA/oJ6M8by9veF/5qbR5FdEAM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rVvdXfg38TArY3w3QYhn1Uw2hhDdN5Q+UFPtxx+zqe7FFMjw60XeWxqYl/jhsH6Td
-         EpytE8eF0T4lDLkue7Df/JP/Ku/x6xfFejGNjJCv2/1GMKcvLbplFLAE1iB3IrLACv
-         b9qaTVnlKugwrFoBGsmzS/4xv6ksUkFpm5JJ8rGUAt1IS+1Pdvot7IXojMYqsargrp
-         OxHZHRRvbDCpHWIoQhcDrmFWCQ1iHrgA/dtMJOkN8pIW6jlLwU9AYVxwVOg1LpRfhq
-         KNkJUkxYZ8U4d083XxnYc7BNegV0EugcJpQF0aUN6eBbfRDU9HTM9TGfyEUC+0j4Uy
-         26HiHcqm0MJnw==
-X-Nifty-SrcIP: [209.85.216.52]
-Received: by mail-pj1-f52.google.com with SMTP id om7so1827244pjb.5;
-        Mon, 07 Feb 2022 20:11:17 -0800 (PST)
-X-Gm-Message-State: AOAM532ZYqPmMVPTAoC75lm8n0vvgfIGp8LG17v0fSusYJaJEUlLANnW
-        bCc7hLz3QD59P1i6UyzGsYOxDchkmzYvMsVfU14=
-X-Google-Smtp-Source: ABdhPJy4Kyyql8eQlLfvhsuGVW6htuxsp20B0z3n+90WIg7ccLHI9OZNKuoLNUKr/MQH0Ozr2+TR7zD0OI+oVCQGWkE=
-X-Received: by 2002:a17:903:22cd:: with SMTP id y13mr2749421plg.99.1644293476950;
- Mon, 07 Feb 2022 20:11:16 -0800 (PST)
+        with ESMTP id S1346236AbiBHEL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 23:11:56 -0500
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B13C0401EA
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 20:11:55 -0800 (PST)
+Received: by mail-pf1-x443.google.com with SMTP id e6so16675301pfc.7
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 20:11:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=4HWW3srFwPeoeibWEbuFvJKgAXfTYBcpWGvdOE3ZrkM=;
+        b=lYKvlhrukwKxmCq0eJSiZhJlAcTJBccadXFJbgAnH6d004s/WccG0zegKMEh80bEmo
+         +of6ThRn87c5icBwfpCTNgVNSYsj4deR+g0WDTthArRBO32TkJXAEm/zt6kLcy2i43JG
+         icREiJjbOLxH+sFWcAmss9mNbBHXzRpiRxGK/Kgu4YzyKIYZAyoT1vzPKfYKKUNoTFej
+         cKyUI3HADjSyS/oB3E4rywaBkh8Z82qYVEwWzKRjnkEKD6gX46PzWYFoxedhnOx5A+DC
+         E8Aa3kRf2CZVL4TPVYRDRqK8ATB8+3JFO3ThcTD4oUSgHebxr8xDPjEP6iUicMTBBDuT
+         xKcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=4HWW3srFwPeoeibWEbuFvJKgAXfTYBcpWGvdOE3ZrkM=;
+        b=T+ko8bgCftLgkWNV2wnL7q2tcZ59rC7msiOTFkQzm83TI9CZgqzPvlJgbwme4BJ5i8
+         G8chmzsLlOz1ss0v/xcBj2CTjMTn/7c8vPEZMSazMvaMj7GTP0l5YjK8BZ8LSNZZG90k
+         u4bjwpfyAdqe2ecW5Ui5vD2gNbxxiDPGHK476TTEI3etMRIz0HhYLMGRFUqMHvqW+Tnf
+         0tNR0EALwMEiKEx51m6CYKAhcm18Z+wFte4XAJSjcKgYDKn50IUWAUtlMtGtIhD33iJs
+         TmblIsATlJsqa1EKzCxaJoVSZl5Xoq2kZuMQnsr/E0XCm55s1CaGMFG/bx5PQ5K8rnrM
+         GDIw==
+X-Gm-Message-State: AOAM532u9/Vnkkb3gNTkKgYgGzgTpbp5VMnvoxP/Fd5tHSI3sN/VU9i/
+        871Utp+/Jy4IWuOv8whphRTu6NedsnOzcdrvbW4=
+X-Google-Smtp-Source: ABdhPJymEWr9pSiI1FVkg3xVN+3t2GZj5mV9kvzUQqg+UEU9B9KiZRVp73XQs9j03kSTTmz6rJcTIrj8IZbQkMWMAHo=
+X-Received: by 2002:a63:81c8:: with SMTP id t191mr2041138pgd.223.1644293514579;
+ Mon, 07 Feb 2022 20:11:54 -0800 (PST)
 MIME-Version: 1.0
-References: <20220125064027.873131-1-masahiroy@kernel.org> <CAKwvOdm=-x1EP_xu2V_OZNdPid=gacVzCTx+=uSYqzCv+1Rbfw@mail.gmail.com>
- <87h79rsbxe.fsf@collabora.com> <CAK7LNARSDZUyt_JXhQLKW++9p0NqM1FHncqGMqXPqfU7m3tizA@mail.gmail.com>
-In-Reply-To: <CAK7LNARSDZUyt_JXhQLKW++9p0NqM1FHncqGMqXPqfU7m3tizA@mail.gmail.com>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Tue, 8 Feb 2022 13:10:41 +0900
-X-Gmail-Original-Message-ID: <CAK7LNASU=FeOjkZKB=mM-UnfH-hCY0y64y5h3b0qgDDXs1faHA@mail.gmail.com>
-Message-ID: <CAK7LNASU=FeOjkZKB=mM-UnfH-hCY0y64y5h3b0qgDDXs1faHA@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: unify cmd_copy and cmd_shipped
-To:     Gabriel Krisman Bertazi <krisman@collabora.com>
-Cc:     Nick Desaulniers <ndesaulniers@google.com>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Michal Simek <monstr@monstr.eu>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux FS-devel Mailing List <linux-fsdevel@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Received: by 2002:a05:6a10:178d:0:0:0:0 with HTTP; Mon, 7 Feb 2022 20:11:53
+ -0800 (PST)
+Reply-To: selassie.abebe@yandex.com
+From:   "Mr. Timo Helenius" <juanangelino0001@gmail.com>
+Date:   Mon, 7 Feb 2022 20:11:53 -0800
+Message-ID: <CAE93Of3pk3nfj05NsjyXdR312ZqdGLDz1gy1LLjnzcdZgfZcBA@mail.gmail.com>
+Subject: Revamped Catastrophe
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_SOFTFAIL,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=5.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:443 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [juanangelino0001[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [juanangelino0001[at]gmail.com]
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.4 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 11:19 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
->
-> On Wed, Jan 26, 2022 at 7:11 AM Gabriel Krisman Bertazi
-> <krisman@collabora.com> wrote:
-> >
-> > Nick Desaulniers <ndesaulniers@google.com> writes:
-> >
-> > > On Mon, Jan 24, 2022 at 10:41 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
-> > >>
-> > >> cmd_copy and cmd_shipped have similar functionality. The difference is
-> > >> that cmd_copy uses 'cp' while cmd_shipped 'cat'.
-> > >>
-> > >> Unify them into cmd_copy because this macro name is more intuitive.
-> > >>
-> > >> Going forward, cmd_copy will use 'cat' to avoid the permission issue.
-> > >> I also thought of 'cp --no-preserve=mode' but this option is not
-> > >> mentioned in the POSIX spec [1], so I am keeping the 'cat' command.
-> > >>
-> > >> [1]: https://pubs.opengroup.org/onlinepubs/009695299/utilities/cp.html
-> > >> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+--=20
+The International Monetary Fund (IMF) Executive Board has approved
+immediate grant relief for citizen of 25 IMF's members nation.
 
-Applied to linux-kbuild.
-
-
-
-> > >> ---
-> > >>
-> > >>  arch/microblaze/boot/Makefile     |  2 +-
-> > >>  arch/microblaze/boot/dts/Makefile |  2 +-
-> > >>  fs/unicode/Makefile               |  2 +-
-> > >>  scripts/Makefile.lib              | 12 ++++--------
-> > >>  usr/Makefile                      |  4 ++--
-> > >>  5 files changed, 9 insertions(+), 13 deletions(-)
-> > >>
-> > >> diff --git a/arch/microblaze/boot/Makefile b/arch/microblaze/boot/Makefile
-> > >> index cff570a71946..2b42c370d574 100644
-> > >> --- a/arch/microblaze/boot/Makefile
-> > >> +++ b/arch/microblaze/boot/Makefile
-> > >> @@ -29,7 +29,7 @@ $(obj)/simpleImage.$(DTB).ub: $(obj)/simpleImage.$(DTB) FORCE
-> > >>         $(call if_changed,uimage)
-> > >>
-> > >>  $(obj)/simpleImage.$(DTB).unstrip: vmlinux FORCE
-> > >> -       $(call if_changed,shipped)
-> > >> +       $(call if_changed,copy)
-> > >>
-> > >>  $(obj)/simpleImage.$(DTB).strip: vmlinux FORCE
-> > >>         $(call if_changed,strip)
-> > >> diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/dts/Makefile
-> > >> index ef00dd30d19a..b84e2cbb20ee 100644
-> > >> --- a/arch/microblaze/boot/dts/Makefile
-> > >> +++ b/arch/microblaze/boot/dts/Makefile
-> > >> @@ -12,7 +12,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
-> > >>  # Generate system.dtb from $(DTB).dtb
-> > >>  ifneq ($(DTB),system)
-> > >>  $(obj)/system.dtb: $(obj)/$(DTB).dtb
-> > >> -       $(call if_changed,shipped)
-> > >> +       $(call if_changed,copy)
-> > >>  endif
-> > >>  endif
-> > >>
-> > >> diff --git a/fs/unicode/Makefile b/fs/unicode/Makefile
-> > >> index 2f9d9188852b..74ae80fc3a36 100644
-> > >> --- a/fs/unicode/Makefile
-> > >> +++ b/fs/unicode/Makefile
-> > >> @@ -31,7 +31,7 @@ $(obj)/utf8data.c: $(obj)/mkutf8data $(filter %.txt, $(cmd_utf8data)) FORCE
-> > >>  else
-> > >>
-> > >>  $(obj)/utf8data.c: $(src)/utf8data.c_shipped FORCE
-> > >
-> > > do we want to retitle the _shipped suffix for this file to _copy now, too?
-> > > fs/unicode/Makefile:11
-> > > fs/unicode/Makefile:33
-> > > fs/unicode/Makefile:34
-> >
-> > I think _copy doesn't convey the sense that this is distributed with the
-> > kernel tree, even though it is also generated from in-tree sources.
-> > Even if that is not the original sense of _shipped (is it?), it makes
-> > sense to me that way, but _copy doesn't.
-> >
-> > The patch looks good to me, though.
-> >
-> > Reviewed-by: Gabriel Krisman Bertazi <krisman@collabora.com>
-> >
-> >
-> > >
->
-> I only renamed the action part (cmd_shipped -> cmd_copy)
-> because I thought it was clearer.
->
-> Actually I do not get the sense of _shipped pretty much, but
-> I think we can keep the file suffix part (utf8data.c_shipped) as is.
->
->
-> --
-> Best Regards
-> Masahiro Yamada
-
-
-
--- 
-Best Regards
-Masahiro Yamada
+This is under the IMF=E2=80=99s revamped Catastrophe Containment and Relief
+Trust (CCRT) as part of the Fund=E2=80=99s response to help address the imp=
+act
+of the COVID-19 pandemic.
+Reply to this
+Email;selassie.abebe@yandex.com
+Best regards and Stay Safe
+Mr. Timo Helenius
+Copyright @ 2022
