@@ -2,137 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 094764AD7F0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:52:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07D3B4AD7FC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:55:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232270AbiBHLwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 06:52:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42964 "EHLO
+        id S1346317AbiBHLxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 06:53:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231327AbiBHLwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:52:17 -0500
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 69AA8C03FECA;
-        Tue,  8 Feb 2022 03:52:15 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id B60908106;
-        Tue,  8 Feb 2022 11:51:49 +0000 (UTC)
-Date:   Tue, 8 Feb 2022 13:52:13 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, jan.kiszka@siemens.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am65: disable optional
- peripherals by default
-Message-ID: <YgJZbdOlazrde7O/@atomide.com>
-References: <20220203140240.973690-1-matthias.schiffer@ew.tq-group.com>
- <20220204143108.653qk2ihnlhsr5aa@prior>
- <YgDCLaBHA3DDQAUd@atomide.com>
- <5944ba0ce568eaf507917799b1dfd89a3d0ca492.camel@ew.tq-group.com>
- <YgEBml9HvFzSl289@atomide.com>
- <9923df6525212389b86cb635624bcfb5c27a8bc5.camel@ew.tq-group.com>
+        with ESMTP id S239521AbiBHLxt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:53:49 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9A1F2C03FEC0;
+        Tue,  8 Feb 2022 03:53:48 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 43C17ED1;
+        Tue,  8 Feb 2022 03:53:48 -0800 (PST)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 405EF3F70D;
+        Tue,  8 Feb 2022 03:53:47 -0800 (PST)
+Date:   Tue, 8 Feb 2022 11:53:44 +0000
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>, bhelgaas@google.com
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/5] PCI: keystone: Add quirk to mark AM654 RC BAR
+ flag as IORESOURCE_UNSET
+Message-ID: <20220208115344.GB6233@lpieralisi>
+References: <20211126083119.16570-1-kishon@ti.com>
+ <20211126083119.16570-5-kishon@ti.com>
+ <20220104155741.GA28358@lpieralisi>
+ <f3a2c3f0-caf2-743c-a2f7-a99ea3ddb04f@ti.com>
+ <a07040ce-e043-22ac-2ee5-47a3bfdedd3b@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9923df6525212389b86cb635624bcfb5c27a8bc5.camel@ew.tq-group.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <a07040ce-e043-22ac-2ee5-47a3bfdedd3b@ti.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Matthias Schiffer <matthias.schiffer@ew.tq-group.com> [220208 10:53]:
-> On Mon, 2022-02-07 at 13:25 +0200, Tony Lindgren wrote:
-> > * Matthias Schiffer <matthias.schiffer@ew.tq-group.com> [220207
-> > 08:45]:
-> > > Generally I think that it's a bootloader's responsiblity to disable
-> > > unneeded devices - the kernel may not even have a driver for some
-> > > peripherals, leading to the same behaviour as a "disabled" status.
-> > > For
-> > > this reason I believe that it should always be okay to set unneeded
-> > > devices to "disabled", and it should be considered a safe default.
+On Fri, Feb 04, 2022 at 08:38:46PM +0530, Kishon Vijay Abraham I wrote:
+> Hi Lorenzo,
+> 
+> On 11/01/22 11:53 am, Kishon Vijay Abraham I wrote:
+> > Hi Lorenzo,
 > > 
-> > Not possible, think kexec for example :) How would the previous
-> > kernel
-> > even know what to disable if Linux has no idea about the devices?
-> 
-> Well, optimally, bootloader and all kernels would agree on the devices
-> that are actually available, but I get your point.
-> 
+> > On 04/01/22 9:27 pm, Lorenzo Pieralisi wrote:
+> >> On Fri, Nov 26, 2021 at 02:01:18PM +0530, Kishon Vijay Abraham I wrote:
+> >>> AM654 RootComplex has a hard coded 64 bit BAR of size 1MB and also has
+> >>> both MSI and MSI-X capability in it's config space. If PCIEPORTBUS is
+> >>> enabled, it tries to configure MSI-X and msix_mask_all() adds about 10
+> >>> Second boot up delay when it tries to write to undefined location.
+> >>>
+> >>> Add quirk to mark AM654 RC BAR flag as IORESOURCE_UNSET so that
+> >>> msix_map_region() returns NULL for Root Complex and avoid un-desirable
+> >>> writes to MSI-X table.
+> >>
+> >> I don't think this is the right fix (it is not even a fix, just a
+> >> plaster to workaround an issue).
+> >>
+> >> What do you mean by "writing to an undefined location" ?
+> >>
+> >> What does "a hard coded BAR" mean ?
+> >>
+> >> What happens if we _rightly_ write into it (ie to size it) ?
 > > 
-> > If there are issues you're seeing, it's likely a bug in some of the
-> > device drivers for not checking for the necessary resources like
-> > pinctrl for i2c lines.
-> 
-> I don't think it's common for individual drivers to care about pinctrl
-> unless switching between different pin settings is required at runtime.
-> Many drivers can be used on different hardware, some of which may
-> require pinmuxing, while others don't.
-
-Yeah that's true, some configurations only do pin muxing in the
-bootloader. So pins are not a good criteria for devicetree status enabled
-for when the device is operational.
-
-Probably a better criteria for devicetree "operational" status is the
-device can be clocked and configured or idled. Some devices like GPUs
-can render to memory with no external pin configuration for example.
-
-Following Linux running on a PC analogy.. If ACPI has some device that
-causes driver warnings on Linux boot, do we patch the ACPI table and
-pretend the device does not exist? Or do we patch the device driver to
-deal with the random buggy bootloader state for the device? :)
-
-> Also, what is the expected behavior of a driver that is probed for an
-> unusable device? Wouldn't this require some as-of-yet nonexisting
-> status between "okay" and "disabled" that conveys something like "probe
-> this device, initialize (and disable) PM, but don't register anything",
-> so no unusable devices become visible to userspace (and possibly other
-> kernel drivers)?
-
-I did some experimental patches several years ago to add devicetree
-status for incomplete, but eventually came to the conclusion that it
-was not really needed. Feel free to revisit that if you have the
-spare cycles :)
-
-Having the drivers check for the resources like clocks and then just
-idle the device after probe solved the issues I was seeing for warnings
-and kexec. In some cases the device may need to be reset or at least
-properly reconfigured in the probe as the state can be unknown from the
-bootloader. That's about all there is to it. Sure you could save some
-memory with less instances for some devices, so maybe the status =
-"incomplete" could be used to do the trick for that.
-
-> > > I'm not sure what the consensus on these issues is. I'm more
-> > > familiar
-> > > with NXP's i.MX and Layerscape SoCs, where it's common to have all
-> > > muxable peripherals set to "disabled" in the base DTSI, and a quick
-> > > grep through a few dts directories gives me the impression that
-> > > this is
-> > > the case for most other vendors as well.
+> > There are two parts w.r.t setting the BAR; one is during the configuration and
+> > the other is during the enumeration.
+> > i) During the configuration, the size of the BAR is configured and the inbound
+> > ATU is configured to map the BAR to a physical memory.
+> > ii) During the enumeration, the size of the BAR is obtained and an address is
+> > allocated and programmed in the BAR.
 > > 
-> > This approach only works for SoCs that don't need the kernel to idle
-> > devices for runtime PM.
+> > In the case of RC, for (i) above, the BAR size is configured as '0'
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/dwc/pcie-designware-host.c#n556
+> > and the inbound ATU is not programmed at all.
+> > 
+> > However, in the case of AM654, the HW configures BAR0 for a fixed size of 1MB
+> > (irrespective of what SW programmed in [i]). While this was done more for a
+> > endpoint usecase, since the same IP is configured for both RC mode and EP mode,
+> > the fixed BAR size is seen with RC mode as well. AM654 also has MSI-X capability
+> > for RC mode (the IP should have been ideally configured to have MSI-X capability
+> > for EP mode). This results in PCIEPORTBUS doing some undesired access in
+> > msix_mask_all().
+> > 
+> > Here I configure IORESOURCE_UNSET so that memory is not allocated for RC BAR.
 > 
-> I'm pretty sure that most modern SoCs I looked at have runtime PM, and
-> it is simply expected that unusable devices are never enabled in the
-> first place, so there is no need for the kernel to know about them.
+> Do you need further clarifications on this?
 
-Yeah well that assumption is the difference in getting runtime PM to
-work in a sane way across multiple SoCs and devices :)
+There are two things here:
 
-Devices tagged with status = "disabled" are completely ignored by the
-kernel. Interconnect and bus related code may not know the details on
-how to reset and idle the child devices. Relying on firmware to do the
-reset and idle of unused devices may be too generic, can be buggy, and
-probably depends on the firmware revision.
+1) As Rob mentioned, you can write it as a quirk applying only to the
+   bridge _only_
+2) What you want is that the BAR should not be visible to the OS since
+   it is not an actual resource. What I am questioning is whether your
+   way of doing that complies with how this is done in the kernel for
+   other devices/bridges. I need Bjorn's input on this since he knows
+   better (especially wrt IORESOURCE_UNSET usage). I don't want to add
+   any other IORESOURCE_UNSET usage that deviates from what's expected
+   from it
 
-Regards,
+Lorenzo
 
-Tony
+> > 
+> >>
+> >> Lorenzo
+> >>
+> >>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> >>> ---
+> >>>  drivers/pci/controller/dwc/pci-keystone.c | 8 +++++++-
+> >>>  1 file changed, 7 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
+> >>> index 52d20fe17ee9..73e6626a0d8f 100644
+> >>> --- a/drivers/pci/controller/dwc/pci-keystone.c
+> >>> +++ b/drivers/pci/controller/dwc/pci-keystone.c
+> >>> @@ -557,8 +557,14 @@ static void ks_pcie_quirk(struct pci_dev *dev)
+> >>>  		{ 0, },
+> >>>  	};
+> >>>  
+> >>> -	if (pci_is_root_bus(bus))
+> >>> +	if (pci_is_root_bus(bus)) {
+> >>>  		bridge = dev;
+> >>> +		if (pci_match_id(am6_pci_devids, bridge)) {
+> >>> +			struct resource *r = &dev->resource[0];
+> >>> +
+> >>> +			r->flags |= IORESOURCE_UNSET;
+> >>> +		}
+> >>> +	}
+> >>>  
+> >>>  	/* look for the host bridge */
+> >>>  	while (!pci_is_root_bus(bus)) {
+> >>> -- 
+> >>> 2.17.1
+> >>>
