@@ -2,78 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC66C4AD80B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:58:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1894AD80C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:58:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356423AbiBHL6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 06:58:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46576 "EHLO
+        id S1356760AbiBHL6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 06:58:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233434AbiBHL6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:58:02 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5102CC03FEC0
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 03:58:00 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nHP83-00019N-Im; Tue, 08 Feb 2022 12:57:51 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     dri-devel@lists.freedesktop.org,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-rockchip@lists.infradead.org,
-        Peter Geis <pgwipeout@gmail.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        kernel@pengutronix.de, devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v4 00/27] drm/rockchip: RK356x VOP2 support
-Date:   Tue,  8 Feb 2022 12:57:49 +0100
-Message-Id: <164432145305.107337.14727709648090165451.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220126145549.617165-1-s.hauer@pengutronix.de>
-References: <20220126145549.617165-1-s.hauer@pengutronix.de>
+        with ESMTP id S1356600AbiBHL6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:58:50 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92ABDC03FECA
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 03:58:46 -0800 (PST)
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 73D243F1E6
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 11:58:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644321525;
+        bh=P+HobyeC3bQCcGpxberLLoh6gpapBvcaDJDz9Lhr76E=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=Q8w/6cqsWvnt+l4u2KUPq+gEMrkjhHYBw88uKQx+ifnB4MowqhU6+hKtSjQ1z/da8
+         3+XITIIHdVxvcQhnqF6LjAzJiTtZPxfB597H/rXs/dPKU1+7zpPsPUcinuSpruhIGD
+         9gM5DGdpwkR1h2JJ0WsZ90OSaBdlWd9QSPAT8ALuAwqX2DXySaiEHWyKLoQlfEpCJw
+         FBkAp3hDaZyhLVWag6jhG6Wwi1w/vN4nYoFgbojS7YXobnRJHeCrENojlmC1j4lJYW
+         wrJmcdt5blq8t+SCd1zhXqrvDhLKWwwRplRvLuhxbpVHpZdXLe0BWIB5z4++7FKssR
+         1kxn36lDpwMIA==
+Received: by mail-ed1-f71.google.com with SMTP id u24-20020a50d518000000b0040f8cef2463so2096520edi.21
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 03:58:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=P+HobyeC3bQCcGpxberLLoh6gpapBvcaDJDz9Lhr76E=;
+        b=qjeX5ShwSgVqwMFN5b45C4BSF44PjM6jJU7ZmKVVHdLGZUsvz3EEr0naKDE9zO2mjk
+         M67PCtgOxBjpK+uKuKkg8ivvWaWXMy7tbkhZ7bEC7U2CnOjvC2UJQkzPQtGDLKDHNL5U
+         T/uqqD5sUiMF1ptYUF4L6vFyeNPnZE3d14FrGdA3BpfO0mIPnH2yZFFnyDxeP8ZSiBmF
+         hDeNPRFCP1hiferglB1eaXPVKUcDFx4trTnGLC3u2OL0lHali+PnSWyMCgNfV/PRAEWq
+         COxKazr1VFvItWKOb79KRHDXAHa7gs26WfKU3z7YMRuoUCVbc+fxSdTHiCjHwDE8ExaJ
+         LjHg==
+X-Gm-Message-State: AOAM530kfCsIi1F20wKNJNkUSGbJLEQhKEEQIlP6uVquINkDLzneOOzH
+        blhH/yZt93oEZ3fVmaNhKhe0QZlU9ljEL+wuaXu/slzxz1H8bqJWdzhoZicxAuY5Gy6lTXRLBs4
+        BVFIAHL/1U2AQQ8v6uVOqsAtBeivsVRlAEd+8VKI=
+X-Received: by 2002:a17:906:72dc:: with SMTP id m28mr318998ejl.163.1644321525143;
+        Tue, 08 Feb 2022 03:58:45 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz9a1MhDXtiay9NU1pHyJzzyQxLYCRSLs2dpBgS8l6BBII4mq5a8o/AZSnO3Zpzup21jbBJFw==
+X-Received: by 2002:a17:906:72dc:: with SMTP id m28mr318989ejl.163.1644321525003;
+        Tue, 08 Feb 2022 03:58:45 -0800 (PST)
+Received: from [192.168.0.93] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id y5sm1455630ejf.142.2022.02.08.03.58.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Feb 2022 03:58:44 -0800 (PST)
+Message-ID: <f5563605-7b61-c23e-68ec-6e315efb268d@canonical.com>
+Date:   Tue, 8 Feb 2022 12:58:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: Convert Atmel AES to yaml
+Content-Language: en-US
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        herbert@gondor.apana.org.au
+Cc:     nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
+        alexandre.belloni@bootlin.com, linux-crypto@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org
+References: <20220208104918.226156-1-tudor.ambarus@microchip.com>
+ <20220208104918.226156-2-tudor.ambarus@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220208104918.226156-2-tudor.ambarus@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Jan 2022 15:55:22 +0100, Sascha Hauer wrote:
-> This is v4 of adding RK356x VOP2 support. Due to popular demand I added
-> a changelog to each patch, at least starting with changes to v3, I
-> didn't care to add the older changes as well. I hopefully integrated all
-> feedback I received to v3. Additionally I added some patches to the HDMI
-> driver to support resolutions up to 4k@60Hz. The patches are mostly
-> taken from the downstream kernel. Some have been send to public lists,
-> but were never applied upstream for reasons I do not know. The patches
-> are a bit more intrusive than needed for my case, but are present in the
-> downstream kernel for a long time, so I decided just to take them
-> instead of stripping them down to my needs. With these patches I
-> successfully used the driver with 4k@30Hz. 4k@60Hz doesn't work for me,
-> I hope this is due to my low quality cable.
+On 08/02/2022 11:49, Tudor Ambarus wrote:
+> Convert Atmel AES documentation to yaml format. With the conversion the
+> clock and clock-names properties are made mandatory. The driver returns
+> -EINVAL if "aes_clk" is not found, reflect that in the bindings and make
+> the clock and clock-names properties mandatory. Update the example to
+> better describe how one should define the dt node.
 > 
-> [...]
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+> ---
+>  .../crypto/atmel,at91sam9g46-aes.yaml         | 65 +++++++++++++++++++
+>  .../bindings/crypto/atmel-crypto.txt          | 20 ------
+>  2 files changed, 65 insertions(+), 20 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-aes.yaml
+> 
 
-Applied, thanks!
-
-[11/27] clk: rockchip: rk3568: Add more PLL rates
-        commit: 842f4cb7263953020f4e2f2f0005fc3e6fc56144
-[24/27] clk: rk3568: drop CLK_SET_RATE_PARENT from dclk_vop*
-        commit: ff3187eabb5ce478d15b6ed62eb286756adefac3
-[25/27] clk: rk3568: Add CLK_SET_RATE_PARENT to the HDMI reference clock
-        commit: 6e69052f01d9131388cfcfaee929120118a267f4
+I understand that you keep the license GPL-2.0 (not recommended mix)
+because of example coming from previous bindings or from DTS (both GPL-2.0)?
 
 Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Krzysztof
