@@ -2,95 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90B6F4ACF74
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 04:03:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61F184ACF88
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 04:17:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345643AbiBHDDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 22:03:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44890 "EHLO
+        id S1346086AbiBHDR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 22:17:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235819AbiBHDDN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 22:03:13 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D60C06109E;
-        Mon,  7 Feb 2022 19:03:12 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id 10so4788360plj.1;
-        Mon, 07 Feb 2022 19:03:12 -0800 (PST)
+        with ESMTP id S1345524AbiBHDR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 22:17:26 -0500
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A856C0401C9
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 19:17:25 -0800 (PST)
+Received: by mail-oo1-xc35.google.com with SMTP id f11-20020a4abb0b000000b002e9abf6bcbcso16086236oop.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 19:17:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0+mBN1AmLET/4AWuwi279kZh4WBQoV2qr8xQgbK7dyw=;
-        b=iTR3btbEUnM+VlxH6jri6OtRajozWOPjq3m/KyhRRZ68cv8qz9WnrCWUvXJtvSoKnN
-         qne93/BcNauuIj2qYJAfjIu8X3q6+EzPxp7Qow1iJo3ZTBhwyOrAAgq++gx+LqcYe4fI
-         GrQB4jkb2SmRCLLyRYJEXV45Is1RaKU9UwhuF80/hoPqIz7YZCsIGnH5Ge+28/hGlW3G
-         Twz/jliaTZ/TBRLMo9ouWDFiyAxChKszBQWikrsHvWchIDsqe5NlqmF5bC9rVXtyRdt7
-         4weqXPYzWJCLOqKV1veCQjFuIXkGVvT6gpQHnXKE5uJtEDViyHyh2haNCKyGUVRMDqMh
-         ZqHQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zzxO3HcmPa0lMosAwo+8/h9UfVKa+wQzmEj2wnHSziM=;
+        b=ShbdY2mbI1d4/3jPV8kyfnQaqrRnf7w8sMMGMnPKKSfhl7XeZDCV8PZsSLkbfN0yA/
+         2e7I8B5Mm6/VLL6Zb4zQCctE/JRQAXkKJxPga5ArXu+Gj4Ef+8C6HWr3XPviQhXu1SRD
+         wnMC3X/BZ40oFcSu3qWFj/P9oFNwBCLiEwBFlGVaX8jEYQbLrZUr6MN3fJDjwCd97LvT
+         tEblTdZiDr5JmdL1rsFNC8Ex+U4g8m7i71BV1o4+1XfpXJDyi+uRn7Dn4vaIonYrpMlh
+         cQHV13m6ut9R7CHQDaH6qXcWL/cDw7VchzM0M2FYxncmLTnnXoWoxuwgjdDqvIsNn3D1
+         w5pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=0+mBN1AmLET/4AWuwi279kZh4WBQoV2qr8xQgbK7dyw=;
-        b=7FllE6HqyNvfHZwk9nKn1wD7Wiq3QCSwAjXDgtBR6MxEU7yeSEyKfQmiXFNPK5weQF
-         CfqKwfqAtSF/VJF1IayEGzrsGpj49JhP1NOybxREvICrjsFSGgedYe36hMNb2L4dlgNA
-         G16rKM8oqb/lfykG3OWghyeBIE8r/l8lEY5F2vXwwxKTBMyt3aaSHDDLlneu6UP7XRrU
-         l7JayoWjVrHsycFfX9AMJFJ8rw87/R8AhI5Tgq0zo37X07KqJIyjCjFXa9YB7v766Tns
-         g3AZWcjH1v2mEihnOlCG1bkQDXtY1Kf8ieVRK1cFBlTke0AvaUYTEiQJgudvUKVQj/0r
-         79oQ==
-X-Gm-Message-State: AOAM531pYjO8r61tUzdGuW44LgmQ7lyp9gParyaeBnKHhO0jH0swIXRC
-        tSW/mNpmiQjECdKXPBxj1Yk=
-X-Google-Smtp-Source: ABdhPJyv8GenpLh00FFuo/gsVJ9piqXeOgNLBsSWk61QagXTM00iwCs/02YmMz0xT5j0o75fyhD8pQ==
-X-Received: by 2002:a17:903:2412:: with SMTP id e18mr2486323plo.74.1644289392151;
-        Mon, 07 Feb 2022 19:03:12 -0800 (PST)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id k22sm13887682pfu.210.2022.02.07.19.03.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Feb 2022 19:03:11 -0800 (PST)
-Message-ID: <5e913295-bace-f097-05fc-aa910b5d4f4c@gmail.com>
-Date:   Mon, 7 Feb 2022 19:03:09 -0800
+        bh=zzxO3HcmPa0lMosAwo+8/h9UfVKa+wQzmEj2wnHSziM=;
+        b=6Fc2/5pPC1k29VZ/Au7mtpay7rHN4vkCFUzCOmf64VWEG1v5G4HJUpl1cXWY1d4Rci
+         ayvMGdYk7AHmVBaou8hXewqceiKz+cX/JwLcioVIJ34LIHhyZhNoZ+2HqNCD2T9d4YjT
+         rwSy643SNP1IJfIljn5Sm1u8wp32fOuLMfPzsPrWCTP2AMjmp0um8kcLQ5d4IazJbEyf
+         Q4PC59DP81YqnZdFCr6FnXWJE/XHwGTQxjeJSJIpe4jj30j0V3ZQAcxg3n+0C1qSNuLA
+         G75KVG+S5R/zRi/oMFsNaq03951yNpa7TC5d6lwUUwM93yY1S7HH1V7QPvgOQn4PJQzs
+         s3qA==
+X-Gm-Message-State: AOAM531kWK8da0fec3ZvJn2sLzw9KuJ9KyF1NaYAk/W8D761vi+lrFdb
+        4q2+ys5Z/1qOGghYTU7u/amc/g==
+X-Google-Smtp-Source: ABdhPJzLouZK+YvjCdY7PEwoHNqPNAf/lzh08xIFonIR59w/9SPltab4lT9JQAc1tvUJ1fu1RmQyxg==
+X-Received: by 2002:a05:6870:1043:: with SMTP id 3mr705760oaj.239.1644290244935;
+        Mon, 07 Feb 2022 19:17:24 -0800 (PST)
+Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id k3sm4763873otl.41.2022.02.07.19.17.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Feb 2022 19:17:24 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 0/6] typec: mux: Introduce support for multiple TypeC muxes
+Date:   Mon,  7 Feb 2022 19:19:38 -0800
+Message-Id: <20220208031944.3444-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v8 net-next 07/10] net: dsa: microchip: add support for
- ethtool port counters
-Content-Language: en-US
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        andrew@lunn.ch, netdev@vger.kernel.org, olteanv@gmail.com,
-        robh+dt@kernel.org
-Cc:     UNGLinuxDriver@microchip.com, woojung.huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, devicetree@vger.kernel.org
-References: <20220207172204.589190-1-prasanna.vengateshan@microchip.com>
- <20220207172204.589190-8-prasanna.vengateshan@microchip.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220207172204.589190-8-prasanna.vengateshan@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series introduces a level of indirection between the controller's view of
+a typec_mux/switch and the implementation and then expands that to support
+multiple drivers.
 
+This is needed in order to support devices such as the Qualcomm Snapdragon 888
+HDK, which does muxing and orientation handling in the QMP (USB+DP) PHY and SBU
+muxing in the external FSA4480 chip.
 
-On 2/7/2022 9:22 AM, Prasanna Vengateshan wrote:
-> Added support for get_eth_**_stats() (phy/mac/ctrl) and
-> get_stats64()
-> 
-> Reused the KSZ common APIs for get_ethtool_stats() & get_sset_count()
-> along with relevant lan937x hooks for KSZ common layer and added
-> support for get_strings()
-> 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Included in the series is a the new FSA4480 driver. This is done to deal with
+the renaming of the driver-side typec_mux -> typec_mux_dev.
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+Changes since v1:
+- Omitted QMP changes from this series, as the muxing implementation needs a
+  little bit more debugging.
+
+Bjorn Andersson (6):
+  device property: Helper to match multiple connections
+  device property: Use multi-connection matchers for single case
+  typec: mux: Introduce indirection
+  typec: mux: Allow multiple mux_devs per mux
+  dt-bindings: usb: Add binding for fcs,fsa4480
+  usb: typec: mux: Add On Semi fsa4480 driver
+
+ .../devicetree/bindings/usb/fcs,fsa4480.yaml  |  72 +++++
+ drivers/base/property.c                       |  85 ++++--
+ drivers/usb/typec/bus.c                       |   2 +-
+ drivers/usb/typec/mux.c                       | 261 +++++++++++++-----
+ drivers/usb/typec/mux.h                       |  12 +-
+ drivers/usb/typec/mux/Kconfig                 |   9 +
+ drivers/usb/typec/mux/Makefile                |   1 +
+ drivers/usb/typec/mux/fsa4480.c               | 220 +++++++++++++++
+ drivers/usb/typec/mux/intel_pmc_mux.c         |   8 +-
+ drivers/usb/typec/mux/pi3usb30532.c           |   8 +-
+ include/linux/property.h                      |   5 +
+ include/linux/usb/typec_mux.h                 |  22 +-
+ 12 files changed, 595 insertions(+), 110 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+ create mode 100644 drivers/usb/typec/mux/fsa4480.c
+
 -- 
-Florian
+2.33.1
+
