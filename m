@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0642C4AE1B3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 20:00:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1BA54AE1BA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 20:00:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353061AbiBHTAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 14:00:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51426 "EHLO
+        id S241616AbiBHTAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 14:00:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353620AbiBHTAM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 14:00:12 -0500
+        with ESMTP id S1385707AbiBHTAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 14:00:30 -0500
 Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A1FBC0612C3;
-        Tue,  8 Feb 2022 11:00:11 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69755C0612C3;
+        Tue,  8 Feb 2022 11:00:29 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id B6CE4CE1C17;
-        Tue,  8 Feb 2022 19:00:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC8A4C004E1;
-        Tue,  8 Feb 2022 19:00:06 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 064C7CE1C15;
+        Tue,  8 Feb 2022 19:00:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E120FC340EF;
+        Tue,  8 Feb 2022 19:00:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644346808;
-        bh=DcrrQTlZTFvVz/EDWSALpPw5JloWhfX2vgl1EPRJutc=;
+        s=k20201202; t=1644346824;
+        bh=0oEq0H6r2djLAksGfJSDTE7q5yoYgycV3Yo21Q05Kss=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=hR+Cu0n37NGv4o3gQsLXlcwOn1h8pz1PZ3Bh7qogE85jr2ruCgQinKPMzObK2YUL5
-         Bqzj9RXmPZHIHVObJONomS/jUn5llZhU/K5IHHu8q8Ke7escn8k78N+boLinx2D6S5
-         lsrcMHyqmhk7mX+0h5aB4iR/iKRHNEEZWBplq+MTAbskTn4npsSxn6TrMaru6oT7ff
-         jwUvHqHGVsBkmggLibpSV7HJq8JOZmkfPBzz6Tg/H2bte7XHGR4lalul5LTS+ndROR
-         td+3vSIpzt+6Vu12Vi57iSLYw87q8AxR9tAUBuKft+bVHJJ3LJT/5+L/AuzPSxmqV1
-         vOn61dDPeI+hw==
+        b=SW9N2CZ50C5WB00+MOta5o/zk8QettLfBfnCL+Y+XRIcsnW/T+XGGYOj4/poT7TVJ
+         I/YOY0DEAPfna+JpUBmZGzP5bZUPjjzfnMqplcBox0CMWjrxr3fuqlFcRe8NBQqNMm
+         QK09n9SpQOdrjzMmvtipwp2UPuvE9NFnUKXzIkIj3vExFiwxLy7LO3Ca3tO75a/6e1
+         YwPwlvetyn5zBBXCEecoWTx2iur3vJcEOCQ4o42DGVmW3pm0PUAQbI5UR+NlkCpuev
+         OYCaQQOszIgo8HNcI6oOc8gy4AvTl/zmmSLPNQUTUVWoIPJqkfK2vSTp+bu9+gIYfE
+         CO3xpLhu/r7jA==
 From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     linux-kernel@vger.kernel.org, kernel@axis.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-In-Reply-To: <20220204155241.576342-1-vincent.whitchurch@axis.com>
-References: <20220204155241.576342-1-vincent.whitchurch@axis.com>
-Subject: Re: [PATCH 0/2] regulator: Add support for TPS6286x
-Message-Id: <164434680631.1135477.3942083403967758360.b4-ty@kernel.org>
-Date:   Tue, 08 Feb 2022 19:00:06 +0000
+To:     linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        Li-hao Kuo <lhjeff911@gmail.com>
+Cc:     lh.kuo@sunplus.com, wells.lu@sunplus.com
+In-Reply-To: <b8a94fbfcab68b1279b09b6297099310c209927b.1644198244.git.lhjeff911@gmail.com>
+References: <b8a94fbfcab68b1279b09b6297099310c209927b.1644198244.git.lhjeff911@gmail.com>
+Subject: Re: [PATCH next] dt-bindings:spi: Fix test error for sp7021.
+Message-Id: <164434682261.1135514.9209006322953151639.b4-ty@kernel.org>
+Date:   Tue, 08 Feb 2022 19:00:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -54,26 +54,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 4 Feb 2022 16:52:39 +0100, Vincent Whitchurch wrote:
-> TI's TPS62864/TPS6286/TPS62868/TPS62869 are high-frequency synchronous
-> step-down converters controlled via I2C.  There are differences in the
-> electrical characteristics and packaging between the variants, but the
-> register interfaces are identical.
+On Mon, 7 Feb 2022 09:46:34 +0800, Li-hao Kuo wrote:
+> Remove the include path and modify parameters for fix error for bt binding test
 > 
-> This series adds basic support for these chips.
 > 
-> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/2] regulator: Add bindings for TPS62864x
-      commit: 2f04aa69ab5c5c40d2e3e51fd73ce2ecb651e9ba
-[2/2] regulator: Add support for TPS6286x
-      commit: e2a01b4e8806087743e5ee42f9dcedfc741d4112
+[1/1] dt-bindings:spi: Fix test error for sp7021.
+      commit: 3b8ab4da3405d07ddfe434f17f9014740b30a19c
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
