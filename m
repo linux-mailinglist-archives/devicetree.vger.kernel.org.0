@@ -2,131 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 880384AD8BA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:16:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0523B4AD89A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:15:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245603AbiBHNPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 08:15:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56710 "EHLO
+        id S234989AbiBHNP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 08:15:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357503AbiBHMdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 07:33:05 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2ABC03FEC0
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 04:33:04 -0800 (PST)
+        with ESMTP id S1345891AbiBHMfM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 07:35:12 -0500
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754FDC03FEC0
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 04:35:11 -0800 (PST)
+Received: by mail-oi1-x233.google.com with SMTP id 4so20276830oil.11
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 04:35:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1644323584; x=1675859584;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=vF8dUDxBLg/KOBc9PRSd0SMrgfYJLbgm+N3PEriXxXg=;
-  b=CiOp0PSyIHdm+152HQafrkk7xQ1vU34w4cs0/G63MTtrbK7gD8KSLeJg
-   jL3GLXkNLrNwtmPrwR1yyfcrAAqPU2D0X0clh9n6/e6e41xLxWKSfCZuu
-   66iqbZRwTi8+AFddECrkGqKBpCqXNMlC3XC0XHH5Owp01k/gA/h+4KzeF
-   X7ZDw6AGcNK+K9BxNok2TyeQXtFE+ERUCr+FFFBZ6iBakREiN3gGWED9h
-   XJWznff0j6c41ddGRWlPxpGovhxX+KhOajLIFPum+jUq9F9sJT879YWvy
-   0lUOS8SgYuVzfWf69L48mkExj6/Q5uDpF1vusn6mRkCrRoS4hcq2n3eK2
-   g==;
-X-IronPort-AV: E=Sophos;i="5.88,352,1635199200"; 
-   d="scan'208";a="21960357"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Feb 2022 13:32:59 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 08 Feb 2022 13:32:59 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 08 Feb 2022 13:32:59 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1644323579; x=1675859579;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=vF8dUDxBLg/KOBc9PRSd0SMrgfYJLbgm+N3PEriXxXg=;
-  b=iptnQOEPq+X+36ozhw2m7ykG1Fy327s1c+b+QbAgAEBBPzJI/bYTXcVW
-   PPmO7XZn/LM2kUuj2OnuHBlJEcinvj3GUimgm91e/gIJgMsbbVN1/WQJg
-   9pi4kWoDEwfMmeeGCUaSgNeHyFpiLAA6Q+fATNGMOJZf43WNqdRYnGsCE
-   lubjBj+vkNpXAlg4kUAg1HmoG8lKnuVq5XzjI9H80UR1fmeNtsdTQVLdh
-   Nu//EizNDHvrnmQh4LYtpZTj4RpixTR6D7RwmOY6Dpv2Gek+PChVka2jN
-   R46CwMOwwVXCF8bZtdUPY1CadeFGmfDyORVZgwECTNMtjn3STch4M7hVz
-   A==;
-X-IronPort-AV: E=Sophos;i="5.88,352,1635199200"; 
-   d="scan'208";a="21960356"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Feb 2022 13:32:59 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C2F1328007C;
-        Tue,  8 Feb 2022 13:32:58 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Matthias Schiffer <matthias.schiffer@tq-group.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/5] ARM: dts: imx6qdl-mba6: Move pinmux to regulator node
-Date:   Tue,  8 Feb 2022 13:32:48 +0100
-Message-Id: <20220208123248.821826-5-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220208123248.821826-1-alexander.stein@ew.tq-group.com>
-References: <20220208123248.821826-1-alexander.stein@ew.tq-group.com>
+        d=kali.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=DCySzda80keBjyEDz1S/bpNT7VXpJeMj45VaQ6BvJBU=;
+        b=GYXq0lDGikvfNxjZHaTsvUsWpAWeKdn/6UGfEb3FFoeFYlD6bUY/0nlap/7s/pq9z0
+         3APdNRdEg8kXTQRccdTBPHnxP3GBaS0NEchX/eBUqUR4B92jiN87Z4wHKHI93W+h1GYZ
+         O01ad+euhCHLjSgemVx7XVtX2vVMua5t5NA/HKNu/iBinrg6OW/pUCc0JBP8TDRLmCMr
+         ZKk6vQVBcB2EhjBtCbdEacoZR+NRfxwQhTZxe37GS23drZkY2ti8E6eQYLVWDrMG1Vzo
+         V5ubSMJ8oprLEnkCN0Jeu1iX3/Hc0ivMOH7TFz1fxkcyb/1RylYGfs6YEKfxH6vmadAF
+         kx6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=DCySzda80keBjyEDz1S/bpNT7VXpJeMj45VaQ6BvJBU=;
+        b=CD6RRNYwVmj7Bg5JETtaAZysrsZso7iKr5k2Mja2BtrAya8AM7mRKam8Yqg18/8RfH
+         ns0CiNGKxr2Q43M2MkfjOXcQ0VDgTWn0FAzaF+DuPgMYtEZK/Y2g3B3P0qGRZbIfthcw
+         OjMdl8ncaOY5gTyp4CccS5+2lnWfd7D9WTHUFV5QtHdUVMqAlkjWVPvibh/q+Yxx/zZS
+         qqceMxhWhiHLFNeOBQSqS7C7ht/k/lb3vX2lsd6AmUdSCcxD2wX/4c2CvJTOAwuCclz+
+         MoL7VQfqrQQwN0pV3hmNdQt5Glecn8Z8DgdrRr8XtztXC32RIQ7wWlO2aX4oPGuvUE5b
+         aE1A==
+X-Gm-Message-State: AOAM530M6H7KY/MSN4pFlfZkKe7oBmszrfV5ZFRa3gGFetFtDcAiY9Qu
+        uSuaulK7BrPDCzTt9xfyxSfx/A==
+X-Google-Smtp-Source: ABdhPJxMAYh+r5RkZzZHsVmSNGS1wg9WOJ//Irolb0godaB76n0KtYv/ryyD2/ywrLKHBEIpmQyf+w==
+X-Received: by 2002:a05:6808:211e:: with SMTP id r30mr411574oiw.6.1644323710858;
+        Tue, 08 Feb 2022 04:35:10 -0800 (PST)
+Received: from [192.168.11.51] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
+        by smtp.gmail.com with ESMTPSA id bc36sm5211916oob.45.2022.02.08.04.35.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Feb 2022 04:35:10 -0800 (PST)
+Message-ID: <300f9ec9-da52-235f-ea3c-b49bdc8bfb75@kali.org>
+Date:   Tue, 8 Feb 2022 06:35:08 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.5.1
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: c630: Add backlight controller
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220208041606.144039-1-bjorn.andersson@linaro.org>
+From:   Steev Klimaszewski <steev@kali.org>
+In-Reply-To: <20220208041606.144039-1-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GPIO2_IO00 is used by reg_pcie, move the pinmuxing to this node as well.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm/boot/dts/imx6qdl-mba6.dtsi | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx6qdl-mba6.dtsi b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-index 9aacc1a62189..f4dca20669d6 100644
---- a/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-@@ -86,6 +86,8 @@ reg_mba6_3p3v: regulator-mba6-3p3v {
- 
- 	reg_pcie: regulator-pcie {
- 		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_regpcie>;
- 		regulator-name = "supply-pcie";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
-@@ -436,8 +438,6 @@ pinctrl_pcie: pciegrp {
- 			MX6QDL_PAD_SD4_DAT3__GPIO2_IO11 0x001b0f0 /* #PCIE.WAKE */
- 			MX6QDL_PAD_NANDF_CLE__GPIO6_IO07 0x001b0f0 /* #PCIE.RST */
- 			MX6QDL_PAD_NANDF_CS0__GPIO6_IO11 0x001b0f0 /* #PCIE.DIS */
--			/* HYS = 1, DSE = 110, PUE+PKE, SPEED = HIGH (11)*/
--			MX6QDL_PAD_NANDF_D0__GPIO2_IO00 0x00130f0 /* PCIE.PWR_EN */
- 		>;
- 	};
- 
-@@ -462,6 +462,13 @@ MX6QDL_PAD_SD4_DAT2__PWM4_OUT 0x00003050
- 		>;
- 	};
- 
-+	pinctrl_regpcie: regpciegrp {
-+		fsl,pins = <
-+			/* HYS = 1, DSE = 110, PUE+PKE, SPEED = HIGH (11)*/
-+			MX6QDL_PAD_NANDF_D0__GPIO2_IO00 0x00130f0 /* PCIE.PWR_EN */
-+		>;
-+	};
-+
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
- 			MX6QDL_PAD_SD4_DAT4__UART2_RX_DATA 0x1b099
--- 
-2.25.1
-
+On 2/7/22 10:16 PM, Bjorn Andersson wrote:
+> The Lenovo Yoga C630 uses the PWM controller in the TI SN65DSI86 bridge
+> chip to provide a signal for the backlight control and has TLMM GPIO 11
+> attached to some regulator that drives the backlight.
+>
+> Unfortunately the regulator attached to this gpio is also powering the
+> camera, so turning off backlight result in the detachment of the camera
+> as well.
+>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> index 58845a14805f..55fb7302245b 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> @@ -59,6 +59,7 @@ mode {
+>   	panel {
+>   		compatible = "boe,nv133fhm-n61";
+>   		no-hpd;
+> +		backlight = <&backlight>;
+>   
+>   		ports {
+>   			port {
+> @@ -98,6 +99,12 @@ sn65dsi86_refclk: sn65dsi86-refclk {
+>   
+>   		clock-frequency = <19200000>;
+>   	};
+> +
+> +	backlight: backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&sn65dsi86 1000000>;
+> +		enable-gpios = <&tlmm 11 GPIO_ACTIVE_HIGH>;
+> +	};
+>   };
+>   
+>   &adsp_pas {
+> @@ -419,6 +426,7 @@ sn65dsi86: bridge@2c {
+>   		clock-names = "refclk";
+>   
+>   		no-hpd;
+> +		#pwm-cells = <1>;
+>   
+>   		ports {
+>   			#address-cells = <1>;
+Tested-by: Steev Klimaszewski <steev@kali.org>
