@@ -2,438 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82F394AD9DE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:29:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA5004AD9ED
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:32:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348242AbiBHN3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 08:29:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54188 "EHLO
+        id S1357732AbiBHNaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 08:30:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358154AbiBHN27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 08:28:59 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB6A4C03E90A
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 05:25:41 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id f10so33211034lfu.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 05:25:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lny4ffeOmlAWmAhhC6w2MPb+qvylm9VN3ou4FJF3FSg=;
-        b=VirhubwIxhdEGMhodDk5heZJzVB9TwaU53Glaxv1T4m4hj3BRsGW2kAYXgr501KNYy
-         9h9t+PsxWqNPSyOif6GQN20ZewpkPxf/xFcEzZGF7Q6WbFh0z7HNmbCa6z8pPPKrb4dY
-         ANRn72yJKENQLCGcDrBQ1D1wIk91MmGbUaTUspgG4bCZsSm+CEdCnniT8aIjZBXTuxiv
-         J7PIUbhaeadIMiFCxXevHGKKD/0Wy3ivoFI42MafrI56DnwyWi6ECtx55hwIZTdIf7oO
-         rfRbSIfoqGLiJ8wiMWeFI7DCasHclVX0qEhnbrIxRhuuynv67lKAVDZi4OixMwH5m8Dq
-         YzaQ==
+        with ESMTP id S1354305AbiBHNaW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 08:30:22 -0500
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3005DC03FEEE;
+        Tue,  8 Feb 2022 05:29:29 -0800 (PST)
+Received: by mail-ot1-f45.google.com with SMTP id b12-20020a9d754c000000b0059eb935359eso13203941otl.8;
+        Tue, 08 Feb 2022 05:29:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lny4ffeOmlAWmAhhC6w2MPb+qvylm9VN3ou4FJF3FSg=;
-        b=VZNEEk5D35KXGXEWdYIQhmYFkqjfEtyK4Co4T+s5u/nmE5t7u/7od3Kpjh+FoZznMy
-         dO6ESyznhu+LvHCa4DCBRRUNtbdPVYN20Dzt2mH7uwgUP9BicPHWHUbsmzRVmJ3O1hZm
-         TGPA7+BLw2Z3kBbQLh5BnhfDsLQtcuUa2no6zWVVIlaOpMJ6ntJq87ky0mS8oqKjYMVU
-         9l8Qp8FqwfFge6vC+F3Z6W13OCJKz63mf3u4mcQA3ftreJRcZev4wmn+MCUQzjq3dP4C
-         YoMfxNsX42Dvlo428hPPTublEluBkbu6cvliWSyQFJw0dGA+Bvv1knwNQNjWj0RFNXVH
-         fnxQ==
-X-Gm-Message-State: AOAM530bttlChHgD0yD9+4D/BkP/y0E84QgxlNUP5WViAjVObllkmsJE
-        Jqc+0yRif09WG20wJe8mJ7/sKm+MV6xU7bqsORd6QQ==
-X-Google-Smtp-Source: ABdhPJyJ6T3HU6OfDNL2sbGfrmpzh/eSy47DFkiQaOugIQYubbrvneRYk88T5Q0+nDcL0tq7IldBBWoSHcjwbnS8SMA=
-X-Received: by 2002:a05:6512:33c8:: with SMTP id d8mr2975541lfg.41.1644326739962;
- Tue, 08 Feb 2022 05:25:39 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=koYRbcn/WtPykkXZwC6+c60bzwoEa0n7FLjAaj0dTE4=;
+        b=wM/l1cAjyIjFdSrtEsNeN6bE8UF24ES7fi6Ps3b5gVl5rhHVkPt3z1SDMqJxQYnkGt
+         cXaafvOiQRtRk9qDr9/3RzF/DAysIiItYIfrFKryrU3yldperD3pjOsqX00MaNeRRPXn
+         XfWIDcRNqBdxgXdm9R5SFIj67UGTq+fgYsb1YyMoKAzA45OMD/zyZWKsDRc1BQDm0UoE
+         LN+OxnOmTUN2c85HJjKt8uM015eF90/3gqr4Tcb1DXI4VN1rPSy8UMSj/ksZV3mo4PyU
+         SEzcM/6g3/qG8P+kJI0p5orH7fwT99xxKynPdfg2npwyNOI4pIprHBoBsPi0IV2AGewE
+         Blug==
+X-Gm-Message-State: AOAM530/7v6EGvC0VAvPhy6G6D9kx/B8gheEYdISM5dDWNQ/uoHAogKk
+        sdshYvFFVKi7wIaMZ2PIapo8sExZyw==
+X-Google-Smtp-Source: ABdhPJyZFU8bWgpGlIsuTglztN69AiTBJAywOqGi6K3n7XGhYjfOE32vYlxk6R8h84ooKozFLJaFAg==
+X-Received: by 2002:a9d:22a6:: with SMTP id y35mr1797608ota.212.1644326968365;
+        Tue, 08 Feb 2022 05:29:28 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 23sm3286332oac.20.2022.02.08.05.29.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Feb 2022 05:29:27 -0800 (PST)
+Received: (nullmailer pid 2288492 invoked by uid 1000);
+        Tue, 08 Feb 2022 13:29:26 -0000
+Date:   Tue, 8 Feb 2022 07:29:26 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     daniel.lezcano@linaro.org, tglx@linutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: timer: Convert faraday,fttmr010 to yaml
+Message-ID: <YgJwNuas1D/NVjGU@robh.at.kernel.org>
+References: <20220126160021.3537591-1-clabbe@baylibre.com>
 MIME-Version: 1.0
-References: <20220126114452.692512-1-apatel@ventanamicro.com>
- <20220126114452.692512-9-apatel@ventanamicro.com> <CAJF2gTQsSn1KBgX2bg2LiSUbCmbGD3oF5KcmK5gq2Dd49BWDBQ@mail.gmail.com>
- <CAAhSdy3Dkv6ga0ZMp5rMFa8nV9EDHgOMBwuJ4z4-w52T8EaUag@mail.gmail.com> <CAJF2gTSLmBcgUUE3VGsEq0JCWV74Yy-pkduS66rk=VPVwxk59g@mail.gmail.com>
-In-Reply-To: <CAJF2gTSLmBcgUUE3VGsEq0JCWV74Yy-pkduS66rk=VPVwxk59g@mail.gmail.com>
-From:   Anup Patel <apatel@ventanamicro.com>
-Date:   Tue, 8 Feb 2022 18:55:28 +0530
-Message-ID: <CAK9=C2WqczG=tH1u9zcLt7Em+fPD1ZZwtDhf1yHJ70-o-HL8OQ@mail.gmail.com>
-Subject: Re: [PATCH v10 8/8] RISC-V: Enable RISC-V SBI CPU Idle driver for
- QEMU virt machine
-To:     Guo Ren <guoren@kernel.org>
-Cc:     Anup Patel <anup@brainfault.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        kvm-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220126160021.3537591-1-clabbe@baylibre.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 8, 2022 at 3:47 PM Guo Ren <guoren@kernel.org> wrote:
->
-> On Tue, Feb 8, 2022 at 4:54 PM Anup Patel <anup@brainfault.org> wrote:
-> >
-> > On Tue, Feb 8, 2022 at 12:16 PM Guo Ren <guoren@kernel.org> wrote:
-> > >
-> > > Another question:
-> > >
-> > > Have you put "idle-states {" in qemu's DTS? or how do you test your patches?
-> >
-> > I usually do the following:
-> > 1) Dump QEMU virt machine DTB
-> > 2) Convert QEMU virt machine DTB into DTS
-> > 3) Add "idle-states" in QEMU virt machine DTS
-> > 4) Create QEMU virt machine DTB with "idle-states"
-> > 5) Use the new QEMU virt machine DTB for testing this series.
-> >
-> > Here's one of the DTS files which I used for testing on QEMU virt machine:
-> >
-> > /dts-v1/;
-> >
-> > / {
-> >     #address-cells = <0x02>;
-> >     #size-cells = <0x02>;
-> >     compatible = "riscv-virtio";
-> >     model = "riscv-virtio,qemu";
-> >
-> >     chosen {
-> >         linux,initrd-end = <0x8855d200>;
-> >         linux,initrd-start = <0x88200000>;
-> >         bootargs = "root=/dev/ram rw console=ttyS0 earlycon";
-> >         stdout-path = "/soc/uart@10000000";
-> >     };
-> >
-> >     memory@80000000 {
-> >         device_type = "memory";
-> >         reg = <0x00 0x80000000 0x00 0x10000000>;
-> >     };
-> >
-> >     cpus {
-> >         #address-cells = <0x01>;
-> >         #size-cells = <0x00>;
-> >         timebase-frequency = <0x989680>;
-> >
-> >         cpu@0 {
-> >             phandle = <0x07>;
-> >             device_type = "cpu";
-> >             reg = <0x00>;
-> >             status = "okay";
-> >             compatible = "riscv";
-> >             riscv,isa = "rv64imafdcsu";
-> >             mmu-type = "riscv,sv48";
-> >             cpu-idle-states = <&CPU_NONRET_DEF>;
-> >
-> >             interrupt-controller {
-> >                 #interrupt-cells = <0x01>;
-> >                 interrupt-controller;
-> >                 compatible = "riscv,cpu-intc";
-> >                 phandle = <0x08>;
-> >             };
-> >         };
-> >
-> >         cpu@1 {
-> >             phandle = <0x05>;
-> >             device_type = "cpu";
-> >             reg = <0x01>;
-> >             status = "okay";
-> >             compatible = "riscv";
-> >             riscv,isa = "rv64imafdcsu";
-> >             mmu-type = "riscv,sv48";
-> >             cpu-idle-states = <&CPU_RET_DEF>;
-> >
-> >             interrupt-controller {
-> >                 #interrupt-cells = <0x01>;
-> >                 interrupt-controller;
-> >                 compatible = "riscv,cpu-intc";
-> >                 phandle = <0x06>;
-> >             };
-> >         };
-> >
-> >         cpu@2 {
-> >             phandle = <0x03>;
-> >             device_type = "cpu";
-> >             reg = <0x02>;
-> >             status = "okay";
-> >             compatible = "riscv";
-> >             riscv,isa = "rv64imafdcsu";
-> >             mmu-type = "riscv,sv48";
-> >             cpu-idle-states = <&CPU_NONRET_DEF>;
-> >
-> >             interrupt-controller {
-> >                 #interrupt-cells = <0x01>;
-> >                 interrupt-controller;
-> >                 compatible = "riscv,cpu-intc";
-> >                 phandle = <0x04>;
-> >             };
-> >         };
-> >
-> >         cpu@3 {
-> >             phandle = <0x01>;
-> >             device_type = "cpu";
-> >             reg = <0x03>;
-> >             status = "okay";
-> >             compatible = "riscv";
-> >             riscv,isa = "rv64imafdcsu";
-> >             mmu-type = "riscv,sv48";
-> >             cpu-idle-states = <&CPU_RET_DEF>;
-> >
-> >             interrupt-controller {
-> >                 #interrupt-cells = <0x01>;
-> >                 interrupt-controller;
-> >                 compatible = "riscv,cpu-intc";
-> >                 phandle = <0x02>;
-> >             };
-> >         };
-> >
-> >         cpu-map {
-> >
-> >             cluster0 {
-> >
-> >                 core0 {
-> >                     cpu = <0x07>;
-> >                 };
-> >
-> >                 core1 {
-> >                     cpu = <0x05>;
-> >                 };
-> >
-> >                 core2 {
-> >                     cpu = <0x03>;
-> >                 };
-> >
-> >                 core3 {
-> >                     cpu = <0x01>;
-> >                 };
-> >             };
-> >         };
-> >
-> >         idle-states {
-> >             CPU_RET_DEF: cpu-retentive-default {
-> >                 compatible = "riscv,idle-state";
-> >                 riscv,sbi-suspend-param = <0x00000000>;
-> >                 entry-latency-us = <10>;
-> >                 exit-latency-us = <10>;
-> >                 min-residency-us = <100>;
-> >             };
-> >
-> >             CPU_NONRET_DEF: cpu-nonretentive-default {
-> >                 compatible = "riscv,idle-state";
-> >                 riscv,sbi-suspend-param = <0x80000000>;
-> >                 entry-latency-us = <100>;
-> >                 exit-latency-us = <100>;
-> >                 min-residency-us = <1000>;
-> >             };
-> >         };
-> >     };
-> >
-> >     soc {
-> >         #address-cells = <0x02>;
-> >         #size-cells = <0x02>;
-> >         compatible = "simple-bus";
-> >         ranges;
-> >
-> >         flash@20000000 {
-> >             bank-width = <0x04>;
-> >             reg = <0x00 0x20000000 0x00 0x2000000 0x00 0x22000000 0x00
-> > 0x2000000>;
-> >             compatible = "cfi-flash";
-> >         };
-> >
-> >         rtc@101000 {
-> >             interrupts = <0x0b>;
-> >             interrupt-parent = <0x09>;
-> >             reg = <0x00 0x101000 0x00 0x1000>;
-> >             compatible = "google,goldfish-rtc";
-> >         };
-> >
-> >         uart@10000000 {
-> >             interrupts = <0x0a>;
-> >             interrupt-parent = <0x09>;
-> >             clock-frequency = <0x384000>;
-> >             reg = <0x00 0x10000000 0x00 0x100>;
-> >             compatible = "ns16550a";
-> >         };
-> >
-> >         poweroff {
-> >             value = <0x5555>;
-> >             offset = <0x00>;
-> >             regmap = <0x0a>;
-> >             compatible = "syscon-poweroff";
-> >         };
-> >
-> >         reboot {
-> >             value = <0x7777>;
-> >             offset = <0x00>;
-> >             regmap = <0x0a>;
-> >             compatible = "syscon-reboot";
-> >         };
-> >
-> >         test@100000 {
-> >             phandle = <0x0a>;
-> >             reg = <0x00 0x100000 0x00 0x1000>;
-> >             compatible = "sifive,test1\0sifive,test0\0syscon";
-> >         };
-> >
-> >         pci@30000000 {
-> >             interrupt-map-mask = <0x1800 0x00 0x00 0x07>;
-> >             interrupt-map = <0x00 0x00 0x00 0x01 0x09 0x20 0x00 0x00
-> > 0x00 0x02 0x09 0x21 0x00 0x00 0x00 0x03 0x09 0x22 0x00 0x00 0x00 0x04
-> > 0x09 0x23 0x800 0x00 0x00 0x01 0x09 0x21 0x800 0x00 0x00 0x02 0x09
-> > 0x22 0x800 0x00 0x00 0x03 0x09 0x23 0x800 0x00 0x00 0x04 0x09 0x20
-> > 0x1000 0x00 0x00 0x01 0x09 0x22 0x1000 0x00 0x00 0x02 0x09 0x23 0x1000
-> > 0x00 0x00 0x03 0x09 0x20 0x1000 0x00 0x00 0x04 0x09 0x21 0x1800 0x00
-> > 0x00 0x01 0x09 0x23 0x1800 0x00 0x00 0x02 0x09 0x20 0x1800 0x00 0x00
-> > 0x03 0x09 0x21 0x1800 0x00 0x00 0x04 0x09 0x22>;
-> >             ranges = <0x1000000 0x00 0x00 0x00 0x3000000 0x00 0x10000
-> > 0x2000000 0x00 0x40000000 0x00 0x40000000 0x00 0x40000000>;
-> >             reg = <0x00 0x30000000 0x00 0x10000000>;
-> >             dma-coherent;
-> >             bus-range = <0x00 0xff>;
-> >             linux,pci-domain = <0x00>;
-> >             device_type = "pci";
-> >             compatible = "pci-host-ecam-generic";
-> >             #size-cells = <0x02>;
-> >             #interrupt-cells = <0x01>;
-> >             #address-cells = <0x03>;
-> >         };
-> >
-> >         virtio_mmio@10008000 {
-> >             interrupts = <0x08>;
-> >             interrupt-parent = <0x09>;
-> >             reg = <0x00 0x10008000 0x00 0x1000>;
-> >             compatible = "virtio,mmio";
-> >         };
-> >
-> >         virtio_mmio@10007000 {
-> >             interrupts = <0x07>;
-> >             interrupt-parent = <0x09>;
-> >             reg = <0x00 0x10007000 0x00 0x1000>;
-> >             compatible = "virtio,mmio";
-> >         };
-> >
-> >         virtio_mmio@10006000 {
-> >             interrupts = <0x06>;
-> >             interrupt-parent = <0x09>;
-> >             reg = <0x00 0x10006000 0x00 0x1000>;
-> >             compatible = "virtio,mmio";
-> >         };
-> >
-> >         virtio_mmio@10005000 {
-> >             interrupts = <0x05>;
-> >             interrupt-parent = <0x09>;
-> >             reg = <0x00 0x10005000 0x00 0x1000>;
-> >             compatible = "virtio,mmio";
-> >         };
-> >
-> >         virtio_mmio@10004000 {
-> >             interrupts = <0x04>;
-> >             interrupt-parent = <0x09>;
-> >             reg = <0x00 0x10004000 0x00 0x1000>;
-> >             compatible = "virtio,mmio";
-> >         };
-> >
-> >         virtio_mmio@10003000 {
-> >             interrupts = <0x03>;
-> >             interrupt-parent = <0x09>;
-> >             reg = <0x00 0x10003000 0x00 0x1000>;
-> >             compatible = "virtio,mmio";
-> >         };
-> >
-> >         virtio_mmio@10002000 {
-> >             interrupts = <0x02>;
-> >             interrupt-parent = <0x09>;
-> >             reg = <0x00 0x10002000 0x00 0x1000>;
-> >             compatible = "virtio,mmio";
-> >         };
-> >
-> >         virtio_mmio@10001000 {
-> >             interrupts = <0x01>;
-> >             interrupt-parent = <0x09>;
-> >             reg = <0x00 0x10001000 0x00 0x1000>;
-> >             compatible = "virtio,mmio";
-> >         };
-> >
-> >         plic@c000000 {
-> >             phandle = <0x09>;
-> >             riscv,ndev = <0x35>;
-> >             reg = <0x00 0xc000000 0x00 0x210000>;
-> >             interrupts-extended = <0x08 0x0b 0x08 0x09 0x06 0x0b 0x06
-> > 0x09 0x04 0x0b 0x04 0x09 0x02 0x0b 0x02 0x09>;
-> >             interrupt-controller;
-> >             compatible = "riscv,plic0";
-> >             #interrupt-cells = <0x01>;
-> >             #address-cells = <0x00>;
-> >         };
-> >
-> >         clint@2000000 {
-> >             interrupts-extended = <0x08 0x03 0x08 0x07 0x06 0x03 0x06
-> > 0x07 0x04 0x03 0x04 0x07 0x02 0x03 0x02 0x07>;
-> >             reg = <0x00 0x2000000 0x00 0x10000>;
-> >             compatible = "riscv,clint0";
-> >         };
-> >     };
-> > };
->
-> Thx Anup, but it still couldn't work for testing suspend.
->
-> # echo mem > /sys/power/state
-> sh: write error: Function not implemented
->
-> Why there is no ARCH_SUSPEND_POSSIBLE in the patch series?
+On Wed, Jan 26, 2022 at 04:00:21PM +0000, Corentin Labbe wrote:
+> Converts timer/faraday,fttmr010.txt to yaml.
+> 
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+> Changes since v1:
+> - added moxart example
+> - relaxed some contraints as driver only support one clock and one
+>   interrupt (as used by moxa,moxart-timer)
+> 
+>  .../bindings/timer/faraday,fttmr010.txt       | 38 --------
+>  .../bindings/timer/faraday,fttmr010.yaml      | 88 +++++++++++++++++++
+>  2 files changed, 88 insertions(+), 38 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
+>  create mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt b/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
+> deleted file mode 100644
+> index 3cb2f4c98d64..000000000000
+> --- a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -Faraday Technology timer
+> -
+> -This timer is a generic IP block from Faraday Technology, embedded in the
+> -Cortina Systems Gemini SoCs and other designs.
+> -
+> -Required properties:
+> -
+> -- compatible : Must be one of
+> -  "faraday,fttmr010"
+> -  "cortina,gemini-timer", "faraday,fttmr010"
+> -  "moxa,moxart-timer", "faraday,fttmr010"
+> -  "aspeed,ast2400-timer"
+> -  "aspeed,ast2500-timer"
+> -  "aspeed,ast2600-timer"
+> -
+> -- reg : Should contain registers location and length
+> -- interrupts : Should contain the three timer interrupts usually with
+> -  flags for falling edge
+> -
+> -Optionally required properties:
+> -
+> -- clocks : a clock to provide the tick rate for "faraday,fttmr010"
+> -- clock-names : should be "EXTCLK" and "PCLK" for the external tick timer
+> -  and peripheral clock respectively, for "faraday,fttmr010"
+> -- syscon : a phandle to the global Gemini system controller if the compatible
+> -  type is "cortina,gemini-timer"
+> -
+> -Example:
+> -
+> -timer@43000000 {
+> -	compatible = "faraday,fttmr010";
+> -	reg = <0x43000000 0x1000>;
+> -	interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
+> -		   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
+> -		   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
+> -	clocks = <&extclk>, <&pclk>;
+> -	clock-names = "EXTCLK", "PCLK";
+> -};
+> diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
+> new file mode 100644
+> index 000000000000..db9fb171ea49
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/faraday,fttmr010.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Faraday Technology timer
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description: |
 
-You are referring to system-level suspend to RAM support whereas
-this series adds CPU idle power management support.
+Don't need '|' if there's no formatting.
 
-Adding system-level suspend to RAM will be a separate series
-and it will re-use the non-retentive suspend infrastructure added
-by this series.
+> +  This timer is a generic IP block from Faraday Technology, embedded in the
+> +  Cortina Systems Gemini SoCs and other designs.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: faraday,fttmr010
+> +      - items:
+> +          - const: cortina,gemini-timer
+> +          - const: faraday,fttmr010
+> +      - items:
+> +          - const: moxa,moxart-timer
+> +          - const: faraday,fttmr010
+> +      - const: aspeed,ast2400-timer
+> +      - const: aspeed,ast2500-timer
+> +      - const: aspeed,ast2600-timer
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 3
+> +    description: Should contain the three timer interrupts usually with flags for falling edge
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: "PCLK"
+> +      - const: "EXTCLK"
 
-Regards,
-Anup
+Don't need quotes here.
 
->
-> ref arm64's:
-> commit 166936bace056dfc11452d794209f39a5e9b0fb4
-> Author: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Date:   Thu Nov 7 18:37:14 2013 +0000
->
->     arm64: kernel: add PM build infrastructure
->
->     This patch adds the required makefile and kconfig entries to enable PM
->     for arm64 systems.
->
->     The kernel relies on the cpu_{suspend}/{resume} infrastructure to
->     properly save the context for a CPU and put it to sleep, hence this
->     patch adds the config option required to enable cpu_{suspend}/{resume}
->     API.
->
->     In order to rely on the CPU PM implementation for saving and restoring
->     of CPU subsystems like GIC and PMU, the arch Kconfig must be also
->     augmented to select the CONFIG_CPU_PM option when SUSPEND or CPU_IDLE
->     kernel implementations are selected.
->
-> >
-> > Regards,
-> > Anup
->
->
->
-> --
-> Best Regards
->  Guo Ren
->
-> ML: https://lore.kernel.org/linux-csky/
+> +
+> +  syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    maxItems: 1
+
+'phandle' is already 1 item. so drop.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    /* taken from arch/arm/boot/dts/gemini.dtsi */
+
+Drop
+
+> +    timer@43000000 {
+> +      compatible = "faraday,fttmr010";
+> +      reg = <0x43000000 0x1000>;
+> +      interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
+> +                   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
+> +                   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
+> +      clocks = <&extclk>, <&pclk>;
+> +      clock-names = "PCLK", "EXTCLK";
+> +      syscon = <&syscon>;
+> +    };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    /* taken from arch/arm/boot/dts/moxart.dtsi */
+
+Drop
+
+> +    timer: timer@98400000 {
+
+Drop unused labels.
+
+> +      compatible = "moxa,moxart-timer", "faraday,fttmr010";
+> +      reg = <0x98400000 0x42>;
+> +      interrupts = <19 IRQ_TYPE_EDGE_FALLING>;
+> +      clocks = <&clk_apb>;
+> +      clock-names = "PCLK";
+> +    };
+> +...
+> -- 
+> 2.34.1
+> 
+> 
