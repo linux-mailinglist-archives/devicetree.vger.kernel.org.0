@@ -2,163 +2,386 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF804AD3FA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 09:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68CC54AD418
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 09:54:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350546AbiBHIvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 03:51:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45042 "EHLO
+        id S1352229AbiBHIyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 03:54:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351868AbiBHIvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 03:51:24 -0500
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D6EC03FEC8;
-        Tue,  8 Feb 2022 00:51:23 -0800 (PST)
-Received: by mail-qv1-xf36.google.com with SMTP id c14so5599387qvl.12;
-        Tue, 08 Feb 2022 00:51:23 -0800 (PST)
+        with ESMTP id S1352175AbiBHIyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 03:54:18 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1AAAC03FEC1
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 00:54:17 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id h6so10655521wrb.9
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 00:54:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=52Mlxc/AZaE8Cndi19CrmZAb2xd8snlWb6gzXeW+f8c=;
-        b=LIoXET1Vcm+0Yo/759v2FqsPM9tUsLx5soPaRzhSfagqaev0i/jq4YTBq0QXQKPdRn
-         Kbs1VbKM9Vys9h4DE73AhMh80HqZqIG2ciDb+cZAARKQHBryRqURWDb9PWl4iykUvLbx
-         vhFCNNRDwT9aWmNTKkotXhcTvlI0jVPKnUeMRvIF3F5xyP3uidSK1o+FyDLyVobzE5Xc
-         +RYq4C22VTpWstKp9vrwLat1X3z0vDt0sPLkTADDz1kEv0wGLwyOmR6ZxECbWsNA4Plv
-         PyAIXzKAaKValqytpOhB/H/LFIwFoJLFeYiLPMNP5/P/cp2GJJU75tKzVP5CXWisQu/D
-         xx9A==
+         :cc;
+        bh=ad/AIeKw/gggP6Br2uoykBbNKFVMSxSNAtQyiBt1RW0=;
+        b=5KxMGJIrZxz0UdJJ4KFG3h5rV0PZviBM1D2ZlImvgl2AYSR7uVDIp9FOmugYxXR0jd
+         /uG/+J603tKg3P37pGqHHlbr3fFTWLeZiT1w6+erAhedOqoJk8L3BOwALYuFUkgt9rFv
+         jQiGMsXhV5QujyODOTCAMmYW8e/ggOnHL5d6jTVn1If8szV5+b8LHzdFdowkrSUMEWah
+         jPTmEQXdKOuovazsDjAlCKdIyJVrK45UjaRmuw4mwTheKA34Yrm9QDVifKZ9hcVLF1Go
+         vZJYetHiq9fRPxQVsdpQnn9p5KE/Ol1buMRKZZWhAVmq4hbRovF1sdC/5fDZhn2tpOSm
+         5hLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=52Mlxc/AZaE8Cndi19CrmZAb2xd8snlWb6gzXeW+f8c=;
-        b=U9Ia4OpCwKrSB4WWagEh9WvIWggsaIO1in+ZRP0FOmVqYjT2S91v9AeU4OILl5prPq
-         oAzRnffNqUkKc7wJKDb9r7LNguubOCFNpBqYzCsSYmqeJVNZv2mqlXprwbqIu3K62N6K
-         g2PS/WaBp+NBgZZspx4Zib33E4z6l9Lhw725j7TqlSdzhucuovMu0rdzYcwo9hd8QBGf
-         hOSC+TOEqrTIeet6DbSKGxQIA1aY3aaYrvqM8TMXny96IxLtFOC51Y9UoE3KPxDDXNwe
-         cvFeXci4kDOoVAYbPUeXNQ1DH5fvXPVYDwdU3dprRoX4smxSwKDezCouFvuECMI2I3Ay
-         D3NA==
-X-Gm-Message-State: AOAM533rYDeALvVu2U0NpaG6bh5tzsAig44gdZMJmKKkxdUjZ6zCFFEP
-        2AhzhbHT9bWthVtMk2fuMjnEwAQAiPugYoiVXNA=
-X-Google-Smtp-Source: ABdhPJwBqxeW2lVYe2YhpeD6J4pREP12QDacbTsGlkhFVIN+DKzqGhtZN16Vv4UkriLaHnkPuW7YJ4oDA16S2sfvwzY=
-X-Received: by 2002:a05:6214:1cc7:: with SMTP id g7mr2429769qvd.124.1644310282674;
- Tue, 08 Feb 2022 00:51:22 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=ad/AIeKw/gggP6Br2uoykBbNKFVMSxSNAtQyiBt1RW0=;
+        b=kH8gImpwtvBXHkyIYlplsVelT2DvMAE+8hTUxyHYT0fP/5+Pua2uEOQ4LvpD+MIz+0
+         YUgkCLklCc6DzTg2dzqNGTygIFsYoHlpHbeZrFvaw0+As5IanQVT9DT86AJ7PFq8n/pT
+         dlihY+WnjMxDne/WdKfWn3UUF5R7oy88hSDlHJSoa9PUWLRHDbTKbaGRfbUIhhtQBnxK
+         Mv+8Aue38nr5sVJLS77CjhYB2CGHqy2Ncz9aPriPfHXByif+Z05013Kl3cNNU+uqJvBn
+         4YkOHQow+8WFpoB3Mn9n9EWgMccG3wQm9A9kRGh6QbX3PEAMPhHB5uq3kQO2HAWWVMBp
+         2uKA==
+X-Gm-Message-State: AOAM5310XevB7UBtNtw/2vvcdtwKPvALxuGmvmHDYybmKsDRnTpMC1Dv
+        JNLyGEEUDfqN2BjPBh15DDcnwt9jgNcj2Dm1CCH7IA==
+X-Google-Smtp-Source: ABdhPJzgSop4y+Hsg6mK+sVfvqbbliyC19eTL7sLF/m+UVhe/JN/7WOPjVFLYB6Xxfkqx+mpiM4ybuPoWNgcPTqKJbA=
+X-Received: by 2002:adf:bc44:: with SMTP id a4mr2655518wrh.346.1644310456139;
+ Tue, 08 Feb 2022 00:54:16 -0800 (PST)
 MIME-Version: 1.0
-References: <20220207063338.6570-1-warp5tw@gmail.com> <20220207063338.6570-7-warp5tw@gmail.com>
- <YgEJ1M40AG9EuRPI@latitude> <086655b0-b9d2-30ed-1496-47cdc6346003@canonical.com>
- <CAHb3i=vpFwez+ZzDhHkSxjkios3tyoM2urRpCxOn3vfwzvewog@mail.gmail.com> <30ac5fe7-9d96-a756-24b0-384361b48a2d@canonical.com>
-In-Reply-To: <30ac5fe7-9d96-a756-24b0-384361b48a2d@canonical.com>
-From:   Tali Perry <tali.perry1@gmail.com>
-Date:   Tue, 8 Feb 2022 10:51:11 +0200
-Message-ID: <CAHb3i=ukzVr4DDgcPQ2+DO+LXWWtgjCe03WbG-CqvsOP_qqvUw@mail.gmail.com>
-Subject: Re: [PATCH v1 6/6] i2c: npcm: Support NPCM845
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Tyrone Ting <warp5tw@gmail.com>, avifishman70@gmail.com,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>, semen.protsenko@linaro.org,
-        yangyicong@hisilicon.com, Wolfram Sang <wsa@kernel.org>,
-        jie.deng@intel.com, sven@svenpeter.dev, bence98@sch.bme.hu,
-        lukas.bulwahn@gmail.com, arnd@arndb.de, olof@lixom.net,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Tali Perry <tali.perry@nuvoton.com>,
-        Avi Fishman <Avi.Fishman@nuvoton.com>,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220126114452.692512-1-apatel@ventanamicro.com>
+ <20220126114452.692512-9-apatel@ventanamicro.com> <CAJF2gTQsSn1KBgX2bg2LiSUbCmbGD3oF5KcmK5gq2Dd49BWDBQ@mail.gmail.com>
+In-Reply-To: <CAJF2gTQsSn1KBgX2bg2LiSUbCmbGD3oF5KcmK5gq2Dd49BWDBQ@mail.gmail.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Tue, 8 Feb 2022 14:24:04 +0530
+Message-ID: <CAAhSdy3Dkv6ga0ZMp5rMFa8nV9EDHgOMBwuJ4z4-w52T8EaUag@mail.gmail.com>
+Subject: Re: [PATCH v10 8/8] RISC-V: Enable RISC-V SBI CPU Idle driver for
+ QEMU virt machine
+To:     Guo Ren <guoren@kernel.org>
+Cc:     Anup Patel <apatel@ventanamicro.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        kvm-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->On 08/02/2022 08:14, Tali Perry wrote:
->>> Subject: Re: [PATCH v1 6/6] i2c: npcm: Support NPCM845
->>>
->>> On 07/02/2022 13:00, Jonathan Neusch=C3=A4fer wrote:
->>>> Hello,
->>>>
->>>> On Mon, Feb 07, 2022 at 02:33:38PM +0800, Tyrone Ting wrote:
->>>>> From: Tyrone Ting <kfting@nuvoton.com>
->>>>>
->>>>> NPCM8XX uses a similar i2c module as NPCM7XX.
->>>>> The only difference is that the internal HW FIFO is larger.
->>>>>
->>>>> Related Makefile and Kconfig files are modified to support as well.
->>>>>
->>>>> Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controller
->>>>> driver")
->>>>
->>>> It's not really a bug fix, but rather an additional feature.
->>>> Therefore, I suggest removing the Fixes tag from this patch.
->>>>
->>>>> Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
->>>>> Signed-off-by: Tali Perry <tali.perry1@gmail.com>
->>>>> ---
->>>> [...]
->>>>>  /* init register and default value required to enable module */
->>>>>  #define NPCM_I2CSEGCTL 0xE4
->>>>> +#ifdef CONFIG_ARCH_NPCM7XX
->>>>>  #define NPCM_I2CSEGCTL_INIT_VAL 0x0333F000
->>>>> +#else
->>>>> +#define NPCM_I2CSEGCTL_INIT_VAL 0x9333F000
->>>>> +#endif
->>>>
->>>> This is going to cause problems when someone tries to compile a kernel
->>>> that runs on both NPCM7xx and NPCM8xx (because the driver will then
->>>> only work on NPCM7xx).
->>>
->>> Yes, good catch.
->>>
->>> The NPCM7XX is multiplatform, I guess NPCM8xx will be as well, so this =
-looks like an invalid code. How such code is supposed to work on multiplatf=
-orm kernel?
->>>
->>
->> NPCM7xx and NPCM8xx are very different devices.
->> They share same driver sources for some of the modules but it's not ABI.
->> Users cannot compile a single kernel with two separate DTS.
->> In case of the i2c controller, the npcm7xx has a 16 byte HW FIFO,
->> and the NPCM8xx has 32 bytes HW FIFO.
->> This also means that registers fields are slightly different.
->> For init data we can move it to the DTS, but register field sizes
->> can't be handled with this approach.
->>
+On Tue, Feb 8, 2022 at 12:16 PM Guo Ren <guoren@kernel.org> wrote:
 >
->What do you mean they cannot compile a kernel with different DTS? Of
->course they can - when we talk about multiplatform sub-architectures!
->Maybe there is something specific in NPCMxxx which stops it but then it
->should not be marked multiplatform.
+> Another question:
 >
+> Have you put "idle-states {" in qemu's DTS? or how do you test your patches?
 
+I usually do the following:
+1) Dump QEMU virt machine DTB
+2) Convert QEMU virt machine DTB into DTS
+3) Add "idle-states" in QEMU virt machine DTS
+4) Create QEMU virt machine DTB with "idle-states"
+5) Use the new QEMU virt machine DTB for testing this series.
 
-NCPM7xx is ARM32 bit (dual core Cortex A9)
-NPCM8xx is ARM64 bit (quad core Cortex A35)
+Here's one of the DTS files which I used for testing on QEMU virt machine:
 
-They have completely different architecture so not ABI compliant.
-I2C module is similar, but the devices are quite different and have
-separate architectures.
+/dts-v1/;
 
-Sorry for the confusion.
-This is the first patch we try to upstream for NPCM8xx.
-In the coming weeks we will upstream the architecture of NPCM8xx as well.
+/ {
+    #address-cells = <0x02>;
+    #size-cells = <0x02>;
+    compatible = "riscv-virtio";
+    model = "riscv-virtio,qemu";
 
+    chosen {
+        linux,initrd-end = <0x8855d200>;
+        linux,initrd-start = <0x88200000>;
+        bootargs = "root=/dev/ram rw console=ttyS0 earlycon";
+        stdout-path = "/soc/uart@10000000";
+    };
 
+    memory@80000000 {
+        device_type = "memory";
+        reg = <0x00 0x80000000 0x00 0x10000000>;
+    };
 
->
->Best regards,
->Krzysztof
+    cpus {
+        #address-cells = <0x01>;
+        #size-cells = <0x00>;
+        timebase-frequency = <0x989680>;
 
-Thanks!
-Tali
+        cpu@0 {
+            phandle = <0x07>;
+            device_type = "cpu";
+            reg = <0x00>;
+            status = "okay";
+            compatible = "riscv";
+            riscv,isa = "rv64imafdcsu";
+            mmu-type = "riscv,sv48";
+            cpu-idle-states = <&CPU_NONRET_DEF>;
+
+            interrupt-controller {
+                #interrupt-cells = <0x01>;
+                interrupt-controller;
+                compatible = "riscv,cpu-intc";
+                phandle = <0x08>;
+            };
+        };
+
+        cpu@1 {
+            phandle = <0x05>;
+            device_type = "cpu";
+            reg = <0x01>;
+            status = "okay";
+            compatible = "riscv";
+            riscv,isa = "rv64imafdcsu";
+            mmu-type = "riscv,sv48";
+            cpu-idle-states = <&CPU_RET_DEF>;
+
+            interrupt-controller {
+                #interrupt-cells = <0x01>;
+                interrupt-controller;
+                compatible = "riscv,cpu-intc";
+                phandle = <0x06>;
+            };
+        };
+
+        cpu@2 {
+            phandle = <0x03>;
+            device_type = "cpu";
+            reg = <0x02>;
+            status = "okay";
+            compatible = "riscv";
+            riscv,isa = "rv64imafdcsu";
+            mmu-type = "riscv,sv48";
+            cpu-idle-states = <&CPU_NONRET_DEF>;
+
+            interrupt-controller {
+                #interrupt-cells = <0x01>;
+                interrupt-controller;
+                compatible = "riscv,cpu-intc";
+                phandle = <0x04>;
+            };
+        };
+
+        cpu@3 {
+            phandle = <0x01>;
+            device_type = "cpu";
+            reg = <0x03>;
+            status = "okay";
+            compatible = "riscv";
+            riscv,isa = "rv64imafdcsu";
+            mmu-type = "riscv,sv48";
+            cpu-idle-states = <&CPU_RET_DEF>;
+
+            interrupt-controller {
+                #interrupt-cells = <0x01>;
+                interrupt-controller;
+                compatible = "riscv,cpu-intc";
+                phandle = <0x02>;
+            };
+        };
+
+        cpu-map {
+
+            cluster0 {
+
+                core0 {
+                    cpu = <0x07>;
+                };
+
+                core1 {
+                    cpu = <0x05>;
+                };
+
+                core2 {
+                    cpu = <0x03>;
+                };
+
+                core3 {
+                    cpu = <0x01>;
+                };
+            };
+        };
+
+        idle-states {
+            CPU_RET_DEF: cpu-retentive-default {
+                compatible = "riscv,idle-state";
+                riscv,sbi-suspend-param = <0x00000000>;
+                entry-latency-us = <10>;
+                exit-latency-us = <10>;
+                min-residency-us = <100>;
+            };
+
+            CPU_NONRET_DEF: cpu-nonretentive-default {
+                compatible = "riscv,idle-state";
+                riscv,sbi-suspend-param = <0x80000000>;
+                entry-latency-us = <100>;
+                exit-latency-us = <100>;
+                min-residency-us = <1000>;
+            };
+        };
+    };
+
+    soc {
+        #address-cells = <0x02>;
+        #size-cells = <0x02>;
+        compatible = "simple-bus";
+        ranges;
+
+        flash@20000000 {
+            bank-width = <0x04>;
+            reg = <0x00 0x20000000 0x00 0x2000000 0x00 0x22000000 0x00
+0x2000000>;
+            compatible = "cfi-flash";
+        };
+
+        rtc@101000 {
+            interrupts = <0x0b>;
+            interrupt-parent = <0x09>;
+            reg = <0x00 0x101000 0x00 0x1000>;
+            compatible = "google,goldfish-rtc";
+        };
+
+        uart@10000000 {
+            interrupts = <0x0a>;
+            interrupt-parent = <0x09>;
+            clock-frequency = <0x384000>;
+            reg = <0x00 0x10000000 0x00 0x100>;
+            compatible = "ns16550a";
+        };
+
+        poweroff {
+            value = <0x5555>;
+            offset = <0x00>;
+            regmap = <0x0a>;
+            compatible = "syscon-poweroff";
+        };
+
+        reboot {
+            value = <0x7777>;
+            offset = <0x00>;
+            regmap = <0x0a>;
+            compatible = "syscon-reboot";
+        };
+
+        test@100000 {
+            phandle = <0x0a>;
+            reg = <0x00 0x100000 0x00 0x1000>;
+            compatible = "sifive,test1\0sifive,test0\0syscon";
+        };
+
+        pci@30000000 {
+            interrupt-map-mask = <0x1800 0x00 0x00 0x07>;
+            interrupt-map = <0x00 0x00 0x00 0x01 0x09 0x20 0x00 0x00
+0x00 0x02 0x09 0x21 0x00 0x00 0x00 0x03 0x09 0x22 0x00 0x00 0x00 0x04
+0x09 0x23 0x800 0x00 0x00 0x01 0x09 0x21 0x800 0x00 0x00 0x02 0x09
+0x22 0x800 0x00 0x00 0x03 0x09 0x23 0x800 0x00 0x00 0x04 0x09 0x20
+0x1000 0x00 0x00 0x01 0x09 0x22 0x1000 0x00 0x00 0x02 0x09 0x23 0x1000
+0x00 0x00 0x03 0x09 0x20 0x1000 0x00 0x00 0x04 0x09 0x21 0x1800 0x00
+0x00 0x01 0x09 0x23 0x1800 0x00 0x00 0x02 0x09 0x20 0x1800 0x00 0x00
+0x03 0x09 0x21 0x1800 0x00 0x00 0x04 0x09 0x22>;
+            ranges = <0x1000000 0x00 0x00 0x00 0x3000000 0x00 0x10000
+0x2000000 0x00 0x40000000 0x00 0x40000000 0x00 0x40000000>;
+            reg = <0x00 0x30000000 0x00 0x10000000>;
+            dma-coherent;
+            bus-range = <0x00 0xff>;
+            linux,pci-domain = <0x00>;
+            device_type = "pci";
+            compatible = "pci-host-ecam-generic";
+            #size-cells = <0x02>;
+            #interrupt-cells = <0x01>;
+            #address-cells = <0x03>;
+        };
+
+        virtio_mmio@10008000 {
+            interrupts = <0x08>;
+            interrupt-parent = <0x09>;
+            reg = <0x00 0x10008000 0x00 0x1000>;
+            compatible = "virtio,mmio";
+        };
+
+        virtio_mmio@10007000 {
+            interrupts = <0x07>;
+            interrupt-parent = <0x09>;
+            reg = <0x00 0x10007000 0x00 0x1000>;
+            compatible = "virtio,mmio";
+        };
+
+        virtio_mmio@10006000 {
+            interrupts = <0x06>;
+            interrupt-parent = <0x09>;
+            reg = <0x00 0x10006000 0x00 0x1000>;
+            compatible = "virtio,mmio";
+        };
+
+        virtio_mmio@10005000 {
+            interrupts = <0x05>;
+            interrupt-parent = <0x09>;
+            reg = <0x00 0x10005000 0x00 0x1000>;
+            compatible = "virtio,mmio";
+        };
+
+        virtio_mmio@10004000 {
+            interrupts = <0x04>;
+            interrupt-parent = <0x09>;
+            reg = <0x00 0x10004000 0x00 0x1000>;
+            compatible = "virtio,mmio";
+        };
+
+        virtio_mmio@10003000 {
+            interrupts = <0x03>;
+            interrupt-parent = <0x09>;
+            reg = <0x00 0x10003000 0x00 0x1000>;
+            compatible = "virtio,mmio";
+        };
+
+        virtio_mmio@10002000 {
+            interrupts = <0x02>;
+            interrupt-parent = <0x09>;
+            reg = <0x00 0x10002000 0x00 0x1000>;
+            compatible = "virtio,mmio";
+        };
+
+        virtio_mmio@10001000 {
+            interrupts = <0x01>;
+            interrupt-parent = <0x09>;
+            reg = <0x00 0x10001000 0x00 0x1000>;
+            compatible = "virtio,mmio";
+        };
+
+        plic@c000000 {
+            phandle = <0x09>;
+            riscv,ndev = <0x35>;
+            reg = <0x00 0xc000000 0x00 0x210000>;
+            interrupts-extended = <0x08 0x0b 0x08 0x09 0x06 0x0b 0x06
+0x09 0x04 0x0b 0x04 0x09 0x02 0x0b 0x02 0x09>;
+            interrupt-controller;
+            compatible = "riscv,plic0";
+            #interrupt-cells = <0x01>;
+            #address-cells = <0x00>;
+        };
+
+        clint@2000000 {
+            interrupts-extended = <0x08 0x03 0x08 0x07 0x06 0x03 0x06
+0x07 0x04 0x03 0x04 0x07 0x02 0x03 0x02 0x07>;
+            reg = <0x00 0x2000000 0x00 0x10000>;
+            compatible = "riscv,clint0";
+        };
+    };
+};
+
+Regards,
+Anup
