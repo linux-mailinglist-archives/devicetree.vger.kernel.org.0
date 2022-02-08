@@ -2,122 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D01D4ADCF1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 16:39:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 319B04ADD14
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 16:41:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232919AbiBHPiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 10:38:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50378 "EHLO
+        id S1381219AbiBHPkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 10:40:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235185AbiBHPiy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 10:38:54 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7349AC061579
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 07:38:53 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id v129so8938709wme.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 07:38:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=rwKl8ZeyCuycfyHiHNzaCDGxP6pfys7UA7HgC7w51Hk=;
-        b=J8rGUAr3VAjmWXmp/ug1dk925Xs2TgqQC98/ubJfOSqot4uI/8l2P/bJGc1BLEFde/
-         02w69uACXz87zFLCn4hFgeDAx1K1QiQtuZlfrpZv7l+iMQuGTBsZhC6x5Bwp9n+LlBSE
-         q5BvhZLUUptXXiuSUgC7qDp7XPJdSdSc5XsOxhJp9Vejfd/r++x5Rn6HLC0lL30zRLx5
-         pit3G4CGM24B/tdxV7ArZb/J4pRtCYc2Tjtm/PmBWM7BoPfQheWViImBTXPtNZpGb2Vm
-         fyk5zOkWFUi0zeIbVgSf1iCKyiZ4EHWMmg+gF6KKY6nsWIDBjSFpnjnshFHWFr4OQGjt
-         Gisw==
+        with ESMTP id S1381383AbiBHPkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 10:40:19 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5B0F8C061576
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 07:40:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1644334817;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=R3+ygx7WT3LgjARaNLFe1zhALwKjcISILkzjd4t3g78=;
+        b=gox9DCLUt6zb4qZgacR/IkWIbwRWFPdyWHJHkVbdSDdpEWdlJ4JFDE7wHWx9CAKz+89lU4
+        x4JvwnUtTrrY2mmuqr+85TgoWhBXei+4OkWM2uo0aku/0Zcw9/8b+o4ThVT5+IELHx7fyz
+        fg8LW30skqzMtI8+IkJ6UpIeHt+sYKM=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-63-aczqBiS6P86g7mUmFd0qkA-1; Tue, 08 Feb 2022 10:40:15 -0500
+X-MC-Unique: aczqBiS6P86g7mUmFd0qkA-1
+Received: by mail-wm1-f72.google.com with SMTP id c7-20020a1c3507000000b0034a0dfc86aaso1185134wma.6
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 07:40:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=rwKl8ZeyCuycfyHiHNzaCDGxP6pfys7UA7HgC7w51Hk=;
-        b=vAkJCSWesAPDlAzmJYYMBENwT0kOHUqAqjjIsyf6YgvG737sn8rd2TUWKC0LlYp21M
-         CFQ7u5UMAloHwOCGSPJe3Vfplt4IlnYqmmqyU7+v2JDo6wTZtK/Fy6j4a+OEj+09KLAS
-         O2FL3c6AjOGH2NfQwD3VxUNxhWvZlJWGi4wdT0xK7R0HNTobKwLuY5RyW19IgQLXTuL2
-         ZcCvwiA05+q2bHitxgC8nQlNpr1uvNfJ1Io91yeK7HgOp68ypmn0L8ZeSnC84mv1DL4A
-         cut4A6jMObuu0F+w7JTCquVzreisagaRipWB22d1QhNtxUZmkw4KRmEJIPdzMDJK7ubG
-         0rQg==
-X-Gm-Message-State: AOAM533CR4z9qiUmIfbNCB0YzlPK2avwcJRM3kVOGqB/gGa9hF0+GyS9
-        UL1FfIA49kVJqWnT9EVX1Gb97Q==
-X-Google-Smtp-Source: ABdhPJx8NmLR0cLoQwJ+aWrxfCSDB4wpiMqHzFtzKLKpkKQhBC8j92FFvulZ4fHheCC8AjHQmnFOGw==
-X-Received: by 2002:a05:600c:4656:: with SMTP id n22mr1630222wmo.85.1644334732007;
-        Tue, 08 Feb 2022 07:38:52 -0800 (PST)
-Received: from localhost ([2a01:cb19:826e:8e00:bf36:c801:97ea:7f])
-        by smtp.gmail.com with ESMTPSA id p27sm2397617wms.39.2022.02.08.07.38.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Feb 2022 07:38:51 -0800 (PST)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] arm64: dts: mt6358: add mt6358-keys node
-In-Reply-To: <20220121140323.4080640-5-mkorpershoek@baylibre.com>
-References: <20220121140323.4080640-1-mkorpershoek@baylibre.com>
- <20220121140323.4080640-5-mkorpershoek@baylibre.com>
-Date:   Tue, 08 Feb 2022 16:38:50 +0100
-Message-ID: <87v8xps705.fsf@baylibre.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=R3+ygx7WT3LgjARaNLFe1zhALwKjcISILkzjd4t3g78=;
+        b=6TzlAXjbLEKQ4qG1u38fTPS8aQtkoB9HcZsLYyTsleJ/kiAOgYQkYxX4HxDhIaPfW2
+         k14scFWrVFhSkRg3bdLrrNxbSxL5/aymQl6TP2rHvuAoUDD+nWl9F92lDA5/gDmiLL7P
+         IKMJptTCcNOMK7d6bbEDZzlz87SWXsRLd3VEow3xDRIYrVaBODMDy6xbw6yD1pwDXQmk
+         f50l8hED3kUiLjOzLQ5HR73LNoVbXyd6u5UHleDGaOwDvFI3JZdnFzj2lMiux5zrp8Z7
+         8NZHMJtv6/EpuLOGpcmgMa1dAY+JSsoszSXNetukrCV/TI6RwP0beoGf5KAeS/FOwtt2
+         ngfA==
+X-Gm-Message-State: AOAM532IHeoV3Vqd99CSQF0ugcn6YvK2O5GhwbA/S9rNf6dqik2GI5kM
+        FJ6kNqUO9SulrxqRN8H/3KcnwDOjmwzl1K0kWHjLDfahv6B5H1w4GpJsNd2xTNPOV/whL9NioN/
+        +aujFL1ru8SllmFbhcrmjaw==
+X-Received: by 2002:a5d:588e:: with SMTP id n14mr4244920wrf.45.1644334814511;
+        Tue, 08 Feb 2022 07:40:14 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwgsRW+lrC/D9yn6NeNRRQqunCaYEb9CMC26g+Mn3KPfiRrXRhLKFGC8C3j1dq2BkDZsEKSLg==
+X-Received: by 2002:a5d:588e:: with SMTP id n14mr4244901wrf.45.1644334814281;
+        Tue, 08 Feb 2022 07:40:14 -0800 (PST)
+Received: from [192.168.1.102] ([92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id v18sm9972089wrm.105.2022.02.08.07.40.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Feb 2022 07:40:14 -0800 (PST)
+Message-ID: <02d5b225-e1a8-77f6-7e4e-18d6a1df5e48@redhat.com>
+Date:   Tue, 8 Feb 2022 16:40:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED
+ displays
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Mark Brown <broonie@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+References: <20220204134347.1187749-1-javierm@redhat.com>
+ <CAMuHMdVTVX7LFay-rfv=oW96dMA24duMUVGRE62jQSNkrKtyMg@mail.gmail.com>
+ <f178de92-7cb1-dcc5-1f60-9ccfc56bc0a4@redhat.com>
+ <CAMuHMdWvrJip+W6ZZoO2ZURLc5CYmFno3=Sa2mL4xJE8gMzFqg@mail.gmail.com>
+From:   Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <CAMuHMdWvrJip+W6ZZoO2ZURLc5CYmFno3=Sa2mL4xJE8gMzFqg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+On 2/8/22 16:23, Geert Uytterhoeven wrote:
 
-On ven., janv. 21, 2022 at 15:03, Mattijs Korpershoek <mkorpershoek@baylibre.com> wrote:
+[snip]
 
-> This enables the power,home keys on MediaTek boards with a mt6358 pmic.
+>>>   - The logo (I have a custom monochrome logo enabled) is no longer shown.
+>>
+>> I was able to display your tux monochrome with ./fbtest -f /dev/fb1 test004
+> 
+> I meant the kernel's logo (FB_LOGO_*),. Obviously you need to enable
+> a smaller one, as the default 80x80 logo is too large, and thus can't
+> be drawn on your 128x64 or my 128x32 display.
 >
-> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Since the driver change has been merged [1], can we queue up the DT change?
-Or should I resubmit this separately?
 
-Thanks
-
-[1] https://lore.kernel.org/all/YgIE%2F806gDmRJYCn@google.com/
-> ---
->  arch/arm64/boot/dts/mediatek/mt6358.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+That makes sense.
+ 
+>>>   - The screen is empty, with a (very very slow) flashing cursor in the
+>>>     middle of the screen, with a bogus long line next to it, which I can
+>>>     see being redrawn.
+>>>   - Writing text (e.g. hello) to /dev/tty0, I first see the text,
+>>>     followed by an enlargement of some of the characters.
+>>
+>> So far I was mostly testing using your fbtest repo tests and all of them
+>> (modulo test009 that says "Screen size too small for this test").
+>>
+>> But I've tried now using as a VT and I see the same visual artifacts. I
+>> wonder what's the difference between fbcon and the way your tests use
+>> the fbdev API.
+> 
+> Fbcon does small writes to the shadow frame buffer, while fbtest
+> writes to the mmap()ed /dev/fbX, causing a full page to be updated.
 >
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6358.dtsi b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-> index 95145076b7e6..98f3b0e0c9f6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-> @@ -2,6 +2,7 @@
->  /*
->   * Copyright (c) 2020 MediaTek Inc.
->   */
-> +#include <dt-bindings/input/input.h>
->  
->  &pwrap {
->  	pmic: mt6358 {
-> @@ -357,5 +358,16 @@ mt6358_vsim2_reg: ldo_vsim2 {
->  		mt6358rtc: mt6358rtc {
->  			compatible = "mediatek,mt6358-rtc";
->  		};
-> +
-> +		mt6358keys: mt6358keys {
-> +			compatible = "mediatek,mt6358-keys";
-> +			power {
-> +				linux,keycodes = <KEY_POWER>;
-> +				wakeup-source;
-> +			};
-> +			home {
-> +				linux,keycodes = <KEY_HOME>;
-> +			};
-> +		};
->  	};
->  };
-> -- 
-> 2.32.0
+
+I see. Thanks for the information.
+
+Best regards, -- 
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
+
