@@ -2,465 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FAD44ADE18
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 17:17:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B3354ADE86
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 17:45:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382881AbiBHQQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 11:16:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47836 "EHLO
+        id S232725AbiBHQoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 11:44:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382931AbiBHQQ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 11:16:58 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6867DC0612C0
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 08:16:55 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id k18so31690070wrg.11
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 08:16:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aKXJwL4hvq55/LFdYG92ZXL3tNxjw52aAP4axBxnMOQ=;
-        b=jj8IPRcCM4Er1aZyxSbz/MktKNiNx4Ny95ct6Z3tzw/KbWyYm9ZT6Zh5krVFlJUEtI
-         NbWV6pKno0oTqEDgKAKVt+6zFPT2Gnahw3yTSYY5E1ajSkyC6B9il91yo15CRMnV/OhF
-         7lXiKHbkXnK1OiOs5BYMUJfpoxXLHH5ykYwut+UlABSMRghx1RNx4PZ362ab5srOIHkx
-         Y0DRDFr8IEzsfIgZE1ebyhdZGQe3fSWekS3qdunmI6unFlWZsYd1k3bicTp98Ft6VFWx
-         mTZVwvQm1ZCb6ksXAarSL1cXCsAREAGAVgXgujO5aIXd/46AQwWS41D/F3MjMz53Sqps
-         e+ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aKXJwL4hvq55/LFdYG92ZXL3tNxjw52aAP4axBxnMOQ=;
-        b=M7mP5qsuIRkl1MIavGRyIi0Zr4XuyiBT4tyt1n7zKQ5f9DnR7mHfDmMEXt25pdVZBr
-         A4r2YxHw/CIiuYbYKOeWY2f/ubK0Q4qo/z0JZOqx1lYW/KvN34Ew894Fj9QkiWGpUnx4
-         788KKxxr9qoeyro2XDF3XFs0QZASoelwjQ0B//WBJKRvnnYv+v5tnm4ycNGJiEWNEo3G
-         FY8rYArt8Dflgp7LKTiLTA8CNBjY1lYAajjnlEQ+jYyMniSJAU4D7P919sG+m1YvsHhf
-         jXWb+sMN4ktgFzRJlieuFEHx1QBDNCQil3J72QwNDjumryZMhIP6RPjIQPkvHasYhZRz
-         RzkQ==
-X-Gm-Message-State: AOAM530FdE9nW5kVtb+7KvncD9pOou/t0MarFaFrwgWDsplVnBHGGnH0
-        IpPRfMrmR3WbVPDwNzmzG+1fCzzDZm+QdtPvEgmCnw==
-X-Google-Smtp-Source: ABdhPJxiIS9ZYI9gg0KVV2cfDvDLybSCPDmYGnzAe0Vc6ckA/KBv4MAS15wMskZNFjULgZghwbhmeosZthvL68ecAS8=
-X-Received: by 2002:a5d:588d:: with SMTP id n13mr4175738wrf.690.1644337013676;
- Tue, 08 Feb 2022 08:16:53 -0800 (PST)
+        with ESMTP id S238504AbiBHQoe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 11:44:34 -0500
+X-Greylist: delayed 1368 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 08 Feb 2022 08:44:32 PST
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018F1C061579;
+        Tue,  8 Feb 2022 08:44:31 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 218GLaqt094798;
+        Tue, 8 Feb 2022 10:21:36 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1644337296;
+        bh=pUuWQr+L14zdI+Vc3J1KTPWgbWU9dWvEhXxZKxw3cCk=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=GpDKsn9r44cfaqqMWKNvTVOHoo3C3VZt8oW0UDJ2JEBWbPRyZ1TR2HJO5SBr6FAnV
+         EX5QzWSZdUuaP/HrM7XA4PQX5Ry1D26Ch9V1cs2wpBjtZ6UdnwoYzzAqVlPV4IFBoW
+         Z7CS7ifGsDiyPmlwXT/LNnTr2hAC/ipthtcHSF8U=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 218GLa2k116010
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Feb 2022 10:21:36 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 8
+ Feb 2022 10:20:24 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 8 Feb 2022 10:20:24 -0600
+Received: from [10.250.233.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 218GKLAD068450;
+        Tue, 8 Feb 2022 10:20:22 -0600
+Message-ID: <93916792-67f6-9018-e93b-4bdc8987af20@ti.com>
+Date:   Tue, 8 Feb 2022 21:50:20 +0530
 MIME-Version: 1.0
-References: <20220126114452.692512-1-apatel@ventanamicro.com>
- <20220126114452.692512-9-apatel@ventanamicro.com> <CAJF2gTQsSn1KBgX2bg2LiSUbCmbGD3oF5KcmK5gq2Dd49BWDBQ@mail.gmail.com>
- <CAAhSdy3Dkv6ga0ZMp5rMFa8nV9EDHgOMBwuJ4z4-w52T8EaUag@mail.gmail.com>
- <CAJF2gTSLmBcgUUE3VGsEq0JCWV74Yy-pkduS66rk=VPVwxk59g@mail.gmail.com>
- <CAK9=C2WqczG=tH1u9zcLt7Em+fPD1ZZwtDhf1yHJ70-o-HL8OQ@mail.gmail.com> <CAJF2gTSeH6w2Cfr5QEJTJ4ho_B4q3Eo2Xi+R_2yt+7CZCa+WBg@mail.gmail.com>
-In-Reply-To: <CAJF2gTSeH6w2Cfr5QEJTJ4ho_B4q3Eo2Xi+R_2yt+7CZCa+WBg@mail.gmail.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Tue, 8 Feb 2022 21:46:39 +0530
-Message-ID: <CAAhSdy3uaDz2tSgREqOX6s-e_Aqx5yJQRQ1-PCMxJ729V42kHg@mail.gmail.com>
-Subject: Re: [PATCH v10 8/8] RISC-V: Enable RISC-V SBI CPU Idle driver for
- QEMU virt machine
-To:     Guo Ren <guoren@kernel.org>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        kvm-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5] ASoC: dt-bindings: davinci-mcasp: convert McASP
+ bindings to yaml schema
+Content-Language: en-US
+To:     =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
+        <robh+dt@kernel.org>
+CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220103074427.4233-1-j-choudhary@ti.com>
+ <2cf3c89c-169f-3421-25d4-c80a6c9737ae@gmail.com>
+ <83c51ee4-ac10-0e44-d1cc-f69cebcbf0b8@gmail.com>
+ <f2bf4959-af15-04ad-78c3-aca883173d65@ti.com>
+ <609b03e1-66e0-9bfd-cbe1-810d816df659@gmail.com>
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <609b03e1-66e0-9bfd-cbe1-810d816df659@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 8, 2022 at 8:22 PM Guo Ren <guoren@kernel.org> wrote:
->
-> On Tue, Feb 8, 2022 at 9:25 PM Anup Patel <apatel@ventanamicro.com> wrote:
-> >
-> > On Tue, Feb 8, 2022 at 3:47 PM Guo Ren <guoren@kernel.org> wrote:
-> > >
-> > > On Tue, Feb 8, 2022 at 4:54 PM Anup Patel <anup@brainfault.org> wrote:
-> > > >
-> > > > On Tue, Feb 8, 2022 at 12:16 PM Guo Ren <guoren@kernel.org> wrote:
-> > > > >
-> > > > > Another question:
-> > > > >
-> > > > > Have you put "idle-states {" in qemu's DTS? or how do you test your patches?
-> > > >
-> > > > I usually do the following:
-> > > > 1) Dump QEMU virt machine DTB
-> > > > 2) Convert QEMU virt machine DTB into DTS
-> > > > 3) Add "idle-states" in QEMU virt machine DTS
-> > > > 4) Create QEMU virt machine DTB with "idle-states"
-> > > > 5) Use the new QEMU virt machine DTB for testing this series.
-> > > >
-> > > > Here's one of the DTS files which I used for testing on QEMU virt machine:
-> > > >
-> > > > /dts-v1/;
-> > > >
-> > > > / {
-> > > >     #address-cells = <0x02>;
-> > > >     #size-cells = <0x02>;
-> > > >     compatible = "riscv-virtio";
-> > > >     model = "riscv-virtio,qemu";
-> > > >
-> > > >     chosen {
-> > > >         linux,initrd-end = <0x8855d200>;
-> > > >         linux,initrd-start = <0x88200000>;
-> > > >         bootargs = "root=/dev/ram rw console=ttyS0 earlycon";
-> > > >         stdout-path = "/soc/uart@10000000";
-> > > >     };
-> > > >
-> > > >     memory@80000000 {
-> > > >         device_type = "memory";
-> > > >         reg = <0x00 0x80000000 0x00 0x10000000>;
-> > > >     };
-> > > >
-> > > >     cpus {
-> > > >         #address-cells = <0x01>;
-> > > >         #size-cells = <0x00>;
-> > > >         timebase-frequency = <0x989680>;
-> > > >
-> > > >         cpu@0 {
-> > > >             phandle = <0x07>;
-> > > >             device_type = "cpu";
-> > > >             reg = <0x00>;
-> > > >             status = "okay";
-> > > >             compatible = "riscv";
-> > > >             riscv,isa = "rv64imafdcsu";
-> > > >             mmu-type = "riscv,sv48";
-> > > >             cpu-idle-states = <&CPU_NONRET_DEF>;
-> > > >
-> > > >             interrupt-controller {
-> > > >                 #interrupt-cells = <0x01>;
-> > > >                 interrupt-controller;
-> > > >                 compatible = "riscv,cpu-intc";
-> > > >                 phandle = <0x08>;
-> > > >             };
-> > > >         };
-> > > >
-> > > >         cpu@1 {
-> > > >             phandle = <0x05>;
-> > > >             device_type = "cpu";
-> > > >             reg = <0x01>;
-> > > >             status = "okay";
-> > > >             compatible = "riscv";
-> > > >             riscv,isa = "rv64imafdcsu";
-> > > >             mmu-type = "riscv,sv48";
-> > > >             cpu-idle-states = <&CPU_RET_DEF>;
-> > > >
-> > > >             interrupt-controller {
-> > > >                 #interrupt-cells = <0x01>;
-> > > >                 interrupt-controller;
-> > > >                 compatible = "riscv,cpu-intc";
-> > > >                 phandle = <0x06>;
-> > > >             };
-> > > >         };
-> > > >
-> > > >         cpu@2 {
-> > > >             phandle = <0x03>;
-> > > >             device_type = "cpu";
-> > > >             reg = <0x02>;
-> > > >             status = "okay";
-> > > >             compatible = "riscv";
-> > > >             riscv,isa = "rv64imafdcsu";
-> > > >             mmu-type = "riscv,sv48";
-> > > >             cpu-idle-states = <&CPU_NONRET_DEF>;
-> > > >
-> > > >             interrupt-controller {
-> > > >                 #interrupt-cells = <0x01>;
-> > > >                 interrupt-controller;
-> > > >                 compatible = "riscv,cpu-intc";
-> > > >                 phandle = <0x04>;
-> > > >             };
-> > > >         };
-> > > >
-> > > >         cpu@3 {
-> > > >             phandle = <0x01>;
-> > > >             device_type = "cpu";
-> > > >             reg = <0x03>;
-> > > >             status = "okay";
-> > > >             compatible = "riscv";
-> > > >             riscv,isa = "rv64imafdcsu";
-> > > >             mmu-type = "riscv,sv48";
-> > > >             cpu-idle-states = <&CPU_RET_DEF>;
-> > > >
-> > > >             interrupt-controller {
-> > > >                 #interrupt-cells = <0x01>;
-> > > >                 interrupt-controller;
-> > > >                 compatible = "riscv,cpu-intc";
-> > > >                 phandle = <0x02>;
-> > > >             };
-> > > >         };
-> > > >
-> > > >         cpu-map {
-> > > >
-> > > >             cluster0 {
-> > > >
-> > > >                 core0 {
-> > > >                     cpu = <0x07>;
-> > > >                 };
-> > > >
-> > > >                 core1 {
-> > > >                     cpu = <0x05>;
-> > > >                 };
-> > > >
-> > > >                 core2 {
-> > > >                     cpu = <0x03>;
-> > > >                 };
-> > > >
-> > > >                 core3 {
-> > > >                     cpu = <0x01>;
-> > > >                 };
-> > > >             };
-> > > >         };
-> > > >
-> > > >         idle-states {
-> > > >             CPU_RET_DEF: cpu-retentive-default {
-> > > >                 compatible = "riscv,idle-state";
-> > > >                 riscv,sbi-suspend-param = <0x00000000>;
-> > > >                 entry-latency-us = <10>;
-> > > >                 exit-latency-us = <10>;
-> > > >                 min-residency-us = <100>;
-> > > >             };
-> > > >
-> > > >             CPU_NONRET_DEF: cpu-nonretentive-default {
-> > > >                 compatible = "riscv,idle-state";
-> > > >                 riscv,sbi-suspend-param = <0x80000000>;
-> > > >                 entry-latency-us = <100>;
-> > > >                 exit-latency-us = <100>;
-> > > >                 min-residency-us = <1000>;
-> > > >             };
-> > > >         };
-> > > >     };
-> > > >
-> > > >     soc {
-> > > >         #address-cells = <0x02>;
-> > > >         #size-cells = <0x02>;
-> > > >         compatible = "simple-bus";
-> > > >         ranges;
-> > > >
-> > > >         flash@20000000 {
-> > > >             bank-width = <0x04>;
-> > > >             reg = <0x00 0x20000000 0x00 0x2000000 0x00 0x22000000 0x00
-> > > > 0x2000000>;
-> > > >             compatible = "cfi-flash";
-> > > >         };
-> > > >
-> > > >         rtc@101000 {
-> > > >             interrupts = <0x0b>;
-> > > >             interrupt-parent = <0x09>;
-> > > >             reg = <0x00 0x101000 0x00 0x1000>;
-> > > >             compatible = "google,goldfish-rtc";
-> > > >         };
-> > > >
-> > > >         uart@10000000 {
-> > > >             interrupts = <0x0a>;
-> > > >             interrupt-parent = <0x09>;
-> > > >             clock-frequency = <0x384000>;
-> > > >             reg = <0x00 0x10000000 0x00 0x100>;
-> > > >             compatible = "ns16550a";
-> > > >         };
-> > > >
-> > > >         poweroff {
-> > > >             value = <0x5555>;
-> > > >             offset = <0x00>;
-> > > >             regmap = <0x0a>;
-> > > >             compatible = "syscon-poweroff";
-> > > >         };
-> > > >
-> > > >         reboot {
-> > > >             value = <0x7777>;
-> > > >             offset = <0x00>;
-> > > >             regmap = <0x0a>;
-> > > >             compatible = "syscon-reboot";
-> > > >         };
-> > > >
-> > > >         test@100000 {
-> > > >             phandle = <0x0a>;
-> > > >             reg = <0x00 0x100000 0x00 0x1000>;
-> > > >             compatible = "sifive,test1\0sifive,test0\0syscon";
-> > > >         };
-> > > >
-> > > >         pci@30000000 {
-> > > >             interrupt-map-mask = <0x1800 0x00 0x00 0x07>;
-> > > >             interrupt-map = <0x00 0x00 0x00 0x01 0x09 0x20 0x00 0x00
-> > > > 0x00 0x02 0x09 0x21 0x00 0x00 0x00 0x03 0x09 0x22 0x00 0x00 0x00 0x04
-> > > > 0x09 0x23 0x800 0x00 0x00 0x01 0x09 0x21 0x800 0x00 0x00 0x02 0x09
-> > > > 0x22 0x800 0x00 0x00 0x03 0x09 0x23 0x800 0x00 0x00 0x04 0x09 0x20
-> > > > 0x1000 0x00 0x00 0x01 0x09 0x22 0x1000 0x00 0x00 0x02 0x09 0x23 0x1000
-> > > > 0x00 0x00 0x03 0x09 0x20 0x1000 0x00 0x00 0x04 0x09 0x21 0x1800 0x00
-> > > > 0x00 0x01 0x09 0x23 0x1800 0x00 0x00 0x02 0x09 0x20 0x1800 0x00 0x00
-> > > > 0x03 0x09 0x21 0x1800 0x00 0x00 0x04 0x09 0x22>;
-> > > >             ranges = <0x1000000 0x00 0x00 0x00 0x3000000 0x00 0x10000
-> > > > 0x2000000 0x00 0x40000000 0x00 0x40000000 0x00 0x40000000>;
-> > > >             reg = <0x00 0x30000000 0x00 0x10000000>;
-> > > >             dma-coherent;
-> > > >             bus-range = <0x00 0xff>;
-> > > >             linux,pci-domain = <0x00>;
-> > > >             device_type = "pci";
-> > > >             compatible = "pci-host-ecam-generic";
-> > > >             #size-cells = <0x02>;
-> > > >             #interrupt-cells = <0x01>;
-> > > >             #address-cells = <0x03>;
-> > > >         };
-> > > >
-> > > >         virtio_mmio@10008000 {
-> > > >             interrupts = <0x08>;
-> > > >             interrupt-parent = <0x09>;
-> > > >             reg = <0x00 0x10008000 0x00 0x1000>;
-> > > >             compatible = "virtio,mmio";
-> > > >         };
-> > > >
-> > > >         virtio_mmio@10007000 {
-> > > >             interrupts = <0x07>;
-> > > >             interrupt-parent = <0x09>;
-> > > >             reg = <0x00 0x10007000 0x00 0x1000>;
-> > > >             compatible = "virtio,mmio";
-> > > >         };
-> > > >
-> > > >         virtio_mmio@10006000 {
-> > > >             interrupts = <0x06>;
-> > > >             interrupt-parent = <0x09>;
-> > > >             reg = <0x00 0x10006000 0x00 0x1000>;
-> > > >             compatible = "virtio,mmio";
-> > > >         };
-> > > >
-> > > >         virtio_mmio@10005000 {
-> > > >             interrupts = <0x05>;
-> > > >             interrupt-parent = <0x09>;
-> > > >             reg = <0x00 0x10005000 0x00 0x1000>;
-> > > >             compatible = "virtio,mmio";
-> > > >         };
-> > > >
-> > > >         virtio_mmio@10004000 {
-> > > >             interrupts = <0x04>;
-> > > >             interrupt-parent = <0x09>;
-> > > >             reg = <0x00 0x10004000 0x00 0x1000>;
-> > > >             compatible = "virtio,mmio";
-> > > >         };
-> > > >
-> > > >         virtio_mmio@10003000 {
-> > > >             interrupts = <0x03>;
-> > > >             interrupt-parent = <0x09>;
-> > > >             reg = <0x00 0x10003000 0x00 0x1000>;
-> > > >             compatible = "virtio,mmio";
-> > > >         };
-> > > >
-> > > >         virtio_mmio@10002000 {
-> > > >             interrupts = <0x02>;
-> > > >             interrupt-parent = <0x09>;
-> > > >             reg = <0x00 0x10002000 0x00 0x1000>;
-> > > >             compatible = "virtio,mmio";
-> > > >         };
-> > > >
-> > > >         virtio_mmio@10001000 {
-> > > >             interrupts = <0x01>;
-> > > >             interrupt-parent = <0x09>;
-> > > >             reg = <0x00 0x10001000 0x00 0x1000>;
-> > > >             compatible = "virtio,mmio";
-> > > >         };
-> > > >
-> > > >         plic@c000000 {
-> > > >             phandle = <0x09>;
-> > > >             riscv,ndev = <0x35>;
-> > > >             reg = <0x00 0xc000000 0x00 0x210000>;
-> > > >             interrupts-extended = <0x08 0x0b 0x08 0x09 0x06 0x0b 0x06
-> > > > 0x09 0x04 0x0b 0x04 0x09 0x02 0x0b 0x02 0x09>;
-> > > >             interrupt-controller;
-> > > >             compatible = "riscv,plic0";
-> > > >             #interrupt-cells = <0x01>;
-> > > >             #address-cells = <0x00>;
-> > > >         };
-> > > >
-> > > >         clint@2000000 {
-> > > >             interrupts-extended = <0x08 0x03 0x08 0x07 0x06 0x03 0x06
-> > > > 0x07 0x04 0x03 0x04 0x07 0x02 0x03 0x02 0x07>;
-> > > >             reg = <0x00 0x2000000 0x00 0x10000>;
-> > > >             compatible = "riscv,clint0";
-> > > >         };
-> > > >     };
-> > > > };
-> > >
-> > > Thx Anup, but it still couldn't work for testing suspend.
-> > >
-> > > # echo mem > /sys/power/state
-> > > sh: write error: Function not implemented
-> > >
-> > > Why there is no ARCH_SUSPEND_POSSIBLE in the patch series?
-> >
-> > You are referring to system-level suspend to RAM support whereas
-> > this series adds CPU idle power management support.
-> Right.
->
-> >
-> > Adding system-level suspend to RAM will be a separate series
-> > and it will re-use the non-retentive suspend infrastructure added
-> > by this series.
-> Do you have the plan for the feature of SUSPEND? I think you've done
-> the core part by this series.
 
-We need to first define System SUSPEND in the SBI specification and
-only after that we can plan support for OpenSBI and Linux.
 
-Regards,
-Anup
+On 29/01/22 01:48, Péter Ujfalusi wrote:
+> 
+> On 1/17/22 12:07, Jayesh Choudhary wrote:
+> 
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - ti,dm646x-mcasp-audio
+>>>>> +      - ti,da830-mcasp-audio
+>>>>> +      - ti,am33xx-mcasp-audio
+>>>>> +      - ti,dra7-mcasp-audio
+>>>>> +      - ti,omap4-mcasp-audio
+>>>
+>>> This is the only thing which bugs me: the pointless '-audio' postfix for
+>>> the compatible string...
+>>>
+>>
+>> Removing the postfix would also require a lot of dts changes which might
+>> be backward incompatible. So it is probably not a good idea.
+> 
+> My plan was to not convert the ti,*-mcasp-audio txt file to yaml in the
+> first place, but do it right with as ti,*-mcasp
+> 
+> One of the outstanding issue is the multiple serializer support. It
+> should be in core as things are just working by luck atm when more than
+> one serializer is in use (via the card node).
+> 
+>> Should we still consider this?
+> 
+> Since we are officially documenting the -mcasp-audio, I don't think it
+> would be a good idea to introduce different binding for the very same IP
+> just for the sake of it.
+> 
+> The new (and imho correct) binding would require quite a bit of work in
+> the driver and in the core level (plus the simple-card family), but I'm
+> afraid, I will not have time for it.
+> 
 
->
-> In the end, thx for the work :)
->
-> >
-> > Regards,
-> > Anup
-> >
-> > >
-> > > ref arm64's:
-> > > commit 166936bace056dfc11452d794209f39a5e9b0fb4
-> > > Author: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> > > Date:   Thu Nov 7 18:37:14 2013 +0000
-> > >
-> > >     arm64: kernel: add PM build infrastructure
-> > >
-> > >     This patch adds the required makefile and kconfig entries to enable PM
-> > >     for arm64 systems.
-> > >
-> > >     The kernel relies on the cpu_{suspend}/{resume} infrastructure to
-> > >     properly save the context for a CPU and put it to sleep, hence this
-> > >     patch adds the config option required to enable cpu_{suspend}/{resume}
-> > >     API.
-> > >
-> > >     In order to rely on the CPU PM implementation for saving and restoring
-> > >     of CPU subsystems like GIC and PMU, the arch Kconfig must be also
-> > >     augmented to select the CONFIG_CPU_PM option when SUSPEND or CPU_IDLE
-> > >     kernel implementations are selected.
-> > >
-> > > >
-> > > > Regards,
-> > > > Anup
-> > >
-> > >
-> > >
-> > > --
-> > > Best Regards
-> > >  Guo Ren
-> > >
-> > > ML: https://lore.kernel.org/linux-csky/
->
->
->
-> --
-> Best Regards
->  Guo Ren
->
-> ML: https://lore.kernel.org/linux-csky/
+Peter,
+
+I think all the new changes can be picked up later on.
+For now, to support the current device tree and binding, I am posting a
+v6 patch with 'acked-by' and 'reviewed-by' so that they are not lost in
+this thread and this patch could be merged.
