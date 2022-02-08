@@ -2,215 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26C1F4AE168
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 19:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 650E14AE196
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 19:57:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385349AbiBHSrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 13:47:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42216 "EHLO
+        id S1385556AbiBHS5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 13:57:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385359AbiBHSri (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 13:47:38 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162AAC0613CA;
-        Tue,  8 Feb 2022 10:47:37 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F2D2EA04;
-        Tue,  8 Feb 2022 19:47:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1644346055;
-        bh=hdzvF1bmDZLlj1lpTvDHJFfwOWcf/KydTHjftAnwTHA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nHPtqvOKVr1q54neD4n5fKTfpip7nWH0OjNwRtqzSHMy0OT8rdG7tfZRxvJWhDOD+
-         f9cz28QwIufikSpSX1DUpLuvXnkBOYPpgvgjxx+2xw9v+Cb5vWTNUnZJ6i2NTG5gdR
-         qpOKqc85PgiAK7o7QMotxKGNPALstl9GrvDJ6nA0=
-Date:   Tue, 8 Feb 2022 20:47:32 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: media: i2c: Add MT9M114
- camera sensor binding
-Message-ID: <YgK6xAgAVHUSsQND@pendragon.ideasonboard.com>
-References: <20220207012055.15158-1-laurent.pinchart@ideasonboard.com>
- <20220207012055.15158-2-laurent.pinchart@ideasonboard.com>
- <YgKfdR72TNavj68v@paasikivi.fi.intel.com>
+        with ESMTP id S1353465AbiBHS5G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 13:57:06 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77DE2C0613CB;
+        Tue,  8 Feb 2022 10:57:05 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1575A613F8;
+        Tue,  8 Feb 2022 18:57:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68983C004E1;
+        Tue,  8 Feb 2022 18:57:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644346624;
+        bh=JI4DEvYaY6EOL+Uro39kJ5nMr68u1NR9D7nmYx+BQCA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=YdhcaZfap181gsTUJQKhQwRXtE/rFTSeZAMQXZuB5IOmbJntWIPHvZHA32n2L2Dqq
+         VTqBugrj41q61o1KIII5r/Qgrq56TgOOXSzuCHXCujZhbGpzuBgYXKh+QXBIuUpw1e
+         UThiDdpvlT/ownHTGOdKSvdciCRNTDeHDHRGMJPeE7SXCsVpFLpLdOzIhysQ5nNwV7
+         VeMgLa1xYdqVIv/JEdkEPV3ZEIWP4m5paZ5ZHyf0QlTwuSApkSjesF50qFZwGzPbBN
+         RjMK+ZAnXD1paCF0uu3V7f6bYZ4ngvjpwWCw6aMV7H7uUnQ/fldt1JjNULjYiT3kkc
+         n6D0EjKaD+8bw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.lan)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nHVfh-006MEi-V5; Tue, 08 Feb 2022 18:57:02 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: [PATCH v5 00/10] drivers/perf: CPU PMU driver for Apple M1
+Date:   Tue,  8 Feb 2022 18:55:54 +0000
+Message-Id: <20220208185604.1097957-1-maz@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YgKfdR72TNavj68v@paasikivi.fi.intel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mark.rutland@arm.com, will@kernel.org, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de, dougallj@gmail.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+The M1 SoC embeds a per-CPU PMU that has a very different programming
+interface compared to the architected PMUv3 that is normally present
+on standard implementations.
 
-On Tue, Feb 08, 2022 at 06:51:01PM +0200, Sakari Ailus wrote:
-> On Mon, Feb 07, 2022 at 03:20:54AM +0200, Laurent Pinchart wrote:
-> > Add device tree binding for the onsemi MT9M114 CMOS camera sensor.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> > Changes since v1:
-> > 
-> > - Use graph schema
-> > - Drop unneeded properties
-> > - Rename ON Semiconductor to onsemi
-> > ---
-> >  .../bindings/media/i2c/onnn,mt9m114.yaml      | 110 ++++++++++++++++++
-> >  MAINTAINERS                                   |   7 ++
-> >  2 files changed, 117 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > new file mode 100644
-> > index 000000000000..55b67833f9a1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > @@ -0,0 +1,110 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/onnn,mt9m114.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: onsemi 1/6-inch 720p CMOS Digital Image Sensor
-> > +
-> > +maintainers:
-> > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > +
-> > +description: |-
-> > +  The onsemi MT9M114 is a 1/6-inch 720p (1.26 Mp) CMOS digital image sensor
-> > +  with an active pixel-array size of 1296H x 976V. It is programmable through
-> > +  an I2C interface and outputs image data over a 8-bit parallel or 1-lane MIPI
-> > +  CSI-2 connection.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: onnn,mt9m114
-> > +
-> > +  reg:
-> > +    description: I2C device address
-> > +    enum:
-> > +      - 0x48
-> > +      - 0x5d
-> > +
-> > +  clocks:
-> > +    description: EXTCLK clock signal
-> > +    maxItems: 1
-> > +
-> > +  vdd-supply:
-> > +    description:
-> > +      Core digital voltage supply, 1.8V
-> > +
-> > +  vddio-supply:
-> > +    description:
-> > +      I/O digital voltage supply, 1.8V or 2.8V
-> > +
-> > +  vaa-supply:
-> > +    description:
-> > +      Analog voltage supply, 2.8V
-> > +
-> > +  reset-gpios:
-> > +    description: |-
-> > +      Reference to the GPIO connected to the RESET_BAR pin, if any (active
-> > +      low).
-> > +
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        additionalProperties: false
-> > +
-> > +        properties:
-> > +          bus-type:
-> > +            enum: [4, 5, 6]
-> 
-> With bus-type 5, shouldn't you have the parallel interface sync signal
-> polarity properties? Possibly also others if the hardware supports them.
+This small series adds a driver for this HW by leveraging the arm_pmu
+infrastructure, resulting in a rather simple driver.
 
-As far as I can tell, the hardware has fixed polarities for all signals.
-Both hsync and vsync (called LINE_VALID and FRAME_VALID here) are active
-high.
+Of course, we know next to nothing about the actual events this PMU
+counts, aside from CPU cycles and instructions. Everything else is
+undocumented (though as Dougall pointed out, someone could extract the
+relevant information from a macOS install if they wanted -- I don't).
+I'm looking at allowing the perf userspace tool to load the event
+descriptions at runtime, which would probably help.
 
-> > +
-> > +          remote-endpoint: true
-> > +
-> > +          # The number and mapping of lanes (for CSI-2), and the bus width and
-> > +          # signal polarities (for parallel and BT.656) are fixed and must not
-> > +          # be specified.
-> > +
-> > +        required:
-> > +          - bus-type
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - vdd-supply
-> > +  - vddio-supply
-> > +  - vaa-supply
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    i2c0 {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        sensor@48 {
-> > +            compatible = "onnn,mt9m114";
-> > +            reg = <0x48>;
-> > +
-> > +            clocks = <&clk24m 0>;
-> > +
-> > +            reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
-> > +
-> > +            vddio-supply = <&reg_cam_1v8>;
-> > +            vdd-supply = <&reg_cam_1v8>;
-> > +            vaa-supply = <&reg_2p8v>;
-> > +
-> > +            port {
-> > +                endpoint {
-> > +                    bus-type = <4>;
-> > +                    remote-endpoint = <&mipi_csi_in>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index f41088418aae..e9919a359c12 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -13096,6 +13096,13 @@ T:	git git://linuxtv.org/media_tree.git
-> >  F:	drivers/media/i2c/mt9m032.c
-> >  F:	include/media/i2c/mt9m032.h
-> >  
-> > +MT9M114 ONSEMI SENSOR DRIVER
-> > +M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > +L:	linux-media@vger.kernel.org
-> > +S:	Maintained
-> > +T:	git git://linuxtv.org/media_tree.git
-> > +F:	Documentation/devicetree/bindings/media/i2c.onnn,mt9m114.yaml
-> > +
-> >  MT9P031 APTINA CAMERA SENSOR
-> >  M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >  L:	linux-media@vger.kernel.org
+* From v4 [4]:
+  - More DT binding tweaks
+  - Collected RB from Rob
+  - Rebased on 5.17-rc3
+
+* From v3 [3]:
+  - DT binding fixes
+  - Typo fixes (and probably more added)
+  - Rebased on 5.17-rc1
+
+* From v2 [2]:
+  - Reworked the way the FIQ virtual affinity is exposed (now coming
+    from the DT instead of being internal to the irqchip driver)
+  - Dropped the locking from the PMU driver after Mark's review
+  - Required the exclude_guest flag to be set, as the PMU doesn't seem
+    to be able to count guest events, at least by default
+  - Dropped the counter-stop on interrupt and instead stop the whole
+    PMU on interrupt
+  - Dropped the kernel taint, as I couldn't find a good way to do that
+    on first use
+  - Collected RBs from Hector
+
+* From v1 [1]:
+  - Added a few comments clarifying the event mapping to counters
+  - Spelling fixes
+  - Collected Acks from Rob
+
+[1] https://lore.kernel.org/r/20211113115429.4027571-1-maz@kernel.org
+[2] https://lore.kernel.org/r/20211201134909.390490-1-maz@kernel.org
+[3] https://lore.kernel.org/r/20211214182634.727330-1-maz@kernel.org
+[4] https://lore.kernel.org/r/20220124201231.298961-1-maz@kernel.org
+
+Marc Zyngier (10):
+  dt-bindings: arm-pmu: Document Apple PMU compatible strings
+  dt-bindings: apple,aic: Add CPU PMU per-cpu pseudo-interrupts
+  dt-bindings: apple,aic: Add affinity description for per-cpu
+    pseudo-interrupts
+  irqchip/apple-aic: Parse FIQ affinities from device-tree
+  irqchip/apple-aic: Wire PMU interrupts
+  arm64: dts: apple: Add t8103 PMU interrupt affinities
+  arm64: dts: apple: Add t8303 PMU nodes
+  irqchip/apple-aic: Move PMU-specific registers to their own include
+    file
+  drivers/perf: arm_pmu: Handle 47 bit counters
+  drivers/perf: Add Apple icestorm/firestorm CPU PMU driver
+
+ .../devicetree/bindings/arm/pmu.yaml          |   2 +
+ .../interrupt-controller/apple,aic.yaml       |  31 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          |  24 +
+ arch/arm64/include/asm/apple_m1_pmu.h         |  64 ++
+ drivers/irqchip/irq-apple-aic.c               |  94 ++-
+ drivers/perf/Kconfig                          |   7 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/apple_m1_cpu_pmu.c               | 584 ++++++++++++++++++
+ drivers/perf/arm_pmu.c                        |   2 +
+ .../interrupt-controller/apple-aic.h          |   2 +
+ include/linux/perf/arm_pmu.h                  |   2 +
+ 11 files changed, 791 insertions(+), 22 deletions(-)
+ create mode 100644 arch/arm64/include/asm/apple_m1_pmu.h
+ create mode 100644 drivers/perf/apple_m1_cpu_pmu.c
 
 -- 
-Regards,
+2.30.2
 
-Laurent Pinchart
