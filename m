@@ -2,99 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6EBA4AD626
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5026E4AD628
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357423AbiBHLWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1357433AbiBHLWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 8 Feb 2022 06:22:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47842 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355791AbiBHJzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 04:55:08 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 244BAC03FEC1
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 01:55:07 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id co28so9194407edb.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 01:55:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AqLy4wbT30gKNHEEk8JX8phB5jik7Edkg+UhlJoA5rs=;
-        b=GmStCOfR1LjR64d3+n6xiUfvnpjdXMYf6CGOzrW6RIz8xDIP0n8/jYPfRmgeH4wvSA
-         OHrBANagwetRO1ctOhpjjqD7hq3IRov+o5g/6r0ohsUWmjxkkAJDMOq5G7RuPuznKZbW
-         Lzs8UqpznjHrlZnMzaYxyFRSPYAnFnvEXsiKUDiZvjkpTJFrJJ7Ls7UIM2rbS4+dOVrw
-         ZTl80lTnm3SQW3C0NMVVs1AuA2J1zOFaOQeqPQydNl0ZsDO068k9z5YB2blovsV4bGfr
-         gty2VNbQEfzPRpAvMj9ngw21yaINuwxLkGx4nbkMcjKNYVKDht8HkTJcUAvqS8XqsgVi
-         dwyQ==
+        with ESMTP id S1345119AbiBHJzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 04:55:39 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529B5C03FEC0
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 01:55:38 -0800 (PST)
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 229ED3F308
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 09:55:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644314137;
+        bh=Szjo/xn7L6v0v/D7OiLOigwEC075JGBmQohH09dmhBU=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=baBaZtPvYNMne2FKLDg7hLtnozKYLMO52NjZLmK6cUN+5VSuVAqmzb+QwmHN5mIBb
+         Itk6Nok0A2pv3rVOHM8uoh4QjLzWgGlEgq+kAiJeL1VB26tsd6c6r4onsaRomF5nKq
+         0enz2FWPgERVhR0dqKt6h7Sd8NQnsEztOajTK1cc2r66zm7k/tiL2ZB8IQdcdbXXXt
+         iDglXSQlnEroftOT+XVkmztOmkLomB7gmw60BDDLXz3PDLy4stkc5pZjB2w9U/UWjF
+         xCtU2tBtEnIPXrNFgWyXPBJ3RHMIc+w0TiQZNX8W5xPm+6yXOtrn7FuCe8kpO0i2sq
+         ZB3gp2B5pq7sw==
+Received: by mail-ej1-f71.google.com with SMTP id aj9-20020a1709069a4900b006cd205be806so608449ejc.18
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 01:55:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AqLy4wbT30gKNHEEk8JX8phB5jik7Edkg+UhlJoA5rs=;
-        b=1j+Jc9l5vs8Mv3lDzAZJ7zDBzQgqt3prlQgK+L+8qrzZq6N9Ls/tMTu76e3ZLrmUU4
-         R6i2HJTw/ZdFTjUg11BwxIfatlaCM8SmzQOphid4OaLVuq8kq0VUymYjR/TVX22mpRA6
-         8JIgARHR7kCgTc1VylovcIQbxdwsiC151WUTG/GMOF0Riawin7U530cEGF5z0UZVzxFk
-         xwlWgGGY6qtN2exOP1PpaOneOLBIUUasC0HLac0vFfo9uECsMKP5nqYL+IQHqElJl/pE
-         uohpsLPVW9ShgxtQ55f0wfxzNK8tQeLWqSH2Ca5ISxYbHUE8Vl5fMuzEJ54rGoV7Pzhf
-         dY8g==
-X-Gm-Message-State: AOAM532lGf9Bsbwkx1Mt5sf5QTRfVHsSchT0EbIMNJfGJiKwyDcZ0ry+
-        e4G603IPisbXgx5g3bDd95vonzgIZ0B7x/JW4I9dRg==
-X-Google-Smtp-Source: ABdhPJyuckf4+FV8dJpo2WtDgSZtUTZx/r7KCc+6Q0sBzWGx76zj30iQdTOjUHRAsDoMGMpJF9mslMLO5Se5xA+4mcg=
-X-Received: by 2002:aa7:de91:: with SMTP id j17mr3715196edv.396.1644314105618;
- Tue, 08 Feb 2022 01:55:05 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Szjo/xn7L6v0v/D7OiLOigwEC075JGBmQohH09dmhBU=;
+        b=dKXg2RPUNalWEeqkkq1maQ+ZJpzkcwcrgtL4jSaGcqe4QFKgzvarrgb+dq7tnqTdHK
+         5wTJpsZ++q9W7nKZfcr8lM19oB7NhL9cMu0bmpC1LpepPCsEXzvZ0dsX14pZU1Gs8JdT
+         KADqqM3ZD+f23MQdU4ImZyQs09w/SK+qb/eULT5OxtFiuIamQ/CanhOF3h4MqCFlKq1M
+         d09kbxL3pEhGjlskDEepPsUopN0+IeQrvfRcxlUfdEc6T9KXBeyTZVgYRMH0XqqsfgEF
+         85Yjzc1NUN/YLywOdzqcqXYE3GOzV1GJXAqmzeJ4JDLwKv08DTEXY4fGa1ooqNaWJIqi
+         8YkQ==
+X-Gm-Message-State: AOAM5312ZdFxV1AaKBejL8ejyf1XzbQWKUBLFf7JkjgvIDIEoUr9PUdO
+        5tSaiWzi0vQV76GAqt+srXXpzfMukJ12w9xrpBkL8qs8XlmXGXp5vhakJ3imjCVX4MwnyP3XIhU
+        SE9DpXkR/wdLDGhtd8zSGUrzzjkn32JsA9t+N1gU=
+X-Received: by 2002:a17:906:4999:: with SMTP id p25mr2962922eju.605.1644314136759;
+        Tue, 08 Feb 2022 01:55:36 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz6Iu0J7lv26V4wjpXecuQJTMEHXlN1Y9pJES2wkCc04GRpLkPji9H4FKt//tjuDuor1d/XWA==
+X-Received: by 2002:a17:906:4999:: with SMTP id p25mr2962902eju.605.1644314136538;
+        Tue, 08 Feb 2022 01:55:36 -0800 (PST)
+Received: from [192.168.0.93] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id r22sm4593859ejo.48.2022.02.08.01.55.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Feb 2022 01:55:36 -0800 (PST)
+Message-ID: <82f120fc-1bc5-29ee-2a02-ca1fba308de3@canonical.com>
+Date:   Tue, 8 Feb 2022 10:55:35 +0100
 MIME-Version: 1.0
-References: <20220120150024.646714-1-paul.kocialkowski@bootlin.com>
- <20220120150024.646714-4-paul.kocialkowski@bootlin.com> <CACRpkdZnw-Tf2eQwO+LZRW4UacR09qWRWct00=XLb4pfa-N3=g@mail.gmail.com>
-In-Reply-To: <CACRpkdZnw-Tf2eQwO+LZRW4UacR09qWRWct00=XLb4pfa-N3=g@mail.gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 8 Feb 2022 10:54:55 +0100
-Message-ID: <CAMRc=MewxfQqM+QvzqjP05Qe5TeiEx+iiOFZLmieqCCVOL9UGQ@mail.gmail.com>
-Subject: Re: [PATCH v10 3/6] gpio: logicvc: Support compatible with major
- version only
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/3] dt-bindings: crypto: Convert Atmel AES to yaml
+Content-Language: en-US
+To:     Tudor.Ambarus@microchip.com, herbert@gondor.apana.org.au,
+        robh+dt@kernel.org
+Cc:     davem@davemloft.net, Nicolas.Ferre@microchip.com,
+        Claudiu.Beznea@microchip.com, alexandre.belloni@bootlin.com,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220207032405.70733-1-tudor.ambarus@microchip.com>
+ <20220207032405.70733-2-tudor.ambarus@microchip.com>
+ <f8387f12-24f9-4a39-e9b8-3b83f1de078d@canonical.com>
+ <ec358f0f-e3e2-a97b-e09a-d397edc65c72@microchip.com>
+ <7b787aee-ceea-d035-38b1-02ba0bcd3f21@canonical.com>
+ <eba691b4-e75f-f3ca-5359-9dc8b3bd3558@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <eba691b4-e75f-f3ca-5359-9dc8b3bd3558@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 30, 2022 at 1:43 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Thu, Jan 20, 2022 at 4:00 PM Paul Kocialkowski
-> <paul.kocialkowski@bootlin.com> wrote:
->
-> > Support the newly-introduced common compatible for version 3.
-> >
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
->
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->
-> Are there dependencies between the GPIO patches and the rest?
-> Doesn't look like that.
-> Can Bartosz just merge the GPIO stuff to the GPIO tree?
->
-> Yours,
-> Linus Walleij
+On 08/02/2022 10:49, Tudor.Ambarus@microchip.com wrote:
+> On 2/8/22 10:59, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 08/02/2022 05:10, Tudor.Ambarus@microchip.com wrote:
+>>> Hi, Krzysztof,
+>>>
+>>> On 2/7/22 17:56, Krzysztof Kozlowski wrote:
+>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>>>
+>>>> On 07/02/2022 04:24, Tudor Ambarus wrote:
+>>>>> Convert Atmel AES documentation to yaml format. With the conversion the
+>>>>> clock and clock-names properties are made mandatory. The driver returns
+>>>>> -EINVAL if "aes_clk" is not found, reflect that in the bindings and make
+>>>>> the clock and clock-names properties mandatory. Update the example to
+>>>>> better describe how one should define the dt node.
+>>>>>
+>>>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+>>>>> ---
+>>>>>  .../devicetree/bindings/crypto/atmel,aes.yaml | 65 +++++++++++++++++++
+>>>>>  .../bindings/crypto/atmel-crypto.txt          | 20 ------
+>>>>>  2 files changed, 65 insertions(+), 20 deletions(-)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/crypto/atmel,aes.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/crypto/atmel,aes.yaml b/Documentation/devicetree/bindings/crypto/atmel,aes.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..f77ec04dbabe
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/crypto/atmel,aes.yaml
+>>>>> @@ -0,0 +1,65 @@
+>>>>> +# SPDX-License-Identifier: GPL-2.0-only
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/crypto/atmel,aes.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Atmel Advanced Encryption Standard (AES) HW cryptographic accelerator
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Tudor Ambarus <tudor.ambarus@microchip.com>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: atmel,at91sam9g46-aes
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  clocks:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    const: aes_clk
+>>>>> +
+>>>>> +  dmas:
+>>>>> +    items:
+>>>>> +      - description: TX DMA Channel
+>>>>> +      - description: RX DMA Channel
+>>>>> +
+>>>>> +  dma-names:
+>>>>> +    items:
+>>>>> +      - const: tx
+>>>>> +      - const: rx
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +  - interrupts
+>>>>> +  - clocks
+>>>>> +  - clock-names
+>>>>> +  - dmas
+>>>>> +  - dma-names
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>>> +    #include <dt-bindings/clock/at91.h>
+>>>>> +    #include <dt-bindings/dma/at91.h>
+>>>>
+>>>> One empty line for readability.
+>>>
+>>> Ok.
+>>>
+>>>>
+>>>>> +    aes: aes@f8038000 {
+>>>>
+>>>> Generic node name, so "crypto".
+>>>
+>>> Hm, I'm not convinced why, would you please give more details about this
+>>> requirement? This IP is capable of doing just AES operations, I find it
+>>> generic enough. We use the "aes" name on all our SoCs that have a version
+>>> of this IP, that would be quite a change. So I would prefer to keep the
+>>> "aes" name if possible.
+>>>
+>>
+>> The requirement comes from DT specification.
+>> "The name of a node should be somewhat generic, reflecting the function
+>> of the device and not its precise programming
+>>  model. If appropriate, the name should be one of the following choice"
+>> AES is not generic. AES is specific crypto operation. The spec gives
+>> example - "crypto", so use this one just like others are using. Atmel is
+>> not special in that matter.
+>>
+> I see, thanks for the explanation. I will put the node name as "crypto", and add
+> a label to it as "aes":
+> aes: crypto@f8038000 {
+> 
 
-Except I'm seeing there's no agreement on the actual compatible yet in
-the previous patch.
+That's fine (label naming doesn't matter). You don't have to change all
+your DTS files with the new node name, although at some point it could
+be required.
 
-Bart
+For some other bindings in different subsystems, the node name pattern
+is now enforced by dtschema (git grep -C 1 -E
+'(nodename|patternProperties)' -- Documentation/devicetree/bindings/).
+
+Best regards,
+Krzysztof
