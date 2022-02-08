@@ -2,63 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C0D54ADC2C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 16:13:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75BCF4ADC3C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 16:18:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379627AbiBHPNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 10:13:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
+        id S1351597AbiBHPSX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 10:18:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379708AbiBHPNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 10:13:12 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE7EC06174F
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 07:13:08 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id q22so24898788ljh.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 07:13:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=heLzqVDOK6HwMtmoRVw+9RNvlkqhz9htMWHePzxmYjo=;
-        b=hKhX7L8oYy7og7qYwMi3qsEPm3uInjbXGnODC9R5+llBoYIGxgQ6GZHSWBv9u5wLni
-         +4mlfjS2VQihCFBHX69yag89m8AG1IF1WA3SeMfdVbSXIyxQFB3JD5yNnPp85typ4aoq
-         BAkU0jyMNxAd0CrjLFAtwzE9Qe2i4xqBx/Tzu01Sy6zi2rg/l3jaYeLIJHboZgvwarCj
-         uebDEh54YagSMtB2NCsUx2El+DAOshJgprkuAEBC2naLDQF3d+JRwZmJPDSyOg0UE2da
-         XY1wjy5f2qsLpZI/vPD3iUbznB4s2YdAd0h5tg/NdqC4NEFyTS/1ePmGj8M4SUZpHNsL
-         wZ8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=heLzqVDOK6HwMtmoRVw+9RNvlkqhz9htMWHePzxmYjo=;
-        b=C+Ex8dfEoM+Itr2mwhOqPcti6hqKM464Ox5xWzd9wN5vnPwNlnsUAVhSS9KmxldWU4
-         guJvJDime7og4QQzQV+S1Ns3JmZ3IxQjofqVwRJtVQRrKi5dUzW87uvZ+UT3D4TGhj2z
-         4IlFpRlZqigYGGGgBL6TT9ETGmC3lAxwxOOn6KodQQMpfuiQUFz6whjZYroxAdY62jin
-         CbDeW2lvbtbLApI2uqNWe/iNLzqNg8Q08DYA1B++KcCznGWijQfaXOO7qEENd4iZZkYi
-         uxZmhmQhtCI0mEj0vFDEc8XGvE7UvWpszjJLsKpZKoIemqdKXWL2H5QRgyD3e57yn40r
-         QvQg==
-X-Gm-Message-State: AOAM533Z5TA8dp+G40KqPtJL+Hj4Eawi3Gd/OlAmbHVxJVhMz3axJ67a
-        ec1112hB87OLFTUNnldWY4KVXWDqUKUnMNUy7LcTTw==
-X-Google-Smtp-Source: ABdhPJxH8zHLKvEyDd2e4kyIwhWxYtY+SngUFkJBaJxg5QxptxcnKFYWeQYxK+RJkbjKpzZvOyDDVprGkJ6q5/pkeeE=
-X-Received: by 2002:a2e:8790:: with SMTP id n16mr3026510lji.273.1644333185574;
- Tue, 08 Feb 2022 07:13:05 -0800 (PST)
+        with ESMTP id S239424AbiBHPSX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 10:18:23 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA73BC061576;
+        Tue,  8 Feb 2022 07:18:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5610761599;
+        Tue,  8 Feb 2022 15:18:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 071E2C004E1;
+        Tue,  8 Feb 2022 15:18:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644333501;
+        bh=9zUs0iuzKwulU200Q6NMliFAJbLi0oQzH9htLDfo/j8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jec8CourqxGwtOULAuUJQ2M06wpyEydYcArcgJdKsAi2pDpknemzA3PLWTfMKSj7k
+         UDzxVpfxINAj6NXq1W4KUyDdHKyM51z62OlSYsrEJOcVZbQybOEJNB6Y/FESnlSAdw
+         s+kZ3C6+D9EpV9zfi/4v42c21hn321m0WQijY487BF3RlwwxK4RXsiIFqskCZKGg2X
+         YZWojAT2oRg5AxPl4e2OOP/6DUinHkbXLQ7JADrUsYjDmOza9sAg5gbYVmYEefXPVj
+         HhDLH0L2g/iD0eNGQf+ZyGAUmEYBS4BjNfqd7OdQKIK7dCh/DYx+/uRVmhDXdrYyYv
+         JIrzOMR83Rk4w==
+Date:   Tue, 8 Feb 2022 15:18:14 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED
+ displays
+Message-ID: <YgKJtjoFMSzxNiiI@sirena.org.uk>
+References: <20220204134347.1187749-1-javierm@redhat.com>
+ <CAMuHMdVTVX7LFay-rfv=oW96dMA24duMUVGRE62jQSNkrKtyMg@mail.gmail.com>
+ <f178de92-7cb1-dcc5-1f60-9ccfc56bc0a4@redhat.com>
 MIME-Version: 1.0
-References: <20220203015112.12008-1-samuel@sholland.org> <20220203015112.12008-2-samuel@sholland.org>
-In-Reply-To: <20220203015112.12008-2-samuel@sholland.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 8 Feb 2022 16:12:28 +0100
-Message-ID: <CAPDyKFpvstn6bvVZhLR3_ByNw72GYfAc6RTYzm1Howz-cZmknA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] mmc: sunxi-mmc: Add D1 MMC variant
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6nCHMM5kfVPLymNn"
+Content-Disposition: inline
+In-Reply-To: <f178de92-7cb1-dcc5-1f60-9ccfc56bc0a4@redhat.com>
+X-Cookie: This is your fortune.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,52 +75,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Feb 2022 at 02:51, Samuel Holland <samuel@sholland.org> wrote:
->
-> D1's MMC controllers are unique in that they have the DMA address shift
-> (like A100) with a 13-bit descriptor size field (like sun4i). Add the
-> compatible and parameters for this new variant.
->
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Applied for next, thanks!
+--6nCHMM5kfVPLymNn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Kind regards
-Uffe
+On Tue, Feb 08, 2022 at 04:10:49PM +0100, Javier Martinez Canillas wrote:
+> On 2/8/22 15:19, Geert Uytterhoeven wrote:
 
+> >   - "time ls" on the serial console (no files in the current directory,
+> >     so nothing to print) increases from 0.86s to 1.92s, so the system is
+> >     more loaded.  As ssd1307fb relied on deferred I/O too, the slowdown
+> >     might be (partly) due to redrawing of the visual artefacts
+> >     mentioned above.
 
-> ---
->
->  drivers/mmc/host/sunxi-mmc.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/drivers/mmc/host/sunxi-mmc.c b/drivers/mmc/host/sunxi-mmc.c
-> index 2702736a1c57..c62afd212692 100644
-> --- a/drivers/mmc/host/sunxi-mmc.c
-> +++ b/drivers/mmc/host/sunxi-mmc.c
-> @@ -1167,6 +1167,14 @@ static const struct sunxi_mmc_cfg sun9i_a80_cfg = {
->         .can_calibrate = false,
->  };
->
-> +static const struct sunxi_mmc_cfg sun20i_d1_cfg = {
-> +       .idma_des_size_bits = 13,
-> +       .idma_des_shift = 2,
-> +       .can_calibrate = true,
-> +       .mask_data0 = true,
-> +       .needs_new_timings = true,
-> +};
-> +
->  static const struct sunxi_mmc_cfg sun50i_a64_cfg = {
->         .idma_des_size_bits = 16,
->         .clk_delays = NULL,
-> @@ -1205,6 +1213,7 @@ static const struct of_device_id sunxi_mmc_of_match[] = {
->         { .compatible = "allwinner,sun7i-a20-mmc", .data = &sun7i_a20_cfg },
->         { .compatible = "allwinner,sun8i-a83t-emmc", .data = &sun8i_a83t_emmc_cfg },
->         { .compatible = "allwinner,sun9i-a80-mmc", .data = &sun9i_a80_cfg },
-> +       { .compatible = "allwinner,sun20i-d1-mmc", .data = &sun20i_d1_cfg },
->         { .compatible = "allwinner,sun50i-a64-mmc", .data = &sun50i_a64_cfg },
->         { .compatible = "allwinner,sun50i-a64-emmc", .data = &sun50i_a64_emmc_cfg },
->         { .compatible = "allwinner,sun50i-a100-mmc", .data = &sun50i_a100_cfg },
-> --
-> 2.33.1
->
+> I was trying to first have the driver and then figure out how to optimize
+> it. For v3 I'm using regmap to access instead of the I2C layer directly.
+
+> I noticed that this is even slower but it makes the driver more clean and
+> allows to support both I2C and SPI (untested but will include it as a WIP).
+
+I wouldn't have expected regmap to add huge overhead relative to I2C,
+partly predicated on I2C being rather slow itself.  There will be some
+overhead for concurrency protection and data marshalling but for I2C
+clocked at normal speeds it's surprising.
+
+--6nCHMM5kfVPLymNn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmICibYACgkQJNaLcl1U
+h9AOugf/QJOPSSqlU4nYtDxke7z0DHEFzbA063OycyGY8coF3lZCkjrBvoV2zp5r
+gBY8Wdmv00psAkmZE7Pg3o8IZhaBn9mZ7+u/GZ0/Rzv7P+oNScm9ixRfPzOVAw5n
+8ipOUBx2JYFmxMaYKsahkKl/IMSZ7w14roD+GnSHomyk1yK47L+7+ILdJdzC9Gg4
+0rDNz+IF+tKQu4SrwyteAmwy0a3ufos9kj+zOH61iVOv4388BuSnoUCa0ADUCGMb
+n7MkSDMlJwuTJkX3sS5jJeJdi0AP+uuPwUa73zAAq3FDi7Zn3wjnRlEHP+QNa3B/
+yQIr2nXx8Oy5WWWQc8CPGM7d4u+3EQ==
+=0FAN
+-----END PGP SIGNATURE-----
+
+--6nCHMM5kfVPLymNn--
