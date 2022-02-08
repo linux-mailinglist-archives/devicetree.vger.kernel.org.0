@@ -2,192 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76F1D4ADDEB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 17:05:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F22114ADDF6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 17:08:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382685AbiBHQFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 11:05:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42406 "EHLO
+        id S1382597AbiBHQIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 11:08:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240514AbiBHQFR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 11:05:17 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C598C061576;
-        Tue,  8 Feb 2022 08:05:16 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B0C45A04;
-        Tue,  8 Feb 2022 17:05:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1644336314;
-        bh=hYlIvvM93lCc9l231DKm9wPmfJPGBh1jXIbdK7qXkgc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SShJje1m2YMxOzxRu6/GA+1Z+52ZhOQHCDkUkfdWackYMfuADsmD65wsXs1yhbcdO
-         UPGf9moBW0oAit8xPQIMhEcrFIpjAzRhVm9BVOmA3vGrtRe9dTVswizhjjdQU+jWno
-         WZzwguZMwMA622+i7lgKuOmEtc2dzqCHF329ZJ4Q=
-Date:   Tue, 8 Feb 2022 18:05:12 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-Cc:     dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
-        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
-        tomi.valkeinen@ideasonboard.com,
-        bcm-kernel-feedback-list@broadcom.com, stefan.wahren@i2se.com
-Subject: Re: [PATCH v5 08/11] media: imx219: Switch from open to init_cfg
-Message-ID: <YgKUuLdsOuvHopWp@pendragon.ideasonboard.com>
-References: <20220208155027.891055-1-jeanmichel.hautbois@ideasonboard.com>
- <20220208155027.891055-9-jeanmichel.hautbois@ideasonboard.com>
- <YgKUKauDwCIBFovX@pendragon.ideasonboard.com>
+        with ESMTP id S1382045AbiBHQIr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 11:08:47 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49837C061576;
+        Tue,  8 Feb 2022 08:08:45 -0800 (PST)
+Received: from mail-wr1-f48.google.com ([209.85.221.48]) by
+ mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MpDa5-1o6m2d0V9L-00qgdf; Tue, 08 Feb 2022 17:08:44 +0100
+Received: by mail-wr1-f48.google.com with SMTP id q7so3481316wrc.13;
+        Tue, 08 Feb 2022 08:08:44 -0800 (PST)
+X-Gm-Message-State: AOAM531Kmt5kvut4rye3Ax+rrj6i+cqG0u7F0+4RvsDHAFsbdmfA0siM
+        AwoUjFxfvL/qMJ4ZqSfZSMui1zv+BCFbpcycxTg=
+X-Google-Smtp-Source: ABdhPJzbA1zhEbjBXruIegFSKr/HlmX/M9YfBzun4TpdLrkSYokD3NF400y+3a1CS0q9b/Y6jtkGtIJW7ls/Wf3lrm8=
+X-Received: by 2002:a5d:568f:: with SMTP id f15mr974996wrv.407.1644336523635;
+ Tue, 08 Feb 2022 08:08:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YgKUKauDwCIBFovX@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220113080017.30155-1-kavyasree.kotagiri@microchip.com> <f8b83cf0-7ebf-1ecd-b544-f0d0079d9dde@microchip.com>
+In-Reply-To: <f8b83cf0-7ebf-1ecd-b544-f0d0079d9dde@microchip.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 8 Feb 2022 17:08:27 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2kRhCOoXnvcMyqS-zK2WDZjtUq4aqOzE5VV=VMg=pVOA@mail.gmail.com>
+Message-ID: <CAK8P3a2kRhCOoXnvcMyqS-zK2WDZjtUq4aqOzE5VV=VMg=pVOA@mail.gmail.com>
+Subject: Re: [PATCH v3] ARM: dts: add DT for lan966x SoC and 2-port board pcb8291
+To:     Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:9uqDdXQWcYkDHc7ZX1oQfuAHe7gAvXka4B2tLwL+Kragmwlm3/r
+ NPW9GMxB8NDKxfjMQhMT8hNbaUI8T1MkBqM/ZabCp3cW27L8iVmYnh3mPNdcYF2TJuUpiyY
+ AVZR67ad14GMtcLKfyVY1wP9xZXfZeSej8YRm3EU/fZVj0HObaHRB9eOXzvU7JM/y+/nMl5
+ G6cGHB3WvP8n9sRCrMZFA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:y4eHeEHtqwY=:CwJ6+ncq7lv4SbOuasjRFk
+ idtgZ2jMaeP49duqkgdjtyPvGH4L07HaXhDLkAkT1sFZog87JKlYr0hELlBqptZFpC6Cm/or2
+ 6P+Gl1eni3YSpxJ6e7Cu6UMtm5wTzgYAaHY3JyWM6912SBetUZy+gq39uxf5vkxWpKgUYXEJ9
+ x/VQK6DUC6K/jd92dbd4IoL26+hYnPpDFOiXAlym34DsTVvPgvZ5awMOVEX4I/r40eprnCY+K
+ rLoNG9eV0dO+/VHIC9XEK+AxpHwmuUQlpcUA0jSdj1xxkpqvZjvTagThJRv4zc4UxD8tuPa8J
+ ZQi4k8snjDzcZ9Idm7d+2QEwjjjQE3j4myjdZGBnu9ETTmA0Ql+vynAz7c8d3emPGKK0sygBj
+ wZWnzfuCXQKf/SzjDEezBaZua0Y8kl4cBVfAn9Fgf3CMKwcNyEXIdQ7efRUAVjkrY0SVX3rZ/
+ Kx3ZOVaJsvoIMaKBNUHoRAamnGsXPl1OpUPo0W8ZSXdhEXmU6I+J/niVFPlkwtmupO4Gbyq2Y
+ 98jvKYlgDOzEkAJHpJ69QA/lYG9BK45eLCtPABMofTJRxrUmPwhs7s1hYnkuMhOSRV5vh0sUd
+ 3TKw+78RBk9r7UQzUyYCGCN6jnMC6sPgkGTqC7f9KplEixLy09PM6ixj49mM0p6fW35QXXy8e
+ T4ESyZ2ltLiBOhtwnY0MXQNeo7gesZ73tews/N8eeboLuAfp7hHkNvsdyC6q5MH0KOj8=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 08, 2022 at 06:02:50PM +0200, Laurent Pinchart wrote:
-> Hi Jean-Michel,
-> 
-> Thank you for the patch.
-> 
-> On Tue, Feb 08, 2022 at 04:50:24PM +0100, Jean-Michel Hautbois wrote:
-> > Use the init_cfg pad level operation instead of the internal subdev
-> > open operation to set default formats on the pads.
-> > While at it, make the imx219_pad_ops more easier to read.
-> 
-> It could have been useful to explain here why there's a separate
-> imx219_init_formats() function, as reviewers could wonder. It's clear
-> when reviewing the next patches though.
-> 
-> > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-> > ---
-> >  drivers/media/i2c/imx219.c | 63 +++++++++++++++-----------------------
-> >  1 file changed, 25 insertions(+), 38 deletions(-)
-> > 
-> > diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
-> > index 74dba5e61201..abcaee15c4a0 100644
-> > --- a/drivers/media/i2c/imx219.c
-> > +++ b/drivers/media/i2c/imx219.c
-> > @@ -685,34 +685,6 @@ static void imx219_set_default_format(struct imx219 *imx219)
-> >  	fmt->field = V4L2_FIELD_NONE;
-> >  }
-> >  
-> > -static int imx219_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
-> > -{
-> > -	struct imx219 *imx219 = to_imx219(sd);
-> > -	struct v4l2_mbus_framefmt *try_fmt =
-> > -		v4l2_subdev_get_try_format(sd, fh->state, 0);
-> > -	struct v4l2_rect *try_crop;
-> > -
-> > -	mutex_lock(&imx219->mutex);
-> > -
-> > -	/* Initialize try_fmt */
-> > -	try_fmt->width = supported_modes[0].width;
-> > -	try_fmt->height = supported_modes[0].height;
-> > -	try_fmt->code = imx219_get_format_code(imx219,
-> > -					       MEDIA_BUS_FMT_SRGGB10_1X10);
-> > -	try_fmt->field = V4L2_FIELD_NONE;
-> > -
-> > -	/* Initialize try_crop rectangle. */
-> > -	try_crop = v4l2_subdev_get_try_crop(sd, fh->state, 0);
-> > -	try_crop->top = IMX219_PIXEL_ARRAY_TOP;
-> > -	try_crop->left = IMX219_PIXEL_ARRAY_LEFT;
-> > -	try_crop->width = IMX219_PIXEL_ARRAY_WIDTH;
-> > -	try_crop->height = IMX219_PIXEL_ARRAY_HEIGHT;
-> 
-> The crop rectangle initialization is removed here, but not added below.
-> 
-> > -
-> > -	mutex_unlock(&imx219->mutex);
-> > -
-> > -	return 0;
-> > -}
-> > -
-> >  static int imx219_set_ctrl(struct v4l2_ctrl *ctrl)
-> >  {
-> >  	struct imx219 *imx219 =
-> > @@ -802,6 +774,25 @@ static const struct v4l2_ctrl_ops imx219_ctrl_ops = {
-> >  	.s_ctrl = imx219_set_ctrl,
-> >  };
-> >  
-> > +static void imx219_init_formats(struct v4l2_subdev_state *state)
-> > +{
-> > +	struct v4l2_mbus_framefmt *format;
+On Thu, Jan 13, 2022 at 9:33 AM Nicolas Ferre
+<nicolas.ferre@microchip.com> wrote:
+>
+> On 13/01/2022 at 09:00, Kavyasree Kotagiri wrote:
+> > This patch adds basic DT for Microchip lan966x SoC and associated board
+> > pcb8291(2-port EVB). Adds peripherals required to allow booting: IRQs,
+> > clocks, timers, memory, flexcoms, GPIOs. Also adds other peripherals like
+> > crypto(AES,SHA), DMA and watchdog.
+> >
+> > Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+>
+> Looks good to me:
+> Reviewed-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+I'm not quite sure what to do with this, as this was sent to:soc@kernel.org,
+which is normally for patches that are already reviewed and should just
+get applied.
+
+I can apply this, but I would normally expect board files to get picked up
+in the at91 tree first. I'll drop this version from patchwork for now, as I
+also have a couple of comments:
+
 > > +
-> > +	format = v4l2_state_get_stream_format(state, 0, 0);
+> > +/ {
+> > +     model = "Microchip LAN966x family SoC";
+> > +     compatible = "microchip,lan966x";
 
-Also, this won't work until you create routes. The function will return
-NULL and you'll crash. This is fixed in subsequent patches, but it
-breaks bisection.
+By convention, the 'compatible' strings should not contain 'x'
+as a wildcard character. Just pick one of the models to be
+compatible with. The .dtsi file doesn't really need a top-level
+compatible or model property though, as they need to be
+overridden by teh board anyway.
 
-> > +	format->code = imx219_mbus_formats[0];
-> > +	format->width = supported_modes[0].width;
-> > +	format->height = supported_modes[0].height;
-> > +	format->field = V4L2_FIELD_NONE;
-> > +	format->colorspace = V4L2_COLORSPACE_RAW;
-> > +}
 > > +
-> > +static int imx219_init_cfg(struct v4l2_subdev *sd,
-> > +			   struct v4l2_subdev_state *state)
-> > +{
-> > +	imx219_init_formats(state);
-> > +	return 0;
-> > +}
+> > +     memory@60000000 {
+> > +             device_type = "memory";
+> > +             reg = <0x60000000 0x40000000>;  /* 1GB */
+> > +     };
+
+Probably also no memory node. This tends to be filled by the
+boot loader, or it is part of the board when when the boot loader
+is too old for that.
+
+If the memory is part of the chip package, having it in the .dtsi
+file is probably ok, but I would add a comment for that.
+
+> > + */
+> > +/dts-v1/;
+> > +#include "lan966x.dtsi"
 > > +
-> >  static int imx219_enum_mbus_code(struct v4l2_subdev *sd,
-> >  				 struct v4l2_subdev_state *sd_state,
-> >  				 struct v4l2_subdev_mbus_code_enum *code)
-> > @@ -1255,11 +1246,12 @@ static const struct v4l2_subdev_video_ops imx219_video_ops = {
-> >  };
-> >  
-> >  static const struct v4l2_subdev_pad_ops imx219_pad_ops = {
-> > -	.enum_mbus_code = imx219_enum_mbus_code,
-> > -	.get_fmt = imx219_get_pad_format,
-> > -	.set_fmt = imx219_set_pad_format,
-> > -	.get_selection = imx219_get_selection,
-> > -	.enum_frame_size = imx219_enum_frame_size,
-> > +	.init_cfg		= imx219_init_cfg,
-> > +	.enum_mbus_code		= imx219_enum_mbus_code,
-> > +	.get_fmt		= imx219_get_pad_format,
-> > +	.set_fmt		= imx219_set_pad_format,
-> > +	.get_selection		= imx219_get_selection,
-> > +	.enum_frame_size	= imx219_enum_frame_size,
-> >  };
-> >  
-> >  static const struct v4l2_subdev_ops imx219_subdev_ops = {
-> > @@ -1268,10 +1260,6 @@ static const struct v4l2_subdev_ops imx219_subdev_ops = {
-> >  	.pad = &imx219_pad_ops,
-> >  };
-> >  
-> > -static const struct v4l2_subdev_internal_ops imx219_internal_ops = {
-> > -	.open = imx219_open,
-> > -};
-> > -
-> >  /* Initialize control handlers */
-> >  static int imx219_init_controls(struct imx219 *imx219)
-> >  {
-> > @@ -1520,7 +1508,6 @@ static int imx219_probe(struct i2c_client *client)
-> >  		goto error_power_off;
-> >  
-> >  	/* Initialize subdev */
-> > -	imx219->sd.internal_ops = &imx219_internal_ops;
-> >  	imx219->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
-> >  			    V4L2_SUBDEV_FL_HAS_EVENTS;
-> >  	imx219->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
+> > +/ {
+> > +     model = "Microchip EVB - LAN9662";
+> > +     compatible = "microchip,lan9662-pcb8291", "microchip,lan9662", "microchip,lan966";
+> > +};
 
--- 
-Regards,
+Here I would expect /chosen and /aliases nodes.
 
-Laurent Pinchart
+> > +&gpio {
+> > +     fc_shrd7_pins: fc_shrd7-pins {
+> > +             pins = "GPIO_49";
+> > +             function = "fc_shrd7";
+> > +     };
+
+These properties don't look like most pinctrl nodes, has the binding
+been reviewed?
+I don't see it in Documentation/devicetree/bindings/pinctrl/
+
+          Arnd
