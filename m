@@ -2,97 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49DDF4AD421
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 09:57:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7700D4AD435
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 09:59:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352406AbiBHI4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 03:56:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48326 "EHLO
+        id S1352686AbiBHI7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 03:59:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348658AbiBHI4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 03:56:51 -0500
+        with ESMTP id S1352625AbiBHI7b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 03:59:31 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AFCDC03FEC1
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 00:56:50 -0800 (PST)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BB94C03FEC1
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 00:59:30 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D8A4F40054
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 08:56:48 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0334E3F1F0
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 08:59:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644310608;
-        bh=jrCjP6cigoq2hUV57n4k5BTndMW5LQallJ585bA4v4U=;
+        s=20210705; t=1644310769;
+        bh=5BAaisfFdzHM2Ej8w1LBO0wtundXTJbEqkB562uWwIw=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=a1SQAhLX6RwGAnMpJlhkdMDubv6qBh7od9kb0V1X79KBUxS5NJ58s5vcaUVdyciOM
-         56wMtyZdQmXZi9HxGmohfPBwp1S8emKFQW5Kzm2h476GS3KTjD9Qx7aTG/CPOHEdsn
-         lKOZ9c53XN6ZJ2bpuxVUu3gNrwYO24MVPZ9hm7Ss1ejjCET5Ud9cyzmGTHf60oEBya
-         soAFJcnIpNxvswvf3g/YwkjLCQvEP6QkRBnzvJRxfJpEY6++3ijCY2GlppXSaeaSjm
-         a3qkwIGLPX7+HrPLlzeK7X56v9+8jwhWkk7HjIKP4rMscYyUAvR+xa0uZ4TqJw/cME
-         8NSVZ8oP+jGXg==
-Received: by mail-ej1-f72.google.com with SMTP id v2-20020a170906292200b006a94a27f903so5454330ejd.8
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 00:56:48 -0800 (PST)
+        b=Ruj09oubI9PdoxK62S8stjtYXrbwr3yAnoduQfxAucJFuXyNnQrFelSf41sOInSxQ
+         BMZ3GJ4+yJm5emW5N3TOwF9vd2sGCHMyzdixklQOhsOQ3sLMFAjI5dHup2rNheQ3UB
+         iZsVzSXd9o/NXKB+gOS6TxzviYe01LPXlxQbj3+enWLXGyggRCZ5QRMy7eRqp/IUgE
+         5ppKTVRJJKMVC6YQD9V6mGDn7fX6tJ3ZAelivAydyUT6FL+UI9cAd9fgqYNjoMPtGG
+         wQzWuOu4gbqo59LQBhSWiO49JSvZD4kD7OxGaYsJUwLzOpckU0SVEpcQI/d5j40eLh
+         2WbyZAoqp4BIg==
+Received: by mail-ed1-f69.google.com with SMTP id ed6-20020a056402294600b004090fd8a936so9337249edb.23
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 00:59:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=jrCjP6cigoq2hUV57n4k5BTndMW5LQallJ585bA4v4U=;
-        b=gZiLj9FKcPIyvkM1k5ZQr1hFu2os++aT4gSVQaQQOMjcMcmexx/S8ZSy5nrGJ69xM4
-         Sa/pHBiqmfinL4shm9ck8TI8S+rnacyXEa97aSvXEBXcmVRhP7E3uKsQwZVOEQGFdUzE
-         NvCcWfuHGf0T9ZC1bOPvY0KzGQ3tPQn5Zpqr+y9Ci/Nx/aFCLfvj4mDIY/v69xSMqom5
-         6rGtAnP1ceGYdkbp1ij9WA/aiWSvWeuwN5Vvrh7lmf6CBEHxULN0egzf2IAnrHRHxfKl
-         +wkYAo2Gdsv+faxexb6muENcCifAGFSbiMsKjP5CPpIkCvjdyf+D8nVTIC8Ksx3qf0YO
-         FszQ==
-X-Gm-Message-State: AOAM533JV5KMQ/fLUqbJzPEZColIQJoiNVKTymYbV7mhnujxHO9A3MDZ
-        8C1jHsDmFufdRjj39ychr+O0LKSwY3RXwqbVpLPC57S2gMIwO4HxoW0Rr4n9lMSWEFinZFzBRqd
-        2DMf9cvk7LoZzauO3A1wz31DJzpitL3H/tYdyaRA=
-X-Received: by 2002:a17:907:948c:: with SMTP id dm12mr2940469ejc.770.1644310607469;
-        Tue, 08 Feb 2022 00:56:47 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwWL7auPyMvH/eI9rxLnQiNw2PVY1Wgkiymv6mfS8QZo6OPnHvXX90ldKMwT7Z004YsVjstlQ==
-X-Received: by 2002:a17:907:948c:: with SMTP id dm12mr2940447ejc.770.1644310607251;
-        Tue, 08 Feb 2022 00:56:47 -0800 (PST)
+        bh=5BAaisfFdzHM2Ej8w1LBO0wtundXTJbEqkB562uWwIw=;
+        b=rTyE8/3/PkmiRdWLkPEz7sh6RIIir7MAExEokVJRY2BIR1I0v3xVzNpJUsxu8NdAkj
+         K8eljvzqjQKPYrfq6zSsJ5Y/gNt9S8YlYnhqzIBertl+m6lcXQUfiswldZWjVa1aCLq6
+         9Fbul8lBBHFreGQsla/tchFzba1OhPg4CsY5AYZ7uB/kbTZiU8cdGgFg7k9GBxfG+MUf
+         94Hm2t9pGiDJgVd52IWfiHCiBreGm2FmaU5vHuiqrAcCYLMcRd7jQzqOEmYuU3oeWD2x
+         Q1rJkR6f2y6qexT6QKRnHuftSh0G0iiTeir1Xm3+GcS0twYrdDiFjkbJL7feIRJLzXmU
+         VIsw==
+X-Gm-Message-State: AOAM5313YY1Fpb6nXCgRE+ooe5e+NiCk8MSrACHieG5BEr3sASjZyMT5
+        pic+hacjmAtdRoaiuHy2FFzldymv0ulLRLRgFXI5zjFzoO1dQXferbL9oO8O/xjcyWZrY4UCMPl
+        ZEXtWHwumEYE7T5p3LvAdBKXtwLIm7s1LQZpg4Q8=
+X-Received: by 2002:a17:907:724c:: with SMTP id ds12mr2794452ejc.203.1644310768637;
+        Tue, 08 Feb 2022 00:59:28 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJw8tPROloPqm9ioypm8COf+zuHFCcc0iwDjz584JUVDhpmreWZwcurlewohl71zVfFFpTKOZg==
+X-Received: by 2002:a17:907:724c:: with SMTP id ds12mr2794429ejc.203.1644310768388;
+        Tue, 08 Feb 2022 00:59:28 -0800 (PST)
 Received: from [192.168.0.92] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id a21sm4220537eds.5.2022.02.08.00.56.45
+        by smtp.gmail.com with ESMTPSA id k14sm2187785ejg.78.2022.02.08.00.59.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Feb 2022 00:56:46 -0800 (PST)
-Message-ID: <1a172e64-f662-2a36-71ef-4214cfe5bffc@canonical.com>
-Date:   Tue, 8 Feb 2022 09:56:45 +0100
+        Tue, 08 Feb 2022 00:59:27 -0800 (PST)
+Message-ID: <7b787aee-ceea-d035-38b1-02ba0bcd3f21@canonical.com>
+Date:   Tue, 8 Feb 2022 09:59:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v1 6/6] i2c: npcm: Support NPCM845
+Subject: Re: [PATCH 1/3] dt-bindings: crypto: Convert Atmel AES to yaml
 Content-Language: en-US
-To:     Tali Perry <tali.perry1@gmail.com>
-Cc:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Tyrone Ting <warp5tw@gmail.com>, avifishman70@gmail.com,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>, semen.protsenko@linaro.org,
-        yangyicong@hisilicon.com, Wolfram Sang <wsa@kernel.org>,
-        jie.deng@intel.com, sven@svenpeter.dev, bence98@sch.bme.hu,
-        lukas.bulwahn@gmail.com, arnd@arndb.de, olof@lixom.net,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Tali Perry <tali.perry@nuvoton.com>,
-        Avi Fishman <Avi.Fishman@nuvoton.com>,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220207063338.6570-1-warp5tw@gmail.com>
- <20220207063338.6570-7-warp5tw@gmail.com> <YgEJ1M40AG9EuRPI@latitude>
- <086655b0-b9d2-30ed-1496-47cdc6346003@canonical.com>
- <CAHb3i=vpFwez+ZzDhHkSxjkios3tyoM2urRpCxOn3vfwzvewog@mail.gmail.com>
- <30ac5fe7-9d96-a756-24b0-384361b48a2d@canonical.com>
- <CAHb3i=ukzVr4DDgcPQ2+DO+LXWWtgjCe03WbG-CqvsOP_qqvUw@mail.gmail.com>
+To:     Tudor.Ambarus@microchip.com, herbert@gondor.apana.org.au,
+        robh+dt@kernel.org
+Cc:     davem@davemloft.net, Nicolas.Ferre@microchip.com,
+        Claudiu.Beznea@microchip.com, alexandre.belloni@bootlin.com,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220207032405.70733-1-tudor.ambarus@microchip.com>
+ <20220207032405.70733-2-tudor.ambarus@microchip.com>
+ <f8387f12-24f9-4a39-e9b8-3b83f1de078d@canonical.com>
+ <ec358f0f-e3e2-a97b-e09a-d397edc65c72@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAHb3i=ukzVr4DDgcPQ2+DO+LXWWtgjCe03WbG-CqvsOP_qqvUw@mail.gmail.com>
+In-Reply-To: <ec358f0f-e3e2-a97b-e09a-d397edc65c72@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -103,85 +88,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/02/2022 09:51, Tali Perry wrote:
->> On 08/02/2022 08:14, Tali Perry wrote:
->>>> Subject: Re: [PATCH v1 6/6] i2c: npcm: Support NPCM845
->>>>
->>>> On 07/02/2022 13:00, Jonathan Neuschäfer wrote:
->>>>> Hello,
->>>>>
->>>>> On Mon, Feb 07, 2022 at 02:33:38PM +0800, Tyrone Ting wrote:
->>>>>> From: Tyrone Ting <kfting@nuvoton.com>
->>>>>>
->>>>>> NPCM8XX uses a similar i2c module as NPCM7XX.
->>>>>> The only difference is that the internal HW FIFO is larger.
->>>>>>
->>>>>> Related Makefile and Kconfig files are modified to support as well.
->>>>>>
->>>>>> Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controller
->>>>>> driver")
->>>>>
->>>>> It's not really a bug fix, but rather an additional feature.
->>>>> Therefore, I suggest removing the Fixes tag from this patch.
->>>>>
->>>>>> Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
->>>>>> Signed-off-by: Tali Perry <tali.perry1@gmail.com>
->>>>>> ---
->>>>> [...]
->>>>>>  /* init register and default value required to enable module */
->>>>>>  #define NPCM_I2CSEGCTL 0xE4
->>>>>> +#ifdef CONFIG_ARCH_NPCM7XX
->>>>>>  #define NPCM_I2CSEGCTL_INIT_VAL 0x0333F000
->>>>>> +#else
->>>>>> +#define NPCM_I2CSEGCTL_INIT_VAL 0x9333F000
->>>>>> +#endif
->>>>>
->>>>> This is going to cause problems when someone tries to compile a kernel
->>>>> that runs on both NPCM7xx and NPCM8xx (because the driver will then
->>>>> only work on NPCM7xx).
->>>>
->>>> Yes, good catch.
->>>>
->>>> The NPCM7XX is multiplatform, I guess NPCM8xx will be as well, so this looks like an invalid code. How such code is supposed to work on multiplatform kernel?
->>>>
->>>
->>> NPCM7xx and NPCM8xx are very different devices.
->>> They share same driver sources for some of the modules but it's not ABI.
->>> Users cannot compile a single kernel with two separate DTS.
->>> In case of the i2c controller, the npcm7xx has a 16 byte HW FIFO,
->>> and the NPCM8xx has 32 bytes HW FIFO.
->>> This also means that registers fields are slightly different.
->>> For init data we can move it to the DTS, but register field sizes
->>> can't be handled with this approach.
->>>
+On 08/02/2022 05:10, Tudor.Ambarus@microchip.com wrote:
+> Hi, Krzysztof,
+> 
+> On 2/7/22 17:56, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 >>
->> What do you mean they cannot compile a kernel with different DTS? Of
->> course they can - when we talk about multiplatform sub-architectures!
->> Maybe there is something specific in NPCMxxx which stops it but then it
->> should not be marked multiplatform.
+>> On 07/02/2022 04:24, Tudor Ambarus wrote:
+>>> Convert Atmel AES documentation to yaml format. With the conversion the
+>>> clock and clock-names properties are made mandatory. The driver returns
+>>> -EINVAL if "aes_clk" is not found, reflect that in the bindings and make
+>>> the clock and clock-names properties mandatory. Update the example to
+>>> better describe how one should define the dt node.
+>>>
+>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+>>> ---
+>>>  .../devicetree/bindings/crypto/atmel,aes.yaml | 65 +++++++++++++++++++
+>>>  .../bindings/crypto/atmel-crypto.txt          | 20 ------
+>>>  2 files changed, 65 insertions(+), 20 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/crypto/atmel,aes.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/crypto/atmel,aes.yaml b/Documentation/devicetree/bindings/crypto/atmel,aes.yaml
+>>> new file mode 100644
+>>> index 000000000000..f77ec04dbabe
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/crypto/atmel,aes.yaml
+>>> @@ -0,0 +1,65 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/crypto/atmel,aes.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Atmel Advanced Encryption Standard (AES) HW cryptographic accelerator
+>>> +
+>>> +maintainers:
+>>> +  - Tudor Ambarus <tudor.ambarus@microchip.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: atmel,at91sam9g46-aes
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-names:
+>>> +    const: aes_clk
+>>> +
+>>> +  dmas:
+>>> +    items:
+>>> +      - description: TX DMA Channel
+>>> +      - description: RX DMA Channel
+>>> +
+>>> +  dma-names:
+>>> +    items:
+>>> +      - const: tx
+>>> +      - const: rx
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - clocks
+>>> +  - clock-names
+>>> +  - dmas
+>>> +  - dma-names
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +    #include <dt-bindings/clock/at91.h>
+>>> +    #include <dt-bindings/dma/at91.h>
 >>
+>> One empty line for readability.
 > 
+> Ok.
 > 
-> NCPM7xx is ARM32 bit (dual core Cortex A9)
-> NPCM8xx is ARM64 bit (quad core Cortex A35)
+>>
+>>> +    aes: aes@f8038000 {
+>>
+>> Generic node name, so "crypto".
 > 
-> They have completely different architecture so not ABI compliant.
-> I2C module is similar, but the devices are quite different and have
-> separate architectures.
+> Hm, I'm not convinced why, would you please give more details about this
+> requirement? This IP is capable of doing just AES operations, I find it
+> generic enough. We use the "aes" name on all our SoCs that have a version
+> of this IP, that would be quite a change. So I would prefer to keep the
+> "aes" name if possible.
+> 
 
-OK, in such case usually you indeed can't have both. :)
-
-> Sorry for the confusion.
-> This is the first patch we try to upstream for NPCM8xx.
-> In the coming weeks we will upstream the architecture of NPCM8xx as well.
-
-Still, ARCH_XXX should not be hard-coded in the drivers to change the
-driver's behavior, even if driver won't be used simultaneously. It
-breaks all design principles and prevents any further re-use if a new
-use case appears.
-
-You can use "ifdef ARCH_XXX" to skip building of some parts of the
-driver, but it's not the case here.
+The requirement comes from DT specification.
+"The name of a node should be somewhat generic, reflecting the function
+of the device and not its precise programming
+ model. If appropriate, the name should be one of the following choice"
+AES is not generic. AES is specific crypto operation. The spec gives
+example - "crypto", so use this one just like others are using. Atmel is
+not special in that matter.
 
 
 Best regards,
