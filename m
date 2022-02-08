@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9472A4ADED2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 18:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E80F14ADEE2
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 18:06:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381616AbiBHRCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 12:02:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41328 "EHLO
+        id S244599AbiBHRF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 12:05:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352528AbiBHRCC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 12:02:02 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC51FC061576
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 09:02:00 -0800 (PST)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        with ESMTP id S1383690AbiBHRF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 12:05:58 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B34C061576
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 09:05:57 -0800 (PST)
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5D4384004F
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 17:01:53 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BFFAA3F33A
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 17:05:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644339713;
-        bh=mRv1uTKJZ7l44YD+F21PTzrlDlgL7MkwqQ36W1mxcE4=;
+        s=20210705; t=1644339955;
+        bh=GVwuLaFwT1ptuWPum5aqWFrUhPhVh7ci6UD8FlgdXuk=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=Vd+V75+yEQMM+pGqyqm9XnMivQxI5whe791sOg+pWnDDEEbbyRHy9HLOXh69Ncff4
-         0bQaKUqYm9eopM0UZZEs8Gf7X4aC829Gp3f5MlysmkEEhkPA7GOKgPg5JOmQKUZT1L
-         l4p196NQVqao8oVSxqKeULINJNTlA8QWHMuTKzTYj5LNX+jCuBtZGN7JpDVWetQN8I
-         WLh8YGDffX3yr0M7d6UaBV9COgXsO6YwYD2lmDc+TGUdTbjyc6/vtrGDzmTkpDy0M3
-         jmUfEOf1yiYPSzx26gVgBogL7lpsSNQtOTHZPwr20PrcX7fqaTCKmoaSDm6UryTUSB
-         wLEOVKkR+SmZA==
-Received: by mail-ej1-f71.google.com with SMTP id mp5-20020a1709071b0500b0069f2ba47b20so5953909ejc.19
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 09:01:53 -0800 (PST)
+        b=J/prBDVaXZPg5yeiGzJZsaVK2odk2jMh6t0Pk/rO5RE5z55mGGbj7/ab+genz6cyZ
+         xa8iiVPKQvf1r8uoRRr152MPoGwjo0h+BlbeUXHCHGIocxFC0VOdFYIH79iF2frwIm
+         M6Le6EFMoJhxqZpFMg4/K6gjnRigE+NDekYHZ/xCV8mNOJn3op1cI9NUWD4whZ66TI
+         MoSfhJvWhIXzEFG5ntmwpWBnEyhlIVEChltCnPnAwmmKgQ3Qic8uSTjBANg50LD1RH
+         /VDczi7ZktC3iQ1R/K7dQFzEiy8LAZwx/25RIxGpkTHOrTjluxX47tTZxATaaCEV+j
+         v5+p6dZPo+qQw==
+Received: by mail-ej1-f72.google.com with SMTP id o7-20020a170906860700b006cbe6deec1bso2345827ejx.22
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 09:05:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=mRv1uTKJZ7l44YD+F21PTzrlDlgL7MkwqQ36W1mxcE4=;
-        b=klMNdsgiSxUI8KBAXiCmRs8MhkD1Lam0Hyfq0kIpzOXFRGdzG2DeSSIDjrPUGtw0Ad
-         abrD9cQuvaelM2sdygxTVHiIJ1xpOBOtR7sDICQcMT3gXJl0xBDoNWwfQ+c/aMNK42+j
-         qLfBL8B0aMhrc8xYzUTqdTJHct4ds/4WFOFiVAiv4FppEWEtdCUv4v4N2aTKHx/G/Szi
-         VLcCH6SDqheA1P3x0mbSfbafpSA5KXj3c+3z5L2is2gL2VYOlB3Av67bBK2Ktoxnjd6A
-         dEzk9JBP7W4EzeTbmHqjJ9mmS/RjgdymvX6yuFnY0bHrtPNwybsL7Qt8Wbrrgz8G9qOW
-         ENDQ==
-X-Gm-Message-State: AOAM5301dr8acIf01k4JA8bAPnO4N4YFfQpiqZHxw2BeTSgqHMgNPI9p
-        +1na7tK0L6QnqL0v2O8ljAlg/Z4MhCPulvFBH0eSrooUmYWNWLwg6TVI9/jC94GZCTir2XKNSnt
-        Ju+bfYy3KFOL7TluEDR6m6039UdmNQbI8VZFyMLM=
-X-Received: by 2002:a05:6402:f1e:: with SMTP id i30mr5522980eda.432.1644339713028;
-        Tue, 08 Feb 2022 09:01:53 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwm7vjReH1gIdZ2YkTpMgZZBbTH9BEIZYVEVPELLxB8Ecgr7pWwq4jgDyb/1xl7UOwuFBlDUg==
-X-Received: by 2002:a05:6402:f1e:: with SMTP id i30mr5522956eda.432.1644339712812;
-        Tue, 08 Feb 2022 09:01:52 -0800 (PST)
+        bh=GVwuLaFwT1ptuWPum5aqWFrUhPhVh7ci6UD8FlgdXuk=;
+        b=2U9HKlYpy91loJgxsICjrAYbuUhfbZY1Ppl+gMBuedrtRXG30mLNdjaYvo9077Sjhd
+         b3O8YQiTP1Hx56wpd45WW6t1q7AI1Hn1tlo4zY2HiCzgO6GDkwD+C7Ge/lpDZOwFvQ2e
+         zw66+gNbF9xy6i2ghNtTfZ0ZlnTDP5W/aT++6vHikNT+Bxt+huVUyKCiAasoR+4b4SZA
+         x7ypBwFJ4KAq/O8kmljQ99xTbaD+V3srPViBR+a1W+W3ldwOwz1Uw1y+KR1UUcCLGJyd
+         tl2LnKQhXPGVkGkIWcSfs2CJZvZQFezgpIWW1ZlNrlLj+1Dt0HGUNm0MaZxC7yVEMpn1
+         C+eQ==
+X-Gm-Message-State: AOAM533PiCFM2ACHd4P0sCGCqtUcK3aVIfSZN0bLib+kijZBfsc0BaDL
+        qXPqnLx06vW0pDPt/uGmuPrjGPLFbZDXg8BnIBWgE1YBLpEoSm7R6TfMAE/OAS+JfEPj+XSmtBD
+        95SM0bqlw3LGWCAnlTzA1glKtIvbR8HRb47Zw+FY=
+X-Received: by 2002:a05:6402:5cf:: with SMTP id n15mr1481717edx.245.1644339953271;
+        Tue, 08 Feb 2022 09:05:53 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzx4DQmL0xf2Z7BOlyNewtYCRcfWCTsXGsac6rQ1Xow4hTNfl1p/n4zkfxO5eycxsvmtQJyew==
+X-Received: by 2002:a05:6402:5cf:: with SMTP id n15mr1481693edx.245.1644339953043;
+        Tue, 08 Feb 2022 09:05:53 -0800 (PST)
 Received: from [192.168.0.94] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id yk13sm2740971ejb.200.2022.02.08.09.01.51
+        by smtp.gmail.com with ESMTPSA id i22sm3066468ejx.128.2022.02.08.09.05.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Feb 2022 09:01:52 -0800 (PST)
-Message-ID: <9303ca0e-2a83-3c3e-0892-c74a820562a9@canonical.com>
-Date:   Tue, 8 Feb 2022 18:01:51 +0100
+        Tue, 08 Feb 2022 09:05:51 -0800 (PST)
+Message-ID: <3221dd42-7a14-7ac6-0b61-634a77a45753@canonical.com>
+Date:   Tue, 8 Feb 2022 18:05:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 2/5] dt-bindings: arm: ti: Add bindings for AM625 SoC
+Subject: Re: [PATCH 4/5] arm64: dts: ti: Introduce base support for AM62x SoC
 Content-Language: en-US
 To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
         Tero Kristo <kristo@kernel.org>,
@@ -71,15 +71,15 @@ To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20220208131827.1430086-1-vigneshr@ti.com>
- <20220208131827.1430086-3-vigneshr@ti.com>
+ <20220208131827.1430086-5-vigneshr@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220208131827.1430086-3-vigneshr@ti.com>
+In-Reply-To: <20220208131827.1430086-5-vigneshr@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,8 +87,6 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/02/2022 14:18, Vignesh Raghavendra wrote:
-> From: Nishanth Menon <nm@ti.com>
-> 
 > The AM62 SoC family is the follow on AM335x built on K3 Multicore SoC
 > architecture platform, providing ultra-low-power modes, dual display,
 > multi-sensor edge compute, security and other BOM-saving integration.
@@ -118,40 +116,174 @@ On 08/02/2022 14:18, Vignesh Raghavendra wrote:
 > * Multiple low power modes support, ex: Deep sleep,Standby, MCU-only,
 >   enabling battery powered system design.
 > 
-> AM625 is the first device of the family. Add DT bindings for the same.
-
-Don't paste the same huge commit description in several commits.
-
+> This add bare minimum DT describing ARM compute clusters, Main, MCU and
+> Wakeup domain and interconnects, UARTs and I2Cs to enable booting using
+> ramdisk.
 > 
 > More details can be found in the Technical Reference Manual:
 > https://www.ti.com/lit/pdf/spruiv7
 > 
+> Co-developed-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Co-developed-by: Nishanth Menon <nm@ti.com>
 > Signed-off-by: Nishanth Menon <nm@ti.com>
 > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 > ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 263 +++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  36 +++
+>  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  41 ++++
+>  arch/arm64/boot/dts/ti/k3-am62.dtsi        | 104 ++++++++
+>  arch/arm64/boot/dts/ti/k3-am625.dtsi       | 103 ++++++++
+>  5 files changed, 547 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am625.dtsi
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index b03c10fa2e7a..64f3db3ea9dd 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -53,6 +53,12 @@ properties:
->                - ti,am642-sk
->            - const: ti,am642
->  
-> +      - description: K3 AM625 SoC
-> +        items:
-> +          - enum:
-> +              - ti,am625-sk
-> +          - const: ti,am625
 
-Why keeping it not alphabetically sorted? What sorting did you choose?
+(...)
 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62.dtsi b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> new file mode 100644
+> index 000000000000..f1a46be27c37
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> @@ -0,0 +1,104 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for AM62 SoC Family
+> + *
+> + * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
+> + */
 > +
->        - description: K3 J721s2 SoC
->          items:
->            - enum:
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/pinctrl/k3.h>
+> +#include <dt-bindings/soc/ti,sci_pm_domain.h>
+> +
+> +/ {
+> +	model = "Texas Instruments K3 AM625 SoC";
+> +	compatible = "ti,am625";
+
+This is am625, but the file is am62. Why having the split?
+
+> +	interrupt-parent = <&gic500>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	chosen { };
+> +
+> +	firmware {
+> +		optee {
+> +			compatible = "linaro,optee-tz";
+> +			method = "smc";
+> +		};
+> +
+> +		psci: psci {
+> +			compatible = "arm,psci-1.0";
+> +			method = "smc";
+> +		};
+> +	};
+> +
+> +	a53_timer0: timer-cl0-cpu0 {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>, /* cntpsirq */
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>, /* cntpnsirq */
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>, /* cntvirq */
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>; /* cnthpirq */
+> +	};
+> +
+> +	pmu: pmu {
+> +		compatible = "arm,cortex-a53-pmu";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	cbass_main: bus@f0000 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +
+> +		ranges = <0x00 0x000f0000 0x00 0x000f0000 0x00 0x00030000>, /* Main MMRs */
+> +			 <0x00 0x30040000 0x00 0x30040000 0x00 0x00080000>, /* PRUSS-M */
+> +			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00001100>, /* GPIO */
+> +			 <0x00 0x00703000 0x00 0x00703000 0x00 0x00000200>, /* USB0 debug trace */
+> +			 <0x00 0x0070C000 0x00 0x0070C000 0x00 0x00000200>, /* USB1 debug trace */
+> +			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* Timesync router */
+> +			 <0x00 0x0fd00000 0x00 0x0fd00000 0x00 0x00020000>, /* GPU */
+> +			 <0x00 0x01000000 0x00 0x01000000 0x00 0x01b28400>, /* First peripheral window */
+> +			 <0x00 0x60000000 0x00 0x60000000 0x00 0x08000000>, /* FSS0 DAT1 */
+> +			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00010000>, /* OCSRAM */
+> +			 <0x00 0x08000000 0x00 0x08000000 0x00 0x00200000>, /* Main CPSW */
+> +			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x01d20000>, /* Second peripheral window */
+> +			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Third peripheral window */
+> +			 <0x00 0x30200000 0x00 0x30200000 0x00 0x00010000>, /* DSS */
+> +			 <0x00 0x43600000 0x00 0x43600000 0x00 0x00010000>, /* sa3 sproxy data */
+> +			 <0x00 0x44043000 0x00 0x44043000 0x00 0x00000fe0>, /* TI SCI DEBUG */
+> +			 <0x00 0x44860000 0x00 0x44860000 0x00 0x00040000>, /* sa3 sproxy config */
+> +			 <0x00 0x48000000 0x00 0x48000000 0x00 0x06400000>, /* DMSS */
+> +			 <0x00 0x60000000 0x00 0x60000000 0x00 0x08000000>, /* FSS0 DAT1 */
+> +			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>, /* FSS0 DAT3 */
+> +			 <0x00 0x31000000 0x00 0x31000000 0x00 0x00050000>, /* USB0 DWC3 Core window */
+> +			 <0x00 0x31100000 0x00 0x31100000 0x00 0x00050000>, /* USB1 DWC3 Core window */
+> +			 <0x00 0x30101000 0x00 0x30101000 0x00 0x00010100>, /* CSI window */
+> +
+> +			 /* MCU Domain Range */
+> +			 <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>,
+> +
+> +			 /* Wakeup Domain Range */
+> +			 <0x00 0x2b000000 0x00 0x2b000000 0x00 0x00300400>,
+> +			 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>;
+> +
+> +		cbass_mcu: bus@4000000 {
+> +			compatible = "simple-bus";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x00 0x04000000 0x00 0x04000000 0x00 0x01ff1400>; /* Peripheral window */
+> +		};
+> +
+> +		cbass_wakeup: bus@2b000000 {
+> +			compatible = "simple-bus";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x00 0x2b000000 0x00 0x2b000000 0x00 0x00300400>, /* Peripheral Window */
+> +				 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>;
+> +		};
+> +	};
+> +};
+> +
+> +/* Now include the peripherals for each bus segments */
+> +#include "k3-am62-main.dtsi"
+> +#include "k3-am62-mcu.dtsi"
+> +#include "k3-am62-wakeup.dtsi"
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625.dtsi b/arch/arm64/boot/dts/ti/k3-am625.dtsi
+> new file mode 100644
+> index 000000000000..887f31c23fef
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am625.dtsi
+> @@ -0,0 +1,103 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for AM625 SoC family in Quad core configuration
+> + *
+> + * TRM: https://www.ti.com/lit/pdf/spruiv7
+> + *
+> + * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "k3-am62.dtsi"
+> +
+> +/ {
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+
+This file is not included anywhere, so does it mean that your SoC comes
+without the cores and each board designer plugs the cores separately?
 
 
 Best regards,
