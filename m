@@ -2,91 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FBF54AD267
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 08:41:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27FAC4AD28C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 08:52:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348529AbiBHHlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 02:41:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36162 "EHLO
+        id S235478AbiBHHwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 02:52:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237648AbiBHHlq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 02:41:46 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C30EC0401EF;
-        Mon,  7 Feb 2022 23:41:45 -0800 (PST)
-Received: from mail-wr1-f41.google.com ([209.85.221.41]) by
- mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1Mt71D-1oAoGP1Qgz-00tSqo; Tue, 08 Feb 2022 08:41:44 +0100
-Received: by mail-wr1-f41.google.com with SMTP id s18so29062642wrv.7;
-        Mon, 07 Feb 2022 23:41:44 -0800 (PST)
-X-Gm-Message-State: AOAM530GE+mfRIufNAVlDXE0bIg6nZn2YIwEQ6szSTd6g3pMebjQfMg1
-        Z9CGkELCbbkHkXtofGA68sf2oYk/S/34sL+BNww=
-X-Google-Smtp-Source: ABdhPJwSN/RUlrPrmkpZbmWEmlsZtj8WZCi5YXxWOOSj9Q39433eqrfugxQNfyVR5WUl9iWtCZ9J5roLsYcDSDBre7Q=
-X-Received: by 2002:a05:6000:178d:: with SMTP id e13mr2313626wrg.317.1644306103969;
- Mon, 07 Feb 2022 23:41:43 -0800 (PST)
+        with ESMTP id S245326AbiBHHwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 02:52:13 -0500
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96684C03FEC4;
+        Mon,  7 Feb 2022 23:52:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1644306732; x=1675842732;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=zSjGWEp/lad+yOmZqYzDcbgsisGuWA+cNAYLyxP20Lw=;
+  b=XAhWITI5qrEcow3cU1PcUWoWGS7L55PvbmUO8ud2xNVCVoGSftShXyuz
+   eg50BYITTG70YHsha3yzTAeFMCUimAdzClbFwEJxfS3/+HsDIczw3M9MK
+   B6ySixkCgeOP2VamGrbyYhUuNpTmZr9EnzZWvC7er6iGmF0LaJePH3QX5
+   j4PeD86aD5j7GfTQ2cn5oyNsT8kgB59/RZBDGD/lTJWlahlwqwEt4f8Nx
+   uCukxUM9Lv5CtF/yrxyjM1BEy2QPXpfFKJ7InHBGWlrgjsJhdn8C9CNch
+   PHXGf36tNpm3zHxnS/7J569cPOlwuQdWmH9jHHbc2qGEpuV0p85+bT/rc
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10251"; a="248843415"
+X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; 
+   d="scan'208";a="248843415"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2022 23:52:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,352,1635231600"; 
+   d="scan'208";a="484724374"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.151])
+  by orsmga006.jf.intel.com with SMTP; 07 Feb 2022 23:52:06 -0800
+Received: by stinkbox (sSMTP sendmail emulation); Tue, 08 Feb 2022 09:52:05 +0200
+Date:   Tue, 8 Feb 2022 09:52:05 +0200
+From:   Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+        intel-gfx@lists.freedesktop.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        devicetree@vger.kernel.org, Simon Ser <contact@emersion.fr>,
+        linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        Alex Deucher <alexander.deucher@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [Intel-gfx] [PATCH v7 1/3] gpu: drm: separate panel orientation
+ property creating and value setting
+Message-ID: <YgIhJb3+MckKD4dC@intel.com>
+References: <20220208073714.1540390-1-hsinyi@chromium.org>
 MIME-Version: 1.0
-References: <20211203031332.902485-1-jerry.huang@nxp.com> <20211203031332.902485-2-jerry.huang@nxp.com>
- <VE1PR04MB6477BB08C1AF9F1E5A0B0C1BFE2D9@VE1PR04MB6477.eurprd04.prod.outlook.com>
-In-Reply-To: <VE1PR04MB6477BB08C1AF9F1E5A0B0C1BFE2D9@VE1PR04MB6477.eurprd04.prod.outlook.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 8 Feb 2022 08:41:28 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a0dr_Qe47MnuAJSuEPiuzBMfnC_7gDZN0MsUiYE2bqrOg@mail.gmail.com>
-Message-ID: <CAK8P3a0dr_Qe47MnuAJSuEPiuzBMfnC_7gDZN0MsUiYE2bqrOg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: Add initial LS1021A IoT board dts support
-To:     Jerry Huang <jerry.huang@nxp.com>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net" <olof@lixom.net>,
-        "soc@kernel.org" <soc@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "krzysztof.kozlowski@canonical.com" 
-        <krzysztof.kozlowski@canonical.com>,
-        "linux@rempel-privat.de" <linux@rempel-privat.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "tharvey@gateworks.com" <tharvey@gateworks.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "jagan@amarulasolutions.com" <jagan@amarulasolutions.com>,
-        "dev@lynxeye.de" <dev@lynxeye.de>,
-        "cniedermaier@dh-electronics.com" <cniedermaier@dh-electronics.com>,
-        "sebastian.reichel@collabora.com" <sebastian.reichel@collabora.com>,
-        Alison Wang <alison.wang@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:Y1XQD3ttRgW9Wgwx/euX2wGwhlQ+SrjeqQQeQ+6QQOMdVdAh/GA
- D9xW1v095WAUbkCh7ZJcCNUQTnNEdauxT1KM636rk6IAUUD+CbgVyYui5jJmhY3gae0tV5b
- yqzZaZwZynLBeGaQwF7xPJYKpDXT3CeXNPW0bcutSmc5gvhe/4ugOccozptqo8l3pCAsUZL
- 0tkULrejpWRJwXtAQpjGw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:QxW65tKqB5o=:E4ki8ByPG7R6TsheBK9EIJ
- cs3d9BhbxqNmFFJJdPsZituUW0wi2wxC2QvBLGyaszdd233W8MZNTQ2QA7NubutxE0VudYRdB
- GNOioM/R9ovvCl50qOTXYwTcIHCD9uLHJ+EnjGGkHWfSCRWGDrbW0yYy5FOyG+gAJXAseF5wu
- 1+v++hUTzpksNYTqUzr6hHcjExttMAMMdP8HaTHOGLBPmte6/Q2X6txNwlI6I1gjDq1k2RItC
- Ke+n+3c0wD3nTUlpgJYTE+GW2xz9rL2lvCbzl9aUyIDq2W2AAc/Xrt76fg1BbMP7Ey3IeNZSz
- CVbNwrm3iTjerGqozYZg4q/PgIrDqQz7HYUd8lOPI2wZS89/UeChKt1Mw1YsI73E7ZOoyC88h
- 87J8NVeYsBhlbBttPMoOaM/6PK8IUw0UZD66OrBClDP3yv+ihH8dtLW1meMtasueiNarK2ly3
- Z1UlGCJ73AjtC3ON9EbbZYPPYsWw/ojoI1ROP7zrpcemtUf3R9SI9/1EprI9NAbK8CvVGfTSg
- zVMbqxAuS/Ioa35ng29nKr9TLsFgIrqYgnlmxBN8M0TVQubhiRyHeNNb5znpja9HxibbcDxCy
- tkU85+4mk0oIUr5cmAP8POeD0xZVjxF87LFZJF4ktKfgGa0oVnLkBBJ0Fm4o4W8hMR2ZBG9r/
- 1LZ1G12+mV820zYsJHQNFojRVOtO+jmLroxauwHBPQM5xmpmNxmLN9YS3QC2DNi8TJK6S4JS5
- T+TRFUMrHIxmrqy8vANvGPvCSOBR8V2MYXvlRR4OqK2rUpoiW57zqGRVC6naKWIXw5G6M742Q
- pd8N2YPDBpjUCAAHaBxV/m44plKZduG42wtwYAOrOBAPJgCQPU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220208073714.1540390-1-hsinyi@chromium.org>
+X-Patchwork-Hint: comment
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 8, 2022 at 2:49 AM Jerry Huang <jerry.huang@nxp.com> wrote:
->
-> Any comment for this patch?
+On Tue, Feb 08, 2022 at 03:37:12PM +0800, Hsin-Yi Wang wrote:
+> +int drm_connector_init_panel_orientation_property(
+> +	struct drm_connector *connector)
+> +{
+> +	struct drm_device *dev = connector->dev;
+> +	struct drm_property *prop;
+> +
+> +	prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+> +			"panel orientation",
+> +			drm_panel_orientation_enum_list,
+> +			ARRAY_SIZE(drm_panel_orientation_enum_list));
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	dev->mode_config.panel_orientation_property = prop;
 
-Shawn gave a detailed review in December, maybe you missed it:
+Leak when called multiple times. I guess you could just put
+this into drm_connector_create_standard_properties() instead
+and avoid that issue entirely.
 
-https://lore.kernel.org/linux-arm-kernel/20211214040228.GD10916@dragon/
-
-         Arnd
+-- 
+Ville Syrjälä
+Intel
