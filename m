@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDE4F4ACF98
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 04:19:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA4B34ACF9E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 04:19:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346329AbiBHDSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Feb 2022 22:18:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49734 "EHLO
+        id S1346371AbiBHDSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Feb 2022 22:18:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346338AbiBHDRf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 22:17:35 -0500
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D936C0401E4
-        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 19:17:31 -0800 (PST)
-Received: by mail-oo1-xc34.google.com with SMTP id u25-20020a4ad0d9000000b002e8d4370689so16070684oor.12
-        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 19:17:30 -0800 (PST)
+        with ESMTP id S1346368AbiBHDRx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Feb 2022 22:17:53 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26E7CC0401ED
+        for <devicetree@vger.kernel.org>; Mon,  7 Feb 2022 19:17:32 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id u3so3311104oiv.12
+        for <devicetree@vger.kernel.org>; Mon, 07 Feb 2022 19:17:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=OTRVq8PpVu//vt/IgzSV5+XNtw1vJPrl7jfHJ1N1q2k=;
-        b=CQzvhJ6+adAFGsOiX5Pabvae50+/HQzV8PZdM3khyC1ZKPPCo8onTNmo9XXHCIM/HF
-         1iU8vR/mBQ/wKLKl8Ghdnj/GBXAkdfAKRx/txUqyCaEsqN9nLSSsVN/EzX2CAgFBy8HB
-         KHr73C8YAj+cH7aJFLMbV/0N0840/wexW+/KsPUQTwCLvpBZpRyHCr7qKqAV8asMKMjU
-         xjmtBp3tyVO1EMZy3ALxJQGNuncGQItLEJu0P87Xre5qbbnlR6n1ud0hI9vcBSvdc05J
-         p352wrsJB6RpQUMWL9at9BGeew5zrPj+9TesT7eAAfyvsSSCBJN8uNspU7sXHs0G1/5l
-         QrlQ==
+        bh=rAkLb8/VLoPikmVZa34Mu//UHelRyndDtvFYFl2OKto=;
+        b=iue8bSzTyvdjYeZNzqAXnDaHjza4sHPBnesVkgjWZLuMUDe+yr/N/sbOlRyENvBF0N
+         1TXyMUBIJCcvIXhC4O0pb6umZfg05Hn3o9IYpuJaLrXT63GGikEjE5S/vpIyTQa0tcSv
+         JKB+cJuu41+Dq2zfZaGhSlRY8/2Hr8muFNDmzFFddx+JPCbNnhtDVnk6OUyBlvQOg+l2
+         VZDvUeUu0F1I/ZX9Yr7w99RojcK4zICZ3HzK5qhZnm3E/VtpxR2Ovrzz4jfQj7AnDb03
+         kBOjv2mecGdtYKeNE/33+sBqHQrdjwWwBHOEdFqtuk8y7VPfQYNOjE5G1ghdpIwI7D9R
+         taSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=OTRVq8PpVu//vt/IgzSV5+XNtw1vJPrl7jfHJ1N1q2k=;
-        b=wE2793ir7JYwv2nXe3VfZvD/u2pm53tSw0eljiXM3DqbCQzs2d/SBMMJxzXaM7Lgk3
-         +KrJklJvmQbzuSl7aEVwJTQW4y4c6mNhvcSinAMM4ptvsGvHHT0vPgbA1Y1b8mnqfpFK
-         qDrdLimmeijJanKFgQzTU2XIziZR4Nj9Xwv5DC9Q5BfgluOXb2Ig4Xk4yF03qBoD14tL
-         Sz3s7nh63KTzsJXfAHg9aKK2ny4W66AFp1Shxrd6nKeWnzjV/b42YA02qQYF7o4jZ+f4
-         xIJoI7d9BIwkaeWTJk54ejLaNZk4xF5DnvyDPs4FplptfPkaIqKR3c1TlUcBp7AuwgjV
-         WvRQ==
-X-Gm-Message-State: AOAM530lvF85VkdLBKSiEkhHGInnQUUxTNNIIBuAqBSVjSEeRqxgCUrr
-        t52yJ+U1Ee23/hCxPvz9cS2mAA==
-X-Google-Smtp-Source: ABdhPJwf9Oa/yS/n5v8HciTRVxjeWulvkF+DJYvLjcsaThC/MGhg+d4EzOLcmscaNUI4nXkN4u+fkQ==
-X-Received: by 2002:a05:6870:9511:: with SMTP id u17mr684972oal.300.1644290250381;
-        Mon, 07 Feb 2022 19:17:30 -0800 (PST)
+        bh=rAkLb8/VLoPikmVZa34Mu//UHelRyndDtvFYFl2OKto=;
+        b=z/F1VSHfRXZmrL3vBdUjJ42+mrUsnzjceOkSPCAaUB3p2OvDMPqofpKviDULMq1Zz7
+         27LFAvBmiPiMdhIw3ESr7NdNmf7gs2+k61JxpPvm4qZi3vYe6WK1m6dYU/PaLSio3ZUl
+         BkkEuK3O2Fc1aZ2SSrCghi65E0oehqq3mRVKRgEwRXSG1qRcl3I2Xatz9wJLZYitwypz
+         YuuLarqHE7zbZY2umrxRw/yv3AVphyz88z9c/RBse4XN6dWznmv/jdrL1bhgM2fyfST8
+         Cm4RX4aXGSKycBT8P9KyYTI2+daBHjMgJZZHBPQnWKRn6/vqCDilM9fA3T5kgyorY+0D
+         COYA==
+X-Gm-Message-State: AOAM533X5IXBtijeA40kCiD+l9oIQMjuipQzqKxxrHyXXU8ET5SGuCQ1
+        i/39nfydqE8EfbDCeAezqkkLkQ==
+X-Google-Smtp-Source: ABdhPJzNScp8RSuMivte4BOUF9bsgowytVv6vzXMOktBX2aPf5BU+EgqYmoBW+BI9wUwTz9qbjOPlA==
+X-Received: by 2002:aca:eb55:: with SMTP id j82mr879492oih.134.1644290251402;
+        Mon, 07 Feb 2022 19:17:31 -0800 (PST)
 Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id k3sm4763873otl.41.2022.02.07.19.17.29
+        by smtp.gmail.com with ESMTPSA id k3sm4763873otl.41.2022.02.07.19.17.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Feb 2022 19:17:29 -0800 (PST)
+        Mon, 07 Feb 2022 19:17:30 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
@@ -58,9 +58,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH v2 5/6] dt-bindings: usb: Add binding for fcs,fsa4480
-Date:   Mon,  7 Feb 2022 19:19:43 -0800
-Message-Id: <20220208031944.3444-6-bjorn.andersson@linaro.org>
+Subject: [PATCH v2 6/6] usb: typec: mux: Add On Semi fsa4480 driver
+Date:   Mon,  7 Feb 2022 19:19:44 -0800
+Message-Id: <20220208031944.3444-7-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20220208031944.3444-1-bjorn.andersson@linaro.org>
 References: <20220208031944.3444-1-bjorn.andersson@linaro.org>
@@ -76,12 +76,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Fairchild/ON Semiconductor FSA4480 Analog Audio switch is used in
-USB Type-C configurations for muxing analog audio onto the USB
-connector, and as such used to control the SBU signals for altmodes such
-as DisplayPort.
+The ON Semiconductor FSA4480 is a USB Type-C port multimedia switch with
+support for analog audio headsets. It allows sharing a common USB Type-C
+port to pass USB2.0 signal, analog audio, sideband use wires and analog
+microphone signal.
 
-Add a binding for this hardware block.
+Due to lacking upstream audio support for testing, the audio muxing is
+left untouched, but implementation of muxing the SBU lines is provided
+as a pair of TypeC mux and switch devices. This provides the necessary
+support for enabling the DisplayPort altmode on devices with this
+circuit.
 
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
@@ -89,88 +93,268 @@ Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Changes since v1:
 - None
 
- .../devicetree/bindings/usb/fcs,fsa4480.yaml  | 72 +++++++++++++++++++
- 1 file changed, 72 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+ drivers/usb/typec/mux/Kconfig   |   9 ++
+ drivers/usb/typec/mux/Makefile  |   1 +
+ drivers/usb/typec/mux/fsa4480.c | 220 ++++++++++++++++++++++++++++++++
+ 3 files changed, 230 insertions(+)
+ create mode 100644 drivers/usb/typec/mux/fsa4480.c
 
-diff --git a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
+index edead555835e..5e20112c3f51 100644
+--- a/drivers/usb/typec/mux/Kconfig
++++ b/drivers/usb/typec/mux/Kconfig
+@@ -2,6 +2,15 @@
+ 
+ menu "USB Type-C Multiplexer/DeMultiplexer Switch support"
+ 
++config TYPEC_MUX_FSA4480
++	tristate "ON Semi FSA4480 Analog Audio Switch driver"
++	depends on I2C
++	select REGMAP_I2C
++	help
++	  Driver for the ON Semiconductor FSA4480 Analog Audio Switch, which
++	  provides support for muxing analog audio and sideband signals on a
++	  common USB Type-C connector.
++
+ config TYPEC_MUX_PI3USB30532
+ 	tristate "Pericom PI3USB30532 Type-C cross switch driver"
+ 	depends on I2C
+diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
+index 280a6f553115..e52a56c16bfb 100644
+--- a/drivers/usb/typec/mux/Makefile
++++ b/drivers/usb/typec/mux/Makefile
+@@ -1,4 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0
+ 
++obj-$(CONFIG_TYPEC_MUX_FSA4480)		+= fsa4480.o
+ obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
+ obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
+diff --git a/drivers/usb/typec/mux/fsa4480.c b/drivers/usb/typec/mux/fsa4480.c
 new file mode 100644
-index 000000000000..9473f26b0621
+index 000000000000..ac2d8648db6a
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/usb/fcs,fsa4480.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++++ b/drivers/usb/typec/mux/fsa4480.c
+@@ -0,0 +1,220 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2021 Linaro Ltd.
++ * Copyright (C) 2018-2020 The Linux Foundation
++ */
 +
-+title: ON Semiconductor Analog Audio Switch
++#include <linux/i2c.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/mutex.h>
++#include <linux/regmap.h>
++#include <linux/usb/typec_dp.h>
++#include <linux/usb/typec_mux.h>
 +
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
++#define FSA4480_SWITCH_ENABLE	0x04
++#define FSA4480_SWITCH_SELECT	0x05
++#define FSA4480_SWITCH_STATUS1	0x07
++#define FSA4480_SLOW_L		0x08
++#define FSA4480_SLOW_R		0x09
++#define FSA4480_SLOW_MIC	0x0a
++#define FSA4480_SLOW_SENSE	0x0b
++#define FSA4480_SLOW_GND	0x0c
++#define FSA4480_DELAY_L_R	0x0d
++#define FSA4480_DELAY_L_MIC	0x0e
++#define FSA4480_DELAY_L_SENSE	0x0f
++#define FSA4480_DELAY_L_AGND	0x10
++#define FSA4480_RESET		0x1e
 +
-+properties:
-+  compatible:
-+    enum:
-+      - fcs,fsa4480
++#define FSA4480_ENABLE_DEVICE	BIT(7)
++#define FSA4480_ENABLE_SBU	GENMASK(6, 5)
++#define FSA4480_ENABLE_USB	GENMASK(4, 3)
 +
-+  reg:
-+    maxItems: 1
++#define FSA4480_SEL_SBU_REVERSE	GENMASK(6, 5)
++#define FSA4480_SEL_USB		GENMASK(4, 3)
 +
-+  interrupts:
-+    maxItems: 1
++struct fsa4480 {
++	struct i2c_client *client;
 +
-+  vcc-supply:
-+    description: power supply (2.7V-5.5V)
++	/* used to serialize concurrect change requests */
++	struct mutex lock;
 +
-+  mode-switch:
-+    description: Flag the port as possible handle of altmode switching
-+    type: boolean
++	struct typec_switch_dev *sw;
++	struct typec_mux_dev *mux;
 +
-+  orientation-switch:
-+    description: Flag the port as possible handler of orientation switching
-+    type: boolean
++	struct regmap *regmap;
 +
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+    description:
-+      A port node to link the FSA4480 to a TypeC controller for the purpose of
-+      handling altmode muxing and orientation switching.
++	u8 cur_enable;
++	u8 cur_select;
++};
 +
-+required:
-+  - compatible
-+  - reg
-+  - port
++static const struct regmap_config fsa4480_regmap_config = {
++	.reg_bits = 8,
++	.val_bits = 8,
++	.max_register = FSA4480_RESET,
++};
 +
-+additionalProperties: false
++static int fsa4480_switch_set(struct typec_switch_dev *sw,
++			      enum typec_orientation orientation)
++{
++	struct fsa4480 *fsa = typec_switch_get_drvdata(sw);
++	u8 new_sel;
 +
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c13 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
++	mutex_lock(&fsa->lock);
++	new_sel = FSA4480_SEL_USB;
++	if (orientation == TYPEC_ORIENTATION_REVERSE)
++		new_sel |= FSA4480_SEL_SBU_REVERSE;
 +
-+        fsa4480@42 {
-+          compatible = "fcs,fsa4480";
-+          reg = <0x42>;
++	if (new_sel == fsa->cur_select)
++		goto out_unlock;
 +
-+          interrupts-extended = <&tlmm 2 IRQ_TYPE_LEVEL_LOW>;
++	if (fsa->cur_enable & FSA4480_ENABLE_SBU) {
++		/* Disable SBU output while re-configuring the switch */
++		regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE,
++			     fsa->cur_enable & ~FSA4480_ENABLE_SBU);
 +
-+          vcc-supply = <&vreg_bob>;
++		/* 35us to allow the SBU switch to turn off */
++		usleep_range(35, 1000);
++	}
 +
-+          mode-switch;
-+          orientation-switch;
++	regmap_write(fsa->regmap, FSA4480_SWITCH_SELECT, new_sel);
++	fsa->cur_select = new_sel;
 +
-+          port {
-+            fsa4480_ept: endpoint {
-+              remote-endpoint = <&typec_controller>;
-+            };
-+          };
-+        };
-+    };
-+...
++	if (fsa->cur_enable & FSA4480_ENABLE_SBU) {
++		regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, fsa->cur_enable);
++
++		/* 15us to allow the SBU switch to turn on again */
++		usleep_range(15, 1000);
++	}
++
++out_unlock:
++	mutex_unlock(&fsa->lock);
++
++	return 0;
++}
++
++static int fsa4480_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
++{
++	struct fsa4480 *fsa = typec_mux_get_drvdata(mux);
++	u8 new_enable;
++
++	mutex_lock(&fsa->lock);
++
++	new_enable = FSA4480_ENABLE_DEVICE | FSA4480_ENABLE_USB;
++	if (state->mode >= TYPEC_DP_STATE_A)
++		new_enable |= FSA4480_ENABLE_SBU;
++
++	if (new_enable == fsa->cur_enable)
++		goto out_unlock;
++
++	regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, new_enable);
++	fsa->cur_enable = new_enable;
++
++	if (new_enable & FSA4480_ENABLE_SBU) {
++		/* 15us to allow the SBU switch to turn off */
++		usleep_range(15, 1000);
++	}
++
++out_unlock:
++	mutex_unlock(&fsa->lock);
++
++	return 0;
++}
++
++static int fsa4480_probe(struct i2c_client *client)
++{
++	struct device *dev = &client->dev;
++	struct typec_switch_desc sw_desc = { };
++	struct typec_mux_desc mux_desc = { };
++	struct fsa4480 *fsa;
++
++	fsa = devm_kzalloc(dev, sizeof(*fsa), GFP_KERNEL);
++	if (!fsa)
++		return -ENOMEM;
++
++	fsa->client = client;
++	mutex_init(&fsa->lock);
++
++	fsa->regmap = devm_regmap_init_i2c(client, &fsa4480_regmap_config);
++	if (IS_ERR(fsa->regmap)) {
++		dev_err(dev, "failed to initialize regmap\n");
++		return PTR_ERR(fsa->regmap);
++	}
++
++	fsa->cur_enable = FSA4480_ENABLE_DEVICE | FSA4480_ENABLE_USB;
++	fsa->cur_select = FSA4480_SEL_USB;
++
++	/* set default settings */
++	regmap_write(fsa->regmap, FSA4480_SLOW_L, 0x00);
++	regmap_write(fsa->regmap, FSA4480_SLOW_R, 0x00);
++	regmap_write(fsa->regmap, FSA4480_SLOW_MIC, 0x00);
++	regmap_write(fsa->regmap, FSA4480_SLOW_SENSE, 0x00);
++	regmap_write(fsa->regmap, FSA4480_SLOW_GND, 0x00);
++	regmap_write(fsa->regmap, FSA4480_DELAY_L_R, 0x00);
++	regmap_write(fsa->regmap, FSA4480_DELAY_L_MIC, 0x00);
++	regmap_write(fsa->regmap, FSA4480_DELAY_L_SENSE, 0x00);
++	regmap_write(fsa->regmap, FSA4480_DELAY_L_AGND, 0x09);
++	regmap_write(fsa->regmap, FSA4480_SWITCH_SELECT, fsa->cur_select);
++	regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, fsa->cur_enable);
++
++	sw_desc.drvdata = fsa;
++	sw_desc.fwnode = dev->fwnode;
++	sw_desc.set = fsa4480_switch_set;
++
++	fsa->sw = typec_switch_register(dev, &sw_desc);
++	if (IS_ERR(fsa->sw)) {
++		dev_err(dev, "failed to register typec switch: %ld\n", PTR_ERR(fsa->sw));
++		return PTR_ERR(fsa->sw);
++	}
++
++	mux_desc.drvdata = fsa;
++	mux_desc.fwnode = dev->fwnode;
++	mux_desc.set = fsa4480_mux_set;
++
++	fsa->mux = typec_mux_register(dev, &mux_desc);
++	if (IS_ERR(fsa->mux)) {
++		typec_switch_unregister(fsa->sw);
++		dev_err(dev, "failed to register typec mux: %ld\n", PTR_ERR(fsa->mux));
++		return PTR_ERR(fsa->mux);
++	}
++
++	i2c_set_clientdata(client, fsa);
++	return 0;
++}
++
++static int fsa4480_remove(struct i2c_client *client)
++{
++	struct fsa4480 *fsa = i2c_get_clientdata(client);
++
++	typec_mux_unregister(fsa->mux);
++	typec_switch_unregister(fsa->sw);
++
++	return 0;
++}
++
++static const struct i2c_device_id fsa4480_table[] = {
++	{ "fsa4480" },
++	{ }
++};
++MODULE_DEVICE_TABLE(i2c, fsa4480_table);
++
++static const struct of_device_id fsa4480_of_table[] = {
++	{ .compatible = "fcs,fsa4480" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, fsa4480_of_table);
++
++static struct i2c_driver fsa4480_driver = {
++	.driver = {
++		.name = "fsa4480",
++		.of_match_table = fsa4480_of_table,
++	},
++	.probe_new	= fsa4480_probe,
++	.remove		= fsa4480_remove,
++	.id_table	= fsa4480_table,
++};
++
++module_i2c_driver(fsa4480_driver);
++
++MODULE_DESCRIPTION("ON Semiconductor FSA4480 driver");
++MODULE_LICENSE("GPL v2");
 -- 
 2.33.1
 
