@@ -2,152 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BAEC4AD17B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 07:26:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 159B84AD17F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 07:27:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347231AbiBHG0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 01:26:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34362 "EHLO
+        id S230015AbiBHG1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 01:27:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230217AbiBHG0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 01:26:32 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7200C0401DC;
-        Mon,  7 Feb 2022 22:26:30 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 811F8B81854;
-        Tue,  8 Feb 2022 06:26:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CC76C340F2;
-        Tue,  8 Feb 2022 06:26:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644301588;
-        bh=HIuCEKBnx2neFGe2TzYeuJVUlLTSD+WZPGwlgjCCuXU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=T9v/Dz0S1HpzoAwIBZvdu5DREqs+MdQzq9y55DHTQDwk2sn3pmvKSlv+GpfgCVTvV
-         WfRWeusIuQzCfT2yyD8t04yJ/s3vViOSbz0a9Z/f5ayoUux9/YwxA7AfmFvKsbIriM
-         CUvjWc1SmMF2pjmXGoFdMzwGfgyxP41s59LNfmalvMXvTGHrB8IjXJaPwKpz3rODn2
-         WzkmTp8eIJmPjzo4yqOJPBsA8fAyVcKPNXUBBre2JNUrieVwuelVz/VrsbrB7pXbas
-         HK9f03shLil5H84Uzil62wV17maN1jN99Fs7UheuvIyLIHRiwucQDztUqSCdWPvfBR
-         25twB4iSaCk5g==
-Received: by mail-vk1-f176.google.com with SMTP id k128so1531181vkk.10;
-        Mon, 07 Feb 2022 22:26:28 -0800 (PST)
-X-Gm-Message-State: AOAM530Knta6VyWwbmofObf6JII5qEZPlOVu21XOt7xbouuMqTelGPBz
-        6CbQk3g1Knv4jN0dbte8Ll/ztzcfqOPsJAeXaRc=
-X-Google-Smtp-Source: ABdhPJzacuJptpzsvQJRUnvzBbBzr1u57gJ0wQqQFKPI58LeRRTunUkd1GGEazbj4/xQPLofWtoVqwCs4xjOKh2E+nk=
-X-Received: by 2002:a05:6122:1c5:: with SMTP id h5mr1217423vko.2.1644301587245;
- Mon, 07 Feb 2022 22:26:27 -0800 (PST)
+        with ESMTP id S1347304AbiBHG1I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 01:27:08 -0500
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0F90C0401F0;
+        Mon,  7 Feb 2022 22:27:07 -0800 (PST)
+Received: by mail-wr1-f44.google.com with SMTP id k1so12259774wrd.8;
+        Mon, 07 Feb 2022 22:27:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Ml/x/PyxdLV1/Hir7HAdb60W83k0QDNVYkweRtj8UqE=;
+        b=mTmO8zfQzHTmMz6im1SZ6nXgCvme10cy6yvSQm2JiT8TrwxxosD6tgLqa0p6fKhpXw
+         TtjyfL+j5fNkSsms3KzXMJdJ8fKNlvjccMqea++vezFHt8EpHlTwflUjCS+jxRWyuqlZ
+         CqIfWeMjzwmdyPO3PPdLLyLFnQVyqn4yjdBRwUYzf9b5YPAA2Zg6wK8JdPo2cYxNpo7i
+         CziYQo4I80iflgCqaKt0RTbU6qxPBXybx7g9Xkv3sXGtBSHPP1oH0acC2weRno6KoObR
+         Qcj5XwwxEo5/0ojdJs2P9MW7wQl5A8gD9WVg23eoRCmccgQsIOI+lRMJXWmkL2xWDXsD
+         +FHQ==
+X-Gm-Message-State: AOAM532dp+qoiViv6E5H3fgZxk1sZzpKFX1lpEpa62R5wcFmSO/2sBff
+        v1cMeWQPfhqNz31yNI2SJYm98RV0QAo=
+X-Google-Smtp-Source: ABdhPJx+i47vYzVLrYAoFB5BP3d95i3dalrtqRYiBA7T9N+ghG3VKgk1xxE73gx3LiFoOYTU45VhZA==
+X-Received: by 2002:adf:f54d:: with SMTP id j13mr2077800wrp.596.1644301626253;
+        Mon, 07 Feb 2022 22:27:06 -0800 (PST)
+Received: from ?IPV6:2a0b:e7c0:0:107::70f? ([2a0b:e7c0:0:107::70f])
+        by smtp.gmail.com with ESMTPSA id o3sm4070742wrc.41.2022.02.07.22.27.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Feb 2022 22:27:05 -0800 (PST)
+Message-ID: <7aa14a1e-2814-0014-a682-f40666f635ac@kernel.org>
+Date:   Tue, 8 Feb 2022 07:27:04 +0100
 MIME-Version: 1.0
-References: <20220126114452.692512-1-apatel@ventanamicro.com> <20220126114452.692512-9-apatel@ventanamicro.com>
-In-Reply-To: <20220126114452.692512-9-apatel@ventanamicro.com>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Tue, 8 Feb 2022 14:26:16 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTRLcqQ8ZjKwWNmARtaraVW7dD5Hp5=iv+4kHYENvB2gWg@mail.gmail.com>
-Message-ID: <CAJF2gTRLcqQ8ZjKwWNmARtaraVW7dD5Hp5=iv+4kHYENvB2gWg@mail.gmail.com>
-Subject: Re: [PATCH v10 8/8] RISC-V: Enable RISC-V SBI CPU Idle driver for
- QEMU virt machine
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        Anup Patel <anup@brainfault.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-pm@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        kvm-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v7 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
+Content-Language: en-US
+To:     Hammer Hsieh <hammerh0314@gmail.com>, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de
+Cc:     wells.lu@sunplus.com, hammer.hsieh@sunplus.com
+References: <1644213481-20321-1-git-send-email-hammerh0314@gmail.com>
+ <1644213481-20321-3-git-send-email-hammerh0314@gmail.com>
+From:   Jiri Slaby <jirislaby@kernel.org>
+In-Reply-To: <1644213481-20321-3-git-send-email-hammerh0314@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 7:51 PM Anup Patel <apatel@ventanamicro.com> wrote:
->
-> From: Anup Patel <anup.patel@wdc.com>
->
-> We enable RISC-V SBI CPU Idle driver for QEMU virt machine to test
-> SBI HSM Supend on QEMU.
->
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  arch/riscv/Kconfig.socs           | 3 +++
->  arch/riscv/configs/defconfig      | 1 +
->  arch/riscv/configs/rv32_defconfig | 1 +
->  3 files changed, 5 insertions(+)
->
-> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> index 6ec44a22278a..f4097a815201 100644
-> --- a/arch/riscv/Kconfig.socs
-> +++ b/arch/riscv/Kconfig.socs
-> @@ -36,6 +36,9 @@ config SOC_VIRT
->         select GOLDFISH
->         select RTC_DRV_GOLDFISH if RTC_CLASS
->         select SIFIVE_PLIC
-> +       select PM_GENERIC_DOMAINS if PM
-> +       select PM_GENERIC_DOMAINS_OF if PM && OF
-> +       select RISCV_SBI_CPUIDLE if CPU_IDLE
->         help
->           This enables support for QEMU Virt Machine.
->
-> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-> index a5e0482a4969..b8c882b70b02 100644
-> --- a/arch/riscv/configs/defconfig
-> +++ b/arch/riscv/configs/defconfig
-> @@ -20,6 +20,7 @@ CONFIG_SOC_SIFIVE=y
->  CONFIG_SOC_VIRT=y
->  CONFIG_SMP=y
->  CONFIG_HOTPLUG_CPU=y
-> +CONFIG_PM=y
->  CONFIG_CPU_IDLE=y
->  CONFIG_VIRTUALIZATION=y
->  CONFIG_KVM=m
-> diff --git a/arch/riscv/configs/rv32_defconfig b/arch/riscv/configs/rv32_defconfig
-rv32_defconfig would be removed. I think you could delete this part.
-https://lore.kernel.org/linux-riscv/20220201150545.1512822-9-guoren@kernel.org/T/#u
+Hi,
 
-I would Cc you in the patch, and you could track the progress.
+On 07. 02. 22, 6:58, Hammer Hsieh wrote:
+> +static void sunplus_shutdown(struct uart_port *port)
+> +{
+> +	unsigned long flags;
+> +	unsigned int isc;
+> +
+> +	spin_lock_irqsave(&port->lock, flags);
+> +
+> +	isc = readl(port->membase + SUP_UART_ISC);
+> +	isc &= ~(SUP_UART_ISC_RXM | SUP_UART_ISC_TXM);
 
-> index d1b87db54d68..6f9a7c89bff9 100644
-> --- a/arch/riscv/configs/rv32_defconfig
-> +++ b/arch/riscv/configs/rv32_defconfig
-> @@ -20,6 +20,7 @@ CONFIG_SOC_VIRT=y
->  CONFIG_ARCH_RV32I=y
->  CONFIG_SMP=y
->  CONFIG_HOTPLUG_CPU=y
-> +CONFIG_PM=y
->  CONFIG_CPU_IDLE=y
->  CONFIG_VIRTUALIZATION=y
->  CONFIG_KVM=m
-> --
-> 2.25.1
->
->
-> --
-> kvm-riscv mailing list
-> kvm-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/kvm-riscv
+Is this correct? I mean: will the SUP_UART_ISC read contain the control 
+bits, not only status bits?
 
+> +	writel(isc, port->membase + SUP_UART_ISC);
+> +
+> +	spin_unlock_irqrestore(&port->lock, flags);
+> +
+> +	free_irq(port->irq, port);
 
+I am still waiting for explanation why this is safe with respect to 
+posted writes.
 
+regards,
 -- 
-Best Regards
- Guo Ren
-
-ML: https://lore.kernel.org/linux-csky/
+js
+suse labs
