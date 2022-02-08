@@ -2,238 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA5004AD9ED
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDD634ADA4C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:43:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357732AbiBHNaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 08:30:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
+        id S1359487AbiBHNmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 08:42:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354305AbiBHNaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 08:30:22 -0500
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3005DC03FEEE;
-        Tue,  8 Feb 2022 05:29:29 -0800 (PST)
-Received: by mail-ot1-f45.google.com with SMTP id b12-20020a9d754c000000b0059eb935359eso13203941otl.8;
-        Tue, 08 Feb 2022 05:29:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=koYRbcn/WtPykkXZwC6+c60bzwoEa0n7FLjAaj0dTE4=;
-        b=wM/l1cAjyIjFdSrtEsNeN6bE8UF24ES7fi6Ps3b5gVl5rhHVkPt3z1SDMqJxQYnkGt
-         cXaafvOiQRtRk9qDr9/3RzF/DAysIiItYIfrFKryrU3yldperD3pjOsqX00MaNeRRPXn
-         XfWIDcRNqBdxgXdm9R5SFIj67UGTq+fgYsb1YyMoKAzA45OMD/zyZWKsDRc1BQDm0UoE
-         LN+OxnOmTUN2c85HJjKt8uM015eF90/3gqr4Tcb1DXI4VN1rPSy8UMSj/ksZV3mo4PyU
-         SEzcM/6g3/qG8P+kJI0p5orH7fwT99xxKynPdfg2npwyNOI4pIprHBoBsPi0IV2AGewE
-         Blug==
-X-Gm-Message-State: AOAM530/7v6EGvC0VAvPhy6G6D9kx/B8gheEYdISM5dDWNQ/uoHAogKk
-        sdshYvFFVKi7wIaMZ2PIapo8sExZyw==
-X-Google-Smtp-Source: ABdhPJyZFU8bWgpGlIsuTglztN69AiTBJAywOqGi6K3n7XGhYjfOE32vYlxk6R8h84ooKozFLJaFAg==
-X-Received: by 2002:a9d:22a6:: with SMTP id y35mr1797608ota.212.1644326968365;
-        Tue, 08 Feb 2022 05:29:28 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 23sm3286332oac.20.2022.02.08.05.29.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Feb 2022 05:29:27 -0800 (PST)
-Received: (nullmailer pid 2288492 invoked by uid 1000);
-        Tue, 08 Feb 2022 13:29:26 -0000
-Date:   Tue, 8 Feb 2022 07:29:26 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     daniel.lezcano@linaro.org, tglx@linutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: timer: Convert faraday,fttmr010 to yaml
-Message-ID: <YgJwNuas1D/NVjGU@robh.at.kernel.org>
-References: <20220126160021.3537591-1-clabbe@baylibre.com>
+        with ESMTP id S1359354AbiBHNmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 08:42:33 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D066C03FED0
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 05:42:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1644327752; x=1675863752;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=KQjJJsdtoRUmSCELmiD0Y8pPS66nSMdgiBgH37ytrZw=;
+  b=jicepP9obMqxZ7FOsmJ/fTUNeuH+UvfCPMTz2xOnP7CiAVa/y3IlrPzm
+   k65wGvhX3FyjJdkzM0of4P7qbzzLVOueBABE3OHGXIHjg4VCxbl7+3igB
+   5YiXdwJeBkZafv5+K8eWgP9qzkak8tS/kOmVbGeubpRIYo2w8q8m+DPeu
+   2AdBJZ/BlruOWr8PNAEr8DxvvNSse/ToiECX0/JpxbIznJYLFnXZvLDY2
+   SqVOHmXJwL5p3LIT25Qcb3OAGF7QZCKs1Ro/oJ4phRcPgpCMoj+172Byn
+   1CSgKmo+eyYdnRw9Nz9rUdj07D15pnsHogIb3HvZzG32CgvikfCrxD+kF
+   g==;
+X-IronPort-AV: E=Sophos;i="5.88,352,1635199200"; 
+   d="scan'208";a="21962442"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 08 Feb 2022 14:42:30 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 08 Feb 2022 14:42:30 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 08 Feb 2022 14:42:30 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1644327750; x=1675863750;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=KQjJJsdtoRUmSCELmiD0Y8pPS66nSMdgiBgH37ytrZw=;
+  b=dNtXK4FvtR/jqj7S4y4RttMyqBTiwvyQ3QylbiQa7ApP8OkR9GJxDz4S
+   RsicKjv469V962e8mvgs6phccp/7C+33DSahBYMAEbyi8pF84woIA1xyG
+   eUilsYYU4PjOOqnAD30mbH7G+ZcETgiV9diENdFjlbStTko6yQEk8D6F5
+   DXQy+iY+zUxY2qy7jLnRQcSoTSHlLDOi0hyB2jllAubj04Yv+5cLJc7DT
+   P3PBvrkfiUbI3vrHysWCpyFEOeSAadTrvd9y/+qrUgrex0cnJ5hYCB3C+
+   OaPxNidKb6ctq/f1elnN87Aq9tYz0jvs4gwL2NRuYyR77qXjAaJNqfvKT
+   w==;
+X-IronPort-AV: E=Sophos;i="5.88,352,1635199200"; 
+   d="scan'208";a="21962441"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 08 Feb 2022 14:42:30 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 1F1FA280065;
+        Tue,  8 Feb 2022 14:42:30 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/5] Support for TQMa6ULx & TQMa6ULxL modules
+Date:   Tue,  8 Feb 2022 14:42:18 +0100
+Message-Id: <20220208134223.908757-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220126160021.3537591-1-clabbe@baylibre.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 04:00:21PM +0000, Corentin Labbe wrote:
-> Converts timer/faraday,fttmr010.txt to yaml.
-> 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
-> Changes since v1:
-> - added moxart example
-> - relaxed some contraints as driver only support one clock and one
->   interrupt (as used by moxa,moxart-timer)
-> 
->  .../bindings/timer/faraday,fttmr010.txt       | 38 --------
->  .../bindings/timer/faraday,fttmr010.yaml      | 88 +++++++++++++++++++
->  2 files changed, 88 insertions(+), 38 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
->  create mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt b/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-> deleted file mode 100644
-> index 3cb2f4c98d64..000000000000
-> --- a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-> +++ /dev/null
-> @@ -1,38 +0,0 @@
-> -Faraday Technology timer
-> -
-> -This timer is a generic IP block from Faraday Technology, embedded in the
-> -Cortina Systems Gemini SoCs and other designs.
-> -
-> -Required properties:
-> -
-> -- compatible : Must be one of
-> -  "faraday,fttmr010"
-> -  "cortina,gemini-timer", "faraday,fttmr010"
-> -  "moxa,moxart-timer", "faraday,fttmr010"
-> -  "aspeed,ast2400-timer"
-> -  "aspeed,ast2500-timer"
-> -  "aspeed,ast2600-timer"
-> -
-> -- reg : Should contain registers location and length
-> -- interrupts : Should contain the three timer interrupts usually with
-> -  flags for falling edge
-> -
-> -Optionally required properties:
-> -
-> -- clocks : a clock to provide the tick rate for "faraday,fttmr010"
-> -- clock-names : should be "EXTCLK" and "PCLK" for the external tick timer
-> -  and peripheral clock respectively, for "faraday,fttmr010"
-> -- syscon : a phandle to the global Gemini system controller if the compatible
-> -  type is "cortina,gemini-timer"
-> -
-> -Example:
-> -
-> -timer@43000000 {
-> -	compatible = "faraday,fttmr010";
-> -	reg = <0x43000000 0x1000>;
-> -	interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
-> -		   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
-> -		   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
-> -	clocks = <&extclk>, <&pclk>;
-> -	clock-names = "EXTCLK", "PCLK";
-> -};
-> diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
-> new file mode 100644
-> index 000000000000..db9fb171ea49
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/faraday,fttmr010.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Faraday Technology timer
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: |
+Hi everyone,
 
-Don't need '|' if there's no formatting.
+this patch series adds support for the TQ-Systems TQMa6ULx & TQMa6ULxL modules.
+Admittedly the name can be confusing, so I'll explain in more detail.
 
-> +  This timer is a generic IP block from Faraday Technology, embedded in the
-> +  Cortina Systems Gemini SoCs and other designs.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: faraday,fttmr010
-> +      - items:
-> +          - const: cortina,gemini-timer
-> +          - const: faraday,fttmr010
-> +      - items:
-> +          - const: moxa,moxart-timer
-> +          - const: faraday,fttmr010
-> +      - const: aspeed,ast2400-timer
-> +      - const: aspeed,ast2500-timer
-> +      - const: aspeed,ast2600-timer
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 3
-> +    description: Should contain the three timer interrupts usually with flags for falling edge
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: "PCLK"
-> +      - const: "EXTCLK"
+TQMa6ULx [1] is the module series using i.MX6UL. The 'x' is a placeholder for
+different variants which have a different µC. TQMa6UL1 is using MCIMX6G1 which
+has some peripheries disabled, more about it below. TQMa6UL2 (and TQMa6UL3)
+has a full feature set and are treated identical on Linux side.
 
-Don't need quotes here.
+TQMa6ULxL [2] is the LGA variant of TQMa6ULx with a differnt module PCB, but
+still common parts. There is no variant using MCIMX6G1.
 
-> +
-> +  syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
+TQMa6ULLx [1] is identical to TQMa6ULx, but using an i.MX6ULL instead.
+There is no TQMa6UL1L.
 
-'phandle' is already 1 item. so drop.
+TQMa6ULLxL [2] is identical to TQMa6ULxL, but using an i.MX6ULL instead.
+There is no TQMa6ULL1L.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    /* taken from arch/arm/boot/dts/gemini.dtsi */
+There are also 2 different mainboards namely MBAa6ULx & MBa6ULxL ('x' here is
+not a placeholder, but part of the name). MBAa6ULx is for non-LGA variants
+TQMa6ULx & TQMa6ULLx, while MBa6ULxL is used for TQMa6ULxL & TQMa6ULLxL.
+It is also possible to mount a TQMa6ULxL to MBa6ULx using an LGA adapter
+providing the sockets.
 
-Drop
+TQMa6UL1 uses MCIMX6G1 which has FEC2, CAN2, CSI and LCDIF disabled by fuses.
+This wouldn't be a problem at all, iff fec would support EPROBE_DEFER for
+Ethernet PHYs on a different MDIO bus. Both PHYs are connected to the same MDIO
+bus. This is not a proble, but as FEC2 has the lower base address than FEC1
+it is probed first. For this reason the PHYs have to be attached to FEC2 or
+things wont work. But exactly this breaks on TQMa6UL1 which has no FEC2 at all.
+There is a suggestion for fec driver at [3] but without solution (yet).
+This is the single reason there is a 'tq,imx6ul-tqma6ul1' compatible.
+In order for things to work, the PHYs have to be deleted from fec2 & mdio
+subnode and added to fec1 again.
 
-> +    timer@43000000 {
-> +      compatible = "faraday,fttmr010";
-> +      reg = <0x43000000 0x1000>;
-> +      interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
-> +                   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
-> +                   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
-> +      clocks = <&extclk>, <&pclk>;
-> +      clock-names = "PCLK", "EXTCLK";
-> +      syscon = <&syscon>;
-> +    };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    /* taken from arch/arm/boot/dts/moxart.dtsi */
+Regardings the file structure there is a .dtsi file for
+* common common parts on all 4 module variants (LGA & non-LGA, imx6ul & imx6ull):
+  imx6ul-tqma6ul-common.dtsi
+* common to non-LGA variants only: imx6ul-tqma6ulx-common.dtsi
+* common to LGA variants only: imx6ul-tqma6ulxl-common.dtsi
 
-Drop
+This is valid for both TQMa6ULx and TQMa6ULLx. To not introduce another file
+name separation, 'imx6ul-' is the prefix for common parts for imx6ul as well
+as imx6ull.
 
-> +    timer: timer@98400000 {
+Best regards,
+Alexander
 
-Drop unused labels.
+[1] https://www.tq-group.com/de/produkte/tq-embedded/arm-architektur/tqma6ulx/
+[2] https://www.tq-group.com/de/produkte/tq-embedded/arm-architektur/tqma6ulxl/
+[3] https://lkml.org/lkml/2021/10/14/430
 
-> +      compatible = "moxa,moxart-timer", "faraday,fttmr010";
-> +      reg = <0x98400000 0x42>;
-> +      interrupts = <19 IRQ_TYPE_EDGE_FALLING>;
-> +      clocks = <&clk_apb>;
-> +      clock-names = "PCLK";
-> +    };
-> +...
-> -- 
-> 2.34.1
-> 
-> 
+Alexander Stein (4):
+  ARM: dts: imx6ul: add TQ-Systems MBa6ULx device trees
+  ARM: dts: imx6ul: add TQ-Systems MBa6ULxL device trees
+  ARM: dts: imx6ull: add TQ-Systems MBa6ULLx device trees
+  ARM: dts: imx6ull: add TQ-Systems MBa6ULLxL device trees
+
+Matthias Schiffer (1):
+  dt-bindings: arm: fsl: add TQ Systems boards based on i.MX6UL(L)
+
+ .../devicetree/bindings/arm/fsl.yaml          |  37 ++
+ arch/arm/boot/dts/Makefile                    |   5 +
+ arch/arm/boot/dts/imx6ul-tqma6ul-common.dtsi  | 215 ++++++
+ arch/arm/boot/dts/imx6ul-tqma6ul1-mba6ulx.dts |  56 ++
+ arch/arm/boot/dts/imx6ul-tqma6ul1.dtsi        |  37 ++
+ arch/arm/boot/dts/imx6ul-tqma6ul2-mba6ulx.dts |  15 +
+ arch/arm/boot/dts/imx6ul-tqma6ul2.dtsi        |  71 ++
+ .../arm/boot/dts/imx6ul-tqma6ul2l-mba6ulx.dts |  15 +
+ arch/arm/boot/dts/imx6ul-tqma6ul2l.dtsi       |  71 ++
+ arch/arm/boot/dts/imx6ul-tqma6ulx-common.dtsi |  43 ++
+ .../arm/boot/dts/imx6ul-tqma6ulxl-common.dtsi |  48 ++
+ .../boot/dts/imx6ull-tqma6ull2-mba6ulx.dts    |  15 +
+ arch/arm/boot/dts/imx6ull-tqma6ull2.dtsi      |  76 +++
+ .../boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts   |  15 +
+ arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi     |  76 +++
+ arch/arm/boot/dts/mba6ulx.dtsi                | 615 ++++++++++++++++++
+ 16 files changed, 1410 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6ul-tqma6ul-common.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ul-tqma6ul1-mba6ulx.dts
+ create mode 100644 arch/arm/boot/dts/imx6ul-tqma6ul1.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ul-tqma6ul2-mba6ulx.dts
+ create mode 100644 arch/arm/boot/dts/imx6ul-tqma6ul2.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ul-tqma6ul2l-mba6ulx.dts
+ create mode 100644 arch/arm/boot/dts/imx6ul-tqma6ul2l.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ul-tqma6ulx-common.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ul-tqma6ulxl-common.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-tqma6ull2-mba6ulx.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-tqma6ull2.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
+ create mode 100644 arch/arm/boot/dts/mba6ulx.dtsi
+
+-- 
+2.25.1
+
