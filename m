@@ -2,123 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A384AD640
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F0DE4AD757
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:33:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357505AbiBHLXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 06:23:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39336 "EHLO
+        id S229936AbiBHLcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 06:32:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357010AbiBHLQj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:16:39 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54857C03FEC0;
-        Tue,  8 Feb 2022 03:16:39 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id g14so48689794ybs.8;
-        Tue, 08 Feb 2022 03:16:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=nu7/YVH6EUneCQklBZ5MS41to049uINEDS/3iIPXoMM=;
-        b=AVCxW/K+sd6X3H3McN/ORZimi27QyU+E4rTwL57qwrLaqRtOYtASwb9CTB+41zgtlB
-         xsJ7e6yG/UHvktqGc/lV3qQxjDllvsSpw6DGTj7ot7BG8+AbgGh955xF73s5CHEhwAbB
-         QjhuGYGXEOCir9YbXYCxEKtHmzgew0aUgfRGbcrjKgiz1+T387Qokq7ufwJm7ZnP45pE
-         PWDSukRXZnBK/z5R1Eu2rJIf7Kq0NqI3J9gQuklL2fKz6hOQx2/4M9fG39iXb122NQMg
-         ZgvMG9BjYz29MfLVgsNHI/CIWdvqf7QStFMajgKL9LBjixChFljGNn5I1s1AX4pe1Sz5
-         IVMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=nu7/YVH6EUneCQklBZ5MS41to049uINEDS/3iIPXoMM=;
-        b=3rvetcpUbeRg7+wQNoqEDV//+9jNp/RpATY1y9ZKNHGoyDllD05uXrTS4bR58Jg/6y
-         S33k4YYxmUxzeST6a7PaSfoN33J9pMIv2kD/BaGup2DXHekV8+qd0rrWZvEEVEKncvvj
-         zFfdbvU8I/ERbpW63gDHxMUDM3WTekhBPvEZARYec9dAj+2vPIYOjtjuK0hdo8dgV37C
-         xTuFluiL6JlCSqnE5Z9gcBJSw6PoBN8vCHD1CoSXDDHyuKsx6nEAgIUH4zwqea1WKQva
-         8aE6VnN9bCavGbgArBBoRU3z8qTXYmQnT/AIXDfddkOCvgNz8kq4GYEzcEoMml2UIyTT
-         YPlQ==
-X-Gm-Message-State: AOAM5317I5b9Gb5hRnMAIZY/lZtd2QOJT16ObZf3XhTHDcb2c7bbAxxn
-        QNFUcrRgX7+fbm3jnKlw6NnyqcqHOhADwtZGYOI=
-X-Google-Smtp-Source: ABdhPJz06wEjYiXp/Zki0OtcMPFFilsPoeZ54FGyMmqZbxwlJBCVPRQ+mK6VPpT2h7ZZnDVf/HoHKhSgfOq+O6jr5hg=
-X-Received: by 2002:a81:ac09:: with SMTP id k9mr4332831ywh.356.1644318998417;
- Tue, 08 Feb 2022 03:16:38 -0800 (PST)
+        with ESMTP id S1357032AbiBHL2j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:28:39 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3CEC03FEF3;
+        Tue,  8 Feb 2022 03:28:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CD374B81A4A;
+        Tue,  8 Feb 2022 11:28:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2927C004E1;
+        Tue,  8 Feb 2022 11:28:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1644319711;
+        bh=S/OkajaK//lhGgvpH8Fw06Nx4ATm9sAyJIS5raQ2bvQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=t0ybZeeHBJKmL5e5GBklD/SFNg2ORM9tj6Uo94eWeAyDaZznYCaSGBMNaoKafm9Rx
+         o26RX7aXd2Niprs6HcmE6Xc+k1+wpuIvcCGKjthZfKnrVjNwbyTlR6uWsSW7lg2Sgn
+         rVoqZL/xTG2Nwq7Q4um8qFYpeVKRyLKz3iFMsY8o=
+Date:   Tue, 8 Feb 2022 12:28:29 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Iwona Winiarska <iwona.winiarska@intel.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Borislav Petkov <bp@alien8.de>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Zev Weiss <zweiss@equinix.com>,
+        David Muller <d.mueller@elsoft.ch>,
+        Dave Hansen <dave.hansen@intel.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+Subject: Re: [PATCH v7 07/13] peci: Add sysfs interface for PECI bus
+Message-ID: <YgJT3bd8Uj8omVYz@kroah.com>
+References: <20220202144838.163875-1-iwona.winiarska@intel.com>
+ <20220202144838.163875-8-iwona.winiarska@intel.com>
+ <YgJPFlr18AmWiTRY@kroah.com>
+ <CACPK8Xc0Mo-eAH3bv1uAWxAsPFkLk0gZr9Sx0T0An68Lt2+c+Q@mail.gmail.com>
 MIME-Version: 1.0
-References: <1644213481-20321-1-git-send-email-hammerh0314@gmail.com>
- <1644213481-20321-3-git-send-email-hammerh0314@gmail.com> <7aa14a1e-2814-0014-a682-f40666f635ac@kernel.org>
-In-Reply-To: <7aa14a1e-2814-0014-a682-f40666f635ac@kernel.org>
-From:   hammer hsieh <hammerh0314@gmail.com>
-Date:   Tue, 8 Feb 2022 19:16:52 +0800
-Message-ID: <CAOX-t569-0aTu73eGSY3k+btAuVgueRY91Jd5b9kbpjmxPp+Dw@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
-To:     Jiri Slaby <jirislaby@kernel.org>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACPK8Xc0Mo-eAH3bv1uAWxAsPFkLk0gZr9Sx0T0An68Lt2+c+Q@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jiri Slaby <jirislaby@kernel.org> =E6=96=BC 2022=E5=B9=B42=E6=9C=888=E6=97=
-=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=882:27=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Hi,
->
-> On 07. 02. 22, 6:58, Hammer Hsieh wrote:
-> > +static void sunplus_shutdown(struct uart_port *port)
-> > +{
-> > +     unsigned long flags;
-> > +     unsigned int isc;
-> > +
-> > +     spin_lock_irqsave(&port->lock, flags);
-> > +
-> > +     isc =3D readl(port->membase + SUP_UART_ISC);
-> > +     isc &=3D ~(SUP_UART_ISC_RXM | SUP_UART_ISC_TXM);
->
-> Is this correct? I mean: will the SUP_UART_ISC read contain the control
-> bits, not only status bits?
->
+On Tue, Feb 08, 2022 at 11:15:30AM +0000, Joel Stanley wrote:
+> On Tue, 8 Feb 2022 at 11:08, Greg Kroah-Hartman
+> <gregkh@linuxfoundation.org> wrote:
+> >
+> > On Wed, Feb 02, 2022 at 03:48:32PM +0100, Iwona Winiarska wrote:
+> > > PECI devices may not be discoverable at the time when PECI controller is
+> > > being added (e.g. BMC can boot up when the Host system is still in S5).
+> > > Since we currently don't have the capabilities to figure out the Host
+> > > system state inside the PECI subsystem itself, we have to rely on
+> > > userspace to do it for us.
+> > >
+> > > In the future, PECI subsystem may be expanded with mechanisms that allow
+> > > us to avoid depending on userspace interaction (e.g. CPU presence could
+> > > be detected using GPIO, and the information on whether it's discoverable
+> > > could be obtained over IPMI).
+> > > Unfortunately, those methods may ultimately not be available (support
+> > > will vary from platform to platform), which means that we still need
+> > > platform independent method triggered by userspace.
+> > >
+> > > Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
+> > > ---
+> > >  Documentation/ABI/testing/sysfs-bus-peci | 16 +++++
+> > >  drivers/peci/Makefile                    |  2 +-
+> > >  drivers/peci/core.c                      |  3 +-
+> > >  drivers/peci/device.c                    |  1 +
+> > >  drivers/peci/internal.h                  |  5 ++
+> > >  drivers/peci/sysfs.c                     | 82 ++++++++++++++++++++++++
+> > >  6 files changed, 107 insertions(+), 2 deletions(-)
+> > >  create mode 100644 Documentation/ABI/testing/sysfs-bus-peci
+> > >  create mode 100644 drivers/peci/sysfs.c
+> > >
+> > > diff --git a/Documentation/ABI/testing/sysfs-bus-peci b/Documentation/ABI/testing/sysfs-bus-peci
+> > > new file mode 100644
+> > > index 000000000000..56c2b2216bbd
+> > > --- /dev/null
+> > > +++ b/Documentation/ABI/testing/sysfs-bus-peci
+> > > @@ -0,0 +1,16 @@
+> > > +What:                /sys/bus/peci/rescan
+> > > +Date:                July 2021
+> > > +KernelVersion:       5.15
+> >
+> > 5.15 was a long time ago :(
+> >
+> >
+> > Other than this nit, these all look semi-sane to me.  What tree are you
+> > wanting these to go through, mine?  If so, can you fix this up (both
+> > places in this file) and resend?
+> 
+> Yes, I recommend Iwona send these through your tree.
+> 
+> Thanks for taking another look over them. Thanks to Iwona and Intel
+> for doing this work.
 
-I assume reviewers don't like writel(0,xxx).
-So I use definition to let the code easy to read.
-The purpose is to clear all interrupt.
-Bit[3:0] status bit only for read, write 1 or 0 no effect.
+Can you provide an ack or reviewed-by for them when they are reposted so
+I know this?
 
-> > +     writel(isc, port->membase + SUP_UART_ISC);
-> > +
-> > +     spin_unlock_irqrestore(&port->lock, flags);
-> > +
-> > +     free_irq(port->irq, port);
->
-> I am still waiting for explanation why this is safe with respect to
-> posted writes.
->
+thanks,
 
-Actually I'm not IC designer, not expert for bus design.
-About data incoherence issue between memory bus and peripheral bus.
-In case of AXI bus, use non-posted write can avoid data incoherence issue.
-What if in case of posted write:
-Send a specific command after last write command.
-SDCTRL identify specific command, means previous write command done.
-Then send interrupt signal to interrupt controller.
-And then interrupt controller send done signal to Master.
-Master receive done signal, means write command done.
-Then issue a interrupt or proceed next write command.
-
-IC designer told us no problem, and as a uart driver maintainer.
-It is not my concern, but glad you ask.
-Let me have chance to know it from IC designer.
-
-> regards,
-> --
-> js
-> suse labs
+greg k-h
