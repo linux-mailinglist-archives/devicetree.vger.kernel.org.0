@@ -2,145 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07D3B4AD7FC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:55:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EFDF4AD802
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:56:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346317AbiBHLxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 06:53:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43962 "EHLO
+        id S236353AbiBHLzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 06:55:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239521AbiBHLxt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:53:49 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9A1F2C03FEC0;
-        Tue,  8 Feb 2022 03:53:48 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 43C17ED1;
-        Tue,  8 Feb 2022 03:53:48 -0800 (PST)
-Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 405EF3F70D;
-        Tue,  8 Feb 2022 03:53:47 -0800 (PST)
-Date:   Tue, 8 Feb 2022 11:53:44 +0000
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>, bhelgaas@google.com
-Cc:     Rob Herring <robh@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] PCI: keystone: Add quirk to mark AM654 RC BAR
- flag as IORESOURCE_UNSET
-Message-ID: <20220208115344.GB6233@lpieralisi>
-References: <20211126083119.16570-1-kishon@ti.com>
- <20211126083119.16570-5-kishon@ti.com>
- <20220104155741.GA28358@lpieralisi>
- <f3a2c3f0-caf2-743c-a2f7-a99ea3ddb04f@ti.com>
- <a07040ce-e043-22ac-2ee5-47a3bfdedd3b@ti.com>
+        with ESMTP id S1355721AbiBHLzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:55:36 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C666C03FECF
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 03:55:36 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id DC4183FE41
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 11:55:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644321334;
+        bh=o9lVwGLOMjBBC4tFHuuGDiFsf+0wof2yGLRdH2ujaps=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=m/WHutmhZosifYZvjuR39PA94NTjx4ebP31Mloe2kYm4JSduWK20qN3U8ESoGw27c
+         0IfyJgkx6PfiDe633GD6gFFuoLSC79Zbk5eFeqZi0XL2F16xUhD3B0XoAJ0hq1WeZd
+         oU6tmYfbs/GwdAfjs35lMYdCn6VksVgnxCSJkyi3w628nhgRaxABTTgw9rPsVyEhvY
+         YpOZWhAoMHF2NLdIpTCBTg4cwWkxcb++gV0ZLIO+Rj/PzUh4KGRk4Z6SN98XXnw5uP
+         peOiqAEWtnHQmzmPqr9c1wv4NnV4H6JLls5VArV4o36d7nTlvEKtdPUVlDHNd9QELO
+         fKavuTVtk1iKQ==
+Received: by mail-ed1-f70.google.com with SMTP id q11-20020a5085cb000000b0040f7eceaf7aso2900402edh.14
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 03:55:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=o9lVwGLOMjBBC4tFHuuGDiFsf+0wof2yGLRdH2ujaps=;
+        b=BkPKHlv1TEAEOOWgKoCDxg8h6Qw1Rmrh05dAYXh9mbIquoOL+4J4lkyGf928GPd36C
+         SXDloanWgHO4JNbBtrQ1KEYngibXiJGFbYRQo1B0iRxnih1OKxdEbFKcnbT1Qn+53TUQ
+         9hirQ5oJC7RTarM6537KSZK4LppgCLuU/puUQQQBbYbS7S0aBlH8pYVaxyrXgLT94NIv
+         9/Cf2oS+PKaSb5X/41fJUCKAPGdZIbVLjssZDeaAtvHqqkjAK1041NK3SmGmuc9Lsz/p
+         udhF3OgYwjLbTyiPCP4WEEIind+MyWCI1V/tRsn53Y7DsO7pT5HkZi/RoiqsOIk13K4C
+         uEqg==
+X-Gm-Message-State: AOAM532Ew9SWqS/UWemjtuBZXBye68DW5ADQOrGl21CV9aWYVzXBO99u
+        aG174p5wWHn15DtjSY5QLZZzmnAHbc1C9SAMbUgHyzu/94RALiGg9CDjHKumMxeQT8Ctat9sZxN
+        A/RpYJ/70um/rDpTZHRTsOljSKE8y3NVMiBveoko=
+X-Received: by 2002:a17:907:1c01:: with SMTP id nc1mr3507965ejc.659.1644321333566;
+        Tue, 08 Feb 2022 03:55:33 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxJRKF31xIu6mS1pj+dMNV+8zV+4g6/YqHO7wOvj2ZzAgp/idanGTZW765Y8LXBDd4VTSMQVA==
+X-Received: by 2002:a17:907:1c01:: with SMTP id nc1mr3507953ejc.659.1644321333380;
+        Tue, 08 Feb 2022 03:55:33 -0800 (PST)
+Received: from [192.168.0.93] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id o11sm6780166edh.75.2022.02.08.03.55.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Feb 2022 03:55:32 -0800 (PST)
+Message-ID: <d995fee3-c2ad-55d2-86a0-c8a27e459ff0@canonical.com>
+Date:   Tue, 8 Feb 2022 12:55:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a07040ce-e043-22ac-2ee5-47a3bfdedd3b@ti.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] ARM: dts: at91: Use the generic "crypto" node name for
+ the crypto IPs
+Content-Language: en-US
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
+        alexandre.belloni@bootlin.com
+Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kavyasree.kotagiri@microchip.com
+References: <20220208111225.234685-1-tudor.ambarus@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220208111225.234685-1-tudor.ambarus@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 04, 2022 at 08:38:46PM +0530, Kishon Vijay Abraham I wrote:
-> Hi Lorenzo,
+On 08/02/2022 12:12, Tudor Ambarus wrote:
+> The DT specification recommeds that:
+> "The name of a node should be somewhat generic, reflecting the function of
+> the device and not its precise programming model. If appropriate, the name
+> should be one of the following choices:"
+> "crypto" being the recommendation for the crypto nodes. Follow the DT
+> recommendation and use the generic "crypto" node name for the at91 crypto
+> IPs. While at this, add labels to the crypto nodes where they missed, for
+> easier reference purposes.
 > 
-> On 11/01/22 11:53 am, Kishon Vijay Abraham I wrote:
-> > Hi Lorenzo,
-> > 
-> > On 04/01/22 9:27 pm, Lorenzo Pieralisi wrote:
-> >> On Fri, Nov 26, 2021 at 02:01:18PM +0530, Kishon Vijay Abraham I wrote:
-> >>> AM654 RootComplex has a hard coded 64 bit BAR of size 1MB and also has
-> >>> both MSI and MSI-X capability in it's config space. If PCIEPORTBUS is
-> >>> enabled, it tries to configure MSI-X and msix_mask_all() adds about 10
-> >>> Second boot up delay when it tries to write to undefined location.
-> >>>
-> >>> Add quirk to mark AM654 RC BAR flag as IORESOURCE_UNSET so that
-> >>> msix_map_region() returns NULL for Root Complex and avoid un-desirable
-> >>> writes to MSI-X table.
-> >>
-> >> I don't think this is the right fix (it is not even a fix, just a
-> >> plaster to workaround an issue).
-> >>
-> >> What do you mean by "writing to an undefined location" ?
-> >>
-> >> What does "a hard coded BAR" mean ?
-> >>
-> >> What happens if we _rightly_ write into it (ie to size it) ?
-> > 
-> > There are two parts w.r.t setting the BAR; one is during the configuration and
-> > the other is during the enumeration.
-> > i) During the configuration, the size of the BAR is configured and the inbound
-> > ATU is configured to map the BAR to a physical memory.
-> > ii) During the enumeration, the size of the BAR is obtained and an address is
-> > allocated and programmed in the BAR.
-> > 
-> > In the case of RC, for (i) above, the BAR size is configured as '0'
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/dwc/pcie-designware-host.c#n556
-> > and the inbound ATU is not programmed at all.
-> > 
-> > However, in the case of AM654, the HW configures BAR0 for a fixed size of 1MB
-> > (irrespective of what SW programmed in [i]). While this was done more for a
-> > endpoint usecase, since the same IP is configured for both RC mode and EP mode,
-> > the fixed BAR size is seen with RC mode as well. AM654 also has MSI-X capability
-> > for RC mode (the IP should have been ideally configured to have MSI-X capability
-> > for EP mode). This results in PCIEPORTBUS doing some undesired access in
-> > msix_mask_all().
-> > 
-> > Here I configure IORESOURCE_UNSET so that memory is not allocated for RC BAR.
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+> ---
+>  arch/arm/boot/dts/sam9x60.dtsi | 6 +++---
+>  arch/arm/boot/dts/sama5d2.dtsi | 6 +++---
+>  arch/arm/boot/dts/sama5d3.dtsi | 6 +++---
+>  arch/arm/boot/dts/sama5d4.dtsi | 6 +++---
+>  4 files changed, 12 insertions(+), 12 deletions(-)
 > 
-> Do you need further clarifications on this?
 
-There are two things here:
 
-1) As Rob mentioned, you can write it as a quirk applying only to the
-   bridge _only_
-2) What you want is that the BAR should not be visible to the OS since
-   it is not an actual resource. What I am questioning is whether your
-   way of doing that complies with how this is done in the kernel for
-   other devices/bridges. I need Bjorn's input on this since he knows
-   better (especially wrt IORESOURCE_UNSET usage). I don't want to add
-   any other IORESOURCE_UNSET usage that deviates from what's expected
-   from it
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Lorenzo
 
-> > 
-> >>
-> >> Lorenzo
-> >>
-> >>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> >>> ---
-> >>>  drivers/pci/controller/dwc/pci-keystone.c | 8 +++++++-
-> >>>  1 file changed, 7 insertions(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
-> >>> index 52d20fe17ee9..73e6626a0d8f 100644
-> >>> --- a/drivers/pci/controller/dwc/pci-keystone.c
-> >>> +++ b/drivers/pci/controller/dwc/pci-keystone.c
-> >>> @@ -557,8 +557,14 @@ static void ks_pcie_quirk(struct pci_dev *dev)
-> >>>  		{ 0, },
-> >>>  	};
-> >>>  
-> >>> -	if (pci_is_root_bus(bus))
-> >>> +	if (pci_is_root_bus(bus)) {
-> >>>  		bridge = dev;
-> >>> +		if (pci_match_id(am6_pci_devids, bridge)) {
-> >>> +			struct resource *r = &dev->resource[0];
-> >>> +
-> >>> +			r->flags |= IORESOURCE_UNSET;
-> >>> +		}
-> >>> +	}
-> >>>  
-> >>>  	/* look for the host bridge */
-> >>>  	while (!pci_is_root_bus(bus)) {
-> >>> -- 
-> >>> 2.17.1
-> >>>
+Best regards,
+Krzysztof
