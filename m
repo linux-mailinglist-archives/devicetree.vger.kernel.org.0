@@ -2,80 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65A1D4ADA40
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:43:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E2E24ADA5A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:47:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359726AbiBHNmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 08:42:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40118 "EHLO
+        id S1376423AbiBHNrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 08:47:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359867AbiBHNmj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 08:42:39 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF08C03FECE
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 05:42:36 -0800 (PST)
+        with ESMTP id S1348721AbiBHNrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 08:47:07 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C0D4C03FECE;
+        Tue,  8 Feb 2022 05:47:05 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id s7so10929328edd.3;
+        Tue, 08 Feb 2022 05:47:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1644327757; x=1675863757;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Tiycpxswt/F4AZWVmFikdAU78/ZExPYXtROJms15M84=;
-  b=jn9qAJSWYVODdJ2fTVf8PPAbvO2ex0jXdyNvIrqXryjLnrPaVkOur+U6
-   FxqQuoDYFBiFKzGIIBjI8LeQy2/b3BySTcartXSHGPaR7R4EVl+zoed+D
-   mn5EjcJpoLWvT7lMH67iQ/bjCMTdkiqatC+buT0hHGyWikY/U3G7RDxoE
-   UWq5MEic1gcuGJrzCTQshhG8clk65hh9uD+t0+5TqDis2l6FGjq3bJz08
-   WsJFN60ZrOKdx/t24hM340bGC4gSVLfAOh46zjQVXqGmI/hyTFS+f68HF
-   3EpyshbecQsdC/Cmk8LiBlJ5+mc9DROjzhYO/cnSsIYdqSY/jPpEKzNPh
-   g==;
-X-IronPort-AV: E=Sophos;i="5.88,352,1635199200"; 
-   d="scan'208";a="21962452"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Feb 2022 14:42:31 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 08 Feb 2022 14:42:31 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 08 Feb 2022 14:42:31 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1644327751; x=1675863751;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Tiycpxswt/F4AZWVmFikdAU78/ZExPYXtROJms15M84=;
-  b=gewaPIWhEIHN7D5s9Zul9U4v0rlVR+1BrCwjbqICllIXKBRzlBoO+/a8
-   g6OH67rjGJBw2Hc8eA4lJ7vIbNOsDPsIoMlUVWozbWlpiOZM0mD4oDA5F
-   VjSQDzkyVZamluP/7zIzz2d3aEYoOmISBriNz6DSg1aiAbeYdZYO5somz
-   1okWQcWdYYhCJ8Tlx8h6/2N5kmzH5ukd9+hPUPFVV7dG0nIbHTIXL7vJn
-   EUFf3Q6ro7Wj7nJ7Yoh0bfW59xsgTuasiyYWBgg4etP6Tvz5SBp81P7Mn
-   0oWq/pjzSswaMGOHvGwZ7qejVrTXkwoxSq1IGr6V149Kk7hwrmCsmn1EP
-   A==;
-X-IronPort-AV: E=Sophos;i="5.88,352,1635199200"; 
-   d="scan'208";a="21962451"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Feb 2022 14:42:31 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 214F9280065;
-        Tue,  8 Feb 2022 14:42:31 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/5] ARM: dts: imx6ull: add TQ-Systems MBa6ULLxL device trees
-Date:   Tue,  8 Feb 2022 14:42:23 +0100
-Message-Id: <20220208134223.908757-6-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220208134223.908757-1-alexander.stein@ew.tq-group.com>
-References: <20220208134223.908757-1-alexander.stein@ew.tq-group.com>
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1Uu1nmskTHfo9hf/W5wz6SlkksAW9cfa8fGOqXsoeu0=;
+        b=Gk264vUVXqULqzqf8r/V2hhm+hrlBz33ptFcQz961+WAYCu63lke2girCZMbuqBNVo
+         wQCza+VJ/CWrAWTDsf9opfmeHeZdOMPCEYWK13gurn9ek/yD7yRPAmomj0572H5kn2eX
+         FwLrdPQOhTD6SZkpLlxM7amzIjLfH0Ss/vhceG5nA/1i6PVchCUE9tWGyIIrlGnqNwlU
+         SVDhFdLdHHO1adtLeGj00RtBsyIuOdUdh8J+tYLGUtmu0v/DHfTpSocddpCVXgTzmZpf
+         LXiF8vS1aXYt/a1HakbTNovY6pOptFhAaFHlvEjXDke9KLyD9iIT52OytpJT+rk48QSN
+         PBZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1Uu1nmskTHfo9hf/W5wz6SlkksAW9cfa8fGOqXsoeu0=;
+        b=f5pylbW5EjMAhjDKg83m3fpnbCLfhnonREJzXG31Ak5XNQUdw8X9C0TNLgxIgzjv8j
+         CJ8A3+Y76X0s0lK25sHxYXJMNUtP/GpavlglQ193MldVNzt+L4jtF7taVKNgv4omm3XY
+         7mB9UYTs7DZMuKM6lECMZgY3bO7KLBV87Aay+KP5MDdieqGYuxg5wMVPIVYDt4k1+rf1
+         ZRsQ8+cU+lFq4axBtHc9uRpQ2VOxcuPF5SilTEEjeGD1tdS7y1OTS+2IN0KDOYGye72J
+         5Pfjs5z6AM/Fa2BMZGe5b4Ps68iWyqUL9TZSdsXRFRMh8r1SlVxZF0eyUFHZtIGrLfyY
+         kESg==
+X-Gm-Message-State: AOAM532JiByC42LZEE8E78NneAYSYgj/sxEuBCzOPgNpXuTQxhYy7+5N
+        fEopzdCLQ/YuoUsc8RwWY8J7pXoF+ScPRJOovsI=
+X-Google-Smtp-Source: ABdhPJz2GmTrp8kspjWPIrO//kFaIZIY6zuZ3x2Mu5vF8Z/DPZ7MBkknv+oLENEgrJA6ASawew8rshblrdr780Qg7Wc=
+X-Received: by 2002:aa7:c413:: with SMTP id j19mr3709836edq.200.1644328023983;
+ Tue, 08 Feb 2022 05:47:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <20220208020441.3081162-1-liambeguin@gmail.com> <20220208020441.3081162-10-liambeguin@gmail.com>
+In-Reply-To: <20220208020441.3081162-10-liambeguin@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 8 Feb 2022 15:46:27 +0200
+Message-ID: <CAHp75Vf+FkofvC3_jvNadGed+eH7mQvVYXTOiWKCzwinJ3-2-w@mail.gmail.com>
+Subject: Re: [PATCH v14 09/11] iio: afe: rescale: add temperature transducers
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,132 +68,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device trees for the MBa6ULx mainboard with TQMa6ULLxL SoMs.
+On Tue, Feb 8, 2022 at 4:04 AM Liam Beguin <liambeguin@gmail.com> wrote:
+>
+> A temperature transducer is a device that converts a thermal quantity
+> into any other physical quantity. This patch adds support for
+> temperature to voltage (like the LTC2997) and temperature to current
+> (like the AD590) linear transducers.
+> In both cases these are assumed to be connected to a voltage ADC.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm/boot/dts/Makefile                    |  1 +
- .../boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts   | 15 ++++
- arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi     | 76 +++++++++++++++++++
- 3 files changed, 92 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts
- create mode 100644 arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
+...
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 3a6eccb6371a..9bf89273ae71 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -710,6 +710,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
- 	imx6ull-phytec-segin-lc-rdk-nand.dtb \
- 	imx6ull-tqma6ull2-mba6ulx.dtb \
-+	imx6ull-tqma6ull2l-mba6ulx.dtb \
- 	imx6ulz-14x14-evk.dtb \
- 	imx6ulz-bsh-smm-m2.dtb
- dtb-$(CONFIG_SOC_IMX7D) += \
-diff --git a/arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts b/arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts
-new file mode 100644
-index 000000000000..33437aae9822
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright 2018-2022 TQ-Systems GmbH
-+ * Author: Markus Niebel <Markus.Niebel@tq-group.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx6ull-tqma6ull2l.dtsi"
-+#include "mba6ulx.dtsi"
-+
-+/ {
-+	model = "TQ Systems TQMa6ULL2L SoM on MBa6ULx board";
-+	compatible = "tq,imx6ull-tqma6ull2l-mba6ulx", "tq,imx6ull-tqma6ull2l", "fsl,imx6ull";
-+};
-diff --git a/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi b/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
-new file mode 100644
-index 000000000000..8e4d5cd18614
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright 2018-2022 TQ-Systems GmbH
-+ * Author: Markus Niebel <Markus.Niebel@tq-group.com>
-+ */
-+
-+#include "imx6ull.dtsi"
-+#include "imx6ul-tqma6ul-common.dtsi"
-+#include "imx6ul-tqma6ulxl-common.dtsi"
-+
-+/ {
-+	model = "TQ Systems TQMa6ULL2L SoM";
-+	compatible = "tq,imx6ull-tqma6ull2l", "fsl,imx6ull";
-+};
-+
-+&usdhc2 {
-+	fsl,tuning-step= <6>;
-+	/* Errata ERR010450 Workaround */
-+	max-frequency = <99000000>;
-+	assigned-clocks = <&clks IMX6UL_CLK_USDHC2_SEL>, <&clks IMX6UL_CLK_USDHC2>;
-+	assigned-clock-parents = <&clks IMX6UL_CLK_PLL2_PFD2>;
-+	assigned-clock-rates = <0>, <198000000>;
-+};
-+
-+&iomuxc {
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x00017031
-+			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x00017039
-+			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x00017039
-+			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x00017039
-+			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x00017039
-+			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x00017039
-+			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x00017039
-+			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x00017039
-+			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x00017039
-+			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x00017039
-+			/* rst */
-+			MX6UL_PAD_NAND_ALE__GPIO4_IO10		0x0001b051
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x000170f1
-+			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x000170f1
-+			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x000170f1
-+			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x000170f1
-+			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x000170f1
-+			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x000170f1
-+			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x000170f1
-+			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x000170f1
-+			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x000170f1
-+			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x000170f1
-+			/* rst */
-+			MX6UL_PAD_NAND_ALE__GPIO4_IO10		0x0001b051
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x000170f1
-+			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x000170f1
-+			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x000170f1
-+			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x000170f1
-+			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x000170f1
-+			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x000170f1
-+			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x000170f1
-+			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x000170f1
-+			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x000170f1
-+			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x000170f1
-+			/* rst */
-+			MX6UL_PAD_NAND_ALE__GPIO4_IO10		0x0001b051
-+		>;
-+	};
-+};
+> +       rescale->offset = div_s64((s64)offset * rescale->denominator,
+> +                                 rescale->numerator);
+
+Wonder if we can use mult_frac() here. Would it require 64-bit division?
+
 -- 
-2.25.1
-
+With Best Regards,
+Andy Shevchenko
