@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A52414ADC24
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 16:13:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C0D54ADC2C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 16:13:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379539AbiBHPNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 10:13:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60584 "EHLO
+        id S1379627AbiBHPNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 10:13:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379632AbiBHPNF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 10:13:05 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54648C0613CC
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 07:13:04 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id u6so12874086lfc.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 07:13:04 -0800 (PST)
+        with ESMTP id S1379708AbiBHPNM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 10:13:12 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE7EC06174F
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 07:13:08 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id q22so24898788ljh.7
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 07:13:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=2ul6586FcR2XNKw03Estem+L/2VYFh9q5OPSt2ipD/I=;
-        b=lTtINBBOCY8o3GicRiibtef9ezSJryqKiDbXTVXhiO2U9dopVM6SL0E++3vEtiIRSj
-         rS1GnQalBTA1I7lJodLcbsoS0D8ywNS8LVmOpinkajALmglHEsjWQLeK6m1aG+WnV66h
-         jhXKV/qfDnWh0WQxPwSWLP+zzio3U73dP/HwllvT2QN2sInSJcvivIHrqiEEya9A9gdU
-         yCuX+3BtSAbSAJIOSmXpFb+fGVM3+yZ8OWP7LwnT1gGlzChXv8v1qOxgMDNXjFIGgAiP
-         HcUGwLco3iOmOwLrpa3SiOXc8rgDhaGZT6W10uP8KdICZoVXsFR4RecOTYA1dO1Tec2D
-         0+NA==
+        bh=heLzqVDOK6HwMtmoRVw+9RNvlkqhz9htMWHePzxmYjo=;
+        b=hKhX7L8oYy7og7qYwMi3qsEPm3uInjbXGnODC9R5+llBoYIGxgQ6GZHSWBv9u5wLni
+         +4mlfjS2VQihCFBHX69yag89m8AG1IF1WA3SeMfdVbSXIyxQFB3JD5yNnPp85typ4aoq
+         BAkU0jyMNxAd0CrjLFAtwzE9Qe2i4xqBx/Tzu01Sy6zi2rg/l3jaYeLIJHboZgvwarCj
+         uebDEh54YagSMtB2NCsUx2El+DAOshJgprkuAEBC2naLDQF3d+JRwZmJPDSyOg0UE2da
+         XY1wjy5f2qsLpZI/vPD3iUbznB4s2YdAd0h5tg/NdqC4NEFyTS/1ePmGj8M4SUZpHNsL
+         wZ8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=2ul6586FcR2XNKw03Estem+L/2VYFh9q5OPSt2ipD/I=;
-        b=EVCmTfICxFUVwjhuIRquy+YhBElLWBJtHiLkbh9tsD8/x5Cbik32+i7YVUofK6QN9C
-         JEY+s2dxLZKVqDCGkuxOYuAPtq2DFz5TG7Ka9aNmxptLcG4PRgAOcAEo1c96QrZcWBK3
-         AJSyGx/7D2iZtoSvqShBj5tUmDplETWE+HP6kP+SVEn4Ef3josOsHiXDjHfIhjblExmq
-         Eqe2ZzxVrWO+yTn+SR+z6f2RWCLz905Op5wJ1C50PhxE6sWzYaBwXdUxizVAAjgDMypp
-         Kk0IbzgMCqbqp+xIDEA+680OO1xKiBo7pDvrwl2zxg2jG/3xeRSYQK/oEVpmTU7Ee2K+
-         6ycw==
-X-Gm-Message-State: AOAM531fMQGWq7AQ/Z1A7sTKm44xygPTTlvvS5LDOcdfMxep18Fj/Pbx
-        Jl8vfTNsbGSuRv1SygZYpK4dPaDUhjYvZ/zjIn1sqw==
-X-Google-Smtp-Source: ABdhPJwi6FPXFMyazeJ7i45pYAQSCW8A1BCRnS82xEFe9NN4cuh8Q4joFFexYDXE7e2Y5nmlF/FcS/EQkzm2rd08e2A=
-X-Received: by 2002:a05:6512:3b9a:: with SMTP id g26mr3266780lfv.71.1644333182732;
- Tue, 08 Feb 2022 07:13:02 -0800 (PST)
+        bh=heLzqVDOK6HwMtmoRVw+9RNvlkqhz9htMWHePzxmYjo=;
+        b=C+Ex8dfEoM+Itr2mwhOqPcti6hqKM464Ox5xWzd9wN5vnPwNlnsUAVhSS9KmxldWU4
+         guJvJDime7og4QQzQV+S1Ns3JmZ3IxQjofqVwRJtVQRrKi5dUzW87uvZ+UT3D4TGhj2z
+         4IlFpRlZqigYGGGgBL6TT9ETGmC3lAxwxOOn6KodQQMpfuiQUFz6whjZYroxAdY62jin
+         CbDeW2lvbtbLApI2uqNWe/iNLzqNg8Q08DYA1B++KcCznGWijQfaXOO7qEENd4iZZkYi
+         uxZmhmQhtCI0mEj0vFDEc8XGvE7UvWpszjJLsKpZKoIemqdKXWL2H5QRgyD3e57yn40r
+         QvQg==
+X-Gm-Message-State: AOAM533Z5TA8dp+G40KqPtJL+Hj4Eawi3Gd/OlAmbHVxJVhMz3axJ67a
+        ec1112hB87OLFTUNnldWY4KVXWDqUKUnMNUy7LcTTw==
+X-Google-Smtp-Source: ABdhPJxH8zHLKvEyDd2e4kyIwhWxYtY+SngUFkJBaJxg5QxptxcnKFYWeQYxK+RJkbjKpzZvOyDDVprGkJ6q5/pkeeE=
+X-Received: by 2002:a2e:8790:: with SMTP id n16mr3026510lji.273.1644333185574;
+ Tue, 08 Feb 2022 07:13:05 -0800 (PST)
 MIME-Version: 1.0
-References: <20220203015112.12008-1-samuel@sholland.org>
-In-Reply-To: <20220203015112.12008-1-samuel@sholland.org>
+References: <20220203015112.12008-1-samuel@sholland.org> <20220203015112.12008-2-samuel@sholland.org>
+In-Reply-To: <20220203015112.12008-2-samuel@sholland.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 8 Feb 2022 16:12:25 +0100
-Message-ID: <CAPDyKFoQzcD0gV0fXU=FyzTqQfLoTuDWhMrUaRPGYqsD7Spq8Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: sunxi: Add D1 MMC and eMMC compatibles
+Date:   Tue, 8 Feb 2022 16:12:28 +0100
+Message-ID: <CAPDyKFpvstn6bvVZhLR3_ByNw72GYfAc6RTYzm1Howz-cZmknA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] mmc: sunxi-mmc: Add D1 MMC variant
 To:     Samuel Holland <samuel@sholland.org>
 Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
@@ -69,10 +69,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, 3 Feb 2022 at 02:51, Samuel Holland <samuel@sholland.org> wrote:
 >
-> D1 contains variants of the usual sunxi MMC controller. The eMMC
-> controller has the same parameters as the A100 eMMC controller. The
-> other controllers have a DMA address shift like on A100, but they have
-> a smaller 13-bit size field, making them a new incompatible variant.
+> D1's MMC controllers are unique in that they have the DMA address shift
+> (like A100) with a 13-bit descriptor size field (like sun4i). Add the
+> compatible and parameters for this new variant.
 >
 > Signed-off-by: Samuel Holland <samuel@sholland.org>
 
@@ -84,31 +83,36 @@ Uffe
 
 > ---
 >
->  .../devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml      | 4 ++++
->  1 file changed, 4 insertions(+)
+>  drivers/mmc/host/sunxi-mmc.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-> index 4f62ad6ce50c..94e2c6c4e4b7 100644
-> --- a/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-> @@ -24,6 +24,7 @@ properties:
->        - const: allwinner,sun7i-a20-mmc
->        - const: allwinner,sun8i-a83t-emmc
->        - const: allwinner,sun9i-a80-mmc
-> +      - const: allwinner,sun20i-d1-mmc
->        - const: allwinner,sun50i-a64-emmc
->        - const: allwinner,sun50i-a64-mmc
->        - const: allwinner,sun50i-a100-emmc
-> @@ -49,6 +50,9 @@ properties:
->        - items:
->            - const: allwinner,sun50i-h6-mmc
->            - const: allwinner,sun50i-a64-mmc
-> +      - items:
-> +          - const: allwinner,sun20i-d1-emmc
-> +          - const: allwinner,sun50i-a100-emmc
->        - items:
->            - const: allwinner,sun50i-h616-emmc
->            - const: allwinner,sun50i-a100-emmc
+> diff --git a/drivers/mmc/host/sunxi-mmc.c b/drivers/mmc/host/sunxi-mmc.c
+> index 2702736a1c57..c62afd212692 100644
+> --- a/drivers/mmc/host/sunxi-mmc.c
+> +++ b/drivers/mmc/host/sunxi-mmc.c
+> @@ -1167,6 +1167,14 @@ static const struct sunxi_mmc_cfg sun9i_a80_cfg = {
+>         .can_calibrate = false,
+>  };
+>
+> +static const struct sunxi_mmc_cfg sun20i_d1_cfg = {
+> +       .idma_des_size_bits = 13,
+> +       .idma_des_shift = 2,
+> +       .can_calibrate = true,
+> +       .mask_data0 = true,
+> +       .needs_new_timings = true,
+> +};
+> +
+>  static const struct sunxi_mmc_cfg sun50i_a64_cfg = {
+>         .idma_des_size_bits = 16,
+>         .clk_delays = NULL,
+> @@ -1205,6 +1213,7 @@ static const struct of_device_id sunxi_mmc_of_match[] = {
+>         { .compatible = "allwinner,sun7i-a20-mmc", .data = &sun7i_a20_cfg },
+>         { .compatible = "allwinner,sun8i-a83t-emmc", .data = &sun8i_a83t_emmc_cfg },
+>         { .compatible = "allwinner,sun9i-a80-mmc", .data = &sun9i_a80_cfg },
+> +       { .compatible = "allwinner,sun20i-d1-mmc", .data = &sun20i_d1_cfg },
+>         { .compatible = "allwinner,sun50i-a64-mmc", .data = &sun50i_a64_cfg },
+>         { .compatible = "allwinner,sun50i-a64-emmc", .data = &sun50i_a64_emmc_cfg },
+>         { .compatible = "allwinner,sun50i-a100-mmc", .data = &sun50i_a100_cfg },
 > --
 > 2.33.1
 >
