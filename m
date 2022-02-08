@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE8BE4ADF45
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 18:19:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A07C54ADF4E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 18:19:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383497AbiBHRTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 12:19:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49972 "EHLO
+        id S1383679AbiBHRTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 12:19:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355887AbiBHRTQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 12:19:16 -0500
+        with ESMTP id S1383495AbiBHRTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 12:19:17 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26C1EC06174F
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70FC4C061576
         for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 09:19:16 -0800 (PST)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 4E70F4005C
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 17:19:14 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 196D24017A
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 17:19:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644340754;
-        bh=VHcPmkTeJVNyntx2kBlzhzsUutabuRvxOsRCpNXtu84=;
+        s=20210705; t=1644340755;
+        bh=lAYCF0oFl9nGAtjZLrRDfxUB8PgsnopuWgeZlWJgjg4=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=eE06Fj4wsqL95Vd+feFDIykqxaN7KL2zmkLVutUvtJFuC1G/3vQiFAMOY7AuREyle
-         22aMTq1RepW7dXoFMxxhYYs/rA0M424g/3puGRengNeLOvqP15OZY80NoB4a9zvvbs
-         e6e8Pe/NkcuSFdigFayGrq9hFt5ui/pHH8qz1bNcbaAuP0nb/asGXMSxQpVFmoysq7
-         L5vbblG1Czn5LC0/PxM13Zo/nTd0w/aP43vGIib0Baz07kVIkyoy4z4o/LFYIQe9fG
-         5ZYLd7fxCIg9PiQ2P5equNqHeqe56eps8JguIYE3SovCg6XvfQIL9Dh4kSQewXJbVo
-         iQx2deKWRg0zg==
-Received: by mail-ej1-f72.google.com with SMTP id ky6-20020a170907778600b0068e4bd99fd1so6042565ejc.15
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 09:19:14 -0800 (PST)
+        b=pWhoAI4BEKfG6myvGiVvW3y8BEpvFPmJat5Fg4Mku0TJIWY4fmENfuTrsj1Ux7jqg
+         NpKBbtGOlaeI5kM0xyzyyAFRLuvtfmK5nz5mnPJ0CMCQ1fOa0DOlgefwyF1Xfg4qb0
+         1hMEdoUzbgo2XFVj+IARzdSlC9S50jf8PKAt719saUNdXJmGFuvwgAMrx8K6wLGPyb
+         8Pd2P9D/t24jEXS0ojh8OzFE+QWiogWlNXO+VKct/JkFMZ9fDWkEk7GXdF5/cmMQPg
+         7M8kb63lcDnv6dB0DIN0iq5SKlJjnjNSxx9t3WPRdgS3Nwu/ZDolf6we/J4PomX+qt
+         9X6h2OW5oQHIQ==
+Received: by mail-ed1-f69.google.com with SMTP id o6-20020a50c906000000b0040f6ac3dbb5so3808940edh.17
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 09:19:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=VHcPmkTeJVNyntx2kBlzhzsUutabuRvxOsRCpNXtu84=;
-        b=KPqxzXPubUen0H65WQEPfDjjgevZwwomDhw2uIZ0WB6xE6LekwKhKJiNCRdHTsCmqU
-         DKc2c2Z4mFcZuZkXvOF/y8yhJr8/w4qVZMQg8cmFJ+yTjxCNuqxkMI2Jr3MbN8w9sGIi
-         ClmZ+HbZH0MprO0+5wB80bMtJV6Pe+zyx+B4H9pW5CshkcmWNNoKz9F3Ab8cnVk+Hl4J
-         xMIHuhdftph4vtDgSftb2acbpoMwcq1ehHE0XnkAO0Xdl6QLnUIayfLEdpp9xe8+fnlA
-         xDy6JvFBd4ublSMyOs57upwGTwLDQwHWIUBukQj+m59C27rgd6yVE0gyMt8xeiP9rfrj
-         rypg==
-X-Gm-Message-State: AOAM532FsXViMWDqrjDpjFRf8Zld410PsZA42Gf8YsJaLKWZPFu6VnzC
-        3HPv0vn4Njv8TIGPNiZuAlNZbwzGdLJRYrhDaiAMmKMkTKNb0SWxolAlHINuwitmtffHub8FUAa
-        mOwZRvk0EXjZxWxBg1WJbVHFkwgrPByOtp4xPRz8=
-X-Received: by 2002:aa7:dd88:: with SMTP id g8mr5421157edv.437.1644340753083;
-        Tue, 08 Feb 2022 09:19:13 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzu+cFFUCenp9+7nbzSzHf1p2aHa5gSlHKLF75wAskvl768sx1e6yjGcesa9sVQ2V3f6PILbQ==
-X-Received: by 2002:aa7:dd88:: with SMTP id g8mr5421132edv.437.1644340752936;
-        Tue, 08 Feb 2022 09:19:12 -0800 (PST)
+        bh=lAYCF0oFl9nGAtjZLrRDfxUB8PgsnopuWgeZlWJgjg4=;
+        b=aBwJv6oGSLu8S9eB7ESHP2MfHpNXTO0P7pls9EH0wuGmYxQehkDmG+WtDzracS7T49
+         oLLDSi61omBtwKSilzepif95A0VlfNm205zH99XEiaIB3pUFMsJZfZ04hsgZ5jnZHrqb
+         gtOcYibvVyjDDcapNCop1v/7Gn2TkCeucUo4UJyAfSFV2i887TQLjb2W6aiNDcqq6Zoj
+         agwhnoVHsZrN2Jf5V5G94hE/azBjZaVTbK0y/R91yvoEVqklqTEZXg7FvIO+058pClDV
+         NxmScRra9QovF9iil08RnB+PFDy0XCtQh3183sgpVcpmpR2+O7ECzHm5/GnIVcSkLpDr
+         YY4A==
+X-Gm-Message-State: AOAM532GLXhDdMVDarKXNd3OaC/jehoM6qgfVHcw+KslMb4mlMHAJAwU
+        rIqnWx2wcVCFVdIcY1xfx6CyOWgl8iD7GsC+q7ybdib42PTtKbuzPAC0xtGFXY0Tlov6gsCQePn
+        JnrJllIbBVBbhluUGO1FcM7a5OIrHXpBCDZoVVfY=
+X-Received: by 2002:a05:6402:26c8:: with SMTP id x8mr5675175edd.80.1644340754540;
+        Tue, 08 Feb 2022 09:19:14 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyGbFLwRrBY5BwHpSgBbXGOoRElSE/B0TmO0zX/pZeqJzCVowi5xXNxxbrl6PdvIGlV9Er9gw==
+X-Received: by 2002:a05:6402:26c8:: with SMTP id x8mr5675152edd.80.1644340754363;
+        Tue, 08 Feb 2022 09:19:14 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id r10sm5125550ejy.148.2022.02.08.09.19.11
+        by smtp.gmail.com with ESMTPSA id r10sm5125550ejy.148.2022.02.08.09.19.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Feb 2022 09:19:12 -0800 (PST)
+        Tue, 08 Feb 2022 09:19:13 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Inki Dae <inki.dae@samsung.com>,
         Joonyoung Shim <jy0922.shim@samsung.com>,
@@ -72,11 +72,10 @@ To:     Inki Dae <inki.dae@samsung.com>,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-phy@lists.infradead.org
 Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        stable@vger.kernel.org
-Subject: [PATCH 02/10] ARM: dts: exynos: add missing HDMI supplies on SMDK5420
-Date:   Tue,  8 Feb 2022 18:18:15 +0100
-Message-Id: <20220208171823.226211-3-krzysztof.kozlowski@canonical.com>
+        Sylwester Nawrocki <snawrocki@kernel.org>
+Subject: [PATCH 03/10] dt-bindings: phy: samsung,exynos-hdmi-phy: convert to dtschema
+Date:   Tue,  8 Feb 2022 18:18:16 +0100
+Message-Id: <20220208171823.226211-4-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220208171823.226211-1-krzysztof.kozlowski@canonical.com>
 References: <20220208171823.226211-1-krzysztof.kozlowski@canonical.com>
@@ -92,30 +91,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add required VDD supplies to HDMI block on SMDK5420.  Without them, the
-HDMI driver won't probe.  Because of lack of schematics, use same
-supplies as on Arndale Octa and Odroid XU3 boards (voltage matches).
+Convert the Exynos HDMI PHY bindings to DT schema format and put them
+next to other PHYs.
 
-Cc: <stable@vger.kernel.org> # v3.15+
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm/boot/dts/exynos5420-smdk5420.dts | 3 +++
- 1 file changed, 3 insertions(+)
+ .../display/exynos/exynos_hdmiphy.txt         | 15 -------
+ .../bindings/phy/samsung,exynos-hdmi-phy.yaml | 44 +++++++++++++++++++
+ 2 files changed, 44 insertions(+), 15 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/exynos/exynos_hdmiphy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/samsung,exynos-hdmi-phy.yaml
 
-diff --git a/arch/arm/boot/dts/exynos5420-smdk5420.dts b/arch/arm/boot/dts/exynos5420-smdk5420.dts
-index 2978b5775a6d..4d7b6d9008a7 100644
---- a/arch/arm/boot/dts/exynos5420-smdk5420.dts
-+++ b/arch/arm/boot/dts/exynos5420-smdk5420.dts
-@@ -124,6 +124,9 @@ &hdmi {
- 	hpd-gpios = <&gpx3 7 GPIO_ACTIVE_HIGH>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&hdmi_hpd_irq>;
-+	vdd-supply = <&ldo6_reg>;
-+	vdd_osc-supply = <&ldo7_reg>;
-+	vdd_pll-supply = <&ldo6_reg>;
- };
- 
- &hsi2c_4 {
+diff --git a/Documentation/devicetree/bindings/display/exynos/exynos_hdmiphy.txt b/Documentation/devicetree/bindings/display/exynos/exynos_hdmiphy.txt
+deleted file mode 100644
+index 162f641f7639..000000000000
+--- a/Documentation/devicetree/bindings/display/exynos/exynos_hdmiphy.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-Device-Tree bindings for hdmiphy driver
+-
+-Required properties:
+-- compatible: value should be one of the following:
+-	1) "samsung,exynos5-hdmiphy" <DEPRECATED>
+-	2) "samsung,exynos4210-hdmiphy".
+-	3) "samsung,exynos4212-hdmiphy".
+-- reg: I2C address of the hdmiphy device.
+-
+-Example:
+-
+-	hdmiphy {
+-		compatible = "samsung,exynos4210-hdmiphy";
+-		reg = <0x38>;
+-	};
+diff --git a/Documentation/devicetree/bindings/phy/samsung,exynos-hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,exynos-hdmi-phy.yaml
+new file mode 100644
+index 000000000000..c61574e10b2a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/samsung,exynos-hdmi-phy.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/samsung,exynos-hdmi-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung Exynos SoC HDMI PHY
++
++maintainers:
++  - Inki Dae <inki.dae@samsung.com>
++  - Joonyoung Shim <jy0922.shim@samsung.com>
++  - Seung-Woo Kim <sw0312.kim@samsung.com>
++  - Kyungmin Park <kyungmin.park@samsung.com>
++  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - samsung,exynos4210-hdmiphy
++          - samsung,exynos4212-hdmiphy
++      - const: samsung,exynos5-hdmiphy
++        deprecated: true
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        hdmi-phy@38 {
++            compatible = "samsung,exynos4210-hdmiphy";
++            reg = <0x38>;
++        };
++    };
 -- 
 2.32.0
 
