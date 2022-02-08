@@ -2,55 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A3A4AD8BE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:16:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BE394AD8AA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:15:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238269AbiBHNPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 08:15:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52576 "EHLO
+        id S240150AbiBHNPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 08:15:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350255AbiBHMQv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 07:16:51 -0500
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 306E6C03FECE
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 04:16:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ZnDmcVC1x6gxo65bslhH2FYYzBNk0AndwKAobiaEeoc=; b=Mf8HDwqAg5ONQUFC8Q2LGg0lQ/
-        Ct5qNBfU6aHf9zsq8adhmDXt0F03FZiQZUiRjD+oNKgThJbsG9nst+9gELORAYXoMR4VRFtSAfddu
-        ApH9FTIMWq0Y7258BNHdzh0xBV0QCbsd1WrUfp2bFMk37j4nTF138sQ+EMWpwJ5ruwXrsyDYMSM9t
-        7b5KBeVz7Qh26T537VH7JZ8GRQLZ9guwcsqeaV5NomAEx4kDXcgmhX7RncqUNT3l6zQ6JUrRq5tGa
-        B1BoJSZ4sry3xse+QUgcKwCw2o0ID5PQOx5vwv1CLeAJUlr0Izp1GbFSRuxuER9urz62/l1xRLd6s
-        aauE7sVA==;
-Received: from [2a01:799:95e:a400:cca0:57ac:c55d:a485] (port=59343)
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1nHPQN-0000KZ-0w; Tue, 08 Feb 2022 13:16:47 +0100
-Message-ID: <bebbd98c-ccba-b233-0299-45f58efee10b@tronnes.org>
-Date:   Tue, 8 Feb 2022 13:16:44 +0100
+        with ESMTP id S1350409AbiBHMSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 07:18:35 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D6D2C03FEC0;
+        Tue,  8 Feb 2022 04:18:35 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B073B61572;
+        Tue,  8 Feb 2022 12:18:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58648C340E9;
+        Tue,  8 Feb 2022 12:18:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644322714;
+        bh=+jhBmsQwTJRGwAwlQW6FTGpVyZorlTh6XXyLTNZaKtM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jGFn+QhLelOPYfhz2FlG8XDs13dxBkoE4Sze6DbEgt+XrSfcByVQnWMlOj75yGkhi
+         3yPz6zATvF1nsQbiYOJx9JZa2NZ5oH9zkLywt6bbgEiZb+iH3nDH4YfdjnAGdwVNIf
+         BbsdjCtUVoGVyuXLer7OHfpeFRRx1A4ktMyRfNKQ8Ru0eEEcLfs5JvY94yhUP4G6Qr
+         au2zYAK55xnxMVNnfI/MFnvs5YceUHT17Jq0jB9WZb5gFKtUruw4i8fnZNNWgLPBxp
+         6Xo6/B0qhxeh0wgKvEX9chUI+ldjJ1TDtT4wxmeAgjCGuRG+wmItthm/7gIaYe9OpV
+         gBy8l5vbATDMA==
+Date:   Tue, 8 Feb 2022 13:18:31 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     conor.dooley@microchip.com
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, geert@linux-m68k.org,
+        krzysztof.kozlowski@canonical.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-riscv@lists.infradead.org,
+        bin.meng@windriver.com, heiko@sntech.de, lewis.hanly@microchip.com,
+        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
+        atishp@rivosinc.com, Rob Herring <robh@kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Subject: Re: [PATCH v6 03/12] dt-bindings: i2c: add bindings for microchip
+ mpfs i2c
+Message-ID: <YgJfl5CmepRMb5He@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>, conor.dooley@microchip.com,
+        linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+        geert@linux-m68k.org, krzysztof.kozlowski@canonical.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-riscv@lists.infradead.org, bin.meng@windriver.com,
+        heiko@sntech.de, lewis.hanly@microchip.com,
+        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
+        atishp@rivosinc.com, Rob Herring <robh@kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+References: <20220207162637.1658677-1-conor.dooley@microchip.com>
+ <20220207162637.1658677-4-conor.dooley@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: add bindings for MIPI DBI
- compatible SPI panels
-To:     Rob Herring <robh@kernel.org>, Maxime Ripard <maxime@cerno.tech>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org,
-        dave.stevenson@raspberrypi.com, david@lechnology.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20220125175700.37408-1-noralf@tronnes.org>
- <20220125175700.37408-2-noralf@tronnes.org>
- <20220127093722.hsed3ny3gzk55o7w@houat> <YgGpWo80TvfTknhx@robh.at.kernel.org>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <YgGpWo80TvfTknhx@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="sdYSIm6VkoPV0MiH"
+Content-Disposition: inline
+In-Reply-To: <20220207162637.1658677-4-conor.dooley@microchip.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,247 +84,43 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--sdYSIm6VkoPV0MiH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Den 08.02.2022 00.20, skrev Rob Herring:
-> On Thu, Jan 27, 2022 at 10:37:22AM +0100, Maxime Ripard wrote:
->> Hi,
->>
->> On Tue, Jan 25, 2022 at 06:56:58PM +0100, Noralf Trønnes wrote:
->>> Add binding for MIPI DBI compatible SPI panels.
->>>
->>> v2:
->>> - Fix path for panel-common.yaml
->>> - Use unevaluatedProperties
->>> - Drop properties which are in the allOf section
->>> - Drop model property (Rob)
->>>
->>> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
->>> ---
->>>  .../display/panel/panel-mipi-dbi-spi.yaml     | 59 +++++++++++++++++++
->>>  1 file changed, 59 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
->>> new file mode 100644
->>> index 000000000000..b7cbeea0f8aa
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
->>> @@ -0,0 +1,59 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dbi-spi.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MIPI DBI SPI Panels Device Tree Bindings
->>> +
->>> +maintainers:
->>> +  - Noralf Trønnes <noralf@tronnes.org>
->>> +
->>> +description:
->>> +  This binding is for display panels using a MIPI DBI controller
->>> +  in SPI mode.
->>> +
->>> +allOf:
->>> +  - $ref: panel-common.yaml#
->>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: panel-mipi-dbi-spi
->>
->> You need contains here, otherwise it will error out if you have two compatibles.
-> 
-> Shouldn't it always have 2?
-> 
-> Either way, this has to be split up between a common, shareable schema 
-> and specific, complete schema(s). Like this:
-> 
-> - A schema for everything common (that allows additional properties)
-> 
-> - A schema for 'panel-mipi-dbi-spi' referencing the common schema plus 
->   'unevaluatedProperties: false'
-> 
-> - Schemas for panels with their own additional properties (regulators, 
->   GPIOs, etc.)
-> 
-> LVDS was restructured like this IIRC.
-> 
+On Mon, Feb 07, 2022 at 04:26:29PM +0000, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Add device tree bindings for the i2c controller on
+> the Microchip PolarFire SoC.
+>=20
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-The whole point of this exercise is to avoid the need for controller
-specific bindings. This binding will cover all specifics about these
-controllers except for one thing and that is the controller
-configuration. Each controller has its own configuration commands. These
-commands will be loaded as a firmware file based on the compatible and
-applied by the driver.
-
-So this binding, the panel-common and spi-peripheral-props covers
-everything except for the controller configuration.
-
-Here's a copy of the DBI spec: https://www.docin.com/p-219732497.html
-
-This is my current version of the binding:
-
-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-%YAML 1.2
----
-$id: http://devicetree.org/schemas/display/panel/panel-mipi-dbi-spi.yaml#
-$schema: http://devicetree.org/meta-schemas/core.yaml#
-
-title: MIPI DBI SPI Panel
-
-maintainers:
-  - Noralf Trønnes <noralf@tronnes.org>
-
-description: |
-  This binding is for display panels using a MIPI DBI compatible controller
-  in SPI mode.
-
-  The MIPI Alliance Standard for Display Bus Interface defines the
-electrical
-  and logical interfaces for display controllers historically used in mobile
-  phones. The standard defines 4 display architecture types and this
-binding is
-  for type 1 which has full frame memory. There are 3 interface types in the
-  standard and type C is the serial interface.
-
-  The standard defines the following interface signals for type C:
-  - Power:
-    - Vdd: Power supply for display module
-    - Vddi: Logic level supply for interface signals
-    Combined into one in this binding called: power-supply
-  - Interface:
-    - CSx: Chip select
-    - SCL: Serial clock
-    - Dout: Serial out
-    - Din: Serial in
-    - SDA: Bidrectional in/out
-    - D/CX: Data/command selection, high=data, low=command
-      Called dc-gpios in this binding.
-    - RESX: Reset when low
-      Called reset-gpios in this binding.
-
-  The type C interface has 3 options:
-
-    - Option 1: 9-bit mode and D/CX as the 9th bit
-      |              Command              |  the next command or
-following data  |
-
-|<0><D7><D6><D5><D4><D3><D2><D1><D0>|<D/CX><D7><D6><D5><D4><D3><D2><D1><D0>|
-
-    - Option 2: 16-bit mode and D/CX as a 9th bit
-      |              Command or data                              |
-      |<X><X><X><X><X><X><X><D/CX><D7><D6><D5><D4><D3><D2><D1><D0>|
-
-    - Option 3: 8-bit mode and D/CX as a separate interface line
-      |        Command or data         |
-      |<D7><D6><D5><D4><D3><D2><D1><D0>|
-
-  The panel resolution is specified using the panel-timing node properties
-  hactive (width) and vactive (height). The other mandatory panel-timing
-  properties should be set to zero except clock-frequency which can be
-  optionally set to inform about the actual pixel clock frequency.
-
-  If the panel is wired to the controller at an offset specify this using
-  hback-porch (x-offset) and vback-porch (y-offset).
-
-allOf:
-  - $ref: panel-common.yaml#
-  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-
-properties:
-  compatible:
-    contains:
-      const: panel-dbi-spi
-
-  write-only:
-    type: boolean
-    description:
-      Controller is not readable (ie. MISO is not wired up).
-
-  dc-gpios:
-    maxItems: 1
-    description: |
-      Controller data/command selection (D/CX) in 4-line SPI mode.
-      If not set, the controller is in 3-line SPI mode.
-
-required:
-  - compatible
-  - reg
-  - panel-timing
-
-unevaluatedProperties: false
-
-examples:
-  - |
-    #include <dt-bindings/gpio/gpio.h>
-
-    spi {
-            #address-cells = <1>;
-            #size-cells = <0>;
-
-            display@0{
-                    compatible = "sainsmart18", "panel-dbi-spi";
-                    reg = <0>;
-                    spi-max-frequency = <40000000>;
-
-                    dc-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
-                    reset-gpios = <&gpio 25 GPIO_ACTIVE_HIGH>;
-                    write-only;
-
-                    backlight = <&backlight>;
-
-                    width-mm = <35>;
-                    height-mm = <28>;
-
-                    panel-timing {
-                        hactive = <160>;
-                        vactive = <128>;
-                        hback-porch = <0>;
-                        vback-porch = <0>;
-
-                        clock-frequency = <0>;
-                        hfront-porch = <0>;
-                        hsync-len = <0>;
-                        vfront-porch = <0>;
-                        vsync-len = <0>;
-                    };
-            };
-    };
-
-...
+Shall this go via DT (Rob) or I2C (me) or some riscv tree?
 
 
->>> +  write-only:
->>> +    type: boolean
->>> +    description:
->>> +      Controller is not readable (ie. MISO is not wired up).
->>> +
->>> +  dc-gpios:
->>> +    maxItems: 1
->>> +    description: |
->>> +      Controller data/command selection (D/CX) in 4-line SPI mode.
->>> +      If not set, the controller is in 3-line SPI mode.
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +unevaluatedProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/gpio/gpio.h>
->>> +
->>> +    spi {
->>> +            #address-cells = <1>;
->>> +            #size-cells = <0>;
->>> +
->>> +            display@0{
->>> +                    compatible = "panel-mipi-dbi-spi";
->>
->> We should have two compatibles in the example too
->>
->> Maxime
-> 
-> 
+--sdYSIm6VkoPV0MiH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmICX5MACgkQFA3kzBSg
+KbZzxhAArSdMKMsyP4zt6H3heN8FNENRNOKYegpVuGgnCzbtLbitNEQvjx0Z9HdF
+BUbaytztYIVoDstV1SxiWczUikuOQ7pQ2TB585jhzhF7FATjt0zqIr22/ATEBmN5
+nUNlnWMt5s05zgcppQyksrVddYYvgs+HqtTCNXCk6LOz0qC54dxze8766ageQYPz
+1gBy5cDmJrUMJ+X8JnveuPgKv4BrZgGKZsrNgHy5dOAdF0B0WyI4i/uv2YTq2y+o
+XIOA/B60tgZtIWkWWcFNPIE+TQQIDVY93O2R3i4gAvCfwYVqyRdtG5i5p3eK74RM
+LwpTEv6SJE5KJ0pxYmo5SP4AKsMaN7Z6ePga6LQz2tPETjhKNZixntc/KsoIPXQJ
+sQ025iG+3stSKxpnpWg/VjqM6ugoDQOX+VvsxFe34KjtmbgRYTROfxHY173+TfVb
+hZb+CYNHbDxl7/gGHkXlsbcNC6sSZq7qvu0ZeCXPvq4nzk1V0KwKPGLocQaTrGVo
+qNHIjEnA5CeIu8y5fF7r26769safY0B9chLwsxXWujW3WSHY3FYPmRDMtX89sVhr
+WxlPZDxBvIv16LQjg4lXWLrTsgkUaVU2xiHe8gd+gulSVMgKeeePSkiU4fKgonRj
++KJRlq7MvI0G5Mdb0F3PNIHoq4R/P8FYBNmGgRmjvIxBNzggd2M=
+=TDLj
+-----END PGP SIGNATURE-----
+
+--sdYSIm6VkoPV0MiH--
