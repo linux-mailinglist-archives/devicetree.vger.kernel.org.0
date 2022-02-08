@@ -2,140 +2,483 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C4E24AD63E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDC7E4AD641
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 12:23:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357500AbiBHLXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 06:23:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39108 "EHLO
+        id S1357510AbiBHLXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 06:23:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232429AbiBHLPo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:15:44 -0500
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E654C03FEC0;
-        Tue,  8 Feb 2022 03:15:43 -0800 (PST)
-Received: by mail-qk1-x72a.google.com with SMTP id bs32so13406196qkb.1;
-        Tue, 08 Feb 2022 03:15:43 -0800 (PST)
+        with ESMTP id S232359AbiBHLR2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 06:17:28 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9F19C03FEC0;
+        Tue,  8 Feb 2022 03:17:26 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id da4so14714826edb.4;
+        Tue, 08 Feb 2022 03:17:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=t5ATNDVY5BBfcfxijhXC/1iC+qNbs6QVAVyFAJglrIA=;
-        b=Ch1X4rYMr6HA1Ert5gDxuP0Z4IHG5DzbbwXXVp6sgfJ/CbGFZ34axFqel/jGAus/dC
-         1JMkI3rMljd8A3TjT9YDbKHImN6wrC30A6uMP635b2hz9jqCbJeODuA2HtYBPpqQaq34
-         g5feFwoun/O0JX5iG88O36A8iojpT6tu43L8E=
+        bh=qU/gxXFDBOnfNb6XyNCa1Tw43X3fBveqLBLgVRXwtYU=;
+        b=oIonbYBid+EPC+yWy7whfTIjL8NOR5Le6OTFLa3slf+E7XoOpw3pHMlhgYdqd66kbn
+         JIo8yKjkjXYINcowMHaSoGTZYCEshR6qSO6eGyVNSzQWym+tPXXz458R4LGtWLkC9/mU
+         0SdyfrspGKKckdh75eCdlvGsTCXrkk21VmQyeFm0qPexYEqPQBsxFL0Y5t0oO2XPy5Q1
+         qnjzTEMVNrfC5WibO2tlv9ZW/xmbQZjFk4Tl2gYTCUKjD63p+hq6opX4Jejxadg3Aotz
+         MNvpeNYOlSEsfHMpqMkZDMFf0vQ58Bl7woEOOdGi++JkEtLj/7hAUkml8FOw3gaN5x32
+         sf+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=t5ATNDVY5BBfcfxijhXC/1iC+qNbs6QVAVyFAJglrIA=;
-        b=Pvr8wofz+VWjdIkZF1JAUhXjrJYVkWgw/M1wS4qopKv53eXQaLo+rM/ZThsUFwjw3S
-         W7XyDJbAOk3BVQrND3JDO1R91ZWDuHwYwHMM+ad7JMTFmYKIYsosMKHpvCP+k5PZAhQ7
-         mRCKC0eC5a8xziITNXg/l5PJinxZ2F1XjZh8P3bWdo3gSQmjjU0ikSaYtuGGzkKtuLoR
-         WIuOU/NOdniKxga4Csu01Js0Jq9WxdkpOm3Ryl9SBdGTf7uTlKnCkN+1iy+Eb5UdruQs
-         /GdP58n+K8nmqbYzEPjoy2nneKC2aKgIQla9AtqgYujWVuQATFjsftRMd2XVzF70Dteh
-         Qfxw==
-X-Gm-Message-State: AOAM531uvOv6acVFtXvPrHh3E+DgMajIhGKnbXfPVehtWDHMFOryzBT3
-        Eh0IyACJx7WEDWLEw+e0X2toHOCN2gYshlWFb0Y=
-X-Google-Smtp-Source: ABdhPJwVhiQ9NYAesN9fwHxFsiR0uMR/oXmTftb8+ojrbzE9gOYzak69ZOdtSmXgJGRvv+Z7ZVyIh3pVPztPCn+MRgY=
-X-Received: by 2002:a05:620a:44c7:: with SMTP id y7mr2284975qkp.347.1644318942239;
- Tue, 08 Feb 2022 03:15:42 -0800 (PST)
+        bh=qU/gxXFDBOnfNb6XyNCa1Tw43X3fBveqLBLgVRXwtYU=;
+        b=EuMW2OEx5eU+5gpi6wQGsEJvMfxrzFH3psqj0666Oc28TyvyAFMm4fWM3IwDc6Cp7D
+         /k/9mAtzxIgcGzEctwTaPSgGejx9R/FVKWfFWD8tELCXBNAzg5bkRSQZP/5yRJwxd+EU
+         QoPi5BHSKzDTlnQC/ygvzdk1hcGmYAKaXR0+HQd9V2RnhRlj1R6nACKg/u912nuvCNd3
+         3BHlFllUxZ6kCMme6E73v5likZ5HUFiA4kh25wQWAD/7CGUzA0TiW74Mt7xceWlQEjRf
+         oARq2NOdnGmlGWXQfi7cTQa0dS24fFVDaIflTbUAyKvzkGD+pIX3HVycMKdDstAcWhaT
+         XTTQ==
+X-Gm-Message-State: AOAM530H+F21rnCTHCJqpxT2WXe1ey6no9NlNCCqOqo27DSEUvRLKLhm
+        v5rVBHqlZvxyyJQvLU/yiFTPBbokab2NWk3MGJs=
+X-Google-Smtp-Source: ABdhPJxM9F5UV+586OyEXtKhoWo6F2G10uINRvy19IvkFbkB9o5fjhdSjODnpzXPTDtZN9AD6vm6n7+c32YyexCbCHE=
+X-Received: by 2002:a05:6402:2284:: with SMTP id cw4mr3258644edb.436.1644319045281;
+ Tue, 08 Feb 2022 03:17:25 -0800 (PST)
 MIME-Version: 1.0
-References: <20220202144838.163875-1-iwona.winiarska@intel.com>
- <20220202144838.163875-8-iwona.winiarska@intel.com> <YgJPFlr18AmWiTRY@kroah.com>
-In-Reply-To: <YgJPFlr18AmWiTRY@kroah.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 8 Feb 2022 11:15:30 +0000
-Message-ID: <CACPK8Xc0Mo-eAH3bv1uAWxAsPFkLk0gZr9Sx0T0An68Lt2+c+Q@mail.gmail.com>
-Subject: Re: [PATCH v7 07/13] peci: Add sysfs interface for PECI bus
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Iwona Winiarska <iwona.winiarska@intel.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+References: <20220206115939.3091265-1-luca@lucaceresoli.net> <20220206115939.3091265-3-luca@lucaceresoli.net>
+In-Reply-To: <20220206115939.3091265-3-luca@lucaceresoli.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 8 Feb 2022 13:16:48 +0200
+Message-ID: <CAHp75Vejw86kLUJfwXR_kUn+=UCaixbcy=epO8Foe=9S2LqXTQ@mail.gmail.com>
+Subject: Re: [RFCv3 2/6] i2c: add I2C Address Translator (ATR) support
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Borislav Petkov <bp@alien8.de>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Zev Weiss <zweiss@equinix.com>,
-        David Muller <d.mueller@elsoft.ch>,
-        Dave Hansen <dave.hansen@intel.com>,
-        Billy Tsai <billy_tsai@aspeedtech.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Peter Rosin <peda@axentia.se>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Feb 2022 at 11:08, Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
+On Mon, Feb 7, 2022 at 7:55 PM Luca Ceresoli <luca@lucaceresoli.net> wrote:
 >
-> On Wed, Feb 02, 2022 at 03:48:32PM +0100, Iwona Winiarska wrote:
-> > PECI devices may not be discoverable at the time when PECI controller is
-> > being added (e.g. BMC can boot up when the Host system is still in S5).
-> > Since we currently don't have the capabilities to figure out the Host
-> > system state inside the PECI subsystem itself, we have to rely on
-> > userspace to do it for us.
-> >
-> > In the future, PECI subsystem may be expanded with mechanisms that allow
-> > us to avoid depending on userspace interaction (e.g. CPU presence could
-> > be detected using GPIO, and the information on whether it's discoverable
-> > could be obtained over IPMI).
-> > Unfortunately, those methods may ultimately not be available (support
-> > will vary from platform to platform), which means that we still need
-> > platform independent method triggered by userspace.
-> >
-> > Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
-> > ---
-> >  Documentation/ABI/testing/sysfs-bus-peci | 16 +++++
-> >  drivers/peci/Makefile                    |  2 +-
-> >  drivers/peci/core.c                      |  3 +-
-> >  drivers/peci/device.c                    |  1 +
-> >  drivers/peci/internal.h                  |  5 ++
-> >  drivers/peci/sysfs.c                     | 82 ++++++++++++++++++++++++
-> >  6 files changed, 107 insertions(+), 2 deletions(-)
-> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-peci
-> >  create mode 100644 drivers/peci/sysfs.c
-> >
-> > diff --git a/Documentation/ABI/testing/sysfs-bus-peci b/Documentation/ABI/testing/sysfs-bus-peci
-> > new file mode 100644
-> > index 000000000000..56c2b2216bbd
-> > --- /dev/null
-> > +++ b/Documentation/ABI/testing/sysfs-bus-peci
-> > @@ -0,0 +1,16 @@
-> > +What:                /sys/bus/peci/rescan
-> > +Date:                July 2021
-> > +KernelVersion:       5.15
+> An ATR is a device that looks similar to an i2c-mux: it has an I2C
+> slave "upstream" port and N master "downstream" ports, and forwards
+> transactions from upstream to the appropriate downstream port. But is
+> is different in that the forwarded transaction has a different slave
+> address. The address used on the upstream bus is called the "alias"
+> and is (potentially) different from the physical slave address of the
+> downstream chip.
 >
-> 5.15 was a long time ago :(
->
->
-> Other than this nit, these all look semi-sane to me.  What tree are you
-> wanting these to go through, mine?  If so, can you fix this up (both
-> places in this file) and resend?
+> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
+> implementing ATR features in a device driver. The helper takes care or
+> adapter creation/destruction and translates addresses at each transaction.
 
-Yes, I recommend Iwona send these through your tree.
+Why I2C mux driver can't be updated to support this feature?
 
-Thanks for taking another look over them. Thanks to Iwona and Intel
-for doing this work.
+...
 
-Cheers,
+>  RFCv1 was implemented inside i2c-mux.c and added yet more complexity
+>  there. RFCv2 creates a new file on its own, i2c-atr.c. Since many ATR
+>  features are not in a MUX and vice versa, the overlapping is low. This was
+>  almost a complete rewrite, but for the records here are the main
+>  differences from the old implementation:
 
-Joel
+While this is from a code perspective, maybe i2c mux and this one can
+still share some parts?
+
+...
+
+> +config I2C_ATR
+> +       tristate "I2C Address Translator (ATR) support"
+> +       help
+> +         Enable support for I2C Address Translator (ATR) chips.
+> +
+> +         An ATR allows accessing multiple I2C busses from a single
+> +         physical bus via address translation instead of bus selection as
+> +         i2c-muxes do.
+
+What would be the module name?
+
+...
+
+> +/**
+
+Is this a kernel doc formatted documentation?
+Haven't you got a warning?
+
+> + * I2C Address Translator
+> + *
+> + * Copyright (c) 2019 Luca Ceresoli <luca@lucaceresoli.net>
+
+2019,2022?
+
+> + *
+> + * An I2C Address Translator (ATR) is a device with an I2C slave parent
+> + * ("upstream") port and N I2C master child ("downstream") ports, and
+> + * forwards transactions from upstream to the appropriate downstream port
+> + * with a modified slave address. The address used on the parent bus is
+> + * called the "alias" and is (potentially) different from the physical
+> + * slave address of the child bus. Address translation is done by the
+> + * hardware.
+> + *
+> + * An ATR looks similar to an i2c-mux except:
+> + * - the address on the parent and child busses can be different
+> + * - there is normally no need to select the child port; the alias used on
+> + *   the parent bus implies it
+> + *
+> + * The ATR functionality can be provided by a chip with many other
+> + * features. This file provides a helper to implement an ATR within your
+> + * driver.
+> + *
+> + * The ATR creates a new I2C "child" adapter on each child bus. Adding
+> + * devices on the child bus ends up in invoking the driver code to select
+> + * an available alias. Maintaining an appropriate pool of available aliases
+> + * and picking one for each new device is up to the driver implementer. The
+> + * ATR maintains an table of currently assigned alias and uses it to modify
+> + * all I2C transactions directed to devices on the child buses.
+> + *
+> + * A typical example follows.
+> + *
+> + * Topology:
+> + *
+> + *                       Slave X @ 0x10
+> + *               .-----.   |
+> + *   .-----.     |     |---+---- B
+> + *   | CPU |--A--| ATR |
+> + *   `-----'     |     |---+---- C
+> + *               `-----'   |
+> + *                       Slave Y @ 0x10
+> + *
+> + * Alias table:
+> + *
+> + *   Client  Alias
+> + *   -------------
+> + *      X    0x20
+> + *      Y    0x30
+> + *
+> + * Transaction:
+> + *
+> + *  - Slave X driver sends a transaction (on adapter B), slave address 0x10
+> + *  - ATR driver rewrites messages with address 0x20, forwards to adapter A
+> + *  - Physical I2C transaction on bus A, slave address 0x20
+> + *  - ATR chip propagates transaction on bus B with address translated to 0x10
+> + *  - Slave X chip replies on bus B
+> + *  - ATR chip forwards reply on bus A
+> + *  - ATR driver rewrites messages with address 0x10
+> + *  - Slave X driver gets back the msgs[], with reply and address 0x10
+> + *
+> + * Usage:
+> + *
+> + *  1. In your driver (typically in the probe function) add an ATR by
+> + *     calling i2c_atr_new() passing your attach/detach callbacks
+> + *  2. When the attach callback is called pick an appropriate alias,
+> + *     configure it in your chip and return the chosen alias in the
+> + *     alias_id parameter
+> + *  3. When the detach callback is called, deconfigure the alias from
+> + *     your chip and put it back in the pool for later usage
+> + *
+> + * Originally based on i2c-mux.c
+> + */
+
+Shouldn't this comment be somewhere under Documentation/ ?
+
+...
+
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of.h>
+> +#include <linux/slab.h>
+
+
+> +static int i2c_atr_map_msgs(struct i2c_atr_chan *chan,
+> +                           struct i2c_msg msgs[], int num)
+
+foo[] makes not much sense in the function parameter. *foo is what
+will be used and it's explicit.
+
+Can this be located on one line (similar question to make compact the
+rest of the function declarations)?
+
+> +
+
+Redundant blank line.
+
+...
+
+> +       /* Ensure we have enough room to save the original addresses */
+> +       if (unlikely(chan->orig_addrs_size < num)) {
+
+> +               void *new_buf = kmalloc(num * sizeof(chan->orig_addrs[0]),
+> +                                       GFP_KERNEL);
+
+Use kmalloc_array()
+
+> +               if (new_buf == NULL)
+> +                       return -ENOMEM;
+> +
+> +               kfree(chan->orig_addrs);
+
+Hmm... is it a reimplementation of krealloc_array()?
+
+> +               chan->orig_addrs = new_buf;
+> +               chan->orig_addrs_size = num;
+> +       }
+
+...
+
+> +               if (c2a) {
+> +                       msgs[i].addr = c2a->alias;
+> +               } else {
+> +                       dev_err(atr->dev, "client 0x%02x not mapped!\n",
+> +                               msgs[i].addr);
+> +                       return -ENXIO;
+> +               }
+
+'else' would be redundant if you switch to the traditional pattern,
+i.e. check for errors first.
+
+...
+
+> +/*
+> + * Restore all message address aliases with the original addresses.
+> + *
+> + * This function is internal for use in i2c_atr_master_xfer().
+> + *
+> + * @see i2c_atr_map_msgs()
+> + */
+
+Too sparse formatting of the comment. Can you make it compact?
+
+...
+
+> +       int ret = 0;
+
+Unneeded assignment.
+
+> +       /* Switch to the right atr port */
+> +       if (atr->ops->select) {
+> +               ret = atr->ops->select(atr, chan->chan_id);
+> +               if (ret < 0)
+> +                       goto out;
+> +       }
+> +
+> +       /* Translate addresses */
+> +       mutex_lock(&chan->orig_addrs_lock);
+> +       ret = i2c_atr_map_msgs(chan, msgs, num);
+> +       if (ret < 0) {
+
+> +               mutex_unlock(&chan->orig_addrs_lock);
+> +               goto out;
+
+goto out_unlock_deselect;
+
+> +       }
+> +
+> +       /* Perform the transfer */
+> +       ret = i2c_transfer(parent, msgs, num);
+> +
+> +       /* Restore addresses */
+> +       i2c_atr_unmap_msgs(chan, msgs, num);
+
+out_unlock_deselct:
+
+> +       mutex_unlock(&chan->orig_addrs_lock);
+
+> +out:
+
+out_deselect:
+
+> +       if (atr->ops->deselect)
+> +               atr->ops->deselect(atr, chan->chan_id);
+> +
+> +       return ret;
+> +}
+
+...
+
+> +       int err = 0;
+
+Be consistent with ret vs. err across the functions.
+
+> +       if (atr->ops->select)
+> +               err = atr->ops->select(atr, chan->chan_id);
+
+> +       if (!err)
+
+Perhaps
+
+       int ret;
+
+       ret = 0;
+       if (atr->ops->select)
+               ret = atr->ops->select(atr, chan->chan_id);
+       if (ret)
+               goto out_deselect;
+
+
+> +               err = i2c_smbus_xfer(parent, c2a->alias, flags,
+> +                                    read_write, command, size, data);
+
+out_deselect:
+
+> +       if (atr->ops->deselect)
+> +               atr->ops->deselect(atr, chan->chan_id);
+> +
+> +       return err;
+> +}
+
+...
+
+> +       int err = 0;
+
+Same as above: naming, useless assignment.
+
+...
+
+> +       c2a = kzalloc(sizeof(struct i2c_atr_cli2alias_pair), GFP_KERNEL);
+
+sizeof(*c2a)
+
+> +       if (!c2a) {
+> +               err = -ENOMEM;
+> +               goto err_alloc;
+
+Useless label, return directly.
+
+> +       }
+
+...
+
+> +       c2a = i2c_atr_find_mapping_by_client(&chan->alias_list, client);
+> +       if (c2a != NULL) {
+
+if (c2a)
+
+> +               list_del(&c2a->node);
+> +               kfree(c2a);
+> +       }
+
+...
+
+> +       char symlink_name[20];
+
+Why 20? Do we have a predefined constant for that?
+
+
+> +       if (dev->of_node) {
+
+This check can be dropped, also please use device property and fwnode
+APIs. No good of having OF-centric generic modules nowadays.
+
+> +               struct device_node *atr_node;
+> +               struct device_node *child;
+> +               u32 reg;
+> +
+> +               atr_node = of_get_child_by_name(dev->of_node, "i2c-atr");
+
+atr_node = device_get_named_child_node(...);
+
+fwnode_for_each_child_node() {
+}
+
+> +               for_each_child_of_node(atr_node, child) {
+> +                       err = of_property_read_u32(child, "reg", &reg);
+> +                       if (err)
+> +                               continue;
+> +                       if (chan_id == reg)
+> +                               break;
+> +               }
+> +
+> +               chan->adap.dev.of_node = child;
+> +               of_node_put(atr_node);
+> +       }
+
+On the second thought can you utilize the parser from I2C mux?
+
+...
+
+> +       WARN(sysfs_create_link(&chan->adap.dev.kobj, &dev->kobj, "atr_device"),
+> +            "can't create symlink to atr device\n");
+> +       snprintf(symlink_name, sizeof(symlink_name), "channel-%u", chan_id);
+> +       WARN(sysfs_create_link(&dev->kobj, &chan->adap.dev.kobj, symlink_name),
+> +            "can't create symlink for channel %u\n", chan_id);
+
+Doesn't sysfs already has a warning when it's really needed?
+
+...
+
+> +       if (atr->adapter[chan_id] == NULL) {
+> +               dev_err(dev, "Adapter %d does not exist\n", chan_id);
+
+Noisy message. On freeing we usually don't issue such when we try to
+free already freeed resource.
+
+> +               return;
+> +       }
+
+...
+
+> +       atr = devm_kzalloc(dev, sizeof(*atr)
+> +                           + max_adapters * sizeof(atr->adapter[0]),
+> +                           GFP_KERNEL);
+
+Check overflow.h and use respective macro here.
+
+> +       if (!atr)
+> +               return ERR_PTR(-ENOMEM);
+
+...
+
+> +/**
+
+It's not a kernel doc.
+
+> + * drivers/i2c/i2c-atr.h -- I2C Address Translator
+
+Please, no names of the files inside the files.
+
+> + * Copyright (c) 2019 Luca Ceresoli <luca@lucaceresoli.net>
+
+2019,2022 ?
+
+> + * Based on i2c-mux.h
+> + */
+
+...
+
+> +#ifdef __KERNEL__
+
+Why?
+
+...
+
+> +#include <linux/i2c.h>
+> +#include <linux/mutex.h>
+
+Missed types.h
+
+Missed struct device;
+
+-- 
+With Best Regards,
+Andy Shevchenko
