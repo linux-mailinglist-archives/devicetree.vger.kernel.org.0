@@ -2,71 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0523B4AD89A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:15:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 802184AD8BD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 14:16:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234989AbiBHNP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 08:15:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57246 "EHLO
+        id S245732AbiBHNPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 08:15:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345891AbiBHMfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 07:35:12 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754FDC03FEC0
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 04:35:11 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id 4so20276830oil.11
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 04:35:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=DCySzda80keBjyEDz1S/bpNT7VXpJeMj45VaQ6BvJBU=;
-        b=GYXq0lDGikvfNxjZHaTsvUsWpAWeKdn/6UGfEb3FFoeFYlD6bUY/0nlap/7s/pq9z0
-         3APdNRdEg8kXTQRccdTBPHnxP3GBaS0NEchX/eBUqUR4B92jiN87Z4wHKHI93W+h1GYZ
-         O01ad+euhCHLjSgemVx7XVtX2vVMua5t5NA/HKNu/iBinrg6OW/pUCc0JBP8TDRLmCMr
-         ZKk6vQVBcB2EhjBtCbdEacoZR+NRfxwQhTZxe37GS23drZkY2ti8E6eQYLVWDrMG1Vzo
-         V5ubSMJ8oprLEnkCN0Jeu1iX3/Hc0ivMOH7TFz1fxkcyb/1RylYGfs6YEKfxH6vmadAF
-         kx6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=DCySzda80keBjyEDz1S/bpNT7VXpJeMj45VaQ6BvJBU=;
-        b=CD6RRNYwVmj7Bg5JETtaAZysrsZso7iKr5k2Mja2BtrAya8AM7mRKam8Yqg18/8RfH
-         ns0CiNGKxr2Q43M2MkfjOXcQ0VDgTWn0FAzaF+DuPgMYtEZK/Y2g3B3P0qGRZbIfthcw
-         OjMdl8ncaOY5gTyp4CccS5+2lnWfd7D9WTHUFV5QtHdUVMqAlkjWVPvibh/q+Yxx/zZS
-         qqceMxhWhiHLFNeOBQSqS7C7ht/k/lb3vX2lsd6AmUdSCcxD2wX/4c2CvJTOAwuCclz+
-         MoL7VQfqrQQwN0pV3hmNdQt5Glecn8Z8DgdrRr8XtztXC32RIQ7wWlO2aX4oPGuvUE5b
-         aE1A==
-X-Gm-Message-State: AOAM530M6H7KY/MSN4pFlfZkKe7oBmszrfV5ZFRa3gGFetFtDcAiY9Qu
-        uSuaulK7BrPDCzTt9xfyxSfx/A==
-X-Google-Smtp-Source: ABdhPJxMAYh+r5RkZzZHsVmSNGS1wg9WOJ//Irolb0godaB76n0KtYv/ryyD2/ywrLKHBEIpmQyf+w==
-X-Received: by 2002:a05:6808:211e:: with SMTP id r30mr411574oiw.6.1644323710858;
-        Tue, 08 Feb 2022 04:35:10 -0800 (PST)
-Received: from [192.168.11.51] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id bc36sm5211916oob.45.2022.02.08.04.35.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Feb 2022 04:35:10 -0800 (PST)
-Message-ID: <300f9ec9-da52-235f-ea3c-b49bdc8bfb75@kali.org>
-Date:   Tue, 8 Feb 2022 06:35:08 -0600
+        with ESMTP id S1359203AbiBHMmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 07:42:13 -0500
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D88E1C03FECA
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 04:42:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=vvNfBi9E3b3v3d/OUVzRUnSe+Z48
+        koHP8XeagZ/M7po=; b=aI9gD9NnPN5Dcq6KdDESP5KICDFbD7W4qTzNqvT3AUab
+        r6x8lzlfbNnTRi0lBF5j8oOFyeLhc4+9dh6+R0X/wShbq9l3BFURBExmgu1ktq59
+        GpW1uxUDQV7etbEFaeO7kJxBHwSXMMcZrq128+qTNR+dVHccJrmqGUgaRDWV0zc=
+Received: (qmail 249715 invoked from network); 8 Feb 2022 13:35:28 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 Feb 2022 13:35:28 +0100
+X-UD-Smtp-Session: l3s3148p1@yUK+84DXXskgAQnoAF1FAEKPHF9sYOFO
+Date:   Tue, 8 Feb 2022 13:35:28 +0100
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/2] i2c: rcar: Add R-Car Gen4 support
+Message-ID: <YgJjkOqg6YL7499D@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+References: <cover.1643898531.git.geert+renesas@glider.be>
+ <127a63594229deca2f63c7393b9bdf17b572163a.1643898531.git.geert+renesas@glider.be>
+ <CAMuHMdVVN2Jc0sYpsc=V6gfQRGXk44Uh4r=2JWhM28gF4ePASg@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.5.1
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: c630: Add backlight controller
-Content-Language: en-US
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220208041606.144039-1-bjorn.andersson@linaro.org>
-From:   Steev Klimaszewski <steev@kali.org>
-In-Reply-To: <20220208041606.144039-1-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dV2F7HwC6DjyoOlT"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdVVN2Jc0sYpsc=V6gfQRGXk44Uh4r=2JWhM28gF4ePASg@mail.gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,51 +58,40 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 2/7/22 10:16 PM, Bjorn Andersson wrote:
-> The Lenovo Yoga C630 uses the PWM controller in the TI SN65DSI86 bridge
-> chip to provide a signal for the backlight control and has TLMM GPIO 11
-> attached to some regulator that drives the backlight.
->
-> Unfortunately the regulator attached to this gpio is also powering the
-> camera, so turning off backlight result in the detachment of the camera
-> as well.
->
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 8 ++++++++
->   1 file changed, 8 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index 58845a14805f..55fb7302245b 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -59,6 +59,7 @@ mode {
->   	panel {
->   		compatible = "boe,nv133fhm-n61";
->   		no-hpd;
-> +		backlight = <&backlight>;
->   
->   		ports {
->   			port {
-> @@ -98,6 +99,12 @@ sn65dsi86_refclk: sn65dsi86-refclk {
->   
->   		clock-frequency = <19200000>;
->   	};
-> +
-> +	backlight: backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&sn65dsi86 1000000>;
-> +		enable-gpios = <&tlmm 11 GPIO_ACTIVE_HIGH>;
-> +	};
->   };
->   
->   &adsp_pas {
-> @@ -419,6 +426,7 @@ sn65dsi86: bridge@2c {
->   		clock-names = "refclk";
->   
->   		no-hpd;
-> +		#pwm-cells = <1>;
->   
->   		ports {
->   			#address-cells = <1>;
-Tested-by: Steev Klimaszewski <steev@kali.org>
+--dV2F7HwC6DjyoOlT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+> > While I2C on R-Car Gen4 does support some extra features (Slave Clock
+> > Stretch Select, Fast-mode Plus), for now it is treated the same as I2C
+>=20
+> Correction: R-Car S4 does not support Fast-mode Plus, so there will be
+> a v2 of this patch, eventually.
+
+But why? Unless we implement slave clock stretching, we can still keep
+it at Gen3 level. Which does also not have FM+.
+
+
+--dV2F7HwC6DjyoOlT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmICY5AACgkQFA3kzBSg
+KbZ2qRAAn7qOZRcamtx8zAvBqb6eWJQcFTvRKlafW2bUoTqJGpZwymZLhHeJn/OF
+9XqCIFoLiglRHGYFhg/yExcIBaUzfjWePnmmPxwAPCZjEY/PdIM3r78i4DSbRa9b
+19B6ckobqUekKZjQjf7GyzxxD1n4f7kdHuMzBaQNwcM7eOFyzCvOFTrcxL+OHEoW
+yrE510hBOAcyv7EmL/YBSx/oWnnGFQKxTkGyryYWxAJQZmv0ntru+YzbSu4sDgRN
+ASNy5LIFhqcOmZ0/hhBL9Vs56tsa747Ym0YS0SDjUp2x4zQu+FSZhFptC9ve7/AD
+dNlvHnfF9mXGQ32WCBmUtGNSSb52CSaZPvF44ThoQhZJqZSzSUViRavFEJzbvg+S
+QEtgALwvW4MRMBnZBw5WSjdegLb4c9cNUfLJ7esRTLMHXLVgFAx3qYr0Bbb/9nBa
+u+W3QgjoxK/1Isajf3dnud8t2umFNAEpn+HHx7QjMH9EKcJEfGlJ73tA/zKIX0Xh
+bbSZJyHIgq7aqz7cmH6WZmEH8Fnf8bT8WD2pVr/s9o18F7vUSZ8wLio/ECwMfAtG
+0t3gGxM4OAmtiFexGs8Ne3WcEapHxIYbm4fZLAmK2s04YjrTJJrrsZ/egildX4ja
+3pdw5tHPCzTz4OHzAh8LRCzcIvUd/vluMDSCN1uUnWtEXfiI4OM=
+=D76J
+-----END PGP SIGNATURE-----
+
+--dV2F7HwC6DjyoOlT--
