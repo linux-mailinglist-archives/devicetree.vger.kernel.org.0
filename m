@@ -2,62 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F22114ADDF6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 17:08:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C67014ADDF9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Feb 2022 17:09:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382597AbiBHQIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 11:08:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43930 "EHLO
+        id S1382709AbiBHQJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 11:09:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382045AbiBHQIr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 11:08:47 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49837C061576;
-        Tue,  8 Feb 2022 08:08:45 -0800 (PST)
-Received: from mail-wr1-f48.google.com ([209.85.221.48]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MpDa5-1o6m2d0V9L-00qgdf; Tue, 08 Feb 2022 17:08:44 +0100
-Received: by mail-wr1-f48.google.com with SMTP id q7so3481316wrc.13;
-        Tue, 08 Feb 2022 08:08:44 -0800 (PST)
-X-Gm-Message-State: AOAM531Kmt5kvut4rye3Ax+rrj6i+cqG0u7F0+4RvsDHAFsbdmfA0siM
-        AwoUjFxfvL/qMJ4ZqSfZSMui1zv+BCFbpcycxTg=
-X-Google-Smtp-Source: ABdhPJzbA1zhEbjBXruIegFSKr/HlmX/M9YfBzun4TpdLrkSYokD3NF400y+3a1CS0q9b/Y6jtkGtIJW7ls/Wf3lrm8=
-X-Received: by 2002:a5d:568f:: with SMTP id f15mr974996wrv.407.1644336523635;
- Tue, 08 Feb 2022 08:08:43 -0800 (PST)
+        with ESMTP id S1343745AbiBHQJi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 11:09:38 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE4A0C061579
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 08:09:36 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7B9903F1E7
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 16:09:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644336575;
+        bh=0cmGyEgLW06PWk38sipSMt8UVzL/BGuK+PAiSi74b70=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=dmqXmwkM0X/enmVDhIiHfrs/6tMbXQWtc7MVJKmDuv6MgCE32Wy09EtM20zNITeIR
+         xMT/p0FklcarkzIhgkCGb9nhYinJZl5UDTDgYdLSi4g0MzWRwBaIOtQCeqbpjLxtd7
+         ItzP39KmBRgy+iaNR+LItIctuXkA71cgUtxpSaN5pPIfuJzViLj8KRP45x1xq5nMo4
+         jJkcul3zyhb86i22/wTbsEe1LA3qTwLEzZzNh/hjaHUzbyYnrG1HcPhhfG1nLNXf1x
+         +c2FV40cGodq79H0EfR5plqyoVcuVjx+bKPVkNZryiKVbhgXhjp6SjiVH9VC5KpD3X
+         NemjO7/fSfJ/g==
+Received: by mail-ed1-f70.google.com with SMTP id en7-20020a056402528700b00404aba0a6ffso9971634edb.5
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 08:09:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0cmGyEgLW06PWk38sipSMt8UVzL/BGuK+PAiSi74b70=;
+        b=1cD3OozRG65FiURwCN6KXN+SvhFXMtG8cdyKDLAXK3iAAOrDPWZTTTt7QQQcY0P5AT
+         r9QpS0wIn9C1qSnulK0g8OwWibp5qSHNQ0tBVwZUDklqD51HTUjVKLLzQgCfUWKiaAUz
+         7mJByP9E9jS9VWvaAb6hTb+8UkzgHiqPuTolYRcHhekvDl0ADbYPzeI+BVFTOGPpJZwW
+         eCYNZ9siQF5tI2UzysGAkdSEIjHHKt8aWCcJvKq4Y7rZBkxuttNTzDE+m4Cc4UujcJak
+         /cRnvLe4rVdcwFuyR8Rfaycu/9gY+I33QF6egn1Zu1zaIx24GF1HLE9Hi3B843vcJWC9
+         0RJA==
+X-Gm-Message-State: AOAM5331yi0RtRPvi1tsgsrxQYC3gxr+M9cyCdoW4Dil7j4G0FwPtLVG
+        05JMtOmgtIVTrXIHX+VteB45BpVr/Jxio1s9n53hMYUC4T42rNIznl8dgvCDjw7bpt4bvilcNqI
+        g30B/xaVPAp0gwJMKTyt0EKG1E2mhTVUN6VC3VGQ=
+X-Received: by 2002:a05:6402:881:: with SMTP id e1mr5192730edy.234.1644336575218;
+        Tue, 08 Feb 2022 08:09:35 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxRTAxTQWu2B/rBOAhSXA0rJLYq5MRIEa9z/O+oCE1TeucgcXfmxUNAhWvDrtXZTbfuAcwpSQ==
+X-Received: by 2002:a05:6402:881:: with SMTP id e1mr5192718edy.234.1644336575069;
+        Tue, 08 Feb 2022 08:09:35 -0800 (PST)
+Received: from [192.168.0.94] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id j9sm1425151ejb.189.2022.02.08.08.09.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Feb 2022 08:09:34 -0800 (PST)
+Message-ID: <0c84c2af-045d-54bc-ef46-296390e58c14@canonical.com>
+Date:   Tue, 8 Feb 2022 17:09:33 +0100
 MIME-Version: 1.0
-References: <20220113080017.30155-1-kavyasree.kotagiri@microchip.com> <f8b83cf0-7ebf-1ecd-b544-f0d0079d9dde@microchip.com>
-In-Reply-To: <f8b83cf0-7ebf-1ecd-b544-f0d0079d9dde@microchip.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 8 Feb 2022 17:08:27 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2kRhCOoXnvcMyqS-zK2WDZjtUq4aqOzE5VV=VMg=pVOA@mail.gmail.com>
-Message-ID: <CAK8P3a2kRhCOoXnvcMyqS-zK2WDZjtUq4aqOzE5VV=VMg=pVOA@mail.gmail.com>
-Subject: Re: [PATCH v3] ARM: dts: add DT for lan966x SoC and 2-port board pcb8291
-To:     Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:9uqDdXQWcYkDHc7ZX1oQfuAHe7gAvXka4B2tLwL+Kragmwlm3/r
- NPW9GMxB8NDKxfjMQhMT8hNbaUI8T1MkBqM/ZabCp3cW27L8iVmYnh3mPNdcYF2TJuUpiyY
- AVZR67ad14GMtcLKfyVY1wP9xZXfZeSej8YRm3EU/fZVj0HObaHRB9eOXzvU7JM/y+/nMl5
- G6cGHB3WvP8n9sRCrMZFA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:y4eHeEHtqwY=:CwJ6+ncq7lv4SbOuasjRFk
- idtgZ2jMaeP49duqkgdjtyPvGH4L07HaXhDLkAkT1sFZog87JKlYr0hELlBqptZFpC6Cm/or2
- 6P+Gl1eni3YSpxJ6e7Cu6UMtm5wTzgYAaHY3JyWM6912SBetUZy+gq39uxf5vkxWpKgUYXEJ9
- x/VQK6DUC6K/jd92dbd4IoL26+hYnPpDFOiXAlym34DsTVvPgvZ5awMOVEX4I/r40eprnCY+K
- rLoNG9eV0dO+/VHIC9XEK+AxpHwmuUQlpcUA0jSdj1xxkpqvZjvTagThJRv4zc4UxD8tuPa8J
- ZQi4k8snjDzcZ9Idm7d+2QEwjjjQE3j4myjdZGBnu9ETTmA0Ql+vynAz7c8d3emPGKK0sygBj
- wZWnzfuCXQKf/SzjDEezBaZua0Y8kl4cBVfAn9Fgf3CMKwcNyEXIdQ7efRUAVjkrY0SVX3rZ/
- Kx3ZOVaJsvoIMaKBNUHoRAamnGsXPl1OpUPo0W8ZSXdhEXmU6I+J/niVFPlkwtmupO4Gbyq2Y
- 98jvKYlgDOzEkAJHpJ69QA/lYG9BK45eLCtPABMofTJRxrUmPwhs7s1hYnkuMhOSRV5vh0sUd
- 3TKw+78RBk9r7UQzUyYCGCN6jnMC6sPgkGTqC7f9KplEixLy09PM6ixj49mM0p6fW35QXXy8e
- T4ESyZ2ltLiBOhtwnY0MXQNeo7gesZ73tews/N8eeboLuAfp7hHkNvsdyC6q5MH0KOj8=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 5/5] ARM: dts: imx6ull: add TQ-Systems MBa6ULLxL device
+ trees
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220208134223.908757-1-alexander.stein@ew.tq-group.com>
+ <20220208134223.908757-6-alexander.stein@ew.tq-group.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220208134223.908757-6-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,71 +87,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 13, 2022 at 9:33 AM Nicolas Ferre
-<nicolas.ferre@microchip.com> wrote:
->
-> On 13/01/2022 at 09:00, Kavyasree Kotagiri wrote:
-> > This patch adds basic DT for Microchip lan966x SoC and associated board
-> > pcb8291(2-port EVB). Adds peripherals required to allow booting: IRQs,
-> > clocks, timers, memory, flexcoms, GPIOs. Also adds other peripherals like
-> > crypto(AES,SHA), DMA and watchdog.
-> >
-> > Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
->
-> Looks good to me:
-> Reviewed-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+On 08/02/2022 14:42, Alexander Stein wrote:
+> Add device trees for the MBa6ULx mainboard with TQMa6ULLxL SoMs.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  arch/arm/boot/dts/Makefile                    |  1 +
+>  .../boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts   | 15 ++++
+>  arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi     | 76 +++++++++++++++++++
+>  3 files changed, 92 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts
+>  create mode 100644 arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 3a6eccb6371a..9bf89273ae71 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -710,6 +710,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
+>  	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
+>  	imx6ull-phytec-segin-lc-rdk-nand.dtb \
+>  	imx6ull-tqma6ull2-mba6ulx.dtb \
+> +	imx6ull-tqma6ull2l-mba6ulx.dtb \
+>  	imx6ulz-14x14-evk.dtb \
+>  	imx6ulz-bsh-smm-m2.dtb
+>  dtb-$(CONFIG_SOC_IMX7D) += \
+> diff --git a/arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts b/arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts
+> new file mode 100644
+> index 000000000000..33437aae9822
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts
+> @@ -0,0 +1,15 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+> +/*
+> + * Copyright 2018-2022 TQ-Systems GmbH
+> + * Author: Markus Niebel <Markus.Niebel@tq-group.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "imx6ull-tqma6ull2l.dtsi"
+> +#include "mba6ulx.dtsi"
+> +
+> +/ {
+> +	model = "TQ Systems TQMa6ULL2L SoM on MBa6ULx board";
+> +	compatible = "tq,imx6ull-tqma6ull2l-mba6ulx", "tq,imx6ull-tqma6ull2l", "fsl,imx6ull";
+> +};
+> diff --git a/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi b/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
+> new file mode 100644
+> index 000000000000..8e4d5cd18614
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
+> @@ -0,0 +1,76 @@
+> +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+> +/*
+> + * Copyright 2018-2022 TQ-Systems GmbH
+> + * Author: Markus Niebel <Markus.Niebel@tq-group.com>
+> + */
+> +
+> +#include "imx6ull.dtsi"
+> +#include "imx6ul-tqma6ul-common.dtsi"
+> +#include "imx6ul-tqma6ulxl-common.dtsi"
+> +
+> +/ {
+> +	model = "TQ Systems TQMa6ULL2L SoM";
+> +	compatible = "tq,imx6ull-tqma6ull2l", "fsl,imx6ull";
+> +};
+> +
 
-I'm not quite sure what to do with this, as this was sent to:soc@kernel.org,
-which is normally for patches that are already reviewed and should just
-get applied.
+This entire file is exactly the same as tqma6ull2l.dtsi. What's the
+point of creating additional flavor which is exactly the same? The
+models look compatible, don't they?
 
-I can apply this, but I would normally expect board files to get picked up
-in the at91 tree first. I'll drop this version from patchwork for now, as I
-also have a couple of comments:
 
-> > +
-> > +/ {
-> > +     model = "Microchip LAN966x family SoC";
-> > +     compatible = "microchip,lan966x";
-
-By convention, the 'compatible' strings should not contain 'x'
-as a wildcard character. Just pick one of the models to be
-compatible with. The .dtsi file doesn't really need a top-level
-compatible or model property though, as they need to be
-overridden by teh board anyway.
-
-> > +
-> > +     memory@60000000 {
-> > +             device_type = "memory";
-> > +             reg = <0x60000000 0x40000000>;  /* 1GB */
-> > +     };
-
-Probably also no memory node. This tends to be filled by the
-boot loader, or it is part of the board when when the boot loader
-is too old for that.
-
-If the memory is part of the chip package, having it in the .dtsi
-file is probably ok, but I would add a comment for that.
-
-> > + */
-> > +/dts-v1/;
-> > +#include "lan966x.dtsi"
-> > +
-> > +/ {
-> > +     model = "Microchip EVB - LAN9662";
-> > +     compatible = "microchip,lan9662-pcb8291", "microchip,lan9662", "microchip,lan966";
-> > +};
-
-Here I would expect /chosen and /aliases nodes.
-
-> > +&gpio {
-> > +     fc_shrd7_pins: fc_shrd7-pins {
-> > +             pins = "GPIO_49";
-> > +             function = "fc_shrd7";
-> > +     };
-
-These properties don't look like most pinctrl nodes, has the binding
-been reviewed?
-I don't see it in Documentation/devicetree/bindings/pinctrl/
-
-          Arnd
+Best regards,
+Krzysztof
