@@ -2,274 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25CEF4AF130
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:17:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29BD44AF085
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:01:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230443AbiBIMPH convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Feb 2022 07:15:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60522 "EHLO
+        id S232004AbiBIMB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 07:01:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiBIMPA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:15:00 -0500
-X-Greylist: delayed 475 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Feb 2022 04:00:31 PST
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5FFE02E3FA;
-        Wed,  9 Feb 2022 04:00:31 -0800 (PST)
-Date:   Wed, 09 Feb 2022 11:52:21 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v13 0/9] MIPS: JZ4780 and CI20 HDMI
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Message-Id: <9ZC17R.T1L0TBAW7MJA3@crapouillou.net>
-In-Reply-To: <cover.1643819482.git.hns@goldelico.com>
-References: <cover.1643819482.git.hns@goldelico.com>
+        with ESMTP id S232386AbiBIMBH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:01:07 -0500
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70075.outbound.protection.outlook.com [40.107.7.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE52FC001F74;
+        Wed,  9 Feb 2022 03:54:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UoO1VvbsTPlpIcB1vDEHrIgY55M1ewBXDV0oAOa1mdFcyXUC0bzYJjuVtF8LpEmsRUDLGj2sNgCUtR36zZPSBEScdfY1h2+OZCNrZE3CzHZfmnkoDVn6W7FuTb1RrATltwVo/8yAleV7G/+1UoGyn9CtjTxyBsB/hP0aDPiS03jZT7lwXdtTimS4mTVEZnb1J++umcJBOfz3drYi/DB7Eyu+7VAzjQWi3FB7OLUORk+46XRg+aDwjrFy6AWjuM4EIhqTH2zYt/dBi/MMGuXuhjDzJ9pa7Srs7CB1IMcznfO+02D/TgBdHxf94PC+oDkcBBcE8XFTz6PCj+HX7Jkl3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4Ke+sCCh6Ent23H/RxUVFKDNU2S/FK8FsBS+dbUJQ/4=;
+ b=ZDOrdtXaxTPGZdN8Gy6ej6AQem6pZi57inqjJmz0SN/+swUP1Agk+/tORRGRWxCpEkqSZWB36WGpZZaLbaAfPLjVhgSo8UdKozOKj7fidaFyjoju5Noco7LroOMAru/yFrUb2lUsW30S150vQOFrL4vGXJLqvrxaPHx0+19j+lVDVPaxpSDou1+Comw9BDE1aOhjO7I243qsHJ4DuqQ3UWVFObvsOxCBSYb/sMmduS6aoJk4ykS3SNKsMx2tpf4OvcWqEUMtQKaajTcDNwUjLYJOvl372vIVIm/zgYo71BJ9PX/yLrod+6lKkXxU2HB/3pi4riy/MTk99uc0xT68cQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4Ke+sCCh6Ent23H/RxUVFKDNU2S/FK8FsBS+dbUJQ/4=;
+ b=SeExwq6ndt5YxV1qmeYYScC28qyvDpE6QqdOv2hKLm6CtjKeaEzGtapIbT9Wg/gsjhi0f86xxypkYH/ato6pXY+NIBirVsG+Dw6owRwaplpwUfisuF26k6jT2YeSdBjp42m3u50PnPk/T0xFHBCpD8aMiU4et9UdAEaH15SBE5M=
+Received: from AM9PR04MB8555.eurprd04.prod.outlook.com (2603:10a6:20b:436::16)
+ by DB8PR04MB5867.eurprd04.prod.outlook.com (2603:10a6:10:ac::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.11; Wed, 9 Feb
+ 2022 11:54:35 +0000
+Received: from AM9PR04MB8555.eurprd04.prod.outlook.com
+ ([fe80::5df9:5bf0:7ac1:a793]) by AM9PR04MB8555.eurprd04.prod.outlook.com
+ ([fe80::5df9:5bf0:7ac1:a793%9]) with mapi id 15.20.4975.011; Wed, 9 Feb 2022
+ 11:54:35 +0000
+From:   Ioana Ciornei <ioana.ciornei@nxp.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Marc Zyngier <maz@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Leo Li <leoyang.li@nxp.com>, Biwen Li <biwen.li@nxp.com>,
+        "Z.Q. Hou" <zhiqiang.hou@nxp.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: Re: [PATCH v2 devicetree] Revert "arm64: dts: freescale: Fix
+ 'interrupt-map' parent address cells"
+Thread-Topic: [PATCH v2 devicetree] Revert "arm64: dts: freescale: Fix
+ 'interrupt-map' parent address cells"
+Thread-Index: AQHYHavOPbZu9PMKMUmW4tdJWP+49w==
+Date:   Wed, 9 Feb 2022 11:54:35 +0000
+Message-ID: <20220209115434.7ej5btlnbe5wbyz2@skbuf>
+References: <20211214135852.2934670-1-vladimir.oltean@nxp.com>
+ <20211231181350.qwfnrwvdfnfssdjt@skbuf>
+ <c5b9cec617100b891b7fceaee8655ba8@kernel.org> <20220103113043.GA14690@dragon>
+In-Reply-To: <20220103113043.GA14690@dragon>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b9c01952-b3a4-4d34-2ae1-08d9ebc2f170
+x-ms-traffictypediagnostic: DB8PR04MB5867:EE_
+x-microsoft-antispam-prvs: <DB8PR04MB58675AB63918E8FEE4BD35DCE02E9@DB8PR04MB5867.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: YGN2QwC3RNMqIgIxNlXQ5KHJi3cFvJIKJ2mlZtMm5MroX/Ev683Sa+HKegdtV3/2vT2rg1DvX4fxssEZn0kA32GEOl6OiygDcIeo1H6WIVQ38+aE3M7Rya5Cz8NKRkTv//e2ChBFJdhKqHdq96mxDqeoJ8q1IqBOM5Reys6E7nQ0VSGmM95ihb9tyiS4/D18Grhrj/bcNFtdC/K+7BJ0PdKePipT4OD54DGv0gFSqMUkAWVZYdJV+hbIja3z2xDNJfxpsQSZAzTUeykf7iHcFjFVN42xhH87SriYtisuDPTzVlBr+lLR5Kmh3xFFDgufqmggrhch7ZbBFXFiVcPz7dK5QeCCCGYAOi5WAUk0AdVaT3Erk1I9jmJw+Ub6HRIgg7CkGX/Q9PElGyVJDRqk1NfXlmh+0RwylXPGcmXTOMZCNr6vdNFAc3FbwqHjeiwCB7O90QOCtvqgfqLDvk4HHns3ehlL9m1+jn1YcD2Ph3aLs41y8heBl5Rxit9wJ9aG6cMhRu24Z2zewDWzWaYBflIj9mctgaKEClFeX4wEdPIhw7k6kosygrAueJmDeULhwdADZWJLMMJD+HVQKznjU1gkPJo6nciNmzDBXgEPLkcdZzihlC8g7eLs4EkjpazYDtDtHSiIXdxjnXP5tUS95y39lZAJbNv1KaRifI8TFMhSIoC6A2bdP70B+Q0XE1Dw4mx8bgMlIJJQvVR9qFdT1sYYDjgxtCCK4XmSLTFIBqFeqSYNvUmsAduMfOugrS5cvFBVXDfTn/GZj7+EeMb9ZRb5ML4TWiUbYlvqfQRclClp3i28xK1yoWR5a5DzT6Aj
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8555.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(7916004)(366004)(26005)(186003)(38070700005)(966005)(2906002)(6486002)(508600001)(33716001)(122000001)(38100700002)(4001150100001)(1076003)(44832011)(53546011)(316002)(54906003)(9686003)(6512007)(86362001)(6506007)(8936002)(5660300002)(83380400001)(91956017)(71200400001)(66946007)(64756008)(66476007)(76116006)(66556008)(4326008)(8676002)(66446008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Iv8ltNfqD7p/IHjBnxE4MVc9jXp0xB5mdxGea2sasnjYlTZOnXGMgBv4wi9L?=
+ =?us-ascii?Q?TiFBAwaRkFe1gRANmsUtSPU1w0DJpfkGE8Bc/imB70S7F82U4PFaWvTb6FD2?=
+ =?us-ascii?Q?s424MBsGsDv++BmldsHBuW0bS/IliKlT4xb6S4jXpx0z4tt5hBufFOQepWRU?=
+ =?us-ascii?Q?BdaL8slqQY/rgLTjpg0/haz8HBc6MxZV9cVVIW43WPWlTUvexL24O4dfY0dr?=
+ =?us-ascii?Q?6hhS0FO8K24158Mro9P6sNg/hM6Z7cBb8YEhRTCrZJn6aA2vULvQ0+M8iqED?=
+ =?us-ascii?Q?3LAH2A2jb7kZFFx2mybhshq3dt4qy3iGIcsh3wW7/EGW3Kr/bngIWaOVQIGc?=
+ =?us-ascii?Q?SWpHJFE3DNPv7nUnOrfvFLnh+ZOTuSavjuWxpiPUOTTUM4TV/nlBcR2CAxSD?=
+ =?us-ascii?Q?6bZuB2jDZ7bcyZN/clNnSHADi/LbRhNi+Ar14PcWa1S+5TlPS7a2dDSzAKs8?=
+ =?us-ascii?Q?GQp0FSif//MSRd+5xDV+WjFw67ZJfHWrISWYuRy4OdSch0gJvvnzaP8Ax3wO?=
+ =?us-ascii?Q?pj3bvmoso1s2QtE67BHXOm1A52srpIX05dFfbC0YBWF/MqUv/8eaBKI6IErR?=
+ =?us-ascii?Q?y7maDKAQ/rX3HKrp0+VWv+HgGiky1OhK/U9RSncPY4KYj3CI9RGJu581xRu1?=
+ =?us-ascii?Q?dMt1yxAvat3TH7fiwrMmiZcgA9sv08fEwpa/hdh5Swvv34IcqWiwwN2Kzoe/?=
+ =?us-ascii?Q?daYGtE16+wTi/IhhQxmUt7rV30pO1Kp7CdgJE4g+MVKr20iyZlD01e971aeb?=
+ =?us-ascii?Q?Dt6D80nBuRpCO8BRSoBRI+g/tObO03rJtvjC/bSIExW0IN8PMYu4EuVY5Nnm?=
+ =?us-ascii?Q?NctcLhXw6lmfZ7hyhgyk0T+08hn2Mlu9DCmW2Xft9pO5/C4n58zMGFvYGCSY?=
+ =?us-ascii?Q?e3mCVoYnJn11IgDXTZ9gncCPrVJu97EWBYOJguOBh/lt4vbUvUalZEor7Dk/?=
+ =?us-ascii?Q?9cmHrtDrW79GN3SvQIn/xHvkbU6KiHchUyDvA3iij2E1HJf87gjqSzKJ2Km0?=
+ =?us-ascii?Q?vEMY3lbwNQ1u0hkuPej2Fduut9Rv0y52n2PYhFmXdVMBgUtI6AtOMdAOcpPk?=
+ =?us-ascii?Q?Gytpva84RQnyD3t8+xBTjTtMqksi9hxz2wuzFTKhVw2BRoobxONRMpoBg7rs?=
+ =?us-ascii?Q?xxe60kj+HkYNQNzI4GzStOfJ/lXbBLwp0LJ6L91v5MU/6IifPJimfvj/SVaT?=
+ =?us-ascii?Q?S7vm3+zKCxlo2M7jINtVvNI8Fg7uQq+ZP1U8Mmm3Qj3xATJVk71yy5pUtGJa?=
+ =?us-ascii?Q?ocay6/51vz5BXhHku9c/O/VSITjsFun/0mPK0KO0QGTpoPp8aVAjDkWUcfAa?=
+ =?us-ascii?Q?ha4ivSx2VVtWQ7E6p5OXq0bXwc/4zGhC8nNqXTyHSUMAjzjBER+XaPJ2KZET?=
+ =?us-ascii?Q?WtIJqWiGTdFylYitB6M7X8LM/k1c9Nf2dA57jVFvsg6eDCmEUciTYyEN7fx1?=
+ =?us-ascii?Q?macNLeaMjlbJQaAo8549DPXNINn08zrZncilUYiRtAvZVxMzJ+rZbPXtnIIP?=
+ =?us-ascii?Q?ehpzws6T2TG5+Vsl7iFZRGaeeuohxlk1wEC0H7Yaq1xog/WsasPvwY0SCtMs?=
+ =?us-ascii?Q?fG+6hpNJZ+k09DF59rAAlwtiqpgO4tkZl5DGEOYrE0jS6Rs6ee3olI63i96m?=
+ =?us-ascii?Q?TnLyXvIQ0fTGBfvc/eGvbM4=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <0C069321DF29084D93A6439C93D596F8@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8555.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9c01952-b3a4-4d34-2ae1-08d9ebc2f170
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Feb 2022 11:54:35.5228
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: c48eZaqz3AJ15hjd0jUN+lrkw3WlxcrQtP60pOu/pLCIFbTC9e7I9SK577PGUZSPrb22mow/y+P7zWhSIeIujw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5867
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
+On Mon, Jan 03, 2022 at 07:30:44PM +0800, Shawn Guo wrote:
+> On Sun, Jan 02, 2022 at 01:08:28PM +0000, Marc Zyngier wrote:
+> > On 2021-12-31 18:13, Vladimir Oltean wrote:
+> > > Hello,
+> > >=20
+> > > On Tue, Dec 14, 2021 at 03:58:52PM +0200, Vladimir Oltean wrote:
+> > > > This reverts commit 869f0ec048dc8fd88c0b2003373bd985795179fb. That
+> > > > updated the expected device tree binding format for the ls-extirq
+> > > > driver, without also updating the parsing code (ls_extirq_parse_map=
+)
+> > > > to the new format.
+> > > >=20
+> > > > The context is that the ls-extirq driver uses the standard
+> > > > "interrupt-map" OF property in a non-standard way, as suggested by
+> > > > Rob Herring during review:
+> > > > https://lore.kernel.org/lkml/20190927161118.GA19333@bogus/
+> > > >=20
+> > > > This has turned out to be problematic, as Marc Zyngier discovered
+> > > > through commit 041284181226 ("of/irq: Allow matching of an
+> > > > interrupt-map
+> > > > local to an interrupt controller"), later fixed through commit
+> > > > de4adddcbcc2 ("of/irq: Add a quirk for controllers with their own
+> > > > definition of interrupt-map"). Marc's position, expressed on multip=
+le
+> > > > opportunities, is that:
+> > > >=20
+> > > > (a) [ making private use of the reserved "interrupt-map" name in a
+> > > >     driver ] "is wrong, by the very letter of what an interrupt-map
+> > > >     means. If the interrupt map points to an interrupt controller,
+> > > >     that's the target for the interrupt."
+> > > > https://lore.kernel.org/lkml/87k0g8jlmg.wl-maz@kernel.org/
+> > > >=20
+> > > > (b) [ updating the driver's bindings to accept a non-reserved name =
+for
+> > > >     this property, as an alternative, is ] "is totally pointless.
+> > > > These
+> > > >     machines have been in the wild for years, and existing DTs will=
+ be
+> > > >     there *forever*."
+> > > > https://lore.kernel.org/lkml/87ilvrk1r0.wl-maz@kernel.org/
+> > > >=20
+> > > > Considering the above, the Linux kernel has quirks in place to deal
+> > > > with
+> > > > the ls-extirq's non-standard use of the "interrupt-map". These quir=
+ks
+> > > > may be needed in other operating systems that consume this device
+> > > > tree,
+> > > > yet this is seen as the only viable solution.
+> > > >=20
+> > > > Therefore, the premise of the patch being reverted here is invalid.
+> > > > It doesn't matter whether the driver, in its non-standard use of th=
+e
+> > > > property, complies to the standard format or not, since this proper=
+ty
+> > > > isn't expected to be used for interrupt translation by the core.
+> > > >=20
+> > > > This change restores LS1088A, LS2088A/LS2085A and LX2160A to their
+> > > > previous bindings, which allows these systems to continue to use
+> > > > external interrupt lines with the correct polarity.
+> > > >=20
+> > > > Fixes: 869f0ec048dc ("arm64: dts: freescale: Fix 'interrupt-map'
+> > > > parent address cells")
+> > > > Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> > > > ---
+> > > > v1->v2: remove the other 9 patches that rename "interrupt-map" to
+> > > >         "fsl,extirq-map", at Marc's suggestion.
+> > >=20
+> > > Could this patch be considered for merging in v5.16? The problem is
+> > > going to be quite a bit more severe and tricky to fix otherwise. Than=
+ks.
+> >=20
+> > FWIW:
+> >=20
+> > Acked-by: Marc Zyngier <maz@kernel.org>
+> >=20
+> > Rob, Shawn, can you please queue this as an urgent fix for 5.16?
+>=20
+> I would rather leave this to Rob, as I haven't heard anything from him
+> on this reverting (on his commit).
+>=20
 
-I tried applying patches 1-2, but they don't apply cleanly on top of 
-drm-misc/drm-misc-next.
+Could this patch be queued up as a fix for v5.16 and v5.17?
 
-Could you rebase on top of that tree?
-
-Cheers,
--Paul
-
-
-Le mer., févr. 2 2022 at 17:31:14 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> PATCH V13 2022-02-02 17:31:22:
-> * 7/9: remove call to gpiod_set_value() because of GPIOD_OUT_HIGH (by 
-> paul@crapouillou.net)
-> * 4/9: replace ".." by "." (by paul@crapouillou.net)
-> * 3/9: remove old hdmi-5v-power in the example (by 
-> paul@crapouillou.net)
-> * 2/9: disable handling of plane f0 only for jz4780 (by 
-> paul@crapouillou.net)
-> 
-> PATCH V12 2022-01-31 13:26:54:
-> This version reworks how hdmi ddc power is controlled by connector 
-> and not
-> by ddc/hdmi bridge driver.
-> 
-> Also some patches of the previous version of this series have been 
-> removed
-> since they are already applied to mips-next/linux/next/v5.17-rc1.
-> 
-> Fixes and changes:
-> 
-> - repair interworking of dw-hdmi with connector-hdmi (by 
-> hns@goldelico.com)
-> - fix JZ_REG_LCD_OSDC setup for jz4780 (by hns@goldelico.com and 
-> paul@crapouillou.net)
-> - adjustments for ci20.dts to use connector gpio for +5v (suggested 
-> by several)
-> - to add control of "ddc-en-gpios" to hdmi-connector driver (by 
-> hns@goldelico.com)
-> - regulator code removed because we now use the "ddc-en-gpios" of the 
-> connector
->   driver (suggested by paul@crapouillou.net)
-> - bindings: addition of "ddc-i2c-bus" and "hdmi-5v-supply" removed 
-> (suggested by robh+dt@kernel.org)
-> - rebase on v5.17-rc2
-> 
-> PATCH V11 2021-12-02 19:39:52:
-> - patch 4/8: change devm_regulator_get_optional to devm_regulator_get 
-> and
->              remove NULL check (requested by broonie@kernel.org)
-> - patch 3/8: make hdmi-5v-supply required (requested by 
-> broonie@kernel.org)
-> 
-> PATCH V10 2021-11-30 22:26:41:
-> - patch 3/8: fix $id and $ref paths (found by robh@kernel.org)
-> 
-> PATCH V9 2021-11-24 22:29:14:
-> - patch 6/8: remove optional <0> for assigned-clocks and 
-> unintentionally included "unwedge" setup (found by 
-> paul@crapouillou.net)
-> - patch 4/8: some cosmetics
->              make regulator enable/disable only if not NULL (found by 
-> paul@crapouillou.net)
->              simplify/fix error handling and driver cleanup on remove 
-> (proposed by paul@crapouillou.net)
-> - patch 3/8: fix #include path in example (found by 
-> paul@crapouillou.net)
->              fix missing "i" in unevaluatedProperties (found by 
-> robh@kernel.org)
->              fix 4 spaces indentation for required: property (found 
-> by robh@kernel.org)
-> 
-> PATCH V8 2021-11-23 19:14:00:
-> - fix a bad editing result from patch 2/8 (found by 
-> paul@crapouillou.net)
-> 
-> PATCH V7 2021-11-23 18:46:23:
-> - changed gpio polarity of hdmi_power to 0 (suggested by 
-> paul@crapouillou.net)
-> - fixed LCD1 irq number (bug found by paul@crapouillou.net)
-> - removed "- 4" for calculating max_register (suggested by 
-> paul@crapouillou.net)
-> - use unevaluatedPropertes instead of additionalProperties (suggested 
-> by robh@kernel.org)
-> - moved and renamed ingenic,jz4780-hdmi.yaml (suggested by 
-> robh@kernel.org)
-> - adjusted assigned-clocks changes to upstream which added some for 
-> SSI (by hns@goldelico.com)
-> - rebased and tested with v5.16-rc2 + patch set drm/ingenic by 
-> paul@crapouillou.net (by hns@goldelico.com)
-> 
-> PATCH V6 2021-11-10 20:43:33:
-> - changed CONFIG_DRM_INGENIC_DW_HDMI to "m" (by hns@goldelico.com)
-> - made ingenic-dw-hdmi an independent platform driver which can be 
-> compiled as module
->   and removed error patch fixes for IPU (suggested by 
-> paul@crapouillou.net)
-> - moved assigned-clocks from jz4780.dtsi to ci20.dts (suggested by 
-> paul@crapouillou.net)
-> - fixed reg property in jz4780.dtsi to cover all registers incl. 
-> gamma and vee (by hns@goldelico.com)
-> - added a base patch to calculate regmap size from DTS reg property 
-> (requested by paul@crapouillou.net)
-> - restored resetting all bits except one in LCDOSDC (requested by 
-> paul@crapouillou.net)
-> - clarified setting of cpos (suggested by paul@crapouillou.net)
-> - moved bindings definition for ddc-i2c-bus (suggested by 
-> paul@crapouillou.net)
-> - simplified mask definitions for JZ_LCD_DESSIZE (requested by 
-> paul@crapouillou.net)
-> - removed setting alpha premultiplication (suggested by 
-> paul@crapouillou.net)
-> - removed some comments (suggested by paul@crapouillou.net)
-> 
-> PATCH V5 2021-10-05 14:28:44:
-> - dropped mode_fixup and timings support in dw-hdmi as it is no 
-> longer needed in this V5 (by hns@goldelico.com)
-> - dropped "drm/ingenic: add some jz4780 specific features" 
-> (stimulated by paul@crapouillou.net)
-> - fixed typo in commit subject: "synopsis" -> "synopsys" (by 
-> hns@goldelico.com)
-> - swapped clocks in jz4780.dtsi to match synopsys,dw-hdmi.yaml (by 
-> hns@goldelico.com)
-> - improved, simplified, fixed, dtbschecked ingenic-jz4780-hdmi.yaml 
-> and made dependent of bridge/synopsys,dw-hdmi.yaml (based on 
-> suggestions by maxime@cerno.tech)
-> - fixed binding vs. driver&DTS use of hdmi-5v regulator (suggested by 
-> maxime@cerno.tech)
-> - dropped "drm/bridge: synopsis: Fix to properly handle HPD" - was a 
-> no longer needed workaround for a previous version
->   (suggested by maxime@cerno.tech)
-> 
-> PATCH V4 2021-09-27 18:44:38:
-> - fix setting output_port = 1 (issue found by paul@crapouillou.net)
-> - ci20.dts: convert to use hdmi-connector (by hns@goldelico.com)
-> - add a hdmi-regulator to control +5V power (by hns@goldelico.com)
-> - added a fix to dw-hdmi to call drm_kms_helper_hotplug_event on 
-> plugin event detection (by hns@goldelico.com)
-> - always allocate extended descriptor but initialize only for jz4780 
-> (by hns@goldelico.com)
-> - updated to work on top of "[PATCH v3 0/6] drm/ingenic: Various 
-> improvements v3" (by paul@crapouillou.net)
-> - rebased to v5.13-rc3
-> 
-> PATCH V3 2021-08-08 07:10:50:
-> This series adds HDMI support for JZ4780 and CI20 board (and fixes 
-> one IPU related issue in registration error path)
-> - [patch 1/8] switched from mode_fixup to atomic_check (suggested by 
-> robert.foss@linaro.org)
->   - the call to the dw-hdmi specialization is still called mode_fixup
-> - [patch 3/8] diverse fixes for ingenic-drm-drv (suggested by 
-> paul@crapouillou.net)
->   - factor out some non-HDMI features of the jz4780 into a separate 
-> patch
->   - multiple fixes around max height
->   - do not change regmap config but a copy on stack
->   - define some constants
->   - factor out fixing of drm_init error path for IPU into separate 
-> patch
->   - use FIELD_PREP()
-> - [patch 8/8] conversion to component framework dropped (suggested by 
-> Laurent.pinchart@ideasonboard.com and paul@crapouillou.net)
-> 
-> PATCH V2 2021-08-05 16:08:05:
-> - code and commit messages revisited for checkpatch warnings
-> - rebased on v5.14-rc4
-> - include (failed, hence RFC 8/8) attempt to convert to component 
-> framework
->   (was suggested by Paul Cercueil <paul@crapouillou.net> a while ago)
-> 
-> This series adds HDMI support for JZ4780 and CI20 board
-> 
-> 
-> 
-> H. Nikolaus Schaller (5):
->   drm/ingenic: prepare ingenic drm for later addition of JZ4780
->   drm/synopsys+ingenic: repair hot plug detection
->   dw-hdmi/ingenic-dw-hdmi: repair interworking with hdmi-connector
->   drm/bridge: display-connector: add ddc-en gpio support
->   MIPS: DTS: CI20: fix how ddc power is enabled
-> 
-> Paul Boddie (3):
->   drm/ingenic: Add support for JZ4780 and HDMI output
->   drm/ingenic: Add dw-hdmi driver specialization for jz4780
->   [RFC] drm/ingenic: add some more features specific to jz4780
-> 
-> Sam Ravnborg (1):
->   dt-bindings: display: Add ingenic,jz4780-dw-hdmi DT Schema
-> 
->  .../display/bridge/ingenic,jz4780-hdmi.yaml   |  82 ++++++++++++++
->  arch/mips/boot/dts/ingenic/ci20.dts           |  15 +--
->  drivers/gpu/drm/bridge/display-connector.c    |  15 +++
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |  13 ++-
->  drivers/gpu/drm/ingenic/Kconfig               |   9 ++
->  drivers/gpu/drm/ingenic/Makefile              |   1 +
->  drivers/gpu/drm/ingenic/ingenic-drm-drv.c     | 106 
-> +++++++++++++++++-
->  drivers/gpu/drm/ingenic/ingenic-drm.h         |  38 +++++++
->  drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c     | 106 
-> ++++++++++++++++++
->  include/drm/bridge/dw_hdmi.h                  |   1 +
->  10 files changed, 367 insertions(+), 19 deletions(-)
->  create mode 100644 
-> Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
->  create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> 
-> --
-> 2.33.0
-> 
-
+Ioana
 
