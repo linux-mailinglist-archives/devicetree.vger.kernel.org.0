@@ -2,144 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A206F4AF13A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:17:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAA5F4AF135
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:17:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232789AbiBIMRT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Feb 2022 07:17:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57896 "EHLO
+        id S232399AbiBIMRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 07:17:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232888AbiBIMPl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:15:41 -0500
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC8DC05CB9D;
-        Wed,  9 Feb 2022 04:01:29 -0800 (PST)
-Date:   Wed, 09 Feb 2022 12:01:16 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v13 5/9] drm/synopsys+ingenic: repair hot plug detection
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Message-Id: <4ED17R.TVHQS4U654LE@crapouillou.net>
-In-Reply-To: <08fb9549042d35c1904fd977e68aa52f74f755b0.1643819482.git.hns@goldelico.com>
-References: <cover.1643819482.git.hns@goldelico.com>
-        <08fb9549042d35c1904fd977e68aa52f74f755b0.1643819482.git.hns@goldelico.com>
+        with ESMTP id S233766AbiBIMQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:16:48 -0500
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF189C1038CD;
+        Wed,  9 Feb 2022 04:02:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1644408179; x=1675944179;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=qzspAmnxWEQRyowdPIPEhGQJavJNN5dfQzJsIpAT7nc=;
+  b=kzi46IlFe97SKOdff/9Ot3xhE+XwpWQSQ792nFIef5xEMsPoBhqZtWL/
+   BsN4y4YHJ8BOUyw+6AAmSVsEhEqP8BoVAj5FNfZfek/9w9du9934ac2fw
+   Ku3k7UA1bb4S9kJOr1psVjTImFnK+QCemGXl2uIh/v5woMioYeYMOWX1l
+   bb9TZ6VKDBGDyhwj1y1KUc4i/nj0GrsM3Y0tsFZt/ipMj1rQmC157pR2f
+   2uFQ60171yktMdc8jqs5+OSC4jDUka81r4beKD0LfOzYcQPxFk8vqEMZR
+   XfM18RjwucyGKfDWrgATFbtCrt8nhiVdYGGAxZ9JOmOWUO5iJpSfernsy
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="249395635"
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; 
+   d="scan'208";a="249395635"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2022 04:02:59 -0800
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; 
+   d="scan'208";a="568215463"
+Received: from smile.fi.intel.com ([10.237.72.61])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2022 04:02:57 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1nHlfb-002bPp-CQ;
+        Wed, 09 Feb 2022 14:01:59 +0200
+Date:   Wed, 9 Feb 2022 14:01:59 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+        robh+dt@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] iio:frequency:admv1014: add support for ADMV1014
+Message-ID: <YgOtN+wha+j3ZFIO@smile.fi.intel.com>
+References: <20220131100102.15372-1-antoniu.miclaus@analog.com>
+ <Yf7AjXsRuhFeFTpD@smile.fi.intel.com>
+ <e59fce3747428f30afdf77f9839910664e3e8524.camel@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e59fce3747428f30afdf77f9839910664e3e8524.camel@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
+On Mon, Feb 07, 2022 at 09:29:54PM +0100, Nuno Sá wrote:
+> On Sat, 2022-02-05 at 20:23 +0200, Andy Shevchenko wrote:
+> > On Mon, Jan 31, 2022 at 12:00:59PM +0200, Antoniu Miclaus wrote:
+> > > The ADMV1014 is a silicon germanium (SiGe), wideband,
+> > > microwave downconverter optimized for point to point microwave
+> > > radio designs operating in the 24 GHz to 44 GHz frequency range.
+> > 
+> > Excellent job!
+> > A few comments / questions below.
+> > 
+> > ...
+> > 
+> > > +config ADMV1014
+> > > +       tristate "Analog Devices ADMV1014 Microwave Downconverter"
+> > > +       depends on SPI && COMMON_CLK && 64BIT
+> > 
+> > Why 64BIT only?
+> 
+> Could not resist on this one... The thing is that CCF uses unsigned
+> long for rates and this part operates in high GHz values. That means,
+> as CCF stands, this cannot work on 32bit.
 
-Le mer., févr. 2 2022 at 17:31:19 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> so that it calls drm_kms_helper_hotplug_event().
-> 
-> We need to set .poll_enabled but that struct component
-> can only be accessed in the core code. Hence we add a public
-> setter function.
-> 
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 9 +++++++++
->  drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c | 2 ++
->  include/drm/bridge/dw_hdmi.h              | 1 +
->  3 files changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c 
-> b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> index 54d8fdad395f5..52e7cd2e020d3 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> @@ -3216,6 +3216,15 @@ static int dw_hdmi_parse_dt(struct dw_hdmi 
-> *hdmi)
->  	return 0;
->  }
-> 
-> +void dw_hdmi_enable_poll(struct dw_hdmi *hdmi, bool enable)
-> +{
-> +	if (hdmi->bridge.dev)
-> +		hdmi->bridge.dev->mode_config.poll_enabled = enable;
-> +	else
-> +		dev_warn(hdmi->dev, "no hdmi->bridge.dev");
-> +}
-> +EXPORT_SYMBOL_GPL(dw_hdmi_enable_poll);
-> +
->  struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
->  			      const struct dw_hdmi_plat_data *plat_data)
->  {
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c 
-> b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> index 34e986dd606cf..90547a28dc5c7 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> +++ b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> @@ -55,6 +55,8 @@ ingenic_dw_hdmi_mode_valid(struct dw_hdmi *hdmi, 
-> void *data,
->  	if (mode->clock > 216000)
->  		return MODE_CLOCK_HIGH;
-> 
-> +	dw_hdmi_enable_poll(hdmi, true);
-> +
+I read it a bit differently, i.e. CCF has a bug that needs to be addressed.
 
-It would be a better idea to move this patch before the patch that 
-creates ingenic-dw-hdmi.c. Then you wouldn't have to patch a file that 
-was just introduced.
-
-As for the patch itself, I guess it's fine, but is that really needed? 
-My understanding is that it's the hdmi-connector's job to poll.
-
-Cheers,
--Paul
-
->  	return MODE_OK;
->  }
-> 
-> diff --git a/include/drm/bridge/dw_hdmi.h 
-> b/include/drm/bridge/dw_hdmi.h
-> index 2a1f85f9a8a3f..963960794b40e 100644
-> --- a/include/drm/bridge/dw_hdmi.h
-> +++ b/include/drm/bridge/dw_hdmi.h
-> @@ -196,5 +196,6 @@ enum drm_connector_status 
-> dw_hdmi_phy_read_hpd(struct dw_hdmi *hdmi,
->  void dw_hdmi_phy_update_hpd(struct dw_hdmi *hdmi, void *data,
->  			    bool force, bool disabled, bool rxsense);
->  void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi, void *data);
-> +void dw_hdmi_enable_poll(struct dw_hdmi *hdmi, bool enable);
-> 
->  #endif /* __IMX_HDMI_H__ */
-> --
-> 2.33.0
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
