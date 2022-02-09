@@ -2,179 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B8044AF088
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:01:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32D2D4AEFAF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 12:11:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232100AbiBIMBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 07:01:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39788 "EHLO
+        id S230094AbiBILKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 06:10:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232396AbiBIMBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:01:08 -0500
-X-Greylist: delayed 4200 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Feb 2022 03:54:49 PST
-Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18265DF48F22;
-        Wed,  9 Feb 2022 03:54:49 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id 42B5A1A7A;
-        Wed,  9 Feb 2022 10:17:25 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id TcYIS0UTs6_D; Wed,  9 Feb 2022 10:17:25 +0100 (CET)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id 4830C3578; Wed,  9 Feb 2022 10:17:23 +0100 (CET)
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
-Date:   Wed, 9 Feb 2022 10:17:06 +0100
-From:   Alexander Dahl <ada@thorsis.com>
-To:     sven@svenschwermer.de
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        post@lespocky.de, andy.shevchenko@gmail.com, robh@kernel.org
-Subject: Re: [PATCH v6 2/3] dt-bindings: leds: Add multicolor PWM LED bindings
-Message-ID: <YgOGksA8kruvFLY2@ada-deb-carambola.ifak-system.com>
-Mail-Followup-To: sven@svenschwermer.de, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        post@lespocky.de, andy.shevchenko@gmail.com, robh@kernel.org
-References: <20220208191236.660172-1-sven@svenschwermer.de>
- <20220208191236.660172-2-sven@svenschwermer.de>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220208191236.660172-2-sven@svenschwermer.de>
+        with ESMTP id S230192AbiBILK3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 06:10:29 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA48E082706
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 02:06:22 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nHjpP-0008Rc-En; Wed, 09 Feb 2022 11:03:59 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     dri-devel@lists.freedesktop.org,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v5 02/23] drm/rockchip: dw_hdmi: Do not leave clock enabled in error case
+Date:   Wed, 09 Feb 2022 11:03:58 +0100
+Message-ID: <2395553.0l50XtO9Ib@diego>
+In-Reply-To: <20220209095350.2104049-3-s.hauer@pengutronix.de>
+References: <20220209095350.2104049-1-s.hauer@pengutronix.de> <20220209095350.2104049-3-s.hauer@pengutronix.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Sven,
+Am Mittwoch, 9. Februar 2022, 10:53:29 CET schrieb Sascha Hauer:
+> The driver returns an error when devm_phy_optional_get() fails leaving
+> the previously enabled clock turned on. Change order and enable the
+> clock only after the phy has been acquired.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 
-Am Tue, Feb 08, 2022 at 08:12:35PM +0100 schrieb sven@svenschwermer.de:
-> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> 
-> This allows to group multiple PWM-connected monochrome LEDs into
-> multicolor LEDs, e.g. RGB LEDs.
-> 
-> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+just a note for me, already applied to drm-misc-fixes:
+https://cgit.freedesktop.org/drm/drm-misc/commit/?h=drm-misc-fixes&id=c0cfbb122275da1b726481de5a8cffeb24e6322b
+
 > ---
+>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
 > 
-> Notes:
->     Changes in v6:
->     * Fix device tree binding schema
->     
->     Changes in v5:
->     * (no changes)
->     
->     Changes in v4:
->     * (no changes)
->     
->     Changes in v3:
->     * Remove multi-led unit name
+> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> index 830bdd5e9b7c..8677c8271678 100644
+> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> @@ -529,13 +529,6 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
+>  		return ret;
+>  	}
+>  
+> -	ret = clk_prepare_enable(hdmi->vpll_clk);
+> -	if (ret) {
+> -		DRM_DEV_ERROR(hdmi->dev, "Failed to enable HDMI vpll: %d\n",
+> -			      ret);
+> -		return ret;
+> -	}
+> -
+>  	hdmi->phy = devm_phy_optional_get(dev, "hdmi");
+>  	if (IS_ERR(hdmi->phy)) {
+>  		ret = PTR_ERR(hdmi->phy);
+> @@ -544,6 +537,13 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
+>  		return ret;
+>  	}
+>  
+> +	ret = clk_prepare_enable(hdmi->vpll_clk);
+> +	if (ret) {
+> +		DRM_DEV_ERROR(hdmi->dev, "Failed to enable HDMI vpll: %d\n",
+> +			      ret);
+> +		return ret;
+> +	}
+> +
+>  	drm_encoder_helper_add(encoder, &dw_hdmi_rockchip_encoder_helper_funcs);
+>  	drm_simple_encoder_init(drm, encoder, DRM_MODE_ENCODER_TMDS);
+>  
 > 
->  .../bindings/leds/leds-pwm-multicolor.yaml    | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-> new file mode 100644
-> index 000000000000..f7ce29c8ae63
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-pwm-multicolor.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Multi-color LEDs connected to PWM
-> +
-> +maintainers:
-> +  - Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> +
-> +description: |
-> +  This driver combines several monochrome PWM LEDs into one multi-color
-> +  LED using the multicolor LED class.
-> +
-> +properties:
-> +  compatible:
-> +    const: pwm-leds-multicolor
-> +  multi-led:
-> +    type: object
-> +    patternProperties:
-> +      "^led-[0-9a-z]+$":
-> +        type: object
-> +        $ref: common.yaml#
-> +        properties:
-> +          pwms:
-> +            maxItems: 1
-> +          pwm-names: true
-> +          color: true
-> +        required:
-> +          - pwms
-> +          - color
-> +        additionalProperties: false
-> +required:
-> +  - compatible
-> +allOf:
-> +  - $ref: leds-class-multicolor.yaml#
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    rgb-led {
 
-I think this should be 'led-controller'. See
-Documentation/devicetree/bindings/leds/common.yaml for reference.
 
-> +        compatible = "pwm-leds-multicolor";
-> +
-> +        multi-led {
-> +          color = <LED_COLOR_ID_RGB>;
-> +          function = LED_FUNCTION_INDICATOR;
-> +          max-brightness = <65535>;
-> +
-> +          led-red {
-> +              pwms = <&pwm1 0 1000000>;
-> +              color = <LED_COLOR_ID_RED>;
-> +          };
-> +
-> +          led-green {
-> +              pwms = <&pwm2 0 1000000>;
-> +              color = <LED_COLOR_ID_GREEN>;
-> +          };
-> +
-> +          led-blue {
-> +              pwms = <&pwm3 0 1000000>;
-> +              color = <LED_COLOR_ID_BLUE>;
-> +          };
 
-Not sure if those node names should be more generic like led-0, led-1
-etc.?  At least the color information is redundant here.  This would
-make it more similar to bindings of other LED drivers.
 
-And how is it supposed to be named if you have multiple
-"multi-led"s, e.g. one on three PWM channels, and another one on three
-different PWM channels?
-
-Greets
-Alex
-
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.35.1
-> 
