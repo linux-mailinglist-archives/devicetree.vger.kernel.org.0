@@ -2,70 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD3204B0113
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 00:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5C9A4B0159
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 00:33:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229901AbiBIXPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 18:15:49 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:50426 "EHLO
+        id S230139AbiBIXdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 18:33:05 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:35838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231991AbiBIXPf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 18:15:35 -0500
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C407E05487E
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 15:15:23 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id y23so4139472oia.13
-        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 15:15:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ktkjxd3U0JmlaFnaNcBberOjA7QvY7xZY4GMDZF6GTs=;
-        b=rT3vggge4MvLAYz8ehb1gDHsIZQ2jYCjwcS7hvkQ4ulgYOQ+OvFiB4kq2Xz/bnyGIq
-         hQ65+ocP8xocxt8jz9ZixNlEAgKq/sdXbO64IZ9j5DovrQIPVczcuJyb/l7BwWEP5t52
-         G50Kdx96U8b442xnWvePHyAahkttBkSzzlk7CYZWbvZa0pyU9Wz8NcNhe5CajSA4wYTr
-         YRg2E5b3ANb1+cLPrYfySKkeaDYhrrx/ex/zQxYrwWv3s+rVbynh9+II2kuWkyg+/B+5
-         ueJRH9wrgNv7liccRp58MR6VN7yvOm+4AfMpc+jDoXQBZ597Kq2GxP9XVugN3eUtN8KB
-         6klw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ktkjxd3U0JmlaFnaNcBberOjA7QvY7xZY4GMDZF6GTs=;
-        b=tZ3cgmcSxKIO86LuOuXthlG20DYJSmjcxKnK98hDJv0N2tb9La/XcTiyvfWW+3nQeW
-         NDmcsyOKwjFBPJoYUIDZah5iDFLiG/6ZEmaWzwFr4eiv9b0uQOIM8rgVgY8lt+uorZSS
-         X0zLoknxh/XQTHIsiXruZTCk83ktvFlChRKltm7sb+npk+wCtT+aXzm9csSrarSyPwW2
-         iPpZWL57rYj7fVcT1TD+KcncJv7usWiLmgGLIkcTeIczKhX7MwrKX5vB3Ly7PdQySZtW
-         qQoXFW/ILXKgmsDC/AbsNyLCcxoisGm+AsOv1VnRUILQ6JHBYOjI8tGX+P1D+sQerPMC
-         3y+Q==
-X-Gm-Message-State: AOAM530QoRzkDeuICG3PgfgZYol/DIXEPJkjhWKwuJ0Wb2FXvTFXpVG+
-        b2g0zC+re6FlmtKoaweNduf24A==
-X-Google-Smtp-Source: ABdhPJwSwIG6P4P9VqVnQt3T5UfuEZz7hxUA4IZtMOLvLySVMm87BKO4mFMFZWwtpNO+Ms2lI8o/kw==
-X-Received: by 2002:a05:6808:1897:: with SMTP id bi23mr2151901oib.217.1644448522445;
-        Wed, 09 Feb 2022 15:15:22 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id c29sm7147074otk.16.2022.02.09.15.15.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 15:15:21 -0800 (PST)
-Date:   Wed, 9 Feb 2022 15:17:38 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: add qcom,tcsr bindings
-Message-ID: <YgRLkrowk56YtjtY@ripper>
-References: <20220122001609.15904-1-ansuelsmth@gmail.com>
- <20220122001609.15904-2-ansuelsmth@gmail.com>
- <Yfhzqvrj6bIPmV2S@builder.lan>
- <Yfmq3IpjHZXdtEQR@Ansuel-xps.localdomain>
+        with ESMTP id S230240AbiBIXdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 18:33:00 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59205E04FF2F;
+        Wed,  9 Feb 2022 15:32:54 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E155DB823D7;
+        Wed,  9 Feb 2022 23:32:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9059EC340E7;
+        Wed,  9 Feb 2022 23:32:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644449571;
+        bh=1v8Ww55cVuJZilob67Fi28dIKcIBdoa+SK7/xwiEXVU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=J012nIT9ccXpnYwTs+ydTA1iu5DOhEijYaeLyA/9sBdND6pjgOJixJPVaeXXI/UaS
+         y35tC7deE5+dUi0UnnwtYo4zmZhGYhMSChh0b1mWtgrJkFoiirWwhhTNKMP3frJbna
+         giZP5Wvfe13k6oqHC4Jdg4FiGiABuwFHYm9j2SUxhpcdl96MDhAeJrkKd7nlUiYqFC
+         e0V3SSadUMydbL9Vdo8FTk+MO1i8i9xkDaXMm/PC7c4KM6wm2bPpE5mrwZOwaXw4OY
+         7j1PJVndwse+fpdlIYCQugU8jEWlX4aJW0p/Vgn/l6gZa7Dqq2fMJUSx2KVir22ECM
+         fr+yRf82//5Nw==
+Received: by mail-ej1-f44.google.com with SMTP id k25so11265757ejp.5;
+        Wed, 09 Feb 2022 15:32:51 -0800 (PST)
+X-Gm-Message-State: AOAM533DZSRuUnHh9rsP2unyew3O+uPo7SdIVRCiliyyc+Zx5a7ebgxT
+        TiFfcP64+z48n33a1QfuUjrMwQy5mycEm0sniQ==
+X-Google-Smtp-Source: ABdhPJyNA301ZhPXtbCzzHj3UCxICGpDk+ZxCnOCEAlawsi68a+tJydeVQx/Mn2Ov0fAVmDZMq+dJBVJ3QGrVUxn7h4=
+X-Received: by 2002:a17:907:2d29:: with SMTP id gs41mr4169484ejc.14.1644449569884;
+ Wed, 09 Feb 2022 15:32:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yfmq3IpjHZXdtEQR@Ansuel-xps.localdomain>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220128042321.15228-1-nikhil.gupta@nxp.com> <CAL_JsqKWmnQde+4tnZ3d90pWguezLVqto4DRe3WRjf9PCQ=L4w@mail.gmail.com>
+ <PAXPR04MB83348BB9265516255BBB2ACB8B269@PAXPR04MB8334.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB83348BB9265516255BBB2ACB8B269@PAXPR04MB8334.eurprd04.prod.outlook.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 9 Feb 2022 17:32:38 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+EnQE27cfUU2xZM+kjQrmhO4PcO3WDG2yg+=sRAnxPgQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+EnQE27cfUU2xZM+kjQrmhO4PcO3WDG2yg+=sRAnxPgQ@mail.gmail.com>
+Subject: Re: [EXT] Re: [PATCH] of/fdt: move elfcorehdr reservation early for
+ crash dump kernel
+To:     Nikhil Gupta <nikhil.gupta@nxp.com>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Priyanka Jain <priyanka.jain@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,77 +66,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 01 Feb 13:49 PST 2022, Ansuel Smith wrote:
+On Tue, Feb 1, 2022 at 9:37 AM Nikhil Gupta <nikhil.gupta@nxp.com> wrote:
+>
 
-> On Mon, Jan 31, 2022 at 05:41:30PM -0600, Bjorn Andersson wrote:
-> > On Fri 21 Jan 18:16 CST 2022, Ansuel Smith wrote:
-> > 
-> > > Add qcom,tcsr-ipq8064 and qcom,tcsr-ipq4019 Documentation for the
-> > > tcsr present in ipq8064 and ipa4019 required to configure and
-> > > set various peripherals present in the SoC.
-> > > 
-> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > ---
-> > >  .../bindings/soc/qcom/qcom,tcsr-ipq4019.yaml  | 93 +++++++++++++++++++
-> > >  .../bindings/soc/qcom/qcom,tcsr-ipq8064.yaml  | 47 ++++++++++
-> > >  2 files changed, 140 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq4019.yaml
-> > >  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq8064.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq4019.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq4019.yaml
-> > > new file mode 100644
-> > > index 000000000000..3a82ccbb6588
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq4019.yaml
-> > > @@ -0,0 +1,93 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: "http://devicetree.org/schemas/soc/qcom/qcom,tcsr-ipq4019.yaml#"
-> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > +
-> > > +title: Qualcomm Top Control and Status Registers binding for IPQ4019
-> > > +
-> > > +maintainers:
-> > > +  - Ansuel Smith <ansuelsmth@gmail.com>
-> > > +
-> > > +description: |
-> > > +  This binding describes the Qualcomm Top Control and Status Registers, used
-> > > +  for accessing configuration and mux settings for a variety of peripherals
-> > > +  for ipq4019.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - const: qcom,tcsr-ipq4019
-> > > +      - const: syscon
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  qcom,usb-hsphy-mode-select:
-> > > +    description: Select usb hsphy mode for ipq4019
-> > 
-> > Why isn't this driven by the USB node, where I presume you otherwise
-> > need to duplicate this decision?
-> > 
-> 
-> From what I understand this is global, setting this will apply on any
-> usb present.
-> 
-> > Is this platform not capable of OTG?
-> > 
-> 
-> I assume it's capable by selecting the correct mode using tcsr.
-> 
+Please don't top post and fix your email client quoting on replies.
+IOW, don't use Outlook. While MS loves Linux now, they don't make an
+email client that works with maillists.
 
-I expect that the USB controller will receive extcon (or
-usb_role_switch) requests to flip between the modes based on something.
+> Hello Rob,
+>
+> This issue will come in scenarios where the memory has been reserved using fdt_init_reserved_mem()
+> The memory address which is reserved overlaps with the address of elfcorehdr which has a fixed address,
+> So the memory for elfcorehdr needs to be reserved first.
+>
+> crashkernel memory range : 0x00000000d4000000 - 0x00000000f4000000 (512 MB)
+> elfcorehdr addr is calculated in kexec tool based on reserved crashkernel memory space. (Last page is used in top down order)
+> elfcorehdr conflict with memory [    0.000000] memblock_reserve: [0x00000000f3c00000-0x00000000f3ffffff] reserved by fdt_init_reserved_mem()
+>
+> Without Patch:
+>
+> [    0.000000] memblock_reserve: [0x00000000d4010000-0x00000000d677ffff] arm64_memblock_init+0x258/0x2c8
+> [    0.000000] memblock_phys_alloc_range: 4194304 bytes align=0x400000 from=0x0000000000000000 max_addr=0x0001000000000000 early_init_dt_alloc_reserved_memory_arch+0x9c/0x16c
+> [    0.000000] memblock_reserve: [0x00000000f3c00000-0x00000000f3ffffff] memblock_alloc_range_nid+0xdc/0x150
+> [    0.000000] memblock_phys_alloc_range: 33554432 bytes align=0x2000000 from=0x0000000000000000 max_addr=0x0001000000000000 early_init_dt_alloc_reserved_memory_arch+0x9c/0x16c
+> [    0.000000] memblock_reserve: [0x00000000f0000000-0x00000000f1ffffff] memblock_alloc_range_nid+0xdc/0x150
+> [    0.000000] memblock_phys_alloc_range: 16777216 bytes align=0x1000000 from=0x0000000000000000 max_addr=0x0001000000000000 early_init_dt_alloc_reserved_memory_arch+0x9c/0x16c
+> [    0.000000] memblock_reserve: [0x00000000f2000000-0x00000000f2ffffff] memblock_alloc_range_nid+0xdc/0x150
+> [    0.000000] OF: reserved mem: initialized node bman-fbpr, compatible id fsl,bman-fbpr
+> [    0.000000] OF: fdt: elfcorehdr is overlapped
+>
+> With Patch:
+>
+> [    0.000000] memblock_remove: [0x0001000000000000-0x0000fffffffffffe] arm64_memblock_init+0xa0/0x2d8
+> [    0.000000] memblock_remove: [0x00008000c0000000-0x00008000bffffffe] arm64_memblock_init+0xfc/0x2d8
+> [    0.000000] memblock_remove: [0x00000000d6160000-0x00000000d83befff] arm64_memblock_init+0x1c8/0x2d8
+> [    0.000000] memblock_add: [0x00000000d6160000-0x00000000d83befff] arm64_memblock_init+0x1d4/0x2d8
+> [    0.000000] memblock_reserve: [0x00000000d6160000-0x00000000d83befff] arm64_memblock_init+0x1e0/0x2d8
+> [    0.000000] memblock_reserve: [0x00000000d4010000-0x00000000d615ffff] arm64_memblock_init+0x260/0x2d8
+> [    0.000000] memblock_reserve: [0x00000000f3fff000-0x00000000f3fff3ff] early_init_fdt_scan_reserved_mem+0x370/0x3c8
+> [    0.000000] OF: fdt: Reserving 1 KiB of memory at 0xf3fff000 for elfcorehdr
+> [    0.000000] memblock_phys_alloc_range: 4194304 bytes align=0x400000 from=0x0000000000000000 max_addr=0x0001000000000000 early_init_dt_alloc_reserved_memory_arch+0x38/0x8c
+> [    0.000000] memblock_reserve: [0x00000000f3800000-0x00000000f3bfffff] memblock_alloc_range_nid+0xdc/0x150
+> [    0.000000] memblock_phys_alloc_range: 33554432 bytes align=0x2000000 from=0x0000000000000000 max_addr=0x0001000000000000 early_init_dt_alloc_reserved_memory_arch+0x38/0x8c
+> [    0.000000] memblock_reserve: [0x00000000f0000000-0x00000000f1ffffff] memblock_alloc_range_nid+0xdc/0x150
+> [    0.000000] memblock_phys_alloc_range: 16777216 bytes align=0x1000000 from=0x0000000000000000 max_addr=0x0001000000000000 early_init_dt_alloc_reserved_memory_arch+0x38/0x8c
 
-When this happens it sounds like the USB controller would have to
-propagate that change to the TCSR bits as well, and if the USB
-controller driver is able to flip the bits then this shouldn't be needed
-here?
+Digging a bit more, it seems this never worked? It is also not fixable
+in this way before commit 57beb9bd18fc ("arm64: kdump: Remove custom
+linux,elfcorehdr handling"). So if you want a fix prior to v5.15, it
+will need a different fix.
 
-Regards,
-Bjorn
+Rob
