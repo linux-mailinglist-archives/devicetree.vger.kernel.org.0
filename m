@@ -2,147 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C39454AEE4B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 10:41:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 966D04AEDCE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 10:18:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232244AbiBIJll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 04:41:41 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:56690 "EHLO
+        id S230172AbiBIJRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 04:17:54 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:48236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235516AbiBIJf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 04:35:59 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE883E010917;
-        Wed,  9 Feb 2022 01:35:53 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nHj3m-0007nJ-En; Wed, 09 Feb 2022 10:14:46 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Rob Herring <robh@kernel.org>,
-        =?utf-8?B?6LW15Luq5bOw?= <yifeng.zhao@rock-chips.com>,
-        "zyf@rock-chips.com" <zyf@rock-chips.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        linux-rockchip <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        robh+dt <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        =?utf-8?B?6ZmI5Lqu?= <cl@rock-chips.com>, kishon <kishon@ti.com>,
-        "Kever. Yang" <kever.yang@rock-chips.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "david.wu@rock-chips.com" <david.wu@rock-chips.com>,
-        "michael. riesch" <michael.riesch@wolfvision.net>,
-        linux-phy <linux-phy@lists.infradead.org>,
-        =?utf-8?B?5ZC06Imv5bOw?= <wulf@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Jonker <jbx6244@gmail.com>
-Subject: Re: [PATCH v8 2/4] dt-bindings: phy: rockchip: Add Naneng combo PHY bindings
-Date:   Wed, 09 Feb 2022 10:14:45 +0100
-Message-ID: <6069846.8JqooZBoOc@diego>
-In-Reply-To: <2022020911371529703712@rock-chips.com>
-References: <20220208091326.12495-1-yifeng.zhao@rock-chips.com> <1644352412.075016.2969144.nullmailer@robh.at.kernel.org> <2022020911371529703712@rock-chips.com>
+        with ESMTP id S229616AbiBIJRv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 04:17:51 -0500
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [IPv6:2001:67c:2050::465:101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8632BC0DE7E0;
+        Wed,  9 Feb 2022 01:17:43 -0800 (PST)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [80.241.60.233])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4JtvRG3HCWz9sq8;
+        Wed,  9 Feb 2022 10:17:30 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
+        t=1644398248;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Z0oOnGnZNW4E43AWDbU3YQ3rIFI9kV+U/+S0E/9n4M8=;
+        b=nH3ARItDa0KrY1Mq9FasHYsBBwiTdmGysdfN3UHtvWsPXXBSvuDo0U+lrsBvYhZHw5fqns
+        Nmnz90GqtyTzJipRnAkOky434kf6pXQseaXCp9oGwqRW8LGKIcZaEqDtr8l/ZHG5+o0jw1
+        /KrT3s7UNcBwo9w3nZ2AeSVMaKSUo5Vj2FIw1dzzhpd2Ix5FQnwbgfbHB66YE8WvaECObn
+        9uaF/TCpgtjIDp+tJGnZ8GIxRJResMHFydT89AftNz8dppSLSpz+b8ene2RDPtnBDdOgqi
+        I9Va0fBE13s1plv6SPZisVj+rVvZcLCyFDKsvlf5vYRbh7WBJ2GlsmYNz1s70Q==
+Message-ID: <45823dddd3cf4a93a640b646026a89d1b7fed7f3.camel@sylv.io>
+Subject: Re: [PATCH v1 1/4] dt-bindings: vendor-prefixes: add Vicor
+ Corporation
+From:   sylv <sylv@sylv.io>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Wed, 09 Feb 2022 10:17:24 +0100
+In-Reply-To: <YgMr84b8BKHBNQwq@robh.at.kernel.org>
+References: <cover.1642434222.git.sylv@sylv.io>
+         <58d2c7501edf746f3677681327c283fc3faaf872.1642434222.git.sylv@sylv.io>
+         <YgMr84b8BKHBNQwq@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Am Mittwoch, 9. Februar 2022, 04:38:15 CET schrieb zyf@rock-chips.com:
-> Hi Rob,
+On Tue, 2022-02-08 at 20:50 -0600, Rob Herring wrote:
+> On Mon, Jan 17, 2022 at 05:12:47PM +0100, Marcello Sylvester Bauer
+> wrote:
+> > Add vendor prefix for Vicor Corporation.
+> > 
+> > Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> > ---
+> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > index 66d6432fd781..8a2a205d6d34 100644
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -1273,6 +1273,8 @@ patternProperties:
+> >    "^vdl,.*":
+> >      description: Van der Laan b.v.
+> >    "^via,.*":
+> > +    description: Vicor Corporation
 > 
-> We move "rockchip,rk3568-pipe-grf" from syscon.yaml to grf.yaml.
-> How to fix this compilation failed?
+> You just changed the description for VIA.
 
-as you can see in the example, there is already a
-	#include <dt-bindings/clock/rk3568-cru.h>
-so you probably just need to add another include for the grf.yaml
-
-
-Heiko
+Indeed. My bad.
 
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index fdd96e378df0..e9bb96ab9446 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -52,6 +52,8 @@ properties:
->                - rockchip,rk3288-qos
->                - rockchip,rk3368-qos
->                - rockchip,rk3399-qos
-> +              - rockchip,rk3568-pipe-grf
-> +              - rockchip,rk3568-pipe-phy-grf
-> 
-> 
-> >On Tue, 08 Feb 2022 17:13:24 +0800, Yifeng Zhao wrote:
-> >> Add the compatible strings for the Naneng combo PHY found on rockchip SoC.
-> >>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> >> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> >> ---
-> >>
-> >> Changes in v8: None
-> >> Changes in v7:
-> >> - remove u3otg0_port_en, u3otg1_port_en and pipe_sgmii_mac_sel
-> >>
-> >> Changes in v5:
-> >> - modify description for ssc and ext-refclk
-> >> - remove apb reset
-> >>
-> >> Changes in v4:
-> >> - restyle
-> >> - remove some minItems
-> >> - add more properties
-> >> - remove reset-names
-> >> - move #phy-cells
-> >> - add rockchip,rk3568-pipe-grf
-> >> - add rockchip,rk3568-pipe-phy-grf
-> >>
-> >> Changes in v3: None
-> >> Changes in v2:
-> >> - Fix dtschema/dtc warnings/errors
-> >>
-> >>  .../phy/phy-rockchip-naneng-combphy.yaml      | 109 ++++++++++++++++++
-> >>  1 file changed, 109 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
-> >>
+> > +  "^vicor,.*":
+> >      description: VIA Technologies, Inc.
+> >    "^videostrong,.*":
+> >      description: Videostrong Technology Co., Ltd.
+> > -- 
+> > 2.33.1
 > > 
-> >My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> >on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > > 
-> >yamllint warnings/errors:
-> > 
-> >dtschema/dtc warnings/errors:
-> >Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.example.dt.yaml:0:0: /example-0/syscon@fdc50000: failed to match any schema with compatible: ['rockchip,rk3568-pipe-grf', 'syscon']
-> >Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.example.dt.yaml:0:0: /example-0/syscon@fdc70000: failed to match any schema with compatible: ['rockchip,rk3568-pipe-phy-grf', 'syscon']
-> > 
-> >doc reference errors (make refcheckdocs):
-> > 
-> >See https://patchwork.ozlabs.org/patch/1589719
-> > 
-> >This check can fail if there are any dependencies. The base for a patch
-> >series is generally the most recent rc1.
-> > 
-> >If you already ran 'make dt_binding_check' and didn't see the above
-> >error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> >date:
-> > 
-> >pip3 install dtschema --upgrade
-> > 
-> >Please check and re-submit.
->  
->  
-> 
-
-
-
 
