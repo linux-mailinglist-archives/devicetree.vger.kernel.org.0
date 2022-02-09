@@ -2,70 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B784AF124
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:14:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B1904AF11B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:12:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232829AbiBIMN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 07:13:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60530 "EHLO
+        id S231722AbiBIMLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 07:11:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232828AbiBIMNn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:13:43 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95F54E01A20B;
-        Wed,  9 Feb 2022 03:58:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1644407903; x=1675943903;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=L+DVxKDfG93QZEDonoeWEpsQmWNBO1hMRpHRORp3+5E=;
-  b=xtpShl7N4LMsdTyeEPxGJ0EJR8Xu4y5JWkEphO4lVm2zx+D/TXeMRzEk
-   xQ6/WDGZvGjGQHtELEJXPfb5NLyZ+6XaDLD1p1wYkzEYbePg3OqZBguTt
-   iN0bTXR9dAmFS6ZRYyvxuvADTqRcnt3/g4oQ2zFkM5pg2RErilbaVKXbM
-   DDYTa4U8RNptiJqRVVKUN2uy0Lm1Qaf/JHw4U9KVh7VPYJUlL341rQX4h
-   dGSYT7YVI/wsOZ/JroWCNsLHWNk4RapZetmuH2TIYfkiE00WCyvIhoJS8
-   lXMKUEQ7LuMHL34CmjSoTW0xwJfJShlmzsxOkv078aBfGCJ980NAdkO0f
-   Q==;
-IronPort-SDR: YFl071Mzo9w43N4n90fHqb+clQMo7iQRI0BZuCdWaTJF0bJ9CARUQH0h6NYVzy3MiHj169rWpt
- c21LZqFu5ihhxONKqOnRiJ7tCWzh1N85yLi6N4L89UDd9QggKc+wbgxlYp0szxPzCtDt+WTULI
- fM10Qd/x39Ik43qks4njs/5fcKpPNohuLrHdZtaNL5SuyE8UM8LhpPkUoKBtcT3QWx5Bkpftrb
- Ef2FV2jUHiHpxBAHUz9frwVdK87xJinwRkIR8+8Af12Frk1EC0IWz06N6j3kqSdTBBgXMytUVu
- OrIhT7vr3BYNmpUGRonBebHu
-X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; 
-   d="scan'208";a="145385622"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Feb 2022 04:58:22 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 9 Feb 2022 04:58:22 -0700
-Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Wed, 9 Feb 2022 04:58:14 -0700
-Message-ID: <ebf1b233da821e2cd3586f403a1cdc2509671cde.camel@microchip.com>
-Subject: Re: [PATCH v8 net-next 01/10] dt-bindings: net: dsa: dt bindings
- for microchip lan937x
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>, <andrew@lunn.ch>,
-        <netdev@vger.kernel.org>, <olteanv@gmail.com>, <robh+dt@kernel.org>
-CC:     <UNGLinuxDriver@microchip.com>, <woojung.huh@microchip.com>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>
-Date:   Wed, 9 Feb 2022 17:28:12 +0530
-In-Reply-To: <88caec5c-c509-124e-5f6b-22b94f968aea@gmail.com>
-References: <20220207172204.589190-1-prasanna.vengateshan@microchip.com>
-         <20220207172204.589190-2-prasanna.vengateshan@microchip.com>
-         <88caec5c-c509-124e-5f6b-22b94f968aea@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.0-1 
+        with ESMTP id S233066AbiBIMLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:11:10 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D0AE02462D;
+        Wed,  9 Feb 2022 04:00:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 61D69616DD;
+        Wed,  9 Feb 2022 12:00:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C03BEC36AE5;
+        Wed,  9 Feb 2022 12:00:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644408012;
+        bh=ORcoVBsU9fItvTpvJVOP71pHbFHSfc6H7u7f3hTy4/E=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=JJYpIK1jWh1+AHsEdfNDs/eTgnKo5HZA9YVcKXmeE4MOYpOdJvXo8Rk7gWj6lGr7k
+         6ILifmEgDRkS7n47o+ZihhvUTwQKr4diDVxcKsrNXl/Pm0VebJmzH79LWv7ZhQ7ome
+         nfhDyQKo1yKKzrGkmcGWQE4TlNQOMN0rmg6IZxmBPvp/njyfgOpi6Qtv/5I3jP1WAE
+         XFo0drYj2c39cBq/xp8ZagC/yeJupMomMYircAuktw1KsNOXYt7JXTUioJN4CzPH2s
+         Aglb2yJ7oeNS2MVRjG9xEnowueHxivNc0S/vqMtQy64/fJiJmHX9gFpoCSrWTjpqmt
+         xmPePrkraH6fA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id AC13FE6D4A2;
+        Wed,  9 Feb 2022 12:00:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Subject: Re: [PATCH RESEND net-next 1/2] dt-bindings: net: renesas,etheravb:
+ Document RZ/V2L SoC
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <164440801270.11178.8562719751986010323.git-patchwork-notify@kernel.org>
+Date:   Wed, 09 Feb 2022 12:00:12 +0000
+References: <20220206202425.15829-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220206202425.15829-1-biju.das.jz@bp.renesas.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        s.shtylyov@omp.ru, sergei.shtylyov@gmail.com,
+        netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, geert+renesas@glider.be,
+        Chris.Paterson2@renesas.com, biju.das@bp.renesas.com,
+        prabhakar.mahadev-lad.rj@bp.renesas.com
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,71 +61,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-02-07 at 18:53 -0800, Florian Fainelli wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> content is safe
+Hello:
+
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
+
+On Sun,  6 Feb 2022 20:24:24 +0000 you wrote:
+> Document Gigabit Ethernet IP found on RZ/V2L SoC. Gigabit Ethernet
+> Interface is identical to one found on the RZ/G2L SoC. No driver changes
+> are required as generic compatible string "renesas,rzg2l-gbeth" will be
+> used as a fallback.
 > 
-> On 2/7/2022 9:21 AM, Prasanna Vengateshan wrote:
-> > Documentation in .yaml format and updates to the MAINTAINERS
-> > Also 'make dt_binding_check' is passed.
-> > 
-> > RGMII internal delay values for the mac is retrieved from
-> > rx-internal-delay-ps & tx-internal-delay-ps as per the feedback from
-> > v3 patch series.
-> > https://lore.kernel.org/netdev/20210802121550.gqgbipqdvp5x76ii@skbuf/
-> > 
-> > It supports only the delay value of 0ns and 2ns.
-> > 
-> > Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >   .../bindings/net/dsa/microchip,lan937x.yaml   | 179 ++++++++++++++++++
-> >   MAINTAINERS                                   |   1 +
-> >   2 files changed, 180 insertions(+)
-> >   create mode 100644
-> > Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> > 
-> > +    maxItems: 1
-> > +
-> > +  mdio:
-> > +    $ref: /schemas/net/mdio.yaml#
-> > +    unevaluatedProperties: false
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > 
-> This should be moved to dsa.yaml since this is about describing the
-> switch's internal MDIO bus controller. This is applicable to any switch,
-> really.
+> [...]
 
-Thanks for your review and feedback. Do you mean that 'mdio' to be added in
-dsa.yaml instead adding here?
+Here is the summary with links:
+  - [RESEND,net-next,1/2] dt-bindings: net: renesas,etheravb: Document RZ/V2L SoC
+    https://git.kernel.org/netdev/net-next/c/654f89f9496d
+  - [net-next,2/2] dt-bindings: net: renesas,etheravb: Document RZ/G2UL SoC
+    https://git.kernel.org/netdev/net-next/c/5e2e8cc9dd33
 
-> 
-> > +
-> > +patternProperties:
-> > +  "^(ethernet-)?ports$":
-> > +    patternProperties:
-> > +      "^(ethernet-)?port@[0-7]+$":
-> > +        allOf:
-> > +          - if:
-> > +              properties:
-> > +                phy-mode:
-> > +                  contains:
-> > +                    enum:
-> > +                      - rgmii
-> > +                      - rgmii-rxid
-> > +                      - rgmii-txid
-> > +                      - rgmii-id
-> > +            then:
-> > +              properties:
-> > +                rx-internal-delay-ps:
-> > +                  $ref: "#/$defs/internal-delay-ps"
-> > +                tx-internal-delay-ps:
-> > +                  $ref: "#/$defs/internal-delay-ps"
-> 
-> Likewise, this should actually be changed in ethernet-controller.yaml
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-There is *-internal-delay-ps property defined for mac in ethernet-
-controller.yaml. Should that be changed like above? 
-
-
-Prasanna V
 
