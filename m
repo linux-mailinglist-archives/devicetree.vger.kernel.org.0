@@ -2,165 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1066D4AF35C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 14:54:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD8214AF34F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 14:53:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234512AbiBINyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 08:54:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50154 "EHLO
+        id S234378AbiBINxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 08:53:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234516AbiBINyO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 08:54:14 -0500
-Received: from mo4-p03-ob.smtp.rzone.de (mo4-p03-ob.smtp.rzone.de [81.169.146.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A613C0613CA;
-        Wed,  9 Feb 2022 05:54:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1644414678;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=tvGj33EBatPgN7fdgNMT5Uwzep9OEE1oZXhb92nFpC0=;
-    b=M+b+B2eRZJtmNi+t+MYTpNrmc59i+XJFTVkzdWj3EENACd1/5TTXKY+OqXR5XyxmwT
-    TAI578t9ilOZQU5S2BKANWK7+i8xQtAEZb5ARAi0raMtajkq2a7RuQd4bi+cna+eQhN6
-    656boM9hWJ0Ffhiv+YMsdLnG+5E/RuDMyWtV7/KQsNWfEe0AXvsOXN65jSBC+HwX8+TW
-    9n9h0EPlv96CD7D/7O5/4L8eNyz25by47IPa9Z+pLfUFqQ1Z0t4NdTdjGmp0JAgq34gj
-    giOrg6vJKOkCDv5U9HP0R6bzmQBAXB6Bhum0alyjzB1Cy2ff/7NKJbVQI1N26tCGnk5K
-    efJg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3iMYawg=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.39.0 DYNA|AUTH)
-    with ESMTPSA id L29417y19DpHguM
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Wed, 9 Feb 2022 14:51:17 +0100 (CET)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v13 6/9] dw-hdmi/ingenic-dw-hdmi: repair interworking with
- hdmi-connector
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <E6E17R.ND5XW1IG4SYA@crapouillou.net>
-Date:   Wed, 9 Feb 2022 14:51:17 +0100
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <987D3DDA-FA93-4EDB-ABCB-6973DB7FD943@goldelico.com>
-References: <cover.1643819482.git.hns@goldelico.com>
- <866f84621974992f4831bd471ae5a53414de9255.1643819482.git.hns@goldelico.com>
- <E6E17R.ND5XW1IG4SYA@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-X-Mailer: Apple Mail (2.3445.104.21)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S234489AbiBINxK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 08:53:10 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091EEC0613CA;
+        Wed,  9 Feb 2022 05:53:12 -0800 (PST)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 219AGhci019376;
+        Wed, 9 Feb 2022 14:52:49 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=zTbBOG3VpWriIQMZnJIyEOLDYHNl10TRR8gRrC2+qE0=;
+ b=QUZ8Brfbsc5mhKYfNfDxzxzG32ZEA1SYOoPLoVzGph7jvEDr/vK5cd9TgKqIEsjEhJms
+ Kyh2mBfGZIeJomRg6ng19HcKFQ9Oa6iy6kTeNzIiF0S2++gVFYzU/H19bPDrvP0nwVGv
+ SZKz2bicI3AZATZ/3qzMRQkIY0bREprAL20MIDnQs4oPvE7BtXSkhksEAta5vL3Up5hg
+ hUGsgL3rG+X/t07s/K59lQ+0l13D4XcP4OGfyZ5+YXV663+ZJ1cruZ5UqJ9K3D7PQnNg
+ sQ1HzvN5X181b392g4RQupOIqC+4wwS9qYj8Kan9NywBJD/kjP2WKTUS4FuYDxdF5y8+ PQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e467w2wvx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Feb 2022 14:52:49 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 58E9210002A;
+        Wed,  9 Feb 2022 14:52:48 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4CC0B222C95;
+        Wed,  9 Feb 2022 14:52:48 +0100 (CET)
+Received: from localhost (10.75.127.45) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 9 Feb 2022 14:52:47
+ +0100
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To:     <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>,
+        <alexandre.torgue@foss.st.com>
+CC:     <tglx@linutronix.de>, <fabrice.gasnier@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] dt-bindings: timer: armv7m-systick: convert to dtschema
+Date:   Wed, 9 Feb 2022 14:52:27 +0100
+Message-ID: <1644414747-22159-1-git-send-email-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-09_07,2022-02-09_01,2021-12-02_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Convert the ARMv7-M system timer bindings to DT schema format.
 
-> Am 09.02.2022 um 13:18 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
-> Hi Nikolaus,
->=20
-> Le mer., f=C3=A9vr. 2 2022 at 17:31:20 +0100, H. Nikolaus Schaller =
-<hns@goldelico.com> a =C3=A9crit :
->> Commit 7cd70656d1285b ("drm/bridge: display-connector: implement bus =
-fmts callbacks")
->> introduced a new mechanism to negotiate bus formats between hdmi =
-connector
->> and the synopsys hdmi driver inside the jz4780.
->> By this, the dw-hdmi is no longer the only bridge and sets up a list
->> of formats in dw_hdmi_bridge_atomic_get_output_bus_fmts().
->> This includes MEDIA_BUS_FMT_UYVY8_1X16 which is chosen for the jz4780 =
-but only
->> produces a black screen.
->> This fix is based on the observation that max_bpc =3D 0 when running =
-this
->> function while info->bpc =3D 8. Since the formats checks before this =
-always test
->> for max_bpc >=3D info->pbc indirectly my assumption is that we must =
-check it
->> here as well.
->=20
-> This fix looks really strange to me, so I'll let the DRM experts =
-comment.
+Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+---
+ .../bindings/timer/arm,armv7m-systick.txt          | 26 -----------
+ .../bindings/timer/arm,armv7m-systick.yaml         | 54 ++++++++++++++++++++++
+ 2 files changed, 54 insertions(+), 26 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/timer/arm,armv7m-systick.txt
+ create mode 100644 Documentation/devicetree/bindings/timer/arm,armv7m-systick.yaml
 
-Well, yes. We should maybe look for comments by the synopsys/dw-hdmi =
-specialists.
-
->=20
-> It would still be better to move the patch before the introduction of =
-dw-ingenic-hdmi.c, so that once this one is introduced, everything =
-works. This also enables bisectability.
-
-Ok, good.
-
-BR and thanks,
-Nikolaus
-
->=20
-> Cheers,
-> -Paul
->=20
->=20
->> Adding the proposed patch makes the CI20/jz4780 panel work again in
->> MEDIA_BUS_FMT_RGB888_1X24 mode.
->> Fixes: 7cd70656d1285b ("drm/bridge: display-connector: implement bus =
-fmts callbacks")
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> ---
->> drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 4 ++--
->> 1 file changed, 2 insertions(+), 2 deletions(-)
->> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c =
-b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> index 52e7cd2e020d3..34703a15ee4ff 100644
->> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> @@ -2620,10 +2620,10 @@ static u32 =
-*dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
->> 		output_fmts[i++] =3D MEDIA_BUS_FMT_RGB101010_1X30;
->> 	}
->> -	if (info->color_formats & DRM_COLOR_FORMAT_YCRCB422)
->> +	if (max_bpc >=3D info->bpc && info->color_formats & =
-DRM_COLOR_FORMAT_YCRCB422)
->> 		output_fmts[i++] =3D MEDIA_BUS_FMT_UYVY8_1X16;
->> -	if (info->color_formats & DRM_COLOR_FORMAT_YCRCB444)
->> +	if (max_bpc >=3D info->bpc && info->color_formats & =
-DRM_COLOR_FORMAT_YCRCB444)
->> 		output_fmts[i++] =3D MEDIA_BUS_FMT_YUV8_1X24;
->> 	/* Default 8bit RGB fallback */
->> --
->> 2.33.0
->=20
->=20
+diff --git a/Documentation/devicetree/bindings/timer/arm,armv7m-systick.txt b/Documentation/devicetree/bindings/timer/arm,armv7m-systick.txt
+deleted file mode 100644
+index 7cf4a24..00000000
+--- a/Documentation/devicetree/bindings/timer/arm,armv7m-systick.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-* ARMv7M System Timer
+-
+-ARMv7-M includes a system timer, known as SysTick. Current driver only
+-implements the clocksource feature.
+-
+-Required properties:
+-- compatible	  : Should be "arm,armv7m-systick"
+-- reg		  : The address range of the timer
+-
+-Required clocking property, have to be one of:
+-- clocks	  : The input clock of the timer
+-- clock-frequency : The rate in HZ in input of the ARM SysTick
+-
+-Examples:
+-
+-systick: timer@e000e010 {
+-	compatible = "arm,armv7m-systick";
+-	reg = <0xe000e010 0x10>;
+-	clocks = <&clk_systick>;
+-};
+-
+-systick: timer@e000e010 {
+-	compatible = "arm,armv7m-systick";
+-	reg = <0xe000e010 0x10>;
+-	clock-frequency = <90000000>;
+-};
+diff --git a/Documentation/devicetree/bindings/timer/arm,armv7m-systick.yaml b/Documentation/devicetree/bindings/timer/arm,armv7m-systick.yaml
+new file mode 100644
+index 00000000..2bcade5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/arm,armv7m-systick.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/arm,armv7m-systick.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARMv7M System Timer
++
++maintainers:
++  - Alexandre Torgue <alexandre.torgue@foss.st.com>
++  - Fabrice Gasnier <fabrice.gasnier@foss.st.com>
++
++description: ARMv7-M includes a system timer, known as SysTick.
++
++properties:
++  compatible:
++    const: arm,armv7m-systick
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-frequency: true
++
++oneOf:
++  - required:
++      - clocks
++  - required:
++      - clock-frequency
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    timer@e000e010 {
++        compatible = "arm,armv7m-systick";
++        reg = <0xe000e010 0x10>;
++        clocks = <&clk_systick>;
++    };
++
++  - |
++    timer@e000e010 {
++        compatible = "arm,armv7m-systick";
++        reg = <0xe000e010 0x10>;
++        clock-frequency = <90000000>;
++    };
++
++...
+-- 
+2.7.4
 
