@@ -2,166 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6183C4AED33
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 09:53:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 483764AED40
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 09:53:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234211AbiBIIwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 03:52:37 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:41804 "EHLO
+        id S242501AbiBIIx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 03:53:26 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:45430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236821AbiBIIw3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 03:52:29 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2061b.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e1a::61b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE78EDF28B10;
-        Wed,  9 Feb 2022 00:52:24 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MO2Q209pIFmhRiuiFo9sLdgktjT/CkrpRyplQ9H7xBy83IPJ5jcmqxonId7X9T5wZ9UtBbzH8h+tAB1pNwUfNY0qJz4rlEwPhxYCQxh+fLW4D//VImw4024B1ahu1/LrOSxbQMVHjwW0wKFtt7q3rEXe/4zxcjzPVY22C+s2vJjYI+mA2hxXkM6FA3SEosOgV0HbpEXTjJVgTLJCG82LCcM4ahzVFGoeKyDxxYbEflwg/V1ccmf/Un1VhBzgTq7bYclDQNd0dC41bljNGZ2COx9VUqfBGEQkD0NzJuNnQhJ46MeJ24heQx4oOefgI705di6YbgixwcDd/SyX45NeeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=maYIBthui/wiXVu7QZ+ik0rjmMzwVfPApPwcKGj9fFM=;
- b=e50P5U9wiM3P61yO8JApRYc/1q4Qs0XCvP5EUoqAP9lzemLyQCT7uaMlBYAVoXMGjDxtkletJD9L1MmZ8YSg0Wvmnnuu6aBFt22wk5e7Pvr6kIRcZw/U9slTcr1y7waBALkrVEGdlZi7ZQZ7OoMyp3oXVsEsmvo/+g3SSXJuIGxHkIA6vRfMHBxKSoVq6Rr4dtigv7NU3MZqD1V+CLHIjW3jcUYINh0CC/Rihx2DpBbM8flmDtSEa4RFemr3Ay9Lm/pbQLbiijq4aYr7dDmEdylizbPycqqBfrO5VFLcZSkRUFZ/ZA5scP7nkEQo59vsSyIJ39+2tvLoBb3s69tNaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=maYIBthui/wiXVu7QZ+ik0rjmMzwVfPApPwcKGj9fFM=;
- b=cqogZLP6FU8J74kZJ38aEFDdPuGVIBASVnA2PE/KYjxwR1m4Lvrm0po7UfrutCdsmOTH+TD2tkaNHhOdiyIN6EWOSai2C5+GcuOKYdX9JVkhqsEvbDS/NcP/2hMPSiuM6AkMVpzTW8Cb5yP6gKGR97BHgO77bgTNN9jAAN4rJfo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from HE1PR0802MB2426.eurprd08.prod.outlook.com (2603:10a6:3:e1::23)
- by VI1PR08MB2927.eurprd08.prod.outlook.com (2603:10a6:802:21::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Wed, 9 Feb
- 2022 08:51:32 +0000
-Received: from HE1PR0802MB2426.eurprd08.prod.outlook.com
- ([fe80::e14f:197:5001:4c56]) by HE1PR0802MB2426.eurprd08.prod.outlook.com
- ([fe80::e14f:197:5001:4c56%3]) with mapi id 15.20.4951.019; Wed, 9 Feb 2022
- 08:51:32 +0000
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Alex Bee <knaerzche@gmail.com>, Liang Chen <cl@rock-chips.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v5 5/5] arm64: dts: rockchip: enable the gpu on rk3568-evb1-v10
-Date:   Wed,  9 Feb 2022 09:51:10 +0100
-Message-Id: <20220209085110.3588035-6-michael.riesch@wolfvision.net>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220209085110.3588035-1-michael.riesch@wolfvision.net>
-References: <20220209085110.3588035-1-michael.riesch@wolfvision.net>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZR0P278CA0072.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:21::23) To HE1PR0802MB2426.eurprd08.prod.outlook.com
- (2603:10a6:3:e1::23)
+        with ESMTP id S241777AbiBIIxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 03:53:24 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42612E02DFC3
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 00:53:20 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id i14so2710903wrc.10
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 00:53:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UboVgMauCJoly95Wb/OTDqKyHdAc/NeskvhhaT+/Rg0=;
+        b=uqcPsSQpMZsUmJwetH1iRGtQXHsjvo0kngcHtAHyU46IWm9IELIoZLhspGc9AiYTRX
+         URazFP79C22I7+VCkI0XgMFUs92d233fWLwWS5li5R3hshaFr+owSxjCnghv0MNwOUJx
+         ttQ17l7U4l/RA6DA1BLm4t0ScMcZJmJdXqdEWjOOrkZtBc41n7E4AelE9D1pU2vI2UHM
+         LjJCzGbEnE4e/95RYTpa2uYi0FfKHxXENtuYat+z71JA0bMpritVV6m7FVKxukk/3SHV
+         is90yUg8y5LNnsB8MOKN5X7UhZdSWxoUcdmx20ZpyI+x3XcvaWFVXkXZSftfF3XXEkNs
+         JyhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UboVgMauCJoly95Wb/OTDqKyHdAc/NeskvhhaT+/Rg0=;
+        b=rSwVaiDiklmln0CyuMP10oNRqKcVDcQKnn+XW14MSYqwiCQXGR8mMxkMYel/mkt8fm
+         6C7dDeVOwMdeze50nCWIJgu2bgVBpCWNVFFA1h8GUoMvZEvt8nFUzUZMW2SIrFKWZCMl
+         tTU+DIFu2CzpxbmzaBCBHNv38Z32GWkbvlhvl93u9kHVfN/33QxjxTihk/s7B9UTEXtw
+         R8gONua7+QJneCY69QsbCDyG1CbWgGpZDT+wTz3duBg397YB+277iE9vxoCpAYL+S43u
+         Q/CQZgFENgX9uJUXYTPMOLWnPxSJHKYXoc09Yk37jrtg8gvCdFW4iiR2iWFyrpkGS2q1
+         I9Lg==
+X-Gm-Message-State: AOAM532o/YCn8g9j7DuRYCb/Zm7VOodUlstpY00aiC82mLeVb2xp/y2q
+        BgknWiFHpjT6W/01aD+hWjkHYQ==
+X-Google-Smtp-Source: ABdhPJxth6XdzcknVlyeQ2/HkUu556+xHLbAZXHlKuDBo5RR2zRlufFE/1JxBdBGA9eWz5MgPZCbkg==
+X-Received: by 2002:a5d:47c9:: with SMTP id o9mr1238727wrc.546.1644396787210;
+        Wed, 09 Feb 2022 00:53:07 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id 1sm16943718wry.52.2022.02.09.00.53.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Feb 2022 00:53:06 -0800 (PST)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     brgl@bgdev.pl, krzysztof.kozlowski@canonical.com,
+        linus.walleij@linaro.org, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2] dt-bindings: gpio: convert faraday,ftgpio01 to yaml
+Date:   Wed,  9 Feb 2022 08:52:58 +0000
+Message-Id: <20220209085258.1468649-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6ccc77f1-d17a-4e81-11da-08d9eba95e9f
-X-MS-TrafficTypeDiagnostic: VI1PR08MB2927:EE_
-X-Microsoft-Antispam-PRVS: <VI1PR08MB29273E16A2B3C5CDD5B88AB1F22E9@VI1PR08MB2927.eurprd08.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:983;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vRpoZ6AvuZrCSk57BZ7G4HsDvvfjVXISebMsup5l1cECRlKMxS84xwZkI++vRuP3zeuVhV9SD0fsGJ58wH3rtszpl6uua8e19zu8oK5/GgxQuPE5AgI66Rx2XchbJqs5TnclD7JOqZprommm3D9V2nF0yukyUeVoOUud8mX1p03T2jxR9GQBhzJbrK2F9PiPgtP3fMYjel+qKZvB6TdpHLVjiSdk0OOzVmd7n2I4pnklp3gBnPtBGvKo+A/JMxrBjwTrT6ZTGynuEiggd/gcZ5DlGsL4qpmsOFyZ5HGRffkR/8NRfB+AU6AiO/ycScGXN23j/cga6sdglOBVN1tlEzbz8C/EFm0gaLEQ6vjFFoy1Q8lKxCBrzfk4/DcA3QBbeQivGZsUZI2elHkHOOi5iIVlVaaUQ8iFnp1tDFGSM1O9l/ObxplQb4D1GRqGz29HWpstxiUFAagwWtajmuxG9mSGjL6vj1Agv5nrszFrHkupVDh34VFFVAIb4C4Ybze7xiCctp2Bv9sVIPnBIzoxL94Rh/weqnIxhsgCTfQ/BnvMybV0j/WRbB3D7k5bRhMcc/9CNsf3LyBzEAEWlxgyKrzNwNCu/88J8OhDu2iYa+d++HnMzhLvQBYwDONSpS1qAvx5kMRKs49MBiTcThbw8w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0802MB2426.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(54906003)(66556008)(186003)(4326008)(316002)(66476007)(36756003)(6666004)(4744005)(44832011)(8676002)(66946007)(7416002)(5660300002)(52116002)(6506007)(86362001)(2616005)(1076003)(8936002)(6486002)(508600001)(38100700002)(2906002)(6512007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sfrW9RsnCDNfJ5liVBbxWzmG22DkKU0+mYVvwu4LrSqmjLsvTdF/WXpxBcJU?=
- =?us-ascii?Q?GILcWCbGjSSRcYB0Y81BWRA15CQjf6hK49mfTRbJf1TCrSfZHyEbBX7Dk4FJ?=
- =?us-ascii?Q?kedwHo6kMm1WBNMKpUuGW/w/lT6aWWmF1vbSc5oVAeVCxib6GpT3Aq4ztsll?=
- =?us-ascii?Q?sSi00JVRgcmk5ep7tyi83zyf9BV2WzGm+oyrzZ1E+WhKwdmhCsIgWVMmvB+Q?=
- =?us-ascii?Q?BKDviZ/XCK3F6LxoUjAjFzpFlP/j5M4a7NhSdG3w9K5QvQZTfwHX4/fN3+Jt?=
- =?us-ascii?Q?ozyaiCtdKntgdFrfrIW5N2JSn+yY3BJzitA+MJYbXHs8QAEfQG76k9NLcMbB?=
- =?us-ascii?Q?W9CcpvB5H9CWvi+aH6XM4DNotsj0XNN5myLHvQa5k0deZ6apAsvx+ga+eb5n?=
- =?us-ascii?Q?AQVJW+hDe2gZLf6FYmxfZ6F/RtEnSvNVK3IhJ3GQCVTnwPYs0HTzxr65/Tob?=
- =?us-ascii?Q?GaXqt4AcZwrGTneQyhscMTCqYHnWaCPNwIKLBPsKCuX1VRSGys50gj8+8UhQ?=
- =?us-ascii?Q?/0+y4mFdAfQO5ufIYrqNvXDXPBXIFqclTqzTKQb77Z8A5vH/4DtZ1yBan1nK?=
- =?us-ascii?Q?GjARvbXOqEOIa3+L8JWB+l0r0VKdP2I3mM2NgbQsAUdVfiafN4BjGPQ+3v3p?=
- =?us-ascii?Q?BG2Z5mvhgZWUDD2TMlkS8VaNahhMuQBWrOTG3BAAYBVvWY8Z6YrWwkGrYQmm?=
- =?us-ascii?Q?RzS9XuiO3yFRX9jm0oquuj+crjbsUkQU/uVr7oCMeKN6Z9ZMdD/TUCoHWBI2?=
- =?us-ascii?Q?Bd4yePnxM6Hxf0DgfaH2j4Hf6w8MLik96IyubrK/lfhPx0IYZkF9RIiiYjVg?=
- =?us-ascii?Q?FzuYpvf6aS4VXquZ9O1SMX8wxKZLAA+F7ovQELiBJIdnJHUj5X+3tYEOcsto?=
- =?us-ascii?Q?UfXoc75I1ZItOPw2RNZvbftGa5k/MP02V9lvLE+kSzKYILoRRPvbcxfUBkWf?=
- =?us-ascii?Q?yHWOO1hdx1VwzQr9fIl7ER15ezO34lG7sbG2DmQ+G3W20uosRE1v6DWNJOAE?=
- =?us-ascii?Q?ppSBkaN+BM8bcA0XbNCHNkIJFQUwH33BIwhdjI67p8hgKf8NXldLR/4N6Ubk?=
- =?us-ascii?Q?1Cp1FOBcy1O8hKTG5pyMbbI4ohhVXP0+Xyy6JzvljR1A0a/ZC2jiZiEWxJZe?=
- =?us-ascii?Q?zdM0QO65xRDKeWntTh7Acz97Bz0Gj/Adn5jXAsE0SQcSixtthqbyOOy67bqf?=
- =?us-ascii?Q?Ny7tpTCX4OuIoFo2vN3B0QBJen4KT16Ape/fAIOnDY8lAw7GdXCLgDu3SWk1?=
- =?us-ascii?Q?fxOetEVzGNBQgp8xUu3dSeNlbf503Vu1cdRtbPKaUQvNPrEcU3vw2Wdeo6JC?=
- =?us-ascii?Q?dHIgC8bzvriGgkBR1oDjNnflOfnfvJoHkwrPvHRBs8+e1cLI16EelKtdi3nV?=
- =?us-ascii?Q?bStskdjP9GqQUPtVb3RjZEOoUqY3/LdtNg0+LE91wu5ZzgeKYFVIP1ntEE4k?=
- =?us-ascii?Q?goSVxA2fHkrZVc/moqEhtEYiIsBOwaAdcUiYB9hdornNtZWjOZZimwO6ZMow?=
- =?us-ascii?Q?uQVH2ZvJ6l4bcz3H2ZP4Vg+V5v1u73uyh3zg69ax31ch77OWQlgsPVI6G0RJ?=
- =?us-ascii?Q?tasX/pENrhR6DucEV+B7PZ6LhGiFXo9KNHlULJmtHO4ugQ4gQ7jYBfzGrK54?=
- =?us-ascii?Q?/HpPIqmz+VQCbkpP2tgvPRbffwSW8jclDzBJBKqiCIdJ6hnZlFmFsT2g2Mgn?=
- =?us-ascii?Q?2/vYtiG75Gi4nxMHm70bX1Awj1t7k1meyb50DXu890qv7mic4mlHd0jKaS6A?=
- =?us-ascii?Q?Zy59+64VyHnylvjKr7vd0zE7gnJxK8c=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ccc77f1-d17a-4e81-11da-08d9eba95e9f
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR0802MB2426.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2022 08:51:32.1150
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bQlxx6788TYuWwX+axpHoYLvnUeuDAznXk4PPXNdxtzRicbWiLaU0V4MCGFXpr4vxtyUKZtzz/TJUMJcl27/OCKVRamSOkO8ctcolhTABMM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR08MB2927
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the GPU core on the Rockchip RK3568 EVB1.
+Converts gpio/faraday,ftgpio010.txt to yaml.
 
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Change since v1:
+- added reviewed-by
+- put blank lines between DT property
+- removed useless quotes
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-index d8a4f7a9f562..39c495ff0157 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-@@ -140,6 +140,11 @@ &gmac1m1_rgmii_clk
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&vdd_gpu>;
-+	status = "okay";
-+};
+This commit will cause arch/arm/boot/dts/moxart-uc7112lx.dts to fail DT validation,
+but the GPIO driver need an interrupt so the current moxart DT is incomplete and the error is appropriate.
+ .../bindings/gpio/faraday,ftgpio010.txt       | 27 --------
+ .../bindings/gpio/faraday,ftgpio010.yaml      | 65 +++++++++++++++++++
+ 2 files changed, 65 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/faraday,ftgpio010.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/faraday,ftgpio010.yaml
+
+diff --git a/Documentation/devicetree/bindings/gpio/faraday,ftgpio010.txt b/Documentation/devicetree/bindings/gpio/faraday,ftgpio010.txt
+deleted file mode 100644
+index d04236558619..000000000000
+--- a/Documentation/devicetree/bindings/gpio/faraday,ftgpio010.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-Faraday Technology FTGPIO010 GPIO Controller
+-
+-Required properties:
+-
+-- compatible : Should be one of
+-  "cortina,gemini-gpio", "faraday,ftgpio010"
+-  "moxa,moxart-gpio", "faraday,ftgpio010"
+-  "faraday,ftgpio010"
+-- reg : Should contain registers location and length
+-- interrupts : Should contain the interrupt line for the GPIO block
+-- gpio-controller : marks this as a GPIO controller
+-- #gpio-cells : Should be 2, see gpio/gpio.txt
+-- interrupt-controller : marks this as an interrupt controller
+-- #interrupt-cells : a standard two-cell interrupt flag, see
+-  interrupt-controller/interrupts.txt
+-
+-Example:
+-
+-gpio@4d000000 {
+-	compatible = "cortina,gemini-gpio", "faraday,ftgpio010";
+-	reg = <0x4d000000 0x100>;
+-	interrupts = <22 IRQ_TYPE_LEVEL_HIGH>;
+-	gpio-controller;
+-	#gpio-cells = <2>;
+-	interrupt-controller;
+-	#interrupt-cells = <2>;
+-};
+diff --git a/Documentation/devicetree/bindings/gpio/faraday,ftgpio010.yaml b/Documentation/devicetree/bindings/gpio/faraday,ftgpio010.yaml
+new file mode 100644
+index 000000000000..640da5b9b0cc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/faraday,ftgpio010.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/faraday,ftgpio010.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- &i2c0 {
- 	status = "okay";
- 
-@@ -462,6 +467,12 @@ &sdmmc0 {
- 	status = "okay";
- };
- 
-+&tsadc {
-+	rockchip,hw-tshut-mode = <1>;
-+	rockchip,hw-tshut-polarity = <0>;
-+	status = "okay";
-+};
++title: Faraday Technology FTGPIO010 GPIO Controller
 +
- &uart2 {
- 	status = "okay";
- };
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - const: cortina,gemini-gpio
++          - const: faraday,ftgpio010
++      - items:
++          - const: moxa,moxart-gpio
++          - const: faraday,ftgpio010
++      - const: faraday,ftgpio010
++
++  reg:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description: Should contain the interrupt line for the GPIO block
++
++  gpio-controller: true
++  "#gpio-cells":
++    const: 2
++
++  interrupt-controller: true
++  "#interrupt-cells":
++    const: 2
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#gpio-cells"
++  - interrupt-controller
++  - "#interrupt-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    gpio@4d000000 {
++      compatible = "cortina,gemini-gpio", "faraday,ftgpio010";
++      reg = <0x4d000000 0x100>;
++      interrupts = <22 IRQ_TYPE_LEVEL_HIGH>;
++      gpio-controller;
++      #gpio-cells = <2>;
++      interrupt-controller;
++      #interrupt-cells = <2>;
++    };
 -- 
-2.30.2
+2.34.1
 
