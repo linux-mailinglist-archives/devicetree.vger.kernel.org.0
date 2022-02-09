@@ -2,96 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E3D24AFFC8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 23:02:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DDBB4AFFD7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 23:04:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234644AbiBIWBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 17:01:10 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:37344 "EHLO
+        id S234861AbiBIWEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 17:04:14 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:50960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234491AbiBIWBG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 17:01:06 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C435DF8E3FF;
-        Wed,  9 Feb 2022 14:01:05 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id u3so3950326oiv.12;
-        Wed, 09 Feb 2022 14:01:05 -0800 (PST)
+        with ESMTP id S234863AbiBIWEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 17:04:12 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFDFAE010DBF
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 14:04:10 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id c8-20020a17090a674800b001b91184b732so4131623pjm.5
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 14:04:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xNzkFtkEdwS4V5xuimABsw6tYvmcHWMu0L6uE58HPK4=;
+        b=kyxSH/1s4tYkpnIvrk1pCVVHvuka0Iv2uFFyhp9uZb0aans0RzfOy3BkDicIzvpIK2
+         JZ+AInXaf/dEUAOlK2atr40Ts389WYvQGH1Iw96AZ1SFqT1j4ADLygKvmII//Yw6WSq0
+         1ZztH/K36DxhmzhYbKgN7gkepOJvdyMan3uZz8JP3RBDwsE3mZ3ABC+VnPzYAI08zOkn
+         JX6p7qgUTG4FbF0Q/KazCCYn0vfox4zeNuxNgGWuoQJp0sXTZmeP6Wj4GZXH8yRWt5bP
+         7j8sps3kN/wCna3m6wFG2i5r2m9G2x5j8DF1WZrhxmKarKilBeUF8EVrQGaqOa90iawA
+         HXCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ph17us2VYP151+oagxeJOEGgmWDg7hvLO4GbsmqrUTk=;
-        b=6yICeb7G1p1FtEbKEu4zBtRgke6vmP4jp+w9w7Tey1Ymo13xvEy0BwEmWgpIJgvhwU
-         nNb2V0NHbdPTyx38+XoHKKRzTr1EzGdDhD5UT5uE4eXlFTRSgck/5w8yFmwF0yvy+yEp
-         m9rCgJ4qhc1lAe5orL6nKk/i4OzgbTKxkVOjcN2BHNniLbVLqUHtPXTW8hI5OmhGV7u5
-         MQqPZdYLMhNARbrYJhMC866CIXugHVDxXFTW/1Iig8FYcuQ3TvhD6V99zs2CXponruuQ
-         RR0pvmme+GGhR8nEo1LXT5sgXALzFwLj+spmYXcPx3ozwwdPPYQdRaUBzdAIFDb6KBWT
-         hfmQ==
-X-Gm-Message-State: AOAM531bG0EXaMWRSrYQgcCr3fZOtAjFyq88a1hWld5Y1Hze+LhMt8Ws
-        tKiq1i1VOnDy7BriPIPapw==
-X-Google-Smtp-Source: ABdhPJw1Q8wxmJWgC1W5LJv4r1904ASF7Q897ixVqzlgOVnzH4Uml8NnR8gpAalstpD1jK7m6IdoWg==
-X-Received: by 2002:a05:6808:1719:: with SMTP id bc25mr2567838oib.323.1644444064633;
-        Wed, 09 Feb 2022 14:01:04 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bj8sm7592435oib.20.2022.02.09.14.01.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 14:01:03 -0800 (PST)
-Received: (nullmailer pid 1005143 invoked by uid 1000);
-        Wed, 09 Feb 2022 22:01:02 -0000
-Date:   Wed, 9 Feb 2022 16:01:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-omap@vger.kernel.org, Tero Kristo <kristo@kernel.org>
-Subject: Re: [PATCHv2] dt-bindings: clock: Add binding for TI clksel
-Message-ID: <YgQ5no/7cEW4yRrM@robh.at.kernel.org>
-References: <20220203073929.59296-1-tony@atomide.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xNzkFtkEdwS4V5xuimABsw6tYvmcHWMu0L6uE58HPK4=;
+        b=A/qQjUYRS9ty77Fsqauk9nt04mkx+Rfb3VnWDmgGkKRtz705kotZjALFiinnDfyPyy
+         t4MFesnGKshXoDC0QR8QfhJYpMpjH3fplYJCFZS5Y1u5paEdvWmWNnSjLq6cVpLHgSfq
+         092SEAwFteYcZfdgNBJCw2SGA2I1UML+7J7IzLTISYQ82q7oRlAAFAlRJareiaiHoEVP
+         XyBcFArF3uQRTGqAYt/tGWz9D1NWzwhikk7DRNQObNQyNU+pPSfiGoRv2h7pSEr7MJw9
+         Xu7FrsKzpgp/LurjjCHlOH8e+WsNNCPN2jtGTOvzvGiG0FS475DFrBlrRm9L4ir5Hff0
+         O/0w==
+X-Gm-Message-State: AOAM531XurrSyQ8IrZkx4fhgplsortavJXxNHmaERYkARary1XX42kfJ
+        DyxMXL3+9467u0zDcDxl3AIeKQCkXEYsxqnSGOnHJA==
+X-Google-Smtp-Source: ABdhPJzKcnRRg0t0lBD/tELh3a75+sefe9RuAfwBe6PnjfwaIkNK+e/1Tl5ywaXWSkPidjxFSWHXiHZ7scaZX+zDe+s=
+X-Received: by 2002:a17:90a:5303:: with SMTP id x3mr5254322pjh.64.1644444249918;
+ Wed, 09 Feb 2022 14:04:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220203073929.59296-1-tony@atomide.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220202020103.2149130-1-rajatja@google.com> <CAJZ5v0gngVxoe88rNAXXK_F34rHAKuxokiuZ6kpg6FhbnyMn0Q@mail.gmail.com>
+In-Reply-To: <CAJZ5v0gngVxoe88rNAXXK_F34rHAKuxokiuZ6kpg6FhbnyMn0Q@mail.gmail.com>
+From:   Rajat Jain <rajatja@google.com>
+Date:   Wed, 9 Feb 2022 14:03:34 -0800
+Message-ID: <CACK8Z6FuOeVwxh=Psn2HnG_HemndSLV9yq4xyX=JS2HkyaQ+fA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] PCI: Allow internal devices to be marked as untrusted
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Len Brown <lenb@kernel.org>,
+        Linux PCI <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rajat Jain <rajatxjain@gmail.com>,
+        Dmitry Torokhov <dtor@google.com>,
+        Jesse Barnes <jsbarnes@google.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Pavel Machek <pavel@denx.de>,
+        "Oliver O'Halloran" <oohall@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 03 Feb 2022 09:39:29 +0200, Tony Lindgren wrote:
-> In order to prepare for fixing lots of devicetree unique_unit_address
-> warnings for the TI clock nodes, let's add a binding for the TI clksel
-> clocks. This allows us to move the overlapping reg properties for the
-> component clocks to be children of the related clksel nodes. And with
-> that we need the reg property only for the parent clksel node making
-> the reg property unique like it should be.
-> 
-> We want to set #clock-cells = <2> in case we ever start parsing ranges
-> of clkcsel instances directly using a clksel driver rather than using the
-> existing component clock drivers and child nodes.
-> 
-> And before the devicetree files can be updated, we need to update the
-> TI clock drivers to get the IO address from the parent clksel node.
-> 
-> Cc: Tero Kristo <kristo@kernel.org>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
-> 
-> Changes since V1:
-> 
-> - Set additionalProperties to type object as suggested by Rob
-> 
-> - Changed #clock-cells to 2 for parsing ranges of clksel instances
-> 
-> - Updated patch description for more info on why this is needed
-> 
->  .../bindings/clock/ti/ti,clksel.yaml          | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
-> 
+Hello,
 
-Applied, thanks!
+On Wed, Feb 9, 2022 at 11:11 AM Rafael J. Wysocki <rafael@kernel.org> wrote:
+>
+> On Wed, Feb 2, 2022 at 3:01 AM Rajat Jain <rajatja@google.com> wrote:
+> >
+> > Today the pci_dev->untrusted is set for any devices sitting downstream
+> > an external facing port (determined via "ExternalFacingPort" or the
+> > "external-facing" properties).
+> >
+> > However, currently there is no way for internal devices to be marked as
+> > untrusted.
+> >
+> > There are use-cases though, where a platform would like to treat an
+> > internal device as untrusted (perhaps because it runs untrusted firmware
+> > or offers an attack surface by handling untrusted network data etc).
+> >
+> > Introduce a new "UntrustedDevice" property that can be used by the
+> > firmware to mark any device as untrusted.
+> >
+> > Signed-off-by: Rajat Jain <rajatja@google.com>
+> > ---
+> > v2: * Also use the same property for device tree based systems.
+> >     * Add documentation (next patch)
+> >
+> >  drivers/pci/of.c       | 2 ++
+> >  drivers/pci/pci-acpi.c | 1 +
+> >  drivers/pci/pci.c      | 9 +++++++++
+> >  drivers/pci/pci.h      | 2 ++
+> >  4 files changed, 14 insertions(+)
+> >
+> > diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> > index cb2e8351c2cc..e8b804664b69 100644
+> > --- a/drivers/pci/of.c
+> > +++ b/drivers/pci/of.c
+> > @@ -24,6 +24,8 @@ void pci_set_of_node(struct pci_dev *dev)
+> >                                                     dev->devfn);
+> >         if (dev->dev.of_node)
+> >                 dev->dev.fwnode = &dev->dev.of_node->fwnode;
+> > +
+> > +       pci_set_untrusted(dev);
+> >  }
+> >
+> >  void pci_release_of_node(struct pci_dev *dev)
+> > diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+> > index a42dbf448860..2bffbd5c6114 100644
+> > --- a/drivers/pci/pci-acpi.c
+> > +++ b/drivers/pci/pci-acpi.c
+> > @@ -1356,6 +1356,7 @@ void pci_acpi_setup(struct device *dev, struct acpi_device *adev)
+> >
+> >         pci_acpi_optimize_delay(pci_dev, adev->handle);
+> >         pci_acpi_set_external_facing(pci_dev);
+> > +       pci_set_untrusted(pci_dev);
+> >         pci_acpi_add_edr_notifier(pci_dev);
+> >
+> >         pci_acpi_add_pm_notifier(adev, pci_dev);
+> > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> > index 9ecce435fb3f..41e887c27004 100644
+> > --- a/drivers/pci/pci.c
+> > +++ b/drivers/pci/pci.c
+> > @@ -6869,3 +6869,12 @@ static int __init pci_realloc_setup_params(void)
+> >         return 0;
+> >  }
+> >  pure_initcall(pci_realloc_setup_params);
+> > +
+> > +void pci_set_untrusted(struct pci_dev *pdev)
+> > +{
+> > +       u8 val;
+> > +
+> > +       if (!device_property_read_u8(&pdev->dev, "UntrustedDevice", &val)
+> > +           && val)
+> > +               pdev->untrusted = 1;
+>
+> I'm not sure why you ignore val = 0.  Is it not a valid value?
+
+I'm following the other similar properties that Bjorn mentioned. The
+pdev->untrusted is already initialized to 0 so it wouldn't matter.
+
+>
+> The property is not particularly well defined here.  It is not clear
+> from its name that it only applies to PCI devices and how.
+>
+> AFAICS, the "untrusted" bit affected by it is only used by the ATS
+> code and in one PCH ACS quirk, but I'm not sure if this is all you
+> have in mind.
+
+I hope my other response addressed this one.
+
+Thanks & Best Regards,
+
+Rajat
+
+>
+> > +}
+> > diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> > index 3d60cabde1a1..6c273ce5e0ba 100644
+> > --- a/drivers/pci/pci.h
+> > +++ b/drivers/pci/pci.h
+> > @@ -761,4 +761,6 @@ static inline pci_power_t mid_pci_get_power_state(struct pci_dev *pdev)
+> >  }
+> >  #endif
+> >
+> > +void pci_set_untrusted(struct pci_dev *pdev);
+> > +
+> >  #endif /* DRIVERS_PCI_H */
+> > --
+> > 2.35.0.rc2.247.g8bbb082509-goog
+> >
