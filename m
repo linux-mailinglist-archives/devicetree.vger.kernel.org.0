@@ -2,392 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2530E4AF8AC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 18:46:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FB3F4AF8BC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 18:49:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237684AbiBIRqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 12:46:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45050 "EHLO
+        id S238445AbiBIRss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 12:48:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235315AbiBIRqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 12:46:08 -0500
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51CEFC0613C9;
-        Wed,  9 Feb 2022 09:46:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1644428771; x=1675964771;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=RB573mLF4TwBecPUuBH+gJ5hpoDLGZ3AL75rF6UQ/ok=;
-  b=uvgBTses4fAR5Kar7ArZZ+0EPrKXW1Mmm2TilvUj0vzEENiG15IVFLu0
-   9njiU1CMgCyR9xYGKrrA1lHvm0itLuxbH218PwdHJ0GxZ5xie7J5WHZRg
-   Ujof7btHGMTQTspf1031pbDsWSc9SMYiwGSDxOy6EHqO26vw0Whsuogk/
-   k=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 09 Feb 2022 09:46:11 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2022 09:46:10 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 9 Feb 2022 09:46:10 -0800
-Received: from blr-ubuntu-87.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 9 Feb 2022 09:46:06 -0800
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-To:     <bjorn.andersson@linaro.org>, <dianders@chromium.org>,
-        <mka@chromium.org>
-CC:     <viresh.kumar@linaro.org>, <sboyd@kernel.org>, <agross@kernel.org>,
-        <robh+dt@kernel.org>, <rjw@rjwysocki.net>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-Subject: [PATCH v4] arm64: dts: qcom: sc7280: Add cpu OPP tables
-Date:   Wed, 9 Feb 2022 23:15:57 +0530
-Message-ID: <1644428757-25575-1-git-send-email-quic_sibis@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        with ESMTP id S238447AbiBIRsq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 12:48:46 -0500
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8A3C05CB88;
+        Wed,  9 Feb 2022 09:48:49 -0800 (PST)
+Received: by mail-oo1-f48.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso3340639ooi.1;
+        Wed, 09 Feb 2022 09:48:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=9Q2I/VP+XFwXy/Za9m82QJTmUqxQOQNrGnI8flFPCzE=;
+        b=XG5AIE+bpgmkBq4s9jP6uDrqIzghOy2TUAc63+GE/Xyimg/eypqRdscLKOg3NkV2i7
+         s6tYlf0AAI/v9qyKBHmtE2qjU2OaMulYd8DbHiw2zGFXp9KpAkGsdfjf6eLXAS0SKdrD
+         ja6GTEkQhrcKKon6rrvPbafI318sPUGYgLDxepCq1STuKJW7M1f4RiUpRGoVQwzTM5iv
+         Jd16d5nB2yRN3oPZyw9HQ50dfq5v0ltnk79+EfPo9PbZAEmr7gcs9PJQz0tw729XdIXr
+         /qE8T2zKaOXeftJDLkwP6BlHx6oZegAOaWBnowImR4KVaAXU/+pQbtRr6WUwyZ5bngog
+         s9hg==
+X-Gm-Message-State: AOAM532TLxFfuaXxcCxLGg0pWjs6N26+OSRDaUg4Qv/vBixLzh26xwUQ
+        8tJW9Jp0HwnzPpjjP5Dt0Q==
+X-Google-Smtp-Source: ABdhPJxLVUkyLr5K9Jth1KPAM7TMJsJ9wGQtyn4evi3+a6WwLPinzkeFbOB9l+rfCrvEzu15f2MLgg==
+X-Received: by 2002:a05:6870:6296:: with SMTP id s22mr1124414oan.338.1644428928376;
+        Wed, 09 Feb 2022 09:48:48 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id r41sm6103687oap.2.2022.02.09.09.48.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Feb 2022 09:48:47 -0800 (PST)
+Received: (nullmailer pid 581562 invoked by uid 1000);
+        Wed, 09 Feb 2022 17:48:46 -0000
+Date:   Wed, 9 Feb 2022 11:48:46 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc:     Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-kernel@vger.kernel.org, Liang Chen <cl@rock-chips.com>,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Alex Bee <knaerzche@gmail.com>
+Subject: Re: [PATCH v5 1/5] dt-bindings: gpu: mali-bifrost: describe clocks
+ for the rk356x gpu
+Message-ID: <YgP+ftqvBcpLg6im@robh.at.kernel.org>
+References: <20220209085110.3588035-1-michael.riesch@wolfvision.net>
+ <1644420908.380944.391811.nullmailer@robh.at.kernel.org>
+ <01b78d95-fdf3-060a-831d-dae2abbc7109@wolfvision.net>
+ <3297396.uCXnvZdJcx@diego>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3297396.uCXnvZdJcx@diego>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add OPP tables required to scale DDR/L3 per freq-domain on SC7280 SoCs.
+On Wed, Feb 09, 2022 at 05:28:05PM +0100, Heiko Stübner wrote:
+> Hi Michael,
+> 
+> Am Mittwoch, 9. Februar 2022, 16:46:28 CET schrieb Michael Riesch:
+> > Hi Rob,
+> > 
+> > On 2/9/22 16:35, Rob Herring wrote:
+> > > On Wed, 09 Feb 2022 09:51:06 +0100, Michael Riesch wrote:
+> > >> From: Alex Bee <knaerzche@gmail.com>
+> > >>
+> > >> The Bifrost GPU in Rockchip RK356x SoCs has a core and a bus clock.
+> > >> Reflect this in the SoC specific part of the binding.
+> > >>
+> > >> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+> > >> [move the changes to the SoC section]
+> > >> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> > >> ---
+> > >>  .../devicetree/bindings/gpu/arm,mali-bifrost.yaml | 15 +++++++++++++++
+> > >>  1 file changed, 15 insertions(+)
+> > >>
+> > > 
+> > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > > 
+> > > yamllint warnings/errors:
+> > > ./Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml:173:12: [warning] wrong indentation: expected 12 but found 11 (indentation)
+> > 
+> > D'oh! Sorry for the stupid mistake, I found that yamllint was indeed
+> > missing.
+> > 
+> > Lines 173 and 174 need an extra space. In the case that a v6 is required
+> > I'll fix this. But of course I wouldn't say no if this could be fixed
+> > when the patch is applied :-)
+> 
+> My guess is, Rob's bot filters out the easy wrongs, so I'm not sure if he
+> actually looks at these in person.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
----
+I do because there are sometimes false positives. It's not a free 
+testing service. (Well, it might be free beer for you, but that's 
+because I'm buying. :) ) For just indentation I will still review them 
+(eventually).
 
-V4:
- * Round up frequency labels [Matthias]
- * Add DDR/L3 bandwidth votes for the pro variant of SC7280 SoC
+> So doing a v6 might actually be better for a Review :-)
 
-V3:
- * Rename cpu opp table nodes [Matthias]
- * Rename opp phandles [Doug]
+Resending just moves you to the back of the line (usually). 
 
-Depends on the following patch:
-L3 Provider Node: https://patchwork.kernel.org/project/linux-arm-msm/patch/1634812857-10676-4-git-send-email-okukatla@codeaurora.org/
-
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 230 +++++++++++++++++++++++++++++++++++
- 1 file changed, 230 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index c6d26ea805d8..f0b64be63c21 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,videocc-sc7280.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interconnect/qcom,osm-l3.h>
- #include <dt-bindings/interconnect/qcom,sc7280.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
-@@ -163,6 +164,9 @@
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			next-level-cache = <&L2_0>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-+					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
- 			L2_0: l2-cache {
-@@ -183,6 +187,9 @@
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			next-level-cache = <&L2_100>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-+					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
- 			L2_100: l2-cache {
-@@ -200,6 +207,9 @@
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			next-level-cache = <&L2_200>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-+					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
- 			L2_200: l2-cache {
-@@ -217,6 +227,9 @@
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			next-level-cache = <&L2_300>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-+					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
- 			L2_300: l2-cache {
-@@ -234,6 +247,9 @@
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			next-level-cache = <&L2_400>;
-+			operating-points-v2 = <&cpu4_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-+					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			#cooling-cells = <2>;
- 			L2_400: l2-cache {
-@@ -251,6 +267,9 @@
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			next-level-cache = <&L2_500>;
-+			operating-points-v2 = <&cpu4_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-+					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			#cooling-cells = <2>;
- 			L2_500: l2-cache {
-@@ -268,6 +287,9 @@
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			next-level-cache = <&L2_600>;
-+			operating-points-v2 = <&cpu4_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-+					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			#cooling-cells = <2>;
- 			L2_600: l2-cache {
-@@ -285,6 +307,9 @@
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			next-level-cache = <&L2_700>;
-+			operating-points-v2 = <&cpu7_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-+					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
- 			qcom,freq-domain = <&cpufreq_hw 2>;
- 			#cooling-cells = <2>;
- 			L2_700: l2-cache {
-@@ -384,6 +409,211 @@
- 		};
- 	};
- 
-+	cpu0_opp_table: cpu0-opp-table {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		cpu0_opp_300mhz: opp-300000000 {
-+			opp-hz = /bits/ 64 <300000000>;
-+			opp-peak-kBps = <800000 9600000>;
-+		};
-+
-+		cpu0_opp_691mhz: opp-691200000 {
-+			opp-hz = /bits/ 64 <691200000>;
-+			opp-peak-kBps = <800000 17817600>;
-+		};
-+
-+		cpu0_opp_806mhz: opp-806400000 {
-+			opp-hz = /bits/ 64 <806400000>;
-+			opp-peak-kBps = <800000 20889600>;
-+		};
-+
-+		cpu0_opp_941mhz: opp-940800000 {
-+			opp-hz = /bits/ 64 <940800000>;
-+			opp-peak-kBps = <1804000 24576000>;
-+		};
-+
-+		cpu0_opp_1152mhz: opp-1152000000 {
-+			opp-hz = /bits/ 64 <1152000000>;
-+			opp-peak-kBps = <2188000 27033600>;
-+		};
-+
-+		cpu0_opp_1325mhz: opp-1324800000 {
-+			opp-hz = /bits/ 64 <1324800000>;
-+			opp-peak-kBps = <2188000 33792000>;
-+		};
-+
-+		cpu0_opp_1517mhz: opp-1516800000 {
-+			opp-hz = /bits/ 64 <1516800000>;
-+			opp-peak-kBps = <3072000 38092800>;
-+		};
-+
-+		cpu0_opp_1651mhz: opp-1651200000 {
-+			opp-hz = /bits/ 64 <1651200000>;
-+			opp-peak-kBps = <3072000 41779200>;
-+		};
-+
-+		cpu0_opp_1805mhz: opp-1804800000 {
-+			opp-hz = /bits/ 64 <1804800000>;
-+			opp-peak-kBps = <4068000 48537600>;
-+		};
-+
-+		cpu0_opp_1958mhz: opp-1958400000 {
-+			opp-hz = /bits/ 64 <1958400000>;
-+			opp-peak-kBps = <4068000 48537600>;
-+		};
-+
-+		cpu0_opp_2016mhz: opp-2016000000 {
-+			opp-hz = /bits/ 64 <2016000000>;
-+			opp-peak-kBps = <6220000 48537600>;
-+		};
-+	};
-+
-+	cpu4_opp_table: cpu4-opp-table {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		cpu4_opp_691mhz: opp-691200000 {
-+			opp-hz = /bits/ 64 <691200000>;
-+			opp-peak-kBps = <1804000 9600000>;
-+		};
-+
-+		cpu4_opp_941mhz: opp-940800000 {
-+			opp-hz = /bits/ 64 <940800000>;
-+			opp-peak-kBps = <2188000 17817600>;
-+		};
-+
-+		cpu4_opp_1229mhz: opp-1228800000 {
-+			opp-hz = /bits/ 64 <1228800000>;
-+			opp-peak-kBps = <4068000 24576000>;
-+		};
-+
-+		cpu4_opp_1344mhz: opp-1344000000 {
-+			opp-hz = /bits/ 64 <1344000000>;
-+			opp-peak-kBps = <4068000 24576000>;
-+		};
-+
-+		cpu4_opp_1517mhz: opp-1516800000 {
-+			opp-hz = /bits/ 64 <1516800000>;
-+			opp-peak-kBps = <4068000 24576000>;
-+		};
-+
-+		cpu4_opp_1651mhz: opp-1651200000 {
-+			opp-hz = /bits/ 64 <1651200000>;
-+			opp-peak-kBps = <6220000 38092800>;
-+		};
-+
-+		cpu4_opp_1901mhz: opp-1900800000 {
-+			opp-hz = /bits/ 64 <1900800000>;
-+			opp-peak-kBps = <6220000 44851200>;
-+		};
-+
-+		cpu4_opp_2054mhz: opp-2054400000 {
-+			opp-hz = /bits/ 64 <2054400000>;
-+			opp-peak-kBps = <6220000 44851200>;
-+		};
-+
-+		cpu4_opp_2112mhz: opp-2112000000 {
-+			opp-hz = /bits/ 64 <2112000000>;
-+			opp-peak-kBps = <6220000 44851200>;
-+		};
-+
-+		cpu4_opp_2131mhz: opp-2131200000 {
-+			opp-hz = /bits/ 64 <2131200000>;
-+			opp-peak-kBps = <6220000 44851200>;
-+		};
-+
-+		cpu4_opp_2208mhz: opp-2208000000 {
-+			opp-hz = /bits/ 64 <2208000000>;
-+			opp-peak-kBps = <6220000 44851200>;
-+		};
-+
-+		cpu4_opp_2400mhz: opp-2400000000 {
-+			opp-hz = /bits/ 64 <2400000000>;
-+			opp-peak-kBps = <8532000 48537600>;
-+		};
-+
-+		cpu4_opp_2611mhz: opp-2611200000 {
-+			opp-hz = /bits/ 64 <2611200000>;
-+			opp-peak-kBps = <8532000 48537600>;
-+		};
-+	};
-+
-+	cpu7_opp_table: cpu7-opp-table {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		cpu7_opp_806mhz: opp-806400000 {
-+			opp-hz = /bits/ 64 <806400000>;
-+			opp-peak-kBps = <1804000 9600000>;
-+		};
-+
-+		cpu7_opp_1056mhz: opp-1056000000 {
-+			opp-hz = /bits/ 64 <1056000000>;
-+			opp-peak-kBps = <2188000 17817600>;
-+		};
-+
-+		cpu7_opp_1325mhz: opp-1324800000 {
-+			opp-hz = /bits/ 64 <1324800000>;
-+			opp-peak-kBps = <4068000 24576000>;
-+		};
-+
-+		cpu7_opp_1517mhz: opp-1516800000 {
-+			opp-hz = /bits/ 64 <1516800000>;
-+			opp-peak-kBps = <4068000 24576000>;
-+		};
-+
-+		cpu7_opp_1766mhz: opp-1766400000 {
-+			opp-hz = /bits/ 64 <1766400000>;
-+			opp-peak-kBps = <6220000 38092800>;
-+		};
-+
-+		cpu7_opp_1862mhz: opp-1862400000 {
-+			opp-hz = /bits/ 64 <1862400000>;
-+			opp-peak-kBps = <6220000 38092800>;
-+		};
-+
-+		cpu7_opp_2035mhz: opp-2035200000 {
-+			opp-hz = /bits/ 64 <2035200000>;
-+			opp-peak-kBps = <6220000 38092800>;
-+		};
-+
-+		cpu7_opp_2112mhz: opp-2112000000 {
-+			opp-hz = /bits/ 64 <2112000000>;
-+			opp-peak-kBps = <6220000 44851200>;
-+		};
-+
-+		cpu7_opp_2208mhz: opp-2208000000 {
-+			opp-hz = /bits/ 64 <2208000000>;
-+			opp-peak-kBps = <6220000 44851200>;
-+		};
-+
-+		cpu7_opp_2381mhz: opp-2380800000 {
-+			opp-hz = /bits/ 64 <2380800000>;
-+			opp-peak-kBps = <6832000 44851200>;
-+		};
-+
-+		cpu7_opp_2400mhz: opp-2400000000 {
-+			opp-hz = /bits/ 64 <2400000000>;
-+			opp-peak-kBps = <8532000 48537600>;
-+		};
-+
-+		cpu7_opp_2515mhz: opp-2515200000 {
-+			opp-hz = /bits/ 64 <2515200000>;
-+			opp-peak-kBps = <8532000 48537600>;
-+		};
-+
-+		cpu7_opp_2707mhz: opp-2707200000 {
-+			opp-hz = /bits/ 64 <2707200000>;
-+			opp-peak-kBps = <8532000 48537600>;
-+		};
-+
-+		cpu7_opp_3014mhz: opp-3014400000 {
-+			opp-hz = /bits/ 64 <3014400000>;
-+			opp-peak-kBps = <8532000 48537600>;
-+		};
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		/* We expect the bootloader to fill in the size */
--- 
-2.7.4
-
+Rob
