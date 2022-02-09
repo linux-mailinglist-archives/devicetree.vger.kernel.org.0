@@ -2,78 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14D154AEB2A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 08:35:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A24A4AEBD5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 09:09:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238211AbiBIHfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 02:35:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34790 "EHLO
+        id S236018AbiBIIIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 03:08:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238272AbiBIHfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 02:35:16 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47762C05CB92;
-        Tue,  8 Feb 2022 23:35:19 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0E78BB81F46;
-        Wed,  9 Feb 2022 07:35:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A7EEC340E7;
-        Wed,  9 Feb 2022 07:35:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644392116;
-        bh=p/fVFN4fhl2mww8hF6/jEu3Mn0a4mJN2CbZQGUxSDBg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PBBnP6pIN3DyDXScZiMzazjCU6A34llpx51UlEWh15wRsnIRnWFpwpi0c+s5e5WGG
-         8WCMjFw56wrlbESJvj/0QbixjkDm8ObJVwD2MXxmkgUd/dVsQCD/FXYOcBzCNyaUy6
-         Cc2jnclMX7Z1EzZUoBktVKZnYGraRDKyzH09Vqn3aWPd5a5AlwMvSpdLK592VwOO4m
-         8LX4/87Hf5gbe7gKJ0nWHTm2qLNqmQp+4GVPmqAYK4SrIMQR7Oj8PPs9ni6heVBZsf
-         RRXopnekQYlrsSqoht4fuEU8mDSq+PAtS8iEnOwCkTbYlVCW/2bpal9cirwYzNnmkY
-         SYA7sSKfJekAw==
-Date:   Wed, 9 Feb 2022 15:35:10 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-media@vger.kernel.org, aford@beaconembedded.com,
-        cphealy@gmail.com, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229473AbiBIIIO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 03:08:14 -0500
+X-Greylist: delayed 463 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Feb 2022 00:08:18 PST
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7CFC05CB81
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 00:08:18 -0800 (PST)
+Received: from g550jk.localnet (84-115-212-237.cable.dynamic.surfer.at [84.115.212.237])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 44725CDFCA;
+        Wed,  9 Feb 2022 08:00:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1644393634; bh=4FXw/m0qzG12tweb/SpzqvxhvTalonOAWhiKiVfi+U0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=vDuyTleEJgBCbkmvWKcbLvpyCp7hBGTI4BZVTpm7IdRqrvDBL3nRGisMJOhn+8xx8
+         jEDoW8C60Y6xIXcsExCaeXbtKPgfptE4EhsPU3EyZwqcbiBFFDcxUzg/VQNQQTWd58
+         zC1MtpWI0VpmkObfSvsUWRKjxD5e1W1zxbq+R54Q=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Jack Matthews <jm5112356@gmail.com>
+Cc:     jm5112356@gmail.com, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Subject: Re: [PATCH V4 11/11] arm64: dts: imx8mm: Enable Hantro G1 and G2
- video decoders
-Message-ID: <20220209073447.GH4909@dragon>
-References: <20220125171129.472775-1-aford173@gmail.com>
- <20220125171129.472775-12-aford173@gmail.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: qcom: pm8226: add node for RTC
+Date:   Wed, 09 Feb 2022 09:00:33 +0100
+Message-ID: <3306547.mvXUDI8C0e@g550jk>
+In-Reply-To: <20220209052929.651881-1-jm5112356@gmail.com>
+References: <20220209052929.651881-1-jm5112356@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220125171129.472775-12-aford173@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 25, 2022 at 11:11:28AM -0600, Adam Ford wrote:
-> There are two decoders on the i.MX8M Mini controlled by the
-> vpu-blk-ctrl.  The G1 supports H264 and VP8 while the
-> G2 support HEVC and VP9.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Hi Jack,
 
-Applied, thanks!
+On Mittwoch, 9. Februar 2022 06:29:28 CET Jack Matthews wrote:
+> Add a node for PM8226's real time clock.
+> 
+> Signed-off-by: Jack Matthews <jm5112356@gmail.com>
+> ---
+>  arch/arm/boot/dts/qcom-pm8226.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-pm8226.dtsi
+> b/arch/arm/boot/dts/qcom-pm8226.dtsi index 04d070d98f97..ecc38ab1dc4b
+> 100644
+> --- a/arch/arm/boot/dts/qcom-pm8226.dtsi
+> +++ b/arch/arm/boot/dts/qcom-pm8226.dtsi
+> @@ -17,6 +17,13 @@ pwrkey@800 {
+>  			bias-pull-up;
+>  		};
+> 
+> +		rtc@6000 {
+
+Please keep the nodes sorted by address, so don't put @6000 between @800 and 
+@1000 please ;)
+
+Regards
+Luca
+
+> +			compatible = "qcom,pm8941-rtc";
+> +			reg = <0x6000>, <0x6100>;
+> +			reg-names = "rtc", "alarm";
+> +			interrupts = <0x0 0x61 0x1 
+IRQ_TYPE_EDGE_RISING>;
+> +		};
+> +
+>  		smbb: charger@1000 {
+>  			compatible = "qcom,pm8226-charger";
+>  			reg = <0x1000>;
+
+
+
+
