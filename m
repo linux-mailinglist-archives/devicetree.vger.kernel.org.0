@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9852B4AE955
+	by mail.lfdr.de (Postfix) with ESMTP id 5046C4AE954
 	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 06:33:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230418AbiBIFbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 00:31:22 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:41380 "EHLO
+        id S231587AbiBIFbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 00:31:40 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:49304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240227AbiBIFPW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 00:15:22 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AFD6C03C1A1
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 21:15:18 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id n8so681654wmk.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 21:15:18 -0800 (PST)
+        with ESMTP id S235230AbiBIFUh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 00:20:37 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2409BC03E940
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 21:20:41 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id n8so686479wmk.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 21:20:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=brainfault-org.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=R83kg3J8lh5wnpwznu/c6c1j21tsi5+UW4ZNVbTpfkQ=;
-        b=cQLt8iTabwlg2Ev6+vNAfrfaVsetuJTsCIXfsbWxN2KJQ58d0KT0yZirQMTcbt0NXE
-         LOfXB+yowzcYh6fsRbs+oRvGDrIyudB2kSF8OJDHN3A6K3ERrtV52t9beearu5kOexbl
-         R/AilxUl1TEcYp7coPdkyR+2dFjXdBhU/4jKHmOAsBkBREdBpjS7BJ5H1/TM7y8VY1k+
-         geFLbW0Sot0MDg/GGIDq4Uc5Phh2KwSsIUry0D33+azOc/I+Dh+yY82X10zhxY91RO0J
-         QSagJNSO2WAfgnvRxfYUQ3nOofM6gq8dOXjEYfRV99IN5qHnqkdG+8+9UZC7Qp+gs90d
-         G67g==
+        bh=wAsSnnD9JIeAeZJ9p3BQTgq96g2Q9LHlXoe8+WeEVfI=;
+        b=1tKXU6TXAd28+p0tvCpH0D5QBomKCxkddDWl5LVsYFX8hIdbe6CzV6wuulBu+sQEps
+         AeaTcuXTxF9e8cIPmKTyUX9QS/MLzuiJ3poPshrD3N/JwthsFwtR7IqmJ/qp78VdQzKC
+         EXqidiNi/RX6zBYFOA0F0nOb+555/L5wYmFW+TC4IxgMpILOkbFejGn9NmToUD47VYv6
+         VODXl9hVeDhlGEWLaNdgOkZgRtBATLz3GRtmkcoO1HawYxr03sK0DnYLDDdfYEJ4uErA
+         Jtbl/MdVrVMc95sx7r0egcRaQ5U2Mm2BKbFsBg2cO/Jq5juetaFMNFhUAyh1A0Te5JOo
+         C15w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=R83kg3J8lh5wnpwznu/c6c1j21tsi5+UW4ZNVbTpfkQ=;
-        b=lviuBqVFNhYvB7t0cAcMXjWgwz83oRzz3Yf22OGA8F5X+6DvwZYdCSs5NDZPPjlOoH
-         yxQdd1m73abmWbcOjj3zf89YKUrzsuRVrVTH/0ANtHzn2H1wHhzZdtjBFBOyCA6InsPw
-         q4k+OBxsShTRSc7G8Ti284dej/pmzEOpPGNvAJ+bOjy5/oiwaPd9S2yRI2Uv8Jy1BOAG
-         KofMZoEEI7YtGNEY/02R0DIKcC9QiH23+CdIIF6kxcQqAOee1S1SojAmhRqUNj65aFJ0
-         2e/sMwGtTdYZAv7vDk3wlm5xcq/OtYcc2JST5BcLMs3SlVuVU1IneG2fGbYAL/6XwZe1
-         gOEA==
-X-Gm-Message-State: AOAM531g8nrajg+mpQsyL8q7LzJN9ZWD6mtLe2qnHqSG/0QrkMfZSEN5
-        PzC5RQFpWyxfU4iGMcp2C3ejHipx1PoiYBHk0wRhbg==
-X-Google-Smtp-Source: ABdhPJxxJAmtus+XKgjkisjrqjjLqRFgSAIDZ/p0j1uNWEJQORypvJKDSShWADJ4LEAWxrxvnzgCy6iYR0zK2J9eq8E=
-X-Received: by 2002:a05:600c:4185:: with SMTP id p5mr467679wmh.61.1644383716505;
- Tue, 08 Feb 2022 21:15:16 -0800 (PST)
+        bh=wAsSnnD9JIeAeZJ9p3BQTgq96g2Q9LHlXoe8+WeEVfI=;
+        b=DyQYF+QZdWEIyOfkHZ9t8lF7lnZlW8BLRfNWNZCrgz8teDFAp0XgFCmNC7ntCSOf4y
+         Dqn3j9oQrzWZQbNBNf41vDoaqiZlEDGRjrhacPOhoO2oZYKzY1Im0Z8oIS1Zupn1R6m7
+         efmLXODpnspXZrap2pIHMvE76h/kF5tT7QT6Cq1iyEDMy1meaKaQWcRsRbJr8BM9CRVZ
+         YuH+TzzmIQ4PplSPgzHeiyD0OaKKuzYNH6BUQ/tboCSnf6RncHv5dil6QmeKwD+SRMfu
+         ZNi7XC29C8/Pup6PH2K5+/s3PRniZ/iGl/OCipYTpuC3U5WANV00w6WVO/nBvt4RfRvd
+         4UVw==
+X-Gm-Message-State: AOAM531tUdY7ap5jSPb8LscT7XRkSxXTWSPgbI7haItsxKxUri1djl/2
+        WGN5FZCAZBgNynv5sIYY9LSqPdChdUllqXcb1JMwyg==
+X-Google-Smtp-Source: ABdhPJzHE/r6P/Etiunn5Sn/mWZbmE+jczRf1EpGH91d7ufK0qYetKSekneRBxf/FBI5rfOD4EPdrW88BHZPAe+N0xw=
+X-Received: by 2002:a7b:c7d5:: with SMTP id z21mr496193wmk.59.1644384039591;
+ Tue, 08 Feb 2022 21:20:39 -0800 (PST)
 MIME-Version: 1.0
 References: <20220126114452.692512-1-apatel@ventanamicro.com>
  <20220126114452.692512-2-apatel@ventanamicro.com> <CAJF2gTSwzx-yC=WvFixT96=q+M0KPzaZH5PpgGKVWg42M4GBNw@mail.gmail.com>
 In-Reply-To: <CAJF2gTSwzx-yC=WvFixT96=q+M0KPzaZH5PpgGKVWg42M4GBNw@mail.gmail.com>
 From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 9 Feb 2022 10:45:05 +0530
-Message-ID: <CAAhSdy0DcB2+vJSEBd5apQhzjFBz9haNTVqqTeX92+hYVyhB2A@mail.gmail.com>
+Date:   Wed, 9 Feb 2022 10:50:28 +0530
+Message-ID: <CAAhSdy2onHRmnj6g6Swp86DL-nHJyv0r_KsUupatjHx11J11LA@mail.gmail.com>
 Subject: Re: [PATCH v10 1/8] RISC-V: Enable CPU_IDLE drivers
 To:     Guo Ren <guoren@kernel.org>
 Cc:     Anup Patel <apatel@ventanamicro.com>,
@@ -179,17 +179,6 @@ On Tue, Feb 8, 2022 at 11:46 AM Guo Ren <guoren@kernel.org> wrote:
 > > +        */
 > > +       mb();
 > I think it's a separate fixup.
-
-This one is tricky to move as separate fixup because there
-is no cpu_do_idle() until this patch adds it.
-
-If we deliberately have a separate patch for "mb()" then it
-will be only fixing cpu_do_idle() function added by previous
-patch in the same series.
-
-Regards,
-Anup
-
 >
 > > +       wait_for_interrupt();
 > > +}
@@ -213,6 +202,14 @@ Anup
 > >  {
 > maybe below is enough.
 > + mb();
+
+We can't add "mb()" here because cpu_do_idle() is called
+directly from linux/cpuidle.h and arch_cpu_idle() is only
+called when CPU idle is disabled.
+
+Regards,
+Anup
+
 >    wait_for_interrupt();
 >
 > > -       wait_for_interrupt();
