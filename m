@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4108A4AEA78
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 07:42:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A1764AEA8E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 07:45:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231910AbiBIGmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 01:42:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32884 "EHLO
+        id S233736AbiBIGpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 01:45:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231347AbiBIGmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 01:42:46 -0500
-Received: from mail-vk1-xa30.google.com (mail-vk1-xa30.google.com [IPv6:2607:f8b0:4864:20::a30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBA25C043181
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 22:42:49 -0800 (PST)
-Received: by mail-vk1-xa30.google.com with SMTP id v192so629636vkv.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 22:42:49 -0800 (PST)
+        with ESMTP id S234122AbiBIGpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 01:45:17 -0500
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1DBEC03E911
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 22:45:20 -0800 (PST)
+Received: by mail-pl1-x635.google.com with SMTP id y7so1422900plp.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 22:45:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=3iRmgk4sE3G5R6ny6tEUeYqF+37fupjFGhzzwxVHVG8=;
-        b=JdppDHBgdz10eh2s8OCsYPjqQBQ8wFWZAWETfQHtXPXaTjFoP7TZCfKLcE9oyZEpkY
-         JKxEa+5wNV2aw+nYMiCguaKjOcNDJIobhu9T3yzprebIBHyE8BRFH+DBU1+Zy7XekGrn
-         LpkTAy0NR7y6kFQtY4W/pepaKpQJgBVcUfOtPb0wzs5JeFeKpmF6NVXjt24+RVyrZ1pb
-         ZohA8eMc6H3yAuu1ns7aLfq4vGCJrbgaeWLWIsBXpsJsH41M93wapFIjEVxtr88d+wFi
-         F+HqL+9g1MafeMNADh0yGo5Ji8FaxLT5E7lHSo24/XZlqDu3RK+Dd4pqZClgpUKRyNZz
-         cOlQ==
+        bh=PVC8kg0m66z8nLsg7hxOAh4ZCaPmayhqQ5QiMYyZWlY=;
+        b=hjkkB+DreNhYS/KptENJnaOeZzsf3zoLA17g1PzKwanvPvmLRz1rw2vIXm7TxU7Wls
+         vmIPPMUYaLfI32C6XPq8PayQJN2jHoZTxlY2sA+WhqLxpB+WrlLJVb8+xuT5u3MeKJLu
+         KT2rsVd5+bTcEY3UkL6L4/cD8Sdl0REnZW61J6IjgpohUtEYNdebpBTsf6tc81kEwJ91
+         5jab9fomYIxnmIO56L7GOmg3B50apOtkutQKT/q/DLSktmso+CzWODSvgSIqnGW0kvgO
+         Wccps8E7E9MnGF0zeqqNIY2gqkba3d3OBIbxyVg68G3xIeBzv0LNvqc8+1NhQcphvsSW
+         +6kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3iRmgk4sE3G5R6ny6tEUeYqF+37fupjFGhzzwxVHVG8=;
-        b=fyFU4ZMVRy+mnmIV55jLf8a0r+KKn4H/sVHwV+WkcGv0LujvQI6yeqsbQTKDnX9F9E
-         Q3V9WRNHlnYvpHBoJuPUivWju/3qfii+x7RHN7HAfu2H0D6hNx1rBGejKL7iwin4XBaZ
-         ltRmFMtm74ys6UWAoupSmub8QyBgIJ0oUrBlf9t27tazPX3FdwFrVy00NrGFrCHo27G9
-         DuQhsGxj3WC3F/MUb5Xf9+nh2ZimPKKzxCzoH4xSI2A9s9ebAAo1/Nr2aUEHAu3zEwuV
-         mtnDhkxSlIwdnofq15NHZY7qAcxC7V1yP3pfPed0e3wMoojnFMUkmUv1L5Hmk4NLRsEE
-         iIYg==
-X-Gm-Message-State: AOAM531vwU5sOBWMt/rTrR5dyigrMGE6rKXOAeOy4FHL0WCkn2NOmpRx
-        ezQeACadaDBSGFaTy5xzUG8e09WqZ3UBTw==
-X-Google-Smtp-Source: ABdhPJy2lLB8xWFpGXYP/CJTJOWd1D0F2Y7DVX2HSlQlSMcbtD2yZI73Kb8Z3Z1TJLOIRyFt3Oh2Hg==
-X-Received: by 2002:a05:6a00:88e:: with SMTP id q14mr723726pfj.47.1644388658146;
-        Tue, 08 Feb 2022 22:37:38 -0800 (PST)
+        bh=PVC8kg0m66z8nLsg7hxOAh4ZCaPmayhqQ5QiMYyZWlY=;
+        b=RCjr1O93MdB1ZT4+t+lN7ld0EBdrPZM3nMWSLhN3MMX3wNAPvTBZE7037a4glT9r3k
+         XbnaJdf76HiHgmI0EUqIcf75D7iJ5iQZVyxQLLk4Ha3Q+asTQH8ZtRuoRj+A4OteQbs4
+         Xe2wAqOaaEQ/oiISKlob1Er1yq5ZH4cLXdXSO0jiz0aKcV13REjurKs+lt1f0YWxGDJt
+         hShCwvMa4/RqNQ81Ovk1groaKT3cJjATFyagjqCcTvjlQCGtbiFSWK0698iSwjD9g5OI
+         KteAvGhaHxGAJV0BBDUm6GLoGu+o0F43A+w2n8g1lspUXrQ44AKiwz7zqrkLukVnCA8k
+         K3GA==
+X-Gm-Message-State: AOAM530vDBrUZs2d19lLwiUpvK8Qulhz/SmGzZ7OF6bhKszgbj1CGsvy
+        1l6FZPgLikF2WqM5zJx8ftBnrw==
+X-Google-Smtp-Source: ABdhPJyTnEiwKB7qSkQcVoYjamO3CNRQCXq2vkRCtMNivvsSE2h44qEyShyFtpctl+7fuDFYlQgCrA==
+X-Received: by 2002:a17:902:b90a:: with SMTP id bf10mr847320plb.36.1644389119024;
+        Tue, 08 Feb 2022 22:45:19 -0800 (PST)
 Received: from localhost ([136.185.132.167])
-        by smtp.gmail.com with ESMTPSA id nv13sm5149261pjb.17.2022.02.08.22.37.37
+        by smtp.gmail.com with ESMTPSA id g5sm13345929pgc.51.2022.02.08.22.45.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Feb 2022 22:37:37 -0800 (PST)
-Date:   Wed, 9 Feb 2022 12:07:35 +0530
+        Tue, 08 Feb 2022 22:45:18 -0800 (PST)
+Date:   Wed, 9 Feb 2022 12:15:16 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Denys Drozdov <denys.drozdov@toradex.com>,
-        Stefan Agner <stefan@agner.ch>
-Subject: Re: [PATCH v2 0/2] Enable i.MX7 SOLO temperature sensor
-Message-ID: <20220209063735.552mz6q5cqymv5gx@vireshk-i7>
-References: <20220124082803.94286-1-francesco.dolcini@toradex.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: spear320: Drop unused and undocumented
+ 'irq-over-gpio' property
+Message-ID: <20220209064516.qxj7yd7r7dvz5zbz@vireshk-i7>
+References: <20220204004117.1232902-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220124082803.94286-1-francesco.dolcini@toradex.com>
+In-Reply-To: <20220204004117.1232902-1-robh@kernel.org>
 User-Agent: NeoMutt/20180716-391-311a52
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,30 +73,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24-01-22, 09:28, Francesco Dolcini wrote:
-> To be able to read the T junction on i.MX CPU the imx-cpufreq-dt needs to be
-> loaded, however this is currently not the case for i.MX7S given that it does
-> have only one operating frequency.
+On 03-02-22, 18:41, Rob Herring wrote:
+> The property 'irq-over-gpio' is both unused and undocumented. It also
+> happens to collide with standard *-gpio properties. As it is not needed,
+> drop it.
 > 
-> Add "fsl,imx7s" to cpufreq-dt-platdev blocklist and a single frequency
-> operating point to the CPU.
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  arch/arm/boot/dts/spear320-hmi.dts | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> With that it is now possible to correctly read the CPU T junction.
-> 
-> Tested on Toradex Colibri iMX7S
-> 
-> [    6.232577] imx-cpufreq-dt imx-cpufreq-dt: cpu speed grade 0 mkt segment 1 supported-hw 0x1 0x2
-> ...
-> [    6.880624] imx_thermal 30360000.anatop:tempmon: Extended Commercial CPU temperature grade - max:105C critical:100C passive:95C
-> 
-> root@colibri-imx7-02983025:~# cat /sys/class/thermal/thermal_zone0/temp 
-> 38000
-> 
-> v2:
->  - removed empty new line
->  - rebased and tested on v5.17-rc1
+> diff --git a/arch/arm/boot/dts/spear320-hmi.dts b/arch/arm/boot/dts/spear320-hmi.dts
+> index 367ba48aac3e..b587e4ec11e5 100644
+> --- a/arch/arm/boot/dts/spear320-hmi.dts
+> +++ b/arch/arm/boot/dts/spear320-hmi.dts
+> @@ -235,7 +235,6 @@ stmpe811@41 {
+>  					#address-cells = <1>;
+>  					#size-cells = <0>;
+>  					reg = <0x41>;
+> -					irq-over-gpio;
+>  					irq-gpios = <&gpiopinctrl 29 0x4>;
+>  					id = <0>;
+>  					blocks = <0x5>;
 
-Applied. Thanks.
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
 -- 
 viresh
