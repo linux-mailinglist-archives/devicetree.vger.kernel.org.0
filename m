@@ -2,96 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C5644B00B7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 23:54:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACCA94B00CE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 23:58:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236510AbiBIWyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 17:54:19 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:60108 "EHLO
+        id S236744AbiBIW6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 17:58:32 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:42686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231361AbiBIWyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 17:54:19 -0500
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6147BC0219EC;
-        Wed,  9 Feb 2022 14:54:21 -0800 (PST)
-Received: by mail-oi1-f174.google.com with SMTP id u3so4085026oiv.12;
-        Wed, 09 Feb 2022 14:54:21 -0800 (PST)
+        with ESMTP id S236762AbiBIW6b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 17:58:31 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8393DE050477
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 14:58:25 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id o19so10244446ybc.12
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 14:58:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=aPTFbZr4LhKGppGQDkO7tNLWiZLizgW3cwR+POXjY4E=;
+        b=hBB0ghFhB1uCetuGAyQGnoqcrwp/HDIHx81/tcT8zfwyz04kOmltS8SLbyMQjgl5a4
+         schx4MTzQYOUDCOH2NxsstQBE4Rs/EtSSDtSqv1TT11Tw2nFokdj+5kCkE3m9ms5wCD9
+         vdZSjzA6DamY7fAeIHv6v83/9NvKMOIDArHIR0RIUY3dZAbZq5fEwfSPofOqSUUIaoc4
+         KNUHEwODtlc4mXJ63h4VUL9u/63JTRb0wwWEycvAmcbJXBKpbZJYTBA5/+wM4TeIFogE
+         vZVQQY4XN6UFHOFz6F15FMet5JGPUFiuNDvNQwccTMSfnZeU19efMm5XMnUK1uQMZjNT
+         KOCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6GbViqjX2s1KVg61FHQ0TVRuw5O1ks6inA3ssFWIfJ8=;
-        b=VoHNza52R5PIdfeWJCoa4m3/M62C/gz/2J+sIyYKfDFuQ3st/40vj1TM/T/CmSdprP
-         mjstMmvLoSWb5H2UbC5i3ntKrezNebBGKmgcewnK2d9ggA49xdRS/FksfVBDRhuv5FeH
-         /Ge2GEBenq21cO/3wmDtsG2MQ/c2HpPaihIjMhNHr4CDGZSHdfLwpM1wxNsY5kAIoYQW
-         BDx/HiyG2S9QNVhv0+kbjbiD5tzBn781MiwMDz5KdLtVTHJDUiRfa1lgrCXHsNQCaAtb
-         Et6IU1lcLHfgQs5yEdGd8mE0w2jm4l8lyoNtLRE9JByUP5K2kKRAi8o5jtu93E1qmCYP
-         3Zhw==
-X-Gm-Message-State: AOAM530hB4op1fXnDcpFE/EQfzGUSNXhN9WYEy9rDcQo3cchTJhZBFsU
-        +3S9RN74gkeskpOrAXDLng==
-X-Google-Smtp-Source: ABdhPJxTGXgRssJw2GYnmEEUbCzvymNHxtSMoA4l0QobCAsPiTRJLeonWFEGnxjf3OjpdEJjkbBNHw==
-X-Received: by 2002:a05:6808:1302:: with SMTP id y2mr2365158oiv.308.1644447260712;
-        Wed, 09 Feb 2022 14:54:20 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p11sm7699220oiv.17.2022.02.09.14.54.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 14:54:20 -0800 (PST)
-Received: (nullmailer pid 1099593 invoked by uid 1000);
-        Wed, 09 Feb 2022 22:54:19 -0000
-Date:   Wed, 9 Feb 2022 16:54:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        dri-devel@lists.freedesktop.org, Inki Dae <inki.dae@samsung.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        linux-kernel@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>
-Subject: Re: [PATCH 08/10] dt-bindings: display: samsung,exynos-hdmi: convert
- to dtschema
-Message-ID: <YgRGGh6MZaTM3S9B@robh.at.kernel.org>
-References: <20220208171823.226211-1-krzysztof.kozlowski@canonical.com>
- <20220208171823.226211-9-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=aPTFbZr4LhKGppGQDkO7tNLWiZLizgW3cwR+POXjY4E=;
+        b=M69hWr0Byn1vVSGBXZC1NQF39og6Zmkyv+5GpFOhdO/DZmN9oNY192Lq1rViiDc5jv
+         p90cOK9wNqL1m3JwtqXUAboiqXDpA7HTrWrLYUrp6AM2KtIS06yrgTB2gDotA0j7i4Vq
+         Y+YZZAGiewDJGWM6VzTf51PvZBWtDGLgDj4wn8prbWWawQtBj2RVUaXOkfmmMmt5/ATp
+         k3QA763xa7T+cEecuEURwb42Oq5uHpFBrQsEOXhgTtyADGi9Hz/OKiQEXdyrwoigq65U
+         gHzHhitXQOOnpJqZr+O+GEc7xK3cbnA3NsNzAQi5MWZlWOaMLIweQ0NHoXqQU90TCMf/
+         uyOg==
+X-Gm-Message-State: AOAM530Ibt1/4q9lMJ4TK9dUxT8n/VLbHXPLap7+Sycmt53pbIGyVRj9
+        bPXYptWmYA9q1SU0jiAFliIvznDRh/iNPGWWL0c=
+X-Google-Smtp-Source: ABdhPJx7ohKLglh5sd/ZVdaBjVAVVQbIom3DEiopyQwqNbuuo89AEmxATnM6BAh3uSmuf0LzJndZDmmEUF7VDiYjQhQ=
+X-Received: by 2002:a25:9c02:: with SMTP id c2mr4224340ybo.685.1644447503289;
+ Wed, 09 Feb 2022 14:58:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220208171823.226211-9-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Received: by 2002:a05:7108:6595:0:0:0:0 with HTTP; Wed, 9 Feb 2022 14:58:22
+ -0800 (PST)
+From:   drtracywilliams <mrsalimasanwardu7067@gmail.com>
+Date:   Thu, 10 Feb 2022 06:58:22 +0800
+Message-ID: <CAP65zWsJhbEMCdKw6ofdjOuTZWROwtV5zzvESga1uDUu6iUvKA@mail.gmail.com>
+Subject: From Dr Tracy from United States
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=1.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Feb 2022 18:18:21 +0100, Krzysztof Kozlowski wrote:
-> Convert the Exynos HDMI bindings to DT schema format.
-> 
-> The conversion includes also updates to the bindings, matching the
-> current DTS and Linux driver:
-> 1. Add required properties: VDD supplies, power-domains.
-> 2. Add optional properties: HDMI-EN supply, ports.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  .../bindings/display/exynos/exynos_hdmi.txt   |  64 -----
->  .../display/samsung/samsung,exynos-hdmi.yaml  | 227 ++++++++++++++++++
->  2 files changed, 227 insertions(+), 64 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/exynos/exynos_hdmi.txt
->  create mode 100644 Documentation/devicetree/bindings/display/samsung/samsung,exynos-hdmi.yaml
-> 
+Hello Dear,
 
-Applied, thanks!
+how are you today,I hope you are doing great.
+
+It is my great pleasure to contact you,I want to make a new and
+special friend,I hope you don't mind. My name is Tracy William from
+the United States, Am an English and French nationalities. I will give
+you pictures and more details about my self as soon as i hear from
+you Kisses.
+
+Pls resply to my personal email(dr.tracymedicinemed1@gmail.com)
+
+Thanks.
+Tracy,
