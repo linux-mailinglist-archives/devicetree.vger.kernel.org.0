@@ -2,64 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 530104AEF46
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 11:28:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9BEE4AEF38
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 11:25:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229486AbiBIK2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 05:28:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41804 "EHLO
+        id S230243AbiBIKYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 05:24:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbiBIK23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 05:28:29 -0500
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 743F9E131E38;
-        Wed,  9 Feb 2022 02:20:22 -0800 (PST)
+        with ESMTP id S229450AbiBIKYF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 05:24:05 -0500
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0557E02F6D2;
+        Wed,  9 Feb 2022 02:17:46 -0800 (PST)
 Received: from localhost.localdomain ([81.221.85.15]) by mrelay.perfora.net
- (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MbB1Y-1nt0Pr3djU-00bav0;
- Wed, 09 Feb 2022 11:01:24 +0100
+ (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MdMsu-1nqnZ63maW-00ZNzq;
+ Wed, 09 Feb 2022 11:01:57 +0100
 From:   Marcel Ziswiler <marcel@ziswiler.com>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marek.vasut@gmail.com>,
         Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh@kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
         Fabio Estevam <festevam@gmail.com>,
         Frank Rowand <frowand.list@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        =?UTF-8?q?Oliver=20St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>,
-        Olof Johansson <olof@lixom.net>, Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v5 01/12] arm64: dts: imx8mm: fix strange hex notation
-Date:   Wed,  9 Feb 2022 11:00:44 +0100
-Message-Id: <20220209100055.181389-2-marcel@ziswiler.com>
+Subject: [PATCH v5 11/12] dt-bindings: arm: fsl: add toradex,verdin-imx8mm et al.
+Date:   Wed,  9 Feb 2022 11:00:54 +0100
+Message-Id: <20220209100055.181389-12-marcel@ziswiler.com>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20220209100055.181389-1-marcel@ziswiler.com>
 References: <20220209100055.181389-1-marcel@ziswiler.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:lW93HK0eX9pdnaqywnxxNmUk6cyUc0fjb6WfDxBTWjvg/4qczlo
- qht/kzet8DGlGRgEgGsgETpHR1mjJvKvm8UeIlCydOQRCi92dUZSxa7MVirQbRb8DigWur8
- 8VDMNElfzPGrzsUFNws03DshXjKqKKJzjX4XXvic8GHi3olUor41Uiaw02OluOpAd19WzG8
- 9EAAUcrnwcmALZB/zK93g==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:VXZ4m6rt1Iw=:3v/RS+tw4jyghnYobwb0GJ
- zXH6oOcO8FLjbqGgP8tSLnfes1+Efv9vL8zLB7vz0keaxYOMg3lnY2Rutp3jqBpacWvJM1GW0
- 07JB/HwSrOlH8FtKhmguIBIkWU/HiySSkVFD6mQKWuljJeFIbCwOkFmqq536M1VKUJBSuE2mT
- 8sWI/I5cis4nIOBRqKzZHwtfIN8Nvwd/wQrZh5YGJlRgoEUpKoOFr9cgxA+SuJywLEqF0TSpm
- +XyihmkJ53f5/Zhw5/+G6Nr38tm6fn6SlR1YvqIrxyDYR1MnJzIsyyCw3Ti0xwuAWOnnJdPVt
- YVcZNp4J83qejwPEGoZwYquvR+gT0tuj/cPkG4RtJga3A8jEKJEMVbRPUz17ei6FRPJbshHrz
- DvBC0LnyLCInI6CPBqrdEtAHyRafm0LV6iYklQ0mmuJu8+cehri+8nbXQUhH8N9IHpyiyvsIZ
- RpVDlHKEzUNYHpSrqFpv9hHJMhkN4DlkzPalNQ8CPyGDvcm7iG3jiwoQK/wIfyKoiM2hq9gZ6
- 8u793z0zaVSXDQgHBF6qHlvg/f3SqDPx/aVDgbAmTD4UDE9Cg9xgtIL6XoMetxsIKA7bDiEzs
- aMQuMTdK+4yJVlVpCFGXD3GkBIgOvs1tv9K7iUGcfZQ4xqqokKsdUKXrDSg+1n85cOEF8Lfix
- gtI7tKKRSODbNnU+EvrYevq7g+xz/nEGRIGnmYgxSZMfDaNAkwH6oNUQZ7KFXNmczHBc=
+X-Provags-ID: V03:K1:R9J0WpfPWK8eDK02AnEuYrjtLmbpeep6TykG3ukhsN7xVZgDhzJ
+ wBnLqklk8kEQRTKsCB/rbZUcA39hK1X9fdeG+YgWVwMKO5PcsScZKNXY5OG4c/jUtoMQjv8
+ iXz5xYKyk2MILpuHKmEedoZSsTeKkYEtMsltRxXAu0xDGryb+arOqnm+60Y9egU2ZmApKi9
+ vwtOmmdaNTy8rAfJOJzuA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:6ioN6GSRhwA=:PI/cbBef8ShmITfzYkOflP
+ rpbtVMwznIlTUT+D3jIQ1BmoVRk/lFlfUnRzHNSFqDwlEQVIC/rEQupJJ3y3BGSQMhulGf8lq
+ fQrNmx4aRth+jVqk73yAcsj4ldUD1p6LHJZ+EDcTlLcOmMQBKBaOij4hk29UikqvS6zaqWVdS
+ H8IO9wrnFZT99d6BmzMOJZqQDPKRe+cSw5uym5H10ItYQTyWD7AI9isWb0l5dEf2Kr3G1N08b
+ Q+/BHp3Z66HCFbmUmQWdy/YGoW8JATeivyO6qyOyg6nLq06pVA8vWGDi2E80YbSPgRngk6fg2
+ TX8V0Lpiq23Bz6uK38GgvTt1QPk7t2mmBpK1kDGA8v3Ff5MOWX6Gu8OMuQ0jHoG6p1TO5GZ5K
+ A9/hIaSj7o4v14fCRKCKtc9Nj0yBVA9n+hedfRKFaaz3hnMNUbSfWPFfCfnRuInd98S+LkgfZ
+ uc4yej5U8RSTHTIhFfD3fhBu5k8gVC1yQDU6dtOG4bE1boL97v2Aeoj+eZqscPYIJ1A6L4fbg
+ 7We5MmVdTgs6J5e3aP9vtWlx28HqfWPW9cUVhI+aa178djOKg2W+zX0mo1ewqErtMmTgcj4iH
+ WLN8bHeITVV7yW/lehwSSRkxNreEp5D3OZckVdO918RNdDnrrlc61ZZte3CPBVBAOn6yH4cQ0
+ mrvpjJjeAbyBUpg2/SfBXk/SKaWNWrdRKCYj72W1Xl0XJG2jIlkQ6EYsDDUeN6NL/9ssNmG/q
+ uojDn5mYfvpZVkkK
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,54 +73,64 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Fix strange hex notation with mixed lower-case and upper-case letters.
+Add toradex,verdin-imx8mm for our new Verdin iMX8M Mini modules, its
+nonwifi and wifi variants and the carrier boards (both Dahlia and the
+Verdin Development Board) they may be mated in.
 
 Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Acked-by: Rob Herring <robh@kernel.org>
 
 ---
 
-Changes in v5:
-- Add Rob's ack.
+(no changes since v2)
 
 Changes in v2:
-- Add Laurent's reviewed-by tag.
+- Add Rob's acked-by tag.
+- Fix Colibri vs. Verdin copy/paste mistake. Thanks to Francesco Dolcini
+  <francesco.dolcini@toradex.com> for pointing that out to me.
 
- arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../devicetree/bindings/arm/fsl.yaml          | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-index a7411c800bef..83c8f715cd90 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-@@ -280,7 +280,7 @@
- #define MX8MM_IOMUXC_SAI5_RXD2_SAI1_TX_DATA4                                0x150 0x3B8 0x000 0x1 0x0
- #define MX8MM_IOMUXC_SAI5_RXD2_SAI1_TX_SYNC                                 0x150 0x3B8 0x4CC 0x2 0x1
- #define MX8MM_IOMUXC_SAI5_RXD2_SAI5_TX_BCLK                                 0x150 0x3B8 0x4E8 0x3 0x0
--#define MX8MM_IOMUXC_SAI5_RXD2_PDM_DATA2                                    0x150 0x3B8 0x53c 0x4 0x0
-+#define MX8MM_IOMUXC_SAI5_RXD2_PDM_DATA2                                    0x150 0x3B8 0x53C 0x4 0x0
- #define MX8MM_IOMUXC_SAI5_RXD2_GPIO3_IO23                                   0x150 0x3B8 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SAI5_RXD3_SAI5_RX_DATA3                                0x154 0x3BC 0x4E0 0x0 0x0
- #define MX8MM_IOMUXC_SAI5_RXD3_SAI1_TX_DATA5                                0x154 0x3BC 0x000 0x1 0x0
-@@ -487,7 +487,7 @@
- #define MX8MM_IOMUXC_SAI3_TXFS_SAI3_TX_SYNC                                 0x1D8 0x440 0x000 0x0 0x0
- #define MX8MM_IOMUXC_SAI3_TXFS_GPT1_CAPTURE2                                0x1D8 0x440 0x000 0x1 0x0
- #define MX8MM_IOMUXC_SAI3_TXFS_SAI5_RX_DATA1                                0x1D8 0x440 0x4D8 0x2 0x2
--#define MX8MM_IOMUXC_SAI3_TXFS_UART2_DCE_RX                                 0x1D8 0x440 0x4Fc 0x4 0x2
-+#define MX8MM_IOMUXC_SAI3_TXFS_UART2_DCE_RX                                 0x1D8 0x440 0x4FC 0x4 0x2
- #define MX8MM_IOMUXC_SAI3_TXFS_UART2_DTE_TX                                 0x1D8 0x440 0x000 0x4 0x0
- #define MX8MM_IOMUXC_SAI3_TXFS_GPIO4_IO31                                   0x1D8 0x440 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SAI3_TXFS_TPSMP_HDATA1                                 0x1D8 0x440 0x000 0x7 0x0
-@@ -495,7 +495,7 @@
- #define MX8MM_IOMUXC_SAI3_TXC_GPT1_COMPARE2                                 0x1DC 0x444 0x000 0x1 0x0
- #define MX8MM_IOMUXC_SAI3_TXC_SAI5_RX_DATA2                                 0x1DC 0x444 0x4DC 0x2 0x2
- #define MX8MM_IOMUXC_SAI3_TXC_UART2_DCE_TX                                  0x1DC 0x444 0x000 0x4 0x0
--#define MX8MM_IOMUXC_SAI3_TXC_UART2_DTE_RX                                  0x1DC 0x444 0x4Fc 0x4 0x3
-+#define MX8MM_IOMUXC_SAI3_TXC_UART2_DTE_RX                                  0x1DC 0x444 0x4FC 0x4 0x3
- #define MX8MM_IOMUXC_SAI3_TXC_GPIO5_IO0                                     0x1DC 0x444 0x000 0x5 0x0
- #define MX8MM_IOMUXC_SAI3_TXC_TPSMP_HDATA2                                  0x1DC 0x444 0x000 0x7 0x0
- #define MX8MM_IOMUXC_SAI3_TXD_SAI3_TX_DATA0                                 0x1E0 0x448 0x000 0x0 0x0
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 5075fd8c1b42..4ddeb9b20195 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -770,6 +770,9 @@ properties:
+               - gw,imx8mm-gw7901          # i.MX8MM Gateworks Board
+               - gw,imx8mm-gw7902          # i.MX8MM Gateworks Board
+               - kontron,imx8mm-n801x-som  # i.MX8MM Kontron SL (N801X) SOM
++              - toradex,verdin-imx8mm     # Verdin iMX8M Mini Modules
++              - toradex,verdin-imx8mm-nonwifi  # Verdin iMX8M Mini Modules without Wi-Fi / BT
++              - toradex,verdin-imx8mm-wifi  # Verdin iMX8M Mini Wi-Fi / BT Modules
+               - variscite,var-som-mx8mm   # i.MX8MM Variscite VAR-SOM-MX8MM module
+               - prt,prt8mm                # i.MX8MM Protonic PRT8MM Board
+           - const: fsl,imx8mm
+@@ -788,6 +791,24 @@ properties:
+           - const: kontron,imx8mm-n801x-som
+           - const: fsl,imx8mm
+ 
++      - description: Toradex Boards with Verdin iMX8M Mini Modules
++        items:
++          - enum:
++              - toradex,verdin-imx8mm-nonwifi-dahlia # Verdin iMX8M Mini Module on Dahlia
++              - toradex,verdin-imx8mm-nonwifi-dev    # Verdin iMX8M Mini Module on Verdin Development Board
++          - const: toradex,verdin-imx8mm-nonwifi     # Verdin iMX8M Mini Module without Wi-Fi / BT
++          - const: toradex,verdin-imx8mm             # Verdin iMX8M Mini Module
++          - const: fsl,imx8mm
++
++      - description: Toradex Boards with Verdin iMX8M Mini Wi-Fi / BT Modules
++        items:
++          - enum:
++              - toradex,verdin-imx8mm-wifi-dahlia # Verdin iMX8M Mini Wi-Fi / BT Module on Dahlia
++              - toradex,verdin-imx8mm-wifi-dev    # Verdin iMX8M Mini Wi-Fi / BT M. on Verdin Development B.
++          - const: toradex,verdin-imx8mm-wifi     # Verdin iMX8M Mini Wi-Fi / BT Module
++          - const: toradex,verdin-imx8mm          # Verdin iMX8M Mini Module
++          - const: fsl,imx8mm
++
+       - description: Variscite VAR-SOM-MX8MM based boards
+         items:
+           - const: variscite,var-som-mx8mm-symphony
 -- 
 2.33.1
 
