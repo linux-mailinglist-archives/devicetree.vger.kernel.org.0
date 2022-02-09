@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AD154AFC51
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 19:58:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28A104AFC90
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:01:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241169AbiBIS5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 13:57:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58174 "EHLO
+        id S241600AbiBIS7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 13:59:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241369AbiBIS4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 13:56:49 -0500
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14515C0401D2
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 10:56:47 -0800 (PST)
-Received: by mail-oi1-f178.google.com with SMTP id i5so3496484oih.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 10:56:47 -0800 (PST)
+        with ESMTP id S241636AbiBIS7f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 13:59:35 -0500
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7C70C050CD1;
+        Wed,  9 Feb 2022 10:57:42 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id y23so3421253oia.13;
+        Wed, 09 Feb 2022 10:57:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=TxAZL+Z4U6mKN9dq47U4h0290oyGCuVo1sScd7iLOoU=;
-        b=tpPjr4f9DOtefEmrqIMr8H8+YVWS81x3wlAuZZyKeqMbZLBtve5e8ZBvQV0anHd2e2
-         v2Ar4TKSAWzzuT3yaFz1j5gGS08qaI/Sc0Av1WDvlSh+SMnsxxg2IgxrLTIs6Jp9GXfR
-         VHT6TgIcDKMFwVqGVfYawLfI2YvApTqqmheHfN8USSPNXpbQP0vXkkHBMQNX3IY/X04e
-         Am+NUdfYbSNVzvV8zklVcSxqkxmAbju+61wCdJ36v+2c9p/K+GysvUKXLFpEcncrhvNa
-         /NHgLjOTpaxScaRgl6tWC6SdhRO+wmD+Qvz7s+5beVi9qILYJ8GWxSZ/sffGjKlXEzlc
-         k7Ig==
-X-Gm-Message-State: AOAM532XHJFz4GvOSnvbKwOI4fVOIzT9twCojEpSTfGX5zYiUdWRO3V2
-        /fSt4JamOd9f7yUBPT6usQ==
-X-Google-Smtp-Source: ABdhPJw/7/qsplIF5pD5/KeocY9o3JW0TwPPA4t9x9UVOMPR101hcfMAT3ZxtFzyI+U/a+55dfm4VA==
-X-Received: by 2002:a05:6808:3098:: with SMTP id bl24mr2016266oib.312.1644433006374;
-        Wed, 09 Feb 2022 10:56:46 -0800 (PST)
+        bh=H7xdyU3dNzn1aGQxkPyHJk9OkHfZ1q05CNcab6XbAM8=;
+        b=cSzMsB3vL6h/GLa2+fZ/68pfN/+igNnPSBtjwKM47FzVqO5u0sJKzCnOTPnW3kFj+p
+         CckpmKFhx2/yIS99aOdJh9mvfKydjI8OkZ8u0kqy9uqLatyeN7uPNTOoxYXCkHZ33pwh
+         RyKm4GoDBGQzlFWjQx5ZmVvivw1HeyQj/2oZTbVSBN+ryEdXPNC08BhxONvTVKBTuCaZ
+         c5+uCrHIPOf67GBbm8365CdOySERbzKx8EOou+lxPkcmdYd7yrRiSopvvIWvQjfnk1it
+         TCLjhOhMzVk3asH7b9dHByBhLz94B2Oe1FzBQp89poBBrzwXfKYtBZo66r0g9CIZwwzN
+         wpQg==
+X-Gm-Message-State: AOAM533XhNUl7CVvLhVEh02TMDrdDZjHJr3XL/y6xnWDuzk+Lw5XONQz
+        RuPJONR8NMNDbfg8ZSm91g==
+X-Google-Smtp-Source: ABdhPJxP//1aGuFFY9vxv6CdY8xqk4XXBhD/YeyBeYu20dO0Ofj+I1tSvsI8ELVBjnh9kya5nvPUDA==
+X-Received: by 2002:a05:6808:1989:: with SMTP id bj9mr2018511oib.28.1644433062105;
+        Wed, 09 Feb 2022 10:57:42 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o14sm7084298otk.77.2022.02.09.10.56.45
+        by smtp.gmail.com with ESMTPSA id 21sm6898916otj.71.2022.02.09.10.57.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 10:56:45 -0800 (PST)
-Received: (nullmailer pid 690287 invoked by uid 1000);
-        Wed, 09 Feb 2022 18:56:44 -0000
-Date:   Wed, 9 Feb 2022 12:56:44 -0600
+        Wed, 09 Feb 2022 10:57:41 -0800 (PST)
+Received: (nullmailer pid 691757 invoked by uid 1000);
+        Wed, 09 Feb 2022 18:57:40 -0000
+Date:   Wed, 9 Feb 2022 12:57:40 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v5 23/23] dt-bindings: display: rockchip: Add binding for
- VOP2
-Message-ID: <YgQObAT7WB9U4MMB@robh.at.kernel.org>
-References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
- <20220209095350.2104049-24-s.hauer@pengutronix.de>
+To:     Bo Jiao <bo.jiao@mediatek.com>
+Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
+        Sujuan Chen <sujuan.chen@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        devicetree@vger.kernel.org, Felix Fietkau <nbd@nbd.name>,
+        Peter Chiu <chui-hao.chiu@mediatek.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Xing Song <xing.song@mediatek.com>,
+        linux-mediatek <linux-mediatek@lists.infradead.org>,
+        Evelyn Tsai <evelyn.tsai@mediatek.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: net: wireless: mt76: document
+ bindings for MT7986
+Message-ID: <YgQOpOnYJyHaQtV8@robh.at.kernel.org>
+References: <cover.1644386694.git.Bo.Jiao@mediatek.com>
+ <08ef978845036560bb08b72e948e42f858e087d3.1644386694.git.Bo.Jiao@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220209095350.2104049-24-s.hauer@pengutronix.de>
+In-Reply-To: <08ef978845036560bb08b72e948e42f858e087d3.1644386694.git.Bo.Jiao@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -71,28 +70,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Feb 2022 10:53:50 +0100, Sascha Hauer wrote:
-> The VOP2 is found on newer Rockchip SoCs like the rk3568 or the rk3566.
-> The binding differs slightly from the existing VOP binding, so add a new
-> binding file for it.
+On Wed, 09 Feb 2022 14:11:55 +0800, Bo Jiao wrote:
+> From: Peter Chiu <chui-hao.chiu@mediatek.com>
 > 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Add an entry for MT7986 SoC.
+> 
+> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+> Cc: devicetree@vger.kernel.org
 > ---
-> 
-> Notes:
->     Changes since v4:
->     - Fix clk names in example
->     - Drop unnecessary assigned-clocks, assigned-clock-rates and assigned-clock-parents
-> 
->     Changes since v3:
->     - drop redundant _vop suffix from clock names
-> 
->     Changes since v3:
->     - new patch
-> 
->  .../display/rockchip/rockchip-vop2.yaml       | 140 ++++++++++++++++++
->  1 file changed, 140 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> v3:
+>  - fix yamllint warnings and errors
+>  - add 'minItems: 1' to keep 1 reg entry being valid
+> v4:
+>  - add description for property reg items
+> ---
+>  .../bindings/net/wireless/mediatek,mt76.yaml  | 33 +++++++++++++++++--
+>  1 file changed, 30 insertions(+), 3 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
