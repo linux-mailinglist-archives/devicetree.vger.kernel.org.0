@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C43EE4AEEB3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 10:55:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A4B4AEEBA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 10:56:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234100AbiBIJzf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 04:55:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45064 "EHLO
+        id S231995AbiBIJ4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 04:56:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233083AbiBIJza (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 04:55:30 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE580E079D29
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 01:55:22 -0800 (PST)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nHjfm-0002P9-It; Wed, 09 Feb 2022 10:54:02 +0100
-Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nHjfg-008qbU-Ba; Wed, 09 Feb 2022 10:53:56 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v5 23/23] dt-bindings: display: rockchip: Add binding for VOP2
-Date:   Wed,  9 Feb 2022 10:53:50 +0100
-Message-Id: <20220209095350.2104049-24-s.hauer@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220209095350.2104049-1-s.hauer@pengutronix.de>
-References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
+        with ESMTP id S235574AbiBIJ4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 04:56:11 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 340A7C102FDB;
+        Wed,  9 Feb 2022 01:56:03 -0800 (PST)
+X-UUID: 0aca2ca46c6a481eab03ccf4ecd769e0-20220209
+X-UUID: 0aca2ca46c6a481eab03ccf4ecd769e0-20220209
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <kewei.xu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1893974579; Wed, 09 Feb 2022 17:54:13 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 9 Feb 2022 17:54:12 +0800
+Received: from localhost.localdomain (10.17.3.14) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 9 Feb 2022 17:54:11 +0800
+From:   Kewei Xu <kewei.xu@mediatek.com>
+To:     <wsa@the-dreams.de>
+CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
+        <caiyu.chen@mediatek.com>, <housong.zhang@mediatek.com>,
+        <yuhan.wei@mediatek.com>, <kewei.xu@mediatek.com>,
+        <ryan-jh.yu@mediatek.com>, <david-yh.chiu@mediatek.com>
+Subject: [PATCH v9 0/1] Introducing an attribute to select the time setting
+Date:   Wed, 9 Feb 2022 17:54:06 +0800
+Message-ID: <1644400447-6215-1-git-send-email-kewei.xu@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,174 +55,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The VOP2 is found on newer Rockchip SoCs like the rk3568 or the rk3566.
-The binding differs slightly from the existing VOP binding, so add a new
-binding file for it.
+v9:
+1. Base on for-next remove received patch
+2. Update ac-timing calculation algorithm to make i2c ac-timing meet
+specification and function normal.
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
+v8:
+Remove received patch
 
-Notes:
-    Changes since v4:
-    - Fix clk names in example
-    - Drop unnecessary assigned-clocks, assigned-clock-rates and assigned-clock-parents
-    
-    Changes since v3:
-    - drop redundant _vop suffix from clock names
-    
-    Changes since v3:
-    - new patch
+v7:
+Resubmit the patch based on version 5.15-rc1
 
- .../display/rockchip/rockchip-vop2.yaml       | 140 ++++++++++++++++++
- 1 file changed, 140 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+v6:
+1. Add the judgment condition, clear the handshake signal between dma and
+i2c when multiple msgs are transmitted.
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-new file mode 100644
-index 000000000000..655d9b327f7d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-@@ -0,0 +1,140 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/rockchip/rockchip-vop2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip SoC display controller (VOP2)
-+
-+description:
-+  VOP2 (Video Output Processor v2) is the display controller for the Rockchip
-+  series of SoCs which transfers the image data from a video memory
-+  buffer to an external LCD interface.
-+
-+maintainers:
-+  - Sandy Huang <hjc@rock-chips.com>
-+  - Heiko Stuebner <heiko@sntech.de>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,rk3566-vop
-+      - rockchip,rk3568-vop
-+
-+  reg:
-+    minItems: 1
-+    items:
-+      - description:
-+          Must contain one entry corresponding to the base address and length
-+          of the register space.
-+      - description:
-+          Can optionally contain a second entry corresponding to
-+          the CRTC gamma LUT address.
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      The VOP interrupt is shared by several interrupt sources, such as
-+      frame start (VSYNC), line flag and other status interrupts.
-+
-+  clocks:
-+    items:
-+      - description: Clock for ddr buffer transfer.
-+      - description: Clock for the ahb bus to R/W the phy regs.
-+      - description: Pixel clock for video port 0.
-+      - description: Pixel clock for video port 1.
-+      - description: Pixel clock for video port 2.
-+
-+  clock-names:
-+    items:
-+      - const: aclk
-+      - const: hclk
-+      - const: dclk_vp0
-+      - const: dclk_vp1
-+      - const: dclk_vp2
-+
-+  rockchip,grf:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to GRF regs used for misc control
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Output endpoint of VP0
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Output endpoint of VP1
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Output endpoint of VP2
-+
-+  iommus:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+        #include <dt-bindings/clock/rk3568-cru.h>
-+        #include <dt-bindings/interrupt-controller/arm-gic.h>
-+        #include <dt-bindings/power/rk3568-power.h>
-+        bus {
-+            #address-cells = <2>;
-+            #size-cells = <2>;
-+            vop: vop@fe040000 {
-+                compatible = "rockchip,rk3568-vop";
-+                reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
-+                interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+                clocks = <&cru ACLK_VOP>,
-+                         <&cru HCLK_VOP>,
-+                         <&cru DCLK_VOP0>,
-+                         <&cru DCLK_VOP1>,
-+                         <&cru DCLK_VOP2>;
-+                clock-names = "aclk",
-+                              "hclk",
-+                              "dclk_vp0",
-+                              "dclk_vp1",
-+                              "dclk_vp2";
-+                power-domains = <&power RK3568_PD_VO>;
-+                iommus = <&vop_mmu>;
-+                vop_out: ports {
-+                    #address-cells = <1>;
-+                    #size-cells = <0>;
-+                    vp0: port@0 {
-+                        reg = <0>;
-+                        #address-cells = <1>;
-+                        #size-cells = <0>;
-+                    };
-+                    vp1: port@1 {
-+                        reg = <1>;
-+                        #address-cells = <1>;
-+                        #size-cells = <0>;
-+                    };
-+                    vp2: port@2 {
-+                        reg = <2>;
-+                        #address-cells = <1>;
-+                        #size-cells = <0>;
-+                    };
-+                };
-+            };
-+        };
--- 
-2.30.2
+v5:
+1. Replace the previous variable name "default_timing_adjust" with
+   "use-default-timing"
+2. Added waiting for dma reset mechanism
+3. Remove received patch(dt-bindings: i2c: update bindings for MT8195 SOC)
+
+v4:
+1. Remove the repeated assignment of the inter_clk_div parameter
+2. Modify the wrong assignment of OFFSET_MULTI_DMA
+3. Unify the log print format of the i2c_dump_register() and drop the extra
+   outer parentheses
+4. Place the fixes at the very least
+5. Add fixed tags commit 25708278f810 ("i2c: mediatek: Add i2c support for
+   MediaTek MT8183")
+6. Add "i2c: mediatek: modify bus speed calculation formula"
+7. Fix single line characters exceeding 80 characters
+8. Combine two different series of patches.
+
+v3:
+1. Fix code errors caused by v2 modification
+
+v2:
+1. Add "dt-bindings: i2c: add attribute default-timing-adjust"
+2. Split the fix into sepatate patch.
+
+Kewei Xu (1):
+  i2c: mediatek: modify bus speed calculation formula
+
+ drivers/i2c/busses/i2c-mt65xx.c | 51 ++++++++++++++++++++++++++-------
+ 1 file changed, 41 insertions(+), 10 deletions(-)
+
+--
+2.18.0
 
