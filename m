@@ -2,86 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A28564AEC95
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 09:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5776D4AECB3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 09:38:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236642AbiBIIeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 03:34:15 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:49616 "EHLO
+        id S231546AbiBIIiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 03:38:04 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:40058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241529AbiBIIeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 03:34:12 -0500
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCB7EC03C1A3;
-        Wed,  9 Feb 2022 00:34:05 -0800 (PST)
-Received: by mail-vs1-f49.google.com with SMTP id r20so1810724vsn.0;
-        Wed, 09 Feb 2022 00:34:05 -0800 (PST)
+        with ESMTP id S232550AbiBIIiD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 03:38:03 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDA65C094CB0;
+        Wed,  9 Feb 2022 00:38:00 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id d187so3013710pfa.10;
+        Wed, 09 Feb 2022 00:38:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=22Xi1z/ScqVSExlbxCk1GGbcWjUYoCEzTiIBgifbR8k=;
+        b=XYCAQTI45l9GPO+hXmMbN+HqvTO6Luiwt337miZ/r8Qj8Hld+/3tuyT2zYGQhNOCvv
+         80AceUYqEdoJHxmnmIo8Er6kBSjMvZX/RDTqUt536+uYcmJ1LkX5yrv+iYBQPZJ1zgHf
+         kcFjiPAKN2rA7olq5IT7pl8frpdXSyTpKpfdJTIGKwPfz0CVa2MloGKQr7aSPdOTEmml
+         Bmba8grwjsbSaIYnmjQAe07ua+OqBkarVDtnKBGxR1ZaFDyK4eOtp7Oo/mn+vItvi4hN
+         fSgMX5H4CZv0wAXyvccIzuVp9XQx8mWAtmNZtHGaDkEr7NX/UiLpmBU1XZAld1IVNIr3
+         bHkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=E8GmvvUEovjq8L63GgeisXiih83gj7UpFOrlWJvTagg=;
-        b=8QXO2GdQY+5+8sABduiRr8lSZIWXpC4yi2IQmWML6cwHzcGyAgcSc37yCd0vGJymfi
-         2h3dpSpxkqiXfpMzVailLyMzYGjmdWuiqWs1BljcftkgYe8Ud7ms/u4aNL3rdfazce2K
-         R3hT5neHVjXJXNgMaY5L9uImZTN3KCbB8ivNsIM1gWEU4ETsEoIkq0SSftuHvlRc3Wzo
-         dE5R1eGS/G0pr5Xwh3Kl5gZf6M0kbJSbkLiR38RGBHvU0bAiYakbWGJvgYeT5aGgLQrB
-         cJ0gQQAhpNc052g0wWzE+4p5sW1yFWm71HVLUmltiUt+H6lGfkutUpfGVCni7jSx1RHl
-         cibg==
-X-Gm-Message-State: AOAM530xYWVT36AQ7Zcw2ER+8x5N75xAL0jUcm6VJH7H4FdlRYLFcf+x
-        7WBE8To3mbwT6q7scBgK5iLRKRnKz7vSaA==
-X-Google-Smtp-Source: ABdhPJxhDvEtzlzpKOrwHaZqylqIzxdgvsguoeb8soB1a5GSy/wwKO3ijT+hW4TjHRZgfkEg4s6nlA==
-X-Received: by 2002:a67:d811:: with SMTP id e17mr353325vsj.7.1644395640415;
-        Wed, 09 Feb 2022 00:34:00 -0800 (PST)
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
-        by smtp.gmail.com with ESMTPSA id d5sm643227vsd.19.2022.02.09.00.33.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Feb 2022 00:34:00 -0800 (PST)
-Received: by mail-vs1-f53.google.com with SMTP id f6so1744080vsa.5;
-        Wed, 09 Feb 2022 00:33:59 -0800 (PST)
-X-Received: by 2002:a67:a401:: with SMTP id n1mr327572vse.38.1644395639705;
- Wed, 09 Feb 2022 00:33:59 -0800 (PST)
+        bh=22Xi1z/ScqVSExlbxCk1GGbcWjUYoCEzTiIBgifbR8k=;
+        b=3N7fstn8mh45s1IbgpGeH3brIZlVnDKBZOEEl52ctWk2MXpv+pVLV6LiDB/p9+qq6s
+         QTzGakTarbXoYJPjYu2C/K3wq7AfK+7eooin1BvreoGZ+oFZgzE01mqdrdlj/9275+f/
+         CL2ltxlzBdxtOY/Yotrs3FjJcOuru7y/z7E0R/P+OoMrvwj4WiIqII8oUxR3nHNl8jCM
+         PBM9HwQYdMvqfEMl8z07LqC+2BEK/G8ieFMoT0WT5gJ/5NGzGsRS2Qt4TjogfKusuBd5
+         TScWMBF7G4expMjVwXNax1X/xvgqgfRGBz7b888Y922/J7J2lfNRnz2RXSR1uoaMlFBe
+         NN5Q==
+X-Gm-Message-State: AOAM530LEE3aqw4FuFWqBpXci6oa2ZqGoo/xy9vrbGNK1j99opH2DJwu
+        ouiZb+IzTxdX2whtYsDnIGRoWe2TnHw7WfU/Axg=
+X-Google-Smtp-Source: ABdhPJxWr0Kbq83LpjlqWfmGu30DOKd4Oo70si+5KGXccF9/zMwD3H9w+YFnjXYls53fU6SGRXrxkD/bWGFXE3vSYOM=
+X-Received: by 2002:a63:6c84:: with SMTP id h126mr1043241pgc.456.1644395877349;
+ Wed, 09 Feb 2022 00:37:57 -0800 (PST)
 MIME-Version: 1.0
-References: <20220208183511.2925304-1-jjhiblot@traphandler.com> <20220208183511.2925304-5-jjhiblot@traphandler.com>
-In-Reply-To: <20220208183511.2925304-5-jjhiblot@traphandler.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 9 Feb 2022 09:33:48 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXye8+z9rm25R96nHJz_BSNRHHjizXRTey9OYstdqYBuw@mail.gmail.com>
-Message-ID: <CAMuHMdXye8+z9rm25R96nHJz_BSNRHHjizXRTey9OYstdqYBuw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] ARM: dts: r9a06g032-rzn1d400-db: Enable watchdog0
- with a 60s timeout
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20211228072645.32341-1-luizluca@gmail.com> <Ydx4+o5TsWZkZd45@robh.at.kernel.org>
+ <CAJq09z4G40ttsTHXtOywjyusNLSjt_BQ9D78PhwSodJr=4p6OA@mail.gmail.com>
+ <7d6231f1-a45d-f53e-77d9-3e8425996662@arinc9.com> <CAJq09z7n_RZpsZS+RNpdzzYzhiogHfWmfpOF5CJCLBL6gurS_Q@mail.gmail.com>
+ <a9571486-1efd-49a7-aa26-c582d493ead6@gmail.com>
+In-Reply-To: <a9571486-1efd-49a7-aa26-c582d493ead6@gmail.com>
+From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Date:   Wed, 9 Feb 2022 05:37:46 -0300
+Message-ID: <CAJq09z7xGADn9u6Bu8MNeQGcR-T4s_wRuun2r+KO8Jh4fmYYjg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net: dsa: realtek-smi: convert to YAML schema
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <ALSI@bang-olufsen.dk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 8, 2022 at 7:35 PM Jean-Jacques Hiblot
-<jjhiblot@traphandler.com> wrote:
-> 60s is a sensible default value.
->
-> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> If there
+> are properties that only apply to SPI or MDIO, you can make use of
+> conditionals within the YAML file to enforce those. Having a single
+> binding file would be very helpful to make sure all eggs are in the same
+> basket.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Sorry Florian but I failed to find a way to test the parent node
+(platform or mdio) and conditionally offer properties.
+What I did was to guess if it is an mdio driver or not by checking the
+"reg" property. Is there a better way to solve it?
 
-Gr{oetje,eeting}s,
+Luiz
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+PS: I might post the merged v2 doc soon.
