@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E42694AF1E4
+	by mail.lfdr.de (Postfix) with ESMTP id 769024AF1E3
 	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:38:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233392AbiBIMi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 07:38:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37928 "EHLO
+        id S233414AbiBIMi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 07:38:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233351AbiBIMi1 (ORCPT
+        with ESMTP id S233363AbiBIMi1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:38:27 -0500
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D16AC05CB97;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA529C05CB9A;
         Wed,  9 Feb 2022 04:38:27 -0800 (PST)
 Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1nHmEn-0001Mv-9Y; Wed, 09 Feb 2022 13:38:21 +0100
+        id 1nHmEo-0001Mv-88; Wed, 09 Feb 2022 13:38:22 +0100
 From:   Heiko Stuebner <heiko@sntech.de>
 To:     palmer@dabbelt.com, paul.walmsley@sifive.com, aou@eecs.berkeley.edu
 Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
@@ -32,9 +32,9 @@ Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         jscheid@ventanamicro.com, rtrauben@gmail.com, samuel@sholland.org,
         cmuellner@linux.com, philipp.tomsich@vrull.eu,
         Heiko Stuebner <heiko@sntech.de>
-Subject: [PATCH v6 05/14] riscv: implement ALTERNATIVE_2 macro
-Date:   Wed,  9 Feb 2022 13:37:51 +0100
-Message-Id: <20220209123800.269774-6-heiko@sntech.de>
+Subject: [PATCH v6 06/14] riscv: extend concatenated alternatives-lines to the same length
+Date:   Wed,  9 Feb 2022 13:37:52 +0100
+Message-Id: <20220209123800.269774-7-heiko@sntech.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220209123800.269774-1-heiko@sntech.de>
 References: <20220209123800.269774-1-heiko@sntech.de>
@@ -49,92 +49,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When the alternatives were added the commit already provided a template
-on how to implement 2 different alternatives for one piece of code.
+ALT_NEW_CONTENT already uses same-length assembler lines, so
+extend this to the other elements as well.
 
-Make this usable.
+This makes it more readable when these elements need to be extended
+in the future.
 
 Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 ---
- arch/riscv/include/asm/alternative-macros.h | 52 +++++++++++++--------
- 1 file changed, 32 insertions(+), 20 deletions(-)
+ arch/riscv/include/asm/alternative-macros.h | 30 ++++++++++-----------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
 
 diff --git a/arch/riscv/include/asm/alternative-macros.h b/arch/riscv/include/asm/alternative-macros.h
-index 92da6b3920a3..baf649293288 100644
+index baf649293288..c0fb11fad631 100644
 --- a/arch/riscv/include/asm/alternative-macros.h
 +++ b/arch/riscv/include/asm/alternative-macros.h
-@@ -37,6 +37,20 @@
- #define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, CONFIG_k) \
- 	__ALTERNATIVE_CFG old_c, new_c, vendor_id, errata_id, IS_ENABLED(CONFIG_k)
- 
-+.macro __ALTERNATIVE_CFG_2 old_c, new_c_1, vendor_id_1, errata_id_1, enable_1, \
-+				  new_c_2, vendor_id_2, errata_id_2, enable_2
-+886 :
-+	\old_c
-+887 :
-+	ALT_NEW_CONTENT \vendor_id_1, \errata_id_1, \enable_1, \new_c_1
-+	ALT_NEW_CONTENT \vendor_id_2, \errata_id_2, \enable_2, \new_c_2
-+.endm
-+
-+#define _ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, CONFIG_k_1, \
-+				  new_c_2, vendor_id_2, errata_id_2, CONFIG_k_2) \
-+	__ALTERNATIVE_CFG_2 old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1), \
-+				   new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2)
-+
- #else /* !__ASSEMBLY__ */
- 
+@@ -56,14 +56,14 @@
  #include <asm/asm.h>
-@@ -72,6 +86,19 @@
- #define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, CONFIG_k)	\
+ #include <linux/stringify.h>
+ 
+-#define ALT_ENTRY(oldptr, newptr, vendor_id, errata_id, newlen) \
+-	RISCV_PTR " " oldptr "\n" \
+-	RISCV_PTR " " newptr "\n" \
+-	REG_ASM " " vendor_id "\n" \
+-	REG_ASM " " newlen "\n" \
++#define ALT_ENTRY(oldptr, newptr, vendor_id, errata_id, newlen)		\
++	RISCV_PTR " " oldptr "\n"					\
++	RISCV_PTR " " newptr "\n"					\
++	REG_ASM " " vendor_id "\n"					\
++	REG_ASM " " newlen "\n"						\
+ 	".word " errata_id "\n"
+ 
+-#define ALT_NEW_CONTENT(vendor_id, errata_id, enable, new_c) \
++#define ALT_NEW_CONTENT(vendor_id, errata_id, enable, new_c)		\
+ 	".if " __stringify(enable) " == 1\n"				\
+ 	".pushsection .alternative, \"a\"\n"				\
+ 	ALT_ENTRY("886b", "888f", __stringify(vendor_id), __stringify(errata_id), "889f - 888f") \
+@@ -77,21 +77,21 @@
+ 	".org	. - (889b - 888b) + (887b - 886b)\n"			\
+ 	".endif\n"
+ 
+-#define __ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, enable) \
+-	"886 :\n"	\
+-	old_c "\n"	\
+-	"887 :\n"	\
++#define __ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, enable)	\
++	"886 :\n"							\
++	old_c "\n"							\
++	"887 :\n"							\
+ 	ALT_NEW_CONTENT(vendor_id, errata_id, enable, new_c)
+ 
+-#define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, CONFIG_k)	\
++#define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, CONFIG_k) \
  	__ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, IS_ENABLED(CONFIG_k))
  
-+#define __ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1, \
-+				  new_c_2, vendor_id_2, errata_id_2, enable_2) \
-+	"886 :\n"	\
-+	old_c "\n"	\
-+	"887 :\n"	\
-+	ALT_NEW_CONTENT(vendor_id_1, errata_id_1, enable_1, new_c_1) \
-+	ALT_NEW_CONTENT(vendor_id_2, errata_id_2, enable_2, new_c_2)
-+
-+#define _ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, CONFIG_k_1,		\
-+				  new_c_2, vendor_id_2, errata_id_2, CONFIG_k_2)		\
-+	__ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),	\
-+				   new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2))
-+
- #endif /* __ASSEMBLY__ */
+ #define __ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1, \
+ 				  new_c_2, vendor_id_2, errata_id_2, enable_2) \
+-	"886 :\n"	\
+-	old_c "\n"	\
+-	"887 :\n"	\
+-	ALT_NEW_CONTENT(vendor_id_1, errata_id_1, enable_1, new_c_1) \
++	"886 :\n"							\
++	old_c "\n"							\
++	"887 :\n"							\
++	ALT_NEW_CONTENT(vendor_id_1, errata_id_1, enable_1, new_c_1)	\
+ 	ALT_NEW_CONTENT(vendor_id_2, errata_id_2, enable_2, new_c_2)
  
- /*
-@@ -96,25 +123,10 @@
-  * this case, this vendor can create a new macro ALTERNATIVE_2() based
-  * on the following sample code and then replace ALTERNATIVE() with
-  * ALTERNATIVE_2() to append its customized content.
-- *
-- * .macro __ALTERNATIVE_CFG_2 old_c, new_c_1, vendor_id_1, errata_id_1, enable_1, \
-- *                                   new_c_2, vendor_id_2, errata_id_2, enable_2
-- * 886 :
-- *      \old_c
-- * 887 :
-- *      ALT_NEW_CONTENT \vendor_id_1, \errata_id_1, \enable_1, \new_c_1
-- *      ALT_NEW_CONTENT \vendor_id_2, \errata_id_2, \enable_2, \new_c_2
-- * .endm
-- *
-- * #define _ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, CONFIG_k_1, \
-- *                                   new_c_2, vendor_id_2, errata_id_2, CONFIG_k_2) \
-- *        __ALTERNATIVE_CFG_2 old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1), \
-- *                                   new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2) \
-- *
-- * #define ALTERNATIVE_2(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1, \
-- *                                    new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2) \
-- *         _ALTERNATIVE_CFG_2(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1, \
-- *                                         new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2)
-- *
-  */
-+#define ALTERNATIVE_2(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1, \
-+				   new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2) \
-+	_ALTERNATIVE_CFG_2(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1, \
-+					new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2)
-+
- #endif
+ #define _ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, CONFIG_k_1,		\
 -- 
 2.30.2
 
