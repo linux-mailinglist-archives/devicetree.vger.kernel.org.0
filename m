@@ -2,470 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E76C84AF202
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:41:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A6064AF20B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:46:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231549AbiBIMll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 07:41:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43470 "EHLO
+        id S230355AbiBIMqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 07:46:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230311AbiBIMlk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:41:40 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79185C05CB97;
-        Wed,  9 Feb 2022 04:41:41 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nHmEw-0001Mv-CL; Wed, 09 Feb 2022 13:38:30 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     palmer@dabbelt.com, paul.walmsley@sifive.com, aou@eecs.berkeley.edu
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org, wefu@redhat.com,
-        liush@allwinnertech.com, guoren@kernel.org, atishp@atishpatra.org,
-        anup@brainfault.org, drew@beagleboard.org, hch@lst.de,
-        arnd@arndb.de, wens@csie.org, maxime@cerno.tech,
-        gfavor@ventanamicro.com, andrea.mondelli@huawei.com,
-        behrensj@mit.edu, xinhaoqu@huawei.com, huffman@cadence.com,
-        mick@ics.forth.gr, allen.baum@esperantotech.com,
-        jscheid@ventanamicro.com, rtrauben@gmail.com, samuel@sholland.org,
-        cmuellner@linux.com, philipp.tomsich@vrull.eu,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: [PATCH v6 14/14] riscv: add memory-type errata for T-Head
-Date:   Wed,  9 Feb 2022 13:38:00 +0100
-Message-Id: <20220209123800.269774-15-heiko@sntech.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220209123800.269774-1-heiko@sntech.de>
-References: <20220209123800.269774-1-heiko@sntech.de>
+        with ESMTP id S230053AbiBIMqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:46:20 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9AAAC0613CA;
+        Wed,  9 Feb 2022 04:46:23 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id i14so3802448wrc.10;
+        Wed, 09 Feb 2022 04:46:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eCDxWA565CQFly4+74NENwOqKnurUlmfhXdVUzF+sO4=;
+        b=VTFkovW5a8OEiIlc9btuqGmq8kGo+xfSALHnxCVWJB6P6vRNzFWl+H+6+klzL08uTo
+         r/+JNZhioFXmGpcXYJ4MGxMbxwks0mBZxAOHPy4JmjaucpBqvFKI4jdXHS37Du80xUAU
+         p2g+WFu+cPYgKYW7eAOThvveeEJwoZ+WYi2U5I4ladD89bpL6IfeEJEDE1xF0T4qUUPk
+         lKmZYf4GDWZyKZgLEyCwFb2xU9PeW/lP6HKo4CLvyyzdRfr5rh0lWAUOQ20BxK7PQ2w9
+         mhZaGbUPK8zt0uNgx2W+/yVPWIrqUqIw24r4Cmfzla0pPBHe4yyanFOCtj4zUwLUvcrn
+         hC1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eCDxWA565CQFly4+74NENwOqKnurUlmfhXdVUzF+sO4=;
+        b=JRCpb0yoJ3tJfXYh9mqzMbrwgp5lwranRn32V/klMrP34QXOwyurAaDg/MdFkYyQM/
+         gi0J/FemFYkAuWFGOa1Xgt+Pt5Dfyt1OAxbKoFIR5pF2VZx3ToDfX4y9WORBpDjXIoF+
+         uY4GK6ttn4+tX5aMeP3LulOg5FcjLUxghi4xKRfoEWh7q/+uPYZoRXujebp48J7QpF6P
+         OTo2f3ZLWk839ZnyDamzUZosIhvnlKTL40EMmZCk80Xi7SRadxnST9yXwgXK605G0wyD
+         4b40Xb7LcNDLqdnePv+K2eXMz7im36AGl3IHuS5FEYRYmcXWHfzrX5G/7BqTKZAVtzF2
+         6T0Q==
+X-Gm-Message-State: AOAM530LUL2O34PE4gQPJXGFIZ37SoWs6BYJmhdajrpExDI02+XYfOgb
+        w9MTu9GKtzGjisxKnjTPDocclfkQSNFfClUvklw=
+X-Google-Smtp-Source: ABdhPJwCyVj6cw1rlWifdu4VubBw11SlOQMJK/UYfYNXFmOlesMzlUqA6kj5ZaMnWTfz9PDIMnhCh51tRlHg6dbl4nc=
+X-Received: by 2002:a05:6000:2c5:: with SMTP id o5mr1961877wry.130.1644410782312;
+ Wed, 09 Feb 2022 04:46:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220208063046.2265537-1-peng.fan@oss.nxp.com> <20220208063046.2265537-5-peng.fan@oss.nxp.com>
+In-Reply-To: <20220208063046.2265537-5-peng.fan@oss.nxp.com>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Wed, 9 Feb 2022 14:46:09 +0200
+Message-ID: <CAEnQRZA15UabGMSd_GjAdLXhidbVupz68Jh8CqVSYw-n+_4+=Q@mail.gmail.com>
+Subject: Re: [PATCH V2 4/4] mailbox: imx: support i.MX93 S401 MU
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        krzysztof.kozlowski@canonical.com, Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some current cpus based on T-Head cores implement memory-types
-way different than described in the svpbmt spec even going
-so far as using PTE bits marked as reserved.
+Peng,
 
-Add the T-Head vendor-id and necessary errata code to
-replace the affected instructions.
+This patch is doing 3 things in one patch.
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- arch/riscv/Kconfig.erratas             | 19 ++++++
- arch/riscv/errata/Makefile             |  1 +
- arch/riscv/errata/sifive/errata.c      |  7 ++-
- arch/riscv/errata/thead/Makefile       |  1 +
- arch/riscv/errata/thead/errata.c       | 85 ++++++++++++++++++++++++++
- arch/riscv/include/asm/alternative.h   |  5 ++
- arch/riscv/include/asm/errata_list.h   | 47 ++++++++++++--
- arch/riscv/include/asm/pgtable-64.h    | 18 +++++-
- arch/riscv/include/asm/pgtable.h       | 18 +++++-
- arch/riscv/include/asm/vendorid_list.h |  1 +
- arch/riscv/kernel/alternative.c        | 14 +++++
- arch/riscv/kernel/cpufeature.c         |  2 +
- arch/riscv/mm/init.c                   |  1 +
- 13 files changed, 210 insertions(+), 9 deletions(-)
- create mode 100644 arch/riscv/errata/thead/Makefile
- create mode 100644 arch/riscv/errata/thead/errata.c
+Please split this with one patch per functional change.
 
-diff --git a/arch/riscv/Kconfig.erratas b/arch/riscv/Kconfig.erratas
-index d18be8ff0245..380ec039c3dc 100644
---- a/arch/riscv/Kconfig.erratas
-+++ b/arch/riscv/Kconfig.erratas
-@@ -31,4 +31,23 @@ config ERRATA_SIFIVE_CIP_1200
- 
- 	  If you don't know what to do here, say "Y".
- 
-+config ERRATA_THEAD
-+	bool "T-HEAD errata"
-+	help
-+	  All T-HEAD errata Kconfig depend on this Kconfig. Disabling
-+	  this Kconfig will disable all T-HEAD errata. Please say "Y"
-+	  here if your platform uses T-HEAD CPU cores.
-+
-+	  If you don't know what to do here, say "Y".
-+
-+config ERRATA_THEAD_PBMT
-+	bool "Apply T-Head memory type errata"
-+	depends on ERRATA_THEAD && 64BIT
-+	default y
-+	help
-+	  This will apply the memory type errata to handle the non-standard
-+	  memory type bits in page-table-entries on T-Head SoCs.
-+
-+	  If you don't know what to do here, say "Y".
-+
- endmenu
-diff --git a/arch/riscv/errata/Makefile b/arch/riscv/errata/Makefile
-index 0ca1c5281a2d..a1055965fbee 100644
---- a/arch/riscv/errata/Makefile
-+++ b/arch/riscv/errata/Makefile
-@@ -1 +1,2 @@
- obj-$(CONFIG_ERRATA_SIFIVE) += sifive/
-+obj-$(CONFIG_ERRATA_THEAD) += thead/
-diff --git a/arch/riscv/errata/sifive/errata.c b/arch/riscv/errata/sifive/errata.c
-index 4fe03ac41fd7..f933d6cdf304 100644
---- a/arch/riscv/errata/sifive/errata.c
-+++ b/arch/riscv/errata/sifive/errata.c
-@@ -84,10 +84,15 @@ void __init sifive_errata_patch_func(struct alt_entry *begin, struct alt_entry *
- 				     unsigned int stage)
- {
- 	struct alt_entry *alt;
--	u32 cpu_req_errata = sifive_errata_probe(archid, impid);
-+	u32 cpu_req_errata;
- 	u32 cpu_apply_errata = 0;
- 	u32 tmp;
- 
-+	if (stage == RISCV_ALTERNATIVES_EARLY_BOOT)
-+		return;
-+
-+	cpu_req_errata = sifive_errata_probe(archid, impid);
-+
- 	for (alt = begin; alt < end; alt++) {
- 		if (alt->vendor_id != SIFIVE_VENDOR_ID)
- 			continue;
-diff --git a/arch/riscv/errata/thead/Makefile b/arch/riscv/errata/thead/Makefile
-new file mode 100644
-index 000000000000..2d644e19caef
---- /dev/null
-+++ b/arch/riscv/errata/thead/Makefile
-@@ -0,0 +1 @@
-+obj-y += errata.o
-diff --git a/arch/riscv/errata/thead/errata.c b/arch/riscv/errata/thead/errata.c
-new file mode 100644
-index 000000000000..fd8e0538a3f0
---- /dev/null
-+++ b/arch/riscv/errata/thead/errata.c
-@@ -0,0 +1,85 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2021 Heiko Stuebner <heiko@sntech.de>
-+ */
-+
-+#include <linux/bug.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/string.h>
-+#include <linux/uaccess.h>
-+#include <asm/alternative.h>
-+#include <asm/cacheflush.h>
-+#include <asm/errata_list.h>
-+#include <asm/patch.h>
-+#include <asm/vendorid_list.h>
-+
-+struct errata_info {
-+	char name[ERRATA_STRING_LENGTH_MAX];
-+	bool (*check_func)(unsigned long arch_id, unsigned long impid);
-+	unsigned int stage;
-+};
-+
-+static bool errata_mt_check_func(unsigned long  arch_id, unsigned long impid)
-+{
-+	if (arch_id != 0 || impid != 0)
-+		return false;
-+	return true;
-+}
-+
-+static const struct errata_info errata_list[ERRATA_THEAD_NUMBER] = {
-+	{
-+		.name = "memory-types",
-+		.stage = RISCV_ALTERNATIVES_EARLY_BOOT,
-+		.check_func = errata_mt_check_func
-+	},
-+};
-+
-+static u32 thead_errata_probe(unsigned int stage, unsigned long archid, unsigned long impid)
-+{
-+	const struct errata_info *info;
-+	u32 cpu_req_errata = 0;
-+	int idx;
-+
-+	for (idx = 0; idx < ERRATA_THEAD_NUMBER; idx++) {
-+		info = &errata_list[idx];
-+
-+		if ((stage == RISCV_ALTERNATIVES_MODULE ||
-+		     info->stage == stage) && info->check_func(archid, impid))
-+			cpu_req_errata |= (1U << idx);
-+	}
-+
-+	return cpu_req_errata;
-+}
-+
-+void __init_or_module thead_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
-+					      unsigned long archid, unsigned long impid,
-+					      unsigned int stage)
-+{
-+	struct alt_entry *alt;
-+	u32 cpu_req_errata = thead_errata_probe(stage, archid, impid);
-+	u32 cpu_apply_errata = 0;
-+	u32 tmp;
-+
-+	for (alt = begin; alt < end; alt++) {
-+		if (alt->vendor_id != THEAD_VENDOR_ID)
-+			continue;
-+		if (alt->errata_id >= ERRATA_THEAD_NUMBER)
-+			continue;
-+
-+		tmp = (1U << alt->errata_id);
-+		if (cpu_req_errata & tmp) {
-+			/* On vm-alternatives, the mmu isn't running yet */
-+			if (stage == RISCV_ALTERNATIVES_EARLY_BOOT)
-+				memcpy((void *)__pa_symbol(alt->old_ptr),
-+				       (void *)__pa_symbol(alt->alt_ptr), alt->alt_len);
-+			else
-+				patch_text_nosync(alt->old_ptr, alt->alt_ptr, alt->alt_len);
-+
-+			cpu_apply_errata |= tmp;
-+		}
-+	}
-+
-+	if (stage == RISCV_ALTERNATIVES_EARLY_BOOT)
-+		local_flush_icache_all();
-+}
-diff --git a/arch/riscv/include/asm/alternative.h b/arch/riscv/include/asm/alternative.h
-index cf3b22173834..d1154c91ab03 100644
---- a/arch/riscv/include/asm/alternative.h
-+++ b/arch/riscv/include/asm/alternative.h
-@@ -19,8 +19,10 @@
- 
- #define RISCV_ALTERNATIVES_BOOT		0 /* alternatives applied during regular boot */
- #define RISCV_ALTERNATIVES_MODULE	1 /* alternatives applied during module-init */
-+#define RISCV_ALTERNATIVES_EARLY_BOOT	2 /* alternatives applied before mmu start */
- 
- void __init apply_boot_alternatives(void);
-+void __init apply_early_boot_alternatives(void);
- void apply_module_alternatives(void *start, size_t length);
- 
- struct alt_entry {
-@@ -39,6 +41,9 @@ struct errata_checkfunc_id {
- void sifive_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
- 			      unsigned long archid, unsigned long impid,
- 			      unsigned int stage);
-+void thead_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
-+			     unsigned long archid, unsigned long impid,
-+			     unsigned int stage);
- 
- void riscv_cpufeature_patch_func(struct alt_entry *begin, struct alt_entry *end,
- 				 unsigned int stage);
-diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
-index a4a9b0842922..4fac46b82c16 100644
---- a/arch/riscv/include/asm/errata_list.h
-+++ b/arch/riscv/include/asm/errata_list.h
-@@ -14,6 +14,11 @@
- #define	ERRATA_SIFIVE_NUMBER 2
- #endif
- 
-+#ifdef CONFIG_ERRATA_THEAD
-+#define	ERRATA_THEAD_PBMT 0
-+#define	ERRATA_THEAD_NUMBER 1
-+#endif
-+
- #define	CPUFEATURE_SVPBMT 0
- #define	CPUFEATURE_NUMBER 1
- 
-@@ -42,10 +47,44 @@ asm(ALTERNATIVE("sfence.vma %0", "sfence.vma", SIFIVE_VENDOR_ID,	\
-  * in the default case.
-  */
- #define ALT_SVPBMT_SHIFT 61
--#define ALT_SVPBMT(_val, prot)						\
--asm(ALTERNATIVE("li %0, 0\t\nnop", "li %0, %1\t\nslli %0,%0,%2", 0,	\
--		CPUFEATURE_SVPBMT, CONFIG_64BIT)			\
--		: "=r"(_val) : "I"(prot##_SVPBMT >> ALT_SVPBMT_SHIFT), "I"(ALT_SVPBMT_SHIFT))
-+#define ALT_THEAD_PBMT_SHIFT 59
-+#define ALT_SVPBMT(_val, prot)								\
-+asm(ALTERNATIVE_2("li %0, 0\t\nnop",							\
-+		  "li %0, %1\t\nslli %0,%0,%3", 0, CPUFEATURE_SVPBMT, CONFIG_64BIT,	\
-+		  "li %0, %2\t\nslli %0,%0,%4", THEAD_VENDOR_ID, ERRATA_THEAD_PBMT,	\
-+						CONFIG_ERRATA_THEAD_PBMT)		\
-+		: "=r"(_val) : "I"(prot##_SVPBMT >> ALT_SVPBMT_SHIFT),			\
-+			       "I"(prot##_THEAD >> ALT_THEAD_PBMT_SHIFT),		\
-+			       "I"(ALT_SVPBMT_SHIFT), "I"(ALT_THEAD_PBMT_SHIFT))
-+
-+#ifdef CONFIG_ERRATA_THEAD_PBMT
-+/*
-+ * IO/NOCACHE memory types are handled together with svpbmt,
-+ * so on T-Head chips, check if no other memory type is set,
-+ * and set the non-0 PMA type if applicable.
-+ */
-+#define ALT_THEAD_PMA(_val)								\
-+asm volatile(ALTERNATIVE(								\
-+	"nop\n\t"									\
-+	"nop\n\t"									\
-+	"nop\n\t"									\
-+	"nop\n\t"									\
-+	"nop\n\t"									\
-+	"nop\n\t"									\
-+	"nop",										\
-+	"li      t3, %2\n\t"								\
-+	"slli    t3, t3, %4\n\t"							\
-+	"and     t3, %0, t3\n\t"							\
-+	"bne     t3, zero, 2f\n\t"							\
-+	"li      t3, %3\n\t"								\
-+	"slli    t3, t3, %4\n\t"							\
-+	"or      %0, %0, t3\n\t"							\
-+	"2:",  THEAD_VENDOR_ID, ERRATA_THEAD_PBMT, CONFIG_ERRATA_THEAD_PBMT)		\
-+	: "+r"(_val) : "0"(_val), "I"(_PAGE_MTMASK_THEAD >> ALT_THEAD_PBMT_SHIFT),	\
-+		       "I"(_PAGE_PMA_THEAD >> ALT_THEAD_PBMT_SHIFT),  "I"(ALT_THEAD_PBMT_SHIFT))
-+#else
-+#define ALT_THEAD_PMA(_val)
-+#endif
- 
- #endif /* __ASSEMBLY__ */
- 
-diff --git a/arch/riscv/include/asm/pgtable-64.h b/arch/riscv/include/asm/pgtable-64.h
-index 07ba3416cb19..6d59e4695200 100644
---- a/arch/riscv/include/asm/pgtable-64.h
-+++ b/arch/riscv/include/asm/pgtable-64.h
-@@ -69,6 +69,18 @@ typedef struct {
- #define _PAGE_IO_SVPBMT		(1UL << 62)
- #define _PAGE_MTMASK_SVPBMT	(_PAGE_NOCACHE_SVPBMT | _PAGE_IO_SVPBMT)
- 
-+/*
-+ * [63:59] T-Head Memory Type definitions:
-+ *
-+ * 00000 - NC   Weakly-ordered, Non-cacheable, Non-bufferable, Non-shareable, Non-trustable
-+ * 01110 - PMA  Weakly-ordered, Cacheable, Bufferable, Shareable, Non-trustable
-+ * 10000 - IO   Strongly-ordered, Non-cacheable, Non-bufferable, Non-shareable, Non-trustable
-+ */
-+#define _PAGE_PMA_THEAD		((1UL << 62) | (1UL << 61) | (1UL << 60))
-+#define _PAGE_NOCACHE_THEAD	0UL
-+#define _PAGE_IO_THEAD		(1UL << 63)
-+#define _PAGE_MTMASK_THEAD	(_PAGE_PMA_THEAD | _PAGE_IO_THEAD | (1UL << 59))
-+
- static inline u64 riscv_page_mtmask(void)
- {
- 	u64 val;
-@@ -167,7 +179,11 @@ static inline bool mm_pud_folded(struct mm_struct *mm)
- 
- static inline pmd_t pfn_pmd(unsigned long pfn, pgprot_t prot)
- {
--	return __pmd((pfn << _PAGE_PFN_SHIFT) | pgprot_val(prot));
-+	unsigned long prot_val = pgprot_val(prot);
-+
-+	ALT_THEAD_PMA(prot_val);
-+
-+	return __pmd((pfn << _PAGE_PFN_SHIFT) | prot_val);
- }
- 
- static inline unsigned long _pmd_pfn(pmd_t pmd)
-diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
-index b8abc75dfe01..3d0c4c144093 100644
---- a/arch/riscv/include/asm/pgtable.h
-+++ b/arch/riscv/include/asm/pgtable.h
-@@ -245,7 +245,11 @@ static inline void pmd_clear(pmd_t *pmdp)
- 
- static inline pgd_t pfn_pgd(unsigned long pfn, pgprot_t prot)
- {
--	return __pgd((pfn << _PAGE_PFN_SHIFT) | pgprot_val(prot));
-+	unsigned long prot_val = pgprot_val(prot);
-+
-+	ALT_THEAD_PMA(prot_val);
-+
-+	return __pgd((pfn << _PAGE_PFN_SHIFT) | prot_val);
- }
- 
- static inline unsigned long _pgd_pfn(pgd_t pgd)
-@@ -284,7 +288,11 @@ static inline unsigned long pte_pfn(pte_t pte)
- /* Constructs a page table entry */
- static inline pte_t pfn_pte(unsigned long pfn, pgprot_t prot)
- {
--	return __pte((pfn << _PAGE_PFN_SHIFT) | pgprot_val(prot));
-+	unsigned long prot_val = pgprot_val(prot);
-+
-+	ALT_THEAD_PMA(prot_val);
-+
-+	return __pte((pfn << _PAGE_PFN_SHIFT) | prot_val);
- }
- 
- #define mk_pte(page, prot)       pfn_pte(page_to_pfn(page), prot)
-@@ -393,7 +401,11 @@ static inline int pmd_protnone(pmd_t pmd)
- /* Modify page protection bits */
- static inline pte_t pte_modify(pte_t pte, pgprot_t newprot)
- {
--	return __pte((pte_val(pte) & _PAGE_CHG_MASK) | pgprot_val(newprot));
-+	unsigned long newprot_val = pgprot_val(newprot);
-+
-+	ALT_THEAD_PMA(newprot_val);
-+
-+	return __pte((pte_val(pte) & _PAGE_CHG_MASK) | newprot_val);
- }
- 
- #define pgd_ERROR(e) \
-diff --git a/arch/riscv/include/asm/vendorid_list.h b/arch/riscv/include/asm/vendorid_list.h
-index 9d934215b3c8..cb89af3f0704 100644
---- a/arch/riscv/include/asm/vendorid_list.h
-+++ b/arch/riscv/include/asm/vendorid_list.h
-@@ -6,5 +6,6 @@
- #define ASM_VENDOR_LIST_H
- 
- #define SIFIVE_VENDOR_ID	0x489
-+#define THEAD_VENDOR_ID		0x5b7
- 
- #endif
-diff --git a/arch/riscv/kernel/alternative.c b/arch/riscv/kernel/alternative.c
-index e6c9de9f9ba6..3f6ad91f524c 100644
---- a/arch/riscv/kernel/alternative.c
-+++ b/arch/riscv/kernel/alternative.c
-@@ -48,6 +48,11 @@ static void __init init_alternative(void)
- 	case SIFIVE_VENDOR_ID:
- 		vendor_patch_func = sifive_errata_patch_func;
- 		break;
-+#endif
-+#ifdef CONFIG_ERRATA_THEAD
-+	case THEAD_VENDOR_ID:
-+		vendor_patch_func = thead_errata_patch_func;
-+		break;
- #endif
- 	default:
- 		vendor_patch_func = NULL;
-@@ -85,6 +90,15 @@ void __init apply_boot_alternatives(void)
- 			    RISCV_ALTERNATIVES_BOOT);
- }
- 
-+void __init apply_early_boot_alternatives(void)
-+{
-+	init_alternative();
-+
-+	_apply_alternatives((struct alt_entry *)__alt_start,
-+			    (struct alt_entry *)__alt_end,
-+			    RISCV_ALTERNATIVES_EARLY_BOOT);
-+}
-+
- #ifdef CONFIG_MODULES
- void apply_module_alternatives(void *start, size_t length)
- {
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 7bce66ee7ce7..ecc248e5dab7 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -224,6 +224,8 @@ static bool cpufeature_svpbmt_check_func(unsigned int stage)
- 
- #if defined(CONFIG_MMU) && defined(CONFIG_64BIT)
- 	switch (stage) {
-+	case RISCV_ALTERNATIVES_EARLY_BOOT:
-+		return false;
- 	case RISCV_ALTERNATIVES_BOOT:
- 		return cpufeature_svpbmt_check_fdt();
- 	default:
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index cf4d018b7d66..7216db5d6a2c 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -819,6 +819,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
- 	BUG_ON((kernel_map.virt_addr + kernel_map.size) > ADDRESS_SPACE_END - SZ_4K);
- #endif
- 
-+	apply_early_boot_alternatives();
- 	pt_ops_set_early();
- 
- 	/* Setup early PGD for fixmap */
--- 
-2.30.2
-
+On Wed, Feb 9, 2022 at 1:20 PM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
+>
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> i.MX93 S401 MU support two interrupts: tx empty and rx full.
+>
+>  - Introduce a new flag IMX_MU_V2_IRQ for the dual interrupt case
+>  - Add i.MX93 S401 MU cfg
+>  - Update author and Copyright
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/mailbox/imx-mailbox.c | 49 ++++++++++++++++++++++++++++-------
+>  1 file changed, 40 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/mailbox/imx-mailbox.c b/drivers/mailbox/imx-mailbox.c
+> index 03699843a6fd..094dc84291fc 100644
+> --- a/drivers/mailbox/imx-mailbox.c
+> +++ b/drivers/mailbox/imx-mailbox.c
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  /*
+>   * Copyright (c) 2018 Pengutronix, Oleksij Rempel <o.rempel@pengutronix.de>
+> + * Copyright 2022 NXP, Peng Fan <peng.fan@nxp.com>
+>   */
+>
+>  #include <linux/clk.h>
+> @@ -28,6 +29,7 @@
+>  #define IMX_MU_SECO_TX_TOUT (msecs_to_jiffies(3000))
+>  #define IMX_MU_SECO_RX_TOUT (msecs_to_jiffies(3000))
+>
+> +/* Please not change TX & RX */
+>  enum imx_mu_chan_type {
+>         IMX_MU_TYPE_TX,         /* Tx */
+>         IMX_MU_TYPE_RX,         /* Rx */
+> @@ -92,6 +94,7 @@ enum imx_mu_type {
+>         IMX_MU_V1,
+>         IMX_MU_V2 = BIT(1),
+>         IMX_MU_V2_S4 = BIT(15),
+> +       IMX_MU_V2_IRQ = BIT(16),
+>  };
+>
+>  struct imx_mu_dcfg {
+> @@ -536,7 +539,8 @@ static int imx_mu_startup(struct mbox_chan *chan)
+>  {
+>         struct imx_mu_priv *priv = to_imx_mu_priv(chan->mbox);
+>         struct imx_mu_con_priv *cp = chan->con_priv;
+> -       unsigned long irq_flag = IRQF_SHARED;
+> +       unsigned long irq_flag = 0;
+> +       int irq;
+>         int ret;
+>
+>         pm_runtime_get_sync(priv->dev);
+> @@ -551,11 +555,16 @@ static int imx_mu_startup(struct mbox_chan *chan)
+>         if (!priv->dev->pm_domain)
+>                 irq_flag |= IRQF_NO_SUSPEND;
+>
+> -       ret = request_irq(priv->irq[0], imx_mu_isr, irq_flag,
+> -                         cp->irq_desc, chan);
+> +       if (priv->dcfg->type & IMX_MU_V2_IRQ) {
+> +               irq = priv->irq[cp->type];
+> +       } else {
+> +               irq = priv->irq[0];
+> +               irq_flag |= IRQF_SHARED;
+> +       }
+> +
+> +       ret = request_irq(irq, imx_mu_isr, irq_flag, cp->irq_desc, chan);
+>         if (ret) {
+> -               dev_err(priv->dev,
+> -                       "Unable to acquire IRQ %d\n", priv->irq[0]);
+> +               dev_err(priv->dev, "Unable to acquire IRQ %d\n", irq);
+>                 return ret;
+>         }
+>
+> @@ -762,14 +771,23 @@ static int imx_mu_probe(struct platform_device *pdev)
+>         if (IS_ERR(priv->base))
+>                 return PTR_ERR(priv->base);
+>
+> -       priv->irq[0] = platform_get_irq(pdev, 0);
+> -       if (priv->irq[0] < 0)
+> -               return priv->irq[0];
+> -
+>         dcfg = of_device_get_match_data(dev);
+>         if (!dcfg)
+>                 return -EINVAL;
+>         priv->dcfg = dcfg;
+> +       if (priv->dcfg->type & IMX_MU_V2_IRQ) {
+> +               priv->irq[IMX_MU_TYPE_TX] = platform_get_irq_byname(pdev, "txirq");
+> +               if (priv->irq[IMX_MU_TYPE_TX] < 0)
+> +                       return priv->irq[IMX_MU_TYPE_TX];
+> +               priv->irq[IMX_MU_TYPE_RX] = platform_get_irq_byname(pdev, "rxirq");
+> +               if (priv->irq[IMX_MU_TYPE_RX] < 0)
+> +                       return priv->irq[IMX_MU_TYPE_RX];
+> +       } else {
+> +               priv->irq[0] = platform_get_irq(pdev, 0);
+> +               if (priv->irq[0] < 0)
+> +                       return priv->irq[0];
+> +
+> +       }
+>
+>         if (priv->dcfg->type & IMX_MU_V2_S4)
+>                 size = sizeof(struct imx_s4_rpc_msg_max);
+> @@ -890,6 +908,17 @@ static const struct imx_mu_dcfg imx_mu_cfg_imx8ulp_s4 = {
+>         .xCR    = {0x110, 0x114, 0x120, 0x128},
+>  };
+>
+> +static const struct imx_mu_dcfg imx_mu_cfg_imx93_s4 = {
+> +       .tx     = imx_mu_specific_tx,
+> +       .rx     = imx_mu_specific_rx,
+> +       .init   = imx_mu_init_specific,
+> +       .type   = IMX_MU_V2 | IMX_MU_V2_S4 | IMX_MU_V2_IRQ,
+> +       .xTR    = 0x200,
+> +       .xRR    = 0x280,
+> +       .xSR    = {0xC, 0x118, 0x124, 0x12C},
+> +       .xCR    = {0x110, 0x114, 0x120, 0x128},
+> +};
+> +
+>  static const struct imx_mu_dcfg imx_mu_cfg_imx8_scu = {
+>         .tx     = imx_mu_specific_tx,
+>         .rx     = imx_mu_specific_rx,
+> @@ -917,6 +946,7 @@ static const struct of_device_id imx_mu_dt_ids[] = {
+>         { .compatible = "fsl,imx6sx-mu", .data = &imx_mu_cfg_imx6sx },
+>         { .compatible = "fsl,imx8ulp-mu", .data = &imx_mu_cfg_imx8ulp },
+>         { .compatible = "fsl,imx8ulp-mu-s4", .data = &imx_mu_cfg_imx8ulp_s4 },
+> +       { .compatible = "fsl,imx93-mu-s4", .data = &imx_mu_cfg_imx93_s4 },
+>         { .compatible = "fsl,imx8-mu-scu", .data = &imx_mu_cfg_imx8_scu },
+>         { .compatible = "fsl,imx8-mu-seco", .data = &imx_mu_cfg_imx8_seco },
+>         { },
+> @@ -1001,5 +1031,6 @@ static struct platform_driver imx_mu_driver = {
+>  module_platform_driver(imx_mu_driver);
+>
+>  MODULE_AUTHOR("Oleksij Rempel <o.rempel@pengutronix.de>");
+> +MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
+>  MODULE_DESCRIPTION("Message Unit driver for i.MX");
+>  MODULE_LICENSE("GPL v2");
+> --
+> 2.25.1
+>
