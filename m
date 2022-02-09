@@ -2,79 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 040394AFE99
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 21:38:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DD254AFEA9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 21:45:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231863AbiBIUht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 15:37:49 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:47280 "EHLO
+        id S232120AbiBIUpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 15:45:08 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:38284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231993AbiBIUhk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 15:37:40 -0500
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 028CCE00E598;
-        Wed,  9 Feb 2022 12:37:42 -0800 (PST)
-Received: by mail-oo1-f52.google.com with SMTP id o128-20020a4a4486000000b003181707ed40so3826860ooa.11;
-        Wed, 09 Feb 2022 12:37:42 -0800 (PST)
+        with ESMTP id S232090AbiBIUpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 15:45:08 -0500
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07A6AC03FEEE;
+        Wed,  9 Feb 2022 12:45:11 -0800 (PST)
+Received: by mail-oo1-f41.google.com with SMTP id 189-20020a4a03c6000000b003179d7b30d8so3908884ooi.2;
+        Wed, 09 Feb 2022 12:45:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9vvNKi/Wm0VLtELILJszjggawGQx7UYnFBx5UN6T3jA=;
-        b=kdxheazUUYXTTKFRyvaq8o0hgUZBOFjzBeooUFeu7iz+aDJZ7W+HN6X8P0XxGmDO/q
-         QaJUbx6EWfIwRj0aMsCHEAx2qGXH5+231/8q9eEvBZtC96klTkX50limU252QZRzF2g7
-         525rCOVuFTO0i+nAQm6gI6vt/ufUeMG4kYdc8XQrZyseA8MUItr2xA5aLwPVV1ZhFUoZ
-         Rfibypr48UjKJ/xqRyHG77zl+e9fUtYISsVNVpmhGfkl1Y5/4xycQcpEpXTpTqN+xpmB
-         EBNkhK3o7KV8FLBhn2YMIbYMWAxAbE3msTtNCC+B/xtNpYAVa/L0yEqitu4IZ03c0FOL
-         ELrA==
-X-Gm-Message-State: AOAM532WYaz0A3+hhlxjlciGrxNn3MTpop/v/w6l+c9kXfS6ZBrvO5dO
-        /N0Y+l66G6aSHyADrU15QwqGAuh7LA==
-X-Google-Smtp-Source: ABdhPJzDNBwd/NZ7M3FaqezQTKEcdU8xCVOg4y//z9QAs0xMXOadIO7noGIod4pEwfE0Iw17L6nY9w==
-X-Received: by 2002:a05:6870:c7ae:: with SMTP id dy46mr1533523oab.309.1644439062215;
-        Wed, 09 Feb 2022 12:37:42 -0800 (PST)
+        bh=E6SXQI7BZ89wLWfBrUoQLVzH2X91u9h16GeWEE3Mi8M=;
+        b=n+lRk1DOO+dZ/rkjsXsj4DrwmC8xxehuDLcSnBvViXChpDnVLxYiMPBpOFinmpHn+6
+         AXKzQKJlEg/8JzuXnl17k5ZvZLB0+TGues0wPFSGbHbZNUo6V6V/yg6SaPS9iBiFfdBh
+         R/KNU/pJnrmgqdCmm7qNtSAZ/oycg6DP0pbjXSw6ym+5CxmUCmnb/gFLhO3v2aiQFv7y
+         A+Njwjnu0Gw+NP/PekT6Fv+i+xoWdglvfws9Um9XM5v4rJ0SrK7wAJYfZkW/D1JC9Nko
+         ocUzxT2/J1+xYupW0yy8z4X/iUUSxpTD+G5OXbI2sSJOcF7hVLXAaI/l8f5FMgRWls0R
+         sBig==
+X-Gm-Message-State: AOAM531/0IXPl+KgEVEb2SMjadYsGvWi9PSB+iejsmCb8nCHob5LS2sS
+        GmvcXtAifkjp/gpdF9OKww==
+X-Google-Smtp-Source: ABdhPJy4AH9g61BJTuGzr3+4csdYvHWDckGJ/vzpMmnXYpOaTzvQOyhxZiJysr/kfvlf541SyS4xjA==
+X-Received: by 2002:a05:6870:a583:: with SMTP id c3mr1477653oam.197.1644439510352;
+        Wed, 09 Feb 2022 12:45:10 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c32sm7310728otu.15.2022.02.09.12.37.40
+        by smtp.gmail.com with ESMTPSA id n47sm6957783ota.74.2022.02.09.12.45.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 12:37:41 -0800 (PST)
-Received: (nullmailer pid 863156 invoked by uid 1000);
-        Wed, 09 Feb 2022 20:37:40 -0000
-Date:   Wed, 9 Feb 2022 14:37:40 -0600
+        Wed, 09 Feb 2022 12:45:09 -0800 (PST)
+Received: (nullmailer pid 875372 invoked by uid 1000);
+        Wed, 09 Feb 2022 20:45:08 -0000
+Date:   Wed, 9 Feb 2022 14:45:08 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        srv_heupstream@mediatek.com,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Tomasz Figa <tfiga@google.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-mediatek@lists.infradead.org,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-kernel@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        George Sun <george.sun@mediatek.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v2, 3/7] dt-bindings: media: mtk-vcodec: Adds decoder
- dt-bindings for mt8195
-Message-ID: <YgQmFEhdM20Zr9NJ@robh.at.kernel.org>
-References: <20220128035440.24533-1-yunfei.dong@mediatek.com>
- <20220128035440.24533-4-yunfei.dong@mediatek.com>
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        linux-usb@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: usb: mtk-xhci: add support ip-sleep
+ for mt8195
+Message-ID: <YgQn1IXiHdTw0r19@robh.at.kernel.org>
+References: <20220128062902.26273-1-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220128035440.24533-4-yunfei.dong@mediatek.com>
+In-Reply-To: <20220128062902.26273-1-chunfeng.yun@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -86,14 +71,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Jan 2022 11:54:36 +0800, Yunfei Dong wrote:
-> Adds decoder dt-bindings for mt8195.
+On Fri, 28 Jan 2022 14:28:59 +0800, Chunfeng Yun wrote:
+> There are 4 USB controllers on MT8195, each controller's wakeup control is
+> different, add some specific versions for them.
 > 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> Reviewed-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml           | 1 +
->  1 file changed, 1 insertion(+)
+> v2:
+>   1. fix typo 'specific' suggested by Rob
+>   2. add acked-by AngeloGioacchino
+> ---
+>  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml          | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
