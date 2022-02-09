@@ -2,110 +2,351 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1068F4AF390
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 15:03:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96E274AF3B6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 15:10:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234704AbiBIODA convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Feb 2022 09:03:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60956 "EHLO
+        id S234845AbiBIOKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 09:10:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234728AbiBIOC6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 09:02:58 -0500
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCA50C050CC2;
-        Wed,  9 Feb 2022 06:02:59 -0800 (PST)
-Date:   Wed, 09 Feb 2022 14:02:39 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v13 0/9] MIPS: JZ4780 and CI20 HDMI
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Message-Id: <F0J17R.I8VTR1ZGV2Z2@crapouillou.net>
-In-Reply-To: <4294A500-52EB-4319-9B89-F9DAC48EBF03@goldelico.com>
-References: <cover.1643819482.git.hns@goldelico.com>
-        <9ZC17R.T1L0TBAW7MJA3@crapouillou.net>
-        <4294A500-52EB-4319-9B89-F9DAC48EBF03@goldelico.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S234816AbiBIOKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 09:10:49 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF754C0613C9;
+        Wed,  9 Feb 2022 06:10:52 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1F71361AB2;
+        Wed,  9 Feb 2022 14:10:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EF8FC340E7;
+        Wed,  9 Feb 2022 14:10:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644415851;
+        bh=vcU8Cnp4MhOIK9JGxPGQPI/KYeuSWR1MWkb7GGQL5Jw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=sPOQ88nOQc54EfxTLk4wZnLv6UK23tl6xYPyH51hfV8YZhaHzBvTcPBctVLAjUW11
+         lugXCZ3zdv8xXnFJIIuLBszggH0BLfFa6CIe9AlhtmfXp2LXIr15MXGDWcF+56MwbF
+         4lhlFYiGfXgor18lvwJkSmTHEq9wwEMpFoXvf4LDpHLEsrhSmFmWb9flkIXm5H88Zx
+         XW+lACyjZTEq8eGWa6lcIhio2rhOwUX00HadD3YVDKuxtc87mET3c2RzWP3ryvI4Uc
+         wKTIVKLHxkqQgSIy6ty3jd9OQiKF65OavAVO+la0k61BXqXmvuYgU85SEbLRJfLmN9
+         NziIAx1Lx9W+g==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nHngH-006di8-Au; Wed, 09 Feb 2022 14:10:49 +0000
+Date:   Wed, 09 Feb 2022 14:10:49 +0000
+Message-ID: <8735ks5dw6.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] irqchip/realtek-rtl: use per-parent domains
+In-Reply-To: <54b9090510fe1a90fb7d335b680af3adeff9838a.1644165421.git.sander@svanheule.net>
+References: <cover.1644165421.git.sander@svanheule.net>
+        <54b9090510fe1a90fb7d335b680af3adeff9838a.1644165421.git.sander@svanheule.net>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: sander@svanheule.net, robh+dt@kernel.org, devicetree@vger.kernel.org, tglx@linutronix.de, mail@birger-koblitz.de, bert@biot.com, john@phrozen.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Le mer., févr. 9 2022 at 14:51:12 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> Paul,
+On Sun, 06 Feb 2022 16:41:53 +0000,
+Sander Vanheule <sander@svanheule.net> wrote:
 > 
->>  Am 09.02.2022 um 12:52 schrieb Paul Cercueil <paul@crapouillou.net>:
->> 
->>  Hi Nikolaus,
->> 
->>  I tried applying patches 1-2, but they don't apply cleanly on top 
->> of drm-misc/drm-misc-next.
+> The interrupt router can connect each of its inputs to one of the parent
+> interrupts. These parent interrupts may be handled differently by their
+> interrupt controller. SoC interrupts should be treated per-parent, to
+> maintain this expected behaviour for routed child interrupts.
 > 
-> Ok I had rebased to linux-next some days ago and it appears that 
-> patch 1/9 has now arrived in drm-misc/drm-misc-next.
-> So we can drop 1/9.
+> For example, it is possible that both networking interrupts and the
+> system event timer interrupts are routed through this controller. Even
+> under high network load, event timer interrupts should take precedence,
+> which can be ensured by routing them to a higher priority parent.
+> 
+> Rework the driver to use a separate domain for each output, using all
+> available parents interrupts (as specified in the devicetree). A
+> per-parent mask of child interrupts is used to keep track of which
+> domain should handle which interrupts.
 
-Yes, some weeks ago I did apply patch 1/9 from one of your previous 
-patchsets. Patch 2 was applied as well (commit b807fd2c43fe 
-("drm/ingenic: Add support for JZ4780 and HDMI output")), but you then 
-said that it didn't work and needed a fix.
-
-For this patchset you should always base on top of 
-drm-misc/drm-misc-next, and not on linux-next; they have different 
-schedules. You can drop patch #1, and rework patch #2 so that it only 
-fixes the previously incorrect behaviour.
+So you are encoding a particular priority scheme in the device tree
+even if this is really under SW control? That's pretty horrible.
 
 > 
->> 
->>  Could you rebase on top of that tree?
+> Signed-off-by: Sander Vanheule <sander@svanheule.net>
+> ---
+>  drivers/irqchip/irq-realtek-rtl.c | 150 ++++++++++++++++++++++++------
+>  1 file changed, 124 insertions(+), 26 deletions(-)
 > 
-> Sure.
-> 
-> Unfortunatley my v14 breaks the display again. It is not much fun to 
-> develop on top of such a moving target...
+> diff --git a/drivers/irqchip/irq-realtek-rtl.c b/drivers/irqchip/irq-realtek-rtl.c
+> index 388f4a7bfb80..868eb9b25e84 100644
+> --- a/drivers/irqchip/irq-realtek-rtl.c
+> +++ b/drivers/irqchip/irq-realtek-rtl.c
+> @@ -22,12 +22,22 @@
+>  #define RTL_ICTL_IRR3		0x14
+>  
+>  #define RTL_ICTL_NUM_INPUTS	32
+> +#define RTL_ICTL_NUM_OUTPUTS	15
+>  
+>  #define REG(x)		(realtek_ictl_base + x)
+>  
+>  static DEFINE_RAW_SPINLOCK(irq_lock);
+>  static void __iomem *realtek_ictl_base;
+>  
+> +struct realtek_ictl_output {
+> +	/* IRQ controller data */
+> +	struct fwnode_handle *fwnode;
+> +	/* Output specific data */
+> +	unsigned int output_index;
+> +	struct irq_domain *domain;
+> +	u32 child_mask;
+> +};
+> +
+>  /*
+>   * IRR0-IRR3 store 4 bits per interrupt, but Realtek uses inverted numbering,
+>   * placing IRQ 31 in the first four bits. A routing value of '0' means the
+> @@ -37,6 +47,11 @@ static void __iomem *realtek_ictl_base;
+>  #define IRR_OFFSET(idx)		(4 * (3 - (idx * 4) / 32))
+>  #define IRR_SHIFT(idx)		((idx * 4) % 32)
+>  
+> +static inline u32 read_irr(void __iomem *irr0, int idx)
 
-I can imagine...
+You can drop the inline. The compiler is brave enough to try that itself.
 
-Cheers,
--Paul
+> +{
+> +	return (readl(irr0 + IRR_OFFSET(idx)) >> IRR_SHIFT(idx)) & 0xf;
+> +}
+> +
+>  static inline void write_irr(void __iomem *irr0, int idx, u32 value)
+>  {
+>  	unsigned int offset = IRR_OFFSET(idx);
+> @@ -84,51 +99,128 @@ static struct irq_chip realtek_ictl_irq = {
+>  
+>  static int intc_map(struct irq_domain *d, unsigned int irq, irq_hw_number_t hw)
+>  {
+> +	struct realtek_ictl_output *output = d->host_data;
+>  	unsigned long flags;
+> +	u32 routing_old;
+> +	int err = 0;
+> +
+> +	raw_spin_lock_irqsave(&irq_lock, flags);
+> +
+> +	/*
+> +	 * Inputs can only be routed to one output, so they shouldn't end up in
+> +	 * multiple domains. Perform this check in the same atomic context as
+> +	 * configuring the routing to prevent races.
+> +	 */
+> +	routing_old = read_irr(REG(RTL_ICTL_IRR0), hw);
+> +	if (routing_old && output->output_index != routing_old - 1) {
+> +		pr_err("int %ld already routed to output %d\n",
+> +			hw, routing_old - 1);
+> +		err = -EINVAL;
+> +		goto out;
+> +	}
+> +
+> +	output->child_mask |= BIT(hw);
+> +	write_irr(REG(RTL_ICTL_IRR0), hw, output->output_index + 1);
+>  
+>  	irq_set_chip_and_handler(irq, &realtek_ictl_irq, handle_level_irq);
+>  
+> -	raw_spin_lock_irqsave(&irq_lock, flags);
+> -	write_irr(REG(RTL_ICTL_IRR0), hw, 1);
+> +out:
+>  	raw_spin_unlock_irqrestore(&irq_lock, flags);
+>  
+> -	return 0;
+> +	return err;
+> +}
+> +
+> +static int intc_select(struct irq_domain *d, struct irq_fwspec *fwspec,
+> +	enum irq_domain_bus_token bus_token)
+> +{
+> +	struct realtek_ictl_output *output = d->host_data;
+> +
+> +	if (fwspec->fwnode != output->fwnode)
+> +		return false;
+> +
+> +	/* Original specifiers only had one parameter */
+> +	if (WARN_ON_ONCE(fwspec->param_count < 2))
+> +		return true;
 
-> So I have to find out first what was broken this time before I can 
-> send out a new version.
-> 
-> BR,
-> Nikolaus
+You already warned when booting and finding the old binding. Doing it
+again probably is superfluous.
 
+> +
+> +	return fwspec->param[1] == output->output_index;
+>  }
+>  
+>  static const struct irq_domain_ops irq_domain_ops = {
+>  	.map = intc_map,
+> +	.select = intc_select,
+>  	.xlate = irq_domain_xlate_onecell,
+>  };
+>  
+>  static void realtek_irq_dispatch(struct irq_desc *desc)
+>  {
+> +	struct realtek_ictl_output *output = irq_desc_get_handler_data(desc);
+>  	struct irq_chip *chip = irq_desc_get_chip(desc);
+> -	struct irq_domain *domain;
+>  	unsigned long pending;
+>  	unsigned int soc_int;
+>  
+>  	chained_irq_enter(chip, desc);
+> -	pending = readl(REG(RTL_ICTL_GIMR)) & readl(REG(RTL_ICTL_GISR));
+> +	pending = readl(REG(RTL_ICTL_GIMR)) & readl(REG(RTL_ICTL_GISR))
+> +		& output->child_mask;
+>  
+>  	if (unlikely(!pending)) {
+>  		spurious_interrupt();
+>  		goto out;
+>  	}
+>  
+> -	domain = irq_desc_get_handler_data(desc);
+> -	for_each_set_bit(soc_int, &pending, 32)
+> -		generic_handle_domain_irq(domain, soc_int);
+> +	for_each_set_bit(soc_int, &pending, RTL_ICTL_NUM_INPUTS)
+> +		generic_handle_domain_irq(output->domain, soc_int);
+>  
+>  out:
+>  	chained_irq_exit(chip, desc);
+>  }
+>  
+> +static int __init setup_parent_interrupts(struct device_node *node, int *parents,
+> +	unsigned int num_parents)
+> +{
+> +	struct realtek_ictl_output *outputs;
+> +	struct realtek_ictl_output *output;
+> +	struct irq_domain *domain;
+> +	unsigned int p;
+> +
+> +	outputs = kcalloc(num_parents, sizeof(*outputs), GFP_KERNEL);
+> +	if (!outputs)
+> +		return -ENOMEM;
+> +
+> +	for (p = 0; p < num_parents; p++) {
+> +		output = outputs + p;
+> +
+> +		domain = irq_domain_add_simple(node, RTL_ICTL_NUM_INPUTS, 0,
+> +					       &irq_domain_ops, output);
 
+Consider using irq_domain_add_linear() instead. add_simple really is
+legacy compatibility cruft.
+
+> +		if (!domain)
+> +			goto domain_err;
+> +
+> +		output->fwnode = of_node_to_fwnode(node);
+> +		output->output_index = p;
+> +		output->domain = domain;
+> +
+> +		irq_set_chained_handler_and_data(parents[p], realtek_irq_dispatch, output);
+> +	}
+> +
+> +	return 0;
+> +
+> +domain_err:
+> +	while (p--) {
+> +		irq_set_chained_handler_and_data(parents[p], NULL, NULL);
+> +		irq_domain_remove(outputs[p].domain);
+> +	}
+> +
+> +	kfree(outputs);
+> +
+> +	return -ENOMEM;
+> +}
+> +
+>  static int __init realtek_rtl_of_init(struct device_node *node, struct device_node *parent)
+>  {
+> +	int parent_irqs[RTL_ICTL_NUM_OUTPUTS];
+>  	struct of_phandle_args oirq;
+> -	struct irq_domain *domain;
+> +	unsigned int num_parents;
+>  	unsigned int soc_irq;
+> -	int parent_irq;
+> +	unsigned int p;
+>  
+>  	realtek_ictl_base = of_iomap(node, 0);
+>  	if (!realtek_ictl_base)
+> @@ -139,37 +231,43 @@ static int __init realtek_rtl_of_init(struct device_node *node, struct device_no
+>  	for (soc_irq = 0; soc_irq < RTL_ICTL_NUM_INPUTS; soc_irq++)
+>  		write_irr(REG(RTL_ICTL_IRR0), soc_irq, 0);
+>  
+> -	if (WARN_ON(!of_irq_count(node))) {
+> +	num_parents = of_irq_count(node);
+> +	if (num_parents > RTL_ICTL_NUM_OUTPUTS) {
+> +		pr_err("too many parent interrupts\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	for (p = 0; p < num_parents; p++)
+> +		parent_irqs[p] = of_irq_get(node, p);
+> +
+> +	if (WARN_ON(!num_parents)) {
+>  		/*
+>  		 * If DT contains no parent interrupts, assume MIPS CPU IRQ 2
+>  		 * (HW0) is connected to the first output. This is the case for
+>  		 * all known hardware anyway. "interrupt-map" is deprecated, so
+>  		 * don't bother trying to parse that.
+> +		 * Since this is to account for old devicetrees with one-cell
+> +		 * interrupt specifiers, only one output domain is needed.
+>  		 */
+>  		oirq.np = of_find_compatible_node(NULL, NULL, "mti,cpu-interrupt-controller");
+>  		oirq.args_count = 1;
+>  		oirq.args[0] = 2;
+>  
+> -		parent_irq = irq_create_of_mapping(&oirq);
+> +		parent_irqs[0] = irq_create_of_mapping(&oirq);
+> +		num_parents = 1;
+>  
+>  		of_node_put(oirq.np);
+> -	} else {
+> -		parent_irq = of_irq_get(node, 0);
+>  	}
+>  
+> -	if (parent_irq < 0)
+> -		return parent_irq;
+> -	else if (!parent_irq)
+> -		return -ENODEV;
+> -
+> -	domain = irq_domain_add_simple(node, RTL_ICTL_NUM_INPUTS, 0,
+> -				       &irq_domain_ops, NULL);
+> -	if (!domain)
+> -		return -ENOMEM;
+> -
+> -	irq_set_chained_handler_and_data(parent_irq, realtek_irq_dispatch, domain);
+> +	/* Ensure we haven't collected any errors before proceeding */
+> +	for (p = 0; p < num_parents; p++) {
+> +		if (parent_irqs[p] < 0)
+> +			return parent_irqs[p];
+> +		if (!parent_irqs[p])
+> +			return -ENODEV;
+> +	}
+>  
+> -	return 0;
+> +	return setup_parent_interrupts(node, &parent_irqs[0], num_parents);
+
+Directly use 'parent' instead of &parent[0].
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
