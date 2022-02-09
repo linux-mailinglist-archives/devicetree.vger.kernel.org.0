@@ -2,83 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 483CE4AFA1F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 19:36:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCDFA4AFAF0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 19:41:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239515AbiBISfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 13:35:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52706 "EHLO
+        id S240102AbiBISlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 13:41:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239565AbiBISfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 13:35:37 -0500
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 816F5C05CBA9;
-        Wed,  9 Feb 2022 10:35:40 -0800 (PST)
-Received: by mail-oo1-f45.google.com with SMTP id o192-20020a4a2cc9000000b00300af40d795so3436364ooo.13;
-        Wed, 09 Feb 2022 10:35:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+RsWfmq0F6wX1G1e+RM/xgkrQK09rJkHkHiAa0GU9Cw=;
-        b=i3F1VYAnVnrlJSdKC53s3ltKr54Mi6fmRw/oeG8ndk1u6uMR/1ISAyp8hXKu4EXKTu
-         rO197/EHfhPKWG7nsRr6j/EGL844ZeDgNXHmcPo6kEWyPEloaXx6FGhMuvkyGiqzxCg6
-         nw2QN61UYsI5c2tehMLQrFgYMXsAUodycFS0RzP/L163WV1DaVo1srzjG2yrhFI+nE6x
-         zo+C/LB73hqx18Zosx10pHuihWiFbvso2G7zDI7ITkV8pYfs5GmiM8/42uyTtJGkUuVl
-         dd1sZ86hhjni78i61bT888lFUkstVvvH1ZrR/pvq4QkfauIyVt+jbXIrLlhrL3uZh6gU
-         nrbQ==
-X-Gm-Message-State: AOAM531WQj1NSL8lZkvCdTdJ9NMRJFyEC3YKnblr8BIFRkAaayZqFzJC
-        10TtvaI8Pq4v/9i+RSTDlg==
-X-Google-Smtp-Source: ABdhPJz4vuvJMQycGpuhKo8F5FyYxYz+DXI3An7uVJ0o3p4z4D1w0b7P9DinkaIMcDzez15Qjv8kQQ==
-X-Received: by 2002:a05:6870:b1d1:: with SMTP id x17mr1416431oak.158.1644431739832;
-        Wed, 09 Feb 2022 10:35:39 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id z4sm6826911ota.7.2022.02.09.10.35.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 10:35:38 -0800 (PST)
-Received: (nullmailer pid 659221 invoked by uid 1000);
-        Wed, 09 Feb 2022 18:35:37 -0000
-Date:   Wed, 9 Feb 2022 12:35:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     sven@svenschwermer.de
-Cc:     linux-pwm@vger.kernel.org, post@lespocky.de,
-        linux-leds@vger.kernel.org, andy.shevchenko@gmail.com,
-        devicetree@vger.kernel.org, thierry.reding@gmail.com, pavel@ucw.cz,
-        u.kleine-koenig@pengutronix.de,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        robh+dt@kernel.org, lee.jones@linaro.org
-Subject: Re: [PATCH v6 1/3] dt-bindings: leds: Optional multi-led unit address
-Message-ID: <YgQJeXKnQrWjjzcI@robh.at.kernel.org>
-References: <20220208191236.660172-1-sven@svenschwermer.de>
+        with ESMTP id S240208AbiBISk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 13:40:28 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B5FC03E92D;
+        Wed,  9 Feb 2022 10:39:50 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 96B70B82384;
+        Wed,  9 Feb 2022 18:39:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAC95C340E9;
+        Wed,  9 Feb 2022 18:39:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644431988;
+        bh=0CUNFDq1i8SMYF2bfSV/C/M1uogY/iqh5qhEyXLr8kA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=WbAuiMszliganrStT1NXHJce/DBmAI7MzT/RPt+oRna9pXiYTF7iSZeJaYdsDBeLa
+         sMZjj5vmEZxk3yK2BxCdcepZUY81d60UaqcXH9ugrfohUIenfY+I+s1Xw7WA1kA/Ll
+         eyiH4ic7gvMwnJOPWIFwYFUBfHSiIcbmz/+YKbKuESfAqycz5AC+5aN68AwI9HVMxe
+         CS5TMRGCJNym9zZb/pa1hJ0hin9dki1IRknwFSEFlKJpxC9Q6WoFnceGquuUHmZvog
+         H+/ImzyTDVyrjjtfTZkuA+/hi6BvVVQ316V8d+ieXNxN94e4Bg8SHqGs6Us97/3nPl
+         gygEKr7Cqum3Q==
+Date:   Wed, 9 Feb 2022 12:39:45 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rajat Jain <rajatja@google.com>, Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rajat Jain <rajatxjain@gmail.com>,
+        Dmitry Torokhov <dtor@google.com>,
+        Jesse Barnes <jsbarnes@google.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Pavel Machek <pavel@denx.de>,
+        Oliver O'Halloran <oohall@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>
+Subject: Re: [PATCH v2 1/2] PCI: Allow internal devices to be marked as
+ untrusted
+Message-ID: <20220209183945.GA571585@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220208191236.660172-1-sven@svenschwermer.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <YgNVJKy0s8MGBRoa@kroah.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Feb 2022 20:12:34 +0100, sven@svenschwermer.de wrote:
-> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> 
-> The unit address does not make sense in all cases the multi-led node is
-> used, e.g. for the upcoming PWM multi-color LED driver.
-> 
-> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> ---
-> 
-> Notes:
->     Added in v6
-> 
->  .../devicetree/bindings/leds/leds-class-multicolor.yaml         | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+On Wed, Feb 09, 2022 at 06:46:12AM +0100, Greg Kroah-Hartman wrote:
+> On Tue, Feb 08, 2022 at 04:23:27PM -0800, Rajat Jain wrote:
+> > On Tue, Feb 1, 2022 at 6:01 PM Rajat Jain <rajatja@google.com> wrote:
+> > >
+> > > Today the pci_dev->untrusted is set for any devices sitting downstream
+> > > an external facing port (determined via "ExternalFacingPort" or the
+> > > "external-facing" properties).
+> > >
+> > > However, currently there is no way for internal devices to be marked as
+> > > untrusted.
+> > >
+> > > There are use-cases though, where a platform would like to treat an
+> > > internal device as untrusted (perhaps because it runs untrusted firmware
+> > > or offers an attack surface by handling untrusted network data etc).
+> > >
+> > > Introduce a new "UntrustedDevice" property that can be used by the
+> > > firmware to mark any device as untrusted.
+> > 
+> > Just to unite the threads (from
+> > https://www.spinics.net/lists/linux-pci/msg120221.html). I did reach
+> > out to Microsoft but they haven't acknowledged my email. I also pinged
+> > them again yesterday, but I suspect I may not be able to break the
+> > ice. So this patch may be ready to go in my opinion.
+> > 
+> > I don't see any outstanding comments on this patch, but please let me
+> > know if you have any comments.
+> > 
+> > > Signed-off-by: Rajat Jain <rajatja@google.com>
+> > > ---
+> > > v2: * Also use the same property for device tree based systems.
+> > >     * Add documentation (next patch)
+> > >
+> > >  drivers/pci/of.c       | 2 ++
+> > >  drivers/pci/pci-acpi.c | 1 +
+> > >  drivers/pci/pci.c      | 9 +++++++++
+> > >  drivers/pci/pci.h      | 2 ++
+> > >  4 files changed, 14 insertions(+)
+> > >
+> > > diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> > > index cb2e8351c2cc..e8b804664b69 100644
+> > > --- a/drivers/pci/of.c
+> > > +++ b/drivers/pci/of.c
+> > > @@ -24,6 +24,8 @@ void pci_set_of_node(struct pci_dev *dev)
+> > >                                                     dev->devfn);
+> > >         if (dev->dev.of_node)
+> > >                 dev->dev.fwnode = &dev->dev.of_node->fwnode;
+> > > +
+> > > +       pci_set_untrusted(dev);
+> > >  }
+> > >
+> > >  void pci_release_of_node(struct pci_dev *dev)
+> > > diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+> > > index a42dbf448860..2bffbd5c6114 100644
+> > > --- a/drivers/pci/pci-acpi.c
+> > > +++ b/drivers/pci/pci-acpi.c
+> > > @@ -1356,6 +1356,7 @@ void pci_acpi_setup(struct device *dev, struct acpi_device *adev)
+> > >
+> > >         pci_acpi_optimize_delay(pci_dev, adev->handle);
+> > >         pci_acpi_set_external_facing(pci_dev);
+> > > +       pci_set_untrusted(pci_dev);
+> > >         pci_acpi_add_edr_notifier(pci_dev);
+> > >
+> > >         pci_acpi_add_pm_notifier(adev, pci_dev);
+> > > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> > > index 9ecce435fb3f..41e887c27004 100644
+> > > --- a/drivers/pci/pci.c
+> > > +++ b/drivers/pci/pci.c
+> > > @@ -6869,3 +6869,12 @@ static int __init pci_realloc_setup_params(void)
+> > >         return 0;
+> > >  }
+> > >  pure_initcall(pci_realloc_setup_params);
+> > > +
+> > > +void pci_set_untrusted(struct pci_dev *pdev)
+> > > +{
+> > > +       u8 val;
+> > > +
+> > > +       if (!device_property_read_u8(&pdev->dev, "UntrustedDevice", &val)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+If we do this, can we combine it with set_pcie_untrusted(), where we
+already set pdev->untrusted?  Maybe that needs to be renamed; I don't
+see anything PCIe-specific there, and it looks like it works for
+conventional PCI as well.
+
+> Please no, "Untrusted" does not really convey much, if anything here.
+> You are taking an odd in-kernel-value and making it a user api.
+> 
+> Where is this "trust" defined?  Who defines it?  What policy does the
+> kernel impose on it?
+
+I'm a bit hesitant about this, too.  It really doesn't have anything
+in particular to do with the PCI core.  It's not part of the PCI
+specs, and it could apply to any kind of device, not just PCI (ACPI,
+platform, USB, etc).
+
+We have:
+
+  dev->removable                # struct device
+  pdev->is_thunderbolt
+  pdev->untrusted
+  pdev->external_facing
+
+and it feels a little hard to keep everything straight.  Most of them
+are "discovered" based on some DT or ACPI firmware property.  None of
+them really has anything specifically to do with *PCI*, and I don't
+think the PCI core depends on any of them.  I think
+pdev->is_thunderbolt is the only one we discover based on a PCI
+feature (the Thunderbolt Capability), and the things we *use* it for
+are actually not things specified by that capability [1].
+
+Could drivers just look for these properties directly instead of
+relying on the PCI core to get in the middle?  Most callers of
+device_property_read_*() are in drivers.  I do see that doing it in
+the PCI core might help enforce standard usage in DT/ACPI, but we
+could probably do that in other ways, too.
+
+Bjorn
+
+[1] https://lore.kernel.org/r/20220204222956.GA220908@bhelgaas
