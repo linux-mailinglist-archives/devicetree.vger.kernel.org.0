@@ -2,1087 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 651274AF59E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 16:43:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FB6D4AF5B1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 16:46:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234673AbiBIPm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 10:42:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56456 "EHLO
+        id S236246AbiBIPqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 10:46:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236214AbiBIPm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 10:42:57 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A9E4C05CB88;
-        Wed,  9 Feb 2022 07:42:56 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id ki18-20020a17090ae91200b001b8be87e9abso4104133pjb.1;
-        Wed, 09 Feb 2022 07:42:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=+hjV9HQUa2j71o4xy1qBPZwmKw8Ky8mXCktdCNY43GY=;
-        b=pIlJYx2Q9GRvF+6u4DBOcUiOdulM9ot66/Jyk7QZZ61S+LVWJo3O2teF7x4aW+ZMrk
-         /h3/C6bcqSm9/U46jXffQf6abhsAvAw7kwat5YdtUgwn5PRkz3wPhzSZqza7ZZw9K3Ki
-         Kw1L9r6iE7jM2E3QGSobJg3uqKvrGR3udZ3mf1KS4B8xomA5t1RcfO16biL4BNryUlTI
-         jA2GYpQbvm0N9GWqR0kU2kbVpglA+uEDisrGtPr+FSDaUUVfTG4fpJ1gQKYFq2EIy7+Z
-         AYbzqHpnHPcj4qKHNZHX1iIMo1VlYp/JVeUyqSayPr/RLw8BypI/T8u4CyJGCLcI3Sfl
-         FV3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=+hjV9HQUa2j71o4xy1qBPZwmKw8Ky8mXCktdCNY43GY=;
-        b=yqhDkOyxcx9eLWwzPLqlnOTmNs4rbsVGQdY1bzrnY1zg+1hwYG2KjWblHxuMSbVw1P
-         CVSvuobripFJewPaONZR7v+ZXv12Zz4c4cwyt3uPjn0mENyvWtjebatK9W3zsGDDxDzX
-         CsZD92txqI19atCuYKUcqwHoPBWKA5llCnoPP5rzGPDHcdrdOQRq47e3xdej51TjR1J0
-         YMMtHzu9+6hkB2vEMfEBNGGjC0aSJqcj6/5PavWgfKSmiL0rZZpSPCkAjg4LV+zUN+2a
-         LPNgCijDgUUIoh6ko03KvtDf9GA0OTGV7BYWm1U+B8x/1DM8TmZGR4/wltISkH+VysA7
-         2qGw==
-X-Gm-Message-State: AOAM532wu8pXF/pgMcN/Z4rW1W/weXmWSq9Xm/D3MzaKf5TipSYPFYDu
-        Zv6x+zt/pTbRYetP2b7hXdmqREpfGV8=
-X-Google-Smtp-Source: ABdhPJwq/YK32SRtszUUgFrPsTk8Kpd7jNX4dJEi8iETtbqAnrOuWL+HT4cy+ZsR4iSe7Re9dqVDZw==
-X-Received: by 2002:a17:90b:2252:: with SMTP id hk18mr3206810pjb.183.1644421375658;
-        Wed, 09 Feb 2022 07:42:55 -0800 (PST)
-Received: from localhost.localdomain (1-171-21-84.dynamic-ip.hinet.net. [1.171.21.84])
-        by smtp.gmail.com with ESMTPSA id l2sm20929152pfc.183.2022.02.09.07.42.52
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 09 Feb 2022 07:42:55 -0800 (PST)
-From:   cy_huang <u0084500@gmail.com>
-To:     robh+dt@kernel.org, heikki.krogerus@linux.intel.com
-Cc:     gregkh@linuxfoundation.org, cy_huang@richtek.com,
-        will_lin@richtek.com, th_chuang@richtek.com,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 2/2] usb: typec: rt1719: Add support for Richtek RT1719
-Date:   Wed,  9 Feb 2022 23:42:42 +0800
-Message-Id: <1644421362-32104-3-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1644421362-32104-1-git-send-email-u0084500@gmail.com>
-References: <1644421362-32104-1-git-send-email-u0084500@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232680AbiBIPqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 10:46:32 -0500
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60086.outbound.protection.outlook.com [40.107.6.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF6E5C0613C9;
+        Wed,  9 Feb 2022 07:46:35 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AW1OBEbLbWIPLxa4Q9C1fs3r9ob9XTe+RQ+F4Vek34YmfPVX5wUGqZCWp1TJkwSShT28qukFeIcndRD7+SxefxVhuFgp5ljXK6uz7dfmyZh2a9yYBUNipJdVnXe+HLRqFb9g7oeoV60fcjdmvS5KvSDGiQXH7Z6xD2GtuNBzamnURI2aY4wSrUn3HFznKgAJ/8kKm57HnImFKSQztcOv8q2l2/OxZbzbIBaahiB47vi+Joz4SNYDBBzJR96c/1HmMSTNmlNdGsdHl2+bxtFrn+eXCdYFDyFTa9+/l/CZsgBmlu75HzX8sRsaEpdlIT0vDTu1l4FGqMU/ADVUb1El2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jtlXlYYQjxc4Fso6Exv7WJdMfYM6dIaovu4dInEN6wI=;
+ b=bXp+X277i/aFlzKKKoDBy3B8tBwTtu2h+azZQHjAaaoJs3hfy9UGnk/aQillhta76Lv9TVOTVQFnFWfxmB5zZl8OW9I1D+6ASJQmpJr9ViMcs3xX2qQE5MUBihliWDN1sOYYR4Fv6gz7+nSivmpkI9qUm3gWhDPSPUd9uWDLvUGYnhSuqSmM6124XBVFjG3kiNvmcnGkNC8WtXZztkJcrvxrBxa2VwfRiDKVtFyZyDPOHzlp4i7YwYZQCdS7zYb30q38QI9K9KueXZF6ci2PR356Fu4p0uil/geyD80aGgRl7M9CpnsU/8NDxd3qQ7u3qGTVS/TkRx8FuFXbJ46/zA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jtlXlYYQjxc4Fso6Exv7WJdMfYM6dIaovu4dInEN6wI=;
+ b=arZYbsSsS7XO0Fi6QCCnXRvRDmVDZ7zzi6PlvrZWS4v7LRMvP0OUDkyAzciI4KZcKhK44Tk7dy9ymM7mzFJ6tsfgJSAIfDsvHubU9AVf18l4v65UGujz+L+5wi6XXUkLJsjO6sT6c68XeAMHETpEYXH6rr9UVt132KsZ84tH3NA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from HE1PR0802MB2426.eurprd08.prod.outlook.com (2603:10a6:3:e1::23)
+ by VI1PR0802MB2160.eurprd08.prod.outlook.com (2603:10a6:800:9b::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Wed, 9 Feb
+ 2022 15:46:31 +0000
+Received: from HE1PR0802MB2426.eurprd08.prod.outlook.com
+ ([fe80::e14f:197:5001:4c56]) by HE1PR0802MB2426.eurprd08.prod.outlook.com
+ ([fe80::e14f:197:5001:4c56%3]) with mapi id 15.20.4951.019; Wed, 9 Feb 2022
+ 15:46:30 +0000
+Message-ID: <01b78d95-fdf3-060a-831d-dae2abbc7109@wolfvision.net>
+Date:   Wed, 9 Feb 2022 16:46:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 1/5] dt-bindings: gpu: mali-bifrost: describe clocks
+ for the rk356x gpu
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-kernel@vger.kernel.org, Liang Chen <cl@rock-chips.com>,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Alex Bee <knaerzche@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20220209085110.3588035-1-michael.riesch@wolfvision.net>
+ <20220209085110.3588035-2-michael.riesch@wolfvision.net>
+ <1644420908.380944.391811.nullmailer@robh.at.kernel.org>
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+In-Reply-To: <1644420908.380944.391811.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ZR0P278CA0045.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:1d::14) To HE1PR0802MB2426.eurprd08.prod.outlook.com
+ (2603:10a6:3:e1::23)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d80a2475-0211-45e1-3070-08d9ebe35754
+X-MS-TrafficTypeDiagnostic: VI1PR0802MB2160:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR0802MB216074FA670C666B9775D9E1F22E9@VI1PR0802MB2160.eurprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: EJyLcg/KC9QFwL64O8qjSdnuoZeoKmBPTsHiU0VKAvgmqQWwpKKK9NfnsCqpOFKBLHwh39bWoUjUGmSRA7nu3slo01OMbQMqY0nIGroQ1C6r5QhRdsX8LPIkIsth+6SUIAYcj58PlJUiQpKTLXgKRkZgOjn5111lpjJNXtyp3zH0v7LqUnqyH7DJispaUztyPvaamvksqmC9GTQZ41bOIPzaQ49iYUE8Ef3H+BdqTlvvrBaTHxLPuBIuy0MZ9OMtHOONDBNgmu7z1idTmHqSnBiGnz0/BABs0ozNK5NsMFA/rZweyx8+2Ezh9A6QlKN/j13xAw8EPvBb2+xygEpJmdiZX8pbGLc9lYFdGVJoY1XEE2ctdHaNn1PpB+yXB3JMgHMMwoV6C+r1jbcmXIzPBgiCcQM4GU0hWXcaUYrKgMhdWPu8CIWEh5Xg/+Ue0P/OR1KZlc/L5xAq8/AturfNTViHqs+rXEi8mjIWG7mgJDiMys7SKmlfISJNYnh4CTjB47lBYjMibOWgJ75QOb/bYM/5ETMqf4Y1Kp2i36v7DwaUUZEak/K39bTYZ8FRbxR+drJeAf6ijPitZHQqpO5Ty2IBfKCnTvl66IimLr0LGutCzTsbZTw1iXHD6aahwwiMvu2bFpLGbIuQoCJsOAE8aFEhgnZnqqiaXRAH1q6Bdbp6bNftiDAZwhxgvWP2YIFj6hbhja3A3V7qqARxTCkI0433Q9VCd7nl17eGebV6botC2YLwzj5JfC+QIrCJPuYj/bHO67pc8RV+xVo4F/41ybM6rBGCmFKpBqfrKCmFsYa1m7voMRwV2vNIwbkbN5nh
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0802MB2426.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6506007)(38100700002)(66476007)(4326008)(8936002)(53546011)(508600001)(966005)(66946007)(6486002)(66556008)(8676002)(2906002)(54906003)(86362001)(36756003)(52116002)(83380400001)(2616005)(6916009)(44832011)(186003)(7416002)(6512007)(31696002)(5660300002)(316002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aXZyWW40RmV0bEtWanRPOG1wWXVmTmt3S05tSjZsMDNwMTZlTFFTdzJuWlJx?=
+ =?utf-8?B?ZE1zNXdxYmU1SmhiZWpGYXhqeXZCZnZTbTN4SkF1Tlo0TnZlYXgzV1JRc0FB?=
+ =?utf-8?B?YVVYamhrU0JSa2ZOYklBdjlTSGNFL2JEbnhBaW5xTHE4ZlI4bnVWZFphdVlS?=
+ =?utf-8?B?UDhZbkFCcW1CUXU1SFV1SkZmT3FNLzhSbDd1L2tmSk5yZDZtTU05enlpM1dS?=
+ =?utf-8?B?akFtWWhoeGZKOUt6d2FITURtNnh0a0VYWmZhQ1k5OWsrNHEvaHFHQ1E5RjRI?=
+ =?utf-8?B?WVQ4Y2hka3htUWptR1ZCdGFVNTRQMXVHdFhuT1VLckNFUHhqUElMU3VMRER4?=
+ =?utf-8?B?Z2lLK0cyenhQMVY2UjY3ZFRrVHZlUVdnZUFTbHB3cEZDUTQrUEExVnJYa2VO?=
+ =?utf-8?B?T2VseUdrUVZXSHJZdVlzU1BqNmw5SGdWc0JONXllRmN0ZlZmTm1LdWEzbU1I?=
+ =?utf-8?B?Sm5hK3FTT2R1aVZTcjRIREtDa0dRRnZpK3h5eEpkaDFkWmJESSsySmlyaDRB?=
+ =?utf-8?B?QzB1eDNqb3J2RXpQdWxzVXJDTmFLdEp3MThBRkxQUE9aQnhuL3JvbUNtL1Fi?=
+ =?utf-8?B?TkcvYkRwLzd1eUJVRjBmbjZDeGtTZ1ZCazRtUHlEMktvVW1tVHpyTkM1VnhN?=
+ =?utf-8?B?cGVMNlpFTW5MZTBXUFdwa1hGaGlVcGZHYjYrUFJYRXhwdGxjLzFhSkhpUXpp?=
+ =?utf-8?B?R2FZZm9IbmNuNG1yZDBJemNobytpU0hnNHdMcTkwQnI3NXRleWRVS2d1TTNv?=
+ =?utf-8?B?U0huTE1Talc1N3drMDQ1dzhQSzQwRzB5bjYrSmszQUo0ZEpMUmNGcFQxM2tX?=
+ =?utf-8?B?WktXU2ZERGw1dWtPa01LRkZnU0ZxM2hJTzNEb09SYXdjUTRTZWtKYk9MSmNV?=
+ =?utf-8?B?WHpWUFVPR0kyWkhPRFVBdXBOb0FPSXJiQ21ucitTV1Faa1BVdExleGdQVVBO?=
+ =?utf-8?B?YjJnVkhsaXg2L1kzbGxoRHQ0b0w3a0dXUTlGYnBqSDNRSzhFZjl1bGxpbldV?=
+ =?utf-8?B?QkFNTXlyOTU1L2d5V2NkWW45U1lqbU9Jbk0zRG9uaVBPSVFnTVRsMExQY2hM?=
+ =?utf-8?B?SU44bi9STkJGL3F3SjBLbG9VL3hVSWdzUlhWM2QrcllXOFFra1Z5dXA0b1Zw?=
+ =?utf-8?B?RUd2UWswRmliSGkrQ1NIek1OazY0emNwNGJXVFF6UjhQVXZwenpsV1UrL29D?=
+ =?utf-8?B?VHFtQzV5TkdPRnZlcm5hQy8wRWZ0b3I1WVdBZ1pVQXNnT0gwdGJIYllYUE0z?=
+ =?utf-8?B?KzhrRUR6MFFUOTZpRVVZVHdmUmNBYXZTOWgva1BDd2R5dmhuQVBYWFZJbFdF?=
+ =?utf-8?B?RGg3RUcwMjhIaEtHOVVyd25WZzZBZXVXdlc1eFlaUWRXckRBbW05K0ZxWi9V?=
+ =?utf-8?B?V2c5NVQ0RkVpNWpoT2JLS1h6U0pjY1hXdHloNFZYWjcxN0RBSlZPQUZlMkFp?=
+ =?utf-8?B?ajk4eGQ3bWgyclhlZmVsNHgxYk9BSXE2aS9JcmpFMVZFTjlxT01wSENrWUMw?=
+ =?utf-8?B?WEMxQ1pUdm9EeGhRcDJ2UXpsMGtYVVlVVm1VTnVrQXlpTit1SXhJQit4SkYr?=
+ =?utf-8?B?Ung5UVNEdm1MbFowazF4V2tmNEhEN1lHenhwTzlHRW5pYU05V045cE4yc0VV?=
+ =?utf-8?B?OHdzTUxvUTRUL1puMDFNWGhIMXRHRDlySE4yRHpMcFVzMVRQUHJxODRCNE9x?=
+ =?utf-8?B?aU5oNmVNR2FXMTNQdnpMaUIrWjRYQkdvZ1h2MEJvRy90Slc4OS9LQW9CeG1j?=
+ =?utf-8?B?SHFPSEc1RzRBRjFFWlhQbWhwNjVKdzE5N0JSdVlzVzBFbUxUaFkxRXUzSWVE?=
+ =?utf-8?B?enNPV2pMTi96S0s2MkFpSlhnbmdBamtjRHlybU01dmZrcjlvalkyWjJud2RK?=
+ =?utf-8?B?eHVma1F3aFhxVXZlbGFxVmNsanJvU2oyK0xkcHI4ZEVZTWxRR05xbVYyZHVy?=
+ =?utf-8?B?NXdvMTZwc2VqOVBtTGVJU3dQanY5UDdVbGdKcHpGUVdxVFYwVzFKWXo1bC9V?=
+ =?utf-8?B?YjVCVnErbjE1VkR1QjJRZm1mNjd2TWR5V3M2S1RRYmd3NWplMmFsbGR1SGhh?=
+ =?utf-8?B?YUN6WUJGQ2psNC9kL1ZBeTRFMDRzTGNyUlFTRXhkenRUa2NjTzZEZFAwSEhI?=
+ =?utf-8?B?SGRTeEhla1hwU0xGZHRGTlcvcUFxa2Z2WlJUT3VMaEJUUmNpT3NxU3R4aTZp?=
+ =?utf-8?B?aVJNNldXN3hubDlIOEpDZDZlK1RxT3hpSzlZZjJUM3NreDJFUStMTkZIdmJV?=
+ =?utf-8?B?WWhlOEJLbzRSYlVTRU01b2pLZWFIRytFNDU4dzBka1VxS1JwMW5WdG1DTFhp?=
+ =?utf-8?B?NGdjaTFleUkyR3RlNWMvNGY0QVVmLzFLSXBBNVRoT1FGdnBNZnZpVHppWHJY?=
+ =?utf-8?Q?kU9iVq59UgLi8+98=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: d80a2475-0211-45e1-3070-08d9ebe35754
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0802MB2426.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2022 15:46:30.7530
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iD5Isqs7TgXEZOEialdEPdobBBF1YP4NfbfUqfFg23B+YN2J8r+41QjvGd6X/moBiU5ImMEysG4DHKWM+e7DL4WUSbT6T4EXSBFrZ8Uu5TM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0802MB2160
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Hi Rob,
 
-Richtek RT1719 is a sink-only Type-C PD controller it complies with
-latest USB Type-C and PD standards. It integrates the physical layer of
-USB power delivery protocol to allow up to 100W of power.
+On 2/9/22 16:35, Rob Herring wrote:
+> On Wed, 09 Feb 2022 09:51:06 +0100, Michael Riesch wrote:
+>> From: Alex Bee <knaerzche@gmail.com>
+>>
+>> The Bifrost GPU in Rockchip RK356x SoCs has a core and a bus clock.
+>> Reflect this in the SoC specific part of the binding.
+>>
+>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>> [move the changes to the SoC section]
+>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+>> ---
+>>  .../devicetree/bindings/gpu/arm,mali-bifrost.yaml | 15 +++++++++++++++
+>>  1 file changed, 15 insertions(+)
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml:173:12: [warning] wrong indentation: expected 12 but found 11 (indentation)
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
----
- drivers/usb/typec/Kconfig  |  12 +
- drivers/usb/typec/Makefile |   1 +
- drivers/usb/typec/rt1719.c | 961 +++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 974 insertions(+)
- create mode 100644 drivers/usb/typec/rt1719.c
+D'oh! Sorry for the stupid mistake, I found that yamllint was indeed
+missing.
 
-diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
-index ab480f3..bc918ca 100644
---- a/drivers/usb/typec/Kconfig
-+++ b/drivers/usb/typec/Kconfig
-@@ -52,6 +52,18 @@ source "drivers/usb/typec/ucsi/Kconfig"
- 
- source "drivers/usb/typec/tipd/Kconfig"
- 
-+config TYPEC_RT1719
-+	tristate "Richtek RT1719 Sink Only Type-C controller driver"
-+	depends on USB_ROLE_SWITCH || !USB_ROLE_SWITCH
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Say Y or M here if your system has Richtek RT1719 sink only
-+	  Type-C port controller driver.
-+
-+	  If you choose to build this driver as a dynamically linked module, the
-+	  module will be called rt1719.ko
-+
- config TYPEC_HD3SS3220
- 	tristate "TI HD3SS3220 Type-C DRP Port controller driver"
- 	depends on I2C
-diff --git a/drivers/usb/typec/Makefile b/drivers/usb/typec/Makefile
-index 57870a2..441dd6c 100644
---- a/drivers/usb/typec/Makefile
-+++ b/drivers/usb/typec/Makefile
-@@ -9,4 +9,5 @@ obj-$(CONFIG_TYPEC_TPS6598X)	+= tipd/
- obj-$(CONFIG_TYPEC_HD3SS3220)	+= hd3ss3220.o
- obj-$(CONFIG_TYPEC_QCOM_PMIC)	+= qcom-pmic-typec.o
- obj-$(CONFIG_TYPEC_STUSB160X) 	+= stusb160x.o
-+obj-$(CONFIG_TYPEC_RT1719)	+= rt1719.o
- obj-$(CONFIG_TYPEC)		+= mux/
-diff --git a/drivers/usb/typec/rt1719.c b/drivers/usb/typec/rt1719.c
-new file mode 100644
-index 00000000..f1b698e
---- /dev/null
-+++ b/drivers/usb/typec/rt1719.c
-@@ -0,0 +1,961 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/bitfield.h>
-+#include <linux/completion.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/power_supply.h>
-+#include <linux/regmap.h>
-+#include <linux/usb/pd.h>
-+#include <linux/usb/role.h>
-+#include <linux/usb/typec.h>
-+
-+#define RT1719_REG_TXCTRL1	0x03
-+#define RT1719_REG_TXCTRL2	0x04
-+#define RT1719_REG_POLICYINFO	0x0E
-+#define RT1719_REG_SRCPDO1	0x11
-+#define RT1719_REG_MASKS	0x2D
-+#define RT1719_REG_EVENTS	0x33
-+#define RT1719_REG_STATS	0x37
-+#define RT1719_REG_PSELINFO	0x3C
-+#define RT1719_REG_USBSETINFO	0x3E
-+#define RT1719_REG_VENID	0x82
-+
-+#define RT1719_UNIQUE_PID	0x1719
-+#define RT1719_REQDRSWAP_MASK	BIT(7)
-+#define RT1719_EVALMODE_MASK	BIT(4)
-+#define RT1719_REQSRCPDO_MASK	GENMASK(2, 0)
-+#define RT1719_TXSPDOREQ_MASK	BIT(7)
-+#define RT1719_INT_DRSW_ACCEPT	BIT(23)
-+#define RT1719_INT_RX_SRCCAP	BIT(21)
-+#define RT1719_INT_VBUS_DCT	BIT(6)
-+#define RT1719_INT_VBUS_PRESENT	BIT(5)
-+#define RT1719_INT_PE_SNK_RDY	BIT(2)
-+#define RT1719_CC1_STAT		GENMASK(9, 8)
-+#define RT1719_CC2_STAT		GENMASK(11, 10)
-+#define RT1719_POLARITY_MASK	BIT(23)
-+#define RT1719_DATAROLE_MASK	BIT(22)
-+#define RT1719_PDSPECREV_MASK	GENMASK(21, 20)
-+#define RT1719_SPDOSEL_MASK	GENMASK(18, 16)
-+#define RT1719_SPDONUM_MASK	GENMASK(15, 13)
-+#define RT1719_ATTACH_VBUS	BIT(12)
-+#define RT1719_ATTACH_DBG	BIT(10)
-+#define RT1719_ATTACH_SNK	BIT(9)
-+#define RT1719_ATTACHDEV_MASK	(RT1719_ATTACH_VBUS | RT1719_ATTACH_DBG | \
-+				 RT1719_ATTACH_SNK)
-+#define RT1719_PE_EXP_CONTRACT	BIT(2)
-+#define RT1719_PSEL_SUPPORT	BIT(15)
-+#define RT1719_TBLSEL_MASK	BIT(6)
-+#define RT1719_LATPSEL_MASK	GENMASK(5, 0)
-+#define RT1719_USBINFO_MASK	GENMASK(1, 0)
-+#define RT1719_USB_DFPUFP	3
-+#define RT1719_MAX_SRCPDO	7
-+
-+enum {
-+	SNK_PWR_OPEN = 0,
-+	SNK_PWR_DEF,
-+	SNK_PWR_1P5A,
-+	SNK_PWR_3A
-+};
-+
-+enum {
-+	USBPD_SPECREV_1_0 = 0,
-+	USBPD_SPECREV_2_0,
-+	USBPD_SPECREV_3_0
-+};
-+
-+enum rt1719_snkcap {
-+	RT1719_SNKCAP_5V = 0,
-+	RT1719_SNKCAP_9V,
-+	RT1719_SNKCAP_12V,
-+	RT1719_SNKCAP_15V,
-+	RT1719_SNKCAP_20V,
-+	RT1719_MAX_SNKCAP
-+};
-+
-+struct rt1719_psel_cap {
-+	u8 lomask;
-+	u8 himask;
-+	u32 milliwatt;
-+	u32 milliamp;
-+};
-+
-+struct rt1719_data {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct typec_port *port;
-+	struct usb_role_switch *role_sw;
-+	struct power_supply *psy;
-+	struct typec_partner *partner;
-+	struct power_supply_desc psy_desc;
-+	struct usb_pd_identity partner_ident;
-+	struct typec_partner_desc partner_desc;
-+	struct completion req_completion;
-+	enum power_supply_usb_type usb_type;
-+	bool attached;
-+	bool pd_capable;
-+	bool drswap_support;
-+	u32 voltage;
-+	u32 req_voltage;
-+	u32 max_current;
-+	u32 op_current;
-+	u32 spdos[RT1719_MAX_SRCPDO];
-+	u16 snkcaps[RT1719_MAX_SNKCAP];
-+	int spdo_num;
-+	int spdo_sel;
-+	u32 conn_info;
-+	u16 conn_stat;
-+};
-+
-+static const enum power_supply_usb_type rt1719_psy_usb_types[] = {
-+	POWER_SUPPLY_USB_TYPE_C,
-+	POWER_SUPPLY_USB_TYPE_PD,
-+	POWER_SUPPLY_USB_TYPE_PD_PPS
-+};
-+
-+static const enum power_supply_property rt1719_psy_properties[] = {
-+	POWER_SUPPLY_PROP_ONLINE,
-+	POWER_SUPPLY_PROP_USB_TYPE,
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-+	POWER_SUPPLY_PROP_CURRENT_MAX,
-+	POWER_SUPPLY_PROP_CURRENT_NOW
-+};
-+
-+static int rt1719_read16(struct rt1719_data *data, unsigned int reg, u16 *val)
-+{
-+	__le16 regval;
-+	int ret;
-+
-+	ret = regmap_raw_read(data->regmap, reg, &regval, sizeof(regval));
-+	if (ret)
-+		return ret;
-+
-+	*val = le16_to_cpu(regval);
-+	return 0;
-+}
-+
-+static int rt1719_read32(struct rt1719_data *data, unsigned int reg, u32 *val)
-+{
-+	__le32 regval;
-+	int ret;
-+
-+	ret = regmap_raw_read(data->regmap, reg, &regval, sizeof(regval));
-+	if (ret)
-+		return ret;
-+
-+	*val = le32_to_cpu(regval);
-+	return 0;
-+}
-+
-+static int rt1719_write32(struct rt1719_data *data, unsigned int reg, u32 val)
-+{
-+	__le32 regval = cpu_to_le32(val);
-+
-+	return regmap_raw_write(data->regmap, reg, &regval, sizeof(regval));
-+}
-+
-+static enum typec_pwr_opmode rt1719_get_pwr_opmode(u32 conn, u16 stat)
-+{
-+	u16 cc1, cc2, cc_stat;
-+
-+	cc1 = FIELD_GET(RT1719_CC1_STAT, stat);
-+	cc2 = FIELD_GET(RT1719_CC2_STAT, stat);
-+
-+	if (conn & RT1719_ATTACH_SNK) {
-+		if (conn & RT1719_POLARITY_MASK)
-+			cc_stat = cc2;
-+		else
-+			cc_stat = cc1;
-+
-+		switch (cc_stat) {
-+		case SNK_PWR_3A:
-+			return TYPEC_PWR_MODE_3_0A;
-+		case SNK_PWR_1P5A:
-+			return TYPEC_PWR_MODE_1_5A;
-+		}
-+	} else if (conn & RT1719_ATTACH_DBG) {
-+		if ((cc1 == SNK_PWR_1P5A && cc2 == SNK_PWR_DEF) ||
-+		    (cc1 == SNK_PWR_DEF && cc2 == SNK_PWR_1P5A))
-+			return TYPEC_PWR_MODE_1_5A;
-+		else if ((cc1 == SNK_PWR_3A && cc2 == SNK_PWR_DEF) ||
-+			 (cc1 == SNK_PWR_DEF && cc2 == SNK_PWR_3A))
-+			return TYPEC_PWR_MODE_3_0A;
-+	}
-+
-+	return TYPEC_PWR_MODE_USB;
-+}
-+
-+static enum typec_data_role rt1719_get_data_role(u32 conn)
-+{
-+	if (conn & RT1719_DATAROLE_MASK)
-+		return TYPEC_HOST;
-+	return TYPEC_DEVICE;
-+}
-+
-+static void rt1719_set_data_role(struct rt1719_data *data,
-+				 enum typec_data_role data_role,
-+				 bool attached)
-+{
-+	enum usb_role usb_role = USB_ROLE_NONE;
-+
-+	if (attached) {
-+		if (data_role == TYPEC_HOST)
-+			usb_role = USB_ROLE_HOST;
-+		else
-+			usb_role = USB_ROLE_DEVICE;
-+	}
-+
-+	usb_role_switch_set_role(data->role_sw, usb_role);
-+	typec_set_data_role(data->port, data_role);
-+}
-+
-+static void rt1719_update_data_role(struct rt1719_data *data)
-+{
-+	if (!data->attached)
-+		return;
-+
-+	rt1719_set_data_role(data, rt1719_get_data_role(data->conn_info), true);
-+}
-+
-+static void rt1719_register_partner(struct rt1719_data *data)
-+{
-+	u16 spec_rev = 0;
-+
-+	if (data->pd_capable) {
-+		u32 rev;
-+
-+		rev = FIELD_GET(RT1719_PDSPECREV_MASK, data->conn_info);
-+		switch (rev) {
-+		case USBPD_SPECREV_3_0:
-+			spec_rev = 0x0300;
-+			break;
-+		case USBPD_SPECREV_2_0:
-+			spec_rev = 0x0200;
-+			break;
-+		default:
-+			spec_rev = 0x0100;
-+			break;
-+		}
-+	}
-+
-+	/* Just to prevent multiple times attach */
-+	if (data->partner)
-+		typec_unregister_partner(data->partner);
-+
-+	memset(&data->partner_ident, 0, sizeof(data->partner_ident));
-+	data->partner_desc.usb_pd = data->pd_capable;
-+	data->partner_desc.pd_revision = spec_rev;
-+
-+	if (data->conn_info & RT1719_ATTACH_DBG)
-+		data->partner_desc.accessory = TYPEC_ACCESSORY_DEBUG;
-+	else
-+		data->partner_desc.accessory = TYPEC_ACCESSORY_NONE;
-+
-+	data->partner = typec_register_partner(data->port, &data->partner_desc);
-+}
-+
-+static void rt1719_attach(struct rt1719_data *data)
-+{
-+	enum typec_pwr_opmode pwr_opmode;
-+	enum typec_data_role data_role;
-+	u32 volt = 5000, curr = 500;
-+
-+	if (!(data->conn_info & RT1719_ATTACHDEV_MASK))
-+		return;
-+
-+	pwr_opmode = rt1719_get_pwr_opmode(data->conn_info, data->conn_stat);
-+	data_role = rt1719_get_data_role(data->conn_info);
-+
-+	typec_set_pwr_opmode(data->port, pwr_opmode);
-+	rt1719_set_data_role(data, data_role, true);
-+
-+	if (data->conn_info & RT1719_ATTACH_SNK)
-+		rt1719_register_partner(data);
-+
-+	if (pwr_opmode == TYPEC_PWR_MODE_3_0A)
-+		curr = 3000;
-+	else if (pwr_opmode == TYPEC_PWR_MODE_1_5A)
-+		curr = 1500;
-+
-+	data->voltage = volt * 1000;
-+	data->max_current = data->op_current = curr * 1000;
-+	data->attached = true;
-+
-+	power_supply_changed(data->psy);
-+}
-+
-+static void rt1719_detach(struct rt1719_data *data)
-+{
-+	if (!data->attached || (data->conn_info & RT1719_ATTACHDEV_MASK))
-+		return;
-+
-+	typec_unregister_partner(data->partner);
-+	data->partner = NULL;
-+
-+	typec_set_pwr_opmode(data->port, TYPEC_PWR_MODE_USB);
-+	rt1719_set_data_role(data, TYPEC_DEVICE, false);
-+
-+	memset32(data->spdos, 0, RT1719_MAX_SRCPDO);
-+	data->spdo_num = 0;
-+	data->voltage = data->max_current = data->op_current = 0;
-+	data->attached = data->pd_capable = false;
-+
-+	data->usb_type = POWER_SUPPLY_USB_TYPE_C;
-+
-+	power_supply_changed(data->psy);
-+}
-+
-+static void rt1719_update_operating_status(struct rt1719_data *data)
-+{
-+	enum power_supply_usb_type usb_type = POWER_SUPPLY_USB_TYPE_PD;
-+	u32 voltage, max_current, op_current;
-+	int i, snk_sel;
-+
-+	for (i = 0; i < data->spdo_num; i++) {
-+		u32 pdo = data->spdos[i];
-+		enum pd_pdo_type type = pdo_type(pdo);
-+
-+		if (type == PDO_TYPE_APDO) {
-+			usb_type = POWER_SUPPLY_USB_TYPE_PD_PPS;
-+			break;
-+		}
-+	}
-+
-+	data->spdo_sel = FIELD_GET(RT1719_SPDOSEL_MASK, data->conn_info);
-+	if (data->spdo_sel <= 0)
-+		return;
-+
-+	data->usb_type = usb_type;
-+
-+	voltage = pdo_fixed_voltage(data->spdos[data->spdo_sel - 1]);
-+	max_current = pdo_max_current(data->spdos[data->spdo_sel - 1]);
-+
-+	switch (voltage) {
-+	case 5000:
-+		snk_sel = RT1719_SNKCAP_5V;
-+		break;
-+	case 9000:
-+		snk_sel = RT1719_SNKCAP_9V;
-+		break;
-+	case 12000:
-+		snk_sel = RT1719_SNKCAP_12V;
-+		break;
-+	case 15000:
-+		snk_sel = RT1719_SNKCAP_15V;
-+		break;
-+	case 20000:
-+		snk_sel = RT1719_SNKCAP_20V;
-+		break;
-+	default:
-+		return;
-+	}
-+
-+	op_current = min(max_current, pdo_max_current(data->snkcaps[snk_sel]));
-+
-+	/* covert mV/mA to uV/uA */
-+	data->voltage = voltage * 1000;
-+	data->max_current = max_current * 1000;
-+	data->op_current = op_current * 1000;
-+
-+	power_supply_changed(data->psy);
-+}
-+
-+static void rt1719_update_pwr_opmode(struct rt1719_data *data)
-+{
-+	if (!data->attached)
-+		return;
-+
-+	if (!data->pd_capable) {
-+		data->pd_capable = true;
-+
-+		typec_set_pwr_opmode(data->port, TYPEC_PWR_MODE_PD);
-+		rt1719_register_partner(data);
-+	}
-+
-+	rt1719_update_operating_status(data);
-+}
-+
-+static void rt1719_update_source_pdos(struct rt1719_data *data)
-+{
-+	int spdo_num = FIELD_GET(RT1719_SPDONUM_MASK, data->conn_info);
-+	__le32 src_pdos[RT1719_MAX_SRCPDO] = { };
-+	int i, ret;
-+
-+	if (!data->attached)
-+		return;
-+
-+	ret = regmap_raw_read(data->regmap, RT1719_REG_SRCPDO1, src_pdos,
-+			      sizeof(__le32) * spdo_num);
-+	if (ret)
-+		return;
-+
-+	data->spdo_num = spdo_num;
-+	for (i = 0; i < spdo_num; i++)
-+		data->spdos[i] = le32_to_cpu(src_pdos[i]);
-+}
-+
-+static int rt1719_dr_set(struct typec_port *port, enum typec_data_role role)
-+{
-+	struct rt1719_data *data = typec_get_drvdata(port);
-+	enum typec_data_role cur_role;
-+	int ret;
-+
-+	if (!data->attached || !data->pd_capable || !data->drswap_support)
-+		return -EOPNOTSUPP;
-+
-+	if (data->spdo_num > 0 && !(data->spdos[0] & PDO_FIXED_DATA_SWAP))
-+		return -EINVAL;
-+
-+	cur_role = rt1719_get_data_role(data->conn_info);
-+	if (cur_role == role)
-+		return 0;
-+
-+	ret = regmap_update_bits(data->regmap, RT1719_REG_TXCTRL1,
-+				 RT1719_REQDRSWAP_MASK, RT1719_REQDRSWAP_MASK);
-+	if (ret)
-+		return ret;
-+
-+	reinit_completion(&data->req_completion);
-+	ret = wait_for_completion_timeout(&data->req_completion,
-+					  msecs_to_jiffies(400));
-+	if (ret == 0)
-+		return -ETIMEDOUT;
-+
-+	cur_role = rt1719_get_data_role(data->conn_info);
-+	if (cur_role != role)
-+		return -EAGAIN;
-+
-+	rt1719_set_data_role(data, role, true);
-+	return 0;
-+}
-+
-+static const struct typec_operations rt1719_port_ops = {
-+	.dr_set = rt1719_dr_set,
-+};
-+
-+static int rt1719_usbpd_request_voltage(struct rt1719_data *data)
-+{
-+	u32 src_voltage;
-+	int snk_sel, src_sel = -1;
-+	int i, ret;
-+
-+	if (!data->attached || !data->pd_capable || data->spdo_sel <= 0)
-+		return -EINVAL;
-+
-+	src_voltage = pdo_fixed_voltage(data->spdos[data->spdo_sel - 1]);
-+	if (src_voltage == data->req_voltage)
-+		return 0;
-+
-+	switch (data->req_voltage) {
-+	case 5000:
-+		snk_sel = RT1719_SNKCAP_5V;
-+		break;
-+	case 9000:
-+		snk_sel = RT1719_SNKCAP_9V;
-+		break;
-+	case 12000:
-+		snk_sel = RT1719_SNKCAP_12V;
-+		break;
-+	case 15000:
-+		snk_sel = RT1719_SNKCAP_15V;
-+		break;
-+	case 20000:
-+		snk_sel = RT1719_SNKCAP_20V;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	if (!(data->snkcaps[snk_sel] & RT1719_PSEL_SUPPORT))
-+		return -EINVAL;
-+
-+	for (i = 0; i < data->spdo_num; i++) {
-+		enum pd_pdo_type type = pdo_type(data->spdos[i]);
-+
-+		if (type != PDO_TYPE_FIXED)
-+			continue;
-+
-+		src_voltage = pdo_fixed_voltage(data->spdos[i]);
-+		if (src_voltage == data->req_voltage) {
-+			src_sel = i;
-+			break;
-+		}
-+	}
-+
-+	if (src_sel == -1)
-+		return -EOPNOTSUPP;
-+
-+	ret = regmap_update_bits(data->regmap, RT1719_REG_TXCTRL1,
-+				 RT1719_EVALMODE_MASK | RT1719_REQSRCPDO_MASK,
-+				 RT1719_EVALMODE_MASK | (src_sel + 1));
-+	ret |= regmap_update_bits(data->regmap, RT1719_REG_TXCTRL2,
-+				  RT1719_TXSPDOREQ_MASK, RT1719_TXSPDOREQ_MASK);
-+	if (ret)
-+		return ret;
-+
-+	reinit_completion(&data->req_completion);
-+	ret = wait_for_completion_timeout(&data->req_completion,
-+					  msecs_to_jiffies(400));
-+	if (!ret)
-+		return -ETIMEDOUT;
-+
-+	return 0;
-+}
-+
-+static int rt1719_psy_set_property(struct power_supply *psy,
-+				   enum power_supply_property psp,
-+				   const union power_supply_propval *val)
-+{
-+	struct rt1719_data *data = power_supply_get_drvdata(psy);
-+
-+	if (psp == POWER_SUPPLY_PROP_VOLTAGE_NOW) {
-+		data->req_voltage = val->intval / 1000;
-+		return rt1719_usbpd_request_voltage(data);
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int rt1719_psy_get_property(struct power_supply *psy,
-+				   enum power_supply_property psp,
-+				   union power_supply_propval *val)
-+{
-+	struct rt1719_data *data = power_supply_get_drvdata(psy);
-+	int ret = 0;
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_ONLINE:
-+		val->intval = data->attached ? 1 : 0;
-+		break;
-+	case POWER_SUPPLY_PROP_USB_TYPE:
-+		val->intval = data->usb_type;
-+		break;
-+	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-+		val->intval = data->voltage;
-+		break;
-+	case POWER_SUPPLY_PROP_CURRENT_MAX:
-+		val->intval = data->max_current;
-+		break;
-+	case POWER_SUPPLY_PROP_CURRENT_NOW:
-+		val->intval = data->op_current;
-+		break;
-+	default:
-+		ret = -EINVAL;
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
-+static int rt1719_psy_property_is_writeable(struct power_supply *psy,
-+					    enum power_supply_property psp)
-+{
-+	if (psp == POWER_SUPPLY_PROP_VOLTAGE_NOW)
-+		return 1;
-+	return 0;
-+}
-+
-+static int devm_rt1719_psy_register(struct rt1719_data *data)
-+{
-+	struct power_supply_config psy_cfg = { };
-+	char *psy_name;
-+
-+	psy_cfg.fwnode = dev_fwnode(data->dev);
-+	psy_cfg.drv_data = data;
-+
-+	psy_name = devm_kasprintf(data->dev, GFP_KERNEL, "rt1719-source-psy-%s",
-+				  dev_name(data->dev));
-+	if (!psy_name)
-+		return -ENOMEM;
-+
-+	data->psy_desc.name = psy_name;
-+	data->psy_desc.type = POWER_SUPPLY_TYPE_USB;
-+	data->psy_desc.usb_types = rt1719_psy_usb_types;
-+	data->psy_desc.num_usb_types = ARRAY_SIZE(rt1719_psy_usb_types);
-+	data->psy_desc.properties = rt1719_psy_properties;
-+	data->psy_desc.num_properties = ARRAY_SIZE(rt1719_psy_properties);
-+	data->psy_desc.get_property = rt1719_psy_get_property;
-+	data->psy_desc.set_property = rt1719_psy_set_property;
-+	data->psy_desc.property_is_writeable = rt1719_psy_property_is_writeable;
-+
-+	data->usb_type = POWER_SUPPLY_USB_TYPE_C;
-+
-+	data->psy = devm_power_supply_register(data->dev, &data->psy_desc,
-+					       &psy_cfg);
-+
-+	return PTR_ERR_OR_ZERO(data->psy);
-+}
-+
-+static irqreturn_t rt1719_irq_handler(int irq, void *priv)
-+{
-+	struct rt1719_data *data = priv;
-+	u32 events, conn_info;
-+	u16 conn_stat;
-+	int ret;
-+
-+	ret = rt1719_read32(data, RT1719_REG_EVENTS, &events);
-+	ret |= rt1719_read32(data, RT1719_REG_POLICYINFO, &conn_info);
-+	ret |= rt1719_read16(data, RT1719_REG_STATS, &conn_stat);
-+	if (ret)
-+		return IRQ_NONE;
-+
-+	data->conn_info = conn_info;
-+	data->conn_stat = conn_stat;
-+
-+	events &= (RT1719_INT_DRSW_ACCEPT | RT1719_INT_RX_SRCCAP |
-+		   RT1719_INT_VBUS_PRESENT | RT1719_INT_VBUS_DCT |
-+		   RT1719_INT_PE_SNK_RDY);
-+
-+	if (events & RT1719_INT_DRSW_ACCEPT)
-+		rt1719_update_data_role(data);
-+
-+	if (events & RT1719_INT_VBUS_PRESENT)
-+		rt1719_attach(data);
-+
-+	if (events & RT1719_INT_VBUS_DCT)
-+		rt1719_detach(data);
-+
-+	if (events & RT1719_INT_RX_SRCCAP)
-+		rt1719_update_source_pdos(data);
-+
-+	if (events & RT1719_INT_PE_SNK_RDY) {
-+		complete(&data->req_completion);
-+		rt1719_update_pwr_opmode(data);
-+	}
-+
-+	/* Write 1 to clear already handled events */
-+	rt1719_write32(data, RT1719_REG_EVENTS, events);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int rt1719_irq_init(struct rt1719_data *data)
-+{
-+	struct i2c_client *i2c = to_i2c_client(data->dev);
-+	u32 irq_enable;
-+	int ret;
-+
-+	irq_enable = RT1719_INT_DRSW_ACCEPT | RT1719_INT_RX_SRCCAP |
-+		     RT1719_INT_VBUS_DCT | RT1719_INT_VBUS_PRESENT |
-+		     RT1719_INT_PE_SNK_RDY;
-+
-+	ret = rt1719_write32(data, RT1719_REG_MASKS, irq_enable);
-+	if (ret) {
-+		dev_err(&i2c->dev, "Failed to config irq enable\n");
-+		return ret;
-+	}
-+
-+	return devm_request_threaded_irq(&i2c->dev, i2c->irq, NULL,
-+					 rt1719_irq_handler, IRQF_ONESHOT,
-+					 dev_name(&i2c->dev), data);
-+}
-+
-+static int rt1719_init_attach_state(struct rt1719_data *data)
-+{
-+	u32 conn_info, irq_clear;
-+	u16 conn_stat;
-+	int ret;
-+
-+	irq_clear = RT1719_INT_DRSW_ACCEPT | RT1719_INT_RX_SRCCAP |
-+		    RT1719_INT_VBUS_DCT | RT1719_INT_VBUS_PRESENT |
-+		    RT1719_INT_PE_SNK_RDY;
-+
-+	ret = rt1719_read32(data, RT1719_REG_POLICYINFO, &conn_info);
-+	ret |= rt1719_read16(data, RT1719_REG_STATS, &conn_stat);
-+	ret |= rt1719_write32(data, RT1719_REG_EVENTS, irq_clear);
-+	if (ret)
-+		return ret;
-+
-+	data->conn_info = conn_info;
-+	data->conn_stat = conn_stat;
-+
-+	if (conn_info & RT1719_ATTACHDEV_MASK)
-+		rt1719_attach(data);
-+
-+	if (conn_info & RT1719_PE_EXP_CONTRACT) {
-+		rt1719_update_source_pdos(data);
-+		rt1719_update_pwr_opmode(data);
-+	}
-+
-+	return 0;
-+}
-+
-+#define RT1719_PSEL_CAPINFO(_lomask, _milliwatt, _himask, _milliamp) { \
-+	.lomask		= _lomask, \
-+	.milliwatt	= _milliwatt, \
-+	.himask		= _himask, \
-+	.milliamp	= _milliamp, \
-+}
-+
-+static const struct rt1719_psel_cap rt1719_psel_caps[] = {
-+	RT1719_PSEL_CAPINFO(0x18, 75000, 0x10, 5000),
-+	RT1719_PSEL_CAPINFO(0x18, 60000, 0x10, 4500),
-+	RT1719_PSEL_CAPINFO(0x18, 45000, 0x10, 4000),
-+	RT1719_PSEL_CAPINFO(0x18, 30000, 0x10, 3500),
-+	RT1719_PSEL_CAPINFO(0x18, 25000, 0x10, 3000),
-+	RT1719_PSEL_CAPINFO(0x18, 20000, 0x10, 2500),
-+	RT1719_PSEL_CAPINFO(0x18, 15000, 0x10, 2000),
-+	RT1719_PSEL_CAPINFO(0x18, 10000, 0x10, 1000),
-+	RT1719_PSEL_CAPINFO(0x1C, 60000, 0x1F, 5000),
-+	RT1719_PSEL_CAPINFO(0x1C, 45000, 0x1F, 4500),
-+	RT1719_PSEL_CAPINFO(0x1C, 30000, 0x1F, 4000),
-+	RT1719_PSEL_CAPINFO(0x1C, 24000, 0x1F, 3500),
-+	RT1719_PSEL_CAPINFO(0x1C, 15000, 0x1F, 3000),
-+	RT1719_PSEL_CAPINFO(0x1C, 10000, 0x1F, 2500),
-+	RT1719_PSEL_CAPINFO(0x0C, 60000, 0x1F, 2000),
-+	RT1719_PSEL_CAPINFO(0x0C, 45000, 0x1F, 1000),
-+	RT1719_PSEL_CAPINFO(0x0C, 36000, 0x08, 5000),
-+	RT1719_PSEL_CAPINFO(0x0C, 30000, 0x08, 4500),
-+	RT1719_PSEL_CAPINFO(0x0C, 24000, 0x08, 4000),
-+	RT1719_PSEL_CAPINFO(0x0C, 15000, 0x08, 3500),
-+	RT1719_PSEL_CAPINFO(0x0C, 10000, 0x08, 3000),
-+	RT1719_PSEL_CAPINFO(0x1E, 45000, 0x08, 2500),
-+	RT1719_PSEL_CAPINFO(0x1E, 36000, 0x08, 2000),
-+	RT1719_PSEL_CAPINFO(0x1E, 27000, 0x08, 1500),
-+	RT1719_PSEL_CAPINFO(0x1E, 20000, 0x08, 1000),
-+	RT1719_PSEL_CAPINFO(0x1E, 15000, 0x0F, 5000),
-+	RT1719_PSEL_CAPINFO(0x1E, 9000, 0x0F, 4500),
-+	RT1719_PSEL_CAPINFO(0x0E, 45000, 0x0F, 4000),
-+	RT1719_PSEL_CAPINFO(0x0E, 36000, 0x0F, 3500),
-+	RT1719_PSEL_CAPINFO(0x0E, 27000, 0x0F, 3000),
-+	RT1719_PSEL_CAPINFO(0x0E, 20000, 0x0F, 2500),
-+	RT1719_PSEL_CAPINFO(0x0E, 15000, 0x0F, 2000),
-+	RT1719_PSEL_CAPINFO(0x0E, 9000, 0x0F, 1500),
-+	RT1719_PSEL_CAPINFO(0x06, 45000, 0x0F, 1000),
-+	RT1719_PSEL_CAPINFO(0x06, 36000, 0x0F, 500),
-+	RT1719_PSEL_CAPINFO(0x06, 27000, 0x04, 5000),
-+	RT1719_PSEL_CAPINFO(0x06, 24000, 0x04, 4500),
-+	RT1719_PSEL_CAPINFO(0x06, 18000, 0x04, 4000),
-+	RT1719_PSEL_CAPINFO(0x06, 12000, 0x04, 3500),
-+	RT1719_PSEL_CAPINFO(0x06, 9000, 0x04, 3000),
-+	RT1719_PSEL_CAPINFO(0x1F, 25000, 0x04, 2500),
-+	RT1719_PSEL_CAPINFO(0x1F, 20000, 0x04, 2000),
-+	RT1719_PSEL_CAPINFO(0x1F, 15000, 0x04, 1500),
-+	RT1719_PSEL_CAPINFO(0x1F, 10000, 0x04, 1000),
-+	RT1719_PSEL_CAPINFO(0x1F, 7500, 0x07, 5000),
-+	RT1719_PSEL_CAPINFO(0x0F, 25000, 0x07, 4500),
-+	RT1719_PSEL_CAPINFO(0x0F, 20000, 0x07, 4000),
-+	RT1719_PSEL_CAPINFO(0x0F, 15000, 0x07, 3500),
-+	RT1719_PSEL_CAPINFO(0x0F, 10000, 0x07, 3000),
-+	RT1719_PSEL_CAPINFO(0x0F, 7500, 0x07, 2500),
-+	RT1719_PSEL_CAPINFO(0x07, 25000, 0x07, 2000),
-+	RT1719_PSEL_CAPINFO(0x07, 20000, 0x07, 1500),
-+	RT1719_PSEL_CAPINFO(0x07, 15000, 0x07, 1000),
-+	RT1719_PSEL_CAPINFO(0x07, 10000, 0x07, 500),
-+	RT1719_PSEL_CAPINFO(0x07, 7500, 0x03, 5000),
-+	RT1719_PSEL_CAPINFO(0x03, 25000, 0x03, 4500),
-+	RT1719_PSEL_CAPINFO(0x03, 20000, 0x03, 4000),
-+	RT1719_PSEL_CAPINFO(0x03, 15000, 0x03, 3500),
-+	RT1719_PSEL_CAPINFO(0x03, 10000, 0x03, 3000),
-+	RT1719_PSEL_CAPINFO(0x03, 7500, 0x03, 2500),
-+	RT1719_PSEL_CAPINFO(0x01, 15000, 0x03, 2000),
-+	RT1719_PSEL_CAPINFO(0x01, 10000, 0x03, 1500),
-+	RT1719_PSEL_CAPINFO(0x01, 7500, 0x03, 1000),
-+	RT1719_PSEL_CAPINFO(0x01, 2500, 0x03, 500)
-+};
-+
-+static u16 rt1719_gen_snkcap_by_current(const struct rt1719_psel_cap *psel_cap,
-+					enum rt1719_snkcap capsel)
-+{
-+	u16 cap = RT1719_PSEL_SUPPORT;
-+
-+	if (!(psel_cap->himask & BIT(capsel)))
-+		return 0;
-+
-+	cap |= psel_cap->milliamp / 10;
-+	return cap;
-+}
-+
-+static u16 rt1719_gen_snkcap_by_watt(const struct rt1719_psel_cap *psel_cap,
-+				     enum rt1719_snkcap capsel)
-+{
-+	u32 volt_div[RT1719_MAX_SNKCAP] = { 5, 9, 12, 15, 20 };
-+	u16 cap = RT1719_PSEL_SUPPORT;
-+
-+	if (!(psel_cap->lomask & BIT(capsel)))
-+		return 0;
-+
-+	cap |= min(psel_cap->milliwatt / volt_div[capsel], (u32)5000) / 10;
-+	return cap;
-+}
-+
-+static u16 rt1719_gen_snkcap(unsigned int pselinfo, enum rt1719_snkcap capsel)
-+{
-+	int psel = FIELD_GET(RT1719_LATPSEL_MASK, pselinfo);
-+	const struct rt1719_psel_cap *psel_cap;
-+	bool by_current = false;
-+
-+	if (pselinfo & RT1719_TBLSEL_MASK)
-+		by_current = true;
-+
-+	psel_cap = rt1719_psel_caps + psel;
-+	if (by_current)
-+		return rt1719_gen_snkcap_by_current(psel_cap, capsel);
-+
-+	return rt1719_gen_snkcap_by_watt(psel_cap, capsel);
-+}
-+
-+static int rt1719_get_caps(struct rt1719_data *data)
-+{
-+	unsigned int pselinfo, usbinfo;
-+	int i, ret;
-+
-+	ret = regmap_read(data->regmap, RT1719_REG_PSELINFO, &pselinfo);
-+	ret |= regmap_read(data->regmap, RT1719_REG_USBSETINFO, &usbinfo);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < RT1719_MAX_SNKCAP; i++)
-+		data->snkcaps[i] = rt1719_gen_snkcap(pselinfo, i);
-+
-+	usbinfo = FIELD_GET(RT1719_USBINFO_MASK, usbinfo);
-+	if (usbinfo == RT1719_USB_DFPUFP)
-+		data->drswap_support = true;
-+
-+	return 0;
-+}
-+
-+static int rt1719_check_exist(struct rt1719_data *data)
-+{
-+	u16 pid;
-+	int ret;
-+
-+	ret = rt1719_read16(data, RT1719_REG_VENID, &pid);
-+	if (ret)
-+		return ret;
-+
-+	if (pid != RT1719_UNIQUE_PID) {
-+		dev_err(data->dev, "Incorrect PID 0x%04x\n", pid);
-+		return -ENODEV;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct regmap_config rt1719_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0xff,
-+};
-+
-+static int rt1719_probe(struct i2c_client *i2c)
-+{
-+	struct rt1719_data *data;
-+	struct fwnode_handle *fwnode;
-+	struct typec_capability typec_cap = { };
-+	int ret;
-+
-+	data = devm_kzalloc(&i2c->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->dev = &i2c->dev;
-+	init_completion(&data->req_completion);
-+
-+	data->regmap = devm_regmap_init_i2c(i2c, &rt1719_regmap_config);
-+	if (IS_ERR(data->regmap)) {
-+		ret = PTR_ERR(data->regmap);
-+		dev_err(&i2c->dev, "Failed to init regmap (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	ret = rt1719_check_exist(data);
-+	if (ret)
-+		return ret;
-+
-+	ret = rt1719_get_caps(data);
-+	if (ret)
-+		return ret;
-+
-+	fwnode = device_get_named_child_node(&i2c->dev, "connector");
-+	if (!fwnode)
-+		return -ENODEV;
-+
-+	data->role_sw = fwnode_usb_role_switch_get(fwnode);
-+	if (IS_ERR(data->role_sw)) {
-+		ret = PTR_ERR(data->role_sw);
-+		dev_err(&i2c->dev, "Failed to get usb role switch (%d)\n", ret);
-+		goto err_fwnode_put;
-+	}
-+
-+	ret = devm_rt1719_psy_register(data);
-+	if (ret) {
-+		dev_err(&i2c->dev, "Failed to register psy (%d)\n", ret);
-+		goto err_role_put;
-+	}
-+
-+	typec_cap.revision = USB_TYPEC_REV_1_2;
-+	typec_cap.pd_revision = 0x300;	/* USB-PD spec release 3.0 */
-+	typec_cap.type = TYPEC_PORT_SNK;
-+	typec_cap.data = TYPEC_PORT_DRD;
-+	typec_cap.ops = &rt1719_port_ops;
-+	typec_cap.fwnode = fwnode;
-+	typec_cap.driver_data = data;
-+	typec_cap.accessory[0] = TYPEC_ACCESSORY_DEBUG;
-+
-+	data->partner_desc.identity = &data->partner_ident;
-+
-+	data->port = typec_register_port(&i2c->dev, &typec_cap);
-+	if (IS_ERR(data->port)) {
-+		ret = PTR_ERR(data->port);
-+		dev_err(&i2c->dev, "Failed to register typec port (%d)\n", ret);
-+		goto err_role_put;
-+	}
-+
-+	ret = rt1719_init_attach_state(data);
-+	if (ret) {
-+		dev_err(&i2c->dev, "Failed to init attach state (%d)\n", ret);
-+		goto err_role_put;
-+	}
-+
-+	ret = rt1719_irq_init(data);
-+	if (ret) {
-+		dev_err(&i2c->dev, "Failed to init irq\n");
-+		goto err_role_put;
-+	}
-+
-+	fwnode_handle_put(fwnode);
-+
-+	i2c_set_clientdata(i2c, data);
-+
-+	return 0;
-+
-+err_role_put:
-+	usb_role_switch_put(data->role_sw);
-+err_fwnode_put:
-+	fwnode_handle_put(fwnode);
-+
-+	return ret;
-+}
-+
-+static int rt1719_remove(struct i2c_client *i2c)
-+{
-+	struct rt1719_data *data = i2c_get_clientdata(i2c);
-+
-+	typec_unregister_port(data->port);
-+	usb_role_switch_put(data->role_sw);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id __maybe_unused rt1719_device_table[] = {
-+	{ .compatible = "richtek,rt1719", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, rt1719_device_table);
-+
-+static struct i2c_driver rt1719_driver = {
-+	.driver = {
-+		.name = "rt1719",
-+		.of_match_table = rt1719_device_table,
-+	},
-+	.probe_new = rt1719_probe,
-+	.remove = rt1719_remove,
-+};
-+module_i2c_driver(rt1719_driver);
-+
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_DESCRIPTION("Richtek RT1719 Sink Only USBPD Controller Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
+Lines 173 and 174 need an extra space. In the case that a v6 is required
+I'll fix this. But of course I wouldn't say no if this could be fixed
+when the patch is applied :-)
 
+Best regards,
+Michael
+
+> 
+> dtschema/dtc warnings/errors:
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/1590238
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
