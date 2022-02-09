@@ -2,125 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C5594AF6F2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 17:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17E0B4AF71F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 17:45:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237329AbiBIQjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 11:39:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47782 "EHLO
+        id S237443AbiBIQpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 11:45:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234543AbiBIQjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 11:39:53 -0500
-Received: from fwd1.porkbun.com (fwd1.porkbun.com [52.10.174.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8457C0612BE;
-        Wed,  9 Feb 2022 08:39:56 -0800 (PST)
-Received: by fwd1.porkbun.com (Postfix, from userid 497)
-        id 78B7C429CD; Wed,  9 Feb 2022 16:39:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh;
-        s=default; t=1644424796;
-        bh=ooNj/8suxQGCS+iG0qUYChLq9ehXfq6KW/VZ9iEQVtM=;
-        h=From:To:Cc:Subject:Date;
-        b=m2Mzvb3yBRtES/mr4zsa1QF5lj5mhZS1V0C6oe92XDpcv5MPqBz/vU8gOtlrbORKR
-         Tt0RqZoBdYPdmZsDUpBxIPYrE5UnfhCnMpsu6k89T+MgqUrwY6FVkrIoJVnMoPveiy
-         8vYKvLi8nSFutE0FplWcPfZ3ZRuUbp7VUV9dmiNM=
+        with ESMTP id S237436AbiBIQpV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 11:45:21 -0500
+X-Greylist: delayed 330 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Feb 2022 08:45:24 PST
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC9FC0613C9;
+        Wed,  9 Feb 2022 08:45:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1644425112;
+        bh=23VcDO1UBkUQfDfSRRv997yJv60exeA4uC8n5A+TDxE=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=E6VWgl1hdzxhGU9Zr8EJ7+LuqCMotcq2Z9BYIn3nfVviWUMi1gnOlgVomLss/m602
+         g+RQFKHsEVQyxBINLERnum8B4kBaqoS2B/JOdefP73OF/nX0AHyEF7wrQnNfO8VxTZ
+         9YTQZyBWf25YeHW+dvNWuYTCeP59D5ypX5bXnfwY=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.77.2] ([80.245.77.2]) by web-mail.gmx.net
+ (3c-app-gmx-bs62.server.lan [172.19.170.146]) (via HTTP); Wed, 9 Feb 2022
+ 17:39:21 +0100
+MIME-Version: 1.0
+Message-ID: <trinity-15c80db0-29c1-4cea-be14-794d9a02debf-1644424761490@3c-app-gmx-bs62>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Cc:     heiko@sntech.de, robh+dt@kernel.org, jbx6244@gmail.com,
+        devicetree@vger.kernel.org, vkoul@kernel.org,
+        michael.riesch@wolfvision.net, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, kishon@ti.com,
+        p.zabel@pengutronix.de, cl@rock-chips.com,
+        kever.yang@rock-chips.com, lee.jones@linaro.org,
+        wulf@rock-chips.com, david.wu@rock-chips.com,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Subject: Aw: [PATCH v8 0/4] Add Naneng combo PHY support for RK3568
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 9 Feb 2022 17:39:21 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20220208091326.12495-1-yifeng.zhao@rock-chips.com>
+References: <20220208091326.12495-1-yifeng.zhao@rock-chips.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:MM7Nx0+88CSi+CDhES/hxhcnP//1RXCCnodnqkxCyHMOIysSJnTzv+d82Mt13iCGAncX8
+ DgZq7W20vZbLm3xrY7uJN7LjQMf7VkEYdBuxa068oT0hSc7uaWya6GHwx0FG0exoqY9wfgQIvdtz
+ z/33dMmbL+E7IUjtCgMmZa1XUE7DeO1od88KOma67UbRir4X3wo24XXsrZ8wLyWJnt3cQlWVEEaT
+ sp0T2QHcIVYTwUfv5qMBAaQky7saSPMPuCJfKHnqB/DtCt3D5DgGhBR4tU3I4IbQIfi/3CGRJZTN
+ h8=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:yO48XHWlAEg=:w/S5bj4TX2IHTk3QFbdfMl
+ 8UonBQztscoOoXdeO7Imuot6orUUq0viFsTTOfzJEOHhIoACPgID6EfU9Epoq+PqWxXV84fhv
+ N1qc3QfY26wFnvXje1EgRvaYsv7r+sECRIBQkS2+Su3SCVPhOJm6kEBShyAUjMDv5bKv3kle7
+ 01rgMNuYrDSPc1iC2lVQLY4duuWNIY41QTLppt6WSERfl98gwLoeObBU/erl9A9Iufzl9+uOc
+ ecv6I4dGmjGQWxh0Vh03g0tk8Cmf8Q/9XQUGLs04wNq0CdgZNaHNw1y2/7FKfSYx3va5oPe88
+ P5v85N3n2d1XxUd0OOx6hPzN9ZQLiQOMAL8dwYXd8fgWKYQN5oZ8sZT/JhbWBok6IZ3ao2psP
+ OgJZSsyebyKWcuR44TUJckyzFpwc3MYv64Bjze7rwxMNMWISnJd7Gn7VENFlf7ob5+V64D1dk
+ SczpxwQAiwV+H773x6X5tX2urZLQ4+co3ErfCkrmoIlXs7j0diZ3GdJXlt42rlCe+lbcIe4gl
+ DCSjHIfYGhzXY/fivYfAH00/z8ilSzN+tFGIUhgdDwZaFhh5ke14k3I9mXQKR4a7ZMKfsdGRA
+ ami+lD4knYeptm4IoSkyga5bwjBSkb41TSVUbFVEDciV6j5dMKrg/vI/YQ7g6McBtVATPjbI7
+ c36UYPhlmh8fOPRzymZpCS8JuUCgd6cKx2sydzP95vRZUQrgr28Z/EtwqjqS8AX0CS2r8IJ04
+ cpdAVOR4+nyUFYmk7JSY9vaXYEU2wPaIw6s83irMAQqc2MXO+dsBsjnG7Eu5qnmVzHt1cBNhm
+ vsykxOy
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
-        autolearn_force=no version=3.4.6
-Received: from rayyan-pc.. (unknown [90.242.138.108])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: rayyan@ansari.sh)
-        by fwd1.porkbun.com (Postfix) with ESMTPSA id B8E4D41C54;
-        Wed,  9 Feb 2022 16:39:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ansari.sh;
-        s=default; t=1644424781;
-        bh=ooNj/8suxQGCS+iG0qUYChLq9ehXfq6KW/VZ9iEQVtM=;
-        h=From:To:Cc:Subject:Date;
-        b=ZM0LJZsYefdS00PyYlDAREOJZ+oo2lgbvjHxMsfx6vGyauOZP0s8MW22WeUp9KIBg
-         WPohoiTLEsz9SvHvTuB24ydfECHae4XNrRHeJsHRTEYFIdZRWdQ1M+5X0num9UF2ap
-         7u+fgkXSA0MqW4/hGjzKg4plnyZ1S8+ZMuGshFsg=
-From:   Rayyan Ansari <rayyan@ansari.sh>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Rayyan Ansari <rayyan@ansari.sh>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: qcom: pm8226: Add VADC node
-Date:   Wed,  9 Feb 2022 16:38:40 +0000
-Message-Id: <20220209163841.7360-1-rayyan@ansari.sh>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a node for the voltage ADC (VADC) found in PM8226.
+Hi
 
-Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
----
- arch/arm/boot/dts/qcom-pm8226.dtsi | 34 ++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+Tested complete series on rk3568 based Bananapi R2 Pro
 
-diff --git a/arch/arm/boot/dts/qcom-pm8226.dtsi b/arch/arm/boot/dts/qcom-pm8226.dtsi
-index b3d0f7b5874d..5e07f34e4ec4 100644
---- a/arch/arm/boot/dts/qcom-pm8226.dtsi
-+++ b/arch/arm/boot/dts/qcom-pm8226.dtsi
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-+#include <dt-bindings/iio/qcom,spmi-vadc.h>
- 
- &spmi_bus {
- 	pm8226_0: pm8226@0 {
-@@ -40,6 +41,39 @@ smbb: charger@1000 {
- 			chg_otg: otg-vbus { };
- 		};
- 
-+		pm8226_vadc: adc@3100 {
-+			compatible = "qcom,spmi-vadc";
-+			reg = <0x3100>;
-+			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#io-channel-cells = <1>;
-+
-+			adc-chan@7 {
-+				reg = <VADC_VSYS>;
-+				qcom,pre-scaling = <1 3>;
-+				label = "vph_pwr";
-+			};
-+			adc-chan@8 {
-+				reg = <VADC_DIE_TEMP>;
-+				label = "die_temp";
-+			};
-+			adc-chan@9 {
-+				reg = <VADC_REF_625MV>;
-+				label = "ref_625mv";
-+			};
-+			adc-chan@a {
-+				reg = <VADC_REF_1250MV>;
-+				label = "ref_1250mv";
-+			};
-+			adc-chan@e {
-+				reg = <VADC_GND_REF>;
-+			};
-+			adc-chan@f {
-+				reg = <VADC_VDD_VADC>;
-+			};
-+		};
-+
- 		pm8226_mpps: mpps@a000 {
- 			compatible = "qcom,pm8226-mpp", "qcom,spmi-mpp";
- 			reg = <0xa000>;
--- 
-2.34.1
+combphy0: usb3 (usbdrd3_0)
+combphy1: usb3 (usbdrd3_1)
+combphy2: sata (sata2)
 
+Tested-by: Frank Wunderlich <frank-w@public-files.de>
+
+regards Frank
