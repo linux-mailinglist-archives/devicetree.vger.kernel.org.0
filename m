@@ -2,111 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A954AF0E3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:08:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 865704AF0B5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:05:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232322AbiBIMHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 07:07:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48050 "EHLO
+        id S229680AbiBIMDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 07:03:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232686AbiBIMGF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:06:05 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 378BAC050CD3;
-        Wed,  9 Feb 2022 03:27:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1644406056; x=1675942056;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=NGSesQuO1TkFrdjGkmTfRB4zx9VGkoV76GOJi87bu3w=;
-  b=SbMdbxq3z6EL8Tk3Xe/a7bv0Q372DpLAi1gmqjbTAGmRgi132iw14nWb
-   SJFiNI/BE0km24lK8O1ZjbAUXiDauQx4nNndLBJddpIlUZC0dE8N1Bb4m
-   t48l8Zrt0nxLnFdkqAVp7Zz4wIFjSJo+e/A5/PsSX+4GWgFQej6+OS2OP
-   je3etDl3QL4VNsZxzHI51vALJ7hVLA8Ac8J218Uujo73ZOefEK8DiF4AC
-   2nFaW8bCJc4o0Yg1Skm91JxYRdP0jkYw9yOJhAkV6fYgOAYK7PjHcbjhZ
-   ltiHB9mK6t1SiN2Q0jbze9+ifNX0DcqYR7EQtvoisJOgOTrDhPvwVWxoN
-   Q==;
-IronPort-SDR: WNfa+KzMaWtRn8hVQr/2q7GiBtU5X1zazxQ0MAgYKPWi68L6mUnGLSM61ZDRp7ddv0kVtvAq1H
- A6bQSD5u8GP4UtrUzfRcUAzjTxILBu1TtZTlfOBWF0XwXFqubJ9ZsNhRdDCpj6so7nemB24YuM
- NWpsXkqF6zDDOtML6JgTGfMDCQHi6Zh7JGOXVhN8zcEDm1jdgAsjmOApLs6j157lf9H0gRpkQz
- xP18rQvCOsgFF8qABQmT4dlNt3YJRZzkTKsA1ZVi0iTCYWehdn/E7QoRUiWSUvCxXZtMUQ+0JV
- QGAY4omMKXNCDVDyy3WGjYLv
+        with ESMTP id S232023AbiBIMDP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:03:15 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D765C03C18E;
+        Wed,  9 Feb 2022 03:41:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1644406882; x=1675942882;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UAVflgTtkMa7VNcbZK8/nl2b5LKf0MxHQx8zZ0cgHss=;
+  b=F2fHKD6BsnjBtqsNOg+Gy92E2xeXgftMg6xogc0nFgmwWUh/68sXpA2B
+   9xAhKZHMoqwancYsoJmuhuInja2mFBKs+atLzaXgMAbxWTg2c+ZquXHKW
+   ucC6qR1ko++j13Um1/hXgB0iGsPH/oo8ck/sdJLPh9d74Ij5pRRnjNP8t
+   kVPbC7oEoHAu0ZlT4n9hXizoYwf+gjfGyEHbKMvMzYA43yKFD6QRoNY2b
+   +Qky91tncPl29gPaRtiohsrKTRL8NZusw9y5GbYOgaXooSHkAJ5jy+k8i
+   jLy8jB3jWcjcgtLMxNvF8giosNNuo/HUDSo9Yb9GmKXE6/4TWI4x+gzAk
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="232751969"
 X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; 
-   d="scan'208";a="148122096"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Feb 2022 04:27:34 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 9 Feb 2022 04:27:34 -0700
-Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Wed, 9 Feb 2022 04:27:29 -0700
-Message-ID: <2762670649daca77a367aaee44b6669142ce0f6d.camel@microchip.com>
-Subject: Re: [PATCH v8 net-next 03/10] net: phy: Add support for LAN937x T1
- phy driver
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     <netdev@vger.kernel.org>, <olteanv@gmail.com>,
-        <robh+dt@kernel.org>, <UNGLinuxDriver@microchip.com>,
-        <woojung.huh@microchip.com>, <hkallweit1@gmail.com>,
-        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
-Date:   Wed, 9 Feb 2022 16:57:27 +0530
-In-Reply-To: <YgJre2C9jpfMCXSZ@lunn.ch>
-References: <20220207172204.589190-1-prasanna.vengateshan@microchip.com>
-         <20220207172204.589190-4-prasanna.vengateshan@microchip.com>
-         <YgJre2C9jpfMCXSZ@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.0-1 
+   d="scan'208";a="232751969"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2022 03:41:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; 
+   d="scan'208";a="678544416"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 09 Feb 2022 03:41:18 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 09 Feb 2022 13:41:18 +0200
+Date:   Wed, 9 Feb 2022 13:41:18 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] usb: typec: Factor out non-PD fwnode properties
+Message-ID: <YgOoXgFKaLsdYYKZ@kuha.fi.intel.com>
+References: <20220202221948.5690-1-samuel@sholland.org>
+ <20220202221948.5690-4-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220202221948.5690-4-samuel@sholland.org>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-02-08 at 14:09 +0100, Andrew Lunn wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> content is safe
-> 
-> On Mon, Feb 07, 2022 at 10:51:57PM +0530, Prasanna Vengateshan wrote:
-> > Added support for Microchip LAN937x T1 phy driver. The sequence of
-> > initialization is used commonly for both LAN87xx and LAN937x
-> > drivers. The new initialization sequence is an improvement to
-> > existing LAN87xx and it is shared with LAN937x.
-> > 
-> > Also relevant comments are added in the existing code and existing
-> > soft-reset customized code has been replaced with
-> > genphy_soft_reset().
-> > 
-> > access_ereg_clr_poll_timeout() API is introduced for polling phy
-> > bank write and this is linked with PHYACC_ATTR_MODE_POLL.
-> > 
-> > Finally introduced function table for LAN937X_T1_PHY_ID along with
-> > microchip_t1_phy_driver struct.
-> 
-> Hi Prasanna
-> 
-> That is a lot of changes in one patch.
-> 
-> I would suggest you make this a patch series of its own. It should be
-> independent of the switch changes. And then you can break this patch
-> up into a number of smaller patches.
-> 
-> Thanks
->         Andrew
+On Wed, Feb 02, 2022 at 04:19:46PM -0600, Samuel Holland wrote:
+> diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+> index 5fce795b69c7..8b58aa6e3509 100644
+> --- a/drivers/usb/typec/tcpm/tcpm.c
+> +++ b/drivers/usb/typec/tcpm/tcpm.c
+> @@ -5935,32 +5935,10 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
+>  	if (!fwnode)
+>  		return -EINVAL;
+>  
+> -	/*
+> -	 * This fwnode has a "compatible" property, but is never populated as a
+> -	 * struct device. Instead we simply parse it to read the properties.
+> -	 * This it breaks fw_devlink=on. To maintain backward compatibility
+> -	 * with existing DT files, we work around this by deleting any
+> -	 * fwnode_links to/from this fwnode.
+> -	 */
+> -	fw_devlink_purge_absent_suppliers(fwnode);
+> -
+> -	/* USB data support is optional */
+> -	ret = fwnode_property_read_string(fwnode, "data-role", &cap_str);
+> -	if (ret == 0) {
+> -		ret = typec_find_port_data_role(cap_str);
+> -		if (ret < 0)
+> -			return ret;
+> -		port->typec_caps.data = ret;
+> -	}
+> -
+> -	ret = fwnode_property_read_string(fwnode, "power-role", &cap_str);
+> +	ret = typec_get_fw_cap(&port->typec_caps, fwnode);
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	ret = typec_find_port_power_role(cap_str);
+> -	if (ret < 0)
+> -		return ret;
+> -	port->typec_caps.type = ret;
+>  	port->port_type = port->typec_caps.type;
+>  	port->pd_supported = !fwnode_property_read_bool(fwnode, "pd-disable");
+>  
+> @@ -5997,14 +5975,6 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
+>  	if (port->port_type == TYPEC_PORT_SRC)
+>  		return 0;
+>  
+> -	/* Get the preferred power role for DRP */
+> -	ret = fwnode_property_read_string(fwnode, "try-power-role", &cap_str);
+> -	if (ret < 0)
+> -		return ret;
+> -
+> -	port->typec_caps.prefer_role = typec_find_power_role(cap_str);
+> -	if (port->typec_caps.prefer_role < 0)
+> -		return -EINVAL;
+>  sink:
+>  	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
 
-Sure, i will submit as a seperate patch series and i will remove from this
-patch. Thanks.
+It looks like after this there are no more users for that cap_str
+variable. You need to remove that too.
 
-Prasanna V
+thanks,
 
-
+-- 
+heikki
