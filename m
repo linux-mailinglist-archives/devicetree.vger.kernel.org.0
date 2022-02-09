@@ -2,194 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8F3C4AFDFF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 21:05:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14D7F4AFE0C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 21:12:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231152AbiBIUFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 15:05:54 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:54160 "EHLO
+        id S229628AbiBIUMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 15:12:38 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:53662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbiBIUFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 15:05:54 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02E16E0536E9;
-        Wed,  9 Feb 2022 12:05:53 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id m18so6337127lfq.4;
-        Wed, 09 Feb 2022 12:05:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=3ey/rvoC/My8lgu2h1tjSnO3Rywhq0b6MzF/kqfqRZs=;
-        b=XXo2DQnW+fAVbOB/k5mx9IuS0YLQBxnjNOoz/J8CKw1wBozqF1ljthuEB9VKXE/mFf
-         EIWknlt9Kw8x6nDYWKnmNQ4o3T01MpZTpMa27aj1wAkzTf7pKm7irV2ganP/+dskPb+U
-         GR7NlqBLkJCnbpPDFG0FYln3lxWRSZNSNqZuKXYk1vGOZK0b1YFF6N46RfwEo6MWf9rI
-         lN4rGvKYYk10NceuVCd7RW6IfUg27w9zM7YrJ3s163LqmWFOQLR448NGpeU5plEhGfEY
-         sVTnu0DOQlG4bfBGXnwoTV41J12sjJviPPa+x5It1S70UrM2K0MiCzwDEbiYo2hpzboo
-         g0fw==
+        with ESMTP id S229471AbiBIUMi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 15:12:38 -0500
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274C5E01C685;
+        Wed,  9 Feb 2022 12:12:34 -0800 (PST)
+Received: by mail-oo1-f45.google.com with SMTP id i10-20020a4aab0a000000b002fccf890d5fso3802342oon.5;
+        Wed, 09 Feb 2022 12:12:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=3ey/rvoC/My8lgu2h1tjSnO3Rywhq0b6MzF/kqfqRZs=;
-        b=tc36t0XEFdJyETJmY1dFdUYEfPjo66SbmQ0l2O0xvLSMUY6nfhYoiYvRPoE1vOwldO
-         GA31sQuT1FWeD2my8vmkQ+DzC/XXKflXPZj6FrR+9ioF+PzA8l2ZM9v8NHsKRnkzoIMX
-         Or+BDgLJyZKA/vrF5+qPyIQ0VuJ4ArIMMuYe64PahZxdPzLu/bYNYUawkREwaEXcEJLF
-         iqgf/Rx/+8IckdjZF3VuIVLb6LtYtchDDUIjZH+Wof/YQTBvGIGC8y/Jkdty+SDK2bPi
-         eOAezCdIQ6onSfjiiXbkDiH+SLWx5BORqKrJn586lJ1ZLMcjPWSkpmZq2lrt1R5WJUNl
-         WYIg==
-X-Gm-Message-State: AOAM533AlPt8FCLeixOzAXjc5fv6zuFlB8olPnWIMaVuo6sWolRr7reR
-        eA257uwoU6RdXdjulrQwzig=
-X-Google-Smtp-Source: ABdhPJw4S9ZJVZa1qJxliI2glYts95uC9G7uoDOXRsA3u+2+dQ0WrliCoU3B+BldWmFaadI4i1NG2g==
-X-Received: by 2002:a05:6512:3094:: with SMTP id z20mr2588470lfd.398.1644437151253;
-        Wed, 09 Feb 2022 12:05:51 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id d18sm404083lfg.20.2022.02.09.12.05.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Feb 2022 12:05:50 -0800 (PST)
-Message-ID: <b29cd450-3753-2971-86ba-2f1e719b151f@gmail.com>
-Date:   Wed, 9 Feb 2022 21:05:49 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=W/UQplenPqJG5Ahv1wLvwfdyAf2KshN531HhWEMo0Os=;
+        b=SLobkWvgzIbcXN1cR4gbIueKPnCcpQx8t/DiAO4bz0lbsJ3XGJN1b7Lo2B6Wqa5Ls6
+         HBmtYkxF5mWfKBHe1ksyFb8CBryAD3LJqCTDKumPW/SzLYqr643+Lvxtd5pcUdf/kDi1
+         s+rPN669/Ns2nzmvHgU85RYbWx290HaqMyD4Bajh7tV0J3t/7sUU7hz1na7cO4FARhYG
+         a0RqvEwYa87fMmLA9xA/d95W2nh0fp0Bvn0VhMXsVqUgqftNvUweW0sWlTYtT1gAFZOE
+         Y+Hf1sLceKhr1pio05ZUqCumZYP6wV6JtGK2kSs6vJTSd6VWdOpDQDx4PxLkmkGMe4gH
+         0/og==
+X-Gm-Message-State: AOAM533vyXRoeRzsyiUisOvr8OL6zeKz/Ikd9Ffd5e3+7A2l9bUrqcCg
+        uNFllbzy3ukHl2k808xSZg==
+X-Google-Smtp-Source: ABdhPJyJnWKtKnilwNEZkRI00kcGwsaPrryq0cnq/wxVeIG0VHXas0PCuWn9oxYzmsPBPWQlVRgNFQ==
+X-Received: by 2002:a05:6870:d385:: with SMTP id k5mr1323114oag.174.1644437553443;
+        Wed, 09 Feb 2022 12:12:33 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id w9sm7109862ool.31.2022.02.09.12.12.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Feb 2022 12:12:32 -0800 (PST)
+Received: (nullmailer pid 817305 invoked by uid 1000);
+        Wed, 09 Feb 2022 20:12:31 -0000
+Date:   Wed, 9 Feb 2022 14:12:31 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Robert Hancock <robert.hancock@calian.com>
+Cc:     devicetree@vger.kernel.org, lars@metafoo.de,
+        anand.ashok.dumbre@xilinx.com, manish.narani@xilinx.com,
+        robh+dt@kernel.org, michal.simek@xilinx.com, jic23@kernel.org,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: iio: adc: zynqmp_ams: Add clock entry
+Message-ID: <YgQgL4+WsPyzh3nG@robh.at.kernel.org>
+References: <20220127173450.3684318-1-robert.hancock@calian.com>
+ <20220127173450.3684318-2-robert.hancock@calian.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH V2] dt-bindings: watchdog: brcm,bcm7038: add more
- compatible strings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Justin Chen <justinpopo6@gmail.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20220126132116.11070-1-zajec5@gmail.com>
- <20220126222034.16889-1-zajec5@gmail.com>
- <YgQRam1RFim1AMMf@robh.at.kernel.org>
- <7b60d62b-9828-cc74-8d03-64ef5f722661@gmail.com>
- <YgQd25G0UROyTMA9@robh.at.kernel.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <YgQd25G0UROyTMA9@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220127173450.3684318-2-robert.hancock@calian.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9.02.2022 21:02, Rob Herring wrote:
-> On Wed, Feb 09, 2022 at 08:26:00PM +0100, Rafał Miłecki wrote:
->> On 9.02.2022 20:09, Rob Herring wrote:
->>> On Wed, Jan 26, 2022 at 11:20:34PM +0100, Rafał Miłecki wrote:
->>>> From: Rafał Miłecki <rafal@milecki.pl>
->>>>
->>>> This hardware block is used on almost all BCM63xx family chipsets and
->>>> BCM4908 which reuses a lot of BCM63xx parts. Add relevant compatible
->>>> strings and also include a generic one.
->>>>
->>>> The only SoC with a different block I found is BCM6838 (thus not included
->>>> in this change).
->>>>
->>>> It may be worth noting that BCM6338, BCM6345, BCM6348 and BCM63268 don't
->>>> include "SoftRst" register but that can be handled by drivers based on
->>>> precise compatible string.
->>>>
->>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>>> ---
->>>> V2: Sort enum entries & update brcm,twd.yaml
->>>> ---
->>>>    .../devicetree/bindings/mfd/brcm,twd.yaml     |  2 +-
->>>>    .../bindings/watchdog/brcm,bcm7038-wdt.yaml   | 21 +++++++++++++++----
->>>>    2 files changed, 18 insertions(+), 5 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/mfd/brcm,twd.yaml b/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
->>>> index 634526f790b8..3f5db1990aba 100644
->>>> --- a/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
->>>> +++ b/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
->>>> @@ -55,7 +55,7 @@ examples:
->>>>            #size-cells = <1>;
->>>>            watchdog@28 {
->>>> -            compatible = "brcm,bcm7038-wdt";
->>>> +            compatible = "brcm,bcm4908-wdt", "brcm,bcm63xx-wdt";
->>>>                reg = <0x28 0x8>;
->>>>            };
->>>>        };
->>>> diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
->>>> index a926809352b8..4d848442913c 100644
->>>> --- a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
->>>> +++ b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
->>>> @@ -16,9 +16,22 @@ maintainers:
->>>>    properties:
->>>>      compatible:
->>>> -    enum:
->>>> -      - brcm,bcm6345-wdt
->>>> -      - brcm,bcm7038-wdt
->>>> +    items:
->>>> +      - enum:
->>>> +          - brcm,bcm4908-wdt
->>>> +          - brcm,bcm6338-wdt
->>>> +          - brcm,bcm6345-wdt
->>>> +          - brcm,bcm6348-wdt
->>>> +          - brcm,bcm6848-wdt
->>>> +          - brcm,bcm6858-wdt
->>>> +          - brcm,bcm7038-wdt
->>>> +          - brcm,bcm60333-wdt
->>>> +          - brcm,bcm63138-wdt
->>>> +          - brcm,bcm63148-wdt
->>>> +          - brcm,bcm63268-wdt
->>>> +          - brcm,bcm63381-wdt
->>>> +          - brcm,bcm68360-wdt
->>>> +      - const: brcm,bcm63xx-wdt
->>>
->>> Is it really worthwhile to update all these DTs?:
->>>
->>> arch/mips/boot/dts/brcm/bcm63268.dtsi:                  compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm6328.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm6358.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm6362.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm6368.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm7125.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm7346.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm7358.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm7360.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm7362.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm7420.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm7425.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>> arch/mips/boot/dts/brcm/bcm7435.dtsi:                   compatible = "brcm,bcm7038-wdt";
->>
->> I don't have problem handling that.
+On Thu, 27 Jan 2022 11:34:47 -0600, Robert Hancock wrote:
+> The AMS driver DT binding was missing the clock entry, which is actually
+> mandatory according to the driver implementation. Add this in.
 > 
-> Even if the dts files above are updated, the driver still has to support
-> the above case.
+> Fixes: 39dd2d1e251d ("dt-bindings: iio: adc: Add Xilinx AMS binding documentation")
+> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
+> ---
+>  .../devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml      | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> It's pointless to change this. We've already got 1000s of warnings to
-> fix and 2000 bindings still to convert if you need something to do.
-> 
->>> I don't think so.
->> So what's the policy for such bindings then? How to select SoCs that
->> should have their own bindings? How can I tell which should /borrow/ a
->> binding instead?
-> 
-> The way it is supposed to work is the first implementation gets
-> 'soc1-block'. When the 2nd implementation comes about, it gets
-> 'soc2-block'. If soc2 implementation is 'the same' or a superset, then
-> it should have a fallback to 'soc1-block'. Another way to test that is,
-> "I want my existing s/w to work as-is with this new h/w". The process
-> repeats on the next SoC, but you could be backwards compatible with
-> soc1, soc2, both or none. Is that what you are asking?
-> 
-> If you are doing all this after the fact at once, then it can be a
-> bit different in how you do compatibles.
-> 
-> In this case, I would make "brcm,bcm7038-wdt" the fallback to the rest
-> (granted, I know nothing about these chips or the relationship between
-> them), but you have to keep supporting "brcm,bcm7038-wdt". 6345 is up
-> to you I guess as there aren't any upstream dts files using it. Florian
-> might care.
 
-I think I got it now, thanks for explaining!
+Reviewed-by: Rob Herring <robh@kernel.org>
