@@ -2,90 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F32F74AFFDE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 23:05:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51ED44AFFE6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 23:10:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234935AbiBIWEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 17:04:55 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:52278 "EHLO
+        id S232878AbiBIWKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 17:10:21 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:59946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234925AbiBIWEy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 17:04:54 -0500
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1FF5C0F8692;
-        Wed,  9 Feb 2022 14:04:57 -0800 (PST)
-Received: by mail-oo1-f47.google.com with SMTP id 189-20020a4a03c6000000b003179d7b30d8so4137618ooi.2;
-        Wed, 09 Feb 2022 14:04:57 -0800 (PST)
+        with ESMTP id S230482AbiBIWKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 17:10:21 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BF46DF8E3F8
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 14:10:23 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id r19so6801441pfh.6
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 14:10:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Jg3Vid4u/6elaG8I5AisnvQlp+fL+sekrQvsuwSCUUA=;
+        b=qjBtOFr3dP1B2TZ/L3djWMLCeK9Tf1n5dkEfvIv1Fv3yCOTCY1n5foHVtVooYS6oGD
+         tIfi+8uKwrAaOWNTlWbH++PGt6m5qa9xVSSvCf92clXaLRge/ep8X9D7vPBftQoGhghG
+         Gtu6WbUpImEaDRz8D111bSIusoDb3z4k6xnrosMuM5VMIBSG3Jl3tBX+LdyUq4Yyt6jU
+         B7Bz4QtjALOEfoOWNPFqXKLYTilZgLxXsM35V1eoC0KGbod00WssgScWBt/FInfjmjfi
+         6nzQChPFCTBygLjGRtKA/+mbOxb8oZd//1RBUwIPrYpFycNouzd9ckps+MYgOdCtL8NI
+         ZYpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4ijkWrfXNXFNXkGq3HCuR6HmSAMRuSuaY6N4jo/cPdE=;
-        b=AnKuw7uCHK0Ow3FpBlq5TpknhVTxqF05pEyuA7JJf0Z8LK2g8Hk67pK6bCo6P5fmmC
-         6LJ9iDsXVFhSNCG4XLADzVYBndt5NyOpl1FaSyAfOZZZcu5BLRdEGO6MX2xamow+3jDC
-         qiE/kSnwKJhbPUxDEGbyzLrSZEA9QM1Qp7RBi6FmX15P/Np26JKRp06vCsRzwPx2+hkE
-         JhgFoGaLfHXX7H3CzQ4SuV0hB3W7DSfEHMQ1KRACEaEc+krmAJvMkTKHiqUQSbcRZZkY
-         pkJl2+aOxvcUf6PWuChz6xfpXceKl0WBv3X3TPfUmg8qH6HRuy5VIbhwPxMQF0gKKgVs
-         +M4A==
-X-Gm-Message-State: AOAM531qRnwYGJWfou9kmDlz3XasR8Xt+vLChfcKty+Mw3ebnxScU6pX
-        Zrb88IM6TSd6F2wLa8CxTA==
-X-Google-Smtp-Source: ABdhPJxlK00nn+sbI6Va0CAH0tQywbc38W4zTViSOPW0K8Q3N7UtwQNIT0f3TQAYuhNeBBQHxwefDg==
-X-Received: by 2002:a05:6870:7b84:: with SMTP id jf4mr1460248oab.230.1644444297003;
-        Wed, 09 Feb 2022 14:04:57 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bb32sm7385734oib.11.2022.02.09.14.04.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 14:04:56 -0800 (PST)
-Received: (nullmailer pid 1012267 invoked by uid 1000);
-        Wed, 09 Feb 2022 22:04:55 -0000
-Date:   Wed, 9 Feb 2022 16:04:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] PCI: Introduce UniPhier NX1 PCI endpoint
- controller support
-Message-ID: <YgQ6h3qYxWUiLWZ0@robh.at.kernel.org>
-References: <1643948739-14889-1-git-send-email-hayashi.kunihiko@socionext.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Jg3Vid4u/6elaG8I5AisnvQlp+fL+sekrQvsuwSCUUA=;
+        b=MHqT6rcI6N3QBdFz8ZDnan+KHRPaHjWKnsVkF7WTFaLPPnbsiMXh05bAksuvnuXpxT
+         Tjqc8cLf120t/5kPltXczUxVlMWf5gUa6Q7GAHGJPE1VyHfKoFb8pNLYoxgLIcvOq/tI
+         ITZEWJy+M51Bnmdya81hpAr18rePM4n5BPbmV2RB16yWAmp2/8azs4ddn/WPPWw+BtMz
+         ulxVf5PINWnychKeWl0XKlasLTIPZSc+VrNJHaICMOi5Qo5W3grylQANherC7LaMb0zi
+         a6PHW7zGCIZnV7gq7bqRlmXaupKl+VlOX1aI5B6fKp3VAhJuAHVBZNQ0k4SMIIoJKZjC
+         MixQ==
+X-Gm-Message-State: AOAM532TGZDAgYxTpnCMldVnJcJ7waPRrBZOAggOqMOOYZPuPuyBbB5L
+        OvkDv4hv+X4tdHrF0meUeIjGZ/3OubozV4E3UXoAFA==
+X-Google-Smtp-Source: ABdhPJx3EHpvnlCipUVi1/5VBBrbn4k8+AuL/H3Jry20nuHnuUeWfprh+bZxHeegfL4nUN69V2NUqiJZqbpW3LE5Qlc=
+X-Received: by 2002:a05:6a00:1308:: with SMTP id j8mr4453990pfu.34.1644444622841;
+ Wed, 09 Feb 2022 14:10:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1643948739-14889-1-git-send-email-hayashi.kunihiko@socionext.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220129070912.9836-1-shawnguo@kernel.org> <20220129070912.9836-3-shawnguo@kernel.org>
+In-Reply-To: <20220129070912.9836-3-shawnguo@kernel.org>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Wed, 9 Feb 2022 14:10:11 -0800
+Message-ID: <CAJ+vNU0CNFeEp0B92mUjV7RrwAHjk9iJ703zEYofkducfFzvGw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: Use overlay target for simplicity
+To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Frank Rowand <frank.rowand@sony.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 04, 2022 at 01:25:36PM +0900, Kunihiko Hayashi wrote:
-> This series includes the patches to add basic support for the PCI endpoint
-> controller implemented in NX1 SoC.
-> 
-> Existing functions for Pro5 treat as "legacy" because the some registers
-> and initialization of NX1 is different from Pro5.
-> 
-> Changes since v1:
-> - Fix dt-bindings warnings
-> 
-> Kunihiko Hayashi (3):
->   dt-bindings: PCI: uniphier-ep: Add bindings for NX1 SoC
->   PCI: uniphier-ep: Add support for non-legacy SoC
->   PCI: uniphier-ep: Add compatible string and SoC-dependent data for NX1
->     SoC
-> 
->  .../bindings/pci/socionext,uniphier-pcie-ep.yaml   |  22 ++--
->  drivers/pci/controller/dwc/pcie-uniphier-ep.c      | 139 ++++++++++++++++++---
->  2 files changed, 136 insertions(+), 25 deletions(-)
+On Fri, Jan 28, 2022 at 11:10 PM Shawn Guo <shawnguo@kernel.org> wrote:
+>
+> With commit 15d16d6dadf6 ("kbuild: Add generic rule to apply
+> fdtoverlay"), overlay target can be used to simplify the build of DTB
+> overlays.  It also performs a cross check to ensure base DT and overlay
+> actually match.
+>
+> Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile | 29 +++++++++++++-------------
+>  1 file changed, 14 insertions(+), 15 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 6d8f0a532587..c521ac2b00ca 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -1,14 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>
+> -# required for overlay support
+> -DTC_FLAGS_fsl-ls1028a-qds := -@
+> -DTC_FLAGS_fsl-ls1028a-qds-13bb := -@
+> -DTC_FLAGS_fsl-ls1028a-qds-65bb := -@
+> -DTC_FLAGS_fsl-ls1028a-qds-7777 := -@
+> -DTC_FLAGS_fsl-ls1028a-qds-85bb := -@
+> -DTC_FLAGS_fsl-ls1028a-qds-899b := -@
+> -DTC_FLAGS_fsl-ls1028a-qds-9999 := -@
+> -
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-frdm.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-frwy.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-oxalis.dtb
+> @@ -21,12 +12,6 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var2.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var3-ads2.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var4.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds.dtb
+> -dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-13bb.dtb
+> -dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-65bb.dtb
+> -dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-7777.dtb
+> -dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-85bb.dtb
+> -dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-899b.dtb
+> -dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-9999.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-rdb.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1043a-qds.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1043a-rdb.dtb
+> @@ -49,6 +34,20 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-qds.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
+>
+> +fsl-ls1028a-qds-13bb-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-13bb.dtbo
+> +fsl-ls1028a-qds-65bb-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-65bb.dtbo
+> +fsl-ls1028a-qds-7777-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-7777.dtbo
+> +fsl-ls1028a-qds-85bb-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-85bb.dtbo
+> +fsl-ls1028a-qds-899b-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-899b.dtbo
+> +fsl-ls1028a-qds-9999-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-9999.dtbo
+> +
+> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-13bb.dtb
+> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-65bb.dtb
+> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-7777.dtb
+> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-85bb.dtb
+> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-899b.dtb
+> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-9999.dtb
+> +
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
+> --
+> 2.17.1
 
-For the series:
+Shawn and Rob
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I tried to adapt my patch 'arm64: dts: imx8mm-venice-gw73xx-0x: add dt
+overlays for serial modes' [1] and it results in a build failure:
+$ make dtbs W=1
+  UPD     include/config/kernel.release
+  DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+  DTOVL   arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb
+
+Overlay 'scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h' is
+incomplete (2048 / 1346656301 bytes read)
+scripts/Makefile.lib:360: recipe for target
+'arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb'
+failed
+make[2]: *** [arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb]
+Error 1
+scripts/Makefile.build:550: recipe for target
+'arch/arm64/boot/dts/freescale' failed
+make[1]: *** [arch/arm64/boot/dts/freescale] Error 2
+Makefile:1370: recipe for target 'dtbs' failed
+make: *** [dtbs] Error 2
+
+It seems that it chokes on the include. The dts is:
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright 2022 Gateworks Corporation
+ *
+ * GW73xx RS232 with RTS/CTS hardware flow control:
+ *  - GPIO4_0 rs485_en needs to be driven low (in-active)
+ *  - UART4_TX becomes RTS
+ *  - UART4_RX becomes CTS
+ */
+
+#include <dt-bindings/gpio/gpio.h>
+
+#include "imx8mm-pinfunc.h"
+
+/dts-v1/;
+/plugin/;
+
+&{/} {
+        compatible = "gw,imx8mm-gw73xx-0x";
+};
+
+&gpio4 {
+        rs485_en {
+                gpio-hog;
+                gpios = <0 GPIO_ACTIVE_HIGH>;
+                output-low;
+                line-name = "rs485_en";
+        };
+};
+
+&uart2 {
+        pinctrl-names = "default";
+        pinctrl-0 = <&pinctrl_uart2>;
+        rts-gpios = <&gpio5 29 GPIO_ACTIVE_LOW>;
+        cts-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
+        uart-has-rtscts;
+        status = "okay";
+};
+
+&uart4 {
+        status = "disabled";
+};
+
+&iomuxc {
+        pinctrl_uart2: uart2grp {
+                fsl,pins = <
+                        MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
+                        MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
+                        MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29       0x140
+                        MX8MM_IOMUXC_UART4_RXD_GPIO5_IO28       0x140
+                >;
+        };
+};
+
+Could you explain what is wrong here? It compiled fine before trying
+to adapt the Makefile to what is described in 15d16d6dadf6 ("kbuild:
+Add generic rule to applyfdt overlay"
+
+Best regards,
+
+Tim
+[1] - https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=607352
