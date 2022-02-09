@@ -2,54 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B952A4AE757
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 04:03:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 187EA4AE758
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 04:03:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241291AbiBIDCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 22:02:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52608 "EHLO
+        id S242129AbiBIDCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 22:02:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351596AbiBICtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 21:49:40 -0500
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67918C0401C1;
-        Tue,  8 Feb 2022 18:43:50 -0800 (PST)
-Received: by mail-oo1-f44.google.com with SMTP id u25-20020a4ad0d9000000b002e8d4370689so892494oor.12;
-        Tue, 08 Feb 2022 18:43:50 -0800 (PST)
+        with ESMTP id S1359736AbiBICvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 21:51:24 -0500
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 175FBC061A73;
+        Tue,  8 Feb 2022 18:49:39 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id b17-20020a9d4791000000b005a17fc2dfc1so627338otf.1;
+        Tue, 08 Feb 2022 18:49:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8UkTgHS+mgwp4w2JOUl++8XSEMif+O0IMskLaUahjeo=;
-        b=49Jm8VdmV2FRHV6KX/A1D8RjhIMsEARm0HZ9kMd3znKMivfENolDH/TZQaScUczN4A
-         TBefSjWzmFwUXz3+5ub/XZqmW90K1hsrmPxpcZSQ4JEaSjV+c6STuNkgJAQhrPGm0wV+
-         upmYAgbowX/rlhnTXc6RGXHEL7NqK6G05RiNYbbGssKY/Ke2/U/LmzQDO/ksbl2xVqHF
-         Lgkb5o4zvXSMGuDYPaGPW2LFNWStZmWn9UZcd8QsCzcHgjlDoJQg+mIZOJ2Dweu080uq
-         DaUdni1xIryNzH3FPMo53C99jAFRAoFA3RnvsLGN8lGQeNjwq/ITOeGe+vaPl8TDW+Kd
-         cvXQ==
-X-Gm-Message-State: AOAM533aWRmUy+i7xFQLWxoqeTaNgiWAv+637WLyZEAXw4uvSW2bHu6Q
-        R6TGg9CrzthqucJUt1VVbuj+L1vm8A==
-X-Google-Smtp-Source: ABdhPJwWrE9A5vBbeCZNjyS81I2QJrp+p1XO4NAPxKOqEzsyDqVdsnvrjzvn1Y2Eo1ZsR/2i6baE+w==
-X-Received: by 2002:a05:6870:73c3:: with SMTP id a3mr260715oan.293.1644374615894;
-        Tue, 08 Feb 2022 18:43:35 -0800 (PST)
+        bh=jclCyrtXWfZiL4Vm3TsnMlAc9202oTga5v9E2y8S6Fc=;
+        b=3AyHLw1ErTyomYMTus5YVq68jAL4EzLC1RJkoiK5uS+OkODEF729XiXL1Zt1g3hg+R
+         StX/YC83HaSiYBbmFj2F3fAZK0xc2G73uILEoYFjt/bzbEaZNkoPEXBJY8V1WNSTK5Da
+         jY5r07ejKl4PfNurWVm7eUyjDT21ynC5i+/2xTBRwdi411JvtOv3pvNn2qZmc2KQATTW
+         sFpPZT1/OyAqjA3t14xRgxrAOgAYn5sNyb3DmpEvYNwIms7tYRuUwNmMc4nymEmBF49M
+         Zm93kyCDUyDCW4Oy/3rboLDoEOCezNRsWqbzPeIG4XbKPb5EPoPiWl2tWAsclhCkwjE2
+         IeZg==
+X-Gm-Message-State: AOAM5330jsFxxHL+xuNVcrcMLJGnm9RUQZrIBm9Zggu4lyHdQ3s7/RlG
+        3aGYJBLzFbKiDNs3yhSt5YJY/R6nzA==
+X-Google-Smtp-Source: ABdhPJx5OHmjfCcXuOIwzjlCPm0lRM3HjNwQdZsy/ZJnSzxKqEg7e/efy9c9zqoKuHfIFT/b35La8w==
+X-Received: by 2002:a05:6830:348f:: with SMTP id c15mr133492otu.224.1644374978393;
+        Tue, 08 Feb 2022 18:49:38 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t22sm6382076oiw.2.2022.02.08.18.43.34
+        by smtp.gmail.com with ESMTPSA id t13sm945095oai.37.2022.02.08.18.49.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Feb 2022 18:43:34 -0800 (PST)
-Received: (nullmailer pid 3510501 invoked by uid 1000);
-        Wed, 09 Feb 2022 02:43:34 -0000
-Date:   Tue, 8 Feb 2022 20:43:34 -0600
+        Tue, 08 Feb 2022 18:49:37 -0800 (PST)
+Received: (nullmailer pid 3519040 invoked by uid 1000);
+        Wed, 09 Feb 2022 02:49:36 -0000
+Date:   Tue, 8 Feb 2022 20:49:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH] mfd: ab8500: Rewrite bindings in YAML
-Message-ID: <YgMqVqS9MWmq++GI@robh.at.kernel.org>
-References: <20220115002649.1526163-1-linus.walleij@linaro.org>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH 1/2] dt-bindings: timer: Add realtek,otto-tc binding
+Message-ID: <YgMrwEXraoiJxSXe@robh.at.kernel.org>
+References: <cover.1642369117.git.sander@svanheule.net>
+ <7c53821386b8f4c1c0ac440f1cd186e09f4a0456.1642369117.git.sander@svanheule.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220115002649.1526163-1-linus.walleij@linaro.org>
+In-Reply-To: <7c53821386b8f4c1c0ac440f1cd186e09f4a0456.1642369117.git.sander@svanheule.net>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -61,29 +63,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 15 Jan 2022 01:26:49 +0100, Linus Walleij wrote:
-> This rewrites the former text based AB8500 bindings in YAML.
+On Sun, Jan 16, 2022 at 10:39:24PM +0100, Sander Vanheule wrote:
+> New binding for the timer/counter blocks found on the Realtek Otto MIPS
+> platform.
 > 
-> When the AB8500 bindings were first written (in 2012) we
-> were not strict on some things and node names were definitely
-> not standardized.
-> 
-> This patch uses standard node names to most of the subnodes
-> on the AB8500 and is accompanied by another patch fixing
-> all the DTS files to conform to this.
-> 
-> The bindings are not as perfect as newly written bindings
-> would be, it is a best effort to deal with the legacy.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Sander Vanheule <sander@svanheule.net>
 > ---
->  .../devicetree/bindings/mfd/ab8500.txt        | 282 ----------
->  .../bindings/mfd/stericsson,ab8500.yaml       | 500 ++++++++++++++++++
->  .../bindings/mfd/stericsson,db8500-prcmu.yaml |   1 +
->  3 files changed, 501 insertions(+), 282 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/ab8500.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/stericsson,ab8500.yaml
+>  .../bindings/timer/realtek,otto-tc.yaml       | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/realtek,otto-tc.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/timer/realtek,otto-tc.yaml b/Documentation/devicetree/bindings/timer/realtek,otto-tc.yaml
+> new file mode 100644
+> index 000000000000..12971b9ecdf5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/realtek,otto-tc.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/realtek,otto-tc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek Otto platform timer/counter bindings
+> +
+> +description:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+'|' at the end if you want to keep formatting.
+
+> +  "Up-counting 28-bit timer that can operate in oneshot or repeating mode,
+
+And drop the quotes.
+
+> +  providing an interrupt at roll-over.
+> +
+> +  The timer is driven by a divided clock, derived from the bus clock. The clock
+> +  divisor is configurable from 2 to 65535. Divisor values of 0 and 1 disable
+> +  the timer clock. The timer can also be enabled or disabled independently from
+> +  the clock (divisor) selection.
+> +
+> +  The number of timers supported by the different SoC families is:
+> +  - RTL8380: 5 timers
+> +  - RTL8390: 5 timers
+> +  - RTL9300: 6 timers
+> +  - RTL9310: 7 timers"
+> +
+> +maintainers:
+> +  - Sander Vanheule <sander@svanheule.net>
+> +
+> +properties:
+> +  compatible:
+> +    const: realtek,otto-tc
+
+4 SoCs with differences in the block, you need 4 SoC specific 
+compatibles. With a fallback if appropriate.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Parent clock from peripheral bus
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bus
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +    timer0: timer@3100 {
+
+Drop unused labels.
+
+> +      compatible = "realtek,otto-tc";
+> +      reg = <0x3100 0x10>;
+> +
+> +      interrupts = <29 4>;
+> +
+> +      clocks = <&lx_clk>;
+> +      clock-names = "bus";
+> +    };
+> -- 
+> 2.34.1
+> 
+> 
