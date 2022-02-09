@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AC0C4AFE22
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 21:21:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E92A4AFE10
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 21:14:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbiBIUT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 15:19:26 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:40150 "EHLO
+        id S229680AbiBIUOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 15:14:25 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:58214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbiBIUTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 15:19:25 -0500
-X-Greylist: delayed 319 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Feb 2022 12:19:27 PST
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B148DE010DBE
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 12:19:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1644437965;
-        bh=bZbERGS5dPadQqxAada0Qnetp5usNMkkZudsQMtwL34=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=AQ4KPra6AK/FZUpukDCkn/7tK09PBY0WU6QkrfOesMEB6UlCwFkjd5stQ3Jy1FRNZ
-         /ugeejoMZsyL+9GNTMFmbBqHepip7vb3pnppOCn/QiJDylIgaof4QBem2fxfYUSLxc
-         ojpswzBXFK2F3SNb3TVCqtenubEf5nyRf3PABtKQ=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.245.77.2] ([80.245.77.2]) by web-mail.gmx.net
- (3c-app-gmx-bs62.server.lan [172.19.170.146]) (via HTTP); Wed, 9 Feb 2022
- 21:13:37 +0100
+        with ESMTP id S229471AbiBIUOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 15:14:25 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D61D9E01C6B8
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 12:14:27 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id o2so6429407lfd.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 12:14:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wLuEF1JojT8ddrzbNvABXBvK35dZuuz52+IY18/wEwg=;
+        b=A82to0KNbd7E4ns9k2SP/YKHHiXcx6mtZii9mXpRyHwGE2Ldb0NPHZRUTAt3ms9vW0
+         DruEPGVt0mE0hbPiPPIGQL7+Fd+/vaGLtxHKhp/Z+a+79tLBmSV95czMTdKvJ3LHpyDO
+         nHpVYHwiEbhUM4OPTQUuqcwaJaMTazDErLtgYEKWFyFg9Kb9UssEuxUKl1t0f3vvizkN
+         bsV6rPBlCIoXcbW1zR2LQT8+mjsFYak7avrfTgFa8E1wiacYzsir5wA/KOAwp35s14uF
+         qZcuoT/tSl+Ai4362BqJpMrYTOKpAuv2Aw/iL0ewPrCPHKNcdokslH5iMvkVvin59jO8
+         UFPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wLuEF1JojT8ddrzbNvABXBvK35dZuuz52+IY18/wEwg=;
+        b=b4Gdkfmga/unq7Amg78H1eIr51PdWFN+zG7uRhIdfW388mOemXVH4n8RXOCJ69b973
+         YzJbDY+ad+PC2KAcrQR7EhjP1ucNSaZQuArM5QCrnqvwYhBqhtQfk3K3viM74dXBS0mu
+         KwMbzCRtbVU7PZ2ldFk2tmI+C5HFSNiQCoXGzkGJ0vMd/J2yZ0ED17Qn0xzGJTrLAusC
+         PHLey1psEYLsa/OloBrFIOxJCCMtCxly8M2UxWleEGGraE9jV66iE/UW5l25ZlK3C6kO
+         knDf8P6ShyuhCZHWYzhBeLFrL++2gYYxc+hzkC7SWbD627Wwuv17BpESiWN63yPANbQP
+         ky+Q==
+X-Gm-Message-State: AOAM5302jwd6IrLEHSV3lDPBDXdlutxArOwLhMC/jzQR1OfveYgOe/hD
+        NvW0G10Bu8fvdjzkiqNMdSQ=
+X-Google-Smtp-Source: ABdhPJybDBYAYCJlXy3XKTuf5Vl2DUv95bL5fVEtKSyqBEeseMYM8+rS4yudN/vpboqLXoGCviITzw==
+X-Received: by 2002:a05:6512:b0a:: with SMTP id w10mr2809578lfu.545.1644437665923;
+        Wed, 09 Feb 2022 12:14:25 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id k44sm863269lfv.1.2022.02.09.12.14.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Feb 2022 12:14:25 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] arm64: dts: broadcom: bcm4908: add watchdog block
+Date:   Wed,  9 Feb 2022 21:14:17 +0100
+Message-Id: <20220209201417.25264-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Message-ID: <trinity-64a1ce60-e8ac-49d8-abe4-91b0f692c13a-1644437617960@3c-app-gmx-bs62>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Aw: [PATCH v5 22/23] drm: rockchip: Add VOP2 driver
 Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 9 Feb 2022 21:13:37 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20220209095350.2104049-23-s.hauer@pengutronix.de>
-References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
- <20220209095350.2104049-23-s.hauer@pengutronix.de>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:+cdMhHjrAZgXlErp4/YCapKkUq88eAKp7+SpVwHUzYYxiDZV0aCZIj0Iq4wyffX2za42C
- X7wbT7KqRHUBBIDtlBZOCVITl8H1GLpJ1G2z7vpLR4+xKYraBYWeedHKURcmM5CnzwEm97ZeAvyw
- BaAbGtHVp4AuKoqT/iffHIU3sSLVP+i4TitnwQWh/scEySediIZUYE/H5IGg7bOeGdDtIXFnlIBc
- Ju1mRlPHeWtbBVJ8aOTbJx2P5mzOJVf9AreRacKKpFUWykZvqBwzPkODEeJX/oBtlvWnDBU8o6k8
- 3A=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:8iLMJ6CG5oI=:aFNNonMw0dFIOm1vh+OLii
- UuaGMXZ0dBvQNkBQvbRK2Ha1vYhhPjOUMMs0pGEUGDVi5/47Ey6+StcGsfmB90rEMLE1kwukT
- XzDW+5SiDAZpK5EgXy8OOmv05LxwX2UBVsr5gLAp4CaCwdPWtnkPiiOx08m1btPebIZ5vb/ac
- JqlSB4mYmzw+JVuRL4DT1wPxOfwXs4hbOoe+Ega/IRYy+hk50C5YKBOZ6l6OHCHQJT7J2Sbnz
- Gg+G/dkRiIcu5iAYY6ckyci3VTvYGLCpirIT9i+QPV8kbefJTdJP3jnhR+bU5Vduuegshd1ON
- d25wzBCoRbMYP1pbpFE9vEFCf7LnOeW3nKe4yVBr9bMllooejwuhI+nQoCqPeE4m1wjXq/BWC
- +vxFUkIEeo5Wp9xII6bE8up0mpWwE+k8yJ4tkcOwOA8jxpRU7FWXSzwNfPHtU30WdooUaU98z
- EemoDDu9qffr5Twrv1c1TltRQonYMZpG2tfghqqqB9xBSZ7eE0TS8SqNPutRGkbMzTTm+/8dp
- PUvmcecGCylXGVBvfZIdQlhcqZjRYbyPYzlr0pas9BeZX7qwsrGJRBXOkChIIxW5Mf5IulIKT
- +P0v8W1DVE5w4iGvOZuAo7wHLx0KnMwt07Pb4no2OP+xyJOSNcIpsoNvexvsQ+53NmyhtgUJX
- K/L0lTQGMFg+z0sPf+U7Dz7iG+Bce55wMl8dyL3iIrI8Z1KreNMs3nS1ByhR6LvwsLEIEEa+u
- XzhCOdE8enEqMJ3sOLsdk5Q4AAcSUpTWp+VVc+QIOfuLVrofbQN1NkrBYdlODEbVYJC/5MnFa
- sMeB0PY
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,16 +70,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha
+From: Rafał Miłecki <rafal@milecki.pl>
 
-tested full v5 Series + 3 clk-Patches from v4 on 5.17-rc2 on my rk3568 based Bananapi R2 Pro
+BCM4908 has the same watchdog as BCM63xx devices. Use "brcm,bcm6345-wdt"
+binding which matches the first SoC with that block.
 
-1280x720-32@60Hz
-1920x1080-32@60Hz
-3840x2160-32@60Hz
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-with fb console
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+index ef93c37ae591..b0bc5262beca 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+@@ -276,6 +276,15 @@ bus@ff800000 {
+ 		twd: timer-mfd@400 {
+ 			compatible = "brcm,bcm4908-twd", "simple-mfd", "syscon";
+ 			reg = <0x400 0x4c>;
++			ranges = <0x0 0x400 0x4c>;
++
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			watchdog@28 {
++				compatible = "brcm,bcm6345-wdt";
++				reg = <0x28 0x8>;
++			};
+ 		};
+ 
+ 		gpio0: gpio-controller@500 {
+-- 
+2.34.1
 
-Tested-by: Frank Wunderlich <frank-w@public-files.de>
-
-regards Frank
