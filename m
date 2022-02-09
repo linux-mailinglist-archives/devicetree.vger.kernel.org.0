@@ -2,236 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5046C4AE954
+	by mail.lfdr.de (Postfix) with ESMTP id E06BA4AE956
 	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 06:33:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231587AbiBIFbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 00:31:40 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:49304 "EHLO
+        id S229471AbiBIFbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 00:31:52 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:37398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235230AbiBIFUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 00:20:37 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2409BC03E940
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 21:20:41 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id n8so686479wmk.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 21:20:41 -0800 (PST)
+        with ESMTP id S236417AbiBIFaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 00:30:06 -0500
+Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com [IPv6:2607:f8b0:4864:20::f42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12413C03C180;
+        Tue,  8 Feb 2022 21:30:10 -0800 (PST)
+Received: by mail-qv1-xf42.google.com with SMTP id o5so1009675qvm.3;
+        Tue, 08 Feb 2022 21:30:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wAsSnnD9JIeAeZJ9p3BQTgq96g2Q9LHlXoe8+WeEVfI=;
-        b=1tKXU6TXAd28+p0tvCpH0D5QBomKCxkddDWl5LVsYFX8hIdbe6CzV6wuulBu+sQEps
-         AeaTcuXTxF9e8cIPmKTyUX9QS/MLzuiJ3poPshrD3N/JwthsFwtR7IqmJ/qp78VdQzKC
-         EXqidiNi/RX6zBYFOA0F0nOb+555/L5wYmFW+TC4IxgMpILOkbFejGn9NmToUD47VYv6
-         VODXl9hVeDhlGEWLaNdgOkZgRtBATLz3GRtmkcoO1HawYxr03sK0DnYLDDdfYEJ4uErA
-         Jtbl/MdVrVMc95sx7r0egcRaQ5U2Mm2BKbFsBg2cO/Jq5juetaFMNFhUAyh1A0Te5JOo
-         C15w==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BaM2nun77Ox90ylhwBob4weqZHSsb78qbeuJ150+3wM=;
+        b=oW0NyvBN2TbhYrgNRdS2CWDkzWBELZWKx9Mw9NFWZGaqSHOA5FoFfs2knAaMqk+Lsx
+         rWxIjv9Iyqwq9jlvTY5/NQDha/Z1Su0Ia0QI5Osmsc5KCy/off+8Bx1faPgqljKPmZTD
+         Qw5doEehfyG9dYn1coZm9+VkgxjR8UFz1wUNTobVI6rz67FL/WZ02T4OjfLt8Fv3x3+M
+         h1XOEsxpo8V/i3WXYL3jWcMkicgJvrUWtbLB5PeNEdgKFPIvcOEO8LNR6O43/0psDnU7
+         xBn01RXAkkE1fRIeigAaFaoOgFf+r13IkC2zN/w1y0oF9K8hfQCkGl/Jgd2pGYEU8PMD
+         Qj6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wAsSnnD9JIeAeZJ9p3BQTgq96g2Q9LHlXoe8+WeEVfI=;
-        b=DyQYF+QZdWEIyOfkHZ9t8lF7lnZlW8BLRfNWNZCrgz8teDFAp0XgFCmNC7ntCSOf4y
-         Dqn3j9oQrzWZQbNBNf41vDoaqiZlEDGRjrhacPOhoO2oZYKzY1Im0Z8oIS1Zupn1R6m7
-         efmLXODpnspXZrap2pIHMvE76h/kF5tT7QT6Cq1iyEDMy1meaKaQWcRsRbJr8BM9CRVZ
-         YuH+TzzmIQ4PplSPgzHeiyD0OaKKuzYNH6BUQ/tboCSnf6RncHv5dil6QmeKwD+SRMfu
-         ZNi7XC29C8/Pup6PH2K5+/s3PRniZ/iGl/OCipYTpuC3U5WANV00w6WVO/nBvt4RfRvd
-         4UVw==
-X-Gm-Message-State: AOAM531tUdY7ap5jSPb8LscT7XRkSxXTWSPgbI7haItsxKxUri1djl/2
-        WGN5FZCAZBgNynv5sIYY9LSqPdChdUllqXcb1JMwyg==
-X-Google-Smtp-Source: ABdhPJzHE/r6P/Etiunn5Sn/mWZbmE+jczRf1EpGH91d7ufK0qYetKSekneRBxf/FBI5rfOD4EPdrW88BHZPAe+N0xw=
-X-Received: by 2002:a7b:c7d5:: with SMTP id z21mr496193wmk.59.1644384039591;
- Tue, 08 Feb 2022 21:20:39 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BaM2nun77Ox90ylhwBob4weqZHSsb78qbeuJ150+3wM=;
+        b=w0cArU7MPtrqg6GiJYt8Z5a4aF69CmvMWq/K8olYHMvF2zxC1gXDAvQ4WiAzRRo2pX
+         fRMgYDOdQMEEPPqyavuIhN2OZ435lLTPPg4vJOyXD28dOE1cBVJl2PsqB4aGSlFRvtwh
+         KbHR4VnjKlM/s+07pIotxiDjSQA0j5wb3yDfxaoe6pii+qGjX5v/DLELhr10dg6a3cXS
+         dwCGJfe/dC8Kmf3Hp51nTVoJBoJ1PLSwao0x+EfY21v/5V8VmuCsIIrGX+QSQIVgQOUH
+         JIm2Gn1IfhmK8dtzJD3jhhCTbrTYn6/fKPjY3Ln8dEChmFUaTtEwb1n5a0TBZ74p4wdw
+         23kg==
+X-Gm-Message-State: AOAM532/Xr0PS12m4lB+BA1NylfZUbvwFOEBsS98pcWLQxtXHwCEwUmW
+        eWmxBE+7hz0qV3ZhCjXFpdU=
+X-Google-Smtp-Source: ABdhPJxaXkYuErG/Usk8Th8d1w/eNR+TDPdBcWPz5mJUFFBM0jBbIzFtfCiDT7o7l4Yyvb0ydJVyDw==
+X-Received: by 2002:a05:6214:27ed:: with SMTP id jt13mr365729qvb.24.1644384606914;
+        Tue, 08 Feb 2022 21:30:06 -0800 (PST)
+Received: from lumia-dev.localdomain. (pool-96-225-98-253.nwrknj.fios.verizon.net. [96.225.98.253])
+        by smtp.googlemail.com with ESMTPSA id s1sm8712024qkp.40.2022.02.08.21.30.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Feb 2022 21:30:06 -0800 (PST)
+From:   Jack Matthews <jm5112356@gmail.com>
+Cc:     jm5112356@gmail.com, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: qcom: pm8226: add node for RTC
+Date:   Wed,  9 Feb 2022 05:29:28 +0000
+Message-Id: <20220209052929.651881-1-jm5112356@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220126114452.692512-1-apatel@ventanamicro.com>
- <20220126114452.692512-2-apatel@ventanamicro.com> <CAJF2gTSwzx-yC=WvFixT96=q+M0KPzaZH5PpgGKVWg42M4GBNw@mail.gmail.com>
-In-Reply-To: <CAJF2gTSwzx-yC=WvFixT96=q+M0KPzaZH5PpgGKVWg42M4GBNw@mail.gmail.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 9 Feb 2022 10:50:28 +0530
-Message-ID: <CAAhSdy2onHRmnj6g6Swp86DL-nHJyv0r_KsUupatjHx11J11LA@mail.gmail.com>
-Subject: Re: [PATCH v10 1/8] RISC-V: Enable CPU_IDLE drivers
-To:     Guo Ren <guoren@kernel.org>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        kvm-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 8, 2022 at 11:46 AM Guo Ren <guoren@kernel.org> wrote:
->
-> Reviewed-by: Guo Ren <guoren@kernel.org>
->
-> small questions:
->
-> On Wed, Jan 26, 2022 at 7:46 PM Anup Patel <apatel@ventanamicro.com> wrote:
-> >
-> > From: Anup Patel <anup.patel@wdc.com>
-> >
-> > We force select CPU_PM and provide asm/cpuidle.h so that we can
-> > use CPU IDLE drivers for Linux RISC-V kernel.
-> >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> > Signed-off-by: Anup Patel <apatel@vetanamicro.com>
-> > ---
-> >  arch/riscv/Kconfig                |  7 +++++++
-> >  arch/riscv/configs/defconfig      |  1 +
-> >  arch/riscv/configs/rv32_defconfig |  1 +
-> >  arch/riscv/include/asm/cpuidle.h  | 24 ++++++++++++++++++++++++
-> >  arch/riscv/kernel/process.c       |  3 ++-
-> >  5 files changed, 35 insertions(+), 1 deletion(-)
-> >  create mode 100644 arch/riscv/include/asm/cpuidle.h
-> >
-> > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> > index 5adcbd9b5e88..76976d12b463 100644
-> > --- a/arch/riscv/Kconfig
-> > +++ b/arch/riscv/Kconfig
-> > @@ -46,6 +46,7 @@ config RISCV
-> >         select CLONE_BACKWARDS
-> >         select CLINT_TIMER if !MMU
-> >         select COMMON_CLK
-> > +       select CPU_PM if CPU_IDLE
-> >         select EDAC_SUPPORT
-> >         select GENERIC_ARCH_TOPOLOGY if SMP
-> >         select GENERIC_ATOMIC64 if !64BIT
-> > @@ -547,4 +548,10 @@ source "kernel/power/Kconfig"
-> >
-> >  endmenu
-> >
-> > +menu "CPU Power Management"
-> > +
-> > +source "drivers/cpuidle/Kconfig"
-> > +
-> > +endmenu
-> > +
-> >  source "arch/riscv/kvm/Kconfig"
-> > diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-> > index f120fcc43d0a..a5e0482a4969 100644
-> > --- a/arch/riscv/configs/defconfig
-> > +++ b/arch/riscv/configs/defconfig
-> > @@ -20,6 +20,7 @@ CONFIG_SOC_SIFIVE=y
-> >  CONFIG_SOC_VIRT=y
-> >  CONFIG_SMP=y
-> >  CONFIG_HOTPLUG_CPU=y
-> > +CONFIG_CPU_IDLE=y
-> >  CONFIG_VIRTUALIZATION=y
-> >  CONFIG_KVM=m
-> >  CONFIG_JUMP_LABEL=y
-> > diff --git a/arch/riscv/configs/rv32_defconfig b/arch/riscv/configs/rv32_defconfig
-> > index 8b56a7f1eb06..d1b87db54d68 100644
-> > --- a/arch/riscv/configs/rv32_defconfig
-> > +++ b/arch/riscv/configs/rv32_defconfig
-> > @@ -20,6 +20,7 @@ CONFIG_SOC_VIRT=y
-> >  CONFIG_ARCH_RV32I=y
-> >  CONFIG_SMP=y
-> >  CONFIG_HOTPLUG_CPU=y
-> > +CONFIG_CPU_IDLE=y
-> >  CONFIG_VIRTUALIZATION=y
-> >  CONFIG_KVM=m
-> >  CONFIG_JUMP_LABEL=y
-> > diff --git a/arch/riscv/include/asm/cpuidle.h b/arch/riscv/include/asm/cpuidle.h
-> > new file mode 100644
-> > index 000000000000..71fdc607d4bc
-> > --- /dev/null
-> > +++ b/arch/riscv/include/asm/cpuidle.h
-> > @@ -0,0 +1,24 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * Copyright (C) 2021 Allwinner Ltd
-> > + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
-> > + */
-> > +
-> > +#ifndef _ASM_RISCV_CPUIDLE_H
-> > +#define _ASM_RISCV_CPUIDLE_H
-> > +
-> > +#include <asm/barrier.h>
-> > +#include <asm/processor.h>
-> > +
-> > +static inline void cpu_do_idle(void)
-> > +{
-> > +       /*
-> > +        * Add mb() here to ensure that all
-> > +        * IO/MEM accesses are completed prior
-> > +        * to entering WFI.
-> > +        */
-> > +       mb();
-> I think it's a separate fixup.
->
-> > +       wait_for_interrupt();
-> > +}
-> > +
-> > +#endif
-> > diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-> > index 03ac3aa611f5..504b496787aa 100644
-> > --- a/arch/riscv/kernel/process.c
-> > +++ b/arch/riscv/kernel/process.c
-> > @@ -23,6 +23,7 @@
-> >  #include <asm/string.h>
-> >  #include <asm/switch_to.h>
-> >  #include <asm/thread_info.h>
-> > +#include <asm/cpuidle.h>
-> >
-> >  register unsigned long gp_in_global __asm__("gp");
-> >
-> > @@ -37,7 +38,7 @@ extern asmlinkage void ret_from_kernel_thread(void);
-> >
-> >  void arch_cpu_idle(void)
-> >  {
-> maybe below is enough.
-> + mb();
+Add a node for PM8226's real time clock.
 
-We can't add "mb()" here because cpu_do_idle() is called
-directly from linux/cpuidle.h and arch_cpu_idle() is only
-called when CPU idle is disabled.
+Signed-off-by: Jack Matthews <jm5112356@gmail.com>
+---
+ arch/arm/boot/dts/qcom-pm8226.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Regards,
-Anup
+diff --git a/arch/arm/boot/dts/qcom-pm8226.dtsi b/arch/arm/boot/dts/qcom-pm8226.dtsi
+index 04d070d98f97..ecc38ab1dc4b 100644
+--- a/arch/arm/boot/dts/qcom-pm8226.dtsi
++++ b/arch/arm/boot/dts/qcom-pm8226.dtsi
+@@ -17,6 +17,13 @@ pwrkey@800 {
+ 			bias-pull-up;
+ 		};
+ 
++		rtc@6000 {
++			compatible = "qcom,pm8941-rtc";
++			reg = <0x6000>, <0x6100>;
++			reg-names = "rtc", "alarm";
++			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
++		};
++
+ 		smbb: charger@1000 {
+ 			compatible = "qcom,pm8226-charger";
+ 			reg = <0x1000>;
+-- 
+2.25.1
 
->    wait_for_interrupt();
->
-> > -       wait_for_interrupt();
-> > +       cpu_do_idle();
->
->
-> >         raw_local_irq_enable();
-> >  }
-> >
-> > --
-> > 2.25.1
-> >
-> >
-> > --
-> > kvm-riscv mailing list
-> > kvm-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/kvm-riscv
->
->
->
-> --
-> Best Regards
->  Guo Ren
->
-> ML: https://lore.kernel.org/linux-csky/
