@@ -2,135 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9795C4AFB7D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 19:47:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD10F4AFBB7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 19:48:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240676AbiBISr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 13:47:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33672 "EHLO
+        id S240931AbiBISsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 13:48:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240825AbiBISpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 13:45:54 -0500
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B368C03F938;
-        Wed,  9 Feb 2022 10:43:27 -0800 (PST)
-Received: by mail-pf1-x42e.google.com with SMTP id i21so4332857pfd.13;
-        Wed, 09 Feb 2022 10:43:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=++8mApk7RkWt9IYMQQmWE9VHiPI6DBwLCpnWFPssygI=;
-        b=qGy++wR4TC8B3MD+skcOoU0Rz0NlIDn//t1PfiTRzziEWiC1QzxRUkyF3jiknY45eG
-         MVQ1DwUkKDi3GRrni4fQawxf3YkxOlRs64seslgvIUD3L0SeJOyAGvrCse0s5u6wfwL6
-         oG5fIm+bBQ4JYQC80X97WqYBXewbVESuOD3ySzW1MD9KHJQ71miaauYI01NuBqL8sX0w
-         AOM9pD6xeYX5HlmeErEWysd++M+ebcvTQJnfVFrBc13ZBRbCGljmQth2gKDJaW9rOyLd
-         jN8qOtjLjM/3TQ2yST8qk0H34cgEevysDmnCEi2YjnKnvn9lQWK/Uq/Zd9lConzXy+oo
-         /cSA==
+        with ESMTP id S240941AbiBISsN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 13:48:13 -0500
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A09C1DC2F8;
+        Wed,  9 Feb 2022 10:44:51 -0800 (PST)
+Received: by mail-oo1-f53.google.com with SMTP id u25-20020a4ad0d9000000b002e8d4370689so3468602oor.12;
+        Wed, 09 Feb 2022 10:44:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=++8mApk7RkWt9IYMQQmWE9VHiPI6DBwLCpnWFPssygI=;
-        b=NahHbVmPIsJL4R7rcRWaf2Mce3piCOgOs/P6uNW088XRkYc4uvhccdQXpSsNajrtRy
-         5ROjxyfuQcx8Ww7iHOWFEtvyfeTbLtdt10bTG9SW7ErwDSOSTkvameW7V9UtzWyOth4x
-         FXcy29OI2naOiSCmxmouh4XuOgQoaHH7M8GywnPBO+pRYUI5Q0wbSV37wDECEYd/sPc4
-         xh3BBqhcX3e8CdmOZPmAfHTe1hnPzI5nAstXmUoUjyTUglF4XEFAVqYeILFjsULe9QE/
-         zoqAYjUrtsU34KaY7etvj7A2oFi/Q7kEj25ADxbz8Ex7G5/lKToJC4TgCKk/4I0Y/OJl
-         cv6w==
-X-Gm-Message-State: AOAM533nkqijhXfn4m3cKwN5GDOOfGrYZDqnyRSIfJKUckaVU2Gl8boO
-        99PrysjkJxpVeFpB8liA4VicweWJV5gWMC4IGZ0nJ2r0K7GgOR4s
-X-Google-Smtp-Source: ABdhPJzoiadJc5PSqYDMUBE96R7/2wNLf+6aj2O+i3AwgRvSjPRvqapEiu8YingYuFXFOgzq0w+N7jlBAFrrthRVY2A=
-X-Received: by 2002:a63:6c01:: with SMTP id h1mr2996139pgc.118.1644432206694;
- Wed, 09 Feb 2022 10:43:26 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5iUZVsd2tC6B08DK6tleMcNCLkad2BWr1aTlffhv1yg=;
+        b=vo/0pNKoWXIYoNGxZ+TQ4PS4UrJCnifArLJAaUXS1J9srTInC+Q9hT3TBK6vrjIISg
+         TNxKdhW1sLVon84eF/139reUSVww0XZkicdVbSK1H3FPTDN1amTCU/MYA1jVr56gYOm3
+         OyMl8vdWaWmYsbzI3u1nGNKnWVUUDSdsN/3PiXBOdKiWuf3Zyu1gB407sfL3wmsDWeB0
+         IdokWek6at6dmWqFx3Z4G2Cylha9HJK9HlSM9viLtV0RfZh7V0Fln4gxvEv2O9x+ody2
+         czdOEVsg771DEXWNsBuHS5c3b5027/iCh5xf8AfUCvS9jNsDN8JLkAtLU1njG7cEmcAq
+         YOhw==
+X-Gm-Message-State: AOAM530NVhPL+NoBDHqdopHSLzxKmeu9XyNK4gEqA9t8rBEjIuoG01NM
+        Lf5SN4czacKtsvXnha9sEA==
+X-Google-Smtp-Source: ABdhPJyVR93jP8FiaJyzORU4oF2UwTBNTTtG5KvHE+eQJ0R04hfJLjWLadPlVsDanj3w2ldCucS4Lw==
+X-Received: by 2002:a05:6870:1842:: with SMTP id u2mr1240378oaf.162.1644432290840;
+        Wed, 09 Feb 2022 10:44:50 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 20sm5487410oao.1.2022.02.09.10.44.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Feb 2022 10:44:50 -0800 (PST)
+Received: (nullmailer pid 672347 invoked by uid 1000);
+        Wed, 09 Feb 2022 18:44:49 -0000
+Date:   Wed, 9 Feb 2022 12:44:49 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     sven@svenschwermer.de
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        pavel@ucw.cz, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        post@lespocky.de, andy.shevchenko@gmail.com
+Subject: Re: [PATCH v6 2/3] dt-bindings: leds: Add multicolor PWM LED bindings
+Message-ID: <YgQLoaKmzfZQAVSx@robh.at.kernel.org>
+References: <20220208191236.660172-1-sven@svenschwermer.de>
+ <20220208191236.660172-2-sven@svenschwermer.de>
 MIME-Version: 1.0
-References: <20211228072645.32341-1-luizluca@gmail.com> <Ydx4+o5TsWZkZd45@robh.at.kernel.org>
- <CAJq09z4G40ttsTHXtOywjyusNLSjt_BQ9D78PhwSodJr=4p6OA@mail.gmail.com>
- <CAL_JsqJ4SsEzZz=JfFMDDUMXEDfybMZw4BVDcj1MoapM+8jQwg@mail.gmail.com>
- <87zgn0gf3k.fsf@bang-olufsen.dk> <YgP7jgswRQ+GR4P2@lunn.ch>
-In-Reply-To: <YgP7jgswRQ+GR4P2@lunn.ch>
-From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date:   Wed, 9 Feb 2022 15:43:15 -0300
-Message-ID: <CAJq09z49EEMxtBTs9q0sg3nn0VrSi0M=DkQTJ_n=QmgTr1aonw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: net: dsa: realtek-smi: convert to YAML schema
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     =?UTF-8?Q?Alvin_=C5=A0ipraga?= <ALSI@bang-olufsen.dk>,
-        Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220208191236.660172-2-sven@svenschwermer.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > However, the linux driver today does not care about any of these
-> > interruptions but INT_TYPE_LINK_STATUS. So it simply multiplex only
-> > this the interruption to each port, in a n-cell map (n being number of
-> > ports).
-> > I don't know what to describe here as device-tree should be something
-> > independent of a particular OS or driver.
->
-> You shouldn't need to know what Linux does to figure this out.
+On Tue, Feb 08, 2022 at 08:12:35PM +0100, sven@svenschwermer.de wrote:
+> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> 
+> This allows to group multiple PWM-connected monochrome LEDs into
+> multicolor LEDs, e.g. RGB LEDs.
+> 
+> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> ---
+> 
+> Notes:
+>     Changes in v6:
+>     * Fix device tree binding schema
+>     
+>     Changes in v5:
+>     * (no changes)
+>     
+>     Changes in v4:
+>     * (no changes)
+>     
+>     Changes in v3:
+>     * Remove multi-led unit name
+> 
+>  .../bindings/leds/leds-pwm-multicolor.yaml    | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> new file mode 100644
+> index 000000000000..f7ce29c8ae63
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-pwm-multicolor.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Multi-color LEDs connected to PWM
+> +
+> +maintainers:
+> +  - Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> +
+> +description: |
+> +  This driver combines several monochrome PWM LEDs into one multi-color
+> +  LED using the multicolor LED class.
+> +
+> +properties:
+> +  compatible:
+> +    const: pwm-leds-multicolor
 
-The Linux driver is masquerading all those interruptions into a single
-"link status changed". If interrupts property is about what the HW
-sends to us, it is a single pin.
+blank line
 
-  interrupt-controller:
-   type: object
-   description: |
-     This defines an interrupt controller with an IRQ line (typically
-     a GPIO) that will demultiplex and handle the interrupt from the single
-     interrupt line coming out of one of the Realtek switch chips. It most
-     importantly provides link up/down interrupts to the PHY blocks inside
-     the ASIC.
+> +  multi-led:
+> +    type: object
 
-   properties:
+blank line
 
-     interrupt-controller: true
+> +    patternProperties:
+> +      "^led-[0-9a-z]+$":
+> +        type: object
+> +        $ref: common.yaml#
 
-     interrupts:
-       maxItems: 1
-       description:
-         A single IRQ line from the switch, either active LOW or HIGH
+blank line
 
-     '#address-cells':
-       const: 0
+> +        properties:
+> +          pwms:
+> +            maxItems: 1
 
-     '#interrupt-cells':
-       const: 1
+blank line and so on. (There not a hard rule, but roughly it's 
+blank lines between DT property sub-schemas, top-level keywords, and 
+properties/patternProperties/required.)
 
-   required:
-     - interrupt-controller
-     - '#address-cells'
-     - '#interrupt-cells'
+> +          pwm-names: true
+> +          color: true
+> +        required:
+> +          - pwms
+> +          - color
 
-Now as it is also an interrupt-controller, shouldn't I document what it emits?
-I've just sent the new version and we can discuss it there.
+> +        additionalProperties: false
 
-> >  - one interrupt for the switch
-> >  - the switch is an interrupt-controller
-> >  - ... and is the interrupt-parent for the phy nodes.
->
-> This pattern is pretty common for DSA switches, which have internal
-> PHYs. You can see this in the mv88e6xxx binding for example.
+While the top level goes at the end, I find it is easier to read putting 
+the indented cases before properties/patternProperties. 
 
-The issue is that those similar devices are still not in yaml format.
-
->       Andrew
+> +required:
+> +  - compatible
+> +allOf:
+> +  - $ref: leds-class-multicolor.yaml#
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    rgb-led {
+> +        compatible = "pwm-leds-multicolor";
+> +
+> +        multi-led {
+> +          color = <LED_COLOR_ID_RGB>;
+> +          function = LED_FUNCTION_INDICATOR;
+> +          max-brightness = <65535>;
+> +
+> +          led-red {
+> +              pwms = <&pwm1 0 1000000>;
+> +              color = <LED_COLOR_ID_RED>;
+> +          };
+> +
+> +          led-green {
+> +              pwms = <&pwm2 0 1000000>;
+> +              color = <LED_COLOR_ID_GREEN>;
+> +          };
+> +
+> +          led-blue {
+> +              pwms = <&pwm3 0 1000000>;
+> +              color = <LED_COLOR_ID_BLUE>;
+> +          };
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.35.1
+> 
+> 
