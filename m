@@ -2,247 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 415BB4AF362
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 14:55:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C3864AF372
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 14:59:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230377AbiBINzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 08:55:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52364 "EHLO
+        id S234017AbiBIN7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 08:59:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbiBINzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 08:55:40 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B68DC0613C9;
-        Wed,  9 Feb 2022 05:55:42 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id l67-20020a1c2546000000b00353951c3f62so1619732wml.5;
-        Wed, 09 Feb 2022 05:55:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id;
-        bh=7U/uYfF5BBXdgNLHE4+fM0Xnr2orfhJ3kV6quQhuKN8=;
-        b=A1Raudlcg8KbydfuTRJDWC+KE9y+kf05/OEpM2s89EkYAhXlrrtpi9qGKOnu+OqeMj
-         gz2TEjbu48jg57g5SiHYUxrwLtZEHADVglTk2P8p5a9fFeCfUR3mp41KaOUHsr2Gdr/9
-         2vBvYQjnHuYEtFoMhYKZtypiLMju1EoF2zOHQl2wHIWtcp2+LJDSC0NlnZbiVoYZp7E7
-         y0/JqL6hg1PE7TU3cm7stqKK+T3i7EZCVnwFjvwurHJMOOF756CQxi6wcfoTlZhKGTfc
-         SB0pcp3mDEPsC/pUEVdUa3i3Fg3QZgx2zoQf+qQ16qWiel7aCQdLbm/Us2DB8RFLZ0E1
-         tAJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=7U/uYfF5BBXdgNLHE4+fM0Xnr2orfhJ3kV6quQhuKN8=;
-        b=cMqSTgoKwJl/73fLX6iXKyztmS2387Xv/iwn6/xFFAPS+jmKtWKY4NyTkaFEfBEP6b
-         irns9P1hS16HVqH8JRQrsq9HFmGUTAU4Dkc2vtTBXqaNNsQ0VXlJj2bjKgr9gzrJ734B
-         3beQvS+XLi+qJxHH3Bvo2iFhrDjiO1Zp0mA9UW+8sN0WgmUn2HH/49BPy3BXVgooSDbo
-         eAphqoaY0a/ujwHW7/0SEATui6Lq6u33rxp8DOZpkrMurJrR1MG4hJogBgXc6cKxvC0V
-         7CCq/QXToOjujYhl/HbcM0s4M+ycdGm9UnIMFm0m+yolnElW94O5tYgnwf9O6XxaJ1SA
-         0u9A==
-X-Gm-Message-State: AOAM530mr1ZMfHgPHowgikrLFKE04jq+bJn5thiPork8Pa/mYb33TOw6
-        fHDAugkJZdWT7IiigfG2N2w=
-X-Google-Smtp-Source: ABdhPJwxjFBgHIB+UhKYGiBo3CoUpqS8lR5s3DiuLtu+98fiXKhZHC3z5PVCNCW/puAce4XBpJkvlQ==
-X-Received: by 2002:a05:600c:a03:: with SMTP id z3mr2688181wmp.73.1644414940868;
-        Wed, 09 Feb 2022 05:55:40 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id g14sm3014309wmq.3.2022.02.09.05.55.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 05:55:40 -0800 (PST)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: meson: remove CPU opps below 1GHz for G12B/SM1
-Date:   Wed,  9 Feb 2022 13:55:35 +0000
-Message-Id: <20220209135535.29547-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S233068AbiBIN7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 08:59:04 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E38E5C0613CA;
+        Wed,  9 Feb 2022 05:59:02 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 76692B8219F;
+        Wed,  9 Feb 2022 13:59:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 034D7C340E7;
+        Wed,  9 Feb 2022 13:58:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644415140;
+        bh=sJkQVUoc2/03uklegtN+hrM5vjJewF0M3/NXHviuqmI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Syopwlp82ic3kwAeQKy+qsXtcjV8W7MVG1MoDIUwjD9l4ipwGR1thrRH76v2t3DE3
+         6Z3Mr2rq0Kg3XdjDREmcsVIkNuHWmCHGUBTFb1BWSOyGqk5LoLvSIrza/Kq3mMakMl
+         WekrQxHSZCE9djwbXJRdWXxREfy3kx2zDAe5DD/ThK3U7aiuPVdDpp7KgXN03um03J
+         e0VzTpw4dFMAe+KKz8eJ5P1/+ETGqKGhfscu/ZIQs2hikZWsDIcjB7g8h8uDY+4DH1
+         Hb0dYfn4Gy6L+USOaej9IOTfdqAZXkHUXphgbO80wBBFEPsDQYK6zF4dFBMYz5RARO
+         qXjAAQzl/QKaw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nHnUn-006dYK-Um; Wed, 09 Feb 2022 13:58:58 +0000
+Date:   Wed, 09 Feb 2022 13:58:57 +0000
+Message-ID: <874k585efy.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/3] Per-parent domains for realtek-rtl IRQ driver
+In-Reply-To: <cover.1644165421.git.sander@svanheule.net>
+References: <cover.1644165421.git.sander@svanheule.net>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: sander@svanheule.net, robh+dt@kernel.org, devicetree@vger.kernel.org, tglx@linutronix.de, mail@birger-koblitz.de, bert@biot.com, john@phrozen.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amlogic G12B and SM1 devices experience CPU stalls and random board
-wedges when the system idles and CPU cores clock down to lower opp
-points. Recent vendor kernels include a change to remove 100-250MHz
-(with no explanation) [0] but other downstream sources also remove
-the 500/667MHz points (also with no explanation). Unless 100-667Mhz
-opps are removed or the CPU governor forced to performance, stalls
-are observed, so let's remove them an improve stability/uptime.
+On Sun, 06 Feb 2022 16:41:50 +0000,
+Sander Vanheule <sander@svanheule.net> wrote:
+> 
+> The original implementation for this interrupt controller/router used
+> an interrupt-map parser to determine which parent interrupts were
+> present. However, this controller is not transparent, so a list of
+> parent interrupts seems more appropriate, while also getting rid of the
+> assumed routing to parent interrupts.
+> 
+> Additionally, N real cascaded interrupts are implemented, instead of
+> handling all input interrupts with one cascaded interrupt. Otherwise it
+> is possible that the priority of the parent interrupts is not respected.
 
-[0] https://github.com/khadas/linux/commit/20e237a4fe9f0302370e24950cb1416e038eee03
+Just to be clear: this means that although you allow the new driver to
+somehow still work with the old DT, the opposite (old kernel, new DT)
+will probably fail horribly.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
-Numerous people have experienced this issue and I have tested with
-only the low opp-points removed and numerous voltage tweaks: but it
-makes no difference. With the opp points present an Odroid N2 or
-Khadas VIM3 reliably drop off my network after being left idling
-overnight with UART showing a CPU stall splat. With the opp points
-removed I see weeks of uninterupted uptime. It's beyond my skills
-to research what the cause of the stalls might be, but if anyone
-ever figures it out we can always restore things. NB: This issue
-is not too widely reported in forums, but that's largely because
-most of the Amlogic supporting distros have been including this
-change picked from my kernel patchset for some time.
+Is everyone comfortable with that?
 
- .../boot/dts/amlogic/meson-g12b-a311d.dtsi    | 40 -------------------
- .../boot/dts/amlogic/meson-g12b-s922x.dtsi    | 40 -------------------
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    | 20 ----------
- 3 files changed, 100 deletions(-)
+	M.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
-index d61f43052a34..8e9ad1e51d66 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
-@@ -11,26 +11,6 @@
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
--		opp-100000000 {
--			opp-hz = /bits/ 64 <100000000>;
--			opp-microvolt = <731000>;
--		};
--
--		opp-250000000 {
--			opp-hz = /bits/ 64 <250000000>;
--			opp-microvolt = <731000>;
--		};
--
--		opp-500000000 {
--			opp-hz = /bits/ 64 <500000000>;
--			opp-microvolt = <731000>;
--		};
--
--		opp-667000000 {
--			opp-hz = /bits/ 64 <667000000>;
--			opp-microvolt = <731000>;
--		};
--
- 		opp-1000000000 {
- 			opp-hz = /bits/ 64 <1000000000>;
- 			opp-microvolt = <761000>;
-@@ -71,26 +51,6 @@
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
--		opp-100000000 {
--			opp-hz = /bits/ 64 <100000000>;
--			opp-microvolt = <731000>;
--		};
--
--		opp-250000000 {
--			opp-hz = /bits/ 64 <250000000>;
--			opp-microvolt = <731000>;
--		};
--
--		opp-500000000 {
--			opp-hz = /bits/ 64 <500000000>;
--			opp-microvolt = <731000>;
--		};
--
--		opp-667000000 {
--			opp-hz = /bits/ 64 <667000000>;
--			opp-microvolt = <731000>;
--		};
--
- 		opp-1000000000 {
- 			opp-hz = /bits/ 64 <1000000000>;
- 			opp-microvolt = <731000>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
-index 1e5d0ee5d541..44c23c984034 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
-@@ -11,26 +11,6 @@
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
--		opp-100000000 {
--			opp-hz = /bits/ 64 <100000000>;
--			opp-microvolt = <731000>;
--		};
--
--		opp-250000000 {
--			opp-hz = /bits/ 64 <250000000>;
--			opp-microvolt = <731000>;
--		};
--
--		opp-500000000 {
--			opp-hz = /bits/ 64 <500000000>;
--			opp-microvolt = <731000>;
--		};
--
--		opp-667000000 {
--			opp-hz = /bits/ 64 <667000000>;
--			opp-microvolt = <731000>;
--		};
--
- 		opp-1000000000 {
- 			opp-hz = /bits/ 64 <1000000000>;
- 			opp-microvolt = <731000>;
-@@ -76,26 +56,6 @@
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
--		opp-100000000 {
--			opp-hz = /bits/ 64 <100000000>;
--			opp-microvolt = <751000>;
--		};
--
--		opp-250000000 {
--			opp-hz = /bits/ 64 <250000000>;
--			opp-microvolt = <751000>;
--		};
--
--		opp-500000000 {
--			opp-hz = /bits/ 64 <500000000>;
--			opp-microvolt = <751000>;
--		};
--
--		opp-667000000 {
--			opp-hz = /bits/ 64 <667000000>;
--			opp-microvolt = <751000>;
--		};
--
- 		opp-1000000000 {
- 			opp-hz = /bits/ 64 <1000000000>;
- 			opp-microvolt = <771000>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-index 3c07a89bfd27..80737731af3f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-@@ -95,26 +95,6 @@
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
--		opp-100000000 {
--			opp-hz = /bits/ 64 <100000000>;
--			opp-microvolt = <730000>;
--		};
--
--		opp-250000000 {
--			opp-hz = /bits/ 64 <250000000>;
--			opp-microvolt = <730000>;
--		};
--
--		opp-500000000 {
--			opp-hz = /bits/ 64 <500000000>;
--			opp-microvolt = <730000>;
--		};
--
--		opp-667000000 {
--			opp-hz = /bits/ 64 <666666666>;
--			opp-microvolt = <750000>;
--		};
--
- 		opp-1000000000 {
- 			opp-hz = /bits/ 64 <1000000000>;
- 			opp-microvolt = <770000>;
 -- 
-2.17.1
-
+Without deviation from the norm, progress is not possible.
