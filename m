@@ -2,243 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9573D4AF0E0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:08:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 124444AEFE8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 12:23:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231288AbiBIMH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 07:07:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48170 "EHLO
+        id S230120AbiBILXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 06:23:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232758AbiBIMGJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:06:09 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31BDC094CB1
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 03:05:29 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nHjsD-0008UB-T1; Wed, 09 Feb 2022 11:06:53 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     dri-devel@lists.freedesktop.org,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Yakir Yang <ykk@rock-chips.com>
-Subject: Re: [PATCH v5 12/23] drm/rockchip: dw_hdmi: Use auto-generated tables
-Date:   Wed, 09 Feb 2022 11:06:52 +0100
-Message-ID: <2784361.GuOZkLzhrA@diego>
-In-Reply-To: <20220209095350.2104049-13-s.hauer@pengutronix.de>
-References: <20220209095350.2104049-1-s.hauer@pengutronix.de> <20220209095350.2104049-13-s.hauer@pengutronix.de>
+        with ESMTP id S229552AbiBILXW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 06:23:22 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82A51E08B69B
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 02:17:34 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id k1so3120554wrd.8
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 02:17:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vfAV7F+Ro4DbSdjhHkusaJBb3PiMNKM76wOprs+NcNM=;
+        b=ny9ULsL/xMEXFfNXPt20i+xiJxpkX2dV9SayL9TBFHnQZRFvyPp0T00z/YJrWXCNrL
+         B0x8FxZfCdLVm3CW4kS/+7tgqqUiYKSPATkRb6BF9/tnoNqwZv/b11y/6rIZgRXHpArU
+         5ZrEiJM4nHjULj3695Qcc3hqXjmarVseMpa3GxX8WqLmB15DbGwufz+iUoU/ghEJguzj
+         cDquRy5IkmwC/jRm7sFTgzlmYvH8aZgZCKq5YnuHF+UFWVn4BrRSvA0mziIkSLydOE98
+         sZ68twH4yfcSEuLLynk+EdDdPxZhn45IYbtbIpmC1lWwSRqQk7Bx4jLyBW1ImXROWCFw
+         mW8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vfAV7F+Ro4DbSdjhHkusaJBb3PiMNKM76wOprs+NcNM=;
+        b=sUF2yn1yoNu0ELPBKovnfmaPvOQAmnzHyy5yWO0mOad2T5i1OYyhc/5MbUYyQnwCXG
+         VxR1YpOrkXVnCwoGuu5FUB7eQxJ/lAUTjclJ0CAKeN7CVjGYG0UTqp3nwzDyD9Zgp2hw
+         bTZkVOdYjjcmJAKoh0H+GeDXAxchjmVMHQ2qV/6WsoBgyMx0fxsl1KBg/m7ke7Mtdyis
+         5CQsNpJxY3gmY+ilD4P6astQk7XwX+2d0WT2Lff2EMS+2umf4xQPsCIqIf6/IBJAXkYm
+         VDIZXKdi6mtiHfQdT3LcaU7pWCbqzVYGqsI7vDiEIRQK7AodXj/+iy7q4Tm4AGLdz14f
+         b0Mg==
+X-Gm-Message-State: AOAM533Km6yy7LAYKGdhiSX48tzMOdCJqM6Jz0hdzjxx0IWSiyQ+/19D
+        IG9N0NpwjYwVObM/+BEj+HzgFQ==
+X-Google-Smtp-Source: ABdhPJy0UdpjCxyiilvCKFqjSjmlR/q7Psi0zrmsidgeyfsV9G3fsYdDsqE4HZdrlSWv1cvyhkKIIg==
+X-Received: by 2002:a5d:6d05:: with SMTP id e5mr1504960wrq.214.1644401848828;
+        Wed, 09 Feb 2022 02:17:28 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id e13sm17740929wrq.35.2022.02.09.02.17.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Feb 2022 02:17:28 -0800 (PST)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     davem@davemloft.net, heiko@sntech.de, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] dt-bindings: crypto: rockchip: fix a typo on crypto-controller
+Date:   Wed,  9 Feb 2022 10:17:21 +0000
+Message-Id: <20220209101721.1659574-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 9. Februar 2022, 10:53:39 CET schrieb Sascha Hauer:
-> From: Douglas Anderson <dianders@chromium.org>
-> 
-> The previous tables for mpll_cfg and curr_ctrl were created using the
-> 20-pages of example settings provided by the PHY vendor.  Those
-> example settings weren't particularly dense, so there were places
-> where we were guessing what the settings would be for 10-bit and
-> 12-bit (not that we use those anyway).  It was also always a lot of
-> extra work every time we wanted to add a new clock rate since we had
-> to cross-reference several tables.
-> 
-> In <https://crrev.com/c/285855> I've gone through the work to figure
-> out how to generate this table automatically.  Let's now use the
-> automatically generated table and then we'll never need to look at it
-> again.
-> 
-> We only support 8-bit mode right now and only support a small number
-> of clock rates and and I've verified that the only 8-bit rate that was
-> affected was 148.5.  That mode appears to have been wrong in the old
-> table.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> Signed-off-by: Yakir Yang <ykk@rock-chips.com>
+crypto-controller had a typo, fix it.
 
-missing Signed-off-by: Sascha Hauer <...>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ Documentation/devicetree/bindings/crypto/rockchip-crypto.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> ---
-> 
-> Notes:
->     Changes since v3:
->     - new patch
-> 
->  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 130 +++++++++++---------
->  1 file changed, 69 insertions(+), 61 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> index b9928e622adf..160107b333ef 100644
-> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> @@ -87,80 +87,88 @@ struct rockchip_hdmi {
->  
->  static const struct dw_hdmi_mpll_config rockchip_mpll_cfg[] = {
->  	{
-> -		27000000, {
-> -			{ 0x00b3, 0x0000},
-> -			{ 0x2153, 0x0000},
-> -			{ 0x40f3, 0x0000}
-> +		30666000, {
-> +			{ 0x00b3, 0x0000 },
-> +			{ 0x2153, 0x0000 },
-> +			{ 0x40f3, 0x0000 },
->  		},
-> -	}, {
-> -		36000000, {
-> -			{ 0x00b3, 0x0000},
-> -			{ 0x2153, 0x0000},
-> -			{ 0x40f3, 0x0000}
-> +	},  {
-> +		36800000, {
-> +			{ 0x00b3, 0x0000 },
-> +			{ 0x2153, 0x0000 },
-> +			{ 0x40a2, 0x0001 },
->  		},
-> -	}, {
-> -		40000000, {
-> -			{ 0x00b3, 0x0000},
-> -			{ 0x2153, 0x0000},
-> -			{ 0x40f3, 0x0000}
-> +	},  {
-> +		46000000, {
-> +			{ 0x00b3, 0x0000 },
-> +			{ 0x2142, 0x0001 },
-> +			{ 0x40a2, 0x0001 },
->  		},
-> -	}, {
-> -		54000000, {
-> -			{ 0x0072, 0x0001},
-> -			{ 0x2142, 0x0001},
-> -			{ 0x40a2, 0x0001},
-> +	},  {
-> +		61333000, {
-> +			{ 0x0072, 0x0001 },
-> +			{ 0x2142, 0x0001 },
-> +			{ 0x40a2, 0x0001 },
->  		},
-> -	}, {
-> -		65000000, {
-> -			{ 0x0072, 0x0001},
-> -			{ 0x2142, 0x0001},
-> -			{ 0x40a2, 0x0001},
-> +	},  {
-> +		73600000, {
-> +			{ 0x0072, 0x0001 },
-> +			{ 0x2142, 0x0001 },
-> +			{ 0x4061, 0x0002 },
->  		},
-> -	}, {
-> -		66000000, {
-> -			{ 0x013e, 0x0003},
-> -			{ 0x217e, 0x0002},
-> -			{ 0x4061, 0x0002}
-> +	},  {
-> +		92000000, {
-> +			{ 0x0072, 0x0001 },
-> +			{ 0x2145, 0x0002 },
-> +			{ 0x4061, 0x0002 },
->  		},
-> -	}, {
-> -		74250000, {
-> -			{ 0x0072, 0x0001},
-> -			{ 0x2145, 0x0002},
-> -			{ 0x4061, 0x0002}
-> +	},  {
-> +		122666000, {
-> +			{ 0x0051, 0x0002 },
-> +			{ 0x2145, 0x0002 },
-> +			{ 0x4061, 0x0002 },
->  		},
-> -	}, {
-> -		83500000, {
-> -			{ 0x0072, 0x0001},
-> +	},  {
-> +		147200000, {
-> +			{ 0x0051, 0x0002 },
-> +			{ 0x2145, 0x0002 },
-> +			{ 0x4064, 0x0003 },
->  		},
-> -	}, {
-> -		108000000, {
-> -			{ 0x0051, 0x0002},
-> -			{ 0x2145, 0x0002},
-> -			{ 0x4061, 0x0002}
-> +	},  {
-> +		184000000, {
-> +			{ 0x0051, 0x0002 },
-> +			{ 0x214c, 0x0003 },
-> +			{ 0x4064, 0x0003 },
->  		},
-> -	}, {
-> -		106500000, {
-> -			{ 0x0051, 0x0002},
-> -			{ 0x2145, 0x0002},
-> -			{ 0x4061, 0x0002}
-> +	},  {
-> +		226666000, {
-> +			{ 0x0040, 0x0003 },
-> +			{ 0x214c, 0x0003 },
-> +			{ 0x4064, 0x0003 },
->  		},
-> -	}, {
-> -		146250000, {
-> -			{ 0x0051, 0x0002},
-> -			{ 0x2145, 0x0002},
-> -			{ 0x4061, 0x0002}
-> +	},  {
-> +		272000000, {
-> +			{ 0x0040, 0x0003 },
-> +			{ 0x214c, 0x0003 },
-> +			{ 0x5a64, 0x0003 },
->  		},
-> -	}, {
-> -		148500000, {
-> -			{ 0x0051, 0x0003},
-> -			{ 0x214c, 0x0003},
-> -			{ 0x4064, 0x0003}
-> +	},  {
-> +		340000000, {
-> +			{ 0x0040, 0x0003 },
-> +			{ 0x3b4c, 0x0003 },
-> +			{ 0x5a64, 0x0003 },
->  		},
-> -	}, {
-> +	},  {
-> +		600000000, {
-> +			{ 0x1a40, 0x0003 },
-> +			{ 0x3b4c, 0x0003 },
-> +			{ 0x5a64, 0x0003 },
-> +		},
-> +	},  {
->  		~0UL, {
-> -			{ 0x00a0, 0x000a },
-> -			{ 0x2001, 0x000f },
-> -			{ 0x4002, 0x000f },
-> +			{ 0x0000, 0x0000 },
-> +			{ 0x0000, 0x0000 },
-> +			{ 0x0000, 0x0000 },
->  		},
->  	}
->  };
-> 
-
-
-
+diff --git a/Documentation/devicetree/bindings/crypto/rockchip-crypto.txt b/Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
+index 5e2ba385b8c9..53e39d5f94e7 100644
+--- a/Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
++++ b/Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
+@@ -16,7 +16,7 @@ Required properties:
+ 
+ Examples:
+ 
+-	crypto: cypto-controller@ff8a0000 {
++	crypto: crypto-controller@ff8a0000 {
+ 		compatible = "rockchip,rk3288-crypto";
+ 		reg = <0xff8a0000 0x4000>;
+ 		interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+-- 
+2.34.1
 
