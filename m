@@ -2,92 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E109E4B00DB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 00:01:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC3774B00E1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 00:02:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236822AbiBIXAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 18:00:19 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:46232 "EHLO
+        id S236862AbiBIXCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 18:02:23 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:53700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236817AbiBIXAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 18:00:18 -0500
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68684E04FF1B;
-        Wed,  9 Feb 2022 15:00:21 -0800 (PST)
-Received: by mail-oo1-f44.google.com with SMTP id t75-20020a4a3e4e000000b002e9c0821d78so4292796oot.4;
-        Wed, 09 Feb 2022 15:00:21 -0800 (PST)
+        with ESMTP id S236811AbiBIXCW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 18:02:22 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51210E01976B;
+        Wed,  9 Feb 2022 15:02:21 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id co28so8046059edb.1;
+        Wed, 09 Feb 2022 15:02:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WGIEHx+L4uAdTf1VzXQaUpLJlWUcIhu07EIIF1wAFus=;
+        b=maSInnkknThRDgxyUU26cPJ/GRDE224IYjl3dSi18eCKyBLTJ97jIO6112ZO2In8QI
+         x/0TAq3dIe01KVRgLgH5Ah5VOIkLIZdhfS7F3DZVxJBChqQcrScKSEDDnkP6zh+YTMWt
+         n0ReI2QRmnzhetKFakFCSoOLxgjCx0du7xWhy+TWpRC0YJitAneSbEVoKGBOosEWo/ev
+         pGm55G2vxJd6CUpIHFES9oZKgQYbtulzTLYxBeNkMyaAjzUaOHa5uxdk38iFmIUUECtR
+         AZZUOfML8t/FnZnGziM6atPBwFuHuiFJGlbhK2yh0sERjVll1SNPt1sIrPmKxjaNVWWR
+         u+og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fpdeZ4kmn6qEAES9MKaD0qo3YztLrmDh8hg9/+KfbMk=;
-        b=QQazM7aeDlzY8nMCZrRF/0cZokDy2pwkrQ/eUwCjIPmuE0XO0jU3sq2+5eoSPFwrOT
-         d+QR758xCoNWePO7ErjMvpdmr9Yfutm2qXC8F0gGsf4FounvXqMbCVEVUQsl5wtqajG8
-         7o3NJehwPP8g/qwj2EmgugSol8AiJsIKKFpN/+oIzo8ICpViVTQagx05CmUhTZ2jm5NC
-         E36zXlGkEOiR0bATTSs2biqXBDxvhORsU5umrRQIF8Mj9i24+ljOtjIa1GUBHqdtEk5L
-         uSm0ZunEkanssIRbgoJ2UEzr3f+81kzHkZINncpitHvlUP2VWZ/QE6XZBCNt5pA+KZ6i
-         Ns8Q==
-X-Gm-Message-State: AOAM533x0M02ovhN4WDQ/R6ThKC3jsRjqS3EH8Bij62t3IoO3e/rhVwW
-        VtBVCQrPOwEB2fT+QZN3KA==
-X-Google-Smtp-Source: ABdhPJyg/5tdFrGfYkHvpfJSK0OiHLVN85JRmS8cSUjQqBh7r5T+P6F/NMofLOrJYz4+0vWdYal59Q==
-X-Received: by 2002:a05:6870:d4c5:: with SMTP id l5mr1742617oai.168.1644447620747;
-        Wed, 09 Feb 2022 15:00:20 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v26sm7168237ooq.20.2022.02.09.15.00.19
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WGIEHx+L4uAdTf1VzXQaUpLJlWUcIhu07EIIF1wAFus=;
+        b=6B2wSik8IrG6D4jD9U7IYKRRYdp0IkyZNudsW1CE9uorZL+GFNKnuHsKw8JbXFEZsO
+         pnjAebh8aP9YtBBleXKUZmcU51Au7zh4NDyrAWB4fLrnmBWsRqZx2Yy2kdD5f9FkJL1E
+         i/j+i506sPp5A6mD0//7xS9fRzTuHQXnLw1vn7hu2skPeobRd0rez64hxxsJNGe9DGb2
+         UpQPLX4Lk5Inl8VEBF71cFZS9lx9MDj4PrIWXmT6hhqjh0oNQ2ENuKRQsPH8Dcu7h8Gn
+         7jc79HKphrJkvsqUQoe8vAG2IgEyx647uzuVTNEZdJCQUABBxkGl+Uo+1qTPyII1/G8h
+         K9xw==
+X-Gm-Message-State: AOAM533iBDKoqMAzIutgSUW91Rx7dEc8ZdeK4fWohUv1QbHY/2mBc4AW
+        ZYdTZkBM6jmRiG8f6c8tahI=
+X-Google-Smtp-Source: ABdhPJzlM0o29Q+3zByPxKJEGxnYYWb7oyrYi3rp56w8xk/KHhpxnLk1OPFtL2bTTKxUmi0lbIujIw==
+X-Received: by 2002:aa7:cfcd:: with SMTP id r13mr5265548edy.55.1644447739764;
+        Wed, 09 Feb 2022 15:02:19 -0800 (PST)
+Received: from localhost (92.40.202.147.threembb.co.uk. [92.40.202.147])
+        by smtp.gmail.com with ESMTPSA id z22sm7843198edq.9.2022.02.09.15.02.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 15:00:20 -0800 (PST)
-Received: (nullmailer pid 1109186 invoked by uid 1000);
-        Wed, 09 Feb 2022 23:00:18 -0000
-Date:   Wed, 9 Feb 2022 17:00:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     dri-devel@lists.freedesktop.org, Inki Dae <inki.dae@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Vinod Koul <vkoul@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 10/10] dt-bindings: display: samsung,exynos-fimd: convert
- to dtschema
-Message-ID: <YgRHgg6TNjBzMBY6@robh.at.kernel.org>
-References: <20220208171823.226211-1-krzysztof.kozlowski@canonical.com>
- <20220208171823.226211-11-krzysztof.kozlowski@canonical.com>
+        Wed, 09 Feb 2022 15:02:19 -0800 (PST)
+From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+To:     paul@crapouillou.net, robh+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] clk: ingenic-tcu: Fix missing TCU clock for X1000 SoC
+Date:   Wed,  9 Feb 2022 23:01:47 +0000
+Message-Id: <20220209230145.18943-1-aidanmacdonald.0x0@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220208171823.226211-11-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Feb 2022 18:18:23 +0100, Krzysztof Kozlowski wrote:
-> Convert the S3C/S5P/Exynos FIMD bindings to DT schema format.
-> 
-> The conversion includes also updates to the bindings, matching the
-> current DTS and Linux driver: adding optional iommus and power-domains.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  .../bindings/display/exynos/samsung-fimd.txt  | 107 ----------
->  .../display/samsung/samsung,fimd.yaml         | 198 ++++++++++++++++++
->  2 files changed, 198 insertions(+), 107 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/exynos/samsung-fimd.txt
->  create mode 100644 Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml
-> 
+The X1000 does have a TCU clock gate, so pass it to the driver.
+Without this the TCU can be gated automatically, which prevents
+timers from running and stops register writes from taking effect.
 
-Applied, thanks!
+Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+---
+ arch/mips/boot/dts/ingenic/x1000.dtsi | 5 +++--
+ drivers/clk/ingenic/tcu.c             | 2 +-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi b/arch/mips/boot/dts/ingenic/x1000.dtsi
+index 8bd27edef216..c69df8eb158e 100644
+--- a/arch/mips/boot/dts/ingenic/x1000.dtsi
++++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
+@@ -111,8 +111,9 @@ tcu: timer@10002000 {
+ 
+ 		clocks = <&cgu X1000_CLK_RTCLK>,
+ 			 <&cgu X1000_CLK_EXCLK>,
+-			 <&cgu X1000_CLK_PCLK>;
+-		clock-names = "rtc", "ext", "pclk";
++			 <&cgu X1000_CLK_PCLK>,
++			 <&cgu X1000_CLK_TCU>;
++		clock-names = "rtc", "ext", "pclk", "tcu";
+ 
+ 		interrupt-controller;
+ 		#interrupt-cells = <1>;
+diff --git a/drivers/clk/ingenic/tcu.c b/drivers/clk/ingenic/tcu.c
+index 77acfbeb4830..9c86043f673a 100644
+--- a/drivers/clk/ingenic/tcu.c
++++ b/drivers/clk/ingenic/tcu.c
+@@ -320,7 +320,7 @@ static const struct ingenic_soc_info jz4770_soc_info = {
+ static const struct ingenic_soc_info x1000_soc_info = {
+ 	.num_channels = 8,
+ 	.has_ost = false, /* X1000 has OST, but it not belong TCU */
+-	.has_tcu_clk = false,
++	.has_tcu_clk = true,
+ };
+ 
+ static const struct of_device_id __maybe_unused ingenic_tcu_of_match[] __initconst = {
+-- 
+2.34.1
+
