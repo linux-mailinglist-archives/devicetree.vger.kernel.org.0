@@ -2,51 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CA414AF0E1
+	by mail.lfdr.de (Postfix) with ESMTP id E3A954AF0E3
 	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:08:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232533AbiBIMHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 07:07:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48042 "EHLO
+        id S232322AbiBIMHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 07:07:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233074AbiBIMGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:06:35 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E34C1036B2;
-        Wed,  9 Feb 2022 03:19:47 -0800 (PST)
-X-UUID: fdd5064321cc4c2c95c543df8c0cde7d-20220209
-X-UUID: fdd5064321cc4c2c95c543df8c0cde7d-20220209
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <leilk.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1432437706; Wed, 09 Feb 2022 19:19:45 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 9 Feb 2022 19:19:44 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 9 Feb 2022 19:19:43 +0800
-From:   Leilk Liu <leilk.liu@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        Leilk Liu <leilk.liu@mediatek.com>
-Subject: [PATCH 6/6] spi: mediatek: add need_ahb_clk support
-Date:   Wed, 9 Feb 2022 19:19:38 +0800
-Message-ID: <20220209111938.16137-7-leilk.liu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220209111938.16137-1-leilk.liu@mediatek.com>
-References: <20220209111938.16137-1-leilk.liu@mediatek.com>
+        with ESMTP id S232686AbiBIMGF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:06:05 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 378BAC050CD3;
+        Wed,  9 Feb 2022 03:27:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1644406056; x=1675942056;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=NGSesQuO1TkFrdjGkmTfRB4zx9VGkoV76GOJi87bu3w=;
+  b=SbMdbxq3z6EL8Tk3Xe/a7bv0Q372DpLAi1gmqjbTAGmRgi132iw14nWb
+   SJFiNI/BE0km24lK8O1ZjbAUXiDauQx4nNndLBJddpIlUZC0dE8N1Bb4m
+   t48l8Zrt0nxLnFdkqAVp7Zz4wIFjSJo+e/A5/PsSX+4GWgFQej6+OS2OP
+   je3etDl3QL4VNsZxzHI51vALJ7hVLA8Ac8J218Uujo73ZOefEK8DiF4AC
+   2nFaW8bCJc4o0Yg1Skm91JxYRdP0jkYw9yOJhAkV6fYgOAYK7PjHcbjhZ
+   ltiHB9mK6t1SiN2Q0jbze9+ifNX0DcqYR7EQtvoisJOgOTrDhPvwVWxoN
+   Q==;
+IronPort-SDR: WNfa+KzMaWtRn8hVQr/2q7GiBtU5X1zazxQ0MAgYKPWi68L6mUnGLSM61ZDRp7ddv0kVtvAq1H
+ A6bQSD5u8GP4UtrUzfRcUAzjTxILBu1TtZTlfOBWF0XwXFqubJ9ZsNhRdDCpj6so7nemB24YuM
+ NWpsXkqF6zDDOtML6JgTGfMDCQHi6Zh7JGOXVhN8zcEDm1jdgAsjmOApLs6j157lf9H0gRpkQz
+ xP18rQvCOsgFF8qABQmT4dlNt3YJRZzkTKsA1ZVi0iTCYWehdn/E7QoRUiWSUvCxXZtMUQ+0JV
+ QGAY4omMKXNCDVDyy3WGjYLv
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; 
+   d="scan'208";a="148122096"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Feb 2022 04:27:34 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 9 Feb 2022 04:27:34 -0700
+Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Wed, 9 Feb 2022 04:27:29 -0700
+Message-ID: <2762670649daca77a367aaee44b6669142ce0f6d.camel@microchip.com>
+Subject: Re: [PATCH v8 net-next 03/10] net: phy: Add support for LAN937x T1
+ phy driver
+From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     <netdev@vger.kernel.org>, <olteanv@gmail.com>,
+        <robh+dt@kernel.org>, <UNGLinuxDriver@microchip.com>,
+        <woojung.huh@microchip.com>, <hkallweit1@gmail.com>,
+        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
+        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
+Date:   Wed, 9 Feb 2022 16:57:27 +0530
+In-Reply-To: <YgJre2C9jpfMCXSZ@lunn.ch>
+References: <20220207172204.589190-1-prasanna.vengateshan@microchip.com>
+         <20220207172204.589190-4-prasanna.vengateshan@microchip.com>
+         <YgJre2C9jpfMCXSZ@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,263 +73,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-this patch adds need_ahb_clk support.
+On Tue, 2022-02-08 at 14:09 +0100, Andrew Lunn wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
+> content is safe
+> 
+> On Mon, Feb 07, 2022 at 10:51:57PM +0530, Prasanna Vengateshan wrote:
+> > Added support for Microchip LAN937x T1 phy driver. The sequence of
+> > initialization is used commonly for both LAN87xx and LAN937x
+> > drivers. The new initialization sequence is an improvement to
+> > existing LAN87xx and it is shared with LAN937x.
+> > 
+> > Also relevant comments are added in the existing code and existing
+> > soft-reset customized code has been replaced with
+> > genphy_soft_reset().
+> > 
+> > access_ereg_clr_poll_timeout() API is introduced for polling phy
+> > bank write and this is linked with PHYACC_ATTR_MODE_POLL.
+> > 
+> > Finally introduced function table for LAN937X_T1_PHY_ID along with
+> > microchip_t1_phy_driver struct.
+> 
+> Hi Prasanna
+> 
+> That is a lot of changes in one patch.
+> 
+> I would suggest you make this a patch series of its own. It should be
+> independent of the switch changes. And then you can break this patch
+> up into a number of smaller patches.
+> 
+> Thanks
+>         Andrew
 
-Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
----
- drivers/spi/spi-mt65xx.c | 113 ++++++++++++++++++++++++++++++---------
- 1 file changed, 87 insertions(+), 26 deletions(-)
+Sure, i will submit as a seperate patch series and i will remove from this
+patch. Thanks.
 
-diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
-index 9a40c6cd13ab..62bfbd7bf718 100644
---- a/drivers/spi/spi-mt65xx.c
-+++ b/drivers/spi/spi-mt65xx.c
-@@ -122,6 +122,8 @@ struct mtk_spi_compatible {
- 	bool ipm_design;
- 	/* IPM design that support quad mode */
- 	bool support_quad;
-+	/* some IC ahb & apb clk is different and also need to be enabled */
-+	bool need_ahb_clk;
- };
- 
- struct mtk_spi {
-@@ -129,13 +131,13 @@ struct mtk_spi {
- 	u32 state;
- 	int pad_num;
- 	u32 *pad_sel;
--	struct clk *parent_clk, *sel_clk, *spi_clk;
-+	struct clk *parent_clk, *sel_clk, *spi_clk, *spi_hclk;
- 	struct spi_transfer *cur_transfer;
- 	u32 xfer_len;
- 	u32 num_xfered;
- 	struct scatterlist *tx_sgl, *rx_sgl;
- 	u32 tx_sgl_len, rx_sgl_len;
--	const struct mtk_spi_compatible *dev_comp;
-+	struct mtk_spi_compatible *dev_comp;
- 	u32 spi_clk_hz;
- 	struct completion spimem_done;
- 	bool use_spimem;
-@@ -144,49 +146,49 @@ struct mtk_spi {
- 	dma_addr_t rx_dma;
- };
- 
--static const struct mtk_spi_compatible mtk_common_compat;
-+static struct mtk_spi_compatible mtk_common_compat;
- 
--static const struct mtk_spi_compatible mt2712_compat = {
-+static struct mtk_spi_compatible mt2712_compat = {
- 	.must_tx = true,
- };
- 
--static const struct mtk_spi_compatible ipm_compat_single = {
-+static struct mtk_spi_compatible ipm_compat_single = {
- 	.enhance_timing = true,
- 	.dma_ext = true,
- 	.ipm_design = true,
- };
- 
--static const struct mtk_spi_compatible ipm_compat_quad = {
-+static struct mtk_spi_compatible ipm_compat_quad = {
- 	.enhance_timing = true,
- 	.dma_ext = true,
- 	.ipm_design = true,
- 	.support_quad = true,
- };
- 
--static const struct mtk_spi_compatible mt6765_compat = {
-+static struct mtk_spi_compatible mt6765_compat = {
- 	.need_pad_sel = true,
- 	.must_tx = true,
- 	.enhance_timing = true,
- 	.dma_ext = true,
- };
- 
--static const struct mtk_spi_compatible mt7622_compat = {
-+static struct mtk_spi_compatible mt7622_compat = {
- 	.must_tx = true,
- 	.enhance_timing = true,
- };
- 
--static const struct mtk_spi_compatible mt8173_compat = {
-+static struct mtk_spi_compatible mt8173_compat = {
- 	.need_pad_sel = true,
- 	.must_tx = true,
- };
- 
--static const struct mtk_spi_compatible mt8183_compat = {
-+static struct mtk_spi_compatible mt8183_compat = {
- 	.need_pad_sel = true,
- 	.must_tx = true,
- 	.enhance_timing = true,
- };
- 
--static const struct mtk_spi_compatible mt6893_compat = {
-+static struct mtk_spi_compatible mt6893_compat = {
- 	.need_pad_sel = true,
- 	.must_tx = true,
- 	.enhance_timing = true,
-@@ -1201,25 +1203,46 @@ static int mtk_spi_probe(struct platform_device *pdev)
- 		goto err_put_master;
- 	}
- 
-+	mdata->dev_comp->need_ahb_clk = of_property_read_bool(pdev->dev.of_node,
-+							      "mediatek,need_ahb_clk");
-+	if (mdata->dev_comp->need_ahb_clk) {
-+		mdata->spi_hclk = devm_clk_get(&pdev->dev, "spi-hclk");
-+		if (IS_ERR(mdata->spi_hclk)) {
-+			ret = PTR_ERR(mdata->spi_hclk);
-+			dev_err(&pdev->dev, "failed to get spi-hclk: %d\n", ret);
-+			goto err_put_master;
-+		}
-+
-+		ret = clk_prepare_enable(mdata->spi_hclk);
-+		if (ret < 0) {
-+			dev_err(&pdev->dev, "failed to enable spi_hclk (%d)\n", ret);
-+			goto err_put_master;
-+		}
-+	}
-+
- 	ret = clk_prepare_enable(mdata->spi_clk);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "failed to enable spi_clk (%d)\n", ret);
--		goto err_put_master;
-+		goto err_disable_spi_hclk;
- 	}
- 
- 	ret = clk_set_parent(mdata->sel_clk, mdata->parent_clk);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "failed to clk_set_parent (%d)\n", ret);
--		clk_disable_unprepare(mdata->spi_clk);
--		goto err_put_master;
-+		goto err_disable_spi_clk;
- 	}
- 
- 	mdata->spi_clk_hz = clk_get_rate(mdata->spi_clk);
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		clk_disable(mdata->spi_clk);
--	else
-+		if (mdata->dev_comp->need_ahb_clk)
-+			clk_disable(mdata->spi_hclk);
-+	} else {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		if (mdata->dev_comp->need_ahb_clk)
-+			clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	pm_runtime_enable(&pdev->dev);
- 
-@@ -1272,6 +1295,11 @@ static int mtk_spi_probe(struct platform_device *pdev)
- 
- err_disable_runtime_pm:
- 	pm_runtime_disable(&pdev->dev);
-+err_disable_spi_clk:
-+	clk_disable_unprepare(mdata->spi_clk);
-+err_disable_spi_hclk:
-+	if (mdata->dev_comp->need_ahb_clk)
-+		clk_disable_unprepare(mdata->spi_hclk);
- err_put_master:
- 	spi_master_put(master);
- 
-@@ -1287,8 +1315,11 @@ static int mtk_spi_remove(struct platform_device *pdev)
- 
- 	mtk_spi_reset(mdata);
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		clk_unprepare(mdata->spi_clk);
-+		if (mdata->dev_comp->need_ahb_clk)
-+			clk_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return 0;
- }
-@@ -1304,8 +1335,11 @@ static int mtk_spi_suspend(struct device *dev)
- 	if (ret)
- 		return ret;
- 
--	if (!pm_runtime_suspended(dev))
-+	if (!pm_runtime_suspended(dev)) {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		if (mdata->dev_comp->need_ahb_clk)
-+			clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return ret;
- }
-@@ -1322,11 +1356,23 @@ static int mtk_spi_resume(struct device *dev)
- 			dev_err(dev, "failed to enable spi_clk (%d)\n", ret);
- 			return ret;
- 		}
-+
-+		if (mdata->dev_comp->need_ahb_clk) {
-+			clk_prepare_enable(mdata->spi_hclk);
-+			if (ret < 0) {
-+				dev_err(dev, "failed to enable spi_hclk (%d)\n", ret);
-+				clk_disable_unprepare(mdata->spi_clk);
-+				return ret;
-+			}
-+		}
- 	}
- 
- 	ret = spi_master_resume(master);
--	if (ret < 0)
-+	if (ret < 0) {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		if (mdata->dev_comp->need_ahb_clk)
-+			clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return ret;
- }
-@@ -1338,10 +1384,15 @@ static int mtk_spi_runtime_suspend(struct device *dev)
- 	struct spi_master *master = dev_get_drvdata(dev);
- 	struct mtk_spi *mdata = spi_master_get_devdata(master);
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		clk_disable(mdata->spi_clk);
--	else
-+		if (mdata->dev_comp->need_ahb_clk)
-+			clk_disable(mdata->spi_hclk);
-+	} else {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		if (mdata->dev_comp->need_ahb_clk)
-+			clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return 0;
- }
-@@ -1352,13 +1403,23 @@ static int mtk_spi_runtime_resume(struct device *dev)
- 	struct mtk_spi *mdata = spi_master_get_devdata(master);
- 	int ret;
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		ret = clk_enable(mdata->spi_clk);
--	else
-+		if (mdata->dev_comp->need_ahb_clk)
-+			clk_enable(mdata->spi_hclk);
-+	} else {
- 		ret = clk_prepare_enable(mdata->spi_clk);
--	if (ret < 0) {
--		dev_err(dev, "failed to enable spi_clk (%d)\n", ret);
--		return ret;
-+		if (ret < 0) {
-+			dev_err(dev, "failed to enable spi_clk (%d)\n", ret);
-+			return ret;
-+		}
-+
-+		ret = clk_prepare_enable(mdata->spi_hclk);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to enable spi_hclk (%d)\n", ret);
-+			clk_disable_unprepare(mdata->spi_clk);
-+			return ret;
-+		}
- 	}
- 
- 	return 0;
--- 
-2.25.1
+Prasanna V
+
 
