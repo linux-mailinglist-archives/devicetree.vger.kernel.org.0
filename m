@@ -2,70 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A32984AE7D3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 04:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4AF44AE7F4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 05:07:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345137AbiBIDQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 22:16:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39770 "EHLO
+        id S240642AbiBIEHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 23:07:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344499AbiBIDPX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 22:15:23 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DA3C0613CC;
-        Tue,  8 Feb 2022 19:15:22 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id 4so1163355oil.11;
-        Tue, 08 Feb 2022 19:15:22 -0800 (PST)
+        with ESMTP id S1345815AbiBIDT2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 22:19:28 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6101C0613CC;
+        Tue,  8 Feb 2022 19:19:27 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id t199so1171378oie.10;
+        Tue, 08 Feb 2022 19:19:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=MJCtSboYT6/FzFkykJymBzPa+HtdV+toCECownbioaY=;
-        b=1+X6aJzMl/0swYIk+odDTzAIOu3z925V+i0SeSfuivgPxe+SeAb2tiOn+A3itR2etT
-         1t4YOZODbPVnhOJyveQGh8VHd/Br/ZM4wlZ+Krt/UHoM5fxNJq9H4SvmJFlh1ByVpCR5
-         ZWOT8f8UfvnEDcqKGCppjFHkQBAYt38VOGr0B02SiXORimFRi328S1LOkzGUzmy+XGbi
-         +fLKBCpv5QyJDbVXaW1A7bR84ChtDYgPK0VHda7sGcG+eGdVtUVV2ObVwtvExMbKYjcf
-         dlO6Gg0ixQ61wSoRYcf+x+ahcWiECdjkyE8lPrdGyIm0nqzWrfaTO0glyWSThuNFwQSW
-         mMrw==
-X-Gm-Message-State: AOAM530kPiPp2LuznW2Y4XvlAaIDfTBP3R2Brxt5lNpJ5LrV6uXOgTe9
-        T6/zN2WDIvASZMxUFu+mPg==
-X-Google-Smtp-Source: ABdhPJwdf+t06UGFJrNWAzD6ZQ6SffxtFCOI3Zx37S5Z0p0n4x6v109e9VJ4zIoDm5w0/CB30nKSmA==
-X-Received: by 2002:a05:6808:2214:: with SMTP id bd20mr461324oib.159.1644376521985;
-        Tue, 08 Feb 2022 19:15:21 -0800 (PST)
+        bh=zEfWeTyIrXF6K6f3t0M7dKD502/QviWAkBZ2fePAE1g=;
+        b=7bRR2ht8TBUaZcnJIyOQajS9cYO84nUaofCaL1t/Sy6ohREhOrpReabrf+EmOhl+Ty
+         Dh1MBE7J+qWNf4PisK2V0HjdYH4c6qRfMOREGbvYqfJY9sfZUFkvgUNKixNnp5XWRmc7
+         brjN4hvzkEBX5r3fhev43HByXsv2QRa6lwA2fCosaur7Btp+MlhCvaQwdMNozIDUfsbz
+         qv3dtufigNAFmukTXcfccSI/jyGJHO359B0PHJ8FadTrB5zZDo6K5HtBNV+aVDOqjxM5
+         A9oQDyGkQ63fYFlpYKR/ByS9t/vm/UpDJQh92mU8JG50YEQNKuslHY1BgtA62gGsGZ2D
+         JTGQ==
+X-Gm-Message-State: AOAM531E6dcSGZdxaq0tnRby56vLezwDqyKtWko8sX/e0vwNEIHWPrmo
+        8rpaiFOV5Xk+pCmvSuZodw==
+X-Google-Smtp-Source: ABdhPJx71nDfhbS6hPDqxJhnakyvaFctVvW4u7U91Mo9AgRmLk1TRWztpmSkVr0ptEcINukK1HHM1w==
+X-Received: by 2002:a05:6808:a09:: with SMTP id n9mr467379oij.10.1644376766981;
+        Tue, 08 Feb 2022 19:19:26 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s3sm6096547otg.67.2022.02.08.19.15.20
+        by smtp.gmail.com with ESMTPSA id n24sm6955027oao.40.2022.02.08.19.19.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Feb 2022 19:15:21 -0800 (PST)
-Received: (nullmailer pid 3560138 invoked by uid 1000);
-        Wed, 09 Feb 2022 03:15:19 -0000
-Date:   Tue, 8 Feb 2022 21:15:19 -0600
+        Tue, 08 Feb 2022 19:19:26 -0800 (PST)
+Received: (nullmailer pid 3566021 invoked by uid 1000);
+        Wed, 09 Feb 2022 03:19:25 -0000
+Date:   Tue, 8 Feb 2022 21:19:25 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
-        Will Deacon <will@kernel.org>, libo.kang@mediatek.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        yen-chang.chen@mediatek.com, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-kernel@vger.kernel.org, youlin.pei@mediatek.com,
-        yf.wang@mediatek.com, mingyuan.ma@mediatek.com,
-        chengci.xu@mediatek.com, xueqi.zhang@mediatek.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        anan.sun@mediatek.com, iommu@lists.linux-foundation.org
-Subject: Re: [PATCH 1/2] dt-bindings: mediatek: mt8186: Add binding for MM
- iommu
-Message-ID: <YgMxxx+b77IHQIbq@robh.at.kernel.org>
-References: <20220125093244.18230-1-yong.wu@mediatek.com>
- <20220125093244.18230-2-yong.wu@mediatek.com>
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     hminas@synopsys.com, linux-usb@vger.kernel.org, robh+dt@kernel.org,
+        gregkh@linuxfoundation.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: usb: dwc2: add compatible
+ "intel,socfpga-agilex-hsotg"
+Message-ID: <YgMyvUdlNd1J7J6R@robh.at.kernel.org>
+References: <20220125161821.1951906-1-dinguyen@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220125093244.18230-2-yong.wu@mediatek.com>
+In-Reply-To: <20220125161821.1951906-1-dinguyen@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -77,15 +62,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Jan 2022 17:32:43 +0800, Yong Wu wrote:
-> Add mt8186 iommu binding. "-mm" means the iommu is for Multimedia.
+On Tue, 25 Jan 2022 10:18:19 -0600, Dinh Nguyen wrote:
+> Add the compatible "intel,socfpga-agilex-hsotg" to the DWC2
+> implementation, because the Agilex DWC2 implementation does not support
+> clock gating.
 > 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 > ---
->  .../bindings/iommu/mediatek,iommu.yaml        |   4 +
->  .../dt-bindings/memory/mt8186-memory-port.h   | 217 ++++++++++++++++++
->  2 files changed, 221 insertions(+)
->  create mode 100644 include/dt-bindings/memory/mt8186-memory-port.h
+>  Documentation/devicetree/bindings/usb/dwc2.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
