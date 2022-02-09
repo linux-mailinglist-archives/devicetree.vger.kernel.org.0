@@ -2,154 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E75BF4AFCF2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C44B4AFCF3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:11:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbiBITLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 14:11:03 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:52002 "EHLO
+        id S231676AbiBITLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 14:11:08 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:52824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232034AbiBITKw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:10:52 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF384C043182;
-        Wed,  9 Feb 2022 11:10:44 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id q8so3497745oiw.7;
-        Wed, 09 Feb 2022 11:10:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=uGBQszRjKuZjfc1lBS7mhBr8HyjSkkpwuKdOPsga/3M=;
-        b=pKv8+XFK13RTaXtbIjs3u6u9nWC7A35k42HB8hxxuTqp4989vPgqUrpWBqwt+IPPhx
-         UIhLVgAhXlbmjByENR73CskQa2Mp8fTgUVpQZUx2OKj5HtD//csGDVmt4lPM/aGJDOGU
-         Z5rBOnVgTFUSVeRTQzw5GC2fc/UYoP+6uNXBwC94fcSLj0gYTPrXpvXJXMljIkGRO+Li
-         nsTngiIMZ7luSEF10iYSOQxQhbfksEUgGr+zyRt0/tVZJx1kJvEhLf+0vxLJp8+m+az7
-         rStMBbt7zZXMC4dndWQoHoZuYLDgHolElm7PjlmevYs89B6qxOr//aUDuxHttrx45YXd
-         IR8w==
-X-Gm-Message-State: AOAM533/W8MDnmxxedj0Et1GxTCxQx6e7mRNpaqbsuiyH1emY03yPV5c
-        MVlRl9HYQ9zXI+Z69q/lww==
-X-Google-Smtp-Source: ABdhPJzpD9FzpWjsNjCly3kjImd1uYrlVR8YlnuOwd+KPQyw5wIjoOhj08QDwExTKNuhrLRLVlIcwg==
-X-Received: by 2002:a05:6808:218f:: with SMTP id be15mr1691567oib.136.1644433772303;
-        Wed, 09 Feb 2022 11:09:32 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r204sm7155587oih.1.2022.02.09.11.09.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 11:09:31 -0800 (PST)
-Received: (nullmailer pid 709550 invoked by uid 1000);
-        Wed, 09 Feb 2022 19:09:30 -0000
-Date:   Wed, 9 Feb 2022 13:09:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Justin Chen <justinpopo6@gmail.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2] dt-bindings: watchdog: brcm,bcm7038: add more
- compatible strings
-Message-ID: <YgQRam1RFim1AMMf@robh.at.kernel.org>
-References: <20220126132116.11070-1-zajec5@gmail.com>
- <20220126222034.16889-1-zajec5@gmail.com>
+        with ESMTP id S229867AbiBITLF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:11:05 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C695C02B650;
+        Wed,  9 Feb 2022 11:10:57 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 729C2B82381;
+        Wed,  9 Feb 2022 19:10:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C2AFC340E9;
+        Wed,  9 Feb 2022 19:10:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644433854;
+        bh=vJfdfjnTI9o6SZYd45w46xF+xwH5gWZMsI7j/ucfllg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=i8HI+5ThCjZRNInGM8TbtSyTvZqr+LZ9hTmqER+7WpM5AbCLiHeKPmfx9EBoWUqKP
+         PrQTbalXMFNjg7sju2JZKodsN0KGoGeda6SWMpxTYp6tdRKNLbD99OWSnEyV6pdWp3
+         E4P2qWS6VM0XGmdSqNFSjcSXCBJ7HTpVmlTpyZ8krr1T4+e0POcD8nseT/Jxq2IeSe
+         eh4sLOymbcGtgSdw2YVipnIXnrxDl5hz+H2xafyYL7Ev+Pe9vRlqhkn9MX+OrnxaxI
+         j6ZQXesTvm/TPeHl/3PF1wcc+PWsRGxYcLj/oKRNzphsjFCbHUObu8mut3mKTbngz+
+         32TDw2koI1eMg==
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nHsMe-006j1n-1R; Wed, 09 Feb 2022 19:10:52 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220126222034.16889-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Date:   Wed, 09 Feb 2022 19:10:51 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: ti: Introduce base support for AM62x SoC
+In-Reply-To: <20220208131827.1430086-5-vigneshr@ti.com>
+References: <20220208131827.1430086-1-vigneshr@ti.com>
+ <20220208131827.1430086-5-vigneshr@ti.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <bc6cb6e1adcf6860a595b71246778733@kernel.org>
+X-Sender: maz@kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: vigneshr@ti.com, nm@ti.com, kristo@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski@canonical.com, ssantosh@kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 11:20:34PM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 2022-02-08 13:18, Vignesh Raghavendra wrote:
+> The AM62 SoC family is the follow on AM335x built on K3 Multicore SoC
+> architecture platform, providing ultra-low-power modes, dual display,
+> multi-sensor edge compute, security and other BOM-saving integration.
+> The AM62 SoC targets broad market to enable applications such as
+> Industrial HMI, PLC/CNC/Robot control, Medical Equipment, Building
+> Automation, Appliances and more.
 > 
-> This hardware block is used on almost all BCM63xx family chipsets and
-> BCM4908 which reuses a lot of BCM63xx parts. Add relevant compatible
-> strings and also include a generic one.
+> Some highlights of this SoC are:
 > 
-> The only SoC with a different block I found is BCM6838 (thus not included
-> in this change).
+> * Quad-Cortex-A53s (running up to 1.4GHz) in a single cluster.
+>   Pin-to-pin compatible options for single and quad core are available.
+> * Cortex-M4F for general-purpose or safety usage.
+> * Dual display support, providing 24-bit RBG parallel interface and
+>   OLDI/LVDS-4 Lane x2, up to 200MHz pixel clock support for 2K display
+>   resolution.
+> * Selectable GPUsupport, up to 8GFLOPS, providing better user 
+> experience
+>   in 3D graphic display case and Android.
+> * PRU(Programmable Realtime Unit) support for customized programmable
+>   interfaces/IOs.
+> * Integrated Giga-bit Ethernet switch supporting up to a total of two
+>   external ports (TSN capable).
+> * 9xUARTs, 5xSPI, 6xI2C, 2xUSB2, 3xCAN-FD, 3x eMMC and SD, GPMC for
+>   NAND/FPGA connection, OSPI memory controller, 3xMcASP for audio,
+>   1x CSI-RX-4L for Camera, eCAP/eQEP, ePWM, among other peripherals.
+> * Dedicated Centralized System Controller for Security, Power, and
+>   Resource Management.
+> * Multiple low power modes support, ex: Deep sleep,Standby, MCU-only,
+>   enabling battery powered system design.
 > 
-> It may be worth noting that BCM6338, BCM6345, BCM6348 and BCM63268 don't
-> include "SoftRst" register but that can be handled by drivers based on
-> precise compatible string.
+> This add bare minimum DT describing ARM compute clusters, Main, MCU and
+> Wakeup domain and interconnects, UARTs and I2Cs to enable booting using
+> ramdisk.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> More details can be found in the Technical Reference Manual:
+> https://www.ti.com/lit/pdf/spruiv7
+> 
+> Co-developed-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Co-developed-by: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 > ---
-> V2: Sort enum entries & update brcm,twd.yaml
-> ---
->  .../devicetree/bindings/mfd/brcm,twd.yaml     |  2 +-
->  .../bindings/watchdog/brcm,bcm7038-wdt.yaml   | 21 +++++++++++++++----
->  2 files changed, 18 insertions(+), 5 deletions(-)
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 263 +++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  36 +++
+>  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  41 ++++
+>  arch/arm64/boot/dts/ti/k3-am62.dtsi        | 104 ++++++++
+>  arch/arm64/boot/dts/ti/k3-am625.dtsi       | 103 ++++++++
+>  5 files changed, 547 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am625.dtsi
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/brcm,twd.yaml b/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-> index 634526f790b8..3f5db1990aba 100644
-> --- a/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-> @@ -55,7 +55,7 @@ examples:
->          #size-cells = <1>;
->  
->          watchdog@28 {
-> -            compatible = "brcm,bcm7038-wdt";
-> +            compatible = "brcm,bcm4908-wdt", "brcm,bcm63xx-wdt";
->              reg = <0x28 0x8>;
->          };
->      };
-> diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
-> index a926809352b8..4d848442913c 100644
-> --- a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
-> @@ -16,9 +16,22 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - brcm,bcm6345-wdt
-> -      - brcm,bcm7038-wdt
-> +    items:
-> +      - enum:
-> +          - brcm,bcm4908-wdt
-> +          - brcm,bcm6338-wdt
-> +          - brcm,bcm6345-wdt
-> +          - brcm,bcm6348-wdt
-> +          - brcm,bcm6848-wdt
-> +          - brcm,bcm6858-wdt
-> +          - brcm,bcm7038-wdt
-> +          - brcm,bcm60333-wdt
-> +          - brcm,bcm63138-wdt
-> +          - brcm,bcm63148-wdt
-> +          - brcm,bcm63268-wdt
-> +          - brcm,bcm63381-wdt
-> +          - brcm,bcm68360-wdt
-> +      - const: brcm,bcm63xx-wdt
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> new file mode 100644
+> index 000000000000..81d6d99ca180
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -0,0 +1,263 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for AM625 SoC Family Main Domain peripherals
+> + *
+> + * Copyright (C) 2020-2022 Texas Instruments Incorporated - 
+> https://www.ti.com/
+> + */
+> +
+> +&cbass_main {
+> +	gic500: interrupt-controller@1800000 {
+> +		compatible = "arm,gic-v3";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +		#interrupt-cells = <3>;
+> +		interrupt-controller;
+> +		reg = <0x00 0x01800000 0x00 0x10000>,	/* GICD */
+> +		      <0x00 0x01880000 0x00 0xC0000>;	/* GICR */
 
-Is it really worthwhile to update all these DTs?:
+Usual rant: you are missing the GICC, GICH and GICV regions
+that are implemented by the CPU. Cortex-A53 implements them
+(they are not optional), so please describe them.
 
-arch/mips/boot/dts/brcm/bcm63268.dtsi:                  compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm6328.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm6358.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm6362.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm6368.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm7125.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm7346.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm7358.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm7360.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm7362.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm7420.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm7425.dtsi:                   compatible = "brcm,bcm7038-wdt";
-arch/mips/boot/dts/brcm/bcm7435.dtsi:                   compatible = "brcm,bcm7038-wdt";
+> +		/*
+> +		 * vcpumntirq:
+> +		 * virtual CPU interface maintenance interrupt
+> +		 */
+> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		gic_its: msi-controller@1820000 {
+> +			compatible = "arm,gic-v3-its";
+> +			reg = <0x00 0x01820000 0x00 0x10000>;
+> +			socionext,synquacer-pre-its = <0x1000000 0x400000>;
 
-I don't think so.
+The mind boggles...
 
-Rob
+         M.
+-- 
+Jazz is not dead. It just smells funny...
