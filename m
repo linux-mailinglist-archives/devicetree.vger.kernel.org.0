@@ -2,174 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD8214AF34F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 14:53:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 415BB4AF362
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 14:55:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234378AbiBINxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 08:53:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48342 "EHLO
+        id S230377AbiBINzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 08:55:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234489AbiBINxK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 08:53:10 -0500
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091EEC0613CA;
-        Wed,  9 Feb 2022 05:53:12 -0800 (PST)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 219AGhci019376;
-        Wed, 9 Feb 2022 14:52:49 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=selector1;
- bh=zTbBOG3VpWriIQMZnJIyEOLDYHNl10TRR8gRrC2+qE0=;
- b=QUZ8Brfbsc5mhKYfNfDxzxzG32ZEA1SYOoPLoVzGph7jvEDr/vK5cd9TgKqIEsjEhJms
- Kyh2mBfGZIeJomRg6ng19HcKFQ9Oa6iy6kTeNzIiF0S2++gVFYzU/H19bPDrvP0nwVGv
- SZKz2bicI3AZATZ/3qzMRQkIY0bREprAL20MIDnQs4oPvE7BtXSkhksEAta5vL3Up5hg
- hUGsgL3rG+X/t07s/K59lQ+0l13D4XcP4OGfyZ5+YXV663+ZJ1cruZ5UqJ9K3D7PQnNg
- sQ1HzvN5X181b392g4RQupOIqC+4wwS9qYj8Kan9NywBJD/kjP2WKTUS4FuYDxdF5y8+ PQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e467w2wvx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Feb 2022 14:52:49 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 58E9210002A;
-        Wed,  9 Feb 2022 14:52:48 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4CC0B222C95;
-        Wed,  9 Feb 2022 14:52:48 +0100 (CET)
-Received: from localhost (10.75.127.45) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 9 Feb 2022 14:52:47
- +0100
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-To:     <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>,
-        <alexandre.torgue@foss.st.com>
-CC:     <tglx@linutronix.de>, <fabrice.gasnier@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] dt-bindings: timer: armv7m-systick: convert to dtschema
-Date:   Wed, 9 Feb 2022 14:52:27 +0100
-Message-ID: <1644414747-22159-1-git-send-email-fabrice.gasnier@foss.st.com>
-X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-09_07,2022-02-09_01,2021-12-02_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229779AbiBINzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 08:55:40 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B68DC0613C9;
+        Wed,  9 Feb 2022 05:55:42 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id l67-20020a1c2546000000b00353951c3f62so1619732wml.5;
+        Wed, 09 Feb 2022 05:55:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=7U/uYfF5BBXdgNLHE4+fM0Xnr2orfhJ3kV6quQhuKN8=;
+        b=A1Raudlcg8KbydfuTRJDWC+KE9y+kf05/OEpM2s89EkYAhXlrrtpi9qGKOnu+OqeMj
+         gz2TEjbu48jg57g5SiHYUxrwLtZEHADVglTk2P8p5a9fFeCfUR3mp41KaOUHsr2Gdr/9
+         2vBvYQjnHuYEtFoMhYKZtypiLMju1EoF2zOHQl2wHIWtcp2+LJDSC0NlnZbiVoYZp7E7
+         y0/JqL6hg1PE7TU3cm7stqKK+T3i7EZCVnwFjvwurHJMOOF756CQxi6wcfoTlZhKGTfc
+         SB0pcp3mDEPsC/pUEVdUa3i3Fg3QZgx2zoQf+qQ16qWiel7aCQdLbm/Us2DB8RFLZ0E1
+         tAJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=7U/uYfF5BBXdgNLHE4+fM0Xnr2orfhJ3kV6quQhuKN8=;
+        b=cMqSTgoKwJl/73fLX6iXKyztmS2387Xv/iwn6/xFFAPS+jmKtWKY4NyTkaFEfBEP6b
+         irns9P1hS16HVqH8JRQrsq9HFmGUTAU4Dkc2vtTBXqaNNsQ0VXlJj2bjKgr9gzrJ734B
+         3beQvS+XLi+qJxHH3Bvo2iFhrDjiO1Zp0mA9UW+8sN0WgmUn2HH/49BPy3BXVgooSDbo
+         eAphqoaY0a/ujwHW7/0SEATui6Lq6u33rxp8DOZpkrMurJrR1MG4hJogBgXc6cKxvC0V
+         7CCq/QXToOjujYhl/HbcM0s4M+ycdGm9UnIMFm0m+yolnElW94O5tYgnwf9O6XxaJ1SA
+         0u9A==
+X-Gm-Message-State: AOAM530mr1ZMfHgPHowgikrLFKE04jq+bJn5thiPork8Pa/mYb33TOw6
+        fHDAugkJZdWT7IiigfG2N2w=
+X-Google-Smtp-Source: ABdhPJwxjFBgHIB+UhKYGiBo3CoUpqS8lR5s3DiuLtu+98fiXKhZHC3z5PVCNCW/puAce4XBpJkvlQ==
+X-Received: by 2002:a05:600c:a03:: with SMTP id z3mr2688181wmp.73.1644414940868;
+        Wed, 09 Feb 2022 05:55:40 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id g14sm3014309wmq.3.2022.02.09.05.55.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Feb 2022 05:55:40 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: remove CPU opps below 1GHz for G12B/SM1
+Date:   Wed,  9 Feb 2022 13:55:35 +0000
+Message-Id: <20220209135535.29547-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ARMv7-M system timer bindings to DT schema format.
+Amlogic G12B and SM1 devices experience CPU stalls and random board
+wedges when the system idles and CPU cores clock down to lower opp
+points. Recent vendor kernels include a change to remove 100-250MHz
+(with no explanation) [0] but other downstream sources also remove
+the 500/667MHz points (also with no explanation). Unless 100-667Mhz
+opps are removed or the CPU governor forced to performance, stalls
+are observed, so let's remove them an improve stability/uptime.
 
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+[0] https://github.com/khadas/linux/commit/20e237a4fe9f0302370e24950cb1416e038eee03
+
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- .../bindings/timer/arm,armv7m-systick.txt          | 26 -----------
- .../bindings/timer/arm,armv7m-systick.yaml         | 54 ++++++++++++++++++++++
- 2 files changed, 54 insertions(+), 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/arm,armv7m-systick.txt
- create mode 100644 Documentation/devicetree/bindings/timer/arm,armv7m-systick.yaml
+Numerous people have experienced this issue and I have tested with
+only the low opp-points removed and numerous voltage tweaks: but it
+makes no difference. With the opp points present an Odroid N2 or
+Khadas VIM3 reliably drop off my network after being left idling
+overnight with UART showing a CPU stall splat. With the opp points
+removed I see weeks of uninterupted uptime. It's beyond my skills
+to research what the cause of the stalls might be, but if anyone
+ever figures it out we can always restore things. NB: This issue
+is not too widely reported in forums, but that's largely because
+most of the Amlogic supporting distros have been including this
+change picked from my kernel patchset for some time.
 
-diff --git a/Documentation/devicetree/bindings/timer/arm,armv7m-systick.txt b/Documentation/devicetree/bindings/timer/arm,armv7m-systick.txt
-deleted file mode 100644
-index 7cf4a24..00000000
---- a/Documentation/devicetree/bindings/timer/arm,armv7m-systick.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--* ARMv7M System Timer
+ .../boot/dts/amlogic/meson-g12b-a311d.dtsi    | 40 -------------------
+ .../boot/dts/amlogic/meson-g12b-s922x.dtsi    | 40 -------------------
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    | 20 ----------
+ 3 files changed, 100 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
+index d61f43052a34..8e9ad1e51d66 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
+@@ -11,26 +11,6 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <100000000>;
+-			opp-microvolt = <731000>;
+-		};
 -
--ARMv7-M includes a system timer, known as SysTick. Current driver only
--implements the clocksource feature.
+-		opp-250000000 {
+-			opp-hz = /bits/ 64 <250000000>;
+-			opp-microvolt = <731000>;
+-		};
 -
--Required properties:
--- compatible	  : Should be "arm,armv7m-systick"
--- reg		  : The address range of the timer
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <731000>;
+-		};
 -
--Required clocking property, have to be one of:
--- clocks	  : The input clock of the timer
--- clock-frequency : The rate in HZ in input of the ARM SysTick
+-		opp-667000000 {
+-			opp-hz = /bits/ 64 <667000000>;
+-			opp-microvolt = <731000>;
+-		};
 -
--Examples:
+ 		opp-1000000000 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <761000>;
+@@ -71,26 +51,6 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <100000000>;
+-			opp-microvolt = <731000>;
+-		};
 -
--systick: timer@e000e010 {
--	compatible = "arm,armv7m-systick";
--	reg = <0xe000e010 0x10>;
--	clocks = <&clk_systick>;
--};
+-		opp-250000000 {
+-			opp-hz = /bits/ 64 <250000000>;
+-			opp-microvolt = <731000>;
+-		};
 -
--systick: timer@e000e010 {
--	compatible = "arm,armv7m-systick";
--	reg = <0xe000e010 0x10>;
--	clock-frequency = <90000000>;
--};
-diff --git a/Documentation/devicetree/bindings/timer/arm,armv7m-systick.yaml b/Documentation/devicetree/bindings/timer/arm,armv7m-systick.yaml
-new file mode 100644
-index 00000000..2bcade5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/arm,armv7m-systick.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/arm,armv7m-systick.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARMv7M System Timer
-+
-+maintainers:
-+  - Alexandre Torgue <alexandre.torgue@foss.st.com>
-+  - Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-+
-+description: ARMv7-M includes a system timer, known as SysTick.
-+
-+properties:
-+  compatible:
-+    const: arm,armv7m-systick
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency: true
-+
-+oneOf:
-+  - required:
-+      - clocks
-+  - required:
-+      - clock-frequency
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    timer@e000e010 {
-+        compatible = "arm,armv7m-systick";
-+        reg = <0xe000e010 0x10>;
-+        clocks = <&clk_systick>;
-+    };
-+
-+  - |
-+    timer@e000e010 {
-+        compatible = "arm,armv7m-systick";
-+        reg = <0xe000e010 0x10>;
-+        clock-frequency = <90000000>;
-+    };
-+
-+...
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-667000000 {
+-			opp-hz = /bits/ 64 <667000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+ 		opp-1000000000 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <731000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+index 1e5d0ee5d541..44c23c984034 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+@@ -11,26 +11,6 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <100000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-250000000 {
+-			opp-hz = /bits/ 64 <250000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+-		opp-667000000 {
+-			opp-hz = /bits/ 64 <667000000>;
+-			opp-microvolt = <731000>;
+-		};
+-
+ 		opp-1000000000 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <731000>;
+@@ -76,26 +56,6 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <100000000>;
+-			opp-microvolt = <751000>;
+-		};
+-
+-		opp-250000000 {
+-			opp-hz = /bits/ 64 <250000000>;
+-			opp-microvolt = <751000>;
+-		};
+-
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <751000>;
+-		};
+-
+-		opp-667000000 {
+-			opp-hz = /bits/ 64 <667000000>;
+-			opp-microvolt = <751000>;
+-		};
+-
+ 		opp-1000000000 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <771000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+index 3c07a89bfd27..80737731af3f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+@@ -95,26 +95,6 @@
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <100000000>;
+-			opp-microvolt = <730000>;
+-		};
+-
+-		opp-250000000 {
+-			opp-hz = /bits/ 64 <250000000>;
+-			opp-microvolt = <730000>;
+-		};
+-
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <500000000>;
+-			opp-microvolt = <730000>;
+-		};
+-
+-		opp-667000000 {
+-			opp-hz = /bits/ 64 <666666666>;
+-			opp-microvolt = <750000>;
+-		};
+-
+ 		opp-1000000000 {
+ 			opp-hz = /bits/ 64 <1000000000>;
+ 			opp-microvolt = <770000>;
 -- 
-2.7.4
+2.17.1
 
