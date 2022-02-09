@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 831FD4AF5F7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 17:04:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 407E14AF621
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 17:10:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231135AbiBIQCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 11:02:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38886 "EHLO
+        id S236609AbiBIQKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 11:10:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236440AbiBIQCz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 11:02:55 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73A11C0613C9
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 08:02:58 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nHpQi-00080I-NA; Wed, 09 Feb 2022 17:02:52 +0100
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nHpQi-0001Sc-AO; Wed, 09 Feb 2022 17:02:52 +0100
-Date:   Wed, 9 Feb 2022 17:02:52 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH net-next v2 2/2] dt-bindings: net: add schema for
- Microchip/SMSC LAN95xx USB Ethernet controllers
-Message-ID: <20220209160252.GB26024@pengutronix.de>
-References: <20220209081025.2178435-1-o.rempel@pengutronix.de>
- <20220209081025.2178435-3-o.rempel@pengutronix.de>
- <1644420908.431570.391820.nullmailer@robh.at.kernel.org>
- <CAL_JsqL1AAMq4u3Ruj2d5AUe-JnP8FDp8bUE0KcY_8fusxC9dg@mail.gmail.com>
+        with ESMTP id S236608AbiBIQKB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 11:10:01 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87963C05CB82;
+        Wed,  9 Feb 2022 08:10:03 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2313D61727;
+        Wed,  9 Feb 2022 16:10:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17ECBC340F0;
+        Wed,  9 Feb 2022 16:09:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644423002;
+        bh=5nzAqPwBH84omUc0AIW6FL5cJDjIdsWfCrgfze7zbUE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mi9s8rv/4/h4NILE2YwLOY9uaVZjrV7XIrlRDngQlVJ7PP8zztsrvKeksKgwMdIxi
+         XE+NAHH2dQI7oZtjIo3EmI3uHpUBE0JyDtAXp3V8io98yD+wo6EQMiChd36x3Di5L5
+         rKGoluQXbh4syjYu4l1IWz1tqrivRrVf+D37Hqu6Y0b5gmkfr6CEUixYGxt+uPxtyu
+         9SWi5tlcaioi7/pXU9JTvOw2zrO3mY+lm4t/54+BdfDMsYcTaqu2oNgsciAuijQMA7
+         JSFOsywDOtZ0pu/k8f2M26fHtWDD67QXzpzenGnBDQ+Ia0oyCDyU1xO2PM6UCNjQkB
+         vYIqy7cO7o+MA==
+Date:   Wed, 9 Feb 2022 16:09:55 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Subject: Re: [RESEND v8 3/3] ASoC: qcom: SC7280: Add machine driver
+Message-ID: <YgPnU5FyBCoRbeJn@sirena.org.uk>
+References: <1644413181-26358-1-git-send-email-quic_srivasam@quicinc.com>
+ <1644413181-26358-4-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="g65DA8fS0KcKTr33"
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqL1AAMq4u3Ruj2d5AUe-JnP8FDp8bUE0KcY_8fusxC9dg@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 16:57:17 up 61 days, 42 min, 82 users,  load average: 0.20, 0.19,
- 0.17
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <1644413181-26358-4-git-send-email-quic_srivasam@quicinc.com>
+X-Cookie: Disc space -- the final frontier!
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,70 +61,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 09, 2022 at 09:38:57AM -0600, Rob Herring wrote:
-> On Wed, Feb 9, 2022 at 9:35 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Wed, 09 Feb 2022 09:10:25 +0100, Oleksij Rempel wrote:
-> > > Create initial schema for Microchip/SMSC LAN95xx USB Ethernet controllers and
-> > > import all currently supported USB IDs form drivers/net/usb/smsc95xx.c
-> > >
-> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > > ---
-> > >  .../bindings/net/microchip,lan95xx.yaml       | 80 +++++++++++++++++++
-> > >  1 file changed, 80 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
-> > >
-> >
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
-> >
-> > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > This will change in the future.
-> >
-> > Full log is available here: https://patchwork.ozlabs.org/patch/1590223
-> >
-> >
-> > smsc@2: $nodename:0: 'smsc@2' does not match '^ethernet(@.*)?$'
-> >         arch/arm/boot/dts/tegra30-ouya.dt.yaml
-> >
-> > usbether@1: $nodename:0: 'usbether@1' does not match '^ethernet(@.*)?$'
-> >         arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-b.dt.yaml
-> >         arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dt.yaml
-> >         arch/arm/boot/dts/bcm2835-rpi-b.dt.yaml
-> >         arch/arm/boot/dts/bcm2835-rpi-b-plus.dt.yaml
-> >         arch/arm/boot/dts/bcm2835-rpi-b-rev2.dt.yaml
-> >         arch/arm/boot/dts/bcm2836-rpi-2-b.dt.yaml
-> >         arch/arm/boot/dts/bcm2837-rpi-3-b.dt.yaml
-> >         arch/arm/boot/dts/omap3-beagle-xm-ab.dt.yaml
-> >         arch/arm/boot/dts/omap3-beagle-xm.dt.yaml
-> >         arch/arm/boot/dts/omap4-panda-a4.dt.yaml
-> >         arch/arm/boot/dts/omap4-panda.dt.yaml
-> >         arch/arm/boot/dts/omap4-panda-es.dt.yaml
-> >
-> > usbether@3: $nodename:0: 'usbether@3' does not match '^ethernet(@.*)?$'
-> >         arch/arm/boot/dts/omap5-uevm.dt.yaml
-> 
-> So this binding is already in use, but was undocumented?
 
-Ack.
+--g65DA8fS0KcKTr33
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Or did you forget to remove the .txt file?
+On Wed, Feb 09, 2022 at 06:56:21PM +0530, Srinivasa Rao Mandadapu wrote:
+> Add new machine driver to register sound card on sc7280 based targets and
+> do the required configuration for lpass cpu dai and external codecs
+> connected over MI2S and soundwire interfaces.
+> Add support for audio jack detection, soundwire init and MBHC.
 
-No, there was no documentation.
+This breaks an x86 allmodconfig build:
 
-> The commit message should highlight all this.
-> 
-> (I don't expect you to fix all these warnings, I was just surprised to
-> see them given this is an 'initial schema'.)
+/mnt/kernel/sound/soc/qcom/sc7280.c: In function 'sc7280_snd_hw_params':
+/mnt/kernel/sound/soc/qcom/sc7280.c:151:15: error: implicit declaration of function 'snd_soc_dai_get_sdw_stream'; did you mean 'snd_soc_dai_get_pcm_stream'? [-Werror=implicit-function-declaration]
+  151 |    sruntime = snd_soc_dai_get_sdw_stream(codec_dai, substream->stream);
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~
+      |               snd_soc_dai_get_pcm_stream
+/mnt/kernel/sound/soc/qcom/sc7280.c:151:13: error: assignment to 'struct sdw_stream_runtime *' from 'int' makes pointer from integer without a cast [-Werror=int-conversion]
+  151 |    sruntime = snd_soc_dai_get_sdw_stream(codec_dai, substream->stream);
+      |             ^
 
-This patches was create before I needed to use it. Should I resent it
-with new commit message?
+--g65DA8fS0KcKTr33
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmID51MACgkQJNaLcl1U
+h9DS4gf+L0cOXgst1DdnBnb2JFSFrCKPgpHBMo8eofDL6SXXGaIUcPLNvzLc8uBy
+X7Z6cYbejzsLGdX+HfOoInYVNP+WBxT/3pAzDpcE6L1m1mAsDYGjDuR4//WPdyLB
+e3nBRZhE7rWi0p+3mvck4FKdNcMyweg2gh+fhuUU66JVjw2/fffnKK6/GJ1xRDEL
+ETO4wFphMMd5qO+S12Z0V5NM/OsUEsANCbVCBPAmhnse9KBOm8BLHVXzd/du9fbM
+mA15l7zrGMpJ9u+KkNSsUJAtfFuC8dmz2YPqWlsylvN+Aw2ut53O3MKay7o3bRT9
+JOBRMZAbW4EfADIyZEo64LutfFiAOg==
+=PdJe
+-----END PGP SIGNATURE-----
+
+--g65DA8fS0KcKTr33--
