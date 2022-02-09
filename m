@@ -2,144 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E99474AF02C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 12:55:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2D754AF061
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 12:58:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231590AbiBILzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 06:55:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56934 "EHLO
+        id S231679AbiBIL6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 06:58:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231434AbiBILzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 06:55:21 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C08FDE00F7CA;
-        Wed,  9 Feb 2022 02:52:49 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id m6so4625592ybc.9;
-        Wed, 09 Feb 2022 02:52:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=t9EOjDsFOoIpRxTzANo3FHWi1tKOlZeMj74re1dNnPQ=;
-        b=nol7K09L15nrTX8SbqhMA+n0uZ+Yv4qdgTEbQlIwvG7Pfmwj+9HWeqJLBSiMOkhi+6
-         exJdUcqqguQ9yQ27PdHc7yGPCVQ/2NovbX3RY0jCctPxdRbBwZ73gPci7bDwkh6MgbDR
-         NAp+wZOXbneBp/fyy80J6WJ3XPS6A27E8k2TpUpCnmlzvee9I/Yq+fsDNxmXPW9LYJHi
-         RT+nvRQE0EiUed3kBmTlNUAfsggE4fq6QRL8rXruXQnmphPwMxMUhdfQHShsEVqWFghj
-         K2ihaP+3K+nH6FePNUm346AGKRehV63ydLAibn3zs+J+TEorkSzztJ16Qjx9Vqt7/pVx
-         zh7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=t9EOjDsFOoIpRxTzANo3FHWi1tKOlZeMj74re1dNnPQ=;
-        b=uQP7/pE9+g4z9gAUdu/SAPV1wDqvaCq+gii8ncT/7N+3zd1ud7p9TCgPoWUQToJWr9
-         X76DcGBHCKGJQ4Lqki1koVDWvbY8hWM20NuNkTJ4doP0LXXZ/P2R0F1d5XgI3lHEStjp
-         cCpWlY68Z3YpAKkKJoZFvdPZf5Vn5qBZsKo7P0LtsyEeha/1++XVlw42Cl5g/65VF9NC
-         Z+9rmqP85bsXxKVSmFds1f3uDFMzYw1FA+HdZYkGd8PxH0mSPZcf4jSHcqYh1oU2b1Y5
-         NwhibK7Zi5DX6Is2GDjCjbiYuKXkawgjJztKPBeMJ4bDkXcvf2/GMeRWcPdrg45320QI
-         BTeg==
-X-Gm-Message-State: AOAM53123z0M19Oki8hVHBFmUTYAQwapY0JbKJ7sWfu8QXdHfm/kZJbf
-        oKLjrwGhTEC3nG38bGHl7mzKn7wC14wFtdEsBTk=
-X-Google-Smtp-Source: ABdhPJzYXzffFdYHs1OiBDSctVnmzVRTGomr66e7l7mljK4dP+oSHHewJhdr9uxcryg9p/0WcDqyTRDd/hFJxzUDL7k=
-X-Received: by 2002:a81:cf07:: with SMTP id u7mr1431288ywi.221.1644403968911;
- Wed, 09 Feb 2022 02:52:48 -0800 (PST)
-MIME-Version: 1.0
-References: <1644213481-20321-1-git-send-email-hammerh0314@gmail.com>
- <1644213481-20321-3-git-send-email-hammerh0314@gmail.com> <7aa14a1e-2814-0014-a682-f40666f635ac@kernel.org>
- <CAOX-t569-0aTu73eGSY3k+btAuVgueRY91Jd5b9kbpjmxPp+Dw@mail.gmail.com> <YgJUiegS2Cc9MyHc@kroah.com>
-In-Reply-To: <YgJUiegS2Cc9MyHc@kroah.com>
-From:   hammer hsieh <hammerh0314@gmail.com>
-Date:   Wed, 9 Feb 2022 18:53:03 +0800
-Message-ID: <CAOX-t54HXyty96UYYDHVLc4TieQsY3wEq-JT66amXgHb=SB0wg@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
+        with ESMTP id S231693AbiBIL5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 06:57:41 -0500
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E044C035451
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 02:58:12 -0800 (PST)
+Received: from vanadium.ugent.be (vanadium.ugent.be [157.193.99.61])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 6E34B29F375;
+        Wed,  9 Feb 2022 11:58:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1644404288;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=UOLtgfJTjpy0/bSG7vguavNiQOyb4CA7NGaPWqjr8EM=;
+        b=pgZXiLP2dYfgMUiQhIceGbLCPtrqqNKvWNjHUJUoaRBzrbRCIiYYIjAr0REx8oscknW3YE
+        XcNNWYaMST6DJqh0ysOz5BKO7j/Lxs2sT7GlFhUhCNknmI7BBDA+bl4EXhlICulgYF01eJ
+        OOhhpuo4RjNDBXkSO6DBwebdme+s0yoG2lYjRrdFxGNS1BES5dqkdlRZHDf28RK1SnDleo
+        A/ZQG0r0aUY8LlU/a9ML0ugAKwZTQGk3VCCuoXPwjjnCpgM4Apxud9YTJUaAX4UGXo9FlK
+        ZM80Cb/+9H0kDecwz1lm2keH5f6yTRLsspNd3+F/hrXfZHLMXyO2oY/fEaqvbQ==
+Message-ID: <71783087474514dc71db9acdc06f460dfdaa1333.camel@svanheule.net>
+Subject: Re: [PATCH 1/2] dt-bindings: timer: Add realtek,otto-tc binding
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Date:   Wed, 09 Feb 2022 11:58:06 +0100
+In-Reply-To: <YgMrwEXraoiJxSXe@robh.at.kernel.org>
+References: <cover.1642369117.git.sander@svanheule.net>
+         <7c53821386b8f4c1c0ac440f1cd186e09f4a0456.1642369117.git.sander@svanheule.net>
+         <YgMrwEXraoiJxSXe@robh.at.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Evolution 3.42.3 (3.42.3-1.fc35) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ok, thanks for your explaination, I got it now.
-I will document "posted write" info in the top of the file or top of
-startup/shutdown function.
+Hi Rob,
 
-And kernel test robot report me build error and warning with gcc
-11.2.0 ia64 / powerpc.
-I will fix it and send next patch.
+On Tue, 2022-02-08 at 20:49 -0600, Rob Herring wrote:
+> On Sun, Jan 16, 2022 at 10:39:24PM +0100, Sander Vanheule wrote:
+> > New binding for the timer/counter blocks found on the Realtek Otto MIPS
+> > platform.
+> > 
+> > Signed-off-by: Sander Vanheule <sander@svanheule.net>
+> > ---
+> >  .../bindings/timer/realtek,otto-tc.yaml       | 64 +++++++++++++++++++
+> >  1 file changed, 64 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/timer/realtek,otto-
+> > tc.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/timer/realtek,otto-tc.yaml
+> > b/Documentation/devicetree/bindings/timer/realtek,otto-tc.yaml
+> > new file mode 100644
+> > index 000000000000..12971b9ecdf5
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/timer/realtek,otto-tc.yaml
+> > @@ -0,0 +1,64 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/timer/realtek,otto-tc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Realtek Otto platform timer/counter bindings
+> > +
+> > +description:
+> 
+> '|' at the end if you want to keep formatting.
+> 
+> > +  "Up-counting 28-bit timer that can operate in oneshot or repeating mode,
+> 
+> And drop the quotes.
+> 
+> > +  providing an interrupt at roll-over.
+> > +
+> > +  The timer is driven by a divided clock, derived from the bus clock. The
+> > clock
+> > +  divisor is configurable from 2 to 65535. Divisor values of 0 and 1
+> > disable
+> > +  the timer clock. The timer can also be enabled or disabled independently
+> > from
+> > +  the clock (divisor) selection.
+> > +
+> > +  The number of timers supported by the different SoC families is:
+> > +  - RTL8380: 5 timers
+> > +  - RTL8390: 5 timers
+> > +  - RTL9300: 6 timers
+> > +  - RTL9310: 7 timers"
+> > +
+> > +maintainers:
+> > +  - Sander Vanheule <sander@svanheule.net>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: realtek,otto-tc
+> 
+> 4 SoCs with differences in the block, you need 4 SoC specific 
+> compatibles. With a fallback if appropriate.
+> 
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Parent clock from peripheral bus
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: bus
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +
+> > +examples:
+> > +  - |
+> > +    timer0: timer@3100 {
+> 
+> Drop unused labels.
 
-Greg KH <gregkh@linuxfoundation.org> =E6=96=BC 2022=E5=B9=B42=E6=9C=888=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=887:31=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Tue, Feb 08, 2022 at 07:16:52PM +0800, hammer hsieh wrote:
-> > Jiri Slaby <jirislaby@kernel.org> =E6=96=BC 2022=E5=B9=B42=E6=9C=888=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=882:27=E5=AF=AB=E9=81=93=EF=BC=9A
-> > >
-> > > Hi,
-> > >
-> > > On 07. 02. 22, 6:58, Hammer Hsieh wrote:
-> > > > +static void sunplus_shutdown(struct uart_port *port)
-> > > > +{
-> > > > +     unsigned long flags;
-> > > > +     unsigned int isc;
-> > > > +
-> > > > +     spin_lock_irqsave(&port->lock, flags);
-> > > > +
-> > > > +     isc =3D readl(port->membase + SUP_UART_ISC);
-> > > > +     isc &=3D ~(SUP_UART_ISC_RXM | SUP_UART_ISC_TXM);
-> > >
-> > > Is this correct? I mean: will the SUP_UART_ISC read contain the contr=
-ol
-> > > bits, not only status bits?
-> > >
-> >
-> > I assume reviewers don't like writel(0,xxx).
-> > So I use definition to let the code easy to read.
-> > The purpose is to clear all interrupt.
-> > Bit[3:0] status bit only for read, write 1 or 0 no effect.
-> >
-> > > > +     writel(isc, port->membase + SUP_UART_ISC);
-> > > > +
-> > > > +     spin_unlock_irqrestore(&port->lock, flags);
-> > > > +
-> > > > +     free_irq(port->irq, port);
-> > >
-> > > I am still waiting for explanation why this is safe with respect to
-> > > posted writes.
-> > >
-> >
-> > Actually I'm not IC designer, not expert for bus design.
-> > About data incoherence issue between memory bus and peripheral bus.
-> > In case of AXI bus, use non-posted write can avoid data incoherence iss=
-ue.
-> > What if in case of posted write:
-> > Send a specific command after last write command.
-> > SDCTRL identify specific command, means previous write command done.
-> > Then send interrupt signal to interrupt controller.
-> > And then interrupt controller send done signal to Master.
-> > Master receive done signal, means write command done.
-> > Then issue a interrupt or proceed next write command.
->
-> But how does the kernel know when the write is completed?  The kernel
-> seems to ignore that here entirely, so the write could actually complete
-> seconds later, which would not be a good thing, right?
->
-> Traditionally, we want to ensure that a write() completes, so on some
-> busses, we have to do a read to ensure that the write made it to the
-> hardware before we can continue on.  That is not happening here which is
-> why Jiri keeps bringing it up.  It looks broken to us, and you need to
-> document it somewhere (in the changelog?  In the top of the file?) as to
-> why this is not needed.
->
-> thanks,
->
-> greg k-h
+I forgot to remove this, as originally I had...
+
+> 
+> > +      compatible = "realtek,otto-tc";
+> > +      reg = <0x3100 0x10>;
+> > +
+> > +      interrupts = <29 4>;
+> > +
+> > +      clocks = <&lx_clk>;
+> > +      clock-names = "bus";
+
+clocks = <&lx_clk>, <&timer0>;
+clock-names = "bus", "timer";
+
+to have a self-reference for the (private) derived clock. Not sure if it makes
+sense to do it like this though, or if only the bus clock would be sufficient.
+
+I'll also fix your other remarks in v2.
+
+Best,
+Sander
+
+
+> > +    };
+> > -- 
+> > 2.34.1
+> > 
+> > 
