@@ -2,284 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 954834AE5A2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 00:50:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C2F4AE5E7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 01:24:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238496AbiBHXuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 18:50:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52468 "EHLO
+        id S231775AbiBIAYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 19:24:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235330AbiBHXun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 18:50:43 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC3FC061577
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 15:50:42 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id u3so754850oiv.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 15:50:42 -0800 (PST)
+        with ESMTP id S229956AbiBIAYF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 19:24:05 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233ECC06157B
+        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 16:24:04 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id qe15so660916pjb.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 16:24:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZfjRDOxBlYHHE14BCEgNLKQP/YKV4fajU6/9Z4+F+7A=;
-        b=BS1mRT/hnJZLCPbRnmOQrH/RP9NXql41p4yiX3I3vTpbaWa9H2QX9ueT/PbbIIpBuO
-         wKqnqoM3msoIl9hG3IiOugSaK1fQ8hoYA+r15JyTQPHg8hfVsy9t1ilb+jSAzpn6wcMK
-         gAS/tWHJXvWOtI1yFKDxXFYr2mF3e/kdxYNAAeEeMGFHRkJwhl3TCK59jaVEx76efa3A
-         DaCnejo/My5XGJocCbE3m5k8l7o9LKYrF0frYXql9fHASVIExKIvafASKEGaBPqk/WJR
-         /4Tthh1oC+i21lhVB8JNUmUR187U/N30084/wUF/y8Noy8UWZtM8jrTTKwcemIGn34+C
-         AIjw==
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=DYNXR2DtuxF1ISLzpPLoyEyGiOJ7sBlng/Jv7KiUcBE=;
+        b=VxlJfskh25n9CGF6UK57dB54CJXlDoep5C3N0smYrTdby67X/6qk5Sk7HFgMDS+nGY
+         AzoiVQXLD0zX8n/JzPWPnuoJP4lce+qxe7/XN61DoUql4/ek5ls0IMNRKeE94m0bm/gY
+         cfT5FrbMtbIqBaACvO397ODwQRm/U6DIWtJ6dhWxc0WDClqqFyqNLeTFfHsevZWbE5q3
+         cwzPNdId6TH00LMJppPQxBnP9hhTWODlnfeYkG/m3Ojtz4sIieW0oyczghQl9ZkyeB1T
+         cdpt7CxfDkihd9SNrVTXaJx8ESUyXBr7GN+fbte3Yb50ycgG7mu3UVHP/0wuM8FLqbbg
+         LlGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZfjRDOxBlYHHE14BCEgNLKQP/YKV4fajU6/9Z4+F+7A=;
-        b=nj2+ys6etiic7VDhroDmH+jR/urIn+w53oVK/bhxv+DbwawuQ0QI1NthfXxx3zgj/r
-         dr3Bk5FMxS4yszhfMOwPR2JdNoxsFc6nDfyq4XJUT4ZRy64/k3jcLMGdqeapxk8axClP
-         X/82okkvhB8givFaOF2hYhBeQIZWfMyQggQFpjngK7fgRst3bwys2MO5Yrdn+Fd5bKSg
-         x1W/WgBMxiTZg4P4MA68CcuTJVXT8VGszdvQ9MhBcbPmgRrj1LqbD+bpsJR99T0uOEwb
-         lJQAzOMe0eDgN+OeuTgs6C4LEqXveVyX/EcFJVN6ZuJuclu8R4emCiahANTy8nJGzVkv
-         cntg==
-X-Gm-Message-State: AOAM5309LincXQVkYKLM5GPEhT0ebzsK4g3fPEjFjaFUjJHUUI6t7VXV
-        sVUVq0jQjYLbzIm0A8auKf5rtg==
-X-Google-Smtp-Source: ABdhPJwsbbOsQ2Ax/QBE65F8Xax4Q1ry58y4ohjRKiITBFnYm47y1u0Jiw5XKGU8I+Mz56JLFI6/nA==
-X-Received: by 2002:a05:6808:1920:: with SMTP id bf32mr177216oib.304.1644364241902;
-        Tue, 08 Feb 2022 15:50:41 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id d22sm5729003otp.79.2022.02.08.15.50.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Feb 2022 15:50:41 -0800 (PST)
-Date:   Tue, 8 Feb 2022 15:52:59 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org, robh+dt@kernel.org,
-        robdclark@gmail.com, seanpaul@chromium.org, swboyd@chromium.org,
-        dianders@chromium.org, krzysztof.kozlowski@canonical.com,
-        thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, quic_kalyant@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
-        quic_mkrishn@quicinc.com
-Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sc7280: Add support for eDP
- panel on CRD
-Message-ID: <YgMCW9GrY6SRteOU@ripper>
-References: <1644333525-30920-1-git-send-email-quic_sbillaka@quicinc.com>
- <1644333525-30920-3-git-send-email-quic_sbillaka@quicinc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=DYNXR2DtuxF1ISLzpPLoyEyGiOJ7sBlng/Jv7KiUcBE=;
+        b=RnKXEYr/KHPupNotChoOFpZS1xPo+YFDP3A/TOFimgkrLTgwDyP2MDr29KfhjkdSFN
+         DSEIj2b2GfYGCoAgedxuTMARIT27L38bzCwnrRPZJ5cYhFnLv/JjD1/AGd+zRON6MRfB
+         kZsaFbSdyQcYC6uG9DwNaQLi6K95enEzu6wBh5qK3XC/HMoOcoqfliC02zNVAyW9L7yy
+         +JuZtPecp5xAWjULPmIMY43/9ucTQB5isYvXnU7VdPb3PW6TInPB69GArVbsg/IpxOo8
+         UezqFUnK3Wa2opBAvOIWMRsag0Dsd+5hyQwJG9550GtnCbUKAJVL16PfMnOdcfzLFBnE
+         v/8g==
+X-Gm-Message-State: AOAM5315c2WMwzdiIu8MI3fJ6/dyiMXXC54TBqpR4NPTcKid7qFGHmpK
+        HjqSEI8sOWHPlRCaan1R+dzMK/yy4JXINvok8P+1Cw==
+X-Google-Smtp-Source: ABdhPJxzWI7eHHDKAtjNbbB172grlY3cvC/rvaFNoMxSL6UiTPyvmxeEjwk9Pe8+ZkIlAhoSvpkKXJCpcc8WB5HAMV0=
+X-Received: by 2002:a17:90a:5303:: with SMTP id x3mr64365pjh.64.1644366243349;
+ Tue, 08 Feb 2022 16:24:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1644333525-30920-3-git-send-email-quic_sbillaka@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220202020103.2149130-1-rajatja@google.com>
+In-Reply-To: <20220202020103.2149130-1-rajatja@google.com>
+From:   Rajat Jain <rajatja@google.com>
+Date:   Tue, 8 Feb 2022 16:23:27 -0800
+Message-ID: <CACK8Z6GmC7O3__RKwSEOQQ5Pde6h-LRz_5d+--V=CuB76cpe+w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] PCI: Allow internal devices to be marked as untrusted
+To:     Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rajat Jain <rajatxjain@gmail.com>,
+        Dmitry Torokhov <dtor@google.com>,
+        Jesse Barnes <jsbarnes@google.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Pavel Machek <pavel@denx.de>,
+        "Oliver O'Halloran" <oohall@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 08 Feb 07:18 PST 2022, Sankeerth Billakanti wrote:
+Hello Folks,
 
-> Enable the eDP display panel support without HPD on sc7280 platform.
-> 
-> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+
+On Tue, Feb 1, 2022 at 6:01 PM Rajat Jain <rajatja@google.com> wrote:
+>
+> Today the pci_dev->untrusted is set for any devices sitting downstream
+> an external facing port (determined via "ExternalFacingPort" or the
+> "external-facing" properties).
+>
+> However, currently there is no way for internal devices to be marked as
+> untrusted.
+>
+> There are use-cases though, where a platform would like to treat an
+> internal device as untrusted (perhaps because it runs untrusted firmware
+> or offers an attack surface by handling untrusted network data etc).
+>
+> Introduce a new "UntrustedDevice" property that can be used by the
+> firmware to mark any device as untrusted.
+
+Just to unite the threads (from
+https://www.spinics.net/lists/linux-pci/msg120221.html). I did reach
+out to Microsoft but they haven't acknowledged my email. I also pinged
+them again yesterday, but I suspect I may not be able to break the
+ice. So this patch may be ready to go in my opinion.
+
+I don't see any outstanding comments on this patch, but please let me
+know if you have any comments.
+
+Thanks & Best Regards,
+
+Rajat
+
+
+>
+> Signed-off-by: Rajat Jain <rajatja@google.com>
 > ---
-> 
-> Changes in v2:
->   - sort node references alphabetically
->   - improve readability
->   - move the pwm pinctrl to pwm node
->   - move the regulators to root
->   - define backlight power
->   - remove dummy regulator node
->   - cleanup pinctrl definitions
-> 
->  arch/arm64/boot/dts/qcom/sc7280-crd.dts | 122 ++++++++++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi    |   2 -
->  2 files changed, 122 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> index e2efbdd..bff2707 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> @@ -21,6 +21,34 @@
->  	chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
+> v2: * Also use the same property for device tree based systems.
+>     * Add documentation (next patch)
+>
+>  drivers/pci/of.c       | 2 ++
+>  drivers/pci/pci-acpi.c | 1 +
+>  drivers/pci/pci.c      | 9 +++++++++
+>  drivers/pci/pci.h      | 2 ++
+>  4 files changed, 14 insertions(+)
+>
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index cb2e8351c2cc..e8b804664b69 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -24,6 +24,8 @@ void pci_set_of_node(struct pci_dev *dev)
+>                                                     dev->devfn);
+>         if (dev->dev.of_node)
+>                 dev->dev.fwnode = &dev->dev.of_node->fwnode;
 > +
-> +	backlight_power: backlight-power {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "backlight_power";
+> +       pci_set_untrusted(dev);
+>  }
+>
+>  void pci_release_of_node(struct pci_dev *dev)
+> diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+> index a42dbf448860..2bffbd5c6114 100644
+> --- a/drivers/pci/pci-acpi.c
+> +++ b/drivers/pci/pci-acpi.c
+> @@ -1356,6 +1356,7 @@ void pci_acpi_setup(struct device *dev, struct acpi_device *adev)
+>
+>         pci_acpi_optimize_delay(pci_dev, adev->handle);
+>         pci_acpi_set_external_facing(pci_dev);
+> +       pci_set_untrusted(pci_dev);
+>         pci_acpi_add_edr_notifier(pci_dev);
+>
+>         pci_acpi_add_pm_notifier(adev, pci_dev);
+> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> index 9ecce435fb3f..41e887c27004 100644
+> --- a/drivers/pci/pci.c
+> +++ b/drivers/pci/pci.c
+> @@ -6869,3 +6869,12 @@ static int __init pci_realloc_setup_params(void)
+>         return 0;
+>  }
+>  pure_initcall(pci_realloc_setup_params);
 > +
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
+> +void pci_set_untrusted(struct pci_dev *pdev)
+> +{
+> +       u8 val;
 > +
-> +		gpio = <&pm8350c_gpios 7 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
+> +       if (!device_property_read_u8(&pdev->dev, "UntrustedDevice", &val)
+> +           && val)
+> +               pdev->untrusted = 1;
+> +}
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index 3d60cabde1a1..6c273ce5e0ba 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -761,4 +761,6 @@ static inline pci_power_t mid_pci_get_power_state(struct pci_dev *pdev)
+>  }
+>  #endif
+>
+> +void pci_set_untrusted(struct pci_dev *pdev);
 > +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&edp_bl_power>;
-> +	};
-> +
-> +	edp_power: edp-power {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "edp_power";
-> +
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&tlmm 80 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&edp_panel_power>;
-> +	};
->  };
->  
->  &apps_rsc {
-> @@ -76,6 +104,42 @@ ap_ts_pen_1v8: &i2c13 {
->  	};
->  };
->  
-> +&edp_out {
-
-Sorry for missing this while merging changes in sc7280.dtsi. But it
-would be really nice if this was labeled mdss_edp_out instead (or
-possibly defined within the &mdss_edp node).
-
-Now you will have &edp_out and &dp_out floating around away from the edp
-and dp nodes...
-
-> +	remote-endpoint = <&edp_panel_in>;
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_edp {
-> +	status = "okay";
-> +
-> +	vdda-1p2-supply = <&vreg_l6b_1p2>;
-> +	vdda-0p9-supply = <&vreg_l10c_0p8>;
-> +};
-> +
-> +&mdss_edp_phy {
-> +	status = "okay";
-> +
-> +	vdda-1p2-supply = <&vreg_l6b_1p2>;
-> +	vdda-0p9-supply = <&vreg_l10c_0p8>;
-> +};
-> +
-> +&mdss_dp {
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&dp_hot_plug_det>;
-> +	data-lanes = <0 1>;
-> +	vdda-1p2-supply = <&vreg_l6b_1p2>;
-> +	vdda-0p9-supply = <&vreg_l1b_0p8>;
-> +};
-> +
-> +&mdss_mdp {
-> +	status = "okay";
-> +};
-> +
->  &nvme_3v3_regulator {
->  	gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
->  };
-> @@ -84,7 +148,65 @@ ap_ts_pen_1v8: &i2c13 {
->  	pins = "gpio51";
->  };
->  
-> +&pm8350c_pwm {
-
-This label doesn't exist, so I won't be able to merge this patch.
-
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&edp_bl_pwm>;
-> +};
-> +
-> +&pm8350c_gpios {
-> +	edp_bl_power: edp-bl-power {
-> +		pins = "gpio7";
-> +		function = "normal";
-> +		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
-> +		bias-disable;
-> +		output-low;
-> +	};
-> +
-> +	edp_bl_pwm: edp-bl-pwm {
-> +		pins = "gpio8";
-> +		function = "func1";
-> +		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
-> +		bias-disable;
-> +		output-low;
-> +	};
-> +};
-> +
-> +&soc {
-> +	edp_backlight: edp-backlight {
-> +		compatible = "pwm-backlight";
-
-This is not a device on the mmio bus, so it should not love within the
-&soc.
-
-> +
-> +		power-supply = <&backlight_power>;
-> +		pwms = <&pm8350c_pwm 3 65535>;
-> +	};
-> +
-> +	edp_panel: edp_panel {
-
-Ditto.
-
-Regards,
-Bjorn
-
-> +		compatible = "sharp,lq140m1jw46";
-> +
-> +		power-supply = <&edp_power>;
-> +		backlight = <&edp_backlight>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			port@0 {
-> +				reg = <0>;
-> +				edp_panel_in: endpoint {
-> +					remote-endpoint = <&edp_out>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &tlmm {
-> +	edp_panel_power: edp-panel-power {
-> +		pins = "gpio80";
-> +		function = "gpio";
-> +		bias-pull-down;
-> +	};
-> +
->  	tp_int_odl: tp-int-odl {
->  		pins = "gpio7";
->  		function = "gpio";
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 3572399..f8fa716 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -3012,8 +3012,6 @@
->  
->  			mdss_edp: edp@aea0000 {
->  				compatible = "qcom,sc7280-edp";
-> -				pinctrl-names = "default";
-> -				pinctrl-0 = <&edp_hot_plug_det>;
->  
->  				reg = <0 0xaea0000 0 0x200>,
->  				      <0 0xaea0200 0 0x200>,
-> -- 
-> 2.7.4
-> 
+>  #endif /* DRIVERS_PCI_H */
+> --
+> 2.35.0.rc2.247.g8bbb082509-goog
+>
