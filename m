@@ -2,75 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6929E4AE9E7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 07:05:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F40F4AEA29
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 07:18:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230336AbiBIGFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 01:05:06 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:51130 "EHLO
+        id S233141AbiBIGRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 01:17:53 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:35658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233185AbiBIGAn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 01:00:43 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0779BC0302E1;
-        Tue,  8 Feb 2022 22:00:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1F26F61672;
-        Wed,  9 Feb 2022 06:00:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C951C340F6;
-        Wed,  9 Feb 2022 06:00:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644386414;
-        bh=H1Il4OnrZcVzTgnRCSfIq6w+2cA8lG5GY5uvlt5naWQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Qtkir0ujjb3mIuWq7ct9FTz1yRDsLAWnTNN3gaiC/I8cPPPCuezabteArA7REpv7F
-         KycdMcfVAsPHB25wa3B8wIzZmErdwXbJWeojnfz2e/FN3kRCgPoWhpzuR53iXc1Zdl
-         4LaiXrFP9RKO+1pHDtfwPVyR5EgwswdNl263d3zGaRsiRQQYm3uTpx8AWvJMgVYfWD
-         jLdD6o94RMOEVu1kS8GE+FY8/7qmB8Xs6JTNx+i2x+XKN4rg4rsorPNtam+Jm4KAIN
-         W9D1+yLFUCVwBkY4hbGXlTxiLS+NObLhQ6VbjFG4BBY5WhzpR6DPgcgztPfBK76Qvg
-         /WWmFgfjXLRLA==
-Received: by mail-vs1-f42.google.com with SMTP id g10so1471601vss.1;
-        Tue, 08 Feb 2022 22:00:14 -0800 (PST)
-X-Gm-Message-State: AOAM5306oBm91eBTViow08Erazb3V4WBpIY1UW8mRgtI0KRhnFdCdkNf
-        hXE4M/myHq+QgSzPcuBhKc7WiQisHhB3XsYhsTU=
-X-Google-Smtp-Source: ABdhPJx7IxmUfwBXIDyqbMr6LV1Uy4FTIuhRCLFMgyRqUGbgmGiKMiWYLu9DY913QWMQFaNwyWxJN7W1AENziNBBsuI=
-X-Received: by 2002:a67:e0d9:: with SMTP id m25mr200489vsl.51.1644386413208;
- Tue, 08 Feb 2022 22:00:13 -0800 (PST)
+        with ESMTP id S243519AbiBIGME (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 01:12:04 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF79AC033243;
+        Tue,  8 Feb 2022 22:12:06 -0800 (PST)
+X-UUID: 93c623bc4ab04ee29b8da383a6df6a6e-20220209
+X-UUID: 93c623bc4ab04ee29b8da383a6df6a6e-20220209
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <bo.jiao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1810760848; Wed, 09 Feb 2022 14:12:03 +0800
+Received: from MTKMBS34N1.mediatek.inc (172.27.4.172) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 9 Feb 2022 14:12:02 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS34N1.mediatek.inc
+ (172.27.4.172) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 9 Feb
+ 2022 14:12:00 +0800
+Received: from mcddlt001.gcn.mediatek.inc (10.19.240.15) by
+ MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Wed, 9 Feb 2022 14:11:59 +0800
+From:   Bo Jiao <bo.jiao@mediatek.com>
+To:     Felix Fietkau <nbd@nbd.name>
+CC:     linux-wireless <linux-wireless@vger.kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Xing Song <xing.song@mediatek.com>,
+        Sujuan Chen <sujuan.chen@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        "Evelyn Tsai" <evelyn.tsai@mediatek.com>,
+        linux-mediatek <linux-mediatek@lists.infradead.org>,
+        Peter Chiu <chui-hao.chiu@mediatek.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v4 1/3] dt-bindings: net: wireless: mt76: document bindings for MT7986
+Date:   Wed, 9 Feb 2022 14:11:55 +0800
+Message-ID: <08ef978845036560bb08b72e948e42f858e087d3.1644386694.git.Bo.Jiao@mediatek.com>
+X-Mailer: git-send-email 2.17.0
+In-Reply-To: <cover.1644386694.git.Bo.Jiao@mediatek.com>
+References: <cover.1644386694.git.Bo.Jiao@mediatek.com>
 MIME-Version: 1.0
-References: <20220126114452.692512-1-apatel@ventanamicro.com>
- <20220126114452.692512-2-apatel@ventanamicro.com> <CAJF2gTSwzx-yC=WvFixT96=q+M0KPzaZH5PpgGKVWg42M4GBNw@mail.gmail.com>
- <CAAhSdy0DcB2+vJSEBd5apQhzjFBz9haNTVqqTeX92+hYVyhB2A@mail.gmail.com>
-In-Reply-To: <CAAhSdy0DcB2+vJSEBd5apQhzjFBz9haNTVqqTeX92+hYVyhB2A@mail.gmail.com>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Wed, 9 Feb 2022 14:00:02 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTRy_VNBAW94KoeAcBWH52ac+PE0H8Km17kKuyUy1NsfDQ@mail.gmail.com>
-Message-ID: <CAJF2gTRy_VNBAW94KoeAcBWH52ac+PE0H8Km17kKuyUy1NsfDQ@mail.gmail.com>
-Subject: Re: [PATCH v10 1/8] RISC-V: Enable CPU_IDLE drivers
-To:     Anup Patel <anup@brainfault.org>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        kvm-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,172 +58,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 9, 2022 at 1:15 PM Anup Patel <anup@brainfault.org> wrote:
->
-> On Tue, Feb 8, 2022 at 11:46 AM Guo Ren <guoren@kernel.org> wrote:
-> >
-> > Reviewed-by: Guo Ren <guoren@kernel.org>
-> >
-> > small questions:
-> >
-> > On Wed, Jan 26, 2022 at 7:46 PM Anup Patel <apatel@ventanamicro.com> wrote:
-> > >
-> > > From: Anup Patel <anup.patel@wdc.com>
-> > >
-> > > We force select CPU_PM and provide asm/cpuidle.h so that we can
-> > > use CPU IDLE drivers for Linux RISC-V kernel.
-> > >
-> > > Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> > > Signed-off-by: Anup Patel <apatel@vetanamicro.com>
-> > > ---
-> > >  arch/riscv/Kconfig                |  7 +++++++
-> > >  arch/riscv/configs/defconfig      |  1 +
-> > >  arch/riscv/configs/rv32_defconfig |  1 +
-> > >  arch/riscv/include/asm/cpuidle.h  | 24 ++++++++++++++++++++++++
-> > >  arch/riscv/kernel/process.c       |  3 ++-
-> > >  5 files changed, 35 insertions(+), 1 deletion(-)
-> > >  create mode 100644 arch/riscv/include/asm/cpuidle.h
-> > >
-> > > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> > > index 5adcbd9b5e88..76976d12b463 100644
-> > > --- a/arch/riscv/Kconfig
-> > > +++ b/arch/riscv/Kconfig
-> > > @@ -46,6 +46,7 @@ config RISCV
-> > >         select CLONE_BACKWARDS
-> > >         select CLINT_TIMER if !MMU
-> > >         select COMMON_CLK
-> > > +       select CPU_PM if CPU_IDLE
-> > >         select EDAC_SUPPORT
-> > >         select GENERIC_ARCH_TOPOLOGY if SMP
-> > >         select GENERIC_ATOMIC64 if !64BIT
-> > > @@ -547,4 +548,10 @@ source "kernel/power/Kconfig"
-> > >
-> > >  endmenu
-> > >
-> > > +menu "CPU Power Management"
-> > > +
-> > > +source "drivers/cpuidle/Kconfig"
-> > > +
-> > > +endmenu
-> > > +
-> > >  source "arch/riscv/kvm/Kconfig"
-> > > diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-> > > index f120fcc43d0a..a5e0482a4969 100644
-> > > --- a/arch/riscv/configs/defconfig
-> > > +++ b/arch/riscv/configs/defconfig
-> > > @@ -20,6 +20,7 @@ CONFIG_SOC_SIFIVE=y
-> > >  CONFIG_SOC_VIRT=y
-> > >  CONFIG_SMP=y
-> > >  CONFIG_HOTPLUG_CPU=y
-> > > +CONFIG_CPU_IDLE=y
-> > >  CONFIG_VIRTUALIZATION=y
-> > >  CONFIG_KVM=m
-> > >  CONFIG_JUMP_LABEL=y
-> > > diff --git a/arch/riscv/configs/rv32_defconfig b/arch/riscv/configs/rv32_defconfig
-> > > index 8b56a7f1eb06..d1b87db54d68 100644
-> > > --- a/arch/riscv/configs/rv32_defconfig
-> > > +++ b/arch/riscv/configs/rv32_defconfig
-> > > @@ -20,6 +20,7 @@ CONFIG_SOC_VIRT=y
-> > >  CONFIG_ARCH_RV32I=y
-> > >  CONFIG_SMP=y
-> > >  CONFIG_HOTPLUG_CPU=y
-> > > +CONFIG_CPU_IDLE=y
-> > >  CONFIG_VIRTUALIZATION=y
-> > >  CONFIG_KVM=m
-> > >  CONFIG_JUMP_LABEL=y
-> > > diff --git a/arch/riscv/include/asm/cpuidle.h b/arch/riscv/include/asm/cpuidle.h
-> > > new file mode 100644
-> > > index 000000000000..71fdc607d4bc
-> > > --- /dev/null
-> > > +++ b/arch/riscv/include/asm/cpuidle.h
-> > > @@ -0,0 +1,24 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > > +/*
-> > > + * Copyright (C) 2021 Allwinner Ltd
-> > > + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
-> > > + */
-> > > +
-> > > +#ifndef _ASM_RISCV_CPUIDLE_H
-> > > +#define _ASM_RISCV_CPUIDLE_H
-> > > +
-> > > +#include <asm/barrier.h>
-> > > +#include <asm/processor.h>
-> > > +
-> > > +static inline void cpu_do_idle(void)
-> > > +{
-> > > +       /*
-> > > +        * Add mb() here to ensure that all
-> > > +        * IO/MEM accesses are completed prior
-> > > +        * to entering WFI.
-> > > +        */
-> > > +       mb();
-> > I think it's a separate fixup.
->
-> This one is tricky to move as separate fixup because there
-> is no cpu_do_idle() until this patch adds it.
->
-> If we deliberately have a separate patch for "mb()" then it
-> will be only fixing cpu_do_idle() function added by previous
-> patch in the same series.
-You are right, I misunderstood the usage of asm/cpuidle.h.
+From: Peter Chiu <chui-hao.chiu@mediatek.com>
 
->
-> Regards,
-> Anup
->
-> >
-> > > +       wait_for_interrupt();
-> > > +}
-> > > +
-> > > +#endif
-> > > diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-> > > index 03ac3aa611f5..504b496787aa 100644
-> > > --- a/arch/riscv/kernel/process.c
-> > > +++ b/arch/riscv/kernel/process.c
-> > > @@ -23,6 +23,7 @@
-> > >  #include <asm/string.h>
-> > >  #include <asm/switch_to.h>
-> > >  #include <asm/thread_info.h>
-> > > +#include <asm/cpuidle.h>
-> > >
-> > >  register unsigned long gp_in_global __asm__("gp");
-> > >
-> > > @@ -37,7 +38,7 @@ extern asmlinkage void ret_from_kernel_thread(void);
-> > >
-> > >  void arch_cpu_idle(void)
-> > >  {
-> > maybe below is enough.
-> > + mb();
-> >    wait_for_interrupt();
-> >
-> > > -       wait_for_interrupt();
-> > > +       cpu_do_idle();
-> >
-> >
-> > >         raw_local_irq_enable();
-> > >  }
-> > >
-> > > --
-> > > 2.25.1
-> > >
-> > >
-> > > --
-> > > kvm-riscv mailing list
-> > > kvm-riscv@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/kvm-riscv
-> >
-> >
-> >
-> > --
-> > Best Regards
-> >  Guo Ren
-> >
-> > ML: https://lore.kernel.org/linux-csky/
+Add an entry for MT7986 SoC.
 
+Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+Cc: devicetree@vger.kernel.org
+---
+v3:
+ - fix yamllint warnings and errors
+ - add 'minItems: 1' to keep 1 reg entry being valid
+v4:
+ - add description for property reg items
+---
+ .../bindings/net/wireless/mediatek,mt76.yaml  | 33 +++++++++++++++++--
+ 1 file changed, 30 insertions(+), 3 deletions(-)
 
-
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+index 1489d3c..a76e5f7 100644
+--- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+@@ -18,7 +18,7 @@ description: |
+   wireless device. The node is expected to be specified as a child
+   node of the PCI controller to which the wireless chip is connected.
+   Alternatively, it can specify the wireless part of the MT7628/MT7688
+-  or MT7622 SoC.
++  or MT7622/MT7986 SoC.
+ 
+ allOf:
+   - $ref: ieee80211.yaml#
+@@ -29,9 +29,13 @@ properties:
+       - mediatek,mt76
+       - mediatek,mt7628-wmac
+       - mediatek,mt7622-wmac
++      - mediatek,mt7986-wmac
+ 
+   reg:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 3
++    description:
++      MT7986 should contain 3 regions consys, dcm, and sku, in this order.
+ 
+   interrupts:
+     maxItems: 1
+@@ -39,6 +43,17 @@ properties:
+   power-domains:
+     maxItems: 1
+ 
++  memory-region:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++    description:
++      Specify the consys reset for mt7986.
++
++  reset-name:
++    const: consys
++
+   mediatek,infracfg:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+@@ -165,7 +180,7 @@ required:
+   - compatible
+   - reg
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+@@ -231,3 +246,15 @@ examples:
+ 
+       power-domains = <&scpsys 3>;
+     };
++
++  - |
++    wifi@18000000 {
++        compatible = "mediatek,mt7986-wmac";
++        resets = <&watchdog 23>;
++        reset-names = "consys";
++        reg = <0x18000000 0x1000000>,
++              <0x10003000 0x1000>,
++              <0x11d10000 0x1000>;
++        interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>;
++        memory-region = <&wmcpu_emi>;
++    };
 -- 
-Best Regards
- Guo Ren
+2.18.0
 
-ML: https://lore.kernel.org/linux-csky/
