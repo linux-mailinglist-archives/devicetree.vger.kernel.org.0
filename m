@@ -2,180 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C2F4AE5E7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 01:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10E8C4AE700
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 03:42:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231775AbiBIAYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 19:24:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35650 "EHLO
+        id S244821AbiBICkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 21:40:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229956AbiBIAYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 19:24:05 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233ECC06157B
-        for <devicetree@vger.kernel.org>; Tue,  8 Feb 2022 16:24:04 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id qe15so660916pjb.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Feb 2022 16:24:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=DYNXR2DtuxF1ISLzpPLoyEyGiOJ7sBlng/Jv7KiUcBE=;
-        b=VxlJfskh25n9CGF6UK57dB54CJXlDoep5C3N0smYrTdby67X/6qk5Sk7HFgMDS+nGY
-         AzoiVQXLD0zX8n/JzPWPnuoJP4lce+qxe7/XN61DoUql4/ek5ls0IMNRKeE94m0bm/gY
-         cfT5FrbMtbIqBaACvO397ODwQRm/U6DIWtJ6dhWxc0WDClqqFyqNLeTFfHsevZWbE5q3
-         cwzPNdId6TH00LMJppPQxBnP9hhTWODlnfeYkG/m3Ojtz4sIieW0oyczghQl9ZkyeB1T
-         cdpt7CxfDkihd9SNrVTXaJx8ESUyXBr7GN+fbte3Yb50ycgG7mu3UVHP/0wuM8FLqbbg
-         LlGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=DYNXR2DtuxF1ISLzpPLoyEyGiOJ7sBlng/Jv7KiUcBE=;
-        b=RnKXEYr/KHPupNotChoOFpZS1xPo+YFDP3A/TOFimgkrLTgwDyP2MDr29KfhjkdSFN
-         DSEIj2b2GfYGCoAgedxuTMARIT27L38bzCwnrRPZJ5cYhFnLv/JjD1/AGd+zRON6MRfB
-         kZsaFbSdyQcYC6uG9DwNaQLi6K95enEzu6wBh5qK3XC/HMoOcoqfliC02zNVAyW9L7yy
-         +JuZtPecp5xAWjULPmIMY43/9ucTQB5isYvXnU7VdPb3PW6TInPB69GArVbsg/IpxOo8
-         UezqFUnK3Wa2opBAvOIWMRsag0Dsd+5hyQwJG9550GtnCbUKAJVL16PfMnOdcfzLFBnE
-         v/8g==
-X-Gm-Message-State: AOAM5315c2WMwzdiIu8MI3fJ6/dyiMXXC54TBqpR4NPTcKid7qFGHmpK
-        HjqSEI8sOWHPlRCaan1R+dzMK/yy4JXINvok8P+1Cw==
-X-Google-Smtp-Source: ABdhPJxzWI7eHHDKAtjNbbB172grlY3cvC/rvaFNoMxSL6UiTPyvmxeEjwk9Pe8+ZkIlAhoSvpkKXJCpcc8WB5HAMV0=
-X-Received: by 2002:a17:90a:5303:: with SMTP id x3mr64365pjh.64.1644366243349;
- Tue, 08 Feb 2022 16:24:03 -0800 (PST)
+        with ESMTP id S241352AbiBIAxk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 19:53:40 -0500
+X-Greylist: delayed 1097 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 08 Feb 2022 16:53:39 PST
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ED9BC061576;
+        Tue,  8 Feb 2022 16:53:39 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2190ZJv1007030;
+        Tue, 8 Feb 2022 18:35:19 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1644366919;
+        bh=5EyyxMNHjefrxCy8IJH40Emcq2IkwFCHgOrxbd6LIHE=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=FhUjrGWYeBwvuzWGaN1S41g+P6leu+LOxvWnb5NiRcblwhffNceyhWeijbHboZsaZ
+         2EsiHpM5hhBXhSpYd/mejaCf+9jNwLQOu7GVs4ubndbrIYQ5kHMiEPcG5ByRXLHI7v
+         vkqkropLC4NhQ0KEYtlPIdWXczUHcPX94QML7tY0=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2190ZJVQ017346
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Feb 2022 18:35:19 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 8
+ Feb 2022 18:35:19 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 8 Feb 2022 18:35:19 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2190ZJUm040029;
+        Tue, 8 Feb 2022 18:35:19 -0600
+Date:   Tue, 8 Feb 2022 18:35:19 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Hari Nagalla <hnagalla@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <vigneshr@ti.com>, <robh+dt@kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am64: Add ESM0 to device memory map
+Message-ID: <20220209003519.clokfvln7m2deewi@buddhism>
+References: <20220208182119.24707-1-hnagalla@ti.com>
 MIME-Version: 1.0
-References: <20220202020103.2149130-1-rajatja@google.com>
-In-Reply-To: <20220202020103.2149130-1-rajatja@google.com>
-From:   Rajat Jain <rajatja@google.com>
-Date:   Tue, 8 Feb 2022 16:23:27 -0800
-Message-ID: <CACK8Z6GmC7O3__RKwSEOQQ5Pde6h-LRz_5d+--V=CuB76cpe+w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] PCI: Allow internal devices to be marked as untrusted
-To:     Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rajat Jain <rajatxjain@gmail.com>,
-        Dmitry Torokhov <dtor@google.com>,
-        Jesse Barnes <jsbarnes@google.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Pavel Machek <pavel@denx.de>,
-        "Oliver O'Halloran" <oohall@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220208182119.24707-1-hnagalla@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Folks,
+Please loop in LAKML as stated in MAINTAINERS file.
 
+On 12:21-20220208, Hari Nagalla wrote:
+> AM64x SoCs have two ESM modules, with one in MAIN voltage domain and the
+> other in MCU voltage domain. The error output from Main ESM module can
+> be routed to the MCU ESM module. The error output of MCU ESM can be
+> configured to reset the device.
 
-On Tue, Feb 1, 2022 at 6:01 PM Rajat Jain <rajatja@google.com> wrote:
->
-> Today the pci_dev->untrusted is set for any devices sitting downstream
-> an external facing port (determined via "ExternalFacingPort" or the
-> "external-facing" properties).
->
-> However, currently there is no way for internal devices to be marked as
-> untrusted.
->
-> There are use-cases though, where a platform would like to treat an
-> internal device as untrusted (perhaps because it runs untrusted firmware
-> or offers an attack surface by handling untrusted network data etc).
->
-> Introduce a new "UntrustedDevice" property that can be used by the
-> firmware to mark any device as untrusted.
+So what happens to the window for MCU ESM - Is that already open?
 
-Just to unite the threads (from
-https://www.spinics.net/lists/linux-pci/msg120221.html). I did reach
-out to Microsoft but they haven't acknowledged my email. I also pinged
-them again yesterday, but I suspect I may not be able to break the
-ice. So this patch may be ready to go in my opinion.
-
-I don't see any outstanding comments on this patch, but please let me
-know if you have any comments.
-
-Thanks & Best Regards,
-
-Rajat
-
-
->
-> Signed-off-by: Rajat Jain <rajatja@google.com>
+> 
+> For ESM details please refer technical reference manual at
+> https://www.ti.com/lit/pdf/spruim2
+> 
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
 > ---
-> v2: * Also use the same property for device tree based systems.
->     * Add documentation (next patch)
->
->  drivers/pci/of.c       | 2 ++
->  drivers/pci/pci-acpi.c | 1 +
->  drivers/pci/pci.c      | 9 +++++++++
->  drivers/pci/pci.h      | 2 ++
->  4 files changed, 14 insertions(+)
->
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index cb2e8351c2cc..e8b804664b69 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -24,6 +24,8 @@ void pci_set_of_node(struct pci_dev *dev)
->                                                     dev->devfn);
->         if (dev->dev.of_node)
->                 dev->dev.fwnode = &dev->dev.of_node->fwnode;
-> +
-> +       pci_set_untrusted(dev);
->  }
->
->  void pci_release_of_node(struct pci_dev *dev)
-> diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
-> index a42dbf448860..2bffbd5c6114 100644
-> --- a/drivers/pci/pci-acpi.c
-> +++ b/drivers/pci/pci-acpi.c
-> @@ -1356,6 +1356,7 @@ void pci_acpi_setup(struct device *dev, struct acpi_device *adev)
->
->         pci_acpi_optimize_delay(pci_dev, adev->handle);
->         pci_acpi_set_external_facing(pci_dev);
-> +       pci_set_untrusted(pci_dev);
->         pci_acpi_add_edr_notifier(pci_dev);
->
->         pci_acpi_add_pm_notifier(adev, pci_dev);
-> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> index 9ecce435fb3f..41e887c27004 100644
-> --- a/drivers/pci/pci.c
-> +++ b/drivers/pci/pci.c
-> @@ -6869,3 +6869,12 @@ static int __init pci_realloc_setup_params(void)
->         return 0;
->  }
->  pure_initcall(pci_realloc_setup_params);
-> +
-> +void pci_set_untrusted(struct pci_dev *pdev)
-> +{
-> +       u8 val;
-> +
-> +       if (!device_property_read_u8(&pdev->dev, "UntrustedDevice", &val)
-> +           && val)
-> +               pdev->untrusted = 1;
-> +}
-> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> index 3d60cabde1a1..6c273ce5e0ba 100644
-> --- a/drivers/pci/pci.h
-> +++ b/drivers/pci/pci.h
-> @@ -761,4 +761,6 @@ static inline pci_power_t mid_pci_get_power_state(struct pci_dev *pdev)
->  }
->  #endif
->
-> +void pci_set_untrusted(struct pci_dev *pdev);
-> +
->  #endif /* DRIVERS_PCI_H */
-> --
-> 2.35.0.rc2.247.g8bbb082509-goog
->
+>  arch/arm64/boot/dts/ti/k3-am64.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> index 120974726be8..0622a93ec136 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+> @@ -66,6 +66,7 @@
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+>  		ranges = <0x00 0x000f4000 0x00 0x000f4000 0x00 0x000002d0>, /* PINCTRL */
+> +			 <0x00 0x00420000 0x00 0x00420000 0x00 0x00001000>, /* ESM0 */
+>  			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00001100>, /* GPIO */
+>  			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* Timesync router */
+>  			 <0x00 0x01000000 0x00 0x01000000 0x00 0x02330400>, /* First peripheral window */
+> -- 
+> 2.17.1
+> 
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
