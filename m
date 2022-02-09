@@ -2,78 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C0634AFCC2
+	by mail.lfdr.de (Postfix) with ESMTP id 057034AFCC0
 	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:02:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241700AbiBITCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 14:02:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33880 "EHLO
+        id S241615AbiBITCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 14:02:00 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:48120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241654AbiBITAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:00:21 -0500
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54BE1C02B5E6;
-        Wed,  9 Feb 2022 10:58:29 -0800 (PST)
-Received: by mail-ot1-f50.google.com with SMTP id o9-20020a9d7189000000b0059ee49b4f0fso2195905otj.2;
-        Wed, 09 Feb 2022 10:58:29 -0800 (PST)
+        with ESMTP id S242218AbiBITBa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:01:30 -0500
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03A37C05CBA2;
+        Wed,  9 Feb 2022 11:01:28 -0800 (PST)
+Received: by mail-oi1-f173.google.com with SMTP id r27so3478867oiw.4;
+        Wed, 09 Feb 2022 11:01:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=kfS2tc0AzsIzDQltvbOtE1I0l9vkTyfE/J6yUpGln0c=;
-        b=xXgFLm5sORW+pqsWc7bkp2Cnb+RwcdZ5n9obs1TN4PBDKjtUhEv45Bj2MpshXq2Gth
-         SmRC/Z+B6/QgceRbghIrb6U42WmmpfWsoZGrqOw07oa6/JG1d2oYb2TW1d25hkFxRRH5
-         breVr2NEIR5MCh4UAQwj6WGeoUC8OodAQ4oJ7lUBsLMdTtw+wMIytcoe3jO7aeBdLk8Y
-         hlUkdjgEwFHXuViZdSn1RZ+YsT/vAvZaBZeMeVTefzNLESW+CzhOd06wHwHmT7XwjJpO
-         xy3HhTU75rk/sMhW+ncqG29e0K1We53+71+zur69f4IikYhSOUn0aGqUt7und8w4MEVB
-         ROhw==
-X-Gm-Message-State: AOAM532PvBt5FL0CraOBxrFG0T5WBGYeCIWkgoFr+yXTFNm7OJps9lvW
-        X29Haot/AWKQX2pSLONMLg==
-X-Google-Smtp-Source: ABdhPJy1QLereUHPHn+KQEWWdGdMvIbLw4PjCtA2U9SLf9F3FBDMGU46oKwFhWmbysAO9gyuABLqbA==
-X-Received: by 2002:a05:6830:1019:: with SMTP id a25mr1520526otp.28.1644433105193;
-        Wed, 09 Feb 2022 10:58:25 -0800 (PST)
+        bh=fDo1r/oAxqHfurPzGBlPl/YM20/6x7pAbjkKdww5OT0=;
+        b=0yLaFH6B+xvF5x0zDMpfxrXKEn+My5FXlbg9tbHjKWnEkauf1aRI2fRIPxJNtlObL/
+         ANqjwGR1CiFh+ToKyOmqJavi4ubMsz8t95Bzlq8FEPrhkVYpduajXUe5ykNht6nbW1PV
+         D+KJgcE+o0+VVRtDO01oRFA7lijZ+yxWFppPuPQ5UHXXeYCQzt2h8AXmvelrWZZvGQmQ
+         EBDvSVWr5TW794bYwW6PyhHVWIgVcXVGT92XW6L/NN8Ym/JmFFvWw9Cvl0e6Wx3h0xH2
+         U4CNhZNeG5uUByrVqbky85uuUIXJ5QnWaZHuEV1Kc4KHD56p1XMfCnOtaDGBhjm9Ls0f
+         WVQw==
+X-Gm-Message-State: AOAM533tLyakAOl4kbj0iz5u+HITQ08lO9fHPohihgoZasn6lUVMdMky
+        ZBqlVq5LH6TDWTGpJucfriuTXR+Dqg==
+X-Google-Smtp-Source: ABdhPJxY15c+Da0fY768XqjzQDsA/HiWOQkQlmhD90QefobfGlPxX1T6V1OdfxBgFpFqi87Fbg1h3Q==
+X-Received: by 2002:a05:6808:120c:: with SMTP id a12mr2145418oil.118.1644433208827;
+        Wed, 09 Feb 2022 11:00:08 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n24sm7838348oao.40.2022.02.09.10.58.23
+        by smtp.gmail.com with ESMTPSA id a128sm7069142oob.17.2022.02.09.11.00.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 10:58:24 -0800 (PST)
-Received: (nullmailer pid 692950 invoked by uid 1000);
-        Wed, 09 Feb 2022 18:58:23 -0000
-Date:   Wed, 9 Feb 2022 12:58:23 -0600
+        Wed, 09 Feb 2022 11:00:07 -0800 (PST)
+Received: (nullmailer pid 695621 invoked by uid 1000);
+        Wed, 09 Feb 2022 19:00:06 -0000
+Date:   Wed, 9 Feb 2022 13:00:06 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        will@kernel.org, robh+dt@kernel.org,
-        linux-renesas-soc@vger.kernel.org, joro@8bytes.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: iommu: renesas,ipmmu-vmsa: add
- r8a779f0 support
-Message-ID: <YgQOz+YIkWJJFp/M@robh.at.kernel.org>
-References: <20220208002030.1319984-1-yoshihiro.shimoda.uh@renesas.com>
- <20220208002030.1319984-2-yoshihiro.shimoda.uh@renesas.com>
+To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Cc:     seanpaul@chromium.org, robh+dt@kernel.org, swboyd@chromium.org,
+        quic_khsieh@quicinc.com, agross@kernel.org,
+        quic_mkrishn@quicinc.com, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, sam@ravnborg.org, daniel@ffwll.ch,
+        bjorn.andersson@linaro.org, robdclark@gmail.com,
+        thierry.reding@gmail.com, freedreno@lists.freedesktop.org,
+        quic_kalyant@quicinc.com, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, quic_abhinavk@quicinc.com,
+        quic_vproddut@quicinc.com, airlied@linux.ie,
+        krzysztof.kozlowski@canonical.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: simple: Add sharp
+ LQ140M1JW46 panel
+Message-ID: <YgQPNlBtHNbu7FKG@robh.at.kernel.org>
+References: <1644396932-17932-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1644396932-17932-2-git-send-email-quic_sbillaka@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220208002030.1319984-2-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <1644396932-17932-2-git-send-email-quic_sbillaka@quicinc.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Feb 2022 09:20:29 +0900, Yoshihiro Shimoda wrote:
-> Document the compatible values for the IPMMU-VMSA blocks in
-> the Renesas R-Car S4-8 (R8A779F0) SoC and R-Car Gen4.
+On Wed, 09 Feb 2022 14:25:29 +0530, Sankeerth Billakanti wrote:
+> Add support for sharp LQ140M1JW46 display panel. It is a 14" eDP panel
+> with 1920x1080 display resolution.
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
 > ---
->  .../devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml         | 4 ++++
->  1 file changed, 4 insertions(+)
+> 
+> Changes in v3:
+>   None
+> 
+>  Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
