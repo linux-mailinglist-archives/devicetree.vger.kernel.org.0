@@ -2,78 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 817074AE7BB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 04:13:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 833CA4AE7C2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 04:14:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232858AbiBIDLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Feb 2022 22:11:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36170 "EHLO
+        id S245297AbiBIDNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Feb 2022 22:13:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347357AbiBIDLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 22:11:17 -0500
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F01C043187;
-        Tue,  8 Feb 2022 19:11:01 -0800 (PST)
-Received: by mail-oo1-f41.google.com with SMTP id 189-20020a4a03c6000000b003179d7b30d8so1025716ooi.2;
-        Tue, 08 Feb 2022 19:11:01 -0800 (PST)
+        with ESMTP id S1343932AbiBIDNB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Feb 2022 22:13:01 -0500
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17427C0613CC;
+        Tue,  8 Feb 2022 19:13:01 -0800 (PST)
+Received: by mail-oi1-f170.google.com with SMTP id q8so1187068oiw.7;
+        Tue, 08 Feb 2022 19:13:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4QLpY+NZl5728WnLEOfRJfXQ78UDzx/bgVTEF/QD8Cg=;
-        b=38n+esg7eG9z/UoI4ZCirTYHlpBR4jQg+BKRlEI8LPXMk782OsI7dHWhHvkojIY556
-         vl6r01heNWn4pzpFxMI27dDD95md2BdZ6PC0P/f1IMGPDuZUDforlO4QLbYvDcF8cDqW
-         +pjIFoc81zrGJya+fG/Xw4uwtigXGf4MxKJDbgTRletIeRQ4VQRLA7M2/rRWmD4FJbVT
-         5vlF9znvIGSHTncYoQkuTL7KkWm6aX0YOAoudqELN61DRCXYYQzIT2sg+yQtG2V0L78y
-         AyBftndbirJ707pdqFp7ep1XxAGPrI3RlYpCy/A78VoOqhtoiBHcSvHxDfdNBy1legoM
-         EUyQ==
-X-Gm-Message-State: AOAM5315A5TOjQv3pxDuPHdF5MKvr70JLacy+7oI5DmtWHanjdJ1bRbz
-        dz5lwcTdPFZK+WjeNVDQ9h9HVoRIdA==
-X-Google-Smtp-Source: ABdhPJw0JUU+jlnR9uiII9DzsJeXzBAVPMro9RR5JRMu/AqaBuPNJDbHCsFROHSxYk+l663r1YDeeQ==
-X-Received: by 2002:a05:6870:72c6:: with SMTP id o6mr115698oak.184.1644376260463;
-        Tue, 08 Feb 2022 19:11:00 -0800 (PST)
+        bh=729TJ/Tu7WU2owOkdmRMIluYXU5xC7cHiQxTCoVZ2IA=;
+        b=pUdzI6TpLcHS1uhIuQ9YPXtTVWEE0cWH2vyNWFCBgEGlggV173bFncn8zCjndVdLxC
+         tp+P0pO0wLzzmM5L07VOEV8qkbxJWBJ6puWpr+bCIn7Nzj/U7wHceIASEM7KEtXD3OmG
+         bcXI5/h2O54r/tTld5AKzLDF3FsNznJ41Ihj3JVLzjFDzsDy1p1JnhWiWdDxJJ7tuH6P
+         C3U/6deGCrn0GADL01pU0upyxE/eEeK22VZL4h/jN5L1MGUVtKM4XpkrnVhe2xIzfrE1
+         L4gKypEcww828SFI8vd7J+cxnvhX9ipuUTb2UGfwaxiQr+0goBICAWXMPK/fYnoZ187O
+         iu5g==
+X-Gm-Message-State: AOAM533HME2J9cPjeZIH9lznoKb7cK+eyiljXMa1PDnyGnGvi5PFU0CI
+        vxGOCXY9EI6C4WX0esSE9DPnO3uYXA==
+X-Google-Smtp-Source: ABdhPJxR3JevfDPFrtMjEztlGfDTZEwN3VepxgMo/94PDRdxaTolb/523uVjk/8yq1gRKNHY91LpJQ==
+X-Received: by 2002:a05:6808:13c5:: with SMTP id d5mr445134oiw.338.1644376380325;
+        Tue, 08 Feb 2022 19:13:00 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b7sm6138986ooq.30.2022.02.08.19.10.59
+        by smtp.gmail.com with ESMTPSA id bj8sm6570331oib.20.2022.02.08.19.12.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Feb 2022 19:10:59 -0800 (PST)
-Received: (nullmailer pid 3553184 invoked by uid 1000);
-        Wed, 09 Feb 2022 03:10:58 -0000
-Date:   Tue, 8 Feb 2022 21:10:58 -0600
+        Tue, 08 Feb 2022 19:12:56 -0800 (PST)
+Received: (nullmailer pid 3556456 invoked by uid 1000);
+        Wed, 09 Feb 2022 03:12:55 -0000
+Date:   Tue, 8 Feb 2022 21:12:55 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Rayyan Ansari <rayyan@ansari.sh>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, phone-devel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: qcom,pmic-mpp: Document PM8226
- compatible
-Message-ID: <YgMwwi3M+C0OYwwi@robh.at.kernel.org>
-References: <20220124171538.18088-1-rayyan@ansari.sh>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Thomas Kopp <thomas.kopp@microchip.com>,
+        linux-can@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-binding: can: mcp251xfd: include common
+ CAN controller bindings
+Message-ID: <YgMxN5KPWllWLwJd@robh.at.kernel.org>
+References: <20220124220653.3477172-1-mkl@pengutronix.de>
+ <20220124220653.3477172-2-mkl@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220124171538.18088-1-rayyan@ansari.sh>
+In-Reply-To: <20220124220653.3477172-2-mkl@pengutronix.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Jan 2022 17:15:36 +0000, Rayyan Ansari wrote:
-> Document the Device Tree binding for PM8226 MPPs.
+On Mon, 24 Jan 2022 23:06:50 +0100, Marc Kleine-Budde wrote:
+> Since commit
 > 
-> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+> | 1f9234401ce0 ("dt-bindings: can: add can-controller.yaml")
+> 
+> there is a common CAN controller binding. Add this to the mcp251xfd
+> binding.
+> 
+> Cc: Manivannan Sadhasivam <mani@kernel.org>
+> Cc: Thomas Kopp <thomas.kopp@microchip.com>
+> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
 > ---
->  Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/net/can/microchip,mcp251xfd.yaml       | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
