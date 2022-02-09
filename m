@@ -2,90 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A104AFC90
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C0634AFCC2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:02:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241600AbiBIS7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 13:59:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33806 "EHLO
+        id S241700AbiBITCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 14:02:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241636AbiBIS7f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 13:59:35 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7C70C050CD1;
-        Wed,  9 Feb 2022 10:57:42 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id y23so3421253oia.13;
-        Wed, 09 Feb 2022 10:57:42 -0800 (PST)
+        with ESMTP id S241654AbiBITAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:00:21 -0500
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54BE1C02B5E6;
+        Wed,  9 Feb 2022 10:58:29 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id o9-20020a9d7189000000b0059ee49b4f0fso2195905otj.2;
+        Wed, 09 Feb 2022 10:58:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=H7xdyU3dNzn1aGQxkPyHJk9OkHfZ1q05CNcab6XbAM8=;
-        b=cSzMsB3vL6h/GLa2+fZ/68pfN/+igNnPSBtjwKM47FzVqO5u0sJKzCnOTPnW3kFj+p
-         CckpmKFhx2/yIS99aOdJh9mvfKydjI8OkZ8u0kqy9uqLatyeN7uPNTOoxYXCkHZ33pwh
-         RyKm4GoDBGQzlFWjQx5ZmVvivw1HeyQj/2oZTbVSBN+ryEdXPNC08BhxONvTVKBTuCaZ
-         c5+uCrHIPOf67GBbm8365CdOySERbzKx8EOou+lxPkcmdYd7yrRiSopvvIWvQjfnk1it
-         TCLjhOhMzVk3asH7b9dHByBhLz94B2Oe1FzBQp89poBBrzwXfKYtBZo66r0g9CIZwwzN
-         wpQg==
-X-Gm-Message-State: AOAM533XhNUl7CVvLhVEh02TMDrdDZjHJr3XL/y6xnWDuzk+Lw5XONQz
-        RuPJONR8NMNDbfg8ZSm91g==
-X-Google-Smtp-Source: ABdhPJxP//1aGuFFY9vxv6CdY8xqk4XXBhD/YeyBeYu20dO0Ofj+I1tSvsI8ELVBjnh9kya5nvPUDA==
-X-Received: by 2002:a05:6808:1989:: with SMTP id bj9mr2018511oib.28.1644433062105;
-        Wed, 09 Feb 2022 10:57:42 -0800 (PST)
+        bh=kfS2tc0AzsIzDQltvbOtE1I0l9vkTyfE/J6yUpGln0c=;
+        b=xXgFLm5sORW+pqsWc7bkp2Cnb+RwcdZ5n9obs1TN4PBDKjtUhEv45Bj2MpshXq2Gth
+         SmRC/Z+B6/QgceRbghIrb6U42WmmpfWsoZGrqOw07oa6/JG1d2oYb2TW1d25hkFxRRH5
+         breVr2NEIR5MCh4UAQwj6WGeoUC8OodAQ4oJ7lUBsLMdTtw+wMIytcoe3jO7aeBdLk8Y
+         hlUkdjgEwFHXuViZdSn1RZ+YsT/vAvZaBZeMeVTefzNLESW+CzhOd06wHwHmT7XwjJpO
+         xy3HhTU75rk/sMhW+ncqG29e0K1We53+71+zur69f4IikYhSOUn0aGqUt7und8w4MEVB
+         ROhw==
+X-Gm-Message-State: AOAM532PvBt5FL0CraOBxrFG0T5WBGYeCIWkgoFr+yXTFNm7OJps9lvW
+        X29Haot/AWKQX2pSLONMLg==
+X-Google-Smtp-Source: ABdhPJy1QLereUHPHn+KQEWWdGdMvIbLw4PjCtA2U9SLf9F3FBDMGU46oKwFhWmbysAO9gyuABLqbA==
+X-Received: by 2002:a05:6830:1019:: with SMTP id a25mr1520526otp.28.1644433105193;
+        Wed, 09 Feb 2022 10:58:25 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 21sm6898916otj.71.2022.02.09.10.57.40
+        by smtp.gmail.com with ESMTPSA id n24sm7838348oao.40.2022.02.09.10.58.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 10:57:41 -0800 (PST)
-Received: (nullmailer pid 691757 invoked by uid 1000);
-        Wed, 09 Feb 2022 18:57:40 -0000
-Date:   Wed, 9 Feb 2022 12:57:40 -0600
+        Wed, 09 Feb 2022 10:58:24 -0800 (PST)
+Received: (nullmailer pid 692950 invoked by uid 1000);
+        Wed, 09 Feb 2022 18:58:23 -0000
+Date:   Wed, 9 Feb 2022 12:58:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bo Jiao <bo.jiao@mediatek.com>
-Cc:     linux-wireless <linux-wireless@vger.kernel.org>,
-        Sujuan Chen <sujuan.chen@mediatek.com>,
-        Shayne Chen <shayne.chen@mediatek.com>,
-        devicetree@vger.kernel.org, Felix Fietkau <nbd@nbd.name>,
-        Peter Chiu <chui-hao.chiu@mediatek.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Xing Song <xing.song@mediatek.com>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Evelyn Tsai <evelyn.tsai@mediatek.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: net: wireless: mt76: document
- bindings for MT7986
-Message-ID: <YgQOpOnYJyHaQtV8@robh.at.kernel.org>
-References: <cover.1644386694.git.Bo.Jiao@mediatek.com>
- <08ef978845036560bb08b72e948e42f858e087d3.1644386694.git.Bo.Jiao@mediatek.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        will@kernel.org, robh+dt@kernel.org,
+        linux-renesas-soc@vger.kernel.org, joro@8bytes.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: iommu: renesas,ipmmu-vmsa: add
+ r8a779f0 support
+Message-ID: <YgQOz+YIkWJJFp/M@robh.at.kernel.org>
+References: <20220208002030.1319984-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220208002030.1319984-2-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <08ef978845036560bb08b72e948e42f858e087d3.1644386694.git.Bo.Jiao@mediatek.com>
+In-Reply-To: <20220208002030.1319984-2-yoshihiro.shimoda.uh@renesas.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Feb 2022 14:11:55 +0800, Bo Jiao wrote:
-> From: Peter Chiu <chui-hao.chiu@mediatek.com>
+On Tue, 08 Feb 2022 09:20:29 +0900, Yoshihiro Shimoda wrote:
+> Document the compatible values for the IPMMU-VMSA blocks in
+> the Renesas R-Car S4-8 (R8A779F0) SoC and R-Car Gen4.
 > 
-> Add an entry for MT7986 SoC.
-> 
-> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
-> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> v3:
->  - fix yamllint warnings and errors
->  - add 'minItems: 1' to keep 1 reg entry being valid
-> v4:
->  - add description for property reg items
-> ---
->  .../bindings/net/wireless/mediatek,mt76.yaml  | 33 +++++++++++++++++--
->  1 file changed, 30 insertions(+), 3 deletions(-)
+>  .../devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml         | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
