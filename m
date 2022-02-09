@@ -2,188 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38CE54AEEBF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 10:56:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95B674AEED7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 11:02:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234234AbiBIJ4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 04:56:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47972 "EHLO
+        id S231593AbiBIKBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 05:01:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235348AbiBIJ4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 04:56:14 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED508DF28ACF;
-        Wed,  9 Feb 2022 01:56:08 -0800 (PST)
-X-UUID: f47de4b025de4216ae53e6b7a645d804-20220209
-X-UUID: f47de4b025de4216ae53e6b7a645d804-20220209
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <kewei.xu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1907449128; Wed, 09 Feb 2022 17:54:14 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 9 Feb 2022 17:54:13 +0800
-Received: from localhost.localdomain (10.17.3.14) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 9 Feb 2022 17:54:12 +0800
-From:   Kewei Xu <kewei.xu@mediatek.com>
-To:     <wsa@the-dreams.de>
-CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
-        <caiyu.chen@mediatek.com>, <housong.zhang@mediatek.com>,
-        <yuhan.wei@mediatek.com>, <kewei.xu@mediatek.com>,
-        <ryan-jh.yu@mediatek.com>, <david-yh.chiu@mediatek.com>
-Subject: [PATCH v9 1/1] i2c: mediatek: modify bus speed calculation formula
-Date:   Wed, 9 Feb 2022 17:54:07 +0800
-Message-ID: <1644400447-6215-2-git-send-email-kewei.xu@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1644400447-6215-1-git-send-email-kewei.xu@mediatek.com>
-References: <1644400447-6215-1-git-send-email-kewei.xu@mediatek.com>
+        with ESMTP id S231160AbiBIKBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 05:01:46 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719DBE022AFC;
+        Wed,  9 Feb 2022 02:01:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1644400900; x=1675936900;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=MhAPRdsDHJ8uaTiaXrdti0+yuDAFi7HzI4SCxA0SdwE=;
+  b=kDRvREpgXdAEbnewnAhcIryVqOlyrDOTT6EmjfwQQpZs2nzGK27FfDkj
+   s6nxLXf/Mk/OETA8z4FTsT1/Sd+8IbRhB+nfghKczHUdutOxdZziaRRS9
+   1a1kzSmfBnuq1JfXEWdY0cwryuYd29KTgPC4HuUevihF27hOt8TeMvrvs
+   mMFvhAMcO0ql7IZ++AOOchIsmGn3dW5dBgVEQSz9kGZL6UkO0f/V7CvS0
+   IsEEwIqYd6OUaDMPUBaVttCMn3OaNZgubb5rvTka6uHw5d6H6lZOZ1hUa
+   iTZ+eZAZAEN2ykskKZ+fBbRCCoraCQFk4UaaHIoOD+8siGfBcEpztxNUf
+   A==;
+IronPort-SDR: DAFonjqizeKbuF+rjvTc3HLhKHGwG5r1ik+WiwDX6aW3TOztVim+344xEWbXB1UWjb7vP2l1bf
+ vst6jHQ9NJuSSPe73oZvyclrZHdAJ/jGDBTsatHSqS7ptmHzblFalSgxoBdSNLQTRCsMV6fVPs
+ 4y06RfNUlXogXdl1OpIFf/PWfrELUNC+inD6KaS7NumTjAJFbOzUgNt0sqD8/1af1AlpeTevcC
+ LPE0EPAza8+5NM3HXoGwz2JtJN5f7F/rTFZ84hfWMQi1Wh7a4GYNt79r2EZEnjeLJCYMfCmly5
+ lnZO3lV8B+AKD6niql2Defy7
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; 
+   d="scan'208";a="152967185"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Feb 2022 02:56:26 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 9 Feb 2022 02:56:25 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Wed, 9 Feb 2022 02:56:23 -0700
+Message-ID: <ee9826d1-216e-45b0-e48b-700ec41b3683@microchip.com>
+Date:   Wed, 9 Feb 2022 10:56:22 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3] ARM: dts: add DT for lan966x SoC and 2-port board
+ pcb8291
+Content-Language: en-US
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>
+References: <20220113080017.30155-1-kavyasree.kotagiri@microchip.com>
+ <f8b83cf0-7ebf-1ecd-b544-f0d0079d9dde@microchip.com>
+ <CAK8P3a2kRhCOoXnvcMyqS-zK2WDZjtUq4aqOzE5VV=VMg=pVOA@mail.gmail.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <CAK8P3a2kRhCOoXnvcMyqS-zK2WDZjtUq4aqOzE5VV=VMg=pVOA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When clock-div is 0 or greater than 1, the bus speed
-calculated by the old speed calculation formula will be
-larger than the target speed. So we update the formula.
+On 08/02/2022 at 17:08, Arnd Bergmann wrote:
+> On Thu, Jan 13, 2022 at 9:33 AM Nicolas Ferre
+> <nicolas.ferre@microchip.com>  wrote:
+>> On 13/01/2022 at 09:00, Kavyasree Kotagiri wrote:
+>>> This patch adds basic DT for Microchip lan966x SoC and associated board
+>>> pcb8291(2-port EVB). Adds peripherals required to allow booting: IRQs,
+>>> clocks, timers, memory, flexcoms, GPIOs. Also adds other peripherals like
+>>> crypto(AES,SHA), DMA and watchdog.
+>>>
+>>> Signed-off-by: Kavyasree Kotagiri<kavyasree.kotagiri@microchip.com>
+>> Looks good to me:
+>> Reviewed-by: Nicolas Ferre<nicolas.ferre@microchip.com>
+> I'm not quite sure what to do with this, as this was sentto:soc@kernel.org,
+> which is normally for patches that are already reviewed and should just
+> get applied.
+> 
+> I can apply this, but I would normally expect board files to get picked up
+> in the at91 tree first. I'll drop this version from patchwork for now, as I
+> also have a couple of comments:
 
-Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-Change-Id: Ic0d9b8ab036bcf215d3a5066f2b91c7b8b128ba6
----
- drivers/i2c/busses/i2c-mt65xx.c | 51 +++++++++++++++++++++++++++++++++--------
- 1 file changed, 41 insertions(+), 10 deletions(-)
+I have the intention to take this patch when it's ready in the at91 tree.
 
-diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-index aa4d218..682293e 100644
---- a/drivers/i2c/busses/i2c-mt65xx.c
-+++ b/drivers/i2c/busses/i2c-mt65xx.c
-@@ -67,11 +67,12 @@
- 
- #define MAX_SAMPLE_CNT_DIV		8
- #define MAX_STEP_CNT_DIV		64
--#define MAX_CLOCK_DIV			256
-+#define MAX_CLOCK_DIV_8BITS		256
-+#define MAX_CLOCK_DIV_5BITS		32
- #define MAX_HS_STEP_CNT_DIV		8
--#define I2C_STANDARD_MODE_BUFFER	(1000 / 2)
--#define I2C_FAST_MODE_BUFFER		(300 / 2)
--#define I2C_FAST_MODE_PLUS_BUFFER	(20 / 2)
-+#define I2C_STANDARD_MODE_BUFFER	(1000 / 3)
-+#define I2C_FAST_MODE_BUFFER		(300 / 3)
-+#define I2C_FAST_MODE_PLUS_BUFFER	(20 / 3)
- 
- #define I2C_CONTROL_RS                  (0x1 << 1)
- #define I2C_CONTROL_DMA_EN              (0x1 << 2)
-@@ -604,6 +605,31 @@ static int mtk_i2c_max_step_cnt(unsigned int target_speed)
- 		return MAX_STEP_CNT_DIV;
- }
- 
-+static int mtk_i2c_get_clk_div_restri(struct mtk_i2c *i2c,
-+				      unsigned int sample_cnt)
-+{
-+	int clk_div_restri = 0;
-+
-+	if (i2c->dev_comp->ltiming_adjust == 0)
-+		return 0;
-+
-+	if (sample_cnt == 1) {
-+		if (i2c->ac_timing.inter_clk_div == 0)
-+			clk_div_restri = 0;
-+		else
-+			clk_div_restri = 1;
-+	} else {
-+		if (i2c->ac_timing.inter_clk_div == 0)
-+			clk_div_restri = -1;
-+		else if (i2c->ac_timing.inter_clk_div == 1)
-+			clk_div_restri = 0;
-+		else
-+			clk_div_restri = 1;
-+	}
-+
-+	return clk_div_restri;
-+}
-+
- /*
-  * Check and Calculate i2c ac-timing
-  *
-@@ -732,6 +758,7 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	unsigned int best_mul;
- 	unsigned int cnt_mul;
- 	int ret = -EINVAL;
-+	int clk_div_restri = 0;
- 
- 	if (target_speed > I2C_MAX_HIGH_SPEED_MODE_FREQ)
- 		target_speed = I2C_MAX_HIGH_SPEED_MODE_FREQ;
-@@ -749,7 +776,8 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	 * optimizing for sample_cnt * step_cnt being minimal
- 	 */
- 	for (sample_cnt = 1; sample_cnt <= MAX_SAMPLE_CNT_DIV; sample_cnt++) {
--		step_cnt = DIV_ROUND_UP(opt_div, sample_cnt);
-+		clk_div_restri = mtk_i2c_get_clk_div_restri(i2c, sample_cnt);
-+		step_cnt = DIV_ROUND_UP(opt_div + clk_div_restri, sample_cnt);
- 		cnt_mul = step_cnt * sample_cnt;
- 		if (step_cnt > max_step_cnt)
- 			continue;
-@@ -763,7 +791,7 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 			best_mul = cnt_mul;
- 			base_sample_cnt = sample_cnt;
- 			base_step_cnt = step_cnt;
--			if (best_mul == opt_div)
-+			if (best_mul == (opt_div + clk_div_restri))
- 				break;
- 		}
- 	}
-@@ -774,7 +802,8 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	sample_cnt = base_sample_cnt;
- 	step_cnt = base_step_cnt;
- 
--	if ((clk_src / (2 * sample_cnt * step_cnt)) > target_speed) {
-+	if ((clk_src / (2 * (sample_cnt * step_cnt - clk_div_restri))) >
-+		target_speed) {
- 		/* In this case, hardware can't support such
- 		 * low i2c_bus_freq
- 		 */
-@@ -803,13 +832,16 @@ static int mtk_i2c_set_speed(struct mtk_i2c *i2c, unsigned int parent_clk)
- 	target_speed = i2c->speed_hz;
- 	parent_clk /= i2c->clk_src_div;
- 
--	if (i2c->dev_comp->timing_adjust)
--		max_clk_div = MAX_CLOCK_DIV;
-+	if (i2c->dev_comp->timing_adjust && i2c->dev_comp->ltiming_adjust)
-+		max_clk_div = MAX_CLOCK_DIV_5BITS;
-+	else if (i2c->dev_comp->timing_adjust)
-+		max_clk_div = MAX_CLOCK_DIV_8BITS;
- 	else
- 		max_clk_div = 1;
- 
- 	for (clk_div = 1; clk_div <= max_clk_div; clk_div++) {
- 		clk_src = parent_clk / clk_div;
-+		i2c->ac_timing.inter_clk_div = clk_div - 1;
- 
- 		if (target_speed > I2C_MAX_FAST_MODE_PLUS_FREQ) {
- 			/* Set master code speed register */
-@@ -856,7 +888,6 @@ static int mtk_i2c_set_speed(struct mtk_i2c *i2c, unsigned int parent_clk)
- 		break;
- 	}
- 
--	i2c->ac_timing.inter_clk_div = clk_div - 1;
- 
- 	return 0;
- }
+Thanks for your feedback Arnd. Best regards,
+   Nicolas
+
 -- 
-1.9.1
-
+Nicolas Ferre
