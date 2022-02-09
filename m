@@ -2,116 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F35F64AF434
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 15:37:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC7A24AF448
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 15:42:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235088AbiBIOhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 09:37:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35138 "EHLO
+        id S235146AbiBIOmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 09:42:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235094AbiBIOhW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 09:37:22 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09EDAC06157B
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 06:37:25 -0800 (PST)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5CE6B40049
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 14:37:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644417442;
-        bh=SlwgImOcNTsESNfIirUrDaCeHIHfLp+o6BSrCLR6Xb4=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=oNmPi4dslqueQtIrpvuG05hA1TV1Tu+3yBOPkBz+v5JiJX2VKxLdWa39gt+flHVFC
-         JW6w4XUSUoZWIdttex/pbeneVeL3qI+zR/iPZAVIeBC+BS8cOgeLkxyCjvcK5jfZwu
-         HS4qgRsMQa00iY7pNSYYh9fVxrfGNnQrmpr1onoPqKgZ/FvM25c1No76VM3Jy3/iJk
-         fP2NczYvOVloV2F7yfIQ5CCsh3dnE6scLUlOZaWUWlAPFSFPQ/MrsFcdH2zux5vzvG
-         VsCU7ETPhIPBuH++7jpIGSDJf6jd9qvd20G2oAkdgdaOdoi5LfANyPGNYx7+NW3fvu
-         mEqI0eXoAl2+A==
-Received: by mail-ej1-f71.google.com with SMTP id d7-20020a1709061f4700b006bbf73a7becso1258884ejk.17
-        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 06:37:22 -0800 (PST)
+        with ESMTP id S235139AbiBIOmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 09:42:19 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5A669C0613CA
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 06:42:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1644417740;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=95z5lgZr6N4bdneKS1w58+DkU3M+JrAsHlwainwdryQ=;
+        b=bb2sPRCv2xd1Kk9NV5IWeGi3Aod15ryVM2WvAHqy4MwKMN8ECD6RXj3qCt3j24cWCnN6rd
+        zVvACsPWBCpfrjgjcICed9WizQSsD/BMIcYWoeycnlcOCjL3JAEZDGg46eUStmipdufi2G
+        Q0VDT71/xEb9i8GOajJ76pdgBMrqrEM=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-670-vKNnhF11MZuCqJ7B6Wgjeg-1; Wed, 09 Feb 2022 09:42:19 -0500
+X-MC-Unique: vKNnhF11MZuCqJ7B6Wgjeg-1
+Received: by mail-wr1-f70.google.com with SMTP id c9-20020adfa709000000b001dde29c3202so1175158wrd.22
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 06:42:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SlwgImOcNTsESNfIirUrDaCeHIHfLp+o6BSrCLR6Xb4=;
-        b=XUTLDXy7krJgCHvEz5rtHNAxPErg7+N6Nm57Xkim6NuPEZjkLBlvVSkwIvpt/XiQI0
-         yGsqotsgoHVhinl+xtrAzpshLIwJz1Iw0dQRTDph9kRWiOoH4OHJmdOqjXsDwIpYjvAX
-         HpGJe6hJFGjtVUh+KoR7ewroCQhXOMsALc4BHgcSz0Qohb12CNDm7v1Hi2dtkgtOlz1M
-         nl8GDVXYDrZPDfeiGCSprlacceg3AvX2gxTNZNtJJFOsl1h/0zBh2tOyWckAbuRWZp4M
-         Cd3pWWppaYCehMFUFBOkY8SrslVs+2NodXc8KgunqAhL+YY8jqU3S7gxyhrR1iKRl6a4
-         CQ/Q==
-X-Gm-Message-State: AOAM532c361q+5Jqjb5tGzVNbW9/08J+7X9Y2ry7xMsNTWC6N+sI+yYM
-        4ZCnvU5qTxfaaxuTAUwbUJzyMbIdAkEwtxQo0UdwCjXCt4VLSvfecfiV6zwxFQoVikXYHpMBmQL
-        9Rwvv3zfD2nwJbp0ysc/D+n6TwtOEgz0TM+zYb+w=
-X-Received: by 2002:a17:906:240d:: with SMTP id z13mr2248959eja.210.1644417440962;
-        Wed, 09 Feb 2022 06:37:20 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJw36sjymzMaJhJa6q6wUBDPfAQePXwC/8alKtggTfvJQrQ42VevrxvY9v64oZZdAuv2SAoLgQ==
-X-Received: by 2002:a17:906:240d:: with SMTP id z13mr2248941eja.210.1644417440823;
-        Wed, 09 Feb 2022 06:37:20 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id ss14sm3871136ejb.199.2022.02.09.06.37.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 06:37:20 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-pm@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 0/8] dt-bindings: memory: convert to dtschema
-Date:   Wed,  9 Feb 2022 15:36:44 +0100
-Message-Id: <164441736490.181274.3751600144129167050.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com>
-References: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=95z5lgZr6N4bdneKS1w58+DkU3M+JrAsHlwainwdryQ=;
+        b=UZwbRbQEkH+9uTUqwNYiVD1I/XnzNfPJeTnLfD5rMrnXwznX5M4tZBBHCs+3cEnNuT
+         iVQAZ/a1b3CcW5SdkN4Edn8zjHfYMC01dUDrPbdS3oAGbeAuKlTH9+x3IZT8P3HLR+Qf
+         Lodfn77aCc3KzxmkuzKomSvc3m0ZUrSy9lzU74M/pjxPyrv7jAEY5wHFAPOURsqhFrOf
+         d1IbIyyYathCuOi8+KURfExTSm3EmyM1FJp/h/7ZPW0NnxWAJWWZe9QEatYK1QqIWnrR
+         g0LM/MFq9rZRm0MJ1t9T4RZx8dNJ2JRZJabJowLHsp0gi7CyR5trAlci4zWt+HWSAQAx
+         xKsA==
+X-Gm-Message-State: AOAM533l+zS7XtnOtbT5kLn+gg+L+OVI+uigOivu+Dgek3sOPA9X53vU
+        8lPH5hXajrASRVx4eK0BWzDu1nPffIN7YyjHiTFpL45LJQmgsPiQnOceyEbSjTunTvYBdvWaDMw
+        okq+LXTuJ/IAUr7oPXghRqQ==
+X-Received: by 2002:a5d:4d08:: with SMTP id z8mr2429656wrt.492.1644417738152;
+        Wed, 09 Feb 2022 06:42:18 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzwDcWgtBVsSADPkjwSIWKeWh2bWga0pSclgXkPHoPRyoxL4yRrB6nhG18lTOECvpK/yDGbwA==
+X-Received: by 2002:a5d:4d08:: with SMTP id z8mr2429623wrt.492.1644417737881;
+        Wed, 09 Feb 2022 06:42:17 -0800 (PST)
+Received: from [192.168.1.102] ([92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id o14sm4978570wmr.3.2022.02.09.06.42.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Feb 2022 06:42:17 -0800 (PST)
+Message-ID: <f58b2608-0d51-3209-ae11-18bdac19dd66@redhat.com>
+Date:   Wed, 9 Feb 2022 15:42:16 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED
+ displays
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Mark Brown <broonie@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+References: <20220204134347.1187749-1-javierm@redhat.com>
+ <CAMuHMdVTVX7LFay-rfv=oW96dMA24duMUVGRE62jQSNkrKtyMg@mail.gmail.com>
+ <f178de92-7cb1-dcc5-1f60-9ccfc56bc0a4@redhat.com>
+ <YgPF1cBMsd9973Dx@smile.fi.intel.com>
+ <CAMuHMdXQdL_Do8Hjay1egfmd9H05R7BjNeKfLGq67mU4bQNVZA@mail.gmail.com>
+From:   Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <CAMuHMdXQdL_Do8Hjay1egfmd9H05R7BjNeKfLGq67mU4bQNVZA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 6 Feb 2022 14:57:59 +0100, Krzysztof Kozlowski wrote:
-> Changes since v2:
-> 1. Re-order patches so timings get converted earlier. This fixes dt-checker
-> robot report.
-> 2. Add Dmitry's review tag.
-> 3. Three new patches:
->    #6: dt-bindings: memory: lpddr3: deprecate passing timings frequency as unit address
->    #7: memory: of: parse max-freq property
->    #8: ARM: dts: exynos: remove deprecated unit address for LPDDR3 timings on Odroid
+Hello Geert,
+
+On 2/9/22 15:27, Geert Uytterhoeven wrote:
+> Hi Andy,
 > 
-> [...]
+> On Wed, Feb 9, 2022 at 2:48 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+>> On Tue, Feb 08, 2022 at 04:10:49PM +0100, Javier Martinez Canillas wrote:
+>>> On 2/8/22 15:19, Geert Uytterhoeven wrote:
+>>>> On Fri, Feb 4, 2022 at 2:43 PM Javier Martinez Canillas
+>>>> <javierm@redhat.com> wrote:
+>>>>   - Kernel size increased by 349 KiB,
+>>>>   - The "Memory:" line reports 412 KiB less memory,
+>>>>   - On top of that, "free" shows ca. 92 KiB more memory in use after
+>>>>     bootup.
+>>
+>> The memory consumption should really be taken seriously, because these kind of
+>> displays are for embedded platforms with limited amount of resources.
+> 
+> Thanks for your concern!
+> 
+> Looking at the options that are auto-enabled, a few stand out that
+> look like they're not needed on systems witch such small displays,
+> or on legacy systems predating DDC:
 
-Applied, thanks!
+Thanks for your analysis.
 
-[1/8] dt-bindings: memory: lpddr2-timings: convert to dtschema
-      commit: 425fd283e4a2b929a88483525fda3f90dde8a2d0
-[2/8] dt-bindings: memory: lpddr3-timings: convert to dtschema
-      commit: 180a276c99bb861742c5c423d679b0277d4b1c26
-[3/8] dt-bindings: memory: lpddr3: convert to dtschema
-      commit: 28f818580e49a97876de5c33231fc0e4c3cde2d9
-[4/8] dt-bindings: memory: lpddr3: adjust IO width to spec
-      commit: d98e72b6f9b078c57f9d46dc64a669d02ff2ffcc
-[5/8] dt-bindings: memory: lpddr3: deprecate manufacturer ID
-      commit: e531932c7185b86eccb3688002730950d49eba1a
-[6/8] dt-bindings: memory: lpddr3: deprecate passing timings frequency as unit address
-      commit: 42f94bb962cd1b15dc57c90aca7e48848ca6c6c3
-[7/8] memory: of: parse max-freq property
-      commit: 4e890b2228fd14fa6269175e9816bf27ff989e84
+Since drivers are replacing the {simple,efi}fb drivers and others with the
+simpledrm driver, the DRM subsystem is now built into the kernel and no
+longer a loadable module.
+
+So there has been some effort to make it more modular and smaller, as an
+example the following patch-set from Thomas:
+
+https://www.spinics.net/lists/dri-devel/msg329120.html
+
+But there are still a lot of room to reduce this and certainly enabling
+CONFIG_DRM will be noticeable for such memory constrainted systems.
+
+This is outside the scope of this patch series though, that is only about
+adding a new DRM driver :)
+
+Now, this is a reason why I mentioned that the old fbdev driver shouldn't
+be removed yet.
 
 Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
+
