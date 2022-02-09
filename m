@@ -2,60 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49B0E4AF897
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 18:36:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA1B4AF8A6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 18:44:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238329AbiBIRgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 12:36:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33790 "EHLO
+        id S234752AbiBIRoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 12:44:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234972AbiBIRgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 12:36:35 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4F23C0613C9;
-        Wed,  9 Feb 2022 09:36:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=SAEY4tO5RFqhLp5ofFgnaaShi4GQVJzf3c7KN8jXJCg=; b=ezurnzFXJYf65/MurHowP3chYp
-        pyHXtrCZ49enm52qiHMmG9WyyteyTzLzPDL1l131YOrbbMP/5DUeFuVSgQbSLu8Ihvi64be1vZ7mY
-        yJk5Qf8Xmwxggy67jKp9BczL7Y/6/rTmPc402TktVfyFftkppcZ75Wnu5213+EBFcmU0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nHqt4-0059nG-Jq; Wed, 09 Feb 2022 18:36:14 +0100
-Date:   Wed, 9 Feb 2022 18:36:14 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <ALSI@bang-olufsen.dk>
-Cc:     Rob Herring <robh@kernel.org>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: dsa: realtek-smi: convert to YAML
- schema
-Message-ID: <YgP7jgswRQ+GR4P2@lunn.ch>
-References: <20211228072645.32341-1-luizluca@gmail.com>
- <Ydx4+o5TsWZkZd45@robh.at.kernel.org>
- <CAJq09z4G40ttsTHXtOywjyusNLSjt_BQ9D78PhwSodJr=4p6OA@mail.gmail.com>
- <CAL_JsqJ4SsEzZz=JfFMDDUMXEDfybMZw4BVDcj1MoapM+8jQwg@mail.gmail.com>
- <87zgn0gf3k.fsf@bang-olufsen.dk>
+        with ESMTP id S232133AbiBIRoh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 12:44:37 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A96FC0613C9
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 09:44:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1644428653;
+        bh=bZbERGS5dPadQqxAada0Qnetp5usNMkkZudsQMtwL34=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=M8s7o/ezuEBY8ByPlPJGeGa5rcj6oADEZinZIUugQJjhr0doSPQTl0tKd3ve1W+z+
+         7xD38ORt7xSwxL+AIgFOB3w0o3FxGSHwKwEnHMz04Ftq9iJFyHAV3vDxLJ08/hT30+
+         BFZzyb5m2qYaBChVvSL1mYrKYQJ7haCiRjN4aN3Q=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.77.2] ([80.245.77.2]) by web-mail.gmx.net
+ (3c-app-gmx-bs62.server.lan [172.19.170.146]) (via HTTP); Wed, 9 Feb 2022
+ 18:44:13 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87zgn0gf3k.fsf@bang-olufsen.dk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+Message-ID: <trinity-0fd51fc6-00ab-402e-871a-71d3356623cb-1644428653437@3c-app-gmx-bs62>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Aw: [PATCH v5 00/23] drm/rockchip: RK356x VOP2 support
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 9 Feb 2022 18:44:13 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20220209095350.2104049-1-s.hauer@pengutronix.de>
+References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:Kt6uAoUQy9KUxXYBKRna2pPwbagv75n8tB/ygcLmTad0OxyWH9GjeOrVm0AWTeIbrbqIq
+ Tm1s3jWc+KpbC6iwreK7KtjQNxoO4BOa0lbhoSv8XGtsEHshbXteWUQGpRXothSDjShyy1mXnZBT
+ hT1852znFykmSoCSO1QIUeC0etGbz2nof3MmQSE8+d+mbiy3hkxqwVpE8lxhW/CeeQ9jM94aYIZ/
+ oB7m9mFSP+Xnau4l7gLNvr5ybM0twlYFQNn71AWtH7j6JytJyppXurHMP5yW0oI9M3x0OYm/V0av
+ b8=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:HHIopXo7vDg=:qsqesGaC0wEfoA43XimtxE
+ 6bBs4dsAzxa4W4Aral8BmHTwxTpGZrvMM0RsC58nRqVGnyoWjgLTAMgl+mJMECV8hD7XSt3Wd
+ NkpqxZNfbqiHDHOMjWM8tC8/FAfozuGL4OsxAv69cHZSUDsO/LnlQSlF/T2F90oMqxQ9DHEDw
+ CcgMGfxB3Us4iUDFoB13jkz0s/s2VqLUE5H0KUd5357KuBWb2xoNwWltZqsLceU1kubro9NOi
+ HNooovDdZ5H6xuJOPZ/G57jYxJ+hNY/RUJG4Ojg4Sha+fjPVY31Xlle3AQGp7QEJtqXtC8NFk
+ PriywlgvZ0XB01f7LqQheJKs3NyEvZY5oVMeD0mTl+//ben+eyBChSkv/a5elOT8+iINOo9oI
+ 4hUyOEFEDfNk9RdLtmcxD63/zCwksIvu+lb4g4etzsj1PMNKzWqEC00yTAufw2KqzVCbcwX0k
+ 9O5IWXBzbm+hlxRis4do6Fd7fuCeiL8PZng8lD2aDtovpGTiN6366QLXAkhV69qS/PmTL4GLF
+ Jp3DMJhvk2Pasdzbnp+GDNsVmc7oHYDsvpsFtFYWjMhqcAqhf2/2tNt1NWSLyZdzRfgOwDBpZ
+ zpmxOJSHUZ5NzTycvzhAlyuU9SPd6yNb8hpTCcCitysOQ5hGLSisu4nJKmakqKWwwU+RMjGai
+ UTyv9j9CKaf04bn9io2NmrSvpYdfn+zlRI2PXREz1TrGKl1qBYWOpDAO+7Ni/vf3zJsfQ7Ih/
+ Nll1B2u7F+fXNlSGS7FQxbvIFL8Z+d/4oDE/klBv3Ln29FTyBmlmak/tDZ1oVPHnHZEAGKRp2
+ T0vp6Nw
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,13 +75,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> So, in summary:
-> 
->  - one interrupt for the switch
->  - the switch is an interrupt-controller
->  - ... and is the interrupt-parent for the phy nodes.
+Hi Sascha
 
-This pattern is pretty common for DSA switches, which have internal
-PHYs. You can see this in the mv88e6xxx binding for example.
+tested full v5 Series + 3 clk-Patches from v4 on 5.17-rc2 on my rk3568 based Bananapi R2 Pro
 
-      Andrew
+1280x720-32@60Hz
+1920x1080-32@60Hz
+3840x2160-32@60Hz
+
+with fb console
+
+Tested-by: Frank Wunderlich <frank-w@public-files.de>
+
+regards Frank
