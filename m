@@ -1,111 +1,188 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B3354AFD6F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:29:48 +0100 (CET)
+Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
+	by mail.lfdr.de (Postfix) with ESMTP id D1EE44AFCED
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:09:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238403AbiBIT2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 14:28:47 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:45676 "EHLO
+        id S229653AbiBITIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 14:08:20 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:42300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234875AbiBIT1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:27:23 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9987E00D0EB;
-        Wed,  9 Feb 2022 11:19:14 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 219J5EXu106008;
-        Wed, 9 Feb 2022 13:05:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1644433514;
-        bh=QFBm9dNFfRX8TxQN2dJMx+RT6cga02Ei3ZZsy4WZF5s=;
-        h=Date:From:Subject:To:CC:References:In-Reply-To;
-        b=HOeiQQfuKXsCyBaoHMugen0B9oxTy6tWjU59P1ZXsEs2sqz3eiavj0smWjfbTe1mW
-         6HV9k+vo/7bINMw7ZDTsS7BCSYfU0vwx9CYx/nwCspZP9XYykX24o8QEugpPGYpFKh
-         Xd4o4qtMRWZ6N9JENjZJsj7La+DvWzQujxSJ5NEo=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 219J5EXB008632
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Feb 2022 13:05:14 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 9
- Feb 2022 13:05:14 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 9 Feb 2022 13:05:13 -0600
-Received: from [10.250.235.90] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 219J5AXB070883;
-        Wed, 9 Feb 2022 13:05:11 -0600
-Message-ID: <a2312248-f79d-4728-0257-5485d08dd6c9@ti.com>
-Date:   Thu, 10 Feb 2022 00:35:10 +0530
+        with ESMTP id S229851AbiBITIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:08:19 -0500
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6585C050CCB;
+        Wed,  9 Feb 2022 11:08:10 -0800 (PST)
+Received: by mail-oi1-x235.google.com with SMTP id v67so3467374oie.9;
+        Wed, 09 Feb 2022 11:08:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZhzyL7iIsfqojNUVkETC0UZ5IL+vMOwPA5/nkXJGWro=;
+        b=txUHSrPbTcB+gc4CCz4OeOZ4zPXCbGAP3hnbnzbpAARgZI7CZCmhJf5ZIlTBpJAPPy
+         ovqYBgY861sDLXgGM5CH2lBcOw9veDW4GGnlnzR205vuftI9+fmZbdUcJ37bNFh31F2P
+         Zq3jPwKUH7NcqKE7M5KYjmudh3MyfEVAbyFqkopspNnCLzhUNVbIpipYHOERhgHlub8A
+         G5VIaEldmYyFFSBM56vjYk7cYPmPxT4hyqYBwP4R4wRRrnMxeowB4ZG1t4YDFRwSlx6U
+         cveMyI2Fetw36nrRLuvBv3+nvIMIxmtBQwFPJQRJ1Vca1ojFziRmu5xf+eWyO0fdLT3o
+         Vkww==
+X-Gm-Message-State: AOAM531PEjvwRsFv8LbSG1G3H57+O9DKLEVELum2BDLMxglm0HfZJ3A3
+        bCdr1rfC/uFg7ijBk9qWsmDABAx/BQ==
+X-Google-Smtp-Source: ABdhPJyy846C2b5ZTD9QWirBvx6xeA+PBp30vDQqUmINa5tr5IpsfK6YfF4hk16FGOKABUsDCz9ITA==
+X-Received: by 2002:aca:43c3:: with SMTP id q186mr1587165oia.128.1644433629049;
+        Wed, 09 Feb 2022 11:07:09 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g10sm6827172otn.65.2022.02.09.11.07.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Feb 2022 11:07:07 -0800 (PST)
+Received: (nullmailer pid 705933 invoked by uid 1000);
+        Wed, 09 Feb 2022 19:07:06 -0000
+Date:   Wed, 9 Feb 2022 13:07:06 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     ulf.hansson@linaro.org, lhjeff911@gmail.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        tony.huang@sunplus.com, wells.lu@sunplus.com, lh.kuo@sunplus.com
+Subject: Re: [PATCH v3 1/2] dt-binding: mmc: Add mmc yaml file for Sunplus
+ SP7021
+Message-ID: <YgQQ2nJa12xblXBX@robh.at.kernel.org>
+References: <cover.1644398657.git.tonyhuang.sunplus@gmail.com>
+ <f8b89f9981e17c023ce530afedb1f2b599edec0f.1644398657.git.tonyhuang.sunplus@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 5/5] arm64: dts: ti: Add support for AM62-SK
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220208131827.1430086-1-vigneshr@ti.com>
- <20220208131827.1430086-6-vigneshr@ti.com>
- <65bfa443-5117-9e69-8b6e-0c40099bd149@canonical.com>
-Content-Language: en-US
-In-Reply-To: <65bfa443-5117-9e69-8b6e-0c40099bd149@canonical.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f8b89f9981e17c023ce530afedb1f2b599edec0f.1644398657.git.tonyhuang.sunplus@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 08/02/22 10:38 pm, Krzysztof Kozlowski wrote:
-> On 08/02/2022 14:18, Vignesh Raghavendra wrote:
->> From: Nishanth Menon <nm@ti.com>
->>
-[...]
->> +	vmain_pd: fixed-regulator-vmain-pd {
->> +		/* TPS65988 PD CONTROLLER OUTPUT */
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vmain_pd";
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +	};
->> +
->> +	vcc_5v0: fixedregulator-vcc5v0 {
->> +		/* Output of LM34936 */
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vcc_5v0";
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		vin-supply = <&vmain_pd>;
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +	};
->> +
->> +	vcc_3v3_sys: fixedregulator-vcc-3v3-sys {
+On Wed, Feb 09, 2022 at 06:41:06PM +0800, Tony Huang wrote:
+> Add mmc yaml file for Sunplus SP7021
 > 
-> Generic node names (as in DT spec), so regulator-[0-9]. The label and
-> regulator-name property describe it's user-friendly purpose.
+> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
+> ---
+> Changes in v3:
+>  - combine sdcard and eMMC into one driver.
+> 
+>  .../devicetree/bindings/mmc/sunplus-mmc.yaml       | 76 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  6 ++
+>  2 files changed, 82 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml b/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
+> new file mode 100644
+> index 0000000..8f44d13
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Ltd. Co. 2021
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/sunplus-mmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: sunplus MMC controller
+> +
+> +allOf:
+> +  - $ref: "mmc-controller.yaml"
+> +
+> +maintainers:
+> +  - Tony Huang <tonyhuang.sunplus@gmail.com>
+> +  - Li-hao Kuo <lhjeff911@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sunplus,sp7021-emmc
+> +      - sunplus,sp7021-sdhci
 
-Ah, yes, missed it, will fix in v2
+Why are these still different? Looking at the driver, it seems the 
+settings are the same for both. And for clock speeds, we have properties 
+to control them as they can be board specific.
 
-Thanks for the review!
-
-Regards
-Vignesh
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  max-frequency: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - resets
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    mmc0: mmc@9c003b00 {
+> +        compatible = "sunplus,sp7021-emmc";
+> +        reg = <0x9c003b00 0x180>;
+> +        interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clkc 0x4e>;
+> +        resets = <&rstc 0x3e>;
+> +        bus-width = <8>;
+> +        max-frequency = <52000000>;
+> +        non-removable;
+> +        disable-wp;
+> +        cap-mmc-highspeed;
+> +        mmc-ddr-3_3v;
+> +        no-sdio;
+> +        no-sd;
+> +    };
+> +
+> +    mmc1: mmc@9c003e80 {
+> +       compatible = "sunplus,sp7021-sdhci";
+> +       reg = <0x9c003e80 0x280>;
+> +       interrupts = <21 IRQ_TYPE_LEVEL_HIGH>;
+> +       clocks = <&clkc 0x4f>;
+> +       resets = <&rstc 0x3f>;
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&mmc1_mux &mmc1_mux_cd>;
+> +       max-frequency = <52000000>;
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fb18ce7..cb46a55 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18242,6 +18242,12 @@ L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/net/ethernet/dlink/sundance.c
+>  
+> +SUNPLUS MMC DRIVER
+> +M:	Tony Huang <tonyhuang.sunplus@gmail.com>
+> +M:	Li-hao Kuo <lhjeff911@gmail.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/mmc/sunplu-mmc.yaml
+> +
+>  SUPERH
+>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+>  M:	Rich Felker <dalias@libc.org>
+> -- 
+> 2.7.4
+> 
+> 
