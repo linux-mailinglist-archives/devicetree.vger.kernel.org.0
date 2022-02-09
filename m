@@ -2,66 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 123344B0013
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 23:23:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DD314B0021
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 23:28:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235372AbiBIWWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 17:22:44 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:50694 "EHLO
+        id S235514AbiBIW0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 17:26:18 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:55804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235349AbiBIWWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 17:22:44 -0500
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2415C1DC5D1;
-        Wed,  9 Feb 2022 14:22:46 -0800 (PST)
-Received: by mail-oo1-f46.google.com with SMTP id t75-20020a4a3e4e000000b002e9c0821d78so4195826oot.4;
-        Wed, 09 Feb 2022 14:22:46 -0800 (PST)
+        with ESMTP id S235517AbiBIW0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 17:26:17 -0500
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DFC5E00FA61;
+        Wed,  9 Feb 2022 14:26:18 -0800 (PST)
+Received: by mail-oo1-f43.google.com with SMTP id v17-20020a4ac911000000b002eac41bb3f4so4140443ooq.10;
+        Wed, 09 Feb 2022 14:26:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=p7H8vRR/hHMqd6cJjy66lpzbwuEKRZjfv8J4zVqENbI=;
-        b=24ksO36RN9ugHFx7oK42JUDono7a9JLVfQJehbUzvVVn+Q2+dp+v6NV8NHKiqayvmU
-         61f5QfO2PtRqh3FBiX0q6JzFObypthsO8kqeElqJfM5BJqgbCyhcX5/uamjWvC4x9V1z
-         qgHqDfZDTaFz9YDKYJLjKIu3HNH6jWXD1vdMhCN3sxSJARef0Z5EJf2Pe2aMXpCmTdwV
-         +OilEJkBNbjNCvsMk77+Af0IH+YF9i2BYccLFU7wqz7TNTC077HtlgyTw9E+fDDgXYW2
-         lcr3GP7+dFdRbTT30lGQnjdO/N+EZxp2wZgeR8SLYiz+HYWLHReijJJb650CF/xP6u0L
-         IZiw==
-X-Gm-Message-State: AOAM532yfbQmpbCmxyboFnN6HNzXnfuF2yLauhONmdvrcfMsRPMnzfPJ
-        6rPNWyBxWJ9ZOhgo63wqIw==
-X-Google-Smtp-Source: ABdhPJyVgNUrktRsjw7FToQtRXFtneJ6EyZ6SKQuJ3JNOr7cn5rmTG9pPiReipelbwLiLp8L4pj5gQ==
-X-Received: by 2002:a05:6871:396:: with SMTP id z22mr1695258oaf.126.1644445366082;
-        Wed, 09 Feb 2022 14:22:46 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=VokS/LV1TEYPleulJVlf7TOB4sLTd1K/O33J8e8TuFc=;
+        b=rmM5BJBxZZ7G2fPFNDKMA+gJb0ZOwzuO4RfESp3gtXhFjFxiPdR24k0KPvTrk+Re1G
+         4li5O3M+5g/IKibmFmaYrO4Ed/eLCIMEAeTZCjlGqTzBkIRECzM9KoYMGlNx7YFs9AkP
+         /q4YZGU0wm/umcjcs6ZcwVgbZ4hWc2Bz7OK74vXBUb7dLuEz0UxHigoBLgyF/xHP8wKM
+         gegyXZhNrP7uS2AXh/yJDmruvV/sC2O3XPXBm1UJLSrSLda2ECx/5D/knxRcT+bBOlBS
+         auS1Lzx4wTZNPAT8IrAxXAtYR1ZGYIObgwMksIeuPZaB6RQMFJ4fNp9Frx7zeG+Bzptd
+         YhMQ==
+X-Gm-Message-State: AOAM531gXqST+2ob9btCF2ScaAOkYDssWiXqA8WDvWt9jf+QFfJnr5ie
+        bLji5kiux9a/jpSmWcmv2u1ZykWm41wW
+X-Google-Smtp-Source: ABdhPJywipe7klTLRE5e/+vPDP8aB+/GYFw41LLTSHGNt4APu/Olw3r/K7+zJZ1vbUg6vM11F84QOQ==
+X-Received: by 2002:a4a:a68b:: with SMTP id f11mr1785998oom.11.1644445577901;
+        Wed, 09 Feb 2022 14:26:17 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id ek4sm7771458oab.23.2022.02.09.14.22.44
+        by smtp.gmail.com with ESMTPSA id 21sm7114224otj.71.2022.02.09.14.26.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 14:22:45 -0800 (PST)
-Received: (nullmailer pid 1043668 invoked by uid 1000);
-        Wed, 09 Feb 2022 22:22:44 -0000
-Date:   Wed, 9 Feb 2022 16:22:44 -0600
+        Wed, 09 Feb 2022 14:26:17 -0800 (PST)
+Received: (nullmailer pid 1050092 invoked by uid 1000);
+        Wed, 09 Feb 2022 22:26:16 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Prasad Malisetty <pmaliset@codeaurora.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 01/11] dt-bindings: pci: qcom,pcie: drop unused "pipe"
- clocks
-Message-ID: <YgQ+tGhLqwUCsTUo@robh.at.kernel.org>
-References: <20220204144645.3016603-1-dmitry.baryshkov@linaro.org>
- <20220204144645.3016603-2-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220204144645.3016603-2-dmitry.baryshkov@linaro.org>
+To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+Cc:     naga.sureshkumar.relli@xilinx.com, linux-can@vger.kernel.org,
+        wg@grandegger.com, netdev@vger.kernel.org,
+        appana.durga.rao@xilinx.com, git@xilinx.com, davem@davemloft.net,
+        devicetree@vger.kernel.org, michal.simek@xilinx.com,
+        linux-kernel@vger.kernel.org, kuba@kernel.org,
+        linux-arm-kernel@lists.infradead.org, mkl@pengutronix.de,
+        robh+dt@kernel.org
+In-Reply-To: <20220209174850.32360-1-amit.kumar-mahapatra@xilinx.com>
+References: <20220209174850.32360-1-amit.kumar-mahapatra@xilinx.com>
+Subject: Re: [PATCH v2] dt-bindings: can: xilinx_can: Convert Xilinx CAN binding to YAML
+Date:   Wed, 09 Feb 2022 16:26:16 -0600
+Message-Id: <1644445576.227208.1050091.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -73,39 +63,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 04, 2022 at 05:46:35PM +0300, Dmitry Baryshkov wrote:
-> The "pipe" clock is now unused by the PCIe driver. Drop it from the
-> bindings.
-
-Old kernels expect it, so nak.
-
+On Wed, 09 Feb 2022 23:18:50 +0530, Amit Kumar Mahapatra wrote:
+> Convert Xilinx CAN binding documentation to YAML.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
 > ---
->  Documentation/devicetree/bindings/pci/qcom,pcie.txt | 2 --
->  1 file changed, 2 deletions(-)
+> BRANCH: yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> index a0ae024c2d0c..da08f0f9de96 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> @@ -154,7 +154,6 @@
->  			- "bus_slave"	Slave AXI clock
->  			- "slave_q2a"	Slave Q2A clock
->  			- "tbu"		PCIe TBU clock
-> -			- "pipe"	PIPE clock
->  
->  - clock-names:
->  	Usage: required for sc8180x and sm8250
-> @@ -167,7 +166,6 @@
->  			- "slave_q2a"	Slave Q2A clock
->  			- "tbu"		PCIe TBU clock
->  			- "ddrss_sf_tbu" PCIe SF TBU clock
-> -			- "pipe"	PIPE clock
->  
->  - resets:
->  	Usage: required
-> -- 
-> 2.34.1
+> Changes in v2:
+>  - Added reference to can-controller.yaml
+>  - Added example node for canfd-2.0
+> ---
+>  .../bindings/net/can/xilinx_can.txt           |  61 -------
+>  .../bindings/net/can/xilinx_can.yaml          | 160 ++++++++++++++++++
+>  2 files changed, 160 insertions(+), 61 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/can/xilinx_can.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/can/xilinx_can.yaml
 > 
-> 
+
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/1590637
+
+
+can@ff060000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dt.yaml
+
+can@ff070000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dt.yaml
+
