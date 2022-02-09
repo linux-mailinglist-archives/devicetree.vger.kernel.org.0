@@ -1,51 +1,51 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A94B84AFCDF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:07:03 +0100 (CET)
+Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
+	by mail.lfdr.de (Postfix) with ESMTP id 5B3354AFD6F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:29:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229698AbiBITG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 14:06:57 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:37604 "EHLO
+        id S238403AbiBIT2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 14:28:47 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:45676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230233AbiBITGz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:06:55 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F14C03C1A6;
-        Wed,  9 Feb 2022 11:06:47 -0800 (PST)
+        with ESMTP id S234875AbiBIT1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:27:23 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9987E00D0EB;
+        Wed,  9 Feb 2022 11:19:14 -0800 (PST)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 219J4Qkg105333;
-        Wed, 9 Feb 2022 13:04:26 -0600
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 219J5EXu106008;
+        Wed, 9 Feb 2022 13:05:14 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1644433466;
-        bh=SRVHYoJ/oRcyKgnuNgklLIBZXWQnsAJ4r6qva6onZeQ=;
+        s=ti-com-17Q1; t=1644433514;
+        bh=QFBm9dNFfRX8TxQN2dJMx+RT6cga02Ei3ZZsy4WZF5s=;
         h=Date:From:Subject:To:CC:References:In-Reply-To;
-        b=a5jJ4F59pL1B0sXVeBC87dWeMG4lIrPP25wTf3qcfo2kDTF2KhGYYaWy4HXBmvgx8
-         u8FbpIdPQurIln47LsHz4UBi5FlC66lUqbPsaqnNY5gI3C8zdoPVs3ngrcjKAE1W8e
-         d6mN0o8TgtZk7EB4ZYXM6BVVwcXD3FqkpgDaQ1nc=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 219J4QcM007930
+        b=HOeiQQfuKXsCyBaoHMugen0B9oxTy6tWjU59P1ZXsEs2sqz3eiavj0smWjfbTe1mW
+         6HV9k+vo/7bINMw7ZDTsS7BCSYfU0vwx9CYx/nwCspZP9XYykX24o8QEugpPGYpFKh
+         Xd4o4qtMRWZ6N9JENjZJsj7La+DvWzQujxSJ5NEo=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 219J5EXB008632
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Feb 2022 13:04:26 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 9 Feb 2022 13:05:14 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 9
- Feb 2022 13:04:26 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2022 13:05:14 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 9 Feb 2022 13:04:26 -0600
+ Frontend Transport; Wed, 9 Feb 2022 13:05:13 -0600
 Received: from [10.250.235.90] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 219J4NtW019768;
-        Wed, 9 Feb 2022 13:04:23 -0600
-Message-ID: <aa042432-8e70-19d9-9bde-c6d5bf6688b1@ti.com>
-Date:   Thu, 10 Feb 2022 00:34:22 +0530
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 219J5AXB070883;
+        Wed, 9 Feb 2022 13:05:11 -0600
+Message-ID: <a2312248-f79d-4728-0257-5485d08dd6c9@ti.com>
+Date:   Thu, 10 Feb 2022 00:35:10 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.1
 From:   Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 2/5] dt-bindings: arm: ti: Add bindings for AM625 SoC
+Subject: Re: [PATCH 5/5] arm64: dts: ti: Add support for AM62-SK
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -53,10 +53,10 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
 CC:     <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 References: <20220208131827.1430086-1-vigneshr@ti.com>
- <20220208131827.1430086-3-vigneshr@ti.com>
- <9303ca0e-2a83-3c3e-0892-c74a820562a9@canonical.com>
+ <20220208131827.1430086-6-vigneshr@ti.com>
+ <65bfa443-5117-9e69-8b6e-0c40099bd149@canonical.com>
 Content-Language: en-US
-In-Reply-To: <9303ca0e-2a83-3c3e-0892-c74a820562a9@canonical.com>
+In-Reply-To: <65bfa443-5117-9e69-8b6e-0c40099bd149@canonical.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
@@ -72,91 +72,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 08/02/22 10:31 pm, Krzysztof Kozlowski wrote:
+On 08/02/22 10:38 pm, Krzysztof Kozlowski wrote:
 > On 08/02/2022 14:18, Vignesh Raghavendra wrote:
 >> From: Nishanth Menon <nm@ti.com>
 >>
->> The AM62 SoC family is the follow on AM335x built on K3 Multicore SoC
->> architecture platform, providing ultra-low-power modes, dual display,
->> multi-sensor edge compute, security and other BOM-saving integration.
->> The AM62 SoC targets broad market to enable applications such as
->> Industrial HMI, PLC/CNC/Robot control, Medical Equipment, Building
->> Automation, Appliances and more.
->>
->> Some highlights of this SoC are:
->>
->> * Quad-Cortex-A53s (running up to 1.4GHz) in a single cluster.
->>   Pin-to-pin compatible options for single and quad core are available.
->> * Cortex-M4F for general-purpose or safety usage.
->> * Dual display support, providing 24-bit RBG parallel interface and
->>   OLDI/LVDS-4 Lane x2, up to 200MHz pixel clock support for 2K display
->>   resolution.
->> * Selectable GPUsupport, up to 8GFLOPS, providing better user experience
->>   in 3D graphic display case and Android.
->> * PRU(Programmable Realtime Unit) support for customized programmable
->>   interfaces/IOs.
->> * Integrated Giga-bit Ethernet switch supporting up to a total of two
->>   external ports (TSN capable).
->> * 9xUARTs, 5xSPI, 6xI2C, 2xUSB2, 3xCAN-FD, 3x eMMC and SD, GPMC for
->>   NAND/FPGA connection, OSPI memory controller, 3xMcASP for audio,
->>   1x CSI-RX-4L for Camera, eCAP/eQEP, ePWM, among other peripherals.
->> * Dedicated Centralized System Controller for Security, Power, and
->>   Resource Management.
->> * Multiple low power modes support, ex: Deep sleep,Standby, MCU-only,
->>   enabling battery powered system design.
->>
->> AM625 is the first device of the family. Add DT bindings for the same.
-> 
-> Don't paste the same huge commit description in several commits.
-
-Sorry, I think this is the first commit with full description. I will
-probably trim 4/5 at bit
-
-> 
->>
->> More details can be found in the Technical Reference Manual:
->> https://www.ti.com/lit/pdf/spruiv7
->>
->> Signed-off-by: Nishanth Menon <nm@ti.com>
->> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->> ---
->>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
->> index b03c10fa2e7a..64f3db3ea9dd 100644
->> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
->> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
->> @@ -53,6 +53,12 @@ properties:
->>                - ti,am642-sk
->>            - const: ti,am642
->>  
->> +      - description: K3 AM625 SoC
->> +        items:
->> +          - enum:
->> +              - ti,am625-sk
->> +          - const: ti,am625
-> 
-> Why keeping it not alphabetically sorted? What sorting did you choose?
-> 
-
-Above list is not sorted alphabetically, I tried to keep similar SoCs
-bunched together. AM625 and AM642 are of same family, hence chose to add
-the new entry here.
-
-One alternative is to add it to end of the list (chronologically)?
-Or I can add a patch to sort the list alphabetically first and then
-introduce new compatible. Please let me know your preference?
-
+[...]
+>> +	vmain_pd: fixed-regulator-vmain-pd {
+>> +		/* TPS65988 PD CONTROLLER OUTPUT */
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vmain_pd";
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +	};
 >> +
->>        - description: K3 J721s2 SoC
->>          items:
->>            - enum:
+>> +	vcc_5v0: fixedregulator-vcc5v0 {
+>> +		/* Output of LM34936 */
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vcc_5v0";
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +		vin-supply = <&vmain_pd>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>> +	vcc_3v3_sys: fixedregulator-vcc-3v3-sys {
 > 
-> 
-> Best regards,
-> Krzysztof
+> Generic node names (as in DT spec), so regulator-[0-9]. The label and
+> regulator-name property describe it's user-friendly purpose.
 
+Ah, yes, missed it, will fix in v2
+
+Thanks for the review!
 
 Regards
 Vignesh
