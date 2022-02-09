@@ -2,173 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E81234AFD5B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12F024AFD48
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:26:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235227AbiBIT10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 14:27:26 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:44550 "EHLO
+        id S234082AbiBITZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 14:25:34 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:43894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234196AbiBIT0r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:26:47 -0500
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74AC9E00E167;
-        Wed,  9 Feb 2022 11:19:16 -0800 (PST)
-Received: by mail-yb1-xb2a.google.com with SMTP id bt13so8964230ybb.2;
-        Wed, 09 Feb 2022 11:19:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CIBNTST+9OGrpk4nfrRm6UVggIJAfLO7vApiU2dxPNA=;
-        b=OxCzMiBP3pWGZ5ydZs++XEU1LN9GEm/NjCcYpCb5RUaK+dsayM1ywI7g9M+pFxEbcj
-         GFNogcdmCJDQFvS9X5/Os29mINWNuPOLTJZ6DRgKJdqxk683O99TFxmlvue+C1TCnXp3
-         WOdK1WANLzKgE+RdrdT7SH+NVc84hit0knwqq0pMc0ZpIIuW664T3q5sHbKnnOboEQn6
-         ehGN3HTC0xPpU+0BmLUAQBMk1TAde6vUgePS0IYfyjxpRzonhE6J1BAB/jTJ1MPB75TI
-         g5GPDznXQ2w1BRdTsfogKr9D4id1s7DteqQNAp9oR36bIrZpWSPjI8YpAGadcMYL7//h
-         yFaw==
-X-Gm-Message-State: AOAM530Fp7alx2Xi2l3EsVvQeoU5fU/ulh4my1QREKei/nGkYJl/pr3q
-        mgRLy1VVfanDb1+Tb51jEsBcogJZkFr7E3bwMSQ=
-X-Google-Smtp-Source: ABdhPJwr4jDaiwQ6MNEAj7xSNbO5pTS0y6wSQESBLrfGltspzdJ8IWOYvkkrwZrxAEr6fKJ+Bx1xInJejne+N7sxa78=
-X-Received: by 2002:a81:1f0b:: with SMTP id f11mr3157800ywf.149.1644434295470;
- Wed, 09 Feb 2022 11:18:15 -0800 (PST)
-MIME-Version: 1.0
-References: <20220202020103.2149130-1-rajatja@google.com> <CAJZ5v0gngVxoe88rNAXXK_F34rHAKuxokiuZ6kpg6FhbnyMn0Q@mail.gmail.com>
-In-Reply-To: <CAJZ5v0gngVxoe88rNAXXK_F34rHAKuxokiuZ6kpg6FhbnyMn0Q@mail.gmail.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Wed, 9 Feb 2022 20:18:04 +0100
-Message-ID: <CAJZ5v0hY+3gBUrSwawy1bEQP-BbjXu0186+uKTuBh9r52Xs+Xw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] PCI: Allow internal devices to be marked as untrusted
-To:     Rajat Jain <rajatja@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Linux PCI <linux-pci@vger.kernel.org>,
+        with ESMTP id S233865AbiBITZW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:25:22 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 952F9E01526C;
+        Wed,  9 Feb 2022 11:25:19 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: detlev)
+        with ESMTPSA id B8A881F45830
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1644434718;
+        bh=7+kNVuhRDRn8ZWd50WG2gPmkpwkCawcOM90JKeUKmKU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=MV0BmwPzZNSBUeCHXgm842NsKPpUaxWQIj0kCG8a0hLp3xOW3k9kykpnwJnsQ+2PT
+         c0Su8GZH9uR8fzUnohebLBH5zeUPbglzcuRFuNDzaWA2iepkfUQZek/TzO7wb4ypK8
+         tPKOJjTj0VLKQOZU7/rvgZBrShffbP67x5MsyelHPP6mPMpC7ULshIFE8Jqb3wULt8
+         BLoZ7ix1bLLF7yXKCp3cWOqEg5FDQWHZLLAUUdOfQTd5QnagV0EbPmZdRL1Y3XSX01
+         ok0ZfmkncihMlW3BRjnTC+BpGPXDTcfCXVYmsCgLPs1dxc4pXjDgOzLl2FSFlSMYl9
+         JQgnnk5aZZ1Nw==
+From:   Detlev Casanova <detlev.casanova@collabora.com>
+To:     linux-kernel@vger.kernel.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        "maintainer:ARM AND ARM64 SoC SUB-ARCHITECTURES (COMMON PARTS)" 
+        <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "moderated list:ARM AND ARM64 SoC SUB-ARCHITECTURES (COMMON PARTS)" 
+        <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rajat Jain <rajatxjain@gmail.com>,
-        Dmitry Torokhov <dtor@google.com>,
-        Jesse Barnes <jsbarnes@google.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Pavel Machek <pavel@denx.de>,
-        "Oliver O'Halloran" <oohall@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <uwe@kleine-koenig.org>
+Subject: Re: [PATCH 1/2] ARM: dts: bcm2*: Demux i2c0 with a pinctrl
+Date:   Wed, 09 Feb 2022 14:25:12 -0500
+Message-ID: <11962907.O9o76ZdvQC@falcon9>
+In-Reply-To: <1335ae03-705a-7a4a-a9ce-c6c55a2dcf34@i2se.com>
+References: <20220209162515.706729-1-detlev.casanova@collabora.com> <20220209162515.706729-2-detlev.casanova@collabora.com> <1335ae03-705a-7a4a-a9ce-c6c55a2dcf34@i2se.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 9, 2022 at 8:11 PM Rafael J. Wysocki <rafael@kernel.org> wrote:
->
-> On Wed, Feb 2, 2022 at 3:01 AM Rajat Jain <rajatja@google.com> wrote:
-> >
-> > Today the pci_dev->untrusted is set for any devices sitting downstream
-> > an external facing port (determined via "ExternalFacingPort" or the
-> > "external-facing" properties).
-> >
-> > However, currently there is no way for internal devices to be marked as
-> > untrusted.
-> >
-> > There are use-cases though, where a platform would like to treat an
-> > internal device as untrusted (perhaps because it runs untrusted firmware
-> > or offers an attack surface by handling untrusted network data etc).
-> >
-> > Introduce a new "UntrustedDevice" property that can be used by the
-> > firmware to mark any device as untrusted.
-> >
-> > Signed-off-by: Rajat Jain <rajatja@google.com>
+On Wednesday, February 9, 2022 12:26:15 P.M. EST Stefan Wahren wrote:
+> Hi Detlev,
+> 
+> Am 09.02.22 um 17:25 schrieb Detlev Casanova:
+> > The i2c0 device has 2 different busses controlled by a pinctrl.
+> > 
+> > This commit separates the device node into 2 i2c devices:
+> >  * pin 0: Base i2c bus
+> >  * pin 44: DSI i2c bus
+> > 
+> > i2c0 is renamed to i2c0if so that device-trees referencing i2c0 don't
+> > break and use the i2c0 node defined in i2c0mux node.
+> > 
+> > i2c_csi_dsi can be used to control devices via the DSI i2c bus, used for
+> > DSI displays.
+> > 
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> 
+> just a note: Uwe sends a similiar approach for the RTC on CM4 [1] which
+> hasn't applied yet.
+> 
+> [1] - https://www.spinics.net/lists/arm-kernel/msg944330.html
+
+
+Oh, I missed that, I'll just hav to wait for it to be merged and base the next 
+commit on that (Mainly name change)
+ 
 > > ---
-> > v2: * Also use the same property for device tree based systems.
-> >     * Add documentation (next patch)
-> >
-> >  drivers/pci/of.c       | 2 ++
-> >  drivers/pci/pci-acpi.c | 1 +
-> >  drivers/pci/pci.c      | 9 +++++++++
-> >  drivers/pci/pci.h      | 2 ++
-> >  4 files changed, 14 insertions(+)
-> >
-> > diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> > index cb2e8351c2cc..e8b804664b69 100644
-> > --- a/drivers/pci/of.c
-> > +++ b/drivers/pci/of.c
-> > @@ -24,6 +24,8 @@ void pci_set_of_node(struct pci_dev *dev)
-> >                                                     dev->devfn);
-> >         if (dev->dev.of_node)
-> >                 dev->dev.fwnode = &dev->dev.of_node->fwnode;
+> > 
+> >  arch/arm/boot/dts/bcm2711-rpi-4-b.dts         |  1 +
+> >  arch/arm/boot/dts/bcm2711.dtsi                |  2 +-
+> >  arch/arm/boot/dts/bcm2835-rpi.dtsi            |  9 ++++---
+> >  .../boot/dts/bcm283x-rpi-i2c0mux_0_44.dtsi    |  4 +++
+> >  arch/arm/boot/dts/bcm283x.dtsi                | 26 ++++++++++++++++++-
+> >  5 files changed, 37 insertions(+), 5 deletions(-)
+> >  create mode 100644 arch/arm/boot/dts/bcm283x-rpi-i2c0mux_0_44.dtsi
+> > 
+> > diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> > b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts index 4432412044de..5dcce58817e6
+> > 100644
+> > --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> > +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> > @@ -4,6 +4,7 @@
+> > 
+> >  #include "bcm2711-rpi.dtsi"
+> >  #include "bcm283x-rpi-usb-peripheral.dtsi"
+> >  #include "bcm283x-rpi-wifi-bt.dtsi"
+> > 
+> > +#include "bcm283x-rpi-i2c0mux_0_44.dtsi"
+> > 
+> >  / {
+> >  
+> >  	compatible = "raspberrypi,4-model-b", "brcm,bcm2711";
+> > 
+> > diff --git a/arch/arm/boot/dts/bcm2711.dtsi
+> > b/arch/arm/boot/dts/bcm2711.dtsi index 3b60297af7f6..bf6e8251c2c7 100644
+> > --- a/arch/arm/boot/dts/bcm2711.dtsi
+> > +++ b/arch/arm/boot/dts/bcm2711.dtsi
+> > @@ -1037,7 +1037,7 @@ &cma {
+> > 
+> >  	alloc-ranges = <0x0 0x00000000 0x40000000>;
+> >  
+> >  };
+> > 
+> > -&i2c0 {
+> > +&i2c0if {
+> > 
+> >  	compatible = "brcm,bcm2711-i2c", "brcm,bcm2835-i2c";
+> >  	interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
+> >  
+> >  };
+> > 
+> > diff --git a/arch/arm/boot/dts/bcm2835-rpi.dtsi
+> > b/arch/arm/boot/dts/bcm2835-rpi.dtsi index 87ddcad76083..1e38f9f0e80e
+> > 100644
+> > --- a/arch/arm/boot/dts/bcm2835-rpi.dtsi
+> > +++ b/arch/arm/boot/dts/bcm2835-rpi.dtsi
+> > @@ -49,13 +49,16 @@ alt0: alt0 {
+> > 
+> >  	};
+> >  
+> >  };
+> > 
+> > -&i2c0 {
+> > -	pinctrl-names = "default";
+> > -	pinctrl-0 = <&i2c0_gpio0>;
+> > +&i2c0if {
+> > 
+> >  	status = "okay";
+> >  	clock-frequency = <100000>;
+> >  
+> >  };
+> > 
+> > +&i2c0mux {
+> > +	pinctrl-0 = <&i2c0_gpio0>;
+> > +	status = "okay";
+> > +};
 > > +
-> > +       pci_set_untrusted(dev);
-> >  }
-> >
-> >  void pci_release_of_node(struct pci_dev *dev)
-> > diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
-> > index a42dbf448860..2bffbd5c6114 100644
-> > --- a/drivers/pci/pci-acpi.c
-> > +++ b/drivers/pci/pci-acpi.c
-> > @@ -1356,6 +1356,7 @@ void pci_acpi_setup(struct device *dev, struct acpi_device *adev)
-> >
-> >         pci_acpi_optimize_delay(pci_dev, adev->handle);
-> >         pci_acpi_set_external_facing(pci_dev);
-> > +       pci_set_untrusted(pci_dev);
-> >         pci_acpi_add_edr_notifier(pci_dev);
-> >
-> >         pci_acpi_add_pm_notifier(adev, pci_dev);
-> > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> > index 9ecce435fb3f..41e887c27004 100644
-> > --- a/drivers/pci/pci.c
-> > +++ b/drivers/pci/pci.c
-> > @@ -6869,3 +6869,12 @@ static int __init pci_realloc_setup_params(void)
-> >         return 0;
-> >  }
-> >  pure_initcall(pci_realloc_setup_params);
+> > 
+> >  &i2c1 {
+> >  
+> >  	pinctrl-names = "default";
+> >  	pinctrl-0 = <&i2c1_gpio2>;
+> > 
+> > diff --git a/arch/arm/boot/dts/bcm283x-rpi-i2c0mux_0_44.dtsi
+> > b/arch/arm/boot/dts/bcm283x-rpi-i2c0mux_0_44.dtsi new file mode 100644
+> > index 000000000000..119946d878db
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/bcm283x-rpi-i2c0mux_0_44.dtsi
+> > @@ -0,0 +1,4 @@
+> > +&i2c0mux {
+> > +	pinctrl-0 = <&i2c0_gpio0>;
+> > +	pinctrl-1 = <&i2c0_gpio44>;
+> > +};
+> > diff --git a/arch/arm/boot/dts/bcm283x.dtsi
+> > b/arch/arm/boot/dts/bcm283x.dtsi index a3e06b680947..06d04cde52b9 100644
+> > --- a/arch/arm/boot/dts/bcm283x.dtsi
+> > +++ b/arch/arm/boot/dts/bcm283x.dtsi
+> > @@ -334,7 +334,7 @@ spi: spi@7e204000 {
+> > 
+> >  			status = "disabled";
+> >  		
+> >  		};
+> > 
+> > -		i2c0: i2c@7e205000 {
+> > +		i2c0if: i2c@7e205000 {
+> > 
+> >  			compatible = "brcm,bcm2835-i2c";
+> >  			reg = <0x7e205000 0x200>;
+> >  			interrupts = <2 21>;
+> > 
+> > @@ -344,6 +344,30 @@ i2c0: i2c@7e205000 {
+> > 
+> >  			status = "disabled";
+> >  		
+> >  		};
+> > 
+> > +		i2c0mux: i2c0mux {
+> > +			compatible = "i2c-mux-pinctrl";
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
 > > +
-> > +void pci_set_untrusted(struct pci_dev *pdev)
-> > +{
-> > +       u8 val;
+> > +			i2c-parent = <&i2c0if>;
 > > +
-> > +       if (!device_property_read_u8(&pdev->dev, "UntrustedDevice", &val)
-> > +           && val)
-> > +               pdev->untrusted = 1;
->
-> I'm not sure why you ignore val = 0.  Is it not a valid value?
->
-> The property is not particularly well defined here.  It is not clear
-> from its name that it only applies to PCI devices and how.
->
-> AFAICS, the "untrusted" bit affected by it is only used by the ATS
-> code and in one PCH ACS quirk, but I'm not sure if this is all you
-> have in mind.
+> > +			pinctrl-names = "i2c0", "i2c_csi_dsi";
+> > +
+> > +			status = "disabled";
+> > +
+> > +			i2c0: i2c@0 {
+> > +				reg = <0>;
+> > +				#address-cells = <1>;
+> > +				#size-cells = <0>;
+> > +			};
+> > +
+> > +			i2c_csi_dsi: i2c@1 {
+> > +				reg = <1>;
+> > +				#address-cells = <1>;
+> > +				#size-cells = <0>;
+> > +			};
+> > +		};
+> > +
+> > 
+> >  		dpi: dpi@7e208000 {
+> >  		
+> >  			compatible = "brcm,bcm2835-dpi";
+> >  			reg = <0x7e208000 0x8c>;
 
-Besides, sort of in the bikeshedding territory, its name doesn't
-follow the guidelines given in the _DSD guide:
-https://github.com/UEFI/DSD-Guide/blob/main/dsd-guide.pdf
 
-I do realize that you want it to be valid for both ACPI and DT, but
-that doesn't preclude following the guidelines AFAICS.
 
-> > +}
-> > diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> > index 3d60cabde1a1..6c273ce5e0ba 100644
-> > --- a/drivers/pci/pci.h
-> > +++ b/drivers/pci/pci.h
-> > @@ -761,4 +761,6 @@ static inline pci_power_t mid_pci_get_power_state(struct pci_dev *pdev)
-> >  }
-> >  #endif
-> >
-> > +void pci_set_untrusted(struct pci_dev *pdev);
-> > +
-> >  #endif /* DRIVERS_PCI_H */
-> > --
-> > 2.35.0.rc2.247.g8bbb082509-goog
-> >
+
