@@ -2,67 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E97B54AF459
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 15:46:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F35F64AF434
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 15:37:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235190AbiBIOqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 09:46:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39370 "EHLO
+        id S235088AbiBIOhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 09:37:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229732AbiBIOqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 09:46:16 -0500
-X-Greylist: delayed 664 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Feb 2022 06:46:19 PST
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBC02C06157B
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 06:46:19 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 219EZ29U034721;
-        Wed, 9 Feb 2022 08:35:02 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1644417302;
-        bh=uG7DcDVY6sgs4N9O81IbjIB2Z2P1ulJ+KGv19bHtqv0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=g/y7L2v/ap26TtF0sBsToCDijzDOxbCZCcXdV0C7gVeAYQNoEdvgwPW4+udtx0+TA
-         Mvt5Z7Bdg/dtJhSTM+KA9+iDCvgT20+uIHQOUc8gq4uFvc7KffigLucxRdKCO4FIC5
-         U9eaJzv4WPfOgHhHK7OoHsJJ3JHxYzidEOorz7xI=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 219EZ2eL104351
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Feb 2022 08:35:02 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 9
- Feb 2022 08:35:01 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 9 Feb 2022 08:35:01 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 219EZ1CT113358;
-        Wed, 9 Feb 2022 08:35:01 -0600
-Date:   Wed, 9 Feb 2022 08:35:01 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am65-main: Remove "syscon" nodes
- added for pcieX_mode/pcie_devid
-Message-ID: <20220209143501.eibwoenxpuiby3zh@glade>
-References: <20220209072702.18544-1-kishon@ti.com>
+        with ESMTP id S235094AbiBIOhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 09:37:22 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09EDAC06157B
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 06:37:25 -0800 (PST)
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5CE6B40049
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 14:37:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644417442;
+        bh=SlwgImOcNTsESNfIirUrDaCeHIHfLp+o6BSrCLR6Xb4=;
+        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version:Content-Type;
+        b=oNmPi4dslqueQtIrpvuG05hA1TV1Tu+3yBOPkBz+v5JiJX2VKxLdWa39gt+flHVFC
+         JW6w4XUSUoZWIdttex/pbeneVeL3qI+zR/iPZAVIeBC+BS8cOgeLkxyCjvcK5jfZwu
+         HS4qgRsMQa00iY7pNSYYh9fVxrfGNnQrmpr1onoPqKgZ/FvM25c1No76VM3Jy3/iJk
+         fP2NczYvOVloV2F7yfIQ5CCsh3dnE6scLUlOZaWUWlAPFSFPQ/MrsFcdH2zux5vzvG
+         VsCU7ETPhIPBuH++7jpIGSDJf6jd9qvd20G2oAkdgdaOdoi5LfANyPGNYx7+NW3fvu
+         mEqI0eXoAl2+A==
+Received: by mail-ej1-f71.google.com with SMTP id d7-20020a1709061f4700b006bbf73a7becso1258884ejk.17
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 06:37:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=SlwgImOcNTsESNfIirUrDaCeHIHfLp+o6BSrCLR6Xb4=;
+        b=XUTLDXy7krJgCHvEz5rtHNAxPErg7+N6Nm57Xkim6NuPEZjkLBlvVSkwIvpt/XiQI0
+         yGsqotsgoHVhinl+xtrAzpshLIwJz1Iw0dQRTDph9kRWiOoH4OHJmdOqjXsDwIpYjvAX
+         HpGJe6hJFGjtVUh+KoR7ewroCQhXOMsALc4BHgcSz0Qohb12CNDm7v1Hi2dtkgtOlz1M
+         nl8GDVXYDrZPDfeiGCSprlacceg3AvX2gxTNZNtJJFOsl1h/0zBh2tOyWckAbuRWZp4M
+         Cd3pWWppaYCehMFUFBOkY8SrslVs+2NodXc8KgunqAhL+YY8jqU3S7gxyhrR1iKRl6a4
+         CQ/Q==
+X-Gm-Message-State: AOAM532c361q+5Jqjb5tGzVNbW9/08J+7X9Y2ry7xMsNTWC6N+sI+yYM
+        4ZCnvU5qTxfaaxuTAUwbUJzyMbIdAkEwtxQo0UdwCjXCt4VLSvfecfiV6zwxFQoVikXYHpMBmQL
+        9Rwvv3zfD2nwJbp0ysc/D+n6TwtOEgz0TM+zYb+w=
+X-Received: by 2002:a17:906:240d:: with SMTP id z13mr2248959eja.210.1644417440962;
+        Wed, 09 Feb 2022 06:37:20 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJw36sjymzMaJhJa6q6wUBDPfAQePXwC/8alKtggTfvJQrQ42VevrxvY9v64oZZdAuv2SAoLgQ==
+X-Received: by 2002:a17:906:240d:: with SMTP id z13mr2248941eja.210.1644417440823;
+        Wed, 09 Feb 2022 06:37:20 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id ss14sm3871136ejb.199.2022.02.09.06.37.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Feb 2022 06:37:20 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-pm@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/8] dt-bindings: memory: convert to dtschema
+Date:   Wed,  9 Feb 2022 15:36:44 +0100
+Message-Id: <164441736490.181274.3751600144129167050.b4-ty@canonical.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com>
+References: <20220206135807.211767-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220209072702.18544-1-kishon@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,101 +83,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12:57-20220209, Kishon Vijay Abraham I wrote:
-> Remove "syscon" nodes added for pcieX_mode/pcie_devid and have the PCIe
-> node point to the parent with an offset argument. This change is as
-> discussed in [1].
+On Sun, 6 Feb 2022 14:57:59 +0100, Krzysztof Kozlowski wrote:
+> Changes since v2:
+> 1. Re-order patches so timings get converted earlier. This fixes dt-checker
+> robot report.
+> 2. Add Dmitry's review tag.
+> 3. Three new patches:
+>    #6: dt-bindings: memory: lpddr3: deprecate passing timings frequency as unit address
+>    #7: memory: of: parse max-freq property
+>    #8: ARM: dts: exynos: remove deprecated unit address for LPDDR3 timings on Odroid
 > 
-> commit 7dcf07ac8867 ("PCI: keystone: Use phandle argument from
-> "ti,syscon-pcie-id"/"ti,syscon-pcie-mode"") added the corresponding driver
-> changes.
-> 
-> [1] -> http://lore.kernel.org/r/CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com
-> 
-> Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> Cc: Jan Kiszka <jan.kiszka@siemens.com>
+> [...]
 
-I think Reported-by is due here.
+Applied, thanks!
 
+[1/8] dt-bindings: memory: lpddr2-timings: convert to dtschema
+      commit: 425fd283e4a2b929a88483525fda3f90dde8a2d0
+[2/8] dt-bindings: memory: lpddr3-timings: convert to dtschema
+      commit: 180a276c99bb861742c5c423d679b0277d4b1c26
+[3/8] dt-bindings: memory: lpddr3: convert to dtschema
+      commit: 28f818580e49a97876de5c33231fc0e4c3cde2d9
+[4/8] dt-bindings: memory: lpddr3: adjust IO width to spec
+      commit: d98e72b6f9b078c57f9d46dc64a669d02ff2ffcc
+[5/8] dt-bindings: memory: lpddr3: deprecate manufacturer ID
+      commit: e531932c7185b86eccb3688002730950d49eba1a
+[6/8] dt-bindings: memory: lpddr3: deprecate passing timings frequency as unit address
+      commit: 42f94bb962cd1b15dc57c90aca7e48848ca6c6c3
+[7/8] memory: of: parse max-freq property
+      commit: 4e890b2228fd14fa6269175e9816bf27ff989e84
 
-Jan, Matthias: will appreciate any one of your acks/reviews..
-
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 27 ++++++------------------
->  1 file changed, 6 insertions(+), 21 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index ce8bb4a61011..ff52e16ff603 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -304,21 +304,6 @@
->  		#size-cells = <1>;
->  		ranges = <0x0 0x0 0x00100000 0x1c000>;
->  
-> -		pcie0_mode: pcie-mode@4060 {
-> -			compatible = "syscon";
-> -			reg = <0x00004060 0x4>;
-> -		};
-> -
-> -		pcie1_mode: pcie-mode@4070 {
-> -			compatible = "syscon";
-> -			reg = <0x00004070 0x4>;
-> -		};
-> -
-> -		pcie_devid: pcie-devid@210 {
-> -			compatible = "syscon";
-> -			reg = <0x00000210 0x4>;
-> -		};
-> -
->  		serdes0_clk: clock@4080 {
->  			compatible = "syscon";
->  			reg = <0x00004080 0x4>;
-> @@ -694,8 +679,8 @@
->  		#size-cells = <2>;
->  		ranges = <0x81000000 0 0          0x0 0x10020000 0 0x00010000>,
->  			 <0x82000000 0 0x10030000 0x0 0x10030000 0 0x07FD0000>;
-> -		ti,syscon-pcie-id = <&pcie_devid>;
-> -		ti,syscon-pcie-mode = <&pcie0_mode>;
-> +		ti,syscon-pcie-id = <&scm_conf 0x210>;
-> +		ti,syscon-pcie-mode = <&scm_conf 0x4060>;
->  		bus-range = <0x0 0xff>;
->  		num-viewport = <16>;
->  		max-link-speed = <2>;
-> @@ -710,7 +695,7 @@
->  		reg =  <0x0 0x5500000 0x0 0x1000>, <0x0 0x5501000 0x0 0x1000>, <0x0 0x10000000 0x0 0x8000000>, <0x0 0x5506000 0x0 0x1000>;
->  		reg-names = "app", "dbics", "addr_space", "atu";
->  		power-domains = <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
-> -		ti,syscon-pcie-mode = <&pcie0_mode>;
-> +		ti,syscon-pcie-mode = <&scm_conf 0x4060>;
->  		num-ib-windows = <16>;
->  		num-ob-windows = <16>;
->  		max-link-speed = <2>;
-> @@ -727,8 +712,8 @@
->  		#size-cells = <2>;
->  		ranges = <0x81000000 0 0          0x0   0x18020000 0 0x00010000>,
->  			 <0x82000000 0 0x18030000 0x0   0x18030000 0 0x07FD0000>;
-> -		ti,syscon-pcie-id = <&pcie_devid>;
-> -		ti,syscon-pcie-mode = <&pcie1_mode>;
-> +		ti,syscon-pcie-id = <&scm_conf 0x210>;
-> +		ti,syscon-pcie-mode = <&scm_conf 0x4070>;
->  		bus-range = <0x0 0xff>;
->  		num-viewport = <16>;
->  		max-link-speed = <2>;
-> @@ -743,7 +728,7 @@
->  		reg =  <0x0 0x5600000 0x0 0x1000>, <0x0 0x5601000 0x0 0x1000>, <0x0 0x18000000 0x0 0x4000000>, <0x0 0x5606000 0x0 0x1000>;
->  		reg-names = "app", "dbics", "addr_space", "atu";
->  		power-domains = <&k3_pds 121 TI_SCI_PD_EXCLUSIVE>;
-> -		ti,syscon-pcie-mode = <&pcie1_mode>;
-> +		ti,syscon-pcie-mode = <&scm_conf 0x4070>;
->  		num-ib-windows = <16>;
->  		num-ob-windows = <16>;
->  		max-link-speed = <2>;
-> -- 
-> 2.17.1
-> 
-
+Best regards,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
