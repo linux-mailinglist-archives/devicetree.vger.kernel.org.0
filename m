@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F0E14AEE9C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 10:55:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B2E4AEEA0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 10:55:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbiBIJzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 04:55:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43358 "EHLO
+        id S233538AbiBIJzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 04:55:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229750AbiBIJzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 04:55:00 -0500
+        with ESMTP id S233084AbiBIJzJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 04:55:09 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3572CC05CBAB
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 01:54:51 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F67DE03C7A8
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 01:55:03 -0800 (PST)
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1nHjfj-0002Oq-H0; Wed, 09 Feb 2022 10:53:59 +0100
+        id 1nHjfj-0002Or-EO; Wed, 09 Feb 2022 10:53:59 +0100
 Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1nHjff-008qaZ-UQ; Wed, 09 Feb 2022 10:53:55 +0100
+        id 1nHjff-008qac-Uw; Wed, 09 Feb 2022 10:53:55 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -32,11 +32,10 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Sandy Huang <hjc@rock-chips.com>,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 04/23] dt-bindings: display: rockchip: dw-hdmi: use "ref" as clock name
-Date:   Wed,  9 Feb 2022 10:53:31 +0100
-Message-Id: <20220209095350.2104049-5-s.hauer@pengutronix.de>
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v5 05/23] arm64: dts: rockchip: rk3399: rename HDMI ref clock to 'ref'
+Date:   Wed,  9 Feb 2022 10:53:32 +0100
+Message-Id: <20220209095350.2104049-6-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220209095350.2104049-1-s.hauer@pengutronix.de>
 References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
@@ -55,55 +54,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"vpll" is a misnomer. A clock input to a device should be named after
-the usage in the device, not after the clock that drives it. On the
-rk3568 the same clock is driven by the HPLL.
-This patch adds "ref" as a new alternative clock name for "vpll"
+The reference clock for the HDMI controller has been renamed to 'ref',
+the previous 'vpll' name is only left for compatibility in the driver.
+Rename the clock to the new name.
 
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Notes:
-    Changes since v4:
-    - Add Robs Ack
-    
-    Changes since v3:
-    - Keep old clock name for compatibility reasons
-
- .../bindings/display/rockchip/rockchip,dw-hdmi.yaml      | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-index da3b889ad8fc..0400f67e5f2c 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-@@ -36,7 +36,8 @@ properties:
-       # order when present.
-       - description: The HDMI CEC controller main clock
-       - description: Power for GRF IO
--      - description: External clock for some HDMI PHY
-+      - description: External clock for some HDMI PHY (old clock name, deprecated)
-+      - description: External clock for some HDMI PHY (new name)
- 
-   clock-names:
-     minItems: 2
-@@ -47,10 +48,14 @@ properties:
-           - cec
-           - grf
-           - vpll
-+          - ref
-       - enum:
-           - grf
-           - vpll
--      - const: vpll
-+          - ref
-+      - enum:
-+          - vpll
-+          - ref
- 
-   ddc-i2c-bus:
-     $ref: /schemas/types.yaml#/definitions/phandle
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 080457a68e3c..d0add619b0d2 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -1884,7 +1884,7 @@ hdmi: hdmi@ff940000 {
+ 			 <&cru SCLK_HDMI_CEC>,
+ 			 <&cru PCLK_VIO_GRF>,
+ 			 <&cru PLL_VPLL>;
+-		clock-names = "iahb", "isfr", "cec", "grf", "vpll";
++		clock-names = "iahb", "isfr", "cec", "grf", "ref";
+ 		power-domains = <&power RK3399_PD_HDCP>;
+ 		reg-io-width = <4>;
+ 		rockchip,grf = <&grf>;
 -- 
 2.30.2
 
