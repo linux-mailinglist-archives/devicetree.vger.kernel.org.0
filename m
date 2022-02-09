@@ -2,191 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD10F4AFBB7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 19:48:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 163294AFBCF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 19:50:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240931AbiBISsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 13:48:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43818 "EHLO
+        id S240589AbiBISua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 13:50:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240941AbiBISsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 13:48:13 -0500
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A09C1DC2F8;
-        Wed,  9 Feb 2022 10:44:51 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id u25-20020a4ad0d9000000b002e8d4370689so3468602oor.12;
-        Wed, 09 Feb 2022 10:44:51 -0800 (PST)
+        with ESMTP id S240779AbiBISts (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 13:49:48 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30D9BC1DF807
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 10:45:13 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id h6so5604414wrb.9
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 10:45:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=MDTFOP0ZVLcSgSiBcHgvR2UN4No5GnymFw2d8uiYcvk=;
+        b=FdNU5tTmSod/jSM8KX6alPbME79WSYKwnPZd3rghnlVvFQlGWK4qG6o6CPAjFQpXPt
+         46kgNHKv11KuQ6xvHax3mreStQTu9H7M2QQUy4/j6Tw4tgSeK6/ZO1/IE3zLCINwdq7j
+         Dfq2qfq27ASmLnEFlwDsS7sQ0XZGx3L8FwiXiNcVek9AfU7AmYx0P1JUP8CXXgW7yyMb
+         RMbEgAmbFKNwaEU9ph92jV6cu+W+i8UxZkXVUJkFpFQRfRje2OjRxMimG7S854srZOGT
+         u/NziF81BCR8NakNXQRgjmGdhd0xwE/jS+/NTuGpKxJwx40gn9kUcXf5c6uaHNQDm46z
+         QmjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5iUZVsd2tC6B08DK6tleMcNCLkad2BWr1aTlffhv1yg=;
-        b=vo/0pNKoWXIYoNGxZ+TQ4PS4UrJCnifArLJAaUXS1J9srTInC+Q9hT3TBK6vrjIISg
-         TNxKdhW1sLVon84eF/139reUSVww0XZkicdVbSK1H3FPTDN1amTCU/MYA1jVr56gYOm3
-         OyMl8vdWaWmYsbzI3u1nGNKnWVUUDSdsN/3PiXBOdKiWuf3Zyu1gB407sfL3wmsDWeB0
-         IdokWek6at6dmWqFx3Z4G2Cylha9HJK9HlSM9viLtV0RfZh7V0Fln4gxvEv2O9x+ody2
-         czdOEVsg771DEXWNsBuHS5c3b5027/iCh5xf8AfUCvS9jNsDN8JLkAtLU1njG7cEmcAq
-         YOhw==
-X-Gm-Message-State: AOAM530NVhPL+NoBDHqdopHSLzxKmeu9XyNK4gEqA9t8rBEjIuoG01NM
-        Lf5SN4czacKtsvXnha9sEA==
-X-Google-Smtp-Source: ABdhPJyVR93jP8FiaJyzORU4oF2UwTBNTTtG5KvHE+eQJ0R04hfJLjWLadPlVsDanj3w2ldCucS4Lw==
-X-Received: by 2002:a05:6870:1842:: with SMTP id u2mr1240378oaf.162.1644432290840;
-        Wed, 09 Feb 2022 10:44:50 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 20sm5487410oao.1.2022.02.09.10.44.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 10:44:50 -0800 (PST)
-Received: (nullmailer pid 672347 invoked by uid 1000);
-        Wed, 09 Feb 2022 18:44:49 -0000
-Date:   Wed, 9 Feb 2022 12:44:49 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     sven@svenschwermer.de
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        pavel@ucw.cz, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        post@lespocky.de, andy.shevchenko@gmail.com
-Subject: Re: [PATCH v6 2/3] dt-bindings: leds: Add multicolor PWM LED bindings
-Message-ID: <YgQLoaKmzfZQAVSx@robh.at.kernel.org>
-References: <20220208191236.660172-1-sven@svenschwermer.de>
- <20220208191236.660172-2-sven@svenschwermer.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220208191236.660172-2-sven@svenschwermer.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=MDTFOP0ZVLcSgSiBcHgvR2UN4No5GnymFw2d8uiYcvk=;
+        b=L0p6oazcK1hYLdDANXki8HwJ/7s09gNQYhPB9xaL31yjr8mhDxJK4OtZVZc19Oa+4g
+         Y4q5CYn8d89MXwZdL42xgL7ZqiWshWw6q0StfdeSF+WYs6P17NB50F2usHf4kSB/+n6q
+         AKbrf439FfHhDj8TXNHQbrYrF8stxudRT6ECxYluO45sOo9nrW8AzbDmV9EcWnwoHoDw
+         dG/3+dc9DdxZVb9cr3IuiuroP/elOKSbS4t12DF3vSGKsdHkDz1KsS49CaLR8dkYFKnS
+         s4X9y/SN+xxZtJrkwuXjDv9lalkZIRqEv3tZB5NI+VaPcxH+fgSGjyTiiW2e4Bh50Y4u
+         L5LA==
+X-Gm-Message-State: AOAM530/WpQjwt6JoqyXDfOY/P6zzQw32qGHozI7NwtMF8RIC7XvCc29
+        1NxAxbkEbNIHnTk8XQ18LTjpAg==
+X-Google-Smtp-Source: ABdhPJyg6PEx0zDNrerIJSprqpSwL3vIKQRiQ7VcehSCsrzZAe7DPFmKI7iYFo+An+aViFo3gOu3nA==
+X-Received: by 2002:adf:e350:: with SMTP id n16mr3109759wrj.160.1644432311558;
+        Wed, 09 Feb 2022 10:45:11 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e0a:82c:5f0:682b:4712:4b40:6814])
+        by smtp.gmail.com with ESMTPSA id o3sm9634315wrc.41.2022.02.09.10.45.10
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 09 Feb 2022 10:45:11 -0800 (PST)
+From:   Loic Poulain <loic.poulain@linaro.org>
+To:     bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org,
+        Loic Poulain <loic.poulain@linaro.org>
+Subject: [PATCH v5 1/2] dt-bindings: clock: Add qualcomm QCM2290 DISPCC bindings
+Date:   Wed,  9 Feb 2022 19:45:07 +0100
+Message-Id: <1644432308-21099-1-git-send-email-loic.poulain@linaro.org>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 08, 2022 at 08:12:35PM +0100, sven@svenschwermer.de wrote:
-> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> 
-> This allows to group multiple PWM-connected monochrome LEDs into
-> multicolor LEDs, e.g. RGB LEDs.
-> 
-> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> ---
-> 
-> Notes:
->     Changes in v6:
->     * Fix device tree binding schema
->     
->     Changes in v5:
->     * (no changes)
->     
->     Changes in v4:
->     * (no changes)
->     
->     Changes in v3:
->     * Remove multi-led unit name
-> 
->  .../bindings/leds/leds-pwm-multicolor.yaml    | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-> new file mode 100644
-> index 000000000000..f7ce29c8ae63
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-pwm-multicolor.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Multi-color LEDs connected to PWM
-> +
-> +maintainers:
-> +  - Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> +
-> +description: |
-> +  This driver combines several monochrome PWM LEDs into one multi-color
-> +  LED using the multicolor LED class.
-> +
-> +properties:
-> +  compatible:
-> +    const: pwm-leds-multicolor
+Add device tree bindings for display clock controller on QCM2290 SoCs.
 
-blank line
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ v2: no change
+ v3: Include dt-bindings header (qcom,dispcc-qcm2290.h) in that commit
+ v4: Dual license for qcom dt related binding/header
+ v5: no change
 
-> +  multi-led:
-> +    type: object
+ .../bindings/clock/qcom,qcm2290-dispcc.yaml        | 87 ++++++++++++++++++++++
+ include/dt-bindings/clock/qcom,dispcc-qcm2290.h    | 34 +++++++++
+ 2 files changed, 121 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml
+ create mode 100644 include/dt-bindings/clock/qcom,dispcc-qcm2290.h
 
-blank line
+diff --git a/Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml
+new file mode 100644
+index 00000000..973e408
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,qcm2290-dispcc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Display Clock & Reset Controller Binding for qcm2290
++
++maintainers:
++  - Loic Poulain <loic.poulain@linaro.org>
++
++description: |
++  Qualcomm display clock control module which supports the clocks, resets and
++  power domains on qcm2290.
++
++  See also dt-bindings/clock/qcom,dispcc-qcm2290.h.
++
++properties:
++  compatible:
++    const: qcom,qcm2290-dispcc
++
++  clocks:
++    items:
++      - description: Board XO source
++      - description: Board active-only XO source
++      - description: GPLL0 source from GCC
++      - description: GPLL0 div source from GCC
++      - description: Byte clock from DSI PHY
++      - description: Pixel clock from DSI PHY
++
++  clock-names:
++    items:
++      - const: bi_tcxo
++      - const: bi_tcxo_ao
++      - const: gcc_disp_gpll0_clk_src
++      - const: gcc_disp_gpll0_div_clk_src
++      - const: dsi0_phy_pll_out_byteclk
++      - const: dsi0_phy_pll_out_dsiclk
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
++    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
++    #include <dt-bindings/clock/qcom,rpmcc.h>
++    clock-controller@5f00000 {
++            compatible = "qcom,qcm2290-dispcc";
++            reg = <0x5f00000 0x20000>;
++            clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
++                     <&rpmcc RPM_SMD_XO_A_CLK_SRC>,
++                     <&gcc GCC_DISP_GPLL0_CLK_SRC>,
++                     <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>,
++                     <&dsi0_phy 0>,
++                     <&dsi0_phy 1>;
++            clock-names = "bi_tcxo",
++                          "bi_tcxo_ao",
++                          "gcc_disp_gpll0_clk_src",
++                          "gcc_disp_gpll0_div_clk_src",
++                          "dsi0_phy_pll_out_byteclk",
++                          "dsi0_phy_pll_out_dsiclk";
++            #clock-cells = <1>;
++            #reset-cells = <1>;
++            #power-domain-cells = <1>;
++    };
++...
+diff --git a/include/dt-bindings/clock/qcom,dispcc-qcm2290.h b/include/dt-bindings/clock/qcom,dispcc-qcm2290.h
+new file mode 100644
+index 00000000..1db513d
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,dispcc-qcm2290.h
+@@ -0,0 +1,34 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_QCM2290_H
++#define _DT_BINDINGS_CLK_QCOM_DISP_CC_QCM2290_H
++
++/* DISP_CC clocks */
++#define DISP_CC_PLL0				0
++#define DISP_CC_MDSS_AHB_CLK			1
++#define DISP_CC_MDSS_AHB_CLK_SRC		2
++#define DISP_CC_MDSS_BYTE0_CLK			3
++#define DISP_CC_MDSS_BYTE0_CLK_SRC		4
++#define DISP_CC_MDSS_BYTE0_DIV_CLK_SRC		5
++#define DISP_CC_MDSS_BYTE0_INTF_CLK		6
++#define DISP_CC_MDSS_ESC0_CLK			7
++#define DISP_CC_MDSS_ESC0_CLK_SRC		8
++#define DISP_CC_MDSS_MDP_CLK			9
++#define DISP_CC_MDSS_MDP_CLK_SRC		10
++#define DISP_CC_MDSS_MDP_LUT_CLK		11
++#define DISP_CC_MDSS_NON_GDSC_AHB_CLK		12
++#define DISP_CC_MDSS_PCLK0_CLK			13
++#define DISP_CC_MDSS_PCLK0_CLK_SRC		14
++#define DISP_CC_MDSS_VSYNC_CLK			15
++#define DISP_CC_MDSS_VSYNC_CLK_SRC		16
++#define DISP_CC_SLEEP_CLK			17
++#define DISP_CC_SLEEP_CLK_SRC			18
++#define DISP_CC_XO_CLK				19
++#define DISP_CC_XO_CLK_SRC			20
++
++#define MDSS_GDSC				0
++
++#endif
+-- 
+2.7.4
 
-> +    patternProperties:
-> +      "^led-[0-9a-z]+$":
-> +        type: object
-> +        $ref: common.yaml#
-
-blank line
-
-> +        properties:
-> +          pwms:
-> +            maxItems: 1
-
-blank line and so on. (There not a hard rule, but roughly it's 
-blank lines between DT property sub-schemas, top-level keywords, and 
-properties/patternProperties/required.)
-
-> +          pwm-names: true
-> +          color: true
-> +        required:
-> +          - pwms
-> +          - color
-
-> +        additionalProperties: false
-
-While the top level goes at the end, I find it is easier to read putting 
-the indented cases before properties/patternProperties. 
-
-> +required:
-> +  - compatible
-> +allOf:
-> +  - $ref: leds-class-multicolor.yaml#
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    rgb-led {
-> +        compatible = "pwm-leds-multicolor";
-> +
-> +        multi-led {
-> +          color = <LED_COLOR_ID_RGB>;
-> +          function = LED_FUNCTION_INDICATOR;
-> +          max-brightness = <65535>;
-> +
-> +          led-red {
-> +              pwms = <&pwm1 0 1000000>;
-> +              color = <LED_COLOR_ID_RED>;
-> +          };
-> +
-> +          led-green {
-> +              pwms = <&pwm2 0 1000000>;
-> +              color = <LED_COLOR_ID_GREEN>;
-> +          };
-> +
-> +          led-blue {
-> +              pwms = <&pwm3 0 1000000>;
-> +              color = <LED_COLOR_ID_BLUE>;
-> +          };
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.35.1
-> 
-> 
