@@ -2,173 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C44B4AFCF3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:11:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A7634AFD04
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 20:13:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231676AbiBITLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 14:11:08 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:52824 "EHLO
+        id S231769AbiBITM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 14:12:57 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:59938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229867AbiBITLF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:11:05 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C695C02B650;
-        Wed,  9 Feb 2022 11:10:57 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 729C2B82381;
-        Wed,  9 Feb 2022 19:10:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C2AFC340E9;
-        Wed,  9 Feb 2022 19:10:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644433854;
-        bh=vJfdfjnTI9o6SZYd45w46xF+xwH5gWZMsI7j/ucfllg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=i8HI+5ThCjZRNInGM8TbtSyTvZqr+LZ9hTmqER+7WpM5AbCLiHeKPmfx9EBoWUqKP
-         PrQTbalXMFNjg7sju2JZKodsN0KGoGeda6SWMpxTYp6tdRKNLbD99OWSnEyV6pdWp3
-         E4P2qWS6VM0XGmdSqNFSjcSXCBJ7HTpVmlTpyZ8krr1T4+e0POcD8nseT/Jxq2IeSe
-         eh4sLOymbcGtgSdw2YVipnIXnrxDl5hz+H2xafyYL7Ev+Pe9vRlqhkn9MX+OrnxaxI
-         j6ZQXesTvm/TPeHl/3PF1wcc+PWsRGxYcLj/oKRNzphsjFCbHUObu8mut3mKTbngz+
-         32TDw2koI1eMg==
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nHsMe-006j1n-1R; Wed, 09 Feb 2022 19:10:52 +0000
+        with ESMTP id S231808AbiBITMr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 14:12:47 -0500
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A320C008645;
+        Wed,  9 Feb 2022 11:12:40 -0800 (PST)
+Received: by mail-yb1-f172.google.com with SMTP id y6so8882929ybc.5;
+        Wed, 09 Feb 2022 11:12:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2Hqo9jmascljYsohX3+dNe11LfZ+a8ceLYfy+hC5e8w=;
+        b=qF/OxivWqyhjJvOgW19M5yH2R7A4WVih7QOwv19ibSsFFKP1NFgx9rRxtsKyIpTl3a
+         Nu+lO7vv64ssFVrRtVsk0z2MwofZ9U5JX5JI/XWOSbSzD8EXSHx0FlScIm8Wld63qrg3
+         85B6gbXoES7bxGs3YIV3ZvssYc8jzzyT9AaG7c3RN9lyGlKrSWPQvxGWfds/jEiDQw0N
+         wt6tMOD6VUt3D0Qshq2ZSLuUnWP7dQXeuluk/3DP9oc1+f+do2GaLXrROQYIEio6YDih
+         82ddT8GL8mlW9RrGHALdsg2LUiOHqiDjdjaZyNdj5+nb5yZNUiiNdUZdHQkRUfIA1rAO
+         oHqA==
+X-Gm-Message-State: AOAM530yePtzicNW12BM91S4q6JsL7PMORRz8JkjmO2REAlgM/0NHqoW
+        W/1A8PVddacYV9QFlWJu5NnVVCIsbwTJkhNK9pE=
+X-Google-Smtp-Source: ABdhPJwFI0nBunPk2Hh+mAYbQl/h/UKP2zjuR5qjVOf3IYJg606/j6/NtuQ7B/NYITZXRoWRQ2EgtJVc/uVRoZmNGyQ=
+X-Received: by 2002:a25:3410:: with SMTP id b16mr3539165yba.78.1644433875451;
+ Wed, 09 Feb 2022 11:11:15 -0800 (PST)
 MIME-Version: 1.0
-Date:   Wed, 09 Feb 2022 19:10:51 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] arm64: dts: ti: Introduce base support for AM62x SoC
-In-Reply-To: <20220208131827.1430086-5-vigneshr@ti.com>
-References: <20220208131827.1430086-1-vigneshr@ti.com>
- <20220208131827.1430086-5-vigneshr@ti.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <bc6cb6e1adcf6860a595b71246778733@kernel.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: vigneshr@ti.com, nm@ti.com, kristo@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski@canonical.com, ssantosh@kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220202020103.2149130-1-rajatja@google.com>
+In-Reply-To: <20220202020103.2149130-1-rajatja@google.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Wed, 9 Feb 2022 20:11:04 +0100
+Message-ID: <CAJZ5v0gngVxoe88rNAXXK_F34rHAKuxokiuZ6kpg6FhbnyMn0Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] PCI: Allow internal devices to be marked as untrusted
+To:     Rajat Jain <rajatja@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Linux PCI <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rajat Jain <rajatxjain@gmail.com>,
+        Dmitry Torokhov <dtor@google.com>,
+        Jesse Barnes <jsbarnes@google.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Pavel Machek <pavel@denx.de>,
+        "Oliver O'Halloran" <oohall@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-08 13:18, Vignesh Raghavendra wrote:
-> The AM62 SoC family is the follow on AM335x built on K3 Multicore SoC
-> architecture platform, providing ultra-low-power modes, dual display,
-> multi-sensor edge compute, security and other BOM-saving integration.
-> The AM62 SoC targets broad market to enable applications such as
-> Industrial HMI, PLC/CNC/Robot control, Medical Equipment, Building
-> Automation, Appliances and more.
-> 
-> Some highlights of this SoC are:
-> 
-> * Quad-Cortex-A53s (running up to 1.4GHz) in a single cluster.
->   Pin-to-pin compatible options for single and quad core are available.
-> * Cortex-M4F for general-purpose or safety usage.
-> * Dual display support, providing 24-bit RBG parallel interface and
->   OLDI/LVDS-4 Lane x2, up to 200MHz pixel clock support for 2K display
->   resolution.
-> * Selectable GPUsupport, up to 8GFLOPS, providing better user 
-> experience
->   in 3D graphic display case and Android.
-> * PRU(Programmable Realtime Unit) support for customized programmable
->   interfaces/IOs.
-> * Integrated Giga-bit Ethernet switch supporting up to a total of two
->   external ports (TSN capable).
-> * 9xUARTs, 5xSPI, 6xI2C, 2xUSB2, 3xCAN-FD, 3x eMMC and SD, GPMC for
->   NAND/FPGA connection, OSPI memory controller, 3xMcASP for audio,
->   1x CSI-RX-4L for Camera, eCAP/eQEP, ePWM, among other peripherals.
-> * Dedicated Centralized System Controller for Security, Power, and
->   Resource Management.
-> * Multiple low power modes support, ex: Deep sleep,Standby, MCU-only,
->   enabling battery powered system design.
-> 
-> This add bare minimum DT describing ARM compute clusters, Main, MCU and
-> Wakeup domain and interconnects, UARTs and I2Cs to enable booting using
-> ramdisk.
-> 
-> More details can be found in the Technical Reference Manual:
-> https://www.ti.com/lit/pdf/spruiv7
-> 
-> Co-developed-by: Suman Anna <s-anna@ti.com>
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> Co-developed-by: Nishanth Menon <nm@ti.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+On Wed, Feb 2, 2022 at 3:01 AM Rajat Jain <rajatja@google.com> wrote:
+>
+> Today the pci_dev->untrusted is set for any devices sitting downstream
+> an external facing port (determined via "ExternalFacingPort" or the
+> "external-facing" properties).
+>
+> However, currently there is no way for internal devices to be marked as
+> untrusted.
+>
+> There are use-cases though, where a platform would like to treat an
+> internal device as untrusted (perhaps because it runs untrusted firmware
+> or offers an attack surface by handling untrusted network data etc).
+>
+> Introduce a new "UntrustedDevice" property that can be used by the
+> firmware to mark any device as untrusted.
+>
+> Signed-off-by: Rajat Jain <rajatja@google.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 263 +++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  36 +++
->  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  41 ++++
->  arch/arm64/boot/dts/ti/k3-am62.dtsi        | 104 ++++++++
->  arch/arm64/boot/dts/ti/k3-am625.dtsi       | 103 ++++++++
->  5 files changed, 547 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am625.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> new file mode 100644
-> index 000000000000..81d6d99ca180
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -0,0 +1,263 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for AM625 SoC Family Main Domain peripherals
-> + *
-> + * Copyright (C) 2020-2022 Texas Instruments Incorporated - 
-> https://www.ti.com/
-> + */
+> v2: * Also use the same property for device tree based systems.
+>     * Add documentation (next patch)
+>
+>  drivers/pci/of.c       | 2 ++
+>  drivers/pci/pci-acpi.c | 1 +
+>  drivers/pci/pci.c      | 9 +++++++++
+>  drivers/pci/pci.h      | 2 ++
+>  4 files changed, 14 insertions(+)
+>
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index cb2e8351c2cc..e8b804664b69 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -24,6 +24,8 @@ void pci_set_of_node(struct pci_dev *dev)
+>                                                     dev->devfn);
+>         if (dev->dev.of_node)
+>                 dev->dev.fwnode = &dev->dev.of_node->fwnode;
 > +
-> +&cbass_main {
-> +	gic500: interrupt-controller@1800000 {
-> +		compatible = "arm,gic-v3";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		#interrupt-cells = <3>;
-> +		interrupt-controller;
-> +		reg = <0x00 0x01800000 0x00 0x10000>,	/* GICD */
-> +		      <0x00 0x01880000 0x00 0xC0000>;	/* GICR */
-
-Usual rant: you are missing the GICC, GICH and GICV regions
-that are implemented by the CPU. Cortex-A53 implements them
-(they are not optional), so please describe them.
-
-> +		/*
-> +		 * vcpumntirq:
-> +		 * virtual CPU interface maintenance interrupt
-> +		 */
-> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +       pci_set_untrusted(dev);
+>  }
+>
+>  void pci_release_of_node(struct pci_dev *dev)
+> diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+> index a42dbf448860..2bffbd5c6114 100644
+> --- a/drivers/pci/pci-acpi.c
+> +++ b/drivers/pci/pci-acpi.c
+> @@ -1356,6 +1356,7 @@ void pci_acpi_setup(struct device *dev, struct acpi_device *adev)
+>
+>         pci_acpi_optimize_delay(pci_dev, adev->handle);
+>         pci_acpi_set_external_facing(pci_dev);
+> +       pci_set_untrusted(pci_dev);
+>         pci_acpi_add_edr_notifier(pci_dev);
+>
+>         pci_acpi_add_pm_notifier(adev, pci_dev);
+> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> index 9ecce435fb3f..41e887c27004 100644
+> --- a/drivers/pci/pci.c
+> +++ b/drivers/pci/pci.c
+> @@ -6869,3 +6869,12 @@ static int __init pci_realloc_setup_params(void)
+>         return 0;
+>  }
+>  pure_initcall(pci_realloc_setup_params);
 > +
-> +		gic_its: msi-controller@1820000 {
-> +			compatible = "arm,gic-v3-its";
-> +			reg = <0x00 0x01820000 0x00 0x10000>;
-> +			socionext,synquacer-pre-its = <0x1000000 0x400000>;
+> +void pci_set_untrusted(struct pci_dev *pdev)
+> +{
+> +       u8 val;
+> +
+> +       if (!device_property_read_u8(&pdev->dev, "UntrustedDevice", &val)
+> +           && val)
+> +               pdev->untrusted = 1;
 
-The mind boggles...
+I'm not sure why you ignore val = 0.  Is it not a valid value?
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+The property is not particularly well defined here.  It is not clear
+from its name that it only applies to PCI devices and how.
+
+AFAICS, the "untrusted" bit affected by it is only used by the ATS
+code and in one PCH ACS quirk, but I'm not sure if this is all you
+have in mind.
+
+> +}
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index 3d60cabde1a1..6c273ce5e0ba 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -761,4 +761,6 @@ static inline pci_power_t mid_pci_get_power_state(struct pci_dev *pdev)
+>  }
+>  #endif
+>
+> +void pci_set_untrusted(struct pci_dev *pdev);
+> +
+>  #endif /* DRIVERS_PCI_H */
+> --
+> 2.35.0.rc2.247.g8bbb082509-goog
+>
