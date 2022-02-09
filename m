@@ -2,176 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82E8B4AF1E6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:38:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7BCD4AF1DC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 13:38:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233410AbiBIMi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 07:38:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37952 "EHLO
+        id S233282AbiBIMhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 07:37:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233391AbiBIMi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:38:27 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D6F6C05CBAB;
-        Wed,  9 Feb 2022 04:38:27 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nHmEm-0001Mv-8u; Wed, 09 Feb 2022 13:38:20 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     palmer@dabbelt.com, paul.walmsley@sifive.com, aou@eecs.berkeley.edu
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org, wefu@redhat.com,
-        liush@allwinnertech.com, guoren@kernel.org, atishp@atishpatra.org,
-        anup@brainfault.org, drew@beagleboard.org, hch@lst.de,
-        arnd@arndb.de, wens@csie.org, maxime@cerno.tech,
-        gfavor@ventanamicro.com, andrea.mondelli@huawei.com,
-        behrensj@mit.edu, xinhaoqu@huawei.com, huffman@cadence.com,
-        mick@ics.forth.gr, allen.baum@esperantotech.com,
-        jscheid@ventanamicro.com, rtrauben@gmail.com, samuel@sholland.org,
-        cmuellner@linux.com, philipp.tomsich@vrull.eu,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: [PATCH v6 04/14] riscv: implement module alternatives
-Date:   Wed,  9 Feb 2022 13:37:50 +0100
-Message-Id: <20220209123800.269774-5-heiko@sntech.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220209123800.269774-1-heiko@sntech.de>
-References: <20220209123800.269774-1-heiko@sntech.de>
+        with ESMTP id S233298AbiBIMhy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 07:37:54 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E9EDDC05CBB4
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 04:37:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1644410275;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=yv06k0qcIVzfebmQao0F8lU/DvXpAPuqfxT+fivD3r4=;
+        b=ZZlWb2bWOJA/YRe6waWsCNKNEeE0XUgDMxeO6QzMqjDa/E9IseV8snOkWI8cR7uGQZFcvP
+        MnZAyS9LzOW7JOsDGS71a+zKanbTRmokx4BvGHpdPjX6d937Z8EKeTCN71tZBCOLyxpPBx
+        GSvlmkaEAaFWc2B0HD2RaO0I333MbKs=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-433-yaokZHi1Nlu_wsnp58ApxA-1; Wed, 09 Feb 2022 07:37:54 -0500
+X-MC-Unique: yaokZHi1Nlu_wsnp58ApxA-1
+Received: by mail-wm1-f70.google.com with SMTP id r205-20020a1c44d6000000b0037bb51b549aso2594733wma.4
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 04:37:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=yv06k0qcIVzfebmQao0F8lU/DvXpAPuqfxT+fivD3r4=;
+        b=xHJwUbs938+fofF0+1gaed1vc2JGLhPG8gqZ8iLFlwneZrMZiH591pknPDAERiwLX6
+         H4NpoWtGABKBZhbLjAgKKg1QN29INfg+TKlK+dx7mYLc6RND2AG7fFer8i8QlwTsRMJP
+         f39NTmNkLbVa3fW3m4o50SJ/1VoQMuiph7xHJo5WcHnyWbuKmHbBuZPcAcy8JvYtC4pV
+         b19A1eSVUdur6EwVYK6ValOUzG3CcELYXQvQb4ioSId7DHRKYnuvInOTHfLalgLJ65Rv
+         ewV+2PEr1DvZgg4pEgBaLPTM6Wbi3YOjSz3aikYewyoSgEP17fbDDs/ac4ocsd4kq33a
+         g67A==
+X-Gm-Message-State: AOAM532e+uxX5cGjoCnxtUYbve5e0Dq0bkDH+cGr/cW1e5S9Z5KqSDc7
+        DE/MdsMf00JwiKKNNFnAABXueqcsI0nuT/iPROLStC3Ge8gI8t2lMiPgU6Qlh5IAltKoJe+BWGz
+        Ysx9ReEYY3qaFclqbXqukFA==
+X-Received: by 2002:a05:600c:4fc2:: with SMTP id o2mr1884065wmq.145.1644410273541;
+        Wed, 09 Feb 2022 04:37:53 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzmjpeXcKAGK2lwWC20JlgA2fV6RbEkugJVOCgWV8vBNqH8VPABqTYOsxX7qWXxzkqn+qGm5A==
+X-Received: by 2002:a05:600c:4fc2:: with SMTP id o2mr1884035wmq.145.1644410273273;
+        Wed, 09 Feb 2022 04:37:53 -0800 (PST)
+Received: from [192.168.1.102] ([92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id l28sm14096444wrz.90.2022.02.09.04.37.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Feb 2022 04:37:52 -0800 (PST)
+Message-ID: <58ebacd2-d44d-c7e9-e752-de7815dd4cc1@redhat.com>
+Date:   Wed, 9 Feb 2022 13:37:51 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 0/7] drm: Add driver for Solomon SSD130X OLED displays
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Mark Brown <broonie@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+References: <20220209090314.2511959-1-javierm@redhat.com>
+ <CAMuHMdVs750iE=kP1vabwgsGOb8sHc8aC5k=HwCU32CURnYktw@mail.gmail.com>
+From:   Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <CAMuHMdVs750iE=kP1vabwgsGOb8sHc8aC5k=HwCU32CURnYktw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This allows alternatives to also be applied when loading modules
-and follows the implementation of other architectures (e.g. arm64).
+Hello Geert,
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- arch/riscv/include/asm/alternative.h |  3 ++-
- arch/riscv/kernel/alternative.c      | 18 +++++++++++++----
- arch/riscv/kernel/module.c           | 29 ++++++++++++++++++++++++++++
- 3 files changed, 45 insertions(+), 5 deletions(-)
+On 2/9/22 13:19, Geert Uytterhoeven wrote:
+> Hi Javier,
+> 
+> On Wed, Feb 9, 2022 at 10:03 AM Javier Martinez Canillas
+> <javierm@redhat.com> wrote:
+>> This patch series adds a DRM driver for the Solomon OLED SSD1305, SSD1306,
+>> SSD1307 and SSD1309 displays. It is a port of the ssd1307fb fbdev driver.
+> 
+> [...]
+> 
+>> - Fix a bug when doing partial updates (Geert Uytterhoeven)
+> 
+> Thanks, the text console is now more or less working as expected.
 
-diff --git a/arch/riscv/include/asm/alternative.h b/arch/riscv/include/asm/alternative.h
-index 811bdd8027db..f0657b1b3174 100644
---- a/arch/riscv/include/asm/alternative.h
-+++ b/arch/riscv/include/asm/alternative.h
-@@ -18,8 +18,10 @@
- #include <asm/hwcap.h>
+Thanks for giving it a try to this version too! Glad to know that
+is working better now.
+
+> There is still an issue with the cursor, though.
+> After doing "echo hello > /dev/tty0", the text appears, but the cursor
+> is gone. "clear > /dev/tty0" brings it back.
+>
+
+Hmm, I was able to reproduce this too. Thanks for pointing it out,
+I'll investigate what the problem is.
  
- #define RISCV_ALTERNATIVES_BOOT		0 /* alternatives applied during regular boot */
-+#define RISCV_ALTERNATIVES_MODULE	1 /* alternatives applied during module-init */
+> The execution time of "time ls" has improved. It now takes 1.21s
+> (0.86s with ssd1306fb).
+>
+
+Yes, I believe that was due the bug I mentioned that partial updates
+weren't done but a full screen update instead.
  
- void __init apply_boot_alternatives(void);
-+void apply_module_alternatives(void *start, size_t length);
- 
- struct alt_entry {
- 	void *old_ptr;		 /* address of original instruciton or data  */
-@@ -37,6 +39,5 @@ struct errata_checkfunc_id {
- void sifive_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
- 			      unsigned long archid, unsigned long impid,
- 			      unsigned int stage);
--
- #endif
- #endif
-diff --git a/arch/riscv/kernel/alternative.c b/arch/riscv/kernel/alternative.c
-index 02db62f55bac..223770b3945c 100644
---- a/arch/riscv/kernel/alternative.c
-+++ b/arch/riscv/kernel/alternative.c
-@@ -7,6 +7,7 @@
-  */
- 
- #include <linux/init.h>
-+#include <linux/module.h>
- #include <linux/cpu.h>
- #include <linux/uaccess.h>
- #include <asm/alternative.h>
-@@ -23,7 +24,7 @@ static struct cpu_manufacturer_info_t {
- 
- static void (*vendor_patch_func)(struct alt_entry *begin, struct alt_entry *end,
- 				 unsigned long archid, unsigned long impid,
--				 unsigned int stage) __initdata;
-+				 unsigned int stage) __initdata_or_module;
- 
- static inline void __init riscv_fill_cpu_mfr_info(void)
- {
-@@ -58,9 +59,9 @@ static void __init init_alternative(void)
-  * a feature detect on the boot CPU). No need to worry about other CPUs
-  * here.
-  */
--static void __init _apply_alternatives(struct alt_entry *begin,
--				       struct alt_entry *end,
--				       unsigned int stage)
-+static void __init_or_module _apply_alternatives(struct alt_entry *begin,
-+						 struct alt_entry *end,
-+						 unsigned int stage)
- {
- 	if (!vendor_patch_func)
- 		return;
-@@ -81,3 +82,12 @@ void __init apply_boot_alternatives(void)
- 			    (struct alt_entry *)__alt_end,
- 			    RISCV_ALTERNATIVES_BOOT);
- }
-+
-+#ifdef CONFIG_MODULES
-+void apply_module_alternatives(void *start, size_t length)
-+{
-+	_apply_alternatives((struct alt_entry *)start,
-+			    (struct alt_entry *)(start + length),
-+			    RISCV_ALTERNATIVES_MODULE);
-+}
-+#endif
-diff --git a/arch/riscv/kernel/module.c b/arch/riscv/kernel/module.c
-index 68a9e3d1fe16..a778abd5b8b9 100644
---- a/arch/riscv/kernel/module.c
-+++ b/arch/riscv/kernel/module.c
-@@ -11,6 +11,7 @@
- #include <linux/vmalloc.h>
- #include <linux/sizes.h>
- #include <linux/pgtable.h>
-+#include <asm/alternative.h>
- #include <asm/sections.h>
- 
- static int apply_r_riscv_32_rela(struct module *me, u32 *location, Elf_Addr v)
-@@ -416,3 +417,31 @@ void *module_alloc(unsigned long size)
- 				    __builtin_return_address(0));
- }
- #endif
-+
-+static const Elf_Shdr *find_section(const Elf_Ehdr *hdr,
-+				    const Elf_Shdr *sechdrs,
-+				    const char *name)
-+{
-+	const Elf_Shdr *s, *se;
-+	const char *secstrs = (void *)hdr + sechdrs[hdr->e_shstrndx].sh_offset;
-+
-+	for (s = sechdrs, se = sechdrs + hdr->e_shnum; s < se; s++) {
-+		if (strcmp(name, secstrs + s->sh_name) == 0)
-+			return s;
-+	}
-+
-+	return NULL;
-+}
-+
-+int module_finalize(const Elf_Ehdr *hdr,
-+		    const Elf_Shdr *sechdrs,
-+		    struct module *me)
-+{
-+	const Elf_Shdr *s;
-+
-+	s = find_section(hdr, sechdrs, ".alternative");
-+	if (s)
-+		apply_module_alternatives((void *)s->sh_addr, s->sh_size);
-+
-+	return 0;
-+}
+> The logo is not shown, even when I create a 16-color or 224-color
+> version of the small monochrome logo I'm using.
+>
+
+I'll also dig into this.
+
+Best regards,
 -- 
-2.30.2
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
 
