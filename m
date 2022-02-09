@@ -2,154 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC7A24AF448
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 15:42:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 182274AF47C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 15:55:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235146AbiBIOmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 09:42:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37360 "EHLO
+        id S231990AbiBIOyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 09:54:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235139AbiBIOmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 09:42:19 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5A669C0613CA
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 06:42:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1644417740;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=95z5lgZr6N4bdneKS1w58+DkU3M+JrAsHlwainwdryQ=;
-        b=bb2sPRCv2xd1Kk9NV5IWeGi3Aod15ryVM2WvAHqy4MwKMN8ECD6RXj3qCt3j24cWCnN6rd
-        zVvACsPWBCpfrjgjcICed9WizQSsD/BMIcYWoeycnlcOCjL3JAEZDGg46eUStmipdufi2G
-        Q0VDT71/xEb9i8GOajJ76pdgBMrqrEM=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-670-vKNnhF11MZuCqJ7B6Wgjeg-1; Wed, 09 Feb 2022 09:42:19 -0500
-X-MC-Unique: vKNnhF11MZuCqJ7B6Wgjeg-1
-Received: by mail-wr1-f70.google.com with SMTP id c9-20020adfa709000000b001dde29c3202so1175158wrd.22
-        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 06:42:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=95z5lgZr6N4bdneKS1w58+DkU3M+JrAsHlwainwdryQ=;
-        b=UZwbRbQEkH+9uTUqwNYiVD1I/XnzNfPJeTnLfD5rMrnXwznX5M4tZBBHCs+3cEnNuT
-         iVQAZ/a1b3CcW5SdkN4Edn8zjHfYMC01dUDrPbdS3oAGbeAuKlTH9+x3IZT8P3HLR+Qf
-         Lodfn77aCc3KzxmkuzKomSvc3m0ZUrSy9lzU74M/pjxPyrv7jAEY5wHFAPOURsqhFrOf
-         d1IbIyyYathCuOi8+KURfExTSm3EmyM1FJp/h/7ZPW0NnxWAJWWZe9QEatYK1QqIWnrR
-         g0LM/MFq9rZRm0MJ1t9T4RZx8dNJ2JRZJabJowLHsp0gi7CyR5trAlci4zWt+HWSAQAx
-         xKsA==
-X-Gm-Message-State: AOAM533l+zS7XtnOtbT5kLn+gg+L+OVI+uigOivu+Dgek3sOPA9X53vU
-        8lPH5hXajrASRVx4eK0BWzDu1nPffIN7YyjHiTFpL45LJQmgsPiQnOceyEbSjTunTvYBdvWaDMw
-        okq+LXTuJ/IAUr7oPXghRqQ==
-X-Received: by 2002:a5d:4d08:: with SMTP id z8mr2429656wrt.492.1644417738152;
-        Wed, 09 Feb 2022 06:42:18 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzwDcWgtBVsSADPkjwSIWKeWh2bWga0pSclgXkPHoPRyoxL4yRrB6nhG18lTOECvpK/yDGbwA==
-X-Received: by 2002:a5d:4d08:: with SMTP id z8mr2429623wrt.492.1644417737881;
-        Wed, 09 Feb 2022 06:42:17 -0800 (PST)
-Received: from [192.168.1.102] ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id o14sm4978570wmr.3.2022.02.09.06.42.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Feb 2022 06:42:17 -0800 (PST)
-Message-ID: <f58b2608-0d51-3209-ae11-18bdac19dd66@redhat.com>
-Date:   Wed, 9 Feb 2022 15:42:16 +0100
+        with ESMTP id S235244AbiBIOyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 09:54:10 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7ED1C0613C9;
+        Wed,  9 Feb 2022 06:54:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6462CB821B8;
+        Wed,  9 Feb 2022 14:54:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 763E2C340ED;
+        Wed,  9 Feb 2022 14:54:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1644418450;
+        bh=x4bYGFvsMugiP7T8MkePReIUpGCmEr89VgVEXKc95SI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mUxwYV3QpYBw1LL4ZTXKWaiM8PSeWvxUo3j2LEtB8f4kzlX7BCT3W7zX+IhVdTFe3
+         LYugIMrBWuZpydzaSnELWI7VTFDUUKKgdBt3Zep9NWZKrVJ9Sr+2h4EsGTv5TLOzkL
+         wMeYFZ6hgEbPAKP+d9BZ5IscpIn3w3PHacGxmOjY=
+Date:   Wed, 9 Feb 2022 15:54:07 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org,
+        cy_huang@richtek.com, will_lin@richtek.com, th_chuang@richtek.com,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/2] Add Richtek RT1719 USBPD controller support
+Message-ID: <YgPVj3rlc2WnqunG@kroah.com>
+References: <1644415355-24490-1-git-send-email-u0084500@gmail.com>
+ <YgPOz6pfpFcPmHms@kroah.com>
+ <YgPQgtcO22W3vZDw@kuha.fi.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED
- displays
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Mark Brown <broonie@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-References: <20220204134347.1187749-1-javierm@redhat.com>
- <CAMuHMdVTVX7LFay-rfv=oW96dMA24duMUVGRE62jQSNkrKtyMg@mail.gmail.com>
- <f178de92-7cb1-dcc5-1f60-9ccfc56bc0a4@redhat.com>
- <YgPF1cBMsd9973Dx@smile.fi.intel.com>
- <CAMuHMdXQdL_Do8Hjay1egfmd9H05R7BjNeKfLGq67mU4bQNVZA@mail.gmail.com>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <CAMuHMdXQdL_Do8Hjay1egfmd9H05R7BjNeKfLGq67mU4bQNVZA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YgPQgtcO22W3vZDw@kuha.fi.intel.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Geert,
-
-On 2/9/22 15:27, Geert Uytterhoeven wrote:
-> Hi Andy,
+On Wed, Feb 09, 2022 at 04:32:34PM +0200, Heikki Krogerus wrote:
+> On Wed, Feb 09, 2022 at 03:25:19PM +0100, Greg KH wrote:
+> > On Wed, Feb 09, 2022 at 10:02:33PM +0800, cy_huang wrote:
+> > > 3. Change MODULE_LICENSE from 'GPL v2' to 'GPL'.
+> > 
+> > Why?  Either is fine, any specific reason you changed this?
 > 
-> On Wed, Feb 9, 2022 at 2:48 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
->> On Tue, Feb 08, 2022 at 04:10:49PM +0100, Javier Martinez Canillas wrote:
->>> On 2/8/22 15:19, Geert Uytterhoeven wrote:
->>>> On Fri, Feb 4, 2022 at 2:43 PM Javier Martinez Canillas
->>>> <javierm@redhat.com> wrote:
->>>>   - Kernel size increased by 349 KiB,
->>>>   - The "Memory:" line reports 412 KiB less memory,
->>>>   - On top of that, "free" shows ca. 92 KiB more memory in use after
->>>>     bootup.
->>
->> The memory consumption should really be taken seriously, because these kind of
->> displays are for embedded platforms with limited amount of resources.
-> 
-> Thanks for your concern!
-> 
-> Looking at the options that are auto-enabled, a few stand out that
-> look like they're not needed on systems witch such small displays,
-> or on legacy systems predating DDC:
+> Because I proposed it. I believe everything scripts/checkpatch.pl
+> tells me.
 
-Thanks for your analysis.
-
-Since drivers are replacing the {simple,efi}fb drivers and others with the
-simpledrm driver, the DRM subsystem is now built into the kernel and no
-longer a loadable module.
-
-So there has been some effort to make it more modular and smaller, as an
-example the following patch-set from Thomas:
-
-https://www.spinics.net/lists/dri-devel/msg329120.html
-
-But there are still a lot of room to reduce this and certainly enabling
-CONFIG_DRM will be noticeable for such memory constrainted systems.
-
-This is outside the scope of this patch series though, that is only about
-adding a new DRM driver :)
-
-Now, this is a reason why I mentioned that the old fbdev driver shouldn't
-be removed yet.
-
-Best regards,
--- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
+Ah, you believe everything a perl script says, be careful :)
 
