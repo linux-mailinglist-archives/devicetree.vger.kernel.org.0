@@ -2,217 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AD834AF330
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 14:46:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E3404AF336
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 14:48:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234594AbiBINqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 08:46:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39580 "EHLO
+        id S234417AbiBINsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 08:48:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234539AbiBINqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 08:46:12 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 644D5C0612BE
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 05:46:15 -0800 (PST)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 754DF3F17B
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 13:46:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644414373;
-        bh=uPmwK2Sajk0B7/rIDbd45YqogfWkOlduqJZAInEIkls=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=s3NiHe1O+0iVu8JVmKiGvY4+24juU0rzo7icL+Wqu4nz/uIGwCS548E26lqcMKvop
-         9JB+mbJZii467b5x87LP2KGscl1XWYaW1ONJFjzIlAXYt/NU7TYVZry0cC/qXUMKQm
-         qStdyXt46cwqeNTPgZR/VS9PPQZN0kudKLxtZ5LcjM0bp3Z9LdUG7YiV0pDxZd2ukJ
-         InUqwdZm6QIIsrG8KlpQjyxq48zbH9DpEzPhqOgrJKV+p3oUQNaLoFV/g3y/Ety4Wk
-         JYBAlFQE9Jnub1ux6RKAfOWkTdzE7sIVzLDZ6Pr5Enhv/qhDQREdzAKlYu7YBEZP8C
-         r4Uc1/Lbg7vRw==
-Received: by mail-ej1-f71.google.com with SMTP id ho37-20020a1709070ea500b006cd51be5cd8so1209891ejc.6
-        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 05:46:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=uPmwK2Sajk0B7/rIDbd45YqogfWkOlduqJZAInEIkls=;
-        b=ylg6rhyPpOUgPiMKu2wzIp7QUcPJFKAyzL8UzLJSnEAbDl+tLJ6UOLIzK1tnAjNJOS
-         PTazAZmJXKs6Pl/wpS/Ql1XIhKmiyrnOjbu1lgBBACLQxSa26Z8LBtrFcX+JErm5YWXW
-         H2zruyejNOGeSdU8fUCMl+n2Uub/MAmkpmKTI/YuZINgSVfpBt/nWObFqbLkDAJ/O6Rn
-         7GzclEtH+Devyj4HOObAk0rSu+0OS/R9ym3Ms8wwqGahP0dT0nVbv02Lhtyq2xbuR2lA
-         qXPpt3S3xBy8y6Bg3bOB8w/CjOsXnOMRbAZ3/ZoEDdECQ3LZsYvzp6M4gRO5QCBySjio
-         Eh+A==
-X-Gm-Message-State: AOAM532csB60wpp29QQXHXGVPe0e+qR3oEb7goTKh41A9674SnnICxbM
-        VDTuTWGAlHFY4PdLjEft7rPUdmJkUnuhBs+yWlVQk74iebsJt4LiewHMu8lRXMZvY2T3c/B1aHp
-        +WheutfHWrbguWLzAaO55S0gmHQ0IFyDogCtg5ow=
-X-Received: by 2002:a05:6402:3596:: with SMTP id y22mr2613090edc.370.1644414372809;
-        Wed, 09 Feb 2022 05:46:12 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwkZKjTUYePrgBC0lsw8CSQ+1aXWr69tlBK1fCM0/xVCywpwRzP01Ct4mgEz/qhm2ljFlSOXw==
-X-Received: by 2002:a05:6402:3596:: with SMTP id y22mr2613072edc.370.1644414372627;
-        Wed, 09 Feb 2022 05:46:12 -0800 (PST)
-Received: from [192.168.0.94] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id i18sm2482081ejy.190.2022.02.09.05.46.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Feb 2022 05:46:11 -0800 (PST)
-Message-ID: <a835458d-2612-6ed6-e4fb-2b47c6c69871@canonical.com>
-Date:   Wed, 9 Feb 2022 14:46:10 +0100
+        with ESMTP id S234384AbiBINsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 08:48:04 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D519C0613C9;
+        Wed,  9 Feb 2022 05:48:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1644414487; x=1675950487;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mCLMTF/Kdx89pdQlhSi2Q8AM8SGXYokPeOlF4018GTY=;
+  b=igg+PSnoXDn1wjMhWhwcu7P489uBVRdRo1qLxMmFrgJqxs0ncqZIB7Tj
+   b6prnd/ycl7nSvhsxUEUt/rP94tbgh1PKEwPLCACr+sloZ0nB8u3FNSKw
+   f42JxeUWQeSfo55dSSpTmMF8FHiUaiXrR4gYUYw2g+wcRzvb65/Q0ETQK
+   OLFlV755m/X0WyPQVNWwv5ZeihAcM2et+9rxZdEcB/KivVjAEIMgw7GVH
+   I5Pkz2OmDSDEiazLK2hsumHE8gklgx2eiXK2s5H48BIkihvvIbFDTIIQf
+   78hQ0GuYg5i6kTpOUfCwOs5Ya1xJiT3aXBvcKkD4EqYbnPZb6cgS5lUyh
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10252"; a="232771017"
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; 
+   d="scan'208";a="232771017"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2022 05:48:05 -0800
+X-IronPort-AV: E=Sophos;i="5.88,355,1635231600"; 
+   d="scan'208";a="601625256"
+Received: from smile.fi.intel.com ([10.237.72.61])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2022 05:48:00 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nHnJG-002d2W-2F;
+        Wed, 09 Feb 2022 15:47:02 +0200
+Date:   Wed, 9 Feb 2022 15:47:01 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Mark Brown <broonie@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED
+ displays
+Message-ID: <YgPF1cBMsd9973Dx@smile.fi.intel.com>
+References: <20220204134347.1187749-1-javierm@redhat.com>
+ <CAMuHMdVTVX7LFay-rfv=oW96dMA24duMUVGRE62jQSNkrKtyMg@mail.gmail.com>
+ <f178de92-7cb1-dcc5-1f60-9ccfc56bc0a4@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: crypto: convert rockchip-crypto to yaml
-Content-Language: en-US
-To:     Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
-        heiko@sntech.de, herbert@gondor.apana.org.au, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-References: <20220209124725.2080986-1-clabbe@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220209124725.2080986-1-clabbe@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f178de92-7cb1-dcc5-1f60-9ccfc56bc0a4@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2022 13:47, Corentin Labbe wrote:
-> Convert rockchip-crypto to yaml.
-> 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  .../bindings/crypto/rockchip-crypto.txt       | 28 --------
->  .../bindings/crypto/rockchip-crypto.yaml      | 64 +++++++++++++++++++
->  2 files changed, 64 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
->  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/rockchip-crypto.txt b/Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
-> deleted file mode 100644
-> index 5e2ba385b8c9..000000000000
-> --- a/Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
-> +++ /dev/null
-> @@ -1,28 +0,0 @@
-> -Rockchip Electronics And Security Accelerator
-> -
-> -Required properties:
-> -- compatible: Should be "rockchip,rk3288-crypto"
-> -- reg: Base physical address of the engine and length of memory mapped
-> -       region
-> -- interrupts: Interrupt number
-> -- clocks: Reference to the clocks about crypto
-> -- clock-names: "aclk" used to clock data
-> -	       "hclk" used to clock data
-> -	       "sclk" used to clock crypto accelerator
-> -	       "apb_pclk" used to clock dma
-> -- resets: Must contain an entry for each entry in reset-names.
-> -	  See ../reset/reset.txt for details.
-> -- reset-names: Must include the name "crypto-rst".
-> -
-> -Examples:
-> -
-> -	crypto: cypto-controller@ff8a0000 {
-> -		compatible = "rockchip,rk3288-crypto";
-> -		reg = <0xff8a0000 0x4000>;
-> -		interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-> -		clocks = <&cru ACLK_CRYPTO>, <&cru HCLK_CRYPTO>,
-> -			 <&cru SCLK_CRYPTO>, <&cru ACLK_DMAC1>;
-> -		clock-names = "aclk", "hclk", "sclk", "apb_pclk";
-> -		resets = <&cru SRST_CRYPTO>;
-> -		reset-names = "crypto-rst";
-> -	};
-> diff --git a/Documentation/devicetree/bindings/crypto/rockchip-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip-crypto.yaml
-> new file mode 100644
-> index 000000000000..392d89055398
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/rockchip-crypto.yaml
+On Tue, Feb 08, 2022 at 04:10:49PM +0100, Javier Martinez Canillas wrote:
+> On 2/8/22 15:19, Geert Uytterhoeven wrote:
+> > On Fri, Feb 4, 2022 at 2:43 PM Javier Martinez Canillas
+> > <javierm@redhat.com> wrote:
 
-file name: rockchip,crypto.yaml or rockchip,rk3288-crypto.yaml.
-Kind of depends whether there is another binding possible for newer
-Crypto blocks from Rockchip. I guess it is quite possible, so maybe the
-latter version.
+> >   - Kernel size increased by 349 KiB,
+> >   - The "Memory:" line reports 412 KiB less memory,
+> >   - On top of that, "free" shows ca. 92 KiB more memory in use after
+> >     bootup.
+
+The memory consumption should really be taken seriously, because these kind of
+displays are for embedded platforms with limited amount of resources.
+
+Thanks, Geert, for testing and reporting this issue in particular.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/rockchip-crypto.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip Electronics And Security Accelerator
-> +
-> +maintainers:
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +properties:
-> +  compatible:
-> +    const: rockchip,rk3288-crypto
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: clock data
-> +      - description: clock data
-> +      - description: clock crypto accelerator
-> +      - description: clock dma
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aclk
-> +      - const: hclk
-> +      - const: sclk
-> +      - const: apb_pclk
-> +
-> +  resets:
-> +    minItems: 1
-
-Instead maxItems: 1
-
-> +
-> +  reset-names:
-> +    const: crypto-rst
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    crypto: crypto@ff8a0000 {
-> +      compatible = "rockchip,rk3288-crypto";
-> +      reg = <0xff8a0000 0x4000>;
-> +      interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-> +      clocks = <&cru ACLK_CRYPTO>, <&cru HCLK_CRYPTO>,
-> +               <&cru SCLK_CRYPTO>, <&cru ACLK_DMAC1>;
-
-Does it work? Did you run dt_binding_check?
-
-> +      clock-names = "aclk", "hclk", "sclk", "apb_pclk";
-> +      resets = <&cru SRST_CRYPTO>;
-> +      reset-names = "crypto-rst";
-> +    };
-
-
-Best regards,
-Krzysztof
