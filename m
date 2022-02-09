@@ -2,67 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E92A4AFE10
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 21:14:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 153544AFE2C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 21:22:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbiBIUOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 15:14:25 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:58214 "EHLO
+        id S229535AbiBIUWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 15:22:13 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:49066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbiBIUOZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 15:14:25 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D61D9E01C6B8
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 12:14:27 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id o2so6429407lfd.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 12:14:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wLuEF1JojT8ddrzbNvABXBvK35dZuuz52+IY18/wEwg=;
-        b=A82to0KNbd7E4ns9k2SP/YKHHiXcx6mtZii9mXpRyHwGE2Ldb0NPHZRUTAt3ms9vW0
-         DruEPGVt0mE0hbPiPPIGQL7+Fd+/vaGLtxHKhp/Z+a+79tLBmSV95czMTdKvJ3LHpyDO
-         nHpVYHwiEbhUM4OPTQUuqcwaJaMTazDErLtgYEKWFyFg9Kb9UssEuxUKl1t0f3vvizkN
-         bsV6rPBlCIoXcbW1zR2LQT8+mjsFYak7avrfTgFa8E1wiacYzsir5wA/KOAwp35s14uF
-         qZcuoT/tSl+Ai4362BqJpMrYTOKpAuv2Aw/iL0ewPrCPHKNcdokslH5iMvkVvin59jO8
-         UFPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wLuEF1JojT8ddrzbNvABXBvK35dZuuz52+IY18/wEwg=;
-        b=b4Gdkfmga/unq7Amg78H1eIr51PdWFN+zG7uRhIdfW388mOemXVH4n8RXOCJ69b973
-         YzJbDY+ad+PC2KAcrQR7EhjP1ucNSaZQuArM5QCrnqvwYhBqhtQfk3K3viM74dXBS0mu
-         KwMbzCRtbVU7PZ2ldFk2tmI+C5HFSNiQCoXGzkGJ0vMd/J2yZ0ED17Qn0xzGJTrLAusC
-         PHLey1psEYLsa/OloBrFIOxJCCMtCxly8M2UxWleEGGraE9jV66iE/UW5l25ZlK3C6kO
-         knDf8P6ShyuhCZHWYzhBeLFrL++2gYYxc+hzkC7SWbD627Wwuv17BpESiWN63yPANbQP
-         ky+Q==
-X-Gm-Message-State: AOAM5302jwd6IrLEHSV3lDPBDXdlutxArOwLhMC/jzQR1OfveYgOe/hD
-        NvW0G10Bu8fvdjzkiqNMdSQ=
-X-Google-Smtp-Source: ABdhPJybDBYAYCJlXy3XKTuf5Vl2DUv95bL5fVEtKSyqBEeseMYM8+rS4yudN/vpboqLXoGCviITzw==
-X-Received: by 2002:a05:6512:b0a:: with SMTP id w10mr2809578lfu.545.1644437665923;
-        Wed, 09 Feb 2022 12:14:25 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id k44sm863269lfv.1.2022.02.09.12.14.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 12:14:25 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: broadcom: bcm4908: add watchdog block
-Date:   Wed,  9 Feb 2022 21:14:17 +0100
-Message-Id: <20220209201417.25264-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230167AbiBIUWM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 15:22:12 -0500
+X-Greylist: delayed 317 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Feb 2022 12:22:14 PST
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53257E011172;
+        Wed,  9 Feb 2022 12:22:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1644438132;
+        bh=23VcDO1UBkUQfDfSRRv997yJv60exeA4uC8n5A+TDxE=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=Zgdtg2z5F2obroxAmRdfIBqrnpL3GLo5hPzc+t0XnF19Hpb+0trtJIPCblAQEfSA+
+         rC7erf5o6k4vfcs7AA6rFHB8GPJanZA5UdHGY2eq9TrvLXFfI4K28Hqd8RM0VrehAn
+         GXklFyvGhtT3optYujMezvO9cgEggptfKDA/87P0=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.77.2] ([80.245.77.2]) by web-mail.gmx.net
+ (3c-app-gmx-bs62.server.lan [172.19.170.146]) (via HTTP); Wed, 9 Feb 2022
+ 21:16:28 +0100
 MIME-Version: 1.0
+Message-ID: <trinity-5a9379ec-3c81-4459-809f-7d0c8bd67d5b-1644437788730@3c-app-gmx-bs62>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Cc:     heiko@sntech.de, robh+dt@kernel.org, jbx6244@gmail.com,
+        devicetree@vger.kernel.org, vkoul@kernel.org,
+        michael.riesch@wolfvision.net, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, kishon@ti.com,
+        p.zabel@pengutronix.de, cl@rock-chips.com,
+        kever.yang@rock-chips.com, lee.jones@linaro.org,
+        wulf@rock-chips.com, david.wu@rock-chips.com,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Subject: Aw: [PATCH v8 4/4] arm64: dts: rockchip: add naneng combo phy nodes
+ for rk3568
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Date:   Wed, 9 Feb 2022 21:16:28 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20220208091326.12495-5-yifeng.zhao@rock-chips.com>
+References: <20220208091326.12495-1-yifeng.zhao@rock-chips.com>
+ <20220208091326.12495-5-yifeng.zhao@rock-chips.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:9+TRw0BVUlgbzdQz4c/U8MCWL0dkdLvBqsfMaJL1wl7G+RYBTmCeniFA7SGXJtAHcV0h2
+ 9GF3k3FhOR+9+X2SyUDlD4x/+5UYhlKnxyslUNR+kysThy2Sh96YZSrqTtPTnZTKFt/aqdRWLw9+
+ lR4F6K6QnSHqtEQDpOeceO2tzOYdj7Y/NnrakFZmwOFwMxS1JziRjPrCeYTrQEOkx4v5vlic0H7g
+ qDh0C7AMFMvR5YOo6nxFFNUjWeyn+uKuGNDnNy2Qv8BbxoNYGNowWHDi03fv8rTe0KMAXJj5K12x
+ kw=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:2w5mnw2TF7s=:VXkCKNLFaDSPo9Tomwz/Xv
+ rYANgHuaLSVowsVuMmXGAOwxGtuHAUO4G1RNd+eN2pbpUX8wx32/ZB394t4fHlXpw1rfzYJ/O
+ /HJxsce5iW/1T7uNAXxJaFxm1dR9OtmC2JOFF1qOv3hEvznortEdsgWa27jqGPnQC2gr0rWr0
+ QhuZ0tcKCGz4+vV3h6goGziRdfHjNv8YYIBc4dzZZrXAWT17rMbDzp0QBqQLcR5FohSxzwHoO
+ vBHXXLTec4QEZRiMSYFvKUPTXW8yVP+BkXnPHWldPvsQqk2DXRQZZIFpn9ulvLqcaS2knhiTK
+ mRdwXn9rd68+n3npEh2i9bw607FfqEAtm4NpTNKPhBQ2OcFegTxRNAJzpYYDbcEb4LiNB5tuS
+ og9nTM2fBbhImiDnXe9jSlH8WK6GADDoULZ34Zj1GpdpAaoo+7dcVPbfdC45+xQJJzHaP3i3u
+ mVzmU5Y+29uVA+tPOT/aVH6zC8Xvdm0hCZ5uLCNsJY2nMloCjWSlKuMlH93TMdmLJxVrzouE7
+ RuYf1P3nZvYRFhwhYlMQ14L3xEiEGmfi/wgzXiKor8PWjoMr5pBhDP6MKDO9nBU7il72prDzS
+ KM9bD3zRE9+VHEsoCe2SxhcnfdN9BGjKPz8gZWdtDdp5/oqvbR2JGNNjYuG0oN9VMe+CHV/8u
+ MAMpFrNNhKzBnTrsMLtva+DQJfreWu4NyYhqZ5UPw3wL0vRpIU7RUq/vi9SXrVy1d6Je8sOUb
+ XFdL+QL6SqwnmIo5r6BM8v0eZX3nBa0ML+NqX11NytLyvUiuebU2ITVDru6yfBkthUM7dAK9Q
+ IJpb3LB
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,36 +77,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi
 
-BCM4908 has the same watchdog as BCM63xx devices. Use "brcm,bcm6345-wdt"
-binding which matches the first SoC with that block.
+Tested complete series on rk3568 based Bananapi R2 Pro
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+combphy0: usb3 (usbdrd3_0)
+combphy1: usb3 (usbdrd3_1)
+combphy2: sata (sata2)
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-index ef93c37ae591..b0bc5262beca 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-@@ -276,6 +276,15 @@ bus@ff800000 {
- 		twd: timer-mfd@400 {
- 			compatible = "brcm,bcm4908-twd", "simple-mfd", "syscon";
- 			reg = <0x400 0x4c>;
-+			ranges = <0x0 0x400 0x4c>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			watchdog@28 {
-+				compatible = "brcm,bcm6345-wdt";
-+				reg = <0x28 0x8>;
-+			};
- 		};
- 
- 		gpio0: gpio-controller@500 {
--- 
-2.34.1
+Tested-by: Frank Wunderlich <frank-w@public-files.de>
 
+regards Frank
