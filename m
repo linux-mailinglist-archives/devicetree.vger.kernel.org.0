@@ -2,91 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A24A4AEBD5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 09:09:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 343164AEBE3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Feb 2022 09:11:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236018AbiBIIIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 03:08:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53964 "EHLO
+        id S240774AbiBIIKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 03:10:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbiBIIIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 03:08:14 -0500
-X-Greylist: delayed 463 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Feb 2022 00:08:18 PST
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7CFC05CB81
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 00:08:18 -0800 (PST)
-Received: from g550jk.localnet (84-115-212-237.cable.dynamic.surfer.at [84.115.212.237])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 44725CDFCA;
-        Wed,  9 Feb 2022 08:00:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1644393634; bh=4FXw/m0qzG12tweb/SpzqvxhvTalonOAWhiKiVfi+U0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=vDuyTleEJgBCbkmvWKcbLvpyCp7hBGTI4BZVTpm7IdRqrvDBL3nRGisMJOhn+8xx8
-         jEDoW8C60Y6xIXcsExCaeXbtKPgfptE4EhsPU3EyZwqcbiBFFDcxUzg/VQNQQTWd58
-         zC1MtpWI0VpmkObfSvsUWRKjxD5e1W1zxbq+R54Q=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Jack Matthews <jm5112356@gmail.com>
-Cc:     jm5112356@gmail.com, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: qcom: pm8226: add node for RTC
-Date:   Wed, 09 Feb 2022 09:00:33 +0100
-Message-ID: <3306547.mvXUDI8C0e@g550jk>
-In-Reply-To: <20220209052929.651881-1-jm5112356@gmail.com>
-References: <20220209052929.651881-1-jm5112356@gmail.com>
+        with ESMTP id S240752AbiBIIKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 03:10:31 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB04C0613CA
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 00:10:35 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nHi3Y-0004o0-8r; Wed, 09 Feb 2022 09:10:28 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nHi3X-0098ix-JX; Wed, 09 Feb 2022 09:10:27 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH net-next v2 0/2] provide yaml schema for some of USB ethernet controllers 
+Date:   Wed,  9 Feb 2022 09:10:23 +0100
+Message-Id: <20220209081025.2178435-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jack,
+changes v2:
+- drop label related patches
+- remove end-product IDs, only chip IDs are needed.
 
-On Mittwoch, 9. Februar 2022 06:29:28 CET Jack Matthews wrote:
-> Add a node for PM8226's real time clock.
-> 
-> Signed-off-by: Jack Matthews <jm5112356@gmail.com>
-> ---
->  arch/arm/boot/dts/qcom-pm8226.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-pm8226.dtsi
-> b/arch/arm/boot/dts/qcom-pm8226.dtsi index 04d070d98f97..ecc38ab1dc4b
-> 100644
-> --- a/arch/arm/boot/dts/qcom-pm8226.dtsi
-> +++ b/arch/arm/boot/dts/qcom-pm8226.dtsi
-> @@ -17,6 +17,13 @@ pwrkey@800 {
->  			bias-pull-up;
->  		};
-> 
-> +		rtc@6000 {
+Oleksij Rempel (2):
+  dt-bindings: net: add schema for ASIX USB Ethernet controllers
+  dt-bindings: net: add schema for Microchip/SMSC LAN95xx USB Ethernet
+    controllers
 
-Please keep the nodes sorted by address, so don't put @6000 between @800 and 
-@1000 please ;)
-
-Regards
-Luca
-
-> +			compatible = "qcom,pm8941-rtc";
-> +			reg = <0x6000>, <0x6100>;
-> +			reg-names = "rtc", "alarm";
-> +			interrupts = <0x0 0x61 0x1 
-IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +
->  		smbb: charger@1000 {
->  			compatible = "qcom,pm8226-charger";
->  			reg = <0x1000>;
+ .../devicetree/bindings/net/asix,ax88178.yaml | 68 ++++++++++++++++
+ .../bindings/net/microchip,lan95xx.yaml       | 80 +++++++++++++++++++
+ 2 files changed, 148 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/asix,ax88178.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
 
 
-
+base-commit: e783362eb54cd99b2cac8b3a9aeac942e6f6ac07
+-- 
+2.30.2
 
