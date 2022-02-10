@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D14824B17C2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 22:42:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D13F84B17B6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 22:42:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344743AbiBJVkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1344699AbiBJVkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 10 Feb 2022 16:40:46 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51520 "EHLO
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344699AbiBJVkh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 16:40:37 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F5426C2
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 13:40:37 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id x193so7554598oix.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 13:40:37 -0800 (PST)
+        with ESMTP id S1344739AbiBJVki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 16:40:38 -0500
+Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32CDC270B
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 13:40:38 -0800 (PST)
+Received: by mail-oo1-xc34.google.com with SMTP id c7-20020a4ad207000000b002e7ab4185d2so8030506oos.6
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 13:40:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=3nB7qzXaFNatnaTZQJRAInnjQf9KiqCTDZAFaYuusV0=;
-        b=L+ZGFYNRoNLbHVhM3KhtWzMWcXEDYyJA7aw1jmcFUNm9LwjalIvnug5gAOBoaVsGAi
-         XAfgYWak1dxQzZ5ghazPUUea8fGTUL4XYyIyS3b6NW+CmQgYLVmzlmTGPyvdu36ntJE9
-         p/WWwPx2fjkcKd0nUagR9y6sxwOG6zjfJTQ/wWjLi9u+NSP/xV0hSdCGSkoc8CSEy4Zh
-         Xfmpchix/fMksPHav7pOiVse8m4TiWBP74rJVn9fBN60F/vQOUJa2ip5dMXv/LouxZAc
-         odHYF6dZ+iuK1KlWP32f8JPsVtkzl9VjkswCDQuIxLTMaPXm3Tnh3rK4m5SBJ5wSZl2Y
-         E93g==
+        bh=saY5DtvepsvwegCELkFkB7RgpB9RohGc6lIP30RliiM=;
+        b=46zfGr3Kc5ND2ogjveHMMDJajmm20RjiQ5jLchAHKSOeQKPxbVdIY+oOIVYm/iux6G
+         ZW7C8F9MHh0yrmBybRjiWtF0Xu0TFxrjlGVldYLEb13JSmAp10UwNlCF/RQs3NzeLRRw
+         2fy36iHMRabUOaLns1XyogS6wb2Zks+GqSdmRph/bI6MJPxl0saHoEkNH7YyzZQ4fId2
+         +pOuGvF2Q4fzB5TYRyebqrzn4PKDTXp8IVhCjORaAesIgT4iGxFQTo0yXwp2hn40ig2y
+         16NA6FAr6bH+/4dUQKItEPAZiRomvHhNA/crV+uSdzIGkPshdjxQ0yAaA8xLgSiwIjNe
+         ZXOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=3nB7qzXaFNatnaTZQJRAInnjQf9KiqCTDZAFaYuusV0=;
-        b=FZVSjH0f4VmoyakyT3Of8/QEPZfqp+oomfnmQ+hLZOx2v0+59K3wmSYtnAgGeyNZeG
-         GGPnsaOtzWCvmT3naJLmO+MWPAKNjK0nwfWUWn75cXcsWEvP/rE8oyLp58eEhr3M3NCh
-         7bjyKtoXCrpOTB3XF7ewYxUc5oHVlObogQoULo5o82p4QHXaqhPTaKgur3AX/etEi/YX
-         Q85S6wwrFQBD3Fv2T6KfVuW+BvcwO9+BM4SDee2199DG9mf/qmKZMgyhNbG2pHg3gIv0
-         UtquUVMDEyJKbtzBbk2XCTK9Gl3RrQ6uh2L/lAiiUbVMbpBUT3g0aWahvq9a8n2Po+P2
-         c7Cg==
-X-Gm-Message-State: AOAM530n6WvLRR3R2njcwngbFgZhszorlJ6Edt7fh3QF/x77z3g3zw0Q
-        YalaVL2CnVEXnQaK+LkRZI3Ceg==
-X-Google-Smtp-Source: ABdhPJxnj59RepTjd/uznzgrpDdO30O9r7af3cgqYy9BVCSUocaHEleDWBfL7GJ76jB38zMSSwzmAQ==
-X-Received: by 2002:a05:6808:11ca:: with SMTP id p10mr1942733oiv.74.1644529236740;
-        Thu, 10 Feb 2022 13:40:36 -0800 (PST)
+        bh=saY5DtvepsvwegCELkFkB7RgpB9RohGc6lIP30RliiM=;
+        b=0Tf8JhNz3bwphpEVlW1gBijtQ9CSkGDll8Mn9GYg7YIh27uct5FY3h2GvpfTGGLu4B
+         tURwtoiGFGCVnPw9HZ8SS3Birh6F+K3VQPQ/JzLIQarmKCNUdHDFkB2wd/0OKA6MxEL0
+         yEkyYmvVv/vDcvk2RvuBecZ6Ac8IcJdzuSvtzRXtPyGhhKN47eJfsuNoSrwsrTnOE+22
+         RYjpVmfPd7yasETyaPOA3wKHTOKLNxDg3aa26vQ1wIsfBUxx+FaMKhkolAfCMHWXBlbG
+         dmHkWuITEyGQVRBhy7be45AerVsvx/U6GdaqtNiel6yamxom5lFVlFRE61aGWUiCQUu/
+         810w==
+X-Gm-Message-State: AOAM533JDA6JKjKLxVPiO1+tsLnshM0anzCEGGdt7fyjUItYQkwH/K3d
+        Sp+SzWcNa7Em5n6n16lxTFbClqU8fjwNXIFu
+X-Google-Smtp-Source: ABdhPJwjL2U7/u0jBP7WaACxI4KC0/AXyKMGE0aYyO5DPcLm++C2In2k7oqNhs9hXD+RC9AH2QAtbA==
+X-Received: by 2002:a05:6870:e3c6:: with SMTP id y6mr1357918oad.200.1644529238281;
+        Thu, 10 Feb 2022 13:40:38 -0800 (PST)
 Received: from rivos-atish.. (adsl-70-228-75-190.dsl.akrnoh.ameritech.net. [70.228.75.190])
-        by smtp.gmail.com with ESMTPSA id u5sm8700000ooo.46.2022.02.10.13.40.35
+        by smtp.gmail.com with ESMTPSA id u5sm8700000ooo.46.2022.02.10.13.40.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Feb 2022 13:40:36 -0800 (PST)
+        Thu, 10 Feb 2022 13:40:37 -0800 (PST)
 From:   Atish Patra <atishp@rivosinc.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Atish Patra <atishp@rivosinc.com>,
@@ -60,9 +60,9 @@ Cc:     Atish Patra <atishp@rivosinc.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 5/6] RISC-V: Do no continue isa string parsing without correct XLEN
-Date:   Thu, 10 Feb 2022 13:40:17 -0800
-Message-Id: <20220210214018.55739-6-atishp@rivosinc.com>
+Subject: [PATCH v2 6/6] RISC-V: Improve /proc/cpuinfo output for ISA extensions
+Date:   Thu, 10 Feb 2022 13:40:18 -0800
+Message-Id: <20220210214018.55739-7-atishp@rivosinc.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220210214018.55739-1-atishp@rivosinc.com>
 References: <20220210214018.55739-1-atishp@rivosinc.com>
@@ -77,47 +77,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The isa string should begin with either rv64 or rv32. Otherwise, it is
-an incorrect isa string. Currently, the string parsing continues even if
-it doesnot begin with current XLEN.
+Currently, the /proc/cpuinfo outputs the entire riscv,isa string which
+is not ideal when we have multiple ISA extensions present in the ISA
+string. Some of them may not be enabled in kernel as well.
 
-Fix this by checking if it found "rv64" or "rv32" in the beginning.
+Parse only the enabled ISA extension and print them in a separate row.
 
 Signed-off-by: Atish Patra <atishp@rivosinc.com>
 ---
- arch/riscv/kernel/cpufeature.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/riscv/include/asm/hwcap.h |  7 ++++++
+ arch/riscv/kernel/cpu.c        | 44 ++++++++++++++++++++++++++++++++--
+ 2 files changed, 49 insertions(+), 2 deletions(-)
 
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 469b9739faf7..cca579bae8a0 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -84,6 +84,7 @@ void __init riscv_fill_hwcap(void)
- 	for_each_of_cpu_node(node) {
- 		unsigned long this_hwcap = 0;
- 		uint64_t this_isa = 0;
-+		char *temp;
+diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+index 170bd80da520..691fc9c8099b 100644
+--- a/arch/riscv/include/asm/hwcap.h
++++ b/arch/riscv/include/asm/hwcap.h
+@@ -54,6 +54,13 @@ enum riscv_isa_ext_id {
+ 	RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
+ };
  
- 		if (riscv_of_processor_hartid(node) < 0)
- 			continue;
-@@ -93,6 +94,7 @@ void __init riscv_fill_hwcap(void)
- 			continue;
- 		}
++struct riscv_isa_ext_data {
++	/* Name of the extension displayed to userspace via /proc/cpuinfo */
++	char uprop[RISCV_ISA_EXT_NAME_LEN_MAX];
++	/* The logical ISA extension ID */
++	unsigned int isa_ext_id;
++};
++
+ unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
  
-+		temp = (char *)isa;
- #if IS_ENABLED(CONFIG_32BIT)
- 		if (!strncmp(isa, "rv32", 4))
- 			isa += 4;
-@@ -100,6 +102,9 @@ void __init riscv_fill_hwcap(void)
- 		if (!strncmp(isa, "rv64", 4))
- 			isa += 4;
- #endif
-+		/* The riscv,isa DT property must start with rv64 or rv32 */
-+		if (temp == isa)
+ #define riscv_isa_extension_mask(ext) BIT_MASK(RISCV_ISA_EXT_##ext)
+diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+index ad0a7e9f828b..ced7e5be8641 100644
+--- a/arch/riscv/kernel/cpu.c
++++ b/arch/riscv/kernel/cpu.c
+@@ -6,6 +6,7 @@
+ #include <linux/init.h>
+ #include <linux/seq_file.h>
+ #include <linux/of.h>
++#include <asm/hwcap.h>
+ #include <asm/smp.h>
+ #include <asm/pgtable.h>
+ 
+@@ -63,12 +64,50 @@ int riscv_of_parent_hartid(struct device_node *node)
+ }
+ 
+ #ifdef CONFIG_PROC_FS
++#define __RISCV_ISA_EXT_DATA(UPROP, EXTID) \
++	{							\
++		.uprop = #UPROP,				\
++		.isa_ext_id = EXTID,				\
++	}
++
++static struct riscv_isa_ext_data isa_ext_arr[] = {
++	__RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
++};
++
++static void print_isa_ext(struct seq_file *f)
++{
++	struct riscv_isa_ext_data *edata;
++	int i = 0, arr_sz;
++
++	arr_sz = ARRAY_SIZE(isa_ext_arr) - 1;
++
++	/* No extension support available */
++	if (arr_sz <= 0)
++		return;
++
++	seq_puts(f, "isa-ext\t\t: ");
++	for (i = 0; i <= arr_sz; i++) {
++		edata = &isa_ext_arr[i];
++		if (!__riscv_isa_extension_available(NULL, edata->isa_ext_id))
 +			continue;
- 		for (; *isa; ++isa) {
- 			const char *ext = isa++;
- 			const char *ext_end = isa;
++		seq_printf(f, "%s ", edata->uprop);
++	}
++	seq_puts(f, "\n");
++}
+ 
+ static void print_isa(struct seq_file *f, const char *isa)
+ {
+-	/* Print the entire ISA as it is */
++	char *ext_start;
++	int isa_len = strlen(isa);
++	int base_isa_len = isa_len;
++
++	ext_start = strnchr(isa, isa_len, '_');
++	if (ext_start)
++		base_isa_len = isa_len - strlen(ext_start);
++
++	/* Print only the base ISA as it is */
+ 	seq_puts(f, "isa\t\t: ");
+-	seq_write(f, isa, strlen(isa));
++	seq_write(f, isa, base_isa_len);
+ 	seq_puts(f, "\n");
+ }
+ 
+@@ -115,6 +154,7 @@ static int c_show(struct seq_file *m, void *v)
+ 	seq_printf(m, "hart\t\t: %lu\n", cpuid_to_hartid_map(cpu_id));
+ 	if (!of_property_read_string(node, "riscv,isa", &isa))
+ 		print_isa(m, isa);
++	print_isa_ext(m);
+ 	print_mmu(m);
+ 	if (!of_property_read_string(node, "compatible", &compat)
+ 	    && strcmp(compat, "riscv"))
 -- 
 2.30.2
 
