@@ -2,115 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6F234B166B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 20:36:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 052A24B16D1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 21:15:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343999AbiBJTfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 14:35:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44336 "EHLO
+        id S1344152AbiBJUPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 15:15:06 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243590AbiBJTfK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 14:35:10 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8E7D62;
-        Thu, 10 Feb 2022 11:35:10 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21AJYxi7056840;
-        Thu, 10 Feb 2022 13:34:59 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1644521699;
-        bh=/bJ9iS5dwRmi3cHk4NArM1//+U9uqS5txh7CfIsrBUk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=slO7lGXd+EMThj4PR2jsTrB2byPNkJgf6+5JQpgzVMeYZqWTWJ7cMDjzSUEXQtFj3
-         V8B+R06c3AV39wMEvdFlBED5YcuMeufp3yzeoxoIcDVcOTm0T5gcujyeT7fkwNnGno
-         4FVpqU0wg3KXGpuPRn3/RKENIM5lPRlrb+DE0sCw=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21AJYxpL110267
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Feb 2022 13:34:59 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 10
- Feb 2022 13:34:59 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 10 Feb 2022 13:34:59 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21AJYxmX064678;
-        Thu, 10 Feb 2022 13:34:59 -0600
-Date:   Thu, 10 Feb 2022 13:34:59 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Marc Zyngier <maz@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 4/5] arm64: dts: ti: Introduce base support for AM62x SoC
-Message-ID: <20220210193459.nl6baranvmqs46bi@coastal>
-References: <20220208131827.1430086-1-vigneshr@ti.com>
- <20220208131827.1430086-5-vigneshr@ti.com>
- <bc6cb6e1adcf6860a595b71246778733@kernel.org>
+        with ESMTP id S238091AbiBJUPF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 15:15:05 -0500
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60080.outbound.protection.outlook.com [40.107.6.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B5226F3;
+        Thu, 10 Feb 2022 12:15:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JXcJYRjJbzO7dRAaScW+BL9eXkBktwGpaaDL48zPxKAf5Wc5LbRpfRsWRXsnf/7+RzWm4I5T+H49/TUnijtSg0XJ9mhVumdXTjw9IrIaD6ANE2n9XUKyWZKIi0iPk98IDSiMfDP4DXt/khDCALUPTXjaRg6yzQqgo3aui7OYOO9+r+1OQX5GVg3y3U6Uqe13Yf6TMQMPZlSsJ7BuxNmN9nK0JqtbyId4K27aqEcXOwfY/I/DuBfxboz2QOYhrlqRzJMtkxoUJatZC21Fya1TS4ZuQ4tOgCilrQjTqX5TMsQaGjPiTz8/IS8Tj5X8e0nIVaxBevJl9xmcqH6a9v+jsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sdFZnx5y5I8aOZWdUNMVpxOVcZRRCh/fssSHbIc6vUU=;
+ b=Zdz9woXHJzcYB+sYbE0MkQHvOBekmloeN+MyEMyrWmN0aK0P/j9WPaRruNdN6q4jskRoJieXIJlR1nRHDQdq6G+LxkCk9+X6LxVy0j13Y7HUulrZf1aFqa1vroHaDjDyCxc2gD0P6WctV+9hpK6HxSjsucug9lIk7jDHxw8/yW88qGl0dLCYwcTcYa5uHf/r9aVhuWkXSpFZSMDYeTp5qmndQRVOiIFVHKF/hf+7kdS2E4e+RR36bPZ4LM4QxPmngIK6lL68FRhfEuz+fOs1oX9uqhUbu7PtyVGb3xWnCGaoJgvWy8Kutgr6cI3kvYiYNJs2QWTduhOUuSqSsl422g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sdFZnx5y5I8aOZWdUNMVpxOVcZRRCh/fssSHbIc6vUU=;
+ b=lmqIR71TsV6lkLEnBNmwsGjWAS/Lyq+jnznEtngFii9wjW7OLvi+O9RIHpF5KvTn51p/Uh6mTf9DJ9udIaInBvNxSNO4vqkhPh198ylyxgCIbPSmF97UzOtAyqw5pVaAIUP+UpYl5NJIXlFAdJelXBg65052VIZLqUhFQzj+vmc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
+ by AS4PR04MB9387.eurprd04.prod.outlook.com (2603:10a6:20b:4ea::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.17; Thu, 10 Feb
+ 2022 20:15:03 +0000
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::2936:6a6f:6e6f:161f]) by VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::2936:6a6f:6e6f:161f%6]) with mapi id 15.20.4951.018; Thu, 10 Feb 2022
+ 20:15:03 +0000
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 1/2] dt-bindings: serial: fsl-lpuart: Drop i.MX8QXP backwards compatibility
+Date:   Thu, 10 Feb 2022 22:14:06 +0200
+Message-Id: <20220210201407.567860-1-abel.vesa@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: VI1PR08CA0137.eurprd08.prod.outlook.com
+ (2603:10a6:800:d5::15) To VI1PR04MB4688.eurprd04.prod.outlook.com
+ (2603:10a6:803:6a::30)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <bc6cb6e1adcf6860a595b71246778733@kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cdaf66b8-0290-42b5-9f7e-08d9ecd20570
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9387:EE_
+X-Microsoft-Antispam-PRVS: <AS4PR04MB93875E26E9648CA2D7364DCCF62F9@AS4PR04MB9387.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:751;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ympowQ8mVBWm6OHJak7uwEjphWCo0hIXGhpk+1+1nV7PZpZC45yENMAQmWVzUQNpKPCSxbOcoe0XS7cosxXkstVYEep2EMcLQuBrXNvuzojqRzpNxW8fpIhFdvwYs9gYorlZnblUUrjF1RNaZ+p7cYsa2QTwbvr9hb0WFL5Hh+6Eon4/JCQ1nFbxklNVR+KY+EKN+mnd1jN7FAO+pVdF2o1n7yfCvFa+ADh1d9py7bPQ4ABIm/D5bB0qiElaaRSEBw3R0fMf8Igd+taJWMQ3YDHw9iGOw1JaxgHZC0i91gOAPNTUl9N/qW6z0AWCR29fyKnLFKv9aFoDGMb5rn92UizaWcguA0FF7mNhXuVE7sqZkOCjC/XkP7aDKEtiSBC5DMpFQBCY1CuRaANTukXC4MnpUx0GmKutGNkyjYvXA3iuQYIxZ8mD8nX3f3XcIAKvoMFBjIoAIXWEpeZHX6Qu/VK0m/RDgX+AKfIbQ3NC/TYkSIw8rIPgNRpZXGl/B7kzQ1cdbpAe9GGN0bPdzUQb/2JK35+95Fm5vtSak2khIsMp0hUARq2jQuEEQyQpGUUusqP1vWEReRmpojY1R5UwE8VO21snC7tjUyh9+5aTymrqAlGDNlF9R+XOnub9r27iK/K8sbnic7C2MVqDfp5J6il2DQVJwkh+5J0ri2+X0nuroZ1480g3/YkASpwpqq7LuhLFcIGVAIK0pwJXeYYe/A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(83380400001)(4744005)(52116002)(508600001)(6486002)(26005)(2906002)(316002)(6506007)(5660300002)(110136005)(6512007)(4326008)(86362001)(38350700002)(1076003)(8676002)(186003)(8936002)(36756003)(44832011)(66556008)(66476007)(66946007)(2616005)(38100700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ERJbtbzw0ACABugX5xfUO+1LXfiL5ayAmsL4mHdQ5Y1tLXByLoV3jXTF6nUr?=
+ =?us-ascii?Q?g2tOngGpOGNXwp4f6hLJZFHBkMX8768CfMKsSRgGq/A1ISEgQzBz5eBABUIn?=
+ =?us-ascii?Q?8drF1VDDNl6Yq4H/Lf373IxSO8UWjCb1VdmyyXRIlS6rQ9eKo0cdbNzbg4Rr?=
+ =?us-ascii?Q?5jVPNm7JIez8l2Jm1tZeLsepoJvY26Re7fma0X66I17Xc/n9mNvGlqPVyfLF?=
+ =?us-ascii?Q?Q15OGVGofPe770vqgYVYFatCCfs4mYJJXUDZ4dNDvBhu7F+dluNQa1nSiCRX?=
+ =?us-ascii?Q?jadU8CsF/bsMJzugvbV7FsCjAMUfpOl5mu/avC6YpV5YxjknN6GxPZ1PCyfp?=
+ =?us-ascii?Q?kWIfOlfmgRyCl7WzY9oKhBWYR7aZYLrp2nER1S+WSmUkldn9YAd4KcQpeEpa?=
+ =?us-ascii?Q?b+REyVphuZQWLjtieItZR/amkSTrtWrDkrox0DV03NbZhKe5dpSbhCRpiFfw?=
+ =?us-ascii?Q?Q6JOGiNZNozV2wod7tm3lgdV12+Dar/iBC8mxHXwVMnkAYto2Ic30EZKnJpc?=
+ =?us-ascii?Q?ENGyThgPKVeKYZt050nXt+uJKzqreMmd3GR929wvzA7KmK6JHFWCq2yGd1N0?=
+ =?us-ascii?Q?ZJ1zK+kKC4J5rNX4rG2HYXzl+/kuvZr5CYdZUwLtzqxIwi6B4K82x8N+1jI1?=
+ =?us-ascii?Q?YXXeLmGzh6dNItQqJfCeUJtRfdPAbo5Qp8MLbeMRvjaRDSR8OXZH74HqCPLW?=
+ =?us-ascii?Q?V5Iv014NYFssUrGCa6Xt4jcPWigKC9K+vNU88mmcbLuK6OHD9AY+85Z7BMtg?=
+ =?us-ascii?Q?gJEgLbhQRcWGtI2XfOIj7Ft7GsAibV9uv5WCLGZic2JpZwRJaNES9l05t3pX?=
+ =?us-ascii?Q?NE1VikUYwLatkZihDBtGU/MNx1cgF9f8Dl6jsnJWx5Tue0LwiscJzgPnzsbG?=
+ =?us-ascii?Q?E5MfI72oZ3fWwCbS3BZY774KMkuoH4ydn+n6TZ7e//PJexcCDflfQY/XvWZy?=
+ =?us-ascii?Q?QzCS8vCqikKrIKn+qgC7NLJ0EkOZWwnA5D0rBrTsSwEHKqlvnzkpe1T9VcX2?=
+ =?us-ascii?Q?4bUfZT+XmVtqsuLaGmuS5geVV6zF5AHN5wQEVVdrViW2tIqmqRKeuGkhsTMx?=
+ =?us-ascii?Q?e1XH3NbY3yv2OBNgMOzfk9MrqxfLyi4InLASK9sPQedqHNhkmFuqnuNMXvRc?=
+ =?us-ascii?Q?tWX1cHd9Y846jQk1gvCJ1WrPVMCBTvcCTG3GC8oxYIXLhE7iK2yUFT50gIUu?=
+ =?us-ascii?Q?SEW3Yof8SP3eLMmqw6BeNfOXSczhVcr5ZW7VbGy7OARtuf7nY0Z58P6letrU?=
+ =?us-ascii?Q?Y0C8to1h8SF9DPssGt4KuBO3OS8k9V7o4ZfKl+FTTifKWWSGbJMoDVJeIEuM?=
+ =?us-ascii?Q?cBP3LJBy9NqfC22UdT7Ht4FhqQQFwzIFqAQxFGfhqS+2hfzPnjKN7SAjpRgO?=
+ =?us-ascii?Q?77dR1AjP8T0wutVvq771c170+2iSj0/A41IN3ASoSb4ewcn6WBqTtgCCPMZS?=
+ =?us-ascii?Q?+eRH/bQT+KCYfaFjD69zCItwCecb3AzGAKCwJYWdmgNDkXLBJ3gkdKQhl7D8?=
+ =?us-ascii?Q?CzxcDc8xH77VToMzCq6npQEfVAf3vHf70s3aYcHnW5Y2E+v0Hq3HK2F/1D/3?=
+ =?us-ascii?Q?IdegjqMH8h7A3MaKh1bbgfVx8Nx+PaXtNVDhmnOs2SvmJpyo8jA8rRaeiMiD?=
+ =?us-ascii?Q?u4ZqAISOmg+6Fl6NUIAyAhw=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cdaf66b8-0290-42b5-9f7e-08d9ecd20570
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2022 20:15:02.9596
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CO3AhTTaPCFlUXOgNDbjqTVPsgMdlNwdxOQ0g4SQJdNC1JFZyvviwa2Asz/IsiTPCbY/cMT9QsZKEvF/YvqpwA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9387
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:10-20220209, Marc Zyngier wrote:
-[...]
+Drop the i.MX8QXP backwards compatibility with i.MX7ULP since they
+differ from clocks handling point of view.
 
-> > +&cbass_main {
-> > +	gic500: interrupt-controller@1800000 {
-> > +		compatible = "arm,gic-v3";
-> > +		#address-cells = <2>;
-> > +		#size-cells = <2>;
-> > +		ranges;
-> > +		#interrupt-cells = <3>;
-> > +		interrupt-controller;
-> > +		reg = <0x00 0x01800000 0x00 0x10000>,	/* GICD */
-> > +		      <0x00 0x01880000 0x00 0xC0000>;	/* GICR */
-> 
-> Usual rant: you are missing the GICC, GICH and GICV regions
-> that are implemented by the CPU. Cortex-A53 implements them
-> (they are not optional), so please describe them.
-> 
+Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
 
+Changes since v1:
+ * rebased to make sure it will apply
+ * added A-b tag
 
--ECONFUSED. TRM for GIC500 refers to just GICD, GICR and ITS range[1].
+ Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-Same thing is indicated by Generic Interrupt Controller Architecture
-Specification[2] See table 1-1 (page 23).
-
-I think you are expecting GICV3's backward compatibility mode (Table 1-2
-in page 24), But in K3 architecture, are_option meant for backward
-compatibility is set to true (aka no backward compatibility). I think
-this did popup sometime back as well (first k3 SoC)[3]. I think the more
-clearer description is available in [4].
-
-I believe the argumentation that GICC/H/V is mandatory for A53 if GIC500
-is used is not accurate. Please correct me if I am mistaken.
-
-
-[1] https://developer.arm.com/documentation/ddi0516/e/programmers-model/the-gic-500-register-map?lang=en
-[2] https://developer.arm.com/documentation/ihi0069/d
-[3] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20180607233853.p7iw7nlxxuyi66og@kahuna/
-[4] https://developer.arm.com/documentation/ddi0516/e/functional-description/operation/backwards-compatibility?lang=en
-
+diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+index 6e04e3848261..8a65f41ef420 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+@@ -21,11 +21,10 @@ properties:
+           - fsl,ls1028a-lpuart
+           - fsl,imx7ulp-lpuart
+           - fsl,imx8qm-lpuart
++          - fsl,imx8qxp-lpuart
+           - fsl,imxrt1050-lpuart
+       - items:
+-          - enum:
+-              - fsl,imx8qxp-lpuart
+-              - fsl,imx8ulp-lpuart
++          - const: fsl,imx8ulp-lpuart
+           - const: fsl,imx7ulp-lpuart
+       - items:
+           - const: fsl,imx8qm-lpuart
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.34.1
+
