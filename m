@@ -2,129 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC9E44B0AEB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 11:36:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1C6B4B0B69
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 11:52:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237248AbiBJKgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 05:36:13 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48256 "EHLO
+        id S240133AbiBJKwM convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Feb 2022 05:52:12 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239875AbiBJKgF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 05:36:05 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4245FD8;
-        Thu, 10 Feb 2022 02:36:05 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5993A61B95;
-        Thu, 10 Feb 2022 10:36:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAFB5C004E1;
-        Thu, 10 Feb 2022 10:36:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644489364;
-        bh=v+o/pVXW0jbA4rH4iLmFawzXy6jeZG+7qU8hQVcABk8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=fGr/GgaTlNVwq40OWT7jAcnPQ9ivu7mq7xKwRyJeV2t5pJ7AZxBo//9/moMfUE0wY
-         2WBL59Hl2t7Ir7+2kzzVisVdKM7cpxq9zNyoXyju/nYuyeo/O+9qlArpcIrU83AbJx
-         WDYCT2sla5PdhRZUE3s7VW5ZSiDHor2/iDX/9H+atkM4tH0TCj1PcDBaxG4XKxA7J6
-         kLdBymLKKp+hmY5lX0+qoYcCBJJxcPTTUDlo7dhXR9NLuwGkcqAtk3TnU4tRwkse7H
-         XpGakSB0bl3G5A2lq7b2KB3/N7b1TOzBFYjOvUgH7KL21orcj5/ifxYmPL85NHoj6T
-         VM14GuJQ6NI4g==
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nI6ny-006sNS-OR; Thu, 10 Feb 2022 10:36:02 +0000
+        with ESMTP id S240086AbiBJKwL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 05:52:11 -0500
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E282E122;
+        Thu, 10 Feb 2022 02:52:12 -0800 (PST)
+Date:   Thu, 10 Feb 2022 10:52:01 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH] clk: ingenic-tcu: Fix missing TCU clock for X1000 SoC
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <PU437R.PYKJZT9CEDWM@crapouillou.net>
+In-Reply-To: <20220209230145.18943-1-aidanmacdonald.0x0@gmail.com>
+References: <20220209230145.18943-1-aidanmacdonald.0x0@gmail.com>
 MIME-Version: 1.0
-Date:   Thu, 10 Feb 2022 10:36:02 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Christian Hewitt <christianshewitt@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: meson: remove CPU opps below 1GHz for
- SM1 boards
-In-Reply-To: <20220210100638.19130-3-christianshewitt@gmail.com>
-References: <20220210100638.19130-1-christianshewitt@gmail.com>
- <20220210100638.19130-3-christianshewitt@gmail.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <8211344a481dd40f260106bdd3f03bfb@kernel.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: christianshewitt@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com, khilman@baylibre.com, narmstrong@baylibre.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-10 10:06, Christian Hewitt wrote:
-> Amlogic SM1 devices experience CPU stalls and random board wedges when
-> the system idles and CPU cores clock down to lower opp points. Recent
-> vendor kernels include a change to remove 100-250MHz and other distro
-> sources also remove the 500/667MHz points. Unless all 100-667Mhz opps
-> are removed or the CPU governor forced to performance stalls are still
-> observed, so let's remove them to improve stability and uptime.
+Hi Aidan,
+
+Le mer., févr. 9 2022 at 23:01:47 +0000, Aidan MacDonald 
+<aidanmacdonald.0x0@gmail.com> a écrit :
+> The X1000 does have a TCU clock gate, so pass it to the driver.
+> Without this the TCU can be gated automatically, which prevents
+> timers from running and stops register writes from taking effect.
 > 
-> Fixes: 3d9e76483049 ("arm64: dts: meson-sm1-sei610: enable DVFS")
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 20 --------------------
->  1 file changed, 20 deletions(-)
+>  arch/mips/boot/dts/ingenic/x1000.dtsi | 5 +++--
+>  drivers/clk/ingenic/tcu.c             | 2 +-
+
+The Device Tree changes should be split into their own patch.
+
+Cheers,
+-Paul
+
+>  2 files changed, 4 insertions(+), 3 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> index 3c07a89bfd27..80737731af3f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> @@ -95,26 +95,6 @@
->  		compatible = "operating-points-v2";
->  		opp-shared;
+> diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi 
+> b/arch/mips/boot/dts/ingenic/x1000.dtsi
+> index 8bd27edef216..c69df8eb158e 100644
+> --- a/arch/mips/boot/dts/ingenic/x1000.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
+> @@ -111,8 +111,9 @@ tcu: timer@10002000 {
 > 
-> -		opp-100000000 {
-> -			opp-hz = /bits/ 64 <100000000>;
-> -			opp-microvolt = <730000>;
-> -		};
-> -
-> -		opp-250000000 {
-> -			opp-hz = /bits/ 64 <250000000>;
-> -			opp-microvolt = <730000>;
-> -		};
-> -
-> -		opp-500000000 {
-> -			opp-hz = /bits/ 64 <500000000>;
-> -			opp-microvolt = <730000>;
-> -		};
-> -
-> -		opp-667000000 {
-> -			opp-hz = /bits/ 64 <666666666>;
-> -			opp-microvolt = <750000>;
-> -		};
-> -
->  		opp-1000000000 {
->  			opp-hz = /bits/ 64 <1000000000>;
->  			opp-microvolt = <770000>;
+>  		clocks = <&cgu X1000_CLK_RTCLK>,
+>  			 <&cgu X1000_CLK_EXCLK>,
+> -			 <&cgu X1000_CLK_PCLK>;
+> -		clock-names = "rtc", "ext", "pclk";
+> +			 <&cgu X1000_CLK_PCLK>,
+> +			 <&cgu X1000_CLK_TCU>;
+> +		clock-names = "rtc", "ext", "pclk", "tcu";
+> 
+>  		interrupt-controller;
+>  		#interrupt-cells = <1>;
+> diff --git a/drivers/clk/ingenic/tcu.c b/drivers/clk/ingenic/tcu.c
+> index 77acfbeb4830..9c86043f673a 100644
+> --- a/drivers/clk/ingenic/tcu.c
+> +++ b/drivers/clk/ingenic/tcu.c
+> @@ -320,7 +320,7 @@ static const struct ingenic_soc_info 
+> jz4770_soc_info = {
+>  static const struct ingenic_soc_info x1000_soc_info = {
+>  	.num_channels = 8,
+>  	.has_ost = false, /* X1000 has OST, but it not belong TCU */
+> -	.has_tcu_clk = false,
+> +	.has_tcu_clk = true,
+>  };
+> 
+>  static const struct of_device_id __maybe_unused 
+> ingenic_tcu_of_match[] __initconst = {
+> --
+> 2.34.1
+> 
 
-That's not nearly enough. If that's an actual issue, the driver
-should be updated not to use these OPPs, and you can't assume
-that people will just update their DT (mine comes from u-boot,
-and it is unlikely I will update it anytime soon).
 
-Thanks,
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
