@@ -2,123 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B6E4B18E0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 23:55:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14DD14B190D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 00:08:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345325AbiBJWzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 17:55:19 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43504 "EHLO
+        id S1345425AbiBJXIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 18:08:39 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344698AbiBJWzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 17:55:18 -0500
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3375A55B2;
-        Thu, 10 Feb 2022 14:55:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=qks3yg9iI4qDFGsh2BRdcXvx9gE+lfvznavyp5NtJdI=; b=Sf9q1WTPyhuB1tGsyP9dI+S2+F
-        R/4nAXULzUgiIobtxd/OByP5KKiWeeAIebRkNrm5RTrk8hSi04MxZKhuufQUf9QpcnPKzyKCoKyex
-        6BP8v+EMAJCDkR6gh4rZTxG+WP/GbljqR/oEJOtUgoSumfCxto77mdMWWfdMYaYCw/W0=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:55240 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1nIILH-0005sm-95; Thu, 10 Feb 2022 17:55:13 -0500
-Date:   Thu, 10 Feb 2022 17:55:10 -0500
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Message-Id: <20220210175510.c99eb77c6367d4df5d8bb9a2@hugovil.com>
-In-Reply-To: <YgWSgGTKR63g+S9e@piout.net>
-References: <20220125200009.900660-1-hugo@hugovil.com>
-        <20220125200009.900660-11-hugo@hugovil.com>
-        <YgMy/CYL8lmf6Y+J@robh.at.kernel.org>
-        <20220210171234.4e317c8a5d5f91f358382b07@hugovil.com>
-        <YgWSgGTKR63g+S9e@piout.net>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S238904AbiBJXIi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 18:08:38 -0500
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A790E31;
+        Thu, 10 Feb 2022 15:08:39 -0800 (PST)
+Received: by mail-qk1-x72d.google.com with SMTP id o10so6606250qkg.0;
+        Thu, 10 Feb 2022 15:08:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8tBSzebx6IZWphnQDmZzi0rvUYtCYRK6nGrmurw7iTk=;
+        b=VctWFimLh3AYddEGqTeZwYpvH+2egElHggiZG6HROcMPM6t4PbuJRA3P7nel5acxHJ
+         iVQtSJ6P8j/vL38rwP+vwLlkPVwnPVBh36AXVths9rFLU8Jf8Nu9MwqwdTO9ndYp1Az+
+         UCDnDGwr/s+vCOfO28O5MqFNsyI7IC+EaInU7kKbFdyTOtNEdWRafeisQBf3eQCBuzqG
+         EJ5T2OOsfp//rGAWOIp72EkCNobq2Jps8jA6DTJ9H14V9rPuEOnbxvlRLfKiLs88A5a+
+         pzF7Lcqq0h8cN3QlFSo/+ZyNgTD0S1drwmCJrCJfDhbCVLKHva/gnz45ss/dsQ2fWwpT
+         nH1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8tBSzebx6IZWphnQDmZzi0rvUYtCYRK6nGrmurw7iTk=;
+        b=A+TBVbkzhSghPUPrxsdtHdPoUx+9S++VKhubygpEw5yKgfmn8fTKOT4nHWyC1eqArU
+         TjNzaZJnCGIx4gyRrxcOjRy311bIagIJBlMEY3IjxTRfWR1QYevJpsxxZ3onSE/QQ5Wj
+         GwEY8KZCYmccOa/VcQqwHNe7WFewrb+Ib0ko9jl+ySq3oMC+8Um13A/6ARVq1wE+HVw4
+         tpgZigACNrC2KTku44YK2tK0zIvuHNOjO9joiQLfTKXKWdDGEUtLKSQGAT+MbCbIW0Lm
+         edQEERdYIKHBMClnNJ2Dr8NwarMKWQ7tVI1VwQv61ev2ugQ6i1GZEmfJuPHAwMkrdJSE
+         yiSA==
+X-Gm-Message-State: AOAM5321Q9vT/H6HxlcVLeozWWOFDhBvMEp+AY1upm1YGM0SFh46e5/s
+        LxMzRIFwsyoI9ldKbP8rQUA=
+X-Google-Smtp-Source: ABdhPJxz8mHol+ysN0OuloI7MrK637q0cIngQIMXKsaQuDg4uwCNVT0JgimFXOAi9PcGNTEyNSlXLA==
+X-Received: by 2002:a05:620a:c4e:: with SMTP id u14mr4883247qki.710.1644534518498;
+        Thu, 10 Feb 2022 15:08:38 -0800 (PST)
+Received: from localhost.localdomain (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id s6sm10549153qko.93.2022.02.10.15.08.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Feb 2022 15:08:38 -0800 (PST)
+From:   frowand.list@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Anders Roxell <anders.roxell@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] of: unittest: print pass messages at PR_INFO level
+Date:   Thu, 10 Feb 2022 17:08:19 -0600
+Message-Id: <20220210230819.3303212-1-frowand.list@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
-Subject: Re: [PATCH 10/10] dt-bindings: rtc: pcf2127: add PCF2131 INT_A and
- INT_B support
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Feb 2022 23:32:32 +0100
-Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+From: Frank Rowand <frank.rowand@sony.com>
 
-> On 10/02/2022 17:12:34-0500, Hugo Villeneuve wrote:
-> > On Tue, 8 Feb 2022 21:20:28 -0600
-> > Rob Herring <robh@kernel.org> wrote:
-> > 
-> > > On Tue, Jan 25, 2022 at 03:00:09PM -0500, Hugo Villeneuve wrote:
-> > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > > 
-> > > > The PCF2131 has two output interrupt pins, named INT_A and INT_B.
-> > > > 
-> > > > Add properties to identify onto which pin we want the alarm interrupt
-> > > > to be routed. It can be either one, or both.
-> > > > 
-> > > > These properties are automatically set to false for variants other
-> > > > than PCF2131 (ex: PCF2127).
-> > > > 
-> > > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > > ---
-> > > >  .../devicetree/bindings/rtc/nxp,pcf2127.yaml  | 23 +++++++++++++++++++
-> > > >  1 file changed, 23 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> > > > index 57eb0a58afa3..83656dd2f97f 100644
-> > > > --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> > > > +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> > > > @@ -24,6 +24,16 @@ properties:
-> > > >    interrupts:
-> > > >      maxItems: 1
-> > > >  
-> > > > +  alarm-output-a:
-> > > 
-> > > nxp,alarm-output-a
-> > 
-> > Ok, this will be fixed for V2.
-> > 
-> 
-> Actually, this property has to be made more generic and thought out.
-> There are multiple RTCs that have multiple interrupt pins where one of
-> the pin can be used for different interrupt or clock output.
-> 
-> With your binding, there is no way to separate which interrupt is going
-> to which pin and so there is no way to get the alarm and BLF or the
-> watchdog on different pins and we certainly don't want to have a
-> property per interrupt type.
+Printing the devicetree unittest pass message for each passed test
+creates much console verbosity.  The existing pass messages are
+printed at loglevel KERN_DEBUG so they will not print by default.
 
-Hi,
-can you please suggest how you would prefer it to be done?
+Change default to print the pass messages at loglevel PR_INFO so
+they will print with the default console loglevel.
 
-> Also, the documentation is missing the fact that the driver makes having
-> one of the property mandatory.
+The test community expects either a pass or a fail message for each
+test in a test suite.  The messages are typically post-processed to
+report pass/fail results.
 
-I will add it.
+Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+---
 
-Thank you, Hugo.
+One review comment to similar previous patch "of: unittest: print
+pass message as same lovlevel as fail" suggested to also change
+the text of the pass message to include "PASS" instead of "pass".
+I would rather leave the text unchanged to minimize churn for any
+existing users of the message.  It is my intention to change the
+pass and fail messages to KTAP version 2 format as soon as that
+version of the specification is completed.
 
+ drivers/of/unittest.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 70992103c07d..9012e6900965 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -44,7 +44,7 @@ static struct unittest_results {
+ 		pr_err("FAIL %s():%i " fmt, __func__, __LINE__, ##__VA_ARGS__); \
+ 	} else { \
+ 		unittest_results.passed++; \
+-		pr_debug("pass %s():%i\n", __func__, __LINE__); \
++		pr_info("pass %s():%i\n", __func__, __LINE__); \
+ 	} \
+ 	failed; \
+ })
 -- 
-Hugo Villeneuve <hugo@hugovil.com>
+Frank Rowand <frank.rowand@sony.com>
+
