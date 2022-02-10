@@ -2,90 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B99C14B0241
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 02:30:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F814B0293
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 02:57:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232118AbiBJB2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 20:28:48 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:55158 "EHLO
+        id S233142AbiBJB4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 20:56:36 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:33228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232445AbiBJB1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 20:27:54 -0500
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B51A220C4;
-        Wed,  9 Feb 2022 17:27:36 -0800 (PST)
-Received: by mail-oo1-f52.google.com with SMTP id t75-20020a4a3e4e000000b002e9c0821d78so4641674oot.4;
-        Wed, 09 Feb 2022 17:27:36 -0800 (PST)
+        with ESMTP id S233153AbiBJB4B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 20:56:01 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FBC722B1A
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 17:32:57 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id k60-20020a17090a4cc200b001b932781f3eso742191pjh.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 17:32:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CpXL3kPoVZ7att1zdwN8Mf8Da7ajP98VvjIjGbgaZGA=;
+        b=ENY37unj6f6SjoHK/K0Df/VIBp8PpZN9GGdjmw2F5RHMgth0BKvyfe7sX2l5TwfuMv
+         Bw72HuoCoav/n3JPrtIVxRyg7PhW6XYai1AIx9e9CG7QfpdEhEDh7DNsywpBfEYsuHG0
+         PC/EAciecqkqFtBE+fMv5STFjECmxiVAH8eSI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=H+aB7MEEh65erIWPmlmykpbHBq+zpDiRSwvKXtfqf4Y=;
-        b=abkCCCcCKq90OeXGTknE6nE6FtDXuSfsvyMmpMHDxMWkrzP53gbBGwsAy5s/Or+pM5
-         uwiuLbl31hq8Xp/VOayW0pE/fjVGPoCnyt7WuER3VMqKTAN2RMA3nTz/g7bJ89ILQrfk
-         DxU49xeBEdIRh2tuN3k1VqxrzyBppFaDBhrZxAvVi1w8bAVKc0MQp80pSet9Jn+i8KHM
-         aZ9VdF7NbM0+XPKtKS61Csy3ZU3AhhlACLQyAVyEA3qsflRWBHTDkHJmg9GTpmwO0YLO
-         G1Orwsrmlwz+l22m+Zh0g5tluEc/mq6X7TPLkRTLEc3qqT/DmkMq1fQQg1OWP9Cu74l5
-         5JFQ==
-X-Gm-Message-State: AOAM532TnNUz3MRXopibyeBncXl4qMU5r0GiWGMxaph228TiA9caMCii
-        xbCV9PKQ51Hh8Tz31OJwmesW1YFxu0Ns
-X-Google-Smtp-Source: ABdhPJyEseR1JkYMfiGodATxo9VXU0oluRqUhwbN59lnCsGWCuMw6s3B1TsytqnRqXVGNm5eIiUTnw==
-X-Received: by 2002:a05:6808:168b:: with SMTP id bb11mr2221766oib.184.1644453108777;
-        Wed, 09 Feb 2022 16:31:48 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s3sm7743074ois.19.2022.02.09.16.31.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 16:31:47 -0800 (PST)
-Received: (nullmailer pid 1260233 invoked by uid 1000);
-        Thu, 10 Feb 2022 00:31:47 -0000
-Date:   Wed, 9 Feb 2022 18:31:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Guodong Liu <guodong.liu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: mt8195: fix bias-pull-{up,down}
- checks
-Message-ID: <YgRc860w5Pj6RSlS@robh.at.kernel.org>
-References: <20220202153528.707185-1-wenst@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CpXL3kPoVZ7att1zdwN8Mf8Da7ajP98VvjIjGbgaZGA=;
+        b=gw4704q+aVL7NDtQ+Gr7T52BdNknufO5d/bLfqINdAnLvyhWHijEK/cypLG/dfONKp
+         zsd0MJRsn6pHA9n7PUKLkxC/+IoOIZXK9B3ekgE67lOZRvb0yqT/5ii8HPiXp64TWQMO
+         AM2l/8MWeLGAB09Ks/1SeT1jlu8APZdJLDHXdSlXU6ffOfIXM5v/Tppofx5ZlCp9rXuQ
+         ALUgmtqWtGc8e2LpaGjHGc27d5QhacrlsUQMwh6/Vv0PglfRQH1OIgD8Hk1RFpT1PFul
+         6WiEiDiXhCjtub96jCBr8O+x2ysI85Em1y0cuUpOmeuu/qfvz7+LM/Tqh9mP5PkRW6hE
+         sR8A==
+X-Gm-Message-State: AOAM532NsPRrT5Dgu8c8K8HJsdiFLgzYmjTmTU53eleoeI0j0BnpuOaN
+        L1DkRVMOCriPRRVwunAdbMX6Lzsgq24bpSErzMArRhfgs4IVPg==
+X-Google-Smtp-Source: ABdhPJz8Fs/lByCRrqqXLa3uco/tN8npZwUZ9fqdEfcHy+dfvEkvZxsQSmSiX8brFmaAbGdrbukbIMqI5en+3f8e4rg=
+X-Received: by 2002:a05:6102:cc8:: with SMTP id g8mr1471720vst.39.1644453157351;
+ Wed, 09 Feb 2022 16:32:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220202153528.707185-1-wenst@chromium.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20211006224659.21434-1-digetx@gmail.com> <20211006224659.21434-4-digetx@gmail.com>
+ <YWimShkkxkR+bQLK@robh.at.kernel.org> <CAODwPW-2othAhTC9a_joBdHScA86iqs-FkZJZDrK5LxrJm8F8Q@mail.gmail.com>
+ <d69f99ed-75a4-9b8c-addb-3eaa2b2be6a6@canonical.com> <CAODwPW-AMqQ+ZbnvUTuxP5Bbxdcy08GSXnhcLC+V6BW=OPYaqg@mail.gmail.com>
+ <6568fd31-113f-1581-4eff-45a4a1eb4e5d@canonical.com> <c33c9de2-ff0f-0ba7-b424-728d316dcca2@gmail.com>
+In-Reply-To: <c33c9de2-ff0f-0ba7-b424-728d316dcca2@gmail.com>
+From:   Julius Werner <jwerner@chromium.org>
+Date:   Wed, 9 Feb 2022 16:32:25 -0800
+Message-ID: <CAODwPW-VfbvWs3OVON1m=WWFXN2V86o9jqurVDShpfTrSn=Mkw@mail.gmail.com>
+Subject: Re: [PATCH v5 3/9] dt-bindings: memory: lpddr2: Add revision-id properties
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Julius Werner <jwerner@chromium.org>,
+        Rob Herring <robh@kernel.org>, linux-tegra@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Feb 2022 23:35:28 +0800, Chen-Yu Tsai wrote:
-> When the constraints and description for bias-pull-{up,down} were added,
-> the constraints were not indented correctly, resulting in them being
-> parsed as part of the description. This effectively nullified their
-> purpose.
-> 
-> Move the constraints out of the description block, make each description
-> part of the same associative array as the enum its describing, and
-> reindent them correctly so they take effect.
-> 
-> Also add "type: boolean" to the list of valid values. This corresponds
-> to having bias-pull-{up,down} without any arguments.
-> 
-> Fixes: 91e7edceda96 ("dt-bindings: pinctrl: mt8195: change pull up/down description")
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->  .../bindings/pinctrl/pinctrl-mt8195.yaml      | 30 ++++++++++---------
->  1 file changed, 16 insertions(+), 14 deletions(-)
-> 
+> I don't mind, but I also don't see where the revision-id property of
+> LPDDR3 is used at all. I can't find any device-tree with LPDDR3
+> revision-id and don't see it being used in the code either. Maybe it's
+> the LPDDR3 binding that needs to be changed?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+We are using the revision ID in userspace (read through
+/proc/device-tree) for runtime memory identification. We don't have a
+kernel driver bound to it. Our boot firmware is inserting this value
+at runtime into the FDT (that's basically the reason we have this, our
+firmware auto-detects memory during boot and we use the FDT to report
+what it found to userspace), that's why you can't find it anywhere in
+the static device trees in boot/dts/.
+
+> I made each LPDDR2 revision-id property to correspond to a dedicated MR
+> of LPDDR, which feels okay to me to since it matches h/w.
+
+I'm not super married to my solution, so if that makes things easier
+we can standardize on the two-property version as well. I mostly
+designed it my way because I thought we may one day also want to do
+something like this for the 8-byte LPDDR5 serial-id, and then it would
+get kinda cumbersome to have serial-id1 through serial-id8 all as
+separate properties. But that's also a bridge we can cross when we get
+there.
+
+My use case is in a position where we could still change this now
+without requiring backwards-compatibility. Krzysztof, would you be
+okay if I instead changed the "jedec,lpddr3" to the same thing
+"jedec,lpddr2" does -- seeing as the original patch was from me, my
+use case could handle the switch, there has never been any actual
+kernel code using the property, and it seems very unlikely that anyone
+else has silently started using the same thing in the time it's been
+in the tree? Or do we also need to go the official deprecation route
+for that?
