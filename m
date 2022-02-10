@@ -2,64 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 208DC4B1191
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 16:22:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A428E4B11BC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 16:33:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243501AbiBJPWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 10:22:33 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56112 "EHLO
+        id S240898AbiBJPdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 10:33:22 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243550AbiBJPWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 10:22:33 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD27CF1
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 07:22:33 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nIBHD-0000Yc-0W; Thu, 10 Feb 2022 16:22:31 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nIBH9-0002Cy-Il; Thu, 10 Feb 2022 16:22:27 +0100
-Date:   Thu, 10 Feb 2022 16:22:27 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Jani Nikula <jani.nikula@linux.intel.com>
-Cc:     David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 01/23] drm/encoder: Add of_graph port to struct
- drm_encoder
-Message-ID: <20220210152227.GA18637@pengutronix.de>
-References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
- <20220209095350.2104049-2-s.hauer@pengutronix.de>
- <20220209100736.GV18637@pengutronix.de>
- <87fsospa36.fsf@intel.com>
- <20220210115232.GY18637@pengutronix.de>
+        with ESMTP id S243639AbiBJPdV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 10:33:21 -0500
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 047431DF
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 07:33:22 -0800 (PST)
+Received: by mail-qk1-x72d.google.com with SMTP id 13so5151410qkd.13
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 07:33:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FL/C4Z8yVwITrvLePD7PW2Jh2OQUiy4zpTquT5szMek=;
+        b=qeouTAFQBSLpoh8wkQn7kXpOttRk9Gv3ezXt7zdNPmb9P5eqkcvquLwiOSj+NY0O39
+         jExbqpUz6GTIgvr7F/SNKwhxlIaddLakzvNgGipS9nQPQD/FUFbmaG/KyqZNIEVuyRCS
+         KsQBGYv/RmF8VclP+Wwo0RYy+LWTRyLfMSWDzdaqeDV5s3JubMvBq0+/A4UuFhXBpfKx
+         oSWFDteSho1x3i7f7d3rRIQ1JlTRrNXp6O1NcEcyfY7M9xARz78qi33mBj74rVBKPMP6
+         5k4d/oO7hUo4a9LJSy4h7muGwin3Woq6P6oBN8NWcfzTFgp6MWNfT7dp/VEqViTIsF1m
+         kt9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FL/C4Z8yVwITrvLePD7PW2Jh2OQUiy4zpTquT5szMek=;
+        b=pKlQV+wCZYMM6DWdvg4kobINiqJVyNKx6hwxhvQxw8+SnLCQAkr6+2bl+S0e0IISeh
+         rhZQ1GMbWT9YiHoW31T1TGLBFaVFmnwXzRxsIslF7MHD9Hc9FKHH++GB5zpKcFUfP5xA
+         28Amp3sFn2amkZ4wUoQW0KFX9eqoEkjN8hNH774ShUBOacAZc4bz95emNypC7avEyBg6
+         pd5CRe+fXn5lJicBBAmmtse37q2yeOeCuIkk4juWk+ZOFEV/Qw25y1NgLJpVkmaGC65Y
+         aYQESPGvMeNGyNBBvFcYXyHWiZuf4RimvPU/zJh6sMdauboPGn97FloMmrBUO6VdXv8z
+         326A==
+X-Gm-Message-State: AOAM532yJ0YfvZpZ1SxciSufYMuF2o6Xnc5MIdRgjh1J+cWCg1iKp8Fy
+        7/HeFvesPv/nIqTObHDLjWNy9B8fu6SA2PVis6GJng==
+X-Google-Smtp-Source: ABdhPJyHyx35eqG+mDoZXo+4b0lEDjXxuVtsuUbpESl7ZzUT3JUOOliWvKZ4XFvW9Lywzp2UQZCzw2j854aPgD09pf0=
+X-Received: by 2002:a05:620a:1664:: with SMTP id d4mr4053644qko.363.1644507201150;
+ Thu, 10 Feb 2022 07:33:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220210115232.GY18637@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 16:20:58 up 62 days, 6 min, 82 users,  load average: 0.17, 0.16,
- 0.18
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
+ <20220203164629.1711958-3-vladimir.zapolskiy@linaro.org> <Yf1q+wlXo2LAeZX+@ripper>
+ <Yf1zhojUSxlMNZgV@sirena.org.uk> <Yf14LADJ26G9ByZu@ripper>
+ <Yf1/X1rXm4QbyoFN@sirena.org.uk> <846cdc17-891d-2ee4-fc89-7cf6fbdebc1d@linaro.org>
+ <YgEvN0lXXu4lDCN5@sirena.org.uk> <682b7ffe-e162-bcf7-3c07-36b3a39c25ab@linaro.org>
+ <YgJoX+Ajgt4dweQJ@sirena.org.uk>
+In-Reply-To: <YgJoX+Ajgt4dweQJ@sirena.org.uk>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 10 Feb 2022 18:33:09 +0300
+Message-ID: <CAA8EJppEjFqPUBXtdkTsx2U2CjsrjNsXEmrx_DkAS9a9jmB9cg@mail.gmail.com>
+Subject: Re: [PATCH 2/9] dt-bindings: i2c: qcom-cci: add description of a
+ vbus-supply property
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linus.walleij@linaro.org, Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,677 +75,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 10, 2022 at 12:52:32PM +0100, Sascha Hauer wrote:
-> On Wed, Feb 09, 2022 at 01:12:45PM +0200, Jani Nikula wrote:
-> > On Wed, 09 Feb 2022, Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> > > David, Daniel,
-> > >
-> > > I'll need a word from you regarding this patch. It's needed in patch
-> > > 22/23 in this series.
-> > > vop2_crtc_atomic_enable() needs to control the mux which routes the
-> > > display output to the different encoders. Which encoder is used is
-> > > described in the of_graph port, so I need a way to identify the encoder
-> > > in the device tree.
-> > 
-> > I think the question is how useful is this going to be in general. IMO
-> > we should not be adding members that are useful in a single driver only.
-> > 
-> > For example i915 wraps encoders with:
-> > 
-> > 	struct intel_encoder {
-> > 		struct drm_encoder base;
-> > 
-> > 		/* i915 specific stuff here*/
-> > 	};
-> > 
-> > So that we can add stuff of our own there. Of course, it does mean a
-> > bunch of overhead for the first time you need to do it. But adding
-> > driver specific stuff to struct drm_encoder adds overhead for everyone.
-> > 
-> > All that said, *I* don't know how useful the port member would be in
-> > drivers that use device tree. Maybe it's worth it.
-> 
-> I don't know either.
-> 
-> Right now the drm_encoder is directly embedded into the encoder drivers
-> private data structures, like this:
-> 
-> struct rockchip_hdmi {
->         struct drm_encoder encoder;
-> 	...
-> };
-> 
-> I could change this to:
-> 
-> struct rockchip_encoder {
-> 	struct device_node *port;
-> 	struct drm_encoder encoder;
-> }
-> 
-> and then
-> 
-> struct rockchip_hdmi {
-> 	struct rockchip_encoder encoder;
-> 	...
-> };
-> 
-> That would solve the issue without touching generic DRM code if that's
-> preferred.
+On Tue, 8 Feb 2022 at 16:16, Mark Brown <broonie@kernel.org> wrote:
+>
+> On Mon, Feb 07, 2022 at 08:31:30PM +0200, Vladimir Zapolskiy wrote:
+> > On 2/7/22 4:39 PM, Mark Brown wrote:
+>
+> > > The bindings are ABI, it doesn't seem like a good idea to add new ABI as
+> > > a temporary bodge.
 
-FYI here is a patch for this solution.
+It's not a temporary bodge. The i2c-core piece was reverted, but not
+the mediatek driver code/bindings.
+Vladimir has provided a replacement for the i2c-core code handling the
+vbus-regulator. When thee code will be back, the code from i2c-cci can
+be removed. The bindings will be the same.
 
-Sascha
+>
+> > The bindings are supposed to describe hardware, thus it's natural to extend
+> > them, I believe there is a trilemma in this particular case:
+> > 1) add optional vbus-supply property to all I2C master controllers or I2C
+> >    busses in case of multiple I2C busses managed by a single controller,
+> > 2) add optional vbus-supply property to all I2C slave devices,
+>
+> If you add a named supply to all I2C controllers or devices then if any
+> of them have an actual vbus supply there will be a namespace collision.
+>
+> > 3) ignore peculiarities of particular (multiple in fact) PCB designs and
+> >    a necessity of adding a regulator finely described as a pull-up for I2C
+> >    bus lines.
+>
+> There's also the option of representing this as a separate thing on or
+> part of the bus.
 
-------------------------------8<--------------------------------
+4) (which you have implemented in your patch). Add support for  the
+vbus-supplies property for the I2C CCI controllers.
 
-From 43512166d8a5ee1856e7ec9644ee5ae5fc178785 Mon Sep 17 00:00:00 2001
-From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Thu, 10 Feb 2022 15:30:22 +0100
-Subject: [PATCH] drm/rockchip: Embed drm_encoder into rockchip_decoder
-
-The VOP2 driver needs rockchip specific informations for a drm_encoder.
-This patch creates a struct rockchip_encoder with a struct drm_encoder
-embedded in it. This is used throughout the rockchip driver instead of
-struct drm_encoder directly.
-While at it convert the different encoder-to-driverdata macros to
-static inline functions in order to gain type safety and readability.
-
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
- .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 32 +++++++++++------
- drivers/gpu/drm/rockchip/cdn-dp-core.c        | 18 ++++++----
- drivers/gpu/drm/rockchip/cdn-dp-core.h        |  2 +-
- .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 17 ++++++----
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   | 11 ++++--
- drivers/gpu/drm/rockchip/inno_hdmi.c          | 32 +++++++++++------
- drivers/gpu/drm/rockchip/rk3066_hdmi.c        | 34 ++++++++++++-------
- drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |  9 +++++
- drivers/gpu/drm/rockchip/rockchip_lvds.c      | 26 ++++++++------
- 9 files changed, 121 insertions(+), 60 deletions(-)
-
-diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-index 8abb5ac26807..bb33c6c217f7 100644
---- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-@@ -40,8 +40,6 @@
- 
- #define PSR_WAIT_LINE_FLAG_TIMEOUT_MS	100
- 
--#define to_dp(nm)	container_of(nm, struct rockchip_dp_device, nm)
--
- /**
-  * struct rockchip_dp_chip_data - splite the grf setting of kind of chips
-  * @lcdsel_grf_reg: grf register offset of lcdc select
-@@ -59,7 +57,7 @@ struct rockchip_dp_chip_data {
- struct rockchip_dp_device {
- 	struct drm_device        *drm_dev;
- 	struct device            *dev;
--	struct drm_encoder       encoder;
-+	struct rockchip_encoder  encoder;
- 	struct drm_display_mode  mode;
- 
- 	struct clk               *pclk;
-@@ -73,6 +71,18 @@ struct rockchip_dp_device {
- 	struct analogix_dp_plat_data plat_data;
- };
- 
-+static struct rockchip_dp_device *encoder_to_dp(struct drm_encoder *encoder)
-+{
-+	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-+
-+	return container_of(rkencoder, struct rockchip_dp_device, encoder);
-+}
-+
-+static struct rockchip_dp_device *pdata_encoder_to_dp(struct analogix_dp_plat_data *plat_data)
-+{
-+	return container_of(plat_data, struct rockchip_dp_device, plat_data);
-+}
-+
- static int rockchip_dp_pre_init(struct rockchip_dp_device *dp)
- {
- 	reset_control_assert(dp->rst);
-@@ -84,7 +94,7 @@ static int rockchip_dp_pre_init(struct rockchip_dp_device *dp)
- 
- static int rockchip_dp_poweron_start(struct analogix_dp_plat_data *plat_data)
- {
--	struct rockchip_dp_device *dp = to_dp(plat_data);
-+	struct rockchip_dp_device *dp = pdata_encoder_to_dp(plat_data);
- 	int ret;
- 
- 	ret = clk_prepare_enable(dp->pclk);
-@@ -105,7 +115,7 @@ static int rockchip_dp_poweron_start(struct analogix_dp_plat_data *plat_data)
- 
- static int rockchip_dp_powerdown(struct analogix_dp_plat_data *plat_data)
- {
--	struct rockchip_dp_device *dp = to_dp(plat_data);
-+	struct rockchip_dp_device *dp = pdata_encoder_to_dp(plat_data);
- 
- 	clk_disable_unprepare(dp->pclk);
- 
-@@ -166,7 +176,7 @@ struct drm_crtc *rockchip_dp_drm_get_new_crtc(struct drm_encoder *encoder,
- static void rockchip_dp_drm_encoder_enable(struct drm_encoder *encoder,
- 					   struct drm_atomic_state *state)
- {
--	struct rockchip_dp_device *dp = to_dp(encoder);
-+	struct rockchip_dp_device *dp = encoder_to_dp(encoder);
- 	struct drm_crtc *crtc;
- 	struct drm_crtc_state *old_crtc_state;
- 	int ret;
-@@ -208,7 +218,7 @@ static void rockchip_dp_drm_encoder_enable(struct drm_encoder *encoder,
- static void rockchip_dp_drm_encoder_disable(struct drm_encoder *encoder,
- 					    struct drm_atomic_state *state)
- {
--	struct rockchip_dp_device *dp = to_dp(encoder);
-+	struct rockchip_dp_device *dp = encoder_to_dp(encoder);
- 	struct drm_crtc *crtc;
- 	struct drm_crtc_state *new_crtc_state = NULL;
- 	int ret;
-@@ -297,7 +307,7 @@ static int rockchip_dp_of_probe(struct rockchip_dp_device *dp)
- 
- static int rockchip_dp_drm_create_encoder(struct rockchip_dp_device *dp)
- {
--	struct drm_encoder *encoder = &dp->encoder;
-+	struct drm_encoder *encoder = &dp->encoder.encoder;
- 	struct drm_device *drm_dev = dp->drm_dev;
- 	struct device *dev = dp->dev;
- 	int ret;
-@@ -333,7 +343,7 @@ static int rockchip_dp_bind(struct device *dev, struct device *master,
- 		return ret;
- 	}
- 
--	dp->plat_data.encoder = &dp->encoder;
-+	dp->plat_data.encoder = &dp->encoder.encoder;
- 
- 	ret = analogix_dp_bind(dp->adp, drm_dev);
- 	if (ret)
-@@ -341,7 +351,7 @@ static int rockchip_dp_bind(struct device *dev, struct device *master,
- 
- 	return 0;
- err_cleanup_encoder:
--	dp->encoder.funcs->destroy(&dp->encoder);
-+	dp->encoder.encoder.funcs->destroy(&dp->encoder.encoder);
- 	return ret;
- }
- 
-@@ -351,7 +361,7 @@ static void rockchip_dp_unbind(struct device *dev, struct device *master,
- 	struct rockchip_dp_device *dp = dev_get_drvdata(dev);
- 
- 	analogix_dp_unbind(dp->adp);
--	dp->encoder.funcs->destroy(&dp->encoder);
-+	dp->encoder.encoder.funcs->destroy(&dp->encoder.encoder);
- }
- 
- static const struct component_ops rockchip_dp_component_ops = {
-diff --git a/drivers/gpu/drm/rockchip/cdn-dp-core.c b/drivers/gpu/drm/rockchip/cdn-dp-core.c
-index 16497c31d9f9..6ce1c1cdd9d6 100644
---- a/drivers/gpu/drm/rockchip/cdn-dp-core.c
-+++ b/drivers/gpu/drm/rockchip/cdn-dp-core.c
-@@ -26,11 +26,17 @@
- #include "cdn-dp-reg.h"
- #include "rockchip_drm_vop.h"
- 
--#define connector_to_dp(c) \
--		container_of(c, struct cdn_dp_device, connector)
-+static inline struct cdn_dp_device *connector_to_dp(struct drm_connector *connector)
-+{
-+	return container_of(connector, struct cdn_dp_device, connector);
-+}
- 
--#define encoder_to_dp(c) \
--		container_of(c, struct cdn_dp_device, encoder)
-+static inline struct cdn_dp_device *encoder_to_dp(struct drm_encoder *encoder)
-+{
-+	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-+
-+	return container_of(rkencoder, struct cdn_dp_device, encoder);
-+}
- 
- #define GRF_SOC_CON9		0x6224
- #define DP_SEL_VOP_LIT		BIT(12)
-@@ -1022,7 +1028,7 @@ static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
- 
- 	INIT_WORK(&dp->event_work, cdn_dp_pd_event_work);
- 
--	encoder = &dp->encoder;
-+	encoder = &dp->encoder.encoder;
- 
- 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev,
- 							     dev->of_node);
-@@ -1087,7 +1093,7 @@ static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
- static void cdn_dp_unbind(struct device *dev, struct device *master, void *data)
- {
- 	struct cdn_dp_device *dp = dev_get_drvdata(dev);
--	struct drm_encoder *encoder = &dp->encoder;
-+	struct drm_encoder *encoder = &dp->encoder.encoder;
- 	struct drm_connector *connector = &dp->connector;
- 
- 	cancel_work_sync(&dp->event_work);
-diff --git a/drivers/gpu/drm/rockchip/cdn-dp-core.h b/drivers/gpu/drm/rockchip/cdn-dp-core.h
-index 81ac9b658a70..29539170d3b1 100644
---- a/drivers/gpu/drm/rockchip/cdn-dp-core.h
-+++ b/drivers/gpu/drm/rockchip/cdn-dp-core.h
-@@ -65,7 +65,7 @@ struct cdn_dp_device {
- 	struct device *dev;
- 	struct drm_device *drm_dev;
- 	struct drm_connector connector;
--	struct drm_encoder encoder;
-+	struct rockchip_encoder encoder;
- 	struct drm_display_mode mode;
- 	struct platform_device *audio_pdev;
- 	struct work_struct event_work;
-diff --git a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
-index 4ed7a6868197..110e83aad9bb 100644
---- a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
-@@ -181,8 +181,6 @@
- 
- #define HIWORD_UPDATE(val, mask)	(val | (mask) << 16)
- 
--#define to_dsi(nm)	container_of(nm, struct dw_mipi_dsi_rockchip, nm)
--
- enum {
- 	DW_DSI_USAGE_IDLE,
- 	DW_DSI_USAGE_DSI,
-@@ -236,7 +234,7 @@ struct rockchip_dw_dsi_chip_data {
- 
- struct dw_mipi_dsi_rockchip {
- 	struct device *dev;
--	struct drm_encoder encoder;
-+	struct rockchip_encoder encoder;
- 	void __iomem *base;
- 
- 	struct regmap *grf_regmap;
-@@ -271,6 +269,13 @@ struct dw_mipi_dsi_rockchip {
- 	bool dsi_bound;
- };
- 
-+static struct dw_mipi_dsi_rockchip *to_dsi(struct drm_encoder *encoder)
-+{
-+	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-+
-+	return container_of(rkencoder, struct dw_mipi_dsi_rockchip, encoder);
-+}
-+
- struct dphy_pll_parameter_map {
- 	unsigned int max_mbps;
- 	u8 hsfreqrange;
-@@ -770,7 +775,7 @@ static void dw_mipi_dsi_encoder_enable(struct drm_encoder *encoder)
- 	int ret, mux;
- 
- 	mux = drm_of_encoder_active_endpoint_id(dsi->dev->of_node,
--						&dsi->encoder);
-+						&dsi->encoder.encoder);
- 	if (mux < 0)
- 		return;
- 
-@@ -801,7 +806,7 @@ dw_mipi_dsi_encoder_helper_funcs = {
- static int rockchip_dsi_drm_create_encoder(struct dw_mipi_dsi_rockchip *dsi,
- 					   struct drm_device *drm_dev)
- {
--	struct drm_encoder *encoder = &dsi->encoder;
-+	struct drm_encoder *encoder = &dsi->encoder.encoder;
- 	int ret;
- 
- 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev,
-@@ -959,7 +964,7 @@ static int dw_mipi_dsi_rockchip_bind(struct device *dev,
- 		goto out_pll_clk;
- 	}
- 
--	ret = dw_mipi_dsi_bind(dsi->dmd, &dsi->encoder);
-+	ret = dw_mipi_dsi_bind(dsi->dmd, &dsi->encoder.encoder);
- 	if (ret) {
- 		DRM_DEV_ERROR(dev, "Failed to bind: %d\n", ret);
- 		goto out_pll_clk;
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-index c038674271b2..ac9a0a272210 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-@@ -72,7 +72,7 @@ struct rockchip_hdmi_chip_data {
- struct rockchip_hdmi {
- 	struct device *dev;
- 	struct regmap *regmap;
--	struct drm_encoder encoder;
-+	struct rockchip_encoder encoder;
- 	const struct rockchip_hdmi_chip_data *chip_data;
- 	struct clk *ref_clk;
- 	struct clk *grf_clk;
-@@ -83,7 +83,12 @@ struct rockchip_hdmi {
- 	struct phy *phy;
- };
- 
--#define to_rockchip_hdmi(x)	container_of(x, struct rockchip_hdmi, x)
-+static struct rockchip_hdmi *to_rockchip_hdmi(struct drm_encoder *encoder)
-+{
-+	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-+
-+	return container_of(rkencoder, struct rockchip_hdmi, encoder);
-+}
- 
- static const struct dw_hdmi_mpll_config rockchip_mpll_cfg[] = {
- 	{
-@@ -528,7 +533,7 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
- 	hdmi->dev = &pdev->dev;
- 	hdmi->chip_data = plat_data->phy_data;
- 	plat_data->phy_data = hdmi;
--	encoder = &hdmi->encoder;
-+	encoder = &hdmi->encoder.encoder;
- 
- 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
- 
-diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockchip/inno_hdmi.c
-index 046e8ec2a71c..0a4f72021d6a 100644
---- a/drivers/gpu/drm/rockchip/inno_hdmi.c
-+++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
-@@ -26,8 +26,6 @@
- 
- #include "inno_hdmi.h"
- 
--#define to_inno_hdmi(x)	container_of(x, struct inno_hdmi, x)
--
- struct hdmi_data_info {
- 	int vic;
- 	bool sink_is_hdmi;
-@@ -56,7 +54,7 @@ struct inno_hdmi {
- 	void __iomem *regs;
- 
- 	struct drm_connector	connector;
--	struct drm_encoder	encoder;
-+	struct rockchip_encoder	encoder;
- 
- 	struct inno_hdmi_i2c *i2c;
- 	struct i2c_adapter *ddc;
-@@ -67,6 +65,18 @@ struct inno_hdmi {
- 	struct drm_display_mode previous_mode;
- };
- 
-+static struct inno_hdmi *encoder_to_inno_hdmi(struct drm_encoder *encoder)
-+{
-+	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-+
-+	return container_of(rkencoder, struct inno_hdmi, encoder);
-+}
-+
-+static struct inno_hdmi *connector_to_inno_hdmi(struct drm_connector *connector)
-+{
-+	return container_of(connector, struct inno_hdmi, connector);
-+}
-+
- enum {
- 	CSC_ITU601_16_235_TO_RGB_0_255_8BIT,
- 	CSC_ITU601_0_255_TO_RGB_0_255_8BIT,
-@@ -483,7 +493,7 @@ static void inno_hdmi_encoder_mode_set(struct drm_encoder *encoder,
- 				       struct drm_display_mode *mode,
- 				       struct drm_display_mode *adj_mode)
- {
--	struct inno_hdmi *hdmi = to_inno_hdmi(encoder);
-+	struct inno_hdmi *hdmi = encoder_to_inno_hdmi(encoder);
- 
- 	inno_hdmi_setup(hdmi, adj_mode);
- 
-@@ -493,14 +503,14 @@ static void inno_hdmi_encoder_mode_set(struct drm_encoder *encoder,
- 
- static void inno_hdmi_encoder_enable(struct drm_encoder *encoder)
- {
--	struct inno_hdmi *hdmi = to_inno_hdmi(encoder);
-+	struct inno_hdmi *hdmi = encoder_to_inno_hdmi(encoder);
- 
- 	inno_hdmi_set_pwr_mode(hdmi, NORMAL);
- }
- 
- static void inno_hdmi_encoder_disable(struct drm_encoder *encoder)
- {
--	struct inno_hdmi *hdmi = to_inno_hdmi(encoder);
-+	struct inno_hdmi *hdmi = encoder_to_inno_hdmi(encoder);
- 
- 	inno_hdmi_set_pwr_mode(hdmi, LOWER_PWR);
- }
-@@ -536,7 +546,7 @@ static struct drm_encoder_helper_funcs inno_hdmi_encoder_helper_funcs = {
- static enum drm_connector_status
- inno_hdmi_connector_detect(struct drm_connector *connector, bool force)
- {
--	struct inno_hdmi *hdmi = to_inno_hdmi(connector);
-+	struct inno_hdmi *hdmi = connector_to_inno_hdmi(connector);
- 
- 	return (hdmi_readb(hdmi, HDMI_STATUS) & m_HOTPLUG) ?
- 		connector_status_connected : connector_status_disconnected;
-@@ -544,7 +554,7 @@ inno_hdmi_connector_detect(struct drm_connector *connector, bool force)
- 
- static int inno_hdmi_connector_get_modes(struct drm_connector *connector)
- {
--	struct inno_hdmi *hdmi = to_inno_hdmi(connector);
-+	struct inno_hdmi *hdmi = connector_to_inno_hdmi(connector);
- 	struct edid *edid;
- 	int ret = 0;
- 
-@@ -599,7 +609,7 @@ static struct drm_connector_helper_funcs inno_hdmi_connector_helper_funcs = {
- 
- static int inno_hdmi_register(struct drm_device *drm, struct inno_hdmi *hdmi)
- {
--	struct drm_encoder *encoder = &hdmi->encoder;
-+	struct drm_encoder *encoder = &hdmi->encoder.encoder;
- 	struct device *dev = hdmi->dev;
- 
- 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
-@@ -879,7 +889,7 @@ static int inno_hdmi_bind(struct device *dev, struct device *master,
- 	return 0;
- err_cleanup_hdmi:
- 	hdmi->connector.funcs->destroy(&hdmi->connector);
--	hdmi->encoder.funcs->destroy(&hdmi->encoder);
-+	hdmi->encoder.encoder.funcs->destroy(&hdmi->encoder.encoder);
- err_put_adapter:
- 	i2c_put_adapter(hdmi->ddc);
- err_disable_clk:
-@@ -893,7 +903,7 @@ static void inno_hdmi_unbind(struct device *dev, struct device *master,
- 	struct inno_hdmi *hdmi = dev_get_drvdata(dev);
- 
- 	hdmi->connector.funcs->destroy(&hdmi->connector);
--	hdmi->encoder.funcs->destroy(&hdmi->encoder);
-+	hdmi->encoder.encoder.funcs->destroy(&hdmi->encoder.encoder);
- 
- 	i2c_put_adapter(hdmi->ddc);
- 	clk_disable_unprepare(hdmi->pclk);
-diff --git a/drivers/gpu/drm/rockchip/rk3066_hdmi.c b/drivers/gpu/drm/rockchip/rk3066_hdmi.c
-index 1c546c3a8998..319240c33dcc 100644
---- a/drivers/gpu/drm/rockchip/rk3066_hdmi.c
-+++ b/drivers/gpu/drm/rockchip/rk3066_hdmi.c
-@@ -47,7 +47,7 @@ struct rk3066_hdmi {
- 	void __iomem *regs;
- 
- 	struct drm_connector connector;
--	struct drm_encoder encoder;
-+	struct rockchip_encoder encoder;
- 
- 	struct rk3066_hdmi_i2c *i2c;
- 	struct i2c_adapter *ddc;
-@@ -58,7 +58,17 @@ struct rk3066_hdmi {
- 	struct drm_display_mode previous_mode;
- };
- 
--#define to_rk3066_hdmi(x) container_of(x, struct rk3066_hdmi, x)
-+static struct rk3066_hdmi *encoder_to_rk3066_hdmi(struct drm_encoder *encoder)
-+{
-+	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-+
-+	return container_of(rkencoder, struct rk3066_hdmi, encoder);
-+}
-+
-+static struct rk3066_hdmi *connector_to_rk3066_hdmi(struct drm_connector *connector)
-+{
-+	return container_of(connector, struct rk3066_hdmi, connector);
-+}
- 
- static inline u8 hdmi_readb(struct rk3066_hdmi *hdmi, u16 offset)
- {
-@@ -380,7 +390,7 @@ rk3066_hdmi_encoder_mode_set(struct drm_encoder *encoder,
- 			     struct drm_display_mode *mode,
- 			     struct drm_display_mode *adj_mode)
- {
--	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(encoder);
-+	struct rk3066_hdmi *hdmi = encoder_to_rk3066_hdmi(encoder);
- 
- 	/* Store the display mode for plugin/DPMS poweron events. */
- 	memcpy(&hdmi->previous_mode, adj_mode, sizeof(hdmi->previous_mode));
-@@ -388,7 +398,7 @@ rk3066_hdmi_encoder_mode_set(struct drm_encoder *encoder,
- 
- static void rk3066_hdmi_encoder_enable(struct drm_encoder *encoder)
- {
--	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(encoder);
-+	struct rk3066_hdmi *hdmi = encoder_to_rk3066_hdmi(encoder);
- 	int mux, val;
- 
- 	mux = drm_of_encoder_active_endpoint_id(hdmi->dev->of_node, encoder);
-@@ -407,7 +417,7 @@ static void rk3066_hdmi_encoder_enable(struct drm_encoder *encoder)
- 
- static void rk3066_hdmi_encoder_disable(struct drm_encoder *encoder)
- {
--	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(encoder);
-+	struct rk3066_hdmi *hdmi = encoder_to_rk3066_hdmi(encoder);
- 
- 	DRM_DEV_DEBUG(hdmi->dev, "hdmi encoder disable\n");
- 
-@@ -455,7 +465,7 @@ struct drm_encoder_helper_funcs rk3066_hdmi_encoder_helper_funcs = {
- static enum drm_connector_status
- rk3066_hdmi_connector_detect(struct drm_connector *connector, bool force)
- {
--	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(connector);
-+	struct rk3066_hdmi *hdmi = connector_to_rk3066_hdmi(connector);
- 
- 	return (hdmi_readb(hdmi, HDMI_HPG_MENS_STA) & HDMI_HPG_IN_STATUS_HIGH) ?
- 		connector_status_connected : connector_status_disconnected;
-@@ -463,7 +473,7 @@ rk3066_hdmi_connector_detect(struct drm_connector *connector, bool force)
- 
- static int rk3066_hdmi_connector_get_modes(struct drm_connector *connector)
- {
--	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(connector);
-+	struct rk3066_hdmi *hdmi = connector_to_rk3066_hdmi(connector);
- 	struct edid *edid;
- 	int ret = 0;
- 
-@@ -496,9 +506,9 @@ rk3066_hdmi_connector_mode_valid(struct drm_connector *connector,
- static struct drm_encoder *
- rk3066_hdmi_connector_best_encoder(struct drm_connector *connector)
- {
--	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(connector);
-+	struct rk3066_hdmi *hdmi = connector_to_rk3066_hdmi(connector);
- 
--	return &hdmi->encoder;
-+	return &hdmi->encoder.encoder;
- }
- 
- static int
-@@ -538,7 +548,7 @@ struct drm_connector_helper_funcs rk3066_hdmi_connector_helper_funcs = {
- static int
- rk3066_hdmi_register(struct drm_device *drm, struct rk3066_hdmi *hdmi)
- {
--	struct drm_encoder *encoder = &hdmi->encoder;
-+	struct drm_encoder *encoder = &hdmi->encoder.encoder;
- 	struct device *dev = hdmi->dev;
- 
- 	encoder->possible_crtcs =
-@@ -816,7 +826,7 @@ static int rk3066_hdmi_bind(struct device *dev, struct device *master,
- 
- err_cleanup_hdmi:
- 	hdmi->connector.funcs->destroy(&hdmi->connector);
--	hdmi->encoder.funcs->destroy(&hdmi->encoder);
-+	hdmi->encoder.encoder.funcs->destroy(&hdmi->encoder.encoder);
- err_disable_i2c:
- 	i2c_put_adapter(hdmi->ddc);
- err_disable_hclk:
-@@ -831,7 +841,7 @@ static void rk3066_hdmi_unbind(struct device *dev, struct device *master,
- 	struct rk3066_hdmi *hdmi = dev_get_drvdata(dev);
- 
- 	hdmi->connector.funcs->destroy(&hdmi->connector);
--	hdmi->encoder.funcs->destroy(&hdmi->encoder);
-+	hdmi->encoder.encoder.funcs->destroy(&hdmi->encoder.encoder);
- 
- 	i2c_put_adapter(hdmi->ddc);
- 	clk_disable_unprepare(hdmi->hclk);
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-index 6e1f97e1e4a6..d2cb84b7b2b4 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-@@ -68,4 +68,13 @@ extern struct platform_driver vop_platform_driver;
- extern struct platform_driver rk3066_hdmi_driver;
- extern struct platform_driver vop2_platform_driver;
- 
-+struct rockchip_encoder {
-+	struct drm_encoder encoder;
-+};
-+
-+static inline struct rockchip_encoder *to_rockchip_encoder(struct drm_encoder *encoder)
-+{
-+	return container_of(encoder, struct rockchip_encoder, encoder);
-+}
-+
- #endif /* _ROCKCHIP_DRM_DRV_H_ */
-diff --git a/drivers/gpu/drm/rockchip/rockchip_lvds.c b/drivers/gpu/drm/rockchip/rockchip_lvds.c
-index be74c87a8be4..4ced073c6b06 100644
---- a/drivers/gpu/drm/rockchip/rockchip_lvds.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_lvds.c
-@@ -36,12 +36,6 @@
- 
- struct rockchip_lvds;
- 
--#define connector_to_lvds(c) \
--		container_of(c, struct rockchip_lvds, connector)
--
--#define encoder_to_lvds(c) \
--		container_of(c, struct rockchip_lvds, encoder)
--
- /**
-  * struct rockchip_lvds_soc_data - rockchip lvds Soc private data
-  * @probe: LVDS platform probe function
-@@ -65,10 +59,22 @@ struct rockchip_lvds {
- 	struct drm_panel *panel;
- 	struct drm_bridge *bridge;
- 	struct drm_connector connector;
--	struct drm_encoder encoder;
-+	struct rockchip_encoder encoder;
- 	struct dev_pin_info *pins;
- };
- 
-+static inline struct rockchip_lvds *connector_to_lvds(struct drm_connector *connector)
-+{
-+	return container_of(connector, struct rockchip_lvds, connector);
-+}
-+
-+static inline struct rockchip_lvds *encoder_to_lvds(struct drm_encoder *encoder)
-+{
-+	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-+
-+	return container_of(rkencoder, struct rockchip_lvds, encoder);
-+}
-+
- static inline void rk3288_writel(struct rockchip_lvds *lvds, u32 offset,
- 				 u32 val)
- {
-@@ -599,7 +605,7 @@ static int rockchip_lvds_bind(struct device *dev, struct device *master,
- 		goto err_put_remote;
- 	}
- 
--	encoder = &lvds->encoder;
-+	encoder = &lvds->encoder.encoder;
- 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev,
- 							     dev->of_node);
- 
-@@ -674,10 +680,10 @@ static void rockchip_lvds_unbind(struct device *dev, struct device *master,
- 	const struct drm_encoder_helper_funcs *encoder_funcs;
- 
- 	encoder_funcs = lvds->soc_data->helper_funcs;
--	encoder_funcs->disable(&lvds->encoder);
-+	encoder_funcs->disable(&lvds->encoder.encoder);
- 	pm_runtime_disable(dev);
- 	drm_connector_cleanup(&lvds->connector);
--	drm_encoder_cleanup(&lvds->encoder);
-+	drm_encoder_cleanup(&lvds->encoder.encoder);
- }
- 
- static const struct component_ops rockchip_lvds_component_ops = {
--- 
-2.30.2
+This is the option I'd vote for.
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+With best wishes
+Dmitry
