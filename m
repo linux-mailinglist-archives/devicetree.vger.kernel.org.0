@@ -2,96 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F4E74B17EB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 23:08:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAFB04B1863
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 23:41:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344811AbiBJWIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 17:08:12 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43926 "EHLO
+        id S1345060AbiBJWla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 17:41:30 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344810AbiBJWIM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 17:08:12 -0500
-X-Greylist: delayed 596 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 10 Feb 2022 14:08:12 PST
-Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADEFF1F5
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 14:08:12 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4JvrGW3Gdmz1s767;
-        Thu, 10 Feb 2022 22:58:11 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4JvrGW04bKz1qqkB;
-        Thu, 10 Feb 2022 22:58:10 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id P0Gm9oQZh0uW; Thu, 10 Feb 2022 22:58:09 +0100 (CET)
-X-Auth-Info: K9Vgp8IFWJ4Z7781WVGKiz1IyIbMo3h9rBlVSRIGtFnKqw4w1utxrA8f7q6T64u9
-Received: from igel.home (ppp-46-244-163-189.dynamic.mnet-online.de [46.244.163.189])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Thu, 10 Feb 2022 22:58:09 +0100 (CET)
-Received: by igel.home (Postfix, from userid 1000)
-        id 33DC02C3B35; Thu, 10 Feb 2022 22:58:09 +0100 (CET)
-From:   Andreas Schwab <schwab@linux-m68k.org>
-To:     Atish Patra <atishp@rivosinc.com>
-Cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv@lists.infradead.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 5/6] RISC-V: Do no continue isa string parsing
- without correct XLEN
-References: <20220210214018.55739-1-atishp@rivosinc.com>
-        <20220210214018.55739-6-atishp@rivosinc.com>
-X-Yow:  I don't believe there really IS a GAS SHORTAGE..  I think it's all
- just a BIG HOAX on the part of the plastic sign salesmen--
- ..  to sell more numbers!!
-Date:   Thu, 10 Feb 2022 22:58:09 +0100
-In-Reply-To: <20220210214018.55739-6-atishp@rivosinc.com> (Atish Patra's
-        message of "Thu, 10 Feb 2022 13:40:17 -0800")
-Message-ID: <877da2xu32.fsf@igel.home>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.0.91 (gnu/linux)
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S1345059AbiBJWla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 17:41:30 -0500
+X-Greylist: delayed 1722 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 10 Feb 2022 14:41:30 PST
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83FFA26DA
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 14:41:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=coFWpLgo9twhuhd3SR/cuK/VprSAE5aX5rs5mHJsNXI=; b=djfRqhgw0gZgNeFnURh3bsdHay
+        KyVZ+rEFtFtC6KCjb2M61GBYo4vKm4G8ZDkYoIKqT5F4mfZtQtRSrH4dAIdVqjYhGTZMFjw9VwbQ5
+        kWZWd1YSUctUhWqE+QtDQMkcBQmStj18rBlVhu2Z3n4jcgxiG5i58tNwB7ZnLdGRDcvY=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:55234 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1nIHg3-0005cI-9Z; Thu, 10 Feb 2022 17:12:36 -0500
+Date:   Thu, 10 Feb 2022 17:12:34 -0500
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Message-Id: <20220210171234.4e317c8a5d5f91f358382b07@hugovil.com>
+In-Reply-To: <YgMy/CYL8lmf6Y+J@robh.at.kernel.org>
+References: <20220125200009.900660-1-hugo@hugovil.com>
+        <20220125200009.900660-11-hugo@hugovil.com>
+        <YgMy/CYL8lmf6Y+J@robh.at.kernel.org>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
+Subject: Re: [PATCH 10/10] dt-bindings: rtc: pcf2127: add PCF2131 INT_A and
+ INT_B support
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Feb 10 2022, Atish Patra wrote:
+On Tue, 8 Feb 2022 21:20:28 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index 469b9739faf7..cca579bae8a0 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -84,6 +84,7 @@ void __init riscv_fill_hwcap(void)
->  	for_each_of_cpu_node(node) {
->  		unsigned long this_hwcap = 0;
->  		uint64_t this_isa = 0;
-> +		char *temp;
->  
->  		if (riscv_of_processor_hartid(node) < 0)
->  			continue;
-> @@ -93,6 +94,7 @@ void __init riscv_fill_hwcap(void)
->  			continue;
->  		}
->  
-> +		temp = (char *)isa;
+> On Tue, Jan 25, 2022 at 03:00:09PM -0500, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > The PCF2131 has two output interrupt pins, named INT_A and INT_B.
+> > 
+> > Add properties to identify onto which pin we want the alarm interrupt
+> > to be routed. It can be either one, or both.
+> > 
+> > These properties are automatically set to false for variants other
+> > than PCF2131 (ex: PCF2127).
+> > 
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > ---
+> >  .../devicetree/bindings/rtc/nxp,pcf2127.yaml  | 23 +++++++++++++++++++
+> >  1 file changed, 23 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > index 57eb0a58afa3..83656dd2f97f 100644
+> > --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > @@ -24,6 +24,16 @@ properties:
+> >    interrupts:
+> >      maxItems: 1
+> >  
+> > +  alarm-output-a:
+> 
+> nxp,alarm-output-a
 
-There should be no need for this cast.
+Ok, this will be fixed for V2.
+
+Thank you, Hugo.
 
 -- 
-Andreas Schwab, schwab@linux-m68k.org
-GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
-"And now for something completely different."
+Hugo Villeneuve <hugo@hugovil.com>
