@@ -2,163 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C213B4B039F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 03:57:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 157A84B03AF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 04:03:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbiBJC5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 21:57:32 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58834 "EHLO
+        id S231918AbiBJDDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 22:03:33 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbiBJC5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 21:57:31 -0500
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96E53240B8;
-        Wed,  9 Feb 2022 18:57:33 -0800 (PST)
-Received: by mail-qv1-xf2f.google.com with SMTP id d7so3649823qvk.2;
-        Wed, 09 Feb 2022 18:57:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=DveL08cBpQyT38jrCHqG38StDpIpjTtO5x5RxN2qOLY=;
-        b=kOFXR7ExGrn1+/9lTrSbG9/68OlOMqhrankhZRfVeox04sGJXOXIneDj+Kh9aYk9tJ
-         wtjeJSXf3+Gdy0L+ToO6JOfg7Y7Cp1d3EsAVwsCJJZ3kRx6Uxo1GDPMMccv5o3uRcZl3
-         vyuQn9dAlZTxe4kii5JYVp23OS6coTVJ5ixy3cJegneqY6p+7opCUQIL05JtjpzzeJVc
-         BmRBJqPg4juTeRc698tkabUNgu6+ZoT7sw+TfByysGvcGD8wFc3OfbosfnElTjS+gdi3
-         e8C8/r4IGogqWxIhtAJ1Wz2IYF7t2MNffE5N3Rvs6XLTVasfS8ly3HDEwLfAY/ThBFrm
-         EbWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=DveL08cBpQyT38jrCHqG38StDpIpjTtO5x5RxN2qOLY=;
-        b=nGy5rM5kW+xmpOKwHgLEiNh+aZQGjrMNj9W2MXCzWagBWIBCJBTOyqv2vcx/d75Yk1
-         VVGnhfVgrn70Hcli6OcVQR12k6YM9+R4JmF+KEHIHJjXpLrE/aM1+ukb82vHoRNTqhcc
-         jsy5n1UF4odBzExMqbIThD1JXHm/PaJ2Gnvua8ODphQCMc6/r8T/oFnwo9yiBTfnqJAF
-         v/QKTzf1zY2VjR4WzGKbngaUGZWavbLSwdIoC+kySOT7YCYMed5FlYUc/N/zeLyuheK2
-         SV2qN5VD8WIRqTCNgaIZ5qwjDmrzk8YoGDM1Wos94HCxg+um+kKQjUjnhxGutUdNpefz
-         j6Fw==
-X-Gm-Message-State: AOAM532WoHa8WP/iA1VVWDvZEH5PTbaP0iYZM4Nd3fdFnoQzAb6a7Izs
-        Z/GWU+acTgsEPIKSWUIJRlc=
-X-Google-Smtp-Source: ABdhPJynjNToCd5PPegiDDI59TPQmtFEuHnh/crKpgATDReo+lOqVn+E2kR11jsiXN51nK/RiEY5Bw==
-X-Received: by 2002:a05:6214:1c8d:: with SMTP id ib13mr3673192qvb.81.1644461852770;
-        Wed, 09 Feb 2022 18:57:32 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id s1sm10088441qta.0.2022.02.09.18.57.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Feb 2022 18:57:32 -0800 (PST)
-Subject: Re: [PATCH 1/1] of: unittest: print pass messages at same loglevel as
- fail
-To:     Rob Herring <robh@kernel.org>
-Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Anders Roxell <anders.roxell@linaro.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220203211150.2912192-1-frowand.list@gmail.com>
- <CAL_JsqKMZWMtvdTvYHmWkd5CmehKJexJVv_BUBENrMPOf002+w@mail.gmail.com>
- <24652725-91d8-9db4-e14a-e1bb5ded87b1@gmail.com>
- <YgRdqe0+8fqSYi2T@robh.at.kernel.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <a746aad8-694a-85f7-7cbe-e0831b4b42da@gmail.com>
-Date:   Wed, 9 Feb 2022 20:57:31 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S231894AbiBJDDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 22:03:32 -0500
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D17205E0
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 19:03:32 -0800 (PST)
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220210030329epoutp011b07cfd9be55e0fa80f3f2c6cd47fdba~STaqumnfL1076710767epoutp01R
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 03:03:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220210030329epoutp011b07cfd9be55e0fa80f3f2c6cd47fdba~STaqumnfL1076710767epoutp01R
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1644462209;
+        bh=DH/9O9Z3dgVORgHIkvNXQao8lX5dwnmxxo735+xdAJ4=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=ov5Qqkg/FTScjjVPa5pXpZDNBRBw8QzfwgdDsAisd0Q3TE++P2/TSkzelzA/v1hzO
+         3up+TgtnXBcvtJG1U3L3eRZ92ohhEZ3WblylwkXy4R2G9TPP5u833lrMNSn/pXccaU
+         afB3/RtrvPco4cSPF3IplQOv/lAkDP4I0SbMXkq8=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20220210030328epcas5p1d655714fe4992ce9e9d394d5e88b971d~STaqUO3t61634516345epcas5p1Y;
+        Thu, 10 Feb 2022 03:03:28 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.175]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4JvM5859gFz4x9Q0; Thu, 10 Feb
+        2022 03:03:24 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        EB.AD.46822.16F74026; Thu, 10 Feb 2022 11:58:41 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220210030323epcas5p4b0ab5b5e019e1357b9315d8930545c70~STalgV8DD0184701847epcas5p4Z;
+        Thu, 10 Feb 2022 03:03:23 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220210030323epsmtrp2980841b1eaf0891b7c74ada517572882~STalfX-h82167621676epsmtrp2R;
+        Thu, 10 Feb 2022 03:03:23 +0000 (GMT)
+X-AuditID: b6c32a4a-de5ff7000000b6e6-86-62047f614ce1
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        4D.45.29871.B7084026; Thu, 10 Feb 2022 12:03:23 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220210030321epsmtip1ba39a81695498362e6b20216d337b822~STai85god1858118581epsmtip1R;
+        Thu, 10 Feb 2022 03:03:20 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        "'Inki Dae'" <inki.dae@samsung.com>,
+        "'Joonyoung Shim'" <jy0922.shim@samsung.com>,
+        "'Seung-Woo Kim'" <sw0312.kim@samsung.com>,
+        "'Kyungmin Park'" <kyungmin.park@samsung.com>,
+        "'David Airlie'" <airlied@linux.ie>,
+        "'Daniel Vetter'" <daniel@ffwll.ch>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Kishon Vijay Abraham I'" <kishon@ti.com>,
+        "'Vinod Koul'" <vkoul@kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>
+Cc:     "'Marek Szyprowski'" <m.szyprowski@samsung.com>,
+        "'Sylwester Nawrocki'" <snawrocki@kernel.org>,
+        <stable@vger.kernel.org>
+In-Reply-To: <20220208171823.226211-2-krzysztof.kozlowski@canonical.com>
+Subject: RE: [PATCH 01/10] ARM: dts: exynos: add missing HDMI supplies on
+ SMDK5250
+Date:   Thu, 10 Feb 2022 08:33:18 +0530
+Message-ID: <000001d81e2a$c37c90d0$4a75b270$@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <YgRdqe0+8fqSYi2T@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKO+pA4e/0lxhjrdKzLnJfOvLS5zwM3Y7bXAnFVvMKq8RoccA==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA01TfUxTVxzN7Xt9bc2qzwLhDjYHbyMGMz6KwC5TcAIhb+ucTJaNGRL2pG+l
+        o7RNXxFmnIAIm2CFKonaMCTATOicH0BAcDSOFTtgc5IVYwzMQoFZAXVDUMIca3m48d+553fO
+        Pb/f/RBjsj+IILFaa2QNWkZDEevwjh/DN0cwxfi+aPPcZmS60S9Ayx1mDJ213xAi5/xDAp24
+        W4Oje78P4ejm5DECXZ59KkC/HJ4RoVb3LSH6rbuOQDXWBRyd/tUmQN/ZR0WovMcuQl9OejDU
+        cHkcoNMnPQTqGvkJe8uPtpSYCLpnoQGnW61HCbpzwSWk71Y5BHRbczF9vN0KaMftTgE917op
+        XbI3b3suyyhZQwirzdEp1VpVIqXIyE7JjouPlkfIE9AbVIiWyWcTqdR30yPS1BrvVFTIfkZT
+        4KXSGY6jopK2G3QFRjYkV8cZEylWr9ToY/WRHJPPFWhVkVrW+KY8Ojomziv8JC93+kgTrh/d
+        UDQzMI2VgBFpJZCIIRkLH1Y8wivBOrGMvArgz4MzgF/8BaDtwrCIXywAWNV3T/Dccuvb5tVC
+        D4BPOuxCX0FGegAsvSr3YYKMgFeaKgifyJ+sEkLX9SbCV8DIQ3DE04D5sISkYZd52msWi/3I
+        D2BPi8pH42QYHBywAh8tJRPgiak0Hy0lN8L+MxM4v8srsHO2DuP7CYGLk+dWWvAnk2H/WNlq
+        UiD09NlX+oRktQRODSwRvCEVDrUt4jz2g/cd7SIeB8G5Bz2ELxeSefBY91aePgi/qb++Kt8B
+        rznrcJ8EI8Phxe4oPmo9NC1NCHinFH5VIePVYbDswfCqMxiaq6qEPKahdfkaXgNCLWsGs6wZ
+        zLJmAMv/YQ0At4IXWT2Xr2K5OH2Mli3877ZzdPmtYOXFb3nnChhzPYrsBQIx6AVQjFH+0oFi
+        bJ9MqmQ+P8AadNmGAg3L9YI472GbsaCAHJ33y2iN2fLYhOjY+Pj42ISt8XIqUDqousTISBVj
+        ZPNYVs8anvsEYklQieCLFzxjdyp2KBptBUNlw+q3Z7edJ5+VHD4763CaNzz+OuZmGDcjcX+2
+        t6W2zXRcnJKRZLE5azQ/BFucH2eeedxeHZOZVFQ4yAbcydpZPuJGrvmu8qyY0W15benGLv1U
+        1Ljj09q59zeaZUdKbMr7aZ1P9LUUnjGzO1SR0lgkaspW6Kcn+r/fHeCW/v3Pe+Ol9Ecdyvn6
+        4cqipD7uVPihMdaQnvyau2sPdm6/bPZA5p7k0IlLVveEcFSEKxQZF1uOPnOtzwqCu56edDER
+        jaT6z+o+Efyw7BRnK6xH2M5K08thic1LjtfVYQepikDnptI+46vndy3m2G9PBaReIJaDX6Jw
+        LpeRb8EMHPMvUOFwhnoEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPIsWRmVeSWpSXmKPExsWy7bCSnG51A0uSwbdj8ha9504yWfzfNpHZ
+        Yv6Rc6wWV76+Z7OYdH8Ci8WLexdZLC487WGz2Pj2B5PF2aY37BabHl9jtbi8aw6bxYRV31gs
+        Zpzfx2Sx9shddovWvUfYLdqfvmS2WLDxEaPFjMkv2Sx23jnB7CDsMauhl81j77cFLB6bVnWy
+        eWz/9oDV4373cSaPzUvqPfq2rGL0OH5jO5PH501yAZxRXDYpqTmZZalF+nYJXBmvWxazFNzl
+        r3hz6jVzA+Md3i5GTg4JAROJa6uXsIPYQgK7GSWWdbhDxKUlrm+cwA5hC0us/PccyOYCqnnO
+        KHH+7VawBJuArsSOxW1sIAkRgZmsEgu2T2MBSTALNDBK7PijDtFxlVHi8/pFrCAJTgEPiZ0T
+        XwPZHBzCAkESE/aZgIRZBFQlTp9axQgS5hWwlJj0zA0kzCsgKHFy5hMWkDCzgJ5E20ZGiOny
+        EtvfzmGGuE1B4ufTZWDDRQScJE4+bGaDqBGXeHn0CPsERuFZSCbNQpg0C8mkWUg6FjCyrGKU
+        TC0ozk3PLTYsMMxLLdcrTswtLs1L10vOz93ECI5zLc0djNtXfdA7xMjEwXiIUYKDWUmE91Q9
+        c5IQb0piZVVqUX58UWlOavEhRmkOFiVx3gtdJ+OFBNITS1KzU1MLUotgskwcnFINTKs5p2Qf
+        i67jqQ+a1L5X/6Kt/A8T9+xb21Ssr5Z9mONTya2ktIl7pcje+0EsbnesiwrmzuNwaPDayKpZ
+        HhIblp3wyOO63fTdf/h3H78mctmjpu+a5B6Lrq87vum/W8y+aIae2CRFKYm7L0OElbZxfL86
+        nalzJqvlyxTPsKTM3xs2Jj99WxPPzfyBf5Jg4YaVW4TlF70VCuJdnCYf76S18byf2ediG36t
+        +DufeYRnP48OEu1LfWVrfzv9xqv/2tbykhvqNLNucBy0ef3Qv1VE6ODFJ1+/HDUKdJo4Q3v1
+        H1fRs6v+rFf02nnwoo4mt+5TieR+W8XZ/WEJ7jnxXryKMVHvp83RXDT33dHpzq0rlFiKMxIN
+        tZiLihMBcwE9RGIDAAA=
+X-CMS-MailID: 20220210030323epcas5p4b0ab5b5e019e1357b9315d8930545c70
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220208171919epcas5p16d7ac6985aff7887acc40ab759bcc155
+References: <20220208171823.226211-1-krzysztof.kozlowski@canonical.com>
+        <CGME20220208171919epcas5p16d7ac6985aff7887acc40ab759bcc155@epcas5p1.samsung.com>
+        <20220208171823.226211-2-krzysztof.kozlowski@canonical.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/9/22 6:34 PM, Rob Herring wrote:
-> On Thu, Feb 03, 2022 at 09:41:45PM -0600, Frank Rowand wrote:
->> On 2/3/22 3:40 PM, Rob Herring wrote:
->>> On Thu, Feb 3, 2022 at 3:12 PM <frowand.list@gmail.com> wrote:
->>>>
->>>> From: Frank Rowand <frank.rowand@sony.com>
->>>>
->>>> Printing the devicetree unittest pass message for each passed test
->>>> creates much console verbosity.  The existing pass messages are
->>>> printed at loglevel KERN_DEBUG so they will not print by default.
->>>>
->>>> Change default to print the pass messages at the same loglevel as
->>>> the fail messages.
->>>>
->>>> The test community expects either a pass or a fail message for each
->>>> test in a test suite.  The messages are typically post-processed to
->>>> report pass/fail results.
->>>>
->>>> Suppressing printing the pass message for each individual test is
->>>> available via the kernel command line parameter unittest.hide_pass.
->>>>
->>>> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
->>>> ---
->>>>  Documentation/admin-guide/kernel-parameters.txt |  4 ++++
->>>>  drivers/of/unittest.c                           | 17 ++++++++++++++++-
->>>>  2 files changed, 20 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
->>>> index f5a27f067db9..045455f9b7e1 100644
->>>> --- a/Documentation/admin-guide/kernel-parameters.txt
->>>> +++ b/Documentation/admin-guide/kernel-parameters.txt
->>>> @@ -5997,6 +5997,10 @@
->>>>                         Note that genuine overcurrent events won't be
->>>>                         reported either.
->>>>
->>>> +       unittest.hide_pass
->>>
->>> Can we rename the module name to include 'dt' so we're not taking a
->>> generic name.
->>
->> I got most of the way through writing a reply to the various questions, then got to
->> the point where my answer to a specific question ended up being something to the
->> effect of: "this line of code (where a change was suggested) will end up being
->> replaced when I convert the unittest messages to KTAP format".
->>
->> Then I got sidelined by going back and re-reading the KTAP specification email
->> thread from August, then discovering that there is also a patch submission email
->> thread from December where a KTAP specification is accepted into the kernel tree.
->>
->> Being KTAP compliant does not allow for suppressing the individual test pass
->> messages, so I think I should just drop my desire to be able to do so.  That
->> would reduce this patch to a one line change to print the pass messages at the
->> same loglevel as the fail messages.  And I would prefer to not worry about
->> whether the pass message is 'pass' vs 'PASS' since that text will get replaced
->> by the KTAP syntax anyway.
->>
->> Would you be ok with that one line patch?
-> 
-> At info level, yes. If not, how soon until using ktap syntax?
 
-OK, I'll redo the patch as a one liner, printing pass messages at the info
-level.
 
-The KTAP syntax is going to depend on KTAP specification version 2.  I have
-a patch series against version 1 that is at version 4.  I think that series
-is likely to be accepted with no further changes.
+>-----Original Message-----
+>From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@canonical.com]
+>Sent: Tuesday, February 8, 2022 10:48 PM
+>To: Inki Dae <inki.dae@samsung.com>; Joonyoung Shim
+><jy0922.shim@samsung.com>; Seung-Woo Kim
+><sw0312.kim@samsung.com>; Kyungmin Park
+><kyungmin.park@samsung.com>; David Airlie <airlied@linux.ie>; Daniel
+>Vetter <daniel@ffwll.ch>; Rob Herring <robh+dt@kernel.org>; Krzysztof
+>Kozlowski <krzysztof.kozlowski@canonical.com>; Alim Akhtar
+><alim.akhtar@samsung.com>; Kishon Vijay Abraham I <kishon@ti.com>;
+>Vinod Koul <vkoul@kernel.org>; dri-devel@lists.freedesktop.org;
+>devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+>samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
+>phy@lists.infradead.org
+>Cc: Marek Szyprowski <m.szyprowski@samsung.com>; Sylwester Nawrocki
+><snawrocki@kernel.org>; stable@vger.kernel.org
+>Subject: [PATCH 01/10] ARM: dts: exynos: add missing HDMI supplies on
+>SMDK5250
+>
+>Add required VDD supplies to HDMI block on SMDK5250.  Without them, the
+>HDMI driver won't probe.  Because of lack of schematics, use same supplies
+as
+>on Arndale 5250 board (voltage matches).
+>
+>Cc: <stable@vger.kernel.org> # v3.15+
+>Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>---
+> arch/arm/boot/dts/exynos5250-smdk5250.dts | 3 +++
+> 1 file changed, 3 insertions(+)
+>
+>diff --git a/arch/arm/boot/dts/exynos5250-smdk5250.dts
+>b/arch/arm/boot/dts/exynos5250-smdk5250.dts
+>index 65d2474f83eb..21fbbf3d8684 100644
+>--- a/arch/arm/boot/dts/exynos5250-smdk5250.dts
+>+++ b/arch/arm/boot/dts/exynos5250-smdk5250.dts
+>@@ -118,6 +118,9 @@ &hdmi {
+> 	status = "okay";
+> 	ddc = <&i2c_2>;
+> 	hpd-gpios = <&gpx3 7 GPIO_ACTIVE_HIGH>;
+>+	vdd-supply = <&ldo8_reg>;
+>+	vdd_osc-supply = <&ldo10_reg>;
+>+	vdd_pll-supply = <&ldo8_reg>;
+> };
 
-There was a big thread last summer about what to add to the KTAP
-specification, but most of the suggestions (even with much agreement) did
-not get into the KTAP version 1 specification that was added to the kernel
-tree in December.  Once my KTAP version 1 specification clean up patches
-are accepted, I will move on to pulling items from the August thread, one
-item per patch series to focus discussion, to create KTAP version 2.  So
-timing will be based on the review timing.  The involved parties have been
-responsive, so I expect the process to move fairly quickly.
+Cross checked with SMDK schematic, looks correct.
 
--Frank
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
 
-> 
-> Rob
-> 
+>
+> &i2c_0 {
+>--
+>2.32.0
+
 
