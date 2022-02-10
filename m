@@ -2,231 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 780C54B10A0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 15:41:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1C8A4B10BE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 15:47:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243056AbiBJOlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 09:41:50 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50716 "EHLO
+        id S235171AbiBJOrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 09:47:05 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243040AbiBJOlt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 09:41:49 -0500
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam08on2083.outbound.protection.outlook.com [40.107.100.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A376BCD;
-        Thu, 10 Feb 2022 06:41:50 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Zw4K5cQgK/beKx1D/5WuljmibhekXpap1IWgeF7FFPFDEYzJn3a+Gt1YYlNCc4IbiM5Br2l7kMqi67zxHGdsHkqiK+6atXm9U8GjqR5utGFX+F2sn4AnXk6omqdGuLbceAgQ+wOaSwXlU4MvKRHlwRmtPlgmAOOy2A16KWXyiRBjqxUUgkh48b/Mi+m6KLms2JMNv6bYR31V6dv81TEGBVTmSJtVb/I0EBzEqHg2TW/vub8b5pFrJSoV2X6tv/eJJYA2pUhNyA6NLrADqhss8lXhVa1meHUBJVGZtvHu5QDLgZkVu1yp32ysxiO7evPbVeZwDNCYznBmwRnMp7ZSRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IBaI0AAx/5fMS4gWN8xW4JUhnq2wTx4Naz1I512Rtsw=;
- b=YJQUDDfN+LFzAGgqz7oANHTAU7VxqiRlRh5miIaDg29lp8tf3N909PckGA5VJ58FDbsb3dkRe0/XIgZY/6xir+f7tmgsVBjRiY4uljBLq4mD5ZuQPpY+SRmYM3TT1xHZMoh4fqZvv1CY8cHCw+FUwECuGZCxCSLKWsblQlL0AUZ/RsBsd71gy+5gi7ubGH+0csUCLwGRQD3psTn8zCCSBw+H4vyPyNfSjgkAejILVTgPHMMwvVQnijHC0iDbD81S4IbrjUmtaZvJwYdf8qKr2SdIMrUJN1QJnQNd9eW4LGaR675H3MqypVxgImPy2EM3o3xI5/wTogwBa2d94rsh1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=silabs.onmicrosoft.com; s=selector2-silabs-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IBaI0AAx/5fMS4gWN8xW4JUhnq2wTx4Naz1I512Rtsw=;
- b=PCC1ryUldt/NvlB4XXyQuo9jqtO5+u6R329u5Puqc9rRAlELaF2DiyVRBGFMZWQAoHjrZK7g7EcmFCbEBGheImUU6lS277DNSZjOQMdnddQanDV1/QQl6ql8ADhjuxgbxY4lUJApzOoeasK3/pRt2QIGfuE9rXmVTU9UMtTLkds=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=silabs.com;
-Received: from PH0PR11MB5657.namprd11.prod.outlook.com (2603:10b6:510:ee::19)
- by SN6PR11MB3167.namprd11.prod.outlook.com (2603:10b6:805:c6::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Thu, 10 Feb
- 2022 14:41:48 +0000
-Received: from PH0PR11MB5657.namprd11.prod.outlook.com
- ([fe80::1b3:e483:7396:1f98]) by PH0PR11MB5657.namprd11.prod.outlook.com
- ([fe80::1b3:e483:7396:1f98%3]) with mapi id 15.20.4975.014; Thu, 10 Feb 2022
- 14:41:48 +0000
-From:   =?ISO-8859-1?Q?J=E9r=F4me?= Pouiller <jerome.pouiller@silabs.com>
-To:     Kalle Valo <kvalo@kernel.org>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?ISO-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v9 05/24] wfx: add main.c/main.h
-Date:   Thu, 10 Feb 2022 15:41:39 +0100
-Message-ID: <4055223.VTxhiZFAix@pc-42>
-Organization: Silicon Labs
-In-Reply-To: <87r18a3irb.fsf@kernel.org>
-References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com> <2898137.rlL8Y2EFai@pc-42> <87r18a3irb.fsf@kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-ClientProxiedBy: PR0P264CA0123.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:100:1a::15) To PH0PR11MB5657.namprd11.prod.outlook.com
- (2603:10b6:510:ee::19)
+        with ESMTP id S243134AbiBJOrE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 09:47:04 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D91EFC4E;
+        Thu, 10 Feb 2022 06:47:05 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id CBF141F46613
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1644504424;
+        bh=x8ccJOGqkVLBNjHNDlPI53IHQzxajU+pV1qV+lQi9ow=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cwhCVrM/3Rjf1m4MrkoMf1cu7ibZKzx1dyzI7pVDIRijEvr9WtlojzgV0OTVmteGt
+         fkC9T9r+HgL3KOa5Ez/4/B5EdJg/nGv5oxgb6mPGsH8ISHQ8mhpcqOGQzgb7NiVpq1
+         bbJ0Lj8Iv09WkIWLqdG4dHsgC6dLq1jpOYiXrcnbsMR8r0A0k8jkOZunDbpKVjj7NP
+         7PnJDquAgEKF1a7+OqGMdbO2JuK2WBLcKDoXhJfQZyAjKBuBc599SCHoiKd0TUFeQ0
+         gNHE209dAZbXNxl/Jtg5A+3JEKdkZbHWwuj0oVdQm5bKuw9IRp5vl2tth2VSAHFjZM
+         /D598G8jZW46A==
+Date:   Thu, 10 Feb 2022 09:46:59 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com
+Subject: Re: [PATCH v2] arm64: dts: mediatek: Add Mediatek mt8192 cpufreq
+ device nodes
+Message-ID: <20220210144659.2vkuuh74xagic3ud@notapiano>
+References: <1609223471-24325-1-git-send-email-andrew-sh.cheng@mediatek.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c4471b21-962e-4c5c-aa8d-08d9eca37793
-X-MS-TrafficTypeDiagnostic: SN6PR11MB3167:EE_
-X-Microsoft-Antispam-PRVS: <SN6PR11MB3167804D9FB92EC62331FF25932F9@SN6PR11MB3167.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: T1SfhuqgtfgjGMIBaWMXxXdmEMkJnhmRIsrz4wjIiPeT3mrTFMq/klgGwmJ9WL/9JcRKlRYFTaeMjtN2gCEVgnujRu6d5CoVa8cwQJIf4AWMHFQkp365jD1PwQ4yfN/2Lucq0YdREq6d2My/I6KO4/dDkotWnANN501zmQ9c9fOBSfZtjvIDtYaLMrK9HHU1nsPJBFYqr8PrYXqS8tHxzMI6p7BMoBN2oqegznAtc6YFVDWgq3swSgLVUJWAhuIsNHVz3QptxD7eGDheoOacCGRhrmPDGQSfEdUNQHN9ajhZ/U5intw7+UfJponRTwYXFPfVkjFjc6aybcpec6oPwLsvI9BorM5asidROjyGEelGlixxFEIAm9g1nweq08hxakZ54k+ZrX0zY9F6aYTzOB0WSmJrYN8884W/j3LgWnAQdADXJ0owZ+30qAr8oVKwE7WnYhjjHmmTtIBtSc3ZCi2mtf1yInJ1HuHyavE7WKDBHbw/1ZQ5UdlHQIIdqqikuujQAaekBgH1dAkQB4geYy4OhzbtZsKF+nODUJh3x8LHYIJP1jiFwDA1bA2vJ0MzAIXm2pu2R2CNco5HG4myJzK03NmKFx68E1ZVKjI4uOf0OOJzHDhENammBjIwouAGhIiRdeR6PCKlDa5ov5aBaS2FwvPV9zPFHm+m3AvjJdyJCPrUuw3vx6Hkuads9pBVuDsNhyiFh1S5BIHkxKuv2IaF56t/B+p6rVgnc+shClzichu1jtURSJ2q44gMrarlP+mnC3JrjR8K98MGxN2jvCCgNZOQUcd88e0zO5UFrTQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5657.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(7916004)(366004)(66946007)(33716001)(66556008)(26005)(38100700002)(66574015)(66476007)(316002)(186003)(8676002)(6512007)(38350700002)(9686003)(8936002)(4326008)(52116002)(6506007)(508600001)(6666004)(2906002)(7416002)(54906003)(36916002)(84970400001)(6486002)(5660300002)(6916009)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?5FgQyJ+2zUadajL7be1kwaFhBV+0RuXRNJSEACtz4mWQztTt6z8AskBgQV?=
- =?iso-8859-1?Q?C28nTp0F/pXtLA9WWORmkFmgKJ8ykSdn6VtWYxBnlxqlPmIoHxUXY5DmPz?=
- =?iso-8859-1?Q?qwId2kD3BrzvYSavaR0OjOT+MPK3Jt5J/7s7Xe9FIG+xX7VQvyJjKUwwcw?=
- =?iso-8859-1?Q?iM21MRL3eWlv0kJPkAvojX76TfyH5aCZUVoWxCwxees3BD+QrmFVWZ0E0a?=
- =?iso-8859-1?Q?iFF5dSDZYwfjjDiAnkKD8cdg1fJMK1DS6SA6yeEUwU4LfBhh6nUNORGwXZ?=
- =?iso-8859-1?Q?JUhRespPiDRkfmDitYyj4mnI7cZYj/4VKyjYgvNkNHITpJitbMkjXKYkKx?=
- =?iso-8859-1?Q?qJJlR8tsGIKafpUT/3t/s8E2aVbN2MNF5k9Sk0NAA1koDLLRZJop8rbbxE?=
- =?iso-8859-1?Q?Zu9I1vgESZJKEfV99seE83P8t0OGncAgSTSCNsc6hkUGo8vhtTm4jwjyTp?=
- =?iso-8859-1?Q?Awauauo3HmhfbTD4lahG36fkFBewE6ExHk5gUwrxJRWHryMsZqw+OvxAKj?=
- =?iso-8859-1?Q?DGG0e8FPJB65K9iiUSJc+iXEvEbCgQ4vqZScdHtqq9DsZ6VPQmcLP3IOOp?=
- =?iso-8859-1?Q?rVQHk1KGTAbgTKwkoV0cgB6LSBWj3oLPYbWAMkDxESF5qSb3nV7mthD4yd?=
- =?iso-8859-1?Q?9903LWKR1IV6Ex0P9Xia4NkClYC/oNl3tjvgLS/9SqAG0PZ0NjsYuiIiZE?=
- =?iso-8859-1?Q?80cDbMNsnlZgYqNHP2s2nXGuu/NfOBNv6+QZ5jaJuYBxbod/UZKA50Abe/?=
- =?iso-8859-1?Q?2sgsOF+gsfFtg6CIA8jBHFATt+v9SLzJFyJryD9kN/rTvUpGePlb5pBiQQ?=
- =?iso-8859-1?Q?PssyM4UyPPeWmxlLSTw80ko++etDWf67FAYIe0IBJJb3d0trMRc7H0Plx/?=
- =?iso-8859-1?Q?jRMOSnf225ovYhhkA2z3sMJHKg2Hy3cQHuIEmJCgXjlJaKpci4FkKyidQ5?=
- =?iso-8859-1?Q?c+eQ9xbgULM4Idv8E4DvTfnlM1po6yaozJun5v/lOGU6aBO8Hh/n12hwO+?=
- =?iso-8859-1?Q?+pyi/do+FYspmj5lV6stgpwcHH9MRK3V/YJwsH5GC4SpgpUfiML8yILCMp?=
- =?iso-8859-1?Q?ZJUkGm0JCj+DXs6pDAKGel/0pWNMna2OOOSMK4G3SnNv184/gyz55c6Mcq?=
- =?iso-8859-1?Q?jCyjHEuhA5ha7oNrEsvTUL9xiXnLJQWLQItB+oM3E0bzXzzDsV68kaqE1J?=
- =?iso-8859-1?Q?6YYLDcAwOTK12dW2voRg8TDCJsv9QJKYpnLNrjHmzZpLLDgniPpnk6gNyJ?=
- =?iso-8859-1?Q?eph3bjwfQ183enPkyJ7cnWg3lWgwrkqoFzMNVBBH90hQYHGiRuxjPkXl6Q?=
- =?iso-8859-1?Q?iy/Ccf8yVI7XiawiUo5cz2zEukFx1IJToeiwIqks/nmFwfc//LwDwtOGAm?=
- =?iso-8859-1?Q?9cl8lhdg/a8bWJ297JDVbUR+QcHTsHzFmJVFjv1DyZL8fex8Ek1RMGTB/H?=
- =?iso-8859-1?Q?PF/tvCYbhk0qq08pIKB025+63ZPRGj1q7bggi5C/vt9XyYK7ViJRzImU6d?=
- =?iso-8859-1?Q?ktamU5kUeO0/yI3ty8e1y/xvQrBjwj4qBw5Ww4U9wVYye+iMn+d0IV/9VW?=
- =?iso-8859-1?Q?srNi0bKEtN8/9JNUrsdQmY/7iyAt/zoeZM1uSBS9OVvZlROvGzqbDFj3X+?=
- =?iso-8859-1?Q?EOCosD2hTSs+5nueVkyP/TxzcCehjmq5lM/ebSq7F7VbOSz/xuYTQ7QtJX?=
- =?iso-8859-1?Q?ZQ8kCSzoMmEugYaUlvQ=3D?=
-X-OriginatorOrg: silabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4471b21-962e-4c5c-aa8d-08d9eca37793
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5657.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2022 14:41:48.2295
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 54dbd822-5231-4b20-944d-6f4abcd541fb
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GHaOPhpxYGpiShinA9Lyo11OJ4mYIpLCDYAy6U4NCKI0HVH2nF4vPcn2ORsqK8hMhS+to9hy7/egUuJrdxO5XQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB3167
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1609223471-24325-1-git-send-email-andrew-sh.cheng@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 10 February 2022 15:20:56 CET Kalle Valo wrote:
->=20
-> J=E9r=F4me Pouiller <jerome.pouiller@silabs.com> writes:
->=20
-> > Hi Kalle,
-> >
-> > On Tuesday 11 January 2022 18:14:05 CET Jerome Pouiller wrote:
-> >> From: J=E9r=F4me Pouiller <jerome.pouiller@silabs.com>
-> >>
-> >> Signed-off-by: J=E9r=F4me Pouiller <jerome.pouiller@silabs.com>
-> >> ---
-> >>  drivers/net/wireless/silabs/wfx/main.c | 485 ++++++++++++++++++++++++=
-+
-> >>  drivers/net/wireless/silabs/wfx/main.h |  42 +++
-> >>  2 files changed, 527 insertions(+)
-> >>  create mode 100644 drivers/net/wireless/silabs/wfx/main.c
-> >>  create mode 100644 drivers/net/wireless/silabs/wfx/main.h
-> >>
-> > [...]
-> >> +/* The device needs data about the antenna configuration. This inform=
-ation in
-> >> + * provided by PDS (Platform Data Set, this is the wording used in WF=
-200
-> >> + * documentation) files. For hardware integrators, the full process t=
-o create
-> >> + * PDS files is described here:
-> >> + *   https:github.com/SiliconLabs/wfx-firmware/blob/master/PDS/README=
-.md
-> >> + *
-> >> + * The PDS file is an array of Time-Length-Value structs.
-> >> + */
-> >> + int wfx_send_pds(struct wfx_dev *wdev, u8 *buf, size_t len)
-> >> +{
-> >> +    int ret, chunk_type, chunk_len, chunk_num =3D 0;
-> >> +
-> >> +    if (*buf =3D=3D '{') {
-> >> +            dev_err(wdev->dev, "PDS: malformed file (legacy format?)\=
-n");
-> >> +            return -EINVAL;
-> >> +    }
-> >> +    while (len > 0) {
-> >> +            chunk_type =3D get_unaligned_le16(buf + 0);
-> >> +            chunk_len =3D get_unaligned_le16(buf + 2);
-> >> +            if (chunk_len > len) {
-> >> +                    dev_err(wdev->dev, "PDS:%d: corrupted file\n", ch=
-unk_num);
-> >> +                    return -EINVAL;
-> >> +            }
-> >> +            if (chunk_type !=3D WFX_PDS_TLV_TYPE) {
-> >> +                    dev_info(wdev->dev, "PDS:%d: skip unknown data\n"=
-, chunk_num);
-> >> +                    goto next;
-> >> +            }
-> >> +            if (chunk_len > WFX_PDS_MAX_CHUNK_SIZE)
-> >> + dev_warn(wdev->dev, "PDS:%d: unexpectly large chunk\n",
-> >> chunk_num);
-> >> +            if (buf[4] !=3D '{' || buf[chunk_len - 1] !=3D '}')
-> >> + dev_warn(wdev->dev, "PDS:%d: unexpected content\n", chunk_num);
-> >> +
-> >> +            ret =3D wfx_hif_configuration(wdev, buf + 4, chunk_len - =
-4);
-> >> +            if (ret > 0) {
-> >> + dev_err(wdev->dev, "PDS:%d: invalid data (unsupported
-> >> options?)\n",
-> >> +                            chunk_num);
-> >> +                    return -EINVAL;
-> >> +            }
-> >> +            if (ret =3D=3D -ETIMEDOUT) {
-> >> + dev_err(wdev->dev, "PDS:%d: chip didn't reply (corrupted
-> >> file?)\n",
-> >> +                            chunk_num);
-> >> +                    return ret;
-> >> +            }
-> >> +            if (ret) {
-> >> + dev_err(wdev->dev, "PDS:%d: chip returned an unknown error\n",
-> >> chunk_num);
-> >> +                    return -EIO;
-> >> +            }
-> >> +next:
-> >> +            chunk_num++;
-> >> +            len -=3D chunk_len;
-> >> +            buf +=3D chunk_len;
-> >> +    }
-> >> +    return 0;
-> >> +}
-> >
-> > Kalle, is this function what you expected? If it is right for you, I am
-> > going to send it to the staging tree.
->=20
-> Looks better, but I don't get why '{' and '}' are still needed. Ah, does
-> the firmware require to have them?
+Hi Andrew,
 
-Indeed. If '{' and '}' are not present, I guarantee the firmware will retur=
-n
-an error (or assert). However, I am more confident in the driver than in th=
-e
-firmware to report errors to the user.
+On Tue, Dec 29, 2020 at 02:31:11PM +0800, Andrew-sh.Cheng wrote:
+> From: "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
+> 
+> Correct dts node name in patch v1: performance-domain
+> This patch depends on [1] and [2].
+> 
+> [1]http://lists.infradead.org/pipermail/linux-mediatek/2020-November/019378.html
+> [2]https://patchwork.kernel.org/project/linux-mediatek/patch/1607586516-6547-3-git-send-email-hector.yuan@mediatek.com/
 
-If there is no other comment, I am going to:
-  - submit this change to the staging tree
-  - publish the tool that generate this new format
-  - submit the PDS files referenced in bus_{sdio,spi}.c to linux-firmware
-  - send the v10 of this PR
+Those two series are now merged, so no dependencies missing for this patch any
+longer.
 
+Please rebase this patch, as there are some conflicts. I've already verified it,
+and after you rebase I can send a reviewed-by.
 
---=20
-J=E9r=F4me Pouiller
+Thanks,
+Nícolas
 
-
+> 
+> Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 69d45c7b31f1..a907ee7e650a 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -39,6 +39,7 @@
+>  			compatible = "arm,cortex-a55";
+>  			reg = <0x000>;
+>  			enable-method = "psci";
+> +			performance-domains = <&performance 0>;
+>  			clock-frequency = <1701000000>;
+>  			next-level-cache = <&l2_0>;
+>  			capacity-dmips-mhz = <530>;
+> @@ -49,6 +50,7 @@
+>  			compatible = "arm,cortex-a55";
+>  			reg = <0x100>;
+>  			enable-method = "psci";
+> +			performance-domains = <&performance 0>;
+>  			clock-frequency = <1701000000>;
+>  			next-level-cache = <&l2_0>;
+>  			capacity-dmips-mhz = <530>;
+> @@ -59,6 +61,7 @@
+>  			compatible = "arm,cortex-a55";
+>  			reg = <0x200>;
+>  			enable-method = "psci";
+> +			performance-domains = <&performance 0>;
+>  			clock-frequency = <1701000000>;
+>  			next-level-cache = <&l2_0>;
+>  			capacity-dmips-mhz = <530>;
+> @@ -69,6 +72,7 @@
+>  			compatible = "arm,cortex-a55";
+>  			reg = <0x300>;
+>  			enable-method = "psci";
+> +			performance-domains = <&performance 0>;
+>  			clock-frequency = <1701000000>;
+>  			next-level-cache = <&l2_0>;
+>  			capacity-dmips-mhz = <530>;
+> @@ -79,6 +83,7 @@
+>  			compatible = "arm,cortex-a76";
+>  			reg = <0x400>;
+>  			enable-method = "psci";
+> +			performance-domains = <&performance 1>;
+>  			clock-frequency = <2171000000>;
+>  			next-level-cache = <&l2_1>;
+>  			capacity-dmips-mhz = <1024>;
+> @@ -89,6 +94,7 @@
+>  			compatible = "arm,cortex-a76";
+>  			reg = <0x500>;
+>  			enable-method = "psci";
+> +			performance-domains = <&performance 1>;
+>  			clock-frequency = <2171000000>;
+>  			next-level-cache = <&l2_1>;
+>  			capacity-dmips-mhz = <1024>;
+> @@ -99,6 +105,7 @@
+>  			compatible = "arm,cortex-a76";
+>  			reg = <0x600>;
+>  			enable-method = "psci";
+> +			performance-domains = <&performance 1>;
+>  			clock-frequency = <2171000000>;
+>  			next-level-cache = <&l2_1>;
+>  			capacity-dmips-mhz = <1024>;
+> @@ -109,6 +116,7 @@
+>  			compatible = "arm,cortex-a76";
+>  			reg = <0x700>;
+>  			enable-method = "psci";
+> +			performance-domains = <&performance 1>;
+>  			clock-frequency = <2171000000>;
+>  			next-level-cache = <&l2_1>;
+>  			capacity-dmips-mhz = <1024>;
+> @@ -194,6 +202,12 @@
+>  		compatible = "simple-bus";
+>  		ranges;
+>  
+> +		performance: performance-controller@0011bc00 {
+> +			compatible = "mediatek,cpufreq-hw";
+> +			reg = <0 0x0011bc10 0 0x120>, <0 0x0011bd30 0 0x120>;
+> +			#performance-domain-cells = <1>;
+> +		};
+> +
+>  		gic: interrupt-controller@c000000 {
+>  			compatible = "arm,gic-v3";
+>  			#interrupt-cells = <4>;
+> -- 
+> 2.12.5
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> 
