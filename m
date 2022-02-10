@@ -2,123 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B1EB4B0894
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 09:38:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F6234B08A0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 09:41:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234065AbiBJIi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 03:38:28 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40546 "EHLO
+        id S237724AbiBJIlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 03:41:05 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237619AbiBJIi2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 03:38:28 -0500
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AF5AF38;
-        Thu, 10 Feb 2022 00:38:29 -0800 (PST)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21A78DRL010080;
-        Thu, 10 Feb 2022 09:38:17 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=1zfSI2qVlkd+DPa15aeCouFvWPYjc0t4KmVODobT+dw=;
- b=8NDX/79igQXb3CFGUcdjRZFOuzWrAcGI6LkD9S2v8ChBjrmOrA5fVbrYt+sQI0wfxALg
- CKg5sZ6PMwgKD8kWdcCtoMqoxulCSZjbef4snOUas13ZO6JrZH5/YGbcJkTOXPAgzoPF
- 6INQei8LL3MeyPU1CxtA3IETwQwIHsZFpgc0UxL0XWYROU9DvZ+iVINkMAbijFg0jD8A
- vWuHWwiaRHnzQDDUsusMfQz0eD5PGbCw4FEdQo8RiDEaTLs1849rXAZFA4niHVA8ATaW
- 4TLUD481Xl191IlbVePfFKCBhuXOSQGGCz3iEaKWfMuOK/WDPwEbYkh9Xmthd71gTCpW Bw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e4x268h9g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Feb 2022 09:38:17 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8E55210002A;
-        Thu, 10 Feb 2022 09:38:16 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 87C2C2138E0;
-        Thu, 10 Feb 2022 09:38:16 +0100 (CET)
-Received: from [10.201.21.201] (10.75.127.46) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 10 Feb
- 2022 09:38:15 +0100
-Message-ID: <3d49f72b-3415-ad49-fb9c-dc5a4310c9ce@foss.st.com>
-Date:   Thu, 10 Feb 2022 09:38:15 +0100
+        with ESMTP id S237655AbiBJIlE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 03:41:04 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C92BEB4;
+        Thu, 10 Feb 2022 00:41:01 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 1F71E1F45FED
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1644482459;
+        bh=dxxB5y7E7AReW2OAClnLIQexw3iKhotkP4SOeOAGdAE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=lymY0FiuiysUb7/sSKRGIAg4jthJDb4GiQzlbfekQkSWXBOvc5GXsheGI2D39J1Qi
+         k3vPiOsX1+GILO03JWThkAH1dG6l+O2/r5mfnGztJ0BOCm05187+jqRK+CupRNXscf
+         8dVNhlmp9hrk5o4Ovl1lidzZFLamLR6CSZwgupmALF+H0sAgSH1XA9hwLQqYRDgzh+
+         q0WsnrGIZDrVnlsWpC4OslPfBt9Ww3yFdx067aDeyIWs8l4V+hlIwGYGc5mfb1ossx
+         jKqVmmQpyz+sUPAhv1UfvSxb/UCIP2+mkls3Ei8ZXuqiZEcWe8v06niHjVo4uepz4E
+         k7FeUraA0G4cg==
+Message-ID: <f807c862-d327-5b12-7443-c4fed6e1ef6a@collabora.com>
+Date:   Thu, 10 Feb 2022 09:40:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 12/12] ARM: dts: sti: move usb picophy nodes in
- stih410-b2260.dts
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v2, 1/7] dt-bindings: media: mtk-vcodec: Adds decoder
+ dt-bindings for lat soc
 Content-Language: en-US
-To:     Alain Volmat <avolmat@me.com>, <patrice.chotard@st.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20211202075105.195664-1-avolmat@me.com>
- <20211202075105.195664-13-avolmat@me.com>
-From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20211202075105.195664-13-avolmat@me.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220128035440.24533-1-yunfei.dong@mediatek.com>
+ <20220128035440.24533-2-yunfei.dong@mediatek.com>
+ <YgQl8CtttQ99+8lB@robh.at.kernel.org>
+ <aa72bec2064e25990e1a3641b920cb5528cfccd4.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <aa72bec2064e25990e1a3641b920cb5528cfccd4.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-10_03,2022-02-09_01,2021-12-02_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alain
-
-On 12/2/21 08:51, Alain Volmat wrote:
-> Update usb picophy nodes out of the soc section following the
-> related update within the stih410.dtsi file.
+Il 10/02/22 04:06, yunfei.dong@mediatek.com ha scritto:
+> Hi Rob,
 > 
-> Signed-off-by: Alain Volmat <avolmat@me.com>
-> ---
->  arch/arm/boot/dts/stih410-b2260.dts | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stih410-b2260.dts b/arch/arm/boot/dts/stih410-b2260.dts
-> index c2d3b6de55d0..26d93f26f6d0 100644
-> --- a/arch/arm/boot/dts/stih410-b2260.dts
-> +++ b/arch/arm/boot/dts/stih410-b2260.dts
-> @@ -82,6 +82,14 @@ phy_port1: port@9b2a000 {
->  		};
->  	};
->  
-> +	usb2_picophy1: phy2 {
-> +		status = "okay";
-> +	};
-> +
-> +	usb2_picophy2: phy3 {
-> +		status = "okay";
-> +	};
-> +
->  	soc {
->  		/* Low speed expansion connector */
->  		uart0: serial@9830000 {
-> @@ -152,14 +160,6 @@ pwm1: pwm@9510000 {
->  			status = "okay";
->  		};
->  
-> -		usb2_picophy1: phy2@0 {
-> -			status = "okay";
-> -		};
-> -
-> -		usb2_picophy2: phy3@0 {
-> -			status = "okay";
-> -		};
-> -
->  		ohci0: usb@9a03c00 {
->  			status = "okay";
->  		};
-Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> Thanks for your suggestion.
+> On Wed, 2022-02-09 at 14:37 -0600, Rob Herring wrote:
+>> On Fri, Jan 28, 2022 at 11:54:34AM +0800, Yunfei Dong wrote:
+>>> Adds decoder dt-bindings for compatible "mediatek,mtk-vcodec-lat-
+>>> soc".
+>>
+>> What's lat soc? How does this relate to what's already there in this
+>> binding.
+>>
+> lat soc is another hardware, is related with some vdec larb ports.
+> Won't be used to decode, but must to write it in dtsi, or hardware
+> can't work well.
 
-Thanks
-Patrice
+Hello Yunfei,
+
+as a suggestion, writing the meaning of the "LAT" acronym may also
+help to clear some doubts around (please, also do that in the yaml file,
+other than the commit description).
+
+Thank you!
+Angelo
+
+> 
+> Need to enable clock/power/iommus, no interrupt.
+>> The subject space is limited, avoid saying the same thing twice
+>> (dt-bindings).
+>>
+> 
+> Best Regards,
+> Yunfei Dong
+>>>
+>>> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>>> ---
+>>>   .../media/mediatek,vcodec-subdev-decoder.yaml | 49
+>>> +++++++++++++++++++
+>>>   1 file changed, 49 insertions(+)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-
+>>> decoder.yaml
+>>> b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-
+>>> decoder.yaml
+>>> index 6415c9f29130..a3c892338ac0 100644
+>>> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-
+>>> subdev-decoder.yaml
+>>> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
+>>> subdev-decoder.yaml
+>>> @@ -189,6 +189,55 @@ patternProperties:
+>>>   
+>>>       additionalProperties: false
+>>>   
+>>> +  '^vcodec-lat-soc@[0-9a-f]+$':
+>>> +    type: object
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +        const: mediatek,mtk-vcodec-lat-soc
+>>> +
+>>> +      reg:
+>>> +        maxItems: 1
+>>> +
+>>> +      iommus:
+>>> +        minItems: 1
+>>> +        maxItems: 32
+>>> +        description: |
+>>> +          List of the hardware port in respective IOMMU block for
+>>> current Socs.
+>>> +          Refer to bindings/iommu/mediatek,iommu.yaml.
+>>> +
+>>> +      clocks:
+>>> +        maxItems: 5
+>>> +
+>>> +      clock-names:
+>>> +        items:
+>>> +          - const: sel
+>>> +          - const: soc-vdec
+>>> +          - const: soc-lat
+>>> +          - const: vdec
+>>> +          - const: top
+>>> +
+>>> +      assigned-clocks:
+>>> +        maxItems: 1
+>>> +
+>>> +      assigned-clock-parents:
+>>> +        maxItems: 1
+>>> +
+>>> +      power-domains:
+>>> +        maxItems: 1
+>>> +
+>>> +    required:
+>>> +      - compatible
+>>> +      - reg
+>>> +      - iommus
+>>> +      - clocks
+>>> +      - clock-names
+>>> +      - assigned-clocks
+>>> +      - assigned-clock-parents
+>>> +      - power-domains
+>>> +
+>>> +    additionalProperties: false
+>>> +
+>>>   required:
+>>>     - compatible
+>>>     - reg
+>>> -- 
+>>> 2.25.1
+>>>
+>>>
+> 
+
