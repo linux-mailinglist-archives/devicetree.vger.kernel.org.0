@@ -2,195 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54F554B1276
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 17:15:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9E514B1280
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 17:17:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244078AbiBJQOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 11:14:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36040 "EHLO
+        id S244104AbiBJQR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 11:17:29 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243895AbiBJQOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 11:14:10 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88FB397
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 08:14:10 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id h6so10447620wrb.9
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 08:14:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LPIeJwlMRoaFTb6x9y6uY9bjxgeWFd/hUz/un3WMnt8=;
-        b=gqwIkL0ffuvTTfQv7jCOcVX6pKks03HwuOPtAL1P5jX7NNxfBKGgvTvZ0/xRTtS5ol
-         caXbL8A0KNI/sET96stGgIQN0DqvcTmc+vbn5wkT4t85r+2Dtg1c+4jwZoHi0oee5r6n
-         zFDEO7O9j8eH04R8QyTcqz8yZH/wsaIihQTxvVSGSGYPiIBeUMvTILZra7hoZMwqUdNs
-         lgAVHz1VDFu1bvnvUrhixD/wQM00fYsEQd+NcugZKbfmfuuJo5cEYHj7WZpp0QkpL1ZH
-         axhda/4ymIDDlZRA6pZ81H1qDw+tCX3rDBAP6d04G0KbuL/+ueHUh5xvPKtDfhs6ebQS
-         lG/w==
+        with ESMTP id S243767AbiBJQR3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 11:17:29 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27AA9C24
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 08:17:30 -0800 (PST)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E29DD4004C
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 16:17:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644509848;
+        bh=g6QE7ds2byVUPRAmXXnezb98jQ3Ciok2epjMz+QKaeU=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=dRZamUyrGx8NR+qUQf83iV2S7VF/EfDykN05GI2AC/z3iIx5D1/pRS/NghVPOpgkY
+         XsYBdpJW8vBqUYXBsV5vdO/tLQHXNs/3GHTqvQ5YJnk5+AS0U1XrbB4qXnr9X8/Zsf
+         erMKEBUo//CIq9gyLnu74WiNW0i36pUgAt6gx/stBJjXzHgOuSXZhS1EPs2sl0aQo1
+         yxqm8PFcJVs1uWjl6g8O6wm51d+0s+5EMrDxqkiTlpqff+RNA7TJKHnrN5qLVqhm7K
+         UMVTvidAy65U0KSV2kRNwkFxz3NWhISJd8GNtO6Zej1bN3Pn7Tj4qXugQZMQZc0gxA
+         DCryOj2c0TEYw==
+Received: by mail-ed1-f72.google.com with SMTP id f9-20020a056402354900b0040fb9c35a02so3618387edd.18
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 08:17:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=LPIeJwlMRoaFTb6x9y6uY9bjxgeWFd/hUz/un3WMnt8=;
-        b=GKR8zB3Jz1FMLIHjd+C2/NbtXWRx9TC2JQzy/YhaOMMhyo5KYAgmGSurA2oOThWW58
-         e6cSlmWQEGOUVjrq2fP8gSrvqTig2W9qheJ3FPCaoucr1gLowXg04NfZEfM/cs6ZqG4j
-         VwmKzV494iLdychJgTVZzQLBAb07Bdu8ki3Ig6SK45zR11y28MNTUMJG9KBpn+9TYRoX
-         al2e4S6dlolyXZ4H+HwtX0BPQZid4LTkEpSNRbiWYTykVg3a/ctBJ7OZpUvDvfRX4N9a
-         sJZyLNpHRK+ZbRZxU3cwN8Dc8mJE7pjZwals5bIGAEpIe3l2YF14/tx2I5XpfvAjHTUo
-         Qkvw==
-X-Gm-Message-State: AOAM532oLcXugLdamVMkD/WHquTdSgAuZ7WNtFvN6MBqyOA7/bUm1zX8
-        mqc0taRLGWY/VQSbV4lf3kPftA==
-X-Google-Smtp-Source: ABdhPJyiUzM3gKv/ARPyVBIDz/r78rcok0Pn/FL7DVHv9o7EZbNbxzYFxwKS9f1FNQHLmMhjiiVIsQ==
-X-Received: by 2002:a5d:6850:: with SMTP id o16mr6846336wrw.344.1644509649210;
-        Thu, 10 Feb 2022 08:14:09 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id e8sm4529430wru.37.2022.02.10.08.14.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Feb 2022 08:14:08 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     davem@davemloft.net, heiko@sntech.de, herbert@gondor.apana.org.au,
-        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v2] dt-bindings: crypto: convert rockchip-crypto to yaml
-Date:   Thu, 10 Feb 2022 16:14:03 +0000
-Message-Id: <20220210161403.2966196-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        bh=g6QE7ds2byVUPRAmXXnezb98jQ3Ciok2epjMz+QKaeU=;
+        b=0r4s7br4d24NPRIzaRobCs8BnyzLXO3l720cS+BpxxolIldr7s88I47SgZQPpN96G8
+         AkMmJEKnHYnYOXZuPIaLjvLibuq2uQWkkreBKpsBMufyOk2FWjVI+mtJ1kC79xJTJ0Kl
+         R4yZT4buRQWYlkxhT275nSVaIvpwP9nNqA6xuN8s6QUyFSBGfDNHVnrHZDicPs0YkQGz
+         9ib4ZQS2SHo+oqcTOGknLJFXti37smMNdtL4FMXfAMD5kSjt/DD3/3rYkOfqP+xlx5Yv
+         Q+tuwtoN3a1UzOpLqJKwF18BbtkuGPAtIujd+w8LvpX8p9gnG7RH4ALHEvVQTgyyj577
+         jXPA==
+X-Gm-Message-State: AOAM531Ul0xDSLMXDxnhg/iQRfzlJ8mWZFLiTXo9xjRXjDbHqpFtvT2E
+        HN08PReL6Dn3y5UlASxmv7MYZn3ex9lcgQ/wMHgoIaUuR6f7xC3ykTzRhadtNDm+/FkQekU2PgX
+        fdnUBciQ09fsKrGSORxqeH6hKT2xdY0sUpbMZ0ls=
+X-Received: by 2002:a05:6402:3492:: with SMTP id v18mr9198291edc.345.1644509846146;
+        Thu, 10 Feb 2022 08:17:26 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz022B9e0ZAfVuWMzgucY3m74/1+NS8nZSUh8fsyf0+32xhVV6P2uT+MCE0To8/aXu94C79eA==
+X-Received: by 2002:a05:6402:3492:: with SMTP id v18mr9198269edc.345.1644509845938;
+        Thu, 10 Feb 2022 08:17:25 -0800 (PST)
+Received: from [192.168.0.99] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id h15sm3179019ejz.134.2022.02.10.08.17.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Feb 2022 08:17:25 -0800 (PST)
+Message-ID: <373b87ad-8bcf-e3f3-60fd-14d933fb2f4f@canonical.com>
+Date:   Thu, 10 Feb 2022 17:17:24 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3] dt-bindings: watchdog: convert faraday,ftwdt010 to
+ yaml
+Content-Language: en-US
+To:     Corentin Labbe <clabbe@baylibre.com>, linux@roeck-us.net,
+        robh+dt@kernel.org, wim@linux-watchdog.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+References: <20220210155450.2939129-1-clabbe@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220210155450.2939129-1-clabbe@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert rockchip-crypto to yaml
+On 10/02/2022 16:54, Corentin Labbe wrote:
+> Converts watchdog/faraday,ftwdt010.txt to yaml.
+> This permits to detect missing properties like clocks and resets or
+> compatible like moxa,moxart-watchdog.
+> 
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+> Changes since v1:
+> - Added myself as maintainer as requested by Linus
+> - Added $ref to watchdog.yaml
+> - Removed useless quotes
+> - Added blank lines between properties
+> - Removed timeout-sec as already provided by watchdog.yaml
+> 
+> Change since v2:
+> - rewrite compatible section
+> 
+>  .../bindings/watchdog/faraday,ftwdt010.txt    | 22 -------
+>  .../bindings/watchdog/faraday,ftwdt010.yaml   | 66 +++++++++++++++++++
+>  2 files changed, 66 insertions(+), 22 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+> deleted file mode 100644
+> index 9ecdb502e605..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -Faraday Technology FTWDT010 watchdog
+> -
+> -This is an IP part from Faraday Technology found in the Gemini
+> -SoCs and others.
+> -
+> -Required properties:
+> -- compatible : must be one of
+> -  "faraday,ftwdt010"
+> -  "cortina,gemini-watchdog", "faraday,ftwdt010"
+> -- reg : shall contain base register location and length
+> -- interrupts : shall contain the interrupt for the watchdog
+> -
+> -Optional properties:
+> -- timeout-sec : the default watchdog timeout in seconds.
+> -
+> -Example:
+> -
+> -watchdog@41000000 {
+> -	compatible = "faraday,ftwdt010";
+> -	reg = <0x41000000 0x1000>;
+> -	interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+> new file mode 100644
+> index 000000000000..e7b90ba41093
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/faraday,ftwdt010.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Faraday Technology FTWDT010 watchdog
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +  - Corentin Labbe <clabbe@baylibre.com>
+> +
+> +description: |
+> +  This is an IP part from Faraday Technology found in the Gemini
+> +  SoCs and others.
+> +
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: faraday,ftwdt010
+> +      - items:
+> +        - enum:
+> +          - cortina,gemini-watchdog
+> +          - moxa,moxart-watchdog
+> +        - const: faraday,ftwdt010
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
-Change since v1:
-- fixed example
-- renamed to a new name
-- fixed some maxItems
+I think you have indentation warnings.
 
- .../crypto/rockchip,rk3288-crypto.yaml        | 66 +++++++++++++++++++
- .../bindings/crypto/rockchip-crypto.txt       | 28 --------
- 2 files changed, 66 insertions(+), 28 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
- delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: PCLK
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
 
-diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
-new file mode 100644
-index 000000000000..44f415597e32
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/rockchip,rk3288-crypto.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip Electronics And Security Accelerator
-+
-+maintainers:
-+  - Corentin Labbe <clabbe@baylibre.com>
-+
-+properties:
-+  compatible:
-+    const: rockchip,rk3288-crypto
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: clock data
-+      - description: clock data
-+      - description: clock crypto accelerator
-+      - description: clock dma
-+
-+  clock-names:
-+    items:
-+      - const: aclk
-+      - const: hclk
-+      - const: sclk
-+      - const: apb_pclk
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    const: crypto-rst
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/rk3288-cru.h>
-+    crypto@ff8a0000 {
-+      compatible = "rockchip,rk3288-crypto";
-+      reg = <0xff8a0000 0x4000>;
-+      interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&cru ACLK_CRYPTO>, <&cru HCLK_CRYPTO>,
-+               <&cru SCLK_CRYPTO>, <&cru ACLK_DMAC1>;
-+      clock-names = "aclk", "hclk", "sclk", "apb_pclk";
-+      resets = <&cru SRST_CRYPTO>;
-+      reset-names = "crypto-rst";
-+    };
-diff --git a/Documentation/devicetree/bindings/crypto/rockchip-crypto.txt b/Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
-deleted file mode 100644
-index 5e2ba385b8c9..000000000000
---- a/Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--Rockchip Electronics And Security Accelerator
--
--Required properties:
--- compatible: Should be "rockchip,rk3288-crypto"
--- reg: Base physical address of the engine and length of memory mapped
--       region
--- interrupts: Interrupt number
--- clocks: Reference to the clocks about crypto
--- clock-names: "aclk" used to clock data
--	       "hclk" used to clock data
--	       "sclk" used to clock crypto accelerator
--	       "apb_pclk" used to clock dma
--- resets: Must contain an entry for each entry in reset-names.
--	  See ../reset/reset.txt for details.
--- reset-names: Must include the name "crypto-rst".
--
--Examples:
--
--	crypto: cypto-controller@ff8a0000 {
--		compatible = "rockchip,rk3288-crypto";
--		reg = <0xff8a0000 0x4000>;
--		interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&cru ACLK_CRYPTO>, <&cru HCLK_CRYPTO>,
--			 <&cru SCLK_CRYPTO>, <&cru ACLK_DMAC1>;
--		clock-names = "aclk", "hclk", "sclk", "apb_pclk";
--		resets = <&cru SRST_CRYPTO>;
--		reset-names = "crypto-rst";
--	};
--- 
-2.34.1
+Are you sure your DTSes don't have warnings? You include watchdog.yaml
+schema (good) so here should be unevaluatedProperties to accept ones
+mentioned there.
 
+Just add "timeout-sec" to example below to see the error.
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    watchdog@41000000 {
+> +      compatible = "faraday,ftwdt010";
+> +      reg = <0x41000000 0x1000>;
+> +      interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> +  - |
+> +    watchdog: watchdog@98500000 {
+> +      compatible = "moxa,moxart-watchdog", "faraday,ftwdt010";
+> +      reg = <0x98500000 0x10>;
+> +      clocks = <&clk_apb>;
+> +      clock-names = "PCLK";
+> +    };
+> +...
+
+
+Best regards,
+Krzysztof
