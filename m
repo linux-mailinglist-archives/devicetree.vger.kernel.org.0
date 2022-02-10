@@ -2,173 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 386324B125F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 17:10:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47EA54B1250
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 17:08:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243764AbiBJQKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 11:10:14 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33664 "EHLO
+        id S238433AbiBJQHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 11:07:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238711AbiBJQKO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 11:10:14 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E153EB;
-        Thu, 10 Feb 2022 08:10:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B2557B82656;
-        Thu, 10 Feb 2022 16:10:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A3A9C004E1;
-        Thu, 10 Feb 2022 16:09:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644509412;
-        bh=ZAorFPJpvUFVFfC8NuB8t266XcSbj42njOVNokd0dNI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZeNgkJL9Trv43cyPqcRNLgzsO9LuxFTQK2vJ1dEhPqEN7KQ3PmsPrIwNYbDpvKGZn
-         69d0QHkczLmrGiQqx+EbiEEYNRPZupkA2CJ70hnLTad+V4HKubd5nfhRlgJVAOROLF
-         +yhe7l1O2oYK/N+DTMpY5XAMN2O/GjdubZisOnu+ZMRIDx/C1U9h6t0DK/RmDS+gDz
-         k9KrryjofYBOiuRRRVj71l4dCBP8uNIfapILtwiz03tA6wE9GyNBYT8iiIYSqcKeyc
-         dXGm3ASW46sBzRiPJ4Mfd+l8b2SM6KZMU8E4PS/u+VAkDizpgLU0qpPcSuxXng9Pa8
-         rLGhJD9zkLtyQ==
-Date:   Fri, 11 Feb 2022 00:01:42 +0800
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc:     palmer@dabbelt.com, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, wefu@redhat.com, liush@allwinnertech.com,
-        guoren@kernel.org, atishp@atishpatra.org, anup@brainfault.org,
-        drew@beagleboard.org, hch@lst.de, arnd@arndb.de, wens@csie.org,
-        maxime@cerno.tech, gfavor@ventanamicro.com,
-        andrea.mondelli@huawei.com, behrensj@mit.edu, xinhaoqu@huawei.com,
-        huffman@cadence.com, mick@ics.forth.gr,
-        allen.baum@esperantotech.com, jscheid@ventanamicro.com,
-        rtrauben@gmail.com, samuel@sholland.org, cmuellner@linux.com,
-        philipp.tomsich@vrull.eu
-Subject: Re: [PATCH v6 00/14] riscv: support for Svpbmt and D1 memory types
-Message-ID: <YgU25sWTf8EXTina@xhacker>
-References: <20220209123800.269774-1-heiko@sntech.de>
- <YgP+n5OMhQPSbICV@xhacker>
- <14426959.46CLvVMboC@diego>
+        with ESMTP id S243994AbiBJQHW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 11:07:22 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A675CC6
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 08:07:22 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id e3so10534086wra.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 08:07:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h5JUklO4T5xqvKx/rl4qzE6gzcHMOtdcKBWZ8yMI/z8=;
+        b=RcTpDDhNVSmBzPz6eAYUqsDDRLpg66q5cKNnTUKTHzpuyGOa1PibBs+P7BCsbSuVvK
+         6GwxExItKWGu+rQZ4dwR4Z44n/te4J12RtPTcDcSXDlXIF0yMupOvpUnzGOdV1kuF6SQ
+         hkHdPBg4b/XsJP5vIHCfyNnSx6STajNdxi0mRCpD0OHoK7l5PeFdIr9IVFJ0fgCB7CUJ
+         vC/m0e7yKDI+6VbLk+exlf1POWc+1y/gtEgEiL48/RgKn94NyUerK3jE8IPJnhI5EPGT
+         oZsLVXqwiuwVF9jH/5tsye+avhXuPVBWjRymwFA+qmkSFHi/WytpNW3thn4M5VO8xBid
+         7OsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h5JUklO4T5xqvKx/rl4qzE6gzcHMOtdcKBWZ8yMI/z8=;
+        b=FUXhkLFoY6A51Ba7TwmfwDVOiEnI8V5sYS5i77KU9FBmsq0/9rG8PXTPW7kZ3i4vr9
+         GtxTLKO0VabN0yx1WiBONetna6nGSoCu8zPlm5PEuMXJyQeED4XhuBdF1/euNLja50bx
+         r3Yg21RQ+4+vO+41SQQVIB8TMRzSOvfVy4SJwLRgcqE/qhvt+fh+f6bFmF2SXZ4KE6Ht
+         zfDTWNXah1i11Z2sOcNKOmW+OYcyNluXAcLNc7fvtpfBtJNCxyu3QOgyukA7g0Xsztwr
+         5CizsBzg1J+8GQdKX8MUdt0UsTBhBOLnKvx8sCe28prvrjbGMIaS10POR4BTL9eDGlfE
+         5zbw==
+X-Gm-Message-State: AOAM531YCsvFUMCbR1Ruscf3hidyfqd2cerv4NcDQbsevIXdb9W0acNl
+        sLXCAdEip5WcjSkSGV32MXcoQQ==
+X-Google-Smtp-Source: ABdhPJzAKqeEa4lL90kdB/O7YF2mg2rycWSNGksxFdiRPSsNXxdB6ZJtcWP3Nqs2WV77+jlbleSSPA==
+X-Received: by 2002:adf:e5ca:: with SMTP id a10mr6719519wrn.151.1644509240825;
+        Thu, 10 Feb 2022 08:07:20 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id f20sm2555028wmg.2.2022.02.10.08.07.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Feb 2022 08:07:20 -0800 (PST)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     damien.lemoal@opensource.wdc.com,
+        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v4] dt-bindings: convert ata/cortina,gemini-sata-bridge to yaml
+Date:   Thu, 10 Feb 2022 16:07:12 +0000
+Message-Id: <20220210160712.2962810-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <14426959.46CLvVMboC@diego>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 10, 2022 at 12:44:04AM +0100, Heiko Stübner wrote:
-> Hi,
-> 
-> Am Mittwoch, 9. Februar 2022, 18:49:19 CET schrieb Jisheng Zhang:
-> > On Wed, Feb 09, 2022 at 01:37:46PM +0100, Heiko Stuebner wrote:
-> > > Svpbmt is an extension defining "Supervisor-mode: page-based memory types"
-> > > for things like non-cacheable pages or I/O memory pages.
-> > > 
-> > > 
-> > > So this is my 2nd try at implementing Svpbmt (and the diverging D1 memory
-> > > types) using the alternatives framework.
-> > > 
-> > > This includes a number of changes to the alternatives mechanism itself.
-> > > The biggest one being the move to a more central location, as I expect
-> > > in the future, nearly every chip needing some sort of patching, be it
-> > > either for erratas or for optional features (svpbmt or others).
-> > > 
-> > > The dt-binding for svpbmt itself is of course not finished and is still
-> > > using the binding introduced in previous versions, as where to put
-> > > a svpbmt-property in the devicetree is still under dicussion.
-> > > Atish seems to be working on a framework for extensions [0],
-> > > 
-> > > The series also introduces support for the memory types of the D1
-> > > which are implemented differently to svpbmt. But when patching anyway
-> > > it's pretty clean to add the D1 variant via ALTERNATIVE_2 to the same
-> > > location.
-> > > 
-> > > The only slightly bigger difference is that the "normal" type is not 0
-> > > as with svpbmt, so kernel patches for this PMA type need to be applied
-> > > even before the MMU is brought up, so the series introduces a separate
-> > > stage for that.
-> > > 
-> > > 
-> > > In theory this series is 3 parts:
-> > > - sbi cache-flush / null-ptr
-> > > - alternatives improvements
-> > > - svpbmt+d1
-> > > 
-> > > So expecially patches from the first 2 areas could be applied when
-> > > deemed ready, I just thought to keep it together to show-case where
-> > > the end-goal is and not requiring jumping between different series.
-> > > 
-> > > 
-> > > The sbi cache-flush patch is based on Atish's sparse-hartid patch [1],
-> > > as it touches a similar area in mm/cacheflush.c
-> > > 
-> > > 
-> > > I picked the recipient list from the previous version, hopefully
-> > > I didn't forget anybody.
-> > > 
-> > > changes in v6:
-> > > - rebase onto 5.17-rc1
-> > > - handle sbi null-ptr differently
-> > > - improve commit messages
-> > > - use riscv,mmu as property name
-> > > 
-> > > changes in v5:
-> > > - move to use alternatives for runtime-patching
-> > 
-> > another choice is using static key mechanism. Pros: no need to coding
-> > in asm, all in c.
-> > 
-> > To support new arch features, I see other arch sometimes use static
-> > key, sometimes use alternative mechanism, so one question here would
-> > be which mechanism is better? Any guide?
-> 
-> For me it's also a bit of a learn-as-you-go experience, but I do see some
+This patch converts ata/cortina,gemini-sata-bridge binding to yaml
 
-I hope old hands can give some suggestions here about static key VS.
-alternative ;). When to use which mechanism, and why.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+Change since v1:
+- fixed cosmetic nits reported by Damien Le Moal
+Changes since v2:
+- Added blank lines between properties
+- Removed useless quotes and label
+- Re-indented description
+Change since v3:
+- fixed all min/maxitems reported by Krzysztof Kozlowski
 
-> advantages in using alternatives:
-> 
-> - Static keys need the jump-label infrastructure, which the RiscV kernel
->   only seems to provide on non-XIP kernels [0]
+ .../ata/cortina,gemini-sata-bridge.txt        |  55 ---------
+ .../ata/cortina,gemini-sata-bridge.yaml       | 109 ++++++++++++++++++
+ 2 files changed, 109 insertions(+), 55 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
+ create mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
 
-I think you found one bug here.
-I believe alternative mechanism also doesn't work for XIP kernel. I will
-submit a patch for this case.
-
-> - the amount of asm here is somewhat minimal for the core no-cache and io
->   types (load immediate + shift)
-> - using the static key mechanism still does incur more overhead for the
->   conditional
-
-do you mean the icache overhead due to the other disabled branch of
-static key? It deserves a check.
-
-> - and if we want to support the strange family-members like the D1,
->   (and it seems we do want that) this would create more conditionals
-
-Maybe implement the standard svpbmt via. static key and cope with D1 as
-errata alternative.
->   as we have to test for svpbmt, d1 and maybe future special cases,
-
-From Documentation/riscv/patch-acceptance.rst, the "Submit Checklist
-Addendum" section, "we'll only to accept patches for extensions that
-have been officially frozen or ratified by the RISC-V Foundation."
-This rule hasn't been changed.
-Per my understanding of history of the svpbmt patch set, no future
-special cases any more.
-
->   where alternatives-patching on the other hand simply replaces the
->   relevant code with the appropriate variant.
-> 
+diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
+deleted file mode 100644
+index 1c3d3cc70051..000000000000
+--- a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
++++ /dev/null
+@@ -1,55 +0,0 @@
+-* Cortina Systems Gemini SATA Bridge
+-
+-The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
+-takes two Faraday Technology FTIDE010 PATA controllers and bridges
+-them in different configurations to two SATA ports.
+-
+-Required properties:
+-- compatible: should be
+-  "cortina,gemini-sata-bridge"
+-- reg: registers and size for the block
+-- resets: phandles to the reset lines for both SATA bridges
+-- reset-names: must be "sata0", "sata1"
+-- clocks: phandles to the compulsory peripheral clocks
+-- clock-names: must be "SATA0_PCLK", "SATA1_PCLK"
+-- syscon: a phandle to the global Gemini system controller
+-- cortina,gemini-ata-muxmode: tell the desired multiplexing mode for
+-  the ATA controller and SATA bridges. Values 0..3:
+-  Mode 0: ata0 master <-> sata0
+-          ata1 master <-> sata1
+-          ata0 slave interface brought out on IDE pads
+-  Mode 1: ata0 master <-> sata0
+-          ata1 master <-> sata1
+-          ata1 slave interface brought out on IDE pads
+-  Mode 2: ata1 master <-> sata1
+-          ata1 slave  <-> sata0
+-          ata0 master and slave interfaces brought out
+-               on IDE pads
+-  Mode 3: ata0 master <-> sata0
+-          ata0 slave  <-> sata1
+-          ata1 master and slave interfaces brought out
+-               on IDE pads
+-
+-Optional boolean properties:
+-- cortina,gemini-enable-ide-pins: enables the PATA to IDE connection.
+-  The muxmode setting decides whether ATA0 or ATA1 is brought out,
+-  and whether master, slave or both interfaces get brought out.
+-- cortina,gemini-enable-sata-bridge: enables the PATA to SATA bridge
+-  inside the Gemnini SoC. The Muxmode decides what PATA blocks will
+-  be muxed out and how.
+-
+-Example:
+-
+-sata: sata@46000000 {
+-	compatible = "cortina,gemini-sata-bridge";
+-	reg = <0x46000000 0x100>;
+-	resets = <&rcon 26>, <&rcon 27>;
+-	reset-names = "sata0", "sata1";
+-	clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
+-		 <&gcc GEMINI_CLK_GATE_SATA1>;
+-	clock-names = "SATA0_PCLK", "SATA1_PCLK";
+-	syscon = <&syscon>;
+-	cortina,gemini-ata-muxmode = <3>;
+-	cortina,gemini-enable-ide-pins;
+-	cortina,gemini-enable-sata-bridge;
+-};
+diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
+new file mode 100644
+index 000000000000..77af2559b097
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
+@@ -0,0 +1,109 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ata/cortina,gemini-sata-bridge.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cortina Systems Gemini SATA Bridge
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++    The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
++    takes two Faraday Technology FTIDE010 PATA controllers and bridges
++    them in different configurations to two SATA ports.
++
++properties:
++  compatible:
++    const: cortina,gemini-sata-bridge
++
++  reg:
++    maxItems: 1
++
++  resets:
++    minItems: 2
++    maxItems: 2
++    description: phandles to the reset lines for both SATA bridges
++
++  reset-names:
++    items:
++      - const: sata0
++      - const: sata1
++
++  clocks:
++    minItems: 2
++    maxItems: 2
++    description: phandles to the compulsory peripheral clocks
++
++  clock-names:
++    items:
++      - const: SATA0_PCLK
++      - const: SATA1_PCLK
++
++  syscon:
++    maxItems: 1
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: a phandle to the global Gemini system controller
++
++  cortina,gemini-ata-muxmode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0
++      - 1
++      - 2
++      - 3
++    description: |
++      Tell the desired multiplexing mode for the ATA controller and SATA bridges. Values 0..3:
++      Mode 0: ata0 master <-> sata0
++              ata1 master <-> sata1
++              ata0 slave interface brought out on IDE pads
++      Mode 1: ata0 master <-> sata0
++              ata1 master <-> sata1
++              ata1 slave interface brought out on IDE pads
++      Mode 2: ata1 master <-> sata1
++              ata1 slave  <-> sata0
++              ata0 master and slave interfaces brought out on IDE pads
++      Mode 3: ata0 master <-> sata0
++              ata0 slave  <-> sata1
++              ata1 master and slave interfaces brought out on IDE pads
++
++  cortina,gemini-enable-ide-pins:
++    type: boolean
++    description: Enables the PATA to IDE connection.
++      The muxmode setting decides whether ATA0 or ATA1 is brought out,
++      and whether master, slave or both interfaces get brought out.
++
++  cortina,gemini-enable-sata-bridge:
++    type: boolean
++    description: Enables the PATA to SATA bridge inside the Gemnini SoC.
++      The Muxmode decides what PATA blocks will be muxed out and how.
++
++required:
++  - clocks
++  - clock-names
++  - cortina,gemini-ata-muxmode
++  - resets
++  - reset-names
++  - compatible
++  - reg
++  - syscon
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/cortina,gemini-clock.h>
++    sata@46000000 {
++      compatible = "cortina,gemini-sata-bridge";
++      reg = <0x46000000 0x100>;
++      resets = <&rcon 26>, <&rcon 27>;
++      reset-names = "sata0", "sata1";
++      clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
++               <&gcc GEMINI_CLK_GATE_SATA1>;
++      clock-names = "SATA0_PCLK", "SATA1_PCLK";
++      syscon = <&syscon>;
++      cortina,gemini-ata-muxmode = <3>;
++      cortina,gemini-enable-ide-pins;
++      cortina,gemini-enable-sata-bridge;
++    };
+-- 
+2.34.1
 
