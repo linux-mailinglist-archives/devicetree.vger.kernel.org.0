@@ -2,128 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DC844B1291
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 17:19:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF544B12A2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 17:25:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244129AbiBJQTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 11:19:53 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38646 "EHLO
+        id S244149AbiBJQZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 11:25:13 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243921AbiBJQTx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 11:19:53 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E54098
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 08:19:54 -0800 (PST)
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S239459AbiBJQZM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 11:25:12 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84DA8C24;
+        Thu, 10 Feb 2022 08:25:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 862514005C
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 16:19:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644509992;
-        bh=tT0V+KU2BeoLWRdV7eFcuAjZlhzvXhhK5c/htTBUt/Y=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=wRTJUVtOzIwMDB+YKU0ajito4wwvbRayF32E44RdAQJJleYn6Jg4+AL+QNk1aSb1e
-         gmZdvkfhrULU620Wiaz+yNuE/PeMXiTudhaOHcENgtRT584vla7X3ys00b/RjJNiwA
-         aTc4YXF9V4M9IwHRcfIt8gj91XZVqG48ACNh1zGbkJE9DTts4sm9KeWHJMJh4RXSAk
-         Gv2x1bQMMXe3VmSe1Myaoop7PHmrmMqMIhXtqnEH8d3UQ2W9shOUbhyKM8YUXuai92
-         rQtcKwjGXUTLil/Onao6nI6CfTm9PJZs0W+DOAklTSuBFJ4gSny+5lks8Dz7zpABGE
-         OyGYeaLYTntog==
-Received: by mail-ej1-f70.google.com with SMTP id hp37-20020a1709073e2500b006cd86fa20ffso2009273ejc.5
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 08:19:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=tT0V+KU2BeoLWRdV7eFcuAjZlhzvXhhK5c/htTBUt/Y=;
-        b=5c78/o6YrN3bbrk873CiBPkrU3NkGO/qPSndd3qQ7cqw47Id7Hjmv9hPOgSwmgQNer
-         BhXDi7fuR76ZiXz7oY4e6aVZ0gsbQ/SYLiYc+NtSqcOLIYRRsO8KtAZi1uOH1+QmGI/y
-         QUEqwmSR18bY1fgHM2KBCswsNuGN9OaCFNl9DodymAQtZnoL9D0Z5E+PT4Khs55lgDXX
-         f1XJWMAsosQp6OktbsleZodj0w9q+wVBParvHfu1xLkhXYyyEf7hPqO5fqTCPKXEnHWa
-         xL1hZ8AOL8WtzG1fXLT5EiFiE/T6ojHDZh85zz7QOpi2hmclKLwYVeaZEoA8NZhYvsly
-         pCzQ==
-X-Gm-Message-State: AOAM5319VdnSZwENaCkFAvQw5WQES4eYvZKLy4+RX5K6NfmZvFnmztsT
-        Anjrqftm6idFbfPvdeymDy6lHmgv/uiWdrU/0MghqQzThiSg4YwAKW/OqPh+gZvKG9y9U2otBPl
-        PjFwhj2vCqPtXUqZJvLTAIy9fWeqLwBplNyv/edo=
-X-Received: by 2002:a50:fc13:: with SMTP id i19mr8938748edr.232.1644509992151;
-        Thu, 10 Feb 2022 08:19:52 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyo8YzrREsbeeglYGU1jriGlI0EGZwvP8ev+ebkKY9LgD4Hb/DEgHvBEZAWx22aJjpMpTx2yg==
-X-Received: by 2002:a50:fc13:: with SMTP id i19mr8938724edr.232.1644509991996;
-        Thu, 10 Feb 2022 08:19:51 -0800 (PST)
-Received: from [192.168.0.99] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id x6sm9820678edv.109.2022.02.10.08.19.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Feb 2022 08:19:51 -0800 (PST)
-Message-ID: <7acb44da-5833-f638-9348-0cbcc21cfc13@canonical.com>
-Date:   Thu, 10 Feb 2022 17:19:50 +0100
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 239E961D45;
+        Thu, 10 Feb 2022 16:25:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC470C004E1;
+        Thu, 10 Feb 2022 16:25:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644510312;
+        bh=IFxBT2jDyEPai4ZZFQxaTM2IF26+Q3DtIrCvz2/aIaw=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=WFoy6ph4jj2asioFVCnfptkcZoeZVEwREMIetSpPnnSfxQms6+XAU+MlkkjsXrp0l
+         WcJsNoBb0gkyheSV+LzkR7PNqzugiaQMQ/B/UQvp+LbAczFTcurXEuXrCWiCXdj5QK
+         8Yhit0lsF9bgbhv0EYlbhkYgWid+j1mCFiHAw81qSa7R0Vyxi13jdIPn1maIPfLbNm
+         Em+t58PD0ZONwlnPdJHsARd5uvmip3lgo3NWLj8mVi+ammO3kvTVlFytFGflRrqImT
+         Jx/3tg2fopGf34Dt6UPyVNfD42/G4eGYzzdbLvMrd00BIZA6QTwK2LzJzEw/uPB3Xp
+         TNk/Xnneg3ZoA==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org,
+        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v9 05/24] wfx: add main.c/main.h
+References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com>
+        <4055223.VTxhiZFAix@pc-42> <87ee4a3hd4.fsf@kernel.org>
+        <39159625.OdyKsPGY69@pc-42>
+Date:   Thu, 10 Feb 2022 18:25:05 +0200
+In-Reply-To: <39159625.OdyKsPGY69@pc-42> (=?utf-8?B?IkrDqXLDtG1l?=
+ Pouiller"'s message of "Thu,
+        10 Feb 2022 16:13:16 +0100")
+Message-ID: <87a6ey3d0e.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2] dt-bindings: crypto: convert rockchip-crypto to yaml
-Content-Language: en-US
-To:     Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
-        heiko@sntech.de, herbert@gondor.apana.org.au, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>
-References: <20220210161403.2966196-1-clabbe@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220210161403.2966196-1-clabbe@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2022 17:14, Corentin Labbe wrote:
-> Convert rockchip-crypto to yaml
-> 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
-> Change since v1:
-> - fixed example
-> - renamed to a new name
-> - fixed some maxItems
-> 
->  .../crypto/rockchip,rk3288-crypto.yaml        | 66 +++++++++++++++++++
->  .../bindings/crypto/rockchip-crypto.txt       | 28 --------
->  2 files changed, 66 insertions(+), 28 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
->  delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
-> new file mode 100644
-> index 000000000000..44f415597e32
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/rockchip,rk3288-crypto.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip Electronics And Security Accelerator
-> +
-> +maintainers:
-> +  - Corentin Labbe <clabbe@baylibre.com>
+J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
 
-You removed Heiko. It's fine for me, just is it expected?
+> On Thursday 10 February 2022 15:51:03 CET Kalle Valo wrote:
+>> J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
+>> > On Thursday 10 February 2022 15:20:56 CET Kalle Valo wrote:
+>> >> J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
+>> >>
+>> >> > Kalle, is this function what you expected? If it is right for you, =
+I am
+>> >> > going to send it to the staging tree.
+>> >>
+>> >> Looks better, but I don't get why '{' and '}' are still needed. Ah, d=
+oes
+>> >> the firmware require to have them?
+>> >
+>> > Indeed. If '{' and '}' are not present, I guarantee the firmware will =
+return
+>> > an error (or assert). However, I am more confident in the driver than =
+in the
+>> > firmware to report errors to the user.
+>>=20
+>> Agreed.
+>>=20
+>> > If there is no other comment, I am going to:
+>> >   - submit this change to the staging tree
+>>=20
+>> Good, it's important that you get all your changes to the staging tree
+>> before the next merge window.
+>>=20
+>> >   - publish the tool that generate this new format
+>> >   - submit the PDS files referenced in bus_{sdio,spi}.c to linux-firmw=
+are
+>> >   - send the v10 of this PR
+>>=20
+>> I'm not sure if there's a need to send a full patchset anymore? We are
+>> so close now anyway and the full driver is available from the staging
+>> tree, at least that's what I will use from now on when reviewing wfx.
+>>=20
+>> What about the Device Tree bindings? That needs to be acked by the DT
+>> maintainers, so that's good to submit as a separate patch for review.
+>
+> There is also the patch 01/24 about the SDIO IDs.
+>
+> I think the v10 could contain only 3 patches:
+>
+>     1. mmc: sdio: add SDIO IDs for Silabs WF200 chip
+>     2. dt-bindings: introduce silabs,wfx.yaml
+>     3. [all the patches 3 to 24 squashed]
+>
+> Would it be right for you?
 
-Look good to me.
+TBH I don't see the point of patch 3 at this moment, we have had so many
+iterations with the full driver already. If people want to look at the
+driver, they can check it from the staging tree. So in the next round I
+recommend submitting only patches 1 and 2 and focus on getting all the
+pending patches to staging tree.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+And the chances are that a big patch like that would be filtered by the
+mailing lists anyway.
 
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Best regards,
-Krzysztof
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
