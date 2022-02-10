@@ -2,106 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66F4F4B10CB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 15:48:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 564B54B10E7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 15:51:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241391AbiBJOry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 09:47:54 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57954 "EHLO
+        id S243218AbiBJOvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 09:51:10 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237792AbiBJOry (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 09:47:54 -0500
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D00A1;
-        Thu, 10 Feb 2022 06:47:54 -0800 (PST)
-Received: by mail-oo1-f51.google.com with SMTP id 189-20020a4a03c6000000b003179d7b30d8so6643032ooi.2;
-        Thu, 10 Feb 2022 06:47:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=8fxH81jreNlAG66dkkm12iasx5L3uqki8uR5z92L6jE=;
-        b=IcaeN86BBP6r3hcPjZf7jimED2wTzOYFUlvtL3nmcNAVpFZvdf6wuk4G4WIBTmeCBf
-         k3hMuf1LYAnlNisqGKXShiJcl1wTcRZKt72P5x+DyNmb3u0ab8Cr3O8/LgDXlxBRlxnJ
-         m9JEVDCo0761eP6fL5GiL3zE8hutecgCNljpnZ/vmrpSYFCIIc2c/D2kfWsEo+di+EXQ
-         mwAB+heow6unMhyn0abjLnlAxRkBLmwIpIswY/an5uDy8BCroHj3+7AjEpVCAylHXLVJ
-         ReBQ1JHvFdUeiH8unx6LKMeOUTYMkIt/8z1D8QOP3VxENlkHYZntmGYF2QsehmppejLL
-         xFcw==
-X-Gm-Message-State: AOAM530eUSJ8ccTRVPYUpPIIlPb9oPENLTa43/BvcL0dB2IZYBGxlC5L
-        xwEI/x3hi+Vlp3DSa+jYSx1P+iX7xA==
-X-Google-Smtp-Source: ABdhPJyAkIAnn1SjTWT3DVfZeP9xM7w/tc1EWhAce6OrhewoxIv9CXgMpmVC3NcjSxhSQcTlfxldQA==
-X-Received: by 2002:a05:6870:ea05:: with SMTP id g5mr904565oap.181.1644504474040;
-        Thu, 10 Feb 2022 06:47:54 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b8sm7983446otk.36.2022.02.10.06.47.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Feb 2022 06:47:53 -0800 (PST)
-Received: (nullmailer pid 2624781 invoked by uid 1000);
-        Thu, 10 Feb 2022 14:47:52 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Guodong Liu <guodong.liu@mediatek.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-gpio@vger.kernel.org, Sean Wang <sean.wang@kernel.org>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20220210062122.23974-2-guodong.liu@mediatek.com>
-References: <20220210062122.23974-1-guodong.liu@mediatek.com> <20220210062122.23974-2-guodong.liu@mediatek.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: mt8186: add pinctrl file and binding document
-Date:   Thu, 10 Feb 2022 08:47:52 -0600
-Message-Id: <1644504472.320340.2624780.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S238303AbiBJOvJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 09:51:09 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67F2EA1;
+        Thu, 10 Feb 2022 06:51:10 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 725C361AC3;
+        Thu, 10 Feb 2022 14:51:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A231C004E1;
+        Thu, 10 Feb 2022 14:51:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644504669;
+        bh=lRD3lBDFEjNGr8K6VaXM+s1gigm4CwkCeahOEMFr7wI=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=KMZqYCBbcthMl1mXPaGgp3+weM0K5VQvzyDdObE8aENPyWjeaAK/cWrH/bEV9yujA
+         BndPt2/E0Kdtf2JHJKPGO7K343yIuOlkBm1bWhltGfDLYWnWOdR14AMw9lmyDl5nE7
+         tACxdqbHzYrRGCsBRfRUq4B0SapvMn8dgJanC8aNzBD0BHURduPhVDaf5bpZF+WV9/
+         npsY+Nbnnvnwm3j44WnYbu3FMdoqdRS6FRp/pH7pbSh2JyOLl9SDDnaOG3B4Q0KsQj
+         aAct2uel6hwPigln7QwJB0ASNo/qj4idSNBLgXdLF2NmmHjasrkUI1rMe+uc8weZEg
+         bkMYhlD2Bl9sQ==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org,
+        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v9 05/24] wfx: add main.c/main.h
+References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com>
+        <2898137.rlL8Y2EFai@pc-42> <87r18a3irb.fsf@kernel.org>
+        <4055223.VTxhiZFAix@pc-42>
+Date:   Thu, 10 Feb 2022 16:51:03 +0200
+In-Reply-To: <4055223.VTxhiZFAix@pc-42> (=?utf-8?B?IkrDqXLDtG1l?=
+ Pouiller"'s message of "Thu,
+        10 Feb 2022 15:41:39 +0100")
+Message-ID: <87ee4a3hd4.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Feb 2022 14:21:20 +0800, Guodong Liu wrote:
-> 1. This patch adds pinctrl file for mt8186.
-> 2. This patch adds mt8186 compatible node in binding document.
-> 
-> Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
-> ---
->  .../bindings/pinctrl/pinctrl-mt8186.yaml      |  313 +++++
->  include/dt-bindings/pinctrl/mt8186-pinfunc.h  | 1174 +++++++++++++++++
->  2 files changed, 1487 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
->  create mode 100644 include/dt-bindings/pinctrl/mt8186-pinfunc.h
-> 
+J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> On Thursday 10 February 2022 15:20:56 CET Kalle Valo wrote:
+>>=20
+>> J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
+>>=20
+>> > Kalle, is this function what you expected? If it is right for you, I am
+>> > going to send it to the staging tree.
+>>=20
+>> Looks better, but I don't get why '{' and '}' are still needed. Ah, does
+>> the firmware require to have them?
+>
+> Indeed. If '{' and '}' are not present, I guarantee the firmware will ret=
+urn
+> an error (or assert). However, I am more confident in the driver than in =
+the
+> firmware to report errors to the user.
 
-yamllint warnings/errors:
+Agreed.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml: properties:reg-names: {'description': 'Gpio base register names.\n', 'items': [{'const': 'iocfg0'}, {'const': 'iocfg_bm'}, {'const': 'iocfg_bl'}, {'const': 'iocfg_br'}, {'const': 'iocfg_lm'}, {'const': 'iocfg_rb'}, {'const': 'iocfg_tl'}, {'const': 'eint'}], 'maxItems': 8} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml: ignoring, error in schema: properties: reg-names
-Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.example.dt.yaml:0:0: /example-0/pinctrl@10005000: failed to match any schema with compatible: ['mediatek,mt8186-pinctrl']
+> If there is no other comment, I am going to:
+>   - submit this change to the staging tree
 
-doc reference errors (make refcheckdocs):
+Good, it's important that you get all your changes to the staging tree
+before the next merge window.
 
-See https://patchwork.ozlabs.org/patch/1590838
+>   - publish the tool that generate this new format
+>   - submit the PDS files referenced in bus_{sdio,spi}.c to linux-firmware
+>   - send the v10 of this PR
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+I'm not sure if there's a need to send a full patchset anymore? We are
+so close now anyway and the full driver is available from the staging
+tree, at least that's what I will use from now on when reviewing wfx.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+What about the Device Tree bindings? That needs to be acked by the DT
+maintainers, so that's good to submit as a separate patch for review.
 
-pip3 install dtschema --upgrade
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Please check and re-submit.
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
