@@ -2,178 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4574B03B8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 04:06:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ABD24B03F0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 04:31:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232065AbiBJDGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 22:06:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60044 "EHLO
+        id S232661AbiBJDbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 22:31:06 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbiBJDGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 22:06:11 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDBAE2B272;
-        Wed,  9 Feb 2022 19:06:11 -0800 (PST)
-X-UUID: 61480397f04c4a228c946c16b270b18b-20220210
-X-UUID: 61480397f04c4a228c946c16b270b18b-20220210
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 734615389; Thu, 10 Feb 2022 11:06:09 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 10 Feb 2022 11:06:07 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 10 Feb 2022 11:06:06 +0800
-Message-ID: <aa72bec2064e25990e1a3641b920cb5528cfccd4.camel@mediatek.com>
-Subject: Re: [PATCH v2, 1/7] dt-bindings: media: mtk-vcodec: Adds decoder
- dt-bindings for lat soc
-From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Fritz Koenig" <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 10 Feb 2022 11:06:06 +0800
-In-Reply-To: <YgQl8CtttQ99+8lB@robh.at.kernel.org>
-References: <20220128035440.24533-1-yunfei.dong@mediatek.com>
-         <20220128035440.24533-2-yunfei.dong@mediatek.com>
-         <YgQl8CtttQ99+8lB@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S232605AbiBJDbF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 22:31:05 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E443123BDB;
+        Wed,  9 Feb 2022 19:31:07 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id h14-20020a17090a130e00b001b88991a305so7168047pja.3;
+        Wed, 09 Feb 2022 19:31:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=nvvlCC3Ik+A9UvhOEE+RahzQMEHLT3ALXE7RPHq6bo0=;
+        b=goUXqtpB5Sj1L6N906G/7vqkEFlKjCFgjbyFkZqaeLmU4hCHLxXnQlfoGeh3X/JwyG
+         TG4G8dTLwSXfHTJG9HtikIr2NPkIAOaGbdMdyI+wTSwjiJzaWu3+5cRjHfHrr5lzsTNg
+         W3MGGYOeCNOwhU+fCafboT+ke37bPLjmvwVDna3kxRER0t0XdABmOMtqrUhALE5S48hv
+         6QbkFAsGeum6AbwKcFw1SNNjew9kXNbfL1JRRXraZwAe4B7NyeDs+pBciYQVCZioCqUf
+         kZVEE2X2Gn+7MvInWt9GZj+L7xpmByspbX61GMthQbMTi1pEJ2c20bta7I3mxuyNFf3E
+         RiYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=nvvlCC3Ik+A9UvhOEE+RahzQMEHLT3ALXE7RPHq6bo0=;
+        b=V7gyxsrOYJNWyjBBIid/s9qdiDoMWTcicRxOCqRKo/8rlz5H4AU3vcwEZr4/n1zpec
+         JwxNujboVckNqGLrObJDRMcIKE9I/iqIuU1+IT9s/asUnFQMQ78PJz42eaYGGKSDfAoR
+         R4DP2c47UpbO2/Y3eVvQildOxWgLRmnYlzOGcSKevZtkgVggaZLgESruY+AP7CJJJdw9
+         yb+pcVUv5lX53kRZhz4QQPdf/Gr2gBJ5+pUqaalxy/Ybt8nXWbqSnHLtZ4Z9rjEb01RZ
+         MwI6Tz0lEAPl0mGonYWIbrD4xdLK0BbPuEYwL/HoPqGF7PuOnDIZQybEwNRg0XV9mDzN
+         H2mw==
+X-Gm-Message-State: AOAM532nujInk72l7R2gt6FXkg3zIGngrPsfsSgJoJOesmXQ+iQItv/7
+        UVOclVBC3l64vnAKUy1o9u8=
+X-Google-Smtp-Source: ABdhPJwTpk8bCXpASIyFuhcm3zEkisDZSfKcaGYV7LB7Ohjg4RnU5/jP6CwddnjyMQebLVzHOPLPNg==
+X-Received: by 2002:a17:902:7fc9:: with SMTP id t9mr5614339plb.53.1644463867386;
+        Wed, 09 Feb 2022 19:31:07 -0800 (PST)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id mu18sm252537pjb.18.2022.02.09.19.31.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Feb 2022 19:31:06 -0800 (PST)
+Message-ID: <21f1016c-d725-2c98-5aef-14e94e02364e@gmail.com>
+Date:   Wed, 9 Feb 2022 19:31:05 -0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH] pinctl: doc: Fix spelling mistake "resisitors" ->
+ "resistors"
+Content-Language: en-US
+To:     Colin Ian King <colin.i.king@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220202091551.580372-1-colin.i.king@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220202091551.580372-1-colin.i.king@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-Thanks for your suggestion.
-On Wed, 2022-02-09 at 14:37 -0600, Rob Herring wrote:
-> On Fri, Jan 28, 2022 at 11:54:34AM +0800, Yunfei Dong wrote:
-> > Adds decoder dt-bindings for compatible "mediatek,mtk-vcodec-lat-
-> > soc".
+
+On 2/2/2022 1:15 AM, Colin Ian King wrote:
+> There is a spelling mistake in the documentation. Fix it.
 > 
-> What's lat soc? How does this relate to what's already there in this 
-> binding.
-> 
-lat soc is another hardware, is related with some vdec larb ports.
-Won't be used to decode, but must to write it in dtsi, or hardware
-can't work well.
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 
-Need to enable clock/power/iommus, no interrupt.
-> The subject space is limited, avoid saying the same thing twice 
-> (dt-bindings).
-> 
-
-Best Regards,
-Yunfei Dong
-> > 
-> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> > ---
-> >  .../media/mediatek,vcodec-subdev-decoder.yaml | 49
-> > +++++++++++++++++++
-> >  1 file changed, 49 insertions(+)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-
-> > decoder.yaml
-> > b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-
-> > decoder.yaml
-> > index 6415c9f29130..a3c892338ac0 100644
-> > --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-
-> > subdev-decoder.yaml
-> > +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
-> > subdev-decoder.yaml
-> > @@ -189,6 +189,55 @@ patternProperties:
-> >  
-> >      additionalProperties: false
-> >  
-> > +  '^vcodec-lat-soc@[0-9a-f]+$':
-> > +    type: object
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: mediatek,mtk-vcodec-lat-soc
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      iommus:
-> > +        minItems: 1
-> > +        maxItems: 32
-> > +        description: |
-> > +          List of the hardware port in respective IOMMU block for
-> > current Socs.
-> > +          Refer to bindings/iommu/mediatek,iommu.yaml.
-> > +
-> > +      clocks:
-> > +        maxItems: 5
-> > +
-> > +      clock-names:
-> > +        items:
-> > +          - const: sel
-> > +          - const: soc-vdec
-> > +          - const: soc-lat
-> > +          - const: vdec
-> > +          - const: top
-> > +
-> > +      assigned-clocks:
-> > +        maxItems: 1
-> > +
-> > +      assigned-clock-parents:
-> > +        maxItems: 1
-> > +
-> > +      power-domains:
-> > +        maxItems: 1
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +      - iommus
-> > +      - clocks
-> > +      - clock-names
-> > +      - assigned-clocks
-> > +      - assigned-clock-parents
-> > +      - power-domains
-> > +
-> > +    additionalProperties: false
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > -- 
-> > 2.25.1
-> > 
-> > 
-
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
