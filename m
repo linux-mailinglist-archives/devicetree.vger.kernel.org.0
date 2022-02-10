@@ -2,103 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F814B0293
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 02:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 137FB4B02D4
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 03:01:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233142AbiBJB4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 20:56:36 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:33228 "EHLO
+        id S234453AbiBJB7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 20:59:19 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:60076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233153AbiBJB4B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 20:56:01 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FBC722B1A
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 17:32:57 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id k60-20020a17090a4cc200b001b932781f3eso742191pjh.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 17:32:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CpXL3kPoVZ7att1zdwN8Mf8Da7ajP98VvjIjGbgaZGA=;
-        b=ENY37unj6f6SjoHK/K0Df/VIBp8PpZN9GGdjmw2F5RHMgth0BKvyfe7sX2l5TwfuMv
-         Bw72HuoCoav/n3JPrtIVxRyg7PhW6XYai1AIx9e9CG7QfpdEhEDh7DNsywpBfEYsuHG0
-         PC/EAciecqkqFtBE+fMv5STFjECmxiVAH8eSI=
+        with ESMTP id S234345AbiBJB7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 20:59:08 -0500
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1482B6AE;
+        Wed,  9 Feb 2022 17:45:15 -0800 (PST)
+Received: by mail-oo1-f47.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso4668305ooi.1;
+        Wed, 09 Feb 2022 17:45:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CpXL3kPoVZ7att1zdwN8Mf8Da7ajP98VvjIjGbgaZGA=;
-        b=gw4704q+aVL7NDtQ+Gr7T52BdNknufO5d/bLfqINdAnLvyhWHijEK/cypLG/dfONKp
-         zsd0MJRsn6pHA9n7PUKLkxC/+IoOIZXK9B3ekgE67lOZRvb0yqT/5ii8HPiXp64TWQMO
-         AM2l/8MWeLGAB09Ks/1SeT1jlu8APZdJLDHXdSlXU6ffOfIXM5v/Tppofx5ZlCp9rXuQ
-         ALUgmtqWtGc8e2LpaGjHGc27d5QhacrlsUQMwh6/Vv0PglfRQH1OIgD8Hk1RFpT1PFul
-         6WiEiDiXhCjtub96jCBr8O+x2ysI85Em1y0cuUpOmeuu/qfvz7+LM/Tqh9mP5PkRW6hE
-         sR8A==
-X-Gm-Message-State: AOAM532NsPRrT5Dgu8c8K8HJsdiFLgzYmjTmTU53eleoeI0j0BnpuOaN
-        L1DkRVMOCriPRRVwunAdbMX6Lzsgq24bpSErzMArRhfgs4IVPg==
-X-Google-Smtp-Source: ABdhPJz8Fs/lByCRrqqXLa3uco/tN8npZwUZ9fqdEfcHy+dfvEkvZxsQSmSiX8brFmaAbGdrbukbIMqI5en+3f8e4rg=
-X-Received: by 2002:a05:6102:cc8:: with SMTP id g8mr1471720vst.39.1644453157351;
- Wed, 09 Feb 2022 16:32:37 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8lop+jHQ6bLpYVQ/iRKAgjmWolqUKphRAvo1ndJg1zk=;
+        b=MGGpu60bKpZnbvydEdxwHuZXqtfIXPuYVPKc4oFfv7FIDMaA/DM/1bmuyFEVGMPmQc
+         kaNhBMO5dRS3756KBdftcXUtED/3quGbfYy9h3uEYdfbEM9vo5DJJjWdtwOz+td64mLY
+         jU6m3xF2hHrfa8Ft4E2mSCZ127tXBBeX6O3IvHiwJkNvvRnRIQv7McfjPzIIqYwS7NvI
+         zUteuRHSD7EsOnHiNlxGdH1plQubftyjCbXhF4U+dveGUJWBHjXOALfXpR6OyJFW1xiK
+         xsGCm1xIPVkqExwK5sm/AxG27wMDaF4wZmNofvMWj44Iht+ef7sTjDwcb+7Vr765ZgLr
+         GjqA==
+X-Gm-Message-State: AOAM531PrDf9/P+05rk7IRpbvXOBfKCuiEuaqPVWIeX+u2IhRy/6OXSd
+        /+0dvtChjw3KHZE8g+w7ZbcZmUCC1SRD
+X-Google-Smtp-Source: ABdhPJzCkAHc8o+aWAlGBDAiek96chtpXWuc1LpV9c0MFHrH/mpvAHtDn+fItGOZtT6t6D7qolCxQg==
+X-Received: by 2002:a05:6870:b1d3:: with SMTP id x19mr1809966oak.101.1644453291094;
+        Wed, 09 Feb 2022 16:34:51 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q11sm7338809oti.3.2022.02.09.16.34.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Feb 2022 16:34:50 -0800 (PST)
+Received: (nullmailer pid 1264695 invoked by uid 1000);
+        Thu, 10 Feb 2022 00:34:49 -0000
+Date:   Wed, 9 Feb 2022 18:34:49 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Anders Roxell <anders.roxell@linaro.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] of: unittest: print pass messages at same loglevel
+ as fail
+Message-ID: <YgRdqe0+8fqSYi2T@robh.at.kernel.org>
+References: <20220203211150.2912192-1-frowand.list@gmail.com>
+ <CAL_JsqKMZWMtvdTvYHmWkd5CmehKJexJVv_BUBENrMPOf002+w@mail.gmail.com>
+ <24652725-91d8-9db4-e14a-e1bb5ded87b1@gmail.com>
 MIME-Version: 1.0
-References: <20211006224659.21434-1-digetx@gmail.com> <20211006224659.21434-4-digetx@gmail.com>
- <YWimShkkxkR+bQLK@robh.at.kernel.org> <CAODwPW-2othAhTC9a_joBdHScA86iqs-FkZJZDrK5LxrJm8F8Q@mail.gmail.com>
- <d69f99ed-75a4-9b8c-addb-3eaa2b2be6a6@canonical.com> <CAODwPW-AMqQ+ZbnvUTuxP5Bbxdcy08GSXnhcLC+V6BW=OPYaqg@mail.gmail.com>
- <6568fd31-113f-1581-4eff-45a4a1eb4e5d@canonical.com> <c33c9de2-ff0f-0ba7-b424-728d316dcca2@gmail.com>
-In-Reply-To: <c33c9de2-ff0f-0ba7-b424-728d316dcca2@gmail.com>
-From:   Julius Werner <jwerner@chromium.org>
-Date:   Wed, 9 Feb 2022 16:32:25 -0800
-Message-ID: <CAODwPW-VfbvWs3OVON1m=WWFXN2V86o9jqurVDShpfTrSn=Mkw@mail.gmail.com>
-Subject: Re: [PATCH v5 3/9] dt-bindings: memory: lpddr2: Add revision-id properties
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Julius Werner <jwerner@chromium.org>,
-        Rob Herring <robh@kernel.org>, linux-tegra@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <24652725-91d8-9db4-e14a-e1bb5ded87b1@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> I don't mind, but I also don't see where the revision-id property of
-> LPDDR3 is used at all. I can't find any device-tree with LPDDR3
-> revision-id and don't see it being used in the code either. Maybe it's
-> the LPDDR3 binding that needs to be changed?
+On Thu, Feb 03, 2022 at 09:41:45PM -0600, Frank Rowand wrote:
+> On 2/3/22 3:40 PM, Rob Herring wrote:
+> > On Thu, Feb 3, 2022 at 3:12 PM <frowand.list@gmail.com> wrote:
+> >>
+> >> From: Frank Rowand <frank.rowand@sony.com>
+> >>
+> >> Printing the devicetree unittest pass message for each passed test
+> >> creates much console verbosity.  The existing pass messages are
+> >> printed at loglevel KERN_DEBUG so they will not print by default.
+> >>
+> >> Change default to print the pass messages at the same loglevel as
+> >> the fail messages.
+> >>
+> >> The test community expects either a pass or a fail message for each
+> >> test in a test suite.  The messages are typically post-processed to
+> >> report pass/fail results.
+> >>
+> >> Suppressing printing the pass message for each individual test is
+> >> available via the kernel command line parameter unittest.hide_pass.
+> >>
+> >> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+> >> ---
+> >>  Documentation/admin-guide/kernel-parameters.txt |  4 ++++
+> >>  drivers/of/unittest.c                           | 17 ++++++++++++++++-
+> >>  2 files changed, 20 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+> >> index f5a27f067db9..045455f9b7e1 100644
+> >> --- a/Documentation/admin-guide/kernel-parameters.txt
+> >> +++ b/Documentation/admin-guide/kernel-parameters.txt
+> >> @@ -5997,6 +5997,10 @@
+> >>                         Note that genuine overcurrent events won't be
+> >>                         reported either.
+> >>
+> >> +       unittest.hide_pass
+> > 
+> > Can we rename the module name to include 'dt' so we're not taking a
+> > generic name.
+> 
+> I got most of the way through writing a reply to the various questions, then got to
+> the point where my answer to a specific question ended up being something to the
+> effect of: "this line of code (where a change was suggested) will end up being
+> replaced when I convert the unittest messages to KTAP format".
+> 
+> Then I got sidelined by going back and re-reading the KTAP specification email
+> thread from August, then discovering that there is also a patch submission email
+> thread from December where a KTAP specification is accepted into the kernel tree.
+> 
+> Being KTAP compliant does not allow for suppressing the individual test pass
+> messages, so I think I should just drop my desire to be able to do so.  That
+> would reduce this patch to a one line change to print the pass messages at the
+> same loglevel as the fail messages.  And I would prefer to not worry about
+> whether the pass message is 'pass' vs 'PASS' since that text will get replaced
+> by the KTAP syntax anyway.
+> 
+> Would you be ok with that one line patch?
 
-We are using the revision ID in userspace (read through
-/proc/device-tree) for runtime memory identification. We don't have a
-kernel driver bound to it. Our boot firmware is inserting this value
-at runtime into the FDT (that's basically the reason we have this, our
-firmware auto-detects memory during boot and we use the FDT to report
-what it found to userspace), that's why you can't find it anywhere in
-the static device trees in boot/dts/.
+At info level, yes. If not, how soon until using ktap syntax?
 
-> I made each LPDDR2 revision-id property to correspond to a dedicated MR
-> of LPDDR, which feels okay to me to since it matches h/w.
-
-I'm not super married to my solution, so if that makes things easier
-we can standardize on the two-property version as well. I mostly
-designed it my way because I thought we may one day also want to do
-something like this for the 8-byte LPDDR5 serial-id, and then it would
-get kinda cumbersome to have serial-id1 through serial-id8 all as
-separate properties. But that's also a bridge we can cross when we get
-there.
-
-My use case is in a position where we could still change this now
-without requiring backwards-compatibility. Krzysztof, would you be
-okay if I instead changed the "jedec,lpddr3" to the same thing
-"jedec,lpddr2" does -- seeing as the original patch was from me, my
-use case could handle the switch, there has never been any actual
-kernel code using the property, and it seems very unlikely that anyone
-else has silently started using the same thing in the time it's been
-in the tree? Or do we also need to go the official deprecation route
-for that?
+Rob
