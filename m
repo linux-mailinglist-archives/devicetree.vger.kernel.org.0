@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F5D64B02CD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 03:01:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D1E04B02D0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 03:01:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234534AbiBJB7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 20:59:20 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:36658 "EHLO
+        id S233812AbiBJB6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 20:58:18 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:60092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234394AbiBJB7K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 20:59:10 -0500
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B93C72B6BD
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 17:47:12 -0800 (PST)
-Received: by mail-oi1-x22b.google.com with SMTP id r27so4480029oiw.4
-        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 17:47:12 -0800 (PST)
+        with ESMTP id S233403AbiBJB5W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 20:57:22 -0500
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6745B2BB3B
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 17:55:14 -0800 (PST)
+Received: by mail-oo1-xc30.google.com with SMTP id o128-20020a4a4486000000b003181707ed40so4625823ooa.11
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 17:55:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=8+Nru2NcToVw10SMtgwpUUD5V5gNRuUchLBb5mwzcTo=;
-        b=TXHV4iS/LnExFOG16+ujTQmMvV1cNm5vPFzItoWZDg8A8T/YPbRQnR5VB+jSEMaxFU
-         Pt/WKTUgnSrBXxgCyeIzvTEs7ZzqHTpju3FkNOxVi1T4xx3SI1l6pK+TLwjynJqb/OSP
-         R19+UJ4qOCkEjvQcpQOFlPTR99isRfg19NWdQ=
+        bh=dlJhRUB01qZhsIVXIk2dwYqihYxKbJJNnkUeg5WkvEQ=;
+        b=jqEM46I7RIpOv6Dkxw9TpDQEzfSMQUsHfWjfCF5R1hPNJotrhb4Hfvk9+dGhmfKApj
+         +tj8cpWNtVh8qXkYopCvZcUdjJsZe3FyUvDPDzzCXvx+Oqb6TBj6gc/T9MGLB2oTBy5K
+         rXt8rxgL2hjvC7PB90SynvANEC3ghpyWEBImk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=8+Nru2NcToVw10SMtgwpUUD5V5gNRuUchLBb5mwzcTo=;
-        b=i18m6k11+IeDlnmQIqCEtfe/MaYdq+t+oqQwcRMirTasxzMxd1rPGSuNtALxxVSQyt
-         /xTw/lZDl3MEGdd7Ut+n9bBiJ89EyNfV82/iOm9kuD4xS06WilFJucrAXYsyEcWo/cdS
-         yuIw+lU8fzdQ2Eo7QtAwx+sXm1MSvapsu6tXVCinW9DOrd8kzq/B9qO62EzEaS/wDQM9
-         kQYPP8P1k8t0dcC0SX1XoTy8HKNJ6F7nFzkqco0k+APQZU9WC4qz32EhivapC3bXN1K1
-         KwE6xZFFoskB9E3pcSuouLDaw0of5rkIjXaSQHc9LAJzVK+ytF2c7TFTT2k8OKZlZ9KU
-         RXLA==
-X-Gm-Message-State: AOAM531pW7YJo/cEMVOC/oaBuJaWelejBPpfLt0KFRjxW+zJNrHcFA/l
-        /XNL/7/5gi495EdtTolkiXg4iaGUYVqpT5oQcsTr8nnHo9w=
-X-Google-Smtp-Source: ABdhPJziJIFTknz84SWo9mVGHh0qE57URGU8n7DntwMHca8it42Jy2AZliHDBlgXQCx9Gscxm97mfnNa5Z0YJT9CftY=
-X-Received: by 2002:a05:6870:d413:: with SMTP id i19mr1648649oag.54.1644451410730;
- Wed, 09 Feb 2022 16:03:30 -0800 (PST)
+        bh=dlJhRUB01qZhsIVXIk2dwYqihYxKbJJNnkUeg5WkvEQ=;
+        b=In18JP2eb2LFPyQJHJ0oRU2dbZX1rtT1YlOovF+w/N7Ml6LH6o1PqY11iXaUXJDmHL
+         UB5XXJibxXZ0BFOCcJOvXBPbcIglIoZe0TVBy9VoWP31slvhE19IWRNdc3Ip6NjaPYv0
+         xLba0CGxAniFb6ms8i3jTnOCp2TZdWZ8AUqmykx//HiG3uk0d6AqFNYLO2FZ3poHh3ol
+         CxOcQyI3+m56ZllGmRcuE/okGXkfyzra9P14NsbLYwKGq5NNyL8DWGJ8FDlnlFsDLXhW
+         skTlcVze/WZNBWBqADc9kP7nQclOYnaIilr/hC+2HreYy71l2OvPtXUJLdstTSdjlmPt
+         N9hA==
+X-Gm-Message-State: AOAM532j+KbJUudIAzYDr8hWFKFKmsT8TdKG8Z4hTIfhlMQwWSQmTEsd
+        KG95ep68ROaDPtjallIAyZEc1ZyWhJPD6rGJ5Ral+WbK0Xo=
+X-Google-Smtp-Source: ABdhPJzKZSUzft7pAYTMnnD+ET8CryZqIpC5vdW5rpze6mP8SDxIf5u1xXG74DImb5hLX73mc2qCjE47u65UInz2yIk=
+X-Received: by 2002:aca:df82:: with SMTP id w124mr2220442oig.112.1644451553163;
+ Wed, 09 Feb 2022 16:05:53 -0800 (PST)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 9 Feb 2022 16:03:30 -0800
+ HTTPREST; Wed, 9 Feb 2022 16:05:52 -0800
 MIME-Version: 1.0
-In-Reply-To: <a1c2a7e6-8d76-6ee6-4bc4-e7ea8013af02@quicinc.com>
+In-Reply-To: <c17e95f7-9c42-657a-8525-3937d4b27fb8@quicinc.com>
 References: <1644334454-16719-1-git-send-email-quic_srivasam@quicinc.com>
- <1644334454-16719-4-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n50jBeOnkpogPFm+zqTf8bqQs-Bo0Gma658uFE6aA=Edxg@mail.gmail.com> <a1c2a7e6-8d76-6ee6-4bc4-e7ea8013af02@quicinc.com>
+ <1644334454-16719-3-git-send-email-quic_srivasam@quicinc.com>
+ <CAE-0n52LGY2amCKo+40D4BoSsANs7JeQ0t_4QfeXNC5q64Ccwg@mail.gmail.com> <c17e95f7-9c42-657a-8525-3937d4b27fb8@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Wed, 9 Feb 2022 16:03:30 -0800
-Message-ID: <CAE-0n52LqrdLXk4=WMQY3WXVYLjpwXH+FP2z71gKMAkjiPR4Xg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc7280: Add wcd9380 pinmux
+Date:   Wed, 9 Feb 2022 16:05:52 -0800
+Message-ID: <CAE-0n51o3ohrVO-HCeVOTz=JwePA63yMrNpFsY4sFOiv6rQwEA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc7280: add lpass lpi pin
+ controller node
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         agross@kernel.org, bjorn.andersson@linaro.org,
         devicetree@vger.kernel.org, dianders@chromium.org,
@@ -70,38 +71,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-02-09 06:26:58)
+Quoting Srinivasa Rao Mandadapu (2022-02-09 06:01:21)
 >
-> On 2/9/2022 2:42 AM, Stephen Boyd wrote:
-> > Quoting Srinivasa Rao Mandadapu (2022-02-08 07:34:14)
-> >
-> >> +                       pins = "gpio83";
-> >> +                       function = "gpio";
-> >> +                       drive-strength = <16>;
-> >> +                       output-high;
-> >> +       };
+> On 2/9/2022 2:41 AM, Stephen Boyd wrote:
+> > Quoting Srinivasa Rao Mandadapu (2022-02-08 07:34:13)
+> >> +                       data {
+> >> +                               pins = "gpio7";
+> >> +                               function = "dmic1_data";
+> >> +                               drive-strength = <8>;
+> >> +                               input-enable;
+> >> +                       };
+> >> +               };
 > >> +
-> >> +       wcd938x_reset_sleep: wcd938x_reset_sleep {
-> >> +                       pins = "gpio83";
-> >> +                       function = "gpio";
-> >> +                       drive-strength = <16>;
-> >> +                       bias-disable;
-> >> +                       output-low;
-> > Why doesn't the device drive the reset gpio by requesting the gpio and
-> > asserting and deasserting it? We shouldn't need to use pinctrl settings
-> > to toggle reset gpios.
-> Okay. Verified without these nodes and didn't see any impact. But
-> similar way it's mentioned in sm8250-mtp.dts. Could You please suggest
-> on it how to go ahead on this?.
+> >> +               dmic01_sleep: dmic01-sleep-pins {
+> >> +                       clk {
+> >> +                               pins = "gpio6";
+> >> +                               function = "dmic1_clk";
+> >> +                               drive-strength = <2>;
+> >> +                               bias-disable;
+> >> +                               output-low;
+> >> +                       };
+> >> +
+> >> +                       data {
+> >> +                               pins = "gpio7";
+> >> +                               function = "dmic1_data";
+> >> +                               drive-strength = <2>;
+> >> +                               pull-down;
+> >> +                               input-enable;
+> > Why does input-enable matter? It's not a gpio.
+> Actually the same is fallowed in sm8250.dtsi. Verified without it and
+> working fine. Need take call on it.
 
-I'd expect the wcd938x codec device node to have a 'reset-gpios'
-property like
-
-	reset-gpios = <&tlmm 83 GPIO_ACTIVE_LOW>
-
-and then the driver to request that gpio via
-
-	reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-
-so it gets the gpio during driver probe. Then the gpio can be deasserted
-during suspend and reasserted on resume, if that's even important?
+Is that because the pin is already an input by default? What does gpio
+debugfs say for this pin? Does it also work if you make it
+output-low/output-high here? I thought that the gpio itself isn't muxed
+out to the pad unless the function is "gpio" so I hope the input/output
+settings have no effect here.
