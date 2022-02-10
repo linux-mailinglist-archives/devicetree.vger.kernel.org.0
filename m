@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D1E04B02D0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 03:01:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4963F4B0300
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 03:06:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233812AbiBJB6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 20:58:18 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:60092 "EHLO
+        id S229711AbiBJCBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 21:01:38 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:60030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233403AbiBJB5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 20:57:22 -0500
-Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6745B2BB3B
-        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 17:55:14 -0800 (PST)
-Received: by mail-oo1-xc30.google.com with SMTP id o128-20020a4a4486000000b003181707ed40so4625823ooa.11
-        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 17:55:14 -0800 (PST)
+        with ESMTP id S234263AbiBJCAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 21:00:15 -0500
+Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E68572BB16
+        for <devicetree@vger.kernel.org>; Wed,  9 Feb 2022 17:50:39 -0800 (PST)
+Received: by mail-ua1-x930.google.com with SMTP id r8so2295058uaj.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Feb 2022 17:50:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=dlJhRUB01qZhsIVXIk2dwYqihYxKbJJNnkUeg5WkvEQ=;
-        b=jqEM46I7RIpOv6Dkxw9TpDQEzfSMQUsHfWjfCF5R1hPNJotrhb4Hfvk9+dGhmfKApj
-         +tj8cpWNtVh8qXkYopCvZcUdjJsZe3FyUvDPDzzCXvx+Oqb6TBj6gc/T9MGLB2oTBy5K
-         rXt8rxgL2hjvC7PB90SynvANEC3ghpyWEBImk=
+        bh=0jP63mve8H7yBEGolFIfscf414Fuk0ZZChDlzPkF8fg=;
+        b=FK4YaRssCrYX/rQURcgTQV1W9baUIrKwtFGR4CVDIH672hMCO35bwfWKPKDo8tLtVL
+         04faMa/bqsL8ivTGG7yNy3ilyPX8CtsauYYehwEHEZkZ2L/g5CetNv4fKEtRS8m1mgWq
+         qHBqDa11EblbK+mJYR8WWjxh2YvLpRD9NtzPM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=dlJhRUB01qZhsIVXIk2dwYqihYxKbJJNnkUeg5WkvEQ=;
-        b=In18JP2eb2LFPyQJHJ0oRU2dbZX1rtT1YlOovF+w/N7Ml6LH6o1PqY11iXaUXJDmHL
-         UB5XXJibxXZ0BFOCcJOvXBPbcIglIoZe0TVBy9VoWP31slvhE19IWRNdc3Ip6NjaPYv0
-         xLba0CGxAniFb6ms8i3jTnOCp2TZdWZ8AUqmykx//HiG3uk0d6AqFNYLO2FZ3poHh3ol
-         CxOcQyI3+m56ZllGmRcuE/okGXkfyzra9P14NsbLYwKGq5NNyL8DWGJ8FDlnlFsDLXhW
-         skTlcVze/WZNBWBqADc9kP7nQclOYnaIilr/hC+2HreYy71l2OvPtXUJLdstTSdjlmPt
-         N9hA==
-X-Gm-Message-State: AOAM532j+KbJUudIAzYDr8hWFKFKmsT8TdKG8Z4hTIfhlMQwWSQmTEsd
-        KG95ep68ROaDPtjallIAyZEc1ZyWhJPD6rGJ5Ral+WbK0Xo=
-X-Google-Smtp-Source: ABdhPJzKZSUzft7pAYTMnnD+ET8CryZqIpC5vdW5rpze6mP8SDxIf5u1xXG74DImb5hLX73mc2qCjE47u65UInz2yIk=
-X-Received: by 2002:aca:df82:: with SMTP id w124mr2220442oig.112.1644451553163;
- Wed, 09 Feb 2022 16:05:53 -0800 (PST)
+        bh=0jP63mve8H7yBEGolFIfscf414Fuk0ZZChDlzPkF8fg=;
+        b=vQ8YX/+I/as28lGrP078F6j2Fd3SD61mhvt019T1ATbTg1WcC4AUGSoE0W8SJaV5K4
+         tTM2yUENJPgC38rLkaEPOckCS5ileK8CEYm0TklDwuN39ZOBs2TRxjwYD9YQ3iaTTtbi
+         2fRwbSf4/ThfLvvhAXDMJAst0vufdTaw8zjwWR3b8R7X0kkxVRNy8IougkizchvEF0BI
+         xwJ0FvNz1ChXq9ZDlcGfMrN1hd03EYE2DAo68TVaR5D6xWwkFLihuT9Tg2Xh8bkZFVo/
+         kCTzQAMPV7PYRxIg9bJyNyfgOkXhlPkqh1XMnm/RCYyB62YD6yZoSm8JwKocWUxqoSju
+         idOg==
+X-Gm-Message-State: AOAM530qOCJmHOPfpVtKKPbFQmJUcsp5ioROQ7U13Ta+L8BKr/0xjNHh
+        iSZ6mMt9o07Av1XxZ9o0PiMbm88LNv7IZDitsFCm/mWddnw=
+X-Google-Smtp-Source: ABdhPJxBNYckVAU5af+ocW3WmiCXFblNyx2pqrI/7GNXk2TZNNX8HLoZNfZLakpxuuOxommIU6+LK22M5EfyBLvATMw=
+X-Received: by 2002:a05:6830:1489:: with SMTP id s9mr2002170otq.126.1644451654382;
+ Wed, 09 Feb 2022 16:07:34 -0800 (PST)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 9 Feb 2022 16:05:52 -0800
+ HTTPREST; Wed, 9 Feb 2022 16:07:33 -0800
 MIME-Version: 1.0
-In-Reply-To: <c17e95f7-9c42-657a-8525-3937d4b27fb8@quicinc.com>
+In-Reply-To: <30805a84-b523-842c-d223-bc0d2043fa00@quicinc.com>
 References: <1644334454-16719-1-git-send-email-quic_srivasam@quicinc.com>
- <1644334454-16719-3-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n52LGY2amCKo+40D4BoSsANs7JeQ0t_4QfeXNC5q64Ccwg@mail.gmail.com> <c17e95f7-9c42-657a-8525-3937d4b27fb8@quicinc.com>
+ <1644334454-16719-2-git-send-email-quic_srivasam@quicinc.com>
+ <CAE-0n50PAtGfvHXjNrvQYe6edNEfJvEc1uYZFUeW2KHxn6fsBA@mail.gmail.com> <30805a84-b523-842c-d223-bc0d2043fa00@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Wed, 9 Feb 2022 16:05:52 -0800
-Message-ID: <CAE-0n51o3ohrVO-HCeVOTz=JwePA63yMrNpFsY4sFOiv6rQwEA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc7280: add lpass lpi pin
- controller node
+Date:   Wed, 9 Feb 2022 16:07:33 -0800
+Message-ID: <CAE-0n538CdY3a64jG556se=AhgJpXr_oENG_spGM29c5gdQRYQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sc7280: Add pinmux for I2S
+ speaker and Headset
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         agross@kernel.org, bjorn.andersson@linaro.org,
         devicetree@vger.kernel.org, dianders@chromium.org,
@@ -63,7 +63,7 @@ Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,39 +71,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-02-09 06:01:21)
+Quoting Srinivasa Rao Mandadapu (2022-02-09 05:42:40)
 >
-> On 2/9/2022 2:41 AM, Stephen Boyd wrote:
-> > Quoting Srinivasa Rao Mandadapu (2022-02-08 07:34:13)
-> >> +                       data {
-> >> +                               pins = "gpio7";
-> >> +                               function = "dmic1_data";
-> >> +                               drive-strength = <8>;
-> >> +                               input-enable;
-> >> +                       };
-> >> +               };
-> >> +
-> >> +               dmic01_sleep: dmic01-sleep-pins {
-> >> +                       clk {
-> >> +                               pins = "gpio6";
-> >> +                               function = "dmic1_clk";
-> >> +                               drive-strength = <2>;
-> >> +                               bias-disable;
-> >> +                               output-low;
-> >> +                       };
-> >> +
-> >> +                       data {
-> >> +                               pins = "gpio7";
-> >> +                               function = "dmic1_data";
-> >> +                               drive-strength = <2>;
-> >> +                               pull-down;
-> >> +                               input-enable;
-> > Why does input-enable matter? It's not a gpio.
-> Actually the same is fallowed in sm8250.dtsi. Verified without it and
-> working fine. Need take call on it.
+> On 2/9/2022 2:38 AM, Stephen Boyd wrote:
+> > Quoting Srinivasa Rao Mandadapu (2022-02-08 07:34:12)
+> >>   &qspi_cs0 {
+> >>          bias-disable;
+> >> @@ -491,6 +524,13 @@
+> >>   };
+> >>
+> >>   &tlmm {
+> >> +       amp_en: amp-en {
+> >> +               pins = "gpio63";
+> >> +               function = "gpio";
+> >> +               bias-disable;
+> > Is there an external pull?
+> I think no external pull. In trogdor mentioned bias-pull-down but you
+> suggested to remove it.
 
-Is that because the pin is already an input by default? What does gpio
-debugfs say for this pin? Does it also work if you make it
-output-low/output-high here? I thought that the gpio itself isn't muxed
-out to the pad unless the function is "gpio" so I hope the input/output
-settings have no effect here.
+Maybe on trogdor there was an external pull inside the amp that this pin
+is connected to? Usually we have a comment like /* Has external
+pull-{up,down} */ so please add that here depending on which way the
+pull goes.
