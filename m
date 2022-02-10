@@ -2,114 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99DCA4B081B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 09:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 078BE4B085D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 09:32:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237323AbiBJI0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 03:26:24 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57710 "EHLO
+        id S237492AbiBJIc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 03:32:27 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237267AbiBJI0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 03:26:23 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BED50109E;
-        Thu, 10 Feb 2022 00:26:24 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id y3so13484705ejf.2;
-        Thu, 10 Feb 2022 00:26:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=yMHDyZywBQd4qMNkOk8QdP2+6QiKb0trxcrPY+YQbc4=;
-        b=njgqt5Nj5PmminE0N6pUUfw9Lfk2kRzztnY5MzbS4OAamt4Ex61GJBcWaWTHZqnR60
-         NPVyuZSsGMMksKLVbbnkVga3AwAiFM381T8penb0vHzc0xfk+x4GBTD3EoHzYoaDLPge
-         cNK5S4F54gPZ0JDk4BOUVOjC9iL2UuBwVCSWHkexnogkx20jZdhgj7DSVibOZbbStq99
-         /PlLs1jXH50MMx37dZpwHbtzVSoYqJ5ZHX7dLDv08Kv+fQU6/KoXcxgsbdVnHJrNPFwU
-         MxOuicrLyUag7gFEk9+bA5KIGDHhXVIruUEc7IP+lKJRLrhjvkc+cmiChBtGQSIM6Wo7
-         j1cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=yMHDyZywBQd4qMNkOk8QdP2+6QiKb0trxcrPY+YQbc4=;
-        b=Ksancc8GKT11G+0w4c4EsGhvHtrhafI3saCQh1QoJ+/cFoAuo1m4R9ntnQjSP0ZPao
-         Tyy/W2f+2vXBCQgmMTwvhPw3Agxe22IU6FwEbdRjr1vNxl6xuHVR31i0r7uoyVFZgguG
-         pNZ758KC8i3gn5V3+Z8Yj1jxuER0iELrPcbelkBUbtlpSlMHScX+SxSPB0bdxXmsWv/p
-         JzpSmf6q0H9Fgxy+/Oht45yRLLQq+N3IGzqQajE8JT/BhHLQZXbA/TcpaAolBDIeker0
-         W8JKt9BKUA34mqFvNB+jf2MWMZdogFn65fZQo6tLeL1NKgYzvhVZBwIN2Z+SeBdHAQyC
-         +bzA==
-X-Gm-Message-State: AOAM533+B5B1xxlTBKWadfU3Em+nlx7AEE5PvDgIUOE0IkWj27XFjiHA
-        I0SBb7IiPK/B8KSMxs0QWOY=
-X-Google-Smtp-Source: ABdhPJy2aJBdHEv7yXFSHSWwQi9rBTIFJ3j4Ilx4K+6p/rvSfIY2fclFlF8scT3AreCRJkaecWgQLQ==
-X-Received: by 2002:a17:907:7207:: with SMTP id dr7mr5412184ejc.500.1644481583146;
-        Thu, 10 Feb 2022 00:26:23 -0800 (PST)
-Received: from ?IPv6:2001:a61:259f:9401:c29b:34d:c30:c5de? ([2001:a61:259f:9401:c29b:34d:c30:c5de])
-        by smtp.gmail.com with ESMTPSA id t8sm3573172eji.94.2022.02.10.00.26.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Feb 2022 00:26:22 -0800 (PST)
-Message-ID: <9cd8a336ed31eaf6bea2ad53f185abac22dc8474.camel@gmail.com>
-Subject: Re: [PATCH v5 1/4] iio:frequency:admv1014: add support for ADMV1014
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
-        robh+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Thu, 10 Feb 2022 09:26:21 +0100
-In-Reply-To: <YgOtN+wha+j3ZFIO@smile.fi.intel.com>
-References: <20220131100102.15372-1-antoniu.miclaus@analog.com>
-         <Yf7AjXsRuhFeFTpD@smile.fi.intel.com>
-         <e59fce3747428f30afdf77f9839910664e3e8524.camel@gmail.com>
-         <YgOtN+wha+j3ZFIO@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.3 (3.42.3-1.fc35) 
+        with ESMTP id S233095AbiBJIcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 03:32:24 -0500
+Received: from wnew3-smtp.messagingengine.com (wnew3-smtp.messagingengine.com [64.147.123.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C19C21A7;
+        Thu, 10 Feb 2022 00:32:18 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailnew.west.internal (Postfix) with ESMTP id 7B0702B000CD;
+        Thu, 10 Feb 2022 03:32:14 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Thu, 10 Feb 2022 03:32:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; bh=C/eXBq+gZ62G9kCMbvxgHoY4HT9QFjd3I7LMc4
+        VqqdY=; b=ituAnSye7hGbmYW3uz3PGJC/qkvsI6a0H7OYi91PGWs9Ry6Qj2o6+7
+        psPYX0O2MqlDtPKNXTiRKevzPRkk4l0CIRT3qkbgki6IkAW+hRpR2Opm+yzVXSaD
+        uOJFMlzi6xI2S8OIriSyt+RK5x7bZRBbNVLpyLyr5O4Moo/JFi0KPeFd3Z2geDS8
+        /u4s9cJIsI/1fLMJOlg9FesN0+5VSGp5+ARJJRKvZiZJ1+15zTay28R8aAu3eRkd
+        O9UFCfxlzEDrf6PF8ynXjSxV4wSwTUEmA/h154NtuXdun+KiCAjrTWUzE5PTum5V
+        NtGpKWRWr1/ozBFPIRUhHJQ29QUgy26A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=C/eXBq+gZ62G9kCMb
+        vxgHoY4HT9QFjd3I7LMc4VqqdY=; b=OlRhPlrktWnn293Ix4vniS4/TLrLc8A9e
+        zftKBpJXIKOiwP4FIvhRs7i960W1CnbFhPTrRUpcMbi2KiMCdSKr851NzmpalL0N
+        oDUu6lLMjDQ5kN6awAKk+AqjIKq6tHdVeyW9IkHiwgCoFMH5ciIwryXV1mkRpjGb
+        mrtioo5DaxLttoviThNTvUY42WxOlAMnMJ+vJkdnslgU06nlW3SBbTg2P3VuoArZ
+        F9wMdcXEw1M1NzgddGF1fuo5T1XEKKCCdiDoUkPJtEm/bVucC8xXQUhMiVrqvnXw
+        lhdRHvRLnjv40vrcRxbufaHFlABeZyrl49qsN6x1hVDy0zmOeAUcA==
+X-ME-Sender: <xms:jM0EYk1qx-1espsy7K0VZIF62yd7Em3ylB3xSK4ORcYGZfAQGsM3qw>
+    <xme:jM0EYvGMW3SOp_Jd_d_Mau5ua01fK_Dnr_BON3ijKKpfDxbZY8P77M5gWIdM2xyaS
+    4qxS-9SfqTNNU36VZM>
+X-ME-Received: <xmr:jM0EYs7gJ6_UeLuTxMeB_ukS3Jdo2H50RxgWlwg3a5tIUuXnP9jl7i14niIVdl9ksuvtmQSPvz7xMTmGLGz6hjmpgFIHFQs1d9qpmpI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddriedtgdduudelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:jM0EYt03v46yxj4pMbCbQ2-2VwqTMarEfzts0AZ1o8mvPQ8jnEqP6A>
+    <xmx:jM0EYnEbm_Ww5VF2fUbKnSDH_U-52OqCSWUqelDYYn76dAsjSH1Esg>
+    <xmx:jM0EYm_RxLik0gCOuGd1caX0waikq_oeNaM_y9tgvpxlyDgd8qp5LQ>
+    <xmx:js0EYoLBi4qU5l70RxzFJfsXtDvMU8D5FsJavd0OxYmqJU4lyn39smTPvtU>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 10 Feb 2022 03:32:11 -0500 (EST)
+Date:   Thu, 10 Feb 2022 09:32:09 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        Mark Brown <broonie@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH v2 0/4] drm/tiny: Add driver for Solomon SSD1307 OLED
+ displays
+Message-ID: <20220210083209.c7r32rn2s22342ov@houat>
+References: <20220204134347.1187749-1-javierm@redhat.com>
+ <CAMuHMdVTVX7LFay-rfv=oW96dMA24duMUVGRE62jQSNkrKtyMg@mail.gmail.com>
+ <f178de92-7cb1-dcc5-1f60-9ccfc56bc0a4@redhat.com>
+ <YgPF1cBMsd9973Dx@smile.fi.intel.com>
+ <CAMuHMdXQdL_Do8Hjay1egfmd9H05R7BjNeKfLGq67mU4bQNVZA@mail.gmail.com>
+ <f58b2608-0d51-3209-ae11-18bdac19dd66@redhat.com>
+ <YgPef3s5+AMqWpSH@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yujxwkbg7rlinnus"
+Content-Disposition: inline
+In-Reply-To: <YgPef3s5+AMqWpSH@smile.fi.intel.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-02-09 at 14:01 +0200, Andy Shevchenko wrote:
-> On Mon, Feb 07, 2022 at 09:29:54PM +0100, Nuno Sá wrote:
-> > On Sat, 2022-02-05 at 20:23 +0200, Andy Shevchenko wrote:
-> > > On Mon, Jan 31, 2022 at 12:00:59PM +0200, Antoniu Miclaus wrote:
-> > > > The ADMV1014 is a silicon germanium (SiGe), wideband,
-> > > > microwave downconverter optimized for point to point microwave
-> > > > radio designs operating in the 24 GHz to 44 GHz frequency
-> > > > range.
-> > > 
-> > > Excellent job!
-> > > A few comments / questions below.
-> > > 
-> > > ...
-> > > 
-> > > > +config ADMV1014
-> > > > +       tristate "Analog Devices ADMV1014 Microwave
-> > > > Downconverter"
-> > > > +       depends on SPI && COMMON_CLK && 64BIT
-> > > 
-> > > Why 64BIT only?
-> > 
-> > Could not resist on this one... The thing is that CCF uses unsigned
-> > long for rates and this part operates in high GHz values. That
-> > means,
-> > as CCF stands, this cannot work on 32bit.
-> 
-> I read it a bit differently, i.e. CCF has a bug that needs to be
-> addressed.
-> 
 
-Totally agreed...
+--yujxwkbg7rlinnus
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-However, this can be something that might take time
-to support in CCF (I definetly have plans to send a RFC to, at least,
-start the discussion around this) so I guess we can already support
-this device like this. I believe this is somethig straight to remove
-as soon as CCF works in 32bit archs for high speed devices...
+On Wed, Feb 09, 2022 at 05:32:15PM +0200, Andy Shevchenko wrote:
+> On Wed, Feb 09, 2022 at 03:42:16PM +0100, Javier Martinez Canillas wrote:
+> > On 2/9/22 15:27, Geert Uytterhoeven wrote:
+>=20
+> ...
+>=20
+> > Now, this is a reason why I mentioned that the old fbdev driver shouldn=
+'t
+> > be removed yet.
+>=20
+> I agree on this conclusion.
+>=20
+> I think based on the fbtft resurrection discussion I can send a new versi=
+on
+> to unorphan it, route via fbdev, and leave under staging, so it will be a
+> compromise between all stakeholders.
 
-- Nuno Sá
+The DT bindings still don't belong anywhere in the main tree.
+
+Maxime
+
+--yujxwkbg7rlinnus
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYgTNiQAKCRDj7w1vZxhR
+xWgfAP9c/WNFJ2bN5djje6UoeI3NdmGyqQqkH/nOSnKreJjVggEAlkkecUX+M/D1
+o4NAxYKHGIWb/kzHxeNo7yoVXMbVaw4=
+=H8/+
+-----END PGP SIGNATURE-----
+
+--yujxwkbg7rlinnus--
