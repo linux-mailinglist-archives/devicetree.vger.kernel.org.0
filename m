@@ -2,119 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 722004B11EF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 16:45:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D0DA4B1223
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 16:55:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243730AbiBJPpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 10:45:00 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37980 "EHLO
+        id S243819AbiBJPzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 10:55:02 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239919AbiBJPpA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 10:45:00 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 331AE19B;
-        Thu, 10 Feb 2022 07:45:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D303CB80E2D;
-        Thu, 10 Feb 2022 15:44:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53BA0C340EB;
-        Thu, 10 Feb 2022 15:44:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644507898;
-        bh=tcl66m9Pi0D6zW1GvnbKz/Fb0slEi4cV3BgHGCGw1yo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lE97eKgNjYwGCiobK05Z8Ap9Ibw77Zcf+0ANds4J/2F5yD3MCe3nLMe7+pNmMo3Rg
-         E2B3Vk7Kp3anyN3d9767DhDjMJzTeZSm2AapNMQT7GgLsyzSkxbRUsECJHg7Gw/hLm
-         SxQZEORQcwSOsOkifILpT8X/qUwyhVz8lKXOmaWTlEd4og2GwujiMm10okfprFjFT+
-         gGSpy3YneHmax3WcMG4cIlu+tSp4D3QiJj0cZagiGizgKPR+MB+exhlcMKCqT6ULMg
-         3XmYA6PIXl3QeyRLMSkYOYaGqrU/JJkSzteZsuijpYAVnfH6hRmfuZt1SYHECxsbMK
-         GWIHYybw+FiYA==
-Date:   Thu, 10 Feb 2022 15:44:52 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linus.walleij@linaro.org, Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: i2c: qcom-cci: add description of a
- vbus-supply property
-Message-ID: <YgUy9KMXocSqnv7b@sirena.org.uk>
-References: <20220203164629.1711958-3-vladimir.zapolskiy@linaro.org>
- <Yf1q+wlXo2LAeZX+@ripper>
- <Yf1zhojUSxlMNZgV@sirena.org.uk>
- <Yf14LADJ26G9ByZu@ripper>
- <Yf1/X1rXm4QbyoFN@sirena.org.uk>
- <846cdc17-891d-2ee4-fc89-7cf6fbdebc1d@linaro.org>
- <YgEvN0lXXu4lDCN5@sirena.org.uk>
- <682b7ffe-e162-bcf7-3c07-36b3a39c25ab@linaro.org>
- <YgJoX+Ajgt4dweQJ@sirena.org.uk>
- <CAA8EJppEjFqPUBXtdkTsx2U2CjsrjNsXEmrx_DkAS9a9jmB9cg@mail.gmail.com>
+        with ESMTP id S243825AbiBJPzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 10:55:02 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C9A6C2B
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 07:55:02 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id d27so10381304wrc.6
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 07:55:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gQDU3n0e11Xg2+7UZznvauAxifO/32EZJQ/CMSCp/cs=;
+        b=V844y5pKhCA2MbojDtVXu5FIu2uj/NkVHCvk21W67ci8RQSvzBPLQibKTq8ndC8xEp
+         /6lFy/eeOsQImxXKw4UhBgi94Da2VYfKMRMvMIZ3LbEswFXqmKr/89BLMVY3DQf0C5gn
+         jpfdPnfo81LkkCtqF4O41kjXgdEKa7EWh4gFe41x8mDCZXNaSwgZl0KWmf91aq5+EiTZ
+         8jbdSqsAlpfeNlnfTGi/5j0ArHAyRI4+OkzmSliRQFfl8zads48mqhkMnYeQjU6zS2SO
+         8zOwtJErL/EkrgGGUmDvSVce79Grxx7W0OsCqqfyl/XcYmpkzqxDvKefc2UDZu0VCLEE
+         N+WA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gQDU3n0e11Xg2+7UZznvauAxifO/32EZJQ/CMSCp/cs=;
+        b=T9SsdHngQ7QXrSy1k+iXoOu6PDTze7P6JmQ1AA5KQUfiGP6LSoOSQ9IG9niEauje9Y
+         qNc2eAbCqqxNieQ50Hk+P9UV8/DWCBvOW8AWAUMPlMZZ/yuaatiRE7JkmS/hyT0kMt27
+         7H+hc7WtRF22UfNYfLNi3jRyb2YRR8j3R+TD5TfMYrj4swLEmpArt9zXIHerm85eslgS
+         2J3gzk/U5sSnRI6uJk7QXOPsxeGfhrW2UFak7GX8D26Wujo8CV3tiZEP0n5MlI+tr9Tk
+         MIypRna9Rfb4RhLaMtjJCSCKok+Hu+2R5jk/RZFUrpEFYedz3P9ie/3c5Eviieudie8n
+         S+qA==
+X-Gm-Message-State: AOAM531tKdB2zoBX6kTGJBsYVUFsnJkjTaZSSlC7M7ZC6ujCN8DhN9we
+        gNR8XHA3/Mvx3qB4MouWFNrF6A==
+X-Google-Smtp-Source: ABdhPJw1iWrj+ENDvwHvi8dSh+4uDNTmnt8/bAdZlwC5WT33CxX/cREDi31wWF2rlbjKTt+awhJr4w==
+X-Received: by 2002:adf:f990:: with SMTP id f16mr6761115wrr.27.1644508500767;
+        Thu, 10 Feb 2022 07:55:00 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id d4sm21917972wri.39.2022.02.10.07.54.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Feb 2022 07:55:00 -0800 (PST)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     krzysztof.kozlowski@canonical.com, linux@roeck-us.net,
+        robh+dt@kernel.org, wim@linux-watchdog.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v3] dt-bindings: watchdog: convert faraday,ftwdt010 to yaml
+Date:   Thu, 10 Feb 2022 15:54:50 +0000
+Message-Id: <20220210155450.2939129-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mQu/xDRUKtLiY+XB"
-Content-Disposition: inline
-In-Reply-To: <CAA8EJppEjFqPUBXtdkTsx2U2CjsrjNsXEmrx_DkAS9a9jmB9cg@mail.gmail.com>
-X-Cookie: Only God can make random selections.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Converts watchdog/faraday,ftwdt010.txt to yaml.
+This permits to detect missing properties like clocks and resets or
+compatible like moxa,moxart-watchdog.
 
---mQu/xDRUKtLiY+XB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+Changes since v1:
+- Added myself as maintainer as requested by Linus
+- Added $ref to watchdog.yaml
+- Removed useless quotes
+- Added blank lines between properties
+- Removed timeout-sec as already provided by watchdog.yaml
 
-On Thu, Feb 10, 2022 at 06:33:09PM +0300, Dmitry Baryshkov wrote:
-> On Tue, 8 Feb 2022 at 16:16, Mark Brown <broonie@kernel.org> wrote:
-> > On Mon, Feb 07, 2022 at 08:31:30PM +0200, Vladimir Zapolskiy wrote:
-> > > On 2/7/22 4:39 PM, Mark Brown wrote:
+Change since v2:
+- rewrite compatible section
 
-> > > > The bindings are ABI, it doesn't seem like a good idea to add new ABI as
-> > > > a temporary bodge.
+ .../bindings/watchdog/faraday,ftwdt010.txt    | 22 -------
+ .../bindings/watchdog/faraday,ftwdt010.yaml   | 66 +++++++++++++++++++
+ 2 files changed, 66 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
 
-> It's not a temporary bodge. The i2c-core piece was reverted, but not
-> the mediatek driver code/bindings.
-> Vladimir has provided a replacement for the i2c-core code handling the
-> vbus-regulator. When thee code will be back, the code from i2c-cci can
-> be removed. The bindings will be the same.
+diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+deleted file mode 100644
+index 9ecdb502e605..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-Faraday Technology FTWDT010 watchdog
+-
+-This is an IP part from Faraday Technology found in the Gemini
+-SoCs and others.
+-
+-Required properties:
+-- compatible : must be one of
+-  "faraday,ftwdt010"
+-  "cortina,gemini-watchdog", "faraday,ftwdt010"
+-- reg : shall contain base register location and length
+-- interrupts : shall contain the interrupt for the watchdog
+-
+-Optional properties:
+-- timeout-sec : the default watchdog timeout in seconds.
+-
+-Example:
+-
+-watchdog@41000000 {
+-	compatible = "faraday,ftwdt010";
+-	reg = <0x41000000 0x1000>;
+-	interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+-};
+diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+new file mode 100644
+index 000000000000..e7b90ba41093
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/faraday,ftwdt010.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Faraday Technology FTWDT010 watchdog
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++  - Corentin Labbe <clabbe@baylibre.com>
++
++description: |
++  This is an IP part from Faraday Technology found in the Gemini
++  SoCs and others.
++
++allOf:
++  - $ref: "watchdog.yaml#"
++
++properties:
++  compatible:
++    oneOf:
++      - const: faraday,ftwdt010
++      - items:
++        - enum:
++          - cortina,gemini-watchdog
++          - moxa,moxart-watchdog
++        - const: faraday,ftwdt010
++
++  reg:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: PCLK
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    watchdog@41000000 {
++      compatible = "faraday,ftwdt010";
++      reg = <0x41000000 0x1000>;
++      interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
++    };
++  - |
++    watchdog: watchdog@98500000 {
++      compatible = "moxa,moxart-watchdog", "faraday,ftwdt010";
++      reg = <0x98500000 0x10>;
++      clocks = <&clk_apb>;
++      clock-names = "PCLK";
++    };
++...
+-- 
+2.34.1
 
-I would hope it's a temporary thing given the namespace collision
-issues...
-
-> > There's also the option of representing this as a separate thing on or
-> > part of the bus.
-
-> 4) (which you have implemented in your patch). Add support for  the
-> vbus-supplies property for the I2C CCI controllers.
-
-> This is the option I'd vote for.
-
-Do these controllers actually have a supply called vbus?
-
---mQu/xDRUKtLiY+XB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIFMvMACgkQJNaLcl1U
-h9DqOAf+N9eVVB/3/qDiyqVMsc48KOyNdXXFWEsE6h2qGs3a3mdmfMUkPdROdKFF
-A8O/S4/xCGJ7KEBbuvP/wrW2cMzkARrucpiMWigjgEUjcvhICOxu41s/7xIhcnHw
-BMa/C4uwRgheMOIc48OSqJ4PfPCCxEqouNSeoG/yFKlhe0+vZBt+3hU0rRNs9+5g
-eJru40piad67wrY5sBUSly+/PIA5PxmccOhMKYKp08YKJrkaAu2D1yPYoKgJhYwo
-N+QRrt0hUnynsI9oP+xm/Jt17FDtk0C9ZynBrMAjTYaIew4v+aPgcRm2xO7qZfbe
-BAk9AwzGFg7HdeXUIpwzuGc6PA12Hw==
-=yn0h
------END PGP SIGNATURE-----
-
---mQu/xDRUKtLiY+XB--
