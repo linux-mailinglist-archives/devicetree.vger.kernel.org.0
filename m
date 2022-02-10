@@ -2,131 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCF064B0CCA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 12:53:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A8034B0CD3
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 12:56:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241186AbiBJLwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 06:52:37 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47306 "EHLO
+        id S233074AbiBJL4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 06:56:20 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241139AbiBJLwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 06:52:35 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC3D7FDD
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 03:52:36 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nI802-0006hc-JZ; Thu, 10 Feb 2022 12:52:34 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nI800-0003TL-18; Thu, 10 Feb 2022 12:52:32 +0100
-Date:   Thu, 10 Feb 2022 12:52:32 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Jani Nikula <jani.nikula@linux.intel.com>
-Cc:     David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 01/23] drm/encoder: Add of_graph port to struct
- drm_encoder
-Message-ID: <20220210115232.GY18637@pengutronix.de>
-References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
- <20220209095350.2104049-2-s.hauer@pengutronix.de>
- <20220209100736.GV18637@pengutronix.de>
- <87fsospa36.fsf@intel.com>
+        with ESMTP id S232819AbiBJL4T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 06:56:19 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D822C25CF
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 03:56:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1644494180; x=1676030180;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=fATlLhTKWXs6xTFfN84T/G/7A6dLzbEDLBTtG/3uVi0=;
+  b=aeIuKzuHE82MfA3bTfVMCNjjjgbQAce61/fsbMCIUjE6gyUSzlH0+lD3
+   21jj7zHkVrLBk14F4aRcQOI/zYWxzLHE5Cx3MMWVgrYT4xKHLpcxxyf3X
+   BoretAiOL2UAAb2+Np1m6skYYZ7rVqeY4QYLn8spBEXY3/GdE9J/bYQKf
+   frkf34B/PozKnb40qzEgzntH5kA9bAoAIE9mrcMDBZzRxBeOWreDpDKA6
+   LDAg+//Y5S4ytGC7b0/Qn1+OdC3NyvLhdhoNaX0arK8CSp9MHA0+uC06n
+   c0xHyoSbCsoWgq7CEbT6z9fNcDCaQ4/8gPpDF0S7neUZyj96WRXBiUYij
+   w==;
+X-IronPort-AV: E=Sophos;i="5.88,358,1635199200"; 
+   d="scan'208";a="22014300"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 10 Feb 2022 12:56:18 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 10 Feb 2022 12:56:18 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 10 Feb 2022 12:56:18 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1644494178; x=1676030178;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=fATlLhTKWXs6xTFfN84T/G/7A6dLzbEDLBTtG/3uVi0=;
+  b=RE4CqAmNiBp+U4QccVaANh2SjAp0tRAH2XLWi2ErkqDyUiGYLEdnUlzj
+   /2eR3Y+/xrWL36Dln6/zjmCz1kI+v5t3cfUYnQb2cKs2OkS7wqFTOyN9m
+   YStD/jECotGpR0Az/bcgBGb8yyAvcJVLZUFZA5XiXi4OFToc2r79AE4iJ
+   S8Ep1sE1V8th1j7CQRf/AOuswNwQbGu76Xo2+GK1SFrxMnfAAFhWzCm1D
+   E/959Y/qPoLZZaD6HxRXOPCykkhVsQRmsjIcqVt6H6PtKnTj/IW73I4xU
+   RiRzrYavFmawgFpa6I61xprtDvnW9ljAs326tXSQJLAwMmincA/Ii8Ow0
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.88,358,1635199200"; 
+   d="scan'208";a="22014299"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 10 Feb 2022 12:56:18 +0100
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id EE66D280065;
+        Thu, 10 Feb 2022 12:56:17 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Joakim Zhang <qiangqing.zhang@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: (EXT) Re: [PATCH 1/1] dt-bindings: net: fsl, fec: Add nvmem-cells / nvmem-cell-names properties
+Date:   Thu, 10 Feb 2022 12:56:15 +0100
+Message-ID: <3585792.irdbgypaU6@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <YgM09mGTZv3U5nBT@robh.at.kernel.org>
+References: <20220126144748.246073-1-alexander.stein@ew.tq-group.com> <YgM09mGTZv3U5nBT@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87fsospa36.fsf@intel.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:47:57 up 61 days, 20:33, 81 users,  load average: 0.17, 0.18,
- 0.14
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 09, 2022 at 01:12:45PM +0200, Jani Nikula wrote:
-> On Wed, 09 Feb 2022, Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> > David, Daniel,
-> >
-> > I'll need a word from you regarding this patch. It's needed in patch
-> > 22/23 in this series.
-> > vop2_crtc_atomic_enable() needs to control the mux which routes the
-> > display output to the different encoders. Which encoder is used is
-> > described in the of_graph port, so I need a way to identify the encoder
-> > in the device tree.
+Hi Rob,
+
+Am Mittwoch, 9. Februar 2022, 04:28:54 CET schrieb Rob Herring:
+> On Wed, Jan 26, 2022 at 03:47:48PM +0100, Alexander Stein wrote:
+> > These properties are inherited from ethernet-controller.yaml.
+> > This fixes the dt_binding_check warning:
+> > imx8mm-tqma8mqml-mba8mx.dt.yaml: ethernet@30be0000: 'nvmem-cell-names',
+> > 'nvmem-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > 
+> >  Documentation/devicetree/bindings/net/fsl,fec.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> > b/Documentation/devicetree/bindings/net/fsl,fec.yaml index
+> > daa2f79a294f..73616924fa29 100644
+> > --- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> > +++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> > 
+> > @@ -121,6 +121,10 @@ properties:
+> >    mac-address: true
+> > 
+> > +  nvmem-cells: true
 > 
-> I think the question is how useful is this going to be in general. IMO
-> we should not be adding members that are useful in a single driver only.
+> Need to define how many.
 > 
-> For example i915 wraps encoders with:
+> > +
+> > +  nvmem-cell-names: true
 > 
-> 	struct intel_encoder {
-> 		struct drm_encoder base;
-> 
-> 		/* i915 specific stuff here*/
-> 	};
-> 
-> So that we can add stuff of our own there. Of course, it does mean a
-> bunch of overhead for the first time you need to do it. But adding
-> driver specific stuff to struct drm_encoder adds overhead for everyone.
-> 
-> All that said, *I* don't know how useful the port member would be in
-> drivers that use device tree. Maybe it's worth it.
+> And what the names are.
 
-I don't know either.
+Thanks for the feedback. Do I really have to copy the following lines from 
+Documentation/devicetree/bindings/net/ethernet-controller.yaml to 
+fsl,fec.yaml?
 
-Right now the drm_encoder is directly embedded into the encoder drivers
-private data structures, like this:
+>   nvmem-cells:
+>     maxItems: 1
+>     
+>     description:
+>       Reference to an nvmem node for the MAC address
+>   
+>   nvmem-cell-names:
+>     const: mac-address
 
-struct rockchip_hdmi {
-        struct drm_encoder encoder;
-	...
-};
+This feels wrong to me. Apparently the settings from ethernet-controller.yaml 
+take effect, e.g. adding a 2nd entry raises warnings. In the end I followed 
+the example from Documentation/devicetree/bindings/net/engleder,tsnep.yaml, so 
+I assumed it's okay going this way.
 
-I could change this to:
-
-struct rockchip_encoder {
-	struct device_node *port;
-	struct drm_encoder encoder;
-}
-
-and then
-
-struct rockchip_hdmi {
-	struct rockchip_encoder encoder;
-	...
-};
-
-That would solve the issue without touching generic DRM code if that's
-preferred.
-
-Sascha
+Best regards,
+Alexander
 
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
+
