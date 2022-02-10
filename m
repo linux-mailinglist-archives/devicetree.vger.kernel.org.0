@@ -2,199 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C9A34B0990
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 10:33:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 816574B099C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 10:34:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238687AbiBJJdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 04:33:24 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54618 "EHLO
+        id S238751AbiBJJe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 04:34:28 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232153AbiBJJdV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 04:33:21 -0500
-Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE16C64;
-        Thu, 10 Feb 2022 01:33:21 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id 579222985;
-        Thu, 10 Feb 2022 10:33:20 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Jpe8GPq-IVlo; Thu, 10 Feb 2022 10:33:20 +0100 (CET)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id DD8193562; Thu, 10 Feb 2022 10:33:19 +0100 (CET)
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        with ESMTP id S238752AbiBJJe1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 04:34:27 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB4BE108A
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 01:34:27 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id e3so8515022wra.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 01:34:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:organization:in-reply-to:content-transfer-encoding;
+        bh=vxX/8zifzyFYTCAPgNpbL+1rDLu/Md5JII8F66Zcgtc=;
+        b=3teWvtZsSrrrJESfa7vF84YVSNgwtbUY1wIxqDcxH7iwMzjyUo7p53oOAmoVaoU16Z
+         PNYf0YZYqECGJy9F+jVXYcFQUXw4TQHFfMmGiW7tNlJDLpsmdH3jB6zD7sJmfbhd83P6
+         drQlHE49cvvnBsEV1WSg6/Icx1q/hJGe5tdBMw4rCVW9kNaendOZHVDH0gmcHNXuYJPu
+         qYfG/tB6X9LQt/hZMzQ+fvWIe2x5MKtPwuRZX6sMAF955nWKFbYPXo4oDIyuEXUYZjwj
+         +8MoWdFO915oyshOm66cayioydZbsisHdtBm2//hBtdV/nAprEYGD0PeOQytScSehht9
+         7Jzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=vxX/8zifzyFYTCAPgNpbL+1rDLu/Md5JII8F66Zcgtc=;
+        b=BCA/Oyxef2PO98KWShNSH/cT1nGp1unITATMf/P6w4gXlL/wNQK79CDdBF3MtdLhPB
+         aAr77Pem7MEHdGd7OzlvrGm++QpB6eEK9HomYKoKHipjTU4BE2bLNlumRYZgXxy2iS8s
+         2fgtOVCOVXZuobVdMr9rq0CUhLrLvXEf0z0wr7T3zVHwGnD6l1RKAbB0gz6Lu12DuEzD
+         eNGuSBdItJuwvPYTKvtdf928lV5u3pm0G9NBKVHICEfB4jx5yALG52PyTTMvyuW3u4tP
+         GDOfZVotP32AWp4vT90pw4SkjO3FCPx0h3pCIRmUlWakf9ubE0dri0p6aOZB9nza91Ur
+         8LFw==
+X-Gm-Message-State: AOAM530FYRylKklYkprBjESCdu/6nbgLV6FlPMIwzqxJFJ0fEU8cytYa
+        sy/Pwn2jGE/Kz2Xv234/rQ/cBQ==
+X-Google-Smtp-Source: ABdhPJwYmf/xTj+0L3TetNb2WBvO7oJeJgkuCVLbksq3xzAoCbJ6xmnGlCzlqQsuDz7mn0tMnK3fMg==
+X-Received: by 2002:a05:6000:16cc:: with SMTP id h12mr5547466wrf.408.1644485666342;
+        Thu, 10 Feb 2022 01:34:26 -0800 (PST)
+Received: from ?IPV6:2001:861:44c0:66c0:76d9:bf0e:e516:58a9? ([2001:861:44c0:66c0:76d9:bf0e:e516:58a9])
+        by smtp.gmail.com with ESMTPSA id a15sm7522310wri.22.2022.02.10.01.34.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Feb 2022 01:34:25 -0800 (PST)
+Message-ID: <98acfb7c-59bc-e437-899f-4f1eda0fea0b@baylibre.com>
+Date:   Thu, 10 Feb 2022 10:34:24 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] arm64: dts: meson: remove CPU opps below 1GHz for
+ G12B/SM1
+Content-Language: en-US
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220209135535.29547-1-christianshewitt@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220209135535.29547-1-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
-Date:   Thu, 10 Feb 2022 10:33:06 +0100
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Sven Schwermer <sven@svenschwermer.de>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, pavel@ucw.cz, robh+dt@kernel.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        lee.jones@linaro.org, post@lespocky.de, andy.shevchenko@gmail.com,
-        robh@kernel.org
-Subject: Re: [PATCH v6 2/3] dt-bindings: leds: Add multicolor PWM LED bindings
-Message-ID: <YgTb0sRSaO1EPsOW@ada-deb-carambola.ifak-system.com>
-Mail-Followup-To: Sven Schwermer <sven@svenschwermer.de>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, pavel@ucw.cz, robh+dt@kernel.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        lee.jones@linaro.org, post@lespocky.de, andy.shevchenko@gmail.com,
-        robh@kernel.org
-References: <20220208191236.660172-1-sven@svenschwermer.de>
- <20220208191236.660172-2-sven@svenschwermer.de>
- <YgOGksA8kruvFLY2@ada-deb-carambola.ifak-system.com>
- <2bf7a4c4-1661-d800-51d3-6e6287b5c6fc@svenschwermer.de>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2bf7a4c4-1661-d800-51d3-6e6287b5c6fc@svenschwermer.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hei hei,
-
-Am Thu, Feb 10, 2022 at 08:55:07AM +0100 schrieb Sven Schwermer:
-> Hi Alex,
+On 09/02/2022 14:55, Christian Hewitt wrote:
+> Amlogic G12B and SM1 devices experience CPU stalls and random board
+> wedges when the system idles and CPU cores clock down to lower opp
+> points. Recent vendor kernels include a change to remove 100-250MHz
+> (with no explanation) [0] but other downstream sources also remove
+> the 500/667MHz points (also with no explanation). Unless 100-667Mhz
+> opps are removed or the CPU governor forced to performance, stalls
+> are observed, so let's remove them an improve stability/uptime.
 > 
-> On 2/9/22 10:17, Alexander Dahl wrote:
-> > > +    rgb-led {
-> > 
-> > I think this should be 'led-controller'. See
-> > Documentation/devicetree/bindings/leds/common.yaml for reference.
+> [0] https://github.com/khadas/linux/commit/20e237a4fe9f0302370e24950cb1416e038eee03
 > 
-> Sure, I don't have a preference.
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+> Numerous people have experienced this issue and I have tested with
+> only the low opp-points removed and numerous voltage tweaks: but it
+> makes no difference. With the opp points present an Odroid N2 or
+> Khadas VIM3 reliably drop off my network after being left idling
+> overnight with UART showing a CPU stall splat. With the opp points
+> removed I see weeks of uninterupted uptime. It's beyond my skills
+> to research what the cause of the stalls might be, but if anyone
+> ever figures it out we can always restore things. NB: This issue
+> is not too widely reported in forums, but that's largely because
+> most of the Amlogic supporting distros have been including this
+> change picked from my kernel patchset for some time.
 > 
-> > > +        multi-led {
-> > > +          color = <LED_COLOR_ID_RGB>;
-> > > +          function = LED_FUNCTION_INDICATOR;
-> > > +          max-brightness = <65535>;
-> > > +
-> > > +          led-red {
-> > > +              pwms = <&pwm1 0 1000000>;
-> > > +              color = <LED_COLOR_ID_RED>;
-> > > +          };
-> > > +
-> > > +          led-green {
-> > > +              pwms = <&pwm2 0 1000000>;
-> > > +              color = <LED_COLOR_ID_GREEN>;
-> > > +          };
-> > > +
-> > > +          led-blue {
-> > > +              pwms = <&pwm3 0 1000000>;
-> > > +              color = <LED_COLOR_ID_BLUE>;
-> > > +          };
-> > 
-> > Not sure if those node names should be more generic like led-0, led-1
-> > etc.?  At least the color information is redundant here.  This would
-> > make it more similar to bindings of other LED drivers.
+>   .../boot/dts/amlogic/meson-g12b-a311d.dtsi    | 40 -------------------
+>   .../boot/dts/amlogic/meson-g12b-s922x.dtsi    | 40 -------------------
+>   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    | 20 ----------
+>   3 files changed, 100 deletions(-)
 > 
-> I don't see how naming them led-{0,1,2} would be better in any way, please
-> elaborate.
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
+> index d61f43052a34..8e9ad1e51d66 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi
+> @@ -11,26 +11,6 @@
+>   		compatible = "operating-points-v2";
+>   		opp-shared;
+>   
+> -		opp-100000000 {
+> -			opp-hz = /bits/ 64 <100000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-250000000 {
+> -			opp-hz = /bits/ 64 <250000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-500000000 {
+> -			opp-hz = /bits/ 64 <500000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-667000000 {
+> -			opp-hz = /bits/ 64 <667000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+>   		opp-1000000000 {
+>   			opp-hz = /bits/ 64 <1000000000>;
+>   			opp-microvolt = <761000>;
+> @@ -71,26 +51,6 @@
+>   		compatible = "operating-points-v2";
+>   		opp-shared;
+>   
+> -		opp-100000000 {
+> -			opp-hz = /bits/ 64 <100000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-250000000 {
+> -			opp-hz = /bits/ 64 <250000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-500000000 {
+> -			opp-hz = /bits/ 64 <500000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-667000000 {
+> -			opp-hz = /bits/ 64 <667000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+>   		opp-1000000000 {
+>   			opp-hz = /bits/ 64 <1000000000>;
+>   			opp-microvolt = <731000>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+> index 1e5d0ee5d541..44c23c984034 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi
+> @@ -11,26 +11,6 @@
+>   		compatible = "operating-points-v2";
+>   		opp-shared;
+>   
+> -		opp-100000000 {
+> -			opp-hz = /bits/ 64 <100000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-250000000 {
+> -			opp-hz = /bits/ 64 <250000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-500000000 {
+> -			opp-hz = /bits/ 64 <500000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+> -		opp-667000000 {
+> -			opp-hz = /bits/ 64 <667000000>;
+> -			opp-microvolt = <731000>;
+> -		};
+> -
+>   		opp-1000000000 {
+>   			opp-hz = /bits/ 64 <1000000000>;
+>   			opp-microvolt = <731000>;
+> @@ -76,26 +56,6 @@
+>   		compatible = "operating-points-v2";
+>   		opp-shared;
+>   
+> -		opp-100000000 {
+> -			opp-hz = /bits/ 64 <100000000>;
+> -			opp-microvolt = <751000>;
+> -		};
+> -
+> -		opp-250000000 {
+> -			opp-hz = /bits/ 64 <250000000>;
+> -			opp-microvolt = <751000>;
+> -		};
+> -
+> -		opp-500000000 {
+> -			opp-hz = /bits/ 64 <500000000>;
+> -			opp-microvolt = <751000>;
+> -		};
+> -
+> -		opp-667000000 {
+> -			opp-hz = /bits/ 64 <667000000>;
+> -			opp-microvolt = <751000>;
+> -		};
+> -
+>   		opp-1000000000 {
+>   			opp-hz = /bits/ 64 <1000000000>;
+>   			opp-microvolt = <771000>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> index 3c07a89bfd27..80737731af3f 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> @@ -95,26 +95,6 @@
+>   		compatible = "operating-points-v2";
+>   		opp-shared;
+>   
+> -		opp-100000000 {
+> -			opp-hz = /bits/ 64 <100000000>;
+> -			opp-microvolt = <730000>;
+> -		};
+> -
+> -		opp-250000000 {
+> -			opp-hz = /bits/ 64 <250000000>;
+> -			opp-microvolt = <730000>;
+> -		};
+> -
+> -		opp-500000000 {
+> -			opp-hz = /bits/ 64 <500000000>;
+> -			opp-microvolt = <730000>;
+> -		};
+> -
+> -		opp-667000000 {
+> -			opp-hz = /bits/ 64 <666666666>;
+> -			opp-microvolt = <750000>;
+> -		};
+> -
+>   		opp-1000000000 {
+>   			opp-hz = /bits/ 64 <1000000000>;
+>   			opp-microvolt = <770000>;
 
-- consistency with other LED driver bindings
-- spot the number of "sub"-LEDs more easily
-- prevent all kinds of different names people will come up with, if
-  all is allowed instead of a clear scheme
+Can you find if an acceptable set of Fixes tag can be added to permit backporting to the current LTS kernels ?
 
-The color is in the color property anyways.
-
-> > And how is it supposed to be named if you have multiple
-> > "multi-led"s, e.g. one on three PWM channels, and another one on three
-> > different PWM channels?
-> 
-> I'm not 100% sure what you mean. If you want multiple instances of these
-> multi-color PWM LEDs, you'd do something like this:
-> 
-> indicator-led-controller {
->     compatible = "pwm-leds-multicolor";
->     multi-led {
->       color = <LED_COLOR_ID_RGB>;
->       function = LED_FUNCTION_INDICATOR;
->       max-brightness = <65535>;
->       led-red {
->           pwms = <&pwm1 0 1000000>;
->           color = <LED_COLOR_ID_RED>;
->       };
->       led-green {
->           pwms = <&pwm2 0 1000000>;
->           color = <LED_COLOR_ID_GREEN>;
->       };
->       led-blue {
->           pwms = <&pwm3 0 1000000>;
->           color = <LED_COLOR_ID_BLUE>;
->       };
->     };
-> };
-> status-led-controller {
->     compatible = "pwm-leds-multicolor";
->     multi-led {
->       color = <LED_COLOR_ID_MULTI>;
->       function = LED_FUNCTION_STATUS;
->       max-brightness = <255>;
->       led-red {
->           pwms = <&pwm4 0 1000000>;
->           color = <LED_COLOR_ID_RED>;
->       };
->       led-amber {
->           pwms = <&pwm5 0 1000000>;
->           color = <LED_COLOR_ID_AMBER>;
->       };
->     };
-> };
-
-I would have expected something like this:
-
-  led-controller-0 {
-      compatible = "pwm-leds-multicolor";
-
-      multi-led-0 {
-        color = <LED_COLOR_ID_RGB>;
-        function = LED_FUNCTION_INDICATOR;
-        max-brightness = <65535>;
-
-        led-0 {
-            pwms = <&pwm1 0 1000000>;
-            color = <LED_COLOR_ID_RED>;
-        };
-
-        led-1 {
-            pwms = <&pwm2 0 1000000>;
-            color = <LED_COLOR_ID_GREEN>;
-        };
-
-        led-2 {
-            pwms = <&pwm3 0 1000000>;
-            color = <LED_COLOR_ID_BLUE>;
-        };
-      };
-
-      multi-led-1 {
-        color = <LED_COLOR_ID_RGB>;
-        function = LED_FUNCTION_INDICATOR;
-        max-brightness = <65535>;
-
-        led-0 {
-            pwms = <&pwm1 0 1000000>;
-            color = <LED_COLOR_ID_RED>;
-        };
-
-        led-1 {
-            pwms = <&pwm2 0 1000000>;
-            color = <LED_COLOR_ID_GREEN>;
-        };
-
-        led-2 {
-            pwms = <&pwm3 0 1000000>;
-            color = <LED_COLOR_ID_BLUE>;
-        };
-      };
-  };
-
-Greets
-Alex
-
+Neil
