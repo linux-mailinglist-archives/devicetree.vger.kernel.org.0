@@ -2,175 +2,742 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0271D4B1171
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 16:15:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 208DC4B1191
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 16:22:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243334AbiBJPN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 10:13:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52044 "EHLO
+        id S243501AbiBJPWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 10:22:33 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243267AbiBJPN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 10:13:26 -0500
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2073.outbound.protection.outlook.com [40.107.93.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4083A137;
-        Thu, 10 Feb 2022 07:13:27 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZHP+KLSGV63rOf3m0XN+MX+YYSdpGM4U+zCj+7mlZmkmp22X395411cA0WYkxeLt02/P0+TSVGhzHg2wvwNFC+7bCDtj450BlJV0c3odhuOvY8s92sbF+QZXBm1IMBxZj6bLtfDWkW1edq0/2x1RPg3muDSesWyWXjd2+i1NlVX1pPJ50xnDpczKfk3QxeTIYSIIuwTu0/IHNAlU4Q2Gy/lIhvzspudN/197pXpnaQ+gSdIBYngSnOoe2g9Vm9gbBbxvtvKwuHqacop7e+kjgtL1+3AVfiPh1Z9mJ96Ha3ydivhtdsngy7FgQzzP72K6+3hDfZudskezFbAjm76brA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4W1tDUBMGjvkLDBU5YF1ncnLJVd3Zu3+GdSGRVtEtrQ=;
- b=QRa3tnxIMv5phI2Bd4ENO/MEOMJXb8gfOfXjL/HqRBlEhBdt3BubUAz4ySR1fHybrxJuU3xTaQVGV2+6kFm4m7uca65fFEY4U8G8TaXBTXP2zj5veb8VALYpIk/0EPZq5EsK+i3zBUCGe6S6yCpqGbq2RzpC68GTAJYVi4z+jl+LJOKJcRkP/j7gsDo1HKc8LvqbCCwJHK2i3z+I54Xna7OKSuFa98Qp2HDM3GNiVWDh9CyWAsnSl+t9vAoxW7EqgKgKluLMHHIwdUXulHi9qdzONJwhEINAWn5j/UYmJl1TWDeoLdfXQAgF3h5DG1G9wx7CF55Lg1Fltl5g0BT65A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=silabs.onmicrosoft.com; s=selector2-silabs-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4W1tDUBMGjvkLDBU5YF1ncnLJVd3Zu3+GdSGRVtEtrQ=;
- b=U5rCCDA4uaaZ1KLvb0mtXwBWH5Vq5XDvSEhw/iuFxqb/bqQkSYuGAXunk7stdmLcao5phlgjDxbLuy3pvM4sV/T3cs49RRq/K4JiCLQDgtZ8O6wS0jwbwLeuRIdelBQ8qbVstCKprwi53nBlxQFP1KZnhXhshmL08Pg/X8BZpwU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=silabs.com;
-Received: from PH0PR11MB5657.namprd11.prod.outlook.com (2603:10b6:510:ee::19)
- by BY5PR11MB3927.namprd11.prod.outlook.com (2603:10b6:a03:186::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.17; Thu, 10 Feb
- 2022 15:13:24 +0000
-Received: from PH0PR11MB5657.namprd11.prod.outlook.com
- ([fe80::1b3:e483:7396:1f98]) by PH0PR11MB5657.namprd11.prod.outlook.com
- ([fe80::1b3:e483:7396:1f98%3]) with mapi id 15.20.4975.014; Thu, 10 Feb 2022
- 15:13:24 +0000
-From:   =?ISO-8859-1?Q?J=E9r=F4me?= Pouiller <jerome.pouiller@silabs.com>
-To:     Kalle Valo <kvalo@kernel.org>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?ISO-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v9 05/24] wfx: add main.c/main.h
-Date:   Thu, 10 Feb 2022 16:13:16 +0100
-Message-ID: <39159625.OdyKsPGY69@pc-42>
-Organization: Silicon Labs
-In-Reply-To: <87ee4a3hd4.fsf@kernel.org>
-References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com> <4055223.VTxhiZFAix@pc-42> <87ee4a3hd4.fsf@kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-ClientProxiedBy: PR2P264CA0045.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:101:1::33) To PH0PR11MB5657.namprd11.prod.outlook.com
- (2603:10b6:510:ee::19)
+        with ESMTP id S243550AbiBJPWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 10:22:33 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD27CF1
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 07:22:33 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nIBHD-0000Yc-0W; Thu, 10 Feb 2022 16:22:31 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nIBH9-0002Cy-Il; Thu, 10 Feb 2022 16:22:27 +0100
+Date:   Thu, 10 Feb 2022 16:22:27 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Jani Nikula <jani.nikula@linux.intel.com>
+Cc:     David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 01/23] drm/encoder: Add of_graph port to struct
+ drm_encoder
+Message-ID: <20220210152227.GA18637@pengutronix.de>
+References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
+ <20220209095350.2104049-2-s.hauer@pengutronix.de>
+ <20220209100736.GV18637@pengutronix.de>
+ <87fsospa36.fsf@intel.com>
+ <20220210115232.GY18637@pengutronix.de>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ce58b25f-569e-4e3d-1c35-08d9eca7e1b8
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3927:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR11MB3927831E42CBA7056DDB895F932F9@BY5PR11MB3927.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tQ7bhfdYri6+g0QWum2DpNJiDg8S0CoTqLL7eTlkDtD2QGlZf3zy9qkz5gbIJC3PsNW4oZOYqoNDBDINTITbTM1VEMG14X3W3Aj3YL2Rx4xKYYqPON09P69xpXRl3XisfIA2PC6KSy8F+DTbM/7VMcTO49nM7E5R0e+gG+6hlaQ1/ulk9A8oqFCdgzqRj9rwlcRm6rileeP8EyJzpe8K/EkzZ93Tjy5vUm244GsVlFQSeIJeMXjmYuDdLWycUraCPVn2GrmNwrwcuix6nslxIscKGatGv9272erwiHT3QF1JdZhKr9G/suPVCLXpyj/9xAsjhdzyJWp5fiKi2gTYj+F+Eo6SXzVbBH8YfSTHs4KgwIGigd4N5Evn6NJB2Lp6NC9TPrRvBtxmaI/vj8sUtKhw0tPcAm27XV/YvEORLoQtsxYxn3mJ2FAzdD0f/gggmqLLQ5aq06BJwJx/Brviw0/c18dt+dvK/2TqetbTd610joq/ccK7mVzoZpbFOGpLSRuZLwxF7pYX+LwYsXnUCIWXy6Ou24wy+Q+P5f57LY0P6ZWlT5d3UhjcjoTdwJrXZmaVNip3C38eVHmkmzUtJ9t4YdA7nqzvf5rRwmva2tNWljFkfBD9moG7zGBos08AnSHg6kSND/K8AMb1Zar0fpRdapl+oC4utAotekDDg4mIM27B7byFHkEnL3lC+htmjg6fUZLYUpkeDf86Hw+GLevZ2iIPUFf4Slqei57pYYk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5657.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(7916004)(366004)(6666004)(8936002)(66946007)(508600001)(86362001)(54906003)(52116002)(33716001)(6506007)(36916002)(316002)(38350700002)(8676002)(6916009)(9686003)(66476007)(66556008)(6512007)(5660300002)(186003)(83380400001)(66574015)(7416002)(38100700002)(26005)(6486002)(4326008)(2906002)(39026012);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?I3+dqSU2Md0Dr7fS9oa+kB4Vqn6XROHqUN3ZXnaB6ApHYiWiB8Em3RhMe0?=
- =?iso-8859-1?Q?tj0b9HzO4GRbMgum+t+N458YCVcVHFm47JesiI/EJuxbFCkReTpsUWSQwc?=
- =?iso-8859-1?Q?YLvhmSfov3GiBF7leOZbRzTyMe0XTLryXX+v+sGLynvg6x7leOTellg+nz?=
- =?iso-8859-1?Q?5YxR2kdxXhP0RaLtbhYqwC/wM1WeMNoPu+YbYbzxdFR0g4iM204H0J1Q2k?=
- =?iso-8859-1?Q?EhreXqiAPUBeRBfSPb2WEkEWdB1CY7EKNh+QFY9ZkXYZzYX97b8tv9jCI8?=
- =?iso-8859-1?Q?hp182Iq5xdcnNMQt1pDLExNxb7IzUNrttBu9Nkj9LmJKaD1tqt07XwpGNm?=
- =?iso-8859-1?Q?oh2OVzCcY+US3Ln1tm7GiLApV0W13j7a1iHq/XQVWA+tXzb7sPZseO5iDX?=
- =?iso-8859-1?Q?E/mVi5KwPtudh3w0f4CQ16tkUM0Z6EI5g2Ky+L7h9j8X9B4wfn7KwfPxOW?=
- =?iso-8859-1?Q?hTE8GhVVNk5ajlUB4ZfMzqExaG+3mSr3yAZbypLTIe6dWtfoHmWOffZvLq?=
- =?iso-8859-1?Q?GEUW0pAW84ABnk9Zi6ZAqgXIMyvL3QiVmSE/eV8mA2Ghag5ZRWL2uStDtR?=
- =?iso-8859-1?Q?+wfGAb4PeQtwAw0AGjoWvl7XtFz+ZgWpRqQKDQxElRzdV7+0dgc9bmHEEn?=
- =?iso-8859-1?Q?iL/baoP7khbjQ1uohoWYhSBh89Rrszu1WemRSZswY0keYnnkFfHMu5slp6?=
- =?iso-8859-1?Q?bNSZRyf6WaIoPXBg0Dcph0tb7WX8i6Ykq68gRteQZKBNoEPefdzLFhWPcv?=
- =?iso-8859-1?Q?68D7YxpolfoOMJcNYrSNHXdM67fOTKsxQo9rSeZAdtXz4EMnDU+u7xYZjD?=
- =?iso-8859-1?Q?kfnBYHIzu7Ml85FbSaev89VSCNfRd1MrtYvObQs8Ld/EDTjyVF7Pf5Y+qs?=
- =?iso-8859-1?Q?eiE7rBxp3sJxD7pjWhQ2Dblru6KZydQpCBXhz9vrrQuYVHJIz5b6QehYDX?=
- =?iso-8859-1?Q?GkPH5wflpAO5kdYK49h3BTIDjrhT1UTqvJtfB4/Z7degvMq3wpqXv3+VYH?=
- =?iso-8859-1?Q?iEzeROMNzsbe4cg0hOUmcd5xzvgT9H1uFvqabtOSA9dXl7nInw8NEmGexg?=
- =?iso-8859-1?Q?aF25klocoDR+qzCt3IWN16KQK3+l5gr6lB5AjkNMAocU8yjn0YBnt7GZ2V?=
- =?iso-8859-1?Q?UvW7v2vdj0oQlpZN1pHZ6CT5ryB0Bnw/zYkiehywuyvFXTqMj6xvBa+Wfy?=
- =?iso-8859-1?Q?9YpWvLuO4yz/9pkmDLlW6iKWoYT56feMVsDcZuzZZAavm0wXBEZeAjnWeq?=
- =?iso-8859-1?Q?Y46jKwc7DZTEwJttJ08aQGlOiTdln7XXAjVjrQz/vaG6+P5B6ovjlXHRSn?=
- =?iso-8859-1?Q?0DRtsNUY9J/aYueMZcK9XU2F65FaiITocidCJ1NYzMxSO5Ch1DN94mO8RA?=
- =?iso-8859-1?Q?OHxVYBVWQ7tqBUlNoBNbxV47OLcsvDekeT0hKmHttH+o3LKOvBIMazK9lw?=
- =?iso-8859-1?Q?KrU/sh8u20Li+FCC+7CGbySS3yr0jDH1EFd8mWCirlIjB1n0w55yQfDA9E?=
- =?iso-8859-1?Q?YuBx9DiGh/YRCHWPzVffsz15phEWy/Zio6KUKhVWLPyHTWpm52G2b9zJnw?=
- =?iso-8859-1?Q?9l5zkRzmsUdRepPQdwrVCxOe8QHgn2Oa+XU26DWRVQe454d/RUVbie9Jw+?=
- =?iso-8859-1?Q?Ag3r44yBD4LL6zDOxSYNYhMwkTqG2suEo6WfV94y787kiPya+v2bUwYk0d?=
- =?iso-8859-1?Q?yx45COqNa4zxs5NWnbY=3D?=
-X-OriginatorOrg: silabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce58b25f-569e-4e3d-1c35-08d9eca7e1b8
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5657.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2022 15:13:24.2769
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 54dbd822-5231-4b20-944d-6f4abcd541fb
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OqpakgH/vVpWhT6fHz95FsBkkDefp6NmOEPHuxlnagA/nrFuUa5OInP+YMkq1yfU7x01h2zwhJMUopzqYG3cjA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB3927
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220210115232.GY18637@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 16:20:58 up 62 days, 6 min, 82 users,  load average: 0.17, 0.16,
+ 0.18
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 10 February 2022 15:51:03 CET Kalle Valo wrote:
-> J=E9r=F4me Pouiller <jerome.pouiller@silabs.com> writes:
-> > On Thursday 10 February 2022 15:20:56 CET Kalle Valo wrote:
-> >> J=E9r=F4me Pouiller <jerome.pouiller@silabs.com> writes:
-> >>
-> >> > Kalle, is this function what you expected? If it is right for you, I=
- am
-> >> > going to send it to the staging tree.
-> >>
-> >> Looks better, but I don't get why '{' and '}' are still needed. Ah, do=
-es
-> >> the firmware require to have them?
-> >
-> > Indeed. If '{' and '}' are not present, I guarantee the firmware will r=
-eturn
-> > an error (or assert). However, I am more confident in the driver than i=
-n the
-> > firmware to report errors to the user.
->=20
-> Agreed.
->=20
-> > If there is no other comment, I am going to:
-> >   - submit this change to the staging tree
->=20
-> Good, it's important that you get all your changes to the staging tree
-> before the next merge window.
->=20
-> >   - publish the tool that generate this new format
-> >   - submit the PDS files referenced in bus_{sdio,spi}.c to linux-firmwa=
-re
-> >   - send the v10 of this PR
->=20
-> I'm not sure if there's a need to send a full patchset anymore? We are
-> so close now anyway and the full driver is available from the staging
-> tree, at least that's what I will use from now on when reviewing wfx.
->=20
-> What about the Device Tree bindings? That needs to be acked by the DT
-> maintainers, so that's good to submit as a separate patch for review.
+On Thu, Feb 10, 2022 at 12:52:32PM +0100, Sascha Hauer wrote:
+> On Wed, Feb 09, 2022 at 01:12:45PM +0200, Jani Nikula wrote:
+> > On Wed, 09 Feb 2022, Sascha Hauer <s.hauer@pengutronix.de> wrote:
+> > > David, Daniel,
+> > >
+> > > I'll need a word from you regarding this patch. It's needed in patch
+> > > 22/23 in this series.
+> > > vop2_crtc_atomic_enable() needs to control the mux which routes the
+> > > display output to the different encoders. Which encoder is used is
+> > > described in the of_graph port, so I need a way to identify the encoder
+> > > in the device tree.
+> > 
+> > I think the question is how useful is this going to be in general. IMO
+> > we should not be adding members that are useful in a single driver only.
+> > 
+> > For example i915 wraps encoders with:
+> > 
+> > 	struct intel_encoder {
+> > 		struct drm_encoder base;
+> > 
+> > 		/* i915 specific stuff here*/
+> > 	};
+> > 
+> > So that we can add stuff of our own there. Of course, it does mean a
+> > bunch of overhead for the first time you need to do it. But adding
+> > driver specific stuff to struct drm_encoder adds overhead for everyone.
+> > 
+> > All that said, *I* don't know how useful the port member would be in
+> > drivers that use device tree. Maybe it's worth it.
+> 
+> I don't know either.
+> 
+> Right now the drm_encoder is directly embedded into the encoder drivers
+> private data structures, like this:
+> 
+> struct rockchip_hdmi {
+>         struct drm_encoder encoder;
+> 	...
+> };
+> 
+> I could change this to:
+> 
+> struct rockchip_encoder {
+> 	struct device_node *port;
+> 	struct drm_encoder encoder;
+> }
+> 
+> and then
+> 
+> struct rockchip_hdmi {
+> 	struct rockchip_encoder encoder;
+> 	...
+> };
+> 
+> That would solve the issue without touching generic DRM code if that's
+> preferred.
 
-There is also the patch 01/24 about the SDIO IDs.
+FYI here is a patch for this solution.
 
-I think the v10 could contain only 3 patches:
+Sascha
 
-    1. mmc: sdio: add SDIO IDs for Silabs WF200 chip
-    2. dt-bindings: introduce silabs,wfx.yaml
-    3. [all the patches 3 to 24 squashed]
+------------------------------8<--------------------------------
 
-Would it be right for you?
+From 43512166d8a5ee1856e7ec9644ee5ae5fc178785 Mon Sep 17 00:00:00 2001
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Date: Thu, 10 Feb 2022 15:30:22 +0100
+Subject: [PATCH] drm/rockchip: Embed drm_encoder into rockchip_decoder
 
---=20
-J=E9r=F4me Pouiller
+The VOP2 driver needs rockchip specific informations for a drm_encoder.
+This patch creates a struct rockchip_encoder with a struct drm_encoder
+embedded in it. This is used throughout the rockchip driver instead of
+struct drm_encoder directly.
+While at it convert the different encoder-to-driverdata macros to
+static inline functions in order to gain type safety and readability.
 
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+ .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 32 +++++++++++------
+ drivers/gpu/drm/rockchip/cdn-dp-core.c        | 18 ++++++----
+ drivers/gpu/drm/rockchip/cdn-dp-core.h        |  2 +-
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 17 ++++++----
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   | 11 ++++--
+ drivers/gpu/drm/rockchip/inno_hdmi.c          | 32 +++++++++++------
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c        | 34 ++++++++++++-------
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |  9 +++++
+ drivers/gpu/drm/rockchip/rockchip_lvds.c      | 26 ++++++++------
+ 9 files changed, 121 insertions(+), 60 deletions(-)
 
+diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+index 8abb5ac26807..bb33c6c217f7 100644
+--- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
++++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+@@ -40,8 +40,6 @@
+ 
+ #define PSR_WAIT_LINE_FLAG_TIMEOUT_MS	100
+ 
+-#define to_dp(nm)	container_of(nm, struct rockchip_dp_device, nm)
+-
+ /**
+  * struct rockchip_dp_chip_data - splite the grf setting of kind of chips
+  * @lcdsel_grf_reg: grf register offset of lcdc select
+@@ -59,7 +57,7 @@ struct rockchip_dp_chip_data {
+ struct rockchip_dp_device {
+ 	struct drm_device        *drm_dev;
+ 	struct device            *dev;
+-	struct drm_encoder       encoder;
++	struct rockchip_encoder  encoder;
+ 	struct drm_display_mode  mode;
+ 
+ 	struct clk               *pclk;
+@@ -73,6 +71,18 @@ struct rockchip_dp_device {
+ 	struct analogix_dp_plat_data plat_data;
+ };
+ 
++static struct rockchip_dp_device *encoder_to_dp(struct drm_encoder *encoder)
++{
++	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
++
++	return container_of(rkencoder, struct rockchip_dp_device, encoder);
++}
++
++static struct rockchip_dp_device *pdata_encoder_to_dp(struct analogix_dp_plat_data *plat_data)
++{
++	return container_of(plat_data, struct rockchip_dp_device, plat_data);
++}
++
+ static int rockchip_dp_pre_init(struct rockchip_dp_device *dp)
+ {
+ 	reset_control_assert(dp->rst);
+@@ -84,7 +94,7 @@ static int rockchip_dp_pre_init(struct rockchip_dp_device *dp)
+ 
+ static int rockchip_dp_poweron_start(struct analogix_dp_plat_data *plat_data)
+ {
+-	struct rockchip_dp_device *dp = to_dp(plat_data);
++	struct rockchip_dp_device *dp = pdata_encoder_to_dp(plat_data);
+ 	int ret;
+ 
+ 	ret = clk_prepare_enable(dp->pclk);
+@@ -105,7 +115,7 @@ static int rockchip_dp_poweron_start(struct analogix_dp_plat_data *plat_data)
+ 
+ static int rockchip_dp_powerdown(struct analogix_dp_plat_data *plat_data)
+ {
+-	struct rockchip_dp_device *dp = to_dp(plat_data);
++	struct rockchip_dp_device *dp = pdata_encoder_to_dp(plat_data);
+ 
+ 	clk_disable_unprepare(dp->pclk);
+ 
+@@ -166,7 +176,7 @@ struct drm_crtc *rockchip_dp_drm_get_new_crtc(struct drm_encoder *encoder,
+ static void rockchip_dp_drm_encoder_enable(struct drm_encoder *encoder,
+ 					   struct drm_atomic_state *state)
+ {
+-	struct rockchip_dp_device *dp = to_dp(encoder);
++	struct rockchip_dp_device *dp = encoder_to_dp(encoder);
+ 	struct drm_crtc *crtc;
+ 	struct drm_crtc_state *old_crtc_state;
+ 	int ret;
+@@ -208,7 +218,7 @@ static void rockchip_dp_drm_encoder_enable(struct drm_encoder *encoder,
+ static void rockchip_dp_drm_encoder_disable(struct drm_encoder *encoder,
+ 					    struct drm_atomic_state *state)
+ {
+-	struct rockchip_dp_device *dp = to_dp(encoder);
++	struct rockchip_dp_device *dp = encoder_to_dp(encoder);
+ 	struct drm_crtc *crtc;
+ 	struct drm_crtc_state *new_crtc_state = NULL;
+ 	int ret;
+@@ -297,7 +307,7 @@ static int rockchip_dp_of_probe(struct rockchip_dp_device *dp)
+ 
+ static int rockchip_dp_drm_create_encoder(struct rockchip_dp_device *dp)
+ {
+-	struct drm_encoder *encoder = &dp->encoder;
++	struct drm_encoder *encoder = &dp->encoder.encoder;
+ 	struct drm_device *drm_dev = dp->drm_dev;
+ 	struct device *dev = dp->dev;
+ 	int ret;
+@@ -333,7 +343,7 @@ static int rockchip_dp_bind(struct device *dev, struct device *master,
+ 		return ret;
+ 	}
+ 
+-	dp->plat_data.encoder = &dp->encoder;
++	dp->plat_data.encoder = &dp->encoder.encoder;
+ 
+ 	ret = analogix_dp_bind(dp->adp, drm_dev);
+ 	if (ret)
+@@ -341,7 +351,7 @@ static int rockchip_dp_bind(struct device *dev, struct device *master,
+ 
+ 	return 0;
+ err_cleanup_encoder:
+-	dp->encoder.funcs->destroy(&dp->encoder);
++	dp->encoder.encoder.funcs->destroy(&dp->encoder.encoder);
+ 	return ret;
+ }
+ 
+@@ -351,7 +361,7 @@ static void rockchip_dp_unbind(struct device *dev, struct device *master,
+ 	struct rockchip_dp_device *dp = dev_get_drvdata(dev);
+ 
+ 	analogix_dp_unbind(dp->adp);
+-	dp->encoder.funcs->destroy(&dp->encoder);
++	dp->encoder.encoder.funcs->destroy(&dp->encoder.encoder);
+ }
+ 
+ static const struct component_ops rockchip_dp_component_ops = {
+diff --git a/drivers/gpu/drm/rockchip/cdn-dp-core.c b/drivers/gpu/drm/rockchip/cdn-dp-core.c
+index 16497c31d9f9..6ce1c1cdd9d6 100644
+--- a/drivers/gpu/drm/rockchip/cdn-dp-core.c
++++ b/drivers/gpu/drm/rockchip/cdn-dp-core.c
+@@ -26,11 +26,17 @@
+ #include "cdn-dp-reg.h"
+ #include "rockchip_drm_vop.h"
+ 
+-#define connector_to_dp(c) \
+-		container_of(c, struct cdn_dp_device, connector)
++static inline struct cdn_dp_device *connector_to_dp(struct drm_connector *connector)
++{
++	return container_of(connector, struct cdn_dp_device, connector);
++}
+ 
+-#define encoder_to_dp(c) \
+-		container_of(c, struct cdn_dp_device, encoder)
++static inline struct cdn_dp_device *encoder_to_dp(struct drm_encoder *encoder)
++{
++	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
++
++	return container_of(rkencoder, struct cdn_dp_device, encoder);
++}
+ 
+ #define GRF_SOC_CON9		0x6224
+ #define DP_SEL_VOP_LIT		BIT(12)
+@@ -1022,7 +1028,7 @@ static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
+ 
+ 	INIT_WORK(&dp->event_work, cdn_dp_pd_event_work);
+ 
+-	encoder = &dp->encoder;
++	encoder = &dp->encoder.encoder;
+ 
+ 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev,
+ 							     dev->of_node);
+@@ -1087,7 +1093,7 @@ static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
+ static void cdn_dp_unbind(struct device *dev, struct device *master, void *data)
+ {
+ 	struct cdn_dp_device *dp = dev_get_drvdata(dev);
+-	struct drm_encoder *encoder = &dp->encoder;
++	struct drm_encoder *encoder = &dp->encoder.encoder;
+ 	struct drm_connector *connector = &dp->connector;
+ 
+ 	cancel_work_sync(&dp->event_work);
+diff --git a/drivers/gpu/drm/rockchip/cdn-dp-core.h b/drivers/gpu/drm/rockchip/cdn-dp-core.h
+index 81ac9b658a70..29539170d3b1 100644
+--- a/drivers/gpu/drm/rockchip/cdn-dp-core.h
++++ b/drivers/gpu/drm/rockchip/cdn-dp-core.h
+@@ -65,7 +65,7 @@ struct cdn_dp_device {
+ 	struct device *dev;
+ 	struct drm_device *drm_dev;
+ 	struct drm_connector connector;
+-	struct drm_encoder encoder;
++	struct rockchip_encoder encoder;
+ 	struct drm_display_mode mode;
+ 	struct platform_device *audio_pdev;
+ 	struct work_struct event_work;
+diff --git a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
+index 4ed7a6868197..110e83aad9bb 100644
+--- a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
+@@ -181,8 +181,6 @@
+ 
+ #define HIWORD_UPDATE(val, mask)	(val | (mask) << 16)
+ 
+-#define to_dsi(nm)	container_of(nm, struct dw_mipi_dsi_rockchip, nm)
+-
+ enum {
+ 	DW_DSI_USAGE_IDLE,
+ 	DW_DSI_USAGE_DSI,
+@@ -236,7 +234,7 @@ struct rockchip_dw_dsi_chip_data {
+ 
+ struct dw_mipi_dsi_rockchip {
+ 	struct device *dev;
+-	struct drm_encoder encoder;
++	struct rockchip_encoder encoder;
+ 	void __iomem *base;
+ 
+ 	struct regmap *grf_regmap;
+@@ -271,6 +269,13 @@ struct dw_mipi_dsi_rockchip {
+ 	bool dsi_bound;
+ };
+ 
++static struct dw_mipi_dsi_rockchip *to_dsi(struct drm_encoder *encoder)
++{
++	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
++
++	return container_of(rkencoder, struct dw_mipi_dsi_rockchip, encoder);
++}
++
+ struct dphy_pll_parameter_map {
+ 	unsigned int max_mbps;
+ 	u8 hsfreqrange;
+@@ -770,7 +775,7 @@ static void dw_mipi_dsi_encoder_enable(struct drm_encoder *encoder)
+ 	int ret, mux;
+ 
+ 	mux = drm_of_encoder_active_endpoint_id(dsi->dev->of_node,
+-						&dsi->encoder);
++						&dsi->encoder.encoder);
+ 	if (mux < 0)
+ 		return;
+ 
+@@ -801,7 +806,7 @@ dw_mipi_dsi_encoder_helper_funcs = {
+ static int rockchip_dsi_drm_create_encoder(struct dw_mipi_dsi_rockchip *dsi,
+ 					   struct drm_device *drm_dev)
+ {
+-	struct drm_encoder *encoder = &dsi->encoder;
++	struct drm_encoder *encoder = &dsi->encoder.encoder;
+ 	int ret;
+ 
+ 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev,
+@@ -959,7 +964,7 @@ static int dw_mipi_dsi_rockchip_bind(struct device *dev,
+ 		goto out_pll_clk;
+ 	}
+ 
+-	ret = dw_mipi_dsi_bind(dsi->dmd, &dsi->encoder);
++	ret = dw_mipi_dsi_bind(dsi->dmd, &dsi->encoder.encoder);
+ 	if (ret) {
+ 		DRM_DEV_ERROR(dev, "Failed to bind: %d\n", ret);
+ 		goto out_pll_clk;
+diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+index c038674271b2..ac9a0a272210 100644
+--- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+@@ -72,7 +72,7 @@ struct rockchip_hdmi_chip_data {
+ struct rockchip_hdmi {
+ 	struct device *dev;
+ 	struct regmap *regmap;
+-	struct drm_encoder encoder;
++	struct rockchip_encoder encoder;
+ 	const struct rockchip_hdmi_chip_data *chip_data;
+ 	struct clk *ref_clk;
+ 	struct clk *grf_clk;
+@@ -83,7 +83,12 @@ struct rockchip_hdmi {
+ 	struct phy *phy;
+ };
+ 
+-#define to_rockchip_hdmi(x)	container_of(x, struct rockchip_hdmi, x)
++static struct rockchip_hdmi *to_rockchip_hdmi(struct drm_encoder *encoder)
++{
++	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
++
++	return container_of(rkencoder, struct rockchip_hdmi, encoder);
++}
+ 
+ static const struct dw_hdmi_mpll_config rockchip_mpll_cfg[] = {
+ 	{
+@@ -528,7 +533,7 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
+ 	hdmi->dev = &pdev->dev;
+ 	hdmi->chip_data = plat_data->phy_data;
+ 	plat_data->phy_data = hdmi;
+-	encoder = &hdmi->encoder;
++	encoder = &hdmi->encoder.encoder;
+ 
+ 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
+ 
+diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockchip/inno_hdmi.c
+index 046e8ec2a71c..0a4f72021d6a 100644
+--- a/drivers/gpu/drm/rockchip/inno_hdmi.c
++++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
+@@ -26,8 +26,6 @@
+ 
+ #include "inno_hdmi.h"
+ 
+-#define to_inno_hdmi(x)	container_of(x, struct inno_hdmi, x)
+-
+ struct hdmi_data_info {
+ 	int vic;
+ 	bool sink_is_hdmi;
+@@ -56,7 +54,7 @@ struct inno_hdmi {
+ 	void __iomem *regs;
+ 
+ 	struct drm_connector	connector;
+-	struct drm_encoder	encoder;
++	struct rockchip_encoder	encoder;
+ 
+ 	struct inno_hdmi_i2c *i2c;
+ 	struct i2c_adapter *ddc;
+@@ -67,6 +65,18 @@ struct inno_hdmi {
+ 	struct drm_display_mode previous_mode;
+ };
+ 
++static struct inno_hdmi *encoder_to_inno_hdmi(struct drm_encoder *encoder)
++{
++	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
++
++	return container_of(rkencoder, struct inno_hdmi, encoder);
++}
++
++static struct inno_hdmi *connector_to_inno_hdmi(struct drm_connector *connector)
++{
++	return container_of(connector, struct inno_hdmi, connector);
++}
++
+ enum {
+ 	CSC_ITU601_16_235_TO_RGB_0_255_8BIT,
+ 	CSC_ITU601_0_255_TO_RGB_0_255_8BIT,
+@@ -483,7 +493,7 @@ static void inno_hdmi_encoder_mode_set(struct drm_encoder *encoder,
+ 				       struct drm_display_mode *mode,
+ 				       struct drm_display_mode *adj_mode)
+ {
+-	struct inno_hdmi *hdmi = to_inno_hdmi(encoder);
++	struct inno_hdmi *hdmi = encoder_to_inno_hdmi(encoder);
+ 
+ 	inno_hdmi_setup(hdmi, adj_mode);
+ 
+@@ -493,14 +503,14 @@ static void inno_hdmi_encoder_mode_set(struct drm_encoder *encoder,
+ 
+ static void inno_hdmi_encoder_enable(struct drm_encoder *encoder)
+ {
+-	struct inno_hdmi *hdmi = to_inno_hdmi(encoder);
++	struct inno_hdmi *hdmi = encoder_to_inno_hdmi(encoder);
+ 
+ 	inno_hdmi_set_pwr_mode(hdmi, NORMAL);
+ }
+ 
+ static void inno_hdmi_encoder_disable(struct drm_encoder *encoder)
+ {
+-	struct inno_hdmi *hdmi = to_inno_hdmi(encoder);
++	struct inno_hdmi *hdmi = encoder_to_inno_hdmi(encoder);
+ 
+ 	inno_hdmi_set_pwr_mode(hdmi, LOWER_PWR);
+ }
+@@ -536,7 +546,7 @@ static struct drm_encoder_helper_funcs inno_hdmi_encoder_helper_funcs = {
+ static enum drm_connector_status
+ inno_hdmi_connector_detect(struct drm_connector *connector, bool force)
+ {
+-	struct inno_hdmi *hdmi = to_inno_hdmi(connector);
++	struct inno_hdmi *hdmi = connector_to_inno_hdmi(connector);
+ 
+ 	return (hdmi_readb(hdmi, HDMI_STATUS) & m_HOTPLUG) ?
+ 		connector_status_connected : connector_status_disconnected;
+@@ -544,7 +554,7 @@ inno_hdmi_connector_detect(struct drm_connector *connector, bool force)
+ 
+ static int inno_hdmi_connector_get_modes(struct drm_connector *connector)
+ {
+-	struct inno_hdmi *hdmi = to_inno_hdmi(connector);
++	struct inno_hdmi *hdmi = connector_to_inno_hdmi(connector);
+ 	struct edid *edid;
+ 	int ret = 0;
+ 
+@@ -599,7 +609,7 @@ static struct drm_connector_helper_funcs inno_hdmi_connector_helper_funcs = {
+ 
+ static int inno_hdmi_register(struct drm_device *drm, struct inno_hdmi *hdmi)
+ {
+-	struct drm_encoder *encoder = &hdmi->encoder;
++	struct drm_encoder *encoder = &hdmi->encoder.encoder;
+ 	struct device *dev = hdmi->dev;
+ 
+ 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
+@@ -879,7 +889,7 @@ static int inno_hdmi_bind(struct device *dev, struct device *master,
+ 	return 0;
+ err_cleanup_hdmi:
+ 	hdmi->connector.funcs->destroy(&hdmi->connector);
+-	hdmi->encoder.funcs->destroy(&hdmi->encoder);
++	hdmi->encoder.encoder.funcs->destroy(&hdmi->encoder.encoder);
+ err_put_adapter:
+ 	i2c_put_adapter(hdmi->ddc);
+ err_disable_clk:
+@@ -893,7 +903,7 @@ static void inno_hdmi_unbind(struct device *dev, struct device *master,
+ 	struct inno_hdmi *hdmi = dev_get_drvdata(dev);
+ 
+ 	hdmi->connector.funcs->destroy(&hdmi->connector);
+-	hdmi->encoder.funcs->destroy(&hdmi->encoder);
++	hdmi->encoder.encoder.funcs->destroy(&hdmi->encoder.encoder);
+ 
+ 	i2c_put_adapter(hdmi->ddc);
+ 	clk_disable_unprepare(hdmi->pclk);
+diff --git a/drivers/gpu/drm/rockchip/rk3066_hdmi.c b/drivers/gpu/drm/rockchip/rk3066_hdmi.c
+index 1c546c3a8998..319240c33dcc 100644
+--- a/drivers/gpu/drm/rockchip/rk3066_hdmi.c
++++ b/drivers/gpu/drm/rockchip/rk3066_hdmi.c
+@@ -47,7 +47,7 @@ struct rk3066_hdmi {
+ 	void __iomem *regs;
+ 
+ 	struct drm_connector connector;
+-	struct drm_encoder encoder;
++	struct rockchip_encoder encoder;
+ 
+ 	struct rk3066_hdmi_i2c *i2c;
+ 	struct i2c_adapter *ddc;
+@@ -58,7 +58,17 @@ struct rk3066_hdmi {
+ 	struct drm_display_mode previous_mode;
+ };
+ 
+-#define to_rk3066_hdmi(x) container_of(x, struct rk3066_hdmi, x)
++static struct rk3066_hdmi *encoder_to_rk3066_hdmi(struct drm_encoder *encoder)
++{
++	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
++
++	return container_of(rkencoder, struct rk3066_hdmi, encoder);
++}
++
++static struct rk3066_hdmi *connector_to_rk3066_hdmi(struct drm_connector *connector)
++{
++	return container_of(connector, struct rk3066_hdmi, connector);
++}
+ 
+ static inline u8 hdmi_readb(struct rk3066_hdmi *hdmi, u16 offset)
+ {
+@@ -380,7 +390,7 @@ rk3066_hdmi_encoder_mode_set(struct drm_encoder *encoder,
+ 			     struct drm_display_mode *mode,
+ 			     struct drm_display_mode *adj_mode)
+ {
+-	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(encoder);
++	struct rk3066_hdmi *hdmi = encoder_to_rk3066_hdmi(encoder);
+ 
+ 	/* Store the display mode for plugin/DPMS poweron events. */
+ 	memcpy(&hdmi->previous_mode, adj_mode, sizeof(hdmi->previous_mode));
+@@ -388,7 +398,7 @@ rk3066_hdmi_encoder_mode_set(struct drm_encoder *encoder,
+ 
+ static void rk3066_hdmi_encoder_enable(struct drm_encoder *encoder)
+ {
+-	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(encoder);
++	struct rk3066_hdmi *hdmi = encoder_to_rk3066_hdmi(encoder);
+ 	int mux, val;
+ 
+ 	mux = drm_of_encoder_active_endpoint_id(hdmi->dev->of_node, encoder);
+@@ -407,7 +417,7 @@ static void rk3066_hdmi_encoder_enable(struct drm_encoder *encoder)
+ 
+ static void rk3066_hdmi_encoder_disable(struct drm_encoder *encoder)
+ {
+-	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(encoder);
++	struct rk3066_hdmi *hdmi = encoder_to_rk3066_hdmi(encoder);
+ 
+ 	DRM_DEV_DEBUG(hdmi->dev, "hdmi encoder disable\n");
+ 
+@@ -455,7 +465,7 @@ struct drm_encoder_helper_funcs rk3066_hdmi_encoder_helper_funcs = {
+ static enum drm_connector_status
+ rk3066_hdmi_connector_detect(struct drm_connector *connector, bool force)
+ {
+-	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(connector);
++	struct rk3066_hdmi *hdmi = connector_to_rk3066_hdmi(connector);
+ 
+ 	return (hdmi_readb(hdmi, HDMI_HPG_MENS_STA) & HDMI_HPG_IN_STATUS_HIGH) ?
+ 		connector_status_connected : connector_status_disconnected;
+@@ -463,7 +473,7 @@ rk3066_hdmi_connector_detect(struct drm_connector *connector, bool force)
+ 
+ static int rk3066_hdmi_connector_get_modes(struct drm_connector *connector)
+ {
+-	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(connector);
++	struct rk3066_hdmi *hdmi = connector_to_rk3066_hdmi(connector);
+ 	struct edid *edid;
+ 	int ret = 0;
+ 
+@@ -496,9 +506,9 @@ rk3066_hdmi_connector_mode_valid(struct drm_connector *connector,
+ static struct drm_encoder *
+ rk3066_hdmi_connector_best_encoder(struct drm_connector *connector)
+ {
+-	struct rk3066_hdmi *hdmi = to_rk3066_hdmi(connector);
++	struct rk3066_hdmi *hdmi = connector_to_rk3066_hdmi(connector);
+ 
+-	return &hdmi->encoder;
++	return &hdmi->encoder.encoder;
+ }
+ 
+ static int
+@@ -538,7 +548,7 @@ struct drm_connector_helper_funcs rk3066_hdmi_connector_helper_funcs = {
+ static int
+ rk3066_hdmi_register(struct drm_device *drm, struct rk3066_hdmi *hdmi)
+ {
+-	struct drm_encoder *encoder = &hdmi->encoder;
++	struct drm_encoder *encoder = &hdmi->encoder.encoder;
+ 	struct device *dev = hdmi->dev;
+ 
+ 	encoder->possible_crtcs =
+@@ -816,7 +826,7 @@ static int rk3066_hdmi_bind(struct device *dev, struct device *master,
+ 
+ err_cleanup_hdmi:
+ 	hdmi->connector.funcs->destroy(&hdmi->connector);
+-	hdmi->encoder.funcs->destroy(&hdmi->encoder);
++	hdmi->encoder.encoder.funcs->destroy(&hdmi->encoder.encoder);
+ err_disable_i2c:
+ 	i2c_put_adapter(hdmi->ddc);
+ err_disable_hclk:
+@@ -831,7 +841,7 @@ static void rk3066_hdmi_unbind(struct device *dev, struct device *master,
+ 	struct rk3066_hdmi *hdmi = dev_get_drvdata(dev);
+ 
+ 	hdmi->connector.funcs->destroy(&hdmi->connector);
+-	hdmi->encoder.funcs->destroy(&hdmi->encoder);
++	hdmi->encoder.encoder.funcs->destroy(&hdmi->encoder.encoder);
+ 
+ 	i2c_put_adapter(hdmi->ddc);
+ 	clk_disable_unprepare(hdmi->hclk);
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
+index 6e1f97e1e4a6..d2cb84b7b2b4 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
+@@ -68,4 +68,13 @@ extern struct platform_driver vop_platform_driver;
+ extern struct platform_driver rk3066_hdmi_driver;
+ extern struct platform_driver vop2_platform_driver;
+ 
++struct rockchip_encoder {
++	struct drm_encoder encoder;
++};
++
++static inline struct rockchip_encoder *to_rockchip_encoder(struct drm_encoder *encoder)
++{
++	return container_of(encoder, struct rockchip_encoder, encoder);
++}
++
+ #endif /* _ROCKCHIP_DRM_DRV_H_ */
+diff --git a/drivers/gpu/drm/rockchip/rockchip_lvds.c b/drivers/gpu/drm/rockchip/rockchip_lvds.c
+index be74c87a8be4..4ced073c6b06 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_lvds.c
++++ b/drivers/gpu/drm/rockchip/rockchip_lvds.c
+@@ -36,12 +36,6 @@
+ 
+ struct rockchip_lvds;
+ 
+-#define connector_to_lvds(c) \
+-		container_of(c, struct rockchip_lvds, connector)
+-
+-#define encoder_to_lvds(c) \
+-		container_of(c, struct rockchip_lvds, encoder)
+-
+ /**
+  * struct rockchip_lvds_soc_data - rockchip lvds Soc private data
+  * @probe: LVDS platform probe function
+@@ -65,10 +59,22 @@ struct rockchip_lvds {
+ 	struct drm_panel *panel;
+ 	struct drm_bridge *bridge;
+ 	struct drm_connector connector;
+-	struct drm_encoder encoder;
++	struct rockchip_encoder encoder;
+ 	struct dev_pin_info *pins;
+ };
+ 
++static inline struct rockchip_lvds *connector_to_lvds(struct drm_connector *connector)
++{
++	return container_of(connector, struct rockchip_lvds, connector);
++}
++
++static inline struct rockchip_lvds *encoder_to_lvds(struct drm_encoder *encoder)
++{
++	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
++
++	return container_of(rkencoder, struct rockchip_lvds, encoder);
++}
++
+ static inline void rk3288_writel(struct rockchip_lvds *lvds, u32 offset,
+ 				 u32 val)
+ {
+@@ -599,7 +605,7 @@ static int rockchip_lvds_bind(struct device *dev, struct device *master,
+ 		goto err_put_remote;
+ 	}
+ 
+-	encoder = &lvds->encoder;
++	encoder = &lvds->encoder.encoder;
+ 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev,
+ 							     dev->of_node);
+ 
+@@ -674,10 +680,10 @@ static void rockchip_lvds_unbind(struct device *dev, struct device *master,
+ 	const struct drm_encoder_helper_funcs *encoder_funcs;
+ 
+ 	encoder_funcs = lvds->soc_data->helper_funcs;
+-	encoder_funcs->disable(&lvds->encoder);
++	encoder_funcs->disable(&lvds->encoder.encoder);
+ 	pm_runtime_disable(dev);
+ 	drm_connector_cleanup(&lvds->connector);
+-	drm_encoder_cleanup(&lvds->encoder);
++	drm_encoder_cleanup(&lvds->encoder.encoder);
+ }
+ 
+ static const struct component_ops rockchip_lvds_component_ops = {
+-- 
+2.30.2
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
