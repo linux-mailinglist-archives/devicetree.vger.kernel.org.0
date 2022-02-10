@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F4574B0777
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 08:47:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B835E4B0791
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 08:53:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236674AbiBJHrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 02:47:49 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57580 "EHLO
+        id S236783AbiBJHxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 02:53:25 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236546AbiBJHrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 02:47:42 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86721D84;
-        Wed,  9 Feb 2022 23:47:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1644479258; x=1676015258;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=WtkjwIj4gFtahOwz2HPoZk6drGvPjwShM1x8+Tc6kNk=;
-  b=lTAIuelpum8ukn0Rya0+4+YtmRUP1W50z2CmW8EG8DPl6s/O+hSxSaE3
-   /rx7ocA9wgHymCDRfAeq6cpIOwK2p15rnt1k7ztMU6sMT852Ssu5rRy67
-   g9fJrlcEqpf7WUi3X0qyRRF7+GuZ6e7DMZs2D11H3lMc+Udac+N5i1WAw
-   cca0k6icm+HhgebDQJt0l8h78LiFRjZNcloPUYiXSIsbJDtt+GEuyRPj7
-   l2ZWBVbvtaDEPlxfSoqUceYU87kOJDfjGfazcMJd3P3UC4QAZHFuWImoF
-   qfDCUzT772dVDN2u/RZqRzVaAUBjWs3rz3EaMPvEpLd6oBsJR46FYrbK/
-   A==;
-IronPort-SDR: ELjPecTArxrWUc9qAkuMQsqAamCnPyVaZpZCXbBy7Td9vGhEErlfVYbLnZm5VCdAUyJRhASz/s
- qW7uRj090AC2Xu/+linXKoD7jqmJt3d5wzjVAkx6TqTk8CsGNgmKqAIeGkfq8mufZ0C8jyLFtN
- SFUQbPu50KjHOikiOwyW1n0UAe2GwekN1PELAcvcdVS3o7REV7s2ecyeJBCgtg3ibbigb7OcnY
- Fw1sKCHQPW4Q5AsFuyVRMv1+VhzcD5jy8rbzqKCIowXDsBBqOYd87TY9jx7Zqee6JX/LbvudxQ
- SLZpk4gtObZwAEd/jq5ZEvCW
-X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; 
-   d="scan'208";a="85274972"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Feb 2022 00:47:38 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 10 Feb 2022 00:47:37 -0700
-Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Thu, 10 Feb 2022 00:47:33 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>,
-        <lee.jones@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <Kavyasree.Kotagiri@microchip.com>,
-        <Manohar.Puri@microchip.com>
-Subject: [PATCH 2/2] mfd: atmel-flexcom: Add support for lan966 flexcom shared configurations
-Date:   Thu, 10 Feb 2022 13:15:46 +0530
-Message-ID: <20220210074546.30669-3-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220210074546.30669-1-kavyasree.kotagiri@microchip.com>
-References: <20220210074546.30669-1-kavyasree.kotagiri@microchip.com>
+        with ESMTP id S236730AbiBJHxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 02:53:24 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1617BBAE;
+        Wed,  9 Feb 2022 23:53:24 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A6431B8242A;
+        Thu, 10 Feb 2022 07:53:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8371DC004E1;
+        Thu, 10 Feb 2022 07:53:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1644479602;
+        bh=EHwtLM12IbKnr52SQSPs2DLSwzmhLw4dlVHdIhuPQH8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OdokNtUiyrMrUPJ0VCJJsJTW4mKKYRNCBNXxN0aUy5RxG2w86ncVE5+FU+Qn2QHiT
+         kM/16O96B5YY3s1D7iignRSt2fmuy+VXsz2Lwbp3fhIHe3eFkMEO1DqaxOiemkUVV9
+         OlmtDEdLoivzOnpqg5uOFCG0gduGisOH0j+gy6g4=
+Date:   Thu, 10 Feb 2022 08:53:18 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Rajat Jain <rajatja@google.com>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Len Brown <lenb@kernel.org>,
+        Linux PCI <linux-pci@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rajat Jain <rajatxjain@gmail.com>,
+        Dmitry Torokhov <dtor@google.com>,
+        Jesse Barnes <jsbarnes@google.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Pavel Machek <pavel@denx.de>,
+        Oliver O'Halloran <oohall@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>
+Subject: Re: [PATCH v2 1/2] PCI: Allow internal devices to be marked as
+ untrusted
+Message-ID: <YgTEbpIIuKiBbqqY@kroah.com>
+References: <YgNVJKy0s8MGBRoa@kroah.com>
+ <20220209183945.GA571585@bhelgaas>
+ <CAJZ5v0hYFRe-HseDnqh4AFpBzzmAjx9nfJo2yC5o=jzbWUqqOw@mail.gmail.com>
+ <CACK8Z6Erfmqv39C2a5nAtDMXz3_w1B0ibQLc3dd4HJZ_z=xg+g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACK8Z6Erfmqv39C2a5nAtDMXz3_w1B0ibQLc3dd4HJZ_z=xg+g@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,92 +69,222 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each flexcom of LAN966 SoC has 2 chip selects. For each chip
-select of each flexcom there is a configuration register
-FLEXCOM_SHARED[0-4]:SS_MASK[0-1]. The width of configuration
-register is 21 because there are 21 shared pins on each of
-which the chip select can be mapped. Each bit of the register
-represents a different FLEXCOM_SHARED pin.
+On Wed, Feb 09, 2022 at 02:00:54PM -0800, Rajat Jain wrote:
+> Hello,
+> 
+> On Wed, Feb 9, 2022 at 10:49 AM Rafael J. Wysocki <rafael@kernel.org> wrote:
+> >
+> > On Wed, Feb 9, 2022 at 7:39 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > >
+> > > On Wed, Feb 09, 2022 at 06:46:12AM +0100, Greg Kroah-Hartman wrote:
+> > > > On Tue, Feb 08, 2022 at 04:23:27PM -0800, Rajat Jain wrote:
+> > > > > On Tue, Feb 1, 2022 at 6:01 PM Rajat Jain <rajatja@google.com> wrote:
+> > > > > >
+> > > > > > Today the pci_dev->untrusted is set for any devices sitting downstream
+> > > > > > an external facing port (determined via "ExternalFacingPort" or the
+> > > > > > "external-facing" properties).
+> > > > > >
+> > > > > > However, currently there is no way for internal devices to be marked as
+> > > > > > untrusted.
+> > > > > >
+> > > > > > There are use-cases though, where a platform would like to treat an
+> > > > > > internal device as untrusted (perhaps because it runs untrusted firmware
+> > > > > > or offers an attack surface by handling untrusted network data etc).
+> > > > > >
+> > > > > > Introduce a new "UntrustedDevice" property that can be used by the
+> > > > > > firmware to mark any device as untrusted.
+> > > > >
+> > > > > Just to unite the threads (from
+> > > > > https://www.spinics.net/lists/linux-pci/msg120221.html). I did reach
+> > > > > out to Microsoft but they haven't acknowledged my email. I also pinged
+> > > > > them again yesterday, but I suspect I may not be able to break the
+> > > > > ice. So this patch may be ready to go in my opinion.
+> > > > >
+> > > > > I don't see any outstanding comments on this patch, but please let me
+> > > > > know if you have any comments.
+> > > > >
+> > > > > > Signed-off-by: Rajat Jain <rajatja@google.com>
+> > > > > > ---
+> > > > > > v2: * Also use the same property for device tree based systems.
+> > > > > >     * Add documentation (next patch)
+> > > > > >
+> > > > > >  drivers/pci/of.c       | 2 ++
+> > > > > >  drivers/pci/pci-acpi.c | 1 +
+> > > > > >  drivers/pci/pci.c      | 9 +++++++++
+> > > > > >  drivers/pci/pci.h      | 2 ++
+> > > > > >  4 files changed, 14 insertions(+)
+> > > > > >
+> > > > > > diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> > > > > > index cb2e8351c2cc..e8b804664b69 100644
+> > > > > > --- a/drivers/pci/of.c
+> > > > > > +++ b/drivers/pci/of.c
+> > > > > > @@ -24,6 +24,8 @@ void pci_set_of_node(struct pci_dev *dev)
+> > > > > >                                                     dev->devfn);
+> > > > > >         if (dev->dev.of_node)
+> > > > > >                 dev->dev.fwnode = &dev->dev.of_node->fwnode;
+> > > > > > +
+> > > > > > +       pci_set_untrusted(dev);
+> > > > > >  }
+> > > > > >
+> > > > > >  void pci_release_of_node(struct pci_dev *dev)
+> > > > > > diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
+> > > > > > index a42dbf448860..2bffbd5c6114 100644
+> > > > > > --- a/drivers/pci/pci-acpi.c
+> > > > > > +++ b/drivers/pci/pci-acpi.c
+> > > > > > @@ -1356,6 +1356,7 @@ void pci_acpi_setup(struct device *dev, struct acpi_device *adev)
+> > > > > >
+> > > > > >         pci_acpi_optimize_delay(pci_dev, adev->handle);
+> > > > > >         pci_acpi_set_external_facing(pci_dev);
+> > > > > > +       pci_set_untrusted(pci_dev);
+> > > > > >         pci_acpi_add_edr_notifier(pci_dev);
+> > > > > >
+> > > > > >         pci_acpi_add_pm_notifier(adev, pci_dev);
+> > > > > > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> > > > > > index 9ecce435fb3f..41e887c27004 100644
+> > > > > > --- a/drivers/pci/pci.c
+> > > > > > +++ b/drivers/pci/pci.c
+> > > > > > @@ -6869,3 +6869,12 @@ static int __init pci_realloc_setup_params(void)
+> > > > > >         return 0;
+> > > > > >  }
+> > > > > >  pure_initcall(pci_realloc_setup_params);
+> > > > > > +
+> > > > > > +void pci_set_untrusted(struct pci_dev *pdev)
+> > > > > > +{
+> > > > > > +       u8 val;
+> > > > > > +
+> > > > > > +       if (!device_property_read_u8(&pdev->dev, "UntrustedDevice", &val)
+> > >
+> > > If we do this, can we combine it with set_pcie_untrusted(), where we
+> > > already set pdev->untrusted?  Maybe that needs to be renamed; I don't
+> > > see anything PCIe-specific there, and it looks like it works for
+> > > conventional PCI as well.
+> 
+> Yes, I agree it makes sense to combine with set_pcie_untrusted(). I
+> can do that in the next iteration of my patch, that I intend to work
+> on after we reach some sort of conclusion on the other major comments
+> below.
+> 
+> > >
+> > > > Please no, "Untrusted" does not really convey much, if anything here.
+> > > > You are taking an odd in-kernel-value and making it a user api.
+> > > >
+> > > > Where is this "trust" defined?  Who defines it?  What policy does the
+> > > > kernel impose on it?
+> > >
+> > > I'm a bit hesitant about this, too.  It really doesn't have anything
+> > > in particular to do with the PCI core.  It's not part of the PCI
+> > > specs, and it could apply to any kind of device, not just PCI (ACPI,
+> > > platform, USB, etc).
+> > >
+> > > We have:
+> > >
+> > >   dev->removable                # struct device
+> > >   pdev->is_thunderbolt
+> > >   pdev->untrusted
+> > >   pdev->external_facing
+> > >
+> > > and it feels a little hard to keep everything straight.  Most of them
+> > > are "discovered" based on some DT or ACPI firmware property.  None of
+> > > them really has anything specifically to do with *PCI*, and I don't
+> > > think the PCI core depends on any of them.  I think
+> > > pdev->is_thunderbolt is the only one we discover based on a PCI
+> > > feature (the Thunderbolt Capability), and the things we *use* it for
+> > > are actually not things specified by that capability [1].
+> > >
+> > > Could drivers just look for these properties directly instead of
+> > > relying on the PCI core to get in the middle?  Most callers of
+> > > device_property_read_*() are in drivers.  I do see that doing it in
+> > > the PCI core might help enforce standard usage in DT/ACPI, but we
+> > > could probably do that in other ways, too.
+> >
+> > FWIW, I agree that looking at these things in drivers would be better.
+> 
+> The pci_dev->untrusted property is currently used by:
+> 
+> - IOMMU drivers to determine whether bounce buffers should be used,
+> and whether flush queue should be used for these devices.
 
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
----
- drivers/mfd/atmel-flexcom.c | 49 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+Then how about naming it "use_iommu" or something like that?  "Trust"
+has nothing to do with this at all.
 
-diff --git a/drivers/mfd/atmel-flexcom.c b/drivers/mfd/atmel-flexcom.c
-index 559eb4d352b6..b8fc476e411d 100644
---- a/drivers/mfd/atmel-flexcom.c
-+++ b/drivers/mfd/atmel-flexcom.c
-@@ -27,6 +27,12 @@
- #define FLEX_MR_OPMODE_MASK	(0x3 << FLEX_MR_OPMODE_OFFSET)
- #define FLEX_MR_OPMODE(opmode)	(((opmode) << FLEX_MR_OPMODE_OFFSET) &	\
- 				 FLEX_MR_OPMODE_MASK)
-+#ifdef CONFIG_SOC_LAN966
-+/* LAN966 register offsets */
-+#define FLEX_SHRD_SS_MASK_0 0x0
-+#define FLEX_SHRD_SS_MASK_1 0x4
-+#define FLEX_SHRD_MASK      0x1FFFFF
-+#endif
- 
- struct atmel_flexcom {
- 	void __iomem *base;
-@@ -39,6 +45,10 @@ static int atmel_flexcom_probe(struct platform_device *pdev)
- 	struct device_node *np = pdev->dev.of_node;
- 	struct resource *res;
- 	struct atmel_flexcom *ddata;
-+#ifdef CONFIG_SOC_LAN966
-+	u32 lan966x_ss_pin, lan966x_cs, val;
-+	void __iomem *shared_base;
-+#endif
- 	int err;
- 
- 	ddata = devm_kzalloc(&pdev->dev, sizeof(*ddata), GFP_KERNEL);
-@@ -76,6 +86,45 @@ static int atmel_flexcom_probe(struct platform_device *pdev)
- 	 */
- 	writel(FLEX_MR_OPMODE(ddata->opmode), ddata->base + FLEX_MR);
- 
-+#ifdef CONFIG_SOC_LAN966
-+	/*
-+	 * Flexcom Shared Register Configurations:
-+	 * In order to map chip select index X of Flexcom Y to FLEXCOM_SHARED Z,
-+	 * write 0 to bit index Z of FLEXCOM_SHARED[Y]:SS_MASK[X].
-+	 */
-+	if (of_property_read_bool(np, "lan966x-flx-shared-cfg")) {
-+		/* Shared pin */
-+		err = of_property_read_u32(np, "lan966x-ss-pin", &lan966x_ss_pin);
-+		if (err)
-+			return err;
-+
-+		if (lan966x_ss_pin > 20)
-+			return -EINVAL;
-+
-+		/* chip-select */
-+		err = of_property_read_u32(np, "lan966x-cs", &lan966x_cs);
-+		if (err)
-+			return err;
-+
-+		if (lan966x_cs > 1)
-+			return -EINVAL;
-+
-+		shared_base = devm_ioremap_resource(&pdev->dev,
-+				platform_get_resource(pdev, IORESOURCE_MEM, 1));
-+		if (IS_ERR(shared_base)) {
-+			dev_dbg(&pdev->dev, "No Flexcom shared register config\n");
-+			return PTR_ERR(shared_base);
-+		}
-+
-+		val = ~(1 << lan966x_ss_pin) & FLEX_SHRD_MASK;
-+
-+		if (lan966x_cs == 0)
-+			writel(val, shared_base + FLEX_SHRD_SS_MASK_0);
-+		else
-+			writel(val, shared_base + FLEX_SHRD_SS_MASK_1);
-+	}
-+#endif
-+
- 	clk_disable_unprepare(ddata->clk);
- 
- 	return devm_of_platform_populate(&pdev->dev);
--- 
-2.17.1
+> - PCI subsystem to determine ACS settings (ATS / TB etc)
 
+Why is this relevant?
+
+> As we can see from the usage above, the current primary use of
+> untrusted property in the kernel is to flag and protect against
+> devices that can create a DMA attack on the host physical memory
+> address space (also documented for these properties in [1][2]). IMHO,
+> this property belongs to PCI devices because:
+>  * I do not know of any other bus (other than PCI) that can allow DMA
+> access of the host memory, to a device on that bus.
+>  * There is some use of this property within the PCI (see above),
+> although I agree it is not much.
+>  * The existing properties are currently documented [1][2] to be part
+> of PCIe root ports / PCI-PCI bridges (only):
+> 
+> [1] https://docs.microsoft.com/en-us/windows-hardware/drivers/pci/dsd-for-pcie-root-ports
+> [2] Documentation/devicetree/bindings/pci/pci.txt
+
+Then let us mark these as "able to do DMA" or something like that.
+"Trust" is a userspace policy decision, not a kernel decision to make.
+
+And there are other busses that can do DMA, PCI is not unique here.
+
+> One can possibly read the device properties in IOMMU drivers, but
+> they'd need to keep it in some device structure.
+
+That's fine, let's move it there.
+
+> I understand moving
+> the pci_dev->untrusted into struct device has been brought up a couple
+> of times in the past, and has met with much stronger resistance.
+
+Because of the issues I am raising here.  It's a bad name and doesn't
+mean what people think it means.
+
+> The
+> discussion turned into a discussion on security, and the semantics of
+> this property, and allowing userspace to change this property etc,
+> requiring major changes, and thus fizzled out of motivation.
+
+So I guess no one really cares :)
+
+> I'd like to mention that I'm not proposing any changes to the way
+> (already existing) pci_dev->untrusted is being used, or the semantics
+> of this flag. I'm only trying to solve a corner case here i.e.
+> internal devices don't have a way to specify this attribute. Thus
+> requiring us (Chromeos) to carry hacks like [3]. I believe there are
+> others who are also looking for this corner case. From [4]:
+
+Why does Chromeos care about this flag?  What userspace decisions do you
+make based on it?
+
+> ==============================
+> We have a similar trust issue with the BMC in servers even
+> though they're internal devices. They're typically network accessible
+> and infrequently updated so treating them as trustworthy isn't a great
+> idea. We have been slowly de-privileging the BMC over the last few
+> years, but the PCIe interface isn't locked down enough for my liking
+> since the SoCs we use do allow software to set the VDID and perform
+> arbitrary DMAs (thankfully limited to 32bit). If we're going to add in
+> infrastructure for handling possibly untrustworthy PCI devices then
+> I'd like to use that for BMCs too.
+> =============================
+> 
+> [3] https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/3171209
+> [4] https://lkml.org/lkml/2020/6/9/1467
+> 
+> So from what I see, there is a need to solve this problem for internal
+> PCI devices. And presently what I have, seemed like the path of least
+> resistance to me (i.e. without running into big discussions, and major
+> code changes).
+
+It needs those code changes, please do not try to keep adding more to
+this to avoid the real-work that is needed here.  Refer to those other
+discussions you mention above for what should happen to do this
+correctly.
+
+thanks,
+
+greg k-h
