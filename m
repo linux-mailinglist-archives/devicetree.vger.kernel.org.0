@@ -2,84 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9FC94B0E81
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 14:31:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A18734B0EE5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 14:34:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242218AbiBJNak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 08:30:40 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57054 "EHLO
+        id S242253AbiBJNd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 08:33:58 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240857AbiBJNaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 08:30:39 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0186EBA9;
-        Thu, 10 Feb 2022 05:30:40 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: adalessandro)
-        with ESMTPSA id 6B6971F46453
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1644499839;
-        bh=2zdjWTY9pmqeyCcaii9xQhF6IAogRoT+OvBfJoZCOww=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Hl6mZBaKFGEzPDcKwFhyRNX6jGsaW3U74lS0m6ksQUUh012PTBl+wtIFzcT9Q2Yo5
-         Iyvxt7vCgsMXAbWBnc/NXBwSrKxVM2JHhKM7uUlg+sXJR+nyq4HfeVIAuYvRK4WBFK
-         x0gaNSYzlo/zu1xD5QCPa+G2TXDhenaa0Nbo84hwqwyzk+KQjrC4OmamL8+y5FfNCy
-         +tKaKafk2d19ukbrtFANgyEYiKQhcFnNcYEakGqQ3zRW3om+j6CsM5AKzmbc+4fOww
-         ER8ivV+wQHXgliJNtji7hEPkrbn5aKGJydr+xLco3SzdMG5Oh6Jz73mlwFUd+eoyx7
-         9Ks5r+BMz4T3g==
-Message-ID: <2cfa6083-8f9a-2355-d99b-4ac1a8b00965@collabora.com>
-Date:   Thu, 10 Feb 2022 10:30:30 -0300
+        with ESMTP id S242222AbiBJNd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 08:33:58 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66E8C53;
+        Thu, 10 Feb 2022 05:33:58 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 174772223A;
+        Thu, 10 Feb 2022 14:33:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1644500037;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=h4J9FNtfm4H/Vg71/QaYcfYokCooPLvGFhwoek79uZ4=;
+        b=tBW2U+BezYR7cRv34ugVojO8BVegO4GvsvIVx96sgpfvYpEg7+FhV4za3XE4aUorURukY+
+        zoxMZzMaaDomROmP5OQ1mN2xstEe5d9y7ajPDXVSusFXS6dmhUiqwfNeD7h1ivmip8Y4s4
+        qXduz6AcEor7KH7607j0ios1t0rY5No=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH 1/2] ASoC: bindings: fsl-asoc-card: Add compatible for
- tlv320aic31xx codec
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-        festevam@gmail.com, krzysztof.kozlowski@canonical.com,
-        lgirdwood@gmail.com, michael@amarulasolutions.com,
-        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-References: <20220207164946.558862-1-packagers@lists.apertis.org>
- <YgUSEvMGMoSQYy5v@sirena.org.uk>
-From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-In-Reply-To: <YgUSEvMGMoSQYy5v@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Date:   Thu, 10 Feb 2022 14:33:57 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Kavyasree.Kotagiri@microchip.com
+Cc:     Tudor.Ambarus@microchip.com, Manohar.Puri@microchip.com,
+        Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
+        alexandre.belloni@bootlin.com, arnd@arndb.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, olof@lixom.net, robh+dt@kernel.org,
+        soc@kernel.org
+Subject: Re: [PATCH v4] ARM: dts: add DT for lan966 SoC and 2-port board
+ pcb8291
+In-Reply-To: <CO1PR11MB4865B76B9B26EE938E3E67CE922F9@CO1PR11MB4865.namprd11.prod.outlook.com>
+References: <42662481-51a4-2a4b-e39b-d3b8401cbb2c@microchip.com>
+ <20220210123704.477826-1-michael@walle.cc>
+ <CO1PR11MB4865B76B9B26EE938E3E67CE922F9@CO1PR11MB4865.namprd11.prod.outlook.com>
+User-Agent: Roundcube Webmail/1.4.12
+Message-ID: <51e33e946b096c903b0cacb5681fc6f1@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+Am 2022-02-10 14:02, schrieb Kavyasree.Kotagiri@microchip.com:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know 
+>> the
+>> content is safe
+>> 
+>> Hi,
+>> 
+>> >  arch/arm/boot/dts/Makefile            |   2 +
+>> >  arch/arm/boot/dts/lan966x.dtsi        | 237 ++++++++++++++++++++++++++
+>> >  arch/arm/boot/dts/lan966x_pcb8291.dts |  61 +++++++
+>> 
+>> Please rename this to lan966x-pcb8921.dts. All (most?) of the device
+>> tree files use the dash as a seperator between the SoC and the board.
+>> 
+> Ok, I will change in my v6.
+> Please have a look at my v5 patch where I already addressed all the
+> node naming changes.
 
-On 2/10/22 10:24, Mark Brown wrote:
-> On Mon, Feb 07, 2022 at 01:49:45PM -0300, Apertis package maintainers wrote:
->> From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
->>
->> Commit 8c9b9cfb7724 ("ASoC: fsl-asoc-card: Support
->> fsl,imx-audio-tlv320aic31xx codec")' added support for tlv320aic31xx
->> codec to fsl-asoc-card, but missed the related device-tree compatible
->> string documentation. Fix this.
->>
->> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
->> ---
-> 
-> This has a signoff from Ariel but the mail comes from something called
-> "Apertis package maintainers" and I really can't tell if there's a good
-> signoff chain here, please see Documentation/process/submitting-patches.rst
-> for details on what this is and why it's important.  The submission
-> really needs to come from an actual person who's providing a signoff.
+My comments besides the renaming still apply.
 
-Ugh (:hard-facepalm:) totally a misconfiguration on my mail client. Will 
-resubmit right away. Sorry for not noticing it when I sent the patchset.
-
-Thanks,
-Ariel
+-michael
