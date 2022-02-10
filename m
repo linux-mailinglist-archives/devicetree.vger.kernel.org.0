@@ -2,66 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4C1D4B09CD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 10:44:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 862B14B09F6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 10:51:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238916AbiBJJoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 04:44:24 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34082 "EHLO
+        id S239018AbiBJJu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 04:50:28 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235159AbiBJJoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 04:44:23 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 712E4198
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 01:44:24 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id d27so8469130wrc.6
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 01:44:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GYbokiO3VJ4iW65Dstshrb5gvbsv2dMAOZw4XcPc5q4=;
-        b=ee07sKZuUW5Fzua3Sw51Mw7bjBEPymx+0jNhtyPf0igFS6yhsCAfQGkrk/GBlgpsE0
-         Yzm4WduYHn/qP0EkkrwzRj8K1Sv6+t1ZJLONpiv5qgyA+jmTYoGOHa3SD0M4hH7v22WM
-         WtOnDop/iUyyvkU/BZKpf73aexOGewDvxRu3E2uS3TPohWRSBuYzg1Kb8GIW6fKJjaBm
-         C216Y0QCumLti6ZDsDWT3a4Mmwy4bxSeIJsuVjcwWAFSmj22fCxnH2fzc6cs9bvMND5h
-         i/QOcnRK957s4FN1XPK/twbiSbqsRWde9Td4aT69rWSDic4/PauBmWyWrLFb1sktAjhm
-         pR7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GYbokiO3VJ4iW65Dstshrb5gvbsv2dMAOZw4XcPc5q4=;
-        b=TUZ9YD2Lwx5ilTlvTm/86XbVV8IlZG/Pk3yYvT1wO/h/ZKHSnvfD6iTdv1wJsv+Dc5
-         uDsuHFTfd9pteqSEdnOmgYWCGgcswcXGsxEazfHuhT8c8RE3r2RTNPeqkO14VTbwjCP2
-         Mq/inCcT7nZ/RTC5H+NyXhoUPVDJ/zKVJd2F36xJioyDZKma4rBVJZr7Shcgzi9EyGtL
-         Fj+ABbSzbqHQC2N08Ve97tyWroxCx9pA+SqFrFtL+YfR0Paqkfqx4Y0/p4M+PvtN4cg9
-         L2sFBEnvQlyKLnusmTMlQrc03ON0Nsh0GCzQsadzACALOSj3KvVBEsh1Ok9yd0PxMeMY
-         VnwQ==
-X-Gm-Message-State: AOAM5323dioTwPQO3qa1m64/RhItZIkXbTjwyCgdi+cOkPeL0Z84HiU3
-        GMLIaE68BQLXg2ryUmDzyxNBRCy/qs9vNA==
-X-Google-Smtp-Source: ABdhPJzz1fvR+9MddyaPTLKd+vwNPOJs91LIu4TMck1tqi74rzqXIflDK7Xegr/DLz8AdO3+HYPwJg==
-X-Received: by 2002:adf:ee81:: with SMTP id b1mr5482077wro.149.1644486262956;
-        Thu, 10 Feb 2022 01:44:22 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id o14sm20609108wry.104.2022.02.10.01.44.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Feb 2022 01:44:22 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     damien.lemoal@opensource.wdc.com,
-        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH v3] dt-bindings: convert ata/cortina,gemini-sata-bridge to yaml
-Date:   Thu, 10 Feb 2022 09:44:14 +0000
-Message-Id: <20220210094414.2815616-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S234025AbiBJJu1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 04:50:27 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55375138;
+        Thu, 10 Feb 2022 01:50:28 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id D2B99223EA;
+        Thu, 10 Feb 2022 10:50:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1644486626;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=DVCxNyNvPkbMQcEKg8ORdo0LOt/uaTbu/hLOmPArtaw=;
+        b=icSLTfk5pjfOEhowZinpJNH6ieyAkZGgik2WzyfLogOnOR15CipBMQAb/mgxK3Z3rnOBsZ
+        dqHD4hiO0WTurBJpGyJrtYlsqtvGp13DaNmofKnd36M/3LHUUNfAIA74iXdGmVtzVBNAod
+        nKzhCf3AQR8sbbZv9Kx1udFHggyQTlQ=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 10 Feb 2022 10:50:25 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Kavyasree.Kotagiri@microchip.com
+Cc:     Manohar.Puri@microchip.com, UNGLinuxDriver@microchip.com,
+        alexandre.belloni@bootlin.com, arnd@arndb.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Nicolas.Ferre@microchip.com,
+        olof@lixom.net, robh+dt@kernel.org, soc@kernel.org
+Subject: Re: [PATCH v4] ARM: dts: add DT for lan966 SoC and 2-port board
+ pcb8291
+In-Reply-To: <CO1PR11MB486534A2987684CC7402CE06922F9@CO1PR11MB4865.namprd11.prod.outlook.com>
+References: <20220209111318.21112-1-kavyasree.kotagiri@microchip.com>
+ <20220209184600.1230365-1-michael@walle.cc>
+ <CO1PR11MB486534A2987684CC7402CE06922F9@CO1PR11MB4865.namprd11.prod.outlook.com>
+User-Agent: Roundcube Webmail/1.4.12
+Message-ID: <97bcfa4417d5f8c41cc6aa1e411c8747@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,199 +60,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch converts ata/cortina,gemini-sata-bridge binding to yaml
+Am 2022-02-10 10:40, schrieb Kavyasree.Kotagiri@microchip.com:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know 
+>> the
+>> content is safe
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
-Change since v1:
-- fixed cosmetic nits reported by Damien Le Moal
-Changes since v2:
-- Added blank lines between properties
-- Removed useless quotes and label
-- Re-indented description
+>> > +     clocks {
+>> [..]
+>> > +
+>> > +             nic_clk: nic_clk {
+>> 
+>> What does nic_clk stand for? If I had to guess, it
+>> has something to do with network. But..
+>> 
+> NIC clock is the clock used by AXI, AHB fabric and APB bridges which
+> connects all the peripherals.
+> It is named so because the AXI fabric is based on NIC400 IP from ARM
 
- .../ata/cortina,gemini-sata-bridge.txt        |  55 ---------
- .../ata/cortina,gemini-sata-bridge.yaml       | 107 ++++++++++++++++++
- 2 files changed, 107 insertions(+), 55 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
- create mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
+Ok, thanks for clarification.
 
-diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
-deleted file mode 100644
-index 1c3d3cc70051..000000000000
---- a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
-+++ /dev/null
-@@ -1,55 +0,0 @@
--* Cortina Systems Gemini SATA Bridge
--
--The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
--takes two Faraday Technology FTIDE010 PATA controllers and bridges
--them in different configurations to two SATA ports.
--
--Required properties:
--- compatible: should be
--  "cortina,gemini-sata-bridge"
--- reg: registers and size for the block
--- resets: phandles to the reset lines for both SATA bridges
--- reset-names: must be "sata0", "sata1"
--- clocks: phandles to the compulsory peripheral clocks
--- clock-names: must be "SATA0_PCLK", "SATA1_PCLK"
--- syscon: a phandle to the global Gemini system controller
--- cortina,gemini-ata-muxmode: tell the desired multiplexing mode for
--  the ATA controller and SATA bridges. Values 0..3:
--  Mode 0: ata0 master <-> sata0
--          ata1 master <-> sata1
--          ata0 slave interface brought out on IDE pads
--  Mode 1: ata0 master <-> sata0
--          ata1 master <-> sata1
--          ata1 slave interface brought out on IDE pads
--  Mode 2: ata1 master <-> sata1
--          ata1 slave  <-> sata0
--          ata0 master and slave interfaces brought out
--               on IDE pads
--  Mode 3: ata0 master <-> sata0
--          ata0 slave  <-> sata1
--          ata1 master and slave interfaces brought out
--               on IDE pads
--
--Optional boolean properties:
--- cortina,gemini-enable-ide-pins: enables the PATA to IDE connection.
--  The muxmode setting decides whether ATA0 or ATA1 is brought out,
--  and whether master, slave or both interfaces get brought out.
--- cortina,gemini-enable-sata-bridge: enables the PATA to SATA bridge
--  inside the Gemnini SoC. The Muxmode decides what PATA blocks will
--  be muxed out and how.
--
--Example:
--
--sata: sata@46000000 {
--	compatible = "cortina,gemini-sata-bridge";
--	reg = <0x46000000 0x100>;
--	resets = <&rcon 26>, <&rcon 27>;
--	reset-names = "sata0", "sata1";
--	clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
--		 <&gcc GEMINI_CLK_GATE_SATA1>;
--	clock-names = "SATA0_PCLK", "SATA1_PCLK";
--	syscon = <&syscon>;
--	cortina,gemini-ata-muxmode = <3>;
--	cortina,gemini-enable-ide-pins;
--	cortina,gemini-enable-sata-bridge;
--};
-diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
-new file mode 100644
-index 000000000000..f0fad63bb1af
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
-@@ -0,0 +1,107 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/cortina,gemini-sata-bridge.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cortina Systems Gemini SATA Bridge
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+    The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
-+    takes two Faraday Technology FTIDE010 PATA controllers and bridges
-+    them in different configurations to two SATA ports.
-+
-+properties:
-+  compatible:
-+    const: cortina,gemini-sata-bridge
-+
-+  reg:
-+    minItems: 1
-+
-+  resets:
-+    minItems: 2
-+    description: phandles to the reset lines for both SATA bridges
-+
-+  reset-names:
-+    items:
-+      - const: sata0
-+      - const: sata1
-+
-+  clocks:
-+    minItems: 2
-+    description: phandles to the compulsory peripheral clocks
-+
-+  clock-names:
-+    items:
-+      - const: SATA0_PCLK
-+      - const: SATA1_PCLK
-+
-+  syscon:
-+    minItems: 1
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: a phandle to the global Gemini system controller
-+
-+  cortina,gemini-ata-muxmode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0
-+      - 1
-+      - 2
-+      - 3
-+    description: |
-+      Tell the desired multiplexing mode for the ATA controller and SATA bridges. Values 0..3:
-+      Mode 0: ata0 master <-> sata0
-+              ata1 master <-> sata1
-+              ata0 slave interface brought out on IDE pads
-+      Mode 1: ata0 master <-> sata0
-+              ata1 master <-> sata1
-+              ata1 slave interface brought out on IDE pads
-+      Mode 2: ata1 master <-> sata1
-+              ata1 slave  <-> sata0
-+              ata0 master and slave interfaces brought out on IDE pads
-+      Mode 3: ata0 master <-> sata0
-+              ata0 slave  <-> sata1
-+              ata1 master and slave interfaces brought out on IDE pads
-+
-+  cortina,gemini-enable-ide-pins:
-+    type: boolean
-+    description: Enables the PATA to IDE connection.
-+      The muxmode setting decides whether ATA0 or ATA1 is brought out,
-+      and whether master, slave or both interfaces get brought out.
-+
-+  cortina,gemini-enable-sata-bridge:
-+    type: boolean
-+    description: Enables the PATA to SATA bridge inside the Gemnini SoC.
-+      The Muxmode decides what PATA blocks will be muxed out and how.
-+
-+required:
-+  - clocks
-+  - clock-names
-+  - cortina,gemini-ata-muxmode
-+  - resets
-+  - reset-names
-+  - compatible
-+  - reg
-+  - syscon
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/cortina,gemini-clock.h>
-+    sata@46000000 {
-+      compatible = "cortina,gemini-sata-bridge";
-+      reg = <0x46000000 0x100>;
-+      resets = <&rcon 26>, <&rcon 27>;
-+      reset-names = "sata0", "sata1";
-+      clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
-+               <&gcc GEMINI_CLK_GATE_SATA1>;
-+      clock-names = "SATA0_PCLK", "SATA1_PCLK";
-+      syscon = <&syscon>;
-+      cortina,gemini-ata-muxmode = <3>;
-+      cortina,gemini-enable-ide-pins;
-+      cortina,gemini-enable-sata-bridge;
-+    };
--- 
-2.34.1
 
+>> > +             watchdog: watchdog@e0090000 {
+>> > +                     compatible = "snps,dw-wdt";
+>> > +                     reg = <0xe0090000 0x1000>;
+>> > +                     interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
+>> > +                     clocks = <&nic_clk>;
+>> 
+>> Btw. can we disable all nodes by default and enable them
+>> in the board dts files?
+> I would like to have only board specific nodes enabled in dts files
+> and rest of them in dtsi file
+
+And how do you know which ones are board specific? E.g. I would like
+to add our board which is also based on the lan9668. Maybe I don't
+want a watchdog (or whatever node). Of course I could use
+
+&watchdog {
+   status = "disabled";
+};
+
+But IMHO opt-in is better. At least thats what we are doing for
+the layerscape over on arm64.
+
+-michael
