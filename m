@@ -2,44 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 200634B0F61
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 14:52:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 055F44B0F93
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 15:01:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238801AbiBJNvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 08:51:25 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50516 "EHLO
+        id S242556AbiBJOBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 09:01:19 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242299AbiBJNvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 08:51:24 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD264137
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 05:51:23 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nI9qu-0001Hw-96; Thu, 10 Feb 2022 14:51:16 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v5 19/23] arm64: dts: rockchip: rk3568-evb: Enable VOP2 and hdmi
-Date:   Thu, 10 Feb 2022 14:51:15 +0100
-Message-ID: <2434650.DyAAmxEfAj@diego>
-In-Reply-To: <20220210133759.GZ18637@pengutronix.de>
-References: <20220209095350.2104049-1-s.hauer@pengutronix.de> <2fa2e53d-da1c-6957-33ed-f3e9806347cf@gmail.com> <20220210133759.GZ18637@pengutronix.de>
+        with ESMTP id S237363AbiBJOBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 09:01:17 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15639A;
+        Thu, 10 Feb 2022 06:01:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1644501679; x=1676037679;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=qe9MXECg7yOyYY9awU7kKLHuhF7vbhlkrcPO0J0a62Y=;
+  b=zbBPF8m9QBewPnUheCn8uQZwLeXYeTv6StSMowR4v4IhmzkDbyDcEel8
+   Lm70ljgEgZhiOxBSBkdEXg8AMO15pcesd0+ZZfFDWrrLa7D5NjyOpLtWw
+   SjACV/SWUoFgW8NWPkwWCTnIgCX/ck3umLjglUZ9qvF0tCl3BHtDsJjcH
+   E=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 10 Feb 2022 06:01:18 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2022 06:01:17 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 10 Feb 2022 06:01:17 -0800
+Received: from [10.216.9.195] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Thu, 10 Feb
+ 2022 06:01:13 -0800
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sc7280: Add pinmux for I2S
+ speaker and Headset
+To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <devicetree@vger.kernel.org>,
+        <dianders@chromium.org>, <judyhsiao@chromium.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <rohitkr@codeaurora.org>,
+        <srinivas.kandagatla@linaro.org>
+CC:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1644334454-16719-1-git-send-email-quic_srivasam@quicinc.com>
+ <1644334454-16719-2-git-send-email-quic_srivasam@quicinc.com>
+ <CAE-0n50PAtGfvHXjNrvQYe6edNEfJvEc1uYZFUeW2KHxn6fsBA@mail.gmail.com>
+ <30805a84-b523-842c-d223-bc0d2043fa00@quicinc.com>
+ <CAE-0n538CdY3a64jG556se=AhgJpXr_oENG_spGM29c5gdQRYQ@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+Message-ID: <5a955a2e-c594-4320-2a9b-9d92d1999f9b@quicinc.com>
+Date:   Thu, 10 Feb 2022 19:31:10 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+In-Reply-To: <CAE-0n538CdY3a64jG556se=AhgJpXr_oENG_spGM29c5gdQRYQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,90 +75,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 10. Februar 2022, 14:37:59 CET schrieb Sascha Hauer:
-> On Thu, Feb 10, 2022 at 02:15:17PM +0100, Johan Jonker wrote:
-> > 
-> > 
-> > On 2/10/22 12:47, Sascha Hauer wrote:
-> > > On Thu, Feb 10, 2022 at 01:10:32AM +0100, Johan Jonker wrote:
-> > >> Hi Sascha,
-> > >>
-> > >> Something with port and endpoint gives notifications.
-> > >> Somehow with the conversion of rockchip,dw-hdmi.txt to YAML not all SoC
-> > >> options were checked/covered (see rk3328 and rk3568).
-> > >>
-> > >> Allow multiple vop:
-> > >> port or
-> > >> port@0
-> > >> 1x vop -> endpoint
-> > >>
-> > >> 2x vop -> endpoint@0
-> > >>        -> endpoint@1
-> > >>
-> > >> Also allow for connector:
-> > >> (not all existing DT have this yet)
-> > >> port@1
-> > >>       -> endpoint
-> > >>
-> > >> See also at graph.yaml
-> > > 
-> > > Ok, let me see if I get this right. The HDMI can either have one or two
-> > > ports. It has one when the HDMI connector is not described in the device
-> > > tree and two when it is. Also the first (or only) port can have one or
-> > > two endpoints. It has one endpoint when the SoC has a single VOP and two
-> > > endpoints when the SoC has two VOPs.
-> > > 
-> > > It's been a painful morning because my YAML knowledge is fairly limited,
-> > > but here's what I came up with:
-> > > 
-> > >   ports:
-> > >     $ref: /schemas/graph.yaml#/properties/ports
-> > >     unevaluatedProperties: false
-> > >     patternProperties:
-> > >       "^port(@0)?$":
-> > >         $ref: /schemas/graph.yaml#/properties/port
-> > >         description: Input of the DWC HDMI TX
-> > >         properties:
-> > >           endpoint:
-> > >             description: Connection to the VOP
-> > >           endpoint@0:
-> > >             description: Connection to the VOPB
-> > >           endpoint@1:
-> > >             description: Connection to the VOPL
-> > >     properties:
-> > >       port@1:
-> > >         $ref: /schemas/graph.yaml#/properties/port
-> > >         description: Output of the DWC HDMI TX
-> > > 
-> > > Does this look sane to you? With this a make dtbs_check on this binding
-> > > doesn't generate warnings anymore, and even better it does generate
-> > > warnings when I add some wrong nodes/properties to the dts files.
-> > 
-> > Hi,
-> > 
-> > Send a patch to rob+dt and he will let you know... ;)
-> 
-> ;)
-> 
-> > 
-> > Also could you test the ARM branch as well just for sure with:
-> > ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make  dtbs_check
-> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> 
-> That works fine except for iahb and isfr clocks in the wrong order in
-> arch/arm/boot/dts/rk322x.dtsi.
-> 
-> > 
-> > Could you group your serie a bit:
-> > dt-bindings
-> > drm patches
-> > dts changes
-> 
-> That's the order I originally had. Heiko asked me to put the
-> bindings, dts changes and driver patches together dor each topic.
 
-with the background being that I can judge which parts are essentially
-ready and possibly apply parts of a larger series without waiting
-for everything to be ready.
+On 2/10/2022 5:37 AM, Stephen Boyd wrote:
+Thanks for Your time Stephen!!!
+> Quoting Srinivasa Rao Mandadapu (2022-02-09 05:42:40)
+>> On 2/9/2022 2:38 AM, Stephen Boyd wrote:
+>>> Quoting Srinivasa Rao Mandadapu (2022-02-08 07:34:12)
+>>>>    &qspi_cs0 {
+>>>>           bias-disable;
+>>>> @@ -491,6 +524,13 @@
+>>>>    };
+>>>>
+>>>>    &tlmm {
+>>>> +       amp_en: amp-en {
+>>>> +               pins = "gpio63";
+>>>> +               function = "gpio";
+>>>> +               bias-disable;
+>>> Is there an external pull?
+>> I think no external pull. In trogdor mentioned bias-pull-down but you
+>> suggested to remove it.
+> Maybe on trogdor there was an external pull inside the amp that this pin
+> is connected to? Usually we have a comment like /* Has external
+> pull-{up,down} */ so please add that here depending on which way the
+> pull goes.
 
+As per Anderson suggestion we removed bias-pull-down. Actually, it's 
+up-streamed for same platform in sc7280-herobrine.dtsi.
+
+We will fallow the same. It contains bias-pull-down.
 
