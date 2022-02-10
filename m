@@ -2,127 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B4D94B0D12
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 13:01:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F03D54B0D1E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 13:03:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241271AbiBJMBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 07:01:44 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54806 "EHLO
+        id S240666AbiBJMDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 07:03:53 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240666AbiBJMBn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 07:01:43 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2076.outbound.protection.outlook.com [40.107.20.76])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3BC62620;
-        Thu, 10 Feb 2022 04:01:44 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Rrdpbqe364sjgp4i5nTRMHyVsEwWBgS0YmprFUYDFNXH3LpEEUNMZhyZ6HEZnc5hWS2JzMcjIpTMcbtZHyAcwyQp6f1WmYOh5kj4XAcfWx0EHSJatpHsypAsQwJseKLWS/h48oGtvRib43sN8+zGYwYROkCISPitGiw0y5gZT7fcRb6hfpx8fSJir41TYSiM24XEOg4qXVYJze+2VQgPsG1WALjeN9JfUvwVvtA/eYzK/TaJ+X74wf+nKgH7hNYmMs20U5rFP7PxHsWpxXQhbGU06Jrj7jtr9+jYLlVtoMSNlkbWdUgLbxtwwq2b+3Vpm5U7Z4r55TipQeUvNqy6jA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FGce6ShZWCo30tSM3s28/U/tqu+GKBgqIOyc36Rg2yw=;
- b=Uzo4jUlJSNk2ETzOHCiKr3x12VdIPpYfwFJaTFD0wJJb6Tr0y2kAEMUilSmq5y7/W9V9PftpHmqGUaCN1FCvIZbAC9/sTts1CUL4oI+GyGvnwvNpZP+O+nAWdTyeTZG2gLaMAjvf3Nadvu88b/PRF/zF6g6yrQKgJbNJez/X+W3zmbIkrrC7p21f8VIY4tefUpxQ9jDl3ZBk5wkESssxwIXH455NejgcjZVDpCNR2RNiK7OC0eru7LurnHLjayGL20gmjbG8QFG4Xbs3K5XVuevfatMlu+gQgVCSD0kDZBClHIoU4arM6Eekvuyf1PtOC7rjNbaUm5S5HxkvCEO2lQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FGce6ShZWCo30tSM3s28/U/tqu+GKBgqIOyc36Rg2yw=;
- b=ZZfd/KZzJeRrMQu67iTRfT/DVI33zXQGbLanG2fCE6Tnu2JqIn5BAy+p3YP4Dyqmm2Xz/Nv0qF4B8cmZN+xho4JvcfCS10XjNYcyz56Cyz5bhYW5krUuiDCUtud3JAdqf0G+DwnF86CNB5ySEuxvGikbrOsgIoM32Bm5xXroYGQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR0401MB2495.eurprd04.prod.outlook.com
- (2603:10a6:800:52::15) by HE1PR0402MB2875.eurprd04.prod.outlook.com
- (2603:10a6:3:d6::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.11; Thu, 10 Feb
- 2022 12:01:41 +0000
-Received: from VI1PR0401MB2495.eurprd04.prod.outlook.com
- ([fe80::a1ae:e74c:cadb:efb8]) by VI1PR0401MB2495.eurprd04.prod.outlook.com
- ([fe80::a1ae:e74c:cadb:efb8%12]) with mapi id 15.20.4975.011; Thu, 10 Feb
- 2022 12:01:40 +0000
-Message-ID: <8ee6981e-9d75-038c-578b-e15b580ec63e@oss.nxp.com>
-Date:   Thu, 10 Feb 2022 14:01:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2] media: imx-jpeg: Set V4L2_BUF_FLAG_LAST at eos
-Content-Language: en-US
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220210054601.5889-1-ming.qian@nxp.com>
-From:   "mirela.rabulea@oss.nxp.com" <mirela.rabulea@oss.nxp.com>
-In-Reply-To: <20220210054601.5889-1-ming.qian@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VE1PR03CA0003.eurprd03.prod.outlook.com
- (2603:10a6:802:a0::15) To VI1PR0401MB2495.eurprd04.prod.outlook.com
- (2603:10a6:800:52::15)
+        with ESMTP id S234968AbiBJMDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 07:03:52 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45622102A;
+        Thu, 10 Feb 2022 04:03:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1644494633; x=1676030633;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=/QlpKJ0CM3BFbESDBVfYSFlxY6nL1RIf7FZPBAXC1J4=;
+  b=T++siLYoVJdKJF5O9gKYJtVuYu/qvrAKoEr1k3xvGIECjHg/zo7QQJHr
+   f7JOTWGRnzkKnUmTBFIiHDfJjJrAWrjDYkzskvxPKuHNzdAf6VplHdTvH
+   1sdW3YD3/pAreFiolYCcXLa2MSspqrFzFjNFkoF3ItWR/M92rT91iqko5
+   QpUkFuK7V8h8ECCJ/7YyVOryMpGq5ayc8J6QKUt7b383cuAE5nM5fSKZX
+   6xPVFcx/FWZIR5nqdQuRyAlMa43I6r9eXwD4iVH1DzMuqh7IR5UvUpEsK
+   Y61pTfEjTUplT1PU3AoB1/48XoV46WkPOQlnGAI48RDetm3T+lg4DZzMl
+   Q==;
+IronPort-SDR: LJriOWYn+YqpKnw+ulSGha3eA0bTulDnE98gm11dqVy1QE5O5e7lGRY9Kz7c015Ruju9+eDcZ1
+ tcK0Lq/u5WBgJ1AK5SjQXtBrLfKSuXft0KFaRaJiG9GFXkzA3sf6KZv+J9/eFgRpnmNAFYRdKU
+ Px2TyJeucbelYE2ebWHGmP661F+FAGTxA9okAN681AdBZJ06JSbjd+5njQJ79SbvAjdDUaUtho
+ 75keb4qIiPyRlsoHzu0TKpoVCWR35FYCyLU9fddyN2F/wmWoPTMZFIdWmqem63lm17AUtEHDFI
+ SOENjePYjNWbiL7MyvMSEpQu
+X-IronPort-AV: E=Sophos;i="5.88,358,1635231600"; 
+   d="scan'208";a="85296846"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Feb 2022 05:03:52 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 10 Feb 2022 05:03:51 -0700
+Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Thu, 10 Feb 2022 05:03:47 -0700
+From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+To:     <arnd@arndb.de>, <alexandre.belloni@bootlin.com>, <olof@lixom.net>,
+        <soc@kernel.org>, <robh+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <Kavyasree.Kotagiri@microchip.com>,
+        <Manohar.Puri@microchip.com>
+Subject: [PATCH v5] ARM: dts: add DT for lan966 SoC and 2-port board pcb8291
+Date:   Thu, 10 Feb 2022 17:33:19 +0530
+Message-ID: <20220210120319.32190-1-kavyasree.kotagiri@microchip.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 82e83fdf-eeba-4648-8e24-08d9ec8d189b
-X-MS-TrafficTypeDiagnostic: HE1PR0402MB2875:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-Microsoft-Antispam-PRVS: <HE1PR0402MB2875669C3AE07D2CE1D536DBCE2F9@HE1PR0402MB2875.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CvcFSVazxcZ2+FZR2sNHLO2JCtdjaI5+L3OYBLJAS93+as5khN0s5JqEfVWcM7mrNvxl+KYFymmFProG9MyFCJ7T+WGEVmwRBC8UUD0P+8tvBilbBR4Cw9N0xy2h9Jp8TNzr97y79RI1Eijv1qOPMK0jJOMTDtI9O3VUImiDAj4TjtxMfjTmFjlE9qH8znAsnW06hJ+qdykg+4sm/fEsZnUXaWcp6RvaG7DIlLyLMHbATarLM4W6sWJbxU/AXkEVdgbwEKKj3dvaqGxq6iNkIASyQFMdt9XDhYM0FkpUsegpQXZtQc5f9MV2JDJc2jW4KghYn9+zbugJ6B9jVBmovuJCXWKm/UyUHDa3sXhItYZ5x5KVm4l/L7oanoh/yPW/GeNUTS7mJDD1jKm2RpYAp3Ls9TsYeCAr/F45mxsBgoXRAxoS61xqYkkDgtHfhtShUs4esuNch+hsS9D57aMC1IJwIPkSFUPJDpAL/tcsjNVFuLH+8tLuPUCTp4TEbTwHMUs/6YEPBbL3rCfXu6xhsfaBksqaxhbUCKvwnBiNGmi9EgMXYyhrd3CHtjA4V2thxaqeOJlu4jSZvyjOZ5mQmt4FgGqKUDG87ZsxF2gM69P+jSQMpUlb4pxTgm2o82BxXazGvSL2JGxJ7cQ0Zp3HBftfYFatWxS21RKR9Ph6v1hJSSer8AFrWUITWl9TXLD0lAhges4YjMeEsxruBpPykhFMyW+9yiq6S78tSflPVKHtrWgy1YAxsTLxK1qQJyHrfubnzS/y7vLEjOJtNQ0ClQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2495.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(4326008)(186003)(5660300002)(66946007)(26005)(66476007)(66556008)(86362001)(83380400001)(2906002)(7416002)(38350700002)(31696002)(38100700002)(8676002)(52116002)(6666004)(53546011)(2616005)(6512007)(6506007)(8936002)(6486002)(31686004)(508600001)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?djl5bEVOZ1FoS3FraW9qU1QyczhHTGhCNTNmcVVUaCtuQXR6VHp6Q0Y1eXN5?=
- =?utf-8?B?cm1ZandNeC85cU0vNURqTFlpSHl1WWZsbFRFa1pWQ05iTlkwNVphL0F5MHBs?=
- =?utf-8?B?WkZQWXVaYzFvMzVFVkxhak1QdVVldlNYRE5OVlQ4RTl4U3h6aGUvM21KcWtT?=
- =?utf-8?B?dDhreTQyVmZHVWkvdXE2WThnTVBMRkMzV1R1eFRkNjZiV1dJRmJsc2x0Z2FG?=
- =?utf-8?B?WUMraU5XUXRuOXpmV0Z1Ulp4Z2hOblRzdDhsVGhLK0dDVUNxR1pPMWRib3Q1?=
- =?utf-8?B?cWN1c2svS0p3Mm40VzdVMHB6ZURXWnBBZmM3VmxEZnZPeG4wRFV6cEpBOXJs?=
- =?utf-8?B?NktHR0F2MGZoNkpZYmtHZ3B0T290bVNHY3VLSDdPSlNkVnJQZ2NOUFBlRlgy?=
- =?utf-8?B?RW9XMmt6YkoxRVR2YkxZSEJ5T09qcEFjOUJIenhyMGV3VFdnU0thK0ljckpW?=
- =?utf-8?B?RHlFNGlkRVRXWG1ZZy9EQVg2dXErMG5yUlg5L2Y5ZXNaZDBsNHBPVDFzTmpU?=
- =?utf-8?B?eUxseCtIQnhDVThyYjArN2RXVWdRdHhib04ycytWL1k1c0Ribmp3NWhVdnpo?=
- =?utf-8?B?cS9ZVU5uYVd6RklXd1JpRXVPblVvY1ZjZlpKZ3E1ZmJxU1QwaGhVZVhEYVpI?=
- =?utf-8?B?em9uSjAvN3BvV3dIRUszYzVYaDlmN29qNFZlOVI2Vk1zREpBRlJtSkhXTFV4?=
- =?utf-8?B?TEJEUFhXUWZmbWJiR2oxSlNySGFKUXJacE5CUFRFZy9mMlNhaUdDak5aaWpR?=
- =?utf-8?B?TmdWSlJSbW8rZ1RjR0FXV2VVRkNwd3NTQVZYTXJlcFAwcHJvbDEvY2IrUUMw?=
- =?utf-8?B?bzBLSlUrNFJwNEFvRGlUZlI3V1ZTYkZmZ2lZUFJBRlV6NWtXSXZZTGtPYjhy?=
- =?utf-8?B?SkdNVFZ1T2tndVdYSnQzd2J3dnJQelNXS0lBRk5PaGk1blc4L2tJSEN4NGRm?=
- =?utf-8?B?WW1kLy9ZUTBIWmNUcGdBVFc4bDVobktwa25ac1k2QTR2b092ZXlSZmRZSUpN?=
- =?utf-8?B?MHZyQnlyS2pxajFBTXFPK1dDV24xV1FMN0gxUXVTcWY2b1JodFd5dENWWklY?=
- =?utf-8?B?OTdpWm5ZRkJXd21HczZMdXRhUTRYVVNGOGNxWXcyZURqN3pxZ05ZQ0lMSnZQ?=
- =?utf-8?B?cHFwTnhxVlpEdWttQXlsY3F1V2d6bjRPMzhwZlZXM3hjU0NDenM4UlUreGRN?=
- =?utf-8?B?R1MzZ1B1QzFDR3JCVkNRb3UvWGdaVlAzOWZhQ2RvOGp0ejZQUXl2Y1p0RmVU?=
- =?utf-8?B?WkFxSnZYQmwwRHZmN1BrVHBJSHFNT0dxQUJsMkozN0ZTb2tGa3pZeEkxby9V?=
- =?utf-8?B?SDllMGp1V2lZZHpzUnRkWTdPUTFJU2ZjNE5mc0E0UlVndnRCT2ZZQkdBZnVE?=
- =?utf-8?B?bnhNa3dPMmxvS3hEZ2lENlZpN0R3Z2JGYmhUblZMSm1MM05rV3lpai9xMHRZ?=
- =?utf-8?B?Z3UveGFzSFdXV3FEaDVrK0I3NFB4cVRyTkltZnY0YVpHeC9IWEVpSk1Jc1FH?=
- =?utf-8?B?dzBaM2dGRjNlL21Ub3E2Y3JHbS9KYTA1bm1jRS9OM29kNGNUZFRrb0Z5UVVT?=
- =?utf-8?B?RE9ibEhFNU1saUJHYzBaNDRXOHQ4aE15QWdSekVmL0hSM0hGb2ZodDJ4VkJh?=
- =?utf-8?B?bkcyMjBGTmxrVkR3M0xuOWFsY093NmZvbTlaRHJEaVFvUWQyVW85MXVIZ3ht?=
- =?utf-8?B?bjI3TXowd0RoUnc3bi9RTEYxbW5uaHVxS1Q3WGpIOHBFVm9paWtJQkVGcytU?=
- =?utf-8?B?TXVEY1lFbXZ3blFmbkJKZFR2MVZ0b25lbXhoZ1o2bHpLaWpDZzlBWVgyZUZY?=
- =?utf-8?B?KzJBVnJwV21KMlIzVW9SUHlFNHFLaGFCQ0dpRVFBeXJWU0FnSHpVVllJS1Fq?=
- =?utf-8?B?L3dYT01aTlNwcVpVSk0yNWpjT3l6aDZTcjkvaTY5QUw4QWZ6Z0VwQkszbkVP?=
- =?utf-8?B?YWRxWCs0Tmt3SjB0R0lHMW9zOGVUS2lOZkU3dGd4M0t1cmxyUTBzRlpRZWtF?=
- =?utf-8?B?RU9oQ3BkQ1dTZFEyMVNVc0phRkpQeEZJZ2pvMHg5SUtCcXd1bHZZaERSYkM1?=
- =?utf-8?B?U3VrckM0L2VjMEx4ZG40YTFrV2x6ME4zNjRVRm1QQ3dVeVA4djJVb29ITW1l?=
- =?utf-8?B?WGQ3TGNjM0dSaXQvZDdBUlR3MUdhN1IyM3I0VVdCcncwelhnZlZoY1VpMHVQ?=
- =?utf-8?Q?k3p0KNSe7M2hGtFV0QrDIQI=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82e83fdf-eeba-4648-8e24-08d9ec8d189b
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0401MB2495.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2022 12:01:39.9839
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: juquM68TTEZtVJHmUnv7pz23OLB3WTO4qLyNg6EtohKU47dclF5K6xwPWFjVvHXv61mXhxkioopciPQjDwjVDw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB2875
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -131,131 +66,363 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ming,
-thanks for the description update.
+This patch adds basic DT for Microchip lan966x SoC and associated board
+pcb8291(2-port EVB). Adds peripherals required to allow booting: Interrupt
+Controller, Clock, Generic ARMv7 Timers, Synopsys Timer, Flexcoms, GPIOs.
+Also adds other peripherals like crypto(AES/SHA), DMA, Watchdog Timer, TRNG
+and MCAN0.
 
-Reviewed-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+---
+v4 -> v5:
+- Modified AES, SHA, TRNG node names as per generic names recommended.
 
-Regards,
-Mirela
+v3 -> v4:
+- Removed character 'x' from compatible string.
+- Removed memory node as handled by bootloader.
+- Renamed flexcom3 usart0 to usart3
+- Added /chosen and /aliases nodes in dts file.
 
-On 10.02.2022 07:46, Ming Qian wrote:
-> The V4L2_EVENT_EOS event is a deprecated behavior,
-> the V4L2_BUF_FLAG_LAST buffer flag should be used instead.
-> 
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> Reviewed-by: Mirela Rabulea <mirela.rabulea@nxp.com>
-> ---
->   drivers/media/platform/imx-jpeg/mxc-jpeg.c | 39 ++++++++++++++++++++--
->   drivers/media/platform/imx-jpeg/mxc-jpeg.h |  1 +
->   2 files changed, 38 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/platform/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/imx-jpeg/mxc-jpeg.c
-> index 86d37d14cfe2..3c50c572d6b0 100644
-> --- a/drivers/media/platform/imx-jpeg/mxc-jpeg.c
-> +++ b/drivers/media/platform/imx-jpeg/mxc-jpeg.c
-> @@ -991,6 +991,20 @@ static void mxc_jpeg_device_run(void *priv)
->   	spin_unlock_irqrestore(&ctx->mxc_jpeg->hw_lock, flags);
->   }
->   
-> +static void mxc_jpeg_set_last_buffer_dequeued(struct mxc_jpeg_ctx *ctx)
-> +{
-> +	struct vb2_queue *q;
-> +
-> +	ctx->stopped = 1;
-> +	q = v4l2_m2m_get_dst_vq(ctx->fh.m2m_ctx);
-> +	if (!list_empty(&q->done_list))
-> +		return;
-> +
-> +	q->last_buffer_dequeued = true;
-> +	wake_up(&q->done_wq);
-> +	ctx->stopped = 0;
-> +}
-> +
->   static int mxc_jpeg_decoder_cmd(struct file *file, void *priv,
->   				struct v4l2_decoder_cmd *cmd)
->   {
-> @@ -1008,6 +1022,7 @@ static int mxc_jpeg_decoder_cmd(struct file *file, void *priv,
->   		if (v4l2_m2m_num_src_bufs_ready(fh->m2m_ctx) == 0) {
->   			/* No more src bufs, notify app EOS */
->   			notify_eos(ctx);
-> +			mxc_jpeg_set_last_buffer_dequeued(ctx);
->   		} else {
->   			/* will send EOS later*/
->   			ctx->stopping = 1;
-> @@ -1034,6 +1049,7 @@ static int mxc_jpeg_encoder_cmd(struct file *file, void *priv,
->   		if (v4l2_m2m_num_src_bufs_ready(fh->m2m_ctx) == 0) {
->   			/* No more src bufs, notify app EOS */
->   			notify_eos(ctx);
-> +			mxc_jpeg_set_last_buffer_dequeued(ctx);
->   		} else {
->   			/* will send EOS later*/
->   			ctx->stopping = 1;
-> @@ -1110,6 +1126,8 @@ static void mxc_jpeg_stop_streaming(struct vb2_queue *q)
->   		v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
->   	}
->   	pm_runtime_put_sync(&ctx->mxc_jpeg->pdev->dev);
-> +	ctx->stopping = 0;
-> +	ctx->stopped = 0;
->   }
->   
->   static int mxc_jpeg_valid_comp_id(struct device *dev,
-> @@ -1401,12 +1419,29 @@ static int mxc_jpeg_buf_prepare(struct vb2_buffer *vb)
->   	return 0;
->   }
->   
-> +static void mxc_jpeg_buf_finish(struct vb2_buffer *vb)
-> +{
-> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
-> +	struct mxc_jpeg_ctx *ctx = vb2_get_drv_priv(vb->vb2_queue);
-> +	struct vb2_queue *q = vb->vb2_queue;
-> +
-> +	if (V4L2_TYPE_IS_OUTPUT(vb->type))
-> +		return;
-> +	if (!ctx->stopped)
-> +		return;
-> +	if (list_empty(&q->done_list)) {
-> +		vbuf->flags |= V4L2_BUF_FLAG_LAST;
-> +		ctx->stopped = 0;
-> +	}
-> +}
-> +
->   static const struct vb2_ops mxc_jpeg_qops = {
->   	.queue_setup		= mxc_jpeg_queue_setup,
->   	.wait_prepare		= vb2_ops_wait_prepare,
->   	.wait_finish		= vb2_ops_wait_finish,
->   	.buf_out_validate	= mxc_jpeg_buf_out_validate,
->   	.buf_prepare		= mxc_jpeg_buf_prepare,
-> +	.buf_finish             = mxc_jpeg_buf_finish,
->   	.start_streaming	= mxc_jpeg_start_streaming,
->   	.stop_streaming		= mxc_jpeg_stop_streaming,
->   	.buf_queue		= mxc_jpeg_buf_queue,
-> @@ -1842,14 +1877,14 @@ static int mxc_jpeg_dqbuf(struct file *file, void *priv,
->   	int ret;
->   
->   	dev_dbg(dev, "DQBUF type=%d, index=%d", buf->type, buf->index);
-> -	if (ctx->stopping == 1	&& num_src_ready == 0) {
-> +	if (ctx->stopping == 1 && num_src_ready == 0) {
->   		/* No more src bufs, notify app EOS */
->   		notify_eos(ctx);
->   		ctx->stopping = 0;
-> +		mxc_jpeg_set_last_buffer_dequeued(ctx);
->   	}
->   
->   	ret = v4l2_m2m_dqbuf(file, fh->m2m_ctx, buf);
-> -
->   	return ret;
->   }
->   
-> diff --git a/drivers/media/platform/imx-jpeg/mxc-jpeg.h b/drivers/media/platform/imx-jpeg/mxc-jpeg.h
-> index 9fb2a5aaa941..f53f004ba851 100644
-> --- a/drivers/media/platform/imx-jpeg/mxc-jpeg.h
-> +++ b/drivers/media/platform/imx-jpeg/mxc-jpeg.h
-> @@ -91,6 +91,7 @@ struct mxc_jpeg_ctx {
->   	struct v4l2_fh			fh;
->   	enum mxc_jpeg_enc_state		enc_state;
->   	unsigned int			stopping;
-> +	unsigned int			stopped;
->   	unsigned int			slot;
->   };
->   
+v2 -> v3:
+- Enabling trng in dtsi itself.
+- Removed "status=okay" dma0.
+- Add gpio pin settings for can0(missed adding this in previous version)
+
+v1 -> v2:
+- Moved flx3 usart0 node to dtsi file.
+- Removed status="okay" for dma0 to maintain consistency across nodes
+  (which means enabling dma0 by default)
+
+ arch/arm/boot/dts/Makefile            |   2 +
+ arch/arm/boot/dts/lan966x.dtsi        | 237 ++++++++++++++++++++++++++
+ arch/arm/boot/dts/lan966x_pcb8291.dts |  61 +++++++
+ 3 files changed, 300 insertions(+)
+ create mode 100644 arch/arm/boot/dts/lan966x.dtsi
+ create mode 100644 arch/arm/boot/dts/lan966x_pcb8291.dts
+
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 235ad559acb2..2040a990f08c 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -735,6 +735,8 @@ dtb-$(CONFIG_SOC_IMX7D) += \
+ dtb-$(CONFIG_SOC_IMX7ULP) += \
+ 	imx7ulp-com.dtb \
+ 	imx7ulp-evk.dtb
++dtb-$(CONFIG_SOC_LAN966) += \
++	lan966x_pcb8291.dtb
+ dtb-$(CONFIG_SOC_LS1021A) += \
+ 	ls1021a-moxa-uc-8410a.dtb \
+ 	ls1021a-qds.dtb \
+diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
+new file mode 100644
+index 000000000000..6647e9ece8ae
+--- /dev/null
++++ b/arch/arm/boot/dts/lan966x.dtsi
+@@ -0,0 +1,237 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * lan966x.dtsi - Device Tree Include file for Microchip LAN966 family SoC
++ *
++ * Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
++ *
++ * Author: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
++ *
++ */
++
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/mfd/atmel-flexcom.h>
++#include <dt-bindings/dma/at91.h>
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/clock/microchip,lan966x.h>
++
++/ {
++	model = "Microchip LAN966 family SoC";
++	compatible = "microchip,lan966";
++	interrupt-parent = <&gic>;
++	#address-cells = <1>;
++	#size-cells = <1>;
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a7";
++			clock-frequency = <600000000>;
++			reg = <0x0>;
++		};
++	};
++
++	clocks {
++		sys_clk: sys_clk {
++			compatible = "fixed-clock";
++			#clock-cells = <0>;
++			clock-frequency = <162500000>;
++		};
++
++		cpu_clk: cpu_clk {
++			compatible = "fixed-clock";
++			#clock-cells = <0>;
++			clock-frequency = <600000000>;
++		};
++
++		ddr_clk: ddr_clk {
++			compatible = "fixed-clock";
++			#clock-cells = <0>;
++			clock-frequency = <300000000>;
++		};
++
++		nic_clk: nic_clk {
++			compatible = "fixed-clock";
++			#clock-cells = <0>;
++			clock-frequency = <200000000>;
++		};
++	};
++
++	clks: clock-controller@e00c00a8 {
++		compatible = "microchip,lan966x-gck";
++		#clock-cells = <1>;
++		clocks = <&cpu_clk>, <&ddr_clk>, <&sys_clk>;
++		clock-names = "cpu", "ddr", "sys";
++		reg = <0xe00c00a8 0x38>;
++	};
++
++	timer {
++		compatible = "arm,armv7-timer";
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
++		clock-frequency = <37500000>;
++		arm,cpu-registers-not-fw-configured;
++	};
++
++	soc {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
++
++		flx0: flexcom@e0040000 {
++			compatible = "atmel,sama5d2-flexcom";
++			reg = <0xe0040000 0x100>;
++			clocks = <&clks GCK_ID_FLEXCOM0>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x0 0xe0040000 0x800>;
++			status = "disabled";
++		};
++
++		flx1: flexcom@e0044000 {
++			compatible = "atmel,sama5d2-flexcom";
++			reg = <0xe0044000 0x100>;
++			clocks = <&clks GCK_ID_FLEXCOM1>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x0 0xe0044000 0x800>;
++			status = "disabled";
++		};
++
++		trng: rng@e0048000 {
++			compatible = "atmel,at91sam9g45-trng";
++			reg = <0xe0048000 0x100>;
++			clocks = <&nic_clk>;
++		};
++
++		aes: crypto@e004c000 {
++			compatible = "atmel,at91sam9g46-aes";
++			reg = <0xe004c000 0x100>;
++			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
++			dmas = <&dma0 AT91_XDMAC_DT_PERID(13)>,
++			       <&dma0 AT91_XDMAC_DT_PERID(12)>;
++			dma-names = "rx", "tx";
++			clocks = <&nic_clk>;
++			clock-names = "aes_clk";
++		};
++
++		flx2: flexcom@e0060000 {
++			compatible = "atmel,sama5d2-flexcom";
++			reg = <0xe0060000 0x100>;
++			clocks = <&clks GCK_ID_FLEXCOM2>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x0 0xe0060000 0x800>;
++			status = "disabled";
++		};
++
++		flx3: flexcom@e0064000 {
++			compatible = "atmel,sama5d2-flexcom";
++			reg = <0xe0064000 0x100>;
++			clocks = <&clks GCK_ID_FLEXCOM3>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x0 0xe0064000 0x800>;
++			status = "disabled";
++
++			usart3: serial@200 {
++				compatible = "atmel,at91sam9260-usart";
++				reg = <0x200 0x200>;
++				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&nic_clk>;
++				clock-names = "usart";
++				atmel,fifo-size = <32>;
++				status = "disabled";
++			};
++		};
++
++		dma0: dma-controller@e0068000 {
++			compatible = "microchip,sama7g5-dma";
++			reg = <0xe0068000 0x1000>;
++			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
++			#dma-cells = <1>;
++			clocks = <&nic_clk>;
++			clock-names = "dma_clk";
++		};
++
++		sha: crypto@e006c000 {
++			compatible = "atmel,at91sam9g46-sha";
++			reg = <0xe006c000 0xec>;
++			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
++			dmas = <&dma0 AT91_XDMAC_DT_PERID(14)>;
++			dma-names = "tx";
++			clocks = <&nic_clk>;
++			clock-names = "sha_clk";
++		};
++
++		flx4: flexcom@e0070000 {
++			compatible = "atmel,sama5d2-flexcom";
++			reg = <0xe0070000 0x100>;
++			clocks = <&clks GCK_ID_FLEXCOM4>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x0 0xe0070000 0x800>;
++			status = "disabled";
++		};
++
++		timer0: timer@e008c000 {
++			compatible = "snps,dw-apb-timer";
++			reg = <0xe008c000 0x400>;
++			clocks = <&nic_clk>;
++			clock-names = "timer";
++			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
++		watchdog: watchdog@e0090000 {
++			compatible = "snps,dw-wdt";
++			reg = <0xe0090000 0x1000>;
++			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&nic_clk>;
++		};
++
++		can0: can@e081c000 {
++			compatible = "bosch,m_can";
++			reg = <0xe081c000 0xfc>, <0x00100000 0x4000>;
++			reg-names = "m_can", "message_ram";
++			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "int0", "int1";
++			clocks = <&clks GCK_ID_MCAN0>, <&clks GCK_ID_MCAN0>;
++			clock-names = "hclk", "cclk";
++			assigned-clocks = <&clks GCK_ID_MCAN0>;
++			assigned-clock-rates = <40000000>;
++			bosch,mram-cfg = <0x0 0 0 64 0 0 32 32>;
++			status = "disabled";
++		};
++
++		gpio: pinctrl@e2004064 {
++			compatible = "microchip,lan966x-pinctrl";
++			reg = <0xe2004064 0xb4>,
++			    <0xe2010024 0x138>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&gpio 0 0 78>;
++			interrupt-controller;
++			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
++			#interrupt-cells = <2>;
++		};
++
++		gic: interrupt-controller@e8c11000 {
++			compatible = "arm,gic-400", "arm,cortex-a7-gic";
++			#interrupt-cells = <3>;
++			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-controller;
++			reg = <0xe8c11000 0x1000>,
++			      <0xe8c12000 0x2000>,
++			      <0xe8c14000 0x2000>,
++			      <0xe8c16000 0x2000>;
++		};
++	};
++};
+diff --git a/arch/arm/boot/dts/lan966x_pcb8291.dts b/arch/arm/boot/dts/lan966x_pcb8291.dts
+new file mode 100644
+index 000000000000..ccec4177990b
+--- /dev/null
++++ b/arch/arm/boot/dts/lan966x_pcb8291.dts
+@@ -0,0 +1,61 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * lan966x_pcb8291.dts - Device Tree file for PCB8291
++ */
++/dts-v1/;
++#include "lan966x.dtsi"
++
++/ {
++	model = "Microchip EVB - LAN9662";
++	compatible = "microchip,lan9662-pcb8291", "microchip,lan9662", "microchip,lan966";
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	aliases {
++		serial0 = &usart3;
++	};
++};
++
++&gpio {
++	fc_shrd7_pins: fc_shrd7-pins {
++		pins = "GPIO_49";
++		function = "fc_shrd7";
++	};
++
++	fc_shrd8_pins: fc_shrd8-pins {
++		pins = "GPIO_54";
++		function = "fc_shrd8";
++	};
++
++	fc3_b_pins: fcb3-spi-pins {
++		/* SCK, RXD, TXD */
++		pins = "GPIO_51", "GPIO_52", "GPIO_53";
++		function = "fc3_b";
++	};
++
++	can0_b_pins:  can0_b_pins {
++		/* RX, TX */
++		pins = "GPIO_35", "GPIO_36";
++		function = "can0_b";
++	};
++};
++
++&can0 {
++	pinctrl-0 = <&can0_b_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&flx3 {
++	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
++	status = "okay";
++
++	usart3: serial@200 {
++		pinctrl-0 = <&fc3_b_pins>, <&fc_shrd7_pins>, <&fc_shrd8_pins>;
++		pinctrl-names = "default";
++		status = "okay";
++	};
++};
++
+-- 
+2.17.1
+
