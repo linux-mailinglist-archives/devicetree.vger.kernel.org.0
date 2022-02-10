@@ -2,139 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48FE94B14AF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 18:56:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FCB84B1524
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 19:20:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245393AbiBJRzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 12:55:53 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55940 "EHLO
+        id S245632AbiBJSUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 13:20:39 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239557AbiBJRzw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 12:55:52 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5B63725C3
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 09:55:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1644515752;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=2pgYKgbH/aywvATf7zLUXZmomBX6TKWirDhHOAVvfKM=;
-        b=OgSgGqQlmfjf0OsfqDfVNKDiQQ4QRY1uTIo+QtIiKQGRs4GNxj65fDGuWe2D0rGbpogqet
-        AlnqMtcgs0Lf2v9PXbliRzit0tRhxfhXmfX2FthgH0yNYpiGWsNtOqQFaGA8669VIWwhGV
-        vAXP24Y2J2rIDA1xjJO6hEsDWopfpeM=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-526-v3XDoATqOXCw-FtO7uMySA-1; Thu, 10 Feb 2022 12:55:51 -0500
-X-MC-Unique: v3XDoATqOXCw-FtO7uMySA-1
-Received: by mail-wm1-f69.google.com with SMTP id i186-20020a1c3bc3000000b0037bb9f6feeeso3221336wma.5
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 09:55:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=2pgYKgbH/aywvATf7zLUXZmomBX6TKWirDhHOAVvfKM=;
-        b=NEH5E+CNScHnOHaSyu+KmUayjo7X565sHpZYtJImddU/Xh/klPBUGn0XQRcQuTRkmW
-         9AljjlLl86FK/B+pDaR/usaBIJN8/BEitsuTtyeyv1YYSVE5vtA1TrLsdAY/sReLwBiN
-         3HtXN92jO+uTqAKha0yvRpBs34WHdx3+fSifAYwFMcBLjCbpNmzUWSWv0LUb1rBefHUX
-         WyGaXppij87IMZxr4DoHhYezUSzPL6pyROIZifS4aQ8I1OI4a67B2Os7pnOh98gaZE/E
-         3hbGwKn5rrXYhUuLsqwAFDASmfCKAmITblcMEC/Y0gSaHvKvVSMZtNDeLhIkdt3hHv9A
-         NS1Q==
-X-Gm-Message-State: AOAM532gz20brohQJfZzUtkjRH87yAkvnRwOTkqu4mO7LXoq9ETHcNY+
-        cSReJMeb1g8LDECnUwp4Kf0oOP+ACKK5UZkqUZPdgJHbaTPkSdgbXmuqrTQfEIUOuama3n8AIGG
-        IxPC7u1emKJtMF2F9du2nWw==
-X-Received: by 2002:a05:600c:501f:: with SMTP id n31mr3110921wmr.141.1644515750098;
-        Thu, 10 Feb 2022 09:55:50 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzztOtP2nPNM37UZbRdKgmrkAzYQV0Pr1R7MI99JcWycnjK/AG6TWJyvSRPiuS1u8x26j6AYA==
-X-Received: by 2002:a05:600c:501f:: with SMTP id n31mr3110886wmr.141.1644515749879;
-        Thu, 10 Feb 2022 09:55:49 -0800 (PST)
-Received: from [192.168.1.102] ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id p8sm21716128wrr.16.2022.02.10.09.55.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Feb 2022 09:55:49 -0800 (PST)
-Message-ID: <e910fc2f-2acb-b81d-4b8c-532562952aeb@redhat.com>
-Date:   Thu, 10 Feb 2022 18:55:47 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 0/7] drm: Add driver for Solomon SSD130X OLED displays
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
+        with ESMTP id S244485AbiBJSUj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 13:20:39 -0500
+X-Greylist: delayed 1314 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 10 Feb 2022 10:20:39 PST
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E09B1167;
+        Thu, 10 Feb 2022 10:20:39 -0800 (PST)
+Received: from pps.filterd (m0134424.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21AHrBa6019217;
+        Thu, 10 Feb 2022 17:58:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : in-reply-to : references; s=pps0720;
+ bh=LoMzU4Gj/192aRDbVYQFs/9H8PFlmG143Za29tBADlg=;
+ b=jNaDcxZOwlGWZkM+DCZffxiWvR3tYcowG8JSmU7b8BLTny+oIja7rRDKAvLLQ8ANoQ1C
+ +hOrKsO8wn3G3ox6HxGjIDz3zfa8pHP8iDzihnSbnHL1Aqu1Q6dLtPGK671WCQkon5cI
+ +Or9tUzQxJu4NjrHN9s3ZP3EfnGmktqnf1UF56Xk/KWXwSIi6me+MHx+1So658YZI5BS
+ 7NDm5dMigHyWKHS54BHpfteW8PTHE2GDAqikrAmgHKFLPxxpZ2ZZdsv54ZQ0HWwkiqUs
+ ffSKaT9FEgUlz2uwNo0EQW864w0AkXRwBskAQjSZ8CIep3OzngOfyOKg8B4RBuwWmdz0 9Q== 
+Received: from g4t3425.houston.hpe.com (g4t3425.houston.hpe.com [15.241.140.78])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3e57g8g2e1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Feb 2022 17:58:22 +0000
+Received: from hpe.com (unknown [15.115.65.69])
+        by g4t3425.houston.hpe.com (Postfix) with ESMTP id 0A8FDAA;
+        Thu, 10 Feb 2022 17:58:21 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     verdun@hpe.com, nick.hawkins@hpe.com
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>
-References: <20220209090314.2511959-1-javierm@redhat.com>
- <CAMuHMdVs750iE=kP1vabwgsGOb8sHc8aC5k=HwCU32CURnYktw@mail.gmail.com>
- <CAMuHMdVKmfOAdTG70KF+eAw3noXHSGCPyGjw3cSVyQOvzUafhQ@mail.gmail.com>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <CAMuHMdVKmfOAdTG70KF+eAw3noXHSGCPyGjw3cSVyQOvzUafhQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Corentin Labbe <clabbe@baylibre.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] [v1]dt-bindings: vendor-prefixes: add HPE Prefix
+Date:   Thu, 10 Feb 2022 11:59:11 -0600
+Message-Id: <20220210175912.102159-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <nick.hawkins@hpe.com>
+References: <nick.hawkins@hpe.com>
+X-Proofpoint-GUID: giCr7cMEyk5ZeNR3YkkroGgXo6bzw8vH
+X-Proofpoint-ORIG-GUID: giCr7cMEyk5ZeNR3YkkroGgXo6bzw8vH
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-10_08,2022-02-09_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
+ mlxscore=0 impostorscore=0 suspectscore=0 spamscore=0 priorityscore=1501
+ phishscore=0 lowpriorityscore=0 mlxlogscore=942 bulkscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2201110000
+ definitions=main-2202100094
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Geert,
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-On 2/10/22 18:06, Geert Uytterhoeven wrote:
-> On Wed, Feb 9, 2022 at 1:19 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->> On Wed, Feb 9, 2022 at 10:03 AM Javier Martinez Canillas
->> <javierm@redhat.com> wrote:
->>> This patch series adds a DRM driver for the Solomon OLED SSD1305, SSD1306,
->>> SSD1307 and SSD1309 displays. It is a port of the ssd1307fb fbdev driver.
->>
->> [...]
-> 
->> The logo is not shown, even when I create a 16-color or 224-color
->> version of the small monochrome logo I'm using.
-> 
-> My mistake, I messed up the hook-up, causing it to pick a different
-> logo that was too large to be displayed.
->
+Description: This patch adds the Hewlett Packard Enterprise prefix
+that will be used for upcoming support in the HPE BMC GXP.
 
-Great, thanks for all the testing.
- 
-> Of course it's using the 224-color logo reduced to monochrome instead
-> of the real monochrome logo, as fbcon thinks it's running on XRGB8888.
->
+Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Right. Once the patch lands, I'll look at wiring up the needed support in
-DRM for the drivers to be able to advertise 8-bit grayscale and monochrome
-to avoid the unnecessary conversions and to have feature parity with fbdev.
-
-But I just wanted to do it incrementally and first port to DRM as first step.
- 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 294093d45a23..e8b0ec874aed 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -515,6 +515,8 @@ patternProperties:
+     description: Jiangsu HopeRun Software Co., Ltd.
+   "^hp,.*":
+     description: Hewlett Packard
++  "^hpe,.*":
++    description: Hewlett Packard Enterprise
+   "^hsg,.*":
+     description: HannStar Display Co.
+   "^holtek,.*":
 -- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
+2.17.1
 
