@@ -2,55 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 312FD4B1398
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 17:54:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6FE44B13B5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 17:59:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244863AbiBJQxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 11:53:33 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37072 "EHLO
+        id S239993AbiBJQ7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 11:59:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244928AbiBJQxY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 11:53:24 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32900EE;
-        Thu, 10 Feb 2022 08:53:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C3EC960FE9;
-        Thu, 10 Feb 2022 16:53:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BABFC004E1;
-        Thu, 10 Feb 2022 16:53:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644512004;
-        bh=BZyLbJ9ADs0skIHo/vUVdDN8sNI9dXVY4OIa4uvY8wk=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=XVDZ+DhZfMKklUPIiLNQonAD0F1FggOyZX50CfYWFcRQMoTTD5R2Hgx/mnr3+t0rq
-         9enu3Z1DrfoYjW3CuB6ehj00pAjqrO0o9g+mVQGDAZXju3JXfrUmjkkFYJOsF5kjTs
-         jrIGqYdQRiDPwemY73BkCtCEwkjUr5Jud6NWBvIPJnYO48dNWmosojO3FdCx4MUgnt
-         1TP/OksYZdjSRpfcP4kx8vBRKcLQTlcOaYmtFJSR+luRzUlMknvNhP3d1nfHiDeqf0
-         DqAmWYkVc8MgtrZxzQQ6BfgzMuoPB/vGjIsJNLnWeFG0iSNov2TjCXVvWqkyt+1ifD
-         TqgOB+0EAxLrQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@canonical.com, lgirdwood@gmail.com,
-        s.hauer@pengutronix.de, michael@amarulasolutions.com,
-        festevam@gmail.com
-In-Reply-To: <20220210134049.32576-1-ariel.dalessandro@collabora.com>
-References: <20220210134049.32576-1-ariel.dalessandro@collabora.com>
-Subject: Re: (subset) [PATCH v2 1/2] ASoC: bindings: fsl-asoc-card: Add compatible for tlv320aic31xx codec
-Message-Id: <164451200128.2625306.11285883153390351914.b4-ty@kernel.org>
-Date:   Thu, 10 Feb 2022 16:53:21 +0000
+        with ESMTP id S244504AbiBJQ7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 11:59:23 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECAA5B91
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 08:59:24 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 43FEF1F46529
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1644512363;
+        bh=7WQXKQDJyv2re8GvqJGfp+bvC6Rz7IMtqMOCj+G58Ic=;
+        h=Date:From:To:Cc:Subject:From;
+        b=KFWjo4+ciNHzXeZAIAn1zQNCWR3XEG95Q2UCldW1Y7N6fQaoWovvblH30hxhyjbx0
+         HLNnNXb9LKK2vnZNWwBpn/euLIWJL4UBs54izwr09Y3dxYs1W/OpZZgPMj6ZrIQ+nU
+         SgpqiZPi4P6gZ43lq84tBuYZlwpN+VLiXUslNZcRTFBSaGQujm+kkny62ZlsHP+n+P
+         I46BKVmoYvUDOLAVGdhtFi1I1eWYSiN4qaYjz/0Q2KkN+ArnbO3BEQPI8BvKyrBFty
+         ylMWlfQCCUI0PEnuA3W82oWBbv558nKx4S1s3DUx9Hj5M2wp1ZdOcD6u/t774XjmjE
+         XUNoJhm0xXWRA==
+Date:   Thu, 10 Feb 2022 11:59:18 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, kernel@collabora.com
+Subject: Option in dtbs_check to filter a single dtb
+Message-ID: <20220210165918.2d2vnokpowvbl5jp@notapiano>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,38 +49,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Feb 2022 10:40:48 -0300, Ariel D'Alessandro wrote:
-> Commit 8c9b9cfb7724 ("ASoC: fsl-asoc-card: Support
-> fsl,imx-audio-tlv320aic31xx codec")' added support for tlv320aic31xx
-> codec to fsl-asoc-card, but missed the related device-tree compatible
-> string documentation. Fix this.
-> 
-> 
+Hi,
 
-Applied to
+when reviewing changes in a dts, it is necessary to not only verify that the
+build is clean, but also to run dtbs_check to make sure that the changes comply
+to the related dt-bindings.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+However this process can take a long time since it checks all the dtbs against
+all dt-bindings. The workflow could be significantly improved if a flag could be
+passed to compile and validate a single dts against all appropriate dt-bindings.
+The documentation [1] shows DT_SCHEMA_FILES, which does the opposite, validating
+all dtbs against a single (or few) schema files. This flag is useful when
+validating a change in a dt-binding, but for validating a change in a dts, the
+complete opposite is required.
 
-Thanks!
-
-[1/2] ASoC: bindings: fsl-asoc-card: Add compatible for tlv320aic31xx codec
-      commit: 23c2f1392f2f3a1c7a82c5d18f02d1a055ad6f16
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+So I'm writing this to ask if there's really nothing like this available, and in
+that case, consider this a feature suggestion for improving the workflow for
+reviewing dts changes and ensuring they don't create new dt-binding warnings.
 
 Thanks,
-Mark
+Nícolas
+
+[1] https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-schema.html#running-checks
