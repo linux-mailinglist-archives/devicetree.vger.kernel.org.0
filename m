@@ -2,59 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 316344B0E6B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 14:29:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9FC94B0E81
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 14:31:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242205AbiBJN3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 08:29:12 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55954 "EHLO
+        id S242218AbiBJNak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 08:30:40 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240857AbiBJN3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 08:29:12 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DC2BA9;
-        Thu, 10 Feb 2022 05:29:14 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 944B860F2A;
-        Thu, 10 Feb 2022 13:29:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF278C004E1;
-        Thu, 10 Feb 2022 13:29:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644499753;
-        bh=1DwUq7RIYQm8udrJkhokXVG//5cUWIfeguf7stIQViI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dDo2QnLy1bBULtmMeho8GZaMVBdLDpKsgm/q4u9nLjcZlHVgORGWuFTGWOPQnEWDb
-         WB9gHjP0J0OeM8dNb7DyaqZTd0eYsz+RKxzKtv5UjyvuaXO/2m2sC+bz3AvWU5AgGw
-         Px4NU+72FlWT/Yu+ggJNhE+7AvzYi79WW31ROqo5kJXw/sUQ2wJG4SUxUJZ5yfblqf
-         SXU8chOgWUPvNLVuFezHaoHKubLqKbjLKo3Sb4JMmQgWzh3M8XlHzKNE/239fEv3uG
-         LPZYtYK5hXWetadjfwLDgSLr3G0Ih3LBFFkCHVSZtuajj46VdjCIcXHaeAnxRSati8
-         cNByXr3eawcXw==
-Date:   Thu, 10 Feb 2022 13:29:06 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Apertis package maintainers <packagers@lists.apertis.org>
+        with ESMTP id S240857AbiBJNaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 08:30:39 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0186EBA9;
+        Thu, 10 Feb 2022 05:30:40 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: adalessandro)
+        with ESMTPSA id 6B6971F46453
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1644499839;
+        bh=2zdjWTY9pmqeyCcaii9xQhF6IAogRoT+OvBfJoZCOww=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Hl6mZBaKFGEzPDcKwFhyRNX6jGsaW3U74lS0m6ksQUUh012PTBl+wtIFzcT9Q2Yo5
+         Iyvxt7vCgsMXAbWBnc/NXBwSrKxVM2JHhKM7uUlg+sXJR+nyq4HfeVIAuYvRK4WBFK
+         x0gaNSYzlo/zu1xD5QCPa+G2TXDhenaa0Nbo84hwqwyzk+KQjrC4OmamL8+y5FfNCy
+         +tKaKafk2d19ukbrtFANgyEYiKQhcFnNcYEakGqQ3zRW3om+j6CsM5AKzmbc+4fOww
+         ER8ivV+wQHXgliJNtji7hEPkrbn5aKGJydr+xLco3SzdMG5Oh6Jz73mlwFUd+eoyx7
+         9Ks5r+BMz4T3g==
+Message-ID: <2cfa6083-8f9a-2355-d99b-4ac1a8b00965@collabora.com>
+Date:   Thu, 10 Feb 2022 10:30:30 -0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH 1/2] ASoC: bindings: fsl-asoc-card: Add compatible for
+ tlv320aic31xx codec
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
         linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-        ariel.dalessandro@collabora.com, festevam@gmail.com,
-        krzysztof.kozlowski@canonical.com, lgirdwood@gmail.com,
-        michael@amarulasolutions.com, robh+dt@kernel.org,
-        s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH 1/2] ASoC: bindings: fsl-asoc-card: Add compatible for
- tlv320aic31xx codec
-Message-ID: <YgUTImUs470jVdYs@sirena.org.uk>
+        festevam@gmail.com, krzysztof.kozlowski@canonical.com,
+        lgirdwood@gmail.com, michael@amarulasolutions.com,
+        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
 References: <20220207164946.558862-1-packagers@lists.apertis.org>
  <YgUSEvMGMoSQYy5v@sirena.org.uk>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="YLFsHYkxWKuQwxsz"
-Content-Disposition: inline
+From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 In-Reply-To: <YgUSEvMGMoSQYy5v@sirena.org.uk>
-X-Cookie: Only God can make random selections.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,47 +58,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mark,
 
---YLFsHYkxWKuQwxsz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Feb 10, 2022 at 01:24:34PM +0000, Mark Brown wrote:
-> On Mon, Feb 07, 2022 at 01:49:45PM -0300, Apertis package maintainers wro=
-te:
-> > From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-> >=20
-> > Commit 8c9b9cfb7724 ("ASoC: fsl-asoc-card: Support
-> > fsl,imx-audio-tlv320aic31xx codec")' added support for tlv320aic31xx
-> > codec to fsl-asoc-card, but missed the related device-tree compatible
-> > string documentation. Fix this.
-> >=20
-> > Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-> > ---
->=20
+On 2/10/22 10:24, Mark Brown wrote:
+> On Mon, Feb 07, 2022 at 01:49:45PM -0300, Apertis package maintainers wrote:
+>> From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+>>
+>> Commit 8c9b9cfb7724 ("ASoC: fsl-asoc-card: Support
+>> fsl,imx-audio-tlv320aic31xx codec")' added support for tlv320aic31xx
+>> codec to fsl-asoc-card, but missed the related device-tree compatible
+>> string documentation. Fix this.
+>>
+>> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+>> ---
+> 
 > This has a signoff from Ariel but the mail comes from something called
 > "Apertis package maintainers" and I really can't tell if there's a good
-> signoff chain here, please see Documentation/process/submitting-patches.r=
-st
+> signoff chain here, please see Documentation/process/submitting-patches.rst
 > for details on what this is and why it's important.  The submission
 > really needs to come from an actual person who's providing a signoff.
 
-=2E..and in fact the address for this group(?) isn't even deliverable :(
+Ugh (:hard-facepalm:) totally a misconfiguration on my mail client. Will 
+resubmit right away. Sorry for not noticing it when I sent the patchset.
 
---YLFsHYkxWKuQwxsz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIFEyIACgkQJNaLcl1U
-h9B/Ywf9EqP7whzzNL2Uso8FORWO2d2z5HQhklyv9TumCpmhCGDlJ1ClJRt0/073
-2sQ+e4rSTfp5pcTjFQeCCoZ7+2waeH90+mhzZnUvbn0S++x0vY2gRsqpNz6gpAZZ
-b3qyxjUlisl61t9pxufe96Jluj2RDQVC274IUh2ia3CRZxWsExR08aG2k8sNRJkx
-W6pg0t7U7pu16rMppTAHgtP4hwHc4xEaNuWl0mpu5UZSF4kCbaJHvOVUc9OdzXf4
-zor1fVCrO1JENWj7KBcIWjiTmtc+o6SK1D4rvZrsFPaX6sXz6NYf9KjO9oYrHQQc
-yX2SAurKvl6mCu5wdlKw0Yp9MrG0rA==
-=9wIg
------END PGP SIGNATURE-----
-
---YLFsHYkxWKuQwxsz--
+Thanks,
+Ariel
