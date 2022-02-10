@@ -2,60 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 137FB4B02D4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 03:01:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DE3A4B02A8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 03:01:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234453AbiBJB7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Feb 2022 20:59:19 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:60076 "EHLO
+        id S234134AbiBJB6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Feb 2022 20:58:02 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:60384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234345AbiBJB7I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 20:59:08 -0500
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1482B6AE;
-        Wed,  9 Feb 2022 17:45:15 -0800 (PST)
-Received: by mail-oo1-f47.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso4668305ooi.1;
-        Wed, 09 Feb 2022 17:45:15 -0800 (PST)
+        with ESMTP id S233113AbiBJB5W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Feb 2022 20:57:22 -0500
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A53027D4C;
+        Wed,  9 Feb 2022 17:34:18 -0800 (PST)
+Received: by mail-oo1-f45.google.com with SMTP id t75-20020a4a3e4e000000b002e9c0821d78so4657239oot.4;
+        Wed, 09 Feb 2022 17:34:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8lop+jHQ6bLpYVQ/iRKAgjmWolqUKphRAvo1ndJg1zk=;
-        b=MGGpu60bKpZnbvydEdxwHuZXqtfIXPuYVPKc4oFfv7FIDMaA/DM/1bmuyFEVGMPmQc
-         kaNhBMO5dRS3756KBdftcXUtED/3quGbfYy9h3uEYdfbEM9vo5DJJjWdtwOz+td64mLY
-         jU6m3xF2hHrfa8Ft4E2mSCZ127tXBBeX6O3IvHiwJkNvvRnRIQv7McfjPzIIqYwS7NvI
-         zUteuRHSD7EsOnHiNlxGdH1plQubftyjCbXhF4U+dveGUJWBHjXOALfXpR6OyJFW1xiK
-         xsGCm1xIPVkqExwK5sm/AxG27wMDaF4wZmNofvMWj44Iht+ef7sTjDwcb+7Vr765ZgLr
-         GjqA==
-X-Gm-Message-State: AOAM531PrDf9/P+05rk7IRpbvXOBfKCuiEuaqPVWIeX+u2IhRy/6OXSd
-        /+0dvtChjw3KHZE8g+w7ZbcZmUCC1SRD
-X-Google-Smtp-Source: ABdhPJzCkAHc8o+aWAlGBDAiek96chtpXWuc1LpV9c0MFHrH/mpvAHtDn+fItGOZtT6t6D7qolCxQg==
-X-Received: by 2002:a05:6870:b1d3:: with SMTP id x19mr1809966oak.101.1644453291094;
-        Wed, 09 Feb 2022 16:34:51 -0800 (PST)
+        bh=XNiOWPd36obXvgkEnxsQWaURMDInYrYIQkiEeqpKVQA=;
+        b=w4KGe1YvxshAcnK70ia1WX59OOtFo8YOs5a015MLNg9nmHEYtu4V7Z4c9WffagoaJ8
+         Wi4rAK5BwC5KiApC1o21aeaMOudCyhSTwSAzbIIcct7NExmi7m7ZGBNE4nsmRPfz8yFd
+         YlRE3ZYNlIwxwIrRUcDTNd2OMHFPzFAxqCU25eJ508Y/zZuYrWEdH/wcb+HabZxWirtm
+         R4oKRXEgc0fZCP4IzK7jCUpdNwrNFXsTSOagatOeby8VrC8nZpasuz4FVpk65LUDP4Ub
+         NPHDmJFcsMMpdwCly6VtUlVCg1Xu4ppIVqee3F4xMreBzfqM5vnTcZdMVqdCFM1qdzCd
+         NqpQ==
+X-Gm-Message-State: AOAM5305Kd2S1NvoIAy+KniFAmBEB4tJRSPOW10zN+RJcaxN023TkOwo
+        UVfrUOMr0qZzMe3P22mm9dNIasN8MVvo
+X-Google-Smtp-Source: ABdhPJyzaCGC5eLQBASxyTGmEs5hjG9Z5P2Np9DRVceWLWDDoZhFzxyTV+VDN+pMiqQnGuiyEqs6xw==
+X-Received: by 2002:a05:6871:581:: with SMTP id u1mr1833250oan.5.1644453499047;
+        Wed, 09 Feb 2022 16:38:19 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q11sm7338809oti.3.2022.02.09.16.34.49
+        by smtp.gmail.com with ESMTPSA id c13sm7199740otf.5.2022.02.09.16.38.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Feb 2022 16:34:50 -0800 (PST)
-Received: (nullmailer pid 1264695 invoked by uid 1000);
-        Thu, 10 Feb 2022 00:34:49 -0000
-Date:   Wed, 9 Feb 2022 18:34:49 -0600
+        Wed, 09 Feb 2022 16:38:18 -0800 (PST)
+Received: (nullmailer pid 1270516 invoked by uid 1000);
+        Thu, 10 Feb 2022 00:38:17 -0000
+Date:   Wed, 9 Feb 2022 18:38:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Anders Roxell <anders.roxell@linaro.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] of: unittest: print pass messages at same loglevel
- as fail
-Message-ID: <YgRdqe0+8fqSYi2T@robh.at.kernel.org>
-References: <20220203211150.2912192-1-frowand.list@gmail.com>
- <CAL_JsqKMZWMtvdTvYHmWkd5CmehKJexJVv_BUBENrMPOf002+w@mail.gmail.com>
- <24652725-91d8-9db4-e14a-e1bb5ded87b1@gmail.com>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     linux@roeck-us.net, linus.walleij@linaro.org,
+        wim@linux-watchdog.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: watchdog: convert faraday,ftwdt010 to yaml
+Message-ID: <YgReeZX3pc9G8yWp@robh.at.kernel.org>
+References: <20220128204856.494643-1-clabbe@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <24652725-91d8-9db4-e14a-e1bb5ded87b1@gmail.com>
+In-Reply-To: <20220128204856.494643-1-clabbe@baylibre.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -67,63 +62,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 03, 2022 at 09:41:45PM -0600, Frank Rowand wrote:
-> On 2/3/22 3:40 PM, Rob Herring wrote:
-> > On Thu, Feb 3, 2022 at 3:12 PM <frowand.list@gmail.com> wrote:
-> >>
-> >> From: Frank Rowand <frank.rowand@sony.com>
-> >>
-> >> Printing the devicetree unittest pass message for each passed test
-> >> creates much console verbosity.  The existing pass messages are
-> >> printed at loglevel KERN_DEBUG so they will not print by default.
-> >>
-> >> Change default to print the pass messages at the same loglevel as
-> >> the fail messages.
-> >>
-> >> The test community expects either a pass or a fail message for each
-> >> test in a test suite.  The messages are typically post-processed to
-> >> report pass/fail results.
-> >>
-> >> Suppressing printing the pass message for each individual test is
-> >> available via the kernel command line parameter unittest.hide_pass.
-> >>
-> >> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
-> >> ---
-> >>  Documentation/admin-guide/kernel-parameters.txt |  4 ++++
-> >>  drivers/of/unittest.c                           | 17 ++++++++++++++++-
-> >>  2 files changed, 20 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-> >> index f5a27f067db9..045455f9b7e1 100644
-> >> --- a/Documentation/admin-guide/kernel-parameters.txt
-> >> +++ b/Documentation/admin-guide/kernel-parameters.txt
-> >> @@ -5997,6 +5997,10 @@
-> >>                         Note that genuine overcurrent events won't be
-> >>                         reported either.
-> >>
-> >> +       unittest.hide_pass
-> > 
-> > Can we rename the module name to include 'dt' so we're not taking a
-> > generic name.
+On Fri, Jan 28, 2022 at 08:48:56PM +0000, Corentin Labbe wrote:
+> Converts watchdog/faraday,ftwdt010.txt to yaml.
+> This permits to detect missing properties like clocks and resets or
+> compatible like moxa,moxart-watchdog.
 > 
-> I got most of the way through writing a reply to the various questions, then got to
-> the point where my answer to a specific question ended up being something to the
-> effect of: "this line of code (where a change was suggested) will end up being
-> replaced when I convert the unittest messages to KTAP format".
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+>  .../bindings/watchdog/faraday,ftwdt010.txt    | 22 -------
+>  .../bindings/watchdog/faraday,ftwdt010.yaml   | 60 +++++++++++++++++++
+>  2 files changed, 60 insertions(+), 22 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
 > 
-> Then I got sidelined by going back and re-reading the KTAP specification email
-> thread from August, then discovering that there is also a patch submission email
-> thread from December where a KTAP specification is accepted into the kernel tree.
-> 
-> Being KTAP compliant does not allow for suppressing the individual test pass
-> messages, so I think I should just drop my desire to be able to do so.  That
-> would reduce this patch to a one line change to print the pass messages at the
-> same loglevel as the fail messages.  And I would prefer to not worry about
-> whether the pass message is 'pass' vs 'PASS' since that text will get replaced
-> by the KTAP syntax anyway.
-> 
-> Would you be ok with that one line patch?
+> diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+> deleted file mode 100644
+> index 9ecdb502e605..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -Faraday Technology FTWDT010 watchdog
+> -
+> -This is an IP part from Faraday Technology found in the Gemini
+> -SoCs and others.
+> -
+> -Required properties:
+> -- compatible : must be one of
+> -  "faraday,ftwdt010"
+> -  "cortina,gemini-watchdog", "faraday,ftwdt010"
+> -- reg : shall contain base register location and length
+> -- interrupts : shall contain the interrupt for the watchdog
+> -
+> -Optional properties:
+> -- timeout-sec : the default watchdog timeout in seconds.
+> -
+> -Example:
+> -
+> -watchdog@41000000 {
+> -	compatible = "faraday,ftwdt010";
+> -	reg = <0x41000000 0x1000>;
+> -	interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+> new file mode 100644
+> index 000000000000..377529b21267
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/faraday,ftwdt010.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Faraday Technology FTWDT010 watchdog
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description: |
+> +  This is an IP part from Faraday Technology found in the Gemini
+> +  SoCs and others.
+> +
 
-At info level, yes. If not, how soon until using ktap syntax?
+Need a $ref to watchdog.yaml
 
-Rob
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: "faraday,ftwdt010"
+> +      - items:
+> +          - const: "cortina,gemini-watchdog"
+> +          - const: "faraday,ftwdt010"
+> +      - items:
+> +          - const: "moxa,moxart-watchdog"
+> +          - const: "faraday,ftwdt010"
+
+Don't need quotes
+
+blank line
+
+> +  reg:
+> +    maxItems: 1
+
+blank line...
+
+> +  resets:
+> +    maxItems: 1
+> +  clocks:
+> +    maxItems: 1
+> +  clock-names:
+> +    const: PCLK
+> +  interrupts:
+> +    maxItems: 1
+> +  timeout-sec:
+> +    description: the default watchdog timeout in seconds.
+
+Don't need to describe common properties.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    watchdog@41000000 {
+> +      compatible = "faraday,ftwdt010";
+> +      reg = <0x41000000 0x1000>;
+> +      interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> +  - |
+> +    watchdog: watchdog@98500000 {
+> +      compatible = "moxa,moxart-watchdog", "faraday,ftwdt010";
+> +      reg = <0x98500000 0x10>;
+> +      clocks = <&clk_apb>;
+> +      clock-names = "PCLK";
+> +    };
+> +...
+> -- 
+> 2.34.1
+> 
+> 
