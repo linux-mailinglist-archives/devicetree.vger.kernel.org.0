@@ -2,176 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 796144B0A0F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 10:56:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14B874B0A16
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 10:58:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239208AbiBJJ43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 04:56:29 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42288 "EHLO
+        id S239221AbiBJJ6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 04:58:41 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239198AbiBJJ41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 04:56:27 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FD1B128
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 01:56:28 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        with ESMTP id S239218AbiBJJ6l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 04:58:41 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EAD6BAC
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 01:58:42 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C0CEF3F203
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 09:56:26 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 28CA04004C
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 09:58:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644486986;
-        bh=lQAi25ad0WedYqAR8W5lfFiy2PNOb0q0WyI0GNyN3vw=;
+        s=20210705; t=1644487121;
+        bh=QVjWVo4q1GQDHRafCv7HdVFRi4TY/Fg/yK2d0li5IAU=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=avWfIgEZEWbOXpmfDOyIijAt9HPDnqbNhnTOERpfCP4cBDh1KhXl5aPL72rk3F5ff
-         6lKJNoanffcNMioMY9iX2ZRRG2M3ZwuhQ2qqGsOJfulOCC9WXXx+csOx1YVk72M5Ly
-         MEPWh7b7tGKq8gEFxG7gd2g9lDseKjF+bComyHYa3rxuCN8iqgV2o0LhNh/EJ8yttM
-         0V8xjrpTL1llDc9NgOQ4Ss3mhGquiUB8+WtKHQnef5sd3o3QsYWyX2AeQA9tfG7/Ub
-         5tL9E+Av/Utx+iYqCVZaNQK9bC75BTASbRelYuKKHezH7JgK3swYfIJ//pOh8kBKk+
-         KDNeWRVDvFOdg==
-Received: by mail-ed1-f72.google.com with SMTP id o6-20020a50c906000000b0040f6ac3dbb5so3029076edh.17
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 01:56:26 -0800 (PST)
+        b=GYgqB5eqplpYz09bTDignBNkOw7AJwTrjEYgRcFjS6VXnBiiD/oxN9UPF66nwCJM0
+         jzqnDgFZorjOvxT4rT8KIfqGoJkYOIFVkuszizZRyu+h2ieJah+NmxAmSoibRRC5u+
+         1OcZsrfxbX18WsHnsMCsriiQX8BhRyVN+AcxKhXbEdPNgl/FQt2vCatCQnhl24Uw3P
+         t0AvomxliOel4J1Bnus0WALCoSDIJZZXkanLCPnKXQmUeF7ME2mrTfGC2cmTm+KGl3
+         i7P3V+xsNa2eQNTc1YyDb8wttHlOjDkhjSGedk8fGML323j5ESHyW5lw3QFOZ9yw7L
+         7HoAGiHcoRiog==
+Received: by mail-ed1-f69.google.com with SMTP id k5-20020a508ac5000000b00408dec8390aso3019413edk.13
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 01:58:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=lQAi25ad0WedYqAR8W5lfFiy2PNOb0q0WyI0GNyN3vw=;
-        b=muCffM84d3NrL1Po9DZCeOZGhi4ONq/dIVgMmbnc63eLEEGh7D6PB0K7Xgzly9SvYs
-         yN16aDP6PkquC8VBgV+UoZe8S1z3ntzNT0m0Y3OUvIUmxQziFOzBmE6iQT5HlHcNebPS
-         wvChbd5umC2dsGEW1Mq0XfK8p9Ok1CV9Dt/MSlUIAdw4Iws78QocAtcSziA1XNiJcaUq
-         vBqUED03Ie3stV576WFEDIg67EXDoMIefwcrgiGY6MmoE2ToT+tZMzL44o3SXr2ks9J+
-         1p26Km56vWN99iu+v0/Q2x0fprDJHe0uFSkWhMt9gaYF2DzZgrhVpGm3x9ceoxBZi7kv
-         xA2g==
-X-Gm-Message-State: AOAM533Y1xaP40nB14i2nHMQ12Ck7A77eUpFZ0JXMqJAC/XuZLwpzGYK
-        RgmaMkCJycl+XasjQ4H37ZViilf/aKhHDRceolZ/HPRQ3z34TC8ia1oGiDLFv0KuhExhyKYxzZH
-        nn+WVPGm983BDNutXS4WVU4rKx32vweOgBXEs90w=
-X-Received: by 2002:a17:906:2ccc:: with SMTP id r12mr5545722ejr.549.1644486986323;
-        Thu, 10 Feb 2022 01:56:26 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxc52uTv0kpoyAJ0Kps4Wr6p3N4LOPiiiqved+a3jIg857MB5O1jSYCvd0RnB95/Rnk+wfurg==
-X-Received: by 2002:a17:906:2ccc:: with SMTP id r12mr5545700ejr.549.1644486986041;
-        Thu, 10 Feb 2022 01:56:26 -0800 (PST)
+        bh=QVjWVo4q1GQDHRafCv7HdVFRi4TY/Fg/yK2d0li5IAU=;
+        b=t8grCtlje6n8hkNk8b4N8EdRCvhDqAgTh0Qt3hKk7XmD7tNhIQMXBzkFmD5LLRRcGL
+         ednY1L3h13g76uKNIK2aMqMBKOKQi1YZ843nSbGAXwsObZpXtzee0HIQs0FjNe/wMTNH
+         f1ik0fPQS6rDsDotR26ndfltauH+GVTrf3Gt0OfhRbyRylng4a+t9bCBCl9c04Hb1l14
+         WjfP6BRlCGRvCSDqVxvZCciTMT0kiFUAYPQaxHktAALeSPGcDDmMXsWLhlGc7kPxEmhI
+         kvBrchWSmMrLjv7eQhJZxlxLL+olw6GAdoEbid5k++LRdVzL+pn2LBxrNjCYrRcWfBOP
+         6xZQ==
+X-Gm-Message-State: AOAM531iiMN/dRg0U4XHA/QZ3q4VEsvIScOw7VypinjzC3tWUxJFbmAU
+        +sT9RkWAOqUHfps7gLuRyWC/1XkeoN0k+lOgMhtz/2WK2kSpfYROnDv1+yjaHouZ2hhzUJqA/xR
+        hT1k+9AMgKmEKPgUzdIXhaRS0xxPmyXz3kp70pj4=
+X-Received: by 2002:a17:906:4f16:: with SMTP id t22mr5663887eju.413.1644487120645;
+        Thu, 10 Feb 2022 01:58:40 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxgTuz7GR1Tb+hH0mgjyDwXJlDMVpwZtl0H/pA/cQgp2TZegrbiDgjRzZahIarS9kQQNVWX8w==
+X-Received: by 2002:a17:906:4f16:: with SMTP id t22mr5663869eju.413.1644487120426;
+        Thu, 10 Feb 2022 01:58:40 -0800 (PST)
 Received: from [192.168.0.97] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id wq18sm4370531ejb.149.2022.02.10.01.56.25
+        by smtp.gmail.com with ESMTPSA id h1sm4357445eja.201.2022.02.10.01.58.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Feb 2022 01:56:25 -0800 (PST)
-Message-ID: <1c5b2019-2258-f95c-eee3-32cef1c98c7a@canonical.com>
-Date:   Thu, 10 Feb 2022 10:56:24 +0100
+        Thu, 10 Feb 2022 01:58:39 -0800 (PST)
+Message-ID: <50d3bef2-82af-325e-72e9-15af5794ce12@canonical.com>
+Date:   Thu, 10 Feb 2022 10:58:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2] dt-bindings: watchdog: convert faraday,ftwdt010 to
+Subject: Re: [PATCH v3] dt-bindings: convert ata/cortina,gemini-sata-bridge to
  yaml
 Content-Language: en-US
-To:     Corentin Labbe <clabbe@baylibre.com>, linux@roeck-us.net,
-        robh+dt@kernel.org, wim@linux-watchdog.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
+To:     Corentin Labbe <clabbe@baylibre.com>,
+        damien.lemoal@opensource.wdc.com, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
         Linus Walleij <linus.walleij@linaro.org>
-References: <20220210093427.2813601-1-clabbe@baylibre.com>
+References: <20220210094414.2815616-1-clabbe@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220210093427.2813601-1-clabbe@baylibre.com>
+In-Reply-To: <20220210094414.2815616-1-clabbe@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/02/2022 10:34, Corentin Labbe wrote:
-> Convert watchdog/faraday,ftwdt010.txt to yaml.
-> This permits to detect missing properties like clocks and resets or
-> compatible like moxa,moxart-watchdog.
+On 10/02/2022 10:44, Corentin Labbe wrote:
+> This patch converts ata/cortina,gemini-sata-bridge binding to yaml
 > 
 > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
 > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 > ---
-> Changes since v1:
-> - Added myself as maintainer as requested by Linus
-> - Added $ref to watchdog.yaml
-> - Removed useless quotes
+> Change since v1:
+> - fixed cosmetic nits reported by Damien Le Moal
+> Changes since v2:
 > - Added blank lines between properties
-> - Removed timeout-sec as already provided by watchdog.yaml
+> - Removed useless quotes and label
+> - Re-indented description
 > 
->  .../bindings/watchdog/faraday,ftwdt010.txt    | 22 ------
->  .../bindings/watchdog/faraday,ftwdt010.yaml   | 67 +++++++++++++++++++
->  2 files changed, 67 insertions(+), 22 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+>  .../ata/cortina,gemini-sata-bridge.txt        |  55 ---------
+>  .../ata/cortina,gemini-sata-bridge.yaml       | 107 ++++++++++++++++++
+>  2 files changed, 107 insertions(+), 55 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
+>  create mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+> diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
 > deleted file mode 100644
-> index 9ecdb502e605..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+> index 1c3d3cc70051..000000000000
+> --- a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
 > +++ /dev/null
-> @@ -1,22 +0,0 @@
-> -Faraday Technology FTWDT010 watchdog
+> @@ -1,55 +0,0 @@
+> -* Cortina Systems Gemini SATA Bridge
 > -
-> -This is an IP part from Faraday Technology found in the Gemini
-> -SoCs and others.
+> -The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
+> -takes two Faraday Technology FTIDE010 PATA controllers and bridges
+> -them in different configurations to two SATA ports.
 > -
 > -Required properties:
-> -- compatible : must be one of
-> -  "faraday,ftwdt010"
-> -  "cortina,gemini-watchdog", "faraday,ftwdt010"
-> -- reg : shall contain base register location and length
-> -- interrupts : shall contain the interrupt for the watchdog
+> -- compatible: should be
+> -  "cortina,gemini-sata-bridge"
+> -- reg: registers and size for the block
+> -- resets: phandles to the reset lines for both SATA bridges
+> -- reset-names: must be "sata0", "sata1"
+> -- clocks: phandles to the compulsory peripheral clocks
+> -- clock-names: must be "SATA0_PCLK", "SATA1_PCLK"
+> -- syscon: a phandle to the global Gemini system controller
+> -- cortina,gemini-ata-muxmode: tell the desired multiplexing mode for
+> -  the ATA controller and SATA bridges. Values 0..3:
+> -  Mode 0: ata0 master <-> sata0
+> -          ata1 master <-> sata1
+> -          ata0 slave interface brought out on IDE pads
+> -  Mode 1: ata0 master <-> sata0
+> -          ata1 master <-> sata1
+> -          ata1 slave interface brought out on IDE pads
+> -  Mode 2: ata1 master <-> sata1
+> -          ata1 slave  <-> sata0
+> -          ata0 master and slave interfaces brought out
+> -               on IDE pads
+> -  Mode 3: ata0 master <-> sata0
+> -          ata0 slave  <-> sata1
+> -          ata1 master and slave interfaces brought out
+> -               on IDE pads
 > -
-> -Optional properties:
-> -- timeout-sec : the default watchdog timeout in seconds.
+> -Optional boolean properties:
+> -- cortina,gemini-enable-ide-pins: enables the PATA to IDE connection.
+> -  The muxmode setting decides whether ATA0 or ATA1 is brought out,
+> -  and whether master, slave or both interfaces get brought out.
+> -- cortina,gemini-enable-sata-bridge: enables the PATA to SATA bridge
+> -  inside the Gemnini SoC. The Muxmode decides what PATA blocks will
+> -  be muxed out and how.
 > -
 > -Example:
 > -
-> -watchdog@41000000 {
-> -	compatible = "faraday,ftwdt010";
-> -	reg = <0x41000000 0x1000>;
-> -	interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+> -sata: sata@46000000 {
+> -	compatible = "cortina,gemini-sata-bridge";
+> -	reg = <0x46000000 0x100>;
+> -	resets = <&rcon 26>, <&rcon 27>;
+> -	reset-names = "sata0", "sata1";
+> -	clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
+> -		 <&gcc GEMINI_CLK_GATE_SATA1>;
+> -	clock-names = "SATA0_PCLK", "SATA1_PCLK";
+> -	syscon = <&syscon>;
+> -	cortina,gemini-ata-muxmode = <3>;
+> -	cortina,gemini-enable-ide-pins;
+> -	cortina,gemini-enable-sata-bridge;
 > -};
-> diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+> diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
 > new file mode 100644
-> index 000000000000..64e9c414cc60
+> index 000000000000..f0fad63bb1af
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
-> @@ -0,0 +1,67 @@
+> +++ b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
+> @@ -0,0 +1,107 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/watchdog/faraday,ftwdt010.yaml#
+> +$id: http://devicetree.org/schemas/ata/cortina,gemini-sata-bridge.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Faraday Technology FTWDT010 watchdog
+> +title: Cortina Systems Gemini SATA Bridge
 > +
 > +maintainers:
 > +  - Linus Walleij <linus.walleij@linaro.org>
-> +  - Corentin Labbe <clabbe@baylibre.com>
 > +
 > +description: |
-> +  This is an IP part from Faraday Technology found in the Gemini
-> +  SoCs and others.
-> +
-> +allOf:
-> +  - $ref: "watchdog.yaml#"
+> +    The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
+> +    takes two Faraday Technology FTIDE010 PATA controllers and bridges
+> +    them in different configurations to two SATA ports.
 > +
 > +properties:
 > +  compatible:
-> +    oneOf:
-> +      - const: faraday,ftwdt010
-> +      - items:
-> +          - const: cortina,gemini-watchdog
-> +          - const: faraday,ftwdt010
-> +      - items:
-> +          - const: moxa,moxart-watchdog
-> +          - const: faraday,ftwdt010
+> +    const: cortina,gemini-sata-bridge
+> +
+> +  reg:
+> +    minItems: 1
 
-It looks like you duplicated these two entries. This should be an enum
-followed by a const.
+maxItems? Why min?
+
+> +
+> +  resets:
+> +    minItems: 2
+> +    description: phandles to the reset lines for both SATA bridges
+
+min+maxItems
+
+> +
+> +  reset-names:
+> +    items:
+> +      - const: sata0
+> +      - const: sata1
+> +
+> +  clocks:
+> +    minItems: 2
+> +    description: phandles to the compulsory peripheral clocks
+
+min+maxItems
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: SATA0_PCLK
+> +      - const: SATA1_PCLK
+> +
+> +  syscon:
+> +    minItems: 1
+
+maxItems
 
 
 Best regards,
