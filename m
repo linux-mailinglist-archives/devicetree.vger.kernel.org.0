@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 863024B0904
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 10:00:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C97FA4B0978
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 10:30:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235570AbiBJI76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 03:59:58 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36250 "EHLO
+        id S238560AbiBJJ3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 04:29:34 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233937AbiBJI75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 03:59:57 -0500
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752FF1038;
-        Thu, 10 Feb 2022 00:59:59 -0800 (PST)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21A78R43010574;
-        Thu, 10 Feb 2022 09:59:44 +0100
+        with ESMTP id S238585AbiBJJ3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 04:29:18 -0500
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B00031134;
+        Thu, 10 Feb 2022 01:29:18 -0800 (PST)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21A74UHh017191;
+        Thu, 10 Feb 2022 09:36:21 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
  mime-version : subject : to : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=selector1;
- bh=kJhS4sbXo/E16hFG2YvWZRb6ph5i6ukwSDD1RKORhvQ=;
- b=BmZUxt0r0PBrbkc7e4QDqKHdeyQDvtlsvHqNUpYK5Qz8xzxnPlk9GwKGtZr/04kvOrin
- pY6YZkn03yQ3KJ5JIOtUEHIcxncTwj7txeeykINmlvEXhRc0/zv1OY+YzntwLpHjqGqn
- jLOEzUf8dPmJ8dgdYDBjOOCctTM+3bJIgwD4yZ6ECj9mEYVlHc9MEbMkGzNYGiutlk7M
- CDFB4xr3+jzWv4WrdFHmO1iy3LwhvFfr71anAgSfotae1mPD5bpUjswfif9GOb+PTzsy
- CiFui6Ixeg1xiiEMmgxXYv5+njzEUKeRv/OzYuKfiXbnWZXl15ADNkPt+KNfuUGmQEcN yg== 
+ bh=G/1l6JpUGOidRb9dQ6UMR2ViJBXgtTFNmfutsOzLvFc=;
+ b=J2hDc5Bu/cs0d8uvuowAVawTd+ivgAzCtXVnPDrSXJWrcOZAnjuYfdqEHPEAtO1MhbC9
+ G9obSLHoeAYwZiMOveVDF+ivlLiQaYD4Vteg5zzCfNaFRPjE8Q/QjtoFvQNaN2m810fi
+ KphFAi3oDR6FBzRsSB7p6LoN+ZSPWQaS5mq9WmnM7Pei8zA/AWQYOSTurkED/8hBdHE5
+ T9rYB/tKMevcGb15jZbzX6RI6MvDOIogdtmrX4lrIWgWWqzeTPJ7FLmWyFoOV8mj/+fX
+ ByWrm5DNs/y1Opnkp+6TY8WFZqknYKufgZbwujt5+ywli1tLCR1EmIEbL5RjSHIotnaG Tw== 
 Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e4x268nj5-1
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e4x0c0j8u-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Feb 2022 09:59:44 +0100
+        Thu, 10 Feb 2022 09:36:21 +0100
 Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 607F310002A;
-        Thu, 10 Feb 2022 09:59:42 +0100 (CET)
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4BA7D10002A;
+        Thu, 10 Feb 2022 09:36:20 +0100 (CET)
 Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5897221513B;
-        Thu, 10 Feb 2022 09:59:42 +0100 (CET)
-Received: from [10.201.21.201] (10.75.127.44) by SFHDAG2NODE2.st.com
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 44B452138DE;
+        Thu, 10 Feb 2022 09:36:20 +0100 (CET)
+Received: from [10.201.21.201] (10.75.127.47) by SFHDAG2NODE2.st.com
  (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 10 Feb
- 2022 09:59:41 +0100
-Message-ID: <014f2de2-6b6c-c60e-1f5d-98a74649b8e7@foss.st.com>
-Date:   Thu, 10 Feb 2022 09:59:40 +0100
+ 2022 09:36:19 +0100
+Message-ID: <2dfbf110-9c08-5a4e-7714-6e9e960afae5@foss.st.com>
+Date:   Thu, 10 Feb 2022 09:36:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 00/12] ARM: dts: sti: various DT fixes to avoid warnings
+Subject: Re: [PATCH 03/12] ARM: dts: sti: ensure unique unit-address in
+ stih418-clock
 Content-Language: en-US
 To:     Alain Volmat <avolmat@me.com>, <patrice.chotard@st.com>,
         <robh+dt@kernel.org>, <mark.rutland@arm.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 References: <20211202075105.195664-1-avolmat@me.com>
+ <20211202075105.195664-4-avolmat@me.com>
 From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20211202075105.195664-1-avolmat@me.com>
+In-Reply-To: <20211202075105.195664-4-avolmat@me.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.44]
+X-Originating-IP: [10.75.127.47]
 X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
  (10.75.127.5)
 X-Proofpoint-Virus-Version: vendor=baseguard
@@ -73,48 +75,187 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Alain
 
-Pleased resubmit this series by squashing PATCH 1/4/5/6/7 together, the 
-compilation is broken and doesn't allow bisection.
-
-The same with patches 9/11/12.
+On 12/2/21 08:50, Alain Volmat wrote:
+> Move quadfs and a9-mux clocks nodes into clockgen nodes so
+> that they can get the reg property from the parent node and
+> ensure only one node has the address.
+> 
+> Signed-off-by: Alain Volmat <avolmat@me.com>
+> ---
+>  arch/arm/boot/dts/stih418-clock.dtsi | 101 +++++++++++++--------------
+>  1 file changed, 48 insertions(+), 53 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/stih418-clock.dtsi b/arch/arm/boot/dts/stih418-clock.dtsi
+> index e84c476b83ed..e1749e92a2e7 100644
+> --- a/arch/arm/boot/dts/stih418-clock.dtsi
+> +++ b/arch/arm/boot/dts/stih418-clock.dtsi
+> @@ -32,7 +32,7 @@ clocks {
+>  		 */
+>  		clockgen-a9@92b0000 {
+>  			compatible = "st,clkgen-c32";
+> -			reg = <0x92b0000 0xffff>;
+> +			reg = <0x92b0000 0x10000>;
+>  
+>  			clockgen_a9_pll: clockgen-a9-pll {
+>  				#clock-cells = <1>;
+> @@ -40,30 +40,29 @@ clockgen_a9_pll: clockgen-a9-pll {
+>  
+>  				clocks = <&clk_sysin>;
+>  			};
+> -		};
+> -
+> -		/*
+> -		 * ARM CPU related clocks.
+> -		 */
+> -		clk_m_a9: clk-m-a9@92b0000 {
+> -			#clock-cells = <0>;
+> -			compatible = "st,stih407-clkgen-a9-mux", "st,clkgen-mux";
+> -			reg = <0x92b0000 0x10000>;
+> -
+> -			clocks = <&clockgen_a9_pll 0>,
+> -				 <&clockgen_a9_pll 0>,
+> -				 <&clk_s_c0_flexgen 13>,
+> -				 <&clk_m_a9_ext2f_div2>;
+>  
+>  			/*
+> -			 * ARM Peripheral clock for timers
+> +			 * ARM CPU related clocks.
+>  			 */
+> -			arm_periph_clk: clk-m-a9-periphs {
+> +			clk_m_a9: clk-m-a9 {
+>  				#clock-cells = <0>;
+> -				compatible = "fixed-factor-clock";
+> -				clocks = <&clk_m_a9>;
+> -				clock-div = <2>;
+> -				clock-mult = <1>;
+> +				compatible = "st,stih407-clkgen-a9-mux", "st,clkgen-mux";
+> +
+> +				clocks = <&clockgen_a9_pll 0>,
+> +					 <&clockgen_a9_pll 0>,
+> +					 <&clk_s_c0_flexgen 13>,
+> +					 <&clk_m_a9_ext2f_div2>;
+> +
+> +				/*
+> +				 * ARM Peripheral clock for timers
+> +				 */
+> +				arm_periph_clk: clk-m-a9-periphs {
+> +					#clock-cells = <0>;
+> +					compatible = "fixed-factor-clock";
+> +					clocks = <&clk_m_a9>;
+> +					clock-div = <2>;
+> +					clock-mult = <1>;
+> +				};
+>  			};
+>  		};
+>  
+> @@ -88,14 +87,6 @@ clk_s_a0_flexgen: clk-s-a0-flexgen {
+>  			};
+>  		};
+>  
+> -		clk_s_c0_quadfs: clk-s-c0-quadfs@9103000 {
+> -			#clock-cells = <1>;
+> -			compatible = "st,quadfs-pll";
+> -			reg = <0x9103000 0x1000>;
+> -
+> -			clocks = <&clk_sysin>;
+> -		};
+> -
+>  		clk_s_c0: clockgen-c@9103000 {
+>  			compatible = "st,clkgen-c32";
+>  			reg = <0x9103000 0x1000>;
+> @@ -114,6 +105,13 @@ clk_s_c0_pll1: clk-s-c0-pll1 {
+>  				clocks = <&clk_sysin>;
+>  			};
+>  
+> +			clk_s_c0_quadfs: clk-s-c0-quadfs {
+> +				#clock-cells = <1>;
+> +				compatible = "st,quadfs-pll";
+> +
+> +				clocks = <&clk_sysin>;
+> +			};
+> +
+>  			clk_s_c0_flexgen: clk-s-c0-flexgen {
+>  				#clock-cells = <1>;
+>  				compatible = "st,flexgen", "st,flexgen-stih418-c0";
+> @@ -143,18 +141,17 @@ clk_m_a9_ext2f_div2: clk-m-a9-ext2f-div2s {
+>  			};
+>  		};
+>  
+> -		clk_s_d0_quadfs: clk-s-d0-quadfs@9104000 {
+> -			#clock-cells = <1>;
+> -			compatible = "st,quadfs-d0";
+> -			reg = <0x9104000 0x1000>;
+> -
+> -			clocks = <&clk_sysin>;
+> -		};
+> -
+>  		clockgen-d0@9104000 {
+>  			compatible = "st,clkgen-c32";
+>  			reg = <0x9104000 0x1000>;
+>  
+> +			clk_s_d0_quadfs: clk-s-d0-quadfs {
+> +				#clock-cells = <1>;
+> +				compatible = "st,quadfs-d0";
+> +
+> +				clocks = <&clk_sysin>;
+> +			};
+> +
+>  			clk_s_d0_flexgen: clk-s-d0-flexgen {
+>  				#clock-cells = <1>;
+>  				compatible = "st,flexgen", "st,flexgen-stih410-d0";
+> @@ -167,18 +164,17 @@ clk_s_d0_flexgen: clk-s-d0-flexgen {
+>  			};
+>  		};
+>  
+> -		clk_s_d2_quadfs: clk-s-d2-quadfs@9106000 {
+> -			#clock-cells = <1>;
+> -			compatible = "st,quadfs-d2";
+> -			reg = <0x9106000 0x1000>;
+> -
+> -			clocks = <&clk_sysin>;
+> -		};
+> -
+>  		clockgen-d2@9106000 {
+>  			compatible = "st,clkgen-c32";
+>  			reg = <0x9106000 0x1000>;
+>  
+> +			clk_s_d2_quadfs: clk-s-d2-quadfs {
+> +				#clock-cells = <1>;
+> +				compatible = "st,quadfs-d2";
+> +
+> +				clocks = <&clk_sysin>;
+> +			};
+> +
+>  			clk_s_d2_flexgen: clk-s-d2-flexgen {
+>  				#clock-cells = <1>;
+>  				compatible = "st,flexgen", "st,flexgen-stih418-d2";
+> @@ -193,18 +189,17 @@ clk_s_d2_flexgen: clk-s-d2-flexgen {
+>  			};
+>  		};
+>  
+> -		clk_s_d3_quadfs: clk-s-d3-quadfs@9107000 {
+> -			#clock-cells = <1>;
+> -			compatible = "st,quadfs-d3";
+> -			reg = <0x9107000 0x1000>;
+> -
+> -			clocks = <&clk_sysin>;
+> -		};
+> -
+>  		clockgen-d3@9107000 {
+>  			compatible = "st,clkgen-c32";
+>  			reg = <0x9107000 0x1000>;
+>  
+> +			clk_s_d3_quadfs: clk-s-d3-quadfs {
+> +				#clock-cells = <1>;
+> +				compatible = "st,quadfs-d3";
+> +
+> +				clocks = <&clk_sysin>;
+> +			};
+> +
+>  			clk_s_d3_flexgen: clk-s-d3-flexgen {
+>  				#clock-cells = <1>;
+>  				compatible = "st,flexgen", "st,flexgen-stih407-d3";
+Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
 
 Thanks
 Patrice
-
-On 12/2/21 08:50, Alain Volmat wrote:
-> A first serie to correct a large amount of DT warnings seen when
-> building with the W=1 option and mainly due to having several time
-> the same reg property (clock) or having unnecessary reg value.
-> 
-> The first 3 patches related to clocks require that recent serie [1] of
-> clock drivers improvements be first merged.
-> 
-> [1] https://lore.kernel.org/linux-clk/20211202072850.194314-1-avolmat@me.com/T/#t
-> 
-> Alain Volmat (12):
->   ARM: dts: sti: ensure unique unit-address in stih407-clock
->   ARM: dts: sti: ensure unique unit-address in stih410-clock
->   ARM: dts: sti: ensure unique unit-address in stih418-clock
->   ARM: dts: sti: move some nodes out of the soc section in
->     stih407-family.dtsi
->   ARM: dts: sti: update stih410-b2260 following stih407-family DT update
->   ARM: dts: sti: update stih418-b2199 following stih407-family DT update
->   ARM: dts: sti: update stihxxx-b2120 following stih407-family DT update
->   ARM: dts: sti: remove delta node from stih410.dtsi
->   ARM: dts: sti: move usb picophy nodes out of soc in stih410.dtsi
->   ARM: dts: sti: move usb picophy nodes out of soc in stih418.dtsi
->   ARM: dts: sti: move usb picophy nodes in stih410-b2120.dts
->   ARM: dts: sti: move usb picophy nodes in stih410-b2260.dts
-> 
->  arch/arm/boot/dts/stih407-clock.dtsi  | 101 +++++-----
->  arch/arm/boot/dts/stih407-family.dtsi | 262 +++++++++++++-------------
->  arch/arm/boot/dts/stih410-b2120.dts   |  16 +-
->  arch/arm/boot/dts/stih410-b2260.dts   |  30 +--
->  arch/arm/boot/dts/stih410-clock.dtsi  | 100 +++++-----
->  arch/arm/boot/dts/stih410.dtsi        |  52 ++---
->  arch/arm/boot/dts/stih418-b2199.dts   |  22 +--
->  arch/arm/boot/dts/stih418-clock.dtsi  | 101 +++++-----
->  arch/arm/boot/dts/stih418.dtsi        |  38 ++--
->  arch/arm/boot/dts/stihxxx-b2120.dtsi  |  22 +--
->  10 files changed, 351 insertions(+), 393 deletions(-)
-> 
