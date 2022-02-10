@@ -2,154 +2,340 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8DFB4B0D8A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 13:25:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 593254B0DA2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 13:38:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235728AbiBJMZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 07:25:30 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42390 "EHLO
+        id S237813AbiBJMhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 07:37:13 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240035AbiBJMZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 07:25:28 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 118C6116E
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 04:25:29 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id b9so10087554lfq.6
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 04:25:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=O4VNG/Up45qwhiOzHf3sf/AW6zbqebmgwvUUBdlvIRY=;
-        b=t4iAQUmzzIZ4nWhbIv7yV/jH8WTb4wTlTajvT6ktaaAoXd5mkaWOeTanf006NbN7Pz
-         6ntCpCjr0/WJG9rBKL43oG7GL3auqVW/oHrM1tH2Hj3xQrMzgix7Xu2xTOK2IlTrealo
-         QUhIKvQ+Y8LBtfP4JxhzlztebsCXPYVuHIXEx37qKb6k2kqev3TdvkXR457Jb3c+zOwo
-         SSknw85NZ2dpGxJqUsG6Bz+vwig1Q7sXlu4UC1J32HssiyKRPE9zwhpb4586LGF1HkvZ
-         jfMVN84Fy/RzuBCTFDKmd9+05bYSngG9wpu+aa2kxqYhPxYDZiUJbYFv/MXd25OTgkku
-         enAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=O4VNG/Up45qwhiOzHf3sf/AW6zbqebmgwvUUBdlvIRY=;
-        b=RctzTEWDPlK01Cc2fA6oauz4q/YBH9NnjFAIbeloOoMJTMh8SyanQgvwDPupvTtT9e
-         h8c4aDQPUQPw2P572GYEK6kU3PhEhSztJUizAmGwAYMSvOkKTkDXgnwA8HTuJJHMO+3y
-         D2vqnMsniWdl8RzTIECP225peMNhbJjfzN8uBCVmhnfT4q7HfXaDZubKnfhAT6nIr8Er
-         r5mwWGn+2Es3uA7D/anX+DQIaynC5y186tEndnrpelH4zamTkDT47fuO6emOjrBR/xJQ
-         AL+dw1tu9wsCgJlE0cFyginIpuzL4/qEnZPLvS8KPU1+jWZakPdaBj+sXRVvpdd1ECmH
-         cSTw==
-X-Gm-Message-State: AOAM5314N0VMHJkHAErlKrUhBbLnRhYR90rprmIK5OYYRlZrn7gri1hG
-        YbQO12HOvSmoEOUVvknV7hMd5Q==
-X-Google-Smtp-Source: ABdhPJxK86barz0NVPBX19n7F1+rZNGle/QgGipkfT+1rpX8fZHByOsef/Y8lbcNGRTXKvz0k+BqTw==
-X-Received: by 2002:a05:6512:4012:: with SMTP id br18mr4801599lfb.533.1644495927370;
-        Thu, 10 Feb 2022 04:25:27 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id h6sm500455lfj.178.2022.02.10.04.25.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Feb 2022 04:25:26 -0800 (PST)
-Message-ID: <00e9ade6-1830-f19c-4dd8-0673809166b2@linaro.org>
-Date:   Thu, 10 Feb 2022 15:25:26 +0300
+        with ESMTP id S241557AbiBJMhM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 07:37:12 -0500
+X-Greylist: delayed 1905 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 10 Feb 2022 04:37:12 PST
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5203625FB;
+        Thu, 10 Feb 2022 04:37:12 -0800 (PST)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 4F1152223A;
+        Thu, 10 Feb 2022 13:37:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1644496630;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=s542OxdyRq6chzgnpbj408GyTF3ohoqeIM9rJK29+yo=;
+        b=t/Lbe1ojweY5/FAhGcd6LmMAG2KytX3v4ZNvPHnD1xd42d08N7YEy1wFHG2CZDO4olHcTu
+        b9i8H2qmtTi1zCc79skUBKTL0bMGxYXJEybyae0pGXHvRgenuuHvcx/OQp0RpT8KUAeHy8
+        h+7QKtRCWQfpA9VsDRhPQxaq44sl1m4=
+From:   Michael Walle <michael@walle.cc>
+To:     tudor.ambarus@microchip.com
+Cc:     Kavyasree.Kotagiri@microchip.com, Manohar.Puri@microchip.com,
+        Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
+        alexandre.belloni@bootlin.com, arnd@arndb.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, olof@lixom.net, robh+dt@kernel.org,
+        soc@kernel.org, Tudor.Ambarus@microchip.com,
+        Michael Walle <michael@walle.cc>
+Subject: Re: [PATCH v4] ARM: dts: add DT for lan966 SoC and 2-port board pcb8291
+Date:   Thu, 10 Feb 2022 13:37:04 +0100
+Message-Id: <20220210123704.477826-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <42662481-51a4-2a4b-e39b-d3b8401cbb2c@microchip.com>
+References: <42662481-51a4-2a4b-e39b-d3b8401cbb2c@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v3 3/4] drm/panel-edp: Add eDP sharp panel support
-Content-Language: en-GB
-To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        robdclark@gmail.com, seanpaul@chromium.org, swboyd@chromium.org,
-        dianders@chromium.org, krzysztof.kozlowski@canonical.com,
-        thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch
-Cc:     quic_kalyant@quicinc.com, quic_abhinavk@quicinc.com,
-        quic_khsieh@quicinc.com, quic_mkrishn@quicinc.com,
-        quic_vproddut@quicinc.com
-References: <1644396932-17932-1-git-send-email-quic_sbillaka@quicinc.com>
- <1644396932-17932-4-git-send-email-quic_sbillaka@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1644396932-17932-4-git-send-email-quic_sbillaka@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/02/2022 11:55, Sankeerth Billakanti wrote:
-> Add support for the 14" sharp,lq140m1jw46 eDP panel.
-> 
-> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Hi,
 
-Please excuse my ignorance, is there any reason, why we can't use 
-generic panel-edp here?
+>  arch/arm/boot/dts/Makefile            |   2 +
+>  arch/arm/boot/dts/lan966x.dtsi        | 237 ++++++++++++++++++++++++++
+>  arch/arm/boot/dts/lan966x_pcb8291.dts |  61 +++++++
 
-> ---
-> 
-> Changes in v3:
->    None
-> 
->   drivers/gpu/drm/panel/panel-edp.c | 31 +++++++++++++++++++++++++++++++
->   1 file changed, 31 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-> index a394a15..5d13ccc 100644
-> --- a/drivers/gpu/drm/panel/panel-edp.c
-> +++ b/drivers/gpu/drm/panel/panel-edp.c
-> @@ -1605,6 +1605,34 @@ static const struct panel_desc sharp_lq123p1jx31 = {
->   	},
->   };
->   
-> +static const struct drm_display_mode sharp_lq140m1jw46_mode = {
-> +	.clock = 144370,
-> +	.hdisplay = 1920,
-> +	.hsync_start = 1920 + 48,
-> +	.hsync_end = 1920 + 48 + 32,
-> +	.htotal = 1920 + 48 + 32 + 80,
-> +	.vdisplay = 1080,
-> +	.vsync_start = 1080 + 3,
-> +	.vsync_end = 1080 + 3 + 5,
-> +	.vtotal = 1080 + 3 + 5 + 69,
-> +	.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
-> +};
+Please rename this to lan966x-pcb8921.dts. All (most?) of the device
+tree files use the dash as a seperator between the SoC and the board.
+
+> diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
+> new file mode 100644
+> index 000000000000..91ee9e0684f4
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/lan966x.dtsi
+> @@ -0,0 +1,237 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * lan966x.dtsi - Device Tree Include file for Microchip LAN966 family SoC
+> + *
+> + * Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
+> + *
+> + * Author: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> + *
+> + */
 > +
-> +static const struct panel_desc sharp_lq140m1jw46 = {
-> +	.modes = &sharp_lq140m1jw46_mode,
-> +	.num_modes = 1,
-> +	.bpc = 8,
-> +	.size = {
-> +		.width = 309,
-> +		.height = 174,
-> +	},
-> +	.delay = {
-> +		.hpd_absent = 80,
-> +		.enable = 50,
-> +		.unprepare = 500,
-> +	},
-> +};
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/mfd/atmel-flexcom.h>
+> +#include <dt-bindings/dma/at91.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/clock/microchip,lan966x.h>
 > +
->   static const struct drm_display_mode starry_kr122ea0sra_mode = {
->   	.clock = 147000,
->   	.hdisplay = 1920,
-> @@ -1719,6 +1747,9 @@ static const struct of_device_id platform_of_match[] = {
->   		.compatible = "sharp,lq123p1jx31",
->   		.data = &sharp_lq123p1jx31,
->   	}, {
-> +		.compatible = "sharp,lq140m1jw46",
-> +		.data = &sharp_lq140m1jw46,
-> +	}, {
->   		.compatible = "starry,kr122ea0sra",
->   		.data = &starry_kr122ea0sra,
->   	}, {
+> +/ {
+> +	model = "Microchip LAN966 family SoC";
+> +	compatible = "microchip,lan966";
 
+Undocumented compatible string. I see that the actual board
+is documented in
+  Documentation/devicetree/bindings/arm/atmel-at91.yaml
 
--- 
-With best wishes
-Dmitry
+But as Arnd mentioned, this doesn't really make sense here
+as you have to override it in the actual board dts anyway.
+
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a7";
+> +			clock-frequency = <600000000>;
+> +			reg = <0x0>;
+> +		};
+> +	};
+> +
+> +	clocks {
+> +		sys_clk: sys_clk {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <162500000>;
+> +		};
+> +
+> +		cpu_clk: cpu_clk {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <600000000>;
+> +		};
+> +
+> +		ddr_clk: ddr_clk {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <300000000>;
+> +		};
+> +
+> +		nic_clk: nic_clk {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <200000000>;
+> +		};
+> +	};
+> +
+> +	clks: clock-controller@e00c00a8 {
+> +		compatible = "microchip,lan966x-gck";
+> +		#clock-cells = <1>;
+> +		clocks = <&cpu_clk>, <&ddr_clk>, <&sys_clk>;
+> +		clock-names = "cpu", "ddr", "sys";
+> +		reg = <0xe00c00a8 0x38>;
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv7-timer";
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+> +		clock-frequency = <37500000>;
+> +		arm,cpu-registers-not-fw-configured;
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		flx0: flexcom@e0040000 {
+> +			compatible = "atmel,sama5d2-flexcom";
+
+Are these expected to be exactly the same between the lan966x and the
+sama5d2 or do you need something like
+
+compatible = "microchip,lan966x-flexcom", "atmel,sama5d2-flexcom";
+
+for the case when you need to make SoC specific settings/workarounds?
+
+> +			reg = <0xe0040000 0x100>;
+> +			clocks = <&clks GCK_ID_FLEXCOM0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0xe0040000 0x800>;
+> +			status = "disabled";
+> +		};
+> +
+> +		flx1: flexcom@e0044000 {
+> +			compatible = "atmel,sama5d2-flexcom";
+> +			reg = <0xe0044000 0x100>;
+> +			clocks = <&clks GCK_ID_FLEXCOM1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0xe0044000 0x800>;
+> +			status = "disabled";
+> +		};
+> +
+> +		trng: trng@e0048000 {
+
+Tudor already mentioned this..
+
+> +			compatible = "atmel,at91sam9g45-trng";
+> +			reg = <0xe0048000 0x100>;
+> +			clocks = <&nic_clk>;
+> +		};
+> +
+> +		aes: aes@e004c000 {
+
+.. and this ..
+
+> +			compatible = "atmel,at91sam9g46-aes";
+> +			reg = <0xe004c000 0x100>;
+> +			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
+> +			dmas = <&dma0 AT91_XDMAC_DT_PERID(13)>,
+> +			       <&dma0 AT91_XDMAC_DT_PERID(12)>;
+> +			dma-names = "rx", "tx";
+> +			clocks = <&nic_clk>;
+> +			clock-names = "aes_clk";
+> +		};
+> +
+> +		flx2: flexcom@e0060000 {
+> +			compatible = "atmel,sama5d2-flexcom";
+> +			reg = <0xe0060000 0x100>;
+> +			clocks = <&clks GCK_ID_FLEXCOM2>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0xe0060000 0x800>;
+> +			status = "disabled";
+> +		};
+> +
+> +		flx3: flexcom@e0064000 {
+> +			compatible = "atmel,sama5d2-flexcom";
+> +			reg = <0xe0064000 0x100>;
+> +			clocks = <&clks GCK_ID_FLEXCOM3>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0xe0064000 0x800>;
+> +			status = "disabled";
+> +
+> +			usart3: serial@200 {
+> +				compatible = "atmel,at91sam9260-usart";
+> +				reg = <0x200 0x200>;
+> +				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&nic_clk>;
+> +				clock-names = "usart";
+> +				atmel,fifo-size = <32>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+> +		dma0: dma-controller@e0068000 {
+> +			compatible = "microchip,sama7g5-dma";
+> +			reg = <0xe0068000 0x1000>;
+> +			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+> +			#dma-cells = <1>;
+> +			clocks = <&nic_clk>;
+> +			clock-names = "dma_clk";
+> +		};
+> +
+> +		sha: sha@e006c000 {
+
+.. and this one.
+
+> +			compatible = "atmel,at91sam9g46-sha";
+> +			reg = <0xe006c000 0xec>;
+> +			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+> +			dmas = <&dma0 AT91_XDMAC_DT_PERID(14)>;
+> +			dma-names = "tx";
+> +			clocks = <&nic_clk>;
+> +			clock-names = "sha_clk";
+> +		};
+> +
+> +		flx4: flexcom@e0070000 {
+> +			compatible = "atmel,sama5d2-flexcom";
+> +			reg = <0xe0070000 0x100>;
+> +			clocks = <&clks GCK_ID_FLEXCOM4>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0xe0070000 0x800>;
+> +			status = "disabled";
+> +		};
+> +
+> +		timer0: timer@e008c000 {
+> +			compatible = "snps,dw-apb-timer";
+> +			reg = <0xe008c000 0x400>;
+> +			clocks = <&nic_clk>;
+> +			clock-names = "timer";
+> +			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		watchdog: watchdog@e0090000 {
+> +			compatible = "snps,dw-wdt";
+> +			reg = <0xe0090000 0x1000>;
+> +			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&nic_clk>;
+> +		};
+> +
+> +		can0: can@e081c000 {
+> +			compatible = "bosch,m_can";
+> +			reg = <0xe081c000 0xfc>, <0x00100000 0x4000>;
+> +			reg-names = "m_can", "message_ram";
+> +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "int0", "int1";
+> +			clocks = <&clks GCK_ID_MCAN0>, <&clks GCK_ID_MCAN0>;
+> +			clock-names = "hclk", "cclk";
+> +			assigned-clocks = <&clks GCK_ID_MCAN0>;
+> +			assigned-clock-rates = <40000000>;
+> +			bosch,mram-cfg = <0x0 0 0 64 0 0 32 32>;
+> +			status = "disabled";
+> +		};
+> +
+> +		gpio: pinctrl@e2004064 {
+> +			compatible = "microchip,lan966x-pinctrl";
+> +			reg = <0xe2004064 0xb4>,
+> +			    <0xe2010024 0x138>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&gpio 0 0 78>;
+> +			interrupt-controller;
+> +			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		gic: interrupt-controller@e8c11000 {
+> +			compatible = "arm,gic-400", "arm,cortex-a7-gic";
+> +			#interrupt-cells = <3>;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-controller;
+> +			reg = <0xe8c11000 0x1000>,
+> +			      <0xe8c12000 0x2000>,
+> +			      <0xe8c14000 0x2000>,
+> +			      <0xe8c16000 0x2000>;
+> +		};
+> +	};
+> +};
+
+Overall most of the referenced bindings lack a proper yaml version :/
+
+-michael
