@@ -2,53 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CCE94B15A2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 19:56:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE8E14B15B5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 20:02:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343592AbiBJS4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 13:56:10 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40372 "EHLO
+        id S240479AbiBJTCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 14:02:25 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343577AbiBJS4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 13:56:10 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 657A9109F;
-        Thu, 10 Feb 2022 10:56:10 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 306371F46711
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1644519369;
-        bh=p879cBETubHXdemY/PEQK5hOnKUPCYkbBd8qPEuZydk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HUGcHd7Eryz+IswgcaQeXj1SE1zmzZPq8xlW/QQqmSZfcArilD7EgsPxJI4F7e4sY
-         3SifqfLzbqXCbpE5sGfmg+cpRFfmqzoT2Rglv6woYuhs2+gDO2b9Mefr+IBYx9Cetb
-         jXDqwGj78rL6j/sTIGD71YEhycfwVcmMROXV5bu6MO523USIhayfBfuDSVhmE9WJEV
-         m2GIVq4RscFBadbXfFU8JV5ROwmH13cp1p0sk8/iwscy7U6uQFSQDJYAjU9ENJk4b5
-         hMs9kdjtkVa9mwbrXz7JBGleZJ3zXxP0WBw5uoVLNniUYVxr1uZeuv/JGYBPTgYl+c
-         Myk+Ebay3vFbQ==
-Date:   Thu, 10 Feb 2022 13:56:03 -0500
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        srv_heupstream@mediatek.com
-Subject: Re: [PATCH v2] arm64: dts: mediatek: Add Mediatek mt8192 cpufreq
- device nodes
-Message-ID: <20220210185603.lmgf4ppppe3ccscj@notapiano>
-References: <1609223471-24325-1-git-send-email-andrew-sh.cheng@mediatek.com>
- <20220210144659.2vkuuh74xagic3ud@notapiano>
+        with ESMTP id S238208AbiBJTCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 14:02:25 -0500
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E9910C2
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 11:02:25 -0800 (PST)
+Received: by mail-qk1-x72c.google.com with SMTP id j24so5817239qkk.10
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 11:02:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=X5W2pq9dsVXSH/I7PTz4BBp4YweqmzTi8YkXg+g+TkU=;
+        b=uL8crpQ0bGH1328AiJjfSG5jp/Pl6DVkUDryFl+phH4/Aak09d28Mh/j3lUAQNgQOe
+         fB+TvoO+Aa2xnSvaRYj6LRu87WjoCynhaASfrNq2vyJChD24VbhhfB7Tbl5KJY5biRpU
+         zujfE44+Cink3heI/PnMyEsINHliszuwu4Eubz9hXza97cxN0TvyqQWC+HqeSL6FFnBC
+         Ej+7nq0O1K+4mjOruaVmgo7F9mGDPt9Pw6ug3SP6O2gvJhNQj1Ic3VmKPZiIgiCkRqkc
+         AHsWY0WLmCPGponRxKK1yGV3l0CvmJT+OnP+74054HgttN3NNPLnNFNOtuwZZ6RnV1ju
+         wDEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=X5W2pq9dsVXSH/I7PTz4BBp4YweqmzTi8YkXg+g+TkU=;
+        b=IZkZrATUaunAP9dfr0O2GxeJvwWm661HvFFp6TKH1vJdGL3EvBchmprHxxPOoDKZl4
+         sWo8HZTwNnCrbTK9Pk2ZxRAt8Mm/6p98OQuMqC/ZFFvPY9+fWCztmFcQvLO/qLGDoWVU
+         cCMCn1vE7VGNeRMgprYoRvhy4R4cJYE9ymc5T60NzBQyLE0HO8Q5QtbiA/uiDkhbFp84
+         gWdBkKW2fS29JDi0qhh7iiGAeke7c4AXh/2rp+I9Zw+GPrZM6PXWwr2n9iIZ2j01wL2w
+         S3HARL8pzwSHWhZf9P3Zjn+UnTrEWMryFjQ2Qs/HSsdNyUcbwczPMWxy0YvAkNfhrTvg
+         rW3Q==
+X-Gm-Message-State: AOAM532xJp113JFcJFsYiEyQI4lU/QI6nlp4NAaMmhqC19X3i3iOIZPY
+        7s8XyQNtdPAGv25zTAbUleaX+8ql8Ii3lE+l2HGFkw==
+X-Google-Smtp-Source: ABdhPJzioCW22SI5kzLf25TmyIJ1WYvKdK7QUtCX6HADN3OQnkHCy4r6etMQovM7Lqg1ztMH2JdvBX4KMpb75Kh+KR8=
+X-Received: by 2002:a05:620a:1664:: with SMTP id d4mr4566853qko.363.1644519744622;
+ Thu, 10 Feb 2022 11:02:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220210144659.2vkuuh74xagic3ud@notapiano>
+References: <Yf1/X1rXm4QbyoFN@sirena.org.uk> <846cdc17-891d-2ee4-fc89-7cf6fbdebc1d@linaro.org>
+ <YgEvN0lXXu4lDCN5@sirena.org.uk> <682b7ffe-e162-bcf7-3c07-36b3a39c25ab@linaro.org>
+ <YgJoX+Ajgt4dweQJ@sirena.org.uk> <CAA8EJppEjFqPUBXtdkTsx2U2CjsrjNsXEmrx_DkAS9a9jmB9cg@mail.gmail.com>
+ <YgUy9KMXocSqnv7b@sirena.org.uk> <CAA8EJpqN_T7eAOdLhK-P_0HCuChpE9JhPBg9HVJ=N1kKMbgDjA@mail.gmail.com>
+ <YgVNJHTQufLu1sM5@sirena.org.uk> <CAA8EJprrhame0zG4=4cFF7PBS0c9synjStLBingk58y7EJfV6w@mail.gmail.com>
+ <YgVY6t4OknBR6ySW@sirena.org.uk>
+In-Reply-To: <YgVY6t4OknBR6ySW@sirena.org.uk>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 10 Feb 2022 22:02:13 +0300
+Message-ID: <CAA8EJpoguQGezeLBYyNkGmnnXkFOfQ4OvsToQqPO_0QO87S2SQ@mail.gmail.com>
+Subject: Re: [PATCH 2/9] dt-bindings: i2c: qcom-cci: add description of a
+ vbus-supply property
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linus.walleij@linaro.org, Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,132 +75,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi again,
-please see my comment below.
+On Thu, 10 Feb 2022 at 21:26, Mark Brown <broonie@kernel.org> wrote:
+>
+> On Thu, Feb 10, 2022 at 09:21:42PM +0300, Dmitry Baryshkov wrote:
+>
+> > I'd second a request to handle the adapter->bus_regulator in the core code.
+> > Would you be ok with the 'external-sda-scl-supply' property? Would you
+> > demand that it's completely handled by the core layer (including DT
+> > parsing) or should we let a driver parse the DT property?
+>
+> I'm not super worried about how it's implemented so long as the binding
+> is good for the long term - if doing it in a driver helps get things
+> done that's fixable later on without breaking ABI.
 
-On Thu, Feb 10, 2022 at 09:47:04AM -0500, Nícolas F. R. A. Prado wrote:
-> Hi Andrew,
-> 
-> On Tue, Dec 29, 2020 at 02:31:11PM +0800, Andrew-sh.Cheng wrote:
-> > From: "Andrew-sh.Cheng" <andrew-sh.cheng@mediatek.com>
-> > 
-> > Correct dts node name in patch v1: performance-domain
-> > This patch depends on [1] and [2].
-> > 
-> > [1]http://lists.infradead.org/pipermail/linux-mediatek/2020-November/019378.html
-> > [2]https://patchwork.kernel.org/project/linux-mediatek/patch/1607586516-6547-3-git-send-email-hector.yuan@mediatek.com/
-> 
-> Those two series are now merged, so no dependencies missing for this patch any
-> longer.
-> 
-> Please rebase this patch, as there are some conflicts. I've already verified it,
-> and after you rebase I can send a reviewed-by.
-> 
-> Thanks,
-> Nícolas
-> 
-> > 
-> > Signed-off-by: Andrew-sh.Cheng <andrew-sh.cheng@mediatek.com>
-> > ---
-> >  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > index 69d45c7b31f1..a907ee7e650a 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > @@ -39,6 +39,7 @@
-> >  			compatible = "arm,cortex-a55";
-> >  			reg = <0x000>;
-> >  			enable-method = "psci";
-> > +			performance-domains = <&performance 0>;
-> >  			clock-frequency = <1701000000>;
-> >  			next-level-cache = <&l2_0>;
-> >  			capacity-dmips-mhz = <530>;
-> > @@ -49,6 +50,7 @@
-> >  			compatible = "arm,cortex-a55";
-> >  			reg = <0x100>;
-> >  			enable-method = "psci";
-> > +			performance-domains = <&performance 0>;
-> >  			clock-frequency = <1701000000>;
-> >  			next-level-cache = <&l2_0>;
-> >  			capacity-dmips-mhz = <530>;
-> > @@ -59,6 +61,7 @@
-> >  			compatible = "arm,cortex-a55";
-> >  			reg = <0x200>;
-> >  			enable-method = "psci";
-> > +			performance-domains = <&performance 0>;
-> >  			clock-frequency = <1701000000>;
-> >  			next-level-cache = <&l2_0>;
-> >  			capacity-dmips-mhz = <530>;
-> > @@ -69,6 +72,7 @@
-> >  			compatible = "arm,cortex-a55";
-> >  			reg = <0x300>;
-> >  			enable-method = "psci";
-> > +			performance-domains = <&performance 0>;
-> >  			clock-frequency = <1701000000>;
-> >  			next-level-cache = <&l2_0>;
-> >  			capacity-dmips-mhz = <530>;
-> > @@ -79,6 +83,7 @@
-> >  			compatible = "arm,cortex-a76";
-> >  			reg = <0x400>;
-> >  			enable-method = "psci";
-> > +			performance-domains = <&performance 1>;
-> >  			clock-frequency = <2171000000>;
-> >  			next-level-cache = <&l2_1>;
-> >  			capacity-dmips-mhz = <1024>;
-> > @@ -89,6 +94,7 @@
-> >  			compatible = "arm,cortex-a76";
-> >  			reg = <0x500>;
-> >  			enable-method = "psci";
-> > +			performance-domains = <&performance 1>;
-> >  			clock-frequency = <2171000000>;
-> >  			next-level-cache = <&l2_1>;
-> >  			capacity-dmips-mhz = <1024>;
-> > @@ -99,6 +105,7 @@
-> >  			compatible = "arm,cortex-a76";
-> >  			reg = <0x600>;
-> >  			enable-method = "psci";
-> > +			performance-domains = <&performance 1>;
-> >  			clock-frequency = <2171000000>;
-> >  			next-level-cache = <&l2_1>;
-> >  			capacity-dmips-mhz = <1024>;
-> > @@ -109,6 +116,7 @@
-> >  			compatible = "arm,cortex-a76";
-> >  			reg = <0x700>;
-> >  			enable-method = "psci";
-> > +			performance-domains = <&performance 1>;
-> >  			clock-frequency = <2171000000>;
-> >  			next-level-cache = <&l2_1>;
-> >  			capacity-dmips-mhz = <1024>;
-> > @@ -194,6 +202,12 @@
-> >  		compatible = "simple-bus";
-> >  		ranges;
-> >  
-> > +		performance: performance-controller@0011bc00 {
+So, 'external-sda-scl-supply'?
 
-Actually there is a warning being introduced here on dtbs_check:
 
-	soc: 'performance-controller@0011bc00' does not match any of the regexes: '@(0|[1-9a-f][0-9a-f]*)$', '^[^@]+$', 'pinctrl-[0-9]+'
-		From schema: [...]/dtschema/schemas/simple-bus.yaml
 
-So you should also change the address to not start with zeros: 11bc00
-
-Thanks,
-Nícolas
-
-> > +			compatible = "mediatek,cpufreq-hw";
-> > +			reg = <0 0x0011bc10 0 0x120>, <0 0x0011bd30 0 0x120>;
-> > +			#performance-domain-cells = <1>;
-> > +		};
-> > +
-> >  		gic: interrupt-controller@c000000 {
-> >  			compatible = "arm,gic-v3";
-> >  			#interrupt-cells = <4>;
-> > -- 
-> > 2.12.5
-> > _______________________________________________
-> > Linux-mediatek mailing list
-> > Linux-mediatek@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
-> > 
+-- 
+With best wishes
+Dmitry
