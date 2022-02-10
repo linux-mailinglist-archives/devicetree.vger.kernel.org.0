@@ -2,111 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E8A64B181A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 23:26:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46AA44B185F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Feb 2022 23:40:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245079AbiBJWZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 17:25:46 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50902 "EHLO
+        id S240444AbiBJWkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 17:40:21 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242123AbiBJWZp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 17:25:45 -0500
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EEE425CC;
-        Thu, 10 Feb 2022 14:25:46 -0800 (PST)
-Received: by mail-oo1-f43.google.com with SMTP id f11-20020a4abb0b000000b002e9abf6bcbcso8207151oop.0;
-        Thu, 10 Feb 2022 14:25:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=bi0xxaYvyCZbPDNk/x9kYcmKT4Bfk4GrdJcxp5giOSA=;
-        b=gDyO324ndxNpJS24Z8dPOds+eZQBpw+aGssRr1TyPu8sUpXE1qho4UIh35WWTNbMM2
-         v89YyTvfvhA0WxwtQt7OIo4rP/C9SX7H6hiMEdJHCf74q/nuzfKLsbY60y1FPMKog370
-         k8tg+1x+zSZVJ/kOnyYi20eQbw1KF+Jkwg8miJBXEUSxZUydYwxikio2GWRsCCII/6oX
-         j1IlDwl084cUlzP+pwOpesmN3IjTmJ6rrhioPDgB+irGG27Qmqt0r6oHw4jR6jTK67SL
-         rqISzr/FZw0+BC/WP0DCqFNx7XrTI+0qC/h1Izc1WjdUhkCwK6kVDe/SEyLvt+9IU6hq
-         nbjA==
-X-Gm-Message-State: AOAM5339kLi/432fLs74yo77SHd0JFOJMEXVLCTiRvtW7zxrRfsffTHH
-        JHgtDgVBnRcUKAH4/7D9HYiIHNGvRg==
-X-Google-Smtp-Source: ABdhPJwrVekJrzjgQ/9yYiHIMcwIFxnZL/6zvQzwUNx14/DTrV495dnI67C+qdTQ88ZtqEUt9JYtXQ==
-X-Received: by 2002:a05:6820:353:: with SMTP id m19mr3483384ooe.36.1644531945357;
-        Thu, 10 Feb 2022 14:25:45 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 71sm8556446otn.43.2022.02.10.14.25.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Feb 2022 14:25:44 -0800 (PST)
-Received: (nullmailer pid 3262538 invoked by uid 1000);
-        Thu, 10 Feb 2022 22:25:43 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     krzysztof.kozlowski@canonical.com, wim@linux-watchdog.org,
-        robh+dt@kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux@roeck-us.net,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S1343605AbiBJWkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 17:40:20 -0500
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2B426CD
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 14:40:20 -0800 (PST)
+Received: from relay1-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::221])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id C5FA4D081A
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 22:32:39 +0000 (UTC)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 75E0F240003;
+        Thu, 10 Feb 2022 22:32:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1644532354;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=+QgVffAGvdGWhHLFKs1yKdpUZfk0sx8ZccSaPdB92Lc=;
+        b=lAQGGi+iO2hQ8Jo77cYHXAKC9fn+Dtj73HjHETDcS6HzIAeGvxrIUqUd2p3khMDYu59OyQ
+        d9Wm+X31vHFHH9humJRy1hjWfxtz/H6kXk285aSJ/p1fIVcjmtz3S7uLf2y/5HJiwhor0i
+        DRn+HxJNSn3bc7bhcAHlJsRPTil3HN8+B6G1b6EqyZZsdXrr5i3EmcI4Etj2AjEffrUg96
+        V15H9Li6j9h1AmY5UgQAqAn9h8u0C9G2vbO1c+4ZvfqA0ngcTdT8CWoH/OxOCSq8K9dShP
+        j9PNV6UDcJ1h6C/zXPXsyClS634lZLYkI5pSXEYeTz737HEZfHqvuaqVqz3Nvw==
+Date:   Thu, 10 Feb 2022 23:32:32 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-In-Reply-To: <20220210155450.2939129-1-clabbe@baylibre.com>
-References: <20220210155450.2939129-1-clabbe@baylibre.com>
-Subject: Re: [PATCH v3] dt-bindings: watchdog: convert faraday,ftwdt010 to yaml
-Date:   Thu, 10 Feb 2022 16:25:43 -0600
-Message-Id: <1644531943.376766.3262537.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Subject: Re: [PATCH 10/10] dt-bindings: rtc: pcf2127: add PCF2131 INT_A and
+ INT_B support
+Message-ID: <YgWSgGTKR63g+S9e@piout.net>
+References: <20220125200009.900660-1-hugo@hugovil.com>
+ <20220125200009.900660-11-hugo@hugovil.com>
+ <YgMy/CYL8lmf6Y+J@robh.at.kernel.org>
+ <20220210171234.4e317c8a5d5f91f358382b07@hugovil.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220210171234.4e317c8a5d5f91f358382b07@hugovil.com>
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_VALIDITY_RPBL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Feb 2022 15:54:50 +0000, Corentin Labbe wrote:
-> Converts watchdog/faraday,ftwdt010.txt to yaml.
-> This permits to detect missing properties like clocks and resets or
-> compatible like moxa,moxart-watchdog.
+On 10/02/2022 17:12:34-0500, Hugo Villeneuve wrote:
+> On Tue, 8 Feb 2022 21:20:28 -0600
+> Rob Herring <robh@kernel.org> wrote:
 > 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
-> Changes since v1:
-> - Added myself as maintainer as requested by Linus
-> - Added $ref to watchdog.yaml
-> - Removed useless quotes
-> - Added blank lines between properties
-> - Removed timeout-sec as already provided by watchdog.yaml
+> > On Tue, Jan 25, 2022 at 03:00:09PM -0500, Hugo Villeneuve wrote:
+> > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > 
+> > > The PCF2131 has two output interrupt pins, named INT_A and INT_B.
+> > > 
+> > > Add properties to identify onto which pin we want the alarm interrupt
+> > > to be routed. It can be either one, or both.
+> > > 
+> > > These properties are automatically set to false for variants other
+> > > than PCF2131 (ex: PCF2127).
+> > > 
+> > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > ---
+> > >  .../devicetree/bindings/rtc/nxp,pcf2127.yaml  | 23 +++++++++++++++++++
+> > >  1 file changed, 23 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > > index 57eb0a58afa3..83656dd2f97f 100644
+> > > --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > > +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > > @@ -24,6 +24,16 @@ properties:
+> > >    interrupts:
+> > >      maxItems: 1
+> > >  
+> > > +  alarm-output-a:
+> > 
+> > nxp,alarm-output-a
 > 
-> Change since v2:
-> - rewrite compatible section
-> 
->  .../bindings/watchdog/faraday,ftwdt010.txt    | 22 -------
->  .../bindings/watchdog/faraday,ftwdt010.yaml   | 66 +++++++++++++++++++
->  2 files changed, 66 insertions(+), 22 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+> Ok, this will be fixed for V2.
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Actually, this property has to be made more generic and thought out.
+There are multiple RTCs that have multiple interrupt pins where one of
+the pin can be used for different interrupt or clock output.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml:25:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml:26:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
+With your binding, there is no way to separate which interrupt is going
+to which pin and so there is no way to get the alarm and BLF or the
+watchdog on different pins and we certainly don't want to have a
+property per interrupt type.
 
-dtschema/dtc warnings/errors:
+Also, the documentation is missing the fact that the driver makes having
+one of the property mandatory.
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1591202
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
