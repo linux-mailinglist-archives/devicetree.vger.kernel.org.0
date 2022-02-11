@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6E894B1CFD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 04:37:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4C454B1D02
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 04:42:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbiBKDhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 22:37:53 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54032 "EHLO
+        id S233277AbiBKDm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 22:42:27 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234699AbiBKDhw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 22:37:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94992B73
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 19:37:52 -0800 (PST)
+        with ESMTP id S235126AbiBKDm0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 22:42:26 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A10EC26DF
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 19:42:26 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 57330B82697
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 03:37:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93C8CC004E1;
-        Fri, 11 Feb 2022 03:37:48 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D5C161278
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 03:42:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CA45C340E9;
+        Fri, 11 Feb 2022 03:42:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644550670;
-        bh=cTC0oL8FxdRoFWpgWRcoS99Tl2LILqmYFNkHW7a4k2Y=;
+        s=k20201202; t=1644550945;
+        bh=2iBwPof/C1ljCkQx/bkoZitehExlZ4VjBjuwOnMrmlU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=k8U4QKPGRie6PhqDJjqzjM15V2Xv1Z3rDXAVkkNTaSN7KTKBefwXR7s5G5KZOrlDd
-         gdrJphA2Cnk4jvNOB+LdGQcWvNj2nOTfI7hgQm2PfiqWAVYh3eGE2LuyIBUF5YBBK6
-         PZye2uKtM3iPNWFVatfwBW1yWrFLa+1MY0XZqQ8nVN6wAZs9ppSGxZGUjA49gMk9gf
-         GyLHyCSU5bMvIb2CNCzeiGI/52wP0+lmDzBxuxhuKi5u+nBIMwLGia5Sf4Lbq1uoqc
-         q7Rt+d1NmAwgnZrK0k9NQyz2Ad61cb203g/NSC482rgYZuj6QzeMumQE7BphKqliM4
-         SPL5YO1SJX41A==
-Date:   Fri, 11 Feb 2022 11:37:43 +0800
+        b=VPrxC9JgTuLtwpGP2XtHbsE6qN30B4MCEDRAuU86JDdTWbQdjSXCGdN4qb55QbWPB
+         K+fQmRFruzOWOoadDCPIHgpae3G3IvJs1u/QjzdRCShgkz68CfNQzedjEsI43gPgY2
+         f0ctQK1OQeBRiAfrH5djwNGZke7BQU5IPxt7aKBwMr9hUJOX5IY/VYZXiC/WGcsBsD
+         RrSALnJfb+evHV9/Dm0qfyYKrI0dZML4CG6d/OV4cR9V+JmQN+bH01cZH8hLzKtC8E
+         BCY76j0u8f8ZxAP9dw75NmVSzL5pYWDSdjXYq0YUJSEiQVyl9Spy+t+7pvMnX/VOAd
+         HwRgKBDTZEeAA==
+Date:   Fri, 11 Feb 2022 11:42:20 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Alexander Stein <alexander.stein@ew.tq-group.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -40,13 +40,14 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/8] various imx6ul DT fixes
-Message-ID: <20220211033743.GI4909@dragon>
+Subject: Re: [PATCH 1/8] ARM: dts: imx6ul: add missing properties for sram
+Message-ID: <20220211034219.GJ4909@dragon>
 References: <20220125135014.3041002-1-alexander.stein@ew.tq-group.com>
+ <20220125135014.3041002-2-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220125135014.3041002-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20220125135014.3041002-2-alexander.stein@ew.tq-group.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -58,43 +59,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 25, 2022 at 02:50:06PM +0100, Alexander Stein wrote:
-> This patch set fixes several, but not all, dt_binding_check warnings. Some are
-> missing properties or their format, others address issues regarding to
-> compatible names. I only touched those where compatibles are stated in the yaml
-> bindings.
-> There are several imx6ul compatible names used by imx6ul.dtsi, but which are
-> not listed in the bindings. Namely:
-> * "fsl,imx6ul-gpt", "fsl,imx6sx-gpt"
-> * "fsl,imx6ul-tempmon", "fsl,imx6sx-tempmon"
-> * "fsl,imx6ul-gpc", "fsl,imx6q-gpc"
-> * "fsl,imx6ul-usdhc", "fsl,imx6sx-usdhc"
-> 
-> Despite GPC, the others are apperently compatible to imx6sx. I'm not sure how
-> to fix the DTB check warning. Add the imx6ul compatible to bindings and drivers?
+On Tue, Jan 25, 2022 at 02:50:07PM +0100, Alexander Stein wrote:
+> All 3 properties are required by sram.yaml. Fixes the dt_binding_check
 
-Add the compatible to bindings, I would say.
+I guess it's dtbs_check rather than dt_binding_check?
 
 Shawn
 
-> Or change the .dtsi to use only the imx6sx compatible.
+> warning:
+> sram@900000: '#address-cells' is a required property
+> sram@900000: '#size-cells' is a required property
+> sram@900000: 'ranges' is a required property
 > 
-> The GPC on imx6ul apparently does only support power gating for ARM CPU, so
-> this would require actually a new compatible which supports only 1 domain.
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  arch/arm/boot/dts/imx6ul.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> Alexander Stein (8):
->   ARM: dts: imx6ul: add missing properties for sram
->   ARM: dts: imx6ul: change operating-points to uint32-matrix
->   ARM: dts: imx6ul: fix keypad compatible
->   ARM: dts: imx6ul: fix adc node compatible
->   ARM: dts: imx6ul: remove unsupported adc property
->   ARM: dts: imx6ul: fix csi node compatible
->   ARM: dts: imx6ul: fix lcdif node compatible
->   ARM: dts: imx6ul: fix qspi node compatible
-> 
->  arch/arm/boot/dts/imx6ul.dtsi | 36 +++++++++++++++++------------------
->  1 file changed, 18 insertions(+), 18 deletions(-)
-> 
+> diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+> index afeec01f6522..1d435a46fc5c 100644
+> --- a/arch/arm/boot/dts/imx6ul.dtsi
+> +++ b/arch/arm/boot/dts/imx6ul.dtsi
+> @@ -149,6 +149,9 @@ soc {
+>  		ocram: sram@900000 {
+>  			compatible = "mmio-sram";
+>  			reg = <0x00900000 0x20000>;
+> +			ranges = <0 0x00900000 0x20000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+>  		};
+>  
+>  		intc: interrupt-controller@a01000 {
 > -- 
 > 2.25.1
 > 
