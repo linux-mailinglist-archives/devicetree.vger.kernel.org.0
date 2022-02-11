@@ -2,486 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C01D84B2627
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 13:46:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 604144B2663
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 13:51:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350262AbiBKMq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 07:46:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48394 "EHLO
+        id S1349942AbiBKMuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 07:50:52 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350245AbiBKMqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 07:46:25 -0500
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40001FCB;
-        Fri, 11 Feb 2022 04:46:23 -0800 (PST)
-Received: from fraeml739-chm.china.huawei.com (unknown [172.18.147.200])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4JwCtR4CDzz683T0;
-        Fri, 11 Feb 2022 20:42:07 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml739-chm.china.huawei.com (10.206.15.220) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Fri, 11 Feb 2022 13:46:20 +0100
-Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Fri, 11 Feb
- 2022 12:46:20 +0000
-Date:   Fri, 11 Feb 2022 12:46:18 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-CC:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] iio:amplifiers:ada4250: add support for ADA4250
-Message-ID: <20220211124618.00000a70@Huawei.com>
-In-Reply-To: <20220211095057.54979-2-antoniu.miclaus@analog.com>
-References: <20220211095057.54979-1-antoniu.miclaus@analog.com>
-        <20220211095057.54979-2-antoniu.miclaus@analog.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S1347452AbiBKMuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 07:50:52 -0500
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 276C6B6B;
+        Fri, 11 Feb 2022 04:50:51 -0800 (PST)
+Received: by mail-qt1-f171.google.com with SMTP id k25so8919254qtp.4;
+        Fri, 11 Feb 2022 04:50:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=u6rmzGmHT/gQ3Tbc1nnAWIpxZbnc090wYLn3lrC8O20=;
+        b=79gcpmMnZBaOoYFLrroyatLFFLB6t61v583z4MSuPJpVS2wE9qycGLDuKu/LvA6uyx
+         T52ecjjBeP5+Dvtg9nOYB0HBRlaprnaMPpNNxdeekZjat1WFq6wAcA1qbjmh9O5iPeLu
+         s+NgqCJlTb7l4WYs2BYHiYAxdaiVz/ubaiiGm8iniq1pS4M0sdnafiAQyE4sWl1foJAr
+         YFtcJ77qfOm1qmVPulR4VCUA01ktkLVEz2ISQSqqbApHTPXBlcRhNvlQHFEFekubTE2w
+         ThHDpT3JTwxAvTia5C1QZRodS4fvEUlXav2QIXf/dDjuse1LsxkAfLRN34XPfPPIMEOy
+         zh3g==
+X-Gm-Message-State: AOAM530Z2BCNHZy9VyiF5+vivo04XR5K15Ekh9lxc/dcIgrB0e9na1qC
+        CihwM42YhpWQUR5ZBikLOQ==
+X-Google-Smtp-Source: ABdhPJxnhE3MwVN8S27Aocl3jCWaP62tWrP7cI0vk9Yi0IoaXxKAmoQBS8EjSBot0OVZCNJT/mmHRQ==
+X-Received: by 2002:ac8:5a08:: with SMTP id n8mr923470qta.332.1644583850026;
+        Fri, 11 Feb 2022 04:50:50 -0800 (PST)
+Received: from robh.at.kernel.org ([172.58.99.10])
+        by smtp.gmail.com with ESMTPSA id k4sm12361409qta.6.2022.02.11.04.50.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 04:50:49 -0800 (PST)
+Received: (nullmailer pid 200784 invoked by uid 1000);
+        Fri, 11 Feb 2022 12:50:33 -0000
+Date:   Fri, 11 Feb 2022 06:50:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH REBASED 1/2] dt-bindings: nvmem: extract NVMEM cell to
+ separated file
+Message-ID: <YgZbmT0WimUbZv97@robh.at.kernel.org>
+References: <20220125180114.12286-1-zajec5@gmail.com>
+ <20220126070745.32305-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.41]
-X-ClientProxiedBy: lhreml727-chm.china.huawei.com (10.201.108.78) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220126070745.32305-1-zajec5@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Feb 2022 11:50:55 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-
-> The ADA4250 is an instrumentation amplifier with SPI/pin-strap
-> progammable gains that is optimized for ultra-low power systems.
-> With a minimum supply voltage of 1.7V, 26uA of quiescent current,
-> a shutdown mode, a sleep mode, and a fast wake up settling time,
-> ADA4250 can be power cycled on a battery powered system for even
-> futher savings.
+On Wed, Jan 26, 2022 at 08:07:44AM +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-
-Hi Antoniu,
-
-Just to check, this sort of amplifier is normally not used as
-an analog front end?  If it were we'd want to deal with it
-being a consumer of the ADC channels similar to our other AFE drivers.
-If that's a possible usecase we might want to consider how to support
-that if relevant to a particular configuration.
-
-I don't understand what the two channels are.  Could you give us
-some more description?
-
-Thanks,
-
-Jonathan
-
-
+> This will allow adding binding for more specific cells and reusing
+> (sharing) common code.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  drivers/iio/amplifiers/Kconfig   |  11 +
->  drivers/iio/amplifiers/Makefile  |   1 +
->  drivers/iio/amplifiers/ada4250.c | 388 +++++++++++++++++++++++++++++++
->  3 files changed, 400 insertions(+)
->  create mode 100644 drivers/iio/amplifiers/ada4250.c
+>  .../devicetree/bindings/nvmem/cells/cell.yaml | 34 +++++++++++++++++++
+
+Why the 'cells' subdir? cell.yaml is a bit generic for me as DT defines 
+'cell' which is different from nvmem cell. While we have the path to 
+distinguish, '$ref: cell.yaml' doesn't.
+
+
+>  .../devicetree/bindings/nvmem/nvmem.yaml      | 22 +-----------
+>  2 files changed, 35 insertions(+), 21 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/cells/cell.yaml
 > 
-> diff --git a/drivers/iio/amplifiers/Kconfig b/drivers/iio/amplifiers/Kconfig
-> index 5eb1357a9c78..98612e01d9d4 100644
-> --- a/drivers/iio/amplifiers/Kconfig
-> +++ b/drivers/iio/amplifiers/Kconfig
-> @@ -23,6 +23,17 @@ config AD8366
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called ad8366.
->  
-> +config ADA4250
-> +	tristate "Analog Devices ADA4250 Instrumentation Amplifier"
-> +	depends on SPI
-> +	help
-> +	  Say yes here to build support for Analog Devices ADA4250
-> +	  SPI Amplifier's support. The driver provides direct access via
-> +          sysfs.
-
-Odd spacing.
-
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called ada4250.
-> +
->  config HMC425
->  	tristate "Analog Devices HMC425A and similar GPIO Gain Amplifiers"
->  	depends on GPIOLIB
-> diff --git a/drivers/iio/amplifiers/Makefile b/drivers/iio/amplifiers/Makefile
-> index cb551d82f56b..2126331129cf 100644
-> --- a/drivers/iio/amplifiers/Makefile
-> +++ b/drivers/iio/amplifiers/Makefile
-> @@ -5,4 +5,5 @@
->  
->  # When adding new entries keep the list in alphabetical order
->  obj-$(CONFIG_AD8366) += ad8366.o
-> +obj-$(CONFIG_ADA4250) += ada4250.o
->  obj-$(CONFIG_HMC425) += hmc425a.o
-> diff --git a/drivers/iio/amplifiers/ada4250.c b/drivers/iio/amplifiers/ada4250.c
+> diff --git a/Documentation/devicetree/bindings/nvmem/cells/cell.yaml b/Documentation/devicetree/bindings/nvmem/cells/cell.yaml
 > new file mode 100644
-> index 000000000000..10725f6c2751
+> index 000000000000..adfc2e639f43
 > --- /dev/null
-> +++ b/drivers/iio/amplifiers/ada4250.c
-> @@ -0,0 +1,388 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * ADA4250 driver
-> + *
-> + * Copyright 2022 Analog Devices Inc.
-> + */
+> +++ b/Documentation/devicetree/bindings/nvmem/cells/cell.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/cells/cell.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/device.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
+> +title: NVMEM cell
 > +
-> +/* ADA4250 Register Map */
-> +#define ADA4250_REG_GAIN_MUX        0x00
-> +#define ADA4250_REG_REFBUF_EN       0x01
-> +#define ADA4250_REG_RESET           0x02
-> +#define ADA4250_REG_SNSR_CAL_VAL    0x04
-> +#define ADA4250_REG_SNSR_CAL_CNFG   0x05
-> +#define ADA4250_REG_DIE_REV         0x18
-> +#define ADA4250_REG_CHIP_ID         0x19
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > +
-> +/* ADA4250_REG_GAIN_MUX Map */
-> +#define ADA4250_GAIN_MUX_MSK        GENMASK(2, 0)
+> +description: NVMEM cell is a data entry of NVMEM device.
 > +
-> +/* ADA4250_REG_REFBUF Map */
-> +#define ADA4250_REFBUF_MSK          BIT(0)
+> +properties:
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      Offset and size in bytes within the storage device.
 > +
-> +/* ADA4250_REG_RESET Map */
-> +#define ADA4250_RESET_MSK           BIT(0)
+> +  bits:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    items:
+> +      - minimum: 0
+> +        maximum: 7
+> +        description:
+> +          Offset in bit within the address range specified by reg.
+> +      - minimum: 1
+> +        description:
+> +          Size in bit within the address range specified by reg.
 > +
-> +/* ADA4250_REG_SNSR_CAL_VAL Map */
-> +#define ADA4250_SNSR_CAL_VAL_MSK    GENMASK(7, 0)
+> +required:
+> +  - reg
 > +
-> +/* ADA4250_REG_SNSR_CAL_CNFG Bit Definition */
-> +#define ADA4250_BIAS_SET_MSK        GENMASK(3, 2)
-> +#define ADA4250_RANGE_SET_MSK       GENMASK(1, 0)
-> +
-> +/* Miscellaneous definitions */
-> +#define ADA4250_CHIP_ID             0x4250
-> +#define ADA4250_RANGE1              0
-> +#define	ADA4250_RANGE4              3
-> +
-> +/* ADA4250 current bias set */
-> +enum ada4250_current_bias {
-> +	ADA4250_BIAS_DISABLED,
-> +	ADA4250_BIAS_BANDGAP,
-> +	ADA4250_BIAS_AVDD,
-> +};
-> +
-> +struct ada4250_state {
-> +	struct spi_device	*spi;
-> +	struct regmap		*regmap;
-> +	struct regulator	*reg;
-> +	/* Protect against concurrent accesses to the device and data content */
-> +	struct mutex		lock;
-> +	u8			bias;
-> +	u8			gain;
-> +	int			offset_uv;
-> +	bool			refbuf_en;
-> +};
-> +
-> +/* ADA4250 Current Bias Source Settings: Disabled, Bandgap Reference, AVDD */
-> +static const int calibbias_table[] = {0, 1, 2};
-> +
-> +/* ADA4250 Gain (V/V) values: 1, 2, 4, 8, 16, 32, 64, 128 */
-> +static const int hwgain_table[] = {0, 1, 2, 3, 4, 5, 6, 7};
-> +
-> +static const struct regmap_config ada4250_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.read_flag_mask = BIT(7),
-> +	.max_register = 0x1A,
-> +};
-> +
-> +static int ada4250_set_offset_uv(struct iio_dev *indio_dev,
-> +				 const struct iio_chan_spec *chan,
-> +				 int offset_uv)
-> +{
-> +	struct ada4250_state *st = iio_priv(indio_dev);
-> +
-> +	int i, ret, x[8], max_vos, min_vos, voltage_v, vlsb = 0;
-> +	u8 offset_raw, range = ADA4250_RANGE1;
-> +	u32 lsb_coeff[6] = {1333, 2301, 4283, 8289, 16311, 31599};
-> +
-> +	if (st->bias == 0 || st->bias == 3)
-> +		return -EINVAL;
-> +
-> +	voltage_v = regulator_get_voltage(st->reg);
-> +	voltage_v = DIV_ROUND_CLOSEST(voltage_v, 1000000);
-> +
-> +	if (st->bias == ADA4250_BIAS_AVDD)
-> +		x[0] = voltage_v;
-> +	else
-> +		x[0] = 5;
-> +
-> +	x[1] = 126 * (x[0] - 1);
-> +
-> +	for (i = 0; i < 6; i++)
-> +		x[i + 2] = DIV_ROUND_CLOSEST(x[1] * 1000, lsb_coeff[i]);
-> +
-> +	if (st->gain == 0)
-> +		return -EINVAL;
-> +
-> +	/* Compute Range and VLSB for the Sensor Offset Calibration */
-> +	for (i = ADA4250_RANGE1; i <= ADA4250_RANGE4; i++) {
-> +		max_vos = x[st->gain] *  127 * ((1 << (i + 1)) - 1);
-> +		min_vos = -1 * max_vos;
-> +		if (offset_uv > min_vos && offset_uv < max_vos) {
-> +			range = i;
-> +			vlsb = x[st->gain] * ((1 << (i + 1)) - 1);
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (vlsb <= 0)
-> +		return -EINVAL;
-> +
-> +	offset_raw = DIV_ROUND_CLOSEST(abs(offset_uv), vlsb);
-> +
-> +	mutex_lock(&st->lock);
-> +	ret = regmap_update_bits(st->regmap, ADA4250_REG_SNSR_CAL_CNFG,
-> +				 ADA4250_RANGE_SET_MSK,
-> +				 FIELD_PREP(ADA4250_RANGE_SET_MSK, range));
-> +	if (ret)
-> +		goto exit;
-> +
-> +	st->offset_uv = offset_raw * vlsb;
-> +
-> +	if (offset_uv < 0) {
-> +		offset_raw |= 1 << 8;
-> +		st->offset_uv *= (-1);
-> +	}
-> +
-> +	ret = regmap_write(st->regmap, ADA4250_REG_SNSR_CAL_VAL, offset_raw);
-> +
-> +exit:
-> +	mutex_unlock(&st->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int ada4250_read_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan,
-> +			    int *val, int *val2, long info)
-> +{
-> +	struct ada4250_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_HARDWAREGAIN:
-> +		ret = regmap_read(st->regmap, ADA4250_REG_GAIN_MUX, val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_OFFSET:
-> +		*val = st->offset_uv;
-> +
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_CALIBBIAS:
-> +		ret = regmap_read(st->regmap, ADA4250_REG_SNSR_CAL_CNFG, val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		*val = FIELD_GET(ADA4250_BIAS_SET_MSK, *val);
-> +
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val = 1;
-> +		*val2 = 1000000;
-> +
-> +		return IIO_VAL_FRACTIONAL;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ada4250_write_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan,
-> +			     int val, int val2, long info)
-> +{
-> +	struct ada4250_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_HARDWAREGAIN:
-> +		ret = regmap_write(st->regmap, ADA4250_REG_GAIN_MUX,
-> +				   FIELD_PREP(ADA4250_GAIN_MUX_MSK, val));
-> +		if (ret)
-> +			return ret;
-> +
-> +		st->gain = val;
-> +
-> +		return ret;
-> +	case IIO_CHAN_INFO_OFFSET:
-
-Given no DS, please provide some more info on what the channels are to
-help evaluate if this is the appropriate interface.
-
-> +		return ada4250_set_offset_uv(indio_dev, chan, val);
-> +	case IIO_CHAN_INFO_CALIBBIAS:
-> +		ret = regmap_update_bits(st->regmap, ADA4250_REG_SNSR_CAL_CNFG,
-> +					 ADA4250_BIAS_SET_MSK,
-> +					 FIELD_PREP(ADA4250_BIAS_SET_MSK, val));
-> +		if (ret)
-> +			return ret;
-> +
-> +		st->bias = val;
-> +
-> +		return ret;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ada4250_read_avail(struct iio_dev *indio_dev,
-> +			      struct iio_chan_spec const *chan,
-> +			      const int **vals, int *type, int *length,
-> +			      long mask)
-> +{
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_CALIBBIAS:
-> +		*vals = calibbias_table;
-> +		*type = IIO_VAL_INT;
-> +		*length = ARRAY_SIZE(calibbias_table);
-> +
-> +		return IIO_AVAIL_LIST;
-> +	case IIO_CHAN_INFO_HARDWAREGAIN:
-> +		*vals = hwgain_table;
-> +		*type = IIO_VAL_INT;
-> +		*length = ARRAY_SIZE(hwgain_table);
-> +
-> +		return IIO_AVAIL_LIST;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ada4250_reg_access(struct iio_dev *indio_dev,
-> +			      unsigned int reg,
-> +			      unsigned int write_val,
-> +			      unsigned int *read_val)
-> +{
-> +	struct ada4250_state *st = iio_priv(indio_dev);
-> +
-> +	if (read_val)
-> +		return regmap_read(st->regmap, reg, read_val);
-> +	else
-> +		return regmap_write(st->regmap, reg, write_val);
-> +}
-> +
-> +static const struct iio_info ada4250_info = {
-> +	.read_raw = ada4250_read_raw,
-> +	.write_raw = ada4250_write_raw,
-> +	.read_avail = &ada4250_read_avail,
-> +	.debugfs_reg_access = &ada4250_reg_access,
-> +};
-> +
-> +static const struct iio_chan_spec ada4250_channels[] = {
-> +	{
-> +		.type = IIO_ALTVOLTAGE,
-
-For a device like this, I'd argue it's not 'necessarily' an alternating
-voltage so type should probably be just voltage.  Obviously if there
-is something about the amplifier architecture that means it won't carry
-DC then it's a different matter.
-
-> +		.output = 1,
-> +		.indexed = 1,
-> +		.channel = 0,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_CALIBBIAS) |
-> +				      BIT(IIO_CHAN_INFO_HARDWAREGAIN),
-> +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_CALIBBIAS) |
-> +						BIT(IIO_CHAN_INFO_HARDWAREGAIN),
-> +	},
-> +	{
-> +		.type = IIO_VOLTAGE,
-
-Given we have no datasheet, what's this?  Add a comment.
-
-> +		.output = 1,
-> +		.indexed = 1,
-> +		.channel = 0,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_OFFSET) |
-> +				      BIT(IIO_CHAN_INFO_SCALE),
-
-This is unusual as I'm not sure what meaning an offset and scale have
-with out a raw value. 
-
-> +	},
-> +};
-> +
-> +static void ada4250_reg_disable(void *data)
-> +{
-> +	regulator_disable(data);
-> +}
-> +
-> +static int ada4250_init(struct ada4250_state *st)
-> +{
-> +	int ret;
-> +	u16 chip_id;
-> +	u8 data[2];
-> +	struct spi_device *spi = st->spi;
-> +
-> +	st->refbuf_en = device_property_read_bool(&spi->dev, "adi,refbuf-enable");
-> +
-> +	st->reg = devm_regulator_get(&spi->dev, "avdd");
-> +	if (IS_ERR(st->reg))
-> +		return dev_err_probe(&spi->dev, PTR_ERR(st->reg),
-> +				     "failed to get the AVDD voltage\n");
-> +
-> +	ret = regulator_enable(st->reg);
-> +	if (ret) {
-> +		dev_err(&spi->dev, "Failed to enable specified AVDD supply\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_add_action_or_reset(&spi->dev, ada4250_reg_disable, st->reg);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADA4250_REG_RESET,
-> +			   FIELD_PREP(ADA4250_RESET_MSK, 1));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_bulk_read(st->regmap, ADA4250_REG_CHIP_ID, data, 2);
-I think our current position is that regmap_bulk_* accesses should use
-DMA safe buffers (on SPI anyway) as it's possible the implementation may
-required that and it isn't documented as not requiring it.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	chip_id = (data[1] << 8) | data[0];
-
-Endian conversion.  Firstly make data the appropriate type then use
-the appropriate endian conversion function.
-
-> +
-> +	if (chip_id != ADA4250_CHIP_ID) {
-> +		dev_err(&spi->dev, "Invalid chip ID.\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	return regmap_write(st->regmap, ADA4250_REG_REFBUF_EN,
-> +			    FIELD_PREP(ADA4250_REFBUF_MSK, st->refbuf_en));
-> +}
-> +
-
-
+> +additionalProperties: true
+> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> index 43ed7e32e5ac..b79b51e98ee8 100644
+> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> @@ -41,27 +41,7 @@ properties:
+>  
+>  patternProperties:
+>    "@[0-9a-f]+(,[0-7])?$":
+> -    type: object
+> -
+> -    properties:
+> -      reg:
+> -        maxItems: 1
+> -        description:
+> -          Offset and size in bytes within the storage device.
+> -
+> -      bits:
+> -        $ref: /schemas/types.yaml#/definitions/uint32-array
+> -        items:
+> -          - minimum: 0
+> -            maximum: 7
+> -            description:
+> -              Offset in bit within the address range specified by reg.
+> -          - minimum: 1
+> -            description:
+> -              Size in bit within the address range specified by reg.
+> -
+> -    required:
+> -      - reg
+> +    $ref: cells/cell.yaml#
+>  
+>  additionalProperties: true
+>  
+> -- 
+> 2.31.1
+> 
+> 
