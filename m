@@ -2,162 +2,293 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 463114B1B8C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 02:46:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 322EC4B1B98
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 02:48:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347022AbiBKBo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 20:44:27 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48974 "EHLO
+        id S1343540AbiBKBsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 20:48:52 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346995AbiBKBoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 20:44:23 -0500
-Received: from APC01-HK2-obe.outbound.protection.outlook.com (mail-eopbgr1300100.outbound.protection.outlook.com [40.107.130.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B69DA5F93;
-        Thu, 10 Feb 2022 17:44:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jUliPbWo+2pFF6XCuT8B25teqyJ57vu2gGJknsk3u1bBuedpiRfnrj3rA3Dn/2+ifXRg0FfyOMnTtJ5pEYmJwYKFd9dko50Q6GemYg1/9u4w0vDf4vM+ORbuzeQVQgu9bSJfgxVadjHYC77eASYsVRdKJ9QGVCOJaWFv3i8bzUoHvrrTDusKl3RI8tUTNTkifSkLuU6RuDr6QtD+aG36vGOlVNE/LP5N5ar1jk3Q1uBz6idrbK/GISdLl36DtaNNppP9T27npuxzomE0jhXrbp3CGtofWeSibPMM0dP+uAYe/TlGCTG80cWptZLCQJnxKYuh/wKhmujeaQApCU78mA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t0989AQrgtAi+w58RU2gYi9NJlJnSHgb/LxQ+6jxmXo=;
- b=NDU1yGW9scolC52yJKJxVHnY+Sg8wfLr/tfK9MRJwA/ErndLpVukze8xk1NNJ5sGAgI8bdT6lS84wRK9Sjn/Y9UTmbor9tmagLHM31l4ltZvqHJ8WwUKqeiAVenXF6Uu2xsd7CgeObEOml7mIDxZEDP78UdwoMDPx1z9HDu7Tw7binkmQbOcFAWkH0paJ0QmDn2sRdxjrl0qfQhdK74E0sNrociEtgXP55Rro4zFnLhdc+0ZeiDdwtbSwl9UBal/wh3tj59coCZnVr2f3D8Kqf1pCVDv57z51Vcz3ni+Dkp/r+HUM+naKpMOtJBFgOKHmjntkw4SMjGqWtDA2xrdGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
+        with ESMTP id S1343509AbiBKBsu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 20:48:50 -0500
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C06610FF
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 17:48:50 -0800 (PST)
+Received: by mail-yb1-xb35.google.com with SMTP id e140so1495957ybh.9
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 17:48:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quantacorp.onmicrosoft.com; s=selector2-quantacorp-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t0989AQrgtAi+w58RU2gYi9NJlJnSHgb/LxQ+6jxmXo=;
- b=WwPcPIGZBvFcLRwbYyxIKon5GJV4QUY2Bo3XU1iUT20P2H2ualSXXYNC7Ug0E22TZNGYClfSDiRJ8v9stP6gJxbTtkSQM4L6inze94FHSNAWhFiSYGKQti8z+iFFAKxQL8pHc4gBjFg5+zp/HUfyom0nwnhkDb+jh+BoSBKxPW4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=quantatw.com;
-Received: from HK0PR04MB3282.apcprd04.prod.outlook.com (2603:1096:203:89::17)
- by SG2PR04MB3577.apcprd04.prod.outlook.com (2603:1096:4:9e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.17; Fri, 11 Feb
- 2022 01:44:19 +0000
-Received: from HK0PR04MB3282.apcprd04.prod.outlook.com
- ([fe80::8160:1a0:97e1:9e53]) by HK0PR04MB3282.apcprd04.prod.outlook.com
- ([fe80::8160:1a0:97e1:9e53%3]) with mapi id 15.20.4951.019; Fri, 11 Feb 2022
- 01:44:19 +0000
-From:   Potin Lai <potin.lai@quantatw.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>
-Cc:     Patrick Williams <patrick@stwcx.xyz>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Potin Lai <potin.lai@quantatw.com>
-Subject: [PATCH 10/10] arch: arm: dts: bletchley: cleanup redundant node
-Date:   Fri, 11 Feb 2022 09:43:47 +0800
-Message-Id: <20220211014347.24841-11-potin.lai@quantatw.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220211014347.24841-1-potin.lai@quantatw.com>
-References: <20220211014347.24841-1-potin.lai@quantatw.com>
-Content-Type: text/plain
-X-ClientProxiedBy: HK2PR02CA0143.apcprd02.prod.outlook.com
- (2603:1096:202:16::27) To HK0PR04MB3282.apcprd04.prod.outlook.com
- (2603:1096:203:89::17)
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MtclKlVPNmwnTMdbXaKV9k92p96q79s2Kk3rmNWUESA=;
+        b=qUimIxmfcjg0W3N64aSiuhN3eTxdaSR1VL+PTnyfwQjh/27t9ZAheo0dGkDC+ROOEv
+         5wM7dSlcsaD2Pcf1LcsNpIsiq4I+f2r26RenZzRSUAf+QTJEAMlzdQ7+K/Iv12iuAd4/
+         QklsA2TaI3QRD7K846L1m9RqeUINAhNzJo3Ks=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MtclKlVPNmwnTMdbXaKV9k92p96q79s2Kk3rmNWUESA=;
+        b=qvAd2ZzbRtj1E8Zf1Hr6xuL9LG/+9yeLjxMKpvIQH68cIuQU9CPHrDJRMcklKnJn40
+         ApY/twCw05zj5XdDemQmAJRLB3EZ/yBuBk8qe/qUOXXKLavNbv2p7PaN8eqUt0pXwQqD
+         1QVrk5cxyB51542NjS/ubl8iO/mpgi98TkX+Cf09SIEh/0jZnX0WIeepY4Vl24MVo+eY
+         g+mvBA4+9qtiThupN98l58DGvNzUOcxmLTnqUM8O0LrcbLtpp043nf8WRfWw1z6FXU6a
+         AcvpryQ3BYbVFol2k7avD81AuZWVatrJm4Mdoaor+S/dObMCtAMmvTEjNfbfAjHAEO3A
+         Avgg==
+X-Gm-Message-State: AOAM5308mvGalh3kNqnI4qzPhrQ84Q1sNwc/la1hV6VSSvzlxcnxEXj7
+        ruuKCb0y9AutcNseCI9hBlaG6IlHwGpQoq0GoNWh
+X-Google-Smtp-Source: ABdhPJwh/Kjq3wxUmzIVchUKWgqmk7NfvUUzdnil9CQ4SvT2PKlIimKUyLApJ+kvMumKy/ztXpSwEpOuffVt2o+Prbc=
+X-Received: by 2002:a81:1a0c:: with SMTP id a12mr10438464ywa.271.1644544129465;
+ Thu, 10 Feb 2022 17:48:49 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 88f2fd1f-245b-41db-a54d-08d9ed000435
-X-MS-TrafficTypeDiagnostic: SG2PR04MB3577:EE_
-X-Microsoft-Antispam-PRVS: <SG2PR04MB3577935DB1FC933E2993BAFE8E309@SG2PR04MB3577.apcprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1169;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mgvXX8Hd7GZOtYoEylFIfDDcoOrWKCi/ulj4rARrN09SclxLUw8zcd/kTifY0A40IJiXT/tJrDiV02MiLgoeAtRMeww5Gih2IaiYYf9t9alNyQrwoa1BUfMJUoyev6CBBjahK5F9PeojTEOkvkABDXwe/qJYM1Ah1FZnfsZxEFuUIHHut0J6zcJv9ZeQI+z8REv3GD6w5AyRKUpC6L+4GStLj4GSxKPaNhKa6R8xR32xHq/ejPr8JehcIse2y0vESNYfs5MDVB2g1DcNIWcpwvtcb24N+AcvWILI0O2uoh2tHKhIudLfyaNfU9PriVG6UE2xHN/BA45bQHpYpP5rafL/PyaBfmh4uZWavA3IAhwAa8M30bFaTuhoYjUryfzFTxNwgbFGsWi1U5kzTljYnYdwr1+IkMJassz4LYoP5rQYND1jj5/6eQwa8Od/wnIeYMCkbf03KkxVyOYx1NlHqfP1ubs+kYFUQyorjopggAEpUBwijxPEvCesr937VSZVm/QWeOZf+orpTuHB+xIR9UxdR5D2jnL3eH4xQzCYXi0xI879taaWnAcc7UQ+AQcWrwSP/3tO4Qkjjv3dSyejvlll7JyEUCI04wszN7WNYcpmM6woY87o66FFdqiODTYuaD9Tb9636srTj1tkbSJH/XXfW07oK4FbZR5RPGXbd8GBLi1pFMro/DJYjEF57EC1Rkd1QNiAXmVo3jUbQKJqkg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR04MB3282.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(5660300002)(110136005)(107886003)(86362001)(54906003)(8936002)(8676002)(66476007)(66556008)(316002)(66946007)(186003)(38350700002)(2906002)(2616005)(1076003)(38100700002)(6486002)(508600001)(26005)(6506007)(6512007)(52116002)(44832011)(4744005)(83380400001)(6666004)(36756003)(4326008);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?V+vivwykLngGOcZk4B+XwfSQ0qcqZn+56qurf+gnm7nJ6/kczJuMvNug8e6l?=
- =?us-ascii?Q?po9A2idLKn7jwmhL4Oex2QtF95RhpJONoqWZ8rp4zX/3WOxm5DpWwNX6/6Qd?=
- =?us-ascii?Q?NxXmrmeNE/4/He5N+lbzRP3yvQQMulhtzQtB0jIbOMzjchauA3Q14usJ01kG?=
- =?us-ascii?Q?VD3VIpj/WoM1XTPNjJ0z8+rfb/xpWZlcnzJtX8tuASu/u1n4EFxPAYhKbzwK?=
- =?us-ascii?Q?Cvw7YvEqTtJMzved63hvvsDUWUhX0QJVSs8FLwjlN12bKaBsqe+LpqTf6Bbo?=
- =?us-ascii?Q?J6xX06X7RBE68Lbx78iMENJ88M4DooXmLptq0Kk+aO1JYm2pfze3zpYAPohR?=
- =?us-ascii?Q?SNU80yVFPomL/xmDv6BZquWMPZCbZpaaqiwnJzlqyrh8BBGBB4Jj2BmM38bW?=
- =?us-ascii?Q?Gm67sj15uKymKorPSKtEfSNuAPLLT2rOV8wjM9YfOTp4eDF1Zr8ba3abCWyU?=
- =?us-ascii?Q?FhOpzyCf0vgYLll87HkcfWe8UBsfRlQPzUCvdt7kdzMgz8keNm2TDlkxBr2j?=
- =?us-ascii?Q?i1vLo+8IGma2dnn+jTU4vQROwev2CUTEKHowsqL8ZW8ZP9LQ42vVSRfG1uS1?=
- =?us-ascii?Q?FKA72L9eIwY3IqMHR3h0uL7dSC7gVqLuTPjPU8NS9EOKbksgf2+RWqXWl+Xu?=
- =?us-ascii?Q?sh0Ad7xy2tUCYVGy2htYSHBhk3mxcVzZ25WyI8su6LhnWhPznTQpbg5BzERf?=
- =?us-ascii?Q?CP8pDvz6ukV4E5oGrIWF3ATsvpqiIyTFCFVuq4ivYg6EFki8XmrQbLtdSwAC?=
- =?us-ascii?Q?+TWGECrjT4qsvwK7J35ZoNF2t9YcsBXvQpmJoLYuesSWLvxH39n9VYeGEUKc?=
- =?us-ascii?Q?9jFHKneO3l+Vcnp7lJlcnr8jO5dlDdRxS+Ul7UbatlAfvqPoRW4enOREmSwY?=
- =?us-ascii?Q?iKG/9LsYtYl8eNgtM4WkZpCnVCnhT8t66llCGsVZCeAjQ6kgKW7WDYId1SnD?=
- =?us-ascii?Q?NQSiKagfs+PmOKLhbarlUV05PTqUCfZSUgcwf01JbSDHyzeYDN8s3rv1jlTx?=
- =?us-ascii?Q?9N5B9s7j6FTgtTbWPKabOCRGHeB4EwASQ3td3Swfym5rzkQQba/Gb1w0atD+?=
- =?us-ascii?Q?iPRcbjz208wqiQaX6wv52VdhywSl7Kqkq2lcrTJvVeKhnnuWKlTBoLE6riF7?=
- =?us-ascii?Q?tVZtZw5WOrnMeIz6P9uCBLiUeT2Zg6yw2W6X5BbntjrS4Y7djqKMhqiRTagV?=
- =?us-ascii?Q?Jg42yzneiwMDAjjQAE7EEcytonw6m2Zd6slHaR5svD9CSJZMHGgNdShYCg5R?=
- =?us-ascii?Q?9nNnSmfA/31sG1D+U6tHssWwuw6ot1xGwugWPktuW1kYSinCHsZLPQef7dji?=
- =?us-ascii?Q?pZ8eST6oX6ONR7Jxhd7ZVz45KH7Jyu+qvKofo7sNa4D1kd0iq+X8YlBxL97n?=
- =?us-ascii?Q?SCH1QLUjQQfFbMvs2J3DhKQU8zspUPQGC76R/STYCwtnbw2hrRyC5Zys3nrp?=
- =?us-ascii?Q?x1wUfdw7GAYo4AdYKYsJLDOq9fI6X156OaOCy3boX9jLpfv4Zkc9cYPu7nOO?=
- =?us-ascii?Q?mw68LK1CY/pRrKnctU+wC/wZcUlyosH2YpTmlSk+MEoNH4maeUqvp5GqWOmD?=
- =?us-ascii?Q?wRnL2zr2EpzF6+rr2ft4lcWi3+nxIr+EAeCKN5qY1tLFM7HY3tq0Qf9PvbBZ?=
- =?us-ascii?Q?195+iug3WxPzbX2s5nQuuQo=3D?=
-X-OriginatorOrg: quantatw.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88f2fd1f-245b-41db-a54d-08d9ed000435
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR04MB3282.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2022 01:44:17.7293
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 179b0327-07fc-4973-ac73-8de7313561b2
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C9qV3D+2KBoBvBRCtK0fbIwvvio1uq4fhHjZx6xbEeVs7wVU++glropCiLA5Yf0Tmzo1iDRFrYAM+S4yqQiCEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR04MB3577
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220209123800.269774-1-heiko@sntech.de> <CAOnJCUL5w4+_zJvu-BxP+LGN2ohv6arY+uh0DOU586v_5mCE8g@mail.gmail.com>
+In-Reply-To: <CAOnJCUL5w4+_zJvu-BxP+LGN2ohv6arY+uh0DOU586v_5mCE8g@mail.gmail.com>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Thu, 10 Feb 2022 17:48:38 -0800
+Message-ID: <CAOnJCUKzE3uBfu0Aqpr19b-XB76qY7qtaeK87FF7H4Tw5B+d_Q@mail.gmail.com>
+Subject: Re: [PATCH v6 00/14] riscv: support for Svpbmt and D1 memory types
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Wei Fu <wefu@redhat.com>,
+        liush <liush@allwinnertech.com>, Guo Ren <guoren@kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Drew Fustini <drew@beagleboard.org>,
+        Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Greg Favor <gfavor@ventanamicro.com>,
+        Andrea Mondelli <andrea.mondelli@huawei.com>,
+        Jonathan Behrens <behrensj@mit.edu>,
+        Xinhaoqu <xinhaoqu@huawei.com>,
+        Bill Huffman <huffman@cadence.com>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Allen Baum <allen.baum@esperantotech.com>,
+        Josh Scheid <jscheid@ventanamicro.com>,
+        Richard Trauben <rtrauben@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Christoph Muellner <cmuellner@linux.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove redundant i2c1 node.
-Disable in-chip rtc, use external rtc (pcf85263) instead.
+On Thu, Feb 10, 2022 at 4:25 PM Atish Patra <atishp@atishpatra.org> wrote:
+>
+> On Wed, Feb 9, 2022 at 4:38 AM Heiko Stuebner <heiko@sntech.de> wrote:
+> >
+> > Svpbmt is an extension defining "Supervisor-mode: page-based memory types"
+> > for things like non-cacheable pages or I/O memory pages.
+> >
+> >
+> > So this is my 2nd try at implementing Svpbmt (and the diverging D1 memory
+> > types) using the alternatives framework.
+> >
+> > This includes a number of changes to the alternatives mechanism itself.
+> > The biggest one being the move to a more central location, as I expect
+> > in the future, nearly every chip needing some sort of patching, be it
+> > either for erratas or for optional features (svpbmt or others).
+> >
+> > The dt-binding for svpbmt itself is of course not finished and is still
+> > using the binding introduced in previous versions, as where to put
+> > a svpbmt-property in the devicetree is still under dicussion.
+> > Atish seems to be working on a framework for extensions [0],
+> >
+>
+> Here is the patch series
+> https://lore.kernel.org/lkml/20220210214018.55739-1-atishp@rivosinc.com/
+>
+> I think we can simplify the cpu feature probing in PATCH 10 with the
+> above series
+> which simply relies on the existing riscv_isa bitmap.
+>
+> We also don't need the separate svpbmt property in DT mmu node.
+> Let me know what you think.
+>
+> > The series also introduces support for the memory types of the D1
+> > which are implemented differently to svpbmt. But when patching anyway
+> > it's pretty clean to add the D1 variant via ALTERNATIVE_2 to the same
+> > location.
+> >
+> > The only slightly bigger difference is that the "normal" type is not 0
+> > as with svpbmt, so kernel patches for this PMA type need to be applied
+> > even before the MMU is brought up, so the series introduces a separate
+> > stage for that.
+> >
+> >
+> > In theory this series is 3 parts:
+> > - sbi cache-flush / null-ptr
+> > - alternatives improvements
+> > - svpbmt+d1
+> >
+> > So expecially patches from the first 2 areas could be applied when
+> > deemed ready, I just thought to keep it together to show-case where
+> > the end-goal is and not requiring jumping between different series.
+> >
+> >
+> > The sbi cache-flush patch is based on Atish's sparse-hartid patch [1],
+> > as it touches a similar area in mm/cacheflush.c
+> >
+> >
+> > I picked the recipient list from the previous version, hopefully
+> > I didn't forget anybody.
+> >
 
-Signed-off-by: Potin Lai <potin.lai@quantatw.com>
----
- arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+I am also getting a load access fault while booting this series in Qemu.
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-index 946107bd8bc7..fb62a67cfeed 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-@@ -205,10 +205,6 @@
- 	};
- };
- 
--&rtc {
--	status = "okay";
--};
--
- &fmc {
- 	status = "okay";
- 	flash@0 {
-@@ -387,10 +383,6 @@
- 	};
- };
- 
--&i2c1 {
--	status = "okay";
--};
--
- &i2c2 {
- 	status = "okay";
- 	ina230@45 {
-@@ -680,6 +672,7 @@
- 	};
- 
- 	rtc@51 {
-+		/* in-chip rtc disabled, use this external rtc instead */
- 		compatible = "nxp,pcf85263";
- 		reg = <0x51>;
- 	};
+<with additional debug message when before sbi_trap_redirect in OpenSBI>
+sbi_trap_error_debug: hart1: trap handler failed (error -2)
+sbi_trap_error_debug: hart1: mcause=0x0000000000000005 mtval=0x0000000080046468
+sbi_trap_error_debug: hart1: mtval2=0x0000000000000000 mtinst=0x0000000000000000
+sbi_trap_error_debug: hart1: mepc=0x000000008080a8b8 mstatus=0x0000000a00000800
+sbi_trap_error_debug: hart1: ra=0x0000000080202b06 sp=0x0000000081203f00
+sbi_trap_error_debug: hart1: gp=0x00000000812d9db8 tp=0x0000000080046000
+sbi_trap_error_debug: hart1: s0=0x0000000081203f80 s1=0x0000000080c1a8a8
+sbi_trap_error_debug: hart1: a0=0x0000000080c1a8a8 a1=0x0000000080c1b0d0
+sbi_trap_error_debug: hart1: a2=0x0000000000000002 a3=0x0000000000000000
+sbi_trap_error_debug: hart1: a4=0x00000000812da902 a5=0x0000000000000000
+sbi_trap_error_debug: hart1: a6=0x0000000000000006 a7=0x0000000000000010
+sbi_trap_error_debug: hart1: s2=0x0000000080c1b0d0 s3=0x0000000000000002
+sbi_trap_error_debug: hart1: s4=0x00000000bf000000 s5=0x0000000000000000
+sbi_trap_error_debug: hart1: s6=0x8000000a00006800 s7=0x000000000000007f
+sbi_trap_error_debug: hart1: s8=0x0000000080018038 s9=0x0000000080039eac
+sbi_trap_error_debug: hart1: s10=0x0000000000000000 s11=0x0000000000000000
+sbi_trap_error_debug: hart1: t0=0x0000000080c04000 t1=0x0000000000000002
+sbi_trap_error_debug: hart1: t2=0x0000000000001000 t3=0x0000000000000010
+sbi_trap_error_debug: hart1: t4=0x00000000800168be t5=0x0000000000000027
+sbi_trap_error_debug: hart1: t6=0x0000000000000001
+
+mepc : 0x000000008080a8b8 - call_function_init (kernel/smp.c)
+
+Kernel - 5.17-rc2 + my patches
+Qemu - Alistairs next tree + my patches
+
+I do have some out-of-tree patches but that shouldn't be an issue as I
+am able to boot without your patches.
+Commenting the *_boot_alternatives at both the places works fine as well.
+
+diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
+index 0e1bb97f9749..bdeb7ab3e719 100644
+--- a/arch/riscv/kernel/head.S
++++ b/arch/riscv/kernel/head.S
+@@ -342,7 +342,7 @@ clear_bss_done:
+        call kasan_early_init
+ #endif
+        /* Start the kernel */
+-       call apply_boot_alternatives
++       //call apply_boot_alternatives
+        call soc_early_init
+        tail start_kernel
+
+diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+index 7216db5d6a2c..c6bf8f4d3d16 100644
+--- a/arch/riscv/mm/init.c
++++ b/arch/riscv/mm/init.c
+@@ -819,7 +819,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+        BUG_ON((kernel_map.virt_addr + kernel_map.size) >
+ADDRESS_SPACE_END - SZ_4K);
+ #endif
+
+-       apply_early_boot_alternatives();
++       //apply_early_boot_alternatives();
+        pt_ops_set_early();
+
+        /* Setup early PGD for fixmap */
+
+I am currently debugging it and will let you know if I find the root cause.
+
+> > changes in v6:
+> > - rebase onto 5.17-rc1
+> > - handle sbi null-ptr differently
+> > - improve commit messages
+> > - use riscv,mmu as property name
+> >
+> > changes in v5:
+> > - move to use alternatives for runtime-patching
+> > - add D1 variant
+> >
+> >
+> > [0] https://lore.kernel.org/r/20211224211632.1698523-1-atishp@rivosinc.com
+> > [1] https://lore.kernel.org/r/20220120090918.2646626-1-atishp@rivosinc.com
+> >
+> >
+> > Heiko Stuebner (12):
+> >   riscv: prevent null-pointer dereference with sbi_remote_fence_i
+> >   riscv: integrate alternatives better into the main architecture
+> >   riscv: allow different stages with alternatives
+> >   riscv: implement module alternatives
+> >   riscv: implement ALTERNATIVE_2 macro
+> >   riscv: extend concatenated alternatives-lines to the same length
+> >   riscv: prevent compressed instructions in alternatives
+> >   riscv: move boot alternatives to a slightly earlier position
+> >   riscv: Fix accessing pfn bits in PTEs for non-32bit variants
+> >   riscv: add cpufeature handling via alternatives
+> >   riscv: remove FIXMAP_PAGE_IO and fall back to its default value
+> >   riscv: add memory-type errata for T-Head
+> >
+> > Wei Fu (2):
+> >   dt-bindings: riscv: add MMU Standard Extensions support for Svpbmt
+> >   riscv: add RISC-V Svpbmt extension support
+> >
+> >  .../devicetree/bindings/riscv/cpus.yaml       |  10 ++
+> >  arch/riscv/Kconfig.erratas                    |  29 ++--
+> >  arch/riscv/Kconfig.socs                       |   1 -
+> >  arch/riscv/Makefile                           |   2 +-
+> >  arch/riscv/errata/Makefile                    |   2 +-
+> >  arch/riscv/errata/sifive/errata.c             |  10 +-
+> >  arch/riscv/errata/thead/Makefile              |   1 +
+> >  arch/riscv/errata/thead/errata.c              |  85 +++++++++++
+> >  arch/riscv/include/asm/alternative-macros.h   | 114 ++++++++-------
+> >  arch/riscv/include/asm/alternative.h          |  16 ++-
+> >  arch/riscv/include/asm/errata_list.h          |  52 +++++++
+> >  arch/riscv/include/asm/fixmap.h               |   2 -
+> >  arch/riscv/include/asm/pgtable-32.h           |  17 +++
+> >  arch/riscv/include/asm/pgtable-64.h           |  79 +++++++++-
+> >  arch/riscv/include/asm/pgtable-bits.h         |  10 --
+> >  arch/riscv/include/asm/pgtable.h              |  53 +++++--
+> >  arch/riscv/include/asm/vendorid_list.h        |   1 +
+> >  arch/riscv/kernel/Makefile                    |   1 +
+> >  arch/riscv/{errata => kernel}/alternative.c   |  48 ++++++-
+> >  arch/riscv/kernel/cpufeature.c                | 136 +++++++++++++++++-
+> >  arch/riscv/kernel/head.S                      |   2 +
+> >  arch/riscv/kernel/module.c                    |  29 ++++
+> >  arch/riscv/kernel/sbi.c                       |  10 +-
+> >  arch/riscv/kernel/smpboot.c                   |   4 -
+> >  arch/riscv/kernel/traps.c                     |   2 +-
+> >  arch/riscv/mm/init.c                          |   1 +
+> >  26 files changed, 606 insertions(+), 111 deletions(-)
+> >  create mode 100644 arch/riscv/errata/thead/Makefile
+> >  create mode 100644 arch/riscv/errata/thead/errata.c
+> >  rename arch/riscv/{errata => kernel}/alternative.c (59%)
+> >
+> > --
+> > 2.30.2
+> >
+> >
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
+>
+>
+>
+> --
+> Regards,
+> Atish
+
+
+
 -- 
-2.17.1
-
+Regards,
+Atish
