@@ -2,125 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B040A4B2C29
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 18:55:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 590414B2CE8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 19:25:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352399AbiBKRxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 12:53:46 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44246 "EHLO
+        id S1350143AbiBKSXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 13:23:18 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352400AbiBKRxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 12:53:45 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80600CE9;
-        Fri, 11 Feb 2022 09:53:44 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1AC6361DA3;
-        Fri, 11 Feb 2022 17:53:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25105C340E9;
-        Fri, 11 Feb 2022 17:53:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644602023;
-        bh=j9io4CjQGVmdKTFgkV+LOFNgAGw4pDMvV9VClqq4hNk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ImbAKQ08m0iW6t5yD2Mda3NMteEnVLoMuQgQ9UKKJBNvanJ3/fCwzKuSQpoxUEkQa
-         ktg9R1F0JLd6e+rr8mc7dTEn04rO2kXUN2uRdwMHVAJE3yMr43XizMt7NuK5G7VH+9
-         8GfrijmzRv8mfDxeW6/TihWh+owSsDtaaDV9sW328/dhe9p1Q/pfHcgL30pWCUn5eR
-         eyY68igzE9qcTQ7gkMtwDz5X0gIvSqFpdcYiDi2we5kkwIcat9jzx2tyMNniWMKx5P
-         kRi8O7OKyWyHl3FkQeV0DdLyBqT0EORI3+MFh3iAGR74ZkAWEOSPYaaDcesD4bdla2
-         vY29d+PAfi+/Q==
-Date:   Fri, 11 Feb 2022 18:53:38 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     conor.dooley@microchip.com
-Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, geert@linux-m68k.org,
-        krzysztof.kozlowski@canonical.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-riscv@lists.infradead.org,
-        bin.meng@windriver.com, heiko@sntech.de, lewis.hanly@microchip.com,
-        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
-        atishp@rivosinc.com, Rob Herring <robh@kernel.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v6 03/12] dt-bindings: i2c: add bindings for microchip
- mpfs i2c
-Message-ID: <YgaiorHf7/Za5vib@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>, conor.dooley@microchip.com,
-        linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-        geert@linux-m68k.org, krzysztof.kozlowski@canonical.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-riscv@lists.infradead.org, bin.meng@windriver.com,
-        heiko@sntech.de, lewis.hanly@microchip.com,
-        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
-        atishp@rivosinc.com, Rob Herring <robh@kernel.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-References: <20220207162637.1658677-1-conor.dooley@microchip.com>
- <20220207162637.1658677-4-conor.dooley@microchip.com>
+        with ESMTP id S1352767AbiBKSXC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 13:23:02 -0500
+Received: from st43p00im-ztdg10063201.me.com (st43p00im-ztdg10063201.me.com [17.58.63.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADD9D8B
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 10:22:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1644603200; bh=zUAj0lhGN97V60J2ev20JFwDPS1b501dbcz5ATJQAPc=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=KpM3QCkvlFy+6yREB7R2MCpHib2jyZhGefFwBanbK53cp8VPIATVeDbgcHUI6e56B
+         2LmLjarNBiYQqb7tScqX3kepM9OCrMjbwYIZ9Is438TGDz63ye8nPOanjU04jYavv9
+         Gcu0g5jNvHi+l5+HOUVzWYpzWSsAdKxBwiMMdgS4JhNLacqJFAy66YgXciwasgFdpQ
+         FhxyWO7LRdrwcRo0JH5GXd4lMitWHKc3uxYFQkbIefSuyLsRdbU4uKLcDIkTt8Aya1
+         AC3+EHSS37vyiXY/DIKGGIZUxYgzy5tYVpYEAtD3OrqoSWXEI7b+bz2GGUX8n5WhY3
+         bCQKBu1QhY0CA==
+Received: from gnbcxl0045.gnb.st.com (lfbn-lyo-1-306-208.w2-7.abo.wanadoo.fr [2.7.142.208])
+        by st43p00im-ztdg10063201.me.com (Postfix) with ESMTPSA id 34960380D01;
+        Fri, 11 Feb 2022 18:13:18 +0000 (UTC)
+Date:   Fri, 11 Feb 2022 19:13:10 +0100
+From:   Alain Volmat <avolmat@me.com>
+To:     Patrice CHOTARD <patrice.chotard@foss.st.com>
+Cc:     patrice.chotard@st.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/12] ARM: dts: sti: various DT fixes to avoid warnings
+Message-ID: <20220211181310.GA683275@gnbcxl0045.gnb.st.com>
+Mail-Followup-To: Patrice CHOTARD <patrice.chotard@foss.st.com>,
+        patrice.chotard@st.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211202075105.195664-1-avolmat@me.com>
+ <014f2de2-6b6c-c60e-1f5d-98a74649b8e7@foss.st.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jVl1itNwmbBofVyK"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220207162637.1658677-4-conor.dooley@microchip.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <014f2de2-6b6c-c60e-1f5d-98a74649b8e7@foss.st.com>
+X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
+ =?UTF-8?Q?2903e8d5c8f:6.0.425,18.0.816,17.0.605.474.0000000_definitions?=
+ =?UTF-8?Q?=3D2022-01-17=5F04:2022-01-14=5F01,2022-01-17=5F04,2020-01-23?=
+ =?UTF-8?Q?=5F02_signatures=3D0?=
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 adultscore=0
+ malwarescore=0 mlxscore=0 bulkscore=0 mlxlogscore=766 clxscore=1011
+ phishscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2202110099
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Patrice,
 
---jVl1itNwmbBofVyK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+oups, sorry about that.  I send a v2 with several patches squashed
+together to fix compilation issues.
 
-On Mon, Feb 07, 2022 at 04:26:29PM +0000, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->=20
-> Add device tree bindings for the i2c controller on
-> the Microchip PolarFire SoC.
->=20
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+Alain
 
-Applied to for-next, thanks!
-
-
---jVl1itNwmbBofVyK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIGoqIACgkQFA3kzBSg
-KbY5zBAAky+SkyXA2LOT59kq0mn8oO/pzp+w/OnfTlN/Dn3GgC5ljGVYLc8MECQ/
-Q2KKs+hINDGYIlDYCWxrDTQqNtaK+j35bY4m5uXiWFZWA7p4kMkOeaHfRVrbyg6S
-b7XaVq7myEkDrO+Xfw2MGxyJTLksSq0o7Ql7g4mSZkPyDYNycT/JUTyb5ac+D/pD
-yN/GK6kgiUvWeYrRCueJCTzYzpgwEdGex0wVQaOXDGVwSPZbM/j9RlBrmw4IBEIH
-1gToRHIKoLmbVx+MvyRACu2aRXUXhS7nPg9Yuq3Ftfge4RWzYhlzIITdcpSs+U74
-iuQkSCkKr0J3DvMwDKURl4g1BiPsKODTgvvYp4Fkw1LUad4hNEPrnLbxgZP6HYB6
-svl6Jy9aQoqQx5UeH1WHIBeRqzJlCKrr4HOCwuC+HIQ9//sqwd9OEIah32F1B+AZ
-wl0VhHqHDBUOimTbhr5QrvrTNEn4U5f5+eLToJbaGKEcplkJXlOFQg3xqaYN8hdB
-o/MAbfRWOPDYm/nXM+gK6LbXxCmhEBWgsqOeiOuC13RBOdiLyRNhl/tH0wd+e24K
-IHvmbZwmDhaKQ7U6Al0aeCQDzwULEpRtIhqHR1c+z18q9tA33GDfg0ukH6URjaLa
-PnbVeIhZNqyNmsa4P0nbDSjxqVhzZPiiPyEmAA/t0cFAaad37CA=
-=9qL3
------END PGP SIGNATURE-----
-
---jVl1itNwmbBofVyK--
+On Thu, Feb 10, 2022 at 09:59:40AM +0100, Patrice CHOTARD wrote:
+> Hi Alain
+> 
+> Pleased resubmit this series by squashing PATCH 1/4/5/6/7 together, the 
+> compilation is broken and doesn't allow bisection.
+> 
+> The same with patches 9/11/12.
+> 
+> Thanks
+> Patrice
+> 
+> On 12/2/21 08:50, Alain Volmat wrote:
+> > A first serie to correct a large amount of DT warnings seen when
+> > building with the W=1 option and mainly due to having several time
+> > the same reg property (clock) or having unnecessary reg value.
+> > 
+> > The first 3 patches related to clocks require that recent serie [1] of
+> > clock drivers improvements be first merged.
+> > 
+> > [1] https://lore.kernel.org/linux-clk/20211202072850.194314-1-avolmat@me.com/T/#t
+> > 
+> > Alain Volmat (12):
+> >   ARM: dts: sti: ensure unique unit-address in stih407-clock
+> >   ARM: dts: sti: ensure unique unit-address in stih410-clock
+> >   ARM: dts: sti: ensure unique unit-address in stih418-clock
+> >   ARM: dts: sti: move some nodes out of the soc section in
+> >     stih407-family.dtsi
+> >   ARM: dts: sti: update stih410-b2260 following stih407-family DT update
+> >   ARM: dts: sti: update stih418-b2199 following stih407-family DT update
+> >   ARM: dts: sti: update stihxxx-b2120 following stih407-family DT update
+> >   ARM: dts: sti: remove delta node from stih410.dtsi
+> >   ARM: dts: sti: move usb picophy nodes out of soc in stih410.dtsi
+> >   ARM: dts: sti: move usb picophy nodes out of soc in stih418.dtsi
+> >   ARM: dts: sti: move usb picophy nodes in stih410-b2120.dts
+> >   ARM: dts: sti: move usb picophy nodes in stih410-b2260.dts
+> > 
+> >  arch/arm/boot/dts/stih407-clock.dtsi  | 101 +++++-----
+> >  arch/arm/boot/dts/stih407-family.dtsi | 262 +++++++++++++-------------
+> >  arch/arm/boot/dts/stih410-b2120.dts   |  16 +-
+> >  arch/arm/boot/dts/stih410-b2260.dts   |  30 +--
+> >  arch/arm/boot/dts/stih410-clock.dtsi  | 100 +++++-----
+> >  arch/arm/boot/dts/stih410.dtsi        |  52 ++---
+> >  arch/arm/boot/dts/stih418-b2199.dts   |  22 +--
+> >  arch/arm/boot/dts/stih418-clock.dtsi  | 101 +++++-----
+> >  arch/arm/boot/dts/stih418.dtsi        |  38 ++--
+> >  arch/arm/boot/dts/stihxxx-b2120.dtsi  |  22 +--
+> >  10 files changed, 351 insertions(+), 393 deletions(-)
+> > 
