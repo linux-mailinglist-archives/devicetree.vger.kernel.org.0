@@ -2,102 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 809EC4B2E8E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 21:37:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84B5C4B2EAD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 21:44:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353303AbiBKUgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 15:36:06 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35474 "EHLO
+        id S240275AbiBKUny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 15:43:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353297AbiBKUgG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 15:36:06 -0500
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A775ECE7;
-        Fri, 11 Feb 2022 12:36:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:References:
-        In-Reply-To:Message-Id:Date:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=meNhctVqWiZ7bMMAhRsGEJ5/xhPxg/TVlXWUTDDfSJk=; b=EE2n7i9uSaLVtix5ZXvnWQB8zW
-        7PDswhSh857ISrqO6QpH6os6PjpB7Ho+4Ix2Qs0EUXkqsizkWK3uHc5CpvbA5Y9Is/tBxViEfuTht
-        elsFZMLx7f1c9RmYmhrNtsk/jgCNKmWusBXkwglUs6OH3uT3h+dwkC+Bok0Uf2JseYdM=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:55274 helo=pettiford.lan)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1nIce9-0005vF-2E; Fri, 11 Feb 2022 15:36:01 -0500
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     hvilleneuve@dimonoff.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, Rob Herring <robh+dt@kernel.org>
-Cc:     hugo@hugovil.com, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Date:   Fri, 11 Feb 2022 15:35:20 -0500
-Message-Id: <20220211203520.3902374-15-hugo@hugovil.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220211203520.3902374-1-hugo@hugovil.com>
-References: <20220211203520.3902374-1-hugo@hugovil.com>
+        with ESMTP id S239197AbiBKUnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 15:43:53 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C0201A2;
+        Fri, 11 Feb 2022 12:43:52 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DC527B82C8C;
+        Fri, 11 Feb 2022 20:43:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98C99C340E9;
+        Fri, 11 Feb 2022 20:43:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644612229;
+        bh=mXMa9ZUQphYRbJnD+grWFSam29E/b+kEAveY07tHbZM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SvdcM79ulLZdSc2lufdGwMsPQRYYoVmadl8EDemmMMzbDqQpEy0EbrdZvyb1Hz8w+
+         zEIFRIqvbJxQLdDo+IYolCYwH54fc2pyI9RSyFF9NIxFfQCUboUFCVGkbpdMgHu3nn
+         clLJS9bOzYTy0+awDhQ8Lkkoe1nkno/+t2kti8LIKTKBX7JBBknwnwU6CuPwwLyx8y
+         5un7CBKQJYnEku1A0rmKUR2JQUBx+uJfL6823uQBnptMt75VY/CDAByu8rzyLe6Git
+         X9V+IuOGfvjV7CBBgkcRThC2PMie08cN049XXsqtxhRuKKWYjxDQo9t6nflnE3kuzZ
+         fpsJ8gaOPmxLg==
+Date:   Fri, 11 Feb 2022 21:43:45 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     Loic Poulain <loic.poulain@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/9] i2c: qcom-cci: fixes and updates
+Message-ID: <YgbKgaEDvnSMhaoO@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Foss <robert.foss@linaro.org>, linux-arm-msm@vger.kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
+ <Ygahuyi+/m8T/5cZ@kunai>
+ <db11d120-0f9c-177d-66a0-18cab7297445@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="eK/eJvcjL3QiJR2o"
+Content-Disposition: inline
+In-Reply-To: <db11d120-0f9c-177d-66a0-18cab7297445@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-Subject: [PATCH 14/14] dt-bindings: rtc: pcf2127: add PCF2131
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Add support for new NXP RTC PCF2131.
+--eK/eJvcjL3QiJR2o
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- .../devicetree/bindings/rtc/nxp,pcf2127.yaml  | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-index cde7b1675ead..57eb0a58afa3 100644
---- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-+++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-@@ -14,7 +14,9 @@ maintainers:
- 
- properties:
-   compatible:
--    const: nxp,pcf2127
-+    enum:
-+      - nxp,pcf2127
-+      - nxp,pcf2131
- 
-   reg:
-     maxItems: 1
-@@ -48,4 +50,19 @@ examples:
-         };
-     };
- 
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@53 {
-+            compatible = "nxp,pcf2131";
-+            reg = <0x53>;
-+            pinctrl-0 = <&rtc_nint_pins>;
-+            interrupts-extended = <&gpio1 16 IRQ_TYPE_LEVEL_HIGH>;
-+            reset-source;
-+        };
-+    };
-+
- ...
--- 
-2.30.2
+> > Reusing is nice, of course, but I hope you noticed that I needed to
+> > revert this feature:
+> >=20
+> > a19f75de73c2 ("Revert "i2c: core: support bus regulator controlling in =
+adapter"")
+>=20
+> yes, I've seen it, and as far as I understand it's expected to get it
+> back after the regression fixes.
 
+True, but work on this has stalled, sadly. I am gathering interested
+parties for the topic here :)
+
+> Wolfram, can you please share your opinion on device tree binding name and
+> placement for an SDA/SDC pull-up controlled by a regulator?
+
+For efficiency reasons, not before bus regulator has been applied again
+because the above question depends on it IIUC. Until then, I'll work on
+other items of my too long todo list.
+
+
+--eK/eJvcjL3QiJR2o
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIGyn0ACgkQFA3kzBSg
+Kba1TRAAgNR1H6cx5HWBZliqaJMdkq1St/G7R6opa30EbhjRLzZTVO7nMPJn4cbx
+dAs9TOCWH5hUDirCI1/Ao9YEhsWv7ySsxaOuRv+okh3s9Mm7K0dbjCoY5yuDZaQt
+HiIEHSxAvDWbJy9+ZWX5EN5LzZCp/fbcLDUPzwUycOdWismEpZtCCVMud0aYFEEn
+TgCBi62MdfEiLy4TrxKZVm31ubjS3/FaRolbe70ZMFc9NPGJAuzyt01TFXN7g++i
+LCdEe182xVZimDplhNqrXpkquuCP4OqLUrindJGJ317g8I55GFJlozxwmmYSfrBy
+tYOZiNcNDVga8bw0VgxJNNvhDsq2laapNtVHobIBMEXtVLGv20tI6HtHz7p4A2iR
+4C3cqtG6vK4Gg8jCe1HRmP+DK1Jscb5SVDLejFGwod4iGPZ8tNqzFssuBVJUr6pG
+oFi+/qIe0lPX/KZexi8JEMEr6+wQi6pDaoxHpJl2hba1IJZPazkh/xEshg72pDwg
+tHG8lyE3kD4TyXGiQDPiqYF6Cwcy8vGwhmUH7M8yPn9sQQVxMpGxKaHwhjvM8r4b
+Kb4nDWON3Oy0uVHiacj4beQQTTzYNq7TOA6bZxHgCnVHg6/BLdfz6h++n1SHMVra
+ZNVqsazJNA9EOgDuyc3HJLqNR4kg3TGfuzptQnvIjDTP6Egf/5A=
+=ixCM
+-----END PGP SIGNATURE-----
+
+--eK/eJvcjL3QiJR2o--
