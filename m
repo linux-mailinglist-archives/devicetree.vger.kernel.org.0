@@ -2,71 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C07E04B2680
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 13:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5C854B269E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 14:01:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350359AbiBKMxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 07:53:33 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56154 "EHLO
+        id S241795AbiBKNBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 08:01:48 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350355AbiBKMxd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 07:53:33 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20CF5E60
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 04:53:32 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id f23so16351215lfe.5
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 04:53:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=HeUXG/zAHXDhKnRgHynhqcN3oTgfihFwSnaqKBQhHAY=;
-        b=hJsVC6/8BOKl9j0kcNoT+u3oj69fku4ThvVdDApzZNeN0VsguxOaXUtxMWrzTN/4iy
-         Zkw9YNFUubF6wbjLQCCIGxKNZJlN56D03cmgLPz8PmIhkbild7zc6FIZ4Fg7uChhFCSm
-         Pwtlsa/ciT+IwwIBcybwQw96AqVKAliyRVcAdsSVdQL5oFXsX81/B1DYEsD5yEodl0jV
-         DZtjbrZYW7KFS7ZgClSDkKP8BSnagPNrRpLwNmYDwd/hf7kM6kqprA9wGWTcTN2L2H87
-         2GkU0aMyPpgDJw3A6carTLEeEmfe5o2u4HaSKjyrOwhKppWtvp2VYs7bJm1zyoMxbf8L
-         1z7g==
+        with ESMTP id S236101AbiBKNBr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 08:01:47 -0500
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D13F5F05;
+        Fri, 11 Feb 2022 05:01:46 -0800 (PST)
+Received: by mail-io1-f43.google.com with SMTP id s18so11187423ioa.12;
+        Fri, 11 Feb 2022 05:01:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=HeUXG/zAHXDhKnRgHynhqcN3oTgfihFwSnaqKBQhHAY=;
-        b=IANg3V4JWhlbvjdw98wN8jHvrDo3pA2cfOI8b47HfW2wmL0UVkjWhvf2+IKnAB/FKx
-         yM04FZPMHfejlYmeempxvyM0HfnkrTK0Ela+dWbpAFDRMBZO/Drfc+0DLIyjLnRWFR/f
-         ETjpb0t6k8I9vDnuxhdWlsCfvZqpI2MWflkVv/AeGYxVpWVcorGNEFcKom5m2f73VRvU
-         bh5vepLARll9CDA6RpJJZLxYpEi0UTvPmAFDjZ/TGObIka9KqPDWeiDzaBRl7P8mq/pn
-         uNb34uxCMZWJ5OEIHb9zz/86tjgfVkRBlAzeL9UI7MDM6cjIRjy3hdiAio0N2AVNQTfQ
-         ojIA==
-X-Gm-Message-State: AOAM531BOyQc71A9HQah49PnZDBzjh0dUeIwLi0HG8zv+ZhMpjgV/jtJ
-        oR5QQk7mEjpRDHe1ULG2yUaDKGh8uzaKILxlKkzyjg==
-X-Google-Smtp-Source: ABdhPJydaTxnrzMaWAYDCxiukFYx4B5EuZnJYoUhf1LLpPRdkKI8SwjczRNFDSCvL8NTM3YLYjWlmY4Z5Mb90aCl2Wg=
-X-Received: by 2002:a05:6512:3b9a:: with SMTP id g26mr1130306lfv.71.1644584010394;
- Fri, 11 Feb 2022 04:53:30 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=F/lpDU7A/oXQnioj6/dyXZqqVsCqJXhM5thA6Dejkuc=;
+        b=Vw3EfskG9OovUvCVaQnLI1Y42MeiRIiXvYeRBcJI5lPRH/bQkVuIuueTna5qSr3ZyI
+         pMMV8D0R6OKSCIhX8qwIhxwYPO0szRwAWjnI5KK8A13hsz4BkGbvYcQb9DFcXZAGLV6p
+         cchQHIMOPbmAiwyL09BMYXqHeMqFaUWjyxCN8l/zDY6MBUffzJiLeXmF6dDehtgYCytq
+         iCk30oF6usOzWFfvBO4oSjs2MhJTKT8WDqLXHahOWNaVbtrMW5GrbAiVS/DQtj4mXf2J
+         XfBGUVpPDMxUlsm3ZsEqsht9txOw8Kem2KXkc60Bt6ARTKGBOFthfaVd1SZw4HP0dfb9
+         vi+A==
+X-Gm-Message-State: AOAM530b78HJ4bvHy9Sid83g+wTby0Im3k8df5pHJYX9Cpgho+ylsmu2
+        UNu6U+e8SXoKCOrBrhctKc2rVzlQBg==
+X-Google-Smtp-Source: ABdhPJyCsJeoYeMmw5Xm+zi2G97lQ332DHNyc8xG7IhXT7F4vvP93P8LoX/BbSHuiGqUmWKMNyLlsg==
+X-Received: by 2002:a6b:4e18:: with SMTP id c24mr783163iob.179.1644584505910;
+        Fri, 11 Feb 2022 05:01:45 -0800 (PST)
+Received: from robh.at.kernel.org ([172.58.139.71])
+        by smtp.gmail.com with ESMTPSA id x10sm4250461ill.60.2022.02.11.05.01.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 05:01:45 -0800 (PST)
+Received: (nullmailer pid 216466 invoked by uid 1000);
+        Fri, 11 Feb 2022 13:01:42 -0000
+Date:   Fri, 11 Feb 2022 07:01:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: add "fsl,ls1028a-qds-qixis-i2c"
+ compatible to sl28cpld
+Message-ID: <YgZeNqAbdisyeT+s@robh.at.kernel.org>
+References: <20220127172105.4085950-1-vladimir.oltean@nxp.com>
+ <20220127172105.4085950-3-vladimir.oltean@nxp.com>
 MIME-Version: 1.0
-References: <cover.1644398657.git.tonyhuang.sunplus@gmail.com>
- <f8b89f9981e17c023ce530afedb1f2b599edec0f.1644398657.git.tonyhuang.sunplus@gmail.com>
- <YgQQ2nJa12xblXBX@robh.at.kernel.org> <40d202104eec46d2a35445e0128a124f@sphcmbx02.sunplus.com.tw>
-In-Reply-To: <40d202104eec46d2a35445e0128a124f@sphcmbx02.sunplus.com.tw>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 11 Feb 2022 13:52:54 +0100
-Message-ID: <CAPDyKFqPcpVr-JZF-9-4Jxq9fbsVbLYsh8TjEJffRfueczq=uQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-binding: mmc: Add mmc yaml file for Sunplus SP7021
-To:     =?UTF-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Tony Huang <tonyhuang.sunplus@gmail.com>,
-        "lhjeff911@gmail.com" <lhjeff911@gmail.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
-        =?UTF-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.kuo@sunplus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220127172105.4085950-3-vladimir.oltean@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,81 +68,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Feb 2022 at 09:56, Tony Huang =E9=BB=83=E6=87=B7=E5=8E=9A <tony.=
-huang@sunplus.com> wrote:
->
-> Dear Robh:
->
-> > Subject: Re: [PATCH v3 1/2] dt-binding: mmc: Add mmc yaml file for Sunp=
-lus
-> > SP7021
-> >
-> > On Wed, Feb 09, 2022 at 06:41:06PM +0800, Tony Huang wrote:
-> > > Add mmc yaml file for Sunplus SP7021
-> > >
-> > > Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
-> > > ---
-> > > Changes in v3:
-> > >  - combine sdcard and eMMC into one driver.
-> > >
-> > >  .../devicetree/bindings/mmc/sunplus-mmc.yaml       | 76
-> > ++++++++++++++++++++++
-> > >  MAINTAINERS                                        |  6 ++
-> > >  2 files changed, 82 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
-> > > b/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
-> > > new file mode 100644
-> > > index 0000000..8f44d13
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
-> > > @@ -0,0 +1,76 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) # Copyrigh=
-t
-> > > +(C) Sunplus Ltd. Co. 2021 %YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/mmc/sunplus-mmc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: sunplus MMC controller
-> > > +
-> > > +allOf:
-> > > +  - $ref: "mmc-controller.yaml"
-> > > +
-> > > +maintainers:
-> > > +  - Tony Huang <tonyhuang.sunplus@gmail.com>
-> > > +  - Li-hao Kuo <lhjeff911@gmail.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - sunplus,sp7021-emmc
-> > > +      - sunplus,sp7021-sdhci
-> >
-> > Why are these still different? Looking at the driver, it seems the sett=
-ings are
-> > the same for both. And for clock speeds, we have properties to control =
-them as
-> > they can be board specific.
-> >
->
-> The register base address of emmc and sd card are different.
-> eMMC and sdcard are individual hardware settings
+On Thu, Jan 27, 2022 at 07:21:04PM +0200, Vladimir Oltean wrote:
+> The LS1028A-QDS QIXIS FPGA has no problem working with the
+> simple-mfd-i2c.c driver, so extend the list of compatible strings to
+> include that part.
+> 
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml b/Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml
+> index eb3b43547cb6..8c1216eb36ee 100644
+> --- a/Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml
+> @@ -16,7 +16,9 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    const: kontron,sl28cpld
+> +    enum:
+> +      - fsl,ls1028a-qds-qixis-i2c
+> +      - kontron,sl28cpld
 
-When I looked at the previous version of the driver(s) that was
-posted, I got the impression that you have some registers in the
-controller that are specific for eMMC, SD or SDIO.
+Is there some relationship between these besides happening to use the 
+same driver? Sharing a generic driver is not a reason to have the same 
+binding doc.
 
-So, depending on how the controller is going to be used (for eMMC, SD
-or SDIO) it's needs to be configured differently. Right?
+Your DT has a mux-controller which is undocuemnted in this binding.
 
-If I got this right, I think you can instead use the existing common
-DT properties, "no-sd", "no-sdio", "no-mmc" to explain how each
-controller is configured.
-
-Does this make sense to you?
-
-Kind regards
-Uffe
+Rob
