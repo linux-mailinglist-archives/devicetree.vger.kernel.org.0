@@ -2,1955 +2,535 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 923854B21C6
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 10:25:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1541D4B21D1
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 10:26:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240847AbiBKJZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 04:25:10 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40428 "EHLO
+        id S243941AbiBKJZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 04:25:50 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348582AbiBKJZE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 04:25:04 -0500
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BA991137;
-        Fri, 11 Feb 2022 01:24:58 -0800 (PST)
-Received: from localhost.localdomain ([81.221.85.15]) by mrelay.perfora.net
- (mreueus003 [74.208.5.2]) with ESMTPSA (Nemesis) id 0LjYVi-1ntyq10zu4-00be6u;
- Fri, 11 Feb 2022 10:24:26 +0100
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marek.vasut@gmail.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Alex Marginean <alexandru.marginean@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Arnd Bergmann <arnd@arndb.de>, Chester Lin <clin@suse.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Heiko Thiery <heiko.thiery@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Olof Johansson <olof@lixom.net>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v6 12/12] arm64: dts: freescale: add initial support for verdin imx8m mini
-Date:   Fri, 11 Feb 2022 10:23:22 +0100
-Message-Id: <20220211092322.287487-13-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220211092322.287487-1-marcel@ziswiler.com>
-References: <20220211092322.287487-1-marcel@ziswiler.com>
+        with ESMTP id S233723AbiBKJZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 04:25:49 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A96C1032;
+        Fri, 11 Feb 2022 01:25:46 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nISBH-0006bl-Gt; Fri, 11 Feb 2022 10:25:31 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Wei Fu <wefu@redhat.com>,
+        liush <liush@allwinnertech.com>, Guo Ren <guoren@kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Drew Fustini <drew@beagleboard.org>,
+        Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Greg Favor <gfavor@ventanamicro.com>,
+        Andrea Mondelli <andrea.mondelli@huawei.com>,
+        Jonathan Behrens <behrensj@mit.edu>,
+        Xinhaoqu <xinhaoqu@huawei.com>,
+        Bill Huffman <huffman@cadence.com>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Allen Baum <allen.baum@esperantotech.com>,
+        Josh Scheid <jscheid@ventanamicro.com>,
+        Richard Trauben <rtrauben@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Christoph Muellner <cmuellner@linux.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>
+Subject: Re: [PATCH v6 14/14] riscv: add memory-type errata for T-Head
+Date:   Fri, 11 Feb 2022 10:25:30 +0100
+Message-ID: <2456541.MUnXTO88Fi@diego>
+In-Reply-To: <CAOnJCU+zoSfvyFg0swotCt1NH9bHOr4OX0g4H97ZkV4-UpSyNw@mail.gmail.com>
+References: <20220209123800.269774-1-heiko@sntech.de> <20220209123800.269774-15-heiko@sntech.de> <CAOnJCU+zoSfvyFg0swotCt1NH9bHOr4OX0g4H97ZkV4-UpSyNw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:dW1bb39UYqfcKnF7TDZppXMnzPgeMaKbAXiAkx2Bn4WiXSXBKr9
- Xh4MbaLlfxhw/8sdGJIUDKsTk4Q4rBsVptl7jWhNIxnWDdx8kidifg+gIX3TBfu9s7teNnD
- MzMYSPGseJ1q8LjX4jscl8oNVBh5a4TYDgKzJBFa8UR1I710Wzop8W0rIxvv6+xvDjfQ79v
- 1/TgbihNMDeaq+y6v3ifA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:m0KBWoM4K5w=:YFXiuonHf5hV855Crhahi2
- jCyVWYkFNDsmtL/copFKz5Ep37uVX8uhMTF7Abw/X/F+Kj2kKufuP04RBUwY+Dvt+ZPRg+xfx
- Dt/yQMs2Qqne0JadYe5gbUYjaigIRBtJIudW7j8ssUWxYqbrPH86fabOvqrBeCqHNnjaYkwMt
- bGx+6PsWHwT02v2sJlRKW2K/vbaYYctF4ocqUqvZ3GcRwH90jfmpkyJB7OGu12aJlmpnyk6HW
- uGwdCd4zHRkBmHDFF78W6fmjJFWyB3yM1WgqiN1M2l6TYSt7iaxvH3P/RZ9WCd/YdGbbFNXDT
- T+gekNtCx+93kNr+0lkup5LsZ2L33ttJ8NfKXNNOjjuC6SdlenuiUzMFoVFZ46rxErzwRReTL
- y3ohhsQl4/Nwotbp/t1eMCiSXy+/GLJYtPtbC1+x5PA0DY6N+I+n9NK3S0e2kLiUHJ0gtDDTp
- hvJlOoBwcJ0zHyCOt1SxGWJya0voWEyh1zTFQrkxBVPFJbR7HfgW/xh27jIq9mLe4wF/PFMSF
- CmyD+ocznkbxTaRDXyODEcE/laduiXz0ngANIs5yuexsYrPSLRxX0w+xvRF6yMj1+XyDIZ5JI
- WoLu666F8zReF7aBKxt5A0OQI0Rv6A1gvOk0xMypvp1xIfmVI2jDgQ+BZoom/o+/G/NEbifHR
- XMd1Spk55+v/pHfKVv63a/Ve3V9v44DDAFwl6KMwk6SHFef0rv7t3h+QKoPxyzJ0+8jSemPSq
- ODycg20HBff9Ic8U9y38yw6xSNMnQvZosSNKmuMV9aMduh43h9VVgS/AG10=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Hi Atish,
 
-This patch adds the device tree to support Toradex Verdin iMX8M Mini a
-computer on module which can be used on different carrier boards.
+Am Freitag, 11. Februar 2022, 01:12:55 CET schrieb Atish Patra:
+> On Wed, Feb 9, 2022 at 4:41 AM Heiko Stuebner <heiko@sntech.de> wrote:
+> >
+> > Some current cpus based on T-Head cores implement memory-types
+> > way different than described in the svpbmt spec even going
+> > so far as using PTE bits marked as reserved.
+> >
+> > Add the T-Head vendor-id and necessary errata code to
+> > replace the affected instructions.
+> >
+> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > ---
+> >  arch/riscv/Kconfig.erratas             | 19 ++++++
+> >  arch/riscv/errata/Makefile             |  1 +
+> >  arch/riscv/errata/sifive/errata.c      |  7 ++-
+> >  arch/riscv/errata/thead/Makefile       |  1 +
+> >  arch/riscv/errata/thead/errata.c       | 85 ++++++++++++++++++++++++++
+> >  arch/riscv/include/asm/alternative.h   |  5 ++
+> >  arch/riscv/include/asm/errata_list.h   | 47 ++++++++++++--
+> >  arch/riscv/include/asm/pgtable-64.h    | 18 +++++-
+> >  arch/riscv/include/asm/pgtable.h       | 18 +++++-
+> >  arch/riscv/include/asm/vendorid_list.h |  1 +
+> >  arch/riscv/kernel/alternative.c        | 14 +++++
+> >  arch/riscv/kernel/cpufeature.c         |  2 +
+> >  arch/riscv/mm/init.c                   |  1 +
+> >  13 files changed, 210 insertions(+), 9 deletions(-)
+> >  create mode 100644 arch/riscv/errata/thead/Makefile
+> >  create mode 100644 arch/riscv/errata/thead/errata.c
+> >
+> > diff --git a/arch/riscv/Kconfig.erratas b/arch/riscv/Kconfig.erratas
+> > index d18be8ff0245..380ec039c3dc 100644
+> > --- a/arch/riscv/Kconfig.erratas
+> > +++ b/arch/riscv/Kconfig.erratas
+> > @@ -31,4 +31,23 @@ config ERRATA_SIFIVE_CIP_1200
+> >
+> >           If you don't know what to do here, say "Y".
+> >
+> > +config ERRATA_THEAD
+> > +       bool "T-HEAD errata"
+> > +       help
+> > +         All T-HEAD errata Kconfig depend on this Kconfig. Disabling
+> > +         this Kconfig will disable all T-HEAD errata. Please say "Y"
+> > +         here if your platform uses T-HEAD CPU cores.
+> > +
+> > +         If you don't know what to do here, say "Y".
+> > +
+> > +config ERRATA_THEAD_PBMT
+> > +       bool "Apply T-Head memory type errata"
+> > +       depends on ERRATA_THEAD && 64BIT
+> > +       default y
+> > +       help
+> > +         This will apply the memory type errata to handle the non-standard
+> > +         memory type bits in page-table-entries on T-Head SoCs.
+> > +
+> > +         If you don't know what to do here, say "Y".
+> > +
+> >  endmenu
+> > diff --git a/arch/riscv/errata/Makefile b/arch/riscv/errata/Makefile
+> > index 0ca1c5281a2d..a1055965fbee 100644
+> > --- a/arch/riscv/errata/Makefile
+> > +++ b/arch/riscv/errata/Makefile
+> > @@ -1 +1,2 @@
+> >  obj-$(CONFIG_ERRATA_SIFIVE) += sifive/
+> > +obj-$(CONFIG_ERRATA_THEAD) += thead/
+> > diff --git a/arch/riscv/errata/sifive/errata.c b/arch/riscv/errata/sifive/errata.c
+> > index 4fe03ac41fd7..f933d6cdf304 100644
+> > --- a/arch/riscv/errata/sifive/errata.c
+> > +++ b/arch/riscv/errata/sifive/errata.c
+> > @@ -84,10 +84,15 @@ void __init sifive_errata_patch_func(struct alt_entry *begin, struct alt_entry *
+> >                                      unsigned int stage)
+> >  {
+> >         struct alt_entry *alt;
+> > -       u32 cpu_req_errata = sifive_errata_probe(archid, impid);
+> > +       u32 cpu_req_errata;
+> >         u32 cpu_apply_errata = 0;
+> >         u32 tmp;
+> >
+> > +       if (stage == RISCV_ALTERNATIVES_EARLY_BOOT)
+> > +               return;
+> > +
+> > +       cpu_req_errata = sifive_errata_probe(archid, impid);
+> > +
+> >         for (alt = begin; alt < end; alt++) {
+> >                 if (alt->vendor_id != SIFIVE_VENDOR_ID)
+> >                         continue;
+> > diff --git a/arch/riscv/errata/thead/Makefile b/arch/riscv/errata/thead/Makefile
+> > new file mode 100644
+> > index 000000000000..2d644e19caef
+> > --- /dev/null
+> > +++ b/arch/riscv/errata/thead/Makefile
+> > @@ -0,0 +1 @@
+> > +obj-y += errata.o
+> > diff --git a/arch/riscv/errata/thead/errata.c b/arch/riscv/errata/thead/errata.c
+> > new file mode 100644
+> > index 000000000000..fd8e0538a3f0
+> > --- /dev/null
+> > +++ b/arch/riscv/errata/thead/errata.c
+> > @@ -0,0 +1,85 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2021 Heiko Stuebner <heiko@sntech.de>
+> > + */
+> > +
+> > +#include <linux/bug.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/string.h>
+> > +#include <linux/uaccess.h>
+> > +#include <asm/alternative.h>
+> > +#include <asm/cacheflush.h>
+> > +#include <asm/errata_list.h>
+> > +#include <asm/patch.h>
+> > +#include <asm/vendorid_list.h>
+> > +
+> > +struct errata_info {
+> > +       char name[ERRATA_STRING_LENGTH_MAX];
+> > +       bool (*check_func)(unsigned long arch_id, unsigned long impid);
+> > +       unsigned int stage;
+> > +};
+> > +
+> > +static bool errata_mt_check_func(unsigned long  arch_id, unsigned long impid)
+> > +{
+> > +       if (arch_id != 0 || impid != 0)
+> > +               return false;
+> > +       return true;
+> > +}
+> > +
+> > +static const struct errata_info errata_list[ERRATA_THEAD_NUMBER] = {
+> > +       {
+> > +               .name = "memory-types",
+> > +               .stage = RISCV_ALTERNATIVES_EARLY_BOOT,
+> > +               .check_func = errata_mt_check_func
+> > +       },
+> > +};
+> > +
+> > +static u32 thead_errata_probe(unsigned int stage, unsigned long archid, unsigned long impid)
+> > +{
+> > +       const struct errata_info *info;
+> > +       u32 cpu_req_errata = 0;
+> > +       int idx;
+> > +
+> > +       for (idx = 0; idx < ERRATA_THEAD_NUMBER; idx++) {
+> > +               info = &errata_list[idx];
+> > +
+> > +               if ((stage == RISCV_ALTERNATIVES_MODULE ||
+> > +                    info->stage == stage) && info->check_func(archid, impid))
+> > +                       cpu_req_errata |= (1U << idx);
+> > +       }
+> > +
+> > +       return cpu_req_errata;
+> > +}
+> > +
+> > +void __init_or_module thead_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
+> > +                                             unsigned long archid, unsigned long impid,
+> > +                                             unsigned int stage)
+> > +{
+> > +       struct alt_entry *alt;
+> > +       u32 cpu_req_errata = thead_errata_probe(stage, archid, impid);
+> > +       u32 cpu_apply_errata = 0;
+> > +       u32 tmp;
+> > +
+> > +       for (alt = begin; alt < end; alt++) {
+> > +               if (alt->vendor_id != THEAD_VENDOR_ID)
+> > +                       continue;
+> > +               if (alt->errata_id >= ERRATA_THEAD_NUMBER)
+> > +                       continue;
+> > +
+> > +               tmp = (1U << alt->errata_id);
+> > +               if (cpu_req_errata & tmp) {
+> > +                       /* On vm-alternatives, the mmu isn't running yet */
+> > +                       if (stage == RISCV_ALTERNATIVES_EARLY_BOOT)
+> > +                               memcpy((void *)__pa_symbol(alt->old_ptr),
+> > +                                      (void *)__pa_symbol(alt->alt_ptr), alt->alt_len);
+> > +                       else
+> > +                               patch_text_nosync(alt->old_ptr, alt->alt_ptr, alt->alt_len);
+> > +
+> > +                       cpu_apply_errata |= tmp;
+> > +               }
+> > +       }
+> > +
+> > +       if (stage == RISCV_ALTERNATIVES_EARLY_BOOT)
+> > +               local_flush_icache_all();
+> > +}
+> > diff --git a/arch/riscv/include/asm/alternative.h b/arch/riscv/include/asm/alternative.h
+> > index cf3b22173834..d1154c91ab03 100644
+> > --- a/arch/riscv/include/asm/alternative.h
+> > +++ b/arch/riscv/include/asm/alternative.h
+> > @@ -19,8 +19,10 @@
+> >
+> >  #define RISCV_ALTERNATIVES_BOOT                0 /* alternatives applied during regular boot */
+> >  #define RISCV_ALTERNATIVES_MODULE      1 /* alternatives applied during module-init */
+> > +#define RISCV_ALTERNATIVES_EARLY_BOOT  2 /* alternatives applied before mmu start */
+> >
+> 
+> But this stage invoked is used after RISCV_ALTERNATIVES_BOOT
 
-The module consists of an NXP i.MX 8M Mini family SoC (either i.MX 8M
-Mini Quad or 8M Mini DualLite), a PCA9450A PMIC, a Gigabit Ethernet PHY,
-1 or 2 GB of LPDDR4 RAM, an eMMC, a TLA2024 ADC, an I2C EEPROM, an
-RX8130 RTC, an optional SPI CAN controller plus an optional Bluetooth/
-Wi-Fi module.
+No it isn't.
 
-Anything that is not self-contained on the module is disabled by
-default.
+the "boot" alternative is applied right now directly before soc_early_init,
+while the "early-boot" alternative is already applied during setup_vm()
+even before page-tables are set up.
 
-The device tree for the Dahlia includes the module's device tree and
-enables the supported peripherals of the carrier board.
+Right now the numbering doesn't reflect the order and just
+makes it distinct, but I guess we can adjust it to make that clear
+(move early_boot to the top)
 
-The device tree for the Verdin Development Board includes the module's
-device tree as well as the Dahlia one as it is a superset and supports
-almost all peripherals available.
 
-So far there is no display functionality supported at all but basic
-console UART, PCIe, USB host, eMMC and Ethernet and PCIe functionality
-work fine.
+> >  void __init apply_boot_alternatives(void);
+> > +void __init apply_early_boot_alternatives(void);
+> >  void apply_module_alternatives(void *start, size_t length);
+> >
+> >  struct alt_entry {
+> > @@ -39,6 +41,9 @@ struct errata_checkfunc_id {
+> >  void sifive_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
+> >                               unsigned long archid, unsigned long impid,
+> >                               unsigned int stage);
+> > +void thead_errata_patch_func(struct alt_entry *begin, struct alt_entry *end,
+> > +                            unsigned long archid, unsigned long impid,
+> > +                            unsigned int stage);
+> >
+> >  void riscv_cpufeature_patch_func(struct alt_entry *begin, struct alt_entry *end,
+> >                                  unsigned int stage);
+> > diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
+> > index a4a9b0842922..4fac46b82c16 100644
+> > --- a/arch/riscv/include/asm/errata_list.h
+> > +++ b/arch/riscv/include/asm/errata_list.h
+> > @@ -14,6 +14,11 @@
+> >  #define        ERRATA_SIFIVE_NUMBER 2
+> >  #endif
+> >
+> > +#ifdef CONFIG_ERRATA_THEAD
+> > +#define        ERRATA_THEAD_PBMT 0
+> > +#define        ERRATA_THEAD_NUMBER 1
+> > +#endif
+> > +
+> >  #define        CPUFEATURE_SVPBMT 0
+> >  #define        CPUFEATURE_NUMBER 1
+> >
+> > @@ -42,10 +47,44 @@ asm(ALTERNATIVE("sfence.vma %0", "sfence.vma", SIFIVE_VENDOR_ID,    \
+> >   * in the default case.
+> >   */
+> >  #define ALT_SVPBMT_SHIFT 61
+> > -#define ALT_SVPBMT(_val, prot)                                         \
+> > -asm(ALTERNATIVE("li %0, 0\t\nnop", "li %0, %1\t\nslli %0,%0,%2", 0,    \
+> > -               CPUFEATURE_SVPBMT, CONFIG_64BIT)                        \
+> > -               : "=r"(_val) : "I"(prot##_SVPBMT >> ALT_SVPBMT_SHIFT), "I"(ALT_SVPBMT_SHIFT))
+> > +#define ALT_THEAD_PBMT_SHIFT 59
+> > +#define ALT_SVPBMT(_val, prot)                                                         \
+> > +asm(ALTERNATIVE_2("li %0, 0\t\nnop",                                                   \
+> > +                 "li %0, %1\t\nslli %0,%0,%3", 0, CPUFEATURE_SVPBMT, CONFIG_64BIT,     \
+> > +                 "li %0, %2\t\nslli %0,%0,%4", THEAD_VENDOR_ID, ERRATA_THEAD_PBMT,     \
+> > +                                               CONFIG_ERRATA_THEAD_PBMT)               \
+> > +               : "=r"(_val) : "I"(prot##_SVPBMT >> ALT_SVPBMT_SHIFT),                  \
+> > +                              "I"(prot##_THEAD >> ALT_THEAD_PBMT_SHIFT),               \
+> > +                              "I"(ALT_SVPBMT_SHIFT), "I"(ALT_THEAD_PBMT_SHIFT))
+> > +
+> > +#ifdef CONFIG_ERRATA_THEAD_PBMT
+> > +/*
+> > + * IO/NOCACHE memory types are handled together with svpbmt,
+> > + * so on T-Head chips, check if no other memory type is set,
+> > + * and set the non-0 PMA type if applicable.
+> > + */
+> > +#define ALT_THEAD_PMA(_val)                                                            \
+> > +asm volatile(ALTERNATIVE(                                                              \
+> > +       "nop\n\t"                                                                       \
+> > +       "nop\n\t"                                                                       \
+> > +       "nop\n\t"                                                                       \
+> > +       "nop\n\t"                                                                       \
+> > +       "nop\n\t"                                                                       \
+> > +       "nop\n\t"                                                                       \
+> > +       "nop",                                                                          \
+> > +       "li      t3, %2\n\t"                                                            \
+> > +       "slli    t3, t3, %4\n\t"                                                        \
+> > +       "and     t3, %0, t3\n\t"                                                        \
+> > +       "bne     t3, zero, 2f\n\t"                                                      \
+> > +       "li      t3, %3\n\t"                                                            \
+> > +       "slli    t3, t3, %4\n\t"                                                        \
+> > +       "or      %0, %0, t3\n\t"                                                        \
+> > +       "2:",  THEAD_VENDOR_ID, ERRATA_THEAD_PBMT, CONFIG_ERRATA_THEAD_PBMT)            \
+> > +       : "+r"(_val) : "0"(_val), "I"(_PAGE_MTMASK_THEAD >> ALT_THEAD_PBMT_SHIFT),      \
+> > +                      "I"(_PAGE_PMA_THEAD >> ALT_THEAD_PBMT_SHIFT),  "I"(ALT_THEAD_PBMT_SHIFT))
+> > +#else
+> > +#define ALT_THEAD_PMA(_val)
+> > +#endif
+> >
+> >  #endif /* __ASSEMBLY__ */
+> >
+> > diff --git a/arch/riscv/include/asm/pgtable-64.h b/arch/riscv/include/asm/pgtable-64.h
+> > index 07ba3416cb19..6d59e4695200 100644
+> > --- a/arch/riscv/include/asm/pgtable-64.h
+> > +++ b/arch/riscv/include/asm/pgtable-64.h
+> > @@ -69,6 +69,18 @@ typedef struct {
+> >  #define _PAGE_IO_SVPBMT                (1UL << 62)
+> >  #define _PAGE_MTMASK_SVPBMT    (_PAGE_NOCACHE_SVPBMT | _PAGE_IO_SVPBMT)
+> >
+> > +/*
+> > + * [63:59] T-Head Memory Type definitions:
+> > + *
+> > + * 00000 - NC   Weakly-ordered, Non-cacheable, Non-bufferable, Non-shareable, Non-trustable
+> > + * 01110 - PMA  Weakly-ordered, Cacheable, Bufferable, Shareable, Non-trustable
+> > + * 10000 - IO   Strongly-ordered, Non-cacheable, Non-bufferable, Non-shareable, Non-trustable
+> > + */
+> > +#define _PAGE_PMA_THEAD                ((1UL << 62) | (1UL << 61) | (1UL << 60))
+> > +#define _PAGE_NOCACHE_THEAD    0UL
+> > +#define _PAGE_IO_THEAD         (1UL << 63)
+> > +#define _PAGE_MTMASK_THEAD     (_PAGE_PMA_THEAD | _PAGE_IO_THEAD | (1UL << 59))
+> > +
+> >  static inline u64 riscv_page_mtmask(void)
+> >  {
+> >         u64 val;
+> > @@ -167,7 +179,11 @@ static inline bool mm_pud_folded(struct mm_struct *mm)
+> >
+> >  static inline pmd_t pfn_pmd(unsigned long pfn, pgprot_t prot)
+> >  {
+> > -       return __pmd((pfn << _PAGE_PFN_SHIFT) | pgprot_val(prot));
+> > +       unsigned long prot_val = pgprot_val(prot);
+> > +
+> > +       ALT_THEAD_PMA(prot_val);
+> > +
+> > +       return __pmd((pfn << _PAGE_PFN_SHIFT) | prot_val);
+> >  }
+> >
+> >  static inline unsigned long _pmd_pfn(pmd_t pmd)
+> > diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
+> > index b8abc75dfe01..3d0c4c144093 100644
+> > --- a/arch/riscv/include/asm/pgtable.h
+> > +++ b/arch/riscv/include/asm/pgtable.h
+> > @@ -245,7 +245,11 @@ static inline void pmd_clear(pmd_t *pmdp)
+> >
+> >  static inline pgd_t pfn_pgd(unsigned long pfn, pgprot_t prot)
+> >  {
+> > -       return __pgd((pfn << _PAGE_PFN_SHIFT) | pgprot_val(prot));
+> > +       unsigned long prot_val = pgprot_val(prot);
+> > +
+> > +       ALT_THEAD_PMA(prot_val);
+> > +
+> > +       return __pgd((pfn << _PAGE_PFN_SHIFT) | prot_val);
+> >  }
+> >
+> >  static inline unsigned long _pgd_pfn(pgd_t pgd)
+> > @@ -284,7 +288,11 @@ static inline unsigned long pte_pfn(pte_t pte)
+> >  /* Constructs a page table entry */
+> >  static inline pte_t pfn_pte(unsigned long pfn, pgprot_t prot)
+> >  {
+> > -       return __pte((pfn << _PAGE_PFN_SHIFT) | pgprot_val(prot));
+> > +       unsigned long prot_val = pgprot_val(prot);
+> > +
+> > +       ALT_THEAD_PMA(prot_val);
+> > +
+> > +       return __pte((pfn << _PAGE_PFN_SHIFT) | prot_val);
+> >  }
+> >
+> >  #define mk_pte(page, prot)       pfn_pte(page_to_pfn(page), prot)
+> > @@ -393,7 +401,11 @@ static inline int pmd_protnone(pmd_t pmd)
+> >  /* Modify page protection bits */
+> >  static inline pte_t pte_modify(pte_t pte, pgprot_t newprot)
+> >  {
+> > -       return __pte((pte_val(pte) & _PAGE_CHG_MASK) | pgprot_val(newprot));
+> > +       unsigned long newprot_val = pgprot_val(newprot);
+> > +
+> > +       ALT_THEAD_PMA(newprot_val);
+> > +
+> > +       return __pte((pte_val(pte) & _PAGE_CHG_MASK) | newprot_val);
+> >  }
+> >
+> >  #define pgd_ERROR(e) \
+> > diff --git a/arch/riscv/include/asm/vendorid_list.h b/arch/riscv/include/asm/vendorid_list.h
+> > index 9d934215b3c8..cb89af3f0704 100644
+> > --- a/arch/riscv/include/asm/vendorid_list.h
+> > +++ b/arch/riscv/include/asm/vendorid_list.h
+> > @@ -6,5 +6,6 @@
+> >  #define ASM_VENDOR_LIST_H
+> >
+> >  #define SIFIVE_VENDOR_ID       0x489
+> > +#define THEAD_VENDOR_ID                0x5b7
+> >
+> >  #endif
+> > diff --git a/arch/riscv/kernel/alternative.c b/arch/riscv/kernel/alternative.c
+> > index e6c9de9f9ba6..3f6ad91f524c 100644
+> > --- a/arch/riscv/kernel/alternative.c
+> > +++ b/arch/riscv/kernel/alternative.c
+> > @@ -48,6 +48,11 @@ static void __init init_alternative(void)
+> >         case SIFIVE_VENDOR_ID:
+> >                 vendor_patch_func = sifive_errata_patch_func;
+> >                 break;
+> > +#endif
+> > +#ifdef CONFIG_ERRATA_THEAD
+> > +       case THEAD_VENDOR_ID:
+> > +               vendor_patch_func = thead_errata_patch_func;
+> > +               break;
+> >  #endif
+> >         default:
+> >                 vendor_patch_func = NULL;
+> > @@ -85,6 +90,15 @@ void __init apply_boot_alternatives(void)
+> >                             RISCV_ALTERNATIVES_BOOT);
+> >  }
+> >
+> > +void __init apply_early_boot_alternatives(void)
+> > +{
+> > +       init_alternative();
+> > +
+> > +       _apply_alternatives((struct alt_entry *)__alt_start,
+> > +                           (struct alt_entry *)__alt_end,
+> > +                           RISCV_ALTERNATIVES_EARLY_BOOT);
+> > +}
+> > +
+> 
+> The name is a bit confusing as there is another "apply_boot_alternatives"
+> which was called earlier than "apply_early_boot_alternatives".
 
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+I'm not that much attached to early-boot, so if you have other naming-
+suggestions we can of course change that.
 
----
+As explained above, the early-boot stage runs before page-table setup,
+so that things like the D1 can hook into it with their setting for the base
+page-type.
 
-Changes in v6:
-- Rename codec to audio-codec.
-- Put status property last.
-Thanks, Shawn for reviewing and pointing those out!
 
-Changes in v5:
-- Remove invalid wifi-host property.
-- Remove rpmsg_reserved from the NXP vendor BSP not applicable upstream.
-- Remove 2nd cs-gpio only going to an N/A component.
-- Remove spi-num-chipselects as it is implicit by cs-gpios.
-- Remove vbus-wakeup-supply not being a valid property.
-- Fix picophy,dc-vol-level-adjust and picophy,pre-emp-curr-control which
-  upstream are rather called samsung,picophy-dc-vol-level-adjust resp.
-  samsung,picophy-pre-emp-curr-control.
-Thanks, Fabio for reviewing and pointing those out!
+Heiko
 
-Changes in v4:
-- Re-base on top of Shawn's for-next branch.
-- Fix gpio-line-names taking V1.1 re-design into account.
-- Fix wrong SODIMM pin number.
-- Drop 2nd SPI CAN instance being N/A in all SKUs.
 
-Changes in v3:
-- Rebase on top of shawnguo's for-next.
-- Drop [PATCH v2 02/11] ("dt-bindings: gpio: fix gpio-hog example") as
-  it already got applied by Bart.
-- Remove the 'pm-ignore-notify' property analogous to commit aafac22d6b23
-  ("arm64: dts: imx8mm/n: Remove the 'pm-ignore-notify' property").
-- Now with PCIe support finally having landed in -next enable it as well.
-- Add Krzysztof's acked-by tag.
 
-Changes in v2:
-- Remove bootargs which will be filled in by the bootloader as requested
-  by Krzysztof.
-- Remove the previously #ifdefed-out spi-nor as requested by Krzysztof.
-- Fix capitalisation in cover-letter.
+> >  #ifdef CONFIG_MODULES
+> >  void apply_module_alternatives(void *start, size_t length)
+> >  {
+> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> > index 7bce66ee7ce7..ecc248e5dab7 100644
+> > --- a/arch/riscv/kernel/cpufeature.c
+> > +++ b/arch/riscv/kernel/cpufeature.c
+> > @@ -224,6 +224,8 @@ static bool cpufeature_svpbmt_check_func(unsigned int stage)
+> >
+> >  #if defined(CONFIG_MMU) && defined(CONFIG_64BIT)
+> >         switch (stage) {
+> > +       case RISCV_ALTERNATIVES_EARLY_BOOT:
+> > +               return false;
+> >         case RISCV_ALTERNATIVES_BOOT:
+> >                 return cpufeature_svpbmt_check_fdt();
+> >         default:
+> > diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> > index cf4d018b7d66..7216db5d6a2c 100644
+> > --- a/arch/riscv/mm/init.c
+> > +++ b/arch/riscv/mm/init.c
+> > @@ -819,6 +819,7 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
+> >         BUG_ON((kernel_map.virt_addr + kernel_map.size) > ADDRESS_SPACE_END - SZ_4K);
+> >  #endif
+> >
+> > +       apply_early_boot_alternatives();
+> >         pt_ops_set_early();
+> >
+> >         /* Setup early PGD for fixmap */
+> > --
+> > 2.30.2
+> >
+> >
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
+> 
+> 
+> --
+> Regards,
+> Atish
+> 
 
- arch/arm64/boot/dts/freescale/Makefile        |    4 +
- .../dts/freescale/imx8mm-verdin-dahlia.dtsi   |  150 ++
- .../boot/dts/freescale/imx8mm-verdin-dev.dtsi |   67 +
- .../imx8mm-verdin-nonwifi-dahlia.dts          |   18 +
- .../freescale/imx8mm-verdin-nonwifi-dev.dts   |   18 +
- .../dts/freescale/imx8mm-verdin-nonwifi.dtsi  |   75 +
- .../freescale/imx8mm-verdin-wifi-dahlia.dts   |   18 +
- .../dts/freescale/imx8mm-verdin-wifi-dev.dts  |   18 +
- .../dts/freescale/imx8mm-verdin-wifi.dtsi     |   94 ++
- .../boot/dts/freescale/imx8mm-verdin.dtsi     | 1264 +++++++++++++++++
- 10 files changed, 1726 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 6d8f0a532587..04380f2e44a2 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -63,6 +63,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dahlia.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dev.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dahlia.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2pro.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-new file mode 100644
-index 000000000000..aca5ae0d307d
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
-@@ -0,0 +1,150 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/ {
-+	sound_card: sound-card {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,bitclock-master = <&dailink_master>;
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,frame-master = <&dailink_master>;
-+		simple-audio-card,name = "imx8mm-wm8904";
-+		simple-audio-card,routing =
-+			"Headphone Jack", "HPOUTL",
-+			"Headphone Jack", "HPOUTR",
-+			"IN2L", "Line In Jack",
-+			"IN2R", "Line In Jack",
-+			"Headphone Jack", "MICBIAS",
-+			"IN1L", "Headphone Jack";
-+		simple-audio-card,widgets =
-+			"Microphone", "Headphone Jack",
-+			"Headphone", "Headphone Jack",
-+			"Line", "Line In Jack";
-+
-+		dailink_master: simple-audio-card,codec {
-+			clocks = <&clk IMX8MM_CLK_SAI2_ROOT>;
-+			sound-dai = <&wm8904_1a>;
-+		};
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&sai2>;
-+		};
-+	};
-+};
-+
-+/* Verdin SPI_1 */
-+&ecspi2 {
-+	status = "okay";
-+};
-+
-+/* EEPROM on display adapter boards */
-+&eeprom_display_adapter {
-+	status = "okay";
-+};
-+
-+/* EEPROM on Verdin Development board */
-+&eeprom_carrier_board {
-+	status = "okay";
-+};
-+
-+&fec1 {
-+	status = "okay";
-+};
-+
-+/* Verdin QSPI_1 */
-+&flexspi {
-+	status = "okay";
-+};
-+
-+/* Current measurement into module VCC */
-+&hwmon {
-+	status = "okay";
-+};
-+
-+&hwmon_temp {
-+	vs-supply = <&reg_1p8v>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_1 */
-+&i2c4 {
-+	status = "okay";
-+
-+	/* Audio Codec */
-+	wm8904_1a: audio-codec@1a {
-+		compatible = "wlf,wm8904";
-+		AVDD-supply = <&reg_3p3v>;
-+		clocks = <&clk IMX8MM_CLK_SAI2_ROOT>;
-+		clock-names = "mclk";
-+		CPVDD-supply = <&reg_3p3v>;
-+		DBVDD-supply = <&reg_3p3v>;
-+		DCVDD-supply = <&reg_3p3v>;
-+		MICVDD-supply = <&reg_3p3v>;
-+		reg = <0x1a>;
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
-+/* Verdin PCIE_1 */
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+&pcie_phy {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_3_DSI */
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_1 */
-+&pwm2 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_2 */
-+&pwm3 {
-+	status = "okay";
-+};
-+
-+/* VERDIN I2S_1 */
-+&sai2 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_3 */
-+&uart1 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_1 */
-+&uart2 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_2 */
-+&uart3 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_1 */
-+&usbotg1 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_2 */
-+&usbotg2 {
-+	status = "okay";
-+};
-+
-+/* Verdin SD_1 */
-+&usdhc2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
-new file mode 100644
-index 000000000000..73cc3fafa018
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
-@@ -0,0 +1,67 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+#include "imx8mm-verdin-dahlia.dtsi"
-+
-+/ {
-+	sound_card: sound-card {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,bitclock-master = <&dailink_master>;
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,frame-master = <&dailink_master>;
-+		simple-audio-card,name = "imx8mm-nau8822";
-+		simple-audio-card,routing =
-+			"Headphones", "LHP",
-+			"Headphones", "RHP",
-+			"Speaker", "LSPK",
-+			"Speaker", "RSPK",
-+			"Line Out", "AUXOUT1",
-+			"Line Out", "AUXOUT2",
-+			"LAUX", "Line In",
-+			"RAUX", "Line In",
-+			"LMICP", "Mic In",
-+			"RMICP", "Mic In";
-+		simple-audio-card,widgets =
-+			"Headphones", "Headphones",
-+			"Line Out", "Line Out",
-+			"Speaker", "Speaker",
-+			"Microphone", "Mic In",
-+			"Line", "Line In";
-+
-+		dailink_master: simple-audio-card,codec {
-+			clocks = <&clk IMX8MM_CLK_SAI2_ROOT>;
-+			sound-dai = <&nau8822_1a>;
-+		};
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&sai2>;
-+		};
-+	};
-+};
-+
-+&gpio_expander_21 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_1 */
-+&i2c4 {
-+	/* Audio Codec */
-+	nau8822_1a: audio-codec@1a {
-+		compatible = "nuvoton,nau8822";
-+		reg = <0x1a>;
-+	};
-+};
-+
-+/* Verdin UART_1, connector X50 through RS485 transceiver */
-+&uart2 {
-+	linux,rs485-enabled-at-boot-time;
-+	rs485-rts-active-low;
-+	rs485-rx-during-tx;
-+};
-+
-+/* Limit frequency on dev board due to long traces and bad signal integrity */
-+&usdhc2 {
-+	max-frequency = <100000000>;
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dts b/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dts
-new file mode 100644
-index 000000000000..d64ff378a152
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mm-verdin.dtsi"
-+#include "imx8mm-verdin-nonwifi.dtsi"
-+#include "imx8mm-verdin-dahlia.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX8M Mini on Dahlia Board";
-+	compatible = "toradex,verdin-imx8mm-nonwifi-dahlia",
-+		     "toradex,verdin-imx8mm-nonwifi",
-+		     "toradex,verdin-imx8mm",
-+		     "fsl,imx8mm";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dts b/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dts
-new file mode 100644
-index 000000000000..6ae71ecac8de
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mm-verdin.dtsi"
-+#include "imx8mm-verdin-nonwifi.dtsi"
-+#include "imx8mm-verdin-dev.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX8M Mini on Verdin Development Board";
-+	compatible = "toradex,verdin-imx8mm-nonwifi-dev",
-+		     "toradex,verdin-imx8mm-nonwifi",
-+		     "toradex,verdin-imx8mm",
-+		     "fsl,imx8mm";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi.dtsi
-new file mode 100644
-index 000000000000..1e0f87c7a609
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi.dtsi
-@@ -0,0 +1,75 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+&gpio3 {
-+	gpio-line-names = "SODIMM_52",
-+			  "SODIMM_54",
-+			  "SODIMM_64",
-+			  "SODIMM_21",
-+			  "SODIMM_206",
-+			  "SODIMM_76",
-+			  "SODIMM_56",
-+			  "SODIMM_58",
-+			  "SODIMM_60",
-+			  "SODIMM_62",
-+			  "SODIMM_162",
-+			  "SODIMM_164",
-+			  "SODIMM_166",
-+			  "SODIMM_168",
-+			  "SODIMM_66",
-+			  "SODIMM_17",
-+			  "",
-+			  "SODIMM_156",
-+			  "SODIMM_160",
-+			  "SODIMM_244",
-+			  "",
-+			  "SODIMM_48",
-+			  "SODIMM_44",
-+			  "SODIMM_42",
-+			  "SODIMM_46";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "SODIMM_102",
-+			  "SODIMM_90",
-+			  "SODIMM_92",
-+			  "SODIMM_94",
-+			  "SODIMM_96",
-+			  "SODIMM_100",
-+			  "SODIMM_148",
-+			  "SODIMM_152",
-+			  "SODIMM_154",
-+			  "SODIMM_174",
-+			  "SODIMM_120",
-+			  "SODIMM_104",
-+			  "SODIMM_106",
-+			  "SODIMM_108",
-+			  "SODIMM_112",
-+			  "SODIMM_114",
-+			  "SODIMM_116",
-+			  "SODIMM_150",
-+			  "SODIMM_118",
-+			  "",
-+			  "SODIMM_88",
-+			  "SODIMM_149",
-+			  "SODIMM_147",
-+			  "SODIMM_36",
-+			  "SODIMM_32",
-+			  "SODIMM_30",
-+			  "SODIMM_34",
-+			  "SODIMM_38",
-+			  "SODIMM_252",
-+			  "SODIMM_133",
-+			  "SODIMM_135",
-+			  "SODIMM_129";
-+};
-+
-+&usdhc3 {
-+	bus-width = <4>;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dts b/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dts
-new file mode 100644
-index 000000000000..d424c475cba1
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mm-verdin.dtsi"
-+#include "imx8mm-verdin-wifi.dtsi"
-+#include "imx8mm-verdin-dahlia.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX8M Mini WB on Dahlia Board";
-+	compatible = "toradex,verdin-imx8mm-wifi-dahlia",
-+		     "toradex,verdin-imx8mm-wifi",
-+		     "toradex,verdin-imx8mm",
-+		     "fsl,imx8mm";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dts b/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dts
-new file mode 100644
-index 000000000000..ef952021832e
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dts
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mm-verdin.dtsi"
-+#include "imx8mm-verdin-wifi.dtsi"
-+#include "imx8mm-verdin-dev.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX8M Mini WB on Verdin Development Board";
-+	compatible = "toradex,verdin-imx8mm-wifi-dev",
-+		     "toradex,verdin-imx8mm-wifi",
-+		     "toradex,verdin-imx8mm",
-+		     "fsl,imx8mm";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi.dtsi
-new file mode 100644
-index 000000000000..3e06a6ce3406
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi.dtsi
-@@ -0,0 +1,94 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+/ {
-+	reg_wifi_en: regulator-wifi-en {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio3 25 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_wifi_pwr_en>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "PDn_AW-CM276NF";
-+		startup-delay-us = <2000>;
-+	};
-+};
-+
-+/* On-module Wi-Fi */
-+&usdhc3 {
-+	bus-width = <4>;
-+	keep-power-in-suspend;
-+	non-removable;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>, <&pinctrl_wifi_ctrl>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>, <&pinctrl_wifi_ctrl>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>, <&pinctrl_wifi_ctrl>;
-+	vmmc-supply = <&reg_wifi_en>;
-+	status = "okay";
-+};
-+
-+&gpio3 {
-+	gpio-line-names = "SODIMM_52",
-+			  "SODIMM_54",
-+			  "SODIMM_64",
-+			  "SODIMM_21",
-+			  "SODIMM_206",
-+			  "SODIMM_76",
-+			  "SODIMM_56",
-+			  "SODIMM_58",
-+			  "SODIMM_60",
-+			  "SODIMM_62",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "SODIMM_66",
-+			  "SODIMM_17",
-+			  "",
-+			  "",
-+			  "",
-+			  "SODIMM_244",
-+			  "",
-+			  "SODIMM_48",
-+			  "SODIMM_44",
-+			  "SODIMM_42",
-+			  "SODIMM_46";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "SODIMM_102",
-+			  "SODIMM_90",
-+			  "SODIMM_92",
-+			  "SODIMM_94",
-+			  "SODIMM_96",
-+			  "SODIMM_100",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "SODIMM_120",
-+			  "SODIMM_104",
-+			  "SODIMM_106",
-+			  "SODIMM_108",
-+			  "SODIMM_112",
-+			  "SODIMM_114",
-+			  "SODIMM_116",
-+			  "",
-+			  "SODIMM_118",
-+			  "",
-+			  "SODIMM_88",
-+			  "SODIMM_149",
-+			  "SODIMM_147",
-+			  "SODIMM_36",
-+			  "SODIMM_32",
-+			  "SODIMM_30",
-+			  "SODIMM_34",
-+			  "SODIMM_38",
-+			  "SODIMM_252",
-+			  "SODIMM_133",
-+			  "SODIMM_135",
-+			  "SODIMM_129";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-new file mode 100644
-index 000000000000..0d84d29e70f1
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -0,0 +1,1264 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2022 Toradex
-+ */
-+
-+#include "dt-bindings/phy/phy-imx8-pcie.h"
-+#include "dt-bindings/pwm/pwm.h"
-+#include "imx8mm.dtsi"
-+
-+/ {
-+	chosen {
-+		stdout-path = &uart1;
-+	};
-+
-+	aliases {
-+		rtc0 = &rtc_i2c;
-+		rtc1 = &snvs_rtc;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		brightness-levels = <0 45 63 88 119 158 203 255>;
-+		default-brightness-level = <4>;
-+		/* Verdin I2S_2_D_OUT (DSI_1_BKL_EN/DSI_1_BKL_EN_LVDS, SODIMM 46) */
-+		enable-gpios = <&gpio3 24 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i2s_2_d_out_dsi_1_bkl_en>;
-+		power-supply = <&reg_3p3v>;
-+		/* Verdin PWM_3_DSI/PWM_3_DSI_LVDS (SODIMM 19) */
-+		pwms = <&pwm1 0 6666667 PWM_POLARITY_INVERTED>;
-+		status = "disabled";
-+	};
-+
-+	/* Fixed clock dedicated to SPI CAN controller */
-+	clk20m: oscillator {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <20000000>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_keys>;
-+
-+		wakeup {
-+			debounce-interval = <10>;
-+			/* Verdin CTRL_WAKE1_MICO# (SODIMM 252) */
-+			gpios = <&gpio4 28 GPIO_ACTIVE_LOW>;
-+			label = "Wake-Up";
-+			linux,code = <KEY_WAKEUP>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	/* Carrier Board Supplies */
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-name = "+V1.8_SW";
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "+V3.3_SW";
-+	};
-+
-+	reg_5p0v: regulator-5p0v {
-+		compatible = "regulator-fixed";
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-name = "+V5_SW";
-+	};
-+
-+	/* Non PMIC On-module Supplies */
-+	reg_ethphy: regulator-ethphy {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio2 20 GPIO_ACTIVE_HIGH>; /* PMIC_EN_ETH */
-+		off-on-delay = <500000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_eth>;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "+V3.3_ETH";
-+		startup-delay-us = <200000>;
-+	};
-+
-+	reg_usb_otg1_vbus: regulator-usb-otg1 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		/* Verdin USB_1_EN (SODIMM 155) */
-+		gpio = <&gpio1 12 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usb1_en>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-name = "usb_otg1_vbus";
-+	};
-+
-+	reg_usb_otg2_vbus: regulator-usb-otg2 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		/* Verdin USB_2_EN (SODIMM 185) */
-+		gpio = <&gpio1 14 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usb2_en>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-name = "usb_otg2_vbus";
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2 {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		/* Verdin SD_1_PWR_EN (SODIMM 76) */
-+		gpio = <&gpio3 5 GPIO_ACTIVE_HIGH>;
-+		off-on-delay = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_usdhc2_pwr_en>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "+V3.3_SD";
-+		startup-delay-us = <2000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* Use the kernel configuration settings instead */
-+		/delete-node/ linux,cma;
-+	};
-+};
-+
-+&A53_0 {
-+	cpu-supply = <&reg_vdd_arm>;
-+};
-+
-+&A53_1 {
-+	cpu-supply = <&reg_vdd_arm>;
-+};
-+
-+&A53_2 {
-+	cpu-supply = <&reg_vdd_arm>;
-+};
-+
-+&A53_3 {
-+	cpu-supply = <&reg_vdd_arm>;
-+};
-+
-+&ddrc {
-+	operating-points-v2 = <&ddrc_opp_table>;
-+
-+	ddrc_opp_table: opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-25M {
-+			opp-hz = /bits/ 64 <25000000>;
-+		};
-+
-+		opp-100M {
-+			opp-hz = /bits/ 64 <100000000>;
-+		};
-+
-+		opp-750M {
-+			opp-hz = /bits/ 64 <750000000>;
-+		};
-+	};
-+};
-+
-+/* Verdin SPI_1 */
-+&ecspi2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi2>;
-+};
-+
-+/* Verdin CAN_1 (On-module) */
-+&ecspi3 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	cs-gpios = <&gpio5 25 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi3>;
-+	status = "okay";
-+
-+	can1: can@0 {
-+		compatible = "microchip,mcp251xfd";
-+		clocks = <&clk20m>;
-+		interrupts-extended = <&gpio1 6 IRQ_TYPE_EDGE_FALLING>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_can1_int>;
-+		reg = <0>;
-+		spi-max-frequency = <8500000>;
-+	};
-+};
-+
-+/* Verdin ETH_1 (On-module PHY) */
-+&fec1 {
-+	fsl,magic-packet;
-+	phy-handle = <&ethphy0>;
-+	phy-mode = "rgmii-id";
-+	phy-supply = <&reg_ethphy>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_fec1>;
-+	pinctrl-1 = <&pinctrl_fec1_sleep>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@7 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			interrupt-parent = <&gpio1>;
-+			interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
-+			micrel,led-mode = <0>;
-+			reg = <7>;
-+		};
-+	};
-+};
-+
-+/* Verdin QSPI_1 */
-+&flexspi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexspi0>;
-+};
-+
-+&gpio1 {
-+	gpio-line-names = "SODIMM_216",
-+			  "SODIMM_19",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "SODIMM_220",
-+			  "SODIMM_222",
-+			  "",
-+			  "SODIMM_218",
-+			  "SODIMM_155",
-+			  "SODIMM_157",
-+			  "SODIMM_185",
-+			  "SODIMM_187";
-+};
-+
-+&gpio2 {
-+	gpio-line-names = "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "SODIMM_84",
-+			  "SODIMM_78",
-+			  "SODIMM_74",
-+			  "SODIMM_80",
-+			  "SODIMM_82",
-+			  "SODIMM_70",
-+			  "SODIMM_72";
-+};
-+
-+&gpio5 {
-+	gpio-line-names = "SODIMM_131",
-+			  "",
-+			  "SODIMM_91",
-+			  "SODIMM_16",
-+			  "SODIMM_15",
-+			  "SODIMM_208",
-+			  "SODIMM_137",
-+			  "SODIMM_139",
-+			  "SODIMM_141",
-+			  "SODIMM_143",
-+			  "SODIMM_196",
-+			  "SODIMM_200",
-+			  "SODIMM_198",
-+			  "SODIMM_202",
-+			  "",
-+			  "",
-+			  "SODIMM_55",
-+			  "SODIMM_53",
-+			  "SODIMM_95",
-+			  "SODIMM_93",
-+			  "SODIMM_14",
-+			  "SODIMM_12",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "SODIMM_210",
-+			  "SODIMM_212",
-+			  "SODIMM_151",
-+			  "SODIMM_153";
-+
-+	ctrl_sleep_moci-hog {
-+		gpio-hog;
-+		/* Verdin CTRL_SLEEP_MOCI# (SODIMM 256) */
-+		gpios = <1 GPIO_ACTIVE_HIGH>;
-+		line-name = "CTRL_SLEEP_MOCI#";
-+		output-high;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ctrl_sleep_moci>;
-+	};
-+};
-+
-+/* On-module I2C */
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+	scl-gpios = <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	pca9450: pmic@25 {
-+		compatible = "nxp,pca9450a";
-+		interrupt-parent = <&gpio1>;
-+		/* PMIC PCA9450 PMIC_nINT GPIO1_IO3 */
-+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		reg = <0x25>;
-+		sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-+
-+		regulators {
-+			reg_vdd_soc: BUCK1 {
-+				nxp,dvs-run-voltage = <850000>;
-+				nxp,dvs-standby-voltage = <800000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <850000>;
-+				regulator-min-microvolt = <800000>;
-+				regulator-name = "+VDD_SOC";
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			reg_vdd_arm: BUCK2 {
-+				nxp,dvs-run-voltage = <950000>;
-+				nxp,dvs-standby-voltage = <850000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <950000>;
-+				regulator-min-microvolt = <850000>;
-+				regulator-name = "+VDD_ARM";
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			reg_vdd_dram: BUCK3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <950000>;
-+				regulator-min-microvolt = <850000>;
-+				regulator-name = "+VDD_GPU_VPU_DDR";
-+			};
-+
-+			reg_vdd_3v3: BUCK4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-name = "+V3.3";
-+			};
-+
-+			reg_vdd_1v8: BUCK5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-name = "PWR_1V8_MOCI";
-+			};
-+
-+			reg_nvcc_dram: BUCK6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-min-microvolt = <1100000>;
-+				regulator-name = "+VDD_DDR";
-+			};
-+
-+			reg_nvcc_snvs: LDO1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-name = "+V1.8_SNVS";
-+			};
-+
-+			reg_vdd_snvs: LDO2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <900000>;
-+				regulator-min-microvolt = <800000>;
-+				regulator-name = "+V0.8_SNVS";
-+			};
-+
-+			reg_vdda: LDO3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-name = "+V1.8A";
-+			};
-+
-+			reg_vdd_phy: LDO4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-max-microvolt = <900000>;
-+				regulator-min-microvolt = <900000>;
-+				regulator-name = "+V0.9_MIPI";
-+			};
-+
-+			reg_nvcc_sd: LDO5 {
-+				regulator-max-microvolt = <3300000>;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-name = "+V3.3_1.8_SD";
-+			};
-+		};
-+	};
-+
-+	rtc_i2c: rtc@32 {
-+		compatible = "epson,rx8130";
-+		reg = <0x32>;
-+	};
-+
-+	adc@49 {
-+		compatible = "ti,ads1015";
-+		reg = <0x49>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Verdin I2C_1 (ADC_4 - ADC_3) */
-+		channel@0 {
-+			reg = <0>;
-+			ti,datarate = <4>;
-+			ti,gain = <2>;
-+		};
-+
-+		/* Verdin I2C_1 (ADC_4 - ADC_1) */
-+		channel@1 {
-+			reg = <1>;
-+			ti,datarate = <4>;
-+			ti,gain = <2>;
-+		};
-+
-+		/* Verdin I2C_1 (ADC_3 - ADC_1) */
-+		channel@2 {
-+			reg = <2>;
-+			ti,datarate = <4>;
-+			ti,gain = <2>;
-+		};
-+
-+		/* Verdin I2C_1 (ADC_2 - ADC_1) */
-+		channel@3 {
-+			reg = <3>;
-+			ti,datarate = <4>;
-+			ti,gain = <2>;
-+		};
-+
-+		/* Verdin I2C_1 ADC_4 */
-+		channel@4 {
-+			reg = <4>;
-+			ti,datarate = <4>;
-+			ti,gain = <2>;
-+		};
-+
-+		/* Verdin I2C_1 ADC_3 */
-+		channel@5 {
-+			reg = <5>;
-+			ti,datarate = <4>;
-+			ti,gain = <2>;
-+		};
-+
-+		/* Verdin I2C_1 ADC_2 */
-+		channel@6 {
-+			reg = <6>;
-+			ti,datarate = <4>;
-+			ti,gain = <2>;
-+		};
-+
-+		/* Verdin I2C_1 ADC_1 */
-+		channel@7 {
-+			reg = <7>;
-+			ti,datarate = <4>;
-+			ti,gain = <2>;
-+		};
-+	};
-+
-+	eeprom@50 {
-+		compatible = "st,24c02";
-+		pagesize = <16>;
-+		reg = <0x50>;
-+	};
-+};
-+
-+/* Verdin I2C_2_DSI */
-+&i2c2 {
-+	clock-frequency = <10000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "disabled";
-+};
-+
-+/* Verdin I2C_3_HDMI N/A */
-+
-+/* Verdin I2C_4_CSI */
-+&i2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	pinctrl-1 = <&pinctrl_i2c3_gpio>;
-+	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+};
-+
-+/* Verdin I2C_1 */
-+&i2c4 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c4>;
-+	pinctrl-1 = <&pinctrl_i2c4_gpio>;
-+	scl-gpios = <&gpio5 20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+
-+	gpio_expander_21: gpio-expander@21 {
-+		compatible = "nxp,pcal6416";
-+		#gpio-cells = <2>;
-+		gpio-controller;
-+		reg = <0x21>;
-+		vcc-supply = <&reg_3p3v>;
-+		status = "disabled";
-+	};
-+
-+	lvds_ti_sn65dsi83: bridge@2c {
-+		compatible = "ti,sn65dsi83";
-+		/* Verdin GPIO_9_DSI (SN65DSI84 IRQ, SODIMM 17, unused) */
-+		/* Verdin GPIO_10_DSI (SODIMM 21) */
-+		enable-gpios = <&gpio3 3 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_10_dsi>;
-+		reg = <0x2c>;
-+		status = "disabled";
-+	};
-+
-+	/* Current measurement into module VCC */
-+	hwmon: hwmon@40 {
-+		compatible = "ti,ina219";
-+		reg = <0x40>;
-+		shunt-resistor = <10000>;
-+		status = "disabled";
-+	};
-+
-+	hdmi_lontium_lt8912: hdmi@48 {
-+		compatible = "lontium,lt8912b";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_10_dsi>, <&pinctrl_pwm_3_dsi_hpd_gpio>;
-+		reg = <0x48>;
-+		/* Verdin GPIO_9_DSI (LT8912 INT, SODIMM 17, unused) */
-+		/* Verdin GPIO_10_DSI (SODIMM 21) */
-+		reset-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
-+		status = "disabled";
-+	};
-+
-+	atmel_mxt_ts: touch@4a {
-+		compatible = "atmel,maxtouch";
-+		/* Verdin GPIO_9_DSI */
-+		/* (TOUCH_INT#, SODIMM 17, also routed to SN65dsi83 IRQ albeit currently unused) */
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_9_dsi>, <&pinctrl_i2s_2_bclk_touch_reset>;
-+		reg = <0x4a>;
-+		/* Verdin I2S_2_BCLK (TOUCH_RESET#, SODIMM 42) */
-+		reset-gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
-+		status = "disabled";
-+	};
-+
-+	/* Temperature sensor on carrier board */
-+	hwmon_temp: sensor@4f {
-+		compatible = "ti,tmp75c";
-+		reg = <0x4f>;
-+		status = "disabled";
-+	};
-+
-+	/* EEPROM on display adapter (MIPI DSI Display Adapter) */
-+	eeprom_display_adapter: eeprom@50 {
-+		compatible = "st,24c02";
-+		pagesize = <16>;
-+		reg = <0x50>;
-+		status = "disabled";
-+	};
-+
-+	/* EEPROM on carrier board */
-+	eeprom_carrier_board: eeprom@57 {
-+		compatible = "st,24c02";
-+		pagesize = <16>;
-+		reg = <0x57>;
-+		status = "disabled";
-+	};
-+};
-+
-+/* Verdin PCIE_1 */
-+&pcie0 {
-+	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
-+			  <&clk IMX8MM_CLK_PCIE1_CTRL>;
-+	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
-+				 <&clk IMX8MM_SYS_PLL2_250M>;
-+	assigned-clock-rates = <10000000>, <250000000>;
-+	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>, <&clk IMX8MM_CLK_PCIE1_AUX>,
-+		 <&clk IMX8MM_CLK_PCIE1_PHY>;
-+	clock-names = "pcie", "pcie_aux", "pcie_bus";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie0>;
-+	/* PCIE_1_RESET# (SODIMM 244) */
-+	reset-gpio = <&gpio3 19 GPIO_ACTIVE_LOW>;
-+};
-+
-+&pcie_phy {
-+	clocks = <&clk IMX8MM_CLK_PCIE1_PHY>;
-+	fsl,clkreq-unsupported;
-+	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_OUTPUT>;
-+	fsl,tx-deemph-gen1 = <0x2d>;
-+	fsl,tx-deemph-gen2 = <0xf>;
-+};
-+
-+/* Verdin PWM_3_DSI */
-+&pwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm_1>;
-+	#pwm-cells = <3>;
-+};
-+
-+/* Verdin PWM_1 */
-+&pwm2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm_2>;
-+	#pwm-cells = <3>;
-+};
-+
-+/* Verdin PWM_2 */
-+&pwm3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm_3>;
-+	#pwm-cells = <3>;
-+};
-+
-+/* VERDIN I2S_1 */
-+&sai2 {
-+	#sound-dai-cells = <0>;
-+	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <24576000>;
-+	assigned-clocks = <&clk IMX8MM_CLK_SAI2>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai2>;
-+};
-+
-+&snvs_pwrkey {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_3, used as the Linux console */
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+};
-+
-+/* Verdin UART_1 */
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	uart-has-rtscts;
-+};
-+
-+/* Verdin UART_2 */
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	uart-has-rtscts;
-+};
-+
-+/* Verdin UART_4 */
-+/*
-+ * Resource allocated to M4 by default, must not be accessed from Cortex-A35 or you get an OOPS
-+ */
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart4>;
-+};
-+
-+/* Verdin USB_1 */
-+&usbotg1 {
-+	adp-disable;
-+	dr_mode = "otg";
-+	hnp-disable;
-+	over-current-active-low;
-+	samsung,picophy-dc-vol-level-adjust = <7>;
-+	samsung,picophy-pre-emp-curr-control = <3>;
-+	srp-disable;
-+	vbus-supply = <&reg_usb_otg1_vbus>;
-+};
-+
-+/* Verdin USB_2 */
-+&usbotg2 {
-+	dr_mode = "host";
-+	over-current-active-low;
-+	samsung,picophy-dc-vol-level-adjust = <7>;
-+	samsung,picophy-pre-emp-curr-control = <3>;
-+	vbus-supply = <&reg_usb_otg2_vbus>;
-+};
-+
-+&usbphynop1 {
-+	vcc-supply = <&reg_vdd_3v3>;
-+};
-+
-+&usbphynop2 {
-+	vcc-supply = <&reg_vdd_3v3>;
-+};
-+
-+/* On-module eMMC */
-+&usdhc1 {
-+	bus-width = <8>;
-+	keep-power-in-suspend;
-+	non-removable;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-+	status = "okay";
-+};
-+
-+/* Verdin SD_1 */
-+&usdhc2 {
-+	bus-width = <4>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_cd>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_cd>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+};
-+
-+&wdog1 {
-+	fsl,ext-reset-output;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio1>, <&pinctrl_gpio2>,
-+		    <&pinctrl_gpio3>, <&pinctrl_gpio4>,
-+		    <&pinctrl_gpio7>, <&pinctrl_gpio8>,
-+		    <&pinctrl_gpio_hog1>, <&pinctrl_gpio_hog2>, <&pinctrl_gpio_hog3>,
-+		    <&pinctrl_pmic_tpm_ena>;
-+
-+	pinctrl_can1_int: can1intgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO06_GPIO1_IO6		0x1c4>;	/* CAN_1_SPI_INT#_1.8V */
-+	};
-+
-+	pinctrl_can2_int: can2intgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO07_GPIO1_IO7		0x1c4>;	/* CAN_2_SPI_INT#_1.8V */
-+	};
-+
-+	pinctrl_ctrl_sleep_moci: ctrlsleepmocigrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI3_TXD_GPIO5_IO1		0x1c4>;	/* SODIMM 256 */
-+	};
-+
-+	pinctrl_ecspi2: ecspi2grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK		0x4>,	/* SODIMM 196 */
-+			<MX8MM_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI		0x4>,	/* SODIMM 200 */
-+			<MX8MM_IOMUXC_ECSPI2_MISO_ECSPI2_MISO		0x1c4>,	/* SODIMM 198 */
-+			<MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13		0x1c4>;	/* SODIMM 202 */
-+	};
-+
-+	pinctrl_ecspi3: ecspi3grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_UART1_RXD_ECSPI3_SCLK		0x4>,	/* CAN_SPI_SCK_1.8V */
-+			<MX8MM_IOMUXC_UART1_TXD_ECSPI3_MOSI		0x4>,	/* CAN_SPI_MOSI_1.8V */
-+			<MX8MM_IOMUXC_UART2_RXD_ECSPI3_MISO		0x1c4>,	/* CAN_SPI_MISO_1.8V */
-+			<MX8MM_IOMUXC_UART2_TXD_GPIO5_IO25		0x1c4>,	/* CAN_1_SPI_CS_1.8V# */
-+			<MX8MM_IOMUXC_GPIO1_IO05_GPIO1_IO5		0x1c4>;	/* CAN_2_SPI_CS#_1.8V */
-+	};
-+
-+	pinctrl_fec1: fec1grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_ENET_MDC_ENET1_MDC		0x3>,
-+			<MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO		0x3>,
-+			<MX8MM_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x1f>,
-+			<MX8MM_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x1f>,
-+			<MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x1f>,
-+			<MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x1f>,
-+			<MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91>,
-+			<MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91>,
-+			<MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91>,
-+			<MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91>,
-+			<MX8MM_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x1f>,
-+			<MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91>,
-+			<MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91>,
-+			<MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f>,
-+			<MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x1c4>;
-+	};
-+
-+	pinctrl_fec1_sleep: fec1-sleepgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_ENET_MDC_ENET1_MDC		0x3>,
-+			<MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO		0x3>,
-+			<MX8MM_IOMUXC_ENET_TD3_GPIO1_IO18		0x1f>,
-+			<MX8MM_IOMUXC_ENET_TD2_GPIO1_IO19		0x1f>,
-+			<MX8MM_IOMUXC_ENET_TD1_GPIO1_IO20		0x1f>,
-+			<MX8MM_IOMUXC_ENET_TD0_GPIO1_IO21		0x1f>,
-+			<MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91>,
-+			<MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91>,
-+			<MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91>,
-+			<MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91>,
-+			<MX8MM_IOMUXC_ENET_TXC_GPIO1_IO23		0x1f>,
-+			<MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91>,
-+			<MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91>,
-+			<MX8MM_IOMUXC_ENET_TX_CTL_GPIO1_IO22		0x1f>,
-+			<MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x184>;
-+	};
-+
-+	pinctrl_flexspi0: flexspi0grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_ALE_QSPI_A_SCLK		0x1c2>,	/* SODIMM 52 */
-+			<MX8MM_IOMUXC_NAND_CE0_B_QSPI_A_SS0_B		0x82>,	/* SODIMM 54 */
-+			<MX8MM_IOMUXC_NAND_CE1_B_QSPI_A_SS1_B		0x82>,	/* SODIMM 64 */
-+			<MX8MM_IOMUXC_NAND_DQS_QSPI_A_DQS		0x82>,	/* SODIMM 66 */
-+			<MX8MM_IOMUXC_NAND_DATA00_QSPI_A_DATA0		0x82>,	/* SODIMM 56 */
-+			<MX8MM_IOMUXC_NAND_DATA01_QSPI_A_DATA1		0x82>,	/* SODIMM 58 */
-+			<MX8MM_IOMUXC_NAND_DATA02_QSPI_A_DATA2		0x82>,	/* SODIMM 60 */
-+			<MX8MM_IOMUXC_NAND_DATA03_QSPI_A_DATA3		0x82>;	/* SODIMM 62 */
-+	};
-+
-+	pinctrl_gpio1: gpio1grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_CE3_B_GPIO3_IO4		0x184>;	/* SODIMM 206 */
-+	};
-+
-+	pinctrl_gpio2: gpio2grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SPDIF_EXT_CLK_GPIO5_IO5		0x1c4>;	/* SODIMM 208 */
-+	};
-+
-+	pinctrl_gpio3: gpio3grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_UART3_RXD_GPIO5_IO26		0x184>;	/* SODIMM 210 */
-+	};
-+
-+	pinctrl_gpio4: gpio4grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_UART3_TXD_GPIO5_IO27		0x184>;	/* SODIMM 212 */
-+	};
-+
-+	pinctrl_gpio5: gpio5grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO00_GPIO1_IO0		0x184>;	/* SODIMM 216 */
-+	};
-+
-+	pinctrl_gpio6: gpio6grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO11_GPIO1_IO11		0x184>;	/* SODIMM 218 */
-+	};
-+
-+	pinctrl_gpio7: gpio7grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO08_GPIO1_IO8		0x184>;	/* SODIMM 220 */
-+	};
-+
-+	pinctrl_gpio8: gpio8grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x184>;	/* SODIMM 222 */
-+	};
-+
-+	/* Verdin GPIO_9_DSI (pulled-up as active-low) */
-+	pinctrl_gpio_9_dsi: gpio9dsigrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_RE_B_GPIO3_IO15		0x1c4>;	/* SODIMM 17 */
-+	};
-+
-+	/* Verdin GPIO_10_DSI */
-+	pinctrl_gpio_10_dsi: gpio10dsigrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_CE2_B_GPIO3_IO3		0x1c4>;	/* SODIMM 21 */
-+	};
-+
-+	pinctrl_gpio_hog1: gpiohog1grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI1_MCLK_GPIO4_IO20		0x1c4>,	/* SODIMM 88 */
-+			<MX8MM_IOMUXC_SAI1_RXC_GPIO4_IO1		0x1c4>,	/* SODIMM 90 */
-+			<MX8MM_IOMUXC_SAI1_RXD0_GPIO4_IO2		0x1c4>,	/* SODIMM 92 */
-+			<MX8MM_IOMUXC_SAI1_RXD1_GPIO4_IO3		0x1c4>,	/* SODIMM 94 */
-+			<MX8MM_IOMUXC_SAI1_RXD2_GPIO4_IO4		0x1c4>,	/* SODIMM 96 */
-+			<MX8MM_IOMUXC_SAI1_RXD3_GPIO4_IO5		0x1c4>,	/* SODIMM 100 */
-+			<MX8MM_IOMUXC_SAI1_RXFS_GPIO4_IO0		0x1c4>,	/* SODIMM 102 */
-+			<MX8MM_IOMUXC_SAI1_TXC_GPIO4_IO11		0x1c4>,	/* SODIMM 104 */
-+			<MX8MM_IOMUXC_SAI1_TXD0_GPIO4_IO12		0x1c4>,	/* SODIMM 106 */
-+			<MX8MM_IOMUXC_SAI1_TXD1_GPIO4_IO13		0x1c4>,	/* SODIMM 108 */
-+			<MX8MM_IOMUXC_SAI1_TXD2_GPIO4_IO14		0x1c4>,	/* SODIMM 112 */
-+			<MX8MM_IOMUXC_SAI1_TXD3_GPIO4_IO15		0x1c4>,	/* SODIMM 114 */
-+			<MX8MM_IOMUXC_SAI1_TXD4_GPIO4_IO16		0x1c4>,	/* SODIMM 116 */
-+			<MX8MM_IOMUXC_SAI1_TXD6_GPIO4_IO18		0x1c4>,	/* SODIMM 118 */
-+			<MX8MM_IOMUXC_SAI1_TXFS_GPIO4_IO10		0x1c4>;	/* SODIMM 120 */
-+	};
-+
-+	pinctrl_gpio_hog2: gpiohog2grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI3_MCLK_GPIO5_IO2		0x1c4>;	/* SODIMM 91 */
-+	};
-+
-+	pinctrl_gpio_hog3: gpiohog3grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13		0x1c4>,	/* SODIMM 157 */
-+			<MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15		0x1c4>;	/* SODIMM 187 */
-+	};
-+
-+	pinctrl_gpio_keys: gpiokeysgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28		0x1c4>;	/* SODIMM 252 */
-+	};
-+
-+	/* On-module I2C */
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL			0x400001c6>,	/* PMIC_I2C_SCL */
-+			<MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA			0x400001c6>;	/* PMIC_I2C_SDA */
-+	};
-+
-+	pinctrl_i2c1_gpio: i2c1gpiogrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_I2C1_SCL_GPIO5_IO14		0x400001c6>,	/* PMIC_I2C_SCL */
-+			<MX8MM_IOMUXC_I2C1_SDA_GPIO5_IO15		0x400001c6>;	/* PMIC_I2C_SDA */
-+	};
-+
-+	/* Verdin I2C_4_CSI */
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL			0x400001c6>,	/* SODIMM 55 */
-+			<MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA			0x400001c6>;	/* SODIMM 53 */
-+	};
-+
-+	pinctrl_i2c2_gpio: i2c2gpiogrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_I2C2_SCL_GPIO5_IO16		0x400001c6>,	/* SODIMM 55 */
-+			<MX8MM_IOMUXC_I2C2_SDA_GPIO5_IO17		0x400001c6>;	/* SODIMM 53 */
-+	};
-+
-+	/* Verdin I2C_2_DSI */
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL			0x400001c6>,	/* SODIMM 95 */
-+			<MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA			0x400001c6>;	/* SODIMM 93 */
-+	};
-+
-+	pinctrl_i2c3_gpio: i2c3gpiogrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_I2C3_SCL_GPIO5_IO18		0x400001c6>,	/* SODIMM 95 */
-+			<MX8MM_IOMUXC_I2C3_SDA_GPIO5_IO19		0x400001c6>;	/* SODIMM 93 */
-+	};
-+
-+	/* Verdin I2C_1 */
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_I2C4_SCL_I2C4_SCL			0x400001c6>,	/* SODIMM 14 */
-+			<MX8MM_IOMUXC_I2C4_SDA_I2C4_SDA			0x400001c6>;	/* SODIMM 12 */
-+	};
-+
-+	pinctrl_i2c4_gpio: i2c4gpiogrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_I2C4_SCL_GPIO5_IO20		0x400001c6>,	/* SODIMM 14 */
-+			<MX8MM_IOMUXC_I2C4_SDA_GPIO5_IO21		0x400001c6>;	/* SODIMM 12 */
-+	};
-+
-+	/* Verdin I2S_2_BCLK (TOUCH_RESET#) */
-+	pinctrl_i2s_2_bclk_touch_reset: i2s2bclktouchresetgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI5_RXD2_GPIO3_IO23		0x184>;	/* SODIMM 42 */
-+	};
-+
-+	/* Verdin I2S_2_D_OUT shared with SAI5 */
-+	pinctrl_i2s_2_d_out_dsi_1_bkl_en: i2s2doutdsi1bklengrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI5_RXD3_GPIO3_IO24		0x184>;	/* SODIMM 46 */
-+	};
-+
-+	pinctrl_pcie0: pcie0grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI5_RXFS_GPIO3_IO19		0x6>,	/* SODIMM 244 */
-+			/* PMIC_EN_PCIe_CLK, unused */
-+			<MX8MM_IOMUXC_SD2_RESET_B_GPIO2_IO19		0x6>;
-+	};
-+
-+	pinctrl_pmic: pmicirqgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x41>;	/* PMIC_INT# */
-+	};
-+
-+	/* Verdin PWM_3_DSI shared with GPIO1_IO1 */
-+	pinctrl_pwm_1: pwm1grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO01_PWM1_OUT		0x6>;	/* SODIMM 19 */
-+	};
-+
-+	pinctrl_pwm_2: pwm2grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SPDIF_RX_PWM2_OUT			0x6>;	/* SODIMM 15 */
-+	};
-+
-+	pinctrl_pwm_3: pwm3grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SPDIF_TX_PWM3_OUT			0x6>;	/* SODIMM 16 */
-+	};
-+
-+	/* Verdin PWM_3_DSI (pulled-down as active-high) shared with PWM1_OUT */
-+	pinctrl_pwm_3_dsi_hpd_gpio: pwm3dsihpdgpiogrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO01_GPIO1_IO1		0x184>;	/* SODIMM 19 */
-+	};
-+
-+	pinctrl_reg_eth: regethgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SD2_WP_GPIO2_IO20			0x184>;	/* PMIC_EN_ETH */
-+	};
-+
-+	pinctrl_reg_usb1_en: regusb1engrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO12_GPIO1_IO12		0x184>;	/* SODIMM 155 */
-+	};
-+
-+	pinctrl_reg_usb2_en: regusb2engrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO14_GPIO1_IO14		0x184>;	/* SODIMM 185 */
-+	};
-+
-+	pinctrl_sai2: sai2grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI2_TXFS_SAI2_TX_SYNC		0xd6>,	/* SODIMM 32 */
-+			<MX8MM_IOMUXC_SAI2_TXC_SAI2_TX_BCLK		0xd6>,	/* SODIMM 30 */
-+			<MX8MM_IOMUXC_SAI2_MCLK_SAI2_MCLK		0xd6>,	/* SODIMM 38 */
-+			<MX8MM_IOMUXC_SAI2_RXD0_SAI2_RX_DATA0		0xd6>,	/* SODIMM 36 */
-+			<MX8MM_IOMUXC_SAI2_TXD0_SAI2_TX_DATA0		0xd6>;	/* SODIMM 34 */
-+	};
-+
-+	pinctrl_sai5: sai5grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI5_RXD0_SAI5_RX_DATA0		0xd6>,	/* SODIMM 48 */
-+			<MX8MM_IOMUXC_SAI5_RXD1_SAI5_TX_SYNC		0xd6>,	/* SODIMM 44 */
-+			<MX8MM_IOMUXC_SAI5_RXD2_SAI5_TX_BCLK		0xd6>,	/* SODIMM 42 */
-+			<MX8MM_IOMUXC_SAI5_RXD3_SAI5_TX_DATA0		0xd6>;	/* SODIMM 46 */
-+	};
-+
-+	/* control signal for optional ATTPM20P or SE050 */
-+	pinctrl_pmic_tpm_ena: pmictpmenagrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI1_TXD7_GPIO4_IO19		0x1c4>;	/* PMIC_TPM_ENA */
-+	};
-+
-+	pinctrl_tsp: tspgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI1_RXD4_GPIO4_IO6		0x140>,	/* SODIMM 148 */
-+			<MX8MM_IOMUXC_SAI1_RXD5_GPIO4_IO7		0x140>,	/* SODIMM 152 */
-+			<MX8MM_IOMUXC_SAI1_RXD6_GPIO4_IO8		0x140>,	/* SODIMM 154 */
-+			<MX8MM_IOMUXC_SAI1_RXD7_GPIO4_IO9		0x140>,	/* SODIMM 174 */
-+			<MX8MM_IOMUXC_SAI1_TXD5_GPIO4_IO17		0x140>;	/* SODIMM 150 */
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI2_RXFS_UART1_DCE_TX		0x1c4>,	/* SODIMM 149 */
-+			<MX8MM_IOMUXC_SAI2_RXC_UART1_DCE_RX		0x1c4>;	/* SODIMM 147 */
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI3_TXFS_UART2_DCE_RX		0x1c4>,	/* SODIMM 129 */
-+			<MX8MM_IOMUXC_SAI3_TXC_UART2_DCE_TX		0x1c4>,	/* SODIMM 131 */
-+			<MX8MM_IOMUXC_SAI3_RXC_UART2_DCE_CTS_B		0x1c4>,	/* SODIMM 133 */
-+			<MX8MM_IOMUXC_SAI3_RXD_UART2_DCE_RTS_B		0x1c4>;	/* SODIMM 135 */
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_ECSPI1_SCLK_UART3_DCE_RX		0x1c4>,	/* SODIMM 137 */
-+			<MX8MM_IOMUXC_ECSPI1_MOSI_UART3_DCE_TX		0x1c4>,	/* SODIMM 139 */
-+			<MX8MM_IOMUXC_ECSPI1_MISO_UART3_DCE_CTS_B	0x1c4>,	/* SODIMM 141 */
-+			<MX8MM_IOMUXC_ECSPI1_SS0_UART3_DCE_RTS_B	0x1c4>;	/* SODIMM 143 */
-+	};
-+
-+	pinctrl_uart4: uart4grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_UART4_RXD_UART4_DCE_RX		0x1c4>,	/* SODIMM 151 */
-+			<MX8MM_IOMUXC_UART4_TXD_UART4_DCE_TX		0x1c4>;	/* SODIMM 153 */
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x190>,
-+			<MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d0>,
-+			<MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x1d0>,
-+			<MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x1d0>,
-+			<MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x1d0>,
-+			<MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x1d0>,
-+			<MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x1d0>,
-+			<MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x1d0>,
-+			<MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x1d0>,
-+			<MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x1d0>,
-+			<MX8MM_IOMUXC_SD1_RESET_B_USDHC1_RESET_B	0x1d1>,
-+			<MX8MM_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x190>;
-+	};
-+
-+	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x194>,
-+			<MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d4>,
-+			<MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x1d4>,
-+			<MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x1d4>,
-+			<MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x1d4>,
-+			<MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x1d4>,
-+			<MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x1d4>,
-+			<MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x1d4>,
-+			<MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x1d4>,
-+			<MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x1d4>,
-+			<MX8MM_IOMUXC_SD1_RESET_B_USDHC1_RESET_B	0x1d1>,
-+			<MX8MM_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x194>;
-+	};
-+
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x196>,
-+			<MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d6>,
-+			<MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x1d6>,
-+			<MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x1d6>,
-+			<MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x1d6>,
-+			<MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x1d6>,
-+			<MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x1d6>,
-+			<MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x1d6>,
-+			<MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x1d6>,
-+			<MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x1d6>,
-+			<MX8MM_IOMUXC_SD1_RESET_B_USDHC1_RESET_B	0x1d1>,
-+			<MX8MM_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x196>;
-+	};
-+
-+	pinctrl_usdhc2_cd: usdhc2cdgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x1c4>;	/* SODIMM 84 */
-+	};
-+
-+	pinctrl_usdhc2_pwr_en: usdhc2pwrengrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_CLE_GPIO3_IO5		0x184>;	/* SODIMM 76 */
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x190>,	/* SODIMM 78 */
-+			<MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0>,	/* SODIMM 74 */
-+			<MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d0>,	/* SODIMM 80 */
-+			<MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d0>,	/* SODIMM 82 */
-+			<MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d0>,	/* SODIMM 70 */
-+			<MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0>,	/* SODIMM 72 */
-+			<MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x194>,
-+			<MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4>,
-+			<MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d4>,
-+			<MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4>,
-+			<MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4>,
-+			<MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4>,
-+			<MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x196>,
-+			<MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6>,
-+			<MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d6>,
-+			<MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6>,
-+			<MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6>,
-+			<MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6>,
-+			<MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0>;
-+	};
-+
-+	/* On-module Wi-Fi/BT or type specific SDHC interface */
-+	/* (e.g. on X52 extension slot of Verdin Development Board) */
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x190>,
-+			<MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0>,
-+			<MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0>,
-+			<MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0>,
-+			<MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0>,
-+			<MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0>;
-+	};
-+
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x194>,
-+			<MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4>,
-+			<MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d4>,
-+			<MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d4>,
-+			<MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d4>,
-+			<MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d4>;
-+	};
-+
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x196>,
-+			<MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6>,
-+			<MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d6>,
-+			<MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d6>,
-+			<MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d6>,
-+			<MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d6>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6>;	/* PMIC_WDI */
-+	};
-+
-+	pinctrl_wifi_ctrl: wifictrlgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_NAND_READY_B_GPIO3_IO16		0x1c4>,	/* WIFI_WKUP_BT */
-+			<MX8MM_IOMUXC_SAI1_RXD7_GPIO4_IO9		0x1c4>,	/* WIFI_W_WKUP_HOST */
-+			<MX8MM_IOMUXC_SAI5_RXC_GPIO3_IO20		0x1c4>;	/* WIFI_WKUP_WLAN */
-+	};
-+
-+	pinctrl_wifi_i2s: bti2sgrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI1_RXD4_SAI6_TX_BCLK		0xd6>,	/* WIFI_TX_BCLK */
-+			<MX8MM_IOMUXC_SAI1_RXD5_SAI6_TX_DATA0		0xd6>,	/* WIFI_TX_DATA0 */
-+			<MX8MM_IOMUXC_SAI1_RXD6_SAI6_TX_SYNC		0xd6>,	/* WIFI_TX_SYNC */
-+			<MX8MM_IOMUXC_SAI1_TXD5_SAI6_RX_DATA0		0xd6>;	/* WIFI_RX_DATA0 */
-+	};
-+
-+	pinctrl_wifi_pwr_en: wifipwrengrp {
-+		fsl,pins =
-+			<MX8MM_IOMUXC_SAI5_MCLK_GPIO3_IO25		0x184>;	/* PMIC_EN_WIFI */
-+	};
-+};
--- 
-2.33.1
+
 
