@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4C454B1D02
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 04:42:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A0614B1D06
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 04:47:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233277AbiBKDm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 22:42:27 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34230 "EHLO
+        id S232876AbiBKDrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 22:47:14 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235126AbiBKDm0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 22:42:26 -0500
+        with ESMTP id S235382AbiBKDrO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 22:47:14 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A10EC26DF
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 19:42:26 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2826B26DF
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 19:47:14 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D5C161278
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 03:42:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CA45C340E9;
-        Fri, 11 Feb 2022 03:42:23 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B41BF614D5
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 03:47:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99534C340EB;
+        Fri, 11 Feb 2022 03:47:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644550945;
-        bh=2iBwPof/C1ljCkQx/bkoZitehExlZ4VjBjuwOnMrmlU=;
+        s=k20201202; t=1644551233;
+        bh=n6LXWY4TUQcJESygP1g3zkfQbUXqOIHKO0VHd2yZleQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VPrxC9JgTuLtwpGP2XtHbsE6qN30B4MCEDRAuU86JDdTWbQdjSXCGdN4qb55QbWPB
-         K+fQmRFruzOWOoadDCPIHgpae3G3IvJs1u/QjzdRCShgkz68CfNQzedjEsI43gPgY2
-         f0ctQK1OQeBRiAfrH5djwNGZke7BQU5IPxt7aKBwMr9hUJOX5IY/VYZXiC/WGcsBsD
-         RrSALnJfb+evHV9/Dm0qfyYKrI0dZML4CG6d/OV4cR9V+JmQN+bH01cZH8hLzKtC8E
-         BCY76j0u8f8ZxAP9dw75NmVSzL5pYWDSdjXYq0YUJSEiQVyl9Spy+t+7pvMnX/VOAd
-         HwRgKBDTZEeAA==
-Date:   Fri, 11 Feb 2022 11:42:20 +0800
+        b=pgOdfOijYC2btXXi+LK/vemu6ihdkR+E2sV4ESO5rn8/wx7VkLmLvAUbH1ZQWtQxl
+         yrb3YQoG786plwgrsGIkUmiA8VGq0Lu+vQl4ZuHWI62DP8eCVX2D5lvvkqXtaW1mMR
+         Yuwm1XeCYTQtvn3zg5vFDzHPmFLSa4jJwZm0AX3HDsEtWQgKckJN8ISJDjMyGYy1yk
+         fGEdOFfgyPJ3qkPqRbdNqUr0lzRxqGz3+Xnzc87oGGPU1zYgh2W0BE5dSqd3JO8Uvf
+         /4Y/c7BL7W0FqINJmo6XbKAuO8zS2rt/v/QtAbZokrwFl3F5urqWdeZjofkC/IqW4Q
+         sXJk4TxXWSxKw==
+Date:   Fri, 11 Feb 2022 11:47:07 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Alexander Stein <alexander.stein@ew.tq-group.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -40,14 +40,14 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/8] ARM: dts: imx6ul: add missing properties for sram
-Message-ID: <20220211034219.GJ4909@dragon>
+Subject: Re: [PATCH 4/8] ARM: dts: imx6ul: fix adc node compatible
+Message-ID: <20220211034707.GK4909@dragon>
 References: <20220125135014.3041002-1-alexander.stein@ew.tq-group.com>
- <20220125135014.3041002-2-alexander.stein@ew.tq-group.com>
+ <20220125135014.3041002-5-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220125135014.3041002-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20220125135014.3041002-5-alexander.stein@ew.tq-group.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -59,37 +59,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 25, 2022 at 02:50:07PM +0100, Alexander Stein wrote:
-> All 3 properties are required by sram.yaml. Fixes the dt_binding_check
-
-I guess it's dtbs_check rather than dt_binding_check?
-
-Shawn
-
-> warning:
-> sram@900000: '#address-cells' is a required property
-> sram@900000: '#size-cells' is a required property
-> sram@900000: 'ranges' is a required property
+On Tue, Jan 25, 2022 at 02:50:10PM +0100, Alexander Stein wrote:
+> fsl,imx6ul-adc is not listed in the binding, so remove it. Fixes the
+> dt_binding_check warning:
+> adc@2198000: compatible:0: 'fsl,vf610-adc' was expected
+> adc@2198000: compatible: ['fsl,imx6ul-adc', 'fsl,vf610-adc'] is too long
+> adc@2198000: compatible: Additional items are not allowed ('fsl,vf610-adc'
+> was unexpected)
 > 
 > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
->  arch/arm/boot/dts/imx6ul.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
+>  arch/arm/boot/dts/imx6ul.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 > diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-> index afeec01f6522..1d435a46fc5c 100644
+> index df8b4ad62418..d6c2b0ad3eac 100644
 > --- a/arch/arm/boot/dts/imx6ul.dtsi
 > +++ b/arch/arm/boot/dts/imx6ul.dtsi
-> @@ -149,6 +149,9 @@ soc {
->  		ocram: sram@900000 {
->  			compatible = "mmio-sram";
->  			reg = <0x00900000 0x20000>;
-> +			ranges = <0 0x00900000 0x20000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
->  		};
+> @@ -920,7 +920,7 @@ usdhc2: mmc@2194000 {
+>  			};
 >  
->  		intc: interrupt-controller@a01000 {
+>  			adc1: adc@2198000 {
+> -				compatible = "fsl,imx6ul-adc", "fsl,vf610-adc";
+> +				compatible = "fsl,vf610-adc";
+
+Maybe we should add compatible "fsl,imx6ul-adc" to bindings?
+
+Shawn
+
+>  				reg = <0x02198000 0x4000>;
+>  				interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
+>  				clocks = <&clks IMX6UL_CLK_ADC1>;
 > -- 
 > 2.25.1
 > 
