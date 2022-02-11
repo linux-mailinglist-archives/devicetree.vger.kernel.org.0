@@ -2,126 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE1224B2CB0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 19:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCAF94B2D16
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 19:46:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352675AbiBKSRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 13:17:15 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57846 "EHLO
+        id S230008AbiBKSql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 13:46:41 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352617AbiBKSRH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 13:17:07 -0500
-Received: from st43p00im-ztfb10071701.me.com (st43p00im-ztfb10071701.me.com [17.58.63.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9E96D56
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 10:17:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1644603420; bh=VPvPVP2edwflLmj1mzLh01mfMS7GUrPYSb2mNvVkt/Y=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=182pcnyKzQkKH8ROIeaHYbAVzzfjjeFw2Sj8dLR0exzSUsDTXAojvjS+qeMKIvu2Y
-         tYCoc4arduXfQO89FT+915Kohw+4UBYkwbYDqoMw4FgmRwJGEjKSO37aYumEOcRPgF
-         qvWPDK3HOZ2g264BwAdlHalfcfiIEJkwAUL3u0ZJPRw3tvWPIr1YJe3CWVQEfr4Jom
-         wh2vuKAA6HrDg3K0FchSrCxnD33EOAZL9TD27+LI0JWyPG8BoVQPY5lO9jCOgUKc8P
-         cHLZpoXoKkhHPOXQqM3IPTsqtETJ31d1YMiv0izcS/wpr3fCaNcGpSHUgjQgixEpPf
-         y5Urxdwn6mlZA==
-Received: from localhost (lfbn-lyo-1-306-208.w2-7.abo.wanadoo.fr [2.7.142.208])
-        by st43p00im-ztfb10071701.me.com (Postfix) with ESMTPSA id 1991BA0058;
-        Fri, 11 Feb 2022 18:16:59 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Patrice Chotard <patrice.chotard@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, avolmat@me.com
-Subject: [PATCH v2 7/7] ARM: dts: sti: move usb picophy nodes out of soc in stih418.dtsi
-Date:   Fri, 11 Feb 2022 19:16:14 +0100
-Message-Id: <20220211181614.683497-8-avolmat@me.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220211181614.683497-1-avolmat@me.com>
-References: <20220211181614.683497-1-avolmat@me.com>
+        with ESMTP id S229457AbiBKSqk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 13:46:40 -0500
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CCC2335
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 10:46:38 -0800 (PST)
+Received: by mail-vs1-xe33.google.com with SMTP id v6so11269786vsp.11
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 10:46:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dGzEnxcEEJBItkLvm908OZgOUF/bpGsxAyLCbIgSN18=;
+        b=Qm1kB1q1h9+UE7rWQk/Vj+7KFeLmVi6kvurff0SEHTX89SWZ/Z6VNtgJd0punbm0ka
+         3cVDODze7YEll7dPaeXMUxalRgbgJkcvzXlEr9mKKe+iiCc4ph3hd1kq0t7OLrxYAXig
+         QcQKltEn5cUrRJ9GO60f/zBb4Sg8QDHrVZUBLHlSHY7S3HUCBx11exCehkMawjfpeXc0
+         cmrKnvavnYr+QlwwHkoWzUrv9MKwRA8i+4Jhk1TaOH/trrKacV9adEtTFoGVrVdSAeAZ
+         rmJlDsycRqn7LzeOgn6b3qvcaG/xRtZ4nWsiBePNqMRq8wjnrT0cJgKxGzUes+WqjA45
+         0fbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dGzEnxcEEJBItkLvm908OZgOUF/bpGsxAyLCbIgSN18=;
+        b=S8KJxaOHTA59+ZSI5Hw0+oIFbgXix/Yu2ahefQa/KcNxKoy7bIlQPaIx/VWUpkmUMz
+         xrIQGTbnXojDhgitJR1A/MiGs5cHc3xhFTy6tjqGnXgXZ3CVSn9yr+XVetJzhPoBohNL
+         EqFnF9IN4joM3YVAPx9arZd83QUNceg/nNeD4jB+5SZTtjvX2BOOHm7Um1QPBr19GU0Q
+         SRCPAVkt1H/5s1Y9bYrQqSeTIuXv98QzRFJKPv/tmo2eIBYCzfS0hFzuAZZAcfK2KsNk
+         yVVHdwDhkIOiMtaBT+flbCOkdpOnB5Gdaq15t/s7DUpF2P2apuVBFG8omfMptjj7T2Ng
+         ENvQ==
+X-Gm-Message-State: AOAM53353QKBI/TnH2r7PvA/teO3Ldqh6VdRpVkV5pYqf7AJds3xFAH4
+        DRUUmDMvvZQ4+EFHCJm3bNiNIlzsXmyqPWx4eErVCQ==
+X-Google-Smtp-Source: ABdhPJzQaCXfowUgoTps/aDsF9udVr66a7ww5AZbBipuAmwwwu+hPtXGefPD67zj5K1i7Xsv76oDUlBzwrRECxRLPIs=
+X-Received: by 2002:a67:df83:: with SMTP id x3mr1003966vsk.86.1644605197315;
+ Fri, 11 Feb 2022 10:46:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.425,18.0.572,17.0.605.474.0000000_definitions?=
- =?UTF-8?Q?=3D2022-01-14=5F01:2022-01-14=5F01,2020-02-14=5F11,2020-01-23?=
- =?UTF-8?Q?=5F02_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxlogscore=766
- clxscore=1015 bulkscore=0 adultscore=0 spamscore=0 malwarescore=0
- mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2202110099
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220211164716.120880-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220211164716.120880-1-krzysztof.kozlowski@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 11 Feb 2022 20:46:26 +0200
+Message-ID: <CAPLW+4kcm06SCpPoZm5PnsFF3AeWSp5bk6KKyMihSNmfvJ758Q@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: soc: samsung: usi: refer to dtschema for children
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move the usb2_picophy1 and usb2_picophy2 nodes out of the soc section.
-Since they are controlled via syscfg, there is no reg property needed,
-which is required when having the node within the soc section.
+On Fri, 11 Feb 2022 at 18:47, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> Explicitly reference the dtschema for USI children implementing specific
+> serial protocol (I2C, SPI, UART).  The SPI schema is not yet accepted,
+> so it will be provided later.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>
+> ---
+>
+> Changes since v1:
+> 1. Drop entire paragraph about USI nodes.
+> ---
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
- arch/arm/boot/dts/stih418.dtsi | 38 ++++++++++++++++------------------
- 1 file changed, 18 insertions(+), 20 deletions(-)
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-diff --git a/arch/arm/boot/dts/stih418.dtsi b/arch/arm/boot/dts/stih418.dtsi
-index 97eda4392fbe..b35b9b7a7ccc 100644
---- a/arch/arm/boot/dts/stih418.dtsi
-+++ b/arch/arm/boot/dts/stih418.dtsi
-@@ -26,31 +26,29 @@ cpu@3 {
- 		};
- 	};
- 
-+	usb2_picophy1: phy2 {
-+		compatible = "st,stih407-usb2-phy";
-+		#phy-cells = <0>;
-+		st,syscfg = <&syscfg_core 0xf8 0xf4>;
-+		resets = <&softreset STIH407_PICOPHY_SOFTRESET>,
-+			 <&picophyreset STIH407_PICOPHY0_RESET>;
-+		reset-names = "global", "port";
-+	};
-+
-+	usb2_picophy2: phy3 {
-+		compatible = "st,stih407-usb2-phy";
-+		#phy-cells = <0>;
-+		st,syscfg = <&syscfg_core 0xfc 0xf4>;
-+		resets = <&softreset STIH407_PICOPHY_SOFTRESET>,
-+			 <&picophyreset STIH407_PICOPHY1_RESET>;
-+		reset-names = "global", "port";
-+	};
-+
- 	soc {
- 		rng11: rng@8a8a000 {
- 			status = "disabled";
- 		};
- 
--		usb2_picophy1: phy2@0 {
--			compatible = "st,stih407-usb2-phy";
--			reg = <0 0>;
--			#phy-cells = <0>;
--			st,syscfg = <&syscfg_core 0xf8 0xf4>;
--			resets = <&softreset STIH407_PICOPHY_SOFTRESET>,
--				 <&picophyreset STIH407_PICOPHY0_RESET>;
--			reset-names = "global", "port";
--		};
--
--		usb2_picophy2: phy3@0 {
--			compatible = "st,stih407-usb2-phy";
--			reg = <0 0>;
--			#phy-cells = <0>;
--			st,syscfg = <&syscfg_core 0xfc 0xf4>;
--			resets = <&softreset STIH407_PICOPHY_SOFTRESET>,
--				 <&picophyreset STIH407_PICOPHY1_RESET>;
--			reset-names = "global", "port";
--		};
--
- 		ohci0: usb@9a03c00 {
- 			compatible = "st,st-ohci-300x";
- 			reg = <0x9a03c00 0x100>;
--- 
-2.25.1
-
+>  .../bindings/soc/samsung/exynos-usi.yaml      | 20 +++++++++----------
+>  1 file changed, 10 insertions(+), 10 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> index 58f2e9d8bb0e..a98ed66d092e 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> @@ -17,13 +17,6 @@ description: |
+>    child nodes, each representing a serial sub-node device. The mode setting
+>    selects which particular function will be used.
+>
+> -  Refer to next bindings documentation for information on protocol subnodes that
+> -  can exist under USI node:
+> -
+> -  [1] Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> -  [2] Documentation/devicetree/bindings/i2c/i2c-exynos5.txt
+> -  [3] Documentation/devicetree/bindings/spi/spi-samsung.txt
+> -
+>  properties:
+>    $nodename:
+>      pattern: "^usi@[0-9a-f]+$"
+> @@ -75,10 +68,17 @@ properties:
+>        This property is optional.
+>
+>  patternProperties:
+> -  # All other properties should be child nodes
+> -  "^(serial|spi|i2c)@[0-9a-f]+$":
+> +  "^i2c@[0-9a-f]+$":
+> +    $ref: /schemas/i2c/i2c-exynos5.yaml
+> +    description: Child node describing underlying I2C
+> +
+> +  "^serial@[0-9a-f]+$":
+> +    $ref: /schemas/serial/samsung_uart.yaml
+> +    description: Child node describing underlying UART/serial
+> +
+> +  "^spi@[0-9a-f]+$":
+>      type: object
+> -    description: Child node describing underlying USI serial protocol
+> +    description: Child node describing underlying SPI
+>
+>  required:
+>    - compatible
+> --
+> 2.32.0
+>
