@@ -2,108 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 447FF4B2F09
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 22:05:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51E874B2F2E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 22:20:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351384AbiBKVDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 16:03:08 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56564 "EHLO
+        id S1349821AbiBKVUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 16:20:21 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353650AbiBKVDG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 16:03:06 -0500
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97DCE2D3;
-        Fri, 11 Feb 2022 13:03:04 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5488620007;
-        Fri, 11 Feb 2022 21:02:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1644613382;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=dBJ4jn/Othh/3mI5Ygz5jPmtny0zhFBhPSaVX6iPMeA=;
-        b=Yj4OgahBfdgUT4cPNMdh3B+AjwN0nLxhAHavhTZ7s8t0zyl0cJWVSDiTPhKQFp48if4UYq
-        BO28iPBqV/qSsif6nLAAafgAyjcjH8Pkh77j8Lx2Vwhi8jO3ObYynyFWcsvR3BDUw7OQyQ
-        Em5e9g4WoPj21dMR6KX5E31C6qDagdstEh7v0sbNJjQC5EI0dcbQaRqY2lT00VL/FYifi4
-        HiLsF0cEfPYudAvwQpcvNAYiiF9wT7mUp7eZCcsAyLKjVaxNby97N+k7XFnsjPU2jvXr+u
-        ayEF4Y4bDI7CrrYa+6GjyT4eeyvLst7pO1l9rILrhX3oclGB4CAK5BzM3cXAMA==
-Date:   Fri, 11 Feb 2022 22:02:58 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Cc:     "hugo@hugovil.com" <hugo@hugovil.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 10/10] dt-bindings: rtc: pcf2127: add PCF2131 INT_A and
- INT_B support
-Message-ID: <YgbPAtIO5kZ/WLhM@piout.net>
-References: <20220125200009.900660-1-hugo@hugovil.com>
- <20220125200009.900660-11-hugo@hugovil.com>
- <YgMy/CYL8lmf6Y+J@robh.at.kernel.org>
- <20220210171234.4e317c8a5d5f91f358382b07@hugovil.com>
- <YgWSgGTKR63g+S9e@piout.net>
- <20220210175510.c99eb77c6367d4df5d8bb9a2@hugovil.com>
- <7be3f9541eaed7e17e334267e49665f442b1b458.camel@dimonoff.com>
+        with ESMTP id S1347305AbiBKVUV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 16:20:21 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEF83C5A
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 13:20:17 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id v129so6211891wme.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 13:20:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sK+iZIeFYsho6wXig8bR/ouaBY7CWBpbd4Iy6btTNyc=;
+        b=CqCqBUFBKZ5aQf5ylZxRwSx81lfbWA9T7Oy0HnPVLp9ddliKlQGDVvVbEfy48C8nx/
+         d1LSD95XLVu5GIYWtzD6wYyGzBrh4l2An2UgQiy1beteWGrzo07Wv7QrMZ64aqMA1jQ4
+         qboWyU2T3+HE2zg2Fed6xGrJ3YSfQYwWVC7RE97UKzd6pDFGZaMaz45vPICe3AcbuXiB
+         fRYJ1YuPhQudMGWHAYENaW9ac2cpIJxNb7Z9wpARMdrXJHbwpBJtdCN9NRESxvMxaCS/
+         y2utMdQzSjeRb6OsPhx2nrX8Z+YwqgYB6R81eGcZQg0quJCNGyTODVuIVH8aoSEt1+wS
+         YdPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sK+iZIeFYsho6wXig8bR/ouaBY7CWBpbd4Iy6btTNyc=;
+        b=xAJYqwcxckZQWJxWOFK4bQJTa4D1xfSchYccSE7cdMbKEqZ8b0Ioatv8v+sXQE07eD
+         82dR2NbIiVCyTAvdnH4yztg8MusELe5kuB/ONArGWLW9JuOzJx8Qb+L46Cd64uXU4A93
+         ltenhuZpCY4JZZgjIN1iWqKW0hsFML4SvMlDvhoO2v//Lw1oaNkoDyaLWY7ydVldehUJ
+         UhePLzY21UUNgGY0nbXuuWYWXcIjsB9w8KUxeYHsAJUWnqawDiECkAytG4RM9ADGfinP
+         2gQyuuXk72idGUFSTv6yLpCUNZuETojSBu78cd8EH8rvMWKqyWPA1Z2B0acqrILFavUO
+         by1A==
+X-Gm-Message-State: AOAM533pq8FaIpKvu2pJanni+6yYy5dAA+hmLN+co4HW9XiHS5lSGrHL
+        xLo7olKjL67TW5fciJR6WDkbgA==
+X-Google-Smtp-Source: ABdhPJy9WB0mTcadBd9almNsRJtP+XYitxUwoSljKM9RMwBmo6wh5lnb2gqaYAiXLhf65drXeNaJew==
+X-Received: by 2002:a05:600c:1912:: with SMTP id j18mr1827573wmq.134.1644614416522;
+        Fri, 11 Feb 2022 13:20:16 -0800 (PST)
+Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
+        by smtp.gmail.com with ESMTPSA id x5sm14276017wrv.63.2022.02.11.13.20.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 13:20:16 -0800 (PST)
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
+        john.stultz@linaro.org
+Subject: [PATCH v4 0/8] iio: adc: introduce Qualcomm SPMI Round Robin ADC
+Date:   Fri, 11 Feb 2022 21:19:51 +0000
+Message-Id: <20220211211959.502514-1-caleb.connolly@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7be3f9541eaed7e17e334267e49665f442b1b458.camel@dimonoff.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/02/2022 20:16:27+0000, Hugo Villeneuve wrote:
-> > > Actually, this property has to be made more generic and thought
-> > > out.
-> > > There are multiple RTCs that have multiple interrupt pins where one
-> > > of
-> > > the pin can be used for different interrupt or clock output.
-> 
-> Hi,
-> the only example I could find of such a device is in rtc-pcf85363.c.
-> This device also has two interrupt pins, INT A/B, like the PCF2131.
-> However, in the pcf85363 driver, pin INT B is simply ignored, and all
-> interrupts are configured to go on INT A.
-> 
+The RRADC is responsible for reading data about the current and
+voltage from the USB or DC in jacks, it can also read the battery
+ID (resistence) and some temperatures. It is found on the PMI8998 and
+PM660 Qualcomm PMICs.
 
-Yes, this was the RTC for which we had that discussion last time but
-there is also pcf8523 and other non NXP RTCs.
+The RRADC has to calibrate some ADC values based on which chip fab
+the PMIC was produced in, to facilitate this the patches
+("mfd: qcom-spmi-pmic: expose the PMIC revid information to clients")
+and ("mfd: qcom-spmi-pmic: read fab id on supported PMICs")
+expose the PMIC revision information and fab_id as a struct and register
+them as driver data in the Qualcomm SPMI PMIC driver so that it can be
+read by the RRADC.
 
-> For the moment, I will simply modify my PCF2131 patches serie to mimic
-> the same behavior in V2. This simplifies things a lot, and support for
-> INT B pin could be added at a later stage (and also to pcf85363) if
-> anyone needs it (I don't).
-> 
-> Hugo.
-> 
-> > > With your binding, there is no way to separate which interrupt is
-> > > going
-> > > to which pin and so there is no way to get the alarm and BLF or the
-> > > watchdog on different pins and we certainly don't want to have a
-> > > property per interrupt type.
-> > 
-> > Hi,
-> > can you please suggest how you would prefer it to be done?
-> > 
-> > > Also, the documentation is missing the fact that the driver makes
-> > > having
-> > > one of the property mandatory.
-> > 
-> > I will add it.
-> > 
-> > Thank you, Hugo.
-> > 
-> 
+Changes since v3:
+ * Split PMIC patch in two, rework to support function drivers on a
+   sibling USID
+ * Completely rework RRADC driver to make use of the modern IIO
+   framework. This required re-arranging a lot of the equations and
+   results in some lost precision, where relevant I've left comments to
+   explain this. I don't think any of it is significant enough to
+   justify doing post-processing in driver.
+	Thanks a lot Jonathan and John Stultz for helping me out with
+	this :)
+
+Changes since v2:
+ * Add missing include (thanks kernel test robot :D)
+ * Rework some confusing function return values, specifically
+   rradc_read_status_in_cont_mode and rradc_prepare_batt_id_conversion
+   both of which didn't correctly handle "ret". This also bought up an
+   issue as the previous implementation didn't actually wait for the
+   channel to be ready. It doesn't seem like that's strictly necessary
+   (same data is reported if I wait for the status to be good or not)
+   but I've included it anyway for good measure.
+
+Changes since v1:
+ * Rework the RRADC driver based on Jonathan's feedback
+ * Pick up Rob's reviewed by for the dt-binding patch.
+
+
+Caleb Connolly (8):
+  mfd: qcom-spmi-pmic: expose the PMIC revid information to clients
+  mfd: qcom-spmi-pmic: read fab id on supported PMICs
+  dt-bindings: iio: adc: document qcom-spmi-rradc
+  iio: adc: qcom-spmi-rradc: introduce round robin adc
+  arm64: dts: qcom: pmi8998: add rradc node
+  arm64: dts: qcom: sdm845-oneplus: enable rradc
+  arm64: dts: qcom: sdm845-db845c: enable rradc
+  arm64: dts: qcom: sdm845-xiaomi-beryllium: enable rradc
+
+ .../bindings/iio/adc/qcom,spmi-rradc.yaml     |   54 +
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |    8 +
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |    4 +
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |    4 +
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts |    4 +
+ drivers/iio/adc/Kconfig                       |   13 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/qcom-spmi-rradc.c             | 1014 +++++++++++++++++
+ drivers/mfd/qcom-spmi-pmic.c                  |  159 ++-
+ include/soc/qcom/qcom-spmi-pmic.h             |   61 +
+ 10 files changed, 1265 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
+ create mode 100644 drivers/iio/adc/qcom-spmi-rradc.c
+ create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.35.1
+
