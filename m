@@ -2,151 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2986A4B21D3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 10:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1C2D4B21EF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 10:29:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243354AbiBKJZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 04:25:49 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41618 "EHLO
+        id S242615AbiBKJ2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 04:28:23 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233723AbiBKJZs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 04:25:48 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13AB61081
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 01:25:47 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id m14so14066700wrg.12
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 01:25:47 -0800 (PST)
+        with ESMTP id S233723AbiBKJ2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 04:28:22 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE045CE7;
+        Fri, 11 Feb 2022 01:28:21 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id c8-20020a17090a674800b001b91184b732so8880376pjm.5;
+        Fri, 11 Feb 2022 01:28:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=4qiy8OktVHN84+DezGt6YRpvDHUjWHm3on5bxfkbXJc=;
-        b=wULt7FnqXC/L4Gymc0ykI6+i6dld8vhiMJC6kasAgaVpr7g05GdtAQYYGnfgMit6u3
-         UsUIV9yYXffSXYgnktHeR5hfAEE9UktvD41UwWzVJ4lzTFtjE9kTG3ff2raX6l5JTHKZ
-         91THXqClC5iSMitmw+CC42Q5y26YGeLstWWVzusgJnXVivNQaiKRszSwXbdaZnexaj2T
-         FsW/JwOpzaHfOJNoq5Yl/2yKJowJO9udUZ296Q0qzYgkteEKyByRo4vqgHtbX6z46ZsO
-         kGPb99U4AFHUtIuN3Zk/LJK9EzuEN/sjUh2Eknw5b+duiYvsjZ1iMjjux3H+cgVshUzu
-         CNCQ==
+        bh=gMqMmpWnTzniWqKEMO7UBChWrAVFntZ90Cuy2eCOt8k=;
+        b=iekSr8ajpH5NTm5HGsXvXjMg2IDKsYie/oY3pGant7hB4r4ijuxhEJUxiPP5axPlYP
+         UxYxVQMGGSBwi+12z+EZHr4lsodIMtXMhsYJO39/YmnQIIkcUGqp/DZMdXbGU7IfM30L
+         hZoLBCqUnkhsgJR1URTWUPxq2jbW5xQ+xx4ul47OGoTKW07h4ptPgwbTAmFfJBSZoL7N
+         LRbo1ELTnZjEGU/6S6eXdVITLLPRAltjIIZBSnSsA/sIqcozSv2COkc2AnjCDs1Z9Z47
+         MzW6Y38pzfnhAEd5JdznOP2BJ/SoAT7Le7p4idSyS4OCK4ays1Hcdlt6wK2HSRVS39NJ
+         hhJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=4qiy8OktVHN84+DezGt6YRpvDHUjWHm3on5bxfkbXJc=;
-        b=TIi/P03HYDTJIPDcMz699nth7ZAQGRnn/ERhKvhl4CceLRTxtxlIMHZ1oSv8jnvSpE
-         iZ7dUtMg4y2fm8sjF5Xi2nO3XUsNlJn21GMWRrbD63uZ3wgklFa7QAr1ps88Cvfh8aCk
-         /SsuURHURRqPcuX+CihRK/J7RGdB/a03gOBafdoW1Ll5IyExLXhdM+0ZbM2X3kH/+pYK
-         V/jrs1+6Y0+YICfQwZ+OwEBSCgPAqs9b67egQ/ZSpr3pJEqB2tjxkDA1S9Ku8UNB9lQp
-         xjqz8MSUT6tDWg+Gt4N11O2cBLySJiMT2dlG31CifvrxUpSUCDUVsX+Va265J+Cw7OOq
-         CJ/g==
-X-Gm-Message-State: AOAM532QGnyx8bLZ/r2bUJ91Q83nTduXxazt8xwGLACa03uWMvGglciM
-        7meM+kuJQhu+Duy7EwHAHBcDeA==
-X-Google-Smtp-Source: ABdhPJyJ2RPqgxI850laIYOe6nBW3XeOqT6BrIDWIDnkrILMP7eMkagxLXlCgFu9hgRup9F7qpWfmQ==
-X-Received: by 2002:adf:f904:: with SMTP id b4mr597776wrr.183.1644571545371;
-        Fri, 11 Feb 2022 01:25:45 -0800 (PST)
-Received: from ?IPV6:2001:861:44c0:66c0:97e4:3830:c79:136e? ([2001:861:44c0:66c0:97e4:3830:c79:136e])
-        by smtp.gmail.com with ESMTPSA id 2sm23666644wrz.59.2022.02.11.01.25.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Feb 2022 01:25:44 -0800 (PST)
-Message-ID: <3a60384a-b26f-3591-fca9-b10764bd2b24@baylibre.com>
-Date:   Fri, 11 Feb 2022 10:25:43 +0100
+        bh=gMqMmpWnTzniWqKEMO7UBChWrAVFntZ90Cuy2eCOt8k=;
+        b=Db3lFDLd+EEUdU3D8NKN/z3W/Z+8WlvQAaSEXKgf8V1IhI8V6dQpaszRqXHqUh97l2
+         2Lq4mfW2wukpg5/4aLOpAcziN4/XPbrmYWFNDoYYgu18GEichA4q48s1lXbzaiYEKPnI
+         R15YFx3UwZljhy1O7k5CuwDq8UMcMhQ2/L2h25cdvB9Qb12XIqRaksSfPmm2pQFd77sc
+         1JF7xq+RdEgWkLQdJSOZ7dWRtPcQuzUi+OMSzPcV2iGtrEmlWs35Mb4XD2f8bOmhK/Ry
+         qxjbb6utFLffjbHCASt9tlEV7vDjEoCi4I/eSCx7bOsTOsDtg2LzXbw/vXlLQqlQpG/e
+         C3ag==
+X-Gm-Message-State: AOAM530BoB4jzk76NkZrkEmYuuh2S17ZAL3iaVqIJedLn+w99OpeUYtp
+        uYeeBTSUS7jcgz/8EjC43Pw=
+X-Google-Smtp-Source: ABdhPJxPq3pxZbwhabvWFyW/mYI43XuCI5oucnUwD/44di+jlx7PcGq16GZcWgE91kDQ8KxiiMCT8A==
+X-Received: by 2002:a17:90b:3ec4:: with SMTP id rm4mr435248pjb.65.1644571700997;
+        Fri, 11 Feb 2022 01:28:20 -0800 (PST)
+Received: from localhost.localdomain (61-231-111-88.dynamic-ip.hinet.net. [61.231.111.88])
+        by smtp.gmail.com with ESMTPSA id 13sm25704040pfm.161.2022.02.11.01.28.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 01:28:20 -0800 (PST)
+From:   Joseph CHAMG <josright123@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joseph CHANG <josright123@gmail.com>,
+        joseph_chang@davicom.com.tw
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
+        andrew@lunn.ch, leon@kernel.org
+Subject: [PATCH v20, 0/2] ADD DM9051 ETHERNET DRIVER
+Date:   Fri, 11 Feb 2022 17:27:54 +0800
+Message-Id: <20220211092756.27274-1-josright123@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: meson: remove CPU opps below 1GHz for
- SM1 boards
-Content-Language: en-US
-To:     Marc Zyngier <maz@kernel.org>,
-        Christian Hewitt <christianshewitt@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220210100638.19130-1-christianshewitt@gmail.com>
- <20220210100638.19130-3-christianshewitt@gmail.com>
- <8211344a481dd40f260106bdd3f03bfb@kernel.org>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <8211344a481dd40f260106bdd3f03bfb@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+DM9051 is a spi interface chip,
+need cs/mosi/miso/clock with an interrupt gpio pin
 
-On 10/02/2022 11:36, Marc Zyngier wrote:
-> On 2022-02-10 10:06, Christian Hewitt wrote:
->> Amlogic SM1 devices experience CPU stalls and random board wedges when
->> the system idles and CPU cores clock down to lower opp points. Recent
->> vendor kernels include a change to remove 100-250MHz and other distro
->> sources also remove the 500/667MHz points. Unless all 100-667Mhz opps
->> are removed or the CPU governor forced to performance stalls are still
->> observed, so let's remove them to improve stability and uptime.
->>
->> Fixes: 3d9e76483049 ("arm64: dts: meson-sm1-sei610: enable DVFS")
->> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 20 --------------------
->>  1 file changed, 20 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
->> b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
->> index 3c07a89bfd27..80737731af3f 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
->> @@ -95,26 +95,6 @@
->>          compatible = "operating-points-v2";
->>          opp-shared;
->>
->> -        opp-100000000 {
->> -            opp-hz = /bits/ 64 <100000000>;
->> -            opp-microvolt = <730000>;
->> -        };
->> -
->> -        opp-250000000 {
->> -            opp-hz = /bits/ 64 <250000000>;
->> -            opp-microvolt = <730000>;
->> -        };
->> -
->> -        opp-500000000 {
->> -            opp-hz = /bits/ 64 <500000000>;
->> -            opp-microvolt = <730000>;
->> -        };
->> -
->> -        opp-667000000 {
->> -            opp-hz = /bits/ 64 <666666666>;
->> -            opp-microvolt = <750000>;
->> -        };
->> -
->>          opp-1000000000 {
->>              opp-hz = /bits/ 64 <1000000000>;
->>              opp-microvolt = <770000>;
-> 
-> That's not nearly enough. If that's an actual issue, the driver
-> should be updated not to use these OPPs, and you can't assume
-> that people will just update their DT (mine comes from u-boot,
-> and it is unlikely I will update it anytime soon).
+Joseph CHAMG (2):
+  dt-bindings: net: Add Davicom dm9051 SPI ethernet controller
+  net: Add dm9051 driver
 
-The driver is the generic cpufreq and a generic clock driver, we do not
-filter out the possible OPP frequencies because the possible freq
-is large and depends on the die revision.
+ .../bindings/net/davicom,dm9051.yaml          |   62 +
+ drivers/net/ethernet/davicom/Kconfig          |   31 +
+ drivers/net/ethernet/davicom/Makefile         |    1 +
+ drivers/net/ethernet/davicom/dm9051.c         | 1260 +++++++++++++++++
+ drivers/net/ethernet/davicom/dm9051.h         |  162 +++
+ 5 files changed, 1516 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.c
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.h
 
-I don't see why we should filter out these frequencies so far.
 
-Neil
-
-> 
-> Thanks,
-> 
->          M.
+base-commit: 9d922f5df53844228b9f7c62f2593f4f06c0b69b
+-- 
+2.20.1
 
