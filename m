@@ -2,54 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB3DA4B1BB0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 02:57:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E279B4B1BC3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 02:59:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347046AbiBKB5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 20:57:32 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55794 "EHLO
+        id S1347073AbiBKB7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 20:59:31 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230175AbiBKB5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 20:57:31 -0500
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85ADF5F65
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 17:57:30 -0800 (PST)
-Received: by mail-yb1-xb2b.google.com with SMTP id v186so20845480ybg.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 17:57:30 -0800 (PST)
+        with ESMTP id S241500AbiBKB7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 20:59:30 -0500
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38B9ABBF
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 17:59:30 -0800 (PST)
+Received: by mail-yb1-xb2d.google.com with SMTP id p5so20611443ybd.13
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 17:59:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=atishpatra.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=AfM/0Cb58q6GUcC0GUIZYtPjVsr66lYC74fJRtgxODI=;
-        b=EnNCJZyXUquzo2MhBkvCK0qbobE9W87IWecoDS+rL4un+opt85eXFhJHJdCsslAAjx
-         vElioYlY8OIHwQO4p5btZ0Q4jHrOejB0Y80AOqNDO2Yc+hxPN32LOA3Im7+SIOIunSkW
-         qf7JLLSDFXR1SDKGYc27cZntGo/Mldylw6Pg0=
+         :cc;
+        bh=RFbOrJB91dtVxjgEUlW+BHbOy4fENPTN+VGup/GPGvI=;
+        b=aeJSwGK4rykn36fjxwiAifQ2+2Z3fzqooeZYqzv2HSpDW6trZ5eL8677kS4ve7tLAb
+         nRHvWxcIg7fOShRWGGWiZI0QztkV5qQqv9TnwucdAyf3rR/tGcjbtVdrRSUr+xXWcLA2
+         bnoOgTBm7nG4LySblTGJ2chjEd6Vvn5MMt4tA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=AfM/0Cb58q6GUcC0GUIZYtPjVsr66lYC74fJRtgxODI=;
-        b=33xv5l2vqzONFtJqvJsbFm13b5vtT1C9ERi15L9XK4lRDHbheVw+5302GThHVAyF7y
-         hzYGLRrUWr250RSfl1etZQsQiME4af9LzZYybvpGh5PxoawMYdzmHhJdLun2VmWIBRHK
-         LraZRgT8Dov574SH5srYYFiHmo9g7OS4hW7WR3t0o1B0xMBILRVFrll/a1sZzZOrmuDd
-         K3xru/IchD1xBA/asqtJlSlS/GmVHYVJ8iw70knlTGSQRYKvjFQsuXv4HpYWAArzVOop
-         8ZlDDB5tUIuD8y4ZBiVl0fZK1gkTyAL8gC+GDT6uzHH13o++sk3Pixj/DACYI+aIaOCP
-         a4RA==
-X-Gm-Message-State: AOAM533we+kr9cxrLK2jZ4PWnz1pb3mOIvrn2yMDdnXDtpVX03QwsJJX
-        SZPHb9G2ATpKzrfusbQ0e+HCh6LoFgYeSnjFYmzq
-X-Google-Smtp-Source: ABdhPJyiFZ6T4FoqoVQz/JR5+sOYmy012dRZdQn9sj6qa2V2tvtDR13uVkUFSQMHhHHw5byKl0LHTAU/kbr5o1PY5uc=
-X-Received: by 2002:a81:b148:: with SMTP id p69mr10549545ywh.402.1644544649729;
- Thu, 10 Feb 2022 17:57:29 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=RFbOrJB91dtVxjgEUlW+BHbOy4fENPTN+VGup/GPGvI=;
+        b=JCgC3ZKvp59Hf6YUA3uH8FKJE29sNimRauqOMXarH6egdbu5WojmEO2bkLCUhiVG+h
+         ERpQhi+KaPr5pSzpeCaIfjQrayS4N0JPeV2yR4AE4DumeCg9mAWeK2urnPrIRwZRfkTw
+         8t3dn0Y4gJvqaGrgDmgfpD1J3JOatmjrREkF0EWL+m8aXpega0bK8LjmBH7FJcfznms6
+         TeYdynhcFpccW6HKUcBs09ErpLlDhvplDeaLMnD7Qo8s6QbuusfKQZxAfovHzM86OB9C
+         YLF3UBFuaEr1qtkXyRiqJzsAbS4v2116u+r9ZDiehbERSOtMiuk6dwPSo7SGoFMUGCCS
+         9WdQ==
+X-Gm-Message-State: AOAM533WK3zcNP1cFtJxLBIn9KfklwSprsvSBnpnMvbD+u23F8w8QRGn
+        NZ4/gewKl5P8Yx4JzHWMMv4HunQfr178szN1RrYY
+X-Google-Smtp-Source: ABdhPJyeKsqysaL4TvIJFeamc+j405DBHQmC15tZqpzix8Oqnhrdb7vI+jS9cQQj4u9OuxoyR1INUXAwAjZxxxK+qdo=
+X-Received: by 2002:a25:73d5:: with SMTP id o204mr10127820ybc.472.1644544769403;
+ Thu, 10 Feb 2022 17:59:29 -0800 (PST)
 MIME-Version: 1.0
-References: <20220209123800.269774-1-heiko@sntech.de> <20220209123800.269774-9-heiko@sntech.de>
- <CAOnJCULe_5v6cb_JcoPKf-UD3bVze1U=jaYeLTsMu7pFigde+A@mail.gmail.com> <2532021.2vfPgEiFAl@diego>
-In-Reply-To: <2532021.2vfPgEiFAl@diego>
+References: <20220209123800.269774-1-heiko@sntech.de> <20220209123800.269774-2-heiko@sntech.de>
+In-Reply-To: <20220209123800.269774-2-heiko@sntech.de>
 From:   Atish Patra <atishp@atishpatra.org>
-Date:   Thu, 10 Feb 2022 17:57:19 -0800
-Message-ID: <CAOnJCUJJaPS_U3Hqg-YHT2gVMJ243L=070E7HRXEpt3uPga+cQ@mail.gmail.com>
-Subject: Re: [PATCH v6 08/14] riscv: move boot alternatives to a slightly
- earlier position
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Date:   Thu, 10 Feb 2022 17:59:18 -0800
+Message-ID: <CAOnJCUL6b=2dMJfJFTUj-3gshHGMYpgQEc0XUeSbkC4g7ayJkQ@mail.gmail.com>
+Subject: Re: [PATCH v6 01/14] riscv: prevent null-pointer dereference with sbi_remote_fence_i
+To:     Heiko Stuebner <heiko@sntech.de>
 Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
@@ -76,7 +74,6 @@ Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
         Christoph Muellner <cmuellner@linux.com>,
         Philipp Tomsich <philipp.tomsich@vrull.eu>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -87,119 +84,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 10, 2022 at 5:11 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+On Wed, Feb 9, 2022 at 4:38 AM Heiko Stuebner <heiko@sntech.de> wrote:
 >
-> Hi Atish,
+> The callback used inside sbi_remote_fence_i is set at sbi probe time
+> to the needed variant. Before that it is a NULL pointer.
 >
-> Am Donnerstag, 10. Februar 2022, 23:42:35 CET schrieb Atish Patra:
-> > On Wed, Feb 9, 2022 at 4:39 AM Heiko Stuebner <heiko@sntech.de> wrote:
-> > >
-> > > Move the application of boot alternatives to soc_early_init().
-> > > This allows to catch more generic cases of code needing patches
-> > > than doing it in smp_prepare_boot_cpu() and also makes it actually
-> > > work if CONFIG_SMP is disabled for whatever reason.
-> > >
-> > > The position is chosen mainly as it is before the actual soc early
-> > > init runs but also already allows accessing the devicetree
-> > > via fdt_* functions.
-> > >
-> > > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > > ---
-> > >  arch/riscv/kernel/head.S    | 2 ++
-> > >  arch/riscv/kernel/smpboot.c | 2 --
-> > >  2 files changed, 2 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
-> > > index 2363b43312fc..0e1bb97f9749 100644
-> > > --- a/arch/riscv/kernel/head.S
-> > > +++ b/arch/riscv/kernel/head.S
-> > > @@ -10,6 +10,7 @@
-> > >  #include <asm/thread_info.h>
-> > >  #include <asm/page.h>
-> > >  #include <asm/pgtable.h>
-> > > +#include <asm/alternative.h>
-> > >  #include <asm/csr.h>
-> > >  #include <asm/cpu_ops_sbi.h>
-> > >  #include <asm/hwcap.h>
-> > > @@ -341,6 +342,7 @@ clear_bss_done:
-> > >         call kasan_early_init
-> > >  #endif
-> > >         /* Start the kernel */
-> > > +       call apply_boot_alternatives
-> >
-> > Do you really need this early ?
-> > if non-smp configuration is the only option, Can you do it in
-> > setup_arch() after riscv_fill_hwcap() is called ?
+> Some users like the flush_icache_*() functions suggest a generic
+> functionality, that doesn't depend on a specific boot-stage but
+> uses sbi_remote_fence_i as one option to flush other cpu cores.
 >
-> The issue I see is, we we have the soc_early_init [0] running
-> directly after this and the one user I see [1] already wants to
-> ioremap io-memory at this stage.
->
+> So they definitly shouldn't run into null-pointer dereference
 
-Kendryte is always a special case. IIRC, ioremap is done so early
-so that it can use all 8MB of SRAM.
+/s/definitly/definitely
 
-> So judging by the fact that more early-inits will get added
-> in the future I do guess we should've set up the io-memory
-> page-type by this point?
+> issues when called "too early" during boot.
 >
+> So introduce an empty function to be the standard for the __sbi_rfence
+> function pointer until sbi_init has run.
+>
+> Users of sbi_remote_fence_i will have separate code for the local
+> cpu and sbi_init() is called before other cpus are brought up.
+> So there are no other cpus present at the time when the issue
+> might happen.
+>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> ---
+>  arch/riscv/kernel/sbi.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/kernel/sbi.c b/arch/riscv/kernel/sbi.c
+> index f72527fcb347..c839acd668d3 100644
+> --- a/arch/riscv/kernel/sbi.c
+> +++ b/arch/riscv/kernel/sbi.c
+> @@ -15,11 +15,19 @@
+>  unsigned long sbi_spec_version __ro_after_init = SBI_SPEC_VERSION_DEFAULT;
+>  EXPORT_SYMBOL(sbi_spec_version);
+>
+> +static int __sbi_rfence_none(int fid, const struct cpumask *cpu_mask,
+> +                            unsigned long start, unsigned long size,
+> +                            unsigned long arg4, unsigned long arg5)
+> +{
+> +       return -EOPNOTSUPP;
+> +}
+> +
+>  static void (*__sbi_set_timer)(uint64_t stime) __ro_after_init;
+>  static int (*__sbi_send_ipi)(const struct cpumask *cpu_mask) __ro_after_init;
+>  static int (*__sbi_rfence)(int fid, const struct cpumask *cpu_mask,
+>                            unsigned long start, unsigned long size,
+> -                          unsigned long arg4, unsigned long arg5) __ro_after_init;
+> +                          unsigned long arg4, unsigned long arg5)
+> +                          __ro_after_init = __sbi_rfence_none;
+>
+>  struct sbiret sbi_ecall(int ext, int fid, unsigned long arg0,
+>                         unsigned long arg1, unsigned long arg2,
+> --
+> 2.30.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-I hope there won't be :). For any normal mmu capable SoC, I don't
-see why that would be required.
-
->
-> Heiko
->
-> [0] https://elixir.bootlin.com/linux/latest/source/arch/riscv/kernel/soc.=
-c#L14
-> [1] https://elixir.bootlin.com/linux/latest/source/drivers/soc/canaan/k21=
-0-sysctl.c#L66
->
-> > By doing that, we can unify the cpu feature probing and you don't need
-> > a separate DT parsing just for svpbmt.
-> >
-> > >         call soc_early_init
-> > >         tail start_kernel
-> > >
-> > > diff --git a/arch/riscv/kernel/smpboot.c b/arch/riscv/kernel/smpboot.=
-c
-> > > index a6d13dca1403..f1e4948a4b52 100644
-> > > --- a/arch/riscv/kernel/smpboot.c
-> > > +++ b/arch/riscv/kernel/smpboot.c
-> > > @@ -32,7 +32,6 @@
-> > >  #include <asm/sections.h>
-> > >  #include <asm/sbi.h>
-> > >  #include <asm/smp.h>
-> > > -#include <asm/alternative.h>
-> > >
-> > >  #include "head.h"
-> > >
-> > > @@ -41,7 +40,6 @@ static DECLARE_COMPLETION(cpu_running);
-> > >  void __init smp_prepare_boot_cpu(void)
-> > >  {
-> > >         init_cpu_topology();
-> > > -       apply_boot_alternatives();
-> > >  }
-> > >
-> > >  void __init smp_prepare_cpus(unsigned int max_cpus)
-> > > --
-> > > 2.30.2
-> > >
-> > >
-> > > _______________________________________________
-> > > linux-riscv mailing list
-> > > linux-riscv@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> >
-> >
-> >
-> >
->
->
->
->
+Otherwise, LGTM.
+Reviewed-by: Atish Patra <atishp@rivosinc.com>
 
 
---=20
+-- 
 Regards,
 Atish
