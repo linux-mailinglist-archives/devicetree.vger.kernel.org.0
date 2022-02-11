@@ -2,129 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCAF94B2D16
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 19:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47E764B2DD4
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 20:38:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230008AbiBKSql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 13:46:41 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49112 "EHLO
+        id S1352920AbiBKThe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 14:37:34 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbiBKSqk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 13:46:40 -0500
-Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CCC2335
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 10:46:38 -0800 (PST)
-Received: by mail-vs1-xe33.google.com with SMTP id v6so11269786vsp.11
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 10:46:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dGzEnxcEEJBItkLvm908OZgOUF/bpGsxAyLCbIgSN18=;
-        b=Qm1kB1q1h9+UE7rWQk/Vj+7KFeLmVi6kvurff0SEHTX89SWZ/Z6VNtgJd0punbm0ka
-         3cVDODze7YEll7dPaeXMUxalRgbgJkcvzXlEr9mKKe+iiCc4ph3hd1kq0t7OLrxYAXig
-         QcQKltEn5cUrRJ9GO60f/zBb4Sg8QDHrVZUBLHlSHY7S3HUCBx11exCehkMawjfpeXc0
-         cmrKnvavnYr+QlwwHkoWzUrv9MKwRA8i+4Jhk1TaOH/trrKacV9adEtTFoGVrVdSAeAZ
-         rmJlDsycRqn7LzeOgn6b3qvcaG/xRtZ4nWsiBePNqMRq8wjnrT0cJgKxGzUes+WqjA45
-         0fbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dGzEnxcEEJBItkLvm908OZgOUF/bpGsxAyLCbIgSN18=;
-        b=S8KJxaOHTA59+ZSI5Hw0+oIFbgXix/Yu2ahefQa/KcNxKoy7bIlQPaIx/VWUpkmUMz
-         xrIQGTbnXojDhgitJR1A/MiGs5cHc3xhFTy6tjqGnXgXZ3CVSn9yr+XVetJzhPoBohNL
-         EqFnF9IN4joM3YVAPx9arZd83QUNceg/nNeD4jB+5SZTtjvX2BOOHm7Um1QPBr19GU0Q
-         SRCPAVkt1H/5s1Y9bYrQqSeTIuXv98QzRFJKPv/tmo2eIBYCzfS0hFzuAZZAcfK2KsNk
-         yVVHdwDhkIOiMtaBT+flbCOkdpOnB5Gdaq15t/s7DUpF2P2apuVBFG8omfMptjj7T2Ng
-         ENvQ==
-X-Gm-Message-State: AOAM53353QKBI/TnH2r7PvA/teO3Ldqh6VdRpVkV5pYqf7AJds3xFAH4
-        DRUUmDMvvZQ4+EFHCJm3bNiNIlzsXmyqPWx4eErVCQ==
-X-Google-Smtp-Source: ABdhPJzQaCXfowUgoTps/aDsF9udVr66a7ww5AZbBipuAmwwwu+hPtXGefPD67zj5K1i7Xsv76oDUlBzwrRECxRLPIs=
-X-Received: by 2002:a67:df83:: with SMTP id x3mr1003966vsk.86.1644605197315;
- Fri, 11 Feb 2022 10:46:37 -0800 (PST)
-MIME-Version: 1.0
-References: <20220211164716.120880-1-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220211164716.120880-1-krzysztof.kozlowski@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 11 Feb 2022 20:46:26 +0200
-Message-ID: <CAPLW+4kcm06SCpPoZm5PnsFF3AeWSp5bk6KKyMihSNmfvJ758Q@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: soc: samsung: usi: refer to dtschema for children
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1352915AbiBKThd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 14:37:33 -0500
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40898CF8;
+        Fri, 11 Feb 2022 11:37:32 -0800 (PST)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1nIbDQ-00Ag11-EE; Fri, 11 Feb 2022 19:04:20 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH 1/2] dt-bindings: arm: imx: add imx8mm gw7903 support
+Date:   Fri, 11 Feb 2022 11:04:17 -0800
+Message-Id: <20220211190418.11870-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Feb 2022 at 18:47, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> Explicitly reference the dtschema for USI children implementing specific
-> serial protocol (I2C, SPI, UART).  The SPI schema is not yet accepted,
-> so it will be provided later.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->
-> ---
->
-> Changes since v1:
-> 1. Drop entire paragraph about USI nodes.
-> ---
+The GW7903 is based on the i.MX 8M Mini SoC featuring:
+ - LPDDR4 DRAM
+ - eMMC FLASH
+ - microSD connector with UHS support
+ - LIS2DE12 3-axis accelerometer
+ - Gateworks System Controller
+ - IMX8M FEC
+ - software selectable RS232/RS485/RS422 serial transceiver
+ - PMIC
+ - 2x off-board bi-directional opto-isolated digital I/O
+ - 1x M.2 A-E Key Socket and 1x MiniPCIe socket with USB2.0 and PCIe
+ (resistor loading to route PCIe/USB2 between M.2 and MiniPCIe socket)
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
->  .../bindings/soc/samsung/exynos-usi.yaml      | 20 +++++++++----------
->  1 file changed, 10 insertions(+), 10 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-> index 58f2e9d8bb0e..a98ed66d092e 100644
-> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-> @@ -17,13 +17,6 @@ description: |
->    child nodes, each representing a serial sub-node device. The mode setting
->    selects which particular function will be used.
->
-> -  Refer to next bindings documentation for information on protocol subnodes that
-> -  can exist under USI node:
-> -
-> -  [1] Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> -  [2] Documentation/devicetree/bindings/i2c/i2c-exynos5.txt
-> -  [3] Documentation/devicetree/bindings/spi/spi-samsung.txt
-> -
->  properties:
->    $nodename:
->      pattern: "^usi@[0-9a-f]+$"
-> @@ -75,10 +68,17 @@ properties:
->        This property is optional.
->
->  patternProperties:
-> -  # All other properties should be child nodes
-> -  "^(serial|spi|i2c)@[0-9a-f]+$":
-> +  "^i2c@[0-9a-f]+$":
-> +    $ref: /schemas/i2c/i2c-exynos5.yaml
-> +    description: Child node describing underlying I2C
-> +
-> +  "^serial@[0-9a-f]+$":
-> +    $ref: /schemas/serial/samsung_uart.yaml
-> +    description: Child node describing underlying UART/serial
-> +
-> +  "^spi@[0-9a-f]+$":
->      type: object
-> -    description: Child node describing underlying USI serial protocol
-> +    description: Child node describing underlying SPI
->
->  required:
->    - compatible
-> --
-> 2.32.0
->
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 5075fd8c1b42..62fb83edc3d1 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -769,6 +769,7 @@ properties:
+               - gw,imx8mm-gw73xx-0x       # i.MX8MM Gateworks Development Kit
+               - gw,imx8mm-gw7901          # i.MX8MM Gateworks Board
+               - gw,imx8mm-gw7902          # i.MX8MM Gateworks Board
++              - gw,imx8mm-gw7903          # i.MX8MM Gateworks Board
+               - kontron,imx8mm-n801x-som  # i.MX8MM Kontron SL (N801X) SOM
+               - variscite,var-som-mx8mm   # i.MX8MM Variscite VAR-SOM-MX8MM module
+               - prt,prt8mm                # i.MX8MM Protonic PRT8MM Board
+-- 
+2.17.1
+
