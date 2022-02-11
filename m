@@ -2,69 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 118204B1A4D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 01:20:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D66BC4B1A65
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 01:26:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346280AbiBKAUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 19:20:14 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52672 "EHLO
+        id S1346316AbiBKA0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 19:26:10 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346239AbiBKAUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 19:20:12 -0500
-Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826C25590
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 16:20:12 -0800 (PST)
-Received: by mail-oo1-xc36.google.com with SMTP id t75-20020a4a3e4e000000b002e9c0821d78so8486739oot.4
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 16:20:12 -0800 (PST)
+        with ESMTP id S239552AbiBKA0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 19:26:09 -0500
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B31B455A0
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 16:26:09 -0800 (PST)
+Received: by mail-yb1-xb30.google.com with SMTP id 192so20232179ybd.10
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 16:26:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=MwxbqAdEkZ6Sl6Mr4U5PKeV2CJ4YFO38+JRFL6HkmUs=;
-        b=ivkTs9VLGEN6yiftiZ7xyV0BR+b9W4At1QeWBx6knNXPvShsUdSHTSDTKn0W79v8ZO
-         xpGs6zqmYZhAF2KLGbZH3Ia/3qZjk61YEGp7jpngI5zXMdgcwftZpEJcbUU3Kkz3wc4E
-         W1p/kdaHWp+KJylRcdP0KBXjKrEk2ktg2M2JgXkDXzAuMZLpQhspsUNPnTJc2FAxZ/qA
-         NzX9HWMEemt+y/J3NMT0wbwxL42lP21qyM61O2bjL1QxaXhbIbR9SjfeXZbeJ+oMLlNF
-         XLpmTopxrQRqTV5YuQ3zCsLWFeLJC1m044NRMNcfWquupwarOvivkac3huprdl6/fFFY
-         opWg==
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=83N6vWrDkZWain3/17uq/dXBQLDHd+VSAFLGYlPzOiw=;
+        b=ImzKyXL9JdkGxreq3TljkBiZd1/U2yOKqNjkNfES3hHIqCkqc0E0m7Oc1VYnpT7xre
+         T1ktfUfsg9ZAC6caxpY83Ize6AJQM2iG+kiFsOG7ZDmqX+9xTYM5FrZ0/HrQzj73phmk
+         rrpWGoclZftkmpWT+Ivndn2D/r3rIUPv5ByNM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MwxbqAdEkZ6Sl6Mr4U5PKeV2CJ4YFO38+JRFL6HkmUs=;
-        b=aF/wlcAA02VtGT0lWgv/QKVIrq5jWTPLCfjHLb/+ene/SVVGELQeGcIh5amWlJ60ns
-         72v7KVDGPkfkP+DEGBkfropZVnX1a/HmLxx0ijlO6iLHS5C0YhDea1Ox2WOuE7ZqOHGx
-         AiEKpRR8EFfr/NQGGXHaAulJGrMQH0NS6+M9kqWbHwLN57lM6qZ52UHFiMjyTBOMQQQi
-         9LK/4QsFkxkSg5GsoL6UgKjjkHqsZ6YRUSaVWz728UB2ZVHGboB7/W6qLir+RZc/Dng4
-         26osC+qe+N3ko5/loKwKYemwJZuMzvmWparSiBGiCe4g/IjqR/o0X932pAqd5PPhAqs3
-         llGQ==
-X-Gm-Message-State: AOAM530H0zVSDmBkCkiXHQOFvmkaOKddtLN0+6kfql/IPh9FvPlVvLXq
-        L9sPDMQKlY+zvcDMnzynkMsF6w==
-X-Google-Smtp-Source: ABdhPJwmuglMyj8JWI40ASfUcyZh8vsscGz4rztyMuEyYtVpPtEXRixA6bBNoGJbI0DN0bk+1tZPSw==
-X-Received: by 2002:a05:6870:3a0e:: with SMTP id du14mr1567723oab.25.1644538811862;
-        Thu, 10 Feb 2022 16:20:11 -0800 (PST)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id n66sm8694763oif.35.2022.02.10.16.20.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Feb 2022 16:20:11 -0800 (PST)
-Date:   Thu, 10 Feb 2022 18:20:09 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v3 0/7] dt-bindings: Convert multiple Qualcomm OPP
- and CPUFreq bindings to DT schema
-Message-ID: <YgWrufkNy3OfmV4o@builder.lan>
-References: <20220203072226.51482-1-y.oudjana@protonmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=83N6vWrDkZWain3/17uq/dXBQLDHd+VSAFLGYlPzOiw=;
+        b=e+Xjv8IPpD6fHibu3QmpZm0bRLL7Q5mTR+jOEoGocuqJquGNQT76YGfAO5D66sB604
+         eWec4C4PzFEOfUnI+x8Nmq24aDh/JF+XC57TzuFYNEaefLJw4J+t/KhP2uKXHqf6LuzD
+         /xunQfjmvIigRT7JXjpKitdQ5IkoitJZ0PGe6AtplRMqPmzN5z8nTdgBC+dYRvOh6oyM
+         p1oHQCgUPRwIL+jZ1weSBJlvjpx7P+Cbyod8JehwPe5awCVqhKsrgJit6lKjbHOBVErk
+         LdIeiou7Tz2rV4xaYRigxYjIcqQV6fq/XLGVXbx68qrWAQdsj4ILXy3lMEHd0WxjIKy7
+         cyrg==
+X-Gm-Message-State: AOAM531HzHm8kqckf6viXei/iCzxYIaFkGvIuTdl0GumoervzYL5Qnpl
+        TAdgytZ6mBxtSJFKlgsy7LOOGkL+bG6VEqTF8PPw
+X-Google-Smtp-Source: ABdhPJy4a/432gjLvmZVWdj5crHbM/KsVz7OqHnLg1XVpmyOGMdekEAT80M2FEW71WD3+vYj/xMBF2lWxTdBiWgGtNQ=
+X-Received: by 2002:a25:c344:: with SMTP id t65mr9155165ybf.10.1644539168913;
+ Thu, 10 Feb 2022 16:26:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220203072226.51482-1-y.oudjana@protonmail.com>
+References: <20220209123800.269774-1-heiko@sntech.de>
+In-Reply-To: <20220209123800.269774-1-heiko@sntech.de>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Thu, 10 Feb 2022 16:25:58 -0800
+Message-ID: <CAOnJCUL5w4+_zJvu-BxP+LGN2ohv6arY+uh0DOU586v_5mCE8g@mail.gmail.com>
+Subject: Re: [PATCH v6 00/14] riscv: support for Svpbmt and D1 memory types
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Wei Fu <wefu@redhat.com>,
+        liush <liush@allwinnertech.com>, Guo Ren <guoren@kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Drew Fustini <drew@beagleboard.org>,
+        Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Greg Favor <gfavor@ventanamicro.com>,
+        Andrea Mondelli <andrea.mondelli@huawei.com>,
+        Jonathan Behrens <behrensj@mit.edu>,
+        Xinhaoqu <xinhaoqu@huawei.com>,
+        Bill Huffman <huffman@cadence.com>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Allen Baum <allen.baum@esperantotech.com>,
+        Josh Scheid <jscheid@ventanamicro.com>,
+        Richard Trauben <rtrauben@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Christoph Muellner <cmuellner@linux.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,79 +84,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 03 Feb 01:24 CST 2022, Yassine Oudjana wrote:
+On Wed, Feb 9, 2022 at 4:38 AM Heiko Stuebner <heiko@sntech.de> wrote:
+>
+> Svpbmt is an extension defining "Supervisor-mode: page-based memory types"
+> for things like non-cacheable pages or I/O memory pages.
+>
+>
+> So this is my 2nd try at implementing Svpbmt (and the diverging D1 memory
+> types) using the alternatives framework.
+>
+> This includes a number of changes to the alternatives mechanism itself.
+> The biggest one being the move to a more central location, as I expect
+> in the future, nearly every chip needing some sort of patching, be it
+> either for erratas or for optional features (svpbmt or others).
+>
+> The dt-binding for svpbmt itself is of course not finished and is still
+> using the binding introduced in previous versions, as where to put
+> a svpbmt-property in the devicetree is still under dicussion.
+> Atish seems to be working on a framework for extensions [0],
+>
 
-> This series is a compilation of DT schema conversions of multiple Qualcomm
-> OPP and CPUFreq bindings:
-> - qcom-cpufreq-nvmem (operating-points-v2-kryo-cpu)
-> - qcom-opp (operating-points-v2-qcom-level)
-> - qcom,cpr
-> 
+Here is the patch series
+https://lore.kernel.org/lkml/20220210214018.55739-1-atishp@rivosinc.com/
 
-Really nice to see these updates!
+I think we can simplify the cpu feature probing in PATCH 10 with the
+above series
+which simply relies on the existing riscv_isa bitmap.
 
-I'm going to pick up the patches that goes through the Qualcomm tree,
-but patch 3,4 and 7 would be better to take through Viresh's tree, so
-I've looped him in on this reply.
+We also don't need the separate svpbmt property in DT mmu node.
+Let me know what you think.
 
-Thanks,
-Bjorn
+> The series also introduces support for the memory types of the D1
+> which are implemented differently to svpbmt. But when patching anyway
+> it's pretty clean to add the D1 variant via ALTERNATIVE_2 to the same
+> location.
+>
+> The only slightly bigger difference is that the "normal" type is not 0
+> as with svpbmt, so kernel patches for this PMA type need to be applied
+> even before the MMU is brought up, so the series introduces a separate
+> stage for that.
+>
+>
+> In theory this series is 3 parts:
+> - sbi cache-flush / null-ptr
+> - alternatives improvements
+> - svpbmt+d1
+>
+> So expecially patches from the first 2 areas could be applied when
+> deemed ready, I just thought to keep it together to show-case where
+> the end-goal is and not requiring jumping between different series.
+>
+>
+> The sbi cache-flush patch is based on Atish's sparse-hartid patch [1],
+> as it touches a similar area in mm/cacheflush.c
+>
+>
+> I picked the recipient list from the previous version, hopefully
+> I didn't forget anybody.
+>
+> changes in v6:
+> - rebase onto 5.17-rc1
+> - handle sbi null-ptr differently
+> - improve commit messages
+> - use riscv,mmu as property name
+>
+> changes in v5:
+> - move to use alternatives for runtime-patching
+> - add D1 variant
+>
+>
+> [0] https://lore.kernel.org/r/20211224211632.1698523-1-atishp@rivosinc.com
+> [1] https://lore.kernel.org/r/20220120090918.2646626-1-atishp@rivosinc.com
+>
+>
+> Heiko Stuebner (12):
+>   riscv: prevent null-pointer dereference with sbi_remote_fence_i
+>   riscv: integrate alternatives better into the main architecture
+>   riscv: allow different stages with alternatives
+>   riscv: implement module alternatives
+>   riscv: implement ALTERNATIVE_2 macro
+>   riscv: extend concatenated alternatives-lines to the same length
+>   riscv: prevent compressed instructions in alternatives
+>   riscv: move boot alternatives to a slightly earlier position
+>   riscv: Fix accessing pfn bits in PTEs for non-32bit variants
+>   riscv: add cpufeature handling via alternatives
+>   riscv: remove FIXMAP_PAGE_IO and fall back to its default value
+>   riscv: add memory-type errata for T-Head
+>
+> Wei Fu (2):
+>   dt-bindings: riscv: add MMU Standard Extensions support for Svpbmt
+>   riscv: add RISC-V Svpbmt extension support
+>
+>  .../devicetree/bindings/riscv/cpus.yaml       |  10 ++
+>  arch/riscv/Kconfig.erratas                    |  29 ++--
+>  arch/riscv/Kconfig.socs                       |   1 -
+>  arch/riscv/Makefile                           |   2 +-
+>  arch/riscv/errata/Makefile                    |   2 +-
+>  arch/riscv/errata/sifive/errata.c             |  10 +-
+>  arch/riscv/errata/thead/Makefile              |   1 +
+>  arch/riscv/errata/thead/errata.c              |  85 +++++++++++
+>  arch/riscv/include/asm/alternative-macros.h   | 114 ++++++++-------
+>  arch/riscv/include/asm/alternative.h          |  16 ++-
+>  arch/riscv/include/asm/errata_list.h          |  52 +++++++
+>  arch/riscv/include/asm/fixmap.h               |   2 -
+>  arch/riscv/include/asm/pgtable-32.h           |  17 +++
+>  arch/riscv/include/asm/pgtable-64.h           |  79 +++++++++-
+>  arch/riscv/include/asm/pgtable-bits.h         |  10 --
+>  arch/riscv/include/asm/pgtable.h              |  53 +++++--
+>  arch/riscv/include/asm/vendorid_list.h        |   1 +
+>  arch/riscv/kernel/Makefile                    |   1 +
+>  arch/riscv/{errata => kernel}/alternative.c   |  48 ++++++-
+>  arch/riscv/kernel/cpufeature.c                | 136 +++++++++++++++++-
+>  arch/riscv/kernel/head.S                      |   2 +
+>  arch/riscv/kernel/module.c                    |  29 ++++
+>  arch/riscv/kernel/sbi.c                       |  10 +-
+>  arch/riscv/kernel/smpboot.c                   |   4 -
+>  arch/riscv/kernel/traps.c                     |   2 +-
+>  arch/riscv/mm/init.c                          |   1 +
+>  26 files changed, 606 insertions(+), 111 deletions(-)
+>  create mode 100644 arch/riscv/errata/thead/Makefile
+>  create mode 100644 arch/riscv/errata/thead/errata.c
+>  rename arch/riscv/{errata => kernel}/alternative.c (59%)
+>
+> --
+> 2.30.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-> Converting each one to DT schema introduces new dt_binding_check and
-> dtbs_check errors to the others, so it was better to combine them into
-> a series. Some errors were also caused by a couple of device trees having
-> OPP tables with names that do not follow opp-v2-base, so these got fixed
-> in this series as well. Finally, the lack of MSM8996 compatibles in
-> arm/qcom.yaml caused an error in the opp-v2-kryo-cpu example, so they were
-> added to the schema as well as to the msm8996-mtp device tree, which only
-> had qcom,msm8996-mtp as its compatible.
-> 
-> PATCH 4/7 is a new version of a patch[1] that was sent as part of
-> a different series before, and PATCH 7/7 is a new version of a patch[2]
-> that was sent alone.
-> 
-> Changes in v3:
->  - Resend with unified version for all patches
-> 
-> Changes since v1 (PATCH v2 4/7):
->  - Split the schema into an OPP schema and a CPUFreq schema. 
-> 
-> Changes since v1 (PATCH v2 7/7):
->  - Remove allOf from compatible.
-> 
-> Yassine Oudjana (7):
->   dt-bindings: arm: qcom: Add msm8996 and apq8096 compatibles
->   arm64: dts: qcom: msm8996-mtp: Add msm8996 compatible
->   dt-bindings: opp: qcom-opp: Convert to DT schema
->   dt-bindings: opp: Convert qcom-nvmem-cpufreq to DT schema
->   arm64: dts: qcom: msm8996: Rename cluster OPP tables
->   arm64: dts: qcom: qcs404: Rename CPU and CPR OPP tables
->   dt-bindings: power: avs: qcom,cpr: Convert to DT schema
-> 
->  .../devicetree/bindings/arm/qcom.yaml         |  16 +-
->  .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml  | 166 ++++
->  .../bindings/opp/opp-v2-kryo-cpu.yaml         | 257 ++++++
->  .../bindings/opp/opp-v2-qcom-level.yaml       |  60 ++
->  .../bindings/opp/qcom-nvmem-cpufreq.txt       | 796 ------------------
->  .../devicetree/bindings/opp/qcom-opp.txt      |  19 -
->  .../bindings/power/avs/qcom,cpr.txt           | 130 ---
->  .../bindings/power/avs/qcom,cpr.yaml          | 160 ++++
->  MAINTAINERS                                   |   5 +-
->  arch/arm64/boot/dts/qcom/msm8996-mtp.dts      |   2 +-
->  arch/arm64/boot/dts/qcom/msm8996.dtsi         |   4 +-
->  arch/arm64/boot/dts/qcom/qcs404.dtsi          |   4 +-
->  12 files changed, 666 insertions(+), 953 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
->  create mode 100644 Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
->  create mode 100644 Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->  delete mode 100644 Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
->  delete mode 100644 Documentation/devicetree/bindings/opp/qcom-opp.txt
->  delete mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
->  create mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20211014083016.137441-6-y.oudjana@protonmail.com/
-> [2] https://lore.kernel.org/linux-arm-msm/20211221133937.173618-1-y.oudjana@protonmail.com/
-> -- 
-> 2.34.1
-> 
-> 
+
+
+-- 
+Regards,
+Atish
