@@ -2,293 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EE684B2996
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 17:04:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB2F84B299E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 17:04:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349932AbiBKQDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 11:03:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36078 "EHLO
+        id S1349768AbiBKQDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 11:03:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349919AbiBKQDQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 11:03:16 -0500
-X-Greylist: delayed 1157 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 11 Feb 2022 08:03:14 PST
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F035BC;
-        Fri, 11 Feb 2022 08:03:14 -0800 (PST)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 1762F240004;
-        Fri, 11 Feb 2022 16:03:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1644595393;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=9lDiPi/tEXd7VcxvvHOcpDWNMks+EpS4Jkm01UCTlRc=;
-        b=Njwo0Z/T4I/lpemsH+MzNZOgM7d0zCmXm0S2Vs0CNNuRP7kW/I/FZocPzywZz1XRPLYjDN
-        7PL2/kBWbq17PyLzNTbgScLkTgHGh8cSrGC5mFhbH1pEg37umjkj5OMUXhoKVE+X7aPlZe
-        5qp4auB3tAAhRZdDkXVUA4WzSlkN2ZjeYJUUjV/ZHc9ybLhBITyrFvVwL3WgNiajsBsp0l
-        pgalpyzLFd8TmzjtVL9/NXt3cTvBoWLodSUOx8GxYTIUhKmlgOHPB6zQC5Yu51eU9NSha3
-        ZeKb/cbWBzWm1HS7Wegljp9nFB6hRCG4Vu4QwQo52Rz6tLQjmIvOt8uB2w3bDw==
-Date:   Fri, 11 Feb 2022 17:03:09 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 08/66] dt-bindings: media: Add Allwinner A31 MIPI
- CSI-2 bindings documentation
-Message-ID: <YgaIvXr2GfmJUNLD@aptenodytes>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <20220205185429.2278860-9-paul.kocialkowski@bootlin.com>
- <YgFELcVluEqr9LAH@pendragon.ideasonboard.com>
+        with ESMTP id S237277AbiBKQDf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 11:03:35 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE641A8;
+        Fri, 11 Feb 2022 08:03:34 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id y23so9970852oia.13;
+        Fri, 11 Feb 2022 08:03:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oK96NDQ/E6qrHpavTpxLKhY5vh0HN7cuKJXs2+xAB5w=;
+        b=UeKD01R9uRexSk/2mxrZ+gmH3wWYGe4eTcizAPfY6rnp7Pc1Z+NywCL3A78T+MABTR
+         CpYF+iaBlUvvlAmTTmRutnqV289QM2EUphArKCi+k6RoiUq9u9dqmWurgDAX99n4FZlK
+         oLgPIbFx28mIf/g5a5ESqYkHGMH+uwHKqhmQyDtICnfDmi2vFjsD8cENebp56NB9oZ8s
+         WCKOWBEXkmMLTVzoAPCY+C9V4070Z1gqeWHQ6Gi7uPcm+K7ged4ckwaYmtL/cfzoqIrL
+         N//4ZcHD8faa1FiU14n28Tn4G7QYWyrv9ikCIixjCerc/ZcZYEuuebznEo9oyvg5UrNF
+         w7ow==
+X-Gm-Message-State: AOAM530LaM4kX1KilpKyUSSXxQJ/jbaAdurOMfL15HTKvvvBJBYAZpE5
+        LUF0vgvyELMEgA7QQCsTYg4M4p9IWg==
+X-Google-Smtp-Source: ABdhPJx0EqTpAEZur0pxerj8DO4aI9eJkX9cI2W6fhFqx5wXcuO6BRRH7xso+xuLgoqeyCCm3cxStg==
+X-Received: by 2002:aca:1b05:: with SMTP id b5mr474898oib.289.1644595413118;
+        Fri, 11 Feb 2022 08:03:33 -0800 (PST)
+Received: from robh.at.kernel.org ([2607:fb90:5fee:dfce:b6df:c3e1:b1e5:d6d8])
+        by smtp.gmail.com with ESMTPSA id n12sm9549472oop.5.2022.02.11.08.03.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 08:03:32 -0800 (PST)
+Received: (nullmailer pid 435201 invoked by uid 1000);
+        Fri, 11 Feb 2022 16:03:30 -0000
+Date:   Fri, 11 Feb 2022 10:03:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        devicetree@vger.kernel.org, Biju Das <biju.das@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: dma: rz-dmac: Document RZ/G2UL SoC
+Message-ID: <YgaI0sc5tPKAI11h@robh.at.kernel.org>
+References: <20220206200308.14315-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="DLL0Q03AcECBpu52"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YgFELcVluEqr9LAH@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220206200308.14315-1-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 06 Feb 2022 20:03:08 +0000, Biju Das wrote:
+> Document RZ/G2UL DMAC bindings. RZ/G2UL DMAC is identical to one found
+> on the RZ/G2L SoC. No driver changes are required as generic compatible
+> string "renesas,rz-dmac" will be used as a fallback.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> This patch depend upon [1]
+> [1] https://patchwork.kernel.org/project/linux-dmaengine/patch/20220110134659.30424-9-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> ---
+>  Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
 
---DLL0Q03AcECBpu52
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Laurent,
-
-Thanks for the review!
-
-On Mon 07 Feb 22, 18:09, Laurent Pinchart wrote:
-> Hi Paul,
->=20
-> Thank you for the patch.
->=20
-> On Sat, Feb 05, 2022 at 07:53:31PM +0100, Paul Kocialkowski wrote:
-> > This introduces YAML bindings documentation for the Allwinner A31 MIPI
-> > CSI-2 controller.
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > Reviewed-by: Maxime Ripard <mripard@kernel.org>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../media/allwinner,sun6i-a31-mipi-csi2.yaml  | 142 ++++++++++++++++++
-> >  1 file changed, 142 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,s=
-un6i-a31-mipi-csi2.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a3=
-1-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-=
-a31-mipi-csi2.yaml
-> > new file mode 100644
-> > index 000000000000..09207904b6db
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-=
-csi2.yaml
-> > @@ -0,0 +1,142 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-mipi-csi2=
-=2Eyaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Allwinner A31 MIPI CSI-2 Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: allwinner,sun6i-a31-mipi-csi2
-> > +      - items:
-> > +          - const: allwinner,sun8i-v3s-mipi-csi2
-> > +          - const: allwinner,sun6i-a31-mipi-csi2
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Bus Clock
-> > +      - description: Module Clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bus
-> > +      - const: mod
-> > +
-> > +  phys:
-> > +    maxItems: 1
-> > +    description: MIPI D-PHY
-> > +
-> > +  phy-names:
-> > +    items:
-> > +      - const: dphy
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        description: Input port, connect to a MIPI CSI-2 sensor
-> > +
-> > +        properties:
-> > +          reg:
-> > +            const: 0
-> > +
-> > +          endpoint:
-> > +            $ref: video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> > +
-> > +            properties:
-> > +              data-lanes:
-> > +                minItems: 1
-> > +                maxItems: 4
-> > +
-> > +            required:
-> > +              - data-lanes
-> > +
-> > +        additionalProperties: false
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        description: Output port, connect to a CSI controller
-> > +
-> > +        properties:
-> > +          reg:
-> > +            const: 1
-> > +
-> > +          endpoint:
-> > +            $ref: video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> > +
-> > +        additionalProperties: false
->=20
-> The two ports should be required.
-
-Agreed.
-
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - phys
-> > +  - phy-names
->=20
-> And ports should be required here.
-
-Sure!
-
-Thanks,
-
-Paul
-
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->
-> > +  - resets
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
-> > +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
-> > +
-> > +    mipi_csi2: csi@1cb1000 {
-> > +        compatible =3D "allwinner,sun8i-v3s-mipi-csi2",
-> > +                     "allwinner,sun6i-a31-mipi-csi2";
-> > +        reg =3D <0x01cb1000 0x1000>;
-> > +        interrupts =3D <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks =3D <&ccu CLK_BUS_CSI>,
-> > +                 <&ccu CLK_CSI1_SCLK>;
-> > +        clock-names =3D "bus", "mod";
-> > +        resets =3D <&ccu RST_BUS_CSI>;
-> > +
-> > +        phys =3D <&dphy>;
-> > +        phy-names =3D "dphy";
-> > +
-> > +        ports {
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            mipi_csi2_in: port@0 {
-> > +                reg =3D <0>;
-> > +
-> > +                mipi_csi2_in_ov5648: endpoint {
-> > +                    data-lanes =3D <1 2 3 4>;
-> > +
-> > +                    remote-endpoint =3D <&ov5648_out_mipi_csi2>;
-> > +                };
-> > +            };
-> > +
-> > +            mipi_csi2_out: port@1 {
-> > +                reg =3D <1>;
-> > +
-> > +                mipi_csi2_out_csi0: endpoint {
-> > +                    remote-endpoint =3D <&csi0_in_mipi_csi2>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
->=20
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---DLL0Q03AcECBpu52
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmIGiL0ACgkQ3cLmz3+f
-v9H2kgf/YOpO7HNyL/f7yp3Rt82ZrAhqT1u/hMvsisSPYXG+gdT6t0QV9P8AKXJ6
-jVbnmUXI9XnnLjSt1LyskT3j9xBA+2RwdbM/HwvHJy765Z3Dt5R/TBeY2hPltQgG
-PBDHT4ZYnQdgd7DB4znvO58QNq8vXZaiD37l/aTLQQdjl5NSnc51GoHDlWNR2eEl
-XjWyP7EH4Dwoq68Mx+iRmgJge3sI1Yod6dZ/0++pTMSgW3bqtXLBJLvhD9qBXYry
-vfPD14/6JpNS1c2yImYIe266jNLd/+M5tPJhwVdHfnt1gdZLcASuf3I3P4KjXnqB
-YueHalxGWSqPrxlcWc4RSW2KTpdl1w==
-=8Pob
------END PGP SIGNATURE-----
-
---DLL0Q03AcECBpu52--
+Acked-by: Rob Herring <robh@kernel.org>
