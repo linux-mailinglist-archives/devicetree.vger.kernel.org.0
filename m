@@ -2,122 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 877F84B28CF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 16:11:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 925984B28D5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 16:12:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348121AbiBKPLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 10:11:34 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59040 "EHLO
+        id S1351233AbiBKPMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 10:12:38 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232068AbiBKPLd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 10:11:33 -0500
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD80E307;
-        Fri, 11 Feb 2022 07:11:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1644592293; x=1676128293;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=UAfT14of1NM3JqsPga/1VFj8mq9Ld+eK2uBRpqiefpY=;
-  b=GWkmxsLWsHZqc3PkY4jLNIn5cF+UthaTxR/UUm4QN6xqid0RH3/1DicV
-   ClclIH+21bbVaZV6H3kPEzbe5Eff5FzKI+eHY82GhVPgRQconLetHVk0R
-   0EP4r5IAoWqiBJ/6STXwGIjfMqoIjdZkCehE7XgVuGtlI4KDiafUmB/sm
-   s=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 11 Feb 2022 07:11:32 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2022 07:11:32 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Fri, 11 Feb 2022 07:11:31 -0800
-Received: from [10.216.7.73] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Fri, 11 Feb
- 2022 07:11:26 -0800
-Subject: Re: [PATCH V5 3/6] mfd: pm8008: Add mfd cell struct to register LDOs
-To:     Lee Jones <lee.jones@linaro.org>
-CC:     Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "Das Srinagesh" <gurus@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_collinsd@quicinc.com>,
-        <quic_subbaram@quicinc.com>, <quic_jprakash@quicinc.com>
-References: <1644331940-18986-1-git-send-email-quic_c_skakit@quicinc.com>
- <1644331940-18986-4-git-send-email-quic_c_skakit@quicinc.com>
- <CAE-0n52B4heY5fcbz71JPOqvMVvmqsXO94V+Z0qTTw_XXextJw@mail.gmail.com>
- <bd5636b0-b975-1084-f285-87e458249b1a@quicinc.com>
- <YgZl/0fC8ruM0f7Y@google.com>
-From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-Message-ID: <f334c294-6ab8-76ed-872d-155b523d138b@quicinc.com>
-Date:   Fri, 11 Feb 2022 20:41:22 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S244193AbiBKPMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 10:12:37 -0500
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E64C304;
+        Fri, 11 Feb 2022 07:12:34 -0800 (PST)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2B19E1BF209;
+        Fri, 11 Feb 2022 15:12:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1644592353;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=UtWBObtE4IkrC6h1yUcZW77RKDqVsXLhy4QmmGFNKO4=;
+        b=ccsc7k/xzRCiUCIwcH++UiryHmcKwovXKWAbQ0BzGb8gXA7/c8bPP7QQpRxDTUfei/rYsO
+        d2zRJkIzW4z/xEJVPa3feg2jB8zwr9sqda3PLMZgq3VJLgdEk06z3RUHSwBXd/OXAxJ2eM
+        KlEVy+4ibDVuU1T0dMtE01z5jZ/TCudeLgPpcdB9swBmayu6bLsxSAGhcAxSZys48c74xl
+        nL/iFCoeQaOpaTEgxvEpNM3GZbRmrgM9Q8jFSds66zhUkcvuEyHjQFOFZO68n6Y7H9e+Gi
+        IAJig+PEZNDNOaCGhfhGel6U1f02I9kEIVUyRv9Rr7uxZ+Jw6iwN7Lvp1nKJ9A==
+Date:   Fri, 11 Feb 2022 16:12:29 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
+        Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 05/66] dt-bindings: sun6i-a31-mipi-dphy: Add optional
+ direction property
+Message-ID: <YgZ83To26Dgy+JD4@aptenodytes>
+References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
+ <20220205185429.2278860-6-paul.kocialkowski@bootlin.com>
+ <YgZ6qsdO+SfTemPZ@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <YgZl/0fC8ruM0f7Y@google.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="C0Hx0xaxCNYFUf5H"
+Content-Disposition: inline
+In-Reply-To: <YgZ6qsdO+SfTemPZ@robh.at.kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
+--C0Hx0xaxCNYFUf5H
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2/11/2022 7:04 PM, Lee Jones wrote:
-> On Fri, 11 Feb 2022, Satya Priya Kakitapalli (Temp) wrote:
->
->> On 2/10/2022 7:02 AM, Stephen Boyd wrote:
->>> Quoting Satya Priya (2022-02-08 06:52:17)
->>>> diff --git a/drivers/mfd/qcom-pm8008.c b/drivers/mfd/qcom-pm8008.c
->>>> index c472d7f..e8569cc 100644
->>>> --- a/drivers/mfd/qcom-pm8008.c
->>>> +++ b/drivers/mfd/qcom-pm8008.c
->>>> @@ -8,6 +8,7 @@
->>>>    #include <linux/interrupt.h>
->>>>    #include <linux/irq.h>
->>>>    #include <linux/irqdomain.h>
->>>> +#include <linux/mfd/core.h>
->>>>    #include <linux/module.h>
->>>>    #include <linux/of_device.h>
->>>>    #include <linux/of_platform.h>
->>>> @@ -27,6 +28,37 @@
->>>>    #define INT_EN_CLR_OFFSET              0x16
->>>>    #define INT_LATCHED_STS_OFFSET         0x18
->>>>
->>>> +static const struct mfd_cell pm8008_regulator_devs[] = {
->>> Is there some way to not allocate this structure statically forever?
->>
->> I think No.
->>
->> I found that some of the drivers are just using one cell with .name to match
->> with regulator driver and then probing regulators using a loop. I'll do that
->> too.
->>
->> static const struct mfd_cell pm8008_regulator_devs[] = {
->>          {
->>                  .name = "qcom,pm8008-regulators",
->>          },
->>   };
-> Please use MFD_CELL_NAME() for these.
+Hi Rob,
 
+On Fri 11 Feb 22, 09:03, Rob Herring wrote:
+> On Sat, Feb 05, 2022 at 07:53:28PM +0100, Paul Kocialkowski wrote:
+> > The Allwinner A31 MIPI D-PHY block supports both tx and rx directions,
+> > although each instance of the block is meant to be used in one
+> > direction only. There will typically be one instance for MIPI DSI and
+> > one for MIPI CSI-2 (it seems unlikely to ever see a shared instance).
+> >=20
+> > Describe the direction with a new allwinner,direction property.
+> > For backwards compatibility, the property is optional and tx mode
+> > should be assumed by default.
+> >=20
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > ---
+> >  .../bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml  | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-=
+mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-=
+mipi-dphy.yaml
+> > index d0b541a461f3..22636c9fdab8 100644
+> > --- a/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dp=
+hy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dp=
+hy.yaml
+> > @@ -37,6 +37,18 @@ properties:
+> >    resets:
+> >      maxItems: 1
+> > =20
+> > +  allwinner,direction:
+> > +    $ref: '/schemas/types.yaml#/definitions/string'
+> > +    description: |
+> > +      Direction of the D-PHY:
+> > +      - "rx" for receiving (e.g. when used with MIPI CSI-2);
+> > +      - "tx" for transmitting (e.g. when used with MIPI DSI).
+> > +
+> > +    enum:
+> > +      - tx
+> > +      - rx
+> > +    default: tx
+>=20
+> Can you the phy mode to imply the direction?
 
-Okay.
+So there was a first attempt at this which introduced a PHY submode but
+it was concluded after discussions that the direction is not really a
+mode of operation choice, in the sense that the D-PHY cannot be reconfigured
+to behave in Rx or Tx mode: it is instead statically assigned to one role
+or the other. This is why it feels more appropriate to describe it in the
+device-tree.
 
+See this thread from the previous iteration:
+https://patchwork.linuxtv.org/project/linux-media/patch/20210115200141.1397=
+785-3-paul.kocialkowski@bootlin.com/#128800
 
+Cheers,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--C0Hx0xaxCNYFUf5H
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmIGfN0ACgkQ3cLmz3+f
+v9E7MwgAgb6y0f+35BKNQMY0ApR9vBuccUbtMvfY5MRxfwFygHy+dHC03V+oFXWR
+oh9Mb6Wc3RKnI6nyWPgoFzbz7KDXpHf9rubsuw9dZYtytY7cAVla5GHfJxLSZVzj
+g7Em8TMkWD86KmX7jl2LtkUyjpuWZ2YWnZnS+s2fOHBMLbUAuc2I+lelXgKxLCTL
+gluqLgtLSxn/T6tGheE5exmUTWV5Wq17QWtx+ganNYMEQoG9d0Q2sf1kE1eOocHF
+8sSTdFPAzC/f6nhMYoXBiCIpTKtAMZ+1kTuBJDEEhPLTCQ/YKvxu4UfbV2W5EvLa
+zi3iRUd2SKPMnAblAuD9zINCfUPEMQ==
+=h8WY
+-----END PGP SIGNATURE-----
+
+--C0Hx0xaxCNYFUf5H--
