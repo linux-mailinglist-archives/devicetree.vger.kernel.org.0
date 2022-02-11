@@ -2,60 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 659B54B1A92
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 01:41:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C878E4B1AA8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 01:44:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346455AbiBKAkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 19:40:51 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35398 "EHLO
+        id S1346470AbiBKAnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 19:43:51 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244490AbiBKAkv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 19:40:51 -0500
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6FB95F87
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 16:40:51 -0800 (PST)
-Received: by mail-yb1-xb30.google.com with SMTP id x136so18613963ybe.11
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 16:40:51 -0800 (PST)
+        with ESMTP id S1346487AbiBKAnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 19:43:51 -0500
+Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46FFA5F92
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 16:43:51 -0800 (PST)
+Received: by mail-oo1-xc31.google.com with SMTP id r15-20020a4ae5cf000000b002edba1d3349so8544368oov.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 16:43:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xj9VW5UsbXXn8hrxLG8NlFrJm7PqJYONQi7gA5wp6vA=;
-        b=S3YRL01EFcf3k/rzt7U5WsmZrx14CvaQSXKsLCNTgwPTP7bILrBXAAnkFfsE89reFd
-         r78F5jKtlOsYR9cM54WPSNN5toQH8CVxbzReHQGZJwUT1yXCYwp54htU9B+4yMYjWvEO
-         MFxiOctNvyloeWvaHQrgNfBBrGPCl4Bh9hNmq8oXnhwpWuRmjqxmofEBQG7cnWmycu9N
-         WT/hfjVI6v+6l4sZC/EtaXdQ4dJ+TW2YfKpSAARfO1mhi+R79XR/7FvLmgjqc8GaBc9U
-         0PleGfR2FjgrEReBEjaaZQv7DNMT9hajy2jJz0DWx+WtZ3uZADEasb5VY3EZYHQyMpWU
-         fCeQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=peIv1RFotlCgbTarhFLi0yleT6U74UOU0UlSRN43yHs=;
+        b=sgQGKQAWGA48N63ZFsHjuJMQge4WD3VzF3QcEOfMBQlnVQl93uLyEJcqouoqhe0VvZ
+         lwJXuQg9so3eOc0kKP/zoRvBj3tOMygTO/P/HxCsL29Z3aN0QIdyCo9qARxBlpHhbFdt
+         lqbSF/ofPqsTi5hnAiQZCH3SH0cGcX8p36Ca9RBE10MTdECRSHfiwvHGahYTJoQJwnOX
+         r5+qzDgAz0uyODssAnktdXUj8hNBXdVBpdUtLiJDbmG78rYzsl5SFoGz3dRrZQcn2plH
+         S6hpeFPDk/Vi51/d+M7bkbfs9W5UE86rIKkbNzFOVCooOCVcDmj6GWdvujmjm0qLJ6pz
+         fVxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xj9VW5UsbXXn8hrxLG8NlFrJm7PqJYONQi7gA5wp6vA=;
-        b=SJIVlUIditU3p9XF5xtjhHuxB7piOwJnzGajTTD3dDLUusrMnAc5kVjbAlUPz/S0Yf
-         lL5Obj/sUTirq7p8EAoS/FjVopMjIECm3QY+e7Ywjs6L1DH4Bxzs4AUd5JMNRtEb0bbD
-         HV14AdDkbbEMYphXgzMRIMEvPjtNyBmRD8o1EUMBXhkAVCcVIgGWGIcBGr5EPPdrWGN1
-         AY6wSNSneX6Qnn5wlzFe9pfn/ifOg6EWlSacJBhQEye/7ALhvNnQtGRCkewtUxTZ23UQ
-         p0yr6KWC5mUptPKp1I5QtFPh8bwe63pWSaGsKYsc8C+h4LVSW24AtuPcUuZaU29fIiXB
-         a62g==
-X-Gm-Message-State: AOAM5335EjinizT24FiGHRT4Zu2OAV1Vpk9nzfuJ+nwnY9A8XOfHwMzn
-        OCSWIkIrIZETe7aa/y76eJMan1lC8t84Kw6am5h8sw==
-X-Google-Smtp-Source: ABdhPJwhGEqaLnyuw1ENogT4CaBrGxXVjQrO53b0rIWvEMMgI6NBphqpM4BL5gL6Piw4VgURwf/zL0v6QyzNVYi2iyI=
-X-Received: by 2002:a81:9f12:: with SMTP id s18mr10328658ywn.448.1644540051033;
- Thu, 10 Feb 2022 16:40:51 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=peIv1RFotlCgbTarhFLi0yleT6U74UOU0UlSRN43yHs=;
+        b=MClQzC0V7k62dLCo6lBTg+XWJEWV8XKC6tKP8dosnAt/baGSTyOquGqcDQJygOJoNN
+         mHC/rx1GltBHaWx4tzpM5TNQhXK/tjOzun8HoS5hSpTrBA36dFuLCOKo7z511ybwxzij
+         u1YcTUhoI8m5/kKW1HnhmZ98rMofPn1EvLKREBhYlQMJXUh2456onfRXzYTaWPX7Vc4m
+         4VFwJQnzu2jehYi3ivSoWT4sVKvZYih/7aC0MJiaVvF32h/5FvatT6PnQ8IIY/zopgSt
+         Fi/nCK7Sv8EwxQ554WeFwj/r19MEzL5xpbuRITSKxNg+Nqjwxz57q4Cg9R6ySPtRQc0o
+         M/gA==
+X-Gm-Message-State: AOAM533Sqr42+S2M79Olvw7DGF0tvrjnn4y9IbB+W9JlIvZlWySF6SEJ
+        ITHW7Yeev4mtLJAeWNA+epv1fg==
+X-Google-Smtp-Source: ABdhPJye74c/DJOt1K0YAT2tbR4IdgDDxYX8XW4nFCogk+IMn+j8gnTxxW0JFF4y1ybzr4mm0UP2Rw==
+X-Received: by 2002:a4a:8f14:: with SMTP id e20mr3673292ool.0.1644540230638;
+        Thu, 10 Feb 2022 16:43:50 -0800 (PST)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id x17sm8572223oop.1.2022.02.10.16.43.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Feb 2022 16:43:50 -0800 (PST)
+Date:   Thu, 10 Feb 2022 18:43:48 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Das Srinagesh <gurus@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
+        quic_jprakash@quicinc.com
+Subject: Re: [PATCH V5 1/6] dt-bindings: regulator: Add pm8008 regulator
+ bindings
+Message-ID: <YgWxRDeo7vuTBeAo@builder.lan>
+References: <1644331940-18986-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1644331940-18986-2-git-send-email-quic_c_skakit@quicinc.com>
 MIME-Version: 1.0
-References: <20220204153535.465827-1-horatiu.vultur@microchip.com> <20220204153535.465827-2-horatiu.vultur@microchip.com>
-In-Reply-To: <20220204153535.465827-2-horatiu.vultur@microchip.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 11 Feb 2022 01:40:40 +0100
-Message-ID: <CACRpkdYPWVVhkUejiOB+4qGO2SZ17aXp0Lm4Os+nkbTadCmH=w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: pinctrl-microchip-sgpio: Fix example
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, lars.povlsen@microchip.com,
-        Steen.Hegelund@microchip.com, UNGLinuxDriver@microchip.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1644331940-18986-2-git-send-email-quic_c_skakit@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -66,17 +79,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 4, 2022 at 4:33 PM Horatiu Vultur
-<horatiu.vultur@microchip.com> wrote:
+On Tue 08 Feb 08:52 CST 2022, Satya Priya wrote:
 
-> The blamed commit adds support for irq, but the reqisters for irq are
-> outside of the memory size. They are at address 0x108. Therefore update
-> the memory size to cover all the registers used by the device.
->
-> Fixes: 01a9350bdd49fb ("dt-bindings: pinctrl: pinctrl-microchip-sgpio: Add irq support")
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> Add bindings for pm8008 pmic regulators.
+> 
+> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> ---
+> Changes in V2:
+>  - Moved this patch before "mfd: pm8008: Add pm8008 regulator node" to
+>    resolve dtschema errors. Removed regulator-min-microvolt and 
+>    regulator-max-microvolt properties.
+> 
+> Changes in V3:
+>  - As per Rob's comments added standard unit suffix for mindropout property,
+>    added blank lines where required and added description for reg property.
+> 
+> Changes in V4:
+>  - Changed compatible string to "com,pm8008-regulators"
+>  - Moved "regulator-min-dropout-voltage-microvolt" to regulator.yaml as
+>    separate patch.
+> 
+> Changes in V5:
+>  - Removed the separate compatible for pm8008 regulator driver.
+>  - Moved the supply nodes to chip level.
+>  - Removed min-dropout property.
+> 
+>  .../bindings/regulator/qcom,pm8008-regulator.yaml  | 31 ++++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml
+> new file mode 100644
+> index 0000000..0098845
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml
+> @@ -0,0 +1,31 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/qcom,pm8008-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. PM8008 Regulator bindings
+> +
+> +maintainers:
+> +  - Satya Priya <skakit@codeaurora.org>
+> +
+> +description:
+> +  Qualcomm Technologies, Inc. PM8008 is an I2C controlled PMIC
+> +  containing 7 LDO regulators.
+> +
+> +patternProperties:
+> +  "^LDO[1-7]$":
 
-This patch (1) applied to the pinctrl tree.
+Please make this lower case, to match all other regulator bindings.
 
-Yours,
-Linus Walleij
+> +    type: object
+> +    $ref: "regulator.yaml#"
+> +    description: PM8008 regulator peripherals of PM8008 regulator device
+> +
+> +    properties:
+> +      regulator-name: true
+> +
+> +    required:
+> +      - regulator-name
+
+Why is regulator-name a (and the only) required property?
+
+Regards,
+Bjorn
+
+> +
+> +    unevaluatedProperties: false
+> +
+> +additionalProperties: false
+> +...
+> -- 
+> 2.7.4
+> 
