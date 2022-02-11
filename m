@@ -2,60 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 825474B1B00
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 02:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 953094B1B14
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 02:18:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346689AbiBKBLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 20:11:41 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50720 "EHLO
+        id S1346723AbiBKBQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 20:16:50 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241756AbiBKBLk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 20:11:40 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 446A4B4B;
-        Thu, 10 Feb 2022 17:11:37 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nIKT8-0004UP-7v; Fri, 11 Feb 2022 02:11:26 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Atish Patra <atishp@atishpatra.org>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Wei Fu <wefu@redhat.com>,
-        liush <liush@allwinnertech.com>, Guo Ren <guoren@kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Drew Fustini <drew@beagleboard.org>,
-        Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Greg Favor <gfavor@ventanamicro.com>,
-        Andrea Mondelli <andrea.mondelli@huawei.com>,
-        Jonathan Behrens <behrensj@mit.edu>,
-        Xinhaoqu <xinhaoqu@huawei.com>,
-        Bill Huffman <huffman@cadence.com>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Allen Baum <allen.baum@esperantotech.com>,
-        Josh Scheid <jscheid@ventanamicro.com>,
-        Richard Trauben <rtrauben@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Christoph Muellner <cmuellner@linux.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>
-Subject: Re: [PATCH v6 08/14] riscv: move boot alternatives to a slightly earlier position
-Date:   Fri, 11 Feb 2022 02:11:24 +0100
-Message-ID: <2532021.2vfPgEiFAl@diego>
-In-Reply-To: <CAOnJCULe_5v6cb_JcoPKf-UD3bVze1U=jaYeLTsMu7pFigde+A@mail.gmail.com>
-References: <20220209123800.269774-1-heiko@sntech.de> <20220209123800.269774-9-heiko@sntech.de> <CAOnJCULe_5v6cb_JcoPKf-UD3bVze1U=jaYeLTsMu7pFigde+A@mail.gmail.com>
+        with ESMTP id S1345585AbiBKBQt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 20:16:49 -0500
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 732901167
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 17:16:49 -0800 (PST)
+Received: by mail-yb1-xb2a.google.com with SMTP id g14so20569534ybs.8
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 17:16:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NoBN/hs/2js7cc0keXoXey2EA40Z2Ak6h4Qlf3Psfq8=;
+        b=WhzmaJEbj6x+sLRtijNtfoRuDESPF2KBzPHcvxqS5/loA4Oiylf+d6T/LRAXmdIc/N
+         L/7AshaYN8bXoJy1c8GO0hNEOkiOgCTT0e15zLhtsTS95SFVEhQg73Y2XbVloB87EE7F
+         c1vVbyYQDPUmAkk5u3pBmLEUJlh69axpwyW1PQpVloCOw2UpI4qlf+z/aZBtyTHnOPQV
+         CKX4IF2Iu8iwkhmxRkCZtIz4nwE8mrbdsNmWbUcfL3niNJkj8b1YTKeNMPyQ0QP/hxwz
+         0CVtjT5Y/7Z0GkoDERsgE4jVvl0hrvby86SceBtV55DFH8WYib0PcjftWD2JN9KJtdnW
+         QdWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NoBN/hs/2js7cc0keXoXey2EA40Z2Ak6h4Qlf3Psfq8=;
+        b=1jQwArdk9fJ6xuQkpFvEFQOeoxNFKDlBov4lRCF4tpE6kGrxUpxQJ+ei8Xs/zZ2Jc0
+         6Ex2IlUmtqfMs24HvXslrXvUXsNHlc2uED5Gg6peFvM3/a1g8xMPFh0QkWanDIsQ+vxd
+         WIEek2YmyuaJvwpyycUx7MViat5amrcsuUMG5kG6+87hYpKPD5r9PPaF/ubdpNU153aC
+         HCSV+gW3E5FOKfGHT2yl7ROmcJYB+6dfWWUvFMQ3GyadSPFjYB8emtyG7eF0t6fXU+P/
+         6b8AnK7UwjHbkuyPnXBAw5DvK9I11+3HsvIg95o7gWuND207wwST+uHFlu77eWqdV840
+         50TQ==
+X-Gm-Message-State: AOAM532uo76C7H4k0ElvyzHjXMwY2TFOImCbRNzHg1clqm0cl6uQy4pZ
+        oOUzHF7+kMMzYzsmOK+YkaCx4kOwjE05KsNqy/YAsA==
+X-Google-Smtp-Source: ABdhPJzIYhJqQdxxwp0/1AjUJREgCWcUxi6xhSmlMBiKgtTzS8OM/ptmouxwZvHg2tfkzmCMautueSZh574KfrLq2jY=
+X-Received: by 2002:a81:b624:: with SMTP id u36mr10672163ywh.437.1644542208736;
+ Thu, 10 Feb 2022 17:16:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+References: <20220209184116.18094-1-luizluca@gmail.com>
+In-Reply-To: <20220209184116.18094-1-luizluca@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 11 Feb 2022 02:16:37 +0100
+Message-ID: <CACRpkdZ8jBOxxdM62Z1wCtE5UKik+G28o8jfMfvj9g3dbfs=dg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: net: dsa: realtek: convert to YAML
+ schema, add MDIO
+To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc:     devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,101 +75,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Atish,
+On Wed, Feb 9, 2022 at 7:42 PM Luiz Angelo Daros de Luca
+<luizluca@gmail.com> wrote:
 
-Am Donnerstag, 10. Februar 2022, 23:42:35 CET schrieb Atish Patra:
-> On Wed, Feb 9, 2022 at 4:39 AM Heiko Stuebner <heiko@sntech.de> wrote:
-> >
-> > Move the application of boot alternatives to soc_early_init().
-> > This allows to catch more generic cases of code needing patches
-> > than doing it in smp_prepare_boot_cpu() and also makes it actually
-> > work if CONFIG_SMP is disabled for whatever reason.
-> >
-> > The position is chosen mainly as it is before the actual soc early
-> > init runs but also already allows accessing the devicetree
-> > via fdt_* functions.
-> >
-> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > ---
-> >  arch/riscv/kernel/head.S    | 2 ++
-> >  arch/riscv/kernel/smpboot.c | 2 --
-> >  2 files changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
-> > index 2363b43312fc..0e1bb97f9749 100644
-> > --- a/arch/riscv/kernel/head.S
-> > +++ b/arch/riscv/kernel/head.S
-> > @@ -10,6 +10,7 @@
-> >  #include <asm/thread_info.h>
-> >  #include <asm/page.h>
-> >  #include <asm/pgtable.h>
-> > +#include <asm/alternative.h>
-> >  #include <asm/csr.h>
-> >  #include <asm/cpu_ops_sbi.h>
-> >  #include <asm/hwcap.h>
-> > @@ -341,6 +342,7 @@ clear_bss_done:
-> >         call kasan_early_init
-> >  #endif
-> >         /* Start the kernel */
-> > +       call apply_boot_alternatives
-> 
-> Do you really need this early ?
-> if non-smp configuration is the only option, Can you do it in
-> setup_arch() after riscv_fill_hwcap() is called ?
+> Schema changes:
+>
+> - support for mdio-connected switches (mdio driver), recognized by
+>   checking the presence of property "reg"
+> - new compatible strings for rtl8367s and rtl8367rb
+> - "interrupt-controller" was not added as a required property. It might
+>   still work polling the ports when missing.
+>
+> Examples changes:
+>
+> - renamed "switch_intc" to make it unique between examples
+> - removed "dsa-mdio" from mdio compatible property
+> - renamed phy@0 to ethernet-phy@0 (not tested with real HW)
+>   phy@ requires #phy-cells
+>
+> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
 
-The issue I see is, we we have the soc_early_init [0] running
-directly after this and the one user I see [1] already wants to
-ioremap io-memory at this stage.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-So judging by the fact that more early-inits will get added
-in the future I do guess we should've set up the io-memory
-page-type by this point?
+THANKS for doing this!
 
-
-Heiko
-
-[0] https://elixir.bootlin.com/linux/latest/source/arch/riscv/kernel/soc.c#L14
-[1] https://elixir.bootlin.com/linux/latest/source/drivers/soc/canaan/k210-sysctl.c#L66
-
-> By doing that, we can unify the cpu feature probing and you don't need
-> a separate DT parsing just for svpbmt.
-> 
-> >         call soc_early_init
-> >         tail start_kernel
-> >
-> > diff --git a/arch/riscv/kernel/smpboot.c b/arch/riscv/kernel/smpboot.c
-> > index a6d13dca1403..f1e4948a4b52 100644
-> > --- a/arch/riscv/kernel/smpboot.c
-> > +++ b/arch/riscv/kernel/smpboot.c
-> > @@ -32,7 +32,6 @@
-> >  #include <asm/sections.h>
-> >  #include <asm/sbi.h>
-> >  #include <asm/smp.h>
-> > -#include <asm/alternative.h>
-> >
-> >  #include "head.h"
-> >
-> > @@ -41,7 +40,6 @@ static DECLARE_COMPLETION(cpu_running);
-> >  void __init smp_prepare_boot_cpu(void)
-> >  {
-> >         init_cpu_topology();
-> > -       apply_boot_alternatives();
-> >  }
-> >
-> >  void __init smp_prepare_cpus(unsigned int max_cpus)
-> > --
-> > 2.30.2
-> >
-> >
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> 
-> 
-> 
-> 
-
-
-
-
+Yours,
+Linus Walleij
