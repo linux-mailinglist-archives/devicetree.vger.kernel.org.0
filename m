@@ -2,89 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D78A34B25F0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 13:38:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 822B54B26D5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 14:12:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234522AbiBKMik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 07:38:40 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44298 "EHLO
+        id S243510AbiBKNMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 08:12:19 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231896AbiBKMik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 07:38:40 -0500
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C25BD1A4;
-        Fri, 11 Feb 2022 04:38:38 -0800 (PST)
-Received: by mail-oo1-f54.google.com with SMTP id p190-20020a4a2fc7000000b0031820de484aso10071492oop.9;
-        Fri, 11 Feb 2022 04:38:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=marrboxrkvy6rFSJaOQ3G7fIKmfU+2w0NS1Nneww1Eo=;
-        b=iGaB2nUTsgg68j0Z4DPoCVolRERDw72CiQZzEiHojNcnu83cOZ3iidhpRxq83FBI3T
-         6RUHhU+PshJAoRp+/qGlumzbnl8WzZjkDQKBhBRwHhjYrT1lsrLfTIN/iOPQwOvRIzYQ
-         OgsxnIkkM3SnwUJ550LYcHwtH2qN0cnZ8kkGVFCvNrN8ibE83y2+OnDxEHAX718F0loP
-         ygobd8GCiRYxo81pnj6Tq9f46qqZADzwa3GO19CMbnyHz1xNtlOCKY7BP7m5+yKEGFku
-         IckMfJoiCgVKqIZZCbThh2O2t8O+1inNuZHQ80KI4AlyJ5fhAc5662SkbpcqT+OLW7pj
-         gHWg==
-X-Gm-Message-State: AOAM532/jLOdXkT0ifneKDntF9yYbFZ4QUBNZo+V5GAezM4TjRm0xoC5
-        yykAtdgnF5lspB85f4OfTg==
-X-Google-Smtp-Source: ABdhPJztdF3qpCFo97FLt5c6G18W/gBnuWv5aekVuuXR4+Yv1NMOgOAWJVVJKPnXuO4Ks4Xz7CC8Gg==
-X-Received: by 2002:a05:6871:4101:: with SMTP id la1mr48544oab.238.1644583117936;
-        Fri, 11 Feb 2022 04:38:37 -0800 (PST)
-Received: from robh.at.kernel.org ([2607:fb90:20d4:10b7:69a2:33cd:1782:fb47])
-        by smtp.gmail.com with ESMTPSA id 5sm6206333oai.15.2022.02.11.04.38.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 04:38:37 -0800 (PST)
-Received: (nullmailer pid 183082 invoked by uid 1000);
-        Fri, 11 Feb 2022 12:38:34 -0000
-Date:   Fri, 11 Feb 2022 06:38:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: nvmem: make "reg" property optional
-Message-ID: <YgZYyl5NsBc/2LeJ@robh.at.kernel.org>
-References: <20220124160300.25131-1-zajec5@gmail.com>
- <20220124160300.25131-2-zajec5@gmail.com>
+        with ESMTP id S243584AbiBKNMR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 08:12:17 -0500
+Received: from asav21.altibox.net (asav21.altibox.net [109.247.116.8])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C00FC8
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 05:12:14 -0800 (PST)
+Received: from localhost.localdomain (211.81-166-168.customer.lyse.net [81.166.168.211])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: noralf.tronnes@ebnett.no)
+        by asav21.altibox.net (Postfix) with ESMTPSA id CABEF80021;
+        Fri, 11 Feb 2022 14:04:58 +0100 (CET)
+From:   =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+To:     robh+dt@kernel.org, thierry.reding@gmail.com
+Cc:     sam@ravnborg.org, maxime@cerno.tech,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+Subject: [PATCH v3 0/3] drm/panel: Add MIPI DBI compatible SPI driver
+Date:   Fri, 11 Feb 2022 14:04:31 +0100
+Message-Id: <20220211130434.20732-1-noralf@tronnes.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220124160300.25131-2-zajec5@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=Adef4UfG c=1 sm=1 tr=0
+        a=OYZzhG0JTxDrWp/F2OJbnw==:117 a=OYZzhG0JTxDrWp/F2OJbnw==:17
+        a=IkcTkHD0fZMA:10 a=M51BFTxLslgA:10 a=VwQbUJbxAAAA:8 a=NEAV23lmAAAA:8
+        a=Fm3OTh2PKvcfmEjY7C4A:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Jan 2022 17:02:58 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Most NVMEM providers have cells at hardcoded addresses however there are
-> some exceptions. Some devices store cells layout in internal structs
-> using custom formats.
-> 
-> It's important to allow NVMEM consumers to still reference such NVMEM
-> cells. Making "reg" optional allows defining NVMEM cells by their names
-> only and using them with phandles.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  Documentation/devicetree/bindings/nvmem/nvmem.yaml | 3 ---
->  1 file changed, 3 deletions(-)
-> 
+Hi,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This patchset adds a driver that will work with most MIPI DBI compatible
+SPI panels out there.
+
+Maxime gave[1] a good overview of the situation with these displays and
+proposed to make a driver that works with all MIPI DBI compatible
+controllers and use a firmware file to provide the controller setup for
+a particular panel.
+
+I have now made a script[2] that can create the firmware file, example
+in the wiki[3]
+
+Main change since version 2:
+- Use Device Tree for all properties (Maxime)
+
+The MIPI DPI specification has optional support for DPI where the
+controller is configured over DBI. Because of this I put the driver in
+drm/panel so it could be extended in the future to support
+panel-mipi-dpi-spi. I have now looked at this more closely and the only
+thing that can be shared between the two are the firmware command
+functions. These functions can be moved to the drm_mipi_dbi_helper for
+sharing. Now that I know that there won't be one driver module that
+supports both use cases, I'm thinking of moving the driver to drm/tiny
+where the other drivers of its kind are located. I'll move the driver in
+the next version of the patchset unless someone have reasons for leaving
+it in drm/panel.
+
+Noralf.
+
+[1] https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@houat/
+[2] https://github.com/notro/panel-mipi-dbi/blob/main/mipi-dbi-cmd
+[3] https://github.com/notro/panel-mipi-dbi/wiki
+
+
+Noralf Trønnes (3):
+  dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
+  drm/mipi-dbi: Add driver_private member to struct mipi_dbi_dev
+  drm/panel: Add MIPI DBI compatible SPI driver
+
+ .../display/panel/panel-mipi-dbi-spi.yaml     | 124 ++++++
+ MAINTAINERS                                   |   8 +
+ drivers/gpu/drm/panel/Kconfig                 |  13 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-mipi-dbi.c        | 413 ++++++++++++++++++
+ include/drm/drm_mipi_dbi.h                    |   8 +
+ 6 files changed, 567 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-mipi-dbi.c
+
+-- 
+2.33.0
+
