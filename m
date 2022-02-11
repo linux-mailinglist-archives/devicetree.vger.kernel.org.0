@@ -2,119 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A37F4B2AD2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 17:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87E7B4B2ADE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 17:48:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245343AbiBKQqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 11:46:18 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47404 "EHLO
+        id S1351724AbiBKQsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 11:48:00 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351718AbiBKQqR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 11:46:17 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CBA0D6F
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 08:46:11 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        with ESMTP id S1351721AbiBKQsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 11:48:00 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFEF8FD
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 08:47:58 -0800 (PST)
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 026FC40053
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 16:46:08 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D78DE4004A
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 16:47:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644597968;
-        bh=YxosBduSO3gZaGp03eNLZDMC/NBLs1F+fJdwXRbsSfg=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=FlQ4WsFnT8LHn2ehInnCXTxV27oEUrSkm7RCoUaCcYMmbaiWT0s0kgHnCQLNL1yuU
-         84G2mLJPtm0C9SH9/WcWjA7IOMW4eoDgEz2+4L0KNyDrwgJPy8RMdT1GW1nZoGXAjo
-         bTQMoTNPaqlQUOOGoFXgqOav7QjOFp5a2BobUQPeV+PPojIzEOcOkaFBjMVPg+smnY
-         ieFset566KjMkIdi+vO/QdV6c1XZyTLHNGH7ylYeTo9M/QXln+hjCGGmxM2qljfqIL
-         1KfhEtGSRtPMkL+BAXC/j4hxOPVWcKDCawfleMengctHQGpNicrROok0jNZRSMmbiV
-         EWQuDXPQt7GGQ==
-Received: by mail-ed1-f69.google.com with SMTP id en7-20020a056402528700b00404aba0a6ffso5683073edb.5
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 08:46:07 -0800 (PST)
+        s=20210705; t=1644598077;
+        bh=4lswzRVAGMbVN4fxZWJ4W9VwOoIlRM/pZiE0wihHuB4=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=us/gU3pKk5J87Pblr93ix2D+jgvo73/Dr/tZoalVjJXOo8ZG1yG2QfouR3BZzujKM
+         QEDq6b9KIt3QeTZXEzYOIk587GYdmzBPKEYAUqIEQH19878FttW7qmWcp/uSmJa4zL
+         ICZ2hH9bhJhBXYMrkuSfmExx2FPRGUTvLiKg5f1DnS89Gnv5q1rnemmYq4M+k6+13E
+         i48gqu0cze+/TRADulutiYKNWyulxRWR1DfZ6AvFNdk1OCibbkAv1RWXwe405lw1ks
+         dA58ErSCLn49TAK6kq2zqGRBpIEyMNDdjaBHw1EQN+pTUP5Aj4oaaFe4wsl6notxzN
+         K7vamXY+54JbA==
+Received: by mail-ej1-f71.google.com with SMTP id d7-20020a1709061f4700b006bbf73a7becso4333063ejk.17
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 08:47:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=YxosBduSO3gZaGp03eNLZDMC/NBLs1F+fJdwXRbsSfg=;
-        b=DAqvnoFYOeCHimjCTU/izuObTXRUtu+rPmCGcMF8huEAHOB57vU8Zz/GugZ7ZRwT1A
-         opi4kFSbGhDLRDBm/75Di/UMFaNMq7U4/ZeLh2cx6gUh7oMgXkL1iGXZF/rgFGnlUv7K
-         V2co9bnRW3r/KGo8aUe8j+scASa4fRvKNZOEZDUe4Vnkb/Wu+8lNc5qz8beQ3GaKvS89
-         7AbCLb4k72jXv+XDO1WQ44XijNAFBvqnbLbLJqE/f3GZNh1PDuq+EwpzgcYCErZl4owV
-         ct5BmzBjamhVBVqKBNrYBwewkzP94PZ4vYg77V4n3geBXbm3BQgmr9gkmWfivGRYIODR
-         h2Vg==
-X-Gm-Message-State: AOAM531stzQ2inWuANRFZ6wLOR9tzK810KucVkT6eFwwlssif43FsLAn
-        0TAw8aLkDaWv8MoyVxGUyXDhznOkNLrXcoJHmUrzSggVTe+uVyHx5r62NYF8wgnFoARfGN02kb7
-        QxTPRiLlqpVHgDChOI9YkOSuy4YWrqcFg7l8dW0E=
-X-Received: by 2002:a17:907:760a:: with SMTP id jx10mr2146458ejc.713.1644597967654;
-        Fri, 11 Feb 2022 08:46:07 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzCQMLo7bekR9JiDalKJVPp4p1o4WRdnFgKFrXj+PrAXbvI8p0HPOVADjajCFiI4ufX9F+Glw==
-X-Received: by 2002:a17:907:760a:: with SMTP id jx10mr2146438ejc.713.1644597967403;
-        Fri, 11 Feb 2022 08:46:07 -0800 (PST)
-Received: from [192.168.0.101] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id v19sm261061edc.29.2022.02.11.08.46.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Feb 2022 08:46:06 -0800 (PST)
-Message-ID: <3986001a-96e3-f4cf-f825-3bc3eebac107@canonical.com>
-Date:   Fri, 11 Feb 2022 17:46:05 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: soc: samsung: usi: refer to dtschema for
- children
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        bh=4lswzRVAGMbVN4fxZWJ4W9VwOoIlRM/pZiE0wihHuB4=;
+        b=tkwexvQqmaE7GSOTbS7DeiXdItua8EGSXxuP+4fSoXlXKxfxl6p8BEcLBNysxrb599
+         uyGMbEHZGbTgELNElQo1pqUnqIGCAnY3s3Dk3ZoIe7rREq9RtGsFKlYjVK4YGurL5fiT
+         JsnTu74Nc1BPjcJQ9t5jF06FdqsMZFqkL450ZGJDJ+yRVu31hnZYS566BB1tSRF8x1Eh
+         IYmmFF83Oj+JzjUY2TrLu9qj+dTDX9blaUngjc8KakHMGCCgpbwfxpCE9kfELFfIqJhi
+         jojCqBDcsCzECyU4+throBXrHbG/FCRX4SWa8NTtr5M+LKNi5y8a0Hu+MLS5NMTbZzXW
+         H7DA==
+X-Gm-Message-State: AOAM5306omCVtu4KBe3a9Q4q2BRyMHV7Pb5VmyaKwUg0V7Diw9qJEDRG
+        B2+N5pQucZe22/t7e2Snk4U6nOaXjzjpTcQBFd4gIrseZ00OfLbFQmCBGg/mDl+q5SDk3IKv+xN
+        GOQG1MBXgz3xLyYKqrn0W7GT5Pb4d6awce8dauJE=
+X-Received: by 2002:a17:906:d550:: with SMTP id cr16mr2076701ejc.257.1644598077406;
+        Fri, 11 Feb 2022 08:47:57 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwVaaGgrMK6Xd0ZUKTGZK48foO64fs4vM24QmAKR7PNgLUxAff0uHLt5kCrVQyMq6YcUbvD2Q==
+X-Received: by 2002:a17:906:d550:: with SMTP id cr16mr2076686ejc.257.1644598077198;
+        Fri, 11 Feb 2022 08:47:57 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id n24sm5036951ejb.23.2022.02.11.08.47.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 08:47:56 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Alim Akhtar <alim.akhtar@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220208194119.46022-1-krzysztof.kozlowski@canonical.com>
- <CAPLW+4m9u4yFz84dQaMxNqCPauW6JTsOWRo5iJrkexHXOOsahw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAPLW+4m9u4yFz84dQaMxNqCPauW6JTsOWRo5iJrkexHXOOsahw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: [PATCH v2] dt-bindings: soc: samsung: usi: refer to dtschema for children
+Date:   Fri, 11 Feb 2022 17:47:16 +0100
+Message-Id: <20220211164716.120880-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/02/2022 17:04, Sam Protsenko wrote:
-> On Tue, 8 Feb 2022 at 21:41, Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> Explicitly reference the dtschema for USI children implementing specific
->> serial protocol (I2C, SPI, UART).  The SPI schema is not yet accepted,
->> so it will be provided later.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>  .../bindings/soc/samsung/exynos-usi.yaml      | 19 +++++++++++--------
->>  1 file changed, 11 insertions(+), 8 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
->> index 58f2e9d8bb0e..f3aae7e0e2e6 100644
->> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
->> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
->> @@ -18,11 +18,7 @@ description: |
->>    selects which particular function will be used.
->>
->>    Refer to next bindings documentation for information on protocol subnodes that
->> -  can exist under USI node:
-> 
-> This whole paragraph doesn't make much sense now, because the doc
-> links it refers to are removed in this patch. Maybe it's better to
-> just remove the whole paragraph?
+Explicitly reference the dtschema for USI children implementing specific
+serial protocol (I2C, SPI, UART).  The SPI schema is not yet accepted,
+so it will be provided later.
 
-Yes, I will drop it.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
+---
 
-Best regards,
-Krzysztof
+Changes since v1:
+1. Drop entire paragraph about USI nodes.
+---
+ .../bindings/soc/samsung/exynos-usi.yaml      | 20 +++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+index 58f2e9d8bb0e..a98ed66d092e 100644
+--- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
++++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+@@ -17,13 +17,6 @@ description: |
+   child nodes, each representing a serial sub-node device. The mode setting
+   selects which particular function will be used.
+ 
+-  Refer to next bindings documentation for information on protocol subnodes that
+-  can exist under USI node:
+-
+-  [1] Documentation/devicetree/bindings/serial/samsung_uart.yaml
+-  [2] Documentation/devicetree/bindings/i2c/i2c-exynos5.txt
+-  [3] Documentation/devicetree/bindings/spi/spi-samsung.txt
+-
+ properties:
+   $nodename:
+     pattern: "^usi@[0-9a-f]+$"
+@@ -75,10 +68,17 @@ properties:
+       This property is optional.
+ 
+ patternProperties:
+-  # All other properties should be child nodes
+-  "^(serial|spi|i2c)@[0-9a-f]+$":
++  "^i2c@[0-9a-f]+$":
++    $ref: /schemas/i2c/i2c-exynos5.yaml
++    description: Child node describing underlying I2C
++
++  "^serial@[0-9a-f]+$":
++    $ref: /schemas/serial/samsung_uart.yaml
++    description: Child node describing underlying UART/serial
++
++  "^spi@[0-9a-f]+$":
+     type: object
+-    description: Child node describing underlying USI serial protocol
++    description: Child node describing underlying SPI
+ 
+ required:
+   - compatible
+-- 
+2.32.0
+
