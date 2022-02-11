@@ -2,142 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A8364B27BA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 15:20:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17B254B27C2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 15:22:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350724AbiBKOUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 09:20:50 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56874 "EHLO
+        id S1350759AbiBKOVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 09:21:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348719AbiBKOUt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 09:20:49 -0500
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2134.outbound.protection.outlook.com [40.107.21.134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E13521D;
-        Fri, 11 Feb 2022 06:20:47 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NgaYfTkFCC3o269JmfwCtxo11LS4C5ZLKTb6opDei6O7TxvHRWwxMybX4b/yA1l4JtRkgaQshjeSucWv0lqpGlVP+cUqxQpvDhk4xBnF1m9TIgw4cHZktvFOj0xpZ+pMvJib8zjlAEIYXN6BzXhWIorNQHYx+QlizTjJPazV3d6faX6wZBUbNKBe5+xdFKTOTI6LtCIkf7SbQJK0NUkVM55SsDYT40jH+U+HVrzO9i5X+PRIx4q96AT3aOZTDInv5uoYrwmP87tNB73bYjA6QIivlU/Z7bC9TUqa7sNOoCBjBY8yxE/tIRqvicR0xaZRhHo3NMDFJI3Hog+j8ItW4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QIQLnck1KDyP6Do45ZOwDF0IDo+xuxIzdYbEMjNba6Y=;
- b=IsfU1C3ke6peOCaKXUoQZMwPScnho5by/m4tRkKvlBW79kgjBVJ1MFbHRES4btyDiZFRcaUx25pWUgG1etQQckTB/1jzYwzAp6ehHEAUvwgBusia1iuj8RjhT9PeSF/x39FWy5FT/1HZ94ssZTVepKj+LOZFyjXhv23RE+8ca6RCvtf5v8WWKKRfOsZv1hrQuEcP5nALSWQ8nFvtoVUayufRjuMoYS2b2GpZlfuKEcWV+zejF48/zuU99lhNfL0jLxApQQgBMY8KiE5ruexYBlwtTPoVaV/kcsPp2J2UsZ8GRTafIs7HkGsnAttbnKtTwTZNRo++AkDjbdRtviH+zg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QIQLnck1KDyP6Do45ZOwDF0IDo+xuxIzdYbEMjNba6Y=;
- b=ndEuBk54MmYBtKqAmgfEMdTm61oczDuLfdrCAYFDKsHpDtq4bARg3H61svCZqh4n4jx0r+dwqqIoUrnapnaMUuFjWAbNSqeeLXOH0iXFNdg8jdPUKtIo7o8QDuEDs+NxQjT+oWU9HmfEpcdYP5BdUNDgm6/TJKTru9G24bcsFn0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by VI1PR0202MB2688.eurprd02.prod.outlook.com (2603:10a6:801:9::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.15; Fri, 11 Feb
- 2022 14:20:44 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::c033:9198:4c70:e66b]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::c033:9198:4c70:e66b%4]) with mapi id 15.20.4975.015; Fri, 11 Feb 2022
- 14:20:44 +0000
-Message-ID: <8a8980e1-97a4-1061-db76-8592b1f21111@axentia.se>
-Date:   Fri, 11 Feb 2022 15:20:39 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v14 02/11] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
- support
-Content-Language: en-US
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     jic23@kernel.org, andy.shevchenko@gmail.com, lars@metafoo.de,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-References: <20220208020441.3081162-1-liambeguin@gmail.com>
- <20220208020441.3081162-3-liambeguin@gmail.com>
- <fbb84b08-5d3d-3684-fdee-5ce367280857@axentia.se> <YgVNAj7kz1QbKkhy@shaak>
-From:   Peter Rosin <peda@axentia.se>
-Organization: Axentia Technologies AB
-In-Reply-To: <YgVNAj7kz1QbKkhy@shaak>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GV3P280CA0028.SWEP280.PROD.OUTLOOK.COM (2603:10a6:150:b::8)
- To DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
+        with ESMTP id S234454AbiBKOVx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 09:21:53 -0500
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC799188;
+        Fri, 11 Feb 2022 06:21:52 -0800 (PST)
+Received: by mail-qt1-f182.google.com with SMTP id p14so9182137qtx.0;
+        Fri, 11 Feb 2022 06:21:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hs6Ap8pvv6rLiNRkR68HWZ4eW38QIARNwTh1k3Vr+zU=;
+        b=S91l9tYjFkpsDoNMUINV6I2tPp2DPc9eBl8rmUJyPsvHv7xrfLwIgzOzBDb3OBIR/F
+         qeu3rl/cIy1Olalau+rmS5s3LaZvwnUw5bApZPV2lI+lI+XMKVTHaX3X5QcCsOq3J0EB
+         OLOVEHbwRGJOBlCgw2BqtG+RnpPdcAb/XoxQ2x7ZTsQIhLBoMOfiony2zzripV9WOYZY
+         FF+HwEY3VYKcVb7uBnICjT0BY7SXQvNvZNpGmbw4+gNYQmNHDqQPc5fwDhYeDg8aFh+W
+         5qHE+vLkudn5z8CEbTjKMUu6g52Twcyx3N56nuklqZ2Qv/jFNYhkjOQ1dxpEkIlFnZwA
+         dK6A==
+X-Gm-Message-State: AOAM533FMBws6yHxSxOZh+xMHX3t3IUoufMivcQ+A9fve0FL71dMTTrC
+        9qd5zvwtgaTVAcEy+ssZ4A==
+X-Google-Smtp-Source: ABdhPJx8w0KDh1IldBQXPmdd2nBRtR+3S0tWLeJdA7L6Xc1qSyZsVZjBlhAUfAptuOPx1AI6ExN57A==
+X-Received: by 2002:ac8:5b94:: with SMTP id a20mr1230049qta.270.1644589312029;
+        Fri, 11 Feb 2022 06:21:52 -0800 (PST)
+Received: from robh.at.kernel.org ([2607:fb90:20d7:a802:e6b0:6d9c:32f7:4bd9])
+        by smtp.gmail.com with ESMTPSA id t11sm6372671qkp.82.2022.02.11.06.21.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 06:21:51 -0800 (PST)
+Received: (nullmailer pid 304856 invoked by uid 1000);
+        Fri, 11 Feb 2022 14:21:48 -0000
+Date:   Fri, 11 Feb 2022 08:21:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Eugen.Hristev@microchip.com, Nicolas.Ferre@microchip.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, clement.leger@bootlin.com
+Subject: Re: [PATCH] dt-bindings: microchip: atmel,at91rm9200-tcb: remove
+ mandatory interrupts property
+Message-ID: <YgZw/IB1V7NTRUJQ@robh.at.kernel.org>
+References: <20220204081446.474991-1-eugen.hristev@microchip.com>
+ <Yfz15ta50G5WC158@piout.net>
+ <e939a0df-052c-43a6-8be6-51848d3fe5e5@microchip.com>
+ <Yf0Bkh4pXKORmNkG@piout.net>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2b18062c-e784-48a5-d1ce-08d9ed69b08e
-X-MS-TrafficTypeDiagnostic: VI1PR0202MB2688:EE_
-X-Microsoft-Antispam-PRVS: <VI1PR0202MB268870FC22DBD91A2240D37EBC309@VI1PR0202MB2688.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YOhUe8dVUywDBu5JVwxms3cnmFHcl9sfD5+P6AS3GmUD20pAqNukaSqIYZnrp5iIz8G2L3/2vsck+CW6lm7Gc38/6znzrX9d+1MsUtOtMCvnaIb2CkgyyJaElJ+5c4kZWMKs1VAgWJw10t+6ZBH8mHLPFOw53fLKvaEy8qgjs80D5G1FdnmHiO1TD6ddyLuyuJoG/cXIKFCZtEMIegJiumKhxwxw9q6GEuvRbkW7kgxDPV4avZY2/qihflr4GucA6pK2Vz2pC9hU8BcDiUtGnUZtpjs24GVNEKEa84sY4bIBTopqLoii2y8rTBjv6wdRgrUjSg1ZWLQkfo/kyYCESwogz15R+YmeqqoIWZuVsqyNBDDrgGxFPantCDXYU3/k7QXwAELkYVDDDlJpGcuGHp1WGsgkxGjuRpbde4GNlI3avEssjeOxK2w7ZaGZrno6E1+NGgEQJoTn2EcebXhlQZtI9vH12QxzVEXwl/FUyggmKyrq6SFIwrkiVOxgJWwrgbtE0Pvq15hkme1WZ0mmTy5Sz58X41cLMWug4l2tuDOY5xy7XrXA1loWtdLycm/jfYyi1ioBd0OmuvaqAQ9VhCGJecO8bxT5h6WhhoFgGa7yan3ghBILikPIWzV+bL91Ehyja6THG9ERyceQYpLhpNCp+J4Pct9EFASz+pYdxsFwPbiJLbO84hN5sLDBM8xZ+ndaXOce0YQlOUHyq7rrUUOLQPJn+PFJN78w4JhwOL8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(376002)(366004)(396003)(136003)(346002)(39830400003)(5660300002)(38100700002)(4326008)(316002)(86362001)(508600001)(4744005)(6486002)(8936002)(66476007)(66556008)(66946007)(8676002)(31696002)(6916009)(186003)(26005)(53546011)(36916002)(6506007)(6512007)(6666004)(2616005)(2906002)(36756003)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3Z0WnJYMHM2SElrZkdLYWQrdHl4dlJlbjcwUHo4bTRIYm1EN2tFQ0JkRFNG?=
- =?utf-8?B?cmpWT1djVVJPSFFLTVJGZ3ZYbnhGZTJ6b0dHMitzTWxteXFXdklQTmlMeHVi?=
- =?utf-8?B?NnExaldodTQrWExMbzJFeUVGKzMxSm1IMUJFWCtuWFZyZDY5eFJQaEh2TFVr?=
- =?utf-8?B?WklhYStmdE5taUtaYVZhcmp2OTFXQkdOUUdlcGtOWXhFSXRRV3IzMjFMcURa?=
- =?utf-8?B?OWZCamQzTm5HWCt4anJsZTNENFhpaHlXc0tZei96b05saENWSXh3eXFVcUQy?=
- =?utf-8?B?TEpDY2xIMkNCQzRBTWtWclk2MzhzRG1iTWJMbnptRVFzM1BlSDI3dU5MTEx6?=
- =?utf-8?B?K1BNRWFGRTcrejVFU09yTTJYYTY4d1ZTRjNlcEM2dkQ1bkE4Y0ZrWnRWeXdX?=
- =?utf-8?B?MW5LYndBOWtrVGhPaDFUclA4MS96cmhyS3dDVEhSaXBNaGZFTmJwbmd5Vy9E?=
- =?utf-8?B?T3FaeEpiZzFJSzRCMEpvTjVTK2xxYUxlTmlvaVFmNUtDZ3ZjREh1bHNsKzZ0?=
- =?utf-8?B?bFNHUW5SVGF1Z3JRekpPNWF3TGhtd1JEY1pZQTdha2p1TlIyTW92bkFTdmxB?=
- =?utf-8?B?UTdqUUVEaDJOdHQ5V2hic0xaazU4d1dQdWkvRTRNQlFzMFRFVXZBbk8rYzZG?=
- =?utf-8?B?NVhiUVJXQ2duWFVJMzM4a0dMRnF5UEY2VFkzNHlJWkJ4OXZPZ1dkVitNNjc2?=
- =?utf-8?B?WW5LbmM4T1lodHV1dTlnTkxvN2lhYmU4SU9iak5mUWRwL1VYcHNRVHluNlVk?=
- =?utf-8?B?Snd1ZUovdTZKWE9nZncrUzJOVUVNcjNuTHM3eGdZYTRWdE9ub002cHhIbXhE?=
- =?utf-8?B?MDd5eGxjZVFMNEVxYTVuUGFvN2YzVU5aQWw3cXlyZ2VvZTBuemVtUXpRby9x?=
- =?utf-8?B?S0pLdzFObS9qdkhqRm9lMUlSZkJOTG9Ub1hNQnIrT2l4ODgrb0VvSXRGZHZT?=
- =?utf-8?B?dkc3Sk1jWVRjMVFBbGN1MUZhOTJKNnJzMkZ1b3V0SmJnU0ZsbytDOWJmNlFD?=
- =?utf-8?B?Wi8zVVcxRWFlK1k1U2FoZHFpYWhON04yTm8wSFhPY2JrdW5oMmNIRmlPSjFD?=
- =?utf-8?B?cGxEZUFJc1VUU0lJdUc1OEpYT0lWQXp5MjB3VFExVnh6T2JxM0hkL09hSExP?=
- =?utf-8?B?UmgySktXeklQR1Z3cVFJaGJoaEpYYWNmMlpMMUJXazFHd0R4V2U1dGhGZitR?=
- =?utf-8?B?NmtFNzI5VHBFald1WTRPbkt2UWpZVG04aEFMMFlnNk1nWWtQMmY2c011WUhV?=
- =?utf-8?B?L3I2Zjd1VzIxNVAwWjY3dlY1MkFzOG95N0VzQmhkZExCRm1vWDdWNStBcXI3?=
- =?utf-8?B?NThPVWR0cFNSbWpuWU9JenMvTlhWc2xRdnVkWXE5YUZ1cm1RQVl6T09MZnYy?=
- =?utf-8?B?SS9xU0xhdWFsRjl1cUlPSFZCUXROdjgvcytqVGZ4aklOODJTb1BDek1pQkJG?=
- =?utf-8?B?MzFzTGdBRDAzN090OWpPTVZydU1zL2c4TFVJeEkzeFNvcVlISHJzU2pHTlU2?=
- =?utf-8?B?QUdQMFhYUU11WTlvTEhyZm01OEdwbEFJQ2pxSittckR0UnNnT3JNU0dodldN?=
- =?utf-8?B?MDcvTFFLZ3pUWm1HZlBoWFBDdkJONXpvc0NNenY3QW51U1RuMmdoWGRSdWV2?=
- =?utf-8?B?ZWVQTUN4WVlMV3JDZzhibHRiUlZiZitpNXhiK1o1YVRmT0hrbjhSMGFDeGpT?=
- =?utf-8?B?emErYWdubFVqVDhBYys2SEVTeWdVc0FZQm1rVncrZ2hVSXlTUnlaTFV5QWxt?=
- =?utf-8?B?VmhSczBRNnlPZWM5REUwMnhnOUszaFZHZzlZQ2JldHlOemdlT2x5WGlqVndw?=
- =?utf-8?B?L3BVaHBGMEpQaW1wTnlqSXBqaXBNNWFUL0ZQaUNpTUJkaXJPd3dsYk9TUjdN?=
- =?utf-8?B?dkd4eHh4bGZUY1Riakg3UXZHa2hjNEV0R1hrdlVKaWF4NWUvVVBpWjFQWXh6?=
- =?utf-8?B?Z0taam0yelg1WEhjaEpLMG9peE0xVlFtVDhEWVVFTnBlNU9XdXQrekdmUThw?=
- =?utf-8?B?QkxXQWZFaVpwNXlXejZ3WWJlZkdLT2J4NFJQYU5QWVhveTdrZnI4VzN2bkp5?=
- =?utf-8?B?R1c1SlkxTkJBd3BXbHBTZjUyNThPMWcyZ3NITXVKWnNXUm1JRGhXVEpVS0Vt?=
- =?utf-8?Q?I7pI=3D?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b18062c-e784-48a5-d1ce-08d9ed69b08e
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2022 14:20:44.1634
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8p+FJ+0n8mAW50qjQxekPpIPzFpB5C5+qG0LKcujskasFlGUfdgsZE/Cv2iCKfBF
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0202MB2688
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yf0Bkh4pXKORmNkG@piout.net>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-10 18:36, Liam Beguin wrote:
-> I like that the macros make the number of zeros more "obvious" in a
-> sense, but honestly at this point, I'd rather go back to not using them.
-> Depending on who you ask, one way makes more sense than the other, at
-> least with the raw values, there's no ambiguity.
+On Fri, Feb 04, 2022 at 11:36:02AM +0100, Alexandre Belloni wrote:
+> On 04/02/2022 10:28:43+0000, Eugen.Hristev@microchip.com wrote:
+> > On 2/4/22 11:46 AM, Alexandre Belloni wrote:
+> > > On 04/02/2022 10:14:46+0200, Eugen Hristev wrote:
+> > >> The timer block can be used only to be read and to measure time in a polling
+> > >> fashion. This can be used by Linux like this for example, or it can be used
+> > >> by different projects which do not have interrupt controllers, or do not
+> > >> wish to enable them (e.g. U-boot).
+> > >> As DT is ABI, the binding should relate to all possible use cases and describe
+> > >> the hardware and the requirements.
+> > >> The interrupt is not a hard requirement for the timer to function in a
+> > >> specific way.
+> > >> Thus, choose to remove the interrupts property from the mandatory list of
+> > >> properties.
+> > >>
+> > > 
+> > > The correct hardware description is that the interrupt is present on the
+> > > IP. Having software behave differently depending on the presence of that
+> > > property is configuration, not hardware description.
+> > 
+> > I agree. The interrupt is present on the IP, thus the property exists 
+> > and it's described.
+> > However, the interrupt is not mandatory for IP operations. Thus it 
+> > should not be in the list of mandatory properties.
+> > 
+> 
+> If the interrupt is always present, it is mandatory, it doesn't matter
+> whether is is used or necessary to get the IP to work.
 
-I'm fine with not using the macros in this series, obviously. While I
-can tolerate them, I do not get a warm and cozy feeling when I see
-them.
-
-Cheers,
-Peter
+Agreed.
