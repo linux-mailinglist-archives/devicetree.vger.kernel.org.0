@@ -2,97 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17B254B27C2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 15:22:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 251D94B27EE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 15:32:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350759AbiBKOVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 09:21:54 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57194 "EHLO
+        id S1350883AbiBKOci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 09:32:38 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234454AbiBKOVx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 09:21:53 -0500
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC799188;
-        Fri, 11 Feb 2022 06:21:52 -0800 (PST)
-Received: by mail-qt1-f182.google.com with SMTP id p14so9182137qtx.0;
-        Fri, 11 Feb 2022 06:21:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hs6Ap8pvv6rLiNRkR68HWZ4eW38QIARNwTh1k3Vr+zU=;
-        b=S91l9tYjFkpsDoNMUINV6I2tPp2DPc9eBl8rmUJyPsvHv7xrfLwIgzOzBDb3OBIR/F
-         qeu3rl/cIy1Olalau+rmS5s3LaZvwnUw5bApZPV2lI+lI+XMKVTHaX3X5QcCsOq3J0EB
-         OLOVEHbwRGJOBlCgw2BqtG+RnpPdcAb/XoxQ2x7ZTsQIhLBoMOfiony2zzripV9WOYZY
-         FF+HwEY3VYKcVb7uBnICjT0BY7SXQvNvZNpGmbw4+gNYQmNHDqQPc5fwDhYeDg8aFh+W
-         5qHE+vLkudn5z8CEbTjKMUu6g52Twcyx3N56nuklqZ2Qv/jFNYhkjOQ1dxpEkIlFnZwA
-         dK6A==
-X-Gm-Message-State: AOAM533FMBws6yHxSxOZh+xMHX3t3IUoufMivcQ+A9fve0FL71dMTTrC
-        9qd5zvwtgaTVAcEy+ssZ4A==
-X-Google-Smtp-Source: ABdhPJx8w0KDh1IldBQXPmdd2nBRtR+3S0tWLeJdA7L6Xc1qSyZsVZjBlhAUfAptuOPx1AI6ExN57A==
-X-Received: by 2002:ac8:5b94:: with SMTP id a20mr1230049qta.270.1644589312029;
-        Fri, 11 Feb 2022 06:21:52 -0800 (PST)
-Received: from robh.at.kernel.org ([2607:fb90:20d7:a802:e6b0:6d9c:32f7:4bd9])
-        by smtp.gmail.com with ESMTPSA id t11sm6372671qkp.82.2022.02.11.06.21.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 06:21:51 -0800 (PST)
-Received: (nullmailer pid 304856 invoked by uid 1000);
-        Fri, 11 Feb 2022 14:21:48 -0000
-Date:   Fri, 11 Feb 2022 08:21:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Eugen.Hristev@microchip.com, Nicolas.Ferre@microchip.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, clement.leger@bootlin.com
-Subject: Re: [PATCH] dt-bindings: microchip: atmel,at91rm9200-tcb: remove
- mandatory interrupts property
-Message-ID: <YgZw/IB1V7NTRUJQ@robh.at.kernel.org>
-References: <20220204081446.474991-1-eugen.hristev@microchip.com>
- <Yfz15ta50G5WC158@piout.net>
- <e939a0df-052c-43a6-8be6-51848d3fe5e5@microchip.com>
- <Yf0Bkh4pXKORmNkG@piout.net>
+        with ESMTP id S244152AbiBKOch (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 09:32:37 -0500
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7A46B6E;
+        Fri, 11 Feb 2022 06:32:34 -0800 (PST)
+Received: from fraeml709-chm.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4JwGDy5nHCz682w5;
+        Fri, 11 Feb 2022 22:28:18 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml709-chm.china.huawei.com (10.206.15.37) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Fri, 11 Feb 2022 15:32:32 +0100
+Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Fri, 11 Feb
+ 2022 14:32:31 +0000
+Date:   Fri, 11 Feb 2022 14:32:29 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+CC:     <cosmin.tanislav@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 5/5] iio: accel: add ADXL367 driver
+Message-ID: <20220211143229.00000aad@Huawei.com>
+In-Reply-To: <20220206211307.1564647-6-cosmin.tanislav@analog.com>
+References: <20220206211307.1564647-1-cosmin.tanislav@analog.com>
+        <20220206211307.1564647-6-cosmin.tanislav@analog.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yf0Bkh4pXKORmNkG@piout.net>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.41]
+X-ClientProxiedBy: lhreml727-chm.china.huawei.com (10.201.108.78) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 04, 2022 at 11:36:02AM +0100, Alexandre Belloni wrote:
-> On 04/02/2022 10:28:43+0000, Eugen.Hristev@microchip.com wrote:
-> > On 2/4/22 11:46 AM, Alexandre Belloni wrote:
-> > > On 04/02/2022 10:14:46+0200, Eugen Hristev wrote:
-> > >> The timer block can be used only to be read and to measure time in a polling
-> > >> fashion. This can be used by Linux like this for example, or it can be used
-> > >> by different projects which do not have interrupt controllers, or do not
-> > >> wish to enable them (e.g. U-boot).
-> > >> As DT is ABI, the binding should relate to all possible use cases and describe
-> > >> the hardware and the requirements.
-> > >> The interrupt is not a hard requirement for the timer to function in a
-> > >> specific way.
-> > >> Thus, choose to remove the interrupts property from the mandatory list of
-> > >> properties.
-> > >>
-> > > 
-> > > The correct hardware description is that the interrupt is present on the
-> > > IP. Having software behave differently depending on the presence of that
-> > > property is configuration, not hardware description.
-> > 
-> > I agree. The interrupt is present on the IP, thus the property exists 
-> > and it's described.
-> > However, the interrupt is not mandatory for IP operations. Thus it 
-> > should not be in the list of mandatory properties.
-> > 
-> 
-> If the interrupt is always present, it is mandatory, it doesn't matter
-> whether is is used or necessary to get the IP to work.
+On Sun,  6 Feb 2022 23:13:07 +0200
+Cosmin Tanislav <demonsingur@gmail.com> wrote:
 
-Agreed.
+> The ADXL367 is an ultralow power, 3-axis MEMS accelerometer.
+> 
+> The ADXL367 does not alias input signals to achieve ultralow power
+> consumption, it samples the full bandwidth of the sensor at all
+> data rates. Measurement ranges of +-2g, +-4g, and +-8g are available,
+> with a resolution of 0.25mg/LSB on the +-2 g range.
+> 
+> In addition to its ultralow power consumption, the ADXL367
+> has many features to enable true system level power reduction.
+> It includes a deep multimode output FIFO, a built-in micropower
+> temperature sensor, and an internal ADC for synchronous conversion
+> of an additional analog input.
+> 
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+
+I missed the issue below with the use of available_scan_masks
+in v3. Other than that and a few trivial things below, the series
+looks good to me.
+
+Thanks,
+
+Jonathan
+
+
+> ---
+>  MAINTAINERS                     |    8 +
+>  drivers/iio/accel/Kconfig       |   27 +
+>  drivers/iio/accel/Makefile      |    3 +
+>  drivers/iio/accel/adxl367.c     | 1585 +++++++++++++++++++++++++++++++
+>  drivers/iio/accel/adxl367.h     |   23 +
+>  drivers/iio/accel/adxl367_i2c.c |   90 ++
+>  drivers/iio/accel/adxl367_spi.c |  164 ++++
+>  7 files changed, 1900 insertions(+)
+>  create mode 100644 drivers/iio/accel/adxl367.c
+>  create mode 100644 drivers/iio/accel/adxl367.h
+>  create mode 100644 drivers/iio/accel/adxl367_i2c.c
+>  create mode 100644 drivers/iio/accel/adxl367_spi.c
+> 
+
+
+> new file mode 100644
+> index 000000000000..cac47db7d89c
+> --- /dev/null
+> +++ b/drivers/iio/accel/adxl367.c
+> @@ -0,0 +1,1585 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2021 Analog Devices, Inc.
+> + * Author: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/iio/buffer.h>
+> +#include <linux/iio/events.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/kfifo_buf.h>
+> +#include <linux/iio/sysfs.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/module.h>
+
+#include <linux/mod_devicetable.h>
+for the id tables.
+
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <asm/unaligned.h>
+> +
+> +#include "adxl367.h"
+> +
+
+
+
+
+> +static const unsigned long adxl367_channel_masks[] = {
+> +	[ADXL367_FIFO_FORMAT_XYZ]  = ADXL367_X_CHANNEL_MASK
+> +				     | ADXL367_Y_CHANNEL_MASK
+> +				     | ADXL367_Z_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_X]    = ADXL367_X_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_Y]    = ADXL367_Y_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_Z]    = ADXL367_Z_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_XYZT] = ADXL367_X_CHANNEL_MASK
+> +				     | ADXL367_Y_CHANNEL_MASK
+> +				     | ADXL367_Z_CHANNEL_MASK
+> +				     | ADXL367_TEMP_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_XT]   = ADXL367_X_CHANNEL_MASK
+> +				     | ADXL367_TEMP_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_YT]   = ADXL367_Y_CHANNEL_MASK
+> +				     | ADXL367_TEMP_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_ZT]   = ADXL367_Z_CHANNEL_MASK
+> +				     | ADXL367_TEMP_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_XYZA] = ADXL367_X_CHANNEL_MASK
+> +				     | ADXL367_Y_CHANNEL_MASK
+> +				     | ADXL367_Z_CHANNEL_MASK
+> +				     | ADXL367_EX_ADC_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_XA]   = ADXL367_X_CHANNEL_MASK
+> +				     | ADXL367_EX_ADC_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_YA]   = ADXL367_Y_CHANNEL_MASK
+> +				     | ADXL367_EX_ADC_CHANNEL_MASK,
+> +	[ADXL367_FIFO_FORMAT_ZA]   = ADXL367_Z_CHANNEL_MASK
+> +				     | ADXL367_EX_ADC_CHANNEL_MASK,
+> +	0,
+> +};
+
+The way available scan_masks works is to search for an entry
+for which the desired mask is a subset.
+
+That means to get the minimal mode IIRC you need to order them from
+smallest to largest. e.g.
+https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c#L1122
+
+> +
+
+> +EXPORT_SYMBOL_NS_GPL(adxl367_probe, ADXL367);
+
+Trivial but we decided to prefix IIO namespaces with IIO_ so this should
+be IIO_ADXL367.
+
+> +
+> +MODULE_AUTHOR("Cosmin Tanislav <cosmin.tanislav@analog.com>");
+> +MODULE_DESCRIPTION("Analog Devices ADXL367 3-axis accelerometer driver");
+> +MODULE_LICENSE("GPL");
