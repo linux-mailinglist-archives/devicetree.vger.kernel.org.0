@@ -2,187 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 041394B2005
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 09:22:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BC564B2021
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 09:27:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347989AbiBKIVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 03:21:38 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53494 "EHLO
+        id S1344970AbiBKI0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 03:26:52 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348038AbiBKIVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 03:21:36 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE26E67;
-        Fri, 11 Feb 2022 00:21:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1644567695; x=1676103695;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Vc01hpWMLj0MX7Suyo/gaNp3ZTgeddpPoZAPTjJV1OQ=;
-  b=kIqT3gGAPfJFOAeO3gZHcha8PtevYZ7JYXcqP4B7bB7ucb+WQHFFljAH
-   GYrlRVHVPrIgcNmrTOJREtkdQ+QQHkZauZJos17Kogz2r3cU+KwSD3w7F
-   OqpuVi0pH0dBvbJBG2vpGZeyO2+NGrwJafn4Cm/4gcGZYlFTDzMzxSsAN
-   +Z4ukNp+iP1Va6ALZfx7xUrxPMTk1y4WMEc88yiRr6VXDZW7nFaixFrEK
-   M8f87rlWQ1mPmgYhfQ3GLY4aIlceWbnlBUxiIfQd77CrqpJc/MlasFCy8
-   W5X91H6kh+amrO4grsYgv9DKrqBJQcIfSeE5BL76eiDaSsGlD7LuL8rNS
-   A==;
-IronPort-SDR: AoD7tbC++ffsEs145iwyzrlg7UQKfwt8ILlU73zaagyrnbfog0jfxkyJEVH04wszS5l60I6Z1V
- x+DfEzgN+JXC7Ioy/SfqYaLyVONM6YeiTP6EVcd7aPiR8Fv2rqV48y/w1g4s1YqCgPBRGe8Mv+
- oTPXZVKWQWwilnoGq9Zj2HpAmQkJrgCPDqxY3JvLVbmZf/qe8olJeKDsRgNIlNTKdHoqPEhqB3
- nU8khnli+k/JCD9TveS6AIjC+gqb5qPb56hxJlWUwKWmvREPizNKMr6ar2XMV4OXXlnWHFgEqo
- jL0cfjNkK5aBdzw3IZYC3VHz
-X-IronPort-AV: E=Sophos;i="5.88,360,1635231600"; 
-   d="scan'208";a="153253186"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Feb 2022 01:21:34 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 11 Feb 2022 01:21:30 -0700
-Received: from ROB-ULT-M18064N.mchp-main.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Fri, 11 Feb 2022 01:21:26 -0700
-From:   Tudor Ambarus <tudor.ambarus@microchip.com>
-To:     <herbert@gondor.apana.org.au>, <krzysztof.kozlowski@canonical.com>,
-        <robh+dt@kernel.org>
-CC:     <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <linux-crypto@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <kavyasree.kotagiri@microchip.com>,
-        <devicetree@vger.kernel.org>,
-        "Tudor Ambarus" <tudor.ambarus@microchip.com>
-Subject: [PACTH v3 3/3] dt-bindings: crypto: Convert Atmel SHA to yaml
-Date:   Fri, 11 Feb 2022 10:21:14 +0200
-Message-ID: <20220211082114.452911-4-tudor.ambarus@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220211082114.452911-1-tudor.ambarus@microchip.com>
-References: <20220211082114.452911-1-tudor.ambarus@microchip.com>
+        with ESMTP id S241421AbiBKI0v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 03:26:51 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66768E4C
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 00:26:51 -0800 (PST)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1BF3A3F1C1
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 08:26:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644568010;
+        bh=OR7jE1UhZuxjFeUVRgEAKlAE7aaLAk74Il6Prfqk7uw=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=ZNcWzwY2zhwd106PwQHMsixNzToCYG9AbPFTFPx6UgX637lncXlE2J0X2FlNZxiod
+         oUqsSLJfgDarSd8RHmM8Lm4Zn3SRctahM2g3+EFbzm8j24nmNP9rWb7snKpYHcHNq8
+         Rv+bHqz143fl3EJ0MyB24bn4S/YeE6h625ZDahBZ/iALmNTAxqWiRDR3H+Djqbz9jw
+         44xa4psHKMGIfLfqPsE6UggAnMCB6OhaqxxU6dixJlivDU6ZGE1MHFl2XIhn7xtCtC
+         Saz1dBrvasWBt/9wwYNiSfJkI30QEaCBHSAmjsQhops8r26+KOJjjJkEH+9rimLjHz
+         1ahD0eM2tWTyg==
+Received: by mail-ed1-f72.google.com with SMTP id j10-20020a05640211ca00b004090fd8a936so282634edw.23
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 00:26:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=OR7jE1UhZuxjFeUVRgEAKlAE7aaLAk74Il6Prfqk7uw=;
+        b=Y4Ngh1NkIwUAYmzf+eKn2jrctTshNY87rc8fJDbvRtvWhPYey/e+5xJLG7wH85QVRi
+         D9ioaocaW/h+6D8Kj1LRFzRtxUraBBvuhTj2yADbldIl4qRDiWtTKaAUIy0Y3AM3pinE
+         q2uAn4l/84xXV+H6EeoQnXCKgG9MSCJH8PKieInyVmGNWGz+1835a4JEHMwpAWmpLSpo
+         nkYqTZBhWWezIAq55D4dcTaFLT6BaQs4iQKb7A1e0ZD75jq+BLbKJfy7XCb/cdKci33J
+         yNwBFCj0E25Q3U9Xy+NpkKL21ihfqqGMNZh1Kbqrojg2phMcAtEC65bXqEMdQr2MKknE
+         TdVQ==
+X-Gm-Message-State: AOAM5322DnvoYM1+yeZ6BlUZIDyH2YjQYb1xGmRHh22almoaYcKvN2wU
+        7++oboMG3R50kmcwZ8VuUh5mmhuOwOC/fdPE0KpFNQ1j21L7GRmJhBm/gsJMaMFFZr7iCNI6xfQ
+        S3yAoQX6lAoBieDxYlDbYMRBJ/GsU5IXDWzZeaJ8=
+X-Received: by 2002:a17:907:7e8c:: with SMTP id qb12mr404205ejc.539.1644568009812;
+        Fri, 11 Feb 2022 00:26:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwwbi8tCTvaUprEwRjQBxSIVsyAo4IJ6grHRnlsTdT5gQ/87ce41uK0+9C6Rc1374U2AbHWFQ==
+X-Received: by 2002:a17:907:7e8c:: with SMTP id qb12mr404189ejc.539.1644568009644;
+        Fri, 11 Feb 2022 00:26:49 -0800 (PST)
+Received: from [192.168.0.99] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id y11sm7497470edu.2.2022.02.11.00.26.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Feb 2022 00:26:49 -0800 (PST)
+Message-ID: <8e44a919-cd2b-669c-aff3-bb79f16c6541@canonical.com>
+Date:   Fri, 11 Feb 2022 09:26:48 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PACTH v3 1/3] dt-bindings: crypto: Convert Atmel AES to yaml
+Content-Language: en-US
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        herbert@gondor.apana.org.au, robh+dt@kernel.org
+Cc:     nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
+        alexandre.belloni@bootlin.com, linux-crypto@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org
+References: <20220211082114.452911-1-tudor.ambarus@microchip.com>
+ <20220211082114.452911-2-tudor.ambarus@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220211082114.452911-2-tudor.ambarus@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Atmel SHA documentation to yaml format. With the conversion the
-clock and clock-names properties are made mandatory. The driver returns
--EINVAL if "sha_clk" is not found, reflect that in the bindings and make
-the clock and clock-names properties mandatory. Update the example to
-better describe how one should define the dt node.
+On 11/02/2022 09:21, Tudor Ambarus wrote:
+> Convert Atmel AES documentation to yaml format. With the conversion the
+> clock and clock-names properties are made mandatory. The driver returns
+> -EINVAL if "aes_clk" is not found, reflect that in the bindings and make
+> the clock and clock-names properties mandatory. Update the example to
+> better describe how one should define the dt node.
+> 
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+> ---
+>  .../crypto/atmel,at91sam9g46-aes.yaml         | 66 +++++++++++++++++++
+>  .../bindings/crypto/atmel-crypto.txt          | 20 ------
+>  2 files changed, 66 insertions(+), 20 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-aes.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-aes.yaml b/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-aes.yaml
+> new file mode 100644
+> index 000000000000..fe59ad30b171
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-aes.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/crypto/atmel,at91sam9g46-aes.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel Advanced Encryption Standard (AES) HW cryptographic accelerator
+> +
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../crypto/atmel,at91sam9g46-sha.yaml         | 60 +++++++++++++++++++
- .../bindings/crypto/atmel-crypto.txt          | 25 --------
- 2 files changed, 60 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-sha.yaml
- delete mode 100644 Documentation/devicetree/bindings/crypto/atmel-crypto.txt
 
-diff --git a/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-sha.yaml b/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-sha.yaml
-new file mode 100644
-index 000000000000..5163c51b4547
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-sha.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/atmel,at91sam9g46-sha.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel Secure Hash Algorithm (SHA) HW cryptographic accelerator
-+
-+maintainers:
-+  - Tudor Ambarus <tudor.ambarus@microchip.com>
-+
-+properties:
-+  compatible:
-+    const: atmel,at91sam9g46-sha
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: sha_clk
-+
-+  dmas:
-+    maxItems: 1
-+    description: TX DMA Channel
-+
-+  dma-names:
-+    const: tx
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/at91.h>
-+    #include <dt-bindings/dma/at91.h>
-+
-+    sha: crypto@e1814000 {
-+      compatible = "atmel,at91sam9g46-sha";
-+      reg = <0xe1814000 0x100>;
-+      interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&pmc PMC_TYPE_PERIPHERAL 83>;
-+      clock-names = "sha_clk";
-+      dmas = <&dma0 AT91_XDMAC_DT_PERID(48)>;
-+      dma-names = "tx";
-+    };
-diff --git a/Documentation/devicetree/bindings/crypto/atmel-crypto.txt b/Documentation/devicetree/bindings/crypto/atmel-crypto.txt
-deleted file mode 100644
-index 5c6541cfcc4a..000000000000
---- a/Documentation/devicetree/bindings/crypto/atmel-crypto.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--* Atmel HW cryptographic accelerators
--
--These are the HW cryptographic accelerators found on some Atmel products.
--
--* Secure Hash Algorithm (SHA)
--
--Required properties:
--- compatible : Should be "atmel,at91sam9g46-sha".
--- reg: Should contain SHA registers location and length.
--- interrupts: Should contain the IRQ line for the SHA.
--
--Optional properties:
--- dmas: One DMA specifiers as described in
--        atmel-dma.txt and dma.txt files.
--- dma-names: Contains one identifier string for each DMA specifier
--             in the dmas property. Only one "tx" string needed.
--
--Example:
--sha@f8034000 {
--	compatible = "atmel,at91sam9g46-sha";
--	reg = <0xf8034000 0x100>;
--	interrupts = <42 4 0>;
--	dmas = <&dma1 2 17>;
--	dma-names = "tx";
--};
--- 
-2.25.1
 
+Best regards,
+Krzysztof
