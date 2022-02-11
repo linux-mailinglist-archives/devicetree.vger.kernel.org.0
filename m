@@ -2,74 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 223574B28DD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 16:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFAAD4B28EA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 16:16:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244193AbiBKPNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 10:13:38 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34358 "EHLO
+        id S1351316AbiBKPP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 10:15:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243585AbiBKPNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 10:13:37 -0500
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC42B1A3;
-        Fri, 11 Feb 2022 07:13:35 -0800 (PST)
-Received: by mail-oi1-f169.google.com with SMTP id r27so9858849oiw.4;
-        Fri, 11 Feb 2022 07:13:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nAFVbtRVtzhYKIqkkFFxa3DynoLvmGUt99SFwmIUitE=;
-        b=s8NsgSiwpaGes4F/DU2604UOgpZCEH8KBAa569Nf9/VkCqPnY3EzktMkGF/hWN8AZn
-         SclY0VCIQnKUGiGxMSWzxEfg9UVDokOtIqfKjhbbHnUfjtSxE6Vm/95/kOKZQsrGre1A
-         pUUk/v+D2tBIbHwmFCom0QW10BImL3jT7NPqe7hk1ZoXbVmap9e19mhUObCYMhhF+ZX1
-         5vz2xyBf9SbNO5cxC52dO7Xwq2QzG9MjE1m2eqa0YtV9hlIj4WS7XgceVAUu/Zs3e9Mf
-         oSvAArg6jo1dI1US1jR5NrfYUW5Ja7pIkMr3DBJP/McXNhnDD/T5q9DQMmlQ/CStxqRJ
-         4dkw==
-X-Gm-Message-State: AOAM5308P0SzF+17eAaZAYhVbz0znhJFt+9wo4FHSlN7K7LqgrtI4euw
-        HawhXIor0IWQoEBgUKqUIw==
-X-Google-Smtp-Source: ABdhPJwaPHuiQHGSQ6kUYYw0O9nkOWW7a1boAaJFBE38Tc1cgFspZLWYz6Pn0l3DnSsVViQOAEGGUg==
-X-Received: by 2002:aca:aa96:: with SMTP id t144mr415668oie.132.1644592415173;
-        Fri, 11 Feb 2022 07:13:35 -0800 (PST)
-Received: from robh.at.kernel.org ([2607:fb90:20d7:a802:e6b0:6d9c:32f7:4bd9])
-        by smtp.gmail.com with ESMTPSA id j3sm9649552oig.37.2022.02.11.07.13.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 07:13:34 -0800 (PST)
-Received: (nullmailer pid 378308 invoked by uid 1000);
-        Fri, 11 Feb 2022 15:13:31 -0000
-Date:   Fri, 11 Feb 2022 09:13:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 61/66] dt-bindings: media: Add Allwinner A31 ISP
- bindings documentation
-Message-ID: <YgZ9GjgasiPljg9X@robh.at.kernel.org>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <20220205185429.2278860-62-paul.kocialkowski@bootlin.com>
- <YgE/+UmP4nJVxtRT@pendragon.ideasonboard.com>
+        with ESMTP id S240606AbiBKPPW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 10:15:22 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A6BB17;
+        Fri, 11 Feb 2022 07:15:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4E3A661FE0;
+        Fri, 11 Feb 2022 15:15:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D12EC340E9;
+        Fri, 11 Feb 2022 15:15:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644592519;
+        bh=IBFj2X+hcyPR39ZMQ3rlleTF8vNjd5w2MnpIK3BBRMY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MmGCHoL2jBqJx8fSZnFJir8mkhPKSgxt2JUHRSn60wV1qepXUXKX5nrall0vTrbG6
+         b/4Kyddinm/0jrcIJnuDm/pPNxU2mm0I3mbiSPOQX80EEtFmpeLDb7b8vLPKk3s/Ro
+         GKEDYUaWCIpvV3t4nrNROIi6XxRbm0NC9G/eyxfe+7FSsM8lOaTMH4SThmDZoM7pc/
+         XikLLCFV3CnMYX1CqbZm0O6V79kllMYeXpgsHA5Hcfx5KUOSJfNJI2bsow6rSTEjel
+         dLIwQcvks95mIbWaUlz2dw3PpzeUZbmP/8ZLz6gDeCZ9gqYi9pJZQ+kLVQxoE7fpwE
+         LvfbdduK+f4FQ==
+Date:   Fri, 11 Feb 2022 15:15:13 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     lgirdwood@gmail.com, tiwai@suse.com, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, perex@perex.cz, p.zabel@pengutronix.de,
+        geert+renesas@glider.be, trevor.wu@mediatek.com,
+        tzungbi@google.com, zhangqilong3@huawei.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 05/15] ASoC: mediatek: mt8186: support hw gain in
+ platform driver
+Message-ID: <YgZ9gadN8RksWeWN@sirena.org.uk>
+References: <20220211103818.8266-1-jiaxin.yu@mediatek.com>
+ <20220211103818.8266-6-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="c+ZpsOQ7A1I9zFvP"
 Content-Disposition: inline
-In-Reply-To: <YgE/+UmP4nJVxtRT@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20220211103818.8266-6-jiaxin.yu@mediatek.com>
+X-Cookie: do {
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,94 +62,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 07, 2022 at 05:51:21PM +0200, Laurent Pinchart wrote:
-> Hi Paul,
-> 
-> Thank you for the patch.
-> 
-> On Sat, Feb 05, 2022 at 07:54:24PM +0100, Paul Kocialkowski wrote:
-> > This introduces YAML bindings documentation for the Allwinner A31 Image
-> > Signal Processor (ISP).
-> > 
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > ---
-> >  .../media/allwinner,sun6i-a31-isp.yaml        | 117 ++++++++++++++++++
-> >  1 file changed, 117 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
-> > new file mode 100644
-> > index 000000000000..2d87022c43ce
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
-> > @@ -0,0 +1,117 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - allwinner,sun6i-a31-isp
-> > +      - allwinner,sun8i-v3s-isp
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Bus Clock
-> > +      - description: Module Clock
-> > +      - description: DRAM Clock
-> 
-> That's interesting, does the ISP have a dedicated DRAM ?
-> 
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bus
-> > +      - const: mod
-> > +      - const: ram
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        description: CSI0 input port
-> > +
-> > +        properties:
-> > +          reg:
-> > +            const: 0
-> > +
-> > +          endpoint:
-> > +            $ref: video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> 
-> If no other property than remote-endpoint are allowed, I'd write
-> 
->           endpoint:
->             $ref: video-interfaces.yaml#
-> 	    remote-endpoint: true
 
-You just mixed a node and a property...
+--c+ZpsOQ7A1I9zFvP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-'remote-endpoint' is always allowed, so need to put it here and every 
-other user. So 'unevaluatedProperties' is correct. But it would be good 
-to define what properties from video-interfaces.yaml are used here.
+On Fri, Feb 11, 2022 at 06:38:08PM +0800, Jiaxin Yu wrote:
 
-Rob
+Again, mostly looks good just some minor issues (I've not repeated some
+that applied to the prior code):
+
+> +static const struct snd_kcontrol_new mtk_hw_gain2_in_ch1_mix[] = {
+> +	SOC_DAPM_SINGLE_AUTODISABLE("ADDA_UL_CH1", AFE_CONN15,
+> +				    I_ADDA_UL_CH1, 1, 0),
+> +};
+
+These end up as regular user visible controls so should have standard
+control names - in this case ending in Switch since it's a simple
+on/off.  A similar issue was there in the earlier patches.
+
+> +static const struct snd_kcontrol_new mtk_hw_gain_controls[] = {
+> +	SOC_SINGLE("HW Gain 1", AFE_GAIN1_CON1,
+> +		   GAIN1_TARGET_SFT, GAIN1_TARGET_MASK, 0),
+> +	SOC_SINGLE("HW Gain 2", AFE_GAIN2_CON1,
+> +		   GAIN2_TARGET_SFT, GAIN2_TARGET_MASK, 0),
+
+These should have standard names like "HW 1 Volume" so userspace has a
+better idea how to display them.
+
+--c+ZpsOQ7A1I9zFvP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIGfYAACgkQJNaLcl1U
+h9Ct/Af/SB+lHd2ZvAn42VmwpobHVEpUjwZsElRbAQHPqUKPY43uoQ75NXOvyRQS
+HLaoNrQ0kkAVtNBtcolPvRac1ke9kTDEapfuhrUuv4QrgtdgRG3N6bL+m+dyQ6g5
+33pIVvYTByz9HsJbzdSFqP527RJqmIUMGucj/p91edb9vTx/SEUZSuj6qqlohr2h
+eVoa/P+QCK9bs29/EAD3HmucuJispsMgmntjOE9sYcGFmMDydZSHmyBozPDUuEJ0
+S/8o/RVRY7h/KFKLAcc6+kSH4SctBryW4lXtdbZzueBFSefbMzjcHePyeJ0qox5N
+Xa9RTpXYvvkNT7fsmvi3+zf0sBZGrw==
+=22jY
+-----END PGP SIGNATURE-----
+
+--c+ZpsOQ7A1I9zFvP--
