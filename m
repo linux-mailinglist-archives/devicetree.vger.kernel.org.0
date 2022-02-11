@@ -2,62 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E06B4B2447
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 12:29:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BE944B2453
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 12:33:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237302AbiBKL3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 06:29:40 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47440 "EHLO
+        id S1349471AbiBKLdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 06:33:19 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236888AbiBKL3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 06:29:39 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D2ADE5E
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 03:29:38 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id o19so23764717ybc.12
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 03:29:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HR1DCsTq8FbR4jChot452jyukpf3RSW8+TwQL0Os82c=;
-        b=Oewgw1mANcEdHO97bC22n4WPZLTCVC20k22OUzh472scR9w+kXiinaBinhtSUNAJBE
-         30h04hfNyANEr3E+79vKP4cOziY8SvRnHul53RlONP2GF/wdaYIDH6DtqEhCXyp5d7Q5
-         XRYkAhtSHMI9XQ75cGkj9bQxrwCNYE+QkPIXr1iWbwO0Lr3RfJPUVeWRSKP0CSHA4S5b
-         16fEpYa7w7XpKDpc4TjnT7yQOoWuYsgi68UtNXtIYwhJedKjvNB8UTTsiWEO6T1YXP2Z
-         uHuvfBHy8bcLYQmumDUmkf5yJeMgrztrMkeq9FJwDscFwxjIUCXsu1weZjQGTmtuZkT5
-         Xspw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HR1DCsTq8FbR4jChot452jyukpf3RSW8+TwQL0Os82c=;
-        b=q7gyLToDxm1UjotdsZQWiv4GFKJL8ftdt3VSLNr6l90EmzrAiR5ryJLLT/MfV95YgG
-         XTHef/qkS9nrEJQIhfR7628vtQGS96GTCN+189kbrkOptS6+Tgn+Kd61GRPsHzMsFjPB
-         1SgQi9dCTfxX4fkPtQ44I1AIGZTfuOtqSMDo9Vw0RpgpDMXTnpityxqyC5EbgkJki5nV
-         x/DW+qzWJeszB2R+xM4+3MOTN+3NP64fC25JAM7DH8HUgrko4nzK4aarQfPbrReKiaYJ
-         NGvTV8qzxy5yiiIpGlqGBAP1ImYK8WES6uSqUwrsrGnDNz50C5cDZJpaYY/5K3xSXnn+
-         WREw==
-X-Gm-Message-State: AOAM530tYJnDQFyHq547u59gJDam1ibmp0r3Bw83Ez7kvt3yXhnJDckY
-        DUkMpdzuTYVU4xsrNZWc1er3bJH3EjXDkDWBrS6DaA==
-X-Google-Smtp-Source: ABdhPJy9RurKC32AmfoVtPB3myBVO7shQtC7EsCY0JHURPmETIddV1Edg7rfNmYRfWt4357UrFJU1CJpEa2eHyaGgDU=
-X-Received: by 2002:a81:3542:: with SMTP id c63mr1093033ywa.87.1644578977117;
- Fri, 11 Feb 2022 03:29:37 -0800 (PST)
-MIME-Version: 1.0
-References: <20220210230819.3303212-1-frowand.list@gmail.com>
-In-Reply-To: <20220210230819.3303212-1-frowand.list@gmail.com>
-From:   Naresh Kamboju <naresh.kamboju@linaro.org>
-Date:   Fri, 11 Feb 2022 16:59:25 +0530
-Message-ID: <CA+G9fYvuk-vhRXU1ncz51WJfbR3CZ=VgY9SZmw9Qoub6P2NeWA@mail.gmail.com>
-Subject: Re: [PATCH 1/1] of: unittest: print pass messages at PR_INFO level
-To:     frowand.list@gmail.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Anders Roxell <anders.roxell@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S234009AbiBKLdS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 06:33:18 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 035B9B3B;
+        Fri, 11 Feb 2022 03:33:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9172D61880;
+        Fri, 11 Feb 2022 11:33:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F027AC340E9;
+        Fri, 11 Feb 2022 11:33:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644579197;
+        bh=msKcb0RndZ12+vVaLK7an78KdGVqce9K77/Gi6nEqrw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=sVEMcA5CAW3nFHt5iIl85Vamh8nGFsN3fzHTiuSQzJ2NbpQEwMgZnfo/+dhEoasL9
+         8WTwRkXnF9cUkVGXOHTWV3xzq5M9d8v/FD7XJVTWkqwKUYwMWmXoxEvdOMqgOVbhSp
+         /4K80Aam5kTJTMws2GxKWhmfMy3evXdpMFh5N+Laqnc5hUksjKyNUw5LZc0qx8fXG7
+         TfgCx0WZBMHLudBuTC2gCjoPFGpBBhk6IVz+fqrJJPWr04YINhLACkN2CEX9RlP8b2
+         A85bZe9BNvn+ArwYEh3fOFJ0cjIkKErYpRJkUge+oA9fqRHDs0sHC84M9VIN8d59KQ
+         CB/j8dOr+ICJg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=billy-the-mountain.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nIUAs-0079XQ-VF; Fri, 11 Feb 2022 11:33:15 +0000
+Date:   Fri, 11 Feb 2022 11:33:14 +0000
+Message-ID: <87bkzdljt1.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/5] arm64: dts: ti: Introduce base support for AM62x SoC
+In-Reply-To: <20220210193459.nl6baranvmqs46bi@coastal>
+References: <20220208131827.1430086-1-vigneshr@ti.com>
+        <20220208131827.1430086-5-vigneshr@ti.com>
+        <bc6cb6e1adcf6860a595b71246778733@kernel.org>
+        <20220210193459.nl6baranvmqs46bi@coastal>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski@canonical.com, ssantosh@kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,58 +72,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Feb 2022 at 04:38, <frowand.list@gmail.com> wrote:
->
-> From: Frank Rowand <frank.rowand@sony.com>
->
-> Printing the devicetree unittest pass message for each passed test
-> creates much console verbosity.  The existing pass messages are
-> printed at loglevel KERN_DEBUG so they will not print by default.
->
-> Change default to print the pass messages at loglevel PR_INFO so
-> they will print with the default console loglevel.
->
-> The test community expects either a pass or a fail message for each
-> test in a test suite.  The messages are typically post-processed to
-> report pass/fail results.
->
-> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+On Thu, 10 Feb 2022 19:34:59 +0000,
+Nishanth Menon <nm@ti.com> wrote:
+> 
+> On 19:10-20220209, Marc Zyngier wrote:
+> [...]
+> 
+> > > +&cbass_main {
+> > > +	gic500: interrupt-controller@1800000 {
+> > > +		compatible = "arm,gic-v3";
+> > > +		#address-cells = <2>;
+> > > +		#size-cells = <2>;
+> > > +		ranges;
+> > > +		#interrupt-cells = <3>;
+> > > +		interrupt-controller;
+> > > +		reg = <0x00 0x01800000 0x00 0x10000>,	/* GICD */
+> > > +		      <0x00 0x01880000 0x00 0xC0000>;	/* GICR */
+> > 
+> > Usual rant: you are missing the GICC, GICH and GICV regions
+> > that are implemented by the CPU. Cortex-A53 implements them
+> > (they are not optional), so please describe them.
+> > 
+> 
+> 
+> -ECONFUSED. TRM for GIC500 refers to just GICD, GICR and ITS range[1].
 
-Tested-by: Linux Kernel Functional Testing <lkft@linaro.org>
+And I'm not talking about the GIC, but of the CPU interface. The fact
+that we describe both in the GIC binding doesn't mean they are
+implemented by the same IP block (and the architecture is quite clear
+about that).
 
-Test log link,
-https://lkft.validation.linaro.org/scheduler/job/4529628#L1697
+> Same thing is indicated by Generic Interrupt Controller Architecture
+> Specification[2] See table 1-1 (page 23).
+> 
+> I think you are expecting GICV3's backward compatibility mode (Table 1-2
+> in page 24), But in K3 architecture, are_option meant for backward
+> compatibility is set to true (aka no backward compatibility). I think
+> this did popup sometime back as well (first k3 SoC)[3]. I think the more
+> clearer description is available in [4].
 
-> ---
->
-> One review comment to similar previous patch "of: unittest: print
-> pass message as same lovlevel as fail" suggested to also change
-> the text of the pass message to include "PASS" instead of "pass".
-> I would rather leave the text unchanged to minimize churn for any
-> existing users of the message.  It is my intention to change the
-> pass and fail messages to KTAP version 2 format as soon as that
-> version of the specification is completed.
->
->  drivers/of/unittest.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index 70992103c07d..9012e6900965 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -44,7 +44,7 @@ static struct unittest_results {
->                 pr_err("FAIL %s():%i " fmt, __func__, __LINE__, ##__VA_ARGS__); \
->         } else { \
->                 unittest_results.passed++; \
-> -               pr_debug("pass %s():%i\n", __func__, __LINE__); \
-> +               pr_info("pass %s():%i\n", __func__, __LINE__); \
->         } \
->         failed; \
->  })
-> --
-> Frank Rowand <frank.rowand@sony.com>
+No, this description is for the architecture as a whole. ARE being
+disabled *int the GIC* doesn't mean it is disabled overall, and the
+CPU is free to implement the CPU interface by any mean it wants as
+long as it communicates with the GIC using the Stream Protocol.
+Cortex-A32, A34, 35, A53, A57, A72 and A73 all implement both the
+sysreg and MMIO CPU interfaces. Later ARM CPUs don't. Both can work
+with GIC500.
 
+> I believe the argumentation that GICC/H/V is mandatory for A53 if GIC500
+> is used is not accurate. Please correct me if I am mistaken.
 
---
-Linaro LKFT
-https://lkft.linaro.org
+GIC500 is not involved at all, and A53 always implements both the
+system register and MMIO interfaces. See the A53 TRM, chapter 9. The
+only way to disable this interface is to assert GICCDISABLE, which
+disables the whole of the CPU interface. Given that you have a (more
+or less) functional system, it probably isn't the case.
+
+See Table 9-1, which tells you where these registers are as an offset
+from PERIPHBASE. Dumping these registers should show you that they are
+indeed implemented and not solely a figment of my own imagination.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
