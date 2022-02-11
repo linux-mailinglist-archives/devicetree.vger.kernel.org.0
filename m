@@ -2,98 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12A684B1F03
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 08:08:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FDF04B1F26
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 08:15:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347575AbiBKHIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 02:08:12 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56852 "EHLO
+        id S239595AbiBKHOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 02:14:21 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245460AbiBKHIM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 02:08:12 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BF3CEF;
-        Thu, 10 Feb 2022 23:08:11 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2E896B827DE;
-        Fri, 11 Feb 2022 07:08:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25784C340E9;
-        Fri, 11 Feb 2022 07:08:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644563288;
-        bh=bNbucoU4hGhTLdhp/tSDciDNIXbgrdpLrXZPPdv1RXQ=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=BAQVHmydGY+fQk7uPEzxU3BxASE8nYb458eyGnJm3hkpchxrPYJPZrpqHfd0tVIO0
-         slDuz3Nh4bipEjlwZR70IGX8Jao04OKIMmNdtDoG1DwK+SRr4V899bmHY2obn5g+7w
-         QkMN3FFN26FXW+fxgbmA73/zrnEkur2tr8pySXoKBffc9Cj+tfubfg9pOHno2laCwQ
-         9mTdMxu+fIS6ZsD9CrtNYhshRWB+fEn1kwb6AwNO9vEHqikeb4US2OxmqGMVCsjo3T
-         4xOsZCC1tEF3+k38Js65b9KOxmwaDbVI//y4p73oQyI0RrB8bS5A397Dl/ml+TosnX
-         Ufx0dorEjWvfQ==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v9 05/24] wfx: add main.c/main.h
-In-Reply-To: <2534738.AP0T11PbZZ@pc-42> (=?utf-8?B?IkrDqXLDtG1l?=
- Pouiller"'s message of "Thu,
-        10 Feb 2022 17:37:51 +0100")
-References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com>
-        <39159625.OdyKsPGY69@pc-42> <87a6ey3d0e.fsf@kernel.org>
-        <2534738.AP0T11PbZZ@pc-42>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
-Date:   Fri, 11 Feb 2022 09:08:01 +0200
-Message-ID: <874k553mpa.fsf@kernel.org>
+        with ESMTP id S238024AbiBKHOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 02:14:21 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6350A10A4;
+        Thu, 10 Feb 2022 23:14:20 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id a8so20847551ejc.8;
+        Thu, 10 Feb 2022 23:14:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=E/Q37Q6+RR2dveoR/2NMRAXYHb7wS8kwm6B1afPK3/I=;
+        b=g3DRs0hxeXLgRMPGhKfi8RMEtZ057c3rsMDVudM1nzOamswQ1lC0qwM5k4Sen9KCN6
+         RynF5Oe/P9tJhuPg7kbSm8nrFV8fkbqy7RrKirocHcDK7ceVy1cLAxEmkn5nP9PSMJOP
+         Rf4Fh4TjkSnFDW/7gnVciv6LvOx0NPcXgzAfn/uyjtflnkBO8blVNcAwgRNUeMo0y09X
+         pN12m0z8i6WY1UaKtSvuaC+OO3QYXQUzEN8Ih9bj0BKUj75LGxJI4P4C2mCRoByf4CIF
+         IFf2mDVDJCBLbaIXVtxrH/pbfg9sm90ijC8kShRlHwZe5DT6ISVy85+jujQ/OQsX4saB
+         L7Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=E/Q37Q6+RR2dveoR/2NMRAXYHb7wS8kwm6B1afPK3/I=;
+        b=W/EXjsCxLNJIlzX8W0SAZBzetkI5Y14BRaJGsMM/0Va5c2AtQmZVCKHTtsPt6t/HgU
+         iaXR3FzQOm1fIRZdrRK7fsFbOjD1lD92vhkdKOFJVkxlT1lCZQBvWgtOK/macOVMQjxO
+         rxfzAfaHmRZSw8o5qFI/tpFKBJ4Pv7TF4PgJ8IyFCjMz4gkwSE/CXAMIjY/YpIzzIdXg
+         wV82NWzdFuKN8KL0MyisSj7IOFUSOu12hMdplHiuR7sPxAA2M+e7gxzslIzbluobh8aU
+         EKZvrGkU2BMmfXjDF4ZiOR0QaffMXYpp22RgDKzpxWuKduAGhhYzkSbmd2jHo5ZAPQSN
+         jCng==
+X-Gm-Message-State: AOAM533VfqZGK/zF0EVtwsjZ+jwDGnzd0xWnHfcuhH6uvMaKlXCCqMSq
+        KhLtcw5cPGNAw5c1kF7OipFol/hl6As=
+X-Google-Smtp-Source: ABdhPJwas9ZB5I92u4PowwOoMZdiEpc3QwgD75Ye2plNUVl7KLTWW+kz2Rcxqc2di+FwX89Z0y51lQ==
+X-Received: by 2002:a17:906:9b87:: with SMTP id dd7mr270572ejc.758.1644563658696;
+        Thu, 10 Feb 2022 23:14:18 -0800 (PST)
+Received: from localhost.localdomain.at (62-178-82-229.cable.dynamic.surfer.at. [62.178.82.229])
+        by smtp.gmail.com with ESMTPSA id q7sm4484784edv.93.2022.02.10.23.14.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Feb 2022 23:14:18 -0800 (PST)
+From:   Christian Gmeiner <christian.gmeiner@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     nm@ti.com, hnagalla@ti.com,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: ti: k3-am64-main: Add ESM0 bus mapping
+Date:   Fri, 11 Feb 2022 08:13:58 +0100
+Message-Id: <20220211071403.56146-1-christian.gmeiner@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
+As the kernel repository is the source for dtsi files for other
+projects like U-Boot it makes sense to add the ESM0 bus mapping,
+even no Linux driver needs it (yet).
 
->> > There is also the patch 01/24 about the SDIO IDs.
->> >
->> > I think the v10 could contain only 3 patches:
->> >
->> >     1. mmc: sdio: add SDIO IDs for Silabs WF200 chip
->> >     2. dt-bindings: introduce silabs,wfx.yaml
->> >     3. [all the patches 3 to 24 squashed]
->> >
->> > Would it be right for you?
->>=20
->> TBH I don't see the point of patch 3 at this moment, we have had so many
->> iterations with the full driver already. If people want to look at the
->> driver, they can check it from the staging tree. So in the next round I
->> recommend submitting only patches 1 and 2 and focus on getting all the
->> pending patches to staging tree.
->
-> Ok.
->
->> And the chances are that a big patch like that would be filtered by the
->> mailing lists anyway.
->
-> I believe that with -M, the patch would be very small.
+Signed-off-by: Christian Gmeiner <christian.gmeiner@gmail.com>
+---
+ arch/arm64/boot/dts/ti/k3-am64.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Ah, you mean patch 3 would be about moving wfx from drivers/staging to
-drivers/net/wireless? Yeah, with -M that would be a good idea.
+diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+index 84bd07cd1824..09ff14643ee6 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+@@ -66,6 +66,7 @@ cbass_main: bus@f4000 {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+ 		ranges = <0x00 0x000f4000 0x00 0x000f4000 0x00 0x000002d0>, /* PINCTRL */
++			 <0x00 0x00420000 0x00 0x00420000 0x00 0x00001000>, /* ESM0 */
+ 			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00001100>, /* GPIO */
+ 			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* Timesync router */
+ 			 <0x00 0x01000000 0x00 0x01000000 0x00 0x02330400>, /* First peripheral window */
+-- 
+2.34.1
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
