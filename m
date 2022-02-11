@@ -2,113 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BAB84B2DF8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 20:47:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 327A34B2DFF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 20:48:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352967AbiBKTrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 14:47:06 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57800 "EHLO
+        id S1352995AbiBKTsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 14:48:22 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348914AbiBKTrF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 14:47:05 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D6DF13A
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 11:47:04 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id k13so18529713lfg.9
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 11:47:04 -0800 (PST)
+        with ESMTP id S1352988AbiBKTsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 14:48:21 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D0E32A4
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 11:48:16 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id n8so1239912wms.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 11:48:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:cc:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=wlk9TNYVCMph61ewMNIOja5bBaQXf36U4fYvmtONX+s=;
-        b=erzjDC8HdhKkcESrt6GaJK5DCgdNcuVGJ/RhXe53huFkT7eDuRGXpjtPbgkTEsAYZS
-         6byctj6XeVjjK17pOOeahYbFMgpjTz74V8ONndInduGW0izI931LiQTDKE/7hy60g/Lj
-         6Ch02JY8yPmSQT4K1nX4bgiqr1zvKYg5kZgOqrxjVqu2CSw0dpJV3XtRFSR6KuzEs63E
-         T+V0pkYOov744TzjcZKWxA+84i9ofDVd99kKlBsyQBT7qfR1itkx26IWXvNT9d2hL3+n
-         WB/J2xQawKrPt4Jz4qD+VlBqdEALvS9d2LJxMZTJ/d51fgSVfB2SXMRfFG9wuG/AfvrJ
-         PW9w==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=juTeh7Pj90KLSN4yGW9MUvSWd5K4ZGezg8meChmllJM=;
+        b=p2lbra2wVZWj/aHaZPHIqpQTjCq8ADCTKLacm7/mJcjw0XVpPj1tfMaXyKZq0OKBF9
+         G2+oiZlPgwYGQ7qDX37e2rY+Hx+zmVLE5yjEULvC3SRlO2gWL3a9Q/cVTW/BAintjBvr
+         xfpZOJ0KIRKc0l3Z/wqqpycd9cefOtaoM9nPvC3sLeZyABvxTo00k1ZVaS/65pgLX+ux
+         7gV7Zo/84KYowLY6RpwlduRc2VKPdU5T/OpsabIv2mHSID67mFJJJkfyf2DsudwQMtA1
+         QdbivyByiKN4KwBsg/IAYGEcn6MPBoQ5JbmXsVo1gR0i9kEMuE6cP+8nJ8TmZWvczbob
+         XqyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:cc:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=wlk9TNYVCMph61ewMNIOja5bBaQXf36U4fYvmtONX+s=;
-        b=b+0EhWZmZ9fJSCMkbglKvnRtuhvDuiPZE1g+DgfFpVCWv2SYFu/4E1dovDVVDiC/bq
-         eHGgP288J9Sto1K0XVDFJXY7ClmbrDqAh2YDakdapcFw+5MJmBsdRXdUxf61cMgGfcGh
-         YEJPUDlW2rHIE2P3SR8NdzqMFo46wRsKw3cOGJHZCcI3Mb8gVyY3jChNISvjLc0xdaXB
-         HbAuiGjdMftjtD5PpnZyp49KYrBEuuexSK8j/oXmMCtXNtFMCIIQICYpajgkwyhpwjyE
-         eABX4QWzGCLxen7C0SFeX8Z2DvoPt9KnYgbLElWvdSHCPo2gwaydFCDz9CZt7Z4HX3ZJ
-         Q7Dw==
-X-Gm-Message-State: AOAM5308NspuQ83n0SSGBSQXk0HJdCLJjoevMCLep7okcfOdJKuQWA3D
-        KgD5TTaYBDwV3YqvhBqnMBL/4bBI+rh7mGl1
-X-Google-Smtp-Source: ABdhPJzqoBMA+QIOiEPvnR09WPKnrncnY5ngE4lRCI6j++aI6QzP6sjWQIhKmmoS9UKcAgSnvTeuKA==
-X-Received: by 2002:a05:6512:3e1c:: with SMTP id i28mr2170671lfv.83.1644608822600;
-        Fri, 11 Feb 2022 11:47:02 -0800 (PST)
-Received: from [192.168.1.102] (88-113-46-102.elisa-laajakaista.fi. [88.113.46.102])
-        by smtp.gmail.com with ESMTPSA id k1sm367352lfo.295.2022.02.11.11.47.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Feb 2022 11:47:02 -0800 (PST)
-Subject: Re: [PATCH 0/9] i2c: qcom-cci: fixes and updates
-To:     Wolfram Sang <wsa@kernel.org>
-References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
- <Ygahuyi+/m8T/5cZ@kunai>
-Cc:     Loic Poulain <loic.poulain@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Message-ID: <db11d120-0f9c-177d-66a0-18cab7297445@linaro.org>
-Date:   Fri, 11 Feb 2022 21:46:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=juTeh7Pj90KLSN4yGW9MUvSWd5K4ZGezg8meChmllJM=;
+        b=qZkSPd6WWSt+S4NuNfQnAe2OmUb+ykvEKj1Yu9TarGRKaDcOVnN/6iPbGuNCpUALpu
+         EQJy6eqzC5+pIn3wDZgX4d+0VKQ0Frfjo/u989HnO2I+fCrf9Qrk3VziABnyupdTgfYh
+         qy5h6jmMPrrDqYn60vsHUHgfH1GdJfmVtsNgHzPPgaR3DWEw4dhG5iWXZjoa3ufYw5Wd
+         v8XzW2/F82/2INC7XiQPFbPLo+JB0OcNPcX9sGja42coNX8n6pQVHCGiwi5flehaxRbL
+         9Hi1ki0nByQSJkhTUx6VmioL08RS7ZrLujkCVVdwRFeIvHhUUvQwRIayP+9ThNhTwJPD
+         Np1A==
+X-Gm-Message-State: AOAM5303sADdDpq8vjZ2oBicg704UFT2tAvph+QrDBJo6Qw89CRG5V1E
+        f8wM+ESYHFZan7Xh0rwn6aDo1A==
+X-Google-Smtp-Source: ABdhPJwm4fSf5P60cAv4b4rom2weLwFPNsnAL5uORWpD8q0HuZ07dx4i7uD5lDxTuzkeJC2w/piyVQ==
+X-Received: by 2002:a7b:cdfa:: with SMTP id p26mr1552313wmj.109.1644608895139;
+        Fri, 11 Feb 2022 11:48:15 -0800 (PST)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id j15sm104487wmq.6.2022.02.11.11.48.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 11:48:14 -0800 (PST)
+Date:   Fri, 11 Feb 2022 20:48:07 +0100
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     davem@davemloft.net, heiko@sntech.de, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3] dt-bindings: crypto: convert rockchip-crypto to yaml
+Message-ID: <Yga9d5C2f1ubOok8@Red>
+References: <20220211115925.3382735-1-clabbe@baylibre.com>
+ <dba5684a-1e5f-a4d4-604b-651751636cf3@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <Ygahuyi+/m8T/5cZ@kunai>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dba5684a-1e5f-a4d4-604b-651751636cf3@gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
-
-On 2/11/22 7:49 PM, Wolfram Sang wrote:
-> Hi,
+Le Fri, Feb 11, 2022 at 02:13:00PM +0100, Johan Jonker a écrit :
 > 
->> The new bus adapter specific bus_regulator from commit 5a7b95fb993e
->> ("i2c: core: support bus regulator controlling in adapter") is reused,
 > 
-> Reusing is nice, of course, but I hope you noticed that I needed to
-> revert this feature:
+> On 2/11/22 12:59, Corentin Labbe wrote:
+> > Convert rockchip-crypto to yaml
+> > 
+> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> > ---
+> > Changes since v1:
+> > - fixed example
+> > - renamed to a new name
+> > - fixed some maxItems
+> > 
+> > Change since v2:
+> > - Fixed maintainers section
+> > 
+> >  .../crypto/rockchip,rk3288-crypto.yaml        | 66 +++++++++++++++++++
+> >  .../bindings/crypto/rockchip-crypto.txt       | 28 --------
+> >  2 files changed, 66 insertions(+), 28 deletions(-)
 > 
-> a19f75de73c2 ("Revert "i2c: core: support bus regulator controlling in adapter"")
-
-yes, I've seen it, and as far as I understand it's expected to get it
-back after the regression fixes.
-
-> The thread to get it re-applied is currently here:
+> >  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
 > 
-> https://lore.kernel.org/all/20220106122452.18719-1-wsa@kernel.org/
+> There's more possible to this document:
+> 
+> dt-bindings: crypto: rockchip: add support for px30
+> https://github.com/rockchip-linux/kernel/commit/3655df1bc6114bda2a6417f39772a3cb008084ea
+> 
+> crypto: rockchip - add px30 crypto aes/des support
+> https://github.com/rockchip-linux/kernel/commit/ee082ae4f609f3b48f768420b31d8600448bd35a
 > 
 
-A presented change in the series is I2C controller specific, so it works well
-on top of the reverted feature, however it has a potential to be simplified
-after the re-application.
+Hello
 
-Wolfram, can you please share your opinion on device tree binding name and
-placement for an SDA/SDC pull-up controlled by a regulator?
+The great advantage of out of tree code is that we can ignore it.
+Anyway, if one day this code goes upstream, I think the new compatible should be in a new driver/module, both v1 and v2 are too different for me to be shared in the same driver.
 
-See https://lore.kernel.org/all/682b7ffe-e162-bcf7-3c07-36b3a39c25ab@linaro.org
+But before upstreaming this code, the one in mainline should be fixed first, it fail self tests. (I have some patch partialy fixing it in progress)
 
-Thank you in advance.
-
---
-Best wishes,
-Vladimir
+Regards
