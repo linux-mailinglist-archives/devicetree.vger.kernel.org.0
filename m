@@ -2,107 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFAAD4B28EA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 16:16:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AC8C4B28F5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 16:17:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351316AbiBKPP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 10:15:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35876 "EHLO
+        id S1346005AbiBKPQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 10:16:51 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240606AbiBKPPW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 10:15:22 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A6BB17;
-        Fri, 11 Feb 2022 07:15:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4E3A661FE0;
-        Fri, 11 Feb 2022 15:15:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D12EC340E9;
-        Fri, 11 Feb 2022 15:15:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644592519;
-        bh=IBFj2X+hcyPR39ZMQ3rlleTF8vNjd5w2MnpIK3BBRMY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MmGCHoL2jBqJx8fSZnFJir8mkhPKSgxt2JUHRSn60wV1qepXUXKX5nrall0vTrbG6
-         b/4Kyddinm/0jrcIJnuDm/pPNxU2mm0I3mbiSPOQX80EEtFmpeLDb7b8vLPKk3s/Ro
-         GKEDYUaWCIpvV3t4nrNROIi6XxRbm0NC9G/eyxfe+7FSsM8lOaTMH4SThmDZoM7pc/
-         XikLLCFV3CnMYX1CqbZm0O6V79kllMYeXpgsHA5Hcfx5KUOSJfNJI2bsow6rSTEjel
-         dLIwQcvks95mIbWaUlz2dw3PpzeUZbmP/8ZLz6gDeCZ9gqYi9pJZQ+kLVQxoE7fpwE
-         LvfbdduK+f4FQ==
-Date:   Fri, 11 Feb 2022 15:15:13 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     lgirdwood@gmail.com, tiwai@suse.com, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, perex@perex.cz, p.zabel@pengutronix.de,
-        geert+renesas@glider.be, trevor.wu@mediatek.com,
-        tzungbi@google.com, zhangqilong3@huawei.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 05/15] ASoC: mediatek: mt8186: support hw gain in
- platform driver
-Message-ID: <YgZ9gadN8RksWeWN@sirena.org.uk>
-References: <20220211103818.8266-1-jiaxin.yu@mediatek.com>
- <20220211103818.8266-6-jiaxin.yu@mediatek.com>
+        with ESMTP id S229739AbiBKPQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 10:16:50 -0500
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536051A3;
+        Fri, 11 Feb 2022 07:16:49 -0800 (PST)
+Received: by mail-oo1-f46.google.com with SMTP id q145-20020a4a3397000000b002e85c7234b1so10687520ooq.8;
+        Fri, 11 Feb 2022 07:16:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1P3H5utZhmDvFsnAtwZyeK8JRztag6WByXWcE5q2Zyc=;
+        b=QH0wgj/ZFK/cOh7IBuJEQfaN4p93uEfa8BSGoklQCHHbbG2sSpqZHEWM41Q1qAaEGC
+         39G32NhgVXp6V0yxP8+KH+5Z6uuBOc417RZh7ZiN9o46+g1ZWiWVUBhgBJLz0miCIKml
+         Zhm5uFfOZ3m3a2z+bIUGdvrtIBPazRDZ2rQ/zEEH5/gBd8FwgVmcACrZhPsm/W4ZU7PQ
+         tSDGC5MCTCCnaCN/x6tAEEc4Drr10CQDuoOsbmH+crAAyiYTEGvzjh+acQFVkOWta4yi
+         lhdwLeAhl/viJWHiCiyxq7NWVTv65KS52Dh/1fsLoEUYsBJm+LsBGfZP8CssQ7A5yAuC
+         bVtQ==
+X-Gm-Message-State: AOAM533V3I8NbuvmqPa8WO8unxEgZMHth8QQsAMsAPeGkuH+4zULLwgK
+        qAyR6qxU9JQE/Zv5ky4qtA==
+X-Google-Smtp-Source: ABdhPJyjj0qRfHV+X2Or/x7i2b6yIL+QqHCBBRDSOpVutl1Fb19j9aZR3y+aSd0eIuMcJSEYP3cxig==
+X-Received: by 2002:a05:6870:87c2:: with SMTP id s2mr283788oam.123.1644592608577;
+        Fri, 11 Feb 2022 07:16:48 -0800 (PST)
+Received: from robh.at.kernel.org ([2607:fb90:20db:bd0f:3516:878e:18c1:cd1e])
+        by smtp.gmail.com with ESMTPSA id eh38sm5186127oab.36.2022.02.11.07.16.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 07:16:47 -0800 (PST)
+Received: (nullmailer pid 382654 invoked by uid 1000);
+        Fri, 11 Feb 2022 15:16:44 -0000
+Date:   Fri, 11 Feb 2022 09:16:44 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
+        Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 62/66] dt-bindings: media: sun6i-a31-csi: Add ISP
+ output port
+Message-ID: <YgZ93JcVaeU6VUBq@robh.at.kernel.org>
+References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
+ <20220205185429.2278860-63-paul.kocialkowski@bootlin.com>
+ <YgFDI17Q3AlZxaOi@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="c+ZpsOQ7A1I9zFvP"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220211103818.8266-6-jiaxin.yu@mediatek.com>
-X-Cookie: do {
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <YgFDI17Q3AlZxaOi@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Feb 07, 2022 at 06:04:51PM +0200, Laurent Pinchart wrote:
+> On Sat, Feb 05, 2022 at 07:54:25PM +0100, Paul Kocialkowski wrote:
+> > Some Allwinner devices come with an Image Signal Processor (ISP) that
+> > allows processing camera data to produce good-looking images,
+> > especially from raw bayer representations.
+> > 
+> > The ISP does not have a dedicated capture path: it is fed directly by
+> > one of the CSI controllers, which can be selected at run-time.
+> > 
+> > Represent this possibility as a graph connection between the CSI
+> > controller and the ISP in the device-tree bindings.
+> > 
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > ---
+> >  .../bindings/media/allwinner,sun6i-a31-csi.yaml    | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
+> > index 3cc61866ea89..7952413f98d8 100644
+> > --- a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
+> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
+> > @@ -83,6 +83,20 @@ properties:
+> >  
+> >          additionalProperties: false
+> >  
+> > +      port@2:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        description: ISP output port
+> > +
+> > +        properties:
+> > +          reg:
+> > +            const: 2
+> > +
+> > +          endpoint:
+> > +            $ref: video-interfaces.yaml#
+> > +            unevaluatedProperties: false
+> 
+> This could be
+> 
+>             $ref: video-interfaces.yaml#
+>             remote-endpoint: true
+>             additionalProperties: false
+> 
+> to reject other properties.
 
---c+ZpsOQ7A1I9zFvP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+If that's what is desired, then video-interfaces.yaml shouldn't be 
+referenced and up above should be /properties/port.
 
-On Fri, Feb 11, 2022 at 06:38:08PM +0800, Jiaxin Yu wrote:
-
-Again, mostly looks good just some minor issues (I've not repeated some
-that applied to the prior code):
-
-> +static const struct snd_kcontrol_new mtk_hw_gain2_in_ch1_mix[] = {
-> +	SOC_DAPM_SINGLE_AUTODISABLE("ADDA_UL_CH1", AFE_CONN15,
-> +				    I_ADDA_UL_CH1, 1, 0),
-> +};
-
-These end up as regular user visible controls so should have standard
-control names - in this case ending in Switch since it's a simple
-on/off.  A similar issue was there in the earlier patches.
-
-> +static const struct snd_kcontrol_new mtk_hw_gain_controls[] = {
-> +	SOC_SINGLE("HW Gain 1", AFE_GAIN1_CON1,
-> +		   GAIN1_TARGET_SFT, GAIN1_TARGET_MASK, 0),
-> +	SOC_SINGLE("HW Gain 2", AFE_GAIN2_CON1,
-> +		   GAIN2_TARGET_SFT, GAIN2_TARGET_MASK, 0),
-
-These should have standard names like "HW 1 Volume" so userspace has a
-better idea how to display them.
-
---c+ZpsOQ7A1I9zFvP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIGfYAACgkQJNaLcl1U
-h9Ct/Af/SB+lHd2ZvAn42VmwpobHVEpUjwZsElRbAQHPqUKPY43uoQ75NXOvyRQS
-HLaoNrQ0kkAVtNBtcolPvRac1ke9kTDEapfuhrUuv4QrgtdgRG3N6bL+m+dyQ6g5
-33pIVvYTByz9HsJbzdSFqP527RJqmIUMGucj/p91edb9vTx/SEUZSuj6qqlohr2h
-eVoa/P+QCK9bs29/EAD3HmucuJispsMgmntjOE9sYcGFmMDydZSHmyBozPDUuEJ0
-S/8o/RVRY7h/KFKLAcc6+kSH4SctBryW4lXtdbZzueBFSefbMzjcHePyeJ0qox5N
-Xa9RTpXYvvkNT7fsmvi3+zf0sBZGrw==
-=22jY
------END PGP SIGNATURE-----
-
---c+ZpsOQ7A1I9zFvP--
+Rob
