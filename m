@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09D394B2946
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 16:44:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE7794B2963
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 16:49:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245198AbiBKPoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 10:44:02 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55748 "EHLO
+        id S238376AbiBKPte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 10:49:34 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243944AbiBKPoC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 10:44:02 -0500
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8548FD82;
-        Fri, 11 Feb 2022 07:43:59 -0800 (PST)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id B8D1D240002;
-        Fri, 11 Feb 2022 15:43:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1644594235;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=8aMFMOxt3wpyHmG3yssB5XfL03jGxKhpyI3oWsfXL7Y=;
-        b=i4aEFxwFLtu1GXs7z7xfAitkEU3hGcEI+mu83hBlSsl0YRIQugktUhswkyIxTqEbcZzLXZ
-        x39h5ceyKPn8xje/cg/Vm+s8MVXxz6+o57LYVN44VCs6ffEDlLDL4MFPDJBnwSOZ+Yy1MZ
-        K1TYDMG06ztndhrohKC4lSeHy6YQHAir1b++VQJbmjluK2HDsBHntNMEBom2CHIwmHoHhl
-        XMDcGB+ClMTfy40+/kdQxiUng1jvvfnbEapyiWs1WpPJ2jmmf4Lsr+5o+uNe4PEoCCUuDx
-        ++0b15Ag82zDNSnDYRABre6JrCucNWxCSrEzcrE/7gISHB8cyvdW1sTQSh6XFA==
-Date:   Fri, 11 Feb 2022 16:43:51 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 30/66] media: sun6i-csi: Add bridge v4l2 subdev with
- port management
-Message-ID: <YgaEN0ziZx5X7tQe@aptenodytes>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <20220205185429.2278860-31-paul.kocialkowski@bootlin.com>
- <20220209092419.i3kver4f2am7mnow@houat>
+        with ESMTP id S234142AbiBKPtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 10:49:33 -0500
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89EDE1A8;
+        Fri, 11 Feb 2022 07:49:32 -0800 (PST)
+Received: by mail-oi1-f178.google.com with SMTP id y23so9924940oia.13;
+        Fri, 11 Feb 2022 07:49:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=gWKYE2d0LpVfiDQEqlRd5JWJe4nWkpS2f1rG0JFNYfg=;
+        b=plgJSdeKxJwrQaJij7numzxgN1rI4YWHRZ8T7PdVWRJqPSAkNMEoYq8jraY8jwQtLR
+         QKj7W3ldPDaSE12///vBxkDQBYIAIcqmkLY0I/nPzlBfcUj/ux/px3Dzm1vghvbEScnp
+         BMP7cYZuMVZHC6i8XGZmff2cGN1baJ77kc5IzJ0nd/TwRhpD7X9q7mxGWwhipOHeRgr4
+         biNx9f8HbwE8HgsiGNzpf30l9fPP7LV7uf5Q7Z5aBcKYsNkHB+3jjfqf6VQsRqgZ4Fcu
+         xUViP2PP/jsPSMSHTuJa5lCTKj3CsR3fR/Lbe9UiDe3/y6Golnrrz4NciU9JXyEQFQqh
+         GJnw==
+X-Gm-Message-State: AOAM531aQqgLKwUY2VgJjvre1yRvpHyOLH9rV4LiIasm4UiuhedD7BTR
+        73U8Z23vWCLgz2Kwq6kgTw==
+X-Google-Smtp-Source: ABdhPJxoP4zIIRj7it+mF16gB50xGdR/J7wpMEl6fEvCZKZC+lc5Es0k1OoC2wRfJCacn5nRg4UQ1w==
+X-Received: by 2002:a05:6808:11c6:: with SMTP id p6mr460883oiv.50.1644594571778;
+        Fri, 11 Feb 2022 07:49:31 -0800 (PST)
+Received: from robh.at.kernel.org ([2607:fb90:5fee:dfce:b6df:c3e1:b1e5:d6d8])
+        by smtp.gmail.com with ESMTPSA id bh7sm6124885oib.6.2022.02.11.07.49.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 07:49:30 -0800 (PST)
+Received: (nullmailer pid 409607 invoked by uid 1000);
+        Fri, 11 Feb 2022 15:46:27 -0000
+Date:   Fri, 11 Feb 2022 09:46:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, alistair@alistair23.me,
+        samuel@sholland.org, josua.mayer@jm0.eu,
+        letux-kernel@openphoenux.org
+Subject: Re: [RFC PATCH 1/6] dt-bindings: display: imx: Add EPDC
+Message-ID: <YgaE06Ktabpf2dJC@robh.at.kernel.org>
+References: <20220206080016.796556-1-andreas@kemnade.info>
+ <20220206080016.796556-2-andreas@kemnade.info>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="XHw3N8UqH38RVSoa"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220209092419.i3kver4f2am7mnow@houat>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220206080016.796556-2-andreas@kemnade.info>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,61 +69,208 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Feb 06, 2022 at 09:00:11AM +0100, Andreas Kemnade wrote:
+> Add a binding for the Electrophoretic Display Controller found at least
+> in the i.MX6.
 
---XHw3N8UqH38RVSoa
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The first version was in i.MX50 (I helped design the register 
+interface). Is that version compatible?
 
-Hi,
+> The timing subnode is directly here to avoid having display parameters
+> spread all over the plate.
+> 
+> Supplies are organized the same way as in the fbdev driver in the
+> NXP/Freescale kernel forks. The regulators used for that purpose,
+> like the TPS65185, the SY7636A and MAX17135 have typically a single bit to
+> start a bunch of regulators of higher or negative voltage with a
+> well-defined timing. VCOM can be handled separately, but can also be
+> incorporated into that single bit.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  .../bindings/display/imx/fsl,mxc-epdc.yaml    | 159 ++++++++++++++++++
+>  1 file changed, 159 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
+> new file mode 100644
+> index 000000000000..7e0795cc3f70
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
+> @@ -0,0 +1,159 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/imx/fsl,mxc-epdc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX6 EPDC
+> +
+> +maintainers:
+> +  - Andreas Kemnade <andreas@kemnade.info>
+> +
+> +description: |
+> +  The EPDC is a controller for handling electronic paper displays found in
+> +  i.MX6 SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx6sl-epdc
+> +      - fsl,imx6sll-epdc
 
-On Wed 09 Feb 22, 10:24, Maxime Ripard wrote:
-> On Sat, Feb 05, 2022 at 07:53:53PM +0100, Paul Kocialkowski wrote:
-> > Introduce a bridge v4l2 subdev to prepare for separation between the
-> > processing part (bridge) and the dma engine, which is required to
-> > properly support ths isp workflow later on.
-> >=20
-> > Currently the bridge just manages fwnode mapping to media pads,
-> > using an async notifier (which was previously in the main code).
-> > The s_stream video op just forwards to the connected v4l2 subdev
-> > (sensor or MIPI CSI-2 bridge).
-> >=20
-> > The video capture device is now registered after the bridge and
-> > attaches to it with a media link.
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
->=20
-> There's a bunch of checkpatch --strict warnings that need to be fixed
+Not compatible with each other?
 
-Yes so it turns out these are adaptations to the existing video code
-which has these warnings already merged. They are cleaned up later on
-in a dedicated commit, but since it's not the topic of this change
-(which is a logic change) I kept the code as it is.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Bus clock
+> +      - description: Pixel clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: axi
+> +      - const: pix
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
 
-What do you think?
+> +  vscan-holdoff:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +
+> +  sdoed-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +
+> +  sdoed-delay:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +
+> +  sdoez-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +
+> +  sdoez-delay:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +
+> +  gdclk-hp-offs:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +
+> +  gdsp-offs:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +
+> +  gdoe-offs:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +
+> +  gdclk-offs:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +
+> +  num-ce:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
 
-Cheers,
+All these need a vendor prefix and descriptions.
 
-Paul
+> +
+> +  timing:
+> +    $ref: /display/panel/panel-timing.yaml#
+> +
+> +  DISPLAY-supply:
+> +    description:
+> +      A couple of +/- voltages automatically powered on in a defintive order
+> +
+> +  VCOM-supply:
+> +    description: compensation voltage
+> +
+> +  V3P3-supply:
+> +    description: V3P3 supply
+> +
+> +  epd-thermal-zone:
+> +    description:
+> +      Zone to get temperature of the EPD from, practically ambient temperature.
+> +
+> +
+> +
 
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+1 blank line.
 
---XHw3N8UqH38RVSoa
-Content-Type: application/pgp-signature; name="signature.asc"
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - vscan-holdoff
+> +  - sdoed-width
+> +  - sdoed-delay
+> +  - sdoez-width
+> +  - sdoez-delay
+> +  - gdclk-hp-offs
+> +  - gdsp-offs
+> +  - gdoe-offs
+> +  - gdclk-offs
+> +  - num-ce
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx6sl-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    epdc: epdc@20f4000 {
+> +        compatible = "fsl,imx6sl-epdc";
+> +        reg = <0x020f4000 0x4000>;
+> +        interrupts = <0 97 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clks IMX6SL_CLK_EPDC_AXI>, <&clks IMX6SL_CLK_EPDC_PIX>;
+> +        clock-names = "axi", "pix";
+> +
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_epdc0>;
+> +        V3P3-supply = <&V3P3_reg>;
+> +        VCOM-supply = <&VCOM_reg>;
+> +        DISPLAY-supply = <&DISPLAY_reg>;
+> +        epd-thermal-zone = "epd-thermal";
+> +
+> +        vscan-holdoff = <4>;
+> +        sdoed-width = <10>;
+> +        sdoed-delay = <20>;
+> +        sdoez-width = <10>;
+> +        sdoez-delay = <20>;
+> +        gdclk-hp-offs = <562>;
+> +        gdsp-offs = <662>;
+> +        gdoe-offs = <0>;
+> +        gdclk-offs = <225>;
+> +        num-ce = <3>;
+> +        status = "okay";
 
------BEGIN PGP SIGNATURE-----
+Don't need status in examples.
 
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmIGhDcACgkQ3cLmz3+f
-v9HxbggAkL1iOyWpL7H+lZcb/umUFS3DskOwQqsJ28ib87Q2czErTSd1f+9YJdCa
-EHq30lRWyVOiGhNk+e2MzCZEEXWs4uwyrzwreGCK/8qHY7Rc4feneC1McKFsqLAP
-k90LC5AwjohCmVpGl6s4AIwoGuqC3sDYkF+My9u22p5I8uCN7FgScIOA7t89vAz3
-W7c/HZvofFbm94MWHksrFVOckKJHU5Ord3hFLZ9aN2WPTtPCtAwno2hU+lXY73BH
-bc6dopUiS4v4G3loMEQRTLhAq+Ni97+dcBR3avT0uHe01PsAd7ftmED1xuCY9thK
-uqhmv8PCDGd011l8Kb6eLcZ1accYnw==
-=xWX0
------END PGP SIGNATURE-----
-
---XHw3N8UqH38RVSoa--
+> +
+> +        timing {
+> +                clock-frequency = <80000000>;
+> +                hactive = <1448>;
+> +                hback-porch = <16>;
+> +                hfront-porch = <102>;
+> +                hsync-len = <28>;
+> +                vactive = <1072>;
+> +                vback-porch = <4>;
+> +                vfront-porch = <4>;
+> +                vsync-len = <2>;
+> +        };
+> +    };
+> +...
+> -- 
+> 2.30.2
+> 
+> 
