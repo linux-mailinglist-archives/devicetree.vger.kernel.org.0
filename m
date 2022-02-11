@@ -2,79 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93EEA4B2E63
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 21:27:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 809EC4B2E8E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 21:37:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353208AbiBKU1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 15:27:43 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60400 "EHLO
+        id S1353303AbiBKUgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 15:36:06 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239383AbiBKU1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 15:27:42 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35DC5B4
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 12:27:41 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: alyssa)
-        with ESMTPSA id 43ACC1F46D9B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1644611260;
-        bh=IwJ14LoYZzda+/Av+WGvVFb98hP/XjwCxic3ZWFVHXM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=awomBp1Gon1K02Digb0TkalfIEdRoNWHhUy1MRS/taKCG7Fc7XiLfQEcaBkkJrEOf
-         v9Y6DrtelFsM31hIssZdFS3+9FIRyOe1Of30MNEoyuG9FKTyuLspov5gBi1N45SEsb
-         VkezQiDFHoIOosRWOz/eD9ZlSHTx+EMwuaBOpNs/ejCC5DaDzKNtfo0FHYLauRyscS
-         yGIWVHYJBmpj6Ttagb/d6ATvytlh6PJFM4nD9unjNtvnvtPF0TOyal6oI5IFITNDVr
-         jb2BZ3JtrcLSioMQnACmSO8EBkPe/fGZzaa61Gnz3sTjFhjEpw7HZ+E98IQnUPsSKJ
-         PZk8QMyYxypUA==
-From:   alyssa.rosenzweig@collabora.com
-To:     dri-devel@lists.freedesktop.org
-Cc:     robh@kernel.org, tomeu.vizoso@collabora.com, steven.price@arm.com,
-        airlied@linux.ie, daniel@ffwll.ch,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/9] dt-bindings: Add arm,mali-valhall compatible
-Date:   Fri, 11 Feb 2022 15:27:20 -0500
-Message-Id: <20220211202728.6146-2-alyssa.rosenzweig@collabora.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220211202728.6146-1-alyssa.rosenzweig@collabora.com>
-References: <20220211202728.6146-1-alyssa.rosenzweig@collabora.com>
+        with ESMTP id S1353297AbiBKUgG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 15:36:06 -0500
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A775ECE7;
+        Fri, 11 Feb 2022 12:36:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:References:
+        In-Reply-To:Message-Id:Date:Cc:To:From:Sender:Reply-To:Content-Type:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=meNhctVqWiZ7bMMAhRsGEJ5/xhPxg/TVlXWUTDDfSJk=; b=EE2n7i9uSaLVtix5ZXvnWQB8zW
+        7PDswhSh857ISrqO6QpH6os6PjpB7Ho+4Ix2Qs0EUXkqsizkWK3uHc5CpvbA5Y9Is/tBxViEfuTht
+        elsFZMLx7f1c9RmYmhrNtsk/jgCNKmWusBXkwglUs6OH3uT3h+dwkC+Bok0Uf2JseYdM=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:55274 helo=pettiford.lan)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1nIce9-0005vF-2E; Fri, 11 Feb 2022 15:36:01 -0500
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     hvilleneuve@dimonoff.com, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, Rob Herring <robh+dt@kernel.org>
+Cc:     hugo@hugovil.com, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Date:   Fri, 11 Feb 2022 15:35:20 -0500
+Message-Id: <20220211203520.3902374-15-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220211203520.3902374-1-hugo@hugovil.com>
+References: <20220211203520.3902374-1-hugo@hugovil.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Subject: [PATCH 14/14] dt-bindings: rtc: pcf2127: add PCF2131
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-From the kernel's perspective, pre-CSF Valhall is more or less
-compatible with Bifrost, although they differ to userspace. Add a
-compatible for Valhall to the existing Bifrost bindings documentation.
+Add support for new NXP RTC PCF2131.
 
-Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-Cc: devicetree@vger.kernel.org
+Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 ---
- Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/rtc/nxp,pcf2127.yaml  | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-index 63a08f3f321d..48aeabd2ed68 100644
---- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-@@ -23,6 +23,7 @@ properties:
-           - rockchip,px30-mali
-           - rockchip,rk3568-mali
-       - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
-+      - const: arm,mali-valhall # Mali Valhall GPU model/revision is fully discoverable
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+index cde7b1675ead..57eb0a58afa3 100644
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+@@ -14,7 +14,9 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    const: nxp,pcf2127
++    enum:
++      - nxp,pcf2127
++      - nxp,pcf2131
  
    reg:
      maxItems: 1
+@@ -48,4 +50,19 @@ examples:
+         };
+     };
+ 
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@53 {
++            compatible = "nxp,pcf2131";
++            reg = <0x53>;
++            pinctrl-0 = <&rtc_nint_pins>;
++            interrupts-extended = <&gpio1 16 IRQ_TYPE_LEVEL_HIGH>;
++            reset-source;
++        };
++    };
++
+ ...
 -- 
-2.34.1
+2.30.2
 
