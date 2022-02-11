@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB2F84B299E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 17:04:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3632B4B2999
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 17:04:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349768AbiBKQDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 11:03:35 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36276 "EHLO
+        id S1349811AbiBKQEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 11:04:23 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237277AbiBKQDf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 11:03:35 -0500
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE641A8;
-        Fri, 11 Feb 2022 08:03:34 -0800 (PST)
-Received: by mail-oi1-f177.google.com with SMTP id y23so9970852oia.13;
-        Fri, 11 Feb 2022 08:03:34 -0800 (PST)
+        with ESMTP id S237277AbiBKQEX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 11:04:23 -0500
+Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6007012C
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 08:04:20 -0800 (PST)
+Received: by mail-vs1-xe2a.google.com with SMTP id m10so169788vso.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 08:04:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2177MDBPIZL1asiHVf/tsGcpg3hhljXk+Tm8j7/No3k=;
+        b=sA4/Wf+0wntyZPQ6IiqwzByik6CHGmnB7P2zQ8y8/xKYxL226mqIzNt4u7P56H4KIw
+         I3cuY8rCvRlQCeEXc68tbz9TzLj3ZbPH/fUQXnAROZzhEuWOyBd7VtG8AsHR0rAPZ+JT
+         Ngh/w4wAST9XeVQkPNeoMu4FiOQ89EH7W2oUZdA1Ce+iBw9qLOKVZBjEfteK7I1YjUQ5
+         asTzjX2XTf8NG3mJpGQOdbCz+5SXw3h6Mor50ul3uOyqdm0nfK+wWbEt6TJlEKHF4dR/
+         e6pop0pJpiX5Nv82BkrMTivpZUdt5plBXCg9L+inBFXHCFDXaXvrRNkig7q2nlXw7tVI
+         bxYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oK96NDQ/E6qrHpavTpxLKhY5vh0HN7cuKJXs2+xAB5w=;
-        b=UeKD01R9uRexSk/2mxrZ+gmH3wWYGe4eTcizAPfY6rnp7Pc1Z+NywCL3A78T+MABTR
-         CpYF+iaBlUvvlAmTTmRutnqV289QM2EUphArKCi+k6RoiUq9u9dqmWurgDAX99n4FZlK
-         oLgPIbFx28mIf/g5a5ESqYkHGMH+uwHKqhmQyDtICnfDmi2vFjsD8cENebp56NB9oZ8s
-         WCKOWBEXkmMLTVzoAPCY+C9V4070Z1gqeWHQ6Gi7uPcm+K7ged4ckwaYmtL/cfzoqIrL
-         N//4ZcHD8faa1FiU14n28Tn4G7QYWyrv9ikCIixjCerc/ZcZYEuuebznEo9oyvg5UrNF
-         w7ow==
-X-Gm-Message-State: AOAM530LaM4kX1KilpKyUSSXxQJ/jbaAdurOMfL15HTKvvvBJBYAZpE5
-        LUF0vgvyELMEgA7QQCsTYg4M4p9IWg==
-X-Google-Smtp-Source: ABdhPJx0EqTpAEZur0pxerj8DO4aI9eJkX9cI2W6fhFqx5wXcuO6BRRH7xso+xuLgoqeyCCm3cxStg==
-X-Received: by 2002:aca:1b05:: with SMTP id b5mr474898oib.289.1644595413118;
-        Fri, 11 Feb 2022 08:03:33 -0800 (PST)
-Received: from robh.at.kernel.org ([2607:fb90:5fee:dfce:b6df:c3e1:b1e5:d6d8])
-        by smtp.gmail.com with ESMTPSA id n12sm9549472oop.5.2022.02.11.08.03.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 08:03:32 -0800 (PST)
-Received: (nullmailer pid 435201 invoked by uid 1000);
-        Fri, 11 Feb 2022 16:03:30 -0000
-Date:   Fri, 11 Feb 2022 10:03:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        devicetree@vger.kernel.org, Biju Das <biju.das@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dma: rz-dmac: Document RZ/G2UL SoC
-Message-ID: <YgaI0sc5tPKAI11h@robh.at.kernel.org>
-References: <20220206200308.14315-1-biju.das.jz@bp.renesas.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2177MDBPIZL1asiHVf/tsGcpg3hhljXk+Tm8j7/No3k=;
+        b=ljmvkTB2NTYRi6wdFuwA3CABako4vcYs9rDxMPjXRVouA73LEi17TgfcW1i7lpZ2T0
+         r+hc1lDF6aqVkS9quTjL70TeKJvW8sWqK1sonzli2nKPHKsXp0/Gv7yhfLGBk4jvCNTm
+         mwCzYvNfnOj2GbD0wSoRVAcoY8+eOyyanb7Rmn+iClEWOEAJJR7QPl1QLnZ5mPX141FS
+         +MGWUkaSG4jAIgOqhB76cNlbTyDoyT2HAc1dtPUhqkgmjnujMFTQ3R3TYh/lhOFsBsPA
+         bpZCgTx7MpNrVzxnDA5HfWAORlJqx3uiA0QWIR+NyIe5YcaYQHFXWSUasIv3Ih+8my2k
+         8Mpw==
+X-Gm-Message-State: AOAM530qeuBN2GQ0fT2uBJ525hSpqH5m5B/Gu9DWpnEdclClnoFoUBnM
+        ZeJ085c0fd8LzeD86IGY3z+TBNrH8s992RPJrHmasA==
+X-Google-Smtp-Source: ABdhPJxFr2f3s+JC21d1a2/JiNCmvQEsxYrX2tqBKFp8IZsQA6946pHfR8OjMZf27/Y9k04rLB1h6uS7cwBpRlJa+O0=
+X-Received: by 2002:a05:6102:ac8:: with SMTP id m8mr738550vsh.6.1644595459512;
+ Fri, 11 Feb 2022 08:04:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220206200308.14315-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <20220208194119.46022-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220208194119.46022-1-krzysztof.kozlowski@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 11 Feb 2022 18:04:08 +0200
+Message-ID: <CAPLW+4m9u4yFz84dQaMxNqCPauW6JTsOWRo5iJrkexHXOOsahw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: soc: samsung: usi: refer to dtschema for children
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,18 +66,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 06 Feb 2022 20:03:08 +0000, Biju Das wrote:
-> Document RZ/G2UL DMAC bindings. RZ/G2UL DMAC is identical to one found
-> on the RZ/G2L SoC. No driver changes are required as generic compatible
-> string "renesas,rz-dmac" will be used as a fallback.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Tue, 8 Feb 2022 at 21:41, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> Explicitly reference the dtschema for USI children implementing specific
+> serial protocol (I2C, SPI, UART).  The SPI schema is not yet accepted,
+> so it will be provided later.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
-> This patch depend upon [1]
-> [1] https://patchwork.kernel.org/project/linux-dmaengine/patch/20220110134659.30424-9-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> ---
->  Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
+>  .../bindings/soc/samsung/exynos-usi.yaml      | 19 +++++++++++--------
+>  1 file changed, 11 insertions(+), 8 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> index 58f2e9d8bb0e..f3aae7e0e2e6 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> @@ -18,11 +18,7 @@ description: |
+>    selects which particular function will be used.
+>
+>    Refer to next bindings documentation for information on protocol subnodes that
+> -  can exist under USI node:
 
-Acked-by: Rob Herring <robh@kernel.org>
+This whole paragraph doesn't make much sense now, because the doc
+links it refers to are removed in this patch. Maybe it's better to
+just remove the whole paragraph?
+
+> -
+> -  [1] Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> -  [2] Documentation/devicetree/bindings/i2c/i2c-exynos5.txt
+> -  [3] Documentation/devicetree/bindings/spi/spi-samsung.txt
+> +  can exist under USI node.
+>
+>  properties:
+>    $nodename:
+> @@ -75,10 +71,17 @@ properties:
+>        This property is optional.
+>
+>  patternProperties:
+> -  # All other properties should be child nodes
+> -  "^(serial|spi|i2c)@[0-9a-f]+$":
+> +  "^i2c@[0-9a-f]+$":
+> +    $ref: /schemas/i2c/i2c-exynos5.yaml
+> +    description: Child node describing underlying I2C
+> +
+> +  "^serial@[0-9a-f]+$":
+> +    $ref: /schemas/serial/samsung_uart.yaml
+> +    description: Child node describing underlying UART/serial
+> +
+> +  "^spi@[0-9a-f]+$":
+>      type: object
+> -    description: Child node describing underlying USI serial protocol
+> +    description: Child node describing underlying SPI
+>
+>  required:
+>    - compatible
+> --
+> 2.32.0
+>
