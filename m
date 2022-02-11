@@ -2,191 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 537EB4B24BF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 12:50:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 489AE4B24ED
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 12:55:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbiBKLuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 06:50:23 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40568 "EHLO
+        id S240212AbiBKLzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 06:55:43 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349605AbiBKLuW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 06:50:22 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BCF0F4F;
-        Fri, 11 Feb 2022 03:50:21 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id B04DC1F46D3E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1644580219;
-        bh=YoiosXYfuzCdv75Q/QHeODvcQlcGqCPnisvrlLqIWlM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=GTLGC4aXdUu/HNLbQWFHvoE4iM7hofN1vXc9X7vuswhNjFoA+7s1JE0VPabZpHjKP
-         ur3PKD8vtNTjtm7+H3MVyS858xTgldAxBwrE+uHqul1zODaxn3Lkrw2CGShpwj4ryb
-         EH6J9xrmZtiwuTwsfrnnplzsFTcFjpZhwhi0dVd02QBipVGO34lu7IPM9ZlOy6HaX5
-         6eWapx+KB+Av1nl1wFLUB2NPltshUp2Bt+OgAMBY7OJKhxZueS+0DH7kF06nQTv4vf
-         tMFBi/tYTl302CE/ne7Nerj49cWLDBCnexztlPIHPbRx9q1ZTcSHlYNQwopgA9RyBa
-         m1zKHA0aUmgzg==
-Message-ID: <e7cbca18-a343-4058-6a1e-1e6bfb167bd9@collabora.com>
-Date:   Fri, 11 Feb 2022 12:50:09 +0100
+        with ESMTP id S238317AbiBKLzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 06:55:42 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDC6FEB0
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 03:55:40 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id v12so14879008wrv.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 03:55:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FFTn8zwjTX2hFzTgJT6QAjUmkuMKVR409IkO5bq/6Ns=;
+        b=RUkCmM49DAHtqyXh3m1sKwckw6Y6y9JmMteiPJ6JQbjWqNHPEBamE2o3viBwED7twG
+         oIK8QLR5pGVyK+5yqzzMZgBS0dG6CyUIEA+lxD2Ev2ol3VTtINq54YfZLHGKdF39t7Bg
+         h/21GMI6cxKFu61g42kLzomBwLky19G0jO1nR32qbtOH4exjR3FY797knQmp+2mNtXkD
+         ZrQKSIW8JMSV4fNytzMYj4m2vH/7/yWbcXQuBSSIf+71kHNqVOHjRwLjq+SSjpZxuP/3
+         ANfn87g3lpDVUZxSk4/VcT5cqZqMH9PBbRIgWWwCqX1dW2cq/jq66dAGxcXO2o8LqbQ0
+         fX6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FFTn8zwjTX2hFzTgJT6QAjUmkuMKVR409IkO5bq/6Ns=;
+        b=IW7DJ+xbt46JCEtZpPii+T6MfyGEbUGMdAA3wjQk0DfKU/HlGeL81ba3gDPhsRVt+e
+         ex2ZXuIBvQXiIqfE2YwpPKEAPpKG8YHWDuNwGs10H1lRYlu+nMD5v661+ihacsMEsRCb
+         63QBxXNFDY9TViwY6zjIyW60g0JZp6madB+wNDSK7xbD9xLlKgBaIUqhoW1z5R4m0N+R
+         5p3TUMPUTEoRzPVPlIESrbnwBqMK6gJtD7ugHNhobitZCzmykiYZKXVdJ519TSCegdIC
+         JXKnpXyGv4SJKVFmeMA25OIqFY3BteYiUR0i6RdjduUt1pU9mq20o86iulVBJjsQKigW
+         EbMg==
+X-Gm-Message-State: AOAM530JJgn9wgqpY2X1+OFXkh70F5ZK7wKJJwww3MtNR4C6hhPeQbAm
+        4oSz3GdVlQlKL1mNWJGwc11CXQ==
+X-Google-Smtp-Source: ABdhPJwt7XPCUknMlwxpa45RJ3Vt8/4BhE5nZWfzZzlmQGaNHfBBEXQ3be5TsTPXfbcgYuQDQ/D8aw==
+X-Received: by 2002:a05:6000:128d:: with SMTP id f13mr1062625wrx.675.1644580539259;
+        Fri, 11 Feb 2022 03:55:39 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id bg23sm4899482wmb.5.2022.02.11.03.55.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Feb 2022 03:55:38 -0800 (PST)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     krzysztof.kozlowski@canonical.com, linux@roeck-us.net,
+        robh+dt@kernel.org, wim@linux-watchdog.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v4] dt-bindings: watchdog: convert faraday,ftwdt010 to yaml
+Date:   Fri, 11 Feb 2022 11:55:28 +0000
+Message-Id: <20220211115528.3382374-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [V11,PATCH 04/19] soc: mediatek: add driver for dvfsrc support
-Content-Language: en-US
-To:     Dawei Chien <dawei.chien@mediatek.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@google.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fan Chen <fan.chen@mediatek.com>,
-        Arvin Wang <arvin.wang@mediatek.com>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        Henry Chen <henryc.chen@mediatek.com>
-References: <20210812085846.2628-1-dawei.chien@mediatek.com>
- <20210812085846.2628-5-dawei.chien@mediatek.com>
- <3d1ba05d-0013-a9ac-1fe1-1d60e510c574@collabora.com>
- <3d30fe7f61b558d3c2c8214e0e936903657f8231.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <3d30fe7f61b558d3c2c8214e0e936903657f8231.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 11/02/22 04:51, Dawei Chien ha scritto:
-> On Thu, 2022-02-03 at 16:04 +0100, AngeloGioacchino Del Regno wrote:
->> Il 12/08/21 10:58, Dawei Chien ha scritto:
->>> From: Henry Chen <henryc.chen@mediatek.com>
->>>
->>> Add dvfsrc driver for MT6873/MT8183/MT8192
->>>
->>> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
->>> Signed-off-by: Dawei Chien <dawei.chien@mediatek.com>
->>> ---
->>>    drivers/soc/mediatek/Kconfig            |  11 +
->>>    drivers/soc/mediatek/Makefile           |   1 +
->>>    drivers/soc/mediatek/mtk-dvfsrc.c       | 421
->>> ++++++++++++++++++++++++++++++++
->>>    include/linux/soc/mediatek/mtk_dvfsrc.h |  35 +++
->>>    4 files changed, 468 insertions(+)
->>>    create mode 100644 drivers/soc/mediatek/mtk-dvfsrc.c
->>>    create mode 100644 include/linux/soc/mediatek/mtk_dvfsrc.h
->>>
+Converts watchdog/faraday,ftwdt010.txt to yaml.
+This permits to detect missing properties like clocks and resets or
+compatible like moxa,moxart-watchdog.
 
-..snip..
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+Changes since v1:
+- Added myself as maintainer as requested by Linus
+- Added $ref to watchdog.yaml
+- Removed useless quotes
+- Added blank lines between properties
+- Removed timeout-secs as already provided by watchdog.yaml
 
->>> diff --git a/drivers/soc/mediatek/mtk-dvfsrc.c
->>> b/drivers/soc/mediatek/mtk-dvfsrc.c
->>> new file mode 100644
->>> index 000000000000..6ef167cf55bd
->>> --- /dev/null
->>> +++ b/drivers/soc/mediatek/mtk-dvfsrc.c
+Change since v2:
+- rewrite compatible section
 
-..snip..
+Changes since v3:
+- Fix indent errors reported by yamllint
+- Change additionalProperties to unevaluatedProperties
+- Added timeout-secs in example
 
->>> +static int mtk_dvfsrc_probe(struct platform_device *pdev)
->>> +{
->>> +	struct arm_smccc_res ares;
->>> +	struct resource *res;
->>> +	struct mtk_dvfsrc *dvfsrc;
->>> +	int ret;
->>> +
->>> +	dvfsrc = devm_kzalloc(&pdev->dev, sizeof(*dvfsrc), GFP_KERNEL);
->>> +	if (!dvfsrc)
->>> +		return -ENOMEM;
->>> +
->>> +	dvfsrc->dvd = of_device_get_match_data(&pdev->dev);
->>> +	dvfsrc->dev = &pdev->dev;
->>> +
->>> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>> +	dvfsrc->regs = devm_ioremap_resource(&pdev->dev, res);
->>> +	if (IS_ERR(dvfsrc->regs))
->>> +		return PTR_ERR(dvfsrc->regs);
->>> +
->>> +	spin_lock_init(&dvfsrc->req_lock);
->>> +	mutex_init(&dvfsrc->pstate_lock);
->>> +
->>> +	arm_smccc_smc(MTK_SIP_VCOREFS_CONTROL, MTK_SIP_DVFSRC_INIT, 0,
->>> 0, 0,
->>> +		0, 0, 0, &ares);
->>> +
->>> +	if (!ares.a0) {
->>> +		dvfsrc->dram_type = ares.a1;
->>> +		dev_info(dvfsrc->dev, "dram_type: %d\n", dvfsrc-
->>>> dram_type);
->>> +	} else {
->>> +		dev_err(dvfsrc->dev, "init fails: %lu\n", ares.a0);
->>> +		return ares.a0;
->>> +	}
->>> +
->>> +	dvfsrc->curr_opps = &dvfsrc->dvd->opps_desc[dvfsrc->dram_type];
->>> +	platform_set_drvdata(pdev, dvfsrc);
->>> +
->>> +	dvfsrc->regulator = platform_device_register_data(dvfsrc->dev,
->>> +			"mtk-dvfsrc-regulator", -1, NULL, 0);
->>
->> Why are you registering platform devices like this?
->>
->> Please use device-tree instead.
->>
-> 
-> Thank you for advisement. Let me just describe history.
-> 
-> Actually, we did use device-tree to probe interconnect/regulator driver
-> in v4, and reviewer had some advisement
-> 
-> 
-> https://patchwork.kernel.org/project/linux-mediatek/patch/1584092066-24425-12-git-send-email-henryc.chen@mediatek.com/#23243049
-> 
-> https://patchwork.kernel.org/project/linux-mediatek/patch/1584092066-24425-9-git-send-email-henryc.chen@mediatek.com/#23236945
-> 
-> so we refer to this driver to use platform_device_register_data after
-> v5.
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/soc/qcom/smd-rpm.c?h=next-20220209#n213
-> 
-> Would you kindly give your advisement, thank you.
-> 
+ .../bindings/watchdog/faraday,ftwdt010.txt    | 22 ------
+ .../bindings/watchdog/faraday,ftwdt010.yaml   | 67 +++++++++++++++++++
+ 2 files changed, 67 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
 
-Hello Dawei,
-I was under the impression that the regulator and EMI were different hardware,
-while effectively they are inside of the DVFS Resource Collector IP, and the
-registers look like being a bit mixed up, so it's impossible to actually
-specify a relative iospace for the regulator, or for the EMI.
+diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+deleted file mode 100644
+index 9ecdb502e605..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-Faraday Technology FTWDT010 watchdog
+-
+-This is an IP part from Faraday Technology found in the Gemini
+-SoCs and others.
+-
+-Required properties:
+-- compatible : must be one of
+-  "faraday,ftwdt010"
+-  "cortina,gemini-watchdog", "faraday,ftwdt010"
+-- reg : shall contain base register location and length
+-- interrupts : shall contain the interrupt for the watchdog
+-
+-Optional properties:
+-- timeout-sec : the default watchdog timeout in seconds.
+-
+-Example:
+-
+-watchdog@41000000 {
+-	compatible = "faraday,ftwdt010";
+-	reg = <0x41000000 0x1000>;
+-	interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+-};
+diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+new file mode 100644
+index 000000000000..ca9e1beff76b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/faraday,ftwdt010.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Faraday Technology FTWDT010 watchdog
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++  - Corentin Labbe <clabbe@baylibre.com>
++
++description: |
++  This is an IP part from Faraday Technology found in the Gemini
++  SoCs and others.
++
++allOf:
++  - $ref: "watchdog.yaml#"
++
++properties:
++  compatible:
++    oneOf:
++      - const: faraday,ftwdt010
++      - items:
++          - enum:
++              - cortina,gemini-watchdog
++              - moxa,moxart-watchdog
++          - const: faraday,ftwdt010
++
++  reg:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: PCLK
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    watchdog@41000000 {
++      compatible = "faraday,ftwdt010";
++      reg = <0x41000000 0x1000>;
++      interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
++      timeout-secs = <5>;
++    };
++  - |
++    watchdog: watchdog@98500000 {
++      compatible = "moxa,moxart-watchdog", "faraday,ftwdt010";
++      reg = <0x98500000 0x10>;
++      clocks = <&clk_apb>;
++      clock-names = "PCLK";
++    };
++...
+-- 
+2.34.1
 
-In this case, from what I understand right now, the emi and regulator are not
-different hardware, but "features of" the DVFS Resource Collector.
-
-I've done some research around the kernel and, effectively, the only way that
-makes sense, is to register the feature-drivers (emi/vreg) with
-platform_device_register_data(), as per your current approach, even though I
-have a hunch that it will look a bit confusing in device-tree, as you'd be using
-the same node for both regulator and interconnects...
-
-I would exclude doing it as a MFD driver, as I don't see any very clean way to
-actually implement that.
-
-At this point, let's just keep it as it is, or this would probably get a lot
-overcomplicated for no good reasons.
-So, please ignore the device-tree suggestion and go on with the other suggested
-fixes for this driver.
-
-Looking forward to see your v4!
-
-Kind regards,
-Angelo
