@@ -2,160 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 529F84B253B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 13:09:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57FA64B256A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 13:15:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348865AbiBKMIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 07:08:52 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52754 "EHLO
+        id S1349911AbiBKMNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 07:13:07 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233247AbiBKMIv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 07:08:51 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32F2E4D
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 04:08:49 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id d27so11100403wrb.5
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 04:08:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=bAuohS2r9a+rHBFH3yY/vSyvPnTGhT8Dt1KFd/tOWeI=;
-        b=P45HGFmHAEfQUBc17dQA6o/s45i6unuZR5s340ifEwoZCHFXTa9wDuR69ZBx52vIiN
-         EYl7Bt5ZOKRfiKArVUV26ZLXh5KCFYHcH0xA2ynxrxSTdCemcMgNTtMgmMLboFnPuViZ
-         N7i3uIYj6QV9YHo1GDsV/eJ53JGEfGmNQ15y28AirhIdb5dljS8FcVap/P6GTYEGT0GN
-         HjVT6Jucs4aZlJ2t8GnjqQKM1f8uJ/UFxEtbM2VW4LbBcJnsRXV+qwcUAospcWAmgqUW
-         j9jwUjX8mjB1PdQ3xCDbXZVwGrye5JM/pPp6ovxrzHVcCweU6pliKVrtajTecIJL4W81
-         t55Q==
+        with ESMTP id S1349885AbiBKMNE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 07:13:04 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C6CDA8;
+        Fri, 11 Feb 2022 04:13:03 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id 4so9266087oil.11;
+        Fri, 11 Feb 2022 04:13:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=bAuohS2r9a+rHBFH3yY/vSyvPnTGhT8Dt1KFd/tOWeI=;
-        b=dFDNOgRxdNAlRrpFKUh4Ie7eLsalw6B1jMUCs/jl/WNrFhRsKeIHkQXm55sXZ842sz
-         43GfFGSYr/B/Q4q8VuEUrNnZs7b24ol5crk6t7ocQAL4fpAXdtLBIAeQNtYCVHOtRRwh
-         4HN2BmFatyInjRznca7QfgRaRkxK/jgP1XlPlr1/T5R7UZElqSk6TLAXvbKlv1yGhfXT
-         6Nx7hSQwVzCY6Z2P9j6tY0um2t3fb9eWrf3gJOn48Z5ZUm6uKQg4n2UJTlPDhWvrR8IV
-         BHJmjNOKRe/3ir0eutJwQDPsvnf+826IBhB6QLflLkSBNEFGSUUa4jjjz0B+C3siWPk8
-         63gw==
-X-Gm-Message-State: AOAM532uf0DtPgnbrL2KbKQuGOUHvQ/U83c4IQ6pbZHXtOkZBL/sWsOv
-        j8WOrVc0Bk7/Jb8xNs4TS/fv7g==
-X-Google-Smtp-Source: ABdhPJwVw5S0X2Qt2hPLp4zMzju9cunlPHkSEzWmDwKelbhqMeD+1GpmGTr6gaKuSABzKVvhEa1xxw==
-X-Received: by 2002:a5d:6d4b:: with SMTP id k11mr1102228wri.623.1644581328100;
-        Fri, 11 Feb 2022 04:08:48 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id h6sm4095412wmq.26.2022.02.11.04.08.47
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=cuBlIjJY4vaAWQT/4C6Ak9m1WRcqNbkYIsxGyvkT4rk=;
+        b=nQLpFNMd20cVCONufynpoBNgFjHFbPa3JPV77p1MS1bGGvppbYH43z4mjIIQ18m0VE
+         WzM+TkWySY7zj5X3aT3TBIt9DrM40CefCI+rlW/VNwrYFXXtSOCJ0tyCdX4ENLWlfWCs
+         uT/vp6SfhI67SSJgfkKZWKz9Twgp3WyAoJCcfmQ3yCzW1wx7cjyFJQk2vU+VnGhNGALy
+         kF0KYK5NBN9J92QkslaWX0Kj+QT5cXcwZNwnBhU4MuTX42eLsAkpjBxroPXoaADT3SNb
+         zxHoXVjzUg+T9r0/CANGsBsH+Jx+vrAxWIaIrhuAMSP4nA78X/1Qp7CHQus3/fdNXnWU
+         KBMw==
+X-Gm-Message-State: AOAM531/pt1H0zmcbIst6pe2sg4J5Slw6gkYGFJV6D/i0ktssalJWL90
+        KPwaRMJS5BjLgIZ5Yroegw==
+X-Google-Smtp-Source: ABdhPJwC68NbqlKCoT6iGNdOcPryVMllb8uhD4nbb/rVM94vLoxVJPFWGXcXeY9hjrenDtePrHtmxQ==
+X-Received: by 2002:a05:6808:2026:: with SMTP id q38mr16779oiw.243.1644581582414;
+        Fri, 11 Feb 2022 04:13:02 -0800 (PST)
+Received: from robh.at.kernel.org ([2607:fb90:20d4:10b7:69a2:33cd:1782:fb47])
+        by smtp.gmail.com with ESMTPSA id bx41sm6384628oib.7.2022.02.11.04.12.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 04:08:47 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     krzysztof.kozlowski@canonical.com, linus.walleij@linaro.org,
-        miquel.raynal@bootlin.com, richard@nod.at, robh+dt@kernel.org,
-        vigneshr@ti.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v3] dt-bindings: mtd: drop mtd/cortina,gemini-flash.txt
-Date:   Fri, 11 Feb 2022 12:08:42 +0000
-Message-Id: <20220211120842.3388592-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Fri, 11 Feb 2022 04:13:01 -0800 (PST)
+Received: (nullmailer pid 141879 invoked by uid 1000);
+        Fri, 11 Feb 2022 12:12:43 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, matthias.bgg@gmail.com,
+        p.zabel@pengutronix.de, trevor.wu@mediatek.com, tzungbi@google.com,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        linux-mediatek@lists.infradead.org, geert+renesas@glider.be,
+        linux-arm-kernel@lists.infradead.org, broonie@kernel.org,
+        zhangqilong3@huawei.com, perex@perex.cz, tiwai@suse.com
+In-Reply-To: <20220211103818.8266-12-jiaxin.yu@mediatek.com>
+References: <20220211103818.8266-1-jiaxin.yu@mediatek.com> <20220211103818.8266-12-jiaxin.yu@mediatek.com>
+Subject: Re: [PATCH 11/15] dt-bindings: mediatek: mt8186: add audio afe document
+Date:   Fri, 11 Feb 2022 06:12:43 -0600
+Message-Id: <1644581563.497957.141878.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop mtd/cortina,gemini-flash.txt since it is nearly already handled by
-Documentation/devicetree/bindings/mtd/mtd-physmap.yaml.
+On Fri, 11 Feb 2022 18:38:14 +0800, Jiaxin Yu wrote:
+> This patch adds mt8186 audio afe document.
+> 
+> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> ---
+>  .../bindings/sound/mt8186-afe-pcm.yaml        | 175 ++++++++++++++++++
+>  1 file changed, 175 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/mt8186-afe-pcm.yaml
+> 
 
-We add jedec-flash to list of compatible because one board (gemini-dlink-dns-313.dts) needs it.
-See commit a10d862e585e ("ARM: dts: Fix the DNS-313 flash compatible")
-The flash on the DNS-313 needs to be probed as JEDEC, it does not conform to the common CFI standard.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
-Change since v1
-- fixed typo in syscon
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sound/mt8186-afe-pcm.yaml:10:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
+./Documentation/devicetree/bindings/sound/mt8186-afe-pcm.yaml:14:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
 
-Change since v2
-- Added reason of adding jedec-flash
+dtschema/dtc warnings/errors:
 
- .../bindings/mtd/cortina,gemini-flash.txt     | 24 -------------------
- .../devicetree/bindings/mtd/mtd-physmap.yaml  | 18 +++++++++++++-
- 2 files changed, 17 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
+doc reference errors (make refcheckdocs):
 
-diff --git a/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt b/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
-deleted file mode 100644
-index efa5b2aba829..000000000000
---- a/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--Flash device on Cortina Systems Gemini SoC
--
--This flash is regular CFI compatible (Intel or AMD extended) flash chips with
--some special bits that can be controlled by the machine's system controller.
--
--Required properties:
--- compatible : must be "cortina,gemini-flash", "cfi-flash";
--- reg : memory address for the flash chip
--- syscon : must be a phandle to the system controller
--- bank-width : width in bytes of flash interface, should be <2>
--
--For the rest of the properties, see mtd-physmap.yaml.
--
--The device tree may optionally contain sub-nodes describing partitions of the
--address space. See partition.txt for more detail.
--
--Example:
--
--flash@30000000 {
--	compatible = "cortina,gemini-flash", "cfi-flash";
--	reg = <0x30000000 0x01000000>;
--	syscon = <&syscon>;
--	bank-width = <2>;
--};
-diff --git a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-index f827984936f6..82eb4e0f453b 100644
---- a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-+++ b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-@@ -44,7 +44,9 @@ properties:
-               - numonyx,js28f128
-               - sst,sst39vf320
-               - xlnx,xps-mch-emc-2.00.a
--          - const: cfi-flash
-+          - enum:
-+              - cfi-flash
-+              - jedec-flash
-       - items:
-           - enum:
-               - cypress,cy7c1019dv33-10zsxi
-@@ -127,6 +129,20 @@ required:
-   - compatible
-   - reg
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: cortina,gemini-flash
-+then:
-+  properties:
-+    syscon:
-+      $ref: /schemas/types.yaml#/definitions/phandle
-+      description:
-+        Phandle to the syscon controller
-+  required:
-+    - syscon
-+
- # FIXME: A parent bus may define timing properties
- additionalProperties: true
- 
--- 
-2.34.1
+See https://patchwork.ozlabs.org/patch/1591561
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
