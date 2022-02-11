@@ -2,103 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B2A94B232A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 11:34:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 806D94B2345
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 11:36:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238030AbiBKKdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 05:33:14 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60196 "EHLO
+        id S1349018AbiBKKf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 05:35:29 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:32806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242867AbiBKKdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 05:33:13 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA037EA9
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 02:33:12 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id c15so11821670ljf.11
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 02:33:12 -0800 (PST)
+        with ESMTP id S1349053AbiBKKfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 05:35:22 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714A6F1D;
+        Fri, 11 Feb 2022 02:35:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Y569Dc2mQEhKiSh4sbxjZAESmN1Kdept2e4gDPv9gQM=;
-        b=cLoj+WfdZph5bzL+Gr41BBun+k0caWIryN8LENqN3YRNFVbd/JCKgwLGchLPFstSlT
-         NVIZpVPraDANYJFluZdUr3EJsVMAnJ5+qdBNSQEwNXXxEUMoojFZvbNuqF8EDjsiYDoC
-         LA8GNT05Dhx1sAvwm61P+JAMaGB4Xef426DYw6LNMdXqRbafN84gB0/jorXRyXJxvjrh
-         obZFPMoVjcXm1LeNOpP+w/LsxKc4atbXv2xh7UuDsMhMN/zTlgC2JFvjod/5QDVmaHY2
-         QA9JCyyAJsq8cvHRyeRwctN/y9CmXWNlpieQ8MR5hEPk9K59EWifPz9yIsr5wpdYRTfX
-         H0hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Y569Dc2mQEhKiSh4sbxjZAESmN1Kdept2e4gDPv9gQM=;
-        b=lIf21M2yCi0MN+WXx0LdJLdTzbNDG2Aa3vliXaKVDXnC0mODk6Ee4l3hFV6tOfZ/Rn
-         mdGwokv4GdNREj0wanH2R/iDyYPFalF5CIjkzc69jYXEabRiWp7STy6Tfe2SA6yguWjE
-         SyKV3ysKmzKyW8iFU1N/oPmyqYzM934Lmtu9CMkQi9rz4ZhuSPNU3KZs/EO67NfucB+A
-         RKkL8KSm6TwP3QqwglLEkuVlz7q36vYqxlS87gzXSOXHLrKifMMzll4Fe+Ypdu8ycK5E
-         a7DhiUaHY9VyRiUW54BmyzWp9OCzlWbOtb9YvySABfkKlvKu/avdnhQtKCK1DqCQBvqx
-         vpYA==
-X-Gm-Message-State: AOAM532dX3j9boz+JU0xB1uS+RNv5wK1ArywplJZjWnotx45mlHgTJRD
-        AObDb9fu15LIvcrEQI2QWdW8bcZdFEo=
-X-Google-Smtp-Source: ABdhPJzGAEFN7Ytb4fjSnVWjMJ8kI11Y+YqOEJ10yZ92iO1OP28/4+zHSO15AJdsClsC1ni7bAun3g==
-X-Received: by 2002:a05:651c:1542:: with SMTP id y2mr632976ljp.334.1644575590900;
-        Fri, 11 Feb 2022 02:33:10 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id j5sm703778lfr.15.2022.02.11.02.33.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 02:33:10 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: broadcom: bcm4908: add I2C block
-Date:   Fri, 11 Feb 2022 11:33:06 +0100
-Message-Id: <20220211103306.15271-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1644575716; x=1676111716;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=VSQeArOnGdl7FcIKdua2NdAwZTNifoQ+KWawkwDJKbI=;
+  b=Ic9/BJZX6iXH/PYtts4WOYLxPs5OyF4rnJMJ8Jk+EJXOWNMaAyn8C2xF
+   uzWV6SiRVJ6+wR+YNX6LSiHCJdFLQ5BAfNDjv3BO4FqMfAeJ4i/rzFbo/
+   kjH+cZb2trPf6ZlRiXhV5toyFU0LqpvxJ4Zzk40o4A+BQKA604t1uOF+S
+   U=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 11 Feb 2022 02:35:16 -0800
+X-QCInternal: smtphost
+Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2022 02:35:15 -0800
+Received: from [10.216.7.73] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Fri, 11 Feb
+ 2022 02:35:10 -0800
+Subject: Re: [PATCH V5 4/6] regulator: Add a regulator driver for the PM8008
+ PMIC
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        "Liam Girdwood" <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "Das Srinagesh" <gurus@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
+        <quic_jprakash@quicinc.com>
+References: <1644331940-18986-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1644331940-18986-5-git-send-email-quic_c_skakit@quicinc.com>
+ <YgW0ltMKjGZH4NrZ@builder.lan>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Message-ID: <653bc533-8dca-cd9c-3ca0-d5628da37f4a@quicinc.com>
+Date:   Fri, 11 Feb 2022 16:05:07 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <YgW0ltMKjGZH4NrZ@builder.lan>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-BCM4908 uses the same I2C hw as BCM63xx / BCM67xx / BCM68xx SoCs.
+On 2/11/2022 6:27 AM, Bjorn Andersson wrote:
+> On Tue 08 Feb 08:52 CST 2022, Satya Priya wrote:
+>> diff --git a/drivers/regulator/qcom-pm8008-regulator.c b/drivers/regulator/qcom-pm8008-regulator.c
+> [..]
+>> +static int pm8008_regulator_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	int id = pdev->id % PM8008_NUM_LDOS;
+> Why does this driver look completely different from all the other
+> Qualcomm regulator drivers that we already have, and why do you register
+> one platform_device per regulator?
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-index b0bc5262beca..9ae298e7d6cf 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-@@ -464,6 +464,15 @@ nandcs: nand@0 {
- 			};
- 		};
- 
-+		i2c@2100 {
-+			compatible = "brcm,brcmstb-i2c";
-+			reg = <0x2100 0x58>;
-+			clock-frequency = <97500>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pins_i2c_a>;
-+			status = "disabled";
-+		};
-+
- 		misc@2600 {
- 			compatible = "brcm,misc", "simple-mfd";
- 			reg = <0x2600 0xe4>;
--- 
-2.34.1
+Based on Mark's suggestions and the discussion happened here [1], I've 
+changed the design like this.
 
+[1] 
+https://patchwork.kernel.org/project/linux-arm-msm/patch/1637314953-4215-3-git-send-email-quic_c_skakit@quicinc.com/
+
+
+> The fundamental difference in design makes it hard to maintain and
+
+
+> you're wasting quite a bit of memory with the unnecessary
+> platfrom_device objects.
+
+
+I'm going to change this. I will add only one cell with .name to match 
+with the regulator driver and probe all the regulators using a single 
+loop. That way we don't waste lot of memory by registering multiple 
+regulator platform devices.
+
+
+> Regards,
+> Bjorn
