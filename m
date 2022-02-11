@@ -2,51 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA8844B1D56
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 05:29:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C9C34B1D5F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 05:36:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235686AbiBKE3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 23:29:52 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53118 "EHLO
+        id S243621AbiBKEgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 23:36:04 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbiBKE3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 23:29:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D49F2655;
-        Thu, 10 Feb 2022 20:29:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E2960B8280A;
-        Fri, 11 Feb 2022 04:29:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FBD0C340E9;
-        Fri, 11 Feb 2022 04:29:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644553785;
-        bh=fDMiCauy3l04J/wcIF+PH8u2WqeOtpwMkrPcb/j0BjU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MiupY/LuQYPkFHERH5e9fdfw9ecrBuEcxTYmM+HmmJk+crSo5HBzKd1Z6rl8SYZ/K
-         /D+l/YB6kh0hUccqOkw6Ct4VDKeEf9GffQwhh7JXkl54JOX1+1AumBgTuSjhYOAd63
-         tCNOmUwOpCW4WBRJGS28GYrxFqMYpJnAC6U5fQRydQdTDMr3rwXqZ3GHPWdVfMSYOo
-         ErPmaSDGkn2vkkOJyNu3RTAu2RDH8cfnWhw1CuX/cFpbV6tQDg+4zbid8N0u3XC8/H
-         pFNF2yEeMcJcydZaHA2NTrid8YtU7pec+zqLJmVfETOXyewi6lzCoMUXD1P5BN6Qga
-         fQv+ZuX8dscPw==
-Date:   Fri, 11 Feb 2022 12:29:40 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     reinhold.mueller@emtrion.com
-Cc:     festevam@gmail.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH v5 0/2] new emtrion hardware emCON-MX8M Mini
-Message-ID: <20220211042939.GN4909@dragon>
-References: <20220127153500.9236-1-reinhold.mueller@emtrion.com>
+        with ESMTP id S229483AbiBKEgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 23:36:04 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A075F4B
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 20:36:04 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id ki18-20020a17090ae91200b001b8be87e9abso3338442pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 20:36:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Sk8cBUsClIMlHaCL2xiX/fn2BgN7k5aajZKy4bUzDWU=;
+        b=rVzmoeBiR80szTY6N896ECqw7acDDByGXYElcGhzJuhUfTY+Zecps99iu1c0WyVNJR
+         Rv74e3KSpAx4v1GCSJTZfsw6utuuw0k7HdD47Zfg13LdStdoBiWS3cijsWi5WFvQxe5c
+         TFPoYS9lqs9+jpHnwkEWdHW54/IQrmYrE4byV0FfvXgsPqW8C0W/eEpbuAGrqZ264xfW
+         2Mah2fg3E4zNZl37hQo2y0G919NhGsXtlVIIC0O8BIW2liruTAczzhCvaZgPnr1GpeUq
+         +M9TwCWFb1WDBaMRvQCiTfybBk5k+oWbyuV6D18zlCQGHYJRjdc4O73HBGushR5PoR+L
+         38dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Sk8cBUsClIMlHaCL2xiX/fn2BgN7k5aajZKy4bUzDWU=;
+        b=0fa/hFnlOJIjvn8ksO3DbYtIedpRdwvmnFo3RAhNffI3cQH8Ax5G+3je4+iaMfE5EE
+         qHQYdanZsiJ6NdBfJvIkyDrMxgXYpyTfeqHiGrljZ7SUhWbsyBjXqKUYPvozRd9GCjeb
+         YwnB8CklFsDuAs2305gIIFMcJDE7NmDIkrrYpazdSDg8IBpCBywYmV2HiMZVpKHtm1qh
+         N4a1z0BvwQm0G50tD/QRjKOWhYDlM8Cthh1asju5fpGHQdRdoH6I/dahN8R1SAXuhFG5
+         7FzzLRcm9/sP4UMTXegnkxEInX8T8OuFP4dEtWMa5InLGxRF0qeSfU6MBfcK6Jm88OaI
+         H2Xg==
+X-Gm-Message-State: AOAM531G5+jH1vjMSjKMzky4685YJvNz80qKNe83+AziCcwxy5a/BhT7
+        2k3TSt4knMG4SQmQwbikTbVUZw==
+X-Google-Smtp-Source: ABdhPJxx1B1o6t/Ostlvejmx0MhqI7MtxjE79p9KUj/N2Tk+zNs3dvOqGSjMaw2qRrS1NSUf56Jv/w==
+X-Received: by 2002:a17:90b:3ec8:: with SMTP id rm8mr797690pjb.207.1644554163558;
+        Thu, 10 Feb 2022 20:36:03 -0800 (PST)
+Received: from localhost ([136.185.132.167])
+        by smtp.gmail.com with ESMTPSA id j14sm26371222pfj.218.2022.02.10.20.36.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Feb 2022 20:36:03 -0800 (PST)
+Date:   Fri, 11 Feb 2022 10:05:59 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v3 0/7] dt-bindings: Convert multiple Qualcomm OPP
+ and CPUFreq bindings to DT schema
+Message-ID: <20220211043559.auwbykshxwkf43lx@vireshk-i7>
+References: <20220203072226.51482-1-y.oudjana@protonmail.com>
+ <YgWrufkNy3OfmV4o@builder.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220127153500.9236-1-reinhold.mueller@emtrion.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <YgWrufkNy3OfmV4o@builder.lan>
+User-Agent: NeoMutt/20180716-391-311a52
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -55,10 +74,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 04:34:58PM +0100, reinhold.mueller@emtrion.com wrote:
-...
-> Reinhold Mueller (2):
->   dt-bindings: arm: Add emtrion hardware emCON-MX8M Mini
->   arm64: dts: imx8mm: Add support for emtrion emCON-MX8M Mini
+On 10-02-22, 18:20, Bjorn Andersson wrote:
+> On Thu 03 Feb 01:24 CST 2022, Yassine Oudjana wrote:
+> 
+> > This series is a compilation of DT schema conversions of multiple Qualcomm
+> > OPP and CPUFreq bindings:
+> > - qcom-cpufreq-nvmem (operating-points-v2-kryo-cpu)
+> > - qcom-opp (operating-points-v2-qcom-level)
+> > - qcom,cpr
+> > 
+> 
+> Really nice to see these updates!
+> 
+> I'm going to pick up the patches that goes through the Qualcomm tree,
+> but patch 3,4 and 7 would be better to take through Viresh's tree, so
+> I've looped him in on this reply.
 
-Applied both, thanks!
+I believe all these need to go together, else you will start getting
+schema errors ?
+
+-- 
+viresh
