@@ -2,271 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA88E4B2523
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 13:02:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 529F84B253B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 13:09:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349820AbiBKMCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 07:02:08 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49584 "EHLO
+        id S1348865AbiBKMIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 07:08:52 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233806AbiBKMCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 07:02:07 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1935FE6D
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 04:02:06 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id d27so14851176wrc.6
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 04:02:06 -0800 (PST)
+        with ESMTP id S233247AbiBKMIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 07:08:51 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32F2E4D
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 04:08:49 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id d27so11100403wrb.5
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 04:08:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=SKg5fgaSRnMfSUuR5qSVwQe2umofrKLlYtM6bnZW0nM=;
-        b=INTwi1N5tH0s4u9PMfQwQ3Yf+GzW5by2wfp+2ny8x/OOnJaeugXwYoCiXTcxHoSanf
-         wJ+BEzQv2Uzugz8U5r0b7ey/Yzd0kGrLIEiuozg5FIpD8YgXdVs+doS98xhJWo0Mba8Q
-         FYHVj/ZkjVAlt/wFto0stFJNRFIgwAw1MX69IQ36xuc4pFVXgzH31TlotcuwnNiXyYDe
-         onDRKXfOMFgNftjCDnj2764DPwCyFmAtig+DyPsAk0V4FoOPofQ6XXrKxDsv4TpIPxA+
-         CxT05NboeOk/3GZvh5nGKubPEzNayXlXoAIPWR3xn+2SuIlIrP7hiF73cfv91UQ/7guX
-         a3gg==
+        bh=bAuohS2r9a+rHBFH3yY/vSyvPnTGhT8Dt1KFd/tOWeI=;
+        b=P45HGFmHAEfQUBc17dQA6o/s45i6unuZR5s340ifEwoZCHFXTa9wDuR69ZBx52vIiN
+         EYl7Bt5ZOKRfiKArVUV26ZLXh5KCFYHcH0xA2ynxrxSTdCemcMgNTtMgmMLboFnPuViZ
+         N7i3uIYj6QV9YHo1GDsV/eJ53JGEfGmNQ15y28AirhIdb5dljS8FcVap/P6GTYEGT0GN
+         HjVT6Jucs4aZlJ2t8GnjqQKM1f8uJ/UFxEtbM2VW4LbBcJnsRXV+qwcUAospcWAmgqUW
+         j9jwUjX8mjB1PdQ3xCDbXZVwGrye5JM/pPp6ovxrzHVcCweU6pliKVrtajTecIJL4W81
+         t55Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=SKg5fgaSRnMfSUuR5qSVwQe2umofrKLlYtM6bnZW0nM=;
-        b=7Rdc9HHoj4Ri5JTkGDjcDlUNdBG6q87ep0op8DNyO+M1r1uTr0ECzODhGGLbb1Zg9C
-         6ITZcQgvrGFifGxavS65EYh0Niry7zfTafbZKvPnUGpdxn2SWI9u7ur3wsSCfrSFMCKU
-         H3mLtUttXjl3OiFuPjnd6xuK0aLs0GjJmRD4slQNDe1QeKXneVZj+s3QGCTHAb6tbATT
-         1tbaxN7diiRZxVTmcyFXJVF3pFjlLQIwhV30fH7DqvV0X+f3jLryaiZDQBiTlGeV0RVb
-         dE5AogfRN141rjS6CYoEhQ9deezATHDPDxfqx2Z01U6muLN3avCe9pHSHOyXxoI//5Z5
-         8U9g==
-X-Gm-Message-State: AOAM533SsADYvWpB9bHB/wR00fQnfcamG+KNHTVA6cAlDEhSdUslNClh
-        Ao0UZR3Daz/kzxecIASs1unwJQ==
-X-Google-Smtp-Source: ABdhPJxOk8Ft1kaaLr9QNpJwth1RnYfwy/lDSjmAiJXSSNiflQ9niPakqGD4UkyB8S4sPm/so3B1/Q==
-X-Received: by 2002:adf:bbc8:: with SMTP id z8mr1134991wrg.476.1644580924528;
-        Fri, 11 Feb 2022 04:02:04 -0800 (PST)
+        bh=bAuohS2r9a+rHBFH3yY/vSyvPnTGhT8Dt1KFd/tOWeI=;
+        b=dFDNOgRxdNAlRrpFKUh4Ie7eLsalw6B1jMUCs/jl/WNrFhRsKeIHkQXm55sXZ842sz
+         43GfFGSYr/B/Q4q8VuEUrNnZs7b24ol5crk6t7ocQAL4fpAXdtLBIAeQNtYCVHOtRRwh
+         4HN2BmFatyInjRznca7QfgRaRkxK/jgP1XlPlr1/T5R7UZElqSk6TLAXvbKlv1yGhfXT
+         6Nx7hSQwVzCY6Z2P9j6tY0um2t3fb9eWrf3gJOn48Z5ZUm6uKQg4n2UJTlPDhWvrR8IV
+         BHJmjNOKRe/3ir0eutJwQDPsvnf+826IBhB6QLflLkSBNEFGSUUa4jjjz0B+C3siWPk8
+         63gw==
+X-Gm-Message-State: AOAM532uf0DtPgnbrL2KbKQuGOUHvQ/U83c4IQ6pbZHXtOkZBL/sWsOv
+        j8WOrVc0Bk7/Jb8xNs4TS/fv7g==
+X-Google-Smtp-Source: ABdhPJwVw5S0X2Qt2hPLp4zMzju9cunlPHkSEzWmDwKelbhqMeD+1GpmGTr6gaKuSABzKVvhEa1xxw==
+X-Received: by 2002:a5d:6d4b:: with SMTP id k11mr1102228wri.623.1644581328100;
+        Fri, 11 Feb 2022 04:08:48 -0800 (PST)
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id h10sm14695606wrt.57.2022.02.11.04.02.03
+        by smtp.googlemail.com with ESMTPSA id h6sm4095412wmq.26.2022.02.11.04.08.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 04:02:04 -0800 (PST)
+        Fri, 11 Feb 2022 04:08:47 -0800 (PST)
 From:   Corentin Labbe <clabbe@baylibre.com>
-To:     damien.lemoal@opensource.wdc.com,
-        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH v4] dt-bindings: convert ata/cortina,gemini-sata-bridge to yaml
-Date:   Fri, 11 Feb 2022 12:01:57 +0000
-Message-Id: <20220211120157.3385145-1-clabbe@baylibre.com>
+To:     krzysztof.kozlowski@canonical.com, linus.walleij@linaro.org,
+        miquel.raynal@bootlin.com, richard@nod.at, robh+dt@kernel.org,
+        vigneshr@ti.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v3] dt-bindings: mtd: drop mtd/cortina,gemini-flash.txt
+Date:   Fri, 11 Feb 2022 12:08:42 +0000
+Message-Id: <20220211120842.3388592-1-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch converts ata/cortina,gemini-sata-bridge binding to yaml
+Drop mtd/cortina,gemini-flash.txt since it is nearly already handled by
+Documentation/devicetree/bindings/mtd/mtd-physmap.yaml.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+We add jedec-flash to list of compatible because one board (gemini-dlink-dns-313.dts) needs it.
+See commit a10d862e585e ("ARM: dts: Fix the DNS-313 flash compatible")
+The flash on the DNS-313 needs to be probed as JEDEC, it does not conform to the common CFI standard.
+
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
 Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
-Change since v1:
-- fixed cosmetic nits reported by Damien Le Moal
-Changes since v2:
-- Added blank lines between properties
-- Removed useless quotes and label
-- Re-indented description
-Change since v3:
-- removed MaxItems from syscon
+Change since v1
+- fixed typo in syscon
 
- .../ata/cortina,gemini-sata-bridge.txt        |  55 ---------
- .../ata/cortina,gemini-sata-bridge.yaml       | 109 ++++++++++++++++++
- 2 files changed, 109 insertions(+), 55 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
- create mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
+Change since v2
+- Added reason of adding jedec-flash
 
-diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
+ .../bindings/mtd/cortina,gemini-flash.txt     | 24 -------------------
+ .../devicetree/bindings/mtd/mtd-physmap.yaml  | 18 +++++++++++++-
+ 2 files changed, 17 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
+
+diff --git a/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt b/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
 deleted file mode 100644
-index 1c3d3cc70051..000000000000
---- a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
+index efa5b2aba829..000000000000
+--- a/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
 +++ /dev/null
-@@ -1,55 +0,0 @@
--* Cortina Systems Gemini SATA Bridge
+@@ -1,24 +0,0 @@
+-Flash device on Cortina Systems Gemini SoC
 -
--The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
--takes two Faraday Technology FTIDE010 PATA controllers and bridges
--them in different configurations to two SATA ports.
+-This flash is regular CFI compatible (Intel or AMD extended) flash chips with
+-some special bits that can be controlled by the machine's system controller.
 -
 -Required properties:
--- compatible: should be
--  "cortina,gemini-sata-bridge"
--- reg: registers and size for the block
--- resets: phandles to the reset lines for both SATA bridges
--- reset-names: must be "sata0", "sata1"
--- clocks: phandles to the compulsory peripheral clocks
--- clock-names: must be "SATA0_PCLK", "SATA1_PCLK"
--- syscon: a phandle to the global Gemini system controller
--- cortina,gemini-ata-muxmode: tell the desired multiplexing mode for
--  the ATA controller and SATA bridges. Values 0..3:
--  Mode 0: ata0 master <-> sata0
--          ata1 master <-> sata1
--          ata0 slave interface brought out on IDE pads
--  Mode 1: ata0 master <-> sata0
--          ata1 master <-> sata1
--          ata1 slave interface brought out on IDE pads
--  Mode 2: ata1 master <-> sata1
--          ata1 slave  <-> sata0
--          ata0 master and slave interfaces brought out
--               on IDE pads
--  Mode 3: ata0 master <-> sata0
--          ata0 slave  <-> sata1
--          ata1 master and slave interfaces brought out
--               on IDE pads
+-- compatible : must be "cortina,gemini-flash", "cfi-flash";
+-- reg : memory address for the flash chip
+-- syscon : must be a phandle to the system controller
+-- bank-width : width in bytes of flash interface, should be <2>
 -
--Optional boolean properties:
--- cortina,gemini-enable-ide-pins: enables the PATA to IDE connection.
--  The muxmode setting decides whether ATA0 or ATA1 is brought out,
--  and whether master, slave or both interfaces get brought out.
--- cortina,gemini-enable-sata-bridge: enables the PATA to SATA bridge
--  inside the Gemnini SoC. The Muxmode decides what PATA blocks will
--  be muxed out and how.
+-For the rest of the properties, see mtd-physmap.yaml.
+-
+-The device tree may optionally contain sub-nodes describing partitions of the
+-address space. See partition.txt for more detail.
 -
 -Example:
 -
--sata: sata@46000000 {
--	compatible = "cortina,gemini-sata-bridge";
--	reg = <0x46000000 0x100>;
--	resets = <&rcon 26>, <&rcon 27>;
--	reset-names = "sata0", "sata1";
--	clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
--		 <&gcc GEMINI_CLK_GATE_SATA1>;
--	clock-names = "SATA0_PCLK", "SATA1_PCLK";
+-flash@30000000 {
+-	compatible = "cortina,gemini-flash", "cfi-flash";
+-	reg = <0x30000000 0x01000000>;
 -	syscon = <&syscon>;
--	cortina,gemini-ata-muxmode = <3>;
--	cortina,gemini-enable-ide-pins;
--	cortina,gemini-enable-sata-bridge;
+-	bank-width = <2>;
 -};
-diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
-new file mode 100644
-index 000000000000..21a90975593b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/cortina,gemini-sata-bridge.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+index f827984936f6..82eb4e0f453b 100644
+--- a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
++++ b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+@@ -44,7 +44,9 @@ properties:
+               - numonyx,js28f128
+               - sst,sst39vf320
+               - xlnx,xps-mch-emc-2.00.a
+-          - const: cfi-flash
++          - enum:
++              - cfi-flash
++              - jedec-flash
+       - items:
+           - enum:
+               - cypress,cy7c1019dv33-10zsxi
+@@ -127,6 +129,20 @@ required:
+   - compatible
+   - reg
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        const: cortina,gemini-flash
++then:
++  properties:
++    syscon:
++      $ref: /schemas/types.yaml#/definitions/phandle
++      description:
++        Phandle to the syscon controller
++  required:
++    - syscon
 +
-+title: Cortina Systems Gemini SATA Bridge
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+    The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
-+    takes two Faraday Technology FTIDE010 PATA controllers and bridges
-+    them in different configurations to two SATA ports.
-+
-+properties:
-+  compatible:
-+    const: cortina,gemini-sata-bridge
-+
-+  reg:
-+    maxItems: 1
-+
-+  resets:
-+    minItems: 2
-+    maxItems: 2
-+    description: phandles to the reset lines for both SATA bridges
-+
-+  reset-names:
-+    items:
-+      - const: sata0
-+      - const: sata1
-+
-+  clocks:
-+    minItems: 2
-+    maxItems: 2
-+    description: phandles to the compulsory peripheral clocks
-+
-+  clock-names:
-+    items:
-+      - const: SATA0_PCLK
-+      - const: SATA1_PCLK
-+
-+  syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: a phandle to the global Gemini system controller
-+
-+  cortina,gemini-ata-muxmode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0
-+      - 1
-+      - 2
-+      - 3
-+    description: |
-+      Tell the desired multiplexing mode for the ATA controller and SATA
-+      bridges.
-+      Mode 0: ata0 master <-> sata0
-+              ata1 master <-> sata1
-+              ata0 slave interface brought out on IDE pads
-+      Mode 1: ata0 master <-> sata0
-+              ata1 master <-> sata1
-+              ata1 slave interface brought out on IDE pads
-+      Mode 2: ata1 master <-> sata1
-+              ata1 slave  <-> sata0
-+              ata0 master and slave interfaces brought out on IDE pads
-+      Mode 3: ata0 master <-> sata0
-+              ata0 slave  <-> sata1
-+              ata1 master and slave interfaces brought out on IDE pads
-+
-+  cortina,gemini-enable-ide-pins:
-+    type: boolean
-+    description: Enables the PATA to IDE connection.
-+      The muxmode setting decides whether ATA0 or ATA1 is brought out,
-+      and whether master, slave or both interfaces get brought out.
-+
-+  cortina,gemini-enable-sata-bridge:
-+    type: boolean
-+    description: Enables the PATA to SATA bridge inside the Gemnini SoC.
-+      The Muxmode decides what PATA blocks will be muxed out and how.
-+
-+required:
-+  - clocks
-+  - clock-names
-+  - cortina,gemini-ata-muxmode
-+  - resets
-+  - reset-names
-+  - compatible
-+  - reg
-+  - syscon
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/cortina,gemini-clock.h>
-+    sata@46000000 {
-+      compatible = "cortina,gemini-sata-bridge";
-+      reg = <0x46000000 0x100>;
-+      resets = <&rcon 26>, <&rcon 27>;
-+      reset-names = "sata0", "sata1";
-+      clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
-+               <&gcc GEMINI_CLK_GATE_SATA1>;
-+      clock-names = "SATA0_PCLK", "SATA1_PCLK";
-+      syscon = <&syscon>;
-+      cortina,gemini-ata-muxmode = <3>;
-+      cortina,gemini-enable-ide-pins;
-+      cortina,gemini-enable-sata-bridge;
-+    };
+ # FIXME: A parent bus may define timing properties
+ additionalProperties: true
+ 
 -- 
 2.34.1
 
