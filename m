@@ -2,75 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E7B4B2ADE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 17:48:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 165094B2AE6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 17:50:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351724AbiBKQsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 11:48:00 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48526 "EHLO
+        id S230075AbiBKQtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 11:49:52 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351721AbiBKQsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 11:48:00 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFEF8FD
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 08:47:58 -0800 (PST)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D78DE4004A
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 16:47:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644598077;
-        bh=4lswzRVAGMbVN4fxZWJ4W9VwOoIlRM/pZiE0wihHuB4=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=us/gU3pKk5J87Pblr93ix2D+jgvo73/Dr/tZoalVjJXOo8ZG1yG2QfouR3BZzujKM
-         QEDq6b9KIt3QeTZXEzYOIk587GYdmzBPKEYAUqIEQH19878FttW7qmWcp/uSmJa4zL
-         ICZ2hH9bhJhBXYMrkuSfmExx2FPRGUTvLiKg5f1DnS89Gnv5q1rnemmYq4M+k6+13E
-         i48gqu0cze+/TRADulutiYKNWyulxRWR1DfZ6AvFNdk1OCibbkAv1RWXwe405lw1ks
-         dA58ErSCLn49TAK6kq2zqGRBpIEyMNDdjaBHw1EQN+pTUP5Aj4oaaFe4wsl6notxzN
-         K7vamXY+54JbA==
-Received: by mail-ej1-f71.google.com with SMTP id d7-20020a1709061f4700b006bbf73a7becso4333063ejk.17
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 08:47:57 -0800 (PST)
+        with ESMTP id S230029AbiBKQtw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 11:49:52 -0500
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45EC58D;
+        Fri, 11 Feb 2022 08:49:50 -0800 (PST)
+Received: by mail-qt1-f172.google.com with SMTP id b5so9523989qtq.11;
+        Fri, 11 Feb 2022 08:49:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4lswzRVAGMbVN4fxZWJ4W9VwOoIlRM/pZiE0wihHuB4=;
-        b=tkwexvQqmaE7GSOTbS7DeiXdItua8EGSXxuP+4fSoXlXKxfxl6p8BEcLBNysxrb599
-         uyGMbEHZGbTgELNElQo1pqUnqIGCAnY3s3Dk3ZoIe7rREq9RtGsFKlYjVK4YGurL5fiT
-         JsnTu74Nc1BPjcJQ9t5jF06FdqsMZFqkL450ZGJDJ+yRVu31hnZYS566BB1tSRF8x1Eh
-         IYmmFF83Oj+JzjUY2TrLu9qj+dTDX9blaUngjc8KakHMGCCgpbwfxpCE9kfELFfIqJhi
-         jojCqBDcsCzECyU4+throBXrHbG/FCRX4SWa8NTtr5M+LKNi5y8a0Hu+MLS5NMTbZzXW
-         H7DA==
-X-Gm-Message-State: AOAM5306omCVtu4KBe3a9Q4q2BRyMHV7Pb5VmyaKwUg0V7Diw9qJEDRG
-        B2+N5pQucZe22/t7e2Snk4U6nOaXjzjpTcQBFd4gIrseZ00OfLbFQmCBGg/mDl+q5SDk3IKv+xN
-        GOQG1MBXgz3xLyYKqrn0W7GT5Pb4d6awce8dauJE=
-X-Received: by 2002:a17:906:d550:: with SMTP id cr16mr2076701ejc.257.1644598077406;
-        Fri, 11 Feb 2022 08:47:57 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwVaaGgrMK6Xd0ZUKTGZK48foO64fs4vM24QmAKR7PNgLUxAff0uHLt5kCrVQyMq6YcUbvD2Q==
-X-Received: by 2002:a17:906:d550:: with SMTP id cr16mr2076686ejc.257.1644598077198;
-        Fri, 11 Feb 2022 08:47:57 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id n24sm5036951ejb.23.2022.02.11.08.47.56
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+tFu3vkbTQIySarpIIX7Tezye9s6YZGK6OMSaOHlyY4=;
+        b=jknmwU3KP7JlR+SE4RCbBxJuYmfXJSR1M11ajJzjA8+EVuWWCk2hqKZ6MgilfNC787
+         t4aLhW9y9ksUARTmHkptVvoGatrGQgEHGS5od2RRp40G9RYz33UvY3xv1rPec72pajEO
+         0N4bnaTq9mYLonVWlKRRhenPnpCGwYjpNMzrtQp8DZB8DFtXlSF2iWkh8MYV9wZ9Pw9G
+         +Uxy0ZiioPYEoLx3XFnyLrFr1Zrn/x6zrmZ4lrI8XmrHgqW1YBCWimeJVtEmPtPQvasz
+         dsWYToTr/BIPlTeM5+2LdbolLaAmKBKWyOy0iMfzh4AiH6DYtAuI37hufZpDkL8ZuQeW
+         f7/w==
+X-Gm-Message-State: AOAM532zmzA8YSzI/unCdLn/XzhtewxUxrFjBVhafxOP9nOwtFbCIvx9
+        Dm0LGWFVTU6imVly7Vxmpw==
+X-Google-Smtp-Source: ABdhPJwrK4i0id3TCyebwPom3Nt5279eNZ7MttB2p50A+Y+8mKUPs7WBlXNbYfUW8gLI0GKtfduj8g==
+X-Received: by 2002:ac8:5950:: with SMTP id 16mr1742609qtz.104.1644598189334;
+        Fri, 11 Feb 2022 08:49:49 -0800 (PST)
+Received: from robh.at.kernel.org ([2607:fb90:5fee:dfce:b6df:c3e1:b1e5:d6d8])
+        by smtp.gmail.com with ESMTPSA id g17sm10065226qkl.122.2022.02.11.08.49.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 08:47:56 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: soc: samsung: usi: refer to dtschema for children
-Date:   Fri, 11 Feb 2022 17:47:16 +0100
-Message-Id: <20220211164716.120880-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
+        Fri, 11 Feb 2022 08:49:48 -0800 (PST)
+Received: (nullmailer pid 503767 invoked by uid 1000);
+        Fri, 11 Feb 2022 16:49:46 -0000
+Date:   Fri, 11 Feb 2022 10:49:46 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH net-next v2 2/2] dt-bindings: net: add schema for
+ Microchip/SMSC LAN95xx USB Ethernet controllers
+Message-ID: <YgaTqpmmb67mCdlc@robh.at.kernel.org>
+References: <20220209081025.2178435-1-o.rempel@pengutronix.de>
+ <20220209081025.2178435-3-o.rempel@pengutronix.de>
+ <1644420908.431570.391820.nullmailer@robh.at.kernel.org>
+ <CAL_JsqL1AAMq4u3Ruj2d5AUe-JnP8FDp8bUE0KcY_8fusxC9dg@mail.gmail.com>
+ <20220209160252.GB26024@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220209160252.GB26024@pengutronix.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,59 +69,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Explicitly reference the dtschema for USI children implementing specific
-serial protocol (I2C, SPI, UART).  The SPI schema is not yet accepted,
-so it will be provided later.
+On Wed, Feb 09, 2022 at 05:02:52PM +0100, Oleksij Rempel wrote:
+> On Wed, Feb 09, 2022 at 09:38:57AM -0600, Rob Herring wrote:
+> > On Wed, Feb 9, 2022 at 9:35 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Wed, 09 Feb 2022 09:10:25 +0100, Oleksij Rempel wrote:
+> > > > Create initial schema for Microchip/SMSC LAN95xx USB Ethernet controllers and
+> > > > import all currently supported USB IDs form drivers/net/usb/smsc95xx.c
+> > > >
+> > > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > > > ---
+> > > >  .../bindings/net/microchip,lan95xx.yaml       | 80 +++++++++++++++++++
+> > > >  1 file changed, 80 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
+> > > >
+> > >
+> > > Running 'make dtbs_check' with the schema in this patch gives the
+> > > following warnings. Consider if they are expected or the schema is
+> > > incorrect. These may not be new warnings.
+> > >
+> > > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> > > This will change in the future.
+> > >
+> > > Full log is available here: https://patchwork.ozlabs.org/patch/1590223
+> > >
+> > >
+> > > smsc@2: $nodename:0: 'smsc@2' does not match '^ethernet(@.*)?$'
+> > >         arch/arm/boot/dts/tegra30-ouya.dt.yaml
+> > >
+> > > usbether@1: $nodename:0: 'usbether@1' does not match '^ethernet(@.*)?$'
+> > >         arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-b.dt.yaml
+> > >         arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dt.yaml
+> > >         arch/arm/boot/dts/bcm2835-rpi-b.dt.yaml
+> > >         arch/arm/boot/dts/bcm2835-rpi-b-plus.dt.yaml
+> > >         arch/arm/boot/dts/bcm2835-rpi-b-rev2.dt.yaml
+> > >         arch/arm/boot/dts/bcm2836-rpi-2-b.dt.yaml
+> > >         arch/arm/boot/dts/bcm2837-rpi-3-b.dt.yaml
+> > >         arch/arm/boot/dts/omap3-beagle-xm-ab.dt.yaml
+> > >         arch/arm/boot/dts/omap3-beagle-xm.dt.yaml
+> > >         arch/arm/boot/dts/omap4-panda-a4.dt.yaml
+> > >         arch/arm/boot/dts/omap4-panda.dt.yaml
+> > >         arch/arm/boot/dts/omap4-panda-es.dt.yaml
+> > >
+> > > usbether@3: $nodename:0: 'usbether@3' does not match '^ethernet(@.*)?$'
+> > >         arch/arm/boot/dts/omap5-uevm.dt.yaml
+> > 
+> > So this binding is already in use, but was undocumented?
+> 
+> Ack.
+> 
+> > Or did you forget to remove the .txt file?
+> 
+> No, there was no documentation.
+> 
+> > The commit message should highlight all this.
+> > 
+> > (I don't expect you to fix all these warnings, I was just surprised to
+> > see them given this is an 'initial schema'.)
+> 
+> This patches was create before I needed to use it. Should I resent it
+> with new commit message?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Yes, please.
 
----
-
-Changes since v1:
-1. Drop entire paragraph about USI nodes.
----
- .../bindings/soc/samsung/exynos-usi.yaml      | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-index 58f2e9d8bb0e..a98ed66d092e 100644
---- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-+++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-@@ -17,13 +17,6 @@ description: |
-   child nodes, each representing a serial sub-node device. The mode setting
-   selects which particular function will be used.
- 
--  Refer to next bindings documentation for information on protocol subnodes that
--  can exist under USI node:
--
--  [1] Documentation/devicetree/bindings/serial/samsung_uart.yaml
--  [2] Documentation/devicetree/bindings/i2c/i2c-exynos5.txt
--  [3] Documentation/devicetree/bindings/spi/spi-samsung.txt
--
- properties:
-   $nodename:
-     pattern: "^usi@[0-9a-f]+$"
-@@ -75,10 +68,17 @@ properties:
-       This property is optional.
- 
- patternProperties:
--  # All other properties should be child nodes
--  "^(serial|spi|i2c)@[0-9a-f]+$":
-+  "^i2c@[0-9a-f]+$":
-+    $ref: /schemas/i2c/i2c-exynos5.yaml
-+    description: Child node describing underlying I2C
-+
-+  "^serial@[0-9a-f]+$":
-+    $ref: /schemas/serial/samsung_uart.yaml
-+    description: Child node describing underlying UART/serial
-+
-+  "^spi@[0-9a-f]+$":
-     type: object
--    description: Child node describing underlying USI serial protocol
-+    description: Child node describing underlying SPI
- 
- required:
-   - compatible
--- 
-2.32.0
-
+Rob
