@@ -2,275 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE7794B2963
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 16:49:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CD484B2976
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 16:56:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238376AbiBKPte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 10:49:34 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58824 "EHLO
+        id S1349425AbiBKPz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 10:55:28 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234142AbiBKPtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 10:49:33 -0500
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89EDE1A8;
-        Fri, 11 Feb 2022 07:49:32 -0800 (PST)
-Received: by mail-oi1-f178.google.com with SMTP id y23so9924940oia.13;
-        Fri, 11 Feb 2022 07:49:32 -0800 (PST)
+        with ESMTP id S240763AbiBKPz1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 10:55:27 -0500
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B88D01A8;
+        Fri, 11 Feb 2022 07:55:26 -0800 (PST)
+Received: by mail-qt1-f174.google.com with SMTP id y8so9371850qtn.8;
+        Fri, 11 Feb 2022 07:55:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=gWKYE2d0LpVfiDQEqlRd5JWJe4nWkpS2f1rG0JFNYfg=;
-        b=plgJSdeKxJwrQaJij7numzxgN1rI4YWHRZ8T7PdVWRJqPSAkNMEoYq8jraY8jwQtLR
-         QKj7W3ldPDaSE12///vBxkDQBYIAIcqmkLY0I/nPzlBfcUj/ux/px3Dzm1vghvbEScnp
-         BMP7cYZuMVZHC6i8XGZmff2cGN1baJ77kc5IzJ0nd/TwRhpD7X9q7mxGWwhipOHeRgr4
-         biNx9f8HbwE8HgsiGNzpf30l9fPP7LV7uf5Q7Z5aBcKYsNkHB+3jjfqf6VQsRqgZ4Fcu
-         xUViP2PP/jsPSMSHTuJa5lCTKj3CsR3fR/Lbe9UiDe3/y6Golnrrz4NciU9JXyEQFQqh
-         GJnw==
-X-Gm-Message-State: AOAM531aQqgLKwUY2VgJjvre1yRvpHyOLH9rV4LiIasm4UiuhedD7BTR
-        73U8Z23vWCLgz2Kwq6kgTw==
-X-Google-Smtp-Source: ABdhPJxoP4zIIRj7it+mF16gB50xGdR/J7wpMEl6fEvCZKZC+lc5Es0k1OoC2wRfJCacn5nRg4UQ1w==
-X-Received: by 2002:a05:6808:11c6:: with SMTP id p6mr460883oiv.50.1644594571778;
-        Fri, 11 Feb 2022 07:49:31 -0800 (PST)
+        bh=AH0zRbzoPMr4Bd6tgyQDZWCWGv2pXghKVXWK7zK281s=;
+        b=efzbaOheMKMZSeFqgQ3d59v31LX3BLHp8rVpk/XBESAS7vD15E1xJvbi3E2dEYBcB/
+         cmskRHa9VB9vFIQqRTW1TBwWZ773d594V0AVVDAk56I4KYsGXgoKxecfXgTD39bWp+OC
+         9yAT16qawCC2+iWeLY1UKfu4pBdZy1hWDNDBw4MEp7ZYC5D2bNGV4iWEyXiSsnlIwQWy
+         PL1rnhYc7ZqVOalTz/g155p2vsS0G6xFYqDMFWk16gAOeDlo0X9UGs+K70o3dvqeEyc7
+         9Rjt3VFeejiCj0SRrFEAS0aE/X4dgTbcumLD2yW4XokfCcHpzgunFceOABCuzM1Qi3p9
+         Y4Sg==
+X-Gm-Message-State: AOAM531C7fnjgTqC2PBhY8+wn7wjtz4Aa2iSs8kXF9Uu7HOZqpzB+nD4
+        YHhiSMw6raAOQO4GVaQ50Q==
+X-Google-Smtp-Source: ABdhPJxA/ON1DK15WDvj2byI74bSPhUCDuN9XgCfCDlDD9l0wut8Nd0zOyV9Jy46i+vlICGGqwwmyQ==
+X-Received: by 2002:ac8:5993:: with SMTP id e19mr1575392qte.226.1644594925847;
+        Fri, 11 Feb 2022 07:55:25 -0800 (PST)
 Received: from robh.at.kernel.org ([2607:fb90:5fee:dfce:b6df:c3e1:b1e5:d6d8])
-        by smtp.gmail.com with ESMTPSA id bh7sm6124885oib.6.2022.02.11.07.49.29
+        by smtp.gmail.com with ESMTPSA id v22sm12749925qta.60.2022.02.11.07.55.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 07:49:30 -0800 (PST)
-Received: (nullmailer pid 409607 invoked by uid 1000);
-        Fri, 11 Feb 2022 15:46:27 -0000
-Date:   Fri, 11 Feb 2022 09:46:27 -0600
+        Fri, 11 Feb 2022 07:55:25 -0800 (PST)
+Received: (nullmailer pid 422968 invoked by uid 1000);
+        Fri, 11 Feb 2022 15:55:22 -0000
+Date:   Fri, 11 Feb 2022 09:55:22 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, alistair@alistair23.me,
-        samuel@sholland.org, josua.mayer@jm0.eu,
-        letux-kernel@openphoenux.org
-Subject: Re: [RFC PATCH 1/6] dt-bindings: display: imx: Add EPDC
-Message-ID: <YgaE06Ktabpf2dJC@robh.at.kernel.org>
-References: <20220206080016.796556-1-andreas@kemnade.info>
- <20220206080016.796556-2-andreas@kemnade.info>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     linux-acpi@vger.kernel.org, andriy.shevchenko@linux.intel.com,
+        devicetree@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH 1/4] device property: Convert
+ device_{dma_supported,get_dma_attr} to fwnode
+Message-ID: <YgaG6sQjKs+ZxNm6@robh.at.kernel.org>
+References: <20220206091643.276833-1-sakari.ailus@linux.intel.com>
+ <20220206091643.276833-2-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220206080016.796556-2-andreas@kemnade.info>
+In-Reply-To: <20220206091643.276833-2-sakari.ailus@linux.intel.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 06, 2022 at 09:00:11AM +0100, Andreas Kemnade wrote:
-> Add a binding for the Electrophoretic Display Controller found at least
-> in the i.MX6.
-
-The first version was in i.MX50 (I helped design the register 
-interface). Is that version compatible?
-
-> The timing subnode is directly here to avoid having display parameters
-> spread all over the plate.
+On Sun, Feb 06, 2022 at 11:16:40AM +0200, Sakari Ailus wrote:
+> Make the device_dma_supported and device_get_dma_attr functions to use the
+> fwnode ops, and move the implementation to ACPI and OF frameworks.
 > 
-> Supplies are organized the same way as in the fbdev driver in the
-> NXP/Freescale kernel forks. The regulators used for that purpose,
-> like the TPS65185, the SY7636A and MAX17135 have typically a single bit to
-> start a bunch of regulators of higher or negative voltage with a
-> well-defined timing. VCOM can be handled separately, but can also be
-> incorporated into that single bit.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Depends-on: ("device property: Don't split fwnode_get_irq*() APIs in the code")
+
+Is this some new convention? What's wrong with 'base-commit' and 
+shouldn't it be below the '---'?
+
+> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 > ---
->  .../bindings/display/imx/fsl,mxc-epdc.yaml    | 159 ++++++++++++++++++
->  1 file changed, 159 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
-> new file mode 100644
-> index 000000000000..7e0795cc3f70
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
-> @@ -0,0 +1,159 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,mxc-epdc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale i.MX6 EPDC
-> +
-> +maintainers:
-> +  - Andreas Kemnade <andreas@kemnade.info>
-> +
-> +description: |
-> +  The EPDC is a controller for handling electronic paper displays found in
-> +  i.MX6 SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx6sl-epdc
-> +      - fsl,imx6sll-epdc
+>  drivers/acpi/property.c | 14 ++++++++++++++
+>  drivers/base/property.c | 25 ++++---------------------
+>  drivers/of/property.c   | 17 +++++++++++++++++
+>  include/linux/fwnode.h  |  3 +++
+>  4 files changed, 38 insertions(+), 21 deletions(-)
 
-Not compatible with each other?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Bus clock
-> +      - description: Pixel clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: axi
-> +      - const: pix
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-
-> +  vscan-holdoff:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +
-> +  sdoed-width:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +
-> +  sdoed-delay:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +
-> +  sdoez-width:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +
-> +  sdoez-delay:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +
-> +  gdclk-hp-offs:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +
-> +  gdsp-offs:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +
-> +  gdoe-offs:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +
-> +  gdclk-offs:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +
-> +  num-ce:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-
-All these need a vendor prefix and descriptions.
-
-> +
-> +  timing:
-> +    $ref: /display/panel/panel-timing.yaml#
-> +
-> +  DISPLAY-supply:
-> +    description:
-> +      A couple of +/- voltages automatically powered on in a defintive order
-> +
-> +  VCOM-supply:
-> +    description: compensation voltage
-> +
-> +  V3P3-supply:
-> +    description: V3P3 supply
-> +
-> +  epd-thermal-zone:
-> +    description:
-> +      Zone to get temperature of the EPD from, practically ambient temperature.
-> +
-> +
-> +
-
-1 blank line.
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - vscan-holdoff
-> +  - sdoed-width
-> +  - sdoed-delay
-> +  - sdoez-width
-> +  - sdoez-delay
-> +  - gdclk-hp-offs
-> +  - gdsp-offs
-> +  - gdoe-offs
-> +  - gdclk-offs
-> +  - num-ce
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx6sl-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    epdc: epdc@20f4000 {
-> +        compatible = "fsl,imx6sl-epdc";
-> +        reg = <0x020f4000 0x4000>;
-> +        interrupts = <0 97 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&clks IMX6SL_CLK_EPDC_AXI>, <&clks IMX6SL_CLK_EPDC_PIX>;
-> +        clock-names = "axi", "pix";
-> +
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&pinctrl_epdc0>;
-> +        V3P3-supply = <&V3P3_reg>;
-> +        VCOM-supply = <&VCOM_reg>;
-> +        DISPLAY-supply = <&DISPLAY_reg>;
-> +        epd-thermal-zone = "epd-thermal";
-> +
-> +        vscan-holdoff = <4>;
-> +        sdoed-width = <10>;
-> +        sdoed-delay = <20>;
-> +        sdoez-width = <10>;
-> +        sdoez-delay = <20>;
-> +        gdclk-hp-offs = <562>;
-> +        gdsp-offs = <662>;
-> +        gdoe-offs = <0>;
-> +        gdclk-offs = <225>;
-> +        num-ce = <3>;
-> +        status = "okay";
-
-Don't need status in examples.
-
-> +
-> +        timing {
-> +                clock-frequency = <80000000>;
-> +                hactive = <1448>;
-> +                hback-porch = <16>;
-> +                hfront-porch = <102>;
-> +                hsync-len = <28>;
-> +                vactive = <1072>;
-> +                vback-porch = <4>;
-> +                vfront-porch = <4>;
-> +                vsync-len = <2>;
-> +        };
-> +    };
-> +...
-> -- 
-> 2.30.2
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
