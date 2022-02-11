@@ -2,70 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C9C34B1D5F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 05:36:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D1CB4B1D66
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 05:43:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243621AbiBKEgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Feb 2022 23:36:04 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55012 "EHLO
+        id S243820AbiBKEnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Feb 2022 23:43:22 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbiBKEgE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 23:36:04 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A075F4B
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 20:36:04 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id ki18-20020a17090ae91200b001b8be87e9abso3338442pjb.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 20:36:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Sk8cBUsClIMlHaCL2xiX/fn2BgN7k5aajZKy4bUzDWU=;
-        b=rVzmoeBiR80szTY6N896ECqw7acDDByGXYElcGhzJuhUfTY+Zecps99iu1c0WyVNJR
-         Rv74e3KSpAx4v1GCSJTZfsw6utuuw0k7HdD47Zfg13LdStdoBiWS3cijsWi5WFvQxe5c
-         TFPoYS9lqs9+jpHnwkEWdHW54/IQrmYrE4byV0FfvXgsPqW8C0W/eEpbuAGrqZ264xfW
-         2Mah2fg3E4zNZl37hQo2y0G919NhGsXtlVIIC0O8BIW2liruTAczzhCvaZgPnr1GpeUq
-         +M9TwCWFb1WDBaMRvQCiTfybBk5k+oWbyuV6D18zlCQGHYJRjdc4O73HBGushR5PoR+L
-         38dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Sk8cBUsClIMlHaCL2xiX/fn2BgN7k5aajZKy4bUzDWU=;
-        b=0fa/hFnlOJIjvn8ksO3DbYtIedpRdwvmnFo3RAhNffI3cQH8Ax5G+3je4+iaMfE5EE
-         qHQYdanZsiJ6NdBfJvIkyDrMxgXYpyTfeqHiGrljZ7SUhWbsyBjXqKUYPvozRd9GCjeb
-         YwnB8CklFsDuAs2305gIIFMcJDE7NmDIkrrYpazdSDg8IBpCBywYmV2HiMZVpKHtm1qh
-         N4a1z0BvwQm0G50tD/QRjKOWhYDlM8Cthh1asju5fpGHQdRdoH6I/dahN8R1SAXuhFG5
-         7FzzLRcm9/sP4UMTXegnkxEInX8T8OuFP4dEtWMa5InLGxRF0qeSfU6MBfcK6Jm88OaI
-         H2Xg==
-X-Gm-Message-State: AOAM531G5+jH1vjMSjKMzky4685YJvNz80qKNe83+AziCcwxy5a/BhT7
-        2k3TSt4knMG4SQmQwbikTbVUZw==
-X-Google-Smtp-Source: ABdhPJxx1B1o6t/Ostlvejmx0MhqI7MtxjE79p9KUj/N2Tk+zNs3dvOqGSjMaw2qRrS1NSUf56Jv/w==
-X-Received: by 2002:a17:90b:3ec8:: with SMTP id rm8mr797690pjb.207.1644554163558;
-        Thu, 10 Feb 2022 20:36:03 -0800 (PST)
-Received: from localhost ([136.185.132.167])
-        by smtp.gmail.com with ESMTPSA id j14sm26371222pfj.218.2022.02.10.20.36.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Feb 2022 20:36:03 -0800 (PST)
-Date:   Fri, 11 Feb 2022 10:05:59 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v3 0/7] dt-bindings: Convert multiple Qualcomm OPP
- and CPUFreq bindings to DT schema
-Message-ID: <20220211043559.auwbykshxwkf43lx@vireshk-i7>
-References: <20220203072226.51482-1-y.oudjana@protonmail.com>
- <YgWrufkNy3OfmV4o@builder.lan>
+        with ESMTP id S229540AbiBKEnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Feb 2022 23:43:21 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA3F21105;
+        Thu, 10 Feb 2022 20:43:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2B4666135B;
+        Fri, 11 Feb 2022 04:43:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F039BC340E9;
+        Fri, 11 Feb 2022 04:43:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644554599;
+        bh=h8ABG3QF55r6VXzp/MBfC9UCfXS/GjvEfNNw0R9W/zI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BPYm1MLqvwslkzLWGI83UttcSiZW/32jE2yjmj1AzOKRBv3nfHCfvPUKE9UUZBWt6
+         sOdFQC40jBjtY/F4Chf3Y9O+VqKluQG57fzngjtZc+E5re73EILP9lVvrw8pg7vwnY
+         Dgf6OPLhD90BGYHU8HF0BEHO25jYwZ/K1S8qRl/llpG5xa90h59Rr+ZDMR7XTF9zZ9
+         8tr7dk4xYNsA6Pk2FSgEapvUrGIh3LRfR6JhaOigJCLhc40c7v3L8NTAk1eeRI+J3a
+         t45bwwhq/yC5zkvKbqg8TPnFrKRv4eIpCv10B9igNLEDXcwT5HeblvbeyVCXAMgneV
+         UFKZPEsVfkgzw==
+Date:   Fri, 11 Feb 2022 12:43:13 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Andrej Picej <andrej.picej@norik.com>
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+        y.bas@phytec.com
+Subject: Re: [PATCH v2 1/2] ARM: dts: imx6qdl-phytec: add missing pmic MFD
+ subdevices
+Message-ID: <20220211044312.GO4909@dragon>
+References: <20220128072738.157247-1-andrej.picej@norik.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YgWrufkNy3OfmV4o@builder.lan>
-User-Agent: NeoMutt/20180716-391-311a52
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20220128072738.157247-1-andrej.picej@norik.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,24 +57,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-02-22, 18:20, Bjorn Andersson wrote:
-> On Thu 03 Feb 01:24 CST 2022, Yassine Oudjana wrote:
+On Fri, Jan 28, 2022 at 08:27:37AM +0100, Andrej Picej wrote:
+> phyFLEX PMIC DA9063 has also RTC and watchdog support. Add both
+> MFD subdevices so they can be used.
 > 
-> > This series is a compilation of DT schema conversions of multiple Qualcomm
-> > OPP and CPUFreq bindings:
-> > - qcom-cpufreq-nvmem (operating-points-v2-kryo-cpu)
-> > - qcom-opp (operating-points-v2-qcom-level)
-> > - qcom,cpr
-> > 
-> 
-> Really nice to see these updates!
-> 
-> I'm going to pick up the patches that goes through the Qualcomm tree,
-> but patch 3,4 and 7 would be better to take through Viresh's tree, so
-> I've looped him in on this reply.
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
 
-I believe all these need to go together, else you will start getting
-schema errors ?
-
--- 
-viresh
+Applied both, thanks!
