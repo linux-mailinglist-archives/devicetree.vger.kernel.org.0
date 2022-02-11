@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D1824B2304
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 11:25:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D5DE4B231F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 11:31:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348839AbiBKKYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 05:24:00 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51192 "EHLO
+        id S1348903AbiBKKbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 05:31:18 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242036AbiBKKYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 05:24:00 -0500
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70C41220;
-        Fri, 11 Feb 2022 02:23:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1644575039; x=1676111039;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=UkTuOxm219Uf9vWVBlVQGbmmZ+csO/awHC70HwYJGsA=;
-  b=msNiC289Tb1TnnMiLChcYNYDV7a4ueneFyRZu5+erH1MdHQ4+3Huj8jf
-   aJvTYXWpPA2yt1OB6Wa3hwycROQ6NUglVTUktBgosnROhbD9E5uSyezrz
-   gJH5dpbOp70rHEDwd/uKc3agv5y6cGHOINBhmLWFpkNBdFFdwZk/Dq5ah
-   A=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 11 Feb 2022 02:23:59 -0800
-X-QCInternal: smtphost
-Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2022 02:23:57 -0800
-Received: from [10.216.7.73] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Fri, 11 Feb
- 2022 02:23:52 -0800
-Subject: Re: [PATCH V5 1/6] dt-bindings: regulator: Add pm8008 regulator
- bindings
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "Das Srinagesh" <gurus@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <quic_jprakash@quicinc.com>
-References: <1644331940-18986-1-git-send-email-quic_c_skakit@quicinc.com>
- <1644331940-18986-2-git-send-email-quic_c_skakit@quicinc.com>
- <YgWxRDeo7vuTBeAo@builder.lan>
-From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-Message-ID: <cb7858fe-4891-ead5-f1cf-fb64e8368927@quicinc.com>
-Date:   Fri, 11 Feb 2022 15:53:49 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S1348902AbiBKKbS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 05:31:18 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 725D1EAC
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 02:31:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1644575476;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=iBor/4ctD9Su3Z9/rV8GOGhFf5h1VX6eZd38snr721I=;
+        b=ZWMNyJsbMOa6gWAHPSGS+nvIvXyojLZyL/R+W2L/TIa4u67JS/Cgrw66tAGglQHQauwU4J
+        cRqxba+1Kul3XrqXJ5e29c+usVMLKX5Kx/u5Oob/61yiTRYvV4zoJ/nqOu4i8A6Y/OJOQd
+        ef+n7diQclgmbbX0HggVayjTPqNIp5g=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-37-VbLescsqPOa17IZbRMefJg-1; Fri, 11 Feb 2022 05:31:11 -0500
+X-MC-Unique: VbLescsqPOa17IZbRMefJg-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com [10.5.11.13])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9D5C518982B7;
+        Fri, 11 Feb 2022 10:30:39 +0000 (UTC)
+Received: from localhost (ovpn-13-96.pek2.redhat.com [10.72.13.96])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id AC3AD7D728;
+        Fri, 11 Feb 2022 10:30:37 +0000 (UTC)
+Date:   Fri, 11 Feb 2022 18:30:34 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v20 3/5] arm64: kdump: reimplement crashkernel=X
+Message-ID: <YgY6yvX7PEeZpdTr@MiWiFi-R3L-srv>
+References: <20220124084708.683-1-thunder.leizhen@huawei.com>
+ <20220124084708.683-4-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-In-Reply-To: <YgWxRDeo7vuTBeAo@builder.lan>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220124084708.683-4-thunder.leizhen@huawei.com>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,89 +77,127 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 01/24/22 at 04:47pm, Zhen Lei wrote:
+> From: Chen Zhou <chenzhou10@huawei.com>
+......
+> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> index 6c653a2c7cff052..a5d43feac0d7d96 100644
+> --- a/arch/arm64/mm/init.c
+> +++ b/arch/arm64/mm/init.c
+> @@ -71,6 +71,30 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
+>  #define CRASH_ADDR_LOW_MAX	arm64_dma_phys_limit
+>  #define CRASH_ADDR_HIGH_MAX	MEMBLOCK_ALLOC_ACCESSIBLE
+>  
+> +static int __init reserve_crashkernel_low(unsigned long long low_size)
+> +{
+> +	unsigned long long low_base;
+> +
+> +	/* passed with crashkernel=0,low ? */
+> +	if (!low_size)
+> +		return 0;
+> +
+> +	low_base = memblock_phys_alloc_range(low_size, CRASH_ALIGN, 0, CRASH_ADDR_LOW_MAX);
+> +	if (!low_base) {
+> +		pr_err("cannot allocate crashkernel low memory (size:0x%llx).\n", low_size);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	pr_info("crashkernel low memory reserved: 0x%llx - 0x%llx (%lld MB)\n",
+> +		low_base, low_base + low_size, low_size >> 20);
+> +
+> +	crashk_low_res.start = low_base;
+> +	crashk_low_res.end   = low_base + low_size - 1;
+> +	insert_resource(&iomem_resource, &crashk_low_res);
+> +
+> +	return 0;
+> +}
+> +
+>  /*
+>   * reserve_crashkernel() - reserves memory for crash kernel
+>   *
+> @@ -81,29 +105,62 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
+>  static void __init reserve_crashkernel(void)
+>  {
+>  	unsigned long long crash_base, crash_size;
+> +	unsigned long long crash_low_size = SZ_256M;
+>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+>  	int ret;
+> +	bool fixed_base;
+> +	char *cmdline = boot_command_line;
+>  
+> -	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
+> +	/* crashkernel=X[@offset] */
+> +	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
+>  				&crash_size, &crash_base);
+> -	/* no crashkernel= or invalid value specified */
+> -	if (ret || !crash_size)
+> -		return;
+> +	if (ret || !crash_size) {
+> +		unsigned long long low_size;
+>  
+> +		/* crashkernel=X,high */
+> +		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
+> +		if (ret || !crash_size)
+> +			return;
+> +
+> +		/* crashkernel=X,low */
+> +		ret = parse_crashkernel_low(cmdline, 0, &low_size, &crash_base);
+> +		if (!ret)
+> +			crash_low_size = low_size;
 
-On 2/11/2022 6:13 AM, Bjorn Andersson wrote:
-> On Tue 08 Feb 08:52 CST 2022, Satya Priya wrote:
->
->> Add bindings for pm8008 pmic regulators.
->>
->> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
->> ---
->> Changes in V2:
->>   - Moved this patch before "mfd: pm8008: Add pm8008 regulator node" to
->>     resolve dtschema errors. Removed regulator-min-microvolt and
->>     regulator-max-microvolt properties.
->>
->> Changes in V3:
->>   - As per Rob's comments added standard unit suffix for mindropout property,
->>     added blank lines where required and added description for reg property.
->>
->> Changes in V4:
->>   - Changed compatible string to "com,pm8008-regulators"
->>   - Moved "regulator-min-dropout-voltage-microvolt" to regulator.yaml as
->>     separate patch.
->>
->> Changes in V5:
->>   - Removed the separate compatible for pm8008 regulator driver.
->>   - Moved the supply nodes to chip level.
->>   - Removed min-dropout property.
->>
->>   .../bindings/regulator/qcom,pm8008-regulator.yaml  | 31 ++++++++++++++++++++++
->>   1 file changed, 31 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml
->> new file mode 100644
->> index 0000000..0098845
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/regulator/qcom,pm8008-regulator.yaml
->> @@ -0,0 +1,31 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/regulator/qcom,pm8008-regulator.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Technologies, Inc. PM8008 Regulator bindings
->> +
->> +maintainers:
->> +  - Satya Priya <skakit@codeaurora.org>
->> +
->> +description:
->> +  Qualcomm Technologies, Inc. PM8008 is an I2C controlled PMIC
->> +  containing 7 LDO regulators.
->> +
->> +patternProperties:
->> +  "^LDO[1-7]$":
-> Please make this lower case, to match all other regulator bindings.
+Here, the error case is not checked and handled. But it still gets
+expeced result which is the default SZ_256M. Is this designed on
+purpose?
 
+> +
+> +		crash_max = CRASH_ADDR_HIGH_MAX;
+> +	}
+> +
+> +	fixed_base = !!crash_base;
+>  	crash_size = PAGE_ALIGN(crash_size);
+>  
+>  	/* User specifies base address explicitly. */
+>  	if (crash_base)
+>  		crash_max = crash_base + crash_size;
+>  
+> +retry:
+>  	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>  					       crash_base, crash_max);
+>  	if (!crash_base) {
+> +		/*
+> +		 * Attempt to fully allocate low memory failed, fall back
+> +		 * to high memory, the minimum required low memory will be
+> +		 * reserved later.
+> +		 */
+> +		if (!fixed_base && (crash_max == CRASH_ADDR_LOW_MAX)) {
+> +			crash_max = CRASH_ADDR_HIGH_MAX;
+> +			goto retry;
+> +		}
+> +
+>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+>  			crash_size);
+>  		return;
+>  	}
+>  
+> +	if (crash_base >= SZ_4G && reserve_crashkernel_low(crash_low_size)) {
+> +		memblock_phys_free(crash_base, crash_size);
+> +		return;
+> +	}
+> +
+>  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
+>  		crash_base, crash_base + crash_size, crash_size >> 20);
+>  
+> @@ -112,6 +169,9 @@ static void __init reserve_crashkernel(void)
+>  	 * map. Inform kmemleak so that it won't try to access it.
+>  	 */
+>  	kmemleak_ignore_phys(crash_base);
+> +	if (crashk_low_res.end)
+> +		kmemleak_ignore_phys(crashk_low_res.start);
+> +
+>  	crashk_res.start = crash_base;
+>  	crashk_res.end = crash_base + crash_size - 1;
+>  	insert_resource(&iomem_resource, &crashk_res);
+> -- 
+> 2.25.1
+> 
 
-Okay.
-
-
->> +    type: object
->> +    $ref: "regulator.yaml#"
->> +    description: PM8008 regulator peripherals of PM8008 regulator device
->> +
->> +    properties:
->> +      regulator-name: true
->> +
->> +    required:
->> +      - regulator-name
-> Why is regulator-name a (and the only) required property?
-
-
-It is not a required property, I'll correct this.
-
-
-> Regards,
-> Bjorn
->
->> +
->> +    unevaluatedProperties: false
->> +
->> +additionalProperties: false
->> +...
->> -- 
->> 2.7.4
->>
