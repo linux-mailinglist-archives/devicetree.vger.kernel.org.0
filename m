@@ -2,77 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C363D4B2713
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 14:28:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEB2A4B270F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 14:28:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244295AbiBKN03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 08:26:29 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51478 "EHLO
+        id S233754AbiBKN1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 08:27:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240082AbiBKN02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 08:26:28 -0500
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9007BBF
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 05:26:27 -0800 (PST)
-Received: by mail-il1-f179.google.com with SMTP id d7so1056740ilf.8
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 05:26:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=usXnVOzVAtsq25uL4U20BZB/yv2HII5weDIBCqk+E4U=;
-        b=LJeq7np23b/vdjFFmKN8xOhrs8Y4ozfCEPNi3dV9RtgJs86Lonf95tst8nL/gGe250
-         PXZb5FGq7BtXRGPc8i/7epTzM9oXKUmneJQl5fosuL4UEmKmbQui2eSOzqrYAMBdRZhy
-         iep0Y2CFapogSlKE3IcCpy8rKdYkCBFHe7VYWUM+V1hj+epMSsHD/8dlLhOETLpl0/py
-         r5bDNxHVlHm5WLtS6xLKHeFzx4Eun87tYo5eofAqs7ouG+Hereqby/jZRokSqLVx6Ms0
-         thcI6McLlpTWvoyX1clXqXqgwdqwpvLKjhycMfptAEsOAKfDMTXgtLiZto1Y57j5ItG6
-         n82A==
-X-Gm-Message-State: AOAM532JRX0bjiZiksR2IY93ctA4dQI9ATMfpluqJB+AE6spchWtSNje
-        QHLOS6RGZP3U0AhJZomTpw==
-X-Google-Smtp-Source: ABdhPJwbffklELwTuW+sRyDO+kBbzWutSRwJToZJJJEJeflS7G9CiQ0o0u03nYEGqrMi/MIzI3ainw==
-X-Received: by 2002:a05:6e02:1bab:: with SMTP id n11mr977641ili.213.1644585986896;
-        Fri, 11 Feb 2022 05:26:26 -0800 (PST)
-Received: from robh.at.kernel.org ([172.58.139.71])
-        by smtp.gmail.com with ESMTPSA id g11sm12885736iom.45.2022.02.11.05.26.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 05:26:26 -0800 (PST)
-Received: (nullmailer pid 253535 invoked by uid 1000);
-        Fri, 11 Feb 2022 13:26:21 -0000
-Date:   Fri, 11 Feb 2022 07:26:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Andrej Picej <andrej.picej@norik.com>
-Cc:     y.bas@phytec.de, linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@canonical.com, arnd@arndb.de,
-        kernel@pengutronix.de, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux-imx@nxp.com, festevam@gmail.com,
-        linux@rempel-privat.de, leoyang.li@nxp.com, shawnguo@kernel.org
-Subject: Re: [PATCH RESEND 1/4] dt-bindings: arm: fsl: add PHYTEC phyGATE
- Tauri i.MX6 ULL
-Message-ID: <YgZj/aQUfzCfWCpu@robh.at.kernel.org>
-References: <20220131080526.1171072-1-andrej.picej@norik.com>
- <20220131080526.1171072-2-andrej.picej@norik.com>
+        with ESMTP id S233666AbiBKN1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 08:27:53 -0500
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 056171AE
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 05:27:52 -0800 (PST)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id 4CC1A3201FDE;
+        Fri, 11 Feb 2022 08:27:50 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Fri, 11 Feb 2022 08:27:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; bh=f18KfTxd2ee/FLiVAwFuokRjJ08yesny4jQNWr
+        VyNVw=; b=kK51pOBHiWoUyNJsLhE1Wfq6T7TsmaMHJXa+Gk3yCwVrXYc53neLYq
+        tfXJ176q2vEityLoHDgxDo34N/4WtMOitcZIPXXIgeDNoOdANn8T7tEk1ZUPiEGN
+        KGS++On6ZsqTKrQyxpnhC55DwZXOfxVmAGtbKxEuQrcYSQGaAXXulxQLsQTRVvwA
+        vw0E4SJi2ZSRBqc0Wb/6uIik4huzBtsqmoED3v1wSKpP4lSN82eUdvY2tlR8MydF
+        UP7D8ICW1o2AUP7LuX07xMjUkmwexEuBYd0lyNxFhk9lPve2gPRCcAyp+kP+SH6B
+        N1GwWU51eGZIZoVQEYjKYjIX/5CSBLEw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=f18KfTxd2ee/FLiVA
+        wFuokRjJ08yesny4jQNWrVyNVw=; b=AQbh0FsKTr3KZe1h5JRFSNOFrcugRnd4b
+        mtXdGMDnJYpMsqbnPb9drX7+AvTIOzGRs40aiE+FSXDRBVvLie51XVF1yWYDEaau
+        PLvDaWzaPEEsiDsYcCZ+7AMGArJz/wJ8Fl9dJaYSHyMXGDeuwDDuN3sQROgf9Hn1
+        TemxmFG4m8rfLXctvCATboFJ5gmpC4qRaJZGPdZUNbh7gk6CQWamjb46Uf9nBcpX
+        7RklCdC/3sFL9HFGmFRxw94BTLtljaPI1sRPhqqv23R6lE/Vj2nqV2PB8HojvbQK
+        nJfPa+GHOIegOicMFYPjlyNCfbdMEjenm0sgaEdmnGPi7hMiRWe0A==
+X-ME-Sender: <xms:VWQGYrtwK0Tshs80W34TYbjGrMaeIOh0VEqPxeMCVuTUiinEeDwCsQ>
+    <xme:VWQGYscdIWxj5IESGwc4bd9MbOhN38KS8cWVoE1cq7R6ElR3kbfQ7UPbpeZyreC0P
+    7DXrTb8mFtoD_2IlcM>
+X-ME-Received: <xmr:VWQGYuzPrsd3AWzW-oeAldvo36mTpynuKMnxjWTJrXtxQLstyC2P_z3jmuyvql4bu_j0UsyfzzFmTO2A1OxevHs5VSxooceIB-LpK6I>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrieefgdehudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeehieefudethfevkeeigedvgfetjeeghfdvveekvdffueffteejtdejudffgfdu
+    keenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
+    vggthh
+X-ME-Proxy: <xmx:VWQGYqP7r65jkef-PkZxS59ZDYQI63THfVR5s2mSNJifUoz9lc0wng>
+    <xmx:VWQGYr9aig0YMShfUaM6hb2bZScBCpNjyEjpuS_Cn7WTRjHLWrBSbQ>
+    <xmx:VWQGYqXZatxWRvw0Q2Ws4Ta1lauwuqCoxHBkI1V023yz2xgu7EoCag>
+    <xmx:VWQGYrx6EoZUihfZiROCiaG8lCn8nshZEBPtsFcaoVPxOXBolmzclQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 11 Feb 2022 08:27:49 -0500 (EST)
+Date:   Fri, 11 Feb 2022 14:27:45 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc:     robh+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: add bindings for MIPI DBI
+ compatible SPI panels
+Message-ID: <20220211132745.h5vyo7b7hrq6rkla@houat>
+References: <20220211130434.20732-1-noralf@tronnes.org>
+ <20220211130434.20732-2-noralf@tronnes.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yamwfma4skb5as4w"
 Content-Disposition: inline
-In-Reply-To: <20220131080526.1171072-2-andrej.picej@norik.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220211130434.20732-2-noralf@tronnes.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Jan 2022 09:05:23 +0100, Andrej Picej wrote:
-> Add devicetree bindings for phyGATE Tauri board with phyCORE-i.MX6 ULL.
-> 
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+--yamwfma4skb5as4w
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Feb 11, 2022 at 02:04:32PM +0100, Noralf Tr=F8nnes wrote:
+> Add binding for MIPI DBI compatible SPI panels.
+>=20
+> v3:
+> - Move properties to Device Tree (Maxime)
+> - Use contains for compatible (Maxime)
+> - Add backlight property to example
+> - Flesh out description
+>=20
+> v2:
+> - Fix path for panel-common.yaml
+> - Use unevaluatedProperties
+> - Drop properties which are in the allOf section
+> - Drop model property (Rob)
+>=20
+> Signed-off-by: Noralf Tr=F8nnes <noralf@tronnes.org>
+> ---
+>  .../display/panel/panel-mipi-dbi-spi.yaml     | 124 ++++++++++++++++++
+>  1 file changed, 124 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel=
+-mipi-dbi-spi.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-d=
+bi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-db=
+i-spi.yaml
+> new file mode 100644
+> index 000000000000..4d017a36ad4d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.=
+yaml
+> @@ -0,0 +1,124 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dbi-spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MIPI DBI SPI Panel
+> +
+> +maintainers:
+> +  - Noralf Tr=F8nnes <noralf@tronnes.org>
+> +
+> +description: |
+> +  This binding is for display panels using a MIPI DBI compatible control=
+ler
+> +  in SPI mode.
+> +
+> +  The MIPI Alliance Standard for Display Bus Interface defines the elect=
+rical
+> +  and logical interfaces for display controllers historically used in mo=
+bile
+> +  phones. The standard defines 4 display architecture types and this bin=
+ding is
+> +  for type 1 which has full frame memory. There are 3 interface types in=
+ the
+> +  standard and type C is the serial interface.
+> +
+> +  The standard defines the following interface signals for type C:
+> +  - Power:
+> +    - Vdd: Power supply for display module
+> +    - Vddi: Logic level supply for interface signals
+> +    Combined into one in this binding called: power-supply
+> +  - Interface:
+> +    - CSx: Chip select
+> +    - SCL: Serial clock
+> +    - Dout: Serial out
+> +    - Din: Serial in
+> +    - SDA: Bidrectional in/out
+> +    - D/CX: Data/command selection, high=3Ddata, low=3Dcommand
+> +      Called dc-gpios in this binding.
+> +    - RESX: Reset when low
+> +      Called reset-gpios in this binding.
+> +
+> +  The type C interface has 3 options:
+> +
+> +    - Option 1: 9-bit mode and D/CX as the 9th bit
+> +      |              Command              |  the next command or followi=
+ng data  |
+> +      |<0><D7><D6><D5><D4><D3><D2><D1><D0>|<D/CX><D7><D6><D5><D4><D3><D2=
+><D1><D0>|
+> +
+> +    - Option 2: 16-bit mode and D/CX as a 9th bit
+> +      |              Command or data                              |
+> +      |<X><X><X><X><X><X><X><D/CX><D7><D6><D5><D4><D3><D2><D1><D0>|
+> +
+> +    - Option 3: 8-bit mode and D/CX as a separate interface line
+> +      |        Command or data         |
+> +      |<D7><D6><D5><D4><D3><D2><D1><D0>|
+> +
+> +  The panel resolution is specified using the panel-timing node properti=
+es
+> +  hactive (width) and vactive (height). The other mandatory panel-timing
+> +  properties should be set to zero except clock-frequency which can be
+> +  optionally set to inform about the actual pixel clock frequency.
+> +
+> +  If the panel is wired to the controller at an offset specify this using
+> +  hback-porch (x-offset) and vback-porch (y-offset).
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    contains:
+> +      const: panel-dbi-spi
+
+This could be further improved by using
+
+properties:
+  compatible:
+    items:
+      - {} # Panel Specific Compatible
+      - const: panel-dbi-spi
+
+To make it obvious we expect two compatible, and what the first one should =
+be.
+
+Once fixed,
+
+Acked-by: Maxime Ripard <maxime@cerno.tech>
+
+Maxime
+
+--yamwfma4skb5as4w
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYgZkUQAKCRDj7w1vZxhR
+xSDOAP0Tov4MG92o7XvnehNhfLKRHpZSRn4LTz83ZVEnexlUvwEAp8/GskKie33v
+mTvde9M8LVC8pUJgL2NgBj/alUJPzw0=
+=0Y4m
+-----END PGP SIGNATURE-----
+
+--yamwfma4skb5as4w--
