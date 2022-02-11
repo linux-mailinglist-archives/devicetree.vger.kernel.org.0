@@ -2,64 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2389F4B1F3A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 08:19:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB674B1F72
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 08:41:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237789AbiBKHTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 02:19:37 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40456 "EHLO
+        id S239933AbiBKHkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 02:40:46 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230521AbiBKHTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 02:19:36 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3EE410A4;
-        Thu, 10 Feb 2022 23:19:35 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id fy20so20745549ejc.0;
-        Thu, 10 Feb 2022 23:19:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Eyr+k5MIXDuO745m6jwHbykSM9pTm41Qg3KUng2I5bA=;
-        b=G64W731dlvyWLNkI7Hd4YwwJv6RNWFQXlxlBKNz1K7j46nVxu3h92y7bXJBvZ0aeNL
-         9YR/0rWt8HJ2hTy6eb2xFiW+dV/CDnuYkEVDD7pRYxnZKGk0ZCgkwSfB6z6G4ulFC6GN
-         eqQIjAASDWshS4cRIQZSZh6Fx+uGvc8WA1mgNiynj9jf6xfPmuTx3Dk+X0ZSHCsN2nHY
-         M7y3igGjZQ1QzuiGoQg4+ZiNvuAidJ58eqtKAcfEwjDzlUTbMpbBLffkiPkIyUwmNBrQ
-         lX2rm2nTFoMtZ1IutWKvpAPwW1RC1l/9Wl2Isde1Xvd6lFyUypLF7urSprFThc57kvRB
-         nGnQ==
+        with ESMTP id S237700AbiBKHkq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 02:40:46 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0658131
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 23:40:45 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3F8AC402AF
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 07:40:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644565238;
+        bh=Kv1h0VSTo+y1KIWyLqXo+zKdHA28wssinzCl3m6t9NE=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=k1DOqiChrt31Po6aJL0x2TYAWZjycJoTOAOMNOyIi+GbjIkoUqlMS8Qaqy4rcm19x
+         o2/NhnUeyrJDE0+wGhOxJUj3MSNQOD8OiWJ9RFANZFZsgZCqo77maTg3fXf/Sq9mfm
+         LAdi1pwrzFb8+qPcgLe55OU1Tl8PjN0AzY8Y+fIv1K/R7x0TEEmYAWQ1TQBE2aLvDX
+         nBlOEzaJGYporniM3NLRnE6836lYCOX6HWTj6h3CV4dR1ey6Bdq0A6zQAz7wxrYm8Y
+         axXtS/gz2jg96hRICidBPD+PdrbwffQ0QtR7/7+Bo/rlNOA4+LGC5JbkebJiLUg2mE
+         wvwVydFkzX4QQ==
+Received: by mail-ej1-f70.google.com with SMTP id r18-20020a17090609d200b006a6e943d09eso3716022eje.20
+        for <devicetree@vger.kernel.org>; Thu, 10 Feb 2022 23:40:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Eyr+k5MIXDuO745m6jwHbykSM9pTm41Qg3KUng2I5bA=;
-        b=Xlmn22SxOEgBO36YiBPgQxU/Uh0M7gbMNh7R4S7uXqweJ1eJbbbrF4dEH6ZZbd5n6Z
-         PPGuBAsS3sILDnvG5AH6KQPn84knDkK1nIiz2gsY1C5cwPvlG6rLsnuNxNV+L9wCnKOi
-         RPoj9omYJ3Pz5U3BDEDnkxdqOaVk7eAjoqMxxcYqkjEdYBem8EPF2V+GUNpy+Y/mYGxT
-         owu8GSCSAe+nnIzRJDHGIDQHZU3mEmM0I4lO+ko1JUrvPngw8FvTLR6IcDZ9nyH2KJ5W
-         xSp1yC1T+5MqN6uaVNfemEcjxq8aT57mMjCuDIwXUDoVtBieyKE2wAFAQZytf4uuvNak
-         s7bw==
-X-Gm-Message-State: AOAM530ip5j3YhggYg9i9QZpVAzDwpvy6WNYB8+iMi5ieXj8eLsTi/96
-        r1I3yY1Nro0dp9bAixq9cZeEQ3Vai6Nl1XgKV1E=
-X-Google-Smtp-Source: ABdhPJytMGOwVYbNRUat6pl2WpmZXfQRsKhLuWHbdL37IA1eTf3GybFocliDjiRWE5Y0jjF2JjV7RhOpA8yeSWRSqK4=
-X-Received: by 2002:a17:906:5d0a:: with SMTP id g10mr252126ejt.595.1644563974461;
- Thu, 10 Feb 2022 23:19:34 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Kv1h0VSTo+y1KIWyLqXo+zKdHA28wssinzCl3m6t9NE=;
+        b=BEnIA/enE8feMKKFLtj0vnKJg2gjrlpuhOOah9UnpaUD6SPi9gtwXTGlBPMX6eMLz9
+         DbcrkYw2RIirF31FClYfyKHOTG95tivbJyuCIDA/0HdsIyspPkojcJ0J7uxT0cY3+sfV
+         sQAiZn34B1LDP7RS4lyv/D//GkOIEgbvF2P6xMVurPk8+foNexk1UVERdKekn1afVbgn
+         fQAjh/NrA2HjhfLI5gI8Rzi5VF+jXiDbVWXhOdHLoH29eOOEtSXIG306rkpPnO282UBo
+         YS/FtpEbug+MKzYl13OuB/DjAjvEOY5aS8pYZ6zrtmcl6Z8TM3IBLuKCn3WdZTG4jt3G
+         AQRw==
+X-Gm-Message-State: AOAM531WrZWCJpKHeH/KQVrbWLGj/rsxrhyR8yT3mpxdBvhTDJPxWWXa
+        jpRiRa7nBk3/OeSchQiF7v26DdEK0gEVXXgdiRYs++NDOXtt9ngR79zzudHtb0rZjeeCIN5AGSm
+        pxJ1giHITd5TH/Jwa4qs3/1WaYRtPhUTVUR8BfZI=
+X-Received: by 2002:a17:907:9494:: with SMTP id dm20mr332743ejc.148.1644565236867;
+        Thu, 10 Feb 2022 23:40:36 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwe6Cr/fobWoIGuYaAC7gTvhZZRWiObYqT+pEfyWLxdNfwPpukri+jSGsSnIAJmOkFEfDnbKQ==
+X-Received: by 2002:a17:907:9494:: with SMTP id dm20mr332733ejc.148.1644565236638;
+        Thu, 10 Feb 2022 23:40:36 -0800 (PST)
+Received: from [192.168.0.99] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id b17sm6171404ejd.34.2022.02.10.23.40.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Feb 2022 23:40:36 -0800 (PST)
+Message-ID: <905a8063-8d84-698c-d45e-0acb0f7b0ebe@canonical.com>
+Date:   Fri, 11 Feb 2022 08:40:35 +0100
 MIME-Version: 1.0
-References: <20220210172246.27871-1-hnagalla@ti.com>
-In-Reply-To: <20220210172246.27871-1-hnagalla@ti.com>
-From:   Christian Gmeiner <christian.gmeiner@gmail.com>
-Date:   Fri, 11 Feb 2022 08:19:23 +0100
-Message-ID: <CAH9NwWes070Z+VmpfvkUfx+vGn_41H_Ps2960uaktJkyXPrWuQ@mail.gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: ti: k3-am64: Add ESM0 to device memory map
-To:     Hari Nagalla <hnagalla@ti.com>
-Cc:     devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] [v1]dt-bindings: vendor-prefixes: add HPE Prefix
+Content-Language: en-US
+To:     nick.hawkins@hpe.com, verdun@hpe.com
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <nick.hawkins@hpe.com>
+ <20220210175912.102159-1-nick.hawkins@hpe.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220210175912.102159-1-nick.hawkins@hpe.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,48 +89,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
-
-Am Do., 10. Feb. 2022 um 18:30 Uhr schrieb Hari Nagalla <hnagalla@ti.com>:
->
-> AM64x SoCs have two ESM modules, with one in MAIN voltage domain and the
-> other in MCU voltage domain. The error output from Main ESM module can
-> be routed to the MCU ESM module. The error output of MCU ESM can be
-> configured to reset the device. The MCU ESM configuration address space
-> is already opened and this patch opens the MAIN ESM configuration
-> address space.
->
-> For ESM details please refer technical reference manual at
-> https://www.ti.com/lit/pdf/spruim2
->
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-
-Reviewed-by: Christian Gmeiner <christian.gmeiner@gmail.com>
-
+On 10/02/2022 18:59, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+> 
+> Description: This patch adds the Hewlett Packard Enterprise prefix
+> that will be used for upcoming support in the HPE BMC GXP.
+> 
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-am64.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
-> index 120974726be8..0622a93ec136 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
-> @@ -66,6 +66,7 @@
->                 #address-cells = <2>;
->                 #size-cells = <2>;
->                 ranges = <0x00 0x000f4000 0x00 0x000f4000 0x00 0x000002d0>, /* PINCTRL */
-> +                        <0x00 0x00420000 0x00 0x00420000 0x00 0x00001000>, /* ESM0 */
->                          <0x00 0x00600000 0x00 0x00600000 0x00 0x00001100>, /* GPIO */
->                          <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* Timesync router */
->                          <0x00 0x01000000 0x00 0x01000000 0x00 0x02330400>, /* First peripheral window */
-> --
-> 2.17.1
->
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
 
--- 
-greets
---
-Christian Gmeiner, MSc
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-https://christian-gmeiner.info/privacypolicy
+
+Best regards,
+Krzysztof
