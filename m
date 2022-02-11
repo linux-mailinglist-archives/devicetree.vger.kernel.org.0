@@ -2,237 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C5E34B2180
-	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 10:20:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16DB04B21C7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Feb 2022 10:25:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348449AbiBKJTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 04:19:44 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60270 "EHLO
+        id S1348565AbiBKJZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 04:25:11 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348440AbiBKJTk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 04:19:40 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BB6C03A2
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 01:19:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1644571177;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=pbRMjrOYXoV30kR7B4cKGNrPjuiwGwQkUxB9k4BkJUQ=;
-        b=XbC7yxfuX8MRtHWhGSRe6U8E4auSpkwCr2OKzUxUC1TX8IoL1DAhtj/AvS/Qz/04NDbmLs
-        htf/BUTX2VW32xWvpPJ9DgPpFxwCKix8UyMPQCVLpRn25FKe92lweM+SUoFLGvr9NhHqTj
-        IQs3Gn/w6na2+FAKhVF7Oh6JlpFVo6I=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-414-SYOV6pLBPLyyTDFo2PsFaA-1; Fri, 11 Feb 2022 04:19:36 -0500
-X-MC-Unique: SYOV6pLBPLyyTDFo2PsFaA-1
-Received: by mail-wm1-f71.google.com with SMTP id u14-20020a05600c210e00b0037bddd0562eso2280761wml.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 01:19:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pbRMjrOYXoV30kR7B4cKGNrPjuiwGwQkUxB9k4BkJUQ=;
-        b=coIwMbmTg6xTkCainnE8b1cVcfv1hrR7UKBiGgdjRIHjmJjYpWLgiu0NSAlFxBeeGT
-         1VhjwDjFg4loSDHdTRZhdbVsC11C+6MxbnKceDC1/NqgGP/hCwlkF3Fyqf+D3/zYUgTb
-         JYr1FHpVfeUG3GCtL3Luf+OZJxQi76fS2ybZbfyX6xcgMKVZFhi1DcnZue7jfJpAvSNf
-         mul3nO1LP/2ub3eIBeZ1vxqCNSFYIQ1X7CQ9IkvghFkRAW9Um+aS4/IclOioM4x32o9s
-         rp/LYWRqPKy5SLdfllYxDFWymoyoC9QbbjFOiJgxK9qaIeUp4Gp2d7JOOBPQFhTm7nvW
-         K4Aw==
-X-Gm-Message-State: AOAM531K8qJ5diupWVo31fG7apy6LyoU22sGfDvsoTm+uYGrPm+wG6if
-        AcCFYZxJXCE0Qv2/vFxdJ5BcwcsDmnK0TZt1Kf2kHim1EbpVqoHbg0xSewwhOgPtcCS1I7DVLMK
-        fOCH1aGPsOPlSBpNl6ynhCQ==
-X-Received: by 2002:a05:600c:4f02:: with SMTP id l2mr648774wmq.115.1644571175388;
-        Fri, 11 Feb 2022 01:19:35 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxr0lW6hjWm3pVsSHTDsgb5mYafMoI0gJsI8Msc0Qhi547hDX6MT3H3LfS8grRnbdz9dc86hw==
-X-Received: by 2002:a05:600c:4f02:: with SMTP id l2mr648757wmq.115.1644571175124;
-        Fri, 11 Feb 2022 01:19:35 -0800 (PST)
-Received: from minerva.home ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id r17sm3805578wmq.33.2022.02.11.01.19.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Feb 2022 01:19:34 -0800 (PST)
-From:   Javier Martinez Canillas <javierm@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-fbdev@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        dri-devel@lists.freedesktop.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Lee Jones <lee.jones@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
+        with ESMTP id S1348558AbiBKJZE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 04:25:04 -0500
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA90A1093;
+        Fri, 11 Feb 2022 01:24:59 -0800 (PST)
+Received: from localhost.localdomain ([81.221.85.15]) by mrelay.perfora.net
+ (mreueus003 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MC3mA-1nRDZx0FBw-008rrY;
+ Fri, 11 Feb 2022 10:23:45 +0100
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marek.vasut@gmail.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Adam Ford <aford173@gmail.com>,
+        Alex Marginean <alexandru.marginean@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Chester Lin <clin@suse.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Thiery <heiko.thiery@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Li Yang <leoyang.li@nxp.com>, Lucas Stach <dev@lynxeye.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marek Vasut <marex@denx.de>, Martin KaFai Lau <kafai@fb.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        =?UTF-8?q?Oliver=20St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>,
+        Olof Johansson <olof@lixom.net>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-Subject: [PATCH v4 0/6] drm: Add driver for Solomon SSD130x OLED displays
-Date:   Fri, 11 Feb 2022 10:19:21 +0100
-Message-Id: <20220211091927.2988283-1-javierm@redhat.com>
-X-Mailer: git-send-email 2.34.1
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Song Liu <songliubraving@fb.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Will Deacon <will@kernel.org>, Yonghong Song <yhs@fb.com>,
+        bpf@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: [PATCH v6 00/12] arm64: prepare and add verdin imx8m mini support
+Date:   Fri, 11 Feb 2022 10:23:10 +0100
+Message-Id: <20220211092322.287487-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:7w5KYRKknb7BBDzPYukxiHh8yFyZKgSG9xwi/4LCD9cxSfbNnZA
+ pfVIg4x+OjCZx3OYYTUpS6Ejdg9I9y4pr2HyC/rVjP61OSGk6rt7dyWNPa1Ec3I9gq4hH9c
+ WBxjo38Xg2mDpcIYgotq/IFKwqAp+RO5dH87WVRDEosKjQ1tkRyvsYAQeSaIYX0gFNMxyvi
+ 15bzF8L66zXSbWXRNKQCQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:+ZUf9f1Mwk8=:u9ps+IeiHfrybGOvLWFmoB
+ qCHNyq8RF3QcHEwb1bmLNJS6CJZo3E9srdgqdWb7+Gi9wo/kH9YXBOkUbCqKZdWIrTT/IyqpS
+ C8QKNB4Y43mEVPDErQtvunEo/TGVPsCSzO73Ma/eCnjBaZRs95bxGMZXljRIMpZKpj2Tookix
+ i3KIe+8zJIDcAzw3baoDW2X/9p5syEyr2tJZotYEvHez0VEeegS856rhEf1WUQfmd9ZZ22G1S
+ OOmOWrt1xMVE3+j55BuLUZ8POsOxXUJPe5qYK7g9YgddkR1++wLN5+pW6kVlh2nByY4+58V/7
+ Jgzzbgs4CdaqNWSJjuWbwCQ591QJqqzq9PR1HnArCVuKQei6GRWv7n9ZkgBAZce8YzN49pOm0
+ azE/oBUCsxCO5SFrRjGhson2+mVn71sPFmWXXO1am6D6O6qeyatQB58PtnE9p+NVcAG/e33nC
+ pqOQry9EZLN+dhmUl22glExsxQSnsSiPj6srwHMs60zm7QeUgKocoJh7/mafacGEziZkoWrn3
+ AWmzhOXPoTxSDykEfaVf8pg4tOO2pgXAqgz4A4Bg2NYy59cQstPczuiOlxLNnxospnQwoKPWo
+ 64GVk6UmmnL/HDFpnUCYbCR5nXNn/Ao4IHe8OKPm0Th33BeN+2IMe/+Sd1n0MetPAy9NoBT1g
+ pyQNy++Veq9u8y2jgVoLFyW2QZgPu3rtFhaXOR4cHaREo4CjLVP3yoZFsrCR2E+0U0XA=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series adds a DRM driver for the Solomon OLED SSD1305, SSD1306,
-SSD1307 and SSD1309 displays. It is a port of the ssd1307fb fbdev driver.
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Using the DRM fbdev emulation, all the tests from Geert Uytterhoeven repo
-(https://git.kernel.org/pub/scm/linux/kernel/git/geert/fbtest.git) passes.
 
-I've also tested it using the display as a VT output and even though fbcon
-seems to work, it is mostly unusable on a 128x64 SSD1306 display.
+Fix strange hex notation and gpio-hog example, rebuild default
+configuration, enable various relevant configuration options mainly to
+be built as modules, add toradex,verdin-imx8mm et al. to dt-bindings and
+finally, add initial support for Verdin iMX8M Mini.
 
-This is a v4 that addresses the issues pointed in v3. Thanks a lot to all
-reviewers that gave me feedback and comments.
+Changes in v6:
+- Rename codec to audio-codec.
+- Put status property last.
+Thanks, Shawn for reviewing and pointing those out!
 
-I didn't include the patch that adds the SPI support this time, because it
-will require changes in the existing Device Tree binding. And I wanted to
-avoid that bikesheeding for now, to focus on the core and I2C parts.
-
-Once this series land, I'll post patches for the SPI support. But the WIP
-patch posted in v3 should still apply cleanly on top of this v4:
-
-https://patchwork.kernel.org/project/dri-devel/patch/20220209091204.2513437-1-javierm@redhat.com/
-
-Patch #1 splits per-line conversion logic in drm_fb_xrgb8888_to_gray8() to
-a separate drm_fb_xrgb8888_to_gray8_line() helper function.
-
-Patch #2 adds a new drm_fb_xrgb8888_to_mono_reversed() helper function to
-convert from XR24 to reversed monochrome. The latter internally converts
-each line first to 8-bit grayscale and then to 1-bit reversed monochrome.
-
-Patch #3 adds the driver. This only has the core support and doesn't have
-any bus specific code, separate drivers are needed for the transport used.
-
-Patch #4 adds a driver to use the I2C bus to communicate with the device.
-
-Patch #5 adds a MAINTAINERS entry for the DRM driver and patch #6 adds
-myself as co-maintainer of the existing DT binding for the ssd1307fb,
-since the same DT binding is used for both the fbdev and DRM drivers.
-
-Best regards,
-Javier
+Changes in v5:
+- Add Rob's ack.
+- Remove invalid wifi-host property.
+- Remove rpmsg_reserved from the NXP vendor BSP not applicable upstream.
+- Remove 2nd cs-gpio only going to an N/A component.
+- Remove spi-num-chipselects as it is implicit by cs-gpios.
+- Remove vbus-wakeup-supply not being a valid property.
+- Fix picophy,dc-vol-level-adjust and picophy,pre-emp-curr-control which
+  upstream are rather called samsung,picophy-dc-vol-level-adjust resp.
+  samsung,picophy-pre-emp-curr-control.
+Thanks, Fabio for reviewing and pointing those out!
 
 Changes in v4:
-- Rename end_offset to end_len (Thomas Zimmermann)
-- Warn once if dst_pitch is not a multiple of 8 (Thomas Zimmermann)
-- Drop drm_fb_gray8_to_mono_reversed() that's not used (Thomas Zimmermann)
-- Allocate single buffer for both copy cma memory and gray8 (Thomas Zimmermann)
-- Add Thomas Zimmermann Reviewed-by tag to patch adding XR24 -> mono helper.
-- Rename vbat supply to vcc since is how's labeled in the device (Mark Brown)
-- Don't make the regulator option since is always needed (Mark Brown)
-- Add solomon Kconfig source and directory inclusion sorted (Andy Shevchenko)
-- Use SSD130x instead of SSD130X to denote is not a model name (Andy Shevchenko)
-- Check if there's a reset pin in the callee and not the caller (Andy Shevchenko)
-- Define missing commands instead of using magic numbers (Andy Shevchenko)
-- Use GENMASK() and FIELD_PREP() macros when possible (Andy Shevchenko)
-- Avoid using ternary operators to ease code readablity (Andy Shevchenko)
-- Use i++ instead of --i on some for loops (Andy Shevchenko)
-- Remove redundant blank lines (Andy Shevchenko)
-- Rename power_off label to out_power_off (Andy Shevchenko)
-- Use dev_err_probe() even if no -EPROBE_DEFER (Andy Shevchenko)
-- Don't use plural Authors if there's only one (Andy Shevchenko)
-- Remove unnecessary casting (Geert Uytterhoeven)
-- Remove redundant blank lines (Andy Shevchenko)
-- Remove comma after of_device_id table terminator (Andy Shevchenko)
-- Add Rob Herring Acked-by tag to patch adding as DT binding co-maintainer.
+- Re-base on top of Shawn's for-next branch.
+- Fix gpio-line-names taking V1.1 re-design into account.
+- Fix wrong SODIMM pin number.
+- Drop 2nd SPI CAN instance being N/A in all SKUs.
 
 Changes in v3:
-- Add a drm_fb_xrgb8888_to_gray8_line() helper function (Thomas Zimmermann)
-- Also add a drm_fb_xrgb8888_to_mono_reversed() helper (Thomas Zimmermann)
-- Split lines copy to drm_fb_gray8_to_mono_reversed_line() (Thomas Zimmermann)
-- Handle case where the source buffer is not aligned to 8 (Thomas Zimmermann)
-- Move driver from tiny sub-dir to drivers/gpu/drm/solomon (Sam Ravnborg)
-- Split driver in a bus agnostic core and bus specific (Andy Shevchenko)
-- Use regmap to access the chip registers (Andy Shevchenko)
-- Remove unnecessary blank lines (Andy Shevchenko)
-- Remove unneeded inline specifier in functions (Andy Shevchenko)
-- Add a comment about always returning a single mode (Andy Shevchenko)
-- Change write command logic to use do while loop (Andy Shevchenko)
-- Use "firmware description" instead of "device tree" (Andy Shevchenko)
-- Use return foo() instead of returning the return value (Andy Shevchenko)
-- Don't split lines longer than 80 chars if makes less readable (Andy Shevchenko)
-- Remove redundant else statements in .mode_valid callback (Andy Shevchenko)
-- Rename powero{n,ff}() functions to power_o{n,ff)() (Andy Shevchenko)
-- Use dev_err_probe() to prevent spam logs on probe deferral (Andy Shevchenko)
-- Remove ',' after sentinel terminator in array (Andy Shevchenko)
-- Fix a bug when doing partial updates (Geert Uytterhoeven)
-- Add a separate driver for SSD130X chips I2C support (Andy Shevchenko)
-- Adapt MAINTAINERS entry to point to the new drivers/gpu/drm/solomon directory.
+- Add Krzysztof's reviewed-by tag.
+- Add Krzysztof's reviewed-by tag.
+- New separate patch only for re-ordering as suggested by Krzysztof.
+- Not dropping CONFIG_SECCOMP=y, CONFIG_SLIMBUS=m, CONFIG_INTERCONNECT=y
+  and CONFIG_CONFIGFS_FS=y as requested by Krzysztof.
+- Add Krzysztof's reviewed-by tag.
+- New patch enabling imx8m pcie phy driver in arm64 defconfig.
+- Add Krzysztof's reviewed-by tag.
+- Add Krzysztof's reviewed-by tag.
+- Rebase on top of shawnguo's for-next.
+- Drop [PATCH v2 02/11] ("dt-bindings: gpio: fix gpio-hog example") as
+  it already got applied by Bart.
+- Remove the 'pm-ignore-notify' property analogous to commit aafac22d6b23
+  ("arm64: dts: imx8mm/n: Remove the 'pm-ignore-notify' property").
+- Now with PCIe support finally having landed in -next enable it as well.
+- Add Krzysztof's acked-by tag.
 
 Changes in v2:
-- Drop patch that was adding a DRM_MODE_CONNECTOR_I2C type.
-- Invert order of backlight {en,dis}able and display {on,off} (Sam Ravnborg)
-- Don't clear the screen and turn on display on probe (Sam Ravnborg)
-- Use backlight_get_brightness() macro to get BL brightness (Sam Ravnborg)
-- Use dev managed version of devm_backlight_device_register() (Sam Ravnborg)
-- Use dev_name(dev) for backlight name instead of an array (Sam Ravnborg)
-- Drop the .get_brightness callback since isn't needed  (Sam Ravnborg)
-- Rename driver to ssd130x since supports a display family (Thomas Zimmermann)
-- Drop the TINY prefix from the Kconfig symbol (Thomas Zimmermann)
-- Sort the Kconfig symbol dependencies alphabetically (Thomas Zimmermann)
-- Rename struct ssd130x_array to struct ssd130x_i2c_msg (Thomas Zimmermann)
-- Rename struct ssd130x_i2c_msg .type member to .cmd (Thomas Zimmermann)
-- Use sizeof(*foo) instead of sizeof(struct foo) (Thomas Zimmermann)
-- Use struct_size() macro to calculate sizeof(*foo) + len (Thomas Zimmermann)
-- Use kcalloc() instead of kmalloc_array() + memset() (Thomas Zimmermann)
-- Use shadow plane helpers virtual screen support (Thomas Zimmermann)
-- Remove unused goto label in ssd1307_fb_blit_rect() (Thomas Zimmermann)
-- Use drm_set_preferred_mode() inset of manually set (Thomas Zimmermann)
-- Use shadow plane helpers virtual screen support (Thomas Zimmermann)
-- Remove unused goto label in ssd1307_fb_blit_rect() (Thomas Zimmermann)
-- Use drm_set_preferred_mode() inset of manually set (Thomas Zimmermann)
-- Reorganize code in probe to make it more legible (Thomas Zimmermann)
-- ssd130x_write_cmd() uses varargs to simplify I2C code (Thomas Zimmermann)
-- Move regulator/pwm init logic to display pipe enable callback.
-- Add Sam Ravnborg's acked-by to patch adding a MAINTAINERS entry (Sam Ravnborg)
-- Add myself as co-maintainer of the ssd1370fb DT binding (Sam Ravnborg).
+- Add Laurent's reviewed-by tag.
+- New patch following full defconfig analysis as requested by Krzysztof.
+- New patch following full defconfig analysis as requested by Krzysztof.
+- Done full defconfig analysis as requested by Krzysztof.
+- Add Song's acked-by tag.
+- A similar change got accepted for imx_v6_v7_defconfig. Further
+  discussion may be found in [1].
+[1] https://lore.kernel.org/lkml/20210920144938.314588-6-marcel@ziswiler.com/
+- Explain why enabling it may be a good idea as requested by Krzysztof.
+- Explain why enabling these may make sense and squash them relevant
+  changes as requested by Krzysztof.
+- Add Rob's acked-by tag.
+- Fix Colibri vs. Verdin copy/paste mistake. Thanks to Francesco Dolcini
+  <francesco.dolcini@toradex.com> for pointing that out to me.
+- Remove bootargs which will be filled in by the bootloader as requested
+  by Krzysztof.
+- Remove the previously #ifdefed-out spi-nor as requested by Krzysztof.
+- Fix capitalisation in cover-letter.
 
-Javier Martinez Canillas (6):
-  drm/format-helper: Add drm_fb_xrgb8888_to_gray8_line()
-  drm/format-helper: Add drm_fb_xrgb8888_to_mono_reversed()
-  drm: Add driver for Solomon SSD130x OLED displays
-  drm/solomon: Add SSD130x OLED displays I2C support
-  MAINTAINERS: Add entry for Solomon SSD130x OLED displays DRM driver
-  dt-bindings: display: ssd1307fb: Add myself as binding co-maintainer
+Marcel Ziswiler (12):
+  arm64: dts: imx8mm: fix strange hex notation
+  arm64: defconfig: enable taskstats configuration
+  arm64: defconfig: enable pcieaer configuration
+  arm64: defconfig: re-order default configuration
+  arm64: defconfig: rebuild default configuration
+  arm64: defconfig: enable bpf/cgroup firewalling
+  arm64: defconfig: enable imx8m pcie phy driver
+  arm64: defconfig: build imx-sdma as a module
+  arm64: defconfig: build r8169 as a module
+  arm64: defconfig: enable verdin-imx8mm relevant drivers as modules
+  dt-bindings: arm: fsl: add toradex,verdin-imx8mm et al.
+  arm64: dts: freescale: add initial support for verdin imx8m mini
 
- .../bindings/display/solomon,ssd1307fb.yaml   |   1 +
- MAINTAINERS                                   |   7 +
- drivers/gpu/drm/Kconfig                       |   2 +
- drivers/gpu/drm/Makefile                      |   1 +
- drivers/gpu/drm/drm_format_helper.c           | 138 ++-
- drivers/gpu/drm/solomon/Kconfig               |  21 +
- drivers/gpu/drm/solomon/Makefile              |   2 +
- drivers/gpu/drm/solomon/ssd130x-i2c.c         | 116 +++
- drivers/gpu/drm/solomon/ssd130x.c             | 852 ++++++++++++++++++
- drivers/gpu/drm/solomon/ssd130x.h             |  76 ++
- include/drm/drm_format_helper.h               |   4 +
- 11 files changed, 1208 insertions(+), 12 deletions(-)
- create mode 100644 drivers/gpu/drm/solomon/Kconfig
- create mode 100644 drivers/gpu/drm/solomon/Makefile
- create mode 100644 drivers/gpu/drm/solomon/ssd130x-i2c.c
- create mode 100644 drivers/gpu/drm/solomon/ssd130x.c
- create mode 100644 drivers/gpu/drm/solomon/ssd130x.h
+ .../devicetree/bindings/arm/fsl.yaml          |   21 +
+ arch/arm64/boot/dts/freescale/Makefile        |    4 +
+ .../arm64/boot/dts/freescale/imx8mm-pinfunc.h |    6 +-
+ .../dts/freescale/imx8mm-verdin-dahlia.dtsi   |  150 ++
+ .../boot/dts/freescale/imx8mm-verdin-dev.dtsi |   67 +
+ .../imx8mm-verdin-nonwifi-dahlia.dts          |   18 +
+ .../freescale/imx8mm-verdin-nonwifi-dev.dts   |   18 +
+ .../dts/freescale/imx8mm-verdin-nonwifi.dtsi  |   75 +
+ .../freescale/imx8mm-verdin-wifi-dahlia.dts   |   18 +
+ .../dts/freescale/imx8mm-verdin-wifi-dev.dts  |   18 +
+ .../dts/freescale/imx8mm-verdin-wifi.dtsi     |   94 ++
+ .../boot/dts/freescale/imx8mm-verdin.dtsi     | 1264 +++++++++++++++++
+ arch/arm64/configs/defconfig                  |  126 +-
+ 13 files changed, 1811 insertions(+), 68 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
 
 -- 
-2.34.1
+2.33.1
 
