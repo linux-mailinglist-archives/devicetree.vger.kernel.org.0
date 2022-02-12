@@ -2,103 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 420864B3459
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 11:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07E594B34B6
+	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 12:31:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233860AbiBLKwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Feb 2022 05:52:49 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46700 "EHLO
+        id S234602AbiBLLaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Feb 2022 06:30:52 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233843AbiBLKws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 05:52:48 -0500
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 335F126543;
-        Sat, 12 Feb 2022 02:52:45 -0800 (PST)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21C9spM0018801;
-        Sat, 12 Feb 2022 05:52:38 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3e6ap9g3t3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 12 Feb 2022 05:52:38 -0500
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 21CAqbnM064715
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 12 Feb 2022 05:52:37 -0500
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Sat, 12 Feb 2022 05:52:35 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Sat, 12 Feb 2022 05:52:35 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Sat, 12 Feb 2022 05:52:35 -0500
-Received: from amiclaus-VirtualBox.ad.analog.com ([10.65.37.22])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 21CAqONf001965;
-        Sat, 12 Feb 2022 05:52:31 -0500
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v2 3/3] MAINTAINERS: add maintainer for ADA4250 driver
-Date:   Sat, 12 Feb 2022 12:51:53 +0200
-Message-ID: <20220212105153.19748-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220212105153.19748-1-antoniu.miclaus@analog.com>
-References: <20220212105153.19748-1-antoniu.miclaus@analog.com>
+        with ESMTP id S230111AbiBLLau (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 06:30:50 -0500
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FC8926AF3;
+        Sat, 12 Feb 2022 03:30:47 -0800 (PST)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 125321C0B7A; Sat, 12 Feb 2022 12:24:05 +0100 (CET)
+Date:   Sat, 12 Feb 2022 12:24:03 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: leds: common: fix unit address in
+ max77693 example
+Message-ID: <20220212112403.GA20866@duo.ucw.cz>
+References: <20220111175430.224421-1-krzysztof.kozlowski@canonical.com>
+ <20220111175430.224421-4-krzysztof.kozlowski@canonical.com>
+ <783a67ad-ee7e-c75a-a52c-672cd355bd37@canonical.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: Bvvt3RXtWGj-z34fuSXZ1FlRT_OtkSZD
-X-Proofpoint-GUID: Bvvt3RXtWGj-z34fuSXZ1FlRT_OtkSZD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-12_03,2022-02-11_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- phishscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
- priorityscore=1501 mlxlogscore=809 adultscore=0 clxscore=1015
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2201110000 definitions=main-2202120065
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="x+6KMIRAuhnl3hBn"
+Content-Disposition: inline
+In-Reply-To: <783a67ad-ee7e-c75a-a52c-672cd355bd37@canonical.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as maintainer for the ADA4250 driver.
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+--x+6KMIRAuhnl3hBn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fb18ce7168aa..0410054a7bf5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1075,6 +1075,14 @@ L:	linux-media@vger.kernel.org
- S:	Maintained
- F:	drivers/media/i2c/ad9389b*
- 
-+ANALOG DEVICES INC ADA4250 DRIVER
-+M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+W:	https://ez.analog.com/linux-software-drivers
-+F:	Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
-+F:	drivers/iio/amplifiers/ada4250.c
-+
- ANALOG DEVICES INC ADGS1408 DRIVER
- M:	Mircea Caprioru <mircea.caprioru@analog.com>
- S:	Supported
--- 
-2.35.1
+Hi!
 
+> > The max77693 LED device node should not take an unit address, because it
+> > is instantiated from a max77693 I2C parent device node.  This also
+> > splits all examples to separate DTS examples because they are actually
+> > independent.
+> >=20
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> > ---
+> >  Documentation/devicetree/bindings/leds/common.yaml | 9 +++++++--
+> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> >=20
+>=20
+> This should be part of my max77693 patchset:
+> https://lore.kernel.org/lkml/20220111175017.223966-1-krzysztof.kozlowski@=
+canonical.com/
+>=20
+> Nothing actually depends on this patch. It just fixes a warning which
+> will be brought to eyes with mentioned max77693 patchset.
+>=20
+> Pavel, feel free to take it separately via leds tree. Other way is to
+> take it with other max77693 patches (probably via MFD tree).
+
+Ok, let me take it separately. Applied, thanks.
+
+Best regards,
+								Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--x+6KMIRAuhnl3hBn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYgeY0wAKCRAw5/Bqldv6
+8o0HAJ40rgvnPNaFETKSsK2EgQBHcFZeGgCcCDg/CAOJXwcQ+R3w9N3O8BGULgA=
+=RmPe
+-----END PGP SIGNATURE-----
+
+--x+6KMIRAuhnl3hBn--
