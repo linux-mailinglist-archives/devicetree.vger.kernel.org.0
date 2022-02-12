@@ -2,165 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E4EE4B35FA
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 16:51:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 176AB4B362C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 17:02:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235838AbiBLPvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Feb 2022 10:51:04 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54694 "EHLO
+        id S231480AbiBLQCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Feb 2022 11:02:36 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbiBLPvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 10:51:04 -0500
-Received: from mo4-p03-ob.smtp.rzone.de (mo4-p03-ob.smtp.rzone.de [85.215.255.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D7E2212;
-        Sat, 12 Feb 2022 07:50:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1644681047;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=Kikg1n0GjNW55lJXdn/Gh/3mpzDarcpb8bfYkSiBQ+E=;
-    b=taoy6ReN8rZfESOTY1+ddA3GC50ZJ5jrLicBV4du/McZON+8WtjNe6W60bwV5qe5QP
-    bMH7k409H0uLbwYe9Clcby+Tx5R3i7qsp7WeRoPvZ5SEUfQ/5yWh+rjONAJDIFpC3WxO
-    0Ytf5IyRj6mJolyxA93sJ8xoSM/DDtoEDXA8xIR1yKjDMcbU9Cqe601jldLG+zBeRMCV
-    alNImiSPi8IiwXSlQdphXbLwKigEP1PSjZh4KLaZWN9Vtm91rdAIZi1S3bZJAbndXF0+
-    Z88inUe1XrjRPeaBVl5eZ3VsDfm7p9oRsv1ZsFPF8/LX5KQrba3R8LbauA7BxiA5ZWyH
-    VDpQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NIGH/jrwDaqyA=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.39.0 DYNA|AUTH)
-    with ESMTPSA id L29417y1CFokswm
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Sat, 12 Feb 2022 16:50:46 +0100 (CET)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v14 8/9] [already applied to mips-fixes] MIPS: DTS: CI20:
- fix how ddc power is enabled
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <0L577R.CVAM5NCZN3F72@crapouillou.net>
-Date:   Sat, 12 Feb 2022 16:50:46 +0100
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <3B8B0942-1FC8-435A-B1AA-D06702D0718D@goldelico.com>
-References: <cover.1644675566.git.hns@goldelico.com>
- <6722afd4a89d2bf0d95e49e6738ff50bf9f26245.1644675567.git.hns@goldelico.com>
- <0L577R.CVAM5NCZN3F72@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-X-Mailer: Apple Mail (2.3445.104.21)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231680AbiBLQCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 11:02:35 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF9C20E
+        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 08:02:31 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 19FB0402B4
+        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 16:02:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644681749;
+        bh=l/sqa866xdKsWTgSNCB9rWLOZm4vGLLE7QTLVaTsoZU=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=AVKTtzVYjWktiPLBp0C2chxqg5u2pEGQKlZc9Io66M8beZSiLOXhaQUOGe1YcDnuJ
+         RimgWUAXCptzB2cX8bOXqHiPhJ8hOtnwotxfdOy4Hh+gF9cGBO9pffs0YKevPZH4+S
+         sfnn/erTPS2Eh/svgmilAjBoGfiqhuJPQlfhudvUB9AHbiuPPJtA0jffG9MlIClrpj
+         dYbXmAcqlzQghzU7q8V5W9bm6oUqhbN3exgWrKKiTgcb1J0ASFF1VO5U0WlEZ8mZ8M
+         q/nnAxCT/iauBMF8JXqRR+WRTklzecPM1+I7PfEPVwHRWDQQd5/KgXbV5sOUoZUbhP
+         3SAmdjNhOIUow==
+Received: by mail-ej1-f70.google.com with SMTP id kw5-20020a170907770500b006ba314a753eso4857094ejc.21
+        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 08:02:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=l/sqa866xdKsWTgSNCB9rWLOZm4vGLLE7QTLVaTsoZU=;
+        b=A3+asBuBwNsFVY4XcFElsU6/+XuJUq0KYn98akIKqu4g/DAKoSzxKcA+OL1Efe9cXB
+         5exNSV7fop2nDHlT944r/451FZ5/bvXCXMwjUYE0sTESkmszRsP+JCslJPEJY9OJJyqB
+         xRvnbhKoQF6dAi9Nyv3IncsE9TbNXsyZ0kyEqO9Q17mrWkiIWSNaei3MZWEuMaTbZ6d3
+         YAwJYkJV6r3KyW773+EErIPt1d7/jknAurStnX/lqbbLgYB12Qw9igJwC6E0KHFa9j5t
+         AhBDUWuq7P+IkdGq9BU+P9zQnW/jxIX38yKZ3Oo7Qz2i0s6byKeTrV7lnEPgT6sWHRN/
+         nEfg==
+X-Gm-Message-State: AOAM530H34aY7CDC/QpYl0OOnLS45eRoz4bmfSqxmVaI/lpB+ATiv7SJ
+        RL83qxNWNkJ27afTFZ/OURABKzO+Ds8wgfKRipX/3ur0FETt0aWdk8Xt8qvXskEGznPo/CztfJe
+        Dd9jN04s1xVWG1qpaJA6Oeh1+b2dUKndGYQwGq2g=
+X-Received: by 2002:a05:6402:50cf:: with SMTP id h15mr7182466edb.102.1644681748426;
+        Sat, 12 Feb 2022 08:02:28 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxCqbWilwt1HbUpSsc2cvzvmt39AYbiXm7khxjJiFy20aciawo2HRz4CMjXWjBdjSCj4Q/WLQ==
+X-Received: by 2002:a05:6402:50cf:: with SMTP id h15mr7182452edb.102.1644681748216;
+        Sat, 12 Feb 2022 08:02:28 -0800 (PST)
+Received: from [192.168.0.101] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id b14sm5098399ejb.160.2022.02.12.08.02.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 12 Feb 2022 08:02:27 -0800 (PST)
+Message-ID: <78327112-a979-fdc8-50a6-35738c9017a7@canonical.com>
+Date:   Sat, 12 Feb 2022 17:02:25 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3] dt-bindings: crypto: convert rockchip-crypto to yaml
+Content-Language: en-US
+To:     Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
+        heiko@sntech.de, herbert@gondor.apana.org.au, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+References: <20220211115925.3382735-1-clabbe@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220211115925.3382735-1-clabbe@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/02/2022 12:59, Corentin Labbe wrote:
+> Convert rockchip-crypto to yaml
+> 
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+> Changes since v1:
+> - fixed example
+> - renamed to a new name
+> - fixed some maxItems
+> 
+> Change since v2:
+> - Fixed maintainers section
+> 
+>  .../crypto/rockchip,rk3288-crypto.yaml        | 66 +++++++++++++++++++
+>  .../bindings/crypto/rockchip-crypto.txt       | 28 --------
+>  2 files changed, 66 insertions(+), 28 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
+> 
 
 
-> Am 12.02.2022 um 15:58 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
-> Hi,
->=20
-> Le sam., f=C3=A9vr. 12 2022 at 15:19:26 +0100, H. Nikolaus Schaller =
-<hns@goldelico.com> a =C3=A9crit :
->> Originally we proposed a new hdmi-5v-supply regulator reference
->> for CI20 device tree but that was superseded by a better idea to use
->> the already defined "ddc-en-gpios" property of the "hdmi-connector".
->> Since "MIPS: DTS: CI20: Add DT nodes for HDMI setup" has already
->> been applied to v5.17-rc1, we add this on top.
->> Fixes: ae1b8d2c2de9 ("MIPS: DTS: CI20: Add DT nodes for HDMI setup")
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> Reviewed-by: Paul Cercueil <paul@crapouillou.net>
->=20
-> Since it's already applied you don't have to send this patch anymore.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-I see, it has arrived in linux-next but not yet in drm-misc-next...
-So if someone wants to test the series directly on top of drm-misc-next =
-(as I am doing), it would be incomplete without.
 
-IMHO these side-branches and partial merges here and there sometimes =
-make more problems than they seem to solve...
-
-But I leave already applied out commits for v15.
-
->=20
-> Cheers,
-> -Paul
->=20
->> ---
->> arch/mips/boot/dts/ingenic/ci20.dts | 15 ++-------------
->> 1 file changed, 2 insertions(+), 13 deletions(-)
->> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts =
-b/arch/mips/boot/dts/ingenic/ci20.dts
->> index 3e336b3dbb109..ab6e3dc0bc1d0 100644
->> --- a/arch/mips/boot/dts/ingenic/ci20.dts
->> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
->> @@ -83,6 +83,8 @@ hdmi_out: connector {
->> 		label =3D "HDMI OUT";
->> 		type =3D "a";
->> +		ddc-en-gpios =3D <&gpa 25 GPIO_ACTIVE_HIGH>;
->> +
->> 		port {
->> 			hdmi_con: endpoint {
->> 				remote-endpoint =3D <&dw_hdmi_out>;
->> @@ -114,17 +116,6 @@ otg_power: fixedregulator@2 {
->> 		gpio =3D <&gpf 14 GPIO_ACTIVE_LOW>;
->> 		enable-active-high;
->> 	};
->> -
->> -	hdmi_power: fixedregulator@3 {
->> -		compatible =3D "regulator-fixed";
->> -
->> -		regulator-name =3D "hdmi_power";
->> -		regulator-min-microvolt =3D <5000000>;
->> -		regulator-max-microvolt =3D <5000000>;
->> -
->> -		gpio =3D <&gpa 25 0>;
->> -		enable-active-high;
->> -	};
->> };
->> &ext {
->> @@ -576,8 +567,6 @@ &hdmi {
->> 	pinctrl-names =3D "default";
->> 	pinctrl-0 =3D <&pins_hdmi_ddc>;
->> -	hdmi-5v-supply =3D <&hdmi_power>;
->> -
->> 	ports {
->> 		#address-cells =3D <1>;
->> 		#size-cells =3D <0>;
->> --
->> 2.33.0
->=20
->=20
-
+Best regards,
+Krzysztof
