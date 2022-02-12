@@ -2,168 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1F8A4B32EA
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 04:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACFB34B32EC
+	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 05:01:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231283AbiBLD4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 22:56:35 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:37966 "EHLO
+        id S231349AbiBLEBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Feb 2022 23:01:15 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:43580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbiBLD4f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 22:56:35 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C6502253D;
-        Fri, 11 Feb 2022 19:56:32 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id c5-20020a17090a1d0500b001b904a7046dso12149690pjd.1;
-        Fri, 11 Feb 2022 19:56:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zJj9zgoCucZR8YEACJzfUgDMur+QuTHGQAjV5TFq/H8=;
-        b=TDJN6VYeKVHi9LKZinNAUNG2bINXn2HXgbW07h24hHzwqdN8IpC3OXLWhdEKF7NWr4
-         P54zzriAX+8X4NUgQ48tC/uQGHNwYAXcYHvy35zjmxdt6vbxIqYgbg5MX5zu7Sd4w/LK
-         OWsG07YHIpfcmEo6kXWjSB2rAOKhZDkExirBOc4ybQr+O7NESzTEx+TNcaJAoSom2vVT
-         mAGwHpdcpYq/4dIKH8DuRFjWxcNGuFlirp0vcZHLAeaVZ0Hj2eFscEPwE/KCraOs6wOL
-         UHskqAfG1qCkNtJjSV1tKnXYyBOB6qi8+2vG8NaXy40R87u+/oZv1Evevao1rmZEJqEj
-         lyZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=zJj9zgoCucZR8YEACJzfUgDMur+QuTHGQAjV5TFq/H8=;
-        b=wZCNkibxMInLu6VwLOBirYmJQOgNbzQrjcAxVacBH2Yw7Pa0kb9fV+yZAdkqHyC4Ze
-         L2bRlCSolOkkyBr7Z6JtiVc+5pIz99BvFMnLrTQcLAD3OEvgUKlJcapNNXccVRUMqlyl
-         u90sf0xYOm6UYt6uzqolSXgVUv2NGfZz9i2qRESVse+vrOgEwP6+07Of9F2husfip3nV
-         3mfDYlqpB4ECcVXj5CNnHSFqVZ8cmvd0cm2v92ZEPJlhD4GxMYv2Ma5owI+B/a+RGCzz
-         WeVxQmB/b91UWCdF26t2pRMB1NmIBehlc9y2t5G0dviSx0TNRk0Me/IX+p/goeJJrEh2
-         Fb/A==
-X-Gm-Message-State: AOAM531v+Peuk/+foag5lRMYoXmbiyyLOESbjGGUNZE87X0LRLSzkkcp
-        GK5JFg+NFpWqZcMaIOn2BVA=
-X-Google-Smtp-Source: ABdhPJyOBtK5jnmcoEd3R8Ic6soCfcRdXQL1aQNgdbGhCT5RV9pa3AvqKK6oeNssicxFs+C+YGdyMA==
-X-Received: by 2002:a17:902:b941:: with SMTP id h1mr4454207pls.73.1644638191969;
-        Fri, 11 Feb 2022 19:56:31 -0800 (PST)
-Received: from ?IPV6:2600:8802:b00:4a48:b84a:fcb5:bf5e:eb1b? ([2600:8802:b00:4a48:b84a:fcb5:bf5e:eb1b])
-        by smtp.gmail.com with ESMTPSA id k21sm28743800pff.33.2022.02.11.19.56.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Feb 2022 19:56:31 -0800 (PST)
-Message-ID: <d8e5f6a8-a7e1-dabd-f4b4-ea8ea21d0a1d@gmail.com>
-Date:   Fri, 11 Feb 2022 19:56:28 -0800
+        with ESMTP id S229541AbiBLEBP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 23:01:15 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B31E927CE1
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 20:01:08 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2B4E460916
+        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 04:01:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4314AC340EE;
+        Sat, 12 Feb 2022 04:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644638463;
+        bh=TWizPpb6uvdT0NGWaEh3KFdTpngKG6kfh4U/K8/qKfc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eIRKIMkVJYnRMGuUKnco/uQn4YpL0d7mYWjS0H1+HDPZyACtGfQSwWzPt1r7n+mKV
+         +pxq5blkUyehvismnDAwUZEXqP3CwvgzdfD9ztEKfk4JSU9sOOysO20mxyi+ygIUoD
+         OLWwiPbGefInjfHjcax+cvOYKuBjQ4qmC2d1dFDZPCFEo0EHPS3PkLsapw90JHqnnh
+         wUi899Tnqj7rLvlbciIAE8CVoxCueiBKuYhdS5YUYaV2WnDcAg4H7gnbZPsFZUnREV
+         hRBqAXGpPFxSaXQzMaAsz9RbM6E7If9Y9jzlH44gfoHYOyWUMt0n6MBm5Lb4ednDaD
+         PvvuX+VwDbxdQ==
+Date:   Sat, 12 Feb 2022 12:00:57 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Frank Rowand <frank.rowand@sony.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: Use overlay target for
+ simplicity
+Message-ID: <20220212040056.GX4909@dragon>
+References: <20220129070912.9836-1-shawnguo@kernel.org>
+ <20220129070912.9836-3-shawnguo@kernel.org>
+ <CAJ+vNU0CNFeEp0B92mUjV7RrwAHjk9iJ703zEYofkducfFzvGw@mail.gmail.com>
+ <20220211091019.GS4909@dragon>
+ <CAJ+vNU3JJ8NbOskttMsnDc+Po=Lqo2wkAO9qWyiDReksp26qPA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v8 net-next 01/10] dt-bindings: net: dsa: dt bindings for
- microchip lan937x
-Content-Language: en-US
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        andrew@lunn.ch, netdev@vger.kernel.org, olteanv@gmail.com,
-        robh+dt@kernel.org
-Cc:     UNGLinuxDriver@microchip.com, woojung.huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-References: <20220207172204.589190-1-prasanna.vengateshan@microchip.com>
- <20220207172204.589190-2-prasanna.vengateshan@microchip.com>
- <88caec5c-c509-124e-5f6b-22b94f968aea@gmail.com>
- <ebf1b233da821e2cd3586f403a1cdc2509671cde.camel@microchip.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <ebf1b233da821e2cd3586f403a1cdc2509671cde.camel@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJ+vNU3JJ8NbOskttMsnDc+Po=Lqo2wkAO9qWyiDReksp26qPA@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2/9/2022 3:58 AM, Prasanna Vengateshan wrote:
-> On Mon, 2022-02-07 at 18:53 -0800, Florian Fainelli wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
->> content is safe
->>
->> On 2/7/2022 9:21 AM, Prasanna Vengateshan wrote:
->>> Documentation in .yaml format and updates to the MAINTAINERS
->>> Also 'make dt_binding_check' is passed.
->>>
->>> RGMII internal delay values for the mac is retrieved from
->>> rx-internal-delay-ps & tx-internal-delay-ps as per the feedback from
->>> v3 patch series.
->>> https://lore.kernel.org/netdev/20210802121550.gqgbipqdvp5x76ii@skbuf/
->>>
->>> It supports only the delay value of 0ns and 2ns.
->>>
->>> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>> ---
->>>    .../bindings/net/dsa/microchip,lan937x.yaml   | 179 ++++++++++++++++++
->>>    MAINTAINERS                                   |   1 +
->>>    2 files changed, 180 insertions(+)
->>>    create mode 100644
->>> Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
->>>
->>> +    maxItems: 1
->>> +
->>> +  mdio:
->>> +    $ref: /schemas/net/mdio.yaml#
->>> +    unevaluatedProperties: false
->>
->> This should be moved to dsa.yaml since this is about describing the
->> switch's internal MDIO bus controller. This is applicable to any switch,
->> really.
+On Fri, Feb 11, 2022 at 03:23:20PM -0800, Tim Harvey wrote:
+> > > I tried to adapt my patch 'arm64: dts: imx8mm-venice-gw73xx-0x: add dt
+> > > overlays for serial modes' [1] and it results in a build failure:
+> > > $ make dtbs W=1
+> > >   UPD     include/config/kernel.release
+> > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+> > >   DTOVL   arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb
+> > >
+> > > Overlay 'scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h' is
+> > > incomplete (2048 / 1346656301 bytes read)
+> > > scripts/Makefile.lib:360: recipe for target
+> > > 'arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb'
+> > > failed
+> > > make[2]: *** [arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb]
+> > > Error 1
+> > > scripts/Makefile.build:550: recipe for target
+> > > 'arch/arm64/boot/dts/freescale' failed
+> > > make[1]: *** [arch/arm64/boot/dts/freescale] Error 2
+> > > Makefile:1370: recipe for target 'dtbs' failed
+> > > make: *** [dtbs] Error 2
+> > >
+> > > It seems that it chokes on the include. The dts is:
+> > > // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > /*
+> > >  * Copyright 2022 Gateworks Corporation
+> > >  *
+> > >  * GW73xx RS232 with RTS/CTS hardware flow control:
+> > >  *  - GPIO4_0 rs485_en needs to be driven low (in-active)
+> > >  *  - UART4_TX becomes RTS
+> > >  *  - UART4_RX becomes CTS
+> > >  */
+> > >
+> > > #include <dt-bindings/gpio/gpio.h>
+> > >
+> > > #include "imx8mm-pinfunc.h"
+> > >
+> > > /dts-v1/;
+> > > /plugin/;
+> > >
+> > > &{/} {
+> > >         compatible = "gw,imx8mm-gw73xx-0x";
+> > > };
+> > >
+> > > &gpio4 {
+> > >         rs485_en {
+> > >                 gpio-hog;
+> > >                 gpios = <0 GPIO_ACTIVE_HIGH>;
+> > >                 output-low;
+> > >                 line-name = "rs485_en";
+> > >         };
+> > > };
+> > >
+> > > &uart2 {
+> > >         pinctrl-names = "default";
+> > >         pinctrl-0 = <&pinctrl_uart2>;
+> > >         rts-gpios = <&gpio5 29 GPIO_ACTIVE_LOW>;
+> > >         cts-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
+> > >         uart-has-rtscts;
+> > >         status = "okay";
+> > > };
+> > >
+> > > &uart4 {
+> > >         status = "disabled";
+> > > };
+> > >
+> > > &iomuxc {
+> > >         pinctrl_uart2: uart2grp {
+> > >                 fsl,pins = <
+> > >                         MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
+> > >                         MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
+> > >                         MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29       0x140
+> > >                         MX8MM_IOMUXC_UART4_RXD_GPIO5_IO28       0x140
+> > >                 >;
+> > >         };
+> > > };
+> > >
+> > > Could you explain what is wrong here? It compiled fine before trying
+> > > to adapt the Makefile to what is described in 15d16d6dadf6 ("kbuild:
+> > > Add generic rule to applyfdt overlay"
+> >
+> >
+> > With the following changes on top of your patch, I can build the dtbo
+> > without error.
+> >
+> > ---8<-------
+> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> > index 4611f66096a7..d42a9e03f014 100644
+> > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > @@ -61,9 +61,6 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
+> > -dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+> > -dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtbo
+> > -dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtbo
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
+> > @@ -97,6 +94,14 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-eval-v3.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
+> >  dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
+> >
+> > +imx8mm-venice-gw73xx-0x-rs232-rts-dtbs := imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+> > +imx8mm-venice-gw73xx-0x-rs422-dtbs := imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs422.dtbo
+> > +imx8mm-venice-gw73xx-0x-rs485-dtbs := imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs485.dtbo
+> > +
+> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtb
+> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtb
+> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtb
+> > +
+> >  dtb-$(CONFIG_ARCH_S32) += s32g274a-evb.dtb
+> >  dtb-$(CONFIG_ARCH_S32) += s32g274a-rdb2.dtb
+> >  dtb-$(CONFIG_ARCH_S32) += s32v234-evb.dtb
 > 
-> Thanks for your review and feedback. Do you mean that 'mdio' to be added in
-> dsa.yaml instead adding here?
-
-Yes indeed, since this is a common property of all DSA switches, it can 
-be defined or not depending on whether the switch does have an internal 
-MDIO bus controller or not.
-
+> Shawn,
 > 
->>
->>> +
->>> +patternProperties:
->>> +  "^(ethernet-)?ports$":
->>> +    patternProperties:
->>> +      "^(ethernet-)?port@[0-7]+$":
->>> +        allOf:
->>> +          - if:
->>> +              properties:
->>> +                phy-mode:
->>> +                  contains:
->>> +                    enum:
->>> +                      - rgmii
->>> +                      - rgmii-rxid
->>> +                      - rgmii-txid
->>> +                      - rgmii-id
->>> +            then:
->>> +              properties:
->>> +                rx-internal-delay-ps:
->>> +                  $ref: "#/$defs/internal-delay-ps"
->>> +                tx-internal-delay-ps:
->>> +                  $ref: "#/$defs/internal-delay-ps"
->>
->> Likewise, this should actually be changed in ethernet-controller.yaml
-> 
-> There is *-internal-delay-ps property defined for mac in ethernet-
-> controller.yaml. Should that be changed like above?
+> On top of what branch and with what commands? I've rebased this on top
+> of your imx/dt64 branch and can not build once I apply this over my
+> patch using 'make dtbs W=1'.
 
-It seems to me that these properties override whatever 'phy-mode' 
-property is defined, but in premise you are right that this is largely 
-applicable to RGMII only. I seem to recall that the QCA8K driver had 
-some sort of similar delay being applied even in SGMII mode but I am not 
-sure if we got to the bottom of this.
+Tim,
 
-Please make sure that this does not create regressions for other DTS in 
-the tree before going with that change in ethernet-controller.yaml.
+For your reference, I pushed the changes as below.
 
-Thanks!
--- 
-Florian
+https://git.linaro.org/people/shawn.guo/linux-2.6.git/log/?h=test/gw73xx-dtbo
+
+The build command is:
+
+$ make W=1 ARCH=arm64 dtbs
+  UPD     include/config/kernel.release
+  DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+  DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dtbo
+  DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dtbo
+  DTOVL   arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb
+  DTOVL   arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dtb
+  DTOVL   arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dtb
+
+Maybe you forgot to set up 'ARCH' variable?
+
+Shawn
