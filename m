@@ -2,108 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A2B4B3634
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 17:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0A3B4B3669
+	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 17:30:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235884AbiBLQEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Feb 2022 11:04:22 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33058 "EHLO
+        id S237265AbiBLQaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Feb 2022 11:30:23 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236824AbiBLQEV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 11:04:21 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F03C9197
-        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 08:04:17 -0800 (PST)
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229623AbiBLQaW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 11:30:22 -0500
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C5B120E;
+        Sat, 12 Feb 2022 08:30:18 -0800 (PST)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id CD5493F1C1
-        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 16:04:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644681856;
-        bh=QcIQqgroCqdej9OjV6C9iN3KDLQKItyx3mQCLCn7fTA=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=eLdqFwljNVnK4D+zqXl3/0MEgcQMF3SlEFM7+Z9ISDYL4hp+kblb4BCOPCkycms9m
-         nm07AtgjBfT/D+P+9wFB+//Tf6uH5bZ26vNZG1i30NOycgggGhOPR8v2XW8Niym7zR
-         lJE4nfBgs6XfDJPRWTnRUyCq0jtxouIP7Pp3ii9u0D+SwYZOaZnVphJyRo55s9UmPC
-         ESaJsgcGLlZnoHWob/rlJ08ZK2/KUrKRaN7b941Sdag1zPGjxuHRewcrpUqj2DTRar
-         qGN1as/YYG4ED9oR/YBB8qSNllLcmQvLfQ/KtBc95WNOTp2NkIRiu5HPlmHf16v/nA
-         fu7gCGhgyjRJw==
-Received: by mail-ed1-f70.google.com with SMTP id m4-20020a50cc04000000b0040edb9d147cso7301431edi.15
-        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 08:04:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=QcIQqgroCqdej9OjV6C9iN3KDLQKItyx3mQCLCn7fTA=;
-        b=QQ/8SUAUsBYTd6dM7nO/6NB8Q4p9SNV1ap9GQmEjZ8glr/FOdtfzvp8wnbr9cRrJs4
-         OT/jJF3x5+KIXzkL7YyVcdh8T3OGjKCaB2qTmiaBhNBSJ6kssxlnDYWOyY0kaeA82/5H
-         P0sYhcg9iX7iJde6NI+AM7Ld6OCQnNf9IeFvtee9gUA1iLffJUdhzgeMDKApwi05UzXZ
-         r6ks+iIEsc+WjYFKMYKYMMX/GbX3h6d1YSBjxotTM4NenkoV78XTLRR5zal1hr+Y1R0W
-         2kw5mnk2lN6ZU7cLrtN2H6/axS9AQuGo9H2AARYYQz8m1UbvtOL37yBjx6+GbXiOsqSg
-         ytKg==
-X-Gm-Message-State: AOAM533kmJyrv5PXsts7cD8RpGMhSOFvJOsOja6qJPwY7qmHSUfinx3Y
-        jYs0KcFw9oEodLCStzvttxqGTglnNESPuPZAMNyzOzzH0VG85TPTcuHPyCFxwh0UUI++lFAFmJ3
-        tOWr5SgNKsae88g0Ct3xuhDebuYTUCljfVqnExcc=
-X-Received: by 2002:a17:906:77db:: with SMTP id m27mr5235239ejn.763.1644681856548;
-        Sat, 12 Feb 2022 08:04:16 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzeuTVyT10Sr1VrEAjKE3ypRITjHr1PAzaH07C90ZIL4VM1XZvo6xyhFbHUKor4xH5tzshNlA==
-X-Received: by 2002:a17:906:77db:: with SMTP id m27mr5235230ejn.763.1644681856395;
-        Sat, 12 Feb 2022 08:04:16 -0800 (PST)
-Received: from [192.168.0.101] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id f19sm8534417edr.96.2022.02.12.08.04.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Feb 2022 08:04:15 -0800 (PST)
-Message-ID: <fb5e8add-b77b-2553-031f-3201225e3a09@canonical.com>
-Date:   Sat, 12 Feb 2022 17:04:14 +0100
+        by box.trvn.ru (Postfix) with ESMTPSA id 22B6741943;
+        Sat, 12 Feb 2022 21:24:02 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1644683044; bh=RYG3U4X1RX8dzJiS04Tlw7Pm9vtzFCEy33FGibNApDg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=GSqSqWPsMWdBhbSKO9SE3O6xHw+WuWH/4iDolmnPLmI8Y0Y9FYGcZHI3A2bYEOBap
+         q/BrvOs7mHANuppeZ01maSt1zk2rG+eTM7ufH593pmnyYfuHRhwKkOx/HTilZ/qIY3
+         y9SS2fMWUrAKBk1guVyNO+WlpHjHeJ1VMK6d1BV7btBdCnMPORrYaJDWx5hYoTZkMd
+         j454DXb7jPJE6dPcl+0+3ItXfE2jYL4rExZcA3fGVDCH4N2Iax1MBZ38WMHNkshToC
+         gl/hbot1NbqlzbqN2TECglK8WBPob8XiqZu5nLqVqfdHo4PmdLJsrht33CHO4Rt57f
+         6JsCSGUG2G9zg==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     thierry.reding@gmail.com, lee.jones@linaro.org
+Cc:     u.kleine-koenig@pengutronix.de, robh+dt@kernel.org,
+        sboyd@kernel.org, krzk@kernel.org, linus.walleij@linaro.org,
+        masneyb@onstation.org, sean.anderson@seco.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH v5 0/2] Clock based PWM output driver
+Date:   Sat, 12 Feb 2022 21:23:40 +0500
+Message-Id: <20220212162342.72646-1-nikita@trvn.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 0/3] regulator/mfd: dt-bindings: maxim,max77802:
- convert to dtschema
-Content-Language: en-US
-To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee.jones@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-References: <20220111175430.224421-1-krzysztof.kozlowski@canonical.com>
- <f0a9e656-cf18-f212-b701-a1c9d10c4a59@canonical.com>
- <YgDoG8Xlhq5L3Bii@google.com> <20220212112536.GB20866@duo.ucw.cz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220212112536.GB20866@duo.ucw.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/02/2022 12:25, Pavel Machek wrote:
-> Hi!
-> 
->>> Dear Lee,
->>>
->>> This patchset was reviewed and there are no outstanding issues. Could
->>> you pick up entire set via MFD tree?
->>
->> Nothing from LED or Regulator?
-> 
-> I took 3/3 separately, as suggested.
-> 
+This series introduces an "adapter" driver that allows PWM consumers
+to control clock outputs with duty-cycle control.
 
-Thanks!
+Some platforms (e.g. some Qualcomm chipsets) have "General Purpose"
+clocks that can be muxed to GPIO outputs and used as PWM outputs.
+Those outputs may be connected to various peripherals such as
+leds in display backlight or haptic feedback motor driver.
 
+To avoid re-implementing every single PWM consumer driver with clk
+support (like in [1]) and don't put the burden of providing the PWM
+sources on the clock drivers (as was proposed in [2]), clk based
+pwm controller driver is introduced.
 
-Best regards,
-Krzysztof
+There is an existing driver that provides the opposite function
+in drivers/clk/clk-pwm.c with a compatible "pwm-clock" so the new
+driver uses the opposite naming scheme: drivers/pwm/pwm-clk.c
+and compatible "clk-pwm".
+
+Changes in v2:
+ - Fix filename in the DT schema.
+ - Address Uwe's review comments.
+Changes in v3:
+ - Fix node pattern in the core pwm schema.
+ - Address Uwe's review comments.
+Changes in v4:
+ - Drop the (incorrect) pwm schema change.
+ - Use generic node name in the dt bindings example.
+Changes in v5:
+ - Correct required properties.
+ - add missed returns.
+
+Nikita Travkin (2):
+  dt-bindings: pwm: Document clk based PWM controller
+  pwm: Add clock based PWM output driver
+
+ .../devicetree/bindings/pwm/clk-pwm.yaml      |  46 ++++++
+ drivers/pwm/Kconfig                           |  10 ++
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-clk.c                         | 139 ++++++++++++++++++
+ 4 files changed, 196 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/clk-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-clk.c
+
+-- 
+2.34.1
+
