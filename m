@@ -2,42 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 014684B34DE
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 13:09:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 317DA4B34EE
+	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 13:26:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232672AbiBLMJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Feb 2022 07:09:02 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37294 "EHLO
+        id S231696AbiBLMY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Feb 2022 07:24:57 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbiBLMJC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 07:09:02 -0500
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2266924BC1;
-        Sat, 12 Feb 2022 04:08:59 -0800 (PST)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id CA2081C0B7A; Sat, 12 Feb 2022 13:08:57 +0100 (CET)
-Date:   Sat, 12 Feb 2022 13:08:57 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Florian Eckert <fe@dev.tdt.de>, Rob Herring <robh+dt@kernel.org>,
-        Eckert.Florian@googlemail.com,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 1/2] leds: ktd20xx: Extension of the KTD20xx family of
- LED drivers from Kinetic
-Message-ID: <20220212120857.GJ20866@duo.ucw.cz>
-References: <20220121140150.1729-1-fe@dev.tdt.de>
- <20220121140150.1729-2-fe@dev.tdt.de>
- <CAHp75Vd4pwFXoF=xS5cskM2GDNb6c6RXTYo3j3FLP+nuQVoRyg@mail.gmail.com>
+        with ESMTP id S229830AbiBLMY5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 07:24:57 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E2C824BE5;
+        Sat, 12 Feb 2022 04:24:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1644668694; x=1676204694;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=B/ZS1m3khR1JV0fqII6HrsXVjoYbOB8zK58OEoxgNOA=;
+  b=i1yKCS0ndkQLeJNVIenBTNeisZY2yeJNO4jbnhtJeHjQihfftRmCWB6k
+   kRE+54aI3gtpzrnCGWZ2gaeEJicKW49j5EWD3kuON4AzqnvTFhVQT6oX9
+   k+n9CSMcrskfgb4Zh5qg4a7s6A+ZLP9KJTG0zAXOiTE3o3LjchQsbkcda
+   U=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 12 Feb 2022 04:24:53 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2022 04:24:53 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Sat, 12 Feb 2022 04:24:52 -0800
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Sat, 12 Feb 2022 04:24:47 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
+        <perex@perex.cz>, <tiwai@suse.com>,
+        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH 0/2] Add Euro Headset support for wcd938x codec
+Date:   Sat, 12 Feb 2022 17:54:30 +0530
+Message-ID: <1644668672-29790-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="451BZW+OUuJBCAYj"
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vd4pwFXoF=xS5cskM2GDNb6c6RXTYo3j3FLP+nuQVoRyg@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -45,40 +65,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch set is to add switch control for selecting CTIA/OMTP Headset
 
---451BZW+OUuJBCAYj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Srinivasa Rao Mandadapu (2):
+  ASoC: codec: wcd938x: Add switch control for selecting CTIA/OMTP
+    Headset
+  ASoC: dt-bindings: wcd938x: Add gpio property for selecting CTIA/OMTP
+    headset
 
-Hi!
+ .../devicetree/bindings/sound/qcom,wcd938x.yaml    |  4 +++
+ sound/soc/codecs/wcd938x.c                         | 38 ++++++++++++++++++++++
+ 2 files changed, 42 insertions(+)
 
+-- 
+2.7.4
 
-> > +       struct device *dev =3D &chip->client->dev;
-> > +       int ret;
-> > +       unsigned int value;
->=20
-> Here and everywhere can you use reverse xmas tree ordering?
->=20
->        struct device *dev =3D &chip->client->dev;
->        unsigned int value;
->        int ret;
-
-Lets not ask people to do that.
-
-Best regards,
-								Pavel
---=20
-http://www.livejournal.com/~pavelmachek
-
---451BZW+OUuJBCAYj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYgejWQAKCRAw5/Bqldv6
-8tnZAJ41Q0fqqLPQF2mfmRxh96z9hZHCFQCdExBMKGrnAQWoVhIWNICuT6y9NXQ=
-=rwST
------END PGP SIGNATURE-----
-
---451BZW+OUuJBCAYj--
