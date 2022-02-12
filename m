@@ -2,55 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACFB34B32EC
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 05:01:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5374B3341
+	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 06:43:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231349AbiBLEBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Feb 2022 23:01:15 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:43580 "EHLO
+        id S230186AbiBLFnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Feb 2022 00:43:45 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbiBLEBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Feb 2022 23:01:15 -0500
+        with ESMTP id S229593AbiBLFno (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 00:43:44 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B31E927CE1
-        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 20:01:08 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05C4128E1F
+        for <devicetree@vger.kernel.org>; Fri, 11 Feb 2022 21:43:40 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2B4E460916
-        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 04:01:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4314AC340EE;
-        Sat, 12 Feb 2022 04:01:02 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 197BD60A5F
+        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 05:43:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB560C340E7;
+        Sat, 12 Feb 2022 05:43:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644638463;
-        bh=TWizPpb6uvdT0NGWaEh3KFdTpngKG6kfh4U/K8/qKfc=;
+        s=k20201202; t=1644644619;
+        bh=+G8vuqF2vXP9f/RJHmbDT0vDhEca4rAFdXULtvb0xiI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eIRKIMkVJYnRMGuUKnco/uQn4YpL0d7mYWjS0H1+HDPZyACtGfQSwWzPt1r7n+mKV
-         +pxq5blkUyehvismnDAwUZEXqP3CwvgzdfD9ztEKfk4JSU9sOOysO20mxyi+ygIUoD
-         OLWwiPbGefInjfHjcax+cvOYKuBjQ4qmC2d1dFDZPCFEo0EHPS3PkLsapw90JHqnnh
-         wUi899Tnqj7rLvlbciIAE8CVoxCueiBKuYhdS5YUYaV2WnDcAg4H7gnbZPsFZUnREV
-         hRBqAXGpPFxSaXQzMaAsz9RbM6E7If9Y9jzlH44gfoHYOyWUMt0n6MBm5Lb4ednDaD
-         PvvuX+VwDbxdQ==
-Date:   Sat, 12 Feb 2022 12:00:57 +0800
+        b=Xx8J4RX3vGlOvQFuIdqYaF8rTgM5j0hAcWRulfUrAQc65BhKmLbmMlba80/A68Kxw
+         q1ce1CJ2sRKeU3Flil0B9u1Kd7xsrTKo6vPCrBjFYospkeASLKgWRDgXIYM7cqOsXS
+         uvHPttXa7U2OnKOgyk8kSTXatWtEEbZkbtb64UmilipURLzoYOIa45z/QJemxWzSTK
+         FcTYgmdnRZA+N/3Nfa8XHnOcyPfw2Urd3jyrtLeoVhva163dkuyX30zR/lM/EspqmB
+         KLf0vz4cnvB56cx8dOZNZ7chKp6c9Tme14eZpDuQdOT57AdvxKZGxYyihKlj/oetut
+         6nEl+N6dSjkKQ==
+Date:   Sat, 12 Feb 2022 13:43:32 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Frank Rowand <frank.rowand@sony.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: Use overlay target for
- simplicity
-Message-ID: <20220212040056.GX4909@dragon>
-References: <20220129070912.9836-1-shawnguo@kernel.org>
- <20220129070912.9836-3-shawnguo@kernel.org>
- <CAJ+vNU0CNFeEp0B92mUjV7RrwAHjk9iJ703zEYofkducfFzvGw@mail.gmail.com>
- <20220211091019.GS4909@dragon>
- <CAJ+vNU3JJ8NbOskttMsnDc+Po=Lqo2wkAO9qWyiDReksp26qPA@mail.gmail.com>
+To:     Andrej Picej <andrej.picej@norik.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, kernel@pengutronix.de, leoyang.li@nxp.com,
+        krzysztof.kozlowski@canonical.com, festevam@gmail.com,
+        linux@rempel-privat.de, arnd@arndb.de, linux-imx@nxp.com,
+        y.bas@phytec.de
+Subject: Re: [PATCH RESEND 2/4] ARM: dts: imx6ull: Add support for PHYTEC
+ phyGATE-Tauri-S with i.MX 6ULL
+Message-ID: <20220212054331.GY4909@dragon>
+References: <20220131080526.1171072-1-andrej.picej@norik.com>
+ <20220131080526.1171072-3-andrej.picej@norik.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAJ+vNU3JJ8NbOskttMsnDc+Po=Lqo2wkAO9qWyiDReksp26qPA@mail.gmail.com>
+In-Reply-To: <20220131080526.1171072-3-andrej.picej@norik.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -62,144 +59,752 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 11, 2022 at 03:23:20PM -0800, Tim Harvey wrote:
-> > > I tried to adapt my patch 'arm64: dts: imx8mm-venice-gw73xx-0x: add dt
-> > > overlays for serial modes' [1] and it results in a build failure:
-> > > $ make dtbs W=1
-> > >   UPD     include/config/kernel.release
-> > >   DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-> > >   DTOVL   arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb
-> > >
-> > > Overlay 'scripts/dtc/include-prefixes/dt-bindings/gpio/gpio.h' is
-> > > incomplete (2048 / 1346656301 bytes read)
-> > > scripts/Makefile.lib:360: recipe for target
-> > > 'arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb'
-> > > failed
-> > > make[2]: *** [arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb]
-> > > Error 1
-> > > scripts/Makefile.build:550: recipe for target
-> > > 'arch/arm64/boot/dts/freescale' failed
-> > > make[1]: *** [arch/arm64/boot/dts/freescale] Error 2
-> > > Makefile:1370: recipe for target 'dtbs' failed
-> > > make: *** [dtbs] Error 2
-> > >
-> > > It seems that it chokes on the include. The dts is:
-> > > // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > /*
-> > >  * Copyright 2022 Gateworks Corporation
-> > >  *
-> > >  * GW73xx RS232 with RTS/CTS hardware flow control:
-> > >  *  - GPIO4_0 rs485_en needs to be driven low (in-active)
-> > >  *  - UART4_TX becomes RTS
-> > >  *  - UART4_RX becomes CTS
-> > >  */
-> > >
-> > > #include <dt-bindings/gpio/gpio.h>
-> > >
-> > > #include "imx8mm-pinfunc.h"
-> > >
-> > > /dts-v1/;
-> > > /plugin/;
-> > >
-> > > &{/} {
-> > >         compatible = "gw,imx8mm-gw73xx-0x";
-> > > };
-> > >
-> > > &gpio4 {
-> > >         rs485_en {
-> > >                 gpio-hog;
-> > >                 gpios = <0 GPIO_ACTIVE_HIGH>;
-> > >                 output-low;
-> > >                 line-name = "rs485_en";
-> > >         };
-> > > };
-> > >
-> > > &uart2 {
-> > >         pinctrl-names = "default";
-> > >         pinctrl-0 = <&pinctrl_uart2>;
-> > >         rts-gpios = <&gpio5 29 GPIO_ACTIVE_LOW>;
-> > >         cts-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
-> > >         uart-has-rtscts;
-> > >         status = "okay";
-> > > };
-> > >
-> > > &uart4 {
-> > >         status = "disabled";
-> > > };
-> > >
-> > > &iomuxc {
-> > >         pinctrl_uart2: uart2grp {
-> > >                 fsl,pins = <
-> > >                         MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
-> > >                         MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
-> > >                         MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29       0x140
-> > >                         MX8MM_IOMUXC_UART4_RXD_GPIO5_IO28       0x140
-> > >                 >;
-> > >         };
-> > > };
-> > >
-> > > Could you explain what is wrong here? It compiled fine before trying
-> > > to adapt the Makefile to what is described in 15d16d6dadf6 ("kbuild:
-> > > Add generic rule to applyfdt overlay"
-> >
-> >
-> > With the following changes on top of your patch, I can build the dtbo
-> > without error.
-> >
-> > ---8<-------
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> > index 4611f66096a7..d42a9e03f014 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -61,9 +61,6 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
-> > -dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-> > -dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtbo
-> > -dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtbo
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
-> > @@ -97,6 +94,14 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-eval-v3.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
-> >
-> > +imx8mm-venice-gw73xx-0x-rs232-rts-dtbs := imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-> > +imx8mm-venice-gw73xx-0x-rs422-dtbs := imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs422.dtbo
-> > +imx8mm-venice-gw73xx-0x-rs485-dtbs := imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs485.dtbo
-> > +
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtb
-> > +
-> >  dtb-$(CONFIG_ARCH_S32) += s32g274a-evb.dtb
-> >  dtb-$(CONFIG_ARCH_S32) += s32g274a-rdb2.dtb
-> >  dtb-$(CONFIG_ARCH_S32) += s32v234-evb.dtb
+On Mon, Jan 31, 2022 at 09:05:24AM +0100, Andrej Picej wrote:
+> From: Alexander Bauer <a.bauer@phytec.de>
 > 
-> Shawn,
+> Add support for the PHYTEC phyGATE-Tauri-S with i.MX 6ULL with eMMC or
+> NAND.
 > 
-> On top of what branch and with what commands? I've rebased this on top
-> of your imx/dt64 branch and can not build once I apply this over my
-> patch using 'make dtbs W=1'.
+> Supported features:
+>         * eMMC/NAND
+>         * i2c RTC
+>         * i2c TEMP
+>         * PMIC
+>         * PWM
+>         * debug UART
+>         * CAN
+>         * SD card
+>         * 2x 1Gbit Ethernet
+>         * RS232/RS485
+>         * USB 2.0 Host
+>         * TPM
+>         * SPI-NOR
+> 
+> Signed-off-by: Alexander Bauer <a.bauer@phytec.de>
+> Signed-off-by: Jens Lang <j.lang@phytec.de>
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> ---
+>  arch/arm/boot/dts/Makefile                    |   2 +
+>  .../boot/dts/imx6ull-phytec-tauri-emmc.dts    |  20 +
+>  .../boot/dts/imx6ull-phytec-tauri-nand.dts    |  20 +
+>  arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi   | 605 ++++++++++++++++++
+>  4 files changed, 647 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts
+>  create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts
+>  create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 235ad559acb2..f50270b9965a 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -704,6 +704,8 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
+>  	imx6ull-phytec-segin-ff-rdk-nand.dtb \
+>  	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
+>  	imx6ull-phytec-segin-lc-rdk-nand.dtb \
+> +	imx6ull-phytec-tauri-nand.dtb \
+> +	imx6ull-phytec-tauri-emmc.dtb \
 
-Tim,
+Keep them sort alphabetically.
 
-For your reference, I pushed the changes as below.
+>  	imx6ulz-14x14-evk.dtb \
+>  	imx6ulz-bsh-smm-m2.dtb
+>  dtb-$(CONFIG_SOC_IMX7D) += \
+> diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts b/arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts
+> new file mode 100644
+> index 000000000000..14adb87da911
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts
+> @@ -0,0 +1,20 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2021 PHYTEC Messtechnik GmbH
+> + * Author: Alexander Bauer <a.bauer@phytec.de>
+> + */
+> +
+> +/dts-v1/;
+> +#include "imx6ull-phytec-tauri.dtsi"
+> +
+> +/ {
+> +	model = "PHYTEC phyGate-Tauri i.MX6 UltraLite";
+> +	compatible = "phytec,imx6ull-phygate-tauri",
+> +		     "phytec,imx6ull-phygate-tauri-emmc",
+> +		     "phytec,imx6ull-pcl063", "fsl,imx6ull";
+> +};
+> +
+> +/* EMMC-Version */
+> +&usdhc2 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts b/arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts
+> new file mode 100644
+> index 000000000000..ae396ac63443
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts
+> @@ -0,0 +1,20 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2021 PHYTEC Messtechnik GmbH
+> + * Author: Alexander Bauer <a.bauer@phytec.de>
+> + */
+> +
+> +/dts-v1/;
+> +#include "imx6ull-phytec-tauri.dtsi"
+> +
+> +/ {
+> +	model = "PHYTEC phyGate-Tauri i.MX6 UltraLite";
+> +	compatible = "phytec,imx6ull-phygate-tauri",
+> +		     "phytec,imx6ull-phygate-tauri-nand",
+> +		     "phytec,imx6ull-pcl063", "fsl,imx6ull";
+> +};
+> +
+> +/* NAND-Version */
+> +&gpmi {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi b/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
+> new file mode 100644
+> index 000000000000..62a70d80c009
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
+> @@ -0,0 +1,605 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2021 PHYTEC Messtechnik GmbH
+> + * Author: Alexander Bauer <a.bauer@phytec.de>
+> + */
+> +
+> +/dts-v1/;
+> +#include "imx6ull.dtsi"
+> +#include "imx6ull-phytec-phycore-som.dtsi"
+> +
+> +/ {
+> +
+> +	model = "PHYTEC phyGate-Tauri i.MX6 UltraLite";
+> +	compatible = "phytec,imx6ull-phygate-tauri",
+> +		     "phytec,imx6ull-pcl063", "fsl,imx6ull";
+> +
+> +	aliases {
+> +		rtc0 = &i2c_rtc;
+> +		rtc1 = &snvs_rtc;
+> +	};
+> +
+> +	gpio_keys: gpio-keys {
+> +		compatible = "gpio-key";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_gpio_keys>;
+> +
+> +		key {
+> +			label = "KEY-A";
+> +			gpios = <&gpio1 18 GPIO_ACTIVE_LOW>;
+> +			linux,code = <30>;
 
-https://git.linaro.org/people/shawn.guo/linux-2.6.git/log/?h=test/gw73xx-dtbo
+Use define in include/dt-bindings/input/linux-event-codes.h
 
-The build command is:
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	reg_adc1_vref_3v3: regulator-vref-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vref-3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +	};
+> +
+> +	reg_s25fl064_hold: regulator-s25fl064-hold {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_s25fl064_hold>;
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "s25fl064_hold";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio3 17 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_usb_hub_vbus: regulator-hub-otg1-vbus {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_usbhubpwr>;
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "usb_hub_vbus";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio5 5 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_usb_otg1_vbus: regulator-usb-otg1-vbus {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_usbotg1pwr>;
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "usb_otg1_vbus";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	user_leds: user-leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_user_leds>,
+> +			    <&pinctrl_user_leds_snvs>;
+> +
+> +		user-led1 {
+> +			label = "yellow";
+> +			gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "off";
+> +		};
+> +
+> +		user-led2 {
+> +			label = "red";
+> +			gpios = <&gpio5 9 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "off";
+> +		};
+> +	};
+> +};
+> +
+> +&can1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_flexcan1>;
+> +	status = "okay";
+> +};
+> +
+> +&can2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_flexcan2>;
+> +	status = "okay";
+> +};
+> +
+> +&ecspi1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	fsl,spi-num-chipselects = <3>;
 
-$ make W=1 ARCH=arm64 dtbs
-  UPD     include/config/kernel.release
-  DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-  DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dtbo
-  DTC     arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dtbo
-  DTOVL   arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtb
-  DTOVL   arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dtb
-  DTOVL   arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dtb
+The property is no longer supported.
 
-Maybe you forgot to set up 'ARCH' variable?
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_ecspi1>,
+> +		    <&pinctrl_ecspi1_cs>;
+> +	cs-gpios = <&gpio3 26 GPIO_ACTIVE_LOW>,
+> +		   <&gpio3 10 GPIO_ACTIVE_LOW>,
+> +		   <&gpio3 11 GPIO_ACTIVE_LOW>;
+> +	status = "okay";
+> +
+> +	spi_dev0: spi@0 {
+> +		compatible = "linux,spidev";
+
+Not supported.
+
+> +		spi-max-frequency = <57600000>;
+> +		reg = <0>;
+> +	};
+> +
+> +	tpm_tis: tpm@1 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_tpm>;
+> +		compatible = "tcg,tpm_tis-spi";
+> +		reg = <1>;
+> +		spi-max-frequency = <20000000>;
+> +		interrupt-parent = <&gpio5>;
+> +		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
+> +		status = "okay";
+
+We generally use okay status to flip a disabled device.  You can save it
+if that's not the case.
+
+> +	};
+> +
+> +/* S25FL064P */
+
+Not sure this comment is so useful.  If you need a comment, as least
+indent it properly.
+
+> +	s25fl064: flash@2 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = " jedec,spi-nor";
+> +		reg = <2>;
+> +		spi-max-frequency = <40000000>;
+> +		m25p,fast-read;
+> +		status = "disabled";
+> +	};
+> +};
+> +
+> +&ecspi3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_ecspi3>;
+> +	cs-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
+> +	dmas = <&sdma 7 8 0>,
+> +	       <&sdma 8 8 0>;
+> +	dma-names = "rx", "tx";
+> +	status = "okay";
+> +
+> +	spi_dev1: spi@0 {
+> +		compatible = "linux,spidev";
+> +		spi-max-frequency = <57600000>;
+> +		reg = <0>;
+> +	};
+> +};
+> +
+> +&ethphy1 {
+> +	status = "okay";
+> +};
+> +
+> +&fec1 {
+> +	status = "okay";
+> +};
+> +
+> +&fec2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_enet2>;
+> +	phy-mode = "rmii";
+> +	phy-handle = <&ethphy2>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +
+> +	i2c_rtc: rtc@68 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_rtc_int>;
+> +		compatible = "microcrystal,rv4162";
+> +		reg = <0x68>;
+> +		interrupt-parent = <&gpio5>;
+> +		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	tmp102: tmp@49 {
+
+Sort the nodes in order of unit-address.
+
+> +		compatible = "ti,tmp102";
+> +		reg = <0x49>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_tempsense>;
+> +		interrupt-parent = <&gpio5>;
+> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +		#thermal-sensor-cells = <1>;
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default", "gpio";
+> +	pinctrl-0 = <&pinctrl_i2c2>;
+> +	pinctrl-1 = <&pinctrl_i2c2_gpio>;
+> +	sda-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	scl-gpios = <&gpio1 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c3 {
+> +	pinctrl-names = "default", "gpio";
+> +	pinctrl-0 = <&pinctrl_i2c3>;
+> +	pinctrl-1 = <&pinctrl_i2c3_gpio>;
+> +	sda-gpios = <&gpio3 5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	scl-gpios = <&gpio3 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c4 {
+> +	pinctrl-names = "default", "gpio";
+> +	pinctrl-0 = <&pinctrl_i2c4>;
+> +	pinctrl-1 = <&pinctrl_i2c4_gpio>;
+> +	sda-gpios = <&gpio3 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	scl-gpios = <&gpio3 8 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	status = "okay";
+> +};
+> +
+> +&mdio {
+> +	ethphy2: ethernet-phy@2 {
+> +		reg = <2>;
+> +		micrel,led-mode = <1>;
+> +		clocks = <&clks IMX6UL_CLK_ENET2_REF>;
+> +		clock-names = "rmii-ref";
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&pwm3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm3>;
+> +	status = "okay";
+> +};
+> +
+> +&pwm6 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm6>;
+> +	status = "okay";
+> +};
+> +
+> +&pwm7 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm7>;
+> +	status = "okay";
+> +};
+> +
+> +&pwm8 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm8>;
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart3>;
+> +	status = "okay";
+> +};
+> +
+> +/* UART4 * RS485  */
+> +&uart4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart4>;
+> +	rts-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
+> +	rs485-rts-active-high;
+> +	linux,rs485-enabled-at-boot-time;
+> +	status = "okay";
+> +};
+> +
+> +/* UART5 * RS232  */
+> +&uart5 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart5>;
+> +	uart-has-rtscts;
+> +	status = "okay";
+> +};
+> +
+> +&uart7 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart7>;
+> +	status = "okay";
+> +};
+> +
+> +/* USB */
+> +&usbotg1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usb_otg1>;
+> +	vbus-supply = <&reg_usb_otg1_vbus>;
+> +	dr_mode = "host";
+> +	disable-over-current;
+> +	status = "okay";
+> +};
+> +
+> +&usbotg2 {
+> +	vbus-supply = <&reg_usb_hub_vbus>;
+> +	disable-over-current;
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +&usdhc1 {
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc1>;
+> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+> +	cd-gpios = <&gpio1 19 GPIO_ACTIVE_LOW>;
+> +	no-1-8-v;
+> +	keep-power-in-suspend;
+> +	wakeup-source;
+> +	status = "okay";
+> +};
+> +
+> +&usdhc2 {
+> +	status = "disabled";
+> +};
+> +
+> +&iomuxc_snvs {
+> +
+
+Drop this newline.
+
+> +	pinctrl_rtc_int: rtcintgrp {
+> +		fsl,pins = <
+> +			MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_stmpe: stmpegrp {
+> +		fsl,pins = <
+> +			MX6ULL_PAD_SNVS_TAMPER3__GPIO5_IO03	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_tempsense: tempsensegrp {
+> +		fsl,pins = <
+> +			MX6ULL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_tpm: tpmgrp {
+> +		fsl,pins = <
+> +			MX6ULL_PAD_SNVS_TAMPER2__GPIO5_IO02	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_usbhubpwr: usbhubpwrgrp {
+> +		fsl,pins = <
+> +			MX6ULL_PAD_SNVS_TAMPER5__GPIO5_IO05	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_user_leds_snvs: user_ledsgrp {
+> +		fsl,pins = <
+> +			MX6ULL_PAD_SNVS_TAMPER9__GPIO5_IO09	0x79
+> +		>;
+> +	};
+> +};
+> +
+> +&iomuxc {
+> +
+
+Drop this newline.
+
+> +	pinctrl_gpio: gpio_gpiogrp {
+
+Could you name these pinctrl nodes more consistently.  If you really
+need some delimiter in node name, hyphen rather than underscore is
+recommended.
 
 Shawn
+
+> +		fsl,pins = <
+> +			MX6UL_PAD_CSI_DATA05__GPIO4_IO26	0x17059  /* nUART_MUX_RS232 */
+> +			MX6UL_PAD_CSI_DATA04__GPIO4_IO25	0x17059  /* nUART_MUX_DUAL_RX_TX */
+> +		>;
+> +	};
+> +
+> +	pinctrl_gpio_keys: gpio_keysgrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x79
+> +		>;
+> +	};
+> +
+> +	pinctrl_ecspi3: ecspi3grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_UART2_RX_DATA__ECSPI3_SCLK	0x100b1
+> +			MX6UL_PAD_UART2_RTS_B__ECSPI3_MISO	0x100b1
+> +			MX6UL_PAD_UART2_CTS_B__ECSPI3_MOSI	0x100b1
+> +			MX6UL_PAD_UART2_TX_DATA__GPIO1_IO20	0x10b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_ecspi1: ecspi1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA20__ECSPI1_SCLK	0x100b1
+> +			MX6UL_PAD_LCD_DATA23__ECSPI1_MISO	0x100b1
+> +			MX6UL_PAD_LCD_DATA22__ECSPI1_MOSI	0x100b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_ecspi1_cs: ecspi1csgrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA21__GPIO3_IO26	0x10b0
+> +			MX6UL_PAD_LCD_DATA05__GPIO3_IO10	0x10b0
+> +			MX6UL_PAD_LCD_DATA06__GPIO3_IO11	0x10b0
+> +		>;
+> +	};
+> +
+> +
+> +	pinctrl_enet2: enet2grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_ENET2_RX_EN__ENET2_RX_EN	0x1b0b0
+> +			MX6UL_PAD_ENET2_RX_ER__ENET2_RX_ER	0x1b0b0
+> +			MX6UL_PAD_ENET2_RX_DATA0__ENET2_RDATA00	0x1b0b0
+> +			MX6UL_PAD_ENET2_RX_DATA1__ENET2_RDATA01	0x1b0b0
+> +			MX6UL_PAD_ENET2_TX_EN__ENET2_TX_EN	0x1b010
+> +			MX6UL_PAD_ENET2_TX_DATA0__ENET2_TDATA00	0x1b010
+> +			MX6UL_PAD_ENET2_TX_DATA1__ENET2_TDATA01	0x1b010
+> +			MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2	0x4001b010
+> +		>;
+> +	};
+> +
+> +	pinctrl_flexcan1: flexcan1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX	0x0b0b0
+> +			MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x0b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_flexcan2: flexcan2grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA10__FLEXCAN2_TX	0x0b0b0
+> +			MX6UL_PAD_LCD_DATA11__FLEXCAN2_RX	0x0b0b0
+> +		>;
+> +	};
+> +
+> +	princtrl_flexcan2_en: flexcan2engrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c2: i2c2grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_GPIO1_IO00__I2C2_SCL	0xb0
+> +			MX6UL_PAD_GPIO1_IO01__I2C2_SDA	0xb0
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c2_gpio: i2c2gpiogrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0xb0
+> +			MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0xb0
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c3: i2c3grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA01__I2C3_SCL	0xb0
+> +			MX6UL_PAD_LCD_DATA00__I2C3_SDA	0xb0
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c3_gpio: i2c3gpiogrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA01__GPIO3_IO06	0xb0
+> +			MX6UL_PAD_LCD_DATA00__GPIO3_IO05	0xb0
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c4: i2c4grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA03__I2C4_SCL	0xb0
+> +			MX6UL_PAD_LCD_DATA02__I2C4_SDA	0xb0
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c4_gpio: i2c4gpiogrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA03__GPIO3_IO08	0xb0
+> +			MX6UL_PAD_LCD_DATA02__GPIO3_IO07	0xb0
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm3: pwm3grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_GPIO1_IO04__PWM3_OUT	0x0b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm6: pwm6grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_JTAG_TDI__PWM6_OUT	0x0b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm7: pwm7grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_JTAG_TCK__PWM7_OUT	0x0b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm8: pwm8grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_JTAG_TRST_B__PWM8_OUT	0x0b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_s25fl064_hold: s25fl064_holdgrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA12__GPIO3_IO17	0x100b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_sai2: sai2grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_JTAG_TDI__SAI2_TX_BCLK	0x17088
+> +			MX6UL_PAD_JTAG_TDO__SAI2_TX_SYNC	0x17088
+> +			MX6UL_PAD_JTAG_TRST_B__SAI2_TX_DATA	0x11088
+> +			MX6UL_PAD_JTAG_TCK__SAI2_RX_DATA	0x11088
+> +			MX6UL_PAD_JTAG_TMS__SAI2_MCLK		0x17088
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart3: uart3grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_UART3_TX_DATA__UART3_DCE_TX	0x1b0b1
+> +			MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX	0x1b0b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart4: uart4grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_CLK__UART4_DCE_TX		0x1b0b1
+> +			MX6UL_PAD_LCD_ENABLE__UART4_DCE_RX	0x1b0b1
+> +			MX6UL_PAD_LCD_HSYNC__GPIO3_IO02	0x1b0b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart5: uart5grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_UART5_TX_DATA__UART5_DCE_TX	0x1b0b1
+> +			MX6UL_PAD_UART5_RX_DATA__UART5_DCE_RX	0x1b0b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart7: uart7grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA16__UART7_DCE_TX	0x1b0b1
+> +			MX6UL_PAD_LCD_DATA17__UART7_DCE_RX	0x1b0b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_usb_otg1: usbotg1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_CSI_DATA06__GPIO4_IO27	0x80
+> +		>;
+> +	};
+> +
+> +	pinctrl_usbotg1pwr: usbotg1pwrgrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_CSI_DATA07__GPIO4_IO28	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc1: usdhc1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
+> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x10059
+> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
+> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
+> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
+> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
+> +			MX6UL_PAD_UART1_RTS_B__GPIO1_IO19	0x17059
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc1_100mhz: usdhc1100mhzgrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170b9
+> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100b9
+> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170b9
+> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
+> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
+> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc1_200mhz: usdhc1200mhzgrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170f9
+> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100f9
+> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170f9
+> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170f9
+> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170f9
+> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
+> +		>;
+> +	};
+> +
+> +	pinctrl_user_leds: user_ledsgrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0x79
+> +		>;
+> +	};
+> +};
+> -- 
+> 2.25.1
+> 
