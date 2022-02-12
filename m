@@ -2,232 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35A1A4B3852
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 23:12:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72D064B389C
+	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 00:26:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbiBLWMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Feb 2022 17:12:21 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36422 "EHLO
+        id S232501AbiBLX0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Feb 2022 18:26:32 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbiBLWMU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 17:12:20 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E4960A80;
-        Sat, 12 Feb 2022 14:12:16 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AF3D85D;
-        Sat, 12 Feb 2022 23:12:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1644703933;
-        bh=ZhQx3E1jxrq6WfZVc9yff8xoUCu5nnI03g0EHPbkuvw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Rdhf2BwsSmsx+RJgVJedRcvYtg2SyY20mcZM4bG9/dhvxcIDRGXWhEsZnnlmH5ihb
-         AfdF56F0fYII/F6u/OCqMNd58+dgQ88MIGgh+/2bUHCVxy/giuLltu6LTv3gLwcIKS
-         VpHHEz1OFS3InXLjgLQvyztpjWBO+GSLESGSIGnw=
-Date:   Sun, 13 Feb 2022 00:12:08 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: media: i2c: Add MT9M114
- camera sensor binding
-Message-ID: <YggwuBlEmjzhxYt1@pendragon.ideasonboard.com>
-References: <20220207012055.15158-1-laurent.pinchart@ideasonboard.com>
- <20220207012055.15158-2-laurent.pinchart@ideasonboard.com>
- <YgKfdR72TNavj68v@paasikivi.fi.intel.com>
- <YgK6xAgAVHUSsQND@pendragon.ideasonboard.com>
- <YggZqM81nCJcv4vZ@paasikivi.fi.intel.com>
+        with ESMTP id S232495AbiBLX0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 18:26:32 -0500
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 619C85FF1A;
+        Sat, 12 Feb 2022 15:26:27 -0800 (PST)
+Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id 0CCE4C7339;
+        Sat, 12 Feb 2022 23:24:11 +0000 (UTC)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id E819BC0007;
+        Sat, 12 Feb 2022 23:24:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1644708244;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=oFSzZ5yOgdSQAwv0PITlc/tQFNbxlnrDufyb0qNF53Q=;
+        b=T3Nl6zUHyCCqkZ70eVXfYZPR33z37M7lQnQsY+qmZhmbBJnDZ0vkPcvrgeCaDUCrE7XYTG
+        ILeyfuqBi6bYKAeXp/+nAYT3K5KTIk8buMzeNFwPqKGKGGYbtb4y354lm3VK68YPcM9p13
+        GBXHxFZNceYRpbKJBptTKYI+quWgKOkYq3xEOs79KFibZlf/2IxCxTwvRhrawA52lYqw70
+        im16ziLbq8q0e2vjmRtKvYMY6aMLDbypJbYyeDS7ToLhecyaFV97jUE+rQL876R3RI52D9
+        QCqLVoxh7Gfr90O0YJ26z9EbwtX8EIF6afWEBxUKD5ur6J05GKkR6ln6a7XOOw==
+Date:   Sun, 13 Feb 2022 00:24:02 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        linux-sunxi@lists.linux.dev,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>
+Subject: Re: (subset) [PATCH v3 5/6] clk: sunxi-ng: Add support for the sun6i
+ RTC clocks
+Message-ID: <YghBkp/sUHdqSn4G@piout.net>
+References: <20220203021736.13434-1-samuel@sholland.org>
+ <20220203021736.13434-6-samuel@sholland.org>
+ <164422443570.21572.13511859513410998733.b4-ty@cerno.tech>
+ <bb05bc64-2a9e-fe21-5a69-0ea31134e978@sholland.org>
+ <20220211124312.kiw6t25nojvkp2rw@houat>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YggZqM81nCJcv4vZ@paasikivi.fi.intel.com>
+In-Reply-To: <20220211124312.kiw6t25nojvkp2rw@houat>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
-
-On Sat, Feb 12, 2022 at 10:33:44PM +0200, Sakari Ailus wrote:
-> On Tue, Feb 08, 2022 at 08:47:32PM +0200, Laurent Pinchart wrote:
-> > On Tue, Feb 08, 2022 at 06:51:01PM +0200, Sakari Ailus wrote:
-> > > On Mon, Feb 07, 2022 at 03:20:54AM +0200, Laurent Pinchart wrote:
-> > > > Add device tree binding for the onsemi MT9M114 CMOS camera sensor.
-> > > > 
-> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > ---
-> > > > Changes since v1:
-> > > > 
-> > > > - Use graph schema
-> > > > - Drop unneeded properties
-> > > > - Rename ON Semiconductor to onsemi
-> > > > ---
-> > > >  .../bindings/media/i2c/onnn,mt9m114.yaml      | 110 ++++++++++++++++++
-> > > >  MAINTAINERS                                   |   7 ++
-> > > >  2 files changed, 117 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..55b67833f9a1
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/media/i2c/onnn,mt9m114.yaml
-> > > > @@ -0,0 +1,110 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/media/i2c/onnn,mt9m114.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: onsemi 1/6-inch 720p CMOS Digital Image Sensor
-> > > > +
-> > > > +maintainers:
-> > > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > +
-> > > > +description: |-
-> > > > +  The onsemi MT9M114 is a 1/6-inch 720p (1.26 Mp) CMOS digital image sensor
-> > > > +  with an active pixel-array size of 1296H x 976V. It is programmable through
-> > > > +  an I2C interface and outputs image data over a 8-bit parallel or 1-lane MIPI
-> > > > +  CSI-2 connection.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: onnn,mt9m114
-> > > > +
-> > > > +  reg:
-> > > > +    description: I2C device address
-> > > > +    enum:
-> > > > +      - 0x48
-> > > > +      - 0x5d
-> > > > +
-> > > > +  clocks:
-> > > > +    description: EXTCLK clock signal
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  vdd-supply:
-> > > > +    description:
-> > > > +      Core digital voltage supply, 1.8V
-> > > > +
-> > > > +  vddio-supply:
-> > > > +    description:
-> > > > +      I/O digital voltage supply, 1.8V or 2.8V
-> > > > +
-> > > > +  vaa-supply:
-> > > > +    description:
-> > > > +      Analog voltage supply, 2.8V
-> > > > +
-> > > > +  reset-gpios:
-> > > > +    description: |-
-> > > > +      Reference to the GPIO connected to the RESET_BAR pin, if any (active
-> > > > +      low).
-> > > > +
-> > > > +  port:
-> > > > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > > +    additionalProperties: false
-> > > > +
-> > > > +    properties:
-> > > > +      endpoint:
-> > > > +        $ref: /schemas/media/video-interfaces.yaml#
-> > > > +        additionalProperties: false
-> > > > +
-> > > > +        properties:
-> > > > +          bus-type:
-> > > > +            enum: [4, 5, 6]
+On 11/02/2022 13:43:12+0100, Maxime Ripard wrote:
+> Hi Samuel,
+> 
+> On Mon, Feb 07, 2022 at 05:54:02PM -0600, Samuel Holland wrote:
+> > On 2/7/22 3:00 AM, Maxime Ripard wrote:
+> > > On Wed, 2 Feb 2022 20:17:35 -0600, Samuel Holland wrote:
+> > >> The RTC power domain in sun6i and newer SoCs manages the 16 MHz RC
+> > >> oscillator (called "IOSC" or "osc16M") and the optional 32 kHz crystal
+> > >> oscillator (called "LOSC" or "osc32k"). Starting with the H6, this power
+> > >> domain also handles the 24 MHz DCXO (called variously "HOSC", "dcxo24M",
+> > >> or "osc24M") as well. The H6 also adds a calibration circuit for IOSC.
+> > >>
+> > >> Later SoCs introduce further variations on the design:
+> > >>  - H616 adds an additional mux for the 32 kHz fanout source.
+> > >>  - R329 adds an additional mux for the RTC timekeeping clock, a clock
+> > >>    for the SPI bus between power domains inside the RTC, and removes the
+> > >>    IOSC calibration functionality.
+> > >>
+> > >> [...]
 > > > 
-> > > With bus-type 5, shouldn't you have the parallel interface sync signal
-> > > polarity properties? Possibly also others if the hardware supports them.
+> > > Applied to local tree (sunxi/clk-for-5.18).
 > > 
-> > As far as I can tell, the hardware has fixed polarities for all signals.
-> > Both hsync and vsync (called LINE_VALID and FRAME_VALID here) are active
-> > high.
+> > Part of the build failures were because this patch depends on patch 3. Is that
+> > okay, or should I update this patch to be independent?
 > 
-> Right, then you won't need these.
+> We don't have anything queued up yet, so I think the easiest would be to
+> merge this through the RTC tree. So nothing to do on your side yet, we
+> just need Alex to answer :)
 > 
-> What about the link-frequencies property?
 
-That's something I've meant to ask, should the link-frequencies property
-be specified for parallel buses too, or only CSI-2 ?
+I can take the whole series but I think I would need acks from Stephen
 
-We also need to document how a DT writer should select the link
-frequencies. The process is complicated, saying that the property is
-required without explaining how the values can be computed (EMC
-constraints aside, just from a functional point of view) isn't nice. If
-you explain this to me, I can put it in a patch :-)
-
-> > > > +
-> > > > +          remote-endpoint: true
-> > > > +
-> > > > +          # The number and mapping of lanes (for CSI-2), and the bus width and
-> > > > +          # signal polarities (for parallel and BT.656) are fixed and must not
-> > > > +          # be specified.
-> > > > +
-> > > > +        required:
-> > > > +          - bus-type
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - clocks
-> > > > +  - vdd-supply
-> > > > +  - vddio-supply
-> > > > +  - vaa-supply
-> > > > +  - port
-> > > > +
-> > > > +additionalProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    #include <dt-bindings/gpio/gpio.h>
-> > > > +
-> > > > +    i2c0 {
-> > > > +        #address-cells = <1>;
-> > > > +        #size-cells = <0>;
-> > > > +
-> > > > +        sensor@48 {
-> > > > +            compatible = "onnn,mt9m114";
-> > > > +            reg = <0x48>;
-> > > > +
-> > > > +            clocks = <&clk24m 0>;
-> > > > +
-> > > > +            reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
-> > > > +
-> > > > +            vddio-supply = <&reg_cam_1v8>;
-> > > > +            vdd-supply = <&reg_cam_1v8>;
-> > > > +            vaa-supply = <&reg_2p8v>;
-> > > > +
-> > > > +            port {
-> > > > +                endpoint {
-> > > > +                    bus-type = <4>;
-> > > > +                    remote-endpoint = <&mipi_csi_in>;
-> > > > +                };
-> > > > +            };
-> > > > +        };
-> > > > +    };
-> > > > +...
-> > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > index f41088418aae..e9919a359c12 100644
-> > > > --- a/MAINTAINERS
-> > > > +++ b/MAINTAINERS
-> > > > @@ -13096,6 +13096,13 @@ T:	git git://linuxtv.org/media_tree.git
-> > > >  F:	drivers/media/i2c/mt9m032.c
-> > > >  F:	include/media/i2c/mt9m032.h
-> > > >  
-> > > > +MT9M114 ONSEMI SENSOR DRIVER
-> > > > +M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > +L:	linux-media@vger.kernel.org
-> > > > +S:	Maintained
-> > > > +T:	git git://linuxtv.org/media_tree.git
-> > > > +F:	Documentation/devicetree/bindings/media/i2c.onnn,mt9m114.yaml
-> > > > +
-> > > >  MT9P031 APTINA CAMERA SENSOR
-> > > >  M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > >  L:	linux-media@vger.kernel.org
 
 -- 
-Regards,
-
-Laurent Pinchart
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
