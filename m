@@ -2,75 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1A774B34AE
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 12:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2953B4B34BC
+	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 12:40:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234444AbiBLL2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Feb 2022 06:28:43 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42560 "EHLO
+        id S232548AbiBLLku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Feb 2022 06:40:50 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230111AbiBLL2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 06:28:42 -0500
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E502F26AEA;
-        Sat, 12 Feb 2022 03:28:39 -0800 (PST)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 9EE661C0B80; Sat, 12 Feb 2022 12:28:38 +0100 (CET)
-Date:   Sat, 12 Feb 2022 12:28:38 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-leds@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 0/3] Add support for ocp8110 flash
-Message-ID: <20220212112838.GC20866@duo.ucw.cz>
-References: <20211117091405.7412-1-git@apitzsch.eu>
- <20220207230638.56730-1-git@apitzsch.eu>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="/e2eDi0V/xtL+Mc8"
-Content-Disposition: inline
-In-Reply-To: <20220207230638.56730-1-git@apitzsch.eu>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S232024AbiBLLkt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 06:40:49 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E32B26AD4;
+        Sat, 12 Feb 2022 03:40:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3232260C44;
+        Sat, 12 Feb 2022 11:40:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 657CAC340E7;
+        Sat, 12 Feb 2022 11:40:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644666045;
+        bh=O/FHTLknGUukRnUAtCoeQ0TR0+1juaOL+1VA6H6LuhQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=cRfTp/DezaVUrSzytLwk5ZsqkA74a//NftbGbBznRSWPUlrCzTXwrh/X2evpoSr05
+         rSSgLDUySTuthGkmf7ARdbo4UJhdC2ceSX8rv+MKzhpQfzzxb6MTV/NaxSliVtUSXV
+         nm02gmKjc+lGF6fQN3jBKjlfFlDYpFWnzhtB6m3uA1rA+txfHfK7TcnHkQ4vqGKEch
+         t7WxxgX9zjZ1MJuP+cUYMw8FN9PufwR8pPTZy+jfw+yxw2w9qp4IRhNdhacSFZhfEN
+         wjProJ2NQMDw9N5X319l3y6LZBQCGf14HSaUxZO6RVw7HwLH2Bi+gd0wZtNWU5XPG1
+         ZqKQJn3CACXJA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=billy-the-mountain.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nIqlf-007M6x-C9; Sat, 12 Feb 2022 11:40:43 +0000
+Date:   Sat, 12 Feb 2022 11:40:35 +0000
+Message-ID: <87k0e0tirw.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/5] arm64: dts: ti: Introduce base support for AM62x SoC
+In-Reply-To: <20220211235513.cplmvgfuwe3dhzbs@nearby>
+References: <20220208131827.1430086-1-vigneshr@ti.com>
+        <20220208131827.1430086-5-vigneshr@ti.com>
+        <bc6cb6e1adcf6860a595b71246778733@kernel.org>
+        <20220210193459.nl6baranvmqs46bi@coastal>
+        <87bkzdljt1.wl-maz@kernel.org>
+        <20220211235513.cplmvgfuwe3dhzbs@nearby>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski@canonical.com, ssantosh@kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 11 Feb 2022 23:55:13 +0000,
+Nishanth Menon <nm@ti.com> wrote:
+> 
+> On 11:33-20220211, Marc Zyngier wrote:
+> > On Thu, 10 Feb 2022 19:34:59 +0000,
+> > Nishanth Menon <nm@ti.com> wrote:
+> > > 
+> > > On 19:10-20220209, Marc Zyngier wrote:
+> > > [...]
+> > > 
+> > > > > +&cbass_main {
+> > > > > +	gic500: interrupt-controller@1800000 {
+> > > > > +		compatible = "arm,gic-v3";
+> > > > > +		#address-cells = <2>;
+> > > > > +		#size-cells = <2>;
+> > > > > +		ranges;
+> > > > > +		#interrupt-cells = <3>;
+> > > > > +		interrupt-controller;
+> > > > > +		reg = <0x00 0x01800000 0x00 0x10000>,	/* GICD */
+> > > > > +		      <0x00 0x01880000 0x00 0xC0000>;	/* GICR */
+> > > > 
+> > > > Usual rant: you are missing the GICC, GICH and GICV regions
+> > > > that are implemented by the CPU. Cortex-A53 implements them
+> > > > (they are not optional), so please describe them.
+> > > > 
+> > > 
+> > > 
+> > > -ECONFUSED. TRM for GIC500 refers to just GICD, GICR and ITS range[1].
+> > 
+> > And I'm not talking about the GIC, but of the CPU interface. The fact
+> > that we describe both in the GIC binding doesn't mean they are
+> > implemented by the same IP block (and the architecture is quite clear
+> > about that).
+> > 
+> > > Same thing is indicated by Generic Interrupt Controller Architecture
+> > > Specification[2] See table 1-1 (page 23).
+> > > 
+> > > I think you are expecting GICV3's backward compatibility mode (Table 1-2
+> > > in page 24), But in K3 architecture, are_option meant for backward
+> > > compatibility is set to true (aka no backward compatibility). I think
+> > > this did popup sometime back as well (first k3 SoC)[3]. I think the more
+> > > clearer description is available in [4].
+> > 
+> > No, this description is for the architecture as a whole. ARE being
+> > disabled *int the GIC* doesn't mean it is disabled overall, and the
+> > CPU is free to implement the CPU interface by any mean it wants as
+> > long as it communicates with the GIC using the Stream Protocol.
+> > Cortex-A32, A34, 35, A53, A57, A72 and A73 all implement both the
+> > sysreg and MMIO CPU interfaces. Later ARM CPUs don't. Both can work
+> > with GIC500.
+> > 
+> > > I believe the argumentation that GICC/H/V is mandatory for A53 if GIC500
+> > > is used is not accurate. Please correct me if I am mistaken.
+> > 
+> > GIC500 is not involved at all, and A53 always implements both the
+> > system register and MMIO interfaces. See the A53 TRM, chapter 9. The
+> > only way to disable this interface is to assert GICCDISABLE, which
+> > disables the whole of the CPU interface. Given that you have a (more
+> > or less) functional system, it probably isn't the case.
+> > 
+> > See Table 9-1, which tells you where these registers are as an offset
+> > from PERIPHBASE. Dumping these registers should show you that they are
+> > indeed implemented and not solely a figment of my own imagination.
+> 
+> Thanks for explaining.. I don't see this is working in practise.. Let me
+> know if I am making a mistake in my interpretation.
+> 
+> Quote from our internal integration spec (yep it leaves it to ARM cluster's
+> use):
+> ""
+> Note: GIC periphery base tieoff to ARM corepacs for GIC v2 compatibility
+> requires a dedicated unallocated space to be passed as input to ARM corepac.
+> The CC internal region 0F00_0000-0x0F03_FFFF is assigned as GIC periphery
+> base tieoff to the corepac.
+> When GIC-500 is in v3 mode, and A72 with GICCDISABLE=0 and PERIPHBASE set:
+> - the CPU interface registers are accessed via ICC* system register.
+> - the GICC* regions (PERIPHBASE - PERIPHBASE+0x3FFFF) are reserved
+>   and access will be Read as Zero / Write Ignored.
+> So any writes/reads to this region would be trapped by ARM corepacs.
+> ""
 
---/e2eDi0V/xtL+Mc8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Not sure what the 'corepacs' are (the CPU cluster?). But what I
+understand is that accesses to the GIC regions are kept internal to
+the 'corepacs', which is exactly what is expected.
 
-Hi!
+> 
+> Anyways, Here is my report. I checked across all K3 devices (a72 and
+> a53)
+> AM65x: PERIPH_BASE = 0x6f000000 (a53)
+> j721e: PERIPH_BASE = 0x6f000000 (a72)
+> J7200: PERIPH_BASE = 0x6f000000 (a72)
+> j721s2: PERIPH_BASE = 0x6f000000 (a72)
+> AM64: PERIPH_BASE = 0x100000000 (a53)
+> AM62: PERIPH_BASE = 0x100000000 (a53)
+> 
+> (side note: am64/62 needed the 0x6f.. address space for PCIe stuff.. but
+> the address chosen has nothing in SoC fabric)
+> 
+> Tested at u-boot shell prompt (running at EL2):
+> 
+> If I understood the expectation correctly..I should be seeing offsets
+> off [1]. Taking 'CPU Interface'/GICC as an example, [2] should be the
+> registers I should be seeing. aka, at offset 0xfc from PERIPHBASE, i
+> should see 0x0034443B.
 
-> The led is used as front flash of BQ Aquaris M5.
->=20
-> https://github.com/bq/aquaris-M5/blob/901d0b2ca05c0b0af49786fb548eb0fc289=
-867ff/arch/arm/boot/dts/qcom/piccolo-msm8939-camera-sensor-qrd.dtsi#L16
+If ICC_SRE_EL3.SRE is 1, this is more or less expected. You can only
+use one or the other at any given time, not both.
 
-Thanks for patches, I took 1 and 3/3, waiting for some kind of
-changelog on 2/.
+The more important thing is that GICV is what we give to a VM running
+in compat mode. With HCR_EL2.{AMO,FMO,IMO}={1,1,1} and
+ICC_SRE_EL1.SRE==0, the guest can access a MMIO virtual GIC interface,
+and the hypervisor does its magic.
 
-Best regards,
-							Pavel
---=20
-http://www.livejournal.com/~pavelmachek
+> 
+> Note: on K3 devices (in the 32bit address space), as in the
+> description above, we have a null endpoint handler in the bus fabric
+> that responds with 0x0 for read requests for invalid/reserved addresses.
+> 
+> What I see is 0x0 (and not IIDR) in all the address ranges - which matches ARM
+> sending that region requests straight down to SoC level and SoC
+> returning "ignore"..
+> 
+> On AM62, I attached Lauterbach. and tried to look at the addresses: [3]
+> from cpu view and from bus view.
+> 
+> I also checked from kernel side with devmem to make sure to dump while
+> kernel GICV3 is active.. I see the same thing as well..
+> 
+> Is there something TFA or someone has to do to "enable" this? I tried
+> re-reading porting-guide.rst yet again to make sure we have'nt missed
+> anything.
 
---/e2eDi0V/xtL+Mc8
-Content-Type: application/pgp-signature; name="signature.asc"
+I expect the SRE settings to control all of this, most of which are
+under NS control. You could easily check this by advertising the 3
+missing regions in DT, booting an upstream kernel with KVM and boot a
+GICv2 guest. KVM will also warn if the DT regions are advertised but
+the HW doesn't actually support the MMIO accesses. Feel free to ping
+me offline if you need the runs for this,
 
------BEGIN PGP SIGNATURE-----
+	M.
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYgeZ5gAKCRAw5/Bqldv6
-8iP9AJ9X66xk2Tg9z/6xysk98CrX+rL9iQCdGONCiSyzNt3AtW+0Kv2GAxh4PzE=
-=kAce
------END PGP SIGNATURE-----
-
---/e2eDi0V/xtL+Mc8--
+-- 
+Without deviation from the norm, progress is not possible.
