@@ -2,77 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C0334B338D
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 08:18:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A44944B33DE
+	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 09:41:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229720AbiBLHSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Feb 2022 02:18:35 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35176 "EHLO
+        id S232712AbiBLIlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Feb 2022 03:41:01 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbiBLHSe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 02:18:34 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9442BB8;
-        Fri, 11 Feb 2022 23:18:27 -0800 (PST)
-X-UUID: 6d4daea3ffe94c98901c626d59d08725-20220212
-X-UUID: 6d4daea3ffe94c98901c626d59d08725-20220212
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 209650184; Sat, 12 Feb 2022 15:18:22 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Sat, 12 Feb 2022 15:18:21 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 12 Feb
- 2022 15:18:21 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 12 Feb 2022 15:18:20 +0800
-Message-ID: <a78063ad99eb8f4a380d9133f310963d2a0dac7a.camel@mediatek.com>
-Subject: Re: [PATCH 00/15] ASoC: mediatek: Add support for MT8186 SoC
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     <lgirdwood@gmail.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <perex@perex.cz>,
-        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
-        <zhangqilong3@huawei.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Sat, 12 Feb 2022 15:18:20 +0800
-In-Reply-To: <YgaLUNQXnGsZHuXQ@sirena.org.uk>
-References: <20220211103818.8266-1-jiaxin.yu@mediatek.com>
-         <YgaLUNQXnGsZHuXQ@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S231820AbiBLIlA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 03:41:00 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2542613A;
+        Sat, 12 Feb 2022 00:40:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1644655247;
+        bh=6yeoDgDJPy6Mv0rvAeCcJ+cV6rpBoVqlTD6BL6nGPBA=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=ECsMFeCK10kEQy3vbM9SlWqvEBXVpIb+kEL310FW9HTi3XaktD/N3qlGeNb11HQn1
+         dLcf++lYoAUcthwIAk0zz+LAN6GgpMU+xYbomhYFNvmTsdqaD+ilXbFHoyBv5Xzmm8
+         jXucMoJq9Sb5zEpy3Otb7VAJ3pWZix6JwAZat8hk=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MLzBj-1na3rS2BsH-00Hyov; Sat, 12
+ Feb 2022 09:40:47 +0100
+Date:   Sat, 12 Feb 2022 09:40:45 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Joel Stanley <joel@jms.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>
+Subject: Re: [PATCH v5 0/9] Nuvoton WPCM450 pinctrl and GPIO driver
+Message-ID: <YgdyjUbb4lnrVHmJ@latitude>
+References: <20220129115228.2257310-1-j.neuschaefer@gmx.net>
+ <CACRpkdYEigGHkoGfBg15tFXadgpXUAjDOnw7ePXhmvHJqPEJXw@mail.gmail.com>
+ <YfZkis8M81Ejpagq@latitude>
+ <CACPK8XdFXRQf3MpPh3z=EMAKtnQSHL+iwwMCVYc5dP9DfQEN+Q@mail.gmail.com>
+ <YfpyjDBH83FE7r4o@latitude>
+ <CAHp75Vdg8zFSHaTP_8jQua5QfRYbvZ4_rLdCtt3ks8YEibseTg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zAZgCYGBplb8VEfC"
+Content-Disposition: inline
+In-Reply-To: <CAHp75Vdg8zFSHaTP_8jQua5QfRYbvZ4_rLdCtt3ks8YEibseTg@mail.gmail.com>
+X-Provags-ID: V03:K1:hJPvO5vHcOttZM1wfVcuMJQGsgrEjDcKwOkTeT64bNtzFABDEGK
+ WIamoNhFYPIJHSOMwXV0YQfcg3M4errYW7wm5rOzvzRkWqMDpmhLL04tZCTAsKolznmxDEH
+ phmVnU7DTvxszphcydPY+LPpRINwC5jVWzlk5OGTGRtEXG7YLZAd2GCetPFrbrQw1At0n4X
+ nqekm7hvvtg4RUJUdg8HQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:m2XNOyAVX7w=:s0wxwPeA9HvMlq2eNhUmBQ
+ YnTuICPMq5UsHNHC5Xa5U0FlgVBZIBn4D9GIa/bhgvvI1dP8Jg9zJOi64TOWmMFa3mTeW1cJR
+ oANWnW5BPC87zf5727tPIKYgQpEtk30o4RVJbbf/LKXzdD/jxdHrEZTRHX56YvNjv9H0yXK7k
+ RPvyYbRYCBA1isASYbQfU51gvgP4bq2q1JlUjocLr2GA3ZfrYyhGJ39VxrOniZFyrr6Ph3lPy
+ 0uGTB0YB9vEXollfRTCk3wtZqgGUO/YaQcS4X30SdX9N6YG8U8RQwQyJuniI0sWWP1zxUm5ZZ
+ vt344G6IR9U7mmrfmrZk9ePes8Ec6cR37hvpotm94pD1YH1FS4smHA//xhBpOmdgDdBWGBHJF
+ c+54oo1DKmcgFJY4BCzr4bk1W1CEJSg45jaVdC/Pgn8OGXwTesZVH/QCgWNfZQKEkgzhoxVF2
+ o4UZnAxQZ7t1hsZUMMFh0UBEplloQvZNwySlX4Xe6cXc6fChoYdGMyoTfQ0+g9Yfg/pXDbnvL
+ rLmvg/wg7peJ1aIKWczNnZ88QlV8xRwJ++rZM2aXkqdd62RJcupYTPoRyDuYAJ5MJ38mcc9o1
+ 53cQeMQD7RPXXYqhWL6hZpDGsmjWP258ovGjZNjO/25uVlsUcyBG79JkhuXsEWuxbOPjKikCd
+ rjtOZPAD38MFanB4kGS7127Nhz3yulktAB+aG7ZUusXUE5kV0JMpwS6rrSj+j71JK/JKjPM6Y
+ uBt+u3XfHRzkaV1zWYSCSd9dM75n6Duzj0WX/jWsW8pDFIq7z/59D0zn9GGKk5nc/nuIRfvQr
+ YjEVYxAsDit4uVyRAfut/wojaqtA8XbZe5WV2KkkpxZnnYTBdxY10x4F7jbxsgjlbp71yBY8A
+ 8Rp2K08sB5seh24kdJnoV9Xi4sdmwdbK44Mz1l7bQGBY5p8GHU1jLN7qCkjSpBd4Ay6jqwkuc
+ 6T12h008PmhZtSCE/9LeVR0OdIaWvZ3ItPAztVon95bjlfwWmCCeA4KFIYfn4NpNBsBKMy3li
+ TgYCLZrYfc3v+digCqTQbdQfkScxHa3dVT96D8riDMX7/eAXnwQAgnBQmp/wFJ21OxBL0tMzq
+ 1ksURp/xrWAjIM=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-02-11 at 16:14 +0000, Mark Brown wrote:
-> On Fri, Feb 11, 2022 at 06:38:03PM +0800, Jiaxin Yu wrote:
-> > This series of patches adds support for Mediatek AFE of MT8186 Soc.
-> > Patches are based on broonie tree "for-next" branch.
-> 
-> This all looks basically good, there are some issues which I've
-> highlighted on the patches but like I kept on saying they're all
-> fairly
-> small and hopefully easy to address - there's no big structural
-> problems
-> or anything that I noticed.
 
-Thank you for helping to review my submitted patches.
-I will go through your comments carefully and fix them.
+--zAZgCYGBplb8VEfC
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Feb 02, 2022 at 02:10:44PM +0200, Andy Shevchenko wrote:
+> On Wed, Feb 2, 2022 at 2:01 PM Jonathan Neusch=C3=A4fer
+> <j.neuschaefer@gmx.net> wrote:
+> > On Tue, Feb 01, 2022 at 11:42:11PM +0000, Joel Stanley wrote:
+> > > On Tue, 1 Feb 2022 at 13:05, Jonathan Neusch=C3=A4fer <j.neuschaefer@=
+gmx.net> wrote:
+>=20
+> ...
+>=20
+> > > I assume you're sending a v6 to fix some of the warnings?
+> >
+> > No, the warnings are fairly independent of this patchset, it's just that
+> > the adjacent pinctrl-npcm7xx driver started to be built by the bot, due
+> > to my Kconfig change. I'll fix them in a separate patchset.
+>=20
+> I guess you need to fix that first.
+>=20
+> Because now and then all CIs will complain to your patch and confuse peop=
+le.
+
+FWIW, Linus has applied the npcm7xx fixes to for-next in the pinctrl tree,
+which means that they are not blocking this patchset anymore, AFAICS.
+
+
+Jonathan
+
+--zAZgCYGBplb8VEfC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmIHcmkACgkQCDBEmo7z
+X9uckRAAoi/mjUjwvtfOFTsTH/PH/r6DDSOiFTU+ycxhILZmK9lMk3c33cNUu1ib
+9eJY87Mg8UpRJvvNST2usUdrxKV1eUi/lEI0idiu9+Q9HMFo84s0Wv37NhfwCGDR
+mgTW0IbUsLvRegIP6Rl75XSAn6+GTIIYyhMA0Ohw9T37JOa1YI2ysV+dkqPkSala
+WUe1CmWQ6yFSyLslMp6ZqZtg2rpTMCR0vat54Ykbfrity9fxd67OZE/561bvGKht
+qpCEXrfWk1N35pQH/2VUfVBerwLWfW+Dq6ddq5qGMyTXr4hnGyQiidGQb16aPugT
+ZGzq1S7TdnJ3r3k+HwMOpbARR4sn5i4LWkPkvAv2WvGScHfUwOfS4ttM0Q6H6/2T
+lLt7jnYuosmvFtArXbc/PllfNWRfQeMylBzRoh8GOHCNSHhgewMZYB+SBqGrMqb7
+lue4pyfWONnC85aWCYZyBbM1Bmh9E0LAs/8KxievUS/nWbDOe/Qz09m+XanUq1CF
+5QzMKcaJekmiVVxDquzj/17c9V7ZZrb9dT6mTSYSoG0I77rKsPNHMkIccRVHm9ez
+J10PVtMUNLYUdc5r62fn9HBo+x/aNtEHdnd/CTx3jZ2CFVPmAW2gGz9fQMwlWLyJ
+LAKCGXBxxFoEO/bcZevsri26S8yvt7Lw+mIpupglsw/luJwHNUQ=
+=Yhe6
+-----END PGP SIGNATURE-----
+
+--zAZgCYGBplb8VEfC--
