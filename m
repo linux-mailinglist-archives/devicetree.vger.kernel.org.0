@@ -2,47 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2FE4B34C0
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 12:44:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 680834B34D0
+	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 12:54:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234668AbiBLLoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Feb 2022 06:44:01 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47436 "EHLO
+        id S234148AbiBLLyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Feb 2022 06:54:44 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232024AbiBLLoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 06:44:00 -0500
+        with ESMTP id S232024AbiBLLyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 06:54:44 -0500
 Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A14F426AD4;
-        Sat, 12 Feb 2022 03:43:57 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25F482613A;
+        Sat, 12 Feb 2022 03:54:41 -0800 (PST)
 Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 119231C0B7A; Sat, 12 Feb 2022 12:43:56 +0100 (CET)
-Date:   Sat, 12 Feb 2022 12:43:55 +0100
+        id BB8191C0B7A; Sat, 12 Feb 2022 12:54:39 +0100 (CET)
+Date:   Sat, 12 Feb 2022 12:54:38 +0100
 From:   Pavel Machek <pavel@ucw.cz>
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kvm-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
-Subject: Re: [PATCH v11 1/8] RISC-V: Enable CPU_IDLE drivers
-Message-ID: <20220212114355.GF20866@duo.ucw.cz>
-References: <20220210054947.170134-1-apatel@ventanamicro.com>
- <20220210054947.170134-2-apatel@ventanamicro.com>
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>,
+        sven@svenschwermer.de, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        post@lespocky.de
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add multicolor PWM LED bindings
+Message-ID: <20220212115438.GG20866@duo.ucw.cz>
+References: <20220126104844.246068-1-sven@svenschwermer.de>
+ <20220126104844.246068-2-sven@svenschwermer.de>
+ <00d8de09-360e-4e0f-1496-642ba1cbf863@gmail.com>
+ <20220128213609.7a60e9fe@thinkpad>
+ <09b46d05-5dd0-a585-2ca3-0bc04e613343@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="xkXJwpr35CY/Lc3I"
+        protocol="application/pgp-signature"; boundary="RMedoP2+Pr6Rq0N2"
 Content-Disposition: inline
-In-Reply-To: <20220210054947.170134-2-apatel@ventanamicro.com>
+In-Reply-To: <09b46d05-5dd0-a585-2ca3-0bc04e613343@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
@@ -54,37 +49,67 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---xkXJwpr35CY/Lc3I
+--RMedoP2+Pr6Rq0N2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
 Hi!
 
-> From: Anup Patel <anup.patel@wdc.com>
+> > > > Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologi=
+es.com>
+> > > > ---
+> > > [...]
+> > > > +
+> > > > +additionalProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    #include <dt-bindings/leds/common.h>
+> > > > +
+> > > > +    rgb-led {
+> > > > +        compatible =3D "pwm-leds-multicolor";
+> > > > +
+> > > > +        multi-led {
+> > > > +          color =3D <LED_COLOR_ID_RGB>;
+> > > > +          function =3D LED_FUNCTION_INDICATOR;
+> > > > +          max-brightness =3D <65535>;
+> > >=20
+> > > It doesn't make much sense to have such a big resolution of global
+> > > multi color brightness. 255 will be sufficient.
+> >=20
+> > If the PWM supports it, why not?
+> > On Omnia the default is 255, and since it is PWM, the change from 0/255
+> > to 1/255 is much bigger then from, say, 15/255 to 16/255. So if 1/255
+> > is too bright, you are then unable to set it less bright. I think 1024
+> > or ever 65535 makes sense with PWMs.
 >=20
-> We force select CPU_PM and provide asm/cpuidle.h so that we can
-> use CPU IDLE drivers for Linux RISC-V kernel.
->=20
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> Signed-off-by: Anup Patel <apatel@vetanamicro.com>
+> With values other than 255 we will not achieve 24-bit RGB, which is one
+> problem, and the other one is non-linear brightness that can be achieved
+> with PWM. So probably we would need to add an additional note in the
+> documentation [0], saying that changing global brightness allows to
+> preserve combined LED hue only when all sub-leds are linear, and that it
+> will not be the case for PWM LEDs.
 
-This is quite... interesting. Normally we have one signoff per
-person...
+I have yet to see a LED that was anything but linear. If we'll want to
+match colorspace of RGB displays, we'll need to do more work. (Often,
+255/255/255 is not white with RGB LEDs, for example).
+
+So 16-bit pwm makes sense to me.
 
 Best regards,
-							Pavel
+								Pavel
 --=20
 http://www.livejournal.com/~pavelmachek
 
---xkXJwpr35CY/Lc3I
+--RMedoP2+Pr6Rq0N2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYgedewAKCRAw5/Bqldv6
-8vflAJsExysBvOdiG/3HcSePeKRPJdXguwCglsuWNamkMdXA65hOK7oMLl5SIDM=
-=5z62
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYgef/gAKCRAw5/Bqldv6
+8mxaAJ9Huuordp8TZqDmLJtJHl/NWt/PIwCgvwg5KEPKBErrbU2khVMFNF0MsCc=
+=oYPN
 -----END PGP SIGNATURE-----
 
---xkXJwpr35CY/Lc3I--
+--RMedoP2+Pr6Rq0N2--
