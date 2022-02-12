@@ -2,76 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B51C74B3672
-	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 17:31:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4455F4B367C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Feb 2022 17:37:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237322AbiBLQbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Feb 2022 11:31:50 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44348 "EHLO
+        id S237419AbiBLQhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Feb 2022 11:37:17 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237291AbiBLQbt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 11:31:49 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CD5197
-        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 08:31:45 -0800 (PST)
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        with ESMTP id S231560AbiBLQhQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Feb 2022 11:37:16 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A3220F
+        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 08:37:12 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 21014407C0
-        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 16:31:44 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1091B402B4
+        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 16:37:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644683504;
-        bh=8Lhf7r5GEcQMqlZAoHA91Tt/jKDSvbsuMxA0NCPyhiA=;
+        s=20210705; t=1644683830;
+        bh=tMqilUYIpgE4D+Oy8hol1pf8fg4uaneK2N51DubcZr4=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version:Content-Type;
-        b=YEypQZkvLB4Eg4mtnXQURiX+wPQC+UQcREhYuZw7KLJjJdm3vqiSw59SrVxeEMLAC
-         tmqhI1TGtoTk58tjcjoOEwwgctWBaMGplY9yNDOW7kKSafymV9n4Aib+Mf1i5epKyj
-         +yLFv6fKOESjMZUsL9wmrm2FgkXgiMHdSWFZJ3vjmEYivis1z6dSqccQNQLH+NM4bG
-         wl7Lu5PjLhRgYwZxOAhepByBbFdGPwPfpt99EFZpe7BMcOnaEFrDyWwJP61AqncpZU
-         oUZkJzHr9EMEaHjFSUvbysNN5ElwIJacxVWXXnlqxmJ6Nk5+kNjxnm59vmwaZ7LYnt
-         JUcd486pLZKog==
-Received: by mail-ed1-f71.google.com with SMTP id b26-20020a056402139a00b004094fddbbdfso7346285edv.12
-        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 08:31:44 -0800 (PST)
+        b=TiRW7YRnNGf2WNlYqFkEI9zM+jgoTc4a5gPK1pQSH55ZdZOw8GRiz27Jkhp31nsrh
+         5uAjjzhv/lF+uY4GcEweIVsqksr6y2Ec4PY4u6ls3ClJ36C9Pq0v6D7pZADmIa5ZtP
+         Be1Cy8mZh+DeJZ0rxWwhwz0xzw4knFdQfROeTcPtmavSDg0BfJ8Epvd4thXv9wxedu
+         SfsbfE5WXWCnGunbAfQOiFz8Gzt1w5+QOZl/ZvqtsuJRh1a1n6C1b/hoJ18MoYzD4H
+         MZPhzvp3u7hydYvuEVdijUB1aCCM36EfpLDVqJLbmmO1k7pii+v+p2pCWNN8F2wFE3
+         OBu7LkCF4vlQQ==
+Received: by mail-ed1-f69.google.com with SMTP id f6-20020a0564021e8600b0040f662b99ffso7330746edf.7
+        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 08:37:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=8Lhf7r5GEcQMqlZAoHA91Tt/jKDSvbsuMxA0NCPyhiA=;
-        b=NRy5byH6Gw8RvNJH6DKfuOCWIe+fdZ9v8pXWO3RkJS6oHngW6hxN+2iWFBSryauI5F
-         e+lcfWU+MLw+fcaqONg9qzGXoc78CN5iHHfL2mT4VcFmt95hgVr55Psoadc7yMsc8o88
-         SrpqYDFYZxBRMl0EmhSdnTRhixCJzY9Ec0xDu2LE+s31HqFpWlglZaaFbIRB21eTO1uT
-         8Ya3r7L5UHSy2FOEvQoxo2Og0LtlNFIDyDbdxXSmAU32BJjtPnZHZQG3sMeG6853V0Yo
-         BN4PZcHhmL1avANDit1n5hSAwSX7eXPw8CT0Oas6m+u5IJzBo8okHRNBzGww2QK7oh9G
-         /2gQ==
-X-Gm-Message-State: AOAM533epNCDET4uSk9vGeM1H/3wNyo3+RH7JcU+//tbpVCdXT1+Gfa4
-        Db4SP4tNDUFcgvkYvYfBp/NJ3wpRd2QFe4r0ldMTZjH45ux7P/9x7MZsxL8B2oxHygEiwwrI81u
-        jijSqfrSlcK2KTCd9TPH+nZEI0wq2kP+QeCdlRFI=
-X-Received: by 2002:a05:6402:b9c:: with SMTP id cf28mr7316743edb.295.1644683503674;
-        Sat, 12 Feb 2022 08:31:43 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwPLJ7SWTPKzXbJuCVaehwlh0yiOX7PnxNdHbnZKzKFslpm8C19hbTGaOtSxRwZ5jyH8Kbndg==
-X-Received: by 2002:a05:6402:b9c:: with SMTP id cf28mr7316732edb.295.1644683503542;
-        Sat, 12 Feb 2022 08:31:43 -0800 (PST)
+        bh=tMqilUYIpgE4D+Oy8hol1pf8fg4uaneK2N51DubcZr4=;
+        b=JLM23k11s0HFgjHEJP0zmSMfl1ND3YFmTE0D3qY43tHz9UTudSLaJQxQAJgnPa8p/V
+         FuyDVKcbEKSgn4kEvGBeognYMD+/V7GU+4hL+InXuq1jflZeCVnltirYaSy2BARY7x9Z
+         3vVB5K4goJgW9F2GZRKwTm+yavPj5eYWb9uPBCiS3lgF1zlBqb4LVKteTNQO8aVTTQd+
+         vb8CPWwyimir3g/PWf2bjFa8Yac7qZG7l/UUm9UGX/bsLqNN1TIiVN2UYEinGr1n6gPB
+         3Fv5GqJjlbDLwvKBX9ZwDbgrus1ab0jqXtsckB2YiksiWSKnItlbVNM7e/OKcZcWVUoG
+         SXuA==
+X-Gm-Message-State: AOAM531kknbfhBhqr3nVkqDKORKoLIvf4QcP3dHfpfuWc6+txeHiDAtY
+        GDi/xM+g+gehxoEkLEeZ/yjdK1F4LrF4K4G8oRDL61GCV3sExcBRiXEGJInwtmXvhfZ3MJzyzKB
+        D3TxYzB7yDvJxht0Ho676DJM9Dw7CyMxJYjekP6A=
+X-Received: by 2002:a17:907:c07:: with SMTP id ga7mr5546529ejc.536.1644683829513;
+        Sat, 12 Feb 2022 08:37:09 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxD2vBUSSwJtNtb2tnnNYmZ8ce5zaQGnbpfOOmEuusMoNeqmKg6uKEeUXp4CHd4UHdvHqCobg==
+X-Received: by 2002:a17:907:c07:: with SMTP id ga7mr5546511ejc.536.1644683829366;
+        Sat, 12 Feb 2022 08:37:09 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id h6sm4472412ede.50.2022.02.12.08.31.41
+        by smtp.gmail.com with ESMTPSA id x10sm2494443edd.20.2022.02.12.08.37.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Feb 2022 08:31:42 -0800 (PST)
+        Sat, 12 Feb 2022 08:37:08 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
+To:     linux-phy@lists.infradead.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         linux-arm-kernel@lists.infradead.org,
-        Chanho Park <chanho61.park@samsung.com>
-Cc:     Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: Re: (subset) [RFT][PATCH 3/3] arm64: dts: exynos: drop incorrectly placed wakeup interrupts in Exynos850
-Date:   Sat, 12 Feb 2022 17:31:40 +0100
-Message-Id: <164468346864.47019.15604871002670498638.b4-ty@canonical.com>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        linux-samsung-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Inki Dae <inki.dae@samsung.com>, linux-kernel@vger.kernel.org
+Cc:     stable@vger.kernel.org, Sylwester Nawrocki <snawrocki@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: (subset) [PATCH 01/10] ARM: dts: exynos: add missing HDMI supplies on SMDK5250
+Date:   Sat, 12 Feb 2022 17:37:03 +0100
+Message-Id: <164468382250.54495.17179167915023420156.b4-ty@canonical.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211230195325.328220-3-krzysztof.kozlowski@canonical.com>
-References: <20211230195325.328220-1-krzysztof.kozlowski@canonical.com> <20211230195325.328220-3-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220208171823.226211-2-krzysztof.kozlowski@canonical.com>
+References: <20220208171823.226211-1-krzysztof.kozlowski@canonical.com> <20220208171823.226211-2-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -85,21 +93,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Dec 2021 20:53:25 +0100, Krzysztof Kozlowski wrote:
-> The pin controller device node is expected to have one (optional)
-> interrupt.  Its pin banks capable of external interrupts, should define
-> interrupts for each pin, unless a muxed interrupt is used.
+On Tue, 8 Feb 2022 18:18:14 +0100, Krzysztof Kozlowski wrote:
+> Add required VDD supplies to HDMI block on SMDK5250.  Without them, the
+> HDMI driver won't probe.  Because of lack of schematics, use same
+> supplies as on Arndale 5250 board (voltage matches).
 > 
-> Exynos850 defined the second part - interrupt for each pin in wake-up
-> pin controller - but also added these interrupts in main device node,
-> which is not correct.
 > 
-> [...]
 
 Applied, thanks!
 
-[3/3] arm64: dts: exynos: drop incorrectly placed wakeup interrupts in Exynos850
-      commit: daeb1c2b50fb98118d6318b5fdbd9ef9bdfaeaf5
+[01/10] ARM: dts: exynos: add missing HDMI supplies on SMDK5250
+        commit: 60a9914cb2061ba612a3f14f6ad329912b486360
 
 Best regards,
 -- 
