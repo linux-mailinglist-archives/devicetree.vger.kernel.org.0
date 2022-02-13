@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F08C54B3E41
-	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 23:58:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CE954B3E42
+	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 23:58:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238693AbiBMW6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 17:58:20 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60380 "EHLO
+        id S238715AbiBMW6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Feb 2022 17:58:21 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238719AbiBMW6T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 17:58:19 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86A4D54BE0
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:13 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id s7so24585720edd.3
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:13 -0800 (PST)
+        with ESMTP id S238708AbiBMW6U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 17:58:20 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 822E354BE1
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:14 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id hw13so5427637ejc.9
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=NejYM/SCa/adQTW7MigR+R0AZ8Mjof70P4hDReGIkqw=;
-        b=Pj0TyRueVaKWea76lADnqkyQk0FJ96Gh3fzpQdpLqI6EJAJ9Z0eeYCOeRhrODCnpff
-         wV+9FYGxooHxyh2JvS20oGYqfz1k+bRIzszK6fV+HIWwyDl04WkPPm0ywtH5Xvzqkp3s
-         znIauc+TyVEcw4lvpVNIDcFzbqsRJ8H81Udt76UnPtjx9YkxCRAFdoEEEU1FsnpE6y6N
-         E7pAKTocjQ1vP+O9ZAf3PZ1S9UiieNhkco2iB7S9hNCExuM1wAcJkOBgdlnWlHgqll2I
-         xToaFQTc6y4FSrY3nRMWZOmP8D2M7XaMYlPndBv2Onob6P4p66Hs++MOubAajYKPUJaw
-         UnSA==
+        bh=ivZTnCer36jidFVyFQSe8jli8F6HVOlgrV0ncoMunP4=;
+        b=BXiB0JZopaxdoC1803g5A+DWZq7uajcMVcVYnOWpUaOMo3zm5i8Hyj9hjtpBxzbj8S
+         RgdypbHdhIs5j/9qSKoxpaEmFglkt0vkBZgg+YO3FwM2EexqempXPMf2aE5dBfYHMg8o
+         2oqau8hyn1LycZuBazvFgFbyrWkjZntCSEQ9Il68joSCy8K3fS81kvIjKxLNI8qR3mji
+         fs5xp3SXCN4m/HnTjQymcznUSkNifdlwNRVIGWD9F+NJHM3qQW+moTqiJtmcqWqk8eAg
+         d1yCN3V+FGbcdvp21GzndVWmXxcw5vjDhDKBR7I1asevS7oRm3ZwjfB0GcuSQntUV19M
+         CmwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=NejYM/SCa/adQTW7MigR+R0AZ8Mjof70P4hDReGIkqw=;
-        b=VWLcLVpbCjw1brtR8VSUi/VMSkEdvn3f6t8uBnQJ+Z8YEBjs8Ie/+Q2CFQTb+VosC6
-         boVGJg3KaHaj52FWYsti6WzkAwLSeEURETwXWhyKG9xuk/AxVKXLn5kiSSD/9ScCv9lR
-         wRbzWeXS/RXoWYnsiFSPxjf4WUMh+olNReG4Rb2jrQXcl5OyRSMmlP7UV5Glypd9AsnN
-         uH3Mx/pZteqhkDmxP9/BTFuoXZHD34zyeNLCOanigSSQ5B4DOjsEY4MNoEFGMrxHnILf
-         kDZHctKTO7wZF1mXHoU/6cJQp8leC1S5+FWjRSEnEoO5LTBYWl1Of1bWRgJNzXZsFW30
-         8nNA==
-X-Gm-Message-State: AOAM530QCU4OEwvDV5iUPzDT1QDFgz2TaRoZLDmxvKmngohXWCQ1mFrD
-        SQQLyGVTdTny3Ez5LULAIZw=
-X-Google-Smtp-Source: ABdhPJxCeMxe71xsaWHClLlFyX4QlQOlzYsLbm/0woRoZB+8nGdWEGl3zXUZaTOTogbMT1gCeu2KcQ==
-X-Received: by 2002:aa7:da9a:: with SMTP id q26mr6131062eds.288.1644793092157;
-        Sun, 13 Feb 2022 14:58:12 -0800 (PST)
+        bh=ivZTnCer36jidFVyFQSe8jli8F6HVOlgrV0ncoMunP4=;
+        b=BddW/mM7xQ2lCy8XgsHOZ8bEBMglOSCKSYiQ8rQjQHPOip38459NOlJF1HS/JBe0f4
+         61xnPZy4aFDyhFHyH7Zzfd7hv0z0IjKRCKr/0+XxDU3Ilu/R21/ip+ZLrnU4GGkeZPDH
+         qsKzD+kkQitw9T5UMFYMBj724RNVOI3LJVTTu1wX/mrdSZbaKEQ2DuKdia5lmnkNuiFG
+         Ds4EOlRnWzVaXXR6iqYBVYsDYaO9/NAqFhINfT7GcMcHFZAkETMVtz8NrDuRw5JrfkyV
+         qjhaJYBBLz/oicSMGBjZJify7qQ7f2Hr4vFngjP3RIfrTNQBsjfSqDZ2RaUpNeQ29V8H
+         Lckw==
+X-Gm-Message-State: AOAM533Z0AKoGatd/lt4fCH4miGkcNXUVHDdmQCu72MHEW6DD/u/g3rd
+        MhF1qrO4oO41hfS65kHFWUc=
+X-Google-Smtp-Source: ABdhPJy1zgJHXR0xG+NxoKA/QqJCpy7K517B38I8JXVyJ+Vaa6qE0TSCVoiJKHHg4//tdK7D5GOW5g==
+X-Received: by 2002:a17:907:6298:: with SMTP id nd24mr9051878ejc.76.1644793093157;
+        Sun, 13 Feb 2022 14:58:13 -0800 (PST)
 Received: from morpheus.home.roving-it.com (3.e.2.0.0.0.0.0.0.0.0.0.0.0.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681::2e3])
-        by smtp.googlemail.com with ESMTPSA id g14sm3189163edb.55.2022.02.13.14.58.11
+        by smtp.googlemail.com with ESMTPSA id g14sm3189163edb.55.2022.02.13.14.58.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Feb 2022 14:58:11 -0800 (PST)
+        Sun, 13 Feb 2022 14:58:12 -0800 (PST)
 From:   Peter Robinson <pbrobinson@gmail.com>
 To:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,9 +65,9 @@ To:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Will Deacon <will@kernel.org>
 Cc:     Peter Robinson <pbrobinson@gmail.com>,
         Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: [PATCH v4 12/15] drm/v3d: Add support for bcm2711
-Date:   Sun, 13 Feb 2022 22:56:44 +0000
-Message-Id: <20220213225646.67761-13-pbrobinson@gmail.com>
+Subject: [PATCH v4 13/15] ARM: dts: bcm2711: Enable V3D
+Date:   Sun, 13 Feb 2022 22:56:45 +0000
+Message-Id: <20220213225646.67761-14-pbrobinson@gmail.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220213225646.67761-1-pbrobinson@gmail.com>
 References: <20220213225646.67761-1-pbrobinson@gmail.com>
@@ -83,7 +83,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string and Kconfig options for bcm2711.
+This enables V3D for bcm2711 (used in the Raspberry Pi 4).
 
 Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
@@ -91,35 +91,35 @@ Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
 Changes since v3:
 - Minor updates for rebase
 
- drivers/gpu/drm/v3d/Kconfig   | 2 +-
- drivers/gpu/drm/v3d/v3d_drv.c | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+Changes since v1:
+ - Correct node's name address 
 
-diff --git a/drivers/gpu/drm/v3d/Kconfig b/drivers/gpu/drm/v3d/Kconfig
-index e973ec487484..01d91c829107 100644
---- a/drivers/gpu/drm/v3d/Kconfig
-+++ b/drivers/gpu/drm/v3d/Kconfig
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- config DRM_V3D
- 	tristate "Broadcom V3D 3.x and newer"
--	depends on ARCH_BCM || ARCH_BRCMSTB || COMPILE_TEST
-+	depends on ARCH_BCM || ARCH_BRCMSTB || ARCH_BCM2835 || COMPILE_TEST
- 	depends on DRM
- 	depends on COMMON_CLK
- 	depends on MMU
-diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
-index 82af16523843..cec6e7858265 100644
---- a/drivers/gpu/drm/v3d/v3d_drv.c
-+++ b/drivers/gpu/drm/v3d/v3d_drv.c
-@@ -193,6 +193,7 @@ static const struct drm_driver v3d_drm_driver = {
- static const struct of_device_id v3d_of_match[] = {
- 	{ .compatible = "brcm,7268-v3d" },
- 	{ .compatible = "brcm,7278-v3d" },
-+	{ .compatible = "brcm,bcm2711-v3d" },
- 	{},
+ arch/arm/boot/dts/bcm2711.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
+index 171fc5d2acef..9514c0ba481c 100644
+--- a/arch/arm/boot/dts/bcm2711.dtsi
++++ b/arch/arm/boot/dts/bcm2711.dtsi
+@@ -551,6 +551,18 @@ genet_mdio: mdio@e14 {
+ 				#size-cells = <0x0>;
+ 			};
+ 		};
++
++		v3d: gpu@7ec00000 {
++			compatible = "brcm,bcm2711-v3d";
++			reg = <0x0 0x7ec00000 0x4000>,
++			      <0x0 0x7ec04000 0x4000>;
++			reg-names = "hub", "core0";
++
++			power-domains = <&pm BCM2835_POWER_DOMAIN_GRAFX_V3D>;
++			resets = <&pm BCM2835_RESET_V3D>;
++			clocks = <&firmware_clocks 5>;
++			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
++		};
+ 	};
  };
- MODULE_DEVICE_TABLE(of, v3d_of_match);
+ 
 -- 
 2.35.1
 
