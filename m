@@ -2,169 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 503184B39D8
-	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 07:32:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AA384B3A27
+	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 09:33:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233954AbiBMGcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 01:32:19 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52116 "EHLO
+        id S231899AbiBMIdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Feb 2022 03:33:50 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233950AbiBMGcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 01:32:15 -0500
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3388B28E04
-        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 22:32:11 -0800 (PST)
-Received: by mail-pf1-x429.google.com with SMTP id i30so23682956pfk.8
-        for <devicetree@vger.kernel.org>; Sat, 12 Feb 2022 22:32:11 -0800 (PST)
+        with ESMTP id S229555AbiBMIdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 03:33:50 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5137A5E77A;
+        Sun, 13 Feb 2022 00:33:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FnIfjUmZdedfi4INaVoGg1BBbTjtjdDq0mhqvofLu/o=;
-        b=ayLkrL0jVN0cG0TefQ83qSKycUfY3dJJZFQRvZNkD7dR0yESr0YP5GzNMheLhDUZWA
-         5tWk/kUE+RK8efoINPQj40BpkLfBDANJ1LmGtXKTStJpcsMxQoWQTwJhppynRbfjUxim
-         1VamoWWTaQlLJg8UiekJpEQzo4G820Tt9Td/o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FnIfjUmZdedfi4INaVoGg1BBbTjtjdDq0mhqvofLu/o=;
-        b=XghEkg6COh4iZx6Ckh9HRcaEAQRGk8T375h5P1s1lCwQpBhbFSP/RBAZIxdR3iFDPR
-         8eN35urmCmW2iGQu2ICmTc5cE8pvcql/CLmGEcFyvh5WJXNu8e+UU+xKlCTh2T0l3yax
-         tRaLJb0qGebtAJDKxCaU+yAr9M3+Bg4iEEgJm92q964Yj15Ocl702OQysJSxHIloJ5Uo
-         HGvP07ra4vpr5NMK5bHrFRshquis33Fj5q/35IMszCCLeBbC5l7TX1ZoOXpf6InDbUsQ
-         eN4e63YdYj5cx5EfKmMDgvQrNGiH7V02rN13/Lll8ECyPeSu8Wa/9urGUkAG/Rd+Q0v/
-         fhSw==
-X-Gm-Message-State: AOAM532IgyCrdcLKNnp0mRIIl2OY1V83R5jA1NsJrHHgsdmqmqyPSsBh
-        +g837wci5xdYqPR+wVJrG2jXTQ==
-X-Google-Smtp-Source: ABdhPJzGawVyNFBnKSTS7EoIyQkuKznXDZQHiblP4nZQ75Arj2fe0OXk2XiTMXRtxaLQq6D82ZRsYg==
-X-Received: by 2002:a05:6a00:1d9f:: with SMTP id z31mr8990026pfw.38.1644733930515;
-        Sat, 12 Feb 2022 22:32:10 -0800 (PST)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:3653:bf18:8571:5f26])
-        by smtp.gmail.com with ESMTPSA id q2sm34170025pfj.94.2022.02.12.22.32.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Feb 2022 22:32:09 -0800 (PST)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>,
-        devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v3 2/2] dt-bindings: display: Add STARRY 2081101QFH032011-53G
-Date:   Sun, 13 Feb 2022 14:31:51 +0800
-Message-Id: <20220213063151.3321331-2-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.35.1.265.g69c8d7142f-goog
-In-Reply-To: <20220213063151.3321331-1-hsinyi@chromium.org>
-References: <20220213063151.3321331-1-hsinyi@chromium.org>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1644741225; x=1676277225;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=JURP9AmcoLc1fhFWvK5ML0fsoJH7goTwLeATaM2KKRI=;
+  b=yrvwxFISmglv7i+bAGfVWvVNt2q58xsdIlx/iwv7LR5t2jhjC3X2uHCp
+   gSZ6YYeYKWIytkmG7GN4w3N0bDu4IJ6Mun2IxBK5JFbXSLD3PHMUjtm7g
+   kZBivaKSXHEytU1QfCPyFXjhVr0dFxlJdP0kgh1OJkv7gSBhhgFJ/eOs0
+   E=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 13 Feb 2022 00:33:44 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2022 00:33:43 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Sun, 13 Feb 2022 00:33:43 -0800
+Received: from jprakash-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Sun, 13 Feb 2022 00:33:36 -0800
+From:   Jishnu Prakash <quic_jprakash@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>, <mka@chromium.org>,
+        <dmitry.baryshkov@linaro.org>, <robh+dt@kernel.org>,
+        <knaack.h@gmx.de>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <manivannan.sadhasivam@linaro.org>, <linus.walleij@linaro.org>,
+        <quic_kgunda@quicinc.com>, <quic_aghayal@quicinc.com>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <quic_subbaram@quicinc.com>, <jic23@kernel.org>, <amitk@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm-owner@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>,
+        Jishnu Prakash <quic_jprakash@quicinc.com>
+Subject: [PATCH V5 0/4] thermal: qcom: Add support for PMIC5 Gen2 ADC_TM
+Date:   Sun, 13 Feb 2022 14:03:07 +0530
+Message-ID: <1644741191-12039-1-git-send-email-quic_jprakash@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
+Changes in v5:
+Fixed some compilation errors in patch 4.
 
-Add dt-bindings for 10.1" TFT LCD module called STARRY 2081101
-QFH032011-53G.
+Changes in v4:
+Addressed comments given by Jonathan (for using put_unaligned_le16)
+and by Dmitry (for using separate init function and correcting args_count)
+for qcom-spmi-adc-tm5.c in patch 4.
+Added init function in patch 3.
 
-Signed-off-by: xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v2->v3:
-rebase to next-20220211
----
- .../display/panel/innolux,himax8279d.yaml     | 72 +++++++++++++++++++
- 1 file changed, 72 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/innolux,himax8279d.yaml
+Changes in v3:
+Addressed comments given by Jonathan for qcom-spmi-adc-tm5.yaml.
+Addressed comments given by Dmitry and Jonathan for qcom-spmi-adc-tm5.c.
+Split patch for qcom-spmi-adc-tm5.c into two parts, one to refactor
+code to support multiple device generations and the second to add
+actual Gen2 ADC_TM changes.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/innolux,himax8279d.yaml b/Documentation/devicetree/bindings/display/panel/innolux,himax8279d.yaml
-new file mode 100644
-index 00000000000000..fdcea3870dfb80
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/innolux,himax8279d.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/innolux,himax8279d.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: INNOLUX HIMAX8279D DSI Display Panel
-+
-+maintainers:
-+  - xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+        # STARRY 2081101QFH032011-53G 10.1" WUXGA TFT LCD panel
-+      - starry,2081101qfh032011-53g
-+
-+  reg:
-+    description: the virtual channel number of a DSI peripheral
-+
-+  enable-gpios:
-+    description: a GPIO spec for the enable pin
-+
-+  pp1800-supply:
-+    description: core voltage supply
-+
-+  avdd-supply:
-+    description: phandle of the regulator that provides positive voltage
-+
-+  avee-supply:
-+    description: phandle of the regulator that provides negative voltage
-+
-+  backlight:
-+    description: phandle of the backlight device attached to the panel
-+
-+  port: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - enable-gpios
-+  - pp1800-supply
-+  - avdd-supply
-+  - avee-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dsi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        panel@0 {
-+            compatible = "starry,2081101qfh032011-53g";
-+            reg = <0>;
-+            enable-gpios = <&pio 45 0>;
-+            avdd-supply = <&ppvarn_lcd>;
-+            avee-supply = <&ppvarp_lcd>;
-+            pp1800-supply = <&pp1800_lcd>;
-+            backlight = <&backlight_lcd0>;
-+            port {
-+                panel_in: endpoint {
-+                    remote-endpoint = <&dsi_out>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
+Changes in v2:
+Split IIO file changes into separate patch.
+Addressed comments given by Dmitry for qcom-spmi-adc-tm5.c.
+
+Changes in v1:
+PMIC5 Gen2 ADC_TM is supported on PMIC7 chips and is a close
+counterpart of PMIC7 ADC. It has the same functionality as
+PMIC5 ADC_TM, to support generating interrupts on ADC value
+crossing upper or lower thresholds for monitored channels.
+
+Jishnu Prakash (4):
+  dt-bindings: thermal: qcom: add PMIC5 Gen2 ADC_TM bindings
+  iio: adc: qcom-vadc-common: add reverse scaling for PMIC5 Gen2 ADC_TM
+  thermal: qcom: Add support for multiple generations of devices
+  thermal: qcom: add support for PMIC5 Gen2 ADCTM
+
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml        | 110 ++++-
+ drivers/iio/adc/qcom-vadc-common.c                 |  11 +
+ drivers/thermal/qcom/qcom-spmi-adc-tm5.c           | 486 +++++++++++++++++++--
+ include/linux/iio/adc/qcom-vadc-common.h           |   2 +
+ 4 files changed, 569 insertions(+), 40 deletions(-)
+
 -- 
-2.35.1.265.g69c8d7142f-goog
+2.7.4
 
