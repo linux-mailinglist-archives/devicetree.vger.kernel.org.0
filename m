@@ -2,53 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C2AC4B3C3D
-	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 17:16:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D92C4B3C49
+	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 17:42:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236999AbiBMQQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 11:16:19 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38440 "EHLO
+        id S233871AbiBMQmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Feb 2022 11:42:05 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236992AbiBMQQT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 11:16:19 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD4A5A0AF;
-        Sun, 13 Feb 2022 08:16:12 -0800 (PST)
+        with ESMTP id S233353AbiBMQmF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 11:42:05 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B9C65AEE3;
+        Sun, 13 Feb 2022 08:41:59 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2A01EB80B32;
-        Sun, 13 Feb 2022 16:16:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D6FDC004E1;
-        Sun, 13 Feb 2022 16:16:02 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D74F3B8069A;
+        Sun, 13 Feb 2022 16:41:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83AE1C340F0;
+        Sun, 13 Feb 2022 16:41:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644768969;
-        bh=SjGHF8jSyh7ZBRwmmpVF3guCVazx1Er4nKQs+Ocu9nQ=;
+        s=k20201202; t=1644770516;
+        bh=kUhWsiT726hh3d+Q4QTvYQe9Waodt0JYRn2TX7NIR6k=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=NFivLYLbG1XLP3hYWVsOS3yZzA2+BHrUTF3K8OSieq6/bk2EyoubQ99pa9prLEjvw
-         i5EtCs80TK7R/qoZatNkr4OVwCt2QXmtgbcwBPBho7KBX6KXXlChp1kyeYF3h8IUgT
-         jJS8ZsGrkpxz3NhID8phWmvHEBE0/WYaQCcv8HClbH8AmVDhU6eB4zt4bzFXAjiNhf
-         trRgYlAHj0zfYvILzv1tyHwTjd/pDEyA/IvlVLkWHP0DmMFWjtG1xBUre5x0hkP5/R
-         wzHez7OETHF0fqBjAArQkv83SP8b7yG27J0LlLf+ZG7M16PXQXpM1RImwEoHrf+7Yj
-         ZFGZEKCHWDUEQ==
-Date:   Sun, 13 Feb 2022 16:22:45 +0000
+        b=OH1ybJh11ejoklwHhmT4uPdunpMwpZHRG5EOQ84X1ofiH/XVDHt97gL0iiE8pZdzC
+         02KI6UIC4tWaIcfY4BE4L2NEv+Ot1L0N74OlKd/0wm+AIZkzDFzq939dyd3nRm+t0V
+         O5hbD705ahe4Wd5uuLpHr+EbsNumS7UjNW0nLhTQVjQwO5keHK2rNNzzKYauHre/b2
+         emajjFCEtCJrXVH9cYXj5euyL8hlpcPlpVr+uF7GMjk6LPVXA87yZkmBJDQx/KpIqf
+         Vrhe41M53WCVWcz+a77F2B2brNaV/VvKKGHX+nYcihAEOrRMbtvC6NeXGy7Kr7Kpyp
+         62io0dP8qLhZQ==
+Date:   Sun, 13 Feb 2022 16:48:37 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Jishnu Prakash <quic_jprakash@quicinc.com>
-Cc:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <devicetree@vger.kernel.org>, <mka@chromium.org>,
-        <dmitry.baryshkov@linaro.org>, <robh+dt@kernel.org>,
-        <knaack.h@gmx.de>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
-        <manivannan.sadhasivam@linaro.org>, <linus.walleij@linaro.org>,
-        <quic_kgunda@quicinc.com>, <quic_aghayal@quicinc.com>,
-        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-        <quic_subbaram@quicinc.com>, <amitk@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm-owner@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH V5 0/4] thermal: qcom: Add support for PMIC5 Gen2 ADC_TM
-Message-ID: <20220213162245.009d4e41@jic23-huawei>
-In-Reply-To: <1644741191-12039-1-git-send-email-quic_jprakash@quicinc.com>
-References: <1644741191-12039-1-git-send-email-quic_jprakash@quicinc.com>
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc:     <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/3] iio:amplifiers:ada4250: add support for ADA4250
+Message-ID: <20220213164837.1324409a@jic23-huawei>
+In-Reply-To: <20220212105153.19748-1-antoniu.miclaus@analog.com>
+References: <20220212105153.19748-1-antoniu.miclaus@analog.com>
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -63,57 +54,289 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 13 Feb 2022 14:03:07 +0530
-Jishnu Prakash <quic_jprakash@quicinc.com> wrote:
+On Sat, 12 Feb 2022 12:51:51 +0200
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-Hi Jishnu,
+> The ADA4250 is an instrumentation amplifier with SPI/pin-strap
+> progammable gains that is optimized for ultra-low power systems.
+> With a minimum supply voltage of 1.7V, 26uA of quiescent current,
+> a shutdown mode, a sleep mode, and a fast wake up settling time,
+> ADA4250 can be power cycled on a battery powered system for even
+> futher savings.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Hi Antoniu
 
-My assumption is this will go through the thermal tree, but if
-that turns out not to be the case and we need to do something
-different then let me know.  From IIO side of things I'm marking
-it handled elsewhere in patchwork.
+One comment as result of a change - your buffer isn't DMA safe
+when done like this.
+
+A few more things noticed on reading through again + a few places
+where some documentation / comments would be great.
 
 Thanks,
 
 Jonathan
 
+> ---
+> changes in v2:
+>  - move all IIO attributes under a single channel
+>  - use DMA safe buffers + endian conversion
+>  - fix odd spacing in Kconfig
 
-> Changes in v5:
-> Fixed some compilation errors in patch 4.
-> 
-> Changes in v4:
-> Addressed comments given by Jonathan (for using put_unaligned_le16)
-> and by Dmitry (for using separate init function and correcting args_count)
-> for qcom-spmi-adc-tm5.c in patch 4.
-> Added init function in patch 3.
-> 
-> Changes in v3:
-> Addressed comments given by Jonathan for qcom-spmi-adc-tm5.yaml.
-> Addressed comments given by Dmitry and Jonathan for qcom-spmi-adc-tm5.c.
-> Split patch for qcom-spmi-adc-tm5.c into two parts, one to refactor
-> code to support multiple device generations and the second to add
-> actual Gen2 ADC_TM changes.
-> 
-> Changes in v2:
-> Split IIO file changes into separate patch.
-> Addressed comments given by Dmitry for qcom-spmi-adc-tm5.c.
-> 
-> Changes in v1:
-> PMIC5 Gen2 ADC_TM is supported on PMIC7 chips and is a close
-> counterpart of PMIC7 ADC. It has the same functionality as
-> PMIC5 ADC_TM, to support generating interrupts on ADC value
-> crossing upper or lower thresholds for monitored channels.
-> 
-> Jishnu Prakash (4):
->   dt-bindings: thermal: qcom: add PMIC5 Gen2 ADC_TM bindings
->   iio: adc: qcom-vadc-common: add reverse scaling for PMIC5 Gen2 ADC_TM
->   thermal: qcom: Add support for multiple generations of devices
->   thermal: qcom: add support for PMIC5 Gen2 ADCTM
-> 
->  .../bindings/thermal/qcom-spmi-adc-tm5.yaml        | 110 ++++-
->  drivers/iio/adc/qcom-vadc-common.c                 |  11 +
->  drivers/thermal/qcom/qcom-spmi-adc-tm5.c           | 486 +++++++++++++++++++--
->  include/linux/iio/adc/qcom-vadc-common.h           |   2 +
->  4 files changed, 569 insertions(+), 40 deletions(-)
-> 
+That got worse :( 
 
+>  drivers/iio/amplifiers/Kconfig   |  11 +
+>  drivers/iio/amplifiers/Makefile  |   1 +
+>  drivers/iio/amplifiers/ada4250.c | 384 +++++++++++++++++++++++++++++++
+>  3 files changed, 396 insertions(+)
+>  create mode 100644 drivers/iio/amplifiers/ada4250.c
+> 
+> diff --git a/drivers/iio/amplifiers/Kconfig b/drivers/iio/amplifiers/Kconfig
+> index 5eb1357a9c78..0099fd26fa89 100644
+> --- a/drivers/iio/amplifiers/Kconfig
+> +++ b/drivers/iio/amplifiers/Kconfig
+> @@ -23,6 +23,17 @@ config AD8366
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called ad8366.
+>  
+> +config ADA4250
+> +	tristate "Analog Devices ADA4250 Instrumentation Amplifier"
+> +	depends on SPI
+> +	help
+> +          Say yes here to build support for Analog Devices ADA4250
+> +          SPI Amplifier's support. The driver provides direct access via
+> +          sysfs.
+
+Fix this indenting.  Should be a tab plus 2 spaces I think.
+
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called ada4250.
+> +
+>  config HMC425
+>  	tristate "Analog Devices HMC425A and similar GPIO Gain Amplifiers"
+>  	depends on GPIOLIB
+> diff --git a/drivers/iio/amplifiers/Makefile b/drivers/iio/amplifiers/Makefile
+> index cb551d82f56b..2126331129cf 100644
+> --- a/drivers/iio/amplifiers/Makefile
+> +++ b/drivers/iio/amplifiers/Makefile
+> @@ -5,4 +5,5 @@
+>  
+>  # When adding new entries keep the list in alphabetical order
+>  obj-$(CONFIG_AD8366) += ad8366.o
+> +obj-$(CONFIG_ADA4250) += ada4250.o
+>  obj-$(CONFIG_HMC425) += hmc425a.o
+> diff --git a/drivers/iio/amplifiers/ada4250.c b/drivers/iio/amplifiers/ada4250.c
+> new file mode 100644
+> index 000000000000..c8b2c3382e33
+> --- /dev/null
+> +++ b/drivers/iio/amplifiers/ada4250.c
+> @@ -0,0 +1,384 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * ADA4250 driver
+> + *
+> + * Copyright 2022 Analog Devices Inc.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/device.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#include <asm/unaligned.h>
+> +
+> +/* ADA4250 Register Map */
+> +#define ADA4250_REG_GAIN_MUX        0x00
+> +#define ADA4250_REG_REFBUF_EN       0x01
+> +#define ADA4250_REG_RESET           0x02
+> +#define ADA4250_REG_SNSR_CAL_VAL    0x04
+> +#define ADA4250_REG_SNSR_CAL_CNFG   0x05
+> +#define ADA4250_REG_DIE_REV         0x18
+> +#define ADA4250_REG_CHIP_ID         0x19
+> +
+> +/* ADA4250_REG_GAIN_MUX Map */
+> +#define ADA4250_GAIN_MUX_MSK        GENMASK(2, 0)
+> +
+> +/* ADA4250_REG_REFBUF Map */
+> +#define ADA4250_REFBUF_MSK          BIT(0)
+> +
+> +/* ADA4250_REG_RESET Map */
+> +#define ADA4250_RESET_MSK           BIT(0)
+> +
+> +/* ADA4250_REG_SNSR_CAL_VAL Map */
+> +#define ADA4250_SNSR_CAL_VAL_MSK    GENMASK(7, 0)
+> +
+> +/* ADA4250_REG_SNSR_CAL_CNFG Bit Definition */
+If you chose appropriate naming I'd hope the
+register / field relationship woudl be clear.
+
+ADA4250_SNSR_CAL_CFG_BIAS_MSK
+
+maybe?  Not sure what the set brings you in the way
+of useful information.  Mind you, not sure what
+SNSR tells you over simply 
+ADA4250_CAL_CFG_BIAS_MSK
+ADA4250_REG_CAL_CFG
+etc
+
+
+
+> +#define ADA4250_BIAS_SET_MSK        GENMASK(3, 2)
+> +#define ADA4250_RANGE_SET_MSK       GENMASK(1, 0)
+> +
+> +/* Miscellaneous definitions */
+> +#define ADA4250_CHIP_ID             0x4250
+> +#define ADA4250_RANGE1              0
+> +#define	ADA4250_RANGE4              3
+> +
+> +/* ADA4250 current bias set */
+> +enum ada4250_current_bias {
+> +	ADA4250_BIAS_DISABLED,
+> +	ADA4250_BIAS_BANDGAP,
+> +	ADA4250_BIAS_AVDD,
+> +};
+> +
+> +struct ada4250_state {
+> +	struct spi_device	*spi;
+> +	struct regmap		*regmap;
+> +	struct regulator	*reg;
+> +	/* Protect against concurrent accesses to the device and data content */
+> +	struct mutex		lock;
+> +	u8			bias;
+> +	u8			gain;
+> +	int			offset_uv;
+> +	bool			refbuf_en;
+> +};
+> +
+> +/* ADA4250 Current Bias Source Settings: Disabled, Bandgap Reference, AVDD */
+> +static const int calibbias_table[] = {0, 1, 2};
+> +
+> +/* ADA4250 Gain (V/V) values: 1, 2, 4, 8, 16, 32, 64, 128 */
+> +static const int hwgain_table[] = {0, 1, 2, 3, 4, 5, 6, 7};
+
+While hw gain is often not somethign we put clear units on
+it does rather feel like the values in the comment would make more sense
+for what you expose as the user interface for this.
+
+> +
+> +static const struct regmap_config ada4250_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.read_flag_mask = BIT(7),
+> +	.max_register = 0x1A,
+> +};
+> +
+> +static int ada4250_set_offset_uv(struct iio_dev *indio_dev,
+> +				 const struct iio_chan_spec *chan,
+> +				 int offset_uv)
+> +{
+> +	struct ada4250_state *st = iio_priv(indio_dev);
+> +
+> +	int i, ret, x[8], max_vos, min_vos, voltage_v, vlsb = 0;
+> +	u8 offset_raw, range = ADA4250_RANGE1;
+> +	u32 lsb_coeff[6] = {1333, 2301, 4283, 8289, 16311, 31599};
+> +
+> +	if (st->bias == 0 || st->bias == 3)
+> +		return -EINVAL;
+> +
+> +	voltage_v = regulator_get_voltage(st->reg);
+> +	voltage_v = DIV_ROUND_CLOSEST(voltage_v, 1000000);
+> +
+> +	if (st->bias == ADA4250_BIAS_AVDD)
+> +		x[0] = voltage_v;
+> +	else
+> +		x[0] = 5;
+> +
+> +	x[1] = 126 * (x[0] - 1);
+> +
+> +	for (i = 0; i < 6; i++)
+> +		x[i + 2] = DIV_ROUND_CLOSEST(x[1] * 1000, lsb_coeff[i]);
+> +
+> +	if (st->gain == 0)
+> +		return -EINVAL;
+> +
+> +	/* Compute Range and VLSB for the Sensor Offset Calibration */
+
+VLSB is what?  Voltage per LSB?
+
+> +	for (i = ADA4250_RANGE1; i <= ADA4250_RANGE4; i++) {
+
+Maths here is unusual. If you can add a comment on what it is doing
+that would be great.
+
+> +		max_vos = x[st->gain] *  127 * ((1 << (i + 1)) - 1);
+> +		min_vos = -1 * max_vos;
+> +		if (offset_uv > min_vos && offset_uv < max_vos) {
+> +			range = i;
+> +			vlsb = x[st->gain] * ((1 << (i + 1)) - 1);
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (vlsb <= 0)
+> +		return -EINVAL;
+> +
+> +	offset_raw = DIV_ROUND_CLOSEST(abs(offset_uv), vlsb);
+> +
+> +	mutex_lock(&st->lock);
+> +	ret = regmap_update_bits(st->regmap, ADA4250_REG_SNSR_CAL_CNFG,
+> +				 ADA4250_RANGE_SET_MSK,
+> +				 FIELD_PREP(ADA4250_RANGE_SET_MSK, range));
+> +	if (ret)
+> +		goto exit;
+> +
+> +	st->offset_uv = offset_raw * vlsb;
+> +
+> +	if (offset_uv < 0) {
+
+This is sufficiently unusual I'd like to see a comment expalingin why setting
+that bit makes sense. Also use the BIT() macro.
+
+> +		offset_raw |= 1 << 8;
+> +		st->offset_uv *= (-1);
+> +	}
+> +
+> +	ret = regmap_write(st->regmap, ADA4250_REG_SNSR_CAL_VAL, offset_raw);
+> +
+> +exit:
+> +	mutex_unlock(&st->lock);
+> +
+> +	return ret;
+> +}
+> +
+
+> +
+> +static int ada4250_init(struct ada4250_state *st)
+> +{
+> +	int ret;
+> +	u16 chip_id;
+> +	u8 data[2] ____cacheline_aligned;
+
+Unfortunately I'm fairly sure this isn't sufficient.
+
+So the reason it works in a structure such as iio_priv() is that the
+allocation is guaranteed to padded to at least the same step as the
+alignment.  So that our allocation starts at the beginning of
+a cacheline and that the rest of the cacheline is padded so that nothing
+else ends up in it.  (Note this is also why DMA safe buffers are always
+at the end of iio_priv() structures - you can have rx and tx buffers
+in the same cacheline assuming the same device doing the DMA, but you
+can't have arbitrary data there).
+
+As a side note, using aligned pragmas on stack variables in general used
+be broken. I'm not sure on whether the current minimum compiler version
+is now fine with them or not.
+
+Also, we can use the __aligned(8) trick for non dma buffers to force timestamp
+alignment as we don't care about what comes after those (so you'll see
+that in quite a few IIO drivers).
+
+
+> +	struct spi_device *spi = st->spi;
+> +
+...
