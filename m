@@ -2,58 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFE654B3C4E
-	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 17:49:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86D214B3C66
+	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 18:15:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237114AbiBMQtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 11:49:20 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47206 "EHLO
+        id S237246AbiBMRPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Feb 2022 12:15:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233353AbiBMQtU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 11:49:20 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FBCC5B3F9;
-        Sun, 13 Feb 2022 08:49:14 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2EFEAB80886;
-        Sun, 13 Feb 2022 16:49:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F78FC004E1;
-        Sun, 13 Feb 2022 16:49:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644770951;
-        bh=KaL0kUvYo90UUMVofBczF9tgkvg1Kbt1TiJGxmg7TQo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=CrZo+Gsi3CwxXTO0XLP7z9sPmFWwMJO0S4S6SR9HZSm/nQPlPL/eRvZXJyU+HBZ8Q
-         aXYHLTWS5CMqPAzIychVEMspyEx974I+fPwFxr0/DqTDsOC6e3vonPrIs7sv5Skm1x
-         4cVb0vYmaekQCbPWT5YJkwosXsDN7GwtF4NeIhpmORYvLSHgNx4k+mv8DwHMOuTA8e
-         R1vfbxDd34xN9wh9XtHgWtKROJ01F8bjcsgnyJZ/btjLktYSWnHydJQ8FmpJk/9vaX
-         InHa5Hy5HdFcgyioVgjx1XrX3V/w+M8+5LRCVfigVv/pF5zU3D2T59maCEIzCFSo+a
-         6EPX41RwG+tbw==
-Date:   Sun, 13 Feb 2022 16:55:50 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S231377AbiBMRPy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 12:15:54 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E0858E5B
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 09:15:47 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id h8so6452966ejy.4
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 09:15:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=c9MPHlFrwB1AIaRrVksm22KgsTglVC3BMVPKSN6mOUY=;
+        b=ofyDYtpNgouEVX7gOtAFSj8cSZCLEz3TXD/HACNOFQcx8n+b91koIqr/LG0Ql3hmbJ
+         mJDqwzf8EjqIzQ70RdtYAk9Em5zmqln6NL4J9qHB4+a9O07QV+iirtWG2JRqPkpezi75
+         ZK8sAWcRuJ+5JaelIw0b5NfEPyjz8Mn+bDF0w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=c9MPHlFrwB1AIaRrVksm22KgsTglVC3BMVPKSN6mOUY=;
+        b=p/1eZAI+1MqKw56kuxFXaLhZzKQtrtTh2UgyPONUnXg7jxQ4++PN+iPLwHTQ9TTQGa
+         hqnjoPkE9l/dfNnIhyyHRpccmwZz4Dm5dndJdjRINGCfwhSyz37xCDvaTsJAzDViSZJV
+         zmzNx0wO2MGpnbfD3+ta6dBpboAO8PhRnfKHoKux2NI1dmOeS8KQtciOvHtY+f3iWfdR
+         HMknj5u0zYVTamsbeZMaVy26AgfN5fwOYA7xmmO1fWyh4OyLF6hQpZ61vOy+Ar6ZGo+9
+         l/0HnLTkPiT1N6+3/kqaLM8he5hZ4Ij1p+zHO/ZV8Fl6Xk3wK4OKQ0pBRvgmWEVDIxvK
+         oahQ==
+X-Gm-Message-State: AOAM5322gRZulaOimtmZ+KGWdouSFPMiZfGfIBc/bIs2ClN9UnUo7g+x
+        Ufi0+01DPlJPH5NqnTGPU4Gw1w==
+X-Google-Smtp-Source: ABdhPJxzrYnp0KzwWb+SoSyHHC1bsVKGey8t110wlfenAXc4cu3PVtFf+zECOtq9bIZ7nETEOWUSwg==
+X-Received: by 2002:a17:907:3d94:: with SMTP id he20mr8574709ejc.637.1644772546240;
+        Sun, 13 Feb 2022 09:15:46 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-52-8-210.retail.telecomitalia.it. [82.52.8.210])
+        by smtp.gmail.com with ESMTPSA id o10sm6598878ejj.6.2022.02.13.09.15.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Feb 2022 09:15:45 -0800 (PST)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org
-Subject: Re: [PATCH v4 1/8] mfd: qcom-spmi-pmic: expose the PMIC revid
- information to clients
-Message-ID: <20220213165550.13051272@jic23-huawei>
-In-Reply-To: <20220211211959.502514-2-caleb.connolly@linaro.org>
-References: <20220211211959.502514-1-caleb.connolly@linaro.org>
-        <20220211211959.502514-2-caleb.connolly@linaro.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        Stephan Gerhold <stephan@gerhold.net>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: [PATCH 0/6] Input: edt-ft5x06 - Improve configuration
+Date:   Sun, 13 Feb 2022 18:15:26 +0100
+Message-Id: <20220213171532.346270-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -62,27 +70,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Feb 2022 21:19:52 +0000
-Caleb Connolly <caleb.connolly@linaro.org> wrote:
+The series was born from the analysis and mitigation of a crc problem
+raised by an M06 type device. The added sysfs attributes were helpful
+in debugging the problem. Patches that change the report rate on driver
+probing, mitigated crc errors on kernel bootup. The patch to get/set
+report rate by sysfs for an M12 device, has been tested.
 
-> Some PMIC functions such as the RRADC need to be aware of the PMIC
-> chip revision information to implement errata or otherwise adjust
-> behaviour, export the PMIC information to enable this.
-> 
-> This is specifically required to enable the RRADC to adjust
-> coefficients based on which chip fab the PMIC was produced in,
-> this can vary per unique device and therefore has to be read at
-> runtime.
-> 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 
-Hi Caleb,
+Dario Binacchi (6):
+  dt-bindings: input: touchscreen: edt-ft5x06: add report-rate
+  Input: edt-ft5x06 - get/set M12 report rate by sysfs
+  Input: edt-ft5x06 - set report rate by dts property
+  Input: edt-ft5x06 - show model name by sysfs
+  Input: edt-ft5x06 - show firmware version by sysfs
+  Input: edt-ft5x06 - show crc and header errors by sysfs
 
-Looks fine to me, though obviously needs a tag from Lee as MFD maintainer.
-I'm assuming I'll take this series through IIO once everyone is happy
-with the changes and hence it'll pick up my SoB, so I'm not giving
-RBs or similar in the meantime.
+ .../input/touchscreen/edt-ft5x06.yaml         |  8 ++
+ drivers/input/touchscreen/edt-ft5x06.c        | 81 +++++++++++++++++--
+ 2 files changed, 81 insertions(+), 8 deletions(-)
 
-Thanks,
+-- 
+2.32.0
 
-Jonathan
