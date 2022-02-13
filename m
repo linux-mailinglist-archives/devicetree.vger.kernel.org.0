@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A301C4B3E3C
-	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 23:58:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01BE94B3E3D
+	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 23:58:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238691AbiBMW6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S238712AbiBMW6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sun, 13 Feb 2022 17:58:16 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60208 "EHLO
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238712AbiBMW6O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 17:58:14 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF55154BE3
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:07 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id qk11so13532038ejb.2
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:07 -0800 (PST)
+        with ESMTP id S238666AbiBMW6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 17:58:15 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C20C54BE0
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:09 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id qk11so13532087ejb.2
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=gH8fsrRlg3C6SSTb3qLzsD14CS9me/GxO3/rmRt1Yy4=;
-        b=ps4J/eHO+enBkq9qoHdjxixoy6iK+cwVsFnT/rqf6Hd2oEdirw3vOj21XoUfYBYp06
-         7qDZE8DAoVTdBUcxk5KVFkHnRI7FCaBFJVvwtxFwuwyJlUaPCizlcxaJNNSMS0MyxzOx
-         efK+tPYUPeC5VDgJWYYKA61I2cwpWdyVEw2nJUQLILM+weurWsHmTxiv0+5+Wv2XY29u
-         jH7T8KPW0uHueWPEP2cf8249U1lroBqUugq/vdkPUH6CEs3B+kSfzXL1nqWZoqbKgrv4
-         rnWCgpwxQFRUDhVQ+Ibp5/ZOn9hJcc1Lk9HScUZ3yHsb4SjzeR+yEaT04nPoQWvKizks
-         OyOA==
+        bh=Mdx7I5Eo8oBah9t8/cpT7ExRF6D3O1Ycqvlfz85E7CA=;
+        b=l4JPVCQeLEpqHBwiyDM7FZuMwpCo8D7yYfnnZbSIQKtACgK2kHw8qP1u2IPItn575X
+         XFF5mQ6cP24SV2wWk88zKdZ+xoUo6u57lmelWOe77w5l1DFRcr6yoPpdFJSoUmHQbp2p
+         jIPWfdD8168RS9i2EH0Jekrt6J0xKhYkiGyKraMmWDEEWue3hI69IACLyyV0uP4y7+8H
+         Fkg7L3McdTJumeEahXgIprbSgoDsDEVvMyHvJhOm+YXRERz9KBqOwuFMFtFYdKu2iDbH
+         zSQZ8eThBGuHXFI/gLEB4359z2wrxVUP4nPn/v1k7uWl75M4WH7DFvXuV2MF/cvScdRf
+         5zFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=gH8fsrRlg3C6SSTb3qLzsD14CS9me/GxO3/rmRt1Yy4=;
-        b=Hax6x1Cn7WJb0/39Jk5FXy+ra+N8pkAtKSPRKzAnfK66g0JULSFoVbPrG4qWhjd2JY
-         /KlXQK39h3vkfRTRujRpCZ2R8bTllKK0IJF5wFiQ5cjMD2nllEvJ05RtiwYxirjZkoYW
-         Vyw2a4yNSs9RWPXhXIlPIsSWZDMlo6K1IvGSUHMFFNl7TlPz1YLjKeHcjfLcvzFZik2k
-         2TBdZmtX/dYwDu1LXKHwpBpKSHlnc1SzV0Ll++qebkaiWQ80rI/iGwnibdDbnHGMtzFM
-         E475Wa8Z67b08OMdGX0BpTFLmduheVoUIffmxAwRXX1NJU2t3MWOQGSE1O4NjpfidYd2
-         3Npw==
-X-Gm-Message-State: AOAM531d2sgVn5dEzuz2zklJtmLL7MJT15YR/WxWbgoHeahU+A60OJBI
-        kSneV0YfII6i0i/E2emezOQ=
-X-Google-Smtp-Source: ABdhPJxFnysaGfjAPQJ745Q6+KqLdQRZe6OfpJuU9XJWEdFNQYylEnVAQpnKRTUxZkRhcWmb2eMhfw==
-X-Received: by 2002:a17:907:3d8f:: with SMTP id he15mr9290907ejc.623.1644793086517;
-        Sun, 13 Feb 2022 14:58:06 -0800 (PST)
+        bh=Mdx7I5Eo8oBah9t8/cpT7ExRF6D3O1Ycqvlfz85E7CA=;
+        b=EzLLCZhzxmjE2LN5gnKHQjh+U9knnQhu0kSzb9uc6D0yPKTP+bPq90Cvr4Jj7IBUb1
+         7IpZJLSieYOmByNw2rLxvEmjcQkDNFhhvne6LIzNuxK7u38dcSSs+WqcY4ggM/Bp2wmD
+         4d+BaJyvnoT7qLLfqfuBowhMyZkpBpD5QASbVmKJZ5pJ5mW+A1g0IoLoz/F+wVg6TEBm
+         1rBvVdh/Udamxcxb/CP7UklYlarNmIhkCBrWHFupd4PfavcM4Znd+d6MsihPvCTkDyI5
+         GEmA7D7QJurESjCQF304lCW6NzAhqcT5e0mBA9RZSxFe1PI+buzp1o+5WBD0yOh+Jfz2
+         jNYg==
+X-Gm-Message-State: AOAM5327TqR36fDlIsVMjVSf4DtoSXyxVKIh4f4cq3TIXg/urcrwF+sM
+        qD92VYUYOedJP34ruHomXbdaACyztkj2BA==
+X-Google-Smtp-Source: ABdhPJwEC3TJGmKXsvO1w6ER7exMZMJ0Xc+Rid1ieNp9AtEFq2/oU//USalQA4a31llIDs2PBK/4ug==
+X-Received: by 2002:a17:907:9805:: with SMTP id ji5mr4505197ejc.489.1644793087598;
+        Sun, 13 Feb 2022 14:58:07 -0800 (PST)
 Received: from morpheus.home.roving-it.com (3.e.2.0.0.0.0.0.0.0.0.0.0.0.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681::2e3])
-        by smtp.googlemail.com with ESMTPSA id g14sm3189163edb.55.2022.02.13.14.58.05
+        by smtp.googlemail.com with ESMTPSA id g14sm3189163edb.55.2022.02.13.14.58.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Feb 2022 14:58:06 -0800 (PST)
+        Sun, 13 Feb 2022 14:58:07 -0800 (PST)
 From:   Peter Robinson <pbrobinson@gmail.com>
 To:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,9 +65,9 @@ To:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Will Deacon <will@kernel.org>
 Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         Peter Robinson <pbrobinson@gmail.com>
-Subject: [PATCH v4 07/15] mfd: bcm2835-pm: Add support for BCM2711
-Date:   Sun, 13 Feb 2022 22:56:39 +0000
-Message-Id: <20220213225646.67761-8-pbrobinson@gmail.com>
+Subject: [PATCH v4 08/15] soc: bcm: bcm2835-power: Add support for BCM2711's RPiVid ASB
+Date:   Sun, 13 Feb 2022 22:56:40 +0000
+Message-Id: <20220213225646.67761-9-pbrobinson@gmail.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220213225646.67761-1-pbrobinson@gmail.com>
 References: <20220213225646.67761-1-pbrobinson@gmail.com>
@@ -89,115 +89,236 @@ In BCM2711 the new RPiVid ASB took over V3D. The old ASB is still present
 with the ISP and H264 bits, and V3D is in the same place in the new ASB
 as the old one.
 
-As per the devicetree bindings, BCM2711 will provide both the old and
-new ASB resources, so get both of them and pass them into
-'bcm2835-power,' which will take care of selecting which one to use
-accordingly.
-
-Since the RPiVid ASB's resources were being provided prior to formalizing
-the bindings[1], also support the old firmwares that didn't use
-'reg-names.'
+Use the fact that 'pm->rpivid_asb' is populated as a hint that we're on
+BCM2711. On top of that introduce the macro ASB_BASE() which will select
+the correct ASB register base, based on whether we're trying to access
+V3D and which platform we're on.
 
 Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
-
-[1] See: 7dbe8c62ceeb ("ARM: dts: Add minimal Raspberry Pi 4 support")
-
 ---
-Changes since v2: 
- - Correct names again!
-                        
+Changes since v2:
+ - Correct names again
+
 Changes since v1:
- - Use reg-names
- - Correct ASB names
+ - Correct names
 
- drivers/mfd/bcm2835-pm.c       | 25 +++++++++++++++++++++++--
- include/linux/mfd/bcm2835-pm.h |  1 +
- 2 files changed, 24 insertions(+), 2 deletions(-)
+ drivers/soc/bcm/bcm2835-power.c | 66 ++++++++++++++++++++-------------
+ 1 file changed, 41 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/mfd/bcm2835-pm.c b/drivers/mfd/bcm2835-pm.c
-index 36fede92775c..a06e9cf19b64 100644
---- a/drivers/mfd/bcm2835-pm.c
-+++ b/drivers/mfd/bcm2835-pm.c
-@@ -6,6 +6,7 @@
-  * the WDT and power drivers.
-  */
+diff --git a/drivers/soc/bcm/bcm2835-power.c b/drivers/soc/bcm/bcm2835-power.c
+index 1e0041ec8132..eea31f75dc64 100644
+--- a/drivers/soc/bcm/bcm2835-power.c
++++ b/drivers/soc/bcm/bcm2835-power.c
+@@ -126,8 +126,9 @@
  
-+#include <linux/bits.h>
- #include <linux/delay.h>
- #include <linux/io.h>
- #include <linux/mfd/bcm2835-pm.h>
-@@ -17,6 +18,9 @@
- #include <linux/types.h>
- #include <linux/watchdog.h>
+ #define ASB_AXI_BRDG_ID			0x20
  
-+#define BCM2835		BIT(1)
-+#define BCM2711		BIT(2)
-+
- static const struct mfd_cell bcm2835_pm_devs[] = {
- 	{ .name = "bcm2835-wdt" },
+-#define ASB_READ(reg) readl(power->asb + (reg))
+-#define ASB_WRITE(reg, val) writel(PM_PASSWORD | (val), power->asb + (reg))
++#define ASB_BASE(is_v3d) (is_v3d && power->rpivid_asb ? power->rpivid_asb : power->asb)
++#define ASB_READ(reg, is_v3d) readl(ASB_BASE(is_v3d) + (reg))
++#define ASB_WRITE(reg, val, is_v3d) writel(PM_PASSWORD | (val), ASB_BASE(is_v3d) + (reg))
+ 
+ struct bcm2835_power_domain {
+ 	struct generic_pm_domain base;
+@@ -142,13 +143,16 @@ struct bcm2835_power {
+ 	void __iomem		*base;
+ 	/* AXI Async bridge registers. */
+ 	void __iomem		*asb;
++	/* RPiVid bridge registers. */
++	void __iomem		*rpivid_asb;
+ 
+ 	struct genpd_onecell_data pd_xlate;
+ 	struct bcm2835_power_domain domains[BCM2835_POWER_DOMAIN_COUNT];
+ 	struct reset_controller_dev reset;
  };
-@@ -28,6 +32,8 @@ static const struct mfd_cell bcm2835_power_devs[] = {
- static int bcm2835_pm_get_pdata(struct platform_device *pdev,
- 				struct bcm2835_pm *pm)
- {
-+	bool is_bcm2711 = (uintptr_t)device_get_match_data(pm->dev) & BCM2711;
-+
- 	/* If no 'reg-names' property is found we can assume we're using old
- 	 * firmware.
- 	 */
-@@ -41,6 +47,10 @@ static int bcm2835_pm_get_pdata(struct platform_device *pdev,
- 		pm->asb = devm_platform_ioremap_resource(pdev, 1);
- 		if (IS_ERR(pm->asb))
- 			pm->asb = NULL;
-+
-+		pm->rpivid_asb = devm_platform_ioremap_resource(pdev, 2);
-+		if (IS_ERR(pm->rpivid_asb))
-+			pm->rpivid_asb = NULL;
- 	} else {
- 		pm->base = devm_platform_ioremap_resource_byname(pdev, "pm");
- 		if (IS_ERR(pm->base))
-@@ -49,6 +59,16 @@ static int bcm2835_pm_get_pdata(struct platform_device *pdev,
- 		pm->asb = devm_platform_ioremap_resource_byname(pdev, "asb");
- 		if (IS_ERR(pm->base))
- 			pm->asb = NULL;
-+
-+		pm->rpivid_asb = devm_platform_ioremap_resource_byname(pdev,
-+								      "rpivid_asb");
-+		if (IS_ERR(pm->base))
-+			pm->rpivid_asb = NULL;
-+
-+		if (pm->rpivid_asb && !is_bcm2711) {
-+			dev_err(pm->dev, "RPiVid ASB support only present in BCM2711\n");
-+			return -EINVAL;
-+		}
- 	}
  
+-static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg)
++static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg,
++			      bool is_v3d)
+ {
+ 	u64 start;
+ 
+@@ -158,8 +162,8 @@ static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg)
+ 	start = ktime_get_ns();
+ 
+ 	/* Enable the module's async AXI bridges. */
+-	ASB_WRITE(reg, ASB_READ(reg) & ~ASB_REQ_STOP);
+-	while (ASB_READ(reg) & ASB_ACK) {
++	ASB_WRITE(reg, ASB_READ(reg, is_v3d) & ~ASB_REQ_STOP, is_v3d);
++	while (ASB_READ(reg, is_v3d) & ASB_ACK) {
+ 		cpu_relax();
+ 		if (ktime_get_ns() - start >= 1000)
+ 			return -ETIMEDOUT;
+@@ -168,7 +172,8 @@ static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg)
  	return 0;
-@@ -89,8 +109,9 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
  }
  
- static const struct of_device_id bcm2835_pm_of_match[] = {
--	{ .compatible = "brcm,bcm2835-pm-wdt", },
--	{ .compatible = "brcm,bcm2835-pm", },
-+	{ .compatible = "brcm,bcm2835-pm-wdt", .data = (void *)BCM2835},
-+	{ .compatible = "brcm,bcm2835-pm", .data = (void *)BCM2835},
-+	{ .compatible = "brcm,bcm2711-pm", .data = (void *)BCM2711},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, bcm2835_pm_of_match);
-diff --git a/include/linux/mfd/bcm2835-pm.h b/include/linux/mfd/bcm2835-pm.h
-index ed37dc40e82a..f70a810c55f7 100644
---- a/include/linux/mfd/bcm2835-pm.h
-+++ b/include/linux/mfd/bcm2835-pm.h
-@@ -9,6 +9,7 @@ struct bcm2835_pm {
- 	struct device *dev;
- 	void __iomem *base;
- 	void __iomem *asb;
-+	void __iomem *rpivid_asb;
- };
+-static int bcm2835_asb_disable(struct bcm2835_power *power, u32 reg)
++static int bcm2835_asb_disable(struct bcm2835_power *power, u32 reg,
++			       bool is_v3d)
+ {
+ 	u64 start;
  
- #endif /* BCM2835_MFD_PM_H */
+@@ -178,8 +183,8 @@ static int bcm2835_asb_disable(struct bcm2835_power *power, u32 reg)
+ 	start = ktime_get_ns();
+ 
+ 	/* Enable the module's async AXI bridges. */
+-	ASB_WRITE(reg, ASB_READ(reg) | ASB_REQ_STOP);
+-	while (!(ASB_READ(reg) & ASB_ACK)) {
++	ASB_WRITE(reg, ASB_READ(reg, is_v3d) | ASB_REQ_STOP, is_v3d);
++	while (!(ASB_READ(reg, is_v3d) & ASB_ACK)) {
+ 		cpu_relax();
+ 		if (ktime_get_ns() - start >= 1000)
+ 			return -ETIMEDOUT;
+@@ -274,7 +279,8 @@ static int bcm2835_asb_power_on(struct bcm2835_power_domain *pd,
+ 				u32 pm_reg,
+ 				u32 asb_m_reg,
+ 				u32 asb_s_reg,
+-				u32 reset_flags)
++				u32 reset_flags,
++				bool is_v3d)
+ {
+ 	struct bcm2835_power *power = pd->power;
+ 	int ret;
+@@ -301,13 +307,13 @@ static int bcm2835_asb_power_on(struct bcm2835_power_domain *pd,
+ 		goto err_enable_resets;
+ 	}
+ 
+-	ret = bcm2835_asb_enable(power, asb_m_reg);
++	ret = bcm2835_asb_enable(power, asb_m_reg, is_v3d);
+ 	if (ret) {
+ 		dev_err(power->dev, "Failed to enable ASB master for %s\n",
+ 			pd->base.name);
+ 		goto err_disable_clk;
+ 	}
+-	ret = bcm2835_asb_enable(power, asb_s_reg);
++	ret = bcm2835_asb_enable(power, asb_s_reg, is_v3d);
+ 	if (ret) {
+ 		dev_err(power->dev, "Failed to enable ASB slave for %s\n",
+ 			pd->base.name);
+@@ -317,7 +323,7 @@ static int bcm2835_asb_power_on(struct bcm2835_power_domain *pd,
+ 	return 0;
+ 
+ err_disable_asb_master:
+-	bcm2835_asb_disable(power, asb_m_reg);
++	bcm2835_asb_disable(power, asb_m_reg, is_v3d);
+ err_disable_clk:
+ 	clk_disable_unprepare(pd->clk);
+ err_enable_resets:
+@@ -329,22 +335,23 @@ static int bcm2835_asb_power_off(struct bcm2835_power_domain *pd,
+ 				 u32 pm_reg,
+ 				 u32 asb_m_reg,
+ 				 u32 asb_s_reg,
+-				 u32 reset_flags)
++				 u32 reset_flags,
++				 bool is_v3d)
+ {
+ 	struct bcm2835_power *power = pd->power;
+ 	int ret;
+ 
+-	ret = bcm2835_asb_disable(power, asb_s_reg);
++	ret = bcm2835_asb_disable(power, asb_s_reg, is_v3d);
+ 	if (ret) {
+ 		dev_warn(power->dev, "Failed to disable ASB slave for %s\n",
+ 			 pd->base.name);
+ 		return ret;
+ 	}
+-	ret = bcm2835_asb_disable(power, asb_m_reg);
++	ret = bcm2835_asb_disable(power, asb_m_reg, is_v3d);
+ 	if (ret) {
+ 		dev_warn(power->dev, "Failed to disable ASB master for %s\n",
+ 			 pd->base.name);
+-		bcm2835_asb_enable(power, asb_s_reg);
++		bcm2835_asb_enable(power, asb_s_reg, is_v3d);
+ 		return ret;
+ 	}
+ 
+@@ -369,7 +376,7 @@ static int bcm2835_power_pd_power_on(struct generic_pm_domain *domain)
+ 	case BCM2835_POWER_DOMAIN_GRAFX_V3D:
+ 		return bcm2835_asb_power_on(pd, PM_GRAFX,
+ 					    ASB_V3D_M_CTRL, ASB_V3D_S_CTRL,
+-					    PM_V3DRSTN);
++					    PM_V3DRSTN, true);
+ 
+ 	case BCM2835_POWER_DOMAIN_IMAGE:
+ 		return bcm2835_power_power_on(pd, PM_IMAGE);
+@@ -377,17 +384,17 @@ static int bcm2835_power_pd_power_on(struct generic_pm_domain *domain)
+ 	case BCM2835_POWER_DOMAIN_IMAGE_PERI:
+ 		return bcm2835_asb_power_on(pd, PM_IMAGE,
+ 					    0, 0,
+-					    PM_PERIRSTN);
++					    PM_PERIRSTN, false);
+ 
+ 	case BCM2835_POWER_DOMAIN_IMAGE_ISP:
+ 		return bcm2835_asb_power_on(pd, PM_IMAGE,
+ 					    ASB_ISP_M_CTRL, ASB_ISP_S_CTRL,
+-					    PM_ISPRSTN);
++					    PM_ISPRSTN, false);
+ 
+ 	case BCM2835_POWER_DOMAIN_IMAGE_H264:
+ 		return bcm2835_asb_power_on(pd, PM_IMAGE,
+ 					    ASB_H264_M_CTRL, ASB_H264_S_CTRL,
+-					    PM_H264RSTN);
++					    PM_H264RSTN, false);
+ 
+ 	case BCM2835_POWER_DOMAIN_USB:
+ 		PM_WRITE(PM_USB, PM_USB_CTRLEN);
+@@ -435,7 +442,7 @@ static int bcm2835_power_pd_power_off(struct generic_pm_domain *domain)
+ 	case BCM2835_POWER_DOMAIN_GRAFX_V3D:
+ 		return bcm2835_asb_power_off(pd, PM_GRAFX,
+ 					     ASB_V3D_M_CTRL, ASB_V3D_S_CTRL,
+-					     PM_V3DRSTN);
++					     PM_V3DRSTN, true);
+ 
+ 	case BCM2835_POWER_DOMAIN_IMAGE:
+ 		return bcm2835_power_power_off(pd, PM_IMAGE);
+@@ -443,17 +450,17 @@ static int bcm2835_power_pd_power_off(struct generic_pm_domain *domain)
+ 	case BCM2835_POWER_DOMAIN_IMAGE_PERI:
+ 		return bcm2835_asb_power_off(pd, PM_IMAGE,
+ 					     0, 0,
+-					     PM_PERIRSTN);
++					     PM_PERIRSTN, false);
+ 
+ 	case BCM2835_POWER_DOMAIN_IMAGE_ISP:
+ 		return bcm2835_asb_power_off(pd, PM_IMAGE,
+ 					     ASB_ISP_M_CTRL, ASB_ISP_S_CTRL,
+-					     PM_ISPRSTN);
++					     PM_ISPRSTN, false);
+ 
+ 	case BCM2835_POWER_DOMAIN_IMAGE_H264:
+ 		return bcm2835_asb_power_off(pd, PM_IMAGE,
+ 					     ASB_H264_M_CTRL, ASB_H264_S_CTRL,
+-					     PM_H264RSTN);
++					     PM_H264RSTN, false);
+ 
+ 	case BCM2835_POWER_DOMAIN_USB:
+ 		PM_WRITE(PM_USB, 0);
+@@ -626,13 +633,22 @@ static int bcm2835_power_probe(struct platform_device *pdev)
+ 	power->dev = dev;
+ 	power->base = pm->base;
+ 	power->asb = pm->asb;
++	power->rpivid_asb = pm->rpivid_asb;
+ 
+-	id = ASB_READ(ASB_AXI_BRDG_ID);
++	id = ASB_READ(ASB_AXI_BRDG_ID, false);
+ 	if (id != 0x62726467 /* "BRDG" */) {
+ 		dev_err(dev, "ASB register ID returned 0x%08x\n", id);
+ 		return -ENODEV;
+ 	}
+ 
++	if (pm->rpivid_asb) {
++		id = ASB_READ(ASB_AXI_BRDG_ID, true);
++		if (id != 0x62726467 /* "BRDG" */) {
++			dev_err(dev, "RPiVid ASB register ID returned 0x%08x\n", id);
++			return -ENODEV;
++		}
++	}
++
+ 	power->pd_xlate.domains = devm_kcalloc(dev,
+ 					       ARRAY_SIZE(power_domain_names),
+ 					       sizeof(*power->pd_xlate.domains),
 -- 
 2.35.1
 
