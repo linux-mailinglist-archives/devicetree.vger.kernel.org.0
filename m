@@ -2,103 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 214754B3C6B
-	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 18:16:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D50294B3C8F
+	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 18:33:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237262AbiBMRP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 12:15:58 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38052 "EHLO
+        id S230089AbiBMRdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Feb 2022 12:33:43 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237255AbiBMRP6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 12:15:58 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3727C58E6D
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 09:15:52 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id p9so10081861ejd.6
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 09:15:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=i1RYgt0bRyM5+K2M0i2x/hO7uPol3JRFphrZi4pLhJE=;
-        b=eDDKPuA0ZIRuuv+Ui4l8NM4SLz3TFkdl8RpCqVxuo/9HKjvHpmpp1QEtLQb9GbOcQC
-         saiSJL+1vTCvsRG+13ab9jRlePInIwGc7+564H+hRhWaFCr8eMJ+zkbWUcnNLv15vUX5
-         9YabH8RGBRZGYfQmshJ+HjH2DvbkiIlYU4LEs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=i1RYgt0bRyM5+K2M0i2x/hO7uPol3JRFphrZi4pLhJE=;
-        b=D3Au7ARO6NcChR1QrXQT22a5Ubtv/egL5Mn/NIlmv6U2sKIxUDoqmyg2W2K+3FMZmW
-         CBVSPHPi0b1pg0GYgDQoxpr/AyksaKfkXmz7fhDxijD8ZsV85OuZBjdiimR4zhmte8BK
-         3R+0yhmeAJ7XLrzTAi6HVU2eys/p4jnONNu1pxoVG6FMR07OOMKO0KApS34Bi87Yh83e
-         G9ecCLCKlxK8PWdFDIJDNq7EyXgjbtQjsh463hnaS2I+XJ5OO9xN5mPYnbE3ngO8HL8h
-         qlVjJyNBG5MwqA8bYWs6SgpyXTOA69/j7SIx5rgNo6twIZIuBOgVAHhAtyFJB1Gvswlx
-         jjSg==
-X-Gm-Message-State: AOAM5329syi9UG4e7EjLp6e029zYlvdraPrFl+g1VOocDrjLtGfViv1M
-        KvlHGEVnao57BoA9clRs2xwxSw==
-X-Google-Smtp-Source: ABdhPJzr35wW1sMK5FzxA73gYiBRCu4+lYqZ+2I90LD7agEyCPLVnMjtHEGObv/1ZgCTauKagGCplA==
-X-Received: by 2002:a17:907:234b:: with SMTP id we11mr8334781ejb.5.1644772550831;
-        Sun, 13 Feb 2022 09:15:50 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-52-8-210.retail.telecomitalia.it. [82.52.8.210])
-        by smtp.gmail.com with ESMTPSA id o10sm6598878ejj.6.2022.02.13.09.15.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Feb 2022 09:15:50 -0800 (PST)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        with ESMTP id S229581AbiBMRdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 12:33:43 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD81359A43;
+        Sun, 13 Feb 2022 09:33:36 -0800 (PST)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 6216983BA7;
+        Sun, 13 Feb 2022 18:33:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1644773614;
+        bh=75DhUpB7jgOf9IW59uamRDTBiLhx1wBa7r1TX/Jvf8w=;
+        h=From:To:Cc:Subject:Date:From;
+        b=hNQKxsJki7wVVxK4udMLYH7aUYgH/8Sgt9NkP07+rYkKlDwCRJ5/DpZSGOvTyixqV
+         IspzbdhR4Y2trs43G4qtTa+ea/njbH8M9QS4QIqiy5Vu/jfIP04R+Ip4s8mviBAl2H
+         tOyFtrX8rkZryeraH0wKb85U3kWvQs5No2xRJwmnax9mKYawJWWtGH8j7YFEn7WU0b
+         9qgBoyUz4iML4nylKhraeHGTfJXwwP/n8J4qla+eMK1rjG8UoQ3+Ds79h1IchNmek+
+         JRKhrdBqUO6xUpDOuI/EU0xx+O4WztUnRLT8pvoVvxFCvXu1oeG2JWVw7bllr0dPCt
+         AA1WPvEyJbYgw==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-clk@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: [PATCH 1/6] dt-bindings: input: touchscreen: edt-ft5x06: add report-rate
-Date:   Sun, 13 Feb 2022 18:15:27 +0100
-Message-Id: <20220213171532.346270-2-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220213171532.346270-1-dario.binacchi@amarulasolutions.com>
-References: <20220213171532.346270-1-dario.binacchi@amarulasolutions.com>
+        Stephen Boyd <sboyd@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: clk: rs9: Add Renesas 9-series I2C PCIe clock generator
+Date:   Sun, 13 Feb 2022 18:33:09 +0100
+Message-Id: <20220213173310.152230-1-marex@denx.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It allows to change the M06/M12 default scan rate.
+Add binding for Renesas 9-series PCIe clock generators. This binding
+is designed to support 9FGV/9DBV/9DMV/9FGL/9DML/9QXL/9SQ series I2C
+PCIe clock generators, currently the only tested and supported chip
+is 9FGV0241.
 
-Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+To: linux-clk@vger.kernel.org
 ---
+ .../bindings/clock/renesas,9series.yaml       | 102 ++++++++++++++++++
+ 1 file changed, 102 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,9series.yaml
 
- .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-index 2e8da7470513..a4cd9bb156b2 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-@@ -85,6 +85,14 @@ properties:
-     minimum: 0
-     maximum: 80
- 
-+  report-rate:
-+    description: Allows setting the scan rate.
-+                 M06: range from 3 (30 Hz) to 14 (140 Hz).
-+                 M12: range from 1 (1 Hz) to 255 (255 Hz).
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 255
+diff --git a/Documentation/devicetree/bindings/clock/renesas,9series.yaml b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+new file mode 100644
+index 0000000000000..774053748d9f0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+@@ -0,0 +1,102 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/renesas,9series.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-   touchscreen-size-x: true
-   touchscreen-size-y: true
-   touchscreen-fuzz-x: true
++title: Binding for Renesas 9-series I2C PCIe clock generators
++
++description: |
++  The Renesas 9-series are I2C PCIe clock generators providing
++  from 1 to 20 output clocks.
++
++  When referencing the provided clock in the DT using phandle
++  and clock specifier, the following mapping applies:
++
++  - 9FGV0241:
++    0 -- DIF0
++    1 -- DIF1
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++properties:
++  compatible:
++    enum:
++      - renesas,9fgv0241
++
++  reg:
++    description: I2C device address
++    enum: [ 0x68, 0x6a ]
++
++  '#clock-cells':
++    const: 1
++
++  clocks:
++    items:
++      - description: XTal input clock
++
++  renesas,out-amplitude:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 600000, 700000, 800000, 900000 ]
++    description: Output clock signal amplitude in uV
++
++  renesas,out-spread-spectrum:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 100000, 99750, 99500 ]
++    description: Output clock down spread in pcm
++
++patternProperties:
++  "^DIF[0-19]$":
++    type: object
++    description:
++      Description of one of the outputs (DIF0..DIF19).
++    properties:
++      renesas,slew-rate:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [ 2000000, 3000000 ]
++        description: Output clock slew rate select in V/ns
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    /* 25MHz reference crystal */
++    ref25: ref25m {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <25000000>;
++    };
++
++    i2c@0 {
++        reg = <0x0 0x100>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rs9: clock-generator@6a {
++            compatible = "renesas,9fgv0241";
++            reg = <0x6a>;
++            #clock-cells = <1>;
++
++            clocks = <&ref25m>;
++
++            DIF0 {
++                renesas,slew-rate = <3000000>;
++            };
++        };
++    };
++
++    /* Consumer referencing the 9FGV0241 pin DIF0 */
++    consumer {
++        /* ... */
++        clocks = <&rs9 0>;
++        /* ... */
++    };
++
++...
 -- 
-2.32.0
+2.34.1
 
