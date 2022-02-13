@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 711A94B3E38
-	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 23:58:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B79EE4B3E37
+	for <lists+devicetree@lfdr.de>; Sun, 13 Feb 2022 23:58:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231864AbiBMW6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 17:58:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60174 "EHLO
+        id S238658AbiBMW6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Feb 2022 17:58:10 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238655AbiBMW6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 17:58:10 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEBEB54BE1
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:02 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id w10so5972934edd.11
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:02 -0800 (PST)
+        with ESMTP id S231864AbiBMW6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 17:58:09 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B25DB54BE0
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:03 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id b14so95705ede.9
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 14:58:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=3uzOnnLhVcdnTuyj/2DMEBER7KnFzL1h0mXNQZHRgW0=;
-        b=HDoLAoBfLlRT7YczCOt6CY1ionKPeAwbypEAeacRC0xmOkGAKX/rwSI/T7BcgXzwgf
-         clMB02+DUuz7sa7nA9VAdKsDDH7MoOz8xYmhOuqqklxZ0q5yFavkAcs7t2Au9cfSNmgd
-         k8IFgjbmXMDBJ1PYwfBOBdZ3y6slRHRbvz+i6bKN541HbqhinQwv4jzqfn7OwN69X+4d
-         au4+67k7hAi9NEfrOfXd2dAtmNT0cbx1wglt9AP1S3aDI6OVwnmQ+IH8+5apjNNZbK/m
-         0OB+8BwRV6VNCCllzdlzatWyslJVg+DB+h2eIzn6Vh4O6LQzdZMHREHD1aAqiHEzHaiM
-         ZivA==
+        bh=Jkh/ZThBVxR3iCrqSQ641kQC+DxWzCqRmSFjFdd592M=;
+        b=KLPTt8yhHW7LK5Bz9+nth65FJde0niGbdiuZgNTkesIzbg9w/2D6Xio4Zvj+1yvlzP
+         pr2UMTgNr4VzC7XtfhGBrQMtP8Wl+WXscQwZlqAbexPpgUREs2jHP0smWqz9KBonBTc7
+         lf0y2t2vK1dbS0GPw7Hpqzt2LWPv6e++Mnoa0CGpL2K9P2RnJLVUGSL40XDG01Ykfbbw
+         CIx2XV46XjobKeg+Tx82fFiFw5uyGBeWXY5P2HsuIpOwA5ToiWqznC6ucaYU6gNdsLEG
+         2VB9RhuyHAmH7SvD1nWNmd5t4W8wlAyRMwpQUZ6nSkTtEZKLJsE9EbgFClQLKpikwePE
+         N7oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=3uzOnnLhVcdnTuyj/2DMEBER7KnFzL1h0mXNQZHRgW0=;
-        b=CAld6Z2UKcxnytFzFRnn7rk2/EABfeLqRYysS5ymhfLSD1UO7ZyOB2C+yhoXBnf+l5
-         tqA1JpeRwRiWMDRyodht1nih2RvI+/yqtklz/N9XyQUxwubJmV4UhegV21FrFJfc8rQv
-         4JDuOmQzE0w3qJMLLq+/Qa1Yyy33e82ehqX4i5PHDCl0JB9E4Du17qYk0PUOixNUVJ2F
-         +HyDn7n5Pg3rgDe4u4FzsMkBCBBCu5l4Ta3uOwTONbAp1C16aW01M1Uydi/xGaSyBy2t
-         f2108NGObcY7/O5PnhhTA4HU5aiotvBqs11IrV4c13w+7ptwNFw7X2h+X9kjJgulezHv
-         +7mQ==
-X-Gm-Message-State: AOAM530bk1DYw1lr/KoxiTRJMZAb1KF46svzzl3Y7eVfkOHUBggGFXhs
-        B20lIZ2UTBiMn1kkGPaYAGQ=
-X-Google-Smtp-Source: ABdhPJyh0vSOPAU0NEPPag9pX3XD3oR9kbSq9lbr0COBYWtIYEe3wfwH04lujKX64zFx4TUMn5XGRg==
-X-Received: by 2002:a05:6402:35c9:: with SMTP id z9mr322732edc.262.1644793081256;
-        Sun, 13 Feb 2022 14:58:01 -0800 (PST)
+        bh=Jkh/ZThBVxR3iCrqSQ641kQC+DxWzCqRmSFjFdd592M=;
+        b=iC+HqJPkP8clL5ps+D3PeYosJ+m0OI91tiRpmPVquAdE3idB7XSVY1Lm3GKfneJpPx
+         CfVxzKuORt9bPkqSc0VKmiIdIl3P3Fp1jN3I2FV+3zFb/zgNMy6q1alu1WI6shPhHKCL
+         HNT+OirFDZsmsR6WU1eOxpkcfd/3UJa2cRIsib66wx0D0pEpzwpaN2NBkyLlgTkq302D
+         uusV/0/kWC+gwpV7/79ZPUx4AXje0QGEZl3Vs5Z+EyCtgLijArVUG7Jhs9epbQg9xJ1x
+         +4R+XOXod9W7vtSJxpeY64H2zhEY7ceZ1uR0Jv+6ZxKjAlvPm01+ENPdOuFpfqrW46bN
+         V14w==
+X-Gm-Message-State: AOAM530sLkC2l9C4gI/HLvWYBtCJ47BcCBF9KCA947XUI/SEqULjUBV+
+        r8kRnjYLnkAwmf/gI06DZak=
+X-Google-Smtp-Source: ABdhPJwD3CmtM9qOTOKVh2wft4puLi9UOAVBT0IZACYp8gl4G7AUK2brppfMcwdW4SJS2IYJp/qV9A==
+X-Received: by 2002:aa7:c3cb:: with SMTP id l11mr4703839edr.427.1644793082291;
+        Sun, 13 Feb 2022 14:58:02 -0800 (PST)
 Received: from morpheus.home.roving-it.com (3.e.2.0.0.0.0.0.0.0.0.0.0.0.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681::2e3])
-        by smtp.googlemail.com with ESMTPSA id g14sm3189163edb.55.2022.02.13.14.58.00
+        by smtp.googlemail.com with ESMTPSA id g14sm3189163edb.55.2022.02.13.14.58.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Feb 2022 14:58:00 -0800 (PST)
+        Sun, 13 Feb 2022 14:58:01 -0800 (PST)
 From:   Peter Robinson <pbrobinson@gmail.com>
 To:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -66,9 +66,9 @@ To:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
 Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         Rob Herring <robh@kernel.org>,
         Peter Robinson <pbrobinson@gmail.com>
-Subject: [PATCH v4 02/15] dt-bindings: soc: bcm: bcm2835-pm: Introduce reg-names
-Date:   Sun, 13 Feb 2022 22:56:34 +0000
-Message-Id: <20220213225646.67761-3-pbrobinson@gmail.com>
+Subject: [PATCH v4 03/15] dt-bindings: soc: bcm: bcm2835-pm: Add support for bcm2711
+Date:   Sun, 13 Feb 2022 22:56:35 +0000
+Message-Id: <20220213225646.67761-4-pbrobinson@gmail.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220213225646.67761-1-pbrobinson@gmail.com>
 References: <20220213225646.67761-1-pbrobinson@gmail.com>
@@ -86,43 +86,59 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
-Anticipating the introduction of BCM2711, of which we'll need to support
-its new RPiVid ASB, introduce reg-names into bcm2835-pm's binding. This
-will help to have a consistent mapping between resources and their
-meaning.
+Add a new compatible string for BCM2711 and the option to provide a
+third reg property for the board's new RPiVid ASB.
+
+In BCM2711 the new RPiVid ASB took over V3D, which is our only consumer
+of this driver so far. The old ASB is still be present with ISP and H264
+bits but no V3D.
 
 Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
 ---
- .../devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+Changes since v2:
+ - Correct names s/argon/rpivid/
+
+ .../devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml  | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-index 47b9c266ddd1..837963e9f219 100644
+index 837963e9f219..0dd264f80fb3 100644
 --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
 +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-@@ -25,9 +25,13 @@ properties:
+@@ -19,19 +19,22 @@ allOf:
+ properties:
+   compatible:
+     items:
+-      - const: brcm,bcm2835-pm
++      - enum:
++          - brcm,bcm2835-pm
++          - brcm,bcm2711-pm
+       - const: brcm,bcm2835-pm-wdt
+ 
    reg:
      minItems: 1
-     maxItems: 2
-+
-+  reg-names:
-+    minItems: 1
-+    maxItems: 2
+-    maxItems: 2
++    maxItems: 3
+ 
+   reg-names:
+     minItems: 1
+-    maxItems: 2
++    maxItems: 3
      items:
--      - description: PM registers
--      - description: ASB registers
-+      - const: pm
-+      - const: asb
+       - const: pm
+       - const: asb
++      - const: rpivid_asb
  
    "#power-domain-cells":
      const: 1
-@@ -70,6 +74,7 @@ examples:
+@@ -74,7 +77,7 @@ examples:
          #reset-cells = <1>;
          reg = <0x7e100000 0x114>,
                <0x7e00a000 0x24>;
-+        reg-names = "pm", "asb";
+-        reg-names = "pm", "asb";
++        reg-names = "pm", "asb", "rpivid_asb";
          clocks = <&clocks BCM2835_CLOCK_V3D>,
          	 <&clocks BCM2835_CLOCK_PERI_IMAGE>,
          	 <&clocks BCM2835_CLOCK_H264>,
