@@ -2,84 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA2894B4E75
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:34:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A27674B4EDC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:39:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351694AbiBNLd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 06:33:57 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34814 "EHLO
+        id S1351122AbiBNLgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 06:36:45 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351709AbiBNLdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:33:44 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9742466F86
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 03:19:10 -0800 (PST)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9A1CA3F1D0
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 11:19:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644837546;
-        bh=b1wIey0Vq3c48r+pFvoWpMCvk+Swn1uTiC6iPNor7mM=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=io3TvZ92BbK+sfXy1F7VtakSu1eMRepu1cu5CTCKGxsbCCCXYYAQiNQVlMfbElyFh
-         bbNkIVFAmiGWOUlj8+PaxPJi70BUte4qilh3fJCmMaI4ATwkfErCNWOsdeJKcnE5+H
-         VpEo4Z6oSax23jsOBGc4pCgwMex7afokuM4IATHBroMKDN3qr3PB9bgXaDEFsBli9h
-         z2TWnVg2a1nmK5GQ27KWS4sYD1zDQGgi6i9LWFZDuOO9wWdQwQFBReMQd/UKUT2JtC
-         3JOptiRexg8zPyp+Cxp2nbe/k9wWZvjiFlfmBNL1JuMtI8VSXHNtPTN90BNCnrNAVP
-         01AoGrUVIk5EQ==
-Received: by mail-ej1-f69.google.com with SMTP id l18-20020a1709063d3200b006a93f7d4941so5726237ejf.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 03:19:06 -0800 (PST)
+        with ESMTP id S1351888AbiBNLfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:35:41 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC95113E95;
+        Mon, 14 Feb 2022 03:24:02 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id jg20so11762032ejc.3;
+        Mon, 14 Feb 2022 03:24:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Iy1Cz+zs1JEAXLXhqhcX9TK2+/+UIJdUp67WG5w40hs=;
+        b=gYkOBtZZABcgpF/thuvjIupfs7FIan0Ynvg/bIMX1ajqZCmkFQuY/dHAojvsYq9nBD
+         kcblzBoO208ukgToDuQJYqNBMmEAoqxYVriDkSOCehOQzQSfzHQUvM3EQE5+qJqxejVl
+         ROCuhGs4qwhpAOVcNMiJLItVJnqd3haEFiwe9aqEYaCWn7JeXpLLMCYJaGbWXOFhGxzb
+         6gu5CuISR4GldSuwp5HvZB/r8WxzOpTBxVcKud6eRsp/Tg1ps+Bu2HdCmjWY7IHcBGd5
+         gbC1IptsQyGLEQQRYFCA9rEX1mKgBJRDlv4ncNTaj7lI2Rk/b9CBz466LBg1S07jSSdQ
+         yI2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=b1wIey0Vq3c48r+pFvoWpMCvk+Swn1uTiC6iPNor7mM=;
-        b=gmWX4wI1AxeSGESMhTkpZw8uQlDE2YUeug1Ik1BOpMkyG+yfqWozv+fq+cFvfd48fM
-         nJSrzxnQ9zCPAIOq45dUQCWTiojzgfWONu2lGOWXPn9lTAaXqJqlh+vKUhM0A5GMGCri
-         1zFFodYu58QfSoHQie5FZsBUpXuZkgapKl2tgj6L79Kbl6a/ipiR3nPW08MKEpVe0Y7a
-         iEEvSQ9HNo3LFZ+17OUWq+OSjEwWMbQ3nAA2Xx+nCA1qK4vjXFobrkS5o9Ib/OHPr/88
-         jrekmUP/EO4e0EQZLskzYECSCtVQBlS5DVOAlXXJZbnskwWAsQfb5XfyJNv+/w1JNBhB
-         dq/g==
-X-Gm-Message-State: AOAM532/rwLe1zgFmmabdz/5fms4mGJH3t+O/RkCrTsZe9NTq2UdpRgG
-        X25b9HsGbK0b1PtyGRFN/QNvZAfrIOhKs0fgk9q5UzK3v1VQNugMbrk6oChxcE9jKv0b4T7lzcM
-        gzs1qFMbqnTQtm/YfqpPfCdRMPfd6Z7oHCcyXUzI=
-X-Received: by 2002:a17:906:5d0a:: with SMTP id g10mr11821340ejt.595.1644837546198;
-        Mon, 14 Feb 2022 03:19:06 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyS2G+jb0/qYs1mMuGfvrV4QBhHmJLqINK5K6mW5YCtirPJOTwEh3846UzG3lrR49melIGbFQ==
-X-Received: by 2002:a17:906:5d0a:: with SMTP id g10mr11821329ejt.595.1644837546045;
-        Mon, 14 Feb 2022 03:19:06 -0800 (PST)
-Received: from [192.168.0.104] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id i28sm1217868ejo.49.2022.02.14.03.19.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Feb 2022 03:19:05 -0800 (PST)
-Message-ID: <e1f2f9c4-a597-2c8f-df0c-4ae30a5ad594@canonical.com>
-Date:   Mon, 14 Feb 2022 12:19:04 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Iy1Cz+zs1JEAXLXhqhcX9TK2+/+UIJdUp67WG5w40hs=;
+        b=0caEPc2oz7xhKty/rJXGyBEWrqCQyix8aHItYkCekRGQoxtGFif5FKcmELRzC0r0dm
+         gZeM0ByyXyQQAv7uVF+C6abw9HMLjK1e8IQZdvi0npOfWTE/mniaAkluYZeAtOGMAb63
+         bb1WkRhsM/BQMHfK/iid5azJI6zzi//c+a+sLBfjfqepca+Qdi50U/rxp9ZvQRKyzGMy
+         OtexeQYTiYfo/bu2pHbRum0Hf1CtTRP7QxWnpHyTnJLm+CfZ4adqgiAc1hUjX76Nae0K
+         Mpr9z1AEvmWIy2Gi4IBCTas9MBpuSOQXKxN7YOwruJKcbvnjLeqhhPR8xo/7xYipEau0
+         yuKg==
+X-Gm-Message-State: AOAM532+EsKtGWx3BFhXjWJEF1yrPERgjdLh3mAgfXEK+w0/OWD8hw9q
+        mmRkXblyKPcQmBR2649EZQF6SdzDTcOJdyx2sepY9DQMDZ9e0Q==
+X-Google-Smtp-Source: ABdhPJztH97hs/hzxJ06YxLEpyVt5dSU/fl8YH8A+MrGtW16j8ov1p2lxpUGCpvLJHjKJ1qy+/RfSZbiF/DzUGCDFsQ=
+X-Received: by 2002:a17:907:2d92:: with SMTP id gt18mr10690121ejc.579.1644837841277;
+ Mon, 14 Feb 2022 03:24:01 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 2/2] pwm: Add clock based PWM output driver
-Content-Language: en-US
-To:     Nikita Travkin <nikita@trvn.ru>, thierry.reding@gmail.com,
-        lee.jones@linaro.org
-Cc:     u.kleine-koenig@pengutronix.de, robh+dt@kernel.org,
-        sboyd@kernel.org, linus.walleij@linaro.org, masneyb@onstation.org,
-        sean.anderson@seco.com, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20220212162342.72646-1-nikita@trvn.ru>
- <20220212162342.72646-3-nikita@trvn.ru>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220212162342.72646-3-nikita@trvn.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <20220214033620.4059-1-jagathjog1996@gmail.com> <20220214033620.4059-3-jagathjog1996@gmail.com>
+In-Reply-To: <20220214033620.4059-3-jagathjog1996@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 14 Feb 2022 13:22:32 +0200
+Message-ID: <CAHp75VdUkVQJOebA3V+F734e5hXO3XWFAT0HVQqKdCQgPbqdNA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] iio: potentiometer: Add available functionality
+To:     Jagath Jog J <jagathjog1996@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Slawomir Stepien <sst@poczta.fm>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,54 +69,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/02/2022 17:23, Nikita Travkin wrote:
-> Some systems have clocks exposed to external devices. If the clock
-> controller supports duty-cycle configuration, such clocks can be used as
-> pwm outputs. In fact PWM and CLK subsystems are interfaced with in a
-> similar way and an "opposite" driver already exists (clk-pwm). Add a
-> driver that would enable pwm devices to be used via clk subsystem.
-> 
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> --
-> 
+On Mon, Feb 14, 2022 at 5:36 AM Jagath Jog J <jagathjog1996@gmail.com> wrote:
+>
+> Adding available functionality for ds1803 driver which
+> will show the minimum, step and maximum values
+> it can accepts through sysfs entry.
 
-(...)
+accept
 
-> +
-> +static int pwm_clk_probe(struct platform_device *pdev)
-> +{
-> +	struct pwm_clk_chip *chip;
-> +	int ret;
-> +
-> +	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
-> +	if (!chip)
-> +		return -ENOMEM;
-> +
-> +	chip->clk = devm_clk_get(&pdev->dev, NULL);
-> +	if (IS_ERR(chip->clk))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(chip->clk),
-> +				     "Failed to get clock\n");
-> +
-> +	chip->chip.dev = &pdev->dev;
-> +	chip->chip.ops = &pwm_clk_ops;
-> +	chip->chip.npwm = 1;
-> +
-> +	ret = clk_prepare(chip->clk);
-> +	if (ret < 0)
-> +		return dev_err_probe(&pdev->dev, ret, "Failed to prepare clock\n");
-> +
-> +	ret = pwmchip_add(&chip->chip);
-> +	if (ret < 0)
-> +		return dev_err_probe(&pdev->dev, ret, "Failed to add pwm chip\n");
+...
 
-You need to cleanup - unprepare the clock.
+>  struct ds1803_cfg {
+>         int kohms;
+> +       int avail[3];
+>  };
+>
+>  static const struct ds1803_cfg ds1803_cfg[] = {
+> -       [DS1803_010] = { .kohms =  10, },
+> -       [DS1803_050] = { .kohms =  50, },
+> -       [DS1803_100] = { .kohms = 100, },
+> +       [DS1803_010] = { .avail = { 0, 1, 255 }, .kohms =  10, },
+> +       [DS1803_050] = { .avail = { 0, 1, 255 }, .kohms =  50, },
+> +       [DS1803_100] = { .avail = { 0, 1, 255 }, .kohms = 100, },
+>  };
 
-> +
-> +	platform_set_drvdata(pdev, chip);
-> +	return 0;
-> +}
-> +
+Please, do it rather with additional data:
 
+static const int ds1803_range[] = { ... };
 
-Best regards,
-Krzysztof
+   .avail = ..._range,
+
+Also, looking into the next patch, can you move the structure to the
+place where it's more appropriate?
+
+-- 
+With Best Regards,
+Andy Shevchenko
