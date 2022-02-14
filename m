@@ -2,96 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DCAC4B59EB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 19:30:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E10D4B5A0F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 19:40:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347306AbiBNSaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 13:30:30 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39092 "EHLO
+        id S237431AbiBNSkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 13:40:47 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:47548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353761AbiBNSa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 13:30:28 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB0F1652DF;
-        Mon, 14 Feb 2022 10:30:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1644863420; x=1676399420;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2SuiWkTsCmL0kmekpSa89GaVmY8ni1VlZC8DxtgnZ6g=;
-  b=idin0OSHJv0cTfDKd9ETgFibS8HLd8QpeqG5tws0/HtipHvi2uuLqyO2
-   6Ck86oj51C0iUSAFFiE4AQ3hPnL04vH/L7SemfvMgxQWE/EfK3qAaYgMD
-   87G55pw6MO4FPETEHouZHZ02YBKKF8sQ3luABgGHXFU6+awW8a5PJRBuc
-   ll3K5xm0Vj0viP9f8aBvoWr8nwrtEIsJJiWx4O7AX3/WIfsrZfZsUyU+3
-   8O4BIM9bR6PXSsUBvKPsFltvyFtPnJrwItPmoXilA00aqfLt1DIaSYTmZ
-   8oOw48gw0t9y10/I7DpQw5MFyDbX/OvVNeX0vD9QJz3xG8qozOncOa7iR
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="274728429"
-X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; 
-   d="scan'208";a="274728429"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 10:30:20 -0800
-X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; 
-   d="scan'208";a="624372837"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 10:30:15 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 0993C202D5;
-        Mon, 14 Feb 2022 20:30:13 +0200 (EET)
-Date:   Mon, 14 Feb 2022 20:30:13 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 37/66] media: sun6i-csi: Move power management to
- runtime pm in capture
-Message-ID: <YgqftcDgfrsZfTdF@paasikivi.fi.intel.com>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <20220205185429.2278860-38-paul.kocialkowski@bootlin.com>
+        with ESMTP id S1351242AbiBNSkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 13:40:43 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53DEA657B1
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 10:40:33 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id p15so39319744ejc.7
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 10:40:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=8VBh79+Ny4PA51B+SNydGU0RP7+vIBXuirFrG98oTUI=;
+        b=EKWS4ZcN8j/y+e+UDo7BAsXTLiGLDGVs1ahspXmtcfR36HMSDxYj4hnPSyGmHAnnGB
+         +o0BNZO8w66S0VO8zRU11UabZr7OR0PfCFxN5d7VnMf35XOdZ1DjnPvoO+zbAJVMildU
+         ZErWmf0OHl7TzS7q/vDAk6cY3JRIzUxQrSaj5MaX3tQ8Lwx3jQaEgrVWJNAPcbq1adHh
+         iF3BDX6SzSJXPHZJzbiq/clCj72pkLNkFMVbK/gkq/iWtIN49/buPAexp5UtaXj8eimY
+         xOrhH+kOxVi9Vw0j4kYPv9zxx8flEN/kB8ffEI4sXUFNVY+pgvJuMIp8upux4H8YViQF
+         RWRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=8VBh79+Ny4PA51B+SNydGU0RP7+vIBXuirFrG98oTUI=;
+        b=iccUyKPnvk4KbVQ6663UghoAStA08Ul2wCbORFfWcZerQq4zfUFRcWuCwLkIYSgj+O
+         6v3f8DTIzFck85+C4KvIv5Amg+fdEGgONIie7G4iCo/zChw2SUfcVuNzK1Uves+YZHkO
+         iWFdTzVb5AiKR15/g5neCrR7YaaOOaYEJxNcywnMPRzVcPIFeQbXY5m7m1OO/7+diG9R
+         NIzQy1slMBotqswQJ6QD3jCClCUQE1gD/MX5XdnNjIgcrmWf7cFsSjX9/HUDbF6a7J99
+         5AQ6A1B9ARUf867oi+m/NYqlvcRnlKyEhjCFOxE1bYF+2WQTJA1dciiPnRx3n1LtYe90
+         IIPg==
+X-Gm-Message-State: AOAM531IaR3aF/jLaJz/zsnOJxwvFA1AbuL8eC5Ai7uBeGG57TA5Gr6K
+        fyTf6jjvEQPmsiOeTMZqDRlLYA==
+X-Google-Smtp-Source: ABdhPJzcf/bY0fMRy6QzFYpyNVamteykkK9AxwzIMrV2bm0KQUR//QzDoLIE52Qt54+xHwPIA0ZJmg==
+X-Received: by 2002:a17:906:5d0d:: with SMTP id g13mr74936ejt.351.1644864021411;
+        Mon, 14 Feb 2022 10:40:21 -0800 (PST)
+Received: from [192.168.0.30] (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
+        by smtp.gmail.com with ESMTPSA id y16sm8076378ejd.72.2022.02.14.10.40.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Feb 2022 10:40:20 -0800 (PST)
+Message-ID: <cf69e1b7-28cb-eaf1-1eaf-c4a7fc7e4ddf@linaro.org>
+Date:   Mon, 14 Feb 2022 18:40:19 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220205185429.2278860-38-paul.kocialkowski@bootlin.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v4 1/8] mfd: qcom-spmi-pmic: expose the PMIC revid
+ information to clients
+Content-Language: en-US
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        sumit.semwal@linaro.org, amit.pundir@linaro.org,
+        john.stultz@linaro.org
+References: <20220211211959.502514-1-caleb.connolly@linaro.org>
+ <20220211211959.502514-2-caleb.connolly@linaro.org>
+ <20220213165550.13051272@jic23-huawei>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20220213165550.13051272@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Hi,
 
-On Sat, Feb 05, 2022 at 07:54:00PM +0100, Paul Kocialkowski wrote:
-> Let's just enable the module when we start using it (at stream on)
-> and benefit from runtime pm instead of enabling it at first open.
-> 
-> Also reorder the call to v4l2_pipeline_pm_get.
-> 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+I've found some pretty bad bugs with this patch (specifically qcom_pmic_get()),
+please do not merge, they'll be fixed in the next revision.
 
-Nice patch!
-
-Do you still need v4l2_pipeline_pm_put()? Removing it would be a separate
-patch of course.
+On 13/02/2022 16:55, Jonathan Cameron wrote:
+> On Fri, 11 Feb 2022 21:19:52 +0000
+> Caleb Connolly <caleb.connolly@linaro.org> wrote:
+>
+>> Some PMIC functions such as the RRADC need to be aware of the PMIC
+>> chip revision information to implement errata or otherwise adjust
+>> behaviour, export the PMIC information to enable this.
+>>
+>> This is specifically required to enable the RRADC to adjust
+>> coefficients based on which chip fab the PMIC was produced in,
+>> this can vary per unique device and therefore has to be read at
+>> runtime.
+>>
+>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+> Hi Caleb,
+>
+> Looks fine to me, though obviously needs a tag from Lee as MFD maintainer.
+> I'm assuming I'll take this series through IIO once everyone is happy
+> with the changes and hence it'll pick up my SoB, so I'm not giving
+> RBs or similar in the meantime.
+>
+> Thanks,
+>
+> Jonathan
 
 -- 
-Kind regards,
+Kind Regards,
+Caleb (they/them)
 
-Sakari Ailus
