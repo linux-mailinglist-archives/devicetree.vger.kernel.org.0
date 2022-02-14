@@ -2,97 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A0D4B3E5B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 00:19:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D2CB4B3ED8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 02:18:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238742AbiBMXTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 18:19:16 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46932 "EHLO
+        id S232798AbiBNBSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Feb 2022 20:18:43 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238708AbiBMXTQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 18:19:16 -0500
-X-Greylist: delayed 370 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 13 Feb 2022 15:19:09 PST
-Received: from relay3.hostedemail.com (relay3.hostedemail.com [64.99.140.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B1655132E
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 15:19:09 -0800 (PST)
-Received: from omf04.hostedemail.com (a10.router.float.18 [10.200.18.1])
-        by unirelay06.hostedemail.com (Postfix) with ESMTP id 36BD822BF6;
-        Sun, 13 Feb 2022 23:12:56 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf04.hostedemail.com (Postfix) with ESMTPA id CAC7320024;
-        Sun, 13 Feb 2022 23:12:49 +0000 (UTC)
-Message-ID: <3141331e10cdbc7a3859887d5e8038eff777e3ad.camel@perches.com>
-Subject: Re: [PATCH v7 7/7] MAINTAINERS: add maintainers for DRM LSDC driver
-From:   Joe Perches <joe@perches.com>
-To:     Sui Jingfeng <15330273260@189.cn>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>, Li Yi <liyi@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Date:   Sun, 13 Feb 2022 15:12:48 -0800
-In-Reply-To: <20220213141649.1115987-8-15330273260@189.cn>
-References: <20220213141649.1115987-1-15330273260@189.cn>
-         <20220213141649.1115987-8-15330273260@189.cn>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.40.4-1ubuntu2 
+        with ESMTP id S229532AbiBNBSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 20:18:43 -0500
+Received: from 189.cn (ptr.189.cn [183.61.185.103])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7C53E527D3;
+        Sun, 13 Feb 2022 17:18:35 -0800 (PST)
+HMM_SOURCE_IP: 10.64.8.43:40520.1301825991
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
+        by 189.cn (HERMES) with SMTP id 2E9CA1001F0;
+        Mon, 14 Feb 2022 09:18:31 +0800 (CST)
+Received: from  ([114.242.206.180])
+        by gateway-151646-dep-b7fbf7d79-vjdjk with ESMTP id 750ecf3745c54b01ab0aef2812fb2f0d for joe@perches.com;
+        Mon, 14 Feb 2022 09:18:34 CST
+X-Transaction-ID: 750ecf3745c54b01ab0aef2812fb2f0d
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+Message-ID: <dfc864fd-0918-9f0d-3e42-a9d363af3c48@189.cn>
+Date:   Mon, 14 Feb 2022 09:18:28 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v7 7/7] MAINTAINERS: add maintainers for DRM LSDC driver
+Content-Language: en-US
+References: <20220213141649.1115987-1-15330273260@189.cn>
+ <20220213141649.1115987-8-15330273260@189.cn>
+ <3141331e10cdbc7a3859887d5e8038eff777e3ad.camel@perches.com>
+From:   Sui Jingfeng <15330273260@189.cn>
+To:     undisclosed-recipients:;
+In-Reply-To: <3141331e10cdbc7a3859887d5e8038eff777e3ad.camel@perches.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Server: rspamout05
-X-Rspamd-Queue-Id: CAC7320024
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Stat-Signature: chsen43n4o61gbue1shux6emhu6imiza
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX1+3MfhZMV+dCCy7Z4SG+v/Vjs/O+3cQmPk=
-X-HE-Tag: 1644793969-740389
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,NICE_REPLY_A,SCC_BODY_URI_ONLY,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 2022-02-13 at 22:16 +0800, Sui Jingfeng wrote:
-> From: suijingfeng <suijingfeng@loongson.cn>
-[]
-> diff --git a/MAINTAINERS b/MAINTAINERS
-[]
-> @@ -6453,6 +6453,15 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
->  F:	drivers/gpu/drm/lima/
->  F:	include/uapi/drm/lima_drm.h
->  
-> +DRM DRIVERS FOR LOONGSON
-> +M:	Sui Jingfeng <suijingfeng@loongson.cn>
-> +L:	dri-devel@lists.freedesktop.org
-> +R:	Li Yi <liyi@loongson.cn>
-> +S:	Maintained
-> +W:	https://www.loongson.cn/
-> +T:	git git://anongit.freedesktop.org/drm/drm-misc
-> +F:	drivers/gpu/drm/lsdc/
-> +
 
-M then R then L please
-
-DRM DRIVERS FOR LOONGSON
-M:	Sui Jingfeng <suijingfeng@loongson.cn>
-R:	Li Yi <liyi@loongson.cn>
-L:	dri-devel@lists.freedesktop.org
-
-
+On 2022/2/14 07:12, Joe Perches wrote:
+> On Sun, 2022-02-13 at 22:16 +0800, Sui Jingfeng wrote:
+>> From: suijingfeng <suijingfeng@loongson.cn>
+> []
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+> []
+>> @@ -6453,6 +6453,15 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
+>>   F:	drivers/gpu/drm/lima/
+>>   F:	include/uapi/drm/lima_drm.h
+>>   
+>> +DRM DRIVERS FOR LOONGSON
+>> +M:	Sui Jingfeng <suijingfeng@loongson.cn>
+>> +L:	dri-devel@lists.freedesktop.org
+>> +R:	Li Yi <liyi@loongson.cn>
+>> +S:	Maintained
+>> +W:	https://www.loongson.cn/
+>> +T:	git git://anongit.freedesktop.org/drm/drm-misc
+>> +F:	drivers/gpu/drm/lsdc/
+>> +
+> M then R then L please
+>
+> DRM DRIVERS FOR LOONGSON
+> M:	Sui Jingfeng <suijingfeng@loongson.cn>
+> R:	Li Yi <liyi@loongson.cn>
+> L:	dri-devel@lists.freedesktop.org
+>
+>
+oh, I will correct it at next version, thank you.
