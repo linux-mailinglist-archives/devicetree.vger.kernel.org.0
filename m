@@ -2,86 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09D514B4F52
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:51:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8D144B4EFC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:43:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237021AbiBNLsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 06:48:53 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41612 "EHLO
+        id S1352961AbiBNLmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 06:42:25 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351704AbiBNLjb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:39:31 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B385B13DE1;
-        Mon, 14 Feb 2022 03:30:11 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 52A24611BC;
-        Mon, 14 Feb 2022 11:30:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B177CC340F0;
-        Mon, 14 Feb 2022 11:30:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644838210;
-        bh=WMoynI5WXAeTD6YHq4DWDKMnxC4EGldppjWd4ecx7PU=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=m7kLgs0iJvCnzVa6qCiteJMYfcvEaY8H8sgnpbNDoKfLat9mAWyWPBR/0ZhmiRd+j
-         zV+iVQLWpeUbFwKzVr16FA7gWNP5j0pDJN5spBvZR1Wyk4/YtoeXCVx4vR1pzdNnlz
-         cs2iCyr4FbLzHCdeq449eUBgQhXhgMRTNU/NZExaIuLngNuwdRrHCAP8UksFwXh9hV
-         rksGeoQzJJQfnPLzjuku2oRNjSuGZPZIrt/Umv67OvvD6vT7T1W1+Mk5UWgP4n7OAa
-         bGUXhsKU3Fbv/qsvh1Fh1Qlh2Xy/HyVI15vy3N2wHGxNrS+qHvGuoAealL33yxIaWn
-         khaUj/4WLQXJA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 9F332E6D4D5;
-        Mon, 14 Feb 2022 11:30:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1353773AbiBNLmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:42:00 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D13E66239;
+        Mon, 14 Feb 2022 03:33:45 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id h18so4226803edb.7;
+        Mon, 14 Feb 2022 03:33:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XoIGUc7L1CNxby6hJQisyEzt3VmpKa35bNMvST/YPuE=;
+        b=JlN98nyPpMDUKHiyYlGiPuS7cQJHiFTCs3X6VJUvUDUyjMH04GGi1UiVpeTpW0etd5
+         piy+HN1nnL3JqFiwFC2q/KiFgk8tp6xOXEZMSUjbGTto63xB0ZZ8rKvn4Id3sx0suOa3
+         YqnROkPIS+UkqAqF6v8eCKUPgbumINw1KwtblAfeFsP49L/S5BzM8XiM0V4mJaV5yGys
+         AzA4WejMe721YwVpHQe5uv1AaDYxvmB/fCtrLcaaaS+k21qCVsEUZViAc60oeaP6Ni4A
+         dMAgEtn2oQ4cX7A8MWI9CpcMuiyLePimbafnMB1L28kzbj9t4geyzCVGcLgd5cP5TmhT
+         I8bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XoIGUc7L1CNxby6hJQisyEzt3VmpKa35bNMvST/YPuE=;
+        b=fju/APajZwRvSTMVZzJBvlx5hzM9PKgP7sDw+YhNC5Rg8sc7TixE3mq0lhisOUvRoy
+         xVx+QrIghOKUgAHDiEZD1REtIYAeOI/Pkv2OnpalcdeoLBNXqrLaXhf349Dt9wUycu5r
+         A7fiDO/hR5c9Ti+tYXApW/O2DbmTTHW+Xd+ktRDUmZt+Qj1ah0Yyn5DiWvn6nlaxjQVn
+         J+OKYrfWwjOkqEgS09xFqYIlA1OzxPsPH1fNY+YH5VaBnQTrQRm5uno4dOlefqIPKwbv
+         Cw5EdqkaSLAe9MqMf4p6/bqVeCYRSBCaYbIkxXqu4YlVUwo5Nb5jFF7YP3K8XiPV8/Tw
+         ktgw==
+X-Gm-Message-State: AOAM530zy1nADY8Ir72KnjHwFfForsXOXSbVbI0CckAo5s8LIMupbrGA
+        yPR0vaArHetjDcG+nQIosMVhJdihyjmxlfzaDsk=
+X-Google-Smtp-Source: ABdhPJxdjDrQ1VObEg1fJDmTAzjNNascf/eT/ASfc96PvXg+NyV2kooWdTZhgBk30cN/cpVwEf4p/OyzKfS1/Y1gQqI=
+X-Received: by 2002:a05:6402:4254:: with SMTP id g20mr15512109edb.281.1644838422989;
+ Mon, 14 Feb 2022 03:33:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v20, 0/2] ADD DM9051 ETHERNET DRIVER
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <164483821064.17157.12984377309696778794.git-patchwork-notify@kernel.org>
-Date:   Mon, 14 Feb 2022 11:30:10 +0000
-References: <20220211092756.27274-1-josright123@gmail.com>
-In-Reply-To: <20220211092756.27274-1-josright123@gmail.com>
-To:     Joseph CHAMG <josright123@gmail.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        joseph_chang@davicom.com.tw, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        andy.shevchenko@gmail.com, andrew@lunn.ch, leon@kernel.org
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220214033620.4059-1-jagathjog1996@gmail.com> <20220214033620.4059-4-jagathjog1996@gmail.com>
+In-Reply-To: <20220214033620.4059-4-jagathjog1996@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 14 Feb 2022 13:32:14 +0200
+Message-ID: <CAHp75VcWym5vyDAVyTUCpj=Qkm28VUaqdqJ7VuFL_bsb0fmhaA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] iio: potentiometer: Add support for Maxim DS3502
+To:     Jagath Jog J <jagathjog1996@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Slawomir Stepien <sst@poczta.fm>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On Mon, Feb 14, 2022 at 5:36 AM Jagath Jog J <jagathjog1996@gmail.com> wrote:
+>
+> The DS3502 is a 7-bit, nonvolatile digital potentiometer featuring
+> an output voltage range of up to 15.5V.
+> DS3502 support is implemented into existing ds1803 driver
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+Be consistent here and in other commit messages with how you refer to
+the IC parts, i.e.
+DS1803. Don't forget English grammar and punctuation, i.e. missed period above.
 
-On Fri, 11 Feb 2022 17:27:54 +0800 you wrote:
-> DM9051 is a spi interface chip,
-> need cs/mosi/miso/clock with an interrupt gpio pin
-> 
-> Joseph CHAMG (2):
->   dt-bindings: net: Add Davicom dm9051 SPI ethernet controller
->   net: Add dm9051 driver
-> 
-> [...]
+> Datasheet: https://datasheets.maximintegrated.com/en/ds/DS3502.pdf
 
-Here is the summary with links:
-  - [v20,1/2] dt-bindings: net: Add Davicom dm9051 SPI ethernet controller
-    https://git.kernel.org/netdev/net-next/c/759856e961e4
-  - [v20,2/2] net: Add dm9051 driver
-    https://git.kernel.org/netdev/net-next/c/2dc95a4d30ed
+>
 
-You are awesome, thank you!
+A tag block may not have blank lines. Drop it.
+
+> Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
+
+...
+
+> -       tristate "Maxim Integrated DS1803 Digital Potentiometer driver"
+> +       tristate "Maxim Integrated DS1803 and similar Digital Potentiometer driver"
+
+Please, list them like other drivers do:
+
+       tristate "Maxim Integrated DS1803/DS... Digital Potentiometer driver"
+
+...
+
+> -         Say yes here to build support for the Maxim Integrated DS1803
+> -         digital potentiometer chip.
+> +         Say yes here to build support for the Maxim Integrated DS1803 and
+> +         similar digital potentiometer chip.
+
+Same here.
+
+...
+
+> - * Maxim Integrated DS1803 digital potentiometer driver
+> + * Maxim Integrated DS1803 and similar digital potentiometer driver
+
+Same here.
+
+...
+
+> -#define DS1803_MAX_POS         255
+> -#define DS1803_WRITE(chan)     (0xa8 | ((chan) + 1))
+
+Not sure why these were removed (or moved?)
+
+...
+
+> +static const struct ds1803_cfg ds1803_cfg[] = {
+> +       [DS1803_010] = { .wipers = 2, .avail = { 0, 1, 255 }, .kohms =  10,
+> +                        .channels = ds1803_channels,
+> +                        .num_channels = ARRAY_SIZE(ds1803_channels) },
+> +       [DS1803_050] = { .wipers = 2, .avail = { 0, 1, 255 }, .kohms =  50,
+> +                        .channels = ds1803_channels,
+> +                        .num_channels = ARRAY_SIZE(ds1803_channels) },
+> +       [DS1803_100] = { .wipers = 2, .avail = { 0, 1, 255 }, .kohms = 100,
+> +                        .channels = ds1803_channels,
+> +                        .num_channels = ARRAY_SIZE(ds1803_channels) },
+> +       [DS3502] =     { .wipers = 1, .avail = { 0, 1, 127 }, .kohms =  10,
+> +                        .channels = ds3502_channels,
+> +                        .num_channels = ARRAY_SIZE(ds3502_channels) },
+>  };
+
+Split this on a per type basis. I believe it won't be too much work,
+also, consider adding channels as a separate preparatory patch as you
+did with avail.
+
+...
+
+> -       data->cfg = &ds1803_cfg[id->driver_data];
+> +       data->chip_type = (uintptr_t)device_get_match_data(dev);
+> +       if (data->chip_type < DS1803_010 || data->chip_type > DS3502)
+> +               data->chip_type = id->driver_data;
+
+Split it into a separate patch and use pointer validation instead:
+
+data->cfg = ...
+if (!data->cfg)
+  data->cfg = ...id->driver_data;
+
+...
+
+> -       { .compatible = "maxim,ds1803-010", .data = &ds1803_cfg[DS1803_010] },
+> -       { .compatible = "maxim,ds1803-050", .data = &ds1803_cfg[DS1803_050] },
+> -       { .compatible = "maxim,ds1803-100", .data = &ds1803_cfg[DS1803_100] },
+> +       { .compatible = "maxim,ds1803-010", .data = (void *)DS1803_010 },
+> +       { .compatible = "maxim,ds1803-050", .data = (void *)DS1803_050 },
+> +       { .compatible = "maxim,ds1803-100", .data = (void *)DS1803_100 },
+
+This is not good, please use pointers as it was before.
+
+> +       { .compatible = "maxim,ds3502",     .data = (void *)DS3502 },
+
+Ditto. Create a new, separate structure for this type.
+
+...
+
+>         { "ds1803-010", DS1803_010 },
+>         { "ds1803-050", DS1803_050 },
+>         { "ds1803-100", DS1803_100 },
+> +       { "ds3502",     DS3502     },
+
+Too many spaces.
+Besides this, please create a new prerequisite patch to convert this
+to use pointers as above.
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+With Best Regards,
+Andy Shevchenko
