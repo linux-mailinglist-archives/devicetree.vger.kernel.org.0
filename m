@@ -2,118 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B0244B4D00
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:11:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82D434B4DD6
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:20:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349585AbiBNLEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 06:04:00 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34332 "EHLO
+        id S1350732AbiBNLRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 06:17:52 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349793AbiBNLDc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:03:32 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599A4B5B;
-        Mon, 14 Feb 2022 02:31:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1644834713; x=1676370713;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8uiKQFrnrOzDBOW05m53tk5x/ATHjKo+rtDwLt+0ac4=;
-  b=hPRPTY0XLFGxJp0sUrkcvjHXuzky+kcBOgzSMGiwMZGpHvs1AFcPYy1f
-   rUbVV4zXeC0tHr6s13cI8Tyam68onTp+hg38/kbagwdBMMZarP3zosRrl
-   tQuENX8nuYqvrAUozos6kEyYh3Lpqjoa2ALE53vGBic1PaXnYJ9OovmGw
-   dHdzdNEEQJoTU17ELw2YiyPs9ysPOj+vPNjfedLWKd4XKbEmkN37w9q2M
-   inPGD5wlHGibXzgif5b4xe5tc4BrPJ8BGLM5lyAMKzABs8eCLlkvc4k5s
-   bHtG0ON8fCCujgPtDxOlQsr7w0hfeLRWQz9NO/t7DG7n0O4Dy8csHhpd5
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="233609871"
-X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; 
-   d="scan'208";a="233609871"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 02:31:52 -0800
-X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; 
-   d="scan'208";a="587144464"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 02:31:50 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id BCA07202AE;
-        Mon, 14 Feb 2022 12:31:47 +0200 (EET)
-Date:   Mon, 14 Feb 2022 12:31:47 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-acpi@vger.kernel.org, andriy.shevchenko@linux.intel.com,
-        devicetree@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH 3/4] device property: Add iomap to fwnode operations
-Message-ID: <Ygovk0MVcN/i6+wN@paasikivi.fi.intel.com>
-References: <20220206091643.276833-1-sakari.ailus@linux.intel.com>
- <20220206091643.276833-4-sakari.ailus@linux.intel.com>
- <YgaH7iJ5CWSJp1PY@robh.at.kernel.org>
+        with ESMTP id S1350775AbiBNLR3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:17:29 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F202F75C2D
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 02:49:59 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id bg21-20020a05600c3c9500b0035283e7a012so10580426wmb.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 02:49:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=DXv8SmLAPMNrPJ3mqwP/UuQ6ZTsnkTp239g0OTWzlWA=;
+        b=Mzulk2XClL7m/nGCOdw94t+dgDFGHB4aVksteuofaaRa6xxyPqxvdn7NK6SdQpTIMm
+         84gOQ2nkgwCF9lkU3ebqn9ocLqVhl9nK7Ol91VzuatvgUT3/MILOC8C+5Dge0ll5speM
+         OPvTq4XR4At4lH7P+VkO3WylRaVGmycHr8XnjFvvjFWoYFm2f1BQtXk2q6Pr8qQwOt3c
+         Nc9YMgKNlihGbhiwqPc3Hs7FekGV//l+Px+d3fDULIOGW9seSwIaQSDaiouk5PerQLqc
+         j1auWiU7PiaW3VMZu/4Uh2g4Wcc/fNkhXlYwqYQWnZU1G0FGf7yHWAlqbIYnf4cv1g8a
+         VHFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=DXv8SmLAPMNrPJ3mqwP/UuQ6ZTsnkTp239g0OTWzlWA=;
+        b=Kcz777tKTL7zvqX0s8ZlFq91+OspshuShsOdMAFrg8zJruu9O4i2ev/zPGwzuX4jkh
+         pCK4NXEo00zU8Q4ou5HzbIsVl/OD6apj0H+qIvP9X70fETbs159ix3ZMaECb94282r+5
+         Kkmmb6Kfgy3lYFOOXl7ReXuLCe1VeS3LszM5YFrJ8KAmoUIoCNIvst8+5kpIPA6JW3kI
+         dI8pNWu9LtQlgjccL0UxiXOoxMeYCo/+tteIWWtzDjS2KGEr4EKQYOnrN+dbEHsOOLYR
+         /bVkDdlYvR4shAZqzeS6ikGlmFNMvHZQNkD68TqicAce87YMFMUJZdPcLX/B4H7Z6cXN
+         lTSA==
+X-Gm-Message-State: AOAM532BsDZxKAto6+SM7lStahLzq6LNk5SRqpC2xUD4t/oQjCIyC+GD
+        w4BMkSazpYW6f5oF9v0Wu9wLKw==
+X-Google-Smtp-Source: ABdhPJzKJsy80xYZ3+bzTwXnv+y+Y5fOp64rrpJitEd3V8DuS1Z1Eai8C0vh/48VKS2HutAE73zE3g==
+X-Received: by 2002:a05:600c:b59:: with SMTP id k25mr10603699wmr.170.1644835798574;
+        Mon, 14 Feb 2022 02:49:58 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id h6sm1920631wmq.8.2022.02.14.02.49.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Feb 2022 02:49:58 -0800 (PST)
+Message-ID: <7a796e98-ef79-e50f-77b8-0b7ae533f06a@linaro.org>
+Date:   Mon, 14 Feb 2022 10:49:56 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YgaH7iJ5CWSJp1PY@robh.at.kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: SID: Add compatible for D1
+Content-Language: en-US
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+References: <20220203012502.10661-1-samuel@sholland.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20220203012502.10661-1-samuel@sholland.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-Thanks for the review.
 
-On Fri, Feb 11, 2022 at 09:59:42AM -0600, Rob Herring wrote:
-> On Sun, Feb 06, 2022 at 11:16:42AM +0200, Sakari Ailus wrote:
-> > Add iomap() fwnode operation to implement fwnode_iomap() through fwnode
-> > operations, moving the code in fwnode_iomap() to OF framework.
-> > 
-> > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > ---
-> >  drivers/base/property.c | 5 +----
-> >  drivers/of/property.c   | 7 +++++++
-> >  include/linux/fwnode.h  | 1 +
-> >  3 files changed, 9 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/base/property.c b/drivers/base/property.c
-> > index 09686e2e903e..83dd22e7cb81 100644
-> > --- a/drivers/base/property.c
-> > +++ b/drivers/base/property.c
-> > @@ -887,10 +887,7 @@ EXPORT_SYMBOL_GPL(device_get_phy_mode);
-> >   */
-> >  void __iomem *fwnode_iomap(struct fwnode_handle *fwnode, int index)
-> >  {
-> > -	if (IS_ENABLED(CONFIG_OF_ADDRESS) && is_of_node(fwnode))
-> > -		return of_iomap(to_of_node(fwnode), index);
-> > -
-> > -	return NULL;
-> > +	return fwnode_call_ptr_op(fwnode, iomap, index);
-> >  }
-> >  EXPORT_SYMBOL(fwnode_iomap);
-> >  
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index 676899566f7c..8beb89709740 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1465,6 +1465,12 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
-> >  	return 0;
-> >  }
-> >  
-> > +static void __iomem *of_fwnode_iomap(struct fwnode_handle *fwnode, int index)
-> > +{
-> > +	return IS_ENABLED(CONFIG_OF_ADDRESS) ?
+On 03/02/2022 01:25, Samuel Holland wrote:
+> D1 has a SID like other Allwinner SoCs, but with a unique eFuse layout.
+> Add a new compatible string for it.
 > 
-> I think this shouldn't be needed. !OF_ADDRESS is Sparc which just has 
-> its own implementation of of_iomap().
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
 
-I'll drop it for v2.
 
--- 
-Sakari Ailus
+Applied both thanks,
+
+--srini
+> 
+>   .../devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml       | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml b/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> index 6687ab720304..e558587ff885 100644
+> --- a/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml
+> @@ -20,6 +20,7 @@ properties:
+>         - const: allwinner,sun7i-a20-sid
+>         - const: allwinner,sun8i-a83t-sid
+>         - const: allwinner,sun8i-h3-sid
+> +      - const: allwinner,sun20i-d1-sid
+>         - const: allwinner,sun50i-a64-sid
+>         - items:
+>             - const: allwinner,sun50i-a100-sid
