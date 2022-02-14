@@ -2,47 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A19F4B423B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 07:59:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A8244B426C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 08:03:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239121AbiBNG6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 01:58:04 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51126 "EHLO
+        id S241115AbiBNHBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 02:01:39 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232237AbiBNG6D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 01:58:03 -0500
+        with ESMTP id S241111AbiBNHBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 02:01:36 -0500
 Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC216575DD;
-        Sun, 13 Feb 2022 22:57:56 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63FF259A66;
+        Sun, 13 Feb 2022 23:01:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1644821877; x=1676357877;
+  t=1644822080; x=1676358080;
   h=from:to:cc:subject:date:message-id;
-  bh=k/SrkmNO3uWYgzq06IwevJ6gIjLamufvr/U1/0YEWR4=;
-  b=ZvK1H5nqSq30/qjWit0DSB+xX471STr+KCFPlaqVKbxDKFbn4A6Elb9K
-   B1otVW3wnyZUPcn8sflFrbFHNpnd38t8TdKQjF8caKc/P2TeA4nPWZEBk
-   BNx1ZVjgZslqa/+txaUcyXFLWgzXfN20o9uljIm694NrdpRRgxsDrtduh
+  bh=J2KQOLTp6dTypHQ3yNmxkBsSyB1kwzt6QL9gj41Nx0A=;
+  b=hp8RVjc3qX9IR6Y4TZPWEELd/W/zxLLzON1NDNT8+mK458I8uUHZNpD2
+   mBxXkuy3kjsJM6hCkExBlffmI0QClo8g/VG4acbuv2IdufInOxWwTb6Qa
+   stCgTntjujdNxYzO4DvlJ+aYnnilgOBpPTfZ//w2EvqViyXmT3Q5cURZ3
    o=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 13 Feb 2022 22:57:56 -0800
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 13 Feb 2022 23:01:20 -0800
 X-QCInternal: smtphost
 Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 13 Feb 2022 22:57:54 -0800
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 13 Feb 2022 23:01:18 -0800
 X-QCInternal: smtphost
 Received: from hu-rohiagar-hyd.qualcomm.com (HELO hu-sgudaval-hyd.qualcomm.com) ([10.213.106.138])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 14 Feb 2022 12:27:51 +0530
+  by ironmsg01-blr.qualcomm.com with ESMTP; 14 Feb 2022 12:31:16 +0530
 Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 9D9374473; Mon, 14 Feb 2022 12:27:50 +0530 (+0530)
+        id DEB494473; Mon, 14 Feb 2022 12:31:15 +0530 (+0530)
 From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        manivannan.sadhasivam@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
         Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH 3/8] dt-bindings: clock: Add A7 PLL binding for SDX65
-Date:   Mon, 14 Feb 2022 12:27:49 +0530
-Message-Id: <1644821869-27199-1-git-send-email-quic_rohiagar@quicinc.com>
+Subject: [PATCH 5/8] ARM: dts: qcom: sdx65: Add support for A7 PLL clock
+Date:   Mon, 14 Feb 2022 12:31:09 +0530
+Message-Id: <1644822069-27513-1-git-send-email-quic_rohiagar@quicinc.com>
 X-Mailer: git-send-email 2.7.4
 X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
@@ -54,34 +52,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add YAML binding for Cortex A7 PLL clock in Qualcomm
-platforms like SDX65.
+On SDX65 there is a separate A7 PLL which is used to provide high
+frequency clock to the Cortex A7 CPU via a MUX.
 
 Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 ---
- Documentation/devicetree/bindings/clock/qcom,a7pll.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/qcom-sdx65.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,a7pll.yaml b/Documentation/devicetree/bindings/clock/qcom,a7pll.yaml
-index 8666e99..b8889dc 100644
---- a/Documentation/devicetree/bindings/clock/qcom,a7pll.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,a7pll.yaml
-@@ -10,13 +10,14 @@ maintainers:
-   - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
+index 556a2e3..2900ffe 100644
+--- a/arch/arm/boot/dts/qcom-sdx65.dtsi
++++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
+@@ -125,6 +125,14 @@
+ 			      <0x17802000 0x1000>;
+ 		};
  
- description:
--  The A7 PLL on the Qualcomm platforms like SDX55 is used to provide high
-+  The A7 PLL on the Qualcomm platforms like SDX55, SDX65 is used to provide high
-   frequency clock to the CPU.
- 
- properties:
-   compatible:
-     enum:
-       - qcom,sdx55-a7pll
-+      - qcom,sdx65-a7pll
- 
-   reg:
-     maxItems: 1
++		a7pll: clock@17808000 {
++			compatible = "qcom,sdx65-a7pll";
++			reg = <0x17808000 0x1000>;
++			clocks = <&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "bi_tcxo";
++			#clock-cells = <0>;
++		};
++
+ 		timer@17820000 {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
 -- 
 2.7.4
 
