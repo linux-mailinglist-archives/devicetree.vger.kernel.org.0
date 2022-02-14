@@ -2,120 +2,360 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 014994B555B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:52:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 274484B5565
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:55:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236139AbiBNPwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 10:52:14 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43876 "EHLO
+        id S1343875AbiBNPzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 10:55:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbiBNPwN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:52:13 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E1C849261;
-        Mon, 14 Feb 2022 07:52:06 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id i5so17852724oih.1;
-        Mon, 14 Feb 2022 07:52:06 -0800 (PST)
+        with ESMTP id S241693AbiBNPzX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:55:23 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5CCA49276
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:55:14 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id b9so7332877lfv.7
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:55:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bjs/DRHhbJtcD694Lc3CcZWCJJoxgGl0YedjWhf+rY4=;
-        b=qhAGg3lYSM6bqItJzoZt2Zstn6mYVXjsXyLzn8PPbKaM7yLz9MtX01/W5B0qbvSbqf
-         MM4JDcjul0cFnQVqfd8g2e1BWfLVkxsQNnyhFELWzeKulHtjSesmA2yKGnRgY3T6syGg
-         SfXk5WjRANrnodDnTtoaPTK9RaBa6XXYc65EnPAkXbl32z8q/+HcS0S8TT/d2tgTyLz8
-         mGpBAAASrAKDib3gw5ey25TqpKlIPD2PKmpzPWRETcENs4UXXVQ5fToNV56RxmTHnIfb
-         rcVKDp2nTSqHgQ6Kle2/tMgcT9tDMmCJg6LEa20BZK1LnqtNWHyTTn/KxpJ3lTLeTlL2
-         h6Hg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JNRqOaFV7X2t6LXguaBdf+enzjwGv/oik8U+YHadlGI=;
+        b=e5zixySMmRTWDoy83vKhDTVdwMxmR4bPfpFs/rsgLzNkt305Iyqw12G6WObKeTXM+H
+         reZD2FGjZJaU4knBBUb38c0WzXT/orXdmGxK1u03KRNw5E2KT3Q3fu4sYrzSZZv6S1w5
+         lnGkTYWHtWGps5sUjX+fVQsekeGfM5vlrTgnmwKRjxFz5wFeXaTLd5aOnfEb+f0m/hZa
+         cBABjaVqB7Exti9JHrhcSSeloPupX8ev/sebtyz+zbEk/1lMnTh6TKkuBmrpLcb0dCt+
+         3dw8k4Jwd4V+vPgpNoX+uKnuxYR27vfZNzf3C+hHV9ARWNXYkZMOX2y6bvG2X4ePameb
+         3k7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=bjs/DRHhbJtcD694Lc3CcZWCJJoxgGl0YedjWhf+rY4=;
-        b=2ix0PLJWvKZsjokX1g4knbQFUb18LotmC4hlCEWhNZLfM9rM6rllIs19DaptFutylQ
-         oe/9dOEz0iSe4C63KdYD1mcE9EtgICEOHBJQ6iNm71Z5S7PQtQfB69TLLYA4Aicr/425
-         4lKfsYdN9eBWEOYUgrAxJZj4CnQCIa++TPcyOXiO+xEecg3m+cQIQ5O44koQFvgri9oI
-         +/5PXwWxBD6BSy282JU+BmeS1VftaVgbukrqPwrOAIWr1inTaHszrgFU6wVqVTpMJeei
-         TXOlfMl7BHztAbXgxJQ43BbENbp8p9J1+bnjPhrRmGn2X6f385XyZRUaCdv1KJXV2dFJ
-         Ze7g==
-X-Gm-Message-State: AOAM533If+DMk//RWcz6wci0SeSfmGc2lrECCWLC+vN23mMAmJCPJEGi
-        qiJO7zyy+KRmsa3ei08zGsg=
-X-Google-Smtp-Source: ABdhPJxv0mCvpmC4WS/NiQ/O1XKg5rvWguZ5EHDY8sreXgHU1ABp+FIam1zT1OCPFvix8Wdh7grOZg==
-X-Received: by 2002:aca:4bcf:: with SMTP id y198mr13082oia.144.1644853925563;
-        Mon, 14 Feb 2022 07:52:05 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d65sm12354635otb.17.2022.02.14.07.52.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Feb 2022 07:52:05 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 14 Feb 2022 07:52:03 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        LUU HOAI <hoai.luu.ub@renesas.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: renesas: spider-cpu: Enable watchdog
- timer
-Message-ID: <20220214155203.GA121693@roeck-us.net>
-References: <cover.1642525158.git.geert+renesas@glider.be>
- <b36b2bb5770e10d906571721a3d73ca205b6f56e.1642525158.git.geert+renesas@glider.be>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JNRqOaFV7X2t6LXguaBdf+enzjwGv/oik8U+YHadlGI=;
+        b=mRhvAb25L2ztNdVKrwhEWp1s+nry0Fgvb2Jn6KP4LNoxh5K+4eiX3t3dreKrX6z0vt
+         01GIE0ZxeJEPC9KqhZJ8709gh15Tj77zspB6owm4jUAaS5L67qv8mopT79aJozLpOWvb
+         OzLjxoM76zXyfjOLego4sBB+n8jVzl7Clb7k9Twyyxm/5NgKLW9Yvo04c2UiFRES/Dxo
+         k9J/iAd9rJvUKAcJhzxsJ4SWW13JZUrZ77p89z3I2ONhfNM/21zQHLB/Ugk77Qjgialh
+         NCpK/yoQz2JlU78URwRB4ExA/3XqS2Y458UhM+C6VgwVvOBRfhBvH+b//KerFKVQ3Ror
+         KwOw==
+X-Gm-Message-State: AOAM530npoJ7+Px+/D+q98EU8+/BiVby5niPIQ5kFX5ozvmcHH2k6dpm
+        XlEJI4VaqMM4NgXrcdYyPZp8J9IKjBGy8W0dVapFJg==
+X-Google-Smtp-Source: ABdhPJwl5SfUgEThhcOgbNZT+C3OdwOFkMIhUqrsDs8ZRVfAnHl2esIkiKhlTBxYvWs+np4NRIs6q1qn4xCGjwt9wKs=
+X-Received: by 2002:ac2:5a0b:: with SMTP id q11mr215506lfn.358.1644854113170;
+ Mon, 14 Feb 2022 07:55:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b36b2bb5770e10d906571721a3d73ca205b6f56e.1642525158.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220121071942.11601-1-axe.yang@mediatek.com> <20220121071942.11601-4-axe.yang@mediatek.com>
+In-Reply-To: <20220121071942.11601-4-axe.yang@mediatek.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 14 Feb 2022 16:54:37 +0100
+Message-ID: <CAPDyKFqTcAd5kDAzrLDxFTismXDJdKOHLD1hEH369CyRLLo=mw@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] mmc: mediatek: add support for SDIO eint IRQ
+To:     Axe Yang <axe.yang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Yong Mao <yong.mao@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 18, 2022 at 06:09:05PM +0100, Geert Uytterhoeven wrote:
-> Enable the watchdog timer on the Spider board.
-> 
-> Extracted from a larger patch in the BSP by LUU HOAI.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On Fri, 21 Jan 2022 at 08:19, Axe Yang <axe.yang@mediatek.com> wrote:
+>
+> Add support for eint IRQ when MSDC is used as an SDIO host. This
+> feature requires SDIO device support async IRQ function. With this
+> feature, SDIO host can be awakened by SDIO card in suspend state,
+> without additional pin.
+>
+> MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
+> turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
+> resume, switch GPIO function back to DAT1 mode then turn on clock.
+>
+> Some device tree property should be added or modified in MSDC node
+> to support SDIO eint IRQ. Pinctrls named state_dat1 and state_eint
+> are mandatory. And cap-sdio-async-irq flag is necessary since this
+> feature depends on asynchronous interrupt:
+>         &mmcX {
+>                 ...
+>                 pinctrl-names = "default", "state_uhs", "state_eint",
+>                                 "state_dat1";
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+Looks like you need to update the DT docs too to describe these new
+things, right?
 
+>                 ...
+>                 pinctrl-2 = <&mmc2_pins_eint>;
+>                 pinctrl-3 = <&mmc2_pins_dat1>;
+>                 ...
+>                 cap-sdio-async-irq;
+>                 ...
+>         };
+>
+> Co-developed-by: Yong Mao <yong.mao@mediatek.com>
+> Signed-off-by: Yong Mao <yong.mao@mediatek.com>
+> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
 > ---
-> For the watchdog to be able to actually reboot the system, this depends
-> on proper configuration of the Watchdog Timer Reset Control Register
-> (WDTRSTCR) in the Reset (RST) module, either by Linux[1], or by the
-> firmware.
-> 
-> [1] "[PATCH LOCAL v2] soc: renesas: rcar-rst: Allow WDT reset on R-Car
->      Gen4"
->     https://lore.kernel.org/r/39005cf749a99afc6d3ba96ff155fd2a231418a8.1642524743.git.geert+renesas@glider.be
-> ---
->  arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-> index 156586532c844c41..3a90932fe85c8243 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
-> @@ -31,6 +31,11 @@ &extalr_clk {
->  	clock-frequency = <32768>;
+>  drivers/mmc/host/mtk-sd.c | 123 +++++++++++++++++++++++++++++++++++---
+>  1 file changed, 115 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
+> index 65037e1d7723..f8e38228d810 100644
+> --- a/drivers/mmc/host/mtk-sd.c
+> +++ b/drivers/mmc/host/mtk-sd.c
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * Copyright (c) 2014-2015 MediaTek Inc.
+> + * Copyright (c) 2014-2015, 2022 MediaTek Inc.
+>   * Author: Chaotian.Jing <chaotian.jing@mediatek.com>
+>   */
+>
+> @@ -9,6 +9,7 @@
+>  #include <linux/clk.h>
+>  #include <linux/delay.h>
+>  #include <linux/dma-mapping.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/ioport.h>
+>  #include <linux/irq.h>
+> @@ -440,8 +441,12 @@ struct msdc_host {
+>         struct pinctrl *pinctrl;
+>         struct pinctrl_state *pins_default;
+>         struct pinctrl_state *pins_uhs;
+> +       struct pinctrl_state *pins_eint;
+> +       struct pinctrl_state *pins_dat1;
+>         struct delayed_work req_timeout;
+>         int irq;                /* host interrupt */
+> +       int eint_irq;           /* device interrupt */
+> +       int sdio_irq_cnt;       /* irq enable cnt */
+>         struct reset_control *reset;
+>
+>         struct clk *src_clk;    /* msdc source clock */
+> @@ -465,6 +470,7 @@ struct msdc_host {
+>         bool hs400_tuning;      /* hs400 mode online tuning */
+>         bool internal_cd;       /* Use internal card-detect logic */
+>         bool cqhci;             /* support eMMC hw cmdq */
+> +       bool sdio_eint_ready;   /* Ready to support SDIO eint interrupt */
+>         struct msdc_save_para save_para; /* used when gate HCLK */
+>         struct msdc_tune_para def_tune_para; /* default tune setting */
+>         struct msdc_tune_para saved_tune_para; /* tune result of CMD21/CMD19 */
+> @@ -1527,10 +1533,12 @@ static void msdc_enable_sdio_irq(struct mmc_host *mmc, int enb)
+>         __msdc_enable_sdio_irq(host, enb);
+>         spin_unlock_irqrestore(&host->lock, flags);
+>
+> -       if (enb)
+> -               pm_runtime_get_noresume(host->dev);
+> -       else
+> -               pm_runtime_put_noidle(host->dev);
+> +       if (mmc->card && !mmc->card->cccr.enable_async_irq) {
+> +               if (enb)
+> +                       pm_runtime_get_noresume(host->dev);
+> +               else
+> +                       pm_runtime_put_noidle(host->dev);
+> +       }
+>  }
+>
+>  static irqreturn_t msdc_cmdq_irq(struct msdc_host *host, u32 intsts)
+> @@ -2461,6 +2469,48 @@ static const struct mmc_host_ops mt_msdc_ops = {
+>         .hw_reset = msdc_hw_reset,
 >  };
->  
-> +&rwdt {
-> +	timeout-sec = <60>;
-> +	status = "okay";
-> +};
+>
+> +static irqreturn_t msdc_sdio_eint_irq(int irq, void *dev_id)
+> +{
+> +       struct msdc_host *host = dev_id;
+> +       struct mmc_host *mmc = mmc_from_priv(host);
 > +
->  &scif3 {
->  	status = "okay";
+> +       spin_lock(&host->lock);
+> +       if (likely(host->sdio_irq_cnt > 0)) {
+> +               disable_irq_nosync(host->eint_irq);
+> +               disable_irq_wake(host->eint_irq);
+> +               host->sdio_irq_cnt--;
+> +       }
+> +       spin_unlock(&host->lock);
+> +
+> +       sdio_signal_irq(mmc);
+> +
+> +       return IRQ_HANDLED;
+> +}
+> +
+> +static int msdc_request_dat1_eint_irq(struct msdc_host *host)
+> +{
+> +       struct gpio_desc *desc;
+> +       int irq, ret;
+> +
+> +       desc = devm_gpiod_get(host->dev, "eint", GPIOD_IN);
+> +       if (IS_ERR(desc))
+> +               return PTR_ERR(desc);
+> +
+> +       irq = gpiod_to_irq(desc);
+> +       if (irq < 0)
+> +               return irq;
+> +
+> +       ret = devm_request_threaded_irq(host->dev, irq, NULL, msdc_sdio_eint_irq,
+> +                                       IRQF_TRIGGER_LOW | IRQF_ONESHOT | IRQF_NO_AUTOEN,
+> +                                       "sdio-eint", host);
+
+Again, I think you need to update the DT doc to describe these new
+IRQ/GPIO things.
+
+> +       if (ret)
+> +               return ret;
+> +
+> +       host->eint_irq = irq;
+> +
+> +       return 0;
+> +}
+> +
+>  static const struct cqhci_host_ops msdc_cmdq_ops = {
+>         .enable         = msdc_cqe_enable,
+>         .disable        = msdc_cqe_disable,
+> @@ -2631,6 +2681,23 @@ static int msdc_drv_probe(struct platform_device *pdev)
+>                 goto host_free;
+>         }
+>
+> +       if (!(mmc->caps2 & MMC_CAP2_NO_SDIO) && (mmc->caps2 & MMC_CAP2_SDIO_ASYNC_IRQ)) {
+> +               /* Support for SDIO eint irq */
+> +               host->pins_eint = pinctrl_lookup_state(host->pinctrl, "state_eint");
+> +               if (IS_ERR(host->pins_eint)) {
+> +                       dev_dbg(&pdev->dev, "Cannot find pinctrl eint!\n");
+> +               } else {
+> +                       host->pins_dat1 = pinctrl_lookup_state(host->pinctrl, "state_dat1");
+> +                       if (IS_ERR(host->pins_dat1)) {
+> +                               ret = dev_err_probe(&pdev->dev, PTR_ERR(host->pins_dat1),
+> +                                                   "Cannot find pinctrl dat1!\n");
+> +                               goto host_free;
+> +                       }
+> +
+> +                       host->sdio_eint_ready = true;
+> +               }
+> +       }
+> +
+>         msdc_of_property_parse(pdev, host);
+>
+>         host->dev = &pdev->dev;
+> @@ -2722,6 +2789,16 @@ static int msdc_drv_probe(struct platform_device *pdev)
+>         if (ret)
+>                 goto release;
+>
+> +       if (host->sdio_eint_ready) {
+> +               ret = msdc_request_dat1_eint_irq(host);
+> +               if (ret) {
+> +                       dev_err(host->dev, "Failed to register data1 eint irq!\n");
+> +                       goto release;
+> +               }
+> +
+> +               pinctrl_select_state(host->pinctrl, host->pins_dat1);
+> +       }
+> +
+>         pm_runtime_set_active(host->dev);
+>         pm_runtime_set_autosuspend_delay(host->dev, MTK_MMC_AUTOSUSPEND_DELAY);
+>         pm_runtime_use_autosuspend(host->dev);
+> @@ -2843,8 +2920,22 @@ static int __maybe_unused msdc_runtime_suspend(struct device *dev)
+>  {
+>         struct mmc_host *mmc = dev_get_drvdata(dev);
+>         struct msdc_host *host = mmc_priv(mmc);
+> +       unsigned long flags;
+>
+>         msdc_save_reg(host);
+> +
+> +       if (host->sdio_eint_ready) {
+> +               disable_irq(host->irq);
+> +               pinctrl_select_state(host->pinctrl, host->pins_eint);
+> +               spin_lock_irqsave(&host->lock, flags);
+> +               if (host->sdio_irq_cnt == 0) {
+> +                       enable_irq(host->eint_irq);
+> +                       enable_irq_wake(host->eint_irq);
+> +                       host->sdio_irq_cnt++;
+> +               }
+> +               sdr_clr_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
+> +               spin_unlock_irqrestore(&host->lock, flags);
+> +       }
+>         msdc_gate_clock(host);
+>         return 0;
+>  }
+> @@ -2853,6 +2944,7 @@ static int __maybe_unused msdc_runtime_resume(struct device *dev)
+>  {
+>         struct mmc_host *mmc = dev_get_drvdata(dev);
+>         struct msdc_host *host = mmc_priv(mmc);
+> +       unsigned long flags;
+>         int ret;
+>
+>         ret = msdc_ungate_clock(host);
+> @@ -2860,10 +2952,25 @@ static int __maybe_unused msdc_runtime_resume(struct device *dev)
+>                 return ret;
+>
+>         msdc_restore_reg(host);
+> +
+> +       if (host->sdio_eint_ready) {
+> +               spin_lock_irqsave(&host->lock, flags);
+> +               if (host->sdio_irq_cnt > 0) {
+> +                       disable_irq_nosync(host->eint_irq);
+> +                       disable_irq_wake(host->eint_irq);
+> +                       host->sdio_irq_cnt--;
+> +                       sdr_set_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
+> +               } else {
+> +                       sdr_clr_bits(host->base + MSDC_INTEN, MSDC_INTEN_SDIOIRQ);
+> +               }
+> +               spin_unlock_irqrestore(&host->lock, flags);
+> +               pinctrl_select_state(host->pinctrl, host->pins_uhs);
+> +               enable_irq(host->irq);
+> +       }
+>         return 0;
+>  }
+>
+> -static int __maybe_unused msdc_suspend(struct device *dev)
+> +static int __maybe_unused msdc_suspend_noirq(struct device *dev)
+>  {
+>         struct mmc_host *mmc = dev_get_drvdata(dev);
+>         int ret;
+> @@ -2877,13 +2984,13 @@ static int __maybe_unused msdc_suspend(struct device *dev)
+>         return pm_runtime_force_suspend(dev);
+>  }
+>
+> -static int __maybe_unused msdc_resume(struct device *dev)
+> +static int __maybe_unused msdc_resume_noirq(struct device *dev)
+>  {
+>         return pm_runtime_force_resume(dev);
+>  }
+>
+>  static const struct dev_pm_ops msdc_dev_pm_ops = {
+> -       SET_SYSTEM_SLEEP_PM_OPS(msdc_suspend, msdc_resume)
+> +       SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(msdc_suspend_noirq, msdc_resume_noirq)
+>         SET_RUNTIME_PM_OPS(msdc_runtime_suspend, msdc_runtime_resume, NULL)
 >  };
+>
+
+Overall the approach makes perfect sense to me!
+
+However, I think the code can be simplified and made more robust by
+using the wakeirq interface instead. Please have a look at
+dev_pm_set_dedicated_wake_irq() and friends. Using them, will let the
+runtime PM core deal with disabling/enabling the IRQ, rather than
+having to do that manually by the driver, for example.
+
+If you want to get inspired by an existing implementation, please have
+a look at the sdhci-omap driver.
+
+Kind regards
+Uffe
