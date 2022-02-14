@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2540F4B5D3C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:49:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9253E4B5D43
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:51:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231562AbiBNVtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 16:49:39 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51674 "EHLO
+        id S231583AbiBNVuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 16:50:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231458AbiBNVti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:49:38 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3551954D3
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:49:30 -0800 (PST)
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        with ESMTP id S231458AbiBNVuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:50:32 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3C5D19721F
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:50:23 -0800 (PST)
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id EA1FB40053
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 21:49:28 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B6BE43F071
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 21:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644875368;
-        bh=JIs1xiYNpUGWLEtymgYGm7pSCxeAjzoS3yDzGjJPXvE=;
+        s=20210705; t=1644875422;
+        bh=SK7G4ypmuhoiLsaPwNFfqBVBg1y4potPtaeeipvUqEo=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=v7i+HWzp/SG+jQLd5DXdr1rQI8aPb3l7Oy7QWXEqrhR25RcMQu8a0wjdAWu5G3ySf
-         hqTv1Zt9l2nDlnOMbDv64uEyaYZeCZXi08DxEScRP/p+LXWty2NPBrAlZiBQqiToQi
-         PM7QhQrVxOJHtvfjqBVOhparCEuiS/z10Uc4QjOLcNLWydCuPW7zpd8GW5eDjxnArl
-         S/sjZW+BVt9Zq9B/KFcaJ7jfMqHLNriKTXVU1qM+ZlFNfIIgapNv+aNTdQGd6t0ybK
-         hbnc6qfFVo3l7FTQvIih0kA8rdi26Lykd4RgjlSf5XMVkjSM8DjPBHZX7dZAkT5/xx
-         Jaa/jBgYx4TRQ==
-Received: by mail-wr1-f71.google.com with SMTP id p9-20020adf9589000000b001e333885ac1so7399581wrp.10
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:49:28 -0800 (PST)
+        b=Li5rOIMt5rt+U0sZwrn6wie1JONcpNmFV4YFZKXDXdDuqYkFJLfxb5D4e+u4l4r8d
+         rn8FH0HvPhvs2hfM6Bar811jsQQKUb84keNyXdy9A/zkflqtJzgxM39fb5s7CdDLOO
+         eB8Kt2nbkk2pXSR/AveTfHnIqOolBecY3luckrOivklfy22k3qEdPVexsGPgT9ey9c
+         G7O9hL8wtLexovXium32tTO8PghIdnFROPJRnSfWKkzwgHWc9QtCQRffejoLZ/eLTL
+         LDtn5gFdwZpkIhkKyOQebSFrrQKnHwb2tz+Yzl9xc0NgxtOs+nNy6y+RJh9nSreOyz
+         sKyx5ciXOFElg==
+Received: by mail-wr1-f70.google.com with SMTP id e11-20020adf9bcb000000b001e316b01456so7387514wrc.21
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:50:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=JIs1xiYNpUGWLEtymgYGm7pSCxeAjzoS3yDzGjJPXvE=;
-        b=xpngNGH6ceZdWenvRQ027MzQ6X5EYy/OTG9hDNkvNVSmnBBpsD/Ax5o9LiOcNqwMtN
-         /43x0uDvaRBsaC8jpZ+LRoKng++UKjVnKnaubbp/AcAfRflvocMmn6IVlACD2LL79nQk
-         x2kPAwbc0b4yjLZ0LcU3Oq1FOI489AqAFS+aOA1QF4P8Un1pWaoc9XXLVROkIaUf+rpA
-         Obk6+xgyiI3mjdFeT/iMU//uAWP1CjVp9H4gdVzh2Z+7cv9zGwzgNSlYJzEmpZe5lHfn
-         3elthDKKdAKXG0lihCbf/ZwXexOIMpH8mlcpt2+MFSI6DFqaHIAYyEPghcp6SfQAYJ1n
-         Y+8Q==
-X-Gm-Message-State: AOAM5328swqRaaBF4yIFYX5PKROvYxHHnWy2/Z89TT5r5j6Jj5X9r9bE
-        E20E28AzI5+YDs35bFiLXJScPQqCGNQMshc4p4kepqSyq8OLSJgJItbv2GtXkapQE2/VpMhxzm2
-        CrdDHF3rvo8jfqfFrvPDUHtchbU564ImT4wrpYfA=
-X-Received: by 2002:a05:600c:1c11:: with SMTP id j17mr606090wms.138.1644875368525;
-        Mon, 14 Feb 2022 13:49:28 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxKWcCqlvzOjQU6wfJEEKTCLPSGNxu0cNkLUzJsJZwJjpWyaSQuWK0i7UTurbPojjOb5bxVfA==
-X-Received: by 2002:a05:600c:1c11:: with SMTP id j17mr606079wms.138.1644875368292;
-        Mon, 14 Feb 2022 13:49:28 -0800 (PST)
+        bh=SK7G4ypmuhoiLsaPwNFfqBVBg1y4potPtaeeipvUqEo=;
+        b=cmKFy2xmRj0hOqbHsd81ELZ6aNKiaGuJ9puespgkg2DF885gKuJKIu54cu9/WN3bCY
+         8GH/jx0XlKheJ1YcB0ZI84tIRUICPWByp7RzRJQWg5/gioTc7CJ8ATgyDDFeQyANk9Ad
+         wjEspqlgw7vs9ByQUnqR9qcuB2eoO5iRRXxmt9O0p40Hj+2slVEUQYdpxjT6QxTqJipq
+         uDT8mNtseKSq9jz3OrOt03KOjrOZ54XdkZ7NzpFrKmmRxQcc53dbVRWG5hKVqsTHd6Ky
+         Wb9qZOI0Y3fQlN0YYSMjbEWtfRs1a4LXybPpsgqnpmLNq6b/NsE/9/KwblxpZpkTrzvG
+         UFXA==
+X-Gm-Message-State: AOAM533DU+SqYfAtvLt1WHl2ezJzGK4KQ+YwQg7MWrT2kXk3Zl58s1Ng
+        B0tTlxbBcj1diHG7HpgLpS8DWvTDvOCxgKhTJ/tJNPhbTQSgLLclK3m3KUFEEt/k+lMJuZuYu6x
+        ZZ76qQN1pww5CSinhuhfM6hs1/vmQ2Oy718HBFgc=
+X-Received: by 2002:a05:6000:1a86:: with SMTP id f6mr736490wry.401.1644875422509;
+        Mon, 14 Feb 2022 13:50:22 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJygBAmKnUaBhnqEsn25FVjZQMtwe8K8BzcNWLC4Y/B5LAnAJFvu17U+OWfVIobOofQEzcDjLw==
+X-Received: by 2002:a05:6000:1a86:: with SMTP id f6mr736481wry.401.1644875422326;
+        Mon, 14 Feb 2022 13:50:22 -0800 (PST)
 Received: from [192.168.0.106] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id n7sm12982487wmd.30.2022.02.14.13.49.27
+        by smtp.gmail.com with ESMTPSA id z2sm12703881wrn.60.2022.02.14.13.50.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Feb 2022 13:49:27 -0800 (PST)
-Message-ID: <cf4e21e8-1ba8-a137-6063-00e1cee8e035@canonical.com>
-Date:   Mon, 14 Feb 2022 22:49:27 +0100
+        Mon, 14 Feb 2022 13:50:21 -0800 (PST)
+Message-ID: <ce5ccbbc-0419-ae3d-5ab1-f8985cb7e792@canonical.com>
+Date:   Mon, 14 Feb 2022 22:50:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: ps2-gpio: convert binding to json-schema
+Subject: Re: [PATCH 2/2] input: ps2-gpio: enforce and document open drain
 Content-Language: en-US
 To:     Danilo Krummrich <danilokrummrich@dk-develop.de>,
         dmitry.torokhov@gmail.com, robh+dt@kernel.org,
@@ -70,9 +70,9 @@ To:     Danilo Krummrich <danilokrummrich@dk-develop.de>,
         linux-kernel@vger.kernel.org
 Cc:     linus.walleij@linaro.org
 References: <20220211233137.99624-1-danilokrummrich@dk-develop.de>
- <20220211233137.99624-2-danilokrummrich@dk-develop.de>
+ <20220211233137.99624-3-danilokrummrich@dk-develop.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220211233137.99624-2-danilokrummrich@dk-develop.de>
+In-Reply-To: <20220211233137.99624-3-danilokrummrich@dk-develop.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -86,119 +86,26 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 12/02/2022 00:31, Danilo Krummrich wrote:
-> Convert the ps2-gpio dt-binding documentation to DT schema format using
-> the json-schema.
+> The PS/2 bus defines the data and clock line be open drain, therefore
+> document this in the dt-binding and enforce the particular flag in the
+> driver.
+> 
+> Without enforcing to flag at least the clock gpio as open drain we run
+> into the following warning:
+> 
+> WARNING: CPU: 1 PID: 40 at drivers/gpio/gpiolib.c:3175 gpiochip_enable_irq+0x54/0x90
+> 
+> gpiochip_enable_irq() warns on a GPIO being configured as output and
+> using IRQ without being flagged as open drain.
 > 
 > Signed-off-by: Danilo Krummrich <danilokrummrich@dk-develop.de>
 > ---
->  .../devicetree/bindings/serio/ps2-gpio.txt    | 23 --------
->  .../devicetree/bindings/serio/ps2-gpio.yaml   | 52 +++++++++++++++++++
->  2 files changed, 52 insertions(+), 23 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/serio/ps2-gpio.txt
->  create mode 100644 Documentation/devicetree/bindings/serio/ps2-gpio.yaml
+>  .../devicetree/bindings/serio/ps2-gpio.yaml        | 14 ++++++++++----
+>  drivers/input/serio/ps2-gpio.c                     |  9 +++++++--
+>  2 files changed, 17 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/serio/ps2-gpio.txt b/Documentation/devicetree/bindings/serio/ps2-gpio.txt
-> deleted file mode 100644
-> index 7b7bc9cdf986..000000000000
-> --- a/Documentation/devicetree/bindings/serio/ps2-gpio.txt
-> +++ /dev/null
-> @@ -1,23 +0,0 @@
-> -Device-Tree binding for ps/2 gpio device
-> -
-> -Required properties:
-> -	- compatible = "ps2-gpio"
-> -	- data-gpios: the data pin
-> -	- clk-gpios: the clock pin
-> -	- interrupts: Should trigger on the falling edge of the clock line.
-> -
-> -Optional properties:
-> -	- write-enable: Indicates whether write function is provided
-> -	to serio device. Possibly providing the write fn will not work, because
-> -	of the tough timing requirements.
-> -
-> -Example nodes:
-> -
-> -ps2@0 {
-> -	compatible = "ps2-gpio";
-> -	interrupt-parent = <&gpio>;
-> -	interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
-> -	data-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
-> -	clk-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>;
-> -	write-enable;
-> -};
-> diff --git a/Documentation/devicetree/bindings/serio/ps2-gpio.yaml b/Documentation/devicetree/bindings/serio/ps2-gpio.yaml
-> new file mode 100644
-> index 000000000000..ec6fa7b40851
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serio/ps2-gpio.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serio/ps2-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for GPIO based PS/2
-> +
-> +maintainers:
-> +  - Danilo Krummrich <danilokrummrich@dk-develop.de>
-> +
-> +properties:
-> +  compatible:
-> +    items:
 
-Hi,
-
-I think you do not expect more compatibles, so skip "items".
-
-> +      - const: ps2-gpio
-> +
-> +  data-gpios:
-> +    description:
-> +      the gpio used for the data signal
-> +    maxItems: 1
-> +
-> +  clk-gpios:
-> +    description:
-> +      the gpio used for the clock signal
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      The given interrupt should trigger on the falling edge of the clock line.
-> +    maxItems: 1
-> +
-> +  write-enable:
-
-This does not look like a standard property. You need "type: boolean".
-
-> +    description:
-> +      Indicates whether write function is provided to serio device. Possibly
-> +      providing the write function will not work, because of the tough timing
-> +      requirements.
-> +
-> +required:
-
-Also: compatible
-
-> +  - data-gpios
-> +  - clk-gpios
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    ps2@0 {
-
-Does it compile cleanly? You used an unit-address but there is no reg.
-
-> +        compatible = "ps2-gpio";
-> +        interrupt-parent = <&gpio>;
-> +        interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
-> +        data-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
-> +        clk-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>;
-> +        write-enable;
-> +    };
-
+Bindings as separate patch, please.
 
 Best regards,
 Krzysztof
