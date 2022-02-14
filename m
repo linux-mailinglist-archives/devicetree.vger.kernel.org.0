@@ -2,92 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0034D4B4EF2
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:43:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D8AF4B4F0F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:45:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352888AbiBNLmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 06:42:23 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43198 "EHLO
+        id S242382AbiBNLna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 06:43:30 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353779AbiBNLmA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:42:00 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 279FA66CB3;
-        Mon, 14 Feb 2022 03:33:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B1CF4B80E63;
-        Mon, 14 Feb 2022 11:33:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ACC4C340EF;
-        Mon, 14 Feb 2022 11:33:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1644838390;
-        bh=mB4W/H/vrB0d77K6nBnjaR9o/mXDf3g7YMz3F6i2XPs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=P9eOPxoPwj3QMg77pz+4V2ZXKrBN0sxp4V6IAZ7lW13IoezGtFUAgvvOXD+9lnTma
-         FkRvZrj6JM1DJxfvX3OP9mVNfVwJ5iasyMQRi33pnY7/KFrfyOHH6GDblmX+gkpFJH
-         MgdN3dGv0EUn/wSaNy7fi2uuEjGz4Fhb/NaCO+Wk=
-Date:   Mon, 14 Feb 2022 12:33:07 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     =?utf-8?B?5pa96YyV6bS7?= <vincent.sunplus@gmail.com>
-Cc:     stern@rowland.harvard.edu, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, wells.lu@sunplus.com
-Subject: Re: [PATCH v1 1/2] usb: host: ehci-sunplus: Add driver for ehci in
- Sunplus SP7021
-Message-ID: <Ygo980Tg3aZdDQDH@kroah.com>
-References: <1644827562-17244-1-git-send-email-vincent.sunplus@gmail.com>
- <1644827562-17244-2-git-send-email-vincent.sunplus@gmail.com>
- <YgoVBv/z1uCsR1Y0@kroah.com>
- <CAPvp3Rhtb-g1A5FG6_1irzX2fG-VACU3T4tST1Xo99cnnL==MQ@mail.gmail.com>
- <Ygodd+TFQGnhki6A@kroah.com>
- <CAPvp3RiPVkonTtAdTcLqQuPggg6zw8yNEPf-mR0+1bbtSsdtEg@mail.gmail.com>
+        with ESMTP id S229685AbiBNLnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:43:18 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC6526D966;
+        Mon, 14 Feb 2022 03:35:08 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id h8so10241687ejy.4;
+        Mon, 14 Feb 2022 03:35:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3J6eRdmKEMyvk87DRaAXQaXppLltRQ4LA3+XirchFxA=;
+        b=Jxj6DU6co/Vr+l0USdm3w6jdGohzXgvtlk4K9zaYfE0UE4fdpkJAyE/f1L6xu9wbM1
+         Mqbsc1yN5iOCWpdx4mwscUBQKWmakAqK6CtSMVMInBBVoH3LH4b332zMPONbVj8QlwPn
+         A4v0pyA+4yAkOwnz2ao5qWpbsvC9ddJi86XfaYxa4E7gjTGN256xy2ADMSX9uJheYc0x
+         DxPPaUbCKnDjXsz6//BWmUZNSdj0DAY8D6DoFwkTGkFkxEOIvPtSj80E5zWdcRCQ4MQ0
+         NgSAdtEIMgEYCzFhzTGdgnrFwrS1pNtPlk+JbFvdNPK0bgY2ogk0R/TAJw8IDI/8yn+u
+         IpLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3J6eRdmKEMyvk87DRaAXQaXppLltRQ4LA3+XirchFxA=;
+        b=B0Y1/WKMOBw5wcqlmv2Rbj+OXAN6fs45Sx8AjTDbkhyYWHW4UUI9al4nti8rvGWo+T
+         9rIvylBwRPDpC1xkWB0M4w4shifAxw4RFirPwpls7HoDOUE97P0FgAu2xGJgFha6clvt
+         ItYuAdc+dEqqkx1F0bXqMu6iz4W/mRmwEV10rRF6S63fY1z2gxriaXd9n1p64dwCyO2s
+         KhEfO5GaDPnqTmJZoJD6fzcqi9NcU0dz37mJ32/1UTkzG1ybR8QWy/1SURwQ3CZeZoAq
+         Rjbd+FaAlCfoUpIif8lYpnxsrd6k0ypC4tO05auBxIM1n3ktFjDEJ/QrVypUc/LmPedX
+         Ymog==
+X-Gm-Message-State: AOAM5314EXjd26mGI5Fu2yJhAIqDD66D/ET/+vxryHQ4HotzO4G2GeoY
+        E4oGMUv/9K6jUymrjzBl04R6zlrOifPa+JeyLW7hz4dwtWJWzw==
+X-Google-Smtp-Source: ABdhPJz+0EzQshm9MotYZJdj3ES6556nBEyrExLmu/yNZmkwHFHdZvwtOR6XSqnFAqEpMlN1s7uDxdYixPE6r9IJ7Xs=
+X-Received: by 2002:a17:906:604d:: with SMTP id p13mr10880088ejj.639.1644838507355;
+ Mon, 14 Feb 2022 03:35:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPvp3RiPVkonTtAdTcLqQuPggg6zw8yNEPf-mR0+1bbtSsdtEg@mail.gmail.com>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220214033620.4059-1-jagathjog1996@gmail.com>
+In-Reply-To: <20220214033620.4059-1-jagathjog1996@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 14 Feb 2022 13:33:38 +0200
+Message-ID: <CAHp75VfUgqNUAShjbsXhA3mJ9YTDwtoxNDiFMX7iu-MgGFFCpA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] iio: potentiometer: Add support for DS3502
+To:     Jagath Jog J <jagathjog1996@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Slawomir Stepien <sst@poczta.fm>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 14, 2022 at 05:48:20PM +0800, 施錕鴻 wrote:
-> Greg KH <gregkh@linuxfoundation.org> 於 2022年2月14日 週一 下午5:14寫道：
-> >
-> > On Mon, Feb 14, 2022 at 05:03:00PM +0800, 施錕鴻 wrote:
-> > > Hi, Greg
-> > >     About this issue, my colleague Hammer Hsieh has explained it to
-> > > you recently in the mail of "[PATCH v7 2/2] serial: sunplus-uart: Add
-> > > Sunplus
-> > > SoC UART Driver". The ehci driver and uart one are in the same Sunplus Soc.
-> >
-> > I do not know what you are referring to, sorry.  Remember we get
-> > thousands of emails a week.
-> >
-> > Please be explicit and make the code work properly for each patch you
-> > submit.
-> >
-> > thanks,
-> >
-> > greg k-h
-> 
-> Hi, Greg
->     About data incoherence issue between memory bus and peripheral bus.
-> In case of AXI bus, use non-posted write can avoid data incoherence issue.
->     What if in case of post write:
-> Send a specific command after last write command. SDCTRL identify specific
-> command, means previous write command done. Then send the interrupt
-> signal to interrupt controller. And then interrupt controller sends done signal
-> to Master. Master receives done signal, means write command done. Then
-> issue a interrupt or proceed next write command.
+On Mon, Feb 14, 2022 at 5:36 AM Jagath Jog J <jagathjog1996@gmail.com> wrote:
+>
+> Add dt-bindings and support for Maxim DS3502 into existing ds1803 driver.
+> DS3502 is a 7 bit Nonvolatile Digital Potentiometer.
 
-I do not understand what you are referring to here as I have no context
-:(
+A very good start! A few minor comments to be addressed and one patch
+has to be split to at least three.
 
+-- 
+With Best Regards,
+Andy Shevchenko
