@@ -2,208 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05A3C4B5CE9
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:37:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0B9E4B5D02
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:37:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231464AbiBNVfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 16:35:12 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51044 "EHLO
+        id S229482AbiBNVf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 16:35:56 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231203AbiBNVe6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:34:58 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26877156C7C
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:32:13 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id DB0773F1AE
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 21:32:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644874331;
-        bh=Vpk09spyV9imDGj1kfUzd1GTJIyfhaN7DgNwXJd/bD0=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=XpgLHZAMvvSPvKAt/hJsv1aOLP3eJJNfAt4SPnyyB5QIt1W8nj4w12M6rUB/4ezx0
-         uT7ZB/lo8xentmhdrNNfZCLWNdubZUg3yG9FXMpnuIbAlEC63ONHyf415Gl5ZN3Q1v
-         WHYoGqZTFuQZ0krBmljsh3JzVbmzZ4DW6zDo2qGghJhk1N39EL3gZZwufh6/yspEQe
-         XAKjcg3PiRtmg8Yczd4n5mybkr9VZXoSB9AhJ4rP8ec9TsisPR6vWhV9oY8SOwveV+
-         WcU0Zi5JQP52UVMD8L0e+KJXkCek4io21a3bXbsutABZ7rm4XXf9bJp9XHeTii6exM
-         ARlvp+UF5sk+Q==
-Received: by mail-ed1-f72.google.com with SMTP id n7-20020a05640205c700b0040b7be76147so11070146edx.10
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:32:11 -0800 (PST)
+        with ESMTP id S231531AbiBNVfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:35:38 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C89100747
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:35:07 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id y129so50157531ybe.7
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:35:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=OJh1pSV7SihOCRuhd+9c4PnEUIJns5DmX9HnYqSgGac=;
+        b=ockULPu8BRSzP0NNfeocF+3WDcej8ssFY6kZyzCfFEKD/3iRgWnF0Q4czaCTSmhHt/
+         qo1urmD+moPVvEzU7KFJIVJlS/viInixbeQ7YqyITy89jEr9WkDXoSkcy9MHCNTksRfq
+         tIFcqDF9SF+mvhxKHt0FZLu0aipudk+lmiQ/s2+DVGhsQtqEwfUGPfO0TEd4fYSXjZpA
+         2vEHD4LplM6V4VJqnzBhNkBc0HLZQCrQqiMmuB5ruGV0ZZKIT4aC2zIzPSNO0EHumn5+
+         FgmEsHm+bZjT/pJ8J2aRr47hzaXDPKRQPpnKIKorx/6+9sKqsGVKJa5Gr8+ViDdqe/7Y
+         UvTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Vpk09spyV9imDGj1kfUzd1GTJIyfhaN7DgNwXJd/bD0=;
-        b=BS/scxbbQ4aPnjaTxgvNLVXt/QMiX1D8qxGAoAPs6guj8yDnPjXah4SzyX/5HBnsTG
-         jY0s0A8NkamCEz9i0lCRD5Be8q7Q61xcqEWkALAUxALAa3P1MV41RjniDPHYMGJmUQU8
-         i1HPGFKjlu/Kr+rwe1vfoEx/QAaBOGDRi5T8eg4JJnkmkD7l/ECjOZbn/ruCfaQ5dOPa
-         jcJzQ6B1eGGruvVLwwcoxvUhhklOQT3m4XVF7KKV9kD3hz91n7zzJEcDXW+sOb8rYnyF
-         5MwRrruxIvBHh2UGF7mZ6Rb2YKtLDqEvVg4iUNh5wLKqXA2sS6QF6U4O21Nbu80vcPxN
-         3Axw==
-X-Gm-Message-State: AOAM532BmkbHE3d6KPB3JqqNzUzbZ5zRy1IF4SPFKKvzc0CQjR1EQfkV
-        eg5UZFuE4hRxOfAw98DNqobY3H7mOvzjs5iWEU8AJGE+n2VoR6Tqnt+i0+HqHFYkUe1TEmH5QPH
-        NX1NxbqOxfKBF8vLJDZk+WwPa+fQhY6A3FWWIDFI=
-X-Received: by 2002:a17:907:9687:: with SMTP id hd7mr561419ejc.715.1644874331565;
-        Mon, 14 Feb 2022 13:32:11 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyqnjThzRbcUFM+c4bi7NwvMvdAFVVUVTZmoKvJUlbWhdI51H+3uTCCB+/iNFrzs2cm1lQjfg==
-X-Received: by 2002:a17:907:9687:: with SMTP id hd7mr561405ejc.715.1644874331369;
-        Mon, 14 Feb 2022 13:32:11 -0800 (PST)
-Received: from [192.168.0.106] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id h11sm3910302edb.68.2022.02.14.13.32.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Feb 2022 13:32:10 -0800 (PST)
-Message-ID: <af2405be-5af5-1e5b-66f2-93842eb8cde5@canonical.com>
-Date:   Mon, 14 Feb 2022 22:32:09 +0100
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=OJh1pSV7SihOCRuhd+9c4PnEUIJns5DmX9HnYqSgGac=;
+        b=s5KPl8kMlXn8PMVOBRJD2JHaid4y1a/TWeQ5a9ArmeCH5Bz4Y3/wBpLaqBGCEAEi4W
+         hfkW0UtDeHPWqt9UkUWPSQGfsNpaAN+FgMe0XMSMzXn/Uz1bz99emWaPnN/URsxd0PzN
+         bKZXpUnIq4Q7CbvYCtLuCjgA8vh0CF9n7rNkJTf2yBpl0SeRgUTAfz4IUxEapCl8kly5
+         EY+RnudG4aboM4wa/VW+zfYZf+S/xjHUcVsDRzgxNsLY59U/E3cl6Axw/Ir+vj/5rqFF
+         BAg5y1ABWwSG1m//c4tx9EEHMi3FQvRfEHz6mgURhHAe8LpkV9dzViFbjgt6PQNn4DeU
+         weMQ==
+X-Gm-Message-State: AOAM531T/y8mK95LUjhHHP9E27L/xnNUpLezgN3O4LoogK9hsbevBNjc
+        scyapLWomXQnHvNBmNv8eyJ/4FlyWIqWtCV/UPE=
+X-Google-Smtp-Source: ABdhPJz8T/m5cLGlg8JbORL/npw7rULlDpPfG0ImnmQWr5EDrwRjeOFdSo8NVHm0gCIdTgOO38pLCDJqeE13gBE8TJE=
+X-Received: by 2002:a25:900e:: with SMTP id s14mr1049830ybl.338.1644874506516;
+ Mon, 14 Feb 2022 13:35:06 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [1/1] dt-bindings: pwm:Convert pwm-mtk-disp.txt format file to
- pwm-mtk-disp.yaml format file
-Content-Language: en-US
-To:     xinlei.lee@mediatek.com, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        robh+dt@kernel.org, matthias.bgg@gmail.com
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <1644847276-27622-1-git-send-email-xinlei.lee@mediatek.com>
- <1644847276-27622-2-git-send-email-xinlei.lee@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <1644847276-27622-2-git-send-email-xinlei.lee@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:7110:5697:b0:127:6892:b75a with HTTP; Mon, 14 Feb 2022
+ 13:35:06 -0800 (PST)
+Reply-To: mrsoliviajorge206@gmail.com
+From:   Olivia Jorge <globalmketing001@gmail.com>
+Date:   Mon, 14 Feb 2022 13:35:06 -0800
+Message-ID: <CAL6L2uX0HfmetEqh3Pv1JgborUBeD7Dgd8P+rgq4x54er8UjCg@mail.gmail.com>
+Subject: If you are interested
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:b32 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [mrsoliviajorge206[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [globalmketing001[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [globalmketing001[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.5 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2022 15:01, xinlei.lee@mediatek.com wrote:
-> From: xinlei lee <xinlei.lee@mediatek.com>
-
-Commit msg is needed.
-
-Subject - missing space after ':' and it is too long. No need to say
-"format file" twice.
-
-You miss "PATCH" in subject. Using `git format-patch` is the easiest way
-to create proper patches.
-
-> 
-> Signed-off-by: xinlei lee <xinlei.lee@mediatek.com>
-> ---
->  .../devicetree/bindings/pwm/pwm-mtk-disp.yaml      | 60 ++++++++++++++++++++++
->  1 file changed, 60 insertions(+)
-
-I do not see the conversion here... You only add one file. Where is the
-removal?
-
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml b/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml
-> new file mode 100644
-> index 0000000..2f1183e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-mtk-disp.yaml
-
-Let's name the file as with most bindings, so with vendor:
-"mediatek,pwm-disp.yaml"
-
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-mtk-disp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: mediatek PWM Controller Device Tree Bindings
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> +  - Lee Jones <lee.jones@linaro.org>
-> +  - Rob Herring <robh+dt@kernel.org>
-> +
-
-allOf referencing pwm.yaml
-
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt2701-disp-pwm
-> +      - mediatek,mt6595-disp-pwm
-> +      - mediatek,mt8173-disp-pwm
-> +      - mediatek,mt8183-disp-pwm
-> +      - mediatek,mt8186-disp-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Main Clock
-> +      - description: Mm Clock
-> +
-
-
-This schema was not tested. Please run it against your DTS files (make
-dtbs_check). You need pwm-cells and power-domains. Maybe more...
-
-> +  clock-names:
-> +    items:
-> +      - const: main
-> +      - const: mm
-
-Blank line.
-
-> +required:
-
-"compatible" is required, put it first in the list.
-
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/mt8186-clk.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-
-Blank line.
-
-> +    disp_pwm: disp_pwm0@1100e000 {
-
-node name: "pwm" (generic as schema and devicetree specification ask for).
-
-> +        compatible = "mediatek,mt8183-disp-pwm";
-> +        reg = <0x1100e000 0x1000>;
-> +        interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&topckgen CLK_TOP_DISP_PWM>,
-> +                 <&infracfg_ao CLK_INFRA_AO_DISP_PWM>;
-> +        clock-names = "main", "mm";
-> +        status = "okay";
-
-No need for status.
-
-> +    };
-> \ No newline at end of file
-
-
-Best regards,
-Krzysztof
+-- 
+Hello How are you doing today. There is an international conference
+which i will be privileged to visit Africa. In my organization
+(British Heart Foundation) We've been selected to attend in USA and
+West Africa. I might recommend you to attend if you wish. It's not a
+general conference anyways. I can give you the coordinators email so
+you can go ahead and contact them if you wish as a friend. It could
+have been easier for you if you were a volunteer under BHF org cos
+it's a free sponsorship conference. i will see what i can do about it
+if you are interested.
