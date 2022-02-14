@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D814B54BD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:26:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2F154B54C8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:29:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355845AbiBNP0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 10:26:39 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52124 "EHLO
+        id S1355867AbiBNP3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 10:29:21 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355816AbiBNP0h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:26:37 -0500
-X-Greylist: delayed 1151 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 14 Feb 2022 07:26:28 PST
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F2EC4D;
-        Mon, 14 Feb 2022 07:26:28 -0800 (PST)
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9AC19240014;
-        Mon, 14 Feb 2022 15:26:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1644852386;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=C+Q/XGnHf9irD5sCh0C/7PF0D//d8ipVJPI4owGtOS4=;
-        b=e4q1FrKfMdef6/DF9DT5NRlw6RWKgo4HAS3+DYgKOvaAp/2k9LttFnY3O476KP9nICbJsf
-        mcsRvNsGOc5G34qhOYGJHmkjNGw+8qeucXSGEX6kuQ/o1xmeXt5UsMOxzGuncO/rfcaNBW
-        WU3K6pwllDzR5au65vBHlaKP0yIibkgr3LU2R6StiaceLraEBJTBm8yyX1xhvtL4QAx9sI
-        /j6/70AgLg/j0DodVLyPK0PQUkv/qZALx2NLkZcyZVaQKMbun8CSyfHHnrO4GB5Uw4cDh1
-        2O8qLPYibp9cNZdfhdSuYsbT39yF+r8mmhZCQ+6uVc5D9ZQil8aJOVhQdP1rwA==
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 11/11] ARM: dts: armada-385.dtsi: Add definitions for
- PCIe legacy INTx interrupts
-In-Reply-To: <20220214150923.a5ttxoh426cfxn4v@pali>
-References: <20220105150239.9628-1-pali@kernel.org>
- <20220112151814.24361-1-pali@kernel.org>
- <20220112151814.24361-12-pali@kernel.org> <87wnhxjxlq.fsf@BL-laptop>
- <20220214150923.a5ttxoh426cfxn4v@pali>
-Date:   Mon, 14 Feb 2022 16:26:24 +0100
-Message-ID: <87tud1jwpr.fsf@BL-laptop>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S1355816AbiBNP3U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:29:20 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FF0A13EA3
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:29:12 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id i19so8437475wmq.5
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:29:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=EU3EVcL3i6EuBgEevxd+C2l4B+f7g1W1v+mpET3Ya+M=;
+        b=k3IdoWo02lCCCv8BpwlTFholGTwSIJIW84Otc2WkjBALpT78d7wNHJ6ZN0IWY2Ekev
+         TdX4M5TaefrHWtHP+4V08A45gL46+EQP7+GEfobhQAJemyC7IddjsQIqC+DrmJCexvUz
+         Q+W7Bt4EjPBJQmyrjXmTBdTVmtuWbr35s+/nYga6eMHhw25GUNh/prUa/TnGYVP5y7T9
+         ICRp0/82Ivq9Ee9O6Wtc2yCz1ZrCgd3qfZSvJPf19mIHtPNj4SmW/T5zQHoRokXiSaHg
+         orKwCfPo1aHrpU5JkFvNoK8aeDM30I8McC6o1xJmC1IO5La9HF2zpHN0s7Lfff1dGTtY
+         svBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=EU3EVcL3i6EuBgEevxd+C2l4B+f7g1W1v+mpET3Ya+M=;
+        b=yEINiQu5AnOhfQ7HdgkdHoDxKLJxqVpZLnQweQrFNx/3OYGseAxQIfpMoVfS+pB/mc
+         u411Wo9SI/tpbMvlyWlNG0/p2MFClQfZE4PbwkQZd3ujQBJ/8JhcwWupHGML/9H8DRCC
+         f+nr1pSslvGN7VOiT2BBbLJTBZ/Y3arY+fvPlVPDx1csRjVOFApTUcp4BVwWMZ2gkn+p
+         NUCN7s1faidXo024UkA7X4eQRhOzspb1+NeP12W5rFJDlThvQ+KoXHCIJ6xHa0ADtkDs
+         g8LTrwfGIhG4wBZn1RAGLgJISdzUuL1tUmUwIPUkoszIx3jdIzZG6pz+/Zt0JWaQpypR
+         mLOw==
+X-Gm-Message-State: AOAM530QdK+BhanqM0mXBlxD70RQVGxW8ljuscPXbIEtLqjWdwQ15K43
+        Wcj1Mutod68JCvfe+yl5dXozCg==
+X-Google-Smtp-Source: ABdhPJylmbefb1kAQEiTyM7H0rYnEr7E1WdlbBR9UhMN+kEz5rIDoSnp7sTsHeidp2YXfww/witA8w==
+X-Received: by 2002:a05:600c:1da4:: with SMTP id p36mr11552807wms.98.1644852550826;
+        Mon, 14 Feb 2022 07:29:10 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e0a:82c:5f0:682b:4712:4b40:6814])
+        by smtp.gmail.com with ESMTPSA id w3sm30657229wra.67.2022.02.14.07.29.09
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 14 Feb 2022 07:29:10 -0800 (PST)
+From:   Loic Poulain <loic.poulain@linaro.org>
+To:     dmitry.baryshkov@linaro.org, robdclark@gmail.com,
+        robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
+        Loic Poulain <loic.poulain@linaro.org>
+Subject: [PATCH v3 1/2] drm/msm: add support for QCM2290 MDSS
+Date:   Mon, 14 Feb 2022 16:29:06 +0100
+Message-Id: <1644852547-10067-1-git-send-email-loic.poulain@linaro.org>
+X-Mailer: git-send-email 2.7.4
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,172 +65,305 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Add compatibility for QCM2290 display subsystem, including
+required entries in DPU hw catalog.
 
-> On Monday 14 February 2022 16:07:13 Gregory CLEMENT wrote:
->> Hello Pali,
->>=20
->> > With this change legacy INTA, INTB, INTC and INTD interrupts are repor=
-ted
->> > separately and not mixed into one Linux virq source anymore.
->> >
->> > Signed-off-by: Pali Roh=C3=A1r <pali@kernel.org>
->> > ---
->> >  arch/arm/boot/dts/armada-385.dtsi | 52 ++++++++++++++++++++++++++-----
->>=20
->> Is there any reason for not doing the same change in armada-380.dtsi ?
->
-> I do not have A380 HW, so I did this change only for A385 which I have
-> tested.
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ v2: - Add BIT(DPU_SSPP_QOS_8LVL) to qcm2290 vig mask
+     - drop qseed_type from dpu caps as there is no scaler
+     - rename _QCM2290_VIG_SBLK to _VIG_SBLK_NOSCALE
+     - Use sm8150_dspp_sblk instead of cloning it
+     - Use sdm845_pp_sblk instead of cloning it
+     - Use sdm845_vbif
+ v3: no change (resent with reviewed-by + freedreno list)
 
-OK fair enough.
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 148 +++++++++++++++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        |   1 +
+ drivers/gpu/drm/msm/msm_drv.c                  |   1 +
+ 4 files changed, 151 insertions(+)
 
-So you can add my
-Acked-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+index aa75991..12392d0 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+@@ -25,6 +25,8 @@
+ #define VIG_SM8250_MASK \
+ 	(VIG_MASK | BIT(DPU_SSPP_QOS_8LVL) | BIT(DPU_SSPP_SCALER_QSEED3LITE))
+ 
++#define VIG_QCM2290_MASK (VIG_MASK | BIT(DPU_SSPP_QOS_8LVL))
++
+ #define DMA_SDM845_MASK \
+ 	(BIT(DPU_SSPP_SRC) | BIT(DPU_SSPP_QOS) | BIT(DPU_SSPP_QOS_8LVL) |\
+ 	BIT(DPU_SSPP_TS_PREFILL) | BIT(DPU_SSPP_TS_PREFILL_REC1) |\
+@@ -251,6 +253,17 @@ static const struct dpu_caps sc7280_dpu_caps = {
+ 	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
+ };
+ 
++static const struct dpu_caps qcm2290_dpu_caps = {
++	.max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
++	.max_mixer_blendstages = 0x4,
++	.smart_dma_rev = DPU_SSPP_SMART_DMA_V2,
++	.ubwc_version = DPU_HW_UBWC_VER_20,
++	.has_dim_layer = true,
++	.has_idle_pc = true,
++	.max_linewidth = 2160,
++	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
++};
++
+ static const struct dpu_mdp_cfg sdm845_mdp[] = {
+ 	{
+ 	.name = "top_0", .id = MDP_TOP,
+@@ -336,6 +349,19 @@ static const struct dpu_mdp_cfg sc7280_mdp[] = {
+ 	},
+ };
+ 
++static const struct dpu_mdp_cfg qcm2290_mdp[] = {
++	{
++	.name = "top_0", .id = MDP_TOP,
++	.base = 0x0, .len = 0x494,
++	.features = 0,
++	.highest_bank_bit = 0x2,
++	.clk_ctrls[DPU_CLK_CTRL_VIG0] = {
++		.reg_off = 0x2AC, .bit_off = 0},
++	.clk_ctrls[DPU_CLK_CTRL_DMA0] = {
++		.reg_off = 0x2AC, .bit_off = 8},
++	},
++};
++
+ /*************************************************************
+  * CTL sub blocks config
+  *************************************************************/
+@@ -459,6 +485,15 @@ static const struct dpu_ctl_cfg sc7280_ctl[] = {
+ 	},
+ };
+ 
++static const struct dpu_ctl_cfg qcm2290_ctl[] = {
++	{
++	.name = "ctl_0", .id = CTL_0,
++	.base = 0x1000, .len = 0x1dc,
++	.features = BIT(DPU_CTL_ACTIVE_CFG),
++	.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 9),
++	},
++};
++
+ /*************************************************************
+  * SSPP sub blocks config
+  *************************************************************/
+@@ -595,6 +630,30 @@ static const struct dpu_sspp_cfg sc7280_sspp[] = {
+ 		sdm845_dma_sblk_2, 9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1),
+ };
+ 
++
++#define _VIG_SBLK_NOSCALE(num, sdma_pri) \
++	{ \
++	.maxdwnscale = SSPP_UNITY_SCALE, \
++	.maxupscale = SSPP_UNITY_SCALE, \
++	.smart_dma_priority = sdma_pri, \
++	.src_blk = {.name = STRCAT("sspp_src_", num), \
++		.id = DPU_SSPP_SRC, .base = 0x00, .len = 0x150,}, \
++	.format_list = plane_formats_yuv, \
++	.num_formats = ARRAY_SIZE(plane_formats_yuv), \
++	.virt_format_list = plane_formats, \
++	.virt_num_formats = ARRAY_SIZE(plane_formats), \
++	}
++
++static const struct dpu_sspp_sub_blks qcm2290_vig_sblk_0 = _VIG_SBLK_NOSCALE("0", 2);
++static const struct dpu_sspp_sub_blks qcm2290_dma_sblk_0 = _DMA_SBLK("8", 1);
++
++static const struct dpu_sspp_cfg qcm2290_sspp[] = {
++	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_QCM2290_MASK,
++		 qcm2290_vig_sblk_0, 0, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0),
++	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK,
++		 qcm2290_dma_sblk_0, 1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0),
++};
++
+ /*************************************************************
+  * MIXER sub blocks config
+  *************************************************************/
+@@ -679,6 +738,21 @@ static const struct dpu_lm_cfg sc7280_lm[] = {
+ 		&sc7180_lm_sblk, PINGPONG_3, LM_2, 0),
+ };
+ 
++/* QCM2290 */
++
++static const struct dpu_lm_sub_blks qcm2290_lm_sblk = {
++	.maxwidth = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
++	.maxblendstages = 4, /* excluding base layer */
++	.blendstage_base = { /* offsets relative to mixer base */
++		0x20, 0x38, 0x50, 0x68
++	},
++};
++
++static const struct dpu_lm_cfg qcm2290_lm[] = {
++	LM_BLK("lm_0", LM_0, 0x44000, MIXER_SC7180_MASK,
++		&qcm2290_lm_sblk, PINGPONG_0, 0, DSPP_0),
++};
++
+ /*************************************************************
+  * DSPP sub blocks config
+  *************************************************************/
+@@ -716,6 +790,11 @@ static const struct dpu_dspp_cfg sm8150_dspp[] = {
+ 		 &sm8150_dspp_sblk),
+ };
+ 
++static const struct dpu_dspp_cfg qcm2290_dspp[] = {
++	DSPP_BLK("dspp_0", DSPP_0, 0x54000, DSPP_SC7180_MASK,
++		 &sm8150_dspp_sblk),
++};
++
+ /*************************************************************
+  * PINGPONG sub blocks config
+  *************************************************************/
+@@ -798,6 +877,12 @@ static const struct dpu_pingpong_cfg sm8150_pp[] = {
+ 			-1),
+ };
+ 
++static struct dpu_pingpong_cfg qcm2290_pp[] = {
++	PP_BLK("pingpong_0", PINGPONG_0, 0x70000, 0, sdm845_pp_sblk,
++		DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 8),
++		DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 12)),
++};
++
+ /*************************************************************
+  * MERGE_3D sub blocks config
+  *************************************************************/
+@@ -861,6 +946,11 @@ static const struct dpu_intf_cfg sc7280_intf[] = {
+ 	INTF_BLK("intf_5", INTF_5, 0x39000, INTF_DP, MSM_DP_CONTROLLER_1, 24, INTF_SC7280_MASK, MDP_SSPP_TOP0_INTR, 22, 23),
+ };
+ 
++static const struct dpu_intf_cfg qcm2290_intf[] = {
++	INTF_BLK("intf_0", INTF_0, 0x00000, INTF_NONE, 0, 0, 0, 0, 0, 0),
++	INTF_BLK("intf_1", INTF_1, 0x6A800, INTF_DSI, 0, 24, INTF_SC7180_MASK, MDP_SSPP_TOP0_INTR, 26, 27),
++};
++
+ /*************************************************************
+  * VBIF sub blocks config
+  *************************************************************/
+@@ -931,6 +1021,10 @@ static const struct dpu_qos_lut_entry sm8150_qos_linear[] = {
+ 	{.fl = 0, .lut = 0x0011222222223357 },
+ };
+ 
++static const struct dpu_qos_lut_entry qcm2290_qos_linear[] = {
++	{.fl = 0, .lut = 0x0011222222335777},
++};
++
+ static const struct dpu_qos_lut_entry sdm845_qos_macrotile[] = {
+ 	{.fl = 10, .lut = 0x344556677},
+ 	{.fl = 11, .lut = 0x3344556677},
+@@ -1102,6 +1196,27 @@ static const struct dpu_perf_cfg sc7280_perf_data = {
+ 	.bw_inefficiency_factor = 120,
+ };
+ 
++static const struct dpu_perf_cfg qcm2290_perf_data = {
++	.max_bw_low = 2700000,
++	.max_bw_high = 2700000,
++	.min_core_ib = 1300000,
++	.min_llcc_ib = 0,
++	.min_dram_ib = 1600000,
++	.min_prefill_lines = 24,
++	.danger_lut_tbl = {0xff, 0x0, 0x0},
++	.safe_lut_tbl = {0xfff0, 0x0, 0x0},
++	.qos_lut_tbl = {
++		{.nentry = ARRAY_SIZE(qcm2290_qos_linear),
++		.entries = qcm2290_qos_linear
++		},
++	},
++	.cdp_cfg = {
++		{.rd_enable = 1, .wr_enable = 1},
++		{.rd_enable = 1, .wr_enable = 0}
++	},
++	.clk_inefficiency_factor = 105,
++	.bw_inefficiency_factor = 120,
++};
+ /*************************************************************
+  * Hardware catalog init
+  *************************************************************/
+@@ -1255,6 +1370,38 @@ static void sc7280_cfg_init(struct dpu_mdss_cfg *dpu_cfg)
+ 	};
+ }
+ 
++
++/*
++ * qcm2290_cfg_init(): populate qcm2290 dpu sub-blocks reg offsets
++ * and instance counts.
++ */
++static void qcm2290_cfg_init(struct dpu_mdss_cfg *dpu_cfg)
++{
++	*dpu_cfg = (struct dpu_mdss_cfg){
++		.caps = &qcm2290_dpu_caps,
++		.mdp_count = ARRAY_SIZE(qcm2290_mdp),
++		.mdp = qcm2290_mdp,
++		.ctl_count = ARRAY_SIZE(qcm2290_ctl),
++		.ctl = qcm2290_ctl,
++		.sspp_count = ARRAY_SIZE(qcm2290_sspp),
++		.sspp = qcm2290_sspp,
++		.mixer_count = ARRAY_SIZE(qcm2290_lm),
++		.mixer = qcm2290_lm,
++		.dspp_count = ARRAY_SIZE(qcm2290_dspp),
++		.dspp = qcm2290_dspp,
++		.pingpong_count = ARRAY_SIZE(qcm2290_pp),
++		.pingpong = qcm2290_pp,
++		.intf_count = ARRAY_SIZE(qcm2290_intf),
++		.intf = qcm2290_intf,
++		.vbif_count = ARRAY_SIZE(sdm845_vbif),
++		.vbif = sdm845_vbif,
++		.reg_dma_count = 1,
++		.dma_cfg = sdm845_regdma,
++		.perf = qcm2290_perf_data,
++		.mdss_irqs = IRQ_SC7180_MASK,
++	};
++}
++
+ static const struct dpu_mdss_hw_cfg_handler cfg_handler[] = {
+ 	{ .hw_rev = DPU_HW_VER_400, .cfg_init = sdm845_cfg_init},
+ 	{ .hw_rev = DPU_HW_VER_401, .cfg_init = sdm845_cfg_init},
+@@ -1262,6 +1409,7 @@ static const struct dpu_mdss_hw_cfg_handler cfg_handler[] = {
+ 	{ .hw_rev = DPU_HW_VER_501, .cfg_init = sm8150_cfg_init},
+ 	{ .hw_rev = DPU_HW_VER_600, .cfg_init = sm8250_cfg_init},
+ 	{ .hw_rev = DPU_HW_VER_620, .cfg_init = sc7180_cfg_init},
++	{ .hw_rev = DPU_HW_VER_650, .cfg_init = qcm2290_cfg_init},
+ 	{ .hw_rev = DPU_HW_VER_720, .cfg_init = sc7280_cfg_init},
+ };
+ 
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+index 31af04a..5b31392 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+@@ -41,6 +41,7 @@
+ #define DPU_HW_VER_501	DPU_HW_VER(5, 0, 1) /* sm8150 v2.0 */
+ #define DPU_HW_VER_600	DPU_HW_VER(6, 0, 0) /* sm8250 */
+ #define DPU_HW_VER_620	DPU_HW_VER(6, 2, 0) /* sc7180 v1.0 */
++#define DPU_HW_VER_650	DPU_HW_VER(6, 5, 0) /* qcm2290|sm4125 */
+ #define DPU_HW_VER_720	DPU_HW_VER(7, 2, 0) /* sc7280 */
+ 
+ #define IS_MSM8996_TARGET(rev) IS_DPU_MAJOR_MINOR_SAME((rev), DPU_HW_VER_170)
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+index 47fe11a..b816a50 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+@@ -1348,6 +1348,7 @@ static const struct dev_pm_ops dpu_pm_ops = {
+ };
+ 
+ const struct of_device_id dpu_dt_match[] = {
++	{ .compatible = "qcom,qcm2290-dpu", },
+ 	{ .compatible = "qcom,sdm845-dpu", },
+ 	{ .compatible = "qcom,sc7180-dpu", },
+ 	{ .compatible = "qcom,sc7280-dpu", },
+diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+index ad35a5d..c8ab6eb 100644
+--- a/drivers/gpu/drm/msm/msm_drv.c
++++ b/drivers/gpu/drm/msm/msm_drv.c
+@@ -1438,6 +1438,7 @@ static void msm_pdev_shutdown(struct platform_device *pdev)
+ static const struct of_device_id dt_match[] = {
+ 	{ .compatible = "qcom,mdp4", .data = (void *)KMS_MDP4 },
+ 	{ .compatible = "qcom,mdss", .data = (void *)KMS_MDP5 },
++	{ .compatible = "qcom,qcm2290-mdss", .data = (void *)KMS_DPU },
+ 	{ .compatible = "qcom,sdm845-mdss", .data = (void *)KMS_DPU },
+ 	{ .compatible = "qcom,sc7180-mdss", .data = (void *)KMS_DPU },
+ 	{ .compatible = "qcom,sc7280-mdss", .data = (void *)KMS_DPU },
+-- 
+2.7.4
 
-Moreover to keep biscetability  this patch should be merged after the
-support in the driver. So the easier is to let merge it through the PCI
-subsystem with the other patches from this series. I do not think there
-will be any other changes in this file so there won't be any merge
-conflicts.
-
-Thanks,
-
-Gr=C3=A9gory
-
-
->
->> Gr=C3=A9gory
->>=20
->> >  1 file changed, 44 insertions(+), 8 deletions(-)
->> >
->> > diff --git a/arch/arm/boot/dts/armada-385.dtsi b/arch/arm/boot/dts/arm=
-ada-385.dtsi
->> > index f0022d10c715..83392b92dae2 100644
->> > --- a/arch/arm/boot/dts/armada-385.dtsi
->> > +++ b/arch/arm/boot/dts/armada-385.dtsi
->> > @@ -69,16 +69,25 @@
->> >  				reg =3D <0x0800 0 0 0 0>;
->> >  				#address-cells =3D <3>;
->> >  				#size-cells =3D <2>;
->> > +				interrupt-names =3D "intx";
->> > +				interrupts-extended =3D <&gic GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
->> >  				#interrupt-cells =3D <1>;
->> >  				ranges =3D <0x82000000 0 0 0x82000000 0x1 0 1 0
->> >  					  0x81000000 0 0 0x81000000 0x1 0 1 0>;
->> >  				bus-range =3D <0x00 0xff>;
->> > -				interrupt-map-mask =3D <0 0 0 0>;
->> > -				interrupt-map =3D <0 0 0 0 &gic GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
->> > +				interrupt-map-mask =3D <0 0 0 7>;
->> > +				interrupt-map =3D <0 0 0 1 &pcie1_intc 0>,
->> > +						<0 0 0 2 &pcie1_intc 1>,
->> > +						<0 0 0 3 &pcie1_intc 2>,
->> > +						<0 0 0 4 &pcie1_intc 3>;
->> >  				marvell,pcie-port =3D <0>;
->> >  				marvell,pcie-lane =3D <0>;
->> >  				clocks =3D <&gateclk 8>;
->> >  				status =3D "disabled";
->> > +				pcie1_intc: interrupt-controller {
->> > +					interrupt-controller;
->> > +					#interrupt-cells =3D <1>;
->> > +				};
->> >  			};
->> >=20=20
->> >  			/* x1 port */
->> > @@ -88,16 +97,25 @@
->> >  				reg =3D <0x1000 0 0 0 0>;
->> >  				#address-cells =3D <3>;
->> >  				#size-cells =3D <2>;
->> > +				interrupt-names =3D "intx";
->> > +				interrupts-extended =3D <&gic GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
->> >  				#interrupt-cells =3D <1>;
->> >  				ranges =3D <0x82000000 0 0 0x82000000 0x2 0 1 0
->> >  					  0x81000000 0 0 0x81000000 0x2 0 1 0>;
->> >  				bus-range =3D <0x00 0xff>;
->> > -				interrupt-map-mask =3D <0 0 0 0>;
->> > -				interrupt-map =3D <0 0 0 0 &gic GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
->> > +				interrupt-map-mask =3D <0 0 0 7>;
->> > +				interrupt-map =3D <0 0 0 1 &pcie2_intc 0>,
->> > +						<0 0 0 2 &pcie2_intc 1>,
->> > +						<0 0 0 3 &pcie2_intc 2>,
->> > +						<0 0 0 4 &pcie2_intc 3>;
->> >  				marvell,pcie-port =3D <1>;
->> >  				marvell,pcie-lane =3D <0>;
->> >  				clocks =3D <&gateclk 5>;
->> >  				status =3D "disabled";
->> > +				pcie2_intc: interrupt-controller {
->> > +					interrupt-controller;
->> > +					#interrupt-cells =3D <1>;
->> > +				};
->> >  			};
->> >=20=20
->> >  			/* x1 port */
->> > @@ -107,16 +125,25 @@
->> >  				reg =3D <0x1800 0 0 0 0>;
->> >  				#address-cells =3D <3>;
->> >  				#size-cells =3D <2>;
->> > +				interrupt-names =3D "intx";
->> > +				interrupts-extended =3D <&gic GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
->> >  				#interrupt-cells =3D <1>;
->> >  				ranges =3D <0x82000000 0 0 0x82000000 0x3 0 1 0
->> >  					  0x81000000 0 0 0x81000000 0x3 0 1 0>;
->> >  				bus-range =3D <0x00 0xff>;
->> > -				interrupt-map-mask =3D <0 0 0 0>;
->> > -				interrupt-map =3D <0 0 0 0 &gic GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
->> > +				interrupt-map-mask =3D <0 0 0 7>;
->> > +				interrupt-map =3D <0 0 0 1 &pcie3_intc 0>,
->> > +						<0 0 0 2 &pcie3_intc 1>,
->> > +						<0 0 0 3 &pcie3_intc 2>,
->> > +						<0 0 0 4 &pcie3_intc 3>;
->> >  				marvell,pcie-port =3D <2>;
->> >  				marvell,pcie-lane =3D <0>;
->> >  				clocks =3D <&gateclk 6>;
->> >  				status =3D "disabled";
->> > +				pcie3_intc: interrupt-controller {
->> > +					interrupt-controller;
->> > +					#interrupt-cells =3D <1>;
->> > +				};
->> >  			};
->> >=20=20
->> >  			/*
->> > @@ -129,16 +156,25 @@
->> >  				reg =3D <0x2000 0 0 0 0>;
->> >  				#address-cells =3D <3>;
->> >  				#size-cells =3D <2>;
->> > +				interrupt-names =3D "intx";
->> > +				interrupts-extended =3D <&gic GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
->> >  				#interrupt-cells =3D <1>;
->> >  				ranges =3D <0x82000000 0 0 0x82000000 0x4 0 1 0
->> >  					  0x81000000 0 0 0x81000000 0x4 0 1 0>;
->> >  				bus-range =3D <0x00 0xff>;
->> > -				interrupt-map-mask =3D <0 0 0 0>;
->> > -				interrupt-map =3D <0 0 0 0 &gic GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
->> > +				interrupt-map-mask =3D <0 0 0 7>;
->> > +				interrupt-map =3D <0 0 0 1 &pcie4_intc 0>,
->> > +						<0 0 0 2 &pcie4_intc 1>,
->> > +						<0 0 0 3 &pcie4_intc 2>,
->> > +						<0 0 0 4 &pcie4_intc 3>;
->> >  				marvell,pcie-port =3D <3>;
->> >  				marvell,pcie-lane =3D <0>;
->> >  				clocks =3D <&gateclk 7>;
->> >  				status =3D "disabled";
->> > +				pcie4_intc: interrupt-controller {
->> > +					interrupt-controller;
->> > +					#interrupt-cells =3D <1>;
->> > +				};
->> >  			};
->> >  		};
->> >  	};
->> > --=20
->> > 2.20.1
->> >
->>=20
->> --=20
->> Gregory Clement, Bootlin
->> Embedded Linux and Kernel engineering
->> http://bootlin.com
-
---=20
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
