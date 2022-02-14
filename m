@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C7A74B583A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 18:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF2824B5858
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 18:19:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344469AbiBNRNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 12:13:16 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45428 "EHLO
+        id S1356630AbiBNRTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 12:19:36 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231450AbiBNRNO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 12:13:14 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB28F4C43C;
-        Mon, 14 Feb 2022 09:13:05 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id qk11so18481492ejb.2;
-        Mon, 14 Feb 2022 09:13:05 -0800 (PST)
+        with ESMTP id S244405AbiBNRTf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 12:19:35 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A1D3652C0;
+        Mon, 14 Feb 2022 09:19:27 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id m22so11142968pfk.6;
+        Mon, 14 Feb 2022 09:19:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=3Fk8twNCDj+wvRPPnauS0r1tDhPrGepWuPsXEFLTKTk=;
-        b=NDAe7fCLf6sA/zxhNxQ77owR34T8UGjUGbAzZikk4FcorqiCJK7lWuW/PEigNr6TDZ
-         tT+BBY45s4+cKDEYBWfD61KxSAsdIsalAEo26xD37BJMrWH8ichvKOaVbNtpNSG3e+O1
-         OFP+uRStpbszEyHXQH4E7zmSB5F1o/g9/1OcJ1LJVXVSMwfpJC+Z7QdB7457m+aeGtss
-         eVwivFzm1n31yfxocGOGwnuiv73LrZIksNQx/Ko+HDM3JZihJpE08XV1/n7RXrZzlXG2
-         2RZ0Gc0PSH9UXf5IY4wI7xqoRzyIs1C6YZXHdi7T1aQs2LLpwFGUkRVN5dA09LDjTVQJ
-         7gVA==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=UlEoY4gUMCf+dGZF5OFEMsNszRaKi2NA9sVTb7hg2Q0=;
+        b=Ae4U2rn/YgQgOSiyBw4kGAmri+C7D120xX2o4jTRqLmVZIwA9orrp82PFXVyOLe88t
+         5T5LS8Yywqq1yrpCVB7G4GG5FYZQUDJDm53OLiwGHyGy8+PzEh/ltOv9sdjQsLOQ37BW
+         K9jUAGGyAGbO8m/d9ADpTfTiEDDicGmysucCnySqoNkUDMyL2sf0KwApIjlpCOBKh7LG
+         PwLn7yzu096BJFsZbMkywa8qC5bLUChdLXtHANsVKuws7eixe2FC3CD/XVIIbRv0GFH4
+         8aL24++hGBw17OPlB9PFW8aJifALKZ5y0EbTPSEC7kOrBTt+Y+9DY5uTdqXJzHsuvFjt
+         Fi7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3Fk8twNCDj+wvRPPnauS0r1tDhPrGepWuPsXEFLTKTk=;
-        b=mmJfe2Efw3IQnpfuF4CRcQxbupONM2YBkmpyz7WHfVDdNAksv5fNAUGaeQrgPmcnfg
-         9yBKWt0uKJ1Y1MnsrGraTvFIjh6naRkPEmlPegM3Jw5VW8G6Y3h9N3fK1pF/Sp6REYED
-         aUSLe2saoXf6iSQQfNjNORdw+cCnG+HCz2LpEa+YRgMnfjGIXbEp//FNrnTog/iwn8aP
-         TadmX3c8MGtGbG516NtJNNi5p/7XXPAhUI4r9xyusVNcsuaFc1TGNS8yWJfo5oWgtoAg
-         ftxJYTl0fA4d5IriI2pM1f4fkXcZ7WnhXziIvko95q76TFb9pzLgSsAdencRibXg8oPv
-         Dldg==
-X-Gm-Message-State: AOAM533nEVoDfWgxhpVPibIcUmnCrnOwXU3NselTXojEeUP9QXL89SJc
-        xmMz4XSueYsb/TxRdmJCXLY=
-X-Google-Smtp-Source: ABdhPJzg4slRDT/mw7ZOBMAOQzMQYAcNt8auS9xTWhsl5NDb/5V8h4eVpjx6YXnsY8ve32KgLbEa+A==
-X-Received: by 2002:a17:907:a428:: with SMTP id sg40mr512036ejc.128.1644858784198;
-        Mon, 14 Feb 2022 09:13:04 -0800 (PST)
-Received: from kista.localnet (cpe-86-58-32-107.static.triera.net. [86.58.32.107])
-        by smtp.gmail.com with ESMTPSA id 23sm2427068ejg.209.2022.02.14.09.13.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Feb 2022 09:13:03 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=UlEoY4gUMCf+dGZF5OFEMsNszRaKi2NA9sVTb7hg2Q0=;
+        b=ujxL7PDUeMS+CbmkzEbRrgiPOJHDngy+tn08wI7KiLUWNMYQrel1E4tam2WgnvaOV0
+         mOL9x7ofM576JGrsg3Cb1zqMJLD+TbcvgFZNA8eCgulH/6829BvzYG+2VsbyLD9aSz8S
+         cODmEEU2xbDJIyQYIkYIYiyNcsuhcjOYenOWIpVt/sTjRzYGR4y3RvWzQdJXtfXlmDld
+         Et/pAgT0hncGatSUQEGQUp0+p0Wo3rFZVSSxFU+mRgc6Zfo0G0raAFoipeEDIzr7No90
+         s0Np3fXvbEDXGgA/i6vrTOijYp0/2gHkEU1b/3xf7YOzt27+igpmv3wBFpShSaPwiIya
+         uLQw==
+X-Gm-Message-State: AOAM530c9f9JldGzpav6VBo7qaEQ+PKe+pLJTMpCKLoI5djAMZsoU7Ud
+        jcgxz+CsTX8xl78MajnPSL0=
+X-Google-Smtp-Source: ABdhPJzbAW43zE1Qfnv6bnjeH7rBFCX7yXcNUn2pVO8yLoL7oe86rRsSHL23eDM2HIDNmODSHPh2sQ==
+X-Received: by 2002:a63:2a51:: with SMTP id q78mr4148pgq.239.1644859166687;
+        Mon, 14 Feb 2022 09:19:26 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id bd34sm5276481pfb.73.2022.02.14.09.19.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Feb 2022 09:19:26 -0800 (PST)
+Subject: Re: [PATCH 10/15] dt-bindings: pwm: brcm,bcm7038: do not require
+ pwm-cells
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Maxime Ripard <mripard@kernel.org>,
         Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
         bcm-kernel-feedback-list@broadcom.com,
         Shawn Guo <shawnguo@kernel.org>,
@@ -80,16 +83,20 @@ To:     Thierry Reding <thierry.reding@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
         linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
         linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 01/15] dt-bindings: pwm: allwinner,sun4i-a10: include generic pwm schema
-Date:   Mon, 14 Feb 2022 18:13:01 +0100
-Message-ID: <3485219.R56niFO833@kista>
-In-Reply-To: <20220214081605.161394-1-krzysztof.kozlowski@canonical.com>
 References: <20220214081605.161394-1-krzysztof.kozlowski@canonical.com>
+ <20220214081605.161394-10-krzysztof.kozlowski@canonical.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <a8d3ea6e-c9f8-e5e4-7cbd-71e0c814db0a@gmail.com>
+Date:   Mon, 14 Feb 2022 09:19:14 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <20220214081605.161394-10-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -98,92 +105,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 14. februar 2022 ob 09:15:51 CET je Krzysztof Kozlowski 
-napisal(a):
-> Include generic pwm.yaml schema, which enforces PWM node naming and
-> brings pwm-cells requirement.
+On 2/14/22 12:16 AM, Krzysztof Kozlowski wrote:
+> pwm-cells are already required by pwm.yaml schema.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Best regards,
-Jernej
-
-> ---
->  .../bindings/pwm/allwinner,sun4i-a10-pwm.yaml | 53 ++++++++++---------
->  1 file changed, 28 insertions(+), 25 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-
-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
-> index 800d511502c4..e93e935564fb 100644
-> --- a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
-> @@ -52,33 +52,36 @@ properties:
->    resets:
->      maxItems: 1
->  
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        const: allwinner,sun50i-h6-pwm
-> -
-> -then:
-> -  properties:
-> -    clocks:
-> -      maxItems: 2
-> -
-> -    clock-names:
-> -      items:
-> -        - const: mod
-> -        - const: bus
-> -
-> -  required:
-> -    - clock-names
-> -    - resets
-> -
-> -else:
-> -  properties:
-> -    clocks:
-> -      maxItems: 1
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: allwinner,sun50i-h6-pwm
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 2
-> +
-> +        clock-names:
-> +          items:
-> +            - const: mod
-> +            - const: bus
-> +
-> +      required:
-> +        - clock-names
-> +        - resets
-> +
-> +    else:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
->  
->  required:
-> -  - "#pwm-cells"
->    - compatible
->    - reg
->    - clocks
-> -- 
-> 2.32.0
-> 
-> 
-
-
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
