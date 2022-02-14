@@ -2,74 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 475774B4081
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 04:53:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FF654B40A7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 05:21:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240119AbiBNDxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 22:53:08 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37286 "EHLO
+        id S231513AbiBNEVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Feb 2022 23:21:06 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240114AbiBNDxH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 22:53:07 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5B92556231
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 19:52:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1644810778;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=k5gXQFIv5vbKifedeqqMIbptAWWOjXJO6QmZ5mrBFnQ=;
-        b=JWlL6/t+C8iop5Ex+ozPIf9neyJd0b4S/p4kJWr/2jZ+h0W7HUTeqMMrklFKVLjmfCsg1j
-        ue1Xr39kHDJeCyNBYK4eG0RYZMLIi6AyX1HxCyTvLojUX53cPG7EV9kaP63yiS6sYmqnOZ
-        XZ1Orm8Ob6wrLlTpZZdU6bXS/yzSHu4=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-30-Bm3C-TOJP8Kv9GMyVUkbow-1; Sun, 13 Feb 2022 22:52:55 -0500
-X-MC-Unique: Bm3C-TOJP8Kv9GMyVUkbow-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com [10.5.11.15])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 09E931006AA0;
-        Mon, 14 Feb 2022 03:52:52 +0000 (UTC)
-Received: from localhost (ovpn-12-173.pek2.redhat.com [10.72.12.173])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 808024CEC8;
-        Mon, 14 Feb 2022 03:52:46 +0000 (UTC)
-Date:   Mon, 14 Feb 2022 11:52:43 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-Subject: Re: [PATCH v20 3/5] arm64: kdump: reimplement crashkernel=X
-Message-ID: <YgnSCxlr1O2ZZ1sO@MiWiFi-R3L-srv>
-References: <20220124084708.683-1-thunder.leizhen@huawei.com>
- <20220124084708.683-4-thunder.leizhen@huawei.com>
+        with ESMTP id S230290AbiBNEVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 23:21:05 -0500
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C60624F443;
+        Sun, 13 Feb 2022 20:20:57 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id F2E743200E51;
+        Sun, 13 Feb 2022 23:20:54 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Sun, 13 Feb 2022 23:20:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; bh=FNdavk6AjBVF3M
+        6f8Rc393UvIIdwHUCZdblJizpLtLw=; b=JBYUtyIUaHTTKpovEQf5yQk3C2AIlx
+        4VM1z4XBoej2rFH+B0D0c58Zh9uzc68DIYL28iX4zAXaebkRgtO00VNfWFif+R0w
+        UJIUc42xYVpFsA8SiJ572WbfGFM4h3dDECxKbxqyoYVOh+mi8WJBIfG7sMNBNm1B
+        qtRf4FANjdbZowHGD4dsR1Vf127k4RY98O1OsBCqcngTZKQRTmoPTZ35gevW9ueV
+        2nmVqHv1T7bqVjHiBbQ0rZotU5YuBPuN/BPPmJACWBwKDV4GRd2P7LbkBN9hfaMR
+        +TuEThbMcFa9Q86heI1L+2I2E70D43TWhluCPE7LMycDdMRyQP6pDA7w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=FNdavk6AjBVF3M6f8Rc393UvIIdwHUCZdblJizpLt
+        Lw=; b=Wtm1i0p8n7m8lDaml8hNKfC3z7JMwP2YtrcQlyjW/yTm2EKgCwvPklhbk
+        H8BzstMDVvESyFb2WSsRHjCZ58Cqm7v240ak+SAGb5vfvmTsz9ulHa+3PLC6JAmQ
+        g6faASl7b/yACemlwotwJawBEc24nuIXlcy38m7VfM3m3r/7EKzlcFONJ7CiMaVc
+        YCJBRjoBOO3Bt2OhOJwEPmMta8BaO2Lzuahj2DFMiduS8SAiaiD2ctaO8j2hgcM8
+        M62RESfi2G4Ak4MzUZiynx8D43pnB3x4pEmqy5n5PlQKEFe5oZlIhHS1Oa19x6n/
+        RJYaOulHea9kWFqHl6rXfAMPGoaXg==
+X-ME-Sender: <xms:pdgJYkUIxMfxyLqy5goXEJcg_JHwCXjNXILhLGP7DBx_LDbOB6VNGA>
+    <xme:pdgJYomfd-tfbPivWh8XTZ1zR70xSHTO3YuQ1ykuBBQ6oJF4Fhcf477rbPDFeAtG9
+    kVGvNUH9lxFlz7sIw>
+X-ME-Received: <xmr:pdgJYoZb8JKD0UX34QLJJ6k9GqPTahIWbuSTSK7wunVa_aXR49sxZXSRZ7xU85TcN6o5nIbPw23-FzX3qOJYBNh5tgJ0proVJ5wH5uY-i4TmFXvbvm3GHW19gg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrjedugdejtdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpefgveffteelheffjeeukedvkedviedtheevgeefkeehueeiieeuteeu
+    gfettdeggeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:pdgJYjXI_FprD_iSqxtMJGEIx-NZ3DI-n_b45Gy3pU3Ltmo8sDEaTQ>
+    <xmx:pdgJYumgoJyk52lkEI-pWJ1IAZVTPAvlnJeafjXBrLy48kqEV3dcXA>
+    <xmx:pdgJYod1qOYfiFktSzuJ1IQ0QDtE9ORr5lhQd6PozAlOCtOlfVG43Q>
+    <xmx:ptgJYvDTsJcxe42DpQ5WjkvQdG2M5XaFhyU27ZV_MsIZQJjhE-MK2A>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 13 Feb 2022 23:20:53 -0500 (EST)
+Subject: Re: [PATCH 3/3] power: supply: Add a driver for Injoinic power bank
+ ICs
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ondrej Jirman <x@xff.cz>
+References: <20220129222424.45707-1-samuel@sholland.org>
+ <20220129222424.45707-3-samuel@sholland.org>
+ <20220211212218.j5r75tyvhirxis4z@mercury.elektranox.org>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <8027f37b-3977-adaa-d2cf-d59ae243cc32@sholland.org>
+Date:   Sun, 13 Feb 2022 22:20:53 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220124084708.683-4-thunder.leizhen@huawei.com>
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220211212218.j5r75tyvhirxis4z@mercury.elektranox.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,199 +88,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/24/22 at 04:47pm, Zhen Lei wrote:
-......
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index 6c653a2c7cff052..a5d43feac0d7d96 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -71,6 +71,30 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
->  #define CRASH_ADDR_LOW_MAX	arm64_dma_phys_limit
->  #define CRASH_ADDR_HIGH_MAX	MEMBLOCK_ALLOC_ACCESSIBLE
->  
-> +static int __init reserve_crashkernel_low(unsigned long long low_size)
-> +{
-> +	unsigned long long low_base;
-> +
-> +	/* passed with crashkernel=0,low ? */
-> +	if (!low_size)
-> +		return 0;
-> +
-> +	low_base = memblock_phys_alloc_range(low_size, CRASH_ALIGN, 0, CRASH_ADDR_LOW_MAX);
-> +	if (!low_base) {
-> +		pr_err("cannot allocate crashkernel low memory (size:0x%llx).\n", low_size);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	pr_info("crashkernel low memory reserved: 0x%llx - 0x%llx (%lld MB)\n",
-> +		low_base, low_base + low_size, low_size >> 20);
-> +
-> +	crashk_low_res.start = low_base;
-> +	crashk_low_res.end   = low_base + low_size - 1;
-> +	insert_resource(&iomem_resource, &crashk_low_res);
-> +
-> +	return 0;
-> +}
-> +
->  /*
->   * reserve_crashkernel() - reserves memory for crash kernel
+Hi,
 
-My another concern is the crashkernel=,low handling. In this patch, the
-code related to low memory is obscure. Wondering if we should make them
-explicit with a little redundant but very clear code flows. Saying this
-because the code must be very clear to you and reviewers, it may be
-harder for later code reader or anyone interested to understand.
-
-1) crashkernel=X,high
-2) crashkernel=X,high crashkernel=Y,low
-3) crashkernel=X,high crashkernel=0,low
-4) crashkernel=X,high crashkernel='messy code',low
-5) crashkernel=X //fall back to high memory, low memory is required then.
-
-It could be me thinking about it too much. I made changes to your patch
-with a tuning, not sure if it's OK to you. Otherwise, this patchset
-works very well for all above test cases, it's ripe to be merged for
-wider testing.
-
-diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-index a5d43feac0d7..671862c56d7d 100644
---- a/arch/arm64/mm/init.c
-+++ b/arch/arm64/mm/init.c
-@@ -94,7 +94,8 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
- 
- 	return 0;
- }
--
-+/*Words explaining why it's 256M*/
-+#define DEFAULT_CRASH_KERNEL_LOW_SIZE SZ_256M
- /*
-  * reserve_crashkernel() - reserves memory for crash kernel
-  *
-@@ -105,10 +106,10 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
- static void __init reserve_crashkernel(void)
- {
- 	unsigned long long crash_base, crash_size;
--	unsigned long long crash_low_size = SZ_256M;
-+	unsigned long long crash_low_size;
- 	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
- 	int ret;
--	bool fixed_base;
-+	bool fixed_base, high;
- 	char *cmdline = boot_command_line;
- 
- 	/* crashkernel=X[@offset] */
-@@ -126,7 +127,10 @@ static void __init reserve_crashkernel(void)
- 		ret = parse_crashkernel_low(cmdline, 0, &low_size, &crash_base);
- 		if (!ret)
- 			crash_low_size = low_size;
-+		else
-+			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
- 
-+		high = true;
- 		crash_max = CRASH_ADDR_HIGH_MAX;
- 	}
- 
-@@ -134,7 +138,7 @@ static void __init reserve_crashkernel(void)
- 	crash_size = PAGE_ALIGN(crash_size);
- 
- 	/* User specifies base address explicitly. */
--	if (crash_base)
-+	if (fixed_base)
- 		crash_max = crash_base + crash_size;
- 
- retry:
-@@ -156,7 +160,10 @@ static void __init reserve_crashkernel(void)
- 		return;
- 	}
- 
--	if (crash_base >= SZ_4G && reserve_crashkernel_low(crash_low_size)) {
-+	if (crash_base >= SZ_4G && !high) 
-+		crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
-+
-+	if (reserve_crashkernel_low(crash_low_size)) {
- 		memblock_phys_free(crash_base, crash_size);
- 		return;
- 	}
-
->   *
-> @@ -81,29 +105,62 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
->  static void __init reserve_crashkernel(void)
->  {
->  	unsigned long long crash_base, crash_size;
-> +	unsigned long long crash_low_size = SZ_256M;
->  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
->  	int ret;
-> +	bool fixed_base;
-> +	char *cmdline = boot_command_line;
->  
-> -	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
-> +	/* crashkernel=X[@offset] */
-> +	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
->  				&crash_size, &crash_base);
-> -	/* no crashkernel= or invalid value specified */
-> -	if (ret || !crash_size)
-> -		return;
-> +	if (ret || !crash_size) {
-> +		unsigned long long low_size;
->  
-> +		/* crashkernel=X,high */
-> +		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
-> +		if (ret || !crash_size)
-> +			return;
-> +
-> +		/* crashkernel=X,low */
-> +		ret = parse_crashkernel_low(cmdline, 0, &low_size, &crash_base);
-> +		if (!ret)
-> +			crash_low_size = low_size;
-> +
-> +		crash_max = CRASH_ADDR_HIGH_MAX;
-> +	}
-> +
-> +	fixed_base = !!crash_base;
->  	crash_size = PAGE_ALIGN(crash_size);
->  
->  	/* User specifies base address explicitly. */
->  	if (crash_base)
->  		crash_max = crash_base + crash_size;
->  
-> +retry:
->  	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
->  					       crash_base, crash_max);
->  	if (!crash_base) {
-> +		/*
-> +		 * Attempt to fully allocate low memory failed, fall back
-> +		 * to high memory, the minimum required low memory will be
-> +		 * reserved later.
-> +		 */
-> +		if (!fixed_base && (crash_max == CRASH_ADDR_LOW_MAX)) {
-> +			crash_max = CRASH_ADDR_HIGH_MAX;
-> +			goto retry;
-> +		}
-> +
->  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
->  			crash_size);
->  		return;
->  	}
->  
-> +	if (crash_base >= SZ_4G && reserve_crashkernel_low(crash_low_size)) {
-> +		memblock_phys_free(crash_base, crash_size);
-> +		return;
-> +	}
-> +
->  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
->  		crash_base, crash_base + crash_size, crash_size >> 20);
->  
-> @@ -112,6 +169,9 @@ static void __init reserve_crashkernel(void)
->  	 * map. Inform kmemleak so that it won't try to access it.
->  	 */
->  	kmemleak_ignore_phys(crash_base);
-> +	if (crashk_low_res.end)
-> +		kmemleak_ignore_phys(crashk_low_res.start);
-> +
->  	crashk_res.start = crash_base;
->  	crashk_res.end = crash_base + crash_size - 1;
->  	insert_resource(&iomem_resource, &crashk_res);
-> -- 
-> 2.25.1
+On 2/11/22 3:22 PM, Sebastian Reichel wrote:
+> Hi,
 > 
+> On Sat, Jan 29, 2022 at 04:24:24PM -0600, Samuel Holland wrote:
+>> This driver supports several chip variants which all share the same I2C
+>> register interface. Since the chip will turn off and become inaccessible
+>> under conditions outside of software control (e.g. upon button press or
+>> input voltage removal), some special handling is needed to delay the
+>> initialization of the IC until it is accessible.
+>>
+>> Signed-off-by: Samuel Holland <samuel@sholland.org>
+>> ---
+> 
+> Thanks, driver looks mostly good to me. Just two things:
+> 
+>> [...]
+>> +static const struct power_supply_desc ip5xxx_charger_desc = {
+>> +	.name			= "ip5xxx-charger",
+>> +	.type			= POWER_SUPPLY_TYPE_BATTERY,
+> 
+> POWER_SUPPLY_TYPE_BATTERY is the wrong type for a charger.
+> Considering the chips want 5V on the input side as far as
+> I could see, a sensible type is POWER_SUPPLY_TYPE_USB.
+
+The chip takes a 5V USB input, charges a battery, and then boosts the battery
+voltage back up to 5V on the output side (or passes the input voltage, if
+present, directly through to the output).
+
+Currently only POWER_SUPPLY_PROP_ONLINE describes the output side of the chip.
+All of the other properties here describe the battery. For example,
+POWER_SUPPLY_PROP_VOLTAGE/CURRENT_NOW is the battery voltage/current, not the
+output voltage/current. That doesn't match what I would expect from
+POWER_SUPPLY_TYPE_USB.
+
+Should there really be two separate power supplies, one for the battery of type
+POWER_SUPPLY_TYPE_BATTERY, and a second one for the output side of type
+POWER_SUPPLY_TYPE_USB, with the battery supplying the boost output stage? I'll
+send v2 with this idea; please let me know what you think.
+
+Since these two supplies would share the same device and OF node, how would I
+link them together?
+
+>> +	.properties		= ip5xxx_charger_properties,
+>> +	.num_properties		= ARRAY_SIZE(ip5xxx_charger_properties),
+>> +	.get_property		= ip5xxx_charger_get_property,
+>> +	.set_property		= ip5xxx_charger_set_property,
+>> +	.property_is_writeable	= ip5xxx_charger_property_is_writeable,
+>> +};
+>> +
+>> +static const struct regmap_config ip5xxx_regmap_config = {
+>> +	.reg_bits		= 8,
+>> +	.val_bits		= 8,
+>> +	.max_register		= IP5XXX_BATOCV_DAT1,
+>> +};
+>> +
+>> +static int ip5xxx_power_probe(struct i2c_client *client)
+>> +{
+>> +	struct power_supply_config psy_cfg = {};
+>> +	struct device *dev = &client->dev;
+>> +	struct power_supply *psy;
+>> +	struct ip5xxx *ip5xxx;
+>> +
+>> +	ip5xxx = devm_kzalloc(dev, sizeof(*ip5xxx), GFP_KERNEL);
+> 
+> if (!ip5xxx)
+>     return -ENOMEM;
+
+I'll fix this in v2.
+
+Regards,
+Samuel
+
+> -- Sebastian
+> 
+>> +	ip5xxx->regmap = devm_regmap_init_i2c(client, &ip5xxx_regmap_config);
+>> +	if (IS_ERR(ip5xxx->regmap))
+>> +		return PTR_ERR(ip5xxx->regmap);
+>> +
+>> +	psy_cfg.of_node = dev->of_node;
+>> +	psy_cfg.drv_data = ip5xxx;
+>> +
+>> +	psy = devm_power_supply_register(dev, &ip5xxx_charger_desc, &psy_cfg);
+>> +	if (IS_ERR(psy))
+>> +		return PTR_ERR(psy);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct of_device_id ip5xxx_power_of_match[] = {
+>> +	{ .compatible = "injoinic,ip5108" },
+>> +	{ .compatible = "injoinic,ip5109" },
+>> +	{ .compatible = "injoinic,ip5207" },
+>> +	{ .compatible = "injoinic,ip5209" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, ip5xxx_power_of_match);
+>> +
+>> +static struct i2c_driver ip5xxx_power_driver = {
+>> +	.probe_new	= ip5xxx_power_probe,
+>> +	.driver		= {
+>> +		.name		= "ip5xxx-power",
+>> +		.of_match_table	= ip5xxx_power_of_match,
+>> +	}
+>> +};
+>> +module_i2c_driver(ip5xxx_power_driver);
+>> +
+>> +MODULE_AUTHOR("Samuel Holland <samuel@sholland.org>");
+>> +MODULE_DESCRIPTION("Injoinic IP5xxx power bank IC driver");
+>> +MODULE_LICENSE("GPL");
+>> -- 
+>> 2.33.1
+>>
 
