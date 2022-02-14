@@ -2,118 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B8A44B54E7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3C664B54F1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:38:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355941AbiBNPgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 10:36:19 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55990 "EHLO
+        id S1355901AbiBNPh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 10:37:56 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:32812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350750AbiBNPgN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:36:13 -0500
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72A504AE3C;
-        Mon, 14 Feb 2022 07:36:04 -0800 (PST)
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E74B61BF206;
-        Mon, 14 Feb 2022 15:36:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1644852963;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=wZaVsNZfL1Y9JFue2k1wM/baHSjDOG975omNd7JZ0b8=;
-        b=aqQuBbvuyYLqCNZtSOtTuL3CX+GcC3c1knhe2FBkGI27DstNgcmIo8dkzUj/I2g4J8TYyF
-        EhbnU/edAwqFoVwmDRxyHAECs2UI4JIpwRIBIRaU/UeZD9p/osq9HR9WlAb03yBwTuZM2b
-        w1tvyXusl4cS7GwmsD0ueu6zvHf1OLII2BSkzggnWkFOmV7YZECIm0zYRwfumU51KdgTS+
-        NnmMuX9PDCkZBoGIjmXxUU1K2IiL4oZ4VFt0wOP7pGqJOP8oOq3I6gOLHbE0Ei7nhNgR00
-        3LwTisFaYjlmxha4VWUbVHCjnOm0FeGnUBZzBFBUpOXmMFvASN+ABniCj/HzNg==
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>, andrew@lunn.ch,
-        robh+dt@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH 2/2] watchdog: orion_wdt: support pretimeout on Armada-XP
-In-Reply-To: <20220211003257.2037332-3-chris.packham@alliedtelesis.co.nz>
-References: <20220211003257.2037332-1-chris.packham@alliedtelesis.co.nz>
- <20220211003257.2037332-3-chris.packham@alliedtelesis.co.nz>
-Date:   Mon, 14 Feb 2022 16:36:01 +0100
-Message-ID: <87r185jw9q.fsf@BL-laptop>
-MIME-Version: 1.0
-Content-Type: text/plain
+        with ESMTP id S1355897AbiBNPhy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:37:54 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 039A4DF7F
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:37:46 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id p9so6972455wra.12
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:37:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=YT5Imfq0LMuVZOXx0XtEYUfkVCCzeXiSTBNp7getK24=;
+        b=Q4z2sLp9vgx5dFg2IuDY/HyEbLdPaVgbvkiNSjnchz9tPBDFLdvyLgY547tI8KRIN5
+         MJ8qWz4FYwY9eR7R1R0q+kinxAt4EUPMXxmKcoF6gS18Qz25FesdTkD0/nYf/CqMxzKC
+         MpWY79AruqPuJA3m5UM8seDuvCgJw2ZH9dUOj1+l+CyAclR/ORjt0sUn7NLMJxqcM3pQ
+         ryoHTY4Pn+rzP9fEhW36TX5VVzsqg7YTPWpgh/6HoNjwzaatCsO63jvb8IUYAa6HixMc
+         L7yXbXwPKcAR7RdU7X+lBcresX4+g26j8peqlbIWG5zLTWCvm5PwsgatOH+oFFtib+bs
+         xgxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=YT5Imfq0LMuVZOXx0XtEYUfkVCCzeXiSTBNp7getK24=;
+        b=mLMMDWvyp6p9eDE0N9X6Ms5nehHpudLGCYsX8E1iO8MKm4Z6eVCEe39McC6BB5cmhZ
+         tgm6NzHwj3IbJTQuu1nbz1hootHjgV2dJFldBUVOKipAp9EnVSD5Wl5F1ZmlYehJAqq3
+         EL3xzf7fhFu8xvKxP8dI1vZeIGN3TBJq5Hj750sF+OqQn0+iWzIavoE3nascI2e5qSjl
+         K5zW67IQftMkrrgIRyhkK28QDCCZtkNJ4TnUkkUgRsXNmkFnECImsbTTkSEzdyeixH/P
+         L5ucmMG9Z9GogQ9ZPt/4I7cYg9vJJeu1GMOhXQBHgQTzpTz9AbvaMtHvktjNEtwCtpEs
+         DDNw==
+X-Gm-Message-State: AOAM532r7LKMhTmY29hdGjrGXaomUCU5EISPPXL+l0m8uOxP/XhHlyrV
+        E058X8gMcBNJ+hKkAE40UVovIA==
+X-Google-Smtp-Source: ABdhPJxDmnQW8BFcCa9HYezn36gI/eXsK+ZpTY6byPQzuhuqYE5UDH49gKOgYeqccSAazZ0R7VG0aQ==
+X-Received: by 2002:a5d:5043:: with SMTP id h3mr169686wrt.394.1644853064495;
+        Mon, 14 Feb 2022 07:37:44 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e0a:82c:5f0:682b:4712:4b40:6814])
+        by smtp.gmail.com with ESMTPSA id l26sm12935850wms.24.2022.02.14.07.37.43
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 14 Feb 2022 07:37:43 -0800 (PST)
+From:   Loic Poulain <loic.poulain@linaro.org>
+To:     dmitry.baryshkov@linaro.org, robdclark@gmail.com,
+        robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
+        Loic Poulain <loic.poulain@linaro.org>
+Subject: [PATCH v2 1/3] drm/msm/dsi: Allow to specify dsi config as pdata
+Date:   Mon, 14 Feb 2022 16:37:38 +0100
+Message-Id: <1644853060-12222-1-git-send-email-loic.poulain@linaro.org>
+X-Mailer: git-send-email 2.7.4
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Chris Packham <chris.packham@alliedtelesis.co.nz> writes:
+Config autodetect based on DSI controller version is quite limited
+since several qcom SoCs can integrate a DSI controller with the same
+version, but with different config (io_offset, supplies, etc).
 
-> Commit e07a4c79ca75 ("watchdog: orion_wdt: use timer1 as a pretimeout")
-> added support for a pretimeout on Armada-38x variants. Because the
-> Armada-XP variants use armada370_start/armada370_stop (due to missing an
-> explicit RSTOUT mask bit for the watchdog). Add the required pretimeout
-> support to armada370_start/armada370_stop for Armada-XP.
->
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+This change allows to specify dsi config via device data pointer.
+config autodetect is still used in case data pointer is NULL.
 
-Reviewed-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ v2: no change
 
-Thanks,
+ drivers/gpu/drm/msm/dsi/dsi.c      | 2 +-
+ drivers/gpu/drm/msm/dsi/dsi_host.c | 4 ++++
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
-Gregory
-
-> ---
->  drivers/watchdog/orion_wdt.c | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/watchdog/orion_wdt.c b/drivers/watchdog/orion_wdt.c
-> index 127eefc9161d..e25e6bf4647f 100644
-> --- a/drivers/watchdog/orion_wdt.c
-> +++ b/drivers/watchdog/orion_wdt.c
-> @@ -238,8 +238,10 @@ static int armada370_start(struct watchdog_device *wdt_dev)
->  	atomic_io_modify(dev->reg + TIMER_A370_STATUS, WDT_A370_EXPIRED, 0);
->  
->  	/* Enable watchdog timer */
-> -	atomic_io_modify(dev->reg + TIMER_CTRL, dev->data->wdt_enable_bit,
-> -						dev->data->wdt_enable_bit);
-> +	reg = dev->data->wdt_enable_bit;
-> +	if (dev->wdt.info->options & WDIOF_PRETIMEOUT)
-> +		reg |= TIMER1_ENABLE_BIT;
-> +	atomic_io_modify(dev->reg + TIMER_CTRL, reg, reg);
->  
->  	/* Enable reset on watchdog */
->  	reg = readl(dev->rstout);
-> @@ -312,7 +314,7 @@ static int armada375_stop(struct watchdog_device *wdt_dev)
->  static int armada370_stop(struct watchdog_device *wdt_dev)
->  {
->  	struct orion_watchdog *dev = watchdog_get_drvdata(wdt_dev);
-> -	u32 reg;
-> +	u32 reg, mask;
->  
->  	/* Disable reset on watchdog */
->  	reg = readl(dev->rstout);
-> @@ -320,7 +322,10 @@ static int armada370_stop(struct watchdog_device *wdt_dev)
->  	writel(reg, dev->rstout);
->  
->  	/* Disable watchdog timer */
-> -	atomic_io_modify(dev->reg + TIMER_CTRL, dev->data->wdt_enable_bit, 0);
-> +	mask = dev->data->wdt_enable_bit;
-> +	if (wdt_dev->info->options & WDIOF_PRETIMEOUT)
-> +		mask |= TIMER1_ENABLE_BIT;
-> +	atomic_io_modify(dev->reg + TIMER_CTRL, mask, 0);
->  
->  	return 0;
->  }
-> -- 
-> 2.35.1
->
-
+diff --git a/drivers/gpu/drm/msm/dsi/dsi.c b/drivers/gpu/drm/msm/dsi/dsi.c
+index 0525488..06a9008 100644
+--- a/drivers/gpu/drm/msm/dsi/dsi.c
++++ b/drivers/gpu/drm/msm/dsi/dsi.c
+@@ -170,7 +170,7 @@ static int dsi_dev_remove(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id dt_match[] = {
+-	{ .compatible = "qcom,mdss-dsi-ctrl" },
++	{ .compatible = "qcom,mdss-dsi-ctrl", .data = NULL /* autodetect cfg */ },
+ 	{}
+ };
+ 
+diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
+index 6b3ced4..c540acc 100644
+--- a/drivers/gpu/drm/msm/dsi/dsi_host.c
++++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
+@@ -212,6 +212,10 @@ static const struct msm_dsi_cfg_handler *dsi_get_config(
+ 	int ret;
+ 	u32 major = 0, minor = 0;
+ 
++	cfg_hnd = device_get_match_data(dev);
++	if (cfg_hnd)
++		return cfg_hnd;
++
+ 	ahb_clk = msm_clk_get(msm_host->pdev, "iface");
+ 	if (IS_ERR(ahb_clk)) {
+ 		pr_err("%s: cannot get interface clock\n", __func__);
 -- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+2.7.4
+
