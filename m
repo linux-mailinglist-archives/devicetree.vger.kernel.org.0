@@ -2,197 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 546424B54E3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:35:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 619A04B54E5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:36:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242533AbiBNPft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 10:35:49 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55442 "EHLO
+        id S1355921AbiBNPf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 10:35:58 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355895AbiBNPfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:35:37 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 799CE5F273
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:35:28 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id z19so31304333lfq.13
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:35:28 -0800 (PST)
+        with ESMTP id S1355919AbiBNPfy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:35:54 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8B2C60A94
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:35:46 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id o19so47055673ybc.12
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:35:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iRYhE5QfFh6N5neui9jc14hYBWThUe6VRAPVyILvtvI=;
-        b=hVYAEeUsZHwDztmlTeFxSWpRg3De/fjl/iZo3DZ2HN/sZNhxgJWdjODwGlfVs9GWuU
-         T3hUgy3RLKCaGk9U+pUc/FqmBoayO/BRpiaL6rXDMNEN2pfnVc5uDV/fY0Vq00k3eVFQ
-         WNoIuJIsnPKJ1ofvs7c4qiM3qaKtT9+qNSf+wOnunJUN7upd3HcRF4zlh/SS3q87GUua
-         zhsvo/z5wl3fUazBjwE1KzKcjTW/x/lWiRht9v8ZiDfJovHGYnsOL+Dr5+DgskHtYJ5S
-         eXitXaIvPefLnFP7E+OIOZya1VCZlRA+61zHOWQDq/Hp5It9wGjcz2t0Q0O22yF9Lpkq
-         YMUg==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:in-reply-to:references:from:date:message-id
+         :subject:cc;
+        bh=7MR/c1c0HoGO/HVVoYlYmh/1TEGUfmBelnD0hQ6ZZJc=;
+        b=CwaAbT0rIC31tG0LiFZnuea87dnkL2CLjz3iI+H+cYSZHGCArFO4llfu4I6wLvtb7t
+         H7nNtQunlXSR+yha8dv517uL9pl22qfKFYXYPyWsH1UOdk0vc1ml4E3hzLkQFG5/i8b+
+         xfZx+Vplmw+onTXuJDavtRegklzicgtLE6ILJbAyYPSiaKNHbkqEnLgSgcWCObgIzdu2
+         jForkb0ZBBZUyYWRMhoRM1QWuudhc1vmbnbkGbFNnisWSOfB8PeNIXTkpMGfHJBNxeH/
+         2XhilEDNYRcDNey/DcXzyx0n7iCFAf7MyJ+EBxqfYcxuEfAkhDcPI/2Tnp89h72e3c0i
+         fw7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iRYhE5QfFh6N5neui9jc14hYBWThUe6VRAPVyILvtvI=;
-        b=cYkm/kBihy4aTm65KiTQhOr0xWjVv4BsnsXL62xChm+ocuqEi4Rx5g1twOuexXBjW7
-         uUvN2hnxY23kiY1LZMpGH53pgMNadmVzr+47wycVeheWfzyvGc7kgmnJUkYDxs4/AY8T
-         y+z3RmS9Ku1+lIHDcvlFUGuUlPFLNvXEzwakVt07SV0c4RD+cz5a97XLZxeG6z9Ypyvt
-         mhZ94nUyQ9+KWVp4SRXq5/eqxgKUpKmRG+fZRH5tqTTOb9AucW0JJPQbX1ja6FCkV8om
-         ZTJoRX2i7oys2h+hnjAxzQuD26+HT6aDeWdhvvdQkPazCwANXVjSa4NO8CUfca/Nxh3T
-         QPew==
-X-Gm-Message-State: AOAM531ZmwqrpfAU2EJxGNz+ZvGlB7U5OhlKQqJ7RL7WbwS++jYFAhzh
-        EbtYZkhpVo2NwJdHaHhG/+sXm9+mhly1QPDVUPXCWg==
-X-Google-Smtp-Source: ABdhPJx9g6QNumI+cxbYO4D4/KGsV3uSlDR9miwSvQwPmYjPvhAAf0dojPsqo48saytOTLx1auETX9CyWKvOARPGSgs=
-X-Received: by 2002:a05:6512:3e10:: with SMTP id i16mr160939lfv.184.1644852926808;
- Mon, 14 Feb 2022 07:35:26 -0800 (PST)
+        h=x-gm-message-state:mime-version:reply-to:in-reply-to:references
+         :from:date:message-id:subject:cc;
+        bh=7MR/c1c0HoGO/HVVoYlYmh/1TEGUfmBelnD0hQ6ZZJc=;
+        b=gGlcyIWUsSmdY+z3vYcnGRhzr4YbuIRgWbKnosZPetnEN+37PwQJE6Az7Gt4Jxi4cz
+         CNM7RXxNj7vZePYwRsmsrr7OVOEnkbvRLhPZUPhaWveyIz3zm24kCTrre2Bz8OEWDgNU
+         YmcDH21/FTA0F67kVTcw/fZNWPwMCQ4p1Nwp0C+nnBGFLFA7lTudKuFZ8zzYpSAAx6tH
+         ZfLEYcEpsBLFtjfRjBRGGB85I7kMKYFkgJ0wzSboIbcSaqKIh4GLNkbbekqI3zUOCPGo
+         lSIw83YJYl0ZGZlfOvvF4I17xxWapYAlrAgN9Z3hqEVLTJff9IeS8PYnHLEOl9aQkdN0
+         Gc9g==
+X-Gm-Message-State: AOAM532f9g3X4yFhEQvq+phBMKD0yic9UwCxg5M2T3wELvrIvxFJXJFI
+        3C3PVfWYp/K5wDLXcSSBNxMPCOwCaS8QCcOX4iw=
+X-Received: by 2002:a25:8181:: with SMTP id p1mt178451ybk.755.1644852945941;
+ Mon, 14 Feb 2022 07:35:45 -0800 (PST)
 MIME-Version: 1.0
-References: <20220121071942.11601-1-axe.yang@mediatek.com> <20220121071942.11601-3-axe.yang@mediatek.com>
-In-Reply-To: <20220121071942.11601-3-axe.yang@mediatek.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 14 Feb 2022 16:34:50 +0100
-Message-ID: <CAPDyKFqd+H6F4+gBd4CEigaOTC5TtjtT75B3G0B6qexFi6XqKw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] mmc: core: Add support for SDIO async interrupt
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
+Received: by 2002:a05:7011:309:b0:202:87aa:d2df with HTTP; Mon, 14 Feb 2022
+ 07:35:45 -0800 (PST)
+Reply-To: lisamuna2001@gmail.com
+In-Reply-To: <CAOpEvtjt9NW=M_YqecnpTr19fUZxzQv+Kpqd_MVWxDDKGsCLgA@mail.gmail.com>
+References: <CAOpEvtjt9NW=M_YqecnpTr19fUZxzQv+Kpqd_MVWxDDKGsCLgA@mail.gmail.com>
+From:   lisa muna <amedodziyaovi@gmail.com>
+Date:   Mon, 14 Feb 2022 16:35:45 +0100
+Message-ID: <CAOpEvth8YxNPY_rTByvp8S3cykK9Nf16W0y8J8i5jxPZkYwgcw@mail.gmail.com>
+Subject: Greetings
+Cc:     lisamuna2001@gmail.com
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: Yes, score=5.4 required=5.0 tests=BAYES_50,DEAR_FRIEND,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,LOTS_OF_MONEY,
+        MISSING_HEADERS,MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:b2f listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [lisamuna2001[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [amedodziyaovi[at]gmail.com]
+        *  1.0 MISSING_HEADERS Missing To: header
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  2.6 DEAR_FRIEND BODY: Dear Friend? That's not very dear!
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+        *  0.0 MONEY_FREEMAIL_REPTO Lots of money from someone using free
+        *      email?
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jan 2022 at 08:19, Axe Yang <axe.yang@mediatek.com> wrote:
->
-> If cap-sdio-async-irq flag is set in host dts node, parse EAI
-> information from SDIO CCCR interrupt externsion segment. If async
-> interrupt is supported by SDIO card then send command to card to
-> enable it and set enable_async_irq flag in sdio_cccr structure to 1.
-> The parse flow is implemented in sdio_read_cccr().
->
-> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-> ---
->  drivers/mmc/core/host.c  |  2 ++
->  drivers/mmc/core/sdio.c  | 17 +++++++++++++++++
->  include/linux/mmc/card.h |  3 ++-
->  include/linux/mmc/host.h |  1 +
->  include/linux/mmc/sdio.h |  5 +++++
->  5 files changed, 27 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-> index cf140f4ec864..a972241548b4 100644
-> --- a/drivers/mmc/core/host.c
-> +++ b/drivers/mmc/core/host.c
-> @@ -410,6 +410,8 @@ int mmc_of_parse(struct mmc_host *host)
->         if (device_property_read_bool(dev, "no-mmc-hs400"))
->                 host->caps2 &= ~(MMC_CAP2_HS400_1_8V | MMC_CAP2_HS400_1_2V |
->                                  MMC_CAP2_HS400_ES);
-> +       if (device_property_read_bool(dev, "cap-sdio-async-irq"))
-> +               host->caps2 |= MMC_CAP2_SDIO_ASYNC_IRQ;
->
->         /* Must be after "non-removable" check */
->         if (device_property_read_u32(dev, "fixed-emmc-driver-type", &drv_type) == 0) {
-> diff --git a/drivers/mmc/core/sdio.c b/drivers/mmc/core/sdio.c
-> index 41164748723d..771fb5d18585 100644
-> --- a/drivers/mmc/core/sdio.c
-> +++ b/drivers/mmc/core/sdio.c
-> @@ -225,6 +225,23 @@ static int sdio_read_cccr(struct mmc_card *card, u32 ocr)
->                                 card->sw_caps.sd3_drv_type |= SD_DRIVER_TYPE_C;
->                         if (data & SDIO_DRIVE_SDTD)
->                                 card->sw_caps.sd3_drv_type |= SD_DRIVER_TYPE_D;
-> +
-> +                       if (card->host->caps2 & MMC_CAP2_SDIO_ASYNC_IRQ) {
+Dear Friend,
 
-We can probably check host->pm_caps & MMC_PM_WAKE_SDIO_IRQ here,
-instead of MMC_CAP2_SDIO_ASYNC_IRQ.
+I'm happy to inform you that i finally succeeded in getting the funds
+transferred under the cooperation of a new partner from India,
+Presently I'm in India, for investment projects with my own share of
+the money and also on charity work to the less privileges and the
+orphanages. Meanwhile i didn't forget your past efforts to assist me.
 
-> +                               ret = mmc_io_rw_direct(card, 0, 0, SDIO_CCCR_INTERRUPT_EXT, 0,
-> +                                                      &data);
-> +                               if (ret)
-> +                                       goto out;
-> +
-> +                               if (data & SDIO_INTERRUPT_EXT_SAI) {
-> +                                       data |= SDIO_INTERRUPT_EXT_EAI;
-> +                                       ret = mmc_io_rw_direct(card, 1, 0, SDIO_CCCR_INTERRUPT_EXT,
-> +                                                              data, NULL);
-> +                                       if (ret)
-> +                                               goto out;
-> +
-> +                                       card->cccr.enable_async_irq = 1;
+After your inability to cooperate I found a new partner who helped in
+getting those funds transferred for charity work , please use this
+share of the money for your self and also invest some on charity work
+in your country.
 
-As you show in the next patch(3), this flag is useful to read for the
-host driver.
+So i left a Visa Card of $850,000.00 US Dollars for you as
+compensation for your past effort. Contact my office manager and give
+her your complete address so she can send you the Visa Card through
+Courier Delivery Logistics
 
-However, rather than accessing this flag directly in the host driver,
-can you please add a helper function that takes a struct mmc_card* as
-in-parameter instead?
+Her Name is Miss . Lisa Muna
 
-> +                               }
-> +                       }
->                 }
->
->                 /* if no uhs mode ensure we check for high speed */
-> diff --git a/include/linux/mmc/card.h b/include/linux/mmc/card.h
-> index 37f975875102..4df9182bc0e6 100644
-> --- a/include/linux/mmc/card.h
-> +++ b/include/linux/mmc/card.h
-> @@ -219,7 +219,8 @@ struct sdio_cccr {
->                                 wide_bus:1,
->                                 high_power:1,
->                                 high_speed:1,
-> -                               disable_cd:1;
-> +                               disable_cd:1,
-> +                               enable_async_irq:1;
->  };
->
->  struct sdio_cis {
-> diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
-> index 7afb57cab00b..502a5418264c 100644
-> --- a/include/linux/mmc/host.h
-> +++ b/include/linux/mmc/host.h
-> @@ -402,6 +402,7 @@ struct mmc_host {
->  #define MMC_CAP2_CRYPTO                0
->  #endif
->  #define MMC_CAP2_ALT_GPT_TEGRA (1 << 28)       /* Host with eMMC that has GPT entry at a non-standard location */
-> +#define MMC_CAP2_SDIO_ASYNC_IRQ        (1 << 29)       /* SDIO host supports asynchronous interrupt */
->
->         int                     fixed_drv_type; /* fixed driver type for non-removable media */
->
-> diff --git a/include/linux/mmc/sdio.h b/include/linux/mmc/sdio.h
-> index 2a05d1ac4f0e..1ef400f28642 100644
-> --- a/include/linux/mmc/sdio.h
-> +++ b/include/linux/mmc/sdio.h
-> @@ -159,6 +159,11 @@
->  #define  SDIO_DTSx_SET_TYPE_A  (1 << SDIO_DRIVE_DTSx_SHIFT)
->  #define  SDIO_DTSx_SET_TYPE_C  (2 << SDIO_DRIVE_DTSx_SHIFT)
->  #define  SDIO_DTSx_SET_TYPE_D  (3 << SDIO_DRIVE_DTSx_SHIFT)
-> +
-> +#define SDIO_CCCR_INTERRUPT_EXT        0x16
-> +#define SDIO_INTERRUPT_EXT_SAI (1 << 0)
-> +#define SDIO_INTERRUPT_EXT_EAI (1 << 1)
-> +
->  /*
->   * Function Basic Registers (FBR)
->   */
+Email: lisamuna2001@gmail.com
 
-Kind regards
-Uffe
+NOTE; The Visa Card is an international Visa Card and you can cash it
+in any ATM machine in your Country.
+
+Regards
+lisa muna
