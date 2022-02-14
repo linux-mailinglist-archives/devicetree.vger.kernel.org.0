@@ -2,71 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CC344B5380
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 15:40:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 741C04B53AE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 15:48:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348754AbiBNOkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 09:40:42 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46762 "EHLO
+        id S1355307AbiBNOr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 09:47:59 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355263AbiBNOkl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 09:40:41 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281784D272;
-        Mon, 14 Feb 2022 06:40:30 -0800 (PST)
+        with ESMTP id S241737AbiBNOr6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 09:47:58 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC184B43C
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 06:47:50 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id k3-20020a1ca103000000b0037bdea84f9cso11020027wme.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 06:47:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1644849630; x=1676385630;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=z4Yj6e6wk3vVOcZYYzBSEkeNyLew/1NMrFeiL4ZI3sM=;
-  b=uKRw42ghtR/CLaizaZOgxU24JSsHrrrPlYOeb5rvADBBYnVKUFGXls+w
-   ov+eEHY7ArK75PECK4Ag7MPxYErMUl+ck3+MS8gaykdiOV1HsbJVcYHQk
-   SUmYuG1OU1+LBY7GsXZYPVwbyifgKTfMnBu+vfxgNR/XbiDZI2gowwcif
-   4=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 14 Feb 2022 06:40:29 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 06:40:29 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 14 Feb 2022 06:40:29 -0800
-Received: from [10.216.15.72] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Mon, 14 Feb
- 2022 06:40:23 -0800
-Subject: Re: [PATCH v13 07/10] ASoC: qcom: Add support for codec dma driver
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=VqFIbMHS9PJxJt/MmXCU6mhg8T/EbdtODuacavlxAZA=;
+        b=Uz8HM22G11OlllXpa0uJQqZlDsuee2x2w569q1vQbJJNGHN0n8s3+O3Qxy+ArdyO0E
+         aQ2c3ueo8s1I4EZUiiWEJMFXJCPnXTJ7LytcJl9bpU1rCz9AcmB5Bvaa3eFIV+SuBgj9
+         rF9oxfaHfyai8TbI7eQeSmcAQBqvtDU08l4pIScZ/Ljv/kONmmqeUkq/yaQ5dgRTAZPU
+         yxfnDeC+nyrO1rdGY8VJ828QgVwci3oko+UGmqSPtHpd5flkrLtmW2o77PclYcR647Rj
+         Ut4WOyhvdJQF9McJTPTWpA1LpJhi2k9YX2vT4E3mKZkYHHBxOuU3uKWDn5meuSOGzP/s
+         cQCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=VqFIbMHS9PJxJt/MmXCU6mhg8T/EbdtODuacavlxAZA=;
+        b=i7LE3UK7EVlVCBBfUX/p71GyPsmap2fLKt2fvH2WmsvgNtET8dISqPtSJ2Azt43bSJ
+         R4Pir7h5Lo8Bk9vQYvWAXDkfXcb1TIzAdO6PJ7M9f5w3jnnmR/rMqFIlTVauwkWud3Si
+         erDi/htiyLhYfO+h3vu7Hev4zesNQrn4QAdrYgIpgncBL5xaKU6wCXX1WTFHmiYYRYta
+         QCdZ+gxOk0sI5TXGuZpwDauL+/kQzyNOG+JP4uHeM8HLwU0+aN1XIX5gZA33lNiN59kg
+         NwFQUDjSx8KrWXfgHa599UJV5Pg3L4Y3C49+5ggVl629zVJjF8iakZ/WfVVRaRT11wX1
+         a1Xw==
+X-Gm-Message-State: AOAM530NsoG+lOymZl9kzgj/PiVmEO2D9x88SN4j8abUETI8nMchNmHx
+        fVapGrGlUR0UVQ5XmvKnohKOag==
+X-Google-Smtp-Source: ABdhPJxSw1FwkKhmXDhcwO+z+DvJYTP+fXzHbCfXunNctoyfkj9UEuX9KbRQKkkrTHVeacjS2FzjHw==
+X-Received: by 2002:a05:600c:3583:: with SMTP id p3mr5799657wmq.69.1644850069265;
+        Mon, 14 Feb 2022 06:47:49 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id a1sm30331629wrf.42.2022.02.14.06.47.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Feb 2022 06:47:48 -0800 (PST)
+Date:   Mon, 14 Feb 2022 14:47:46 +0000
+From:   Lee Jones <lee.jones@linaro.org>
 To:     Mark Brown <broonie@kernel.org>
-CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
-        <perex@perex.cz>, <tiwai@suse.com>,
-        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-References: <1644832778-16064-1-git-send-email-quic_srivasam@quicinc.com>
- <1644832778-16064-2-git-send-email-quic_srivasam@quicinc.com>
- <YgppMcVjs0KuE5y8@sirena.org.uk>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-Message-ID: <669f2d39-8c14-68b9-6d89-a26e0e2e8857@quicinc.com>
-Date:   Mon, 14 Feb 2022 20:10:20 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Andi Shyti <andi@etezian.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Pratyush Yadav <p.yadav@ti.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH v6 1/4] spi: dt-bindings: samsung: convert to dtschema
+Message-ID: <Ygprkl4sLrW6T+iD@google.com>
+References: <20220124082347.32747-1-krzysztof.kozlowski@canonical.com>
+ <20220124082347.32747-2-krzysztof.kozlowski@canonical.com>
+ <YgFgQsV2bJS6mjQs@sirena.org.uk>
+ <YgpkZzMWuuWpK8Tk@google.com>
+ <YgppwvQwfJ1xycvT@sirena.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <YgppMcVjs0KuE5y8@sirena.org.uk>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YgppwvQwfJ1xycvT@sirena.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,16 +83,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 14 Feb 2022, Mark Brown wrote:
 
-On 2/14/2022 8:07 PM, Mark Brown wrote:
-Sorry for inconvenience Mark Brown.
-> On Mon, Feb 14, 2022 at 03:29:38PM +0530, Srinivasa Rao Mandadapu wrote:
->> Upadate lpass cpu and platform driver to support audio over codec dma
->> in ADSP bypass use case.
-> I only have this patch from both v12 and v13, which were sent very close
-> together.  Please check what's going on here.
+> On Mon, Feb 14, 2022 at 02:17:11PM +0000, Lee Jones wrote:
+> > On Mon, 07 Feb 2022, Mark Brown wrote:
+> > 
+> > > On Mon, Jan 24, 2022 at 09:23:44AM +0100, Krzysztof Kozlowski wrote:
+> > > > Convert the Samsung SoC (S3C24xx, S3C64xx, S5Pv210, Exynos) SPI
+> > > > controller bindings to DT schema format.
+> > > 
+> > > Reviewed-by: Mark Brown <broonie@kernel.org>
+> > 
+> > Do you need a PR?
+> 
+> It'd be good to have one in case it's needed.
 
-As only one patch has update, so sent only one patch. will do resend all 
-patches if needed.
+No problem.
 
-
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
