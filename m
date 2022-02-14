@@ -2,78 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85CD44B560F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 17:23:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 645364B561E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 17:27:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237713AbiBNQXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 11:23:12 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34980 "EHLO
+        id S245406AbiBNQ1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 11:27:37 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233335AbiBNQXL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 11:23:11 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 96F995FF0B
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 08:23:03 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5B30413D5;
-        Mon, 14 Feb 2022 08:23:03 -0800 (PST)
-Received: from [10.57.37.216] (unknown [10.57.37.216])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 60E753F70D;
-        Mon, 14 Feb 2022 08:23:02 -0800 (PST)
-Message-ID: <5ca70986-d6a5-7c3e-b876-40e970805775@arm.com>
-Date:   Mon, 14 Feb 2022 16:23:01 +0000
+        with ESMTP id S236773AbiBNQ1h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 11:27:37 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C40C73;
+        Mon, 14 Feb 2022 08:27:29 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 23DA361482;
+        Mon, 14 Feb 2022 16:27:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 418A5C340E9;
+        Mon, 14 Feb 2022 16:27:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644856048;
+        bh=4OKuG2LEadxl8fctPRW0BKh8+ifLIIssXuNLgxWqWro=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=uOtYrzcA/YsfJA6XweiY/nP1P/mXNGDAyZO/UTBB8rvuilPXUJSLKlAmnE8p6ICkh
+         RS7F2VIZiixaCuNIz5LUNgNKDvjWbtBrxrus2rAFWSBTR4gmSMN8X0xfYUl7Dhe8aI
+         UhY+nMa/WFlnU4ShMhzobZQmP2K+L86gpdnpFlbzWL1fVva94CAqv+Y1qniV4/2Zod
+         iocqggfX4q5RJgZSrY/52XdTaHLjOjkEMIV2IfhbNhOykBguVyTu7JZkjVWIhYD6b8
+         bZkwrL6b0T4pkZrTdtthkRGVE25eaphC0kxLd7AhohMTGEFxhrSAx93FkYdggP3kfT
+         1fEA2CPcdh+5Q==
+From:   Mark Brown <broonie@kernel.org>
+To:     lgirdwood@gmail.com, tiwai@suse.com, judyhsiao@chromium.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        perex@perex.cz,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, swboyd@chromium.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, srinivas.kandagatla@linaro.org,
+        devicetree@vger.kernel.org, quic_plai@quicinc.com,
+        robh+dt@kernel.org, bgoswami@codeaurora.org, rohitkr@codeaurora.org
+In-Reply-To: <1644668672-29790-1-git-send-email-quic_srivasam@quicinc.com>
+References: <1644668672-29790-1-git-send-email-quic_srivasam@quicinc.com>
+Subject: Re: [PATCH 0/2] Add Euro Headset support for wcd938x codec
+Message-Id: <164485604498.2890761.7849400676064736149.b4-ty@kernel.org>
+Date:   Mon, 14 Feb 2022 16:27:24 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/9] dt-bindings: Add arm,mali-valhall compatible
-Content-Language: en-GB
-To:     alyssa.rosenzweig@collabora.com, dri-devel@lists.freedesktop.org
-Cc:     robh@kernel.org, tomeu.vizoso@collabora.com, airlied@linux.ie,
-        daniel@ffwll.ch, devicetree@vger.kernel.org
-References: <20220211202728.6146-1-alyssa.rosenzweig@collabora.com>
- <20220211202728.6146-2-alyssa.rosenzweig@collabora.com>
-From:   Steven Price <steven.price@arm.com>
-In-Reply-To: <20220211202728.6146-2-alyssa.rosenzweig@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/02/2022 20:27, alyssa.rosenzweig@collabora.com wrote:
-> From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+On Sat, 12 Feb 2022 17:54:30 +0530, Srinivasa Rao Mandadapu wrote:
+> This patch set is to add switch control for selecting CTIA/OMTP Headset
 > 
-> From the kernel's perspective, pre-CSF Valhall is more or less
-> compatible with Bifrost, although they differ to userspace. Add a
-> compatible for Valhall to the existing Bifrost bindings documentation.
+> Srinivasa Rao Mandadapu (2):
+>   ASoC: codec: wcd938x: Add switch control for selecting CTIA/OMTP
+>     Headset
+>   ASoC: dt-bindings: wcd938x: Add gpio property for selecting CTIA/OMTP
+>     headset
 > 
-> Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-> Cc: devicetree@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> index 63a08f3f321d..48aeabd2ed68 100644
-> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> @@ -23,6 +23,7 @@ properties:
->            - rockchip,px30-mali
->            - rockchip,rk3568-mali
->        - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
-> +      - const: arm,mali-valhall # Mali Valhall GPU model/revision is fully discoverable
+> [...]
 
-It might be worth spelling out here that this is *pre-CSF* Valhall. I'm
-pretty sure we're going to need different bindings for CSF GPUs.
+Applied to
 
-Steve
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
->  
->    reg:
->      maxItems: 1
+Thanks!
 
+[1/2] ASoC: codec: wcd938x: Add switch control for selecting CTIA/OMTP Headset
+      commit: 013cc2aea0f62f864c8497b8497299bed4a248fb
+[2/2] ASoC: dt-bindings: wcd938x: Add gpio property for selecting CTIA/OMTP headset
+      commit: 20ea94bc5317475af70f003075e7988715457d66
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
