@@ -2,267 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8525D4B59CF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 19:22:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 226474B59FF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 19:36:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357401AbiBNSWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 13:22:22 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34806 "EHLO
+        id S1347044AbiBNSgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 13:36:03 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234888AbiBNSWV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 13:22:21 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2189D24C
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 10:22:13 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id c3so11205391pls.5
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 10:22:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=3lf6aWAMMF8x0ksRHMk2/ZMhShybab0gNxcrkOJeaEA=;
-        b=TrzsLlC8akpRgInaSWfHjrpJ/hOkT0uExIR6zoHuXIoyCKKM7Bt64SDkVaa2JxyJew
-         avrn9rmZdYysznTzUpgGTfksZuxuteTKVnbqnIxMNcH1PvaV8QFfmVFTDsBPcIPI/VZD
-         zMXs4g06rWysmbkjcvIu9FMwS0JeDlVoeJSOvRVkAFX1iaYgDlujyzFegN48/WauBHG7
-         g2qVOXJ4a5oYI1+3G9AbTbKJQXOu6CVFAN5k2BhAc7IqHVdfT1JZrnE2HUERmSWG1xps
-         UaaVaE3VjorIptbKqbjitZ+sAiN1KOh4KO96KBUrZ3WSNJ2WvlyMTvqNiLt5EuT0H48Y
-         h/lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3lf6aWAMMF8x0ksRHMk2/ZMhShybab0gNxcrkOJeaEA=;
-        b=t/aSbV4gp4PbFAlA1JnYxMUZvTgpcmnCTVf42/QF8hwFwTjZ2EdeiYobdmoJTxH9l2
-         D9I+vxeGBkUJheFLQsFljKHLTL52k+cyJ1x8YiYqcnyQI0Hchwmtyi1fw+WxE5pmJoSy
-         3wFav2/PYylaS+JWZ0lGH97ulkRv7MnWmvM+yeLn1Vy+cE/YILMrKp4W3IFpkVSxBkIo
-         2kRe/bf3tKk/VSi3xPBK9LM/2VJAmkeNVUOiUcHO9FB3mVHo1GcMmebmvQFTZ3M00x9w
-         mLzIXkiL8riwP1l2fyxdAbRrfiYlQkHFfQxuKFhOwVyjK/uYxwgvJ8dfi2c6w++AAPFp
-         Bk/w==
-X-Gm-Message-State: AOAM530NkjfHultjI9WflLQqoIx8Q0Nu4b2M5uuG9G9CE3huCeP3ynnb
-        ReJl9W5qWTJv/1Pe3bJ/NnjbiQ==
-X-Google-Smtp-Source: ABdhPJy0vYddQB71wBgDXGEbjDBhvyykkKtMovCif5Ui8Ku4qon38pmZykD5ApuHhqxO8imONMthDQ==
-X-Received: by 2002:a17:902:eac5:: with SMTP id p5mr66590pld.160.1644862932491;
-        Mon, 14 Feb 2022 10:22:12 -0800 (PST)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id ip10sm15436pjb.11.2022.02.14.10.22.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Feb 2022 10:22:11 -0800 (PST)
-Date:   Mon, 14 Feb 2022 11:22:08 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tanmay Shah <tanmay.shah@xilinx.com>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        michal.simek@xilinx.com, laurent.pinchart@ideasonboard.com,
-        ben.levinsky@xilinx.com, bill.mills@linaro.org,
-        sergei.korneichuk@xilinx.com, arun.balaji.kannan@xilinx.com,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
- bindings
-Message-ID: <20220214182208.GA101373@p14s>
-References: <20220210112824.2084724-1-tanmay.shah@xilinx.com>
- <20220210112824.2084724-2-tanmay.shah@xilinx.com>
+        with ESMTP id S239417AbiBNSgC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 13:36:02 -0500
+X-Greylist: delayed 467 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 14 Feb 2022 10:35:53 PST
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5DE7652E3;
+        Mon, 14 Feb 2022 10:35:53 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 490F15C0250;
+        Mon, 14 Feb 2022 13:28:03 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Mon, 14 Feb 2022 13:28:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
+        :cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm1; bh=Qcwq5i6dPGz8fm
+        2l69OpbijAoZXeTdKUljxVFonj5pg=; b=ZfY/IqGewCEVDT+SpQQimzo7lV0aXw
+        o7oOy+w/TdWN9r+Ip12oZbb8PvYA2rtzB884ybRgDBKxqlT+Ql7OQ04MJqWO5zhj
+        iThCX/QxuWlO3G9NC90STBpKK6282ALvS/bLObbanvTo1lO6Q/mj5NvQr5JTrnAE
+        JyE1mRsmgM9dC+D2dEMxQ/NCZ6Hk+iSJGek9Ydm2/EJRy9Az35IPUDzgmG9nWOPz
+        e7Bqyt3LCc+BwmNbTeHnfF33CekhYUVCKj19eUghckHByFSoyE/w+MGOaBkAergd
+        5+VJZNYS5/NX1NtJvpGE6F6LWjrxNiBrntb1d3TndcYd1zEDJ4/LKTKg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=Qcwq5i6dPGz8fm2l69OpbijAoZXeTdKUljxVFonj5
+        pg=; b=Yf2rCmo191gvt55Y3HNHTt+drZO+Zk9lpbcdD0hH6iG3tRmmwoBB9coJm
+        XYFD6VAa6ElSSqdIZC1kDo/nDJIt3aF0Qd03sR7FUA+4DfsNa7qkTh5lqGHyncGJ
+        Um9NOoLp0JjkENh8zwDjSm1qbvGj+W9OxdZSKKNfs2NHwwQ3Nyj7DWwZ2SIaga6Z
+        nq1OVm8EQAJxjx0OHWaTcW1MKjkH4bQpZakogejZv/uHIb8jMNISd77wzHXiobJA
+        yt1wz2IvUEj8xx1zWDwxd4EY766Y5+zLMOFZYRux+4ErxxFcnpA0m9gAdD+PQvT/
+        VqiNyq8t2u72pvs+NhReS/UxOvu7w==
+X-ME-Sender: <xms:Mp8KYhqDXSYTHlRvrGn5HWuEG5GbH29glKPOou4OJvMM25hgdIeMKw>
+    <xme:Mp8KYjpKiAlKFCouRAvlmKSB9WQM7Ws9X9hLNefeCXlVyXuoqDx8_iEs096GI6M9e
+    WHx1FOmEVGPOS12w0o>
+X-ME-Received: <xmr:Mp8KYuMOkDKYl0UJszQdSrzv-Va0hcirXmB3kYAj2_VfGXuc_vR14EK0Fg4lEc7yDrhA0AKF2QTTI7iUCwxkE4VrfMwvxCf2>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrjedvgddutdekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    gfrhhlucfvnfffucdlfeehmdenucfjughrpeffhffvuffkfhggtggugfgjsehtqhertddt
+    tddvnecuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmshcuoehprghtrhhitghkse
+    hsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpedtleffieffieeghfelueekteff
+    uedvhfefffeigfeikeekuddtgfehvddvieehkeenucffohhmrghinhepkhgvrhhnvghlrd
+    horhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhep
+    phgrthhrihgtkhesshhtfigtgidrgiihii
+X-ME-Proxy: <xmx:Mp8KYs603cxG8DTbpYBUzrWkPDAwp6k1loBUpyJv5_334M5j4dKgiw>
+    <xmx:Mp8KYg7UAvn_v9K6qThCMsLMKygXZRA6l5CulYMZDv6bj0HeHUyKIg>
+    <xmx:Mp8KYkh6h7JCrSzwvjez5dFrwv4F1j3qIwqAVuj830uH7L6Ea7ZmkA>
+    <xmx:M58KYtvi-UsPV19EcRQGIezyZFYz-6wlN-IqMfkUdmavzZ1e2qijXQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 14 Feb 2022 13:28:01 -0500 (EST)
+Date:   Mon, 14 Feb 2022 12:27:59 -0600
+From:   Patrick Williams <patrick@stwcx.xyz>
+To:     Potin Lai <potin.lai@quantatw.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/10] update Facebook Bletchley BMC
+Message-ID: <Ygqe6lwWUdgv+8ss@patrickw3-mbp>
+References: <20220214042538.12132-1-potin.lai@quantatw.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220210112824.2084724-2-tanmay.shah@xilinx.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220214042538.12132-1-potin.lai@quantatw.com>
+X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        PDS_OTHER_BAD_TLD,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 10, 2022 at 03:28:19AM -0800, Tanmay Shah wrote:
-> Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
-> Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem (cluster).
-> 
-> Signed-off-by: Tanmay Shah <tanmay.shah@xilinx.com>
-> ---
-> 
-> Changes in v3:
->   - None
-> 
->  .../bindings/remoteproc/xlnx,r5f-rproc.yaml   | 139 ++++++++++++++++++
->  include/dt-bindings/power/xlnx-zynqmp-power.h |   6 +
->  2 files changed, 145 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> new file mode 100644
-> index 000000000000..d43f0b16ad7f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> @@ -0,0 +1,139 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/xlnx,r5f-rproc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx R5F processor subsystem
-> +
-> +maintainers:
-> +  - Ben Levinsky <ben.levinsky@xilinx.com>
-> +  - Tanmay Shah <tanmay.shah@xilinx.com>
-> +
-> +description: |
-> +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
-> +  real-time processing based on the Cortex-R5F processor core from ARM.
-> +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
-> +  floating-point unit that implements the Arm VFPv3 instruction set.
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,zynqmp-r5fss
-> +
-> +  xlnx,cluster-mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      The RPU MPCore can operate in split mode(Dual-processor performance), Safety
-> +      lock-step mode(Both RPU cores execute the same code in lock-step,
-> +      clock-for-clock) or Single CPU mode (RPU core 0 can be held in reset while
-> +      core 1 runs normally). The processor does not support dynamic configuration.
-> +      Switching between modes is only permitted immediately after a processor reset.
-> +      If set to  1 then lockstep mode and if 0 then split mode.
-> +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  reg:
-> +    items:
-> +      - description: RPU subsystem status and control registers
-> +
-> +patternProperties:
-> +  "^r5f-[a-f0-9]+$":
-> +    type: object
-> +    description: |
-> +      The RPU is located in the Low Power Domain of the Processor Subsystem.
-> +      Each processor includes separate L1 instruction and data caches and
-> +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
-> +      memory space is non-cacheable.
-> +
-> +      Each RPU contains one 64KB memory and two 32KB memories that
-> +      are accessed via the TCM A and B port interfaces, for a total of 128KB
-> +      per processor. In lock-step mode, the processor has access to 256KB of
-> +      TCM memory.
-> +
-> +    properties:
-> +      compatible:
-> +        const: xlnx,zynqmp-r5f
-> +
-> +      power-domains:
-> +        description: |
-> +          phandle to a PM domain provider node and an args specifier containing
-> +          the r5f0 and r5f1 node id value.
-> +
-> +      reg:
-> +        items:
-> +          - description: RPU0 and RPU1 control and status registers
-> +
-> +      mboxes:
-> +        items:
-> +          - description: |
-> +              Bi-directional channel to send data to RPU and receive ack from RPU.
-> +              Request and response message buffers are available and each buffer is 32 bytes.
-> +          - description: |
-> +              Bi-directional channel to receive data from RPU and send ack from RPU.
-> +              Request and response message buffers are available and each buffer is 32 bytes.
-> +        minItems: 1
-> +
-> +      mbox-names:
-> +        items:
-> +          - const: tx
-> +          - const: rx
-> +        minItems: 1
-> +
-> +      sram:
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        minItems: 1
-> +        description: |
-> +          phandles to one or more reserved on-chip SRAM regions. Other than TCM,
-> +          the RPU can execute instructions and access data from, the OCM memory,
-> +          the main DDR memory, and other system memories.
-> +
-> +          The regions should be defined as child nodes of the respective SRAM
-> +          node, and should be defined as per the generic bindings in,
-> +          Documentation/devicetree/bindings/sram/sram.yaml
-> +
-> +      memory-region:
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        description: |
-> +          List of phandles to the reserved memory regions associated with the
-> +          remoteproc device. This is variable and describes the memories shared with
-> +          the remote processor (e.g. remoteproc firmware and carveouts, rpmsg
-> +          vrings, ...). This reserved memory region will be allocated on DDR memory.
-> +          See Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> 
+On Mon, Feb 14, 2022 at 12:25:28PM +0800, Potin Lai wrote:
+> This patch series update Facebook Bletchley BMC devicetree base on EVT HW
+> schematioc design, and rebase SLED numbering to 1-based for OpenBMC
+> multi-host.
+>=20
+> - GPIO:
+>   - adding more gpio line names
+>   - include interrupt line in io expander for gpio interrupt monitoring
+>=20
+> - SPI flash:
+>   - adding dual flash BSM module support
+>   - switch to spi2-gpio on spi2 due to unstable signal issue
+>=20
+> - Hwmon Sensors:
+>   - adding INA230 sensors for monitoring
+>   - fix ADM1278 shunt-resistor
+>=20
+> - MDIO Bus: enable mido3 bus
+>=20
+> - RTC: switch to external battery-backed rtc
+>=20
+> - OpenBMC: 1-based SLED numbering
+>=20
+>=20
+> LINK: [v1] https://lore.kernel.org/all/20220211014347.24841-1-potin.lai@q=
+uantatw.com/
+>=20
+>=20
+> Changes v1 --> v2:
+> - update the details of new added gpio line names in commit message
+> - add battery-backed rtc information in comment and commit message
 
-Aside from "compatible" and "power-domains", none of the above properties appear
-in the example below, making this patchset harder to review.
+Thank you for the details there Potin.
 
-I am pretty sure to have commented on this earlier...
+>=20
+> Potin Lai (10):
+>   arch: arm: dts: bletchley: switch sled numbering to 1-based
+>   arch: arm: dts: bletchley: separate leds into multiple groups
+>   arch: arm: dts: bletchley: update gpio-line-names
+>   arch: arm: dts: bletchley: update fmc configurations
+>   arch: arm: dts: bletchley: switch to spi-gpio for spi2
+>   arch: arm: dts: bletchley: add interrupt support for sled io expander
+>   arch: arm: dts: bletchley: add shunt-resistor for ADM1278
+>   arch: arm: dts: bletchley: add INA230 sensor on each sled
+>   arch: arm: dts: bletchley: enable mdio3 bus
+>   arch: arm: dts: bletchley: cleanup redundant nodes
+>=20
+>  .../dts/aspeed-bmc-facebook-bletchley.dts     | 303 +++++++++++-------
+>  1 file changed, 194 insertions(+), 109 deletions(-)
+>=20
+> --=20
+> 2.17.1
+>=20
 
-More comments to come later or tomorrow.
+Entire series is
 
-Thanks,
-Mathieu
+Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
 
-> +    required:
-> +      - compatible
-> +      - power-domains
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    r5fss: r5fss@ff9a0000 {
-> +        compatible = "xlnx,zynqmp-r5fss";
-> +        xlnx,cluster-mode = <1>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        reg = <0xff9a0000 0x228>;
-> +
-> +        r5f-0 {
-> +            compatible = "xlnx,zynqmp-r5f";
-> +            power-domains = <&zynqmp_firmware 0x7>;
-> +        };
-> +
-> +        r5f-1 {
-> +            compatible = "xlnx,zynqmp-r5f";
-> +            power-domains = <&zynqmp_firmware 0x8>;
-> +        };
-> +    };
-> +...
-> diff --git a/include/dt-bindings/power/xlnx-zynqmp-power.h b/include/dt-bindings/power/xlnx-zynqmp-power.h
-> index 0d9a412fd5e0..618024cbb20d 100644
-> --- a/include/dt-bindings/power/xlnx-zynqmp-power.h
-> +++ b/include/dt-bindings/power/xlnx-zynqmp-power.h
-> @@ -6,6 +6,12 @@
->  #ifndef _DT_BINDINGS_ZYNQMP_POWER_H
->  #define _DT_BINDINGS_ZYNQMP_POWER_H
->  
-> +#define		PD_RPU_0	7
-> +#define		PD_RPU_1	8
-> +#define		PD_R5_0_ATCM	15
-> +#define		PD_R5_0_BTCM	16
-> +#define		PD_R5_1_ATCM	17
-> +#define		PD_R5_1_BTCM	18
->  #define		PD_USB_0	22
->  #define		PD_USB_1	23
->  #define		PD_TTC_0	24
-> -- 
-> 2.25.1
-> 
+--=20
+Patrick Williams
