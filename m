@@ -2,89 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E21FF4B58B0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 18:39:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FD064B58B9
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 18:41:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348777AbiBNRjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 12:39:05 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59948 "EHLO
+        id S1357167AbiBNRmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 12:42:03 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232042AbiBNRjE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 12:39:04 -0500
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438436542D
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 09:38:56 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id o19so48179915ybc.12
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 09:38:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nn6pV9zr7Y/HfRsxvJAInmjq54QbtdPj0RXX0Okyrk4=;
-        b=EBDcE93JVDHCmCw9qrdUcmvIQzBJjyUwD7fn1+GwStxogaP2u1MpX5ILriuk6jdn2a
-         H6QDWolci+D/lOiOOCQNb9YZPP7NXq9WolVe/6G7XqHqeHuRnQ7Wu+Ty7C8g8vwOE/un
-         m0DJEjL0mXIcxFxlzzHYd7ziHU/YlTUx4xnNH8F9keNDVvqMNV/g47KfDldt/G2WXx+o
-         +GDIPzh2XzqftTGjVs6g5fitl0dwhCCJQb5i/HWPKZn5dqOs6gtKvXyXdvafMNjKRLqV
-         BAroGLQAEX7uERraGbi7EvcLYyyBWJ2rEwvwhCxBP5FRurs/GSHr+ceny/Hw/D3C58u3
-         e7zA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nn6pV9zr7Y/HfRsxvJAInmjq54QbtdPj0RXX0Okyrk4=;
-        b=pNcCi9adQlAJAMEdEjoPCnO5geoKPiCdrNWd0UY4QSMGoow+UChTb+90xnXhKbYIpK
-         MY1zdlvcprSjJ3zinAT7IaorfvtnLYx8pRHzIyMC2lWIoKcXpIhyEx3v9gvBtqjG1gdU
-         TMT9pzYAWYSCyju1XjTIgqGbgewrxnoGBY4Qnkf0mSf+3VROv3g8Xb8NLR2VRMXLXrlB
-         h1p85FnJl70M51xmY8XVHoIukKZ0bXaumJxq6IsMpMJPfaqbdtmOWJXaYw1AUVx7Fxme
-         PQJ6Vfi1d8nL4J9hs9Tn7IcXFX6U5xYdofIodyUe4Q7J+JOdy8u6Mx+7ScWm8CjcKncZ
-         ZOUw==
-X-Gm-Message-State: AOAM53385CXQD7rj2kABsJ9C9EbMWm63jZLvcyvddsrD7k1qkq0FjlWS
-        Cbwkyg6DMzKArRVBk0AlztlfqOr/zv5TiN/7IdDrZCr9Yu4=
-X-Google-Smtp-Source: ABdhPJzGaFahdaS9OnnivDBgzQhJSbtRiZO6xabYT+mvz3LNDNMr4zN7qlSTQ3PGiHjgQpWre/4gtNLu+fT9GjPv+rs=
-X-Received: by 2002:a81:34d0:: with SMTP id b199mr779268ywa.385.1644860335419;
- Mon, 14 Feb 2022 09:38:55 -0800 (PST)
+        with ESMTP id S1348450AbiBNRmC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 12:42:02 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BDB4C60ABD
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 09:41:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1644860513;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=cosw6xv3oQ315iRMA4qLGgG8Dk1NQk9XlhixQZy/TZU=;
+        b=FSLqkEimDVmEEPmToHFQHbOaUWs0/OeYTiUT8ZPdkdjwy83c4LwDb8EaACL//XfPg5Hazz
+        buVP+uDiX/fMeKkipx5xbGbMdytQFaG4elYh3K48H8fmESjhzjyBUkHCYiXNQ8Ixf+Bw0R
+        uik3HDom0k1y8K/mLM+nMha1VizYA0M=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-447-a7Zmw9YHM-GC7OCHCJrwmQ-1; Mon, 14 Feb 2022 12:41:50 -0500
+X-MC-Unique: a7Zmw9YHM-GC7OCHCJrwmQ-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com [10.5.11.11])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A500C1853024;
+        Mon, 14 Feb 2022 17:41:46 +0000 (UTC)
+Received: from t480s.redhat.com (unknown [10.39.194.147])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id 0F5A17DE56;
+        Mon, 14 Feb 2022 17:41:33 +0000 (UTC)
+From:   David Hildenbrand <david@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     David Hildenbrand <david@redhat.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Aneesh Kumar K V <aneesh.kumar@linux.ibm.com>,
+        Zi Yan <ziy@nvidia.com>, Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Minchan Kim <minchan@kernel.org>,
+        Vlastimil Babka <vbabka@suse.cz>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        virtualization@lists.linux-foundation.org,
+        iommu@lists.linux-foundation.org, linux-mm@kvack.org
+Subject: [PATCH v1 0/2] mm: enforce pageblock_order < MAX_ORDER
+Date:   Mon, 14 Feb 2022 18:41:30 +0100
+Message-Id: <20220214174132.219303-1-david@redhat.com>
 MIME-Version: 1.0
-References: <20220211202728.6146-1-alyssa.rosenzweig@collabora.com>
- <20220211202728.6146-2-alyssa.rosenzweig@collabora.com> <5ca70986-d6a5-7c3e-b876-40e970805775@arm.com>
-In-Reply-To: <5ca70986-d6a5-7c3e-b876-40e970805775@arm.com>
-From:   Daniel Stone <daniel@fooishbar.org>
-Date:   Mon, 14 Feb 2022 17:38:43 +0000
-Message-ID: <CAPj87rNwh28GYv_CoQGB2UCqfP8A=ORiem5Z+Vev=u6WZ7YQRw@mail.gmail.com>
-Subject: Re: [PATCH 1/9] dt-bindings: Add arm,mali-valhall compatible
-To:     Steven Price <steven.price@arm.com>
-Cc:     alyssa.rosenzweig@collabora.com, dri-devel@lists.freedesktop.org,
-        airlied@linux.ie, tomeu.vizoso@collabora.com,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Feb 2022 at 16:23, Steven Price <steven.price@arm.com> wrote:
-> On 11/02/2022 20:27, alyssa.rosenzweig@collabora.com wrote:
-> > From the kernel's perspective, pre-CSF Valhall is more or less
-> > compatible with Bifrost, although they differ to userspace. Add a
-> > compatible for Valhall to the existing Bifrost bindings documentation.
-> >
-> > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> > index 63a08f3f321d..48aeabd2ed68 100644
-> > --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> > @@ -23,6 +23,7 @@ properties:
-> >            - rockchip,px30-mali
-> >            - rockchip,rk3568-mali
-> >        - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
-> > +      - const: arm,mali-valhall # Mali Valhall GPU model/revision is fully discoverable
->
-> It might be worth spelling out here that this is *pre-CSF* Valhall. I'm
-> pretty sure we're going to need different bindings for CSF GPUs.
+Having pageblock_order >= MAX_ORDER seems to be able to happen in corner
+cases and some parts of the kernel are not prepared for it.
 
-Good point - maybe either make it arm,mali-valhall-jm then?
+For example, Aneesh has shown [1] that such kernels can be compiled on
+ppc64 with 64k base pages by setting FORCE_MAX_ZONEORDER=8, which will run
+into a WARN_ON_ONCE(order >= MAX_ORDER) in comapction code right during
+boot.
 
-Cheers,
-Daniel
+We can get pageblock_order >= MAX_ORDER when the default hugetlb size is
+bigger than the maximum allocation granularity of the buddy, in which case
+we are no longer talking about huge pages but instead gigantic pages.
+
+Having pageblock_order >= MAX_ORDER can only make alloc_contig_range() of
+such gigantic pages more likely to succeed.
+
+Reliable use of gigantic pages either requires boot time allcoation or CMA,
+no need to overcomplicate some places in the kernel to optimize for corner
+cases that are broken in other areas of the kernel.
+
+Let's enforce pageblock_order < MAX_ORDER and simplify.
+
+Especially patch #1 can be regarded a cleanup before:
+	[PATCH v5 0/6] Use pageblock_order for cma and alloc_contig_range
+	alignment. [2]
+
+[1] https://lkml.kernel.org/r/87r189a2ks.fsf@linux.ibm.com
+[2] https://lkml.kernel.org/r/20220211164135.1803616-1-zi.yan@sent.com
+
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Aneesh Kumar K V <aneesh.kumar@linux.ibm.com>
+Cc: Zi Yan <ziy@nvidia.com>
+Cc: Michael Ellerman <mpe@ellerman.id.au>
+Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: Paul Mackerras <paulus@samba.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: "Michael S. Tsirkin" <mst@redhat.com>
+Cc: Christoph Hellwig <hch@lst.de>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Robin Murphy <robin.murphy@arm.com>
+Cc: Minchan Kim <minchan@kernel.org>
+Cc: Vlastimil Babka <vbabka@suse.cz>
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: devicetree@vger.kernel.org
+Cc: virtualization@lists.linux-foundation.org
+Cc: iommu@lists.linux-foundation.org
+Cc: linux-mm@kvack.org
+
+David Hildenbrand (2):
+  cma: factor out minimum alignment requirement
+  mm: enforce pageblock_order < MAX_ORDER
+
+ arch/powerpc/include/asm/fadump-internal.h |  5 ----
+ arch/powerpc/kernel/fadump.c               |  2 +-
+ drivers/of/of_reserved_mem.c               |  9 ++----
+ drivers/virtio/virtio_mem.c                |  9 ++----
+ include/linux/cma.h                        |  8 ++++++
+ include/linux/pageblock-flags.h            |  7 +++--
+ kernel/dma/contiguous.c                    |  4 +--
+ mm/Kconfig                                 |  3 ++
+ mm/cma.c                                   | 20 ++++----------
+ mm/page_alloc.c                            | 32 ++++++----------------
+ 10 files changed, 37 insertions(+), 62 deletions(-)
+
+
+base-commit: 754e0b0e35608ed5206d6a67a791563c631cec07
+-- 
+2.34.1
+
