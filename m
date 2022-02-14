@@ -2,303 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FD3F4B4321
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 08:53:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C255B4B434C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 09:09:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238405AbiBNHxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 02:53:44 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33818 "EHLO
+        id S234505AbiBNIJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 03:09:31 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231537AbiBNHxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 02:53:43 -0500
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A04C35B3CB;
-        Sun, 13 Feb 2022 23:53:35 -0800 (PST)
-Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.55])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4JxxJF4BTCz9sbl;
-        Mon, 14 Feb 2022 15:51:57 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Mon, 14 Feb 2022 15:53:33 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Mon, 14 Feb 2022 15:53:32 +0800
-Subject: Re: [PATCH v20 3/5] arm64: kdump: reimplement crashkernel=X
-To:     Baoquan He <bhe@redhat.com>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-References: <20220124084708.683-1-thunder.leizhen@huawei.com>
- <20220124084708.683-4-thunder.leizhen@huawei.com>
- <YgnSCxlr1O2ZZ1sO@MiWiFi-R3L-srv>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <0e84548b-179a-1bad-8f49-963d66426e43@huawei.com>
-Date:   Mon, 14 Feb 2022 15:53:31 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        with ESMTP id S241577AbiBNIJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 03:09:30 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CDAC5F8E4;
+        Mon, 14 Feb 2022 00:09:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1644826162; x=1676362162;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=4gRqdwpdcbamSHfFSPt2D5EeeVOtpQgJGkim5FH8yTw=;
+  b=MBhIxx+O1aaiR4Ex65K+rD92KTSBB5hsIOJRxml1YQI0kEAeLN+mtKNX
+   BXbY/geMs3eD1zI0YR/dB+K6nhInupjCFc52Veg+mC6TrcYRPJb4hvnJL
+   sWObSmU+rHMNSrOBFI1huo9jKr+KHlR6WNPPI/wMc5LActjokM/xJHesO
+   c=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 14 Feb 2022 00:09:21 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 00:08:51 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Mon, 14 Feb 2022 00:08:49 -0800
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 14 Feb 2022 00:08:40 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
+        <perex@perex.cz>, <tiwai@suse.com>,
+        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v12 00/10] Add support for audio on SC7280 based targets
+Date:   Mon, 14 Feb 2022 13:38:21 +0530
+Message-ID: <1644826102-15276-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <YgnSCxlr1O2ZZ1sO@MiWiFi-R3L-srv>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch set is to add support for Audio over wcd codec,
+digital mics, through digital codecs and without ADSP.
 
+Changes Since V11:
+    -- Fix kernel robot issue on arguments type mismatch.
+Changes Since V10:
+    -- Split bulk clock voting to individual clock voting as per use case in cdc-dma driver.
+    -- Add missing codec dma clocks.
+    -- Update rxtx lpm buffer size.
+Changes Since V9:
+    -- Change individual clock voting to bulk clock voting of lpass-sc7280 platform driver.
+    -- Remove redundant clocks in lpass variant structure.
+    -- Add mclk for MI2S based headset path.
+    -- Remove unused lpass variant structure members in lpass header.
+Changes Since V8:
+    -- Fix errors in sc7280 lpass cpu dt-bindings.
+    -- Move to quicinc domain email id's.
+Changes Since V7:
+    -- Fix indentation errors.
+    -- Bisect patches to avoid interdependency.
+Changes Since V6:
+    -- Split cdc dma regmap config macros.
+    -- Add write dma reg fields for i2s path.
+    -- Add helper function to distinguish rxtx and va dma ports.
+    -- Optimizing clock and reg name in cpu dt-bindings.
+    -- Update buffer management for cdc dma path.
+    -- Remove Kconfig fields of machine driver.
+Changes Since V5:
+    -- Include MI2S primary node to snd_soc_dai_driver in lpass-sc7280 platform driver.
+    -- Move dependency patch list to corresponding patch.
+    -- Add support for missing cdc-dma ports.
+    -- Change if/else conditional statements to switch cases.
+    -- Add missing error handlings.
+    -- Typo errors fix.
+Changes Since V4:
+    -- Remove unused variable in lpass-sc7280 platform driver.
+Changes Since V3:
+    -- Remove redundant power domain controls. As power domains can be configured from dtsi.
+Changes Since V2:
+    -- Split lpass sc7280 cpu driver patch and create regmap config patch.
+    -- Create patches based on latest kernel tip.
+    -- Add helper function to get dma control and lpaif handle.
+    -- Remove unused variables.
+Changes Since V1:
+    -- Typo errors fix
+    -- CPU driver readable/writable apis optimization.
+    -- Add Missing config patch
+    -- Add Common api for repeated dmactl initialization.
 
-On 2022/2/14 11:52, Baoquan He wrote:
-> On 01/24/22 at 04:47pm, Zhen Lei wrote:
-> ......
->> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
->> index 6c653a2c7cff052..a5d43feac0d7d96 100644
->> --- a/arch/arm64/mm/init.c
->> +++ b/arch/arm64/mm/init.c
->> @@ -71,6 +71,30 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
->>  #define CRASH_ADDR_LOW_MAX	arm64_dma_phys_limit
->>  #define CRASH_ADDR_HIGH_MAX	MEMBLOCK_ALLOC_ACCESSIBLE
->>  
->> +static int __init reserve_crashkernel_low(unsigned long long low_size)
->> +{
->> +	unsigned long long low_base;
->> +
->> +	/* passed with crashkernel=0,low ? */
->> +	if (!low_size)
->> +		return 0;
->> +
->> +	low_base = memblock_phys_alloc_range(low_size, CRASH_ALIGN, 0, CRASH_ADDR_LOW_MAX);
->> +	if (!low_base) {
->> +		pr_err("cannot allocate crashkernel low memory (size:0x%llx).\n", low_size);
->> +		return -ENOMEM;
->> +	}
->> +
->> +	pr_info("crashkernel low memory reserved: 0x%llx - 0x%llx (%lld MB)\n",
->> +		low_base, low_base + low_size, low_size >> 20);
->> +
->> +	crashk_low_res.start = low_base;
->> +	crashk_low_res.end   = low_base + low_size - 1;
->> +	insert_resource(&iomem_resource, &crashk_low_res);
->> +
->> +	return 0;
->> +}
->> +
->>  /*
->>   * reserve_crashkernel() - reserves memory for crash kernel
-> 
-> My another concern is the crashkernel=,low handling. In this patch, the
-> code related to low memory is obscure. Wondering if we should make them
-> explicit with a little redundant but very clear code flows. Saying this
-> because the code must be very clear to you and reviewers, it may be
-> harder for later code reader or anyone interested to understand.
-> 
-> 1) crashkernel=X,high
-> 2) crashkernel=X,high crashkernel=Y,low
-> 3) crashkernel=X,high crashkernel=0,low
-> 4) crashkernel=X,high crashkernel='messy code',low
-> 5) crashkernel=X //fall back to high memory, low memory is required then.
-> 
-> It could be me thinking about it too much. I made changes to your patch
-> with a tuning, not sure if it's OK to you. Otherwise, this patchset
+Srinivasa Rao Mandadapu (10):
+  ASoC: qcom: SC7280: Update config for building codec dma drivers
+  ASoC: qcom: Move lpass_pcm_data structure to lpass header
+  ASoC: qcom: lpass: Add dma fields for codec dma lpass interface
+  ASoC: qcom: Add helper function to get dma control and lpaif handle
+  ASoC: qcom: Add register definition for codec rddma and wrdma
+  ASoC: qcom: Add regmap config support for codec dma driver
+  ASoC: qcom: Add support for codec dma driver
+  ASoC: qcom: Add lpass CPU driver for codec dma control
+  ASoC: dt-bindings: Add SC7280 lpass cpu bindings
+  ASoC: qcom: lpass-sc7280: Add platform driver for lpass audio
 
-I think it's good.
-
-> works very well for all above test cases, it's ripe to be merged for
-> wider testing.
-
-I will test it tomorrow. I've prepared a little more use cases than yours.
-
-1) crashkernel=4G						//high=4G, low=256M
-2) crashkernel=4G crashkernel=512M,high crashkernel=512M,low	//high=4G, low=256M, high and low are ignored
-3) crashkernel=4G crashkernel=512M,high				//high=4G, low=256M, high is ignored
-4) crashkernel=4G crashkernel=512M,low				//high=4G, low=256M, low is ignored
-5) crashkernel=4G@0xe0000000					//high=0G, low=0M, cannot allocate, failed
-6) crashkernel=512M						//high=0G, low=512M
-7) crashkernel=128M						//high=0G, low=128M
-8) crashkernel=512M@0xde000000		//512M@3552M		//high=0G, low=512M
-9) crashkernel=4G,high						//high=4G, low=256M
-a) crashkernel=4G,high crashkernel=512M,low			//high=4G, low=512M
-b) crashkernel=512M,high crashkernel=128M,low			//high=512M, low=128M
-c) crashkernel=512M,low						//high=0G, low=0M, invalid
-
-
-> 
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index a5d43feac0d7..671862c56d7d 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -94,7 +94,8 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
->  
->  	return 0;
->  }
-> -
-> +/*Words explaining why it's 256M*/
-> +#define DEFAULT_CRASH_KERNEL_LOW_SIZE SZ_256M
->  /*
->   * reserve_crashkernel() - reserves memory for crash kernel
->   *
-> @@ -105,10 +106,10 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
->  static void __init reserve_crashkernel(void)
->  {
->  	unsigned long long crash_base, crash_size;
-> -	unsigned long long crash_low_size = SZ_256M;
-> +	unsigned long long crash_low_size;
->  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
->  	int ret;
-> -	bool fixed_base;
-> +	bool fixed_base, high;
->  	char *cmdline = boot_command_line;
->  
->  	/* crashkernel=X[@offset] */
-> @@ -126,7 +127,10 @@ static void __init reserve_crashkernel(void)
->  		ret = parse_crashkernel_low(cmdline, 0, &low_size, &crash_base);
->  		if (!ret)
->  			crash_low_size = low_size;
-> +		else
-> +			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
->  
-> +		high = true;
->  		crash_max = CRASH_ADDR_HIGH_MAX;
->  	}
->  
-> @@ -134,7 +138,7 @@ static void __init reserve_crashkernel(void)
->  	crash_size = PAGE_ALIGN(crash_size);
->  
->  	/* User specifies base address explicitly. */
-> -	if (crash_base)
-> +	if (fixed_base)
->  		crash_max = crash_base + crash_size;
->  
->  retry:
-> @@ -156,7 +160,10 @@ static void __init reserve_crashkernel(void)
->  		return;
->  	}
->  
-> -	if (crash_base >= SZ_4G && reserve_crashkernel_low(crash_low_size)) {
-> +	if (crash_base >= SZ_4G && !high) 
-> +		crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
-> +
-> +	if (reserve_crashkernel_low(crash_low_size)) {
->  		memblock_phys_free(crash_base, crash_size);
->  		return;
->  	}
-
-It feels like {} may need to be added here so that it is in branch "if (crash_base >= SZ_4G)".
-The case of "crashkernel=128M" will not fall back to high memory and does not need to reserve
-low memory again.
-
-> 
->>   *
->> @@ -81,29 +105,62 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
->>  static void __init reserve_crashkernel(void)
->>  {
->>  	unsigned long long crash_base, crash_size;
->> +	unsigned long long crash_low_size = SZ_256M;
->>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
->>  	int ret;
->> +	bool fixed_base;
->> +	char *cmdline = boot_command_line;
->>  
->> -	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
->> +	/* crashkernel=X[@offset] */
->> +	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
->>  				&crash_size, &crash_base);
->> -	/* no crashkernel= or invalid value specified */
->> -	if (ret || !crash_size)
->> -		return;
->> +	if (ret || !crash_size) {
->> +		unsigned long long low_size;
->>  
->> +		/* crashkernel=X,high */
->> +		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
->> +		if (ret || !crash_size)
->> +			return;
->> +
->> +		/* crashkernel=X,low */
->> +		ret = parse_crashkernel_low(cmdline, 0, &low_size, &crash_base);
->> +		if (!ret)
->> +			crash_low_size = low_size;
->> +
->> +		crash_max = CRASH_ADDR_HIGH_MAX;
->> +	}
->> +
->> +	fixed_base = !!crash_base;
->>  	crash_size = PAGE_ALIGN(crash_size);
->>  
->>  	/* User specifies base address explicitly. */
->>  	if (crash_base)
->>  		crash_max = crash_base + crash_size;
->>  
->> +retry:
->>  	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
->>  					       crash_base, crash_max);
->>  	if (!crash_base) {
->> +		/*
->> +		 * Attempt to fully allocate low memory failed, fall back
->> +		 * to high memory, the minimum required low memory will be
->> +		 * reserved later.
->> +		 */
->> +		if (!fixed_base && (crash_max == CRASH_ADDR_LOW_MAX)) {
->> +			crash_max = CRASH_ADDR_HIGH_MAX;
->> +			goto retry;
->> +		}
->> +
->>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
->>  			crash_size);
->>  		return;
->>  	}
->>  
->> +	if (crash_base >= SZ_4G && reserve_crashkernel_low(crash_low_size)) {
->> +		memblock_phys_free(crash_base, crash_size);
->> +		return;
->> +	}
->> +
->>  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
->>  		crash_base, crash_base + crash_size, crash_size >> 20);
->>  
->> @@ -112,6 +169,9 @@ static void __init reserve_crashkernel(void)
->>  	 * map. Inform kmemleak so that it won't try to access it.
->>  	 */
->>  	kmemleak_ignore_phys(crash_base);
->> +	if (crashk_low_res.end)
->> +		kmemleak_ignore_phys(crashk_low_res.start);
->> +
->>  	crashk_res.start = crash_base;
->>  	crashk_res.end = crash_base + crash_size - 1;
->>  	insert_resource(&iomem_resource, &crashk_res);
->> -- 
->> 2.25.1
->>
-> 
-> .
-> 
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  75 ++-
+ sound/soc/qcom/Kconfig                             |  11 +
+ sound/soc/qcom/Makefile                            |   4 +
+ sound/soc/qcom/lpass-cdc-dma.c                     | 304 ++++++++++
+ sound/soc/qcom/lpass-cpu.c                         | 244 +++++++-
+ sound/soc/qcom/lpass-lpaif-reg.h                   | 127 ++++-
+ sound/soc/qcom/lpass-platform.c                    | 617 ++++++++++++++++++---
+ sound/soc/qcom/lpass-sc7280.c                      | 447 +++++++++++++++
+ sound/soc/qcom/lpass.h                             | 145 +++++
+ 9 files changed, 1887 insertions(+), 87 deletions(-)
+ create mode 100644 sound/soc/qcom/lpass-cdc-dma.c
+ create mode 100644 sound/soc/qcom/lpass-sc7280.c
 
 -- 
-Regards,
-  Zhen Lei
+2.7.4
+
