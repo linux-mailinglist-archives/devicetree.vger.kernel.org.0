@@ -2,210 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C44F4B4104
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 05:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 687714B4119
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 06:13:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232359AbiBNE5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 23:57:09 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41782 "EHLO
+        id S240369AbiBNFN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 00:13:28 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235711AbiBNE5J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 23:57:09 -0500
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E5951324
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 20:57:00 -0800 (PST)
-Received: by mail-oo1-xc29.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso18050291ooi.1
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 20:57:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=W3k5zzusyfmXH+0ijprZwALJFhBrMH89zfqIbl/b+Cs=;
-        b=OtwaZPcpMwZiYR3zL85kTdlA5BG7zQ5KIY4cq5oxg6/knim6wi27MmzsSVUzdkYlT+
-         9fElyZwlE8rDiKaVzIW4ajiWECZP3A4XZTv/pI7qu3yNfoiaQvqbYtqu7CRp5lBGoRyv
-         VPmAmn76ndOyiH/XoLf0g0JE0xiitOxPP2+PZDPWXbzyFLJcNh1rhmtWNLivt4XMaX/o
-         4R4RM+NopwdCuyUTph4ujM580SfWun1ZbpwHvAy60CqmvUotU58qp7sXw7wFNRoT2QvI
-         xVv4KO5SSPpsTnes4JUYdVdvh/10gR6zAM0/qMXhNGxAOTa0wXDToGZRjxbNfF4tSXqr
-         dFlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=W3k5zzusyfmXH+0ijprZwALJFhBrMH89zfqIbl/b+Cs=;
-        b=lPNLmCC3bxQShmW9ubxnusurknUF+1LnI2/W9/4KxQyezlvrM5Ax0KPAjApJszkHCI
-         5bcDr8yTa5XUV0LGcBxV8qZi02jY5v851KPp0APUBGu8uRBq9yKhGyN4CGinBX5l07Yp
-         lz1qLYCf1Jh900f3o/DeaCFVRJNbHCVYPO4t10BkWgVmiPasDk7uG7kzMMa1Nekgjxj7
-         1fQV2Ym/IDUydC1WjnDMZfj4n9yI7AsptyQ1wPfiMJ0j2UHGutR9f93Jv6JdEFGhhLOi
-         /eSCMSINoO0AyZpMLWqR6AP9kZ65GAOByGE4Y8ADOHtGWdoiKtChYl7NwNNHstHIQJ0I
-         3yuQ==
-X-Gm-Message-State: AOAM530v8Y8rjBFZRbD7X3DEkrJnVr2SimokuxWYZwlqSq3QXSV7iedA
-        4xtLFLPTDn7WnBtNKas+1DpKvw==
-X-Google-Smtp-Source: ABdhPJxZNoMRt/d77axd4FwIogpjRw7JYlXj4Dqw+q0pO8sRnkMlp/qaxCxi4j8RIZDli6u+YvRRSA==
-X-Received: by 2002:a05:6870:1194:: with SMTP id 20mr1240567oau.148.1644814619991;
-        Sun, 13 Feb 2022 20:56:59 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id s3sm12778139ois.19.2022.02.13.20.56.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Feb 2022 20:56:59 -0800 (PST)
-Date:   Sun, 13 Feb 2022 20:59:11 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 13/15] arm64: dts: qcom: Add MSM8953+PM8953 device tree
-Message-ID: <Ygnhn54Tl6qYzKv/@ripper>
-References: <20220112194118.178026-1-luca@z3ntu.xyz>
- <20220112194118.178026-14-luca@z3ntu.xyz>
- <YfhlCkb3XUvU8ae1@builder.lan>
- <2497719.tdWV9SEqCh@g550jk>
+        with ESMTP id S237806AbiBNFN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 00:13:27 -0500
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5B644DF50;
+        Sun, 13 Feb 2022 21:13:20 -0800 (PST)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id DB97C32009DF;
+        Mon, 14 Feb 2022 00:13:19 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 14 Feb 2022 00:13:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm2; bh=QHjHOgjzLKjnI1LxHZ8XMgQzd2FOXo4wEHGTg6T+51c=; b=vh9bc
+        te+qDU1Vlqxjj56YLbCRsSrKER2BZ38AZuZ+LuUpLzRFLe63Qz7qZzpy1TzK2/SQ
+        AMjuAS2t0UwAGsHzUTYSr4pxFz4kjQukxJE79JjZCr/YO05wWhfPnALr8M0d9sfV
+        l+/KbArG/vwPswH8mh9+TxX3mtOmtNrSenu9inCFMYUVydK6sLGCfU+TFkUMCUai
+        cwFITeYhxBaA1qybLlmul0n9r9x8ZpLASrMNw4f9/4mwxyyK3rJTBbpuCCadtEzT
+        NQ+TWpz6bEoNAgXQ/g6bkhYZOEJyp2Xu8ZSo0HsP76Va5ddGiIpDXHpZMgrKiEct
+        3aDbcTIESmWSGtJ8g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
+        :x-me-sender:x-sasl-enc; s=fm2; bh=QHjHOgjzLKjnI1LxHZ8XMgQzd2FOX
+        o4wEHGTg6T+51c=; b=oueYm+2sWSep0KqXnHrwtEOG11VKJ54SNHGbv+97XqTPB
+        rHuSoK7IDg1xqJv5BMLl6R5zH8JBfXAcf3QlOMUOQ0KDjEU0TLJ20/AE/rsAuwCd
+        xZkjEBD48wCMjzDBvhT/mY77ysCgorKyqb+gYATZCxX6bjZ2xt9xah3COy0qmNQ0
+        jyqrmi6SBAMM3sMfizJcOrCqxr+4BE6fxMHpNdd8hJyvKYYXeetlN2VcZhMFnB+V
+        lCZ937YEKbP1izjGv8THhsvBea7bHuODPYkASweREuUZ4QxrWi0yBke0i8NBc5Lf
+        BOI8eCTEI/tv8nig2FeGsYxLAD2eHXTwB/J8X95tA==
+X-ME-Sender: <xms:7-QJYmjjkkzgUCDRRx_aqLqzRFiqfH9Al_Zcb7fLppnYTEgpt5DuTA>
+    <xme:7-QJYnBfsK4ubjjmgKaU1Ah9wM4DbuYm4tYAB-b0F-vuUEe6WRbLIqi0xC6AjEXcU
+    BKjDO8xB7BteIJPTA>
+X-ME-Received: <xmr:7-QJYuGad-mNURlxJNqJQKXUsZjPPnXN_B8833hAr14CDxe--gZF6bG7NP6Ij94t2RWs4WPIv7ta3NOUm07Ld8gjixDNveEcydLbAzARYS2Xc8Rp280CZBIctirIByKd6Q_QPQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrjedugdekudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghlucfj
+    ohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrfgrth
+    htvghrnhepieetkefhheduudfgledtudefjeejfeegveehkeeufffhhfejkeehiefftdev
+    tdevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
+    grmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:7-QJYvSDYgdTe2zPZtzi5njB49oqZIgTLwLilvDGUNq8OfgYF7D_AA>
+    <xmx:7-QJYjwrsyCM1Vl7uf0wXNt-qsfMQpCQHmfjAOkxcaS1SgwT5mNnkA>
+    <xmx:7-QJYt7sV0mlVNNR1itJWWavL-MhX9HRpdwvi_xM4kZuU8Ftmcb5Yg>
+    <xmx:7-QJYuryCKzjfHajsz_3PA7LfK8pSA3tz0PIj-gVt3ke3VAmQWfUfw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 14 Feb 2022 00:13:18 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Samuel Holland <samuel@sholland.org>
+Subject: [PATCH] of/irq: Use interrupts-extended to find parent
+Date:   Sun, 13 Feb 2022 23:13:17 -0600
+Message-Id: <20220214051318.2273-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2497719.tdWV9SEqCh@g550jk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 13 Feb 12:25 PST 2022, Luca Weiss wrote:
+Some OF irqchips, such as the RISC-V PLIC, use interrupts-extended to
+specify their parent domain(s). That binding does not allow using the
+interrupt-parent property in the irqchip node, which prevents
+of_irq_init from properly detecting the irqchip hierarchy.
 
-> Hi Bjorn,
-> 
-> On Montag, 31. Jänner 2022 23:39:06 CET Bjorn Andersson wrote:
-> > On Wed 12 Jan 13:41 CST 2022, Luca Weiss wrote:
-> > > From: Vladimir Lypak <vladimir.lypak@gmail.com>
-> > > 
-> > > The combination MSM8953 + PM8953 is commonly used, so add a
-> > > device tree where common power supplies etc. can be configured.
-> > > 
-> > > Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> > > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > > Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> > 
-> > I would prefer if we stick with the current scheme and just push this
-> > into the device dts (or possibly some vendor-common dtsi if that's
-> > applicable).
-> > 
-> > Simply just to follow what we do on other platforms.
-> 
-> Sure, will do in v2.
-> 
-> > 
-> > 
-> > PS. I see some patches has been applied, but as you resubmit this
-> > series please split it per maintainer to make it obvious to each
-> > maintainer that they should pick their part(s).
-> 
-> What do you mean by this? Send one series per maintainer? Or something else? 
-> 
+If no interrupt-parent property is present in the enclosing bus or root
+node, then desc->interrupt_parent will be NULL for both the per-CPU
+RISC-V INTCs (the actual root domains) and the RISC-V PLIC. Similarly,
+if the bus or root node specifies `interrupt-parent = <&plic>`, then
+of_irq_init will hit the `desc->interrupt_parent == np` check, and again
+all parents will be NULL. So things happen to work today for some boards
+due to Makefile ordering.
 
-Yes, that's what I'm suggesting.
+However, things break when another irqchip ("foo") is stacked on top of
+the PLIC. The bus/root node will have `interrupt-parent = <&foo>`,
+since that is what all of the other peripherals need. When of_irq_init
+runs, it will try to find the PLIC's parent domain. But because
+of_irq_find_parent ignores interrupts-extended, it will fall back to
+using the interrupt-parent property of the PLIC's parent node (i.e. the
+bus or root node), and see "foo" as the PLIC's parent domain. But this
+is wrong, because "foo" is actually the PLIC's child domain!
 
-> Currently when making the patches I don't really "care" about who maintains 
-> what, my git send-email setup picks the relevant people for CC.
-> 
+So of_irq_init wrongly attempts to init the stacked irqchip before the
+PLIC. This fails and breaks boot.
 
-You technically don't have to care, but as it's not always obvious to a
-maintainer if he/she can take the patches destined for their subsystem
-it's easy that things ends up sitting on the list for longer than
-necessary.
+Fix this by having of_irq_find_parent return the first node referenced
+by interrupts-extended when that property is present. Even if the
+property references multiple different IRQ domains, this will still work
+reliably in of_irq_init as long as all referenced domains are the same
+distance away from some root domain (e.g. the RISC-V INTCs referenced by
+the PLIC's interrupts-extended are always all root domains).
 
-So you're making yourself a favour of splitting things that aren't
-dependent as you send it out.
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+---
 
-> Sometimes there's also multiple maintainers/trees listed for one file, not sure 
-> what to do there... 
-> 
+ drivers/of/irq.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Your current approach works, above is just a suggestion of how to make
-it easier for the maintainers, which will help you to get your patches
-land faster.
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index 2b07677a386b..0c20e22b91f5 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -60,7 +60,8 @@ struct device_node *of_irq_find_parent(struct device_node *child)
+ 		return NULL;
+ 
+ 	do {
+-		if (of_property_read_u32(child, "interrupt-parent", &parent)) {
++		if (of_property_read_u32(child, "interrupt-parent", &parent) &&
++		    of_property_read_u32(child, "interrupts-extended", &parent)) {
+ 			p = of_get_parent(child);
+ 		} else	{
+ 			if (of_irq_workarounds & OF_IMAP_NO_PHANDLE)
+-- 
+2.33.1
 
-Regards,
-Bjorn
-
-> Regards
-> Luca
-> 
-> > 
-> > Thanks,
-> > Bjorn
-> > 
-> > > ---
-> > > 
-> > >  arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi | 50 ++++++++++++++++++++
-> > >  1 file changed, 50 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi
-> > > b/arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi new file mode 100644
-> > > index 000000000000..b5f20fc9488e
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi
-> > > @@ -0,0 +1,50 @@
-> > > +// SPDX-License-Identifier: BSD-3-Clause
-> > > +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
-> > > +
-> > > +#include "msm8953.dtsi"
-> > > +#include "pm8953.dtsi"
-> > > +
-> > > +&hsusb_phy {
-> > > +	vdd-supply = <&pm8953_l3>;
-> > > +	vdda-pll-supply = <&pm8953_l7>;
-> > > +	vdda-phy-dpdm-supply = <&pm8953_l13>;
-> > > +};
-> > > +
-> > > +&sdhc_1 {
-> > > +	vmmc-supply = <&pm8953_l8>;
-> > > +	vqmmc-supply = <&pm8953_l5>;
-> > > +};
-> > > +
-> > > +&sdhc_2 {
-> > > +	vmmc-supply = <&pm8953_l11>;
-> > > +	vqmmc-supply = <&pm8953_l12>;
-> > > +};
-> > > +
-> > > +&rpm_requests {
-> > > +	smd_rpm_regulators: pm8953-regulators {
-> > > +		compatible = "qcom,rpm-pm8953-regulators";
-> > > +
-> > > +		pm8953_s1: s1 {};
-> > > +		pm8953_s3: s3 {};
-> > > +		pm8953_s4: s4 {};
-> > > +
-> > > +		pm8953_l1: l1 {};
-> > > +		pm8953_l2: l2 {};
-> > > +		pm8953_l3: l3 {};
-> > > +		pm8953_l5: l5 {};
-> > > +		pm8953_l6: l6 {};
-> > > +		pm8953_l7: l7 {};
-> > > +		pm8953_l8: l8 {};
-> > > +		pm8953_l9: l9 {};
-> > > +		pm8953_l10: l10 {};
-> > > +		pm8953_l11: l11 {};
-> > > +		pm8953_l12: l12 {};
-> > > +		pm8953_l13: l13 {};
-> > > +		pm8953_l15: l15 {};
-> > > +		pm8953_l16: l16 {};
-> > > +		pm8953_l17: l17 {};
-> > > +		pm8953_l19: l19 {};
-> > > +		pm8953_l22: l22 {};
-> > > +		pm8953_l23: l23 {};
-> > > +	};
-> > > +};
-> 
-> 
-> 
-> 
