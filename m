@@ -2,230 +2,460 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3EE34B5BE8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:02:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC7674B5C05
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:12:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229735AbiBNVAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 16:00:52 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34466 "EHLO
+        id S230250AbiBNVF5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Feb 2022 16:05:57 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbiBNVAn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:00:43 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A518713194B;
-        Mon, 14 Feb 2022 13:00:34 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id t4-20020a17090a510400b001b8c4a6cd5dso296884pjh.5;
-        Mon, 14 Feb 2022 13:00:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=nQ8TSkYAbvmp6Q3oaHRO6T3ykYVNUOGZKtBNrreWFLo=;
-        b=gjPryxoWPiwCiEaLQKO8x3yzqkQ+YJnYOcvgz2EmXtNKXXIuLVi2DVqX3Is2Dy9R4H
-         gw42n+xgEsswL+F+YL1ohciYqCVi/GM9S9MkGZ5EMkGtnTzo6D+gDrbCHrPMI889N8Yq
-         WukgFIXeRFzLQ/U8cAwb/gizAkWL3rfhwdPK0lO8nbndmcp7UMuca0EM2Ir55aGlYglK
-         t1IUBeRmjyxziKxJdXFLqHIbPfuRqKVgDRlBDvRNyoY2apSb8C+ITVTM/jt5xxCyKYZD
-         tFcm7SKK6aaVsPb58tw+w6tcQDKj2yzf0V7E5gFWoSHnARTYi/hCLPn1bTXs7M7v8BIs
-         2afQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=nQ8TSkYAbvmp6Q3oaHRO6T3ykYVNUOGZKtBNrreWFLo=;
-        b=CiAmdZ1+huo8KkVuTzzTKTzurPJ4hrQKIOO9UgURA6jWJFVdEQXDIUy51UH4+WUjPg
-         GRq+qkNQ+HWyjb10ds9Klu9ZIZ6jynN39Dws0phHpd9Zqp/OZg+5RHWD9jce9NNT7L9x
-         msGzHaNPuSRpNQTZ57S6qT0pVAKF60kZuxnj1R6OoW/38yzBlnUg2cluvhAjl2hlOeQT
-         A6GxCuRR5JdnvYYZUbKVA2aXqb8FvrB+4Pc8xVtm2h2I/nUEqMlLZGh6ZPeYya6HnQBj
-         xjlOTFzdVR5Qjs1ZDnh7bjJH8OaWQswBiscy+d0Ta4+Ka1OPB45y2jH3OH6pKL3JFQYf
-         JZnQ==
-X-Gm-Message-State: AOAM530sLnM8mNn14Cmyd6+7J5TBP4Y8SDBXSoet6fQXGnJWj68sbyvj
-        8V2qf39akc5H3y2tA9r8J+bZotQaf02Iug==
-X-Google-Smtp-Source: ABdhPJzs2dcp3QbYCWrCen4ErUKUVrFhyM9P4jNJSqL+XDqe+2UVjDQT6gadl/VQZUTaTUjglAr59Q==
-X-Received: by 2002:a05:6a00:15cd:: with SMTP id o13mr681299pfu.54.1644868379513;
-        Mon, 14 Feb 2022 11:52:59 -0800 (PST)
-Received: from jagath-PC ([27.4.59.114])
-        by smtp.gmail.com with ESMTPSA id e28sm359521pgm.23.2022.02.14.11.52.57
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 14 Feb 2022 11:52:59 -0800 (PST)
-Date:   Tue, 15 Feb 2022 01:22:54 +0530
-From:   Jagath Jog J <jagathjog1996@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>, jic23@kernel.org
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Slawomir Stepien <sst@poczta.fm>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
+        with ESMTP id S230243AbiBNVFp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:05:45 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63D0F107DBB;
+        Mon, 14 Feb 2022 13:05:33 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nJhYY-0002ir-VS; Mon, 14 Feb 2022 21:02:43 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/4] iio: potentiometer: Add support for Maxim DS3502
-Message-ID: <20220214195252.GA7374@jagath-PC>
-References: <20220214033620.4059-1-jagathjog1996@gmail.com>
- <20220214033620.4059-4-jagathjog1996@gmail.com>
- <CAHp75VcWym5vyDAVyTUCpj=Qkm28VUaqdqJ7VuFL_bsb0fmhaA@mail.gmail.com>
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Wei Fu <wefu@redhat.com>,
+        liush <liush@allwinnertech.com>, Guo Ren <guoren@kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Drew Fustini <drew@beagleboard.org>,
+        Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Greg Favor <gfavor@ventanamicro.com>,
+        Andrea Mondelli <andrea.mondelli@huawei.com>,
+        Jonathan Behrens <behrensj@mit.edu>,
+        Xinhaoqu <xinhaoqu@huawei.com>,
+        Bill Huffman <huffman@cadence.com>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Allen Baum <allen.baum@esperantotech.com>,
+        Josh Scheid <jscheid@ventanamicro.com>,
+        Richard Trauben <rtrauben@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Christoph Muellner <cmuellner@linux.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>
+Subject: Re: [PATCH v6 00/14] riscv: support for Svpbmt and D1 memory types
+Date:   Mon, 14 Feb 2022 21:02:41 +0100
+Message-ID: <1644870918.0lLKBYk3Mk@diego>
+In-Reply-To: <CAOnJCUJX9bmPDN1S+dhjCi1RE5D=d2yHeHmfy9y8NLWrDDazvQ@mail.gmail.com>
+References: <20220209123800.269774-1-heiko@sntech.de> <2177281.3HUnQTRebA@diego> <CAOnJCUJX9bmPDN1S+dhjCi1RE5D=d2yHeHmfy9y8NLWrDDazvQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAHp75VcWym5vyDAVyTUCpj=Qkm28VUaqdqJ7VuFL_bsb0fmhaA@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andy,
+Hi Atish,
 
-On Mon, Feb 14, 2022 at 01:32:14PM +0200, Andy Shevchenko wrote:
-> On Mon, Feb 14, 2022 at 5:36 AM Jagath Jog J <jagathjog1996@gmail.com> wrote:
+Am Samstag, 12. Februar 2022, 01:25:53 CET schrieb Atish Patra:
+> On Thu, Feb 10, 2022 at 6:04 PM Heiko Stübner <heiko@sntech.de> wrote:
 > >
-> > The DS3502 is a 7-bit, nonvolatile digital potentiometer featuring
-> > an output voltage range of up to 15.5V.
-> > DS3502 support is implemented into existing ds1803 driver
-> 
-> Be consistent here and in other commit messages with how you refer to
-> the IC parts, i.e.
-> DS1803. Don't forget English grammar and punctuation, i.e. missed period above.
-> 
-
-I will fix this in v3
-
-> > Datasheet: https://datasheets.maximintegrated.com/en/ds/DS3502.pdf
-> 
+> > Am Freitag, 11. Februar 2022, 02:48:38 CET schrieb Atish Patra:
+> > > On Thu, Feb 10, 2022 at 4:25 PM Atish Patra <atishp@atishpatra.org> wrote:
+> > > >
+> > > > On Wed, Feb 9, 2022 at 4:38 AM Heiko Stuebner <heiko@sntech.de> wrote:
+> > > > >
+> > > > > Svpbmt is an extension defining "Supervisor-mode: page-based memory types"
+> > > > > for things like non-cacheable pages or I/O memory pages.
+> > > > >
+> > > > >
+> > > > > So this is my 2nd try at implementing Svpbmt (and the diverging D1 memory
+> > > > > types) using the alternatives framework.
+> > > > >
+> > > > > This includes a number of changes to the alternatives mechanism itself.
+> > > > > The biggest one being the move to a more central location, as I expect
+> > > > > in the future, nearly every chip needing some sort of patching, be it
+> > > > > either for erratas or for optional features (svpbmt or others).
+> > > > >
+> > > > > The dt-binding for svpbmt itself is of course not finished and is still
+> > > > > using the binding introduced in previous versions, as where to put
+> > > > > a svpbmt-property in the devicetree is still under dicussion.
+> > > > > Atish seems to be working on a framework for extensions [0],
+> > > > >
+> > > >
+> > > > Here is the patch series
+> > > > https://lore.kernel.org/lkml/20220210214018.55739-1-atishp@rivosinc.com/
+> > > >
+> > > > I think we can simplify the cpu feature probing in PATCH 10 with the
+> > > > above series
+> > > > which simply relies on the existing riscv_isa bitmap.
+> > > >
+> > > > We also don't need the separate svpbmt property in DT mmu node.
+> > > > Let me know what you think.
+> > > >
+> > > > > The series also introduces support for the memory types of the D1
+> > > > > which are implemented differently to svpbmt. But when patching anyway
+> > > > > it's pretty clean to add the D1 variant via ALTERNATIVE_2 to the same
+> > > > > location.
+> > > > >
+> > > > > The only slightly bigger difference is that the "normal" type is not 0
+> > > > > as with svpbmt, so kernel patches for this PMA type need to be applied
+> > > > > even before the MMU is brought up, so the series introduces a separate
+> > > > > stage for that.
+> > > > >
+> > > > >
+> > > > > In theory this series is 3 parts:
+> > > > > - sbi cache-flush / null-ptr
+> > > > > - alternatives improvements
+> > > > > - svpbmt+d1
+> > > > >
+> > > > > So expecially patches from the first 2 areas could be applied when
+> > > > > deemed ready, I just thought to keep it together to show-case where
+> > > > > the end-goal is and not requiring jumping between different series.
+> > > > >
+> > > > >
+> > > > > The sbi cache-flush patch is based on Atish's sparse-hartid patch [1],
+> > > > > as it touches a similar area in mm/cacheflush.c
+> > > > >
+> > > > >
+> > > > > I picked the recipient list from the previous version, hopefully
+> > > > > I didn't forget anybody.
+> > > > >
+> > >
+> > > I am also getting a load access fault while booting this series in Qemu.
+> > >
+> > > <with additional debug message when before sbi_trap_redirect in OpenSBI>
+> > > sbi_trap_error_debug: hart1: trap handler failed (error -2)
+> > > sbi_trap_error_debug: hart1: mcause=0x0000000000000005 mtval=0x0000000080046468
+> > > sbi_trap_error_debug: hart1: mtval2=0x0000000000000000 mtinst=0x0000000000000000
+> > > sbi_trap_error_debug: hart1: mepc=0x000000008080a8b8 mstatus=0x0000000a00000800
+> > > sbi_trap_error_debug: hart1: ra=0x0000000080202b06 sp=0x0000000081203f00
+> > > sbi_trap_error_debug: hart1: gp=0x00000000812d9db8 tp=0x0000000080046000
+> > > sbi_trap_error_debug: hart1: s0=0x0000000081203f80 s1=0x0000000080c1a8a8
+> > > sbi_trap_error_debug: hart1: a0=0x0000000080c1a8a8 a1=0x0000000080c1b0d0
+> > > sbi_trap_error_debug: hart1: a2=0x0000000000000002 a3=0x0000000000000000
+> > > sbi_trap_error_debug: hart1: a4=0x00000000812da902 a5=0x0000000000000000
+> > > sbi_trap_error_debug: hart1: a6=0x0000000000000006 a7=0x0000000000000010
+> > > sbi_trap_error_debug: hart1: s2=0x0000000080c1b0d0 s3=0x0000000000000002
+> > > sbi_trap_error_debug: hart1: s4=0x00000000bf000000 s5=0x0000000000000000
+> > > sbi_trap_error_debug: hart1: s6=0x8000000a00006800 s7=0x000000000000007f
+> > > sbi_trap_error_debug: hart1: s8=0x0000000080018038 s9=0x0000000080039eac
+> > > sbi_trap_error_debug: hart1: s10=0x0000000000000000 s11=0x0000000000000000
+> > > sbi_trap_error_debug: hart1: t0=0x0000000080c04000 t1=0x0000000000000002
+> > > sbi_trap_error_debug: hart1: t2=0x0000000000001000 t3=0x0000000000000010
+> > > sbi_trap_error_debug: hart1: t4=0x00000000800168be t5=0x0000000000000027
+> > > sbi_trap_error_debug: hart1: t6=0x0000000000000001
+> > >
+> > > mepc : 0x000000008080a8b8 - call_function_init (kernel/smp.c)
+> > >
+> > > Kernel - 5.17-rc2 + my patches
+> > > Qemu - Alistairs next tree + my patches
+> >
+> > very strange. I was testing of course with Qemu as well, though never saw
+> > anything like this.
+> >
+> > But of course it was Qemu master + the then still pending svpbmt patchset [0]
+> > [looks like Alistair applied this today] + a patch that made qemu insert the
+> > svpbmt dt-property for the virt machine.
+> >
+> > Oh ... just to make sure, did you enable the svpbmt parameter when starting
+> > Qemu? (-cpu ...,svpbmt=true)
 > >
 > 
-> A tag block may not have blank lines. Drop it.
+> Yeah. I tried with or without. It's failing in both cases. I found a
+> fix but that may be unrelated and hiding the real issue.
+> Marking the cpufeature_svpbmt_check_of functions inline allows me to boot.
 > 
-> > Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
+> Here is my analysis:
 > 
-> ...
+> Here is the trace of the trap:
+> sbi_trap_error_debug: hart0: trap handler failed (error -2)
+> sbi_trap_error_debug: hart0: mcause=0x0000000000000005 mtval=0x0000000080048468
+> sbi_trap_error_debug: hart0: mtval2=0x0000000000000000 mtinst=0x0000000000000000
+> sbi_trap_error_debug: hart0: mepc=0x000000008080a8b8 mstatus=0x0000000a00000800
+> sbi_trap_error_debug: hart0: ra=0x0000000080202b06 sp=0x0000000081203f00
+> sbi_trap_error_debug: hart0: gp=0x00000000812d9db8 tp=0x0000000080048000
+> sbi_trap_error_debug: hart0: s0=0x0000000081203f80 s1=0x0000000080c1a8a8
+> sbi_trap_error_debug: hart0: a0=0x0000000080c1a8a8 a1=0x0000000080c1b0d0
+> sbi_trap_error_debug: hart0: a2=0x0000000000000002 a3=0x0000000000000000
+> sbi_trap_error_debug: hart0: a4=0x00000000812da902 a5=0x0000000000000000
+> sbi_trap_error_debug: hart0: a6=0x0000000000000006 a7=0x0000000000000010
+> sbi_trap_error_debug: hart0: s2=0x0000000080c1b0d0 s3=0x0000000000000002
+> sbi_trap_error_debug: hart0: s4=0x00000000bf000000 s5=0x0000000000000000
+> sbi_trap_error_debug: hart0: s6=0x8000000a00006800 s7=0x000000000000007f
+> sbi_trap_error_debug: hart0: s8=0x0000000080018038 s9=0x0000000080039ea8
+> sbi_trap_error_debug: hart0: s10=0x0000000000000000 s11=0x0000000000000000
+> sbi_trap_error_debug: hart0: t0=0x0000000080c04000 t1=0x0000000000000002
+> sbi_trap_error_debug: hart0: t2=0x0000000000001000 t3=0x0000000000000010
+> sbi_trap_error_debug: hart0: t4=0x00000000800168be t5=0x0000000000000027
+> sbi_trap_error_debug: hart0: t6=0x0000000000000001
 > 
-> > -       tristate "Maxim Integrated DS1803 Digital Potentiometer driver"
-> > +       tristate "Maxim Integrated DS1803 and similar Digital Potentiometer driver"
+> mepc : 0x000000008080a8b8 - should be ffffffff8060a8b8 in objdump
+> output after offset
 > 
-> Please, list them like other drivers do:
+> Here is the snippet of the objdump output for riscv_cpufeature_patch_func
 > 
->        tristate "Maxim Integrated DS1803/DS... Digital Potentiometer driver"
+> ========================================================================
+> inline output: (booting fails with above dump)
 > 
-> ...
+> void riscv_cpufeature_patch_func(struct alt_entry *begin, struct alt_entry *end,
+>                                  unsigned int stage)
+> {
+> ffffffff8060a89a:       7119                    addi    sp,sp,-128
+> ffffffff8060a89c:       f8a2                    sd      s0,112(sp)
+> ffffffff8060a89e:       f4a6                    sd      s1,104(sp)
+> ffffffff8060a8a0:       f0ca                    sd      s2,96(sp)
+> ffffffff8060a8a2:       e4d6                    sd      s5,72(sp)
+> ffffffff8060a8a4:       fc86                    sd      ra,120(sp)
+> ffffffff8060a8a6:       ecce                    sd      s3,88(sp)
+> ffffffff8060a8a8:       e8d2                    sd      s4,80(sp)
+> ffffffff8060a8aa:       e0da                    sd      s6,64(sp)
+> ffffffff8060a8ac:       fc5e                    sd      s7,56(sp)
+> ffffffff8060a8ae:       f862                    sd      s8,48(sp)
+> ffffffff8060a8b0:       f466                    sd      s9,40(sp)
+> ffffffff8060a8b2:       f06a                    sd      s10,32(sp)
+> ffffffff8060a8b4:       ec6e                    sd      s11,24(sp)
+> ffffffff8060a8b6:       0100                    addi    s0,sp,128
+> ffffffff8060a8b8:       46823783                ld      a5,1128(tp) #
+> 468 <__efistub_.L0 +0x5> --------> Faulting instruction
+> ffffffff8060a8bc:       f8f43423                sd      a5,-120(s0)
+> ffffffff8060a8c0:       4781                    li      a5,0
+> ffffffff8060a8c2:       8932                    mv      s2,a2
+> ffffffff8060a8c4:       84aa                    mv      s1,a0
+> ffffffff8060a8c6:       8aae                    mv      s5,a1
+>         switch (stage) {
+> ffffffff8060a8c8:       ca1d                    beqz
+> a2,ffffffff8060a8fe <riscv_cpufeature_patch_func+0x64>
+> ffffffff8060a8ca:       4789                    li      a5,2
+> ffffffff8060a8cc:       18f60363                beq
+> a2,a5,ffffffff8060aa52 <riscv_cpufeature_patch_func+0x1b8>
+>         for_each_of_cpu_node(node) {
+> ffffffff8060a8d0:       4501                    li      a0,0
+> ========================================================================
 > 
-> > -         Say yes here to build support for the Maxim Integrated DS1803
-> > -         digital potentiometer chip.
-> > +         Say yes here to build support for the Maxim Integrated DS1803 and
-> > +         similar digital potentiometer chip.
+> noinline output (boots fine)
+> ========================================================================
+> void riscv_cpufeature_patch_func(struct alt_entry *begin, struct alt_entry *end,
+>                                  unsigned int stage)
+> {
+> ffffffff8060a968:       7159                    addi    sp,sp,-112
+> ffffffff8060a96a:       f0a2                    sd      s0,96(sp)
+> ffffffff8060a96c:       eca6                    sd      s1,88(sp)
+> ffffffff8060a96e:       e8ca                    sd      s2,80(sp)
+> ffffffff8060a970:       fc56                    sd      s5,56(sp)
+> ffffffff8060a972:       f486                    sd      ra,104(sp)
+> ffffffff8060a974:       e4ce                    sd      s3,72(sp)
+> ffffffff8060a976:       e0d2                    sd      s4,64(sp)
+> ffffffff8060a978:       f85a                    sd      s6,48(sp)
+> ffffffff8060a97a:       f45e                    sd      s7,40(sp)
+> ffffffff8060a97c:       f062                    sd      s8,32(sp)
+> ffffffff8060a97e:       ec66                    sd      s9,24(sp)
+> ffffffff8060a980:       e86a                    sd      s10,16(sp)
+> ffffffff8060a982:       e46e                    sd      s11,8(sp)
+> ffffffff8060a984:       1880                    addi    s0,sp,112
+> ffffffff8060a986:       8932                    mv      s2,a2
+> ffffffff8060a988:       84aa                    mv      s1,a0
+> ffffffff8060a98a:       8aae                    mv      s5,a1
+>         switch (stage) {
+> ffffffff8060a98c:       ca09                    beqz
+> a2,ffffffff8060a99e <riscv_cpufeature_patch_func+0x36>
+> ffffffff8060a98e:       4789                    li      a5,2
+> ffffffff8060a990:       0ef60f63                beq
+> a2,a5,ffffffff8060aa8e <riscv_cpufeature_patch_func+0x126>
+>                 return cpufeature_svpbmt_check_of();
+> ffffffff8060a994:       f07ff0ef                jal
+> ra,ffffffff8060a89a <cpufeature_svpbmt_check_of>
+>                         cpu_req_feature |= (1U << idx);
+> ffffffff8060a998:       0005091b                sext.w  s2,a0
+> ffffffff8060a99c:       a8d5                    j
+> ffffffff8060aa90 <riscv_cpufeature_patch_func+0x128>
+>         const void *fdt = dtb_early_va;
 > 
-> Same here.
 > 
-> ...
-> 
-> > - * Maxim Integrated DS1803 digital potentiometer driver
-> > + * Maxim Integrated DS1803 and similar digital potentiometer driver
-> 
-> Same here.
+> Any thoughts ? It looks like it may related to "tp"
 
-Based on Jonathan suggestion for the previous patch version I used 
-"and similar" wording here.
+Faulting instruction "efistub", so maybe something between efi
+and the devicetree not agreeing?
 
-> 
-> ...
-> 
-> > -#define DS1803_MAX_POS         255
-> > -#define DS1803_WRITE(chan)     (0xa8 | ((chan) + 1))
-> 
-> Not sure why these were removed (or moved?)
+Though at least on my build I also have efistub enabled, so it
+should be the same. So it's very strange that you're seeing that
+trap, which I've never seen so far.
 
-Since max wiper position is present in avail array of ds1803_cfg structure
-and that is being used for read scale so DS1803_MAX_POS is removed.
 
-Since each wiper address of both parts is assigned to the address
-member of iio_chan_spec struct so DS1803_WRITE(chan) is removed.
+In any case, I tried your + Tsukasa's patches regarding the isa-extensions
+today, and obviously that works fine, so we wil get rid of the devicetree-
+parts anyway I guess.
 
-> 
-> ...
-> 
-> > +static const struct ds1803_cfg ds1803_cfg[] = {
-> > +       [DS1803_010] = { .wipers = 2, .avail = { 0, 1, 255 }, .kohms =  10,
-> > +                        .channels = ds1803_channels,
-> > +                        .num_channels = ARRAY_SIZE(ds1803_channels) },
-> > +       [DS1803_050] = { .wipers = 2, .avail = { 0, 1, 255 }, .kohms =  50,
-> > +                        .channels = ds1803_channels,
-> > +                        .num_channels = ARRAY_SIZE(ds1803_channels) },
-> > +       [DS1803_100] = { .wipers = 2, .avail = { 0, 1, 255 }, .kohms = 100,
-> > +                        .channels = ds1803_channels,
-> > +                        .num_channels = ARRAY_SIZE(ds1803_channels) },
-> > +       [DS3502] =     { .wipers = 1, .avail = { 0, 1, 127 }, .kohms =  10,
-> > +                        .channels = ds3502_channels,
-> > +                        .num_channels = ARRAY_SIZE(ds3502_channels) },
-> >  };
-> 
-> Split this on a per type basis. I believe it won't be too much work,
-> also, consider adding channels as a separate preparatory patch as you
-> did with avail.
+With the change below on top of that v2/v3 version-mix, I also get a
+working svpbmt of course. After hacking qemu to generate a
+suitable isa-string for me :-) .
 
-Based on Jonathan suggestion for the previous patch version to avoid
-having different chip type related structures so channels and num_channels
-are added into ds1803_cfg structure.
 
-Sure for channels I will split into separate patch for old part in v3.
+Heiko
 
->
-> ...
-> 
-> > -       data->cfg = &ds1803_cfg[id->driver_data];
-> > +       data->chip_type = (uintptr_t)device_get_match_data(dev);
-> > +       if (data->chip_type < DS1803_010 || data->chip_type > DS3502)
-> > +               data->chip_type = id->driver_data;
-> 
-> Split it into a separate patch and use pointer validation instead:
-> 
-> data->cfg = ...
-> if (!data->cfg)
->   data->cfg = ...id->driver_data;
-> 
-> ...
-> 
-> > -       { .compatible = "maxim,ds1803-010", .data = &ds1803_cfg[DS1803_010] },
-> > -       { .compatible = "maxim,ds1803-050", .data = &ds1803_cfg[DS1803_050] },
-> > -       { .compatible = "maxim,ds1803-100", .data = &ds1803_cfg[DS1803_100] },
+-------------- 8< ------------------
+diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+index 691fc9c8099b..656cd626eb1a 100644
+--- a/arch/riscv/include/asm/hwcap.h
++++ b/arch/riscv/include/asm/hwcap.h
+@@ -51,6 +51,7 @@ extern unsigned long elf_hwcap;
+  * available logical extension id.
+  */
+ enum riscv_isa_ext_id {
++	RISCV_ISA_EXT_SVPBMT = RISCV_ISA_EXT_BASE,
+ 	RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
+ };
+ 
+diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+index ced7e5be8641..b5130b15ca8d 100644
+--- a/arch/riscv/kernel/cpu.c
++++ b/arch/riscv/kernel/cpu.c
+@@ -71,6 +71,7 @@ int riscv_of_parent_hartid(struct device_node *node)
+ 	}
+ 
+ static struct riscv_isa_ext_data isa_ext_arr[] = {
++	__RISCV_ISA_EXT_DATA("svpbmt", RISCV_ISA_EXT_SVPBMT),
+ 	__RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
+ };
+ 
+diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+index 2e4eaedbf7f5..d82033ece1fd 100644
+--- a/arch/riscv/kernel/cpufeature.c
++++ b/arch/riscv/kernel/cpufeature.c
+@@ -192,6 +192,8 @@ void __init riscv_fill_hwcap(void)
+ 			if (!ext_long) {
+ 				this_hwcap |= isa2hwcap[(unsigned char)(*ext)];
+ 				this_isa |= (1UL << (*ext - 'a'));
++			} else {
++				SET_ISA_EXT_MAP("svpbmt", RISCV_ISA_EXT_SVPBMT);
+ 			}
+ #undef SET_ISA_EXT_MAP
+ 		}
+@@ -253,64 +255,6 @@ struct cpufeature_info {
+ 	bool (*check_func)(unsigned int stage);
+ };
+ 
+-#if defined(CONFIG_MMU) && defined(CONFIG_64BIT)
+-static bool __init_or_module cpufeature_svpbmt_check_fdt(void)
+-{
+-	const void *fdt = dtb_early_va;
+-	const char *str;
+-	int offset;
+-
+-	offset = fdt_path_offset(fdt, "/cpus");
+-	if (offset < 0)
+-		return false;
+-
+-	for (offset = fdt_next_node(fdt, offset, NULL); offset >= 0;
+-	     offset = fdt_next_node(fdt, offset, NULL)) {
+-		str = fdt_getprop(fdt, offset, "device_type", NULL);
+-		if (!str || strcmp(str, "cpu"))
+-			break;
+-
+-		str = fdt_getprop(fdt, offset, "mmu-type", NULL);
+-		if (!str)
+-			continue;
+-
+-		if (!strncmp(str + 6, "none", 4))
+-			continue;
+-
+-		str = fdt_getprop(fdt, offset, "riscv,mmu", NULL);
+-		if (!str)
+-			continue;
+-
+-		if (!strncmp(str + 6, "svpbmt", 6))
+-			return true;
+-	}
+-
+-	return false;
+-}
+-
+-static bool __init_or_module cpufeature_svpbmt_check_of(void)
+-{
+-	struct device_node *node;
+-	const char *str;
+-
+-	for_each_of_cpu_node(node) {
+-		if (of_property_read_string(node, "mmu-type", &str))
+-			continue;
+-
+-		if (!strncmp(str + 6, "none", 4))
+-			continue;
+-
+-		if (of_property_read_string(node, "riscv,mmu", &str))
+-			continue;
+-
+-		if (!strncmp(str + 6, "svpbmt", 6))
+-			return true;
+-	}
+-
+-	return false;
+-}
+-#endif
+-
+ static bool __init_or_module cpufeature_svpbmt_check_func(unsigned int stage)
+ {
+ 	bool ret = false;
+@@ -319,10 +263,8 @@ static bool __init_or_module cpufeature_svpbmt_check_func(unsigned int stage)
+ 	switch (stage) {
+ 	case RISCV_ALTERNATIVES_EARLY_BOOT:
+ 		return false;
+-	case RISCV_ALTERNATIVES_BOOT:
+-		return cpufeature_svpbmt_check_fdt();
+ 	default:
+-		return cpufeature_svpbmt_check_of();
++		return riscv_isa_extension_available(NULL, SVPBMT);
+ 	}
+ #endif
+ 
+diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
+index c01012f3740d..ec07f991866a 100644
+--- a/arch/riscv/kernel/head.S
++++ b/arch/riscv/kernel/head.S
+@@ -10,7 +10,6 @@
+ #include <asm/thread_info.h>
+ #include <asm/page.h>
+ #include <asm/pgtable.h>
+-#include <asm/alternative.h>
+ #include <asm/csr.h>
+ #include <asm/cpu_ops_sbi.h>
+ #include <asm/hwcap.h>
+@@ -341,7 +340,6 @@ clear_bss_done:
+ 	call kasan_early_init
+ #endif
+ 	/* Start the kernel */
+-	call apply_boot_alternatives
+ 	call soc_early_init
+ 	tail start_kernel
+ 
+diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+index 339ceb595b38..b4879c942b42 100644
+--- a/arch/riscv/kernel/setup.c
++++ b/arch/riscv/kernel/setup.c
+@@ -21,6 +21,7 @@
+ #include <linux/efi.h>
+ #include <linux/crash_dump.h>
+ 
++#include <asm/alternative.h>
+ #include <asm/cpu_ops.h>
+ #include <asm/early_ioremap.h>
+ #include <asm/pgtable.h>
+@@ -295,6 +296,7 @@ void __init setup_arch(char **cmdline_p)
+ #endif
+ 
+ 	riscv_fill_hwcap();
++	apply_boot_alternatives();
+ }
+ 
+ static int __init topology_init(void)
 
-To get the chip specific structure I can use previous structure method for data
-and validation as you shown above.
-But it is necessary to get the chip_type also because of dependency in 
-ds1803_raw_read().
 
-To get the chip_type can I use 
-data->chip_type = id->driver_data
 
-> > +       { .compatible = "maxim,ds1803-010", .data = (void *)DS1803_010 },
-> > +       { .compatible = "maxim,ds1803-050", .data = (void *)DS1803_050 },
-> > +       { .compatible = "maxim,ds1803-100", .data = (void *)DS1803_100 },
-> 
-> This is not good, please use pointers as it was before.
-> 
-> > +       { .compatible = "maxim,ds3502",     .data = (void *)DS3502 },
-> 
-> Ditto. Create a new, separate structure for this type.
-> 
-> ...
-> 
-> >         { "ds1803-010", DS1803_010 },
-> >         { "ds1803-050", DS1803_050 },
-> >         { "ds1803-100", DS1803_100 },
-> > +       { "ds3502",     DS3502     },
-> 
-> Too many spaces.
-> Besides this, please create a new prerequisite patch to convert this
-> to use pointers as above.
-
-Sure I will split this patch in v3.
-Thanks for feedback.
-
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-
-Best Regards,
-Jagath
