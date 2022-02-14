@@ -2,118 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCD8F4B5578
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:58:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A3AA4B55A7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 17:10:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346777AbiBNP6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 10:58:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46950 "EHLO
+        id S1356111AbiBNQKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 11:10:17 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231160AbiBNP6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:58:16 -0500
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAC4A49F94;
-        Mon, 14 Feb 2022 07:58:08 -0800 (PST)
-Received: by mail-ot1-x331.google.com with SMTP id l43-20020a9d1cab000000b005aa50ff5869so11919380ota.0;
-        Mon, 14 Feb 2022 07:58:08 -0800 (PST)
+        with ESMTP id S236359AbiBNQKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 11:10:16 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C3FD4D27C
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 08:10:08 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id p9so7140683wra.12
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 08:10:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=HC4XTESAlBEiQmap9WUF/9U7hqqRdnfo3OTofUKvpI8=;
-        b=iGkrGQuNgu7knroGARyb+LBQbIP1I2yxkiEwxEwzOoYdEgQXijWwh8llyIRGyycMD5
-         3QdsoANhyv9wkq7jTyX2Jr5fL1LKxDHK1sfumd0+0tmFvq2dorR5+ovJdvZIjQRrD0fJ
-         s66+o1i/xHpO+hii3BS3mtXRkOAG9jH6EHpXMVOXQyGbxoWAJy+CIZtB27UD5rDe5gtJ
-         5SJGzmdxb3Z2Zw3W6UGjnJQUDs+PZcQKpzJM6pQHQ8cFrkHfSSs/+PqNyfzojCH7dica
-         8zJ/0sLMSVKWvld8UuAPGJI25MM4MAmGsBHsBduS/qwNAIY0zMwu28CBtitn4nrxhpHj
-         boYQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uCmsBOWygDZgcvn6YZz9clLgl1Vl/Zjf+AzlyIOQfJw=;
+        b=JwmdPC0P4fIRnda3EA6veVEbVVTDfn/ELQXJCT8fEb0yi8BP3eU0X1VMbPIf7DOJ+f
+         WIalfJoxRaw2+xIFQ97GEz7fA4OyUI3giW/ZefRgSsK0YhL3URUvCh4cPJcN6afTcpqK
+         KPAbjEIDRzkOpCtEzr1wsSEYUpifhp5zR7TK8lWVJ1HR/HjDCl+aqbzbuCTAgD2pFQls
+         C0wVHoGJ65nttPUGmt/aMK+qt2qKokFbb0SW4FPEQOhLfJrWLDOy+1e46UfORLPdCeUH
+         MItADj6iRQs0OQNtE/aQkZb9gR4U1DDFCj+AKhB1jM6NY4aigvuXARycL+MlolR2JVZQ
+         ywgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=HC4XTESAlBEiQmap9WUF/9U7hqqRdnfo3OTofUKvpI8=;
-        b=EXiLjiSRaWe25xAdLevYbDL4iukcyLRo/3TnCipxzDbL1eg4r3b1JbvT1+IwD5vz1N
-         w53SX1YW06APNugbnP8qKuFXr/T0yqH7iH6NRtSrujOnCisz02cr57eckwzdy1O/SclR
-         YCu6lzCR/d1j0HaOAz6zl4wuAj62eUQyNiB5Ds/Rae9sBLf8prqhxjWRe5C0s8gUEpHI
-         ikaG7il7R0CTOh7OqCxRZeBM+FkEjjytJs2TZB97mu8GKMUTLcfuXmoDLFeLQV6CIadV
-         4hs7RETe3cV4B5kIri8QtV0gXqcWzwLDNTSBn9/v9nIblOfLOwem7o6tUQv8ocaFC2KO
-         3QhQ==
-X-Gm-Message-State: AOAM5337SWgP3rNQQpi1/iTXU+Gdw9ft2tlTruqCxOzdSlHw3SnB9HOP
-        ufz6aARmiMqRMICVSlhKxng=
-X-Google-Smtp-Source: ABdhPJz+MImJcfd9e9o7MjP3S5I3yF71NgIrpMJoJ94NPl6xQnYoMsGg85r2xEekQZmsyOTfjx7s+g==
-X-Received: by 2002:a05:6830:2684:: with SMTP id l4mr164145otu.164.1644854288254;
-        Mon, 14 Feb 2022 07:58:08 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id k13sm13068382ots.48.2022.02.14.07.58.07
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uCmsBOWygDZgcvn6YZz9clLgl1Vl/Zjf+AzlyIOQfJw=;
+        b=Zx2w5UxNUmb4mJV1Az+7kWOPm1bhWIpPCq24g9L1QUGnWSyh9zVw58OkQJ62uQ6pmD
+         7mVGWSvRP9Lm9WslMkqFHs5KuYh5H7ZkpkUofcaqunjTItLDJXW9WO8qs7Y/sdlSrmt0
+         KdRLAbnzY2AHIxJVE1ZzaHRUbzgyzmOnUbxUgPjsFQgnP5F+Fn80MeFN/6zt0xEllcXQ
+         lZa/REQvoz11IOql8Bckb0HA1Zv07fSkLGXGgC0wxam8xFcd6Y5Y3wnh0L1CHujH+/Iw
+         JHzHrzzsCqrQ00+r9WHpauxvHQi67j+Ni6trY9cEi5UMHPSK395a4DBfzUZSBUaRNnes
+         FXZA==
+X-Gm-Message-State: AOAM533nDe3qByCYGdiDBu136Gs0f2NTWMAmG+g2M5KKEmdfwboUP1/O
+        Apwo1YAP7E/3GkkWWLll8UjU1MtqTk5kKg==
+X-Google-Smtp-Source: ABdhPJzW1hsikwKAntwgq4/z8JJqr3ii1hnneAJapj4i/PSijHmBy5VB35QSO+pFdTnVmZhPn3LqFA==
+X-Received: by 2002:a5d:4dcc:: with SMTP id f12mr276705wru.598.1644855007027;
+        Mon, 14 Feb 2022 08:10:07 -0800 (PST)
+Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.gmail.com with ESMTPSA id k28sm13677022wms.23.2022.02.14.08.10.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Feb 2022 07:58:07 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 14 Feb 2022 07:58:06 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     andrew@lunn.ch, gregory.clement@bootlin.com, robh+dt@kernel.org,
-        wim@linux-watchdog.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: armada-xp: add interrupts for watchdog
-Message-ID: <20220214155806.GA299273@roeck-us.net>
-References: <20220211003257.2037332-1-chris.packham@alliedtelesis.co.nz>
- <20220211003257.2037332-2-chris.packham@alliedtelesis.co.nz>
+        Mon, 14 Feb 2022 08:10:06 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     robh+dt@kernel.org, gregkh@linuxfoundation.org
+Cc:     devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
+        bkumar@qti.qualcomm.com, linux-kernel@vger.kernel.org,
+        srini@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v4 00/12] misc: fastrpc: Add more DSP FastRPC features
+Date:   Mon, 14 Feb 2022 16:09:50 +0000
+Message-Id: <20220214161002.6831-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220211003257.2037332-2-chris.packham@alliedtelesis.co.nz>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 11, 2022 at 01:32:56PM +1300, Chris Packham wrote:
-> The first interrupt is for the regular watchdog timeout. Normally the
-> RSTOUT line will trigger a reset before this interrupt fires but on
-> systems with a non-standard reset it may still trigger.
-> 
-> The second interrupt is for a timer1 which is used as a pre-timeout for
-> the watchdog.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Acked-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+This patchset adds below DSP FastRPC features that have been missing in
+upstream fastrpc driver and also cleans up channel context structure with kref.
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+- Add ablity to reflect if the DSP domain is secure/unsecure by creating
+ seperate device nodes for secured domain, this would used by SE policy
+ to restrict applications loading process on the DSP.
+- Add new IOCTL to get DSP capabilites
+- Add IOCTL to support mapping memory on the DSP.
+- Add support for allocating secure memory for DSP
+- Handle fdlist in put args
+- Handle dma fds in invoke request.
 
-> ---
->  arch/arm/boot/dts/armada-xp-98dx3236.dtsi | 1 +
->  arch/arm/boot/dts/armada-xp.dtsi          | 1 +
->  2 files changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/armada-xp-98dx3236.dtsi b/arch/arm/boot/dts/armada-xp-98dx3236.dtsi
-> index 38a052a0312d..0e561dfc0ca9 100644
-> --- a/arch/arm/boot/dts/armada-xp-98dx3236.dtsi
-> +++ b/arch/arm/boot/dts/armada-xp-98dx3236.dtsi
-> @@ -286,6 +286,7 @@ &watchdog {
->  	compatible = "marvell,armada-xp-wdt";
->  	clocks = <&coreclk 2>, <&refclk>;
->  	clock-names = "nbclk", "fixed";
-> +	interrupts = <93>, <38>;
->  };
->  
->  &cpurst {
-> diff --git a/arch/arm/boot/dts/armada-xp.dtsi b/arch/arm/boot/dts/armada-xp.dtsi
-> index 6c19984d668e..4297482da62f 100644
-> --- a/arch/arm/boot/dts/armada-xp.dtsi
-> +++ b/arch/arm/boot/dts/armada-xp.dtsi
-> @@ -260,6 +260,7 @@ &watchdog {
->  	compatible = "marvell,armada-xp-wdt";
->  	clocks = <&coreclk 2>, <&refclk>;
->  	clock-names = "nbclk", "fixed";
-> +	interrupts = <93>, <38>;
->  };
->  
->  &cpurst {
+Tested this series on DragonBoard 845c with TensoFlowLite.
+
+Changes since v3:
+- remove redundant free in error path of fastrpc_device_register()
+- fixed various type cast warnings reported by kernel test robot
+- added QCOM_SCM select in Kconfig for secure memory allocations.
+- dynamically allocate temp attribute buffer, rather than using it from stack
+- added ack for dt-bindings
+- removed redundant checks in fastrpc_req_mem_map()
+
+Jeya R (5):
+  misc: fastrpc: add support for FASTRPC_IOCTL_MEM_MAP/UNMAP
+  misc: fastrpc: Add support to get DSP capabilities
+  dt-bindings: misc: add property to support non-secure DSP
+  misc: fastrpc: check before loading process to the DSP
+  arm64: dts: qcom: add non-secure domain property to fastrpc nodes
+
+Srinivas Kandagatla (2):
+  misc: fastrpc: separate fastrpc device from channel context
+  misc: fastrpc: add secure domain support
+
+Vamsi Krishna Gattupalli (5):
+  dt-bindings: misc: add fastrpc domain vmid property
+  misc: fastrpc: Add support to secure memory map
+  misc: fastrpc: Add helper function to get list and page
+  misc: fastrpc: Add fdlist implementation
+  misc: fastrpc: Add dma handle implementation
+
+ .../devicetree/bindings/misc/qcom,fastrpc.txt |  10 +
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |   1 +
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   2 +
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |   3 +
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |   3 +
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          |   3 +
+ drivers/misc/Kconfig                          |   1 +
+ drivers/misc/fastrpc.c                        | 556 ++++++++++++++++--
+ include/uapi/misc/fastrpc.h                   |  81 ++-
+ 9 files changed, 612 insertions(+), 48 deletions(-)
+
+-- 
+2.21.0
+
