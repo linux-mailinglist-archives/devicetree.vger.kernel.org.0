@@ -2,276 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 933AF4B428A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 08:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6167E4B42D1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 08:29:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241141AbiBNHKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 02:10:23 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:32870 "EHLO
+        id S241322AbiBNH2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 02:28:47 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241144AbiBNHKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 02:10:23 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 884A858E73
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 23:10:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1644822613;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Y5iYrmeqFTWTMK2U/eGmx/ua6zxpJzL0laPaQH0XD4c=;
-        b=fYWJCicLOliVZOPOe7VPnmp1B7Ydl7Ra8Ar9CF3Qw7s0HvjWWbihswAZblH+qlhTbooZdb
-        WeEZ5Xdul9JYJlgn02LdEnmEiPpzzKnZhOd9glibC5VwphaK8x4JXmBhzMY/LBH4cDosA9
-        HXYDxmcPY2Oe+PNkgRf7ha7Aox6ittA=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-352-U84TX2mcNDagSzVBXsNdkg-1; Mon, 14 Feb 2022 02:10:08 -0500
-X-MC-Unique: U84TX2mcNDagSzVBXsNdkg-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com [10.5.11.22])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        with ESMTP id S241314AbiBNH2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 02:28:46 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF78532982
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 23:28:37 -0800 (PST)
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 7A253180833A;
-        Mon, 14 Feb 2022 07:10:05 +0000 (UTC)
-Received: from localhost (ovpn-13-68.pek2.redhat.com [10.72.13.68])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id AC4A2105C751;
-        Mon, 14 Feb 2022 07:10:01 +0000 (UTC)
-Date:   Mon, 14 Feb 2022 15:09:58 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-Subject: Re: [PATCH v20 3/5] arm64: kdump: reimplement crashkernel=X
-Message-ID: <YgoARncp0jCMTDEX@MiWiFi-R3L-srv>
-References: <20220124084708.683-1-thunder.leizhen@huawei.com>
- <20220124084708.683-4-thunder.leizhen@huawei.com>
- <YgY6yvX7PEeZpdTr@MiWiFi-R3L-srv>
- <6ac0c60c-78bc-9789-9f5c-659fb5fa3e9a@huawei.com>
- <YgY/qQUkBF0eZ9zc@MiWiFi-R3L-srv>
- <441c2917-bd86-da71-22d2-f526baf1457f@huawei.com>
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6F4614033B
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:28:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644823716;
+        bh=stPjNYKT8jIgNyF2oAsLzVlTYEd+kLoCabs8ksrQu4Y=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=jMUvOorPXRbTgIjo4QR8OnJfJhD41D7iRu6JLBzukJQF1jiU2Y2nWVL+Q+iZnJjEn
+         oWNg9FbFxvORs0j4MDeFe82rEJ0KZFXtSwXovnFPpjPw5sSOoFAKfKT9MZMdRBvabI
+         Phf2HfAlqj8F6rO6e1oq6ujY983lW5M4U5tlrh1+fo52PPRqF80f2+WBiDDt2wGunr
+         oBbctpjNdwymicPGTAD6qWgYxRvOf6xhvgw0Z4jjZvDgqaWftgi1KWWxdCn7ZTUYT3
+         9EgTXrMlR/Sqepi8jx//r76tb7fysw2Fv1ngo6TqA2+TmAYYy2JBpCnL3T/stMMUYa
+         xfDRnXpv8A9lg==
+Received: by mail-ej1-f69.google.com with SMTP id go11-20020a1709070d8b00b006cf0d933739so345472ejc.5
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 23:28:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=stPjNYKT8jIgNyF2oAsLzVlTYEd+kLoCabs8ksrQu4Y=;
+        b=2bZD4owlDtJ17soRCAGXvNshATocJDK+9+mi01Q/wstz22cf+9ZwXMOLxo+0QGR4U1
+         u0SRj07vyy04SqLbei+XMtXyhPHX4f383rteIpmfC5YkaBDvV/bFF9JB8jfEVZPvuEqq
+         WrONkvWzEn2iYJjnTvlqJYnC0hQeTZ8GKJ3C2SRPYpITp8Czn1cvzi16LLQWLW57J+ga
+         rgI1lL2aettoTnc5ZECd7hefzLhaORaqEUp1MGfIbPYo1ZigjEC99MD06LKOuBf6sFAU
+         m/FzamNYVED0Ta2JDzrCRvpjmmndcdfNqhLQ+X6jXZkddwG0uaePNyTcc/J+JmrzPm+M
+         z/cg==
+X-Gm-Message-State: AOAM532tXl0TfU26YxdSp7dZ5jfg1lOVJkaSED/4r2ge/GSSUQXLu8mI
+        IWQFik6f7jwDJFGN806ggp1iKJP2IWgK6MhdW97PbfBY1Xn9pA4pPgGxvrcWzs4i6P4dM0YFH+B
+        65zY/awmA6z++SO0FW5zqblOwWA3hGTjatpAXt3g=
+X-Received: by 2002:a05:6402:51d2:: with SMTP id r18mr14335297edd.88.1644823715489;
+        Sun, 13 Feb 2022 23:28:35 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyzkInTRfFMDmTIqQtdD3PzZngKjB6pp383xOK8wNzWd9H/435n+6VZuhhh/TUUVZehlXzKrw==
+X-Received: by 2002:a05:6402:51d2:: with SMTP id r18mr14335283edd.88.1644823715381;
+        Sun, 13 Feb 2022 23:28:35 -0800 (PST)
+Received: from [192.168.0.103] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id n2sm10098365ejl.86.2022.02.13.23.28.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 13 Feb 2022 23:28:34 -0800 (PST)
+Message-ID: <b7dad94f-4e59-cb4b-251d-05f747bb0862@canonical.com>
+Date:   Mon, 14 Feb 2022 08:28:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <441c2917-bd86-da71-22d2-f526baf1457f@huawei.com>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: qcom: Add interconnects
+ property
+Content-Language: en-US
+To:     Sibi Sankar <quic_sibis@quicinc.com>, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org
+Cc:     ohad@wizery.com, agross@kernel.org, mathieu.poirier@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        evgreen@chromium.org, dianders@chromium.org, swboyd@chromium.org,
+        mka@chromium.org
+References: <1644813252-12897-1-git-send-email-quic_sibis@quicinc.com>
+ <1644813252-12897-2-git-send-email-quic_sibis@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <1644813252-12897-2-git-send-email-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/14/22 at 02:44pm, Leizhen (ThunderTown) wrote:
+On 14/02/2022 05:34, Sibi Sankar wrote:
+> Add interconnects property to support the bandwidth requirements
+> during modem bootup on SC7280 SoCs.
 > 
-> 
-> On 2022/2/11 18:51, Baoquan He wrote:
-> > On 02/11/22 at 06:41pm, Leizhen (ThunderTown) wrote:
-> >>
-> >>
-> >> On 2022/2/11 18:30, Baoquan He wrote:
-> >>> On 01/24/22 at 04:47pm, Zhen Lei wrote:
-> >>>> From: Chen Zhou <chenzhou10@huawei.com>
-> >>> ......
-> >>>> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> >>>> index 6c653a2c7cff052..a5d43feac0d7d96 100644
-> >>>> --- a/arch/arm64/mm/init.c
-> >>>> +++ b/arch/arm64/mm/init.c
-> >>>> @@ -71,6 +71,30 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
-> >>>>  #define CRASH_ADDR_LOW_MAX	arm64_dma_phys_limit
-> >>>>  #define CRASH_ADDR_HIGH_MAX	MEMBLOCK_ALLOC_ACCESSIBLE
-> >>>>  
-> >>>> +static int __init reserve_crashkernel_low(unsigned long long low_size)
-> >>>> +{
-> >>>> +	unsigned long long low_base;
-> >>>> +
-> >>>> +	/* passed with crashkernel=0,low ? */
-> >>>> +	if (!low_size)
-> >>>> +		return 0;
-> >>>> +
-> >>>> +	low_base = memblock_phys_alloc_range(low_size, CRASH_ALIGN, 0, CRASH_ADDR_LOW_MAX);
-> >>>> +	if (!low_base) {
-> >>>> +		pr_err("cannot allocate crashkernel low memory (size:0x%llx).\n", low_size);
-> >>>> +		return -ENOMEM;
-> >>>> +	}
-> >>>> +
-> >>>> +	pr_info("crashkernel low memory reserved: 0x%llx - 0x%llx (%lld MB)\n",
-> >>>> +		low_base, low_base + low_size, low_size >> 20);
-> >>>> +
-> >>>> +	crashk_low_res.start = low_base;
-> >>>> +	crashk_low_res.end   = low_base + low_size - 1;
-> >>>> +	insert_resource(&iomem_resource, &crashk_low_res);
-> >>>> +
-> >>>> +	return 0;
-> >>>> +}
-> >>>> +
-> >>>>  /*
-> >>>>   * reserve_crashkernel() - reserves memory for crash kernel
-> >>>>   *
-> >>>> @@ -81,29 +105,62 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
-> >>>>  static void __init reserve_crashkernel(void)
-> >>>>  {
-> >>>>  	unsigned long long crash_base, crash_size;
-> >>>> +	unsigned long long crash_low_size = SZ_256M;
-> >>>>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
-> >>>>  	int ret;
-> >>>> +	bool fixed_base;
-> >>>> +	char *cmdline = boot_command_line;
-> >>>>  
-> >>>> -	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
-> >>>> +	/* crashkernel=X[@offset] */
-> >>>> +	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
-> >>>>  				&crash_size, &crash_base);
-> >>>> -	/* no crashkernel= or invalid value specified */
-> >>>> -	if (ret || !crash_size)
-> >>>> -		return;
-> >>>> +	if (ret || !crash_size) {
-> >>>> +		unsigned long long low_size;
-> >>>>  
-> >>>> +		/* crashkernel=X,high */
-> >>>> +		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
-> >>>> +		if (ret || !crash_size)
-> >>>> +			return;
-> >>>> +
-> >>>> +		/* crashkernel=X,low */
-> >>>> +		ret = parse_crashkernel_low(cmdline, 0, &low_size, &crash_base);
-> >>>> +		if (!ret)
-> >>>> +			crash_low_size = low_size;
-> >>>
-> >>> Here, the error case is not checked and handled. But it still gets
-> >>> expeced result which is the default SZ_256M. Is this designed on
-> >>> purpose?
-> >>
-> >> Yes, we can specify only "crashkernel=X,high".
-> >>
-> >> This is mentioned in Documentation/admin-guide/kernel-parameters.txt
-> >>
-> >>         crashkernel=size[KMG],low
-> >>                         [KNL, X86-64] range under 4G. When crashkernel=X,high
-> >>                         is passed, kernel could allocate physical memory region
-> >>                         above 4G, that cause second kernel crash on system
-> >>                         that require some amount of low memory, e.g. swiotlb
-> >>                         requires at least 64M+32K low memory, also enough extra
-> >>                         low memory is needed to make sure DMA buffers for 32-bit
-> >>                         devices won't run out. Kernel would try to allocate at     <---------
-> >>                         least 256M below 4G automatically.                         <---------
-> > 
-> > Yeah, that is expected becasue no crahskernel=,low is a right usage. The
-> > 'ret' is 0 in the case. If I gave below string, it works too.
-> > "crashkernel=256M,high crashkernel=aaabbadfadfd,low"
-> 
-> Yes, so maybe we should change the error code in __parse_crashkernel()
-> from "-EINVAL" to "-ENOENT" when the specified option does not exist.
-
-Good point. I also thought of this, it could be next step clean up. X86
-code need this too. In crashkernel='messy code',high, it will fail to
-reserve. For consistency, we should fail crashkrenel='messy code',low
-too.
-
-> 
-> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
-> index 256cf6db573cd09..395f4fac1773f28 100644
-> --- a/kernel/crash_core.c
-> +++ b/kernel/crash_core.c
-> @@ -243,9 +243,8 @@ static int __init __parse_crashkernel(char *cmdline,
->         *crash_base = 0;
-> 
->         ck_cmdline = get_last_crashkernel(cmdline, name, suffix);
-> -
->         if (!ck_cmdline)
-> -               return -EINVAL;
-> +               return -ENOENT;
-> 
->         ck_cmdline += strlen(name);
-> 
-> 
-> > 
-> >>
-> >>>
-> >>>> +
-> >>>> +		crash_max = CRASH_ADDR_HIGH_MAX;
-> >>>> +	}
-> >>>> +
-> >>>> +	fixed_base = !!crash_base;
-> >>>>  	crash_size = PAGE_ALIGN(crash_size);
-> >>>>  
-> >>>>  	/* User specifies base address explicitly. */
-> >>>>  	if (crash_base)
-> >>>>  		crash_max = crash_base + crash_size;
-> >>>>  
-> >>>> +retry:
-> >>>>  	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
-> >>>>  					       crash_base, crash_max);
-> >>>>  	if (!crash_base) {
-> >>>> +		/*
-> >>>> +		 * Attempt to fully allocate low memory failed, fall back
-> >>>> +		 * to high memory, the minimum required low memory will be
-> >>>> +		 * reserved later.
-> >>>> +		 */
-> >>>> +		if (!fixed_base && (crash_max == CRASH_ADDR_LOW_MAX)) {
-> >>>> +			crash_max = CRASH_ADDR_HIGH_MAX;
-> >>>> +			goto retry;
-> >>>> +		}
-> >>>> +
-> >>>>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
-> >>>>  			crash_size);
-> >>>>  		return;
-> >>>>  	}
-> >>>>  
-> >>>> +	if (crash_base >= SZ_4G && reserve_crashkernel_low(crash_low_size)) {
-> >>>> +		memblock_phys_free(crash_base, crash_size);
-> >>>> +		return;
-> >>>> +	}
-> >>>> +
-> >>>>  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
-> >>>>  		crash_base, crash_base + crash_size, crash_size >> 20);
-> >>>>  
-> >>>> @@ -112,6 +169,9 @@ static void __init reserve_crashkernel(void)
-> >>>>  	 * map. Inform kmemleak so that it won't try to access it.
-> >>>>  	 */
-> >>>>  	kmemleak_ignore_phys(crash_base);
-> >>>> +	if (crashk_low_res.end)
-> >>>> +		kmemleak_ignore_phys(crashk_low_res.start);
-> >>>> +
-> >>>>  	crashk_res.start = crash_base;
-> >>>>  	crashk_res.end = crash_base + crash_size - 1;
-> >>>>  	insert_resource(&iomem_resource, &crashk_res);
-> >>>> -- 
-> >>>> 2.25.1
-> >>>>
-> >>>
-> >>> .
-> >>>
-> >>
-> >> -- 
-> >> Regards,
-> >>   Zhen Lei
-> >>
-> > 
-> > .
-> > 
-> 
-> -- 
-> Regards,
->   Zhen Lei
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  .../devicetree/bindings/remoteproc/qcom,q6v5.txt   | 23 ++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 > 
 
+There were several properties added within last months, so in total you
+changed these bindings quite a lot. Please convert them to YAML.
+
+
+Best regards,
+Krzysztof
