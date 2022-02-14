@@ -2,103 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0B9E4B5D02
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:37:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 947744B5CE5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:37:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbiBNVf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 16:35:56 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34038 "EHLO
+        id S230518AbiBNVhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 16:37:34 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231531AbiBNVfi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:35:38 -0500
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C89100747
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:35:07 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id y129so50157531ybe.7
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:35:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=OJh1pSV7SihOCRuhd+9c4PnEUIJns5DmX9HnYqSgGac=;
-        b=ockULPu8BRSzP0NNfeocF+3WDcej8ssFY6kZyzCfFEKD/3iRgWnF0Q4czaCTSmhHt/
-         qo1urmD+moPVvEzU7KFJIVJlS/viInixbeQ7YqyITy89jEr9WkDXoSkcy9MHCNTksRfq
-         tIFcqDF9SF+mvhxKHt0FZLu0aipudk+lmiQ/s2+DVGhsQtqEwfUGPfO0TEd4fYSXjZpA
-         2vEHD4LplM6V4VJqnzBhNkBc0HLZQCrQqiMmuB5ruGV0ZZKIT4aC2zIzPSNO0EHumn5+
-         FgmEsHm+bZjT/pJ8J2aRr47hzaXDPKRQPpnKIKorx/6+9sKqsGVKJa5Gr8+ViDdqe/7Y
-         UvTQ==
+        with ESMTP id S229939AbiBNVhd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:37:33 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E04112CC04
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:37:25 -0800 (PST)
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E622A3F1D1
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 21:37:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644874643;
+        bh=kT/ZbStYKrIw4n+GRbiyCeyEm9jDf9nRetcAQkPpfiI=;
+        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+         In-Reply-To:Content-Type;
+        b=b9YWVKSeCNrWsRGpiCecaQoE751kMx5ewRUns/U1nWReKS0cV4h583Uov09y5NFyt
+         hUAg7UG6YGgk1KLXSLzjwdSLdPbPLS+9vP9Qe33q0FAnhtBC6qFT2z/chLB1OAvDLQ
+         p4KTJSDz7i2FY3j5Gl9dyyCK0o4HmDuV1gGDwjgJGZecznbhTF5aAUees3AE2+7j6k
+         WGWmy/rJF3HTBYw7XhIS3JR375yHJ3aPK47xPsppyLCOFpm5Non+KLMeb9rMDMBEE5
+         LzmjgAiK45V/2iKPp7d27kyK6dPSxgowmoqU4q5DdfROOxekaA5kTZlTjDEUFFm44r
+         9zz1+zZeAWuNQ==
+Received: by mail-wm1-f70.google.com with SMTP id a8-20020a7bc1c8000000b0037bc4c62e97so158119wmj.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:37:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=OJh1pSV7SihOCRuhd+9c4PnEUIJns5DmX9HnYqSgGac=;
-        b=s5KPl8kMlXn8PMVOBRJD2JHaid4y1a/TWeQ5a9ArmeCH5Bz4Y3/wBpLaqBGCEAEi4W
-         hfkW0UtDeHPWqt9UkUWPSQGfsNpaAN+FgMe0XMSMzXn/Uz1bz99emWaPnN/URsxd0PzN
-         bKZXpUnIq4Q7CbvYCtLuCjgA8vh0CF9n7rNkJTf2yBpl0SeRgUTAfz4IUxEapCl8kly5
-         EY+RnudG4aboM4wa/VW+zfYZf+S/xjHUcVsDRzgxNsLY59U/E3cl6Axw/Ir+vj/5rqFF
-         BAg5y1ABWwSG1m//c4tx9EEHMi3FQvRfEHz6mgURhHAe8LpkV9dzViFbjgt6PQNn4DeU
-         weMQ==
-X-Gm-Message-State: AOAM531T/y8mK95LUjhHHP9E27L/xnNUpLezgN3O4LoogK9hsbevBNjc
-        scyapLWomXQnHvNBmNv8eyJ/4FlyWIqWtCV/UPE=
-X-Google-Smtp-Source: ABdhPJz8T/m5cLGlg8JbORL/npw7rULlDpPfG0ImnmQWr5EDrwRjeOFdSo8NVHm0gCIdTgOO38pLCDJqeE13gBE8TJE=
-X-Received: by 2002:a25:900e:: with SMTP id s14mr1049830ybl.338.1644874506516;
- Mon, 14 Feb 2022 13:35:06 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=kT/ZbStYKrIw4n+GRbiyCeyEm9jDf9nRetcAQkPpfiI=;
+        b=p7ZcfrG+kbIe+uJPgzmHLPBy/CjLpUKHhvNtc9lQthzDfpvqUmDyFzuDs6VSe0O17B
+         oww8D73RZkqDlK4AyAm52oTivaBlXXs3gSWfAZEoLHFTn1KK2DKcyA+Zh0OO5bisXHIV
+         OMHKnGgUZspMZcg9jStQGfBPaHiNTU1mv/9w40gMVCUcdvdAMnxPitjUP7gW6PLmmV/v
+         MBDLiFK6/mHmBZyM024WMgnLhTR/ucL1EWEadhbM0zv+PNylheWn4Jqrmei3UYQfd+sU
+         5dR8xO3he4MQI44bwynIvHslbX3jbUESEcdkxaDHgxFifOlrHLvzaFcJjlPqi39p2EJu
+         gL6A==
+X-Gm-Message-State: AOAM533jc5vKCo4uU2TL1jEKYUlZZpyUUm2KpTi7Reijvoo0rvfmJvUe
+        LApJi17cffZRhHCjkVCQmlJdyXsti4WNiOrLJ+BoLxSE4ArKGq6gbdAJnemMXLhGMHpayQCgUbi
+        K96VagiSKawVQR9n826G47aPoLpaQ8f3HbW/9OW4=
+X-Received: by 2002:a5d:4745:: with SMTP id o5mr716525wrs.275.1644874643595;
+        Mon, 14 Feb 2022 13:37:23 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyy8FAd8AthJ50nYJRkJC2MLR9VdV0C5UiWk2N5lGhZra0fVO3q6DDUwAMpmDmMD2+Wryc6ZQ==
+X-Received: by 2002:a5d:4745:: with SMTP id o5mr716511wrs.275.1644874643350;
+        Mon, 14 Feb 2022 13:37:23 -0800 (PST)
+Received: from [192.168.0.106] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id b15sm26932080wri.96.2022.02.14.13.37.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Feb 2022 13:37:22 -0800 (PST)
+Message-ID: <a7ab4c1e-99d9-b78e-4c49-c565432f081d@canonical.com>
+Date:   Mon, 14 Feb 2022 22:37:22 +0100
 MIME-Version: 1.0
-Received: by 2002:a05:7110:5697:b0:127:6892:b75a with HTTP; Mon, 14 Feb 2022
- 13:35:06 -0800 (PST)
-Reply-To: mrsoliviajorge206@gmail.com
-From:   Olivia Jorge <globalmketing001@gmail.com>
-Date:   Mon, 14 Feb 2022 13:35:06 -0800
-Message-ID: <CAL6L2uX0HfmetEqh3Pv1JgborUBeD7Dgd8P+rgq4x54er8UjCg@mail.gmail.com>
-Subject: If you are interested
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:b32 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [mrsoliviajorge206[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [globalmketing001[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [globalmketing001[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.5 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v7 1/4] iio:frequency:admv1014: add support for ADMV1014
+Content-Language: en-US
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+        robh+dt@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220214073418.4528-1-antoniu.miclaus@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220214073418.4528-1-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello How are you doing today. There is an international conference
-which i will be privileged to visit Africa. In my organization
-(British Heart Foundation) We've been selected to attend in USA and
-West Africa. I might recommend you to attend if you wish. It's not a
-general conference anyways. I can give you the coordinators email so
-you can go ahead and contact them if you wish as a friend. It could
-have been easier for you if you were a volunteer under BHF org cos
-it's a free sponsorship conference. i will see what i can do about it
-if you are interested.
+On 14/02/2022 08:34, Antoniu Miclaus wrote:
+> The ADMV1014 is a silicon germanium (SiGe), wideband,
+> microwave downconverter optimized for point to point microwave
+> radio designs operating in the 24 GHz to 44 GHz frequency range.
+> 
+> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADMV1014.pdf
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> no changes in v7.
+>  drivers/iio/frequency/Kconfig    |  10 +
+>  drivers/iio/frequency/Makefile   |   1 +
+>  drivers/iio/frequency/admv1014.c | 824 +++++++++++++++++++++++++++++++
+>  3 files changed, 835 insertions(+)
+>  create mode 100644 drivers/iio/frequency/admv1014.c
+> 
+> diff --git a/drivers/iio/frequency/Kconfig b/drivers/iio/frequency/Kconfig
+> index 2c9e0559e8a4..493221f42077 100644
+> --- a/drivers/iio/frequency/Kconfig
+> +++ b/drivers/iio/frequency/Kconfig
+> @@ -50,6 +50,16 @@ config ADF4371
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called adf4371.
+>  
+> +config ADMV1014
+> +	tristate "Analog Devices ADMV1014 Microwave Downconverter"
+> +	depends on SPI && COMMON_CLK && 64BIT
+> +	help
+> +	  Say yes here to build support for Analog Devices ADMV1014
+> +	  24 GHz to 44 GHz, Wideband, Microwave Downconverter.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called admv1014.
+> +
+>  config ADRF6780
+>          tristate "Analog Devices ADRF6780 Microwave Upconverter"
+>          depends on SPI
+> diff --git a/drivers/iio/frequency/Makefile b/drivers/iio/frequency/Makefile
+> index ae3136c79202..5f0348e5eb53 100644
+> --- a/drivers/iio/frequency/Makefile
+> +++ b/drivers/iio/frequency/Makefile
+> @@ -7,4 +7,5 @@
+>  obj-$(CONFIG_AD9523) += ad9523.o
+>  obj-$(CONFIG_ADF4350) += adf4350.o
+>  obj-$(CONFIG_ADF4371) += adf4371.o
+> +obj-$(CONFIG_ADMV1014) += admv1014.o
+>  obj-$(CONFIG_ADRF6780) += adrf6780.o
+> diff --git a/drivers/iio/frequency/admv1014.c b/drivers/iio/frequency/admv1014.c
+> new file mode 100644
+> index 000000000000..59a6b1f3b7cb
+> --- /dev/null
+> +++ b/drivers/iio/frequency/admv1014.c
+> @@ -0,0 +1,824 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * ADMV1014 driver
+> + *
+> + * Copyright 2022 Analog Devices Inc.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/clkdev.h>
+> +#include <linux/clk-provider.h>
+
+Where do you use/define clock provider?
+
+Best regards,
+Krzysztof
