@@ -2,68 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EEEE4B512F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 14:09:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FA0D4B50F2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 14:04:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347614AbiBNNJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 08:09:18 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55122 "EHLO
+        id S1353855AbiBNNE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 08:04:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233705AbiBNNJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 08:09:17 -0500
-X-Greylist: delayed 544 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 14 Feb 2022 05:09:10 PST
-Received: from theia.8bytes.org (8bytes.org [IPv6:2a01:238:4383:600:38bc:a715:4b6d:a889])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 108904B85D;
-        Mon, 14 Feb 2022 05:09:10 -0800 (PST)
-Received: by theia.8bytes.org (Postfix, from userid 1000)
-        id 9DDC82FB; Mon, 14 Feb 2022 14:00:02 +0100 (CET)
-Date:   Mon, 14 Feb 2022 14:00:01 +0100
-From:   Joerg Roedel <joro@8bytes.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     will@kernel.org, robh+dt@kernel.org,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] iommu/ipmmu-vmsa: Add support for R-Car Gen4
-Message-ID: <YgpSUWjWMYZa9GoD@8bytes.org>
-References: <20220208002030.1319984-1-yoshihiro.shimoda.uh@renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220208002030.1319984-1-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S1353128AbiBNNE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 08:04:26 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B17F84D609;
+        Mon, 14 Feb 2022 05:04:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1644843859; x=1676379859;
+  h=from:to:cc:subject:date:message-id;
+  bh=qx6pEXqoFPXIkh9XX2jchiqtkp6Y1daXAlw0FUECkxg=;
+  b=nurytHB2UNqNRPCqO/5IcEDK51n3gN6+eQwvdFRyRASYN5wMS5IOIoMM
+   vKir/v+Fy/fnMPLo7uRwfcyQUGCJpn/L8yGeDA7Yh/UHlEePzXYvJ/Zek
+   ty16EtVkVlLKAbtT6c8hM1uUm5mtxR5PH6K/KjFSyhcjOF6dqDuqfuyY5
+   4=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 14 Feb 2022 05:04:19 -0800
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 14 Feb 2022 05:04:16 -0800
+X-QCInternal: smtphost
+Received: from hu-vnivarth-hyd.qualcomm.com (HELO hu-sgudaval-hyd.qualcomm.com) ([10.213.111.166])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 14 Feb 2022 18:34:06 +0530
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3994820)
+        id 682783C9F; Mon, 14 Feb 2022 18:34:05 +0530 (+0530)
+From:   Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, msavaliy@qti.qualcomm.com,
+        Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: sc7280: Configure cts sleep pinctrl to bias-disable for sc7280-idp
+Date:   Mon, 14 Feb 2022 18:33:48 +0530
+Message-Id: <1644843828-20464-1-git-send-email-quic_vnivarth@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 08, 2022 at 09:20:28AM +0900, Yoshihiro Shimoda wrote:
-> This patch series is based on renesas-drivers-2022-01-11-v5.16 [1].
-> Note that we have to prepare the following registers' setting
-> in a bootloader (U-Boot) because the registers are protected.
-> Otherwise, data mismatch happened if dmatest with the ipmmu is running.
-> 
->  => mw eed01500 0xc0000000; mw eed41500 0xc0000000
-> 
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/tag/?h=renesas-drivers-2022-01-11-v5.16
-> 
-> Changes from v2:
->  - Add Reviewed-by tag in patch 1 and 2 (Geert-san, thanks!)
->  - Revise commit description in patch 1.
->  https://lore.kernel.org/all/20220204125653.1194249-1-yoshihiro.shimoda.uh@renesas.com/
-> 
-> Changes from v1:
->  - Add Reviewed-by tag in patch 1. (Geert-san, thanks!)
->  - Revise a comment in patch 2.
->  https://lore.kernel.org/all/20220125125602.4144793-1-yoshihiro.shimoda.uh@renesas.com/
-> 
-> Y
-> 
-> Yoshihiro Shimoda (2):
->   dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779f0 support
->   iommu/ipmmu-vmsa: Add support for R-Car Gen4
+WLAN rail was leaking power during RBSC/sleep even after turning BT off.
+Change sleep pinctrl configuration to handle same.
 
-Applied, thanks.
+Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index d623d71..de18319 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -516,10 +516,10 @@
+ 		pins = "gpio28";
+ 		function = "gpio";
+ 		/*
+-		 * Configure a pull-down on CTS to match the pull of
+-		 * the Bluetooth module.
++		 * Configure a disable on CTS to lower power usage
++		 * when BT is turned off.
+ 		 */
+-		bias-pull-down;
++		bias-disable;
+ 	};
+ 
+ 	qup_uart7_sleep_rts: qup-uart7-sleep-rts {
+-- 
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by the Linux Foundation.
+
