@@ -2,153 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 244F04B5D34
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:47:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2540F4B5D3C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:49:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbiBNVr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 16:47:28 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40230 "EHLO
+        id S231562AbiBNVtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 16:49:39 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiBNVr1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:47:27 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D80B318C58E
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:47:18 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id 13so750358oiz.12
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:47:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=KZ8Tp8JYnqcpdvEmr+9vUKPtUjGKxrOWPg9ikND1TsQ=;
-        b=kEDFFQ9AnhAiPYpTrzxVGENiaHYM4WNo0h7IYAhmBWdtr2Nehv4FPMpQzGIGBTTSdT
-         V2UaMvUYGZkYk57yH9eb+iYHLKrErwgOdY4eUHXzNN6zGjZ4AEMBjYejLDsaYiKpifNI
-         ow94ZcKv1MDiVK1Cw9O4RE9jJAmxCrV45JbGI=
+        with ESMTP id S231458AbiBNVti (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:49:38 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3551954D3
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:49:30 -0800 (PST)
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id EA1FB40053
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 21:49:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644875368;
+        bh=JIs1xiYNpUGWLEtymgYGm7pSCxeAjzoS3yDzGjJPXvE=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=v7i+HWzp/SG+jQLd5DXdr1rQI8aPb3l7Oy7QWXEqrhR25RcMQu8a0wjdAWu5G3ySf
+         hqTv1Zt9l2nDlnOMbDv64uEyaYZeCZXi08DxEScRP/p+LXWty2NPBrAlZiBQqiToQi
+         PM7QhQrVxOJHtvfjqBVOhparCEuiS/z10Uc4QjOLcNLWydCuPW7zpd8GW5eDjxnArl
+         S/sjZW+BVt9Zq9B/KFcaJ7jfMqHLNriKTXVU1qM+ZlFNfIIgapNv+aNTdQGd6t0ybK
+         hbnc6qfFVo3l7FTQvIih0kA8rdi26Lykd4RgjlSf5XMVkjSM8DjPBHZX7dZAkT5/xx
+         Jaa/jBgYx4TRQ==
+Received: by mail-wr1-f71.google.com with SMTP id p9-20020adf9589000000b001e333885ac1so7399581wrp.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:49:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=KZ8Tp8JYnqcpdvEmr+9vUKPtUjGKxrOWPg9ikND1TsQ=;
-        b=RYJR4vmOdWaOVemaWPg9y9YF8IOCqYxVX1j/Yu5a1VzdOX0uHA+PrI5hwLopI3ZK7D
-         Xmt2GQX7fkecNjEno5dARrqysd/XLeXMRF5FUiztpS8/GStHumMt55LsaRF/UgVyjFBy
-         d3RzkOk/1JJH2pTjxZkcd4G6PaM0k478oMcO5rWA9efJXBvG5PgqL10A9URStelaCkET
-         jSDii3RIZoRXWWgewdUOWCeYd7gDiYge3sqks14bLTSsCePJfV7z7PMt+vhHbPgTiynx
-         emiBjkhFVeJX9ROxs9ey4l14owwD6F8wNfDylMte8SBOa2m5RTNRNwlfMavfWs9JFMtL
-         pb6A==
-X-Gm-Message-State: AOAM533HsCO5GfWMXDeD7gOC5PTunRmBaUgKZWiUXm1Iw+pqODoYjWee
-        KVrNw+uJu2cnNgeQlQsy3b/p7cLAcW65fu30653I2g==
-X-Google-Smtp-Source: ABdhPJy6QtgovTMrBoMRA7cWoi8cXunIMQ3hmVjFFwyt7eXnabvshXHxsyp6QmnTk4CMzG+koej6x98aKMZeKBq0p4E=
-X-Received: by 2002:aca:df44:0:b0:2ce:285f:cb99 with SMTP id
- w65-20020acadf44000000b002ce285fcb99mr412149oig.40.1644875238208; Mon, 14 Feb
- 2022 13:47:18 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 14 Feb 2022 13:47:17 -0800
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=JIs1xiYNpUGWLEtymgYGm7pSCxeAjzoS3yDzGjJPXvE=;
+        b=xpngNGH6ceZdWenvRQ027MzQ6X5EYy/OTG9hDNkvNVSmnBBpsD/Ax5o9LiOcNqwMtN
+         /43x0uDvaRBsaC8jpZ+LRoKng++UKjVnKnaubbp/AcAfRflvocMmn6IVlACD2LL79nQk
+         x2kPAwbc0b4yjLZ0LcU3Oq1FOI489AqAFS+aOA1QF4P8Un1pWaoc9XXLVROkIaUf+rpA
+         Obk6+xgyiI3mjdFeT/iMU//uAWP1CjVp9H4gdVzh2Z+7cv9zGwzgNSlYJzEmpZe5lHfn
+         3elthDKKdAKXG0lihCbf/ZwXexOIMpH8mlcpt2+MFSI6DFqaHIAYyEPghcp6SfQAYJ1n
+         Y+8Q==
+X-Gm-Message-State: AOAM5328swqRaaBF4yIFYX5PKROvYxHHnWy2/Z89TT5r5j6Jj5X9r9bE
+        E20E28AzI5+YDs35bFiLXJScPQqCGNQMshc4p4kepqSyq8OLSJgJItbv2GtXkapQE2/VpMhxzm2
+        CrdDHF3rvo8jfqfFrvPDUHtchbU564ImT4wrpYfA=
+X-Received: by 2002:a05:600c:1c11:: with SMTP id j17mr606090wms.138.1644875368525;
+        Mon, 14 Feb 2022 13:49:28 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxKWcCqlvzOjQU6wfJEEKTCLPSGNxu0cNkLUzJsJZwJjpWyaSQuWK0i7UTurbPojjOb5bxVfA==
+X-Received: by 2002:a05:600c:1c11:: with SMTP id j17mr606079wms.138.1644875368292;
+        Mon, 14 Feb 2022 13:49:28 -0800 (PST)
+Received: from [192.168.0.106] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id n7sm12982487wmd.30.2022.02.14.13.49.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Feb 2022 13:49:27 -0800 (PST)
+Message-ID: <cf4e21e8-1ba8-a137-6063-00e1cee8e035@canonical.com>
+Date:   Mon, 14 Feb 2022 22:49:27 +0100
 MIME-Version: 1.0
-In-Reply-To: <1644668672-29790-2-git-send-email-quic_srivasam@quicinc.com>
-References: <1644668672-29790-1-git-send-email-quic_srivasam@quicinc.com> <1644668672-29790-2-git-send-email-quic_srivasam@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 14 Feb 2022 13:47:17 -0800
-Message-ID: <CAE-0n52uBY7GzjtFwV67y5mfqZRoK9ooW-kT3=4sH=8NtVK7FQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ASoC: codec: wcd938x: Add switch control for
- selecting CTIA/OMTP Headset
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, quic_plai@quicinc.com, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
-Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/2] dt-bindings: ps2-gpio: convert binding to json-schema
+Content-Language: en-US
+To:     Danilo Krummrich <danilokrummrich@dk-develop.de>,
+        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     linus.walleij@linaro.org
+References: <20220211233137.99624-1-danilokrummrich@dk-develop.de>
+ <20220211233137.99624-2-danilokrummrich@dk-develop.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220211233137.99624-2-danilokrummrich@dk-develop.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-02-12 04:24:31)
-> diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
-> index eff200a..08d16a9 100644
-> --- a/sound/soc/codecs/wcd938x.c
-> +++ b/sound/soc/codecs/wcd938x.c
-> @@ -194,6 +194,7 @@ struct wcd938x_priv {
->         int ear_rx_path;
->         int variant;
->         int reset_gpio;
-> +       int us_euro_gpio;
->         u32 micb1_mv;
->         u32 micb2_mv;
->         u32 micb3_mv;
-> @@ -4196,6 +4197,33 @@ static void wcd938x_dt_parse_micbias_info(struct device *dev, struct wcd938x_pri
->                 dev_info(dev, "%s: Micbias4 DT property not found\n", __func__);
->  }
->
-> +static bool wcd938x_swap_gnd_mic(struct snd_soc_component *component, bool active)
-> +{
-> +       int value;
+On 12/02/2022 00:31, Danilo Krummrich wrote:
+> Convert the ps2-gpio dt-binding documentation to DT schema format using
+> the json-schema.
+> 
+> Signed-off-by: Danilo Krummrich <danilokrummrich@dk-develop.de>
+> ---
+>  .../devicetree/bindings/serio/ps2-gpio.txt    | 23 --------
+>  .../devicetree/bindings/serio/ps2-gpio.yaml   | 52 +++++++++++++++++++
+>  2 files changed, 52 insertions(+), 23 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/serio/ps2-gpio.txt
+>  create mode 100644 Documentation/devicetree/bindings/serio/ps2-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/serio/ps2-gpio.txt b/Documentation/devicetree/bindings/serio/ps2-gpio.txt
+> deleted file mode 100644
+> index 7b7bc9cdf986..000000000000
+> --- a/Documentation/devicetree/bindings/serio/ps2-gpio.txt
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -Device-Tree binding for ps/2 gpio device
+> -
+> -Required properties:
+> -	- compatible = "ps2-gpio"
+> -	- data-gpios: the data pin
+> -	- clk-gpios: the clock pin
+> -	- interrupts: Should trigger on the falling edge of the clock line.
+> -
+> -Optional properties:
+> -	- write-enable: Indicates whether write function is provided
+> -	to serio device. Possibly providing the write fn will not work, because
+> -	of the tough timing requirements.
+> -
+> -Example nodes:
+> -
+> -ps2@0 {
+> -	compatible = "ps2-gpio";
+> -	interrupt-parent = <&gpio>;
+> -	interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
+> -	data-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
+> -	clk-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>;
+> -	write-enable;
+> -};
+> diff --git a/Documentation/devicetree/bindings/serio/ps2-gpio.yaml b/Documentation/devicetree/bindings/serio/ps2-gpio.yaml
+> new file mode 100644
+> index 000000000000..ec6fa7b40851
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serio/ps2-gpio.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serio/ps2-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +       struct wcd938x_priv *wcd938x;
+> +title: Bindings for GPIO based PS/2
 > +
-> +       if (!component) {
-
-So component is NULL
-
-> +               dev_err(component->dev, "%s component is NULL\n", __func__);
-
-And now we deref component. Great NULL pointer exception Batman! Please
-test your code and remove useless checks. It makes the code harder to
-read and slows things down.
-
-> +               return false;
-> +       }
+> +maintainers:
+> +  - Danilo Krummrich <danilokrummrich@dk-develop.de>
 > +
-> +       wcd938x = snd_soc_component_get_drvdata(component);
-> +       if (!wcd938x) {
-> +               dev_err(component->dev, "%s private data is NULL\n", __func__);
+> +properties:
+> +  compatible:
+> +    items:
 
-Is this possible? I doubt it so can we just remove it?
+Hi,
 
-> +               return false;
-> +       }
-> +
-> +       value = gpio_get_value(wcd938x->us_euro_gpio);
-> +
-> +       gpio_set_value(wcd938x->us_euro_gpio, !value);
-> +       /* 20us sleep required after changing the gpio state*/
+I think you do not expect more compatibles, so skip "items".
 
-Add a space before ending comment with */
+> +      - const: ps2-gpio
+> +
+> +  data-gpios:
+> +    description:
+> +      the gpio used for the data signal
+> +    maxItems: 1
+> +
+> +  clk-gpios:
+> +    description:
+> +      the gpio used for the clock signal
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      The given interrupt should trigger on the falling edge of the clock line.
+> +    maxItems: 1
+> +
+> +  write-enable:
 
-> +       usleep_range(20, 30);
-> +
-> +       return true;
-> +}
-> +
-> +
->  static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device *dev)
->  {
->         struct wcd_mbhc_config *cfg = &wcd938x->mbhc_cfg;
-> @@ -4208,6 +4236,16 @@ static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device
->                 return wcd938x->reset_gpio;
->         }
->
-> +       wcd938x->us_euro_gpio = of_get_named_gpio(dev->of_node, "us-euro-gpios", 0);
+This does not look like a standard property. You need "type: boolean".
 
-Why do we need to use of GPIO APIs here? Can this driver be converted to
-use GPIO descriptors via the gpiod APIs?
-
-> +       if (wcd938x->us_euro_gpio < 0) {
-> +               dev_err(dev, "Failed to get us-euro-gpios gpio: err = %d\n", wcd938x->us_euro_gpio);
-> +       } else {
-> +               cfg->swap_gnd_mic = wcd938x_swap_gnd_mic;
-> +               gpio_direction_output(wcd938x->us_euro_gpio, 0);
-> +               /* 20us sleep required after pulling the reset gpio to LOW */
-> +               usleep_range(20, 30);
-> +       }
+> +    description:
+> +      Indicates whether write function is provided to serio device. Possibly
+> +      providing the write function will not work, because of the tough timing
+> +      requirements.
 > +
+> +required:
+
+Also: compatible
+
+> +  - data-gpios
+> +  - clk-gpios
+> +  - interrupts
+> +
+> +examples:
+> +  - |
+> +    ps2@0 {
+
+Does it compile cleanly? You used an unit-address but there is no reg.
+
+> +        compatible = "ps2-gpio";
+> +        interrupt-parent = <&gpio>;
+> +        interrupts = <23 IRQ_TYPE_EDGE_FALLING>;
+> +        data-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
+> +        clk-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>;
+> +        write-enable;
+> +    };
+
+
+Best regards,
+Krzysztof
