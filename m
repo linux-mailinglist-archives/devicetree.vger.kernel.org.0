@@ -2,84 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01E6A4B4014
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 04:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AC104B4056
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 04:36:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239855AbiBNDG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 22:06:58 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47364 "EHLO
+        id S239894AbiBNDgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Feb 2022 22:36:32 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239846AbiBNDG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 22:06:57 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51252C07;
-        Sun, 13 Feb 2022 19:06:49 -0800 (PST)
-X-UUID: ac4f92851c3e4300903f5b40ceba7183-20220214
-X-UUID: ac4f92851c3e4300903f5b40ceba7183-20220214
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <guodong.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 826894078; Mon, 14 Feb 2022 11:06:46 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 14 Feb 2022 11:06:45 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 14 Feb 2022 11:06:43 +0800
-From:   Guodong Liu <guodong.liu@mediatek.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>
-CC:     Sean Wang <sean.wang@mediatek.com>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Guodong Liu <guodong.liu@mediatek.com>
-Subject: [PATCH v4 3/3] pinctrl: canonical rsel resistance selection property
-Date:   Mon, 14 Feb 2022 11:06:31 +0800
-Message-ID: <20220214030631.4969-4-guodong.liu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220214030631.4969-1-guodong.liu@mediatek.com>
-References: <20220214030631.4969-1-guodong.liu@mediatek.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231682AbiBNDgc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 22:36:32 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A860955499;
+        Sun, 13 Feb 2022 19:36:25 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id v4so13301122pjh.2;
+        Sun, 13 Feb 2022 19:36:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=f3jKCxZz79yoCVjIE/GhM4SSk5VSPr4MEx9bSap5HVE=;
+        b=hu5KrUWCd4RCeN8bABh7BbryxBQjFEsBedmue3Ek/yUQx3JT8iv8SM/gRMY1VlZlJT
+         /PiRnXAvxjCb607of/71NYxcO0KF+2Bf8OaVvKeO1lkoJcOJLcaaO2tDQye3GieYyVTY
+         LcpapNw+BoXEzPBhTUinJMxLnewptmgjjyw9sgu5TckNdG6f9ptjNlaayXTR6/Uy1owy
+         IVD8Rv5n+PSPba62WK3V6k0Yr4P4zNCQypzTOmbX0u+drA/FyjrV8da77Wxz9qIXZk+A
+         S5pMiIouPwhQ2WGybyq6S8zsOsloAYs5SQrJ8QnyOtZDDZkPKuojzs03BM2OSHK+huqP
+         VcRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=f3jKCxZz79yoCVjIE/GhM4SSk5VSPr4MEx9bSap5HVE=;
+        b=a/nwAh6s5P9y7jkAmjUHtmemN1ET7VTJHEdnC/5aSP84OT9ZZKoQVX/jBxElxzWHlQ
+         nyaSNB8yeyRVYk0eKCjUmdll+tBk+ynW957fns9wjWdCdtKEVVck7oVY7FfLw0huiJD7
+         J5BbrcQeypVh2bgYcGWejobkHrSgkmBfB86eUBEkWGZjmIp0nYA9kwDGLa1Ob4GVPzJ2
+         jkwua6UHxDLeKnG2IrbHq1w1I91FSJwf11/d4Ju+XnaTf7+SIiPk44wYN/qg/LX7rRal
+         wh5Obvo8r6MLT2E6FMoCD7G0mskw612qRNslQEpDly1PCG6XCyInWWvwmc+6eDiZbpNK
+         HNtg==
+X-Gm-Message-State: AOAM5331gr4toMKYsJulS5siUGlGkEWZWUDx2XS8emhRk9xQHzqFqEzu
+        z7yAMP9Ks3xnfxJgEGFRG58=
+X-Google-Smtp-Source: ABdhPJzLE0eJiTiiQoeFyETOWRfAeP1HZF9TKsnzLgNlg9TPkpXc/mIlJAHFQpPt3kpgz1YB49rhfA==
+X-Received: by 2002:a17:902:ba98:: with SMTP id k24mr12140443pls.44.1644809785129;
+        Sun, 13 Feb 2022 19:36:25 -0800 (PST)
+Received: from localhost.localdomain ([27.7.103.158])
+        by smtp.gmail.com with ESMTPSA id me14sm36012pjb.41.2022.02.13.19.36.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Feb 2022 19:36:24 -0800 (PST)
+From:   Jagath Jog J <jagathjog1996@gmail.com>
+To:     jic23@kernel.org, lars@metafoo.de, andy.shevchenko@gmail.com,
+        sst@poczta.fm, robh+dt@kernel.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] iio: potentiometer: Add support for DS3502
+Date:   Mon, 14 Feb 2022 09:06:16 +0530
+Message-Id: <20220214033620.4059-1-jagathjog1996@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change "mediatek,rsel_resistance_in_si_unit" to
-"mediatek,rsel-resistance-in-si-unit"
+Add dt-bindings and support for Maxim DS3502 into existing ds1803 driver.
+DS3502 is a 7 bit Nonvolatile Digital Potentiometer.
 
-Fixes: fb34a9ae383a ("pinctrl: mediatek: support rsel feature")
-Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
----
- drivers/pinctrl/mediatek/pinctrl-paris.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since v1:
+1. Fixes the alignment to match the open parenthesis in separate patch
+2. Adding available functionality for ds1803 driver in separate patch
+3. Moving maxim_potentiometer members into ds1803_cfg structure
+4. Droping of the INFO_ENABLE channel type
+5. Firmware entry with data is used instead of id->driver_data to
+   to retrieve the chip specific data.
 
-diff --git a/drivers/pinctrl/mediatek/pinctrl-paris.c b/drivers/pinctrl/mediatek/pinctrl-paris.c
-index d4e02c5d74a8..38c0f0c4cf95 100644
---- a/drivers/pinctrl/mediatek/pinctrl-paris.c
-+++ b/drivers/pinctrl/mediatek/pinctrl-paris.c
-@@ -989,7 +989,7 @@ int mtk_paris_pinctrl_probe(struct platform_device *pdev,
- 	hw->nbase = hw->soc->nbase_names;
- 
- 	if (of_find_property(hw->dev->of_node,
--			     "mediatek,rsel_resistance_in_si_unit", NULL))
-+			     "mediatek,rsel-resistance-in-si-unit", NULL))
- 		hw->rsel_si_unit = true;
- 	else
- 		hw->rsel_si_unit = false;
+Jagath Jog J (4):
+  iio: potentiometer: Alignment to match the open parenthesis
+  iio: potentiometer: Add available functionality
+  iio: potentiometer: Add support for Maxim DS3502
+  dt-bindings: iio: potentiometer: Add Maxim DS3502 in trivial-devices
+
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ drivers/iio/potentiometer/Kconfig             |   6 +-
+ drivers/iio/potentiometer/ds1803.c            | 141 +++++++++++++-----
+ 3 files changed, 106 insertions(+), 43 deletions(-)
+
 -- 
-2.25.1
+2.17.1
 
