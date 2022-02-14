@@ -2,305 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9266B4B54CA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:29:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D6D34B54D1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:32:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355869AbiBNP3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 10:29:22 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53142 "EHLO
+        id S230360AbiBNPc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 10:32:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355816AbiBNP3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:29:22 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F13313D3C
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:29:14 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id u1so13720824wrg.11
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:29:13 -0800 (PST)
+        with ESMTP id S1351821AbiBNPcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:32:24 -0500
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE2347567
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:32:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=82zctBdAR+xxKfzKfqIvB015sU9OBDs6azQtyHWTspY=;
-        b=NRzeTBcVEemSJSxDheG8JbsWM7NHqBHERZ27+hzZzs5XoLMw8rcXaOX3rc+PHdBqDT
-         OmKDymBupJtKToIyciZATUWT+NitYIRPbj1iO6Q9I5XzIDWZJmOxSnafWjoWTLuxKYg0
-         yl1n5c0yOq9KQ/1SyNJ6azHmRpm0b8akaTSm9MLPz9uL8dY3H0lYivvm1tfL9d3hZ1dV
-         fi3wI0DJ0RRz1zi2ZoF7uRdsqLfpAu53CADSDWF2HYw5aHPLppwJEW3Vlo2PtyMTxXpM
-         kNlQrCXmz2hMSO5II/f7Cg3i7k8o6Ex9G7eDtTOkMvaA7f4F6MTuS4QqPtdaGc0BU/Kl
-         +P3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=82zctBdAR+xxKfzKfqIvB015sU9OBDs6azQtyHWTspY=;
-        b=JHtnQpBg5Eipvua3pYSOAP0nUhJGOCN//E69DNxaaH3SYG48AfW1pseF5ACia6GJM7
-         O5+MOAeTTcfxxZv7uqtWk1+MKfnvd64/UBxrrNMn5fzxKSjVNHJ1EKTXQEPVYHKFSnK7
-         AdO4NcFuBguyQGgne84SgjfiY/TsynSAirS6Ut6joP+lcSohfjSUajHaaSYYUBMByof3
-         GwjG+l2zzNuj3jUJ1lug9grsJ4sjpu0Z0jWaF0O20sN5e26vQe9f96KTTNNU6KK5O25p
-         +tnkvMygPDzD/srhzSZKL9ZqMY/iym0HfEejXyDe8cnEnuruQ9DMvpe4uY1/pikCobP0
-         MkHw==
-X-Gm-Message-State: AOAM532CizWmBt7tREm8GDa/W/MlYZ/emLBV46TGomSX0L4fGvD3TyuY
-        o4Alq3wytCSRWnSYz9HFa+RTZw==
-X-Google-Smtp-Source: ABdhPJxv1I3Nl4Zdh+K87qCrxt+Jbam4j8djzc+9cgVDciCDhq8pbn2scWl8lsHaUf/FPKgCJfFNgQ==
-X-Received: by 2002:a5d:598a:: with SMTP id n10mr108949wri.661.1644852552536;
-        Mon, 14 Feb 2022 07:29:12 -0800 (PST)
-Received: from localhost.localdomain ([2a01:e0a:82c:5f0:682b:4712:4b40:6814])
-        by smtp.gmail.com with ESMTPSA id w3sm30657229wra.67.2022.02.14.07.29.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 14 Feb 2022 07:29:12 -0800 (PST)
-From:   Loic Poulain <loic.poulain@linaro.org>
-To:     dmitry.baryshkov@linaro.org, robdclark@gmail.com,
-        robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
-        Loic Poulain <loic.poulain@linaro.org>
-Subject: [PATCH v3 2/2] dt-bindings: msm: disp: add yaml schemas for QCM2290 DPU bindings
-Date:   Mon, 14 Feb 2022 16:29:07 +0100
-Message-Id: <1644852547-10067-2-git-send-email-loic.poulain@linaro.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1644852547-10067-1-git-send-email-loic.poulain@linaro.org>
-References: <1644852547-10067-1-git-send-email-loic.poulain@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+  d=axis.com; q=dns/txt; s=axis-central1; t=1644852736;
+  x=1676388736;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=/7n42tcMiMRbVcTW1aHC807eu20R0tSFw2BM43WSADc=;
+  b=pSSczEvEhZSiqGD2fHq3I6PAlnWMztDbICT5O0g/WLWKv8RwK3VJRRNB
+   6RgizMFdsQ1onwr9Z7hDW4dO8KgbGGXLyt78NDBh4oA3ykiu/6twQ0r9P
+   V8S5Vcg7WNc+oqIxKWhctC/UIgz75WdG4zEbFMTDUocMT44UDZJ7fmIu2
+   xr8RWu/8PZG3iHXSMBcW2ef4mIihcPi8GpAEGVvVL7DHGjhjuGivMEBhq
+   BJJYTx8aEoxCg4WEuSL/fgBdHy1oj+1NZiJ6zCVw9p+Rk9k2CKGM52vnZ
+   9pF5czT6t/GwNj82awnhk/Jsasc2iuUNY86tFCd8txo7opOB/6ipJLfyp
+   A==;
+From:   =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
+        =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
+Subject: [PATCH v2] of: dma_configure: Reuse existing DMA map range
+Date:   Mon, 14 Feb 2022 16:32:08 +0100
+Message-ID: <20220214153208.2984026-1-marten.lindahl@axis.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QCM2290 MSM Mobile Display Subsystem (MDSS) encapsulates sub-blocks
-like DPU display controller, DSI etc. Add YAML schema for DPU device
-tree bindings
+When unbinding/binding a driver with DMA mapped memory, the DMA map is
+not freed when the driver is reloaded. This leads to a memory leak when
+the DMA map is overwritten when reprobing the driver.
 
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+This can be reproduced with a platform driver having a dma-range:
+
+dummy {
+	...
+	#address-cells = <0x2>;
+	#size-cells = <0x2>;
+	ranges;
+	dma-ranges = <...>;
+	...
+};
+
+and then unbinding/binding it:
+
+~# echo soc:dummy >/sys/bus/platform/drivers/<driver>/unbind
+
+DMA map object 0xffffff800b0ae540 still being held by &pdev->dev
+
+~# echo soc:dummy >/sys/bus/platform/drivers/<driver>/bind
+~# echo scan > /sys/kernel/debug/kmemleak
+~# cat /sys/kernel/debug/kmemleak
+unreferenced object 0xffffff800b0ae540 (size 64):
+  comm "sh", pid 833, jiffies 4295174550 (age 2535.352s)
+  hex dump (first 32 bytes):
+    00 00 00 80 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 80 00 00 00 00 00 00 00 80 00 00 00 00  ................
+  backtrace:
+    [<ffffffefd1694708>] create_object.isra.0+0x108/0x344
+    [<ffffffefd1d1a850>] kmemleak_alloc+0x8c/0xd0
+    [<ffffffefd167e2d0>] __kmalloc+0x440/0x6f0
+    [<ffffffefd1a960a4>] of_dma_get_range+0x124/0x220
+    [<ffffffefd1a8ce90>] of_dma_configure_id+0x40/0x2d0
+    [<ffffffefd198b68c>] platform_dma_configure+0x5c/0xa4
+    [<ffffffefd198846c>] really_probe+0x8c/0x514
+    [<ffffffefd1988990>] __driver_probe_device+0x9c/0x19c
+    [<ffffffefd1988cd8>] device_driver_attach+0x54/0xbc
+    [<ffffffefd1986634>] bind_store+0xc4/0x120
+    [<ffffffefd19856e0>] drv_attr_store+0x30/0x44
+    [<ffffffefd173c9b0>] sysfs_kf_write+0x50/0x60
+    [<ffffffefd173c1c4>] kernfs_fop_write_iter+0x124/0x1b4
+    [<ffffffefd16a013c>] new_sync_write+0xdc/0x160
+    [<ffffffefd16a256c>] vfs_write+0x23c/0x2a0
+    [<ffffffefd16a2758>] ksys_write+0x64/0xec
+
+Don't get a new dma_range_map if there already is one. Check for an
+existing map and reuse it, or else get the map as before. This will
+prevent overwriting the old map which is still valid.
+
+Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
 ---
- v2: no change
- v3: no change (resent with reviewed-by + freedreno list)
 
- .../bindings/display/msm/dpu-qcm2290.yaml          | 214 +++++++++++++++++++++
- 1 file changed, 214 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+v2:
+ - Reuse range map instead of getting a new and freeing the old.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-new file mode 100644
-index 00000000..8766b13
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-@@ -0,0 +1,214 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/msm/dpu-qcm2290.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+ drivers/of/device.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index 874f031442dc..7e5d8066ffff 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -116,9 +116,14 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+ 	u64 dma_start = 0;
+ 	u64 mask, end, size = 0;
+ 	bool coherent;
+-	int ret;
++	int ret = 0;
 +
-+title: Qualcomm Display DPU dt properties for QCM2290 target
-+
-+maintainers:
-+  - Loic Poulain <loic.poulain@linaro.org>
-+
-+description: |
-+  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
-+  sub-blocks like DPU display controller and DSI. Device tree bindings of MDSS
-+  and DPU are mentioned for QCM2290 target.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: qcom,qcm2290-mdss
-+
-+  reg:
-+    maxItems: 1
-+
-+  reg-names:
-+    const: mdss
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Display AHB clock from gcc
-+      - description: Display AXI clock
-+      - description: Display core clock
-+
-+  clock-names:
-+    items:
-+      - const: iface
-+      - const: bus
-+      - const: core
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#address-cells": true
-+
-+  "#size-cells": true
-+
-+  "#interrupt-cells":
-+    const: 1
-+
-+  iommus:
-+    items:
-+      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port0
-+      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port1
-+
-+  ranges: true
-+
-+  interconnects:
-+    items:
-+      - description: Interconnect path specifying the port ids for data bus
-+
-+  interconnect-names:
-+    const: mdp0-mem
-+
-+patternProperties:
-+  "^display-controller@[0-9a-f]+$":
-+    type: object
-+    description: Node containing the properties of DPU.
-+
-+    properties:
-+      compatible:
-+        items:
-+          - const: qcom,qcm2290-dpu
-+
-+      reg:
-+        items:
-+          - description: Address offset and size for mdp register set
-+          - description: Address offset and size for vbif register set
-+
-+      reg-names:
-+        items:
-+          - const: mdp
-+          - const: vbif
-+
-+      clocks:
-+        items:
-+          - description: Display AXI clock from gcc
-+          - description: Display AHB clock from dispcc
-+          - description: Display core clock from dispcc
-+          - description: Display lut clock from dispcc
-+          - description: Display vsync clock from dispcc
-+
-+      clock-names:
-+        items:
-+          - const: bus
-+          - const: iface
-+          - const: core
-+          - const: lut
-+          - const: vsync
-+
-+      interrupts:
-+        maxItems: 1
-+
-+      power-domains:
-+        maxItems: 1
-+
-+      operating-points-v2: true
-+
-+      ports:
-+        $ref: /schemas/graph.yaml#/properties/ports
-+        description: |
-+          Contains the list of output ports from DPU device. These ports
-+          connect to interfaces that are external to the DPU hardware,
-+          such as DSI. Each output port contains an endpoint that
-+          describes how it is connected to an external interface.
-+
-+        properties:
-+          port@0:
-+            $ref: /schemas/graph.yaml#/properties/port
-+            description: DPU_INTF1 (DSI1)
-+
-+        required:
-+          - port@0
-+
-+    required:
-+      - compatible
-+      - reg
-+      - reg-names
-+      - clocks
-+      - interrupts
-+      - power-domains
-+      - operating-points-v2
-+      - ports
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - power-domains
-+  - clocks
-+  - interrupts
-+  - interrupt-controller
-+  - iommus
-+  - ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
-+    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interconnect/qcom,qcm2290.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    mdss: mdss@5e00000 {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        compatible = "qcom,qcm2290-mdss", "qcom,mdss";
-+        reg = <0x05e00000 0x1000>;
-+        reg-names = "mdss";
-+        power-domains = <&dispcc MDSS_GDSC>;
-+        clocks = <&gcc GCC_DISP_AHB_CLK>,
-+                 <&gcc GCC_DISP_HF_AXI_CLK>,
-+                 <&dispcc DISP_CC_MDSS_MDP_CLK>;
-+        clock-names = "iface", "bus", "core";
-+
-+        interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+
-+        interconnects = <&mmrt_virt MASTER_MDP0 &bimc SLAVE_EBI1>;
-+        interconnect-names = "mdp0-mem";
-+
-+        iommus = <&apps_smmu 0x420 0x2>,
-+                 <&apps_smmu 0x421 0x0>;
-+        ranges;
-+
-+        mdss_mdp: mdp@5e01000 {
-+                compatible = "qcom,qcm2290-dpu";
-+                reg = <0x05e01000 0x8f000>,
-+                      <0x05eb0000 0x2008>;
-+                reg-names = "mdp", "vbif";
-+
-+                clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-+                         <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+                         <&dispcc DISP_CC_MDSS_MDP_CLK>,
-+                         <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
-+                         <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+                clock-names = "bus", "iface", "core", "lut", "vsync";
-+
-+                operating-points-v2 = <&mdp_opp_table>;
-+                power-domains = <&rpmpd QCM2290_VDDCX>;
-+
-+                interrupt-parent = <&mdss>;
-+                interrupts = <0 IRQ_TYPE_NONE>;
-+
-+                ports {
-+                        #address-cells = <1>;
-+                        #size-cells = <0>;
-+
-+                        port@0 {
-+                                reg = <0>;
-+                                dpu_intf1_out: endpoint {
-+                                        remote-endpoint = <&dsi0_in>;
-+                                };
-+                        };
-+                 };
-+         };
-+...
++	/* Don't get a new DMA range map if we already have one */
++	if (dev->dma_range_map)
++		map = dev->dma_range_map;
++	else
++		ret = of_dma_get_range(np, &map);
+ 
+-	ret = of_dma_get_range(np, &map);
+ 	if (ret < 0) {
+ 		/*
+ 		 * For legacy reasons, we have to assume some devices need
 -- 
-2.7.4
+2.30.2
 
