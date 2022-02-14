@@ -2,212 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D7274B5436
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B66964B5477
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:20:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355623AbiBNPJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 10:09:38 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38978 "EHLO
+        id S1351348AbiBNPU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 10:20:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243886AbiBNPJh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:09:37 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92D7249F9D;
-        Mon, 14 Feb 2022 07:09:29 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F0402B810D5;
-        Mon, 14 Feb 2022 15:09:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E123C340EE;
-        Mon, 14 Feb 2022 15:09:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644851366;
-        bh=vWuN80VnIBztWgeDcbeMKNKCUZn+QCttNnaHfSaAfAU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tj18vLnywNyMG997rkbOL01uMlg5EitPEjGNsuHfyXI+RpsMB4hDPeyT9xBRq22ZD
-         Rcmj9as0roKC6x/0an4ackTFBVEBSvJwWC8lmLE5Oz1GX2XsjtJxh2vxUPjog3O4Bt
-         znq6Q/EFfrmCNVeDH5uiVp0Qvcp/O1nPhw5eqSe+1Ys6vnJMKx9DcWC+qGIvJN/0sy
-         O2v3en+YFl8hNyJDkBY44ponNICcWZneLoudOBrLyxeV/NNCqoZx1ezn7YrhCx7Gor
-         Qr+F2HTSEwALSm/Doyf6cvz0aDpg3+LyUi+hwpx7rYKtFMyzpQbia+v8/3CAplRrwl
-         hDnYmwGdSeuFg==
-Received: by pali.im (Postfix)
-        id A4EADCAA; Mon, 14 Feb 2022 16:09:23 +0100 (CET)
-Date:   Mon, 14 Feb 2022 16:09:23 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 11/11] ARM: dts: armada-385.dtsi: Add definitions for
- PCIe legacy INTx interrupts
-Message-ID: <20220214150923.a5ttxoh426cfxn4v@pali>
-References: <20220105150239.9628-1-pali@kernel.org>
- <20220112151814.24361-1-pali@kernel.org>
- <20220112151814.24361-12-pali@kernel.org>
- <87wnhxjxlq.fsf@BL-laptop>
+        with ESMTP id S232806AbiBNPUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:20:25 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DC3219C25;
+        Mon, 14 Feb 2022 07:20:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1644852017; x=1676388017;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=zcRPXIrxXAZZZpEcrj3ktA2xCMYxeY+0zvFuMdjbo+o=;
+  b=UOcOy16tYKUvPJgKc2LUSis+/7G/7buIJQDwC6i9CZt0qXSlsX6e0lE4
+   Bp64+8KzRZGxKPTWl9YSDUsOCjn7C1aqDEThdcfhhuhLP3NdmwFMW4AA5
+   48Jh3/K+GrWF75L3ahXSNkLavt/UdvZoyIW6nOkX/kWgqMF4Y/TZJ0dtt
+   Y=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 14 Feb 2022 07:20:17 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 07:20:16 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Mon, 14 Feb 2022 07:20:16 -0800
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 14 Feb 2022 07:20:10 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
+        <perex@perex.cz>, <tiwai@suse.com>,
+        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v6 0/7] Add pin control support for lpass sc7280
+Date:   Mon, 14 Feb 2022 20:49:47 +0530
+Message-ID: <1644851994-22732-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87wnhxjxlq.fsf@BL-laptop>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 14 February 2022 16:07:13 Gregory CLEMENT wrote:
-> Hello Pali,
-> 
-> > With this change legacy INTA, INTB, INTC and INTD interrupts are reported
-> > separately and not mixed into one Linux virq source anymore.
-> >
-> > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > ---
-> >  arch/arm/boot/dts/armada-385.dtsi | 52 ++++++++++++++++++++++++++-----
-> 
-> Is there any reason for not doing the same change in armada-380.dtsi ?
+This patch series is to split lpass variant common pin control
+functions and SoC specific functions and to add lpass sc7280 pincontrol support.
+It also Adds dt-bindings for lpass sc7280 lpass lpi pincontrol.
 
-I do not have A380 HW, so I did this change only for A385 which I have tested.
+Changes Since V5:
+    -- Create new patch by updating macro name to lpi specific.
+    -- Create new patch by updating lpi pin group structure with core group_desc structure.
+    -- Fix typo errors.
+    -- Sort macros in the make file and configuration file.
+Changes Since V4:
+    -- Update commit message and description of the chip specific extraction patch.
+    -- Sort macros in kconfig and makefile.
+    -- Update optional clock voting to conditional clock voting.
+    -- Fix typo errors.
+    -- Move to quicinc domain email id's.
+Changes Since V3:
+    -- Update separate Kconfig fields for sm8250 and sc7280.
+    -- Update module license and description.
+    -- Move static variables to corresponding .c files from header file.
 
-> Grégory
-> 
-> >  1 file changed, 44 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/armada-385.dtsi b/arch/arm/boot/dts/armada-385.dtsi
-> > index f0022d10c715..83392b92dae2 100644
-> > --- a/arch/arm/boot/dts/armada-385.dtsi
-> > +++ b/arch/arm/boot/dts/armada-385.dtsi
-> > @@ -69,16 +69,25 @@
-> >  				reg = <0x0800 0 0 0 0>;
-> >  				#address-cells = <3>;
-> >  				#size-cells = <2>;
-> > +				interrupt-names = "intx";
-> > +				interrupts-extended = <&gic GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-> >  				#interrupt-cells = <1>;
-> >  				ranges = <0x82000000 0 0 0x82000000 0x1 0 1 0
-> >  					  0x81000000 0 0 0x81000000 0x1 0 1 0>;
-> >  				bus-range = <0x00 0xff>;
-> > -				interrupt-map-mask = <0 0 0 0>;
-> > -				interrupt-map = <0 0 0 0 &gic GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-> > +				interrupt-map-mask = <0 0 0 7>;
-> > +				interrupt-map = <0 0 0 1 &pcie1_intc 0>,
-> > +						<0 0 0 2 &pcie1_intc 1>,
-> > +						<0 0 0 3 &pcie1_intc 2>,
-> > +						<0 0 0 4 &pcie1_intc 3>;
-> >  				marvell,pcie-port = <0>;
-> >  				marvell,pcie-lane = <0>;
-> >  				clocks = <&gateclk 8>;
-> >  				status = "disabled";
-> > +				pcie1_intc: interrupt-controller {
-> > +					interrupt-controller;
-> > +					#interrupt-cells = <1>;
-> > +				};
-> >  			};
-> >  
-> >  			/* x1 port */
-> > @@ -88,16 +97,25 @@
-> >  				reg = <0x1000 0 0 0 0>;
-> >  				#address-cells = <3>;
-> >  				#size-cells = <2>;
-> > +				interrupt-names = "intx";
-> > +				interrupts-extended = <&gic GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> >  				#interrupt-cells = <1>;
-> >  				ranges = <0x82000000 0 0 0x82000000 0x2 0 1 0
-> >  					  0x81000000 0 0 0x81000000 0x2 0 1 0>;
-> >  				bus-range = <0x00 0xff>;
-> > -				interrupt-map-mask = <0 0 0 0>;
-> > -				interrupt-map = <0 0 0 0 &gic GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> > +				interrupt-map-mask = <0 0 0 7>;
-> > +				interrupt-map = <0 0 0 1 &pcie2_intc 0>,
-> > +						<0 0 0 2 &pcie2_intc 1>,
-> > +						<0 0 0 3 &pcie2_intc 2>,
-> > +						<0 0 0 4 &pcie2_intc 3>;
-> >  				marvell,pcie-port = <1>;
-> >  				marvell,pcie-lane = <0>;
-> >  				clocks = <&gateclk 5>;
-> >  				status = "disabled";
-> > +				pcie2_intc: interrupt-controller {
-> > +					interrupt-controller;
-> > +					#interrupt-cells = <1>;
-> > +				};
-> >  			};
-> >  
-> >  			/* x1 port */
-> > @@ -107,16 +125,25 @@
-> >  				reg = <0x1800 0 0 0 0>;
-> >  				#address-cells = <3>;
-> >  				#size-cells = <2>;
-> > +				interrupt-names = "intx";
-> > +				interrupts-extended = <&gic GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
-> >  				#interrupt-cells = <1>;
-> >  				ranges = <0x82000000 0 0 0x82000000 0x3 0 1 0
-> >  					  0x81000000 0 0 0x81000000 0x3 0 1 0>;
-> >  				bus-range = <0x00 0xff>;
-> > -				interrupt-map-mask = <0 0 0 0>;
-> > -				interrupt-map = <0 0 0 0 &gic GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
-> > +				interrupt-map-mask = <0 0 0 7>;
-> > +				interrupt-map = <0 0 0 1 &pcie3_intc 0>,
-> > +						<0 0 0 2 &pcie3_intc 1>,
-> > +						<0 0 0 3 &pcie3_intc 2>,
-> > +						<0 0 0 4 &pcie3_intc 3>;
-> >  				marvell,pcie-port = <2>;
-> >  				marvell,pcie-lane = <0>;
-> >  				clocks = <&gateclk 6>;
-> >  				status = "disabled";
-> > +				pcie3_intc: interrupt-controller {
-> > +					interrupt-controller;
-> > +					#interrupt-cells = <1>;
-> > +				};
-> >  			};
-> >  
-> >  			/*
-> > @@ -129,16 +156,25 @@
-> >  				reg = <0x2000 0 0 0 0>;
-> >  				#address-cells = <3>;
-> >  				#size-cells = <2>;
-> > +				interrupt-names = "intx";
-> > +				interrupts-extended = <&gic GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
-> >  				#interrupt-cells = <1>;
-> >  				ranges = <0x82000000 0 0 0x82000000 0x4 0 1 0
-> >  					  0x81000000 0 0 0x81000000 0x4 0 1 0>;
-> >  				bus-range = <0x00 0xff>;
-> > -				interrupt-map-mask = <0 0 0 0>;
-> > -				interrupt-map = <0 0 0 0 &gic GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
-> > +				interrupt-map-mask = <0 0 0 7>;
-> > +				interrupt-map = <0 0 0 1 &pcie4_intc 0>,
-> > +						<0 0 0 2 &pcie4_intc 1>,
-> > +						<0 0 0 3 &pcie4_intc 2>,
-> > +						<0 0 0 4 &pcie4_intc 3>;
-> >  				marvell,pcie-port = <3>;
-> >  				marvell,pcie-lane = <0>;
-> >  				clocks = <&gateclk 7>;
-> >  				status = "disabled";
-> > +				pcie4_intc: interrupt-controller {
-> > +					interrupt-controller;
-> > +					#interrupt-cells = <1>;
-> > +				};
-> >  			};
-> >  		};
-> >  	};
-> > -- 
-> > 2.20.1
-> >
-> 
-> -- 
-> Gregory Clement, Bootlin
-> Embedded Linux and Kernel engineering
-> http://bootlin.com
+Changes Since V2:
+    -- Add new dt-bindings for sc7280 lpi driver.
+    -- Make clock voting change as separate patch.
+    -- Split existing pincontrol driver and make common functions 
+       as part of separate file.
+    -- Rename lpass pincontrol lpi dt-bindings to sm8250 specific dt-bindings
+		
+Changes Since V1:
+    -- Make lpi pinctrl variant data structure as constant
+    -- Add appropriate commit message
+    -- Change signedoff by sequence.
+
+Srinivasa Rao Mandadapu (7):
+  dt-bindings: pinctrl: qcom: Update lpass lpi file name to SoC specific
+  dt-bindings: pinctrl: qcom: Add sc7280 lpass lpi pinctrl bindings
+  pinctrl: qcom: Update macro name to LPI specific
+  pinctrl: qcom: Update lpi pin group structure
+  pinctrl: qcom: Extract chip specific LPASS LPI code
+  pinctrl: qcom: Add SC7280 lpass pin configuration
+  pinctrl: qcom: Update clock voting as optional
+
+ .../bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml   | 133 -----------
+ .../pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml     | 115 +++++++++
+ .../pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml     | 133 +++++++++++
+ drivers/pinctrl/qcom/Kconfig                       |  16 ++
+ drivers/pinctrl/qcom/Makefile                      |   2 +
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.c           | 257 ++-------------------
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.h           |  87 +++++++
+ drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c    | 170 ++++++++++++++
+ drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c    | 166 +++++++++++++
+ 9 files changed, 706 insertions(+), 373 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c
+
+-- 
+2.7.4
+
