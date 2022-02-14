@@ -2,76 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18FCA4B52FB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 15:18:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC8D64B5374
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 15:38:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355041AbiBNORv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 09:17:51 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53836 "EHLO
+        id S1355223AbiBNOhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 09:37:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355048AbiBNORt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 09:17:49 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7514A3F8
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 06:17:41 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id d27so27113252wrc.6
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 06:17:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=ln2uKU+vMAyRV7UsLvWBhWdQgf4eoy4B8mnlBh7Uf4U=;
-        b=T3wz3eCfR4tmrh0J4vy9sCp8J/jWIy5urKk6OO+cbCvyUbRGqP+i7nWcAg+4+AFO56
-         efMVlkNlLVf5dyJ55keCtaW5IeVN/wZa6mDMknpCo9YrruU3Na5DTtj/E64R8K+MyatB
-         GaYPPqu0t+7A+Ly1FCB5CGYul82Nyi3QWjgLOqC1Wx3LNNuOiqq19axcbeRXvlJLtyIT
-         wAbGVXVwM92TBH+Gu7+1O0EHWUbcGE938fc7zurGcZnjA3okbevlx5hklAnzhxNyL5zM
-         nt76eOh6Sg2mkJEgeTiXPIkMBHJh39svmpY2XgJhs6jWeND7ORQ67Hohn+YByQkCEGOJ
-         XP7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=ln2uKU+vMAyRV7UsLvWBhWdQgf4eoy4B8mnlBh7Uf4U=;
-        b=Y40ynDi6obRxrPRgv69nD1Br5h1LlZkXfi5cEKqD6NERsBYvlyrCVSg/h+mKVZMekR
-         hfQsTQQpyssrElDej4ZuudbZKGcvdvFgLFWDWGgICyJBBh7ETnj4TjYUWkZChZnV0hwc
-         nKraC40vEk6i/0nXKAE/y8DeoFu7TQKMU09X5aE6BPGHHKByytKcB3KUYPb0pqknFYAF
-         v2WoXd+cjK+s3Lm/v9YpOa9qrc/UW7M+dfp9knUnnitRbVo9+WDs+JRiGn/8K3/bAZgE
-         g8HWmB3ThdWcK6ZsWTeX3Jff85Xc1cvgd1lkIO+mavVMECP30IBAeQ4q36buG2fXWuRA
-         2Pqw==
-X-Gm-Message-State: AOAM531bGagqwhU984sgjwz+Fyvk4Lp1YS3eIxUEZOLEZMBgBk02URqq
-        5fsloE0KKdgRgmadaTPiT8ZAHw==
-X-Google-Smtp-Source: ABdhPJzuSHlgADVOkpRdKXvOYxCnoS/c5megiAinBNNs6xCgR6iJuRaS9XBuz50TVKdsIMN2FiYdDQ==
-X-Received: by 2002:adf:dc08:: with SMTP id t8mr11534462wri.40.1644848259878;
-        Mon, 14 Feb 2022 06:17:39 -0800 (PST)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id y10sm11966398wmi.47.2022.02.14.06.17.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Feb 2022 06:17:39 -0800 (PST)
-Date:   Mon, 14 Feb 2022 14:17:37 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: power: supply: maxim,max14577:
- convert to dtschema
-Message-ID: <YgpkgSmxAWCNHW9l@google.com>
-References: <20220111174337.223320-1-krzysztof.kozlowski@canonical.com>
- <20220111174337.223320-3-krzysztof.kozlowski@canonical.com>
- <20220112112905.n6zb36kwop2kfm2n@earth.universe>
+        with ESMTP id S1355221AbiBNOhy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 09:37:54 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43CB488B3;
+        Mon, 14 Feb 2022 06:37:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 698D5B80EB5;
+        Mon, 14 Feb 2022 14:37:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7992DC340EE;
+        Mon, 14 Feb 2022 14:37:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644849464;
+        bh=7uGTSlji43xblW8vzuNtXrxrIzg7u5IZDnAHQMRFfy0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CuBxlbtWemgT9gDaejkAssU7jfN57PVaadz8VR1/p+T1VR2mPKt5001xMXDQWXDoC
+         db4C2ADVZuMy61WeD1Ur7v6j88sJfYbDQrnv9jfxFCJYbDKpaPIhXBOrg9c6bUyS2q
+         3aDzA/Fg9T+sKtdugn5mCUFPNQeEAUNpgVuMOavckr1EZ6cWAigtfRA9JZuFbrDNHI
+         HnivbFqYa4cAnV1y78PtHfeXOfcOdYwPiaxjsz3Nddk96zPbgoBRT1vKNf19fT/Gs2
+         2qzj/VHdDYD/7LNt1az7uqKiKvDqeNVfKhtgxzAU2V2hZKLqXfo0WDiXE9mNNPyMro
+         a2O+CQ4kijoUw==
+Date:   Mon, 14 Feb 2022 14:37:37 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v13 07/10] ASoC: qcom: Add support for codec dma driver
+Message-ID: <YgppMcVjs0KuE5y8@sirena.org.uk>
+References: <1644832778-16064-1-git-send-email-quic_srivasam@quicinc.com>
+ <1644832778-16064-2-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ENCpgcVgsVe4ho/f"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220112112905.n6zb36kwop2kfm2n@earth.universe>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <1644832778-16064-2-git-send-email-quic_srivasam@quicinc.com>
+X-Cookie: Am I in GRADUATE SCHOOL yet?
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,27 +62,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jan 2022, Sebastian Reichel wrote:
 
-> Hi,
-> 
-> On Tue, Jan 11, 2022 at 06:43:35PM +0100, Krzysztof Kozlowski wrote:
-> > Convert the Charger bindings of Maxim MAX14577/MAX77836 MUIC to DT
-> > schema format.  The existing bindings were defined in
-> > ../bindings/mfd/max14577.txt.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> 
-> I expect this to be merged through MFD:
-> 
-> Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+--ENCpgcVgsVe4ho/f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Do you need a PR?
+On Mon, Feb 14, 2022 at 03:29:38PM +0530, Srinivasa Rao Mandadapu wrote:
+> Upadate lpass cpu and platform driver to support audio over codec dma
+> in ADSP bypass use case.
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+I only have this patch from both v12 and v13, which were sent very close
+together.  Please check what's going on here.
+
+--ENCpgcVgsVe4ho/f
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIKaTAACgkQJNaLcl1U
+h9Cwdwf8CJGx4PtC4wR4ufOx84pwuwbbYynp2DcpVJFjC76NcVBhaEqx19667vck
+WsmU8Jp4CNLYKBy05Vg4iKOpEH55eT28aHvN0AmgM3UiYylekQz2Z2gj+4LJ83bS
+KFdPwNtMOsAO0sqmvhm3UZTw5kN7vGvyTzUkox1IXyLe+xRvaEDvX6gOYsjPwXo9
+v8K/ibp00fXbkeLM7XhPMqfOYUtincOOFKv2naoBer3Uw24NO2xcXV3TYFg7lsNo
+Fsc0Z1xxrwkEqBWNm1zT3X3i0hc2ElKbqZvF0GkMVoqPEFH0dGUw4Bfb+EaLyAM6
+YtCrzLveyRc73XEAOFVPoz6S4aq+Hg==
+=8TpA
+-----END PGP SIGNATURE-----
+
+--ENCpgcVgsVe4ho/f--
