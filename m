@@ -2,108 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F2904B5773
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 17:54:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBDA24B578B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 17:59:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238525AbiBNQyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 11:54:13 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34886 "EHLO
+        id S241779AbiBNQ7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 11:59:11 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231289AbiBNQyM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 11:54:12 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 157B865149
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 08:54:04 -0800 (PST)
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id EC55D3F1E3
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 16:54:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644857642;
-        bh=Z4S/EJbvQ1weqsHWE/JQuNYq7y3Ue8zFIgR4/tFO2mA=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=J0qkiwb6AibsOrSjn/aEavL3of8cxZDZue0oxMGcMbYUUqHCVMjWfyunYxmlUqho4
-         1weusaZwbF42fsAd24g72p+sQDNXg3JGt4xJC5dXGaJ2CgjEp70LHdPLCYtgw8gqmZ
-         Ehnhw/LfLy+rqLw8NiJMZw4Aat1+jB8/VtqC9xhvH5aD+jA3SdPYtiXck2Xtg99ZPW
-         atpff4/eP+lNEWJz4SC17FiM9Cgs2ptWBoNJJKQWxttz4k64cs313j1C1EE/fj6QxY
-         WymKBKH0BNoOVsH1RF8QfKQ2HqINbRcZtQFmeSWQ8MNjlJEhPEemOiSDdvOz3ymGzT
-         UcE3Ameh4aJbw==
-Received: by mail-wm1-f72.google.com with SMTP id i188-20020a1c3bc5000000b0037bb9f6feeeso3598043wma.5
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 08:54:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Z4S/EJbvQ1weqsHWE/JQuNYq7y3Ue8zFIgR4/tFO2mA=;
-        b=GCTmci49zP+8qugK3ZImwrDiYYOApEI3SGHMrh6IzgHzXSCnlxgyuJ6w+EMUnYnytm
-         nOQOFKyIjHjUi3bL8qqNykuUSxhfj6LsAXADpenDObv2KlJRgS4pAMzC9VGj6l58ZXwk
-         NqdTM4KSaOQyQIw3v6TL3pjE3yv3GLUt98gD8JURNVWfHK10vdT2dv23aTgc3jB0NyHW
-         H6fhQFF7unSyfKch2L+deCvdXW+hICe9YT+fBMzVsEI8Ff6e1uFvp71k1F8s7VfkRx2E
-         mQ6llfchwWCjYfl6edeLcYVzTBffr9JaOFzhJu+6GIWKdj/xq4k6r9iwssMOLWo8cRqX
-         1liA==
-X-Gm-Message-State: AOAM530PLXFLCWDoqnjRf+JauPN4oVijt21NsksIm1EpJ4s8ptlNLmDw
-        Z/EXm1AhQmIoP85FMkVfBptxWlkNTb+QfpIfAKaF2PDRc8CRHAJrV0k4YGML76ociSpxD/YrTLP
-        BhzoCBo/kCP26uqRs0LW8py1q3dPwRtV0+SXx7KI=
-X-Received: by 2002:a5d:4485:: with SMTP id j5mr406254wrq.495.1644857642744;
-        Mon, 14 Feb 2022 08:54:02 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzSf3b2QSKeODIAdKKEC369EQy5hjdyp/pGhW6kuWrBv4X2cL2F9qX6q7z2Gv0yC52ifPjbYQ==
-X-Received: by 2002:a5d:4485:: with SMTP id j5mr406243wrq.495.1644857642592;
-        Mon, 14 Feb 2022 08:54:02 -0800 (PST)
-Received: from [192.168.0.106] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id y17sm12488792wma.5.2022.02.14.08.54.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Feb 2022 08:54:01 -0800 (PST)
-Message-ID: <79ecad6e-d9c9-c798-0933-43da4dff9dd6@canonical.com>
-Date:   Mon, 14 Feb 2022 17:54:01 +0100
+        with ESMTP id S239135AbiBNQ7L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 11:59:11 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBD06515B
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 08:59:02 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: alyssa)
+        with ESMTPSA id 927161F43B06
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1644857941;
+        bh=KOMYlczqCUUgeBE8RWdUWTc/oyxfXhKnikuX3b7RqAU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UVtWRZ/sTdMhiK7PS2PDQY0rB3/ut2g+vYHXlH1+9NBSa+UX4/aLTyKNXOPHGzuU8
+         ZPIoWfF8e+/jbAwlzpsY5BTNN1TuRGOA65WTk+4VWFAkJqgH6bdpXR0OomI3s/A6w2
+         xipKsTpK+Dqu7s5t2hUSnfnA4ZIWe0HQ4BXGCcLcNEwX9kJVq97LiWSGoi1k96/gro
+         64Hhc/Fr+mPs449TaK1aM16xiaEYYgZoVo+FdNFeMpQAhO6ZzDTNuJu0oygwcIGSSy
+         mYaBzFyC8K8kd6/I0YE6/al7hFtRUZx3UIilsXMjnWtjqVsSlyqI6VWHdSw/+LsLRq
+         m7JTaf0SndAtg==
+Date:   Mon, 14 Feb 2022 11:58:53 -0500
+From:   Alyssa Rosenzweig <alyssa@collabora.com>
+To:     Steven Price <steven.price@arm.com>
+Cc:     alyssa.rosenzweig@collabora.com, dri-devel@lists.freedesktop.org,
+        robh@kernel.org, tomeu.vizoso@collabora.com, airlied@linux.ie,
+        daniel@ffwll.ch, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/9] dt-bindings: Add arm,mali-valhall compatible
+Message-ID: <YgqKTQ0xLA1CbQW/@maud>
+References: <20220211202728.6146-1-alyssa.rosenzweig@collabora.com>
+ <20220211202728.6146-2-alyssa.rosenzweig@collabora.com>
+ <5ca70986-d6a5-7c3e-b876-40e970805775@arm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 3/4] regulator: dt-bindings: maxim,max14577: convert to
- dtschema
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220111174337.223320-1-krzysztof.kozlowski@canonical.com>
- <20220111174337.223320-4-krzysztof.kozlowski@canonical.com>
- <YgqGy7a/kq2+jZQm@sirena.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <YgqGy7a/kq2+jZQm@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5ca70986-d6a5-7c3e-b876-40e970805775@arm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2022 17:43, Mark Brown wrote:
-> On Tue, Jan 11, 2022 at 06:43:36PM +0100, Krzysztof Kozlowski wrote:
+> > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> > index 63a08f3f321d..48aeabd2ed68 100644
+> > --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> > @@ -23,6 +23,7 @@ properties:
+> >            - rockchip,px30-mali
+> >            - rockchip,rk3568-mali
+> >        - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
+> > +      - const: arm,mali-valhall # Mali Valhall GPU model/revision is fully discoverable
 > 
->> +    required:
->> +      - regulator-name
-> 
-> Why is regulator-name required?  While it's a good idea for users to
-> document names for supplies on their boards it shouldn't be a
-> requirement or something that a driver would care about.
+> It might be worth spelling out here that this is *pre-CSF* Valhall. I'm
+> pretty sure we're going to need different bindings for CSF GPUs.
 
-Indeed, there is no need for requiring the name. I guess I copied it
-from other schemas.
-
-I think this was not applied yet, so I'll send a v3.
-
-Best regards,
-Krzysztof
+Yes, agreed, will make a note for v2.
