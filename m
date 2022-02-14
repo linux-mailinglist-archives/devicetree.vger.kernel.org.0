@@ -2,106 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B3A04B407D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 04:51:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 475774B4081
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 04:53:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240108AbiBNDvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Feb 2022 22:51:04 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36772 "EHLO
+        id S240119AbiBNDxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Feb 2022 22:53:08 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229928AbiBNDvD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 22:51:03 -0500
-X-Greylist: delayed 522 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 13 Feb 2022 19:50:57 PST
-Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com [66.111.4.224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 142A55621C
-        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 19:50:57 -0800 (PST)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 9F15B580218;
-        Sun, 13 Feb 2022 22:42:14 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Sun, 13 Feb 2022 22:42:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; bh=JEibxPGvz4zlvz
-        8cnCgwsSaVEcxlPUvz1ybP2YVe2lw=; b=I5wIQ5mnPRhiGXUuQ5NkhC/FzDfS0R
-        8fAA0gG1hjZGSvhsgvrJeGhM3o/9QvE5RD8nLaDxIdgED9yOlpsJNv2ZKxQejCVK
-        Qwp7M2YdhVPEnxbIgm8sHBq7kMNDgBKtgr8KXGgU6K5uzyR3nhwN4ZxymO1GzMSd
-        OLVDLrO0fxSx4ZxqhrMI1FHABal3UQlA6RyzyvG05a3KYsHIepiysrhWOmW9SiMt
-        K+pkGbgcA4MUiLWA2bZ1VT/XhMmP8sb+kypG2U06IFMyji3fNGP8q/IDD6+Dh3bV
-        YOFQw7BkNrHgc5+59aSjhK6Bz+BnlkqV+w57Wa8EPmq9EltpRb829Feg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=JEibxPGvz4zlvz8cnCgwsSaVEcxlPUvz1ybP2YVe2
-        lw=; b=UEJaJz8SjMfnmljMJTY+Rkas67dWAiQF88GmhwQuUEVinalhmW1pMnUDa
-        rYzl90E0rWFAK1mx6VAq8G1Oh2ozQ2RhMS0i6sD32j2gtAGlRi54/R8gWJiUeF9o
-        xfrNKL4gXNcpRrDyNJwoE4rGG9SA/SmttoSVAWm3LzbHM5jh0Z7z6yLj1FLL3hcU
-        +2LkZEPO0OKDUd/QOu1+nVb7N17YjIF5XUo/W22/krAA5NEQEedU4ChYNbmFurD2
-        TSPwptED95gwh2pn3gkdgDlbI7Zbiv4EDG+UJ7ABK0nxMHAF28NwupOtKmYnqop7
-        h8DSPLv9N2/76gQvNvZnMYodNqN1Q==
-X-ME-Sender: <xms:lM8JYkN5kh3nhaAOhB1TJimIF3LmXPrlpVpoMcEOPR4hGGAOlqN5Kw>
-    <xme:lM8JYq_vCVxhCRkoKlkfSOBY0l548IBdpyVBqDtu5DIx3n_W4n-RouMnARnpHKu38
-    FigdL29sudWQJ-O7Q>
-X-ME-Received: <xmr:lM8JYrSfRszXnqyYZ0jf5bz0NgkvepYpRtlW_dXNo1cVw6Ig8dxPkULf_T36XqcRxQvPJbTURRIojSojcC4t77_jDhbf-ofYwao_rsvNgFnxU_xmC8_DcbHUIg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrjedugdeivdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpefgveffteelheffjeeukedvkedviedtheevgeefkeehueeiieeuteeu
-    gfettdeggeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:lc8JYssjYQThyR8pU_bHiJfk-tsnG2muWnIl2j4u6n8GvKijTGk_Og>
-    <xmx:lc8JYsdj7GgEKVoSL45LvQPDiVWsXiNlYdhC7t8yZtyj_iw6CLwGSQ>
-    <xmx:lc8JYg3ipRwLyyUgAJ0Z4hJHDZJZ99_lXkKMw203rEvUHQuuZay9rQ>
-    <xmx:ls8JYlMZC8CUIWe7QlfpHlGy8qd0_udfZJuldURA_j3LkPJVmNjFgQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 13 Feb 2022 22:42:11 -0500 (EST)
-Subject: Re: [PATCH v6 14/14] riscv: add memory-type errata for T-Head
-To:     Heiko Stuebner <heiko@sntech.de>, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org, wefu@redhat.com,
-        liush@allwinnertech.com, guoren@kernel.org, atishp@atishpatra.org,
-        anup@brainfault.org, drew@beagleboard.org, hch@lst.de,
-        arnd@arndb.de, wens@csie.org, maxime@cerno.tech,
-        gfavor@ventanamicro.com, andrea.mondelli@huawei.com,
-        behrensj@mit.edu, xinhaoqu@huawei.com, huffman@cadence.com,
-        mick@ics.forth.gr, allen.baum@esperantotech.com,
-        jscheid@ventanamicro.com, rtrauben@gmail.com, cmuellner@linux.com,
-        philipp.tomsich@vrull.eu
-References: <20220209123800.269774-1-heiko@sntech.de>
- <20220209123800.269774-15-heiko@sntech.de>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <0f5e7f77-abe9-046e-7296-2f22cb7e5b86@sholland.org>
-Date:   Sun, 13 Feb 2022 21:42:11 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S240114AbiBNDxH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Feb 2022 22:53:07 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5B92556231
+        for <devicetree@vger.kernel.org>; Sun, 13 Feb 2022 19:52:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1644810778;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=k5gXQFIv5vbKifedeqqMIbptAWWOjXJO6QmZ5mrBFnQ=;
+        b=JWlL6/t+C8iop5Ex+ozPIf9neyJd0b4S/p4kJWr/2jZ+h0W7HUTeqMMrklFKVLjmfCsg1j
+        ue1Xr39kHDJeCyNBYK4eG0RYZMLIi6AyX1HxCyTvLojUX53cPG7EV9kaP63yiS6sYmqnOZ
+        XZ1Orm8Ob6wrLlTpZZdU6bXS/yzSHu4=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-30-Bm3C-TOJP8Kv9GMyVUkbow-1; Sun, 13 Feb 2022 22:52:55 -0500
+X-MC-Unique: Bm3C-TOJP8Kv9GMyVUkbow-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com [10.5.11.15])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 09E931006AA0;
+        Mon, 14 Feb 2022 03:52:52 +0000 (UTC)
+Received: from localhost (ovpn-12-173.pek2.redhat.com [10.72.12.173])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 808024CEC8;
+        Mon, 14 Feb 2022 03:52:46 +0000 (UTC)
+Date:   Mon, 14 Feb 2022 11:52:43 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v20 3/5] arm64: kdump: reimplement crashkernel=X
+Message-ID: <YgnSCxlr1O2ZZ1sO@MiWiFi-R3L-srv>
+References: <20220124084708.683-1-thunder.leizhen@huawei.com>
+ <20220124084708.683-4-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-In-Reply-To: <20220209123800.269774-15-heiko@sntech.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220124084708.683-4-thunder.leizhen@huawei.com>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/9/22 6:38 AM, Heiko Stuebner wrote:
-> Some current cpus based on T-Head cores implement memory-types
-> way different than described in the svpbmt spec even going
-> so far as using PTE bits marked as reserved.
+On 01/24/22 at 04:47pm, Zhen Lei wrote:
+......
+> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> index 6c653a2c7cff052..a5d43feac0d7d96 100644
+> --- a/arch/arm64/mm/init.c
+> +++ b/arch/arm64/mm/init.c
+> @@ -71,6 +71,30 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
+>  #define CRASH_ADDR_LOW_MAX	arm64_dma_phys_limit
+>  #define CRASH_ADDR_HIGH_MAX	MEMBLOCK_ALLOC_ACCESSIBLE
+>  
+> +static int __init reserve_crashkernel_low(unsigned long long low_size)
+> +{
+> +	unsigned long long low_base;
+> +
+> +	/* passed with crashkernel=0,low ? */
+> +	if (!low_size)
+> +		return 0;
+> +
+> +	low_base = memblock_phys_alloc_range(low_size, CRASH_ALIGN, 0, CRASH_ADDR_LOW_MAX);
+> +	if (!low_base) {
+> +		pr_err("cannot allocate crashkernel low memory (size:0x%llx).\n", low_size);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	pr_info("crashkernel low memory reserved: 0x%llx - 0x%llx (%lld MB)\n",
+> +		low_base, low_base + low_size, low_size >> 20);
+> +
+> +	crashk_low_res.start = low_base;
+> +	crashk_low_res.end   = low_base + low_size - 1;
+> +	insert_resource(&iomem_resource, &crashk_low_res);
+> +
+> +	return 0;
+> +}
+> +
+>  /*
+>   * reserve_crashkernel() - reserves memory for crash kernel
+
+My another concern is the crashkernel=,low handling. In this patch, the
+code related to low memory is obscure. Wondering if we should make them
+explicit with a little redundant but very clear code flows. Saying this
+because the code must be very clear to you and reviewers, it may be
+harder for later code reader or anyone interested to understand.
+
+1) crashkernel=X,high
+2) crashkernel=X,high crashkernel=Y,low
+3) crashkernel=X,high crashkernel=0,low
+4) crashkernel=X,high crashkernel='messy code',low
+5) crashkernel=X //fall back to high memory, low memory is required then.
+
+It could be me thinking about it too much. I made changes to your patch
+with a tuning, not sure if it's OK to you. Otherwise, this patchset
+works very well for all above test cases, it's ripe to be merged for
+wider testing.
+
+diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+index a5d43feac0d7..671862c56d7d 100644
+--- a/arch/arm64/mm/init.c
++++ b/arch/arm64/mm/init.c
+@@ -94,7 +94,8 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
+ 
+ 	return 0;
+ }
+-
++/*Words explaining why it's 256M*/
++#define DEFAULT_CRASH_KERNEL_LOW_SIZE SZ_256M
+ /*
+  * reserve_crashkernel() - reserves memory for crash kernel
+  *
+@@ -105,10 +106,10 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
+ static void __init reserve_crashkernel(void)
+ {
+ 	unsigned long long crash_base, crash_size;
+-	unsigned long long crash_low_size = SZ_256M;
++	unsigned long long crash_low_size;
+ 	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+ 	int ret;
+-	bool fixed_base;
++	bool fixed_base, high;
+ 	char *cmdline = boot_command_line;
+ 
+ 	/* crashkernel=X[@offset] */
+@@ -126,7 +127,10 @@ static void __init reserve_crashkernel(void)
+ 		ret = parse_crashkernel_low(cmdline, 0, &low_size, &crash_base);
+ 		if (!ret)
+ 			crash_low_size = low_size;
++		else
++			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+ 
++		high = true;
+ 		crash_max = CRASH_ADDR_HIGH_MAX;
+ 	}
+ 
+@@ -134,7 +138,7 @@ static void __init reserve_crashkernel(void)
+ 	crash_size = PAGE_ALIGN(crash_size);
+ 
+ 	/* User specifies base address explicitly. */
+-	if (crash_base)
++	if (fixed_base)
+ 		crash_max = crash_base + crash_size;
+ 
+ retry:
+@@ -156,7 +160,10 @@ static void __init reserve_crashkernel(void)
+ 		return;
+ 	}
+ 
+-	if (crash_base >= SZ_4G && reserve_crashkernel_low(crash_low_size)) {
++	if (crash_base >= SZ_4G && !high) 
++		crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
++
++	if (reserve_crashkernel_low(crash_low_size)) {
+ 		memblock_phys_free(crash_base, crash_size);
+ 		return;
+ 	}
+
+>   *
+> @@ -81,29 +105,62 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
+>  static void __init reserve_crashkernel(void)
+>  {
+>  	unsigned long long crash_base, crash_size;
+> +	unsigned long long crash_low_size = SZ_256M;
+>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+>  	int ret;
+> +	bool fixed_base;
+> +	char *cmdline = boot_command_line;
+>  
+> -	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
+> +	/* crashkernel=X[@offset] */
+> +	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
+>  				&crash_size, &crash_base);
+> -	/* no crashkernel= or invalid value specified */
+> -	if (ret || !crash_size)
+> -		return;
+> +	if (ret || !crash_size) {
+> +		unsigned long long low_size;
+>  
+> +		/* crashkernel=X,high */
+> +		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
+> +		if (ret || !crash_size)
+> +			return;
+> +
+> +		/* crashkernel=X,low */
+> +		ret = parse_crashkernel_low(cmdline, 0, &low_size, &crash_base);
+> +		if (!ret)
+> +			crash_low_size = low_size;
+> +
+> +		crash_max = CRASH_ADDR_HIGH_MAX;
+> +	}
+> +
+> +	fixed_base = !!crash_base;
+>  	crash_size = PAGE_ALIGN(crash_size);
+>  
+>  	/* User specifies base address explicitly. */
+>  	if (crash_base)
+>  		crash_max = crash_base + crash_size;
+>  
+> +retry:
+>  	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>  					       crash_base, crash_max);
+>  	if (!crash_base) {
+> +		/*
+> +		 * Attempt to fully allocate low memory failed, fall back
+> +		 * to high memory, the minimum required low memory will be
+> +		 * reserved later.
+> +		 */
+> +		if (!fixed_base && (crash_max == CRASH_ADDR_LOW_MAX)) {
+> +			crash_max = CRASH_ADDR_HIGH_MAX;
+> +			goto retry;
+> +		}
+> +
+>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+>  			crash_size);
+>  		return;
+>  	}
+>  
+> +	if (crash_base >= SZ_4G && reserve_crashkernel_low(crash_low_size)) {
+> +		memblock_phys_free(crash_base, crash_size);
+> +		return;
+> +	}
+> +
+>  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
+>  		crash_base, crash_base + crash_size, crash_size >> 20);
+>  
+> @@ -112,6 +169,9 @@ static void __init reserve_crashkernel(void)
+>  	 * map. Inform kmemleak so that it won't try to access it.
+>  	 */
+>  	kmemleak_ignore_phys(crash_base);
+> +	if (crashk_low_res.end)
+> +		kmemleak_ignore_phys(crashk_low_res.start);
+> +
+>  	crashk_res.start = crash_base;
+>  	crashk_res.end = crash_base + crash_size - 1;
+>  	insert_resource(&iomem_resource, &crashk_res);
+> -- 
+> 2.25.1
 > 
-> Add the T-Head vendor-id and necessary errata code to
-> replace the affected instructions.
-> 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Tested-by: Samuel Holland <samuel@sholland.org>
+
