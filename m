@@ -2,178 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55DBB4B4D52
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:12:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B0244B4D00
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:11:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349505AbiBNLEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 06:04:39 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34594 "EHLO
+        id S1349585AbiBNLEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 06:04:00 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349893AbiBNLEQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:04:16 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48711996BF
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 02:32:24 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id d10so36375342eje.10
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 02:32:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=bo43NL5WgxumOcYzft9YAYcZtXZd3PhX1zRfnI8bjDk=;
-        b=PwKUejzP04bJB9L/Xde/ppijUOqMNVBq9vZlUz8ZRPTY1pYD15Qe45sYIb0L4FtYjb
-         IyHnd2MnK/h2O2Tgfk/gptsiXpiVPFmpyOiMIYZ3h3GbbMT/zThfR804PQhY1IP7zIdJ
-         aMQnJLR8dJcolWGL9V1jh44yloHcNd2XxkIMe4SSC2qDHeTUVItjzrlvlA7Au4Vgr7cU
-         Zato8b5lzV8arQ0jk1QCL32j3v8TLC6ia37OUo60O5jGLZj5GiSQCyrH4oAjLMK42LG+
-         n4E4U7nK62f6MkYa12GS9HsWkddfGsrl5IgLk6bOn73UlNxOHunebmRMBirlqw7M/v83
-         2AfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bo43NL5WgxumOcYzft9YAYcZtXZd3PhX1zRfnI8bjDk=;
-        b=lOV/MmnQm2BUvvWlTg53rNIeLB5QpwZnH6cGD9RIrayiwKFOnprlBVEEYQAgjrNjFN
-         kdUQvB1UWGm1F+cieEkK99Llo3haLFVNd9zZvuNqjTuLY9+K2tBwBdw/W6mcbQnCfVXO
-         E9qpzDFBw0MJ1CQRRZOfmfKFXkP4QD9CQD0OKV9gVHcUbFFhG/0PEkvzCdCdidG7LUsH
-         55Isd5sjli78d5CrWOY9wBZCjK8nXgwNK97kkPuMQaZrT2vJ/zfR9zf4Q7VY/XsBtse+
-         LTesMR899wDCAwLdM27uYzNtkgN4SGR77PUEiR4YJ7QZE2av0sEO+hDOeb3WH0JFqLlG
-         4isw==
-X-Gm-Message-State: AOAM5338jTbfzkcYz3h7HFnxAEntHsMbV5OmlvbrpDKqYBR2AOtcIN8d
-        OuGR+9G55i/mu6yRXhLX1mtauA==
-X-Google-Smtp-Source: ABdhPJzudq88kL+Iol19BJzjrgl1fm4cOkIenjo5ffzfo2Cq+RmmG6+GIBXvUdT1/FwGqrO8PNu6hA==
-X-Received: by 2002:a17:907:a42a:: with SMTP id sg42mr11159538ejc.723.1644834742774;
-        Mon, 14 Feb 2022 02:32:22 -0800 (PST)
-Received: from fedora.lab.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id b19sm1857940ede.37.2022.02.14.02.32.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Feb 2022 02:32:22 -0800 (PST)
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-To:     Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [v5 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Date:   Mon, 14 Feb 2022 11:31:14 +0100
-Message-Id: <20220214103116.68472-2-patrick.rudolph@9elements.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220214103116.68472-1-patrick.rudolph@9elements.com>
-References: <20220214103116.68472-1-patrick.rudolph@9elements.com>
+        with ESMTP id S1349793AbiBNLDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:03:32 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599A4B5B;
+        Mon, 14 Feb 2022 02:31:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1644834713; x=1676370713;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8uiKQFrnrOzDBOW05m53tk5x/ATHjKo+rtDwLt+0ac4=;
+  b=hPRPTY0XLFGxJp0sUrkcvjHXuzky+kcBOgzSMGiwMZGpHvs1AFcPYy1f
+   rUbVV4zXeC0tHr6s13cI8Tyam68onTp+hg38/kbagwdBMMZarP3zosRrl
+   tQuENX8nuYqvrAUozos6kEyYh3Lpqjoa2ALE53vGBic1PaXnYJ9OovmGw
+   dHdzdNEEQJoTU17ELw2YiyPs9ysPOj+vPNjfedLWKd4XKbEmkN37w9q2M
+   inPGD5wlHGibXzgif5b4xe5tc4BrPJ8BGLM5lyAMKzABs8eCLlkvc4k5s
+   bHtG0ON8fCCujgPtDxOlQsr7w0hfeLRWQz9NO/t7DG7n0O4Dy8csHhpd5
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="233609871"
+X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; 
+   d="scan'208";a="233609871"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 02:31:52 -0800
+X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; 
+   d="scan'208";a="587144464"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 02:31:50 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id BCA07202AE;
+        Mon, 14 Feb 2022 12:31:47 +0200 (EET)
+Date:   Mon, 14 Feb 2022 12:31:47 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-acpi@vger.kernel.org, andriy.shevchenko@linux.intel.com,
+        devicetree@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH 3/4] device property: Add iomap to fwnode operations
+Message-ID: <Ygovk0MVcN/i6+wN@paasikivi.fi.intel.com>
+References: <20220206091643.276833-1-sakari.ailus@linux.intel.com>
+ <20220206091643.276833-4-sakari.ailus@linux.intel.com>
+ <YgaH7iJ5CWSJp1PY@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YgaH7iJ5CWSJp1PY@robh.at.kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-chips. The functionality will be provided by the exisintg pca954x driver.
+Hi Rob,
 
-While on it make the interrupts support conditionally as not all of the
-existing chips have interrupts.
+Thanks for the review.
 
-For chips that are powered off by default add an optional regulator
-called vdd-supply.
+On Fri, Feb 11, 2022 at 09:59:42AM -0600, Rob Herring wrote:
+> On Sun, Feb 06, 2022 at 11:16:42AM +0200, Sakari Ailus wrote:
+> > Add iomap() fwnode operation to implement fwnode_iomap() through fwnode
+> > operations, moving the code in fwnode_iomap() to OF framework.
+> > 
+> > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> > ---
+> >  drivers/base/property.c | 5 +----
+> >  drivers/of/property.c   | 7 +++++++
+> >  include/linux/fwnode.h  | 1 +
+> >  3 files changed, 9 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/base/property.c b/drivers/base/property.c
+> > index 09686e2e903e..83dd22e7cb81 100644
+> > --- a/drivers/base/property.c
+> > +++ b/drivers/base/property.c
+> > @@ -887,10 +887,7 @@ EXPORT_SYMBOL_GPL(device_get_phy_mode);
+> >   */
+> >  void __iomem *fwnode_iomap(struct fwnode_handle *fwnode, int index)
+> >  {
+> > -	if (IS_ENABLED(CONFIG_OF_ADDRESS) && is_of_node(fwnode))
+> > -		return of_iomap(to_of_node(fwnode), index);
+> > -
+> > -	return NULL;
+> > +	return fwnode_call_ptr_op(fwnode, iomap, index);
+> >  }
+> >  EXPORT_SYMBOL(fwnode_iomap);
+> >  
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index 676899566f7c..8beb89709740 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1465,6 +1465,12 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
+> >  	return 0;
+> >  }
+> >  
+> > +static void __iomem *of_fwnode_iomap(struct fwnode_handle *fwnode, int index)
+> > +{
+> > +	return IS_ENABLED(CONFIG_OF_ADDRESS) ?
+> 
+> I think this shouldn't be needed. !OF_ADDRESS is Sparc which just has 
+> its own implementation of of_iomap().
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
----
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 44 ++++++++++++++-----
- 1 file changed, 34 insertions(+), 10 deletions(-)
+I'll drop it for v2.
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 9f1726d0356b..8d90127b06ce 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -4,21 +4,48 @@
- $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: NXP PCA954x I2C bus switch
-+title: NXP PCA954x I2C and compatible bus switches
- 
- maintainers:
-   - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
- 
- description:
--  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
-+  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices,
-+  and the Maxim MAX735x and MAX736x I2C mux/switch devices.
- 
- allOf:
-   - $ref: /schemas/i2c/i2c-mux.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - maxim,max7367
-+              - maxim,max7369
-+              - nxp,pca9542
-+              - nxp,pca9543
-+              - nxp,pca9544
-+              - nxp,pca9545
-+    then:
-+      properties:
-+        interrupts:
-+          maxitems: 1
-+
-+        "#interrupt-cells":
-+          const: 2
-+
-+        interrupt-controller: true
- 
- properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - maxim,max7356
-+          - maxim,max7357
-+          - maxim,max7358
-+          - maxim,max7367
-+          - maxim,max7368
-+          - maxim,max7369
-           - nxp,pca9540
-           - nxp,pca9542
-           - nxp,pca9543
-@@ -38,14 +65,6 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts:
--    maxItems: 1
--
--  "#interrupt-cells":
--    const: 2
--
--  interrupt-controller: true
--
-   reset-gpios:
-     maxItems: 1
- 
-@@ -59,6 +78,9 @@ properties:
-     description: if present, overrides i2c-mux-idle-disconnect
-     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
- 
-+  vdd-supply:
-+    description: A voltage regulator supplying power to the chip.
-+
- required:
-   - compatible
-   - reg
-@@ -79,6 +101,8 @@ examples:
-             #size-cells = <0>;
-             reg = <0x74>;
- 
-+            vdd-supply = <&p3v3>;
-+
-             interrupt-parent = <&ipic>;
-             interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-             interrupt-controller;
 -- 
-2.34.1
-
+Sakari Ailus
