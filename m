@@ -2,83 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66EAE4B5D1D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:46:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 244F04B5D34
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:47:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231538AbiBNVpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 16:45:30 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58660 "EHLO
+        id S229816AbiBNVr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 16:47:28 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229851AbiBNVp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:45:29 -0500
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [IPv6:2001:67c:2050::465:102])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2AE184621;
-        Mon, 14 Feb 2022 13:45:20 -0800 (PST)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:105:465:1:3:0])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4JyHnq3hXYz9sVv;
-        Mon, 14 Feb 2022 22:45:19 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
-        t=1644875117;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bXyDWJOi2TMbTegBFxuy90N+VPfjmUO34aZ2XisvdHc=;
-        b=PSeIAGiMrPN3ZUTy2C2zX72ryIC0a5D8Sk+bCAKEbvPcqv+v3kHT62h23D7j2HpSOpfH8W
-        VB4+9QWY7BE6dmY+k7KwnZq+UEvqg5lHj4tIzwQcw1gIvx/5KUkFY58mXjVslx6qT5sBX2
-        l7og2zGoKO75i8NLntmNzcBycpx2h/jnPfundg6+Y97CsnjEhPDlhOHdAl+ARIOe1PyBvy
-        fA8fQu0pAIM1ZS9aHaOXSwruAktxWiUeR+OCFf7E7kZNKGLtaSukxGN7zmf56dxyauhUjt
-        j48J9aUc7mx2h+j9RobCyNSn68Z1oDvtSFWch2dfwzzYfRG6bU5nkg49XjWxrg==
-From:   Marcello Sylvester Bauer <sylv@sylv.io>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v3 2/4] dt-bindings:trivial-devices: Add pli1209bc
-Date:   Mon, 14 Feb 2022 22:44:54 +0100
-Message-Id: <f1fedce71149a2ce811bf40a2097fee5b54911bf.1644874828.git.sylv@sylv.io>
-In-Reply-To: <cover.1644874828.git.sylv@sylv.io>
-References: <cover.1644874828.git.sylv@sylv.io>
+        with ESMTP id S229441AbiBNVr1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:47:27 -0500
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D80B318C58E
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:47:18 -0800 (PST)
+Received: by mail-oi1-x231.google.com with SMTP id 13so750358oiz.12
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:47:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=KZ8Tp8JYnqcpdvEmr+9vUKPtUjGKxrOWPg9ikND1TsQ=;
+        b=kEDFFQ9AnhAiPYpTrzxVGENiaHYM4WNo0h7IYAhmBWdtr2Nehv4FPMpQzGIGBTTSdT
+         V2UaMvUYGZkYk57yH9eb+iYHLKrErwgOdY4eUHXzNN6zGjZ4AEMBjYejLDsaYiKpifNI
+         ow94ZcKv1MDiVK1Cw9O4RE9jJAmxCrV45JbGI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=KZ8Tp8JYnqcpdvEmr+9vUKPtUjGKxrOWPg9ikND1TsQ=;
+        b=RYJR4vmOdWaOVemaWPg9y9YF8IOCqYxVX1j/Yu5a1VzdOX0uHA+PrI5hwLopI3ZK7D
+         Xmt2GQX7fkecNjEno5dARrqysd/XLeXMRF5FUiztpS8/GStHumMt55LsaRF/UgVyjFBy
+         d3RzkOk/1JJH2pTjxZkcd4G6PaM0k478oMcO5rWA9efJXBvG5PgqL10A9URStelaCkET
+         jSDii3RIZoRXWWgewdUOWCeYd7gDiYge3sqks14bLTSsCePJfV7z7PMt+vhHbPgTiynx
+         emiBjkhFVeJX9ROxs9ey4l14owwD6F8wNfDylMte8SBOa2m5RTNRNwlfMavfWs9JFMtL
+         pb6A==
+X-Gm-Message-State: AOAM533HsCO5GfWMXDeD7gOC5PTunRmBaUgKZWiUXm1Iw+pqODoYjWee
+        KVrNw+uJu2cnNgeQlQsy3b/p7cLAcW65fu30653I2g==
+X-Google-Smtp-Source: ABdhPJy6QtgovTMrBoMRA7cWoi8cXunIMQ3hmVjFFwyt7eXnabvshXHxsyp6QmnTk4CMzG+koej6x98aKMZeKBq0p4E=
+X-Received: by 2002:aca:df44:0:b0:2ce:285f:cb99 with SMTP id
+ w65-20020acadf44000000b002ce285fcb99mr412149oig.40.1644875238208; Mon, 14 Feb
+ 2022 13:47:18 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 14 Feb 2022 13:47:17 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <1644668672-29790-2-git-send-email-quic_srivasam@quicinc.com>
+References: <1644668672-29790-1-git-send-email-quic_srivasam@quicinc.com> <1644668672-29790-2-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 14 Feb 2022 13:47:17 -0800
+Message-ID: <CAE-0n52uBY7GzjtFwV67y5mfqZRoK9ooW-kT3=4sH=8NtVK7FQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ASoC: codec: wcd938x: Add switch control for
+ selecting CTIA/OMTP Headset
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        perex@perex.cz, quic_plai@quicinc.com, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
+        tiwai@suse.com
+Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add trivial device entry for PLI1209BC Digital Supervisor from Vicor
-Corporation.
+Quoting Srinivasa Rao Mandadapu (2022-02-12 04:24:31)
+> diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
+> index eff200a..08d16a9 100644
+> --- a/sound/soc/codecs/wcd938x.c
+> +++ b/sound/soc/codecs/wcd938x.c
+> @@ -194,6 +194,7 @@ struct wcd938x_priv {
+>         int ear_rx_path;
+>         int variant;
+>         int reset_gpio;
+> +       int us_euro_gpio;
+>         u32 micb1_mv;
+>         u32 micb2_mv;
+>         u32 micb3_mv;
+> @@ -4196,6 +4197,33 @@ static void wcd938x_dt_parse_micbias_info(struct device *dev, struct wcd938x_pri
+>                 dev_info(dev, "%s: Micbias4 DT property not found\n", __func__);
+>  }
+>
+> +static bool wcd938x_swap_gnd_mic(struct snd_soc_component *component, bool active)
+> +{
+> +       int value;
+> +
+> +       struct wcd938x_priv *wcd938x;
+> +
+> +       if (!component) {
 
-Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+So component is NULL
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 091792ba993e..d03d90360aa0 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -354,6 +354,8 @@ properties:
-           - ti,tps544c25
-             # Winbond/Nuvoton H/W Monitor
-           - winbond,w83793
-+            # Vicor Corporation Digital Supervisor
-+          - vicor,pli1209bc
-             # i2c trusted platform module (TPM)
-           - winbond,wpct301
- 
--- 
-2.34.1
+> +               dev_err(component->dev, "%s component is NULL\n", __func__);
 
+And now we deref component. Great NULL pointer exception Batman! Please
+test your code and remove useless checks. It makes the code harder to
+read and slows things down.
+
+> +               return false;
+> +       }
+> +
+> +       wcd938x = snd_soc_component_get_drvdata(component);
+> +       if (!wcd938x) {
+> +               dev_err(component->dev, "%s private data is NULL\n", __func__);
+
+Is this possible? I doubt it so can we just remove it?
+
+> +               return false;
+> +       }
+> +
+> +       value = gpio_get_value(wcd938x->us_euro_gpio);
+> +
+> +       gpio_set_value(wcd938x->us_euro_gpio, !value);
+> +       /* 20us sleep required after changing the gpio state*/
+
+Add a space before ending comment with */
+
+> +       usleep_range(20, 30);
+> +
+> +       return true;
+> +}
+> +
+> +
+>  static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device *dev)
+>  {
+>         struct wcd_mbhc_config *cfg = &wcd938x->mbhc_cfg;
+> @@ -4208,6 +4236,16 @@ static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device
+>                 return wcd938x->reset_gpio;
+>         }
+>
+> +       wcd938x->us_euro_gpio = of_get_named_gpio(dev->of_node, "us-euro-gpios", 0);
+
+Why do we need to use of GPIO APIs here? Can this driver be converted to
+use GPIO descriptors via the gpiod APIs?
+
+> +       if (wcd938x->us_euro_gpio < 0) {
+> +               dev_err(dev, "Failed to get us-euro-gpios gpio: err = %d\n", wcd938x->us_euro_gpio);
+> +       } else {
+> +               cfg->swap_gnd_mic = wcd938x_swap_gnd_mic;
+> +               gpio_direction_output(wcd938x->us_euro_gpio, 0);
+> +               /* 20us sleep required after pulling the reset gpio to LOW */
+> +               usleep_range(20, 30);
+> +       }
+> +
