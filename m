@@ -2,66 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA4D04B5487
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:22:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E25704B54B5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:25:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241432AbiBNPWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 10:22:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48782 "EHLO
+        id S1351745AbiBNPX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 10:23:58 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354547AbiBNPWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:22:10 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35F2F4925B;
-        Mon, 14 Feb 2022 07:22:00 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id B9F721F43C7E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1644852118;
-        bh=++yhPFmxmu7cGPsZh0XYgN78QVE2RIZcqQXV+giWu/g=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=b8ErAXCrUOAmvdnYHnh9/TxFOeLgasc/OLxHbRMM1zQ/zlxEzejaSK1qeTdyYD4Hl
-         VZlYXyxVjnI4DZ/Xh055bjRtWNKDpG1G93djseSI44c1eklumetK6NNzTm1iUC2Fr7
-         oYzqii2rNUiKLEcbUu7h6ECBL92PPGGWR+BbTTo2REQGJdEzOPgGtaHjRVSpg25Dsr
-         YqQ5hCOcAqY2fBfrt8YAhUJogmiZS8fges/P8ZXf/9Rqm1S41LYpxSokBnUKwMjtzv
-         FukrgWTubzRznrWKmqjJ+xQfIMZM6EMidHbKXoi9aSSFI+wZHKDTf2HRuMwjwsnNvv
-         V5za4SkH7koqA==
-Message-ID: <5aacbf47-9ab5-d1d7-cdde-d338d531bc7b@collabora.com>
-Date:   Mon, 14 Feb 2022 16:21:54 +0100
+        with ESMTP id S240557AbiBNPX4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:23:56 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 174115FF17
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:23:48 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id c15so22685915ljf.11
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:23:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=h2Wzb73CCNJjymF4wVIRvovDIYwgk4oVDBjnM/KPNjs=;
+        b=elp+5cTpAjU+1/ip79o/mzc94QPWcQLdADxYuHtbbb35WzwfcPePrjIkqA6nuvK8xr
+         BlOV7/fKbg5q5P9bz1KGyaJV/tyQmgBVmkZV6IF4hLzxK/M/yGuI4KFp45wWoNuOU6i+
+         glNkY+TH9jAi2XDKFPtdZNEXktN0yfyVN6LxczV5G2xn4w0voWRmzdUNDm3gYWGNh/po
+         qp+PgBVIPqPEVbsxoB4OXVtFlH21t4pxQaCpVbsDuB++qcxTQ9nl8g8Fxy+AiSgYn63p
+         agFwAWRXcAeQNjE2W5r47S8l4JFw7/FhVRMzFrFto1pRWpdlWen+Rq8WTSI64k4A6UfU
+         MRUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=h2Wzb73CCNJjymF4wVIRvovDIYwgk4oVDBjnM/KPNjs=;
+        b=6b1Cndod4gzLDTzH8NHTussHE49wMU+KPWubcI5lz7kahsxnkf8HI2KbV3Jd/c7vzu
+         ceqPeNm8ZdMA8E20zzpMZXGOSn3RgE4jbpbcMK3bus4xejk7ymCff5fz159PoiKYpMj+
+         Rx6bPXZQH/tyNoeEY2O10JJSGjBJOe6mRvPyCiwznur5jL6bB8VMPKpybZ/CqRN1ZT5V
+         OeG9upAPYaWDlELFwuegFd9lJZn5uSEH5HEzQN4NRugWdHexh0gU014FSZK1wy8vORE4
+         QL8iErO9mpSuA+on908kL30mUM+ptv+6nQnRz/y5o0uPv5x/FJP6mqzdkdHFDQTEISPB
+         8uMg==
+X-Gm-Message-State: AOAM5313UKzRlp/kNjsfemAeFnmT8hFabS6yTN4xPSsvcdZpcMtzfKmR
+        wCVZrIlP105F7G84HP6toiJ/jX0zPdkJ11VXKp6h+Q==
+X-Google-Smtp-Source: ABdhPJzfciI7TngcTILpWVQuCNuuqqSMq2cqqqebQNnx9wghhN7LjSSWuFvn2nKCKlLwBdlHEDzZrWnTrQa46CaiDAA=
+X-Received: by 2002:a05:651c:179c:: with SMTP id bn28mr188158ljb.4.1644852226434;
+ Mon, 14 Feb 2022 07:23:46 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH 2/4] arm64: dts: mt8183: align Google CROS EC PWM node
- name with dtschema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+References: <20220119103212.13158-1-axe.yang@mediatek.com> <20220119103212.13158-2-axe.yang@mediatek.com>
+In-Reply-To: <20220119103212.13158-2-axe.yang@mediatek.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 14 Feb 2022 16:23:10 +0100
+Message-ID: <CAPDyKFr8bV+1uTbuhMObvORLGJHsvZHUONJkdY54MXPPRWL5Qw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: add cap-sdio-async-irq flag
+To:     Axe Yang <axe.yang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-References: <20220214081916.162014-1-krzysztof.kozlowski@canonical.com>
- <20220214081916.162014-3-krzysztof.kozlowski@canonical.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220214081916.162014-3-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,29 +80,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/02/22 09:19, Krzysztof Kozlowski ha scritto:
-> dtschema expects PWM node name to be a generic "pwm".  This also matches
-> Devicetree specification requirements about generic node names.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+On Wed, 19 Jan 2022 at 11:32, Axe Yang <axe.yang@mediatek.com> wrote:
+>
+> Asynchronous interrupt is a mechanism that allow SDIO devices alarm
+> interrupt when host stop providing clock to card. Add a DT flag to
+> enable this feature if it is supported by SDIO card.
+>
+> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
 > ---
->   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> index 8f7bf33f607d..2d7a193272ae 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> @@ -92,7 +92,7 @@ volume_up {
->   };
->   
->   &cros_ec {
-> -	cros_ec_pwm: ec-pwm {
-> +	cros_ec_pwm: pwm {
->   		compatible = "google,cros-ec-pwm";
->   		#pwm-cells = <1>;
->   		status = "disabled";
+>  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> index 513f3c8758aa..16fb06f88471 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> @@ -165,6 +165,11 @@ properties:
+>      description:
+>        eMMC hardware reset is supported
+>
+> +  cap-sdio-async-irq:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      SDIO async interrupt is supported.
 
+We already have a DT property for this, I believe.
+
+"wakeup-source" is probably what you want, but we have additional
+properties that are related to this too. See more below.
+
+> +
+>    cap-sdio-irq:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description:
+
+The above, "cap-sdio-irq", informs whether the SDIO IRQs can be
+supported at all, by the host controller.
+
+The property "keep-power-in-suspend" informs whether we can preserve
+the power to the card during a suspend/resume cycle. This should be
+needed in your case too, I think.
+
+In other words, you may need to combine "cap-sdio-irq",
+"wakeup-source" and "keep-power-in-suspend" to describe your HW.
+
+However, what perhaps is missing, is a common MMC/SDIO binding that
+let us describe an optional irq-line, which sometimes is being used
+for the wakeup irq. In the sdhci-omap case, we look for an irq mapping
+towards "wakeup" if specified in the "interrupt-names" property.
+
+In some case, when the SDIO card supports an out-of-band IRQ line, the
+similar should be specified in the child-node corresponding to the
+SDIO card.
+
+Kind regards
+Uffe
