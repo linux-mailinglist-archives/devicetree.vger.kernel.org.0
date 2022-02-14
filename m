@@ -2,96 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1D3E4B4CF3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:11:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E89834B4D2F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:11:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237029AbiBNKtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 05:49:35 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38624 "EHLO
+        id S1349519AbiBNKx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 05:53:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237718AbiBNKtN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 05:49:13 -0500
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C940BDA72;
-        Mon, 14 Feb 2022 02:12:13 -0800 (PST)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21E86urF026746;
-        Mon, 14 Feb 2022 11:11:58 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=MpTqBNhX+HIyoyjXnQ6/DBGf/cO04PKi4xy5WrWMQtM=;
- b=55UHFt0xRaAGpxn2Pr8CS2hOQbO5daWb1jFg7gbjWrrTxF8SuQ8Fr5X4YLwUJ18r0iG+
- a05X2ZlAldKYLmZDICq/fH6FuipuQBmWduzK52C1XKBDkQagpQHZiDLR2PiXJKAO8n6H
- B1WVk9i5XcVranVUk+W43HboAlMqmSqrGQ99Qdly5zkSfP0Y16cfNJNdCBDXObFLTJ9z
- PuoTnKNH9lgi14OtayFnvMc/QeAHCsLWEQf2olS4s3nxcF22yucBEYez0a7N0fYOZ9YP
- GBFsDQdNumGCo9FjFnB0y3vTjfY/ySiJeXmUBrRswVJ5USVkxDs4Y0Wv7eTNz4SL8BnB Yw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e74c3bs05-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 14 Feb 2022 11:11:58 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9646910002A;
-        Mon, 14 Feb 2022 11:11:57 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8C004219DED;
-        Mon, 14 Feb 2022 11:11:57 +0100 (CET)
-Received: from [10.48.0.252] (10.75.127.47) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Mon, 14 Feb
- 2022 11:11:57 +0100
-Message-ID: <c3c1d310-19f0-889b-04b5-f3628e09b3bf@foss.st.com>
-Date:   Mon, 14 Feb 2022 11:11:56 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 0/2] ARM: dts: stm32: remove timer duplicate unit-address
- on stm32f7 series
-Content-Language: en-US
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>, <robh+dt@kernel.org>
-CC:     <olivier.moysan@foss.st.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <1644403729-22665-1-git-send-email-fabrice.gasnier@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <1644403729-22665-1-git-send-email-fabrice.gasnier@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-14_02,2022-02-14_02,2021-12-02_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S1349297AbiBNKxO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 05:53:14 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BBF46D94D;
+        Mon, 14 Feb 2022 02:17:49 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9DA2761175;
+        Mon, 14 Feb 2022 10:17:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FF33C340E9;
+        Mon, 14 Feb 2022 10:17:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644833868;
+        bh=Bd6563qakfMdmj15vig4Q1sz4MW1UKmd2W6/fruhJec=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=teMl9bcL/WSPL1BKbQA9S71chpnkvdJ7NUfCpI3MjZG8e9rQ+4gsERQulgCVyAf9n
+         30Tc5hYfL2pPUUD9hMCUZs6Wv2qxcPsCYA80LVdlIZ8WN8ykmeVFzxPNyarQsmOVr5
+         5hrlsWUenbX0yH0BliKYNFyoJe9v/+ZZSM6Lxasbrh8o7hsqU0dmHqg2MaZqXpXQgg
+         v1yOMt6k05EZJSC64DSCDUMpTduS7SpCE9Qzf61edRrrliSr/e+tWtoutxiWNMMHT9
+         dBMRM+KNTI3Etw+nZTllwm412S5bVgoP2K8R2ONhhpm5YpLovE+pcLtK+VMM5UHAUP
+         AZgFLrI8V1OcQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nJYQT-007iID-HE; Mon, 14 Feb 2022 10:17:45 +0000
+Date:   Mon, 14 Feb 2022 10:17:45 +0000
+Message-ID: <87o8394ura.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of/irq: Use interrupts-extended to find parent
+In-Reply-To: <20220214051318.2273-1-samuel@sholland.org>
+References: <20220214051318.2273-1-samuel@sholland.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: samuel@sholland.org, tglx@linutronix.de, robh+dt@kernel.org, frowand.list@gmail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrice
-
-On 2/9/22 11:48, Fabrice Gasnier wrote:
-> Remove a series of warnings seen when building with W=1, like:
-> Warning (unique_unit_address): /soc/timer@40000c00: duplicate unit-address
-> (also used in node /soc/timers@40000c00)
+On Mon, 14 Feb 2022 05:13:17 +0000,
+Samuel Holland <samuel@sholland.org> wrote:
 > 
-> This approach is based on some discussions[1], to restructure the dtsi
-> and dts files.
-> [1] https://lore.kernel.org/linux-arm-kernel/Yaf4jiZIp8+ndaXs@robh.at.kernel.org/
-> 
->   arch/arm/boot/dts/stm32746g-eval.dts  | 12 +++++++++
->   arch/arm/boot/dts/stm32f746-disco.dts | 12 +++++++++
->   arch/arm/boot/dts/stm32f746.dtsi      | 47 -----------------------------------
->   arch/arm/boot/dts/stm32f769-disco.dts | 12 +++++++++
->   4 files changed, 36 insertions(+), 47 deletions(-)
-> 
+> Some OF irqchips, such as the RISC-V PLIC, use interrupts-extended to
+> specify their parent domain(s). That binding does not allow using the
+> interrupt-parent property in the irqchip node, which prevents
+> of_irq_init from properly detecting the irqchip hierarchy.
 
-Series applied on stm32-next.
+Is this because there is more than a single interrupt parent?
 
-Cheers
-Alex
+> 
+> If no interrupt-parent property is present in the enclosing bus or root
+> node, then desc->interrupt_parent will be NULL for both the per-CPU
+> RISC-V INTCs (the actual root domains) and the RISC-V PLIC. Similarly,
+> if the bus or root node specifies `interrupt-parent = <&plic>`, then
+> of_irq_init will hit the `desc->interrupt_parent == np` check, and again
+> all parents will be NULL. So things happen to work today for some boards
+> due to Makefile ordering.
+> 
+> However, things break when another irqchip ("foo") is stacked on top of
+> the PLIC. The bus/root node will have `interrupt-parent = <&foo>`,
+> since that is what all of the other peripherals need. When of_irq_init
+> runs, it will try to find the PLIC's parent domain. But because
+> of_irq_find_parent ignores interrupts-extended, it will fall back to
+> using the interrupt-parent property of the PLIC's parent node (i.e. the
+> bus or root node), and see "foo" as the PLIC's parent domain. But this
+> is wrong, because "foo" is actually the PLIC's child domain!
+
+Let me see if I parsed this correctly. You have:
+
+             int-parent        int-extended
+	foo -----------> PLIC --------------> root-irqchip
+
+Is that correct?
+
+> 
+> So of_irq_init wrongly attempts to init the stacked irqchip before the
+> PLIC. This fails and breaks boot.
+> 
+> Fix this by having of_irq_find_parent return the first node referenced
+> by interrupts-extended when that property is present. Even if the
+> property references multiple different IRQ domains, this will still work
+> reliably in of_irq_init as long as all referenced domains are the same
+> distance away from some root domain (e.g. the RISC-V INTCs referenced by
+> the PLIC's interrupts-extended are always all root domains).
+
+I'm a bit worried that the distance assumption may not always hold.
+Maybe it isn't something we need to deal with right now, but a comment
+wouldn't hurt to make this assumption clear.
+
+>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+> 
+>  drivers/of/irq.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> index 2b07677a386b..0c20e22b91f5 100644
+> --- a/drivers/of/irq.c
+> +++ b/drivers/of/irq.c
+> @@ -60,7 +60,8 @@ struct device_node *of_irq_find_parent(struct device_node *child)
+>  		return NULL;
+>  
+>  	do {
+> -		if (of_property_read_u32(child, "interrupt-parent", &parent)) {
+> +		if (of_property_read_u32(child, "interrupt-parent", &parent) &&
+> +		    of_property_read_u32(child, "interrupts-extended", &parent)) {
+>  			p = of_get_parent(child);
+>  		} else	{
+>  			if (of_irq_workarounds & OF_IMAP_NO_PHANDLE)
+
+With the comment added:
+
+Acked-by: Marc Zyngier <maz@kernel.org>
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
