@@ -2,122 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 208544B59DF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 19:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DCAC4B59EB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 19:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349862AbiBNS3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 13:29:12 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38000 "EHLO
+        id S1347306AbiBNSaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 13:30:30 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbiBNS3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 13:29:12 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 584E655480
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 10:29:04 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nJg5V-0006ak-2B; Mon, 14 Feb 2022 19:28:37 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nJg5N-00GbE8-Cu; Mon, 14 Feb 2022 19:28:28 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nJg5L-003BE4-Vq; Mon, 14 Feb 2022 19:28:27 +0100
-Date:   Mon, 14 Feb 2022 19:28:24 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
+        with ESMTP id S1353761AbiBNSa2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 13:30:28 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB0F1652DF;
+        Mon, 14 Feb 2022 10:30:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1644863420; x=1676399420;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2SuiWkTsCmL0kmekpSa89GaVmY8ni1VlZC8DxtgnZ6g=;
+  b=idin0OSHJv0cTfDKd9ETgFibS8HLd8QpeqG5tws0/HtipHvi2uuLqyO2
+   6Ck86oj51C0iUSAFFiE4AQ3hPnL04vH/L7SemfvMgxQWE/EfK3qAaYgMD
+   87G55pw6MO4FPETEHouZHZ02YBKKF8sQ3luABgGHXFU6+awW8a5PJRBuc
+   ll3K5xm0Vj0viP9f8aBvoWr8nwrtEIsJJiWx4O7AX3/WIfsrZfZsUyU+3
+   8O4BIM9bR6PXSsUBvKPsFltvyFtPnJrwItPmoXilA00aqfLt1DIaSYTmZ
+   8oOw48gw0t9y10/I7DpQw5MFyDbX/OvVNeX0vD9QJz3xG8qozOncOa7iR
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="274728429"
+X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; 
+   d="scan'208";a="274728429"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 10:30:20 -0800
+X-IronPort-AV: E=Sophos;i="5.88,368,1635231600"; 
+   d="scan'208";a="624372837"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 10:30:15 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 0993C202D5;
+        Mon, 14 Feb 2022 20:30:13 +0200 (EET)
+Date:   Mon, 14 Feb 2022 20:30:13 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
+        Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <mripard@kernel.org>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
         Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>,
-        Rahul Tanwar <rtanwar@maxlinear.com>,
-        Jeff LaBundy <jeff@labundy.com>,
-        Yash Shah <yash.shah@sifive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Vignesh R <vigneshr@ti.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 11/15] dt-bindings: pwm: intel, keembay: do not require
- pwm-cells
-Message-ID: <20220214182824.gevtqbtv4qrddjqb@pengutronix.de>
-References: <20220214081605.161394-1-krzysztof.kozlowski@canonical.com>
- <20220214081605.161394-11-krzysztof.kozlowski@canonical.com>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 37/66] media: sun6i-csi: Move power management to
+ runtime pm in capture
+Message-ID: <YgqftcDgfrsZfTdF@paasikivi.fi.intel.com>
+References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
+ <20220205185429.2278860-38-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lqbpgpqedfoirane"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220214081605.161394-11-krzysztof.kozlowski@canonical.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220205185429.2278860-38-paul.kocialkowski@bootlin.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Paul,
 
---lqbpgpqedfoirane
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sat, Feb 05, 2022 at 07:54:00PM +0100, Paul Kocialkowski wrote:
+> Let's just enable the module when we start using it (at stream on)
+> and benefit from runtime pm instead of enabling it at first open.
+> 
+> Also reorder the call to v4l2_pipeline_pm_get.
+> 
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 
-Hello Krzysztof,
+Nice patch!
 
-when I read the subject line I thought the patch intention to be wrong.
-Maybe make that:
+Do you still need v4l2_pipeline_pm_put()? Removing it would be a separate
+patch of course.
 
-	dt-bindings: intel,keembay-pwm: Don't require #pwm-cells twice
+-- 
+Kind regards,
 
-?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---lqbpgpqedfoirane
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmIKn0UACgkQwfwUeK3K
-7AmoPQgAnQ94Se1jdIRfuPxmJ8SI3oyoR5qYibmzoO6pwZLs9AEr0sb5Vgbt0bkU
-gQmoGNX0ivMunGQ1xXrSm0KXvUUM7nxRaxIHK/rmpYLvAiv1x1oZIKgV7QG7lBOx
-Ua+jxme5GKpJD8jNMWXOU/c2vvMb3D0f1FViJeMXitnnooA8RlMRwQeHO+Xz60Gs
-YokHBwlm1DtKPndRHVUcnoKpOIUnBvcDaFCVNPuqLfGRBsckM/5qqMH6duDEiZn7
-9EUVHIPADGIjR2kSt1jkf+sXnJ9qMguzKcxcouDXAkwqlqFS0xbk8s32UO+3BFM2
-rZo1vmmZ555NPDPiZmLPGN0ec+HiXQ==
-=7yzT
------END PGP SIGNATURE-----
-
---lqbpgpqedfoirane--
+Sakari Ailus
