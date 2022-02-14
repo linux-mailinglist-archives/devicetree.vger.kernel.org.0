@@ -2,47 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AB214B5C3B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 160634B5CC9
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 22:27:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230185AbiBNVHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 16:07:45 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51874 "EHLO
+        id S230526AbiBNVYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 16:24:19 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230186AbiBNVFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:05:40 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F60D107A9F;
-        Mon, 14 Feb 2022 13:05:30 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nJhco-0002m8-7o; Mon, 14 Feb 2022 21:07:06 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Atish Patra <atishp@rivosinc.com>,
+        with ESMTP id S231240AbiBNVYK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 16:24:10 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A04341017E0
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:24:01 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id y6so50098999ybc.5
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 13:24:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=kGBEFAYbaLpqMalFqEbdF8CMyFM//dqVIIoAUyybZhY=;
+        b=nHWM1dUXTwzVoJmGZtBmCKnqa0kMnBrJbKSVwJC/ZkJjyIRJVPSh9e5cLhYAbHGOvv
+         BA3ihuEZd89wB77VDUUnDycnqKXD8qF4dR27XkYyuqRB0Rku2ypXXX/sewJV/xRKpuZB
+         n+FoP3+RiJXvS0QjhXOHHEF9o/4RVuNOQHs/c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=kGBEFAYbaLpqMalFqEbdF8CMyFM//dqVIIoAUyybZhY=;
+        b=I1rJxj/su0xYPLEn4hVC+35xCCBIUEBFqyqLis77lvQPg05emNuhuTHxye1k+dtHCb
+         e72BTKa1mwzeVPD1uIWLkmYhQYIjoZlxVGlk+qFOSmH54sJeqJkKevDv9xi1HIUci9Ax
+         G20owys0rK26ljZubcwMANNM+XKrMe1XVTmF/fwXC2JsikgOxSVgcEugTlaiQvgY4Da/
+         gaJKjGA4p0x/eo3tsN5IMCMgNTgAgoV9euNsE44BFGWKzXvuy/6vM8ee+Uj3SK9CM3DP
+         dJPMGusVZRZxTEdOS1U8jycptMK4IvbhVkhKg7Rrtor8xW12AAz5vQ+EVc0/f2XbJCk2
+         gdJA==
+X-Gm-Message-State: AOAM530v+agScsXPHIAWjdWybdUBDKRXnWCb11iDZgZaEJw6A2dY3BW3
+        Sr+vHl9UWyfpPt6/MWyDdfUeiAndqQ9QCHLQjTn469gldXo0
+X-Google-Smtp-Source: ABdhPJy9iWrjlJ1/7f5PyrkeukMSg4A7DFeq3zidpdYp4uG08BhZuPqtKTLfDxzE8Och0iVX9MsRI+gwY1fppNR4gqk=
+X-Received: by 2002:a25:8b0a:: with SMTP id i10mr765883ybl.651.1644869664014;
+ Mon, 14 Feb 2022 12:14:24 -0800 (PST)
+MIME-Version: 1.0
+References: <20220210214018.55739-1-atishp@rivosinc.com> <20220210214018.55739-5-atishp@rivosinc.com>
+ <3881365.IPMWXPQfj1@diego>
+In-Reply-To: <3881365.IPMWXPQfj1@diego>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Mon, 14 Feb 2022 12:14:13 -0800
+Message-ID: <CAOnJCUK1CwJ=J+y9EqszY0aACQsDdpLqCDbEZ1ZNDRdHE9C4gA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] RISC-V: Implement multi-letter ISA extension
+ probing framework
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Atish Patra <atishp@rivosinc.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
         Anup Patel <anup@brainfault.org>,
         Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv@lists.infradead.org,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>
-Subject: Re: [PATCH v2 6/6] RISC-V: Improve /proc/cpuinfo output for ISA extensions
-Date:   Mon, 14 Feb 2022 21:07:05 +0100
-Message-ID: <1919053.afAmxgqtYg@diego>
-In-Reply-To: <20220210214018.55739-7-atishp@rivosinc.com>
-References: <20220210214018.55739-1-atishp@rivosinc.com> <20220210214018.55739-7-atishp@rivosinc.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,17 +74,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 10. Februar 2022, 22:40:18 CET schrieb Atish Patra:
-> Currently, the /proc/cpuinfo outputs the entire riscv,isa string which
-> is not ideal when we have multiple ISA extensions present in the ISA
-> string. Some of them may not be enabled in kernel as well.
-> 
-> Parse only the enabled ISA extension and print them in a separate row.
-> 
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+On Mon, Feb 14, 2022 at 12:06 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote=
+:
+>
+> Am Donnerstag, 10. Februar 2022, 22:40:16 CET schrieb Atish Patra:
+> > Multi-letter extensions can be probed using exising
+> > riscv_isa_extension_available API now. It doesn't support versioning
+> > right now as there is no use case for it.
+> > Individual extension specific implementation will be added during
+> > each extension support.
+> >
+> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+>
+> Tested-by: Heiko Stuebner <heiko@sntech.de>
+>
+>
+> By the way, does a similar parsing exist for opensbi as well?
+> Things like svpbmt as well as zicbom have CSR bits controlling how
+> these functions should behave (enabling them, etc), so I guess
+> opensbi also needs to parse the extensions from the ISA string?
+>
+>
 
-Using this for my svpbmt series, it shows the extension nicely
+No. Currently, OpenSBI relies on the CSR read/write & trap method to
+identify the extensions [1].
 
-Tested-by: Heiko Stuebner <heiko@sntech.de>
+https://github.com/riscv-software-src/opensbi/blob/master/lib/sbi/sbi_hart.=
+c#L404
+
+In the future, zicbom can be detected in the same manner. However,
+svpbmt is a bit tricky as it doesn't
+define any new CSR. Do you think OpenSBI needs to detect svpbmt for any rea=
+son ?
+
+> Heiko
+>
+> > ---
+> >  arch/riscv/include/asm/hwcap.h | 18 ++++++++++++++++++
+> >  arch/riscv/kernel/cpufeature.c | 27 ++++++++++++++++++++++++---
+> >  2 files changed, 42 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hw=
+cap.h
+> > index 5ce50468aff1..170bd80da520 100644
+> > --- a/arch/riscv/include/asm/hwcap.h
+> > +++ b/arch/riscv/include/asm/hwcap.h
+> > @@ -34,7 +34,25 @@ extern unsigned long elf_hwcap;
+> >  #define RISCV_ISA_EXT_s              ('s' - 'a')
+> >  #define RISCV_ISA_EXT_u              ('u' - 'a')
+> >
+> > +/*
+> > + * Increse this to higher value as kernel support more ISA extensions.
+> > + */
+> >  #define RISCV_ISA_EXT_MAX    64
+> > +#define RISCV_ISA_EXT_NAME_LEN_MAX 32
+> > +
+> > +/* The base ID for multi-letter ISA extensions */
+> > +#define RISCV_ISA_EXT_BASE 26
+> > +
+> > +/*
+> > + * This enum represent the logical ID for each multi-letter RISC-V ISA=
+ extension.
+> > + * The logical ID should start from RISCV_ISA_EXT_BASE and must not ex=
+ceed
+> > + * RISCV_ISA_EXT_MAX. 0-25 range is reserved for single letter
+> > + * extensions while all the multi-letter extensions should define the =
+next
+> > + * available logical extension id.
+> > + */
+> > +enum riscv_isa_ext_id {
+> > +     RISCV_ISA_EXT_ID_MAX =3D RISCV_ISA_EXT_MAX,
+> > +};
+> >
+> >  unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap=
+);
+> >
+> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeat=
+ure.c
+> > index e9e3b0693d16..469b9739faf7 100644
+> > --- a/arch/riscv/kernel/cpufeature.c
+> > +++ b/arch/riscv/kernel/cpufeature.c
+> > @@ -83,7 +83,7 @@ void __init riscv_fill_hwcap(void)
+> >
+> >       for_each_of_cpu_node(node) {
+> >               unsigned long this_hwcap =3D 0;
+> > -             unsigned long this_isa =3D 0;
+> > +             uint64_t this_isa =3D 0;
+> >
+> >               if (riscv_of_processor_hartid(node) < 0)
+> >                       continue;
+> > @@ -169,12 +169,22 @@ void __init riscv_fill_hwcap(void)
+> >                       if (*isa !=3D '_')
+> >                               --isa;
+> >
+> > +#define SET_ISA_EXT_MAP(name, bit)                                    =
+       \
+> > +                     do {                                             =
+       \
+> > +                             if ((ext_end - ext =3D=3D sizeof(name) - =
+1) &&      \
+> > +                                  !memcmp(ext, name, sizeof(name) - 1)=
+) {    \
+> > +                                     this_isa |=3D (1UL << bit);      =
+         \
+> > +                                     pr_info("Found ISA extension %s",=
+ name);\
+> > +                             }                                        =
+       \
+> > +                     } while (false)                                  =
+       \
+> > +
+> >                       if (unlikely(ext_err))
+> >                               continue;
+> >                       if (!ext_long) {
+> >                               this_hwcap |=3D isa2hwcap[(unsigned char)=
+(*ext)];
+> >                               this_isa |=3D (1UL << (*ext - 'a'));
+> >                       }
+> > +#undef SET_ISA_EXT_MAP
+> >               }
+> >
+> >               /*
+> > @@ -187,10 +197,21 @@ void __init riscv_fill_hwcap(void)
+> >               else
+> >                       elf_hwcap =3D this_hwcap;
+> >
+> > -             if (riscv_isa[0])
+> > +             if (riscv_isa[0]) {
+> > +#if IS_ENABLED(CONFIG_32BIT)
+> > +                     riscv_isa[0] &=3D this_isa & 0xFFFFFFFF;
+> > +                     riscv_isa[1] &=3D this_isa >> 32;
+> > +#else
+> >                       riscv_isa[0] &=3D this_isa;
+> > -             else
+> > +#endif
+> > +             } else {
+> > +#if IS_ENABLED(CONFIG_32BIT)
+> > +                     riscv_isa[0] =3D this_isa & 0xFFFFFFFF;
+> > +                     riscv_isa[1] =3D this_isa >> 32;
+> > +#else
+> >                       riscv_isa[0] =3D this_isa;
+> > +#endif
+> > +             }
+> >       }
+> >
+> >       /* We don't support systems with F but without D, so mask those o=
+ut
+> >
+>
+>
+>
+>
 
 
+--=20
+Regards,
+Atish
