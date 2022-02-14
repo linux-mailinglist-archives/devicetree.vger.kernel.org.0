@@ -2,134 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D6D34B54D1
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 546424B54E3
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 16:35:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230360AbiBNPc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 10:32:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54224 "EHLO
+        id S242533AbiBNPft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 10:35:49 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351821AbiBNPcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:32:24 -0500
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE2347567
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:32:16 -0800 (PST)
+        with ESMTP id S1355895AbiBNPfh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 10:35:37 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 799CE5F273
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:35:28 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id z19so31304333lfq.13
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 07:35:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1644852736;
-  x=1676388736;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=/7n42tcMiMRbVcTW1aHC807eu20R0tSFw2BM43WSADc=;
-  b=pSSczEvEhZSiqGD2fHq3I6PAlnWMztDbICT5O0g/WLWKv8RwK3VJRRNB
-   6RgizMFdsQ1onwr9Z7hDW4dO8KgbGGXLyt78NDBh4oA3ykiu/6twQ0r9P
-   V8S5Vcg7WNc+oqIxKWhctC/UIgz75WdG4zEbFMTDUocMT44UDZJ7fmIu2
-   xr8RWu/8PZG3iHXSMBcW2ef4mIihcPi8GpAEGVvVL7DHGjhjuGivMEBhq
-   BJJYTx8aEoxCg4WEuSL/fgBdHy1oj+1NZiJ6zCVw9p+Rk9k2CKGM52vnZ
-   9pF5czT6t/GwNj82awnhk/Jsasc2iuUNY86tFCd8txo7opOB/6ipJLfyp
-   A==;
-From:   =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
-        =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
-Subject: [PATCH v2] of: dma_configure: Reuse existing DMA map range
-Date:   Mon, 14 Feb 2022 16:32:08 +0100
-Message-ID: <20220214153208.2984026-1-marten.lindahl@axis.com>
-X-Mailer: git-send-email 2.30.2
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iRYhE5QfFh6N5neui9jc14hYBWThUe6VRAPVyILvtvI=;
+        b=hVYAEeUsZHwDztmlTeFxSWpRg3De/fjl/iZo3DZ2HN/sZNhxgJWdjODwGlfVs9GWuU
+         T3hUgy3RLKCaGk9U+pUc/FqmBoayO/BRpiaL6rXDMNEN2pfnVc5uDV/fY0Vq00k3eVFQ
+         WNoIuJIsnPKJ1ofvs7c4qiM3qaKtT9+qNSf+wOnunJUN7upd3HcRF4zlh/SS3q87GUua
+         zhsvo/z5wl3fUazBjwE1KzKcjTW/x/lWiRht9v8ZiDfJovHGYnsOL+Dr5+DgskHtYJ5S
+         eXitXaIvPefLnFP7E+OIOZya1VCZlRA+61zHOWQDq/Hp5It9wGjcz2t0Q0O22yF9Lpkq
+         YMUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iRYhE5QfFh6N5neui9jc14hYBWThUe6VRAPVyILvtvI=;
+        b=cYkm/kBihy4aTm65KiTQhOr0xWjVv4BsnsXL62xChm+ocuqEi4Rx5g1twOuexXBjW7
+         uUvN2hnxY23kiY1LZMpGH53pgMNadmVzr+47wycVeheWfzyvGc7kgmnJUkYDxs4/AY8T
+         y+z3RmS9Ku1+lIHDcvlFUGuUlPFLNvXEzwakVt07SV0c4RD+cz5a97XLZxeG6z9Ypyvt
+         mhZ94nUyQ9+KWVp4SRXq5/eqxgKUpKmRG+fZRH5tqTTOb9AucW0JJPQbX1ja6FCkV8om
+         ZTJoRX2i7oys2h+hnjAxzQuD26+HT6aDeWdhvvdQkPazCwANXVjSa4NO8CUfca/Nxh3T
+         QPew==
+X-Gm-Message-State: AOAM531ZmwqrpfAU2EJxGNz+ZvGlB7U5OhlKQqJ7RL7WbwS++jYFAhzh
+        EbtYZkhpVo2NwJdHaHhG/+sXm9+mhly1QPDVUPXCWg==
+X-Google-Smtp-Source: ABdhPJx9g6QNumI+cxbYO4D4/KGsV3uSlDR9miwSvQwPmYjPvhAAf0dojPsqo48saytOTLx1auETX9CyWKvOARPGSgs=
+X-Received: by 2002:a05:6512:3e10:: with SMTP id i16mr160939lfv.184.1644852926808;
+ Mon, 14 Feb 2022 07:35:26 -0800 (PST)
 MIME-Version: 1.0
+References: <20220121071942.11601-1-axe.yang@mediatek.com> <20220121071942.11601-3-axe.yang@mediatek.com>
+In-Reply-To: <20220121071942.11601-3-axe.yang@mediatek.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 14 Feb 2022 16:34:50 +0100
+Message-ID: <CAPDyKFqd+H6F4+gBd4CEigaOTC5TtjtT75B3G0B6qexFi6XqKw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] mmc: core: Add support for SDIO async interrupt
+To:     Axe Yang <axe.yang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When unbinding/binding a driver with DMA mapped memory, the DMA map is
-not freed when the driver is reloaded. This leads to a memory leak when
-the DMA map is overwritten when reprobing the driver.
+On Fri, 21 Jan 2022 at 08:19, Axe Yang <axe.yang@mediatek.com> wrote:
+>
+> If cap-sdio-async-irq flag is set in host dts node, parse EAI
+> information from SDIO CCCR interrupt externsion segment. If async
+> interrupt is supported by SDIO card then send command to card to
+> enable it and set enable_async_irq flag in sdio_cccr structure to 1.
+> The parse flow is implemented in sdio_read_cccr().
+>
+> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> ---
+>  drivers/mmc/core/host.c  |  2 ++
+>  drivers/mmc/core/sdio.c  | 17 +++++++++++++++++
+>  include/linux/mmc/card.h |  3 ++-
+>  include/linux/mmc/host.h |  1 +
+>  include/linux/mmc/sdio.h |  5 +++++
+>  5 files changed, 27 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
+> index cf140f4ec864..a972241548b4 100644
+> --- a/drivers/mmc/core/host.c
+> +++ b/drivers/mmc/core/host.c
+> @@ -410,6 +410,8 @@ int mmc_of_parse(struct mmc_host *host)
+>         if (device_property_read_bool(dev, "no-mmc-hs400"))
+>                 host->caps2 &= ~(MMC_CAP2_HS400_1_8V | MMC_CAP2_HS400_1_2V |
+>                                  MMC_CAP2_HS400_ES);
+> +       if (device_property_read_bool(dev, "cap-sdio-async-irq"))
+> +               host->caps2 |= MMC_CAP2_SDIO_ASYNC_IRQ;
+>
+>         /* Must be after "non-removable" check */
+>         if (device_property_read_u32(dev, "fixed-emmc-driver-type", &drv_type) == 0) {
+> diff --git a/drivers/mmc/core/sdio.c b/drivers/mmc/core/sdio.c
+> index 41164748723d..771fb5d18585 100644
+> --- a/drivers/mmc/core/sdio.c
+> +++ b/drivers/mmc/core/sdio.c
+> @@ -225,6 +225,23 @@ static int sdio_read_cccr(struct mmc_card *card, u32 ocr)
+>                                 card->sw_caps.sd3_drv_type |= SD_DRIVER_TYPE_C;
+>                         if (data & SDIO_DRIVE_SDTD)
+>                                 card->sw_caps.sd3_drv_type |= SD_DRIVER_TYPE_D;
+> +
+> +                       if (card->host->caps2 & MMC_CAP2_SDIO_ASYNC_IRQ) {
 
-This can be reproduced with a platform driver having a dma-range:
+We can probably check host->pm_caps & MMC_PM_WAKE_SDIO_IRQ here,
+instead of MMC_CAP2_SDIO_ASYNC_IRQ.
 
-dummy {
-	...
-	#address-cells = <0x2>;
-	#size-cells = <0x2>;
-	ranges;
-	dma-ranges = <...>;
-	...
-};
+> +                               ret = mmc_io_rw_direct(card, 0, 0, SDIO_CCCR_INTERRUPT_EXT, 0,
+> +                                                      &data);
+> +                               if (ret)
+> +                                       goto out;
+> +
+> +                               if (data & SDIO_INTERRUPT_EXT_SAI) {
+> +                                       data |= SDIO_INTERRUPT_EXT_EAI;
+> +                                       ret = mmc_io_rw_direct(card, 1, 0, SDIO_CCCR_INTERRUPT_EXT,
+> +                                                              data, NULL);
+> +                                       if (ret)
+> +                                               goto out;
+> +
+> +                                       card->cccr.enable_async_irq = 1;
 
-and then unbinding/binding it:
+As you show in the next patch(3), this flag is useful to read for the
+host driver.
 
-~# echo soc:dummy >/sys/bus/platform/drivers/<driver>/unbind
+However, rather than accessing this flag directly in the host driver,
+can you please add a helper function that takes a struct mmc_card* as
+in-parameter instead?
 
-DMA map object 0xffffff800b0ae540 still being held by &pdev->dev
+> +                               }
+> +                       }
+>                 }
+>
+>                 /* if no uhs mode ensure we check for high speed */
+> diff --git a/include/linux/mmc/card.h b/include/linux/mmc/card.h
+> index 37f975875102..4df9182bc0e6 100644
+> --- a/include/linux/mmc/card.h
+> +++ b/include/linux/mmc/card.h
+> @@ -219,7 +219,8 @@ struct sdio_cccr {
+>                                 wide_bus:1,
+>                                 high_power:1,
+>                                 high_speed:1,
+> -                               disable_cd:1;
+> +                               disable_cd:1,
+> +                               enable_async_irq:1;
+>  };
+>
+>  struct sdio_cis {
+> diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
+> index 7afb57cab00b..502a5418264c 100644
+> --- a/include/linux/mmc/host.h
+> +++ b/include/linux/mmc/host.h
+> @@ -402,6 +402,7 @@ struct mmc_host {
+>  #define MMC_CAP2_CRYPTO                0
+>  #endif
+>  #define MMC_CAP2_ALT_GPT_TEGRA (1 << 28)       /* Host with eMMC that has GPT entry at a non-standard location */
+> +#define MMC_CAP2_SDIO_ASYNC_IRQ        (1 << 29)       /* SDIO host supports asynchronous interrupt */
+>
+>         int                     fixed_drv_type; /* fixed driver type for non-removable media */
+>
+> diff --git a/include/linux/mmc/sdio.h b/include/linux/mmc/sdio.h
+> index 2a05d1ac4f0e..1ef400f28642 100644
+> --- a/include/linux/mmc/sdio.h
+> +++ b/include/linux/mmc/sdio.h
+> @@ -159,6 +159,11 @@
+>  #define  SDIO_DTSx_SET_TYPE_A  (1 << SDIO_DRIVE_DTSx_SHIFT)
+>  #define  SDIO_DTSx_SET_TYPE_C  (2 << SDIO_DRIVE_DTSx_SHIFT)
+>  #define  SDIO_DTSx_SET_TYPE_D  (3 << SDIO_DRIVE_DTSx_SHIFT)
+> +
+> +#define SDIO_CCCR_INTERRUPT_EXT        0x16
+> +#define SDIO_INTERRUPT_EXT_SAI (1 << 0)
+> +#define SDIO_INTERRUPT_EXT_EAI (1 << 1)
+> +
+>  /*
+>   * Function Basic Registers (FBR)
+>   */
 
-~# echo soc:dummy >/sys/bus/platform/drivers/<driver>/bind
-~# echo scan > /sys/kernel/debug/kmemleak
-~# cat /sys/kernel/debug/kmemleak
-unreferenced object 0xffffff800b0ae540 (size 64):
-  comm "sh", pid 833, jiffies 4295174550 (age 2535.352s)
-  hex dump (first 32 bytes):
-    00 00 00 80 00 00 00 00 00 00 00 00 00 00 00 00  ................
-    00 00 00 80 00 00 00 00 00 00 00 80 00 00 00 00  ................
-  backtrace:
-    [<ffffffefd1694708>] create_object.isra.0+0x108/0x344
-    [<ffffffefd1d1a850>] kmemleak_alloc+0x8c/0xd0
-    [<ffffffefd167e2d0>] __kmalloc+0x440/0x6f0
-    [<ffffffefd1a960a4>] of_dma_get_range+0x124/0x220
-    [<ffffffefd1a8ce90>] of_dma_configure_id+0x40/0x2d0
-    [<ffffffefd198b68c>] platform_dma_configure+0x5c/0xa4
-    [<ffffffefd198846c>] really_probe+0x8c/0x514
-    [<ffffffefd1988990>] __driver_probe_device+0x9c/0x19c
-    [<ffffffefd1988cd8>] device_driver_attach+0x54/0xbc
-    [<ffffffefd1986634>] bind_store+0xc4/0x120
-    [<ffffffefd19856e0>] drv_attr_store+0x30/0x44
-    [<ffffffefd173c9b0>] sysfs_kf_write+0x50/0x60
-    [<ffffffefd173c1c4>] kernfs_fop_write_iter+0x124/0x1b4
-    [<ffffffefd16a013c>] new_sync_write+0xdc/0x160
-    [<ffffffefd16a256c>] vfs_write+0x23c/0x2a0
-    [<ffffffefd16a2758>] ksys_write+0x64/0xec
-
-Don't get a new dma_range_map if there already is one. Check for an
-existing map and reuse it, or else get the map as before. This will
-prevent overwriting the old map which is still valid.
-
-Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
----
-
-v2:
- - Reuse range map instead of getting a new and freeing the old.
-
- drivers/of/device.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 874f031442dc..7e5d8066ffff 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -116,9 +116,14 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 	u64 dma_start = 0;
- 	u64 mask, end, size = 0;
- 	bool coherent;
--	int ret;
-+	int ret = 0;
-+
-+	/* Don't get a new DMA range map if we already have one */
-+	if (dev->dma_range_map)
-+		map = dev->dma_range_map;
-+	else
-+		ret = of_dma_get_range(np, &map);
- 
--	ret = of_dma_get_range(np, &map);
- 	if (ret < 0) {
- 		/*
- 		 * For legacy reasons, we have to assume some devices need
--- 
-2.30.2
-
+Kind regards
+Uffe
