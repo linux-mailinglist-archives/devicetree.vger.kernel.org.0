@@ -2,104 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 479BC4B5621
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 17:27:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85CD44B560F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 17:23:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356335AbiBNQ2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 11:28:00 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37014 "EHLO
+        id S237713AbiBNQXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 11:23:12 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236773AbiBNQ17 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 11:27:59 -0500
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45FC160A9B
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 08:27:51 -0800 (PST)
-Received: by mail-qt1-x831.google.com with SMTP id b5so15874649qtq.11
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 08:27:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JskXaZJX9EqtyU9nDYwhDYopK1GYBeF5QAk0Zlst3K8=;
-        b=WFoQIvGxJEbg8UOaiV70tS6PGdyf3qjcG0fNJQKbyHSfj48VnWpT1uPRsHkSjKp4oI
-         VyXEAHc0fq+QePjMo/XUxaUdqQMw6JpndQdJRAM+wSSoz81Cj3PoON8L3Dmir1bNHNxO
-         JLMBAFjfwqf69spTV2mC/gqt6Gw5T35QWKhp0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JskXaZJX9EqtyU9nDYwhDYopK1GYBeF5QAk0Zlst3K8=;
-        b=f8b9QO9rEBT6utgABH9bdB45YnEDqwvaJQjkyFKd9IYK+8xU8vjXiUTXhSDNDVVQEa
-         qMzUj30q7P82JNRncNDX5Xhe732KsKAaMJuo+18yU94NK8zLuLhKoV2Ze+kMW6nUNrfT
-         /7AGUMmvGbPX1VkeAihJ/PMctmyRkPHvQqXFZs90tWBPN87PSYGrkwU3/AN1tjNiB8zv
-         OUvHeHhgADaMPjBf2HSxeHlmQ0k0poDEDGJUB9ThQ+6xVd6FuylSsHNtnrzyOrIQ78AR
-         mTchXKfaDHWjGreuUHbQeVTyBwA9ltzmsbhIQKccPHqzOMvYLtM2mOr0oi8M/Xt9JrjR
-         f3lg==
-X-Gm-Message-State: AOAM530w5lEfJb1L/hKgg9e839PJlvcAzT+ZSZ4lBwV2g/9wrygAqmxt
-        fkfh4ux9RRIWlkM/W+A40OWwndIk8akH6w==
-X-Google-Smtp-Source: ABdhPJwFMsezFVJjSfA81EWqnEJb7PfcY/pgDKn7JhglVVXwFxNvzqP2bubnAS7ajjPXzVWlGNbdzQ==
-X-Received: by 2002:ac8:5f8e:: with SMTP id j14mr442653qta.149.1644856069825;
-        Mon, 14 Feb 2022 08:27:49 -0800 (PST)
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com. [209.85.160.171])
-        by smtp.gmail.com with ESMTPSA id y9sm8897485qtx.85.2022.02.14.08.27.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Feb 2022 08:27:49 -0800 (PST)
-Received: by mail-qt1-f171.google.com with SMTP id b5so15874589qtq.11
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 08:27:49 -0800 (PST)
-X-Received: by 2002:a02:3b67:: with SMTP id i39mr299652jaf.50.1644855749283;
- Mon, 14 Feb 2022 08:22:29 -0800 (PST)
+        with ESMTP id S233335AbiBNQXL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 11:23:11 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 96F995FF0B
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 08:23:03 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5B30413D5;
+        Mon, 14 Feb 2022 08:23:03 -0800 (PST)
+Received: from [10.57.37.216] (unknown [10.57.37.216])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 60E753F70D;
+        Mon, 14 Feb 2022 08:23:02 -0800 (PST)
+Message-ID: <5ca70986-d6a5-7c3e-b876-40e970805775@arm.com>
+Date:   Mon, 14 Feb 2022 16:23:01 +0000
 MIME-Version: 1.0
-References: <20220214081916.162014-1-krzysztof.kozlowski@canonical.com> <20220214081916.162014-5-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220214081916.162014-5-krzysztof.kozlowski@canonical.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 14 Feb 2022 08:22:18 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=Wzr=ra=_mt63Uj2p6PSNoEF1F=zN0-0yg5rcWkBFYkZw@mail.gmail.com>
-Message-ID: <CAD=FV=Wzr=ra=_mt63Uj2p6PSNoEF1F=zN0-0yg5rcWkBFYkZw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: rk3399: align Google CROS EC PWM node
- name with dtschema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, chrome-platform@lists.linux.dev,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-pwm <linux-pwm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/9] dt-bindings: Add arm,mali-valhall compatible
+Content-Language: en-GB
+To:     alyssa.rosenzweig@collabora.com, dri-devel@lists.freedesktop.org
+Cc:     robh@kernel.org, tomeu.vizoso@collabora.com, airlied@linux.ie,
+        daniel@ffwll.ch, devicetree@vger.kernel.org
+References: <20220211202728.6146-1-alyssa.rosenzweig@collabora.com>
+ <20220211202728.6146-2-alyssa.rosenzweig@collabora.com>
+From:   Steven Price <steven.price@arm.com>
+In-Reply-To: <20220211202728.6146-2-alyssa.rosenzweig@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, Feb 14, 2022 at 12:20 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> dtschema expects PWM node name to be a generic "pwm".  This also matches
-> Devicetree specification requirements about generic node names.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+On 11/02/2022 20:27, alyssa.rosenzweig@collabora.com wrote:
+> From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+> 
+> From the kernel's perspective, pre-CSF Valhall is more or less
+> compatible with Bifrost, although they differ to userspace. Add a
+> compatible for Valhall to the existing Bifrost bindings documentation.
+> 
+> Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+> Cc: devicetree@vger.kernel.org
 > ---
->  arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> index 63a08f3f321d..48aeabd2ed68 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> @@ -23,6 +23,7 @@ properties:
+>            - rockchip,px30-mali
+>            - rockchip,rk3568-mali
+>        - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
+> +      - const: arm,mali-valhall # Mali Valhall GPU model/revision is fully discoverable
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+It might be worth spelling out here that this is *pre-CSF* Valhall. I'm
+pretty sure we're going to need different bindings for CSF GPUs.
+
+Steve
+
+>  
+>    reg:
+>      maxItems: 1
+
