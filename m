@@ -2,152 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEED04B485E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 10:56:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 244394B493B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 11:35:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343747AbiBNJx2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Feb 2022 04:53:28 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60850 "EHLO
+        id S1344535AbiBNKAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 05:00:15 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344982AbiBNJwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 04:52:09 -0500
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20BD66735D;
-        Mon, 14 Feb 2022 01:43:34 -0800 (PST)
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 21E9eP2H019510;
-        Mon, 14 Feb 2022 09:42:57 GMT
-Received: from ppma06fra.de.ibm.com (48.49.7a9f.ip4.static.sl-reverse.com [159.122.73.72])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3e779vdmbn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 14 Feb 2022 09:42:57 +0000
-Received: from pps.filterd (ppma06fra.de.ibm.com [127.0.0.1])
-        by ppma06fra.de.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 21E9bfsY004418;
-        Mon, 14 Feb 2022 09:42:55 GMT
-Received: from b06avi18626390.portsmouth.uk.ibm.com (b06avi18626390.portsmouth.uk.ibm.com [9.149.26.192])
-        by ppma06fra.de.ibm.com with ESMTP id 3e645jat6m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 14 Feb 2022 09:42:55 +0000
-Received: from d06av21.portsmouth.uk.ibm.com (d06av21.portsmouth.uk.ibm.com [9.149.105.232])
-        by b06avi18626390.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 21E9WYme38797792
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 14 Feb 2022 09:32:34 GMT
-Received: from d06av21.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 051CE52052;
-        Mon, 14 Feb 2022 09:42:53 +0000 (GMT)
-Received: from smtp.tlslab.ibm.com (unknown [9.101.4.1])
-        by d06av21.portsmouth.uk.ibm.com (Postfix) with SMTP id 6085952050;
-        Mon, 14 Feb 2022 09:42:52 +0000 (GMT)
-Received: from yukon.ibmuc.com (unknown [9.171.60.190])
-        by smtp.tlslab.ibm.com (Postfix) with ESMTP id 076D32201DE;
-        Mon, 14 Feb 2022 10:42:50 +0100 (CET)
-From:   =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
-To:     linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-aspeed@lists.ozlabs.org, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
-Subject: [PATCH 10/10] spi: aspeed: Activate new spi-mem driver
-Date:   Mon, 14 Feb 2022 10:42:31 +0100
-Message-Id: <20220214094231.3753686-11-clg@kaod.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220214094231.3753686-1-clg@kaod.org>
-References: <20220214094231.3753686-1-clg@kaod.org>
+        with ESMTP id S1343946AbiBNJ7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 04:59:23 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF584BE0;
+        Mon, 14 Feb 2022 01:46:42 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id u6so29409972lfc.3;
+        Mon, 14 Feb 2022 01:46:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=JX7AEWXC7VEIWY52t5bRvWiW+LKItzN9Fx20I+DVf7Q=;
+        b=YsRhlT93NM4dfLaeDzZGwO6e3gwuFU7eMUUlBmryc8SBCwRenDL7W7byp1JbzHcitS
+         o2k41NNVTSpvEnFlHj9WtfPIQYYzxrRh3ueitTIMJ1u0SOK8qBCVjHIG/3D4S6PnptmI
+         GT8TSd0KTiqSumJRryLTqSp0yKtbN0M5N/y8TfHGqD7LZ3bXsvkdOQEZ5d9WDz2fxJYq
+         X2jlfLaQJcP7aEKAh1WNmJF5lfJr36BNn81O0vh5Cxtl14jrL1xl9bwDiq51kqcSAM0Q
+         BEShCQiU7QTjmJ2tB7TLqGPxbXzgT0vdi1d9K3CEwK7BPZpZLFKVov9K7MJ0j9q48zbf
+         iiHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=JX7AEWXC7VEIWY52t5bRvWiW+LKItzN9Fx20I+DVf7Q=;
+        b=jTvOUcIj5NT4FsI/iQ/Uz59IPJ6KDQjwN8l99Uoc8lT9g8jwYWkaME4iKlU4ryj3sy
+         McUogGOEqiEO/mG3w70y12e4P6fh9ColC+/YhZ56TrMcFtZbyUpVAQrAdz4EbqTi+Ptz
+         H7ruIZEm4E+wmN3gEOSrqD3fXcQ7cMPCbrh3CpQPIARftQCkVkb/GC7eigza0LiGnwkE
+         bEPeV1InqrfdMkgu5GmVzfsz1Rgb4hjubgoVEze9W0cG92c4vDWH0e4bi88ukTnXh/hs
+         qLx1eNl4veFadPxlWhjbUiLUpZWJEscgpL9vxWQ+ybIIXAR1A7QWvBE+3CNGSBJ2v6As
+         5yRA==
+X-Gm-Message-State: AOAM530Xp4D5rOx0FwhwrYkhgjn4I74yKQOMF+cv0GHdgp49R8/B8pbQ
+        Q1S7OHsSkEHGsePVVCcsG6HdwvhgWjPyVJisqGc=
+X-Google-Smtp-Source: ABdhPJwB0ChPiWBxcQQTBEF/ccpfXCeN7CcbUvlTAUZiXeIJ2StOJ+hk1DsIM7X47AewXPzXDEWa/IldeHH3bjzC4e8=
+X-Received: by 2002:a05:6512:130f:: with SMTP id x15mr5145474lfu.651.1644832001032;
+ Mon, 14 Feb 2022 01:46:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: hi9H4j9w4wgHr4Kw5X0RWQekIHI7ip-1
-X-Proofpoint-ORIG-GUID: hi9H4j9w4wgHr4Kw5X0RWQekIHI7ip-1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-14_01,2022-02-14_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- malwarescore=0 adultscore=0 lowpriorityscore=0 mlxscore=0 clxscore=1034
- impostorscore=0 spamscore=0 suspectscore=0 priorityscore=1501
- mlxlogscore=588 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2201110000 definitions=main-2202140058
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <1644827562-17244-1-git-send-email-vincent.sunplus@gmail.com>
+ <1644827562-17244-2-git-send-email-vincent.sunplus@gmail.com>
+ <YgoVBv/z1uCsR1Y0@kroah.com> <CAPvp3Rhtb-g1A5FG6_1irzX2fG-VACU3T4tST1Xo99cnnL==MQ@mail.gmail.com>
+ <Ygodd+TFQGnhki6A@kroah.com>
+In-Reply-To: <Ygodd+TFQGnhki6A@kroah.com>
+From:   =?UTF-8?B?5pa96YyV6bS7?= <vincent.sunplus@gmail.com>
+Date:   Mon, 14 Feb 2022 17:48:20 +0800
+Message-ID: <CAPvp3RiPVkonTtAdTcLqQuPggg6zw8yNEPf-mR0+1bbtSsdtEg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] usb: host: ehci-sunplus: Add driver for ehci in
+ Sunplus SP7021
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     stern@rowland.harvard.edu, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, wells.lu@sunplus.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The previous driver using the MTD SPI NOR interface is kept in case we
-find some issues but we should remove it quickly once the new driver
-using the spi-mem interface has been sufficiently exposed.
+Greg KH <gregkh@linuxfoundation.org> =E6=96=BC 2022=E5=B9=B42=E6=9C=8814=E6=
+=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=885:14=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Mon, Feb 14, 2022 at 05:03:00PM +0800, =E6=96=BD=E9=8C=95=E9=B4=BB wro=
+te:
+> > Hi, Greg
+> >     About this issue, my colleague Hammer Hsieh has explained it to
+> > you recently in the mail of "[PATCH v7 2/2] serial: sunplus-uart: Add
+> > Sunplus
+> > SoC UART Driver". The ehci driver and uart one are in the same Sunplus =
+Soc.
+>
+> I do not know what you are referring to, sorry.  Remember we get
+> thousands of emails a week.
+>
+> Please be explicit and make the code work properly for each patch you
+> submit.
+>
+> thanks,
+>
+> greg k-h
 
-Signed-off-by: Cédric Le Goater <clg@kaod.org>
----
- arch/arm/configs/aspeed_g4_defconfig | 2 +-
- arch/arm/configs/aspeed_g5_defconfig | 2 +-
- arch/arm/configs/multi_v5_defconfig  | 2 +-
- arch/arm/configs/multi_v7_defconfig  | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm/configs/aspeed_g4_defconfig b/arch/arm/configs/aspeed_g4_defconfig
-index 964536444cd7..b4a1b2ed1a17 100644
---- a/arch/arm/configs/aspeed_g4_defconfig
-+++ b/arch/arm/configs/aspeed_g4_defconfig
-@@ -64,7 +64,7 @@ CONFIG_MTD_BLOCK=y
- CONFIG_MTD_PARTITIONED_MASTER=y
- CONFIG_MTD_SPI_NOR=y
- # CONFIG_MTD_SPI_NOR_USE_4K_SECTORS is not set
--CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=y
-+CONFIG_SPI_ASPEED_SMC=y
- CONFIG_MTD_UBI=y
- CONFIG_MTD_UBI_FASTMAP=y
- CONFIG_MTD_UBI_BLOCK=y
-diff --git a/arch/arm/configs/aspeed_g5_defconfig b/arch/arm/configs/aspeed_g5_defconfig
-index e809236ca88b..ccc4240ee4b5 100644
---- a/arch/arm/configs/aspeed_g5_defconfig
-+++ b/arch/arm/configs/aspeed_g5_defconfig
-@@ -103,7 +103,7 @@ CONFIG_MTD_BLOCK=y
- CONFIG_MTD_PARTITIONED_MASTER=y
- CONFIG_MTD_SPI_NOR=y
- # CONFIG_MTD_SPI_NOR_USE_4K_SECTORS is not set
--CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=y
-+CONFIG_SPI_ASPEED_SMC=y
- CONFIG_MTD_UBI=y
- CONFIG_MTD_UBI_FASTMAP=y
- CONFIG_MTD_UBI_BLOCK=y
-diff --git a/arch/arm/configs/multi_v5_defconfig b/arch/arm/configs/multi_v5_defconfig
-index 49083ef05fb0..80a3ae02d759 100644
---- a/arch/arm/configs/multi_v5_defconfig
-+++ b/arch/arm/configs/multi_v5_defconfig
-@@ -103,7 +103,7 @@ CONFIG_MTD_RAW_NAND=y
- CONFIG_MTD_NAND_ATMEL=y
- CONFIG_MTD_NAND_ORION=y
- CONFIG_MTD_SPI_NOR=y
--CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=y
-+CONFIG_SPI_ASPEED_SMC=y
- CONFIG_MTD_UBI=y
- CONFIG_BLK_DEV_LOOP=y
- CONFIG_ATMEL_SSC=m
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index fc1b69256b64..33572998dbbe 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -217,7 +217,7 @@ CONFIG_MTD_NAND_DAVINCI=y
- CONFIG_MTD_NAND_STM32_FMC2=y
- CONFIG_MTD_NAND_PL35X=y
- CONFIG_MTD_SPI_NOR=y
--CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=m
-+CONFIG_SPI_ASPEED_SMC=m
- CONFIG_MTD_UBI=y
- CONFIG_BLK_DEV_LOOP=y
- CONFIG_BLK_DEV_RAM=y
--- 
-2.34.1
-
+Hi, Greg
+    About data incoherence issue between memory bus and peripheral bus.
+In case of AXI bus, use non-posted write can avoid data incoherence issue.
+    What if in case of post write:
+Send a specific command after last write command. SDCTRL identify specific
+command, means previous write command done. Then send the interrupt
+signal to interrupt controller. And then interrupt controller sends done si=
+gnal
+to Master. Master receives done signal, means write command done. Then
+issue a interrupt or proceed next write command.
+    Thanks for your review.
