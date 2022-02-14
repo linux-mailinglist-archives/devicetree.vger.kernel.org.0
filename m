@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42F364B52EA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 15:14:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5564B5308
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 15:18:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354982AbiBNOOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 09:14:24 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50516 "EHLO
+        id S1355028AbiBNORX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 09:17:23 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354973AbiBNOOV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 09:14:21 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EE4ED4B
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 06:14:13 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id k127-20020a1ca185000000b0037bc4be8713so11709494wme.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 06:14:13 -0800 (PST)
+        with ESMTP id S233309AbiBNORX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 09:17:23 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47158BC2D
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 06:17:15 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id i14so27054031wrc.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 06:17:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Qlx3M3VCN3nCqu4bI8JyGJh06irEHdbGlG/oT1ZjMhU=;
-        b=gQFJOAp2Q+AzI8Su0EMz6HKbPu1N5NVGn97XCp3UKOjDpZmMPryQQYbsD0tHQ2i0Gz
-         yKx8+53C22mzIQd2DW5P+6OmayW62fV3/XtS23BjNjaLgsR7/JmvmMuzdKZFaPtbKE5a
-         mYxyvdZ568rpy1VfhVn+uHFY9M8YWLi63CsNCxdjfm8MOcUH2x3fBXZ3rQmbqyvbhwFs
-         WMY6rf1DJLuGeq0YVVW9gA95n6S57CJP2uMO9Vb8iwwD1MLHFMjy3r/BQPwF/aevblyN
-         u/ktz/bxe8OZkZJqoDtQ9AvE9DhHcoZGilhFpGBPGzIQBy5wozE41f+NyOANSvJcx9h2
-         skCQ==
+        bh=s8YquNU04gHjJdyZdqG6wS1fewBMA8c3UASp3XdZ20I=;
+        b=d7/+3WHErfiJHVs7nuciZQLFuQpqn1uH0EnhAQvlHUfiv9Jt6LsJ/fYZJQrCxvL1p9
+         OaMvHPwxZT+pPyLd6pRuiwyCeDygrpMmPrsuVUYVElbPTqmA3P1AONASmkaul1BqUXey
+         8yU9vkKcJ4cyc2TQRGYpdDfmsupF5o4+76JbFGCIB+OSAFY2l6cjxqUBDZ5dceonEMS8
+         ikLTTOPxFFMN+gwBSZ/Y8WQO5IDKI4F5ZoKXZqbeKGNPJMpUsz5XNMVKFLt7GpNLbQwU
+         L0v7io0cv5YnIY07Q+L7ql3eZ/kgl7OoWAAFTvcyLuGrI8JvxHDnjwAGIkijUfhm2gIF
+         FQRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=Qlx3M3VCN3nCqu4bI8JyGJh06irEHdbGlG/oT1ZjMhU=;
-        b=Gw5nGm2pkcV/Ho9KH7JOq/sW4Zt6l97+yafw50V0CzyW3hgofYOoWrOskTjWoVikMI
-         cf/RiDU1TtTA1Hw215YHojVh+gdl5D2trPDH3sQYDvv4xndAICci4mROJY0/M8qfXsuy
-         VOeq6bHV4JYBdMjmzHkqCG8XFskmStOBFWEtUf+n0S7rb02FCPwMjtFu9ORy8e6E6Ad5
-         Xjc2WRflkRrKO7BNrkNViWvXT43ypk0SEdsRYYuh2wSchW/Cdf/rFmy93sSAZuScOHHA
-         pLquZJO5gFhPvQJ2VMygJudAPSDJG2K0qBiEgBCscZ97alwuNrn5NoQ3MgtJ6VMAH46I
-         c6AA==
-X-Gm-Message-State: AOAM533Crt4xTTxDL2hziEpn9yB7pHVuqo5rhsTyqZ8bvm/GtBe6nopP
-        NU/cL8X6/mIf4BYaXpea38zECA==
-X-Google-Smtp-Source: ABdhPJyzOLNlTml69X38/WjrjlwiHmHj2m7e1npBw/8IARt6cOUC8677/fPFoMZ1iVt902GZI9MeSw==
-X-Received: by 2002:a05:600c:4783:: with SMTP id k3mr11028626wmo.177.1644848051846;
-        Mon, 14 Feb 2022 06:14:11 -0800 (PST)
+        bh=s8YquNU04gHjJdyZdqG6wS1fewBMA8c3UASp3XdZ20I=;
+        b=Ez2T49le5l3WbIPDPzVP+ysLdMe10re5cpE+2D/DeJZkTZBHLPc7RT3dEoNCgs5TuF
+         aMVPtRiSAKHsdUYo5JVb3+dMFOdt2VHGfnpqVuKzGHK5HKsmZHxV6PQhAtpIezQvU5ud
+         1bxjzAmyv0atv4H4u4AWxbgkW9wQkvBaWxU1dP16C6PVw9Gq9D5rMUsKCFeKkH96JrZQ
+         7rtNrTHrw4MaKXr0KhJpOG7pmxbG2qRgdueUYdyaGj+z7KDxO3DR4FJR6imTT43nls9A
+         fwxZHlqbek6K/qpm7AB6Mynh9rtjPhgvTwlTQY00To/s9HFWwVVB1dR28PAtak9aeWPv
+         eiCA==
+X-Gm-Message-State: AOAM530wBRbBGb6FiyMs7DFuGe0TlOdFtXqtO4y9BALeCroU7qvAn6VD
+        bhAi82xoE7GpWd9oNIzilpokcg==
+X-Google-Smtp-Source: ABdhPJzlbYCMwZF+I5AvIrwVXEqzQejiMLKHsGIY4lGCN3MuJQQ/7sRR0ojLKZAdCZqUhQlOsUbVfQ==
+X-Received: by 2002:a5d:508c:: with SMTP id a12mr11574121wrt.379.1644848233876;
+        Mon, 14 Feb 2022 06:17:13 -0800 (PST)
 Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id az7sm14882560wmb.14.2022.02.14.06.14.10
+        by smtp.gmail.com with ESMTPSA id u12sm27136772wrs.2.2022.02.14.06.17.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Feb 2022 06:14:11 -0800 (PST)
-Date:   Mon, 14 Feb 2022 14:14:09 +0000
+        Mon, 14 Feb 2022 06:17:13 -0800 (PST)
+Date:   Mon, 14 Feb 2022 14:17:11 +0000
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>, Pavel Machek <pavel@ucw.cz>,
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: [GIT PULL] Immutable branch between MFD, LED, Power and Regulator
- due for the v5.18 merge window 
-Message-ID: <YgpjsW5an5uLjzi+@google.com>
-References: <20220111175017.223966-1-krzysztof.kozlowski@canonical.com>
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Andi Shyti <andi@etezian.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Pratyush Yadav <p.yadav@ti.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH v6 1/4] spi: dt-bindings: samsung: convert to dtschema
+Message-ID: <YgpkZzMWuuWpK8Tk@google.com>
+References: <20220124082347.32747-1-krzysztof.kozlowski@canonical.com>
+ <20220124082347.32747-2-krzysztof.kozlowski@canonical.com>
+ <YgFgQsV2bJS6mjQs@sirena.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220111175017.223966-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YgFgQsV2bJS6mjQs@sirena.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -77,42 +81,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enjoy!
+On Mon, 07 Feb 2022, Mark Brown wrote:
 
-The following changes since commit e783362eb54cd99b2cac8b3a9aeac942e6f6ac07:
+> On Mon, Jan 24, 2022 at 09:23:44AM +0100, Krzysztof Kozlowski wrote:
+> > Convert the Samsung SoC (S3C24xx, S3C64xx, S5Pv210, Exynos) SPI
+> > controller bindings to DT schema format.
+> 
+> Reviewed-by: Mark Brown <broonie@kernel.org>
 
-  Linux 5.17-rc1 (2022-01-23 10:12:53 +0200)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-led-power-regulator-v5.18
-
-for you to fetch changes up to b38213c6118b6b3fe163bd9acb7f723c379dd833:
-
-  dt-bindings: mfd: maxim,max77693: Convert to dtschema (2022-02-14 13:53:01 +0000)
-
-----------------------------------------------------------------
-Immutable branch between MFD, LED, Power and Regulator due for the v5.18 merge window
-
-----------------------------------------------------------------
-Krzysztof Kozlowski (4):
-      dt-bindings: leds: maxim,max77693: Convert to dtschema
-      dt-bindings: power: supply: maxim,max77693: Convert to dtschema
-      regulator: dt-bindings: maxim,max77693: Convert to dtschema
-      dt-bindings: mfd: maxim,max77693: Convert to dtschema
-
- .../devicetree/bindings/leds/maxim,max77693.yaml   | 105 +++++++++++
- Documentation/devicetree/bindings/mfd/max77693.txt | 194 ---------------------
- .../devicetree/bindings/mfd/maxim,max77693.yaml    | 143 +++++++++++++++
- .../bindings/power/supply/maxim,max77693.yaml      |  70 ++++++++
- .../bindings/regulator/maxim,max77693.yaml         |  60 +++++++
- MAINTAINERS                                        |   3 +-
- 6 files changed, 380 insertions(+), 195 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/leds/maxim,max77693.yaml
- delete mode 100644 Documentation/devicetree/bindings/mfd/max77693.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
- create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max77693.yaml
- create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77693.yaml
+Do you need a PR?
 
 -- 
 Lee Jones [李琼斯]
