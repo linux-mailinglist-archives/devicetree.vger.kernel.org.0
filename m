@@ -2,100 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4CC14B4CF6
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:11:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1D3E4B4CF3
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:11:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349057AbiBNKsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 05:48:33 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39536 "EHLO
+        id S237029AbiBNKtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 05:49:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349040AbiBNKsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 05:48:06 -0500
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6887FBB57E;
-        Mon, 14 Feb 2022 02:10:35 -0800 (PST)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id ABB5D580332;
-        Mon, 14 Feb 2022 05:10:34 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Mon, 14 Feb 2022 05:10:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; bh=EnwwaeNb5+LND6+6WXD288NdXE12D61i7kfAe0
-        ieFqE=; b=CzE9rL1nAtOyYF3pwQDSQtVXJVXemJJIVUCBS+zUJ5XsNMUgAISIFz
-        Cl6TC3ydR5Bnz0eRqKYQOl+wY3Z0L8+WLlMRZo6aSjbPu9sTfpUqZxoTAnUsmuM9
-        VaPNe3Ecvrk04upczpsfSNzNxNiCY4BH6i+/uVBZTS9p4Kj7fz8ugVCkL1mMJPKM
-        QsK+0CoP1WfqOMx1r8moR0D1KeY/8apfOKkhXChdH7xu1d6qh/YIYsVcAkEyk8a0
-        TrZ/m1IgM1DVfPk/gh1wpJnZTy7VKoLHKFc7x5paHXAF/Iq10wNZe7nYyNvmXTlS
-        7ZFcbOlmpQMMplPbpB8ERUNX4TWmxsfw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=EnwwaeNb5+LND6+6W
-        XD288NdXE12D61i7kfAe0ieFqE=; b=EIaY9RDXdVZ7gbETjM4POhQxZQ3tbhFc9
-        gqV4vGONT+GXNkMCHtsFndOt0qDEZgcKYpO8FFHZRqKN3vBdhPcDjmBikAC757bc
-        HUaF/2Xdc0W8o6+ZZDwRiFutmbpDQeKyEnCH8sWgWf5dIlNxBunk7YUyQlJQUlj6
-        /GWsZASAiRoSrgtpvc7iv2gQxRaNqYUPM24lDLx9D9wr8+EWrS9RRV27eBCwlBky
-        AXQ67TZtXbFRUyYPx03bO1wM13n8FHMl57CjN8nXXWVzWTiYO0/u3SalB6w1DD5a
-        sjoH2yELynJauf7lDxQsdaP4gEb7btWU/F53SouOwW2r97XqfAnyA==
-X-ME-Sender: <xms:mSoKYsf2M0QNBOmG6Y7cCb5y2wtp1UOJ384EjRvi8mTVLe6Ynyv4VQ>
-    <xme:mSoKYuP4QBNvEL-8xRhP8iRF7Hai3ngfL6Mzp_bMiQ3vJtC1w_fNapz-bBrRxd17U
-    U2vPAg3vdXirZlGtaw>
-X-ME-Received: <xmr:mSoKYthC6tTF4o-NimBCgq--W5t_heZZRxKVmkZZhQNQg_Y9SmEQ5ZMyBWFVt53CaS4mVWmWhl9DNZMP9hyu4fxU7yFJ2_GvbOHNEDw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrjedvgddtkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:mSoKYh_yz1MNjdRlQdmWta6qmVeq3aZNtEYMP9sH_OUKrI-ImaBicQ>
-    <xmx:mSoKYou16dW7_9G3CBD4w6LmQx70LIVbkgLTbAAdgIm-W2iJiXqrqg>
-    <xmx:mSoKYoHKp3RvZTW2mPIxR6o9UOwKzYJR6hQJuuQWR9FOlHbYmsPEUQ>
-    <xmx:mioKYo3zxUWhUvQ6BSQWDR0RJwQPH9BXQ0bj1oYLvbf-KCtD4Dxvkw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 14 Feb 2022 05:10:32 -0500 (EST)
-Date:   Mon, 14 Feb 2022 11:10:31 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Sui Jingfeng <15330273260@189.cn>
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>, Li Yi <liyi@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Randy Dunlap <rdunlap@infradead.org>,
-        kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v7 1/7] drm/lsdc: add drm driver for loongson display
- controller
-Message-ID: <20220214101031.kerresldiuopil6l@houat>
-References: <20220213141649.1115987-1-15330273260@189.cn>
- <20220213141649.1115987-2-15330273260@189.cn>
+        with ESMTP id S237718AbiBNKtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 05:49:13 -0500
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C940BDA72;
+        Mon, 14 Feb 2022 02:12:13 -0800 (PST)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21E86urF026746;
+        Mon, 14 Feb 2022 11:11:58 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=MpTqBNhX+HIyoyjXnQ6/DBGf/cO04PKi4xy5WrWMQtM=;
+ b=55UHFt0xRaAGpxn2Pr8CS2hOQbO5daWb1jFg7gbjWrrTxF8SuQ8Fr5X4YLwUJ18r0iG+
+ a05X2ZlAldKYLmZDICq/fH6FuipuQBmWduzK52C1XKBDkQagpQHZiDLR2PiXJKAO8n6H
+ B1WVk9i5XcVranVUk+W43HboAlMqmSqrGQ99Qdly5zkSfP0Y16cfNJNdCBDXObFLTJ9z
+ PuoTnKNH9lgi14OtayFnvMc/QeAHCsLWEQf2olS4s3nxcF22yucBEYez0a7N0fYOZ9YP
+ GBFsDQdNumGCo9FjFnB0y3vTjfY/ySiJeXmUBrRswVJ5USVkxDs4Y0Wv7eTNz4SL8BnB Yw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e74c3bs05-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 14 Feb 2022 11:11:58 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9646910002A;
+        Mon, 14 Feb 2022 11:11:57 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8C004219DED;
+        Mon, 14 Feb 2022 11:11:57 +0100 (CET)
+Received: from [10.48.0.252] (10.75.127.47) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Mon, 14 Feb
+ 2022 11:11:57 +0100
+Message-ID: <c3c1d310-19f0-889b-04b5-f3628e09b3bf@foss.st.com>
+Date:   Mon, 14 Feb 2022 11:11:56 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="22dgeudp6wphcltc"
-Content-Disposition: inline
-In-Reply-To: <20220213141649.1115987-2-15330273260@189.cn>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 0/2] ARM: dts: stm32: remove timer duplicate unit-address
+ on stm32f7 series
+Content-Language: en-US
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>, <robh+dt@kernel.org>
+CC:     <olivier.moysan@foss.st.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <1644403729-22665-1-git-send-email-fabrice.gasnier@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <1644403729-22665-1-git-send-email-fabrice.gasnier@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-14_02,2022-02-14_02,2021-12-02_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -104,152 +73,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Fabrice
 
---22dgeudp6wphcltc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2/9/22 11:48, Fabrice Gasnier wrote:
+> Remove a series of warnings seen when building with W=1, like:
+> Warning (unique_unit_address): /soc/timer@40000c00: duplicate unit-address
+> (also used in node /soc/timers@40000c00)
+> 
+> This approach is based on some discussions[1], to restructure the dtsi
+> and dts files.
+> [1] https://lore.kernel.org/linux-arm-kernel/Yaf4jiZIp8+ndaXs@robh.at.kernel.org/
+> 
+>   arch/arm/boot/dts/stm32746g-eval.dts  | 12 +++++++++
+>   arch/arm/boot/dts/stm32f746-disco.dts | 12 +++++++++
+>   arch/arm/boot/dts/stm32f746.dtsi      | 47 -----------------------------------
+>   arch/arm/boot/dts/stm32f769-disco.dts | 12 +++++++++
+>   4 files changed, 36 insertions(+), 47 deletions(-)
+> 
 
-On Sun, Feb 13, 2022 at 10:16:43PM +0800, Sui Jingfeng wrote:
-> From: suijingfeng <suijingfeng@loongson.cn>
->=20
-> There is a display controller in loongson's LS2K1000 SoC and LS7A1000
-> bridge chip, the DC is a PCI device in those chips. It has two display
-> pipes but with only one hardware cursor. Each way has a DVO interface
-> which provide RGB888 signals, vertical & horizontal synchronisations,
-> data enable and the pixel clock. Each CRTC is able to scanout from
-> 1920x1080 resolution at 60Hz. The maxmium resolution is 2048x2048
-> according to the hardware spec.
->=20
-> Loongson display controllers are simple which require scanout buffers
-> to be physically contiguous. LS2K1000 is a SOC, Only system memory is
-> available. Therefore CMA helper based driver is intended to be use,
-> although it is possible to use VRAM helper based solution by carving
-> out part of system memory as VRAM.
->=20
-> On LS7A1000/LS7A2000 bridge chip, the DC is equipped with a dedicated
-> video memory which is typically 64MB or more. In this case, VRAM helper
-> based solution which scanout from local VRAM is reconmended to use.
-> It is reliable to use for massive production, but CMA based helper
-> solution is still usable on ls7a1000 and ls7a2000, at the price of
-> the CRTC must access the FB in RAM through the PCIe bus and HT3.0 bus.
-> This causes continuous traffic on the bus regardless of whether the FB
-> image is updating or not. Sadly, it suffer from screen flickering under
-> RAM pressure on LS7A1000. Luckily, It show extremely good condition on
-> LS7A2000 even under stressapptest, Maybe the hardware engineer resolve
-> this issue. Integrating two distict helpers based driver into one piece
-> allow code sharing.
->=20
-> We have also implemented demage update on top of CMA helper which copy
-> the demaged region from the shadow framebuffer in system RAM to the real
-> framebuffer in VRAM manually. This is intend to overcome the screen
-> flicking issue on LS7A1000, but the performance is not good.
-> Using "lsdc.dirty_update=3D1" in the kernel commmand line if you would li=
-ke
-> to have a try.
->=20
-> For LS7A1000, there are 4 dedicated GPIOs whose control register is
-> located at the DC register space, They are used to emulate two way i2c.
-> One for DVO0, another for DVO1. This is the reason why this driver is
-> not switch to drm bridge framework yet. LS2K1000 and LS2K0500 SoC don't
-> have such GPIO hardwared, they grab i2c adapter from other module,
-> either general purpose GPIO emulated i2c or hardware i2c adapter.
-> Drm bridge and drm panel driver for the external encoder is suitable for
-> those SoC. We have already implemented this on our downstream 4.19.190
-> kernel. But due to the GPIO, PWM and I2C device driver support for
-> LS2K1000 is not upstreamed yet, this driver still can be use to bring
-> the graphic environment up by providing display timings or similar things
-> in the device tree.
->=20
-> The DC in LS7A1000 has only one hardware cursor, we simply let the two
-> CRTC share it. The DC in LS7A2000 have two cursor, two built-in hdmi
-> encoder and one transparent vga encoder and more, surport for LS7A2000
-> is on the way. In short, we have built-in gpio emulated i2c support,
-> we also have hardware cursor support. LS7A2000 The kind of tiny drivers
-> in drm/tiny is not suitable for us.
->=20
->     +------+            +-----------------------------------+
->     | DDR4 |            |  +-------------------+            |
->     +------+            |  | PCIe Root complex |   LS7A1000 |
->        || MC0           |  +--++---------++----+            |
->   +----------+  HT 3.0  |     ||         ||                 |
->   | LS3A4000 |<-------->| +---++---+  +--++--+    +---------+   +------+
->   |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| VRAM |
->   +----------+          | +--------+  +-+--+-+    +---------+   +------+
->        || MC1           +---------------|--|----------------+
->     +------+                            |  |
->     | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
->     +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DVI/HDMI
->                       +-------+                      +------+
->=20
-> The above picture give a simple usage of LS7A1000, note that the encoder
-> is not necessary adv7125 or tfp410, it is a choice of the downstream board
-> manufacturer. Other candicate encoders can be ch7034b, sil9022 and ite661=
-21
-> lt8618 etc. Besides, the DC in both ls2k1000 and ls7k1000 has the same of
-> PCI vendor id and pci device id. Both is 0x0014:0x7a06, the reverison id
-> is also same. This is the firmware engineer's mistake, but such firmware
-> and various boards ship with such firmware already released. We choose to
-> deduce the chip's identification from information provided by device tree.
-> For lsdc, there is only a 1:1 mapping of encoders and connectors.
->=20
-> v2: fixup warnings reported by kernel test robot
->=20
-> v3: fix more grammar mistakes in Kconfig reported by Randy Dunlap and give
->     more details about lsdc.
->=20
-> v4:
->    1) Add dts required and explain why device tree is required.
->    2) Give more description about lsdc and vram helper base driver.
->    3) Fix warnings reported by kernel test robot.
->    4) Introduce stride_alignment member into struct lsdc_chip_desc, the
->       stride alignment is 256 bytes for ls7a1000, ls2k1000 and ls2k0500.
->       But ls7a2000 improve it to 32 bytes, for extend the support for the
->       device on coming
->
-> v5:
->    1) using writel and readl replace writeq and readq, to fix kernel test
->       robot report build error on other archtecture
->    2) set default fb format to XRGB8888 at crtc reset time.
->    3) fix typos.
->=20
-> v6:
->    1) Explain why we are not switch to drm dridge subsystem on ls2k1000.
->    2) Explain why tiny drm driver is not suitable for us.
->    3) Give a short description of the trival dirty uppdate implement based
->       on CMA helper.
->    4) code clean up
->=20
-> v7:
->    1) Remove select I2C_GPIO and I2C_LS2X in Kconfig, it is not ready now
->    2) Licensing issues are fixed suggested by Krzysztof Kozlowski.
->    3) lsdc_pixpll_print() is removed, part of it move to debugfs.
->    4) Set prefer_shadow to true if vram based driver is in using.
->    5) Replace double blank lines with single line in all files
->    6) Verbose cmd line parameter is replaced with drm_dbg()
->    7) All warnnings reported by ./scripts/checkpatch.pl --strict are fixed
->    8) Get edid from dtb support is removed as suggested by Maxime Ripard
->    9) Fix typos and various improvement
+Series applied on stm32-next.
 
-A lot of the major comments I had haven't been fixed though: you *need*
-to have a DT bindings description, Kconfig isn't the proper place to set
-the VRAM preference, the command line isn't either, the command line
-isn't the solution for all your parameters, etc.
-
-Those things are major blockers at the moment, so ignoring them won't
-help getting this merged.
-
-Maxime
-
---22dgeudp6wphcltc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYgoqlwAKCRDj7w1vZxhR
-xaupAP9QxVn4MY8fLRgh0Kvu1RZ3LspqtlVOws7AVDIeCMHy7wD/VQn/keld+Nh9
-d4Wh8dIVav3ralKQ8Aq9LaDK0Q/5rQE=
-=fvHX
------END PGP SIGNATURE-----
-
---22dgeudp6wphcltc--
+Cheers
+Alex
