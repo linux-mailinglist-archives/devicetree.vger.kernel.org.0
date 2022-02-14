@@ -2,222 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 999A24B4DBE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:20:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D3B34B4F1B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 12:45:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350387AbiBNLSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 06:18:21 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48350 "EHLO
+        id S1352484AbiBNLpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 06:45:31 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350402AbiBNLSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:18:13 -0500
-Received: from 189.cn (ptr.189.cn [183.61.185.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F211E657A0;
-        Mon, 14 Feb 2022 02:50:45 -0800 (PST)
-HMM_SOURCE_IP: 10.64.8.41:50118.1293107163
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
-        by 189.cn (HERMES) with SMTP id 90BA4100139;
-        Mon, 14 Feb 2022 18:50:37 +0800 (CST)
-Received: from  ([114.242.206.180])
-        by gateway-151646-dep-b7fbf7d79-9vctg with ESMTP id b714a88f38064ad8b49ade0c13fcf78c for maxime@cerno.tech;
-        Mon, 14 Feb 2022 18:50:44 CST
-X-Transaction-ID: b714a88f38064ad8b49ade0c13fcf78c
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Sender: 15330273260@189.cn
-Message-ID: <afeeabbe-29ba-2878-c0c5-78f576f7865f@189.cn>
-Date:   Mon, 14 Feb 2022 18:50:36 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v7 1/7] drm/lsdc: add drm driver for loongson display
- controller
-Content-Language: en-US
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S1353084AbiBNLna (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 06:43:30 -0500
+X-Greylist: delayed 2169 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 14 Feb 2022 03:35:27 PST
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CFFB5F49;
+        Mon, 14 Feb 2022 03:35:27 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nJZ4E-00080o-TO; Mon, 14 Feb 2022 11:58:50 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>, Li Yi <liyi@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Randy Dunlap <rdunlap@infradead.org>,
-        kernel test robot <lkp@intel.com>
-References: <20220213141649.1115987-1-15330273260@189.cn>
- <20220213141649.1115987-2-15330273260@189.cn>
- <20220214101031.kerresldiuopil6l@houat>
-From:   Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <20220214101031.kerresldiuopil6l@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Anson Huang <anson.huang@nxp.com>,
+        Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>,
+        Rahul Tanwar <rtanwar@maxlinear.com>,
+        Jeff LaBundy <jeff@labundy.com>,
+        Yash Shah <yash.shah@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Vignesh R <vigneshr@ti.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-riscv@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH 06/15] dt-bindings: pwm: rockchip: include generic pwm schema
+Date:   Mon, 14 Feb 2022 11:58:49 +0100
+Message-ID: <2270696.mDkAqzPR1c@diego>
+In-Reply-To: <20220214081605.161394-6-krzysztof.kozlowski@canonical.com>
+References: <20220214081605.161394-1-krzysztof.kozlowski@canonical.com> <20220214081605.161394-6-krzysztof.kozlowski@canonical.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am Montag, 14. Februar 2022, 09:15:56 CET schrieb Krzysztof Kozlowski:
+> Include generic pwm.yaml schema, which enforces PWM node naming and
+> brings pwm-cells requirement.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-On 2022/2/14 18:10, Maxime Ripard wrote:
-> On Sun, Feb 13, 2022 at 10:16:43PM +0800, Sui Jingfeng wrote:
->> From: suijingfeng <suijingfeng@loongson.cn>
->>
->> There is a display controller in loongson's LS2K1000 SoC and LS7A1000
->> bridge chip, the DC is a PCI device in those chips. It has two display
->> pipes but with only one hardware cursor. Each way has a DVO interface
->> which provide RGB888 signals, vertical & horizontal synchronisations,
->> data enable and the pixel clock. Each CRTC is able to scanout from
->> 1920x1080 resolution at 60Hz. The maxmium resolution is 2048x2048
->> according to the hardware spec.
->>
->> Loongson display controllers are simple which require scanout buffers
->> to be physically contiguous. LS2K1000 is a SOC, Only system memory is
->> available. Therefore CMA helper based driver is intended to be use,
->> although it is possible to use VRAM helper based solution by carving
->> out part of system memory as VRAM.
->>
->> On LS7A1000/LS7A2000 bridge chip, the DC is equipped with a dedicated
->> video memory which is typically 64MB or more. In this case, VRAM helper
->> based solution which scanout from local VRAM is reconmended to use.
->> It is reliable to use for massive production, but CMA based helper
->> solution is still usable on ls7a1000 and ls7a2000, at the price of
->> the CRTC must access the FB in RAM through the PCIe bus and HT3.0 bus.
->> This causes continuous traffic on the bus regardless of whether the FB
->> image is updating or not. Sadly, it suffer from screen flickering under
->> RAM pressure on LS7A1000. Luckily, It show extremely good condition on
->> LS7A2000 even under stressapptest, Maybe the hardware engineer resolve
->> this issue. Integrating two distict helpers based driver into one piece
->> allow code sharing.
->>
->> We have also implemented demage update on top of CMA helper which copy
->> the demaged region from the shadow framebuffer in system RAM to the real
->> framebuffer in VRAM manually. This is intend to overcome the screen
->> flicking issue on LS7A1000, but the performance is not good.
->> Using "lsdc.dirty_update=1" in the kernel commmand line if you would like
->> to have a try.
->>
->> For LS7A1000, there are 4 dedicated GPIOs whose control register is
->> located at the DC register space, They are used to emulate two way i2c.
->> One for DVO0, another for DVO1. This is the reason why this driver is
->> not switch to drm bridge framework yet. LS2K1000 and LS2K0500 SoC don't
->> have such GPIO hardwared, they grab i2c adapter from other module,
->> either general purpose GPIO emulated i2c or hardware i2c adapter.
->> Drm bridge and drm panel driver for the external encoder is suitable for
->> those SoC. We have already implemented this on our downstream 4.19.190
->> kernel. But due to the GPIO, PWM and I2C device driver support for
->> LS2K1000 is not upstreamed yet, this driver still can be use to bring
->> the graphic environment up by providing display timings or similar things
->> in the device tree.
->>
->> The DC in LS7A1000 has only one hardware cursor, we simply let the two
->> CRTC share it. The DC in LS7A2000 have two cursor, two built-in hdmi
->> encoder and one transparent vga encoder and more, surport for LS7A2000
->> is on the way. In short, we have built-in gpio emulated i2c support,
->> we also have hardware cursor support. LS7A2000 The kind of tiny drivers
->> in drm/tiny is not suitable for us.
->>
->>      +------+            +-----------------------------------+
->>      | DDR4 |            |  +-------------------+            |
->>      +------+            |  | PCIe Root complex |   LS7A1000 |
->>         || MC0           |  +--++---------++----+            |
->>    +----------+  HT 3.0  |     ||         ||                 |
->>    | LS3A4000 |<-------->| +---++---+  +--++--+    +---------+   +------+
->>    |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| VRAM |
->>    +----------+          | +--------+  +-+--+-+    +---------+   +------+
->>         || MC1           +---------------|--|----------------+
->>      +------+                            |  |
->>      | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
->>      +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DVI/HDMI
->>                        +-------+                      +------+
->>
->> The above picture give a simple usage of LS7A1000, note that the encoder
->> is not necessary adv7125 or tfp410, it is a choice of the downstream board
->> manufacturer. Other candicate encoders can be ch7034b, sil9022 and ite66121
->> lt8618 etc. Besides, the DC in both ls2k1000 and ls7k1000 has the same of
->> PCI vendor id and pci device id. Both is 0x0014:0x7a06, the reverison id
->> is also same. This is the firmware engineer's mistake, but such firmware
->> and various boards ship with such firmware already released. We choose to
->> deduce the chip's identification from information provided by device tree.
->> For lsdc, there is only a 1:1 mapping of encoders and connectors.
->>
->> v2: fixup warnings reported by kernel test robot
->>
->> v3: fix more grammar mistakes in Kconfig reported by Randy Dunlap and give
->>      more details about lsdc.
->>
->> v4:
->>     1) Add dts required and explain why device tree is required.
->>     2) Give more description about lsdc and vram helper base driver.
->>     3) Fix warnings reported by kernel test robot.
->>     4) Introduce stride_alignment member into struct lsdc_chip_desc, the
->>        stride alignment is 256 bytes for ls7a1000, ls2k1000 and ls2k0500.
->>        But ls7a2000 improve it to 32 bytes, for extend the support for the
->>        device on coming
->>
->> v5:
->>     1) using writel and readl replace writeq and readq, to fix kernel test
->>        robot report build error on other archtecture
->>     2) set default fb format to XRGB8888 at crtc reset time.
->>     3) fix typos.
->>
->> v6:
->>     1) Explain why we are not switch to drm dridge subsystem on ls2k1000.
->>     2) Explain why tiny drm driver is not suitable for us.
->>     3) Give a short description of the trival dirty uppdate implement based
->>        on CMA helper.
->>     4) code clean up
->>
->> v7:
->>     1) Remove select I2C_GPIO and I2C_LS2X in Kconfig, it is not ready now
->>     2) Licensing issues are fixed suggested by Krzysztof Kozlowski.
->>     3) lsdc_pixpll_print() is removed, part of it move to debugfs.
->>     4) Set prefer_shadow to true if vram based driver is in using.
->>     5) Replace double blank lines with single line in all files
->>     6) Verbose cmd line parameter is replaced with drm_dbg()
->>     7) All warnnings reported by ./scripts/checkpatch.pl --strict are fixed
->>     8) Get edid from dtb support is removed as suggested by Maxime Ripard
->>     9) Fix typos and various improvement
-> A lot of the major comments I had haven't been fixed though: you *need*
-> to have a DT bindings description,
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-This driver works on most of board even no device tree is supplied, the dts are mainly
-supplement purpose. For example, it supports let you to tell which DVO is not get used.
-Even no device tree is provided, the driver still works.
+> ---
+>  .../devicetree/bindings/pwm/pwm-rockchip.yaml | 74 ++++++++++---------
+>  1 file changed, 38 insertions(+), 36 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> index 81a54a4e8e3e..a336ff9364a9 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
+> @@ -51,42 +51,44 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - "#pwm-cells"
+> -
+> -if:
+> -  properties:
+> -    compatible:
+> -      contains:
+> -        enum:
+> -          - rockchip,rk3328-pwm
+> -          - rockchip,rv1108-pwm
+> -
+> -then:
+> -  properties:
+> -    clocks:
+> -      items:
+> -        - description: Used to derive the functional clock for the device.
+> -        - description: Used as the APB bus clock.
+> -
+> -    clock-names:
+> -      items:
+> -        - const: pwm
+> -        - const: pclk
+> -
+> -  required:
+> -    - clocks
+> -    - clock-names
+> -
+> -else:
+> -  properties:
+> -    clocks:
+> -      maxItems: 1
+> -      description:
+> -        Used both to derive the functional clock
+> -        for the device and as the bus clock.
+> -
+> -  required:
+> -    - clocks
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,rk3328-pwm
+> +              - rockchip,rv1108-pwm
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: Used to derive the functional clock for the device.
+> +            - description: Used as the APB bus clock.
+> +
+> +        clock-names:
+> +          items:
+> +            - const: pwm
+> +            - const: pclk
+> +
+> +      required:
+> +        - clocks
+> +        - clock-names
+> +
+> +    else:
+> +      properties:
+> +        clocks:
+> +          maxItems: 1
+> +          description:
+> +            Used both to derive the functional clock
+> +            for the device and as the bus clock.
+> +
+> +      required:
+> +        - clocks
+>  
+>  additionalProperties: false
+>  
+> 
 
-> Kconfig isn't the proper place to set the VRAM preference,
 
-It mainly helps you to code review, to tell you which function is VRAM helper related.
-DRM_LSDC_VRAM_DRIVER option is mean to be always enabled. It can be deselected if you
-only want CMA based solution. On LS2K1000, select this or deselect this doesn't matter.
 
-> the command line isn't either, the command line
-> isn't the solution for all your parameters, etc.
 
-The command line may not be a blocker, why support a command line block this driver be merged?
-You do NOT need to touch it, this driver will pick up the right driver instance to use.
-Command line is used to override the default behavior of the driver, it is only for advance user.
-
-> Those things are major blockers at the moment, so ignoring them won't
-> help getting this merged.
->
-> Maxime
