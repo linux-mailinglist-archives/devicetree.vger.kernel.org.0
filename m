@@ -2,221 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2F0D4B5089
-	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 13:46:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EEEE4B512F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Feb 2022 14:09:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345829AbiBNMqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 07:46:15 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39662 "EHLO
+        id S1347614AbiBNNJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 08:09:18 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233510AbiBNMqO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 07:46:14 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5767C4B41F
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 04:46:07 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id l9so8825052plg.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 04:46:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0X10fqVg5ykSsl0oa12K6qvRRlEqIFV+m6yNZED4E7A=;
-        b=rKKxy2R8fGUZxy4yN6sE3nZA0tl06MCzW2Ls++PHOTDVrPXLzygCzac8nZSMCDQyrM
-         CprDceB4vcha58qMi6w99egwcMY599n+6rvJIdQ9zM76OCGOGZY9Mdkm/vTmQ2UNLxyS
-         3ETiLInfrZfB/IgOhZ8Fd6PRzRQz917hIRlcakTbWCl9LLEF3Oval4zMV11mkhjXR5Eg
-         oMpcmm8mwP07qi2AScrsM2z3ft9FLxi+qRE+Fkq7FzDUDWd3S3YaTRZ4v/bhju5gQXi9
-         bk7AyOTUc2/elIt8DFwxUniVxI292uGSKGYnnqVP8mToeF278huGYKjGU5y3xKJ0xqBK
-         8fyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0X10fqVg5ykSsl0oa12K6qvRRlEqIFV+m6yNZED4E7A=;
-        b=jvoFuxqEfE1dl46ZFKr/0SkOOAGYBHIPBEgWPpy4bYuBg42hRC6zb7Qn3ynbUtWaC3
-         xBofd1Ea6Jpl0LG0r/aEdbImjHv0fmaZRFrSfggpOvUY48Xb4btCz10/+B0GvVXyHvYC
-         FbCxxtOWHc6C7NSPaJjhdOGn6MhyyXpeXg7Bz2fTiPgHRFX/ghBUNW/cSVoKqbwat5TV
-         i8F28m3URt6g1C3eFpcEATzZOJqx2IM7bhPa45O8wYreb5+y2QZYR1Cji1RpuFVIJ1HU
-         8NwunhXaTMFWSYJMIhz3tDxpELULl4+DsGerGPfKFR03kRdTtY/JxTkQ4Ix40k2Tldco
-         zDTQ==
-X-Gm-Message-State: AOAM530/0jQU9oFZMyy1X9lki/OiB0bx8HnNmvM57yt1aoj46kUb4lzO
-        FiuD8f7n7GxwFWBGeNmouvnDYnWLrPaggUOr+SWQ8g==
-X-Google-Smtp-Source: ABdhPJwpYiRviXzPnHiXUbMl+Aq+C5W/r9mv9wpZCvcR0to900oGyukQ6bFi7DWaKdzFRE6/qBHINfbErKMGwwx7t/8=
-X-Received: by 2002:a17:902:714a:: with SMTP id u10mr14145494plm.21.1644842766711;
- Mon, 14 Feb 2022 04:46:06 -0800 (PST)
+        with ESMTP id S233705AbiBNNJR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 08:09:17 -0500
+X-Greylist: delayed 544 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 14 Feb 2022 05:09:10 PST
+Received: from theia.8bytes.org (8bytes.org [IPv6:2a01:238:4383:600:38bc:a715:4b6d:a889])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 108904B85D;
+        Mon, 14 Feb 2022 05:09:10 -0800 (PST)
+Received: by theia.8bytes.org (Postfix, from userid 1000)
+        id 9DDC82FB; Mon, 14 Feb 2022 14:00:02 +0100 (CET)
+Date:   Mon, 14 Feb 2022 14:00:01 +0100
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     will@kernel.org, robh+dt@kernel.org,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] iommu/ipmmu-vmsa: Add support for R-Car Gen4
+Message-ID: <YgpSUWjWMYZa9GoD@8bytes.org>
+References: <20220208002030.1319984-1-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-References: <20220213103437.3363848-1-hsinyi@chromium.org>
-In-Reply-To: <20220213103437.3363848-1-hsinyi@chromium.org>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Mon, 14 Feb 2022 13:45:55 +0100
-Message-ID: <CAG3jFyuZ4mm0UEE79vXgNoed5Z7C5-3gBzK_RCpoaYssu=KgHA@mail.gmail.com>
-Subject: Re: [PATCH v7 1/4] drm/bridge: anx7625: send DPCD command to downstream
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220208002030.1319984-1-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 13 Feb 2022 at 11:34, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
-> From: Xin Ji <xji@analogixsemi.com>
->
-> Send DPCD command to downstream before anx7625 power down,
-> let downstream monitor enter into standby mode.
->
-> Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
-> v3->v4:
-> Use common DP_AUX_NATIVE_READ/WRITE
->
-> Previously in:
-> https://patchwork.kernel.org/project/dri-devel/patch/1f36f8bf0a48fb2bba17bacec23700e58c1d407d.1641891874.git.xji@analogixsemi.com/
-> ---
->  drivers/gpu/drm/bridge/analogix/anx7625.c | 42 +++++++++++++++++++----
->  drivers/gpu/drm/bridge/analogix/anx7625.h |  2 --
->  2 files changed, 35 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> index 76662fce4ce61d..17b23940549a42 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> @@ -129,6 +129,23 @@ static int anx7625_reg_write(struct anx7625_data *ctx,
->         return ret;
->  }
->
-> +static int anx7625_reg_block_write(struct anx7625_data *ctx,
-> +                                  struct i2c_client *client,
-> +                                  u8 reg_addr, u8 len, u8 *buf)
-> +{
-> +       int ret;
-> +       struct device *dev = &client->dev;
-> +
-> +       i2c_access_workaround(ctx, client);
-> +
-> +       ret = i2c_smbus_write_i2c_block_data(client, reg_addr, len, buf);
-> +       if (ret < 0)
-> +               dev_err(dev, "write i2c block failed id=%x\n:%x",
-> +                       client->addr, reg_addr);
-> +
-> +       return ret;
-> +}
-> +
->  static int anx7625_write_or(struct anx7625_data *ctx,
->                             struct i2c_client *client,
->                             u8 offset, u8 mask)
-> @@ -214,8 +231,8 @@ static int wait_aux_op_finish(struct anx7625_data *ctx)
->         return 0;
->  }
->
-> -static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
-> -                                u32 address, u8 len, u8 *buf)
-> +static int anx7625_aux_dpcd_trans(struct anx7625_data *ctx, u8 op,
-> +                                 u32 address, u8 len, u8 *buf)
->  {
->         struct device *dev = &ctx->client->dev;
->         int ret;
-> @@ -231,8 +248,7 @@ static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
->         addrm = (address >> 8) & 0xFF;
->         addrh = (address >> 16) & 0xFF;
->
-> -       cmd = DPCD_CMD(len, DPCD_READ);
-> -       cmd = ((len - 1) << 4) | 0x09;
-> +       cmd = DPCD_CMD(len, op);
->
->         /* Set command and length */
->         ret = anx7625_reg_write(ctx, ctx->i2c.rx_p0_client,
-> @@ -246,6 +262,9 @@ static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
->         ret |= anx7625_reg_write(ctx, ctx->i2c.rx_p0_client,
->                                  AP_AUX_ADDR_19_16, addrh);
->
-> +       if (op == DP_AUX_NATIVE_WRITE)
-> +               ret |= anx7625_reg_block_write(ctx, ctx->i2c.rx_p0_client,
-> +                                              AP_AUX_BUFF_START, len, buf);
->         /* Enable aux access */
->         ret |= anx7625_write_or(ctx, ctx->i2c.rx_p0_client,
->                                 AP_AUX_CTRL_STATUS, AP_AUX_CTRL_OP_EN);
-> @@ -255,14 +274,17 @@ static int anx7625_aux_dpcd_read(struct anx7625_data *ctx,
->                 return -EIO;
->         }
->
-> -       usleep_range(2000, 2100);
-> -
->         ret = wait_aux_op_finish(ctx);
->         if (ret) {
->                 dev_err(dev, "aux IO error: wait aux op finish.\n");
->                 return ret;
->         }
->
-> +       /* Write done */
-> +       if (op == DP_AUX_NATIVE_WRITE)
-> +               return 0;
-> +
-> +       /* Read done, read out dpcd data */
->         ret = anx7625_reg_block_read(ctx, ctx->i2c.rx_p0_client,
->                                      AP_AUX_BUFF_START, len, buf);
->         if (ret < 0) {
-> @@ -845,7 +867,7 @@ static int anx7625_hdcp_enable(struct anx7625_data *ctx)
->         }
->
->         /* Read downstream capability */
-> -       anx7625_aux_dpcd_read(ctx, 0x68028, 1, &bcap);
-> +       anx7625_aux_dpcd_trans(ctx, DP_AUX_NATIVE_READ, 0x68028, 1, &bcap);
->         if (!(bcap & 0x01)) {
->                 pr_warn("downstream not support HDCP 1.4, cap(%x).\n", bcap);
->                 return 0;
-> @@ -918,6 +940,7 @@ static void anx7625_dp_stop(struct anx7625_data *ctx)
->  {
->         struct device *dev = &ctx->client->dev;
->         int ret;
-> +       u8 data;
->
->         DRM_DEV_DEBUG_DRIVER(dev, "stop dp output\n");
->
-> @@ -929,6 +952,11 @@ static void anx7625_dp_stop(struct anx7625_data *ctx)
->         ret |= anx7625_write_and(ctx, ctx->i2c.tx_p2_client, 0x08, 0x7f);
->
->         ret |= anx7625_video_mute_control(ctx, 1);
-> +
-> +       dev_dbg(dev, "notify downstream enter into standby\n");
-> +       /* Downstream monitor enter into standby mode */
-> +       data = 2;
-> +       ret |= anx7625_aux_dpcd_trans(ctx, DP_AUX_NATIVE_WRITE, 0x000600, 1, &data);
->         if (ret < 0)
->                 DRM_DEV_ERROR(dev, "IO error : mute video fail\n");
->
-> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
-> index 56165f5b254c14..64a8ab56529404 100644
-> --- a/drivers/gpu/drm/bridge/analogix/anx7625.h
-> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
-> @@ -242,8 +242,6 @@
->
->  #define AP_AUX_COMMAND 0x27  /* com+len */
->  #define LENGTH_SHIFT   4
-> -#define DPCD_READ      0x09
-> -#define DPCD_WRITE     0x08
->  #define DPCD_CMD(len, cmd)     ((((len) - 1) << LENGTH_SHIFT) | (cmd))
->
->  /* Bit 0&1: 3D video structure */
-> --
-> 2.35.1.265.g69c8d7142f-goog
->
+On Tue, Feb 08, 2022 at 09:20:28AM +0900, Yoshihiro Shimoda wrote:
+> This patch series is based on renesas-drivers-2022-01-11-v5.16 [1].
+> Note that we have to prepare the following registers' setting
+> in a bootloader (U-Boot) because the registers are protected.
+> Otherwise, data mismatch happened if dmatest with the ipmmu is running.
+> 
+>  => mw eed01500 0xc0000000; mw eed41500 0xc0000000
+> 
+> [1]
+> https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/tag/?h=renesas-drivers-2022-01-11-v5.16
+> 
+> Changes from v2:
+>  - Add Reviewed-by tag in patch 1 and 2 (Geert-san, thanks!)
+>  - Revise commit description in patch 1.
+>  https://lore.kernel.org/all/20220204125653.1194249-1-yoshihiro.shimoda.uh@renesas.com/
+> 
+> Changes from v1:
+>  - Add Reviewed-by tag in patch 1. (Geert-san, thanks!)
+>  - Revise a comment in patch 2.
+>  https://lore.kernel.org/all/20220125125602.4144793-1-yoshihiro.shimoda.uh@renesas.com/
+> 
+> Y
+> 
+> Yoshihiro Shimoda (2):
+>   dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779f0 support
+>   iommu/ipmmu-vmsa: Add support for R-Car Gen4
 
-Applied series to drm-misc-next.
+Applied, thanks.
