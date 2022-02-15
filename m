@@ -2,67 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4425B4B682F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 10:51:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E45A4B6841
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 10:55:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236079AbiBOJvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 04:51:25 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39380 "EHLO
+        id S236150AbiBOJz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 04:55:57 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232847AbiBOJvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 04:51:24 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CA0B101F1E;
-        Tue, 15 Feb 2022 01:51:13 -0800 (PST)
-X-UUID: 1c37a50523bd4e8aa69a0fc60e4c1e5a-20220215
-X-UUID: 1c37a50523bd4e8aa69a0fc60e4c1e5a-20220215
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 157530357; Tue, 15 Feb 2022 17:51:09 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 15 Feb 2022 17:51:08 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 15 Feb 2022 17:51:08 +0800
-Message-ID: <5add799961ff3affd766787a6ee4b87f27e1cb58.camel@mediatek.com>
-Subject: Re: [PATCH v22 1/7] dt-bindings: soc: mediatek: add mtk svs
- dt-bindings
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        "HenryC Chen" <HenryC.Chen@mediatek.com>,
-        Nishanth Menon <nm@ti.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Fan Chen <fan.chen@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Nicolas Boichat" <drinkcat@google.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Angus Lin <Angus.Lin@mediatek.com>
-Date:   Tue, 15 Feb 2022 17:51:08 +0800
-In-Reply-To: <4490a88150f5aa108e1d6ff8ce55264c3b1734c2.camel@mediatek.com>
-References: <20220127033956.24585-1-roger.lu@mediatek.com>
-         <20220127033956.24585-2-roger.lu@mediatek.com>
-         <YfnFBirxSnCqRDem@robh.at.kernel.org>
-         <4490a88150f5aa108e1d6ff8ce55264c3b1734c2.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S236122AbiBOJz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 04:55:56 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F3F910CF34
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 01:55:46 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id be32so7430071ljb.7
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 01:55:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=46FfI5X1BSFeVo5mcmXLhOyINdGGM+w+Dd3G0ef81t4=;
+        b=e6FZRxnD6PTlzKm6mn+luAsr6Y5MkCucNkdmiztanZom9yc2MLgh01sVaFjfNEAZE+
+         vCFOZ77rna74dybPM7t6oFdNBkufZDayY2TP3eSmuf3J09xFPF2B1xsNQJ1QD/7y7LEg
+         zUUDe8ZkqXBYXayxWuJpoCULHvivnk5DoLxjTPRrXUIK8hfUS8XzZRRuxUtv3ddLCIU3
+         0Mh6uKDBvoj8pa93mzYBVEuMQg9SowGfNPWBV2siYnHyauS/6HKkfGy4quumjomPhsFI
+         1hUibRGezXE+z+VmahEROLOUkYc2eTFR0mIFX25T3MCKILxB7vHklIkGmm3rZvfp0Ge4
+         nYqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=46FfI5X1BSFeVo5mcmXLhOyINdGGM+w+Dd3G0ef81t4=;
+        b=bwnljOsCsiwftYpySr5ZszrjnQVAXI//uqqs6+V4Ied0u6/yeSW5Vvn3ubr0sClJh6
+         JxEey94uaMzIHPAJvvuHjvbtxAjLRM5s65kWeg1tdin4jThMmRCu3xfBJuKJx8qXBboC
+         MAQ0RBO3SUd5+wE9xPlNcWHKhWrad+WZ8BkKTkO4mMfYG5gy/5X+4QaSgVlYtaJVLSCo
+         Ixkg6/yJivSGPKFMAxd/NcEmrUhYQg1vZHwrIe3ZR58lDnSp8JpNTnmsapsTtTtM+AVI
+         GLJxO5ml6SmgFdIMkF6cZrUfYkO8fzbLftFiE9yk6xWwiH9NVnFfLG+1aZxPdLx1gWLh
+         xO+A==
+X-Gm-Message-State: AOAM533jFpVfBWm5Xy0/ocnXCfj49uuevOXg2sZcOI7f7eGDn2W4auKQ
+        XkQBa5Sjqe4QoXiyonD/2Fkdrg==
+X-Google-Smtp-Source: ABdhPJxihYcxc+bZWzxnuYG8vahFYHta1BJMmIUgjpdI8oNvOaWe6hval1HLogwrMQB4SnTv/DBs2w==
+X-Received: by 2002:a05:651c:1792:: with SMTP id bn18mr1959525ljb.18.1644918944736;
+        Tue, 15 Feb 2022 01:55:44 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id q30sm738704ljc.134.2022.02.15.01.55.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Feb 2022 01:55:44 -0800 (PST)
+Message-ID: <9b0fbece-8618-6b48-0240-3bab45e54a77@linaro.org>
+Date:   Tue, 15 Feb 2022 12:55:43 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8450: add interconnect nodes
+Content-Language: en-GB
+To:     Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220203002936.3009402-1-vkoul@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220203002936.3009402-1-vkoul@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,54 +76,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 03/02/2022 03:29, Vinod Koul wrote:
+> And the various interconnect nodes found in SM8450 SoC and use it for
+> UFS controller.
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+> 
+> Changes in v2:
+> 	- Fix the mc_virt node
+> 	- Add clk_virt node
+> 	- Rebase to rc1
+> 
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 85 ++++++++++++++++++++++++++++
+>   1 file changed, 85 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 10c25ad2d0c7..ccc67918c46a 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -8,6 +8,7 @@
+>   #include <dt-bindings/clock/qcom,rpmh.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/power/qcom-rpmpd.h>
+> +#include <dt-bindings/interconnect/qcom,sm8450.h>
+>   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>   
+>   / {
+> @@ -250,6 +251,18 @@ scm: scm {
+>   		};
+>   	};
+>   
+> +	clk_virt: interconnect@0 {
+> +		compatible = "qcom,sm8450-clk-virt";
+> +		#interconnect-cells = <2>;
+> +		qcom,bcm-voters = <&apps_bcm_voter>;
+> +	};
+> +
+> +	mc_virt: interconnect@1 {
+> +		compatible = "qcom,sm8450-mc-virt";
+> +		#interconnect-cells = <2>;
+> +		qcom,bcm-voters = <&apps_bcm_voter>;
+> +	};
+> +
+>   	memory@a0000000 {
+>   		device_type = "memory";
+>   		/* We expect the bootloader to fill in the size */
+> @@ -620,6 +633,54 @@ i2c14: i2c@a98000 {
+>   			};
+>   		};
+>   
+> +		config_noc: interconnect@1500000 {
+> +			compatible = "qcom,sm8450-config-noc";
+> +			reg = <0 0x01500000 0 0x1c000>;
+> +			#interconnect-cells = <2>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		};
+> +
+> +		system_noc: interconnect@1680000 {
+> +			compatible = "qcom,sm8450-system-noc";
+> +			reg = <0 0x01680000 0 0x1e200>;
+> +			#interconnect-cells = <2>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		};
+> +
+> +		pcie_noc: interconnect@16c0000 {
+> +			compatible = "qcom,sm8450-pcie-anoc";
+> +			reg = <0 0x016c0000 0 0xe280>;
+> +			#interconnect-cells = <2>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		};
+> +
+> +		aggre1_noc: interconnect@16e0000 {
+> +			compatible = "qcom,sm8450-aggre1-noc";
+> +			reg = <0 0x016e0000 0 0x1c080>;
+> +			#interconnect-cells = <2>;
+> +			clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> +				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		};
+> +
+> +		aggre2_noc: interconnect@1700000 {
+> +			compatible = "qcom,sm8450-aggre2-noc";
+> +			reg = <0 0x01700000 0 0x31080>;
+> +			#interconnect-cells = <2>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +			clocks = <&gcc GCC_AGGRE_NOC_PCIE_0_AXI_CLK>,
+> +				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>,
+> +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> +				 <&rpmhcc RPMH_IPA_CLK>;
+> +		};
+> +
+> +		mmss_noc: interconnect@1740000 {
+> +			compatible = "qcom,sm8450-mmss-noc";
+> +			reg = <0 0x01740000 0 0x1f080>;
+> +			#interconnect-cells = <2>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		};
+> +
+>   		tcsr_mutex: hwlock@1f40000 {
+>   			compatible = "qcom,tcsr-mutex";
+>   			reg = <0x0 0x01f40000 0x0 0x40000>;
+> @@ -988,6 +1049,13 @@ cpufreq_hw: cpufreq@17d91000 {
+>   			#freq-domain-cells = <1>;
+>   		};
+>   
+> +		gem_noc: interconnect@19100000 {
+> +			compatible = "qcom,sm8450-gem-noc";
+> +			reg = <0 0x19100000 0 0xbb800>;
+> +			#interconnect-cells = <2>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		};
+> +
+>   		ufs_mem_hc: ufshc@1d84000 {
+>   			compatible = "qcom,sm8450-ufshc", "qcom,ufshc",
+>   				     "jedec,ufs-2.0";
+> @@ -1004,6 +1072,9 @@ ufs_mem_hc: ufshc@1d84000 {
+>   
+>   			iommus = <&apps_smmu 0xe0 0x0>;
+>   
+> +			interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
 
-On Mon, 2022-02-07 at 14:24 +0800, Roger Lu wrote:
-> Hi Rob,
-> 
-> On Tue, 2022-02-01 at 17:40 -0600, Rob Herring wrote:
-> > On Thu, 27 Jan 2022 11:39:50 +0800, Roger Lu wrote:
-> > > Document the binding for enabling mtk svs on MediaTek SoC.
-> > > 
-> > > Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> > > ---
-> > >  .../bindings/soc/mediatek/mtk-svs.yaml        | 83 +++++++++++++++++++
-> > >  1 file changed, 83 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mtk-
-> > > svs.yaml
-> > > 
-> > 
-> > 
-> > Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> > there's no need to repost patches *only* to add the tags. The upstream
-> > maintainer will do that for acks received on the version they apply.
-> > 
-> > If a tag was not added on purpose, please state why and what changed.
-> 
-> Oh, this patch has error detected and shown in [1]. Therefore, I fix it and
-> state the change at [2]. Thanks for the explanation and time to review the
-> patch.
+As you have #interconnect-cells = <2> for all the NoCs, this should be:
 
-Excuse me, just for the double check. Since this issue [1] is fixed, could I add
-your Reviewed-by tags back or just send the next version directly without adding
-any tags. Thanks a lot.
+		interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
 
-> 
-> [1] 
-> 
-https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/patch/20220107095200.4389-2-roger.lu@mediatek.com/__;!!CTRNKA9wMg0ARbw!2KArHJHZu-89hcY8BqxHqe4fB0IVbahNropr5XS4dGEVniMY0xUfdoa5znw1VQFN$
->  
-> [2] 
-> 
-https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/cover/20220127033956.24585-1-roger.lu@mediatek.com/__;!!CTRNKA9wMg0ARbw!2KArHJHZu-89hcY8BqxHqe4fB0IVbahNropr5XS4dGEVniMY0xUfdoa5zvor4e0p$
->  
-> - Remove unnecessary "maxItems" from nvmem-cells in mtk-svs.yaml.
-> 
-> 
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> 
-https://urldefense.com/v3/__http://lists.infradead.org/mailman/listinfo/linux-mediatek__;!!CTRNKA9wMg0ARbw!2KArHJHZu-89hcY8BqxHqe4fB0IVbahNropr5XS4dGEVniMY0xUfdoa5zmaupAcC$
->  
+> +					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
+> +			interconnect-names = "ufs-ddr", "cpu-ufs";
+>   			clock-names =
+>   				"core_clk",
+>   				"bus_aggr_clk",
+> @@ -1102,6 +1173,20 @@ usb_1_dwc3: usb@a600000 {
+>   				phy-names = "usb2-phy", "usb3-phy";
+>   			};
+>   		};
+> +
+> +		nsp_noc: interconnect@320c0000 {
+> +			compatible = "qcom,sm8450-nsp-noc";
+> +			reg = <0 0x320c0000 0 0x10000>;
+> +			#interconnect-cells = <2>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		};
+> +
+> +		lpass_ag_noc: interconnect@3c40000 {
+> +			compatible = "qcom,sm8450-lpass-ag-noc";
+> +			reg = <0 0x3c40000 0 0x17200>;
+> +			#interconnect-cells = <2>;
+> +			qcom,bcm-voters = <&apps_bcm_voter>;
+> +		};
+>   	};
+>   
+>   	timer {
 
+
+-- 
+With best wishes
+Dmitry
