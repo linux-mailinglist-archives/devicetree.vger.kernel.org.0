@@ -2,74 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC38A4B7695
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:49:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E72B34B7612
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:48:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235781AbiBOTsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 14:48:03 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34490 "EHLO
+        id S237905AbiBOTtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 14:49:40 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232560AbiBOTsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 14:48:03 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25DD9DEAD
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 11:47:53 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dmitry.osipenko)
-        with ESMTPSA id 2C4B91F413B3
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1644954471;
-        bh=BCTFBXRXvRz6slrOppBSCzuCpNgtXgHw8VTvEi/F91c=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jd/M6U2Sj9jRmq/fvlQsMiylkbMa9eLtc8Kszpl55iTbO2tXfEASLtBXx2oDKnWU4
-         R/YXNWjLIzS5CBeOKxoT7rjJHsadCfb+r0I40csrAijVEtZUix5P10CuVrK68iAdbt
-         8IGfd3ZFJZac67E6St0NYmZ35Gm4osSaQxEDrcH7jGkBRs131Ht80zpRv4bOQBAi2p
-         mFrBKbYunk6hzOPo91qLTUr7mVHM1bdoEv/PsH3RQWoD9DyYKlg+pwFn1xsha8e+7N
-         wbxE3ihAj+J6oQ0VWUFdgeZmmsyBMxmlkygvGyYr6MJEpISZ4CsKlps1AJZQj3/SUN
-         kSfGMEclwF4ew==
-Message-ID: <f0d9ae21-1cce-8ce2-c81d-595a639ac490@collabora.com>
-Date:   Tue, 15 Feb 2022 22:47:49 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 22/23] drm: rockchip: Add VOP2 driver
-Content-Language: en-US
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
- <20220209095350.2104049-23-s.hauer@pengutronix.de>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20220209095350.2104049-23-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S243804AbiBOTtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 14:49:33 -0500
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B0586660C;
+        Tue, 15 Feb 2022 11:49:22 -0800 (PST)
+Received: by mail-io1-f51.google.com with SMTP id r144so25235994iod.9;
+        Tue, 15 Feb 2022 11:49:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=KXSZwObXwXhyqBUgs8Dj2mGzNepAgJtQoKeKbytKAUc=;
+        b=Niifu3b/FINdxzgfxxNqLLaqM4A/FSx28rBdR0SrY6tSoajgBZblHW1DpBC2sVFwGZ
+         IPefElNFsEjbg7Sb8pzr5C3bDzPcVmh6ccxifor2WhSFucXO6Pj5I7XGyNWiAFStLowj
+         /vlhGgq+XxhH5+1s5y7+dZxUjs78yntZsEQHpUHxx7z6vHycxnppT4LNIUALdwKt7MX0
+         RWxBykSlQLZ2aQ3c8bBCqyLlz4RuvHCfJ16yOpjaV+7Q6hu/4RGzbk2RCAV1gFDLCAss
+         3cJ94UoVQLgIjojWlRhESuW1tInU9rla4y5IQwF66kz/UPfocQDRWnvY/6KyDB/FK/tw
+         EWJw==
+X-Gm-Message-State: AOAM5324t6HQdjPzLyuDzaknX+gvUVFrNHBFdbqWwpjMW4xIMj65iFEW
+        fLF/IROadrBX6z5PnObT3g==
+X-Google-Smtp-Source: ABdhPJw4dH7aOt4PpzLwO7VCfIbho2N2cLTRW+nmzH1+8BgDGfbcmPlRXiw84CD6uvuop7GaxBvJ4Q==
+X-Received: by 2002:a05:6638:37a1:: with SMTP id w33mr301609jal.73.1644954560908;
+        Tue, 15 Feb 2022 11:49:20 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id h12sm6014113ild.44.2022.02.15.11.49.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Feb 2022 11:49:20 -0800 (PST)
+Received: (nullmailer pid 3813672 invoked by uid 1000);
+        Tue, 15 Feb 2022 19:49:18 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>
+Cc:     linux-aspeed@lists.ozlabs.org, Richard Weinberger <richard@nod.at>,
+        linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        linux-kernel@vger.kernel.org, Joel Stanley <joel@jms.id.au>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org
+In-Reply-To: <20220214094231.3753686-3-clg@kaod.org>
+References: <20220214094231.3753686-1-clg@kaod.org> <20220214094231.3753686-3-clg@kaod.org>
+Subject: Re: [PATCH 02/10] dt-bindings: spi: Add Aspeed SMC controllers device tree binding
+Date:   Tue, 15 Feb 2022 13:49:18 -0600
+Message-Id: <1644954558.088844.3813671.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-09.02.2022 12:53, Sascha Hauer пишет:
-> @@ -31,6 +31,9 @@ struct rockchip_crtc_state {
->  	int output_bpc;
->  	int output_flags;
->  	bool enable_afbc;
-> +	uint32_t bus_format;
-> +	u32 bus_flags;
-> +	int color_space;
+On Mon, 14 Feb 2022 10:42:23 +0100, Cédric Le Goater wrote:
+> The "interrupt" property is optional because it is only necessary for
+> controllers supporting DMAs (Not implemented yet in the new driver).
+> 
+> Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+> Signed-off-by: Cédric Le Goater <clg@kaod.org>
+> ---
+>  .../bindings/spi/aspeed,ast2600-fmc.yaml      | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+> 
 
-The variable types could be cleaned up like s/uint32_t/u32/ all over
-this patch.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I'd also remove signes from all variables that should be unsigned.
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.example.dt.yaml: example-0: spi@1e620000:reg:0: [509739008, 196, 536870912, 268435456] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.example.dt.yaml: spi@1e620000: reg: [[509739008, 196, 536870912, 268435456]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1592369
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
