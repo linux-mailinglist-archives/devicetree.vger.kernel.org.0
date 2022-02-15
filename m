@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F0BA4B78A0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:52:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAD4E4B7889
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:52:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242567AbiBOT7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 14:59:50 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35200 "EHLO
+        id S244013AbiBOUKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 15:10:30 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243836AbiBOT7u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 14:59:50 -0500
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2192673DB;
-        Tue, 15 Feb 2022 11:59:39 -0800 (PST)
-Received: by mail-io1-f45.google.com with SMTP id r144so25269915iod.9;
-        Tue, 15 Feb 2022 11:59:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eXMbSl7pkbrXXY20Ci9OYDkC4iVOBT5vJ3kmdC5ZvI0=;
-        b=Ut9U/dKzMKS7M1TiJ0KgGsH2gv17WDpgumc2LIGeYhzC2ToZhX6KggBqcBGGRWWBnW
-         lzYckVrP/ggoXAZ6nPfDdv3OBVzzScqm6UE0hEVOzr/dw2gv7S1T1ptzC+TD1PgI/2Zu
-         eJgatoKvJNX0y+k5WfJrNYTdNIlRNO1N6b4pZPaz7B5/n1nwuXPi7UKtNIJyQDGV2H8A
-         H7iA+4mD0lNkAm0NejpiSEPxjYPBr1c3h1BQKaKfABqMxU7wM5wOIajms7kzzJlbDom4
-         6xEG46CybXsTJD5cKN3DFGNsTFDoytKUVyGb2esUM1sEDt3n35WE/PqSOUIcew/aOVeu
-         1MxQ==
-X-Gm-Message-State: AOAM5338nQRgWf+VxC7pkPqsy3zPCFqK0hp3C5TdbxTFHW9r1rNIZKcG
-        e+86Pv909SmPMbi9u+qCHw10U5ZcMw==
-X-Google-Smtp-Source: ABdhPJyP0tXgowoX7f4MwVO8+v5yIrdTwKjrc2deFX5hSQamule4HQ9Og2RVu5spDDRTZJ9LuANhhQ==
-X-Received: by 2002:a05:6602:15cf:: with SMTP id f15mr306598iow.135.1644955179149;
-        Tue, 15 Feb 2022 11:59:39 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id z13sm5438984iox.21.2022.02.15.11.59.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 11:59:38 -0800 (PST)
-Received: (nullmailer pid 3828019 invoked by uid 1000);
-        Tue, 15 Feb 2022 19:59:36 -0000
-Date:   Tue, 15 Feb 2022 13:59:36 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     frowand.list@gmail.com
-Cc:     Anders Roxell <anders.roxell@linaro.org>,
-        devicetree@vger.kernel.org,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] of: unittest: print pass messages at PR_INFO level
-Message-ID: <YgwGKI+KUY9qKOnB@robh.at.kernel.org>
-References: <20220210230819.3303212-1-frowand.list@gmail.com>
+        with ESMTP id S236571AbiBOUKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:10:30 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE8FDDB86E;
+        Tue, 15 Feb 2022 12:10:18 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21FKA9Dv071773;
+        Tue, 15 Feb 2022 14:10:09 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1644955809;
+        bh=nFjLPGELwJtadWdb9FpAoiY7mb9Qwfbj9M2rC59OVdQ=;
+        h=From:To:CC:Subject:Date;
+        b=jwP8pwvpXy9kGAslX2SVhFlQ12xiUqyLz/1HZGJEmaegObxDgDJBjM5L6PFcnCYqA
+         JqHLwrUaHVjtvO+Nz887bVn1msbw94Sa5z4d+DOvZLIodBL/X8WNo6uhFsXTqXFJnD
+         hfO+S+4LMxX0KdYM6ozbk8R5WWQKaH5nvjO4dQJc=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21FKA9SC068714
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Feb 2022 14:10:09 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 15
+ Feb 2022 14:10:09 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 15 Feb 2022 14:10:09 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21FKA9NC127932;
+        Tue, 15 Feb 2022 14:10:09 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Marc Zyngier <maz@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH 0/5] arm64: dts: ti: k3*: Fix gic-v3 compatible regs
+Date:   Tue, 15 Feb 2022 14:10:03 -0600
+Message-ID: <20220215201008.15235-1-nm@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220210230819.3303212-1-frowand.list@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,33 +65,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Feb 2022 17:08:19 -0600, frowand.list@gmail.com wrote:
-> From: Frank Rowand <frank.rowand@sony.com>
-> 
-> Printing the devicetree unittest pass message for each passed test
-> creates much console verbosity.  The existing pass messages are
-> printed at loglevel KERN_DEBUG so they will not print by default.
-> 
-> Change default to print the pass messages at loglevel PR_INFO so
-> they will print with the default console loglevel.
-> 
-> The test community expects either a pass or a fail message for each
-> test in a test suite.  The messages are typically post-processed to
-> report pass/fail results.
-> 
-> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
-> ---
-> 
-> One review comment to similar previous patch "of: unittest: print
-> pass message as same lovlevel as fail" suggested to also change
-> the text of the pass message to include "PASS" instead of "pass".
-> I would rather leave the text unchanged to minimize churn for any
-> existing users of the message.  It is my intention to change the
-> pass and fail messages to KTAP version 2 format as soon as that
-> version of the specification is completed.
-> 
->  drivers/of/unittest.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Hi,
 
-Applied, thanks!
+This series was triggered by the discussion in [1], and we realized we
+need to cleanup the definitions in K3 SoC. Usage of kvm with gic-v2
+compatibility is a bit niche usecase, but valid and possible with A53
+and A72 even though the GIC500 instantiation is done with no backward
+compatibility.
+
+Nishanth Menon (5):
+  arm64: dts: ti: k3-am65: Fix gic-v3 compatible regs
+  arm64: dts: ti: k3-j721e: Fix gic-v3 compatible regs
+  arm64: dts: ti: k3-j7200: Fix gic-v3 compatible regs
+  arm64: dts: ti: k3-am64: Fix gic-v3 compatible regs
+  arm64: dts: ti: k3-j721s2: Fix gic-v3 compatible regs
+
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi   | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-am64.dtsi        | 1 +
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi   | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-am65.dtsi        | 1 +
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi  | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-j7200.dtsi       | 1 +
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi  | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi       | 1 +
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-j721s2.dtsi      | 1 +
+ 10 files changed, 25 insertions(+), 5 deletions(-)
+
+[1] https://lore.kernel.org/all/87k0e0tirw.wl-maz@kernel.org/
+
+-- 
+2.31.1
+
