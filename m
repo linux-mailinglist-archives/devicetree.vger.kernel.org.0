@@ -2,106 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A7D64B7765
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:50:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F56D4B78B9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:52:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242071AbiBORB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 12:01:57 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58212 "EHLO
+        id S240582AbiBORKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 12:10:16 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233855AbiBORB4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 12:01:56 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE90E115952
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 09:01:45 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CC7293F1B6
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 17:01:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644944504;
-        bh=6A/iTuzJN7RYXq4i8TAWxW9tcqq87v/WRpExFN3KMZw=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=Z/bI4jRVp0iV8LjMy2nKanT4TQmlrU9FZfOisWCupNJvsIMFLBJ2f8Mdj8PGfpbKb
-         QWooHcXbmpr2stcSun4CqAWxA9lwY6b4p6kGKnZEpExtfibRJ5t40FDFL1teO5j8rl
-         cfh3yhYzGo1BMVLYosnQhtkvqazJS6fWW00tFSu/5tg8cMRshESremzk7WFWmJbeF/
-         DdMcmcKqCnNiXyWXMhfRSLgFfSZkuuAWwf8tzH4zCB5tcjUqUD+RELvzeIyiJ6Typl
-         puXqGoNms38lqM4kgvWHSa7srI9zPwN70D62CG91D1SRWZzuWFY5xhLI+SYkC21oe8
-         at1and6+Coq7Q==
-Received: by mail-ed1-f72.google.com with SMTP id g5-20020a056402090500b0040f28e1da47so191091edz.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 09:01:44 -0800 (PST)
+        with ESMTP id S242242AbiBORKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 12:10:15 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA91711ACCF
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 09:10:04 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id p9so12721903wra.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 09:10:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kgbvedyHGhUjE1oZGS3GkCNE9P0anQzjS/ZoNbklbBg=;
+        b=v3izdjS8nvQzw3l0l6wzBoMZUv98IQLUb8OGj9S1dfaF+hr2ZxSDvf9zjUc68yXWgX
+         iPlbVEVR9JS1s45gPmy/uVUZhmucoUuqxRz3+CLRI4/4Li13ZtAoR5362bA4UzHA34+U
+         EMnvLY0S572MWZY78C3rHh7OB6S4e9GZHMRzocBkTSi/0mJ54E+0gXHczldjy620A3ot
+         aCdEZyW01TeI4mhCRgMQ3tSijjoWtk/4sX7zc+jK6G+lGEUPVNbvSil231Cjn+EiHkPO
+         M79wLyVPDcKzO1TNpQK0id6OSNWmj/AtGs4RMRsWULqKVn9cVqVt+Z/3qk08rZu4A9g2
+         yf3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=6A/iTuzJN7RYXq4i8TAWxW9tcqq87v/WRpExFN3KMZw=;
-        b=gELD3HgOcZViUvHepXAGmnDVRqCla8sPGTUoDATCitzYkU0AC5tyXtGe8+GpT0L+78
-         JS64RipSMFTqxI8tLBgSKe7WSe9x42EBgjNfi14xHv4gZr5q84oBRuQfpiXheL0Cc2ze
-         T1j+JpCYEZUzeyyi/OhseESgDagj+NCm2XEoKKJSeh4Qs2RyS6YFpPfctvOyVcEbyEz/
-         b4i2Izl/S9CDF2rfM2GKG4DVrDYU3s+wUhEHbi6InGMWh0sUi58hMhs0h4ck18RWhQIK
-         9MfEk/iujz6W3AJYaEk460uVfrMBW9dsfenUXTcvrsYrDzKqh+i3x4kmMeOQEkEx4/Gl
-         FFOw==
-X-Gm-Message-State: AOAM531TzTtXBBUK7P2mjqjPUPOvIFl/x+SeTM/vTjEnOPzfMKM1xXlY
-        aVUSlEmvUAMetS0z6vf18ZhFrQA6pfGa6fyF5P9BhoR52wzslUT5dBT7wDipi56Hn6iYEcQGPqv
-        oBWLV3SjODuHjEsreYzRVhyu9MEIjjhgjtgZWepM=
-X-Received: by 2002:a17:906:dc92:: with SMTP id cs18mr7309ejc.656.1644944504436;
-        Tue, 15 Feb 2022 09:01:44 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyMfu8uzDlw79VM9qAXnSGrPIDJXnTQ1CzhlI1Ng6oF7bX2eWB0r/zeyGYCkcHmpFYe06/6Vg==
-X-Received: by 2002:a17:906:dc92:: with SMTP id cs18mr7284ejc.656.1644944504213;
-        Tue, 15 Feb 2022 09:01:44 -0800 (PST)
-Received: from [192.168.0.109] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id y16sm208777edd.0.2022.02.15.09.01.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Feb 2022 09:01:43 -0800 (PST)
-Message-ID: <33c226ca-334c-7458-62d5-5480d6657ebc@canonical.com>
-Date:   Tue, 15 Feb 2022 18:01:43 +0100
+        bh=kgbvedyHGhUjE1oZGS3GkCNE9P0anQzjS/ZoNbklbBg=;
+        b=4SZPP1Dkn4sE5JPCvErn1cdihn4esfOtCO7NyfBqqXGzVM7ZBQuurGX4Lf2JGJK0VT
+         9FB0Sn27FmoFdJ91ALqoPqZlwLR/WSHhYWd5rkPJmRNJTGQpmKGtCf+X9vx65Z5tgPrZ
+         q7cKDKiwQc1mrkzH40Vw7ta77eT4OeEuKQhmJn2GDDMebAR2sz5qJdf2DTEHA6pyr+s7
+         9icnfabPNEj58s2tkClf4llrptQ7yY1C+jYdg2IgdVbvbZZIUgVG7okO8fEQosKW3650
+         FPDCEKUaXh+4rD3X7fOP3lvT5ZbEuGcus+HTvUwasaDP0tBSgFpFwSG0pT8Pta7fgGMH
+         8Dsw==
+X-Gm-Message-State: AOAM530jSmvATOD/bZFvMe48vVCZDG402PlueKj/nBguAyv6k0MJ414d
+        jJXVDcX/snLAE8cSIaaFmIFtPw==
+X-Google-Smtp-Source: ABdhPJxMFDGSGt2aeamPKqVOboa+lW9lqACJ0tsvpyghtMpw93tYnmhzyHl2W0N1U95w9tzknzi5sQ==
+X-Received: by 2002:a05:6000:18a2:: with SMTP id b2mr4034231wri.645.1644945003305;
+        Tue, 15 Feb 2022 09:10:03 -0800 (PST)
+Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
+        by smtp.gmail.com with ESMTPSA id g5sm15558474wmk.38.2022.02.15.09.10.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Feb 2022 09:10:02 -0800 (PST)
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
+        john.stultz@linaro.org
+Subject: [PATCH v6 0/9] iio: adc: introduce Qualcomm SPMI Round Robin ADC
+Date:   Tue, 15 Feb 2022 17:09:42 +0000
+Message-Id: <20220215170951.1233375-1-caleb.connolly@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/2] dt-bindings: ps2-gpio: document bus signals open
- drain
-Content-Language: en-US
-To:     Danilo Krummrich <danilokrummrich@dk-develop.de>,
-        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     linus.walleij@linaro.org
-References: <20220215165113.52659-1-danilokrummrich@dk-develop.de>
- <20220215165113.52659-3-danilokrummrich@dk-develop.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220215165113.52659-3-danilokrummrich@dk-develop.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/02/2022 17:51, Danilo Krummrich wrote:
-> The PS/2 bus defines data and clock line to be open drain, this should
-> be reflected in the gpio flags set in the binding.
-> 
-> Especially, this is important since the clock line sometimes is driven
-> by the host while being used as interrupt source.
-> 
-> Signed-off-by: Danilo Krummrich <danilokrummrich@dk-develop.de>
-> ---
->  .../devicetree/bindings/serio/ps2-gpio.yaml        | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
-> 
+The RRADC is responsible for reading data about the current and
+voltage from the USB or DC in jacks, it can also read the battery
+ID (resistence) and some temperatures. It is found on the PMI8998 and
+PM660 Qualcomm PMICs.
 
+The RRADC has to calibrate some ADC values based on which chip fab
+the PMIC was produced in, to facilitate this the patches
+("mfd: qcom-spmi-pmic: expose the PMIC revid information to clients")
+and ("mfd: qcom-spmi-pmic: read fab id on supported PMICs")
+expose the PMIC revision information and fab_id as a struct and register
+them as driver data in the Qualcomm SPMI PMIC driver so that it can be
+read by the RRADC.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+The first 3 patches add support for looking up an SPMI device from a
+struct device_node, as well as introducing support for looking up the
+base USID of a Qcom PMIC, see patch comments for more details. These
+Address Bjorns comments on v2.
 
+Changes since v5:
+ * Add missing EXPORT_SYMBOL_GPL() to
+   ("spmi: add a helper to look up an SPMI device from a device node")
 
-Best regards,
-Krzysztof
+Changes since v4:
+ * Addressed Jonathan's comments on v4
+ * Reworked the qcom-spmi-pmic patches to properly walk the devicetree
+   to find the base USID. I've tested this on SDM845 which has two PMICs
+   (pm8998 and pmi8998) and I'm able to look up the PMIC revid from all
+   4 USIDs.
+
+Changes since v3:
+ * Split PMIC patch in two, rework to support function drivers on a
+   sibling USID
+ * Completely rework RRADC driver to make use of the modern IIO
+   framework. This required re-arranging a lot of the equations and
+   results in some lost precision, where relevant I've left comments to
+   explain this. I don't think any of it is significant enough to
+   justify doing post-processing in driver.
+	Thanks a lot Jonathan and John Stultz for helping me out with
+	this 
+
+Changes since v2:
+ * Add missing include (thanks kernel test robot :D)
+ * Rework some confusing function return values, specifically
+   rradc_read_status_in_cont_mode and rradc_prepare_batt_id_conversion
+   both of which didn't correctly handle "ret". This also bought up an
+   issue as the previous implementation didn't actually wait for the
+   channel to be ready. It doesn't seem like that's strictly necessary
+   (same data is reported if I wait for the status to be good or not)
+   but I've included it anyway for good measure.
+
+Changes since v1:
+ * Rework the RRADC driver based on Jonathan's feedback
+ * Pick up Rob's reviewed by for the dt-binding patch.
+
+ --
+
+Caleb Connolly (9):
+  spmi: add a helper to look up an SPMI device from a device node
+  mfd: qcom-spmi-pmic: expose the PMIC revid information to clients
+  mfd: qcom-spmi-pmic: read fab id on supported PMICs
+  dt-bindings: iio: adc: document qcom-spmi-rradc
+  iio: adc: qcom-spmi-rradc: introduce round robin adc
+  arm64: dts: qcom: pmi8998: add rradc node
+  arm64: dts: qcom: sdm845-oneplus: enable rradc
+  arm64: dts: qcom: sdm845-db845c: enable rradc
+  arm64: dts: qcom: sdm845-xiaomi-beryllium: enable rradc
+
+ .../bindings/iio/adc/qcom,spmi-rradc.yaml     |   54 +
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |    8 +
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |    4 +
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |    4 +
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts |    4 +
+ drivers/iio/adc/Kconfig                       |   12 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/qcom-spmi-rradc.c             | 1016 +++++++++++++++++
+ drivers/mfd/qcom-spmi-pmic.c                  |  183 ++-
+ drivers/spmi/spmi.c                           |   17 +
+ include/linux/spmi.h                          |    2 +
+ include/soc/qcom/qcom-spmi-pmic.h             |   61 +
+ 12 files changed, 1309 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
+ create mode 100644 drivers/iio/adc/qcom-spmi-rradc.c
+ create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
+
+-- 
+2.35.1
+
