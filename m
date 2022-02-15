@@ -2,89 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F24344B7ABE
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 23:54:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BAD14B7AC9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 23:56:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240855AbiBOWyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 17:54:50 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60588 "EHLO
+        id S244681AbiBOW4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 17:56:49 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235253AbiBOWyu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 17:54:50 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADD490FCD;
-        Tue, 15 Feb 2022 14:54:39 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 049F5B81C23;
-        Tue, 15 Feb 2022 22:54:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC332C340EB;
-        Tue, 15 Feb 2022 22:54:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644965676;
-        bh=vp0AA5rWNWbwH+h7RrfOW+1FW77YNO31CyLQUGfkQek=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=K3AFijseqC8GbeefAxP32BuWuyj0dYJ4Ia8GwqQo5txlC7d37OSdcvqOOFYVv0m9d
-         p9c7lXNewgA3CMClmpJMlhEs3ny9AIOz4VjKR9B/mdBdLVIM/oLm6kEPK6pgdzyDBL
-         zM8oPb/ZUR89LdED7edEt+40xGFeFzBCdW/hXy5yGi8DaxCTd5Au6JmMSpXguLl4aO
-         FyaLJyh1Fe3S1hAah9W6rQ/PH1UjVuDraKPwXavoOLlVmA3T6EKGdxWkIS/7xeMRdT
-         ad0bYkM0C6ws46CuOa+fN0IXMoMux61pGYcI8tyf/ShRV6XYeySDAQP4tzm+UUo9lL
-         +towKOuOi7cng==
-Received: by mail-ed1-f54.google.com with SMTP id h18so760971edb.7;
-        Tue, 15 Feb 2022 14:54:36 -0800 (PST)
-X-Gm-Message-State: AOAM532kvvFMEpjTGmhV9lf2Rd3KzR3qSNGkQDdJqcz3k9ohqVARLoqP
-        WuQFeyuIqjPkpxI//nQ7+FlWNhqTHmkuHL+Rww==
-X-Google-Smtp-Source: ABdhPJwIhjgFezkhGh/JThuKg8ThIEnytIpHYE2ZFs4zMkn1bSCelwpeUJLERmuj2x6h/ToJGmqArMx73XuAI+0Vol0=
-X-Received: by 2002:a05:6402:5242:b0:40f:6a4f:ff33 with SMTP id
- t2-20020a056402524200b0040f6a4fff33mr126833edd.30.1644965675039; Tue, 15 Feb
- 2022 14:54:35 -0800 (PST)
+        with ESMTP id S244682AbiBOW4r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 17:56:47 -0500
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F642B91D0;
+        Tue, 15 Feb 2022 14:56:37 -0800 (PST)
+Received: by mail-il1-f173.google.com with SMTP id n5so140367ilk.12;
+        Tue, 15 Feb 2022 14:56:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=JeNpWnsdEBSIAdgZ4rc+NttAZNtgh6UEy35+0pZJ0PU=;
+        b=NrNpCcJuvt+CFR9+N5GwoSE4wYDFH2IY6ShgRXdTA0+FG7PogHxTSKG0mOvply+aV6
+         3sscyrPcj2ufroN2h0p4bNts1EwMlgr9YUqtPcItgJT274tdhF7VXN+ZD9vkXdwYgXnU
+         oGOJSJF5rJbYdjeyT4wOJMmn3L+i4IX12N2waKt8fqS86YemGiHLVGwUwp4hDzoMCvlc
+         VwWE4R7YOvSH9PPTlAZ5Qw6oLc9AQT9xW2S5z+fIkklf+NCATR7fqEU5LKcdlgGYBz+r
+         vPw1CTE49rn2xx4R9UUq0RDRfjX52QSh4TaND5NMf4klf+xCiUjHKJH0QGWyJ7mbdzoF
+         gNtg==
+X-Gm-Message-State: AOAM531Z9KzAIiXDTKrd/fYSGpcy40iEkq0vuByu5GGCMNe5XVCbu2br
+        M25tBQML1VFP2zM0jeHKMQ==
+X-Google-Smtp-Source: ABdhPJznftkYIpt01opf8UkdBTHjoIG3wyj6NjXO8VkO1mlt3KReXJUUXOr75f1kf6TzdSSAHpT92Q==
+X-Received: by 2002:a92:bf08:0:b0:2be:fc43:14c4 with SMTP id z8-20020a92bf08000000b002befc4314c4mr8776ilh.80.1644965796667;
+        Tue, 15 Feb 2022 14:56:36 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id q2sm17616920ilt.33.2022.02.15.14.56.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Feb 2022 14:56:36 -0800 (PST)
+Received: (nullmailer pid 4072247 invoked by uid 1000);
+        Tue, 15 Feb 2022 22:56:33 -0000
+Date:   Tue, 15 Feb 2022 16:56:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jagath Jog J <jagathjog1996@gmail.com>
+Cc:     sst@poczta.fm, linux-iio@vger.kernel.org, lars@metafoo.de,
+        jic23@kernel.org, robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andy.shevchenko@gmail.com
+Subject: Re: [PATCH v2 4/4] dt-bindings: iio: potentiometer: Add Maxim DS3502
+ in trivial-devices
+Message-ID: <YgwvoUTOmTi8/NsS@robh.at.kernel.org>
+References: <20220214033620.4059-1-jagathjog1996@gmail.com>
+ <20220214033620.4059-5-jagathjog1996@gmail.com>
 MIME-Version: 1.0
-References: <20220214212154.8853-1-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220214212154.8853-1-krzysztof.kozlowski@canonical.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Feb 2022 16:54:23 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+bfr=csxzKN3T=tBY7bZ6Gny+sm5xtMP8nmyiD3joNFg@mail.gmail.com>
-Message-ID: <CAL_Jsq+bfr=csxzKN3T=tBY7bZ6Gny+sm5xtMP8nmyiD3joNFg@mail.gmail.com>
-Subject: Re: [PATCH v2 00/15] pwm: dt-bindings: Include generic pwm schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>,
-        Rahul Tanwar <rtanwar@maxlinear.com>,
-        Jeff LaBundy <jeff@labundy.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Vignesh R <vigneshr@ti.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@lists.linux.dev,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220214033620.4059-5-jagathjog1996@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,35 +64,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 14, 2022 at 3:22 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> Hi,
->
-> Changes since v1:
-> 1. Add tags.
-> 2. Adjust subject (Uwe).
->
-> Best regards,
-> Krzysztof
->
-> Krzysztof Kozlowski (15):
->   dt-bindings: pwm: allwinner,sun4i-a10: Include generic pwm schema
->   dt-bindings: pwm: imx: Include generic pwm schema
->   dt-bindings: pwm: intel,lgm: Include generic pwm schema
->   dt-bindings: pwm: iqs620a: Include generic pwm schema
->   dt-bindings: pwm: mxs: Include generic pwm schema
->   dt-bindings: pwm: rockchip: Include generic pwm schema
->   dt-bindings: pwm: sifive: Include generic pwm schema
->   dt-bindings: pwm: renesas,pwm: Include generic pwm schema
->   dt-bindings: pwm: toshiba,visconti: Include generic pwm schema
->   dt-bindings: pwm: brcm,bcm7038: Do not require pwm-cells twice
->   dt-bindings: pwm: intel,keembay: Do not require pwm-cells twice
->   dt-bindings: pwm: samsung: Do not require pwm-cells twice
->   dt-bindings: pwm: tiecap: Do not require pwm-cells twice
->   dt-bindings: pwm: tiehrpwm: Do not require pwm-cells twice
->   dt-bindings: pwm: renesas,tpu: Do not require pwm-cells twice
+On Mon, 14 Feb 2022 09:06:20 +0530, Jagath Jog J wrote:
+> Maxim DS3502 is a 7 bit nonvolatile digital potentiometer.
+> Add DS3502 binding into trivial-devices.yaml
+> 
+> Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-For the series:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
