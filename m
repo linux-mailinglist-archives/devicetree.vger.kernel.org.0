@@ -2,151 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D4EC4B6AB7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 12:24:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E18E4B6AEE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 12:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237128AbiBOLZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 06:25:04 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43738 "EHLO
+        id S237179AbiBOLbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 06:31:47 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237095AbiBOLZA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 06:25:00 -0500
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85AED10855A;
-        Tue, 15 Feb 2022 03:24:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1644924290; x=1676460290;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=88QwmHFN8Z6K7oOwYMh4aqsIoXvzf3hWSa4cBd71bys=;
-  b=MxfY3XnNR6117+l6QN1lFDyhgs2RaYWes1plX7Ki7M23BinDptVpnv2T
-   r4nlzK1i1dx/H+89AscJWSPQk5xQ3mZUVNRxwS1O6JQ39XdsFI4aLBM8H
-   prS89P96qz+Dm52PeSaPg3+vXYI6GOY6nSrS44u2x8HPlM7zG1an+YCrY
-   K11p6iheMvB9aMMosZgLAQYP9zheB+GnAn96t3jsIR5XVo+n+kA7Qtg8c
-   4Ti41h6OHlOu7AzFy8xNms4pvu6QMcboPV+VcYYGoa7IHQcgFw6BqC0Um
-   LbclriYvJ0CGeiWJjmP6gXQlduSi7CcLVpri4mtfwuXexAevsmJQs/RZQ
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="247926524"
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; 
-   d="scan'208";a="247926524"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2022 03:24:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; 
-   d="scan'208";a="528799645"
-Received: from lkp-server01.sh.intel.com (HELO d95dc2dabeb1) ([10.239.97.150])
-  by orsmga007.jf.intel.com with ESMTP; 15 Feb 2022 03:24:46 -0800
-Received: from kbuild by d95dc2dabeb1 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nJvws-0009bb-5o; Tue, 15 Feb 2022 11:24:46 +0000
-Date:   Tue, 15 Feb 2022 19:23:50 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, Marek Vasut <marex@denx.de>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S237227AbiBOLbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 06:31:45 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19D4013CFB;
+        Tue, 15 Feb 2022 03:31:29 -0800 (PST)
+X-UUID: 39c9a947dafe4ffb826bdea49c2bf5e9-20220215
+X-UUID: 39c9a947dafe4ffb826bdea49c2bf5e9-20220215
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1084979076; Tue, 15 Feb 2022 19:31:25 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 15 Feb 2022 19:31:24 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 15 Feb 2022 19:31:23 +0800
+Message-ID: <f2bce3870b3eacce0c9bcdf5a022e11371a9ace4.camel@mediatek.com>
+Subject: Re: [PATCH v2, 03/10] dt-bindings: media: mtk-vcodec: Adds encoder
+ cores dt-bindings for mt8195
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>, <linux-media@vger.kernel.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        <linux-kernel@vger.kernel.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com
-Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
-Message-ID: <202202151824.QGNvG2R8-lkp@intel.com>
-References: <20220215084412.8090-2-marex@denx.de>
+        Matthias Brugger <matthias.bgg@gmail.com>
+Date:   Tue, 15 Feb 2022 19:31:23 +0800
+In-Reply-To: <1642433742.919482.3923083.nullmailer@robh.at.kernel.org>
+References: <20220117120615.21687-1-irui.wang@mediatek.com>
+         <20220117120615.21687-4-irui.wang@mediatek.com>
+         <1642433742.919482.3923083.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220215084412.8090-2-marex@denx.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Dear Rob,
 
-I love your patch! Perhaps something to improve:
+Many thanks for your comments.
 
-[auto build test WARNING on clk/clk-next]
-[also build test WARNING on v5.17-rc4 next-20220214]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+On Mon, 2022-01-17 at 09:35 -0600, Rob Herring wrote:
+> On Mon, 17 Jan 2022 20:06:08 +0800, Irui Wang wrote:
+> > Adds encoder cores dt-bindings for mt8195
+> > 
+> > Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> > ---
+> >  .../media/mediatek,vcodec-encoder-core.yaml   | 214
+> > ++++++++++++++++++
+> >  1 file changed, 214 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-
+> > core.yaml
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m
+> dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-
+> core.example.dts:20:18: fatal error: dt-bindings/memory/mt8195-
+> memory-port.h: No such file or directory
+>    20 |         #include <dt-bindings/memory/mt8195-memory-port.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[1]: *** [scripts/Makefile.lib:373:
+> Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-
+> core.example.dt.yaml] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1413: dt_binding_check] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/1580741
+> 
+> This check can fail if there are any dependencies. The base for a
+> patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up
+> to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
 
-url:    https://github.com/0day-ci/linux/commits/Marek-Vasut/dt-bindings-clk-Introduce-critical-clocks-property/20220215-164757
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-config: nds32-allnoconfig (https://download.01.org/0day-ci/archive/20220215/202202151824.QGNvG2R8-lkp@intel.com/config)
-compiler: nds32le-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/aded04bc3dec13df3f940621d94d84e32ff8a5ea
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Marek-Vasut/dt-bindings-clk-Introduce-critical-clocks-property/20220215-164757
-        git checkout aded04bc3dec13df3f940621d94d84e32ff8a5ea
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nds32 SHELL=/bin/bash drivers/clk/
+This new encoder yaml includes mt8195 iommu and power&clock node, so it
+depends on patches:
+iommu:
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=551641
+power:
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=580579
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+which are not accept yet. 
 
-All warnings (new ones prefixed by >>):
+But IOMMU and power already send new version series patches, I will
+rebase this series in next version.
 
-   drivers/clk/clk.c: In function '__clk_register_critical_clock':
->> drivers/clk/clk.c:3881:13: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
-    3881 |         int ret, i, index;
-         |             ^~~
+Thanks
+BRs
+> 
 
-
-vim +/ret +3881 drivers/clk/clk.c
-
-  3874	
-  3875	static void
-  3876	__clk_register_critical_clock(struct device_node *np, struct clk_core *core,
-  3877				      struct clk_hw *hw)
-  3878	{
-  3879		struct of_phandle_args clkspec;
-  3880		u32 clksize, clktotal;
-> 3881		int ret, i, index;
-  3882	
-  3883		if (!np)
-  3884			return;
-  3885	
-  3886		if (!core->ops->match_clkspec)
-  3887			return;
-  3888	
-  3889		if (of_property_read_u32(np, "#clock-cells", &clksize))
-  3890			return;
-  3891	
-  3892		/* Clock node with #clock-cells = <0> uses critical-clocks; */
-  3893		if (clksize == 0) {
-  3894			if (of_property_read_bool(np, "critical-clocks") &&
-  3895			    !core->ops->match_clkspec(hw, &clkspec))
-  3896				core->flags |= CLK_IS_CRITICAL;
-  3897			return;
-  3898		}
-  3899	
-  3900		clkspec.np = np;
-  3901		clktotal = of_property_count_u32_elems(np, "critical-clocks");
-  3902		clktotal /= clksize;
-  3903		for (index = 0; index < clktotal; index++) {
-  3904			for (i = 0; i < clksize; i++) {
-  3905				ret = of_property_read_u32_index(np, "critical-clocks",
-  3906								 (index * clksize) + i,
-  3907								 &(clkspec.args[i]));
-  3908			}
-  3909			if (!core->ops->match_clkspec(hw, &clkspec))
-  3910				core->flags |= CLK_IS_CRITICAL;
-  3911		}
-  3912	}
-  3913	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
