@@ -2,57 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE8CD4B7832
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:51:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57AB74B78B3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:52:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242429AbiBOTup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 14:50:45 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38286 "EHLO
+        id S236289AbiBOTyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 14:54:09 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236289AbiBOTuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 14:50:44 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BFC166C84
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 11:50:33 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dmitry.osipenko)
-        with ESMTPSA id 52A861F44D43
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1644954632;
-        bh=WaWP9B+un5FNgYWQUCXJJ7L6AqvP7oAE4hm3PmmoYiw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=mIO/s3MoJtz1pHhjjGx2jxDwW8VPPhtT7dhTTqvxj8RdEjinbeHun6FDsSVL3U7pf
-         Co32UM1N5zev3UtXgOnrOF8K9M7lCkqbJMmp5kooHK3/lebl3xAeyH77wIt1+b8tCN
-         PGFpkJ5YWHsZyK8A9lsjynyYxH2oT8Xeu9nKRi5/G9DAZhCuwnv2tCihL4a+DbshyB
-         jCkPnrPecjfVBn53/XRi18UVxDTF0zR2k2y4+jJNDv78mkEDVMtKJj7R8wEOyYJDW6
-         wAKLD8ukNwunAaCQ8iixgNq8CNd5N9wLkybnpPo2kvp5cYR84NFGCMI2WUom6Q8SFt
-         qmVUk6KPPwFNw==
-Message-ID: <81997cce-bd63-7c95-0f5c-9b4c9bb7699a@collabora.com>
-Date:   Tue, 15 Feb 2022 22:50:28 +0300
+        with ESMTP id S232024AbiBOTyJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 14:54:09 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C145027FFC;
+        Tue, 15 Feb 2022 11:53:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E33061839;
+        Tue, 15 Feb 2022 19:53:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD370C340F3;
+        Tue, 15 Feb 2022 19:53:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1644954837;
+        bh=ybVzBbvmSOoVbs8OTAqgC9k7dcWxXzPNvdGTlxM4esw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XiVUyL4al8GHXE+UgzwigR7X6pH993Bu63Z0W1Z517LncckN+4p91ba/TO5NWXQpp
+         U1vWjpJONv3koPrD/mTCQn2wG59ZnyoYcqC24otLIxisbduauF07K6jsfuKF7k5IPi
+         +Hw1LyLfz4KFU1iFNEABzel5jNUlcgSKiLZTXhgdUbVpBQhvQZook17Z26oC8x+I92
+         Kqw26/a9rxOHNFUPyA1v8xkCofJMAgh45s4p7T9SEsz5KknpGQn+JSam3udRoSF79D
+         JcwPKgnF+Gb7n0xG2o5q3ZdCK1XwGP234FVVLgPnpE7Dny5AEZWXqxbge/dQJ7fmyT
+         BLnrlNNGDqbSg==
+Received: by mail-ej1-f42.google.com with SMTP id p15so46563567ejc.7;
+        Tue, 15 Feb 2022 11:53:57 -0800 (PST)
+X-Gm-Message-State: AOAM530+dxLygZ4ehCRoNuOogzpeEtjW+AgB93hbxnfaAaz0QX8Ll7q6
+        tyQ0yJNan7+9sYdgABhHImWkLgCtEj9QWC+qiA==
+X-Google-Smtp-Source: ABdhPJzC9sVdAIFHy7S1BKRXKLnYS/B1vXl5yMVBOJv/Qip68D1M6dRfb08LeY0VUnzZG5cmUksF3YA2hW+Y4jYVYLc=
+X-Received: by 2002:a17:907:628c:: with SMTP id nd12mr586045ejc.82.1644954836019;
+ Tue, 15 Feb 2022 11:53:56 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 10/23] drm/rockchip: dw_hdmi: Add support for hclk
-Content-Language: en-US
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
- <20220209095350.2104049-11-s.hauer@pengutronix.de>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20220209095350.2104049-11-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+References: <20220214174132.219303-1-david@redhat.com> <20220214174132.219303-2-david@redhat.com>
+In-Reply-To: <20220214174132.219303-2-david@redhat.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 15 Feb 2022 13:53:44 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKzL6xBXfuTv423EoWw=fYPnK_q5paqUSDWyyoNx1thRA@mail.gmail.com>
+Message-ID: <CAL_JsqKzL6xBXfuTv423EoWw=fYPnK_q5paqUSDWyyoNx1thRA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] cma: factor out minimum alignment requirement
+To:     David Hildenbrand <david@redhat.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Aneesh Kumar K V <aneesh.kumar@linux.ibm.com>,
+        Zi Yan <ziy@nvidia.com>, Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Minchan Kim <minchan@kernel.org>,
+        Vlastimil Babka <vbabka@suse.cz>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        devicetree@vger.kernel.org,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        linux-mm <linux-mm@kvack.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,9 +77,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-09.02.2022 12:53, Sascha Hauer пишет:
-> +	hdmi->hclk_clk = devm_clk_get(hdmi->dev, "hclk");
-> +	if (PTR_ERR(hdmi->hclk_clk) == -ENOENT) {
-> +		hdmi->hclk_clk = NULL;
+On Mon, Feb 14, 2022 at 11:42 AM David Hildenbrand <david@redhat.com> wrote:
+>
+> Let's factor out determining the minimum alignment requirement for CMA
+> and add a helpful comment.
+>
+> No functional change intended.
+>
+> Signed-off-by: David Hildenbrand <david@redhat.com>
+> ---
+>  arch/powerpc/include/asm/fadump-internal.h |  5 -----
+>  arch/powerpc/kernel/fadump.c               |  2 +-
+>  drivers/of/of_reserved_mem.c               |  9 +++------
 
-devm_clk_get_optional()
+Acked-by: Rob Herring <robh@kernel.org>
+
+>  include/linux/cma.h                        |  9 +++++++++
+>  kernel/dma/contiguous.c                    |  4 +---
+>  mm/cma.c                                   | 20 +++++---------------
+>  6 files changed, 19 insertions(+), 30 deletions(-)
