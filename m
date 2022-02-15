@@ -2,256 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AABAC4B6CDC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 14:00:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9B654B6CF8
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 14:05:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237985AbiBONA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 08:00:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52782 "EHLO
+        id S238103AbiBONFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 08:05:51 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232620AbiBONAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 08:00:25 -0500
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3C0A7F6FA;
-        Tue, 15 Feb 2022 05:00:13 -0800 (PST)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id 2FA58240019;
-        Tue, 15 Feb 2022 13:00:07 +0000 (UTC)
-Date:   Tue, 15 Feb 2022 14:01:16 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [RFC PATCH v2 1/4] media: dt-bindings: media: Document RZ/G2L
- CSI-2 block
-Message-ID: <20220215130116.fmqhoakn5fl4aout@uno.localdomain>
-References: <20220121010543.31385-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220121010543.31385-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S238073AbiBONFr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 08:05:47 -0500
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFE17A1BC2
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 05:05:34 -0800 (PST)
+Received: by mail-io1-xd2a.google.com with SMTP id i62so23714471ioa.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 05:05:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PaZVevCVWnJLVjvrHlW/dnI5NADyeCbLBAp7MlyZJEs=;
+        b=TDZSGSZDOR6tESGKMffWCPAQg0pmlp4Qd/GfZoTuMP4o9VEdBnDeiiE6GGqWBPQsgN
+         qd+VnUyyPezL+pBRqSdBPDVYO2zc+Rl12fctv8JMQmtfQHTIFV1VisAraOidRtzcv7az
+         h+RdY2hixZ3rguGFXADmEsNVOk97TpExpsPCM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PaZVevCVWnJLVjvrHlW/dnI5NADyeCbLBAp7MlyZJEs=;
+        b=tWtpYDJp0WLx9OIRniaQyBSf5TgIl6LTMUIolOWhh7InZgEci9cGzs/4Zdanmd4Q9G
+         2lrvo66hWVxSp0HG2zk3/NHh+eK7cvZHu0ZY0s1IJIzQ1NefXcMPJXcil0xMGxNkX8i/
+         Mj2Nd49G6CSr8yXPRbu5Fte9TA2IwwHJ9th2qj9dvgL3HmHf2m0jOOZQQiPVeJZnq0pr
+         FSN3JUCl/7ljggJhr0j6evg0mzTF51YaSHxGdcpwDe5JzdhBwumMK2IzQfLv2dmhzQnu
+         b72IpM87pDrpPXksIiqf45+nwz6iPJziiCGWNBRyEsUpF3E7v+JAoprGLwbvIsPApL8R
+         /4ww==
+X-Gm-Message-State: AOAM530/nOhp/GRQ2KfTIfuezzbEtilQbB3AEAaFoC6P62lMVTH3/N08
+        FUy57xkGYsPJRd/10FwHC8yGMoN8VZxScjJZOSvPCw==
+X-Google-Smtp-Source: ABdhPJxtJIM9RHnfQcz4LMCrnzRwoEV55yIyUKbwloRDyJHYmE4ariqr/kbm/w8QO90RNrUQBhZreEm0Z7T5jqeF5Iw=
+X-Received: by 2002:a05:6638:3785:: with SMTP id w5mr2736567jal.210.1644930334003;
+ Tue, 15 Feb 2022 05:05:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220121010543.31385-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220208084234.1684930-1-hsinyi@chromium.org> <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
+In-Reply-To: <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Tue, 15 Feb 2022 21:05:08 +0800
+Message-ID: <CAJMQK-gvhsk3U7QK9B-28kJ4fKbO8UB01i-_rMMe_GT2pM74gg@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation
+ property creating and value setting
+To:     Emil Velikov <emil.l.velikov@gmail.com>
+Cc:     ML dri-devel <dri-devel@lists.freedesktop.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+        Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Simon Ser <contact@emersion.fr>,
+        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Alex Deucher <alexander.deucher@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        LAKML <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar
-
-On Fri, Jan 21, 2022 at 01:05:40AM +0000, Lad Prabhakar wrote:
-> Document the CSI-2 block which is part of CRU found in Renesas
-> RZ/G2L SoC.
+On Tue, Feb 15, 2022 at 8:04 PM Emil Velikov <emil.l.velikov@gmail.com> wrote:
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> Hi Geert/All,
+> Greetings everyone,
 >
-> vclk and pclk clocks are shared with CRU both CSI and CRU driver are using
-> pm_runtime. pclk clock is necessary for register access where as vclk clock
-> is only used for calculations. So would you suggest passing vclk as part of
-> clocks (as currently implemented) or pass the vclk clock rate as a dt property.
+> Padron for joining in so late o/
 >
-> Cheers,
-> Prabhakar
+> On Tue, 8 Feb 2022 at 08:42, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> >
+> > drm_dev_register() sets connector->registration_state to
+> > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> > drm_connector_set_panel_orientation() is first called after
+> > drm_dev_register(), it will fail several checks and results in following
+> > warning.
+> >
+> > Add a function to create panel orientation property and set default value
+> > to UNKNOWN, so drivers can call this function to init the property earlier
+> > , and let the panel set the real value later.
+> >
 >
-> v1->v2
-> * New patch
-> ---
->  .../bindings/media/renesas,rzg2l-csi2.yaml    | 151 ++++++++++++++++++
->  1 file changed, 151 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+> The warning illustrates a genuine race condition, where userspace will
+> read the old/invalid property value/state. So this patch masks away
+> the WARNING without addressing the actual issue.
+> Instead can we fix the respective drivers, so that no properties are
+> created after drm_dev_register()?
 >
-> diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> new file mode 100644
-> index 000000000000..bf907768a157
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> @@ -0,0 +1,151 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2022 Renesas Electronics Corp.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/renesas,rzg2l-csi2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L MIPI CSI-2 receiver
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +
-> +description:
-> +  The RZ/G2L CSI-2 receiver device provides MIPI CSI-2 capabilities for the
-> +  Renesas RZ/G2L family of devices. MIPI CSI-2 is part of the CRU block which
-> +  is used in conjunction with the Image Processing module, which provides the
-> +  video capture capabilities.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - renesas,r9a07g044-csi2     # RZ/G2{L,LC}
-> +          - const: renesas,rzg2l-csi2
+1. How about the proposal in previous version:
+v7 https://patchwork.kernel.org/project/linux-mediatek/patch/20220208073714.1540390-1-hsinyi@chromium.org/
+we separate property creation
+(drm_connector_init_panel_orientation_property) and value setting
+(drm_connector_set_panel_orientation). This is also similar to some of
+other optional properties are created, eg. vrr_capable.
 
-As per Rob's comment on the CRU bindings, you can remove oneOf:
+And drm drivers have to make sure that if they want to use this
+property, they have to create it before drm_dev_register(). For
+example, in the 2nd patch, mtk_drm sets the property before calling
+drm_dev_register().
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: csi2_link
+2. I'm not sure how to handle the case that if user space tries to
+read the property before the proper value is set. Currently drm
+creates this property and the panels[1] will set the correct value
+parsed from DT. If userspace calls before the panel sets the correct
+value, it will get unknown (similar to the illustration you mentioned
+below). Do you think that the drm should be responsible for parsing
+the value if the panel provides it? In this way it's guaranteed that
+the value is set when the property is created.
 
-Can this be just
+[1] https://elixir.bootlin.com/linux/latest/A/ident/drm_connector_set_panel_orientation
 
-  interrupt-names:
-    const: csi2_link
-?
-
-(I've run dt_binding_check and it does not complain)
-
-> +
-> +  clocks:
-> +    items:
-> +      - description: Internal clock for connecting CRU and MIPI
-> +      - description: CRU Main clock
-> +      - description: CPU Register access clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: sysclk
-> +      - const: vclk
-> +      - const: pclk
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: CRU_CMN_RSTB reset terminal
-> +
-> +  reset-names:
-> +    items:
-> +      - const: cmn-rstb
-
-Here and above, is items: needed for a single entry ?
-(again, dt_binding_check does not complain if I remove it)
-
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port node, single endpoint describing the CSI-2 transmitter.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +                items:
-> +                  maximum: 4
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Output port node, Image Processing block connected to the CSI-2 receiver.
-
-Isn't the next processing block the CRU ? IOW, isn't this driver the
-CSI-2 receiver ?
-
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - resets
-> +  - reset-names
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    csi20: csi2@10830400 {
-> +            compatible = "renesas,r9a07g044-csi2", "renesas,rzg2l-csi2";
-> +            reg = <0x10830400 0xfc00>;
-> +            interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&cpg CPG_MOD R9A07G044_CRU_SYSCLK>,
-> +                     <&cpg CPG_MOD R9A07G044_CRU_VCLK>,
-> +                     <&cpg CPG_MOD R9A07G044_CRU_PCLK>;
-> +            clock-names = "sysclk", "vclk", "pclk";
-> +            power-domains = <&cpg>;
-> +            resets = <&cpg R9A07G044_CRU_CMN_RSTB>;
-> +            reset-names = "cmn-rstb";
-> +
-> +            ports {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +
-> +                    port@0 {
-> +                            reg = <0>;
-> +
-> +                            csi2_in: endpoint {
-> +                                    clock-lanes = <0>;
-> +                                    data-lanes = <1 2>;
-> +                                    remote-endpoint = <&ov5645_ep>;
-> +                            };
-> +                    };
-> +
-> +                    port@1 {
-> +                            #address-cells = <1>;
-> +                            #size-cells = <0>;
-> +
-> +                            reg = <1>;
-> +
-> +                            csi2cru: endpoint@0 {
-> +                                    reg = <0>;
-> +                                    remote-endpoint = <&crucsi2>;
-> +                            };
-> +                    };
-> +            };
-> +    };
-> --
-> 2.17.1
+> Longer version:
+> As we look into drm_dev_register() it's in charge of creating the
+> dev/sysfs nodes (et al). Note that connectors cannot disappear at
+> runtime.
+> For panel orientation, we are creating an immutable connector
+> properly, meaning that as soon as drm_dev_register() is called we must
+> ensure that the property is available (if applicable) and set to the
+> correct value.
 >
+> For illustration, consider the following scenario:
+>  - DRM modules are loaded late - are not built-in and not part of
+> initrd (or there's no initrd)
+>  - kernel boots
+>  - plymouth/similar user-space component kicks in before the
+> driver/module is loaded
+>  - module gets loaded, drm_dev_register() kicks in populating /dev/dri/card0
+>  - plymouth opens the dev node and reads DRM_MODE_PANEL_ORIENTATION_UNKNOWN
+>  - module updates the orientation property
+>
+> Thanks
+> Emil
