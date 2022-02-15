@@ -2,401 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA6804B67B0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 10:35:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77A1F4B67DF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 10:41:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234787AbiBOJf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 04:35:29 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45654 "EHLO
+        id S236006AbiBOJl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 04:41:56 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235024AbiBOJf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 04:35:29 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7789B8213;
-        Tue, 15 Feb 2022 01:35:14 -0800 (PST)
-X-UUID: 0b72b2bd052540a9bf07bcb312ae9a91-20220215
-X-UUID: 0b72b2bd052540a9bf07bcb312ae9a91-20220215
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 416913965; Tue, 15 Feb 2022 17:35:12 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 15 Feb 2022 17:35:10 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 15 Feb
- 2022 17:35:10 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 15 Feb 2022 17:35:10 +0800
-Message-ID: <dd03805e7aaeacb543a1bcf45651eec11e6048c2.camel@mediatek.com>
-Subject: Re: [v2, 5/6] drm/mediatek: separate postmask component from
- mtk_disp_drv.c
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <airlied@linux.ie>,
-        <jassisinghbrar@gmail.com>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <yongqiang.niu@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <fparent@baylibre.com>, <linux-mediatek@lists.infradead.org>,
-        <hsinyi@chromium.org>, <linux-arm-kernel@lists.infradead.org>
-Date:   Tue, 15 Feb 2022 17:35:10 +0800
-In-Reply-To: <20220215075953.3310-6-rex-bc.chen@mediatek.com>
-References: <20220215075953.3310-1-rex-bc.chen@mediatek.com>
-         <20220215075953.3310-6-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S235992AbiBOJlw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 04:41:52 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB6DF2644
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 01:41:40 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nJuKh-0007uR-49; Tue, 15 Feb 2022 10:41:15 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nJuKa-00Gixt-Lc; Tue, 15 Feb 2022 10:41:07 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nJuKZ-003J7g-4B; Tue, 15 Feb 2022 10:41:07 +0100
+Date:   Tue, 15 Feb 2022 10:41:06 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-riscv@lists.infradead.org, Vignesh R <vigneshr@ti.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-rockchip@lists.infradead.org,
+        Rahul Tanwar <rtanwar@maxlinear.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Jeff LaBundy <jeff@labundy.com>, linux-sunxi@lists.linux.dev,
+        linux-pwm@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v2 00/15] pwm: dt-bindings: Include generic pwm schema
+Message-ID: <20220215094106.k35pmoxt2nk44dsj@pengutronix.de>
+References: <20220214212154.8853-1-krzysztof.kozlowski@canonical.com>
+ <20220215074030.3nugwproxjh3lwhl@pengutronix.de>
+ <CA+Eumj42Hojp1m4deuWnqMOaaNaupTSkzPaNbL_0eyBL-aDi_g@mail.gmail.com>
+ <7df71f8d-cdc3-4b2e-cf0a-7112eff28142@canonical.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="oa7qtfm672zzictn"
+Content-Disposition: inline
+In-Reply-To: <7df71f8d-cdc3-4b2e-cf0a-7112eff28142@canonical.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rex:
 
-On Tue, 2022-02-15 at 15:59 +0800, Rex-BC Chen wrote:
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> 
-> Separate postmask from mtk_disp_drv to be a isolated driver.
+--oa7qtfm672zzictn
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Without this patch, MT8186 still works. So this patch is redundant.
+On Tue, Feb 15, 2022 at 09:02:25AM +0100, Krzysztof Kozlowski wrote:
+> On 15/02/2022 08:59, Krzysztof Kozlowski wrote:
+> > On Tue, 15 Feb 2022 at 08:40, Uwe Kleine-K=F6nig
+> > <u.kleine-koenig@pengutronix.de> wrote:
+> >>
+> >> Hello,
+> >>
+> >> [dropped Anson Huang and Yash Shah from Cc: which were not reachable f=
+or
+> >> my last mail]
+> >>
+> >> On Mon, Feb 14, 2022 at 10:21:39PM +0100, Krzysztof Kozlowski wrote:
+> >>> Hi,
+> >>>
+> >>> Changes since v1:
+> >>> 1. Add tags.
+> >>> 2. Adjust subject (Uwe).
+> >>
+> >> However you only took a part of my suggestion ...
+> >>
+> >>> Krzysztof Kozlowski (15):
+> >>>   dt-bindings: pwm: allwinner,sun4i-a10: Include generic pwm schema
+> >>>   dt-bindings: pwm: imx: Include generic pwm schema
+> >>>   dt-bindings: pwm: intel,lgm: Include generic pwm schema
+> >>>   dt-bindings: pwm: iqs620a: Include generic pwm schema
+> >>>   dt-bindings: pwm: mxs: Include generic pwm schema
+> >>>   dt-bindings: pwm: rockchip: Include generic pwm schema
+> >>>   dt-bindings: pwm: sifive: Include generic pwm schema
+> >>>   dt-bindings: pwm: renesas,pwm: Include generic pwm schema
+> >>>   dt-bindings: pwm: toshiba,visconti: Include generic pwm schema
+> >>>   dt-bindings: pwm: brcm,bcm7038: Do not require pwm-cells twice
+> >>>   dt-bindings: pwm: intel,keembay: Do not require pwm-cells twice
+> >>
+> >> ... The actual patch has a space after the comma, I like this variant
+> >> without comma better as this is a compatible string.
+> >=20
+> > I am confused. My patch does not have comma after space. Your reply
+> > had such in the subject, but not in the proposed new subject you wrote
+> > in msg, so I left it as is. Without comma. If you still see comma, it
+> > is something with your mail client.
+> >=20
+> > See:
+> > https://lore.kernel.org/linux-devicetree/20220214212154.8853-12-krzyszt=
+of.kozlowski@canonical.com/T/#u
+> >=20
+> > Also reply from Vijayakannan does not have comma:
+> > https://lore.kernel.org/linux-devicetree/20220214081605.161394-11-krzys=
+ztof.kozlowski@canonical.com/T/#m80af695f2c751341bc971114aefa00ccc929a3ec
 
-Regards,
-CK
+Strange: I have this mail four times in my mailboxes (via
+linux-arm-kernel, linux-pwm, kernel@pengutronix.de and directly). In the
+two latter the Subject line is broken in two:
 
-> 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/Makefile            |   1 +
->  drivers/gpu/drm/mediatek/mtk_disp_drv.h      |   8 +
->  drivers/gpu/drm/mediatek/mtk_disp_postmask.c | 155
-> +++++++++++++++++++
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c  |  36 +----
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c       |   2 +
->  drivers/gpu/drm/mediatek/mtk_drm_drv.h       |   1 +
->  6 files changed, 170 insertions(+), 33 deletions(-)
->  create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_postmask.c
-> 
-> diff --git a/drivers/gpu/drm/mediatek/Makefile
-> b/drivers/gpu/drm/mediatek/Makefile
-> index 29098d7c8307..f26fe646ee2a 100644
-> --- a/drivers/gpu/drm/mediatek/Makefile
-> +++ b/drivers/gpu/drm/mediatek/Makefile
-> @@ -5,6 +5,7 @@ mediatek-drm-y := mtk_disp_aal.o \
->  		  mtk_disp_color.o \
->  		  mtk_disp_gamma.o \
->  		  mtk_disp_ovl.o \
-> +		  mtk_disp_postmask.o \
->  		  mtk_disp_rdma.o \
->  		  mtk_drm_crtc.o \
->  		  mtk_drm_ddp_comp.o \
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-> b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-> index 86c3068894b1..f4c21195c3ea 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-> @@ -81,6 +81,14 @@ void mtk_ovl_enable_vblank(struct device *dev,
->  			   void *vblank_cb_data);
->  void mtk_ovl_disable_vblank(struct device *dev);
->  
-> +int mtk_postmask_clk_enable(struct device *dev);
-> +void mtk_postmask_clk_disable(struct device *dev);
-> +void mtk_postmask_config(struct device *dev, unsigned int w,
-> +				unsigned int h, unsigned int vrefresh,
-> +				unsigned int bpc, struct cmdq_pkt
-> *cmdq_pkt);
-> +void mtk_postmask_start(struct device *dev);
-> +void mtk_postmask_stop(struct device *dev);
-> +
->  void mtk_rdma_bypass_shadow(struct device *dev);
->  int mtk_rdma_clk_enable(struct device *dev);
->  void mtk_rdma_clk_disable(struct device *dev);
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_postmask.c
-> b/drivers/gpu/drm/mediatek/mtk_disp_postmask.c
-> new file mode 100644
-> index 000000000000..3af4cc38adb1
-> --- /dev/null
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_postmask.c
-> @@ -0,0 +1,155 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022 MediaTek Inc.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/component.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/soc/mediatek/mtk-cmdq.h>
-> +
-> +#include "mtk_disp_drv.h"
-> +#include "mtk_drm_crtc.h"
-> +#include "mtk_drm_ddp_comp.h"
-> +
-> +#define DISP_POSTMASK_EN			0x0000
-> +#define POSTMASK_EN					BIT(0)
-> +#define DISP_POSTMASK_CFG			0x0020
-> +#define POSTMASK_RELAY_MODE				BIT(0)
-> +#define DISP_POSTMASK_SIZE			0x0030
-> +
-> +struct mtk_disp_postmask_data {
-> +	u32 reserved;
-> +};
-> +
-> +/*
-> + * struct mtk_disp_postmask - DISP_POSTMASK driver structure
-> + */
-> +struct mtk_disp_postmask {
-> +	struct clk *clk;
-> +	void __iomem *regs;
-> +	struct cmdq_client_reg cmdq_reg;
-> +	const struct mtk_disp_postmask_data *data;
-> +};
-> +
-> +int mtk_postmask_clk_enable(struct device *dev)
-> +{
-> +	struct mtk_disp_postmask *postmask = dev_get_drvdata(dev);
-> +
-> +	return clk_prepare_enable(postmask->clk);
-> +}
-> +
-> +void mtk_postmask_clk_disable(struct device *dev)
-> +{
-> +	struct mtk_disp_postmask *postmask = dev_get_drvdata(dev);
-> +
-> +	clk_disable_unprepare(postmask->clk);
-> +}
-> +
-> +void mtk_postmask_config(struct device *dev, unsigned int w,
-> +				unsigned int h, unsigned int vrefresh,
-> +				unsigned int bpc, struct cmdq_pkt
-> *cmdq_pkt)
-> +{
-> +	struct mtk_disp_postmask *postmask = dev_get_drvdata(dev);
-> +
-> +	mtk_ddp_write(cmdq_pkt, w << 16 | h, &postmask->cmdq_reg,
-> postmask->regs,
-> +		      DISP_POSTMASK_SIZE);
-> +	mtk_ddp_write(cmdq_pkt, POSTMASK_RELAY_MODE, &postmask-
-> >cmdq_reg,
-> +		      postmask->regs, DISP_POSTMASK_CFG);
-> +}
-> +
-> +void mtk_postmask_start(struct device *dev)
-> +{
-> +	struct mtk_disp_postmask *postmask = dev_get_drvdata(dev);
-> +
-> +	writel(POSTMASK_EN, postmask->regs + DISP_POSTMASK_EN);
-> +}
-> +
-> +void mtk_postmask_stop(struct device *dev)
-> +{
-> +	struct mtk_disp_postmask *postmask = dev_get_drvdata(dev);
-> +
-> +	writel_relaxed(0x0, postmask->regs + DISP_POSTMASK_EN);
-> +}
-> +
-> +static int mtk_disp_postmask_bind(struct device *dev, struct device
-> *master,
-> +				  void *data)
-> +{
-> +	return 0;
-> +}
-> +
-> +static void mtk_disp_postmask_unbind(struct device *dev, struct
-> device *master,
-> +				     void *data)
-> +{
-> +}
-> +
-> +static const struct component_ops mtk_disp_postmask_component_ops =
-> {
-> +	.bind	= mtk_disp_postmask_bind,
-> +	.unbind = mtk_disp_postmask_unbind,
-> +};
-> +
-> +static int mtk_disp_postmask_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct mtk_disp_postmask *priv;
-> +	struct resource *res;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(priv->clk)) {
-> +		dev_err(dev, "failed to get postmask clk\n");
-> +		return PTR_ERR(priv->clk);
-> +	}
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	priv->regs = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(priv->regs)) {
-> +		dev_err(dev, "failed to ioremap postmask\n");
-> +		return PTR_ERR(priv->regs);
-> +	}
-> +
-> +#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-> +	ret = cmdq_dev_get_client_reg(dev, &priv->cmdq_reg, 0);
-> +	if (ret)
-> +		dev_dbg(dev, "get mediatek,gce-client-reg fail!\n");
-> +#endif
-> +
-> +	priv->data = of_device_get_match_data(dev);
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	ret = component_add(dev, &mtk_disp_postmask_component_ops);
-> +	if (ret)
-> +		dev_err(dev, "Failed to add component: %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int mtk_disp_postmask_remove(struct platform_device *pdev)
-> +{
-> +	component_del(&pdev->dev, &mtk_disp_postmask_component_ops);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id mtk_disp_postmask_driver_dt_match[]
-> = {
-> +	{ .compatible = "mediatek,mt8192-disp-postmask"},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_disp_postmask_driver_dt_match);
-> +
-> +struct platform_driver mtk_disp_postmask_driver = {
-> +	.probe		= mtk_disp_postmask_probe,
-> +	.remove		= mtk_disp_postmask_remove,
-> +	.driver		= {
-> +		.name	= "mediatek-disp-postmask",
-> +		.owner	= THIS_MODULE,
-> +		.of_match_table = mtk_disp_postmask_driver_dt_match,
-> +	},
-> +};
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> index b4b682bc1991..184b70b2483e 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> @@ -45,12 +45,6 @@
->  #define OD_RELAYMODE				BIT(0)
->  #define DISP_REG_OD_SIZE			0x0030
->  
-> -#define DISP_REG_POSTMASK_EN			0x0000
-> -#define POSTMASK_EN					BIT(0)
-> -#define DISP_REG_POSTMASK_CFG			0x0020
-> -#define POSTMASK_RELAY_MODE				BIT(0)
-> -#define DISP_REG_POSTMASK_SIZE			0x0030
-> -
->  #define DISP_REG_UFO_START			0x0000
->  #define UFO_BYPASS				BIT(2)
->  
-> @@ -199,31 +193,6 @@ static void mtk_od_start(struct device *dev)
->  	writel(1, priv->regs + DISP_REG_OD_EN);
->  }
->  
-> -static void mtk_postmask_config(struct device *dev, unsigned int w,
-> -				unsigned int h, unsigned int vrefresh,
-> -				unsigned int bpc, struct cmdq_pkt
-> *cmdq_pkt)
-> -{
-> -	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
-> -
-> -	mtk_ddp_write(cmdq_pkt, w << 16 | h, &priv->cmdq_reg, priv-
-> >regs,
-> -		      DISP_REG_POSTMASK_SIZE);
-> -	mtk_ddp_write(cmdq_pkt, POSTMASK_RELAY_MODE, &priv->cmdq_reg,
-> -		      priv->regs, DISP_REG_POSTMASK_CFG);
-> -}
-> -
-> -static void mtk_postmask_start(struct device *dev)
-> -{
-> -	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
-> -
-> -	writel(POSTMASK_EN, priv->regs + DISP_REG_POSTMASK_EN);
-> -}
-> -
-> -static void mtk_postmask_stop(struct device *dev)
-> -{
-> -	struct mtk_ddp_comp_dev *priv = dev_get_drvdata(dev);
-> -
-> -	writel_relaxed(0x0, priv->regs + DISP_REG_POSTMASK_EN);
-> -}
->  
->  static void mtk_ufoe_start(struct device *dev)
->  {
-> @@ -308,8 +277,8 @@ static const struct mtk_ddp_comp_funcs ddp_ovl =
-> {
->  };
->  
->  static const struct mtk_ddp_comp_funcs ddp_postmask = {
-> -	.clk_enable = mtk_ddp_clk_enable,
-> -	.clk_disable = mtk_ddp_clk_disable,
-> +	.clk_enable = mtk_postmask_clk_enable,
-> +	.clk_disable = mtk_postmask_clk_disable,
->  	.config = mtk_postmask_config,
->  	.start = mtk_postmask_start,
->  	.stop = mtk_postmask_stop,
-> @@ -510,6 +479,7 @@ int mtk_ddp_comp_init(struct device_node *node,
-> struct mtk_ddp_comp *comp,
->  	    type == MTK_DISP_GAMMA ||
->  	    type == MTK_DISP_OVL ||
->  	    type == MTK_DISP_OVL_2L ||
-> +	    type == MTK_DISP_POSTMASK ||
->  	    type == MTK_DISP_PWM ||
->  	    type == MTK_DISP_RDMA ||
->  	    type == MTK_DPI ||
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> index 56ff8c57ef8f..6efb423ccc92 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -609,6 +609,7 @@ static int mtk_drm_probe(struct platform_device
-> *pdev)
->  		    comp_type == MTK_DISP_GAMMA ||
->  		    comp_type == MTK_DISP_OVL ||
->  		    comp_type == MTK_DISP_OVL_2L ||
-> +		    comp_type == MTK_DISP_POSTMASK ||
->  		    comp_type == MTK_DISP_RDMA ||
->  		    comp_type == MTK_DPI ||
->  		    comp_type == MTK_DSI) {
-> @@ -709,6 +710,7 @@ static struct platform_driver * const
-> mtk_drm_drivers[] = {
->  	&mtk_disp_color_driver,
->  	&mtk_disp_gamma_driver,
->  	&mtk_disp_ovl_driver,
-> +	&mtk_disp_postmask_driver,
->  	&mtk_disp_rdma_driver,
->  	&mtk_dpi_driver,
->  	&mtk_drm_platform_driver,
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-> b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-> index 3e7d1e6fbe01..c1e676aebe57 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-> @@ -51,6 +51,7 @@ extern struct platform_driver
-> mtk_disp_ccorr_driver;
->  extern struct platform_driver mtk_disp_color_driver;
->  extern struct platform_driver mtk_disp_gamma_driver;
->  extern struct platform_driver mtk_disp_ovl_driver;
-> +extern struct platform_driver mtk_disp_postmask_driver;
->  extern struct platform_driver mtk_disp_rdma_driver;
->  extern struct platform_driver mtk_dpi_driver;
->  extern struct platform_driver mtk_dsi_driver;
+	Subject: [PATCH v2 08/15] dt-bindings: pwm: renesas,
+	 pwm: Include generic pwm schema
 
+So this is indeed a problem near my side.
+
+> Just one more clarification - you proposed also to remove "pwm:"
+> middle-prefix. Shall I remove it from every patch and use instead full
+> file name?
+
+I did that to save some vertical space in the Subject line. I don't feel
+strong here.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--oa7qtfm672zzictn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmILdS8ACgkQwfwUeK3K
+7Algegf/dBLzT9R46q44cuy81Jhbw+cPq5TJjsxMzatiOW6z9KMgzITY+3sdf4tR
+wPwWoOZRYJOlQVK2OsQIBh+fF6w6J2rW+ij4RW9FGM6nBkAE4mp4Ac4xqhCovwl6
+e6hv7eF8br7+c4hXNxTa43gX7KS5JorkySK+4v0qE+iNDy0+vD81laV3sILWFaPm
+e9PWjHuuKzHsWK2iVcoQlLCmbhFHcgBwSarOx8ytG9525zLDq0RwZG8mws1Udn18
+SILWaO0/zphzHlX0Fl3VbShlGLhZBHLHI0HdwAjSg8iyj4GhjTUZSxnwXKZw0G/k
+fa+SMHLCyStkxfK/oN1jkKah5Fl4TQ==
+=9Zp/
+-----END PGP SIGNATURE-----
+
+--oa7qtfm672zzictn--
