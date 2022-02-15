@@ -2,184 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 625304B66DA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 10:03:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56B404B66F2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 10:06:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235612AbiBOJDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 04:03:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42008 "EHLO
+        id S229880AbiBOJGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 04:06:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235579AbiBOJDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 04:03:02 -0500
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6DBE11628E
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 01:02:42 -0800 (PST)
-Received: by mail-qk1-x731.google.com with SMTP id de39so7199330qkb.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 01:02:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=saY5DtvepsvwegCELkFkB7RgpB9RohGc6lIP30RliiM=;
-        b=RpittIM+xed10v1kmPiEatjI4Ljy47ofyiUgCuxFOn8ZZziqPDhh/myQGQPAINUO3i
-         7GEeXm9xSQ4K+hh08Dn3UTPYEfduE5BOgAfVvPVvq+LbXefkk2PtGugKr3R7Bq5Shg3L
-         l65RE8JRn7wKBMv4IP8lxJxchuM8mKVTB0BIsFhG7ycILi8fop0+wYCkNthc2VgYNRgw
-         tQn1pLTVVvHwjetbNQj6m6DIUM9bOp7S0eWWgWptMrKDZfDusbJBTYSZmYdxChHCA7Mz
-         o4HeBU/BOenOIGN3q92ispv9rjskiw1SJW2/aKKC901k9rXRUKbUeyIZacy31AZs+5s7
-         Uc9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=saY5DtvepsvwegCELkFkB7RgpB9RohGc6lIP30RliiM=;
-        b=RRRlF0EopbIieOiJ010gzHJs1xh1KOlQVAMR0mde9E31+35IhT+jqAIdbK/SsA9Shy
-         tfOZCE8MT75H6fauOWWy8JKuYy1n5S3AwwXZqfpSkIUfoQkCe+KlTLTwmP4BRCXmlC8z
-         5RgUFFOPJFmx2Wy5K5hdSDZMROJnyMGulRLOGiic0P37YPokLbZjO29yceXS4d+o2KPI
-         Am7jIwn/0N0e8kG8dVnbs6ISNpBlawPyhUs+phGaaSKX9OYkpusgNpVkxD3eEtZrxZln
-         tmc98zeMEhn1EXTXTyHjTVbQThkfm3FwG5OYKa9UAg/VoJssDgz9ffSE8lVp9oRofNVX
-         udFA==
-X-Gm-Message-State: AOAM532U8NBx+wsywAn5pGEAC8/StpzpVCXItfjKPERd6JbfUbfWoMtF
-        +QWjbVHWjOCLpykcRfHG1EOOTw==
-X-Google-Smtp-Source: ABdhPJzWrAWIlcNBqPobt6iH7sIMmiipfJtGTQVs0pJXyjgYHpXU1Q6z4v1B5V/bclnDc6aB03Qyrw==
-X-Received: by 2002:a05:620a:2687:: with SMTP id c7mr1434792qkp.497.1644915762087;
-        Tue, 15 Feb 2022 01:02:42 -0800 (PST)
-Received: from rivos-atish.. (adsl-70-228-75-190.dsl.akrnoh.ameritech.net. [70.228.75.190])
-        by smtp.gmail.com with ESMTPSA id w4sm17711158qko.123.2022.02.15.01.02.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 01:02:41 -0800 (PST)
-From:   Atish Patra <atishp@rivosinc.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atishp@rivosinc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv@lists.infradead.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v3 6/6] RISC-V: Improve /proc/cpuinfo output for ISA extensions
-Date:   Tue, 15 Feb 2022 01:02:11 -0800
-Message-Id: <20220215090211.911366-7-atishp@rivosinc.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220215090211.911366-1-atishp@rivosinc.com>
-References: <20220215090211.911366-1-atishp@rivosinc.com>
+        with ESMTP id S229470AbiBOJGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 04:06:34 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C93C10610A;
+        Tue, 15 Feb 2022 01:06:21 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 618881F43CBD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1644915980;
+        bh=KT3ZzPL5bMaQsMc6VIAvOaWmPqUEHPijK80eTrRqlyU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=jVL9UMVhkEC02XIfCXepsseP84rrZ37lMw+YnM3XbD0hVbwPUVUkDd+dXEgai7UbE
+         y2fBhkPw+u/DpNe3Ym0VMOMiL5NmM9GL/pit0vOPwk4N1xBsCHhFpWwCjZyaIXnzMy
+         +uhN+4CooMPCBzQlnpyXYsoPEUop6EhPnK2uca6jcbdEhzjlgxceMi2T270017ub2x
+         485O6jZHlxN14XmDqI/JcaATm8E5zFOAaSj27/n7F+OnqZmS3aB8+d9TtGzsMDXWlx
+         Vc5F3ssQqtT6M9CnULDLKxgU4vkDQhLB4+qBYyXTD9f1tlmzJooxiAzDhq8cO038bz
+         raylOxkRSmoRw==
+Message-ID: <319d7236-292c-787f-4578-bffe75e33ba1@collabora.com>
+Date:   Tue, 15 Feb 2022 10:06:17 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [v7 0/5] Mediatek MT8195 power domain support
+Content-Language: en-US
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220130012104.5292-1-chun-jie.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220130012104.5292-1-chun-jie.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently, the /proc/cpuinfo outputs the entire riscv,isa string which
-is not ideal when we have multiple ISA extensions present in the ISA
-string. Some of them may not be enabled in kernel as well.
+Il 30/01/22 02:20, Chun-Jie Chen ha scritto:
+> This patch series adds power domain support for MT8195
+> and is based on 5.17-rc1.
 
-Parse only the enabled ISA extension and print them in a separate row.
+Hello Matthias,
 
-Signed-off-by: Atish Patra <atishp@rivosinc.com>
----
- arch/riscv/include/asm/hwcap.h |  7 ++++++
- arch/riscv/kernel/cpu.c        | 44 ++++++++++++++++++++++++++++++++--
- 2 files changed, 49 insertions(+), 2 deletions(-)
+this series has been tested for a while on multiple MediaTek platforms, hence
+new versions will not be necessary.
 
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index 170bd80da520..691fc9c8099b 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -54,6 +54,13 @@ enum riscv_isa_ext_id {
- 	RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
- };
- 
-+struct riscv_isa_ext_data {
-+	/* Name of the extension displayed to userspace via /proc/cpuinfo */
-+	char uprop[RISCV_ISA_EXT_NAME_LEN_MAX];
-+	/* The logical ISA extension ID */
-+	unsigned int isa_ext_id;
-+};
-+
- unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
- 
- #define riscv_isa_extension_mask(ext) BIT_MASK(RISCV_ISA_EXT_##ext)
-diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index ad0a7e9f828b..ced7e5be8641 100644
---- a/arch/riscv/kernel/cpu.c
-+++ b/arch/riscv/kernel/cpu.c
-@@ -6,6 +6,7 @@
- #include <linux/init.h>
- #include <linux/seq_file.h>
- #include <linux/of.h>
-+#include <asm/hwcap.h>
- #include <asm/smp.h>
- #include <asm/pgtable.h>
- 
-@@ -63,12 +64,50 @@ int riscv_of_parent_hartid(struct device_node *node)
- }
- 
- #ifdef CONFIG_PROC_FS
-+#define __RISCV_ISA_EXT_DATA(UPROP, EXTID) \
-+	{							\
-+		.uprop = #UPROP,				\
-+		.isa_ext_id = EXTID,				\
-+	}
-+
-+static struct riscv_isa_ext_data isa_ext_arr[] = {
-+	__RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
-+};
-+
-+static void print_isa_ext(struct seq_file *f)
-+{
-+	struct riscv_isa_ext_data *edata;
-+	int i = 0, arr_sz;
-+
-+	arr_sz = ARRAY_SIZE(isa_ext_arr) - 1;
-+
-+	/* No extension support available */
-+	if (arr_sz <= 0)
-+		return;
-+
-+	seq_puts(f, "isa-ext\t\t: ");
-+	for (i = 0; i <= arr_sz; i++) {
-+		edata = &isa_ext_arr[i];
-+		if (!__riscv_isa_extension_available(NULL, edata->isa_ext_id))
-+			continue;
-+		seq_printf(f, "%s ", edata->uprop);
-+	}
-+	seq_puts(f, "\n");
-+}
- 
- static void print_isa(struct seq_file *f, const char *isa)
- {
--	/* Print the entire ISA as it is */
-+	char *ext_start;
-+	int isa_len = strlen(isa);
-+	int base_isa_len = isa_len;
-+
-+	ext_start = strnchr(isa, isa_len, '_');
-+	if (ext_start)
-+		base_isa_len = isa_len - strlen(ext_start);
-+
-+	/* Print only the base ISA as it is */
- 	seq_puts(f, "isa\t\t: ");
--	seq_write(f, isa, strlen(isa));
-+	seq_write(f, isa, base_isa_len);
- 	seq_puts(f, "\n");
- }
- 
-@@ -115,6 +154,7 @@ static int c_show(struct seq_file *m, void *v)
- 	seq_printf(m, "hart\t\t: %lu\n", cpuid_to_hartid_map(cpu_id));
- 	if (!of_property_read_string(node, "riscv,isa", &isa))
- 		print_isa(m, isa);
-+	print_isa_ext(m);
- 	print_mmu(m);
- 	if (!of_property_read_string(node, "compatible", &compat)
- 	    && strcmp(compat, "riscv"))
--- 
-2.30.2
+Can you please pick it for v5.18?
+
+Thank you,
+Angelo
+
+> 
+> change since v6:
+> - rebase to 5.17-rc1
+> 
+> change since v5:
+> - rebase to 5.16-rc1
+> - add domain capacity in mfg power domain
+> 
+> change since v4:
+> - rebase to 5.15-rc1 (fix conflict at patch 4 in this series)
+> - change license
+> 
+> change since v3:
+> - remove redundant bus protection steps
+> - remove unused power domain
+> 
+> change since v2:
+> - move modification of wakeup capacity to single patch
+> 
+> reason for resend v2:
+> - miss patch version in series
+> 
+> changes since v1:
+> - fix signed-off name
+> - describe more detail in patch 3
+> - move modification of removing redundant macro to single patch
+> 
+> Chun-Jie Chen (5):
+>    dt-bindings: power: Add MT8195 power domains
+>    soc: mediatek: pm-domains: Add wakeup capacity support in power domain
+>    soc: mediatek: pm-domains: Remove unused macro
+>    soc: mediatek: pm-domains: Move power status offset to power domain
+>      data
+>    soc: mediatek: pm-domains: Add support for mt8195
+> 
+>   .../power/mediatek,power-controller.yaml      |   2 +
+>   drivers/soc/mediatek/mt8167-pm-domains.h      |  16 +-
+>   drivers/soc/mediatek/mt8173-pm-domains.h      |  22 +-
+>   drivers/soc/mediatek/mt8183-pm-domains.h      |  32 +-
+>   drivers/soc/mediatek/mt8192-pm-domains.h      |  44 +-
+>   drivers/soc/mediatek/mt8195-pm-domains.h      | 613 ++++++++++++++++++
+>   drivers/soc/mediatek/mtk-pm-domains.c         |  12 +-
+>   drivers/soc/mediatek/mtk-pm-domains.h         |   8 +-
+>   include/dt-bindings/power/mt8195-power.h      |  46 ++
+>   include/linux/soc/mediatek/infracfg.h         |  82 +++
+>   10 files changed, 862 insertions(+), 15 deletions(-)
+>   create mode 100644 drivers/soc/mediatek/mt8195-pm-domains.h
+>   create mode 100644 include/dt-bindings/power/mt8195-power.h
+> 
 
