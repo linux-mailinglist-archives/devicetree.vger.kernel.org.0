@@ -2,119 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B66A4B7827
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:51:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6B3C4B7778
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:50:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233973AbiBOSTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 13:19:41 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34848 "EHLO
+        id S238845AbiBOSSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 13:18:12 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241586AbiBOSRx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 13:17:53 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3EB119879
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 10:17:42 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id h7-20020a17090a648700b001b927560c2bso2853280pjj.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 10:17:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=rU/cr+2YS83r8ZzfG0ihHyfke5lY7dzNO33vRqwTRo0=;
-        b=BbY3zUMbpsKVLuD6QiFaFpnxej58wpxQPVVGisDcf+K+2coTsFmZNXGoWqBeKoLb1x
-         3ZptFg7el6LpqeSuHR1QjwuSCHfpkEX/T+XcjAHpaQzkvx2kHT7d0+kYGoaayuMfQhPV
-         CAs5kcpK7DDzn/NDlTFukbq1xe316LjUYcWLM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=rU/cr+2YS83r8ZzfG0ihHyfke5lY7dzNO33vRqwTRo0=;
-        b=fdafJfxMPHAoZQNhOzHSHZ9J9RDvFEQSNASZYOurTZ0Yth99XffWkHZRUA5/Ywh3Jx
-         vsWwE9DhfOqJVYD0j+e6e6ahsYcwnvtciUa8US3MJQvaiPa/CPv58iTg2j54dPReMbFK
-         kFAgw0KtqdY2jJ0u29MVpWnHCb8YhVELjOXLfvYomugvi02l2bDP8H7BVZVpSEM5ugwX
-         +aW58wY6cXYIdEV/m9FRi1DtA5xBGYH9Uw+2JSE/NAqsfNVwZ9v06WLweDNYYkTf72c8
-         k/y1oV5jnuP0bKg8Pjst/xYWwkW5mn6Yv7s9NpQtufWsGsURWgAqXJe9N+jhwag57rlc
-         ur+w==
-X-Gm-Message-State: AOAM532vzoKOfFRaD4IjzmILlLZ7fa7WXD4d6iNnhTavVuJ2pw9OuMyG
-        y4OWTzmLWAuYewAuW2IqMXQtYQ==
-X-Google-Smtp-Source: ABdhPJwjJJkj0fC2gO+FdGjnaisWCk9FKkCf0qazg7PUuY4rrjoW+egyeLOWB+yCEr/MI5qa+9+dbA==
-X-Received: by 2002:a17:902:eb8f:: with SMTP id q15mr235036plg.67.1644949062021;
-        Tue, 15 Feb 2022 10:17:42 -0800 (PST)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
-        by smtp.gmail.com with ESMTPSA id a186sm3157627pgc.70.2022.02.15.10.17.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 10:17:41 -0800 (PST)
-Date:   Tue, 15 Feb 2022 10:17:40 -0800
-From:   Kees Cook <keescook@chromium.org>
-To:     "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc:     GR-QLogic-Storage-Upstream@marvell.com,
-        linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-ia64@vger.kernel.org, linux-s390@vger.kernel.org,
-        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
-        linux-um@lists.infradead.org, linux-xtensa@linux-xtensa.org,
-        linux-crypto@vger.kernel.org, intel-gfx@lists.freedesktop.org,
-        dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com, netdev@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-scsi@vger.kernel.org,
-        target-devel@vger.kernel.org, mpi3mr-linuxdrv.pdl@broadcom.com,
-        linux-staging@lists.linux.dev,
-        linux-rpi-kernel@lists.infradead.org, sparmaintainer@unisys.com,
-        linux-cifs@vger.kernel.org, samba-technical@lists.samba.org,
-        linux-ext4@vger.kernel.org, linux-acpi@vger.kernel.org,
-        devel@acpica.org, linux-arch@vger.kernel.org, linux-mm@kvack.org,
-        greybus-dev@lists.linaro.org, linux-i3c@lists.infradead.org,
-        linux-rdma@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-perf-users@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH][next] treewide: Replace zero-length arrays with
- flexible-array members
-Message-ID: <202202151016.C0471D6E@keescook>
-References: <20220215174743.GA878920@embeddedor>
+        with ESMTP id S237532AbiBOSSE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 13:18:04 -0500
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 166F111987F;
+        Tue, 15 Feb 2022 10:17:54 -0800 (PST)
+Received: from pps.filterd (m0134422.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21FBOdZP005191;
+        Tue, 15 Feb 2022 18:17:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : in-reply-to : references : mime-version; s=pps0720;
+ bh=RCkzmuESPRr4IslVHQvPvdBg55wuFVjTn9z8RMSyDR4=;
+ b=Ews5Rs0BxWZ1Qrp2HP5T4/NmZzcug5qg29f5MpGDrL0PO9cSgEmK1znOBhRlUWJ5kcQf
+ jS02mtPt2u+W69hDnTzGvuP1zfMF8i9eZKHT3tjlx3uHWdub/ToE17DtXRI4wDHniZm9
+ w/4CDm4AuzAKFSh83MQD/N7bf0mGlNlartLDKQb1ZTJCxJj9Tyh9FpCuN1sk3Xr7kU63
+ WjOfpb5pCL6TszNyrM802VLu1kYB5NesLYwKnIf2atjeIaKLogxZS7eoHo5hmhDLYvnt
+ Jgsm2t7WZgRu08bmaKE7Z9EY9GHj8xW0ngKIdPrIk//qriNu3rMX9SQtD4wrzwfKWlb6 6g== 
+Received: from g4t3426.houston.hpe.com (g4t3426.houston.hpe.com [15.241.140.75])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3e8b92ugyv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 15 Feb 2022 18:17:32 +0000
+Received: from hpe.com (unknown [15.115.65.69])
+        by g4t3426.houston.hpe.com (Postfix) with ESMTP id D7D6D54;
+        Tue, 15 Feb 2022 18:17:31 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     nick.hawkins@hpe.com, verdun@hpe.com
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] [v1] dt-bindings: timer: Add HPE GXP Timer binding
+Date:   Tue, 15 Feb 2022 12:19:35 -0600
+Message-Id: <20220215181936.41551-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <nick.hawkins@hpe.com>
+References: <nick.hawkins@hpe.com>
+X-Proofpoint-GUID: i-Dgm6jTiXXXdOm-5Xv1gUJkP2Zf4Di3
+X-Proofpoint-ORIG-GUID: i-Dgm6jTiXXXdOm-5Xv1gUJkP2Zf4Di3
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220215174743.GA878920@embeddedor>
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-15_05,2022-02-14_04,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ priorityscore=1501 adultscore=0 mlxlogscore=999 bulkscore=0 spamscore=0
+ mlxscore=0 impostorscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2201110000
+ definitions=main-2202150106
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 15, 2022 at 11:47:43AM -0600, Gustavo A. R. Silva wrote:
-> There is a regular need in the kernel to provide a way to declare
-> having a dynamically sized set of trailing elements in a structure.
-> Kernel code should always use “flexible array members”[1] for these
-> cases. The older style of one-element or zero-length arrays should
-> no longer be used[2].
-> 
-> This code was transformed with the help of Coccinelle:
-> (next-20220214$ spatch --jobs $(getconf _NPROCESSORS_ONLN) --sp-file script.cocci --include-headers --dir . > output.patch)
-> 
-> @@
-> identifier S, member, array;
-> type T1, T2;
-> @@
-> 
-> struct S {
->   ...
->   T1 member;
->   T2 array[
-> - 0
->   ];
-> };
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-These all look trivially correct to me. Only two didn't have the end of
-the struct visible in the patch, and checking those showed them to be
-trailing members as well, so:
+Description: Creating binding for the GXP timer to be used in device tree.
+ GXP is the name of the HPE SoC.
+ This SoC is used to implement BMC features of HPE servers
+  (all ProLiant, Synergy, and many Apollo, and Superdome machines)
+   It does support many features including:
+        ARMv7 architecture, and it is based on a Cortex A9 core
+        Use an AXI bus to which
+                a memory controller is attached, as well as
+                 multiple SPI interfaces to connect boot flash,
+                 and ROM flash, a 10/100/1000 Mac engine which
+                 supports SGMII (2 ports) and RMII
+                Multiple I2C engines to drive connectivity with a
+				 host infrastructure
+                A video engine which support VGA and DP, as well as
+                 an hardware video encoder
+                Multiple PCIe ports
+                A PECI interface, and LPC eSPI
+                Multiple UART for debug purpose, and Virtual UART for
+                 host connectivity
+                A GPIO engine.
 
-Reviewed-by: Kees Cook <keescook@chromium.org>
+Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+---
+ .../bindings/timer/hpe,gxp-timer.yaml         | 45 +++++++++++++++++++
+ MAINTAINERS                                   |  6 +++
+ 2 files changed, 51 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
 
+diff --git a/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+new file mode 100644
+index 000000000000..1f4e345c5fb8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/hpe,gxp-timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: HPE GXP TIMER
++
++maintainers:
++  - Nick Hawkins <nick.hawkins@hpe.com>
++  - Jean-Marie Verdun <verdun@hpe.com>
++
++properties:
++  compatible:
++    const: hpe,gxp-timer
++
++  reg:
++    items:
++      - description: T0CNT register
++      - description: T0CS register
++      - description: TIMELO register
++
++  interrupts:
++    maxItems: 1
++
++  clock-frequency:
++    description: The frequency of the clock that drives the counter, in Hz.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clock-frequency
++
++additionalProperties: false
++
++examples:
++  - |
++    timer@10003000 {
++        compatible = "hpe,gxp-timer";
++        reg = <0xc0000080 0x1>, <0xc0000094 0x01>, <0xc0000088 0x08>;
++        interrupts = <0>;
++        interrupt-parent = <&vic0>;
++        clock-frequency = <400000000>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f41088418aae..8c2c1e8e0934 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -8385,6 +8385,12 @@ L:	linux-efi@vger.kernel.org
+ S:	Maintained
+ F:	block/partitions/efi.*
+ 
++GXP TIMER
++M:	Nick Hawkins <nick.hawkins@hpe.com>
++M:	Jean-Marie Verdun <verdun@hpe.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
++
+ H8/300 ARCHITECTURE
+ M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+ L:	uclinux-h8-devel@lists.sourceforge.jp (moderated for non-subscribers)
 -- 
-Kees Cook
+2.17.1
+
