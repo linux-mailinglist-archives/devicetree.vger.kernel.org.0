@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 828964B7041
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:38:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E3F94B7127
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:40:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240082AbiBOPbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 10:31:31 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49626 "EHLO
+        id S238652AbiBOPeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 10:34:08 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240233AbiBOPap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 10:30:45 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF7CAC12C7;
-        Tue, 15 Feb 2022 07:28:59 -0800 (PST)
+        with ESMTP id S240490AbiBOPdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 10:33:17 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA3412169E;
+        Tue, 15 Feb 2022 07:30:10 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 84C90B81AFA;
-        Tue, 15 Feb 2022 15:28:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37709C340F1;
-        Tue, 15 Feb 2022 15:28:57 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5F89B615D9;
+        Tue, 15 Feb 2022 15:30:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A6E5C340EB;
+        Tue, 15 Feb 2022 15:30:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644938938;
-        bh=BYt9citSXOz0UnRst2j9rf/R7XfHPUHgwQp3sxEVeCE=;
+        s=k20201202; t=1644939009;
+        bh=PEnE8QAlQXJpAHUZzpmdlvhbtU4CfXXCOZjWN1uIufM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ErvaERF1+K8wt6qIqxLDl+nZd+rchDAmYolxVn1S172/5f1P7w4H5Lg7jvrVOHOD6
-         vjrQGXoLMxkYKgwCSSkuChD9bks0YiV3abe46AeMrQeJtXirFWif2wUCK3lQQgkmyy
-         T1Xjd2RlI2+Bxp6hFLNVuBZn4m379a2a8HoIdu6FY23CxDhTnTUDCwD8oUtAIjzJnO
-         5E3e1spYZeqMJ5BpxIoCS4NiCjjtDwAcG1plTiKvU5vsj8sp/p0QyUSMYSdQEw2Zi7
-         MYA55TR5Rngg2OdlSELtaFkfpryKLwnVdb2LxKlIa9NC3rafEhGQDDTuJNI4JwZoNE
-         swRb+Ev6eFIEQ==
+        b=nFmX4C9anYkzNXnQb6KJ56DQD98NrMyDFZvmGl358TGenjLMPaSHXFhYIm+RXGOrb
+         /Ev2iB9oZuogUuB6pA19+ccbGjEzjT1ocC8ZNhKxDCCGieICMq0T1dDsGttXysjUia
+         jTCkMaRZm2HQkaWfeiVJAysgOZqVzcpBWZGY/R6ESI7vQiidFg9fAN+U3YHV4tWEKD
+         OLWJesJ/2MeIxy35woMiNhCSV2IkpE92gSRbQFAeqefWvh8q4d//aAZte5aRnylRJQ
+         8Kv25+uLj6+wWfW+FLZ5yKm23xxUhqqRTDIAiBvtICqvS2gajL1D7Zpk/agGXyaHnZ
+         ivwrxgrVqzJEA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Mateusz Krzak <kszaquitto@gmail.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.15 14/33] arm64: dts: meson-g12: drop BL32 region from SEI510/SEI610
-Date:   Tue, 15 Feb 2022 10:28:12 -0500
-Message-Id: <20220215152831.580780-14-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 07/23] arm64: dts: meson-gx: add ATF BL32 reserved-memory region
+Date:   Tue, 15 Feb 2022 10:29:41 -0500
+Message-Id: <20220215152957.581303-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220215152831.580780-1-sashal@kernel.org>
-References: <20220215152831.580780-1-sashal@kernel.org>
+In-Reply-To: <20220215152957.581303-1-sashal@kernel.org>
+References: <20220215152957.581303-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -61,60 +62,39 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Christian Hewitt <christianshewitt@gmail.com>
 
-[ Upstream commit f26573e2bc9dfd551a0d5c6971f18cc546543312 ]
+[ Upstream commit 76577c9137456febb05b0e17d244113196a98968 ]
 
-The BL32/TEE reserved-memory region is now inherited from the common
-family dtsi (meson-g12-common) so we can drop it from board files.
+Add an additional reserved memory region for the BL32 trusted firmware
+present in many devices that boot from Amlogic vendor u-boot.
 
+Suggested-by: Mateusz Krzak <kszaquitto@gmail.com>
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Link: https://lore.kernel.org/r/20220126044954.19069-4-christianshewitt@gmail.com
+Link: https://lore.kernel.org/r/20220126044954.19069-2-christianshewitt@gmail.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 8 --------
- arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts  | 8 --------
- 2 files changed, 16 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-index d8838dde0f0f4..4fb31c2ba31c4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-@@ -157,14 +157,6 @@ vddio_ao1v8: regulator-vddio_ao1v8 {
- 		regulator-always-on;
- 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 0edd137151f89..47cbb0a1eb183 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -43,6 +43,12 @@ secmon_reserved_alt: secmon@5000000 {
+ 			no-map;
+ 		};
  
--	reserved-memory {
--		/* TEE Reserved Memory */
--		bl32_reserved: bl32@5000000 {
--			reg = <0x0 0x05300000 0x0 0x2000000>;
--			no-map;
--		};
--	};
--
- 	sdio_pwrseq: sdio-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-index 427475846fc70..a5d79f2f7c196 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-@@ -203,14 +203,6 @@ vddio_ao1v8: regulator-vddio_ao1v8 {
- 		regulator-always-on;
- 	};
- 
--	reserved-memory {
--		/* TEE Reserved Memory */
--		bl32_reserved: bl32@5000000 {
--			reg = <0x0 0x05300000 0x0 0x2000000>;
--			no-map;
--		};
--	};
--
- 	sdio_pwrseq: sdio-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
++		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
++		secmon_reserved_bl32: secmon@5300000 {
++			reg = <0x0 0x05300000 0x0 0x2000000>;
++			no-map;
++		};
++
+ 		linux,cma {
+ 			compatible = "shared-dma-pool";
+ 			reusable;
 -- 
 2.34.1
 
