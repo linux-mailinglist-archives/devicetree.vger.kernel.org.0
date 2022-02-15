@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E13F54B75CC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 605E64B7555
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:47:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242668AbiBOURC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 15:17:02 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35402 "EHLO
+        id S242684AbiBOURE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 15:17:04 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244089AbiBOUPx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:15:53 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAE8BEB152
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 12:15:41 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id r20so204771ljj.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 12:15:41 -0800 (PST)
+        with ESMTP id S242155AbiBOURC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:17:02 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A80DEB16B
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 12:15:43 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id bx31so247199ljb.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 12:15:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=J0Xs7TtqexCoOX9+KTnU1s2OTtaFpBd3FN+L7Cqr9gA=;
-        b=Hb6CAQPQ8hKPNdb/j+mCcV5LY7KOqEXKKK8rsdpoBzah1hJqGK7eFJ0nmbKNBEUEps
-         NR4eWzwzCpQ5PTjjuNDIhZiOBkH8y5UfO33dhrut5qtRkiJyQd3iw4cMwiNrYP8Zma+L
-         RLKLVJ3BqQmxqmvDCVJSz/y8af4CxLb45IsWvQCPB4lzv1ovv5h6zEOYIfB5jM5unHMl
-         L4Cy0PtDMtfLYyJHQnjd3x8gLXjcV1i/hszfUZlSmFSvlrgL1sAmcVOtJx9KBdDIcIOD
-         YZGGS6wOVi+cb9sHy9KiyeFTwQbeqMDZjpYX9UqtvSpW7e3zrRHONnV1lpUkDCkTmLkX
-         mIhQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=6GT01Bt5rwCOjSLQQeIHh7n+6HZ2KwW6Q5RymmBrtD0=;
+        b=f6iP67siNjcx4yf58aS3d+F/7nqamMQ2Iv7Kh7Vgbpv2r5Q+9GKaajMbWxgruvrZE4
+         TqQ0Kk2KDAtlddqhBnQvKeevoTL/MtmDEvjs422N7FtzwtMdLeEAujye4R/QwbKP0Yr9
+         +bJKuCae7HBTp/U9v3AyGY3ILnQLMkNnIGu18Y0K1gxL1VlCLn4IRrMaaiXFzQOtvB6r
+         qeLXC0RRiJHuWajGSOARzYciIH1tFm5QhpS/QQLmeEyF3QNM46h1QEKbCcQYouBvPd0E
+         4ouxj8aMjaVa/tWL2MPIR96Man72HZi/YbcqGaSJIY9XK53o0/E6AECsrcQ5HvxnjguB
+         7aAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=J0Xs7TtqexCoOX9+KTnU1s2OTtaFpBd3FN+L7Cqr9gA=;
-        b=gYi1HwpONnGMtZPkGDQehRAswYrWb2x7vm1b1/Vgxn93K4CTSpTnCBGw27SV4uL1Bx
-         Dn0mODDqhWEbeXjID49wjVSrOriiVcsGU2qjyrvWDJdgK3/DDtSVDydeCQ6bavImnd0J
-         756vvMtGnLHGiWVCZnJGUMIby5wTBVikYunQSHLhh0fa9gb3NbKWiysSmBIZ7lI9TprH
-         M3EkR4e8t8VzuqaWB+dLbda2CUeEzSRux3+ZRROKd001siIliB9EomVy9ek8rS3EetaW
-         8GNNfleSRy3frkYd9rFxhXp461qXJUrV5PkGRjRqZ73Z687gbY9kZ03EGEtMBNHO6KZz
-         1Ibw==
-X-Gm-Message-State: AOAM5313viTVC9pQjzY4/DpbU0lmkg1v0mOpsxkOfMbG7PoqD6ZsGyfJ
-        kqd9XetdDQ6T7lrMwh4RvUlR4w==
-X-Google-Smtp-Source: ABdhPJzPrT2NTd98ZyEgfxf/LXzrJMM4r2us2MvTVZoI8mR2oaPbUggo+Vc8VkV3Oek/WPL3MlMqvg==
-X-Received: by 2002:a2e:8657:: with SMTP id i23mr483747ljj.343.1644956140310;
-        Tue, 15 Feb 2022 12:15:40 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=6GT01Bt5rwCOjSLQQeIHh7n+6HZ2KwW6Q5RymmBrtD0=;
+        b=UT8dVMyA61WHDOti0I0OToplyfw1ZtQ7W9F35wRVXXhuZVBvxXS0Yk0a5Z6TUrttA6
+         W8wF9zmVdvOHpiJ5vm35H0YH9qyzld5XlyHmC3MovbMa2JQIinXIXbC/YadBiJwW50tk
+         2/6RAWnu7UsiNmwzRZCgIlNdaqZlWpn7XUc5gB3oSeRsp7cGkd3Ip8w9XqOv/2I7US9x
+         rxeFRfxo5lq6S+5ZwbbkNQzdnj4/3AnG5/PDKDpttb7Mb8hmk/OIa+jp9bYaTZxqxK/O
+         VJu1oUeovAKeuL04AoDdglOJy8uJtyS3V7bNlO8AUoXc0xZ51HNObWeJQcYL5LVwuL+f
+         c83A==
+X-Gm-Message-State: AOAM532x4YlUaPJl0fe5x3ANO62uc0/u8DuyIu6rZHugXntE+ak4G4PS
+        3UBQYNuYYE6qHactX71Dp30krA==
+X-Google-Smtp-Source: ABdhPJxH77Emm6xQMmIH2ZeTSqzn+PQxjFppSlngq/qMnP22VuzonAHWZrrMyjop5tWdjKU6LntBkg==
+X-Received: by 2002:a2e:bf1b:: with SMTP id c27mr505719ljr.67.1644956141367;
+        Tue, 15 Feb 2022 12:15:41 -0800 (PST)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id k16sm4548419ljg.111.2022.02.15.12.15.39
+        by smtp.gmail.com with ESMTPSA id k16sm4548419ljg.111.2022.02.15.12.15.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 12:15:39 -0800 (PST)
+        Tue, 15 Feb 2022 12:15:40 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -55,15 +55,17 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 0/5] sdm845 and msm8996 clock updates
-Date:   Tue, 15 Feb 2022 23:15:34 +0300
-Message-Id: <20220215201539.3970459-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 1/5] dt-bindings: clocks: convert SDM845 Camera CC bindings to YAML
+Date:   Tue, 15 Feb 2022 23:15:35 +0300
+Message-Id: <20220215201539.3970459-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220215201539.3970459-1-dmitry.baryshkov@linaro.org>
+References: <20220215201539.3970459-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,45 +73,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a dts (and bindings) counterpart for the
-https://patchwork.kernel.org/project/linux-arm-msm/list/?series=601612
+Convert clock/qcom,camcc.txt to clock/qcom,sdm845-camcc.yaml.
 
-sdm845.dtsi (camcc) and msm8996.dtsi (gcc) are updated to
-use DT clock bindings rather than global clock output names.
-
-Dmitry Baryshkov (5):
-  dt-bindings: clocks: convert SDM845 Camera CC bindings to YAML
-  dt-bindings: clocks: qcom,sdm845-camcc: add clocks/clock-names
-  arm64: dts: qcom: sdm845: add bi_tcxo to camcc
-  arm64: dts: qcom: msm8996: add cxo and sleep-clk to gcc node
-  arm64: dts: qcom: msm8996: convert xo_board to RPM_SMD_BB_CLK1
-
- .../devicetree/bindings/clock/qcom,camcc.txt  | 18 -----
- .../bindings/clock/qcom,sdm845-camcc.yaml     | 65 +++++++++++++++++++
- arch/arm64/boot/dts/qcom/msm8996.dtsi         | 16 +++--
- arch/arm64/boot/dts/qcom/sdm845.dtsi          |  2 +
- 4 files changed, 76 insertions(+), 25 deletions(-)
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../devicetree/bindings/clock/qcom,camcc.txt  | 18 ------
+ .../bindings/clock/qcom,sdm845-camcc.yaml     | 63 +++++++++++++++++++
+ 2 files changed, 63 insertions(+), 18 deletions(-)
  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,camcc.txt
  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sdm845-camcc.yaml
 
-
-base-commit: e783362eb54cd99b2cac8b3a9aeac942e6f6ac07
-prerequisite-patch-id: faf41e7cd54deef9eb7db61dc3b1022c131e3b6a
-prerequisite-patch-id: 6d2b8a35d8d003a3f0e1ac6c3dd40c3f60824575
-prerequisite-patch-id: d3d408d274687adfa38281219a9cbf0165e10771
-prerequisite-patch-id: 6bae15b7a39499c9202269cb6ab617ad855c1c8e
-prerequisite-patch-id: 0798178208d922a9541cb8c6267010e5374ca7f1
-prerequisite-patch-id: 4e9967e6ab4154f3dda3bd7528fb78f5e4b1fe3a
-prerequisite-patch-id: 8a7d887e248c1c925f6f649a42a7e0a31c74d9ca
-prerequisite-patch-id: b7d94b74783a451f5eae89bcf745e8268ee78250
-prerequisite-patch-id: ab4650463050af807fdf5529e63c1ca8b4cd15f3
-prerequisite-patch-id: 80b4fd161bba1eda9f0a6624ef694900e1bc1b20
-prerequisite-patch-id: 8289d90134fd68beb3d7267e8b696d9f9367a41f
-prerequisite-patch-id: fe3663dbfc680b17b3d888b928011ff75b7a876f
-prerequisite-patch-id: f3221f3e2ff5348902d4a2a986d4592cb5220060
-prerequisite-patch-id: 7cddd86bcdfd62280e2eda773ef261d231053f46
-prerequisite-patch-id: 258763de211d1d1a721c4f56452598cb8ca97bf7
-prerequisite-patch-id: 640ed205f402595dd9faa0e3fbaeb12402a700bb
+diff --git a/Documentation/devicetree/bindings/clock/qcom,camcc.txt b/Documentation/devicetree/bindings/clock/qcom,camcc.txt
+deleted file mode 100644
+index c5eb6694fda9..000000000000
+--- a/Documentation/devicetree/bindings/clock/qcom,camcc.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-Qualcomm Camera Clock & Reset Controller Binding
+-------------------------------------------------
+-
+-Required properties :
+-- compatible : shall contain "qcom,sdm845-camcc".
+-- reg : shall contain base register location and length.
+-- #clock-cells : from common clock binding, shall contain 1.
+-- #reset-cells : from common reset binding, shall contain 1.
+-- #power-domain-cells : from generic power domain binding, shall contain 1.
+-
+-Example:
+-	camcc: clock-controller@ad00000 {
+-		compatible = "qcom,sdm845-camcc";
+-		reg = <0xad00000 0x10000>;
+-		#clock-cells = <1>;
+-		#reset-cells = <1>;
+-		#power-domain-cells = <1>;
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sdm845-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sdm845-camcc.yaml
+new file mode 100644
+index 000000000000..c61314caf692
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,sdm845-camcc.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,sdm845-camcc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Camera Clock & Reset Controller Binding for SDM845
++
++maintainers:
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++description: |
++  Qualcomm camera clock control module which supports the clocks, resets and
++  power domains on SDM845.
++
++  See also dt-bindings/clock/qcom,camcc-sm845.h
++
++properties:
++  compatible:
++    const: qcom,sdm845-camcc
++
++  clocks:
++    items:
++      - description: Board XO source
++
++  clock-names:
++    items:
++      - const: bi_tcxo
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    clock-controller@ad00000 {
++      compatible = "qcom,sdm845-camcc";
++      reg = <0x0ad00000 0x10000>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++...
 -- 
 2.34.1
 
