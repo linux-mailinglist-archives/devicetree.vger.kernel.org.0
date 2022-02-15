@@ -2,80 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 608F94B64BD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 08:50:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46F354B64D0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 08:53:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234943AbiBOHsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 02:48:51 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37528 "EHLO
+        id S233859AbiBOHx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 02:53:59 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234956AbiBOHsu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 02:48:50 -0500
+        with ESMTP id S233947AbiBOHx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 02:53:57 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4EE396831
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 23:48:34 -0800 (PST)
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67936BF525
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 23:53:48 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id A867B4033E
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 07:48:33 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 4FB923F1AE
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 07:53:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644911313;
-        bh=8sh020teaLYrd9nDSk37Pr3otsotqKSg87zVukWRX9w=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=MWaWuXOlpHYoV/paUqIzmZKFaSN3sdrcN3TYbiOdBe35fJ7OxJDJvlE3VI71ybbUP
-         9/a5HJf8vypO70srOaEskua6MenVIlTibRsH0ckSTkkirq4hKuqUzspElWyFn1JtUu
-         JUnqTPiRcOmQKDOOFoqdaQ5rNnvrOdJMpCpikkguGMmMR6u5X1mkVURobMizWwQyYp
-         UuF090CrXiWIHk2A44WJABJr9LDSxSZXRP4wmJANUlQSbAu7exgO78bzEHz9CuqeSA
-         V7NuMoUfK5AN3yGvpJK6Tx8nDvWLencnl8FI75XANt7WDn1h4Og2Fu7B8J5tU/bHTt
-         82zl0O+x1MDbg==
-Received: by mail-ej1-f70.google.com with SMTP id q3-20020a17090676c300b006a9453c33b0so6856535ejn.13
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 23:48:33 -0800 (PST)
+        s=20210705; t=1644911627;
+        bh=vCuOKT3hKq+IjaxM7rehvAm5ceLZmK8BoYMkMG61/oU=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=jf2A/YYd0nezH2xm+g4niLo8SRNyEU+ZMZvdeiFnjubTQIB9yrghYBdj95/eqrNBA
+         iMvoighHqk0qmLPJjEeMSuWdG4Dw8x6QPPYY8HCIcXBiub6yPN27/62uzGfRpDTjdW
+         KQ/GVJv2KYB8Hv7uWYYt82WAjA14Nfw29/n6mt7ZK2CTXl99cNJ6waaN7Iku45mBU1
+         GQWlTVQMxw7uhzjaR0rOCbLFzJgGpgTjMPnZDrPypmxFsarJtiIE1SjbnnOkzQogYL
+         OkX/YRugA+ytjrlzNM1/eEAVOQ3XgL24eNZsy7th/UEI9jxHzvYDBQe0GrG9BsCcuW
+         5QcJnvvBuZMcw==
+Received: by mail-ed1-f69.google.com with SMTP id z21-20020a05640235d500b0041092b29ad6so5613427edc.19
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 23:53:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=8sh020teaLYrd9nDSk37Pr3otsotqKSg87zVukWRX9w=;
-        b=w15INY5XnFO3X7khpjjcyVD52J2qlhZzdhR7CKd/f5KaoML6MUXPbJCDAcwQmfZ6zR
-         G2fL5yGOSYXbHEltA+QE21eiKNPbBs5Fq+ZBLWnbnwu6ujtJBz+XPLkbAobmniRucr1H
-         5bai0CXZ4pd6RrghBj/tTH6DOKr47FW/Ns+fv2E19RzFSL13CZFDS3lDlesJZxz+BLCb
-         O28izKqPXiEtLOJp08Zdl86vXzgB6lCuRN8epNwpl18EKep3R/SDYq0CyAboji9kcV+v
-         0BCUBC/TQ/YBIPAAE/LdxO7dwwPkO+/YTFPyNeuZBqVE4B21CXdhjpXRSi63nh0SHl7A
-         DzSg==
-X-Gm-Message-State: AOAM532KO1gwvKYaP7fUh7rRgL8/RTwWY6yWxOQzEsZYh33A4us1eWBa
-        EobI1WN0aITNpJOq3rCcA1d5yEpuMY+iOcEcH64zB0g5NM8DC8sXxoCzVjcg2j+1CT8/puXX7Pc
-        Fek4tXJB1kwcE0liTX+o7vGwKtrgXavyh8Qi0OOI=
-X-Received: by 2002:aa7:d316:: with SMTP id p22mr2649945edq.380.1644911313283;
-        Mon, 14 Feb 2022 23:48:33 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxq0wlwyoWqJqzvOaBZwsjovEzsmN9+cJ4SW1gKdNWwJhmK0WASlOEPNpXLQlx+/oNxTv+q6g==
-X-Received: by 2002:aa7:d316:: with SMTP id p22mr2649933edq.380.1644911313102;
-        Mon, 14 Feb 2022 23:48:33 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vCuOKT3hKq+IjaxM7rehvAm5ceLZmK8BoYMkMG61/oU=;
+        b=wZ0GjCPmfLh07yIlt/kZ84LxTbXaV3Z+knceZuOPbT/am3Y+HYBQDqgvhv7C/F8CXb
+         WxnqJVWGvCC1QfueoKF+1U28hmnYs2Isu4LcHeV8J6jdN+y/VVSV8u1ZK/BurmzPmMoy
+         vGePVVhmIfdnHHwRSsV0IZbFRMgG3ipnO5IirJjHrUko4yaIPNRkYeIpWdB4jr+1R7H5
+         cWWH3momnDbbBv7u394qVORM4j03osfo1cfj6CwSqvpm5NLgRPmeRHerE06Nw7OdS21L
+         oWbhKorxN+JDQRQUWbAHM7p5kxfMtdkAdbe2SLkYpc6C7R6zaBs/38udW+/xBPVuk+C8
+         YjSg==
+X-Gm-Message-State: AOAM530fQdVQ7HO+vyvgH35Ivqk3pRvmfvt1znBAAvBiLzAAvkmw6nS0
+        q/poW154qJ7ysAtxi7PzvOaz+YpO4JDI2Ag1rlkRF81UGHm9XQwyCJNNrUZt5Wc4NUjo1Mo+d5g
+        xKYV/7xOzHuhsDxf1U4/ZJ/H4bGRxdQ6ZnFab3oU=
+X-Received: by 2002:a05:6402:219:: with SMTP id t25mr2684631edv.62.1644911627054;
+        Mon, 14 Feb 2022 23:53:47 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJw2JhPO02SHEX+eUDb7C/O7z52Cs1JN2EebnK3rICt8fJ58sqKy1PNStxSN7s4LqJO1EZq4kQ==
+X-Received: by 2002:a05:6402:219:: with SMTP id t25mr2684621edv.62.1644911626931;
+        Mon, 14 Feb 2022 23:53:46 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id c29sm1188357ejj.149.2022.02.14.23.48.32
+        by smtp.gmail.com with ESMTPSA id h11sm4663713edb.68.2022.02.14.23.53.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Feb 2022 23:48:32 -0800 (PST)
+        Mon, 14 Feb 2022 23:53:46 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Sebastian Reichel <sre@kernel.org>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 3/3] dt-bindings: mfd: maxim,max14577: convert to dtschema
-Date:   Tue, 15 Feb 2022 08:47:59 +0100
-Message-Id: <20220215074759.29402-4-krzysztof.kozlowski@canonical.com>
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] regulator/mfd: dt-bindings: maxim,max77802: convert to dtschema
+Date:   Tue, 15 Feb 2022 08:53:42 +0100
+Message-Id: <20220215075344.31421-1-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220215074759.29402-1-krzysztof.kozlowski@canonical.com>
-References: <20220215074759.29402-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,391 +78,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the MFD part of Maxim MAX14577/MAX77836 MUIC to DT schema
-format.  The example DTS was copied from existing DTS
-(exynos3250-rinato.dts), so keep the license as GPL-2.0-only.
+Hi,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/mfd/max14577.txt      | 147 -------------
- .../bindings/mfd/maxim,max14577.yaml          | 195 ++++++++++++++++++
+Changes since v2
+================
+1. DTS patch: drop, applied.
+2. Regulator: do not require regulator-names.
+3. Add tags.
+
+Changes since v1
+================
+1. MFD: Use absolute path to schemas.
+2. Regulator: skip properties.
+
+Dependencies
+============
+1. DTS patch: nothing depends on it, sending here so Rob's automatic
+   checker won't complain about DTS.
+   I will take it via Samsung SoC tree.
+
+2. Final MFD patch depends on regulator, so the two last patches could
+   go via Rob's, Mark's or Lee's trees.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (2):
+  regulator: dt-bindings: maxim,max77802: convert to dtschema
+  dt-bindings: mfd: maxim,max77802: convert to dtschema
+
+ .../devicetree/bindings/mfd/max77802.txt      |  25 ---
+ .../bindings/mfd/maxim,max77802.yaml          | 194 ++++++++++++++++++
+ .../bindings/regulator/max77802.txt           | 111 ----------
+ .../bindings/regulator/maxim,max77802.yaml    |  85 ++++++++
  MAINTAINERS                                   |   2 +-
- 3 files changed, 196 insertions(+), 148 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/max14577.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max14577.yaml
+ 5 files changed, 280 insertions(+), 137 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/max77802.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77802.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/max77802.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77802.yaml
 
-diff --git a/Documentation/devicetree/bindings/mfd/max14577.txt b/Documentation/devicetree/bindings/mfd/max14577.txt
-deleted file mode 100644
-index be11943a0560..000000000000
---- a/Documentation/devicetree/bindings/mfd/max14577.txt
-+++ /dev/null
-@@ -1,147 +0,0 @@
--Maxim MAX14577/77836 Multi-Function Device
--
--MAX14577 is a Multi-Function Device with Micro-USB Interface Circuit, Li+
--Battery Charger and SFOUT LDO output for powering USB devices. It is
--interfaced to host controller using I2C.
--
--MAX77836 additionally contains PMIC (with two LDO regulators) and Fuel Gauge.
--For the description of Fuel Gauge low SOC alert interrupt see:
--../power/supply/max17040_battery.txt
--
--
--Required properties:
--- compatible : Must be "maxim,max14577" or "maxim,max77836".
--- reg : I2C slave address for the max14577 chip (0x25 for max14577/max77836)
--- interrupts : IRQ line for the chip.
--
--
--Required nodes:
-- - charger :
--	Node for configuring the charger driver.
--	Required properties:
--		- compatible : "maxim,max14577-charger"
--			or "maxim,max77836-charger"
--		- maxim,fast-charge-uamp : Current in uA for Fast Charge;
--			Valid values:
--			- for max14577: 90000 - 950000;
--			- for max77836: 45000 - 475000;
--		- maxim,eoc-uamp : Current in uA for End-Of-Charge mode;
--			Valid values:
--			- for max14577: 50000 - 200000;
--			- for max77836: 5000 - 100000;
--		- maxim,ovp-uvolt : OverVoltage Protection Threshold in uV;
--			In an overvoltage condition, INT asserts and charging
--			stops. Valid values:
--			- 6000000, 6500000, 7000000, 7500000;
--		- maxim,constant-uvolt : Battery Constant Voltage in uV;
--			Valid values:
--			- 4000000 - 4280000 (step by 20000);
--			- 4350000;
--
--
--Optional nodes:
--- max14577-muic/max77836-muic :
--	Node used only by extcon consumers.
--	Required properties:
--		- compatible : "maxim,max14577-muic" or "maxim,max77836-muic"
--
--- regulators :
--	Required properties:
--		- compatible : "maxim,max14577-regulator"
--			or "maxim,max77836-regulator"
--
--	May contain a sub-node per regulator from the list below. Each
--	sub-node should contain the constraints and initialization information
--	for that regulator. See regulator.txt for a description of standard
--	properties for these sub-nodes.
--
--	List of valid regulator names:
--	- for max14577: CHARGER, SAFEOUT.
--	- for max77836: CHARGER, SAFEOUT, LDO1, LDO2.
--
--	The SAFEOUT is a fixed voltage regulator so there is no need to specify
--	voltages for it.
--
--
--Example:
--
--#include <dt-bindings/interrupt-controller/irq.h>
--
--max14577@25 {
--	compatible = "maxim,max14577";
--	reg = <0x25>;
--	interrupt-parent = <&gpx1>;
--	interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
--
--	muic: max14577-muic {
--		compatible = "maxim,max14577-muic";
--	};
--
--	regulators {
--		compatible = "maxim,max14577-regulator";
--
--		SAFEOUT {
--			regulator-name = "SAFEOUT";
--		};
--		CHARGER {
--			regulator-name = "CHARGER";
--			regulator-min-microamp = <90000>;
--			regulator-max-microamp = <950000>;
--			regulator-boot-on;
--		};
--	};
--
--	charger {
--		compatible = "maxim,max14577-charger";
--
--		maxim,constant-uvolt = <4350000>;
--		maxim,fast-charge-uamp = <450000>;
--		maxim,eoc-uamp = <50000>;
--		maxim,ovp-uvolt = <6500000>;
--	};
--};
--
--
--max77836@25 {
--	compatible = "maxim,max77836";
--	reg = <0x25>;
--	interrupt-parent = <&gpx1>;
--	interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
--
--	muic: max77836-muic {
--		compatible = "maxim,max77836-muic";
--	};
--
--	regulators {
--		compatible = "maxim,max77836-regulator";
--
--		SAFEOUT {
--			regulator-name = "SAFEOUT";
--		};
--		CHARGER {
--			regulator-name = "CHARGER";
--			regulator-min-microamp = <90000>;
--			regulator-max-microamp = <950000>;
--			regulator-boot-on;
--		};
--		LDO1 {
--			regulator-name = "LDO1";
--			regulator-min-microvolt = <2700000>;
--			regulator-max-microvolt = <2700000>;
--		};
--		LDO2 {
--			regulator-name = "LDO2";
--			regulator-min-microvolt = <800000>;
--			regulator-max-microvolt = <3950000>;
--		};
--	};
--
--	charger {
--		compatible = "maxim,max77836-charger";
--
--		maxim,constant-uvolt = <4350000>;
--		maxim,fast-charge-uamp = <225000>;
--		maxim,eoc-uamp = <7500>;
--		maxim,ovp-uvolt = <6500000>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/mfd/maxim,max14577.yaml b/Documentation/devicetree/bindings/mfd/maxim,max14577.yaml
-new file mode 100644
-index 000000000000..27870b8760a6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/maxim,max14577.yaml
-@@ -0,0 +1,195 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/maxim,max14577.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim MAX14577/MAX77836 MicroUSB and Companion Power Management IC
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+
-+description: |
-+  This is a part of device tree bindings for Maxim MAX14577/MAX77836 MicroUSB
-+  Integrated Circuit (MUIC).
-+
-+  The Maxim MAX14577 is a MicroUSB and Companion Power Management IC which
-+  includes voltage safeout regulators, charger and MicroUSB management IC.
-+
-+  The Maxim MAX77836 is a MicroUSB and Companion Power Management IC which
-+  includes voltage safeout and LDO regulators, charger, fuel-gauge and MicroUSB
-+  management IC.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - maxim,max14577
-+      - maxim,max77836
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  wakeup-source: true
-+
-+  charger:
-+    $ref: /schemas/power/supply/maxim,max14577.yaml
-+
-+  extcon:
-+    type: object
-+    properties:
-+      compatible:
-+        enum:
-+          - maxim,max14577-muic
-+          - maxim,max77836-muic
-+
-+    required:
-+      - compatible
-+
-+  regulators:
-+    $ref: /schemas/regulator/maxim,max14577.yaml
-+
-+required:
-+  - compatible
-+  - interrupts
-+  - reg
-+  - charger
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: maxim,max14577
-+    then:
-+      properties:
-+        charger:
-+          properties:
-+            compatible:
-+              const: maxim,max14577-charger
-+        extcon:
-+          properties:
-+            compatible:
-+              const: maxim,max14577-muic
-+        regulator:
-+          properties:
-+            compatible:
-+              const: maxim,max14577-regulator
-+    else:
-+      properties:
-+        charger:
-+          properties:
-+            compatible:
-+              const: maxim,max77836-charger
-+        extcon:
-+          properties:
-+            compatible:
-+              const: maxim,max77836-muic
-+        regulator:
-+          properties:
-+            compatible:
-+              const: maxim,max77836-regulator
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pmic@25 {
-+            compatible = "maxim,max14577";
-+            reg = <0x25>;
-+            interrupt-parent = <&gpx1>;
-+            interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+
-+            extcon {
-+                compatible = "maxim,max14577-muic";
-+            };
-+
-+            regulators {
-+                compatible = "maxim,max14577-regulator";
-+
-+                SAFEOUT {
-+                    regulator-name = "SAFEOUT";
-+                };
-+
-+                CHARGER {
-+                    regulator-name = "CHARGER";
-+                    regulator-min-microamp = <90000>;
-+                    regulator-max-microamp = <950000>;
-+                    regulator-boot-on;
-+                };
-+            };
-+
-+            charger {
-+                compatible = "maxim,max14577-charger";
-+
-+                maxim,constant-uvolt = <4350000>;
-+                maxim,fast-charge-uamp = <450000>;
-+                maxim,eoc-uamp = <50000>;
-+                maxim,ovp-uvolt = <6500000>;
-+            };
-+        };
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pmic@25 {
-+            compatible = "maxim,max77836";
-+            interrupt-parent = <&gpx1>;
-+            interrupts = <5 IRQ_TYPE_NONE>;
-+            reg = <0x25>;
-+            wakeup-source;
-+
-+            extcon {
-+                compatible = "maxim,max77836-muic";
-+            };
-+
-+            regulators {
-+                compatible = "maxim,max77836-regulator";
-+
-+                SAFEOUT {
-+                    regulator-name = "SAFEOUT";
-+                };
-+
-+                CHARGER {
-+                    regulator-name = "CHARGER";
-+                    regulator-min-microamp = <45000>;
-+                    regulator-max-microamp = <475000>;
-+                    regulator-boot-on;
-+                };
-+
-+                LDO1 {
-+                    regulator-name = "MOT_2.7V";
-+                    regulator-min-microvolt = <1100000>;
-+                    regulator-max-microvolt = <2700000>;
-+                };
-+
-+                LDO2 {
-+                    regulator-name = "UNUSED_LDO2";
-+                    regulator-min-microvolt = <800000>;
-+                    regulator-max-microvolt = <3950000>;
-+                };
-+            };
-+
-+            charger {
-+                compatible = "maxim,max77836-charger";
-+
-+                maxim,constant-uvolt = <4350000>;
-+                maxim,fast-charge-uamp = <225000>;
-+                maxim,eoc-uamp = <7500>;
-+                maxim,ovp-uvolt = <6500000>;
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dbce6642e127..6783a9dc85a5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11851,11 +11851,11 @@ M:	Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
- M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
- L:	linux-kernel@vger.kernel.org
- S:	Supported
-+F:	Documentation/devicetree/bindings/*/maxim,max14577.yaml
- F:	Documentation/devicetree/bindings/*/maxim,max77686.yaml
- F:	Documentation/devicetree/bindings/*/maxim,max77693.yaml
- F:	Documentation/devicetree/bindings/*/maxim,max77843.yaml
- F:	Documentation/devicetree/bindings/clock/maxim,max77686.txt
--F:	Documentation/devicetree/bindings/mfd/max14577.txt
- F:	drivers/*/*max77843.c
- F:	drivers/*/max14577*.c
- F:	drivers/*/max77686*.c
 -- 
 2.32.0
 
