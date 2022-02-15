@@ -2,67 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9E2F4B77EA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A7D64B7765
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:50:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236638AbiBORBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 12:01:34 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57548 "EHLO
+        id S242071AbiBORB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 12:01:57 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234267AbiBORBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 12:01:33 -0500
+        with ESMTP id S233855AbiBORB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 12:01:56 -0500
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E83DBC1D
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 09:01:23 -0800 (PST)
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE90E115952
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 09:01:45 -0800 (PST)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id EC2113F1B6
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 17:01:21 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CC7293F1B6
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 17:01:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1644944481;
-        bh=SfcsF1mVhQhwOu0M+IJzq8imoaIRW/agDsf8ihIikrI=;
+        s=20210705; t=1644944504;
+        bh=6A/iTuzJN7RYXq4i8TAWxW9tcqq87v/WRpExFN3KMZw=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=uaOeYE36IWkZwEz4tJtJrw7+XeIwfSBVuqD1kO/SKTm+QYeFYQFyElWEnX8USS8vk
-         vUkwwQ4WgN48ZBejPWAS7sHYXBqaklQq8rWcZOKpSwz/fwuuzomID9mWcc81Jy2Akd
-         ckL7bEXyNBYFYE3q5yJyys1u4M3SRfeApkx2LsrDFqfadOKKiF6j73c8tZL6NOE87r
-         BCi5/10Bu6JuJMnsxsDdHOfdVMYe7yoeOmHCii3BglSik7yVNYZ9AAoLu75f1m9l/M
-         3jE/ibQj4/At1MXc8XnZjkNdCknUnZiPMQzuoyCWLiUdD8/m0TYwVF5w5n3/x8pahV
-         qeFwmG1XrqiHA==
-Received: by mail-ej1-f70.google.com with SMTP id o4-20020a170906768400b006a981625756so7630007ejm.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 09:01:21 -0800 (PST)
+        b=Z/bI4jRVp0iV8LjMy2nKanT4TQmlrU9FZfOisWCupNJvsIMFLBJ2f8Mdj8PGfpbKb
+         QWooHcXbmpr2stcSun4CqAWxA9lwY6b4p6kGKnZEpExtfibRJ5t40FDFL1teO5j8rl
+         cfh3yhYzGo1BMVLYosnQhtkvqazJS6fWW00tFSu/5tg8cMRshESremzk7WFWmJbeF/
+         DdMcmcKqCnNiXyWXMhfRSLgFfSZkuuAWwf8tzH4zCB5tcjUqUD+RELvzeIyiJ6Typl
+         puXqGoNms38lqM4kgvWHSa7srI9zPwN70D62CG91D1SRWZzuWFY5xhLI+SYkC21oe8
+         at1and6+Coq7Q==
+Received: by mail-ed1-f72.google.com with SMTP id g5-20020a056402090500b0040f28e1da47so191091edz.8
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 09:01:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=SfcsF1mVhQhwOu0M+IJzq8imoaIRW/agDsf8ihIikrI=;
-        b=rVeuq983tTSvcCruxv7VdsRoZ0Qfb6HDboYG3pgwELgMALg/uEXZcildP+5T5MevUG
-         uy18W8t4avHxYrD8vJK+lwc2xZma1bmv3i6vlV6Vr4rHdYfNohuSLRIFP58VUoA1y8KZ
-         WkSuDf37BRCl2TYxF+PabyduI11Q5e63RSbZQfTNZ+mTLU11ZLpUro1wJYgZ727juOtb
-         xh8oNb6wKRZRLaKUszHHBLxe+gk130HBcSzwVPd4YvBV4B4YVZM6iaYuv42x/PUVfelE
-         d5vf0bVi0iQIaGkCAI1YddRZmkbRNhiCxDSzg4IRCgdwtpFppk5GKI2apQDgjqNcTIu1
-         J6Gg==
-X-Gm-Message-State: AOAM5323bkxp/WZNQbna+f/q7lB9lsEx+sv3SDYotZRUaLJt2mxEyDYL
-        XghOYQnf0dWibWu/jjcHMLy4RrX3+3QUbjnuro6nt4LtguoGTi7Tpmfkm6W6zn/oA+q6jzyLA6G
-        1gz/TKimf5wXf4SBam97sf5AvXo0QzWynz2jmpDY=
-X-Received: by 2002:a17:907:a41f:: with SMTP id sg31mr3642200ejc.645.1644944481582;
-        Tue, 15 Feb 2022 09:01:21 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxzMQsYTFUkZkiFrj3/E6W19Nix9stJF1B8bhLbUQmhJC33R7s7pBFl+O1wg+WfY04/ukm0SQ==
-X-Received: by 2002:a17:907:a41f:: with SMTP id sg31mr3642180ejc.645.1644944481369;
-        Tue, 15 Feb 2022 09:01:21 -0800 (PST)
+        bh=6A/iTuzJN7RYXq4i8TAWxW9tcqq87v/WRpExFN3KMZw=;
+        b=gELD3HgOcZViUvHepXAGmnDVRqCla8sPGTUoDATCitzYkU0AC5tyXtGe8+GpT0L+78
+         JS64RipSMFTqxI8tLBgSKe7WSe9x42EBgjNfi14xHv4gZr5q84oBRuQfpiXheL0Cc2ze
+         T1j+JpCYEZUzeyyi/OhseESgDagj+NCm2XEoKKJSeh4Qs2RyS6YFpPfctvOyVcEbyEz/
+         b4i2Izl/S9CDF2rfM2GKG4DVrDYU3s+wUhEHbi6InGMWh0sUi58hMhs0h4ck18RWhQIK
+         9MfEk/iujz6W3AJYaEk460uVfrMBW9dsfenUXTcvrsYrDzKqh+i3x4kmMeOQEkEx4/Gl
+         FFOw==
+X-Gm-Message-State: AOAM531TzTtXBBUK7P2mjqjPUPOvIFl/x+SeTM/vTjEnOPzfMKM1xXlY
+        aVUSlEmvUAMetS0z6vf18ZhFrQA6pfGa6fyF5P9BhoR52wzslUT5dBT7wDipi56Hn6iYEcQGPqv
+        oBWLV3SjODuHjEsreYzRVhyu9MEIjjhgjtgZWepM=
+X-Received: by 2002:a17:906:dc92:: with SMTP id cs18mr7309ejc.656.1644944504436;
+        Tue, 15 Feb 2022 09:01:44 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyMfu8uzDlw79VM9qAXnSGrPIDJXnTQ1CzhlI1Ng6oF7bX2eWB0r/zeyGYCkcHmpFYe06/6Vg==
+X-Received: by 2002:a17:906:dc92:: with SMTP id cs18mr7284ejc.656.1644944504213;
+        Tue, 15 Feb 2022 09:01:44 -0800 (PST)
 Received: from [192.168.0.109] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id fy37sm2822372ejc.219.2022.02.15.09.01.20
+        by smtp.gmail.com with ESMTPSA id y16sm208777edd.0.2022.02.15.09.01.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Feb 2022 09:01:20 -0800 (PST)
-Message-ID: <cce2459e-cb6e-898c-e130-e818bd427ef3@canonical.com>
-Date:   Tue, 15 Feb 2022 18:01:19 +0100
+        Tue, 15 Feb 2022 09:01:43 -0800 (PST)
+Message-ID: <33c226ca-334c-7458-62d5-5480d6657ebc@canonical.com>
+Date:   Tue, 15 Feb 2022 18:01:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: dt-bindings: ps2-gpio: convert binding to json-schema
+Subject: Re: [PATCH 2/2] dt-bindings: ps2-gpio: document bus signals open
+ drain
 Content-Language: en-US
 To:     Danilo Krummrich <danilokrummrich@dk-develop.de>,
         dmitry.torokhov@gmail.com, robh+dt@kernel.org,
@@ -70,14 +71,15 @@ To:     Danilo Krummrich <danilokrummrich@dk-develop.de>,
         linux-kernel@vger.kernel.org
 Cc:     linus.walleij@linaro.org
 References: <20220215165113.52659-1-danilokrummrich@dk-develop.de>
+ <20220215165113.52659-3-danilokrummrich@dk-develop.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220215165113.52659-1-danilokrummrich@dk-develop.de>
+In-Reply-To: <20220215165113.52659-3-danilokrummrich@dk-develop.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,13 +87,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 15/02/2022 17:51, Danilo Krummrich wrote:
-> Changes since v1
-> ================
->   - binding as separate patch (driver patch will be sent outside the scope of
->     this patch series)
+> The PS/2 bus defines data and clock line to be open drain, this should
+> be reflected in the gpio flags set in the binding.
+> 
+> Especially, this is important since the clock line sometimes is driven
+> by the host while being used as interrupt source.
+> 
+> Signed-off-by: Danilo Krummrich <danilokrummrich@dk-develop.de>
+> ---
+>  .../devicetree/bindings/serio/ps2-gpio.yaml        | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
+> 
 
-Bindings patches are not a separate series, but a separate patches
-within the series, so driver should be posted here as well.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
 
 Best regards,
 Krzysztof
