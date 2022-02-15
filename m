@@ -2,58 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEF8B4B62F2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 06:38:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A6764B6314
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 06:48:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232127AbiBOFiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 00:38:54 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40476 "EHLO
+        id S230004AbiBOFtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 00:49:00 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231736AbiBOFix (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 00:38:53 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 629EC14014;
-        Mon, 14 Feb 2022 21:38:41 -0800 (PST)
+        with ESMTP id S231481AbiBOFtA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 00:49:00 -0500
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 904B83CA55;
+        Mon, 14 Feb 2022 21:48:50 -0800 (PST)
+Received: by mail-qk1-x729.google.com with SMTP id o12so16438413qke.5;
+        Mon, 14 Feb 2022 21:48:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1644903521; x=1676439521;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=ndUMctv6RUFJ6MTBZVT4QO3AbPfxMnqRottuMmn9rjk=;
-  b=bMiG8wUsHrnSTBhJnQ9gWX5A1+eTOdsbNL5lmpxj0EEyCjoFpLgka+Yy
-   5K2Z87+TMGPz6A9B/SBkXV70UJDZEeqj7P9cTmyzOfVwdO7/tLyPm1uRO
-   W3vqOSWNwIl9pgY7ygl0FRrsYFX4tDwDGma6VqkKycKdL3RWjPX3AVyje
-   k=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 14 Feb 2022 21:38:41 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 21:38:40 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 14 Feb 2022 21:38:40 -0800
-Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 14 Feb 2022 21:38:36 -0800
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-To:     <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <pure.logic@nexus-software.ie>,
-        <bjorn.andersson@linaro.org>, <greg@kroah.com>, <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <quic_rjendra@quicinc.com>,
-        <quic_saipraka@quicinc.com>, <quic_schowdhu@quicinc.com>
-Subject: [PATCH V1] arm64: dts: qcom: sc7280: Set the default dr_mode for usb2 to enable EUD.
-Date:   Tue, 15 Feb 2022 11:08:08 +0530
-Message-ID: <1644903488-20557-1-git-send-email-quic_schowdhu@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bieAi62cXnjDaF9+psLIoa3qnNdCxk47hpRhQbwd4wU=;
+        b=IcAfk0jc1uGalEZyNKcu/DnhhORNIOmxpzX7ZDMzgsIdfu1L91dKVfT0TFxsmYkPwd
+         mf2VfdVvDtCJNrcolCauEeoaH8aavJnzW19a3oD31qX0GpWYzKUBKgO2PyVgjY/95y4A
+         rLKsi0/g2XXR1Nh6Z/2VojL6qmfmS3iNzZw84=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bieAi62cXnjDaF9+psLIoa3qnNdCxk47hpRhQbwd4wU=;
+        b=yBF2uIwPX58nMD44SoUQbnAN5/N/V1RQEJ34sf6VyrNutHBu6+l6Yrd3v/Kxu4myRk
+         C9vGEQHxgX5l/88ILeoYPrGmOUWV2U8JTod9gIXfAVU3r4ahbB+tajViW9Et6GROe8xO
+         ZRjVe9RcZP3MyGfm40AVSsX2HDPJAlntGWqOIT3ndyZ0EmZ2ORoYCO13yLqkXbp3dgbi
+         RkSgR/GTI1zHwzpmyNERHC30+TQaHuSl2Q9Wa7PsNFtEJlE+DcTaex+AaO11ysQVVIZc
+         I3VddzHB9XZCDL3W9heFX0er3s0MI8SsJgCELBvEjdh9u/xueuE9TAvECD8s+vBEwW3P
+         rL+g==
+X-Gm-Message-State: AOAM531RutdDLMPD1x4GJvjUaiCYW6yXIjPfPP6AWP7uJdxWKekPv+6V
+        rgfu3+tZR+LGBXDNjUOJsQJO0Y3VR4IqYFWBp7eYcvJDcGI=
+X-Google-Smtp-Source: ABdhPJy0ddCs9WvjiZC4lM/FmWkHalSgAFzYH2nlatPRqwypfGD87kBmI2t4pz4vDpeqbPGkslg0MS8a2lVsbnJXbNs=
+X-Received: by 2002:a05:620a:44c7:: with SMTP id y7mr1245865qkp.347.1644904129664;
+ Mon, 14 Feb 2022 21:48:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+References: <20220214042538.12132-1-potin.lai@quantatw.com> <20220214042538.12132-6-potin.lai@quantatw.com>
+In-Reply-To: <20220214042538.12132-6-potin.lai@quantatw.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 15 Feb 2022 05:48:37 +0000
+Message-ID: <CACPK8Xf5W4h=dcBg_Pe1zjXUK73h8YH1tfL4RvoxV3DVsCL90g@mail.gmail.com>
+Subject: Re: [PATCH v2 05/10] arch: arm: dts: bletchley: switch to spi-gpio
+ for spi2
+To:     Potin Lai <potin.lai@quantatw.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        Patrick Williams <patrick@stwcx.xyz>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,27 +67,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the dr_mode for usb2 to 'otg' from 'host' to enable role switch for Embedded USB
-Debugger(EUD) Node.
+On Mon, 14 Feb 2022 at 04:26, Potin Lai <potin.lai@quantatw.com> wrote:
+>
+> Switch to spi-gpio driver to avoid unstable signal issue with EVT HW
+>
+> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
+> index b01f1e7adb81..3c54e4a892c9 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
+> @@ -227,8 +227,16 @@
+>
+>  &spi2 {
+>         status = "okay";
+> -       pinctrl-names = "default";
+> -       pinctrl-0 = <&pinctrl_spi2_default>;
+> +
+> +       compatible = "spi-gpio";
 
-Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280-idp.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This is a bit strange. You're effectively rewriting the node with a new one.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-index a7be133..6d3ff80 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-@@ -90,7 +90,7 @@
- };
+It would make more sense to leave spi2 disabled (the default), and add
+a new node:
 
- &usb_2_dwc3 {
--	dr_mode = "host";
-+	dr_mode = "otg";
- };
+ spi {
+   compatible = "spi-gpio";
+   #address-cells = <1>;
+   #size-cells = <0>;
+   gpio-sck = <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
+   gpio-mosi = <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
+   gpio-miso = <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
+   num-chipselects = <1>;
+  cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
 
- &usb_2_hsphy {
---
-2.7.4
+   flash@0 {
+       status = "okay";
 
+etc.
+
+Your new spi node doesn't need the pinctrl or clock properties.
+
+> +       #address-cells = <1>;
+> +       #size-cells = <0>;
+> +
+> +       gpio-sck = <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
+> +       gpio-mosi = <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
+> +       gpio-miso = <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
+> +       num-chipselects = <1>;
+> +       cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
+>
+>         flash@0 {
+>                 status = "okay";
+> --
+> 2.17.1
+>
