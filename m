@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 814DF4B5FC8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 02:05:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2904A4B5FD2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 02:10:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232285AbiBOBFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 20:05:50 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49014 "EHLO
+        id S232978AbiBOBKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 20:10:41 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231697AbiBOBFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 20:05:49 -0500
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24D6FCE59A
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 17:05:41 -0800 (PST)
-Received: by mail-ot1-x331.google.com with SMTP id w27-20020a9d5a9b000000b005a17d68ae89so12758513oth.12
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 17:05:41 -0800 (PST)
+        with ESMTP id S230031AbiBOBKj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 20:10:39 -0500
+Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E047AD0B5B
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 17:10:30 -0800 (PST)
+Received: by mail-oo1-xc33.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso21401497ooi.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 17:10:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=RgimEFXarng+CHJGO74owebgIrlsqSjainYTmRZCU0k=;
-        b=S/NpqL9/qAIdkV/WGVMxj+X9fr42dFGU/nVFDcntxJriCJu2R236PSnfzJLMvfHkJQ
-         GHesSnaYC1+XSqwVlvff8Xz1DyEr6bh2eNgKCL3hSPPuKOArzF4kLlt+gO8CtqrtGfAc
-         3gMh4sbT3GZIwl/oth65y3m2W+4cnY0z7jiOk=
+        bh=ifGbg82ymBEfPdZo3oeoqJubchOD7aHMGI+CCM/6VeI=;
+        b=JzfqXRBdTeWFxtrsMjScRtFzmZW7lSKyEy50rmc0dSZv5O/+iCf5iJDvrvV9zCI6kB
+         GQVBY7mZcCF5POUCKH7krqOiAFTUj/eW6g2spxpsuqoo/Mj3yBjcdfFfIga//wboSLgn
+         CLOy+TDL29LexsBAUajcqmrLl5yPq5VWv+Wm0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=RgimEFXarng+CHJGO74owebgIrlsqSjainYTmRZCU0k=;
-        b=W517U9v7fhScYutB5Om3Rv1MBWA0+qgxnmVuRCcVVXgRIpn4/+TbT1oHq98BypwZg2
-         uhmZDTeeXMh84NQLrny10u5XXFI34r6hdjQU0T7iQGqShHLseuXZxStJfEvCr2f6CzG7
-         LGBJ0XDGtMyUrwhkFw5qeLs9vPebm+y1ATXYGNdGnjE7rMnlcmz3xjleOkKoD2X6xQTI
-         AblIzqd0anJR3Rdx7XY4YPReX0oUgaXFOt1E9TmH8ADIu4n/s9r+LFEWuGDlS195mF88
-         1ahubhN5KpPdQDJ3dRMDgz1IxygdQsjMBb6yO3eg9cEbyNlM5cpj8gQk0udmUELiNZwY
-         mHXw==
-X-Gm-Message-State: AOAM533SiDF3IJCHgCQR4+FNVhlsXw7BIZ85IxqE3LfVIBOofv+CBYMY
-        qUaab/0GTidCu+tji6Agbi+oDf1WrjOwpcI+jHbKMA==
-X-Google-Smtp-Source: ABdhPJxWDJ5gPlokWpJThKiJIS8Wv5ZL9BFOQR+6R8559UBoAOYOBJZXG6u3ikHTU/ctiT8pWDQh6Rj/RgnLjyYnxGk=
-X-Received: by 2002:a05:6830:1d8f:: with SMTP id y15mr585565oti.77.1644887140462;
- Mon, 14 Feb 2022 17:05:40 -0800 (PST)
+        bh=ifGbg82ymBEfPdZo3oeoqJubchOD7aHMGI+CCM/6VeI=;
+        b=DSWa785xtq9CyQ/tjs0EMabI/CBnlGQNxRjNV82e4yadQxj20AyV1XhN0buNWhc+eh
+         nyEjs/tM+6wfz5KWRJfEimkw3G948z+CXsMEHuIRUNw/hbxI3hSF3KAFa9dByZVaa7lu
+         UhbwWAohYahZnW/5nJnOz1prTq5tqsOuRWos7oQhBdxqcNoMwDQSneZvMp0qrn/hKxHP
+         KZgsJuIwFaPAUg3Qfm+7JibqJdyzCPONJbVsQ/mB73+iz9UDzaeBROJ1PXqU3pC03EVb
+         F/63dNZSI6g0+MSoC1Ux6JfsLwN6sdiqV3KwZdhrU7dwFDB2fJ10DBwppEMXSguwt3MU
+         Wa5g==
+X-Gm-Message-State: AOAM533myPf9TvChWStVmynvNnSQwz96AL8NpovuyyIM6pPogQuRpR5l
+        YzX5iomaDEkxGrhxJBiQtzmYiyrRwdpt+W2soWKA1w==
+X-Google-Smtp-Source: ABdhPJwigiiW4fBvsZ0I8ihR5uCpy6DMum+AGLTc9gc9XbYvRSjnadspyKecplQizwXnkD5dQ9nFVSV+Wr5HQ2YmwB8=
+X-Received: by 2002:a05:6870:1209:: with SMTP id 9mr565635oan.8.1644887430198;
+ Mon, 14 Feb 2022 17:10:30 -0800 (PST)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 14 Feb 2022 17:05:40 -0800
+ HTTPREST; Mon, 14 Feb 2022 17:10:29 -0800
 MIME-Version: 1.0
-In-Reply-To: <1644850708-11099-4-git-send-email-quic_srivasam@quicinc.com>
-References: <1644850708-11099-1-git-send-email-quic_srivasam@quicinc.com> <1644850708-11099-4-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1644850708-11099-5-git-send-email-quic_srivasam@quicinc.com>
+References: <1644850708-11099-1-git-send-email-quic_srivasam@quicinc.com> <1644850708-11099-5-git-send-email-quic_srivasam@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Mon, 14 Feb 2022 17:05:39 -0800
-Message-ID: <CAE-0n53dXfwsJ=mh7cNH6Lq0Um+h+oTJDvqsXALh8L=wfONLjw@mail.gmail.com>
-Subject: Re: [RESEND v13 03/10] ASoC: qcom: lpass: Add dma fields for codec
- dma lpass interface
+Date:   Mon, 14 Feb 2022 17:10:29 -0800
+Message-ID: <CAE-0n504R0avU9Ybj68jxqDRH-Ya5ro0hPo5GJ=2zC6p2SZ_=g@mail.gmail.com>
+Subject: Re: [RESEND v13 04/10] ASoC: qcom: Add helper function to get dma
+ control and lpaif handle
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         agross@kernel.org, alsa-devel@alsa-project.org,
         bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
@@ -72,106 +72,203 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-02-14 06:58:21)
-> Add lpass interface memebers to support audio path over codec dma.
+Quoting Srinivasa Rao Mandadapu (2022-02-14 06:58:22)
+> Add support function to get dma control and lpaif handle to avoid
+> repeated code in platform driver
 >
 > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 > Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 > Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  sound/soc/qcom/lpass.h | 116 +++++++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 116 insertions(+)
+>  sound/soc/qcom/lpass-platform.c | 113 +++++++++++++++++++++++-----------------
+>  1 file changed, 66 insertions(+), 47 deletions(-)
 >
-> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
-> index f0d21cd..7cc3763 100644
-> --- a/sound/soc/qcom/lpass.h
-> +++ b/sound/soc/qcom/lpass.h
-> @@ -234,12 +294,66 @@ struct lpass_variant {
->         struct reg_field wrdma_enable;
->         struct reg_field wrdma_dyncclk;
+> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+> index a44162c..5d77240 100644
+> --- a/sound/soc/qcom/lpass-platform.c
+> +++ b/sound/soc/qcom/lpass-platform.c
+> @@ -177,6 +177,49 @@ static int lpass_platform_pcmops_close(struct snd_soc_component *component,
+>         return 0;
+>  }
 >
-> +       /*CDC RXTX RD_DMA */
+> +static void __lpass_get_lpaif_handle(struct snd_pcm_substream *substream,
 
-Please add space after /*
+const?
 
-> +       struct reg_field rxtx_rdma_intf;
-> +       struct reg_field rxtx_rdma_bursten;
-> +       struct reg_field rxtx_rdma_wpscnt;
-> +       struct reg_field rxtx_rdma_fifowm;
-> +       struct reg_field rxtx_rdma_enable;
-> +       struct reg_field rxtx_rdma_dyncclk;
-> +       struct reg_field rxtx_rdma_burst8;
-> +       struct reg_field rxtx_rdma_burst16;
-> +       struct reg_field rxtx_rdma_dynburst;
-> +       struct reg_field rxtx_rdma_codec_enable;
-> +       struct reg_field rxtx_rdma_codec_pack;
-> +       struct reg_field rxtx_rdma_codec_intf;
-> +       struct reg_field rxtx_rdma_codec_fs_sel;
-> +       struct reg_field rxtx_rdma_codec_ch;
-> +       struct reg_field rxtx_rdma_codec_fs_delay;
+> +                                    struct snd_soc_component *component,
+
+const?
+
+> +                                    struct lpaif_dmactl **dmactl, int *id, struct regmap **map)
+> +{
+> +       struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
+> +       struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
+> +       struct lpass_data *drvdata = snd_soc_component_get_drvdata(component);
+> +       struct snd_pcm_runtime *rt = substream->runtime;
+> +       struct lpass_pcm_data *pcm_data = rt->private_data;
+> +       struct lpass_variant *v = drvdata->variant;
+> +       int dir = substream->stream;
+> +       unsigned int dai_id = cpu_dai->driver->id;
+> +       struct lpaif_dmactl *l_dmactl = NULL;
+> +       struct regmap *l_map = NULL;
+> +       int l_id = 0;
 > +
-> +       /*CDC RXTX WR_DMA */
+> +       switch (dai_id) {
+> +       case MI2S_PRIMARY ... MI2S_QUINARY:
+> +               if (dir == SNDRV_PCM_STREAM_PLAYBACK) {
 
-Same
+Please write if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) and
+drop 'dir' local variable.
 
-> +       struct reg_field rxtx_wrdma_intf;
-> +       struct reg_field rxtx_wrdma_bursten;
-> +       struct reg_field rxtx_wrdma_wpscnt;
-> +       struct reg_field rxtx_wrdma_fifowm;
-> +       struct reg_field rxtx_wrdma_enable;
-> +       struct reg_field rxtx_wrdma_dyncclk;
-> +       struct reg_field rxtx_wrdma_burst8;
-> +       struct reg_field rxtx_wrdma_burst16;
-> +       struct reg_field rxtx_wrdma_dynburst;
-> +       struct reg_field rxtx_wrdma_codec_enable;
-> +       struct reg_field rxtx_wrdma_codec_pack;
-> +       struct reg_field rxtx_wrdma_codec_intf;
-> +       struct reg_field rxtx_wrdma_codec_fs_sel;
-> +       struct reg_field rxtx_wrdma_codec_ch;
-> +       struct reg_field rxtx_wrdma_codec_fs_delay;
+> +                       l_id = pcm_data->dma_ch;
+> +                       l_dmactl = drvdata->rd_dmactl;
+> +               } else {
+> +                       l_dmactl = drvdata->wr_dmactl;
+> +                       l_id = pcm_data->dma_ch - v->wrdma_channel_start;
+> +               }
+> +               l_map = drvdata->lpaif_map;
+> +               break;
+> +       case LPASS_DP_RX:
+> +               l_id = pcm_data->dma_ch;
+> +               l_dmactl = drvdata->hdmi_rd_dmactl;
+> +               l_map = drvdata->hdmiif_map;
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +       if (dmactl)
+> +               *dmactl = l_dmactl;
+> +       if (id)
+> +               *id = l_id;
+> +       if (map)
+> +               *map = l_map;
+
+Why not 'return 0' here and return -EINVAL in the default case above? Then
+we can skip the checks for !map or !dmactl below and simply bail out if
+it failed with an error value.
+
+> +}
 > +
-> +       /*CDC VA WR_DMA */
-> +       struct reg_field va_wrdma_intf;
-> +       struct reg_field va_wrdma_bursten;
-> +       struct reg_field va_wrdma_wpscnt;
-> +       struct reg_field va_wrdma_fifowm;
-> +       struct reg_field va_wrdma_enable;
-> +       struct reg_field va_wrdma_dyncclk;
-> +       struct reg_field va_wrdma_burst8;
-> +       struct reg_field va_wrdma_burst16;
-> +       struct reg_field va_wrdma_dynburst;
-> +       struct reg_field va_wrdma_codec_enable;
-> +       struct reg_field va_wrdma_codec_pack;
-> +       struct reg_field va_wrdma_codec_intf;
-> +       struct reg_field va_wrdma_codec_fs_sel;
-> +       struct reg_field va_wrdma_codec_ch;
-> +       struct reg_field va_wrdma_codec_fs_delay;
-> +
->         /**
-
-This shouldn't have two stars as it isn't kerneldoc
-
->          * on SOCs like APQ8016 the channel control bits start
->          * at different offset to ipq806x
->          **/
->         u32     dmactl_audif_start;
->         u32     wrdma_channel_start;
-> +       u32     rxtx_wrdma_channel_start;
-> +       u32     va_wrdma_channel_start;
-> +
->         /* SOC specific initialization like clocks */
->         int (*init)(struct platform_device *pdev);
->         int (*exit)(struct platform_device *pdev);
-> @@ -251,10 +365,12 @@ struct lpass_variant {
->         int num_dai;
->         const char * const *dai_osr_clk_names;
->         const char * const *dai_bit_clk_names;
-> +       const char * const *cdc_dma_clk_names;
+>  static int lpass_platform_pcmops_hw_params(struct snd_soc_component *component,
+>                                            struct snd_pcm_substream *substream,
+>                                            struct snd_pcm_hw_params *params)
+> @@ -191,21 +234,15 @@ static int lpass_platform_pcmops_hw_params(struct snd_soc_component *component,
+>         unsigned int channels = params_channels(params);
+>         unsigned int regval;
+>         struct lpaif_dmactl *dmactl;
+> -       int id, dir = substream->stream;
+> +       int id;
+>         int bitwidth;
+>         int ret, dma_port = pcm_data->i2s_port + v->dmactl_audif_start;
+>         unsigned int dai_id = cpu_dai->driver->id;
 >
->         /* SOC specific clocks configuration */
->         const char **clk_name;
->         int num_clks;
-> +       int cdc_dma_num_clks;
-
-Why not size_t? Negative numbers are useful here?
+> -       if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
+> -               id = pcm_data->dma_ch;
+> -               if (dai_id == LPASS_DP_RX)
+> -                       dmactl = drvdata->hdmi_rd_dmactl;
+> -               else
+> -                       dmactl = drvdata->rd_dmactl;
+> -
+> -       } else {
+> -               dmactl = drvdata->wr_dmactl;
+> -               id = pcm_data->dma_ch - v->wrdma_channel_start;
+> +       __lpass_get_lpaif_handle(substream, component, &dmactl, &id, NULL);
+> +       if (!dmactl) {
+> +               dev_err(soc_runtime->dev, "failed to get dmactl handle\n");
+> +               return -EINVAL;
+>         }
+>
+>         bitwidth = snd_pcm_format_width(format);
+> @@ -350,10 +387,11 @@ static int lpass_platform_pcmops_hw_free(struct snd_soc_component *component,
+>         struct regmap *map;
+>         unsigned int dai_id = cpu_dai->driver->id;
+>
+> -       if (dai_id == LPASS_DP_RX)
+> -               map = drvdata->hdmiif_map;
+> -       else
+> -               map = drvdata->lpaif_map;
+> +       __lpass_get_lpaif_handle(substream, component, NULL, NULL, &map);
+> +       if (!map) {
+> +               dev_err(soc_runtime->dev, "failed to get dmactl handle\n");
+> +               return -EINVAL;
+> +       }
+>
+>         reg = LPAIF_DMACTL_REG(v, pcm_data->dma_ch, substream->stream, dai_id);
+>         ret = regmap_write(map, reg, 0);
+> @@ -379,22 +417,12 @@ static int lpass_platform_pcmops_prepare(struct snd_soc_component *component,
+>         int ret, id, ch, dir = substream->stream;
+>         unsigned int dai_id = cpu_dai->driver->id;
+>
+> -
+>         ch = pcm_data->dma_ch;
+> -       if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
+> -               if (dai_id == LPASS_DP_RX) {
+> -                       dmactl = drvdata->hdmi_rd_dmactl;
+> -                       map = drvdata->hdmiif_map;
+> -               } else {
+> -                       dmactl = drvdata->rd_dmactl;
+> -                       map = drvdata->lpaif_map;
+> -               }
+>
+> -               id = pcm_data->dma_ch;
+> -       } else {
+> -               dmactl = drvdata->wr_dmactl;
+> -               id = pcm_data->dma_ch - v->wrdma_channel_start;
+> -               map = drvdata->lpaif_map;
+> +       __lpass_get_lpaif_handle(substream, component, &dmactl, &id, &map);
+> +       if (!dmactl) {
+> +               dev_err(soc_runtime->dev, "failed to get dmactl handle\n");
+> +               return -EINVAL;
+>         }
+>
+>         ret = regmap_write(map, LPAIF_DMABASE_REG(v, ch, dir, dai_id),
+> @@ -444,25 +472,15 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
+>         struct lpaif_dmactl *dmactl;
+>         struct regmap *map;
+>         int ret, ch, id;
+> -       int dir = substream->stream;
+>         unsigned int reg_irqclr = 0, val_irqclr = 0;
+>         unsigned int  reg_irqen = 0, val_irqen = 0, val_mask = 0;
+>         unsigned int dai_id = cpu_dai->driver->id;
+>
+>         ch = pcm_data->dma_ch;
+> -       if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
+> -               id = pcm_data->dma_ch;
+> -               if (dai_id == LPASS_DP_RX) {
+> -                       dmactl = drvdata->hdmi_rd_dmactl;
+> -                       map = drvdata->hdmiif_map;
+> -               } else {
+> -                       dmactl = drvdata->rd_dmactl;
+> -                       map = drvdata->lpaif_map;
+> -               }
+> -       } else {
+> -               dmactl = drvdata->wr_dmactl;
+> -               id = pcm_data->dma_ch - v->wrdma_channel_start;
+> -               map = drvdata->lpaif_map;
+> +       __lpass_get_lpaif_handle(substream, component, &dmactl, &id, &map);
+> +       if (!dmactl) {
+> +               dev_err(soc_runtime->dev, "failed to get dmactl handle\n");
+> +               return -EINVAL;
+>         }
+>
+>         switch (cmd) {
+> @@ -597,10 +615,11 @@ static snd_pcm_uframes_t lpass_platform_pcmops_pointer(
+>         struct regmap *map;
+>         unsigned int dai_id = cpu_dai->driver->id;
+>
+> -       if (dai_id == LPASS_DP_RX)
+> -               map = drvdata->hdmiif_map;
+> -       else
+> -               map = drvdata->lpaif_map;
+> +       __lpass_get_lpaif_handle(substream, component, NULL, NULL, &map);
+> +       if (!map) {
+> +               dev_err(soc_runtime->dev, "failed to get dmactl handle\n");
+> +               return -EINVAL;
+> +       }
+>
+>         ch = pcm_data->dma_ch;
+>
+> --
+> 2.7.4
+>
