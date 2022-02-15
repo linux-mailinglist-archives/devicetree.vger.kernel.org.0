@@ -2,125 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D757A4B6847
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 10:57:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 541214B6858
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 11:00:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233311AbiBOJ4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 04:56:48 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59114 "EHLO
+        id S236229AbiBOKAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 05:00:52 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbiBOJ4r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 04:56:47 -0500
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17D617091D;
-        Tue, 15 Feb 2022 01:56:33 -0800 (PST)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 741E31BF20F;
-        Tue, 15 Feb 2022 09:56:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1644918992;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=K4eFwye/okRxi/68ri8yTsBWvX0g8mH2JLrxCqUzQBc=;
-        b=Pkgq0hGmhZqbfwp1twud8hwRV3Xuarr8FHjsMyWaqUwul9fbk3t4vO12uPMdpnKoqB3lXK
-        HQIbML8TtlXXedlVag+9NJlfaflzKTnv9pqzoZsTdj7Vnz9/ZJKYAJlFgbjKYqIaCA7Q0A
-        a3QcjuVTrAKiDj0s67KrOgfSKnGQP50Vb8qRoJhrmO22RHhav6FQJLFhEy53bVmhts29Lz
-        3sF7W6vwVVzjBAiw5HzgGZ42tvgIx1FCl9vQpEZvnQCQQucXS60ydZZcvDuKTUdP5RdFom
-        E/3L6/QjdSOJYb6Xv7FzfDMR5HejitXXdQKH0Qqao4ClUDYzlCWSNU4ysNQYVQ==
-Date:   Tue, 15 Feb 2022 10:56:22 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 37/66] media: sun6i-csi: Move power management to
- runtime pm in capture
-Message-ID: <Ygt4xh2Mq0qStyKs@aptenodytes>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <20220205185429.2278860-38-paul.kocialkowski@bootlin.com>
- <YgqftcDgfrsZfTdF@paasikivi.fi.intel.com>
+        with ESMTP id S236190AbiBOKAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 05:00:44 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36C6610E07B
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 02:00:35 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nJudB-0001tC-Or; Tue, 15 Feb 2022 11:00:21 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nJud9-009fvm-A0; Tue, 15 Feb 2022 11:00:19 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Scott Branden <sbranden@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tony Lindgren <tony@atomide.com>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+        bcm-kernel-feedback-list@broadcom.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v4 0/8] document dt-schema and fix node names for some USB Ethernet controllers
+Date:   Tue, 15 Feb 2022 11:00:10 +0100
+Message-Id: <20220215100018.2306046-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="tOB2i1/qfUMuc0i4"
-Content-Disposition: inline
-In-Reply-To: <YgqftcDgfrsZfTdF@paasikivi.fi.intel.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+changes v4:
+- reword commit logs.
+- add note about compatible fix
 
---tOB2i1/qfUMuc0i4
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Oleksij Rempel (8):
+  dt-bindings: net: add schema for ASIX USB Ethernet controllers
+  dt-bindings: net: add schema for Microchip/SMSC LAN95xx USB Ethernet
+    controllers
+  dt-bindings: usb: ci-hdrc-usb2: fix node node for ethernet controller
+  ARM: dts: bcm283x: fix ethernet node name
+  ARM: dts: exynos: fix ethernet node name for different odroid boards
+  ARM: dts: omap3/4/5: fix ethernet node name for different OMAP boards
+  ARM: dts: tegra20/30: fix ethernet node name for different tegra
+    boards
+  arm64: dts: imx8mm-kontron: fix ethernet node name
 
-Hi Sakari,
+ .../devicetree/bindings/net/asix,ax88178.yaml | 68 ++++++++++++++++
+ .../bindings/net/microchip,lan95xx.yaml       | 80 +++++++++++++++++++
+ .../devicetree/bindings/usb/ci-hdrc-usb2.txt  |  2 +-
+ arch/arm/boot/dts/bcm283x-rpi-smsc9512.dtsi   |  2 +-
+ arch/arm/boot/dts/bcm283x-rpi-smsc9514.dtsi   |  2 +-
+ arch/arm/boot/dts/exynos4412-odroidu3.dts     |  4 +-
+ arch/arm/boot/dts/exynos4412-odroidx.dts      |  8 +-
+ arch/arm/boot/dts/exynos5410-odroidxu.dts     |  4 +-
+ .../boot/dts/exynos5422-odroidxu3-lite.dts    |  6 +-
+ arch/arm/boot/dts/exynos5422-odroidxu3.dts    |  6 +-
+ arch/arm/boot/dts/omap3-beagle-xm.dts         |  2 +-
+ arch/arm/boot/dts/omap4-panda-common.dtsi     |  2 +-
+ arch/arm/boot/dts/omap5-igep0050.dts          |  2 +-
+ arch/arm/boot/dts/omap5-uevm.dts              |  2 +-
+ arch/arm/boot/dts/tegra20-colibri.dtsi        |  2 +-
+ arch/arm/boot/dts/tegra30-colibri.dtsi        |  2 +-
+ arch/arm/boot/dts/tegra30-ouya.dts            |  2 +-
+ .../dts/freescale/imx8mm-kontron-n801x-s.dts  |  2 +-
+ 18 files changed, 173 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/asix,ax88178.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
 
-On Mon 14 Feb 22, 20:30, Sakari Ailus wrote:
-> Hi Paul,
->=20
-> On Sat, Feb 05, 2022 at 07:54:00PM +0100, Paul Kocialkowski wrote:
-> > Let's just enable the module when we start using it (at stream on)
-> > and benefit from runtime pm instead of enabling it at first open.
-> >=20
-> > Also reorder the call to v4l2_pipeline_pm_get.
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
->=20
-> Nice patch!
+-- 
+2.30.2
 
-Thanks!
-
-> Do you still need v4l2_pipeline_pm_put()? Removing it would be a separate
-> patch of course.
-
-My understanding is that this is still useful if there are drivers in the
-pipeline that rely on s_power instead of rpm (a typical case could be an
-old sensor driver). So that's why this is kept around, but all other compon=
-ents
-of the pipeline (isp/csi/mipi csi-2) are using rpm now.
-
-Cheers,
-
-Paul
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---tOB2i1/qfUMuc0i4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmILeMYACgkQ3cLmz3+f
-v9E5sAf/akvNvNPsCxPYxGv+fJr3ZwwX2cWQuFu6Am+wwNsKyXuxoMHRnyG1rANG
-OVaJVCgFR3vPnDKUsTC/grEH/PdeNUHy9DT+gnEnjsIepnMV5/VAG4YBgonHBDoC
-Nk1fMad5oTd+W+kpLqdQ7JEABUhW+TZL9TAv2C24Xg4DupIwH2HDcYCepM83ySy8
-q5Q6Jo8gYGAWzdWJLr5u3Xexgd2W7n4kQ7VBXVNesTQOgvihW8xTFcAft/Sf4Qig
-FHhb+EWRL6Pl9v74gev2rUQMWABOgVFHlcPmHQgrFIHC/u9fHP0auvZzS09i6A0C
-hcYntRVNBMGqmJTHoPZjIucw/JtAgw==
-=CYCh
------END PGP SIGNATURE-----
-
---tOB2i1/qfUMuc0i4--
