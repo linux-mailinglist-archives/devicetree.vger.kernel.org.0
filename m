@@ -2,102 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7651A4B7583
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:47:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5151C4B7546
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:47:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239314AbiBORKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 12:10:31 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36802 "EHLO
+        id S242421AbiBORT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 12:19:27 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242273AbiBORK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 12:10:29 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3147D11C7CD
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 09:10:17 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id m126-20020a1ca384000000b0037bb8e379feso1940678wme.5
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 09:10:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=60je+LDflCDSpm+PbhIAk73PJa9MombVHWRyiPaaQWE=;
-        b=e95A44tpHIjq1YsdKuKzU5OONEu/+yXCT8kuOp2UiKbTHYKRM+skWvxv3kT6tlQHi9
-         kuAkvUo6I8mngxLzdV8aD0WTym4+cnEDeGOr8rm379aJHXW+OsbXpcZGxlmRRsonaeYQ
-         UP+qOTQ30HOWhwgisLlBU3j0+2ZF0q2MkYC61AfUlHJ8/5+IEc61vkm+X78YHa49P2Bm
-         jB6R+qZ5bMMAv6BV8HDvvXyiBnCig0k9n7N96HGKQ91cLjYNjrD99g8zEWz01bex8eXn
-         HzviMayuNMZ3ZpNneZpsJ0lmKMaQqY8YZjrMOLjVKlCfGHoGm5jXoqQBPSXqylZ+MS6v
-         At3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=60je+LDflCDSpm+PbhIAk73PJa9MombVHWRyiPaaQWE=;
-        b=LZ/x0ynjYSJzsKqV+t2A+lgBBENTBvBMJn7xV25zyGY7LARk4HvNJmoGmrCx3gOrYB
-         UZmmUvxm6euPGDSV2e6hLIe5M3LkZUPjgSIkFqCrl47UTakDIuuJZNbsnR3UXcYIlgJi
-         LjXVM2BYAk69cg6l6q2cr6XzWMxVKh/2lNhAgD4j7oHCYOl8khf/72oGbMMHz0UneOAo
-         GBruoHzrkVf0xKfQYKX/7Mm9oocdg/+8QiWoTkz1MPj4ahpO7aa1u9jTqtdbrRC/jVr8
-         73ZOk+dCXqhfN7c6KKEdG9VYJ1aBWUnN7cRGeCBqy/UZagSRsjpVXJqfG2bGQ3lhTCjJ
-         t3LQ==
-X-Gm-Message-State: AOAM533iPBWU1pGDoiGaAMwdcTCdE5+I75Beo74wGWGgWtydf6UicKQH
-        uteh7IJap57WDBHO68a3IpO8vg==
-X-Google-Smtp-Source: ABdhPJw0YbHf61twQt8zIjpAB6CwQlGiDquDN/ZzgdBbTGfVK01KJvsAZyMdB3byIr6GGeUOd7b30Q==
-X-Received: by 2002:a05:600c:2e53:: with SMTP id q19mr6132wmf.189.1644945015688;
-        Tue, 15 Feb 2022 09:10:15 -0800 (PST)
-Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id g5sm15558474wmk.38.2022.02.15.09.10.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 09:10:15 -0800 (PST)
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S238262AbiBORT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 12:19:26 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBDCB1AF33;
+        Tue, 15 Feb 2022 09:19:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1644945545;
+        bh=FTRaQZEhcQHE3D6iMKxlWyuUw3TDc4VB3gHJh1I0RhM=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=FEvtmI8ovHWgdCHsVqY8UkXxveuRoUoaN2mnIeYRYWyCh5pH9ZDEGQ33Ea7LguYfI
+         2eM0MX57verzTfxdJLrkrqQ4iSSGbhlbwiY8Xgi/1vORd8ko9cooMDgvQIvh2M6WYW
+         +Lq1Vp6vnWzzDnidbYX6Li6TIS062BREM+z9cCGU=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MRmjw-1nhZyt2TT0-00TH5q; Tue, 15
+ Feb 2022 18:19:05 +0100
+Date:   Tue, 15 Feb 2022 18:19:04 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org
-Subject: [PATCH v6 9/9] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable rradc
-Date:   Tue, 15 Feb 2022 17:09:51 +0000
-Message-Id: <20220215170951.1233375-10-caleb.connolly@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220215170951.1233375-1-caleb.connolly@linaro.org>
-References: <20220215170951.1233375-1-caleb.connolly@linaro.org>
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>
+Subject: Re: [PATCH v5 0/9] Nuvoton WPCM450 pinctrl and GPIO driver
+Message-ID: <Ygvf3COuzZ9bTXuy@latitude>
+References: <20220129115228.2257310-1-j.neuschaefer@gmx.net>
+ <CACRpkdYEigGHkoGfBg15tFXadgpXUAjDOnw7ePXhmvHJqPEJXw@mail.gmail.com>
+ <YfZkis8M81Ejpagq@latitude>
+ <CACPK8XdFXRQf3MpPh3z=EMAKtnQSHL+iwwMCVYc5dP9DfQEN+Q@mail.gmail.com>
+ <YfpyjDBH83FE7r4o@latitude>
+ <CAHp75Vdg8zFSHaTP_8jQua5QfRYbvZ4_rLdCtt3ks8YEibseTg@mail.gmail.com>
+ <YgdyjUbb4lnrVHmJ@latitude>
+ <CACPK8Xe-t8Qso_AX+q08OxrgmUPbEayhnHXH5xiLr7M6rDxjuw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="UHIAxUhFauf14s9F"
+Content-Disposition: inline
+In-Reply-To: <CACPK8Xe-t8Qso_AX+q08OxrgmUPbEayhnHXH5xiLr7M6rDxjuw@mail.gmail.com>
+X-Provags-ID: V03:K1:c1cqtZLz7Mg2BLdDxmXoFqJl53D7wRN7wbycXFZiU0+GIgC08IU
+ 8CEMhMS0O8QjQ4TO8yCfgeM1QAyNJA4faQGEzXHAmCFeDquzpIwRsvHcD5F/LIHr7ofT4NF
+ iH3LABJcrT6QqURzbtpYi21Vqd9GEZc8lcJCcBh8M5Gnl8Mto4FMRRAdYiyrtRKcwVRDOZf
+ E4xpDfashLDaUm+T0HBbg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:xB1RnmaMPC0=:9dGoAvV1W0XTvwGMz27dkn
+ JRjiKQGBbeJRe1KdQxY3bGtt4Z0aXYBZGp3dt27nA5swetlfQg73eJYCKL1M+yo9kQNjlhIpl
+ TcN1irGX8l043UlSzT5H5VjdmtPUdeVyafrH3+h8fJsqp2kcUcORrkH9ho3Uo2wcsy3qDX8qJ
+ XA+w0j3e3ClpPdlzNG1G5h3F5W1FSeMTCxvSa3rHkTMwTLDYk48spCcB/7IadVVfzNZuyp2z+
+ 7QzxA+2V4Dk9dzbSWFbGWIiCZBTz26WUpZ2ZRU87LgA6H39ExMw++vPO4ZVTkzNsplmduZFhj
+ ut+cRgYom/UeQjIRUQO2mqvQA8upoxa2+NLh4D6ekp81P+NeXhmpQReIfNRIVOJL/duqWjYnX
+ Gy9iNXqBvafWwh0N1vokOdpwQuqkI5TcFBH0/cRJx0NBGGnLTE2X06XOVacaIHgXQ9p2euIN0
+ 9Vd1r1TMQI/CcyAIwuA/uFdN8GhmG75JkUPZk0Qz4jQFuv5wy3yzzKzGK3Lb24raXqmd3vLNy
+ /p63aI7RFIFer+uWreAgBZhIljaZWDdhQ0+SMW3SztHhZJTG+FtjytMflrnXjVPDTVjxfXMyK
+ LvnXdR4yJKDxTJa6w98OMwz8uko63xTOvI6li2DT2pPq0S1qWzqmxx7p7vVwA3NYrS9pY5YSF
+ 9dR+UE/nYmVeAIYXbEmH4GmAspTusRQW9nz/lBvfRPouqgJ3Dhu+MHvEEsdvhaUzxQUgO+v1V
+ KuZLfK9hLawh1EFjmzX+E1SHw88SyuxqrHoSMR1qk6QcwaT4zIs4kfpzxzufCZmOYGH3FR1AY
+ M0801yvqfVLNVfW2jsh8u5e/QYJ/YPfnBleaiepBGOCkjvEeS7D6p+Iy/TM/4ZWGyNARSFD9F
+ Z0b9NHlGYEuUOEzRJ0KlF0V0MWjiQ3WDZhBahteKFiK2d9CX2htaU7PF6qD47GNcE0+a0O5lc
+ I5iDuTBbOo4L1x5SgaU7AVOy0AGqiMrCx5eObd5NXnD2zrlLFIRmfy+8Dot6u0xSUhhbPLHXH
+ wiQTDdU0vQjaWzN9+F4zxgKoXzxsJM9OagakYvArSYcy9Nxli8E0p9R4h25UXK4uEeMOWGL4c
+ uBdx7nTHAAYu70=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the PMI8998 RRADC.
 
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+--UHIAxUhFauf14s9F
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index 367389526b41..b3b6aa4e0fa3 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -312,6 +312,10 @@ resin {
- 	};
- };
- 
-+&pmi8998_rradc {
-+	status = "okay";
-+};
-+
- /* QUAT I2S Uses 1 I2S SD Line for audio on TAS2559/60 amplifiers */
- &q6afedai {
- 	qi2s@22 {
--- 
-2.35.1
+On Tue, Feb 15, 2022 at 05:56:17AM +0000, Joel Stanley wrote:
+> On Mon, 14 Feb 2022 at 12:05, Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx=
+=2Enet> wrote:
+> >
+> > On Wed, Feb 02, 2022 at 02:10:44PM +0200, Andy Shevchenko wrote:
+> > > On Wed, Feb 2, 2022 at 2:01 PM Jonathan Neusch=C3=A4fer
+> > > <j.neuschaefer@gmx.net> wrote:
+> > > > On Tue, Feb 01, 2022 at 11:42:11PM +0000, Joel Stanley wrote:
+> > > > > On Tue, 1 Feb 2022 at 13:05, Jonathan Neusch=C3=A4fer <j.neuschae=
+fer@gmx.net> wrote:
+> > >
+> > > ...
+> > >
+> > > > > I assume you're sending a v6 to fix some of the warnings?
+> > > >
+> > > > No, the warnings are fairly independent of this patchset, it's just=
+ that
+> > > > the adjacent pinctrl-npcm7xx driver started to be built by the bot,=
+ due
+> > > > to my Kconfig change. I'll fix them in a separate patchset.
+> > >
+> > > I guess you need to fix that first.
+> > >
+> > > Because now and then all CIs will complain to your patch and confuse =
+people.
+> >
+> > FWIW, Linus has applied the npcm7xx fixes to for-next in the pinctrl tr=
+ee,
+> > which means that they are not blocking this patchset anymore, AFAICS.
+>=20
+> I've applied the device tree changes, and I will send a pull request
+> for v5.18 with those.
 
+Thanks!
+
+
+> I assume you want Linus to merge the pinctrl bindings and driver
+> through his tree.
+
+Yes, that sounds alright.
+
+
+Jonathan
+
+--UHIAxUhFauf14s9F
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmIL4IgACgkQCDBEmo7z
+X9tgPg/9GbVJ8o9ImxZI9vUt8PXnJrwRertT1KoqTqsDH0QH7OV/DHkhwAcy/yqr
+wTOVb4U1JTAyfLDUkBBmWOBsM/qKxxzS98YHYbeQSKgUfHNgw1eHdbdizk2nkJoZ
+YlKICyy7iwVLDo9DEk3//vlV5FxEwzSpcWi0ezc1uTHK9UWRB0Y6UCrEIbfpWEy1
+twd2mvUi5T93F09L50diwPevgLFtDyoF+CfyyKwX1bwLrf5W0V9hDS1kGvLsZHc6
+fIy5e/ojgOBkU5nUU1lhagDtL0dw1GCLpRy7RlA3c2iJsQMtDx/8K/SDOxluKPJ0
+SJD/a7s/yX1ylEG9//H17URcD8aRfbegodOa2W2+U+kBUpIta2NzA5cdaEwbsT4R
+iTKasMt4FMeegas6Hn/+BT81Uv/2GnE1wZ90TWXBFZR+0MYLaL/LGU0vVOpkLVb0
+EMDppg9IS0evPiKe5yeaYRV0jF4LM5/TTRiWJ8sdvRlnmgISUl2n6X0xXwgLMiIi
+Wcv0NpUtOQd+BBQT8UFGf7cb1pSDKj/r8qWMBR0pUFSNghwcIttSoO09USMELKLm
+ZW5eKL3V5UBiowKK+a2A6cmrzXAILwk72onoHIulxXnAQIba9QwlLHofOzxNwHxG
+4mPpbjk8UMgbhqphCfIYFimIAIIDc9sAjsMc1zG4pAP/Z7vldOQ=
+=WIma
+-----END PGP SIGNATURE-----
+
+--UHIAxUhFauf14s9F--
