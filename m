@@ -2,65 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A5764B61EF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 05:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A51E4B6234
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 05:43:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233663AbiBOEEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 23:04:05 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38396 "EHLO
+        id S231404AbiBOEoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 23:44:01 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231873AbiBOEED (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 23:04:03 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADEA7F1AD4;
-        Mon, 14 Feb 2022 20:03:45 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: krisman)
-        with ESMTPSA id A6AEC1F43572
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1644897824;
-        bh=VG0gC/LlBYOoQhn5utxIdgmPSt7IfHbptUv0GV7NTBo=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=Ub6dmZitRz45cR9qIKXjTsVXU7KmUgK7H9oGw3VoIqMVy2lNgKyINSxJJ4Mxa9LeQ
-         OSnaNgDQeenPnKVsHAu7FJW2ksmbmmFKxFZ9DhHBEOytGwf5+mTHiU3/rYyeYKZgAI
-         353erPgVFDlsdFJrWkpczRGLtWgrEDwEWidKsuTfjbzacs2ubqbjvCv53HpQkQgTDO
-         sveWRuEs68cTQpVqRLx8QCaXWu0m6E77IzTClO5SoAIoZgIg7biB2Noa4C7YbpiD3/
-         +EhnyHcdKXZg/HDB7nczR4ihB2+cz0qN/2Cx4c4omJOGZErQyt9d55dDNGrym2WOmM
-         PBwrKU+TudUGg==
-From:   Gabriel Krisman Bertazi <krisman@collabora.com>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Sean Paul <sean@poorly.run>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Simon Ser <contact@emersion.fr>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Alex Deucher <alexander.deucher@amd.com>,
-        Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v8 1/3] gpu: drm: separate panel orientation property
- creating and value setting
-Organization: Collabora
-References: <20220208084234.1684930-1-hsinyi@chromium.org>
-        <87leydhqt3.fsf@collabora.com>
-        <CAJMQK-igpiYj-pkgG9amrQuVzf1Mc9BDDOwOdKLUbceKr=CHiQ@mail.gmail.com>
-Date:   Mon, 14 Feb 2022 23:03:39 -0500
-In-Reply-To: <CAJMQK-igpiYj-pkgG9amrQuVzf1Mc9BDDOwOdKLUbceKr=CHiQ@mail.gmail.com>
-        (Hsin-Yi Wang's message of "Tue, 15 Feb 2022 11:15:02 +0800")
-Message-ID: <87czjoixno.fsf@collabora.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
+        with ESMTP id S229658AbiBOEoB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 23:44:01 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CFFB205C2;
+        Mon, 14 Feb 2022 20:43:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1644900229; x=1676436229;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=tNvbhTo5yoDWvXEbejXdKHBOPnCfq/ULbpuyV4zgSTQ=;
+  b=zUjFTFNxB7dc3LjueoMaa0T3XUCkRyBCEnOXyKAkcW0bZ3ELEer0b9TX
+   9g1rnf4CxI2oREl4KTElDE5rldIWhmcrgNggraKQmPghwin/KJ2KrFAy0
+   G/ytV8cJRFyat7hoKJRJ3T27TskDz/T6b7yFNxCGrft2KRza8fjs95gw6
+   k=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 14 Feb 2022 20:43:49 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 20:43:48 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Mon, 14 Feb 2022 20:43:48 -0800
+Received: from [10.216.12.129] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Mon, 14 Feb
+ 2022 20:43:42 -0800
+Subject: Re: [PATCH 1/2] ASoC: codec: wcd938x: Add switch control for
+ selecting CTIA/OMTP Headset
+To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
+        <alsa-devel@alsa-project.org>, <bgoswami@codeaurora.org>,
+        <bjorn.andersson@linaro.org>, <broonie@kernel.org>,
+        <devicetree@vger.kernel.org>, <judyhsiao@chromium.org>,
+        <lgirdwood@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <perex@perex.cz>,
+        <quic_plai@quicinc.com>, <robh+dt@kernel.org>,
+        <rohitkr@codeaurora.org>, <srinivas.kandagatla@linaro.org>,
+        <tiwai@suse.com>
+CC:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1644668672-29790-1-git-send-email-quic_srivasam@quicinc.com>
+ <1644668672-29790-2-git-send-email-quic_srivasam@quicinc.com>
+ <CAE-0n52uBY7GzjtFwV67y5mfqZRoK9ooW-kT3=4sH=8NtVK7FQ@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+Message-ID: <cc99e97d-5256-b121-2785-1290505bc994@quicinc.com>
+Date:   Tue, 15 Feb 2022 10:13:39 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+In-Reply-To: <CAE-0n52uBY7GzjtFwV67y5mfqZRoK9ooW-kT3=4sH=8NtVK7FQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,95 +76,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hsin-Yi Wang <hsinyi@chromium.org> writes:
 
-> On Tue, Feb 15, 2022 at 9:17 AM Gabriel Krisman Bertazi
-> <krisman@collabora.com> wrote:
+On 2/15/2022 3:17 AM, Stephen Boyd wrote:
+Thanks for your time Stephen!!!
+> Quoting Srinivasa Rao Mandadapu (2022-02-12 04:24:31)
+>> diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
+>> index eff200a..08d16a9 100644
+>> --- a/sound/soc/codecs/wcd938x.c
+>> +++ b/sound/soc/codecs/wcd938x.c
+>> @@ -194,6 +194,7 @@ struct wcd938x_priv {
+>>          int ear_rx_path;
+>>          int variant;
+>>          int reset_gpio;
+>> +       int us_euro_gpio;
+>>          u32 micb1_mv;
+>>          u32 micb2_mv;
+>>          u32 micb3_mv;
+>> @@ -4196,6 +4197,33 @@ static void wcd938x_dt_parse_micbias_info(struct device *dev, struct wcd938x_pri
+>>                  dev_info(dev, "%s: Micbias4 DT property not found\n", __func__);
+>>   }
 >>
->> Hsin-Yi Wang <hsinyi@chromium.org> writes:
->>
->> > drm_dev_register() sets connector->registration_state to
->> > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
->> > drm_connector_set_panel_orientation() is first called after
->> > drm_dev_register(), it will fail several checks and results in following
->> > warning.
->>
->> Hi,
->>
->> I stumbled upon this when investigating the same WARN_ON on amdgpu.
->> Thanks for the patch :)
->>
->> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
->> > index a50c82bc2b2fec..572ead7ac10690 100644
->> > --- a/drivers/gpu/drm/drm_connector.c
->> > +++ b/drivers/gpu/drm/drm_connector.c
->> > @@ -1252,7 +1252,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
->> >   *   INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
->> >   *   coordinates, so if userspace rotates the picture to adjust for
->> >   *   the orientation it must also apply the same transformation to the
->> > - *   touchscreen input coordinates. This property is initialized by calling
->> > + *   touchscreen input coordinates. This property value is set by calling
->> >   *   drm_connector_set_panel_orientation() or
->> >   *   drm_connector_set_panel_orientation_with_quirk()
->> >   *
->> > @@ -2341,8 +2341,8 @@ EXPORT_SYMBOL(drm_connector_set_vrr_capable_property);
->> >   * @connector: connector for which to set the panel-orientation property.
->> >   * @panel_orientation: drm_panel_orientation value to set
->> >   *
->> > - * This function sets the connector's panel_orientation and attaches
->> > - * a "panel orientation" property to the connector.
->> > + * This function sets the connector's panel_orientation value. If the property
->> > + * doesn't exist, it will try to create one.
->> >   *
->> >   * Calling this function on a connector where the panel_orientation has
->> >   * already been set is a no-op (e.g. the orientation has been overridden with
->> > @@ -2373,19 +2373,12 @@ int drm_connector_set_panel_orientation(
->> >       info->panel_orientation = panel_orientation;
->> >
->> >       prop = dev->mode_config.panel_orientation_property;
->> > -     if (!prop) {
->> > -             prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
->> > -                             "panel orientation",
->> > -                             drm_panel_orientation_enum_list,
->> > -                             ARRAY_SIZE(drm_panel_orientation_enum_list));
->> > -             if (!prop)
->> > -                     return -ENOMEM;
->> > -
->> > -             dev->mode_config.panel_orientation_property = prop;
->> > -     }
->> > +     if (!prop &&
->> > +         drm_connector_init_panel_orientation_property(connector) < 0)
->> > +             return -ENOMEM;
->> >
->>
->> In the case where the property has not been created beforehand, you
->> forgot to reinitialize prop here, after calling
->> drm_connector_init_panel_orientation_property().  This means
-> hi Gabriel,
+>> +static bool wcd938x_swap_gnd_mic(struct snd_soc_component *component, bool active)
+>> +{
+>> +       int value;
+>> +
+>> +       struct wcd938x_priv *wcd938x;
+>> +
+>> +       if (!component) {
+> So component is NULL
 >
-> drm_connector_init_panel_orientation_property() will create prop if
-> it's null. If prop fails to be created there, it will return -ENOMEM.
-
-Yes.  But *after the property is successfully created*, the prop variable is still
-NULL.  And then you call the following, using prop, which is still NULL:
-
->> > +     drm_object_property_set_value(&connector->base, prop,
->> > +                                   info->panel_orientation);
-
-This will do property->dev right on the first line of code, and dereference the
-null prop pointer.
-
-You must do
-
-  prop = dev->mode_config.panel_orientation_property;
-
-again after drm_connector_init_panel_orientation_property successfully
-returns, or call drm_object_property_set_value using
-dev->mode_config.panel_orientation_property directly:
-
-  drm_object_property_set_value(&connector->base,
-			dev->mode_config.panel_orientation_property
-		        info->panel_orientation);
-
--- 
-Gabriel Krisman Bertazi
+>> +               dev_err(component->dev, "%s component is NULL\n", __func__);
+> And now we deref component. Great NULL pointer exception Batman! Please
+> test your code and remove useless checks. It makes the code harder to
+> read and slows things down.
+Okay. In last minute, changed from pr_err to dev_err and overlooked this 
+mistake. Will remove it.
+>
+>> +               return false;
+>> +       }
+>> +
+>> +       wcd938x = snd_soc_component_get_drvdata(component);
+>> +       if (!wcd938x) {
+>> +               dev_err(component->dev, "%s private data is NULL\n", __func__);
+> Is this possible? I doubt it so can we just remove it?
+Okay. Will remove it.
+>
+>> +               return false;
+>> +       }
+>> +
+>> +       value = gpio_get_value(wcd938x->us_euro_gpio);
+>> +
+>> +       gpio_set_value(wcd938x->us_euro_gpio, !value);
+>> +       /* 20us sleep required after changing the gpio state*/
+> Add a space before ending comment with */
+Okay.
+>
+>> +       usleep_range(20, 30);
+>> +
+>> +       return true;
+>> +}
+>> +
+>> +
+>>   static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device *dev)
+>>   {
+>>          struct wcd_mbhc_config *cfg = &wcd938x->mbhc_cfg;
+>> @@ -4208,6 +4236,16 @@ static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device
+>>                  return wcd938x->reset_gpio;
+>>          }
+>>
+>> +       wcd938x->us_euro_gpio = of_get_named_gpio(dev->of_node, "us-euro-gpios", 0);
+> Why do we need to use of GPIO APIs here? Can this driver be converted to
+> use GPIO descriptors via the gpiod APIs?
+Okay.  will look into it and proceed accordingly!!!
+>
+>> +       if (wcd938x->us_euro_gpio < 0) {
+>> +               dev_err(dev, "Failed to get us-euro-gpios gpio: err = %d\n", wcd938x->us_euro_gpio);
+>> +       } else {
+>> +               cfg->swap_gnd_mic = wcd938x_swap_gnd_mic;
+>> +               gpio_direction_output(wcd938x->us_euro_gpio, 0);
+>> +               /* 20us sleep required after pulling the reset gpio to LOW */
+>> +               usleep_range(20, 30);
+>> +       }
+>> +
