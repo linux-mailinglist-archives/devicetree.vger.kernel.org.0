@@ -2,69 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 138E24B5FDB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 02:12:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 007224B5FEE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 02:17:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230474AbiBOBMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Feb 2022 20:12:18 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39564 "EHLO
+        id S232314AbiBOBRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Feb 2022 20:17:13 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230412AbiBOBMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 20:12:17 -0500
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53E3DDEBA
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 17:12:09 -0800 (PST)
-Received: by mail-oo1-xc2a.google.com with SMTP id p190-20020a4a2fc7000000b0031820de484aso21399193oop.9
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 17:12:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=2z0HLBtdwl7RuykFNoLcrOpeQoN2RrPQlxsn50U+srI=;
-        b=Q85Iy1x0nXlLnvvWd0qW9X3s9tgMAJ7AnlBSq3D89DE5VcsaJ25zy163dK52rAgG+C
-         G1Rp6kBsRRKD5HB17M3DH8DPVV2g7hkKKTDgG9GLsFrH4GEKh57ytrF0L8TgjrWgWNpx
-         beKuRv5pUE2ndVw+oZhC8NrzutWuu1E2niMDc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=2z0HLBtdwl7RuykFNoLcrOpeQoN2RrPQlxsn50U+srI=;
-        b=n31ezHX4agwkHhKZ8HB3Dal2Wc9lJRU554p+N0iafxhMRUHejHBbH4nAvxW1ZWRvJd
-         J5YjH36lGpEt+v06fptcd1RyMz9lS7/4QfxcDwqDxnY7GL46DMJRVzsHrgUS4jMC2UC1
-         cREDXZKDOhhQhpNVnzc8Y9Olec+QkqfAjfYk/LijBuIsfp35FaY8KS+E6/UfrkUh9CeD
-         zho0d5e6zxPloptlr149OCw9JbJhbBnB2AClBDFDiP9Uqej1fR0DU4WRoi7t+jne9zSU
-         A5+cfphCh+b3NqeTisW2TY5vxuZU50Y15DzFJ7VxdDwsIJqdwnXoSHKCs0jpbNzHgOUH
-         KIFQ==
-X-Gm-Message-State: AOAM530ul0P+Xq3lK4nqpriCRLH9eTRs/3n3ThHbq3r5AfZlZtiFNtdm
-        gbsNb3QobZzhFXX2aAoRBVgHTLuFO79MW8feFXbkYA==
-X-Google-Smtp-Source: ABdhPJzqr0qj+6PGWqY06otbFxJxLPzm/naHHRbTzZGQw8jz3YGa4aV1SMC/JucpyLkPPx1hqwG9ibRXSdkd51IAglA=
-X-Received: by 2002:a05:6870:d413:: with SMTP id i19mr598159oag.54.1644887528729;
- Mon, 14 Feb 2022 17:12:08 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 14 Feb 2022 17:12:08 -0800
+        with ESMTP id S231664AbiBOBRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Feb 2022 20:17:12 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E7BB97BB8;
+        Mon, 14 Feb 2022 17:17:03 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: krisman)
+        with ESMTPSA id 23E821F43839
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1644887821;
+        bh=z+Pkjj4FCBWwphTASrycJ+DSyiPQpio9khcfraStadg=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=HAWv1GWk79QOFTN1XRGwER8IeQYSu+lF/EGQF2nZDTedBqNrkhG7xPrRYOUAtZAdo
+         abUnkEPUAjC2K1ibW0LmXH7mduwUhIVTXAoGqr3uSC3mUWKulcQppQji8tX0BvFlw7
+         amoDp6LQsvGVLTvIq3LgXyvHBbh3g5FEuhx4dDtmEOATvWiqOXMJeHOb0IoAf9ysme
+         VaDslraajxiKEbP5m/iLYi3QSmPewPf6sQisKIWo1FoZ1Ho8/CqgYWPm+coIUbQsF8
+         JLs1qIdVs/NEz4GvkrCTJvJuEdt/6XG4TiXnEsa5lDLL/4/uuWcwBnIXpIQwBn7Cp/
+         ySE5zSpd49vYg==
+From:   Gabriel Krisman Bertazi <krisman@collabora.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+        intel-gfx@lists.freedesktop.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Sean Paul <sean@poorly.run>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Simon Ser <contact@emersion.fr>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Alex Deucher <alexander.deucher@amd.com>,
+        Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH v8 1/3] gpu: drm: separate panel orientation property
+ creating and value setting
+References: <20220208084234.1684930-1-hsinyi@chromium.org>
+Date:   Mon, 14 Feb 2022 20:16:56 -0500
+In-Reply-To: <20220208084234.1684930-1-hsinyi@chromium.org> (Hsin-Yi Wang's
+        message of "Tue, 8 Feb 2022 16:42:32 +0800")
+Message-ID: <87leydhqt3.fsf@collabora.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
 MIME-Version: 1.0
-In-Reply-To: <1644850708-11099-6-git-send-email-quic_srivasam@quicinc.com>
-References: <1644850708-11099-1-git-send-email-quic_srivasam@quicinc.com> <1644850708-11099-6-git-send-email-quic_srivasam@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 14 Feb 2022 17:12:08 -0800
-Message-ID: <CAE-0n53iKwT8u=d2KG5KX8fJgFs1JhTnaGCfG=OLarhvLdmf3Q@mail.gmail.com>
-Subject: Re: [RESEND v13 05/10] ASoC: qcom: Add register definition for codec
- rddma and wrdma
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, quic_plai@quicinc.com, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
-Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,60 +65,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-02-14 06:58:23)
-> This patch adds register definitions for codec read dma and write dma
+Hsin-Yi Wang <hsinyi@chromium.org> writes:
 
- git grep "This patch" -- Documentation/process/
+> drm_dev_register() sets connector->registration_state to
+> DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> drm_connector_set_panel_orientation() is first called after
+> drm_dev_register(), it will fail several checks and results in following
+> warning.
 
-> lpass interface.
+Hi,
+
+I stumbled upon this when investigating the same WARN_ON on amdgpu.
+Thanks for the patch :)
+
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index a50c82bc2b2fec..572ead7ac10690 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -1252,7 +1252,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+>   *	INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
+>   *	coordinates, so if userspace rotates the picture to adjust for
+>   *	the orientation it must also apply the same transformation to the
+> - *	touchscreen input coordinates. This property is initialized by calling
+> + *	touchscreen input coordinates. This property value is set by calling
+>   *	drm_connector_set_panel_orientation() or
+>   *	drm_connector_set_panel_orientation_with_quirk()
+>   *
+> @@ -2341,8 +2341,8 @@ EXPORT_SYMBOL(drm_connector_set_vrr_capable_property);
+>   * @connector: connector for which to set the panel-orientation property.
+>   * @panel_orientation: drm_panel_orientation value to set
+>   *
+> - * This function sets the connector's panel_orientation and attaches
+> - * a "panel orientation" property to the connector.
+> + * This function sets the connector's panel_orientation value. If the property
+> + * doesn't exist, it will try to create one.
+>   *
+>   * Calling this function on a connector where the panel_orientation has
+>   * already been set is a no-op (e.g. the orientation has been overridden with
+> @@ -2373,19 +2373,12 @@ int drm_connector_set_panel_orientation(
+>  	info->panel_orientation = panel_orientation;
+>  
+>  	prop = dev->mode_config.panel_orientation_property;
+> -	if (!prop) {
+> -		prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+> -				"panel orientation",
+> -				drm_panel_orientation_enum_list,
+> -				ARRAY_SIZE(drm_panel_orientation_enum_list));
+> -		if (!prop)
+> -			return -ENOMEM;
+> -
+> -		dev->mode_config.panel_orientation_property = prop;
+> -	}
+> +	if (!prop &&
+> +	    drm_connector_init_panel_orientation_property(connector) < 0)
+> +		return -ENOMEM;
 >
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
-> index 7cc3763..e059c4a 100644
-> --- a/sound/soc/qcom/lpass.h
-> +++ b/sound/soc/qcom/lpass.h
-> @@ -39,6 +39,29 @@
->                         return -EINVAL;         \
->         } while (0)
->
-> +static inline bool is_cdc_dma_port(int dai_id)
-> +{
-> +       switch (dai_id) {
-> +       case LPASS_CDC_DMA_RX0 ... LPASS_CDC_DMA_RX9:
-> +       case LPASS_CDC_DMA_TX0 ... LPASS_CDC_DMA_TX8:
-> +       case LPASS_CDC_DMA_VA_TX0 ... LPASS_CDC_DMA_VA_TX8:
-> +               return true;
-> +       default:
+In the case where the property has not been created beforehand, you
+forgot to reinitialize prop here, after calling
+drm_connector_init_panel_orientation_property().  This means
+drm_object_property_set_value() will be called with a NULL second argument
+and Oops the kernel.
 
-Drop case
 
-> +               return false;
-> +       }
+> -	drm_object_attach_property(&connector->base, prop,
+> -				   info->panel_orientation);
+> +	drm_object_property_set_value(&connector->base, prop,
+> +				      info->panel_orientation);
 
-return false;
 
-would be shorter.
-
-> +}
-> +
-> +static inline bool is_rxtx_cdc_dma_port(int dai_id)
-> +{
-> +       switch (dai_id) {
-> +       case LPASS_CDC_DMA_RX0 ... LPASS_CDC_DMA_RX9:
-> +       case LPASS_CDC_DMA_TX0 ... LPASS_CDC_DMA_TX8:
-> +               return true;
-> +       default:
-> +               return false;
-> +       }
-
-Same.
-
-> +}
-> +
->  struct lpaif_i2sctl {
->         struct regmap_field *loopback;
->         struct regmap_field *spken;
+-- 
+Gabriel Krisman Bertazi
