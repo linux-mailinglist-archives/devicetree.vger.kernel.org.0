@@ -2,54 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DE814B7203
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:41:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61CFB4B714D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:40:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233644AbiBOPXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 10:23:08 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60654 "EHLO
+        id S239669AbiBOPXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 10:23:02 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230428AbiBOPXH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 10:23:07 -0500
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA1838A6ED;
-        Tue, 15 Feb 2022 07:22:55 -0800 (PST)
-Received: by mail-io1-f50.google.com with SMTP id h5so512007ioj.3;
-        Tue, 15 Feb 2022 07:22:55 -0800 (PST)
+        with ESMTP id S239713AbiBOPXB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 10:23:01 -0500
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B1E28A6DF
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 07:22:49 -0800 (PST)
+Received: by mail-io1-f51.google.com with SMTP id d188so24216231iof.7
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 07:22:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=9J4rDa9s4wmqYQBOVueBwn1a76vdE1euAb2VZB7wcmc=;
-        b=L/hkRf5XzSp29Ns6yINvxtgTJ/3cmfF9QhlZHfEgHHqG6lIP2ELC+IWQUcVmccaT5A
-         pAlZ1Sk8NidzZJTrfg1vQuHtzwOB2ihl2J4otPyzsGCNEXFq7wQClgpOCH5FbMkOORbs
-         a3eh3OwTu6HKcWk3w+RKifj+89W7ZXd94GCJ9EXnSLyJeZ9k5YQGcaqY+4XyORrls5DM
-         BP0ZfulAGcqJSbbIn0gRZBZORNwMDax65/VhFpjQ2IgJ+ebVZEn7X8V2J/n/soeSFczo
-         tWqlB18OYzqlxoN4L/rxVRk7d6Ad7EN6c/apVAmiQ4hhPnc4xmPorzxo0rYUBvyhXljB
-         6Zrg==
-X-Gm-Message-State: AOAM530NDyD77V1SshvUHpNeVvg4XJAQn80GjA/B6pIG/7vhWpEPYt+l
-        HM8WbPF1MUUbYhDvmavKGw==
-X-Google-Smtp-Source: ABdhPJwWfDOErqZzCQjf54gJc9fHJ8Up5VXN1xQ8G+SwjgqvNHngDAkHgslyzJpOfgzzODVEJusx8g==
-X-Received: by 2002:a6b:5a07:: with SMTP id o7mr2716438iob.9.1644938575136;
-        Tue, 15 Feb 2022 07:22:55 -0800 (PST)
+        bh=XhzAWVt3fjQKRJz9q7eT7XZzXXhJRSw+HdG8hBMs3vw=;
+        b=k/q0NYhfASzp00p39jCSDpKKviq60AOZpVzQRgvt1VhdyIHAJ4lEdJnJEY4IBQq5CD
+         Er5qMki1NJkmTrGghAGxAql+UwYypW15dSkC2ppM85FO9+MUqdKyd/+4oeg9aBQQuiPs
+         rlxJAi1Cj/s6Id2dXGjl9XEHybX3VOmoP1UGu9qXw5hgZeYFSW8MKSnJ2CTplS1wWk+d
+         lN+WN6YdMnnnXkA/Qr/wmZMs3qRz7IdaJYoNUg3sg03By4Z7RtZslPhVYm8vmMzau9iM
+         WbmYCtP2kUehbVICRjaw8/V3/KiOwYQBQAxwyKjCthyT+bUnbhNOrIKafrSws+EEQ4+a
+         XZAA==
+X-Gm-Message-State: AOAM532sSQ/KqVyXKdCHUwq67WmcFR7kgENha9DzjmXBsUe1BJD8FQEH
+        bRGC85EklUwn6fP98lnyrg==
+X-Google-Smtp-Source: ABdhPJy9JFtwUbiq7T/ZLKKZHSXtiaR2kjV/Np9yM3ec7E+Tf5Z817N+bGtrTY1u3170v2yAn8/MMg==
+X-Received: by 2002:a05:6638:2493:: with SMTP id x19mr3018228jat.219.1644938568584;
+        Tue, 15 Feb 2022 07:22:48 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id m12sm23475626iow.54.2022.02.15.07.22.52
+        by smtp.gmail.com with ESMTPSA id v16sm19583530ilm.25.2022.02.15.07.22.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 07:22:53 -0800 (PST)
-Received: (nullmailer pid 3450866 invoked by uid 1000);
+        Tue, 15 Feb 2022 07:22:47 -0800 (PST)
+Received: (nullmailer pid 3450855 invoked by uid 1000);
         Tue, 15 Feb 2022 15:22:45 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     linus.walleij@linaro.org, richard@nod.at,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski@canonical.com, miquel.raynal@bootlin.com,
-        vigneshr@ti.com, devicetree@vger.kernel.org, robh+dt@kernel.org
-In-Reply-To: <20220211120842.3388592-1-clabbe@baylibre.com>
-References: <20220211120842.3388592-1-clabbe@baylibre.com>
-Subject: Re: [PATCH v3] dt-bindings: mtd: drop mtd/cortina,gemini-flash.txt
+To:     alyssa.rosenzweig@collabora.com
+Cc:     steven.price@arm.com, dri-devel@lists.freedesktop.org,
+        tomeu.vizoso@collabora.com, daniel@ffwll.ch,
+        devicetree@vger.kernel.org, airlied@linux.ie
+In-Reply-To: <20220211202728.6146-2-alyssa.rosenzweig@collabora.com>
+References: <20220211202728.6146-1-alyssa.rosenzweig@collabora.com> <20220211202728.6146-2-alyssa.rosenzweig@collabora.com>
+Subject: Re: [PATCH 1/9] dt-bindings: Add arm,mali-valhall compatible
 Date:   Tue, 15 Feb 2022 09:22:45 -0600
-Message-Id: <1644938565.093416.3450865.nullmailer@robh.at.kernel.org>
+Message-Id: <1644938565.038499.3450854.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -61,42 +59,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Feb 2022 12:08:42 +0000, Corentin Labbe wrote:
-> Drop mtd/cortina,gemini-flash.txt since it is nearly already handled by
-> Documentation/devicetree/bindings/mtd/mtd-physmap.yaml.
+On Fri, 11 Feb 2022 15:27:20 -0500, alyssa.rosenzweig@collabora.com wrote:
+> From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
 > 
-> We add jedec-flash to list of compatible because one board (gemini-dlink-dns-313.dts) needs it.
-> See commit a10d862e585e ("ARM: dts: Fix the DNS-313 flash compatible")
-> The flash on the DNS-313 needs to be probed as JEDEC, it does not conform to the common CFI standard.
-> 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
-> Change since v1
-> - fixed typo in syscon
-> 
-> Change since v2
-> - Added reason of adding jedec-flash
-> 
->  .../bindings/mtd/cortina,gemini-flash.txt     | 24 -------------------
->  .../devicetree/bindings/mtd/mtd-physmap.yaml  | 18 +++++++++++++-
->  2 files changed, 17 insertions(+), 25 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1591614
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.example.dt.yaml: gpu@ffe40000: compatible: ['amlogic,meson-g12a-mali', 'arm,mali-bifrost'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
 
+doc reference errors (make refcheckdocs):
 
-flash@0: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/r8a73a4-ape6evm.dt.yaml
+See https://patchwork.ozlabs.org/patch/1591823
 
-nor@20000000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/bcm53340-ubnt-unifi-switch8.dt.yaml
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
