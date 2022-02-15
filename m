@@ -2,61 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B0424B7ADA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 23:58:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AE6F4B7B10
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 00:12:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237209AbiBOW6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 17:58:48 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34768 "EHLO
+        id S244425AbiBOXMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 18:12:15 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234816AbiBOW6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 17:58:48 -0500
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E507B91D0
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 14:58:37 -0800 (PST)
-Received: by mail-il1-f176.google.com with SMTP id d7so157669ilf.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 14:58:37 -0800 (PST)
+        with ESMTP id S238786AbiBOXMO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 18:12:14 -0500
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77F901400A
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 15:12:03 -0800 (PST)
+Received: by mail-yb1-xb33.google.com with SMTP id l125so762761ybl.4
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 15:12:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=loAfDoGLfr/iqSIkMgZ8bYEjmt72BeZCLhtdpL5OIaQ=;
+        b=gNwn4w1BBG0QO8d7il/hS7XnsvBv8CEpuRu43msQBQZCnhs9Fnj5h72+hczDMizL64
+         9MeW8FDditxJs7M787wypzS7HhaJKVRx4aLxywV+pZoSHdANKzvX0JPQx2u6to6zWfDy
+         ZXcynRo469aF4QZX+xgx+6suPf+EIZz6Cfvl8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=jhwPkQ4nu4CQZZkCQrqUdSTbC/f73+pryCWaVrvAi9s=;
-        b=3793WFYXCt5XMaVNkjNcxSNcwt1Gl0HscOkxuys5w4h/RJP0UX+I47weVCxDnAMkdx
-         WfoY3oP1EdijeV68ywGn4gdxH4ZqOs+RUK3/5g0NwqeNUc9znQx5y8817LjPYCNAiYVK
-         PtQddBhypASQN8dx4ZKAmmz5ZsuIixBnndlrYluJt1t9oFrPTC6ltg3loXHKqSgflZSA
-         QF1JMUQx4JFMeTuA4MglD8+DYtk+LgjvwkzTXwh2iHXuPRC5IO1RxX+s9qxfZXNqBrcV
-         t0XHOSMYBZHqI8brfNHU0I1Y3AIo8i46HkFCJ1ifkRScjSysAlpfnR5UK69/+nbbc6FJ
-         Bf6w==
-X-Gm-Message-State: AOAM531U/PYLfK5mtn804mGGPV9xQ3bRiAJEb8Q8vEGS5g9hILAq4UVe
-        v2nXwp2wuMTm9C0pIC20Rg==
-X-Google-Smtp-Source: ABdhPJxHrUAh2fO163B9Q4HY53LTN0OymXX4feRi84FRk48Xyq+N514/ok3GvH3xckC9tQfwpWs0qQ==
-X-Received: by 2002:a92:d7c3:: with SMTP id g3mr791801ilq.55.1644965916881;
-        Tue, 15 Feb 2022 14:58:36 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id z18sm19938395ilq.47.2022.02.15.14.58.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 14:58:36 -0800 (PST)
-Received: (nullmailer pid 4075130 invoked by uid 1000);
-        Tue, 15 Feb 2022 22:58:35 -0000
-Date:   Tue, 15 Feb 2022 16:58:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?M=E5rten?= Lindahl <marten.lindahl@axis.com>
-Cc:     kernel@axis.com, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2] of: dma_configure: Reuse existing DMA map range
-Message-ID: <YgwwG+Q/QrzwJVwk@robh.at.kernel.org>
-References: <20220214153208.2984026-1-marten.lindahl@axis.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=loAfDoGLfr/iqSIkMgZ8bYEjmt72BeZCLhtdpL5OIaQ=;
+        b=Fna9gkAskb4YBivl+oJPEanxFplr7Wu6EH69km9wcSD7plYm0fhyMTxfKYZ7rZsPJl
+         ckL/8bbeiAgXQrGpKhcD9MKC9GUOoyXtKwUNw8pAd1POKKiYMc13wT+89WyGpWg6P035
+         lBUWTVaI4Ht2giuMB/xaDaRT2Ytul4L8tOy6tepM5Sz8QqLEYqD7X2jEdktSVjk0zbET
+         WPpj1z35yEVVqDjExjWkFACBMNcYf2jBomUk0FBMcJK+ckvqyLYGCmUbkP1KXF/2YLy5
+         rRmzqq7Cqs/SnSxVKud5+EWl4cIx9Doo/zp27DUyXP0X6X6Aa0PEd33sikpQGAWdx5UX
+         z1rA==
+X-Gm-Message-State: AOAM5323L+Yb6lJqfZpOLT+WuGYAzE4EJlSaMe6YyT0Q0tnmCNXIIBvm
+        tcZYG8fO0KF291hbxZSXbKERGWVJhEiVvlrCX2lS
+X-Google-Smtp-Source: ABdhPJyU6ADhFsSkKFw6pjjAvZ21yhhrWabJjiIocdygUARwxsgbNK6NODHq3oiHUoD9dlFnAQQTVwPWoB0Pj4jiqlw=
+X-Received: by 2002:a25:c794:: with SMTP id w142mr1196085ybe.632.1644966722684;
+ Tue, 15 Feb 2022 15:12:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220214153208.2984026-1-marten.lindahl@axis.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <20220215090211.911366-1-atishp@rivosinc.com> <20220215090211.911366-5-atishp@rivosinc.com>
+ <CAAhSdy29nzXFesfeMjY_FkTmTZ4yrHjGxTweBCVn-wFFHnMV=A@mail.gmail.com>
+In-Reply-To: <CAAhSdy29nzXFesfeMjY_FkTmTZ4yrHjGxTweBCVn-wFFHnMV=A@mail.gmail.com>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Tue, 15 Feb 2022 15:11:51 -0800
+Message-ID: <CAOnJCUJR1V2xBxr61xYH6PAYEooqGuMtuyvA-wWXFVAwYsG3Gw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] RISC-V: Implement multi-letter ISA extension
+ probing framework
+To:     Anup Patel <anup@brainfault.org>
+Cc:     Atish Patra <atishp@rivosinc.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,66 +72,142 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Feb 2022 16:32:08 +0100, Mårten Lindahl wrote:
-> When unbinding/binding a driver with DMA mapped memory, the DMA map is
-> not freed when the driver is reloaded. This leads to a memory leak when
-> the DMA map is overwritten when reprobing the driver.
-> 
-> This can be reproduced with a platform driver having a dma-range:
-> 
-> dummy {
-> 	...
-> 	#address-cells = <0x2>;
-> 	#size-cells = <0x2>;
-> 	ranges;
-> 	dma-ranges = <...>;
-> 	...
-> };
-> 
-> and then unbinding/binding it:
-> 
-> ~# echo soc:dummy >/sys/bus/platform/drivers/<driver>/unbind
-> 
-> DMA map object 0xffffff800b0ae540 still being held by &pdev->dev
-> 
-> ~# echo soc:dummy >/sys/bus/platform/drivers/<driver>/bind
-> ~# echo scan > /sys/kernel/debug/kmemleak
-> ~# cat /sys/kernel/debug/kmemleak
-> unreferenced object 0xffffff800b0ae540 (size 64):
->   comm "sh", pid 833, jiffies 4295174550 (age 2535.352s)
->   hex dump (first 32 bytes):
->     00 00 00 80 00 00 00 00 00 00 00 00 00 00 00 00  ................
->     00 00 00 80 00 00 00 00 00 00 00 80 00 00 00 00  ................
->   backtrace:
->     [<ffffffefd1694708>] create_object.isra.0+0x108/0x344
->     [<ffffffefd1d1a850>] kmemleak_alloc+0x8c/0xd0
->     [<ffffffefd167e2d0>] __kmalloc+0x440/0x6f0
->     [<ffffffefd1a960a4>] of_dma_get_range+0x124/0x220
->     [<ffffffefd1a8ce90>] of_dma_configure_id+0x40/0x2d0
->     [<ffffffefd198b68c>] platform_dma_configure+0x5c/0xa4
->     [<ffffffefd198846c>] really_probe+0x8c/0x514
->     [<ffffffefd1988990>] __driver_probe_device+0x9c/0x19c
->     [<ffffffefd1988cd8>] device_driver_attach+0x54/0xbc
->     [<ffffffefd1986634>] bind_store+0xc4/0x120
->     [<ffffffefd19856e0>] drv_attr_store+0x30/0x44
->     [<ffffffefd173c9b0>] sysfs_kf_write+0x50/0x60
->     [<ffffffefd173c1c4>] kernfs_fop_write_iter+0x124/0x1b4
->     [<ffffffefd16a013c>] new_sync_write+0xdc/0x160
->     [<ffffffefd16a256c>] vfs_write+0x23c/0x2a0
->     [<ffffffefd16a2758>] ksys_write+0x64/0xec
-> 
-> Don't get a new dma_range_map if there already is one. Check for an
-> existing map and reuse it, or else get the map as before. This will
-> prevent overwriting the old map which is still valid.
-> 
-> Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
-> ---
-> 
-> v2:
->  - Reuse range map instead of getting a new and freeing the old.
-> 
->  drivers/of/device.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
+On Tue, Feb 15, 2022 at 2:24 AM Anup Patel <anup@brainfault.org> wrote:
+>
+> On Tue, Feb 15, 2022 at 2:32 PM Atish Patra <atishp@rivosinc.com> wrote:
+> >
+> > Multi-letter extensions can be probed using exising
+> > riscv_isa_extension_available API now. It doesn't support versioning
+> > right now as there is no use case for it.
+> > Individual extension specific implementation will be added during
+> > each extension support.
+> >
+> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > ---
+> >  arch/riscv/include/asm/hwcap.h | 18 ++++++++++++++++++
+> >  arch/riscv/kernel/cpufeature.c | 27 ++++++++++++++++++++++++---
+> >  2 files changed, 42 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> > index 5ce50468aff1..170bd80da520 100644
+> > --- a/arch/riscv/include/asm/hwcap.h
+> > +++ b/arch/riscv/include/asm/hwcap.h
+> > @@ -34,7 +34,25 @@ extern unsigned long elf_hwcap;
+> >  #define RISCV_ISA_EXT_s                ('s' - 'a')
+> >  #define RISCV_ISA_EXT_u                ('u' - 'a')
+> >
+> > +/*
+> > + * Increse this to higher value as kernel support more ISA extensions.
+> > + */
+> >  #define RISCV_ISA_EXT_MAX      64
+> > +#define RISCV_ISA_EXT_NAME_LEN_MAX 32
+> > +
+> > +/* The base ID for multi-letter ISA extensions */
+> > +#define RISCV_ISA_EXT_BASE 26
+> > +
+> > +/*
+> > + * This enum represent the logical ID for each multi-letter RISC-V ISA extension.
+> > + * The logical ID should start from RISCV_ISA_EXT_BASE and must not exceed
+> > + * RISCV_ISA_EXT_MAX. 0-25 range is reserved for single letter
+> > + * extensions while all the multi-letter extensions should define the next
+> > + * available logical extension id.
+> > + */
+> > +enum riscv_isa_ext_id {
+> > +       RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
+> > +};
+> >
+> >  unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
+> >
+> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> > index cd9eb34f8d11..af9a57ad3d4e 100644
+> > --- a/arch/riscv/kernel/cpufeature.c
+> > +++ b/arch/riscv/kernel/cpufeature.c
+> > @@ -83,7 +83,7 @@ void __init riscv_fill_hwcap(void)
+> >
+> >         for_each_of_cpu_node(node) {
+> >                 unsigned long this_hwcap = 0;
+> > -               unsigned long this_isa = 0;
+> > +               uint64_t this_isa = 0;
+>
+> Why not use a bitmap here ?
+>
 
-Applied, thanks!
+Yeah. That will simplify things for both RV32 & RV64. Thanks.
+
+> >
+> >                 if (riscv_of_processor_hartid(node) < 0)
+> >                         continue;
+> > @@ -167,12 +167,22 @@ void __init riscv_fill_hwcap(void)
+> >                         if (*isa != '_')
+> >                                 --isa;
+> >
+> > +#define SET_ISA_EXT_MAP(name, bit)                                             \
+>
+> Where is this macro used ?
+
+It will be used in the future where individual extension support will use it.
+Here is an example from my debug patch
+
+https://github.com/atishp04/linux/commit/e9e240c9a854dceb434ceb53bdbe82a657bee5f2
+
+>
+> > +                       do {                                                    \
+> > +                               if ((ext_end - ext == sizeof(name) - 1) &&      \
+> > +                                    !memcmp(ext, name, sizeof(name) - 1)) {    \
+> > +                                       this_isa |= (1UL << bit);               \
+>
+> You can use set_bit() here when using bitmap.
+>
+> > +                                       pr_info("Found ISA extension %s", name);\
+> > +                               }                                               \
+> > +                       } while (false)                                         \
+> > +
+> >                         if (unlikely(ext_err))
+> >                                 continue;
+> >                         if (!ext_long) {
+> >                                 this_hwcap |= isa2hwcap[(unsigned char)(*ext)];
+> >                                 this_isa |= (1UL << (*ext - 'a'));
+> >                         }
+> > +#undef SET_ISA_EXT_MAP
+> >                 }
+> >
+> >                 /*
+> > @@ -185,10 +195,21 @@ void __init riscv_fill_hwcap(void)
+> >                 else
+> >                         elf_hwcap = this_hwcap;
+> >
+> > -               if (riscv_isa[0])
+> > +               if (riscv_isa[0]) {
+>
+> You can use bitmap_weight() here
+>
+> > +#if IS_ENABLED(CONFIG_32BIT)
+> > +                       riscv_isa[0] &= this_isa & 0xFFFFFFFF;
+> > +                       riscv_isa[1] &= this_isa >> 32;
+> > +#else
+> >                         riscv_isa[0] &= this_isa;
+> > -               else
+> > +#endif
+> > +               } else {
+> > +#if IS_ENABLED(CONFIG_32BIT)
+> > +                       riscv_isa[0] = this_isa & 0xFFFFFFFF;
+> > +                       riscv_isa[1] = this_isa >> 32;
+> > +#else
+> >                         riscv_isa[0] = this_isa;
+> > +#endif
+> > +               }
+> >         }
+> >
+> >         /* We don't support systems with F but without D, so mask those out
+> > --
+> > 2.30.2
+> >
+>
+> Regards,
+> Anup
+
+
+
+-- 
+Regards,
+Atish
