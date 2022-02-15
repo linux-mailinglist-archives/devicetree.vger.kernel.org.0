@@ -2,593 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E31C44B6DF4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 14:47:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 976134B6E07
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 14:50:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238342AbiBONrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 08:47:43 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43054 "EHLO
+        id S234166AbiBONuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 08:50:18 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238007AbiBONrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 08:47:42 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB406432
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 05:47:29 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id e5so7162922lfr.9
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 05:47:29 -0800 (PST)
+        with ESMTP id S229710AbiBONuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 08:50:18 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 089BCE01B;
+        Tue, 15 Feb 2022 05:50:08 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id b11so12283697lfb.12;
+        Tue, 15 Feb 2022 05:50:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ARQblko0T1ABLz5LqKA7X0wsMW3xBAK4LmRW1gxdDRU=;
-        b=MHzC40HMzCcjShwDv7vs0RcOPxJbQfUi1J4EneOBRfBO2NyKpKSS0RxUtDCHhNxsgE
-         O7H8h3jGLtGNKZNldtoxKv5exybE369CJVA4i8JlKXBLLC/g1flynwUgB1Mw68x+QlOL
-         ygTxi1wQitY6eaW3BQMigYpl7ji4JmgkEv5pN9zEfHvYvZXOXyYI6fagugy1w1dXOwJp
-         LCeiotaEwwnIlwUbHaUhvczwX/67vao5drRwXaZvrcWbAUS2wDh4RCAOgv5ZglQgmcDm
-         fXq9YecvjqKYaEbNbBwecO/VQMEZA7Szf4lOky/RVm0qAbBw76liSGiTFwh+4WGfvy2E
-         aKxg==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2kZ/IBmjcS9tZCWpYljYHJzrq23MizmdNHzM2IiJLCU=;
+        b=dgiSfuFN3ASYDMIZDgYLeoYeom9SjwBzyCFOQNOKznbr/a4ilWWlYJYZYbu/j4ZdEe
+         G1rkw84c8Lz0VwSIZiYYpnCSFNR+N/1CyGVc8OGOqMCTapaX0ede15R+iV45SSe5gnxH
+         MwkmeyEYhU2+XfNYO7kJlX2Avdc0fy3rysVaJzVMyLOVxKb6ThaebceWU+664+w6jZgB
+         M+AfffjDjZu58IICKKFto68ZZQ8ucymtzIHEB5kvSYWMtrEeLzxFFbxmsFsWIDF/y5i8
+         /XHChzYnDC9Z+t+WrAdPi4lLh4uQhdODOu6vZ9qBjRBBj2EQZE/0H1HicgLvUv9LYtma
+         QUDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=ARQblko0T1ABLz5LqKA7X0wsMW3xBAK4LmRW1gxdDRU=;
-        b=7RoB2Y9rBaHTcxPU4253yaJOPb/nD58el4TKZLhrXfWAv3luCtYQtO87tubmnm9RkL
-         X4+8rAIHeHj4iuDKpEz4E1dp/4eaEViewCLKsVkU/STjr5l14h1jGposJOAyBjHgoWWP
-         FMEzPrHlUJUH6y0+SciPxdGavsPgt9brAuQgHR2rR1gbd3PZrDdiw+b4bv2XzvVt6J0a
-         ocjPJx7uAWKzvZvORlY0UK7vrV4JTEYtJ8pj5qH+K0z6uUxTtf03OERtfnDwpvg6BT4u
-         QZvZnQRWMAYZb1/8lkdvXRpf8taw3lsTMnMpBEdzHchBN1IQn6Ob4T+Pf+42HVi4moyc
-         1CcA==
-X-Gm-Message-State: AOAM531k2meXakF13o5DwncA2VsD/KXRwM8vX2PB9LDJcSLQv1W/Ezh3
-        2syZ2LOoOTH3uk58K8cDJXJzYw==
-X-Google-Smtp-Source: ABdhPJxOpiFoYhdG/6dlK28hXXq+ENO+EBeh01eAc3CpTUg3LGAMXYoW8IW30IVksxnmFq5yg8G8Gw==
-X-Received: by 2002:a05:6512:3a85:: with SMTP id q5mr3183268lfu.628.1644932847992;
-        Tue, 15 Feb 2022 05:47:27 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id r6sm2272401lfr.111.2022.02.15.05.47.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Feb 2022 05:47:27 -0800 (PST)
-Message-ID: <8c9e6603-8bc9-1849-6a16-5949326e6f67@linaro.org>
-Date:   Tue, 15 Feb 2022 16:47:25 +0300
+        bh=2kZ/IBmjcS9tZCWpYljYHJzrq23MizmdNHzM2IiJLCU=;
+        b=vPkMvPwSeEMNF2/eijdMLBC3RuqD0VyC9P7EUqA84/sei+jWGpPLC35CyeSKv37S9Z
+         52IrrYtfHxgAbVpplw4ZIeu20wS1HyrdaoGCc7T4T0+wYxphgnb4nqaeyw22wJpOr+No
+         4LYI5GvYTDIhRXb40E+9NbOrh9qwSRKrEaibOQpfdrYscdPnyEjDIprwYrrDxcZ57sNe
+         j9yXqQy32O2aiIhhbFCzh9fb4Vbml1Y3NGt5aplC8stYmjZxi4QJllqeZaBK2tfPtBwu
+         Frvdyh6vnjTGFzR3W40tk8pee7yL41K/GSiGkbNsLVrucD7lfGKuk538MAmfx86UGGn2
+         heDA==
+X-Gm-Message-State: AOAM533MrAe9Ur3YldnpJm4c51kChaGq6sGO4NnG/pRdc/hyEACKWQej
+        2x0/iSSDLimTzKoA+YHX08Y=
+X-Google-Smtp-Source: ABdhPJzfACnGR5sOoGxWkg4794pAqyMrui1kHLYW8QkYqC9NtPLDvAa5aNmATPCzPoQn+F0pwnGR2w==
+X-Received: by 2002:a05:6512:eaa:: with SMTP id bi42mr3254062lfb.93.1644933006217;
+        Tue, 15 Feb 2022 05:50:06 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id o17sm4511757lfu.180.2022.02.15.05.50.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Feb 2022 05:50:05 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Tom Rini <trini@konsulko.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Ricardo Salveti <ricardo@foundries.io>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Jorge Ramirez-Ortiz <jorge@foundries.io>,
+        devicetree@vger.kernel.org, u-boot@lists.denx.de,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: nvmem: add U-Boot environment variables binding
+Date:   Tue, 15 Feb 2022 14:49:25 +0100
+Message-Id: <20220215134925.32691-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [v1 1/2] drm/msm/dp: Add basic PSR support for eDP
-Content-Language: en-GB
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>, y@qualcomm.com,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, quic_sbillaka@quicinc.com,
-        swboyd@chromium.org, quic_kalyant@quicinc.com,
-        quic_vproddut@quicinc.com
-References: <y> <1644670295-25068-1-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1644670295-25068-1-git-send-email-quic_vpolimer@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/02/2022 15:51, Vinod Polimera wrote:
-> Add support for basic panel self refresh (PSR) feature for eDP.
-> Add a new interface to set PSR state in the sink from DPU.
-> Program the eDP controller to issue PSR enter and exit SDP to
-> the sink.
-> 
-> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Just noticed, thanks to the patchwork. Please do not send patches in 
-reply to other patchsets/threads. This will confuse both reviwers and 
-the patchwork.
+U-Boot uses environment variables for storing device setup data on
+flash. That data usually needs to be accessed by a bootloader, kernel
+and often user-space.
 
-> ---
->   drivers/gpu/drm/msm/dp/dp_catalog.c | 81 +++++++++++++++++++++++++++++++++++++
->   drivers/gpu/drm/msm/dp/dp_catalog.h |  4 ++
->   drivers/gpu/drm/msm/dp/dp_ctrl.c    | 65 ++++++++++++++++++++++++++++-
->   drivers/gpu/drm/msm/dp/dp_ctrl.h    |  3 ++
->   drivers/gpu/drm/msm/dp/dp_display.c | 12 ++++++
->   drivers/gpu/drm/msm/dp/dp_drm.c     | 14 ++++++-
->   drivers/gpu/drm/msm/dp/dp_link.c    | 22 ++++++++++
->   drivers/gpu/drm/msm/dp/dp_panel.c   | 21 ++++++++++
->   drivers/gpu/drm/msm/dp/dp_panel.h   |  6 +++
->   drivers/gpu/drm/msm/dp/dp_reg.h     | 19 +++++++++
->   drivers/gpu/drm/msm/msm_drv.h       |  2 +
->   11 files changed, 247 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
-> index 6ae9b29..d20cabb 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
-> @@ -45,6 +45,14 @@
->   #define DP_INTERRUPT_STATUS2_MASK \
->   	(DP_INTERRUPT_STATUS2 << DP_INTERRUPT_STATUS_MASK_SHIFT)
->   
-> +#define DP_INTERRUPT_STATUS4 \
-> +	(PSR_UPDATE_INT | PSR_CAPTURE_INT | PSR_EXIT_INT | \
-> +	PSR_UPDATE_ERROR_INT | PSR_WAKE_ERROR_INT)
-> +
-> +#define DP_INTERRUPT_MASK4 \
-> +	(PSR_UPDATE_MASK | PSR_CAPTURE_MASK | PSR_EXIT_MASK | \
-> +	PSR_UPDATE_ERROR_MASK | PSR_WAKE_ERROR_MASK)
-> +
->   struct dp_catalog_private {
->   	struct device *dev;
->   	struct dp_io *io;
-> @@ -343,6 +351,20 @@ void dp_catalog_ctrl_lane_mapping(struct dp_catalog *dp_catalog)
->   			ln_mapping);
->   }
->   
-> +void dp_catalog_ctrl_psr_mainlink_enable(struct dp_catalog *dp_catalog,
-> +						bool enable)
-> +{
-> +	u32 mainlink_ctrl;
-> +	struct dp_catalog_private *catalog = container_of(dp_catalog,
-> +				struct dp_catalog_private, dp_catalog);
-> +
-> +	mainlink_ctrl = dp_read_link(catalog, REG_DP_MAINLINK_CTRL);
-> +	mainlink_ctrl &= ~DP_MAINLINK_CTRL_ENABLE;
-> +	mainlink_ctrl |= (enable & DP_MAINLINK_CTRL_ENABLE);
-> +
-> +	dp_write_link(catalog, REG_DP_MAINLINK_CTRL, mainlink_ctrl);
-> +}
-> +
->   void dp_catalog_ctrl_mainlink_ctrl(struct dp_catalog *dp_catalog,
->   						bool enable)
->   {
-> @@ -581,6 +603,51 @@ void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog)
->   	dp_write_aux(catalog, REG_DP_DP_HPD_CTRL, DP_DP_HPD_CTRL_HPD_EN);
->   }
->   
-> +static void dp_catalog_enable_sdp(struct dp_catalog_private *catalog)
-> +{
-> +	/* trigger sdp */
-> +	dp_write_link(catalog, MMSS_DP_SDP_CFG3, 0x1);
-> +	dp_write_link(catalog, MMSS_DP_SDP_CFG3, 0x0);
-> +}
-> +
-> +void dp_catalog_ctrl_config_psr(struct dp_catalog *dp_catalog)
-> +{
-> +	struct dp_catalog_private *catalog = container_of(dp_catalog,
-> +				struct dp_catalog_private, dp_catalog);
-> +	u32 psr_config;
-> +
-> +	/* enable PSR1 function */
-> +	psr_config = dp_read_link(catalog, REG_PSR_CONFIG);
-> +	psr_config |= BIT(0);
-> +	dp_write_link(catalog, REG_PSR_CONFIG, psr_config);
-> +
-> +	dp_write_ahb(catalog, REG_DP_INTR_MASK4, DP_INTERRUPT_MASK4);
-> +	dp_catalog_enable_sdp(catalog);
-> +}
-> +
-> +void dp_catalog_ctrl_set_psr(struct dp_catalog *dp_catalog, bool enter)
-> +{
-> +	struct dp_catalog_private *catalog = container_of(dp_catalog,
-> +			struct dp_catalog_private, dp_catalog);
-> +	u32 psr_cmd;
-> +
-> +	psr_cmd = dp_read_link(catalog, REG_PSR_CMD);
-> +
-> +	/*
-> +	 * BIT(0) - send psr entry SDP
-> +	 * BIT(1) - sned psr exit SDP
-> +	 */
-> +	psr_cmd &= ~(BIT(0) | BIT(1));
-> +
-> +	if (enter)
-> +		psr_cmd |= BIT(0);
-> +	else
-> +		psr_cmd |= BIT(1);
-> +
-> +	dp_catalog_enable_sdp(catalog);
-> +	dp_write_link(catalog, REG_PSR_CMD, psr_cmd);
-> +}
-> +
->   u32 dp_catalog_link_is_connected(struct dp_catalog *dp_catalog)
->   {
->   	struct dp_catalog_private *catalog = container_of(dp_catalog,
-> @@ -608,6 +675,20 @@ u32 dp_catalog_hpd_get_intr_status(struct dp_catalog *dp_catalog)
->   	return isr;
->   }
->   
-> +int dp_catalog_ctrl_get_psr_interrupt(struct dp_catalog *dp_catalog)
-> +{
-> +	struct dp_catalog_private *catalog = container_of(dp_catalog,
-> +				struct dp_catalog_private, dp_catalog);
-> +	u32 intr, intr_ack;
-> +
-> +	intr = dp_read_ahb(catalog, REG_DP_INTR_STATUS4);
-> +	intr_ack = (intr & DP_INTERRUPT_STATUS4)
-> +			<< DP_INTERRUPT_STATUS_ACK_SHIFT;
-> +	dp_write_ahb(catalog, REG_DP_INTR_STATUS4, intr_ack);
-> +
-> +	return intr;
-> +}
-> +
->   int dp_catalog_ctrl_get_interrupt(struct dp_catalog *dp_catalog)
->   {
->   	struct dp_catalog_private *catalog = container_of(dp_catalog,
-> diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.h b/drivers/gpu/drm/msm/dp/dp_catalog.h
-> index 6965afa..9b1b199 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_catalog.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_catalog.h
-> @@ -91,6 +91,7 @@ void dp_catalog_ctrl_state_ctrl(struct dp_catalog *dp_catalog, u32 state);
->   void dp_catalog_ctrl_config_ctrl(struct dp_catalog *dp_catalog, u32 config);
->   void dp_catalog_ctrl_lane_mapping(struct dp_catalog *dp_catalog);
->   void dp_catalog_ctrl_mainlink_ctrl(struct dp_catalog *dp_catalog, bool enable);
-> +void dp_catalog_ctrl_psr_mainlink_enable(struct dp_catalog *dp_catalog, bool enable);
->   void dp_catalog_ctrl_config_misc(struct dp_catalog *dp_catalog, u32 cc, u32 tb);
->   void dp_catalog_ctrl_config_msa(struct dp_catalog *dp_catalog, u32 rate,
->   				u32 stream_rate_khz, bool fixed_nvid);
-> @@ -101,12 +102,15 @@ void dp_catalog_ctrl_enable_irq(struct dp_catalog *dp_catalog, bool enable);
->   void dp_catalog_hpd_config_intr(struct dp_catalog *dp_catalog,
->   			u32 intr_mask, bool en);
->   void dp_catalog_ctrl_hpd_config(struct dp_catalog *dp_catalog);
-> +void dp_catalog_ctrl_config_psr(struct dp_catalog *dp_catalog);
-> +void dp_catalog_ctrl_set_psr(struct dp_catalog *dp_catalog, bool enter);
->   u32 dp_catalog_link_is_connected(struct dp_catalog *dp_catalog);
->   u32 dp_catalog_hpd_get_intr_status(struct dp_catalog *dp_catalog);
->   void dp_catalog_ctrl_phy_reset(struct dp_catalog *dp_catalog);
->   int dp_catalog_ctrl_update_vx_px(struct dp_catalog *dp_catalog, u8 v_level,
->   				u8 p_level);
->   int dp_catalog_ctrl_get_interrupt(struct dp_catalog *dp_catalog);
-> +int dp_catalog_ctrl_get_psr_interrupt(struct dp_catalog *dp_catalog);
->   void dp_catalog_ctrl_update_transfer_unit(struct dp_catalog *dp_catalog,
->   				u32 dp_tu, u32 valid_boundary,
->   				u32 valid_boundary2);
-> diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-> index c724cb0..952ab96 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-> @@ -20,7 +20,8 @@
->   #include "dp_link.h"
->   
->   #define DP_KHZ_TO_HZ 1000
-> -#define IDLE_PATTERN_COMPLETION_TIMEOUT_JIFFIES	(30 * HZ / 1000) /* 30 ms */
-> +#define IDLE_PATTERN_COMPLETION_TIMEOUT_JIFFIES		(30 * HZ / 1000) /* 30 ms */
-> +#define PSR_OPERATION_COMPLETION_TIMEOUT_JIFFIES	(300 * HZ / 1000) /* 300 ms */
->   #define WAIT_FOR_VIDEO_READY_TIMEOUT_JIFFIES (HZ / 2)
->   
->   #define DP_CTRL_INTR_READY_FOR_VIDEO     BIT(0)
-> @@ -78,6 +79,7 @@ struct dp_ctrl_private {
->   	struct dp_catalog *catalog;
->   
->   	struct completion idle_comp;
-> +	struct completion psr_op_comp;
->   	struct completion video_comp;
->   };
->   
-> @@ -151,6 +153,9 @@ static void dp_ctrl_config_ctrl(struct dp_ctrl_private *ctrl)
->   	config |= DP_CONFIGURATION_CTRL_STATIC_DYNAMIC_CN;
->   	config |= DP_CONFIGURATION_CTRL_SYNC_ASYNC_CLK;
->   
-> +	if (ctrl->panel->psr_cap.version)
-> +		config |= DP_CONFIGURATION_CTRL_SEND_VSC;
-> +
->   	dp_catalog_ctrl_config_ctrl(ctrl->catalog, config);
->   }
->   
-> @@ -1365,6 +1370,52 @@ static int dp_ctrl_enable_stream_clocks(struct dp_ctrl_private *ctrl)
->   	return ret;
->   }
->   
-> +void dp_ctrl_config_psr(struct dp_ctrl *dp_ctrl)
-> +{
-> +	struct dp_ctrl_private *ctrl;
-> +	u8 psr_config;
-> +
-> +	ctrl = container_of(dp_ctrl, struct dp_ctrl_private, dp_ctrl);
-> +
-> +	if (!ctrl->panel->psr_cap.version)
-> +		return;
-> +
-> +	dp_catalog_ctrl_config_psr(ctrl->catalog);
-> +
-> +	psr_config = DP_PSR_ENABLE;
-> +	drm_dp_dpcd_write(ctrl->aux, DP_PSR_EN_CFG, &psr_config, 1);
-> +}
-> +
-> +void dp_ctrl_set_psr(struct dp_ctrl *dp_ctrl, bool enter)
-> +{
-> +	struct dp_ctrl_private *ctrl;
-> +
-> +	ctrl = container_of(dp_ctrl, struct dp_ctrl_private, dp_ctrl);
-> +
-> +	if (!ctrl->panel->psr_cap.version)
-> +		return;
-> +
-> +	if (enter) {
-> +		reinit_completion(&ctrl->psr_op_comp);
-> +		dp_catalog_ctrl_set_psr(ctrl->catalog, true);
-> +
-> +		if (!wait_for_completion_timeout(&ctrl->psr_op_comp,
-> +			PSR_OPERATION_COMPLETION_TIMEOUT_JIFFIES)) {
-> +			DRM_ERROR("PSR_ENTRY timedout\n");
-> +			dp_catalog_ctrl_set_psr(ctrl->catalog, false);
-> +			return;
-> +		}
-> +
-> +		dp_catalog_ctrl_state_ctrl(ctrl->catalog, 0);
-> +
-> +		dp_catalog_ctrl_psr_mainlink_enable(ctrl->catalog, false);
-> +	} else {
-> +		dp_catalog_ctrl_psr_mainlink_enable(ctrl->catalog, true);
-> +
-> +		dp_catalog_ctrl_set_psr(ctrl->catalog, false);
-> +	}
-> +}
-> +
->   int dp_ctrl_host_init(struct dp_ctrl *dp_ctrl, bool flip, bool reset)
->   {
->   	struct dp_ctrl_private *ctrl;
-> @@ -1964,6 +2015,17 @@ void dp_ctrl_isr(struct dp_ctrl *dp_ctrl)
->   
->   	ctrl = container_of(dp_ctrl, struct dp_ctrl_private, dp_ctrl);
->   
-> +	if (ctrl->panel->psr_cap.version) {
-> +		isr = dp_catalog_ctrl_get_psr_interrupt(ctrl->catalog);
-> +
-> +		if (isr == 0x1)
-> +			DRM_DEBUG_DP("PSR frame update done\n");
-> +		else if (isr == 0x10)
-> +			DRM_DEBUG_DP("PSR exit done\n");
-> +
-> +		complete(&ctrl->psr_op_comp);
-> +	}
-> +
->   	isr = dp_catalog_ctrl_get_interrupt(ctrl->catalog);
->   
->   	if (isr & DP_CTRL_INTR_READY_FOR_VIDEO) {
-> @@ -2010,6 +2072,7 @@ struct dp_ctrl *dp_ctrl_get(struct device *dev, struct dp_link *link,
->   		dev_err(dev, "failed to add DP OPP table\n");
->   
->   	init_completion(&ctrl->idle_comp);
-> +	init_completion(&ctrl->psr_op_comp);
->   	init_completion(&ctrl->video_comp);
->   
->   	/* in parameters */
-> diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.h b/drivers/gpu/drm/msm/dp/dp_ctrl.h
-> index 2363a2d..f623035 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_ctrl.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_ctrl.h
-> @@ -34,4 +34,7 @@ struct dp_ctrl *dp_ctrl_get(struct device *dev, struct dp_link *link,
->   			struct dp_power *power, struct dp_catalog *catalog,
->   			struct dp_parser *parser);
->   
-> +void dp_ctrl_set_psr(struct dp_ctrl *dp_ctrl, bool enable);
-> +void dp_ctrl_config_psr(struct dp_ctrl *dp_ctrl);
-> +
->   #endif /* _DP_CTRL_H_ */
-> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> index 7cc4d21..fe7ceea 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_display.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> @@ -871,6 +871,10 @@ static int dp_display_post_enable(struct msm_dp *dp_display)
->   
->   	/* signal the connect event late to synchronize video and display */
->   	dp_display_handle_plugged_change(dp_display, true);
-> +
-> +	if (dp->panel->psr_cap.version)
-> +		dp_ctrl_config_psr(dp->ctrl);
-> +
->   	return 0;
->   }
->   
-> @@ -1037,6 +1041,14 @@ static void dp_display_config_hpd(struct dp_display_private *dp)
->   	enable_irq(dp->irq);
->   }
->   
-> +void msm_dp_display_set_psr(struct msm_dp *dp_display, bool enter)
-> +{
-> +	struct dp_display_private *dp;
-> +
-> +	dp = container_of(dp_display, struct dp_display_private, dp_display);
-> +	dp_ctrl_set_psr(dp->ctrl, enter);
-> +}
-> +
->   static int hpd_event_thread(void *data)
->   {
->   	struct dp_display_private *dp_priv;
-> diff --git a/drivers/gpu/drm/msm/dp/dp_drm.c b/drivers/gpu/drm/msm/dp/dp_drm.c
-> index d4d360d..6eb53a0 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_drm.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_drm.c
-> @@ -123,12 +123,24 @@ static enum drm_mode_status dp_connector_mode_valid(
->   	return dp_display_validate_mode(dp_disp, mode->clock);
->   }
->   
-> +static struct drm_connector_state *
-> +edp_drm_connector_duplicate_state(struct drm_connector *connector)
-> +{
-> +	struct drm_connector_state *state;
-> +
-> +	state = drm_atomic_helper_connector_duplicate_state(connector);
-> +
-> +	state->self_refresh_aware = true;
-> +
-> +	return state;
-> +}
-> +
->   static const struct drm_connector_funcs dp_connector_funcs = {
->   	.detect = dp_connector_detect,
->   	.fill_modes = drm_helper_probe_single_connector_modes,
->   	.destroy = drm_connector_cleanup,
->   	.reset = drm_atomic_helper_connector_reset,
-> -	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-> +	.atomic_duplicate_state = edp_drm_connector_duplicate_state,
->   	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
->   };
->   
-> diff --git a/drivers/gpu/drm/msm/dp/dp_link.c b/drivers/gpu/drm/msm/dp/dp_link.c
-> index d4d31e5..5503c29 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_link.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_link.c
-> @@ -924,6 +924,26 @@ static int dp_link_process_phy_test_pattern_request(
->   	return 0;
->   }
->   
-> +static int dp_link_psr_status(struct dp_link_private *link)
-> +{
-> +	u8 status[2];
-> +
-> +	drm_dp_dpcd_read(link->aux, DP_PSR_ERROR_STATUS, status, 2);
-> +
-> +	if (status[0] & DP_PSR_LINK_CRC_ERROR)
-> +		DRM_ERROR("PSR LINK CRC ERROR\n");
-> +	else if (status[0] & DP_PSR_RFB_STORAGE_ERROR)
-> +		DRM_ERROR("PSR RFB STORAGE ERROR\n");
-> +	else if (status[0] & DP_PSR_VSC_SDP_UNCORRECTABLE_ERROR)
-> +		DRM_ERROR("PSR VSC SDP UNCORRECTABLE ERROR\n");
-> +	else if (status[1] & DP_PSR_CAPS_CHANGE)
-> +		DRM_INFO("PSR Capability Change\n");
-> +	else
-> +		return 0;
-> +
-> +	return 1;
-> +}
-> +
->   static u8 get_link_status(const u8 link_status[DP_LINK_STATUS_SIZE], int r)
->   {
->   	return link_status[r - DP_LANE0_1_STATUS];
-> @@ -1042,6 +1062,8 @@ int dp_link_process_request(struct dp_link *dp_link)
->   		dp_link->sink_request |= DP_TEST_LINK_TRAINING;
->   	} else if (!dp_link_process_phy_test_pattern_request(link)) {
->   		dp_link->sink_request |= DP_TEST_LINK_PHY_TEST_PATTERN;
-> +	} else if (dp_link_psr_status(link)) {
-> +		DRM_INFO("PSR IRQ_HPD received\n");
->   	} else {
->   		ret = dp_link_process_link_status_update(link);
->   		if (!ret) {
-> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.c b/drivers/gpu/drm/msm/dp/dp_panel.c
-> index 71db10c..e128d73 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_panel.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_panel.c
-> @@ -19,6 +19,26 @@ struct dp_panel_private {
->   	bool aux_cfg_update_done;
->   };
->   
-> +static void dp_panel_read_psr_cap(struct dp_panel_private *panel)
-> +{
-> +	ssize_t rlen;
-> +	struct dp_panel *dp_panel;
-> +
-> +	dp_panel = &panel->dp_panel;
-> +
-> +	/* edp sink */
-> +	if (dp_panel->dpcd[DP_EDP_CONFIGURATION_CAP]) {
-> +		rlen = drm_dp_dpcd_read(panel->aux, DP_PSR_SUPPORT,
-> +				&dp_panel->psr_cap, 2);
-> +		if (rlen == 2) {
-> +			DRM_DEBUG_DP("psr version: 0x%x, psr_cap: 0x%x\n",
-> +				dp_panel->psr_cap.version,
-> +				dp_panel->psr_cap.capabilities);
-> +		} else
-> +			DRM_ERROR("failed to read psr info, rlen=%zd\n", rlen);
-> +	}
-> +}
-> +
->   static int dp_panel_read_dpcd(struct dp_panel *dp_panel)
->   {
->   	int rc = 0;
-> @@ -104,6 +124,7 @@ static int dp_panel_read_dpcd(struct dp_panel *dp_panel)
->   		}
->   	}
->   
-> +	dp_panel_read_psr_cap(panel);
->   end:
->   	return rc;
->   }
-> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.h b/drivers/gpu/drm/msm/dp/dp_panel.h
-> index 9023e5b..631657a 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_panel.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_panel.h
-> @@ -34,6 +34,11 @@ struct dp_panel_in {
->   	struct dp_catalog *catalog;
->   };
->   
-> +struct dp_panel_psr {
-> +	u8 version;
-> +	u8 capabilities;
-> +};
-> +
->   struct dp_panel {
->   	/* dpcd raw data */
->   	u8 dpcd[DP_RECEIVER_CAP_SIZE + 1];
-> @@ -46,6 +51,7 @@ struct dp_panel {
->   	struct edid *edid;
->   	struct drm_connector *connector;
->   	struct dp_display_mode dp_mode;
-> +	struct dp_panel_psr psr_cap;
->   	bool video_test;
->   
->   	u32 vic;
-> diff --git a/drivers/gpu/drm/msm/dp/dp_reg.h b/drivers/gpu/drm/msm/dp/dp_reg.h
-> index 2686028..7a0b052 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_reg.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_reg.h
-> @@ -22,6 +22,20 @@
->   #define REG_DP_INTR_STATUS2			(0x00000024)
->   #define REG_DP_INTR_STATUS3			(0x00000028)
->   
-> +#define REG_DP_INTR_STATUS4			(0x0000002C)
-> +#define PSR_UPDATE_INT				(0x00000001)
-> +#define PSR_CAPTURE_INT				(0x00000004)
-> +#define PSR_EXIT_INT				(0x00000010)
-> +#define PSR_UPDATE_ERROR_INT			(0x00000040)
-> +#define PSR_WAKE_ERROR_INT			(0x00000100)
-> +
-> +#define REG_DP_INTR_MASK4			(0x00000030)
-> +#define PSR_UPDATE_MASK				(0x00000001)
-> +#define PSR_CAPTURE_MASK			(0x00000002)
-> +#define PSR_EXIT_MASK				(0x00000004)
-> +#define PSR_UPDATE_ERROR_MASK			(0x00000008)
-> +#define PSR_WAKE_ERROR_MASK			(0x00000010)
-> +
->   #define REG_DP_DP_HPD_CTRL			(0x00000000)
->   #define DP_DP_HPD_CTRL_HPD_EN			(0x00000001)
->   
-> @@ -164,6 +178,9 @@
->   #define MMSS_DP_AUDIO_TIMING_RBR_48		(0x00000094)
->   #define MMSS_DP_AUDIO_TIMING_HBR_48		(0x00000098)
->   
-> +#define REG_PSR_CONFIG				(0x00000100)
-> +#define REG_PSR_CMD				(0x00000110)
-> +
->   #define MMSS_DP_PSR_CRC_RG			(0x00000154)
->   #define MMSS_DP_PSR_CRC_B			(0x00000158)
->   
-> @@ -184,6 +201,8 @@
->   #define MMSS_DP_AUDIO_STREAM_0			(0x00000240)
->   #define MMSS_DP_AUDIO_STREAM_1			(0x00000244)
->   
-> +#define MMSS_DP_SDP_CFG3			(0x0000024c)
-> +
->   #define MMSS_DP_EXTENSION_0			(0x00000250)
->   #define MMSS_DP_EXTENSION_1			(0x00000254)
->   #define MMSS_DP_EXTENSION_2			(0x00000258)
-> diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
-> index d7574e6..28e182b 100644
-> --- a/drivers/gpu/drm/msm/msm_drv.h
-> +++ b/drivers/gpu/drm/msm/msm_drv.h
-> @@ -400,6 +400,8 @@ void msm_dp_snapshot(struct msm_disp_state *disp_state, struct msm_dp *dp_displa
->   
->   void msm_dp_debugfs_init(struct msm_dp *dp_display, struct drm_minor *minor);
->   
-> +void msm_dp_display_set_psr(struct msm_dp *dp, bool enter);
-> +
->   #else
->   static inline int __init msm_dp_register(void)
->   {
+This binding allows describing environment data location and its format
+clearly. In some/many cases it should be cleaner than hardcoding &
+duplicating that info in multiple places. Bootloader & kernel can share
+DTS and user-space can try reading it too or just have correct data
+exposed by a kernel.
 
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../devicetree/bindings/nvmem/u-boot,env.yaml | 58 +++++++++++++++++++
+ MAINTAINERS                                   |  5 ++
+ 2 files changed, 63 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
 
+diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+new file mode 100644
+index 000000000000..a2b3a9b88eb8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/u-boot,env.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: U-Boot environment variables
++
++description: |
++  U-Boot uses environment variables to store device parameters and
++  configuration. They may be used for booting process, setup or keeping end user
++  info.
++
++  Data is stored on flash in a U-Boot specific format (header and NUL separated
++  key-value pairs).
++
++  This binding allows specifying data location and used format.
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++allOf:
++  - $ref: nvmem.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - description: A standalone env data block
++        const: u-boot,env
++      - description: Two redundant blocks with active one flagged
++        const: u-boot,env-redundant-bool
++      - description: Two redundant blocks with active having higher counter
++        const: u-boot,env-redundant-count
++
++  reg:
++    maxItems: 1
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    partitions {
++        compatible = "fixed-partitions";
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        partition@0 {
++            label = "u-boot";
++            reg = <0x0 0x40000>;
++            read-only;
++        };
++
++        partition@40000 {
++            compatible = "u-boot,env";
++            label = "u-boot-env";
++            reg = <0x40000 0x10000>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d20344ab7900..2f07f1d2290a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19905,6 +19905,11 @@ W:	http://linuxtv.org
+ T:	git git://linuxtv.org/media_tree.git
+ F:	drivers/media/pci/tw686x/
+ 
++U-BOOT ENVIRONMENT VARIABLES
++M:	Rafał Miłecki <rafal@milecki.pl>
++S:	Maintained
++F:	Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
++
+ UACCE ACCELERATOR FRAMEWORK
+ M:	Zhangfei Gao <zhangfei.gao@linaro.org>
+ M:	Zhou Wang <wangzhou1@hisilicon.com>
 -- 
-With best wishes
-Dmitry
+2.34.1
+
