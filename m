@@ -2,139 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 598CC4B6F0C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 15:46:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 164484B6F39
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 15:46:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238738AbiBOOjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 09:39:10 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47928 "EHLO
+        id S238761AbiBOOjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 09:39:40 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232373AbiBOOjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 09:39:08 -0500
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1048E102405;
-        Tue, 15 Feb 2022 06:38:58 -0800 (PST)
-Received: by mail-qk1-x731.google.com with SMTP id o10so17481320qkg.0;
-        Tue, 15 Feb 2022 06:38:58 -0800 (PST)
+        with ESMTP id S238755AbiBOOjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 09:39:39 -0500
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A056510241B
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 06:39:28 -0800 (PST)
+Received: by mail-oi1-x22c.google.com with SMTP id i5so20953175oih.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 06:39:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=K0ow2l97FBadE8xYyNQO77wV9BV8c9FeJliZ8Zblp7o=;
-        b=OvCv7l+IVLWiIYmrA/eyOyIiGsNr6rEC7SJ7SI0ykniYkMXuIlbJcyiIniSJZegR2Q
-         ltJkoPKJSaCAcHmU2ItgB4h4Q2BMMyJpPrb5qq2ol+JxDJQhMIir73svlUhYVpbFqcEI
-         tJVivfur2J2rZ4jI/Uqc9oeXE3FMfu6wIDttguFk/9lgOFkcevAPJYhU6Zj7Fx8tZCuW
-         ehg5xjdZQpWY7QJ1PPdvodk1qObW598mPzqHm2H6yM7E6tmgab8eRc6qu2hOx6UhhA7v
-         NZkXXBD8h4kSdipkJVyWNWpwOCY2NbcsJRpT8LKWTFz26koS2tf+T93JWDH2qnn2Vihr
-         UoGQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Lf/4yqUubIAsBX3zBqJUmMO3ziUy/Ck0QlY5xnv6TAw=;
+        b=gCNi9H6h5bownQSUa/VlA7DaUpzKEcyHZY+rUbUzonZgquaJz2Rg9EN+8hFdSbUT5Y
+         5Uj/XSNONMm2HRGEkBJEFXX3k10LrTPETlA2Bk8MUvsH5uUnDaH/YJoByOUVzXqKFVQz
+         juPMxVhFJ2wUNzdliMpAqPOtvUKmzBiUC+4wsobuYOgWHMDWBz0/pi9Txbr3nD7xYFoP
+         Xzo/H+26Pk5J83rLP2ymnZPGgE7ZaC4r5wIHXj5TF5TFbbVejqj3AmApIiAUB1fsCk4U
+         8JXQh2BkHfKK1wXPfgPRZZL4uY8VZsL921qAAsocG0C6h2idZgYi9kuUuvns+VUyDj0k
+         QaTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=K0ow2l97FBadE8xYyNQO77wV9BV8c9FeJliZ8Zblp7o=;
-        b=NHLfp1sq8rWQ95mAa3gF0P0pcrMGUwx1KbtlLpO8RQHw88vYKWvDjWn+KTVbgLrFPZ
-         Npk2ZC3RZVCqxzbkBSu9+2NyVTtTQw77y3lJ1qJARLDNrQMdjO6lWUmxoDZaujYOzCFX
-         NVFAmjp1+051S6216rmMYLgqE3tgDx2WMqU22Wdfd/1su3GwtSyUP5crXXtzj3+N2gtN
-         6YPuRjNEEmMiKO1zIrV2ZhxHXbwi8Rc0RuGipyYWNzdoZn2xR70l1TxwqeNvweQ3ykFA
-         6LVr8wgMa0fK1FVgZWazhkoE0y5AIkI2iegMMiSWerhXlt2nY97FhGYUeuTIVov/TL3U
-         V/Fg==
-X-Gm-Message-State: AOAM531hrU+eFEfm9z5y3ai05duPqwuBQzzRXwjl6+GeeJEEgFs2HEsW
-        31K8EdGNxq2j6gXmlaNBRE4rLuDoVf43w8jT+Ys=
-X-Google-Smtp-Source: ABdhPJzqxLfXDw78xLjeX6QcKbH1M0Mn2Y5YmSQ2IiVXkB4upL2T729wSv3PGfvAcUcBZDUXQTcovh+9YqwVs83tlCM=
-X-Received: by 2002:a05:620a:4042:: with SMTP id i2mr2065887qko.592.1644935937193;
- Tue, 15 Feb 2022 06:38:57 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Lf/4yqUubIAsBX3zBqJUmMO3ziUy/Ck0QlY5xnv6TAw=;
+        b=kz+Bg/UEkE2AOBJItirtEUyPQocxo3ydJ+UfwVA06wpGUSnymu5fsUN4f+ij+KQ/pe
+         MsID9DbqVMdjJJj4UWj4RsQCJUuC/mdqlgcfyGC2UIdRWv63HIrzjfbHsW4buQ5DYhEK
+         /hRJMuLICtv+gbz6xhisHjBYzZIv12ndGYbPJwMjCmhEi3/0IpJ6qU+Rg3fYSO5Hb2xN
+         B84aL1grWc/EV9XjViCT2ZP8ra2vop08tXGMzXswkPw4ACYH+mCVyN98Au+x3F3H8ttx
+         wwAw+ymnUyyUaXAQ2fAm8YtM+5u9nmkBcTcycyeH+h+XgYLJJE4TEcQNfZ14wl4doHVO
+         c8mA==
+X-Gm-Message-State: AOAM5338Kd+65HAAqJtD57RMmUdw/aOOJeRejhz1t+L0TKfCqgVbnNMp
+        zv4aVVtC5QzKvB6T8K1oggodUQ==
+X-Google-Smtp-Source: ABdhPJxKNfH/q+wfB2DRDx/TNV/ggNE+Wkg7gQclH/9vKbhBCkLSPxGUW40rpsmK/TP/T3bl6N4Qqg==
+X-Received: by 2002:a05:6808:f05:: with SMTP id m5mr1561528oiw.337.1644935967969;
+        Tue, 15 Feb 2022 06:39:27 -0800 (PST)
+Received: from yoga ([2600:1700:a0:3dc8:5c39:baff:fe03:898d])
+        by smtp.gmail.com with ESMTPSA id u5sm14029206ooo.46.2022.02.15.06.39.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Feb 2022 06:39:27 -0800 (PST)
+Date:   Tue, 15 Feb 2022 08:39:25 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jarrett Schultz <jaschultz@microsoft.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Jarrett Schultz <jaschultzms@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Gross <markgross@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "platform-driver-x86@vger.kernel.org" 
+        <platform-driver-x86@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [EXTERNAL] Re: [PATCH RESEND v4 1/4] dt-bindings: platform:
+ microsoft: Document surface xbl
+Message-ID: <Ygu7HdrLnzFj3BrV@yoga>
+References: <20211221182826.2141789-1-jaschultzMS@gmail.com>
+ <20211221182826.2141789-2-jaschultzMS@gmail.com>
+ <YcJiBk5f071eJ5+n@robh.at.kernel.org>
+ <DM6PR21MB13238271EE4163A0F8A52B19A5289@DM6PR21MB1323.namprd21.prod.outlook.com>
+ <BYAPR21MB1320B5FD66C8FA8C066A716AA5349@BYAPR21MB1320.namprd21.prod.outlook.com>
 MIME-Version: 1.0
-References: <20220208084234.1684930-1-hsinyi@chromium.org> <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
- <KW6DNh6IRRgVJx9DfOFBnEqc4a0x-AnDXEbMxwpfEbk8dOn_KGVzAfo-slJWq-4nWW728Uc-OVpFh2w4fDE4-bxfkDuz1hFILRVvbcuXqaw=@emersion.fr>
-In-Reply-To: <KW6DNh6IRRgVJx9DfOFBnEqc4a0x-AnDXEbMxwpfEbk8dOn_KGVzAfo-slJWq-4nWW728Uc-OVpFh2w4fDE4-bxfkDuz1hFILRVvbcuXqaw=@emersion.fr>
-From:   Emil Velikov <emil.l.velikov@gmail.com>
-Date:   Tue, 15 Feb 2022 14:38:45 +0000
-Message-ID: <CACvgo532-pC+7DLFCo=DWTX-OnJEJvSoTmQnt3_qLhiT4cqEMg@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation
- property creating and value setting
-To:     Simon Ser <contact@emersion.fr>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
-        Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Alex Deucher <alexander.deucher@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        LAKML <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BYAPR21MB1320B5FD66C8FA8C066A716AA5349@BYAPR21MB1320.namprd21.prod.outlook.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Feb 2022 at 13:55, Simon Ser <contact@emersion.fr> wrote:
->
-> On Tuesday, February 15th, 2022 at 13:04, Emil Velikov <emil.l.velikov@gmail.com> wrote:
->
-> > Greetings everyone,
-> >
-> > Padron for joining in so late o/
-> >
-> > On Tue, 8 Feb 2022 at 08:42, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+On Mon 14 Feb 19:04 CST 2022, Jarrett Schultz wrote:
+
+> Jarrett Schultz wrote:
+> > From: Jarrett Schultz
+> > 
+> > Rob Herring wrote:
+> > > From: Rob Herring <robh@kernel.org>
 > > >
-> > > drm_dev_register() sets connector->registration_state to
-> > > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
-> > > drm_connector_set_panel_orientation() is first called after
-> > > drm_dev_register(), it will fail several checks and results in following
-> > > warning.
+> > > On Tue, Dec 21, 2021 at 10:28:23AM -0800, Jarrett Schultz wrote:
+> > > > From: Jarrett Schultz <jaschultz@microsoft.com>
+> > > >
+> > > > +title: Surface Extensible Bootloader for Microsoft Surface Duo
+> > > > +
+> > > > +maintainers:
+> > > > +  - Jarrett Schultz <jaschultz@microsoft.com>
+> > > > +
+> > > > +description: |
+> > > > +  Defined to expose information that is used during production when
+> > > > +  device is in manufacturing mode. Some of the information included
+> > > > +  in this imem section is -
 > > >
-> > > Add a function to create panel orientation property and set default value
-> > > to UNKNOWN, so drivers can call this function to init the property earlier
-> > > , and let the panel set the real value later.
+> > > If this is onchip sram, we have a binding for that. That's not an MFD.
+> > 
+> > I now have this driver working with nvmem, but I could not find the binding
+> > that you are talking about here. Could you point me to the binding?
+> > 
+> > Thanks,
+> > Jarrett
+> > 
+> 
+> Rob,
+> 
+> I followed up with my team members who have let me know that this lies
+> in DDR rather than SRAM. Could you please point me to the correct
+> binding to use?
+> 
+
+It might be DDR, but it's on-chip and the memory region that you
+describe is a region within "imem" - something used for various purposes
+by Qualcomm, presumably also in your device. Unfortunately we haven't
+specified a binding for "imem", only some of its regions.
+
+Perhaps it would be appropriate to express the entire imem as nvmem, in
+addition to the region-specific logic, if that suits you.
+
+Regards,
+Bjorn
+
+> Thanks,
+> Jarrett
+> 
 > > >
-> >
-> > The warning illustrates a genuine race condition, where userspace will
-> > read the old/invalid property value/state. So this patch masks away
-> > the WARNING without addressing the actual issue.
-> > Instead can we fix the respective drivers, so that no properties are
-> > created after drm_dev_register()?
-> >
-> > Longer version:
-> > As we look into drm_dev_register() it's in charge of creating the
-> > dev/sysfs nodes (et al). Note that connectors cannot disappear at
-> > runtime.
-> > For panel orientation, we are creating an immutable connector
-> > properly, meaning that as soon as drm_dev_register() is called we must
-> > ensure that the property is available (if applicable) and set to the
-> > correct value.
->
-> Unfortunately we can't quite do this. To apply the panel orientation quirks we
-> need to grab the EDID of the eDP connector, and this happened too late in my
-> testing.
->
-> What we can do is create the prop early during module load, and update it when
-> we read the EDID (at the place where we create it right now). User-space will
-> receive a hotplug event after the EDID is read, so will be able to pick up the
-> new value if any.
-
-Didn't quite get that, are you saying that a GETPROPERTY for the EDID,
-the ioctl blocks or that we get an empty EDID?
-
-The EDID hotplug even thing is neat - sounds like it also signals on
-panel orientation, correct?
-On such an event, which properties userspace should be re-fetching -
-everything or guess randomly?
-
-Looking through the documentation, I cannot see a clear answer :-\
-
-Thanks
-Emil
+> > > > +    * board_id
+> > > > +    * battery_present
+> > > > +    * hw_init_retries
+> > > > +    * is_customer_mode
+> > > > +    * is_act_mode
+> > > > +    * pmic_reset_reason
+> > > > +    * touch_fw_version
+> > > > +    * ocp_error_location
+> > >
+> > > nvmem binding doesn't work for describing these fields?
+> > >
+> > > > +  See sysfs documentation for more information.
+> > >
+> > > sysfs? Not relevant to the binding.
+> > >
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: simple-mfd
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +additionalProperties: false
+> > > > +
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - reg
+> > > > +  - ranges
+> > > > +  - address-cells
+> > > > +  - size-cells
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    / {
+> > > > +        compatible = "foo";
+> > > > +        model = "foo";
+> > >
+> > > No need to make this the root node with a fake compatible.
+> > >
+> > > > +        #address-cells = <2>;
+> > > > +        #size-cells = <2>;
+> > > > +
+> > > > +        imem@146bf000 {
+> > > > +          compatible = "simple-mfd";
+> > > > +          reg = <0x0 0x146bf000 0x0 0x1000>;
+> > > > +          ranges = <0x0 0x0 0x146bf000 0x1000>;
+> > > > +          #address-cells = <1>;
+> > > > +          #size-cells = <1>;
+> > > > +          status = "okay";
+> > >
+> > > Don't show status in examples.
+> > >
+> > > > +
+> > > > +          xbl@a94 {
+> > > > +            compatible = "microsoft,sm8150-surface-duo-xbl";
+> > > > +            reg = <0xa94 0x100>;
+> > > > +            status = "okay";
+> > > > +          };
+> > > > +        };
+> > > > +      };
+> > > > diff --git a/MAINTAINERS b/MAINTAINERS index
+> > > > 13f9a84a617e..5d0ca2a98b57 100644
+> > > > --- a/MAINTAINERS
+> > > > +++ b/MAINTAINERS
+> > > > @@ -12649,6 +12649,13 @@ F:	Documentation/driver-
+> > > api/surface_aggregator/clients/dtx.rst
+> > > >  F:	drivers/platform/surface/surface_dtx.c
+> > > >  F:	include/uapi/linux/surface_aggregator/dtx.h
+> > > >
+> > > > +MICROSOFT SURFACE DUO XBL DRIVER
+> > > > +M:	Jarrett Schultz <jaschultz@microsoft.com>
+> > > > +L:	linux-arm-msm@vger.kernel.org
+> > > > +L:	platform-driver-x86@vger.kernel.org
+> > > > +S:	Supported
+> > > > +F:	Documentation/devicetree/bindings/platform/microsoft/surface-
+> > > xbl.yaml
+> > > > +
+> > > >  MICROSOFT SURFACE GPE LID SUPPORT DRIVER
+> > > >  M:	Maximilian Luz <luzmaximilian@gmail.com>
+> > > >  L:	platform-driver-x86@vger.kernel.org
+> > > > --
+> > > > 2.25.1
+> > > >
+> > > >
