@@ -2,181 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DCE54B68F4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 11:14:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2AC74B690D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 11:17:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236349AbiBOKOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 05:14:25 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47056 "EHLO
+        id S235006AbiBOKRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 05:17:08 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235671AbiBOKOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 05:14:24 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B575310E067
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 02:14:14 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id o34so7292151wms.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 02:14:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oSCtsd3fzrUKJIHAZet+tjs87CCWa1yDtr7CzSuhxDE=;
-        b=4P9S1itgLjR+WLtU0yKgH6geqBsZAQDIyLWXmwIAemApD0tzz70VbQnpUarv4j9Skc
-         Dd9sRJdtdSAWdwvA71LxPJxQR0ld/p4WNxBuHz4G6jmUYcNlmvH6jwGje4S198KK3zRB
-         sru5PO7Itxq4Auwd+uKtL6prn5yneWmZPzRmAMR9cJIlUYOCF91rZ98QvsLjEYt8qFpJ
-         jsOjg7urvQVsmjYMM/r0zGx+9xLexJoxSx30wzY/y9sNbL8SbMZVFZ+AizWCQ6VKKibE
-         SuPFd9Od2yUmIlBUyeVKrggPDxCvz1rbI4F1dvZPCK2XUqLYRInf+I1K8hJwbgPf5+6a
-         bPBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oSCtsd3fzrUKJIHAZet+tjs87CCWa1yDtr7CzSuhxDE=;
-        b=o2dnMnferMDvglmECvaYL5IoWKyUcXzwsi+JFetVB1BxiBLIvJoaToX61mKi4EILzB
-         AcJFJ/HuzNIqOOBgQ1lx2VCiBlORnWKseXTr88lcbG/st1s0I5uEQHIzAQPRmLBMNowF
-         CYscOnehNJvvvZu9Cri9a/OTWSpnIuBDw2yBKKKgBjIKfRLAiN6eDzZSDZfhZ5KBELQM
-         YHkVphlYREYpY1DoOQuyYEtT51rUPScIZnV9WwAMMvScJ1wuvuA/j8v71vKaJ3vhjFgI
-         tAKSqZnSClWh8thvbgkw1YxlqwyhQvHQIDD+Pb47bWi1wvuk5Oz8pqf5vHp3UmYdmeBf
-         Xm2w==
-X-Gm-Message-State: AOAM530bjuxqAYqdeafydiMK/0H7abf6OI6JTuAKZ4RRVDtaXi+Ye0PQ
-        FHvmQBd6VSeDZbT2I1XzMD28qSyGH9fkeUxjMDvL8Q==
-X-Google-Smtp-Source: ABdhPJwNWDxqimLiGPW3n0xj1IdnK8izeD/YPdGs8aF5FxCduWcL5ipg17QyPI0oH+gExeSy9a0tK6vxUt/OTD/sfCI=
-X-Received: by 2002:a1c:750f:: with SMTP id o15mr2399030wmc.137.1644920052860;
- Tue, 15 Feb 2022 02:14:12 -0800 (PST)
+        with ESMTP id S230074AbiBOKRH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 05:17:07 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6D5CE06;
+        Tue, 15 Feb 2022 02:16:56 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3D06A315;
+        Tue, 15 Feb 2022 11:16:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1644920214;
+        bh=Vpqo09h7HCFknIrAzLb9ruVe3S9lzDoV2wmtEnovrZM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eII97Vsk5rHLoGL50vSPpRjgKdcEdLIKPoDiqNWqZnpU19DJ2/FHprYb5uL5BujWC
+         uVo9CFuR8UyB5ZTz3kL1F8LDh8kkXxfdxRtvOxqfHBpsiHJ0IrkH84bnpkqBoRakTO
+         ANpGvYa62FTXuMu+HtLom8QKCpwEMGqvZS/C1+4o=
+Date:   Tue, 15 Feb 2022 12:16:47 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
+        Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 61/66] dt-bindings: media: Add Allwinner A31 ISP
+ bindings documentation
+Message-ID: <Ygt9j+rwEC+2aUjH@pendragon.ideasonboard.com>
+References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
+ <20220205185429.2278860-62-paul.kocialkowski@bootlin.com>
+ <YgE/+UmP4nJVxtRT@pendragon.ideasonboard.com>
+ <YgqAv2vLimYgRwDS@aptenodytes>
+ <YgqM3ZdMfEz+ZKo/@pendragon.ideasonboard.com>
+ <Ygt8LF8qx3rnxlgp@aptenodytes>
 MIME-Version: 1.0
-References: <20220215090211.911366-1-atishp@rivosinc.com> <20220215090211.911366-4-atishp@rivosinc.com>
-In-Reply-To: <20220215090211.911366-4-atishp@rivosinc.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Tue, 15 Feb 2022 15:44:00 +0530
-Message-ID: <CAAhSdy3ved0OWUEeYUvjpjs=UrtPyFj3O+2Xcc2sUNBsm=AsMQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/6] RISC-V: Extract multi-letter extension names from
- "riscv, isa"
-To:     Atish Patra <atishp@rivosinc.com>
-Cc:     "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Tsukasa OI <research_trasio@irq.a4lg.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Ygt8LF8qx3rnxlgp@aptenodytes>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 15, 2022 at 2:32 PM Atish Patra <atishp@rivosinc.com> wrote:
->
-> From: Tsukasa OI <research_trasio@irq.a4lg.com>
->
-> Currently, there is no usage for version numbers in extensions as
-> any ratified non base ISA extension will always at v1.0.
->
-> Extract the extension names in place for future parsing.
->
-> Signed-off-by: Tsukasa OI <research_trasio@irq.a4lg.com>
-> [Improved commit text and comments]
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> Tested-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  arch/riscv/kernel/cpufeature.c | 38 ++++++++++++++++++++++++++--------
->  1 file changed, 29 insertions(+), 9 deletions(-)
->
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index 9d5448542226..cd9eb34f8d11 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -119,9 +119,28 @@ void __init riscv_fill_hwcap(void)
->                                 ext_long = true;
->                                 /* Multi-letter extension must be delimited */
->                                 for (; *isa && *isa != '_'; ++isa)
-> -                                       if (!islower(*isa) && !isdigit(*isa))
-> +                                       if (unlikely(!islower(*isa)
-> +                                                    && !isdigit(*isa)))
->                                                 ext_err = true;
-> -                               /* ... but must be ignored. */
-> +                               /* Parse backwards */
-> +                               ext_end = isa;
-> +                               if (unlikely(ext_err))
-> +                                       break;
-> +                               if (!isdigit(ext_end[-1]))
-> +                                       break;
-> +                               /* Skip the minor version */
-> +                               while (isdigit(*--ext_end))
-> +                                       ;
-> +                               if (ext_end[0] != 'p'
-> +                                   || !isdigit(ext_end[-1])) {
-> +                                       /* Advance it to offset the pre-decrement */
-> +                                       ++ext_end;
-> +                                       break;
-> +                               }
-> +                               /* Skip the major version */
-> +                               while (isdigit(*--ext_end))
-> +                                       ;
-> +                               ++ext_end;
->                                 break;
->                         default:
->                                 if (unlikely(!islower(*ext))) {
-> @@ -131,6 +150,7 @@ void __init riscv_fill_hwcap(void)
->                                 /* Find next extension */
->                                 if (!isdigit(*isa))
->                                         break;
-> +                               /* Skip the minor version */
+Hi Paul,
 
-This comment should be moved to PATCH2
+On Tue, Feb 15, 2022 at 11:10:52AM +0100, Paul Kocialkowski wrote:
+> On Mon 14 Feb 22, 19:09, Laurent Pinchart wrote:
+> > On Mon, Feb 14, 2022 at 05:18:07PM +0100, Paul Kocialkowski wrote:
+> > > On Mon 07 Feb 22, 17:51, Laurent Pinchart wrote:
+> > > > On Sat, Feb 05, 2022 at 07:54:24PM +0100, Paul Kocialkowski wrote:
+> > > > > This introduces YAML bindings documentation for the Allwinner A31 Image
+> > > > > Signal Processor (ISP).
+> > > > > 
+> > > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > > > ---
+> > > > >  .../media/allwinner,sun6i-a31-isp.yaml        | 117 ++++++++++++++++++
+> > > > >  1 file changed, 117 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> > > > > 
+> > > > > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..2d87022c43ce
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> > > > > @@ -0,0 +1,117 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree Bindings
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      - allwinner,sun6i-a31-isp
+> > > > > +      - allwinner,sun8i-v3s-isp
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  interrupts:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  clocks:
+> > > > > +    items:
+> > > > > +      - description: Bus Clock
+> > > > > +      - description: Module Clock
+> > > > > +      - description: DRAM Clock
+> > > > 
+> > > > That's interesting, does the ISP have a dedicated DRAM ?
+> > > 
+> > > It doesn't, it actually uses the main DRAM with the "mbus" interconnect.
+> > > The clock is probably for the DMA engine.
+> > > 
+> > > > > +
+> > > > > +  clock-names:
+> > > > > +    items:
+> > > > > +      - const: bus
+> > > > > +      - const: mod
+> > > > > +      - const: ram
+> > > > > +
+> > > > > +  resets:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  ports:
+> > > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > > +
+> > > > > +    properties:
+> > > > > +      port@0:
+> > > > > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > > +        description: CSI0 input port
+> > > > > +
+> > > > > +        properties:
+> > > > > +          reg:
+> > > > > +            const: 0
+> > > > > +
+> > > > > +          endpoint:
+> > > > > +            $ref: video-interfaces.yaml#
+> > > > > +            unevaluatedProperties: false
+> > > > 
+> > > > If no other property than remote-endpoint are allowed, I'd write
+> > > > 
+> > > >           endpoint:
+> > > >             $ref: video-interfaces.yaml#
+> > > > 	    remote-endpoint: true
+> > > >             additionalProperties: false
+> > > > 
+> > > > Same below.
+> > > > 
+> > > > > +
+> > > > > +        additionalProperties: false
+> > > > > +
+> > > > > +      port@1:
+> > > > > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > > +        description: CSI1 input port
+> > > > > +
+> > > > > +        properties:
+> > > > > +          reg:
+> > > > > +            const: 0
+> > > > 
+> > > > This should be 1.
+> > > 
+> > > Correct, thanks!
+> > > 
+> > > > > +
+> > > > > +          endpoint:
+> > > > > +            $ref: video-interfaces.yaml#
+> > > > > +            unevaluatedProperties: false
+> > > > > +
+> > > > > +        additionalProperties: false
+> > > > > +
+> > > > > +    anyOf:
+> > > > > +      - required:
+> > > > > +        - port@0
+> > > > > +      - required:
+> > > > > +        - port@1
+> > > > 
+> > > > As ports are an intrinsic property of the ISP, both should be required,
+> > > > but they don't have to be connected.
+> > > 
+> > > Well the ISP does have the ability to source from either CSI0 and CSI1
+> > > but I don't really get the point of declaring both ports when only one
+> > > of the two controllers is present.
+> > 
+> > If it's within an SoC I don't mind too much. What I usually insist on is
+> > declaring all ports even when no external devices are connected on the
+> > board. It may however be easier to implement things on the driver side
+> > when all the ports are declared, even for internal devices. I won't
+> > insist either way here.
+> > 
+> > > > By the way, how do you select at runtime which CSI-2 RX the ISP gets its
+> > > > image stream from ? Is it configured through registers of the ISP ?
+> > > 
+> > > Actually what the ISP gets is fully dependent on what is received by the
+> > > CSI controller it is connected to (which can be the mipi csi-2 controller
+> > > or its direct parallel pins), so the configuration happens on the CSI side.
+> > 
+> > OK, then how do you select at runtime which CSI the ISP gets its image
+> > stream from ? :-)
+> 
+> What is done in the driver is that all available csi(s) entities pads are linked
+> to a single csi sink media pad, which allows userspace to enable one or the
+> other. If there's only one, it's enabled by default.
+> 
+> The actual stream source (isp_dev->proc.source) is selected at link_validate
+> time and the source bit is set in sun6i_isp_proc_enable.
+> 
+> I hope this answers your question!
 
->                                 while (isdigit(*++isa))
->                                         ;
->                                 if (*isa != 'p')
-> @@ -139,20 +159,20 @@ void __init riscv_fill_hwcap(void)
->                                         --isa;
->                                         break;
->                                 }
-> +                               /* Skip the major version */
+Yes it does, thank you.
 
-Same applies to this comment as well.
+While this works, it makes life a bit more complicated for userspace, as
+switching between the two sources require disabling the link first and
+then enabling the new one. This is something that caused issues in the
+libcamera simple pipeline handler, I ended up having to implement a
+workaround.
 
->                                 while (isdigit(*++isa))
->                                         ;
->                                 break;
->                         }
->                         if (*isa != '_')
->                                 --isa;
-> -                       /*
-> -                        * TODO: Full version-aware handling including
-> -                        * multi-letter extensions will be added in-future.
-> -                        */
-> -                       if (ext_err || ext_long)
-> +
-> +                       if (unlikely(ext_err))
->                                 continue;
-> -                       this_hwcap |= isa2hwcap[(unsigned char)(*ext)];
-> -                       this_isa |= (1UL << (*ext - 'a'));
-> +                       if (!ext_long) {
-> +                               this_hwcap |= isa2hwcap[(unsigned char)(*ext)];
-> +                               this_isa |= (1UL << (*ext - 'a'));
-> +                       }
->                 }
->
->                 /*
-> --
-> 2.30.2
->
+Could you instead have two sink pads for the ISP, and select the sensor
+at stream on time instead of link validation time by checking which link
+is enabled ? If no links or both links are enabled, you can then return
+an error.
 
-Otherwise it looks good to me.
+Ideally I'd say such internal routing should use the new V4L2 subdev
+routing API that is currently being implemented (see [1]), but I don't
+know when it will land, and I don't want to delay your patch series.
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
+[1] https://lore.kernel.org/linux-media/20211130141536.891878-28-tomi.valkeinen@ideasonboard.com
 
+> > > > > +
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - reg
+> > > > > +  - interrupts
+> > > > > +  - clocks
+> > > > > +  - clock-names
+> > > > > +  - resets
+> > > > > +
+> > > > > +additionalProperties: false
+> > > > > +
+> > > > > +examples:
+> > > > > +  - |
+> > > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > > > +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
+> > > > > +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
+> > > > > +
+> > > > > +    isp: isp@1cb8000 {
+> > > > > +        compatible = "allwinner,sun8i-v3s-isp";
+> > > > > +        reg = <0x01cb8000 0x1000>;
+> > > > > +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> > > > > +        clocks = <&ccu CLK_BUS_CSI>,
+> > > > > +             <&ccu CLK_CSI1_SCLK>,
+> > > > > +             <&ccu CLK_DRAM_CSI>;
+> > > > > +        clock-names = "bus", "mod", "ram";
+> > > > > +        resets = <&ccu RST_BUS_CSI>;
+> > > > > +
+> > > > > +        ports {
+> > > > > +            #address-cells = <1>;
+> > > > > +            #size-cells = <0>;
+> > > > > +
+> > > > > +            port@0 {
+> > > > > +                reg = <0>;
+> > > > > +
+> > > > > +                isp_in_csi0: endpoint {
+> > > > > +                    remote-endpoint = <&csi0_out_isp>;
+> > > > > +                };
+> > > > > +            };
+> > > > > +        };
+> > > > > +    };
+> > > > > +
+> > > > > +...
+
+-- 
 Regards,
-Anup
+
+Laurent Pinchart
