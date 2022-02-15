@@ -2,105 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAF494B73D0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:44:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C7914B73CC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:44:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241759AbiBOQlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 11:41:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50256 "EHLO
+        id S241723AbiBOQkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 11:40:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235181AbiBOQlK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 11:41:10 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B594F2135;
-        Tue, 15 Feb 2022 08:41:00 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id e5so8207818lfr.9;
-        Tue, 15 Feb 2022 08:41:00 -0800 (PST)
+        with ESMTP id S241719AbiBOQke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 11:40:34 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31800F1EBF
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 08:40:24 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id 4so21288260oil.11
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 08:40:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KjPOeSE+RdrU9J1G95EImhMutKQlZfD+MfnQPmxkIM4=;
-        b=iqxLiVFDhQ8rUiXvcWGTD8xi2LzcZdiT9P+dVlz8CO9P4HeVLyisSID8nN1JkC91iJ
-         aZkgZU1FAk3g3rsAHUkVaJpKSu+h5FvYMLWxEcjMBd9uKNThzu6wMAdH9xB0mwe+xHzF
-         UftxSRyUyhHHJal8VjaQl8T4Lb8DX8zbQY804jUhbDiCLqo6/sJ9w2IrHiMfP9bV66Zq
-         4m4vEahHsDEKcY6UseJwYA+oIpBVEctuIyp5OLmy53IAOF/rmMpzhq5wF0J1pVz47EA3
-         X8elvkx7bY6BC9TvchH3AnVvOWAx50nZ2umjKlWOI5r+Xp5u++rZB+pxQlB26x0dYQaD
-         RKbQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=I1kj9pE4xw6JAJzinakuQqOKg6JJ0KzkGT4gYU3pHWA=;
+        b=UCeI7kpxKycxeDv1CKWVXZiSqQZl7pCD/Zi0Nn3FNq3/b6tW5KckWNvCu73yVCLynj
+         tCJq1ODydHRD39fH5qHnxqOJqJLVz3jkbcavRpeXAJnRcNuHIOo+HTRZHB0Mc4d3Bi3p
+         Od1LuZhoT50Uce+glyEI0gfVmvUrW/OVI2bql8B1YEiCpeiZvZWdeRjn5da4UlWV79pH
+         CRT5vtEZAD9Sx8lZHCTtt85jWIigmAFLchrwoWa1JwKM3vC/n55xqG6/8vrLMauyGD6f
+         wvs17n2TNHLYXbPIdfFxRxabOftLSvL7hWs9hIQS7BzWVIKRCFImVfyqpNH2RFUZf2I5
+         MXww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KjPOeSE+RdrU9J1G95EImhMutKQlZfD+MfnQPmxkIM4=;
-        b=K8IAoI2Epz451R2OeKJK/ocAqVCT6nGy7NRyWiXgbRgd1VmgaQrSauGoYv2GOJU2F3
-         I86u8n2oq4NmB4gUEbOUlMisj1HYjb3K9k2WBrg0JlIEmbIBMWzmZZv4oY0dSuk/rJ3k
-         M+neluWiFYSYsXY3KxHQPcYRkB8FNiVyOEDx59RnlrQLdLFwXmx3wfjmdJ05urofbZvl
-         qkxnn1BSIFfyl0kILICRTyffwfmp2xSZtjScBaMdIpJrLSDzGkOoCP2HYcsQtfq7s1xb
-         hFNpnoOp4IFR9CGXaeJh1iI1UT7dmWBF3CR6IndcQZKXlGh5lV75ZFhbMcfzZ/l9IGtk
-         vfTA==
-X-Gm-Message-State: AOAM533SqFXFrmv8dAazPiai9MleqN0eA7XTCbxy8i2EiwIsbB0R2Z2s
-        7/U2bBVykZroAQq7+56M8Ac=
-X-Google-Smtp-Source: ABdhPJzf3WF+0Mr2b/W2BMKEHFQ7z07BI22BudPKSaDp5F5o/heoVcBa1vbxwGm8zWQP+L6B81cixg==
-X-Received: by 2002:a05:6512:e9d:: with SMTP id bi29mr3651986lfb.652.1644943257110;
-        Tue, 15 Feb 2022 08:40:57 -0800 (PST)
-Received: from WBEC678.wbe.local (xt27d8.stansat.pl. [83.243.39.216])
-        by smtp.gmail.com with ESMTPSA id s1sm1127092ljd.18.2022.02.15.08.40.56
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=I1kj9pE4xw6JAJzinakuQqOKg6JJ0KzkGT4gYU3pHWA=;
+        b=rcpRLpoDBdjKFKnydAmmLNs+r1C1p+BLTx8Gx1vWXX9X+ueO/5wVyVp+TgbsgUmUap
+         Bkc+D6UkaQGBfjpNDvjDhH5XE+vkAuIx5TeFM5ymQeNfYawF4nZ6+7JnbEVft+3HxsHA
+         0fXD+wu3sCEPhnkWJNfP1uUJjyaL7jPi/pOWjkpRTsRXFUhqw1LBPV3bPZGzTJqJpIbp
+         LuCoDDFUCBLInFPnlFquQtCVEnDU1JNXYrdYOqIw/Jda50zMqT7BcMyfO1GqfZwAIgKn
+         r/RycMHGVcGCadyRKlrys0rHmETR5CEdR3IHVMMag64hYcISq3fn6nNc0y59dv5enzww
+         SxFQ==
+X-Gm-Message-State: AOAM532eyCUeBvE+0AxLpqiFN2laSgumM1mozIt0chvIn3qAGb9A+93x
+        RwOmJ5dWWjp0ShYGA1Xt3CRXuA==
+X-Google-Smtp-Source: ABdhPJwywAFvvPp04iK1gyctbPPD1igrq3/W2+Vd3W1gPOO1Z7BW13OeaSkecxF5Lrcky9rnyejdRw==
+X-Received: by 2002:aca:3886:0:b0:2cf:6189:ee47 with SMTP id f128-20020aca3886000000b002cf6189ee47mr1954823oia.58.1644943223401;
+        Tue, 15 Feb 2022 08:40:23 -0800 (PST)
+Received: from yoga ([2600:1700:a0:3dc8:5c39:baff:fe03:898d])
+        by smtp.gmail.com with ESMTPSA id x3sm1703671oiv.29.2022.02.15.08.40.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 08:40:56 -0800 (PST)
-From:   Pawel Dembicki <paweldembicki@gmail.com>
-Cc:     Pawel Dembicki <paweldembicki@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
+        Tue, 15 Feb 2022 08:40:22 -0800 (PST)
+Date:   Tue, 15 Feb 2022 10:40:20 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: vendor-prefixes: Add Ctera Networks
-Date:   Tue, 15 Feb 2022 17:39:23 +0100
-Message-Id: <20220215163926.894-2-paweldembicki@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220215163926.894-1-paweldembicki@gmail.com>
-References: <20220215163926.894-1-paweldembicki@gmail.com>
+Subject: Re: [PATCH 10/15] arm64: dts: qcom: Add MSM8953 device tree
+Message-ID: <YgvXdFZfWEzHF2Oy@yoga>
+References: <20220112194118.178026-1-luca@z3ntu.xyz>
+ <20220112194118.178026-11-luca@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220112194118.178026-11-luca@z3ntu.xyz>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CTERA Networks Intl. is a company based in Israel.
-They manufacture NASes, network devices and provide software
-products for cloud storage and IT security.
+On Wed 12 Jan 13:40 CST 2022, Luca Weiss wrote:
 
-Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
----
-v2: no changes
+> From: Vladimir Lypak <vladimir.lypak@gmail.com>
+> 
+> Add a base DT for MSM8953 SoC.
+> 
+> Co-developed-by: Luca Weiss <luca@z3ntu.xyz>
+> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8953.dtsi | 1337 +++++++++++++++++++++++++
+>  1 file changed, 1337 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8953.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> new file mode 100644
+> index 000000000000..59918b527750
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> @@ -0,0 +1,1337 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
+> +
+> +#include <dt-bindings/clock/qcom,gcc-msm8953.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/power/qcom-rpmpd.h>
+> +#include <dt-bindings/thermal/thermal.h>
+> +
+> +/ {
+> +	interrupt-parent = <&intc>;
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
 
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Why do you have address/size-cells of 2, and then limit them to 1 in
+/soc?
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index c48ce3c54951..9e247353b6bc 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -275,6 +275,8 @@ patternProperties:
-     description: Hangzhou C-SKY Microsystems Co., Ltd
-   "^csq,.*":
-     description: Shenzen Chuangsiqi Technology Co.,Ltd.
-+  "^ctera,.*":
-+    description: CTERA Networks Intl.
-   "^cubietech,.*":
-     description: Cubietech, Ltd.
-   "^cui,.*":
--- 
-2.25.1
+> +
+> +	aliases {
+> +		i2c1 = &i2c_1;
+> +		i2c2 = &i2c_2;
+> +		i2c3 = &i2c_3;
+> +		i2c4 = &i2c_4;
+> +		i2c5 = &i2c_5;
+> +		i2c6 = &i2c_6;
+> +		i2c7 = &i2c_7;
+> +		i2c8 = &i2c_8;
 
+It was expressed a while back that you should specify alias only for the
+things that you have enabled in your .dts.
+
+> +	};
+[..]
+> +		tcsr_mutex: hwlock@1905000 {
+> +			compatible = "qcom,tcsr-mutex";
+> +			reg = <0x1905000 0x20000>;
+> +			#hwlock-cells = <1>;
+> +		};
+> +
+> +		tcsr: syscon@1937000 {
+> +			compatible = "qcom,tcsr-msm8953", "syscon";
+> +			reg = <0x1937000 0x30000>;
+> +		};
+> +
+> +		tcsr_phy_clk_scheme_sel: syscon@193f044 {
+
+I don't fancy exposing a single word from the middle of &tcsr using a
+syscon. The tcsr node should express the TCSR region and if we need to
+reference bits of information within that we should do that in some
+structured way.
+
+Wouldn't nvmem be a good candidate for this?
+
+> +			compatible = "syscon";
+> +			reg = <0x193f044 0x4>;
+> +		};
+> +
+
+Regards,
+Bjorn
