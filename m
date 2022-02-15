@@ -2,85 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB2A04B771A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:50:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C93C74B776F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:50:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240912AbiBOSDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 13:03:03 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36924 "EHLO
+        id S238542AbiBOSFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 13:05:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240586AbiBOSDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 13:03:02 -0500
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2355ECF3B0
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 10:02:51 -0800 (PST)
-Received: by mail-io1-xd34.google.com with SMTP id i62so24918410ioa.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 10:02:51 -0800 (PST)
+        with ESMTP id S236250AbiBOSFe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 13:05:34 -0500
+Received: from mail-vk1-xa2b.google.com (mail-vk1-xa2b.google.com [IPv6:2607:f8b0:4864:20::a2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A96C6119410;
+        Tue, 15 Feb 2022 10:05:23 -0800 (PST)
+Received: by mail-vk1-xa2b.google.com with SMTP id f12so3503133vkl.2;
+        Tue, 15 Feb 2022 10:05:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vHlV/LtgGXNiZ7zK5zIyGJOfGAkSpkjLSX123D9TpgA=;
-        b=lZlLqVCF5x50Bw2WI0EmXhOEjbmCR23f3VzzrlMJALYbhC7MgI5zF3t2kRSeFNXgm/
-         rDDMLTaPP0dhqmJLiYSNIqgNUUb+sVxvFZnMVM65kctrFrm+2wfIdNizm8DuNZ7Ndxu9
-         +T0TtFxp1mv9GBEgCqd/+joe9Uwyn5DSCKRbM=
+         :cc:content-transfer-encoding;
+        bh=gLFgGT6YwvXW1wx34JstmO2egBx2eW53mLM0rtTg/Sc=;
+        b=KID333ITUi73ySWGz7NI+m+E5EGqFpblrSqIqmNw1gXZev9/XDAyukTbxvSCm4gKSe
+         4hYTBpYMUl4w0qe6b2urizheFZs7flA7mMy2m+0fkW90KTAMc+4l9325zTeoom60nPYs
+         i+UJ1fb2Wu06ksFS/igVcQQwtTeaW27Mni+l43Dx8F84mRa5xhAlk0ArF6LaheuBX6UJ
+         WHqlzTFf2rTWdyR0g6exXoLT4XNmSbbdBXaXd9n+7Gd5TlNR6J7zfjZ5wdPk+lhxINmr
+         oHu0f4OoYTlA1u0+xeryBjS4Nv1D6zvvWZo2zQnWHVoFn8lk/rrpf7ABra2C4cpBlveU
+         hhcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vHlV/LtgGXNiZ7zK5zIyGJOfGAkSpkjLSX123D9TpgA=;
-        b=DIpSpRfC5/oKDfVyBOu+OB8XBw9RYYZxsfVO+EqN1sjk3VQWF8R3mr09oR20W+XFUe
-         TFGdgrVr9FLsA4f5x6wbtVKyZC9xn3bywhwYf4vu2b4Qtwn90VhPaD5jfwKr6Z20Z6OT
-         IFbGKqBaOQbrz3CJJ2j0em2a85G3DcokhvEZ32sNWLY/qFsjS2m9iZ4aKoLxzAR064EN
-         XijLVmSrBaf3VTwnOSDIvEGf/RJveZcBERAjmFv67ODp2J3qUClwr4khF2eGaVJtPhnY
-         0jVVimld5XFVFoMCLZBeF6dYEdZ53H3QCpQrEn9T/TeTKWGxnbzLwrEo5vcvkZO5S6Rf
-         hidQ==
-X-Gm-Message-State: AOAM531utnMYY+mYNA835+AhRWxpa/acxtgT31EqH4KK2GhQ9BCDPpr8
-        lHK/59uvB3/VcGFbtV57X98fJfYFljAbJQ==
-X-Google-Smtp-Source: ABdhPJyJc9kVrxkay+LCMvvlPsYAzHjlw6A4JPfY4KWRcs5sd9jEwgLGS+IAnimEbwLMCFxKuRo70w==
-X-Received: by 2002:a02:84c7:: with SMTP id f65mr45600jai.243.1644948170329;
-        Tue, 15 Feb 2022 10:02:50 -0800 (PST)
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com. [209.85.166.48])
-        by smtp.gmail.com with ESMTPSA id p16sm19496179ilm.85.2022.02.15.10.02.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Feb 2022 10:02:49 -0800 (PST)
-Received: by mail-io1-f48.google.com with SMTP id h5so1182713ioj.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 10:02:49 -0800 (PST)
-X-Received: by 2002:a05:6638:4810:: with SMTP id cp16mr51427jab.207.1644948168679;
- Tue, 15 Feb 2022 10:02:48 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=gLFgGT6YwvXW1wx34JstmO2egBx2eW53mLM0rtTg/Sc=;
+        b=U8jzPXmfTs1E3eZFsBePME+9oxHNW7t85bCsW3NOyYsIVUERF94d2q5gUxqz2iDf8G
+         vXT3p8HGuNNrC7ambIS5pct8R4mFiW8h4zuFns2vDl9rXN7ilAThNSjUVIOsyd5jHuRi
+         9T/rIsG/BXRndmVAVm+YWVsVqmoBrQM/hacUT6aua3Y//YA6606zYv44/pXKiVhZAsqT
+         ZYgt1ZHaUlqcK5ZxL+FLKPOTMc5hP6FDuzX2DgV2wzN/SA7o08sR4hMNdfcopinz9UWV
+         fNZ7j21OeEtvjpvOV7M7yqyggDStLo6TcP7oozLS28h6nbtKImJoHFOdy7Ek+Y5FDpzq
+         l8AA==
+X-Gm-Message-State: AOAM5326sfqanDRs9LTumaCp+0bfmiqAw9HuzRQHvC7OzZZTw3W9ihQt
+        KK8bH4xXFC5uu5TWor9rQ/7yKCkVDVVsdRN8Oco=
+X-Google-Smtp-Source: ABdhPJwZ2c4DluFw+8AgtAZO4eg8n+SwcAKGWvctDBdUls3kAzfoEoE5KmSOu0LxpAWQttLVgi0QdO4HXYfEG/R2j3s=
+X-Received: by 2002:a05:6122:54e:: with SMTP id y14mr63443vko.37.1644948322750;
+ Tue, 15 Feb 2022 10:05:22 -0800 (PST)
 MIME-Version: 1.0
-References: <20220119204345.3769662-1-mka@chromium.org> <20220119124327.v20.3.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <YgJMX0QK9Koyu/uv@kroah.com> <YgLB0/aJJvGm3oYR@google.com>
-In-Reply-To: <YgLB0/aJJvGm3oYR@google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 15 Feb 2022 10:02:36 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VJmb_P9Rnn0ooNAkf3ese-BEWZr8z-Vc0RMdF=gHmNvw@mail.gmail.com>
-Message-ID: <CAD=FV=VJmb_P9Rnn0ooNAkf3ese-BEWZr8z-Vc0RMdF=gHmNvw@mail.gmail.com>
-Subject: Re: [PATCH v20 3/5] usb: misc: Add onboard_usb_hub driver
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>
+References: <20220126175604.17919-1-romain.perier@gmail.com>
+In-Reply-To: <20220126175604.17919-1-romain.perier@gmail.com>
+From:   Romain Perier <romain.perier@gmail.com>
+Date:   Tue, 15 Feb 2022 19:05:11 +0100
+Message-ID: <CABgxDo+hRsDo-Hmf4TUmuWQFo0+LnWOTrEQQz0beSjBhxkZ6_Q@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] ARM: mstar: cpupll
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
+        Romain Perier <romain.perier@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -89,92 +72,68 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Tue, Feb 8, 2022 at 11:17 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > > +/*
-> > > + * Returns the onboard_hub platform device that is associated with the USB
-> > > + * device passed as parameter.
-> > > + */
-> > > +static struct onboard_hub *_find_onboard_hub(struct device *dev)
-> > > +{
-> > > +   struct platform_device *pdev;
-> > > +   struct device_node *np;
-> > > +   struct onboard_hub *hub;
-> > > +
-> > > +   pdev = of_find_device_by_node(dev->of_node);
-> > > +   if (!pdev) {
-> > > +           np = of_parse_phandle(dev->of_node, "companion-hub", 0);
-> > > +           if (!np) {
-> > > +                   dev_err(dev, "failed to find device node for companion hub\n");
-> > > +                   return ERR_PTR(-EINVAL);
-> > > +           }
-> > > +
-> > > +           pdev = of_find_device_by_node(np);
-> > > +           of_node_put(np);
-> > > +
-> > > +           if (!pdev || !device_is_bound(&pdev->dev)) {
-> >
-> > I don't understand why you need to call device_is_bound() here.  What
-> > are you wanting to find here?
+ping :)
+
+Regards,
+Romain
+
+Le mer. 26 janv. 2022 =C3=A0 18:56, Romain Perier <romain.perier@gmail.com>=
+ a =C3=A9crit :
 >
-> Whether the platform driver actually probed.
+> This series adds a basic driver for the PLL that generates
+> the cpu clock on MStar/SigmaStar ARMv7 SoCs.
 >
-> > You found the hub device associated to this usb device, based on the
-> > of_find_device_by_node() call, so why check it again?  What could have
-> > happened that this isn't the correct device?
+> Unfortunately there isn't much documentation for this thing
+> so there are few magic values and guesses.
 >
-> It is the correct platform device, however it might not have finished
-> probing (this function is called from the USB driver). It's an unlikely
-> case, but it might happen, especially if the bootloader left the hub
-> regulator enabled (otherwise it would only be enabled by the platform
-> driver).
+> This needs to come after the MPLL DT changes.
 >
-> If device_is_bound() is a no-go (as it seems) the function could check
-> the drvdata instead.
-
-So IMO the answer here is to send a v21:
-
-1. Switch to use drvdata just to you can avoid the controversial
-device_is_bound() export.
-
-2. Add a comment here explaining _why_ you are checking the drvdata
-and return -EPROBE_DEFER. In general if it's confusing to someone
-during a code review it will be confusing to someone later and so
-deserves a comment. Something along the lines of: "Just to be
-paranoid, we check that the drvdata is set which indicates that the
-platform driver has finished probing. This handles the case where
-(conceivably) we could be running at the exact same time as the
-platform driver's probe. If we detect the race we request probe
-deferral and we'll come back and try again."
-
-
-> > > +   err = onboard_hub_add_usbdev(hub, udev);
-> > > +   if (err)
-> > > +           return err;
-> > > +
-> > > +   err = sysfs_create_link(&udev->dev.kobj, &hub->dev->kobj, "onboard_hub_dev");
-> >
-> > What is this link for?  Messing with sysfs links is a pain and drivers
-> > really shouldn't be doing them if at all possible.
+> Changes since v3:
+> - Added Reviewed-by on Daniel's patches
+> - Removed "[PATCH v3 8/9] ARM: mstar: Add OPP table for mercury5"
 >
-> Alan asked me to add them. It's not strictly needed. I'm fine with removing
-> them as long as there is no strong opposition to that :)
-
-I don't personally care either way. I'd say remove them and they can
-be added back later?
-
-
-> > > +   if (err)
-> > > +           dev_warn(&udev->dev, "failed to create symlink to platform device '%s'): %d\n",
-> > > +                    dev_name(hub->dev), err);
-> > > +
-> > > +   return 0;
-> >
-> > So you ignore the error?  That's fine, just odd.
+> Changes since v2:
+> - Re-ordered Kconfig by name
+> - Re-ordered includes alphabetically and removed useless ones
+> - Used timeout for cpu_relax
+> - Returned DIV_ROUND_DOWN_ULL() directly in
+>   msc313_cpupll_frequencyforreg()
+> - Returned DIV_ROUND_DOWN_ULL() directly in
+>   msc313_cpupll_regforfrequecy()
+> - Reduced the number of lines for msc313_cpupll_of_match
+> - Removed CLK_IS_CRITICAL
 >
-> Yes, the links aren't critical for the functioning of the driver.
-
-If you keep the links in, this is another good place for a comment,
-even something as simple as what you just said above about the links
-not being critical for the driver to function.
-
--Doug
+> Changes since v1:
+> - Re-worked the series and ensure that 'make dt_binding_check' passes.
+>   The required commit is merged now, so it is okay.
+> - Fixed coding style issues in the driver and makes check_patch.pl happy
+> - Added one more commit for extending the opp_table for infinity2m.
+>
+> Daniel Palmer (7):
+>   dt-bindings: clk: mstar msc313 cpupll binding description
+>   clk: mstar: msc313 cpupll clk driver
+>   ARM: mstar: Add cpupll to base dtsi
+>   ARM: mstar: Link cpupll to cpu
+>   ARM: mstar: Link cpupll to second core
+>   ARM: mstar: Add OPP table for infinity
+>   ARM: mstar: Add OPP table for infinity3
+>
+> Romain Perier (1):
+>   ARM: mstar: Extend opp_table for infinity2m
+>
+>  .../bindings/clock/mstar,msc313-cpupll.yaml   |  45 ++++
+>  arch/arm/boot/dts/mstar-infinity.dtsi         |  34 +++
+>  arch/arm/boot/dts/mstar-infinity2m.dtsi       |  17 ++
+>  arch/arm/boot/dts/mstar-infinity3.dtsi        |  58 +++++
+>  arch/arm/boot/dts/mstar-v7.dtsi               |   9 +
+>  drivers/clk/mstar/Kconfig                     |   8 +
+>  drivers/clk/mstar/Makefile                    |   2 +-
+>  drivers/clk/mstar/clk-msc313-cpupll.c         | 221 ++++++++++++++++++
+>  8 files changed, 393 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/mstar,msc313-=
+cpupll.yaml
+>  create mode 100644 drivers/clk/mstar/clk-msc313-cpupll.c
+>
+> --
+> 2.34.1
+>
