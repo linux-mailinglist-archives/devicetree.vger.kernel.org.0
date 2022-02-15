@@ -2,139 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D4B64B79CA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 22:49:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DAEF4B79FD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 22:52:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240144AbiBOVVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 16:21:21 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37956 "EHLO
+        id S237835AbiBOVw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 16:52:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233461AbiBOVVU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 16:21:20 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE51BA753;
-        Tue, 15 Feb 2022 13:21:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1644960070; x=1676496070;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=D3mH1ZQYnUmDyHebTFiaM1aX+zULtvkheCq0LawoiFk=;
-  b=MOFWvdK+LAwtynpujM5pfTDLUDe+5zezk3M91/aVdxTOHfNUXWD7i0vg
-   5x9STv62ooHwC9WGsR9cubH8bMYt/0jHxk/NeNh4HUWiaRwQYEnHAUHUx
-   Xq3yBcHZKhbY4qNDKKbqOPiAKdZogISCY5jXufNSoaLSYXZwYpQKDQ4eO
-   eo5eZPSMrs2T2wFJM59ugt+RT3Fgv31HDmCj63pKbDLhBsbJgrumgfJTV
-   9EK/0/wOk3WCenSNxe67ubgQxj3defKVv7gk+0Dp74RmC9GKO2R5IFIXI
-   +cJPLOrX0rynOQ/xf9pVrC4lTMCBJV3NQ0xF7E2T96GXRS+HBaNJhimDG
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10259"; a="249289916"
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; 
-   d="scan'208";a="249289916"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2022 13:21:10 -0800
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; 
-   d="scan'208";a="625027203"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2022 13:21:05 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 723FA200F1;
-        Tue, 15 Feb 2022 23:21:03 +0200 (EET)
-Date:   Tue, 15 Feb 2022 23:21:03 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 37/66] media: sun6i-csi: Move power management to
- runtime pm in capture
-Message-ID: <YgwZP4CS26FCOOqc@paasikivi.fi.intel.com>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <20220205185429.2278860-38-paul.kocialkowski@bootlin.com>
- <YgqftcDgfrsZfTdF@paasikivi.fi.intel.com>
- <Ygt4xh2Mq0qStyKs@aptenodytes>
- <Ygt6vwydxg9/WuDH@pendragon.ideasonboard.com>
- <Ygt+nZJrZMNXV4Cl@aptenodytes>
+        with ESMTP id S235504AbiBOVwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 16:52:25 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C597B5601
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 13:52:15 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id c3so292721pls.5
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 13:52:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=aN5YmtuYWznDowto5aPICkVMXBGokF/WGypb915FxNY=;
+        b=X+2c8aAmrnYZJl8J+TTDZAFu5rzDQ7Bjz6CTXBCMdt/w5dMXUkcgu9sTWuVI2JZCCT
+         +aIx8G3LH1LF/Sq4M5hXgHCitHg4gyAJm66MOxPw8DJ4+VfiEc+rJrua46rfriF2vrEO
+         EGREgqwlUXb449HXlA8K6i0WV1VcnLPlZkjuQlQUlA2YIzaliXVmfxsDFMcZvnzkX2BR
+         HO1TMfxbAreicIMtrWrvL+5QFMtjbuDTIROFCIPpzkRKX0XaqrBPdRrQvPgobL4MgFSA
+         TjNDjY1w5rd749cv0y6kPY9oxs7bWcs5gIkCTHj2SR2VvF3FVpIkE6BvJEGwZvtFg22q
+         UPKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=aN5YmtuYWznDowto5aPICkVMXBGokF/WGypb915FxNY=;
+        b=aEChK+jjbmrbn6UZIselhuAZAalzAGdVpB9Uu7O6TM+6lMLQSzxI4PkhdPAPQEzjN2
+         KtNoAdX9aJgp8etDliD9RUpoAP9AAA5YHfM2vgpP72J/49mFSLitwu+UoyqS0wbMbpt+
+         H422FMyFqv5zpvKqmdSjMzi+7X0Pmq9X/OCGHuI6Y7gn+2pjjvRyTDdgjz9qQAevYlSj
+         pXtCbgQcY025DBKgJgGGy5UAyq1ZyrcDgOlV86YRanmdg+gXe6mjIEOXmmONnIp4LxeI
+         lQnCzXt4hXrK9TtPMISaF5e3a19e5qPkk0CaNWxDhkpw1EATM+TYkjTx0nsg4Yse/lUT
+         clmw==
+X-Gm-Message-State: AOAM5320uHJVLFOZTxQNKGWsJesN57blS/FAvnvphSTWosoP7wvkRHhb
+        KeAM1ZL78BRka4JLCMK4+Ig=
+X-Google-Smtp-Source: ABdhPJz21EQdQ3/rs5F0T+19jgbNnbJcecOxIO0C1q7cAQ1ypaDb063x1G5BkDVSp5YJ692bpVv44A==
+X-Received: by 2002:a17:90b:388a:: with SMTP id mu10mr932644pjb.207.1644961934828;
+        Tue, 15 Feb 2022 13:52:14 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d16sm34384601pfj.1.2022.02.15.13.52.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Feb 2022 13:52:14 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2] arm64: dts: broadcom: bcm4908: add I2C block
+Date:   Tue, 15 Feb 2022 13:52:12 -0800
+Message-Id: <20220215215212.1636021-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220215063639.15361-1-zajec5@gmail.com>
+References: <20220211103306.15271-1-zajec5@gmail.com> <20220215063639.15361-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ygt+nZJrZMNXV4Cl@aptenodytes>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
-
-On Tue, Feb 15, 2022 at 11:21:17AM +0100, Paul Kocialkowski wrote:
-> Hi Laurent,
+On Tue, 15 Feb 2022 07:36:39 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> On Tue 15 Feb 22, 12:04, Laurent Pinchart wrote:
-> > Hi Paul,
-> > 
-> > On Tue, Feb 15, 2022 at 10:56:22AM +0100, Paul Kocialkowski wrote:
-> > > On Mon 14 Feb 22, 20:30, Sakari Ailus wrote:
-> > > > On Sat, Feb 05, 2022 at 07:54:00PM +0100, Paul Kocialkowski wrote:
-> > > > > Let's just enable the module when we start using it (at stream on)
-> > > > > and benefit from runtime pm instead of enabling it at first open.
-> > > > > 
-> > > > > Also reorder the call to v4l2_pipeline_pm_get.
-> > > > > 
-> > > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > > 
-> > > > Nice patch!
-> > > 
-> > > Thanks!
-> > > 
-> > > > Do you still need v4l2_pipeline_pm_put()? Removing it would be a separate
-> > > > patch of course.
-> > > 
-> > > My understanding is that this is still useful if there are drivers in the
-> > > pipeline that rely on s_power instead of rpm (a typical case could be an
-> > > old sensor driver). So that's why this is kept around, but all other components
-> > > of the pipeline (isp/csi/mipi csi-2) are using rpm now.
-> > 
-> > If that's not the case on your test platforms, I think it would be
-> > better to drop support for this old API, and convert drivers that still
-> > use .s_power() if someone needs to use one on an Allwinner platform.
+> BCM4908 uses the same I2C hw as BCM63xx / BCM67xx / BCM68xx SoCs.
 > 
-> I agree this is the path to follow but it feels like we're not quite there
-> yet and a bunch of driver were not converted at this point, including some
-> popular ones like ov5640, which I know for sure is used with Allwinner devices.
-> 
-> Honestly I'd be happy to get rid of these legacy functions as soon as the
-> transition is done, but doing it now would mean breaking a significant number
-> of use cases (which I'm trying to avoid here despite all the changes).
-> 
-> I definitely wouldn't be confident making that transition here and it
-> probably wouldn't be a good idea to make that a requirement to merge this
-> (already quite big) series.
-> 
-> What do you think?
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
-Feel free to keep it if you prefer that.
-
-All sensor drivers that implement s_power are old but there are quite a few
-of them. Converting them isn't trivial so best done by someone who has
-access to the hardware.
-
--- 
-Regards,
-
-Sakari Ailus
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+--
+Florian
