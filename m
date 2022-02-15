@@ -2,113 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6748D4B63A2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 07:37:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6789A4B63F5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 08:06:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232731AbiBOGg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 01:36:57 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49070 "EHLO
+        id S234740AbiBOHGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 02:06:21 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbiBOGg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 01:36:56 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1395897BA6
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 22:36:47 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id a42so9935062ljq.13
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 22:36:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=6VYgBZ/nOikRTNTBGH76AuIRBl/NLeMAVIqsBzW9D3U=;
-        b=RrQEZpMIaCNcP8ZJi/v9p6CgSpwMTZvF9eKJydI7Ai9kuFm0vLPzIvspRawnawG/gh
-         t1HBHrRYa/d5VHAWMpuGqlPM3bAKNyKWcW+sMrzkX+drrbt0VbD0b4gCYmqJSWbVQYAM
-         90sGVbhSc28aKRJlHNeNqRtsWIxkmjumLLecvGN5kjfqHfMRKIfZ9ZMuKJliq8gUz7u6
-         LXiOWYuzsi+wics6KD7b/3e29OGmKBiwNBMZo615bcyNq4TKvY0QtnGf3aqDKb1+hCQd
-         +GLnGbNZH1R37pFWBk8Ci6hmd8bLFjtp8jaqlEr6WEwLDNsdn6s+OHppMTZ09NnHYi3x
-         E9Lg==
+        with ESMTP id S234724AbiBOHGQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 02:06:16 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1413C71CAB
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 23:06:06 -0800 (PST)
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1F3A940334
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 07:06:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644908761;
+        bh=lfDoRzzxT+Vs2+m3nbv6o1ksboXgYRy90T0RvURbiic=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=ZIjEWplZvWvEGleYpkAfHZFZ7Lj/w84sJ0y68pkjVA/4iL2+peyPkCzyQsxQmSklN
+         AWBgDcXyyVs0nehaT3papLIXR3MCGYUzepc09aBsTLwK/TqHd6p7Us2JIIW2S0NX0B
+         PHxdF24JODcmNMaoqu3kTXIS/SzsCErJSJbJalVEbwLUlzSGAb49vKM7ITKZQd9WLl
+         //JfAwBRI8FX8kpzvCUFcJ9EE6I5mL/jVw668yCjPR2qwV/5jB7ro0a7k8Nqbl/BDj
+         Zb0dSXtn+yo2jVW9YqTNVQsacwrU1ZZZ3c44x/hE0GlmwXHWP0ZbETfu3eZVJoOMUp
+         rpnZGnJWpSSBQ==
+Received: by mail-wr1-f69.google.com with SMTP id r2-20020adfa142000000b001e176ac1ec3so7950612wrr.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 23:06:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6VYgBZ/nOikRTNTBGH76AuIRBl/NLeMAVIqsBzW9D3U=;
-        b=4Xd2UxNdCg3UIzMDlJ1XK3Y89uMccbbyCEUhZrwJya+h4Z2n3DDch6l03b4LL3kztO
-         q9yYidA+r40siMS/+PVQkFNta3o/uWtYuN8hnnEdqJGHc4QOHfSQr0FX3SvYE0dCSqjK
-         8/lwrkjSvW4cKybvNI/CfOtG+G/tXn0ed3gqAF3sKMLet0vD1uMO19r96u2slzl9THyZ
-         vXFCToBg27XML6r7mwm9bz7ASrGD4YYoEW8UIYSCVh/87zLOcWemUmimj9ZQUT5aBxi6
-         /QHJRPvG4+hFXaMJMGcpUO+xrxhhADThP2fwt6r+BRKuqjOygVgF6ZMPDWke9D+sWt4I
-         h53A==
-X-Gm-Message-State: AOAM532b1YHJC5496TJhpG4klchXpzOJPvetgqRsKliJPe647JAKV0c8
-        pyIanEaaTVtQCYUNct20Wts=
-X-Google-Smtp-Source: ABdhPJwLNnViU/FhTQYAjQedqKjYF4XuamAwwOTfTZ7wpXAwRxMnNhHuy7aFyT/H/s37c4O2wt4NMg==
-X-Received: by 2002:a05:651c:178c:: with SMTP id bn12mr1573895ljb.324.1644907005258;
-        Mon, 14 Feb 2022 22:36:45 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id f21sm674616ljn.76.2022.02.14.22.36.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Feb 2022 22:36:44 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] arm64: dts: broadcom: bcm4908: add I2C block
-Date:   Tue, 15 Feb 2022 07:36:39 +0100
-Message-Id: <20220215063639.15361-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220211103306.15271-1-zajec5@gmail.com>
-References: <20220211103306.15271-1-zajec5@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=lfDoRzzxT+Vs2+m3nbv6o1ksboXgYRy90T0RvURbiic=;
+        b=A4oWDcXSOfTeoL766rNVjF/mbcB//hFAZMpmqNN83y3Uw2KAdn0jMLRS9sU1XIWakl
+         sEuNJyNXx7aa8/J/A1vEmD6rhD+7bqJdPUrt+INuxXjNiysjm0L9xUNkHULGB3RbOfK7
+         q10ENKXZxw3Epa2e9T3//3XzC4JS7WId527cvG2vl833DJt7cems3Ov7mkWmd1uyZNTd
+         XQwMYqhymEJPXQs0b5i4mdjk4BgTu3LNq6KZxwYh8XK87JJliv/iP2UpIeSBeP8CXCwW
+         CT9w38QwUS1iWEcJ16DFT+p6DipZFgGWAdUqgwlPoee7eNsACLWKL5MbAO4xCSh6u+TP
+         UC8w==
+X-Gm-Message-State: AOAM531x5t3zfpD0fn1tXythvR2GSEH6N+Z9/9zIS58H0AMjtEVHMgvX
+        g/cjIlL84RzA/fPEgoubiLUE1LHDDIqil9OKvGVlYGEcmd7c/ks5VKsLHVgU1jD++EzNwX5EfNy
+        afKccGMB4Rpm+HShexZm3qJhKTVZ0uKtTSOF1vYU=
+X-Received: by 2002:a05:600c:1d27:b0:37c:74bb:2b4d with SMTP id l39-20020a05600c1d2700b0037c74bb2b4dmr1812911wms.82.1644908760555;
+        Mon, 14 Feb 2022 23:06:00 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz5mfu1idYoK+BXnawdvWeeqcggIqZHT10OM4kWqo2W0mTucjHmmEvaDjVzViFwtkkLez96bg==
+X-Received: by 2002:a05:600c:1d27:b0:37c:74bb:2b4d with SMTP id l39-20020a05600c1d2700b0037c74bb2b4dmr1812898wms.82.1644908760391;
+        Mon, 14 Feb 2022 23:06:00 -0800 (PST)
+Received: from [192.168.0.106] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id x10sm13884905wmj.17.2022.02.14.23.05.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Feb 2022 23:05:59 -0800 (PST)
+Message-ID: <9d033b4d-544e-ed14-fd5a-10370850c54f@canonical.com>
+Date:   Tue, 15 Feb 2022 08:05:59 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 2/2] input: ps2-gpio: enforce and document open drain
+Content-Language: en-US
+To:     Danilo Krummrich <danilokrummrich@dk-develop.de>
+Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linus.walleij@linaro.org
+References: <20220211233137.99624-1-danilokrummrich@dk-develop.de>
+ <20220211233137.99624-3-danilokrummrich@dk-develop.de>
+ <ce5ccbbc-0419-ae3d-5ab1-f8985cb7e792@canonical.com>
+ <Ygra3pOhcE18nXRj@pollux>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <Ygra3pOhcE18nXRj@pollux>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 14/02/2022 23:42, Danilo Krummrich wrote:
+> On Mon, Feb 14, 2022 at 10:50:21PM +0100, Krzysztof Kozlowski wrote:
+>> On 12/02/2022 00:31, Danilo Krummrich wrote:
+>>> The PS/2 bus defines the data and clock line be open drain, therefore
+>>> document this in the dt-binding and enforce the particular flag in the
+>>> driver.
+>>>
+>>> Without enforcing to flag at least the clock gpio as open drain we run
+>>> into the following warning:
+>>>
+>>> WARNING: CPU: 1 PID: 40 at drivers/gpio/gpiolib.c:3175 gpiochip_enable_irq+0x54/0x90
+>>>
+>>> gpiochip_enable_irq() warns on a GPIO being configured as output and
+>>> using IRQ without being flagged as open drain.
+>>>
+>>> Signed-off-by: Danilo Krummrich <danilokrummrich@dk-develop.de>
+>>> ---
+>>>  .../devicetree/bindings/serio/ps2-gpio.yaml        | 14 ++++++++++----
+>>>  drivers/input/serio/ps2-gpio.c                     |  9 +++++++--
+>>>  2 files changed, 17 insertions(+), 6 deletions(-)
+>>>
+>>
+>> Bindings as separate patch, please.
+> Are you fine with adding this additional documentation directly to the patch
+> converting the binding to a json-schema or do you prefer it to be a separate
+> patch?
 
-BCM4908 uses the same I2C hw as BCM63xx / BCM67xx / BCM68xx SoCs.
+I propose a separate patch, so you will have two bindings patches.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-This patch is based on (and targets):
-https://github.com/Broadcom/stblinux.git devicetree-arm64/next
-
-V2: Use correct binding that implies 8 B max transfer size. See commit
-    e2e5a2c61837 ("i2c: brcmstb: Adding support for CM and DSL SoCs")
-    for details.
----
- arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-index b0bc5262beca..5158143a9018 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-@@ -464,6 +464,15 @@ nandcs: nand@0 {
- 			};
- 		};
- 
-+		i2c@2100 {
-+			compatible = "brcm,brcmper-i2c";
-+			reg = <0x2100 0x58>;
-+			clock-frequency = <97500>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pins_i2c_a>;
-+			status = "disabled";
-+		};
-+
- 		misc@2600 {
- 			compatible = "brcm,misc", "simple-mfd";
- 			reg = <0x2600 0xe4>;
--- 
-2.34.1
-
+Best regards,
+Krzysztof
