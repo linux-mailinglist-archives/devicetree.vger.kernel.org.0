@@ -2,139 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 426A24B788A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:52:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC8794B775F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:50:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241805AbiBOTEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 14:04:15 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33790 "EHLO
+        id S235931AbiBOTGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 14:06:51 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235007AbiBOTEO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 14:04:14 -0500
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 996DDF94EF
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 11:04:04 -0800 (PST)
-Received: by mail-io1-xd32.google.com with SMTP id i62so25149383ioa.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 11:04:04 -0800 (PST)
+        with ESMTP id S242607AbiBOTGu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 14:06:50 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5783731366
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 11:06:37 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id b14so1018789ede.9
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 11:06:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=X9oIpTmWH153dZPbERckgwcW88amB5wLeggsaAJv2ZI=;
-        b=nQBCpjZ8lrNiWaxU4Wg2alyfbeoW6NWsW4O4lUAYOIf3kh4200lqryhrnZrd/i0dTg
-         Os4bogB5jd/j3L1NssRvTvI7jkV+eA8agcBWgmGTe/9nQdwQpTAKMKJOh/BEGUqxxhQR
-         LIPxM/gXNHIQgpzqCktJVYqGCILCSn5RwW+Vw=
+        bh=/8fT1jITxEXv0d74qphSlqMJEk9MBPu5sIjQr+d/9sY=;
+        b=nbMe6xa5ccdyHBW084IyHQVw+vIend9kQk4jZiIUpqWbg4Z1GFOZL3XOsH2DuNGfyZ
+         nTtqDUK1j+p/Mj0NRyMkw5T1iYrVqxBIZw6Rmecw6Ek+pVeqv/TAwxTWDtwGhBhcBo7B
+         SN5z6ZjXUABt1Y62HuKgrztqJ6z5+ye4SseRS5hCVBIzC11yv7e8LDoOwUaDjxZ6qjoI
+         h34UsJO+pTd3L6Umr57Fhod5h8PNC9I6nWEaxd7hdDW7ALaRwH5qrdvoXg9SYyzOx94M
+         6aeYp9paBfAXKO3udrUsO901FIFyoeurnJ540+y8devQcIsf8w/qCo1FgwSWRXWf5WN6
+         E5YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=X9oIpTmWH153dZPbERckgwcW88amB5wLeggsaAJv2ZI=;
-        b=JadtAERYQzsShEIn2VdBFKN4aiIL4aI2amhBgSj5aHLbv1/H5MOpl6JhJIvR8fHP6D
-         B1l9Hw+mChba5lVEaYAmOWp3/0S8Mtb1DkU5HiAzvBKRABeBmlHJkxF43MpO40TSHycI
-         +L6LUEX9a55YRQHcgt8dMTbf5q/g71nBjq3KtEOyw9pghI/8Bc5A1Og72AeR287W0mnb
-         +phNbbgyzVhgE3YDNLkBoYt9ZTf+UPi4gEEGLRS3K5jk/hKHHYaicSoQv53Bof0KDA4t
-         +pkr7/gcKb8+atrWlrixgHUhEAJwaYpMzlu7LbNVBpyNOmbAnqgQzmTGjseucBnzyVjO
-         nEjQ==
-X-Gm-Message-State: AOAM531KzevWR1KGKKxHtRNbGTUkF0j3HLluxuZ/vFLXS5nG76647ODI
-        mNxUHglYSTF1BVGdu28dVq3Rdc1FCbP97Q==
-X-Google-Smtp-Source: ABdhPJzJ4q0Uc23SXqoI6JeY/Jn1YZ9M3D3ehHeIu5aLSYtVT68pG7tErLH6rBgaTEhM+ObVksfScA==
-X-Received: by 2002:a05:6638:2608:: with SMTP id m8mr226700jat.298.1644951843655;
-        Tue, 15 Feb 2022 11:04:03 -0800 (PST)
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com. [209.85.166.44])
-        by smtp.gmail.com with ESMTPSA id k1sm23767888iov.6.2022.02.15.11.04.02
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Feb 2022 11:04:03 -0800 (PST)
-Received: by mail-io1-f44.google.com with SMTP id x13so409583iop.4
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 11:04:02 -0800 (PST)
-X-Received: by 2002:a05:6638:168d:: with SMTP id f13mr243041jat.44.1644951842244;
- Tue, 15 Feb 2022 11:04:02 -0800 (PST)
+        bh=/8fT1jITxEXv0d74qphSlqMJEk9MBPu5sIjQr+d/9sY=;
+        b=ocHrl1qPgIwLZEenHcpi2w7xd0GKR0ogEjKKx2HuJhWZGRPBCLJesPX3+aC/akHYxt
+         dtANpsCCH+V1v4D/ZwHSUGuPu/jTIyC27H3LtZU5wG4/gsUBzhYAh9npe5pJFh/Ns3H+
+         DRp9F2ez1jKPrRaPBVnzVT9yurlKxTJeUCcrwg6zWWZHTJbIJqhul/1Hg5THIXjlWzpy
+         B3IwefcXypUKGpfa2asfJGbDl7efUB+APwSUzIYuwgygDZPklHFGhbOo0bNZ9uA3WWkc
+         aNu2raY5uKxMaho7ukoQ1gqEKEvfH0Rs03Gf5xhxg4u2rm9/3+BYJvQiRDQrpMbN76I8
+         6t6A==
+X-Gm-Message-State: AOAM5315pyMILcqXFiQnSM59CUR6B7ZFi1i5ZF4nvRmxMEOGILTQ1vXP
+        qvbHu+lilQvXs9wKSkkRCU2tTbeCHct0vMGBNg9nsA==
+X-Google-Smtp-Source: ABdhPJwKWz49YOsJeeLn8Vu0A0KsVGCRfI6v+wh6/MKMWtUHy7PFRmz++HfRpep96WwWklWpix4D1JxPINlJTY+aI6A=
+X-Received: by 2002:a05:6402:1601:: with SMTP id f1mr365734edv.165.1644951996023;
+ Tue, 15 Feb 2022 11:06:36 -0800 (PST)
 MIME-Version: 1.0
-References: <20220119204345.3769662-1-mka@chromium.org> <20220119124327.v20.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
- <YgJMkFAxjazkUDZd@kroah.com> <YgLCswtX/0THkzXT@google.com>
- <CAD=FV=WMP8M5HTRNv9_scvrytbpE0iBdUack=XaHoypGNLJeVA@mail.gmail.com> <Ygv3FSDS/fq1oePy@kroah.com>
-In-Reply-To: <Ygv3FSDS/fq1oePy@kroah.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 15 Feb 2022 11:03:50 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XpF=BMKxjkX6xciWP=q=3qQ_dCusBX8KJ4GjubuqN2nQ@mail.gmail.com>
-Message-ID: <CAD=FV=XpF=BMKxjkX6xciWP=q=3qQ_dCusBX8KJ4GjubuqN2nQ@mail.gmail.com>
-Subject: Re: [PATCH v20 5/5] arm64: dts: qcom: sc7180-trogdor: Add nodes for
- onboard USB hub
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20220215090211.911366-1-atishp@rivosinc.com> <YgvNSeUekqEVS1yE@xhacker>
+In-Reply-To: <YgvNSeUekqEVS1yE@xhacker>
+From:   Atish Kumar Patra <atishp@rivosinc.com>
+Date:   Tue, 15 Feb 2022 11:06:24 -0800
+Message-ID: <CAHBxVyF65jC_wvxcD6bueqpCY8-Kbahu1yxsSoBmO1s15dGkSQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] Provide a fraemework for RISC-V ISA extensions
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Atish Patra <atishp@atishpatra.org>,
+        Anup Patel <anup@brainfault.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, Feb 15, 2022 at 10:55 AM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
+On Tue, Feb 15, 2022 at 8:04 AM Jisheng Zhang <jszhang@kernel.org> wrote:
 >
-> On Tue, Feb 15, 2022 at 09:54:54AM -0800, Doug Anderson wrote:
-> > Hi,
+> On Tue, Feb 15, 2022 at 01:02:05AM -0800, Atish Patra wrote:
+> > This series implements a generic framework to parse multi-letter ISA
+> > extensions. This series is based on Tsukasa's v3 isa extension improvement
+> > series[1]. I have fixed few bugs and improved comments from that series
+> > (PATCH1-3). I have not used PATCH 4 from that series as we are not using
+> > ISA extension versioning as of now. We can add that later if required.
 > >
-> > On Tue, Feb 8, 2022 at 11:21 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > >
-> > > On Tue, Feb 08, 2022 at 11:57:20AM +0100, Greg Kroah-Hartman wrote:
-> > > > On Wed, Jan 19, 2022 at 12:43:45PM -0800, Matthias Kaehlcke wrote:
-> > > > > Add nodes for the onboard USB hub on trogdor devices. Remove the
-> > > > > 'always-on' property from the hub regulator, since the regulator
-> > > > > is now managed by the onboard_usb_hub driver.
-> > > > >
-> > > > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > > > > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> > > > > Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> > > > > ---
-> > > >
-> > > > No DT maintainer approval yet?  :(
-> > >
-> > > Bjorn usually just picks DT changes into the QCOM tree when they are
-> > > ready, so I wouldn't interpret anything into the lack of an explicit
-> > > Ack.
+> > PATCH 4 allows the probing of multi-letter extensions via a macro.
+> > It continues to use the common isa extensions between all the harts.
+> > Thus hetergenous hart systems will only see the common ISA extensions.
 > >
-> > Right, so the expectation is that this patch wouldn't land through the
-> > USB tree but would instead land through the Qualcomm tree, probably a
-> > revision after the code lands in the USB tree to avoid dependency
-> > problems.
+> > PATCH 6 improves the /proc/cpuinfo interface for the available ISA extensions
+> > via /proc/cpuinfo.
+> >
+> > Here is the example output of /proc/cpuinfo:
+> > (with debug patches in Qemu and Linux kernel)
+> >
+> > / # cat /proc/cpuinfo
+> > processor     : 0
+> > hart          : 0
+> > isa           : rv64imafdcsu
+> > isa-ext               : sstc,sscofpmf
+> > mmu           : sv48
+> >
+> > processor     : 1
+> > hart          : 1
+> > isa           : rv64imafdcsu
+> > isa-ext               : sstc,sscofpmf
+> > mmu           : sv48
+> >
+> > processor     : 2
+> > hart          : 2
+> > isa           : rv64imafdcsu
+> > isa-ext               : sstc,sscofpmf
+> > mmu           : sv48
+> >
+> > processor     : 3
+> > hart          : 3
+> > isa           : rv64imafdcsu
+> > isa-ext               : sstc,sscofpmf
+> > mmu           : sv48
+> >
+> > Anybody adding support for any new multi-letter extensions should add an
+> > entry to the riscv_isa_ext_id and the isa extension array.
+> > E.g. The patch[2] adds the support for various ISA extensions.
 >
-> But our tools pick up the whole series.  I can't just do "i will pick
-> patches 1-4 only" easily, and neither can any other maintainer.
+> Hi Atish,
 >
-> Why not just get their ack so that I know it can come through the USB
-> tree?  That's what normally happens for other changes like this where a
-> driver change is required first.
+> Thanks for this series. I'm thinking cpu features VS ISA extenstions.
+> I'm converting the sv48 to static key:
+> https://lore.kernel.org/linux-riscv/20220125165036.987-1-jszhang@kernel.org/
+>
+> Previously, I thought the SV48 as a cpu feature, and there will be
+> more and more cpu features, so I implemented an unified static key
+> mechanism for CPU features. But after reading this series, I think
+> I may need to rebase(even reimplement) the above patch to your series.
+> But I'm a bit confused by CPU features VS ISA extenstions now:
+>
+> 1. Is cpu feature  == ISA extension?
+>
+> 2. Is SV48 considered as ISA extension?
+> If yes, now SV48 or not is determined during runtime, but current ISA
+> extensions seem parsed from DT. So how to support those ISA extensions
+> which can be determined during runtime?
+>
+> Could you please share your thought?
+>
 
-Huh. That's the first time I've heard that and I'm pretty used to
-patches in a series going through different trees, but it would be OK
-w/ me if Bjorn was willing to Ack this. Bjorn: what say you? I guess
-alternatively Matthias could send two series: one with the code and a
-later one with the dts.
+Here are my two cents:
 
--Doug
+I think the cpu feature is a superset of the ISA extension.
+cpu feature != ISA extension.
+
+While all ISA extensions are cpu features, all CPU features may not be
+an ISA extension.
+e.g. sv48 is not a ISA extension but F/D are (used to set the
+cpu_hwcap_fpu static key)
+
+Moreover, not all cpu feature/ISA extension requires a static key.
+e.g SSTC extension will require a static key because the check has to
+happen in the hot path.
+However, sscofpmf extension don't need a static key as the check
+happens only one time during boot.
+
+We should keep these two separate but a common static framework would
+be very useful.
+
+Here is the flow that I have in my mind.
+1. All ISA extensions will be parsed through riscv,isa DT property
+2. Any supported/enabled extension will be set in riscv_isa bitmap
+3. Any extension requiring a static key will invoke the cpus_set_cap.
+
+cpus_set_cap will be invoked from a different code path that uses a
+static key for a specific ISA
+extension or a CPU feature.
+
+The only problem I see here is that we have to set a bit in both
+cpu_hwcaps & riscv_isa bitmap.
+We also have to define the value of that bit for any extension
+requiring a static key twice as well.
+
+I think that should be okay. But I would like to hear what everybody
+else thinks as well.
+
+> Thanks
