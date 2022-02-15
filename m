@@ -2,163 +2,436 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0BC84B7292
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:42:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33A8E4B73CE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:44:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239868AbiBOQhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 11:37:34 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40154 "EHLO
+        id S241737AbiBOQkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 11:40:55 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233621AbiBOQhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 11:37:34 -0500
-X-Greylist: delayed 9703 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 15 Feb 2022 08:37:23 PST
-Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 137D2A4184;
-        Tue, 15 Feb 2022 08:37:23 -0800 (PST)
-Date:   Tue, 15 Feb 2022 16:37:19 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
-        s=protonmail2; t=1644943039;
-        bh=f1kG4y1Pad9UaeKLlKedqj/sm+OCsoIlrgJXYL6aSeI=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
-         References:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID;
-        b=E9V91jN86xK6pzcMltPM69/bOQFFQNJV14lQwmcL2FYT3foga5gLBN44BK4oxAPri
-         Vd8zuw1PuCIPGRg2//vtiVX9F2F6j/JTJL3odWwNmjV4QndYJ/cNzlL994kRk5oss4
-         t+oB5svlaOh0xBX9GF7yyVj1AjeFwDYEvnfX4LlK0wXUUANzluIiX7MMssmf+EtKXg
-         j3TEQWNZHHEFFnC96soVMV8mnPbtAkLt2VhY0qKE/ctXlMHsckdPLAA5vi0D16WsVW
-         ELSgf6c8NzeavnNPc22BI1Gvf+qHdGR5FmKWYe1aX8Wak2lhTUG3wpbv4id1Yx/OtQ
-         5XOlTjjx0fyLA==
-To:     Emil Velikov <emil.l.velikov@gmail.com>
-From:   Simon Ser <contact@emersion.fr>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
-        Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Alex Deucher <alexander.deucher@amd.com>,
+        with ESMTP id S240972AbiBOQkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 11:40:55 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AC50EFF91;
+        Tue, 15 Feb 2022 08:40:44 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id u20so9445857lff.2;
+        Tue, 15 Feb 2022 08:40:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aChZ9SNmkZslNBuQ9ASqYl7IFYspmQg69oTesUSlNro=;
+        b=e0IXZegHffrFYosURTTrWVxL++tmES05QIIPmZi71zZR0QezqPrdDSKCNfVmzL0xJY
+         zjHtRlr+YMLAOapj6P3TAmR7QPI0+xa6WgDMarEFB490CgkbvotoAXN/LFTQkZbbw8Yg
+         PxCP9xyPg6e50RkEHnNelah10SrZ+QHfN69Uj+lhcYJcF4lXQy5Xw83MuGCLVeTJlK3b
+         YO9KCvvj8xRvhlqlVrhksE5J+4xScUC3yXf6cyvdPd3SukGbYvG082VRwWinbXTAx8oI
+         Gk7q2el1WnGSiJ0LeYW+ww06LefY3Br7Yh3c7gvfc3AhSCCcD83sbB4N9fScKSiqjppT
+         4utw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aChZ9SNmkZslNBuQ9ASqYl7IFYspmQg69oTesUSlNro=;
+        b=e5AzD/DzojcwHjzRnMtmMgi8lQpyMcExSSMA33Wq1D3Iy9b5m8KTeKStPQmP0pvEHk
+         pg8kEp024UhWLPZuF6Pn95HAaG9EmykUlRO8SDPB3mNQBHAK8EEt2x+xWz8Xnl8RnqHu
+         gimZjOCUVLzgV33AgjWKy1MSevVNsyAe7t0rIeL4j1HjFKx55E8UhnRD27sq7QDEzR6Y
+         A4PJu+PJ7S9WqobrcHsiczCYfIzSGY/T68u6CHE01bV6KutuU9q43edDVHZzDewK7YLg
+         YOcHu81oIgLinO2HSv+CpeQs1Bo38ifZ/JZc1Xa9NE2cOD3sn6tBCM22FTGIJ7NdnQsM
+         dIbw==
+X-Gm-Message-State: AOAM533F06HKWBlUqvVXURQR03Z6pnYwYt60E4zS6JhLYlhowi5AA44M
+        7GF1iVc4HaS3+kVVj8EpIaecYhQMfeU76g==
+X-Google-Smtp-Source: ABdhPJz5KqkoKsdtZ1NqsaEGR8ME5CViIi+yMmHzE+osKc6ehRbWF6Ff3Us9RI7lQzSFawyCyJNOLw==
+X-Received: by 2002:a05:6512:39c8:: with SMTP id k8mr628616lfu.281.1644943242339;
+        Tue, 15 Feb 2022 08:40:42 -0800 (PST)
+Received: from WBEC678.wbe.local (xt27d8.stansat.pl. [83.243.39.216])
+        by smtp.gmail.com with ESMTPSA id s1sm1127092ljd.18.2022.02.15.08.40.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Feb 2022 08:40:41 -0800 (PST)
+From:   Pawel Dembicki <paweldembicki@gmail.com>
+Cc:     Pawel Dembicki <paweldembicki@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        LAKML <linux-arm-kernel@lists.infradead.org>
-Reply-To: Simon Ser <contact@emersion.fr>
-Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation property creating and value setting
-Message-ID: <GYG6EVT1MqtmfKiPpMhDG9mpuATnmwVDq2PuE_dpDat5oQW_t1tUfm39lSWHj32D5r7mrog27sL4dkgdMYQ5BN830TfVOrgQ4Ts8LcO8Hcs=@emersion.fr>
-In-Reply-To: <CACvgo532-pC+7DLFCo=DWTX-OnJEJvSoTmQnt3_qLhiT4cqEMg@mail.gmail.com>
-References: <20220208084234.1684930-1-hsinyi@chromium.org> <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com> <KW6DNh6IRRgVJx9DfOFBnEqc4a0x-AnDXEbMxwpfEbk8dOn_KGVzAfo-slJWq-4nWW728Uc-OVpFh2w4fDE4-bxfkDuz1hFILRVvbcuXqaw=@emersion.fr> <CACvgo532-pC+7DLFCo=DWTX-OnJEJvSoTmQnt3_qLhiT4cqEMg@mail.gmail.com>
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 2/2] ARM: dts: kirkwood: Add Ctera C-200 V1 board
+Date:   Tue, 15 Feb 2022 17:39:22 +0100
+Message-Id: <20220215163926.894-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday, February 15th, 2022 at 15:38, Emil Velikov <emil.l.velikov@gmai=
-l.com> wrote:
+Ctera C200 V1 is kirkwood-based 2-Bay NAS.
 
-> On Tue, 15 Feb 2022 at 13:55, Simon Ser <contact@emersion.fr> wrote:
-> >
-> > On Tuesday, February 15th, 2022 at 13:04, Emil Velikov <emil.l.velikov@=
-gmail.com> wrote:
-> >
-> > > Greetings everyone,
-> > >
-> > > Padron for joining in so late o/
-> > >
-> > > On Tue, 8 Feb 2022 at 08:42, Hsin-Yi Wang <hsinyi@chromium.org> wrote=
-:
-> > > >
-> > > > drm_dev_register() sets connector->registration_state to
-> > > > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
-> > > > drm_connector_set_panel_orientation() is first called after
-> > > > drm_dev_register(), it will fail several checks and results in foll=
-owing
-> > > > warning.
-> > > >
-> > > > Add a function to create panel orientation property and set default=
- value
-> > > > to UNKNOWN, so drivers can call this function to init the property =
-earlier
-> > > > , and let the panel set the real value later.
-> > > >
-> > >
-> > > The warning illustrates a genuine race condition, where userspace wil=
-l
-> > > read the old/invalid property value/state. So this patch masks away
-> > > the WARNING without addressing the actual issue.
-> > > Instead can we fix the respective drivers, so that no properties are
-> > > created after drm_dev_register()?
-> > >
-> > > Longer version:
-> > > As we look into drm_dev_register() it's in charge of creating the
-> > > dev/sysfs nodes (et al). Note that connectors cannot disappear at
-> > > runtime.
-> > > For panel orientation, we are creating an immutable connector
-> > > properly, meaning that as soon as drm_dev_register() is called we mus=
-t
-> > > ensure that the property is available (if applicable) and set to the
-> > > correct value.
-> >
-> > Unfortunately we can't quite do this. To apply the panel orientation qu=
-irks we
-> > need to grab the EDID of the eDP connector, and this happened too late =
-in my
-> > testing.
-> >
-> > What we can do is create the prop early during module load, and update =
-it when
-> > we read the EDID (at the place where we create it right now). User-spac=
-e will
-> > receive a hotplug event after the EDID is read, so will be able to pick=
- up the
-> > new value if any.
->
-> Didn't quite get that, are you saying that a GETPROPERTY for the EDID,
-> the ioctl blocks or that we get an empty EDID?
+Hardware:
+  - SoC: Marvell 88F6281-A1 ARMv5TE Processor 1.2GHz
+  - Ram: 512MB (4x Nanya NT5TU128M8GE-AC)
+  - NAND Flash: 256MB (Samsung 216 K9F2G08U0C)
+  - Lan: 1x GBE (Marvell 88E1116R-NNC1)
+  - Storage: 2x SATA HDD 3.5" Slot
+  - USB: 2x USB 2.0 port
+  - Console: Internal J3 connector (1: Vcc, 2: Rx, 3: Tx, 4: GND)
+  - LEDs: 13x GPIO controlled
+  - Buttons: 2x GPIO controlled
 
-I'm not referring to GETPROPERTY, I'm referring to the driver getting the E=
-DID
-from the sink (here, the eDP panel). In my experimentations with amdgpu I
-noticed that the driver module load finished before the EDID was available =
-to
-the driver. Maybe other drivers behave differently and probe connectors whe=
-n
-loaded, not sure.
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+---
+v2:
+- removed 2x\n spacing issue
+- removed unused pcie node
+- made information about buzzer more comprehensive
 
-> The EDID hotplug even thing is neat - sounds like it also signals on
-> panel orientation, correct?
-> On such an event, which properties userspace should be re-fetching -
-> everything or guess randomly?
->
-> Looking through the documentation, I cannot see a clear answer :-\
+ arch/arm/boot/dts/Makefile             |   1 +
+ arch/arm/boot/dts/kirkwood-c200-v1.dts | 310 +++++++++++++++++++++++++
+ 2 files changed, 311 insertions(+)
+ create mode 100644 arch/arm/boot/dts/kirkwood-c200-v1.dts
 
-User-space should re-fetch *all* properties. In practice some user-space ma=
-y
-only be fetching some properties, but that should get fixed in user-space.
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 235ad559acb2..31616f6ae173 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -281,6 +281,7 @@ dtb-$(CONFIG_ARCH_KEYSTONE) += \
+ dtb-$(CONFIG_MACH_KIRKWOOD) += \
+ 	kirkwood-b3.dtb \
+ 	kirkwood-blackarmor-nas220.dtb \
++	kirkwood-c200-v1.dtb \
+ 	kirkwood-cloudbox.dtb \
+ 	kirkwood-d2net.dtb \
+ 	kirkwood-db-88f6281.dtb \
+diff --git a/arch/arm/boot/dts/kirkwood-c200-v1.dts b/arch/arm/boot/dts/kirkwood-c200-v1.dts
+new file mode 100644
+index 000000000000..f59ff7578dfc
+--- /dev/null
++++ b/arch/arm/boot/dts/kirkwood-c200-v1.dts
+@@ -0,0 +1,310 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Ctera C200 V1 Board Description
++ * Copyright 2021-2022 Pawel Dembicki <paweldembicki@gmail.com>
++ */
++
++/dts-v1/;
++
++#include "kirkwood.dtsi"
++#include "kirkwood-6281.dtsi"
++#include <dt-bindings/leds/common.h>
++
++/ {
++	model = "Ctera C200 V1";
++	compatible = "ctera,c200-v1", "marvell,kirkwood-88f6281", "marvell,kirkwood";
++
++	chosen {
++		bootargs = "console=ttyS0,115200";
++		stdout-path = &uart0;
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x00000000 0x20000000>;
++	};
++
++	keys {
++		compatible = "gpio-keys";
++		pinctrl-0 = <&pmx_buttons>;
++		pinctrl-names = "default";
++
++		power {
++			label = "Power Button";
++			linux,code = <KEY_POWER>;
++			gpios = <&gpio1 16 GPIO_ACTIVE_HIGH>;
++		};
++
++		reset {
++			label = "Reset Button";
++			linux,code = <KEY_RESTART>;
++			gpios = <&gpio1 17 GPIO_ACTIVE_LOW>;
++		};
++
++		usb1 {
++			label = "USB1 Button";
++			linux,code = <BTN_0>;
++			gpios = <&gpio0 28 GPIO_ACTIVE_LOW>;
++		};
++
++		usb2 {
++			label = "USB2 Button";
++			linux,code = <BTN_1>;
++			gpios = <&gpio0 29 GPIO_ACTIVE_LOW>;
++		};
++	};
++
++	gpio-poweroff {
++		compatible = "gpio-poweroff";
++		pinctrl-0 = <&pmx_poweroff>;
++		pinctrl-names = "default";
++		gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-0 = <&pmx_leds>;
++		pinctrl-names = "default";
++
++		led-0 {
++			function = LED_FUNCTION_DISK;
++			function-enumerator = <2>;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
++		};
++
++		led-1 {
++			function = LED_FUNCTION_DISK;
++			function-enumerator = <1>;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
++		};
++
++		led-2 {
++			function = LED_FUNCTION_DISK;
++			function-enumerator = <2>;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio0 16 GPIO_ACTIVE_LOW>;
++		};
++
++		led-3 {
++			function = LED_FUNCTION_DISK;
++			function-enumerator = <1>;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
++		};
++
++		led-4 {
++			function = LED_FUNCTION_STATUS;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
++		};
++
++		led-5 {
++			function = LED_FUNCTION_STATUS;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
++		};
++
++		led-6 {
++			function = LED_FUNCTION_INDICATOR;
++			color = <LED_COLOR_ID_BLUE>;
++			gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
++		};
++
++		led-7 {
++			function = LED_FUNCTION_DISK_ERR;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
++		};
++
++		led-8 {
++			function = LED_FUNCTION_DISK_ERR;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
++		};
++
++		led-9 {
++			function = LED_FUNCTION_USB;
++			function-enumerator = <1>;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
++		};
++
++		led-10 {
++			function = LED_FUNCTION_USB;
++			function-enumerator = <1>;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "usbport";
++			trigger-sources = <&hub_port2>;
++		};
++
++		led-11 {
++			function = LED_FUNCTION_USB;
++			function-enumerator = <2>;
++			color = <LED_COLOR_ID_RED>;
++			gpios = <&gpio1 14 GPIO_ACTIVE_LOW>;
++		};
++
++		led-12 {
++			function = LED_FUNCTION_USB;
++			function-enumerator = <2>;
++			color = <LED_COLOR_ID_GREEN>;
++			gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "usbport";
++			trigger-sources = <&hub_port1>;
++		};
++	};
++};
++
++&eth0 {
++	status = "okay";
++};
++
++&eth0port {
++	phy-handle = <&ethphy9>;
++};
++
++&i2c0 {
++	status = "okay";
++
++	rtc@30 {
++		compatible = "s35390a";
++		reg = <0x30>;
++	};
++
++	lm63@4c {
++		compatible = "national,lm63";
++		reg = <0x4c>;
++	};
++};
++
++&mdio {
++	status = "okay";
++
++	ethphy9: ethernet-phy@9 {
++		reg = <9>;
++	};
++};
++
++&nand {
++	status = "okay";
++	chip-delay = <40>;
++
++	partition@0 {
++		label = "uboot";
++		reg = <0x0000000 0x200000>;
++	};
++
++	partition@200000 {
++		label = "certificate";
++		reg = <0x0200000 0x100000>;
++	};
++
++	partition@300000 {
++		label = "preset_cfg";
++		reg = <0x0300000 0x100000>;
++	};
++
++	partition@400000 {
++		label = "dev_params";
++		reg = <0x0400000 0x100000>;
++	};
++
++	partition@500000 {
++		label = "active_bank";
++		reg = <0x0500000 0x0100000>;
++	};
++
++	partition@600000 {
++		label = "magic";
++		reg = <0x0600000 0x0100000>;
++	};
++
++	partition@700000 {
++		label = "bank1";
++		reg = <0x0700000 0x2800000>;
++	};
++
++	partition@2f00000 {
++		label = "bank2";
++		reg = <0x2f00000 0x2800000>;
++	};
++
++	/* 0x5700000-0x5a00000 undefined in vendor firmware */
++
++	partition@5a00000 {
++		label = "reserved";
++		reg = <0x5a00000 0x2000000>;
++	};
++
++	partition@7a00000 {
++		label = "rootfs";
++		reg = <0x7a00000 0x8600000>;
++	};
++};
++
++&pinctrl {
++	/* Buzzer gpios are connected to two pins of buzzer.
++	 * This buzzer require a modulated signal from gpio.
++	 * Leave it as is due lack of proper driver.
++	 */
++	pmx_buzzer: pmx-buzzer {
++		marvell,pins = "mpp12", "mpp13";
++		marvell,function = "gpio";
++	};
++
++	pmx_leds: pmx-leds {
++		marvell,pins = "mpp14", "mpp15", "mpp16", "mpp17", "mpp38",
++			       "mpp39", "mpp40", "mpp42", "mpp43", "mpp44",
++			       "mpp45", "mpp46", "mpp47";
++		marvell,function = "gpio";
++	};
++
++	pmx_buttons: pmx-buttons {
++		marvell,pins = "mpp28", "mpp29", "mpp48", "mpp49";
++		marvell,function = "gpio";
++	};
++
++	pmx_poweroff: pmx-poweroff {
++		marvell,pins = "mpp34";
++		marvell,function = "gpio";
++	};
++};
++
++&rtc {
++	status = "disabled";
++};
++
++&sata {
++	status = "okay";
++	nr-ports = <2>;
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&usb0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
++
++	port@1 {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <1>;
++		#trigger-source-cells = <0>;
++
++		hub_port1: port@1 {
++			reg = <1>;
++			#trigger-source-cells = <0>;
++		};
++
++		hub_port2: port@2 {
++			reg = <2>;
++			#trigger-source-cells = <0>;
++		};
++	};
++};
+-- 
+2.25.1
 
-Also the kernel can indicate that only a single connector changed via the
-"CONNECTOR" uevent prop, or even a single connector property via "PROPERTY"=
-.
-See [1] for a user-space implementation. But all of this is purely an optio=
-nal
-optimization. Re-fetching all properties is a bit slower (especially if som=
-e
-drmModeGetConnector calls force-probe connectors) but works perfectly fine.
-
-It would be nice to document, if you have the time feel free to send a patc=
-h
-and CC danvet, pq and me.
-
-[1]: https://gitlab.freedesktop.org/wlroots/wlroots/-/blob/252b2348bd62170d=
-97c4e81fb2050f757b56d67e/backend/session/session.c#L144
