@@ -2,108 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAAAD4B6A91
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 12:21:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D4EC4B6AB7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 12:24:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237067AbiBOLVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 06:21:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40600 "EHLO
+        id S237128AbiBOLZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 06:25:04 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237036AbiBOLVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 06:21:16 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B211910819A;
-        Tue, 15 Feb 2022 03:21:03 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 70020B81897;
-        Tue, 15 Feb 2022 11:21:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 538EDC340EB;
-        Tue, 15 Feb 2022 11:20:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644924061;
-        bh=zD0KcG3WVsVW8SnijqwnkAIV1vy0CeKOVswvBGb/SfY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bqTw22UgLjKXV1OKyZd8VKfIV1ywICbAXqRRrNxi+1uy5mKgwfY1ZkF54M0xhBcsP
-         DLemD8FeThImoD0ZxD7c3T/LDfEg+h/iJ3X3sm4tlVKBidFY6lQN1g+onI92QLT04x
-         dZAnmr418sxPReZ/kJhU6wlAO15Vy8XSAj4fNgusDEnzUPkgrEW0ZuhOOez0ERZSzk
-         fjrTMAAWKSf0xbNLFK2qEVJlo5NxjBfmUrYMlHbQzKnsgs3MMqnYXwxhbF5e9PHfW7
-         pQdeea++IADbHWmBcUJ56RY9hozaxLNNOV1R5CffBYoDY2Ta68eaoMUaeUQwcjyTGQ
-         5zM4t6WmfU7gA==
-Date:   Tue, 15 Feb 2022 16:50:57 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, dmaengine@vger.kernel.org,
-        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lukas Wunner <lukas@wunner.de>,
-        linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC 00/11] dmaengine: bcm2835: add BCM2711 40-bit DMA
- support
-Message-ID: <YguMmSMnh6G121HP@matsya>
-References: <1640606743-10993-1-git-send-email-stefan.wahren@i2se.com>
- <d4242317-711d-23ce-c63e-7d355c8c0e41@i2se.com>
+        with ESMTP id S237095AbiBOLZA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 06:25:00 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85AED10855A;
+        Tue, 15 Feb 2022 03:24:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1644924290; x=1676460290;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=88QwmHFN8Z6K7oOwYMh4aqsIoXvzf3hWSa4cBd71bys=;
+  b=MxfY3XnNR6117+l6QN1lFDyhgs2RaYWes1plX7Ki7M23BinDptVpnv2T
+   r4nlzK1i1dx/H+89AscJWSPQk5xQ3mZUVNRxwS1O6JQ39XdsFI4aLBM8H
+   prS89P96qz+Dm52PeSaPg3+vXYI6GOY6nSrS44u2x8HPlM7zG1an+YCrY
+   K11p6iheMvB9aMMosZgLAQYP9zheB+GnAn96t3jsIR5XVo+n+kA7Qtg8c
+   4Ti41h6OHlOu7AzFy8xNms4pvu6QMcboPV+VcYYGoa7IHQcgFw6BqC0Um
+   LbclriYvJ0CGeiWJjmP6gXQlduSi7CcLVpri4mtfwuXexAevsmJQs/RZQ
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10258"; a="247926524"
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; 
+   d="scan'208";a="247926524"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2022 03:24:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,370,1635231600"; 
+   d="scan'208";a="528799645"
+Received: from lkp-server01.sh.intel.com (HELO d95dc2dabeb1) ([10.239.97.150])
+  by orsmga007.jf.intel.com with ESMTP; 15 Feb 2022 03:24:46 -0800
+Received: from kbuild by d95dc2dabeb1 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nJvws-0009bb-5o; Tue, 15 Feb 2022 11:24:46 +0000
+Date:   Tue, 15 Feb 2022 19:23:50 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, Marek Vasut <marex@denx.de>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
+Message-ID: <202202151824.QGNvG2R8-lkp@intel.com>
+References: <20220215084412.8090-2-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d4242317-711d-23ce-c63e-7d355c8c0e41@i2se.com>
+In-Reply-To: <20220215084412.8090-2-marex@denx.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-01-22, 15:08, Stefan Wahren wrote:
-> Hi,
-> 
-> Am 27.12.21 um 13:05 schrieb Stefan Wahren:
-> > The BCM2711 has 4 DMA channels with a 40-bit address range, allowing them
-> > to access the full 4GB of memory on a Pi 4. This patch series serves as a
-> > basis for a discussion (just compile tested, so don't expect anything working)
-> > which include the following points:
-> >
-> > * correct DT binding and representation for BCM2711
-> >
-> > According to the vendor DTS [1] the 4 DMA channels are connected to SCB.
-> > I'm not sure how this is properly adapted to the mainline DT.
-> >
-> > * general implementation approach
-> >
-> > The vendor approach mapped all the BCM2835 control block bits to the BCM2711
-> > layout and the rest of the differences are handled by a lot of is_40bit_channel
-> > conditions. An advantage of this is the small amount of changes to the driver.
-> > But on the down side the code is now much harder to understand and maintain.
-> >
-> > This series tries to implement this feature in a more cleaner way
-> > while keeping it in the bcm2835-dma driver. Before this series the driver
-> > has ~ 1000 lines and after that ~ 1500 lines.
-> >
-> > So the question is this approach acceptable?
-> >
-> > Patches 1 - 3 are just clean-ups.
-> >
-> > Disclaimer: my knowledge about the DMA controller is very limited
-> >
-> > More information:
-> >
-> > https://datasheets.raspberrypi.com/bcm2711/bcm2711-peripherals.pdf
-> >
-> > [1] - https://github.com/raspberrypi/linux/blob/561deffcf471ba0f7bd48541d06a79d5aa38d297/arch/arm/boot/dts/bcm2711-rpi-ds.dtsi#L47
-> > [2] - https://github.com/raspberrypi/linux/commit/44364bd140b0bc9187c881fbdc4ee358961059d5
-> would be nice to get some input aka gentle ping.
+Hi Marek,
 
-Somehow patch 10/11 is appearing split from rest of the series. The
-series looks fairly okay, dts needs more polishing as Rob indicated
+I love your patch! Perhaps something to improve:
 
--- 
-~Vinod
+[auto build test WARNING on clk/clk-next]
+[also build test WARNING on v5.17-rc4 next-20220214]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Marek-Vasut/dt-bindings-clk-Introduce-critical-clocks-property/20220215-164757
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+config: nds32-allnoconfig (https://download.01.org/0day-ci/archive/20220215/202202151824.QGNvG2R8-lkp@intel.com/config)
+compiler: nds32le-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/aded04bc3dec13df3f940621d94d84e32ff8a5ea
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Marek-Vasut/dt-bindings-clk-Introduce-critical-clocks-property/20220215-164757
+        git checkout aded04bc3dec13df3f940621d94d84e32ff8a5ea
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nds32 SHELL=/bin/bash drivers/clk/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/clk/clk.c: In function '__clk_register_critical_clock':
+>> drivers/clk/clk.c:3881:13: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+    3881 |         int ret, i, index;
+         |             ^~~
+
+
+vim +/ret +3881 drivers/clk/clk.c
+
+  3874	
+  3875	static void
+  3876	__clk_register_critical_clock(struct device_node *np, struct clk_core *core,
+  3877				      struct clk_hw *hw)
+  3878	{
+  3879		struct of_phandle_args clkspec;
+  3880		u32 clksize, clktotal;
+> 3881		int ret, i, index;
+  3882	
+  3883		if (!np)
+  3884			return;
+  3885	
+  3886		if (!core->ops->match_clkspec)
+  3887			return;
+  3888	
+  3889		if (of_property_read_u32(np, "#clock-cells", &clksize))
+  3890			return;
+  3891	
+  3892		/* Clock node with #clock-cells = <0> uses critical-clocks; */
+  3893		if (clksize == 0) {
+  3894			if (of_property_read_bool(np, "critical-clocks") &&
+  3895			    !core->ops->match_clkspec(hw, &clkspec))
+  3896				core->flags |= CLK_IS_CRITICAL;
+  3897			return;
+  3898		}
+  3899	
+  3900		clkspec.np = np;
+  3901		clktotal = of_property_count_u32_elems(np, "critical-clocks");
+  3902		clktotal /= clksize;
+  3903		for (index = 0; index < clktotal; index++) {
+  3904			for (i = 0; i < clksize; i++) {
+  3905				ret = of_property_read_u32_index(np, "critical-clocks",
+  3906								 (index * clksize) + i,
+  3907								 &(clkspec.args[i]));
+  3908			}
+  3909			if (!core->ops->match_clkspec(hw, &clkspec))
+  3910				core->flags |= CLK_IS_CRITICAL;
+  3911		}
+  3912	}
+  3913	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
