@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05DCF4B7545
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:47:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E71354B76BF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:49:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244064AbiBOURE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 15:17:04 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37416 "EHLO
+        id S243473AbiBOURG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 15:17:06 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242684AbiBOURD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:17:03 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76FCEEB312
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 12:15:44 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id bx31so247304ljb.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 12:15:44 -0800 (PST)
+        with ESMTP id S244039AbiBOURE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:17:04 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BEE0EB33E
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 12:15:45 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id d23so1431887lfv.13
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 12:15:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Th2VzxKA5njhVR7C6q0Seii6kGVYOgIuJRxukrhBkgQ=;
-        b=jVDYQhALWivot1jBnBvcoyYcVd5SLvZKGd4ue9SRYEZRNU3V67F+nEcyISvPjwyRZt
-         e/sb096n882re8IahjbMNoWrgQ7ZG9tVbuwmWOf4kz6lTCgxlbP7artQMDSWEvW5oTz+
-         mWBtfCacT+n50WGH8COe4AXe+rjyg36BJo07j5cPiVFlLnRAw6uqjjbswQ9zJELUAoc8
-         Tf/UMXfmLY8Yf8tPUhLcFbNRiU4dAEZ32R6v2ESx4Ec0tKZYUCYbnK+WJQKoCaY5VD+y
-         e1dnK2NtltN5C3aOwuPaM3arDvVfAsWECtDk0m/WIjSehB50Wz4dSO7IoWubUMTYUIEo
-         BrsA==
+        bh=289/KRcXVcnS1cCQf6Ylol+IbGt3fnLTiUWFx0ZifHU=;
+        b=KzYHgYSUpFP3q5+s3QyhWqexkkOlfiRzO73vnK/LoLeOfoqJ/HIFz4agRS5YWTLk7v
+         NevGSZ32B6WWyOlzDbtPoPQyMd5k3xXdD0TuC3jnt6aEKyh4YlGg5OUJLdTUAr0v7ibe
+         wDb9MxZSi3JFxu04HmNfkBK5F1SinPs06sLGVI9JwoFHv/YRugMrHJkKfGnq3eFYXIdM
+         5zVej9lK0lgq+LT70nixO/ZSL5I/X4aeOMwPiHc18BE6sDmo1X2qSOoazT3jRegwyF6h
+         XE/Qxkm32qDxlP8TIIW1rGGQ0u+gkh9UC7DjKZ6itiHuLbiI4EW9zqlyHaUkdcukGmi4
+         1T1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Th2VzxKA5njhVR7C6q0Seii6kGVYOgIuJRxukrhBkgQ=;
-        b=wFSUFlEtiOnM96g0LND+LGMdmTZDsCx3WpYZcd/V+H7U8rkNCSYYFA/ejPBe6yUMT1
-         PtOnesSW8Yjc43Jn0St/eL83YhawdKH7MB3ATsvKSa2zvgclD/hW726nM/hbDWdy0BBJ
-         U93swUqDdal6VOcWd7WlSWODI5XesXBKyILcEeA8iP785Gls8QV6Bn7S++pC6YVGdxae
-         4NTbUkPzyANskpnEi7n0aNwVJ75dx5HWoFIs1ckRu0mr7ATFmoRzb0lXeykeijBjREzL
-         eJnDNaBOw5hD3xaR7a1V9HrA/pQZ2LRS9sR3CxOSn2ENJAMUEimqEzbVf4DDDifxVZvf
-         UY/A==
-X-Gm-Message-State: AOAM530FKcdwbLn70BS0tT/ZUi7NwQZMbyCwOVocEp8AygKwms5cs0QA
-        OGo9yDHuU4AIe4iMoqS/DL4Stw==
-X-Google-Smtp-Source: ABdhPJyJzRz3LwsbW2JO7/ugaMGb55TgHovMgFBeG8ndCSD7iqVy6oMb2rwTj1pbePh020cZVO+8pg==
-X-Received: by 2002:a2e:7f14:: with SMTP id a20mr501557ljd.320.1644956142858;
-        Tue, 15 Feb 2022 12:15:42 -0800 (PST)
+        bh=289/KRcXVcnS1cCQf6Ylol+IbGt3fnLTiUWFx0ZifHU=;
+        b=wxlX2OB7DtF2ldH5wnrG6DV+btGbvnVSXSsN0VUST0uxV8LHf9AmRmR8oi05ii7yus
+         LScB9whQdSyi19x5YTJYcGXCKmKnTNYJe5Jf7zVnh5ZHYchHUxLE6iaJv7/NplzUEufb
+         LNq3uU7M4YqdrgYlYLkZ/wWUY//enLahPGJfIHL1gkw2Hv+baR5gwvRgVEHViTlvyxgD
+         nUDc1Ux0iVqj8C4sLnDBne/dALzRgjOR9RKueUhgryaNAOBnLaDxV9yif+vxip8nexKY
+         0K4PQiMVWw+2kdMfVylLCpgF34+EbhORb9wiCdCIm2e4W6VMhYv3ILsa+twXHi6mhBB0
+         duJA==
+X-Gm-Message-State: AOAM531QohnRPhvWveRtNSrf6dEMwNHrLdoHPouDuSrjcGYABGtSckcw
+        l0cVk1Qee4x6nRTeE1p2o8BjTA==
+X-Google-Smtp-Source: ABdhPJyIEQrGOXrpemV0qqsQDBWBeeEye1u1Iumt5gTShQ0bbEzhs5uLX3H/tZ8L4yUaMOsDm1Mjsg==
+X-Received: by 2002:a05:6512:3087:: with SMTP id z7mr566466lfd.446.1644956143839;
+        Tue, 15 Feb 2022 12:15:43 -0800 (PST)
 Received: from eriador.lan ([37.153.55.125])
         by smtp.gmail.com with ESMTPSA id k16sm4548419ljg.111.2022.02.15.12.15.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 12:15:42 -0800 (PST)
+        Tue, 15 Feb 2022 12:15:43 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -55,9 +55,9 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 3/5] arm64: dts: qcom: sdm845: add bi_tcxo to camcc
-Date:   Tue, 15 Feb 2022 23:15:37 +0300
-Message-Id: <20220215201539.3970459-4-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 4/5] arm64: dts: qcom: msm8996: add cxo and sleep-clk to gcc node
+Date:   Tue, 15 Feb 2022 23:15:38 +0300
+Message-Id: <20220215201539.3970459-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220215201539.3970459-1-dmitry.baryshkov@linaro.org>
 References: <20220215201539.3970459-1-dmitry.baryshkov@linaro.org>
@@ -65,7 +65,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,26 +73,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Declare TCXO clock used for the Camera Clock Controller on SDM845.
+Supply proper cxo (RPM_SMD_BB_CLK1) and sleep_clk to the gcc clock
+controller node.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index cfdeaa81f1bb..9288bcd3475b 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -4139,6 +4139,8 @@ clock_camcc: clock-controller@ad00000 {
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 91bc974aeb0a..7a46f0f67cbb 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -679,8 +679,10 @@ gcc: clock-controller@300000 {
  			#power-domain-cells = <1>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "bi_tcxo";
+ 			reg = <0x00300000 0x90000>;
+ 
+-			clocks = <&rpmcc RPM_SMD_LN_BB_CLK>;
+-			clock-names = "cxo2";
++			clocks = <&rpmcc RPM_SMD_BB_CLK1>,
++				 <&rpmcc RPM_SMD_LN_BB_CLK>,
++				 <&sleep_clk>;
++			clock-names = "cxo", "cxo2", "sleep_clk";
  		};
  
- 		dsi_opp_table: dsi-opp-table {
+ 		tsens0: thermal-sensor@4a9000 {
 -- 
 2.34.1
 
