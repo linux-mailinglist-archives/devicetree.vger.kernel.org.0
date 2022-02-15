@@ -2,47 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26C594B6CFC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 14:05:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C7E04B6D0D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 14:08:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238069AbiBONGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 08:06:03 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41698 "EHLO
+        id S238112AbiBONIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 08:08:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238071AbiBONGD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 08:06:03 -0500
-X-Greylist: delayed 335 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 15 Feb 2022 05:05:49 PST
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8C1A2503;
-        Tue, 15 Feb 2022 05:05:49 -0800 (PST)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id 1F9F720007;
-        Tue, 15 Feb 2022 13:05:42 +0000 (UTC)
-Date:   Tue, 15 Feb 2022 14:06:51 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [RFC PATCH v2 2/4] media: dt-bindings: media: Document RZ/G2L CRU
-Message-ID: <20220215130651.hh3zb7ogl756pigt@uno.localdomain>
-References: <20220121010543.31385-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220121010543.31385-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S238114AbiBONIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 08:08:53 -0500
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA8ABC249C
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 05:08:42 -0800 (PST)
+Received: by mail-il1-x131.google.com with SMTP id d7so8953277ilf.8
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 05:08:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=h8vn3ZFW8UjLnMLsgl86dcA80MaxOlksJ/pmKV8vWGU=;
+        b=Xw6MjLP9Kt6wH/XPSkTrQGGvUPWDpKraFYxM4d6yH3RKbYA/YECy72aCJttKSuP587
+         10FtshqY75bNZ0wPI428PCyMW2OAb6yh/TT1o8uOiXl/AYRQtBPDYcnJeIpx7cQYKuhp
+         wqae+oOmMT9dVZpOYgXDUMAKab0DYkhYdVNJ0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=h8vn3ZFW8UjLnMLsgl86dcA80MaxOlksJ/pmKV8vWGU=;
+        b=dsVFzUHKUsZYKay1j+B2Bi+kyHFfuafKg0WyA3vDwfGQM/qoi7nQtI7gC2VE+ERcQK
+         ullpGBnEqFHfuU3XxActpCIA9TvZ2RrIHstbCsZ1dnSzgjFBsZusR50BoL6wMti+B+kd
+         iSdTaqmMzMFMFVm1diM9+BL396m5FaFv/QQLkWrMCWYw+uiO7rxzyAVMV+ExELLTsAeX
+         qSNUtGjxAuRQZkoQ6OzphZxuR9b6PRmwTW7f1MWrISEBtvYPrQchzmmYlOowkkYwr7Qg
+         910MZGtartvaX+XsIng0FZVniS/WmGqQoh537jal2HQLKrC0YH19Sek/itmZcQ7360Xy
+         NXAg==
+X-Gm-Message-State: AOAM531iiEBDyNq+hWRFfyQkpMLRP1b1jKOvEQQ+wtd3AEixXICSeZ1k
+        DJElJb7PoRzVXK0no7Zx2+43oQ7SlSL5mEF26M7JBA==
+X-Google-Smtp-Source: ABdhPJyn0t3qtaQoYKT56xmJWFr+oDNaEgC/gP1GxkSxrJmyzV5aD6tH7GwuIxyug6WO9KvMRXh2z7t2mVNvKMkI28E=
+X-Received: by 2002:a05:6e02:18c6:: with SMTP id s6mr2544341ilu.230.1644930522121;
+ Tue, 15 Feb 2022 05:08:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220121010543.31385-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220208084234.1684930-1-hsinyi@chromium.org> <87leydhqt3.fsf@collabora.com>
+ <CAJMQK-igpiYj-pkgG9amrQuVzf1Mc9BDDOwOdKLUbceKr=CHiQ@mail.gmail.com> <87czjoixno.fsf@collabora.com>
+In-Reply-To: <87czjoixno.fsf@collabora.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Tue, 15 Feb 2022 21:08:16 +0800
+Message-ID: <CAJMQK-gvvvhj2dsu8bkT6ytj=0MZaRFmsVOqJVrtVo4Y+XCEdQ@mail.gmail.com>
+Subject: Re: [PATCH v8 1/3] gpu: drm: separate panel orientation property
+ creating and value setting
+To:     Gabriel Krisman Bertazi <krisman@collabora.com>
+Cc:     dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+        intel-gfx@lists.freedesktop.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Sean Paul <sean@poorly.run>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Simon Ser <contact@emersion.fr>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Alex Deucher <alexander.deucher@amd.com>,
+        Jani Nikula <jani.nikula@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,188 +77,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-On Fri, Jan 21, 2022 at 01:05:41AM +0000, Lad Prabhakar wrote:
-> Document the CRU block found on Renesas RZ/G2L SoC's.
+On Tue, Feb 15, 2022 at 12:03 PM Gabriel Krisman Bertazi
+<krisman@collabora.com> wrote:
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2
-> * Dropped CSI
-> ---
->  .../bindings/media/renesas,rzg2l-cru.yaml     | 152 ++++++++++++++++++
->  1 file changed, 152 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> Hsin-Yi Wang <hsinyi@chromium.org> writes:
 >
-> diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> new file mode 100644
-> index 000000000000..a03fc6ef0117
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> @@ -0,0 +1,152 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2022 Renesas Electronics Corp.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/renesas,rzg2l-cru.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L Camera Data Receiving Unit (CRU)
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +
-> +description:
-> +  The RZ/G2L Camera Data Receiving Unit (CRU) device provides video input
-> +  capabilities for the Renesas RZ/G2L family of devices.
-> +
-> +  Depending on the instance the Image Processing input is connected to
-> +  external SoC pins or to a CSI-2 receiver.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - renesas,r9a07g044-cru     # RZ/G2{L,LC}
-> +          - const: renesas,rzg2l-cru
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 3
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: image_conv
-> +      - const: image_conv_err
-> +      - const: axi_mst_err
-> +
-> +  clocks:
-> +    items:
-> +      - description: CRU Main clock
-> +      - description: CPU Register access clock
-> +      - description: CRU image transfer clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vclk
-> +      - const: pclk
-> +      - const: aclk
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: CRU_PRESETN reset terminal
-> +      - description: CRU_ARESETN reset terminal
-> +
-> +  reset-names:
-> +    items:
-> +      - const: presetn
-> +      - const: aresetn
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port node, single endpoint describing a parallel input source.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              hsync-active: true
-> +              vsync-active: true
-> +              bus-width: true
-> +              data-shift: true
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Output port node, describing the RZ/G2L Image Processing module
-> +          connected the CSI-2 receiver
+> > On Tue, Feb 15, 2022 at 9:17 AM Gabriel Krisman Bertazi
+> > <krisman@collabora.com> wrote:
+> >>
+> >> Hsin-Yi Wang <hsinyi@chromium.org> writes:
+> >>
+> >> > drm_dev_register() sets connector->registration_state to
+> >> > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> >> > drm_connector_set_panel_orientation() is first called after
+> >> > drm_dev_register(), it will fail several checks and results in following
+> >> > warning.
+> >>
+> >> Hi,
+> >>
+> >> I stumbled upon this when investigating the same WARN_ON on amdgpu.
+> >> Thanks for the patch :)
+> >>
+> >> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> >> > index a50c82bc2b2fec..572ead7ac10690 100644
+> >> > --- a/drivers/gpu/drm/drm_connector.c
+> >> > +++ b/drivers/gpu/drm/drm_connector.c
+> >> > @@ -1252,7 +1252,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+> >> >   *   INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
+> >> >   *   coordinates, so if userspace rotates the picture to adjust for
+> >> >   *   the orientation it must also apply the same transformation to the
+> >> > - *   touchscreen input coordinates. This property is initialized by calling
+> >> > + *   touchscreen input coordinates. This property value is set by calling
+> >> >   *   drm_connector_set_panel_orientation() or
+> >> >   *   drm_connector_set_panel_orientation_with_quirk()
+> >> >   *
+> >> > @@ -2341,8 +2341,8 @@ EXPORT_SYMBOL(drm_connector_set_vrr_capable_property);
+> >> >   * @connector: connector for which to set the panel-orientation property.
+> >> >   * @panel_orientation: drm_panel_orientation value to set
+> >> >   *
+> >> > - * This function sets the connector's panel_orientation and attaches
+> >> > - * a "panel orientation" property to the connector.
+> >> > + * This function sets the connector's panel_orientation value. If the property
+> >> > + * doesn't exist, it will try to create one.
+> >> >   *
+> >> >   * Calling this function on a connector where the panel_orientation has
+> >> >   * already been set is a no-op (e.g. the orientation has been overridden with
+> >> > @@ -2373,19 +2373,12 @@ int drm_connector_set_panel_orientation(
+> >> >       info->panel_orientation = panel_orientation;
+> >> >
+> >> >       prop = dev->mode_config.panel_orientation_property;
+> >> > -     if (!prop) {
+> >> > -             prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+> >> > -                             "panel orientation",
+> >> > -                             drm_panel_orientation_enum_list,
+> >> > -                             ARRAY_SIZE(drm_panel_orientation_enum_list));
+> >> > -             if (!prop)
+> >> > -                     return -ENOMEM;
+> >> > -
+> >> > -             dev->mode_config.panel_orientation_property = prop;
+> >> > -     }
+> >> > +     if (!prop &&
+> >> > +         drm_connector_init_panel_orientation_property(connector) < 0)
+> >> > +             return -ENOMEM;
+> >> >
+> >>
+> >> In the case where the property has not been created beforehand, you
+> >> forgot to reinitialize prop here, after calling
+> >> drm_connector_init_panel_orientation_property().  This means
+> > hi Gabriel,
+> >
+> > drm_connector_init_panel_orientation_property() will create prop if
+> > it's null. If prop fails to be created there, it will return -ENOMEM.
+>
+> Yes.  But *after the property is successfully created*, the prop variable is still
+> NULL.  And then you call the following, using prop, which is still NULL:
+>
+> >> > +     drm_object_property_set_value(&connector->base, prop,
+> >> > +                                   info->panel_orientation);
+>
+> This will do property->dev right on the first line of code, and dereference the
+> null prop pointer.
 
-Isn't this the port dedicated to the CSI-2 receiver input ?
+Ah, right. Sorry that I totally missed this.
+I'll fix it in the next version if the idea of this patch is accepted.
+There might be another preferred solution for this.
 
-> +
-> +        properties:
-> +          endpoint@0:
-> +            $ref: /schemas/graph.yaml#/properties/endpoint
-> +            description: Endpoint connected to CSI2.
-
-And the andpoint should describe the connection between the CRU and
-the CSI-2 receiver ? (ie it should not contain CSI-2 specific
-properties, as those are specified by the CSI-2 receiver device node?)
-
-Thanks
-  j
-> +
-> +        anyOf:
-> +          - required:
-> +              - endpoint@0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # Device node example with CSI-2
-> +  - |
-> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    cru: video@10830000 {
-> +            compatible = "renesas,r9a07g044-cru", "renesas,rzg2l-cru";
-> +            reg = <0x10830000 0x400>;
-> +            interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "image_conv", "image_conv_err", "axi_mst_err";
-> +            clocks = <&cpg CPG_MOD R9A07G044_CRU_VCLK>,
-> +                     <&cpg CPG_MOD R9A07G044_CRU_PCLK>,
-> +                     <&cpg CPG_MOD R9A07G044_CRU_ACLK>;
-> +            clock-names = "vclk", "pclk", "aclk";
-> +            power-domains = <&cpg>;
-> +            resets = <&cpg R9A07G044_CRU_PRESETN>,
-> +                     <&cpg R9A07G044_CRU_ARESETN>;
-> +            reset-names = "presetn", "aresetn";
-> +
-> +            ports {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +
-> +                    port@1 {
-> +                            #address-cells = <1>;
-> +                            #size-cells = <0>;
-> +
-> +                            reg = <1>;
-> +
-> +                            crucsi2: endpoint@0 {
-> +                                    reg = <0>;
-> +                                    remote-endpoint= <&csi2cru>;
-> +                            };
-> +                    };
-> +            };
-> +    };
+>
+> You must do
+>
+>   prop = dev->mode_config.panel_orientation_property;
+>
+> again after drm_connector_init_panel_orientation_property successfully
+> returns, or call drm_object_property_set_value using
+> dev->mode_config.panel_orientation_property directly:
+>
+>   drm_object_property_set_value(&connector->base,
+>                         dev->mode_config.panel_orientation_property
+>                         info->panel_orientation);
+>
 > --
-> 2.17.1
->
+> Gabriel Krisman Bertazi
