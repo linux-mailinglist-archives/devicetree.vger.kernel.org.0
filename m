@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 566F34B648E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 08:41:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 657604B64B3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 08:48:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232220AbiBOHlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 02:41:15 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33026 "EHLO
+        id S229502AbiBOHsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 02:48:41 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230210AbiBOHlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 02:41:14 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DFE3119856
-        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 23:41:05 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nJsS0-0006FP-9s; Tue, 15 Feb 2022 08:40:40 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nJsRu-00GhwB-EV; Tue, 15 Feb 2022 08:40:33 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nJsRt-003I1A-4j; Tue, 15 Feb 2022 08:40:33 +0100
-Date:   Tue, 15 Feb 2022 08:40:30 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>,
-        Rahul Tanwar <rtanwar@maxlinear.com>,
-        Jeff LaBundy <jeff@labundy.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Vignesh R <vigneshr@ti.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 00/15] pwm: dt-bindings: Include generic pwm schema
-Message-ID: <20220215074030.3nugwproxjh3lwhl@pengutronix.de>
-References: <20220214212154.8853-1-krzysztof.kozlowski@canonical.com>
+        with ESMTP id S233788AbiBOHsk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 02:48:40 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0899C90FD6
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 23:48:31 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BF5493FFE9
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 07:48:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644911309;
+        bh=/BLkLFYTDkoy0icaFTEEg+rA2J/JmQ87eCI7Tsm29s4=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=AsAuCvsiRJRyxsa98jw05PEziRcrY8/6n4KXsEMGiv/RkGsKLUit7KoSS6hsUkOG8
+         H58BNAo+rt6lZOEZH1d/sHqxuMOUcL1tv7OJC7vkV9G6u7nV0J0o6pcOfFCWYeLbmD
+         k/sNcFfexQRdNKumTke/KP3rMPkNtBZK+ogqcjfkom56nKiA064CgiwO55nKR2k2z5
+         6tFV0eDqEA6gnsf6cHSO4/mF6Ecy62Korle/HSMF/O3llUgw1MqGAUclUYpJcTcG+E
+         8yAdwtksCvfC7HE/IRMUDuPdf2+lxrh5IhMtpzeJPhoAUE0KGirod0/VIJjfysfdhH
+         2wc+tmHBC0Pvg==
+Received: by mail-ej1-f70.google.com with SMTP id ga31-20020a1709070c1f00b006cec400422fso1939627ejc.22
+        for <devicetree@vger.kernel.org>; Mon, 14 Feb 2022 23:48:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/BLkLFYTDkoy0icaFTEEg+rA2J/JmQ87eCI7Tsm29s4=;
+        b=rJ4Q5kVZ8rCRnSR2r0by1jphclbtpF2SnZORXva6HzwvqWdd/mZpARKvodzr2QVbNG
+         sQdYIVOCC48P/u+YzlPFnvZbXpRlp7xKYKQScxmta7qSvDSmDF1YtsWm9+BeY17C09X2
+         eVe9rG27l588/dtGt8PkplW8ICzH8ikT93MuGyFmLgAWMZpQv4zd/A/gTdyd2v4Dg5/J
+         i3hcwKvHJwotH9D92YcJesu6lPJ//T6gg2ZvZXwB8gpDD6c6CdpuYYW+StTy5eciVwLt
+         VcbK3SPuIBzFUKT5LtWliacnRJeus5Z+hGfIRvrs2ITMNZl4Rr45ffSan4z2e+pHewQx
+         steg==
+X-Gm-Message-State: AOAM53088oNbIavoAI4l4dt3oEGDE7o/iGIoqCwX8jP4PInTgdyK19XV
+        E06RcMRULotT/5xs/OQpXNHgw9taAMfWzM2Cewa6pg5FhJcEGH9CiPa2ABZzTd+x/N+oxVizPTm
+        mOed6vl3NHRkqI5fdRza1Is06f21FU8VU7R66dZ4=
+X-Received: by 2002:a05:6402:26c7:: with SMTP id x7mr2571506edd.151.1644911309471;
+        Mon, 14 Feb 2022 23:48:29 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxzPL6bZ87ZeeKAh5rp6FvE5VSLy/1ksnFjn1oCusi+AyfVE8IhUfVQttON0EX2l6IHA9kzfw==
+X-Received: by 2002:a05:6402:26c7:: with SMTP id x7mr2571499edd.151.1644911309301;
+        Mon, 14 Feb 2022 23:48:29 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id c29sm1188357ejj.149.2022.02.14.23.48.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Feb 2022 23:48:28 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: [PATCH v3 0/3] mfd/power/regulators: dt-bindings: max14577: convert to dtschema
+Date:   Tue, 15 Feb 2022 08:47:56 +0100
+Message-Id: <20220215074759.29402-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="75mhjvzsa3tznmbu"
-Content-Disposition: inline
-In-Reply-To: <20220214212154.8853-1-krzysztof.kozlowski@canonical.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,63 +79,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---75mhjvzsa3tznmbu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v2
+================
+1. Add tags.
+2. Drop DTS patch (applied).
+3. mfd: Fix indentation in bindings example.
+4. regulator: Drop regulator-name requirement and use
+   unevaluatedProperties.
 
-Hello,
+Changes since v1
+================
+1. MFD: Use absolute path to schemas
+2. Regulator: mention all allowed properties,
+   additionalProperties=false, add min/max values for voltages and
+   current, don't use patternProperties when not needed.
 
-[dropped Anson Huang and Yash Shah from Cc: which were not reachable for
-my last mail]
+Dependencies
+============
+1. DTS patch 1/4: nothing depends on it, sending here so Rob's automatic
+   checker won't complain about DTS.
+   I will take it via Samsung SoC tree.
 
-On Mon, Feb 14, 2022 at 10:21:39PM +0100, Krzysztof Kozlowski wrote:
-> Hi,
->=20
-> Changes since v1:
-> 1. Add tags.
-> 2. Adjust subject (Uwe).
+2. Final MFD patch (4/4) depends on regulator and power, so the last
+   patches (2+3+4) should go via same tree.
 
-However you only took a part of my suggestion ...
+Best regards,
+Krzysztof
 
-> Krzysztof Kozlowski (15):
->   dt-bindings: pwm: allwinner,sun4i-a10: Include generic pwm schema
->   dt-bindings: pwm: imx: Include generic pwm schema
->   dt-bindings: pwm: intel,lgm: Include generic pwm schema
->   dt-bindings: pwm: iqs620a: Include generic pwm schema
->   dt-bindings: pwm: mxs: Include generic pwm schema
->   dt-bindings: pwm: rockchip: Include generic pwm schema
->   dt-bindings: pwm: sifive: Include generic pwm schema
->   dt-bindings: pwm: renesas,pwm: Include generic pwm schema
->   dt-bindings: pwm: toshiba,visconti: Include generic pwm schema
->   dt-bindings: pwm: brcm,bcm7038: Do not require pwm-cells twice
->   dt-bindings: pwm: intel,keembay: Do not require pwm-cells twice
+Krzysztof Kozlowski (3):
+  dt-bindings: power: supply: maxim,max14577: convert to dtschema
+  regulator: dt-bindings: maxim,max14577: convert to dtschema
+  dt-bindings: mfd: maxim,max14577: convert to dtschema
 
-=2E.. The actual patch has a space after the comma, I like this variant
-without comma better as this is a compatible string. Also a # before
-pwm-cells would be nice.
+ .../devicetree/bindings/mfd/max14577.txt      | 147 -------------
+ .../bindings/mfd/maxim,max14577.yaml          | 195 ++++++++++++++++++
+ .../bindings/power/supply/maxim,max14577.yaml |  84 ++++++++
+ .../bindings/regulator/maxim,max14577.yaml    |  78 +++++++
+ MAINTAINERS                                   |   3 +-
+ 5 files changed, 359 insertions(+), 148 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/max14577.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max14577.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max14577.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max14577.yaml
 
-Best regards
-Uwe
+-- 
+2.32.0
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---75mhjvzsa3tznmbu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmILWOsACgkQwfwUeK3K
-7An9UAf/fphlT382o9/FKqwTAw/JDCNvTPyXDeOLfHI7s5jElS2X/z6Ev+qvlRbO
-c69X0dIeX0m3ZG2Aqq9zXkzrEjLiv5BUPTnaA/EsPCkU8TWyTQa/cd+y7kAnqVxx
-63Vj1JFt9TxNaAR/+EebmDui9nLX3D/hUYNaJn+JbAZlLGGdzcmbovc5YmB1lw/M
-qByp61tL/ib3x+KV8tA4Rccvu1uxZTmU7VUf15xsHOdY1LXDeu/ZCbWIWOy0AeNa
-dlLq2yiogwbckiquxxHnHm3yVPt1ncclAYeUT3VY9VeHvU6OQkNvJgtdmsGkEFfn
-ZVt42/xmkq2p4d6tMsSkQzJGnR6DRA==
-=6jay
------END PGP SIGNATURE-----
-
---75mhjvzsa3tznmbu--
