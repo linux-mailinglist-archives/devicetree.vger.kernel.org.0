@@ -2,66 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8393C4B7524
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:47:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89F484B7912
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:53:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237375AbiBOUev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 15:34:51 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52874 "EHLO
+        id S244187AbiBOUwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 15:52:49 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232236AbiBOUeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:34:50 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 488E089CD4;
-        Tue, 15 Feb 2022 12:34:39 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id p9so13544321wra.12;
-        Tue, 15 Feb 2022 12:34:39 -0800 (PST)
+        with ESMTP id S234234AbiBOUwt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:52:49 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C1611C129;
+        Tue, 15 Feb 2022 12:52:37 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id bx31so369746ljb.0;
+        Tue, 15 Feb 2022 12:52:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KRSkNhIEhZMEMhWXs5iKQNZLmkUM8XOFNeLt27M+yH0=;
-        b=hmXooVo0/3oV8QfjJUBlso0REBtT/7qZxc4FtjAmra0e1picrf+m3AyZe/9+8D/Qys
-         dAKgFh2OJUrLVKJkf6aJmpRcU7Qan23dlXdC0svDE/UgTCkjX2BuMtea43ycfowTGPAy
-         UI++sJoOrZY7O3tZRi5Sd98UNVeeD3+7UCSQRtdd8UB27UASvbssCSCmBM7W9NCdoRSy
-         EwGs+mFo+Q+4AYFJcptcxtmga80wOuzuZaV1sd5mPdtoreJ+MuJe34KIj6aYUmlcWdX7
-         ZPeKhgH4e1WwI7lmO1AO+RdrMWmX7QTBeP2Eg6Q5AY0fo0HHAZP//R0Ljxtl8OJ3GqRG
-         eDWQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jMGS+E9enTU1RcYho7dj5zKVAmkRHoSxC5p3q4YCOAA=;
+        b=TXjKJBkXqHUJCRipKn5GIAwWraS1vUkN1i0EQt9VdLuvIyWVfKvZRokvzg152ndI4k
+         8NX/TaP84SGMpYzCPOQZCLEYtHtdSOHW+NqzX7VCPYgh1PL6/uuZj0W+pVqfIjVHbD7w
+         ppaVgXSohp6ycHYxOviqigiTtE8NHePAkjXjoQgzzYS+uGO56eUAHThOFwxuaQLV++YT
+         fswQAEMZcdGJ6tcPRhaXSMX/ez7pOgsU5E41hdB/lnSHl9MUtv0N3AkxHDjpTHkMcYMF
+         p/WP3vPFRFme3B++oKJJvL6oD4LKbryqCWhuvpRy1LmlJeErAzYuguLaDAMpHdGrDShn
+         tSHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KRSkNhIEhZMEMhWXs5iKQNZLmkUM8XOFNeLt27M+yH0=;
-        b=7zFebYcJOgR4rGL+B2CSGMfVKSvjbuv8zyEciQtu2lPjPKaO2aCY5PjE7IYtcCGhYq
-         Hie7d+k3Nac9Kr+NSO5yxHH9A92g+p3hqekqWP1zQh9F6NUhr612BSuMKZWpdo0ZUQZ/
-         mpB/XA78P1EDOKBPk/SFZEUwSkSo5Jd+CE5OOEfZhcFthFqZRZx8t/MF0BKMaY1r979S
-         6plZoCQTdr5womrOceHoTX7l9Hn/YNKBAj2BHgoSNomoSz7hRsT+14SoPi6YsAHvQIO7
-         4yJD8K+vTq7sj2XpBMgDI9BmBAFJc9Fya7S4x7yPKnbUApI/OeJ5pkPE9B/E/8TD7yqP
-         a6EA==
-X-Gm-Message-State: AOAM531gqW+JPGAfpU2tBgfAgHeS062mAuPlwrx613y8JiUO0A5tiNpj
-        BMMSXmpeIQm2iKeroVd0pTE=
-X-Google-Smtp-Source: ABdhPJx7LPF22AwP5kqzNKnc1tpYmsQB+V9uLmcnJHL/G901Xck085/9xsudMsuFVZQmfQc0vJM0Ug==
-X-Received: by 2002:adf:f191:: with SMTP id h17mr568730wro.188.1644957277766;
-        Tue, 15 Feb 2022 12:34:37 -0800 (PST)
-Received: from kista.localnet (cpe-86-58-32-107.static.triera.net. [86.58.32.107])
-        by smtp.gmail.com with ESMTPSA id r14sm6034914wrz.84.2022.02.15.12.34.36
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jMGS+E9enTU1RcYho7dj5zKVAmkRHoSxC5p3q4YCOAA=;
+        b=77s0gb4P185C8WXFhNdEl2v/9ENfQOPFC3YCn4z46f1yya/Hvb71t+AuF9ePB4Zwsc
+         xroL95bGL1pOIEiUVIjrv1nN7wNp9/AP5bWYmYNHi09y4bjYe1kMxVq54m93Yw/wHHMA
+         7NzUkGOztEx6xBdqWSwk0+AmSe6OpRqdatNTcuH+8+y6h2tOLk8HIOm74ZYBQkMMnA8U
+         N/pWHfaJY1rnGcZtnstqNekvVS8XMSYAGDl/2BH86ud7pfeo9imMKe37xET8t9YRlZFA
+         lsOr4f/Uccv1QYf9KCsyivqE32la8wTSUn7A5AfJOfOQb+S73/PFdZhNMAtMRyw8ojg4
+         YDkA==
+X-Gm-Message-State: AOAM532K+g1zlG+S4K9AKwh/Z1giiXyC9KLnx6ouzJZeKHkwVLA4Fg5t
+        V6eO1XBeD24xG3d/ny6Q/OwxuWleOsI8oPPo
+X-Google-Smtp-Source: ABdhPJwiCTNEg3YI/aYqALAieZsJp9VDJ6J4PFaM9mcfBU04Kstzv2YEB7Tvm59YAYTzsqXUsyo7tg==
+X-Received: by 2002:a05:651c:1403:: with SMTP id u3mr569012lje.265.1644958355155;
+        Tue, 15 Feb 2022 12:52:35 -0800 (PST)
+Received: from nergzd-desktop.localdomain ([62.122.67.26])
+        by smtp.gmail.com with ESMTPSA id 18sm1129337ljw.71.2022.02.15.12.52.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 12:34:37 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     mripard@kernel.org, wens@csie.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Michael Klein <michael@fossekall.de>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Subject: Re: Re: [PATCH v2] ARM: dts: sun8i: Adjust power key nodes
-Date:   Tue, 15 Feb 2022 21:34:36 +0100
-Message-ID: <4714494.31r3eYUQgx@kista>
-In-Reply-To: <20220215002732.GA3215504@roeck-us.net>
-References: <20211129165510.370717-1-jernej.skrabec@gmail.com> <20220215002732.GA3215504@roeck-us.net>
+        Tue, 15 Feb 2022 12:52:34 -0800 (PST)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v4 0/2] Add support for Imagis touchscreens
+Date:   Tue, 15 Feb 2022 22:51:50 +0200
+Message-Id: <20220215205153.57966-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -72,99 +73,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Add support for Imagis touchscreens, used on various mobile
+devices such as Samsung Galaxy J5 (2015), J3 (2015), J5 (2016).
 
-Dne torek, 15. februar 2022 ob 01:27:32 CET je Guenter Roeck napisal(a):
-> Hi,
-> 
-> On Mon, Nov 29, 2021 at 05:55:10PM +0100, Jernej Skrabec wrote:
-> > Several H3 and one H2+ board have power key nodes, which are slightly
-> > off. Some are missing wakeup-source property and some have BTN_0 code
-> > assigned instead of KEY_POWER.
-> > 
-> > Adjust them, so they can function as intended by designer.
-> > 
-> > Co-developed-by: Michael Klein <michael@fossekall.de>
-> > Signed-off-by: Michael Klein <michael@fossekall.de>
-> > Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> 
-> This patch results in the following traceback when rebooting an
-> orangepi-pc qemu emulation.
-> 
-> [   30.899594]
-> [   30.899685] ============================================
-> [   30.899757] WARNING: possible recursive locking detected
-> [   30.899938] 5.17.0-rc3-00394-gc849047c2473 #1 Not tainted
-> [   30.900055] --------------------------------------------
-> [   30.900124] init/307 is trying to acquire lock:
-> [   30.900246] c2dfe27c (&irq_desc_lock_class){-.-.}-{2:2}, at: 
-__irq_get_desc_lock+0x58/0xa0
-> [   30.900900]
-> [   30.900900] but task is already holding lock:
-> [   30.900974] c3c0ac7c (&irq_desc_lock_class){-.-.}-{2:2}, at: 
-__irq_get_desc_lock+0x58/0xa0
-> [   30.901101]
-> [   30.901101] other info that might help us debug this:
-> [   30.901188]  Possible unsafe locking scenario:
-> [   30.901188]
-> [   30.901262]        CPU0
-> [   30.901301]        ----
-> [   30.901339]   lock(&irq_desc_lock_class);
-> [   30.901411]   lock(&irq_desc_lock_class);
-> [   30.901480]
-> [   30.901480]  *** DEADLOCK ***
-> [   30.901480]
-> [   30.901554]  May be due to missing lock nesting notation
-> [   30.901554]
-> [   30.901657] 4 locks held by init/307:
-> [   30.901724]  #0: c1f29f18 (system_transition_mutex){+.+.}-{3:3}, at: 
-__do_sys_reboot+0x90/0x23c
-> [   30.901889]  #1: c20f7760 (&dev->mutex){....}-{3:3}, at: 
-device_shutdown+0xf4/0x224
-> [   30.902016]  #2: c2e804d8 (&dev->mutex){....}-{3:3}, at: 
-device_shutdown+0x104/0x224
-> [   30.902138]  #3: c3c0ac7c (&irq_desc_lock_class){-.-.}-{2:2}, at: 
-__irq_get_desc_lock+0x58/0xa0
-> [   30.902281]
-> [   30.902281] stack backtrace:
-> [   30.902462] CPU: 0 PID: 307 Comm: init Not tainted 5.17.0-rc3-00394-
-gc849047c2473 #1
-> [   30.902572] Hardware name: Allwinner sun8i Family
-> [   30.902781]  unwind_backtrace from show_stack+0x10/0x14
-> [   30.902895]  show_stack from dump_stack_lvl+0x68/0x90
-> [   30.902970]  dump_stack_lvl from __lock_acquire+0x1680/0x31a0
-> [   30.903047]  __lock_acquire from lock_acquire+0x148/0x3dc
-> [   30.903118]  lock_acquire from _raw_spin_lock_irqsave+0x50/0x6c
-> [   30.903197]  _raw_spin_lock_irqsave from __irq_get_desc_lock+0x58/0xa0
-> [   30.903282]  __irq_get_desc_lock from irq_set_irq_wake+0x2c/0x19c
-> [   30.903366]  irq_set_irq_wake from irq_set_irq_wake+0x13c/0x19c
-> [   30.903442]  irq_set_irq_wake from gpio_keys_suspend+0x80/0x1a4
-> [   30.903523]  gpio_keys_suspend from gpio_keys_shutdown+0x10/0x2c
-> [   30.903603]  gpio_keys_shutdown from device_shutdown+0x180/0x224
-> [   30.903685]  device_shutdown from __do_sys_reboot+0x134/0x23c
-> [   30.903764]  __do_sys_reboot from ret_fast_syscall+0x0/0x1c
-> [   30.903894] Exception stack(0xc584ffa8 to 0xc584fff0)
-> [   30.904013] ffa0:                   01234567 000c623f fee1dead 28121969 
-01234567 00000000
-> [   30.904117] ffc0: 01234567 000c623f 00000001 00000058 000d85c0 00000000 
-00000000 00000000
-> [   30.904213] ffe0: 000d8298 be84ddf4 000918bc b6eb0edc
-> [   30.905189] reboot: Restarting system
-> 
-> The warning is no longer seen after reverting this patch.
-> 
-> The problem exists but is not seen in v5.17-rc4 because a bug in commit
-> 8df89a7cbc63 ("pinctrl-sunxi: don't call pinctrl_gpio_direction()")
-> hides it. That problem is fixed with commit 3c5412cdec9f ("pinctrl-sunxi:
-> sunxi_pinctrl_gpio_direction_in/output: use correct offset") in linux-next,
-> and the traceback is seen there.
+v2: rebase on top of the correct tree
+v3:
+- prefix all defines as IST3038C
+- use two tabs for all defines
+- add missing <linux/regulator/consumer.h> header
+- drop ADDR_LEN and DATA_LEN defines; use sizeof(reg_be) instead
+- use __be32 type for reg_be
+- add a comment about i2c read not being successful on first try
+- use "ret" instead of "res" in read_reg function
+- don't use the internal __cpu_to_be32 function, use cpu_to_be32 instead
+- use "error" instead of "ret" in interrupt handler
+- pass the slot state directly, without ternary operator
+- drop the dev_err in init_input_dev function
+- reorder the functions in _probe so that the chipid command is read as fast 
+as possible
+- don't use imagis_start in probe
+- initialize the irq after the chip is powered
+- save the return value in imagis_resume
+- drop WIDTH_MAJOR since only TOUCH_MAJOR is reported
+- the "chip detected" message is now dev_dbg
+- reorder headers so they are in alphabetic order
+- use GENMASK to generate masks for getting the X and Y coordinates and touch area
+- drop *_pressure from device tree bindings since the driver doesn't
+support reporting pressure
+- fix the typo with i2c address in device treee bindings (48 instead of 50)
+- add IRQF_NO_AUTOEN flag to avoid unbalanced irq enable
+v4:
+- alphabetically order MAINTAINERS entry
+- alphabetically order Kconfig and Makefile
+- drop the error message in init_regulators
+- disable regulators on probe error
+- drop IRQF_TRIGGER_FALLING
+- @ is not optional (device tree bindings)
+- don't use items for compatible
+- add maxItems property to reg, drop the comment
 
-Hm... These DT changes were tested with many users on older kernels for some 
-time now and new properties conform to bindings. Should we revert pinctrl 
-changes?
+Markuss Broks (2):
+  dt-bindings: input/touchscreen: bindings for Imagis
+  Input: add Imagis touchscreen driver
 
-Best regards,
-Jernej
+ .../input/touchscreen/imagis,ist3038c.yaml    |  78 +++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/input/touchscreen/Kconfig             |  10 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/imagis.c            | 329 ++++++++++++++++++
+ 6 files changed, 426 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+ create mode 100644 drivers/input/touchscreen/imagis.c
 
-
+-- 
+2.35.0
 
