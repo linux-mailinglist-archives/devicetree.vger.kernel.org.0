@@ -2,39 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60BBD4B62B3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 06:30:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEF8B4B62F2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 06:38:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233985AbiBOFaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 00:30:16 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57556 "EHLO
+        id S232127AbiBOFiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 00:38:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233284AbiBOFaQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 00:30:16 -0500
-Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53525123419;
-        Mon, 14 Feb 2022 21:30:07 -0800 (PST)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4JyV603PpPz4y3m;
-        Tue, 15 Feb 2022 16:30:00 +1100 (AEDT)
-From:   Michael Ellerman <patch-notifications@ellerman.id.au>
-To:     mpe@ellerman.id.au, Maxim Kiselev <bigunclemax@gmail.com>
-Cc:     paulus@samba.org, vladimir.oltean@nxp.com, davem@davemloft.net,
-        devicetree@vger.kernel.org, benh@kernel.crashing.org,
-        linuxppc-dev@lists.ozlabs.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, andrew@lunn.ch, fido_max@inbox.ru
-In-Reply-To: <20220121091447.3412907-1-bigunclemax@gmail.com>
-References: <87czkmudh0.fsf@mpe.ellerman.id.au> <20220121091447.3412907-1-bigunclemax@gmail.com>
-Subject: Re: [PATCH v3] powerpc: dts: t1040rdb: fix ports names for Seville Ethernet switch
-Message-Id: <164490279229.270256.13940315690425244509.b4-ty@ellerman.id.au>
-Date:   Tue, 15 Feb 2022 16:26:32 +1100
+        with ESMTP id S231736AbiBOFix (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 00:38:53 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 629EC14014;
+        Mon, 14 Feb 2022 21:38:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1644903521; x=1676439521;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=ndUMctv6RUFJ6MTBZVT4QO3AbPfxMnqRottuMmn9rjk=;
+  b=bMiG8wUsHrnSTBhJnQ9gWX5A1+eTOdsbNL5lmpxj0EEyCjoFpLgka+Yy
+   5K2Z87+TMGPz6A9B/SBkXV70UJDZEeqj7P9cTmyzOfVwdO7/tLyPm1uRO
+   W3vqOSWNwIl9pgY7ygl0FRrsYFX4tDwDGma6VqkKycKdL3RWjPX3AVyje
+   k=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 14 Feb 2022 21:38:41 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Feb 2022 21:38:40 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Mon, 14 Feb 2022 21:38:40 -0800
+Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 14 Feb 2022 21:38:36 -0800
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <pure.logic@nexus-software.ie>,
+        <bjorn.andersson@linaro.org>, <greg@kroah.com>, <robh@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <quic_rjendra@quicinc.com>,
+        <quic_saipraka@quicinc.com>, <quic_schowdhu@quicinc.com>
+Subject: [PATCH V1] arm64: dts: qcom: sc7280: Set the default dr_mode for usb2 to enable EUD.
+Date:   Tue, 15 Feb 2022 11:08:08 +0530
+Message-ID: <1644903488-20557-1-git-send-email-quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -43,19 +61,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jan 2022 12:14:47 +0300, Maxim Kiselev wrote:
-> On board rev A, the network interface labels for the switch ports
-> written on the front panel are different than on rev B and later.
-> 
-> This patch fixes network interface names for the switch ports according
-> to labels that are written on the front panel of the board rev B.
-> They start from ETH3 and end at ETH10.
-> 
-> [...]
+Update the dr_mode for usb2 to 'otg' from 'host' to enable role switch for Embedded USB
+Debugger(EUD) Node.
 
-Applied to powerpc/next.
+Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[1/1] powerpc: dts: t1040rdb: fix ports names for Seville Ethernet switch
-      https://git.kernel.org/powerpc/c/5ebb74749202a25da4b3cc2eb15470225a05527c
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+index a7be133..6d3ff80 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+@@ -90,7 +90,7 @@
+ };
 
-cheers
+ &usb_2_dwc3 {
+-	dr_mode = "host";
++	dr_mode = "otg";
+ };
+
+ &usb_2_hsphy {
+--
+2.7.4
+
