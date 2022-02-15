@@ -2,113 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E524B73B9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:44:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0BC84B7292
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:42:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241627AbiBOQca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 11:32:30 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50264 "EHLO
+        id S239868AbiBOQhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 11:37:34 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241595AbiBOQc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 11:32:26 -0500
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2133.outbound.protection.outlook.com [40.107.215.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6695D8A307;
-        Tue, 15 Feb 2022 08:32:16 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=luGCss8EgH95nF/qhnND6LfdKcrBeGkN/OWFtMMOBkWVUFQRbpnQdUGw/qJwpLEQkAEwfqEtHwIFh8XdG9OgVNkNBw0DeOZjUBXqKBmu5kKgHfz2CqN/LDJ2z2REJbtmY5CZaAhWkTHO14nvnXL8ZIUMz10HIjOUlZrK3AaTt0BFVfDzcrcA3N0HSGKSDVuzkWogsxWawBs0FvA+SdfT72mx8PyoEN99mPJp453SJEoh0UAug8smSv8H05xIsNMKPKaWr2rkGbIuZtqYTskXsEjWoOq+n0JsIhOtPi5kB6nj3f7oe2hFKUlSdjTA6pLkosuW2ckyYgTwuu+/hJbkmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DIV+h6IouVs8I7hwgkiHXMX6ZLTzGHSCGVqdSP+V6FY=;
- b=f3wCxAl/QIR3RqeXWXWLwi1ySuctuUXJTJ8yx/H1TXi4Wf/TPQlqDFUGTQ/ljyecWY3zX/LkFDq7FeHabC2Uwa4m6Y2QDed/aSLP/Ld+Ov/NuaSgtFjUoKSJiUonHXcEGPIbepW9Gh99BjsMWTS1J5enFynHLGzihUhzTHGML9oXeLtmO6qUVx66XT+a6VSfnpE74PRknl7F0b+T6PUnAYDCjCWr2sQJ4JBTNOe3YTA2d4uR+epjTnF2h+JX4jU3b3h+XXVmeJlXKSMtHRsu0v7wt854mNlAoekdoCsmizV0DNKyDcncCBM7gQl9dF5sBOkdZ9K4GwjZIEDwAAUN8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quantacorp.onmicrosoft.com; s=selector2-quantacorp-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DIV+h6IouVs8I7hwgkiHXMX6ZLTzGHSCGVqdSP+V6FY=;
- b=EAHhLZSs80MvSQCDPSRytnO+RPPGxsQLFxUR2RSu9qNem9f+IEiokO+Wnn/AiROv4W3FRvR+sWJlLXDUOCL7g/EcBrFH4ocLwRg70sJ59N/2yrJ9ZVD4cS6LKOo8L/9n9TgabbQJxo4t44jPbEi0uch7oYLyvSH04/tkQaGHfo4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=quantatw.com;
-Received: from HK0PR04MB3282.apcprd04.prod.outlook.com (2603:1096:203:89::17)
- by SI2PR04MB5695.apcprd04.prod.outlook.com (2603:1096:4:1a7::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.14; Tue, 15 Feb
- 2022 16:32:10 +0000
-Received: from HK0PR04MB3282.apcprd04.prod.outlook.com
- ([fe80::ec21:c033:761d:3e03]) by HK0PR04MB3282.apcprd04.prod.outlook.com
- ([fe80::ec21:c033:761d:3e03%4]) with mapi id 15.20.4975.018; Tue, 15 Feb 2022
- 16:32:10 +0000
-From:   Potin Lai <potin.lai@quantatw.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>
-Cc:     Patrick Williams <patrick@stwcx.xyz>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Potin Lai <potin.lai@quantatw.com>
-Subject: [PATCH v3 10/10] ARM: dts: aspeed: bletchley: cleanup redundant nodes
-Date:   Wed, 16 Feb 2022 00:31:51 +0800
-Message-Id: <20220215163151.32252-11-potin.lai@quantatw.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220215163151.32252-1-potin.lai@quantatw.com>
-References: <20220215163151.32252-1-potin.lai@quantatw.com>
-Content-Type: text/plain
-X-ClientProxiedBy: HK2PR02CA0141.apcprd02.prod.outlook.com
- (2603:1096:202:16::25) To HK0PR04MB3282.apcprd04.prod.outlook.com
- (2603:1096:203:89::17)
+        with ESMTP id S233621AbiBOQhe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 11:37:34 -0500
+X-Greylist: delayed 9703 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 15 Feb 2022 08:37:23 PST
+Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 137D2A4184;
+        Tue, 15 Feb 2022 08:37:23 -0800 (PST)
+Date:   Tue, 15 Feb 2022 16:37:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+        s=protonmail2; t=1644943039;
+        bh=f1kG4y1Pad9UaeKLlKedqj/sm+OCsoIlrgJXYL6aSeI=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+         References:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID;
+        b=E9V91jN86xK6pzcMltPM69/bOQFFQNJV14lQwmcL2FYT3foga5gLBN44BK4oxAPri
+         Vd8zuw1PuCIPGRg2//vtiVX9F2F6j/JTJL3odWwNmjV4QndYJ/cNzlL994kRk5oss4
+         t+oB5svlaOh0xBX9GF7yyVj1AjeFwDYEvnfX4LlK0wXUUANzluIiX7MMssmf+EtKXg
+         j3TEQWNZHHEFFnC96soVMV8mnPbtAkLt2VhY0qKE/ctXlMHsckdPLAA5vi0D16WsVW
+         ELSgf6c8NzeavnNPc22BI1Gvf+qHdGR5FmKWYe1aX8Wak2lhTUG3wpbv4id1Yx/OtQ
+         5XOlTjjx0fyLA==
+To:     Emil Velikov <emil.l.velikov@gmail.com>
+From:   Simon Ser <contact@emersion.fr>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        ML dri-devel <dri-devel@lists.freedesktop.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+        Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Alex Deucher <alexander.deucher@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        LAKML <linux-arm-kernel@lists.infradead.org>
+Reply-To: Simon Ser <contact@emersion.fr>
+Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation property creating and value setting
+Message-ID: <GYG6EVT1MqtmfKiPpMhDG9mpuATnmwVDq2PuE_dpDat5oQW_t1tUfm39lSWHj32D5r7mrog27sL4dkgdMYQ5BN830TfVOrgQ4Ts8LcO8Hcs=@emersion.fr>
+In-Reply-To: <CACvgo532-pC+7DLFCo=DWTX-OnJEJvSoTmQnt3_qLhiT4cqEMg@mail.gmail.com>
+References: <20220208084234.1684930-1-hsinyi@chromium.org> <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com> <KW6DNh6IRRgVJx9DfOFBnEqc4a0x-AnDXEbMxwpfEbk8dOn_KGVzAfo-slJWq-4nWW728Uc-OVpFh2w4fDE4-bxfkDuz1hFILRVvbcuXqaw=@emersion.fr> <CACvgo532-pC+7DLFCo=DWTX-OnJEJvSoTmQnt3_qLhiT4cqEMg@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e35a4170-8589-4133-330d-08d9f0a0b68a
-X-MS-TrafficTypeDiagnostic: SI2PR04MB5695:EE_
-X-Microsoft-Antispam-PRVS: <SI2PR04MB5695BDA9DADF75DED5FA10068E349@SI2PR04MB5695.apcprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1002;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xbGJqX61w6jP/dDViONrqgM4CHwPBxC6ifnlxS9vqrW2h1S6UPYdo4C+daGmILqbGSZOaZO78ijYDY/as0c8CixEOzgqzx26JrM1VrX+diwBsWqSPhEIPLk38Nt3WLzzLqdVXjCb1NvAnXV/b/tjEIvHE/HnujMXg2DcmENeRn5fjwoTc3djQy8un35uFgKWhbyzCtJC/lMpSbG1Mz8Xa6MpIxHbfnxBK5vZCf5yb6ljAdB81DG7w+uk4DzFZ2PHZFN1Y6GwYDHQOoUdIkbYRRYbLrGU3z8UtYPyuTf8JFOT+PDZql0AvniRxlmwL9wsk8dceSk+KrTUoSmXZkB/oeJ3aBSF1QrBpPQIETJUhid5r1RuSzai2abygr/GkeeUuWjLgR3SiGvCLyken7rBx3EK9wzugol2WMrtQ+AeL+nbhHAkce+h03cuhwA26zLIoVSCPEmSd6YA6GDEErtzOwbnUIEdNik3RayiYo4fEI1zVgyCIgTxpdPeG60dmj/4M3IJaT7XZXPq0RsV4rdnaQqOXQQBxsVuywS7bSIrVCQz5pzrreVm8OrXCXIsiLk0oMOfO41qGcyJz5NTzJsaepr+M2mGoauo27N7H/QA1aXdRTpEwYBkilqtDKbtXXPSpHDXud3fimCM8s2/BUfPxV7KujbCcZ2LDCU0Kw4RnwnAaY6ZKGWxSR7DKknz8gRy4yGZABjWUAwJkYNBMqXKdA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR04MB3282.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(4326008)(6666004)(83380400001)(38350700002)(5660300002)(52116002)(8676002)(86362001)(2906002)(6512007)(36756003)(186003)(2616005)(1076003)(6506007)(26005)(107886003)(54906003)(110136005)(6486002)(66556008)(66946007)(8936002)(316002)(508600001)(4744005)(44832011)(66476007)(38100700002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+QIg71MWgoqaHuMmYbvv6SDmhTbspaENuyY6w1+OzC9SIhyWF7kh7HXTHkHb?=
- =?us-ascii?Q?Ft36teYP14fXloIRdgUASrsPoY21d7UpFH6Itl2cmecQywjCSJ7qoAxK6X19?=
- =?us-ascii?Q?PeVFeT1dGIp77nNvcaGRXzI5BmIT8EXbOq5mOGEBVyqYYquFk851lBuFjh9f?=
- =?us-ascii?Q?TiMSG7d3wdcZOlOVTU5NUrdAIuPm1pTgVcS7DSQSW1LeqNrf7Ibpi7wXWUKP?=
- =?us-ascii?Q?O5qzuCLkAHvGPRWXQ4eSu2FAnp64jHZXG+2txp0VU78UUGDJNFT4zi7q4csQ?=
- =?us-ascii?Q?xqm/NLAS7E6JHh8KxzS6/FceieX53VsI7zOrG9+ug4R73wORikj5S8jn9NoF?=
- =?us-ascii?Q?j30enC47+B+zLFNgK7cwBNP/AY/+Z30vx2AmCFmuQF0JAdbYiDGLbV11P+3g?=
- =?us-ascii?Q?mJlM4K4xYjK0mMExpnBen+EagcbTIzKw8ZKQlAFK2AFpw9OqOtcVr3GCIrmV?=
- =?us-ascii?Q?K9MXfnxpx13+AGa/SARCtqd6O/mMQTE5+kqergdoDMGNa+USYfe/EyhYaXj3?=
- =?us-ascii?Q?gqELbFZGQAJd/pjwkT06N5JWWgipJEiqPbTcCEUzBRADf1Qu+ZYqm+NLHkAh?=
- =?us-ascii?Q?c92WI/pkSv1qk9T3myxSQ/DGSP+PktJo/WvN4epInrSJ4ES2yi1/HLTQ5Ls1?=
- =?us-ascii?Q?ijTZalomBSSaNkx3e6q3O6m9HzdvhfoB5TRuELLj13LYVrwOID4PtzV1O7s6?=
- =?us-ascii?Q?Rr5veEiugAUB0CqYaWIXE5mFNEY4q4wRYSjpM4MPNfbj2Vy47kpvzOWVKd8h?=
- =?us-ascii?Q?l5Cn+Lgk5S7xrTB8wgvbxFTl8sGxX0q+SonI7CB7I2Ye35em39zIPIYVt4zS?=
- =?us-ascii?Q?qk8DcT7WWMpvwR0EA+mSSV0JZuCfo8vcbsYECOEQhadI7/ypaOWTrycSxqQV?=
- =?us-ascii?Q?otGdPcBpXqgG6pSctgRO4XjCIDrjgCxvwvA4KpJjdrSrcqlQrZrp9VjeOvzS?=
- =?us-ascii?Q?JY7p51cacRh9eL8H2R91CjVpxKxfcRTL3n1BbPTo3B6Ggd+VHYty0iOCNF6b?=
- =?us-ascii?Q?KQE6OUVyEnwiW5D93iHeHmEMTV5CUWjT72OPssLZ/09XSnm7PUzEg/mvdpAw?=
- =?us-ascii?Q?tCBZ06HDpYfsJpmzoK/TZe5CETyg2uqv1ObynnNfB8GAR0ZbCn29SAHiojDE?=
- =?us-ascii?Q?4/Gg37yTXZ2btK1iIxTcK6g4DKgODD5FRn4fDYnEttz+L0uXEuOfAcFyAxru?=
- =?us-ascii?Q?I18X9f7LWofXP0suzF+7mkStkmD/tAp2GQ/wxu3AaM3nwNbDXWHo6DPIzMYe?=
- =?us-ascii?Q?k8xLi97Ik4I5QxSdpe5hY3R+Ex0hZKhuNdfW8Q6Yk1BeUs4/t0WxNGCLAlhZ?=
- =?us-ascii?Q?nKEhUOWyuCqcr7vPt7yWpyZdJeMOtwSd9UwAYX2R2/phlYlenrldpVI0o19K?=
- =?us-ascii?Q?basLD/L0OsJMkJTUG0ugtX5L6lryFhpaoq7fS7I32Ae+W7amlGQRiL5RUKr7?=
- =?us-ascii?Q?S15YM+hZ4AdbG9+SrTWMSpNK4edzQ/J6DD9JptyH7uvC0Gl7MfDEF2IOTTUM?=
- =?us-ascii?Q?80r12y8zFNipvdOOFCpbLW192d4xxkg3kQS6dOtOo/0NkJh2aEL13pBprVb4?=
- =?us-ascii?Q?LxA+h/IKl515Nq+EsFGcH0Spd2G32XLIu5Gj0eZzF7ug/q9P60wamldVwFvl?=
- =?us-ascii?Q?MFb125SsLtwYvkH67xgI5iE=3D?=
-X-OriginatorOrg: quantatw.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e35a4170-8589-4133-330d-08d9f0a0b68a
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR04MB3282.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2022 16:32:09.8985
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 179b0327-07fc-4973-ac73-8de7313561b2
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /qHu0I5iRSh40JH5U+ahx96W/IIVDN8ChVJx3NUczxSWKCF0Uwk0XBT94dgD0SdILxVtPYcBPozNoqnOXb+xEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR04MB5695
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -116,51 +64,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-cleanup following nodes
+On Tuesday, February 15th, 2022 at 15:38, Emil Velikov <emil.l.velikov@gmai=
+l.com> wrote:
 
-1. Remove redundant i2c1 node.
-2. Disable in-chip rtc, use battery-backed external rtc (pcf85263)
-   instead.
+> On Tue, 15 Feb 2022 at 13:55, Simon Ser <contact@emersion.fr> wrote:
+> >
+> > On Tuesday, February 15th, 2022 at 13:04, Emil Velikov <emil.l.velikov@=
+gmail.com> wrote:
+> >
+> > > Greetings everyone,
+> > >
+> > > Padron for joining in so late o/
+> > >
+> > > On Tue, 8 Feb 2022 at 08:42, Hsin-Yi Wang <hsinyi@chromium.org> wrote=
+:
+> > > >
+> > > > drm_dev_register() sets connector->registration_state to
+> > > > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> > > > drm_connector_set_panel_orientation() is first called after
+> > > > drm_dev_register(), it will fail several checks and results in foll=
+owing
+> > > > warning.
+> > > >
+> > > > Add a function to create panel orientation property and set default=
+ value
+> > > > to UNKNOWN, so drivers can call this function to init the property =
+earlier
+> > > > , and let the panel set the real value later.
+> > > >
+> > >
+> > > The warning illustrates a genuine race condition, where userspace wil=
+l
+> > > read the old/invalid property value/state. So this patch masks away
+> > > the WARNING without addressing the actual issue.
+> > > Instead can we fix the respective drivers, so that no properties are
+> > > created after drm_dev_register()?
+> > >
+> > > Longer version:
+> > > As we look into drm_dev_register() it's in charge of creating the
+> > > dev/sysfs nodes (et al). Note that connectors cannot disappear at
+> > > runtime.
+> > > For panel orientation, we are creating an immutable connector
+> > > properly, meaning that as soon as drm_dev_register() is called we mus=
+t
+> > > ensure that the property is available (if applicable) and set to the
+> > > correct value.
+> >
+> > Unfortunately we can't quite do this. To apply the panel orientation qu=
+irks we
+> > need to grab the EDID of the eDP connector, and this happened too late =
+in my
+> > testing.
+> >
+> > What we can do is create the prop early during module load, and update =
+it when
+> > we read the EDID (at the place where we create it right now). User-spac=
+e will
+> > receive a hotplug event after the EDID is read, so will be able to pick=
+ up the
+> > new value if any.
+>
+> Didn't quite get that, are you saying that a GETPROPERTY for the EDID,
+> the ioctl blocks or that we get an empty EDID?
 
-Signed-off-by: Potin Lai <potin.lai@quantatw.com>
----
- arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+I'm not referring to GETPROPERTY, I'm referring to the driver getting the E=
+DID
+from the sink (here, the eDP panel). In my experimentations with amdgpu I
+noticed that the driver module load finished before the EDID was available =
+to
+the driver. Maybe other drivers behave differently and probe connectors whe=
+n
+loaded, not sure.
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-index 494654338542..eaf1bc261ee3 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-@@ -225,10 +225,6 @@
- 	};
- };
- 
--&rtc {
--	status = "okay";
--};
--
- &fmc {
- 	status = "okay";
- 	flash@0 {
-@@ -386,10 +382,6 @@
- 	};
- };
- 
--&i2c1 {
--	status = "okay";
--};
--
- &i2c2 {
- 	status = "okay";
- 	ina230@45 {
-@@ -679,6 +671,7 @@
- 	};
- 
- 	rtc@51 {
-+		/* in-chip rtc disabled, use external rtc (battery-backed) */
- 		compatible = "nxp,pcf85263";
- 		reg = <0x51>;
- 	};
--- 
-2.17.1
+> The EDID hotplug even thing is neat - sounds like it also signals on
+> panel orientation, correct?
+> On such an event, which properties userspace should be re-fetching -
+> everything or guess randomly?
+>
+> Looking through the documentation, I cannot see a clear answer :-\
 
+User-space should re-fetch *all* properties. In practice some user-space ma=
+y
+only be fetching some properties, but that should get fixed in user-space.
+
+Also the kernel can indicate that only a single connector changed via the
+"CONNECTOR" uevent prop, or even a single connector property via "PROPERTY"=
+.
+See [1] for a user-space implementation. But all of this is purely an optio=
+nal
+optimization. Re-fetching all properties is a bit slower (especially if som=
+e
+drmModeGetConnector calls force-probe connectors) but works perfectly fine.
+
+It would be nice to document, if you have the time feel free to send a patc=
+h
+and CC danvet, pq and me.
+
+[1]: https://gitlab.freedesktop.org/wlroots/wlroots/-/blob/252b2348bd62170d=
+97c4e81fb2050f757b56d67e/backend/session/session.c#L144
