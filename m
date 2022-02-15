@@ -2,147 +2,338 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF68A4B6713
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 10:11:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CCED4B672D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 10:13:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232869AbiBOJLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 04:11:12 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52564 "EHLO
+        id S235328AbiBOJNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 04:13:18 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbiBOJLL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 04:11:11 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 811ED13DDB;
-        Tue, 15 Feb 2022 01:11:02 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 079911F433FC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1644916261;
-        bh=tYSh/6XrWTeegQd7V8dnLWsujFi8WEje0R7EZEvEbzE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=BVVMirL2QvYO1R0vzvudtTGRUSR8n9khoyveEfNxG9dxkA6wW5OQNaqozVMRtONjJ
-         QgrdK7YfsM5XvB8vsbAI9duQTqAdymREGBHABXI5zW7q2sKlVTn0CSuMAUaHlVpBtc
-         sWZXuiLOIUvDCVaqaBUqN+wD1dcSwUbzFJtzlz0WgueyZlul3UmF4077teU4z8B35t
-         Zsy11yX5V3J0dkXVhgNOpGrItX6cz1ooV6aTWQxwSzSQLtF+0rnxeSxUCoggZX25UH
-         Mi5gXodwpJAolDY/tvM8H7dcFq/kXuBFpRl86ghxFpmlSbexqHN0gSCji024KBgn1E
-         cOkjL4QuQJYNg==
-Message-ID: <9bbc6f3c-7fe6-0f1d-e946-b751668949fb@collabora.com>
-Date:   Tue, 15 Feb 2022 10:10:57 +0100
+        with ESMTP id S233369AbiBOJNR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 04:13:17 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E43424BFF
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 01:13:06 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id u18so30947573edt.6
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 01:13:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=YvZcS2wyzTeuOXBbojC1NsOA1F4rmTcyh6lcCt/OHcU=;
+        b=lpZBkurf4jtq5MCFlnF6tb/yn8F6C4QYYCusF+lXs2sgDrerHdsPd8zP+Fanw9X3ga
+         mGxrpC2M8SVnvshKwssjw3iuS78+i94KWsAAHsAtQUMhYoMyAD2BD5wXsJu2jJI+w0A2
+         c4tQW2InMVsP8SZmwNTgyspDa5khpHc7SzQpbNL+NwKoH/KF+lYYyALxtuaJ4we51bq+
+         cekGYVRoxBJo8DYQ05Xghd/RrCFY43cpa6BXu5YucaITORkfiStW4+A128MzgJP1y9k8
+         Urh/0L4T/dIYT1zWsrogOuofuhloF/MKiSxTpXkK3dXHcpsuzAqwv6Ant7MFAWyZF+R3
+         3EbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=YvZcS2wyzTeuOXBbojC1NsOA1F4rmTcyh6lcCt/OHcU=;
+        b=Y7tlD8Pls76+jk8cUF0hCn7ZvlPEMw/b+q7taUrJqhOap5ynFiNC5hfvnnLlgzLQtq
+         ZsyLDvVUf+JnefcAhEOh+H768LMDO3m8ooiwrsYgsrBySS26gYCAKCwfO+y/R8YDzOut
+         ZuuNbBVeOUMFt0JoUG37My3Xg8xoucyUupBOwe3b7LZu/8gfVT07p5CrIm2qfnZXxAW+
+         bSXNSWZZeERhAwskSodDRHBvIcUTPdrU740L6Xzf/wQOZTqLikKTpp3Egyp6LEBdwhx8
+         uAZBQ5wOSYecn8Y/fFmrnZbkYS+4nFzPNxfgxq3eJlf3dYS9NYjmBYQQ5fg/cFth7Flc
+         oLag==
+X-Gm-Message-State: AOAM532oGk64PXj0PlfGkG3osb4t6gpFIbqpfm06r91VPXy3CELTnV3i
+        Og+5Knhh+6R1B/GP6AVWmJomYC6hhokN/q3t+9ERevCHS4XQikCU
+X-Google-Smtp-Source: ABdhPJylvGPsy7CF2fb1Rv03Vnft4Zg0vUGS6xuCQyj9bxK3jofNQ/OPMnngD40sP90YZjAM6Jh+TSzya8+T5pIqICc=
+X-Received: by 2002:a05:6402:4486:: with SMTP id er6mr599824edb.295.1644916384941;
+ Tue, 15 Feb 2022 01:13:04 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v22 5/7] soc: mediatek: SVS: add debug commands
-Content-Language: en-US
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Guenter Roeck <linux@roeck-us.net>
-References: <20220127033956.24585-1-roger.lu@mediatek.com>
- <20220127033956.24585-6-roger.lu@mediatek.com>
- <0846872b-03da-ee5d-6a9d-e6c9fa754191@collabora.com>
- <eb4a903b90020e8220768e9bb674b9de477006e3.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <eb4a903b90020e8220768e9bb674b9de477006e3.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220210214018.55739-1-atishp@rivosinc.com> <3479483.A1skbJeUdD@diego>
+ <CAOnJCU+cWBDrN-3Z37m8xA1GPrJY+JaOweYMiZBxJ-cT7ii_5Q@mail.gmail.com>
+ <2413800.L4PxSk42VP@diego> <CAHBxVyEETRsUu3mXqT2oD=fuxmNHxmvEd7z+ZhdXb60af2L=EQ@mail.gmail.com>
+In-Reply-To: <CAHBxVyEETRsUu3mXqT2oD=fuxmNHxmvEd7z+ZhdXb60af2L=EQ@mail.gmail.com>
+From:   Atish Kumar Patra <atishp@rivosinc.com>
+Date:   Tue, 15 Feb 2022 01:12:53 -0800
+Message-ID: <CAHBxVyGSB-LjTEwLXrw_UKn+VB56k6GtH7P8hMvU7qB530PqEA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] RISC-V: Implement multi-letter ISA extension
+ probing framework
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Atish Patra <atishp@atishpatra.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/02/22 10:08, Roger Lu ha scritto:
-> Hi AngeloGioacchino,
-> 
-> Excuse me for the late reply.
+On Mon, Feb 14, 2022 at 3:22 PM Atish Kumar Patra <atishp@rivosinc.com> wro=
+te:
+>
+> On Mon, Feb 14, 2022 at 2:22 PM Heiko St=C3=BCbner <heiko@sntech.de> wrot=
+e:
+> >
+> > Am Montag, 14. Februar 2022, 21:42:32 CET schrieb Atish Patra:
+> > > On Mon, Feb 14, 2022 at 12:24 PM Heiko St=C3=BCbner <heiko@sntech.de>=
+ wrote:
+> > > >
+> > > > Am Montag, 14. Februar 2022, 21:14:13 CET schrieb Atish Patra:
+> > > > > On Mon, Feb 14, 2022 at 12:06 PM Heiko St=C3=BCbner <heiko@sntech=
+.de> wrote:
+> > > > > >
+> > > > > > Am Donnerstag, 10. Februar 2022, 22:40:16 CET schrieb Atish Pat=
+ra:
+> > > > > > > Multi-letter extensions can be probed using exising
+> > > > > > > riscv_isa_extension_available API now. It doesn't support ver=
+sioning
+> > > > > > > right now as there is no use case for it.
+> > > > > > > Individual extension specific implementation will be added du=
+ring
+> > > > > > > each extension support.
+> > > > > > >
+> > > > > > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > > > > >
+> > > > > > Tested-by: Heiko Stuebner <heiko@sntech.de>
+> > > > > >
+> > > > > >
+> > > > > > By the way, does a similar parsing exist for opensbi as well?
+> > > > > > Things like svpbmt as well as zicbom have CSR bits controlling =
+how
+> > > > > > these functions should behave (enabling them, etc), so I guess
+> > > > > > opensbi also needs to parse the extensions from the ISA string?
+> > > > > >
+> > > > > >
+> > > > >
+> > > > > No. Currently, OpenSBI relies on the CSR read/write & trap method=
+ to
+> > > > > identify the extensions [1].
+> > > > >
+> > > > > https://github.com/riscv-software-src/opensbi/blob/master/lib/sbi=
+/sbi_hart.c#L404
+> > > >
+> > > > I guess my question is more, who is supposed to set CBIE, CBCFE bit=
+s in the
+> > > > ENVCFG CSR. I.e. at it's default settings CMO instructions will cau=
+se
+> > > > illegal instructions until the level above does allow them.
+> > > >
+> > > > When the kernel wants to call a cache-invalidate, from my reading m=
+envcfg
+> > > > needs to be modified accordingly - which would fall in SBI's court?
+> > > >
+> > >
+> > > I think so. I had the same question for the SSTC extension as well.
+> > > This is what I currently do:
+> > >
+> > > 1. Detect menvcfg first, detect stimecmp
+> > > 2. Enable SSTC feature only if both are available
+> > > 3. Set the STCE bit in menvcfg if SSTC is available
+> > >
+> > > Here is the patch
+> > > https://github.com/atishp04/opensbi/commit/e6b185821e8302bffdceb4633b=
+413252e0de4889
+> >
+> > Hmm, the CBO fields are defined as WARL (write any, read legal),
+> > so I guess some sort of trap won't work here.
+> >
+>
+> Correct. Traps for extensions that introduce new CSRs.
+> I was suggesting setting the corresponding bits in MENVCFG and reading
+> it again to check if it sticks.
+>
+> > The priv-spec only points to the cmo-spec for these bits and the cmo-sp=
+ec
+> > does not specifiy what the value should be when cmo is not present.
+> >
+> >
+> > > > > In the future, zicbom can be detected in the same manner. However=
+,
+> > > > > svpbmt is a bit tricky as it doesn't
+> > > > > define any new CSR. Do you think OpenSBI needs to detect svpbmt f=
+or any reason ?
+> > > >
+> > > > There is the PBMTE bit in MENVCFG, which I found while looking thro=
+ugh the
+> > > > zicbom-parts, which is supposed to "control wheter svpbmt is availa=
+ble for
+> > > > use". So I guess the question is the same as above :-)
+> > > >
+> > >
+> > > PBMTE bit in MENVCFG says if PBMTE bit is available or not. OpenSBI
+> > > needs other way to
+> > > detect if PBMTE is available.
+> > >
+> > > That's why, I think MENVCFG should be set correctly by the hardware
+> > > upon reset. What do you think
+> > > about that ? I couldn't find anything related to the reset state for =
+menvcfg.
+> >
+> > me neither. Both the priv-spec as well as the cmobase spec do not
+> > specifiy any reset-values it seems.
+> >
+> I have raised an issue in the ISA spec.
+> https://github.com/riscv/riscv-isa-manual/issues/820
+>
+> > So I guess in the Qemu case, Qemu needs to set that bit when
+> > its svpbmt extension is enabled?
+> >
+>
+> We can do that if the priv spec is modified to allow that.
+>
 
-Hi Roger,
-no worries about that.
+As per Greg's response, hardware is not expected to do that.
+So we have to dynamically detect the extensions in OpenSBI and write to men=
+vcfg.
 
-> 
-> On Mon, 2022-01-31 at 12:11 +0100, AngeloGioacchino Del Regno wrote:
->> Il 27/01/22 04:39, Roger Lu ha scritto:
->>> The purpose of SVS is to help find the suitable voltages
->>> for DVFS. Therefore, if SVS bank voltages are concerned
->>> to be wrong, we can adjust SVS bank voltages by this patch.
->>>
->>> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
->>
->>
->> Hello Roger,
->> I was thinking about what this patch is adding... and I have a few
->> considerations.
->>
->> It's nice to have a debugging mechanism to read the status and dump registers,
->> as
->> that's very helpful when doing heavy debugging of the IP... but adding the
->> possibility to write a voltage offset may be very dangerous: think about the
->> case
->> in which, either for misconfiguration, or for any other reason, the debugfs
->> entry
->> that allows writing voffset becomes user-writable, or a user writes an
->> impossibly
->> high voffset.
->> In case a very low (negative) voffset is entered, the platform would crash
->> (denial
->> of service); if a very high voffset is entered, hardware damage may occur.
->>
->> For this reason, there are two proposals:
->> 1. If you want to keep the debugfs voffset write, please constrain the
->> permissible
->>      voffset to an acceptable range that at least makes it unlikely to damage
->> the HW;
->>      Moreover, since voffset write is a feature that would be used in very
->> limited
->>      debugging cases, I think that this should be implemented over a build-time
->>      configuration barrier... something like CONFIG_MTK_SVS_DEBUG_ALLOW_WRITE,
->> or
->>      similar;
->> 2. Since it's very unlikely for someone to really play that much with a
->> voltage
->>      offset during runtime, and since this looks like something very machine
->> specific
->>      (perhaps addressing board-specific quirks?), I would suggest to add this
->> as a
->>      device-tree parameter instead, such as "mediatek,svs-voffset", as it is
->> indeed
->>      possible to specify both positive or negative values in DT.
->>
->> I would prefer proposal 2, as it looks generally cleaner and way less risky.
-> 
-> Thanks for raising the considerations and give these great suggestions for us to
-> think about. Since these voffset read/write commands are used seldomly, we
-> decide to remove them for better system security.
-> 
+I am not sure what needs to be done for CBIE bits as it both flush(01)
+or invalidate(11) are valid values
 
-Thank you for this ack, very much appreciated.
-Eager to see v23!
-
-
->>
->> Regards,
->> Angelo
-> 
-
+> >
+> > Heiko
+> >
+> >
+> > > > > > > ---
+> > > > > > >  arch/riscv/include/asm/hwcap.h | 18 ++++++++++++++++++
+> > > > > > >  arch/riscv/kernel/cpufeature.c | 27 ++++++++++++++++++++++++=
+---
+> > > > > > >  2 files changed, 42 insertions(+), 3 deletions(-)
+> > > > > > >
+> > > > > > > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/incl=
+ude/asm/hwcap.h
+> > > > > > > index 5ce50468aff1..170bd80da520 100644
+> > > > > > > --- a/arch/riscv/include/asm/hwcap.h
+> > > > > > > +++ b/arch/riscv/include/asm/hwcap.h
+> > > > > > > @@ -34,7 +34,25 @@ extern unsigned long elf_hwcap;
+> > > > > > >  #define RISCV_ISA_EXT_s              ('s' - 'a')
+> > > > > > >  #define RISCV_ISA_EXT_u              ('u' - 'a')
+> > > > > > >
+> > > > > > > +/*
+> > > > > > > + * Increse this to higher value as kernel support more ISA e=
+xtensions.
+> > > > > > > + */
+> > > > > > >  #define RISCV_ISA_EXT_MAX    64
+> > > > > > > +#define RISCV_ISA_EXT_NAME_LEN_MAX 32
+> > > > > > > +
+> > > > > > > +/* The base ID for multi-letter ISA extensions */
+> > > > > > > +#define RISCV_ISA_EXT_BASE 26
+> > > > > > > +
+> > > > > > > +/*
+> > > > > > > + * This enum represent the logical ID for each multi-letter =
+RISC-V ISA extension.
+> > > > > > > + * The logical ID should start from RISCV_ISA_EXT_BASE and m=
+ust not exceed
+> > > > > > > + * RISCV_ISA_EXT_MAX. 0-25 range is reserved for single lett=
+er
+> > > > > > > + * extensions while all the multi-letter extensions should d=
+efine the next
+> > > > > > > + * available logical extension id.
+> > > > > > > + */
+> > > > > > > +enum riscv_isa_ext_id {
+> > > > > > > +     RISCV_ISA_EXT_ID_MAX =3D RISCV_ISA_EXT_MAX,
+> > > > > > > +};
+> > > > > > >
+> > > > > > >  unsigned long riscv_isa_extension_base(const unsigned long *=
+isa_bitmap);
+> > > > > > >
+> > > > > > > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kern=
+el/cpufeature.c
+> > > > > > > index e9e3b0693d16..469b9739faf7 100644
+> > > > > > > --- a/arch/riscv/kernel/cpufeature.c
+> > > > > > > +++ b/arch/riscv/kernel/cpufeature.c
+> > > > > > > @@ -83,7 +83,7 @@ void __init riscv_fill_hwcap(void)
+> > > > > > >
+> > > > > > >       for_each_of_cpu_node(node) {
+> > > > > > >               unsigned long this_hwcap =3D 0;
+> > > > > > > -             unsigned long this_isa =3D 0;
+> > > > > > > +             uint64_t this_isa =3D 0;
+> > > > > > >
+> > > > > > >               if (riscv_of_processor_hartid(node) < 0)
+> > > > > > >                       continue;
+> > > > > > > @@ -169,12 +169,22 @@ void __init riscv_fill_hwcap(void)
+> > > > > > >                       if (*isa !=3D '_')
+> > > > > > >                               --isa;
+> > > > > > >
+> > > > > > > +#define SET_ISA_EXT_MAP(name, bit)                          =
+                 \
+> > > > > > > +                     do {                                   =
+                 \
+> > > > > > > +                             if ((ext_end - ext =3D=3D sizeo=
+f(name) - 1) &&      \
+> > > > > > > +                                  !memcmp(ext, name, sizeof(=
+name) - 1)) {    \
+> > > > > > > +                                     this_isa |=3D (1UL << b=
+it);               \
+> > > > > > > +                                     pr_info("Found ISA exte=
+nsion %s", name);\
+> > > > > > > +                             }                              =
+                 \
+> > > > > > > +                     } while (false)                        =
+                 \
+> > > > > > > +
+> > > > > > >                       if (unlikely(ext_err))
+> > > > > > >                               continue;
+> > > > > > >                       if (!ext_long) {
+> > > > > > >                               this_hwcap |=3D isa2hwcap[(unsi=
+gned char)(*ext)];
+> > > > > > >                               this_isa |=3D (1UL << (*ext - '=
+a'));
+> > > > > > >                       }
+> > > > > > > +#undef SET_ISA_EXT_MAP
+> > > > > > >               }
+> > > > > > >
+> > > > > > >               /*
+> > > > > > > @@ -187,10 +197,21 @@ void __init riscv_fill_hwcap(void)
+> > > > > > >               else
+> > > > > > >                       elf_hwcap =3D this_hwcap;
+> > > > > > >
+> > > > > > > -             if (riscv_isa[0])
+> > > > > > > +             if (riscv_isa[0]) {
+> > > > > > > +#if IS_ENABLED(CONFIG_32BIT)
+> > > > > > > +                     riscv_isa[0] &=3D this_isa & 0xFFFFFFFF=
+;
+> > > > > > > +                     riscv_isa[1] &=3D this_isa >> 32;
+> > > > > > > +#else
+> > > > > > >                       riscv_isa[0] &=3D this_isa;
+> > > > > > > -             else
+> > > > > > > +#endif
+> > > > > > > +             } else {
+> > > > > > > +#if IS_ENABLED(CONFIG_32BIT)
+> > > > > > > +                     riscv_isa[0] =3D this_isa & 0xFFFFFFFF;
+> > > > > > > +                     riscv_isa[1] =3D this_isa >> 32;
+> > > > > > > +#else
+> > > > > > >                       riscv_isa[0] =3D this_isa;
+> > > > > > > +#endif
+> > > > > > > +             }
+> > > > > > >       }
+> > > > > > >
+> > > > > > >       /* We don't support systems with F but without D, so ma=
+sk those out
+> > > > > > >
+> > > > > >
+> > > > > >
+> > > > > >
+> > > > > >
+> > > > >
+> > > > >
+> > > > >
+> > > >
+> > > >
+> > > >
+> > > >
+> > >
+> > >
+> > >
+> >
+> >
+> >
+> >
