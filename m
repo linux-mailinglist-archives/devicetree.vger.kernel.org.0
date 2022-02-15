@@ -2,73 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 715954B771C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:50:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B33474B752D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:47:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242019AbiBOTY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 14:24:58 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58104 "EHLO
+        id S233270AbiBOTrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 14:47:31 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbiBOTY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 14:24:58 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B79308566E;
-        Tue, 15 Feb 2022 11:24:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 513F3617CB;
-        Tue, 15 Feb 2022 19:24:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8127AC340EB;
-        Tue, 15 Feb 2022 19:24:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1644953086;
-        bh=kUCZYr9eynBGfoyFNpGztKhdR0TjeWfPR20goAdEojo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pgheRwOAKjRlXMfJul10RwEjs5CBKHR/i0QEhyIM79774uc0ovg3u5myvyhB8s/qu
-         xkZdoun6Ve/NuXn1+qZDB9F/trYlid+yq9euKiwm3PP7bJ4zoGvDfPTjgfeWCzsH6f
-         Z5GtGABFqXnkSAxbAOokUuetZQuukvg8GogLN1PAUilOeXNWgORbaiYjI/aeCr++5W
-         YWvZj7f6KVH+xfahOEVmZaopl52rdr1jj6eaQg39ut/UgM8cVQWsEKIq8K1eRZzAAa
-         TaPAe7uN1AmbZCmz+9XMV8T/S9ihvGxGOcJfBqdWD8uwk44Sq4S7ITZBKug7wSeC6N
-         S7tHpNRHJfaSA==
-Date:   Tue, 15 Feb 2022 13:32:21 -0600
-From:   "Gustavo A. R. Silva" <gustavoars@kernel.org>
-To:     Leon Romanovsky <leon@kernel.org>
-Cc:     Kees Cook <keescook@chromium.org>,
-        GR-QLogic-Storage-Upstream@marvell.com,
-        linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-ia64@vger.kernel.org, linux-s390@vger.kernel.org,
-        linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
-        linux-um@lists.infradead.org, linux-xtensa@linux-xtensa.org,
-        linux-crypto@vger.kernel.org, intel-gfx@lists.freedesktop.org,
-        dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com, netdev@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-scsi@vger.kernel.org,
-        target-devel@vger.kernel.org, mpi3mr-linuxdrv.pdl@broadcom.com,
-        linux-staging@lists.linux.dev,
-        linux-rpi-kernel@lists.infradead.org, sparmaintainer@unisys.com,
-        linux-cifs@vger.kernel.org, samba-technical@lists.samba.org,
-        linux-ext4@vger.kernel.org, linux-acpi@vger.kernel.org,
-        devel@acpica.org, linux-arch@vger.kernel.org, linux-mm@kvack.org,
-        greybus-dev@lists.linaro.org, linux-i3c@lists.infradead.org,
-        linux-rdma@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-perf-users@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH][next] treewide: Replace zero-length arrays with
- flexible-array members
-Message-ID: <20220215193221.GA884407@embeddedor>
-References: <20220215174743.GA878920@embeddedor>
- <202202151016.C0471D6E@keescook>
- <20220215192110.GA883653@embeddedor>
- <Ygv8wY75hNqS7zO6@unreal>
+        with ESMTP id S232560AbiBOTr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 14:47:28 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B1FDEAD
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 11:47:17 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id EFACD1F449B2
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1644954435;
+        bh=+YgXqeJrHqFTrBc7nNza8mpO7pm7+pfwAsDkpv4pNz4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=SJT/cT3z6Oe736iCsABTRHAx3R4tCsz4+nHv/JuPm2Tyam52yfDfimh7Fkbkq35o1
+         gRzGvnKshiDDh/pKdrvLN65+axpJpsmLgSW5f23ssBu5fijvipN0az1xRnCPP6hebK
+         WAnVn8hkJ6kHt593SC2RwsQd1U+YhkQuBxjjt2GnCkHugOQMD+viIhSwBAUR/oeb0W
+         jw77yFZZCXl5DxHGa10V83rGNUb/hi9fh0/iuIMfY8C+LUDsqsrDqQpVTSz9HdXmNl
+         geWqU/3Y49qoQslpA+JLGD588bIf77WSzLGRnfK9Ke6CCjFIkDPzXk70TS0vnGScF3
+         QDnTJvZdpFFRA==
+Message-ID: <60b8830b-4c26-3b21-9ec4-ae8998f3ccb7@collabora.com>
+Date:   Tue, 15 Feb 2022 22:47:12 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ygv8wY75hNqS7zO6@unreal>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 22/23] drm: rockchip: Add VOP2 driver
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
+ <20220209095350.2104049-23-s.hauer@pengutronix.de>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220209095350.2104049-23-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,24 +60,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 15, 2022 at 09:19:29PM +0200, Leon Romanovsky wrote:
-> On Tue, Feb 15, 2022 at 01:21:10PM -0600, Gustavo A. R. Silva wrote:
-> > On Tue, Feb 15, 2022 at 10:17:40AM -0800, Kees Cook wrote:
-> > > On Tue, Feb 15, 2022 at 11:47:43AM -0600, Gustavo A. R. Silva wrote:
-> > > 
-> > > These all look trivially correct to me. Only two didn't have the end of
-> > > the struct visible in the patch, and checking those showed them to be
-> > > trailing members as well, so:
-> > > 
-> > > Reviewed-by: Kees Cook <keescook@chromium.org>
-> > 
-> > I'll add this to my -next tree.
-> 
-> I would like to ask you to send mlx5 patch separately to netdev. We are working
-> to delete that file completely and prefer to avoid from unnecessary merge conflicts.
 
-Oh OK. Sure thing; I will do so.
+09.02.2022 12:53, Sascha Hauer пишет:
+> +		np = of_graph_get_remote_node(dev->of_node, i, -1);
+> +		if (!np) {
+> +			printk("%s: No remote for vp%d\n", __func__, i);
 
-Thanks
---
-Gustavo
+drm_dbg
