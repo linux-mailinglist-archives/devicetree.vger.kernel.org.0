@@ -2,124 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BA8D4B79A9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 22:49:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4879F4B7998
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 22:49:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243172AbiBOVBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 16:01:25 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59980 "EHLO
+        id S244259AbiBOVEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 16:04:06 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235440AbiBOVBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 16:01:24 -0500
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FFC927FE3;
-        Tue, 15 Feb 2022 13:01:14 -0800 (PST)
-Received: by mail-pf1-x42c.google.com with SMTP id c4so282622pfl.7;
-        Tue, 15 Feb 2022 13:01:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=wTa2P1MgBvk9m62qPWIOit490TSiIyPTgJSzWGel9bY=;
-        b=Rs1oCdwMxQfYIGJWKXdRuZnB1Ma80VhEoTYeNZtsDwRds0jVEX5HUNouyWNpmnPRKb
-         HrTm06k3tzmIkSplIDIRp684mUUaOheiW/2QtnudPz20P9C8zBxZYOByhkQ4IovjwnNm
-         gHmN6sHkkNbAviSAEYQRkXI65xNnpBRvYb9v2CvjUk5LzL6CqNDk13QeIt9g9sdrQMO/
-         B/bhfV5Cd2A4UTggseJf4bvZj70EpYruSXaUY9s1t+/VjpfyHxIpuR9qWDQvNJXHl2NT
-         wKbWwhiOGuuRMHGLMGPAETmWCZpAijdKjM52I71SuZ9GXDQYgLSEykguUq2mYOQQClOn
-         tfng==
+        with ESMTP id S233714AbiBOVEF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 16:04:05 -0500
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 630CC27FFA;
+        Tue, 15 Feb 2022 13:03:55 -0800 (PST)
+Received: by mail-io1-f50.google.com with SMTP id c188so25504404iof.6;
+        Tue, 15 Feb 2022 13:03:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=wTa2P1MgBvk9m62qPWIOit490TSiIyPTgJSzWGel9bY=;
-        b=gttvPXs0JJzkW2KEzGutEgF+BslUPfMQ794H4Q+zItntEQ5UYM3uEyryDtJWItXLWz
-         U4tJrhiosY66N2NN8RNT3xcPWbTpIkB++gwCMXQqs2kkIJ1bYWAqA2qksmN3SFu/FevE
-         8DJH5RB8BsIq50M5KdTyOcdOsXflEKn/8rUbUrrlR3O3zs7+9KUzj2IHMG5lpZ460epa
-         avIBEm4XepWqL5eOLuIIJpr0eobfq5OgdfkA2cNf+1ORZolTkduW9keJGDFAo+AgSQNi
-         L84RlZHie2adCSQx1u8D/lQUws9IFMCtDU23+jsSOkYpXniGustZzDMMfkpUnG9Nm2oP
-         ucYA==
-X-Gm-Message-State: AOAM5327KHvc+TjiEVXGHNTbezky5tkculQHv+y9MLAhHBpxq6YPwTok
-        3g6z4Ia3BIInsauGWQ3x7ynOX1SRwYQ=
-X-Google-Smtp-Source: ABdhPJxyQSAmCDE8WPMyCfUAI8JQM4Z7dyqZXvdtO7dYQTgEBuIQYkUh24QMtAyo8fvuDu2mO6aCAw==
-X-Received: by 2002:a63:234d:: with SMTP id u13mr628141pgm.128.1644958873451;
-        Tue, 15 Feb 2022 13:01:13 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id w12sm3306242pgl.64.2022.02.15.13.01.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Feb 2022 13:01:12 -0800 (PST)
-Subject: Re: [PATCH v3 4/8] ARM: dts: bcm283x: fix ethernet node name
-To:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Scott Branden <sbranden@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Tony Lindgren <tony@atomide.com>
-Cc:     kernel@pengutronix.de, bcm-kernel-feedback-list@broadcom.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20220215080937.2263111-1-o.rempel@pengutronix.de>
- <20220215080937.2263111-4-o.rempel@pengutronix.de>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <f5ea3375-0306-e37f-5847-e1472164d7b7@gmail.com>
-Date:   Tue, 15 Feb 2022 13:01:06 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ABrhc5X4t6fuOcuDaQZbLnAECbyh/WwN9lD2vRsVEaI=;
+        b=CHBkZSUd6mNPaMK3KyF1uxQYGNvfWEtHttSW695EkBLjLL2fU69zWxc+BK5yuINq0S
+         39KSgfoJ2jnAq9WQSF+2OaYie1wc7S/f/ftRatgvWKXq62y5FrUv4cupb6QUPwLyw8Ax
+         U+ydQ5z2fuuXZdForHT1L3tnq8dEkw+1m693GuLZXDP6PvyOlEf7G153Hq4iE3z987Hs
+         JYlj5e7gR9Nztn6nEp3+MyHjs6dQMOrSpEfoZe3qaVngrY8o/fI/3diEANKyj92a9XkD
+         uyeabJ8eo9UTqOdXyW2a6VfQZVlcAER4GHXbl6y/hB5OM+HtoxGeMIe4R9F4Avlr6ply
+         CFvw==
+X-Gm-Message-State: AOAM532cC98+7Hc5GYvr7N/mN8THqiWU6LbbBXkfbi9vTO49KovP/SYi
+        SvMn3NVdh0ZAHxs+flSV/w==
+X-Google-Smtp-Source: ABdhPJz1L9wTn9oP95nr4RBAQPtGhnz/mtfBdBHouAwIXfSY6CGaW/doAWSL2qS52le6wpjOs557VQ==
+X-Received: by 2002:a05:6638:2584:: with SMTP id s4mr449890jat.289.1644959034612;
+        Tue, 15 Feb 2022 13:03:54 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id d3sm13122624ilg.23.2022.02.15.13.03.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Feb 2022 13:03:53 -0800 (PST)
+Received: (nullmailer pid 3917584 invoked by uid 1000);
+        Tue, 15 Feb 2022 21:03:52 -0000
+Date:   Tue, 15 Feb 2022 15:03:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Cristian Marussi <cristian.marussi@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        sudeep.holla@arm.com, james.quinlan@broadcom.com,
+        Jonathan.Cameron@huawei.com, f.fainelli@gmail.com,
+        etienne.carriere@linaro.org, vincent.guittot@linaro.org,
+        souvik.chakravarty@arm.com, peter.hilber@opensynergy.com,
+        igor.skalkin@opensynergy.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 4/8] dt-bindings: firmware: arm,scmi: Add
+ atomic-threshold-us optional property
+Message-ID: <YgwVOMyjHrToGUR4@robh.at.kernel.org>
+References: <20220213195832.27932-1-cristian.marussi@arm.com>
+ <20220213195832.27932-5-cristian.marussi@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20220215080937.2263111-4-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220213195832.27932-5-cristian.marussi@arm.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/15/22 12:09 AM, Oleksij Rempel wrote:
-> It should be "ethernet@x" instead of "usbether@x"
+On Sun, Feb 13, 2022 at 07:58:28PM +0000, Cristian Marussi wrote:
+> SCMI protocols in the platform can optionally signal to the OSPM agent
+> the expected execution latency for a specific resource/operation pair.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Introduce an SCMI system wide optional property to describe a global time
+> threshold which can be configured on a per-platform base to determine the
+> opportunity, or not, for an SCMI command advertised to have a higher
+> latency than the threshold, to be considered for atomic operations:
+> high-latency SCMI synchronous commands should be preferably issued in the
+> usual non-atomic mode.
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+> ---
+> v3 --> v4
+> - renamed property to atomic-threshold-us
+> v1 --> v2
+> - rephrased the property description
+> ---
+>  .../devicetree/bindings/firmware/arm,scmi.yaml        | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> index eae15df36eef..3ffa669b91af 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -81,6 +81,15 @@ properties:
+>    '#size-cells':
+>      const: 0
+>  
+> +  atomic-threshold-us:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      An optional time value, expressed in microseconds, representing, on this
+> +      platform, the threshold above which any SCMI command, advertised to have
+> +      an higher-than-threshold execution latency, should not be considered for
+> +      atomic mode of operation, even if requested.
 
-This looks like, a quick grep on the u-boot source code seems to suggest
-that only one file is assuming that 'usbether@1' is to be used as a node
-name and the error message does not even match the code it is patching:
+> +      If left unconfigured defaults to zero.
 
-board/liebherr/xea/xea.c:
-  #ifdef CONFIG_OF_BOARD_SETUP
-  static int fdt_fixup_l2switch(void *blob)
-  {
-          u8 ethaddr[6];
-          int ret;
+This can be expressed as 'default: 0'.
 
-          if (eth_env_get_enetaddr("ethaddr", ethaddr)) {
-                  ret = fdt_find_and_setprop(blob,
-
-"/ahb@80080000/switch@800f0000",
-                                             "local-mac-address",
-ethaddr, 6, 1);
-                  if (ret < 0)
-                          printf("%s: can't find usbether@1 node: %d\n",
-                                 __func__, ret);
-          }
-
-          return 0;
-  }
-
-I will wait for the other maintainers on the other patches to provide
-some feedback, but if all is well, will apply this one soon.
--- 
-Florian
+> +
+>    arm,smc-id:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+> @@ -264,6 +273,8 @@ examples:
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+>  
+> +            atomic_threshold = <10000>;
+> +
+>              scmi_devpd: protocol@11 {
+>                  reg = <0x11>;
+>                  #power-domain-cells = <1>;
+> -- 
+> 2.17.1
+> 
+> 
