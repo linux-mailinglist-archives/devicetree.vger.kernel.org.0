@@ -2,136 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B4AE4B666D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 09:45:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64C824B6689
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 09:49:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232618AbiBOIpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 03:45:45 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54896 "EHLO
+        id S234399AbiBOItC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 03:49:02 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231856AbiBOIpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 03:45:44 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACEFF111DFD;
-        Tue, 15 Feb 2022 00:45:34 -0800 (PST)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 38B35810EC;
-        Tue, 15 Feb 2022 09:45:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1644914733;
-        bh=r/esxbMcciUQzWxilvwKIGNa/vezBZby3xlsiRXgXZg=;
-        h=From:To:Cc:Subject:Date:From;
-        b=CV0Q+4wkoI3ieAr5fK4zLLQqDUlgyb50pnfu1lcMCVdHapBJ/dfoHhYszdPkL9raZ
-         RtxbjJ05aACO1xtbqlCo0q+hU3ZvuSwxqkWEXP95C1QafTC+Pmprfv3aA6zP8KlVjM
-         tn+nv9TP6SpASxUDoNhg/KvCLJRe3t5nKYPXuJAcELNnxO25YS/GfFSpd6nSGdZsQI
-         7ilkiMTZlxVOaW6hehwn6PGFmdzCOvujwqKwYOqhdvAb+sl306k/CKx3OKKXvdOa+K
-         nLaP3YL3vcte9/tesDB2ufG8GFP27muXvrGn3PXVBoMjXXiV7qYNRXyPRv7gwiST7h
-         2CeB2Kys1QvTQ==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-Subject: [PATCH] schemas: clock: Add critical-clock
-Date:   Tue, 15 Feb 2022 09:45:13 +0100
-Message-Id: <20220215084513.8125-1-marex@denx.de>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S234801AbiBOItB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 03:49:01 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A0191133F5;
+        Tue, 15 Feb 2022 00:48:47 -0800 (PST)
+X-UUID: 24d0cb6b98a54a70bf9133c308b05be9-20220215
+X-UUID: 24d0cb6b98a54a70bf9133c308b05be9-20220215
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1684363045; Tue, 15 Feb 2022 16:48:44 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 15 Feb 2022 16:48:43 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 15 Feb 2022 16:48:43 +0800
+Message-ID: <0de5fc29ed65eb5c6e9f227ec5e77cd4312718f4.camel@mediatek.com>
+Subject: Re: [v2,2/6] dt-bindings: display: mediatek: update supported SoC
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <airlied@linux.ie>,
+        <jassisinghbrar@gmail.com>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <yongqiang.niu@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <fparent@baylibre.com>, <linux-mediatek@lists.infradead.org>,
+        <hsinyi@chromium.org>, <linux-arm-kernel@lists.infradead.org>
+Date:   Tue, 15 Feb 2022 16:48:43 +0800
+In-Reply-To: <20220215075953.3310-3-rex-bc.chen@mediatek.com>
+References: <20220215075953.3310-1-rex-bc.chen@mediatek.com>
+         <20220215075953.3310-3-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some platforms require clock to be always running, e.g. because those clock
-supply devices which are not otherwise attached to the system. One example
-is a system where the SoC serves as a crystal oscillator replacement for a
-programmable logic device. The critical-clock property of a clock controller
-allows listing clock which must never be turned off.
+Hi, Rex:
 
-```
-clock-controller@a000f000 {
-     compatible = "vendor,clk95;
-     reg = <0xa000f000 0x1000>
-     #clocks-cells = <1>;
-     ...
-     critical-clocks = <UART3_CLK>, <SPI5_CLK>;
-};
-```
+On Tue, 2022-02-15 at 15:59 +0800, Rex-BC Chen wrote:
+> Add decriptions about supported SoC: MT8186.
+> 
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  .../devicetree/bindings/display/mediatek/mediatek,disp.txt      | 2
+> +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx
+> t
+> b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx
+> t
+> index 78044c340e20..f22b3d90d45a 100644
+> ---
+> a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx
+> t
+> +++
+> b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.tx
+> t
+> @@ -44,7 +44,7 @@ Required properties (all function blocks):
+>  	"mediatek,<chip>-dpi"        		- DPI controller, see
+> mediatek,dpi.txt
+>  	"mediatek,<chip>-disp-mutex" 		- display mutex
+>  	"mediatek,<chip>-disp-od"    		- overdrive
+> -  the supported chips are mt2701, mt7623, mt2712, mt8167, mt8173,
+> mt8183 and mt8192.
+> +  the supported chips are mt2701, mt7623, mt2712, mt8167, mt8173,
+> mt8183, mt8186 and mt8192.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org
-To: devicetree@vger.kernel.org
----
- dtschema/lib.py                   | 2 ++
- dtschema/meta-schemas/clocks.yaml | 3 +++
- dtschema/schemas/clock/clock.yaml | 3 +++
- 3 files changed, 8 insertions(+)
+I've applied [1], so please depend on [1] to send this patch.
 
-diff --git a/dtschema/lib.py b/dtschema/lib.py
-index eada062..e74b7b9 100644
---- a/dtschema/lib.py
-+++ b/dtschema/lib.py
-@@ -471,6 +471,8 @@ def fixup_node_props(schema):
-         schema['properties']['assigned-clocks'] = True
-         schema['properties']['assigned-clock-rates'] = True
-         schema['properties']['assigned-clock-parents'] = True
-+    if "clocks" in keys and "critical-clocks" not in keys:
-+        schema['properties']['critical-clocks'] = True
-     if "clocks" in keys and "protected-clocks" not in keys:
-         schema['properties']['protected-clocks'] = True
- 
-diff --git a/dtschema/meta-schemas/clocks.yaml b/dtschema/meta-schemas/clocks.yaml
-index 9057a4f..1074f36 100644
---- a/dtschema/meta-schemas/clocks.yaml
-+++ b/dtschema/meta-schemas/clocks.yaml
-@@ -21,6 +21,8 @@ properties:
-     $ref: "cell.yaml#/array"
-   assigned-clock-rates:
-     $ref: "cell.yaml#/array"
-+  critical-clocks:
-+    $ref: "cell.yaml#/array"
-   protected-clocks:
-     $ref: "cell.yaml#/array"
- 
-@@ -37,4 +39,5 @@ dependentRequired:
-   assigned-clocks: [clocks]
-   assigned-clock-parents: [assigned-clocks]
-   assigned-clock-rates: [assigned-clocks]
-+  critical-clocks: [clocks]
-   protected-clocks: [clocks]
-diff --git a/dtschema/schemas/clock/clock.yaml b/dtschema/schemas/clock/clock.yaml
-index 6e0f9d0..7dbace4 100644
---- a/dtschema/schemas/clock/clock.yaml
-+++ b/dtschema/schemas/clock/clock.yaml
-@@ -89,6 +89,8 @@ properties:
-     $ref: "/schemas/types.yaml#/definitions/phandle-array"
-   assigned-clock-rates:
-     $ref: "/schemas/types.yaml#/definitions/uint32-array"
-+  critical-clocks:
-+    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-   protected-clocks:
-     $ref: "/schemas/types.yaml#/definitions/phandle-array"
- 
-@@ -100,6 +102,7 @@ dependencies:
-   assigned-clocks: [clocks]
-   assigned-clock-parents: [assigned-clocks]
-   assigned-clock-rates: [assigned-clocks]
-+  critical-clocks: [clocks]
-   protected-clocks: [clocks]
- 
- additionalProperties: true
--- 
-2.34.1
+[1] 
+https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/commit/?h=mediatek-drm-next&id=4ed545e7d10049b5492afc184e61a67e478a2cfd
+
+Regards,
+CK
+
+>  - reg: Physical base address and length of the function block
+> register space
+>  - interrupts: The interrupt signal from the function block
+> (required, except for
+>    merge and split function blocks).
 
