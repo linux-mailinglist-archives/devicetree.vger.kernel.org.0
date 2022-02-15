@@ -2,156 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C7914B73CC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:44:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E7544B76C0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:49:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241723AbiBOQkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 11:40:35 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49872 "EHLO
+        id S234274AbiBOQua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 11:50:30 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241719AbiBOQke (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 11:40:34 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31800F1EBF
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 08:40:24 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id 4so21288260oil.11
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 08:40:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=I1kj9pE4xw6JAJzinakuQqOKg6JJ0KzkGT4gYU3pHWA=;
-        b=UCeI7kpxKycxeDv1CKWVXZiSqQZl7pCD/Zi0Nn3FNq3/b6tW5KckWNvCu73yVCLynj
-         tCJq1ODydHRD39fH5qHnxqOJqJLVz3jkbcavRpeXAJnRcNuHIOo+HTRZHB0Mc4d3Bi3p
-         Od1LuZhoT50Uce+glyEI0gfVmvUrW/OVI2bql8B1YEiCpeiZvZWdeRjn5da4UlWV79pH
-         CRT5vtEZAD9Sx8lZHCTtt85jWIigmAFLchrwoWa1JwKM3vC/n55xqG6/8vrLMauyGD6f
-         wvs17n2TNHLYXbPIdfFxRxabOftLSvL7hWs9hIQS7BzWVIKRCFImVfyqpNH2RFUZf2I5
-         MXww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=I1kj9pE4xw6JAJzinakuQqOKg6JJ0KzkGT4gYU3pHWA=;
-        b=rcpRLpoDBdjKFKnydAmmLNs+r1C1p+BLTx8Gx1vWXX9X+ueO/5wVyVp+TgbsgUmUap
-         Bkc+D6UkaQGBfjpNDvjDhH5XE+vkAuIx5TeFM5ymQeNfYawF4nZ6+7JnbEVft+3HxsHA
-         0fXD+wu3sCEPhnkWJNfP1uUJjyaL7jPi/pOWjkpRTsRXFUhqw1LBPV3bPZGzTJqJpIbp
-         LuCoDDFUCBLInFPnlFquQtCVEnDU1JNXYrdYOqIw/Jda50zMqT7BcMyfO1GqfZwAIgKn
-         r/RycMHGVcGCadyRKlrys0rHmETR5CEdR3IHVMMag64hYcISq3fn6nNc0y59dv5enzww
-         SxFQ==
-X-Gm-Message-State: AOAM532eyCUeBvE+0AxLpqiFN2laSgumM1mozIt0chvIn3qAGb9A+93x
-        RwOmJ5dWWjp0ShYGA1Xt3CRXuA==
-X-Google-Smtp-Source: ABdhPJwywAFvvPp04iK1gyctbPPD1igrq3/W2+Vd3W1gPOO1Z7BW13OeaSkecxF5Lrcky9rnyejdRw==
-X-Received: by 2002:aca:3886:0:b0:2cf:6189:ee47 with SMTP id f128-20020aca3886000000b002cf6189ee47mr1954823oia.58.1644943223401;
-        Tue, 15 Feb 2022 08:40:23 -0800 (PST)
-Received: from yoga ([2600:1700:a0:3dc8:5c39:baff:fe03:898d])
-        by smtp.gmail.com with ESMTPSA id x3sm1703671oiv.29.2022.02.15.08.40.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 08:40:22 -0800 (PST)
-Date:   Tue, 15 Feb 2022 10:40:20 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 10/15] arm64: dts: qcom: Add MSM8953 device tree
-Message-ID: <YgvXdFZfWEzHF2Oy@yoga>
-References: <20220112194118.178026-1-luca@z3ntu.xyz>
- <20220112194118.178026-11-luca@z3ntu.xyz>
+        with ESMTP id S235247AbiBOQua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 11:50:30 -0500
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53839106CA5;
+        Tue, 15 Feb 2022 08:50:18 -0800 (PST)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21FEgLEK025952;
+        Tue, 15 Feb 2022 17:49:58 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=IDeMjsPyA/okh5PXn5ydv5dzKYunViEgSHMILsGL3xg=;
+ b=YPFfH35BQLWBdVQL+UHGxiWtC8r87/2NwYTR4pdMxM0WC/g2HTY9iW+fBi8gyKcT8ujL
+ HXnTvQikzqove+3yWP4EVaiK6rLahuYJsCaWhHE5QUR9Npd5qEnQq7E+liMAWmxmB3TD
+ J8R9bkO827DF6rEXOn+F0zH9BhuKwHz7EuXq261yN01kQFCii9VK3aiYZlPXkhSKILHy
+ RPchVk/lN5N+t4Ar4dqQnzWZhkeYoruxamNsNTRA3sguZtMCNFLz15Z8zMd5Lv/t9c2j
+ prie9iUX3/NKYmvT/c6OhjC26CbbGjz7YwzpTFkuA+vXfNvmF5f3yu1obgBOA9Bm7pWx ZA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e89b5jm6g-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 15 Feb 2022 17:49:58 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AA293100034;
+        Tue, 15 Feb 2022 17:49:57 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9117722FA24;
+        Tue, 15 Feb 2022 17:49:57 +0100 (CET)
+Received: from [10.201.21.201] (10.75.127.49) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Tue, 15 Feb
+ 2022 17:49:57 +0100
+Message-ID: <dacf4cf8-012e-137a-980b-52b56a80b7ae@foss.st.com>
+Date:   Tue, 15 Feb 2022 17:49:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220112194118.178026-11-luca@z3ntu.xyz>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/7] ARM: dts: sti: ensure unique unit-address in
+ stih407-clock
+Content-Language: en-US
+To:     Alain Volmat <avolmat@me.com>, Rob Herring <robh+dt@kernel.org>
+CC:     Arnd Bergmann <arnd@arndb.de>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20220211181614.683497-1-avolmat@me.com>
+ <20220211181614.683497-2-avolmat@me.com>
+From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
+In-Reply-To: <20220211181614.683497-2-avolmat@me.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-15_04,2022-02-14_04,2021-12-02_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 12 Jan 13:40 CST 2022, Luca Weiss wrote:
+Hi ALain
 
-> From: Vladimir Lypak <vladimir.lypak@gmail.com>
+On 2/11/22 19:16, Alain Volmat wrote:
+> Move quadfs and a9-mux clocks nodes into clockgen nodes so
+> that they can get the reg property from the parent node and
+> ensure only one node has the address.
 > 
-> Add a base DT for MSM8953 SoC.
-> 
-> Co-developed-by: Luca Weiss <luca@z3ntu.xyz>
-> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Signed-off-by: Alain Volmat <avolmat@me.com>
 > ---
->  arch/arm64/boot/dts/qcom/msm8953.dtsi | 1337 +++++++++++++++++++++++++
->  1 file changed, 1337 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8953.dtsi
+>  arch/arm/boot/dts/stih407-clock.dtsi | 101 ++++++++++++---------------
+>  1 file changed, 46 insertions(+), 55 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> new file mode 100644
-> index 000000000000..59918b527750
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> @@ -0,0 +1,1337 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
+> diff --git a/arch/arm/boot/dts/stih407-clock.dtsi b/arch/arm/boot/dts/stih407-clock.dtsi
+> index 9cce9541e26b..350bcfcf498b 100644
+> --- a/arch/arm/boot/dts/stih407-clock.dtsi
+> +++ b/arch/arm/boot/dts/stih407-clock.dtsi
+> @@ -29,7 +29,7 @@ clocks {
+>  		 */
+>  		clockgen-a9@92b0000 {
+>  			compatible = "st,clkgen-c32";
+> -			reg = <0x92b0000 0xffff>;
+> +			reg = <0x92b0000 0x10000>;
+>  
+>  			clockgen_a9_pll: clockgen-a9-pll {
+>  				#clock-cells = <1>;
+> @@ -37,32 +37,27 @@ clockgen_a9_pll: clockgen-a9-pll {
+>  
+>  				clocks = <&clk_sysin>;
+>  			};
+> -		};
+>  
+> -		/*
+> -		 * ARM CPU related clocks.
+> -		 */
+> -		clk_m_a9: clk-m-a9@92b0000 {
+> -			#clock-cells = <0>;
+> -			compatible = "st,stih407-clkgen-a9-mux";
+> -			reg = <0x92b0000 0x10000>;
+> -
+> -			clocks = <&clockgen_a9_pll 0>,
+> -				 <&clockgen_a9_pll 0>,
+> -				 <&clk_s_c0_flexgen 13>,
+> -				 <&clk_m_a9_ext2f_div2>;
+> +			clk_m_a9: clk-m-a9 {
+> +				#clock-cells = <0>;
+> +				compatible = "st,stih407-clkgen-a9-mux";
+>  
+> +				clocks = <&clockgen_a9_pll 0>,
+> +					 <&clockgen_a9_pll 0>,
+> +					 <&clk_s_c0_flexgen 13>,
+> +					 <&clk_m_a9_ext2f_div2>;
+>  
+> -			/*
+> -			 * ARM Peripheral clock for timers
+> -			 */
+> -			arm_periph_clk: clk-m-a9-periphs {
+> -				#clock-cells = <0>;
+> -				compatible = "fixed-factor-clock";
+> +				/*
+> +				 * ARM Peripheral clock for timers
+> +				 */
+> +				arm_periph_clk: clk-m-a9-periphs {
+> +					#clock-cells = <0>;
+> +					compatible = "fixed-factor-clock";
+>  
+> -				clocks = <&clk_m_a9>;
+> -				clock-div = <2>;
+> -				clock-mult = <1>;
+> +					clocks = <&clk_m_a9>;
+> +					clock-div = <2>;
+> +					clock-mult = <1>;
+> +				};
+>  			};
+>  		};
+>  
+> @@ -87,14 +82,6 @@ clk_s_a0_flexgen: clk-s-a0-flexgen {
+>  			};
+>  		};
+>  
+> -		clk_s_c0_quadfs: clk-s-c0-quadfs@9103000 {
+> -			#clock-cells = <1>;
+> -			compatible = "st,quadfs-pll";
+> -			reg = <0x9103000 0x1000>;
+> -
+> -			clocks = <&clk_sysin>;
+> -		};
+> -
+>  		clk_s_c0: clockgen-c@9103000 {
+>  			compatible = "st,clkgen-c32";
+>  			reg = <0x9103000 0x1000>;
+> @@ -113,6 +100,13 @@ clk_s_c0_pll1: clk-s-c0-pll1 {
+>  				clocks = <&clk_sysin>;
+>  			};
+>  
+> +			clk_s_c0_quadfs: clk-s-c0-quadfs {
+> +				#clock-cells = <1>;
+> +				compatible = "st,quadfs-pll";
 > +
-> +#include <dt-bindings/clock/qcom,gcc-msm8953.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/power/qcom-rpmpd.h>
-> +#include <dt-bindings/thermal/thermal.h>
+> +				clocks = <&clk_sysin>;
+> +			};
 > +
-> +/ {
-> +	interrupt-parent = <&intc>;
+>  			clk_s_c0_flexgen: clk-s-c0-flexgen {
+>  				#clock-cells = <1>;
+>  				compatible = "st,flexgen", "st,flexgen-stih407-c0";
+> @@ -142,18 +136,17 @@ clk_m_a9_ext2f_div2: clk-m-a9-ext2f-div2s {
+>  			};
+>  		};
+>  
+> -		clk_s_d0_quadfs: clk-s-d0-quadfs@9104000 {
+> -			#clock-cells = <1>;
+> -			compatible = "st,quadfs-d0";
+> -			reg = <0x9104000 0x1000>;
+> -
+> -			clocks = <&clk_sysin>;
+> -		};
+> -
+>  		clockgen-d0@9104000 {
+>  			compatible = "st,clkgen-c32";
+>  			reg = <0x9104000 0x1000>;
+>  
+> +			clk_s_d0_quadfs: clk-s-d0-quadfs {
+> +				#clock-cells = <1>;
+> +				compatible = "st,quadfs-d0";
 > +
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-
-Why do you have address/size-cells of 2, and then limit them to 1 in
-/soc?
-
+> +				clocks = <&clk_sysin>;
+> +			};
 > +
-> +	aliases {
-> +		i2c1 = &i2c_1;
-> +		i2c2 = &i2c_2;
-> +		i2c3 = &i2c_3;
-> +		i2c4 = &i2c_4;
-> +		i2c5 = &i2c_5;
-> +		i2c6 = &i2c_6;
-> +		i2c7 = &i2c_7;
-> +		i2c8 = &i2c_8;
-
-It was expressed a while back that you should specify alias only for the
-things that you have enabled in your .dts.
-
-> +	};
-[..]
-> +		tcsr_mutex: hwlock@1905000 {
-> +			compatible = "qcom,tcsr-mutex";
-> +			reg = <0x1905000 0x20000>;
-> +			#hwlock-cells = <1>;
-> +		};
+>  			clk_s_d0_flexgen: clk-s-d0-flexgen {
+>  				#clock-cells = <1>;
+>  				compatible = "st,flexgen", "st,flexgen-stih407-d0";
+> @@ -166,18 +159,17 @@ clk_s_d0_flexgen: clk-s-d0-flexgen {
+>  			};
+>  		};
+>  
+> -		clk_s_d2_quadfs: clk-s-d2-quadfs@9106000 {
+> -			#clock-cells = <1>;
+> -			compatible = "st,quadfs-d2";
+> -			reg = <0x9106000 0x1000>;
+> -
+> -			clocks = <&clk_sysin>;
+> -		};
+> -
+>  		clockgen-d2@9106000 {
+>  			compatible = "st,clkgen-c32";
+>  			reg = <0x9106000 0x1000>;
+>  
+> +			clk_s_d2_quadfs: clk-s-d2-quadfs {
+> +				#clock-cells = <1>;
+> +				compatible = "st,quadfs-d2";
 > +
-> +		tcsr: syscon@1937000 {
-> +			compatible = "qcom,tcsr-msm8953", "syscon";
-> +			reg = <0x1937000 0x30000>;
-> +		};
+> +				clocks = <&clk_sysin>;
+> +			};
 > +
-> +		tcsr_phy_clk_scheme_sel: syscon@193f044 {
-
-I don't fancy exposing a single word from the middle of &tcsr using a
-syscon. The tcsr node should express the TCSR region and if we need to
-reference bits of information within that we should do that in some
-structured way.
-
-Wouldn't nvmem be a good candidate for this?
-
-> +			compatible = "syscon";
-> +			reg = <0x193f044 0x4>;
-> +		};
+>  			clk_s_d2_flexgen: clk-s-d2-flexgen {
+>  				#clock-cells = <1>;
+>  				compatible = "st,flexgen", "st,flexgen-stih407-d2";
+> @@ -192,18 +184,17 @@ clk_s_d2_flexgen: clk-s-d2-flexgen {
+>  			};
+>  		};
+>  
+> -		clk_s_d3_quadfs: clk-s-d3-quadfs@9107000 {
+> -			#clock-cells = <1>;
+> -			compatible = "st,quadfs-d3";
+> -			reg = <0x9107000 0x1000>;
+> -
+> -			clocks = <&clk_sysin>;
+> -		};
+> -
+>  		clockgen-d3@9107000 {
+>  			compatible = "st,clkgen-c32";
+>  			reg = <0x9107000 0x1000>;
+>  
+> +			clk_s_d3_quadfs: clk-s-d3-quadfs {
+> +				#clock-cells = <1>;
+> +				compatible = "st,quadfs-d3";
 > +
+> +				clocks = <&clk_sysin>;
+> +			};
+> +
+>  			clk_s_d3_flexgen: clk-s-d3-flexgen {
+>  				#clock-cells = <1>;
+>  				compatible = "st,flexgen", "st,flexgen-stih407-d3";
 
-Regards,
-Bjorn
+Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
+Thanks
+Patrice
