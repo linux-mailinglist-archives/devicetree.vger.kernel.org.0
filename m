@@ -2,53 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A17724B69B8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 11:49:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E6D44B69BC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 11:50:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236696AbiBOKts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 05:49:48 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59398 "EHLO
+        id S236713AbiBOKuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 05:50:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231678AbiBOKtq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 05:49:46 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2A62D0B74;
-        Tue, 15 Feb 2022 02:49:35 -0800 (PST)
-X-UUID: 3c75f4b620a340b8bed60ca644aab630-20220215
-X-UUID: 3c75f4b620a340b8bed60ca644aab630-20220215
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 197399030; Tue, 15 Feb 2022 18:49:32 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 15 Feb 2022 18:49:31 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 15 Feb 2022 18:49:30 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Enric Balletbo Serra <eballetbo@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        "Rob Herring" <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [v2 2/2] soc: mediatek: pm-domains: Add support for mt8186
-Date:   Tue, 15 Feb 2022 18:49:17 +0800
-Message-ID: <20220215104917.5726-3-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220215104917.5726-1-chun-jie.chen@mediatek.com>
-References: <20220215104917.5726-1-chun-jie.chen@mediatek.com>
+        with ESMTP id S236683AbiBOKue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 05:50:34 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC33D1D6E
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 02:50:24 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nJvPE-0000Mj-FZ; Tue, 15 Feb 2022 11:50:00 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nJvP7-00GjUe-Ml; Tue, 15 Feb 2022 11:49:52 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nJvP6-003Jg7-77; Tue, 15 Feb 2022 11:49:52 +0100
+Date:   Tue, 15 Feb 2022 11:49:52 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-riscv@lists.infradead.org, Vignesh R <vigneshr@ti.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-rockchip@lists.infradead.org,
+        Rahul Tanwar <rtanwar@maxlinear.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Jeff LaBundy <jeff@labundy.com>, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v2 00/15] pwm: dt-bindings: Include generic pwm schema
+Message-ID: <20220215104952.3z7y2t5udwab64kh@pengutronix.de>
+References: <20220214212154.8853-1-krzysztof.kozlowski@canonical.com>
+ <20220215074030.3nugwproxjh3lwhl@pengutronix.de>
+ <CA+Eumj42Hojp1m4deuWnqMOaaNaupTSkzPaNbL_0eyBL-aDi_g@mail.gmail.com>
+ <7df71f8d-cdc3-4b2e-cf0a-7112eff28142@canonical.com>
+ <20220215094106.k35pmoxt2nk44dsj@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6ik55s7cffiwjwpg"
+Content-Disposition: inline
+In-Reply-To: <20220215094106.k35pmoxt2nk44dsj@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,448 +81,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add power domain control data in mt8186.
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
----
- drivers/soc/mediatek/mt8186-pm-domains.h | 344 +++++++++++++++++++++++
- drivers/soc/mediatek/mtk-pm-domains.c    |   5 +
- include/linux/soc/mediatek/infracfg.h    |  48 ++++
- 3 files changed, 397 insertions(+)
- create mode 100644 drivers/soc/mediatek/mt8186-pm-domains.h
+--6ik55s7cffiwjwpg
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/soc/mediatek/mt8186-pm-domains.h b/drivers/soc/mediatek/mt8186-pm-domains.h
-new file mode 100644
-index 000000000000..bf2dd0cdc3a8
---- /dev/null
-+++ b/drivers/soc/mediatek/mt8186-pm-domains.h
-@@ -0,0 +1,344 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (c) 2022 MediaTek Inc.
-+ * Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-+ */
-+
-+#ifndef __SOC_MEDIATEK_MT8186_PM_DOMAINS_H
-+#define __SOC_MEDIATEK_MT8186_PM_DOMAINS_H
-+
-+#include "mtk-pm-domains.h"
-+#include <dt-bindings/power/mt8186-power.h>
-+
-+/*
-+ * MT8186 power domain support
-+ */
-+
-+static const struct scpsys_domain_data scpsys_domain_data_mt8186[] = {
-+	[MT8186_POWER_DOMAIN_MFG0] = {
-+		.name = "mfg0",
-+		.sta_mask = BIT(2),
-+		.ctl_offs = 0x308,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF | MTK_SCPD_DOMAIN_SUPPLY,
-+	},
-+	[MT8186_POWER_DOMAIN_MFG1] = {
-+		.name = "mfg1",
-+		.sta_mask = BIT(3),
-+		.ctl_offs = 0x30c,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_MFG1_STEP1,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_MFG1_STEP2,
-+				MT8186_TOP_AXI_PROT_EN_SET,
-+				MT8186_TOP_AXI_PROT_EN_CLR,
-+				MT8186_TOP_AXI_PROT_EN_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_MFG1_STEP3,
-+				MT8186_TOP_AXI_PROT_EN_SET,
-+				MT8186_TOP_AXI_PROT_EN_CLR,
-+				MT8186_TOP_AXI_PROT_EN_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_MFG1_STEP4,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_MFG2] = {
-+		.name = "mfg2",
-+		.sta_mask = BIT(4),
-+		.ctl_offs = 0x310,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_MFG3] = {
-+		.name = "mfg3",
-+		.sta_mask = BIT(5),
-+		.ctl_offs = 0x314,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_SSUSB] = {
-+		.name = "ssusb",
-+		.sta_mask = BIT(20),
-+		.ctl_offs = 0x9F0,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.caps = MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+	[MT8186_POWER_DOMAIN_SSUSB_P1] = {
-+		.name = "ssusb_p1",
-+		.sta_mask = BIT(19),
-+		.ctl_offs = 0x9F4,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.caps = MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+	[MT8186_POWER_DOMAIN_DIS] = {
-+		.name = "dis",
-+		.sta_mask = BIT(21),
-+		.ctl_offs = 0x354,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_DIS_STEP1,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_DIS_STEP2,
-+				MT8186_TOP_AXI_PROT_EN_SET,
-+				MT8186_TOP_AXI_PROT_EN_CLR,
-+				MT8186_TOP_AXI_PROT_EN_STA),
-+		},
-+	},
-+	[MT8186_POWER_DOMAIN_IMG] = {
-+		.name = "img",
-+		.sta_mask = BIT(13),
-+		.ctl_offs = 0x334,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_IMG_STEP1,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_IMG_STEP2,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_IMG2] = {
-+		.name = "img2",
-+		.sta_mask = BIT(14),
-+		.ctl_offs = 0x338,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_IPE] = {
-+		.name = "ipe",
-+		.sta_mask = BIT(15),
-+		.ctl_offs = 0x33C,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_IPE_STEP1,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_IPE_STEP2,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_CAM] = {
-+		.name = "cam",
-+		.sta_mask = BIT(23),
-+		.ctl_offs = 0x35C,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_CAM_STEP1,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_CAM_STEP2,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_CAM_RAWA] = {
-+		.name = "cam_rawa",
-+		.sta_mask = BIT(24),
-+		.ctl_offs = 0x360,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_CAM_RAWB] = {
-+		.name = "cam_rawb",
-+		.sta_mask = BIT(25),
-+		.ctl_offs = 0x364,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_VENC] = {
-+		.name = "venc",
-+		.sta_mask = BIT(18),
-+		.ctl_offs = 0x348,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_VENC_STEP1,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_VENC_STEP2,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_VDEC] = {
-+		.name = "vdec",
-+		.sta_mask = BIT(16),
-+		.ctl_offs = 0x340,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_VDEC_STEP1,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_VDEC_STEP2,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_WPE] = {
-+		.name = "wpe",
-+		.sta_mask = BIT(0),
-+		.ctl_offs = 0x3F8,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_2_WPE_STEP1,
-+				MT8186_TOP_AXI_PROT_EN_2_SET,
-+				MT8186_TOP_AXI_PROT_EN_2_CLR,
-+				MT8186_TOP_AXI_PROT_EN_2_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_2_WPE_STEP2,
-+				MT8186_TOP_AXI_PROT_EN_2_SET,
-+				MT8186_TOP_AXI_PROT_EN_2_CLR,
-+				MT8186_TOP_AXI_PROT_EN_2_STA),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_CONN_ON] = {
-+		.name = "conn_on",
-+		.sta_mask = BIT(1),
-+		.ctl_offs = 0x304,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.bp_infracfg = {
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_1_CONN_ON_STEP1,
-+				MT8186_TOP_AXI_PROT_EN_1_SET,
-+				MT8186_TOP_AXI_PROT_EN_1_CLR,
-+				MT8186_TOP_AXI_PROT_EN_1_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_CONN_ON_STEP2,
-+				MT8186_TOP_AXI_PROT_EN_SET,
-+				MT8186_TOP_AXI_PROT_EN_CLR,
-+				MT8186_TOP_AXI_PROT_EN_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_CONN_ON_STEP3,
-+				MT8186_TOP_AXI_PROT_EN_SET,
-+				MT8186_TOP_AXI_PROT_EN_CLR,
-+				MT8186_TOP_AXI_PROT_EN_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_CONN_ON_STEP4,
-+				MT8186_TOP_AXI_PROT_EN_SET,
-+				MT8186_TOP_AXI_PROT_EN_CLR,
-+				MT8186_TOP_AXI_PROT_EN_STA),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF | MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+	[MT8186_POWER_DOMAIN_CSIRX_TOP] = {
-+		.name = "csirx_top",
-+		.sta_mask = BIT(6),
-+		.ctl_offs = 0x318,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_ADSP_AO] = {
-+		.name = "adsp_ao",
-+		.sta_mask = BIT(17),
-+		.ctl_offs = 0x9FC,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_ADSP_INFRA] = {
-+		.name = "adsp_infra",
-+		.sta_mask = BIT(10),
-+		.ctl_offs = 0x9F8,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8186_POWER_DOMAIN_ADSP_TOP] = {
-+		.name = "adsp_top",
-+		.sta_mask = BIT(31),
-+		.ctl_offs = 0x3E4,
-+		.pwr_sta_offs = 0x16C,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = BIT(8),
-+		.sram_pdn_ack_bits = BIT(12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_3_ADSP_TOP_STEP1,
-+				MT8186_TOP_AXI_PROT_EN_3_SET,
-+				MT8186_TOP_AXI_PROT_EN_3_CLR,
-+				MT8186_TOP_AXI_PROT_EN_3_STA),
-+			BUS_PROT_WR_IGN(MT8186_TOP_AXI_PROT_EN_3_ADSP_TOP_STEP2,
-+				MT8186_TOP_AXI_PROT_EN_3_SET,
-+				MT8186_TOP_AXI_PROT_EN_3_CLR,
-+				MT8186_TOP_AXI_PROT_EN_3_STA),
-+		},
-+		.caps = MTK_SCPD_SRAM_ISO | MTK_SCPD_KEEP_DEFAULT_OFF | MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+};
-+
-+static const struct scpsys_soc_data mt8186_scpsys_data = {
-+	.domains_data = scpsys_domain_data_mt8186,
-+	.num_domains = ARRAY_SIZE(scpsys_domain_data_mt8186),
-+};
-+
-+#endif /* __SOC_MEDIATEK_MT8186_PM_DOMAINS_H */
-diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
-index 61973a306e97..5ced254b082b 100644
---- a/drivers/soc/mediatek/mtk-pm-domains.c
-+++ b/drivers/soc/mediatek/mtk-pm-domains.c
-@@ -19,6 +19,7 @@
- #include "mt8167-pm-domains.h"
- #include "mt8173-pm-domains.h"
- #include "mt8183-pm-domains.h"
-+#include "mt8186-pm-domains.h"
- #include "mt8192-pm-domains.h"
- #include "mt8195-pm-domains.h"
- 
-@@ -566,6 +567,10 @@ static const struct of_device_id scpsys_of_match[] = {
- 		.compatible = "mediatek,mt8183-power-controller",
- 		.data = &mt8183_scpsys_data,
- 	},
-+	{
-+		.compatible = "mediatek,mt8186-power-controller",
-+		.data = &mt8186_scpsys_data,
-+	},
- 	{
- 		.compatible = "mediatek,mt8192-power-controller",
- 		.data = &mt8192_scpsys_data,
-diff --git a/include/linux/soc/mediatek/infracfg.h b/include/linux/soc/mediatek/infracfg.h
-index d858e0bab7a2..8a1c2040a28e 100644
---- a/include/linux/soc/mediatek/infracfg.h
-+++ b/include/linux/soc/mediatek/infracfg.h
-@@ -140,6 +140,54 @@
- #define MT8192_TOP_AXI_PROT_EN_MM_2_MDP_2ND		BIT(13)
- #define MT8192_TOP_AXI_PROT_EN_VDNR_CAM			BIT(21)
- 
-+#define MT8186_TOP_AXI_PROT_EN_SET			(0x2A0)
-+#define MT8186_TOP_AXI_PROT_EN_CLR			(0x2A4)
-+#define MT8186_TOP_AXI_PROT_EN_STA			(0x228)
-+#define MT8186_TOP_AXI_PROT_EN_1_SET			(0x2A8)
-+#define MT8186_TOP_AXI_PROT_EN_1_CLR			(0x2AC)
-+#define MT8186_TOP_AXI_PROT_EN_1_STA			(0x258)
-+#define MT8186_TOP_AXI_PROT_EN_2_SET			(0x2B0)
-+#define MT8186_TOP_AXI_PROT_EN_2_CLR			(0x2B4)
-+#define MT8186_TOP_AXI_PROT_EN_2_STA			(0x26C)
-+#define MT8186_TOP_AXI_PROT_EN_3_SET			(0x2B8)
-+#define MT8186_TOP_AXI_PROT_EN_3_CLR			(0x2BC)
-+#define MT8186_TOP_AXI_PROT_EN_3_STA			(0x2C8)
-+
-+/* MFG1 */
-+#define MT8186_TOP_AXI_PROT_EN_1_MFG1_STEP1		(GENMASK(28, 27))
-+#define MT8186_TOP_AXI_PROT_EN_MFG1_STEP2		(GENMASK(22, 21))
-+#define MT8186_TOP_AXI_PROT_EN_MFG1_STEP3		(BIT(25))
-+#define MT8186_TOP_AXI_PROT_EN_1_MFG1_STEP4		(BIT(29))
-+/* DIS */
-+#define MT8186_TOP_AXI_PROT_EN_1_DIS_STEP1		(GENMASK(12, 11))
-+#define MT8186_TOP_AXI_PROT_EN_DIS_STEP2		(GENMASK(2, 1) | GENMASK(11, 10))
-+/* IMG */
-+#define MT8186_TOP_AXI_PROT_EN_1_IMG_STEP1		(BIT(23))
-+#define MT8186_TOP_AXI_PROT_EN_1_IMG_STEP2		(BIT(15))
-+/* IPE */
-+#define MT8186_TOP_AXI_PROT_EN_1_IPE_STEP1		(BIT(24))
-+#define MT8186_TOP_AXI_PROT_EN_1_IPE_STEP2		(BIT(16))
-+/* CAM */
-+#define MT8186_TOP_AXI_PROT_EN_1_CAM_STEP1		(GENMASK(22, 21))
-+#define MT8186_TOP_AXI_PROT_EN_1_CAM_STEP2		(GENMASK(14, 13))
-+/* VENC */
-+#define MT8186_TOP_AXI_PROT_EN_1_VENC_STEP1		(BIT(31))
-+#define MT8186_TOP_AXI_PROT_EN_1_VENC_STEP2		(BIT(19))
-+/* VDEC */
-+#define MT8186_TOP_AXI_PROT_EN_1_VDEC_STEP1		(BIT(30))
-+#define MT8186_TOP_AXI_PROT_EN_1_VDEC_STEP2		(BIT(17))
-+/* WPE */
-+#define MT8186_TOP_AXI_PROT_EN_2_WPE_STEP1		(BIT(17))
-+#define MT8186_TOP_AXI_PROT_EN_2_WPE_STEP2		(BIT(16))
-+/* CONN_ON */
-+#define MT8186_TOP_AXI_PROT_EN_1_CONN_ON_STEP1		(BIT(18))
-+#define MT8186_TOP_AXI_PROT_EN_CONN_ON_STEP2		(BIT(14))
-+#define MT8186_TOP_AXI_PROT_EN_CONN_ON_STEP3		(BIT(13))
-+#define MT8186_TOP_AXI_PROT_EN_CONN_ON_STEP4		(BIT(16))
-+/* ADSP_TOP */
-+#define MT8186_TOP_AXI_PROT_EN_3_ADSP_TOP_STEP1		(GENMASK(12, 11))
-+#define MT8186_TOP_AXI_PROT_EN_3_ADSP_TOP_STEP2		(GENMASK(1, 0))
-+
- #define MT8183_TOP_AXI_PROT_EN_STA1			0x228
- #define MT8183_TOP_AXI_PROT_EN_STA1_1			0x258
- #define MT8183_TOP_AXI_PROT_EN_SET			0x2a0
--- 
-2.18.0
+On Tue, Feb 15, 2022 at 10:41:06AM +0100, Uwe Kleine-K=F6nig wrote:
+> On Tue, Feb 15, 2022 at 09:02:25AM +0100, Krzysztof Kozlowski wrote:
+> > On 15/02/2022 08:59, Krzysztof Kozlowski wrote:
+> > > On Tue, 15 Feb 2022 at 08:40, Uwe Kleine-K=F6nig
+> > > <u.kleine-koenig@pengutronix.de> wrote:
+> > >>
+> > >> Hello,
+> > >>
+> > >> [dropped Anson Huang and Yash Shah from Cc: which were not reachable=
+ for
+> > >> my last mail]
+> > >>
+> > >> On Mon, Feb 14, 2022 at 10:21:39PM +0100, Krzysztof Kozlowski wrote:
+> > >>> Hi,
+> > >>>
+> > >>> Changes since v1:
+> > >>> 1. Add tags.
+> > >>> 2. Adjust subject (Uwe).
+> > >>
+> > >> However you only took a part of my suggestion ...
+> > >>
+> > >>> Krzysztof Kozlowski (15):
+> > >>>   dt-bindings: pwm: allwinner,sun4i-a10: Include generic pwm schema
+> > >>>   dt-bindings: pwm: imx: Include generic pwm schema
+> > >>>   dt-bindings: pwm: intel,lgm: Include generic pwm schema
+> > >>>   dt-bindings: pwm: iqs620a: Include generic pwm schema
+> > >>>   dt-bindings: pwm: mxs: Include generic pwm schema
+> > >>>   dt-bindings: pwm: rockchip: Include generic pwm schema
+> > >>>   dt-bindings: pwm: sifive: Include generic pwm schema
+> > >>>   dt-bindings: pwm: renesas,pwm: Include generic pwm schema
+> > >>>   dt-bindings: pwm: toshiba,visconti: Include generic pwm schema
+> > >>>   dt-bindings: pwm: brcm,bcm7038: Do not require pwm-cells twice
+> > >>>   dt-bindings: pwm: intel,keembay: Do not require pwm-cells twice
+> > >>
+> > >> ... The actual patch has a space after the comma, I like this variant
+> > >> without comma better as this is a compatible string.
+> > >=20
+> > > I am confused. My patch does not have comma after space. Your reply
+> > > had such in the subject, but not in the proposed new subject you wrote
+> > > in msg, so I left it as is. Without comma. If you still see comma, it
+> > > is something with your mail client.
+> > >=20
+> > > See:
+> > > https://lore.kernel.org/linux-devicetree/20220214212154.8853-12-krzys=
+ztof.kozlowski@canonical.com/T/#u
+> > >=20
+> > > Also reply from Vijayakannan does not have comma:
+> > > https://lore.kernel.org/linux-devicetree/20220214081605.161394-11-krz=
+ysztof.kozlowski@canonical.com/T/#m80af695f2c751341bc971114aefa00ccc929a3ec
+>=20
+> Strange: I have this mail four times in my mailboxes (via
+> linux-arm-kernel, linux-pwm, kernel@pengutronix.de and directly). In the
+> two latter the Subject line is broken in two:
 
+I was wrong. The ones to kernel@pengutronix.de and the linux-arm-kernel
+one are the ones with the linebreak.
+
+Hmm,
+
+http://lists.infradead.org/pipermail/linux-arm-kernel/2022-February/717310.=
+html
+http://lists.infradead.org/pipermail/linux-arm-kernel/2022-February/717304.=
+html
+
+has the linebreaks, too. Still I wonder what is different between
+kernel@pengutronix.de and u.kleine-koenig@pengutronix.de.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--6ik55s7cffiwjwpg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmILhU0ACgkQwfwUeK3K
+7Ak2jwf/YTZ2xphcIavG03zlKIE2aHmvTuLH2QJWSh+YE/vZDTs5qA96uHK4qJqE
+X5r25Qqby7C8Tb1gyOYSZJDoaiVnoe2XNyzDJeCG0QZnqYsj7bFKez3mmdKv7c/8
+7K4TeGdcWrOhVv6QFW+v8RrPWx5WkvSJT9PQ0CTgpmknr/9wX0YgO5yEGZcP3IYk
+265zktNZnG3rg+p1qb+qt98fkLQWvy+wtaGH2Sd9kzVM82ukJ0neX0fQxndvOHWW
+SbbXcy+HJWwBbUKiST0AvQCjqeo+O1LR5qn8+sLfNAADN6sjmZW09vX2rxC+DNXs
+G7dnLE2XCT/BaFyxHPQanXfYkZxb3w==
+=Rrce
+-----END PGP SIGNATURE-----
+
+--6ik55s7cffiwjwpg--
