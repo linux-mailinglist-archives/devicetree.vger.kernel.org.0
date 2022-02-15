@@ -2,85 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DAEF4B79FD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 22:52:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 726294B7A54
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 23:16:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237835AbiBOVw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 16:52:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48882 "EHLO
+        id S244535AbiBOWQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 17:16:58 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235504AbiBOVwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 16:52:25 -0500
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C597B5601
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 13:52:15 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id c3so292721pls.5
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 13:52:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=aN5YmtuYWznDowto5aPICkVMXBGokF/WGypb915FxNY=;
-        b=X+2c8aAmrnYZJl8J+TTDZAFu5rzDQ7Bjz6CTXBCMdt/w5dMXUkcgu9sTWuVI2JZCCT
-         +aIx8G3LH1LF/Sq4M5hXgHCitHg4gyAJm66MOxPw8DJ4+VfiEc+rJrua46rfriF2vrEO
-         EGREgqwlUXb449HXlA8K6i0WV1VcnLPlZkjuQlQUlA2YIzaliXVmfxsDFMcZvnzkX2BR
-         HO1TMfxbAreicIMtrWrvL+5QFMtjbuDTIROFCIPpzkRKX0XaqrBPdRrQvPgobL4MgFSA
-         TjNDjY1w5rd749cv0y6kPY9oxs7bWcs5gIkCTHj2SR2VvF3FVpIkE6BvJEGwZvtFg22q
-         UPKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aN5YmtuYWznDowto5aPICkVMXBGokF/WGypb915FxNY=;
-        b=aEChK+jjbmrbn6UZIselhuAZAalzAGdVpB9Uu7O6TM+6lMLQSzxI4PkhdPAPQEzjN2
-         KtNoAdX9aJgp8etDliD9RUpoAP9AAA5YHfM2vgpP72J/49mFSLitwu+UoyqS0wbMbpt+
-         H422FMyFqv5zpvKqmdSjMzi+7X0Pmq9X/OCGHuI6Y7gn+2pjjvRyTDdgjz9qQAevYlSj
-         pXtCbgQcY025DBKgJgGGy5UAyq1ZyrcDgOlV86YRanmdg+gXe6mjIEOXmmONnIp4LxeI
-         lQnCzXt4hXrK9TtPMISaF5e3a19e5qPkk0CaNWxDhkpw1EATM+TYkjTx0nsg4Yse/lUT
-         clmw==
-X-Gm-Message-State: AOAM5320uHJVLFOZTxQNKGWsJesN57blS/FAvnvphSTWosoP7wvkRHhb
-        KeAM1ZL78BRka4JLCMK4+Ig=
-X-Google-Smtp-Source: ABdhPJz21EQdQ3/rs5F0T+19jgbNnbJcecOxIO0C1q7cAQ1ypaDb063x1G5BkDVSp5YJ692bpVv44A==
-X-Received: by 2002:a17:90b:388a:: with SMTP id mu10mr932644pjb.207.1644961934828;
-        Tue, 15 Feb 2022 13:52:14 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d16sm34384601pfj.1.2022.02.15.13.52.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 13:52:14 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2] arm64: dts: broadcom: bcm4908: add I2C block
-Date:   Tue, 15 Feb 2022 13:52:12 -0800
-Message-Id: <20220215215212.1636021-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220215063639.15361-1-zajec5@gmail.com>
-References: <20220211103306.15271-1-zajec5@gmail.com> <20220215063639.15361-1-zajec5@gmail.com>
+        with ESMTP id S232083AbiBOWQ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 17:16:57 -0500
+X-Greylist: delayed 24574 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 15 Feb 2022 14:16:45 PST
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5ABA29800;
+        Tue, 15 Feb 2022 14:16:45 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 1D0BC240002;
+        Tue, 15 Feb 2022 22:16:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1644963401;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=fdlEzyM6wV1U+RwGyQK9WmkMI5mhDJdmK2glPQLND8k=;
+        b=PZbPwJgwrtf0MbAXbKC/ZGhSkjZPn+1Ph7P9YrP6UByMDHYK9Ox9Ed3riiim95aPtCzUvg
+        OsR1svKQug1ksFzzDa8wIezWiBEj4Qj0zzEAsPUFVUYmL2/E5ptK/KQbpmvm6ntNvpV8NM
+        5ySJrTfxnnCy01hO1vnbrB0lhkHL9wfinR0WvEGG3Rw2sTz3hTvp8MIjjhtwN1k/ZJrg4w
+        43QqcKrBMyRXTXqiSxdWPFUa7MSiL50Q2M/3KpaownXvw0MrC5IHL7sEvlup7EFslkNFAT
+        tQpBEcoGIq6h8MnT5X5Nrjs7rK4DWjlGKjljq0wX109XIAM7nVdLDufvSDXK1g==
+Date:   Tue, 15 Feb 2022 23:16:39 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v3 0/6] clk: sunxi-ng: Add a RTC CCU driver
+Message-ID: <YgwmR9LHYSFdZl+5@piout.net>
+References: <20220203021736.13434-1-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220203021736.13434-1-samuel@sholland.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Feb 2022 07:36:39 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> BCM4908 uses the same I2C hw as BCM63xx / BCM67xx / BCM68xx SoCs.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
+Hello,
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
---
-Florian
+On 02/02/2022 20:17:30-0600, Samuel Holland wrote:
+> This patch series adds a CCU driver for the RTC in the H616, R329 and
+> D1. The extra patch at the end of this series shows how it would be
+> explanded to additional hardware variants.
+> 
+> The driver is intended to support the existing binding used for the H6,
+> but also an updated binding which includes all RTC input clocks.
+> 
+> A future patch series could add functionality to the driver to manage
+> IOSC calibration at boot and during suspend/resume.
+> 
+> It may be possible to support all of these hardware variants without
+> adding this new driver, by adding them to the existing RTC clock
+> provider, but I'm concerned about the complexity there, without any of
+> the CCU abstraction.
+> 
+> Changes in v3:
+>  - Add/fix several maxItems attributes for clocks and clock-items
+>  - Drop the SUNXI_CCU_MUX_HW_WITH_KEY macro, since it is no longer used.
+>  - Also drop the patch adding the SUNXI_CCU_MUX_DATA_WITH_GATE macro.
+>  - Rebase on v5.17-rc2 (CCU module support series was merged).
+>  - Move IOSC calibration control to prepare/unprepare operations.
+>  - Declare several `struct clk_init_data`s as static variables (instead
+>    of as anonymous) so they can be modified from the probe function
+>    without casting away const.
+>  - Instead of creating two copies of clocks which may or may not have
+>    muxes, change the number of parents to 1 in the non-mux case.
+>  - Use a single CCU description for all variants.
+>  - Use IS_REACHABLE to guard the call to sun6i_rtc_ccu_probe.
+>  - Allow the driver to be built on !ARM64 (i.e. RISCV).
+>  - Rebase example on top of driver changes, and drop the second example.
+> 
+> Changes in v2:
+>  - Combine "const"s to "enum" in the DT binding compatible property.
+>  - Properly update the DT binding clocks and clock-names properties.
+>  - Rebase on v2 of the CCU module support series.
+>  - Load the CCU driver from the RTC driver, not as an OF provider.
+> 
+> Samuel Holland (6):
+>   dt-bindings: rtc: sun6i: Clean up repetition
+>   dt-bindings: rtc: sun6i: Add H616, R329, and D1 support
+>   rtc: sun6i: Enable the bus clock when provided
+
+I've now applied 1-3/6, thanks!
+
+>   clk: sunxi-ng: mux: Allow muxes to have keys
+>   clk: sunxi-ng: Add support for the sun6i RTC clocks
+>   [DO NOT MERGE] clk: sunxi-ng: sun6i-rtc: Add support for H6
+> 
+>  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml |  84 +++-
+>  drivers/clk/sunxi-ng/Kconfig                  |   5 +
+>  drivers/clk/sunxi-ng/Makefile                 |   2 +
+>  drivers/clk/sunxi-ng/ccu-sun6i-rtc.c          | 393 ++++++++++++++++++
+>  drivers/clk/sunxi-ng/ccu-sun6i-rtc.h          |  15 +
+>  drivers/clk/sunxi-ng/ccu_common.h             |   1 +
+>  drivers/clk/sunxi-ng/ccu_mux.c                |   7 +
+>  drivers/rtc/rtc-sun6i.c                       |  48 ++-
+>  include/dt-bindings/clock/sun6i-rtc.h         |  10 +
+>  include/linux/clk/sunxi-ng.h                  |   2 +
+>  10 files changed, 538 insertions(+), 29 deletions(-)
+>  create mode 100644 drivers/clk/sunxi-ng/ccu-sun6i-rtc.c
+>  create mode 100644 drivers/clk/sunxi-ng/ccu-sun6i-rtc.h
+>  create mode 100644 include/dt-bindings/clock/sun6i-rtc.h
+> 
+> -- 
+> 2.33.1
+> 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
