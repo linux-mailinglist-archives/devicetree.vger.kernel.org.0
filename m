@@ -2,135 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BBC04B7848
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:51:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8393C4B7524
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:47:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240685AbiBOURF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 15:17:05 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37484 "EHLO
+        id S237375AbiBOUev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 15:34:51 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244021AbiBOURE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:17:04 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64EC2EBACE
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 12:15:46 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id t14so155148ljh.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 12:15:46 -0800 (PST)
+        with ESMTP id S232236AbiBOUeu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:34:50 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 488E089CD4;
+        Tue, 15 Feb 2022 12:34:39 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id p9so13544321wra.12;
+        Tue, 15 Feb 2022 12:34:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=T2+DDOdrcGPnlAZTACHXV/AJiHKfc3Ic3cTglmWdDWE=;
-        b=ydYV9zG2iFm+pJ4khvAGMrd/aSo++Tqsib0wOG+sW86UpRfWodrilh1PlbjFliOlzu
-         lKbyE3MXUU8N8BxxvnEvAJ7c7fnVY7haE5YfrIOJY0BlCk4XSwv+77o0TRbbqRF1eYq5
-         3r35IydfamM/GoTe292eZyB8KBjp/80bGRNu/pDs2kogMiMAzsG0Dc3eOWZtWPWXXzaC
-         nxK8XUDHe6CFr/VzuzvSXtOqePVtesjaNXB1gG7CCND+FImywbJ1D9iHfI5dmFeAaLGk
-         awK6Rn//QzTY4Zw7KafFf9GwnqmAg1phpspfLnB1fxBB9SjPtwgOG9Jdx+VybSDzJgJj
-         JfmA==
+        bh=KRSkNhIEhZMEMhWXs5iKQNZLmkUM8XOFNeLt27M+yH0=;
+        b=hmXooVo0/3oV8QfjJUBlso0REBtT/7qZxc4FtjAmra0e1picrf+m3AyZe/9+8D/Qys
+         dAKgFh2OJUrLVKJkf6aJmpRcU7Qan23dlXdC0svDE/UgTCkjX2BuMtea43ycfowTGPAy
+         UI++sJoOrZY7O3tZRi5Sd98UNVeeD3+7UCSQRtdd8UB27UASvbssCSCmBM7W9NCdoRSy
+         EwGs+mFo+Q+4AYFJcptcxtmga80wOuzuZaV1sd5mPdtoreJ+MuJe34KIj6aYUmlcWdX7
+         ZPeKhgH4e1WwI7lmO1AO+RdrMWmX7QTBeP2Eg6Q5AY0fo0HHAZP//R0Ljxtl8OJ3GqRG
+         eDWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=T2+DDOdrcGPnlAZTACHXV/AJiHKfc3Ic3cTglmWdDWE=;
-        b=HbTKJHteX6tFiOhF8DksyGljXnYiYIuJWxGLQXCH4x47iSkbpSsDJaLr0ijyIP5oVJ
-         u9fZegbzVQdNcJJI7YfIx1jlLXunjZDBOVGr3pV2GX9PbcTOYRSOJBxFeNRlbW7nef8g
-         FXTPUF4biaqt9SQj8WTeJTcWJXjVT6rwGDSOLh5HUBXLRA/whgKVADRLxwR59O1/EOFD
-         emCBzA0iKGvVGzSgV2THcB+07HILZFVvCNrdUNBx88TIs55zWDNqrmE/gep0MgBTBRAS
-         +Hq3H8grPX8XNctQCJ6fDaTIeM/RQvaiwh+L3rsHq43ThF31snqPtRiLBFefY8YUlpbv
-         TGiQ==
-X-Gm-Message-State: AOAM531qF4ieNaKYXu14oTzo/cmxxAwdP3Vs+DTZdRJBturPSa63n3b/
-        j33VH9fpfL8HZ+5VoUoLINXFFg==
-X-Google-Smtp-Source: ABdhPJypqsFAyrOnR8xEC6MM8SQuEZzuDqR+1Zeo2EqZaF8sNUubmMsB0CZsfn8bft97IXkDDE+gEg==
-X-Received: by 2002:a2e:bf16:: with SMTP id c22mr537905ljr.416.1644956144764;
-        Tue, 15 Feb 2022 12:15:44 -0800 (PST)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id k16sm4548419ljg.111.2022.02.15.12.15.43
+        bh=KRSkNhIEhZMEMhWXs5iKQNZLmkUM8XOFNeLt27M+yH0=;
+        b=7zFebYcJOgR4rGL+B2CSGMfVKSvjbuv8zyEciQtu2lPjPKaO2aCY5PjE7IYtcCGhYq
+         Hie7d+k3Nac9Kr+NSO5yxHH9A92g+p3hqekqWP1zQh9F6NUhr612BSuMKZWpdo0ZUQZ/
+         mpB/XA78P1EDOKBPk/SFZEUwSkSo5Jd+CE5OOEfZhcFthFqZRZx8t/MF0BKMaY1r979S
+         6plZoCQTdr5womrOceHoTX7l9Hn/YNKBAj2BHgoSNomoSz7hRsT+14SoPi6YsAHvQIO7
+         4yJD8K+vTq7sj2XpBMgDI9BmBAFJc9Fya7S4x7yPKnbUApI/OeJ5pkPE9B/E/8TD7yqP
+         a6EA==
+X-Gm-Message-State: AOAM531gqW+JPGAfpU2tBgfAgHeS062mAuPlwrx613y8JiUO0A5tiNpj
+        BMMSXmpeIQm2iKeroVd0pTE=
+X-Google-Smtp-Source: ABdhPJx7LPF22AwP5kqzNKnc1tpYmsQB+V9uLmcnJHL/G901Xck085/9xsudMsuFVZQmfQc0vJM0Ug==
+X-Received: by 2002:adf:f191:: with SMTP id h17mr568730wro.188.1644957277766;
+        Tue, 15 Feb 2022 12:34:37 -0800 (PST)
+Received: from kista.localnet (cpe-86-58-32-107.static.triera.net. [86.58.32.107])
+        by smtp.gmail.com with ESMTPSA id r14sm6034914wrz.84.2022.02.15.12.34.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 12:15:44 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: qcom: msm8996: convert xo_board to RPM_SMD_BB_CLK1
-Date:   Tue, 15 Feb 2022 23:15:39 +0300
-Message-Id: <20220215201539.3970459-6-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220215201539.3970459-1-dmitry.baryshkov@linaro.org>
-References: <20220215201539.3970459-1-dmitry.baryshkov@linaro.org>
+        Tue, 15 Feb 2022 12:34:37 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     mripard@kernel.org, wens@csie.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Michael Klein <michael@fossekall.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Subject: Re: Re: [PATCH v2] ARM: dts: sun8i: Adjust power key nodes
+Date:   Tue, 15 Feb 2022 21:34:36 +0100
+Message-ID: <4714494.31r3eYUQgx@kista>
+In-Reply-To: <20220215002732.GA3215504@roeck-us.net>
+References: <20211129165510.370717-1-jernej.skrabec@gmail.com> <20220215002732.GA3215504@roeck-us.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert all device tree xo_board users to the RPM_SMD_BB_CLK1 clock.
-Note, that xo_board can not be removed (yet), as clk-smd-rpm uses
-xo_board internally as the parent for all the clocks.
+Hi!
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+Dne torek, 15. februar 2022 ob 01:27:32 CET je Guenter Roeck napisal(a):
+> Hi,
+> 
+> On Mon, Nov 29, 2021 at 05:55:10PM +0100, Jernej Skrabec wrote:
+> > Several H3 and one H2+ board have power key nodes, which are slightly
+> > off. Some are missing wakeup-source property and some have BTN_0 code
+> > assigned instead of KEY_POWER.
+> > 
+> > Adjust them, so they can function as intended by designer.
+> > 
+> > Co-developed-by: Michael Klein <michael@fossekall.de>
+> > Signed-off-by: Michael Klein <michael@fossekall.de>
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> 
+> This patch results in the following traceback when rebooting an
+> orangepi-pc qemu emulation.
+> 
+> [   30.899594]
+> [   30.899685] ============================================
+> [   30.899757] WARNING: possible recursive locking detected
+> [   30.899938] 5.17.0-rc3-00394-gc849047c2473 #1 Not tainted
+> [   30.900055] --------------------------------------------
+> [   30.900124] init/307 is trying to acquire lock:
+> [   30.900246] c2dfe27c (&irq_desc_lock_class){-.-.}-{2:2}, at: 
+__irq_get_desc_lock+0x58/0xa0
+> [   30.900900]
+> [   30.900900] but task is already holding lock:
+> [   30.900974] c3c0ac7c (&irq_desc_lock_class){-.-.}-{2:2}, at: 
+__irq_get_desc_lock+0x58/0xa0
+> [   30.901101]
+> [   30.901101] other info that might help us debug this:
+> [   30.901188]  Possible unsafe locking scenario:
+> [   30.901188]
+> [   30.901262]        CPU0
+> [   30.901301]        ----
+> [   30.901339]   lock(&irq_desc_lock_class);
+> [   30.901411]   lock(&irq_desc_lock_class);
+> [   30.901480]
+> [   30.901480]  *** DEADLOCK ***
+> [   30.901480]
+> [   30.901554]  May be due to missing lock nesting notation
+> [   30.901554]
+> [   30.901657] 4 locks held by init/307:
+> [   30.901724]  #0: c1f29f18 (system_transition_mutex){+.+.}-{3:3}, at: 
+__do_sys_reboot+0x90/0x23c
+> [   30.901889]  #1: c20f7760 (&dev->mutex){....}-{3:3}, at: 
+device_shutdown+0xf4/0x224
+> [   30.902016]  #2: c2e804d8 (&dev->mutex){....}-{3:3}, at: 
+device_shutdown+0x104/0x224
+> [   30.902138]  #3: c3c0ac7c (&irq_desc_lock_class){-.-.}-{2:2}, at: 
+__irq_get_desc_lock+0x58/0xa0
+> [   30.902281]
+> [   30.902281] stack backtrace:
+> [   30.902462] CPU: 0 PID: 307 Comm: init Not tainted 5.17.0-rc3-00394-
+gc849047c2473 #1
+> [   30.902572] Hardware name: Allwinner sun8i Family
+> [   30.902781]  unwind_backtrace from show_stack+0x10/0x14
+> [   30.902895]  show_stack from dump_stack_lvl+0x68/0x90
+> [   30.902970]  dump_stack_lvl from __lock_acquire+0x1680/0x31a0
+> [   30.903047]  __lock_acquire from lock_acquire+0x148/0x3dc
+> [   30.903118]  lock_acquire from _raw_spin_lock_irqsave+0x50/0x6c
+> [   30.903197]  _raw_spin_lock_irqsave from __irq_get_desc_lock+0x58/0xa0
+> [   30.903282]  __irq_get_desc_lock from irq_set_irq_wake+0x2c/0x19c
+> [   30.903366]  irq_set_irq_wake from irq_set_irq_wake+0x13c/0x19c
+> [   30.903442]  irq_set_irq_wake from gpio_keys_suspend+0x80/0x1a4
+> [   30.903523]  gpio_keys_suspend from gpio_keys_shutdown+0x10/0x2c
+> [   30.903603]  gpio_keys_shutdown from device_shutdown+0x180/0x224
+> [   30.903685]  device_shutdown from __do_sys_reboot+0x134/0x23c
+> [   30.903764]  __do_sys_reboot from ret_fast_syscall+0x0/0x1c
+> [   30.903894] Exception stack(0xc584ffa8 to 0xc584fff0)
+> [   30.904013] ffa0:                   01234567 000c623f fee1dead 28121969 
+01234567 00000000
+> [   30.904117] ffc0: 01234567 000c623f 00000001 00000058 000d85c0 00000000 
+00000000 00000000
+> [   30.904213] ffe0: 000d8298 be84ddf4 000918bc b6eb0edc
+> [   30.905189] reboot: Restarting system
+> 
+> The warning is no longer seen after reverting this patch.
+> 
+> The problem exists but is not seen in v5.17-rc4 because a bug in commit
+> 8df89a7cbc63 ("pinctrl-sunxi: don't call pinctrl_gpio_direction()")
+> hides it. That problem is fixed with commit 3c5412cdec9f ("pinctrl-sunxi:
+> sunxi_pinctrl_gpio_direction_in/output: use correct offset") in linux-next,
+> and the traceback is seen there.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 7a46f0f67cbb..598dbaab1d1c 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -889,7 +889,7 @@ dsi0_phy: dsi-phy@994400 {
- 				#clock-cells = <1>;
- 				#phy-cells = <0>;
- 
--				clocks = <&mmcc MDSS_AHB_CLK>, <&xo_board>;
-+				clocks = <&mmcc MDSS_AHB_CLK>, <&rpmcc RPM_SMD_BB_CLK1>;
- 				clock-names = "iface", "ref";
- 				status = "disabled";
- 			};
-@@ -2595,7 +2595,7 @@ kryocc: clock-controller@6400000 {
- 			reg = <0x06400000 0x90000>;
- 
- 			clock-names = "xo";
--			clocks = <&xo_board>;
-+			clocks = <&rpmcc RPM_SMD_BB_CLK1>;
- 
- 			#clock-cells = <1>;
- 		};
-@@ -2706,7 +2706,7 @@ sdhc1: sdhci@7464900 {
- 			clock-names = "iface", "core", "xo";
- 			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
- 				<&gcc GCC_SDCC1_APPS_CLK>,
--				<&xo_board>;
-+				<&rpmcc RPM_SMD_BB_CLK1>;
- 
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&sdc1_state_on>;
-@@ -2729,7 +2729,7 @@ sdhc2: sdhci@74a4900 {
- 			clock-names = "iface", "core", "xo";
- 			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
- 				<&gcc GCC_SDCC2_APPS_CLK>,
--				<&xo_board>;
-+				<&rpmcc RPM_SMD_BB_CLK1>;
- 
- 			pinctrl-names = "default", "sleep";
- 			pinctrl-0 = <&sdc2_state_on>;
-@@ -3030,7 +3030,7 @@ adsp_pil: remoteproc@9300000 {
- 			interrupt-names = "wdog", "fatal", "ready",
- 					  "handover", "stop-ack";
- 
--			clocks = <&xo_board>;
-+			clocks = <&rpmcc RPM_SMD_BB_CLK1>;
- 			clock-names = "xo";
- 
- 			memory-region = <&adsp_region>;
--- 
-2.34.1
+Hm... These DT changes were tested with many users on older kernels for some 
+time now and new properties conform to bindings. Should we revert pinctrl 
+changes?
+
+Best regards,
+Jernej
+
+
 
