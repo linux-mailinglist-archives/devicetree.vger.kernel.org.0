@@ -2,181 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC444B7267
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:42:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A14614B7055
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 17:39:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239313AbiBOOw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 09:52:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33200 "EHLO
+        id S239290AbiBOOyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 09:54:15 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239239AbiBOOvw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 09:51:52 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16B0A104A59;
-        Tue, 15 Feb 2022 06:50:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1644936635; x=1676472635;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Warxi8oODvNtldPlORcvEwIKu5YQQtPRxV9eIjZBPG0=;
-  b=O86cAGBjczuZ+icNmbvbmTbmw5a8WYyewFgUdhGU5N7vNGKTZxPE8dUV
-   0gQE2ueKcXCHKdqcHNTTul4pAF/qUANkTohXrz31/hFNIj8mrsHvAk2U+
-   f1xghrslK7v7EnDMbEqieoZibrtJ4gTqvbKMbXS5ibRKxjTF5ms7GfMG+
-   K0h4zI0xcervrNeR3SikEo4uS4TF2eVhAmXMBZ0+x5/OfAdaPvKC2tbe6
-   H6x65NZSCAC0+oRRu2tug4I/gAYSB1ykijP2lFh6X1PwEE+XL2m/7LE9H
-   tg1Xs9yR15icVJwcVXLKekZ5ZMzUs9xdRrRAvVk96Ms4seUPGefIpIyUV
-   w==;
-IronPort-SDR: +aRwZPFln39QE8nwEv4LFZnexjfzurE7rBnnykNE5y5h2bnAem8d0J/3yQo/igJF7bmN8spzUO
- byB7BvUNdNq91Gl3XHFq6a5zzlA8j3srpbcF2xMvc/GzDBIauc196yFW/UVY4dsAH7VAgqe3Tt
- I98Ft8tILfYYL84LpKIn5xAmvE3DcDc4WSGIfKWzcUB1JA6tWypFLVoADqnjMwtxJzTBtDHBTD
- NuyDk9R5gdjQ4f8HUGJUaus5TG0+bCTSiqsaWCObpXM00s9UCjkSXDmqRYBeTBoMF6UI7H9T+7
- GNZLkO6joYrydKF/m8Kjev1q
-X-IronPort-AV: E=Sophos;i="5.88,371,1635231600"; 
-   d="scan'208";a="153664207"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Feb 2022 07:50:33 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 15 Feb 2022 07:50:32 -0700
-Received: from ROB-ULT-M68701.amer.actel.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Tue, 15 Feb 2022 07:50:28 -0700
-From:   Sergiu Moga <sergiu.moga@microchip.com>
-To:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <ludovic.desroches@microchip.com>
-CC:     <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Sergiu Moga <sergiu.moga@microchip.com>
-Subject: [PATCH] dt-bindings: rtc: convert at91sam9 bindings to json-schema
-Date:   Tue, 15 Feb 2022 16:46:49 +0200
-Message-ID: <20220215144649.14378-1-sergiu.moga@microchip.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S239360AbiBOOyJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 09:54:09 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98440B0A6A
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 06:53:56 -0800 (PST)
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 04B683F1BD
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 14:53:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644936829;
+        bh=nPMJHTnYZbzS8znk5AsEiCmewu+zF2DU271/1BBA6Eo=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=pgRbLzC7Vma+2T8v8tH4OvJds0ho/7egymd3saiOKXwwXSX61jtQweMxveFjob4dv
+         kh3XAf7kP6zlVfNIVT23jwUnu08ia97GcUtVWdCnH4sP1WNHqV7vWZ+F5c54nGcQBI
+         z2HmQgeJNv1KDHqWGlgk6DqqjSXYERtHaIdJh6mN5yJdoKg4+jqMMgeE/suR817taD
+         drevrlMBF9I0Ax918bdQdeyjn7q0zLSeLlJnt+q6+vRbtp638nxKnzV2TUXAdATGtu
+         q2TB8+9u0kKc6UAzicSq+nTG9vfktlSVikLjOO99BlOtEiBevb1H5Qxc7VrSl6NLq9
+         sCYXp0T/AxVGw==
+Received: by mail-wr1-f71.google.com with SMTP id p9-20020adf9589000000b001e333885ac1so8452821wrp.10
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 06:53:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=nPMJHTnYZbzS8znk5AsEiCmewu+zF2DU271/1BBA6Eo=;
+        b=HlxjLuPigqKEw4DUscKoXxoGbO5tJvLbyT7LwI99VmmJC2QVYjgKqA/JR4sjigX/zx
+         Xe00MP8KyPYhtfdUKF09TZng44R9nydUHW57DrvYCgaX0KSc3cI1b92MmCSLAtcDoI1o
+         lSMwYZlWxxYe4AwppRRgs7uoeiTODBOwIL7824jaTQd/4BEzW8q621SgqbWJcHyULJDO
+         +2yUM09onTmGLAnfDXppBZx41r90dnsQrega2B6qATRIEODzGb8meS5H5MqEUVbVHsSY
+         O0nZUBGjqSwvGEiyByeqZ/fjp61wUb2LWIBsjBxdERzmhQRdVxtbjEHExj96JLVbBU7i
+         sy9w==
+X-Gm-Message-State: AOAM530KUxRd9ozlxmigsxoxSy7C8JjA8UN+SA3aaSKtym9XwtbSocNg
+        xPgLeVneDnLu9HWHBay9XAOZk1m5Wr93AKq8O/08wtbFcReDVj9HIW5Jj7v5gXQZBBDwdKQnFjX
+        yCAYND3KWZKvFb9wPo+8kornMyoIyiQUQqJ6AQ1A=
+X-Received: by 2002:a05:600c:34c4:b0:37b:f84d:d55a with SMTP id d4-20020a05600c34c400b0037bf84dd55amr3308658wmq.123.1644936828656;
+        Tue, 15 Feb 2022 06:53:48 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwon3JF6xxLKESk658q0+LTv95ZfTFy8vR9jXtExV/jZEWdqZ1UK6aKau2J/Bpu24pZQ9e+pQ==
+X-Received: by 2002:a05:600c:34c4:b0:37b:f84d:d55a with SMTP id d4-20020a05600c34c400b0037bf84dd55amr3308637wmq.123.1644936828425;
+        Tue, 15 Feb 2022 06:53:48 -0800 (PST)
+Received: from [192.168.0.108] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id r2sm19588933wmq.24.2022.02.15.06.53.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Feb 2022 06:53:48 -0800 (PST)
+Message-ID: <b50bf9ef-eb38-8e86-70f9-7a9a959be67b@canonical.com>
+Date:   Tue, 15 Feb 2022 15:53:47 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v8 1/2] dt-bindings:serial:Add bindings doc for Sunplus
+ SoC UART Driver
+Content-Language: en-US
+To:     Hammer Hsieh <hammerh0314@gmail.com>, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jirislaby@kernel.org, p.zabel@pengutronix.de
+Cc:     wells.lu@sunplus.com, hammer.hsieh@sunplus.com
+References: <1644917065-23168-1-git-send-email-hammerh0314@gmail.com>
+ <1644917065-23168-2-git-send-email-hammerh0314@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <1644917065-23168-2-git-send-email-hammerh0314@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert RTC binding for Atmel/Microchip SoCs to Device Tree Schema
-format.
+On 15/02/2022 10:24, Hammer Hsieh wrote:
+> Add bindings doc for Sunplus SoC UART Driver
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Hammer Hsieh <hammerh0314@gmail.com>
+> ---
+> Changes in v8:
+>  - no change.
+> 
+>  .../bindings/serial/sunplus,sp7021-uart.yaml       | 56 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml b/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
+> new file mode 100644
+> index 0000000..894324c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Co., Ltd. 2021
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/serial/sunplus,sp7021-uart.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Sunplus SoC SP7021 UART Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Hammer Hsieh <hammerh0314@gmail.com>
+> +
+> +allOf:
+> +  - $ref: serial.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: sunplus,sp7021-uart
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    aliases {
+> +            serial0 = &uart0;
 
-Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
----
- .../bindings/rtc/atmel,at91sam9-rtc.txt       | 25 --------
- .../bindings/rtc/atmel,at91sam9-rtc.yaml      | 61 +++++++++++++++++++
- 2 files changed, 61 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt
- create mode 100644 Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
+Incorrect indentation. With this fixed:
 
-diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt b/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt
-deleted file mode 100644
-index 3f0e2a5950eb..000000000000
---- a/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Atmel AT91SAM9260 Real Time Timer
--
--Required properties:
--- compatible: should be one of the following:
--	- "atmel,at91sam9260-rtt"
--	- "microchip,sam9x60-rtt", "atmel,at91sam9260-rtt"
--- reg: should encode the memory region of the RTT controller
--- interrupts: rtt alarm/event interrupt
--- clocks: should contain the 32 KHz slow clk that will drive the RTT block.
--- atmel,rtt-rtc-time-reg: should encode the GPBR register used to store
--	the time base when the RTT is used as an RTC.
--	The first cell should point to the GPBR node and the second one
--	encode the offset within the GPBR block (or in other words, the
--	GPBR register used to store the time base).
--
--
--Example:
--
--rtt@fffffd20 {
--	compatible = "atmel,at91sam9260-rtt";
--	reg = <0xfffffd20 0x10>;
--	interrupts = <1 4 7>;
--	clocks = <&clk32k>;
--	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
--};
-diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml b/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
-new file mode 100644
-index 000000000000..c78a8c1c9314
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/atmel,at91sam9-rtc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel AT91 RTT Device Tree Bindings
-+
-+allOf:
-+  - $ref: "rtc.yaml#"
-+
-+maintainers:
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+        - const: atmel,at91sam9260-rtt
-+      - items:
-+        - const: microchip,sam9x60-rtt
-+        - const: atmel,at91sam9260-rtt
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  atmel,rtt-rtc-time-reg:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      Should encode the GPBR register used to store the time base when the
-+      RTT is used as an RTC. The first cell should point to the GPBR node
-+      and the second one encodes the offset within the GPBR block (or in
-+      other words, the GPBR register used to store the time base).
-+    items:
-+      maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - atmel,rtt-rtc-time-reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    rtt@fffffd20 {
-+        compatible = "atmel,at91sam9260-rtt";
-+        reg = <0xfffffd20 0x10>;
-+        interrupts = <1 4 7>;
-+        clocks = <&clk32k>;
-+        atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-+    };
--- 
-2.25.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
+
+Best regards,
+Krzysztof
