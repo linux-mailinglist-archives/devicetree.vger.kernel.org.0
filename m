@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8CF4B7919
-	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 21:53:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E13EC4B79E9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Feb 2022 22:50:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244214AbiBOUw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 15:52:57 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44518 "EHLO
+        id S241390AbiBOU45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 15:56:57 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239034AbiBOUwx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:52:53 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A3361D332;
-        Tue, 15 Feb 2022 12:52:42 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id u16so319312ljk.2;
-        Tue, 15 Feb 2022 12:52:42 -0800 (PST)
+        with ESMTP id S235916AbiBOU44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 15:56:56 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA08FE031;
+        Tue, 15 Feb 2022 12:56:44 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id m126-20020a1ca384000000b0037bb8e379feso2331834wme.5;
+        Tue, 15 Feb 2022 12:56:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jazbXR8vV9DNjo6LKziUSfojT9zLRmh29QnIoI2LjVM=;
-        b=kw+oiUcHUvYFOlGuyjU5bAOP47k9WOhz7YI20fiKsicmSMp2c7BrNJvzYykZ9S++z3
-         9n2TgoPojkXof5T0VnDXt+8fJInTG3ZYJ33vUN7ojfnaqZf+BdMGwa23bRZVbABJqVJ6
-         K1fQwIC3uDPNu/gZdEMLt9x4MLHzKVy+PWuX56CwyE1K/G7j6PLLsoZN1A6v134RgnLO
-         zY1FDLx1RPt7DUaef9J7/zVuJ8VnOK7Ch2LtQQrwGmn/HRKW2DUlo1GZjEMvLu3sQ9qe
-         yGr7IV6ieHNr17Fk07hJBh/SavEx92hFiAzpkkJTy18l1btNiTp4KD7ohw3jP3l0x9tQ
-         v4aQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=lmjxJ/HX8zGfT6H556z4OpqIKIUYUUDa4hoyC0X1UWM=;
+        b=WhzMDST3m6CGIlEC/+Ec73454Pbxhrsyf/RrKyQYY1INFcJCOj9u25pCpwnJB4tSJq
+         lDWuZ3WzOLN5dlSQUNrgQNDlnSNvEUOBaB9MVV08uHlHz3QXzGdwpeuqkMDlXYN+nzT+
+         Ixl4Dnz3m1reXHsEAXufpOMSPjZXfZWopzfnZOgTpHuXhdz569x3PVrpTrMmgGgWn9he
+         UqgReELkFajtYgdcSczBW3fXGPMAmnsEKl+n5JWVzIGctBo816WIFD6x/EgD+VSLyiSU
+         FGanT7l9WuPA71YRvB9PsRYucCCiypnCx4tBlAyABLqYeDbuLJCG6nLHkxaQ1Fpun6a3
+         imAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jazbXR8vV9DNjo6LKziUSfojT9zLRmh29QnIoI2LjVM=;
-        b=hoLJ+GdDtW+H6twsXBzVkQt5muhCIlQfZYWcDJIQC20ryMJfiXTT3lTS3Ah+yCUL5w
-         7pW4rzrcLwSUfQfX/jOb5uYjcGqDHE1FzS7/U4wC/ieqbX+jYWS8c9SbgeoXlgmcfoAA
-         KzGkQtcOtLO+3siNBCqRnSBb0LD5JEWUlzSOksDVHRgRjhLwPKwVpu1ez/21HnsV9gCQ
-         UwdQZ1XbQZohEzr+QmyCD6QsXl+dQT/IS8wl1265HDxguQ5hMjd7X+HQwt4BzJR+X+QA
-         iLh0UtclBAyn0Ppy2cKxpkUSMQ2GfFp3byWh7odpZw4ogV6NjsdtN22VZU+qHnTcFMiz
-         tb8A==
-X-Gm-Message-State: AOAM533Z+FgWoUDldfuVzFHKt+y7eL5Vqv59ymdUhmMbqMn1K0XAzpjr
-        iS0SgfpPJWYi0gbZ20/CtAqWWRXCFm2o1Gvu
-X-Google-Smtp-Source: ABdhPJxJS6WhVth4zbR8+rTKCQnnhhPeRdv6EAS372l0RhLdHNqyQJD+gMQGtoQwJNGkTConUfvu+g==
-X-Received: by 2002:a05:651c:1a22:: with SMTP id by34mr650849ljb.84.1644958360552;
-        Tue, 15 Feb 2022 12:52:40 -0800 (PST)
-Received: from nergzd-desktop.localdomain ([62.122.67.26])
-        by smtp.gmail.com with ESMTPSA id 18sm1129337ljw.71.2022.02.15.12.52.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 12:52:40 -0800 (PST)
-From:   Markuss Broks <markuss.broks@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Markuss Broks <markuss.broks@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v4 2/2] Input: add Imagis touchscreen driver
-Date:   Tue, 15 Feb 2022 22:51:52 +0200
-Message-Id: <20220215205153.57966-3-markuss.broks@gmail.com>
-X-Mailer: git-send-email 2.35.0
-In-Reply-To: <20220215205153.57966-1-markuss.broks@gmail.com>
-References: <20220215205153.57966-1-markuss.broks@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=lmjxJ/HX8zGfT6H556z4OpqIKIUYUUDa4hoyC0X1UWM=;
+        b=cPm4UH6Pe3wYjzyjkv0fGBaV1KCUWdV6lB+qLGzGqBffKT7V0sTtaFb13O7cXEyLT6
+         QKeQMQvnAxVI4g8hOjxsyVRK1QJaFmAebxrEY4fk18ms4yK6OxvCmbFoj7M0XvMBl3lE
+         tAGdNCT3SP7CsjnjVQKvKDPupcXActlOQdqMhA9SKqPVwTdfWEGeX7HA9PfO12zmahSz
+         CLx36ywfc1tseEci/MFpzo0jE6rVF+NMLmjRyPZOL+lZ6VSKzhi0V0oO5jPosv2TbVvj
+         shw1kx+1vynS6r7FSw7fNqUHOiTHMV1NRIxqzh8KDks044vMx00ur1qgAtTaPfQSVdsW
+         UqPQ==
+X-Gm-Message-State: AOAM533qh7vweB+9D1i00DV8C+NuHVEJYzz6APc8rm44j2XXlas9gtjB
+        gHjsHvF2sAPCBP+dlr6jUK0koug2r588Ryav7jXGHg25LqB7LQ==
+X-Google-Smtp-Source: ABdhPJxNzjJWU0uY4VBFZxf0pOb2YsfgoeY17375EhBuPmd19FfF9ugV+3Z68GpTCJXUFadps5NUIo+DIwpfCSPgMDY=
+X-Received: by 2002:a05:600c:354e:b0:37c:815f:8a3f with SMTP id
+ i14-20020a05600c354e00b0037c815f8a3fmr4546180wmq.15.1644958603160; Tue, 15
+ Feb 2022 12:56:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220215163926.894-1-paweldembicki@gmail.com> <Ygvv/CWUYumhKoCh@lunn.ch>
+In-Reply-To: <Ygvv/CWUYumhKoCh@lunn.ch>
+From:   =?UTF-8?Q?Pawe=C5=82_Dembicki?= <paweldembicki@gmail.com>
+Date:   Tue, 15 Feb 2022 21:56:32 +0100
+Message-ID: <CAJN1Kkz3_z8M1j_mtOJzriUWj1m6iAEdZSZFg-zB2Gw2BYY4wA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: kirkwood: Add Ctera C-200 V1 board
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Hao Fang <fanghao11@huawei.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -75,419 +78,336 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the IST3038C touchscreen IC from Imagis, based on
-downstream driver. The driver supports multi-touch (10 touch points)
-The IST3038C IC supports touch keys, but the support isn't added
-because the touch screen used for testing doesn't utilize touch keys.
-Looking at the downstream driver, it is possible to add support
-for other Imagis ICs of IST30**C series.
+wt., 15 lut 2022 o 19:25 Andrew Lunn <andrew@lunn.ch> napisa=C5=82(a):
+>
+> On Tue, Feb 15, 2022 at 05:39:22PM +0100, Pawel Dembicki wrote:
+> > Ctera C200 V1 is kirkwood-based 2-Bay NAS.
+> >
+> > Hardware:
+> >   - SoC: Marvell 88F6281-A1 ARMv5TE Processor 1.2GHz
+> >   - Ram: 512MB (4x Nanya NT5TU128M8GE-AC)
+> >   - NAND Flash: 256MB (Samsung 216 K9F2G08U0C)
+> >   - Lan: 1x GBE (Marvell 88E1116R-NNC1)
+> >   - Storage: 2x SATA HDD 3.5" Slot
+> >   - USB: 2x USB 2.0 port
+> >   - Console: Internal J3 connector (1: Vcc, 2: Rx, 3: Tx, 4: GND)
+> >   - LEDs: 13x GPIO controlled
+> >   - Buttons: 2x GPIO controlled
+> >
+> > Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+> > ---
+> > v2:
+> > - removed 2x\n spacing issue
+> > - removed unused pcie node
+> > - made information about buzzer more comprehensive
+>
+> Hi Pawel
+>
 
-Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
----
- MAINTAINERS                        |   6 +
- drivers/input/touchscreen/Kconfig  |  10 +
- drivers/input/touchscreen/Makefile |   1 +
- drivers/input/touchscreen/imagis.c | 341 +++++++++++++++++++++++++++++
- 4 files changed, 358 insertions(+)
- create mode 100644 drivers/input/touchscreen/imagis.c
+Hi Andrew.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a899828a8d4e..3b99c60e9f4b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9411,6 +9411,12 @@ M:	Stanislaw Gruszka <stf_xl@wp.pl>
- S:	Maintained
- F:	drivers/usb/atm/ueagle-atm.c
- 
-+IMAGIS TOUCHSCREEN DRIVER
-+M:	Markuss Broks <markuss.broks@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
-+F:	drivers/input/touchscreen/imagis.c
-+
- IMGTEC ASCII LCD DRIVER
- M:	Paul Burton <paulburton@kernel.org>
- S:	Maintained
-diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index 2f6adfb7b938..a0f929506228 100644
---- a/drivers/input/touchscreen/Kconfig
-+++ b/drivers/input/touchscreen/Kconfig
-@@ -638,6 +638,16 @@ config TOUCHSCREEN_MTOUCH
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called mtouch.
- 
-+config TOUCHSCREEN_IMAGIS
-+	tristate "Imagis touchscreen support"
-+	depends on I2C
-+	help
-+		Say Y here if you have an Imagis IST30xxC touchscreen.
-+		If unsure, say N.
-+
-+		To compile this driver as a module, choose M here: the
-+		module will be called imagis.
-+
- config TOUCHSCREEN_IMX6UL_TSC
- 	tristate "Freescale i.MX6UL touchscreen controller"
- 	depends on ((OF && GPIOLIB) || COMPILE_TEST) && HAS_IOMEM
-diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index 39a8127cf6a5..557f84fd2075 100644
---- a/drivers/input/touchscreen/Makefile
-+++ b/drivers/input/touchscreen/Makefile
-@@ -49,6 +49,7 @@ obj-$(CONFIG_TOUCHSCREEN_GOODIX)	+= goodix_ts.o
- obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
- obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
- obj-$(CONFIG_TOUCHSCREEN_ILITEK)	+= ilitek_ts_i2c.o
-+obj-$(CONFIG_TOUCHSCREEN_IMAGIS)	+= imagis.o
- obj-$(CONFIG_TOUCHSCREEN_IMX6UL_TSC)	+= imx6ul_tsc.o
- obj-$(CONFIG_TOUCHSCREEN_INEXIO)	+= inexio.o
- obj-$(CONFIG_TOUCHSCREEN_IPROC)		+= bcm_iproc_tsc.o
-diff --git a/drivers/input/touchscreen/imagis.c b/drivers/input/touchscreen/imagis.c
-new file mode 100644
-index 000000000000..df26b90371c3
---- /dev/null
-+++ b/drivers/input/touchscreen/imagis.c
-@@ -0,0 +1,341 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/input.h>
-+#include <linux/input/mt.h>
-+#include <linux/input/touchscreen.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/regulator/consumer.h>
-+
-+#define IST3038C_HIB_ACCESS		(0x800B << 16)
-+#define IST3038C_DIRECT_ACCESS		BIT(31)
-+#define IST3038C_REG_CHIPID		0x40001000
-+#define IST3038C_REG_HIB_BASE		0x30000100
-+#define IST3038C_REG_TOUCH_STATUS		(IST3038C_REG_HIB_BASE | IST3038C_HIB_ACCESS)
-+#define IST3038C_REG_TOUCH_COORD		(IST3038C_REG_HIB_BASE | IST3038C_HIB_ACCESS | 0x8)
-+#define IST3038C_REG_INTR_MESSAGE		(IST3038C_REG_HIB_BASE | IST3038C_HIB_ACCESS | 0x4)
-+#define IST3038C_WHOAMI			0x38c
-+#define IST3038C_CHIP_ON_DELAY		60 // ms
-+#define IST3038C_I2C_RETRY_COUNT		3
-+#define IST3038C_MAX_SUPPORTED_FINGER_NUM		10
-+#define IST3038C_X_MASK		GENMASK(23, 12)
-+#define IST3038C_X_SHIFT		12
-+#define IST3038C_Y_MASK		GENMASK(11, 0)
-+#define IST3038C_AREA_MASK		GENMASK(27, 24)
-+#define IST3038C_AREA_SHIFT		24
-+#define IST3038C_FINGER_COUNT_MASK		GENMASK(15, 12)
-+#define IST3038C_FINGER_COUNT_SHIFT		12
-+#define IST3038C_FINGER_STATUS_MASK		GENMASK(9, 0)
-+
-+struct imagis_ts {
-+	struct i2c_client *client;
-+	struct input_dev *input_dev;
-+	struct touchscreen_properties prop;
-+	struct regulator_bulk_data supplies[2];
-+};
-+
-+static int imagis_i2c_read_reg(struct imagis_ts *ts,
-+			       unsigned int reg, unsigned int *buffer)
-+{
-+	__be32 reg_be = cpu_to_be32(reg);
-+	struct i2c_msg msg[] = {
-+		{
-+			.addr = ts->client->addr,
-+			.flags = 0,
-+			.buf = (unsigned char *)&reg_be,
-+			.len = sizeof(reg_be),
-+		}, {
-+			.addr = ts->client->addr,
-+			.flags = I2C_M_RD,
-+			.buf = (unsigned char *)buffer,
-+			.len = sizeof(reg_be),
-+		},
-+	};
-+	int ret, error;
-+	int retry = IST3038C_I2C_RETRY_COUNT;
-+
-+	do { // The controller might need several reads until it returns a value
-+		ret = i2c_transfer(ts->client->adapter, msg, ARRAY_SIZE(msg));
-+		if (ret == ARRAY_SIZE(msg)) {
-+			*buffer = be32_to_cpu(*buffer);
-+			return 0;
-+		}
-+
-+		error = ret < 0 ? ret : -EIO;
-+		dev_err(&ts->client->dev,
-+			"%s - i2c_transfer failed: %d (%d)\n",
-+			__func__, error, ret);
-+	} while (--retry);
-+
-+	return error;
-+}
-+
-+static irqreturn_t imagis_interrupt(int irq, void *dev_id)
-+{
-+	struct imagis_ts *ts = dev_id;
-+	unsigned int finger_status, intr_message;
-+	int error, i, finger_count, finger_pressed;
-+
-+	error = imagis_i2c_read_reg(ts, IST3038C_REG_INTR_MESSAGE, &intr_message);
-+	if (error) {
-+		dev_err(&ts->client->dev, "failed to read the interrupt message\n");
-+		return IRQ_HANDLED;
-+	}
-+
-+	finger_count = (intr_message & IST3038C_FINGER_COUNT_MASK) >> IST3038C_FINGER_COUNT_SHIFT;
-+	finger_pressed = intr_message & IST3038C_FINGER_STATUS_MASK;
-+	if (finger_count > IST3038C_MAX_SUPPORTED_FINGER_NUM) {
-+		dev_err(&ts->client->dev, "finger count is more than maximum supported\n");
-+		return IRQ_HANDLED;
-+	}
-+
-+	for (i = 0; i < finger_count; i++) {
-+		error = imagis_i2c_read_reg(ts, IST3038C_REG_TOUCH_COORD + (i * 4), &finger_status);
-+		if (error) {
-+			dev_err(&ts->client->dev, "failed to read coordinates for finger %d\n", i);
-+			return IRQ_HANDLED;
-+		}
-+		input_mt_slot(ts->input_dev, i);
-+		input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER,
-+					   finger_pressed & BIT(i));
-+		touchscreen_report_pos(ts->input_dev, &ts->prop,
-+				       (finger_status & IST3038C_X_MASK) >> IST3038C_X_SHIFT,
-+				       finger_status & IST3038C_Y_MASK, 1);
-+		input_report_abs(ts->input_dev, ABS_MT_TOUCH_MAJOR,
-+				 (finger_status & IST3038C_AREA_MASK) >> IST3038C_AREA_SHIFT);
-+	}
-+	input_mt_sync_frame(ts->input_dev);
-+	input_sync(ts->input_dev);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int imagis_start(struct imagis_ts *ts)
-+{
-+	int error;
-+
-+	error = regulator_bulk_enable(ARRAY_SIZE(ts->supplies),
-+				      ts->supplies);
-+	if (error) {
-+		dev_err(&ts->client->dev,
-+			"Failed to enable regulators: %d\n", error);
-+		return error;
-+	}
-+
-+	msleep(IST3038C_CHIP_ON_DELAY);
-+
-+	enable_irq(ts->client->irq);
-+	return 0;
-+}
-+
-+static int imagis_stop(struct imagis_ts *ts)
-+{
-+	int error = 0;
-+
-+	disable_irq(ts->client->irq);
-+
-+	error = regulator_bulk_disable(ARRAY_SIZE(ts->supplies),
-+				       ts->supplies);
-+	if (error)
-+		dev_err(&ts->client->dev,
-+			"Failed to disable regulators: %d\n", error);
-+	return error;
-+}
-+
-+static int imagis_input_open(struct input_dev *dev)
-+{
-+	struct imagis_ts *ts = input_get_drvdata(dev);
-+
-+	return imagis_start(ts);
-+}
-+
-+static void imagis_input_close(struct input_dev *dev)
-+{
-+	struct imagis_ts *ts = input_get_drvdata(dev);
-+
-+	imagis_stop(ts);
-+}
-+
-+static int imagis_init_input_dev(struct imagis_ts *ts)
-+{
-+	struct input_dev *input_dev;
-+	int error;
-+
-+	input_dev = devm_input_allocate_device(&ts->client->dev);
-+	if (!input_dev)
-+		return -ENOMEM;
-+
-+	ts->input_dev = input_dev;
-+
-+	input_dev->name = "Imagis capacitive touchscreen";
-+	input_dev->phys = "input/ts";
-+	input_dev->id.bustype = BUS_I2C;
-+	input_dev->open = imagis_input_open;
-+	input_dev->close = imagis_input_close;
-+
-+	input_set_drvdata(input_dev, ts);
-+
-+	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_X);
-+	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_Y);
-+	input_set_abs_params(input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
-+
-+	touchscreen_parse_properties(input_dev, true, &ts->prop);
-+	if (!ts->prop.max_x || !ts->prop.max_y) {
-+		dev_err(&ts->client->dev,
-+			"Touchscreen-size-x and/or touchscreen-size-y not set in dts\n");
-+		return -EINVAL;
-+	}
-+
-+	error = input_mt_init_slots(input_dev, IST3038C_MAX_SUPPORTED_FINGER_NUM,
-+				    INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
-+	if (error) {
-+		dev_err(&ts->client->dev,
-+			"Failed to initialize MT slots: %d", error);
-+		return error;
-+	}
-+
-+	error = input_register_device(input_dev);
-+	if (error) {
-+		dev_err(&ts->client->dev,
-+			"Failed to register input device: %d", error);
-+		return error;
-+	}
-+
-+	return 0;
-+}
-+
-+static int imagis_init_regulators(struct imagis_ts *ts)
-+{
-+	struct i2c_client *client = ts->client;
-+	int error = 0;
-+
-+	ts->supplies[0].supply = "vdd";
-+	ts->supplies[1].supply = "vddio";
-+	error = devm_regulator_bulk_get(&client->dev,
-+					ARRAY_SIZE(ts->supplies),
-+					ts->supplies);
-+
-+	return error;
-+}
-+
-+static int imagis_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev;
-+	struct imagis_ts *ts;
-+	int chip_id, ret, error;
-+
-+	dev = &i2c->dev;
-+
-+	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
-+	if (!ts)
-+		return -ENOMEM;
-+
-+	ts->client = i2c;
-+
-+	ret = imagis_init_regulators(ts);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "regulator init error: %d\n", ret);
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(ts->supplies),
-+				    ts->supplies);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to enable regulators: %d\n", ret);
-+
-+	msleep(IST3038C_CHIP_ON_DELAY);
-+
-+	ret = imagis_i2c_read_reg(ts, IST3038C_REG_CHIPID | IST3038C_DIRECT_ACCESS, &chip_id);
-+	if (ret) {
-+		dev_err(dev, "chip ID read failure: %d\n", ret);
-+		goto error_probe;
-+	}
-+
-+	if (chip_id == IST3038C_WHOAMI) {
-+		dev_dbg(dev, "Detected IST3038C chip\n");
-+	} else {
-+		dev_err(dev, "unknown chip ID: 0x%x\n", chip_id);
-+		ret = -EINVAL;
-+		goto error_probe;
-+	}
-+
-+	ret = devm_request_threaded_irq(dev, i2c->irq,
-+					NULL, imagis_interrupt,
-+					IRQF_ONESHOT | IRQF_NO_AUTOEN,
-+					"imagis-touchscreen", ts);
-+	if (ret) {
-+		dev_err(dev, "IRQ allocation failure: %d\n", ret);
-+		goto error_probe;
-+	}
-+
-+	ret = imagis_init_input_dev(ts);
-+	if (ret) {
-+		dev_err(dev, "input subsystem init error: %d\n", ret);
-+		goto error_probe;
-+	}
-+	return 0;
-+
-+error_probe:
-+	error = regulator_bulk_disable(ARRAY_SIZE(ts->supplies),
-+				       ts->supplies);
-+	if (error)
-+		dev_err(dev, "Failed to disable regulators: %d\n", error);
-+	return ret;
-+}
-+
-+static int __maybe_unused imagis_suspend(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct imagis_ts *ts = i2c_get_clientdata(client);
-+
-+	mutex_lock(&ts->input_dev->mutex);
-+
-+	if (input_device_enabled(ts->input_dev))
-+		imagis_stop(ts);
-+
-+	mutex_unlock(&ts->input_dev->mutex);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused imagis_resume(struct device *dev)
-+{
-+	struct i2c_client *client = to_i2c_client(dev);
-+	struct imagis_ts *ts = i2c_get_clientdata(client);
-+	int ret = 0;
-+
-+	mutex_lock(&ts->input_dev->mutex);
-+
-+	if (input_device_enabled(ts->input_dev))
-+		ret = imagis_start(ts);
-+
-+	mutex_unlock(&ts->input_dev->mutex);
-+
-+	return ret;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(imagis_pm_ops, imagis_suspend, imagis_resume);
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id imagis_of_match[] = {
-+	{ .compatible = "imagis,ist3038c", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(i2c, imagis_of_match);
-+#endif
-+
-+static struct i2c_driver imagis_ts_driver = {
-+	.driver = {
-+		   .name = "imagis-touchscreen",
-+		   .pm = &imagis_pm_ops,
-+		   .of_match_table = of_match_ptr(imagis_of_match),
-+	},
-+	.probe_new	= imagis_probe,
-+};
-+
-+module_i2c_driver(imagis_ts_driver);
-+
-+MODULE_DESCRIPTION("Imagis IST3038C Touchscreen Driver");
-+MODULE_AUTHOR("Markuss Broks <markuss.broks@gmail.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.35.0
+> Thanks for adding the mvebu Maintainers to the list of recipients.
+>
+> One more process point. It would be normal to set the To: to whoever
+> you think should actually accept this patch. There are a lot of
+> Maintainers listed in Cc: so actually pointing a finger at somebody
+> can help.
+>
 
+I used get_maintainer script. But I will pick manually addresses for cc.
+
+> Gregory will be the person to actually take this patch.
+>
+> >
+> >  arch/arm/boot/dts/Makefile             |   1 +
+> >  arch/arm/boot/dts/kirkwood-c200-v1.dts | 310 +++++++++++++++++++++++++
+> >  2 files changed, 311 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/kirkwood-c200-v1.dts
+> >
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index 235ad559acb2..31616f6ae173 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -281,6 +281,7 @@ dtb-$(CONFIG_ARCH_KEYSTONE) +=3D \
+> >  dtb-$(CONFIG_MACH_KIRKWOOD) +=3D \
+> >       kirkwood-b3.dtb \
+> >       kirkwood-blackarmor-nas220.dtb \
+> > +     kirkwood-c200-v1.dtb \
+> >       kirkwood-cloudbox.dtb \
+> >       kirkwood-d2net.dtb \
+> >       kirkwood-db-88f6281.dtb \
+> > diff --git a/arch/arm/boot/dts/kirkwood-c200-v1.dts b/arch/arm/boot/dts=
+/kirkwood-c200-v1.dts
+> > new file mode 100644
+> > index 000000000000..f59ff7578dfc
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/kirkwood-c200-v1.dts
+> > @@ -0,0 +1,310 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > +/*
+> > + * Ctera C200 V1 Board Description
+> > + * Copyright 2021-2022 Pawel Dembicki <paweldembicki@gmail.com>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "kirkwood.dtsi"
+> > +#include "kirkwood-6281.dtsi"
+> > +#include <dt-bindings/leds/common.h>
+> > +
+> > +/ {
+> > +     model =3D "Ctera C200 V1";
+> > +     compatible =3D "ctera,c200-v1", "marvell,kirkwood-88f6281", "marv=
+ell,kirkwood";
+> > +
+> > +     chosen {
+> > +             bootargs =3D "console=3DttyS0,115200";
+> > +             stdout-path =3D &uart0;
+> > +     };
+> > +
+> > +     memory@0 {
+> > +             device_type =3D "memory";
+> > +             reg =3D <0x00000000 0x20000000>;
+> > +     };
+> > +
+> > +     keys {
+> > +             compatible =3D "gpio-keys";
+> > +             pinctrl-0 =3D <&pmx_buttons>;
+> > +             pinctrl-names =3D "default";
+> > +
+> > +             power {
+> > +                     label =3D "Power Button";
+> > +                     linux,code =3D <KEY_POWER>;
+> > +                     gpios =3D <&gpio1 16 GPIO_ACTIVE_HIGH>;
+> > +             };
+> > +
+> > +             reset {
+> > +                     label =3D "Reset Button";
+> > +                     linux,code =3D <KEY_RESTART>;
+> > +                     gpios =3D <&gpio1 17 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             usb1 {
+> > +                     label =3D "USB1 Button";
+> > +                     linux,code =3D <BTN_0>;
+> > +                     gpios =3D <&gpio0 28 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             usb2 {
+> > +                     label =3D "USB2 Button";
+> > +                     linux,code =3D <BTN_1>;
+> > +                     gpios =3D <&gpio0 29 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +     };
+> > +
+> > +     gpio-poweroff {
+> > +             compatible =3D "gpio-poweroff";
+> > +             pinctrl-0 =3D <&pmx_poweroff>;
+> > +             pinctrl-names =3D "default";
+> > +             gpios =3D <&gpio1 2 GPIO_ACTIVE_HIGH>;
+> > +     };
+> > +
+> > +     leds {
+> > +             compatible =3D "gpio-leds";
+> > +             pinctrl-0 =3D <&pmx_leds>;
+> > +             pinctrl-names =3D "default";
+> > +
+> > +             led-0 {
+> > +                     function =3D LED_FUNCTION_DISK;
+> > +                     function-enumerator =3D <2>;
+> > +                     color =3D <LED_COLOR_ID_RED>;
+> > +                     gpios =3D <&gpio0 14 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-1 {
+> > +                     function =3D LED_FUNCTION_DISK;
+> > +                     function-enumerator =3D <1>;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&gpio0 15 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-2 {
+> > +                     function =3D LED_FUNCTION_DISK;
+> > +                     function-enumerator =3D <2>;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&gpio0 16 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-3 {
+> > +                     function =3D LED_FUNCTION_DISK;
+> > +                     function-enumerator =3D <1>;
+> > +                     color =3D <LED_COLOR_ID_RED>;
+> > +                     gpios =3D <&gpio0 17 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-4 {
+> > +                     function =3D LED_FUNCTION_STATUS;
+> > +                     color =3D <LED_COLOR_ID_RED>;
+> > +                     gpios =3D <&gpio1 6 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-5 {
+> > +                     function =3D LED_FUNCTION_STATUS;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&gpio1 7 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-6 {
+> > +                     function =3D LED_FUNCTION_INDICATOR;
+> > +                     color =3D <LED_COLOR_ID_BLUE>;
+> > +                     gpios =3D <&gpio1 8 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-7 {
+> > +                     function =3D LED_FUNCTION_DISK_ERR;
+> > +                     color =3D <LED_COLOR_ID_RED>;
+> > +                     gpios =3D <&gpio1 10 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-8 {
+> > +                     function =3D LED_FUNCTION_DISK_ERR;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&gpio1 11 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-9 {
+> > +                     function =3D LED_FUNCTION_USB;
+> > +                     function-enumerator =3D <1>;
+> > +                     color =3D <LED_COLOR_ID_RED>;
+> > +                     gpios =3D <&gpio1 12 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-10 {
+> > +                     function =3D LED_FUNCTION_USB;
+> > +                     function-enumerator =3D <1>;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&gpio1 13 GPIO_ACTIVE_LOW>;
+> > +                     linux,default-trigger =3D "usbport";
+> > +                     trigger-sources =3D <&hub_port2>;
+> > +             };
+> > +
+> > +             led-11 {
+> > +                     function =3D LED_FUNCTION_USB;
+> > +                     function-enumerator =3D <2>;
+> > +                     color =3D <LED_COLOR_ID_RED>;
+> > +                     gpios =3D <&gpio1 14 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             led-12 {
+> > +                     function =3D LED_FUNCTION_USB;
+> > +                     function-enumerator =3D <2>;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&gpio1 15 GPIO_ACTIVE_LOW>;
+> > +                     linux,default-trigger =3D "usbport";
+> > +                     trigger-sources =3D <&hub_port1>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&eth0 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&eth0port {
+> > +     phy-handle =3D <&ethphy9>;
+> > +};
+> > +
+> > +&i2c0 {
+> > +     status =3D "okay";
+> > +
+> > +     rtc@30 {
+> > +             compatible =3D "s35390a";
+> > +             reg =3D <0x30>;
+> > +     };
+> > +
+> > +     lm63@4c {
+> > +             compatible =3D "national,lm63";
+> > +             reg =3D <0x4c>;
+> > +     };
+> > +};
+> > +
+> > +&mdio {
+> > +     status =3D "okay";
+> > +
+> > +     ethphy9: ethernet-phy@9 {
+> > +             reg =3D <9>;
+> > +     };
+> > +};
+> > +
+> > +&nand {
+> > +     status =3D "okay";
+> > +     chip-delay =3D <40>;
+> > +
+> > +     partition@0 {
+> > +             label =3D "uboot";
+> > +             reg =3D <0x0000000 0x200000>;
+> > +     };
+> > +
+> > +     partition@200000 {
+> > +             label =3D "certificate";
+> > +             reg =3D <0x0200000 0x100000>;
+> > +     };
+> > +
+> > +     partition@300000 {
+> > +             label =3D "preset_cfg";
+> > +             reg =3D <0x0300000 0x100000>;
+> > +     };
+> > +
+> > +     partition@400000 {
+> > +             label =3D "dev_params";
+> > +             reg =3D <0x0400000 0x100000>;
+> > +     };
+> > +
+> > +     partition@500000 {
+> > +             label =3D "active_bank";
+> > +             reg =3D <0x0500000 0x0100000>;
+> > +     };
+> > +
+> > +     partition@600000 {
+> > +             label =3D "magic";
+> > +             reg =3D <0x0600000 0x0100000>;
+> > +     };
+> > +
+> > +     partition@700000 {
+> > +             label =3D "bank1";
+> > +             reg =3D <0x0700000 0x2800000>;
+> > +     };
+> > +
+> > +     partition@2f00000 {
+> > +             label =3D "bank2";
+> > +             reg =3D <0x2f00000 0x2800000>;
+> > +     };
+> > +
+> > +     /* 0x5700000-0x5a00000 undefined in vendor firmware */
+> > +
+> > +     partition@5a00000 {
+> > +             label =3D "reserved";
+> > +             reg =3D <0x5a00000 0x2000000>;
+> > +     };
+> > +
+> > +     partition@7a00000 {
+> > +             label =3D "rootfs";
+> > +             reg =3D <0x7a00000 0x8600000>;
+> > +     };
+> > +};
+> > +
+> > +&pinctrl {
+> > +     /* Buzzer gpios are connected to two pins of buzzer.
+> > +      * This buzzer require a modulated signal from gpio.
+> > +      * Leave it as is due lack of proper driver.
+> > +      */
+>
+> Thanks for adding a comment. So you need something like a PWM driving
+> it? Have you tried playing with drivers/input/misc/pwm-beeper.c ?
+
+It use a PWM device. Driver gpio-pwm isn't accepted in mainline so far.
+
+> Some of the mvebu family have a simple PWM functionality as part of
+> the GPIO controller. I don't remember if kirkwood has this.
+
+Kirkwood have very simple blink mode only: GPIO pin make visible blinks.
+
+>
+>     Andrew
+
+Pawel
