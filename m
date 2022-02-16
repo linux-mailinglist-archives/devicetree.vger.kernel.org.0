@@ -2,72 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 645F74B89C6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 14:25:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F22A4B89CA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 14:26:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233541AbiBPNZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 08:25:54 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35984 "EHLO
+        id S233988AbiBPN0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 08:26:33 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234076AbiBPNZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 08:25:41 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D42FA12775;
-        Wed, 16 Feb 2022 05:25:25 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id a42so3237983ljq.13;
-        Wed, 16 Feb 2022 05:25:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=lOkRfnAK67kKjK4/79VZhvtQ4sw0j39PjhZ9eFLB3so=;
-        b=R1NtB7ax8LBmgh31v/0Bsp5y/iYNzYwAmukAeYwmpNINF+SAd/2h0+E6Yz1eoFemmc
-         kXoOo0xmTdBD9EpYtddwXaBKsIEwuvZXigDanvghwQkEtO4meL/rKDpPPnVK42NiDYDI
-         8QMoxVBgd3rBUTOBpPkx17oNYb1T49QyG9oZzGaRkvEVu6eJN7jV58SJeWWHL34ROpjz
-         BtcXGKEFnqyLtJzvHfPdKw+2BGbjq4bUq/doapWFv1Jrq5SxA5StXLn6zD9bD45fHVnr
-         232jO9gbsGFocxUZ7EvcyaUw+edG/OZEyv7DUm6dIgswLcQCrKPvB1yD//s1gKxvP/ck
-         cKWw==
+        with ESMTP id S233695AbiBPN0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 08:26:32 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239241C135
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:26:18 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7690240339
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 13:26:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645017976;
+        bh=HnLv2sgPTFeJCaPDj49F4ixfOdgITRk3XaxRkpYlXz0=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=d+ytUNIq/+YlMjkBHdiOV8f4oLa5IC3GzB6jvG+C7TfcqFdyX0KOr+USFSxC9EfzW
+         gq4sf5GP+2Y9PEsc59qza/ErxG8NRKgmR8tyS5azhFwTtH329ZDBm2ITajzRbvduwY
+         djHyqSCQsWveL2va2wT/eOz4fRUQ919qHtZ2EAJMnfzUI3Wx3c6Q1V+f7+lSJTGT4Y
+         cV623To1sFST3A04oSdbBkd9Bl541P8v4XHGEujKDhUeevB7FXVse+VpePM30PDXFt
+         yGlxbJTMN8smPmt2kqJYtjVhq3t5quGgig62hqd/H4EX/8G0JdurlhhgrHXxiDxruR
+         SppoGEjyty4Fw==
+Received: by mail-ed1-f69.google.com with SMTP id y13-20020aa7c24d000000b00411925b7829so1374967edo.22
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:26:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lOkRfnAK67kKjK4/79VZhvtQ4sw0j39PjhZ9eFLB3so=;
-        b=Bt7dsXCVXM1hQHEgWDO1dLPfIjKWtAOBJMhbdcEYB+5ufdG0T7b0S55Z/6MxuNmnxN
-         gjjcR5GKK33XPiQ8J6Rg95bIFddH3hxfRU3jTL1Hf6+0ThoWcMOapJaBCcWm776RzcJg
-         JOkovdV61uRyn5dRx8dz7TeCNUbBi0ygfDJzmMCr8Ej6U/VHq6Z9nVlaCV3V8HdMJzfW
-         F6git0pS00GHQbBbRw9hXcQLONakTEmtufP31jyviSvApeol68lECAGos9DRuBAC8WZA
-         Fw+lQwXKnEqVSydY2grUr0HunIIcPGsyUHJd2p4YvfMZm/zHQ6Xo5/WMqLABCzgYPhMw
-         z3Jw==
-X-Gm-Message-State: AOAM532PAX3LxnoIhuPikolVueebcOewGb6Edp40U1nfchkdg2DY7fNX
-        czEeqMvPs26C1In5jAK3TQ0=
-X-Google-Smtp-Source: ABdhPJzG+KWM7JX7Pbf0JWplz9UI+LWoWlcmpKTGSzwKMkz4wWdoLkxZY6G7vMEYaafdItFdy2/dXQ==
-X-Received: by 2002:a05:651c:179d:b0:244:c216:5598 with SMTP id bn29-20020a05651c179d00b00244c2165598mr2156415ljb.484.1645017924083;
-        Wed, 16 Feb 2022 05:25:24 -0800 (PST)
-Received: from orome ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id y39sm2987078lfa.27.2022.02.16.05.25.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Feb 2022 05:25:22 -0800 (PST)
-Date:   Wed, 16 Feb 2022 14:25:20 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: arm-smmu: Document
- nvidia,memory-controller property
-Message-ID: <Ygz7QD4EJX3vZJtD@orome>
-References: <20211209163600.609613-1-thierry.reding@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HnLv2sgPTFeJCaPDj49F4ixfOdgITRk3XaxRkpYlXz0=;
+        b=1rMzLk3zLu5YtHZA7tqxPPUgay0npeS2kFAhzag+eYCzZXKggn62DDEoJSwm2K8uuy
+         XtLhP9YUs37gUQrBaoT0/T/U5wA+T+JXc+u+3berEz91zEC+9enZZ4vbjDXjmGaWX9Vt
+         YmBcxEwuCLgOa+vaDNmX8RoqGE5mjnkYBVWtJ8OwUJucGHYNAKTPe8zH9vv2ibjyyOUt
+         4/jkfSqvZgrcueNarzTa+SmVbW0Rne+igbCNBTzSx6lxEQ7kia+A1Vx+teafce3r9PVg
+         3vGzeSz/GNW86wxmutGKJrzBi1TIjjMtrNyWRK/H+YuLRbiIXHVTk1ZaCZv33F59bYQ2
+         w0xQ==
+X-Gm-Message-State: AOAM531uUS6NlJIl2vYr6E5k6mBJlc7YdNafDjJsZm7JXt8Ogkyl19Ln
+        qVxlBu+q/8w75ME+3xrjarWqUHGSND4G07CRXO+MxnFw+NC0WpwgYr1IQ2sDgLyWuvQxKydBbKg
+        d/PbFdjprP7CGZwU0OsUGLJbGs/rQkSr7C+KTYb8=
+X-Received: by 2002:a17:906:1be1:b0:6ce:b0a8:17d with SMTP id t1-20020a1709061be100b006ceb0a8017dmr2212951ejg.413.1645017975936;
+        Wed, 16 Feb 2022 05:26:15 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwW6N5tK5VHWBe36Bj5vHHIMzDJlCB0AOnINLyfOUpi+aCPHYXEWQjcBrraceqmA2DJkZ7r6A==
+X-Received: by 2002:a17:906:1be1:b0:6ce:b0a8:17d with SMTP id t1-20020a1709061be100b006ceb0a8017dmr2212939ejg.413.1645017975741;
+        Wed, 16 Feb 2022 05:26:15 -0800 (PST)
+Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id qf12sm1085572ejc.54.2022.02.16.05.26.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Feb 2022 05:26:15 -0800 (PST)
+Message-ID: <79a47f67-bb66-bad4-b6bc-c6a8c0ef25dc@canonical.com>
+Date:   Wed, 16 Feb 2022 14:26:14 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="QdP3IMTJOvZvvtKr"
-Content-Disposition: inline
-In-Reply-To: <20211209163600.609613-1-thierry.reding@gmail.com>
-User-Agent: Mutt/2.2 (7160e05a) (2022-02-12)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] dt-bindings: dma: Convert mtk-uart-apdma to DT schema
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, vkoul@kernel.org
+Cc:     robh+dt@kernel.org, sean.wang@mediatek.com, matthias.bgg@gmail.com,
+        long.cheng@mediatek.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220216114054.269656-1-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220216114054.269656-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,59 +86,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---QdP3IMTJOvZvvtKr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Dec 09, 2021 at 05:35:57PM +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
->=20
-> On NVIDIA SoC's the ARM SMMU needs to interact with the memory
-> controller in order to map memory clients to the corresponding stream
-> IDs. Document how the nvidia,memory-controller property can be used to
-> achieve this.
->=20
-> Note that this is a backwards-incompatible change that is, however,
-> necessary to ensure correctness. Without the new property, most of the
-> devices would still work but it is not guaranteed that all will.
->=20
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+On 16/02/2022 12:40, AngeloGioacchino Del Regno wrote:
+> Convert the MediaTek UART APDMA Controller binding to DT schema.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> Changes in v2:
-> - clarify why the new nvidia,memory-controller property is required
->=20
->  .../devicetree/bindings/iommu/arm,smmu.yaml     | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+>  .../bindings/dma/mediatek,uart-dma.yaml       | 112 ++++++++++++++++++
+>  .../bindings/dma/mtk-uart-apdma.txt           |  56 ---------
+>  2 files changed, 112 insertions(+), 56 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+> new file mode 100644
+> index 000000000000..4583c8f535b2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+> @@ -0,0 +1,112 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/mediatek,uart-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek UART APDMA controller
+> +
+> +maintainers:
+> +  - Long Cheng <long.cheng@mediatek.com>
+> +
+> +description: |
+> +  The MediaTek UART APDMA controller provides DMA capabilities
+> +  for the UART peripheral bus.
+> +
+> +allOf:
+> +  - $ref: "dma-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt2712-uart-dma
+> +              - mediatek,mt8516-uart-dma
+> +          - const: mediatek,mt6577-uart-dma
+> +      - enum:
+> +          - mediatek,mt6577-uart-dma
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 16
+> +
+> +  interrupts:
+> +    description: |
+> +      TX, RX interrupt lines for each UART APDMA channel
+> +    minItems: 1
 
-Hi Joerg,
+It would be useful to have an "if:" block constraining the interrupts
+(and reg array?), if the dma-requests is missing. If you need an
+example, see length of "max8997,pmic-buck1-dvs-voltage" array in
+relation to presence of max8997,pmic-buck1-uses-gpio-dvs.
+https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/regulator/maxim,max8997.yaml#L259
 
-can you pick up patches 1-3 of this series? DT bindings have been
-reviewed by Rob and Will acked the ARM SMMU change. I can take the
-device tree changes (patch 4) through the Tegra tree.
+The best would be to restrict number of interrupts to number of
+requests, but I think dtschema cannot express this.
 
-Thanks,
-Thierry
+> +    maxItems: 32
+> +
+> +  clocks:
+> +    description: Must contain one entry for the APDMA main clock
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: apdma
+> +
+> +  "#dma-cells":
+> +    const: 1
+> +    description: |
+> +      The first cell specifies the UART APDMA channel number
+> +
+> +  dma-requests:
+> +    description: |
+> +      Number of virtual channels of the UART APDMA controller
+> +    maximum: 16
+> +
+> +  mediatek,dma-33bits:
+> +    type: boolean
+> +    description: Enable 33-bits UART APDMA support
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#dma-cells"
 
---QdP3IMTJOvZvvtKr
-Content-Type: application/pgp-signature; name="signature.asc"
+No need for requiring dma-cells. It is coming from dma-common.yaml.
 
------BEGIN PGP SIGNATURE-----
+> +
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmIM+z0ACgkQ3SOs138+
-s6F+NhAAn5xDNKRoblN/jQS2iO8okgeQy7nLasXqGnUTnZOVo3uJjJTjlJTT3kLH
-WsOl1n6HoOfXuBigBlp6YAgCSaAnL22ALHz7rdseOKiZcVC5+sMzgv5y/yYS57r4
-ay2xlSV0COLxnBwKkNapqijSL9iOxQP+UFxh75r2aAc+qA6qN8E35p8TfBj5NLUX
-P4Y4rqdFic4ZULsngj9hlAmlI9uTHs4ltF+/TigKA6cOwTB2cw3jQd9jstib63gY
-z07CvPs7GiaOlKl9gXXX6/0iOYtlE3C0GgO42YCgzMXM97F56nh+OOrZY4LOlIPS
-g8KAE27wGk4jjkjUgKYjiBNqsIKkvLSqqFg1ZqRaFDkiv6Z6oA7vQ4L78kOrrS1B
-g9O2lDNietS/scJXdteN8bqCRhEpqQYtiUEEMlEvRQV91QGb1iRoH78JlagzoKkR
-WnzFBe84yw/CJQ9DO3QIfg/Zaqn2aJOzOlsfxwlieKWCyBSmMC9yDMl4Hpb7imC1
-f9MbklJ4ORiVyltemtOuFMCvSjgXDmVsOArrAJk+w/6WV+JsvYfLWU5Bm0+TVdtl
-I6eSy98XGI8ZQE8dzlGqiF1QZ2rytUE3zCwBz8zG/SiFKFfdWUaxUkB2jr46Izcb
-6QSU5X4jaeKL2B69FROt6IoWoX+rPmvhRVrZqMmtfu9Aqc6JI3o=
-=7wVH
------END PGP SIGNATURE-----
-
---QdP3IMTJOvZvvtKr--
+Best regards,
+Krzysztof
