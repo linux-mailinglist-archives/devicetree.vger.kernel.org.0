@@ -2,171 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBA1D4B8A11
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 14:31:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C33B44B8A32
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 14:34:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234323AbiBPNaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 08:30:39 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42722 "EHLO
+        id S234258AbiBPNeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 08:34:18 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232210AbiBPNaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 08:30:39 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D503E166E1C;
-        Wed, 16 Feb 2022 05:30:26 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 09C711F44F25
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645018225;
-        bh=6TNpGK8zWpLJR4SWBSz6HDHFqS/9HoJTweDutJs2r+s=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=bZl6VkU23kDApqPl22M6OdeZgLwPmwnZVWnPYDYSAXq/kV+2erzIBtg5HL7q+IKjg
-         qxKUosxylyJq+GQ6Db5nOCIY2FVkNc4TWtE4potHevzKGSgNhLatcZPuDecltJ7Idt
-         ciTgiKKJ3+EYoVWBvo+5OSCxjbGoOwUboicbdkByV+52jS9nOo9D8BpHTsvwqANvJq
-         TSTnx60JX+pj/eBInRC4GGcSJApV7S03hBhO6J1jLIxvBswHXU8mUMWWMyYdqTGf9Z
-         14nmrQjpa32BO5MV6D4cwwAMaZl5EmJ0cNGhQZFPtGAUaqrG9vTEoqANLdLo1ODqEL
-         EFB3E368NyWNQ==
-Message-ID: <dc523c4f-e625-7651-2621-fe1aab574a5f@collabora.com>
-Date:   Wed, 16 Feb 2022 14:30:22 +0100
+        with ESMTP id S230237AbiBPNeS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 08:34:18 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C78D27993E
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:34:06 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 44A3240333
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 13:34:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645018445;
+        bh=Ygk0oL7HIcrzS+8p6jaC/5jMGWlNHppcf10IvWdE7Zg=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=HQRINk06XwFEEi8sQs8Hk0nAbcyoujWW3V0Gy0cgaDivUMHIlFHMlzZerB3J0UO0A
+         y9OqqKGWK0PgkCeLXAI0lcQqew+bEGAmZsjoqg607ZjvxbxvniNHum2gJD5jqMkTEW
+         i3IOFJT3BVPRrCDWn3gr46LEvwsw5kBYg+h0qCsqOasZHZ7yZ9mD4U3OUlMyuEy3BD
+         ucDecV44jOigCdp7eeg7eRPlgPElMPmwqXu81LoKnh8dLHfVk2lAO7/wDj4ShN8UYy
+         aEBawgTG5kNsPeHULDawKHXzymdnUqZQAAHOv68taKtRqIszRGpw6H1jYDjMLE1RAh
+         uS319Xqvd5FLg==
+Received: by mail-ed1-f70.google.com with SMTP id l14-20020aa7cace000000b003f7f8e1cbbdso1534330edt.20
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:34:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Ygk0oL7HIcrzS+8p6jaC/5jMGWlNHppcf10IvWdE7Zg=;
+        b=1ddbZdoFR40Ymx6CPCWMsbzPgc0LoEJJZGGCqPHooM+/DKEHKo/RB/QW+SBcJDt0zJ
+         xCPMMREkStKjE1xhpSkSAvi4bI+dO+MZt6Qc0hNgnRnDeqVah7jDDT/qQmXPdGiBkbau
+         7ojPpwRUctF590e6THGomJm071xBx2O9tDk01LvFOKJer0ZkeGII0qZYOgONdwz/Bywe
+         OksuxBhdCS07r6JxkMq+vyIffN/BRuDwjHDleFt7S3sH2NIndqHBkpYvwpaIH/VKOzGu
+         dLOMJXh/XeJJRVpp5+/3IGBaxBMHK/PMlBpFwRy0yqwWpyZMytbyp+fZBVRt5OrGlMSs
+         jOJQ==
+X-Gm-Message-State: AOAM533jc97f6A24ut+t0+xk2rl6b9tuOqRInSyeUcUuAbru6ro2PcfV
+        wJIHjpd9pqAQLmf9Uu0q+OZQedBhZlKA5nWnzf1x2as+TAIbdWD1mgoVEsTi7/Daw8CBPWph5z/
+        YCZxCxBzVbqkjJ+eepBlpd3bGgsbTbO8Qu0KObEE=
+X-Received: by 2002:a05:6402:4309:b0:410:db71:b5ce with SMTP id m9-20020a056402430900b00410db71b5cemr3090482edc.432.1645018444074;
+        Wed, 16 Feb 2022 05:34:04 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxVYtlgvJHmzgWnalCu7oOyb2pqeUD/VP330LFsfZBhFtaHPLfpzcUVdKdFaWSHSRdTEM50CQ==
+X-Received: by 2002:a05:6402:4309:b0:410:db71:b5ce with SMTP id m9-20020a056402430900b00410db71b5cemr3090471edc.432.1645018443928;
+        Wed, 16 Feb 2022 05:34:03 -0800 (PST)
+Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id r17sm1709384edd.64.2022.02.16.05.34.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Feb 2022 05:34:03 -0800 (PST)
+Message-ID: <e6ddc2fb-7753-ae89-e9fd-f2b9efd91881@canonical.com>
+Date:   Wed, 16 Feb 2022 14:34:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH] dt-bindings: dma: Convert mtk-uart-apdma to DT schema
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scpi: Add missing maxItems to
+ shmem property
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        vkoul@kernel.org
-Cc:     robh+dt@kernel.org, sean.wang@mediatek.com, matthias.bgg@gmail.com,
-        long.cheng@mediatek.com, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220216114054.269656-1-angelogioacchino.delregno@collabora.com>
- <79a47f67-bb66-bad4-b6bc-c6a8c0ef25dc@canonical.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <79a47f67-bb66-bad4-b6bc-c6a8c0ef25dc@canonical.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <f6d1ea27e8b8dc47fbe849661cc5a843bc2f1ba5.1645017656.git.geert+renesas@glider.be>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <f6d1ea27e8b8dc47fbe849661cc5a843bc2f1ba5.1645017656.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 16/02/22 14:26, Krzysztof Kozlowski ha scritto:
-> On 16/02/2022 12:40, AngeloGioacchino Del Regno wrote:
->> Convert the MediaTek UART APDMA Controller binding to DT schema.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../bindings/dma/mediatek,uart-dma.yaml       | 112 ++++++++++++++++++
->>   .../bindings/dma/mtk-uart-apdma.txt           |  56 ---------
->>   2 files changed, 112 insertions(+), 56 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
->>   delete mode 100644 Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
->>
->> diff --git a/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
->> new file mode 100644
->> index 000000000000..4583c8f535b2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
->> @@ -0,0 +1,112 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/dma/mediatek,uart-dma.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: MediaTek UART APDMA controller
->> +
->> +maintainers:
->> +  - Long Cheng <long.cheng@mediatek.com>
->> +
->> +description: |
->> +  The MediaTek UART APDMA controller provides DMA capabilities
->> +  for the UART peripheral bus.
->> +
->> +allOf:
->> +  - $ref: "dma-controller.yaml#"
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - mediatek,mt2712-uart-dma
->> +              - mediatek,mt8516-uart-dma
->> +          - const: mediatek,mt6577-uart-dma
->> +      - enum:
->> +          - mediatek,mt6577-uart-dma
->> +
->> +  reg:
->> +    minItems: 1
->> +    maxItems: 16
->> +
->> +  interrupts:
->> +    description: |
->> +      TX, RX interrupt lines for each UART APDMA channel
->> +    minItems: 1
+On 16/02/2022 14:21, Geert Uytterhoeven wrote:
+> "make dt_binding_check":
 > 
-> It would be useful to have an "if:" block constraining the interrupts
-> (and reg array?), if the dma-requests is missing. If you need an
-> example, see length of "max8997,pmic-buck1-dvs-voltage" array in
-> relation to presence of max8997,pmic-buck1-uses-gpio-dvs.
-> https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/regulator/maxim,max8997.yaml#L259
+>     Documentation/devicetree/bindings/firmware/arm,scpi.example.dt.yaml: scpi: shmem: [[2], [1]] is too long
 > 
-> The best would be to restrict number of interrupts to number of
-> requests, but I think dtschema cannot express this.
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Exposed by commit 39bd2b6a3783b899 ("dt-bindings: Improve phandle-array
+> schemas").
+> ---
+>  Documentation/devicetree/bindings/firmware/arm,scpi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> index 800417a76bda0bd9..3735f221fdf24e0a 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> @@ -51,6 +51,7 @@ properties:
+>        be any memory reserved for the purpose of this communication between the
+>        processors.
+>      minItems: 1
+> +    maxItems: 2
 
-Thank you for the very much appreciated example!
-
-I don't think that dtschema can express that without an if block... so, I'll
-use that.
-
->> +    maxItems: 32
->> +
->> +  clocks:
->> +    description: Must contain one entry for the APDMA main clock
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    const: apdma
->> +
->> +  "#dma-cells":
->> +    const: 1
->> +    description: |
->> +      The first cell specifies the UART APDMA channel number
->> +
->> +  dma-requests:
->> +    description: |
->> +      Number of virtual channels of the UART APDMA controller
->> +    maximum: 16
->> +
->> +  mediatek,dma-33bits:
->> +    type: boolean
->> +    description: Enable 33-bits UART APDMA support
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - "#dma-cells"
-> 
-> No need for requiring dma-cells. It is coming from dma-common.yaml.
-
-Right. Forgot about that, will fix!
-
-> 
->> +
-> 
-> Best regards,
-> Krzysztof
+The same should be done to "mboxes" (I mean 39bd2b6a3783b899 and what
+you are doing here) and the maxItems should match both, shouldn't it?
 
 
-
+Best regards,
+Krzysztof
