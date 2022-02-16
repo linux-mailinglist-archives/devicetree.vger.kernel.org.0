@@ -2,75 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B7C54B89B9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 14:23:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D0664B89C3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 14:25:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231916AbiBPNXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 08:23:30 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33338 "EHLO
+        id S234357AbiBPNZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 08:25:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234329AbiBPNXN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 08:23:13 -0500
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B9124BC3
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:21:47 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:7534:e0be:5adf:2691])
-        by laurent.telenet-ops.be with bizsmtp
-        id vpMl2600818GbK101pMla6; Wed, 16 Feb 2022 14:21:45 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nKKFc-000xtb-P7; Wed, 16 Feb 2022 14:21:44 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nKKFc-00Cx2V-Af; Wed, 16 Feb 2022 14:21:44 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: firmware: arm,scpi: Add missing maxItems to shmem property
-Date:   Wed, 16 Feb 2022 14:21:43 +0100
-Message-Id: <f6d1ea27e8b8dc47fbe849661cc5a843bc2f1ba5.1645017656.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S234068AbiBPNZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 08:25:41 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 767DC12779;
+        Wed, 16 Feb 2022 05:25:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645017929; x=1676553929;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=Nxttcr31p2W61Gm3SX8vHvFy59FlP2h71nyWJI7l0ak=;
+  b=Q3jmITkcMWC+vMnkK+I+xceHDqHx3vgGi6HM0jTCU7G3cRwS2r7h5ku2
+   9cS3RHVsKoEHWVfKdGeUrqGpZeZrrYBhlW8+0+BQCQDFlHI6AwaHLVPjR
+   XUF6Z0kNbd0sxr3VJoZRqdsYkeGzKf8uo5vhx1vUXbx4gU7sF582LAbZy
+   0=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 16 Feb 2022 05:25:28 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2022 05:25:27 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Wed, 16 Feb 2022 05:25:26 -0800
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Wed, 16 Feb 2022 05:25:20 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
+        <perex@perex.cz>, <tiwai@suse.com>,
+        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
+Subject: [PATCH] ASoC: codec: wcd938x: Update CTIA/OMTP switch control
+Date:   Wed, 16 Feb 2022 18:54:52 +0530
+Message-ID: <1645017892-12522-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"make dt_binding_check":
+Convert gpio api's to gpio descriptor api's in CTIA/OMTP switch control.
+Remove redundant NULL checks in swap_gnd_mic function.
 
-    Documentation/devicetree/bindings/firmware/arm,scpi.example.dt.yaml: scpi: shmem: [[2], [1]] is too long
+Fixes: 013cc2aea0f6 ("ASoC: codec: wcd938x: Add switch control for selecting CTIA/OMTP Headset")
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 ---
-Exposed by commit 39bd2b6a3783b899 ("dt-bindings: Improve phandle-array
-schemas").
----
- Documentation/devicetree/bindings/firmware/arm,scpi.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ sound/soc/codecs/wcd938x.c | 33 +++++++++++----------------------
+ 1 file changed, 11 insertions(+), 22 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
-index 800417a76bda0bd9..3735f221fdf24e0a 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
-@@ -51,6 +51,7 @@ properties:
-       be any memory reserved for the purpose of this communication between the
-       processors.
-     minItems: 1
-+    maxItems: 2
+diff --git a/sound/soc/codecs/wcd938x.c b/sound/soc/codecs/wcd938x.c
+index 08d16a9..88a39e1 100644
+--- a/sound/soc/codecs/wcd938x.c
++++ b/sound/soc/codecs/wcd938x.c
+@@ -6,6 +6,7 @@
+ #include <linux/platform_device.h>
+ #include <linux/device.h>
+ #include <linux/delay.h>
++#include <linux/gpio/consumer.h>
+ #include <linux/kernel.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/component.h>
+@@ -194,7 +195,7 @@ struct wcd938x_priv {
+ 	int ear_rx_path;
+ 	int variant;
+ 	int reset_gpio;
+-	int us_euro_gpio;
++	struct gpio_desc *us_euro_gpio;
+ 	u32 micb1_mv;
+ 	u32 micb2_mv;
+ 	u32 micb3_mv;
+@@ -4203,22 +4204,11 @@ static bool wcd938x_swap_gnd_mic(struct snd_soc_component *component, bool activ
  
-   power-controller:
-     type: object
+ 	struct wcd938x_priv *wcd938x;
+ 
+-	if (!component) {
+-		dev_err(component->dev, "%s component is NULL\n", __func__);
+-		return false;
+-	}
+-
+ 	wcd938x = snd_soc_component_get_drvdata(component);
+-	if (!wcd938x) {
+-		dev_err(component->dev, "%s private data is NULL\n", __func__);
+-		return false;
+-	}
+ 
+-	value = gpio_get_value(wcd938x->us_euro_gpio);
++	value = gpiod_get_value(wcd938x->us_euro_gpio);
+ 
+-	gpio_set_value(wcd938x->us_euro_gpio, !value);
+-	/* 20us sleep required after changing the gpio state*/
+-	usleep_range(20, 30);
++	gpiod_set_value(wcd938x->us_euro_gpio, !value);
+ 
+ 	return true;
+ }
+@@ -4236,16 +4226,15 @@ static int wcd938x_populate_dt_data(struct wcd938x_priv *wcd938x, struct device
+ 		return wcd938x->reset_gpio;
+ 	}
+ 
+-	wcd938x->us_euro_gpio = of_get_named_gpio(dev->of_node, "us-euro-gpios", 0);
+-	if (wcd938x->us_euro_gpio < 0) {
+-		dev_err(dev, "Failed to get us-euro-gpios gpio: err = %d\n", wcd938x->us_euro_gpio);
+-	} else {
+-		cfg->swap_gnd_mic = wcd938x_swap_gnd_mic;
+-		gpio_direction_output(wcd938x->us_euro_gpio, 0);
+-		/* 20us sleep required after pulling the reset gpio to LOW */
+-		usleep_range(20, 30);
++	wcd938x->us_euro_gpio = devm_gpiod_get_optional(dev, "us-euro",
++						GPIOD_OUT_LOW);
++	if (IS_ERR(wcd938x->us_euro_gpio)) {
++		dev_err(dev, "us-euro swap Control GPIO not found\n");
++		return PTR_ERR(wcd938x->us_euro_gpio);
+ 	}
+ 
++	cfg->swap_gnd_mic = wcd938x_swap_gnd_mic;
++
+ 	wcd938x->supplies[0].supply = "vdd-rxtx";
+ 	wcd938x->supplies[1].supply = "vdd-io";
+ 	wcd938x->supplies[2].supply = "vdd-buck";
 -- 
-2.25.1
+2.7.4
 
