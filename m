@@ -2,252 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E724B8604
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 11:40:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 924AB4B8611
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 11:42:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbiBPKjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 05:39:52 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52424 "EHLO
+        id S229477AbiBPKlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 05:41:47 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbiBPKjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 05:39:51 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FD2C2BA282
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:39:38 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dmitry.osipenko)
-        with ESMTPSA id 6E04A1F45001
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645007977;
-        bh=//rymtOCCzg+6qduTP68FSFY0gxPTKIbqWpaUBxrX9Y=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Zl3iq5QlsG+YpVPa648qP0UCl/X2/gOmDJmciCbwaPIo1nVLq9kHmFQjJzusOhPVY
-         BFu6rabCkxhndYFi7D4SH241/73ZC0mOxMNc8Bo4EHXyQUiGkCoIzXGUywBg7T+hl2
-         wBjsKMrSQ0p4m6/UABmZnJRLYgdsDqHyCKRYPa7iR8co/lAUK2kzSdr/6P5LEoIK58
-         I3Ou4n0Q3v6tCUoGT5rFCd5AM2cj0HHa5CB2/jcndb7lJbTbPK79DAjwvybZONlYsy
-         gC2/WIa3340nRKa8ChLOHTwGg3vDra1+Xyf84mBBNbR6wrEs9+wDPTovviMwa79TMP
-         5dhQRaNxJWr2w==
-Message-ID: <5917d180-de29-79cb-4d4d-e7340d2d88cb@collabora.com>
-Date:   Wed, 16 Feb 2022 13:39:33 +0300
+        with ESMTP id S229475AbiBPKlr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 05:41:47 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18147922A
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:41:34 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id b11so2964299lfb.12
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:41:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=knI7tMDeWVfdMzmxEcs3NisycvR0bIvCJkXVBxJ8CJw=;
+        b=GIzSA99Z3MG1nlY/Y+cAHx2IZg7ZJibSFsyz7M4fOBgftf4YIj7h7HcVOmVVm3a5Ym
+         CEoaC0lKL51ULHHXu0FeUvZD760/VslVE5D3CnoLdJj+Ak+KgfeTf1R1dNu1jPWxFr9x
+         B4KO+AKHQI+tbjEmwGHBc+ovMHB2ga2j01egJ6qxr6DYLhdblZK3dddTs62rRADO1liG
+         gCVtL01Fwtiz5P9BSsdKTpyH0Gd2A6P6moJsFkBSoVoulpZ3r7Ijy0XyC9qlxWhgLD9F
+         oeRZNHHFUbT3H9rFHko74Bu6vvOpZhMeYra7opXA/3iwWggyWW3yfmAfQ0iVgO8pMsLU
+         zfuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=knI7tMDeWVfdMzmxEcs3NisycvR0bIvCJkXVBxJ8CJw=;
+        b=vvEY/amLoU1gmJ08qbGDCkQl1EFC92MRZTEaiEMK+smPWV7VKlQzpHSr3i///DUxMq
+         bA0eDpZInocQmwx6m+qtKpsPDxwUnhUSVF40RXxe4hwVjYkAO4ERIVmPfKWc1KR72IUw
+         OEW71pxhcROocRTFCNIgWU9P5TwLpgbEvtF6MOuYBAW13Sqz/LCms2UZY/lcQfNOSFvk
+         sOF3A5CeV1MQF+EjUjKK5epsoT0lpUIHrXIR7B1GAoHJ1or7vaQ+b0Q1vT8M2yXBnb4o
+         Bqmx1ILvuRPLi7oELcjnm77enQ14lM6Gp6WwPjAXM2fPi/HgRUhfxzmLqGWwJ5rCVt7e
+         eW3Q==
+X-Gm-Message-State: AOAM531DiC2HX17bCVVjxYwFju1fyq2OpbzgWH4VXFGG01Im6Wxj2IKB
+        L3N5sY+tPTy8xQ8zukibf08=
+X-Google-Smtp-Source: ABdhPJzpMvPHGEar3tGpOkLILDN1Fs6Tis1Q7TOdn/6o0/BKsIgk808BzVzFbJY6byqGDVr9bEqAaw==
+X-Received: by 2002:ac2:420d:0:b0:443:63f4:28f1 with SMTP id y13-20020ac2420d000000b0044363f428f1mr1523823lfh.443.1645008092959;
+        Wed, 16 Feb 2022 02:41:32 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id n4sm188328lfl.296.2022.02.16.02.41.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Feb 2022 02:41:32 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: mtd: partitions: convert Broadcom's TRX to the json-schema
+Date:   Wed, 16 Feb 2022 11:41:26 +0100
+Message-Id: <20220216104126.31284-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 22/23] drm: rockchip: Add VOP2 driver
-Content-Language: en-US
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
- <20220209095350.2104049-23-s.hauer@pengutronix.de>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20220209095350.2104049-23-s.hauer@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-09.02.2022 12:53, Sascha Hauer пишет:
-> +static void vop2_plane_atomic_update(struct drm_plane *plane, struct drm_atomic_state *state)
-> +{
-> +	struct drm_plane_state *pstate = plane->state;
-> +	struct drm_crtc *crtc = pstate->crtc;
-> +	struct vop2_win *win = to_vop2_win(plane);
-> +	struct vop2_video_port *vp = to_vop2_video_port(crtc);
-> +	struct drm_display_mode *adjusted_mode = &crtc->state->adjusted_mode;
-> +	struct vop2 *vop2 = win->vop2;
-> +	struct drm_framebuffer *fb = pstate->fb;
-> +	uint32_t bpp = fb->format->cpp[0] * 8;
-> +	uint32_t actual_w, actual_h, dsp_w, dsp_h;
-> +	uint32_t act_info, dsp_info;
-> +	uint32_t format;
-> +	uint32_t afbc_format;
-> +	uint32_t rb_swap;
-> +	uint32_t uv_swap;
-> +	struct drm_rect *src = &pstate->src;
-> +	struct drm_rect *dest = &pstate->dst;
-> +	uint32_t afbc_tile_num;
-> +	uint32_t transform_offset;
-> +	bool dither_up;
-> +	bool xmirror = pstate->rotation & DRM_MODE_REFLECT_X;
-> +	bool ymirror = pstate->rotation & DRM_MODE_REFLECT_Y;
-> +	bool rotate_270 = pstate->rotation & DRM_MODE_ROTATE_270;
-> +	bool rotate_90 = pstate->rotation & DRM_MODE_ROTATE_90;
-> +	struct rockchip_gem_object *rk_obj;
-> +	unsigned long offset;
-> +	bool afbc_en;
-> +	dma_addr_t yrgb_mst;
-> +	dma_addr_t uv_mst;
-> +
-> +	/*
-> +	 * can't update plane when vop2 is disabled.
-> +	 */
-> +	if (WARN_ON(!crtc))
-> +		return;
-> +
-> +	if (!pstate->visible) {
-> +		vop2_plane_atomic_disable(plane, state);
-> +		return;
-> +	}
-> +
-> +	afbc_en = rockchip_afbc(plane, fb->modifier);
-> +
-> +	offset = (src->x1 >> 16) * fb->format->cpp[0];
-> +
-> +	/*
-> +	 * AFBC HDR_PTR must set to the zero offset of the framebuffer.
-> +	 */
-> +	if (afbc_en)
-> +		offset = 0;
-> +	else if (pstate->rotation & DRM_MODE_REFLECT_Y)
-> +		offset += ((src->y2 >> 16) - 1) * fb->pitches[0];
-> +	else
-> +		offset += (src->y1 >> 16) * fb->pitches[0];
-> +
-> +	rk_obj = to_rockchip_obj(fb->obj[0]);
-> +
-> +	yrgb_mst = rk_obj->dma_addr + offset + fb->offsets[0];
-> +	if (fb->format->is_yuv) {
-> +		int hsub = fb->format->hsub;
-> +		int vsub = fb->format->vsub;
-> +
-> +		offset = (src->x1 >> 16) * fb->format->cpp[1] / hsub;
-> +		offset += (src->y1 >> 16) * fb->pitches[1] / vsub;
-> +
-> +		if ((pstate->rotation & DRM_MODE_REFLECT_Y) && !afbc_en)
-> +			offset += fb->pitches[1] * ((pstate->src_h >> 16) - 2)  / vsub;
-> +
-> +		rk_obj = to_rockchip_obj(fb->obj[0]);
-> +		uv_mst = rk_obj->dma_addr + offset + fb->offsets[1];
-> +	}
-> +
-> +	actual_w = drm_rect_width(src) >> 16;
-> +	actual_h = drm_rect_height(src) >> 16;
-> +	dsp_w = drm_rect_width(dest);
-> +
-> +	if (dest->x1 + dsp_w > adjusted_mode->hdisplay) {
-> +		drm_err(vop2->drm, "vp%d %s dest->x1[%d] + dsp_w[%d] exceed mode hdisplay[%d]\n",
-> +			  vp->id, win->data->name, dest->x1, dsp_w, adjusted_mode->hdisplay);
-> +		dsp_w = adjusted_mode->hdisplay - dest->x1;
-> +		if (dsp_w < 4)
-> +			dsp_w = 4;
-> +		actual_w = dsp_w * actual_w / drm_rect_width(dest);
-> +	}
-> +
-> +	dsp_h = drm_rect_height(dest);
-> +
-> +	if (dest->y1 + dsp_h > adjusted_mode->vdisplay) {
-> +		drm_err(vop2->drm, "vp%d %s dest->y1[%d] + dsp_h[%d] exceed mode vdisplay[%d]\n",
-> +			  vp->id, win->data->name, dest->y1, dsp_h, adjusted_mode->vdisplay);
-> +		dsp_h = adjusted_mode->vdisplay - dest->y1;
-> +		if (dsp_h < 4)
-> +			dsp_h = 4;
-> +		actual_h = dsp_h * actual_h / drm_rect_height(dest);
-> +	}
-> +
-> +	/*
-> +	 * This is workaround solution for IC design:
-> +	 * esmart can't support scale down when actual_w % 16 == 1.
-> +	 */
-> +	if (!(win->data->feature & WIN_FEATURE_AFBDC)) {
-> +		if (actual_w > dsp_w && (actual_w & 0xf) == 1) {
-> +			drm_err(vop2->drm, "vp%d %s act_w[%d] MODE 16 == 1\n", vp->id, win->data->name, actual_w);
-> +			actual_w -= 1;
-> +		}
-> +	}
-> +
-> +	if (afbc_en && actual_w % 4) {
-> +		drm_err(vop2->drm, "vp%d %s actual_w[%d] should align as 4 pixel when enable afbc\n",
-> +			  vp->id, win->data->name, actual_w);
-> +		actual_w = ALIGN_DOWN(actual_w, 4);
-> +	}
-> +
-> +	act_info = (actual_h - 1) << 16 | ((actual_w - 1) & 0xffff);
-> +	dsp_info = (dsp_h - 1) << 16 | ((dsp_w - 1) & 0xffff);
-> +
-> +	format = vop2_convert_format(fb->format->format);
-> +
-> +	drm_dbg(vop2->drm, "vp%d update %s[%dx%d->%dx%d@%dx%d] fmt[%p4cc_%s] addr[%pad]\n",
-> +		      vp->id, win->data->name, actual_w, actual_h, dsp_w, dsp_h,
-> +		      dest->x1, dest->y1,
-> +		      &fb->format->format,
-> +		      afbc_en ? "AFBC" : "", &yrgb_mst);
-> +
-> +	if (afbc_en) {
-> +		uint32_t stride;
-> +
-> +		/* the afbc superblock is 16 x 16 */
-> +		afbc_format = vop2_convert_afbc_format(fb->format->format);
-> +
-> +		/* Enable color transform for YTR */
-> +		if (fb->modifier & AFBC_FORMAT_MOD_YTR)
-> +			afbc_format |= (1 << 4);
-> +
-> +		afbc_tile_num = ALIGN(actual_w, 16) >> 4;
-> +
-> +		/*
-> +		 * AFBC pic_vir_width is count by pixel, this is different
-> +		 * with WIN_VIR_STRIDE.
-> +		 */
-> +		stride = (fb->pitches[0] << 3) / bpp;
-> +		if ((stride & 0x3f) && (xmirror || rotate_90 || rotate_270))
-> +			drm_err(vop2->drm, "vp%d %s stride[%d] must align as 64 pixel when enable xmirror/rotate_90/rotate_270[0x%x]\n",
-> +				  vp->id, win->data->name, stride, pstate->rotation);
-> +
-> +		rb_swap = vop2_afbc_rb_swap(fb->format->format);
-> +		uv_swap = vop2_afbc_uv_swap(fb->format->format);
-> +		/*
-> +		 * This is a workaround for crazy IC design, Cluster
-> +		 * and Esmart/Smart use different format configuration map:
-> +		 * YUV420_10BIT: 0x10 for Cluster, 0x14 for Esmart/Smart.
-> +		 *
-> +		 * This is one thing we can make the convert simple:
-> +		 * AFBCD decode all the YUV data to YUV444. So we just
-> +		 * set all the yuv 10 bit to YUV444_10.
-> +		 */
-> +		if (fb->format->is_yuv && (bpp == 10))
-> +			format = VOP2_CLUSTER_YUV444_10;
-> +
-> +		if (vop2_cluster_window(win))
-> +			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 1);
-> +		vop2_win_write(win, VOP2_WIN_AFBC_FORMAT, afbc_format);
-> +		vop2_win_write(win, VOP2_WIN_AFBC_RB_SWAP, rb_swap);
-> +		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
-> +		vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
-> +		vop2_win_write(win, VOP2_WIN_AFBC_BLOCK_SPLIT_EN, 0);
-> +		if (pstate->rotation & (DRM_MODE_ROTATE_270 | DRM_MODE_ROTATE_90)) {
-> +			vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 0);
-> +			transform_offset = vop2_afbc_transform_offset(pstate, false);
-> +		} else {
-> +			vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 1);
-> +			transform_offset = vop2_afbc_transform_offset(pstate, true);
-> +		}
-> +		vop2_win_write(win, VOP2_WIN_AFBC_HDR_PTR, yrgb_mst);
-> +		vop2_win_write(win, VOP2_WIN_AFBC_PIC_SIZE, act_info);
-> +		vop2_win_write(win, VOP2_WIN_AFBC_TRANSFORM_OFFSET, transform_offset);
-> +		vop2_win_write(win, VOP2_WIN_AFBC_PIC_OFFSET, ((src->x1 >> 16) | src->y1));
-> +		vop2_win_write(win, VOP2_WIN_AFBC_DSP_OFFSET, (dest->x1 | (dest->y1 << 16)));
-> +		vop2_win_write(win, VOP2_WIN_AFBC_PIC_VIR_WIDTH, stride);
-> +		vop2_win_write(win, VOP2_WIN_AFBC_TILE_NUM, afbc_tile_num);
-> +		vop2_win_write(win, VOP2_WIN_XMIRROR, xmirror);
+From: Rafał Miłecki <rafal@milecki.pl>
 
-The xmirror's variable type is specified as bool, but it's not
-true/false because in the above code:
+This helps validating DTS files.
 
-bool xmirror = pstate->rotation & DRM_MODE_REFLECT_X;
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../bindings/mtd/partitions/brcm,trx.txt      | 42 ---------------
+ .../bindings/mtd/partitions/brcm,trx.yaml     | 51 +++++++++++++++++++
+ 2 files changed, 51 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
 
-I don't see how vop2_win_write() could work properly. Or am I missing
-something?
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt b/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt
+deleted file mode 100644
+index c2175d3c82ec..000000000000
+--- a/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt
++++ /dev/null
+@@ -1,42 +0,0 @@
+-Broadcom TRX Container Partition
+-================================
+-
+-TRX is Broadcom's official firmware format for the BCM947xx boards. It's used by
+-most of the vendors building devices based on Broadcom's BCM47xx SoCs and is
+-supported by the CFE bootloader.
+-
+-Design of the TRX format is very minimalistic. Its header contains
+-identification fields, CRC32 checksum and the locations of embedded partitions.
+-Its purpose is to store a few partitions in a format that can be distributed as
+-a standalone file and written in a flash memory.
+-
+-Container can hold up to 4 partitions. The first partition has to contain a
+-device executable binary (e.g. a kernel) as it's what the CFE bootloader starts
+-executing. Other partitions can be used for operating system purposes. This is
+-useful for systems that keep kernel and rootfs separated.
+-
+-TRX doesn't enforce any strict partition boundaries or size limits. All
+-partitions have to be less than the 4GiB max size limit.
+-
+-There are two existing/known TRX variants:
+-1) v1 which contains 3 partitions
+-2) v2 which contains 4 partitions
+-
+-There aren't separated compatible bindings for them as version can be trivialy
+-detected by a software parsing TRX header.
+-
+-Required properties:
+-- compatible : (required) must be "brcm,trx"
+-
+-Optional properties:
+-
+-- brcm,trx-magic: TRX magic, if it is different from the default magic
+-		  0x30524448 as a u32.
+-
+-Example:
+-
+-flash@0 {
+-	partitions {
+-		compatible = "brcm,trx";
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml b/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+new file mode 100644
+index 000000000000..ec871c9cf605
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/partitions/brcm,trx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom TRX Container Partition
++
++description: |
++  TRX is Broadcom's official firmware format for the BCM947xx boards. It's used
++  by most of the vendors building devices based on Broadcom's BCM47xx SoCs and
++  is supported by the CFE bootloader.
++
++  Design of the TRX format is very minimalistic. Its header contains
++  identification fields, CRC32 checksum and the locations of embedded
++  partitions. Its purpose is to store a few partitions in a format that can be
++  distributed as a standalone file and written in a flash memory.
++
++  Container can hold up to 4 partitions. The first partition has to contain a
++  device executable binary (e.g. a kernel) as it's what the CFE bootloader
++  starts executing. Other partitions can be used for operating system purposes.
++  This is useful for systems that keep kernel and rootfs separated.
++
++  TRX doesn't enforce any strict partition boundaries or size limits. All
++  partitions have to be less than the 4GiB max size limit.
++
++  There are two existing/known TRX variants:
++  1) v1 which contains 3 partitions
++  2) v2 which contains 4 partitions
++
++  There aren't separated compatible bindings for them as version can be trivialy
++  detected by a software parsing TRX header.
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++properties:
++  compatible:
++    const: brcm,trx
++
++  brcm,trx-magic:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: TRX magic, if it is different from the default 0x30524448
++
++additionalProperties: false
++
++examples:
++  - |
++    partitions {
++        compatible = "brcm,trx";
++    };
+-- 
+2.34.1
+
