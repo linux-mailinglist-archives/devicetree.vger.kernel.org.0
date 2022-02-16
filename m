@@ -2,53 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1F034B8348
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 09:49:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EE354B8406
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 10:25:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231683AbiBPIsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 03:48:54 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:56032 "EHLO
+        id S231892AbiBPJQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 04:16:41 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:44022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231653AbiBPIsw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 03:48:52 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 553082A4A14;
-        Wed, 16 Feb 2022 00:48:40 -0800 (PST)
-X-UUID: b3d30a3623c543f6876361772a58e209-20220216
-X-UUID: b3d30a3623c543f6876361772a58e209-20220216
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 683093040; Wed, 16 Feb 2022 16:48:34 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 16 Feb 2022 16:48:34 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 16 Feb 2022 16:48:33 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <matthias.bgg@gmail.com>,
-        <robh+dt@kernel.org>
-CC:     <p.zabel@pengutronix.de>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <jassisinghbrar@gmail.com>, <fparent@baylibre.com>,
-        <yongqiang.niu@mediatek.com>, <hsinyi@chromium.org>,
-        <devicetree@vger.kernel.org>,
+        with ESMTP id S231949AbiBPJQj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 04:16:39 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A81FF2AFEAF;
+        Wed, 16 Feb 2022 01:16:19 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 44F32B81D4D;
+        Wed, 16 Feb 2022 09:16:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEB4CC004E1;
+        Wed, 16 Feb 2022 09:16:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645002976;
+        bh=Gq4/KIrPQNMCp6QVo4bm+z+V/DrcH8BMrBUXscm3huc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=aYaMJiE9EwJ0fUqnY4B23RJJf3a7Zt2GN5uR/HcS0TfcRgyr4wdBJEMaiF9cdXx2k
+         FfzEfwJq4YQK6MgtwfWN6GiqI55yQsIYz44hKmYy7ii7IUIX3Tdrk3hvv/Cgzid3/Z
+         I4dpdBn8HM2R0CYTVpPlE/IcD73A0YL5aFVtjuTgPshENqfo3+tB4KroyHPvGwFHi9
+         LFZYsEln391JnWCpLjF5rfUIVapa4r+lbp6a1kMuWgVhLI/Rm4GHT8SbKEcJyCytzl
+         VMyi0kExeJ3SbK60VL+vaJfJEW2jndXe/3mpNL1XFi3XfYHLs9Not5QMRiz+1q8NXK
+         jo82EzYtIR9nA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nKGQ2-008HUQ-UC; Wed, 16 Feb 2022 09:16:15 +0000
+Date:   Wed, 16 Feb 2022 09:16:14 +0000
+Message-ID: <87a6er41ep.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v3,5/5] drm/mediatek: add display support for MT8186
-Date:   Wed, 16 Feb 2022 16:48:31 +0800
-Message-ID: <20220216084831.14883-6-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220216084831.14883-1-rex-bc.chen@mediatek.com>
-References: <20220216084831.14883-1-rex-bc.chen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 0/5] arm64: dts: ti: k3*: Fix gic-v3 compatible regs
+In-Reply-To: <20220215201008.15235-1-nm@ti.com>
+References: <20220215201008.15235-1-nm@ti.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: nm@ti.com, kristo@kernel.org, vigneshr@ti.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, krzysztof.kozlowski@canonical.com, robh+dt@kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,94 +68,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+On Tue, 15 Feb 2022 20:10:03 +0000,
+Nishanth Menon <nm@ti.com> wrote:
+> 
+> Hi,
+> 
+> This series was triggered by the discussion in [1], and we realized we
+> need to cleanup the definitions in K3 SoC. Usage of kvm with gic-v2
+> compatibility is a bit niche usecase, but valid and possible with A53
+> and A72 even though the GIC500 instantiation is done with no backward
+> compatibility.
+> 
+> Nishanth Menon (5):
+>   arm64: dts: ti: k3-am65: Fix gic-v3 compatible regs
+>   arm64: dts: ti: k3-j721e: Fix gic-v3 compatible regs
+>   arm64: dts: ti: k3-j7200: Fix gic-v3 compatible regs
+>   arm64: dts: ti: k3-am64: Fix gic-v3 compatible regs
+>   arm64: dts: ti: k3-j721s2: Fix gic-v3 compatible regs
+> 
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi   | 5 ++++-
+>  arch/arm64/boot/dts/ti/k3-am64.dtsi        | 1 +
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi   | 5 ++++-
+>  arch/arm64/boot/dts/ti/k3-am65.dtsi        | 1 +
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi  | 5 ++++-
+>  arch/arm64/boot/dts/ti/k3-j7200.dtsi       | 1 +
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi  | 5 ++++-
+>  arch/arm64/boot/dts/ti/k3-j721e.dtsi       | 1 +
+>  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 5 ++++-
+>  arch/arm64/boot/dts/ti/k3-j721s2.dtsi      | 1 +
+>  10 files changed, 25 insertions(+), 5 deletions(-)
+> 
+> [1] https://lore.kernel.org/all/87k0e0tirw.wl-maz@kernel.org/
 
-Add mmsys driver data and compatible for MT8186 in mtk_drm_drv.c.
+For the series:
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_drm_drv.c | 33 ++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Acked-by: Marc Zyngier <maz@kernel.org>
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 56ff8c57ef8f..be582e64d067 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -158,6 +158,24 @@ static const enum mtk_ddp_comp_id mt8183_mtk_ddp_ext[] = {
- 	DDP_COMPONENT_DPI0,
- };
- 
-+static const enum mtk_ddp_comp_id mt8186_mtk_ddp_main[] = {
-+	DDP_COMPONENT_OVL0,
-+	DDP_COMPONENT_RDMA0,
-+	DDP_COMPONENT_COLOR0,
-+	DDP_COMPONENT_CCORR,
-+	DDP_COMPONENT_AAL0,
-+	DDP_COMPONENT_GAMMA,
-+	DDP_COMPONENT_POSTMASK0,
-+	DDP_COMPONENT_DITHER,
-+	DDP_COMPONENT_DSI0,
-+};
-+
-+static const enum mtk_ddp_comp_id mt8186_mtk_ddp_ext[] = {
-+	DDP_COMPONENT_OVL_2L0,
-+	DDP_COMPONENT_RDMA1,
-+	DDP_COMPONENT_DPI0,
-+};
-+
- static const enum mtk_ddp_comp_id mt8192_mtk_ddp_main[] = {
- 	DDP_COMPONENT_OVL0,
- 	DDP_COMPONENT_OVL_2L0,
-@@ -221,6 +239,13 @@ static const struct mtk_mmsys_driver_data mt8183_mmsys_driver_data = {
- 	.ext_len = ARRAY_SIZE(mt8183_mtk_ddp_ext),
- };
- 
-+static const struct mtk_mmsys_driver_data mt8186_mmsys_driver_data = {
-+	.main_path = mt8186_mtk_ddp_main,
-+	.main_len = ARRAY_SIZE(mt8186_mtk_ddp_main),
-+	.ext_path = mt8186_mtk_ddp_ext,
-+	.ext_len = ARRAY_SIZE(mt8186_mtk_ddp_ext),
-+};
-+
- static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data = {
- 	.main_path = mt8192_mtk_ddp_main,
- 	.main_len = ARRAY_SIZE(mt8192_mtk_ddp_main),
-@@ -463,6 +488,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt8183-disp-mutex",
- 	  .data = (void *)MTK_DISP_MUTEX },
-+	{ .compatible = "mediatek,mt8186-disp-mutex",
-+	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt8192-disp-mutex",
- 	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt8173-disp-od",
-@@ -511,12 +538,16 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	  .data = (void *)MTK_DPI },
- 	{ .compatible = "mediatek,mt8183-dpi",
- 	  .data = (void *)MTK_DPI },
-+	{ .compatible = "mediatek,mt8186-dpi",
-+	  .data = (void *)MTK_DPI },
- 	{ .compatible = "mediatek,mt2701-dsi",
- 	  .data = (void *)MTK_DSI },
- 	{ .compatible = "mediatek,mt8173-dsi",
- 	  .data = (void *)MTK_DSI },
- 	{ .compatible = "mediatek,mt8183-dsi",
- 	  .data = (void *)MTK_DSI },
-+	{ .compatible = "mediatek,mt8186-dsi",
-+	  .data = (void *)MTK_DSI },
- 	{ }
- };
- 
-@@ -533,6 +564,8 @@ static const struct of_device_id mtk_drm_of_ids[] = {
- 	  .data = &mt8173_mmsys_driver_data},
- 	{ .compatible = "mediatek,mt8183-mmsys",
- 	  .data = &mt8183_mmsys_driver_data},
-+	{ .compatible = "mediatek,mt8186-mmsys",
-+	  .data = &mt8186_mmsys_driver_data},
- 	{ .compatible = "mediatek,mt8192-mmsys",
- 	  .data = &mt8192_mmsys_driver_data},
- 	{ }
+	M.
+
 -- 
-2.18.0
-
+Without deviation from the norm, progress is not possible.
