@@ -2,75 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FE204B7C36
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 02:12:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF8734B7C53
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 02:12:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245197AbiBPA53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 19:57:29 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42602 "EHLO
+        id S236416AbiBPBLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 20:11:03 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234391AbiBPA53 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 19:57:29 -0500
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64907E98D0
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 16:57:18 -0800 (PST)
-Received: by mail-yb1-xb30.google.com with SMTP id l125so1332745ybl.4
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 16:57:18 -0800 (PST)
+        with ESMTP id S245491AbiBPBK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 20:10:57 -0500
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956E7FCB66
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 17:10:16 -0800 (PST)
+Received: by mail-yb1-xb34.google.com with SMTP id o19so1295158ybc.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 17:10:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=U8G5LYNj0LAd4VWKhX4PRkQunQsiCSSKv2IZ3Pf+XZs=;
-        b=gpERkwaSaLIxACa9WIVhxhGtJssexFQa3ON9pkBRsTjx4PNq0MQw2kjCHUZz4hQjFI
-         X4MeU8dMf0P33tjb48vBqe9UNBGOrBYQpILedHOhpC7eX44P1DuShRsNX9XjfoAcud+f
-         y8FClYnR/o87poChRgDdKBi4llSa+2dvnrZXE=
+        bh=kEAvnISlAgpQaUg6TOaHvEbXUrTyCqH15xyEbDSJWp0=;
+        b=ZUZR+o7NNuMwO1tDYO+QNJg+NoAX33xWhrua8Z8KDMfC2GLtSZdyUBrn9hqmZc011V
+         H9AOPKO1ShSUjtslz814QmDGdWyq4XsFxbPx9NTsbv9s9VZzqH4Rb7d+mDBITNARApIB
+         ztT+jp2GyBVb3rGGQap/Dk+L7wisatjFXx0T8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=U8G5LYNj0LAd4VWKhX4PRkQunQsiCSSKv2IZ3Pf+XZs=;
-        b=R6NxU8ZORC6ayukiQH/pfLSR0vfnmRJUlnxc2uFt1ysVA2pAS0ZewbSD5tjF9nv0Sx
-         YJc+vJB9vCZZSreyW8/Ts+4yYOILe1cRuV9X3Jy6azQQJznj73jPaZQJwMhsXURxV5Hu
-         wyRa8KVy5X7QnppwBbOluvqkfOALwBzc+GrvKAK8o4bV6kiqcjkWoWeIOYs3SHWwMy3/
-         6XPjKLVjple1UfIVzm4BO6TOSVKF0Z1n4mKFJ66duXQ9l6b5fBCXnGuJiQsYkNcWKa1J
-         54fDVrcvympkXFMDL6ioJnhr3h3qLzfFbnXoEU1GgXUOElwCd0v2QPBOkikOqqU5iQ6z
-         jbew==
-X-Gm-Message-State: AOAM533F6NXCoEId2xOC38QRWi4kwgvlGnPKbaVEHQBFP3/ASXjk8GOc
-        KB+Obe3FEKFXYCOHGswfMs9iAxt/UfeP91dG3xtr
-X-Google-Smtp-Source: ABdhPJxWU3rQFdHx9DRWoyTLBAygvzH/GruMqzNlGu+Yz+32ovLqbluWBIZUb8NNplrLnx1jx1ox/IdWtkgRPbbh3v8=
-X-Received: by 2002:a25:9388:0:b0:61d:6ff8:6472 with SMTP id
- a8-20020a259388000000b0061d6ff86472mr208446ybm.121.1644973037573; Tue, 15 Feb
- 2022 16:57:17 -0800 (PST)
+        bh=kEAvnISlAgpQaUg6TOaHvEbXUrTyCqH15xyEbDSJWp0=;
+        b=L+ndhIxmKtrgBxs/peusfkHe4a0T2kFWuTxgj29o2J/vOxo4XjSlvWvSo5UrYgWO+c
+         cJ6JdniyGgAV5dYL1ixNsRT8jL4Q9nxHv/m0mkz4D9pQR9yuZjE+2gDhfFQ0EDcAWGyq
+         Fiwxa+DYl0jss3uv0P90nGa5u6LuBPe+Ct/wj5pp6Pxx/hT16YQ+3cL701z10bIuc9sU
+         pAFvtwIz0cn/y6s/FyHr5pP8F7i2SfmXh6rd9p8YI+FwHAMfxzJzrGwQgRnRN7NlP/6k
+         VPtGU9AC8XtlwIBZ+nLbS/BbBX21hO12cijBmhS6rSHB4xmFVvXmt6CFpK63bGIsgTCU
+         BbMw==
+X-Gm-Message-State: AOAM533PjMNxtn3vsg+X6aygrJgE8u+9qxbhq2XXPdAlA4s9dUjsAagC
+        ejN4swT6Dqkcclb/jrqxWzbbdliIQwjB4KPL6doBYQ==
+X-Google-Smtp-Source: ABdhPJyS++e5nIEG75PGyCAX0dVZV5d5K6bZd+I14kU4jBkU/7L3RVTaVSVHXVvfqzU4/OQusykc2yuGOrZm/jYCf0Y=
+X-Received: by 2002:a05:6902:108:b0:621:165e:5c1e with SMTP id
+ o8-20020a056902010800b00621165e5c1emr307818ybh.204.1644973815876; Tue, 15 Feb
+ 2022 17:10:15 -0800 (PST)
 MIME-Version: 1.0
-References: <20220210054947.170134-1-apatel@ventanamicro.com> <20220210054947.170134-3-apatel@ventanamicro.com>
-In-Reply-To: <20220210054947.170134-3-apatel@ventanamicro.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Tue, 15 Feb 2022 16:57:06 -0800
-Message-ID: <CAOnJCUJHk4Yaj8Dx2-gViJNrRYmmnZqWCUqqddg44QCwCgF4Ag@mail.gmail.com>
-Subject: Re: [PATCH v11 2/8] RISC-V: Rename relocate() and make it global
-To:     Anup Patel <apatel@ventanamicro.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        Anup Patel <anup@brainfault.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        kvm-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
+References: <20220214053646.3088298-1-tzungbi@google.com> <20220214053646.3088298-5-tzungbi@google.com>
+In-Reply-To: <20220214053646.3088298-5-tzungbi@google.com>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Tue, 15 Feb 2022 17:10:04 -0800
+Message-ID: <CACeCKac+b1Rp6bZFALn=sbh8gkJbWeKTC=8bdzp+-90pgq=wSw@mail.gmail.com>
+Subject: Re: [PATCH 4/5] platform/chrome: cros_kbd_led_backlight: support OF match
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,65 +63,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 9, 2022 at 9:50 PM Anup Patel <apatel@ventanamicro.com> wrote:
+On Sun, Feb 13, 2022 at 9:37 PM Tzung-Bi Shih <tzungbi@google.com> wrote:
 >
-> From: Anup Patel <anup.patel@wdc.com>
->
-> The low-level relocate() function enables mmu and relocates
-> execution to link-time addresses. We rename relocate() function
-> to relocate_enable_mmu() function which is more informative.
->
-> Also, the relocate_enable_mmu() function will be used in the
-> resume path when a CPU wakes-up from a non-retentive suspend
-> so we make it global symbol.
->
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> Reviewed-by: Guo Ren <guoren@kernel.org>
+> Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
 > ---
->  arch/riscv/kernel/head.S | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+>  .../platform/chrome/cros_kbd_led_backlight.c    | 17 +++++++++++++++--
+>  1 file changed, 15 insertions(+), 2 deletions(-)
 >
-> diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
-> index 2363b43312fc..5f4c6b6c4974 100644
-> --- a/arch/riscv/kernel/head.S
-> +++ b/arch/riscv/kernel/head.S
-> @@ -90,7 +90,8 @@ pe_head_start:
+> diff --git a/drivers/platform/chrome/cros_kbd_led_backlight.c b/drivers/platform/chrome/cros_kbd_led_backlight.c
+> index 814f2b74c602..ba853e55d29a 100644
+> --- a/drivers/platform/chrome/cros_kbd_led_backlight.c
+> +++ b/drivers/platform/chrome/cros_kbd_led_backlight.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/leds.h>
+>  #include <linux/module.h>
+> +#include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/slab.h>
 >
->  .align 2
->  #ifdef CONFIG_MMU
-> -relocate:
-> +       .global relocate_enable_mmu
-> +relocate_enable_mmu:
->         /* Relocate return address */
->         la a1, kernel_map
->         XIP_FIXUP_OFFSET a1
-> @@ -185,7 +186,7 @@ secondary_start_sbi:
->         /* Enable virtual memory and relocate to virtual address */
->         la a0, swapper_pg_dir
->         XIP_FIXUP_OFFSET a0
-> -       call relocate
-> +       call relocate_enable_mmu
->  #endif
->         call setup_trap_vector
->         tail smp_callin
-> @@ -329,7 +330,7 @@ clear_bss_done:
->  #ifdef CONFIG_MMU
->         la a0, early_pg_dir
->         XIP_FIXUP_OFFSET a0
-> -       call relocate
-> +       call relocate_enable_mmu
->  #endif /* CONFIG_MMU */
+> @@ -128,8 +129,11 @@ static int keyboard_led_probe(struct platform_device *pdev)
+>         int error;
 >
->         call setup_trap_vector
+>         drvdata = acpi_device_get_match_data(&pdev->dev);
+> -       if (!drvdata)
+> -               return -EINVAL;
+> +       if (!drvdata) {
+> +               drvdata = of_device_get_match_data(&pdev->dev);
+> +               if (!drvdata)
+> +                       return -EINVAL;
+> +       }
+
+I'm not familiar with this driver, so can't do a full review, but
+shouldn't device_get_match_data()
+from property.h [1] be able to handle both DT and ACPI cases?
+
+[1]: https://elixir.bootlin.com/linux/v5.17-rc4/source/include/linux/property.h
+
+>
+>         if (drvdata->init) {
+>                 error = drvdata->init(pdev);
+> @@ -161,10 +165,19 @@ static const struct acpi_device_id keyboard_led_acpi_match[] = {
+>  };
+>  MODULE_DEVICE_TABLE(acpi, keyboard_led_acpi_match);
+>
+> +static const struct of_device_id keyboard_led_of_match[] = {
+> +       {
+> +               .compatible = "google,cros-kbd-led-backlight",
+> +       },
+> +       {}
+> +};
+> +MODULE_DEVICE_TABLE(of, keyboard_led_of_match);
+> +
+>  static struct platform_driver keyboard_led_driver = {
+>         .driver         = {
+>                 .name   = "chromeos-keyboard-leds",
+>                 .acpi_match_table = ACPI_PTR(keyboard_led_acpi_match),
+> +               .of_match_table = of_match_ptr(keyboard_led_of_match),
+>         },
+>         .probe          = keyboard_led_probe,
+>  };
 > --
-> 2.25.1
+> 2.35.1.265.g69c8d7142f-goog
 >
-
-
-
-Reviewed-by: Atish Patra <atishp@rivosinc.com>
-
---
-Regards,
-Atish
+>
