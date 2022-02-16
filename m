@@ -2,262 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EBE64B7C10
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 01:48:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B8DF4B7C22
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 01:56:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245118AbiBPAsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 19:48:23 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44722 "EHLO
+        id S243059AbiBPAu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 19:50:57 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232906AbiBPAsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 19:48:22 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25C409A4FF
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 16:48:11 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id p9so902570ejd.6
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 16:48:11 -0800 (PST)
+        with ESMTP id S245135AbiBPAu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 19:50:57 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A937F94FF
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 16:50:45 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id v186so1333305ybg.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 16:50:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        d=atishpatra.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=/cjwcsK2Z/wcbTt8K+I1i/+ouqYtEz0ERgthhiM1bOw=;
-        b=ARFSImXFCQU7/86E2XEtKSq0CRE6B9dQEi7undLJSyzlYLOiNOSeups5uVdSomKsjm
-         yKkc4SeiPWzHEIVxAqaIVbJE87nRFD5s9LKNDTGUOEovpcK0eQsgzCLHhuLlK4vCws2v
-         gIXKvTseMn6IDNJXZyCvhJrpvj0qj8Mq5diNMBSHWLO6CKhu9jy9OIhlqOEwKw4sY79N
-         7NW+i18IXQp5l8j4+ThTcXzwApbAnModzuz6E74E4u7eus4xB0Qdb/ZQ4+HNk2KBbzHj
-         fGX/MGyS5s4ccIT+YM7yAIIz2+oHTFLmR4MI5URnNO9jMdcAp5p30tATbGT+4mNCxyEj
-         CBkQ==
+         :cc;
+        bh=18yu/FZC6YEfqqlag7jyriW5vrB8+cTbyqFvDzZCLG8=;
+        b=m5LQ24g7yrUGMPrnK27dqe7h8K7PMML+kc3AYdjuLbCttuSnZSjrFawQgnI8h8+h1l
+         QHs3tnwESiGMBTpQjgxnWPdVydoP9FV7bIXyTkN6uNw1Pzl53BKxnOwqjHf0jDfFwkyK
+         kLObIYhW7r6uO/+vuUqzoiBQF6D0T2vJp00PU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=/cjwcsK2Z/wcbTt8K+I1i/+ouqYtEz0ERgthhiM1bOw=;
-        b=ffVrLW9uKvcqzPdov78VohhS9lkQgPJll7+iufZN1DJUgjiaWBHsyaVUM90XIr+jCA
-         PBy7NVSVdRTj5dCN7ei7xLtiaFox/iIRodAlQpCgCPYaZU38DywHo6ibjpUqHbFh0a1c
-         mWePLhWuaOmnrTs0dA4ZTmDv5SBH1IIOneGiupyzbn5S4UzFoauzDKDEhI5By3OhykRE
-         TVdqdl+brPhMUpk4DHQJLH6Imv+zz3tsW3lIY8u0vp6KeUPSDOCDOdED7Rw8vwX/LBsM
-         0PboQ/vohh7vCHrPxWihnwMT2Fomnd4Z8FzJxBB7+jtkDOvP3zHe9yhXaz0jx4XoVG3j
-         42Jw==
-X-Gm-Message-State: AOAM531mg94Xy+m9+7Ih3Jqs3lbmFCf+65gnxXvP7UhGS9KOb0w5beaj
-        6ggYMCKiJZofZVSDekUVrJEw74kZcopfFa3Q5hGWvFJ84HrTKbeP
-X-Google-Smtp-Source: ABdhPJzu47NdUWSghRxixl+1E5UFiDId7J8+nY7TooqKzmlDusTv/KjWmcYYzJCPLw9xnOq5lNA87RPlJ5Vx4dKClxE=
-X-Received: by 2002:a17:906:1995:b0:6ce:6b78:f9ec with SMTP id
- g21-20020a170906199500b006ce6b78f9ecmr392593ejd.459.1644972489613; Tue, 15
- Feb 2022 16:48:09 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=18yu/FZC6YEfqqlag7jyriW5vrB8+cTbyqFvDzZCLG8=;
+        b=5vIkFIKD7h+yY2mWawhONNk40OEtGu4T3bJwtOiL10FxWm32+jM/Pe3gPGV+Lw1oeq
+         GYZROojauw+MWFmiRxYqLAnUcjbfjYppOQ0Fp5zM199h6IisFppaCmIIuTFXO+dBJLhk
+         bUX95ApO3eCSbJlaq2ZTrOt1iziw3r1vYhBBBEl3VJcXYpaVYeb7Vy2adiXfFf54SmF0
+         B5eUF4t8QeKs7bRb9RpZkebCDrB+LaifajiW4AprCk3OqQXvGzP/1/SPoOwV75kxkpF6
+         YsYiUZDF3mbxQFTRV8F3UsDVzhBzaf4Chq786grZzxcyZh8fwxd3oUiF5GogkCPdlf1s
+         nVog==
+X-Gm-Message-State: AOAM532ZZnGHFxG0/2J1dZPMRDA34ucbgN7tyvLE3g1e5C7XSqzi2Fl+
+        yJ/bZWjQ3tSlIt4aab14ZonPVlEciXZTNOs56R5/
+X-Google-Smtp-Source: ABdhPJx67wiA2c7TRCt7KLNgmAukw1N2cuPI35FME1jEWpQi813t8VWMQWQ8NWmSSyx+WjEjM8rWelbT5PIMS9p4jHE=
+X-Received: by 2002:a25:9388:0:b0:61d:6ff8:6472 with SMTP id
+ a8-20020a259388000000b0061d6ff86472mr194270ybm.121.1644972644540; Tue, 15 Feb
+ 2022 16:50:44 -0800 (PST)
 MIME-Version: 1.0
-References: <20220210214018.55739-1-atishp@rivosinc.com> <CAHBxVyGSB-LjTEwLXrw_UKn+VB56k6GtH7P8hMvU7qB530PqEA@mail.gmail.com>
- <3135135.4LZR2ihtLn@diego> <5047719.XZAooIIPeM@diego>
-In-Reply-To: <5047719.XZAooIIPeM@diego>
-From:   Atish Kumar Patra <atishp@rivosinc.com>
-Date:   Tue, 15 Feb 2022 16:47:58 -0800
-Message-ID: <CAHBxVyGQUPvo7cC3QMUM275Qti5OvnmWod3JT=JB6=Oxx3HrHQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] RISC-V: Implement multi-letter ISA extension
- probing framework
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc:     Atish Patra <atishp@atishpatra.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+References: <20220210054947.170134-1-apatel@ventanamicro.com> <20220210054947.170134-2-apatel@ventanamicro.com>
+In-Reply-To: <20220210054947.170134-2-apatel@ventanamicro.com>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Tue, 15 Feb 2022 16:50:33 -0800
+Message-ID: <CAOnJCUKyzY_DNWqm32so0MOBcii1QCfF4KTq35Y06erALNx8Ug@mail.gmail.com>
+Subject: Re: [PATCH v11 1/8] RISC-V: Enable CPU_IDLE drivers
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        Anup Patel <anup@brainfault.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        kvm-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 15, 2022 at 1:50 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+On Wed, Feb 9, 2022 at 9:50 PM Anup Patel <apatel@ventanamicro.com> wrote:
 >
-> Am Dienstag, 15. Februar 2022, 10:48:16 CET schrieb Heiko St=C3=BCbner:
-> > Am Dienstag, 15. Februar 2022, 10:12:53 CET schrieb Atish Kumar Patra:
-> > > On Mon, Feb 14, 2022 at 3:22 PM Atish Kumar Patra <atishp@rivosinc.co=
-m> wrote:
-> > > >
-> > > > On Mon, Feb 14, 2022 at 2:22 PM Heiko St=C3=BCbner <heiko@sntech.de=
-> wrote:
-> > > > >
-> > > > > Am Montag, 14. Februar 2022, 21:42:32 CET schrieb Atish Patra:
-> > > > > > On Mon, Feb 14, 2022 at 12:24 PM Heiko St=C3=BCbner <heiko@snte=
-ch.de> wrote:
-> > > > > > >
-> > > > > > > Am Montag, 14. Februar 2022, 21:14:13 CET schrieb Atish Patra=
-:
-> > > > > > > > On Mon, Feb 14, 2022 at 12:06 PM Heiko St=C3=BCbner <heiko@=
-sntech.de> wrote:
-> > > > > > > > >
-> > > > > > > > > Am Donnerstag, 10. Februar 2022, 22:40:16 CET schrieb Ati=
-sh Patra:
-> > > > > > > > > > Multi-letter extensions can be probed using exising
-> > > > > > > > > > riscv_isa_extension_available API now. It doesn't suppo=
-rt versioning
-> > > > > > > > > > right now as there is no use case for it.
-> > > > > > > > > > Individual extension specific implementation will be ad=
-ded during
-> > > > > > > > > > each extension support.
-> > > > > > > > > >
-> > > > > > > > > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> > > > > > > > >
-> > > > > > > > > Tested-by: Heiko Stuebner <heiko@sntech.de>
-> > > > > > > > >
-> > > > > > > > >
-> > > > > > > > > By the way, does a similar parsing exist for opensbi as w=
-ell?
-> > > > > > > > > Things like svpbmt as well as zicbom have CSR bits contro=
-lling how
-> > > > > > > > > these functions should behave (enabling them, etc), so I =
-guess
-> > > > > > > > > opensbi also needs to parse the extensions from the ISA s=
-tring?
-> > > > > > > > >
-> > > > > > > > >
-> > > > > > > >
-> > > > > > > > No. Currently, OpenSBI relies on the CSR read/write & trap =
-method to
-> > > > > > > > identify the extensions [1].
-> > > > > > > >
-> > > > > > > > https://github.com/riscv-software-src/opensbi/blob/master/l=
-ib/sbi/sbi_hart.c#L404
-> > > > > > >
-> > > > > > > I guess my question is more, who is supposed to set CBIE, CBC=
-FE bits in the
-> > > > > > > ENVCFG CSR. I.e. at it's default settings CMO instructions wi=
-ll cause
-> > > > > > > illegal instructions until the level above does allow them.
-> > > > > > >
-> > > > > > > When the kernel wants to call a cache-invalidate, from my rea=
-ding menvcfg
-> > > > > > > needs to be modified accordingly - which would fall in SBI's =
-court?
-> > > > > > >
-> > > > > >
-> > > > > > I think so. I had the same question for the SSTC extension as w=
-ell.
-> > > > > > This is what I currently do:
-> > > > > >
-> > > > > > 1. Detect menvcfg first, detect stimecmp
-> > > > > > 2. Enable SSTC feature only if both are available
-> > > > > > 3. Set the STCE bit in menvcfg if SSTC is available
-> > > > > >
-> > > > > > Here is the patch
-> > > > > > https://github.com/atishp04/opensbi/commit/e6b185821e8302bffdce=
-b4633b413252e0de4889
-> > > > >
-> > > > > Hmm, the CBO fields are defined as WARL (write any, read legal),
-> > > > > so I guess some sort of trap won't work here.
-> > > > >
-> > > >
-> > > > Correct. Traps for extensions that introduce new CSRs.
-> > > > I was suggesting setting the corresponding bits in MENVCFG and read=
-ing
-> > > > it again to check if it sticks.
-> > > >
-> > > > > The priv-spec only points to the cmo-spec for these bits and the =
-cmo-spec
-> > > > > does not specifiy what the value should be when cmo is not presen=
-t.
-> > > > >
-> > > > >
-> > > > > > > > In the future, zicbom can be detected in the same manner. H=
-owever,
-> > > > > > > > svpbmt is a bit tricky as it doesn't
-> > > > > > > > define any new CSR. Do you think OpenSBI needs to detect sv=
-pbmt for any reason ?
-> > > > > > >
-> > > > > > > There is the PBMTE bit in MENVCFG, which I found while lookin=
-g through the
-> > > > > > > zicbom-parts, which is supposed to "control wheter svpbmt is =
-available for
-> > > > > > > use". So I guess the question is the same as above :-)
-> > > > > > >
-> > > > > >
-> > > > > > PBMTE bit in MENVCFG says if PBMTE bit is available or not. Ope=
-nSBI
-> > > > > > needs other way to
-> > > > > > detect if PBMTE is available.
-> > > > > >
-> > > > > > That's why, I think MENVCFG should be set correctly by the hard=
-ware
-> > > > > > upon reset. What do you think
-> > > > > > about that ? I couldn't find anything related to the reset stat=
-e for menvcfg.
-> > > > >
-> > > > > me neither. Both the priv-spec as well as the cmobase spec do not
-> > > > > specifiy any reset-values it seems.
-> > > > >
-> > > > I have raised an issue in the ISA spec.
-> > > > https://github.com/riscv/riscv-isa-manual/issues/820
-> > > >
-> > > > > So I guess in the Qemu case, Qemu needs to set that bit when
-> > > > > its svpbmt extension is enabled?
-> > > > >
-> > > >
-> > > > We can do that if the priv spec is modified to allow that.
-> > > >
-> > >
-> > > As per Greg's response, hardware is not expected to do that.
-> > > So we have to dynamically detect the extensions in OpenSBI and write =
-to menvcfg.
+> From: Anup Patel <anup.patel@wdc.com>
 >
-> Doesn't SBI also get the devicetree and could therefore parse
-> the ISA string for extensions? Might be less volatile and would
-> have both Kernel and SBI do the same thing for detection.
+> We force select CPU_PM and provide asm/cpuidle.h so that we can
+> use CPU IDLE drivers for Linux RISC-V kernel.
+>
+> Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> Signed-off-by: Anup Patel <apatel@vetanamicro.com>
+> Reviewed-by: Guo Ren <guoren@kernel.org>
+> ---
+>  arch/riscv/Kconfig                |  7 +++++++
+>  arch/riscv/configs/defconfig      |  1 +
+>  arch/riscv/configs/rv32_defconfig |  1 +
+>  arch/riscv/include/asm/cpuidle.h  | 24 ++++++++++++++++++++++++
+>  arch/riscv/kernel/process.c       |  3 ++-
+>  5 files changed, 35 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/riscv/include/asm/cpuidle.h
+>
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 5adcbd9b5e88..76976d12b463 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -46,6 +46,7 @@ config RISCV
+>         select CLONE_BACKWARDS
+>         select CLINT_TIMER if !MMU
+>         select COMMON_CLK
+> +       select CPU_PM if CPU_IDLE
+>         select EDAC_SUPPORT
+>         select GENERIC_ARCH_TOPOLOGY if SMP
+>         select GENERIC_ATOMIC64 if !64BIT
+> @@ -547,4 +548,10 @@ source "kernel/power/Kconfig"
+>
+>  endmenu
+>
+> +menu "CPU Power Management"
+> +
+> +source "drivers/cpuidle/Kconfig"
+> +
+> +endmenu
+> +
+>  source "arch/riscv/kvm/Kconfig"
+> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+> index f120fcc43d0a..a5e0482a4969 100644
+> --- a/arch/riscv/configs/defconfig
+> +++ b/arch/riscv/configs/defconfig
+> @@ -20,6 +20,7 @@ CONFIG_SOC_SIFIVE=y
+>  CONFIG_SOC_VIRT=y
+>  CONFIG_SMP=y
+>  CONFIG_HOTPLUG_CPU=y
+> +CONFIG_CPU_IDLE=y
+>  CONFIG_VIRTUALIZATION=y
+>  CONFIG_KVM=m
+>  CONFIG_JUMP_LABEL=y
+> diff --git a/arch/riscv/configs/rv32_defconfig b/arch/riscv/configs/rv32_defconfig
+> index 8b56a7f1eb06..d1b87db54d68 100644
+> --- a/arch/riscv/configs/rv32_defconfig
+> +++ b/arch/riscv/configs/rv32_defconfig
+> @@ -20,6 +20,7 @@ CONFIG_SOC_VIRT=y
+>  CONFIG_ARCH_RV32I=y
+>  CONFIG_SMP=y
+>  CONFIG_HOTPLUG_CPU=y
+> +CONFIG_CPU_IDLE=y
+>  CONFIG_VIRTUALIZATION=y
+>  CONFIG_KVM=m
+>  CONFIG_JUMP_LABEL=y
+> diff --git a/arch/riscv/include/asm/cpuidle.h b/arch/riscv/include/asm/cpuidle.h
+> new file mode 100644
+> index 000000000000..71fdc607d4bc
+> --- /dev/null
+> +++ b/arch/riscv/include/asm/cpuidle.h
+> @@ -0,0 +1,24 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2021 Allwinner Ltd
+> + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
+> + */
+> +
+> +#ifndef _ASM_RISCV_CPUIDLE_H
+> +#define _ASM_RISCV_CPUIDLE_H
+> +
+> +#include <asm/barrier.h>
+> +#include <asm/processor.h>
+> +
+> +static inline void cpu_do_idle(void)
+> +{
+> +       /*
+> +        * Add mb() here to ensure that all
+> +        * IO/MEM accesses are completed prior
+> +        * to entering WFI.
+> +        */
+> +       mb();
+> +       wait_for_interrupt();
+> +}
+> +
+> +#endif
+> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+> index 03ac3aa611f5..504b496787aa 100644
+> --- a/arch/riscv/kernel/process.c
+> +++ b/arch/riscv/kernel/process.c
+> @@ -23,6 +23,7 @@
+>  #include <asm/string.h>
+>  #include <asm/switch_to.h>
+>  #include <asm/thread_info.h>
+> +#include <asm/cpuidle.h>
+>
+>  register unsigned long gp_in_global __asm__("gp");
+>
+> @@ -37,7 +38,7 @@ extern asmlinkage void ret_from_kernel_thread(void);
+>
+>  void arch_cpu_idle(void)
+>  {
+> -       wait_for_interrupt();
+> +       cpu_do_idle();
+>         raw_local_irq_enable();
+>  }
+>
+> --
+> 2.25.1
 >
 
-It does. But the later stage boot loader can replace the DT as well. A
-incorrect DT passed to OpenSBI may
-lead to crash the system but that's probably okay because the
-"riscv,isa" properties shouldn't be incorrect at the first place.
-We can set the hart features based on DT parsing as well (similar to
-Linux kernel)
-
-I suggested the earlier method because that infra already exists in
-OpenSBI and will
-continue to exist because not all hart features are ISA extensions.
-
-So we can leverage that or add dt parsing as well. I am fine with
-either approach.
-
->
-> > > I am not sure what needs to be done for CBIE bits as it both flush(01=
-)
-> > > or invalidate(11) are valid values
-> >
-> > From looking at the security remark in the cmo-spec, I guess flush woul=
-d be
-> > the appropriate thing to do?
-> >
-
-Looks like that. But how does a supervisor/usermode use the invalidate
-functionality ?
-
-> > "Until a modified cache block has updated memory, a CBO.INVAL instructi=
-on may expose stale data values
-> > in memory if the CSRs are programmed to perform an invalidate operation=
-. This behavior may result in a
-> > security hole if lower privileged level software performs an invalidate=
- operation and accesses sensitive
-> > information in memory."
-> >
-> > But also do we actually _want_ to enable cmo always ... Greg was talkin=
-g
-> > about backwards compatiblity in his response as well.
-> >
+Reviewed-by: Atish Patra <atishp@rivosinc.com>
 
 
-
->
->
->
->
+-- 
+Regards,
+Atish
