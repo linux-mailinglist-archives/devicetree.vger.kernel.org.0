@@ -2,67 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E95694B8BDA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 15:55:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 784264B8C25
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 16:12:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235240AbiBPO4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 09:56:00 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58826 "EHLO
+        id S233655AbiBPPMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 10:12:36 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235247AbiBPO4A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 09:56:00 -0500
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 127FF1F6B9C
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 06:55:47 -0800 (PST)
-Received: by mail-vs1-f52.google.com with SMTP id m24so2714422vsp.7
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 06:55:47 -0800 (PST)
+        with ESMTP id S232938AbiBPPMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 10:12:35 -0500
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E5425E89;
+        Wed, 16 Feb 2022 07:12:23 -0800 (PST)
+Received: by mail-oo1-xc30.google.com with SMTP id s203-20020a4a3bd4000000b003191c2dcbe8so2784030oos.9;
+        Wed, 16 Feb 2022 07:12:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:content-language:to
+         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=8EagOatwpnloVBLpvuiKwC6cqbSfSGAyVDbY82VfmWY=;
+        b=jMVJG6jmB956M6R2glFKs7DuDGfAEIwnDxhZnoKiWbN8B5UtumCOqFPrqlRtMkD0hM
+         5ofS1qBPXRvdPdBL3uBDr5BHI0q31ncP7fr3ka1gzZecIcIS8o6f+xW5nma18gR7TIsV
+         FnCpn1czuwMDEIWDEL3+3/BxPIvWOpkG5KEgmodBzqlBT4zlsGUcB3lKIXE42VoGaDC7
+         uouj2+tF00W/LJ1eC/WXF12DJJ7WKQAnQmuiYR3QLdddl+BU+U3sm2Vm88+t8aSyYDpi
+         3obsm1gNbaS1NwK+rfUPV65680+TNuEsqWBOk6SfAF3qzkl2BPYx54gD52QKw1EKfP0I
+         Xd6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=db1zGnn2dNN59CUj5k0yh9BvTpVEDDMbHLAbbVnkYC8=;
-        b=nnMn4s9XdSroVEsyoGlkezz6kAt1EiNzcP7BuamQs/kZpvYmjdY6ohDDi6Km4L0SQ6
-         rvg3b/CKxIlEDa6V5OVIoxt+0lDzlZq1r4M5Zyhz8NefSUkh6ksusBRCzVPRvX3DHxaQ
-         VegOQ+FB0NHQg5HkpXfi1qsLokp7woBWSrlQmEzI8i1nbEECcHbD92ySizZrsqVRhL0B
-         /FpoqNXnbJKy5AVIrSh9/J7AmT0BEeCSktinJarjWXqT1Fu7s8vEU5iKcG4xWXVNMYr8
-         vBx7mqXeYxEkRWFhbpwz3/bQ3QzuAnY5paGRIy9rVMpLc+iG3jqNamSE3Xp31fpIqcp/
-         inpg==
-X-Gm-Message-State: AOAM532EXqRTIqrwwWDqfrekjEiewo1c7TIjpZj1cjndDJRYo0TyWm6y
-        F6JILhiGyhxES6ytNaxTKaSoFw5KO0HB5w==
-X-Google-Smtp-Source: ABdhPJxLVvl9fsyfgGFXWjEI9OJyNu/su217k6xVpwKLlpg2xa9CcuXGT+xRRN8/bviSDaRVodiTwQ==
-X-Received: by 2002:a67:d11c:0:b0:31b:dd54:bf20 with SMTP id u28-20020a67d11c000000b0031bdd54bf20mr160270vsi.37.1645023346852;
-        Wed, 16 Feb 2022 06:55:46 -0800 (PST)
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com. [209.85.221.169])
-        by smtp.gmail.com with ESMTPSA id c20sm1256707vsl.26.2022.02.16.06.55.46
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=8EagOatwpnloVBLpvuiKwC6cqbSfSGAyVDbY82VfmWY=;
+        b=NfEJ1Q8VVQ5LwC0uCDxbwZ0cfyzkOOv/0FdB4ovMkY32sA9d2GCfQv8FoujcVkO4qf
+         h33RDTt8Ewmh9ajfVzw+2jn8NkZg1CQ3SPBVWuNIqRPOaStM5CkaKoJK+NSzZHkmtBtt
+         xC7c136lvym52c2Fz8E/LmlehBN0XOjlcm3aZPX6TXCdQ5GhppcMU3IaqftgwD51/EbH
+         7+4V5HS1+VF9WL/a8oho6c/qKXfYGUQEDeNCqqvW0K4yg4uZKYc2OqTaqK1X984mUBOx
+         HuCg02aAOv6BtdjdNuE12lfUH6Du7EcnTVtPqGQY/QF6kBQZ9VqFh2T9V2ScvXD6jX2v
+         60gQ==
+X-Gm-Message-State: AOAM532dpQMCIEavnIMDoGcvsgDdLmHnExM2SWtAvVtpTQHeUrzbNEuc
+        whFJt4LJ8yfjLrJHpjMOWKk=
+X-Google-Smtp-Source: ABdhPJw48DZ1orM9cbn6ZFn7AiWfOVbGIy7a36NIzJQkXx0dVyF5qE8kcJHqasvZEJe8HaZY0eeQZw==
+X-Received: by 2002:a05:6870:41d4:b0:d1:2682:277c with SMTP id z20-20020a05687041d400b000d12682277cmr632495oac.206.1645024342369;
+        Wed, 16 Feb 2022 07:12:22 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id e11sm2245139oiw.3.2022.02.16.07.12.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Feb 2022 06:55:46 -0800 (PST)
-Received: by mail-vk1-f169.google.com with SMTP id k15so1351126vkn.13
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 06:55:46 -0800 (PST)
-X-Received: by 2002:a05:6122:8c7:b0:32d:7e3:96c8 with SMTP id
- 7-20020a05612208c700b0032d07e396c8mr1302556vkg.7.1645023346219; Wed, 16 Feb
- 2022 06:55:46 -0800 (PST)
+        Wed, 16 Feb 2022 07:12:21 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <130a9cbe-ee0c-1908-1d62-0f3c674ca648@roeck-us.net>
+Date:   Wed, 16 Feb 2022 07:12:19 -0800
 MIME-Version: 1.0
-References: <f6d1ea27e8b8dc47fbe849661cc5a843bc2f1ba5.1645017656.git.geert+renesas@glider.be>
- <20220216143926.t3dadlsjtkotkv6o@bogus>
-In-Reply-To: <20220216143926.t3dadlsjtkotkv6o@bogus>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 16 Feb 2022 15:55:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV6yWSAx3uNcjqmq-p90sVykZAzSHPt5EONzVkdTj1vvQ@mail.gmail.com>
-Message-ID: <CAMuHMdV6yWSAx3uNcjqmq-p90sVykZAzSHPt5EONzVkdTj1vvQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: firmware: arm,scpi: Add missing maxItems to
- shmem property
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Cristian Marussi <cristian.marussi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     Agathe Porte <agathe.porte@nokia.com>, linux-hwmon@vger.kernel.org
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Adamski <krzysztof.adamski@nokia.com>
+References: <20220216070720.2131761-1-linux@roeck-us.net>
+ <20220216070720.2131761-2-linux@roeck-us.net>
+ <2f7780b8-ce67-6cd6-4097-d8113f557444@nokia.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v3 2/2] hwmon: Add driver for Texas Instruments TMP464 and
+ TMP468
+In-Reply-To: <2f7780b8-ce67-6cd6-4097-d8113f557444@nokia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,54 +79,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
+On 2/16/22 04:42, Agathe Porte wrote:
+> Hi Guenter,
+> 
+> Le 16/02/2022 à 08:07, Guenter Roeck a écrit :
+>> Add support for Texas Instruments TMP464 and TMP468 temperature sensor
+>> ICs.
+>>
+>> TI's TMP464 is an I2C temperature sensor chip. This chip is
+>> similar to TI's TMP421 chip, but with 16bit-wide registers (instead
+>> of 8bit-wide registers). The chip has one local sensor and four
+>> remote sensors. TMP468 is similar to TMP464 but has one local and
+>> eight remote sensors.
+>>
+>> Originally-from: Agathe Porte <agathe.porte@nokia.com>
+>> Cc: Agathe Porte <agathe.porte@nokia.com>
+>> Cc: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+>> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+>> ---
+>> v3:
+>> - Added support for TMP468
+>> - Added support for various limits, temperature hysteresis, alarm attributes,
+>>    and update interval
+>> - Use regmap instead of local caching
+>> - Use static chip configuration
+>> - Unlock check if needed when loading driver, and lock it when unloading it
+>>    - Call tmp464_init_client() before calling tmp464_probe_from_dt()
+>>      since the latter changes registers, which requires the chip to be
+>>      unlocked.
+>> - Restore configuration register when unloading driver
+>> - ti,n-factor is optional, so don't fail if the property is not present
+>>
+>> Notes:
+>> - Tested with real TMP468. Module tested for TMP464.
+>> - I was not able to test with a system supporting devicetree;
+>>    especially negative values for "ti,n-factor" need testing
+>>    (and I wonder if of_property_read_s8() would be needed to
+>>     support this properly).
+> 
+> I just did the test on our system and both positive and negative value n-factor fails.
+> 
+> With the following overlay:
+> 
+> /dts-v1/;
+> /plugin/;
+> / {
+>          fragment@0 {
+>                  target-path = "/soc/.../i2c@4/tmp464@49";
+>                  __overlay__ {
+>                          #address-cells = <1>;
+>                          #size-cells = <0>;
+> 
+>                          channel@0 {
+>                                  reg = <0x0>;
+>                                  label = "local";
+>                                  ti,n-factor = /bits/ 8 <(-10)>;
+>                          };
+> 
+>                          channel@1 {
+>                                  reg = <0x1>;
+>                                  label = "ch1";
+>                          };
+> 
+>                          channel@2 {
+>                                  reg = <0x2>;
+>                                  label = "ch2";
+>                          };
+> 
+>                          channel@3 {
+>                                  reg = <0x3>;
+>                                  label = "ch3";
+>                          };
+> 
+>                          channel@4 {
+>                                  reg = <0x4>;
+>                                  label = "ch4";
+>                          };
+>                  };
+>          };
+> 
+> };
+> 
+> I get the following probing error:
+> 
+> [ 3580.557425] tmp464: probe of 16-0049 failed with error -75
+> 
 
-On Wed, Feb 16, 2022 at 3:40 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> On Wed, Feb 16, 2022 at 02:21:43PM +0100, Geert Uytterhoeven wrote:
-> > "make dt_binding_check":
-> >
-> >     Documentation/devicetree/bindings/firmware/arm,scpi.example.dt.yaml: scpi: shmem: [[2], [1]] is too long
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > Exposed by commit 39bd2b6a3783b899 ("dt-bindings: Improve phandle-array
-> > schemas").
->
-> Interesting !
->
-> > ---
-> >  Documentation/devicetree/bindings/firmware/arm,scpi.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
-> > index 800417a76bda0bd9..3735f221fdf24e0a 100644
-> > --- a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
-> > +++ b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
-> > @@ -51,6 +51,7 @@ properties:
-> >        be any memory reserved for the purpose of this communication between the
-> >        processors.
-> >      minItems: 1
-> > +    maxItems: 2
-> >
->
-> There is no max limit strictly speaking. The driver can use all the specified
-> mboxes and associated shmem in round robin fashion. That is the reason I
-> didn't add maxItems unlike the newer SCMI protocol which clearly restricts
-> to one Tx and one Rx(much saner I must admit).
+I think that may be caused by using of_property_read_s32() for reading
+an 8-bit property. Can you try and replace of_property_read_s32()
+with of_property_read_u8() and the variable it points to to s8 ?
 
-In the absence of maxItems, the validator assumes it is equal to minItems,
-so we do need a sensible maxItems value here.
-Any suggestions? 16? 64?
+	s8 val;
+	...
+	err = of_property_read_u8(child, "ti,n-factor", &val);
 
-Thanks!
+There is no of_property_read_s8(), so we can not use that,
+but maybe using of_property_read_u8() does the trick.
 
-Gr{oetje,eeting}s,
+Thanks,
+Guenter
 
-                        Geert
+> With a positive n-factor in the overlay (<(10)> instead of <(-10)>), the driver *does not load either*, with the same error message.
+> 
+> Without any n-factor set, the v3 driver you proposed loads just fine with the DT.
+> 
+> Any idea of where this could come from? This was probably not working in my own implementation either.
+> 
+> PS: check your spam folder eventually for my mail asking delivery details of the TMP464 samples.
+> 
+> Bests,
+> 
+> Agathe.
+> 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
