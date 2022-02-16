@@ -2,87 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A88124B7E6A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 04:15:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3F604B7E9E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 04:49:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245517AbiBPC67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 21:58:59 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35470 "EHLO
+        id S1344215AbiBPDVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 22:21:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240388AbiBPC6w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 21:58:52 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE642BB29;
-        Tue, 15 Feb 2022 18:58:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1644980322; x=1676516322;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iRdJ0ff50RqMWLZhZC7oy82tRtOID/wxTQAFSPki4bM=;
-  b=j5TNk1ePXavRMSISqzHkRFTxOZ/kKu8KFEn+B2QfJwSUciwBOQr6aRg3
-   tBeZAdg3mKAczibBi5hYSdbiewiGNxLLPWzv5TNmuxRlvla9s2FmnGBKa
-   sSSF857hLwU6pKQgpy49x5kOatE518XGYh9xBjtXRQas2bFGKmwC8u1o0
-   I=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 15 Feb 2022 18:58:41 -0800
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2022 18:58:41 -0800
-Received: from hu-gurus-sd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 15 Feb 2022 18:58:40 -0800
-Date:   Tue, 15 Feb 2022 18:58:39 -0800
-From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
-To:     Satya Priya <quic_c_skakit@quicinc.com>
-CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S233625AbiBPDVw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 22:21:52 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BB411400F;
+        Tue, 15 Feb 2022 19:21:35 -0800 (PST)
+X-UUID: 3686b0aa786b4a78a5e0ac1dd57d9d1a-20220216
+X-UUID: 3686b0aa786b4a78a5e0ac1dd57d9d1a-20220216
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <guodong.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1363640122; Wed, 16 Feb 2022 11:21:31 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 16 Feb 2022 11:21:30 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 16 Feb
+ 2022 11:21:30 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 16 Feb 2022 11:21:29 +0800
+From:   Guodong Liu <guodong.liu@mediatek.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <quic_jprakash@quicinc.com>
-Subject: Re: [PATCH V6 3/6] mfd: pm8008: Add mfd cell struct to register LDOs
-Message-ID: <20220216025839.GA28938@hu-gurus-sd.qualcomm.com>
-References: <1644915231-7308-1-git-send-email-quic_c_skakit@quicinc.com>
- <1644915231-7308-4-git-send-email-quic_c_skakit@quicinc.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>
+CC:     Sean Wang <sean.wang@mediatek.com>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Guodong Liu <guodong.liu@mediatek.com>
+Subject: [PATCH v5 0/3] pinctrl: mediatek: Support pinctrl driver on mt8186
+Date:   Wed, 16 Feb 2022 11:21:21 +0800
+Message-ID: <20220216032124.28067-1-guodong.liu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1644915231-7308-4-git-send-email-quic_c_skakit@quicinc.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 15, 2022 at 02:23:48PM +0530, Satya Priya wrote:
->  static const struct of_device_id pm8008_match[] = {
-> -	{ .compatible = "qcom,pm8008", },
-> -	{ },
-> +	{ .compatible = "qcom,pm8008", .data = (void *)PM8008_INFRA},
-> +	{ .compatible = "qcom,pm8008-regulators", .data = (void *)PM8008_REGULATORS},
+changes since v4:
+- update mt8186 pull up RSEL type define value
+- update mt8186 pull up RSEL type si unit value(ohm)
+- update macro definition name
+- update mt8186 bias resistance selectio register description
 
-Typo perhaps: Please set the last element of this array to the sentinel value NULL.
-        {},
+changes since v3:
+- remove generic descriptions for common properties
+- remove quotes
+- drop "."
+- drop "-" on description
+- move partial "bias-pull-up" description info to the example
+- don't break the code into two lines, maximux 84 columns is fine
+- add the required fixes tag
 
->  };
-> +MODULE_DEVICE_TABLE(of, pm8008_match)
+changes since v2:
+- update reg property
+- update reg-names property
+- sync rsel resistance selection property same as patch 3
+- repair constraints is not indented correctly for bias-pull-{up,down}
+- add "type: boolean" to the list of valid values. This corresponds to having bias-pull-{up,down} without any arguments.
+- add dual file license for file "mt8186-pinfunc.h"
+- add patch 3 to change "mediatek,rsel_resistance_in_si_unit" to "mediatek,rsel-resistance-in-si-unit"
 
-Missing a semicolon at the end.
+changes since v1:
+- add default pinctrl config to consistent with other MTK pinctrl drivers
 
->  
->  static struct i2c_driver pm8008_mfd_driver = {
->  	.driver = {
+Patch 1 add pinctrl file and binding document.
+
+Patch 2 add pinctrl chip driver on mt8186.
+
+Patch 3 canonical rsel resistance selection property.
+
+Guodong Liu (3):
+  dt-bindings: pinctrl: mt8186: add pinctrl file and binding document
+  pinctrl: add pinctrl driver on mt8186
+  pinctrl: canonical rsel resistance selection property
+
+ .../bindings/pinctrl/pinctrl-mt8186.yaml      |  297 +++
+ drivers/pinctrl/mediatek/Kconfig              |    7 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt8186.c     | 1271 ++++++++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt8186.h | 2186 +++++++++++++++++
+ drivers/pinctrl/mediatek/pinctrl-paris.c      |    2 +-
+ include/dt-bindings/pinctrl/mt8186-pinfunc.h  | 1174 +++++++++
+ 7 files changed, 4937 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8186.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt8186.h
+ create mode 100644 include/dt-bindings/pinctrl/mt8186-pinfunc.h
+
+-- 
+2.25.1
+
