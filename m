@@ -2,134 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93AEB4B8D0E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 16:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E86234B8D24
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 17:01:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234115AbiBPP65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 10:58:57 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35812 "EHLO
+        id S232012AbiBPQBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 11:01:14 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233829AbiBPP65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 10:58:57 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB9262A39CB;
-        Wed, 16 Feb 2022 07:58:44 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6500161A7B;
-        Wed, 16 Feb 2022 15:58:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5CBFC004E1;
-        Wed, 16 Feb 2022 15:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645027123;
-        bh=x+vLuZ6qACLHw+sLfjBq8yrKs8jSFGmNBWNxitqLCPI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=YXq4+Cu5BTKJCAIYpl8Om38gt6TRAZ7RDgGJaLS6Ed4wLwUI6/rqjix65MqIt3oYq
-         h0dr21ioQtYJPnV2HPEqVE+kfvevipqUr+u6QWwNeMfKXqZDQroX1VbxvUUPm6wgEb
-         FC3MpjAx2aWhgSznoUcRbHg57d64FvnmKk2PEB/z4E6ZJyHYasfx/G9/fZEN9yV2qB
-         JOm/cob+gCNOpo3LadAbV69FJ1VtTRbA43KHUjnbzZKeMo7IXT5szCuaQ26YUBhY7+
-         4ZAghXPtr7m694iZugo9KqtffHovVoVT7ENkeAb5TIK+nHEXu++UJD9n2Q/FUS67ET
-         96GJBGCT7Uc6Q==
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nKMhV-008Mjp-Nm; Wed, 16 Feb 2022 15:58:41 +0000
+        with ESMTP id S231866AbiBPQBN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 11:01:13 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9862A2A797D;
+        Wed, 16 Feb 2022 08:00:59 -0800 (PST)
+Received: from mail-wm1-f41.google.com ([209.85.128.41]) by
+ mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MF2YC-1nVND72TaS-00FTOC; Wed, 16 Feb 2022 17:00:57 +0100
+Received: by mail-wm1-f41.google.com with SMTP id j9-20020a05600c190900b0037bff8a24ebso4078885wmq.4;
+        Wed, 16 Feb 2022 08:00:57 -0800 (PST)
+X-Gm-Message-State: AOAM530bMVy0vUFejYhe04jDZlXPh7tfRhhsSeuEKIGqyiYor+fy9QN9
+        3yOZ6Ic+qIc6yGyzKA+EGHe4/ojh4C5l+5HCYRA=
+X-Google-Smtp-Source: ABdhPJynoAxya4wFmgdnms1koLXV7kTRWWb6Nv7KnLWbKzdNWIAOdEAPUd2d50HQv+qDZHVfp/C/GrTxO6eYP671+Xg=
+X-Received: by 2002:a05:600c:1d27:b0:37c:74bb:2b4d with SMTP id
+ l39-20020a05600c1d2700b0037c74bb2b4dmr2278615wms.82.1645027256708; Wed, 16
+ Feb 2022 08:00:56 -0800 (PST)
 MIME-Version: 1.0
-Date:   Wed, 16 Feb 2022 15:58:41 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Shawn Guo <shawn.guo@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] cpuidle: psci: Call cpu_cluster_pm_enter() on the
- last CPU
-In-Reply-To: <20220216144937.znsba7zbdenl7427@bogus>
-References: <20220216132830.32490-1-shawn.guo@linaro.org>
- <20220216132830.32490-2-shawn.guo@linaro.org>
- <20220216144937.znsba7zbdenl7427@bogus>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <9bda65e5bb85b00eaca71d95ad78e93b@kernel.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: sudeep.holla@arm.com, shawn.guo@linaro.org, tglx@linutronix.de, quic_mkshah@quicinc.com, ulf.hansson@linaro.org, bjorn.andersson@linaro.org, lorenzo.pieralisi@arm.com, rafael@kernel.org, daniel.lezcano@linaro.org, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <nick.hawkins@hpe.com> <20220216153632.40981-1-nick.hawkins@hpe.com>
+In-Reply-To: <20220216153632.40981-1-nick.hawkins@hpe.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 16 Feb 2022 17:00:40 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0NmyxrzxgfwfDXuFvhmc3OL_-yBj8PDdEHh-2qm4NVkw@mail.gmail.com>
+Message-ID: <CAK8P3a0NmyxrzxgfwfDXuFvhmc3OL_-yBj8PDdEHh-2qm4NVkw@mail.gmail.com>
+Subject: Re: [PATCH] [v3] arch: arm: boot: dts: Create HPE GXP Device Tree
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:EMJdAVKLc4N1yMTu2eQdABxnav7GEg/oYQnkn7fIIvVf3cAE8zM
+ XpcEN8IPwJbl0ZT/VSLZYZujju2p+z9AMl994FKrs0iwNN+nXn14I+6sdZMk/queE4aZkBE
+ VZdMoyYTPAkcHNjoNb6zYkLA8i//JFjue9tJ9DPH37XyQ30DJMv3X4OSYJKoBrF4n8Kli19
+ X82jh9+zcBhnmdot3rknw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:9xZqbrBQB08=:wS+06g5uZJY0VzhUP0TZj8
+ wKPinOk8PeJsuh9AmBpRAPgoyPuGQKpApbTqN4dN5P6VYsECV3h9qxTlpkJPZozdFHfKfQeJC
+ 6cCNqtSuy3JuGKoVpVNET57EiFLZUyOtaW5L2y6MV5/PaI3lYh0PzDKSF2oocfLOMK5sL/5W0
+ xJ1mrAmkSp2r0T3BdrEfcoKxwCpWu2mG9ZLLIwhWWky4cQ0PiAC46pq0zaRkFdZuqfJuCqDYO
+ ZF394En7kdJEPW2l/qBOyQELtXrX4XVxRGTDzMNm4O+k4wCeZhrT5duhbhuWmJ7R/DHz3o3CF
+ mj57XZB/weJX7xnL4K0ZkkwKgGH3me0a2rilmEsspNucrzqvYKRHixDOd91FZN5GcXV6DaCKR
+ gXA9RXdCJy228siCkdwy6J8RDMQu3ecM05qN5ioc3UmhZ/WtBpPbstAc3RE/L1JwiY/mY25tM
+ g4EqA8U+8FiC2vmnW9035dh/pyqofKi/wolkg2klJCfWv9M3o6VDLw7C90YrQYLK5mfuKy5iU
+ Rghuj4VYk0iQsFfq6hFtSRC0HDMcGo0rpS1bm26wC/yeHV1tvGHwqEA4IKcBlY1ld6KWsfkZu
+ 90hAaFH9N5jqxi0rsYreyprjwj61BBqQNaJprBYkw2KZbgRbRX3gWDyMobZoeJbGqHYGsQE58
+ k6PEE+q9TtLiJue9zmMQu+Zty9a7e+LaJxoTSmOoUBmDNHQmaKKY01JkhW5XVWa//bpQ=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-16 14:49, Sudeep Holla wrote:
-> +Ulf (as you he is the author of cpuidle-psci-domains.c and can help 
-> you
-> with that if you require)
-> 
-> On Wed, Feb 16, 2022 at 09:28:28PM +0800, Shawn Guo wrote:
->> Make a call to cpu_cluster_pm_enter() on the last CPU going to low 
->> power
->> state (and cpu_cluster_pm_exit() on the firt CPU coming back), so that
->> platforms can be notified to set up hardware for getting into the 
->> cluster
->> low power state.
->> 
-> 
-> NACK. We are not getting the notion of CPU cluster back to cpuidle 
-> again.
-> That must die. Remember the cluster doesn't map to idle states 
-> especially
-> in the DSU systems where HMP CPUs are in the same cluster but can be in
-> different power domains.
-> 
-> You need to decide which PSCI CPU_SUSPEND mode you want to use first. 
-> If it is
-> Platform Co-ordinated(PC), then you need not notify anything to the 
-> platform.
-> Just request the desired idle state on each CPU and platform will take 
-> care
-> from there.
-> 
-> If for whatever reason you have chosen OS initiated mode(OSI), then 
-> specify
-> the PSCI power domains correctly in the DT which will make use of the
-> cpuidle-psci-domains and handle the so called "cluster" state 
-> correctly.
+On Wed, Feb 16, 2022 at 4:36 PM <nick.hawkins@hpe.com> wrote:
+>
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+>
+> Description: Originally this was of a larger patch
+> HPE BMC GXP SUPPORT that was rejected for being to big.
+> This is why the label v3 is being used.
+> This patch Create a basic device tree layout that
+>  will allow the HPE GXP to boot. The undocumented
+>  bindings hpe,gxp-wdt and hpe,gxp-timer are being
+>  documented in patches:
+>   [v1] dt-bindings: timer: Add HPE GXP Timer binding
+>   [v1] dt-bindings: watchdog: Add HPE GXP Watchdog timer binding
+>   [v1]dt-bindings: vendor-prefixes: add HPE Prefix
+>  that are currently out for review.
+> The dts file is largely empty for this initial patch but
+> follow up patches will add more content.
+>
+> Information: GXP is the name of the HPE SoC.
+>  This SoC is used to implement BMC features of HPE servers
+>   (all ProLiant, Synergy, and many Apollo, and Superdome machines)
+>    It does support many features including:
+>         ARMv7 architecture, and it is based on a Cortex A9 core
+>         Use an AXI bus to which
+>                 a memory controller is attached, as well as
+>                  multiple SPI interfaces to connect boot flash,
+>                  and ROM flash, a 10/100/1000 Mac engine which
+>                  supports SGMII (2 ports) and RMII
+>                 Multiple I2C engines to drive connectivity with a
+>                                  host infrastructure
+>                 A video engine which support VGA and DP, as well as
+>                  an hardware video encoder
+>                 Multiple PCIe ports
+>                 A PECI interface, and LPC eSPI
+>                 Multiple UART for debug purpose, and Virtual UART for
+>                  host connectivity
+>                 A GPIO engine.
 
-My understanding is that what Shawn is after is a way to detect the 
-"last
-man standing" on the system to kick off some funky wake-up controller 
-that
-really should be handled by the power controller (because only that guy
-knows for sure who is the last CPU on the block).
+Something happened to the linewrapping here.
 
-There was previously some really funky stuff (copy pasted from the 
-existing
-rpmh_rsc_cpu_pm_callback()), which I totally objected to having hidden 
-in
-an irqchip driver.
+>
+> +GXP ARM ARCHITECTURE
+> +M:     Nick Hawkins <nick.hawkins@hpe.com>
+> +M:     Jean-Marie <verdun@hpe.com>
 
-My ask was that if we needed such information, and assuming that it is
-possible to obtain it in a reliable way, this should come from the core
-code, and not be invented by random drivers.
+It looks like you are missing the family name here.
 
-Thanks,
+> +S:     Maintained
+> +F:     arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
+> +F:     arch/arm/boot/dts/hpe-gxp.dtsi
+> +
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+I would make a single entry for the platform with all the drivers here. Please
+keep the MAINTAINERS file patch separate from the devicetree patch though.
+
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 235ad559acb2..a96b4d5b7f68 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1549,3 +1549,5 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>         aspeed-bmc-vegman-n110.dtb \
+>         aspeed-bmc-vegman-rx20.dtb \
+>         aspeed-bmc-vegman-sx20.dtb
+> +dtb-$(CONFIG_ARCH_HPE_GXP) += \
+> +       hpe-bmc-dl360gen10.dtb
+
+This Kconfig symbol does not yet exist
+
+> diff --git a/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
+> new file mode 100644
+> index 000000000000..179de6945e3f
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
+> @@ -0,0 +1,27 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree file for HPE DL360Gen10
+> + */
+> +
+> +/include/ "hpe-gxp.dtsi"
+> +
+> +/ {
+> +       #address-cells = <1>;
+> +       #size-cells = <1>;
+> +       compatible = "hpe,gxp";
+
+No board specific compatible string? Also, this value is not
+documented anywhere.
+
+> +       model = "Hewlett Packard Enterprise ProLiant dl360 Gen10";
+
+> +               bootargs = "earlyprintk console=ttyS0,115200 user_debug=31";
+
+'earlyprintk' and 'user_debug' should not go into the .dts, set these from
+the boot loader when you are debugging.
+
+You probably want to add some aliases, to assign fixed numbers to
+the uart and mmc controller among other things.
+
+> +               timer0: timer@c0000080 {
+> +                       compatible = "hpe,gxp-timer";
+> +                       reg = <0xc0000080 0x1>, <0xc0000094 0x01>, <0xc0000088 0x08>;
+> +                       interrupts = <0>;
+> +                       interrupt-parent = <&vic0>;
+> +                       clock-frequency = <400000000>;
+> +               };
+> +
+> +               watchdog: watchdog@c0000090 {
+> +                       compatible = "hpe,gxp-wdt";
+> +                       reg = <0xc0000090 0x02>, <0xc0000096 0x01>;
+> +               };
+
+As mentioned in a previous review, it would be helpful to have the drivers
+and bindings together in the same series for easier review.
+
+> +               uartc: serial@c00000f0 {
+> +                       compatible = "ns16550a";
+> +                       reg = <0xc00000f0 0x8>;
+> +                       interrupts = <19>;
+> +                       interrupt-parent = <&vic0>;
+> +                       clock-frequency = <1846153>;
+> +                       reg-shift = <0>;
+> +               };
+> +
+> +               usb0: ehci@cefe0000 {
+> +                       compatible = "generic-ehci";
+> +                       reg = <0xcefe0000 0x100>;
+> +                       interrupts = <7>;
+> +                       interrupt-parent = <&vic0>;
+> +               };
+
+The ehci is almost never completely generic, I would recommend defining a
+SoC specific compatible string as well, so you can add quirks later if you
+find a problem. Having the generic string as a fallback is a good idea though,
+as that means you can just use the normal driver as long as there are no
+special requirements.
+
+To a lesser degree, the same is true for the uart.
+
+Please check the devicetree files in order to validate the bindings. In
+this case, you should get a warning about the 'ehci@' name being
+non-standard. The normal name is usb@
+
+> +               sram@d0000000 {
+> +                       compatible = "mtd-ram";
+> +                       reg = <0xd0000000 0x80000>;
+> +                       bank-width = <1>;
+> +                       erase-size =<1>;
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +                       partition@0 {
+> +                               label = "host-reserved";
+> +                               reg = <0x0 0x10000>;
+> +                       };
+> +                       partition@10000 {
+> +                               label = "nvram";
+> +                               reg = <0x10000 0x70000>;
+> +                       };
+> +               };
+
+What device is this exactly? The name indicates an sram, which would
+use the compatible="mmio-sram" binding instead of "mtd-ram", but then
+the partition has an "nvram" label that indicates that this is an nvmem
+type device. "mtd-ram" is probably not what you want though.
+
+> +
+> +               vrom@58000000 {
+> +                       compatible = "mtd-ram";
+
+Same thing here, "vrom" is clearly not a standard name.
+
+       Arnd
