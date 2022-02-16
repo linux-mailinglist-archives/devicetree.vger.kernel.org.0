@@ -2,108 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78AAA4B9339
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 22:35:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC1464B9409
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 23:51:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230428AbiBPVfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 16:35:13 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36272 "EHLO
+        id S237536AbiBPWwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 17:52:09 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbiBPVfN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 16:35:13 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 408E628B613
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 13:35:00 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B86C0D6E;
-        Wed, 16 Feb 2022 13:34:59 -0800 (PST)
-Received: from [10.57.40.147] (unknown [10.57.40.147])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 706D33F70D;
-        Wed, 16 Feb 2022 13:34:58 -0800 (PST)
-Message-ID: <4b88f0f1-7422-7beb-2f7a-563f1f4b3360@arm.com>
-Date:   Wed, 16 Feb 2022 21:34:52 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH] arm64: dts: rockchip: Correct clock-output-names for
- rk817
-Content-Language: en-GB
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        devicetree@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>
-Cc:     robh+dt@kernel.org, jon.lin@rock-chips.com,
-        linux-rockchip@lists.infradead.org,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20220216165837.4721-1-macroalpha82@gmail.com>
- <44462609.a43xROnmBz@diego>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <44462609.a43xROnmBz@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231648AbiBPWwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 17:52:09 -0500
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B98945AE7;
+        Wed, 16 Feb 2022 14:51:56 -0800 (PST)
+Received: by mail-io1-f53.google.com with SMTP id e79so1568808iof.13;
+        Wed, 16 Feb 2022 14:51:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=3r6h2sBdcW1kkCKh7UVq3dUjkuKu9ak2ZM+xBcxiBd0=;
+        b=PrjSbjFYBRZsSCFrFuV2l25GRfp9peqpmZ6iroyZ3V49mVfkkgr5bCMjHTz9pNjTuU
+         OB7AfsdusJQSXIrwTuOqQ8lXITNJw24kxDmiOSo3SPWQAlSfnQMzGi2rkknvzPwm598f
+         oF84/lW1G6ws1U/hS0ufWKY8mB9+aBFAqe031n7KAh6EaBydGQ2GlfK2QPaLAm99nYmK
+         prtiDmSGjYJSM7NT07smUG9HMvjWRRxgacq/J/w0BUCdBIPrzsaJD0WEAkcSCGdxLSNf
+         NC+OkX790A2uF+Fh1PX2CMOvBg2X5i/M81r6aY0vxH/Wqy/quL67bfjHfm89mO3xhAyb
+         +okg==
+X-Gm-Message-State: AOAM533ty24nQPm6kuyzRXDPxkmoFZ0BVnFdBfUXWVEiR7QS9wFOMyI5
+        xJGkf/2xwBVB7OVqW7na2w==
+X-Google-Smtp-Source: ABdhPJyhkxR5J8ILPyX1MmO7R0auSfTU9wY7qKGqq0W+NoKQgFqJrxA0ffZkJwTt3tb0CM71gtO84A==
+X-Received: by 2002:a05:6638:1241:b0:311:b694:ef58 with SMTP id o1-20020a056638124100b00311b694ef58mr70606jas.88.1645051915548;
+        Wed, 16 Feb 2022 14:51:55 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id i13sm762384ilv.58.2022.02.16.14.51.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Feb 2022 14:51:54 -0800 (PST)
+Received: (nullmailer pid 1825831 invoked by uid 1000);
+        Wed, 16 Feb 2022 22:51:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sergiu Moga <sergiu.moga@microchip.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        ludovic.desroches@microchip.com, linux-rtc@vger.kernel.org,
+        a.zummo@towertech.it, robh+dt@kernel.org,
+        nicolas.ferre@microchip.com, devicetree@vger.kernel.org,
+        alexandre.belloni@bootlin.com
+In-Reply-To: <20220215144649.14378-1-sergiu.moga@microchip.com>
+References: <20220215144649.14378-1-sergiu.moga@microchip.com>
+Subject: Re: [PATCH] dt-bindings: rtc: convert at91sam9 bindings to json-schema
+Date:   Wed, 16 Feb 2022 16:51:53 -0600
+Message-Id: <1645051913.059197.1825830.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-16 20:42, Heiko Stübner wrote:
-> Hi,
+On Tue, 15 Feb 2022 16:46:49 +0200, Sergiu Moga wrote:
+> Convert RTC binding for Atmel/Microchip SoCs to Device Tree Schema
+> format.
 > 
-> Am Mittwoch, 16. Februar 2022, 17:58:37 CET schrieb Chris Morgan:
->> From: Chris Morgan <macromorgan@hotmail.com>
->>
->> According to the datasheet for the rk817 there is only a single output
->> clock for the PMIC. I don't believe this is causing any harm though
->> and testing this change doesn't appear to have any noticeable effects.
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> ---
+>  .../bindings/rtc/atmel,at91sam9-rtc.txt       | 25 --------
+>  .../bindings/rtc/atmel,at91sam9-rtc.yaml      | 61 +++++++++++++++++++
+>  2 files changed, 61 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt
+>  create mode 100644 Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
 > 
-> hmm, looking at the go2's schematics, I'd disagree:
-> 
-> - yes, the rk817 has only one clock output
-> - but no, it is used for the clkout_32k signal, which gets piped back into
->    the SoC. As that clock dynamically appears at some unspecified point
->    when the rk817 probes, the clock controller expects it to be named
->    xin32k to bind into its clock-tree.
-> 
-> The driver (drivers/clk/clk-rk808.c) really puts that rk817-clk32k at
-> position 2 but I'm not sure if that simply papers over some implementation
 
-Indeed it appears to be a hangover from RK808 where CLK32KOUT1 is 
-always-on and CLK32KOUT2 is the switchable one. It's even more obvious 
-on RK805 which still shares the original control register layout.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Robin.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml:20:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml:22:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
-> 
-> 
-> Heiko
-> 
->> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
->> index ea0695b51ecd..5b23e607876e 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
->> @@ -296,7 +296,7 @@ rk817: pmic@20 {
->>   		reg = <0x20>;
->>   		interrupt-parent = <&gpio0>;
->>   		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
->> -		clock-output-names = "rk808-clkout1", "xin32k";
->> +		clock-output-names = "rk808-clkout1";
->>   		clock-names = "mclk";
->>   		clocks = <&cru SCLK_I2S1_OUT>;
->>   		pinctrl-names = "default";
->>
-> 
-> 
-> 
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.example.dt.yaml: rtt@fffffd20: $nodename:0: 'rtt@fffffd20' does not match '^rtc(@.*|-[0-9a-f])*$'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.example.dt.yaml: rtt@fffffd20: atmel,rtt-rtc-time-reg:0: [4294967295, 0] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1593106
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
