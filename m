@@ -2,262 +2,351 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 605684B8C2A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 16:13:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B98364B8C86
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 16:34:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235416AbiBPPNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 10:13:33 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59070 "EHLO
+        id S233987AbiBPPet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 10:34:49 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233779AbiBPPNc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 10:13:32 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C07822495C;
-        Wed, 16 Feb 2022 07:13:18 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 391461F4533A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645024396;
-        bh=ZdwDreTuYZ1OApOlrsy0Ywd+1miJltDsuK0Em6Pe28w=;
-        h=From:To:Cc:Subject:Date:From;
-        b=ciKEFCGia4x/X1pwF3ONQMHyF34tZMgVdNyrzojJU8RqlEmdet95xbeYObCPeMFo3
-         T4DmAzAYeMqDX9WNq/ivME0WwJNImP+aZOMGVmamaBlis13UG5yT9bsxIXTCPC2n1T
-         DJoA67AImYpncRvjLAltZjR1MnKJq0MK+NfPYUfCF5HLoQhko15Sl7Q6yycdaiNIsh
-         EXCIqu5+88aRa1sNfRn+YYqM6ju1fJjO6XCrzmV68tYZrlEhECBQLDPNcUELLVhnkY
-         ri6v/qD4pccDQ26Hc8EA2sJC14nK2SYnCqsAt0YNxfEHK1Q+4ZKQEgZNsIOvMKMJ31
-         ASzBBChotutCg==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     vkoul@kernel.org
-Cc:     krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
-        sean.wang@mediatek.com, matthias.bgg@gmail.com,
-        long.cheng@mediatek.com, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v2] dt-bindings: dma: Convert mtk-uart-apdma to DT schema
-Date:   Wed, 16 Feb 2022 16:13:09 +0100
-Message-Id: <20220216151309.289348-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.33.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233792AbiBPPes (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 10:34:48 -0500
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E40EB2722E7;
+        Wed, 16 Feb 2022 07:34:35 -0800 (PST)
+Received: from pps.filterd (m0134421.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21GFG9GJ026154;
+        Wed, 16 Feb 2022 15:34:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : in-reply-to : references; s=pps0720;
+ bh=C/vNlfnuxnBokMqtLqKU8eady2cxWqT7exgOoWwBDtk=;
+ b=mGuTBBsHkTIlfqWMd9Doo5aiY/k9BRcwB8x+THCFCn/TEPrU0tKjSKkwcRAnn2Q/qyZM
+ AW45x+8VievUodFtQI3SZRa4ENsc1eMkHU1otDrq+EdqrdvUlBQJsgmC9/DkobpmQf42
+ CSvv20qBA6eYxodOVFJL8sn0iWJ9NjBVrMJPwqqX3ZD1R7eKndLbA+LjcHak0Q2a6kTG
+ b6awYg8XWSkB/kzpxGsWDQV6SzpDry44JXPNwrYi0u1OVhQkc/l2RmVPkM6IM4J/5u86
+ xtlMOlvNFQGru64ftPT2MI/kLqhN9sN9iVIFD/C7pGJgT2++/64od7m44jvnzKtmFIae Pw== 
+Received: from g2t2352.austin.hpe.com (g2t2352.austin.hpe.com [15.233.44.25])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3e90xs9sgy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Feb 2022 15:34:23 +0000
+Received: from hpe.com (unknown [15.115.65.69])
+        by g2t2352.austin.hpe.com (Postfix) with ESMTP id DD7F09B;
+        Wed, 16 Feb 2022 15:34:22 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     nick.hawkins@hpe.com, verdun@hpe.com
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] [v3] arch: arm: boot: dts: Create HPE GXP Device Tree
+Date:   Wed, 16 Feb 2022 09:36:30 -0600
+Message-Id: <20220216153632.40981-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <nick.hawkins@hpe.com>
+References: <nick.hawkins@hpe.com>
+X-Proofpoint-ORIG-GUID: m5SZeiv8_JaYyRNqhsGWtv1lprOGdTDR
+X-Proofpoint-GUID: m5SZeiv8_JaYyRNqhsGWtv1lprOGdTDR
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-16_07,2022-02-16_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 bulkscore=0
+ priorityscore=1501 adultscore=0 suspectscore=0 malwarescore=0 spamscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2201110000 definitions=main-2202160091
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the MediaTek UART APDMA Controller binding to DT schema.
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Description: Originally this was of a larger patch
+HPE BMC GXP SUPPORT that was rejected for being to big.
+This is why the label v3 is being used.
+This patch Create a basic device tree layout that
+ will allow the HPE GXP to boot. The undocumented
+ bindings hpe,gxp-wdt and hpe,gxp-timer are being
+ documented in patches:
+  [v1] dt-bindings: timer: Add HPE GXP Timer binding
+  [v1] dt-bindings: watchdog: Add HPE GXP Watchdog timer binding
+  [v1]dt-bindings: vendor-prefixes: add HPE Prefix
+ that are currently out for review.
+The dts file is largely empty for this initial patch but
+follow up patches will add more content.
+
+Information: GXP is the name of the HPE SoC.
+ This SoC is used to implement BMC features of HPE servers
+  (all ProLiant, Synergy, and many Apollo, and Superdome machines)
+   It does support many features including:
+        ARMv7 architecture, and it is based on a Cortex A9 core
+        Use an AXI bus to which
+                a memory controller is attached, as well as
+                 multiple SPI interfaces to connect boot flash,
+                 and ROM flash, a 10/100/1000 Mac engine which
+                 supports SGMII (2 ports) and RMII
+                Multiple I2C engines to drive connectivity with a
+				 host infrastructure
+                A video engine which support VGA and DP, as well as
+                 an hardware video encoder
+                Multiple PCIe ports
+                A PECI interface, and LPC eSPI
+                Multiple UART for debug purpose, and Virtual UART for
+                 host connectivity
+                A GPIO engine.
+
+Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 ---
-v2: Fixed interrupt maxItems to 16, added interrupts/reg maxItems constraint
-    to 8 when the dma-requests property is not present
+ MAINTAINERS                              |   7 +
+ arch/arm/boot/dts/Makefile               |   2 +
+ arch/arm/boot/dts/hpe-bmc-dl360gen10.dts |  27 ++++
+ arch/arm/boot/dts/hpe-gxp.dtsi           | 169 +++++++++++++++++++++++
+ 4 files changed, 205 insertions(+)
+ create mode 100644 arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
+ create mode 100644 arch/arm/boot/dts/hpe-gxp.dtsi
 
- .../bindings/dma/mediatek,uart-dma.yaml       | 123 ++++++++++++++++++
- .../bindings/dma/mtk-uart-apdma.txt           |  56 --------
- 2 files changed, 123 insertions(+), 56 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
- delete mode 100644 Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
-
-diff --git a/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f41088418aae..ca9fcc611b1b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -8385,6 +8385,13 @@ L:	linux-efi@vger.kernel.org
+ S:	Maintained
+ F:	block/partitions/efi.*
+ 
++GXP ARM ARCHITECTURE
++M:	Nick Hawkins <nick.hawkins@hpe.com>
++M:	Jean-Marie <verdun@hpe.com>
++S:	Maintained
++F:	arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
++F:	arch/arm/boot/dts/hpe-gxp.dtsi
++
+ H8/300 ARCHITECTURE
+ M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+ L:	uclinux-h8-devel@lists.sourceforge.jp (moderated for non-subscribers)
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 235ad559acb2..a96b4d5b7f68 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1549,3 +1549,5 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+ 	aspeed-bmc-vegman-n110.dtb \
+ 	aspeed-bmc-vegman-rx20.dtb \
+ 	aspeed-bmc-vegman-sx20.dtb
++dtb-$(CONFIG_ARCH_HPE_GXP) += \
++	hpe-bmc-dl360gen10.dtb
+diff --git a/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
 new file mode 100644
-index 000000000000..67dbb2fed74c
+index 000000000000..179de6945e3f
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
-@@ -0,0 +1,123 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/mediatek,uart-dma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
+@@ -0,0 +1,27 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree file for HPE DL360Gen10
++ */
 +
-+title: MediaTek UART APDMA controller
++/include/ "hpe-gxp.dtsi"
 +
-+maintainers:
-+  - Long Cheng <long.cheng@mediatek.com>
++/ {
++	#address-cells = <1>;
++	#size-cells = <1>;
++	compatible = "hpe,gxp";
++	model = "Hewlett Packard Enterprise ProLiant dl360 Gen10";
 +
-+description: |
-+  The MediaTek UART APDMA controller provides DMA capabilities
-+  for the UART peripheral bus.
++	chosen {
++		bootargs = "earlyprintk console=ttyS0,115200 user_debug=31";
++	};
 +
-+allOf:
-+  - $ref: "dma-controller.yaml#"
++	memory@40000000 {
++		device_type = "memory";
++		reg = <0x40000000 0x20000000>;
++	};
 +
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - mediatek,mt2712-uart-dma
-+              - mediatek,mt8516-uart-dma
-+          - const: mediatek,mt6577-uart-dma
-+      - enum:
-+          - mediatek,mt6577-uart-dma
++	ahb {
 +
-+  reg:
-+    minItems: 1
-+    maxItems: 16
++	};
 +
-+  interrupts:
-+    description: |
-+      TX, RX interrupt lines for each UART APDMA channel
-+    minItems: 1
-+    maxItems: 16
++};
+diff --git a/arch/arm/boot/dts/hpe-gxp.dtsi b/arch/arm/boot/dts/hpe-gxp.dtsi
+new file mode 100644
+index 000000000000..f62109abf685
+--- /dev/null
++++ b/arch/arm/boot/dts/hpe-gxp.dtsi
+@@ -0,0 +1,169 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree file for HPE GXP
++ */
 +
-+  clocks:
-+    description: Must contain one entry for the APDMA main clock
-+    maxItems: 1
++/dts-v1/;
++/ {
++	model = "Hewlett Packard Enterprise GXP BMC";
++	compatible = "hpe,gxp";
++	#address-cells = <1>;
++	#size-cells = <1>;
 +
-+  clock-names:
-+    const: apdma
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
 +
-+  "#dma-cells":
-+    const: 1
-+    description: |
-+      The first cell specifies the UART APDMA channel number
++		cpu@0 {
++			compatible = "arm,armv7";
++			device_type = "cpu";
++			reg = <0>;
++		};
++	};
 +
-+  dma-requests:
-+    description: |
-+      Number of virtual channels of the UART APDMA controller
-+    maximum: 16
++	memory@40000000 {
++		device_type = "memory";
++		reg = <0x40000000 0x20000000>;
++	};
 +
-+  mediatek,dma-33bits:
-+    type: boolean
-+    description: Enable 33-bits UART APDMA support
++	ahb {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		device_type = "soc";
++		ranges;
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
++		vic0: interrupt-controller@ceff0000 {
++			compatible = "arm,pl192-vic";
++			#address-cells = <1>;
++			interrupt-controller;
++			reg = <0xceff0000 0x1000>;
++			#interrupt-cells = <1>;
++		};
 +
-+additionalProperties: false
++		vic1: vic@80f00000 {
++			compatible = "arm,pl192-vic";
++			#address-cells = <1>;
++			interrupt-controller;
++			reg = <0x80f00000 0x1000>;
++			#interrupt-cells = <1>;
++		};
 +
-+if:
-+  not:
-+    anyOf:
-+      - required:
-+          - dma-requests
-+then:
-+  properties:
-+    interrupts:
-+      maxItems: 8
-+    reg:
-+      maxItems: 8
++		timer0: timer@c0000080 {
++			compatible = "hpe,gxp-timer";
++			reg = <0xc0000080 0x1>, <0xc0000094 0x01>, <0xc0000088 0x08>;
++			interrupts = <0>;
++			interrupt-parent = <&vic0>;
++			clock-frequency = <400000000>;
++		};
 +
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/mt2712-clk.h>
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
++		watchdog: watchdog@c0000090 {
++			compatible = "hpe,gxp-wdt";
++			reg = <0xc0000090 0x02>, <0xc0000096 0x01>;
++		};
 +
-+        apdma: dma-controller@11000400 {
-+            compatible = "mediatek,mt2712-uart-dma",
-+                         "mediatek,mt6577-uart-dma";
-+            reg = <0 0x11000400 0 0x80>,
-+                  <0 0x11000480 0 0x80>,
-+                  <0 0x11000500 0 0x80>,
-+                  <0 0x11000580 0 0x80>,
-+                  <0 0x11000600 0 0x80>,
-+                  <0 0x11000680 0 0x80>,
-+                  <0 0x11000700 0 0x80>,
-+                  <0 0x11000780 0 0x80>,
-+                  <0 0x11000800 0 0x80>,
-+                  <0 0x11000880 0 0x80>,
-+                  <0 0x11000900 0 0x80>,
-+                  <0 0x11000980 0 0x80>;
-+            interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 104 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 105 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 106 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 107 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 108 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 109 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 110 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 111 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 112 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 113 IRQ_TYPE_LEVEL_LOW>,
-+                         <GIC_SPI 114 IRQ_TYPE_LEVEL_LOW>;
-+            dma-requests = <12>;
-+            clocks = <&pericfg CLK_PERI_AP_DMA>;
-+            clock-names = "apdma";
-+            mediatek,dma-33bits;
-+            #dma-cells = <1>;
-+        };
-+    };
++		uarta: serial@c00000e0 {
++			compatible = "ns16550a";
++			reg = <0xc00000e0 0x8>;
++			interrupts = <17>;
++			interrupt-parent = <&vic0>;
++			clock-frequency = <1846153>;
++			reg-shift = <0>;
++		};
 +
-+...
-diff --git a/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt b/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
-deleted file mode 100644
-index fef9c1eeb264..000000000000
---- a/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
-+++ /dev/null
-@@ -1,56 +0,0 @@
--* Mediatek UART APDMA Controller
--
--Required properties:
--- compatible should contain:
--  * "mediatek,mt2712-uart-dma" for MT2712 compatible APDMA
--  * "mediatek,mt6577-uart-dma" for MT6577 and all of the above
--  * "mediatek,mt8516-uart-dma", "mediatek,mt6577" for MT8516 SoC
--
--- reg: The base address of the APDMA register bank.
--
--- interrupts: A single interrupt specifier.
-- One interrupt per dma-requests, or 8 if no dma-requests property is present
--
--- dma-requests: The number of DMA channels
--
--- clocks : Must contain an entry for each entry in clock-names.
--  See ../clocks/clock-bindings.txt for details.
--- clock-names: The APDMA clock for register accesses
--
--- mediatek,dma-33bits: Present if the DMA requires support
--
--Examples:
--
--	apdma: dma-controller@11000400 {
--		compatible = "mediatek,mt2712-uart-dma",
--			     "mediatek,mt6577-uart-dma";
--		reg = <0 0x11000400 0 0x80>,
--		      <0 0x11000480 0 0x80>,
--		      <0 0x11000500 0 0x80>,
--		      <0 0x11000580 0 0x80>,
--		      <0 0x11000600 0 0x80>,
--		      <0 0x11000680 0 0x80>,
--		      <0 0x11000700 0 0x80>,
--		      <0 0x11000780 0 0x80>,
--		      <0 0x11000800 0 0x80>,
--		      <0 0x11000880 0 0x80>,
--		      <0 0x11000900 0 0x80>,
--		      <0 0x11000980 0 0x80>;
--		interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 104 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 105 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 106 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 107 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 108 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 109 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 110 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 111 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 112 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 113 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 114 IRQ_TYPE_LEVEL_LOW>;
--		dma-requests = <12>;
--		clocks = <&pericfg CLK_PERI_AP_DMA>;
--		clock-names = "apdma";
--		mediatek,dma-33bits;
--		#dma-cells = <1>;
--	};
++		uartb: serial@c00000e8 {
++			compatible = "ns16550a";
++			reg = <0xc00000e8 0x8>;
++			interrupts = <18>;
++			interrupt-parent = <&vic0>;
++			clock-frequency = <1846153>;
++			reg-shift = <0>;
++		};
++
++		uartc: serial@c00000f0 {
++			compatible = "ns16550a";
++			reg = <0xc00000f0 0x8>;
++			interrupts = <19>;
++			interrupt-parent = <&vic0>;
++			clock-frequency = <1846153>;
++			reg-shift = <0>;
++		};
++
++		usb0: ehci@cefe0000 {
++			compatible = "generic-ehci";
++			reg = <0xcefe0000 0x100>;
++			interrupts = <7>;
++			interrupt-parent = <&vic0>;
++		};
++
++		usb1: ohci@cefe0100 {
++			compatible = "generic-ohci";
++			reg = <0xcefe0100 0x110>;
++			interrupts = <6>;
++			interrupt-parent = <&vic0>;
++		};
++
++		sram@d0000000 {
++			compatible = "mtd-ram";
++			reg = <0xd0000000 0x80000>;
++			bank-width = <1>;
++			erase-size =<1>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			partition@0 {
++				label = "host-reserved";
++				reg = <0x0 0x10000>;
++			};
++			partition@10000 {
++				label = "nvram";
++				reg = <0x10000 0x70000>;
++			};
++		};
++
++		vrom@58000000 {
++			compatible = "mtd-ram";
++			bank-width = <4>;
++			reg = <0x58000000 0x4000000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			partition@0 {
++				label = "vrom-prime";
++				reg = <0x0 0x2000000>;
++			};
++			partition@2000000 {
++				label = "vrom-second";
++				reg = <0x2000000 0x2000000>;
++			};
++		};
++
++		i2cg: i2cg@c00000f8 {
++			compatible = "syscon";
++			reg = <0xc00000f8 0x08>;
++		};
++	};
++
++	clocks {
++		osc: osc {
++			compatible = "fixed-clock";
++			#clock-cells = <0>;
++			clock-output-names = "osc";
++			clock-frequency = <33333333>;
++		};
++
++		iopclk: iopclk {
++			compatible = "fixed-clock";
++			#clock-cells = <0>;
++			clocks = <&osc>;
++			clock-out-put-names = "iopclk";
++			clock-frequency = <400000000>;
++		};
++
++		memclk: memclk {
++			compatible = "fixed-clock";
++			#clock-cells = <0>;
++			clocks = <&osc>;
++			clock-out-put-names = "memclk";
++			clock-frequency = <800000000>;
++		};
++	};
++};
 -- 
-2.33.1
+2.17.1
 
