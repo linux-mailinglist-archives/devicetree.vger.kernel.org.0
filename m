@@ -2,111 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F28974B7DD0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 03:51:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AAED4B7DDA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 03:51:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233777AbiBPCbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 21:31:49 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39068 "EHLO
+        id S241016AbiBPCpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 21:45:08 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233821AbiBPCbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 21:31:47 -0500
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59D6C98F7B
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 18:31:36 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id u12so858696plf.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 18:31:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=tMSwIfjOv1Uyh0Rn8c3FPvnNt2awh1M6+sjpagFNNPs=;
-        b=MrvjeIXCQ0Ol/ZNcfXLD9ryra3Lxo0LuahOeXNhhVa8XVLk1mUyCn13YOkRJMEu7rU
-         /IiaUHNDr77cLli/X5P8Akq/dF6VCwimLY3cWD9peCVXcnFV56IY9C7gNqaju6Y/YLy3
-         eWTGx5T7KUECG4JNaraqfYDi4uVSFg/kF5Iv+0n6BeHzpnTgQ2e9eIrsYZF3XfWZ3GhB
-         WuEwHitGwU6yPS5Z7i9bu7dfGGKty0EU7dChAqeZ/QpqjScnH0TkUWB4Mm5UyxLYNufD
-         qI3yU6sUDxkiD/3h9BfUlAfCRDkDWa7tEV0xEIg4ifAS6TMM+5ZGqlOi2GdVTXx1/dcO
-         Nq9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tMSwIfjOv1Uyh0Rn8c3FPvnNt2awh1M6+sjpagFNNPs=;
-        b=YEe/mnVjFk2/aVgC7JL0DSBHkleJuObSLVFxHTioCB413h8R5MHdVN5AOhl/Ws8vQd
-         gClrBp6chr9Yzki4Vxv3xDRpRx8rg53JYlo0t46qPU64m8XYE+3KfAhFmWRqWjgXAv4H
-         1IEYbHfEiOfqamNn44XkVGGXv4BR4hWFD81dV+mT1Rnb3yGnrhePDuDlLkhP7RqVoA46
-         Gu/G8BDXXOjGMZGFpChJdKNNQU1bNODr/u/9hqSgYN9314ZZswzEAP6mmFaCaloS6pB1
-         sc/CEkNfgKsdMFxdrZ4AEd9mOLOZzQHoKt7dAaLidWnkkerNFofQSsRXo2R4i41gSLzb
-         1Csw==
-X-Gm-Message-State: AOAM532LtN4m0otcfhlaYueok3fEKoO07Fn3K03y9ze72AezMCg8W3Na
-        Xulvfo3bdnhH7Q6082PwNTvztQ==
-X-Google-Smtp-Source: ABdhPJyU2ukSn0pACLz1YQlEvjfxSBDTqZwAmjsrkqyhGVLNZmkSRDuKwLpWoQymGsMeVVJJ0nyyig==
-X-Received: by 2002:a17:902:82c7:b0:14f:252d:67e7 with SMTP id u7-20020a17090282c700b0014f252d67e7mr777069plz.27.1644978695666;
-        Tue, 15 Feb 2022 18:31:35 -0800 (PST)
-Received: from google.com ([2401:fa00:1:10:adf7:46e7:cef5:ba49])
-        by smtp.gmail.com with ESMTPSA id 7sm18442035pjo.45.2022.02.15.18.31.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 18:31:35 -0800 (PST)
-Date:   Wed, 16 Feb 2022 10:31:32 +0800
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] platform/chrome: cros_kbd_led_backlight: support OF
- match
-Message-ID: <YgxiBO7jDtyhWwlb@google.com>
-References: <20220214053646.3088298-1-tzungbi@google.com>
- <20220214053646.3088298-5-tzungbi@google.com>
- <CACeCKac+b1Rp6bZFALn=sbh8gkJbWeKTC=8bdzp+-90pgq=wSw@mail.gmail.com>
+        with ESMTP id S237229AbiBPCpG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 21:45:06 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26A73FBA73;
+        Tue, 15 Feb 2022 18:44:52 -0800 (PST)
+X-UUID: b070c4003ec8456184ba0c4c303423d6-20220216
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:Subject; bh=Pzq1ASA1hc2sgu0ItXffmb7MYGAO/ElkjWHHNwr99Yw=;
+        b=R5wKSy6A4oAJ+50cSviOAmsKXFEwwMXEVcO74JZppaSEgcC6XzQHn4xJpDZSn+vtkKgLveuuD0TdvjEYRSVdDf1iuLSUJqjNCr9un3Dun04JWnm/BOdiyNuiL7nqYT4n4ff5c62xl+PyxQ8dD0ZX6QdD1yqXkRCMNTFArGg6Vnk=;
+X-UUID: b070c4003ec8456184ba0c4c303423d6-20220216
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 713896900; Wed, 16 Feb 2022 10:44:48 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 16 Feb 2022 10:44:47 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 16 Feb 2022 10:44:47 +0800
+Subject: Re: [v2 0/2] Mediatek MT8186 power domain support
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Nicolas Boichat" <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20220215104917.5726-1-chun-jie.chen@mediatek.com>
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+Message-ID: <75e57cf8-0704-1a6c-5c0b-860c7fb4e947@mediatek.com>
+Date:   Wed, 16 Feb 2022 10:44:47 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACeCKac+b1Rp6bZFALn=sbh8gkJbWeKTC=8bdzp+-90pgq=wSw@mail.gmail.com>
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220215104917.5726-1-chun-jie.chen@mediatek.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: base64
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 15, 2022 at 05:10:04PM -0800, Prashant Malani wrote:
-> On Sun, Feb 13, 2022 at 9:37 PM Tzung-Bi Shih <tzungbi@google.com> wrote:
-> > diff --git a/drivers/platform/chrome/cros_kbd_led_backlight.c b/drivers/platform/chrome/cros_kbd_led_backlight.c
-> > index 814f2b74c602..ba853e55d29a 100644
-> > --- a/drivers/platform/chrome/cros_kbd_led_backlight.c
-> > +++ b/drivers/platform/chrome/cros_kbd_led_backlight.c
-> > @@ -10,6 +10,7 @@
-> >  #include <linux/kernel.h>
-> >  #include <linux/leds.h>
-> >  #include <linux/module.h>
-> > +#include <linux/of_device.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/slab.h>
-> >
-> > @@ -128,8 +129,11 @@ static int keyboard_led_probe(struct platform_device *pdev)
-> >         int error;
-> >
-> >         drvdata = acpi_device_get_match_data(&pdev->dev);
-> > -       if (!drvdata)
-> > -               return -EINVAL;
-> > +       if (!drvdata) {
-> > +               drvdata = of_device_get_match_data(&pdev->dev);
-> > +               if (!drvdata)
-> > +                       return -EINVAL;
-> > +       }
-> 
-> I'm not familiar with this driver, so can't do a full review, but
-> shouldn't device_get_match_data()
-> from property.h [1] be able to handle both DT and ACPI cases?
-> 
-> [1]: https://elixir.bootlin.com/linux/v5.17-rc4/source/include/linux/property.h
+DQoNCk9uIDIvMTUvMjIgNjo0OSBQTSwgQ2h1bi1KaWUgQ2hlbiB3cm90ZToNCj4gVGhpcyBwYXRj
+aCBzZXJpZXMgYWRkcyBwb3dlciBkb21haW4gc3VwcG9ydCBmb3IgTVQ4MTg2DQo+IGFuZCBkZXBl
+bmRzIG9uIFsxXSBiYXNlZCBvbiA1LjE3LXJjMS4NCj4gDQo+IGNoYW5nZSBzaW5jZSB2MToNCj4g
+LSBjaGFuZ2UgdG8gZHVhbCBsaWNlbnNlIGluIGR0LWJpbmRpbmcNCj4gDQo+IFsxXSBodHRwczov
+L3VybGRlZmVuc2UuY29tL3YzL19faHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9qZWN0
+L2xpbnV4LW1lZGlhdGVrL2xpc3QvP3Nlcmllcz02MDk3OTlfXzshIUNUUk5LQTl3TWcwQVJidyEz
+Q0pBQzAtVklxQXltckNjQVJza29hNlhJMElkcUg5Ynh6UHRDR0V1X29LUmVtMGwwSUVPZXRZOFNj
+YkdnOUNMWkNjJA0KPiANCj4gQ2h1bi1KaWUgQ2hlbiAoMik6DQo+ICAgIGR0LWJpbmRpbmdzOiBw
+b3dlcjogQWRkIE1UODE4NiBwb3dlciBkb21haW5zDQo+ICAgIHNvYzogbWVkaWF0ZWs6IHBtLWRv
+bWFpbnM6IEFkZCBzdXBwb3J0IGZvciBtdDgxODYNCj4gDQo+ICAgLi4uL3Bvd2VyL21lZGlhdGVr
+LHBvd2VyLWNvbnRyb2xsZXIueWFtbCAgICAgIHwgICAxICsNCj4gICBkcml2ZXJzL3NvYy9tZWRp
+YXRlay9tdDgxODYtcG0tZG9tYWlucy5oICAgICAgfCAzNDQgKysrKysrKysrKysrKysrKysrDQo+
+ICAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXBtLWRvbWFpbnMuYyAgICAgICAgIHwgICA1ICsN
+Cj4gICBpbmNsdWRlL2R0LWJpbmRpbmdzL3Bvd2VyL210ODE4Ni1wb3dlci5oICAgICAgfCAgMzIg
+KysNCj4gICBpbmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRlay9pbmZyYWNmZy5oICAgICAgICAgfCAg
+NDggKysrDQo+ICAgNSBmaWxlcyBjaGFuZ2VkLCA0MzAgaW5zZXJ0aW9ucygrKQ0KPiAgIGNyZWF0
+ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3NvYy9tZWRpYXRlay9tdDgxODYtcG0tZG9tYWlucy5oDQo+
+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvZHQtYmluZGluZ3MvcG93ZXIvbXQ4MTg2LXBv
+d2VyLmgNCj4gDQo+IC0tDQo+IDIuMTguMA0KDQpXaHkgZGlkIHlvdSBkcm9wIFtQQVRDSF0gdGFn
+IGluIHRoZSBzdWJqZWN0IG9mIHlvdXIgcGF0Y2ggc2VyaWVzPw0KUGxlYXNlIGtlZXAgaXQgZm9y
+IGRpc3Rpbmd1aXNoaW5nIGl0IGZyb20gUkZDIGFuZCBvdGhlciBtZWFuaW5nZnVsIHRhZ3MgDQpu
+ZXh0IHRpbWUuDQoNClRoYW5rcw0KTWFjcGF1bCBMaW4=
 
-Yes, it does[2][3].  Thanks for the feedback, will fix it in next version.
-
-[2]: https://elixir.bootlin.com/linux/v5.17-rc4/source/drivers/of/property.c#L1474
-[3]: https://elixir.bootlin.com/linux/v5.17-rc4/source/drivers/acpi/property.c#L1386
