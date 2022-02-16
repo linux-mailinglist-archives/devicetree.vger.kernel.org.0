@@ -2,86 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F18C4B9169
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 20:40:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2B414B91A8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 20:45:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235598AbiBPTkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 14:40:15 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41768 "EHLO
+        id S235383AbiBPTp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 14:45:58 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234536AbiBPTkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 14:40:14 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A58E028B636
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 11:40:01 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id a8so1607958ejc.8
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 11:40:01 -0800 (PST)
+        with ESMTP id S238310AbiBPTps (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 14:45:48 -0500
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 459FA2B0B20
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 11:45:34 -0800 (PST)
+Received: by mail-oi1-x230.google.com with SMTP id r27so3602149oiw.4
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 11:45:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sHRPRD8GP9uQyILnjM88nA04r7VU/nm1fNnZS/rsGL4=;
-        b=UvST5o77fKwFHFG2pZIsRAincIR8FLK2tfWrGygYfVo3SU+XKj7dzDp5lwkqJZL8TN
-         iw3VY4v5foNzrztjCNaUqRZETXQVngX5qFMYWE3jFZp0vmi9R7d37BWQFuhOml2KgPwd
-         xhJQhODJakHrsWZelDfUgrLxyRGMJJ9iz5waI=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=e6yQe3558orWsQDh5OT0ACtDm6j/DudE1IMag6+wpmU=;
+        b=cyEisrUfIYIupzeDc7DssR+Xl1dljHVZGnaXZLOJ0ziRL9XEgpuPaEYsbq7SlI+9ZG
+         Ua5Zl1a6J7kqGWvycX7gvk6s15vhFJ9PFMimaQCl21vgdBChejWxlu8gpQPFAE9i077Y
+         6woHb+/Pu54ONADW/KcHt9XYwKvRdZjNmkgYuslxYg+6kC/qiS3oDMOLp4iRWVoJ7I45
+         oY+Rncu3rJRnMxGMeO3CRQWTnSw5H9g3UWfmw3TjntSAukFkDR03YHncuEhAFKTwpbsv
+         CnH8va2j8l1tXNVqLwtOPFNQmGmfFQfD8i7wgpHpP5ZSpDJSvJpbJ76cMSQFvhlG5AVz
+         D7Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sHRPRD8GP9uQyILnjM88nA04r7VU/nm1fNnZS/rsGL4=;
-        b=BxHmuxN2aXe5vCerRdO0b8SkNcUc6evPQiq3/LIilf/zNm5klGR+ozy7J8qmTWUQk0
-         p09dNaIpZ5msgYvluUd6QUiDjxHjr9G6rMdZ/lbwSClP2cU/eDsFNWqU4v+sMdT8RzWS
-         ONOHfh3aioKdV6ewqqvMHRjEElZ1ZU64z4XZVeSB4O/gsgK92Abr8qLyaXHbBzv+wv1d
-         hHsJOLJdbr+ZffU29QWVRrYWwydzSJdXBHvp3DeNzukoboQW6fKcgipbxa+wE2HszZs0
-         8UEFjHO5ZpXHytzoCfobIhzJPYoKvn3yqPgj38ORIHJwAoc2/M5DaZEZckVvinqKSgVT
-         rMeA==
-X-Gm-Message-State: AOAM533VnCSb+RvMKSqy1t7GTASjRtDDahrpGf6xThv+4A4onOzYhKBo
-        TlJKpifMTjM2zGDyM9eYIUDiVjKrVavuQbXHCGg=
-X-Google-Smtp-Source: ABdhPJzhNRYkg8lBIxf3OdEliRk5t/S869Asm81tcBflcVfmZsnA6cJ8qRnQBnK/9dZnQyM/iMrTUw==
-X-Received: by 2002:a17:906:dd3:b0:698:3e07:dcee with SMTP id p19-20020a1709060dd300b006983e07dceemr3526361eji.487.1645040399944;
-        Wed, 16 Feb 2022 11:39:59 -0800 (PST)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
-        by smtp.gmail.com with ESMTPSA id s10sm275680ejm.0.2022.02.16.11.39.59
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Feb 2022 11:39:59 -0800 (PST)
-Received: by mail-wm1-f46.google.com with SMTP id l123-20020a1c2581000000b0037b9d960079so4544630wml.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 11:39:59 -0800 (PST)
-X-Received: by 2002:a7b:c938:0:b0:37b:fdaa:2749 with SMTP id
- h24-20020a7bc938000000b0037bfdaa2749mr3036535wml.88.1645040398608; Wed, 16
- Feb 2022 11:39:58 -0800 (PST)
-MIME-Version: 1.0
-References: <1644494255-6632-1-git-send-email-quic_sbillaka@quicinc.com>
- <1644494255-6632-5-git-send-email-quic_sbillaka@quicinc.com> <CAD=FV=V9vXbvuU5oK6maXKAfzEPzT2Fp5Vf3CUqpJvmM+wrjeg@mail.gmail.com>
-In-Reply-To: <CAD=FV=V9vXbvuU5oK6maXKAfzEPzT2Fp5Vf3CUqpJvmM+wrjeg@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 16 Feb 2022 11:39:46 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=WWjn+CPSes2y1U=9mKZG9gkj5ubBpJOLTJDwhs4gYbeA@mail.gmail.com>
-Message-ID: <CAD=FV=WWjn+CPSes2y1U=9mKZG9gkj5ubBpJOLTJDwhs4gYbeA@mail.gmail.com>
-Subject: Re: [PATCH v4 4/5] drm/panel-edp: Add eDP sharp panel support
-To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=e6yQe3558orWsQDh5OT0ACtDm6j/DudE1IMag6+wpmU=;
+        b=f5SvbqoTGkEwsTcvGSaPwmIoPu33veSC2Jc9U8i5luDBqUssTmyi0+vFxOf4fk7SN4
+         55zzW+NAKyyv6jO2pptXJBwlj6yS64s1uuQi6p+fyQnzp4seUhxymQXP2FJMKhVCP5nK
+         zByZfiVxU/FmIYPa20LstXeH2Bgipmg3KUI9iX4jMTQRKmUxWm4HXEjTb7QKPd/Z8JnY
+         JrAV4CsnD0q8ANxytCoTFkbjgWbbYsVBBsCjOwnlD1ajPKBKi7/snzEfzu5I0IdSd2UP
+         U507/Ku88fVAfBI3KN3TZpn8rcFLgbZQUKWffNCHsclaPGlpGIZ5b+ITbRmAr4VRkUDd
+         7zYg==
+X-Gm-Message-State: AOAM5306jZAUG4oT6fYxqTkenZn9BHYuCRrb0ShglDko2KjBTTFhcrOw
+        RYo7DoyR3ZOjGIrdHdIJFRGHUw==
+X-Google-Smtp-Source: ABdhPJyJlq7VFOgJ7PeIDbfRTtmz7YoxDnNxuFCSIuzLyAfTeNEgRv2wIwMRQjwpbTLb9U0w3eCjWw==
+X-Received: by 2002:a05:6808:2314:b0:2cd:dc2:3edc with SMTP id bn20-20020a056808231400b002cd0dc23edcmr1395304oib.145.1645040733552;
+        Wed, 16 Feb 2022 11:45:33 -0800 (PST)
+Received: from yoga (rrcs-97-77-166-58.sw.biz.rr.com. [97.77.166.58])
+        by smtp.gmail.com with ESMTPSA id c19sm2666744oaq.0.2022.02.16.11.45.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Feb 2022 11:45:33 -0800 (PST)
+Date:   Wed, 16 Feb 2022 13:45:30 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
         Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Stephen Boyd <swboyd@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, quic_kalyant@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
-        quic_mkrishn@quicinc.com, quic_vproddut@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Peter Chen <peter.chen@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v20 5/5] arm64: dts: qcom: sc7180-trogdor: Add nodes for
+ onboard USB hub
+Message-ID: <Yg1UWjGlmtDbjXVD@yoga>
+References: <20220119204345.3769662-1-mka@chromium.org>
+ <20220119124327.v20.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
+ <YgJMkFAxjazkUDZd@kroah.com>
+ <YgLCswtX/0THkzXT@google.com>
+ <CAD=FV=WMP8M5HTRNv9_scvrytbpE0iBdUack=XaHoypGNLJeVA@mail.gmail.com>
+ <Ygv3FSDS/fq1oePy@kroah.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Ygv3FSDS/fq1oePy@kroah.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,85 +93,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue 15 Feb 12:55 CST 2022, Greg Kroah-Hartman wrote:
 
-On Wed, Feb 16, 2022 at 11:29 AM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Thu, Feb 10, 2022 at 3:58 AM Sankeerth Billakanti
-> <quic_sbillaka@quicinc.com> wrote:
-> >
-> > Add support for the 14" sharp,lq140m1jw46 eDP panel.
-> >
-> > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-> > ---
-> > 00 ff ff ff ff ff ff 00 4d 10 23 15 00 00 00 00
-> > 35 1e 01 04 a5 1f 11 78 07 de 50 a3 54 4c 99 26
-> > 0f 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-> > 01 01 01 01 01 01 5a 87 80 a0 70 38 4d 40 30 20
-> > 35 00 35 ae 10 00 00 18 65 38 80 a0 70 38 4d 40
-> > 30 20 35 00 35 ae 10 00 00 18 00 00 00 fd 00 30
-> > 90 a7 a7 23 01 00 00 00 00 00 00 00 00 00 00 fc
-> > 00 4c 51 31 34 30 4d 31 4a 57 34 39 0a 20 00 77
-> >
-> > ----------------
-> >
-> > Block 0, Base EDID:
-> >   EDID Structure Version & Revision: 1.4
-> >   Vendor & Product Identification:
-> >     Manufacturer: SHP
-> >     Model: 5411
-> >     Made in: week 53 of 2020
-> >   Basic Display Parameters & Features:
-> >     Digital display
-> >     Bits per primary color channel: 8
-> >     DisplayPort interface
-> >     Maximum image size: 31 cm x 17 cm
-> >     Gamma: 2.20
-> >     Supported color formats: RGB 4:4:4
-> >     Default (sRGB) color space is primary color space
-> >     First detailed timing includes the native pixel format and preferred refresh rate
-> >     Display is continuous frequency
-> >   Color Characteristics:
-> >     Red  : 0.6396, 0.3291
-> >     Green: 0.2998, 0.5996
-> >     Blue : 0.1494, 0.0595
-> >     White: 0.3125, 0.3281
-> >   Established Timings I & II: none
-> >   Standard Timings: none
-> >   Detailed Timing Descriptors:
-> >     DTD 1:  1920x1080  143.981 Hz  16:9   166.587 kHz  346.500 MHz (309 mm x 174 mm)
-> >                  Hfront   48 Hsync  32 Hback  80 Hpol N
-> >                  Vfront    3 Vsync   5 Vback  69 Vpol N
-> >     DTD 2:  1920x1080   59.990 Hz  16:9    69.409 kHz  144.370 MHz (309 mm x 174 mm)
-> >                  Hfront   48 Hsync  32 Hback  80 Hpol N
-> >                  Vfront    3 Vsync   5 Vback  69 Vpol N
-> >   Display Range Limits:
-> >     Monitor ranges (Bare Limits): 48-144 Hz V, 167-167 kHz H, max dotclock 350 MHz
-> >     Display Product Name: 'LQ140M1JW49'
-> > Checksum: 0x77
-> >
-> > Changes in v4:
-> >   -Add all modes from EDID
-> >   -Provide EDID blob
-> >
-> > Changes in v3:
-> >   None
-> >
-> >  drivers/gpu/drm/panel/panel-edp.c | 44 +++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 44 insertions(+)
->
-> We want to be moving to the generic edp-panel but even if we move to
-> edp-panel there's no harm in supporting things the old way, especially
-> as people are transitioning.
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> On Tue, Feb 15, 2022 at 09:54:54AM -0800, Doug Anderson wrote:
+> > Hi,
+> > 
+> > On Tue, Feb 8, 2022 at 11:21 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> > >
+> > > On Tue, Feb 08, 2022 at 11:57:20AM +0100, Greg Kroah-Hartman wrote:
+> > > > On Wed, Jan 19, 2022 at 12:43:45PM -0800, Matthias Kaehlcke wrote:
+> > > > > Add nodes for the onboard USB hub on trogdor devices. Remove the
+> > > > > 'always-on' property from the hub regulator, since the regulator
+> > > > > is now managed by the onboard_usb_hub driver.
+> > > > >
+> > > > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > > > > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> > > > > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> > > > > ---
+> > > >
+> > > > No DT maintainer approval yet?  :(
+> > >
+> > > Bjorn usually just picks DT changes into the QCOM tree when they are
+> > > ready, so I wouldn't interpret anything into the lack of an explicit
+> > > Ack.
+> > 
+> > Right, so the expectation is that this patch wouldn't land through the
+> > USB tree but would instead land through the Qualcomm tree, probably a
+> > revision after the code lands in the USB tree to avoid dependency
+> > problems.
+> 
+> But our tools pick up the whole series.  I can't just do "i will pick
+> patches 1-4 only" easily, and neither can any other maintainer.
+> 
 
-...and pushed to drm-misc-next:
+Most other maintainers uses -P to selectively pick the patches that
+applies to their subsystem. That said, I really do recognize the
+inconvenience on your part and the number of patches being sent your
+way.
 
-a874aba8bbc5 drm/panel-edp: Add eDP sharp panel support
+> Why not just get their ack so that I know it can come through the USB
+> tree?  That's what normally happens for other changes like this where a
+> driver change is required first.
+> 
 
-So v5 shouldn't include this patch.
+Because while the change looks good I don't think it's fine to take it
+through the USB tree - the dts tree typically looks like a shotgun hit
+across the dts files. And you and I have already seen several times that
+dts changes do conflict when you take some of them in the USB tree.
 
--Doug
+Unfortunately I see only two ways around this problem, either you start
+picking selectively or I manage to convince all contributors that they
+must split their series to keep dts changes separate (which isn't a bad
+idea in itself).
+
+Regards,
+Bjorn
