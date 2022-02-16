@@ -2,351 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B98364B8C86
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 16:34:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85D014B8C99
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 16:38:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233987AbiBPPet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 10:34:49 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51822 "EHLO
+        id S235546AbiBPPiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 10:38:20 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233792AbiBPPes (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 10:34:48 -0500
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E40EB2722E7;
-        Wed, 16 Feb 2022 07:34:35 -0800 (PST)
-Received: from pps.filterd (m0134421.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21GFG9GJ026154;
-        Wed, 16 Feb 2022 15:34:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references; s=pps0720;
- bh=C/vNlfnuxnBokMqtLqKU8eady2cxWqT7exgOoWwBDtk=;
- b=mGuTBBsHkTIlfqWMd9Doo5aiY/k9BRcwB8x+THCFCn/TEPrU0tKjSKkwcRAnn2Q/qyZM
- AW45x+8VievUodFtQI3SZRa4ENsc1eMkHU1otDrq+EdqrdvUlBQJsgmC9/DkobpmQf42
- CSvv20qBA6eYxodOVFJL8sn0iWJ9NjBVrMJPwqqX3ZD1R7eKndLbA+LjcHak0Q2a6kTG
- b6awYg8XWSkB/kzpxGsWDQV6SzpDry44JXPNwrYi0u1OVhQkc/l2RmVPkM6IM4J/5u86
- xtlMOlvNFQGru64ftPT2MI/kLqhN9sN9iVIFD/C7pGJgT2++/64od7m44jvnzKtmFIae Pw== 
-Received: from g2t2352.austin.hpe.com (g2t2352.austin.hpe.com [15.233.44.25])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3e90xs9sgy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Feb 2022 15:34:23 +0000
-Received: from hpe.com (unknown [15.115.65.69])
-        by g2t2352.austin.hpe.com (Postfix) with ESMTP id DD7F09B;
-        Wed, 16 Feb 2022 15:34:22 +0000 (UTC)
-From:   nick.hawkins@hpe.com
-To:     nick.hawkins@hpe.com, verdun@hpe.com
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH] [v3] arch: arm: boot: dts: Create HPE GXP Device Tree
-Date:   Wed, 16 Feb 2022 09:36:30 -0600
-Message-Id: <20220216153632.40981-1-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <nick.hawkins@hpe.com>
-References: <nick.hawkins@hpe.com>
-X-Proofpoint-ORIG-GUID: m5SZeiv8_JaYyRNqhsGWtv1lprOGdTDR
-X-Proofpoint-GUID: m5SZeiv8_JaYyRNqhsGWtv1lprOGdTDR
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-16_07,2022-02-16_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- phishscore=0 lowpriorityscore=0 clxscore=1015 bulkscore=0
- priorityscore=1501 adultscore=0 suspectscore=0 malwarescore=0 spamscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2201110000 definitions=main-2202160091
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235549AbiBPPiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 10:38:19 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0598B291F82
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 07:38:06 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id i14so4084109wrc.10
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 07:38:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=4D8vkLWPsB+L5NVGMdhKjexz7qk9u2esSIMnsRYj4yw=;
+        b=ZH3t3VjooA0WMKhqp/ZjVeXyOXGVqiAfn7O1tA87Uj+1ncONnemMgy3RuoMPrWErOn
+         I3aHn+NFoulMcZCMFNDCh5t6uuQF9Z/XWn98klHsiY32L45yb8tdKoR2526NEQ4eJ5Lk
+         xo7SD80kHm1YeAsh18wiPuwtaKUJjDoiXQmsO4tkwR87eCJAlPTX8X/RwY7ar7I4sfxu
+         3lVB42wzr5NDJW2X0mSYt31UjNAA83Rp4E2Fr4GpVBJA4YFvRKhVYNnLYJcDm6k1COae
+         HUBU59F0LDM+12oAqQWSGuASDICxU7uLIj79gyCgtJVXcG1qzwBHz8xrM8oqAaM3Fw0C
+         NI2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=4D8vkLWPsB+L5NVGMdhKjexz7qk9u2esSIMnsRYj4yw=;
+        b=3oy+p5IbJi2uvFh2X5LFBySad99og9hdeUrF1jmynKEZZNMCn3ddiH+BVNCkMaWN/P
+         zx2eY4He3h+KT+4hooPjkFvn6JHLTnsV/fuFPIAorKcsXKkkq/FXOCmBlEArhYATZ9BP
+         hgxbvUIsUwhZ/pVloDukI9GH18tvzuzvThCQiHbyFx6cNen3jHib75DCU5TYghkDqE55
+         cGvy1RVeCmbKjYyeoz2jQGubYbc9OpMok+ivObxKzNA1b6/P8OCPhSlDQq2l/xYHwfpW
+         D0fQo+09KJp66cDz/H/OrrjnE9zS7tkgP6VLHLITITqkEBQlVWKnHX/FoGTOrl/4Hioi
+         78YA==
+X-Gm-Message-State: AOAM533ZP9zMK2t211pKYYsR0HA6xwE0xFv3Je+UNyduii3h7/OuLBxm
+        6WTDnBGqRAib6ZckRzzLMY/MBw==
+X-Google-Smtp-Source: ABdhPJzwHrl5EQgylw3JeoAybMGg4Xtm2WpU9q/hqKvoLx1ryIPLVXKSfbFhx9NIFxZSg7OvNw7AjA==
+X-Received: by 2002:a05:6000:36b:b0:1e3:8a3b:add8 with SMTP id f11-20020a056000036b00b001e38a3badd8mr2675144wrf.283.1645025884614;
+        Wed, 16 Feb 2022 07:38:04 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id az2sm28127598wmb.2.2022.02.16.07.38.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Feb 2022 07:38:04 -0800 (PST)
+Message-ID: <09b00fe9-1770-1723-3c4c-6c494da87e8d@linaro.org>
+Date:   Wed, 16 Feb 2022 15:38:02 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v6 7/7] pinctrl: qcom: Update clock voting as optional
+Content-Language: en-US
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1644851994-22732-1-git-send-email-quic_srivasam@quicinc.com>
+ <1644851994-22732-8-git-send-email-quic_srivasam@quicinc.com>
+ <a209336a-9108-f1ac-ee6d-a838df115c6d@linaro.org>
+ <b663f63f-4a5a-3a2a-9be7-fa7258ce93c5@quicinc.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <b663f63f-4a5a-3a2a-9be7-fa7258ce93c5@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
 
-Description: Originally this was of a larger patch
-HPE BMC GXP SUPPORT that was rejected for being to big.
-This is why the label v3 is being used.
-This patch Create a basic device tree layout that
- will allow the HPE GXP to boot. The undocumented
- bindings hpe,gxp-wdt and hpe,gxp-timer are being
- documented in patches:
-  [v1] dt-bindings: timer: Add HPE GXP Timer binding
-  [v1] dt-bindings: watchdog: Add HPE GXP Watchdog timer binding
-  [v1]dt-bindings: vendor-prefixes: add HPE Prefix
- that are currently out for review.
-The dts file is largely empty for this initial patch but
-follow up patches will add more content.
 
-Information: GXP is the name of the HPE SoC.
- This SoC is used to implement BMC features of HPE servers
-  (all ProLiant, Synergy, and many Apollo, and Superdome machines)
-   It does support many features including:
-        ARMv7 architecture, and it is based on a Cortex A9 core
-        Use an AXI bus to which
-                a memory controller is attached, as well as
-                 multiple SPI interfaces to connect boot flash,
-                 and ROM flash, a 10/100/1000 Mac engine which
-                 supports SGMII (2 ports) and RMII
-                Multiple I2C engines to drive connectivity with a
-				 host infrastructure
-                A video engine which support VGA and DP, as well as
-                 an hardware video encoder
-                Multiple PCIe ports
-                A PECI interface, and LPC eSPI
-                Multiple UART for debug purpose, and Virtual UART for
-                 host connectivity
-                A GPIO engine.
+On 16/02/2022 14:41, Srinivasa Rao Mandadapu wrote:
+> 
+> On 2/16/2022 7:50 PM, Srinivas Kandagatla wrote:
+> Thanks for Your Time Srini!!!
+>>
+>> On 14/02/2022 15:19, Srinivasa Rao Mandadapu wrote:
+>>> Update bulk clock voting to optional voting as ADSP bypass platform 
+>>> doesn't
+>>> need macro and decodec clocks, these are maintained as power domains and
+>>> operated from lpass audio core cc.
+>>>
+>>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>>> ---
+>>>   drivers/pinctrl/qcom/pinctrl-lpass-lpi.c        | 16 +++++++++-------
+>>>   drivers/pinctrl/qcom/pinctrl-lpass-lpi.h        |  1 +
+>>>   drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c |  1 +
+>>>   3 files changed, 11 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c 
+>>> b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>>> index 8a82fd9..103f0a6c 100644
+>>> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>>> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>>> @@ -407,13 +407,15 @@ int lpi_pinctrl_probe(struct platform_device 
+>>> *pdev)
+>>>           return dev_err_probe(dev, PTR_ERR(pctrl->slew_base),
+>>>                        "Slew resource not provided\n");
+>>>   -    ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
+>>> -    if (ret)
+>>> -        return dev_err_probe(dev, ret, "Can't get clocks\n");
+>>> -
+>>> -    ret = clk_bulk_prepare_enable(MAX_LPI_NUM_CLKS, pctrl->clks);
+>>> -    if (ret)
+>>> -        return dev_err_probe(dev, ret, "Can't enable clocks\n");
+>>> +    if (!data->is_clk_optional) {
+>>> +        ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
+>>> +        if (ret)
+>>> +            return dev_err_probe(dev, ret, "Can't get clocks\n");
+>>> +
+>>> +        ret = clk_bulk_prepare_enable(MAX_LPI_NUM_CLKS, pctrl->clks);
+>>> +        if (ret)
+>>> +            return dev_err_probe(dev, ret, "Can't enable clocks\n");
+>>> +    }
+>>>         pctrl->desc.pctlops = &lpi_gpio_pinctrl_ops;
+>>>       pctrl->desc.pmxops = &lpi_gpio_pinmux_ops;
+>>> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h 
+>>> b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+>>> index a511d72..c1079bf 100644
+>>> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+>>> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+>>> @@ -77,6 +77,7 @@ struct lpi_pinctrl_variant_data {
+>>>       int ngroups;
+>>>       const struct lpi_function *functions;
+>>>       int nfunctions;
+>>> +    int is_clk_optional;
+>>>   };
+>>>     int lpi_pinctrl_probe(struct platform_device *pdev);
+>>> diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c 
+>>> b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+>>> index 5bf30d97..4277e31 100644
+>>> --- a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+>>> +++ b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+>>> @@ -143,6 +143,7 @@ static const struct lpi_pinctrl_variant_data 
+>>> sc7280_lpi_data = {
+>>>       .ngroups = ARRAY_SIZE(sc7280_groups),
+>>>       .functions = sc7280_functions,
+>>>       .nfunctions = ARRAY_SIZE(sc7280_functions),
+>>> +    .is_clk_optional = 1,
+>>
+>> This is forcefully set assuming that sc7280 is always used in ADSP 
+>> bypass mode. Which is not correct.
+>>
+>> Can't you use devm_clk_bulk_get_optional instead?
+> 
+> Yes. Agreed. Initially used devm_clk_bulk_get_optional, but Bjorn 
+> suggested for conditional check instead of optional.
+> 
+> Again Shall we go for optional clock voting?
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
----
- MAINTAINERS                              |   7 +
- arch/arm/boot/dts/Makefile               |   2 +
- arch/arm/boot/dts/hpe-bmc-dl360gen10.dts |  27 ++++
- arch/arm/boot/dts/hpe-gxp.dtsi           | 169 +++++++++++++++++++++++
- 4 files changed, 205 insertions(+)
- create mode 100644 arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
- create mode 100644 arch/arm/boot/dts/hpe-gxp.dtsi
+That means that the condition has to be dynamic based on the platform 
+using DSP or not. Which is impossible to deduce without some help from DT.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f41088418aae..ca9fcc611b1b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8385,6 +8385,13 @@ L:	linux-efi@vger.kernel.org
- S:	Maintained
- F:	block/partitions/efi.*
- 
-+GXP ARM ARCHITECTURE
-+M:	Nick Hawkins <nick.hawkins@hpe.com>
-+M:	Jean-Marie <verdun@hpe.com>
-+S:	Maintained
-+F:	arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-+F:	arch/arm/boot/dts/hpe-gxp.dtsi
-+
- H8/300 ARCHITECTURE
- M:	Yoshinori Sato <ysato@users.sourceforge.jp>
- L:	uclinux-h8-devel@lists.sourceforge.jp (moderated for non-subscribers)
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 235ad559acb2..a96b4d5b7f68 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1549,3 +1549,5 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-vegman-n110.dtb \
- 	aspeed-bmc-vegman-rx20.dtb \
- 	aspeed-bmc-vegman-sx20.dtb
-+dtb-$(CONFIG_ARCH_HPE_GXP) += \
-+	hpe-bmc-dl360gen10.dtb
-diff --git a/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-new file mode 100644
-index 000000000000..179de6945e3f
---- /dev/null
-+++ b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree file for HPE DL360Gen10
-+ */
-+
-+/include/ "hpe-gxp.dtsi"
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	compatible = "hpe,gxp";
-+	model = "Hewlett Packard Enterprise ProLiant dl360 Gen10";
-+
-+	chosen {
-+		bootargs = "earlyprintk console=ttyS0,115200 user_debug=31";
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0x40000000 0x20000000>;
-+	};
-+
-+	ahb {
-+
-+	};
-+
-+};
-diff --git a/arch/arm/boot/dts/hpe-gxp.dtsi b/arch/arm/boot/dts/hpe-gxp.dtsi
-new file mode 100644
-index 000000000000..f62109abf685
---- /dev/null
-+++ b/arch/arm/boot/dts/hpe-gxp.dtsi
-@@ -0,0 +1,169 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree file for HPE GXP
-+ */
-+
-+/dts-v1/;
-+/ {
-+	model = "Hewlett Packard Enterprise GXP BMC";
-+	compatible = "hpe,gxp";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu@0 {
-+			compatible = "arm,armv7";
-+			device_type = "cpu";
-+			reg = <0>;
-+		};
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0x40000000 0x20000000>;
-+	};
-+
-+	ahb {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		device_type = "soc";
-+		ranges;
-+
-+		vic0: interrupt-controller@ceff0000 {
-+			compatible = "arm,pl192-vic";
-+			#address-cells = <1>;
-+			interrupt-controller;
-+			reg = <0xceff0000 0x1000>;
-+			#interrupt-cells = <1>;
-+		};
-+
-+		vic1: vic@80f00000 {
-+			compatible = "arm,pl192-vic";
-+			#address-cells = <1>;
-+			interrupt-controller;
-+			reg = <0x80f00000 0x1000>;
-+			#interrupt-cells = <1>;
-+		};
-+
-+		timer0: timer@c0000080 {
-+			compatible = "hpe,gxp-timer";
-+			reg = <0xc0000080 0x1>, <0xc0000094 0x01>, <0xc0000088 0x08>;
-+			interrupts = <0>;
-+			interrupt-parent = <&vic0>;
-+			clock-frequency = <400000000>;
-+		};
-+
-+		watchdog: watchdog@c0000090 {
-+			compatible = "hpe,gxp-wdt";
-+			reg = <0xc0000090 0x02>, <0xc0000096 0x01>;
-+		};
-+
-+		uarta: serial@c00000e0 {
-+			compatible = "ns16550a";
-+			reg = <0xc00000e0 0x8>;
-+			interrupts = <17>;
-+			interrupt-parent = <&vic0>;
-+			clock-frequency = <1846153>;
-+			reg-shift = <0>;
-+		};
-+
-+		uartb: serial@c00000e8 {
-+			compatible = "ns16550a";
-+			reg = <0xc00000e8 0x8>;
-+			interrupts = <18>;
-+			interrupt-parent = <&vic0>;
-+			clock-frequency = <1846153>;
-+			reg-shift = <0>;
-+		};
-+
-+		uartc: serial@c00000f0 {
-+			compatible = "ns16550a";
-+			reg = <0xc00000f0 0x8>;
-+			interrupts = <19>;
-+			interrupt-parent = <&vic0>;
-+			clock-frequency = <1846153>;
-+			reg-shift = <0>;
-+		};
-+
-+		usb0: ehci@cefe0000 {
-+			compatible = "generic-ehci";
-+			reg = <0xcefe0000 0x100>;
-+			interrupts = <7>;
-+			interrupt-parent = <&vic0>;
-+		};
-+
-+		usb1: ohci@cefe0100 {
-+			compatible = "generic-ohci";
-+			reg = <0xcefe0100 0x110>;
-+			interrupts = <6>;
-+			interrupt-parent = <&vic0>;
-+		};
-+
-+		sram@d0000000 {
-+			compatible = "mtd-ram";
-+			reg = <0xd0000000 0x80000>;
-+			bank-width = <1>;
-+			erase-size =<1>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			partition@0 {
-+				label = "host-reserved";
-+				reg = <0x0 0x10000>;
-+			};
-+			partition@10000 {
-+				label = "nvram";
-+				reg = <0x10000 0x70000>;
-+			};
-+		};
-+
-+		vrom@58000000 {
-+			compatible = "mtd-ram";
-+			bank-width = <4>;
-+			reg = <0x58000000 0x4000000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			partition@0 {
-+				label = "vrom-prime";
-+				reg = <0x0 0x2000000>;
-+			};
-+			partition@2000000 {
-+				label = "vrom-second";
-+				reg = <0x2000000 0x2000000>;
-+			};
-+		};
-+
-+		i2cg: i2cg@c00000f8 {
-+			compatible = "syscon";
-+			reg = <0xc00000f8 0x08>;
-+		};
-+	};
-+
-+	clocks {
-+		osc: osc {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-output-names = "osc";
-+			clock-frequency = <33333333>;
-+		};
-+
-+		iopclk: iopclk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clocks = <&osc>;
-+			clock-out-put-names = "iopclk";
-+			clock-frequency = <400000000>;
-+		};
-+
-+		memclk: memclk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clocks = <&osc>;
-+			clock-out-put-names = "memclk";
-+			clock-frequency = <800000000>;
-+		};
-+	};
-+};
--- 
-2.17.1
+I would prefer to stay with optional clock unless Bjorn has some strong 
+objection on not using int.
 
+--srini
+
+> 
+>>
+>> --srini
+>>
+>>>   };
+>>>     static const struct of_device_id lpi_pinctrl_of_match[] = {
