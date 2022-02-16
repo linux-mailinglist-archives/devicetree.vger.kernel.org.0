@@ -2,61 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94B704B86F1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 12:44:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A62304B86FB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 12:46:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231810AbiBPLo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 06:44:27 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60384 "EHLO
+        id S232036AbiBPLqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 06:46:25 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232077AbiBPLoW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 06:44:22 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B4BD1CFDB;
-        Wed, 16 Feb 2022 03:44:07 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id B5D811F45113
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645011846;
-        bh=vMYqlcxJ4lSQwNLunvGOfbKl7psBgbiPHyVvb4L4nwM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=RiEn09QgynpodGO9teoyBuAYdsAdJobXsL4dfPAvnBfl1aO2Dk57h5elih2C5oAEp
-         z7nXm4lm3Sm3fycsfqtGwWO+NdI4avvUEUurYHrIvLINcqK05+tsUKvy/99hRADF82
-         s94Y8lfCDZkCpVJU/Gnc6aFBy9CzCfZLByin8zLo3H9REnru3n6DHJHK86n040tR6x
-         eUhtvFuD7FqUIC3/pnYJHypbZw/R8PCs2D3vTjt7xR0T1PydVV49HClwhL9pp/PV/W
-         3zXdi0Lyb2KhXTE5JrXTL8qB7h5UruYseqwUVxY/oZlEZw+ZWWchiij2w+s3LxMvG7
-         5quSnteSnZmag==
-Message-ID: <cc5e7f4b-8a70-01a3-3219-b6b3c825504d@collabora.com>
-Date:   Wed, 16 Feb 2022 12:44:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v11 2/3] dt-bindings: pinctrl: mt8195: Add
- mediatek,drive-strength-adv property
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231491AbiBPLqY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 06:46:24 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8176BBE15;
+        Wed, 16 Feb 2022 03:46:11 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nKIl4-00076X-4g; Wed, 16 Feb 2022 12:46:06 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     linux-kernel@vger.kernel.org, Atish Patra <atishp@rivosinc.com>
+Cc:     Atish Patra <atishp@rivosinc.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Atish Patra <atishp@atishpatra.org>,
+        Anup Patel <anup@brainfault.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        ryder.lee@kernel.org, wenst@chromium.org, chunfeng.yun@mediatek.com
-References: <20220216113131.13145-1-tinghan.shen@mediatek.com>
- <20220216113131.13145-3-tinghan.shen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220216113131.13145-3-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        linux-riscv@lists.infradead.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 5/6] RISC-V: Do no continue isa string parsing without correct XLEN
+Date:   Wed, 16 Feb 2022 12:46:05 +0100
+Message-ID: <3202369.D2aLoNIhS8@diego>
+In-Reply-To: <20220216002911.1219593-6-atishp@rivosinc.com>
+References: <20220216002911.1219593-1-atishp@rivosinc.com> <20220216002911.1219593-6-atishp@rivosinc.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,67 +49,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 16/02/22 12:31, Tinghan Shen ha scritto:
-> Extend driving support for I2C pins on SoC mt8195.
-> This property is already documented in mediatek,mt8183-pinctrl.yaml.
+Am Mittwoch, 16. Februar 2022, 01:29:10 CET schrieb Atish Patra:
+> The isa string should begin with either rv64 or rv32. Otherwise, it is
+> an incorrect isa string. Currently, the string parsing continues even if
+> it doesnot begin with current XLEN.
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+> Fix this by checking if it found "rv64" or "rv32" in the beginning.
+> 
+> Signed-off-by: Atish Patra <atishp@rivosinc.com>
 > ---
->   .../bindings/pinctrl/pinctrl-mt8195.yaml      | 35 +++++++++++++++++++
->   1 file changed, 35 insertions(+)
+>  arch/riscv/kernel/cpufeature.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> index 8299662c2c09..c5b755514c46 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> @@ -98,6 +98,32 @@ patternProperties:
->             drive-strength:
->               enum: [2, 4, 6, 8, 10, 12, 14, 16]
->   
-> +          mediatek,drive-strength-adv:
-> +            description: |
-> +              Describe the specific driving setup property.
-> +              For I2C pins, the existing generic driving setup can only support
-> +              2/4/6/8/10/12/14/16mA driving. But in specific driving setup, they
-> +              can support 0.125/0.25/0.5/1mA adjustment. If we enable specific
-> +              driving setup, the existing generic setup will be disabled.
-> +              The specific driving setup is controlled by E1E0EN.
-> +              When E1=0/E0=0, the strength is 0.125mA.
-> +              When E1=0/E0=1, the strength is 0.25mA.
-> +              When E1=1/E0=0, the strength is 0.5mA.
-> +              When E1=1/E0=1, the strength is 1mA.
-> +              EN is used to enable or disable the specific driving setup.
-> +              Valid arguments are described as below:
-> +              0: (E1, E0, EN) = (0, 0, 0)
-> +              1: (E1, E0, EN) = (0, 0, 1)
-> +              2: (E1, E0, EN) = (0, 1, 0)
-> +              3: (E1, E0, EN) = (0, 1, 1)
-> +              4: (E1, E0, EN) = (1, 0, 0)
-> +              5: (E1, E0, EN) = (1, 0, 1)
-> +              6: (E1, E0, EN) = (1, 1, 0)
-> +              7: (E1, E0, EN) = (1, 1, 1)
-> +              So the valid arguments are from 0 to 7.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            enum: [0, 1, 2, 3, 4, 5, 6, 7]
-> +
->             bias-pull-down:
->               oneOf:
->                 - type: boolean
-> @@ -270,4 +296,13 @@ examples:
->             bias-pull-down;
->           };
->         };
-> +
-> +      i2c0-pins {
-> +        pins {
-> +          pinmux = <PINMUX_GPIO8__FUNC_SDA0>,
-> +                   <PINMUX_GPIO9__FUNC_SCL0>;
-> +          bias-disable;
-> +          mediatek,drive-strength-adv = <7>;
-> +        };
-> +      };
->       };
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index 59c70c104256..cb9c9e0aab31 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -84,6 +84,7 @@ void __init riscv_fill_hwcap(void)
+>  	for_each_of_cpu_node(node) {
+>  		unsigned long this_hwcap = 0;
+>  		DECLARE_BITMAP(this_isa, RISCV_ISA_EXT_MAX);
+> +		const char *temp;
+>  
+>  		if (riscv_of_processor_hartid(node) < 0)
+>  			continue;
+> @@ -93,6 +94,7 @@ void __init riscv_fill_hwcap(void)
+>  			continue;
+>  		}
+>  
+> +		temp = isa;
+>  #if IS_ENABLED(CONFIG_32BIT)
+>  		if (!strncmp(isa, "rv32", 4))
+>  			isa += 4;
+> @@ -100,6 +102,9 @@ void __init riscv_fill_hwcap(void)
+>  		if (!strncmp(isa, "rv64", 4))
+>  			isa += 4;
+>  #endif
+> +		/* The riscv,isa DT property must start with rv64 or rv32 */
+> +		if (temp == isa)
+> +			continue;
+
+hmm, should (and can) this create some warning about the ignored
+malformed ISA string?
+
+Otherwise
+Tested-by: Heiko Stuebner <heiko@sntech.de>
+
+>  		bitmap_zero(this_isa, RISCV_ISA_EXT_MAX);
+>  		for (; *isa; ++isa) {
+>  			const char *ext = isa++;
+> 
+
+
+
+
