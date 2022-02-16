@@ -2,136 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59A9C4B7FED
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 06:14:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBC334B808B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 07:19:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243409AbiBPFOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 00:14:53 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33418 "EHLO
+        id S241150AbiBPFzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 00:55:23 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344556AbiBPFOx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 00:14:53 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77E77F9570;
-        Tue, 15 Feb 2022 21:14:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1644988481; x=1676524481;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=ylavwFYQD6KGHhXFsIL//yJI76kYPD2M2lrrfVfYUGw=;
-  b=CFY+xCOmeY3nuwQpj8kWQ311B21R4Rtb6KjM2BEdcoie80TD0w6A7pxT
-   FbBP5aqYCdgO6OGCTNS2GfmPanYH3bt1wCVmsOArwbMEYvIicowVYwvDG
-   7MqysXt2TUkjl55TKoWel1FRpFVKyF190aGLtijbVOwBlnAFQn3EMkxkD
-   Q=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 15 Feb 2022 21:14:40 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Feb 2022 21:14:33 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Tue, 15 Feb 2022 21:14:32 -0800
-Received: from [10.216.55.237] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Tue, 15 Feb
- 2022 21:14:27 -0800
-Subject: Re: [RESEND v13 05/10] ASoC: qcom: Add register definition for codec
- rddma and wrdma
-To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
-        <alsa-devel@alsa-project.org>, <bgoswami@codeaurora.org>,
-        <bjorn.andersson@linaro.org>, <broonie@kernel.org>,
-        <devicetree@vger.kernel.org>, <judyhsiao@chromium.org>,
-        <lgirdwood@gmail.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <perex@perex.cz>,
-        <quic_plai@quicinc.com>, <robh+dt@kernel.org>,
-        <rohitkr@codeaurora.org>, <srinivas.kandagatla@linaro.org>,
-        <tiwai@suse.com>
-CC:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-References: <1644850708-11099-1-git-send-email-quic_srivasam@quicinc.com>
- <1644850708-11099-6-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n53iKwT8u=d2KG5KX8fJgFs1JhTnaGCfG=OLarhvLdmf3Q@mail.gmail.com>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-Message-ID: <13d0bb5c-4f63-12a0-3c2c-c2d0e0211026@quicinc.com>
-Date:   Wed, 16 Feb 2022 10:44:24 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S234272AbiBPFzW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 00:55:22 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA607C12FB;
+        Tue, 15 Feb 2022 21:55:06 -0800 (PST)
+X-UUID: c07bc4593c3b447483f06278c4671c7e-20220216
+X-UUID: c07bc4593c3b447483f06278c4671c7e-20220216
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 138608058; Wed, 16 Feb 2022 13:55:02 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 16 Feb 2022 13:55:01 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 16 Feb 2022 13:54:59 +0800
+Message-ID: <d9637b40196873f392ac9cebfe369106a6f0eee7.camel@mediatek.com>
+Subject: Re: [PATCH v4 08/35] iommu/mediatek: Use kmalloc for protect buffer
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, <youlin.pei@mediatek.com>,
+        <anan.sun@mediatek.com>, <xueqi.zhang@mediatek.com>,
+        <yen-chang.chen@mediatek.com>, <mingyuan.ma@mediatek.com>,
+        <yf.wang@mediatek.com>, <libo.kang@mediatek.com>,
+        <chengci.xu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>
+Date:   Wed, 16 Feb 2022 13:54:59 +0800
+In-Reply-To: <ca47becf-adc9-f11e-5e59-03f203920344@collabora.com>
+References: <20220125085634.17972-1-yong.wu@mediatek.com>
+         <20220125085634.17972-9-yong.wu@mediatek.com>
+         <ca47becf-adc9-f11e-5e59-03f203920344@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <CAE-0n53iKwT8u=d2KG5KX8fJgFs1JhTnaGCfG=OLarhvLdmf3Q@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 2022-01-27 at 12:08 +0100, AngeloGioacchino Del Regno wrote:
+> Il 25/01/22 09:56, Yong Wu ha scritto:
+> > No need zero for the protect buffer that is only accessed by the
+> > IOMMU HW
+> > translation fault happened.
+> > 
+> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> 
+> I would rather keep this a devm_kzalloc instead... the cost is very
+> minimal and
+> this will be handy when new hardware will be introduced, as it may
+> require a bigger
+> buffer: in that case, "older" platforms will use only part of it and
+> we may get
+> garbage data at the end.
 
-On 2/15/2022 6:42 AM, Stephen Boyd wrote:
-Thanks for your time Stephen!!!
-> Quoting Srinivasa Rao Mandadapu (2022-02-14 06:58:23)
->> This patch adds register definitions for codec read dma and write dma
->   git grep "This patch" -- Documentation/process/
-Okay. Will remove and reword the commit message.
->
->> lpass interface.
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
->> index 7cc3763..e059c4a 100644
->> --- a/sound/soc/qcom/lpass.h
->> +++ b/sound/soc/qcom/lpass.h
->> @@ -39,6 +39,29 @@
->>                          return -EINVAL;         \
->>          } while (0)
->>
->> +static inline bool is_cdc_dma_port(int dai_id)
->> +{
->> +       switch (dai_id) {
->> +       case LPASS_CDC_DMA_RX0 ... LPASS_CDC_DMA_RX9:
->> +       case LPASS_CDC_DMA_TX0 ... LPASS_CDC_DMA_TX8:
->> +       case LPASS_CDC_DMA_VA_TX0 ... LPASS_CDC_DMA_VA_TX8:
->> +               return true;
->> +       default:
-> Drop case
-Okay. will remove it.
->
->> +               return false;
->> +       }
-> return false;
->
-> would be shorter.
-Okay. will change it.
->
->> +}
->> +
->> +static inline bool is_rxtx_cdc_dma_port(int dai_id)
->> +{
->> +       switch (dai_id) {
->> +       case LPASS_CDC_DMA_RX0 ... LPASS_CDC_DMA_RX9:
->> +       case LPASS_CDC_DMA_TX0 ... LPASS_CDC_DMA_TX8:
->> +               return true;
->> +       default:
->> +               return false;
->> +       }
-> Same.
-Okay.
->
->> +}
->> +
->>   struct lpaif_i2sctl {
->>          struct regmap_field *loopback;
->>          struct regmap_field *spken;
+Currently this is to avoid zero 512 bytes for all the platforms.
+
+Sorry, I don't understand why it is unnecessary when the new hardware
+requires a bigger buffer. If the buffer becomes bigger, then clearing
+it to 0 need more cost. then this patch is more helpful?
+
+The content in this buffer is garbage, we won't care about or analyse
+it.
+
+> 
+> Regards,
+> Angelo
+
