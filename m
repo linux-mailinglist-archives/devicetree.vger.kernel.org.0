@@ -2,67 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE9EB4B82EB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 09:28:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 908704B8329
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 09:44:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230200AbiBPI2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 03:28:24 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:47504 "EHLO
+        id S229828AbiBPIkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 03:40:35 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:39628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229851AbiBPI2Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 03:28:24 -0500
-X-Greylist: delayed 909 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 16 Feb 2022 00:28:11 PST
-Received: from 4.mo552.mail-out.ovh.net (4.mo552.mail-out.ovh.net [178.33.43.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14E2F255781
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 00:28:10 -0800 (PST)
-Received: from mxplan5.mail.ovh.net (unknown [10.109.156.219])
-        by mo552.mail-out.ovh.net (Postfix) with ESMTPS id 3D56D24B44;
-        Wed, 16 Feb 2022 08:12:56 +0000 (UTC)
-Received: from kaod.org (37.59.142.96) by DAG4EX1.mxp5.local (172.16.2.31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 16 Feb
- 2022 09:12:54 +0100
-Authentication-Results: garm.ovh; auth=pass (GARM-96R0010590fb10-4626-4deb-8236-9a8be91dbf44,
-                    CB3E44AF90526EF3DA3218D7163352937EBBBEE5) smtp.auth=clg@kaod.org
-X-OVh-ClientIp: 82.64.250.170
-Message-ID: <d517d453-ddd5-8c9e-7b1f-56f5f83d2f1e@kaod.org>
-Date:   Wed, 16 Feb 2022 09:12:48 +0100
+        with ESMTP id S229455AbiBPIke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 03:40:34 -0500
+Received: from hostingweb31-40.netsons.net (hostingweb31-40.netsons.net [89.40.174.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 768B31C8847;
+        Wed, 16 Feb 2022 00:40:22 -0800 (PST)
+Received: from host-79-2-93-196.business.telecomitalia.it ([79.2.93.196]:33352 helo=[192.168.101.73])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1nKFrH-0005i7-NY; Wed, 16 Feb 2022 09:40:19 +0100
+Message-ID: <f412980a-4e41-54c7-f000-f826e015f6d2@lucaceresoli.net>
+Date:   Wed, 16 Feb 2022 09:40:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 10/10] spi: aspeed: Activate new spi-mem driver
-Content-Language: en-US
-To:     Joel Stanley <joel@jms.id.au>
-CC:     <linux-spi@vger.kernel.org>,
-        linux-mtd <linux-mtd@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Subject: Re: [RFCv3 2/6] i2c: add I2C Address Translator (ATR) support
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220214094231.3753686-1-clg@kaod.org>
- <20220214094231.3753686-11-clg@kaod.org>
- <CACPK8XdvczyZ1QHtFm7JJAC7AY+QmWSx0MarUwLjUyOtC9DnSQ@mail.gmail.com>
-From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
-In-Reply-To: <CACPK8XdvczyZ1QHtFm7JJAC7AY+QmWSx0MarUwLjUyOtC9DnSQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [37.59.142.96]
-X-ClientProxiedBy: DAG3EX1.mxp5.local (172.16.2.21) To DAG4EX1.mxp5.local
- (172.16.2.31)
-X-Ovh-Tracer-GUID: 365dd3b7-2a44-4f14-8514-26cf6445fd31
-X-Ovh-Tracer-Id: 12828503540660800388
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrjeehgdduudegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepieegvdffkeegfeetuddttddtveduiefhgeduffekiedtkeekteekhfffleevleelnecukfhppedtrddtrddtrddtpdefjedrheelrddugedvrdelieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepmhigphhlrghnhedrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegtlhhgsehkrghougdrohhrghdpnhgspghrtghpthhtohepuddprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+        Mark Rutland <mark.rutland@arm.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Peter Rosin <peda@axentia.se>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+References: <20220206115939.3091265-1-luca@lucaceresoli.net>
+ <20220206115939.3091265-3-luca@lucaceresoli.net>
+ <CAHp75Vejw86kLUJfwXR_kUn+=UCaixbcy=epO8Foe=9S2LqXTQ@mail.gmail.com>
+Content-Language: en-US
+In-Reply-To: <CAHp75Vejw86kLUJfwXR_kUn+=UCaixbcy=epO8Foe=9S2LqXTQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
@@ -72,91 +70,182 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/16/22 08:02, Joel Stanley wrote:
-> On Mon, 14 Feb 2022 at 09:43, Cédric Le Goater <clg@kaod.org> wrote:
+Hi Andy,
+
+thank you for the _very_ detailed review and apologies for not having
+found the time to reply until now.
+
+I'm OK with most of your comments, so I'm not commenting on them for
+brevity. Below my comments on the remaining topics.
+
+On 08/02/22 12:16, Andy Shevchenko wrote:
+> On Mon, Feb 7, 2022 at 7:55 PM Luca Ceresoli <luca@lucaceresoli.net> wrote:
 >>
->> The previous driver using the MTD SPI NOR interface is kept in case we
->> find some issues but we should remove it quickly once the new driver
->> using the spi-mem interface has been sufficiently exposed.
+>> An ATR is a device that looks similar to an i2c-mux: it has an I2C
+>> slave "upstream" port and N master "downstream" ports, and forwards
+>> transactions from upstream to the appropriate downstream port. But is
+>> is different in that the forwarded transaction has a different slave
+>> address. The address used on the upstream bus is called the "alias"
+>> and is (potentially) different from the physical slave address of the
+>> downstream chip.
 >>
->> Signed-off-by: Cédric Le Goater <clg@kaod.org>
+>> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
+>> implementing ATR features in a device driver. The helper takes care or
+>> adapter creation/destruction and translates addresses at each transaction.
 > 
-> I suggest we drop the defconfig changes from both this patch and the
-> first. This way we'll always have the new driver being built, with
-> less churn.
+> Why I2C mux driver can't be updated to support this feature?
+
+My first version did that. But it was very complex to shoehorn the ATR
+features in the i2c-mux code which already handles various [corner]
+cases. If memory serves, code reuse was limited to the trivial code:
+allocations, cleanups and the like.
+
+The root reason is that an atr and a mux have a similar electric
+topology, but they do very different things. An mux need to be commanded
+to switch from one downstream bus to another, an atr does not. An atr
+modifies the transaction, including the speed, a mux does not.
+
+>>  RFCv1 was implemented inside i2c-mux.c and added yet more complexity
+>>  there. RFCv2 creates a new file on its own, i2c-atr.c. Since many ATR
+>>  features are not in a MUX and vice versa, the overlapping is low. This was
+>>  almost a complete rewrite, but for the records here are the main
+>>  differences from the old implementation:
 > 
-> If you strongly prefer the way you've done it then that's fine too.
+> While this is from a code perspective, maybe i2c mux and this one can
+> still share some parts?
 
-I am fine with that, but, with only patch 1, the defconfig files would
-be referencing an non-existing CONFIG. Is that ok ?
+Possibly. I'd have to look into that in more detail.
+I must say having a separate file allowed me to be free to implement
+whatever is best for atr. With that done I would certainly make sense to
+check whether there are still enough commonalities to share code, maybe
+in a .c file with shared functions.
 
-Thanks,
-
-C.
-
-
-
+>> +config I2C_ATR
+>> +       tristate "I2C Address Translator (ATR) support"
+>> +       help
+>> +         Enable support for I2C Address Translator (ATR) chips.
+>> +
+>> +         An ATR allows accessing multiple I2C busses from a single
+>> +         physical bus via address translation instead of bus selection as
+>> +         i2c-muxes do.
 > 
->> ---
->>   arch/arm/configs/aspeed_g4_defconfig | 2 +-
->>   arch/arm/configs/aspeed_g5_defconfig | 2 +-
->>   arch/arm/configs/multi_v5_defconfig  | 2 +-
->>   arch/arm/configs/multi_v7_defconfig  | 2 +-
->>   4 files changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm/configs/aspeed_g4_defconfig b/arch/arm/configs/aspeed_g4_defconfig
->> index 964536444cd7..b4a1b2ed1a17 100644
->> --- a/arch/arm/configs/aspeed_g4_defconfig
->> +++ b/arch/arm/configs/aspeed_g4_defconfig
->> @@ -64,7 +64,7 @@ CONFIG_MTD_BLOCK=y
->>   CONFIG_MTD_PARTITIONED_MASTER=y
->>   CONFIG_MTD_SPI_NOR=y
->>   # CONFIG_MTD_SPI_NOR_USE_4K_SECTORS is not set
->> -CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=y
->> +CONFIG_SPI_ASPEED_SMC=y
->>   CONFIG_MTD_UBI=y
->>   CONFIG_MTD_UBI_FASTMAP=y
->>   CONFIG_MTD_UBI_BLOCK=y
->> diff --git a/arch/arm/configs/aspeed_g5_defconfig b/arch/arm/configs/aspeed_g5_defconfig
->> index e809236ca88b..ccc4240ee4b5 100644
->> --- a/arch/arm/configs/aspeed_g5_defconfig
->> +++ b/arch/arm/configs/aspeed_g5_defconfig
->> @@ -103,7 +103,7 @@ CONFIG_MTD_BLOCK=y
->>   CONFIG_MTD_PARTITIONED_MASTER=y
->>   CONFIG_MTD_SPI_NOR=y
->>   # CONFIG_MTD_SPI_NOR_USE_4K_SECTORS is not set
->> -CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=y
->> +CONFIG_SPI_ASPEED_SMC=y
->>   CONFIG_MTD_UBI=y
->>   CONFIG_MTD_UBI_FASTMAP=y
->>   CONFIG_MTD_UBI_BLOCK=y
->> diff --git a/arch/arm/configs/multi_v5_defconfig b/arch/arm/configs/multi_v5_defconfig
->> index 49083ef05fb0..80a3ae02d759 100644
->> --- a/arch/arm/configs/multi_v5_defconfig
->> +++ b/arch/arm/configs/multi_v5_defconfig
->> @@ -103,7 +103,7 @@ CONFIG_MTD_RAW_NAND=y
->>   CONFIG_MTD_NAND_ATMEL=y
->>   CONFIG_MTD_NAND_ORION=y
->>   CONFIG_MTD_SPI_NOR=y
->> -CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=y
->> +CONFIG_SPI_ASPEED_SMC=y
->>   CONFIG_MTD_UBI=y
->>   CONFIG_BLK_DEV_LOOP=y
->>   CONFIG_ATMEL_SSC=m
->> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
->> index fc1b69256b64..33572998dbbe 100644
->> --- a/arch/arm/configs/multi_v7_defconfig
->> +++ b/arch/arm/configs/multi_v7_defconfig
->> @@ -217,7 +217,7 @@ CONFIG_MTD_NAND_DAVINCI=y
->>   CONFIG_MTD_NAND_STM32_FMC2=y
->>   CONFIG_MTD_NAND_PL35X=y
->>   CONFIG_MTD_SPI_NOR=y
->> -CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=m
->> +CONFIG_SPI_ASPEED_SMC=m
->>   CONFIG_MTD_UBI=y
->>   CONFIG_BLK_DEV_LOOP=y
->>   CONFIG_BLK_DEV_RAM=y
->> --
->> 2.34.1
->>
+> What would be the module name?
 
+Isn't the module name written in Kconfig files just to avoid checkpatch
+complain about "too few doc lines"? :) Oook, it's i2s-atr anyway.
+
+>> +/**
+> 
+> Is this a kernel doc formatted documentation?
+> Haven't you got a warning?
+
+Not from checkpatch, but I got one from the kernel test robot. Will fix.
+
+[...]
+
+>> + *
+>> + * An I2C Address Translator (ATR) is a device with an I2C slave parent
+>> + * ("upstream") port and N I2C master child ("downstream") ports, and
+>> + * forwards transactions from upstream to the appropriate downstream port
+>> + * with a modified slave address. The address used on the parent bus is
+>> + * called the "alias" and is (potentially) different from the physical
+>> + * slave address of the child bus. Address translation is done by the
+>> + * hardware.
+>> + *
+>> + * An ATR looks similar to an i2c-mux except:
+>> + * - the address on the parent and child busses can be different
+>> + * - there is normally no need to select the child port; the alias used on
+>> + *   the parent bus implies it
+>> + *
+>> + * The ATR functionality can be provided by a chip with many other
+>> + * features. This file provides a helper to implement an ATR within your
+>> + * driver.
+>> + *
+>> + * The ATR creates a new I2C "child" adapter on each child bus. Adding
+>> + * devices on the child bus ends up in invoking the driver code to select
+>> + * an available alias. Maintaining an appropriate pool of available aliases
+>> + * and picking one for each new device is up to the driver implementer. The
+>> + * ATR maintains an table of currently assigned alias and uses it to modify
+>> + * all I2C transactions directed to devices on the child buses.
+>> + *
+>> + * A typical example follows.
+>> + *
+>> + * Topology:
+>> + *
+>> + *                       Slave X @ 0x10
+>> + *               .-----.   |
+>> + *   .-----.     |     |---+---- B
+>> + *   | CPU |--A--| ATR |
+>> + *   `-----'     |     |---+---- C
+>> + *               `-----'   |
+>> + *                       Slave Y @ 0x10
+>> + *
+>> + * Alias table:
+>> + *
+>> + *   Client  Alias
+>> + *   -------------
+>> + *      X    0x20
+>> + *      Y    0x30
+>> + *
+>> + * Transaction:
+>> + *
+>> + *  - Slave X driver sends a transaction (on adapter B), slave address 0x10
+>> + *  - ATR driver rewrites messages with address 0x20, forwards to adapter A
+>> + *  - Physical I2C transaction on bus A, slave address 0x20
+>> + *  - ATR chip propagates transaction on bus B with address translated to 0x10
+>> + *  - Slave X chip replies on bus B
+>> + *  - ATR chip forwards reply on bus A
+>> + *  - ATR driver rewrites messages with address 0x10
+>> + *  - Slave X driver gets back the msgs[], with reply and address 0x10
+>> + *
+>> + * Usage:
+>> + *
+>> + *  1. In your driver (typically in the probe function) add an ATR by
+>> + *     calling i2c_atr_new() passing your attach/detach callbacks
+>> + *  2. When the attach callback is called pick an appropriate alias,
+>> + *     configure it in your chip and return the chosen alias in the
+>> + *     alias_id parameter
+>> + *  3. When the detach callback is called, deconfigure the alias from
+>> + *     your chip and put it back in the pool for later usage
+>> + *
+>> + * Originally based on i2c-mux.c
+>> + */
+> 
+> Shouldn't this comment be somewhere under Documentation/ ?
+
+Uhm, yes, I agree it's a good idea to move this entire comment there.
+
+>> +       if (dev->of_node) {
+> 
+> This check can be dropped, also please use device property and fwnode
+> APIs. No good of having OF-centric generic modules nowadays.
+
+Sure! This code was written in another decade and I didn't update it...
+As you noticed elsewhere it also honors the old, strict 80-chars per
+line limit in various places where it makes no sense anymore.
+
+>> +       WARN(sysfs_create_link(&chan->adap.dev.kobj, &dev->kobj, "atr_device"),
+>> +            "can't create symlink to atr device\n");
+>> +       snprintf(symlink_name, sizeof(symlink_name), "channel-%u", chan_id);
+>> +       WARN(sysfs_create_link(&dev->kobj, &chan->adap.dev.kobj, symlink_name),
+>> +            "can't create symlink for channel %u\n", chan_id);
+> 
+> Doesn't sysfs already has a warning when it's really needed?
+
+I have to check that. I usually don't add unnecessary log messages.
+
+[...]
+
+>> +#include <linux/i2c.h>
+>> +#include <linux/mutex.h>
+> 
+> Missed types.h
+> 
+> Missed struct device;
+
+Not sure I got your point here. This file has some 'struct device *',
+which do not need a declaration, and has zero non-pointer uses of
+'struct device'.
+
+-- 
+Luca
