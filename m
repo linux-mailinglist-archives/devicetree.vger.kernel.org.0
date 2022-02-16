@@ -2,118 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A0A94B87C3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 13:34:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D302D4B87D7
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 13:39:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233025AbiBPMe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 07:34:57 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53190 "EHLO
+        id S233336AbiBPMj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 07:39:29 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232850AbiBPMe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 07:34:56 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EFD011F79F7
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 04:34:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1645014884;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Fu6TzmgbMlYQuSDAMHkyuQBli3G2K2SmS218sexp9ic=;
-        b=OqMVeVekI5dJZIS5uPp2kdfQGRk8GfuHRpjZo7/AFVgxMJxiWHkbHSb71j7sTyY5hlGgNc
-        LYWgZpIL4D80ZR5qtlfYsVjH8RJDBKw2um3Nk6xeHl7epdPRUf9YBU0Acqr5tbE7OcFiN5
-        QZ5bD+hXlESFjTwmedJc30TEk2oLVMI=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-288-4F1H7locMU6HQQfB4FRNJQ-1; Wed, 16 Feb 2022 07:34:42 -0500
-X-MC-Unique: 4F1H7locMU6HQQfB4FRNJQ-1
-Received: by mail-wm1-f72.google.com with SMTP id i30-20020a1c541e000000b0037dbf3d7efdso202248wmb.4
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 04:34:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Fu6TzmgbMlYQuSDAMHkyuQBli3G2K2SmS218sexp9ic=;
-        b=vos3HqDVwk1UJZtV4NwFIGLkY4VSvcLKwsV/nKBiK3N+TZ/firWm+QqWWX/XguVDyv
-         lXNTPpZoOREzauu0iSCt/ZECcmD6in4KINCslXOkS+AluuF3S3xMo8vmCRKejcCed4MF
-         wJbMgt3+iQRwd5gYF+PHz+T/pt/xIfcSVk+30623/6Cfm6owKGmP59DywBmAeZflzdWx
-         BOz7al2n49seE/0SpjaSf9q7JbcbbQS1ETw2hcrqkch43GCsQpmp4v0qCdiVbW5j6/c3
-         f6uzPaP9gGYeUNJCTO0d/TXaENa+V7S7Q1R3WpPPH7ClYueoRD1FixRojj0VeCp0xKit
-         926w==
-X-Gm-Message-State: AOAM5317ldjt4r5Hu2FItWZf6C9GWNQZ/QpW/FjgPsJFXbWJ66ANjSow
-        AV8a9muuBvIUx3tsUnOKzsyi1wC4I8q3CXOFmAx1VY53KaAeCHAuI1WZ7T075It+NckvUoCXcfp
-        +BiZ7+Vb9d8LnkJbvgt7lyA==
-X-Received: by 2002:adf:f005:0:b0:1e3:1957:af07 with SMTP id j5-20020adff005000000b001e31957af07mr2203707wro.311.1645014881507;
-        Wed, 16 Feb 2022 04:34:41 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJww2pEBjWX6+qG9snaBEnYCCDQh6YGaz6Dcc7r7r2Rqwhne1V8moyLnyuF2IvLxEM9om9CJGQ==
-X-Received: by 2002:adf:f005:0:b0:1e3:1957:af07 with SMTP id j5-20020adff005000000b001e31957af07mr2203675wro.311.1645014881239;
-        Wed, 16 Feb 2022 04:34:41 -0800 (PST)
-Received: from [192.168.1.102] ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id l12sm32213684wrs.11.2022.02.16.04.34.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Feb 2022 04:34:40 -0800 (PST)
-Message-ID: <2d0e88a3-8fa2-6b21-93da-1c9e6f8e3e84@redhat.com>
-Date:   Wed, 16 Feb 2022 13:34:39 +0100
+        with ESMTP id S231156AbiBPMj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 07:39:28 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D3730DB873
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 04:39:15 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9544DD6E;
+        Wed, 16 Feb 2022 04:39:15 -0800 (PST)
+Received: from [10.57.70.89] (unknown [10.57.70.89])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CDC523F718;
+        Wed, 16 Feb 2022 04:39:13 -0800 (PST)
+Message-ID: <9142ff41-4e95-3d52-bbe3-4f638b7d0fb2@arm.com>
+Date:   Wed, 16 Feb 2022 12:39:09 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v6 0/6] drm: Add driver for Solomon SSD130x OLED displays
-Content-Language: en-US
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-fbdev@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org, Maxime Ripard <maxime@cerno.tech>,
-        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Lee Jones <lee.jones@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20220214133710.3278506-1-javierm@redhat.com>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20220214133710.3278506-1-javierm@redhat.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v3] dt-bindings: mfd: rk808: Convert bindings to yaml
+Content-Language: en-GB
+To:     Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org
+Cc:     lee.jones@linaro.org, robh+dt@kernel.org, heiko@sntech.de,
+        zyw@rock-chips.com, zhangqing@rock-chips.com,
+        linux-rockchip@lists.infradead.org,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20220215211548.31940-1-macroalpha82@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220215211548.31940-1-macroalpha82@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/14/22 14:37, Javier Martinez Canillas wrote:
-> This patch series adds a DRM driver for the Solomon OLED SSD1305, SSD1306,
-> SSD1307 and SSD1309 displays. It is a port of the ssd1307fb fbdev driver.
-> 
-> Using the DRM fbdev emulation, all the tests from Geert Uytterhoeven repo
-> (https://git.kernel.org/pub/scm/linux/kernel/git/geert/fbtest.git) passes.
-> 
-> I've also tested it using the display as a VT output and even though fbcon
-> seems to work, it is mostly unusable on a 128x64 SSD1306 display.
-> 
-> This is a v6 that addresses the issues pointed in v5. Thanks a lot to all
-> reviewers that gave me feedback and comments.
-> 
+On 2022-02-15 21:15, Chris Morgan wrote:
+[...]
+> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml
+> new file mode 100644
+> index 000000000000..1b928b94fbfd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/rockchip,rk805.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RK805 Power Management Integrated Circuit
+> +
+> +maintainers:
+> +  - Chris Zhong <zyw@rock-chips.com>
+> +  - Zhang Qing <zhangqing@rock-chips.com>
+> +
+> +description: |
+> +  Rockchip RK805 series PMIC. This device consists of an i2c controlled MFD
+> +  that includes multiple switchable regulators.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk805
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clock-output-names:
+> +    maxItems: 2
 
-Pushed this series to drm-misc (drm-misc-next). Thanks all!
+I think this should be 1, since RK805 only has a single CLK32K output - 
+ditto for RK817.
 
-Best regards,
--- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
+[...]
+> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
+> new file mode 100644
+> index 000000000000..f5908fa01a61
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
+> @@ -0,0 +1,257 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/rockchip,rk808.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RK808 Power Management Integrated Circuit
+> +
+> +maintainers:
+> +  - Chris Zhong <zyw@rock-chips.com>
+> +  - Zhang Qing <zhangqing@rock-chips.com>
+> +
+> +description: |
+> +  Rockchip RK808 series PMIC. This device consists of an i2c controlled MFD
+> +  that includes regulators, an RTC, and a power button.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk808
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    description:
+> +      See <dt-bindings/clock/rockchip,rk808.h> for clock IDs.
+> +    const: 1
+> +
+> +  clock-output-names:
+> +    description:
+> +      From common clock binding to override the default output clock name.
 
+minItems should be consistent across RK808/818/819 - when two clocks 
+exist, either it's legitimate to rename only the first one, or it isn't. 
+There shouldn't be an arbitrary difference just because of what existing 
+DTs happen to use.
+
+> +    maxItems: 2
+> +
+> +  rockchip,system-power-controller:
+> +    type: boolean
+> +    description:
+> +      Telling whether or not this PMIC is controlling the system power.
+> +
+> +  wakeup-source:
+> +    type: boolean
+> +    description:
+> +      Device can be used as a wakeup source.
+> +
+> +  vcc1-supply:
+> +    description:
+> +      The input supply for DCDC_REG1.
+> +
+> +  vcc2-supply:
+> +    description:
+> +      The input supply for DCDC_REG2.
+> +
+> +  vcc3-supply:
+> +    description:
+> +      The input supply for DCDC_REG3.
+> +
+> +  vcc4-supply:
+> +    description:
+> +      The input supply for DCDC_REG4.
+> +
+> +  vcc6-supply:
+> +    description:
+> +      The input supply for LDO_REG1 and LDO_REG2.
+> +
+> +  vcc7-supply:
+> +    description:
+> +      The input supply for LDO_REG3 and LDO_REG7.
+> +
+> +  vcc8-supply:
+> +    description:
+> +      The input supply for SWITCH_REG1.
+> +
+> +  vcc9-supply:
+> +    description:
+> +      The input supply for LDO_REG4 and LDO_REG5.
+> +
+> +  vcc10-supply:
+> +    description:
+> +      The input supply for LDO_REG6.
+> +
+> +  vcc11-supply:
+> +    description:
+> +      The input supply for LDO_REG8.
+> +
+> +  vcc12-supply:
+> +    description:
+> +      The input supply for SWITCH_REG2.
+> +
+> +  vddio-supply:
+> +    description:
+> +      The input supply for digital IO.
+> +
+> +  dvs-gpios:
+> +    description: |
+> +      buck1/2 can be controlled by gpio dvs, this is GPIO specifiers for
+> +      2 host gpio's used for dvs. The format of the gpio specifier
+> +      depends in the gpio controller. If DVS GPIOs aren't present,
+> +      voltage changes will happen very quickly with no slow ramp time.
+> +    maxItems: 2
+> +
+> +  regulators:
+> +    type: object
+> +    patternProperties:
+> +      "^(DCDC_REG[1-4]|LDO_REG[1-8]|SWITCH_REG[1-2])$":
+> +        type: object
+> +        $ref: ../regulator/regulator.yaml#
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#clock-cells"
+
+Is this actually required (ditto elsewhere)? Technically it's only 
+necessary if there are any clock consumers targeting this node, so 
+arguably it should be the clock binding's responsibility to validate that.
+
+It wouldn't make much sense for a dedicated clock controller to omit 
+#clock-cells such that it couldn't have any consumers, but given that 
+these things are primarily PMICs I think it's reasonable to allow a 
+board not to care about the clocks at all if it doesn't use them. I know 
+that the original binding claimed it was required, but if we're already 
+relaxing that for RK805 here then we may as well relax it entirely.
+
+Cheers,
+Robin.
