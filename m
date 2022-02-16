@@ -2,57 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96CFB4B940C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 23:52:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A670E4B949F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 00:42:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237630AbiBPWwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 17:52:13 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45372 "EHLO
+        id S233003AbiBPXnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 18:43:10 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231648AbiBPWwL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 17:52:11 -0500
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BF4045AE7;
-        Wed, 16 Feb 2022 14:51:59 -0800 (PST)
-Received: by mail-il1-f175.google.com with SMTP id d3so955995ilr.10;
-        Wed, 16 Feb 2022 14:51:59 -0800 (PST)
+        with ESMTP id S230469AbiBPXnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 18:43:09 -0500
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA48310A7C1;
+        Wed, 16 Feb 2022 15:42:56 -0800 (PST)
+Received: by mail-io1-f50.google.com with SMTP id s1so1702593iob.9;
+        Wed, 16 Feb 2022 15:42:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=5LcHm2dtPJOfjjaQ9D+1olObje338uGmX6hVzgLLasI=;
-        b=D62Ae7Cox3uxHwnmecdADhqBxU8Bz+Jc2qgcUyS6smPt2vP9tWbUQ8h3qRIatlTCq1
-         4E81K+ocdPEeGEb74Tza2NPYsvz4Gt0jC5FsWvZGKAYP2ZCxi963K6eLdR+uLrB7Hfgt
-         NXlRAb1BHV1ZA+svV05fx9dsLdLtfdNI7HvD/jznEMaB1IlMUjiGf2KqqWWNjJoiCoCB
-         t5/DKGDit4ACYghxd0VUzjLJghN5jIbQzQcOz2tc+ysmhL3nFVJgt1w5Kq87f2I/bJGL
-         dAzBJvX4AF2v8r+NoD4mZ0o7NLujErrtOi2GTBodUb/09CTUUz89Es5uyOZIf/lLbVI9
-         n4pQ==
-X-Gm-Message-State: AOAM532HQmFm6k/Fxhp9KVWD8Qh1akNRcvDUgQlL2VR0X/sfzO3PRKW+
-        Z6KImYQQN7/X4Ay09cfgKQ==
-X-Google-Smtp-Source: ABdhPJy6uPiOPSuOwS6ElLhTY/GwFNGS8Y3qpFEdr0AOVnyH/N2tTKBDhuctpLRGIKutBi441ThK7Q==
-X-Received: by 2002:a92:ca0f:0:b0:2bf:56d4:3aec with SMTP id j15-20020a92ca0f000000b002bf56d43aecmr33197ils.220.1645051918300;
-        Wed, 16 Feb 2022 14:51:58 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SLT7wjoW7MpVdOwbORzAiYLz8z90sJKzeMubDOx6fr0=;
+        b=1qAkU1RSccB/xE3BaOD/2FZcnGNsBX7XW6Pz60wouzWEXTJ+Nt6YLjWbOwVsfDEIDx
+         nLkihcipJUpPtKa/WNEKK5d3S8kTmdTMxPgqhzjz0gwuaI1cQnBMYXiKiWjPFzSn6wZW
+         W2I6OsQOYgh0GI/5w5wjj6kEQ2HJEe7ZpgbWcbsCK8bdFGQ1r6yZ2SbkshEsdxegGxnD
+         55cljdpSp90K8QON9WCd8bVmLn4d4ne25CiTtmUX6U6Q+/C227jFButAnzFpx5sVm8VB
+         owGaHiskqS71LCUg8Fpb4FSXxAv7UnJVoBWjCHHLs1uor2dWYlzGRaqk1wbJqjijAyPs
+         SdBQ==
+X-Gm-Message-State: AOAM532O0xXZysvqPvWtCnoHlEKhpmZX7RXukFm9wIC++wzymifiWCyW
+        GQu+pcakKMYzGSViFSk3iA==
+X-Google-Smtp-Source: ABdhPJzP38JJwpaEAEzq0Br3zPh/FVqPDfA7TF5fJ3TbQBFsBQO2njHllz46LEwN3oMWZrOcVeyJ8Q==
+X-Received: by 2002:a6b:6209:0:b0:60e:9b3f:52ae with SMTP id f9-20020a6b6209000000b0060e9b3f52aemr117741iog.33.1645054975955;
+        Wed, 16 Feb 2022 15:42:55 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id s16sm793892iow.10.2022.02.16.14.51.56
+        by smtp.gmail.com with ESMTPSA id z23sm769806iol.11.2022.02.16.15.42.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Feb 2022 14:51:57 -0800 (PST)
-Received: (nullmailer pid 1825837 invoked by uid 1000);
-        Wed, 16 Feb 2022 22:51:53 -0000
+        Wed, 16 Feb 2022 15:42:55 -0800 (PST)
+Received: (nullmailer pid 1902047 invoked by uid 1000);
+        Wed, 16 Feb 2022 23:42:53 -0000
+Date:   Wed, 16 Feb 2022 17:42:53 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     xinlei.lee@mediatek.com
-Cc:     linux-arm-kernel@lists.infradead.org, thierry.reding@gmail.com,
-        lee.jones@linaro.org, linux-pwm@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, jitao.shi@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org, allen-kh.cheng@mediatek.com,
-        u.kleine-koenig@pengutronix.de, devicetree@vger.kernel.org,
-        Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
-In-Reply-To: <1645003971-16908-2-git-send-email-xinlei.lee@mediatek.com>
-References: <1645003971-16908-1-git-send-email-xinlei.lee@mediatek.com> <1645003971-16908-2-git-send-email-xinlei.lee@mediatek.com>
-Subject: Re: [v2,1/4] dt-bindings: pwm: Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml format
-Date:   Wed, 16 Feb 2022 16:51:53 -0600
-Message-Id: <1645051913.078742.1825836.nullmailer@robh.at.kernel.org>
+To:     Pawel Dembicki <paweldembicki@gmail.com>
+Cc:     Hao Fang <fanghao11@huawei.com>, Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: vendor-prefixes: Add Ctera Networks
+Message-ID: <Yg2L/eqJuZuYeub8@robh.at.kernel.org>
+References: <20220215163926.894-1-paweldembicki@gmail.com>
+ <20220215163926.894-2-paweldembicki@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220215163926.894-2-paweldembicki@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,69 +68,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Feb 2022 17:32:48 +0800, xinlei.lee@mediatek.com wrote:
-> From: Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
+On Tue, 15 Feb 2022 17:39:23 +0100, Pawel Dembicki wrote:
+> CTERA Networks Intl. is a company based in Israel.
+> They manufacture NASes, network devices and provide software
+> products for cloud storage and IT security.
 > 
-> Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml format as suggested by maintainer
-> 
-> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 > ---
->  .../bindings/pwm/mediatek,pwm-disp.yaml       | 71 +++++++++++++++++++
->  .../devicetree/bindings/pwm/pwm-mtk-disp.txt  | 44 ------------
->  2 files changed, 71 insertions(+), 44 deletions(-)
->  create mode 100755 Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
+> v2: no changes
+> 
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1593550
-
-
-pwm@1400a000: compatible:0: 'mediatek,mt7623-disp-pwm' is not one of ['mediatek,mt2701-disp-pwm', 'mediatek,mt6595-disp-pwm', 'mediatek,mt8173-disp-pwm', 'mediatek,mt8183-disp-pwm']
-	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dt.yaml
-	arch/arm/boot/dts/mt7623n-rfb-emmc.dt.yaml
-
-pwm@1400a000: compatible: ['mediatek,mt7623-disp-pwm', 'mediatek,mt2701-disp-pwm'] is too long
-	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dt.yaml
-	arch/arm/boot/dts/mt7623n-rfb-emmc.dt.yaml
-
-pwm@1400a000: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/mt2701-evb.dt.yaml
-	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dt.yaml
-	arch/arm/boot/dts/mt7623n-rfb-emmc.dt.yaml
-
-pwm@1400a000: 'power-domains' is a required property
-	arch/arm/boot/dts/mt2701-evb.dt.yaml
-	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dt.yaml
-	arch/arm/boot/dts/mt7623n-rfb-emmc.dt.yaml
-
-pwm@1401e000: compatible: ['mediatek,mt8173-disp-pwm', 'mediatek,mt6595-disp-pwm'] is too long
-	arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-evb.dt.yaml
-
-pwm@1401e000: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-evb.dt.yaml
-
-pwm@1401e000: 'power-domains' is a required property
-	arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-evb.dt.yaml
-
-pwm@1401f000: compatible: ['mediatek,mt8173-disp-pwm', 'mediatek,mt6595-disp-pwm'] is too long
-	arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8173-evb.dt.yaml
+If a tag was not added on purpose, please state why and what changed.
 
