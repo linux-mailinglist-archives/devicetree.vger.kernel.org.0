@@ -2,119 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CABF4B8135
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 08:18:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 821BA4B814D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 08:22:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229818AbiBPHRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 02:17:10 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:32934 "EHLO
+        id S229853AbiBPHUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 02:20:02 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:50010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229776AbiBPHRJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 02:17:09 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BD69C1166
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 23:16:57 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nKEYJ-0007Pg-NX; Wed, 16 Feb 2022 08:16:39 +0100
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nKEYE-0000vr-0Z; Wed, 16 Feb 2022 08:16:34 +0100
-Date:   Wed, 16 Feb 2022 08:16:33 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Scott Branden <sbranden@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, kernel@pengutronix.de,
-        bcm-kernel-feedback-list@broadcom.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3 4/8] ARM: dts: bcm283x: fix ethernet node name
-Message-ID: <20220216071633.GB19299@pengutronix.de>
-References: <20220215080937.2263111-1-o.rempel@pengutronix.de>
- <20220215080937.2263111-4-o.rempel@pengutronix.de>
- <f5ea3375-0306-e37f-5847-e1472164d7b7@gmail.com>
+        with ESMTP id S229825AbiBPHUC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 02:20:02 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEFD3DCE18
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 23:19:48 -0800 (PST)
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7D22B40812
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 07:19:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1644995987;
+        bh=3QteeCZRrYGG8lRD/0x4vggPgtmzvyjVPqyeuzYI/CI=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=amsve6dJUYAvb9iA92K/zo+JR23UrvQuNPZ5wtE/CVmmvVK9rP6rg5TpvNDhVuNk3
+         g8BDuylbvJb6eikk0E4urKjlTmrtnkEXaZXsi5589rUeh2XU+t3A2oCVcLA9pkPz6E
+         iAdxGY80N8yisxMl/0BgRY8BMpQWNFObIoFuKsTcPi+Yyt9yW7X/XdUtKezZxRa1XF
+         YNESHwwFqyXgxJdXdmNXm76pEkh62yr0ccWxPH/aym+xVKeZq0uqj4QwoSpAUP5YtK
+         rVWvl7B6dIIEEOE0JZObENMJwhVDKBa79Zw0S1u7peohPC65SeaAkzGNLyX8HZ7AhG
+         4Kc9KuUNB/gKQ==
+Received: by mail-wr1-f69.google.com with SMTP id j8-20020adfc688000000b001e3322ced69so673463wrg.13
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 23:19:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3QteeCZRrYGG8lRD/0x4vggPgtmzvyjVPqyeuzYI/CI=;
+        b=YcoKYS5Fvb2jnT0h2cyCK67cc+BcFJQcURkvd0kKd5gPjxSpjbFdOqGCdAtbSB/ckV
+         eYTzefedjow5SDgK/LtJ5DjVRk5lKbU5rkb9cMY9Q/jkXt7mIWfDQT9dusl+4e5C8N+w
+         ZIwJb9pd/Ylqpq+ntU0T/Mb5a7/2XRo0qenzGMJ5zIJwpS7LWSzWBfsDVHS1DyXcS2pp
+         DZlyA4XTe8jIcCLosjxCtz0gbH0Gfx+dM05SP8SAN37Lk2T2So4TOf7xGQGqopN08Rqt
+         lnFMq7oztySBG6KRTcyYxDVkblouNwTnrCKQgtoN2TOGqfiHtm3RdWsYZ7rmh9TYNY+H
+         64iA==
+X-Gm-Message-State: AOAM533uZifoODEXH0mesETUOk0Y3TcPi3FFs01mNlFGUcfXKkvZ6eVx
+        bItP3TuXIz9Y4afRJ2MY7GN2qK7K6UZvMxZ2Osds4OsA2lLLeKWwNRT+57nI2QdPjlClb5Hy+Do
+        FfxjrLEO1frhZ3Oi7UA/+Z4FXFlyV82tXemMpBQk=
+X-Received: by 2002:a05:600c:2502:b0:37b:ce43:9ac0 with SMTP id d2-20020a05600c250200b0037bce439ac0mr251769wma.37.1644995986787;
+        Tue, 15 Feb 2022 23:19:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz0qUMxjV+5o8oLXBCBqBJN8fqGl7V096OWi35LZe9vA29ZRLzI2LtWlImYQream3SgUc8SdQ==
+X-Received: by 2002:a05:600c:2502:b0:37b:ce43:9ac0 with SMTP id d2-20020a05600c250200b0037bce439ac0mr251757wma.37.1644995986615;
+        Tue, 15 Feb 2022 23:19:46 -0800 (PST)
+Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id az2sm26332158wmb.2.2022.02.15.23.19.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Feb 2022 23:19:46 -0800 (PST)
+Message-ID: <275a4a2e-e8e2-b398-3574-73eae7cc6505@canonical.com>
+Date:   Wed, 16 Feb 2022 08:19:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <f5ea3375-0306-e37f-5847-e1472164d7b7@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:10:05 up 67 days, 15:55, 56 users,  load average: 0.27, 0.23,
- 0.18
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: ps2-gpio: convert binding to
+ json-schema
+Content-Language: en-US
+To:     Danilo Krummrich <danilokrummrich@dk-develop.de>,
+        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     linus.walleij@linaro.org
+References: <20220215180829.63543-1-danilokrummrich@dk-develop.de>
+ <20220215180829.63543-2-danilokrummrich@dk-develop.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220215180829.63543-2-danilokrummrich@dk-develop.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 15, 2022 at 01:01:06PM -0800, Florian Fainelli wrote:
-> On 2/15/22 12:09 AM, Oleksij Rempel wrote:
-> > It should be "ethernet@x" instead of "usbether@x"
-> > 
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+On 15/02/2022 19:08, Danilo Krummrich wrote:
+> Convert the ps2-gpio dt-binding documentation to DT schema format using
+> the json-schema.
 > 
-> This looks like, a quick grep on the u-boot source code seems to suggest
-> that only one file is assuming that 'usbether@1' is to be used as a node
-> name and the error message does not even match the code it is patching:
+> Signed-off-by: Danilo Krummrich <danilokrummrich@dk-develop.de>
+> ---
+>  .../devicetree/bindings/serio/ps2-gpio.txt    | 23 --------
+>  .../devicetree/bindings/serio/ps2-gpio.yaml   | 58 +++++++++++++++++++
+>  2 files changed, 58 insertions(+), 23 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/serio/ps2-gpio.txt
+>  create mode 100644 Documentation/devicetree/bindings/serio/ps2-gpio.yaml
 > 
-> board/liebherr/xea/xea.c:
->   #ifdef CONFIG_OF_BOARD_SETUP
->   static int fdt_fixup_l2switch(void *blob)
->   {
->           u8 ethaddr[6];
->           int ret;
-> 
->           if (eth_env_get_enetaddr("ethaddr", ethaddr)) {
->                   ret = fdt_find_and_setprop(blob,
-> 
-> "/ahb@80080000/switch@800f0000",
->                                              "local-mac-address",
-> ethaddr, 6, 1);
->                   if (ret < 0)
->                           printf("%s: can't find usbether@1 node: %d\n",
->                                  __func__, ret);
->           }
 
-\o/ :)
 
->           return 0;
->   }
-> 
-> I will wait for the other maintainers on the other patches to provide
-> some feedback, but if all is well, will apply this one soon.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Full path fdt matching has proven to be not stable enough. Especially on
-chips with early DT adaptation like iMX. It is better to use aliases
-where possible. 
 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
