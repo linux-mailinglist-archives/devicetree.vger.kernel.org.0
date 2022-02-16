@@ -2,67 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CED34B81FB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 08:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A3184B8221
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 08:52:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230526AbiBPHrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 02:47:16 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:47546 "EHLO
+        id S231219AbiBPHum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 02:50:42 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:40962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230481AbiBPHrF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 02:47:05 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DAA127FC6
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 23:46:51 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id w3so2416336edu.8
-        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 23:46:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9Qp48YxiaMxUaSkAZB2KP0MgOrfMIZ3D9Sry12KdxAE=;
-        b=YWeMvVBxh4gpo2h3Y85nGrHoK5QX4vV4JpIs/vWdzb1VI05buY8jA7nzVqpNNVv+cg
-         PUN4WDmgbrLcgfk2HIUIzi2+QxOcO3AncSMGp6LOI8jYYeJu/ZEi68D6HfTzMdbhw//R
-         zi95/6NFA0JRfqopl7H2JLnrwwRG4ATyDnuUFabRTo+r4aTmLXCvq1VRaehUIs+XGYIn
-         /oX30R0pF9OG+xTwmFAe3hNzt0lHfN1WCtc4Vvh9F9XPf1mrkOH1DI59MMoAohkJgFAz
-         yfcKbYQg+qpFuMQxh9bKRbhet573YD/rnVTMCmYsL9XolIBPhMTB+OjH1LfZvsOxonF+
-         2G+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9Qp48YxiaMxUaSkAZB2KP0MgOrfMIZ3D9Sry12KdxAE=;
-        b=KZYsLhR0PL38vKSVeieKfun8pAol0kxE0/S15DAj9kwJdFkk24nYO8E0NchFWio0iQ
-         26McZN2FLr0jZnrzG00MsesSK95TzQPFn0Ix4Jm/RwIoXGfbSF7WeEEhqMWGEJAFn/AI
-         UtcSc02xv37FCSDDVgwPvLmOfzYV6QckUScfgaRqcn+hOgAhsM6WR5l5AS49mW93+GOy
-         wBRuVhBHjeqaFiDNIP5k1CyHzjqvuSzECB8/TdUCLsNAKLiObCeYKsnkajge64d1G/3d
-         qgnlNikSS7/peZFFv68NpqdJ08yQpokUoz4TaouQhutX1fhAcfxKosfFSOBBS61j0lJ8
-         eSNw==
-X-Gm-Message-State: AOAM530SCeq1+VVxELICEMrgAXraQbHrPvP1A+dD6HeJQTKFxours3nv
-        dyiF+Ie4N391GgWDLmLQ0O4VDQ==
-X-Google-Smtp-Source: ABdhPJwGUzYTRZwkbLxxIy7pE1LspK3WX+GsYx6/0IUxDYwnnzMbBQGVZNR/QjGwsy42qnyfH03QrA==
-X-Received: by 2002:a05:6402:5186:b0:412:818a:aee0 with SMTP id q6-20020a056402518600b00412818aaee0mr26149edd.308.1644997609648;
-        Tue, 15 Feb 2022 23:46:49 -0800 (PST)
-Received: from fedora.sec.9e.network (ip-088-153-139-166.um27.pools.vodafone-ip.de. [88.153.139.166])
-        by smtp.gmail.com with ESMTPSA id gq1sm11615202ejb.58.2022.02.15.23.46.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Feb 2022 23:46:49 -0800 (PST)
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-To:     Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [v6 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Date:   Wed, 16 Feb 2022 08:46:10 +0100
-Message-Id: <20220216074613.235725-2-patrick.rudolph@9elements.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220216074613.235725-1-patrick.rudolph@9elements.com>
-References: <20220216074613.235725-1-patrick.rudolph@9elements.com>
+        with ESMTP id S229556AbiBPHuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 02:50:24 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB1412E089
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 23:49:59 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nKF46-00035w-Ue; Wed, 16 Feb 2022 08:49:30 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nKF45-00FBar-0P; Wed, 16 Feb 2022 08:49:29 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Scott Branden <sbranden@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tony Lindgren <tony@atomide.com>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+        bcm-kernel-feedback-list@broadcom.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v5 0/8] document dt-schema and fix node names for some USB Ethernet controllers
+Date:   Wed, 16 Feb 2022 08:49:18 +0100
+Message-Id: <20220216074927.3619425-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,109 +60,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-chips. The functionality will be provided by the exisintg pca954x driver.
+changes v5:
+- move compatible string changes to a separate patch
+- add note about possible regressions
 
-While on it make the interrupts support conditionally as not all of the
-existing chips have interrupts.
+changes v4:
+- reword commit logs.
+- add note about compatible fix
 
-For chips that are powered off by default add an optional regulator
-called vdd-supply.
+Oleksij Rempel (9):
+  dt-bindings: net: add schema for ASIX USB Ethernet controllers
+  dt-bindings: net: add schema for Microchip/SMSC LAN95xx USB Ethernet
+    controllers
+  dt-bindings: usb: ci-hdrc-usb2: fix node node for ethernet controller
+  ARM: dts: bcm283x: fix ethernet node name
+  ARM: dts: exynos: fix ethernet node name for different odroid boards
+  ARM: dts: exynos: fix compatible strings for Ethernet USB devices
+  ARM: dts: omap3/4/5: fix ethernet node name for different OMAP boards
+  ARM: dts: tegra20/30: fix ethernet node name for different tegra
+    boards
+  arm64: dts: imx8mm-kontron: fix ethernet node name
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
----
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 44 ++++++++++++++-----
- 1 file changed, 34 insertions(+), 10 deletions(-)
+ .../devicetree/bindings/net/asix,ax88178.yaml | 68 ++++++++++++++++
+ .../bindings/net/microchip,lan95xx.yaml       | 80 +++++++++++++++++++
+ .../devicetree/bindings/usb/ci-hdrc-usb2.txt  |  2 +-
+ arch/arm/boot/dts/bcm283x-rpi-smsc9512.dtsi   |  2 +-
+ arch/arm/boot/dts/bcm283x-rpi-smsc9514.dtsi   |  2 +-
+ arch/arm/boot/dts/exynos4412-odroidu3.dts     |  4 +-
+ arch/arm/boot/dts/exynos4412-odroidx.dts      |  8 +-
+ arch/arm/boot/dts/exynos5410-odroidxu.dts     |  4 +-
+ .../boot/dts/exynos5422-odroidxu3-lite.dts    |  6 +-
+ arch/arm/boot/dts/exynos5422-odroidxu3.dts    |  6 +-
+ arch/arm/boot/dts/omap3-beagle-xm.dts         |  2 +-
+ arch/arm/boot/dts/omap4-panda-common.dtsi     |  2 +-
+ arch/arm/boot/dts/omap5-igep0050.dts          |  2 +-
+ arch/arm/boot/dts/omap5-uevm.dts              |  2 +-
+ arch/arm/boot/dts/tegra20-colibri.dtsi        |  2 +-
+ arch/arm/boot/dts/tegra30-colibri.dtsi        |  2 +-
+ arch/arm/boot/dts/tegra30-ouya.dts            |  2 +-
+ .../dts/freescale/imx8mm-kontron-n801x-s.dts  |  2 +-
+ 18 files changed, 173 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/asix,ax88178.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 9f1726d0356b..132c3e54e7ab 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -4,21 +4,48 @@
- $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: NXP PCA954x I2C bus switch
-+title: NXP PCA954x I2C and compatible bus switches
- 
- maintainers:
-   - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
- 
- description:
--  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
-+  The binding supports NXP PCA954x and PCA984x I2C mux/switch devices,
-+  and the Maxim MAX735x and MAX736x I2C mux/switch devices.
- 
- allOf:
-   - $ref: /schemas/i2c/i2c-mux.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - maxim,max7367
-+              - maxim,max7369
-+              - nxp,pca9542
-+              - nxp,pca9543
-+              - nxp,pca9544
-+              - nxp,pca9545
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+
-+        "#interrupt-cells":
-+          const: 2
-+
-+        interrupt-controller: true
- 
- properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - maxim,max7356
-+          - maxim,max7357
-+          - maxim,max7358
-+          - maxim,max7367
-+          - maxim,max7368
-+          - maxim,max7369
-           - nxp,pca9540
-           - nxp,pca9542
-           - nxp,pca9543
-@@ -38,14 +65,6 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts:
--    maxItems: 1
--
--  "#interrupt-cells":
--    const: 2
--
--  interrupt-controller: true
--
-   reset-gpios:
-     maxItems: 1
- 
-@@ -59,6 +78,9 @@ properties:
-     description: if present, overrides i2c-mux-idle-disconnect
-     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
- 
-+  vdd-supply:
-+    description: A voltage regulator supplying power to the chip.
-+
- required:
-   - compatible
-   - reg
-@@ -79,6 +101,8 @@ examples:
-             #size-cells = <0>;
-             reg = <0x74>;
- 
-+            vdd-supply = <&p3v3>;
-+
-             interrupt-parent = <&ipic>;
-             interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-             interrupt-controller;
 -- 
-2.34.1
+2.30.2
 
