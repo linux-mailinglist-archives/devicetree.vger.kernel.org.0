@@ -2,80 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC2894B8650
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 11:58:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ACD74B8693
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 12:23:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230071AbiBPK6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 05:58:32 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39508 "EHLO
+        id S230214AbiBPLXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 06:23:10 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbiBPK6b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 05:58:31 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6264C9A23
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:58:19 -0800 (PST)
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BA919407F2
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 10:58:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645009098;
-        bh=APDj2JQowla5VN9wgYQvqEBkeDwB1AQlKi39bfuox6w=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=fd5QC5V+cESXhKdtBRnGjOxYs20VglPL1pDLyYUP9lm0u8bZeMq4dXrPhHE+OqAmP
-         EcPEI4jjAm8HiRnnCDG92wjAPQ14VZQPBeB6t+4C2F4AdQ2vGWH3xb5HiZdL/1kXYo
-         d6MCwTp5LWtPBlOgt198cFRZ8Dtlp6fY3iVdeOVZeb1xjxVJj0wTQiV6nzwC+8b579
-         AFzRla9L8jwSz4j0fklCcBSq8tHrVqQZQNVjYRpT9nstAQlSlxkiz1ybsO8Y9FbPrP
-         +WiKvD1HyukpehHl3aTKNAm2YTAZFjq9/+Y/JMwgO0pZWJpG8mKvH/ADhZBBUMEPA1
-         CHkbGU4LsuPIw==
-Received: by mail-ed1-f71.google.com with SMTP id o5-20020a50c905000000b00410effbf65dso1306590edh.17
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:58:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=APDj2JQowla5VN9wgYQvqEBkeDwB1AQlKi39bfuox6w=;
-        b=d3SYAPtB5/sMmSU7yhEQ2Pefu8x1Bh0aTimn3JIBUQ5+l/PMU6FCxIy0MG2fnqS+uP
-         olahYY5iv+cwFBmhWbc2yszfMLUx/XauSJp2EGGZ1eUWj0s4DR/k5iGeIkHObAh3G7fV
-         T9e2hEUN5QKM3hanAFqSrFvHstZmu4Xp1cVoaXWRocDaX67fPvwPkCmSbpBV9cBEzROx
-         q+d9kxDPVtpnsihV/wwBvbz9FF/ZGtcR/UNxprmMhnsmPl1fQ0eWssHYs/iKDPgRNNSS
-         foYYG73zQ9QPOszfkyRO1/IWiig+yacQ2ZCSdN3C3c59TCGNSyDs82AH0qtZvT/KWs0j
-         QNNQ==
-X-Gm-Message-State: AOAM533dzZaEI9NhWXuvWqQi4sJddTW42Ss/7u5EDkV+Z0nk7WahQ+vS
-        RcDtAjEPr0NpBTxvc+JHzwnMV4YR7n83w9/U9Z6lADwxzeEODmwpCY04o8L9fQvikSuhXeCvZQe
-        7FWWCtbApES94YVAb4YfskR+xL1HrHXpsArpx83t6l3+K0k4pLeJnMos=
-X-Received: by 2002:a17:906:d8dc:b0:6cf:d1d1:db25 with SMTP id re28-20020a170906d8dc00b006cfd1d1db25mr1808009ejb.285.1645009098276;
-        Wed, 16 Feb 2022 02:58:18 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy5GVqeYDxf8KFG6ucnyHvzLbGYzH9A2TyOYd9tau6dRiSUPrlEWjw70ZXBEh1BoDUDDU1MjaUHZ/lMRXjFl3s=
-X-Received: by 2002:a17:906:d8dc:b0:6cf:d1d1:db25 with SMTP id
- re28-20020a170906d8dc00b006cfd1d1db25mr1808003ejb.285.1645009098094; Wed, 16
- Feb 2022 02:58:18 -0800 (PST)
+        with ESMTP id S230134AbiBPLXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 06:23:10 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCB141F8C96
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 03:22:57 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nKIOd-0006BT-Ih; Wed, 16 Feb 2022 12:22:55 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nKIOY-0007G1-Le; Wed, 16 Feb 2022 12:22:50 +0100
+Date:   Wed, 16 Feb 2022 12:22:50 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 22/23] drm: rockchip: Add VOP2 driver
+Message-ID: <20220216112250.GN18637@pengutronix.de>
+References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
+ <20220209095350.2104049-23-s.hauer@pengutronix.de>
+ <5917d180-de29-79cb-4d4d-e7340d2d88cb@collabora.com>
 MIME-Version: 1.0
-References: <20220216092240.26464-1-mkumard@nvidia.com> <20220216092240.26464-6-mkumard@nvidia.com>
- <2249cf46-5c54-2e59-f247-5a22f2e6e5b9@canonical.com> <DM6PR12MB4435ABC8098A6C3EB2357B47C1359@DM6PR12MB4435.namprd12.prod.outlook.com>
-In-Reply-To: <DM6PR12MB4435ABC8098A6C3EB2357B47C1359@DM6PR12MB4435.namprd12.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Date:   Wed, 16 Feb 2022 11:58:07 +0100
-Message-ID: <CA+Eumj6UU-WqNckYrE8YMJaSVS_E2KFydPs4B-Q=ESiVZw=QDQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] dt-bindings: Document Tegra234 HDA support
-To:     Mohan Kumar D <mkumard@nvidia.com>
-Cc:     "broonie@kernel.org" <broonie@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5917d180-de29-79cb-4d4d-e7340d2d88cb@collabora.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:17:05 up 67 days, 20:02, 84 users,  load average: 0.09, 0.14,
+ 0.17
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,15 +64,215 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Feb 2022 at 11:54, Mohan Kumar D <mkumard@nvidia.com> wrote:
->
-> Hi Krzysztof Kozlowski,
-> The current order is intentional to reflect the new->old chip, the top entry is newer chip. If needed we can add comment to reflect this info.
->
+On Wed, Feb 16, 2022 at 01:39:33PM +0300, Dmitry Osipenko wrote:
+> 09.02.2022 12:53, Sascha Hauer пишет:
+> > +static void vop2_plane_atomic_update(struct drm_plane *plane, struct drm_atomic_state *state)
+> > +{
+> > +	struct drm_plane_state *pstate = plane->state;
+> > +	struct drm_crtc *crtc = pstate->crtc;
+> > +	struct vop2_win *win = to_vop2_win(plane);
+> > +	struct vop2_video_port *vp = to_vop2_video_port(crtc);
+> > +	struct drm_display_mode *adjusted_mode = &crtc->state->adjusted_mode;
+> > +	struct vop2 *vop2 = win->vop2;
+> > +	struct drm_framebuffer *fb = pstate->fb;
+> > +	uint32_t bpp = fb->format->cpp[0] * 8;
+> > +	uint32_t actual_w, actual_h, dsp_w, dsp_h;
+> > +	uint32_t act_info, dsp_info;
+> > +	uint32_t format;
+> > +	uint32_t afbc_format;
+> > +	uint32_t rb_swap;
+> > +	uint32_t uv_swap;
+> > +	struct drm_rect *src = &pstate->src;
+> > +	struct drm_rect *dest = &pstate->dst;
+> > +	uint32_t afbc_tile_num;
+> > +	uint32_t transform_offset;
+> > +	bool dither_up;
+> > +	bool xmirror = pstate->rotation & DRM_MODE_REFLECT_X;
+> > +	bool ymirror = pstate->rotation & DRM_MODE_REFLECT_Y;
+> > +	bool rotate_270 = pstate->rotation & DRM_MODE_ROTATE_270;
+> > +	bool rotate_90 = pstate->rotation & DRM_MODE_ROTATE_90;
+> > +	struct rockchip_gem_object *rk_obj;
+> > +	unsigned long offset;
+> > +	bool afbc_en;
+> > +	dma_addr_t yrgb_mst;
+> > +	dma_addr_t uv_mst;
+> > +
+> > +	/*
+> > +	 * can't update plane when vop2 is disabled.
+> > +	 */
+> > +	if (WARN_ON(!crtc))
+> > +		return;
+> > +
+> > +	if (!pstate->visible) {
+> > +		vop2_plane_atomic_disable(plane, state);
+> > +		return;
+> > +	}
+> > +
+> > +	afbc_en = rockchip_afbc(plane, fb->modifier);
+> > +
+> > +	offset = (src->x1 >> 16) * fb->format->cpp[0];
+> > +
+> > +	/*
+> > +	 * AFBC HDR_PTR must set to the zero offset of the framebuffer.
+> > +	 */
+> > +	if (afbc_en)
+> > +		offset = 0;
+> > +	else if (pstate->rotation & DRM_MODE_REFLECT_Y)
+> > +		offset += ((src->y2 >> 16) - 1) * fb->pitches[0];
+> > +	else
+> > +		offset += (src->y1 >> 16) * fb->pitches[0];
+> > +
+> > +	rk_obj = to_rockchip_obj(fb->obj[0]);
+> > +
+> > +	yrgb_mst = rk_obj->dma_addr + offset + fb->offsets[0];
+> > +	if (fb->format->is_yuv) {
+> > +		int hsub = fb->format->hsub;
+> > +		int vsub = fb->format->vsub;
+> > +
+> > +		offset = (src->x1 >> 16) * fb->format->cpp[1] / hsub;
+> > +		offset += (src->y1 >> 16) * fb->pitches[1] / vsub;
+> > +
+> > +		if ((pstate->rotation & DRM_MODE_REFLECT_Y) && !afbc_en)
+> > +			offset += fb->pitches[1] * ((pstate->src_h >> 16) - 2)  / vsub;
+> > +
+> > +		rk_obj = to_rockchip_obj(fb->obj[0]);
+> > +		uv_mst = rk_obj->dma_addr + offset + fb->offsets[1];
+> > +	}
+> > +
+> > +	actual_w = drm_rect_width(src) >> 16;
+> > +	actual_h = drm_rect_height(src) >> 16;
+> > +	dsp_w = drm_rect_width(dest);
+> > +
+> > +	if (dest->x1 + dsp_w > adjusted_mode->hdisplay) {
+> > +		drm_err(vop2->drm, "vp%d %s dest->x1[%d] + dsp_w[%d] exceed mode hdisplay[%d]\n",
+> > +			  vp->id, win->data->name, dest->x1, dsp_w, adjusted_mode->hdisplay);
+> > +		dsp_w = adjusted_mode->hdisplay - dest->x1;
+> > +		if (dsp_w < 4)
+> > +			dsp_w = 4;
+> > +		actual_w = dsp_w * actual_w / drm_rect_width(dest);
+> > +	}
+> > +
+> > +	dsp_h = drm_rect_height(dest);
+> > +
+> > +	if (dest->y1 + dsp_h > adjusted_mode->vdisplay) {
+> > +		drm_err(vop2->drm, "vp%d %s dest->y1[%d] + dsp_h[%d] exceed mode vdisplay[%d]\n",
+> > +			  vp->id, win->data->name, dest->y1, dsp_h, adjusted_mode->vdisplay);
+> > +		dsp_h = adjusted_mode->vdisplay - dest->y1;
+> > +		if (dsp_h < 4)
+> > +			dsp_h = 4;
+> > +		actual_h = dsp_h * actual_h / drm_rect_height(dest);
+> > +	}
+> > +
+> > +	/*
+> > +	 * This is workaround solution for IC design:
+> > +	 * esmart can't support scale down when actual_w % 16 == 1.
+> > +	 */
+> > +	if (!(win->data->feature & WIN_FEATURE_AFBDC)) {
+> > +		if (actual_w > dsp_w && (actual_w & 0xf) == 1) {
+> > +			drm_err(vop2->drm, "vp%d %s act_w[%d] MODE 16 == 1\n", vp->id, win->data->name, actual_w);
+> > +			actual_w -= 1;
+> > +		}
+> > +	}
+> > +
+> > +	if (afbc_en && actual_w % 4) {
+> > +		drm_err(vop2->drm, "vp%d %s actual_w[%d] should align as 4 pixel when enable afbc\n",
+> > +			  vp->id, win->data->name, actual_w);
+> > +		actual_w = ALIGN_DOWN(actual_w, 4);
+> > +	}
+> > +
+> > +	act_info = (actual_h - 1) << 16 | ((actual_w - 1) & 0xffff);
+> > +	dsp_info = (dsp_h - 1) << 16 | ((dsp_w - 1) & 0xffff);
+> > +
+> > +	format = vop2_convert_format(fb->format->format);
+> > +
+> > +	drm_dbg(vop2->drm, "vp%d update %s[%dx%d->%dx%d@%dx%d] fmt[%p4cc_%s] addr[%pad]\n",
+> > +		      vp->id, win->data->name, actual_w, actual_h, dsp_w, dsp_h,
+> > +		      dest->x1, dest->y1,
+> > +		      &fb->format->format,
+> > +		      afbc_en ? "AFBC" : "", &yrgb_mst);
+> > +
+> > +	if (afbc_en) {
+> > +		uint32_t stride;
+> > +
+> > +		/* the afbc superblock is 16 x 16 */
+> > +		afbc_format = vop2_convert_afbc_format(fb->format->format);
+> > +
+> > +		/* Enable color transform for YTR */
+> > +		if (fb->modifier & AFBC_FORMAT_MOD_YTR)
+> > +			afbc_format |= (1 << 4);
+> > +
+> > +		afbc_tile_num = ALIGN(actual_w, 16) >> 4;
+> > +
+> > +		/*
+> > +		 * AFBC pic_vir_width is count by pixel, this is different
+> > +		 * with WIN_VIR_STRIDE.
+> > +		 */
+> > +		stride = (fb->pitches[0] << 3) / bpp;
+> > +		if ((stride & 0x3f) && (xmirror || rotate_90 || rotate_270))
+> > +			drm_err(vop2->drm, "vp%d %s stride[%d] must align as 64 pixel when enable xmirror/rotate_90/rotate_270[0x%x]\n",
+> > +				  vp->id, win->data->name, stride, pstate->rotation);
+> > +
+> > +		rb_swap = vop2_afbc_rb_swap(fb->format->format);
+> > +		uv_swap = vop2_afbc_uv_swap(fb->format->format);
+> > +		/*
+> > +		 * This is a workaround for crazy IC design, Cluster
+> > +		 * and Esmart/Smart use different format configuration map:
+> > +		 * YUV420_10BIT: 0x10 for Cluster, 0x14 for Esmart/Smart.
+> > +		 *
+> > +		 * This is one thing we can make the convert simple:
+> > +		 * AFBCD decode all the YUV data to YUV444. So we just
+> > +		 * set all the yuv 10 bit to YUV444_10.
+> > +		 */
+> > +		if (fb->format->is_yuv && (bpp == 10))
+> > +			format = VOP2_CLUSTER_YUV444_10;
+> > +
+> > +		if (vop2_cluster_window(win))
+> > +			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 1);
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_FORMAT, afbc_format);
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_RB_SWAP, rb_swap);
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_BLOCK_SPLIT_EN, 0);
+> > +		if (pstate->rotation & (DRM_MODE_ROTATE_270 | DRM_MODE_ROTATE_90)) {
+> > +			vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 0);
+> > +			transform_offset = vop2_afbc_transform_offset(pstate, false);
+> > +		} else {
+> > +			vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 1);
+> > +			transform_offset = vop2_afbc_transform_offset(pstate, true);
+> > +		}
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_HDR_PTR, yrgb_mst);
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_PIC_SIZE, act_info);
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_TRANSFORM_OFFSET, transform_offset);
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_PIC_OFFSET, ((src->x1 >> 16) | src->y1));
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_DSP_OFFSET, (dest->x1 | (dest->y1 << 16)));
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_PIC_VIR_WIDTH, stride);
+> > +		vop2_win_write(win, VOP2_WIN_AFBC_TILE_NUM, afbc_tile_num);
+> > +		vop2_win_write(win, VOP2_WIN_XMIRROR, xmirror);
+> 
+> The xmirror's variable type is specified as bool, but it's not
+> true/false because in the above code:
+> 
+> bool xmirror = pstate->rotation & DRM_MODE_REFLECT_X;
+> 
+> I don't see how vop2_win_write() could work properly. Or am I missing
+> something?
 
-Hm, okay, such ordering sounds good as well. :)
+Everything != 0 is true, so 0x10 & 0x10 is still true.
 
-Thanks!
+But ok,
 
-Best regards,
-Krzysztof
+	bool xmirror = pstate->rotation & DRM_MODE_REFLECT_X ? true : false;
+
+looks cleaner. I'll change that.
+
+Thanks for the review so far. Could you drop me a short note when you're
+done? I was about to send v6.
+
+Thanks
+ Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
