@@ -2,70 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62F064B8B99
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 15:39:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2DC24B8B9D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 15:40:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235115AbiBPOjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 09:39:44 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44936 "EHLO
+        id S233354AbiBPOk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 09:40:29 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbiBPOjn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 09:39:43 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 255BA2A64E0;
-        Wed, 16 Feb 2022 06:39:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9D284B81EC6;
-        Wed, 16 Feb 2022 14:39:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A58EC004E1;
-        Wed, 16 Feb 2022 14:39:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645022368;
-        bh=yICmxNU28lCRdCrR490KpNGJYusepKied6d/R03vGi4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=fiGImpU+swl24FQ/pSJSGhxKF/6eSiYXxMzZoLhiUt4GRpFnHC+RWL8y1YNeEFn1Q
-         DLPIYbUXLnurEoj4HI2aCRxv3HYMlXh8yFWmkC5rUCEA6CLipzmXQKAYR5lQaaWfTG
-         QdM3LgJmvNWP6PRmhGsqZ+7kQ3xFtmgOApXHoRPYJP0WXvDQ+pfKo+MO0FQlJdgv46
-         wpeLwZN2cstsCq/ujP4mR0JBMmTaZkShLmGCekNOASaUQ+mP6YlqAgYGEzMj4f1Fj+
-         w/xIY9Z/S3xL2mh90ycrFdt9D01NgWSK2u5ZBeOyr77+sNRebTEViMB1vNL6d6dl30
-         bI6wUo2tnKvbA==
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nKLSo-008LuX-CC; Wed, 16 Feb 2022 14:39:26 +0000
-MIME-Version: 1.0
+        with ESMTP id S229674AbiBPOk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 09:40:28 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 766932A64E3
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 06:40:16 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 40916113E;
+        Wed, 16 Feb 2022 06:40:16 -0800 (PST)
+Received: from bogus (unknown [10.57.3.35])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C585C3F718;
+        Wed, 16 Feb 2022 06:40:14 -0800 (PST)
 Date:   Wed, 16 Feb 2022 14:39:26 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] cpuidle: psci: Call cpu_cluster_pm_enter() on the
- last CPU
-In-Reply-To: <20220216132830.32490-2-shawn.guo@linaro.org>
-References: <20220216132830.32490-1-shawn.guo@linaro.org>
- <20220216132830.32490-2-shawn.guo@linaro.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <b690d382d989bd99eaf870e79f63cfb9@kernel.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: shawn.guo@linaro.org, tglx@linutronix.de, quic_mkshah@quicinc.com, bjorn.andersson@linaro.org, lorenzo.pieralisi@arm.com, sudeep.holla@arm.com, rafael@kernel.org, daniel.lezcano@linaro.org, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scpi: Add missing maxItems to
+ shmem property
+Message-ID: <20220216143926.t3dadlsjtkotkv6o@bogus>
+References: <f6d1ea27e8b8dc47fbe849661cc5a843bc2f1ba5.1645017656.git.geert+renesas@glider.be>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f6d1ea27e8b8dc47fbe849661cc5a843bc2f1ba5.1645017656.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,73 +44,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-16 13:28, Shawn Guo wrote:
-> Make a call to cpu_cluster_pm_enter() on the last CPU going to low 
-> power
-> state (and cpu_cluster_pm_exit() on the firt CPU coming back), so that
-> platforms can be notified to set up hardware for getting into the 
-> cluster
-> low power state.
+On Wed, Feb 16, 2022 at 02:21:43PM +0100, Geert Uytterhoeven wrote:
+> "make dt_binding_check":
 > 
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+>     Documentation/devicetree/bindings/firmware/arm,scpi.example.dt.yaml: scpi: shmem: [[2], [1]] is too long
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  drivers/cpuidle/cpuidle-psci.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/cpuidle/cpuidle-psci.c 
-> b/drivers/cpuidle/cpuidle-psci.c
-> index b51b5df08450..c748c1a7d7b1 100644
-> --- a/drivers/cpuidle/cpuidle-psci.c
-> +++ b/drivers/cpuidle/cpuidle-psci.c
-> @@ -37,6 +37,7 @@ struct psci_cpuidle_data {
->  static DEFINE_PER_CPU_READ_MOSTLY(struct psci_cpuidle_data, 
-> psci_cpuidle_data);
->  static DEFINE_PER_CPU(u32, domain_state);
->  static bool psci_cpuidle_use_cpuhp;
-> +static atomic_t cpus_in_idle;
-> 
->  void psci_set_domain_state(u32 state)
->  {
-> @@ -67,6 +68,14 @@ static int __psci_enter_domain_idle_state(struct
-> cpuidle_device *dev,
->  	if (ret)
->  		return -1;
-> 
-> +	if (atomic_inc_return(&cpus_in_idle) == num_online_cpus()) {
-> +		ret = cpu_cluster_pm_enter();
-> +		if (ret) {
-> +			ret = -1;
-> +			goto dec_atomic;
-> +		}
-> +	}
-> +
->  	/* Do runtime PM to manage a hierarchical CPU toplogy. */
->  	rcu_irq_enter_irqson();
->  	if (s2idle)
-> @@ -88,6 +97,10 @@ static int __psci_enter_domain_idle_state(struct
-> cpuidle_device *dev,
->  		pm_runtime_get_sync(pd_dev);
->  	rcu_irq_exit_irqson();
-> 
-> +	if (atomic_read(&cpus_in_idle) == num_online_cpus())
-> +		cpu_cluster_pm_exit();
-> +dec_atomic:
-> +	atomic_dec(&cpus_in_idle);
->  	cpu_pm_exit();
-> 
->  	/* Clear the domain state to start fresh when back from idle. */
+> Exposed by commit 39bd2b6a3783b899 ("dt-bindings: Improve phandle-array
+> schemas").
 
-Is it just me, or does anyone else find it a bit odd that a cpuidle 
-driver
-calls back into the core cpuidle code to generate new events?
+Interesting !
 
-Also, why is this PSCI specific? I would assume that the core cpuidle 
-code
-should be responsible for these transitions, not a random cpuidle 
-driver.
+> ---
+>  Documentation/devicetree/bindings/firmware/arm,scpi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> index 800417a76bda0bd9..3735f221fdf24e0a 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+> @@ -51,6 +51,7 @@ properties:
+>        be any memory reserved for the purpose of this communication between the
+>        processors.
+>      minItems: 1
+> +    maxItems: 2
+>
 
-Thanks,
+There is no max limit strictly speaking. The driver can use all the specified
+mboxes and associated shmem in round robin fashion. That is the reason I
+didn't add maxItems unlike the newer SCMI protocol which clearly restricts
+to one Tx and one Rx(much saner I must admit).
 
-         M.
 -- 
-Jazz is not dead. It just smells funny...
+Regards,
+Sudeep
