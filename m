@@ -2,64 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 793694B94B8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 00:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A81F34B94C1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 00:56:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237072AbiBPXwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 18:52:34 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56462 "EHLO
+        id S238646AbiBPX5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 18:57:05 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229820AbiBPXwd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 18:52:33 -0500
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77089F4063;
-        Wed, 16 Feb 2022 15:52:20 -0800 (PST)
-Received: by mail-il1-f181.google.com with SMTP id d3so1049538ilr.10;
-        Wed, 16 Feb 2022 15:52:20 -0800 (PST)
+        with ESMTP id S229820AbiBPX5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 18:57:05 -0500
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 125021409FE;
+        Wed, 16 Feb 2022 15:56:51 -0800 (PST)
+Received: by mail-io1-f43.google.com with SMTP id 24so1734325ioe.7;
+        Wed, 16 Feb 2022 15:56:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=b/JXIitbDZ9HoqIJQDyG8ELeQOdY8UCMjKhFkXYelkw=;
-        b=eAKZe+Seh7P0SYBnxfLgH/sgd67U+4UQXJU/+1+vLP6bFNhtAmzjXj0e03i5X6uYCr
-         MANiweju6037zb6zhB4Vjo23/k+aaEQrHu4R06EyIL2ZVV16UoOPWXS5xbk5CdgFAXRG
-         GC3GFQiBQUWPcLt2OZdOZ2JtHQ9LDiytt0PzCCSc27pJczQgWXpngj4+8wsOSMuqEdpj
-         wIxCm8TQvHwAb3HP5qYPBRedrVDggr9JNmo+g+hycBq7mHaP8N9Ubm3QRilwdzjY0c+l
-         1vBEHpQJis/mXS1giY9IqwfOV8YbkF3c2XPFiz36kzAOsS2rxdoC5k/y79tt73amRxz6
-         0ayA==
-X-Gm-Message-State: AOAM531u1UJujwPXSE2Ywf5vAx8Fp0D7jQJJ7E00M0+EvTJeZTS5kvs0
-        jz3Gia5pEcQDbOhn6O7Pew==
-X-Google-Smtp-Source: ABdhPJzMeZBEmpkyBZ0DqYIbANVj7AN2XmgRUWyZkypg6ORTBG7lSLroGnVPeDY/yrX1DtGyrr1CDQ==
-X-Received: by 2002:a92:c567:0:b0:2b8:b4d1:ba3c with SMTP id b7-20020a92c567000000b002b8b4d1ba3cmr202018ilj.50.1645055539773;
-        Wed, 16 Feb 2022 15:52:19 -0800 (PST)
+        bh=hjf4TuuxXPIxvfDkMwqUajUWR+H2GEmQF/IzXz/JxgM=;
+        b=r+43rOD8e2p4FQuP7YUrluT4NtjpT+1wsuqqqOa3M+yCIy/A3XLMk3ICg7rK0TgswJ
+         0O2I4rfiOlD9rEEilkRx1hieQVfrk2vlc8+X//QBqzy6OmX5A0jrZW4jl9P5pm8mYZ8P
+         2r6J6Uiw8EF+vVY2EEYMYoS6PSpNeSkCGdJPZ5b7y6xZYyxP68sTHDN7ttXCjXt5jBBV
+         RmX1nhvFr2w75cvGVuSK2vtLXnMLg7a+yS/KaLu5AjQpLa51fyuokFne4SY7j6td9nkO
+         /ha2qnaU45/xDC3IKmUfYkMPVglPdoEebP7mi+JmSiUPgHZ2MImcUMm1hUBoPdOovb6A
+         FpVA==
+X-Gm-Message-State: AOAM532HAiN5pFF2I21IvbkV5tLdNdVW0b30EM1Bg92fh6uxg6aCGNuL
+        wT4Lay/WZtkYhLMtLj/Veg==
+X-Google-Smtp-Source: ABdhPJwseFWiKxEklD/ZHy9MSMdAWqthEIKP5m+Bs+e38+VJiB1iS6t2LOBACHwIAHLfsYHYkKWEwQ==
+X-Received: by 2002:a05:6638:1453:b0:308:eafa:41c with SMTP id l19-20020a056638145300b00308eafa041cmr228197jad.30.1645055810390;
+        Wed, 16 Feb 2022 15:56:50 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id i13sm800285ila.46.2022.02.16.15.52.16
+        by smtp.gmail.com with ESMTPSA id r7sm758611ilm.14.2022.02.16.15.56.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Feb 2022 15:52:18 -0800 (PST)
-Received: (nullmailer pid 1918923 invoked by uid 1000);
-        Wed, 16 Feb 2022 23:52:16 -0000
-Date:   Wed, 16 Feb 2022 17:52:16 -0600
+        Wed, 16 Feb 2022 15:56:49 -0800 (PST)
+Received: (nullmailer pid 1925627 invoked by uid 1000);
+        Wed, 16 Feb 2022 23:56:47 -0000
+Date:   Wed, 16 Feb 2022 17:56:47 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, alistair@alistair23.me,
-        samuel@sholland.org, josua.mayer@jm0.eu,
-        letux-kernel@openphoenux.org
-Subject: Re: [RFC PATCH 1/6] dt-bindings: display: imx: Add EPDC
-Message-ID: <Yg2OMADV6GLG6a4/@robh.at.kernel.org>
-References: <20220206080016.796556-1-andreas@kemnade.info>
- <20220206080016.796556-2-andreas@kemnade.info>
- <YgaE06Ktabpf2dJC@robh.at.kernel.org>
- <20220214234517.121e1167@aktux>
+To:     sven@svenschwermer.de
+Cc:     pavel@ucw.cz, devicetree@vger.kernel.org,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        linux-pwm@vger.kernel.org, robh+dt@kernel.org, post@lespocky.de,
+        linux-leds@vger.kernel.org, thierry.reding@gmail.com,
+        lee.jones@linaro.org, u.kleine-koenig@pengutronix.de,
+        andy.shevchenko@gmail.com
+Subject: Re: [PATCH v7 2/3] dt-bindings: leds: Add multicolor PWM LED bindings
+Message-ID: <Yg2PPwXpE9OUd85d@robh.at.kernel.org>
+References: <20220210075908.120496-1-sven@svenschwermer.de>
+ <20220210075908.120496-2-sven@svenschwermer.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220214234517.121e1167@aktux>
+In-Reply-To: <20220210075908.120496-2-sven@svenschwermer.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -71,88 +66,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 14, 2022 at 11:45:17PM +0100, Andreas Kemnade wrote:
-> Hi Rob,
+On Thu, 10 Feb 2022 08:59:07 +0100, sven@svenschwermer.de wrote:
+> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
 > 
-> On Fri, 11 Feb 2022 09:46:27 -0600
-> Rob Herring <robh@kernel.org> wrote:
+> This allows to group multiple PWM-connected monochrome LEDs into
+> multicolor LEDs, e.g. RGB LEDs.
 > 
-> > On Sun, Feb 06, 2022 at 09:00:11AM +0100, Andreas Kemnade wrote:
-> > > Add a binding for the Electrophoretic Display Controller found at least
-> > > in the i.MX6.  
-> > 
-> > The first version was in i.MX50 (I helped design the register 
-> > interface). Is that version compatible?
-> > 
-> it has some differences, but that could be detected by EPDC_VERSION
-> register. I do not own such a device, so I cannot fully check. I have
-> not seen any driver with devicetree for IMX5. For now I am rejecting
-> anything which has a EPDC version which I cannot check. 
+> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> ---
 > 
-> > > The timing subnode is directly here to avoid having display parameters
-> > > spread all over the plate.
-> > > 
-> > > Supplies are organized the same way as in the fbdev driver in the
-> > > NXP/Freescale kernel forks. The regulators used for that purpose,
-> > > like the TPS65185, the SY7636A and MAX17135 have typically a single bit to
-> > > start a bunch of regulators of higher or negative voltage with a
-> > > well-defined timing. VCOM can be handled separately, but can also be
-> > > incorporated into that single bit.
-> > > 
-> > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > > ---
-> > >  .../bindings/display/imx/fsl,mxc-epdc.yaml    | 159 ++++++++++++++++++
-> > >  1 file changed, 159 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
-> > > new file mode 100644
-> > > index 000000000000..7e0795cc3f70
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
-> > > @@ -0,0 +1,159 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/imx/fsl,mxc-epdc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Freescale i.MX6 EPDC
-> > > +
-> > > +maintainers:
-> > > +  - Andreas Kemnade <andreas@kemnade.info>
-> > > +
-> > > +description: |
-> > > +  The EPDC is a controller for handling electronic paper displays found in
-> > > +  i.MX6 SoCs.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - fsl,imx6sl-epdc
-> > > +      - fsl,imx6sll-epdc  
-> > 
-> > Not compatible with each other?
-> > 
-> differences are detectable by EPDC_VERSION register, so probably so
-> problem. NXP/Freescale kernel uses
-> fsl,imx6dl-epdc
-> and 
-> fsl,imx7d-epdc (used also by imx6 devices with EPDC_VERSION = 3.0)
-> in their drivers.
+> Notes:
+>     Changes in v7:
+>     * Added newlines
+>     * Reorder slightly
+>     * Rename top-level node in example
 > 
-> fsl,imx6dl-epdc
-> fsl,imx6sl-epdc
-> fsl,imx6sll-epdc
-> fsl,imx7d-epdc
-> in their dtsis.
+>     Changes in v6:
+>     * Fix device tree binding schema
 > 
-> But the general rule is to use as less as possible compatible strings
-> if differences can be probed properly, so only one should be
-> sufficient? Which one?
+>     Changes in v5:
+>     * (no changes)
+> 
+>     Changes in v4:
+>     * (no changes)
+> 
+>     Changes in v3:
+>     * Remove multi-led unit name
+> 
+>  .../bindings/leds/leds-pwm-multicolor.yaml    | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> 
 
-If you can probe all the differences, then just 'fsl,imx-epdc' is 
-sufficient. Just document that so the next time around I don't forget 
-and tell you it needs to be specific.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
