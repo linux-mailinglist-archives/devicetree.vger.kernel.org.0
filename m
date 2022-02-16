@@ -2,106 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D49094B8E5A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 17:41:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 535794B8E8C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 17:51:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236719AbiBPQla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 11:41:30 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45678 "EHLO
+        id S234383AbiBPQvU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 16 Feb 2022 11:51:20 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236764AbiBPQlQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 11:41:16 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7AAD2AF939;
-        Wed, 16 Feb 2022 08:40:50 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21GGeeoJ102406;
-        Wed, 16 Feb 2022 10:40:40 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1645029640;
-        bh=fOV21O1V2aQIITI7O/Q7rDXQYjEhIQpEebP+9w66ozQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=QsGAbf7UeEUUuaYCb0kZFONtSfC5vddan2uM482oS8lsurArsIVMzhL6k26wUkmNW
-         KcXNbuZ5QfH6T7Wkt3fyH771KsKvDS/abqtMn9yKKV2oFg/W/AW1icaWYFL7aQuoQK
-         Y5LRj1hTK/jOKh73Ai/BqOGGE8YyKW+l7dlPeLb8=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21GGeeRx103372
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 16 Feb 2022 10:40:40 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 16
- Feb 2022 10:40:40 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 16 Feb 2022 10:40:40 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21GGeeDK118318;
-        Wed, 16 Feb 2022 10:40:40 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     <linux-arm-kernel@lists.infradead.org>,
-        Hari Nagalla <hnagalla@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Nishanth Menon <nm@ti.com>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>
-Subject: Re: [PATCH v1] arm64: dts: ti: k3-am64: Add ESM0 to device memory map
-Date:   Wed, 16 Feb 2022 10:40:39 -0600
-Message-ID: <164502962527.22838.5260379976754363882.b4-ty@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220210172246.27871-1-hnagalla@ti.com>
-References: <20220210172246.27871-1-hnagalla@ti.com>
+        with ESMTP id S236671AbiBPQvU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 11:51:20 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E729729059A;
+        Wed, 16 Feb 2022 08:51:05 -0800 (PST)
+Received: from mail-wm1-f52.google.com ([209.85.128.52]) by
+ mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MHGPA-1nXYmu11Xs-00DKpD; Wed, 16 Feb 2022 17:51:04 +0100
+Received: by mail-wm1-f52.google.com with SMTP id c192so1580099wma.4;
+        Wed, 16 Feb 2022 08:51:04 -0800 (PST)
+X-Gm-Message-State: AOAM53215idIRCb6fop41eJyR00x+Tf0B0ZeoiZIeCw3jliFfQmJEmC0
+        XE3roa9px2c5a/feOpXWNRiwkpxgQQo3irApi8c=
+X-Google-Smtp-Source: ABdhPJx8RqMyzjqG4qRfmf4/0bQTcftVw4SQPsOIYZkGgW8WAtBynLxNtL5rZYmPjYJ0eMNasjhYVG/ePq+kp7P5uvU=
+X-Received: by 2002:a05:600c:4ecb:b0:37c:9125:ac03 with SMTP id
+ g11-20020a05600c4ecb00b0037c9125ac03mr2448520wmq.98.1645030263859; Wed, 16
+ Feb 2022 08:51:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <nick.hawkins@hpe.com> <20220216153632.40981-1-nick.hawkins@hpe.com>
+ <CAK8P3a0NmyxrzxgfwfDXuFvhmc3OL_-yBj8PDdEHh-2qm4NVkw@mail.gmail.com> <PH0PR84MB17185157544CFEB1D8AE267088359@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <PH0PR84MB17185157544CFEB1D8AE267088359@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 16 Feb 2022 17:50:47 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1HuTMt5WmOw3aQcLwGZd_WQ5nsKZ2HFDPQ0CHFvKsygA@mail.gmail.com>
+Message-ID: <CAK8P3a1HuTMt5WmOw3aQcLwGZd_WQ5nsKZ2HFDPQ0CHFvKsygA@mail.gmail.com>
+Subject: Re: [PATCH] [v3] arch: arm: boot: dts: Create HPE GXP Device Tree
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>, Joel Stanley <joel@jms.id.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:RnLDglf0AH3oOyV8TTYEtG8RtU28VZIfAPP5QrqhEbdoob37J/x
+ JNOhIV4glMgKZvIb0spcghmMy3BmaZpt9JMR39ArAgVqcHYWo/Q/0LOzMSLe2RqsVMSVmRQ
+ 6kQdxvYTlgrV3GBg1HAanjdIH0yFQocMRkxcTnA5tXBiykxLXeH9rGS+HixEihZUXeyb96e
+ VNQ68gDbo/o/TIIQcEeOA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:qDd2au7NLC8=:SY5OR61SwQiqQEt4uTBfCG
+ 5zO/wSwH2dUkhlpOQXMkqAGQ6PLlYIlJ/y9e4MwsyfKstYTD2kemRztCdf4+6/HHj1YGOUZP7
+ hBbuKVyGDpITD8jcs5m2GRDIELnY/hJAkE9J8O0kHjywT9JujfuhhiSXcml2viVIAbXjruXRV
+ gRUUNdJ+jsbbVXnIjhANOxPdsNjmSTWXLScU0aJsgcA69dT7pqX7e4jX/93BubZxtd+ISRjIY
+ 3Rfe4JVq1nRD56M9m9ApmSc/isjdrgnRe4lK4QWrUbqdhXocq/4SvK+HIgpbt3y9kufW+prn4
+ F2Luc0f1smVoYfBWS1fCmrBsx15Od6/XrGZe0sH9Z2P0AZ7EGqT2sM/3SKR8Xh6AgCrM3eDAN
+ rUlPKmsnI6x2EZq0rCmDpCuPHSXzCud/jq4q4kR3yg0mtmGXpiJGaaf6k7EoN4somaUeip+Pd
+ F0kE0QQHM8kxgHX3cZecG3GmQjr2pBlbAU3eCfPX+eAIYDN5DkX8bn4bLuhH0iL8acO3j26w7
+ MlKUgK28GMBrVX+NYY4RCRkHoEC7Ys6MfpLTQiKudPbHWkOad7h3VEK9XkUxOyi4u8ROBdZmt
+ BPRMPoT7+mTcVXEXkVbVBfJRCIwmoGI5HSQf+2Ar7Nnj03JzRbVZGhJiJQA50QMXC07UOW9DX
+ gV5YU4+4UwF5SS/a7EAhBUmH4RVhBqYJfAD82oNaJZm4zoAL5V0b57KIm0N+/hEDNfW+aouji
+ xeSp7tUDv+1jjzRC5P5eiVvIE95O0OKSHNjssk5uRG0OyhNAkjIZnEza07YGYjLCJ2U2LL7o0
+ pqBKyLzVNUhsW0iOo5aG/ONyfjJdlf+yw20eAgDwdaAcdQk8UM=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hari Nagalla,
+On Wed, Feb 16, 2022 at 5:29 PM Hawkins, Nick <nick.hawkins@hpe.com> wrote:
+> > +GXP ARM ARCHITECTURE
+> > +M:     Nick Hawkins <nick.hawkins@hpe.com>
+> > +M:     Jean-Marie <verdun@hpe.com>
+>
+> It looks like you are missing the family name here.
+>
+> NH: Do you mean I need to have an HPE in front of it?
 
-On Thu, 10 Feb 2022 11:22:46 -0600, Hari Nagalla wrote:
-> AM64x SoCs have two ESM modules, with one in MAIN voltage domain and the
-> other in MCU voltage domain. The error output from Main ESM module can
-> be routed to the MCU ESM module. The error output of MCU ESM can be
-> configured to reset the device. The MCU ESM configuration address space
-> is already opened and this patch opens the MAIN ESM configuration
-> address space.
-> 
-> [...]
+No, I meant a 'Verdun' after Jean-Marie ;-)
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+> ...
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index 235ad559acb2..a96b4d5b7f68 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -1549,3 +1549,5 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+> >         aspeed-bmc-vegman-n110.dtb \
+> >         aspeed-bmc-vegman-rx20.dtb \
+> >         aspeed-bmc-vegman-sx20.dtb
+> > +dtb-$(CONFIG_ARCH_HPE_GXP) += \
+> > +       hpe-bmc-dl360gen10.dtb
+>
+> This Kconfig symbol does not yet exist
+>
+> NH: Should I include the definition of this Kconfig symbol in this patch or just not modify the makefile when doing device tree changes?
 
-[1/1] arm64: dts: ti: k3-am64: Add ESM0 to device memory map
-      commit: 2aeb0696b8e801c20c2176d9dbe512b6a5aa2f79
+I would start with a patch for the bindings, or one per binding, then
+the Kconfig
+patch, then the dts file and finally the MAINTAINERS entry.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+The order is not super important, but it helps to do it in a way that one patch
+builds on the previous one in the series, rather than having a single big patch,
+or separate small patches that are not in a series.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+>
+> > +
+> > +/ {
+> > +       #address-cells = <1>;
+> > +       #size-cells = <1>;
+> > +       compatible = "hpe,gxp";
+>
+> No board specific compatible string? Also, this value is not documented anywhere.
+>
+> NH: I was uncertain if this needed to be documented or not, checkpatch did not notice it. Where would you recommend I should put this in documentation? I was considering Documentation/devicetree/bindings/soc/hpe/
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Documentation/devicetree/bindings/arm/hpe.yaml would be best.
+The bindings/soc/ directory is not for the SoC as a whole but more
+for components on the SoC that are either for identifying the chip
+(as in struct soc_device in Linux)  or for things that don't fit anywhere
+else but are specific to one soc.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> ...
+>
+> > +
+> > +               watchdog: watchdog@c0000090 {
+> > +                       compatible = "hpe,gxp-wdt";
+> > +                       reg = <0xc0000090 0x02>, <0xc0000096 0x01>;
+> > +               };
+>
+> As mentioned in a previous review, it would be helpful to have the drivers and bindings together in the same series for easier review.
+>
+> NH: Just to confirm, I need the driver source and the new DTS file in one review? I also need to have a review to add files: arch/arm/configs/gxp_defconfig, arch/arm/mach-hpe/gxp.c should those be included as well? I am trying to not create too massive of a patch. I could also create completely separate patches for these items so that reviewers could refer to it.
 
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Yes, I think it's best to have all patches in a larger series for the
+initial review. The defconfig
+patch is usually separate, but the gxp.c file can be in the same patch
+as maintainers entry
+and the Kconfig and Makefile changes (outside of dts).
 
+Try to keep each patch in the series self-contained, e.g. don't
+separate a .c file from the Makefile
+and Kconfig change, but don't group things into one patch that are not
+directly related, e.g.
+the dts file.
+
+> ...
+>
+> To a lesser degree, the same is true for the uart.
+>
+> Please check the devicetree files in order to validate the bindings. In this case, you should get a warning about the 'ehci@' name being non-standard. The normal name is usb@
+>
+> NH: Which tool are you using to validate bindings? I did not receive any warnings but I did receive several errors which I corrected.
+
+You can run "make dtbs W=1" to get most of the useful checks enabled.
+
+> > +
+> > +               vrom@58000000 {
+> > +                       compatible = "mtd-ram";
+>
+> Same thing here, "vrom" is clearly not a standard name.
+>
+> NH: VROM is a Virtual ROM device that we use to create a memory mapping of a SPI flash content copy that is served to a host system. How should I rename it?
+
+Not sure, I don't remember seeing this case so far. Adding Joel to Cc,
+maybe he knows of
+another BMC that does the same thing.
+
+         Arnd
