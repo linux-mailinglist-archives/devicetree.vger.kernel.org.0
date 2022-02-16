@@ -2,156 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4E794B856F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 11:23:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E156B4B85AF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 11:31:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232539AbiBPKXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 05:23:06 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:59268 "EHLO
+        id S231747AbiBPKZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 05:25:03 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232444AbiBPKXF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 05:23:05 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9950A240B1
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:22:53 -0800 (PST)
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 771424081B
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 10:22:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645006972;
-        bh=wuR90S9txt4D8ZpyD8BmkEY7fqkqr+OEq1oue1rbm+I=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=jlDlR30gUFvjkTZRuzp22FEdktHu7JDXPFGWpvebE8RmmahgKWKBA6pEVtpoU8hKe
-         Qlu6hHrAONndzRhWYrIvPuL7CqXRInNzqCiJaVi9Q6993RLFZPEEBQ4l4olLXIFGs8
-         npS30TQbORJ8HMdt4T61zrmK/1OiXSgdudmufL7N1bEs98PMKqIMIFR3wQ3okZrXdo
-         5LejIchTK1HnQqd3DnKqOgXjQveIpBYEZr79pRNCVXn76qZHDehkJjLuc58HTCr0JU
-         rdeQJPJof8v17v8u5LbxRU0PkHVrLfkbBVMIvQ/g5DtjYL7Dq7KNerpCqcS+sk35+C
-         sbB3CP+DgESbg==
-Received: by mail-wm1-f70.google.com with SMTP id t2-20020a7bc3c2000000b003528fe59cb9so287748wmj.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:22:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wuR90S9txt4D8ZpyD8BmkEY7fqkqr+OEq1oue1rbm+I=;
-        b=EDCTeSaUvYUlJA9HnhpHnznSG3dz/XfvnEiH2qxfo7HTMPn1SFJneKekeeQTTG1kFG
-         IKTQTh/4SdaAp39qzHrGICSSrKBHf/HkCh7S1eTiHoY1KCcBQ0qRJxzWRGIBjYE58dcp
-         vSqUwaDxjvfIhH5VpH5HNnghhQ4Q9r8NTKMdy36iegF7uUjM4Fzn+/lYqSXOKnJqCcJi
-         0//Bc8eiv2EhxUR/ij79Wq96nn58GgB+JKwtVu5TVAIrO98ZKHZDrhrXm86XjN3HX++H
-         pdSrRJfm+FU6YFPZvxq0gRxKkvK8y+YCkxLEQ2MyEMx6cvqhUc5h5Nugi5FiMwwXzNki
-         1VTA==
-X-Gm-Message-State: AOAM530SUM+vIgnAUoyQa8QUVV8wninBDqcweVv0NZFIdfcaT43UePEW
-        Exb0ZzjZuRRK3gUL5HBVM++eb09BJRivZYnBzun43V8uCRIl+W22UrN8Q2N+VVqAy8bzaPYaCJ0
-        DEEKMo/76oa0vHWVRpqAIdKO6HOIXKpbLDZPSwBU=
-X-Received: by 2002:a05:600c:2e47:b0:37d:62d7:24bb with SMTP id q7-20020a05600c2e4700b0037d62d724bbmr905757wmf.71.1645006971953;
-        Wed, 16 Feb 2022 02:22:51 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy0tm5zca8pzPPli4+p2IjYg6ZL4qjnL96rMvrKZhljZw4NnZGhrPPdbfPJHZ4Z1myjwiM05A==
-X-Received: by 2002:a05:600c:2e47:b0:37d:62d7:24bb with SMTP id q7-20020a05600c2e4700b0037d62d724bbmr905747wmf.71.1645006971809;
-        Wed, 16 Feb 2022 02:22:51 -0800 (PST)
-Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id r11sm26194194wrt.28.2022.02.16.02.22.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Feb 2022 02:22:51 -0800 (PST)
-Message-ID: <370739d4-2da6-b620-ec79-adf8d00c8c33@canonical.com>
-Date:   Wed, 16 Feb 2022 11:22:50 +0100
+        with ESMTP id S232190AbiBPKZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 05:25:02 -0500
+Received: from GBR01-CWL-obe.outbound.protection.outlook.com (mail-cwlgbr01on2101.outbound.protection.outlook.com [40.107.11.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57CD4206DD6;
+        Wed, 16 Feb 2022 02:24:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hOfLgRwFxJ2j6rQPFzabSbMXGQIIXZvqYTRK8I3gcn2nfYpHtnEeEdCC0A+SrKSPUt4/z9nhrWx+0TPD7vqHIrewbVsDGBci3u0ijG/J7mVxHNyiCindcl2NHQ1S2IFaea2jf/rr01QnuhMlrdijtEx7H7Pd1rJGT2K4w6exqs0SKsY2NkcBvUz5qnnAHFaI4CWKBF9P9ytKhspJ3agfmdnOGUCMmoHqCfD/T3+K8IFR/NWMi/m8lXWOPOq5PISgKUeAkq2wm51beHV6CmdOI98XVHuKPb7fuJO3j8dLn3tqZ8zvfJsvWFejO6r4SU0ZkZL0+nQYIM7tzk0zeHv2Wg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Rj6fDieatrZ10q6rkIjp9tDfxxY5Junk8Xn2hkDqos8=;
+ b=bb/sWQroIDyXPJVVosQZGBpBlu7ayFKDWXpluKLgv7L74NjP3kgy5CXEeeoNOu3MnShnKAWDFa5PJHnGto4tCtad2LyDvZIYo6RqwhC0dvHdXtfYLzgiMTdNmhiRNuPTpJ4y0/3by+QTi1wGaon0bgs6VAgJ7r9XxvAj62AIslL3ys0dW8S/atdNQ4v4Y5lZx0LvQjYIzi/Aie19m5rRQWCjWGTlW2GbfiUT+Zol9JdAxC8SNO2DOeApPwIJ0ZpkZ//Naknk6xTzDeo7BrdHMoGx5HRhHnIqppUs0Mf9C9neozSlyo/dEYbZrtjG8vusGp8VHFTOAvHht42BquGmoA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sancloud.com; dmarc=pass action=none header.from=sancloud.com;
+ dkim=pass header.d=sancloud.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sancloud.onmicrosoft.com; s=selector2-sancloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Rj6fDieatrZ10q6rkIjp9tDfxxY5Junk8Xn2hkDqos8=;
+ b=e45UmiRvkLbPhbZaDeOvGECygBGMXJMjEA1sxla0p7jARbPd89kWVOKbRZIEkXR9qV6oAli9TSt1kieA4eyhmkLTjRWTjdqEfPao8Ygjbgws1KVfZlIl0hYxN9aj5Pm6I1nK7LCZYfh8uZrxebx9e20jKNCPJ48dhK/SLayNj+M=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=sancloud.com;
+Received: from CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM (2603:10a6:401:61::19)
+ by CWLP123MB5940.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:1c4::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Wed, 16 Feb
+ 2022 10:24:45 +0000
+Received: from CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::554d:d250:a048:97a5]) by CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::554d:d250:a048:97a5%5]) with mapi id 15.20.4995.016; Wed, 16 Feb 2022
+ 10:24:45 +0000
+From:   Paul Barker <paul.barker@sancloud.com>
+To:     Robert Nelson <robertcnelson@gmail.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
+Cc:     Paul Barker <paul.barker@sancloud.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: am335x-sancloud-bbe-extended-wifi: New devicetree
+Date:   Wed, 16 Feb 2022 10:24:30 +0000
+Message-Id: <20220216102430.500-1-paul.barker@sancloud.com>
+X-Mailer: git-send-email 2.35.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4470; h=from:subject; bh=o21tiFY45D+1FWgXwwIeySLu1akpmxAMdjaLeNeZt1E=; b=owGbwMvMwCV2w7xIXuiX9CvG02pJDEk8F24/FfQ6Mu+ZuF/t1N2cGbWR3xd6nvZQcPVaXStht7Pm xcI5HaUsDGJcDLJiiiy7Z++6fP3Bkq29N6SDYeawMoEMYeDiFICJyC9n+F+ruab826XFuyeV7U8o/3 dhBjdTxvX5sokJ31rDPVSbjyUy/E+JOLVHSJNH84GNvb3u30fq/U9/HGHNlYqrKVE7+HHVRSYA
+X-Developer-Key: i=paul.barker@sancloud.com; a=openpgp; fpr=D2DDFDAE30017AF4CB62AA96A67255DFCCE62ECD
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: LO2P265CA0516.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:13b::23) To CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:401:61::19)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [v2,1/4] dt-bindings: pwm: Convert pwm-mtk-disp.txt to
- mediatek,pwm-disp.yaml format
-Content-Language: en-US
-To:     xinlei.lee@mediatek.com, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        robh+dt@kernel.org, matthias.bgg@gmail.com, jitao.shi@mediatek.com
-Cc:     allen-kh.cheng@mediatek.com, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
-References: <1645003971-16908-1-git-send-email-xinlei.lee@mediatek.com>
- <1645003971-16908-2-git-send-email-xinlei.lee@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <1645003971-16908-2-git-send-email-xinlei.lee@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9946b848-5ac6-4bc4-b896-08d9f1368d70
+X-MS-TrafficTypeDiagnostic: CWLP123MB5940:EE_
+X-Microsoft-Antispam-PRVS: <CWLP123MB594039E64B4B609A439B073A93359@CWLP123MB5940.GBRP123.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:372;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TCyFZMB65p8T830ihybFkfZFRyWLoNlcjJ9XQse7U9KyM+ENl7j/yK8srUR051zVPlytvX366XlslEKXLRHO7f1uFx0V4IGSq28Qlm1aMsv3WvxJAt8jR6ixQrC1+y4fqaY9WOEOlpew8YUXtFGpfhevE4r0msqkb8ywYn9NEq0BTefiYngYDXQmH+oduB7iskcD4EXK7cbTp+J89pILiME/tf1UZ/HTT3CydiMF5C31gle0i7N2zmhAWTcitsxwZYaWOKWUhKSiGyriTOi4xhmueTOQaeG6VeOxuFZ9nM0SFqH5LeLsi47IgWuBeMGwjoILWFEWOgDoIb/EN6teQfmi9236fGVy7Yk1lswGCpZ6sLTcO8oXuJihjg8wGRhG1lBXiSJxvUZY5FIym7TpEJrGooqgdMFuXXlWAoGOIzoR8T0mvpVLO9ljP6FpuYcxI/p8/VsJ4UlzFzFlIuRrSW+BedEokjj3sdmGBAgHzt0HjWN//pc2w0FpAg3kumH360hBYjyWgSb3X5df6XbAjWhC9pLQBxrixSLePFwF6/Rjrkq5CCRbIy5WP7QygtJklFsZUVm/37ad41436SpBIc5PhdV+b7m/SZJezGqcuIom1aB3RkrTLRBi2Ei+Gq6b2n+zBL+L5GrgXLjUFGKqDO8SgreJSpt+968uTHyQmgQN4uMrnL731J96mN5FeLAyIkGE4ffz7VzReT/PcKPs9hz6dbNgM84GC6nFcBaF+MM4Q1i0aZERZawhrM1qiu0JzDhoNZ/mp/DJXEaNyRDIXNeV27nhUK2Aqq6AHR6gU1E=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(346002)(39830400003)(136003)(366004)(376002)(396003)(8676002)(4326008)(966005)(66476007)(83380400001)(66556008)(36756003)(66946007)(52116002)(6512007)(6506007)(86362001)(2906002)(38100700002)(38350700002)(6666004)(6486002)(5660300002)(44832011)(186003)(2616005)(1076003)(26005)(508600001)(8936002)(316002)(110136005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AyJnUkA4KQmRZcAF63UrafxgtYqG7FX0Jvc+gIsyoxxVDx4V3KBrZfF8Apw0?=
+ =?us-ascii?Q?/jtprJ1Z0V35vg/zJNBdAP2K0XA8EK1PjmtkEPrqONCtM03MIbu9keckGUtJ?=
+ =?us-ascii?Q?TzpwvhhGuHY+Q2KCUMWvc22BtgmYFAiIgdmJdCV0GZjAT3GQWLTFCt8PZmam?=
+ =?us-ascii?Q?Rp0s6sV/ldeMyCzGsZfCpm9pDOjfCP7uckb1UoA9Jt2znQZCz6nAM4xPmWfb?=
+ =?us-ascii?Q?x/mrpCo+ccz4T62+1T9+buKOfMxzf8g3nMaEm/03tjWBC0vFhDuUocFFR9vM?=
+ =?us-ascii?Q?XH1PntQpsvW/neqHQzyjEScpIuI8hf2wgaUIcqLjs2pe5Twh8nI83ZamNF0W?=
+ =?us-ascii?Q?MZrCvi52rcUV87FiPMnPiaFMWhNt8UWz6M9+RyGSg9XM7DYWz6HNvMDl2o/U?=
+ =?us-ascii?Q?cbMAyQMmsZHvePEDWIZQiX2rWNDqx+tFD/4VzfOmoRYfZCaOK5/xb188f/b4?=
+ =?us-ascii?Q?7hw7iJ4fFlMYEDJGdwWqu/+sc/1q8VI594xfOQ7iKGsp9tauFk0mpDoloUj7?=
+ =?us-ascii?Q?3VSrbKq+/0cD9r5Q3cgKhuNtqZSq+zbvYDAmKuLhLnLv4OM8/vR3IMmNxk/K?=
+ =?us-ascii?Q?zOuWZC0jozZMRFUxlNgOILlrqi95x4HOf0K8V+gSG09twz09hVklTd/0YWyM?=
+ =?us-ascii?Q?igqEdOHylMCW2i5GGCv0f11jPoxCYrO96k5rn1ig7pE6dQnGTRkXwOH50lYX?=
+ =?us-ascii?Q?lmqIlxBBzcMoYYSDfE3QvPhoKx7+WHkihAn2KhEjrrQxLBFaEOY4bbpm0Omj?=
+ =?us-ascii?Q?iZnd5TpPjOowku1BFpNUAqb/5Ld0cv3N0ZLtF9by29In5EV7e+aITND0/73Z?=
+ =?us-ascii?Q?FTPwjyWGV2mr+pmc+TFu0f2fKw5Dd4LbnuBsThLMWoKoqZkiR95bkWu67MU+?=
+ =?us-ascii?Q?QxGLN5srNo/AjBr6zboWUj5vjOdotSDBrTTlY5I2ChRgb4KWh3j7OR8KFUPV?=
+ =?us-ascii?Q?9pHpJSvUhOhRoJc9ey6kn4kXD/wqe2Yc19DpM1/+RMJ2vERFvg8TTT1uzHXo?=
+ =?us-ascii?Q?AWQCCMkr+EBnHRW8IKLodY4ThdqnAXlFTMozO42eukMF03sJ41YFsZmSF2yO?=
+ =?us-ascii?Q?ctSs91sp9ASMhei51L7OVOv3a0LzQ7kfR637uPe8DXE77qXzSuPoK1AAcHGe?=
+ =?us-ascii?Q?1pokaXefewxrjFlFaqySmeb6DD0MFSubPZrvY06drgauIqp5TbT5iMLQxu9p?=
+ =?us-ascii?Q?00shzsCzd0lPwFfYZXB/aOsHZSyMwXiRc8mHeHda0Gy7plJayGBPaGry/kLi?=
+ =?us-ascii?Q?j67Z4jkoyfMTGJjllvby6fL4HajIwUbDZettK1k0kRHtxHwlzPbjYoE+Q8Gp?=
+ =?us-ascii?Q?WenTAbN0G4Mm2d85Fd9DSe5HsPBZXF53+OUSpRGj51B+l655yy//6kg/GqkU?=
+ =?us-ascii?Q?kenWS2+Yqfc5mh6qKguMUHs3nW61rKMpGk23Qggzhz88G+kjZPocl4+P0UEq?=
+ =?us-ascii?Q?442R0LVinN2GjQ/n3J3J6/sYoTRkArBNEvsM7gCHQx2QkffsQYlaW2dXRdKg?=
+ =?us-ascii?Q?UxYlsU0KKGLuaw9ByS+Y/dXgcG1WBKnLHP2SY8PYw0TtSbw6hymzc2UBq+97?=
+ =?us-ascii?Q?jq7XaYF1sx/7RK4ovRWkZ7YVaSZhYm9pyIHqAxD0V0ve2EXyVnEi0uHH66J8?=
+ =?us-ascii?Q?kVmitsTKgJ0fOr1fhGnhL2f5yF1SN7ArJX++tO/tGW7Gfdr7EdO6cETWUr1T?=
+ =?us-ascii?Q?suAGOQ=3D=3D?=
+X-OriginatorOrg: sancloud.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9946b848-5ac6-4bc4-b896-08d9f1368d70
+X-MS-Exchange-CrossTenant-AuthSource: CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2022 10:24:45.4700
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 840be37c-244a-450e-9bcc-2064862de1f4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tV6oar7awi6PMCDp+xC4kqKyrhjnEHAK10w7w5/ssicaeoywk+ErIlEB7qUkxUugEqqTpwqAXKx9UkiSq7fN4lDTKftNpvlt6NSd4XftLXY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP123MB5940
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2022 10:32, xinlei.lee@mediatek.com wrote:
-> From: Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
-> 
-> Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml format as suggested by maintainer
-> 
-> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
-> ---
->  .../bindings/pwm/mediatek,pwm-disp.yaml       | 71 +++++++++++++++++++
->  .../devicetree/bindings/pwm/pwm-mtk-disp.txt  | 44 ------------
->  2 files changed, 71 insertions(+), 44 deletions(-)
->  create mode 100755 Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-mtk-disp.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-> new file mode 100755
-> index 000000000000..edf2a2e9ea72
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/mediatek,pwm-disp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek PWM Controller Device Tree Bindings
+Add support for the SanCloud BBE Extended WiFi board which shares common
+hardware with other BBE varients. Compared to the vanilla BBE, this
+particular model:
 
-This is a Display PWM, not a generic PWM.
+  * adds a WiFi+Bluetooth module connected via SDIO and UART.
 
-> +
-> +maintainers:
-> +  - Jitao Shi <jitao.shi@mediatek.com>
-> +  - Xinlei Lee <xinlei.lee@mediatek.com>
-> +
+  * drops the HDMI encoder, barometer and accelerometer.
 
-My comment about pwm schema was ignored.
+Signed-off-by: Paul Barker <paul.barker@sancloud.com>
+---
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../dts/am335x-sancloud-bbe-extended-wifi.dts | 113 ++++++++++++++++++
+ 2 files changed, 114 insertions(+)
+ create mode 100644 arch/arm/boot/dts/am335x-sancloud-bbe-extended-wifi.dts
 
-Please include pwm.yaml.
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index e41eca79c950..fb1f7d1f94a5 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -895,6 +895,7 @@ dtb-$(CONFIG_SOC_AM33XX) += \
+ 	am335x-regor-rdk.dtb \
+ 	am335x-sancloud-bbe.dtb \
+ 	am335x-sancloud-bbe-lite.dtb \
++	am335x-sancloud-bbe-extended-wifi.dtb \
+ 	am335x-shc.dtb \
+ 	am335x-sbc-t335.dtb \
+ 	am335x-sl50.dtb \
+diff --git a/arch/arm/boot/dts/am335x-sancloud-bbe-extended-wifi.dts b/arch/arm/boot/dts/am335x-sancloud-bbe-extended-wifi.dts
+new file mode 100644
+index 000000000000..246a1a9b3e44
+--- /dev/null
++++ b/arch/arm/boot/dts/am335x-sancloud-bbe-extended-wifi.dts
+@@ -0,0 +1,113 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (C) 2021 Sancloud Ltd
++ * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
++ */
++/dts-v1/;
++
++#include "am33xx.dtsi"
++#include "am335x-bone-common.dtsi"
++#include "am335x-boneblack-common.dtsi"
++#include "am335x-sancloud-bbe-common.dtsi"
++#include <dt-bindings/interrupt-controller/irq.h>
++
++/ {
++	model = "SanCloud BeagleBone Enhanced Extended WiFi";
++	compatible = "sancloud,am335x-boneenhanced",
++		     "ti,am335x-bone-black",
++		     "ti,am335x-bone",
++		     "ti,am33xx";
++
++	wlan_en_reg: fixedregulator@2 {
++		compatible = "regulator-fixed";
++		regulator-name = "wlan-en-regulator";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		startup-delay-us= <100000>;
++	};
++};
++
++&am33xx_pinmux {
++	mmc3_pins: pinmux_mmc3_pins {
++		pinctrl-single,pins = <
++			/* gpmc_a9.gpio1_25: RADIO_EN */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_A9, PIN_OUTPUT_PULLUP, MUX_MODE7)
++
++			/* gpmc_ad12.mmc2_dat0 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD12, PIN_INPUT_PULLUP, MUX_MODE3)
++
++			/* gpmc_ad13.mmc2_dat1 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD13, PIN_INPUT_PULLUP, MUX_MODE3)
++
++			/* gpmc_ad14.mmc2_dat2 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD14, PIN_INPUT_PULLUP, MUX_MODE3)
++
++			/* gpmc_ad15.mmc2_dat3 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_AD15, PIN_INPUT_PULLUP, MUX_MODE3)
++
++			/* gpmc_csn3.mmc2_cmd */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN3, PIN_INPUT_PULLUP, MUX_MODE3)
++
++			/* gpmc_clk.mmc2_clk */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_CLK, PIN_INPUT_PULLUP, MUX_MODE3)
++		>;
++	};
++
++	bluetooth_pins: pinmux_bluetooth_pins {
++		pinctrl-single,pins = <
++			/* event_intr0.gpio0_19 */
++			AM33XX_PADCONF(AM335X_PIN_XDMA_EVENT_INTR0, PIN_INPUT_PULLUP, MUX_MODE7)
++		>;
++	};
++
++	uart1_pins: pinmux_uart1_pins {
++		pinctrl-single,pins = <
++			/* uart1_rxd */
++			AM33XX_PADCONF(AM335X_PIN_UART1_RXD, PIN_INPUT, MUX_MODE0)
++
++			/* uart1_txd */
++			AM33XX_PADCONF(AM335X_PIN_UART1_TXD, PIN_INPUT, MUX_MODE0)
++
++			/* uart1_ctsn */
++			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, PIN_INPUT_PULLDOWN, MUX_MODE0)
++
++			/* uart1_rtsn */
++			AM33XX_PADCONF(AM335X_PIN_UART1_RTSN, PIN_OUTPUT_PULLDOWN, MUX_MODE0)
++		>;
++	};
++};
++
++&i2c2 {
++	status = "disabled";
++};
++
++&mmc3 {
++	status = "okay";
++	vmmc-supply = <&wlan_en_reg>;
++	bus-width = <4>;
++	non-removable;
++	cap-power-off-card;
++	ti,needs-special-hs-handling;
++	keep-power-in-suspend;
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc3_pins>;
++	dmas = <&edma_xbar 12 0 1
++		&edma_xbar 13 0 2>;
++	dma-names = "tx", "rx";
++	clock-frequency = <50000000>;
++	max-frequency = <50000000>;
++};
++
++&uart1 {
++	status = "okay";
++
++	bluetooth {
++		pinctrl-names = "default";
++		pinctrl-0 = <&uart1_pins &bluetooth_pins>;
++		compatible = "qcom,qca6174-bt";
++		enable-gpios = <&gpio1 25 GPIO_ACTIVE_HIGH>;
++		clocks = <&l4ls_clkctrl AM3_L4LS_UART2_CLKCTRL 0>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <19 IRQ_TYPE_EDGE_RISING>;
++	};
++};
 
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt2701-disp-pwm
-> +      - mediatek,mt6595-disp-pwm
-> +      - mediatek,mt8173-disp-pwm
-> +      - mediatek,mt8183-disp-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    description:
-> +      Number of cells in a PWM specifier.
+base-commit: 754e0b0e35608ed5206d6a67a791563c631cec07
+-- 
+2.35.1
 
-Need a const. Description can be skipped, it's obvious.
-
-
-Best regards,
-Krzysztof
