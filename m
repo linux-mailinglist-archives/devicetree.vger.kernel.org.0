@@ -2,186 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F22A4B89CA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 14:26:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EDB24B89E6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 14:28:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233988AbiBPN0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 08:26:33 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36454 "EHLO
+        id S234256AbiBPN27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 08:28:59 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233695AbiBPN0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 08:26:32 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239241C135
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:26:18 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7690240339
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 13:26:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645017976;
-        bh=HnLv2sgPTFeJCaPDj49F4ixfOdgITRk3XaxRkpYlXz0=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=d+ytUNIq/+YlMjkBHdiOV8f4oLa5IC3GzB6jvG+C7TfcqFdyX0KOr+USFSxC9EfzW
-         gq4sf5GP+2Y9PEsc59qza/ErxG8NRKgmR8tyS5azhFwTtH329ZDBm2ITajzRbvduwY
-         djHyqSCQsWveL2va2wT/eOz4fRUQ919qHtZ2EAJMnfzUI3Wx3c6Q1V+f7+lSJTGT4Y
-         cV623To1sFST3A04oSdbBkd9Bl541P8v4XHGEujKDhUeevB7FXVse+VpePM30PDXFt
-         yGlxbJTMN8smPmt2kqJYtjVhq3t5quGgig62hqd/H4EX/8G0JdurlhhgrHXxiDxruR
-         SppoGEjyty4Fw==
-Received: by mail-ed1-f69.google.com with SMTP id y13-20020aa7c24d000000b00411925b7829so1374967edo.22
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:26:16 -0800 (PST)
+        with ESMTP id S234248AbiBPN25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 08:28:57 -0500
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 391EF1617F9
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:28:44 -0800 (PST)
+Received: by mail-pf1-x429.google.com with SMTP id e17so2136519pfv.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:28:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=ZHriclNHcfARQz6gk+CKow6808MH12Lwf6CagzPJ1w4=;
+        b=S33hEt2BQqVZwAaMgLA3TC48JP7dGWC8DEtm950f/BsYz9JouJKrpFDIJFRlIh2REH
+         SYCjtdDGjxf95DrVarpNfYrRsLEVu14eOpD+EiN4Gt8YytXbmmFPuoICt9mDoAzHKDeR
+         Ot6M7gQuDlbfMNZVxApkzWiAjIzAG354CFIWlHNrhe/sbZDS+AKEqDZGOkGZR42WYdEN
+         M/mDcDHNYybR8Urc5J8oZs37i6wYlFmRjCfB9FtGjrlxjhvXdIYUWoWudFFizPx97OsI
+         bMhvghSPYSqKW/ZnB6xrA4qqZHf7BDkJiZUT/UP6W4jHFoitvdoZBob7l5zXDJmpnhHW
+         +Yjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=HnLv2sgPTFeJCaPDj49F4ixfOdgITRk3XaxRkpYlXz0=;
-        b=1rMzLk3zLu5YtHZA7tqxPPUgay0npeS2kFAhzag+eYCzZXKggn62DDEoJSwm2K8uuy
-         XtLhP9YUs37gUQrBaoT0/T/U5wA+T+JXc+u+3berEz91zEC+9enZZ4vbjDXjmGaWX9Vt
-         YmBcxEwuCLgOa+vaDNmX8RoqGE5mjnkYBVWtJ8OwUJucGHYNAKTPe8zH9vv2ibjyyOUt
-         4/jkfSqvZgrcueNarzTa+SmVbW0Rne+igbCNBTzSx6lxEQ7kia+A1Vx+teafce3r9PVg
-         3vGzeSz/GNW86wxmutGKJrzBi1TIjjMtrNyWRK/H+YuLRbiIXHVTk1ZaCZv33F59bYQ2
-         w0xQ==
-X-Gm-Message-State: AOAM531uUS6NlJIl2vYr6E5k6mBJlc7YdNafDjJsZm7JXt8Ogkyl19Ln
-        qVxlBu+q/8w75ME+3xrjarWqUHGSND4G07CRXO+MxnFw+NC0WpwgYr1IQ2sDgLyWuvQxKydBbKg
-        d/PbFdjprP7CGZwU0OsUGLJbGs/rQkSr7C+KTYb8=
-X-Received: by 2002:a17:906:1be1:b0:6ce:b0a8:17d with SMTP id t1-20020a1709061be100b006ceb0a8017dmr2212951ejg.413.1645017975936;
-        Wed, 16 Feb 2022 05:26:15 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwW6N5tK5VHWBe36Bj5vHHIMzDJlCB0AOnINLyfOUpi+aCPHYXEWQjcBrraceqmA2DJkZ7r6A==
-X-Received: by 2002:a17:906:1be1:b0:6ce:b0a8:17d with SMTP id t1-20020a1709061be100b006ceb0a8017dmr2212939ejg.413.1645017975741;
-        Wed, 16 Feb 2022 05:26:15 -0800 (PST)
-Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id qf12sm1085572ejc.54.2022.02.16.05.26.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Feb 2022 05:26:15 -0800 (PST)
-Message-ID: <79a47f67-bb66-bad4-b6bc-c6a8c0ef25dc@canonical.com>
-Date:   Wed, 16 Feb 2022 14:26:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: dma: Convert mtk-uart-apdma to DT schema
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, vkoul@kernel.org
-Cc:     robh+dt@kernel.org, sean.wang@mediatek.com, matthias.bgg@gmail.com,
-        long.cheng@mediatek.com, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220216114054.269656-1-angelogioacchino.delregno@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220216114054.269656-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=ZHriclNHcfARQz6gk+CKow6808MH12Lwf6CagzPJ1w4=;
+        b=idqQgNm1+ct6D/7g5boruW+gdneRRnvEOuKjr4DYIc2KteTyk2gEG7STivjiFYGBLV
+         AY9TrgnJvrOPZGxgSQFC47x1vFBeWFddiKgydDPHtZMN149Na1AZxcry3kYF1+kCpH/5
+         amOQOv/hd0lC+JXHxGQV5NzCZcce39pqg7Vj6Pa0A2+tI7HaxG+q8yOTFshIy3PICBf6
+         3rJv4b3ie1ILFaKa+1GKJBK/2+0HPcvC19FA6cBv0nuocLA8nWytX3LvfOwfBR6xpaFD
+         kG2YBEuUfBvtlBr26LA2xcQwxrpFX+JMS/mZY1EqJMciB+1WFvreOX/3sbdaxFA1ogRJ
+         HcbA==
+X-Gm-Message-State: AOAM533ziMOiHjGCDnOAoQemxSLX6Rt77lc06aUPqB4ZyYmzOSW+gCRt
+        ki8/DWNUiJDbT4RtFdw/226+ng==
+X-Google-Smtp-Source: ABdhPJwt9lYtZUjk6IffBKsOdSQJFfowDAqL0A2WjhfYRVtb1TKU9CDq9yu7NN64OkGcK133Cy+bYw==
+X-Received: by 2002:a63:e817:0:b0:373:8abb:2c51 with SMTP id s23-20020a63e817000000b003738abb2c51mr215900pgh.185.1645018123746;
+        Wed, 16 Feb 2022 05:28:43 -0800 (PST)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id c68sm5431002pga.1.2022.02.16.05.28.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Feb 2022 05:28:42 -0800 (PST)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>
+Cc:     Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH v5 0/3] Add Qualcomm MPM irqchip driver support
+Date:   Wed, 16 Feb 2022 21:28:27 +0800
+Message-Id: <20220216132830.32490-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/02/2022 12:40, AngeloGioacchino Del Regno wrote:
-> Convert the MediaTek UART APDMA Controller binding to DT schema.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/dma/mediatek,uart-dma.yaml       | 112 ++++++++++++++++++
->  .../bindings/dma/mtk-uart-apdma.txt           |  56 ---------
->  2 files changed, 112 insertions(+), 56 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
->  delete mode 100644 Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
-> new file mode 100644
-> index 000000000000..4583c8f535b2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
-> @@ -0,0 +1,112 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/mediatek,uart-dma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek UART APDMA controller
-> +
-> +maintainers:
-> +  - Long Cheng <long.cheng@mediatek.com>
-> +
-> +description: |
-> +  The MediaTek UART APDMA controller provides DMA capabilities
-> +  for the UART peripheral bus.
-> +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt2712-uart-dma
-> +              - mediatek,mt8516-uart-dma
-> +          - const: mediatek,mt6577-uart-dma
-> +      - enum:
-> +          - mediatek,mt6577-uart-dma
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 16
-> +
-> +  interrupts:
-> +    description: |
-> +      TX, RX interrupt lines for each UART APDMA channel
-> +    minItems: 1
+It starts from updating cpuidle-psci driver to send CPU_CLUSTER_PM_ENTER
+notification, and then adds DT binding and driver support for Qualcomm
+MPM (MSM Power Manager) interrupt controller.
 
-It would be useful to have an "if:" block constraining the interrupts
-(and reg array?), if the dma-requests is missing. If you need an
-example, see length of "max8997,pmic-buck1-dvs-voltage" array in
-relation to presence of max8997,pmic-buck1-uses-gpio-dvs.
-https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/regulator/maxim,max8997.yaml#L259
+Changes for v5:
+- Drop inline attributes and let compiler to decide
+- Use _irqsave/_irqrestore flavour for spin lock
+- Assignment on a single for irq_resolve_mapping() call
+- Add documentation to explain vMPM ownership transition
+- Move MPM pin map data into device tree and so use a generic compatible
+- Drop the code that counts CPUs in PM and use CPU_CLUSTER_PM_ENTER
+  notification instead
 
-The best would be to restrict number of interrupts to number of
-requests, but I think dtschema cannot express this.
+Changes for v4:
+- Add the missing include of <linux/interrupt.h> to fix build errors
+  on arm architecture.
+- Leave IRQCHIP_PLATFORM_DRIVER infrastructural unchanged, and use
+  of_find_device_by_node() to get platform_device pointer.
 
-> +    maxItems: 32
-> +
-> +  clocks:
-> +    description: Must contain one entry for the APDMA main clock
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: apdma
-> +
-> +  "#dma-cells":
-> +    const: 1
-> +    description: |
-> +      The first cell specifies the UART APDMA channel number
-> +
-> +  dma-requests:
-> +    description: |
-> +      Number of virtual channels of the UART APDMA controller
-> +    maximum: 16
-> +
-> +  mediatek,dma-33bits:
-> +    type: boolean
-> +    description: Enable 33-bits UART APDMA support
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#dma-cells"
+Changes for v3:
+- Support module build
+- Use relaxed accessors
+- Add barrier call to ensure MMIO write completes
+- Use d->chip_data to pass driver private data
+- Use raw spinlock
+- USe BIT() for bit shift
+- Create a single irq domain to cover both types of MPM pins
+- Call irq_resolve_mapping() to find out Linux irq number
+- Save the use of ternary conditional operator and use switch/case for
+  .irq_set_type call
+- Drop unnecessary .irq_disable hook
+- Align qcom_mpm_chip and qcom_mpm_ops members vertically
+- Use helper irq_domain_translate_twocell()
+- Move mailbox requesting forward in probe function
+- Improve the documentation on qcm2290_gic_pins[]
+- Use IRQCHIP_PLATFORM_DRIVER infrastructural
+- Use cpu_pm notifier instead of .suspend_late hook to write MPM for
+  sleep, so that MPM can be set up for both suspend and idle context.
+  The TIMER0/1 setup is currently omitted for idle use case though,
+  as I haven't been able to successfully test the idle context.
 
-No need for requiring dma-cells. It is coming from dma-common.yaml.
+Shawn Guo (3):
+  cpuidle: psci: Call cpu_cluster_pm_enter() on the last CPU
+  dt-bindings: interrupt-controller: Add Qualcomm MPM support
+  irqchip: Add Qualcomm MPM controller driver
 
-> +
+ .../interrupt-controller/qcom,mpm.yaml        |  94 ++++
+ drivers/cpuidle/cpuidle-psci.c                |  13 +
+ drivers/irqchip/Kconfig                       |   8 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/qcom-mpm.c                    | 440 ++++++++++++++++++
+ 5 files changed, 556 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
+ create mode 100644 drivers/irqchip/qcom-mpm.c
 
-Best regards,
-Krzysztof
+-- 
+2.17.1
+
