@@ -2,127 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF19C4B82A7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 09:12:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE9EB4B82EB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 09:28:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231447AbiBPIMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 03:12:07 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:35240 "EHLO
+        id S230200AbiBPI2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 03:28:24 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:47504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231445AbiBPIMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 03:12:06 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D3B3FD30;
-        Wed, 16 Feb 2022 00:11:50 -0800 (PST)
-X-UUID: a6b76a8b6fc2411d975007c926b4c662-20220216
-X-UUID: a6b76a8b6fc2411d975007c926b4c662-20220216
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 328284359; Wed, 16 Feb 2022 16:11:44 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 16 Feb 2022 16:11:43 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 16 Feb 2022 16:11:42 +0800
-Message-ID: <75a08f8d97e112f6c584f7b62934aa178eca8bc4.camel@mediatek.com>
-Subject: Re: [PATCH v4 08/35] iommu/mediatek: Use kmalloc for protect buffer
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Tomasz Figa <tfiga@chromium.org>
-CC:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, <youlin.pei@mediatek.com>,
-        <anan.sun@mediatek.com>, <xueqi.zhang@mediatek.com>,
-        <yen-chang.chen@mediatek.com>, <mingyuan.ma@mediatek.com>,
-        <yf.wang@mediatek.com>, <libo.kang@mediatek.com>,
-        <chengci.xu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Will Deacon" <will@kernel.org>
-Date:   Wed, 16 Feb 2022 16:11:42 +0800
-In-Reply-To: <CAAFQd5Cqg2xPwtzcom_EZ1tw1tOBsND_i1YAQCO4kF=+eWePBQ@mail.gmail.com>
-References: <20220125085634.17972-1-yong.wu@mediatek.com>
-         <20220125085634.17972-9-yong.wu@mediatek.com>
-         <ca47becf-adc9-f11e-5e59-03f203920344@collabora.com>
-         <d9637b40196873f392ac9cebfe369106a6f0eee7.camel@mediatek.com>
-         <CAAFQd5Cqg2xPwtzcom_EZ1tw1tOBsND_i1YAQCO4kF=+eWePBQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229851AbiBPI2Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 03:28:24 -0500
+X-Greylist: delayed 909 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 16 Feb 2022 00:28:11 PST
+Received: from 4.mo552.mail-out.ovh.net (4.mo552.mail-out.ovh.net [178.33.43.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14E2F255781
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 00:28:10 -0800 (PST)
+Received: from mxplan5.mail.ovh.net (unknown [10.109.156.219])
+        by mo552.mail-out.ovh.net (Postfix) with ESMTPS id 3D56D24B44;
+        Wed, 16 Feb 2022 08:12:56 +0000 (UTC)
+Received: from kaod.org (37.59.142.96) by DAG4EX1.mxp5.local (172.16.2.31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 16 Feb
+ 2022 09:12:54 +0100
+Authentication-Results: garm.ovh; auth=pass (GARM-96R0010590fb10-4626-4deb-8236-9a8be91dbf44,
+                    CB3E44AF90526EF3DA3218D7163352937EBBBEE5) smtp.auth=clg@kaod.org
+X-OVh-ClientIp: 82.64.250.170
+Message-ID: <d517d453-ddd5-8c9e-7b1f-56f5f83d2f1e@kaod.org>
+Date:   Wed, 16 Feb 2022 09:12:48 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 10/10] spi: aspeed: Activate new spi-mem driver
+Content-Language: en-US
+To:     Joel Stanley <joel@jms.id.au>
+CC:     <linux-spi@vger.kernel.org>,
+        linux-mtd <linux-mtd@lists.infradead.org>,
+        Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220214094231.3753686-1-clg@kaod.org>
+ <20220214094231.3753686-11-clg@kaod.org>
+ <CACPK8XdvczyZ1QHtFm7JJAC7AY+QmWSx0MarUwLjUyOtC9DnSQ@mail.gmail.com>
+From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
+In-Reply-To: <CACPK8XdvczyZ1QHtFm7JJAC7AY+QmWSx0MarUwLjUyOtC9DnSQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [37.59.142.96]
+X-ClientProxiedBy: DAG3EX1.mxp5.local (172.16.2.21) To DAG4EX1.mxp5.local
+ (172.16.2.31)
+X-Ovh-Tracer-GUID: 365dd3b7-2a44-4f14-8514-26cf6445fd31
+X-Ovh-Tracer-Id: 12828503540660800388
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrjeehgdduudegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepieegvdffkeegfeetuddttddtveduiefhgeduffekiedtkeekteekhfffleevleelnecukfhppedtrddtrddtrddtpdefjedrheelrddugedvrdelieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepmhigphhlrghnhedrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegtlhhgsehkrghougdrohhrghdpnhgspghrtghpthhtohepuddprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-02-16 at 14:59 +0900, Tomasz Figa wrote:
-> On Wed, Feb 16, 2022 at 2:55 PM Yong Wu <yong.wu@mediatek.com> wrote:
-> > 
-> > On Thu, 2022-01-27 at 12:08 +0100, AngeloGioacchino Del Regno
-> > wrote:
-> > > Il 25/01/22 09:56, Yong Wu ha scritto:
-> > > > No need zero for the protect buffer that is only accessed by
-> > > > the
-> > > > IOMMU HW
-> > > > translation fault happened.
-> > > > 
-> > > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > 
-> > > I would rather keep this a devm_kzalloc instead... the cost is
-> > > very
-> > > minimal and
-> > > this will be handy when new hardware will be introduced, as it
-> > > may
-> > > require a bigger
-> > > buffer: in that case, "older" platforms will use only part of it
-> > > and
-> > > we may get
-> > > garbage data at the end.
-> > 
-> > Currently this is to avoid zero 512 bytes for all the platforms.
-> > 
-> > Sorry, I don't understand why it is unnecessary when the new
-> > hardware
-> > requires a bigger buffer. If the buffer becomes bigger, then
-> > clearing
-> > it to 0 need more cost. then this patch is more helpful?
-> > 
-> > The content in this buffer is garbage, we won't care about or
-> > analyse
-> > it.
+On 2/16/22 08:02, Joel Stanley wrote:
+> On Mon, 14 Feb 2022 at 09:43, Cédric Le Goater <clg@kaod.org> wrote:
+>>
+>> The previous driver using the MTD SPI NOR interface is kept in case we
+>> find some issues but we should remove it quickly once the new driver
+>> using the spi-mem interface has been sufficiently exposed.
+>>
+>> Signed-off-by: Cédric Le Goater <clg@kaod.org>
 > 
-> I think we should zero it for security reasons regardless of any
-> other
-> aspects. With this patch it's leaking kernel data to the hardware.
+> I suggest we drop the defconfig changes from both this patch and the
+> first. This way we'll always have the new driver being built, with
+> less churn.
 > 
-> At the same time, we're talking here about something executed just 1
-> time when the driver probes. I don't think the cost would really
-> matter.
+> If you strongly prefer the way you've done it then that's fine too.
 
-OK. I will remove this patch in next version.
+I am fine with that, but, with only patch 1, the defconfig files would
+be referencing an non-existing CONFIG. Is that ok ?
 
-Thanks.
+Thanks,
+
+C.
+
+
 
 > 
-> Best regards,
-> Tomasz
-> 
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+>> ---
+>>   arch/arm/configs/aspeed_g4_defconfig | 2 +-
+>>   arch/arm/configs/aspeed_g5_defconfig | 2 +-
+>>   arch/arm/configs/multi_v5_defconfig  | 2 +-
+>>   arch/arm/configs/multi_v7_defconfig  | 2 +-
+>>   4 files changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/arch/arm/configs/aspeed_g4_defconfig b/arch/arm/configs/aspeed_g4_defconfig
+>> index 964536444cd7..b4a1b2ed1a17 100644
+>> --- a/arch/arm/configs/aspeed_g4_defconfig
+>> +++ b/arch/arm/configs/aspeed_g4_defconfig
+>> @@ -64,7 +64,7 @@ CONFIG_MTD_BLOCK=y
+>>   CONFIG_MTD_PARTITIONED_MASTER=y
+>>   CONFIG_MTD_SPI_NOR=y
+>>   # CONFIG_MTD_SPI_NOR_USE_4K_SECTORS is not set
+>> -CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=y
+>> +CONFIG_SPI_ASPEED_SMC=y
+>>   CONFIG_MTD_UBI=y
+>>   CONFIG_MTD_UBI_FASTMAP=y
+>>   CONFIG_MTD_UBI_BLOCK=y
+>> diff --git a/arch/arm/configs/aspeed_g5_defconfig b/arch/arm/configs/aspeed_g5_defconfig
+>> index e809236ca88b..ccc4240ee4b5 100644
+>> --- a/arch/arm/configs/aspeed_g5_defconfig
+>> +++ b/arch/arm/configs/aspeed_g5_defconfig
+>> @@ -103,7 +103,7 @@ CONFIG_MTD_BLOCK=y
+>>   CONFIG_MTD_PARTITIONED_MASTER=y
+>>   CONFIG_MTD_SPI_NOR=y
+>>   # CONFIG_MTD_SPI_NOR_USE_4K_SECTORS is not set
+>> -CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=y
+>> +CONFIG_SPI_ASPEED_SMC=y
+>>   CONFIG_MTD_UBI=y
+>>   CONFIG_MTD_UBI_FASTMAP=y
+>>   CONFIG_MTD_UBI_BLOCK=y
+>> diff --git a/arch/arm/configs/multi_v5_defconfig b/arch/arm/configs/multi_v5_defconfig
+>> index 49083ef05fb0..80a3ae02d759 100644
+>> --- a/arch/arm/configs/multi_v5_defconfig
+>> +++ b/arch/arm/configs/multi_v5_defconfig
+>> @@ -103,7 +103,7 @@ CONFIG_MTD_RAW_NAND=y
+>>   CONFIG_MTD_NAND_ATMEL=y
+>>   CONFIG_MTD_NAND_ORION=y
+>>   CONFIG_MTD_SPI_NOR=y
+>> -CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=y
+>> +CONFIG_SPI_ASPEED_SMC=y
+>>   CONFIG_MTD_UBI=y
+>>   CONFIG_BLK_DEV_LOOP=y
+>>   CONFIG_ATMEL_SSC=m
+>> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+>> index fc1b69256b64..33572998dbbe 100644
+>> --- a/arch/arm/configs/multi_v7_defconfig
+>> +++ b/arch/arm/configs/multi_v7_defconfig
+>> @@ -217,7 +217,7 @@ CONFIG_MTD_NAND_DAVINCI=y
+>>   CONFIG_MTD_NAND_STM32_FMC2=y
+>>   CONFIG_MTD_NAND_PL35X=y
+>>   CONFIG_MTD_SPI_NOR=y
+>> -CONFIG_SPI_ASPEED_SMC_MTD_SPI_NOR=m
+>> +CONFIG_SPI_ASPEED_SMC=m
+>>   CONFIG_MTD_UBI=y
+>>   CONFIG_BLK_DEV_LOOP=y
+>>   CONFIG_BLK_DEV_RAM=y
+>> --
+>> 2.34.1
+>>
 
