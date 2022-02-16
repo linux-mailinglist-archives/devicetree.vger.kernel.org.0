@@ -2,141 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEC4D4B81B5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 08:42:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12CCF4B81F4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 08:49:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230302AbiBPHhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 02:37:51 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:47406 "EHLO
+        id S230478AbiBPHrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 02:47:03 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:47548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230273AbiBPHhu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 02:37:50 -0500
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C03E1174D5E;
-        Tue, 15 Feb 2022 23:37:16 -0800 (PST)
-Received: by mail-wm1-f44.google.com with SMTP id m126-20020a1ca384000000b0037bb8e379feso3047147wme.5;
-        Tue, 15 Feb 2022 23:37:16 -0800 (PST)
+        with ESMTP id S230461AbiBPHrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 02:47:03 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24293BF956
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 23:46:49 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id z22so2465173edd.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Feb 2022 23:46:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Z9nt70mNjga/PSpxElizqUxSJsKrZQkqqk3JOgxpH+g=;
+        b=ZWixcys+zyjSIq1+vDsIAFoXAQXtnAVPOJkKWRHO4VZEAh023KWueyKV1p1tYLAAcA
+         PTUd67gvs9EtfI5pOj7CJ5RfEVHwtNTY8l6kJMh7VNaLi/IfmSGO9KCCUXLbK8OdE8V6
+         5wc/xYx3QSJ6cSSw8m3DtkpPwqzfFJEqAe1Ft7/eFRRPLKHCXdBAnsnI+CGGrIa/vU7P
+         8Z6Np3GUkWK8/QpF1gT665wm1ve8V1KuSsDGJwHp4jXGvonvaHgO+BLJjeIvYvQjE/Cs
+         jS25w2bujDROd8Rf4PyfaNj3s1a7tvCDx74LfIlj/0i4aWsAgouZGyUiKJRJIBVCSovZ
+         /KMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=fcjsuPNQ/ElKKZzWhCUTEeBa9hiEJc7LibQjJR9rEeU=;
-        b=5N719t1feMXZOgvg84T9FuHEPutLoMBmmUZsxUQD0kDpTkHHZ4Ty6oGtKxqmbIWGWR
-         WDSNOwQsgHIdF08F+ZoALZEzyhvSVtLJyK+LtWzpRYJKdOXS0m1Wu3OWJ/+NQWlB8fVS
-         bVyL1qvMEGzltoKFvfSCth7oyd0DkXYaRM2+03EL4h2tRz8tYZyZsGLF7SB/6SsCRpgA
-         amV4IL2h51nMNZQjhUlLev+qXVEKs0mfKEgoSDRRI30KFNulkwMC7FyF5Hdb2vIkIrUI
-         y0Aa8K2c0icBjYHu8UOtCWElD0w9/t93KBde8VE3AB7lDuJuYzar+xfPaHjeIz6NqLAB
-         r9gw==
-X-Gm-Message-State: AOAM530VmqNSl3/dxc4C8d7monoeo3o5Skl2LSwGefLZCzQbQh3i6dny
-        8f2SS1zeRW6H1USeNyaSpx8=
-X-Google-Smtp-Source: ABdhPJxbJNyEQzvIiDNrzD+g+pa+pXUcVq/akn8wbE/JG08QWrXf4nvoSo157dY8BbsGvojheUtgow==
-X-Received: by 2002:a05:600c:414c:b0:37b:c80e:e3dc with SMTP id h12-20020a05600c414c00b0037bc80ee3dcmr314007wmm.116.1644997009856;
-        Tue, 15 Feb 2022 23:36:49 -0800 (PST)
-Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.googlemail.com with ESMTPSA id z5sm21400842wmp.10.2022.02.15.23.36.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Feb 2022 23:36:48 -0800 (PST)
-Message-ID: <99b0e568-ee2d-bbd0-dfd0-fb0953cd556c@kernel.org>
-Date:   Wed, 16 Feb 2022 08:36:47 +0100
+        bh=Z9nt70mNjga/PSpxElizqUxSJsKrZQkqqk3JOgxpH+g=;
+        b=s0zMuj2HT7DXPS89o9/KwOOp/gbsBvkUx5AzE8ud8YoCeRF1DTakEur10j36nChMvi
+         YOOLkA1ajtrbTCV7eWhoRjUKuWc9p0OEQKE28kDAVfvumIh+8O1RRZzwJV4xtu3nYOt/
+         mDJdoz9tWNf9mYFoQ+Z/9PQLoq4JrzNsSvEFpDEulXv60k8mkCBPgyjfmejUFi1wul9L
+         CJ0wXbwJXd5InQ1CR+E/3Rky7rceAuQgb1Dy3Q2OPxtGFKXqMFwEHHM7cNNTehIiw17j
+         nYT57B2kkaK209ig0OegfMVfvpKFkdH0V9IbaTsCBlEL2hiW6oglOhtvtLdtIeMbepEf
+         pj9Q==
+X-Gm-Message-State: AOAM531XQ1gIvh02EeTxFYiX/fRvIOys30yPxSOFA8O1aSp89zMk2LXR
+        tzuHzIwYlxnb9jhbE/G0h79WpimtxS5Qag==
+X-Google-Smtp-Source: ABdhPJwPAqmNeD8fX6SrwJ0It07c6erWWjbq18zDEEyiHb7ljjBrVvPEHd4smT+PMHvDND4tqukPsg==
+X-Received: by 2002:a05:6402:7cb:b0:410:dde2:5992 with SMTP id u11-20020a05640207cb00b00410dde25992mr1614297edy.323.1644997607647;
+        Tue, 15 Feb 2022 23:46:47 -0800 (PST)
+Received: from fedora.sec.9e.network (ip-088-153-139-166.um27.pools.vodafone-ip.de. [88.153.139.166])
+        by smtp.gmail.com with ESMTPSA id gq1sm11615202ejb.58.2022.02.15.23.46.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Feb 2022 23:46:47 -0800 (PST)
+From:   Patrick Rudolph <patrick.rudolph@9elements.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-i2c@vger.kernel.org
+Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [v6 0/3] Add support for Maxim MAX735x/MAX736x variants
+Date:   Wed, 16 Feb 2022 08:46:09 +0100
+Message-Id: <20220216074613.235725-1-patrick.rudolph@9elements.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v20 5/5] arm64: dts: qcom: sc7180-trogdor: Add nodes for
- onboard USB hub
-Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Doug Anderson <dianders@chromium.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20220119204345.3769662-1-mka@chromium.org>
- <20220119124327.v20.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
- <YgJMkFAxjazkUDZd@kroah.com> <YgLCswtX/0THkzXT@google.com>
- <CAD=FV=WMP8M5HTRNv9_scvrytbpE0iBdUack=XaHoypGNLJeVA@mail.gmail.com>
- <Ygv3FSDS/fq1oePy@kroah.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <Ygv3FSDS/fq1oePy@kroah.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/02/2022 19:55, Greg Kroah-Hartman wrote:
-> On Tue, Feb 15, 2022 at 09:54:54AM -0800, Doug Anderson wrote:
->> Hi,
->>
->> On Tue, Feb 8, 2022 at 11:21 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->>>
->>> On Tue, Feb 08, 2022 at 11:57:20AM +0100, Greg Kroah-Hartman wrote:
->>>> On Wed, Jan 19, 2022 at 12:43:45PM -0800, Matthias Kaehlcke wrote:
->>>>> Add nodes for the onboard USB hub on trogdor devices. Remove the
->>>>> 'always-on' property from the hub regulator, since the regulator
->>>>> is now managed by the onboard_usb_hub driver.
->>>>>
->>>>> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
->>>>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->>>>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
->>>>> ---
->>>>
->>>> No DT maintainer approval yet?  :(
->>>
->>> Bjorn usually just picks DT changes into the QCOM tree when they are
->>> ready, so I wouldn't interpret anything into the lack of an explicit
->>> Ack.
->>
->> Right, so the expectation is that this patch wouldn't land through the
->> USB tree but would instead land through the Qualcomm tree, probably a
->> revision after the code lands in the USB tree to avoid dependency
->> problems.
-> 
-> But our tools pick up the whole series.  I can't just do "i will pick
-> patches 1-4 only" easily, and neither can any other maintainer.
+v6:
+- Fix typo in dt-bindings
 
-I don't have problems picking individual patches - either b4 am on each
-patch or on entire series and dropping later unneeded commits.
+v5:
+- Remove optional and make vdd-supply mandatory
 
-> 
-> Why not just get their ack so that I know it can come through the USB
-> tree?  That's what normally happens for other changes like this where a
-> driver change is required first.
+v4:
+- Add missing maxitems dt-bindings property
 
-DTS is a description of the hardware and we take it via separate
-branches of SoC-fami0ly repositories. These are always separated from
-the driver changes. Always. For several reasons:
-1. By convention,
-2. To be sure there is no dependency on driver code thus an ABI break,
-3. To have a nice and clean history of DTS changes, properly organized.
+v3:
+- Merge dt-bindings into i2c-mux-pca954x.yaml
 
-What is more, if this was coming via my Samsung SoC tree towards SoC
-folks, I could not take it in one branch. I would need to physically
-split it, otherwise Arnd/Olof would bounce back my pull request saying I
-am mixing DTS with driver. Of course you do not have such requirement -
-I am just saying that splitting DTS is quite common and proper way.
+v2:
+- Move dt-bindings to separate file
+- Added support for MAX736x as they are very similar
+- Fixed an issue found by kernel test robot
+- Dropped max735x property and custom IRQ check
+- Added MAX7357 config register defines instead of magic values
+- Renamed vcc-supply to vdd-supply
 
+Patrick Rudolph (3):
+  dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
+  i2c: muxes: pca954x: Add MAX735x/MAX736x support
+  i2c: muxes: pca954x: Add regulator support
 
-Best regards,
-Krzysztof
+ .../bindings/i2c/i2c-mux-pca954x.yaml         |  44 ++++--
+ drivers/i2c/muxes/Kconfig                     |   4 +-
+ drivers/i2c/muxes/i2c-mux-pca954x.c           | 126 ++++++++++++++++--
+ 3 files changed, 153 insertions(+), 21 deletions(-)
+
+-- 
+2.34.1
+
