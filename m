@@ -2,238 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E86234B8D24
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 17:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70D634B8D5A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 17:10:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232012AbiBPQBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 11:01:14 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41908 "EHLO
+        id S236048AbiBPQKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 11:10:19 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231866AbiBPQBN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 11:01:13 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9862A2A797D;
-        Wed, 16 Feb 2022 08:00:59 -0800 (PST)
-Received: from mail-wm1-f41.google.com ([209.85.128.41]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MF2YC-1nVND72TaS-00FTOC; Wed, 16 Feb 2022 17:00:57 +0100
-Received: by mail-wm1-f41.google.com with SMTP id j9-20020a05600c190900b0037bff8a24ebso4078885wmq.4;
-        Wed, 16 Feb 2022 08:00:57 -0800 (PST)
-X-Gm-Message-State: AOAM530bMVy0vUFejYhe04jDZlXPh7tfRhhsSeuEKIGqyiYor+fy9QN9
-        3yOZ6Ic+qIc6yGyzKA+EGHe4/ojh4C5l+5HCYRA=
-X-Google-Smtp-Source: ABdhPJynoAxya4wFmgdnms1koLXV7kTRWWb6Nv7KnLWbKzdNWIAOdEAPUd2d50HQv+qDZHVfp/C/GrTxO6eYP671+Xg=
-X-Received: by 2002:a05:600c:1d27:b0:37c:74bb:2b4d with SMTP id
- l39-20020a05600c1d2700b0037c74bb2b4dmr2278615wms.82.1645027256708; Wed, 16
- Feb 2022 08:00:56 -0800 (PST)
+        with ESMTP id S236045AbiBPQKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 11:10:18 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CF122AC907;
+        Wed, 16 Feb 2022 08:10:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645027806; x=1676563806;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=H9Eo2ff2mtGTaLBOP560+TItjLIJaqXZeafS5+0V7ys=;
+  b=QokGmiS+taWTSKV8Kocp3YSjl5p/qu1A/61sIxd0t2ZMA5y8sNFLlKHm
+   EQ0LqtOEwNvYa9HDUMiJN+F+yh+qio1UrRjkdpym1FWovBTytnq9DQtwT
+   UnPIglTUqHoPaQr3sSNJearUXM0j1IRtY/KO48VJhiAULd2Uk2VMO1mna
+   s=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 16 Feb 2022 08:10:06 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2022 08:10:02 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Wed, 16 Feb 2022 08:10:01 -0800
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Wed, 16 Feb 2022 08:09:55 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
+        <perex@perex.cz>, <tiwai@suse.com>,
+        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v7 0/7]  Add pin control support for lpass sc7280
+Date:   Wed, 16 Feb 2022 21:39:36 +0530
+Message-ID: <1645027783-15199-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <nick.hawkins@hpe.com> <20220216153632.40981-1-nick.hawkins@hpe.com>
-In-Reply-To: <20220216153632.40981-1-nick.hawkins@hpe.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 16 Feb 2022 17:00:40 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a0NmyxrzxgfwfDXuFvhmc3OL_-yBj8PDdEHh-2qm4NVkw@mail.gmail.com>
-Message-ID: <CAK8P3a0NmyxrzxgfwfDXuFvhmc3OL_-yBj8PDdEHh-2qm4NVkw@mail.gmail.com>
-Subject: Re: [PATCH] [v3] arch: arm: boot: dts: Create HPE GXP Device Tree
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:EMJdAVKLc4N1yMTu2eQdABxnav7GEg/oYQnkn7fIIvVf3cAE8zM
- XpcEN8IPwJbl0ZT/VSLZYZujju2p+z9AMl994FKrs0iwNN+nXn14I+6sdZMk/queE4aZkBE
- VZdMoyYTPAkcHNjoNb6zYkLA8i//JFjue9tJ9DPH37XyQ30DJMv3X4OSYJKoBrF4n8Kli19
- X82jh9+zcBhnmdot3rknw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:9xZqbrBQB08=:wS+06g5uZJY0VzhUP0TZj8
- wKPinOk8PeJsuh9AmBpRAPgoyPuGQKpApbTqN4dN5P6VYsECV3h9qxTlpkJPZozdFHfKfQeJC
- 6cCNqtSuy3JuGKoVpVNET57EiFLZUyOtaW5L2y6MV5/PaI3lYh0PzDKSF2oocfLOMK5sL/5W0
- xJ1mrAmkSp2r0T3BdrEfcoKxwCpWu2mG9ZLLIwhWWky4cQ0PiAC46pq0zaRkFdZuqfJuCqDYO
- ZF394En7kdJEPW2l/qBOyQELtXrX4XVxRGTDzMNm4O+k4wCeZhrT5duhbhuWmJ7R/DHz3o3CF
- mj57XZB/weJX7xnL4K0ZkkwKgGH3me0a2rilmEsspNucrzqvYKRHixDOd91FZN5GcXV6DaCKR
- gXA9RXdCJy228siCkdwy6J8RDMQu3ecM05qN5ioc3UmhZ/WtBpPbstAc3RE/L1JwiY/mY25tM
- g4EqA8U+8FiC2vmnW9035dh/pyqofKi/wolkg2klJCfWv9M3o6VDLw7C90YrQYLK5mfuKy5iU
- Rghuj4VYk0iQsFfq6hFtSRC0HDMcGo0rpS1bm26wC/yeHV1tvGHwqEA4IKcBlY1ld6KWsfkZu
- 90hAaFH9N5jqxi0rsYreyprjwj61BBqQNaJprBYkw2KZbgRbRX3gWDyMobZoeJbGqHYGsQE58
- k6PEE+q9TtLiJue9zmMQu+Zty9a7e+LaJxoTSmOoUBmDNHQmaKKY01JkhW5XVWa//bpQ=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 16, 2022 at 4:36 PM <nick.hawkins@hpe.com> wrote:
->
-> From: Nick Hawkins <nick.hawkins@hpe.com>
->
-> Description: Originally this was of a larger patch
-> HPE BMC GXP SUPPORT that was rejected for being to big.
-> This is why the label v3 is being used.
-> This patch Create a basic device tree layout that
->  will allow the HPE GXP to boot. The undocumented
->  bindings hpe,gxp-wdt and hpe,gxp-timer are being
->  documented in patches:
->   [v1] dt-bindings: timer: Add HPE GXP Timer binding
->   [v1] dt-bindings: watchdog: Add HPE GXP Watchdog timer binding
->   [v1]dt-bindings: vendor-prefixes: add HPE Prefix
->  that are currently out for review.
-> The dts file is largely empty for this initial patch but
-> follow up patches will add more content.
->
-> Information: GXP is the name of the HPE SoC.
->  This SoC is used to implement BMC features of HPE servers
->   (all ProLiant, Synergy, and many Apollo, and Superdome machines)
->    It does support many features including:
->         ARMv7 architecture, and it is based on a Cortex A9 core
->         Use an AXI bus to which
->                 a memory controller is attached, as well as
->                  multiple SPI interfaces to connect boot flash,
->                  and ROM flash, a 10/100/1000 Mac engine which
->                  supports SGMII (2 ports) and RMII
->                 Multiple I2C engines to drive connectivity with a
->                                  host infrastructure
->                 A video engine which support VGA and DP, as well as
->                  an hardware video encoder
->                 Multiple PCIe ports
->                 A PECI interface, and LPC eSPI
->                 Multiple UART for debug purpose, and Virtual UART for
->                  host connectivity
->                 A GPIO engine.
+This patch series is to split lpass variant common pin control
+functions and SoC specific functions and to add lpass sc7280 pincontrol support.
+It also Adds dt-bindings for lpass sc7280 lpass lpi pincontrol.
 
-Something happened to the linewrapping here.
+Changes Since V6:
+    -- Update conditional clock voting to optional clock voting.
+    -- Update Kconfig depends on field with select.
+    -- Fix typo errors. 
+Changes Since V5:
+    -- Create new patch by updating macro name to lpi specific.
+    -- Create new patch by updating lpi pin group structure with core group_desc structure.
+    -- Fix typo errors.
+    -- Sort macros in the make file and configuration file.
+Changes Since V4:
+    -- Update commit message and description of the chip specific extraction patch.
+    -- Sort macros in kconfig and makefile.
+    -- Update optional clock voting to conditional clock voting.
+    -- Fix typo errors.
+    -- Move to quicinc domain email id's.
+Changes Since V3:
+    -- Update separate Kconfig fields for sm8250 and sc7280.
+    -- Update module license and description.
+    -- Move static variables to corresponding .c files from header file.
 
->
-> +GXP ARM ARCHITECTURE
-> +M:     Nick Hawkins <nick.hawkins@hpe.com>
-> +M:     Jean-Marie <verdun@hpe.com>
+Changes Since V2:
+    -- Add new dt-bindings for sc7280 lpi driver.
+    -- Make clock voting change as separate patch.
+    -- Split existing pincontrol driver and make common functions 
+       as part of separate file.
+    -- Rename lpass pincontrol lpi dt-bindings to sm8250 specific dt-bindings
+		
+Changes Since V1:
+    -- Make lpi pinctrl variant data structure as constant
+    -- Add appropriate commit message
+    -- Change signedoff by sequence.
 
-It looks like you are missing the family name here.
+Srinivasa Rao Mandadapu (7):
+  dt-bindings: pinctrl: qcom: Update lpass lpi file name to SoC specific
+  dt-bindings: pinctrl: qcom: Add sc7280 lpass lpi pinctrl bindings
+  pinctrl: qcom: Update macro name to LPI specific
+  pinctrl: qcom: Update lpi pin group structure
+  pinctrl: qcom: Extract chip specific LPASS LPI code
+  pinctrl: qcom: Add SC7280 lpass pin configuration
+  pinctrl: qcom: Update clock voting as optional
 
-> +S:     Maintained
-> +F:     arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-> +F:     arch/arm/boot/dts/hpe-gxp.dtsi
-> +
+Tested this on SM8250 MTP with WSA and WCD codecs.
+Tested-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-I would make a single entry for the platform with all the drivers here. Please
-keep the MAINTAINERS file patch separate from the devicetree patch though.
+ .../bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml   | 133 -----------
+ .../pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml     | 115 ++++++++++
+ .../pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml     | 133 +++++++++++
+ drivers/pinctrl/qcom/Kconfig                       |  16 ++
+ drivers/pinctrl/qcom/Makefile                      |   2 +
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.c           | 245 +--------------------
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.h           |  86 ++++++++
+ drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c    | 168 ++++++++++++++
+ drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c    | 166 ++++++++++++++
+ 9 files changed, 696 insertions(+), 368 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c
 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 235ad559acb2..a96b4d5b7f68 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1549,3 +1549,5 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->         aspeed-bmc-vegman-n110.dtb \
->         aspeed-bmc-vegman-rx20.dtb \
->         aspeed-bmc-vegman-sx20.dtb
-> +dtb-$(CONFIG_ARCH_HPE_GXP) += \
-> +       hpe-bmc-dl360gen10.dtb
+-- 
+2.7.4
 
-This Kconfig symbol does not yet exist
-
-> diff --git a/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-> new file mode 100644
-> index 000000000000..179de6945e3f
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/hpe-bmc-dl360gen10.dts
-> @@ -0,0 +1,27 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree file for HPE DL360Gen10
-> + */
-> +
-> +/include/ "hpe-gxp.dtsi"
-> +
-> +/ {
-> +       #address-cells = <1>;
-> +       #size-cells = <1>;
-> +       compatible = "hpe,gxp";
-
-No board specific compatible string? Also, this value is not
-documented anywhere.
-
-> +       model = "Hewlett Packard Enterprise ProLiant dl360 Gen10";
-
-> +               bootargs = "earlyprintk console=ttyS0,115200 user_debug=31";
-
-'earlyprintk' and 'user_debug' should not go into the .dts, set these from
-the boot loader when you are debugging.
-
-You probably want to add some aliases, to assign fixed numbers to
-the uart and mmc controller among other things.
-
-> +               timer0: timer@c0000080 {
-> +                       compatible = "hpe,gxp-timer";
-> +                       reg = <0xc0000080 0x1>, <0xc0000094 0x01>, <0xc0000088 0x08>;
-> +                       interrupts = <0>;
-> +                       interrupt-parent = <&vic0>;
-> +                       clock-frequency = <400000000>;
-> +               };
-> +
-> +               watchdog: watchdog@c0000090 {
-> +                       compatible = "hpe,gxp-wdt";
-> +                       reg = <0xc0000090 0x02>, <0xc0000096 0x01>;
-> +               };
-
-As mentioned in a previous review, it would be helpful to have the drivers
-and bindings together in the same series for easier review.
-
-> +               uartc: serial@c00000f0 {
-> +                       compatible = "ns16550a";
-> +                       reg = <0xc00000f0 0x8>;
-> +                       interrupts = <19>;
-> +                       interrupt-parent = <&vic0>;
-> +                       clock-frequency = <1846153>;
-> +                       reg-shift = <0>;
-> +               };
-> +
-> +               usb0: ehci@cefe0000 {
-> +                       compatible = "generic-ehci";
-> +                       reg = <0xcefe0000 0x100>;
-> +                       interrupts = <7>;
-> +                       interrupt-parent = <&vic0>;
-> +               };
-
-The ehci is almost never completely generic, I would recommend defining a
-SoC specific compatible string as well, so you can add quirks later if you
-find a problem. Having the generic string as a fallback is a good idea though,
-as that means you can just use the normal driver as long as there are no
-special requirements.
-
-To a lesser degree, the same is true for the uart.
-
-Please check the devicetree files in order to validate the bindings. In
-this case, you should get a warning about the 'ehci@' name being
-non-standard. The normal name is usb@
-
-> +               sram@d0000000 {
-> +                       compatible = "mtd-ram";
-> +                       reg = <0xd0000000 0x80000>;
-> +                       bank-width = <1>;
-> +                       erase-size =<1>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       partition@0 {
-> +                               label = "host-reserved";
-> +                               reg = <0x0 0x10000>;
-> +                       };
-> +                       partition@10000 {
-> +                               label = "nvram";
-> +                               reg = <0x10000 0x70000>;
-> +                       };
-> +               };
-
-What device is this exactly? The name indicates an sram, which would
-use the compatible="mmio-sram" binding instead of "mtd-ram", but then
-the partition has an "nvram" label that indicates that this is an nvmem
-type device. "mtd-ram" is probably not what you want though.
-
-> +
-> +               vrom@58000000 {
-> +                       compatible = "mtd-ram";
-
-Same thing here, "vrom" is clearly not a standard name.
-
-       Arnd
