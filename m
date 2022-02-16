@@ -2,102 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C81B4B8AC7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 14:50:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB8894B8ACE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 14:52:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234749AbiBPNuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 08:50:20 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50454 "EHLO
+        id S234745AbiBPNwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 08:52:43 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234743AbiBPNuT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 08:50:19 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D8B2ABD0E
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:49:53 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id x5so3982471edd.11
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:49:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=60je+LDflCDSpm+PbhIAk73PJa9MombVHWRyiPaaQWE=;
-        b=F3NHurYKl9o/EgwB4OsNpjY3DQ0nR2AJS3FAZf5AJXz4+QxWPtugQ3X6pN0uUGO5FJ
-         rOjXfQYuCwQP7MdRa2RgTwcanJAphfvNlRPBaR4MGxRZeCcMo57l+dfkzJYsn2jBrhf8
-         atY4ciLDt/5mS0V4nDqSlcde4UwBeOBKwXv26aiVdu97cOHT4x+5zV1NM+NqiLrDZSmU
-         vXsj3cCaJGkKflzcgkwMC0TY8fPrIOGElZLzsN6ZMKUdswEUlmwF5t9OpsN7s+9QcWGN
-         YglwX4/z3zXky9rU9sxhULn7QpdYKbMPBp0cV1XScgUmuLEba4/lWoHncNHdUSa0UsRK
-         KBrQ==
+        with ESMTP id S233551AbiBPNwm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 08:52:42 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0A2C2C66B
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:52:30 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7D0AD3F1B1
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 13:52:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645019549;
+        bh=+u3G+MrAEMAW+mtUoAjTz+xCLc5uSGE/HUeUgcjxmOo=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=nq+iRN/Hjl5Mc2ni1rrHQvYYvdBvlINV0u5ZBSfTSWk0pp9DYQlx9aWS8wGdxWaMv
+         pGzMkMMBHxg79s66xRngzMCYehUmy+4j4jtifqGgE/q4sKQ773to/yT4Jxac/P8SLa
+         yOnOxfnfEFzWwAmB4DbC8brBiJUMEWwPnpCTFINsEeVKsKXRUyWWrCImdwAsDxJONH
+         FLZWdmddK54SuBDSeULpOsUhS3OSID//su4vYo+y4tunfNGznRsaqdPS4oGG2A0TqK
+         POyw7AJjTUC3lWbMeScZz1+Et4OhrWLMsmzYk8GNSAggai0EuoT3GCnb9zdzaBgv2A
+         1FAZR4fIuMjdg==
+Received: by mail-ed1-f70.google.com with SMTP id n7-20020a05640205c700b0040b7be76147so1585260edx.10
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 05:52:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=60je+LDflCDSpm+PbhIAk73PJa9MombVHWRyiPaaQWE=;
-        b=rs8tIs/YhV978lFm3Q+0blLXVcjWpFit6Kv3PaozEyNefoAkFkbj5i49hFopcF/XKE
-         Fnz1yleRXt+SPBMHwbRjEyN4UF5stlQKJdMNzVMwQH/UCsxbVA6uPn6k7bjQS6X/7vPO
-         9mWYaycYeSk+DQVgHBKsIw8iJkDAFQVturmr490Ktz4tSOvuTYf9aeEAV1knmGMmx5wq
-         a+BvD53CDurK/HjP89kmN/8PeEvjPRnC43veJTroJualBMfIQBnN4p1dUsRFR7t8KCKm
-         862/p1QXcXFfWe0vZFOJa7ClBwS6ate0pan8Pn663Bmqj1VXbz9SKxhCcwcwUY0Zk6T1
-         3Xsg==
-X-Gm-Message-State: AOAM531N5HFfxtrcUfxiEz99IlHSftXEKK1cFOrBMPC5t4KCwbnf9ZUI
-        BeqdkpjH6Qzq0bKTvIkRvV1Zaw==
-X-Google-Smtp-Source: ABdhPJyOUq+UAaJkZIbN2IrhQOUWJFe3idwcENbpbYMWGivse7wyW6wUUyGn7bALOnLM3Ty3MaMRWQ==
-X-Received: by 2002:a05:6402:176d:b0:410:80df:ff8e with SMTP id da13-20020a056402176d00b0041080dfff8emr3175720edb.324.1645019392147;
-        Wed, 16 Feb 2022 05:49:52 -0800 (PST)
-Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id o20sm1711996edc.84.2022.02.16.05.49.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Feb 2022 05:49:51 -0800 (PST)
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org
-Subject: [PATCH v7 9/9] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable rradc
-Date:   Wed, 16 Feb 2022 13:49:20 +0000
-Message-Id: <20220216134920.239989-10-caleb.connolly@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220216134920.239989-1-caleb.connolly@linaro.org>
-References: <20220216134920.239989-1-caleb.connolly@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=+u3G+MrAEMAW+mtUoAjTz+xCLc5uSGE/HUeUgcjxmOo=;
+        b=pzq5nD6lYVLEau0Q4J9Cqp8BG6faGa5iGye1W+Bw675fYMtVuPzToZEAzmKt9fmhus
+         V7JtYVZMYnZEmWhx2d/uyyqH31cr/qIC8Zk0UO5kTlRCULtsBkmAnYejxryPfcBJF7JJ
+         XsSGIiASlIVJk5br7DfGbovLNcUC2KWAQWEIdPz1oYs/j8x4rUVxa8DvdNIEuX0bmhWN
+         o/H/bp3Mhzd1r5Kvi5pXkyF/U69DMHB1tCnwYHmCFWlZcqSoftwlvdVJTj301Ym0DJ6Q
+         AdiY6oppLJDIiWV1y92ZW8aHiqCKloPnXXJ/ZRAqjRZPtt+P5NtiR63xy8nLB280IYLg
+         bOMQ==
+X-Gm-Message-State: AOAM530AtcoU0vnMHv92PPLKNOCRkkKW5yhXc0XtAK5L87+lJLFoyFn1
+        iNyYi6GB+dKFZ7UYVCVLJ7upFxuYKk/HoeMLvNgyFCw3wm2EJj6bzmBcLVbmapmFEIunB9dQBqp
+        uuVihSTtHMR56rzSOtOICJUbm5gH2pyGX5HRqSFc=
+X-Received: by 2002:a17:906:19c6:b0:6ce:98a4:5ee6 with SMTP id h6-20020a17090619c600b006ce98a45ee6mr2281090ejd.567.1645019549169;
+        Wed, 16 Feb 2022 05:52:29 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzW2HrTL0uringouCMD72CnotetELfh4Fjh7yW1sonUt6QsRLSa5CjdTsYI7/InWwk6SfSpPg==
+X-Received: by 2002:a17:906:19c6:b0:6ce:98a4:5ee6 with SMTP id h6-20020a17090619c600b006ce98a45ee6mr2281080ejd.567.1645019548973;
+        Wed, 16 Feb 2022 05:52:28 -0800 (PST)
+Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id q8sm1679538edd.10.2022.02.16.05.52.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Feb 2022 05:52:28 -0800 (PST)
+Message-ID: <d888abdb-95be-9e7c-cbce-ea583780eb22@canonical.com>
+Date:   Wed, 16 Feb 2022 14:52:27 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scpi: Add missing maxItems to
+ shmem property
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <f6d1ea27e8b8dc47fbe849661cc5a843bc2f1ba5.1645017656.git.geert+renesas@glider.be>
+ <e6ddc2fb-7753-ae89-e9fd-f2b9efd91881@canonical.com>
+ <CAMuHMdU03=jkL0EkupBQmSDGOO7WHz7JtwHQWZpbFOwAB4pXhA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAMuHMdU03=jkL0EkupBQmSDGOO7WHz7JtwHQWZpbFOwAB4pXhA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the PMI8998 RRADC.
+On 16/02/2022 14:42, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
+> 
+> On Wed, Feb 16, 2022 at 2:39 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+>> On 16/02/2022 14:21, Geert Uytterhoeven wrote:
+>>> "make dt_binding_check":
+>>>
+>>>     Documentation/devicetree/bindings/firmware/arm,scpi.example.dt.yaml: scpi: shmem: [[2], [1]] is too long
+>>>
+>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>> ---
+>>> Exposed by commit 39bd2b6a3783b899 ("dt-bindings: Improve phandle-array
+>>> schemas").
+>>> ---
+>>>  Documentation/devicetree/bindings/firmware/arm,scpi.yaml | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+>>> index 800417a76bda0bd9..3735f221fdf24e0a 100644
+>>> --- a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+>>> +++ b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+>>> @@ -51,6 +51,7 @@ properties:
+>>>        be any memory reserved for the purpose of this communication between the
+>>>        processors.
+>>>      minItems: 1
+>>> +    maxItems: 2
+>>
+>> The same should be done to "mboxes" (I mean 39bd2b6a3783b899 and what
+>> you are doing here)
+> 
+> Indeed, thanks!
+> 
+>> and the maxItems should match both, shouldn't it?
+> 
+> No idea, I'm not familiar with SCPI ;-)
 
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Neither I am. The driver though counts number of mboxes and then loops
+till that number to get each shmem device node. The driver does not
+limit number of mboxes or shmem to 2, but will fail if they are not equal.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index 367389526b41..b3b6aa4e0fa3 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -312,6 +312,10 @@ resin {
- 	};
- };
- 
-+&pmi8998_rradc {
-+	status = "okay";
-+};
-+
- /* QUAT I2S Uses 1 I2S SD Line for audio on TAS2559/60 amplifiers */
- &q6afedai {
- 	qi2s@22 {
--- 
-2.35.1
-
+Best regards,
+Krzysztof
