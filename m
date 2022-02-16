@@ -2,290 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8CE24B8D72
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 17:11:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB2494B8D97
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 17:13:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236109AbiBPQK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 11:10:58 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48842 "EHLO
+        id S235212AbiBPQNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 11:13:46 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236246AbiBPQKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 11:10:53 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813392AB520;
-        Wed, 16 Feb 2022 08:10:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645027841; x=1676563841;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=Ib5SmAKHpTplEuIM0dXiMmh+itfc+HJvdBcTnIJLNb8=;
-  b=geYLt21WFmd+lwBzxX6VvNoeF7YNSL3PoDb3jq4hA+HGtu2eaDb6l0EG
-   NBEdaIvYctRXIeQhTA7I9Cyq/6HqkOtgs/kAwJjOxdpJs9jK1g/nXF8Al
-   7gJ/F1VZDx1erxA0W0RdtF6rlNzmb9qacQ8JJNZP8ZOKi3hoUygE38rqg
-   4=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 16 Feb 2022 08:10:41 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Feb 2022 08:10:40 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Wed, 16 Feb 2022 08:10:40 -0800
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 16 Feb 2022 08:10:34 -0800
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
-        <perex@perex.cz>, <tiwai@suse.com>,
-        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-gpio@vger.kernel.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH v7 6/7] pinctrl: qcom: Add SC7280 lpass pin configuration
-Date:   Wed, 16 Feb 2022 21:39:42 +0530
-Message-ID: <1645027783-15199-7-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1645027783-15199-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1645027783-15199-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S234566AbiBPQNq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 11:13:46 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 942A618C2F8
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 08:13:33 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id EC3BC3F338
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 16:13:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645028011;
+        bh=yU0JTVfqmMQPB5NQYcUc7rbuKfmUJoXTRDxBU8L652M=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=QzFCRkAT1piU923VoDJKWOBMC6RsVOQJGosvbu0l5wVIDGtY4BxJQt8Dtxaxe3cpy
+         LP5a0JIgGhrnMb00yNsJShXKfZoFCndqAi9EanzYWUWu5p4f6Xr1elp8yVUpb7uJyl
+         pE5ZyMe9lpmPTQsNaZTy4EAacXlU/N/GzR+hheZnBomvyEkjlq2lpJW9u321Shz9Xx
+         U6o6iSJVH7OQEUkfwznZidryXT96YtOHNrFj8BrPixfpHdvrb0qe22aMYZvkanbque
+         vUUiB7VgGtsV1YxUrhjiEV6x37rztwf5QC5DrVE4N9Jyo6hMlmz6bSop/+7PZVYJtA
+         XaBUnHSng3VZg==
+Received: by mail-ej1-f70.google.com with SMTP id hq19-20020a1709073f1300b006cdd7712c2cso79878ejc.11
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 08:13:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=yU0JTVfqmMQPB5NQYcUc7rbuKfmUJoXTRDxBU8L652M=;
+        b=Vhsb/8vh6qJNmDgyfpOZNNgbhZI6ehgbfhuUSp4zFQHOOslRfZ2jAeujjgZBZLblUE
+         AU7fjHu6MkFJkn498oZGK1vKwP/2IC7vqtmgZ5J7Hw2Lqf/kWjxeTWsLZvgz7fQHk5h+
+         F1TJhDKfcbvmCq4eS8HQK2ov/ZoAfIdkOG7aEUQcHg96hzoJ8Tr/5KO4nrbzuErc60vc
+         fV82Svv+KvSkI62US1C5zHDinAhJ7wJHsR1L3x2iZOALZCQZxX7WH4x5pXBuLRvGS+Gu
+         Zc5or0Zo4/rkbPzbYSj4Q7iYCq0H6y2E14iOuDu6Y20KmxCYrYtwZzD6YT+HrkJYJm9v
+         wa6Q==
+X-Gm-Message-State: AOAM532dgfA4B3w9i4Po1nGiGdaY4dIVLkww4CVKGwWPTcDEuQAzVWMO
+        loKlmIXybm1RAMYXE0ntEg3YP/r6qna5I9sTb8aKVzUD7PJ04VizSkv8AidijQniiB3j6XoSBCz
+        0Tlo4wf7hZ4tP/4BeZqTnz3YXjQz7oO0bp05EWM8=
+X-Received: by 2002:a17:906:38d2:b0:6b7:9639:fd74 with SMTP id r18-20020a17090638d200b006b79639fd74mr2774314ejd.215.1645028011631;
+        Wed, 16 Feb 2022 08:13:31 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJymIuMoqXEhQgrqUOZ0+AFR5IMCCCY5eWHy1U9oQcUI27s9rO86CRpktTGFYrnx+rEft91rZw==
+X-Received: by 2002:a17:906:38d2:b0:6b7:9639:fd74 with SMTP id r18-20020a17090638d200b006b79639fd74mr2774299ejd.215.1645028011406;
+        Wed, 16 Feb 2022 08:13:31 -0800 (PST)
+Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id 18sm67785ejj.1.2022.02.16.08.13.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Feb 2022 08:13:30 -0800 (PST)
+Message-ID: <6c51427a-98e2-0bbe-8f4b-37a4d9cacec7@canonical.com>
+Date:   Wed, 16 Feb 2022 17:13:30 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2] dt-bindings: dma: Convert mtk-uart-apdma to DT schema
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, vkoul@kernel.org
+Cc:     robh+dt@kernel.org, sean.wang@mediatek.com, matthias.bgg@gmail.com,
+        long.cheng@mediatek.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220216151309.289348-1-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220216151309.289348-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pin control support for SC7280 LPASS LPI.
+On 16/02/2022 16:13, AngeloGioacchino Del Regno wrote:
+> Convert the MediaTek UART APDMA Controller binding to DT schema.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+> v2: Fixed interrupt maxItems to 16, added interrupts/reg maxItems constraint
+>     to 8 when the dma-requests property is not present
+> 
+>  .../bindings/dma/mediatek,uart-dma.yaml       | 123 ++++++++++++++++++
+>  .../bindings/dma/mtk-uart-apdma.txt           |  56 --------
+>  2 files changed, 123 insertions(+), 56 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+> new file mode 100644
+> index 000000000000..67dbb2fed74c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/mediatek,uart-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek UART APDMA controller
+> +
+> +maintainers:
+> +  - Long Cheng <long.cheng@mediatek.com>
+> +
+> +description: |
+> +  The MediaTek UART APDMA controller provides DMA capabilities
+> +  for the UART peripheral bus.
+> +
+> +allOf:
+> +  - $ref: "dma-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt2712-uart-dma
+> +              - mediatek,mt8516-uart-dma
+> +          - const: mediatek,mt6577-uart-dma
+> +      - enum:
+> +          - mediatek,mt6577-uart-dma
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 16
+> +
+> +  interrupts:
+> +    description: |
+> +      TX, RX interrupt lines for each UART APDMA channel
+> +    minItems: 1
+> +    maxItems: 16
+> +
+> +  clocks:
+> +    description: Must contain one entry for the APDMA main clock
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: apdma
+> +
+> +  "#dma-cells":
+> +    const: 1
+> +    description: |
+> +      The first cell specifies the UART APDMA channel number
+> +
+> +  dma-requests:
+> +    description: |
+> +      Number of virtual channels of the UART APDMA controller
+> +    maximum: 16
+> +
+> +  mediatek,dma-33bits:
+> +    type: boolean
+> +    description: Enable 33-bits UART APDMA support
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +if:
+> +  not:
+> +    anyOf:
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
----
- drivers/pinctrl/qcom/Kconfig                    |   8 ++
- drivers/pinctrl/qcom/Makefile                   |   1 +
- drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c | 168 ++++++++++++++++++++++++
- 3 files changed, 177 insertions(+)
- create mode 100644 drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+Thanks for the changes. This "anyOf" you can skip. It was needed in that
+example because multiple properties should trigger restriction of maxItems.
 
-diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
-index c678737..0de6cc0 100644
---- a/drivers/pinctrl/qcom/Kconfig
-+++ b/drivers/pinctrl/qcom/Kconfig
-@@ -357,6 +357,14 @@ config PINCTRL_LPASS_LPI
- 	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
- 	  (Low Power Island) found on the Qualcomm Technologies Inc SoCs.
- 
-+config PINCTRL_SC7280_LPASS_LPI
-+	tristate "Qualcomm Technologies Inc SC7280 LPASS LPI pin controller driver"
-+	select PINCTRL_LPASS_LPI
-+	help
-+	  This is the pinctrl, pinmux, pinconf and gpiolib driver for the
-+	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
-+	  (Low Power Island) found on the Qualcomm Technologies Inc SC7280 platform.
-+
- config PINCTRL_SM8250_LPASS_LPI
- 	tristate "Qualcomm Technologies Inc SM8250 LPASS LPI pin controller driver"
- 	select PINCTRL_LPASS_LPI
-diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-index c10d14d2..a008ee0 100644
---- a/drivers/pinctrl/qcom/Makefile
-+++ b/drivers/pinctrl/qcom/Makefile
-@@ -41,4 +41,5 @@ obj-$(CONFIG_PINCTRL_SM8250) += pinctrl-sm8250.o
- obj-$(CONFIG_PINCTRL_SM8350) += pinctrl-sm8350.o
- obj-$(CONFIG_PINCTRL_SM8450) += pinctrl-sm8450.o
- obj-$(CONFIG_PINCTRL_LPASS_LPI) += pinctrl-lpass-lpi.o
-+obj-$(CONFIG_PINCTRL_SC7280_LPASS_LPI) += pinctrl-sc7280-lpass-lpi.o
- obj-$(CONFIG_PINCTRL_SM8250_LPASS_LPI) += pinctrl-sm8250-lpass-lpi.o
-diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-new file mode 100644
-index 0000000..c29d8af
---- /dev/null
-+++ b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-@@ -0,0 +1,168 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
-+ * ALSA SoC platform-machine driver for QTi LPASS
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+#include "pinctrl-lpass-lpi.h"
-+
-+enum lpass_lpi_functions {
-+	LPI_MUX_dmic1_clk,
-+	LPI_MUX_dmic1_data,
-+	LPI_MUX_dmic2_clk,
-+	LPI_MUX_dmic2_data,
-+	LPI_MUX_dmic3_clk,
-+	LPI_MUX_dmic3_data,
-+	LPI_MUX_i2s1_clk,
-+	LPI_MUX_i2s1_data,
-+	LPI_MUX_i2s1_ws,
-+	LPI_MUX_i2s2_clk,
-+	LPI_MUX_i2s2_data,
-+	LPI_MUX_i2s2_ws,
-+	LPI_MUX_qua_mi2s_data,
-+	LPI_MUX_qua_mi2s_sclk,
-+	LPI_MUX_qua_mi2s_ws,
-+	LPI_MUX_swr_rx_clk,
-+	LPI_MUX_swr_rx_data,
-+	LPI_MUX_swr_tx_clk,
-+	LPI_MUX_swr_tx_data,
-+	LPI_MUX_wsa_swr_clk,
-+	LPI_MUX_wsa_swr_data,
-+	LPI_MUX_gpio,
-+	LPI_MUX__,
-+};
-+
-+static int gpio0_pins[] = { 0 };
-+static int gpio1_pins[] = { 1 };
-+static int gpio2_pins[] = { 2 };
-+static int gpio3_pins[] = { 3 };
-+static int gpio4_pins[] = { 4 };
-+static int gpio5_pins[] = { 5 };
-+static int gpio6_pins[] = { 6 };
-+static int gpio7_pins[] = { 7 };
-+static int gpio8_pins[] = { 8 };
-+static int gpio9_pins[] = { 9 };
-+static int gpio10_pins[] = { 10 };
-+static int gpio11_pins[] = { 11 };
-+static int gpio12_pins[] = { 12 };
-+static int gpio13_pins[] = { 13 };
-+static int gpio14_pins[] = { 14 };
-+
-+/* sc7280 variant specific data */
-+static const struct pinctrl_pin_desc sc7280_lpi_pins[] = {
-+	PINCTRL_PIN(0, "gpio0"),
-+	PINCTRL_PIN(1, "gpio1"),
-+	PINCTRL_PIN(2, "gpio2"),
-+	PINCTRL_PIN(3, "gpio3"),
-+	PINCTRL_PIN(4, "gpio4"),
-+	PINCTRL_PIN(5, "gpio5"),
-+	PINCTRL_PIN(6, "gpio6"),
-+	PINCTRL_PIN(7, "gpio7"),
-+	PINCTRL_PIN(8, "gpio8"),
-+	PINCTRL_PIN(9, "gpio9"),
-+	PINCTRL_PIN(10, "gpio10"),
-+	PINCTRL_PIN(11, "gpio11"),
-+	PINCTRL_PIN(12, "gpio12"),
-+	PINCTRL_PIN(13, "gpio13"),
-+	PINCTRL_PIN(14, "gpio14"),
-+};
-+
-+static const char * const swr_tx_clk_groups[] = { "gpio0" };
-+static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio14" };
-+static const char * const swr_rx_clk_groups[] = { "gpio3" };
-+static const char * const swr_rx_data_groups[] = { "gpio4", "gpio5" };
-+static const char * const dmic1_clk_groups[] = { "gpio6" };
-+static const char * const dmic1_data_groups[] = { "gpio7" };
-+static const char * const dmic2_clk_groups[] = { "gpio8" };
-+static const char * const dmic2_data_groups[] = { "gpio9" };
-+static const char * const i2s2_clk_groups[] = { "gpio10" };
-+static const char * const i2s2_ws_groups[] = { "gpio11" };
-+static const char * const dmic3_clk_groups[] = { "gpio12" };
-+static const char * const dmic3_data_groups[] = { "gpio13" };
-+static const char * const qua_mi2s_sclk_groups[] = { "gpio0" };
-+static const char * const qua_mi2s_ws_groups[] = { "gpio1" };
-+static const char * const qua_mi2s_data_groups[] = { "gpio2", "gpio3", "gpio4" };
-+static const char * const i2s1_clk_groups[] = { "gpio6" };
-+static const char * const i2s1_ws_groups[] = { "gpio7" };
-+static const char * const i2s1_data_groups[] = { "gpio8", "gpio9" };
-+static const char * const wsa_swr_clk_groups[] = { "gpio10" };
-+static const char * const wsa_swr_data_groups[] = { "gpio11" };
-+static const char * const i2s2_data_groups[] = { "gpio12", "gpio13" };
-+
-+static const struct lpi_pingroup sc7280_groups[] = {
-+	LPI_PINGROUP(0, 0, swr_tx_clk, qua_mi2s_sclk, _, _),
-+	LPI_PINGROUP(1, 2, swr_tx_data, qua_mi2s_ws, _, _),
-+	LPI_PINGROUP(2, 4, swr_tx_data, qua_mi2s_data, _, _),
-+	LPI_PINGROUP(3, 8, swr_rx_clk, qua_mi2s_data, _, _),
-+	LPI_PINGROUP(4, 10, swr_rx_data, qua_mi2s_data, _, _),
-+	LPI_PINGROUP(5, 12, swr_rx_data, _, _, _),
-+	LPI_PINGROUP(6, LPI_NO_SLEW, dmic1_clk, i2s1_clk, _,  _),
-+	LPI_PINGROUP(7, LPI_NO_SLEW, dmic1_data, i2s1_ws, _, _),
-+	LPI_PINGROUP(8, LPI_NO_SLEW, dmic2_clk, i2s1_data, _, _),
-+	LPI_PINGROUP(9, LPI_NO_SLEW, dmic2_data, i2s1_data, _, _),
-+	LPI_PINGROUP(10, 16, i2s2_clk, wsa_swr_clk, _, _),
-+	LPI_PINGROUP(11, 18, i2s2_ws, wsa_swr_data, _, _),
-+	LPI_PINGROUP(12, LPI_NO_SLEW, dmic3_clk, i2s2_data, _, _),
-+	LPI_PINGROUP(13, LPI_NO_SLEW, dmic3_data, i2s2_data, _, _),
-+	LPI_PINGROUP(14, 6, swr_tx_data, _, _, _),
-+};
-+
-+static const struct lpi_function sc7280_functions[] = {
-+	LPI_FUNCTION(dmic1_clk),
-+	LPI_FUNCTION(dmic1_data),
-+	LPI_FUNCTION(dmic2_clk),
-+	LPI_FUNCTION(dmic2_data),
-+	LPI_FUNCTION(dmic3_clk),
-+	LPI_FUNCTION(dmic3_data),
-+	LPI_FUNCTION(i2s1_clk),
-+	LPI_FUNCTION(i2s1_data),
-+	LPI_FUNCTION(i2s1_ws),
-+	LPI_FUNCTION(i2s2_clk),
-+	LPI_FUNCTION(i2s2_data),
-+	LPI_FUNCTION(i2s2_ws),
-+	LPI_FUNCTION(qua_mi2s_data),
-+	LPI_FUNCTION(qua_mi2s_sclk),
-+	LPI_FUNCTION(qua_mi2s_ws),
-+	LPI_FUNCTION(swr_rx_clk),
-+	LPI_FUNCTION(swr_rx_data),
-+	LPI_FUNCTION(swr_tx_clk),
-+	LPI_FUNCTION(swr_tx_data),
-+	LPI_FUNCTION(wsa_swr_clk),
-+	LPI_FUNCTION(wsa_swr_data),
-+};
-+
-+static const struct lpi_pinctrl_variant_data sc7280_lpi_data = {
-+	.pins = sc7280_lpi_pins,
-+	.npins = ARRAY_SIZE(sc7280_lpi_pins),
-+	.groups = sc7280_groups,
-+	.ngroups = ARRAY_SIZE(sc7280_groups),
-+	.functions = sc7280_functions,
-+	.nfunctions = ARRAY_SIZE(sc7280_functions),
-+};
-+
-+static const struct of_device_id lpi_pinctrl_of_match[] = {
-+	{
-+	       .compatible = "qcom,sc7280-lpass-lpi-pinctrl",
-+	       .data = &sc7280_lpi_data,
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, lpi_pinctrl_of_match);
-+
-+static struct platform_driver lpi_pinctrl_driver = {
-+	.driver = {
-+		   .name = "qcom-sc7280-lpass-lpi-pinctrl",
-+		   .of_match_table = lpi_pinctrl_of_match,
-+	},
-+	.probe = lpi_pinctrl_probe,
-+	.remove = lpi_pinctrl_remove,
-+};
-+
-+module_platform_driver(lpi_pinctrl_driver);
-+MODULE_DESCRIPTION("QTI SC7280 LPI GPIO pin control driver");
-+MODULE_LICENSE("GPL");
--- 
-2.7.4
+In your case it is sufficient:
+if:
 
+  not:
+
+    required:
+
+      - dma-requests
+
+then:
+....
+
+
+Rest looks good.
+
+> +      - required:
+> +          - dma-requests
+> +then:
+> +  properties:
+> +    interrupts:
+> +      maxItems: 8
+
+
+Best regards,
+Krzysztof
