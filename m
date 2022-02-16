@@ -2,60 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AB084B831B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 09:39:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEC4D4B81B5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 08:42:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230257AbiBPIkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 03:40:03 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:38226 "EHLO
+        id S230302AbiBPHhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 02:37:51 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:47406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229828AbiBPIkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 03:40:02 -0500
-X-Greylist: delayed 1800 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 16 Feb 2022 00:39:50 PST
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C538120E8B;
-        Wed, 16 Feb 2022 00:39:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=YLqbvNAQ5McurwQxgQURUxYEK/101B81ffBYTWQOubQ=; b=eL7Hr/lkBZAvTbiBImym7WqBQv
-        fFtLWY1zFgcvz0Y28ZdTef3hq5UPUDbyOdU9owOcUlMeUyuZ3oyA98+tA7VtWzh/V83PJpmahWg5r
-        mvo8+O4dcwNzaE4UT8NttIU5Q9B24c2fgT7vTH888Bt6ebP3Ss7Na0xbwHiYPj0X9IyrjurNjA5eB
-        ZWjzedHDsBYGuHo0wwQOWbdJJooJ46j4RrmUOFAYciKhQ5IxMuRrv2wAplC9c/d+YFiFj0HwvJvHq
-        KNdq7ecLO91xqhxo3t7F2RmN2eLeyUJ6R9jJqyAbe7jDYAW+nOrk0ELj+fWkrABrJye0Ksa6W80gd
-        A3UB8CtA==;
-Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=[192.168.1.10])
-        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <cyndis@kapsi.fi>)
-        id 1nKEop-0001Qm-2c; Wed, 16 Feb 2022 09:33:43 +0200
-Message-ID: <f0eb82eb-dec6-0870-3896-0973758caebb@kapsi.fi>
-Date:   Wed, 16 Feb 2022 09:33:42 +0200
+        with ESMTP id S230273AbiBPHhu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 02:37:50 -0500
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C03E1174D5E;
+        Tue, 15 Feb 2022 23:37:16 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id m126-20020a1ca384000000b0037bb8e379feso3047147wme.5;
+        Tue, 15 Feb 2022 23:37:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=fcjsuPNQ/ElKKZzWhCUTEeBa9hiEJc7LibQjJR9rEeU=;
+        b=5N719t1feMXZOgvg84T9FuHEPutLoMBmmUZsxUQD0kDpTkHHZ4Ty6oGtKxqmbIWGWR
+         WDSNOwQsgHIdF08F+ZoALZEzyhvSVtLJyK+LtWzpRYJKdOXS0m1Wu3OWJ/+NQWlB8fVS
+         bVyL1qvMEGzltoKFvfSCth7oyd0DkXYaRM2+03EL4h2tRz8tYZyZsGLF7SB/6SsCRpgA
+         amV4IL2h51nMNZQjhUlLev+qXVEKs0mfKEgoSDRRI30KFNulkwMC7FyF5Hdb2vIkIrUI
+         y0Aa8K2c0icBjYHu8UOtCWElD0w9/t93KBde8VE3AB7lDuJuYzar+xfPaHjeIz6NqLAB
+         r9gw==
+X-Gm-Message-State: AOAM530VmqNSl3/dxc4C8d7monoeo3o5Skl2LSwGefLZCzQbQh3i6dny
+        8f2SS1zeRW6H1USeNyaSpx8=
+X-Google-Smtp-Source: ABdhPJxbJNyEQzvIiDNrzD+g+pa+pXUcVq/akn8wbE/JG08QWrXf4nvoSo157dY8BbsGvojheUtgow==
+X-Received: by 2002:a05:600c:414c:b0:37b:c80e:e3dc with SMTP id h12-20020a05600c414c00b0037bc80ee3dcmr314007wmm.116.1644997009856;
+        Tue, 15 Feb 2022 23:36:49 -0800 (PST)
+Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.googlemail.com with ESMTPSA id z5sm21400842wmp.10.2022.02.15.23.36.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Feb 2022 23:36:48 -0800 (PST)
+Message-ID: <99b0e568-ee2d-bbd0-dfd0-fb0953cd556c@kernel.org>
+Date:   Wed, 16 Feb 2022 08:36:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v2 4/6] dt-bindings: Add HDA support for Tegra234
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v20 5/5] arm64: dts: qcom: sc7180-trogdor: Add nodes for
+ onboard USB hub
 Content-Language: en-US
-To:     Mohan Kumar <mkumard@nvidia.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, robh+dt@kernel.org, thierry.reding@gmail.com,
-        tiwai@suse.com, jonathanh@nvidia.com, spujar@nvidia.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220210065057.13555-1-mkumard@nvidia.com>
- <20220210065057.13555-5-mkumard@nvidia.com>
-From:   Mikko Perttunen <cyndis@kapsi.fi>
-In-Reply-To: <20220210065057.13555-5-mkumard@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Doug Anderson <dianders@chromium.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20220119204345.3769662-1-mka@chromium.org>
+ <20220119124327.v20.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
+ <YgJMkFAxjazkUDZd@kroah.com> <YgLCswtX/0THkzXT@google.com>
+ <CAD=FV=WMP8M5HTRNv9_scvrytbpE0iBdUack=XaHoypGNLJeVA@mail.gmail.com>
+ <Ygv3FSDS/fq1oePy@kroah.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <Ygv3FSDS/fq1oePy@kroah.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 91.158.25.70
-X-SA-Exim-Mail-From: cyndis@kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,89 +85,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/10/22 08:50, Mohan Kumar wrote:
-> Add hda clocks, memory ,power and reset binding entries
-> for Tegra234.
+On 15/02/2022 19:55, Greg Kroah-Hartman wrote:
+> On Tue, Feb 15, 2022 at 09:54:54AM -0800, Doug Anderson wrote:
+>> Hi,
+>>
+>> On Tue, Feb 8, 2022 at 11:21 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>>>
+>>> On Tue, Feb 08, 2022 at 11:57:20AM +0100, Greg Kroah-Hartman wrote:
+>>>> On Wed, Jan 19, 2022 at 12:43:45PM -0800, Matthias Kaehlcke wrote:
+>>>>> Add nodes for the onboard USB hub on trogdor devices. Remove the
+>>>>> 'always-on' property from the hub regulator, since the regulator
+>>>>> is now managed by the onboard_usb_hub driver.
+>>>>>
+>>>>> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+>>>>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>>>>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>>>>> ---
+>>>>
+>>>> No DT maintainer approval yet?  :(
+>>>
+>>> Bjorn usually just picks DT changes into the QCOM tree when they are
+>>> ready, so I wouldn't interpret anything into the lack of an explicit
+>>> Ack.
+>>
+>> Right, so the expectation is that this patch wouldn't land through the
+>> USB tree but would instead land through the Qualcomm tree, probably a
+>> revision after the code lands in the USB tree to avoid dependency
+>> problems.
 > 
-> Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
-> ---
->   include/dt-bindings/clock/tegra234-clock.h     | 4 ++++
->   include/dt-bindings/memory/tegra234-mc.h       | 6 ++++++
->   include/dt-bindings/power/tegra234-powergate.h | 9 +++++++++
->   include/dt-bindings/reset/tegra234-reset.h     | 2 ++
->   4 files changed, 21 insertions(+)
->   create mode 100644 include/dt-bindings/power/tegra234-powergate.h
+> But our tools pick up the whole series.  I can't just do "i will pick
+> patches 1-4 only" easily, and neither can any other maintainer.
+
+I don't have problems picking individual patches - either b4 am on each
+patch or on entire series and dropping later unneeded commits.
+
 > 
-> diff --git a/include/dt-bindings/clock/tegra234-clock.h b/include/dt-bindings/clock/tegra234-clock.h
-> index 8d7e66e1b6ef..c014269b7245 100644
-> --- a/include/dt-bindings/clock/tegra234-clock.h
-> +++ b/include/dt-bindings/clock/tegra234-clock.h
-> @@ -30,5 +30,9 @@
->   #define TEGRA234_CLK_PLLC4			237U
->   /** @brief 32K input clock provided by PMIC */
->   #define TEGRA234_CLK_CLK_32K			289U
-> +/** @brief CLK_RST_CONTROLLER_AZA2XBITCLK_OUT_SWITCH_DIVIDER switch divider output (aza_2xbitclk) */
-> +#define TEGRA234_CLK_AZA_2XBIT			457U
-> +/** @brief aza_2xbitclk / 2 (aza_bitclk) */
-> +#define TEGRA234_CLK_AZA_BIT			458U
->   
->   #endif
-> diff --git a/include/dt-bindings/memory/tegra234-mc.h b/include/dt-bindings/memory/tegra234-mc.h
-> index 2662f70c15c6..f538fc442cee 100644
-> --- a/include/dt-bindings/memory/tegra234-mc.h
-> +++ b/include/dt-bindings/memory/tegra234-mc.h
-> @@ -7,6 +7,8 @@
->   #define TEGRA234_SID_INVALID		0x00
->   #define TEGRA234_SID_PASSTHROUGH	0x7f
->   
-> +/* NISO0 SMMU STREAM IDs */
-> +#define TEGRA234_SID_NISO0_HDA		0x03
+> Why not just get their ack so that I know it can come through the USB
+> tree?  That's what normally happens for other changes like this where a
+> driver change is required first.
 
-Please follow the existing convention in this file.
+DTS is a description of the hardware and we take it via separate
+branches of SoC-fami0ly repositories. These are always separated from
+the driver changes. Always. For several reasons:
+1. By convention,
+2. To be sure there is no dependency on driver code thus an ABI break,
+3. To have a nice and clean history of DTS changes, properly organized.
 
-/* NISO0 stream IDs */
-#define TEGRA234_SID_HDA	0x03
+What is more, if this was coming via my Samsung SoC tree towards SoC
+folks, I could not take it in one branch. I would need to physically
+split it, otherwise Arnd/Olof would bounce back my pull request saying I
+am mixing DTS with driver. Of course you do not have such requirement -
+I am just saying that splitting DTS is quite common and proper way.
 
->   
->   /* NISO1 stream IDs */
->   #define TEGRA234_SID_SDMMC4	0x02
-> @@ -16,6 +18,10 @@
->    * memory client IDs
->    */
->   
-> +/* High-definition audio (HDA) read clients */
-> +#define TEGRA234_MEMORY_CLIENT_HDAR 0x15
-> +/* High-definition audio (HDA) write clients */
-> +#define TEGRA234_MEMORY_CLIENT_HDAW 0x35
->   /* sdmmcd memory read client */
->   #define TEGRA234_MEMORY_CLIENT_SDMMCRAB 0x63
->   /* sdmmcd memory write client */
-> diff --git a/include/dt-bindings/power/tegra234-powergate.h b/include/dt-bindings/power/tegra234-powergate.h
-> new file mode 100644
-> index 000000000000..3c5575a51296
-> --- /dev/null
-> +++ b/include/dt-bindings/power/tegra234-powergate.h
-> @@ -0,0 +1,9 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/* Copyright (c) 2022, NVIDIA CORPORATION. All rights reserved. */
-> +
-> +#ifndef __ABI_MACH_T234_POWERGATE_T234_H_
-> +#define __ABI_MACH_T234_POWERGATE_T234_H_
-> +
-> +#define TEGRA234_POWER_DOMAIN_DISP	3U
-> +
-> +#endif
-> diff --git a/include/dt-bindings/reset/tegra234-reset.h b/include/dt-bindings/reset/tegra234-reset.h
-> index 50e13bced642..2ab61c69a3d9 100644
-> --- a/include/dt-bindings/reset/tegra234-reset.h
-> +++ b/include/dt-bindings/reset/tegra234-reset.h
-> @@ -10,6 +10,8 @@
->    * @brief Identifiers for Resets controllable by firmware
->    * @{
->    */
-> +#define TEGRA234_RESET_HDA			20U
-> +#define TEGRA234_RESET_HDACODEC			21U
->   #define TEGRA234_RESET_SDMMC4			85U
->   #define TEGRA234_RESET_UARTA			100U
->   
 
+Best regards,
+Krzysztof
