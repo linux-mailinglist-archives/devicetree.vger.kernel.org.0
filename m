@@ -2,133 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8B204B8756
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 13:07:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48AAB4B8780
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 13:23:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232731AbiBPMHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 07:07:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38846 "EHLO
+        id S230007AbiBPMXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 07:23:50 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbiBPMHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 07:07:10 -0500
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com (mail-eopbgr30082.outbound.protection.outlook.com [40.107.3.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF274B2503;
-        Wed, 16 Feb 2022 04:06:57 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UpPDixGe6fDn3K16wxZM1R6ZHic6oWbe3QclkPDBQ5Y122FxHBzj1JhaWoB/rJRn0aPm4xshe1f1tnNm3wWgV/pFvXpDlRViejkbx/wfOFfOGyA/UEwlLTwwBvURbN2sL8AVBxlg9ZVMdxzilQbUPyT5uPrGL0GESvS7ynsLqm3k3HJxT4zjBLl2W85wRkFwanipWw77f+SVrI8lM6eq+ntAHpa7RQTtGjS4lDm4swkH6sMnqaZXWj+ULmETcv59sg2uBQmhZiccJiTaD75apqckSgri+H/6HQXSpyO0YJG5HT3RVaMOJrLBYpu0Cb+MaabPQupzTNo7ZoCcPJ07PQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l5LpF3Rq6ioRxLYNxbg/ohu346OUeydbrBtLgrjydnQ=;
- b=B/PVhWMRPb4Pn7IdNPl9sT7N9Gk08S3wOBWha9wnfhHPZXCNURhoEio8IykITHC4wcipcS4ddneoQS7AqhUcq1hWj0ZInLz7ayIHs/N3F+ckZdZuSIu/phipEgIl9BcMHX7MN0io7/kpCZH3mY8jmavS9LC221kUcglVCFSW9785XPBsBKyLZ9cMoUhStiJoJsUgUQdmd3H+H+Rdu99e8HPFGLDzwSuvxIHp/ePsu7PHhr+esGy7a13Y93eDziI/ur7VLWQWZ62w5Qucy9PAKgutmPERFQDrgXp+uCfnFMowGlga7tXIJq3G78kgJQ6aPLA8xK6lcH3/8IE3IWTvtw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=rohmsemiconductoreurope.onmicrosoft.com;
- s=selector1-rohmsemiconductoreurope-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l5LpF3Rq6ioRxLYNxbg/ohu346OUeydbrBtLgrjydnQ=;
- b=TPliqyZ1whWRFrikvKhGW7cfzctdz1A+pX5QlwpWeGMpsNYL7UuZL42NJWKEhRT7IX5E6YTLRF4gJVjZ/pclQFdq/gtzDUECYZs1WBWc3JRgnCpGplL0WK2EdISDHiDDLuyQPlhQMkGXioDagWSYPISF8jySZGB3dswS2CGPvK8=
-Received: from HE1PR03MB3162.eurprd03.prod.outlook.com (2603:10a6:7:55::20) by
- AM6PR03MB5186.eurprd03.prod.outlook.com (2603:10a6:20b:d2::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4975.19; Wed, 16 Feb 2022 12:06:53 +0000
-Received: from HE1PR03MB3162.eurprd03.prod.outlook.com
- ([fe80::fd01:86fc:2baf:1ac4]) by HE1PR03MB3162.eurprd03.prod.outlook.com
- ([fe80::fd01:86fc:2baf:1ac4%6]) with mapi id 15.20.4975.012; Wed, 16 Feb 2022
- 12:06:53 +0000
-From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-To:     Marek Vasut <marex@denx.de>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-CC:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@rohmsemiconductoreurope.onmicrosoft.com>
-Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
-Thread-Topic: [PATCH 2/3] clk: Introduce 'critical-clocks' property
-Thread-Index: AQHYIkhGCT5rPypv+k+qpqelhm/DqKyWFsmA
-Date:   Wed, 16 Feb 2022 12:06:53 +0000
-Message-ID: <c1fce212-4d9e-06fe-e3fe-6d0f2ab29489@fi.rohmeurope.com>
-References: <20220215084412.8090-1-marex@denx.de>
- <20220215084412.8090-2-marex@denx.de>
-In-Reply-To: <20220215084412.8090-2-marex@denx.de>
-Accept-Language: fi-FI, en-US
-Content-Language: fi-FI
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=fi.rohmeurope.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bee6348a-5e4e-4d81-617d-08d9f144d21d
-x-ms-traffictypediagnostic: AM6PR03MB5186:EE_
-x-microsoft-antispam-prvs: <AM6PR03MB51864D57ACA8EBDA4A7F0CA0AD359@AM6PR03MB5186.eurprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: RHC3DyKeaIs1gGY9To18ztJtX9ZuKmecWzivtFXxgQYJe+1sO+vaNgXWj9H/UDusC4Yv7J+6h7X+WItc/wq45abl9R0705fMbOqMdxDo3260d3kUgnkbbSKc9xVN0Z/xUfX6nqMxuIdKX4STDHvmn9CoeXiRtGCUWSMMSiCD3Nl0kgxdikSzKGtEQsAPM+TYjk8gT43Z8BbQAhRdvFPHroXvNyl1BrM2QdBfLCfIxRPxzL1SlncTIqCROSm3dMluUwkNGxkY4M7mPeSfrnO8MVSSHXq2yx0eD2gSZGURCJFI8FsDm0Y8bsRNZx2OL8LcQsMqVhqjJr2lvdZFdI80GCV4XlS0oQYfYCDcpJRxVCPdRWkDmblqpuM4kokxG7bnOPr4aa9Jfp9+DoTfYrfN1JYuP+4IB3EJJetEr0l2x3mlzgo0rjmMtkO0T6qEasSb+JsX4sq3i2dqlAkQ0hLiaBZqkdDj89OhdcI+/9OV8zX1bGswLnBI+iISYuUufO+QdGHmPVBeDIlVpos++MNGa7z49f4Nek/fxLtFZD5HNbtMdWAMp7sdlHpgzg+kx4ge5wlS15Dn1aiKDLl157Crc4Ur3itKkLgeWCYPRb7+7ZY43U3hEBlxOlB+Yrvu2RY5R7SVz1ZRjbppbXE0Nis8hiN5lwY5iRjabKSStWy+6cwKGcptoPrDViP5i3rS59gdkLKFyKSlzMahbLXM+08F+y2psYGEyf3PivJI024b5Arh6ttaYZKSY/8QDrSETrTqmBbEWT9kfn+IX+lD64nhmg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR03MB3162.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6512007)(107886003)(83380400001)(31686004)(2906002)(122000001)(38100700002)(2616005)(26005)(5660300002)(186003)(66476007)(76116006)(66946007)(316002)(508600001)(71200400001)(8936002)(8676002)(53546011)(38070700005)(6506007)(6486002)(64756008)(66446008)(86362001)(31696002)(91956017)(110136005)(4326008)(66556008)(54906003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WkJTY2dNUHJXczhobjljYm8yZlZXU1lETmk2YURBSTBDNkl5alVGSk1jOFYv?=
- =?utf-8?B?K2xTYnZDeHJCWWROVUxUdXRvaGVITkRkN1JYTGRhQlVvNmFzNXFCaEJXKzRx?=
- =?utf-8?B?Y0dpcDN0SzNLU0tiQXk0dEpOWjNZbyswdVFlazRUS1ZuODV3RzhQcVFxMGIy?=
- =?utf-8?B?YzcxMU5nc3hjcEZVSDFRME0wQ0RyaHU5NEtXakJja01BbW5Cd0lyU3VVWHpP?=
- =?utf-8?B?L252R0NBaXIzUGRuU0IzMEdob0Y5REJ3MjNxTlZFYVZNanVOWUlWZW04Q0Vk?=
- =?utf-8?B?R1pYUVpOaThjazZIZTdmNFhOM3VzcFAwM3NsVFVyTWRnaW5VdXdKYjhSTzZX?=
- =?utf-8?B?NGVEd2RiL1p6M05UMTVBUVFWT1gzY0xtdTFna1B0a1JBVWZzaEtkeUdFcXZT?=
- =?utf-8?B?ZzhOY05rSjFxb2dVVTRlclpnYklkc2s4dlpuY0xNVEhIK1JVdXR1QnVMckY0?=
- =?utf-8?B?SlVYUnJBdVFkY21OWGl6M29mNnIrc1dna2dhcmJLNk5idXd3UHpEWHltRHJL?=
- =?utf-8?B?ZmxRQ09BdE5WVmdBQjJJVzZGMi8vZzdpeWQ5cFJEL0V2QmI4RjFBazEwdnFI?=
- =?utf-8?B?ZUNtWUFLMURwWG10M0U3SytUM2NBbmFRS1FTZTg0dWFQTjNkZER3blQ3YXlX?=
- =?utf-8?B?WXlqNFlwRTM3RTA3SmNJc0pwMTdmbURkd0hscjN5dXg0cDZyVXYxOFFpM25y?=
- =?utf-8?B?OEJ3YlpGeUtrams1VnFLNStNVHhjdWt5eHNwUU9CM0pBRmI5ZEw4NEY5VVVT?=
- =?utf-8?B?UTA4TXRhcnQxZ2JOUDU4eFFzaGV2VVRaVm8wb2xmUHpMZlFsWmJXSytDOWd2?=
- =?utf-8?B?Nzlna3JSOUowN0FVUDJ6L1pMSmpQZm0wUnN4MHEwa3cxejJFcjI2eVBRV295?=
- =?utf-8?B?aENsKzdqQ1dGNDFCamNOQ0RRbGtqWnU0VjZJR29hZnVpemhoRWptM1V3UGVo?=
- =?utf-8?B?S0RHWWlxdEkrRnFvT2ZreWtxSkkyT2syZjg3NVpNNk1yRVNMWEorNDNtOWRv?=
- =?utf-8?B?emE0QXBITUVLZW1vWmt2cVUwemNsaEJNWG1va25DWnZaUW5aYlQvdjJtQmxp?=
- =?utf-8?B?TW1pMXhCdTZCWE4wd1Vtc1JYeDJZc1dJMXlDQzdDS04vRXBmckpDOU5lak9J?=
- =?utf-8?B?cmhFQzNHSzRwWDZ1azk1OXBwYS9rY1pFM1BnK291eFFVT3dqRFppN1NuaGti?=
- =?utf-8?B?NEZ2L2FORmZRVXVwS293Zy9yQk5zNE5ic3V1cktLR0c4NlhaSjRZK094RHVq?=
- =?utf-8?B?M3VIT3lEY3hIWGl1V0lQMGR0azZqaGhTSEQva1Y3SmhLMmprZU9mdENXeFAr?=
- =?utf-8?B?OTM3ZityNktQNHdxaytxSlFQeWFGVTZiSDJjU1NteHE0M2RLWjZXdkdSRnJT?=
- =?utf-8?B?MCtvMEoyaWpmbWtKOHRDSjg4UEdidWFrdlAxNE1wNUVKZmFOdDlTRmIvL0lO?=
- =?utf-8?B?NXByUy9KcDRseVZOcmxPOWx1MlhNZ3A1S0hlQnRPeThVMU4zZFB1ODdYcG9s?=
- =?utf-8?B?YnlneFpuNHlIYy9aTnZpNHRKUW50TFZMaEZsemljRmtqTzVzZldPUU42MTRa?=
- =?utf-8?B?VlU5RFdrL3JFVlV0VnphdkNTZ012Y3FrY0lBSFNDdkdFZEVCNmJuNmtsamNN?=
- =?utf-8?B?cDEyaGRyRU04Uy9RWk10NXROK2Mxa25xZ2FXYUlwb2JwbUFESmJPbkpEelBT?=
- =?utf-8?B?RTgzcjhheldEOUs1TThVc3NUby9VUC9jaGRqYjV0dFBWMjlnZklSUzhGc0Jn?=
- =?utf-8?B?MktGY2ZOcHNQQlk5NzJpZ3NkSVp0U056QUI5V3M5Y1ZpOXJoWW4rb2VMaXVs?=
- =?utf-8?B?TVl5N2M5UzVGUGFhUytHL3hZbVBkNzRtUzJKNG01NXJlbVo1WkZMNHhTaXZ6?=
- =?utf-8?B?Q0Jqby94d05BMGdYNHhwZmRTRDJtVkl5WU0vRkZVZHduRmc4em1Lc1JSNGlp?=
- =?utf-8?B?V3h4WitOVDdPNGsrQitHMFpSVlR5WjJJbk5mMTdEWVpMNDV3UXRQR2I2ZFZv?=
- =?utf-8?B?OWxhOEZpOWZubVMzMTVzdlUvSm5vVmZzdjRZZVBvVTBEU2JaclYvLzdseW43?=
- =?utf-8?B?dnlGS1RicUpZb0tZbC9YdGxJQStrek81Q3RWWXZBNmNNQnQxMFk5dnVhRitI?=
- =?utf-8?B?VnVBMEVCUXJnSldsVERHdkxKb2tZVXFRS2F1K0FvTEV1Z3IycCtQZ1lDa2VI?=
- =?utf-8?B?SGZwU2FYZXRoR0o3OUlmZDVETnVSVGp1WVl2UjU1WG1wd1NDN0U3UDZiczk4?=
- =?utf-8?B?UWVhR2FpYUs3WjRITU1VSHVpWnE3TTdwWHZqbjZDaktvL1pVWUlZbkFtT2NE?=
- =?utf-8?Q?DCMxp+C+uXsODf5mFm?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <BE7C2A1A35453B41848F879CDB6331E5@eurprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229790AbiBPMXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 07:23:50 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 854BB22218F
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 04:23:37 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id 87D361F45081
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645014216;
+        bh=UjtikAc6rF+dQuX4rke6Y1em0f7/TgjgFrfzPkPxw2k=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=GCgYP6Czty7OhVbXIqOiFnb1gqHI3jZnl7TPeffpvzk8Tk6qFelGsNhwJlZfJ9Jkk
+         W0YB3BTG+0y7lCstZxFqbzb6rd27xBiI8q+DOdPKdnw1wugr8tae3z4+AGn0DdwDj4
+         +9drqYa83ZYhrZEEVpVeQmHWWH/Njy9uNHG+nUDAcTnQ6dPNuPs6ckyE1dffB1277y
+         +rUhMtvbeMkEZMcEwqj2rUT4YwhB3JzRJNWQ2WLjwL/D3xribpCeg7r0ckmgYQ75NW
+         ixUnv/s2uViG0UQoxN9Gs2EKKhyFvfYEtCOKwG79gl1k3yvHxazDP2EBhAUDTqnz+y
+         /pTvxZwnKk+Qw==
+Message-ID: <e560b6b3-c0e7-8e23-2490-154a2508c801@collabora.com>
+Date:   Wed, 16 Feb 2022 15:23:32 +0300
 MIME-Version: 1.0
-X-OriginatorOrg: fi.rohmeurope.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR03MB3162.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bee6348a-5e4e-4d81-617d-08d9f144d21d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Feb 2022 12:06:53.2971
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 94f2c475-a538-4112-b5dd-63f17273d67a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RCkrGBI3V3zp7ZvyYTR1xgtpVSlHOWCWc7CIa/OdWHWG8I5nLHjO1UAfvLaMA0Bj8KLn0WR6zLDBtcRW7shw8LZgZycyua/8EuAVpH6n4q2jDmM8RizKVxNIOWjL6Fkg
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR03MB5186
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 22/23] drm: rockchip: Add VOP2 driver
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220209095350.2104049-1-s.hauer@pengutronix.de>
+ <20220209095350.2104049-23-s.hauer@pengutronix.de>
+ <5917d180-de29-79cb-4d4d-e7340d2d88cb@collabora.com>
+ <20220216112250.GN18637@pengutronix.de>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220216112250.GN18637@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -136,71 +61,213 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgZGVlZSBIbyBNYXJlaywNCg0KTG9uZyB0aW1lIG5vIGNoYXR0ZXIgOi8gTmljZSB0byBoZWFy
-IGZyb20geW91IG5vdyENCg0KT24gMi8xNS8yMiAxMDo0NCwgTWFyZWsgVmFzdXQgd3JvdGU6DQo+
-IFNvbWUgcGxhdGZvcm1zIHJlcXVpcmUgY2xvY2sgdG8gYmUgYWx3YXlzIHJ1bm5pbmcsIGUuZy4g
-YmVjYXVzZSB0aG9zZSBjbG9jaw0KPiBzdXBwbHkgZGV2aWNlcyB3aGljaCBhcmUgbm90IG90aGVy
-d2lzZSBhdHRhY2hlZCB0byB0aGUgc3lzdGVtLiBPbmUgZXhhbXBsZQ0KPiBpcyBhIHN5c3RlbSB3
-aGVyZSB0aGUgU29DIHNlcnZlcyBhcyBhIGNyeXN0YWwgb3NjaWxsYXRvciByZXBsYWNlbWVudCBm
-b3IgYQ0KPiBwcm9ncmFtbWFibGUgbG9naWMgZGV2aWNlLiBUaGUgY3JpdGljYWwtY2xvY2sgcHJv
-cGVydHkgb2YgYSBjbG9jayBjb250cm9sbGVyDQo+IGFsbG93cyBsaXN0aW5nIGNsb2NrIHdoaWNo
-IG11c3QgbmV2ZXIgYmUgdHVybmVkIG9mZi4NCj4gDQo+IFRoZSBpbXBsZW1lbnRhdGlvbiBoZXJl
-IGlzIHNpbWlsYXIgdG8gInByb3RlY3RlZC1jbG9jayIsIGV4Y2VwdCBwcm90ZWN0ZWQNCj4gY2xv
-Y2sgcHJvcGVydHkgaXMgY3VycmVudGx5IGRyaXZlciBzcGVjaWZpYy4gVGhpcyBwYXRjaCBhdHRl
-bXB0cyB0byBtYWtlDQo+IGEgZ2VuZXJpYyBpbXBsZW1lbnRhdGlvbiBvZiAiY3JpdGljYWwtY2xv
-Y2siIGluc3RlYWQuDQo+IA0KPiBVbmxpa2UgImFzc2lnbmVkLWNsb2NrcyIsIHRoZSAiY3JpdGlj
-YWwtY2xvY2siIG11c3QgYmUgcGFyc2VkIG11Y2ggZWFybGllcg0KPiBpbiBfX2Nsa19yZWdpc3Rl
-cigpIHRvIGFzc2lnbiBDTEtfSVNfQ1JJVElDQUwgZmxhZyB0byBjbGtfaW5pdF9kYXRhIC5mbGFn
-cw0KPiBmaWVsZC4gVGhlIHBhcnNpbmcgY29kZSBvYnZpb3VzbHkgbmVlZCB0byBiZSBjbGVhbmVk
-IHVwIGFuZCBmYWN0b3Igb3V0IGludG8NCj4gc2VwYXJhdGUgZnVuY3Rpb24uDQo+IA0KPiBUaGUg
-bmV3IG1hdGNoX2Nsa3NwZWMoKSBjYWxsYmFjayBpcyB1c2VkIHRvIGRldGVybWluZSB3aGV0aGVy
-IHN0cnVjdCBjbGtfaHcNCj4gdGhhdCBpcyBjdXJyZW50bHkgYmVpbmcgcmVnaXN0ZXJlZCBtYXRj
-aGVzIHRoZSBjbG9jayBzcGVjaWZpZXIgaW4gdGhlIERUDQo+ICJjcml0aWNhbC1jbG9jayIgcHJv
-cGVydHksIGFuZCBpZiBzbywgdGhlbiB0aGUgQ0xLX0lTX0NSSVRJQ0FMIGlzIGFkZGVkIHRvDQo+
-IHRoZXNlIG5ld2x5IHJlZ2lzdGVyZWQgY2xvY2suIFRoaXMgY2FsbGJhY2sgaXMgY3VycmVudGx5
-IGRyaXZlciBzcGVjaWZpYywNCj4gYWx0aG91Z2ggSSBzdXNwZWN0IGEgY29tbW9uIGFuZC9vciBn
-ZW5lcmljIHZlcnNpb24gb2YgdGhlIGNhbGxiYWNrIGNvdWxkDQo+IGJlIGFkZGVkLiBBbHNvLCB0
-aGlzIG5ldyBjYWxsYmFjayBjb3VsZCBwb3NzaWJseSBiZSB1c2VkIHRvIHJlcGxhY2UgKCpnZXQp
-DQo+IGFyZ3VtZW50IG9mIG9mX2Nsa19hZGRfaHdfcHJvdmlkZXIoKSBsYXRlciBvbiB0b28uDQo+
-IA0KPiBTaWduZWQtb2ZmLWJ5OiBNYXJlayBWYXN1dCA8bWFyZXhAZGVueC5kZT4NCj4gQ2M6IE1h
-dHRpIFZhaXR0aW5lbiA8bWF0dGkudmFpdHRpbmVuQGZpLnJvaG1ldXJvcGUuY29tPg0KPiBDYzog
-TWljaGFlbCBUdXJxdWV0dGUgPG10dXJxdWV0dGVAYmF5bGlicmUuY29tPg0KPiBDYzogUm9iIEhl
-cnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz4NCj4gQ2M6IFN0ZXBoZW4gQm95ZCA8c2JveWRAa2Vy
-bmVsLm9yZz4NCj4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnDQo+IENjOiBsaW51eC1w
-b3dlckBmaS5yb2htZXVyb3BlLmNvbQ0KPiBUbzogbGludXgtY2xrQHZnZXIua2VybmVsLm9yZw0K
-PiAtLS0NCj4gICBkcml2ZXJzL2Nsay9jbGsuYyAgICAgICAgICAgIHwgNDEgKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrDQo+ICAgaW5jbHVkZS9saW51eC9jbGstcHJvdmlkZXIu
-aCB8ICAzICsrKw0KPiAgIDIgZmlsZXMgY2hhbmdlZCwgNDQgaW5zZXJ0aW9ucygrKQ0KPiANCj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvY2xrL2Nsay5jIGIvZHJpdmVycy9jbGsvY2xrLmMNCj4gaW5k
-ZXggOGRlNmEyMjQ5OGU3MC4uMWUxNjg2ZmE3NmUwMSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9j
-bGsvY2xrLmMNCj4gKysrIGIvZHJpdmVycy9jbGsvY2xrLmMNCj4gQEAgLTM4NzIsNiArMzg3Miw0
-NSBAQCBzdGF0aWMgdm9pZCBjbGtfY29yZV9mcmVlX3BhcmVudF9tYXAoc3RydWN0IGNsa19jb3Jl
-ICpjb3JlKQ0KPiAgIAlrZnJlZShjb3JlLT5wYXJlbnRzKTsNCj4gICB9DQo+ICAgDQo+ICtzdGF0
-aWMgdm9pZA0KPiArX19jbGtfcmVnaXN0ZXJfY3JpdGljYWxfY2xvY2soc3RydWN0IGRldmljZV9u
-b2RlICpucCwgc3RydWN0IGNsa19jb3JlICpjb3JlLA0KPiArCQkJICAgICAgc3RydWN0IGNsa19o
-dyAqaHcpDQo+ICt7DQo+ICsJc3RydWN0IG9mX3BoYW5kbGVfYXJncyBjbGtzcGVjOw0KPiArCXUz
-MiBjbGtzaXplLCBjbGt0b3RhbDsNCj4gKwlpbnQgcmV0LCBpLCBpbmRleDsNCj4gKw0KPiArCWlm
-ICghbnApDQo+ICsJCXJldHVybjsNCj4gKw0KPiArCWlmICghY29yZS0+b3BzLT5tYXRjaF9jbGtz
-cGVjKQ0KPiArCQlyZXR1cm47DQo+ICsNCj4gKwlpZiAob2ZfcHJvcGVydHlfcmVhZF91MzIobnAs
-ICIjY2xvY2stY2VsbHMiLCAmY2xrc2l6ZSkpDQo+ICsJCXJldHVybjsNCj4gKw0KPiArCS8qIENs
-b2NrIG5vZGUgd2l0aCAjY2xvY2stY2VsbHMgPSA8MD4gdXNlcyBjcml0aWNhbC1jbG9ja3M7ICov
-DQo+ICsJaWYgKGNsa3NpemUgPT0gMCkgew0KPiArCQlpZiAob2ZfcHJvcGVydHlfcmVhZF9ib29s
-KG5wLCAiY3JpdGljYWwtY2xvY2tzIikgJiYNCj4gKwkJICAgICFjb3JlLT5vcHMtPm1hdGNoX2Ns
-a3NwZWMoaHcsICZjbGtzcGVjKSkNCg0KSSB0aGluayB0aGlzIGlzIG5ldmVyIHRydWUgYXMgdGhl
-cmUgaXMNCmlmICghY29yZS0+b3BzLT5tYXRjaF9jbGtzcGVjKQ0KCXJldHVybjsNCg0KYWJvdmUu
-DQoNCkFueXdheXMsIHNlZWluZyB5b3UgYWRkZWQgYSBkdW1teSBiZDcxODM3X21hdGNoX2Nsa3Nw
-ZWMgaW4gYSBmb2xsb3ctdXAgDQpwYXRjaCBmb3IgQkQ3MTgzNyAtIHdoaWNoIGhhcyBvbmx5IHNp
-bmdsZSBjbG9jayAtIEkgd29uZGVyIGlmIHRoZXJlIGlzIGEgDQp3YXkgdG8gb21pdCB0aGF0IGR1
-bW15IGNhbGxiYWNrIGluIGNvbnRyb2xsZXJzIHdoaWNoIHJlYWxseSBwcm92aWRlIG9ubHkgDQpv
-bmUgY2xvY2s/IEVnLCBkbyB5b3UgdGhpbmsgc3VjaCBhIHNpdHVhdGlvbiBjb3VsZCBiZSBkZXRl
-Y3RlZCBieSB0aGUgDQpjb3JlIGFscmVhZHkgaGVyZT8gUGxlYXNlIGp1c3QgZ28gb24gaWYgdGhh
-dCBpcyBoYXJkIC0gSSB3YXMganVzdCANCnRoaW5raW5nIHRoYXQgbWF5YmUgd2UgY291bGQgYXZv
-aWQgc3VjaCBkdW1taWVzIC0gb3IgYXQgbGVhc3QgcHJvdmlkZSANCm9uZSBzaW5nbGUgZHVtbXkg
-aGVscGVyIGZvciB0aGF0IHB1cnBvc2UgaW5zdGVhZCBvZiBhZGRpbmcgb25lIGluIGFsbCANCnNp
-bWlsYXIgZHJpdmVycy4gSG93IGRvIHlvdSB0aGluaz8NCg0KT3RoZXIgdGhhbiB0aGlzIC0gSSBz
-dGlsbCBkbyBsaWtlIHRoaXMgaWRlYSEgVGhhbmtzIGZvciB3b3JraW5nIHRvIA0KaW1wbGVtZW50
-IHRoaXMhDQoNCg0KQmVzdCBSZWdhcmRzDQoJLS0gTWF0dGkNCg0KLS0gDQpUaGUgTGludXggS2Vy
-bmVsIGd1eSBhdCBST0hNIFNlbWljb25kdWN0b3JzDQoNCk1hdHRpIFZhaXR0aW5lbiwgTGludXgg
-ZGV2aWNlIGRyaXZlcnMNClJPSE0gU2VtaWNvbmR1Y3RvcnMsIEZpbmxhbmQgU1dEQw0KS2l2aWhh
-cmp1bmxlbmtraSAxRQ0KOTAyMjAgT1VMVQ0KRklOTEFORA0KDQp+fiB0aGlzIHllYXIgaXMgdGhl
-IHllYXIgb2YgYSBzaWduYXR1cmUgd3JpdGVycyBibG9jayB+fg0K
+
+
+16.02.2022 14:22, Sascha Hauer пишет:
+> On Wed, Feb 16, 2022 at 01:39:33PM +0300, Dmitry Osipenko wrote:
+>> 09.02.2022 12:53, Sascha Hauer пишет:
+>>> +static void vop2_plane_atomic_update(struct drm_plane *plane, struct drm_atomic_state *state)
+>>> +{
+>>> +	struct drm_plane_state *pstate = plane->state;
+>>> +	struct drm_crtc *crtc = pstate->crtc;
+>>> +	struct vop2_win *win = to_vop2_win(plane);
+>>> +	struct vop2_video_port *vp = to_vop2_video_port(crtc);
+>>> +	struct drm_display_mode *adjusted_mode = &crtc->state->adjusted_mode;
+>>> +	struct vop2 *vop2 = win->vop2;
+>>> +	struct drm_framebuffer *fb = pstate->fb;
+>>> +	uint32_t bpp = fb->format->cpp[0] * 8;
+>>> +	uint32_t actual_w, actual_h, dsp_w, dsp_h;
+>>> +	uint32_t act_info, dsp_info;
+>>> +	uint32_t format;
+>>> +	uint32_t afbc_format;
+>>> +	uint32_t rb_swap;
+>>> +	uint32_t uv_swap;
+>>> +	struct drm_rect *src = &pstate->src;
+>>> +	struct drm_rect *dest = &pstate->dst;
+>>> +	uint32_t afbc_tile_num;
+>>> +	uint32_t transform_offset;
+>>> +	bool dither_up;
+>>> +	bool xmirror = pstate->rotation & DRM_MODE_REFLECT_X;
+>>> +	bool ymirror = pstate->rotation & DRM_MODE_REFLECT_Y;
+>>> +	bool rotate_270 = pstate->rotation & DRM_MODE_ROTATE_270;
+>>> +	bool rotate_90 = pstate->rotation & DRM_MODE_ROTATE_90;
+>>> +	struct rockchip_gem_object *rk_obj;
+>>> +	unsigned long offset;
+>>> +	bool afbc_en;
+>>> +	dma_addr_t yrgb_mst;
+>>> +	dma_addr_t uv_mst;
+>>> +
+>>> +	/*
+>>> +	 * can't update plane when vop2 is disabled.
+>>> +	 */
+>>> +	if (WARN_ON(!crtc))
+>>> +		return;
+>>> +
+>>> +	if (!pstate->visible) {
+>>> +		vop2_plane_atomic_disable(plane, state);
+>>> +		return;
+>>> +	}
+>>> +
+>>> +	afbc_en = rockchip_afbc(plane, fb->modifier);
+>>> +
+>>> +	offset = (src->x1 >> 16) * fb->format->cpp[0];
+>>> +
+>>> +	/*
+>>> +	 * AFBC HDR_PTR must set to the zero offset of the framebuffer.
+>>> +	 */
+>>> +	if (afbc_en)
+>>> +		offset = 0;
+>>> +	else if (pstate->rotation & DRM_MODE_REFLECT_Y)
+>>> +		offset += ((src->y2 >> 16) - 1) * fb->pitches[0];
+>>> +	else
+>>> +		offset += (src->y1 >> 16) * fb->pitches[0];
+>>> +
+>>> +	rk_obj = to_rockchip_obj(fb->obj[0]);
+>>> +
+>>> +	yrgb_mst = rk_obj->dma_addr + offset + fb->offsets[0];
+>>> +	if (fb->format->is_yuv) {
+>>> +		int hsub = fb->format->hsub;
+>>> +		int vsub = fb->format->vsub;
+>>> +
+>>> +		offset = (src->x1 >> 16) * fb->format->cpp[1] / hsub;
+>>> +		offset += (src->y1 >> 16) * fb->pitches[1] / vsub;
+>>> +
+>>> +		if ((pstate->rotation & DRM_MODE_REFLECT_Y) && !afbc_en)
+>>> +			offset += fb->pitches[1] * ((pstate->src_h >> 16) - 2)  / vsub;
+>>> +
+>>> +		rk_obj = to_rockchip_obj(fb->obj[0]);
+>>> +		uv_mst = rk_obj->dma_addr + offset + fb->offsets[1];
+>>> +	}
+>>> +
+>>> +	actual_w = drm_rect_width(src) >> 16;
+>>> +	actual_h = drm_rect_height(src) >> 16;
+>>> +	dsp_w = drm_rect_width(dest);
+>>> +
+>>> +	if (dest->x1 + dsp_w > adjusted_mode->hdisplay) {
+>>> +		drm_err(vop2->drm, "vp%d %s dest->x1[%d] + dsp_w[%d] exceed mode hdisplay[%d]\n",
+>>> +			  vp->id, win->data->name, dest->x1, dsp_w, adjusted_mode->hdisplay);
+>>> +		dsp_w = adjusted_mode->hdisplay - dest->x1;
+>>> +		if (dsp_w < 4)
+>>> +			dsp_w = 4;
+>>> +		actual_w = dsp_w * actual_w / drm_rect_width(dest);
+>>> +	}
+>>> +
+>>> +	dsp_h = drm_rect_height(dest);
+>>> +
+>>> +	if (dest->y1 + dsp_h > adjusted_mode->vdisplay) {
+>>> +		drm_err(vop2->drm, "vp%d %s dest->y1[%d] + dsp_h[%d] exceed mode vdisplay[%d]\n",
+>>> +			  vp->id, win->data->name, dest->y1, dsp_h, adjusted_mode->vdisplay);
+>>> +		dsp_h = adjusted_mode->vdisplay - dest->y1;
+>>> +		if (dsp_h < 4)
+>>> +			dsp_h = 4;
+>>> +		actual_h = dsp_h * actual_h / drm_rect_height(dest);
+>>> +	}
+>>> +
+>>> +	/*
+>>> +	 * This is workaround solution for IC design:
+>>> +	 * esmart can't support scale down when actual_w % 16 == 1.
+>>> +	 */
+>>> +	if (!(win->data->feature & WIN_FEATURE_AFBDC)) {
+>>> +		if (actual_w > dsp_w && (actual_w & 0xf) == 1) {
+>>> +			drm_err(vop2->drm, "vp%d %s act_w[%d] MODE 16 == 1\n", vp->id, win->data->name, actual_w);
+>>> +			actual_w -= 1;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	if (afbc_en && actual_w % 4) {
+>>> +		drm_err(vop2->drm, "vp%d %s actual_w[%d] should align as 4 pixel when enable afbc\n",
+>>> +			  vp->id, win->data->name, actual_w);
+>>> +		actual_w = ALIGN_DOWN(actual_w, 4);
+>>> +	}
+>>> +
+>>> +	act_info = (actual_h - 1) << 16 | ((actual_w - 1) & 0xffff);
+>>> +	dsp_info = (dsp_h - 1) << 16 | ((dsp_w - 1) & 0xffff);
+>>> +
+>>> +	format = vop2_convert_format(fb->format->format);
+>>> +
+>>> +	drm_dbg(vop2->drm, "vp%d update %s[%dx%d->%dx%d@%dx%d] fmt[%p4cc_%s] addr[%pad]\n",
+>>> +		      vp->id, win->data->name, actual_w, actual_h, dsp_w, dsp_h,
+>>> +		      dest->x1, dest->y1,
+>>> +		      &fb->format->format,
+>>> +		      afbc_en ? "AFBC" : "", &yrgb_mst);
+>>> +
+>>> +	if (afbc_en) {
+>>> +		uint32_t stride;
+>>> +
+>>> +		/* the afbc superblock is 16 x 16 */
+>>> +		afbc_format = vop2_convert_afbc_format(fb->format->format);
+>>> +
+>>> +		/* Enable color transform for YTR */
+>>> +		if (fb->modifier & AFBC_FORMAT_MOD_YTR)
+>>> +			afbc_format |= (1 << 4);
+>>> +
+>>> +		afbc_tile_num = ALIGN(actual_w, 16) >> 4;
+>>> +
+>>> +		/*
+>>> +		 * AFBC pic_vir_width is count by pixel, this is different
+>>> +		 * with WIN_VIR_STRIDE.
+>>> +		 */
+>>> +		stride = (fb->pitches[0] << 3) / bpp;
+>>> +		if ((stride & 0x3f) && (xmirror || rotate_90 || rotate_270))
+>>> +			drm_err(vop2->drm, "vp%d %s stride[%d] must align as 64 pixel when enable xmirror/rotate_90/rotate_270[0x%x]\n",
+>>> +				  vp->id, win->data->name, stride, pstate->rotation);
+>>> +
+>>> +		rb_swap = vop2_afbc_rb_swap(fb->format->format);
+>>> +		uv_swap = vop2_afbc_uv_swap(fb->format->format);
+>>> +		/*
+>>> +		 * This is a workaround for crazy IC design, Cluster
+>>> +		 * and Esmart/Smart use different format configuration map:
+>>> +		 * YUV420_10BIT: 0x10 for Cluster, 0x14 for Esmart/Smart.
+>>> +		 *
+>>> +		 * This is one thing we can make the convert simple:
+>>> +		 * AFBCD decode all the YUV data to YUV444. So we just
+>>> +		 * set all the yuv 10 bit to YUV444_10.
+>>> +		 */
+>>> +		if (fb->format->is_yuv && (bpp == 10))
+>>> +			format = VOP2_CLUSTER_YUV444_10;
+>>> +
+>>> +		if (vop2_cluster_window(win))
+>>> +			vop2_win_write(win, VOP2_WIN_AFBC_ENABLE, 1);
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_FORMAT, afbc_format);
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_RB_SWAP, rb_swap);
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_BLOCK_SPLIT_EN, 0);
+>>> +		if (pstate->rotation & (DRM_MODE_ROTATE_270 | DRM_MODE_ROTATE_90)) {
+>>> +			vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 0);
+>>> +			transform_offset = vop2_afbc_transform_offset(pstate, false);
+>>> +		} else {
+>>> +			vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 1);
+>>> +			transform_offset = vop2_afbc_transform_offset(pstate, true);
+>>> +		}
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_HDR_PTR, yrgb_mst);
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_PIC_SIZE, act_info);
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_TRANSFORM_OFFSET, transform_offset);
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_PIC_OFFSET, ((src->x1 >> 16) | src->y1));
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_DSP_OFFSET, (dest->x1 | (dest->y1 << 16)));
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_PIC_VIR_WIDTH, stride);
+>>> +		vop2_win_write(win, VOP2_WIN_AFBC_TILE_NUM, afbc_tile_num);
+>>> +		vop2_win_write(win, VOP2_WIN_XMIRROR, xmirror);
+>>
+>> The xmirror's variable type is specified as bool, but it's not
+>> true/false because in the above code:
+>>
+>> bool xmirror = pstate->rotation & DRM_MODE_REFLECT_X;
+>>
+>> I don't see how vop2_win_write() could work properly. Or am I missing
+>> something?
+> 
+> Everything != 0 is true, so 0x10 & 0x10 is still true.
+
+Ah, my bad. I keep forgetting that kernel uses _Bool.
+
+> But ok,
+> 
+> 	bool xmirror = pstate->rotation & DRM_MODE_REFLECT_X ? true : false;
+> 
+> looks cleaner. I'll change that.
+> 
+> Thanks for the review so far. Could you drop me a short note when you're
+> done? I was about to send v6.
+
+I don't have any more comments, please feel free to send v6.
