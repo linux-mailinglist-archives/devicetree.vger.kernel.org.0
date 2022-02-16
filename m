@@ -2,157 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 153C04B7CBF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 02:56:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 235384B7CED
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 02:56:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343593AbiBPBvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Feb 2022 20:51:18 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46066 "EHLO
+        id S245713AbiBPB43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Feb 2022 20:56:29 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343586AbiBPBvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 20:51:17 -0500
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF11FA235;
-        Tue, 15 Feb 2022 17:51:06 -0800 (PST)
-Received: by mail-yb1-xb2d.google.com with SMTP id bt13so1637777ybb.2;
-        Tue, 15 Feb 2022 17:51:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=zgZsN7oUvazPcA59OzEiJ3ZRYuzqTaOIlq6Gf9AbiHs=;
-        b=CerpXZ9trzLcnSio8lebrkpKr0iKgIeBUHWagYx6AmkV2p0fH2XUk90jJR1aJ7qenD
-         SLNi8VpVHHW8NTMu4LbSfL5BkQo+aeDwPEyagD5r0sazNmThl1XUm7amKO+e3wFkzjtR
-         Eq7djuNwjREq8C2TOf4Bcz1ACWH7dCJAoSLf5Tq9wJzpIozYhZdBw9kEZ7CnHernaWBl
-         gBWUsXJCL85OAkWBwSM5pl7q0VrXADeoHku13l9TFlwMxSNBPAQV3p27g3YNGbQItnXm
-         /vJSCsb3HbI7gIej6J9F6j1TTfktepD7i1sY6Zz5psSBD9wrbEa9FQ/TvK5TyVAukb0B
-         YWmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=zgZsN7oUvazPcA59OzEiJ3ZRYuzqTaOIlq6Gf9AbiHs=;
-        b=3uw36DvFwejZQEEEnhk3VIwNvyuJA5+ehSs8EHfshU5UORHORTAbnv7vuRZJWUQCyQ
-         6hnEAJSjpjklNtuv7pES1W77UnmdV46Z77LC/s81R/4S6jXs4LhBXa656awZ0DZb7H27
-         T7Muja2+UKYqFkCdwZHgC/Stj9xBkiQ6q3k1pd3qO7kDuD5YKMmYdvWCI5MNaNJeJuJU
-         LN5CRXRW2ZgjD4llOf33QcMwSmNeLjn3ggy8BKJeitqK8nNbdbaEUvaW07a5Vw8wzYua
-         rMktJhVZ8othuZLZ9aydEZU3XK+MuIHpKxatuTPuHXzsrMWb9DFAY4cRk1lZlFlmNxqp
-         k2Vg==
-X-Gm-Message-State: AOAM532K2W1COvFnhT+Ff2gcEmoqmeqLsSH6PBF84AYk4zx41PlT6LPp
-        EUwo0MtEafkW7/BiGGxZs4MYB2BR+U+NW9gvRrLqTeJ2
-X-Google-Smtp-Source: ABdhPJzlFDa6naeVKOpgrMFYKIzN8aBeFhAICkRmdRT7vQxr/k+FFv+b7g3Ocm7b+8ED/BTEGcsf88ctDDcBVClw6yg=
-X-Received: by 2002:a25:6d87:0:b0:60f:fa38:fbd8 with SMTP id
- i129-20020a256d87000000b0060ffa38fbd8mr363321ybc.560.1644976266023; Tue, 15
- Feb 2022 17:51:06 -0800 (PST)
-MIME-Version: 1.0
-References: <1644917065-23168-1-git-send-email-hammerh0314@gmail.com>
- <1644917065-23168-2-git-send-email-hammerh0314@gmail.com> <b50bf9ef-eb38-8e86-70f9-7a9a959be67b@canonical.com>
-In-Reply-To: <b50bf9ef-eb38-8e86-70f9-7a9a959be67b@canonical.com>
-From:   hammer hsieh <hammerh0314@gmail.com>
-Date:   Wed, 16 Feb 2022 09:51:21 +0800
-Message-ID: <CAOX-t55+_AE9eKf3OwRb1pos7gZZBa1xVV7EXAEMDQ2mm5VS0Q@mail.gmail.com>
-Subject: Re: [PATCH v8 1/2] dt-bindings:serial:Add bindings doc for Sunplus
- SoC UART Driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
-        p.zabel@pengutronix.de, wells.lu@sunplus.com,
-        "hammer.hsieh" <hammer.hsieh@sunplus.com>
+        with ESMTP id S243224AbiBPB42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Feb 2022 20:56:28 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8656BFABD7;
+        Tue, 15 Feb 2022 17:56:16 -0800 (PST)
+X-UUID: 3078d079a04c464ea31133e843022fb0-20220216
+X-UUID: 3078d079a04c464ea31133e843022fb0-20220216
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 891655515; Wed, 16 Feb 2022 09:56:13 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 16 Feb 2022 09:56:12 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 16 Feb 2022 09:56:12 +0800
+Message-ID: <3691cb945fdec02271d06cdb5fb8fac1350b49c8.camel@mediatek.com>
+Subject: Re: [v2,6/6] drm/mediatek: add display support for MT8186
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <airlied@linux.ie>,
+        <jassisinghbrar@gmail.com>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <yongqiang.niu@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <fparent@baylibre.com>, <linux-mediatek@lists.infradead.org>,
+        <hsinyi@chromium.org>, <linux-arm-kernel@lists.infradead.org>
+Date:   Wed, 16 Feb 2022 09:56:12 +0800
+In-Reply-To: <20220215075953.3310-7-rex-bc.chen@mediatek.com>
+References: <20220215075953.3310-1-rex-bc.chen@mediatek.com>
+         <20220215075953.3310-7-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> =E6=96=BC 2022=E5=
-=B9=B42=E6=9C=8815=E6=97=A5
-=E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=8810:53=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On 15/02/2022 10:24, Hammer Hsieh wrote:
-> > Add bindings doc for Sunplus SoC UART Driver
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Hammer Hsieh <hammerh0314@gmail.com>
-> > ---
-> > Changes in v8:
-> >  - no change.
-> >
-> >  .../bindings/serial/sunplus,sp7021-uart.yaml       | 56 ++++++++++++++=
-++++++++
-> >  MAINTAINERS                                        |  5 ++
-> >  2 files changed, 61 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/serial/sunplus,sp=
-7021-uart.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/serial/sunplus,sp7021-ua=
-rt.yaml b/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
-> > new file mode 100644
-> > index 0000000..894324c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
-> > @@ -0,0 +1,56 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (C) Sunplus Co., Ltd. 2021
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/serial/sunplus,sp7021-uart.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Sunplus SoC SP7021 UART Controller Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Hammer Hsieh <hammerh0314@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: serial.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: sunplus,sp7021-uart
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - resets
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    aliases {
-> > +            serial0 =3D &uart0;
->
-> Incorrect indentation. With this fixed:
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->
->
-> Best regards,
-> Krzysztof
+Hi, Rex:
 
-OK, will modify it. Thanks.
+On Tue, 2022-02-15 at 15:59 +0800, Rex-BC Chen wrote:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> 
+> - Add driver data for MT8186 in mtk_drm_drv.c.
+> - Add mtk-disp-ovl and mt-disp-ovl-2l support for MT8186.
+> 
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 20 +++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c  | 39
+> +++++++++++++++++++++++++
+>  2 files changed, 59 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> index 2146299e5f52..5fa56c7b9f5f 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> @@ -456,6 +456,22 @@ static const struct mtk_disp_ovl_data
+> mt8183_ovl_2l_driver_data = {
+>  	.fmt_rgb565_is_0 = true,
+>  };
+>  
+> +static const struct mtk_disp_ovl_data mt8186_ovl_driver_data = {
+> +	.addr = DISP_REG_OVL_ADDR_MT8173,
+> +	.gmc_bits = 10,
+> +	.layer_nr = 4,
+> +	.fmt_rgb565_is_0 = true,
+> +	.smi_id_en = true,
+> +};
+
+
+mt8186_ovl_driver_data is identical to  mt8192_ovl_driver_data, so drop
+this one and use mt8192_ovl_driver_data instead.
+
+> +
+> +static const struct mtk_disp_ovl_data mt8186_ovl_2l_driver_data = {
+> +	.addr = DISP_REG_OVL_ADDR_MT8173,
+> +	.gmc_bits = 10,
+> +	.layer_nr = 2,
+> +	.fmt_rgb565_is_0 = true,
+> +	.smi_id_en = true,
+> +};
+
+Ditto.
 
 Regards,
-Hammer
+CK
+
+> +
+>  static const struct mtk_disp_ovl_data mt8192_ovl_driver_data = {
+>  	.addr = DISP_REG_OVL_ADDR_MT8173,
+>  	.gmc_bits = 10,
+> @@ -479,8 +495,12 @@ static const struct of_device_id
+> mtk_disp_ovl_driver_dt_match[] = {
+>  	  .data = &mt8173_ovl_driver_data},
+>  	{ .compatible = "mediatek,mt8183-disp-ovl",
+>  	  .data = &mt8183_ovl_driver_data},
+> +	{ .compatible = "mediatek,mt8186-disp-ovl",
+> +	  .data = &mt8186_ovl_driver_data},
+>  	{ .compatible = "mediatek,mt8183-disp-ovl-2l",
+>  	  .data = &mt8183_ovl_2l_driver_data},
+> +	{ .compatible = "mediatek,mt8186-disp-ovl-2l",
+> +	  .data = &mt8186_ovl_2l_driver_data},
+>  	{ .compatible = "mediatek,mt8192-disp-ovl",
+>  	  .data = &mt8192_ovl_driver_data},
+>  	{ .compatible = "mediatek,mt8192-disp-ovl-2l",
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> index 6efb423ccc92..754b1be25d0d 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -158,6 +158,24 @@ static const enum mtk_ddp_comp_id
+> mt8183_mtk_ddp_ext[] = {
+>  	DDP_COMPONENT_DPI0,
+>  };
+>  
+> +static const enum mtk_ddp_comp_id mt8186_mtk_ddp_main[] = {
+> +	DDP_COMPONENT_OVL0,
+> +	DDP_COMPONENT_RDMA0,
+> +	DDP_COMPONENT_COLOR0,
+> +	DDP_COMPONENT_CCORR,
+> +	DDP_COMPONENT_AAL0,
+> +	DDP_COMPONENT_GAMMA,
+> +	DDP_COMPONENT_POSTMASK0,
+> +	DDP_COMPONENT_DITHER,
+> +	DDP_COMPONENT_DSI0,
+> +};
+> +
+> +static const enum mtk_ddp_comp_id mt8186_mtk_ddp_ext[] = {
+> +	DDP_COMPONENT_OVL_2L0,
+> +	DDP_COMPONENT_RDMA1,
+> +	DDP_COMPONENT_DPI0,
+> +};
+> +
+>  static const enum mtk_ddp_comp_id mt8192_mtk_ddp_main[] = {
+>  	DDP_COMPONENT_OVL0,
+>  	DDP_COMPONENT_OVL_2L0,
+> @@ -221,6 +239,13 @@ static const struct mtk_mmsys_driver_data
+> mt8183_mmsys_driver_data = {
+>  	.ext_len = ARRAY_SIZE(mt8183_mtk_ddp_ext),
+>  };
+>  
+> +static const struct mtk_mmsys_driver_data mt8186_mmsys_driver_data =
+> {
+> +	.main_path = mt8186_mtk_ddp_main,
+> +	.main_len = ARRAY_SIZE(mt8186_mtk_ddp_main),
+> +	.ext_path = mt8186_mtk_ddp_ext,
+> +	.ext_len = ARRAY_SIZE(mt8186_mtk_ddp_ext),
+> +};
+> +
+>  static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data =
+> {
+>  	.main_path = mt8192_mtk_ddp_main,
+>  	.main_len = ARRAY_SIZE(mt8192_mtk_ddp_main),
+> @@ -463,6 +488,8 @@ static const struct of_device_id
+> mtk_ddp_comp_dt_ids[] = {
+>  	  .data = (void *)MTK_DISP_MUTEX },
+>  	{ .compatible = "mediatek,mt8183-disp-mutex",
+>  	  .data = (void *)MTK_DISP_MUTEX },
+> +	{ .compatible = "mediatek,mt8186-disp-mutex",
+> +	  .data = (void *)MTK_DISP_MUTEX },
+>  	{ .compatible = "mediatek,mt8192-disp-mutex",
+>  	  .data = (void *)MTK_DISP_MUTEX },
+>  	{ .compatible = "mediatek,mt8173-disp-od",
+> @@ -475,14 +502,20 @@ static const struct of_device_id
+> mtk_ddp_comp_dt_ids[] = {
+>  	  .data = (void *)MTK_DISP_OVL },
+>  	{ .compatible = "mediatek,mt8183-disp-ovl",
+>  	  .data = (void *)MTK_DISP_OVL },
+> +	{ .compatible = "mediatek,mt8186-disp-ovl",
+> +	  .data = (void *)MTK_DISP_OVL },
+>  	{ .compatible = "mediatek,mt8192-disp-ovl",
+>  	  .data = (void *)MTK_DISP_OVL },
+>  	{ .compatible = "mediatek,mt8183-disp-ovl-2l",
+>  	  .data = (void *)MTK_DISP_OVL_2L },
+> +	{ .compatible = "mediatek,mt8186-disp-ovl-2l",
+> +	  .data = (void *)MTK_DISP_OVL_2L },
+>  	{ .compatible = "mediatek,mt8192-disp-ovl-2l",
+>  	  .data = (void *)MTK_DISP_OVL_2L },
+>  	{ .compatible = "mediatek,mt8192-disp-postmask",
+>  	  .data = (void *)MTK_DISP_POSTMASK },
+> +	{ .compatible = "mediatek,mt8186-disp-postmask",
+> +	  .data = (void *)MTK_DISP_POSTMASK},
+>  	{ .compatible = "mediatek,mt2701-disp-pwm",
+>  	  .data = (void *)MTK_DISP_BLS },
+>  	{ .compatible = "mediatek,mt8167-disp-pwm",
+> @@ -511,12 +544,16 @@ static const struct of_device_id
+> mtk_ddp_comp_dt_ids[] = {
+>  	  .data = (void *)MTK_DPI },
+>  	{ .compatible = "mediatek,mt8183-dpi",
+>  	  .data = (void *)MTK_DPI },
+> +	{ .compatible = "mediatek,mt8186-dpi",
+> +	  .data = (void *)MTK_DPI },
+>  	{ .compatible = "mediatek,mt2701-dsi",
+>  	  .data = (void *)MTK_DSI },
+>  	{ .compatible = "mediatek,mt8173-dsi",
+>  	  .data = (void *)MTK_DSI },
+>  	{ .compatible = "mediatek,mt8183-dsi",
+>  	  .data = (void *)MTK_DSI },
+> +	{ .compatible = "mediatek,mt8186-dsi",
+> +	  .data = (void *)MTK_DSI },
+>  	{ }
+>  };
+>  
+> @@ -533,6 +570,8 @@ static const struct of_device_id mtk_drm_of_ids[]
+> = {
+>  	  .data = &mt8173_mmsys_driver_data},
+>  	{ .compatible = "mediatek,mt8183-mmsys",
+>  	  .data = &mt8183_mmsys_driver_data},
+> +	{ .compatible = "mediatek,mt8186-mmsys",
+> +	  .data = &mt8186_mmsys_driver_data},
+>  	{ .compatible = "mediatek,mt8192-mmsys",
+>  	  .data = &mt8192_mmsys_driver_data},
+>  	{ }
+
