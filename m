@@ -2,157 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 471294B8FEF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 19:12:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D154B8FFD
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 19:17:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231952AbiBPSMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 13:12:48 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55534 "EHLO
+        id S237505AbiBPSRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 13:17:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234062AbiBPSMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 13:12:47 -0500
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B622BB1500;
-        Wed, 16 Feb 2022 10:12:34 -0800 (PST)
-Received: from pps.filterd (m0148663.ppops.net [127.0.0.1])
-        by mx0a-002e3701.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21GGLWm2004026;
-        Wed, 16 Feb 2022 18:12:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version; s=pps0720;
- bh=NBgEHXwEt9kr7YR2IGB06wDWw+4uN7Knz3OdbAzGQNU=;
- b=gPyd6cxJFCe6rNWfQ8RtEzU5m0yKMuhBRuChOTA1AA2FDmWSVWxzTlY29c64AjAX7AHR
- fqjAtkZ/10INywDHUjRbJt2wms/mabWV/u5Hi7XdAS6xpQohreleroxngdlLMTJTjakO
- PulSVf4CiIWN+t6k/Zvi12GXr7TfMHo4itHqZuKv9C9TVHHtQ7m8lmyc1h/0Hu3mPUs6
- Wh1SoeK2gb+j7f7YJPQDD5Av5k/HxxF/Pd8N5Eue+HrVZyAe3dvjBqqP0JIL3Z0fIZ2A
- HckXbbENAEr0DZR8q/0aBRwlJg2X5SHdWm8v4flJauKhS/APRSeyTxxdwinbkr9wXQ21 bw== 
-Received: from g9t5008.houston.hpe.com (g9t5008.houston.hpe.com [15.241.48.72])
-        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3e913au2xd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Feb 2022 18:12:32 +0000
-Received: from hpe.com (unknown [15.115.65.69])
-        by g9t5008.houston.hpe.com (Postfix) with ESMTP id 8B8E759;
-        Wed, 16 Feb 2022 18:12:31 +0000 (UTC)
-From:   nick.hawkins@hpe.com
-To:     nick.hawkins@hpe.com, verdun@hpe.com
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: soc: Add HPE GXP SOC binding
-Date:   Wed, 16 Feb 2022 12:14:33 -0600
-Message-Id: <20220216181434.41682-1-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <nick.hawkins@hpe.com>
-References: <nick.hawkins@hpe.com>
-X-Proofpoint-GUID: 4i1ys5oYK1241Devbaf3Admaxhel6jB9
-X-Proofpoint-ORIG-GUID: 4i1ys5oYK1241Devbaf3Admaxhel6jB9
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+        with ESMTP id S231492AbiBPSRe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 13:17:34 -0500
+Received: from 189.cn (ptr.189.cn [183.61.185.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C9F711BB730;
+        Wed, 16 Feb 2022 10:17:19 -0800 (PST)
+HMM_SOURCE_IP: 10.64.8.41:34238.983927469
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+        by 189.cn (HERMES) with SMTP id 31E6310019D;
+        Thu, 17 Feb 2022 02:17:16 +0800 (CST)
+Received: from  ([114.242.206.180])
+        by gateway-151646-dep-b7fbf7d79-9vctg with ESMTP id 2a2237147d534fe0926a8513cf1a3b35 for mripard@kernel.org;
+        Thu, 17 Feb 2022 02:17:18 CST
+X-Transaction-ID: 2a2237147d534fe0926a8513cf1a3b35
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+From:   Sui Jingfeng <15330273260@189.cn>
+To:     Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>, Li Yi <liyi@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Joe Perches <joe@perches.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        kernel test robot <lkp@intel.com>
+Subject: [PATCH v8 0/3] drm/lsdc: add drm driver for loongson display controller
+Date:   Thu, 17 Feb 2022 02:17:09 +0800
+Message-Id: <20220216181712.1493400-1-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-16_08,2022-02-16_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- impostorscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
- lowpriorityscore=0 mlxscore=0 malwarescore=0 clxscore=1015 adultscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2201110000 definitions=main-2202160102
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+There is a display controller in loongson's LS2K1000 SoC and LS7A1000
+bridge chip, it is a PCI device in those chips. It has two display
+pipes but with only one hardware cursor. Each way has a DVO interface
+which provide RGB888 signals, vertical & horizontal synchronisations,
+data enable and the pixel clock. Each CRTC is able to scanout from
+1920x1080 resolution at 60Hz. The maxmium resolution is 2048x2048
+according to the hardware spec. Loongson display controllers are simple
+which require scanout buffers to be physically contiguous.
 
-Description: This binding will be used in creating the HPE GXP
- architecture. GXP is the name of the HPE SoC.
-This SoC is used to implement BMC features of HPE servers
-(all ProLiant, Synergy, and many Apollo, and Superdome machines)
-It does support many features including:
-        ARMv7 architecture, and it is based on a Cortex A9 core
-        Use an AXI bus to which
-                a memory controller is attached, as well as
-                 multiple SPI interfaces to connect boot flash,
-                 and ROM flash, a 10/100/1000 Mac engine which
-                 supports SGMII (2 ports) and RMII
-                Multiple I2C engines to drive connectivity with a
-				 host infrastructure
-                A video engine which support VGA and DP, as well as
-                 an hardware video encoder
-                Multiple PCIe ports
-                A PECI interface, and LPC eSPI
-                Multiple UART for debug purpose, and Virtual UART for
-                 host connectivity
-                A GPIO engine.
+For LS7A1000/LS7A2000 bridge chip, the DC is equipped with a dedicated
+video ram which is typically 64MB or more. In this case, VRAM helper
+based driver is intend to be used. While LS2K1000 is a SoC, only system
+memory is available. Therefore CMA helper based driver is intend to be
+used. It is possible to use VRAM helper based solution by carving out
+part of system memory as VRAM though.
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
----
- .../devicetree/bindings/soc/hpe/gxp.yaml      | 35 +++++++++++++++++++
- MAINTAINERS                                   |  6 ++++
- 2 files changed, 41 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/hpe/gxp.yaml
+For LS7A1000, there are 4 dedicated GPIOs whose control register is
+located at the DC register space, They are used to emulate two way i2c.
+One for DVO0, another for DVO1. LS2K1000 and LS2K0500 SoC don't have such
+GPIO hardwared, they grab i2c adapter from other module, either general
+purpose GPIO emulated i2c or hardware i2c adapter.
 
-diff --git a/Documentation/devicetree/bindings/soc/hpe/gxp.yaml b/Documentation/devicetree/bindings/soc/hpe/gxp.yaml
-new file mode 100644
-index 000000000000..8690c1e28ed2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/hpe/gxp.yaml
-@@ -0,0 +1,35 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/hpe/gxp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HPE bmc GXP SoC driver
-+
-+maintainers:
-+  - Nick Hawkins <nick.hawkins@hpe.com>
-+  - Jean-Marie Verdun <verdun@hpe.com>
-+
-+properties:
-+  compatible:
-+    const: hpe,gxp
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gxp {
-+        model = "Hewlett Packard Enterprise GXP BMC";
-+        compatible = "hpe,gxp";
-+        #address-cells: 1;
-+        #size-cells: 0;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f41088418aae..e482386bb248 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8385,6 +8385,12 @@ L:	linux-efi@vger.kernel.org
- S:	Maintained
- F:	block/partitions/efi.*
- 
-+GXP ARCHITECTURE
-+M:	Jean-Marie Verdun <verdun@hpe.com>
-+M:	Nick Hawkins <nick.hawkins@hpe.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/soc/hpe
-+
- H8/300 ARCHITECTURE
- M:	Yoshinori Sato <ysato@users.sourceforge.jp>
- L:	uclinux-h8-devel@lists.sourceforge.jp (moderated for non-subscribers)
+    +------+            +-----------------------------------+
+    | DDR4 |            |  +-------------------+            |
+    +------+            |  | PCIe Root complex |   LS7A1000 |
+       || MC0           |  +--++---------++----+            |
+  +----------+  HT 3.0  |     ||         ||                 |
+  | LS3A4000 |<-------->| +---++---+  +--++--+    +---------+   +------+
+  |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| VRAM |
+  +----------+          | +--------+  +-+--+-+    +---------+   +------+
+       || MC1           +---------------|--|----------------+
+    +------+                            |  |
+    | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
+    +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DVI/HDMI
+                      +-------+                      +------+
+
+The above picture give a simple usage of LS7A1000, note that the encoder
+is not necessary adv7125 or tfp410, other candicate encoders can be
+ch7034b, sil9022 and ite66121 lt8618 etc.
+
+v2: fixup warnings reported by kernel test robot
+
+v3: fix more grammar mistakes in Kconfig reported by Randy Dunlap and give
+    more details about lsdc.
+
+v4:
+   1) Add dts required and explain why device tree is required.
+   2) Give more description about lsdc and vram helper base driver.
+   3) Fix warnings reported by kernel test robot.
+   4) Introduce stride_alignment member into struct lsdc_chip_desc, the
+      stride alignment is 256 bytes for ls7a1000, ls2k1000 and ls2k0500.
+      But ls7a2000 improve it to 32 bytes, for extend the support for the
+      device on coming.
+
+v5:
+   1) using writel and readl replace writeq and readq, to fix kernel test
+      robot report build error on other archtecture
+   2) set default fb format to XRGB8888 at crtc reset time.
+   3) fix typos.
+
+v6:
+   1) Explain why we are not switch to drm dridge subsystem on ls2k1000.
+   2) Explain why tiny drm driver is not suitable for us.
+   3) Give a short description of the trival dirty uppdate implement based
+      on CMA helper.
+   4) code clean up
+
+v7:
+   1) Remove select I2C_GPIO and I2C_LS2X in Kconfig, it is not ready now
+   2) Licensing issues are fixed suggested by Krzysztof Kozlowski.
+   3) lsdc_pixpll_print() is removed, part of it move to debugfs.
+   4) Set prefer_shadow to true if vram based driver is in using.
+   5) Replace double blank lines with single line in all files
+   6) Verbose cmd line parameter is replaced with drm_dbg()
+   7) All warnnings reported by ./scripts/checkpatch.pl --strict are fixed
+   8) Get edid from dtb support is removed as suggested by Maxime Ripard
+   9) Fix typos and various improvement
+
+v8:
+   1) Drop damage update implement and its command line.
+   2) Drop DRM_LSDC_VRAM_DRIVER config option as suggested by Maxime.
+   3) Deduce DC's identification from its compatible property.
+   4) Drop the indroduction of board specific dts.
+   5) Add documention about the display controller device node.
+
+Below is a brief introduction of loongson's CPU, bridge chip and SoC.
+LS2K1000 is a double core 1.0Ghz mips64r2 compatible SoC[1]. LS7A1000 is
+a bridge chip made by Loongson corporation which act as north and/or south
+bridge of loongson's desktop and server level processor. It is equivalent
+to AMD RS780E+SB710 or something like that. More details can be read from
+its user manual[2].
+
+This bridge chip is typically use with LS3A3000, LS3A4000 and LS3A5000 cpu.
+LS3A3000 is 4 core 1.45gHz mips64r2 compatible cpu.
+LS3A4000 is 4 core 1.8gHz mips64r5 compatible cpu[3].
+LS3A5000 is 4 core 2.5gHz loongarch cpu[4].
+
+Nearly all loongson cpu has the hardware maintain the cache coherency,
+except for early version of ls2k1000 or ls3a2000. This is the most distinct
+feature from other Mips cpu.
+
+[1] https://wiki.debian.org/InstallingDebianOn/Lemote/Loongson2K1000
+[2] https://loongson.github.io/LoongArch-Documentation/Loongson-7A1000-usermanual-EN.html
+[3] https://ee-paper.com/loongson-3a4000-3b4000-motherboard-products-are-compatible-with-uos-system/
+[4] https://loongson.github.io/LoongArch-Documentation/Loongson-3A5000-usermanual-EN.html
+[5] https://github.com/loongson-community/pmon
+
+Reported-by: Joe Perches <joe@perches.com>
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+Reported-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reported-by: Maxime Ripard <maxime@cerno.tech>
+Reported-by: Randy Dunlap <rdunlap@infradead.org>
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+Signed-off-by: Sui Jingfeng <15330273260@189.cn>
+
+
+suijingfeng (3):
+  drm/lsdc: add drm driver for loongson display controller
+  MIPS: Loongson64: dts: update the display controller device node
+  MAINTAINERS: add maintainers for DRM LSDC driver
+
+ .../loongson/loongson,display-controller.yaml | 114 +++
+ .../display/loongson/loongson-drm.txt         |  16 +
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  |   8 +
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +-
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/lsdc/Kconfig                  |  21 +
+ drivers/gpu/drm/lsdc/Makefile                 |  13 +
+ drivers/gpu/drm/lsdc/lsdc_connector.c         | 334 +++++++++
+ drivers/gpu/drm/lsdc/lsdc_connector.h         |  38 +
+ drivers/gpu/drm/lsdc/lsdc_crtc.c              | 341 +++++++++
+ drivers/gpu/drm/lsdc/lsdc_drv.c               | 699 ++++++++++++++++++
+ drivers/gpu/drm/lsdc/lsdc_drv.h               | 209 ++++++
+ drivers/gpu/drm/lsdc/lsdc_encoder.c           |  54 ++
+ drivers/gpu/drm/lsdc/lsdc_i2c.c               | 198 +++++
+ drivers/gpu/drm/lsdc/lsdc_i2c.h               |  40 +
+ drivers/gpu/drm/lsdc/lsdc_irq.c               |  60 ++
+ drivers/gpu/drm/lsdc/lsdc_irq.h               |  20 +
+ drivers/gpu/drm/lsdc/lsdc_plane.c             | 526 +++++++++++++
+ drivers/gpu/drm/lsdc/lsdc_pll.c               | 580 +++++++++++++++
+ drivers/gpu/drm/lsdc/lsdc_pll.h               |  90 +++
+ drivers/gpu/drm/lsdc/lsdc_regs.h              | 202 +++++
+ 23 files changed, 3577 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson-drm.txt
+ create mode 100644 drivers/gpu/drm/lsdc/Kconfig
+ create mode 100644 drivers/gpu/drm/lsdc/Makefile
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_connector.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_connector.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_crtc.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_drv.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_drv.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_encoder.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_i2c.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_i2c.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_irq.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_irq.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_plane.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_pll.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_pll.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_regs.h
+
 -- 
-2.17.1
+2.25.1
 
