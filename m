@@ -2,326 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1144A4B8F05
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 18:19:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62DD44B8F7A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 18:41:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237043AbiBPRTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 12:19:10 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46370 "EHLO
+        id S237253AbiBPRlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 12:41:53 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237039AbiBPRTI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 12:19:08 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52583BECF8;
-        Wed, 16 Feb 2022 09:18:55 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21GHImU6113011;
-        Wed, 16 Feb 2022 11:18:48 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1645031929;
-        bh=6h/BmeCwifdB1Fl6vVR4D0GfK73l/fTnscSAeSLDycU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=f6jb96TbcASANZc2lvuWUwbQTXzxkU934xwrHoBJBFctHvmSZf7uWR2+HMV1ki/Qt
-         fhs1A1iNGY344zUBYQHIDZgKtFPmBoVJphbyjN92AvnMaoNZnNDpcMjfD4hz8fVHke
-         NiuqXMPa1S8tJprm778tLPcySznNPy/fhnw+b5go=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21GHImba096661
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 16 Feb 2022 11:18:48 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 16
- Feb 2022 11:18:48 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 16 Feb 2022 11:18:48 -0600
-Received: from ula0132425.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21GHIJjT056750;
-        Wed, 16 Feb 2022 11:18:45 -0600
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 5/5] arm64: dts: ti: Add support for AM62-SK
-Date:   Wed, 16 Feb 2022 22:48:15 +0530
-Message-ID: <20220216171815.384377-6-vigneshr@ti.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220216171815.384377-1-vigneshr@ti.com>
-References: <20220216171815.384377-1-vigneshr@ti.com>
+        with ESMTP id S236100AbiBPRlw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 12:41:52 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499628F998
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 09:41:39 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id gb39so1007277ejc.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 09:41:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=djGKhvUF8lAsiTuKU98fE1SgBbCGkJsAmy7BmMcoar8=;
+        b=UP8H3zyMYCdYT/Sbbg7irkfEZacdDXjpdeXWnjeqJjYeDkYOLgqlgGTo+MxOWN1xl/
+         4LH8IHuP+ecQgrklqMYrQj3x4ypcRpHk9FwNrELn8tBDBf2qn383vfslQokVJPgJD9nk
+         bgekFn5KptFsd+v32SQdwLeOzcR7FA7AcNzWmvI/JMXnH5Ahq+6ZGLt/6Q1/z4MTutxf
+         NM4B2BKFbw1UlFEOiTqwMiqWq8NpGYeFLIjeW1qWLZiDzZ8/ozbGGfChaKctc1L38eHr
+         /LF6NKe5Aug/po8Wbk29VJPHddAmp4oBToZyy0KrCVwE/KfEFHo7ozweQ1mEqjRiNYdU
+         4acA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=djGKhvUF8lAsiTuKU98fE1SgBbCGkJsAmy7BmMcoar8=;
+        b=3H5vhdC+1om6sTAAEVr6+sZRiQkhe4VuGKq8ye5AMt106RdnTJMZzTc2d4b1LawwRx
+         EdiqUEXTJKaM+TgU6FS4FoQUZEQaKu7EhRl1+/b3MlZ0X0s+5ULJM79m0x0cT7+CYSKi
+         A3lRXcnfEWdNhyUPnIcToeSzzqwkhLp4dYJWCbKNFOmtUDXd7kpxtddtFvbxbzWWBhiR
+         SMk+ieGMTFS8Bh9fDj3vx3ph9BC9a6WLLp/12Z0OyRH6NPDElMVvveBjgSYtpIUXV5Ui
+         uFLxwvLpK1YzH1Bk60zNZfD+Cp3m2TVF/naCCyRRVx1YmjQNxzzEJ6wwixqRIwN9SweE
+         R59g==
+X-Gm-Message-State: AOAM530+E6j6bIIWA9p15qpIRN4UVBXjBTnU8Ybhqi+rml4ySPCEE8hh
+        WegDeZwwaGL66Z0Ww790I5rwkxPa7k7IMlDT3H4=
+X-Google-Smtp-Source: ABdhPJxtr70YZtgGKJ0Jk9uDCbCNiaoFn3sAdj2suY+0XgmUE4W4DuRYahJqSlr5J7N39j/0AZK4omla72+IrbiaYsE=
+X-Received: by 2002:a17:907:138e:b0:6cc:f1aa:a8fe with SMTP id
+ vs14-20020a170907138e00b006ccf1aaa8femr3063587ejb.25.1645033297922; Wed, 16
+ Feb 2022 09:41:37 -0800 (PST)
 MIME-Version: 1.0
+Received: by 2002:ab4:a5c9:0:0:0:0:0 with HTTP; Wed, 16 Feb 2022 09:41:37
+ -0800 (PST)
+Reply-To: ukofficeimf@gmail.com
+From:   IMF UkOffice <jamesikpe6@gmail.com>
+Date:   Wed, 16 Feb 2022 09:41:37 -0800
+Message-ID: <CADDnvagN4wBZc9az66D15g3a4_2rxrqmgGoc6+4TWFhcDyM_JQ@mail.gmail.com>
+Subject: Q
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: Yes, score=5.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2a00:1450:4864:20:0:0:0:632 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.4323]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [jamesikpe6[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [jamesikpe6[at]gmail.com]
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.5 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nishanth Menon <nm@ti.com>
-
-AM62 StarterKit (SK) board is a low cost, small form factor board
-designed for TI’s AM625 SoC. It supports the following interfaces:
-* 2 GB DDR4 RAM
-* x2 Gigabit Ethernet interfaces capable of working in Switch and MAC mode
-* x1 HDMI Port with audio + x1 OLDI/LVDS Display interface for Dual Display
-* x1 Headphone Jack
-* x1 USB2.0 Hub with two Type A host and x1 USB Type-C DRP Port
-* x1 UHS-1 capable µSD card slot
-* 2.4/5 GHz WLAN + Bluetooth 4.2 through WL1837
-* 512 Mbit OSPI flash
-* x4 UART through UART-USB bridge
-* XDS110 for onboard JTAG debug using USB
-* Temperature sensors, user push buttons and LEDs
-* 40-pin User Expansion Connector
-* 24-pin header for peripherals in MCU island (I2C, UART, SPI, IO)
-* 20-pin header for Programmable Realtime Unit (PRU) IO pins
-* 15-pin CSI header
-
-Add basic support for AM62-SK.
-
-Schematics: https://www.ti.com/lit/zip/sprr448
-
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile        |   2 +
- arch/arm64/boot/dts/ti/k3-am625-sk.dts | 206 +++++++++++++++++++++++++
- 2 files changed, 208 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-sk.dts
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 90be511bc4d09..02e5d80344d00 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -21,3 +21,5 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
-+
-+dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-new file mode 100644
-index 0000000000000..a80e5f7a9cfd7
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -0,0 +1,206 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * AM625 SK: https://www.ti.com/lit/zip/sprr448
-+ *
-+ * Copyright (C) 2021-2022 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-am625.dtsi"
-+
-+/ {
-+	compatible =  "ti,am625-sk", "ti,am625";
-+	model = "Texas Instruments AM625 SK";
-+
-+	aliases {
-+		serial2 = &main_uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 2G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-+
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_tfa_ddr: tfa@9e780000 {
-+			reg = <0x00 0x9e780000 0x00 0x80000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+
-+		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0000000 0x00 0x200000>;
-+			no-map;
-+		};
-+	};
-+
-+	vmain_pd: regulator-0 {
-+		/* TPS65988 PD CONTROLLER OUTPUT */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vmain_pd";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_5v0: regulator-1 {
-+		/* Output of LM34936 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vmain_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_3v3_sys: regulator-2 {
-+		/* output of LM61460-Q1 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_sys";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vmain_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usr_led_pins_default>;
-+
-+		led-0 {
-+			label = "am62-sk:green:heartbeat";
-+			gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+			default-state = "off";
-+		};
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_uart0_pins_default: main-uart0-pins-default {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x1c8, PIN_INPUT, 0) /* (D14) UART0_RXD */
-+			AM62X_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (E14) UART0_TXD */
-+		>;
-+	};
-+
-+	main_i2c0_pins_default: main-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x1e0, PIN_INPUT_PULLUP, 0) /* (B16) I2C0_SCL */
-+			AM62X_IOPAD(0x1e4, PIN_INPUT_PULLUP, 0) /* (A16) I2C0_SDA */
-+		>;
-+	};
-+
-+	main_i2c1_pins_default: main-i2c1-pins-default {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x1e8, PIN_INPUT_PULLUP, 0) /* (B17) I2C1_SCL */
-+			AM62X_IOPAD(0x1ec, PIN_INPUT_PULLUP, 0) /* (A17) I2C1_SDA */
-+		>;
-+	};
-+
-+	usr_led_pins_default: usr-led-pins-default {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x244, PIN_OUTPUT, 7) /* (C17) MMC1_SDWP.GPIO1_49 */
-+		>;
-+	};
-+};
-+
-+&wkup_uart0 {
-+	/* WKUP UART0 is used by DM firmware */
-+	status = "reserved";
-+};
-+
-+&mcu_uart0 {
-+	status = "disabled";
-+};
-+
-+&main_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+};
-+
-+&main_uart1 {
-+	/* Main UART1 is used by TIFS firmware */
-+	status = "reserved";
-+};
-+
-+&main_uart2 {
-+	status = "disabled";
-+};
-+
-+&main_uart3 {
-+	status = "disabled";
-+};
-+
-+&main_uart4 {
-+	status = "disabled";
-+};
-+
-+&main_uart5 {
-+	status = "disabled";
-+};
-+
-+&main_uart6 {
-+	status = "disabled";
-+};
-+
-+&mcu_i2c0 {
-+	status = "disabled";
-+};
-+
-+&wkup_i2c0 {
-+	status = "disabled";
-+};
-+
-+&main_i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
-+&main_i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c1_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
-+&main_i2c2 {
-+	status = "disabled";
-+};
-+
-+&main_i2c3 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster0 {
-+	mbox_m4_0: mbox-m4-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
 -- 
-2.35.1
-
+Good Afternoon from UK,
+How are you? we guess you're well, Our office has sent you a message
+last week, did you read our notice? get back to us upon the receipt of
+this mail.
+Thank You,
+Mr. Hennager James Craig
+IMF Office London United Kingdom
