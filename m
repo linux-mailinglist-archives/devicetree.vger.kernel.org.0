@@ -2,99 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62DD44B8F7A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 18:41:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 281644B8FE4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 19:10:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237253AbiBPRlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 12:41:53 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36694 "EHLO
+        id S237457AbiBPSKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 13:10:42 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236100AbiBPRlw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 12:41:52 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499628F998
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 09:41:39 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id gb39so1007277ejc.1
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 09:41:39 -0800 (PST)
+        with ESMTP id S237442AbiBPSKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 13:10:41 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090DA2B0B19
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 10:10:28 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id b9so5358260lfv.7
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 10:10:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=djGKhvUF8lAsiTuKU98fE1SgBbCGkJsAmy7BmMcoar8=;
-        b=UP8H3zyMYCdYT/Sbbg7irkfEZacdDXjpdeXWnjeqJjYeDkYOLgqlgGTo+MxOWN1xl/
-         4LH8IHuP+ecQgrklqMYrQj3x4ypcRpHk9FwNrELn8tBDBf2qn383vfslQokVJPgJD9nk
-         bgekFn5KptFsd+v32SQdwLeOzcR7FA7AcNzWmvI/JMXnH5Ahq+6ZGLt/6Q1/z4MTutxf
-         NM4B2BKFbw1UlFEOiTqwMiqWq8NpGYeFLIjeW1qWLZiDzZ8/ozbGGfChaKctc1L38eHr
-         /LF6NKe5Aug/po8Wbk29VJPHddAmp4oBToZyy0KrCVwE/KfEFHo7ozweQ1mEqjRiNYdU
-         4acA==
+        d=cogentembedded-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IcjZSFFwvzH/2up3CoXhhR79DVF3xC2YmgnlBmig55Y=;
+        b=w0bfYwr/yIGgKsMa1Lc2zzEf7dvcqLF1kzRhwu0wytHvdRAS+simDuAOgxyM7Vwzu9
+         tlA5U3ssSqPOn3EMDTDRu2aq9oU+7vOWm6Roq0/pqSQOMdVBM3gbeduVwjmbT2DHWVMb
+         q9D5CEfQHC+J+H/Y7rnP2d/ViEGlk215M49G6LxjPZ3Yv1Gz1UZBEOmnRjhgIuqmvUgU
+         C8Eiuf2J1pQ6sjyI8nRt/GyZ2yP3Kbqx5fXJXA3lcicj7pPDK7CF//nRb9Wy/Et7Qb1y
+         iIZdq5bvjNBVYdqRcmCwQjysllfixuxZE6Oo5rcbxX4XfaY1rB9fH43GUQvoq0ccjNTB
+         HcQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=djGKhvUF8lAsiTuKU98fE1SgBbCGkJsAmy7BmMcoar8=;
-        b=3H5vhdC+1om6sTAAEVr6+sZRiQkhe4VuGKq8ye5AMt106RdnTJMZzTc2d4b1LawwRx
-         EdiqUEXTJKaM+TgU6FS4FoQUZEQaKu7EhRl1+/b3MlZ0X0s+5ULJM79m0x0cT7+CYSKi
-         A3lRXcnfEWdNhyUPnIcToeSzzqwkhLp4dYJWCbKNFOmtUDXd7kpxtddtFvbxbzWWBhiR
-         SMk+ieGMTFS8Bh9fDj3vx3ph9BC9a6WLLp/12Z0OyRH6NPDElMVvveBjgSYtpIUXV5Ui
-         uFLxwvLpK1YzH1Bk60zNZfD+Cp3m2TVF/naCCyRRVx1YmjQNxzzEJ6wwixqRIwN9SweE
-         R59g==
-X-Gm-Message-State: AOAM530+E6j6bIIWA9p15qpIRN4UVBXjBTnU8Ybhqi+rml4ySPCEE8hh
-        WegDeZwwaGL66Z0Ww790I5rwkxPa7k7IMlDT3H4=
-X-Google-Smtp-Source: ABdhPJxtr70YZtgGKJ0Jk9uDCbCNiaoFn3sAdj2suY+0XgmUE4W4DuRYahJqSlr5J7N39j/0AZK4omla72+IrbiaYsE=
-X-Received: by 2002:a17:907:138e:b0:6cc:f1aa:a8fe with SMTP id
- vs14-20020a170907138e00b006ccf1aaa8femr3063587ejb.25.1645033297922; Wed, 16
- Feb 2022 09:41:37 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IcjZSFFwvzH/2up3CoXhhR79DVF3xC2YmgnlBmig55Y=;
+        b=3xwzkgWdAHvlUVz15DYpjQFcM12SLrnAXtgTVBStTJKY2Cv/XeuXLNta7YtoDnRASV
+         404If6NuWWHoKLm2i7H0P6+y6s3VFTwiuMTsdVlSvwcVnfGz5hEHPm+rNKF+goCaF2Aq
+         kZgK9ynZRWOkZv/sLjePN/HCJeVxg0w3L5y6aSXzBcnPyIsGDwlWlfqH6GILr4Y1C62m
+         WWEPf5XG3Ei/Hs0OlmWpq1Ejf8wpWtlZ/Bv0jBtRYZXNgAao653h8yuRTYg+SQkckeUG
+         ezTK7XHPRclwGZ0xALO9uOoPttcklwo06jbiZKaDie/ATBHqOnE+9oZ8AubAf+xonocj
+         Bzdw==
+X-Gm-Message-State: AOAM530ITDwuWzHhmoKWDCPG9arU3mtK/6icMtCJxxafy9TgqSIq2592
+        dtGYIVOyC4M60M7wljvqY+5W5w==
+X-Google-Smtp-Source: ABdhPJyHHJ2z98x3FxWyYQVGxbdwLK7ZNxTg/1MKt2UFEenBVMHIcz9Wxy7OW5QZqcMRz5JB8DYs3Q==
+X-Received: by 2002:a05:6512:1507:b0:443:7e88:ce57 with SMTP id bq7-20020a056512150700b004437e88ce57mr2877346lfb.659.1645035026383;
+        Wed, 16 Feb 2022 10:10:26 -0800 (PST)
+Received: from cobook.home (nikaet.starlink.ru. [94.141.168.29])
+        by smtp.gmail.com with ESMTPSA id y18sm567909ljd.13.2022.02.16.10.10.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Feb 2022 10:10:25 -0800 (PST)
+From:   Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Subject: [PATCH] arm64: dts: renesas: ulcb-kf: fix wrong comment
+Date:   Wed, 16 Feb 2022 21:10:04 +0300
+Message-Id: <20220216181003.114049-1-nikita.yoush@cogentembedded.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Received: by 2002:ab4:a5c9:0:0:0:0:0 with HTTP; Wed, 16 Feb 2022 09:41:37
- -0800 (PST)
-Reply-To: ukofficeimf@gmail.com
-From:   IMF UkOffice <jamesikpe6@gmail.com>
-Date:   Wed, 16 Feb 2022 09:41:37 -0800
-Message-ID: <CADDnvagN4wBZc9az66D15g3a4_2rxrqmgGoc6+4TWFhcDyM_JQ@mail.gmail.com>
-Subject: Q
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:632 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.4323]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [jamesikpe6[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [jamesikpe6[at]gmail.com]
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.5 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Fix comment referencing salvator board, likely a copy-paste leftover.
+
+ulcb-kf.dtsi has nothing to do with salvator.
+
+Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+---
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+index d122e645a892..40147920bdf7 100644
+--- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
++++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+@@ -413,7 +413,7 @@ &sound_clk_pins
+ 		     &sound_pcm_pins>;
+ 
+ 	ports {
+-		/* rsnd_port0/1 are on salvator-common */
++		/* rsnd_port0/1 are defined in ulcb.dtsi */
+ 		rsnd_port2: port@2 {
+ 			reg = <2>;
+ 			rsnd_for_pcm3168a_play: endpoint {
 -- 
-Good Afternoon from UK,
-How are you? we guess you're well, Our office has sent you a message
-last week, did you read our notice? get back to us upon the receipt of
-this mail.
-Thank You,
-Mr. Hennager James Craig
-IMF Office London United Kingdom
+2.30.2
+
