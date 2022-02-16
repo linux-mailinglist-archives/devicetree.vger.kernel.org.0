@@ -2,57 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 343C14B94A1
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 00:43:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 793694B94B8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 00:52:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237208AbiBPXnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 18:43:24 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57636 "EHLO
+        id S237072AbiBPXwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 18:52:34 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236907AbiBPXnY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 18:43:24 -0500
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC9E13C38E;
-        Wed, 16 Feb 2022 15:43:11 -0800 (PST)
-Received: by mail-io1-f52.google.com with SMTP id a26so1717299iot.6;
-        Wed, 16 Feb 2022 15:43:11 -0800 (PST)
+        with ESMTP id S229820AbiBPXwd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 18:52:33 -0500
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77089F4063;
+        Wed, 16 Feb 2022 15:52:20 -0800 (PST)
+Received: by mail-il1-f181.google.com with SMTP id d3so1049538ilr.10;
+        Wed, 16 Feb 2022 15:52:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CRjHfQOjI0mmOa6NhLg+/gN/vr6jaESGsMoKgehOdWk=;
-        b=NxJkwvgbiVlL1GMEmDT0NJrKJWumHuWD11F1GcIUn6iZCfmmbO0B1XRrFlk6ihrLiT
-         I8BkcmsuOxVkAI4z85mRnWiTMLgXhNs9NNE0im6xy1jiAyG0V6qDvCz9wbni1ayV+y3i
-         sSz4Ju0WdPrGzAfZgMgUvCycWV7eqYEcW/cWS2k2uSc3pNzO5/5hiepzGIpcvHrWZIKl
-         rFqHaDkkm/9rZBdw8WNKQgQECKGosJgF9a1ckOSy3ll7RWHlV9XLuNuEZuNSLt/1SC8c
-         pJ9MMCf2B3WKoy50DkXs3nxBpVpR4KObVjjpdDJK8Xu/kzFxD0vPh76yNh3KbP8RzzoS
-         Q5sQ==
-X-Gm-Message-State: AOAM531fbcIPVETl/aIibwal8sDsHv2/Jr1CZsZ73Fx+uU6vXVdHjeNe
-        dpGKifclf1JDIfGxQ8bYpBrzJ+bGKg==
-X-Google-Smtp-Source: ABdhPJzYA3SGZs3cIXGfYrgcESqrOx7Ezc+E2xRcM2xfKgqnUewWsDFahrdSZDa1d8exUTaPCL3ZKw==
-X-Received: by 2002:a05:6638:3183:b0:306:7ccc:92af with SMTP id z3-20020a056638318300b003067ccc92afmr153577jak.259.1645054990760;
-        Wed, 16 Feb 2022 15:43:10 -0800 (PST)
+        bh=b/JXIitbDZ9HoqIJQDyG8ELeQOdY8UCMjKhFkXYelkw=;
+        b=eAKZe+Seh7P0SYBnxfLgH/sgd67U+4UQXJU/+1+vLP6bFNhtAmzjXj0e03i5X6uYCr
+         MANiweju6037zb6zhB4Vjo23/k+aaEQrHu4R06EyIL2ZVV16UoOPWXS5xbk5CdgFAXRG
+         GC3GFQiBQUWPcLt2OZdOZ2JtHQ9LDiytt0PzCCSc27pJczQgWXpngj4+8wsOSMuqEdpj
+         wIxCm8TQvHwAb3HP5qYPBRedrVDggr9JNmo+g+hycBq7mHaP8N9Ubm3QRilwdzjY0c+l
+         1vBEHpQJis/mXS1giY9IqwfOV8YbkF3c2XPFiz36kzAOsS2rxdoC5k/y79tt73amRxz6
+         0ayA==
+X-Gm-Message-State: AOAM531u1UJujwPXSE2Ywf5vAx8Fp0D7jQJJ7E00M0+EvTJeZTS5kvs0
+        jz3Gia5pEcQDbOhn6O7Pew==
+X-Google-Smtp-Source: ABdhPJzMeZBEmpkyBZ0DqYIbANVj7AN2XmgRUWyZkypg6ORTBG7lSLroGnVPeDY/yrX1DtGyrr1CDQ==
+X-Received: by 2002:a92:c567:0:b0:2b8:b4d1:ba3c with SMTP id b7-20020a92c567000000b002b8b4d1ba3cmr202018ilj.50.1645055539773;
+        Wed, 16 Feb 2022 15:52:19 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id x15sm906308ilu.11.2022.02.16.15.43.09
+        by smtp.gmail.com with ESMTPSA id i13sm800285ila.46.2022.02.16.15.52.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Feb 2022 15:43:10 -0800 (PST)
-Received: (nullmailer pid 1902474 invoked by uid 1000);
-        Wed, 16 Feb 2022 23:43:08 -0000
-Date:   Wed, 16 Feb 2022 17:43:08 -0600
+        Wed, 16 Feb 2022 15:52:18 -0800 (PST)
+Received: (nullmailer pid 1918923 invoked by uid 1000);
+        Wed, 16 Feb 2022 23:52:16 -0000
+Date:   Wed, 16 Feb 2022 17:52:16 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, Peter Rosin <peda@axentia.se>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-i2c@vger.kernel.org
-Subject: Re: [v6 1/3] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Message-ID: <Yg2MDCQNJJBhO5UY@robh.at.kernel.org>
-References: <20220216074613.235725-1-patrick.rudolph@9elements.com>
- <20220216074613.235725-2-patrick.rudolph@9elements.com>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, alistair@alistair23.me,
+        samuel@sholland.org, josua.mayer@jm0.eu,
+        letux-kernel@openphoenux.org
+Subject: Re: [RFC PATCH 1/6] dt-bindings: display: imx: Add EPDC
+Message-ID: <Yg2OMADV6GLG6a4/@robh.at.kernel.org>
+References: <20220206080016.796556-1-andreas@kemnade.info>
+ <20220206080016.796556-2-andreas@kemnade.info>
+ <YgaE06Ktabpf2dJC@robh.at.kernel.org>
+ <20220214234517.121e1167@aktux>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220216074613.235725-2-patrick.rudolph@9elements.com>
+In-Reply-To: <20220214234517.121e1167@aktux>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,26 +71,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Feb 2022 08:46:10 +0100, Patrick Rudolph wrote:
-> Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-> chips. The functionality will be provided by the exisintg pca954x driver.
+On Mon, Feb 14, 2022 at 11:45:17PM +0100, Andreas Kemnade wrote:
+> Hi Rob,
 > 
-> While on it make the interrupts support conditionally as not all of the
-> existing chips have interrupts.
+> On Fri, 11 Feb 2022 09:46:27 -0600
+> Rob Herring <robh@kernel.org> wrote:
 > 
-> For chips that are powered off by default add an optional regulator
-> called vdd-supply.
+> > On Sun, Feb 06, 2022 at 09:00:11AM +0100, Andreas Kemnade wrote:
+> > > Add a binding for the Electrophoretic Display Controller found at least
+> > > in the i.MX6.  
+> > 
+> > The first version was in i.MX50 (I helped design the register 
+> > interface). Is that version compatible?
+> > 
+> it has some differences, but that could be detected by EPDC_VERSION
+> register. I do not own such a device, so I cannot fully check. I have
+> not seen any driver with devicetree for IMX5. For now I am rejecting
+> anything which has a EPDC version which I cannot check. 
 > 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> ---
->  .../bindings/i2c/i2c-mux-pca954x.yaml         | 44 ++++++++++++++-----
->  1 file changed, 34 insertions(+), 10 deletions(-)
+> > > The timing subnode is directly here to avoid having display parameters
+> > > spread all over the plate.
+> > > 
+> > > Supplies are organized the same way as in the fbdev driver in the
+> > > NXP/Freescale kernel forks. The regulators used for that purpose,
+> > > like the TPS65185, the SY7636A and MAX17135 have typically a single bit to
+> > > start a bunch of regulators of higher or negative voltage with a
+> > > well-defined timing. VCOM can be handled separately, but can also be
+> > > incorporated into that single bit.
+> > > 
+> > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > > ---
+> > >  .../bindings/display/imx/fsl,mxc-epdc.yaml    | 159 ++++++++++++++++++
+> > >  1 file changed, 159 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
+> > > new file mode 100644
+> > > index 000000000000..7e0795cc3f70
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
+> > > @@ -0,0 +1,159 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/display/imx/fsl,mxc-epdc.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Freescale i.MX6 EPDC
+> > > +
+> > > +maintainers:
+> > > +  - Andreas Kemnade <andreas@kemnade.info>
+> > > +
+> > > +description: |
+> > > +  The EPDC is a controller for handling electronic paper displays found in
+> > > +  i.MX6 SoCs.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - fsl,imx6sl-epdc
+> > > +      - fsl,imx6sll-epdc  
+> > 
+> > Not compatible with each other?
+> > 
+> differences are detectable by EPDC_VERSION register, so probably so
+> problem. NXP/Freescale kernel uses
+> fsl,imx6dl-epdc
+> and 
+> fsl,imx7d-epdc (used also by imx6 devices with EPDC_VERSION = 3.0)
+> in their drivers.
 > 
+> fsl,imx6dl-epdc
+> fsl,imx6sl-epdc
+> fsl,imx6sll-epdc
+> fsl,imx7d-epdc
+> in their dtsis.
+> 
+> But the general rule is to use as less as possible compatible strings
+> if differences can be probed properly, so only one should be
+> sufficient? Which one?
 
+If you can probe all the differences, then just 'fsl,imx-epdc' is 
+sufficient. Just document that so the next time around I don't forget 
+and tell you it needs to be specific.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+Rob
