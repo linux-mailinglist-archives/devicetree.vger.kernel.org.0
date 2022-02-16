@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA0564B85BD
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 11:31:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EFC34B85B7
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 11:31:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232820AbiBPKZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 05:25:14 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44588 "EHLO
+        id S232827AbiBPKZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 05:25:30 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232174AbiBPKZN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 05:25:13 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA2720A37B
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:25:00 -0800 (PST)
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        with ESMTP id S232799AbiBPKZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 05:25:29 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81CB42B8ADE
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:25:18 -0800 (PST)
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 6068A3F328
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 10:24:59 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BB5004060C
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 10:25:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645007099;
-        bh=YSlDRmR6HZ9aZKr/Lcfq0977piYhJk2IERAtVdzaOd4=;
+        s=20210705; t=1645007116;
+        bh=Ey6VaxN3+TtjS0CeJz8Z++b9aDBgnfhzVZhYIOYqsgA=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=PxUTowp2/V4QZLg6Qk2tohPasx4HqRBl6J1bDLZqOt9MBt3wQzTwm+Yg8agyMvdGE
-         Jh9CGvKYvnvXctYT5vRZyTTwQT0KK8J8oUkZg6SK6Y4gWWmkdSWolV6W5XcohFZSIR
-         mmiPWvv+HHXY719q1o9aV6rclaRjx+wyujJOMSbm0Slm4PHY9eyxpULd7IIAftsaVd
-         hcJ6+OesiNyBeE1lCc/ShOLk+8Kshha+B+ZcFWcrgW70PlV6yI4/ZMZNLLijm5t8mj
-         d6Wd6pOstsZCTkZocVAN0JNZ4ph+H0c/cdyu920okrBUFBT3YISPhD95j+c/1VeBuA
-         +yCW3d8iZXnlw==
-Received: by mail-ej1-f70.google.com with SMTP id m4-20020a170906160400b006be3f85906eso610080ejd.23
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:24:59 -0800 (PST)
+        b=HKaxITjw/61ZbCcTUrvoVZgNXISZTurIPV8pONtgveQDFoUGkDPPOXDWskkMGYHfE
+         QlWBlgxDp3UHrRG+RMPuHF1EvCAcevafrfMW/yVYgbDs6ECL0GaGERgKT4eZbjFWqy
+         wT6gTeodY/hpFqDxi9cGjMB8cM+ntFSSEE8C22z+1YF0ozEgcYLVE/zNdvzbJGkDam
+         HZ+vhdIXquSeTU9jcUlEZfe2KiQWAUjlFi1e89Viwk/aNAAgqaJpMXNSp4ecwPGa2q
+         G8VQXw5LmP782TKbabxGUP2dNAnsLNm5gqyv4z+8Gdzv5C9HGf3+M2KVxp83d2jFqI
+         ig3lp2lagL/zA==
+Received: by mail-ej1-f72.google.com with SMTP id hc39-20020a17090716a700b006ce88cf89dfso622380ejc.10
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 02:25:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=YSlDRmR6HZ9aZKr/Lcfq0977piYhJk2IERAtVdzaOd4=;
-        b=JfmyhS9F/Z/xA8Aqd9v71Wxg82j3kriURmURdIryR0RncfPTh+642U2sfJlsjpxACQ
-         nbswbwZ5QMUHKQVERQSXvsXeKwK208tvktV31VL6cOiQeXUd9T02+YMdqzJg65hardnc
-         RiIWvCud9P7vP8hcLyt4azsbUsfU4rvCH1gA1CZqqBeygNs3ol8L2GmcyP7Mv3Wi9r/W
-         9OJC6kMJRQ3zkZ2v9DYWRMfpPe7RXAXFMpIxu/tBvNyMaOE1fgHHY2QHBu2BAx1X9qMd
-         g4bzQW0pJJNUD7odT+AWqbXGz0e6CW4VtviqellPHyBQy1YYNsaYs2U+webvB4K67n+t
-         pgJw==
-X-Gm-Message-State: AOAM530O7Ahr9Iz+9zLUMSyfc9hLTs9pZ4fZXVizYysJPvtOMV254pot
-        GA95TRZy7nhl0vhcJPNAx9apRMn8shM9XEEbSF67TBNgO0rz92nSTvNCy7uSz+Cn5j0aLKG43hF
-        ssJ9gzLT3WhW0U6zB8k4uwV2BmNFAbG+E9CDkj1g=
-X-Received: by 2002:a05:6402:27d0:b0:410:b9d9:207b with SMTP id c16-20020a05640227d000b00410b9d9207bmr2244796ede.208.1645007099132;
-        Wed, 16 Feb 2022 02:24:59 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzDh5xpNIVzVrjUqlDP7kPcm5NQeqk5G2s8lLOf/pc//q9vQC4/dfHu3xfES8jYs8Ppso/IYw==
-X-Received: by 2002:a05:6402:27d0:b0:410:b9d9:207b with SMTP id c16-20020a05640227d000b00410b9d9207bmr2244780ede.208.1645007098993;
-        Wed, 16 Feb 2022 02:24:58 -0800 (PST)
+        bh=Ey6VaxN3+TtjS0CeJz8Z++b9aDBgnfhzVZhYIOYqsgA=;
+        b=FHv8iPUhcMpDtIiXj1uxeZUk0NRM7TcDGxdvFIjhxkkfyAGGgNg7fj2YYkhSYqWMZP
+         gFiKqHh/hIkXVh0PHYdkBFTOEiPr2lcK/StfnK9If5ybtizkWyneCz0fCs4mvehK2edk
+         v3WvW898663lK/aYXlv2yxfapX3cdnjG8vKzc1O0eKufOi2hqkrMDUGvdIjBBOiISPAP
+         YjlU8rmTObnEkxwXFFWyqBfWYHVO4/MNWThS8p7TJ1KnQ5CZcWBKud2tdDLFiQG6NrAU
+         TMr0aIsf4TnpOQ91FhExojLWrBEPOEGK3NVtGNq6B0VsnvFcUkZYJotmzREXkI92Zsag
+         SWHA==
+X-Gm-Message-State: AOAM532Ee8SYzld2l7TaaL2N9AYJEDxzWBj+yISdvo/+fPMkxh9XYWOU
+        Vaz50IMn5clQsygeVQHn7SS1hvC8Nsp+/buIGjLvdtqa9eoxdhqijUHL4ijZjHyPOxZ62Z5i2lP
+        sI25pOyuKi9H4MI1iYcxSV6T6toicHMXMIcOuG0A=
+X-Received: by 2002:a05:6402:42c9:b0:407:f86c:44e7 with SMTP id i9-20020a05640242c900b00407f86c44e7mr2210527edc.230.1645007116236;
+        Wed, 16 Feb 2022 02:25:16 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwXhI1GOJN+xMaYOEWFkB2LIcPlHVPuUI2OPv5j58HHAMwCjf2s+lIVP1mT/MDotPjYhLQjTQ==
+X-Received: by 2002:a05:6402:42c9:b0:407:f86c:44e7 with SMTP id i9-20020a05640242c900b00407f86c44e7mr2210501edc.230.1645007116026;
+        Wed, 16 Feb 2022 02:25:16 -0800 (PST)
 Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id t4sm1473803edd.7.2022.02.16.02.24.58
+        by smtp.gmail.com with ESMTPSA id d25sm12653033ejz.4.2022.02.16.02.25.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Feb 2022 02:24:58 -0800 (PST)
-Message-ID: <6807587c-7135-855b-a9b3-26a55f2125d1@canonical.com>
-Date:   Wed, 16 Feb 2022 11:24:57 +0100
+        Wed, 16 Feb 2022 02:25:15 -0800 (PST)
+Message-ID: <db4de0b0-1f27-d3f8-c75a-8dfa6f8eaca1@canonical.com>
+Date:   Wed, 16 Feb 2022 11:25:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [v2,3/4] dt-bindings: pwm: Add compatible for MediaTek MT8195
+Subject: Re: [v2,4/4] dt-bindings: pwm: Add compatible for MediaTek MT8186
 Content-Language: en-US
 To:     xinlei.lee@mediatek.com, thierry.reding@gmail.com,
         u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
@@ -74,9 +74,9 @@ Cc:     allen-kh.cheng@mediatek.com, linux-pwm@vger.kernel.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com,
         Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
 References: <1645003971-16908-1-git-send-email-xinlei.lee@mediatek.com>
- <1645003971-16908-4-git-send-email-xinlei.lee@mediatek.com>
+ <1645003971-16908-5-git-send-email-xinlei.lee@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <1645003971-16908-4-git-send-email-xinlei.lee@mediatek.com>
+In-Reply-To: <1645003971-16908-5-git-send-email-xinlei.lee@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -92,7 +92,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 16/02/2022 10:32, xinlei.lee@mediatek.com wrote:
 > From: Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
 > 
-> Add dt-binding documentation of pwm for MediaTek MT8195 SoC.
+> Add dt-binding documentation of pwm for MediaTek MT8186 SoC.
 > 
 > Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
 > ---
