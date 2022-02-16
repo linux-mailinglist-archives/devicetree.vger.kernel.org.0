@@ -2,59 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C8E04B8E93
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 17:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C78BC4B8E96
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 17:54:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236715AbiBPQwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 11:52:50 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58358 "EHLO
+        id S236702AbiBPQyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 11:54:11 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236712AbiBPQwu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 11:52:50 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0959A94975;
-        Wed, 16 Feb 2022 08:52:35 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D4226810F3;
-        Wed, 16 Feb 2022 17:52:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1645030353;
-        bh=nkHR9J9jq4jtJGORfFcUwAWp0vCgYi0vjG/zzB9UHSs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=VndKBErmHtwuwgvqPBCGOdqWtRVY2TK1xxj2FTQhZ8MgBTzWmr3qVVH8QeMr8A6tQ
-         T136dg3MeI9mFPItBbrcrq3nwHa0IqBPmxZmxXYXomVS80HlSCZHUO8/HLBRZZFYHE
-         LKrH44npTHnrgQpQSXQNUzmvibTDsXQ6Z6rzEZipRxPvp2DcTHYmpKLJK8fr+WsAB3
-         YCiyRdCQm3x63T4hkNjfOWs+AWaeuJr9FRtB/8jp+vDpm/Mqre2mQ190vQXQnAiAlK
-         jg0G+aARUyRFZvBBy0jGqkMcNYmCy9+ftTkz21PL43RI0LM4PUddHy6DPtklQk5DWJ
-         byLwO/1OdzHOw==
-Message-ID: <8083fbfb-d039-a7c8-7c08-c57ebf9e3b56@denx.de>
-Date:   Wed, 16 Feb 2022 17:52:32 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
-Content-Language: en-US
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S234159AbiBPQyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 11:54:10 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CE534293B72
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 08:53:57 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4ECEBD6E;
+        Wed, 16 Feb 2022 08:53:57 -0800 (PST)
+Received: from bogus (unknown [10.57.3.200])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 38FD33F718;
+        Wed, 16 Feb 2022 08:53:56 -0800 (PST)
+Date:   Wed, 16 Feb 2022 16:53:07 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@rohmsemiconductoreurope.onmicrosoft.com>
-References: <20220215084412.8090-1-marex@denx.de>
- <20220215084412.8090-2-marex@denx.de>
- <c1fce212-4d9e-06fe-e3fe-6d0f2ab29489@fi.rohmeurope.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <c1fce212-4d9e-06fe-e3fe-6d0f2ab29489@fi.rohmeurope.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scpi: Add missing maxItems to
+ shmem property
+Message-ID: <20220216165307.4z6muko6b2kq437c@bogus>
+References: <f6d1ea27e8b8dc47fbe849661cc5a843bc2f1ba5.1645017656.git.geert+renesas@glider.be>
+ <20220216143926.t3dadlsjtkotkv6o@bogus>
+ <CAMuHMdV6yWSAx3uNcjqmq-p90sVykZAzSHPt5EONzVkdTj1vvQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdV6yWSAx3uNcjqmq-p90sVykZAzSHPt5EONzVkdTj1vvQ@mail.gmail.com>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,55 +49,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/16/22 13:06, Vaittinen, Matti wrote:
+Hi Geert,
 
-Hi,
-
-[...]
-
->> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
->> index 8de6a22498e70..1e1686fa76e01 100644
->> --- a/drivers/clk/clk.c
->> +++ b/drivers/clk/clk.c
->> @@ -3872,6 +3872,45 @@ static void clk_core_free_parent_map(struct clk_core *core)
->>    	kfree(core->parents);
->>    }
->>    
->> +static void
->> +__clk_register_critical_clock(struct device_node *np, struct clk_core *core,
->> +			      struct clk_hw *hw)
->> +{
->> +	struct of_phandle_args clkspec;
->> +	u32 clksize, clktotal;
->> +	int ret, i, index;
->> +
->> +	if (!np)
->> +		return;
->> +
->> +	if (!core->ops->match_clkspec)
->> +		return;
->> +
->> +	if (of_property_read_u32(np, "#clock-cells", &clksize))
->> +		return;
->> +
->> +	/* Clock node with #clock-cells = <0> uses critical-clocks; */
->> +	if (clksize == 0) {
->> +		if (of_property_read_bool(np, "critical-clocks") &&
->> +		    !core->ops->match_clkspec(hw, &clkspec))
+On Wed, Feb 16, 2022 at 03:55:35PM +0100, Geert Uytterhoeven wrote:
 > 
-> I think this is never true as there is
-> if (!core->ops->match_clkspec)
-> 	return;
-> 
-> above.
+> In the absence of maxItems, the validator assumes it is equal to minItems,
+> so we do need a sensible maxItems value here.
 
-If the driver implements match_clkspec() callback, then the callback 
-gets used here to determine whether the clock match this clkspec.
+Ah OK, makes sense.
 
-> Anyways, seeing you added a dummy bd71837_match_clkspec in a follow-up
-> patch for BD71837 - which has only single clock - I wonder if there is a
-> way to omit that dummy callback in controllers which really provide only
-> one clock?
+> Any suggestions? 16? 64?
+>
 
-Yes, I think we can omit the match_clkspec call for clock controllers 
-with clock-cells == 0 altogether.
+I did a quick look and only 2 platforms use it(juno/amlogic meson).
+Juno can go upto max of 62 theoretically but I don't think we we go beyond 4
+due to associated shmem limitation. So maxitem of 4 should work just fine
+for now. Since it is obsolete spec, I don't see any new extensions or users.
+
+So you can add my ACK for the value of 4. 2 must work too but since I have
+tested juno with 4, I would like to keep that possibility.
+
+--
+Regards,
+Sudeep
