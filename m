@@ -2,120 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82DA64B9329
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 22:25:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78AAA4B9339
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 22:35:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiBPV0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 16:26:01 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36196 "EHLO
+        id S230428AbiBPVfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 16:35:13 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234801AbiBPVZ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 16:25:58 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC2FA2AE735;
-        Wed, 16 Feb 2022 13:25:45 -0800 (PST)
-Received: from localhost.localdomain (ip-213-127-118-180.ip.prioritytelecom.net [213.127.118.180])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 67313C7184;
-        Wed, 16 Feb 2022 21:25:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1645046744; bh=8ZqDBuy6tg3m8U9pU7Xf1AWeHMPKkX8n5xVbekijS/8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=SZYU6N9MiaCHYAzw+Mkn1+X25IsRjIPgMgeCVa7T/3XMLz0ZVYUu+mzlyCDH3mdQ/
-         eHuv6YgWwXFzqw/ya2igm0RiM0aUHty3dQWrAKHrNuzp7bqiQ9MokATxMAod9/9rrg
-         3c2beKDIu60gs5EeiBgoj2Eqchy3au4BqEAn+4CA=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] ARM: dts: qcom: apq8026-lg-lenok: Add Bluetooth
-Date:   Wed, 16 Feb 2022 22:24:32 +0100
-Message-Id: <20220216212433.1373903-6-luca@z3ntu.xyz>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220216212433.1373903-1-luca@z3ntu.xyz>
-References: <20220216212433.1373903-1-luca@z3ntu.xyz>
+        with ESMTP id S229635AbiBPVfN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 16:35:13 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 408E628B613
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 13:35:00 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B86C0D6E;
+        Wed, 16 Feb 2022 13:34:59 -0800 (PST)
+Received: from [10.57.40.147] (unknown [10.57.40.147])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 706D33F70D;
+        Wed, 16 Feb 2022 13:34:58 -0800 (PST)
+Message-ID: <4b88f0f1-7422-7beb-2f7a-563f1f4b3360@arm.com>
+Date:   Wed, 16 Feb 2022 21:34:52 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH] arm64: dts: rockchip: Correct clock-output-names for
+ rk817
+Content-Language: en-GB
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        devicetree@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>
+Cc:     robh+dt@kernel.org, jon.lin@rock-chips.com,
+        linux-rockchip@lists.infradead.org,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20220216165837.4721-1-macroalpha82@gmail.com>
+ <44462609.a43xROnmBz@diego>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <44462609.a43xROnmBz@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The device contains BCM43430A0 for bluetooth. Add a node for it.
+On 2022-02-16 20:42, Heiko Stübner wrote:
+> Hi,
+> 
+> Am Mittwoch, 16. Februar 2022, 17:58:37 CET schrieb Chris Morgan:
+>> From: Chris Morgan <macromorgan@hotmail.com>
+>>
+>> According to the datasheet for the rk817 there is only a single output
+>> clock for the PMIC. I don't believe this is causing any harm though
+>> and testing this change doesn't appear to have any noticeable effects.
+> 
+> hmm, looking at the go2's schematics, I'd disagree:
+> 
+> - yes, the rk817 has only one clock output
+> - but no, it is used for the clkout_32k signal, which gets piped back into
+>    the SoC. As that clock dynamically appears at some unspecified point
+>    when the rk817 probes, the clock controller expects it to be named
+>    xin32k to bind into its clock-tree.
+> 
+> The driver (drivers/clk/clk-rk808.c) really puts that rk817-clk32k at
+> position 2 but I'm not sure if that simply papers over some implementation
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts | 36 +++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+Indeed it appears to be a hangover from RK808 where CLK32KOUT1 is 
+always-on and CLK32KOUT2 is the switchable one. It's even more obvious 
+on RK805 which still shares the original control register layout.
 
-diff --git a/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts b/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-index 333fae435913..42467f705b26 100644
---- a/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-+++ b/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-@@ -16,6 +16,7 @@ / {
- 
- 	aliases {
- 		serial0 = &blsp1_uart3;
-+		serial1 = &blsp1_uart4;
- 	};
- 
- 	chosen {
-@@ -80,6 +81,26 @@ &blsp1_uart3 {
- 	status = "okay";
- };
- 
-+&blsp1_uart4 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&blsp1_uart4_default_state>;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43430a0-bt";
-+
-+		max-speed = <3000000>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bluetooth_default_state>;
-+
-+		host-wakeup-gpios = <&tlmm 48 GPIO_ACTIVE_HIGH>;
-+		device-wakeup-gpios = <&tlmm 47 GPIO_ACTIVE_HIGH>;
-+		shutdown-gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
- &rpm_requests {
- 	pm8226-regulators {
- 		compatible = "qcom,rpm-pm8226-regulators";
-@@ -254,6 +275,21 @@ &smbb {
- };
- 
- &tlmm {
-+	blsp1_uart4_default_state: blsp1-uart4-default-state {
-+		pins = "gpio12", "gpio13", "gpio14", "gpio15";
-+		function = "blsp_uart4";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
-+
-+	bluetooth_default_state: bluetooth-default-state {
-+		pins = "gpio47", "gpio48";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+		input-enable;
-+	};
-+
- 	touch_pins: touch {
- 		irq {
- 			pins = "gpio17";
--- 
-2.35.1
+Robin.
 
+> 
+> 
+> Heiko
+> 
+>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+>> index ea0695b51ecd..5b23e607876e 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+>> @@ -296,7 +296,7 @@ rk817: pmic@20 {
+>>   		reg = <0x20>;
+>>   		interrupt-parent = <&gpio0>;
+>>   		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
+>> -		clock-output-names = "rk808-clkout1", "xin32k";
+>> +		clock-output-names = "rk808-clkout1";
+>>   		clock-names = "mclk";
+>>   		clocks = <&cru SCLK_I2S1_OUT>;
+>>   		pinctrl-names = "default";
+>>
+> 
+> 
+> 
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
