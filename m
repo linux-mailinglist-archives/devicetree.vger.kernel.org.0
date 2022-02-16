@@ -2,250 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 908704B8329
-	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 09:44:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B1344B8338
+	for <lists+devicetree@lfdr.de>; Wed, 16 Feb 2022 09:47:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229828AbiBPIkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 03:40:35 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:39628 "EHLO
+        id S231215AbiBPIrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 03:47:09 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:50860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbiBPIke (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 03:40:34 -0500
-Received: from hostingweb31-40.netsons.net (hostingweb31-40.netsons.net [89.40.174.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 768B31C8847;
-        Wed, 16 Feb 2022 00:40:22 -0800 (PST)
-Received: from host-79-2-93-196.business.telecomitalia.it ([79.2.93.196]:33352 helo=[192.168.101.73])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1nKFrH-0005i7-NY; Wed, 16 Feb 2022 09:40:19 +0100
-Message-ID: <f412980a-4e41-54c7-f000-f826e015f6d2@lucaceresoli.net>
-Date:   Wed, 16 Feb 2022 09:40:18 +0100
+        with ESMTP id S229455AbiBPIrI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 03:47:08 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5005F18CC60;
+        Wed, 16 Feb 2022 00:46:56 -0800 (PST)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21G8Sqeo005841;
+        Wed, 16 Feb 2022 09:46:20 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=/7nixD/n01nc+BoZwZ9R1YyOe5pCnVpSW4p/rLQTcvM=;
+ b=GMjvUOyE3cbd/56o+dFiFWF7O5Dm4Rd9Pir1K8KbyGzxeOhZS+kKeAp2+CVxHrOPXhow
+ s1L0wvso3CwX7ORZHpr5SoFOOCnkXCDs7f3u6ycQJ8wPfxeDoxGYfSRS3wdTTSIp9Awl
+ etgH2OJcCoc5/2rG9AadjREsVrSnbNhaxPL4hKZ5A6k21hEs2EtaLWeCouCx5h+iWiV/
+ CntlODSuAyrHnEWJivUGlX1NwVWKjsPuxVnu9agPoFWTd5Rda9JFftkyv3u6grT4SD8K
+ xFzcR0j56TDlOof8MdfxnVv5mazGJ6x72UtoXBw03aDYWC/zLlvX7gTbb2cCnZeTrZdE gA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e8n20tega-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Feb 2022 09:46:20 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 82FD110002A;
+        Wed, 16 Feb 2022 09:46:18 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6C9E8214D3B;
+        Wed, 16 Feb 2022 09:46:18 +0100 (CET)
+Received: from [10.48.0.175] (10.75.127.46) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 16 Feb
+ 2022 09:46:17 +0100
+Message-ID: <f6687807-607c-f672-2394-ad463735d597@foss.st.com>
+Date:   Wed, 16 Feb 2022 09:46:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Subject: Re: [RFCv3 2/6] i2c: add I2C Address Translator (ATR) support
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Peter Rosin <peda@axentia.se>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-References: <20220206115939.3091265-1-luca@lucaceresoli.net>
- <20220206115939.3091265-3-luca@lucaceresoli.net>
- <CAHp75Vejw86kLUJfwXR_kUn+=UCaixbcy=epO8Foe=9S2LqXTQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] mtd: core: Fix a conflict between MTD and NVMEM on
+ wp-gpios property
 Content-Language: en-US
-In-Reply-To: <CAHp75Vejw86kLUJfwXR_kUn+=UCaixbcy=epO8Foe=9S2LqXTQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Pratyush Yadav <p.yadav@ti.com>
+CC:     Miquel Raynal <miquel.raynal@bootlin.com>, <richard@nod.at>,
+        <vigneshr@ti.com>, <robh+dt@kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <linux-mtd@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, <chenshumin86@sina.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Khouloud Touil <ktouil@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+References: <20220131095755.8981-1-christophe.kerello@foss.st.com>
+ <20220131095755.8981-5-christophe.kerello@foss.st.com>
+ <20220131144309.0ffe7cc8@xps13> <20220201104727.7xvcyexf3yucegcb@ti.com>
+ <eebfa629-ead2-d63f-9cfb-4cafc1534678@foss.st.com>
+ <20220202115327.53oqg5n7tx6b6q7u@ti.com>
+From:   Christophe Kerello <christophe.kerello@foss.st.com>
+In-Reply-To: <20220202115327.53oqg5n7tx6b6q7u@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-16_04,2022-02-14_04,2021-12-02_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi Miquel, Pratyush, Srinivas,
 
-thank you for the _very_ detailed review and apologies for not having
-found the time to reply until now.
-
-I'm OK with most of your comments, so I'm not commenting on them for
-brevity. Below my comments on the remaining topics.
-
-On 08/02/22 12:16, Andy Shevchenko wrote:
-> On Mon, Feb 7, 2022 at 7:55 PM Luca Ceresoli <luca@lucaceresoli.net> wrote:
+On 2/2/22 12:53, Pratyush Yadav wrote:
+> + Khouloud, Linus, Bartosz
+> 
+> On 02/02/22 11:44AM, Christophe Kerello wrote:
+>> Hi,
 >>
->> An ATR is a device that looks similar to an i2c-mux: it has an I2C
->> slave "upstream" port and N master "downstream" ports, and forwards
->> transactions from upstream to the appropriate downstream port. But is
->> is different in that the forwarded transaction has a different slave
->> address. The address used on the upstream bus is called the "alias"
->> and is (potentially) different from the physical slave address of the
->> downstream chip.
+>> On 2/1/22 11:47, Pratyush Yadav wrote:
+>>> On 31/01/22 02:43PM, Miquel Raynal wrote:
+>>>> Hi Vignesh, Tudory, Pratyush,
+>>>>
+>>>> + Tudor and Pratyush
+>>>>
+>>>> christophe.kerello@foss.st.com wrote on Mon, 31 Jan 2022 10:57:55 +0100:
+>>>>
+>>>>> Wp-gpios property can be used on NVMEM nodes and the same property can
+>>>>> be also used on MTD NAND nodes. In case of the wp-gpios property is
+>>>>> defined at NAND level node, the GPIO management is done at NAND driver
+>>>>> level. Write protect is disabled when the driver is probed or resumed
+>>>>> and is enabled when the driver is released or suspended.
+>>>>>
+>>>>> When no partitions are defined in the NAND DT node, then the NAND DT node
+>>>>> will be passed to NVMEM framework. If wp-gpios property is defined in
+>>>>> this node, the GPIO resource is taken twice and the NAND controller
+>>>>> driver fails to probe.
+>>>>>
+>>>>> A new Boolean flag named skip_wp_gpio has been added in nvmem_config.
+>>>>> In case skip_wp_gpio is set, it means that the GPIO is handled by the
+>>>>> provider. Lets set this flag in MTD layer to avoid the conflict on
+>>>>> wp_gpios property.
+>>>>>
+>>>>> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
+>>>>> ---
+>>>>>    drivers/mtd/mtdcore.c | 2 ++
+>>>>>    1 file changed, 2 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
+>>>>> index 70f492dce158..e6d251594def 100644
+>>>>> --- a/drivers/mtd/mtdcore.c
+>>>>> +++ b/drivers/mtd/mtdcore.c
+>>>>> @@ -546,6 +546,7 @@ static int mtd_nvmem_add(struct mtd_info *mtd)
+>>>>>    	config.stride = 1;
+>>>>>    	config.read_only = true;
+>>>>>    	config.root_only = true;
+>>>>> +	config.skip_wp_gpio = true;
+>>>>>    	config.no_of_node = !of_device_is_compatible(node, "nvmem-cells");
+>>>>>    	config.priv = mtd;
+>>>>> @@ -833,6 +834,7 @@ static struct nvmem_device *mtd_otp_nvmem_register(struct mtd_info *mtd,
+>>>>>    	config.owner = THIS_MODULE;
+>>>>>    	config.type = NVMEM_TYPE_OTP;
+>>>>>    	config.root_only = true;
+>>>>> +	config.skip_wp_gpio = true;
+>>>>>    	config.reg_read = reg_read;
+>>>>>    	config.size = size;
+>>>>>    	config.of_node = np;
+>>>>
+>>>> TLDR: There is a conflict between MTD and NVMEM, who should handle the
+>>>> WP pin when there is one? At least for raw NAND devices, I don't want
+>>>> the NVMEM core to handle the wp pin. So we've introduced this
+>>>> skip_wp_gpio nvmem config option. But there are two places where this
+>>>> boolean can be set and one of these is for otp regions (see above). In
+>>>> this case, I don't know if it is safe or if CFI/SPI-NOR rely on the
+>>>> nvmem protection. Please tell us if you think this is fine for you.
+>>>
+>>> Why does NVMEM touch hardware write protection in the first place? The
+>>> purpose of the framework is to provide a way to retrieve config stored
+>>> in memory. It has no business dealing with details of the chip like the
+>>> WP line. That should be MTD's job (which it should delegate to SPI NOR,
+>>> SPI NAND, etc.). If you want to write protect a cell then do it in
+>>> software. I don't see why NVMEM should be dealing with hardware directly
+>>> at all.
+>>>
+>>> That is my mental model of how things _should_ work. I have not spent
+>>> much time digging into how things actually work currently.
+>>>
 >>
->> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
->> implementing ATR features in a device driver. The helper takes care or
->> adapter creation/destruction and translates addresses at each transaction.
+>> Wp-gpios property management was added in MVMEM framework in January 2020 =>
+>> sha1: 2a127da461a9d8d97782d6e82b227041393eb4d2
+>> "
+>>      nvmem: add support for the write-protect pin
+>>
+>>      The write-protect pin handling looks like a standard property that
+>>      could benefit other users if available in the core nvmem framework.
+>>
+>>      Instead of modifying all the memory drivers to check this pin, make
+>>      the NVMEM subsystem check if the write-protect GPIO being passed
+>>      through the nvmem_config or defined in the device tree and pull it
+>>      low whenever writing to the memory.
+>> "
+>>
+>> And this modification was done for EEPROMs flashes => sha1:
+>> 1c89074bf85068d1b86f2e0f0c2110fdd9b83c9f
+>> "
+>>      eeprom: at24: remove the write-protect pin support
+>>
+>>      NVMEM framework is an interface for the at24 EEPROMs as well as for
+>>      other drivers, instead of passing the wp-gpios over the different
+>>      drivers each time, it would be better to pass it over the NVMEM
+>>      subsystem once and for all.
+>>
+>>      Removing the support for the write-protect pin after adding it to
+>>      the NVMEM subsystem.
+>> "
+>>
+>> Current NVMEM framework implementation toggles the WP GPIO when reg_write
+>> nvmem_config API is defined. In case of MTD framework, reg_write is not
+>> defined in nvmem_config.
 > 
-> Why I2C mux driver can't be updated to support this feature?
-
-My first version did that. But it was very complex to shoehorn the ATR
-features in the i2c-mux code which already handles various [corner]
-cases. If memory serves, code reuse was limited to the trivial code:
-allocations, cleanups and the like.
-
-The root reason is that an atr and a mux have a similar electric
-topology, but they do very different things. An mux need to be commanded
-to switch from one downstream bus to another, an atr does not. An atr
-modifies the transaction, including the speed, a mux does not.
-
->>  RFCv1 was implemented inside i2c-mux.c and added yet more complexity
->>  there. RFCv2 creates a new file on its own, i2c-atr.c. Since many ATR
->>  features are not in a MUX and vice versa, the overlapping is low. This was
->>  almost a complete rewrite, but for the records here are the main
->>  differences from the old implementation:
+> Thanks for digging these up. I think this was the wrong decision to
+> make. NVMEM should just provide the APIs for handling read/write, and
+> leave the rest to the drivers.
 > 
-> While this is from a code perspective, maybe i2c mux and this one can
-> still share some parts?
-
-Possibly. I'd have to look into that in more detail.
-I must say having a separate file allowed me to be free to implement
-whatever is best for atr. With that done I would certainly make sense to
-check whether there are still enough commonalities to share code, maybe
-in a .c file with shared functions.
-
->> +config I2C_ATR
->> +       tristate "I2C Address Translator (ATR) support"
->> +       help
->> +         Enable support for I2C Address Translator (ATR) chips.
->> +
->> +         An ATR allows accessing multiple I2C busses from a single
->> +         physical bus via address translation instead of bus selection as
->> +         i2c-muxes do.
+> It might be convenient for some drivers to put the WP GPIO handling to
+> NVMEM core but I just don't think it is the job of the framework to deal
+> with this, and it just does not know enough about the device to deal
+> with correctly and completely anyway. For example, wp-gpio is only one
+> of the ways to write protect a chip. SPI NOR flashes have a WP# pin that
+> is often toggled via the SPI controller. There could also be registers
+> that do the write protection.
 > 
-> What would be the module name?
-
-Isn't the module name written in Kconfig files just to avoid checkpatch
-complain about "too few doc lines"? :) Oook, it's i2s-atr anyway.
-
->> +/**
+> One would have to make strong justifications for making nvmem directly
+> deal with hardware level details to convince me it is a good idea. IMHO
+> if AT24 EEPROM is the only driver relying on this as of now then we
+> should just revert the patches and not have to deal with the
+> skip_wp_gpio hackery.
 > 
-> Is this a kernel doc formatted documentation?
-> Haven't you got a warning?
 
-Not from checkpatch, but I got one from the kernel test robot. Will fix.
+Based on the  bindings documentation, AT24 EEPROM driver is not the only
+driver relying on this implementation. At least, AT25 EEPROM driver will
+have to be modified to handle the Write Protect management, and there is
+probably others drivers relying on this implementation.
 
-[...]
+So, should we keep the legacy and apply the proposal patch to fix this
+conflict (I can send a V3 with a fixes tag on patch 3 and 4 as
+recommended by Miquel)?
+Or should we revert the Write Protect management in NVMEM framework
+but in this case I will not be able to handle such modifications (I am
+not able to test those drivers).
 
->> + *
->> + * An I2C Address Translator (ATR) is a device with an I2C slave parent
->> + * ("upstream") port and N I2C master child ("downstream") ports, and
->> + * forwards transactions from upstream to the appropriate downstream port
->> + * with a modified slave address. The address used on the parent bus is
->> + * called the "alias" and is (potentially) different from the physical
->> + * slave address of the child bus. Address translation is done by the
->> + * hardware.
->> + *
->> + * An ATR looks similar to an i2c-mux except:
->> + * - the address on the parent and child busses can be different
->> + * - there is normally no need to select the child port; the alias used on
->> + *   the parent bus implies it
->> + *
->> + * The ATR functionality can be provided by a chip with many other
->> + * features. This file provides a helper to implement an ATR within your
->> + * driver.
->> + *
->> + * The ATR creates a new I2C "child" adapter on each child bus. Adding
->> + * devices on the child bus ends up in invoking the driver code to select
->> + * an available alias. Maintaining an appropriate pool of available aliases
->> + * and picking one for each new device is up to the driver implementer. The
->> + * ATR maintains an table of currently assigned alias and uses it to modify
->> + * all I2C transactions directed to devices on the child buses.
->> + *
->> + * A typical example follows.
->> + *
->> + * Topology:
->> + *
->> + *                       Slave X @ 0x10
->> + *               .-----.   |
->> + *   .-----.     |     |---+---- B
->> + *   | CPU |--A--| ATR |
->> + *   `-----'     |     |---+---- C
->> + *               `-----'   |
->> + *                       Slave Y @ 0x10
->> + *
->> + * Alias table:
->> + *
->> + *   Client  Alias
->> + *   -------------
->> + *      X    0x20
->> + *      Y    0x30
->> + *
->> + * Transaction:
->> + *
->> + *  - Slave X driver sends a transaction (on adapter B), slave address 0x10
->> + *  - ATR driver rewrites messages with address 0x20, forwards to adapter A
->> + *  - Physical I2C transaction on bus A, slave address 0x20
->> + *  - ATR chip propagates transaction on bus B with address translated to 0x10
->> + *  - Slave X chip replies on bus B
->> + *  - ATR chip forwards reply on bus A
->> + *  - ATR driver rewrites messages with address 0x10
->> + *  - Slave X driver gets back the msgs[], with reply and address 0x10
->> + *
->> + * Usage:
->> + *
->> + *  1. In your driver (typically in the probe function) add an ATR by
->> + *     calling i2c_atr_new() passing your attach/detach callbacks
->> + *  2. When the attach callback is called pick an appropriate alias,
->> + *     configure it in your chip and return the chosen alias in the
->> + *     alias_id parameter
->> + *  3. When the detach callback is called, deconfigure the alias from
->> + *     your chip and put it back in the pool for later usage
->> + *
->> + * Originally based on i2c-mux.c
->> + */
+Regards,
+Christophe Kerello.
+
+>>
+>> Based on the comments made, it seems that we also agree that this write
+>> protection should be handled by MTD subsystems or associated drivers and not
+>> by MVMEN framework for MTD use cases.
+>>
+>> The proposal implementation should solve this conflict for MTD framework
+>> without breaking anything for others NVMEM users (EEPROMs flashes for
+>> example).
 > 
-> Shouldn't this comment be somewhere under Documentation/ ?
-
-Uhm, yes, I agree it's a good idea to move this entire comment there.
-
->> +       if (dev->of_node) {
-> 
-> This check can be dropped, also please use device property and fwnode
-> APIs. No good of having OF-centric generic modules nowadays.
-
-Sure! This code was written in another decade and I didn't update it...
-As you noticed elsewhere it also honors the old, strict 80-chars per
-line limit in various places where it makes no sense anymore.
-
->> +       WARN(sysfs_create_link(&chan->adap.dev.kobj, &dev->kobj, "atr_device"),
->> +            "can't create symlink to atr device\n");
->> +       snprintf(symlink_name, sizeof(symlink_name), "channel-%u", chan_id);
->> +       WARN(sysfs_create_link(&dev->kobj, &chan->adap.dev.kobj, symlink_name),
->> +            "can't create symlink for channel %u\n", chan_id);
-> 
-> Doesn't sysfs already has a warning when it's really needed?
-
-I have to check that. I usually don't add unnecessary log messages.
-
-[...]
-
->> +#include <linux/i2c.h>
->> +#include <linux/mutex.h>
-> 
-> Missed types.h
-> 
-> Missed struct device;
-
-Not sure I got your point here. This file has some 'struct device *',
-which do not need a declaration, and has zero non-pointer uses of
-'struct device'.
-
--- 
-Luca
