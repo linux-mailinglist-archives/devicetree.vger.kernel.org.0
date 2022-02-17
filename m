@@ -2,100 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED084BA40C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 16:13:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 691D44BA476
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 16:35:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242337AbiBQPNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 10:13:18 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42218 "EHLO
+        id S231821AbiBQPgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 10:36:11 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241782AbiBQPNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 10:13:18 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477F612CC04
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 07:13:03 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nKiSr-0001t9-Hc; Thu, 17 Feb 2022 16:13:01 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nKiSp-000720-G6; Thu, 17 Feb 2022 16:12:59 +0100
-Date:   Thu, 17 Feb 2022 16:12:59 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Yakir Yang <ykk@rock-chips.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 13/23] drm/rockchip: dw_hdmi: Set cur_ctr to 0 always
-Message-ID: <20220217151259.GT18637@pengutronix.de>
-References: <20220217082954.2967889-1-s.hauer@pengutronix.de>
- <20220217082954.2967889-14-s.hauer@pengutronix.de>
- <f5abe6aa-473a-a00d-2bc5-b8a1d0560d1f@collabora.com>
+        with ESMTP id S229562AbiBQPgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 10:36:11 -0500
+X-Greylist: delayed 364 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Feb 2022 07:35:56 PST
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com [64.147.123.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3BA2B2C6F;
+        Thu, 17 Feb 2022 07:35:56 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailnew.west.internal (Postfix) with ESMTP id A1B112B00557;
+        Thu, 17 Feb 2022 10:29:47 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Thu, 17 Feb 2022 10:29:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; bh=vPxH7aW8wFaF6FXxK1Tw28k9hOtTqlkQkEM3+5
+        o6jE0=; b=SKicWjolSaPozz4NfRffQADKTRa8SEffMe5aQcKtd5lFyBpLDt9rpx
+        lRP2rE4ApYRhmgKVpBfH7BUfvPtPeaJqlUxO7tea12zpdpDY04X0Rk4Wzvm/0ZoS
+        bM9ZPdq+YzX2qwCpaqoxi8rUS8mWLsHS3RlcExLv5/3ezauOwd/jsbJecAE12du8
+        t0TwYYglg+xQPo2d4HFvarzzsJZS79QlNHYHbKk7DjiHpaPyDAjibY/lwvxKNOrP
+        2mTuYEEbdEr9xbkt4ABKNRgumz+7xR3u2AvNV/WpV81e6RdcsqN7YcjuSf0aSA+E
+        OFfXdUGkZgDjeaCidXwp22AujZB4RykA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=vPxH7aW8wFaF6FXxK
+        1Tw28k9hOtTqlkQkEM3+5o6jE0=; b=oJYseGpVhw6dopA1gjS4mMuicF/26jeNc
+        jTj1bCOqJtkD1BhBSWRNk9gTswXHBj7WJriUFIpasbTYniqKRPPi0h5uz56Fw2eA
+        zYu/fU9u5WfyghNUJA7eYYayFsjBWEJaGwKBwGGuAXcFfyHhcKjvW3Qzu8pXCkaU
+        Hmvpkve1IT5oBvwaa84AllJ/sL+fLiiSXeCJ58FNYn913ZMxq6ozepcxzKBGUS+7
+        GG2QQlI+7fOUC8SLI7L8Cw1gleON+e9EJQh3QOC72pG4QUlK6XxgSolAd6D2KQ4m
+        i0hZYhkaSQqnDvquoNuNotHLEGJcZ3oIhXiWP9VqwaCgSDG3yBRqQ==
+X-ME-Sender: <xms:6mkOYlse3lyINLCZgOGstWHLrrOqs40UFtvdUFY263AwJZ-zPmjnng>
+    <xme:6mkOYufKskfIV7amhqoAKjXRah1-kcUfPnn3LhN1XFp2JpzkNt0wQYfdd0HySmjeF
+    GuSn9bVDhMsNw>
+X-ME-Received: <xmr:6mkOYoxGwH-ylT7PGvPu8_tuSXwwsL6U-WT7_ZAty5oZP_FxuDsKxAxvp2Nd557noGnntn5I9zhXcpXsg3Z-f3PIQtWQiM-g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrjeekgdejhecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfhfgggtuggjsehttdertd
+    dttddvnecuhfhrohhmpefirhgvghcumffjuceoghhrvghgsehkrhhorghhrdgtohhmqeen
+    ucggtffrrghtthgvrhhnpeevueehjefgfffgiedvudekvdektdelleelgefhleejieeuge
+    egveeuuddukedvteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
+    fhhrohhmpehgrhgvgheskhhrohgrhhdrtghomh
+X-ME-Proxy: <xmx:6mkOYsM9M9puVPWvhJy0JQlkQpq5OhzTFeFQLlqLUQ-BVYTV4TRmWw>
+    <xmx:6mkOYl9CVjfu6xx8VC6Nr-bu-ghoA49QksuqCsEOTZVF3TgfF8VzZg>
+    <xmx:6mkOYsU41iGpazbSrPqas-haUyoVCHVL8UxnAHkDsxP3oaOLjKOfyg>
+    <xmx:62kOYo0cg8oz0wLBN43MwFWvllnjYuYMP_AUuaVxt_aKFTi8CJNgWErSeqU>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 17 Feb 2022 10:29:46 -0500 (EST)
+Date:   Thu, 17 Feb 2022 16:29:39 +0100
+From:   Greg KH <greg@kroah.com>
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, pure.logic@nexus-software.ie,
+        bjorn.andersson@linaro.org, robh@kernel.org,
+        linux-kernel@vger.kernel.org, quic_rjendra@quicinc.com,
+        quic_saipraka@quicinc.com
+Subject: Re: [PATCH V1] arm64: dts: qcom: sc7280: Set the default dr_mode for
+ usb2 to enable EUD.
+Message-ID: <Yg5p45LkdsAtFFKV@kroah.com>
+References: <1644903488-20557-1-git-send-email-quic_schowdhu@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f5abe6aa-473a-a00d-2bc5-b8a1d0560d1f@collabora.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 16:04:18 up 68 days, 23:49, 87 users,  load average: 0.37, 0.42,
- 0.35
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <1644903488-20557-1-git-send-email-quic_schowdhu@quicinc.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 17, 2022 at 05:00:37PM +0300, Dmitry Osipenko wrote:
-> 17.02.2022 11:29, Sascha Hauer пишет:
-> > From: Douglas Anderson <dianders@chromium.org>
-> > 
-> > Jitter was improved by lowering the MPLL bandwidth to account for high
-> > frequency noise in the rk3288 PLL.  In each case MPLL bandwidth was
-> > lowered only enough to get us a comfortable margin.  We believe that
-> > lowering the bandwidth like this is safe given sufficient testing.
-> 
-> There are no device-trees that use "rockchip,rk3288-cru", AFAICS..
+On Tue, Feb 15, 2022 at 11:08:08AM +0530, Souradeep Chowdhury wrote:
+> Update the dr_mode for usb2 to 'otg' from 'host' to enable role switch for Embedded USB
+> Debugger(EUD) Node.
 
-What do you mean? In my tree I have:
+Please properly wrap your changelog at 72 columns.
 
-arch/arm/boot/dts/rk3288.dtsi:863:              compatible = "rockchip,rk3288-cru";
-drivers/clk/rockchip/clk-rk3288.c:985:CLK_OF_DECLARE(rk3288_cru, "rockchip,rk3288-cru", rk3288_clk_init);
+thanks,
 
-> 
-> Was this change tested on a non-RK3288 devices?
-
-Yes, on a rk3568 ;)
-
-The patch has been posted back in 2015 and was added to the Rockchip
-downstream kernel in 2016. I don't know how thoroughly Rockchip tests
-their kernels, but I assume the patch wouldn't be there if it caused
-any problems.
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+greg k-h
