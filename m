@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9429D4B9E4A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 12:06:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9F7C4B9E4E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 12:07:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbiBQLDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 06:03:42 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47904 "EHLO
+        id S237299AbiBQLIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 06:08:00 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239164AbiBQLDf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 06:03:35 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29FDE986FF
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 03:01:25 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id o34so2923781wms.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 03:01:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QXC2GiLyRlkqPnLb5RTTqLhrVnBmNGVL+2tFHU8g1sI=;
-        b=CtUdkgz2hg93fo3XUEKwndi79ezxDuyHljn03vTtZrEXhCgOIIegtqY8XTc8yN48Pz
-         VIitZ95P+D9FHuit6ONJBVLLpHzqILZ19XOnVFgbJ6+7YT79pOwqRa9kC/iF6+ojhuJG
-         /Wy8nrw/nYjUKUvr9oPVWdBiTv7hU4M1FtcUBxP/+PGJMZSVwcV1lJKebYNCLhzj2fdG
-         axNpEkmz1RwlxzA9YIP2NhHZk2+GnIMVr1Q9VqaNlo9Q/83IwuOAx1eE3cuvULYt69Y6
-         cz2SrSfdpbDaGYENK6PHTFxc+dz5dipVW3urJ4tvt8/q14yQYLlUfrnpWZDTq6B+Y6ZY
-         bBkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=QXC2GiLyRlkqPnLb5RTTqLhrVnBmNGVL+2tFHU8g1sI=;
-        b=U7OKsG7AKtPwoSvttE0u7jC6jdsyCdz+lFUfY200K2c4E7Bvkg0OVNj9VHlf+9I0y7
-         +B7tFH1nsInoTETM5JAuTKHJm2xYr3C87acsOfq8XznXk0M3jCI7AT0w9opcvbc+49Po
-         4LAxMUums8EYX5v5A+aZfhPv4g1W18TGytQiqPtiGeOrnX19k+uQnDoWcBVDCD7xLCHR
-         GoyishIjKV9iI7fSG/HlHrMa867c5dSz8epdvLKqSfyqUcwnKZFJJ1suPYEfIIbG53r+
-         59HLYRK88ZaJ/C2sAj18mvpggmB6qbFwD09EiXOcwAXA0/ESN3yhn7MA3/+aJ53ZpZVC
-         khvA==
-X-Gm-Message-State: AOAM532QDmuQOyPFT/BEYNwJO0RKAxRk+HjaH0UCCdzBXnb2fDUBCr1H
-        zFxzwUl3HRU8W2YtLrwglLjd3Q==
-X-Google-Smtp-Source: ABdhPJwo6VBJNlSl7oeCrwIVAZva1FiIsBkDn9KyEqH3zZAZH3PrJSWbG1QTWYEUSOT0J0m0fv0Hng==
-X-Received: by 2002:a05:600c:224a:b0:37b:b620:77cf with SMTP id a10-20020a05600c224a00b0037bb62077cfmr5546414wmm.5.1645095683659;
-        Thu, 17 Feb 2022 03:01:23 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id m22sm968413wmq.35.2022.02.17.03.01.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Feb 2022 03:01:23 -0800 (PST)
-Message-ID: <1bd281d8-a576-26dc-79c3-b1a72a4a9691@linaro.org>
-Date:   Thu, 17 Feb 2022 11:01:21 +0000
+        with ESMTP id S230221AbiBQLIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 06:08:00 -0500
+Received: from 189.cn (ptr.189.cn [183.61.185.102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AB3251AE2D0;
+        Thu, 17 Feb 2022 03:07:44 -0800 (PST)
+HMM_SOURCE_IP: 10.64.8.41:56322.1846661901
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+        by 189.cn (HERMES) with SMTP id C11C3100139;
+        Thu, 17 Feb 2022 19:07:42 +0800 (CST)
+Received: from  ([114.242.206.180])
+        by gateway-151646-dep-b7fbf7d79-9vctg with ESMTP id 5afda76d27df4881bf43c5741b4b3b34 for krzk@kernel.org;
+        Thu, 17 Feb 2022 19:07:43 CST
+X-Transaction-ID: 5afda76d27df4881bf43c5741b4b3b34
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+Message-ID: <e635074c-8bff-564b-f9a2-38255ba45625@189.cn>
+Date:   Thu, 17 Feb 2022 19:07:40 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 3/4] nvmem: core: Fix a conflict between MTD and NVMEM
- on wp-gpios property
+Subject: Re: [PATCH v8 2/3] MIPS: Loongson64: dts: update the display
+ controller device node
 Content-Language: en-US
-To:     Christophe Kerello <christophe.kerello@foss.st.com>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, chenshumin86@sina.com
-References: <20220131095755.8981-1-christophe.kerello@foss.st.com>
- <20220131095755.8981-4-christophe.kerello@foss.st.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220131095755.8981-4-christophe.kerello@foss.st.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>, Li Yi <liyi@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20220216181712.1493400-1-15330273260@189.cn>
+ <20220216181712.1493400-3-15330273260@189.cn>
+ <687aad50-6e37-dab9-71a0-4df89abbd9d4@kernel.org>
+From:   Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <687aad50-6e37-dab9-71a0-4df89abbd9d4@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,75 +76,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On 2022/2/17 16:42, Krzysztof Kozlowski wrote:
+>>   .../boot/dts/loongson/loongson64-2k1000.dtsi  |   8 ++
+>>   arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +-
+>>   4 files changed, 140 insertions(+), 5 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson-drm.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml b/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+>> new file mode 100644
+>> index 000000000000..64d8364b50ab
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+>> @@ -0,0 +1,114 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id:http://devicetree.org/schemas/display/pci0014,7a06.yaml#
+> The file name looks different than ID. Does this pass `make
+> dt_binding_check` validation?
+>
+  I run make dt_binding_check, it say 'dt-doc-validate' not found!
 
-On 31/01/2022 09:57, Christophe Kerello wrote:
-> Wp-gpios property can be used on NVMEM nodes and the same property can
-> be also used on MTD NAND nodes. In case of the wp-gpios property is
-> defined at NAND level node, the GPIO management is done at NAND driver
-> level. Write protect is disabled when the driver is probed or resumed
-> and is enabled when the driver is released or suspended.
-> 
-> When no partitions are defined in the NAND DT node, then the NAND DT node
-> will be passed to NVMEM framework. If wp-gpios property is defined in
-> this node, the GPIO resource is taken twice and the NAND controller
-> driver fails to probe.
-> 
-> It would be possible to set config->wp_gpio at MTD level before calling
-> nvmem_register function but NVMEM framework will toggle this GPIO on
-> each write when this GPIO should only be controlled at NAND level driver
-> to ensure that the Write Protect has not been enabled.
-> 
-> A way to fix this conflict is to add a new boolean flag in nvmem_config
-> named skip_wp_gpio. In case skip_wp_gpio is set, the GPIO resource will
-> be managed by the provider.
-> 
-> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
-> ---
-> Changes in v2:
->   - rework the proposal done to fix a conflict between MTD and NVMEM on
->     wp-gpios property.
-> 
->   drivers/nvmem/core.c           | 2 +-
->   include/linux/nvmem-provider.h | 4 +++-
->   2 files changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index 23a38dcf0fc4..cb40dca6a51d 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -771,7 +771,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
->   
->   	if (config->wp_gpio)
->   		nvmem->wp_gpio = config->wp_gpio;
-> -	else
-> +	else if (!config->skip_wp_gpio)
->   		nvmem->wp_gpio = gpiod_get_optional(config->dev, "wp",
->   						    GPIOD_OUT_HIGH);
->   	if (IS_ERR(nvmem->wp_gpio)) {
-> diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-> index 98efb7b5660d..4b480023c265 100644
-> --- a/include/linux/nvmem-provider.h
-> +++ b/include/linux/nvmem-provider.h
-> @@ -70,7 +70,8 @@ struct nvmem_keepout {
->    * @word_size:	Minimum read/write access granularity.
->    * @stride:	Minimum read/write access stride.
->    * @priv:	User context passed to read/write callbacks.
-> - * @wp-gpio:   Write protect pin
-> + * @wp-gpio:	Write protect pin
-> + * @skip_wp_gpio: Write Protect pin is managed by the provider.
+Ensure dtschema python package is installed and in your PATH.
+Current PATH is:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+make[1]: *** [Documentation/devicetree/bindings/Makefile:12: 
+check_dtschema_version] Error 1
 
-Can we rename this to ingore_wp as suggested by Miquel.
+make: *** [Makefile:1398: dt_binding_check] Error 2
 
---srini
 
->    *
->    * Note: A default "nvmem<id>" name will be assigned to the device if
->    * no name is specified in its configuration. In such case "<id>" is
-> @@ -92,6 +93,7 @@ struct nvmem_config {
->   	enum nvmem_type		type;
->   	bool			read_only;
->   	bool			root_only;
-> +	bool			skip_wp_gpio;
->   	struct device_node	*of_node;
->   	bool			no_of_node;
->   	nvmem_reg_read_t	reg_read;
