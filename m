@@ -2,79 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FEA04BA09D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:07:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8ECD4BA0A8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:09:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236188AbiBQNGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 08:06:12 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38466 "EHLO
+        id S233369AbiBQNJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 08:09:19 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231142AbiBQNGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:06:11 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607782A8D04;
-        Thu, 17 Feb 2022 05:05:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645103157; x=1676639157;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=y40DBqaIdT6zBhrgCBj8cBu666AKZYDew2yl1iQwfVY=;
-  b=QuaHIKK7S+ggzo9G375dg6wtprYz5TJ2NrJZqgYDGBFF8rfQElQdq99w
-   k2ChiIpvxL+fKKVWWGuLU07PA32FSlBfXEJFI4enBoqPBqrK6KIxsepoh
-   JJN1L762kRXXcGSYcgUYWjt7LidlmREFzGAEceGGdhY8WQELUgs4pi+LG
-   lNPWDYZJGGOlo1n596auJXBMXKRL9Q+x5P6hMyYPajnPdLiAmFf7f3/wc
-   oNhBdGFpVpq1mKzFIqOXWshx11IB0GPIdUnky+R6DokqbI2I8oVFwhuOr
-   51S5grlv+auv8qh4cdCQ2tpnqEoFm6U3a+q/oXDxUuTrMg4bbuwDOjZGq
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="251066649"
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; 
-   d="scan'208";a="251066649"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2022 05:05:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; 
-   d="scan'208";a="589386402"
-Received: from lkp-server01.sh.intel.com (HELO 6f05bf9e3301) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 17 Feb 2022 05:05:50 -0800
-Received: from kbuild by 6f05bf9e3301 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nKgTl-0000D7-BO; Thu, 17 Feb 2022 13:05:49 +0000
-Date:   Thu, 17 Feb 2022 21:05:02 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Liang Yang <liang.yang@amlogic.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-mtd@lists.infradead.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Liang Yang <liang.yang@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND v2 1/2] mtd: rawnand: meson: discard the common
- MMC sub clock framework
-Message-ID: <202202172131.hVJG538q-lkp@intel.com>
-References: <20220217063346.21691-2-liang.yang@amlogic.com>
+        with ESMTP id S229934AbiBQNJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:09:19 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 821E5294123
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 05:09:05 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1nKgWp-0007Ea-KK; Thu, 17 Feb 2022 14:08:59 +0100
+Received: from pengutronix.de (unknown [195.138.59.174])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id E1BC836498;
+        Thu, 17 Feb 2022 13:08:58 +0000 (UTC)
+Date:   Thu, 17 Feb 2022 14:08:55 +0100
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Chandrasekar R <rcsekar@samsung.com>
+Cc:     'Krzysztof Kozlowski' <krzk@kernel.org>, linux-can@vger.kernel.org,
+        'Rob Herring' <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next] dt-binding: can: m_can: list Chandrasekar
+ Ramakrishnan as maintainer
+Message-ID: <20220217130855.xytm7k7xwc3eyo5x@pengutronix.de>
+References: <20220217113839.2311417-1-mkl@pengutronix.de>
+ <CGME20220217115220epcas5p4655af31ab39c62e8acb89ce1652aa1cf@epcas5p4.samsung.com>
+ <3fb21251-a4de-2300-d1c6-5b98dd3c36d1@kernel.org>
+ <000801d823f7$36e98ec0$a4bcac40$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="a53qhljvanyxhev2"
 Content-Disposition: inline
-In-Reply-To: <20220217063346.21691-2-liang.yang@amlogic.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <000801d823f7$36e98ec0$a4bcac40$@samsung.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,54 +56,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liang,
 
-I love your patch! Yet something to improve:
+--a53qhljvanyxhev2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test ERROR on mtd/nand/next]
-[also build test ERROR on mtd/mtd/next mtd/mtd/fixes robh/for-next v5.17-rc4 next-20220217]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+On 17.02.2022 17:39:26, Chandrasekar R wrote:
+> I will take up the activity, Will actively work on reviewing the
+> patches now on.
 
-url:    https://github.com/0day-ci/linux/commits/Liang-Yang/refine-the-NFC-clock-framework/20220217-145053
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
-config: hexagon-randconfig-r013-20220217 (https://download.01.org/0day-ci/archive/20220217/202202172131.hVJG538q-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 0bad7cb56526f2572c74449fcf97c1fcda42b41d)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/d3d7ef65145346ff8212125d56afff6290a5ab68
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Liang-Yang/refine-the-NFC-clock-framework/20220217-145053
-        git checkout d3d7ef65145346ff8212125d56afff6290a5ab68
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash
+Good to hear! I've bounced you the latest m_can DT bindings patches:
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+https://lore.kernel.org/all/20220124220653.3477172-4-mkl@pengutronix.de
+https://lore.kernel.org/all/20220217101111.2291151-1-mkl@pengutronix.de
 
-All errors (new ones prefixed by >>):
+regards,
+Marc
 
->> ld.lld: error: undefined symbol: __clk_get_name
-   >>> referenced by meson_nand.c
-   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
-   >>> referenced by meson_nand.c
-   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
---
->> ld.lld: error: undefined symbol: clk_divider_ops
-   >>> referenced by meson_nand.c
-   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
-   >>> referenced by meson_nand.c
-   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
---
->> ld.lld: error: undefined symbol: devm_clk_register
-   >>> referenced by meson_nand.c
-   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
-   >>> referenced by meson_nand.c
-   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+--a53qhljvanyxhev2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmIOSOUACgkQrX5LkNig
+010i9Qf9HcryhP9mjl6XTHegCdg6lzeZQyfONGquh+aZAguqaIEA2YkS17IGW0sg
+anMAP3lZ/1FyQ3J8noUDB9mLKvxWr5fCYHYq+mATGnHnG5xx6IxUPLrWXrQpjkEh
+ka1OnxtEtvc/L1Jfx4VQMgWybmSgFv3GItggadGML8qzl6JaCpOUP/QWFZAO6BjF
+xL0xC0ce2AnPHZvIpLXbs4E46SPWSPPp7ICyaL0ietGZTwz/oCvvfwjMvATtgnVc
+TJz4HJURbEDKy1J5ntzxmH1HAbtz4mDOI2xEUhxeprIBT61kKLVdVVQIkLx87oTh
+O84zba+v0Y5wqtAKLsmuvclbvHMFeg==
+=1Eo9
+-----END PGP SIGNATURE-----
+
+--a53qhljvanyxhev2--
