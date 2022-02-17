@@ -2,205 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA5E24B9C72
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 10:50:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68E464B9C81
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 10:52:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238836AbiBQJtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 04:49:39 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35454 "EHLO
+        id S235934AbiBQJxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 04:53:06 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233044AbiBQJti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 04:49:38 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B222717AAF
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 01:49:23 -0800 (PST)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9401340333
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 09:49:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645091362;
-        bh=0007Apij4GTvZKW9DpvkDPnqD/lKERk9VeBYhgBTloo=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=gEvoi+q9S6bpfGIYZuz7OgTKtpwQ/zOH+Fcn9rf4XdkGIeJyYDXUbvS+dm5kYGFkx
-         +UDIHt5lVAFht2Ag2vcIWSOfRl40t4GC7bPZbl7HqONIqDLN4a14zKDL3fii4BBWoQ
-         4AKZSkcCKpG8yK4cQpGhdFPt3MFBeyHPnGuP2kI52JnwYtkn9+eUKIIDRcld2Imbd1
-         CxOS09cBgwIdZlu9oniLhEz4QXNTCI7FiwUnhyFBWqZgA2B/w8KS+UxjX/bXUJM4bH
-         4RY/TzxWgtbeG1NFZLzFOpJjPVdrP10zt+zEgnwgWVmTL9L4V4bFJRpf8u6RxpP2YE
-         /hvTlL8CDGJng==
-Received: by mail-ej1-f69.google.com with SMTP id d7-20020a1709061f4700b006bbf73a7becso1247131ejk.17
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 01:49:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=0007Apij4GTvZKW9DpvkDPnqD/lKERk9VeBYhgBTloo=;
-        b=15whoTxgXoGij5GtOXyS5IhaNRZRNwUITPZ3qN5rS2KPdme3XXnH2+7/NPvEhaukWJ
-         hWOgXU+IAdAsZdpkepLcfW50i3PUc+Wq6r6f2lN85qW6+uYEUR3OW2ka3AB8ZQGpXW3k
-         yfoLfRjhnQOPYA1IUadwYiClOir+BkJ4x940wfZGDv2UwZeKukr2iQ8O2j8IGs2h3Vrv
-         2pueRfyG7OGqe5ZW3TZb4Y2suChFFBTICOdJmRhNtjsT7Cg0iDZyJ7kYRXe4V0MPiOkt
-         uIQUKnxeTl/lw7Hbwg+12yGGy+4djpFPttxJo6t7R8O/1acwGpcXprLJFu93pkBvu/nP
-         CdzQ==
-X-Gm-Message-State: AOAM532Ey4nnOisc7uFParvkukULTdEDymyqRHGACuZykB4v/XgrSMit
-        0YqPpeYmSHPblK/CU08TlMB1sr31S6dX3ttVW71nCtZ4I8Ow/9eWnWHu4UwJ237rU5/6KHGeklb
-        ZoNwF7UryxVzhet2iCL8KWhW9k2Eu2sF1tANcGVk=
-X-Received: by 2002:a17:906:9489:b0:6ce:f3a9:2c17 with SMTP id t9-20020a170906948900b006cef3a92c17mr1738786ejx.333.1645091362254;
-        Thu, 17 Feb 2022 01:49:22 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyU4GL/xCZfq3R/yQUHRTYFTi2oBY1a8OUofVqY7Z2aF3QmZxKjn4JOmkoChKC3hfRIIHrggQ==
-X-Received: by 2002:a17:906:9489:b0:6ce:f3a9:2c17 with SMTP id t9-20020a170906948900b006cef3a92c17mr1738761ejx.333.1645091362031;
-        Thu, 17 Feb 2022 01:49:22 -0800 (PST)
-Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id ha3sm985555ejb.157.2022.02.17.01.49.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Feb 2022 01:49:21 -0800 (PST)
-Message-ID: <f50f6502-2132-7665-a61b-64c15760a420@canonical.com>
-Date:   Thu, 17 Feb 2022 10:49:20 +0100
+        with ESMTP id S235534AbiBQJxF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 04:53:05 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E567B56E;
+        Thu, 17 Feb 2022 01:52:51 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 362A61F40E62
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645091570;
+        bh=8+3/okjkZLSEe2YaUM/Pojm7bjbRNZ9YE8jw4vsEZBs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=BQKqe6xe80UowaRFWaHdwUaOj09S4iONkRwTfSgSX28NEhpl9l/Evh7i/IGBq98/2
+         hJ7WJAvriFTkjlE75SHagd7zFRd7HuTdFMB5/Oeq12J0KTLflWdhqQxKS3ZZaEhzNV
+         eJFFO3monUiy45kmqSu2gAidLilnkJg3djlTZo5KRCAuAdZo8rezoNqFE8r5o6YCWn
+         FigAKymenOZHQaNvfiIOyjlNGHniO4iMl4+wT8ajjUCaubX86o6Qt6GC1z0rebEIxN
+         1mGfxgdxtiz0wc9CwE5ES/ZyCE8uMmanye7pXcwzS9IN+/VvTlNvtClRgNUmYbOIzD
+         xs+Mu7p+HXTtA==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     vkoul@kernel.org
+Cc:     krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
+        sean.wang@mediatek.com, matthias.bgg@gmail.com,
+        long.cheng@mediatek.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v3] dt-bindings: dma: Convert mtk-uart-apdma to DT schema
+Date:   Thu, 17 Feb 2022 10:52:42 +0100
+Message-Id: <20220217095242.13761-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] [v1] dt-bindings: timer: Add HPE GXP Timer binding
-Content-Language: en-US
-To:     nick.hawkins@hpe.com, verdun@hpe.com
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <nick.hawkins@hpe.com>
- <20220215181936.41551-1-nick.hawkins@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220215181936.41551-1-nick.hawkins@hpe.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/02/2022 19:19, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> Description: Creating binding for the GXP timer to be used in device tree.
->  GXP is the name of the HPE SoC.
->  This SoC is used to implement BMC features of HPE servers
->   (all ProLiant, Synergy, and many Apollo, and Superdome machines)
->    It does support many features including:
->         ARMv7 architecture, and it is based on a Cortex A9 core
->         Use an AXI bus to which
->                 a memory controller is attached, as well as
->                  multiple SPI interfaces to connect boot flash,
->                  and ROM flash, a 10/100/1000 Mac engine which
->                  supports SGMII (2 ports) and RMII
->                 Multiple I2C engines to drive connectivity with a
-> 				 host infrastructure
->                 A video engine which support VGA and DP, as well as
->                  an hardware video encoder
->                 Multiple PCIe ports
->                 A PECI interface, and LPC eSPI
->                 Multiple UART for debug purpose, and Virtual UART for
->                  host connectivity
->                 A GPIO engine.
+Convert the MediaTek UART APDMA Controller binding to DT schema.
 
-Same comment as for other patches.
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+v3: Removed anyOf condition
+v2: Fixed interrupt maxItems to 16, added interrupts/reg maxItems constraint
+    to 8 when the dma-requests property is not present
 
-> 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> ---
->  .../bindings/timer/hpe,gxp-timer.yaml         | 45 +++++++++++++++++++
->  MAINTAINERS                                   |  6 +++
->  2 files changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
-> new file mode 100644
-> index 000000000000..1f4e345c5fb8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/hpe,gxp-timer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HPE GXP TIMER
-> +
-> +maintainers:
-> +  - Nick Hawkins <nick.hawkins@hpe.com>
-> +  - Jean-Marie Verdun <verdun@hpe.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: hpe,gxp-timer
-> +
-> +  reg:
-> +    items:
-> +      - description: T0CNT register
-> +      - description: T0CS register
-> +      - description: TIMELO register
+ .../bindings/dma/mediatek,uart-dma.yaml       | 122 ++++++++++++++++++
+ .../bindings/dma/mtk-uart-apdma.txt           |  56 --------
+ 2 files changed, 122 insertions(+), 56 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
 
-That's a bit odd - you pass each register as device address space. Why
-not entire address space of the timer block? Probably you have there
-more registers, don't you? In such  case what if you need to access that
-additional register - change bindings?
+diff --git a/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+new file mode 100644
+index 000000000000..54d68fc688b5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+@@ -0,0 +1,122 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/mediatek,uart-dma.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek UART APDMA controller
++
++maintainers:
++  - Long Cheng <long.cheng@mediatek.com>
++
++description: |
++  The MediaTek UART APDMA controller provides DMA capabilities
++  for the UART peripheral bus.
++
++allOf:
++  - $ref: "dma-controller.yaml#"
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - mediatek,mt2712-uart-dma
++              - mediatek,mt8516-uart-dma
++          - const: mediatek,mt6577-uart-dma
++      - enum:
++          - mediatek,mt6577-uart-dma
++
++  reg:
++    minItems: 1
++    maxItems: 16
++
++  interrupts:
++    description: |
++      TX, RX interrupt lines for each UART APDMA channel
++    minItems: 1
++    maxItems: 16
++
++  clocks:
++    description: Must contain one entry for the APDMA main clock
++    maxItems: 1
++
++  clock-names:
++    const: apdma
++
++  "#dma-cells":
++    const: 1
++    description: |
++      The first cell specifies the UART APDMA channel number
++
++  dma-requests:
++    description: |
++      Number of virtual channels of the UART APDMA controller
++    maximum: 16
++
++  mediatek,dma-33bits:
++    type: boolean
++    description: Enable 33-bits UART APDMA support
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++if:
++  not:
++    required:
++      - dma-requests
++then:
++  properties:
++    interrupts:
++      maxItems: 8
++    reg:
++      maxItems: 8
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/mt2712-clk.h>
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        apdma: dma-controller@11000400 {
++            compatible = "mediatek,mt2712-uart-dma",
++                         "mediatek,mt6577-uart-dma";
++            reg = <0 0x11000400 0 0x80>,
++                  <0 0x11000480 0 0x80>,
++                  <0 0x11000500 0 0x80>,
++                  <0 0x11000580 0 0x80>,
++                  <0 0x11000600 0 0x80>,
++                  <0 0x11000680 0 0x80>,
++                  <0 0x11000700 0 0x80>,
++                  <0 0x11000780 0 0x80>,
++                  <0 0x11000800 0 0x80>,
++                  <0 0x11000880 0 0x80>,
++                  <0 0x11000900 0 0x80>,
++                  <0 0x11000980 0 0x80>;
++            interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 104 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 105 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 106 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 107 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 108 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 109 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 110 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 111 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 112 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 113 IRQ_TYPE_LEVEL_LOW>,
++                         <GIC_SPI 114 IRQ_TYPE_LEVEL_LOW>;
++            dma-requests = <12>;
++            clocks = <&pericfg CLK_PERI_AP_DMA>;
++            clock-names = "apdma";
++            mediatek,dma-33bits;
++            #dma-cells = <1>;
++        };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt b/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
+deleted file mode 100644
+index fef9c1eeb264..000000000000
+--- a/Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
++++ /dev/null
+@@ -1,56 +0,0 @@
+-* Mediatek UART APDMA Controller
+-
+-Required properties:
+-- compatible should contain:
+-  * "mediatek,mt2712-uart-dma" for MT2712 compatible APDMA
+-  * "mediatek,mt6577-uart-dma" for MT6577 and all of the above
+-  * "mediatek,mt8516-uart-dma", "mediatek,mt6577" for MT8516 SoC
+-
+-- reg: The base address of the APDMA register bank.
+-
+-- interrupts: A single interrupt specifier.
+- One interrupt per dma-requests, or 8 if no dma-requests property is present
+-
+-- dma-requests: The number of DMA channels
+-
+-- clocks : Must contain an entry for each entry in clock-names.
+-  See ../clocks/clock-bindings.txt for details.
+-- clock-names: The APDMA clock for register accesses
+-
+-- mediatek,dma-33bits: Present if the DMA requires support
+-
+-Examples:
+-
+-	apdma: dma-controller@11000400 {
+-		compatible = "mediatek,mt2712-uart-dma",
+-			     "mediatek,mt6577-uart-dma";
+-		reg = <0 0x11000400 0 0x80>,
+-		      <0 0x11000480 0 0x80>,
+-		      <0 0x11000500 0 0x80>,
+-		      <0 0x11000580 0 0x80>,
+-		      <0 0x11000600 0 0x80>,
+-		      <0 0x11000680 0 0x80>,
+-		      <0 0x11000700 0 0x80>,
+-		      <0 0x11000780 0 0x80>,
+-		      <0 0x11000800 0 0x80>,
+-		      <0 0x11000880 0 0x80>,
+-		      <0 0x11000900 0 0x80>,
+-		      <0 0x11000980 0 0x80>;
+-		interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 104 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 105 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 106 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 107 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 108 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 109 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 110 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 111 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 112 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 113 IRQ_TYPE_LEVEL_LOW>,
+-			     <GIC_SPI 114 IRQ_TYPE_LEVEL_LOW>;
+-		dma-requests = <12>;
+-		clocks = <&pericfg CLK_PERI_AP_DMA>;
+-		clock-names = "apdma";
+-		mediatek,dma-33bits;
+-		#dma-cells = <1>;
+-	};
+-- 
+2.33.1
 
-Or maybe all these registers can be put in entirely different address
-ranges?
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clock-frequency:
-> +    description: The frequency of the clock that drives the counter, in Hz.
-
-I would expect here also "clocks" and "clock-names" properties, since
-you clearly have a clock that driver the counter.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clock-frequency
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    timer@10003000 {
-> +        compatible = "hpe,gxp-timer";
-> +        reg = <0xc0000080 0x1>, <0xc0000094 0x01>, <0xc0000088 0x08>;
-> +        interrupts = <0>;
-> +        interrupt-parent = <&vic0>;
-> +        clock-frequency = <400000000>;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f41088418aae..8c2c1e8e0934 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8385,6 +8385,12 @@ L:	linux-efi@vger.kernel.org
->  S:	Maintained
->  F:	block/partitions/efi.*
->  
-> +GXP TIMER
-> +M:	Nick Hawkins <nick.hawkins@hpe.com>
-> +M:	Jean-Marie Verdun <verdun@hpe.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
-> +
->  H8/300 ARCHITECTURE
->  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
->  L:	uclinux-h8-devel@lists.sourceforge.jp (moderated for non-subscribers)
-
-
-Best regards,
-Krzysztof
