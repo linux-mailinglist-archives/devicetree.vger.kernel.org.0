@@ -2,89 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F8434BA32F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 15:41:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2815E4BA339
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 15:42:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239922AbiBQOlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 09:41:02 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34896 "EHLO
+        id S241963AbiBQOm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 09:42:29 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233259AbiBQOlA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 09:41:00 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6408F2B1A92;
-        Thu, 17 Feb 2022 06:40:45 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 0380C1F4598A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645108843;
-        bh=o7M37NRjUzyT1SEEw8QEv+OQorYXKUUvT1lprkZEPDY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=lyfIa822zgsumKInOeSFVIxYdBA40JLhTin+IhAc/pXMOJljeoF4s+oOZlSYJ/eSH
-         /7KTlL4yml3t32SDDDsx953Ml+vQKZKiSQWkSqV6RjGDbqS7uIoyMHT0E4Psfedxik
-         m3rw9y/x3NgRNL4mElYjdClK+j9he4LBZtu5deC4zQk7PsHTAFQ+kpt7zggPZiU0nq
-         sIWYFrhr4jsIScQbwVHrQLoquXWAI4qRIpzYnGfESrYe4N9xNRBRtsvX93GGg4F12G
-         /74tbymUv6mYvH3kM2Ptz4mcLg8LnS8nxsUFRIROrVUJ/yMt/qOZmQFvWSL+1/2n6R
-         zGhyMssm2PqWg==
-Message-ID: <10a101b4-293e-19c8-d241-5357a947acef@collabora.com>
-Date:   Thu, 17 Feb 2022 15:40:40 +0100
+        with ESMTP id S233259AbiBQOmZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 09:42:25 -0500
+X-Greylist: delayed 18850 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Feb 2022 06:42:10 PST
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 434091EA710;
+        Thu, 17 Feb 2022 06:42:10 -0800 (PST)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [80.241.60.233])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4JzyG81ts4z9sW9;
+        Thu, 17 Feb 2022 15:42:08 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
+        t=1645108925;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=P3WOWoBkW9fNOW7y5qawru7527uDPIT2KJWNbGZXIZU=;
+        b=P53Xwlqo9K0bhRWOP+bBgy0KgnFYBK1w1Zkli3EzRyysM7MZW+XyvwUSTA5a5O/vRRb+Ku
+        FbPuIcKEAc3VzcVcQ4foatjtxakoO8p2Or+hrvT7J3DygCjFZPuExEx0SriVVTwom0SS1M
+        XaDv+JLw4TjuUCiverfZqCiB/czEjkeoJ6dHxgshRerBSzA5mEubHrnDKD/gL+lDYzpetK
+        /UR2UB2sMSVwT3GmRMqLbdoCcoskUqzip7qONgmz+1+zPQRwkJIJUqe2GyKUYgELAasgQM
+        //iUrNYV2zCFesBLPF6PabFEMdO3CsIjMwSWODy24G87AFlYzC9lo3MxMB2DNw==
+From:   Marcello Sylvester Bauer <sylv@sylv.io>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Marcello Sylvester Bauer <sylv@sylv.io>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: trivial-devices: Add xdpe11280
+Date:   Thu, 17 Feb 2022 15:41:33 +0100
+Message-Id: <cbef5619ca8bb1edef32532ac22a5803248036ee.1645108566.git.sylv@sylv.io>
+In-Reply-To: <cover.1645108566.git.sylv@sylv.io>
+References: <cover.1645108566.git.sylv@sylv.io>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH] dt-bindings: phy: Add compatible for Mediatek MT8192
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Min Guo <Min.Guo@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20220217135620.10559-1-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220217135620.10559-1-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/02/22 14:56, Allen-KH Cheng ha scritto:
-> This commit adds dt-binding documentation of T-Phy for Mediatek MT8192 SoC
-> Platform.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Add Infineon Multi-phase Digital Controller XDPE11280.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> ---
->   Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> index d279ba222316..7b2e1bc119be 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> @@ -81,6 +81,7 @@ properties:
->                 - mediatek,mt7629-tphy
->                 - mediatek,mt8183-tphy
->                 - mediatek,mt8186-tphy
-> +              - mediatek,mt8192-tphy
->             - const: mediatek,generic-tphy-v2
->         - items:
->             - enum:
-> 
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 091792ba993e..8a42aea3b8a6 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -137,6 +137,8 @@ properties:
+           - infineon,slb9645tt
+             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+           - infineon,tlv493d-a1b6
++            # Infineon Multi-phase Digital VR Controller xdpe11280
++          - infineon,xdpe11280
+             # Infineon Multi-phase Digital VR Controller xdpe12254
+           - infineon,xdpe12254
+             # Infineon Multi-phase Digital VR Controller xdpe12284
+-- 
+2.34.1
 
