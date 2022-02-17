@@ -2,124 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D41294B9AF6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 09:30:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6526F4B9B87
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 09:53:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237705AbiBQIai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 03:30:38 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42018 "EHLO
+        id S238213AbiBQIxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 03:53:22 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237718AbiBQIah (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 03:30:37 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF3002271FB
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 00:30:23 -0800 (PST)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nKcAs-0002EL-CO; Thu, 17 Feb 2022 09:30:02 +0100
-Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nKcAq-00ClU6-BY; Thu, 17 Feb 2022 09:30:00 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v6 23/23] dt-bindings: display: rockchip: dw-hdmi: fix ports description
-Date:   Thu, 17 Feb 2022 09:29:54 +0100
-Message-Id: <20220217082954.2967889-24-s.hauer@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220217082954.2967889-1-s.hauer@pengutronix.de>
-References: <20220217082954.2967889-1-s.hauer@pengutronix.de>
+        with ESMTP id S238212AbiBQIxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 03:53:22 -0500
+X-Greylist: delayed 88496 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Feb 2022 00:53:07 PST
+Received: from 7.mo552.mail-out.ovh.net (7.mo552.mail-out.ovh.net [188.165.59.253])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 873A42271C8
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 00:53:07 -0800 (PST)
+Received: from mxplan5.mail.ovh.net (unknown [10.109.146.173])
+        by mo552.mail-out.ovh.net (Postfix) with ESMTPS id ECDFB24EAF;
+        Thu, 17 Feb 2022 08:37:04 +0000 (UTC)
+Received: from kaod.org (37.59.142.97) by DAG4EX1.mxp5.local (172.16.2.31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 17 Feb
+ 2022 09:37:03 +0100
+Authentication-Results: garm.ovh; auth=pass (GARM-97G002328e9798-957d-4e35-ae92-239b6e2566ca,
+                    6074F5EAC11FD030A47E229993F36105E76D55A4) smtp.auth=clg@kaod.org
+X-OVh-ClientIp: 82.64.250.170
+Message-ID: <a77fe4bb-c4d6-4329-b25e-26e990e8092b@kaod.org>
+Date:   Thu, 17 Feb 2022 09:37:02 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 02/10] dt-bindings: spi: Add Aspeed SMC controllers device
+ tree binding
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-aspeed@lists.ozlabs.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220214094231.3753686-1-clg@kaod.org>
+ <20220214094231.3753686-3-clg@kaod.org> <YgwV5ZGCbrNhlk0s@robh.at.kernel.org>
+From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
+In-Reply-To: <YgwV5ZGCbrNhlk0s@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [37.59.142.97]
+X-ClientProxiedBy: DAG2EX1.mxp5.local (172.16.2.11) To DAG4EX1.mxp5.local
+ (172.16.2.31)
+X-Ovh-Tracer-GUID: 03c1adce-a0aa-4472-8090-987f0bcc8d30
+X-Ovh-Tracer-Id: 662029147249740676
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrjeejgdduvddtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepudeutdegudegheefvdefhfeiteeifefhieduueethfffkeeiudeuueehgedugeefnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddrleejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Current port description doesn't cover all possible cases. It currently
-expects one single port with two endpoints.
+On 2/15/22 22:06, Rob Herring wrote:
+> On Mon, Feb 14, 2022 at 10:42:23AM +0100, Cédric Le Goater wrote:
+>> The "interrupt" property is optional because it is only necessary for
+>> controllers supporting DMAs (Not implemented yet in the new driver).
+>>
+>> Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+>> Signed-off-by: Cédric Le Goater <clg@kaod.org>
+>> ---
+>>   .../bindings/spi/aspeed,ast2600-fmc.yaml      | 92 +++++++++++++++++++
+>>   1 file changed, 92 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml b/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+>> new file mode 100644
+>> index 000000000000..ed71c4d86930
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+>> @@ -0,0 +1,92 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/spi/aspeed,ast2600-fmc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Aspeed SMC controllers bindings
+>> +
+>> +maintainers:
+>> +  - Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+>> +  - Cédric Le Goater <clg@kaod.org>
+>> +
+>> +description: |
+>> +  This binding describes the Aspeed Static Memory Controllers (FMC and
+>> +  SPI) of the AST2400, AST2500 and AST2600 SOCs.
+>> +
+>> +allOf:
+>> +  - $ref: "spi-controller.yaml#"
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - aspeed,ast2600-fmc
+>> +      - aspeed,ast2600-spi
+>> +      - aspeed,ast2500-fmc
+>> +      - aspeed,ast2500-spi
+>> +      - aspeed,ast2400-fmc
+>> +      - aspeed,ast2400-spi
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: registers
+>> +      - description: memory mapping
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +patternProperties:
+>> +  "@[0-9a-f]+":
+>> +    type: object
+>> +
+>> +    properties:
+>> +      spi-rx-bus-width:
+>> +        enum: [1, 2, 4]
+>> +
+>> +    required:
+>> +      - reg
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/aspeed-scu-ic.h>
+>> +    #include <dt-bindings/clock/ast2600-clock.h>
+>> +
+>> +    spi@1e620000 {
+>> +        reg = < 0x1e620000 0xc4
+>> +                0x20000000 0x10000000 >;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        compatible = "aspeed,ast2600-fmc";
+>> +        clocks = <&syscon ASPEED_CLK_AHB>;
+>> +        status = "disabled";
+> 
+> Why is your example disabled? Drop 'status'.
 
-When the HDMI connector is described in the device tree there can be two
-ports, first one going to the VOP and the second one going to the connector.
+my bad. I took the basic definition of the SoC and the devices
+are activated in the boards. I will fix in v2.
 
-Also on SoCs which only have a single VOP there will be only one
-endpoint instead of two.
+Thanks,
 
-This patch addresses both issues. With this there can either be a single
-port ("port") , or two of them ("port@0", "port@1") when the connector
-is also in the device tree. Also the first or only port can either have
-one endpoint ("endpoint") for single VOP SoCs or two ("endpoint@0",
-"endpoint@1") for dual VOP SoCs.
+C.
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
 
-Notes:
-    Changes since v5:
-    - new patch
-
- .../display/rockchip/rockchip,dw-hdmi.yaml    | 24 +++++++------------
- 1 file changed, 9 insertions(+), 15 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-index 7dd753630b46a..fc26f1d4d001c 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-@@ -102,27 +102,21 @@ properties:
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
--    properties:
--      port:
--        $ref: /schemas/graph.yaml#/$defs/port-base
--        unevaluatedProperties: false
-+    patternProperties:
-+      "^port(@0)?$":
-+        $ref: /schemas/graph.yaml#/properties/port
-         description: Input of the DWC HDMI TX
--
-         properties:
-+          endpoint:
-+            description: Connection to the VOP
-           endpoint@0:
--            $ref: /schemas/graph.yaml#/properties/endpoint
-             description: Connection to the VOPB
--
-           endpoint@1:
--            $ref: /schemas/graph.yaml#/properties/endpoint
-             description: Connection to the VOPL
--
--        required:
--          - endpoint@0
--          - endpoint@1
--
--    required:
--      - port
-+    properties:
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Output of the DWC HDMI TX
- 
-   rockchip,grf:
-     $ref: /schemas/types.yaml#/definitions/phandle
--- 
-2.30.2
+> 
+>> +        interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+>> +        flash@0 {
+>> +                reg = < 0 >;
+>> +                compatible = "jedec,spi-nor";
+>> +                spi-max-frequency = <50000000>;
+>> +                status = "disabled";
+> 
+> Ditto.
+> 
+>> +        };
+>> +        flash@1 {
+>> +                reg = < 1 >;
+>> +                compatible = "jedec,spi-nor";
+>> +                spi-max-frequency = <50000000>;
+>> +                status = "disabled";
+>> +        };
+>> +        flash@2 {
+>> +                reg = < 2 >;
+>> +                compatible = "jedec,spi-nor";
+>> +                spi-max-frequency = <50000000>;
+>> +                status = "disabled";
+>> +        };
+>> +    };
+>> -- 
+>> 2.34.1
+>>
+>>
 
