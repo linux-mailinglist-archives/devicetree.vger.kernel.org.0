@@ -2,54 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 044104BAC82
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 23:23:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC7E14BAC85
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 23:24:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240088AbiBQWXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 17:23:48 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38834 "EHLO
+        id S1343849AbiBQWYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 17:24:30 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245348AbiBQWXr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 17:23:47 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38AC528E20;
-        Thu, 17 Feb 2022 14:23:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C66D9B82486;
-        Thu, 17 Feb 2022 22:23:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7B3C340E8;
-        Thu, 17 Feb 2022 22:23:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645136608;
-        bh=TUZMJDaNFLISGttZkDyJsEKzOBEaiEn8hTGWzb79eRc=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=VQ/gRjnxADZT7CtXPeH3YxF406049C7RCNhgcpiliZzFaOwCusPGnO9TiwcQkCLG0
-         zcVoSccWJ614plFJaYnp6E2H9X8rsccAw6vjYVlE6LyG/IhOFm9NJMN0u5/6g4n3Pg
-         qg8rf0SkORh6iGvPXL3rT/ozmMGVSXGA6voTzcFcU/gMoOtHku9H9hDVOfu5CgFMPo
-         0bjZuO8La29Qqr21K9yoBJCxrC9j83EsfbH0GJJv9y4ztbKnjDSvYpO15KtgbpKiLx
-         wacx0ieKaLYPJ2gTGlHfk04lTNNu450czxa4rReA5BOIjo34PWe93Mf7NXa6SA5xic
-         Cay/8mL8dWD5g==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1343847AbiBQWYa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 17:24:30 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71B02BB1F
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 14:24:14 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id a6so1126830oid.9
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 14:24:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=/neFhOJyXKG5xSPOlx3CJHDkEqEd9BRroYvm8Izt9PU=;
+        b=sYKcZLjYBIoEo8liVjK/NRa/cSfQMrW3EijXiy4Gakbj3BtmY1jTwBXZjgSm1KwYvw
+         EUbw9qFK1Vis7+Hn8aLBdvJXtLaqo/KtJudsA5aapscIzSc+eLy9CuN27UAerGmKiZvw
+         diOIyVr9vCMyCf+4jLgVKfUqhXcVfZg3t11inoh1V2nqpb0VyfiDWvz1qPUc7JjFhPj/
+         4OmoXMJb14GlZEAzFIoUVlJPpBLSMD6w4h29JdMio6mIafyrmJJfZNjMcS5XBhBm2dGe
+         ka6IbIduW9AfZdcOCpq1ckB9ClPUd8UBs8K3gmoB1UrDwBARBlw03epOB2JJQ/inDZ/D
+         vkfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/neFhOJyXKG5xSPOlx3CJHDkEqEd9BRroYvm8Izt9PU=;
+        b=DMjEphII3FEi5peDxSanJDQ10taZkyuJcur0orQd+xEv8WJtMpG4hQoNViqnniLt3K
+         SqkqLBKn4FQwB3ADOAMwW8ZgxvAqQQ1GkqEvXjnzqvtsXTER9F2AE1vNqgXcqd4KX+bu
+         /FZzSXUQHOwYR4KJ/J+4J26W+aP2KOBh4rHgOW/4lEHFEFaayKxnNZgVtbWTtsjSN3BG
+         p/APSmM44M010y7LpXXPTBpLhHqlcFtlYpSvZSZ4FpKGjyZ4rZ5Qc7x5JlzB/+GaFvL+
+         s62yEofGUhv17Pb5v7/V3nCH+cZz17Alf8xyj6aIRaXRV3kL8rCDnudyWJw/DgR38wp2
+         mgmA==
+X-Gm-Message-State: AOAM531NDNNf8Qf1nVv2ht1ZuuYH7sMI+OjK3xc2Tvlj37RSz/VKXQPm
+        105Q6PvihkPbecGeKGsWSUjEbA==
+X-Google-Smtp-Source: ABdhPJyAHPTbyHfEMbFh3qbEs6lUXgioZ89TvaZDWuHOUNgl2HglyEel/rwjbbS0NIYVNx5zst55qw==
+X-Received: by 2002:a05:6808:238f:b0:2ce:df34:1812 with SMTP id bp15-20020a056808238f00b002cedf341812mr3789990oib.147.1645136653688;
+        Thu, 17 Feb 2022 14:24:13 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id w13sm545096ooj.5.2022.02.17.14.24.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Feb 2022 14:24:13 -0800 (PST)
+Date:   Thu, 17 Feb 2022 14:26:20 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, mka@chromium.org,
+        swboyd@chromium.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, satya priya <skakit@codeaurora.org>
+Subject: Re: [PATCH V3 2/4] leds: Add pm8350c support to Qualcomm LPG driver
+Message-ID: <Yg7LjJFi51cmDUQr@ripper>
+References: <1635507893-25490-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1635507893-25490-3-git-send-email-quic_c_skakit@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220215084412.8090-2-marex@denx.de>
-References: <20220215084412.8090-1-marex@denx.de> <20220215084412.8090-2-marex@denx.de>
-Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Marek Vasut <marex@denx.de>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com
-To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
-Date:   Thu, 17 Feb 2022 14:23:26 -0800
-User-Agent: alot/0.10
-Message-Id: <20220217222328.7F7B3C340E8@smtp.kernel.org>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1635507893-25490-3-git-send-email-quic_c_skakit@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,42 +73,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Marek Vasut (2022-02-15 00:44:11)
-> Some platforms require clock to be always running, e.g. because those clo=
-ck
-> supply devices which are not otherwise attached to the system. One example
-> is a system where the SoC serves as a crystal oscillator replacement for a
-> programmable logic device. The critical-clock property of a clock control=
-ler
-> allows listing clock which must never be turned off.
->=20
-> The implementation here is similar to "protected-clock", except protected
-> clock property is currently driver specific. This patch attempts to make
-> a generic implementation of "critical-clock" instead.
->=20
-> Unlike "assigned-clocks", the "critical-clock" must be parsed much earlier
-> in __clk_register() to assign CLK_IS_CRITICAL flag to clk_init_data .flags
-> field. The parsing code obviously need to be cleaned up and factor out in=
-to
-> separate function.
->=20
-> The new match_clkspec() callback is used to determine whether struct clk_=
-hw
-> that is currently being registered matches the clock specifier in the DT
-> "critical-clock" property, and if so, then the CLK_IS_CRITICAL is added to
-> these newly registered clock. This callback is currently driver specific,
-> although I suspect a common and/or generic version of the callback could
-> be added. Also, this new callback could possibly be used to replace (*get)
-> argument of of_clk_add_hw_provider() later on too.
+On Fri 29 Oct 04:44 PDT 2021, Satya Priya wrote:
 
-I don't see any mention of of_clk_detect_critical() here. We don't want
-to enshrine the critical clk flag in DT. There was a bunch of discussion
-about this on the mailing list years ago and the end result was this
-instantly deprecated function to set the flag based on a DT property.
-That thread isn't mentioned here either.
+> From: satya priya <skakit@codeaurora.org>
+> 
+> Add pm8350c compatible and lpg_data to the driver.
+> 
+> Signed-off-by: satya priya <skakit@codeaurora.org>
 
-I see that there isn't any more 'clock-critical' in the kernel's dts so
-I wonder if we would be able to get rid of that function or at least
-hollow it out and see if anyone complains. Either way, what is the
-actual problem trying to be solved? If the crystal oscillator isn't used
-anywhere in the kernel why are we registering it with the clk framework?
+Sorry for the OCD, but I would really like for you to capitalize 's' and
+'p' in your name.
+
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+> Changes in V2:
+>  - Added const for lpg_channel_data[] struct.
+> 
+> Changes in V3:
+>  - Correct the num_channels and add respective base addresses.
+> 
+>  drivers/leds/rgb/leds-qcom-lpg.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
+> index 45ef4ec..ad99a9b 100644
+> --- a/drivers/leds/rgb/leds-qcom-lpg.c
+> +++ b/drivers/leds/rgb/leds-qcom-lpg.c
+> @@ -1275,9 +1275,22 @@ static const struct lpg_data pm8150l_lpg_data = {
+>  	},
+>  };
+>  
+> +static const struct lpg_data pm8350c_pwm_data = {
+> +	.pwm_9bit_mask = BIT(2),
+
+As you might have seen in v12 I dropped pwm_9bit_mask.
+
+> +
+
+Afaict there's a tri-channel current sink in pm8350c as well, so you
+should have:
+
+        .triled_base = 0xef00,
+
+And then associated .triled_mask in the relevant channels.
+
+Regards,
+Bjorn
+
+> +	.num_channels = 4,
+> +	.channels = (const struct lpg_channel_data[]) {
+> +		{ .base = 0xe800 },
+> +		{ .base = 0xe900 },
+> +		{ .base = 0xea00 },
+> +		{ .base = 0xeb00 },
+> +	},
+> +};
+> +
+>  static const struct of_device_id lpg_of_table[] = {
+>  	{ .compatible = "qcom,pm8150b-lpg", .data = &pm8150b_lpg_data },
+>  	{ .compatible = "qcom,pm8150l-lpg", .data = &pm8150l_lpg_data },
+> +	{ .compatible = "qcom,pm8350c-pwm", .data = &pm8350c_pwm_data },
+>  	{ .compatible = "qcom,pm8916-pwm", .data = &pm8916_pwm_data },
+>  	{ .compatible = "qcom,pm8941-lpg", .data = &pm8941_lpg_data },
+>  	{ .compatible = "qcom,pm8994-lpg", .data = &pm8994_lpg_data },
+> -- 
+> 2.7.4
+> 
