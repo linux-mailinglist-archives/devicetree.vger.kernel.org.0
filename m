@@ -2,88 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B7024BACC6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 23:40:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B15754BACCC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 23:41:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343922AbiBQWkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 17:40:20 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36542 "EHLO
+        id S1343930AbiBQWlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 17:41:14 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343927AbiBQWkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 17:40:20 -0500
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C81169228;
-        Thu, 17 Feb 2022 14:40:04 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id u5so5703232ple.3;
-        Thu, 17 Feb 2022 14:40:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kJKvlz6mTbZ0HU9h+IMyLVNCFn3UT1msVylNEqZAnxc=;
-        b=qT5KJDsQo3lgUYLoyO0X62lyth9bJgO4hfKCQi8eZ1fFmaxjnYhusXXugvn+2z/0sA
-         4Zh4T+8eWIaRZXtIgS65S0glYGFSoA9ZS99FWhUjFXBseIAK7KKC8jtAg6jggYLdBCN4
-         Nh+QfEjTtoF2hzHgU97SpUc3nFRPelL/qua6dKJm/aOfPXlFqppZ+o9kGYO+YLWzz/e9
-         aqT8/jOFfhCbk16j3El35npP7/nB2NmMuhrLmk++q6xdHvPxkI8Qr46A5XVndhjku0qL
-         S2QgNDTFGsVV+0Rid3RHSHZjN7ikY4JPJHAX5OFwu0SWfpd6FsK1eiK+qiwCuUENgeUY
-         3Jqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kJKvlz6mTbZ0HU9h+IMyLVNCFn3UT1msVylNEqZAnxc=;
-        b=ZHvVAUG0idSY17cP81GhvY4SHNV7YcVZQubZqE5uNYt3eoZkjgJ8F/3WjJJb63I+sI
-         TcYuA9OfQG0lqnzqjarpq+lKzs2kuzybZjBs85Rs+oqYPLYdo6cZg+NPDotUjpzcni4n
-         f1jqoLAssijSFOCJoXluydzD7UVk6aahhCybzg9pGJgJP+7uwAanHzqcLlybADJos+GH
-         6HScSvSTf+okIhGguQiaSYWkGgSdCT3PCYzckMTc11f6+sOZJ+sl3hY/jA15DlZyc0dQ
-         vXbQ2gHSMZlrv8rqFqf7JYDUx90kDyi9L48aE6PA+/qar7zKZDrm8tMvqJgJcPgiOsS0
-         +8XA==
-X-Gm-Message-State: AOAM531QvthuNqb9V8vhksy1ANydaD+w3NHDjBWdeVxQ1ek6Ar84l69I
-        cG/J1FPWeIHPFXJorRlBU99LkP9NndY=
-X-Google-Smtp-Source: ABdhPJwt4tFfuDzgTRNZU18CGCZ/3PD17/VdWn7gqP6PUAcRWJgX8FcBrUDGmhqAC1JUWiWNS1J/Yw==
-X-Received: by 2002:a17:903:3015:b0:14c:def1:ef62 with SMTP id o21-20020a170903301500b0014cdef1ef62mr4807486pla.2.1645137604094;
-        Thu, 17 Feb 2022 14:40:04 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id kk14sm2759409pjb.26.2022.02.17.14.40.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Feb 2022 14:40:03 -0800 (PST)
-Subject: Re: [PATCH v2] dt-bindings: reserved-memory: Add restricted-dma-pool
- constraints
-To:     Robin Murphy <robin.murphy@arm.com>,
-        devicetree-spec@vger.kernel.org
-Cc:     robh+dt@kernel.org, maxime@cerno.tech, devicetree@vger.kernel.org
-References: <a4f3d4e2feef008d1236ebc3f5f0c46360f20c60.1645119806.git.robin.murphy@arm.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <60b60a8a-6aef-8561-8aa1-049206aede7f@gmail.com>
-Date:   Thu, 17 Feb 2022 14:40:00 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S1343899AbiBQWlN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 17:41:13 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 883A6169222;
+        Thu, 17 Feb 2022 14:40:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 04150CE30B9;
+        Thu, 17 Feb 2022 22:40:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B12DC340E8;
+        Thu, 17 Feb 2022 22:40:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645137655;
+        bh=yoTB+6/Yc1ALwNbkIdzFCVW+ORJTwmp5y3hdBLcMKHM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=FBis+/IP9pl4fr2BzA6QOFnz5xXZG2wScA6yOJ+bmxwNBtgqRktc7M5HkXrFoKAy+
+         rpCVe02qXyWLBL+38g31Srpk98DFeTGPqf7SCqu9SLJ7xPniz0Lf8194NNbIIlylaU
+         sL4g/L8sUU7QR/vO6xzsyGUSii4FwKU3k6F8+bpIRrcOfuHSgppLJKq2Bw9DORZz1y
+         9JLSrgfE1CM/xLfF51IAOtrp8b+VYLiEh0JEdPv5/KolpYB2vO2VL6xqvmsQV/hx0n
+         uIQfETbClephaK2cPi1HSE1KQ3wI7Nc3Bd6WAm6VGo2/0YkmpPHMIV6JccalPNrNF4
+         hHNBePc8+QbeQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <a4f3d4e2feef008d1236ebc3f5f0c46360f20c60.1645119806.git.robin.murphy@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220126081236.25255-2-tdas@codeaurora.org>
+References: <20220126081236.25255-1-tdas@codeaurora.org> <20220126081236.25255-2-tdas@codeaurora.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7280
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Taniya Das <tdas@codeaurora.org>
+Date:   Thu, 17 Feb 2022 14:40:53 -0800
+User-Agent: alot/0.10
+Message-Id: <20220217224055.5B12DC340E8@smtp.kernel.org>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/17/22 9:47 AM, Robin Murphy wrote:
-> The "restricted-dma-pool" definition prohibits combination with either
-> of the "no-map" and "reusable" properties, but this is only stated in
-> the description text. Add those constraints to the schema so we can
-> properly validate them.
-> 
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+Quoting Taniya Das (2022-01-26 00:12:35)
+> The LPASS(Low Power Audio Subsystem) clock provider have a bunch of gener=
+ic
+> properties that are needed in a device tree. Also add clock ids for
+> LPASS core clocks and audio clock IDs for LPASS client to request for
+> the clocks.
+>=20
+> Signed-off-by: Taniya Das <tdas@codeaurora.org>
+> ---
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
-
-FWIW
--- 
-Florian
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
