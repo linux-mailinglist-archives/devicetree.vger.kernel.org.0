@@ -2,58 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49E274BAA6F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 20:58:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E29B84BAAAE
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 21:17:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236196AbiBQT6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 14:58:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34958 "EHLO
+        id S243729AbiBQURX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 15:17:23 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229803AbiBQT6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 14:58:17 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C141289A4;
-        Thu, 17 Feb 2022 11:58:02 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1EF2861D76;
-        Thu, 17 Feb 2022 19:58:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00901C340E8;
-        Thu, 17 Feb 2022 19:58:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645127881;
-        bh=oalQTkWe66Sz6FegWOru/FZMiarvQZP3lDOvxiFyZWc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nAqJuyb6KfPCkA7BpJNdFjFIWRzwUrMnzKb2SBLomAkg1bA/ya4NNEPXe9GhYlHHK
-         kr6sN4fUwmQGIgEBTjyp96CY2wc8ATUsn0RHp9+U2Stf+U/WsIodumxbM+Zg9hcOtu
-         2VPQxTqSpbhcc0Sq2Wv3YMqdQR5HbUz7tRqKzlmJ42lElsWuyEiQdE/WG6vfomW3iM
-         H26OmNpk0i/VPvZgSpV58o8BpZSevqzzjmujN8h/gN8OL0MzI6wn6IUVZ18ux2HjPh
-         kOwzz4UVOfAktZID2rhIyznV+uiniR3EmMcdelQSshKJcgOVMOTElm9iVcqHcWV0dK
-         NZ43tBGpQWbvg==
-Date:   Thu, 17 Feb 2022 20:57:58 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc:     Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/9] i2c: qcom-cci: fixes and updates
-Message-ID: <Yg6oxrlQZIsJCkUY@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
+        with ESMTP id S241812AbiBQURW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 15:17:22 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDB135D189
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 12:17:05 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1nKnD2-0004Rs-3s; Thu, 17 Feb 2022 21:17:00 +0100
+Received: from pengutronix.de (unknown [195.138.59.174])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id D2C923686C;
+        Thu, 17 Feb 2022 20:16:56 +0000 (UTC)
+Date:   Thu, 17 Feb 2022 21:16:53 +0100
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Chandrasekar R <rcsekar@samsung.com>
+Cc:     linux-can@vger.kernel.org, 'Rob Herring' <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        'Benjamin Gaignard' <benjamin.gaignard@st.com>
+Subject: Re: [PATCH net-next] dt-binding: can: m_can: fix indention of table
+ in bosch,mram-cfg description
+Message-ID: <20220217201653.gq7e2vsblvdrl2mz@pengutronix.de>
+References: <CGME20220217130613epcas5p148a75f63b455ad14decf075f1842114b@epcas5p1.samsung.com>
+ <20220217101111.2291151-1-mkl@pengutronix.de>
+ <006f01d82417$39d94e20$ad8bea60$@samsung.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="t4NivWcwK3gYw8cy"
+        protocol="application/pgp-signature"; boundary="g7w27xgijfezubhe"
 Content-Disposition: inline
-In-Reply-To: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <006f01d82417$39d94e20$ad8bea60$@samsung.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,46 +57,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---t4NivWcwK3gYw8cy
-Content-Type: text/plain; charset=us-ascii
+--g7w27xgijfezubhe
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On 17.02.2022 21:28:35, Chandrasekar R wrote:
+> > Subject: [PATCH net-next] dt-binding: can: m_can: fix indention of table
+> in
+> > bosch,mram-cfg description
+> >=20
+> > This patch fixes the indention of the table in the description of the
+> > bosch,mram-cfg property.
+> >=20
+> > Cc: Sriram Dash <sriram.dash@samsung.com>
+> This id does not exists anymore.
 
-> Vladimir Zapolskiy (9):
->   dt-bindings: i2c: qcom-cci: add QCOM SM8450 compatible
->   dt-bindings: i2c: qcom-cci: add description of a vbus-supply property
->   i2c: qcom-cci: don't delete an unregistered adapter
->   i2c: qcom-cci: don't put a device tree node before i2c_add_adapter()
->   i2c: qcom-cci: initialize CCI controller after registration of adapters
->   i2c: qcom-cci: simplify probe by removing one loop over busses
->   i2c: qcom-cci: simplify access to bus data structure
->   i2c: qcom-cci: add support of optional vbus-supply regulators
->   i2c: qcom-cci: add sm8450 compatible
+Thanks, already removed.
 
-Patches 3+4 are already upstream. I wonder if patches 1+9 could be
-applied to for-next also? Or is the vbus-supply a hard dependency here?
-Patches 6+7 could probably also be resent individually after some
-rebasing.
+> > Cc: Benjamin Gaignard <benjamin.gaignard@st.com>
+> > Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> > ---
+> Changes looks fine,=20
+> Reviewed-by: Chandrasekar Ramakrishnan <rcsekar@samsung.com>
 
+Added to the patch.
 
---t4NivWcwK3gYw8cy
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--g7w27xgijfezubhe
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIOqMYACgkQFA3kzBSg
-KbZNPw//fv+WZ2UBn48Ke1DcG13kT9yp8NG0AiPh8w6c5QitPC4H2fdPoudqoqS9
-A7tx8p52xMd2DBqQa2FYLs6Vb4y7Dtj2V6Oz6sAxtxkL/15ndZavrtEOdJ3zJEya
-uuJOsuHhHWK5z7CCjyUBa/kZziOf0Acb8RzvDa3FhDe2+U1LmKE5guMKO/3It7RX
-H/8RAswnpDlykcJU/HqcgbtmwaKrd2VKIx/Cj0YiaNJ7gUels1cwebonbTeclK/f
-D3XpSyed2wG3ET1ExuV05GZQcSI1CZgJx843d1WdI56T3KIAqjezDn7Fh6SIns6F
-zSkTmwm3DXUvoicEmUY/4XFoGV446hXZGp8TX2lVT3m7DVVB0rwLt3iOf8ltu9me
-VdWaDupYhH0tg7poRDOEjdwaSv7iBds3lvaFX9Kuc1qQ1dE00xtH5zutTYP+ufeI
-SDhxVO707aO+piXDZvcX7zT4KBDXYQgvjROjcGS74QfXleYNIlITNostcLGepsz7
-AkcWJ3EHC4R+mwUxPO2MuI5TITKkGX5ergF7F4OOXTPB5G9J32FP+5pWdd2Khyyq
-sVqwCiIOkysQlY9VTYtHR1CzWsJlloCK8/Hi7HLlT/oiHnmShtOAWU3K6aTe8+H0
-rYBu5DZV0a42VbvnfAtHy6uy16g8TPE6xXUV0qPF+ikNTM5sc5I=
-=tv/V
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmIOrTIACgkQrX5LkNig
+010WGgf9GTX2GfPQx5aPLu81at7VKKCIrJLe+Pt8nXQVKyHPrgJki1siY6evOx2E
+vs6E2uPe4oP++oIfud9EN5GVm49T0dkkxadX2X6Tk7sNnarOzcBbdG/YrphPEiIz
+jJOE7VTv44JNpEMLx+VKXQOa9004nWNXL4EXMUtfQ8XQhxsVF0+GHkxT1h4n1LQK
+fmp4FLMDBy/gkjK4sRpOjFMDdVQ8rPOMJPqXp1Z/PxEoQfnMxph2Y7GREbduB2QV
+E9TRzEwYjlTXeKBLMRYatgrqKowaGsH/EPejQft/OWuzWxI2r3U1BG6PGJFKl0zM
+Vh8UaNI9c+5iV7K+G3Ftvtk2pBzAHg==
+=5/As
 -----END PGP SIGNATURE-----
 
---t4NivWcwK3gYw8cy--
+--g7w27xgijfezubhe--
