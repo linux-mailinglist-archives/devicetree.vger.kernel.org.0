@@ -2,133 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A19214BACA7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 23:35:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B7024BACC6
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 23:40:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235909AbiBQWfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 17:35:33 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51762 "EHLO
+        id S1343922AbiBQWkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 17:40:20 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232023AbiBQWfa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 17:35:30 -0500
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE3EC1688E4;
-        Thu, 17 Feb 2022 14:35:15 -0800 (PST)
-Received: by mail-io1-f49.google.com with SMTP id e79so5457101iof.13;
-        Thu, 17 Feb 2022 14:35:15 -0800 (PST)
+        with ESMTP id S1343927AbiBQWkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 17:40:20 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C81169228;
+        Thu, 17 Feb 2022 14:40:04 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id u5so5703232ple.3;
+        Thu, 17 Feb 2022 14:40:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=kJKvlz6mTbZ0HU9h+IMyLVNCFn3UT1msVylNEqZAnxc=;
+        b=qT5KJDsQo3lgUYLoyO0X62lyth9bJgO4hfKCQi8eZ1fFmaxjnYhusXXugvn+2z/0sA
+         4Zh4T+8eWIaRZXtIgS65S0glYGFSoA9ZS99FWhUjFXBseIAK7KKC8jtAg6jggYLdBCN4
+         Nh+QfEjTtoF2hzHgU97SpUc3nFRPelL/qua6dKJm/aOfPXlFqppZ+o9kGYO+YLWzz/e9
+         aqT8/jOFfhCbk16j3El35npP7/nB2NmMuhrLmk++q6xdHvPxkI8Qr46A5XVndhjku0qL
+         S2QgNDTFGsVV+0Rid3RHSHZjN7ikY4JPJHAX5OFwu0SWfpd6FsK1eiK+qiwCuUENgeUY
+         3Jqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QJCJJkJqtOsQ/CSbeUuObYQcThTPRTm035a09VI6ZJ4=;
-        b=f/9n2LwuAs550FqOKTRMdD/7R0l2o+0y6+sk7ZCzkiymb5Fk/hXL5cbeM813WdhnKL
-         cpj2/GwWukiAIRyYncpjrxqDWCZRbCy4TXk2L5nWjq2OeNsLV4e4ORxk527gYk1bTx3Q
-         2IoXoiWwwVIpYd0eIZfmUFDFUJprPVym/Q5uvlEE1oAldkLgF1DkW02rtOdp83yN5lZm
-         T95Gn87NQ/g7Ia365IFRBUcSy72mn5w48lqNkk8jJ6oaAS5AD3ViNQbj/K7KRnTmiBdm
-         9rmWN0HWm0J/Bp7dYOMPeSAKgYqnWPdd/q48jz6iMLY0DUWzo11ExOYcwijc9YA1bj0f
-         Rqfw==
-X-Gm-Message-State: AOAM530IBrfaH9/9K70Ofq2iU01V4wWoP6rhWn4isjHzU/Hn1CMBeP+o
-        ZqEkXUPQsy8V/yKyuoH0VQ==
-X-Google-Smtp-Source: ABdhPJy0BMvl0r/0X5Zc06+9xSfxyHJxRc8f8yEbFq5HYdWl/tpmNswA1NCuOnIwtqi5NIlgpfhMVw==
-X-Received: by 2002:a02:7a16:0:b0:313:f2f9:2ebc with SMTP id a22-20020a027a16000000b00313f2f92ebcmr3370002jac.136.1645137315031;
-        Thu, 17 Feb 2022 14:35:15 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id u15sm2891106ill.75.2022.02.17.14.35.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Feb 2022 14:35:14 -0800 (PST)
-Received: (nullmailer pid 3892127 invoked by uid 1000);
-        Thu, 17 Feb 2022 22:35:12 -0000
-Date:   Thu, 17 Feb 2022 16:35:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Arnd Bergmann <arnd@arndb.de>, linux-hwmon@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: Add power-efuse binding
-Message-ID: <Yg7NoLzC7zt2oihV@robh.at.kernel.org>
-References: <20220217104444.7695-1-zev@bewilderbeest.net>
- <20220217104444.7695-4-zev@bewilderbeest.net>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kJKvlz6mTbZ0HU9h+IMyLVNCFn3UT1msVylNEqZAnxc=;
+        b=ZHvVAUG0idSY17cP81GhvY4SHNV7YcVZQubZqE5uNYt3eoZkjgJ8F/3WjJJb63I+sI
+         TcYuA9OfQG0lqnzqjarpq+lKzs2kuzybZjBs85Rs+oqYPLYdo6cZg+NPDotUjpzcni4n
+         f1jqoLAssijSFOCJoXluydzD7UVk6aahhCybzg9pGJgJP+7uwAanHzqcLlybADJos+GH
+         6HScSvSTf+okIhGguQiaSYWkGgSdCT3PCYzckMTc11f6+sOZJ+sl3hY/jA15DlZyc0dQ
+         vXbQ2gHSMZlrv8rqFqf7JYDUx90kDyi9L48aE6PA+/qar7zKZDrm8tMvqJgJcPgiOsS0
+         +8XA==
+X-Gm-Message-State: AOAM531QvthuNqb9V8vhksy1ANydaD+w3NHDjBWdeVxQ1ek6Ar84l69I
+        cG/J1FPWeIHPFXJorRlBU99LkP9NndY=
+X-Google-Smtp-Source: ABdhPJwt4tFfuDzgTRNZU18CGCZ/3PD17/VdWn7gqP6PUAcRWJgX8FcBrUDGmhqAC1JUWiWNS1J/Yw==
+X-Received: by 2002:a17:903:3015:b0:14c:def1:ef62 with SMTP id o21-20020a170903301500b0014cdef1ef62mr4807486pla.2.1645137604094;
+        Thu, 17 Feb 2022 14:40:04 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id kk14sm2759409pjb.26.2022.02.17.14.40.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Feb 2022 14:40:03 -0800 (PST)
+Subject: Re: [PATCH v2] dt-bindings: reserved-memory: Add restricted-dma-pool
+ constraints
+To:     Robin Murphy <robin.murphy@arm.com>,
+        devicetree-spec@vger.kernel.org
+Cc:     robh+dt@kernel.org, maxime@cerno.tech, devicetree@vger.kernel.org
+References: <a4f3d4e2feef008d1236ebc3f5f0c46360f20c60.1645119806.git.robin.murphy@arm.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <60b60a8a-6aef-8561-8aa1-049206aede7f@gmail.com>
+Date:   Thu, 17 Feb 2022 14:40:00 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220217104444.7695-4-zev@bewilderbeest.net>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <a4f3d4e2feef008d1236ebc3f5f0c46360f20c60.1645119806.git.robin.murphy@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 17, 2022 at 02:44:43AM -0800, Zev Weiss wrote:
-> This can be used to describe a power output supplied by a regulator
-> device that the system controls.
+On 2/17/22 9:47 AM, Robin Murphy wrote:
+> The "restricted-dma-pool" definition prohibits combination with either
+> of the "no-map" and "reusable" properties, but this is only stated in
+> the description text. Add those constraints to the schema so we can
+> properly validate them.
 > 
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> ---
->  .../devicetree/bindings/misc/power-efuse.yaml | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/power-efuse.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/misc/power-efuse.yaml b/Documentation/devicetree/bindings/misc/power-efuse.yaml
-> new file mode 100644
-> index 000000000000..cadce15d2ce7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/power-efuse.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/power-efuse.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic power efuse device
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 
-No idea what this is, but I doubt any such generic device exists. This 
-needs sufficient description to be convincing that it is indeed generic.
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
 
-> +
-> +maintainers:
-> + - Zev Weiss <zev@bewilderbeest.net>
-> +
-> +properties:
-> +  compatible:
-> +    const: power-efuse
-> +
-> +  vout-supply:
-> +    description:
-> +      phandle to the regulator providing power for the efuse
-> +
-> +  error-flags-cache-ttl-ms:
-> +    description:
-> +      The number of milliseconds the vout-supply regulator's error
-> +      flags should be cached before re-fetching them.
-
-What are 'error flags'? Not something I've heard with respect to 
-regulators.
-
-> +
-> +required:
-> +  - compatible
-> +  - vout-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    efuse {
-> +        compatible = "power-efuse";
-> +        vout-supply = <&efuse_reg>;
-> +        error-flags-cache-ttl-ms = <500>;
-> +    };
-> -- 
-> 2.35.1
-> 
-> 
+FWIW
+-- 
+Florian
