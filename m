@@ -2,125 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BB594B9AC3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 09:19:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 775494B9A63
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 09:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233511AbiBQITZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 03:19:25 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33312 "EHLO
+        id S236934AbiBQH6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 02:58:32 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237434AbiBQITX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 03:19:23 -0500
-X-Greylist: delayed 2131 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Feb 2022 00:19:08 PST
-Received: from 11.mo550.mail-out.ovh.net (11.mo550.mail-out.ovh.net [188.165.48.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AEB4297226
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 00:19:08 -0800 (PST)
-Received: from player157.ha.ovh.net (unknown [10.109.146.1])
-        by mo550.mail-out.ovh.net (Postfix) with ESMTP id 13C3623A4B
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 07:43:36 +0000 (UTC)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player157.ha.ovh.net (Postfix) with ESMTPSA id B93F9278408AA;
-        Thu, 17 Feb 2022 07:43:24 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-101G0043059cd4e-4bc9-4526-8836-aad3687309fe,
-                    6571130906B249472519E689D0E5D89D5D0951FF) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Message-ID: <3be13bc2-f8b1-193b-9a36-92d4336d9d28@milecki.pl>
-Date:   Thu, 17 Feb 2022 08:43:23 +0100
+        with ESMTP id S236913AbiBQH6b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 02:58:31 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A773522F76F;
+        Wed, 16 Feb 2022 23:58:11 -0800 (PST)
+X-UUID: 44cc14644aa44e369589316b65bcf842-20220217
+X-UUID: 44cc14644aa44e369589316b65bcf842-20220217
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 885734443; Thu, 17 Feb 2022 15:58:06 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 17 Feb 2022 15:58:05 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 17 Feb 2022 15:58:03 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v3, 0/7] support mt8195 decoder
+Date:   Thu, 17 Feb 2022 15:57:51 +0800
+Message-ID: <20220217075758.11369-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH] dt-bindings: mtd: partitions: convert Broadcom's TRX to
- the json-schema
-To:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>
-References: <20220216104126.31284-1-zajec5@gmail.com>
- <1645070363.930966.2266015.nullmailer@robh.at.kernel.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-In-Reply-To: <1645070363.930966.2266015.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 18205520019237874606
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrjeejgddutdelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjeetledugeejtdevheetieduhefgtedvgefftddvfedvieevjeegleffleegtdeunecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrudehjedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Firstly, add mt8195 soc lat hardware and compatible, then add documents.
+For vp8 only support MM21 mode, H264/vp9 support MT21C, need to separate
+them. Lastly, enable H264 inner racing mode to reduce hardware latency.
 
-On 17.02.2022 04:59, Rob Herring wrote:
-> On Wed, 16 Feb 2022 11:41:26 +0100, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> This helps validating DTS files.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->>   .../bindings/mtd/partitions/brcm,trx.txt      | 42 ---------------
->>   .../bindings/mtd/partitions/brcm,trx.yaml     | 51 +++++++++++++++++++
->>   2 files changed, 51 insertions(+), 42 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt
->>   create mode 100644 Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/linksys,ns-partitions.example.dt.yaml: partition@200000: compatible:0: 'brcm,trx' was expected
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/linksys,ns-partitions.example.dt.yaml: partition@200000: compatible: ['linksys,ns-firmware', 'brcm,trx'] is too long
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+Patch 1~4 add mt8195 soc lat hardware and compatible, then add documents.
+Patch 5 using different format for different codecs.
+Patch 6 prevent kernel crash when scp reboot.
+Patch 7 enable H264 inner racing mode to reduce hardware latency.
+---
+This patch depends on "support mt8186 decoder"[1]
 
-could you advise the best way to solve that?
+[1]  https://patchwork.kernel.org/project/linux-mediatek/cover/20220122075606.19373-1-yunfei.dong@mediatek.com
+---
+changed with v2:
+- add detail explanation for lat soc hardware for patch 1.
 
+changed with v1:
+- separate "Init VP9 stateless decode params" patch and remove it to another one.
+- add reviewed-by in patch v3/v4/v6
+---
+Tinghan Shen (1):
+  media: mtk-vcodec: prevent kernel crash when scp ipi timeout
 
-1. compatible = "brcm,trx";
+Yunfei Dong (6):
+  dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for lat soc
+  media: mtk-vcodec: Add to support lat soc hardware
+  dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8195
+  media: mtk-vcodec: Adds compatible for mt8195
+  media: mtk-vcodec: Different codec using different capture format
+  media: mtk-vcodec: Add to support H264 inner racing mode
 
-Most Broadcom 47xx devices have one firmware partition using TRX format.
-So we want something like:
+ .../media/mediatek,vcodec-subdev-decoder.yaml | 52 +++++++++++++------
+ .../platform/mtk-vcodec/mtk_vcodec_dec.c      | 41 +++++++++++++++
+ .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  |  8 +++
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.c   | 12 +++--
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.h   |  2 +
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   | 50 ++++++++++++++++++
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      | 11 ++++
+ .../mtk-vcodec/vdec/vdec_h264_req_multi_if.c  | 23 ++++++--
+ .../media/platform/mtk-vcodec/vdec_vpu_if.c   |  5 ++
+ 9 files changed, 180 insertions(+), 24 deletions(-)
 
-partition@200000 {
-         compatible = "brcm,trx";
-         label = "firmware";
-         reg = <0x200000 0xf00000>;
-};
+-- 
+2.25.1
 
-
-2. compatible = "linksys,ns-firmware", "brcm,trx";
-
-Linksys has two firmware partitions and operating system has to choose
-the right one to proceed with (to parse for kernel & rootfs). They still
-use TRX format though. So we want something like:
-
-partition@200000 {
-         compatible = "linksys,ns-firmware", "brcm,trx";
-         reg = <0x200000 0xf00000>;
-};
-
-partition@1100000 {
-         compatible = "linksys,ns-firmware", "brcm,trx";
-         reg = <0x1100000 0xf00000>;
-};
-
-
-I thought of moving "linksys,ns-firmware" documentation to the
-brcm,trx.yaml but its part of the compatible = "linksys,ns-partitions";
-(parent node) so it doesn't fit there well.
