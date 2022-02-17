@@ -2,101 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A6F64BA49A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 16:40:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 065FA4BA4A4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 16:41:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242623AbiBQPkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 10:40:24 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:32824 "EHLO
+        id S229536AbiBQPlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 10:41:47 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242633AbiBQPkX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 10:40:23 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D316D2B2E39
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 07:40:07 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id r20so28534ljj.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 07:40:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0QQBoXxNzNE8ywxlHFFfAWGomixHy2u6zilUaFbuhmE=;
-        b=RrJjmHuXVzVPtammx2PWFkPzYxa0sp+CIs+a7p1reY0HA9oZgI6A2REIXw9b8X87aw
-         7pc9oqYfh2pWUeDGPUC+sYPFiWy5TmNtt0N8Yk45gdx5bEQCumDai+PpoJesoGcTvHkK
-         3DRBdvC49FrGQhrxOH/yH4nzcpoghoBj2cAkf/i7i2WMNp/JuYdHrXjA+/5A//mRpxy8
-         kkUCQyA6YybDATTmZeDwQT8wppphoA7p08DHO0KUt+BMuEQXgDCFQhQosH1H2P+Ws4dH
-         xyth298pl5lKvbRhwd5OOQ3S2/WTqa0/tqOiawymfYhfgUwa3YDahOFTXQbXp+jgr+f4
-         kkVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0QQBoXxNzNE8ywxlHFFfAWGomixHy2u6zilUaFbuhmE=;
-        b=idBybPLOI1aTRa0CZcdXDkER7EKkZbliXitY61+u1nE8XHdBiZN8rTtKFY9jGWNIGK
-         ZK8pNqUGpjfnZ8ScXCrLl6rFt8UiobekTXKHc0X/j5XfYhZVnlmQ0sCUziOALU13ujRl
-         Ucp2o0U6Ra9j84qfLu8GvDQAFLpx/XrDR2eHKXimYFBAXb/Dn1IXbebTZ4OqurESHDQf
-         3o9F+ScKO5tii7WisTxmNbJ+j+hysMbduwbbR5soW72H7pYPvFPkxMx4T5JHzWWOc0u4
-         Jwo0h1HCoVpFicJYCFKRIKOR5oN+igayW0wmohogFt8BRveOK9kL7+c3kFAbJbOYlH7R
-         aPOA==
-X-Gm-Message-State: AOAM531CDTOA5Hg5qFXXRyl97bh5D9mnhQ4br8R3aCzfNnJDoSmUD9Ks
-        VnnKD7Krlualg9F02u1Eigqujm1S5AcJ9KE+oadQhQ==
-X-Google-Smtp-Source: ABdhPJz/2VHYH9XfV+9CZAADf8Qh3/CV94aravtyvXjpcx8p81PXfewRvi4Izfd3VQLRzuBPEmKSwtVVgXuWCGv7jDM=
-X-Received: by 2002:a2e:8603:0:b0:246:24c:b79c with SMTP id
- a3-20020a2e8603000000b00246024cb79cmr2624384lji.367.1645112406253; Thu, 17
- Feb 2022 07:40:06 -0800 (PST)
+        with ESMTP id S240350AbiBQPlq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 10:41:46 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D09EE11C32;
+        Thu, 17 Feb 2022 07:41:30 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21HFfP9l008238;
+        Thu, 17 Feb 2022 09:41:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1645112485;
+        bh=TsXm2kt6xmnCwysfV2TKJiVFF5ZtAGYWb/89Es0VQfA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=V90BLV6sKzw+CCSt2hgZ7Q64PFqZg0qgja8CtFatgra2Wj0MIxAw5iovTeRhiCul6
+         VRxuUqUbH8l8vd2T/hFSTv2hfbKKoMgXRle9uT24s/Ro46Bgm1diKUYbPUV7O88c9/
+         MD+TH/mlNmcgx5HTHyg2gHoq7/UZltc+bWVV+Des=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21HFfPbs020341
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 17 Feb 2022 09:41:25 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 17
+ Feb 2022 09:41:24 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 17 Feb 2022 09:41:24 -0600
+Received: from [10.250.233.137] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21HFfKe1084567;
+        Thu, 17 Feb 2022 09:41:21 -0600
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2-mcu-wakeup: Fix the
+ interrupt-parent for wkup_gpioX instances
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Keerthy <j-keerthy@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20220203132647.11314-1-a-govindraju@ti.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <4b75db14-6e1b-4dc8-0089-1a714ecdac53@ti.com>
+Date:   Thu, 17 Feb 2022 21:11:20 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20220215081502.789067-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20220215081502.789067-1-peng.fan@oss.nxp.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 17 Feb 2022 16:39:30 +0100
-Message-ID: <CAPDyKFpkBGyxNxi3uYyYRrgh=itNf69-Xe9gwJktoE0p9yj74A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: imx-esdhc: Add imx93 compatible string
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, Kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220203132647.11314-1-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Feb 2022 at 09:15, Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> Add i.MX93 compatible string, it uses two compatible strings.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-
-Applied for next, thanks!
-
-Kind regards
-Uffe
 
 
+On 03/02/22 6:56 pm, Aswath Govindraju wrote:
+> From: Keerthy <j-keerthy@ti.com>
+> 
+> The interrupt-parent for wkup_gpioX instances are wrongly assigned as
+> main_gpio_intr instead of wkup_gpio_intr. Fix it.
+> 
+> Fixes: b8545f9d3a54 ("arm64: dts: ti: Add initial support for J721S2 SoC")
+> Signed-off-by: Keerthy <j-keerthy@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+
+Reviewed-by: Kishon Vijay Abraham I <kishon@ti.com>
 > ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> index 17acbc665f5a..7dbbcae9485c 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> @@ -47,6 +47,7 @@ properties:
->            - const: fsl,imx7d-usdhc
->        - items:
->            - enum:
-> +              - fsl,imx93-usdhc
->                - fsl,imx8ulp-usdhc
->            - const: fsl,imx8mm-usdhc
->
-> --
-> 2.25.1
->
+>  arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> index 7521963719ff..6c5c02edb375 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> @@ -108,7 +108,7 @@
+>  		reg = <0x00 0x42110000 0x00 0x100>;
+>  		gpio-controller;
+>  		#gpio-cells = <2>;
+> -		interrupt-parent = <&main_gpio_intr>;
+> +		interrupt-parent = <&wkup_gpio_intr>;
+>  		interrupts = <103>, <104>, <105>, <106>, <107>, <108>;
+>  		interrupt-controller;
+>  		#interrupt-cells = <2>;
+> @@ -124,7 +124,7 @@
+>  		reg = <0x00 0x42100000 0x00 0x100>;
+>  		gpio-controller;
+>  		#gpio-cells = <2>;
+> -		interrupt-parent = <&main_gpio_intr>;
+> +		interrupt-parent = <&wkup_gpio_intr>;
+>  		interrupts = <112>, <113>, <114>, <115>, <116>, <117>;
+>  		interrupt-controller;
+>  		#interrupt-cells = <2>;
+> 
