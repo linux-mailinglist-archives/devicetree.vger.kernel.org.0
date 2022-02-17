@@ -2,58 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A58374BAD45
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 00:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03CFA4BADFE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 01:05:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbiBQXmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 18:42:12 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:51232 "EHLO
+        id S229761AbiBRAAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 19:00:48 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:46242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiBQXmL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 18:42:11 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADEA8403DE;
-        Thu, 17 Feb 2022 15:41:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9133F618DB;
-        Thu, 17 Feb 2022 23:22:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE517C340E8;
-        Thu, 17 Feb 2022 23:22:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645140175;
-        bh=NWO9XCOtwUQtF6tq1ZJYa4BZ/0zXbfe09y1GXCcdSqY=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=pmH7iPjYU2L5V0fqmszIt6z4bpsXPQYc+TfRlkpcPAK9gPc5iTPenrwdeNcZsgbq0
-         79KOwvKQsUKXT8f6X93aX4ZoNGi58wc95k+riFdrmYM8Aiy4EEDvHvrp7pNB2hl+aS
-         tzdMV9zjD7RRg35jyqs+T/10yLvQk6hTQGoxGO7QgrN3PWImApdV78fim6FdIfAEfn
-         8ryxpie1pxGdPpOWTh47r7SPWbbccRyFkii4H00WwuUJ656BFxX/AhSl8/Bi0ZX/Ud
-         ENUaXjjSDXxDhg3TB90rOQxv9/0PyufhJID4DDYfZlv0MUh+M763f7y43hkkBTawXS
-         5wf1NDIkOdadA==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229630AbiBRAAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 19:00:48 -0500
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D43346B1E;
+        Thu, 17 Feb 2022 16:00:19 -0800 (PST)
+Received: by mail-pg1-f171.google.com with SMTP id h125so6370985pgc.3;
+        Thu, 17 Feb 2022 16:00:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SoRwOTnJQj6kK0mSNjv2umu6XpU3nx+Y+EN/LPgrWOM=;
+        b=oAEH/A2SUmkuegDHSU+evXjiiRrYm7AJJRBw+6z/TXNww7IxnrM/8be8CT/tOuaZE9
+         82KJD2vn194/DdkQixDilMYSF51xQ9YjRrDKS2BZQH6BiumXMHWPANG3jTwtRPmmggqM
+         w9U+mmtP3vKswLOvGB3XEkJJfDVHgxrB9hO5+OT7Mh6Mahzv5+hpuAAdwN+T+CUX1TtD
+         tIe7D1klA4KrpFDHjOu81c6Q3YpiNpws5hQ9+Ak4Qc0UX01jZ3frQJJjrC6aYj0VHGfc
+         ZOL1cRf8bHa+fYzKyQvlx66iXXpA8JGR4uG2r5RkZkLF6h6kA86Wq3HM2dubhxexy0i/
+         xb1A==
+X-Gm-Message-State: AOAM53259reHT90rmIdVhN3a0QXp2hf8AjqZ5F/P46SDz3bK1TdVd1Ng
+        cenZ/J5i5E4njkC9MJkeLsCJC0hcvg==
+X-Google-Smtp-Source: ABdhPJw/kmEhnBfh2GFirjwVXPImHpsMauK1etqmp7WpKmzDJ+NCY4z+VfpN7NxiRwz0dTmGV2nSkw==
+X-Received: by 2002:a92:c610:0:b0:2bf:b493:3425 with SMTP id p16-20020a92c610000000b002bfb4933425mr3441704ilm.166.1645140240853;
+        Thu, 17 Feb 2022 15:24:00 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id r13sm2810676ilb.35.2022.02.17.15.23.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Feb 2022 15:24:00 -0800 (PST)
+Received: (nullmailer pid 3964338 invoked by uid 1000);
+        Thu, 17 Feb 2022 23:23:58 -0000
+Date:   Thu, 17 Feb 2022 17:23:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     jassisinghbrar@gmail.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski@canonical.com, daniel.baluta@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V3 2/5] dt-bindings: mailbox: imx-mu: add i.MX93 S4 MU
+ support
+Message-ID: <Yg7ZDoH1HBkOZvIH@robh.at.kernel.org>
+References: <20220211060301.1852772-1-peng.fan@oss.nxp.com>
+ <20220211060301.1852772-3-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220207185411.19118-3-bartosz.dudziak@snejp.pl>
-References: <20220207185411.19118-1-bartosz.dudziak@snejp.pl> <20220207185411.19118-3-bartosz.dudziak@snejp.pl>
-Subject: Re: [PATCH v2 2/2] clk: qcom: Add MSM8226 Multimedia Clock Controller support
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        Jeffrey Hugo <jhugo@codeaurora.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Date:   Thu, 17 Feb 2022 15:22:53 -0800
-User-Agent: alot/0.10
-Message-Id: <20220217232254.DE517C340E8@smtp.kernel.org>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220211060301.1852772-3-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,140 +67,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bartosz Dudziak (2022-02-07 10:54:11)
-> Modify the existing MSM8974 multimedia clock controller driver to
-> support the MMCC found on MSM8226 based devices. This should allow most
-> multimedia device drivers to probe and control their clocks.
->=20
-> Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+On Fri, Feb 11, 2022 at 02:02:58PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Similar to i.MX8ULP S4 MU, i.MX93 MU is dedicated for communication
+> between Sentinel and Cortex-A cores from hardware design, it could not be
+> reused for other purpose.
+> 
+> However i.MX93 S4 MU use separate tx/rx interrupt, so update
+> interrupts and add interrupt-names property.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  drivers/clk/qcom/mmcc-msm8974.c | 206 +++++++++++++++++++++++++++++++-
->  1 file changed, 201 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/clk/qcom/mmcc-msm8974.c b/drivers/clk/qcom/mmcc-msm8=
-974.c
-> index a1552b6771..f74662925a 100644
-> --- a/drivers/clk/qcom/mmcc-msm8974.c
-> +++ b/drivers/clk/qcom/mmcc-msm8974.c
-> @@ -257,6 +257,18 @@ static struct clk_rcg2 mmss_ahb_clk_src =3D {
->         },
->  };
-> =20
-> +static struct freq_tbl ftbl_mmss_axi_clk_msm8226[] =3D {
+>  .../devicetree/bindings/mailbox/fsl,mu.yaml   | 21 +++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> index 6d056d5e16bf..f0a7e693ebf8 100644
+> --- a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> @@ -29,6 +29,7 @@ properties:
+>        - const: fsl,imx8ulp-mu
+>        - const: fsl,imx8-mu-scu
+>        - const: fsl,imx8-mu-seco
+> +      - const: fsl,imx93-mu-s4
+>        - const: fsl,imx8ulp-mu-s4
+>        - items:
+>            - const: fsl,imx93-mu
+> @@ -57,6 +58,12 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  interrupt-names:
+> +    minItems: 1
+> +    items:
+> +      - const: txirq
+> +      - const: rxirq
 
-const?
+'irq' is redundant. Drop.
 
-> +       F(19200000, P_XO, 1, 0, 0),
-> +       F(37500000, P_GPLL0, 16, 0, 0),
-> +       F(50000000, P_GPLL0, 12, 0, 0),
-> +       F(75000000, P_GPLL0, 8, 0, 0),
-> +       F(100000000, P_GPLL0, 6, 0, 0),
-> +       F(150000000, P_GPLL0, 4, 0, 0),
-> +       F(200000000, P_MMPLL0, 4, 0, 0),
-> +       F(266666666, P_MMPLL0, 3, 0, 0),
-> +       { }
-> +};
 > +
->  static struct freq_tbl ftbl_mmss_axi_clk[] =3D {
->         F( 19200000, P_XO, 1, 0, 0),
->         F( 37500000, P_GPLL0, 16, 0, 0),
-> @@ -364,6 +376,23 @@ static struct clk_rcg2 csi3_clk_src =3D {
->         },
->  };
-> =20
-> +static struct freq_tbl ftbl_camss_vfe_vfe0_clk_msm8226[] =3D {
+>    "#mbox-cells":
+>      description: |
+>        <&phandle type channel>
+> @@ -90,6 +97,20 @@ required:
+>    - interrupts
+>    - "#mbox-cells"
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,imx93-mu-s4
+> +    then:
+> +      properties:
+> +        interrupt-names:
+> +          minItems: 2
+> +          maxItems: 2
 
-const?
+minItems is enough.
 
-> +       F(37500000, P_GPLL0, 16, 0, 0),
-> +       F(50000000, P_GPLL0, 12, 0, 0),
-> +       F(60000000, P_GPLL0, 10, 0, 0),
-> +       F(80000000, P_GPLL0, 7.5, 0, 0),
-> +       F(100000000, P_GPLL0, 6, 0, 0),
-> +       F(109090000, P_GPLL0, 5.5, 0, 0),
-> +       F(133330000, P_GPLL0, 4.5, 0, 0),
-> +       F(150000000, P_GPLL0, 4, 0, 0),
-> +       F(200000000, P_GPLL0, 3, 0, 0),
-> +       F(228570000, P_MMPLL0, 3.5, 0, 0),
-> +       F(266670000, P_MMPLL0, 3, 0, 0),
-> +       F(320000000, P_MMPLL0, 2.5, 0, 0),
-> +       F(400000000, P_MMPLL0, 2, 0, 0),
-> +       { }
-> +};
-> +
->  static struct freq_tbl ftbl_camss_vfe_vfe0_1_clk[] =3D {
->         F(37500000, P_GPLL0, 16, 0, 0),
->         F(50000000, P_GPLL0, 12, 0, 0),
-> @@ -407,6 +436,18 @@ static struct clk_rcg2 vfe1_clk_src =3D {
->         },
->  };
-> =20
-> +static struct freq_tbl ftbl_mdss_mdp_clk_msm8226[] =3D {
+> +        interrupts:
+> +          maxItems: 2
 
-const?
+You haven't tested this with 2 items. It will fail because the main 
+section has a limit of 1 item.
 
-> +       F(37500000, P_GPLL0, 16, 0, 0),
-> +       F(60000000, P_GPLL0, 10, 0, 0),
-> +       F(75000000, P_GPLL0, 8, 0, 0),
-> +       F(92310000, P_GPLL0, 6.5, 0, 0),
-> +       F(100000000, P_GPLL0, 6, 0, 0),
-> +       F(133330000, P_MMPLL0, 6, 0, 0),
-> +       F(177780000, P_MMPLL0, 4.5, 0, 0),
-> +       F(200000000, P_MMPLL0, 4, 0, 0),
-> +       { }
-> +};
-> +
->  static struct freq_tbl ftbl_mdss_mdp_clk[] =3D {
->         F(37500000, P_GPLL0, 16, 0, 0),
->         F(60000000, P_GPLL0, 10, 0, 0),
-> @@ -513,6 +554,14 @@ static struct clk_rcg2 pclk1_clk_src =3D {
->         },
->  };
-> =20
-> +static struct freq_tbl ftbl_venus0_vcodec0_clk_msm8226[] =3D {
-
-const?
-
-> +       F(66700000, P_GPLL0, 9, 0, 0),
-> +       F(100000000, P_GPLL0, 6, 0, 0),
-> +       F(133330000, P_MMPLL0, 6, 0, 0),
-> +       F(160000000, P_MMPLL0, 5, 0, 0),
-> +       { }
-> +};
-> +
->  static struct freq_tbl ftbl_venus0_vcodec0_clk[] =3D {
->         F(50000000, P_GPLL0, 12, 0, 0),
->         F(100000000, P_GPLL0, 6, 0, 0),
-> @@ -593,6 +642,13 @@ static struct clk_rcg2 camss_gp1_clk_src =3D {
->         },
->  };
-> =20
-> +static struct freq_tbl ftbl_camss_mclk0_3_clk_msm8226[] =3D {
-
-const?
-
-> +       F(19200000, P_XO, 1, 0, 0),
-> +       F(24000000, P_GPLL0, 5, 1, 5),
-> +       F(66670000, P_GPLL0, 9, 0, 0),
-> +       { }
-> +};
-> +
->  static struct freq_tbl ftbl_camss_mclk0_3_clk[] =3D {
->         F(4800000, P_XO, 4, 0, 0),
->         F(6000000, P_GPLL0, 10, 1, 10),
-> @@ -705,6 +761,15 @@ static struct clk_rcg2 csi2phytimer_clk_src =3D {
->         },
->  };
-> =20
-> +static struct freq_tbl ftbl_camss_vfe_cpp_clk_msm8226[] =3D {
-
-const?
-
-> +       F(133330000, P_GPLL0, 4.5, 0, 0),
-> +       F(150000000, P_GPLL0, 4, 0, 0),
-> +       F(266670000, P_MMPLL0, 3, 0, 0),
-> +       F(320000000, P_MMPLL0, 2.5, 0, 0),
-> +       F(400000000, P_MMPLL0, 2, 0, 0),
-> +       { }
-> +};
-> +
+Rob
