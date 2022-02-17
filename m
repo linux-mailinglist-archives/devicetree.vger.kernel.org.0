@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F3F24B9AF7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 09:30:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02C824B9AFC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 09:30:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237692AbiBQIaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 03:30:30 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41862 "EHLO
+        id S233632AbiBQIal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 03:30:41 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237695AbiBQIaZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 03:30:25 -0500
+        with ESMTP id S237733AbiBQIaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 03:30:39 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E29B2271FB
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 00:30:12 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE3702271FB
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 00:30:25 -0800 (PST)
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1nKcAs-0002EH-CB; Thu, 17 Feb 2022 09:30:02 +0100
+        id 1nKcAw-0002EI-JN; Thu, 17 Feb 2022 09:30:06 +0100
 Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1nKcAq-00ClTf-4S; Thu, 17 Feb 2022 09:30:00 +0100
+        id 1nKcAq-00ClTl-5N; Thu, 17 Feb 2022 09:30:00 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -33,9 +33,9 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v6 19/23] arm64: dts: rockchip: enable vop2 and hdmi tx on quartz64a
-Date:   Thu, 17 Feb 2022 09:29:50 +0100
-Message-Id: <20220217082954.2967889-20-s.hauer@pengutronix.de>
+Subject: [PATCH v6 20/23] drm/rockchip: Make VOP driver optional
+Date:   Thu, 17 Feb 2022 09:29:51 +0100
+Message-Id: <20220217082954.2967889-21-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220217082954.2967889-1-s.hauer@pengutronix.de>
 References: <20220217082954.2967889-1-s.hauer@pengutronix.de>
@@ -54,104 +54,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Riesch <michael.riesch@wolfvision.net>
+With upcoming VOP2 support VOP won't be the only choice anymore, so make
+the VOP driver optional.
 
-Enable the RK356x Video Output Processor (VOP) 2 on the Pine64
-Quartz64 Model A.
-
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
+ drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
+ drivers/gpu/drm/rockchip/Makefile           | 3 ++-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
+ 3 files changed, 11 insertions(+), 2 deletions(-)
 
-Notes:
-    Changes since v5:
-    - Drop reg property from single endpoint node
-    
-    Changes since v4:
-    - Sort nodes alphabetically
-    
-    Changes since v3:
-    - Fix HDMI connector type
-
- .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-index 166399b7f13f0..5d7035649cda8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -4,6 +4,7 @@
+diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
+index 9f1ecefc39332..b9b156308460a 100644
+--- a/drivers/gpu/drm/rockchip/Kconfig
++++ b/drivers/gpu/drm/rockchip/Kconfig
+@@ -21,8 +21,16 @@ config DRM_ROCKCHIP
  
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
- #include "rk3566.dtsi"
+ if DRM_ROCKCHIP
  
- / {
-@@ -35,6 +36,17 @@ fan: gpio_fan {
- 		#cooling-cells = <2>;
- 	};
++config ROCKCHIP_VOP
++	bool "Rockchip VOP driver"
++	default y
++	help
++	  This selects support for the VOP driver. You should enable it
++	  on all older SoCs up to RK3399.
++
+ config ROCKCHIP_ANALOGIX_DP
+ 	bool "Rockchip specific extensions for Analogix DP driver"
++	depends on ROCKCHIP_VOP
+ 	help
+ 	  This selects support for Rockchip SoC specific extensions
+ 	  for the Analogix Core DP driver. If you want to enable DP
+diff --git a/drivers/gpu/drm/rockchip/Makefile b/drivers/gpu/drm/rockchip/Makefile
+index 1a56f696558ca..dfc5512fdb9f1 100644
+--- a/drivers/gpu/drm/rockchip/Makefile
++++ b/drivers/gpu/drm/rockchip/Makefile
+@@ -4,8 +4,9 @@
+ # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
  
-+	hdmi-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
+ rockchipdrm-y := rockchip_drm_drv.o rockchip_drm_fb.o \
+-		rockchip_drm_gem.o rockchip_drm_vop.o rockchip_vop_reg.o
++		rockchip_drm_gem.o
  
-@@ -205,6 +217,24 @@ &gmac1m0_clkinout
- 	status = "okay";
- };
++rockchipdrm-$(CONFIG_ROCKCHIP_VOP) += rockchip_drm_vop.o rockchip_vop_reg.o
+ rockchipdrm-$(CONFIG_ROCKCHIP_ANALOGIX_DP) += analogix_dp-rockchip.o
+ rockchipdrm-$(CONFIG_ROCKCHIP_CDN_DP) += cdn-dp-core.o cdn-dp-reg.o
+ rockchipdrm-$(CONFIG_ROCKCHIP_DW_HDMI) += dw_hdmi-rockchip.o
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+index bec207de45440..82c8faf1fb6b8 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+@@ -458,7 +458,7 @@ static int __init rockchip_drm_init(void)
+ 	int ret;
  
-+&hdmi {
-+	avdd-0v9-supply = <&vdda_0v9>;
-+	avdd-1v8-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&hdmi_in {
-+	hdmi_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi>;
-+	};
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
- &i2c0 {
- 	status = "okay";
- 
-@@ -551,3 +581,20 @@ bluetooth {
- &uart2 {
- 	status = "okay";
- };
-+
-+&vop {
-+	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
-+	assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi: endpoint@RK3568_VOP2_EP_HDMI {
-+		reg = <RK3568_VOP2_EP_HDMI>;
-+		remote-endpoint = <&hdmi_in_vp0>;
-+	};
-+};
+ 	num_rockchip_sub_drivers = 0;
+-	ADD_ROCKCHIP_SUB_DRIVER(vop_platform_driver, CONFIG_DRM_ROCKCHIP);
++	ADD_ROCKCHIP_SUB_DRIVER(vop_platform_driver, CONFIG_ROCKCHIP_VOP);
+ 	ADD_ROCKCHIP_SUB_DRIVER(rockchip_lvds_driver,
+ 				CONFIG_ROCKCHIP_LVDS);
+ 	ADD_ROCKCHIP_SUB_DRIVER(rockchip_dp_driver,
 -- 
 2.30.2
 
