@@ -2,136 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 707074B9E9B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 12:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EAB34B9EC9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 12:36:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233256AbiBQLbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 06:31:47 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52900 "EHLO
+        id S239811AbiBQLf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 06:35:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238750AbiBQLbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 06:31:47 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3145E1121;
-        Thu, 17 Feb 2022 03:31:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=XSxGqHqB4CD4ItwJiT094IbgEYiep/ZGxuAGK8hdbFM=; b=YeqARtQqVs/62u66byIearze8r
-        IE4wuo5lqu2F8ITDkDR5OCNYH1cs8gMHNndNEPY2TfwZkLCO2zhKSl/sAr4oNL1q8eDVZf/TDaxeP
-        k9ZllKSSEZRWRJY3+ukIdU5ynnBZl4oifiNPFAi3PmkX4RtRmRIlhewWGCzV98Kw9KY8=;
-Received: from p200300ccff1474001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff14:7400:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1nKf0D-0006cT-8F; Thu, 17 Feb 2022 12:31:13 +0100
-Date:   Thu, 17 Feb 2022 12:31:12 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, alistair@alistair23.me,
-        samuel@sholland.org, josua.mayer@jm0.eu,
-        letux-kernel@openphoenux.org
-Subject: Re: [RFC PATCH 1/6] dt-bindings: display: imx: Add EPDC
-Message-ID: <20220217123112.3ba70000@aktux>
-In-Reply-To: <36445c86-036e-0942-a9a4-919595886c67@canonical.com>
-References: <20220206080016.796556-1-andreas@kemnade.info>
-        <20220206080016.796556-2-andreas@kemnade.info>
-        <36445c86-036e-0942-a9a4-919595886c67@canonical.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S239802AbiBQLfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 06:35:25 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 377562A82E6;
+        Thu, 17 Feb 2022 03:35:06 -0800 (PST)
+X-UUID: 6506b093061d4570b82df3c4bbc2e244-20220217
+X-UUID: 6506b093061d4570b82df3c4bbc2e244-20220217
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1611236504; Thu, 17 Feb 2022 19:35:01 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 17 Feb 2022 19:34:59 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 17 Feb 2022 19:34:58 +0800
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>
+CC:     Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, <yong.wu@mediatek.com>,
+        <youlin.pei@mediatek.com>, <anan.sun@mediatek.com>,
+        <xueqi.zhang@mediatek.com>, <yen-chang.chen@mediatek.com>,
+        "AngeloGioacchino Del Regno" 
+        <angelogioacchino.delregno@collabora.com>,
+        <mingyuan.ma@mediatek.com>, <yf.wang@mediatek.com>,
+        <libo.kang@mediatek.com>, <chengci.xu@mediatek.com>
+Subject: [PATCH v5 00/34] MT8195 IOMMU SUPPORT
+Date:   Thu, 17 Feb 2022 19:34:19 +0800
+Message-ID: <20220217113453.13658-1-yong.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Feb 2022 10:21:15 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+This patchset adds MT8195 iommu support.
 
-> On 06/02/2022 09:00, Andreas Kemnade wrote:
-> > Add a binding for the Electrophoretic Display Controller found at least
-> > in the i.MX6.
-> > The timing subnode is directly here to avoid having display parameters
-> > spread all over the plate.
-> > 
-> > Supplies are organized the same way as in the fbdev driver in the
-> > NXP/Freescale kernel forks. The regulators used for that purpose,
-> > like the TPS65185, the SY7636A and MAX17135 have typically a single bit to
-> > start a bunch of regulators of higher or negative voltage with a
-> > well-defined timing. VCOM can be handled separately, but can also be
-> > incorporated into that single bit.
-> > 
-> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > ---
-> >  .../bindings/display/imx/fsl,mxc-epdc.yaml    | 159 ++++++++++++++++++
-> >  1 file changed, 159 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
-> > 
-[..]
+MT8195 have 3 IOMMU HWs. 2 IOMMU HW is for multimedia, and 1 IOMMU HW is
+for infra-master, like PCIe/USB.
 
-> > +
-> > +  DISPLAY-supply:
-> > +    description:
-> > +      A couple of +/- voltages automatically powered on in a defintive order  
-> 
-> Typo, definitive?
-> 
-yes, of course.
+About the 2 MM IOMMU HW, something like this:
 
-> > +
-> > +  VCOM-supply:
-> > +    description: compensation voltage
-> > +
-> > +  V3P3-supply:  
-> 
-> All of supplies names - lowercase.
-> 
-> > +    description: V3P3 supply
-> > +
-> > +  epd-thermal-zone:
-> > +    description:
-> > +      Zone to get temperature of the EPD from, practically ambient temperature.  
-> 
-> Is it a phandle?
-> 
-a string used in
-       of_property_read_string(priv->drm.dev->of_node,
-                                "epd-thermal-zone", &thermal);
-        if (thermal) {
-                priv->thermal = thermal_zone_get_zone_by_name(thermal);
-                if (IS_ERR(priv->thermal))
-                        return dev_err_probe(priv->drm.dev, PTR_ERR(priv->thermal),
-                                             "unable to get thermal");
-        }
+        IOMMU(VDO)          IOMMU(VPP)
+           |                   |
+      SMI_COMMON(VDO)      SMI_COMMON(VPP)
+      ---------------     ----------------
+      |      |   ...      |      |     ...
+    larb0 larb2  ...    larb1 larb3    ...
 
-[...]
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/imx6sl-clock.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    epdc: epdc@20f4000 {  
-> 
-> Generic node name, e.g. display-controller
-> 
-hmm, does IHMO not make too much sense here. E.g. in the imx6sll.dtsi
-we have lcd-controller next to it. So having epd-controller? But that
-is exactly what epdc stands for.
+these two MM IOMMU HW share a pgtable.
 
-Regards,
-Andreas
+About the INFRA IOMMU, it don't have larbs, the master connects the iommu
+directly. It use a independent pgtable.
+
+Also, mt8195 IOMMU bank supports. Normally the IOMMU register size only
+is 0x1000. In this IOMMU HW, the register size is 5 * 0x1000. each 0x1000
+is a bank. the banks' register look like this:
+     ----------------------------------------
+     |bank0  | bank1 | bank2 | bank3 | bank4|
+     ----------------------------------------
+     |global |
+     |control|         null
+     |regs   |
+     -----------------------------------------
+     |bank   |bank   |bank   |bank   |bank   |
+     |regs   |regs   |regs   |regs   |regs   |
+     |       |       |       |       |       |
+     -----------------------------------------
+All the banks share some global control registers, and each bank have its
+special bank registers, like pgtable base register, tlb operation registers,
+the fault status registers.
+ 
+In mt8195, we enable this bank feature for infra iommu, We put PCIe in bank0
+and USB in bank4. they have independent pgtable.
+
+This patchset bases on next-20220216 which has already contained the smi
+clean-up v10[1] patchset and the tlb logic patchset[2] for MediaTek iommu.
+
+[1] https://lore.kernel.org/linux-iommu/20220117070510.17642-1-yong.wu@mediatek.com/
+[2] https://lore.kernel.org/linux-mediatek/20211208120744.2415-1-dafna.hirschfeld@collabora.com/
+
+Change note:
+v5:1) Base on next-20220216
+   2) Remove a patch for kmalloc for protect buffer. keep the kzalloc for it.
+   3) minor fix from AngeloGioacchino, like rename the error label name
+   (data_unlock to err_unlock).
+   Note, keep the TODO for component compare_of[26/34].
+
+v4: https://lore.kernel.org/linux-iommu/20220125085634.17972-1-yong.wu@mediatek.com/
+   1) Base on v5.16-rc1
+   2) Base on tlb logic 2 patchset, some patches in v3 has already gone
+   through that patchset.
+   3) Due to the unreadable union for v1/v2(comment in 26/33 of v3), I
+   separate mtk_iommu_data for v1 and v2 totally, then remove mtk_iommu.h.
+   please see patch[26/35][27/35].
+   4) add two mutex for the internal data. patch[6/35][7/35].
+   5) add a new flag PM_CLK_AO.
+
+v3: https://lore.kernel.org/linux-mediatek/20210923115840.17813-1-yong.wu@mediatek.com/
+    1) base on v5.15-rc1
+    2) Adjust devlink with smi-common, not use the property(sub-sommon).
+    3) Adjust tlb_flush_all flow,
+       a) Fix tlb_flush_all only is supported in bank0.
+       b) add tlb-flush-all in the resume callback.
+       c) remove the pm status checking in tlb-flush-all.
+       The reason are showed in the commit message.
+    4) Allow IOMMU_DOMAIN_UNMANAGED since PCIe VFIO use that.
+    5) Fix a clk warning and a null abort when unbind the iommu driver.
+
+v2: https://lore.kernel.org/linux-mediatek/20210813065324.29220-1-yong.wu@mediatek.com/
+    1) Base on v5.14-rc1.
+    2) Fix build fail for arm32.
+    3) Fix dt-binding issue from Rob.
+    4) Fix the bank issue when tlb flush. v1 always use bank->base.
+    5) adjust devlink with smi-common since the node may be smi-sub-common.
+    6) other changes: like reword some commit message(removing many
+       "This patch..."); seperate serveral patches.
+
+v1: https://lore.kernel.org/linux-mediatek/20210630023504.18177-1-yong.wu@mediatek.com/
+    Base on v5.13-rc1
+
+Yong Wu (34):
+  dt-bindings: mediatek: mt8195: Add binding for MM IOMMU
+  dt-bindings: mediatek: mt8195: Add binding for infra IOMMU
+  iommu/mediatek: Fix 2 HW sharing pgtable issue
+  iommu/mediatek: Add list_del in mtk_iommu_remove
+  iommu/mediatek: Remove clk_disable in mtk_iommu_remove
+  iommu/mediatek: Add mutex for m4u_group and m4u_dom in data
+  iommu/mediatek: Add mutex for data in the mtk_iommu_domain
+  iommu/mediatek: Adapt sharing and non-sharing pgtable case
+  iommu/mediatek: Add 12G~16G support for multi domains
+  iommu/mediatek: Add a flag DCM_DISABLE
+  iommu/mediatek: Add a flag NON_STD_AXI
+  iommu/mediatek: Remove the granule in the tlb flush
+  iommu/mediatek: Always enable output PA over 32bits in isr
+  iommu/mediatek: Add SUB_COMMON_3BITS flag
+  iommu/mediatek: Add IOMMU_TYPE flag
+  iommu/mediatek: Contain MM IOMMU flow with the MM TYPE
+  iommu/mediatek: Adjust device link when it is sub-common
+  iommu/mediatek: Allow IOMMU_DOMAIN_UNMANAGED for PCIe VFIO
+  iommu/mediatek: Add a PM_CLK_AO flag for infra iommu
+  iommu/mediatek: Add infra iommu support
+  iommu/mediatek: Add PCIe support
+  iommu/mediatek: Add mt8195 support
+  iommu/mediatek: Only adjust code about register base
+  iommu/mediatek: Just move code position in hw_init
+  iommu/mediatek: Separate mtk_iommu_data for v1 and v2
+  iommu/mediatek: Remove mtk_iommu.h
+  iommu/mediatek-v1: Just rename mtk_iommu to mtk_iommu_v1
+  iommu/mediatek: Add mtk_iommu_bank_data structure
+  iommu/mediatek: Initialise bank HW for each a bank
+  iommu/mediatek: Change the domid to iova_region_id
+  iommu/mediatek: Get the proper bankid for multi banks
+  iommu/mediatek: Initialise/Remove for multi bank dev
+  iommu/mediatek: Backup/restore regsiters for multi banks
+  iommu/mediatek: mt8195: Enable multi banks for infra iommu
+
+ .../bindings/iommu/mediatek,iommu.yaml        |  20 +-
+ drivers/iommu/mtk_iommu.c                     | 966 +++++++++++++-----
+ drivers/iommu/mtk_iommu.h                     | 111 --
+ drivers/iommu/mtk_iommu_v1.c                  | 243 +++--
+ .../dt-bindings/memory/mt8195-memory-port.h   | 408 ++++++++
+ include/dt-bindings/memory/mtk-memory-port.h  |   2 +
+ 6 files changed, 1264 insertions(+), 486 deletions(-)
+ delete mode 100644 drivers/iommu/mtk_iommu.h
+ create mode 100644 include/dt-bindings/memory/mt8195-memory-port.h
+
+-- 
+2.18.0
+
+
