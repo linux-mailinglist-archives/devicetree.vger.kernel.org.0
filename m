@@ -2,80 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF8444B975E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 04:59:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7A2A4B975C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 04:59:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbiBQD7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Feb 2022 22:59:46 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54736 "EHLO
+        id S232796AbiBQD7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Feb 2022 22:59:42 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233259AbiBQD7p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 22:59:45 -0500
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 876E82A22AD;
-        Wed, 16 Feb 2022 19:59:31 -0800 (PST)
-Received: by mail-io1-f44.google.com with SMTP id y20so2251743iod.1;
-        Wed, 16 Feb 2022 19:59:31 -0800 (PST)
+        with ESMTP id S230012AbiBQD7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Feb 2022 22:59:41 -0500
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7E8A2A22AA
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 19:59:27 -0800 (PST)
+Received: by mail-il1-f172.google.com with SMTP id c14so1386560ilm.4
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 19:59:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=1201U7jGf6mRbtKM7KoY721y/IYFIenAUJfm8rUu4Iw=;
-        b=3iNXcI6W6EdebXvaqbZ7Gz5QD+PQxMy4DPi3C0H7a43MSCJYZXAl4d4wqKafeC/xwR
-         t1m90Cy4HAdrp24lTo+kuaYFkxSG9DIWMGOLxxYaR/KoRhKDgXMLJy37zIQJcX+MPSD4
-         d2lPBG67zr9NMwg23F/w3i27+WH/N/v1O0EIFRYzHcJSyl3Lbw+GPC9MCKpdAI86FcBa
-         xaQJs+F9+JlqcDrlPLot1B2DyqFoaJj6Nm1E09XkiX9qqBNpSJQqEvqVQceBBU/ym79O
-         g3YlKeklWdq9zaHxIas6lUXXiB+0uRVHkVWXEgfynW0p/rjXDHbt5iZ00/MIwwPdLkc1
-         G3Ng==
-X-Gm-Message-State: AOAM532rktNqH7Ofw7hTXwIrB8e1azk4CDqd3qpH8FDPXl1q7VSygCm1
-        SKhvKMhj2E1wjU0vweunNw==
-X-Google-Smtp-Source: ABdhPJztY01Htp3b7plSnLgVtXAE6/wMQ4BJc/inz7k+du/IoSn9hsGPbi3AVGmacTEQ3CbYasqFqg==
-X-Received: by 2002:a5d:85c6:0:b0:63a:c12b:e0f4 with SMTP id e6-20020a5d85c6000000b0063ac12be0f4mr668858ios.18.1645070370850;
-        Wed, 16 Feb 2022 19:59:30 -0800 (PST)
+        bh=QMp03JwfLrGdIz7WkJv38B9CcEHqS5vpZzWHoaVV6vI=;
+        b=V0Y6OC4C9FaT+TIwBbm1yW/Ac5mZ9j4l1C9FB2E+3ZjAM9GI0pMzt6bnaHv1IboopB
+         HKxTXraunrL/BcXvl6ifGUT3FckmTNvLlJ6zmn1M2LL6jWkCDX4rc/hsO2LggMXtLDAw
+         p/SOsmcHAs8HYtjc+Is/lSN+rIvtiavhF7IZpl7IypLx1SmXjNWfY/Uc75gWXYMMSGBj
+         h48daecaIKiMYnsWcYSyZeygyamQKLC+CsTIhtIpSMINrgMwjGDED4XBqVTjq/CeA9x0
+         aQHjQeskJ1Jw0M86g3tikTne50x3DCqYFNQYsT62a19eIF85wCamgBDAvdp2UJIG6gBd
+         FHHw==
+X-Gm-Message-State: AOAM5327HkHKgT1dqB/BKY2jIL0FnrW+5jFrqO6PrU2nqNxEjp4aiFiI
+        pJGsfHuF+H20whDNxRlH3w==
+X-Google-Smtp-Source: ABdhPJyn4QNq6duiajKRbrBRY9gv2AEW1GPnC5BSrD8R7Y3NWxxCyBiwAwR3rysON3OVY139wHnilA==
+X-Received: by 2002:a92:dc44:0:b0:2bf:adaa:7a2a with SMTP id x4-20020a92dc44000000b002bfadaa7a2amr794786ilq.172.1645070367123;
+        Wed, 16 Feb 2022 19:59:27 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id t15sm358729ilu.74.2022.02.16.19.59.28
+        by smtp.gmail.com with ESMTPSA id z13sm1161054iox.21.2022.02.16.19.59.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Feb 2022 19:59:29 -0800 (PST)
-Received: (nullmailer pid 2266022 invoked by uid 1000);
+        Wed, 16 Feb 2022 19:59:26 -0800 (PST)
+Received: (nullmailer pid 2266019 invoked by uid 1000);
         Thu, 17 Feb 2022 03:59:23 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-In-Reply-To: <20220216132830.32490-3-shawn.guo@linaro.org>
-References: <20220216132830.32490-1-shawn.guo@linaro.org> <20220216132830.32490-3-shawn.guo@linaro.org>
-Subject: Re: [PATCH v5 2/3] dt-bindings: interrupt-controller: Add Qualcomm MPM support
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-mtd@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>
+In-Reply-To: <20220216104126.31284-1-zajec5@gmail.com>
+References: <20220216104126.31284-1-zajec5@gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: partitions: convert Broadcom's TRX to the json-schema
 Date:   Wed, 16 Feb 2022 21:59:23 -0600
-Message-Id: <1645070363.942246.2266021.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+Message-Id: <1645070363.930966.2266015.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Feb 2022 21:28:29 +0800, Shawn Guo wrote:
-> It adds DT binding support for Qualcomm MPM interrupt controller.
+On Wed, 16 Feb 2022 11:41:26 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> This helps validating DTS files.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  .../interrupt-controller/qcom,mpm.yaml        | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
+>  .../bindings/mtd/partitions/brcm,trx.txt      | 42 ---------------
+>  .../bindings/mtd/partitions/brcm,trx.yaml     | 51 +++++++++++++++++++
+>  2 files changed, 51 insertions(+), 42 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -84,45 +84,26 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: properties:qcom,mpm-pin-count: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('maxItems' was unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: properties:qcom,mpm-pin-count: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: properties:qcom,mpm-pin-count: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: properties:qcom,mpm-pin-map: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	'description' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('$ref', 'items' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: properties:qcom,mpm-pin-map: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	'/schemas/types.yaml#/definitions/uint32-matrix' does not match '^#/(definitions|$defs)/'
-		hint: A vendor property can have a $ref to a a $defs schema
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: ignoring, error in schema: properties: qcom,mpm-pin-count
-Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.example.dt.yaml:0:0: /example-0/interrupt-controller@45f01b8: failed to match any schema with compatible: ['qcom,qcm2290-mpm']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/linksys,ns-partitions.example.dt.yaml: partition@200000: compatible:0: 'brcm,trx' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/linksys,ns-partitions.example.dt.yaml: partition@200000: compatible: ['linksys,ns-firmware', 'brcm,trx'] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/linksys,ns-partitions.example.dt.yaml: partition@200000: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/linksys,ns-partitions.example.dt.yaml: partition@1100000: compatible:0: 'brcm,trx' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/linksys,ns-partitions.example.dt.yaml: partition@1100000: compatible: ['linksys,ns-firmware', 'brcm,trx'] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/linksys,ns-partitions.example.dt.yaml: partition@1100000: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.example.dt.yaml: firmware@100000: 'label', 'reg' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.example.dt.yaml: firmware@100000: 'label', 'reg' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1593741
+See https://patchwork.ozlabs.org/patch/1593614
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
