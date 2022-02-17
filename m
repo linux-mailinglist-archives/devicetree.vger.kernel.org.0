@@ -2,102 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42C9C4BA59C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 17:21:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF27A4BA5AB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 17:23:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235114AbiBQQUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 11:20:51 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34660 "EHLO
+        id S243068AbiBQQWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 11:22:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243082AbiBQQUu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 11:20:50 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3C13A2AA3B9;
-        Thu, 17 Feb 2022 08:20:33 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A0175113E;
-        Thu, 17 Feb 2022 08:20:33 -0800 (PST)
-Received: from [10.57.40.147] (unknown [10.57.40.147])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E5BAC3F718;
-        Thu, 17 Feb 2022 08:20:32 -0800 (PST)
-Message-ID: <a0ddff19-9495-fa9f-5bec-b6658522c0bd@arm.com>
-Date:   Thu, 17 Feb 2022 16:20:27 +0000
+        with ESMTP id S243041AbiBQQWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 11:22:53 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D62320ADBB;
+        Thu, 17 Feb 2022 08:22:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 43438B82362;
+        Thu, 17 Feb 2022 16:22:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61194C340E9;
+        Thu, 17 Feb 2022 16:22:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645114956;
+        bh=wVvGcJR4l3gt7jdAyEG+jd928oSBFZz7g56i8F4aG9Y=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=j16fSdpSMjjHy8XkFnCr0a1GZiXYg4O8hyycv/1TbWR5V/1Hri+nd4MOq8QGeeoN8
+         gO5NsGLEs4WaqM5iPkBaadtA7HrasRZeqvZB2RY9Xw3ru3dR5TLWO6nNapYDefi0GE
+         9zCAaouf6ZYc2Toi9H1EDxMYfCG4sqc9dbXM0aR/qQY2ptk/uYhktwBRdKfTd/Kyoj
+         wq034nZhpQJlGSCY0ki1T+2/433xJJJN/j2UqczDa/Jv1DCtoJHaqlX069xwC3k6AD
+         ak7BCSnm1KnYGwNDH7oxJICR0fd0p2zpUKb9lfo/akW5Vj9+wKQ2x/NtkSB2HFYxit
+         mmwtD7WT8sP/g==
+From:   Mark Brown <broonie@kernel.org>
+To:     lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, swboyd@chromium.org,
+        linux-arm-msm@vger.kernel.org, tiwai@suse.com,
+        bgoswami@codeaurora.org, judyhsiao@chromium.org,
+        bjorn.andersson@linaro.org, perex@perex.cz, rohitkr@codeaurora.org,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
+        srinivas.kandagatla@linaro.org, devicetree@vger.kernel.org
+Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
+In-Reply-To: <1645017892-12522-1-git-send-email-quic_srivasam@quicinc.com>
+References: <1645017892-12522-1-git-send-email-quic_srivasam@quicinc.com>
+Subject: Re: [PATCH] ASoC: codec: wcd938x: Update CTIA/OMTP switch control
+Message-Id: <164511495209.1843697.14605850089293661207.b4-ty@kernel.org>
+Date:   Thu, 17 Feb 2022 16:22:32 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH] dt-bindings: reserved-memory: Add restricted-dma-pool
- constraints
-Content-Language: en-GB
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mailing List <devicetree-spec@vger.kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org
-References: <79d1914ff04b44c3005072a990d14291c9ce6fce.1645103404.git.robin.murphy@arm.com>
- <CAL_JsqJh26LGyBH34y+68Jq0+NZEm86UfD4-u548YNz=AVYeug@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <CAL_JsqJh26LGyBH34y+68Jq0+NZEm86UfD4-u548YNz=AVYeug@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-17 16:05, Rob Herring wrote:
-> On Thu, Feb 17, 2022 at 7:10 AM Robin Murphy <robin.murphy@arm.com> wrote:
->>
->> The "restricted-dma-pool" definition prohibits combination with either
->> of the "no-map" and "reusable" properties, but this is only stated in
->> the description text. Add those constraints to the schema so we can
->> properly validate them.
->>
->> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->> ---
->>   .../bindings/reserved-memory/shared-dma-pool.yaml   | 13 +++++++++++++
->>   1 file changed, 13 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.yaml b/Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.yaml
->> index a4bf757d6881..01385581f663 100644
->> --- a/Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.yaml
->> +++ b/Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.yaml
->> @@ -56,6 +56,19 @@ properties:
->>         If this property is present, then Linux will use the region for
->>         the default pool of the consistent DMA allocator.
->>
->> +if:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        const: restricted-dma-pool
->> +then:
->> +  not:
->> +    anyOf:
->> +      - required:
->> +          - no-map
->> +      - required:
->> +          - reusable
+On Wed, 16 Feb 2022 18:54:52 +0530, Srinivasa Rao Mandadapu wrote:
+> Convert gpio api's to gpio descriptor api's in CTIA/OMTP switch control.
+> Remove redundant NULL checks in swap_gnd_mic function.
 > 
-> I think it is a bit clearer to disallow properties like this:
+> Fixes: 013cc2aea0f6 ("ASoC: codec: wcd938x: Add switch control for selecting CTIA/OMTP Headset")
 > 
-> then:
->    properties:
->      no-map: false
->      reusable: false
+> 
 
-Aha! I was sure there must be a better way, but couldn't see the wood 
-for the trees, thanks!
+Applied to
 
-Robin.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> 
-> 
->> +
->>   unevaluatedProperties: false
->>
->>   examples:
->> --
->> 2.28.0.dirty
->>
+Thanks!
+
+[1/1] ASoC: codec: wcd938x: Update CTIA/OMTP switch control
+      commit: db0b4aedfab396a6fe631f5c3bb34319770f0581
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
