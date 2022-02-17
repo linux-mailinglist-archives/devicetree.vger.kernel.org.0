@@ -2,39 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1DB04BA0CA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:14:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BC6B4BA0C5
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:14:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234157AbiBQNNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 08:13:19 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56970 "EHLO
+        id S232492AbiBQNOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 08:14:32 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229812AbiBQNNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:13:18 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5342929E956;
-        Thu, 17 Feb 2022 05:13:03 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1DDCC1515;
-        Thu, 17 Feb 2022 05:13:00 -0800 (PST)
-Received: from e120937-lin.home (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 362F03F66F;
-        Thu, 17 Feb 2022 05:12:58 -0800 (PST)
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     sudeep.holla@arm.com, james.quinlan@broadcom.com,
-        Jonathan.Cameron@Huawei.com, f.fainelli@gmail.com,
-        etienne.carriere@linaro.org, vincent.guittot@linaro.org,
-        souvik.chakravarty@arm.com, peter.hilber@opensynergy.com,
-        igor.skalkin@opensynergy.com, cristian.marussi@arm.com,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v5 4/8] dt-bindings: firmware: arm,scmi: Add atomic-threshold-us optional property
-Date:   Thu, 17 Feb 2022 13:12:30 +0000
-Message-Id: <20220217131234.50328-5-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220217131234.50328-1-cristian.marussi@arm.com>
-References: <20220217131234.50328-1-cristian.marussi@arm.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        with ESMTP id S234792AbiBQNOb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:14:31 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60C432AE2BF
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 05:14:16 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id r64-20020a17090a43c600b001b8854e682eso5406995pjg.0
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 05:14:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=XdlLlJhbQL/yqDobMDic8Dhn/I5hCPeUob53KHF16Xk=;
+        b=iNfqKq5Vxb8wbnaxWGaMqh0FL8SDsPrenCAQIRZFrNIhQgqO7fJd4oIED5SBuhNT4Z
+         9dH1d/yANOaEj2VFyMvW7yc67AvmK1KaGey4bQaBOfdABU2J7i3s9CCNmQ60p/Hw6EAQ
+         40LySQYRZhvMBvWfdbeIz0DPmbMgH1flwovP7lOvs7a3CW/YGx0FuzdIqxvbhDTue6DJ
+         05+BzE0dWFyRgrRlAflUbq1EUiqzz04owQoNT3rKcOeJN7A8yga7IdbJNxNkyNleAt5d
+         AbExYnvudxCvxL6NKR12/3lT8OkgW8RUwDDra0zVqb96jm5iUOJrAHRKLXzC+CIu2dTw
+         b2HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=XdlLlJhbQL/yqDobMDic8Dhn/I5hCPeUob53KHF16Xk=;
+        b=63nZapkzEv4VAfWw7oyqElvAxF4LHkmy12vNy9m5zeuMaSWv5+FEe6uDlKPUtSazBO
+         U1NV+2Y0i9hTHSfVu1g136PTp1sJ3ooAvzBInLFi5qHRRo7wUkDBPpftK6MzO5pAOz3N
+         cbqXJOpma8v9GjFZLbw0CczNHPXPEWLRNApmxbJhnpukVU9dDGV1KzHrGPDtzllkWbtA
+         kMtDuD9F5lbno7bVQ6YHLmVy4CT1irqfsvWkCkN3P5DuWYgXMvium8RAIwIXvFeeWezQ
+         D0goNBnhaNdd+o/8FS360rw0AiJJ1CrmXH5L7uyM6l98NlfTQXHYZlPdDqeIbRpxcpsX
+         ne+A==
+X-Gm-Message-State: AOAM532VW9HWZgGHEriQNZoF8+3NSWlDrRnxZu2KCKl0NXUMVcogQpEd
+        EYnUKAaMPVHPxO7Jia3iQb7Mow==
+X-Google-Smtp-Source: ABdhPJw8TYbPnz7C3y/3QVqKwy7odJLtmW3d4Cz6rXdRkbxoSKc0+apSrVv411QxkKXEWWcCTBUuwg==
+X-Received: by 2002:a17:90a:7845:b0:1b9:159c:148e with SMTP id y5-20020a17090a784500b001b9159c148emr2978883pjl.136.1645103655886;
+        Thu, 17 Feb 2022 05:14:15 -0800 (PST)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id l21sm48249804pfu.120.2022.02.17.05.14.12
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 17 Feb 2022 05:14:15 -0800 (PST)
+Date:   Thu, 17 Feb 2022 21:14:08 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] irqchip: Add Qualcomm MPM controller driver
+Message-ID: <20220217131407.GE31965@dragon>
+References: <20220216132830.32490-1-shawn.guo@linaro.org>
+ <20220216132830.32490-4-shawn.guo@linaro.org>
+ <0847c34b8c482e6f080ce6f44b02220d@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0847c34b8c482e6f080ce6f44b02220d@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -43,61 +79,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SCMI protocols in the platform can optionally signal to the OSPM agent
-the expected execution latency for a specific resource/operation pair.
+On Wed, Feb 16, 2022 at 03:48:42PM +0000, Marc Zyngier wrote:
+...
+> > +static irq_hw_number_t get_parent_hwirq(struct qcom_mpm_priv *priv, int
+> > pin)
+> > +{
+> > +	const struct mpm_gic_map *maps = priv->maps;
+> > +	int i;
+> > +
+> > +	for (i = 0; i < priv->map_cnt; i++) {
+> > +		if (maps[i].pin == pin)
+> > +			return maps[i].hwirq;
+> > +	}
+> > +
+> > +	return MPM_NO_PARENT_IRQ;
+> 
+> I'd rather you change this helper to return a pointer to the mapping data,
+> and NULL on failure. This will avoid inventing magic values which may
+> or may not clash with an interrupt number in the future.
+> 
+> > +}
+> > +
+> > +static int qcom_mpm_alloc(struct irq_domain *domain, unsigned int virq,
+> > +			  unsigned int nr_irqs, void *data)
+> > +{
+> > +	struct qcom_mpm_priv *priv = domain->host_data;
+> > +	struct irq_fwspec *fwspec = data;
+> > +	struct irq_fwspec parent_fwspec;
+> > +	irq_hw_number_t parent_hwirq;
+> 
+> Isn't this the pin number? If so, I'd rather you call it that.
 
-Introduce an SCMI system wide optional property to describe a global time
-threshold which can be configured on a per-platform base to determine the
-opportunity, or not, for an SCMI command advertised to have a higher
-latency than the threshold, to be considered for atomic operations:
-high-latency SCMI synchronous commands should be preferably issued in the
-usual non-atomic mode.
+We use term 'pin' in the driver as hwirq of MPM, while the parent_hwirq
+here means hwirq of GIC.  But it will be dropped anyway as I'm following
+your suggestion to check mapping data instead of parent_hwirq.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
----
-v4 --> v5:
-- fixed example and removed dtschema warnings/errors :
-  arm,scmi.yaml: properties:atomic-threshold-us:
-  	'$ref' should not be valid under {'const': '$ref'}
-- added default: 0 clause
-v3 --> v4
-- renamed property to atomic-threshold-us
-v1 --> v2
-- rephrased the property description
----
- .../devicetree/bindings/firmware/arm,scmi.yaml         | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+I will address all other review comments.  Thanks, Marc!
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index eae15df36eef..590743883802 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -81,6 +81,14 @@ properties:
-   '#size-cells':
-     const: 0
- 
-+  atomic-threshold-us:
-+    description:
-+      An optional time value, expressed in microseconds, representing, on this
-+      platform, the threshold above which any SCMI command, advertised to have
-+      an higher-than-threshold execution latency, should not be considered for
-+      atomic mode of operation, even if requested.
-+    default: 0
-+
-   arm,smc-id:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description:
-@@ -264,6 +272,8 @@ examples:
-             #address-cells = <1>;
-             #size-cells = <0>;
- 
-+            atomic-threshold-us = <10000>;
-+
-             scmi_devpd: protocol@11 {
-                 reg = <0x11>;
-                 #power-domain-cells = <1>;
--- 
-2.17.1
+Shawn
 
+> 
+> > +	irq_hw_number_t hwirq;
+> > +	unsigned int type;
+> > +	int  ret;
+> > +
+> > +	ret = irq_domain_translate_twocell(domain, fwspec, &hwirq, &type);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = irq_domain_set_hwirq_and_chip(domain, virq, hwirq,
+> > +					    &qcom_mpm_chip, priv);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	parent_hwirq = get_parent_hwirq(priv, hwirq);
+> > +	if (parent_hwirq == MPM_NO_PARENT_IRQ)
+> > +		return irq_domain_disconnect_hierarchy(domain->parent, virq);
+> > +
+> > +	if (type & IRQ_TYPE_EDGE_BOTH)
+> > +		type = IRQ_TYPE_EDGE_RISING;
+> > +
+> > +	if (type & IRQ_TYPE_LEVEL_MASK)
+> > +		type = IRQ_TYPE_LEVEL_HIGH;
+> > +
+> > +	parent_fwspec.fwnode = domain->parent->fwnode;
+> > +	parent_fwspec.param_count = 3;
+> > +	parent_fwspec.param[0] = 0;
+> > +	parent_fwspec.param[1] = parent_hwirq;
+> > +	parent_fwspec.param[2] = type;
+> > +
+> > +	return irq_domain_alloc_irqs_parent(domain, virq, nr_irqs,
+> > +					    &parent_fwspec);
+> > +}
