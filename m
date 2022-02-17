@@ -2,55 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFDE84BAC94
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 23:29:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A19214BACA7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 23:35:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233215AbiBQWaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 17:30:06 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34958 "EHLO
+        id S235909AbiBQWfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 17:35:33 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230527AbiBQWaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 17:30:05 -0500
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31E41688D2;
-        Thu, 17 Feb 2022 14:29:49 -0800 (PST)
-Received: by mail-io1-f52.google.com with SMTP id c14so1728967ioa.12;
-        Thu, 17 Feb 2022 14:29:49 -0800 (PST)
+        with ESMTP id S232023AbiBQWfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 17:35:30 -0500
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE3EC1688E4;
+        Thu, 17 Feb 2022 14:35:15 -0800 (PST)
+Received: by mail-io1-f49.google.com with SMTP id e79so5457101iof.13;
+        Thu, 17 Feb 2022 14:35:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=SnQZ/XVI2d+Uh+6Ldde6wFLG1VvmeDYtfCvHXu1q1KA=;
-        b=VcTKjfvPGwp9Ib+GMbsOwYDfnBFoRn+5xkh+gHQiASvIyGiteu79bIAr+cfowMBogO
-         h1JmgYXJs5grYWM4It1MceYfgccydWaIk9b8sfmslpcxAf9LcBAdvY4f+hmf8fjAy+7C
-         8ytG1m6giC2CYsbq24+p8L354hcNbBilgifQaOnU5u6GGXKO+8mbajVbicT+Gzi7YiNN
-         /dIu3Ql99AG27NWxcz40eFkD+aPI8oRRF/mqQVhcdL9n/w97g7Jm6HYpg2291e2Yy+O6
-         yF69CV3UjQ4RZWrqtxhT23Y0MFbr2BV+IxDJA+Ps39tpodlaAJh4A8nAINlxGV8n/3om
-         pNEw==
-X-Gm-Message-State: AOAM530Zb9ngEh1YLYWSCvEeNWim3ZJ/ogfWZ3v5VjxPWozGG/2EBHv7
-        3xbMGU5pgip7LRy/FFvqy7U1KJjy/g==
-X-Google-Smtp-Source: ABdhPJz6c9XVOuShkma10QMJfE7I6CAMqH832p+ozhWq/1YE8ugd+LEwcbJGo1US0FEAjcbGGVb3yQ==
-X-Received: by 2002:a5d:8898:0:b0:638:d203:d393 with SMTP id d24-20020a5d8898000000b00638d203d393mr3409414ioo.96.1645136989053;
-        Thu, 17 Feb 2022 14:29:49 -0800 (PST)
+        bh=QJCJJkJqtOsQ/CSbeUuObYQcThTPRTm035a09VI6ZJ4=;
+        b=f/9n2LwuAs550FqOKTRMdD/7R0l2o+0y6+sk7ZCzkiymb5Fk/hXL5cbeM813WdhnKL
+         cpj2/GwWukiAIRyYncpjrxqDWCZRbCy4TXk2L5nWjq2OeNsLV4e4ORxk527gYk1bTx3Q
+         2IoXoiWwwVIpYd0eIZfmUFDFUJprPVym/Q5uvlEE1oAldkLgF1DkW02rtOdp83yN5lZm
+         T95Gn87NQ/g7Ia365IFRBUcSy72mn5w48lqNkk8jJ6oaAS5AD3ViNQbj/K7KRnTmiBdm
+         9rmWN0HWm0J/Bp7dYOMPeSAKgYqnWPdd/q48jz6iMLY0DUWzo11ExOYcwijc9YA1bj0f
+         Rqfw==
+X-Gm-Message-State: AOAM530IBrfaH9/9K70Ofq2iU01V4wWoP6rhWn4isjHzU/Hn1CMBeP+o
+        ZqEkXUPQsy8V/yKyuoH0VQ==
+X-Google-Smtp-Source: ABdhPJy0BMvl0r/0X5Zc06+9xSfxyHJxRc8f8yEbFq5HYdWl/tpmNswA1NCuOnIwtqi5NIlgpfhMVw==
+X-Received: by 2002:a02:7a16:0:b0:313:f2f9:2ebc with SMTP id a22-20020a027a16000000b00313f2f92ebcmr3370002jac.136.1645137315031;
+        Thu, 17 Feb 2022 14:35:15 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id q14sm2829387iow.1.2022.02.17.14.29.47
+        by smtp.gmail.com with ESMTPSA id u15sm2891106ill.75.2022.02.17.14.35.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Feb 2022 14:29:48 -0800 (PST)
-Received: (nullmailer pid 3884914 invoked by uid 1000);
-        Thu, 17 Feb 2022 22:29:46 -0000
-Date:   Thu, 17 Feb 2022 16:29:46 -0600
+        Thu, 17 Feb 2022 14:35:14 -0800 (PST)
+Received: (nullmailer pid 3892127 invoked by uid 1000);
+        Thu, 17 Feb 2022 22:35:12 -0000
+Date:   Thu, 17 Feb 2022 16:35:12 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jic23@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt:bindings:iio:frequency: Add ADMV4420 doc
-Message-ID: <Yg7MWpBeV6c4zgnY@robh.at.kernel.org>
-References: <20220217101241.71702-1-cristian.pop@analog.com>
- <1645115995.366904.3365324.nullmailer@robh.at.kernel.org>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Arnd Bergmann <arnd@arndb.de>, linux-hwmon@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH 3/4] dt-bindings: Add power-efuse binding
+Message-ID: <Yg7NoLzC7zt2oihV@robh.at.kernel.org>
+References: <20220217104444.7695-1-zev@bewilderbeest.net>
+ <20220217104444.7695-4-zev@bewilderbeest.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1645115995.366904.3365324.nullmailer@robh.at.kernel.org>
+In-Reply-To: <20220217104444.7695-4-zev@bewilderbeest.net>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -62,61 +67,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 17, 2022 at 10:39:55AM -0600, Rob Herring wrote:
-> On Thu, 17 Feb 2022 12:12:40 +0200, Cristian Pop wrote:
-> > Add device tree bindings for the ADMV4420 K band downconverter.
-> > 
-> > Signed-off-by: Cristian Pop <cristian.pop@analog.com>
-> > ---
-> > changes in v3:
-> >  - Fix indentation
-> >  - Rename property 'adi,lo-freq-hz' to 'adi,lo-freq-khz'
+On Thu, Feb 17, 2022 at 02:44:43AM -0800, Zev Weiss wrote:
+> This can be used to describe a power output supplied by a regulator
+> device that the system controls.
+> 
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> ---
+>  .../devicetree/bindings/misc/power-efuse.yaml | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/power-efuse.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/power-efuse.yaml b/Documentation/devicetree/bindings/misc/power-efuse.yaml
+> new file mode 100644
+> index 000000000000..cadce15d2ce7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/power-efuse.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/power-efuse.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic power efuse device
 
--khz is not a documented unit suffix. Does neither hz nor mhz not give 
-enough resolution and range?
+No idea what this is, but I doubt any such generic device exists. This 
+needs sufficient description to be convincing that it is indeed generic.
 
-> >  .../bindings/iio/frequency/adi,admv4420.yaml  | 54 +++++++++++++++++++
-> >  1 file changed, 54 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml: properties:adi,lo-freq-khz: 'oneOf' conditional failed, one must be fixed:
-> 	'type' is a required property
-> 		hint: A vendor boolean property can use "type: boolean"
-> 	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml: properties:adi,lo-freq-khz: 'oneOf' conditional failed, one must be fixed:
-> 		'enum' is a required property
-> 		'const' is a required property
-> 		hint: A vendor string property with exact values has an implicit type
-> 		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> 	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml: properties:adi,lo-freq-khz: 'oneOf' conditional failed, one must be fixed:
-> 		'$ref' is a required property
-> 		'allOf' is a required property
-> 		hint: A vendor property needs a $ref to types.yaml
-> 		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> 	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-> 	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml: ignoring, error in schema: properties: adi,lo-freq-khz
-> Documentation/devicetree/bindings/iio/frequency/adi,admv4420.example.dt.yaml:0:0: /example-0/spi/admv4420@0: failed to match any schema with compatible: ['adi,admv4420']
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/1594130
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+> +
+> +maintainers:
+> + - Zev Weiss <zev@bewilderbeest.net>
+> +
+> +properties:
+> +  compatible:
+> +    const: power-efuse
+> +
+> +  vout-supply:
+> +    description:
+> +      phandle to the regulator providing power for the efuse
+> +
+> +  error-flags-cache-ttl-ms:
+> +    description:
+> +      The number of milliseconds the vout-supply regulator's error
+> +      flags should be cached before re-fetching them.
+
+What are 'error flags'? Not something I've heard with respect to 
+regulators.
+
+> +
+> +required:
+> +  - compatible
+> +  - vout-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    efuse {
+> +        compatible = "power-efuse";
+> +        vout-supply = <&efuse_reg>;
+> +        error-flags-cache-ttl-ms = <500>;
+> +    };
+> -- 
+> 2.35.1
 > 
 > 
