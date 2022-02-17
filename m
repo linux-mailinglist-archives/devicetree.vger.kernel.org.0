@@ -2,89 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 831694BA03F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 13:35:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E93BA4BA061
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 13:52:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236795AbiBQMf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 07:35:28 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60662 "EHLO
+        id S240553AbiBQMwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 07:52:19 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231514AbiBQMf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 07:35:28 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82BAF29E960
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 04:35:13 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id b20so8060203ljf.7
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 04:35:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LWPD6Kgwc6gsaIwc/83kQA+CXXR+sZVYQ6mwJ+IXwU4=;
-        b=hd6kCYaXxC+91SAwo9IDDgatkFAZJcDBJFFXqg+VxWpV/IpAs4DSzvsdPSJudNZm6G
-         GCW0j+A5cZETBTsCPyWqRFV4dCYIoCZ0IBH0hgP+QalawR+1ORj2oPqNgxNJ/LyP0qaW
-         PKLzU6hDgHozsS8MeuRGEZxYtvgsPf5nzkaebL0uFopcGy09/BKniZ3/2EQVmVl5IHyZ
-         srDjK9bC2zmLLcRTq2K2uniI6JDKyv8D+PKh+mRFkSzE0qu3b9fFDmsbgH/JMm/Cufmg
-         5pco7mnzpvz1+u8LFIO2h9EWncAeizuwiDPLdpQ0PMmdAKFb1g3dAhYjfG1zvU0ZinWo
-         1KFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LWPD6Kgwc6gsaIwc/83kQA+CXXR+sZVYQ6mwJ+IXwU4=;
-        b=1INingOsct7wW22Ahv5U1lpsYBuMYKFQtlwo0HvRx3VhC/PkF7ckfufcG6mEoUkBck
-         wu6MIEukq20E+uKIgt2KDYwxWN1nRBfKhDyzinJ58BBtKTma4nzb/e0KyxLvvxYP5jy4
-         t+nKft8k3q2ZejOSFNgmGIwYIhextxdqP6inbICnrke+OGJT5vljBPyHNJpFZw3spMY2
-         oSIpKxBcDTOcnq8DVzzAb+r+sLkSdGGzSl73oGxxvS5gkjFAGaWPD2heoB6oCLX5NTAm
-         YLf45P8LkBl1RwfAkgPZ3WZfZl0kdsySSv5b7n5aDfhJNGN5vGKWLMYlIsyJxIG3LfRv
-         Jeiw==
-X-Gm-Message-State: AOAM530q/A9HchSeCUaRSjLXcWwddB8b+D/fOkB7cnMb5EH1dh/KnooL
-        Mvle2un2lepzWTqb9BPwk5U=
-X-Google-Smtp-Source: ABdhPJyq4nnzOUVkvajYV7SPQuFphHf3LTtq76L3OCutr4uEkPgLgZrENhhQGtwqPU3Rgy4RmWFTEQ==
-X-Received: by 2002:a2e:9b98:0:b0:244:c875:ba70 with SMTP id z24-20020a2e9b98000000b00244c875ba70mr2144114lji.284.1645101311775;
-        Thu, 17 Feb 2022 04:35:11 -0800 (PST)
-Received: from [192.168.2.145] (109-252-138-165.dynamic.spd-mgts.ru. [109.252.138.165])
-        by smtp.googlemail.com with ESMTPSA id bt2sm3332145lfb.93.2022.02.17.04.35.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Feb 2022 04:35:10 -0800 (PST)
-Message-ID: <cd66c9da-15c2-54e1-8016-8d951926eaa2@gmail.com>
-Date:   Thu, 17 Feb 2022 15:35:08 +0300
+        with ESMTP id S240554AbiBQMwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 07:52:18 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DF9711A30;
+        Thu, 17 Feb 2022 04:52:03 -0800 (PST)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21HCNFEV030051;
+        Thu, 17 Feb 2022 06:51:52 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=hbRL+GXRFDweLRaYt0Z5YOa4T9eSAOcGOHkpzVK4Cn4=;
+ b=Isa/yu2W8XnNGKd+4kFtY2O7KAfNckBrerQ+EWIDJTc8NfO7sIgvTUjrO3lUQTNFPKL9
+ P5wKX8+ECBmE9L+a/ZcNhv0hQdNK/I/xK/69zOkxXI1BWj+xHB3EK9PutC835YRqj6OO
+ RUevkZAWVNeqT4fuuTW//FItD7Q/4v8stE/Vosw+JViyX/RvSKxJyKx7FO84AeFrU4lE
+ DbU7t59cHeeVqu7NhCFGbffUvRhwpkTLuxVKtmtRKicL3W52GKrM8B1C7k1tc7bpODdP
+ 0KT/R2Ydc1VCd/1OeGDcSqX/o/u9/UlPjPdwxiORA2dsDvszToWPogFoIk+SXGFzXS0w tA== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3e8nyda699-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Thu, 17 Feb 2022 06:51:52 -0600
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 17 Feb
+ 2022 12:51:51 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Thu, 17 Feb 2022 12:51:51 +0000
+Received: from [10.0.2.15] (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.199])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id AE88146B;
+        Thu, 17 Feb 2022 12:51:50 +0000 (UTC)
+Subject: Re: [PATCH 2/2] ASoC: audio_graph_card2: Add support for variable
+ slot widths
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <patches@opensource.cirrus.com>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <broonie@kernel.org>
+References: <20220216171408.265605-1-rf@opensource.cirrus.com>
+ <20220216171408.265605-3-rf@opensource.cirrus.com>
+ <87a6eq49yq.wl-kuninori.morimoto.gx@renesas.com>
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+Message-ID: <0ba5f63c-44a4-1949-60dd-f5debd706caa@opensource.cirrus.com>
+Date:   Thu, 17 Feb 2022 12:51:50 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v6 09/23] drm/rockchip: dw_hdmi: Add support for hclk
+In-Reply-To: <87a6eq49yq.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220217082954.2967889-1-s.hauer@pengutronix.de>
- <20220217082954.2967889-10-s.hauer@pengutronix.de>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20220217082954.2967889-10-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: COEC_n5rfu52TJYRPUMDIj3hJP3bf618
+X-Proofpoint-ORIG-GUID: COEC_n5rfu52TJYRPUMDIj3hJP3bf618
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-17.02.2022 11:29, Sascha Hauer пишет:
-> The rk3568 HDMI has an additional clock that needs to be enabled for the
-> HDMI controller to work. The purpose of that clock is not clear. It is
-> named "hclk" in the downstream driver, so use the same name.
+On 17/02/2022 00:23, Kuninori Morimoto wrote:
+> 
+> Hi Richard
+> 
+> Thank you for your patch.
+> One comment from me.
+> 
+>>   struct asoc_simple_dai {
+>>   	const char *name;
+>>   	unsigned int sysclk;
+>> @@ -26,6 +31,9 @@ struct asoc_simple_dai {
+>>   	unsigned int rx_slot_mask;
+>>   	struct clk *clk;
+>>   	bool clk_fixed;
+>> +	struct asoc_simple_tdm_width_map *tdm_width_map;
+>> +	int n_tdm_widths;
+>> +	struct snd_soc_dai *dai;
+>>   };
+> (snip)
 
-Have you checked that DSI works without the enabled hclk? I'd expect the
-whole VOP to be clock-gated.
+(snip)
+
+> (snip)
+>> @@ -386,6 +479,8 @@ static int asoc_simple_init_dai(struct snd_soc_dai *dai,
+>>   	if (!simple_dai)
+>>   		return 0;
+>>   
+>> +	simple_dai->dai = dai;
+> 
+> Indeed the relationship between asoc_simple_dai and snd_soc_dai are
+> very mystery, and current utils is using confusable naming.
+> We want to have some better solution about there.
+> 
+> Having snd_soc_dai pointer inside asoc_simple_dai itself is not bad idea.
+> But we can get snd_soc_dai pointer without it.
+> 
+> Please check asoc_simple_dai_init().
+> Not tested, but we can replace the code like this ?
+> 
+> =>	struct snd_soc_dai *dai;
+> 
+> 	for_each_prop_dai_codec(props, i, pdai) {
+> =>		dai = asoc_rtd_to_codec(rtd, i);
+> 		ret = asoc_simple_set_tdm(dai, pdai, params);
+> 		if (ret < 0)
+> 			return ret;
+> 	}
+> 
+> 
+I first thought about doing it like that. But I was not sure whether it
+is safe to assume [i] is the same entry for both arrays. If it is ok,
+then I can use that and do not need to add the snd_soc_dai * to struct
+asoc_simple_dai.
+
+I will look at this and send a V2 set if it is ok.
