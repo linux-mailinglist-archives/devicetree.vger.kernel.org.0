@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 936AC4B9C50
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 10:45:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA5E24B9C72
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 10:50:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235498AbiBQJpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 04:45:14 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54178 "EHLO
+        id S238836AbiBQJtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 04:49:39 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232795AbiBQJpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 04:45:14 -0500
+        with ESMTP id S233044AbiBQJti (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 04:49:38 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E838417048
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 01:44:59 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B222717AAF
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 01:49:23 -0800 (PST)
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6EA2F3F338
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 09:44:58 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9401340333
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 09:49:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645091098;
-        bh=/6BRQwo9F2YRhb8CCreWYd07yVTpbMqy24rXfG8Cqa0=;
+        s=20210705; t=1645091362;
+        bh=0007Apij4GTvZKW9DpvkDPnqD/lKERk9VeBYhgBTloo=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=wExrARZiqKQ2l55eNJt6LginpSvSUiNa7sdSc54N+PuLrxRv4v1xMJX0yp/HJmcU7
-         yEWd3NYQ31osq9nV9sP3+0nUjte1g1D0mPiW1pAHmDCDbAQZ2nG4QehwjEqYfddfio
-         dmraQpFTtO11X9f9CUyGOoWRUBxwUufeOWlRBBYADP+S4JeMSgOqB+rkdfN7NiIH8k
-         ibXw3QYI5hWJwBQhUK39eWzcWg6sfToFF6H3EQRbPZfikulXEFBqI/YWJvDLbDo3U8
-         AmD84Di6E0Bc0c4J4sfVAGlARBwf/BS4r+CUMQ75ad90p2V+oJ5cR0sS0pIMe9jRm/
-         gHZkevolbTAXQ==
-Received: by mail-ed1-f69.google.com with SMTP id bq19-20020a056402215300b0040f276105a4so3214096edb.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 01:44:58 -0800 (PST)
+        b=gEvoi+q9S6bpfGIYZuz7OgTKtpwQ/zOH+Fcn9rf4XdkGIeJyYDXUbvS+dm5kYGFkx
+         +UDIHt5lVAFht2Ag2vcIWSOfRl40t4GC7bPZbl7HqONIqDLN4a14zKDL3fii4BBWoQ
+         4AKZSkcCKpG8yK4cQpGhdFPt3MFBeyHPnGuP2kI52JnwYtkn9+eUKIIDRcld2Imbd1
+         CxOS09cBgwIdZlu9oniLhEz4QXNTCI7FiwUnhyFBWqZgA2B/w8KS+UxjX/bXUJM4bH
+         4RY/TzxWgtbeG1NFZLzFOpJjPVdrP10zt+zEgnwgWVmTL9L4V4bFJRpf8u6RxpP2YE
+         /hvTlL8CDGJng==
+Received: by mail-ej1-f69.google.com with SMTP id d7-20020a1709061f4700b006bbf73a7becso1247131ejk.17
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 01:49:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=/6BRQwo9F2YRhb8CCreWYd07yVTpbMqy24rXfG8Cqa0=;
-        b=cAT3Atwk7uqhv7Tb6QBlFFEph3shgRkxH8hNBIbKEt8HdBRPTq27Xm3Zm8SD3TBXlL
-         1aYfJEVMycYpgQ/8ktJfqr/8EwbLHPZ7VQO6fPeo52UQYuCDjwNFuqFGBIraUy4/xpTk
-         aeuqYL/VKYx3i/c+dbcqlV93IzKuQKOSRUzDSYzqqPmxQJAHrzFUgPZNSWDjjRKLQXlU
-         4FqgZSx6IpAvldesCYYg0TEh0etdnDv0JT/J2Auv86FHD4+KzZBKjr2ujIdOhm1Kqu1I
-         NFg2x5MPLeatt8ypIcHOCih4xqZWp7Ac3XNN1Isrm/E/eJ0b8ORU/+WMrk6rgjwrk5zM
-         +yxA==
-X-Gm-Message-State: AOAM532q24i5sHwhd4jN2GWsbXqFDiByL4KHRQdRI5S5ri+t9gOi6aVA
-        QnXtgR9wroPqiEOYRMjZzwD8uUbpLISW4h2pYWnsurQRNMwi/9ALxoR11B+gkelD/o+k2esui9J
-        Wb684vHGZ+PfEm4w7GM4m4cYXW7LHHC50nMfsFos=
-X-Received: by 2002:a50:fc05:0:b0:408:4d18:5070 with SMTP id i5-20020a50fc05000000b004084d185070mr1687914edr.365.1645091095451;
-        Thu, 17 Feb 2022 01:44:55 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJw4HEhNYvN/1dbYjwwFvdfSqvPJagGu9NoMyYbc/Z0Rqg0vqOwN6P+MvYMdO9RtArG/+LyFyw==
-X-Received: by 2002:a50:fc05:0:b0:408:4d18:5070 with SMTP id i5-20020a50fc05000000b004084d185070mr1687899edr.365.1645091095209;
-        Thu, 17 Feb 2022 01:44:55 -0800 (PST)
+        bh=0007Apij4GTvZKW9DpvkDPnqD/lKERk9VeBYhgBTloo=;
+        b=15whoTxgXoGij5GtOXyS5IhaNRZRNwUITPZ3qN5rS2KPdme3XXnH2+7/NPvEhaukWJ
+         hWOgXU+IAdAsZdpkepLcfW50i3PUc+Wq6r6f2lN85qW6+uYEUR3OW2ka3AB8ZQGpXW3k
+         yfoLfRjhnQOPYA1IUadwYiClOir+BkJ4x940wfZGDv2UwZeKukr2iQ8O2j8IGs2h3Vrv
+         2pueRfyG7OGqe5ZW3TZb4Y2suChFFBTICOdJmRhNtjsT7Cg0iDZyJ7kYRXe4V0MPiOkt
+         uIQUKnxeTl/lw7Hbwg+12yGGy+4djpFPttxJo6t7R8O/1acwGpcXprLJFu93pkBvu/nP
+         CdzQ==
+X-Gm-Message-State: AOAM532Ey4nnOisc7uFParvkukULTdEDymyqRHGACuZykB4v/XgrSMit
+        0YqPpeYmSHPblK/CU08TlMB1sr31S6dX3ttVW71nCtZ4I8Ow/9eWnWHu4UwJ237rU5/6KHGeklb
+        ZoNwF7UryxVzhet2iCL8KWhW9k2Eu2sF1tANcGVk=
+X-Received: by 2002:a17:906:9489:b0:6ce:f3a9:2c17 with SMTP id t9-20020a170906948900b006cef3a92c17mr1738786ejx.333.1645091362254;
+        Thu, 17 Feb 2022 01:49:22 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyU4GL/xCZfq3R/yQUHRTYFTi2oBY1a8OUofVqY7Z2aF3QmZxKjn4JOmkoChKC3hfRIIHrggQ==
+X-Received: by 2002:a17:906:9489:b0:6ce:f3a9:2c17 with SMTP id t9-20020a170906948900b006cef3a92c17mr1738761ejx.333.1645091362031;
+        Thu, 17 Feb 2022 01:49:22 -0800 (PST)
 Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id l7sm3171222edb.53.2022.02.17.01.44.54
+        by smtp.gmail.com with ESMTPSA id ha3sm985555ejb.157.2022.02.17.01.49.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Feb 2022 01:44:54 -0800 (PST)
-Message-ID: <dde7c475-e44f-c464-ee4f-afe9346f16e3@canonical.com>
-Date:   Thu, 17 Feb 2022 10:44:54 +0100
+        Thu, 17 Feb 2022 01:49:21 -0800 (PST)
+Message-ID: <f50f6502-2132-7665-a61b-64c15760a420@canonical.com>
+Date:   Thu, 17 Feb 2022 10:49:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH] [v1] dt-bindings: watchdog: Add HPE GXP Watchdog timer
- binding
+Subject: Re: [PATCH] [v1] dt-bindings: timer: Add HPE GXP Timer binding
 Content-Language: en-US
 To:     nick.hawkins@hpe.com, verdun@hpe.com
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
 References: <nick.hawkins@hpe.com>
- <20220215184039.41882-1-nick.hawkins@hpe.com>
+ <20220215181936.41551-1-nick.hawkins@hpe.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220215184039.41882-1-nick.hawkins@hpe.com>
+In-Reply-To: <20220215181936.41551-1-nick.hawkins@hpe.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -87,14 +85,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/02/2022 19:40, nick.hawkins@hpe.com wrote:
+On 15/02/2022 19:19, nick.hawkins@hpe.com wrote:
 > From: Nick Hawkins <nick.hawkins@hpe.com>
 > 
-> Description: Creating binding for the GXP watchdog timer to be used in
->  the device tree. This along with the
->   dt-bindings: timer: Add HPE GXP Timer binding patch will be used to
->    create the basic dts and dtsi for GXP.
-> Information: GXP is the name of the HPE SoC.
+> Description: Creating binding for the GXP timer to be used in device tree.
+>  GXP is the name of the HPE SoC.
 >  This SoC is used to implement BMC features of HPE servers
 >   (all ProLiant, Synergy, and many Apollo, and Superdome machines)
 >    It does support many features including:
@@ -114,33 +109,29 @@ On 15/02/2022 19:40, nick.hawkins@hpe.com wrote:
 >                  host connectivity
 >                 A GPIO engine.
 
-All this commit msg looks irrelevant, obfuscating and duplicating the
-same message.
+Same comment as for other patches.
 
 > 
 > Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 > ---
->  .../bindings/watchdog/hpe,gxp-wdt.yaml        | 37 +++++++++++++++++++
+>  .../bindings/timer/hpe,gxp-timer.yaml         | 45 +++++++++++++++++++
 >  MAINTAINERS                                   |  6 +++
->  2 files changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml b/Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+> diff --git a/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
 > new file mode 100644
-> index 000000000000..6044496b4968
+> index 000000000000..1f4e345c5fb8
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
-> @@ -0,0 +1,37 @@
+> +++ b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+> @@ -0,0 +1,45 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/watchdog/hpe,gxp-wdt.yaml#
+> +$id: http://devicetree.org/schemas/timer/hpe,gxp-timer.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: HPE GXP Controlled Watchdog
-> +
-> +allOf:
-> +  - $ref: "watchdog.yaml#"
+> +title: HPE GXP TIMER
 > +
 > +maintainers:
 > +  - Nick Hawkins <nick.hawkins@hpe.com>
@@ -148,46 +139,68 @@ same message.
 > +
 > +properties:
 > +  compatible:
-> +    const: hpe,gxp-wdt
+> +    const: hpe,gxp-timer
 > +
 > +  reg:
 > +    items:
-> +      - description: WDGRST register
-> +      - description: WDGCS register
+> +      - description: T0CNT register
+> +      - description: T0CS register
+> +      - description: TIMELO register
+
+That's a bit odd - you pass each register as device address space. Why
+not entire address space of the timer block? Probably you have there
+more registers, don't you? In such  case what if you need to access that
+additional register - change bindings?
+
+Or maybe all these registers can be put in entirely different address
+ranges?
+
 > +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clock-frequency:
+> +    description: The frequency of the clock that drives the counter, in Hz.
 
-Quite ascetic bindings - no clocks? no power-domains? interrupts?
+I would expect here also "clocks" and "clock-names" properties, since
+you clearly have a clock that driver the counter.
 
+> +
 > +required:
 > +  - compatible
 > +  - reg
+> +  - interrupts
+> +  - clock-frequency
 > +
-> +unevaluatedProperties: false
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    watchdog0:  watchdog@c0000090 {
-> +      compatible = "hpe,gxp-wdt";
-> +      reg = <0xc0000090 0x02>, <0xc0000096 0x01>;
+> +    timer@10003000 {
+> +        compatible = "hpe,gxp-timer";
+> +        reg = <0xc0000080 0x1>, <0xc0000094 0x01>, <0xc0000088 0x08>;
+> +        interrupts = <0>;
+> +        interrupt-parent = <&vic0>;
+> +        clock-frequency = <400000000>;
 > +    };
-> +
 > diff --git a/MAINTAINERS b/MAINTAINERS
-> index f41088418aae..8c96f4db900c 100644
+> index f41088418aae..8c2c1e8e0934 100644
 > --- a/MAINTAINERS
 > +++ b/MAINTAINERS
 > @@ -8385,6 +8385,12 @@ L:	linux-efi@vger.kernel.org
 >  S:	Maintained
 >  F:	block/partitions/efi.*
 >  
-> +GXP WATCHDOG TIMER
+> +GXP TIMER
 > +M:	Nick Hawkins <nick.hawkins@hpe.com>
 > +M:	Jean-Marie Verdun <verdun@hpe.com>
 > +S:	Maintained
-> +F:	Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+> +F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+> +
+>  H8/300 ARCHITECTURE
+>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+>  L:	uclinux-h8-devel@lists.sourceforge.jp (moderated for non-subscribers)
 
-If you have the same maintainers for each of your drivers, it's actually
-easier to keep them in one entry - HPE GXP ARCHITECTURE. There is little
-benefit in having per-block entries which are the same as your main entry.
 
 Best regards,
 Krzysztof
