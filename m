@@ -2,208 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46A934BA8A3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 19:45:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C4BD4BA9D9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 20:32:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244556AbiBQSna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 13:43:30 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45840 "EHLO
+        id S244447AbiBQTcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 14:32:14 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244540AbiBQSn3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 13:43:29 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CE5711C3A
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 10:43:11 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id w20so5250714plq.12
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 10:43:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=150I8tSeoQEdnBW/+p+7xnMkqFAoe9hccra7knV3Q/4=;
-        b=IYb9C99Nd6cqeKKYhs2ozW0LnPOclIeM4t/tKWk6bkI+Equaz+baO4EDzHyi/JQU0P
-         se6ly5U3jlSjwllXuSHZ3QZFzn+CziSet1m6jCRZmVohXCsYhCiAwX8T5gJM69XAyDGy
-         zTmMIZ3amYHU83M6ELcTYQrYi9HJu9Fmmo0pQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=150I8tSeoQEdnBW/+p+7xnMkqFAoe9hccra7knV3Q/4=;
-        b=Mot1eN0WXzr0XqjxRE3pu634AGBv89M642+lBv9XfDc/vEDCe0NAkII6ULoDxKuuRd
-         NnlF9biqWsOnfZtZNpvA9bx9rZBZFq2plHGLcg7IVTJdX6Ahsi1g4R5OmBQU2FzGxgWT
-         6Qh7Ewn/4dzo3zo9b+3qNm7KgwChCMZIRyKdX5IeOAkfSFr8bftd3kiUae9EUnVM9sIu
-         AIrkMUZn19oq/3W/SR36NlrRJnU2KdUA9pTlps7TUP6AZawC0x/siovujQVNnRT/cmzs
-         ZGsZIrqkGRgW8nk6GO91H/Yhjvy0J6xNuB4d02WWglAdJfFWTMcrebyx6Pp4NWq31uyC
-         8Dmg==
-X-Gm-Message-State: AOAM532OA5e6in02cTeOo+eOlIqPmBU9OASlxTV+kRNrSjidxleTo4sW
-        LGDTyNHkUl8n2hSOvHsonwQd7Q==
-X-Google-Smtp-Source: ABdhPJxMRjgoWIhXnCig3kodTead2c1ZzrN0DvXCm90tES5J+jMe+RRD3wJbABP/1Kwa+4t6DsbNxA==
-X-Received: by 2002:a17:90a:7845:b0:1b9:159c:148e with SMTP id y5-20020a17090a784500b001b9159c148emr4338987pjl.136.1645123391193;
-        Thu, 17 Feb 2022 10:43:11 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:b42d:98cc:5dcc:5ef5])
-        by smtp.gmail.com with UTF8SMTPSA id l21sm317135pfu.120.2022.02.17.10.43.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Feb 2022 10:43:10 -0800 (PST)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>
-Cc:     linux-usb@vger.kernel.org,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        linux-kernel@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
-        Douglas Anderson <dianders@chromium.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Guo Zhengkui <guozhengkui@vivo.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Li Jun <jun.li@nxp.com>, Peter Chen <peter.chen@nxp.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Subject: [PATCH v21 3/3] usb: core: hcd: Create platform devices for onboard hubs in probe()
-Date:   Thu, 17 Feb 2022 10:42:54 -0800
-Message-Id: <20220217104219.v21.3.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
-X-Mailer: git-send-email 2.35.1.473.g83b2b277ed-goog
-In-Reply-To: <20220217184254.4141705-1-mka@chromium.org>
-References: <20220217184254.4141705-1-mka@chromium.org>
+        with ESMTP id S245201AbiBQTcN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 14:32:13 -0500
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314496241
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 11:31:57 -0800 (PST)
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220217193154epoutp0485ef8168447eb6e69ac720b89a0e2ec8~Uqaq8ACCM2175421754epoutp04Z
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 19:31:54 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220217193154epoutp0485ef8168447eb6e69ac720b89a0e2ec8~Uqaq8ACCM2175421754epoutp04Z
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1645126314;
+        bh=Z19OJUtqKZGWENK4dRf57tJxrf0gndDRH8fZ3ojLAu8=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=NH/qf8b2AQjDv8W6AFtZyjcpdBH50jBzx4u8seoD3+j7vMfyQFFQ9NdYUnoRA5Sa/
+         Gz+yCMIwB8cKwSdoAWDoLA1oPK1t3RSAWJmBB9frjb4XiEwrRJ2zAGpovW+nNcKoN3
+         k8mtR3TI5WQLEC/9gOcvd1tkfr2ZJsteACR+AKWU=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+        20220217193153epcas5p4e02997a5958d15c243e76f5f6dea753d~UqaqQINdQ3205732057epcas5p4D;
+        Thu, 17 Feb 2022 19:31:53 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.183]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4K04hN2VhDz4x9Pq; Thu, 17 Feb
+        2022 19:31:48 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2A.FF.05590.4A2AE026; Fri, 18 Feb 2022 04:31:48 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220217155838epcas5p2900d5bed2012a3f8d41b525cab49f284~Ungdba8-_1208312083epcas5p2w;
+        Thu, 17 Feb 2022 15:58:38 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220217155838epsmtrp20d4f82c11678ca2a0199ea4fe218eb80~UngdauRB50255602556epsmtrp2O;
+        Thu, 17 Feb 2022 15:58:38 +0000 (GMT)
+X-AuditID: b6c32a4b-723ff700000015d6-d8-620ea2a47935
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2F.54.08738.EA07E026; Fri, 18 Feb 2022 00:58:38 +0900 (KST)
+Received: from rcsekar03 (unknown [107.122.12.252]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220217155837epsmtip27b1eff077c92275797fdc8ee18722ac0~Ungcf3T6e0877008770epsmtip2f;
+        Thu, 17 Feb 2022 15:58:37 +0000 (GMT)
+From:   "Chandrasekar R" <rcsekar@samsung.com>
+To:     "'Marc Kleine-Budde'" <mkl@pengutronix.de>,
+        <linux-can@vger.kernel.org>
+Cc:     "'Rob Herring'" <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        "'Benjamin Gaignard'" <benjamin.gaignard@st.com>
+In-Reply-To: <20220217101111.2291151-1-mkl@pengutronix.de>
+Subject: RE: [PATCH net-next] dt-binding: can: m_can: fix indention of table
+ in bosch,mram-cfg description
+Date:   Thu, 17 Feb 2022 21:28:35 +0530
+Message-ID: <006f01d82417$39d94e20$ad8bea60$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-in
+Thread-Index: AQIj6421GG8Qx6WuvDjrLzC6VacTlQHECvfCq/IvjAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupik+LIzCtJLcpLzFFi42LZdlhTS3fJIr4kg1Uf+Sz65j9htZh/5Byr
+        xarvU5kt1i+awmLRuvcIuwOrx6ZVnWwe/X8NPJ7+2Mvs8XmTXABLVLZNRmpiSmqRQmpecn5K
+        Zl66rZJ3cLxzvKmZgaGuoaWFuZJCXmJuqq2Si0+ArltmDtBaJYWyxJxSoFBAYnGxkr6dTVF+
+        aUmqQkZ+cYmtUmpBSk6BSYFecWJucWleul5eaomVoYGBkSlQYUJ2xu/ZG9kLbvJVvJjZyNrA
+        +IW7i5GTQ0LARKJ3zUdWEFtIYDejRPs0zS5GLiD7E6PEpfuTWCCcz4wSC1+9Y4XpmHrkMxNE
+        YhejxIzVZ6CqXjBKvJjzmAmkik1AR+J93ze2LkYODhEBb4nmP+ogYWaBKomvkz+zg9icAlYS
+        k+Z0sIDYwgI5EuvWLWIGsVkEVCW2vvkEVsMrYClx9ttiZghbUOLkzCcsEHPkJba/ncMMcZCC
+        xM+ny1gh4uISR3/2gMVFgOZ3TNvOBnKbhMBfdom/7TdYIBpcJL4faWaHsIUlXh3fAmVLSXx+
+        txeqoZlRYu+Ra1ANExglup4oQNj2EgeuzGEBeYxZQFNi/S59iLCsxNRT65ggjuCT6P39hAki
+        ziuxYx6MrSgxbetMsFYJoEOPzAuZwKg0C8lrs5C8NgvJO7MQli1gZFnFKJlaUJybnlpsWmCc
+        l1oOj+/k/NxNjOBEqeW9g/HRgw96hxiZOBgPMUpwMCuJ8H44yJskxJuSWFmVWpQfX1Sak1p8
+        iNEUGN4TmaVEk/OBqTqvJN7QxNLAxMzMzMTS2MxQSZz3VPqGRCGB9MSS1OzU1ILUIpg+Jg5O
+        qQamxOMu6uwNs/6uOZm06y6LzLdJHq82v3XmFFCcmaEo/JG1+Fi20Z3L1exHbz2t4fx9r+l6
+        Yn6+nMmlX7yvWdSWPnDQtpdZvSry5OyQog9VgXnse60XTXMMvbNbKMrf73Pm9iu2zsI7ju26
+        XbWW91Wx9Y8VDut8D/1x87nvHumupFF/9FjnHoZTHNX9d277NF/ZlD/RLGPdv6ycWenVm9n3
+        7nnU5mowberuKqWb586X5W6x/L6h/sUH6zoxX6fvvBJWFfdsjJfsfLfim/Vd3voj6myl7obL
+        bVR6Dv+NYlh9aJvMUfu0yOUhW5Y8imx6/kj/QvZtIb+ZS2NVnVuW715tobxCbvL9LP4mm9NN
+        grd3KLEUZyQaajEXFScCACU3OL8dBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrELMWRmVeSWpSXmKPExsWy7bCSvO66Ar4kg6OveSz65j9htZh/5Byr
+        xarvU5kt1i+awmLRuvcIuwOrx6ZVnWwe/X8NPJ7+2Mvs8XmTXABLFJdNSmpOZllqkb5dAlfG
+        79kb2Qtu8lW8mNnI2sD4hbuLkZNDQsBEYuqRz0xdjFwcQgI7GCVOrl7HBpEQl1j74QqULSyx
+        8t9zdoiiZ4wSHa9eMYIk2AR0JN73fQMrEhHwlTjf08MMYjML1EicOtPHCtHQzSjx4/0aFpAE
+        p4CVxKQ5HWC2sECWxOm5U8FsFgFVia1vPrGD2LwClhJnvy1mhrAFJU7OfAJUwwE0VE+ibSMj
+        xHx5ie1v5zBDHKcg8fPpMlaIuLjE0Z8QN4gAreqYtp1tAqPwLCSTZiFMmoVk0iwk3QsYWVYx
+        SqYWFOem5xYbFhjlpZbrFSfmFpfmpesl5+duYgRHi5bWDsY9qz7oHWJk4mA8xCjBwawkwvvh
+        IG+SEG9KYmVValF+fFFpTmrxIUZpDhYlcd4LXSfjhQTSE0tSs1NTC1KLYLJMHJxSDUxXDB1U
+        9ew5jt5n7S59eynA42rBv7UzmB1/vKxyaDpZYMCjUlvzl/XiNbZnZ768MD1yUbe3uI3r3gXu
+        8955wZr5+x4+/xh13y6j7D+j5k7nFWxc726qPxf32/mof2/Pk8ffuEMXTzusHpt5bOo/n9v9
+        C9lb1TJ2PP996+mNKRP7+bUqs68p6D8/Iia7ceGdM1WeM24U7A1I/vFZ1Up3acOSrV+aOO64
+        61UvDZ9X1FkSICvyclqIn1nXlkTeuKnKU4//++R/4mWI77pdzzJ2bZzX37h/XnmiMzv39HO9
+        X6reTpgVG2r9lGddSp60/oXn6bXKRepT7bs+L1SpfnVhQpYR+6d3gS0yJStmCefGHjusxFKc
+        kWioxVxUnAgAWZEhLgUDAAA=
+X-CMS-MailID: 20220217155838epcas5p2900d5bed2012a3f8d41b525cab49f284
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220217130613epcas5p148a75f63b455ad14decf075f1842114b
+References: <CGME20220217130613epcas5p148a75f63b455ad14decf075f1842114b@epcas5p1.samsung.com>
+        <20220217101111.2291151-1-mkl@pengutronix.de>
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Call onboard_hub_create/destroy_pdevs() from usb_add/remove_hcd()
-for primary HCDs to create/destroy platform devices for onboard
-USB hubs that may be connected to the root hub of the controller.
-These functions are a NOP unless CONFIG_USB_ONBOARD_HUB=y/m.
 
-Also add a field to struct usb_hcd to keep track of the onboard hub
-platform devices that are owned by the HCD.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
+> -----Original Message-----
+> From: Marc Kleine-Budde <mkl@pengutronix.de>
+> Sent: 17 February 2022 15:41
+> To: linux-can@vger.kernel.org
+> Cc: Rob Herring <robh+dt@kernel.org>; devicetree@vger.kernel.org; Marc
+> Kleine-Budde <mkl@pengutronix.de>; Sriram Dash
+> <sriram.dash@samsung.com>; Benjamin Gaignard
+> <benjamin.gaignard@st.com>
+> Subject: [PATCH net-next] dt-binding: can: m_can: fix indention of table
+in
+> bosch,mram-cfg description
+> 
+> This patch fixes the indention of the table in the description of the
+> bosch,mram-cfg property.
+> 
+> Cc: Sriram Dash <sriram.dash@samsung.com>
+This id does not exists anymore.
 
-Changes in v21:
-- none
+> Cc: Benjamin Gaignard <benjamin.gaignard@st.com>
+> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> ---
+Changes looks fine, 
+Reviewed-by: Chandrasekar Ramakrishnan <rcsekar@samsung.com>
 
-Changes in v20:
-- added 'Reviewed-by' tags from Doug and Stephen
+>  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> index 61f9e512c346..3bc1ed39a0a5 100644
+> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> @@ -69,8 +69,8 @@ properties:
+>        M_CAN includes the following elements according to user manual:
+>        11-bit Filter	0-128 elements / 0-128 words
+>        29-bit Filter	0-64 elements / 0-128 words
+> -      Rx FIFO 0	0-64 elements / 0-1152 words
+> -      Rx FIFO 1	0-64 elements / 0-1152 words
+> +      Rx FIFO 0		0-64 elements / 0-1152 words
+> +      Rx FIFO 1		0-64 elements / 0-1152 words
+>        Rx Buffers	0-64 elements / 0-1152 words
+>        Tx Event FIFO	0-32 elements / 0-64 words
+>        Tx Buffers	0-32 elements / 0-576 words
+> --
+> 2.34.1
+> 
+> 
 
-Changes in v19:
-- none
-
-Changes in v18:
-- none
-
-Changes in v17:
-- create the platform devices in the generic HCD code instead of
-  the xhci_platform driver
-- updated subject and commit message to reflect the above change
-- dropped initialization of platform device list, which is now
-  done in onboard_hub_create_pdevs()
-
-Changes in v16:
-- none
-
-Changes in v15:
-- none
-
-Changes in v14:
-- none
-
-Changes in v13:
-- added comment for 'depends on USB_ONBOARD_HUB || !USB_ONBOARD_HUB'
-  construct
-
-Changes in v12:
-- none
-
-Changes in v11:
-- use onboard_hub_create/destroy_pdevs() to support multiple onboard
-  hubs that are connected to the same root hub
-- moved field/list to keep track of platform devices from struct
-  usb_hcd to struct xhci_hcd
-- updated commit message
-
-Changes in v10:
-- none
-
-Changes in v9:
-- added dependency on USB_ONBOARD_HUB (or !!USB_ONBOARD_HUB) to
-  USB_XHCI_PLATFORM
-
-Changes in v8:
-- none
-
-Changes in v7:
-- none
-
-Changes in v6:
-- none
-
-Changes in v5:
-- patch added to the series
-
- drivers/usb/core/hcd.c  | 6 ++++++
- include/linux/usb/hcd.h | 1 +
- 2 files changed, 7 insertions(+)
-
-diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
-index d9712c2602af..81785072fafb 100644
---- a/drivers/usb/core/hcd.c
-+++ b/drivers/usb/core/hcd.c
-@@ -36,6 +36,7 @@
- #include <linux/phy/phy.h>
- #include <linux/usb.h>
- #include <linux/usb/hcd.h>
-+#include <linux/usb/onboard_hub.h>
- #include <linux/usb/otg.h>
- 
- #include "usb.h"
-@@ -2984,6 +2985,9 @@ int usb_add_hcd(struct usb_hcd *hcd,
- 	if (hcd->uses_new_polling && HCD_POLL_RH(hcd))
- 		usb_hcd_poll_rh_status(hcd);
- 
-+	if (usb_hcd_is_primary_hcd(hcd))
-+		onboard_hub_create_pdevs(hcd->self.root_hub, &hcd->onboard_hub_devs);
-+
- 	return retval;
- 
- err_register_root_hub:
-@@ -3062,6 +3066,8 @@ void usb_remove_hcd(struct usb_hcd *hcd)
- 	if (usb_hcd_is_primary_hcd(hcd)) {
- 		if (hcd->irq > 0)
- 			free_irq(hcd->irq, hcd);
-+
-+		onboard_hub_destroy_pdevs(&hcd->onboard_hub_devs);
- 	}
- 
- 	usb_deregister_bus(&hcd->self);
-diff --git a/include/linux/usb/hcd.h b/include/linux/usb/hcd.h
-index 548a028f2dab..4ebc91c09182 100644
---- a/include/linux/usb/hcd.h
-+++ b/include/linux/usb/hcd.h
-@@ -198,6 +198,7 @@ struct usb_hcd {
- 	struct usb_hcd		*shared_hcd;
- 	struct usb_hcd		*primary_hcd;
- 
-+	struct list_head	onboard_hub_devs;
- 
- #define HCD_BUFFER_POOLS	4
- 	struct dma_pool		*pool[HCD_BUFFER_POOLS];
--- 
-2.35.1.473.g83b2b277ed-goog
 
