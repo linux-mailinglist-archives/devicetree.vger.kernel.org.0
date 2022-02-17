@@ -2,81 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 742C44BA1C0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:46:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D4D04BA1E8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:50:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241396AbiBQNof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 08:44:35 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42388 "EHLO
+        id S241464AbiBQNtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 08:49:08 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241282AbiBQNoW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:44:22 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5335D2B1A92;
-        Thu, 17 Feb 2022 05:43:36 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 2D4DC83B8D;
-        Thu, 17 Feb 2022 14:43:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1645105413;
-        bh=vqgVYgx+FqpP/4BNm4tNeIMdW4wMCTTuVxwKgzkTfpE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=EDOv8XGOOQ/2mZKJRDd7OZmnV+/ui2sKBvWzQ5Ii5o3q17FYcdDTnkHbnBMZtO7EP
-         alg6IeLAKoaS9/a4iHMNCDR1izWKjhlQvV+GVRxIh9uDTcTi8G4uAZXIb6pX90TViM
-         vyzQaC70XuGk214eJKk5mZUmutgsr0KaADJlxO5PAJG+yP4qxs6F7+WfIXe62P81wK
-         wqotLM1dF5DvOhHtL1eOV/+SZJ9ifrC/0ESsFE9fBCAUf8EWKPrAsrksb2YVELLFmE
-         DMg+HlNX7LZDzLMnH5+65STFMZxJM6H7jKpJ0jbyipah2+8rPTjhOpo1UlMvYSAW9K
-         S65qlnioeWQng==
-Message-ID: <8b179fe1-55e4-e811-1ac2-46ac726c22d9@denx.de>
-Date:   Thu, 17 Feb 2022 14:43:32 +0100
+        with ESMTP id S241461AbiBQNtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:49:07 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 583CBC7C33;
+        Thu, 17 Feb 2022 05:48:53 -0800 (PST)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21HCNFGO030051;
+        Thu, 17 Feb 2022 07:48:41 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=RXMw4ELiiPGxb1BhM1EtrpskMk8OtBkyJrUegKF5rBQ=;
+ b=XRLRW4jOC2j3jgVA8macDkPJcqW9rzrqrL3Um9hPcrcXyy74QMxLqgTBuIIbcWmsw179
+ SFQw+I0dF1t9IKkHpq44aDyIYB3k7nkTF40TpDcFjdTudqVz4Y8BKE3+znwjgA/qbPlu
+ ktsoII82Nv+LWfJ8ejVgdGIr3dbqI0wJtd72UBt/Pwo7698T1RVKxIW71t7ex9axAEqr
+ WTOuztt3CY16bnuW3zNZhzngzzT0Hd3tfavfmHBKll/PjXZ+UULzYBZ6VTIWyLaVk0CF
+ SXseO1t968TVfIiCJtIj77Ld8Gn1tWG9KVqkZ+ItXNhQ5BmsjuVbuQgjF9tCKOtCwGzS tA== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3e8nyda81v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Thu, 17 Feb 2022 07:48:40 -0600
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 17 Feb
+ 2022 13:48:39 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Thu, 17 Feb 2022 13:48:39 +0000
+Received: from AUSNPC0LSNW1-debian.cirrus.com (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.199])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 1641146B;
+        Thu, 17 Feb 2022 13:48:38 +0000 (UTC)
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <kuninori.morimoto.gx@renesas.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <patches@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>
+Subject: [PATCH V2 0/2] ASoC: audio_graph_card2: Support variable slot widths
+Date:   Thu, 17 Feb 2022 13:48:33 +0000
+Message-ID: <20220217134835.282389-1-rf@opensource.cirrus.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
-Content-Language: en-US
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@rohmsemiconductoreurope.onmicrosoft.com>
-References: <20220215084412.8090-1-marex@denx.de>
- <20220215084412.8090-2-marex@denx.de>
- <c1fce212-4d9e-06fe-e3fe-6d0f2ab29489@fi.rohmeurope.com>
- <8083fbfb-d039-a7c8-7c08-c57ebf9e3b56@denx.de>
- <88ee0a11-359e-60a5-4d96-54fef6514e69@fi.rohmeurope.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <88ee0a11-359e-60a5-4d96-54fef6514e69@fi.rohmeurope.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: E2bZm9GJmWyN-WL5TubSTxMn7nc8Cscq
+X-Proofpoint-ORIG-GUID: E2bZm9GJmWyN-WL5TubSTxMn7nc8Cscq
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[...]
+This adds support for I2S/TDM links where the slot width varies
+depending on the sample width, in a way that cannot be guessed by
+component hw_params().
 
->>> Anyways, seeing you added a dummy bd71837_match_clkspec in a follow-up
->>> patch for BD71837 - which has only single clock - I wonder if there is a
->>> way to omit that dummy callback in controllers which really provide only
->>> one clock?
->>
->> Yes, I think we can omit the match_clkspec call for clock controllers
->> with clock-cells == 0 altogether.
-> 
-> That would mean you could probably drop the bd718x7 driver patch, right?
+A typical example is:
 
-Yes
+- 16-bit samples use 16-bit slots
+- 24-bit samples use 32-bit slots
 
-I'm just waiting for feedback from Stephen on 2/3, then I'll send V2.
+There is no way for a component hw_params() to deduce from the information
+it is passed that 24-bit samples will be in 32-bit slots.
+
+Some audio hardware cannot support a fixed slot width or a slot width
+equal to the sample width in all cases. This is usually due either to
+limitations of the audio serial port or system clocking restrictions.
+
+These two patches add support for defining a mapping between sample widths
+and sample slots. This allows audio_graph_card2 to be used in these
+situations instead of having to write a custom machine driver.
+
+Richard Fitzgerald (2):
+  ASoC: dt-bindings: audio-graph-port: Add dai-tdm-slot-width-map
+  ASoC: audio_graph_card2: Add support for variable slot widths
+
+ .../bindings/sound/audio-graph-port.yaml      |  7 ++
+ include/sound/simple_card_utils.h             | 10 ++
+ sound/soc/generic/audio-graph-card2.c         |  4 +
+ sound/soc/generic/simple-card-utils.c         | 93 +++++++++++++++++++
+ 4 files changed, 114 insertions(+)
+
+-- 
+2.30.2
+
