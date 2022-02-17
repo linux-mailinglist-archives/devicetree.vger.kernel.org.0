@@ -2,114 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50FAA4B9EA4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 12:33:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 707074B9E9B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 12:31:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236825AbiBQLdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 06:33:10 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56910 "EHLO
+        id S233256AbiBQLbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 06:31:47 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbiBQLdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 06:33:08 -0500
-Received: from mxd2.seznam.cz (mxd2.seznam.cz [IPv6:2a02:598:2::210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E9C16FDE6;
-        Thu, 17 Feb 2022 03:32:50 -0800 (PST)
-Received: from email.seznam.cz
-        by email-smtpc28b.ng.seznam.cz (email-smtpc28b.ng.seznam.cz [10.23.18.41])
-        id 273a50137c34047a26939c4d;
-        Thu, 17 Feb 2022 12:32:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1645097561; bh=OUyasi79Ox50nzN/nFOW3Z5Xbf/pXzHWWvMd9FuZe3I=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding:X-szn-frgn:
-         X-szn-frgc;
-        b=bwBbo/2DaUGGRjHuIla+x3Yj41JY6yiRHRWcIa8W0ptMTvGq0G/nVsT7veAtjBuuG
-         ec0THa/mxEnIStM4Cs9qCntdJnRzVtkGOKoVatUq7NyWNJ89AMO6GjZYHjUOZVLeBE
-         b/2m/+Clo92wqTySuCOv8bBF0S2GYEvww1qSoOK8=
-Received: from localhost.localdomain (ip-111-27.static.ccinternet.cz [147.161.27.111])
-        by email-relay20.ng.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Thu, 17 Feb 2022 12:32:38 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, Michael Srba <michael.srba@seznam.cz>,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [PATCH v6 5/5] arm64: dts: qcom: msm8998: reserve potentially inaccessible clocks
-Date:   Thu, 17 Feb 2022 12:30:04 +0100
-Message-Id: <20220217113004.22757-5-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220217113004.22757-1-michael.srba@seznam.cz>
-References: <20220217113004.22757-1-michael.srba@seznam.cz>
+        with ESMTP id S238750AbiBQLbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 06:31:47 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3145E1121;
+        Thu, 17 Feb 2022 03:31:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=XSxGqHqB4CD4ItwJiT094IbgEYiep/ZGxuAGK8hdbFM=; b=YeqARtQqVs/62u66byIearze8r
+        IE4wuo5lqu2F8ITDkDR5OCNYH1cs8gMHNndNEPY2TfwZkLCO2zhKSl/sAr4oNL1q8eDVZf/TDaxeP
+        k9ZllKSSEZRWRJY3+ukIdU5ynnBZl4oifiNPFAi3PmkX4RtRmRIlhewWGCzV98Kw9KY8=;
+Received: from p200300ccff1474001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff14:7400:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1nKf0D-0006cT-8F; Thu, 17 Feb 2022 12:31:13 +0100
+Date:   Thu, 17 Feb 2022 12:31:12 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, alistair@alistair23.me,
+        samuel@sholland.org, josua.mayer@jm0.eu,
+        letux-kernel@openphoenux.org
+Subject: Re: [RFC PATCH 1/6] dt-bindings: display: imx: Add EPDC
+Message-ID: <20220217123112.3ba70000@aktux>
+In-Reply-To: <36445c86-036e-0942-a9a4-919595886c67@canonical.com>
+References: <20220206080016.796556-1-andreas@kemnade.info>
+        <20220206080016.796556-2-andreas@kemnade.info>
+        <36445c86-036e-0942-a9a4-919595886c67@canonical.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <296634cd-0321-4093-8f8c-edfc4ed832ee>
-X-szn-frgc: <0>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <michael.srba@seznam.cz>
+On Thu, 17 Feb 2022 10:21:15 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
 
-With the gcc driver now being more complete and describing clocks which
-might not always be write-accessible to the OS, conservatively specify
-all such clocks as protected in the SoC dts.
-The board dts - or even user-supplied dts - can override this property
-to reflect the actual configuration.
+> On 06/02/2022 09:00, Andreas Kemnade wrote:
+> > Add a binding for the Electrophoretic Display Controller found at least
+> > in the i.MX6.
+> > The timing subnode is directly here to avoid having display parameters
+> > spread all over the plate.
+> > 
+> > Supplies are organized the same way as in the fbdev driver in the
+> > NXP/Freescale kernel forks. The regulators used for that purpose,
+> > like the TPS65185, the SY7636A and MAX17135 have typically a single bit to
+> > start a bunch of regulators of higher or negative voltage with a
+> > well-defined timing. VCOM can be handled separately, but can also be
+> > incorporated into that single bit.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> >  .../bindings/display/imx/fsl,mxc-epdc.yaml    | 159 ++++++++++++++++++
+> >  1 file changed, 159 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
+> > 
+[..]
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
----
- CHANGES:
- - v2: add this patch
- - v3: fix missing Signed-off-by
- - v4: add a proper explanation as per review, (hopefully) fix the subject and commit message
- - v5: none
- - v6: none
----
+> > +
+> > +  DISPLAY-supply:
+> > +    description:
+> > +      A couple of +/- voltages automatically powered on in a defintive order  
+> 
+> Typo, definitive?
+> 
+yes, of course.
 
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+> > +
+> > +  VCOM-supply:
+> > +    description: compensation voltage
+> > +
+> > +  V3P3-supply:  
+> 
+> All of supplies names - lowercase.
+> 
+> > +    description: V3P3 supply
+> > +
+> > +  epd-thermal-zone:
+> > +    description:
+> > +      Zone to get temperature of the EPD from, practically ambient temperature.  
+> 
+> Is it a phandle?
+> 
+a string used in
+       of_property_read_string(priv->drm.dev->of_node,
+                                "epd-thermal-zone", &thermal);
+        if (thermal) {
+                priv->thermal = thermal_zone_get_zone_by_name(thermal);
+                if (IS_ERR(priv->thermal))
+                        return dev_err_probe(priv->drm.dev, PTR_ERR(priv->thermal),
+                                             "unable to get thermal");
+        }
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index f273bc1ff629..16dccf9d881e 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -863,6 +863,21 @@ gcc: clock-controller@100000 {
- 
- 			clock-names = "xo", "sleep_clk";
- 			clocks = <&xo>, <&sleep_clk>;
-+
-+			/*
-+			 * The hypervisor typically configures the memory region where these clocks
-+			 * reside as read-only for the HLOS. If the HLOS tried to enable or disable
-+			 * these clocks on a device with such configuration (e.g. because they are
-+			 * enabled but unused during boot-up), the device will most likely decide
-+			 * to reboot.
-+			 * In light of that, we are conservative here and we list all such clocks
-+			 * as protected. The board dts (or a user-supplied dts) can override the
-+			 * list of protected clocks if it differs from the norm, and it is in fact
-+			 * desired for the HLOS to manage these clocks
-+			 */
-+			protected-clocks = <AGGRE2_SNOC_NORTH_AXI>,
-+					   <SSC_XO>,
-+					   <SSC_CNOC_AHBS_CLK>;
- 		};
- 
- 		rpm_msg_ram: sram@778000 {
--- 
-2.34.1
+[...]
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/imx6sl-clock.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    epdc: epdc@20f4000 {  
+> 
+> Generic node name, e.g. display-controller
+> 
+hmm, does IHMO not make too much sense here. E.g. in the imx6sll.dtsi
+we have lcd-controller next to it. So having epd-controller? But that
+is exactly what epdc stands for.
 
+Regards,
+Andreas
