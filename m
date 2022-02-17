@@ -2,158 +2,830 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E17144B997F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 07:55:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B72DF4B9A80
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 09:02:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235910AbiBQGzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 01:55:21 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48956 "EHLO
+        id S230011AbiBQIAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 03:00:30 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235840AbiBQGzN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 01:55:13 -0500
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C84BF27F295
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 22:54:59 -0800 (PST)
-Received: by mail-pj1-x102e.google.com with SMTP id b8so4699580pjb.4
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 22:54:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=fbkjSAH5zzjT9bdkUEcfX+58XyqQCYr3PakKI23mckw=;
-        b=jCBnYGr0FwYAETE7VlgSz7COIhTuOqqXUvkcjf30rbfBPxuuk08YKvaOQPVYt4UgHb
-         FfNHWqxTe9rEjj3Qzmo5dVaJ9VS0shIflUfCiEbFtokKMjLM6qxMrkNcnR7AU50HiHxx
-         GP5KznxEUasfAj7zlqi0aMCfJ8H9WPHdB4/HalHPmbR0v4Ywo07XT2+LHLYOk3OotlmA
-         rZ+5JVE9CC4QqauK7OrfjE4N6aGvdyORyjg1WMtXhfMcIJeIElpgSoFGC5GR7ae4nlRr
-         eMizuvpnlNy1C8kSJaGVN1jJtgPa5P+RFPeYgpvdXqPLWJWVwdX/kadRBxOsAMOookYq
-         0aqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=fbkjSAH5zzjT9bdkUEcfX+58XyqQCYr3PakKI23mckw=;
-        b=pT/7mv4Wua4RX8IuHEyWTq86L0YSNgePeNWDpGJ5C9b307WF6cLMKEQ7nuTrPcDI5J
-         B3Pn4yoEbDBxUALPZPmPWzkcbrT9yGASNUq7GBGYf5I7FT0+nC/aLEISo43n9K1cwf0H
-         yojQoFX91EzC0B8qT2xOm7JH+VzR+rKuobU8ua7CNhf+KTv+XI+zv6UrUocrnsfQmONs
-         kxtcwTkzU3akHlnjbo4gYVrm/S1726zE7UIpMslc6Rpn3JcFl1VshtM1HxNavai/2n80
-         fyMy7qaZzFi7y30Gz7lQYVHj6OgPhQ/OMtqCcaJcsAjcqOSSW5k9V9HpZf9sJrsxyD4l
-         zZyA==
-X-Gm-Message-State: AOAM532ATBKUuk7xXKuI9W09v2s3fiMz0CQjlB981CWLJlr9iYH9q2YI
-        xUq7KjQcZq6iiLmlkWvr1SEMsw==
-X-Google-Smtp-Source: ABdhPJyqT03tuQIizkw4NKuvMZCvYLmZOsIsuxvYN+JoBxu4Jal7bx4bH0PuqPgLP0/Oyt4zx3RGjw==
-X-Received: by 2002:a17:90b:360e:b0:1b9:d9f0:b37 with SMTP id ml14-20020a17090b360e00b001b9d9f00b37mr1634420pjb.111.1645080899225;
-        Wed, 16 Feb 2022 22:54:59 -0800 (PST)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id 8sm10115763pfl.164.2022.02.16.22.54.55
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 16 Feb 2022 22:54:58 -0800 (PST)
-Date:   Thu, 17 Feb 2022 14:54:51 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [PATCH v5 2/3] dt-bindings: interrupt-controller: Add Qualcomm
- MPM support
-Message-ID: <20220217065447.GC31965@dragon>
-References: <20220216132830.32490-1-shawn.guo@linaro.org>
- <20220216132830.32490-3-shawn.guo@linaro.org>
- <1645070363.942246.2266021.nullmailer@robh.at.kernel.org>
+        with ESMTP id S236345AbiBQIA3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 03:00:29 -0500
+X-Greylist: delayed 4331 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Feb 2022 00:00:13 PST
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6BAE2722FA
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 00:00:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=c5QQ0kdciDSrG0c0gkc88gdBiKrylLpHR0i6Ol8Zwjo=; b=ouj5pfU6sMxYKprPatWySspc0O
+        mv97yk19zk5WW50s0IEnQAIHjVfL7v8FMtMSLWQPKbj8QB441RJSvIT22a3mVXrCQy9paYHOeqkYK
+        qR6Q6VlUp461rRH3mpIIxvZ4jB/0MP6SKlC7EImQB+YQsioJ9xjh6gTCALOI5EorMlxVqvN7QmZwh
+        o4sKHutSHBtHXtSrgQmgW+GZtUqn85esLzgzlByjYRiNlIpQd4DKtX0Fb/UycwcVFk7fJvLlk4cSx
+        n6KIlok5u4nS7glcEWCvKVsoX7NDAN42JnTfSDTl6WU2TGjCzQBZWxVEU+rdZCTfoaCTlNEGJJHp7
+        tULB5FQw==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:60920 helo=[192.168.69.86])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1nKaZx-001PpF-Et; Thu, 17 Feb 2022 07:47:56 +0100
+Message-ID: <0f37388b-8bb0-879b-7a12-3b256fa11d7c@norik.com>
+Date:   Thu, 17 Feb 2022 07:47:57 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1645070363.942246.2266021.nullmailer@robh.at.kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH RESEND 2/4] ARM: dts: imx6ull: Add support for PHYTEC
+ phyGATE-Tauri-S with i.MX 6ULL
+Content-Language: en-GB
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, kernel@pengutronix.de, leoyang.li@nxp.com,
+        krzysztof.kozlowski@canonical.com, festevam@gmail.com,
+        linux@rempel-privat.de, arnd@arndb.de, linux-imx@nxp.com,
+        y.bas@phytec.de
+References: <20220131080526.1171072-1-andrej.picej@norik.com>
+ <20220131080526.1171072-3-andrej.picej@norik.com>
+ <20220212054331.GY4909@dragon>
+From:   Andrej Picej <andrej.picej@norik.com>
+In-Reply-To: <20220212054331.GY4909@dragon>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 16, 2022 at 09:59:23PM -0600, Rob Herring wrote:
-> On Wed, 16 Feb 2022 21:28:29 +0800, Shawn Guo wrote:
-> > It adds DT binding support for Qualcomm MPM interrupt controller.
-> > 
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > ---
-> >  .../interrupt-controller/qcom,mpm.yaml        | 94 +++++++++++++++++++
-> >  1 file changed, 94 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hi Shawn,
 
-I ran dt_binding_check without DT_CHECKER_FLAGS=-m.  Will re-test and
-fix.
+I will fix what you pointed out and send a v2.
 
-Shawn
+Thanks for your review.
 
+On 12. 02. 22 06:43, Shawn Guo wrote:
+> On Mon, Jan 31, 2022 at 09:05:24AM +0100, Andrej Picej wrote:
+>> From: Alexander Bauer <a.bauer@phytec.de>
+>>
+>> Add support for the PHYTEC phyGATE-Tauri-S with i.MX 6ULL with eMMC or
+>> NAND.
+>>
+>> Supported features:
+>>          * eMMC/NAND
+>>          * i2c RTC
+>>          * i2c TEMP
+>>          * PMIC
+>>          * PWM
+>>          * debug UART
+>>          * CAN
+>>          * SD card
+>>          * 2x 1Gbit Ethernet
+>>          * RS232/RS485
+>>          * USB 2.0 Host
+>>          * TPM
+>>          * SPI-NOR
+>>
+>> Signed-off-by: Alexander Bauer <a.bauer@phytec.de>
+>> Signed-off-by: Jens Lang <j.lang@phytec.de>
+>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>> ---
+>>   arch/arm/boot/dts/Makefile                    |   2 +
+>>   .../boot/dts/imx6ull-phytec-tauri-emmc.dts    |  20 +
+>>   .../boot/dts/imx6ull-phytec-tauri-nand.dts    |  20 +
+>>   arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi   | 605 ++++++++++++++++++
+>>   4 files changed, 647 insertions(+)
+>>   create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts
+>>   create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts
+>>   create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
+>>
+>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>> index 235ad559acb2..f50270b9965a 100644
+>> --- a/arch/arm/boot/dts/Makefile
+>> +++ b/arch/arm/boot/dts/Makefile
+>> @@ -704,6 +704,8 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
+>>   	imx6ull-phytec-segin-ff-rdk-nand.dtb \
+>>   	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
+>>   	imx6ull-phytec-segin-lc-rdk-nand.dtb \
+>> +	imx6ull-phytec-tauri-nand.dtb \
+>> +	imx6ull-phytec-tauri-emmc.dtb \
 > 
-> yamllint warnings/errors:
+> Keep them sort alphabetically.
 > 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: properties:qcom,mpm-pin-count: 'oneOf' conditional failed, one must be fixed:
-> 	'type' is a required property
-> 		hint: A vendor boolean property can use "type: boolean"
-> 	Additional properties are not allowed ('maxItems' was unexpected)
-> 		hint: A vendor boolean property can use "type: boolean"
-> 	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: properties:qcom,mpm-pin-count: 'oneOf' conditional failed, one must be fixed:
-> 		'enum' is a required property
-> 		'const' is a required property
-> 		hint: A vendor string property with exact values has an implicit type
-> 		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> 	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: properties:qcom,mpm-pin-count: 'oneOf' conditional failed, one must be fixed:
-> 		'$ref' is a required property
-> 		'allOf' is a required property
-> 		hint: A vendor property needs a $ref to types.yaml
-> 		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> 	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-> 	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: properties:qcom,mpm-pin-map: 'oneOf' conditional failed, one must be fixed:
-> 	'type' is a required property
-> 		hint: A vendor boolean property can use "type: boolean"
-> 	'description' is a required property
-> 		hint: A vendor boolean property can use "type: boolean"
-> 	Additional properties are not allowed ('$ref', 'items' were unexpected)
-> 		hint: A vendor boolean property can use "type: boolean"
-> 	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: properties:qcom,mpm-pin-map: 'oneOf' conditional failed, one must be fixed:
-> 		'enum' is a required property
-> 		'const' is a required property
-> 		hint: A vendor string property with exact values has an implicit type
-> 		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> 	'/schemas/types.yaml#/definitions/uint32-matrix' does not match '^#/(definitions|$defs)/'
-> 		hint: A vendor property can have a $ref to a a $defs schema
-> 	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-> 	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml: ignoring, error in schema: properties: qcom,mpm-pin-count
-> Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.example.dt.yaml:0:0: /example-0/interrupt-controller@45f01b8: failed to match any schema with compatible: ['qcom,qcm2290-mpm']
+>>   	imx6ulz-14x14-evk.dtb \
+>>   	imx6ulz-bsh-smm-m2.dtb
+>>   dtb-$(CONFIG_SOC_IMX7D) += \
+>> diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts b/arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts
+>> new file mode 100644
+>> index 000000000000..14adb87da911
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts
+>> @@ -0,0 +1,20 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (C) 2021 PHYTEC Messtechnik GmbH
+>> + * Author: Alexander Bauer <a.bauer@phytec.de>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include "imx6ull-phytec-tauri.dtsi"
+>> +
+>> +/ {
+>> +	model = "PHYTEC phyGate-Tauri i.MX6 UltraLite";
+>> +	compatible = "phytec,imx6ull-phygate-tauri",
+>> +		     "phytec,imx6ull-phygate-tauri-emmc",
+>> +		     "phytec,imx6ull-pcl063", "fsl,imx6ull";
+>> +};
+>> +
+>> +/* EMMC-Version */
+>> +&usdhc2 {
+>> +	status = "okay";
+>> +};
+>> diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts b/arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts
+>> new file mode 100644
+>> index 000000000000..ae396ac63443
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts
+>> @@ -0,0 +1,20 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (C) 2021 PHYTEC Messtechnik GmbH
+>> + * Author: Alexander Bauer <a.bauer@phytec.de>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include "imx6ull-phytec-tauri.dtsi"
+>> +
+>> +/ {
+>> +	model = "PHYTEC phyGate-Tauri i.MX6 UltraLite";
+>> +	compatible = "phytec,imx6ull-phygate-tauri",
+>> +		     "phytec,imx6ull-phygate-tauri-nand",
+>> +		     "phytec,imx6ull-pcl063", "fsl,imx6ull";
+>> +};
+>> +
+>> +/* NAND-Version */
+>> +&gpmi {
+>> +	status = "okay";
+>> +};
+>> diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi b/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
+>> new file mode 100644
+>> index 000000000000..62a70d80c009
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
+>> @@ -0,0 +1,605 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (C) 2021 PHYTEC Messtechnik GmbH
+>> + * Author: Alexander Bauer <a.bauer@phytec.de>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include "imx6ull.dtsi"
+>> +#include "imx6ull-phytec-phycore-som.dtsi"
+>> +
+>> +/ {
+>> +
+>> +	model = "PHYTEC phyGate-Tauri i.MX6 UltraLite";
+>> +	compatible = "phytec,imx6ull-phygate-tauri",
+>> +		     "phytec,imx6ull-pcl063", "fsl,imx6ull";
+>> +
+>> +	aliases {
+>> +		rtc0 = &i2c_rtc;
+>> +		rtc1 = &snvs_rtc;
+>> +	};
+>> +
+>> +	gpio_keys: gpio-keys {
+>> +		compatible = "gpio-key";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_gpio_keys>;
+>> +
+>> +		key {
+>> +			label = "KEY-A";
+>> +			gpios = <&gpio1 18 GPIO_ACTIVE_LOW>;
+>> +			linux,code = <30>;
 > 
-> doc reference errors (make refcheckdocs):
+> Use define in include/dt-bindings/input/linux-event-codes.h
 > 
-> See https://patchwork.ozlabs.org/patch/1593741
+>> +			wakeup-source;
+>> +		};
+>> +	};
+>> +
+>> +	reg_adc1_vref_3v3: regulator-vref-3v3 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vref-3v3";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +	};
+>> +
+>> +	reg_s25fl064_hold: regulator-s25fl064-hold {
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_s25fl064_hold>;
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "s25fl064_hold";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		gpio = <&gpio3 17 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	reg_usb_hub_vbus: regulator-hub-otg1-vbus {
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_usbhubpwr>;
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "usb_hub_vbus";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		gpio = <&gpio5 5 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	reg_usb_otg1_vbus: regulator-usb-otg1-vbus {
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_usbotg1pwr>;
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "usb_otg1_vbus";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		gpio = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +		regulator-always-on;
+>> +	};
+>> +
+>> +	user_leds: user-leds {
+>> +		compatible = "gpio-leds";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_user_leds>,
+>> +			    <&pinctrl_user_leds_snvs>;
+>> +
+>> +		user-led1 {
+>> +			label = "yellow";
+>> +			gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
+>> +			linux,default-trigger = "off";
+>> +		};
+>> +
+>> +		user-led2 {
+>> +			label = "red";
+>> +			gpios = <&gpio5 9 GPIO_ACTIVE_HIGH>;
+>> +			linux,default-trigger = "off";
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&can1 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_flexcan1>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&can2 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_flexcan2>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&ecspi1 {
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+>> +	fsl,spi-num-chipselects = <3>;
 > 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
+> The property is no longer supported.
 > 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_ecspi1>,
+>> +		    <&pinctrl_ecspi1_cs>;
+>> +	cs-gpios = <&gpio3 26 GPIO_ACTIVE_LOW>,
+>> +		   <&gpio3 10 GPIO_ACTIVE_LOW>,
+>> +		   <&gpio3 11 GPIO_ACTIVE_LOW>;
+>> +	status = "okay";
+>> +
+>> +	spi_dev0: spi@0 {
+>> +		compatible = "linux,spidev";
 > 
-> pip3 install dtschema --upgrade
+> Not supported.
 > 
-> Please check and re-submit.
+>> +		spi-max-frequency = <57600000>;
+>> +		reg = <0>;
+>> +	};
+>> +
+>> +	tpm_tis: tpm@1 {
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_tpm>;
+>> +		compatible = "tcg,tpm_tis-spi";
+>> +		reg = <1>;
+>> +		spi-max-frequency = <20000000>;
+>> +		interrupt-parent = <&gpio5>;
+>> +		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
+>> +		status = "okay";
 > 
+> We generally use okay status to flip a disabled device.  You can save it
+> if that's not the case.
+> 
+>> +	};
+>> +
+>> +/* S25FL064P */
+> 
+> Not sure this comment is so useful.  If you need a comment, as least
+> indent it properly.
+> 
+>> +	s25fl064: flash@2 {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +		compatible = " jedec,spi-nor";
+>> +		reg = <2>;
+>> +		spi-max-frequency = <40000000>;
+>> +		m25p,fast-read;
+>> +		status = "disabled";
+>> +	};
+>> +};
+>> +
+>> +&ecspi3 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_ecspi3>;
+>> +	cs-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
+>> +	dmas = <&sdma 7 8 0>,
+>> +	       <&sdma 8 8 0>;
+>> +	dma-names = "rx", "tx";
+>> +	status = "okay";
+>> +
+>> +	spi_dev1: spi@0 {
+>> +		compatible = "linux,spidev";
+>> +		spi-max-frequency = <57600000>;
+>> +		reg = <0>;
+>> +	};
+>> +};
+>> +
+>> +&ethphy1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&fec1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&fec2 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_enet2>;
+>> +	phy-mode = "rmii";
+>> +	phy-handle = <&ethphy2>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&i2c1 {
+>> +	status = "okay";
+>> +
+>> +	i2c_rtc: rtc@68 {
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_rtc_int>;
+>> +		compatible = "microcrystal,rv4162";
+>> +		reg = <0x68>;
+>> +		interrupt-parent = <&gpio5>;
+>> +		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
+>> +	};
+>> +
+>> +	tmp102: tmp@49 {
+> 
+> Sort the nodes in order of unit-address.
+> 
+>> +		compatible = "ti,tmp102";
+>> +		reg = <0x49>;
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_tempsense>;
+>> +		interrupt-parent = <&gpio5>;
+>> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+>> +		#thermal-sensor-cells = <1>;
+>> +	};
+>> +};
+>> +
+>> +&i2c2 {
+>> +	pinctrl-names = "default", "gpio";
+>> +	pinctrl-0 = <&pinctrl_i2c2>;
+>> +	pinctrl-1 = <&pinctrl_i2c2_gpio>;
+>> +	sda-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>> +	scl-gpios = <&gpio1 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&i2c3 {
+>> +	pinctrl-names = "default", "gpio";
+>> +	pinctrl-0 = <&pinctrl_i2c3>;
+>> +	pinctrl-1 = <&pinctrl_i2c3_gpio>;
+>> +	sda-gpios = <&gpio3 5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>> +	scl-gpios = <&gpio3 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&i2c4 {
+>> +	pinctrl-names = "default", "gpio";
+>> +	pinctrl-0 = <&pinctrl_i2c4>;
+>> +	pinctrl-1 = <&pinctrl_i2c4_gpio>;
+>> +	sda-gpios = <&gpio3 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>> +	scl-gpios = <&gpio3 8 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdio {
+>> +	ethphy2: ethernet-phy@2 {
+>> +		reg = <2>;
+>> +		micrel,led-mode = <1>;
+>> +		clocks = <&clks IMX6UL_CLK_ENET2_REF>;
+>> +		clock-names = "rmii-ref";
+>> +		status = "okay";
+>> +	};
+>> +};
+>> +
+>> +&pwm3 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_pwm3>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pwm6 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_pwm6>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pwm7 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_pwm7>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pwm8 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_pwm8>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&uart3 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_uart3>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +/* UART4 * RS485  */
+>> +&uart4 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_uart4>;
+>> +	rts-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
+>> +	rs485-rts-active-high;
+>> +	linux,rs485-enabled-at-boot-time;
+>> +	status = "okay";
+>> +};
+>> +
+>> +/* UART5 * RS232  */
+>> +&uart5 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_uart5>;
+>> +	uart-has-rtscts;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&uart7 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_uart7>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +/* USB */
+>> +&usbotg1 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_usb_otg1>;
+>> +	vbus-supply = <&reg_usb_otg1_vbus>;
+>> +	dr_mode = "host";
+>> +	disable-over-current;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usbotg2 {
+>> +	vbus-supply = <&reg_usb_hub_vbus>;
+>> +	disable-over-current;
+>> +	dr_mode = "host";
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usdhc1 {
+>> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+>> +	pinctrl-0 = <&pinctrl_usdhc1>;
+>> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+>> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+>> +	cd-gpios = <&gpio1 19 GPIO_ACTIVE_LOW>;
+>> +	no-1-8-v;
+>> +	keep-power-in-suspend;
+>> +	wakeup-source;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usdhc2 {
+>> +	status = "disabled";
+>> +};
+>> +
+>> +&iomuxc_snvs {
+>> +
+> 
+> Drop this newline.
+> 
+>> +	pinctrl_rtc_int: rtcintgrp {
+>> +		fsl,pins = <
+>> +			MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x17059
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_stmpe: stmpegrp {
+>> +		fsl,pins = <
+>> +			MX6ULL_PAD_SNVS_TAMPER3__GPIO5_IO03	0x17059
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_tempsense: tempsensegrp {
+>> +		fsl,pins = <
+>> +			MX6ULL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x17059
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_tpm: tpmgrp {
+>> +		fsl,pins = <
+>> +			MX6ULL_PAD_SNVS_TAMPER2__GPIO5_IO02	0x17059
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usbhubpwr: usbhubpwrgrp {
+>> +		fsl,pins = <
+>> +			MX6ULL_PAD_SNVS_TAMPER5__GPIO5_IO05	0x17059
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_user_leds_snvs: user_ledsgrp {
+>> +		fsl,pins = <
+>> +			MX6ULL_PAD_SNVS_TAMPER9__GPIO5_IO09	0x79
+>> +		>;
+>> +	};
+>> +};
+>> +
+>> +&iomuxc {
+>> +
+> 
+> Drop this newline.
+> 
+>> +	pinctrl_gpio: gpio_gpiogrp {
+> 
+> Could you name these pinctrl nodes more consistently.  If you really
+> need some delimiter in node name, hyphen rather than underscore is
+> recommended.
+> 
+> Shawn
+> 
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_CSI_DATA05__GPIO4_IO26	0x17059  /* nUART_MUX_RS232 */
+>> +			MX6UL_PAD_CSI_DATA04__GPIO4_IO25	0x17059  /* nUART_MUX_DUAL_RX_TX */
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_gpio_keys: gpio_keysgrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x79
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_ecspi3: ecspi3grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_UART2_RX_DATA__ECSPI3_SCLK	0x100b1
+>> +			MX6UL_PAD_UART2_RTS_B__ECSPI3_MISO	0x100b1
+>> +			MX6UL_PAD_UART2_CTS_B__ECSPI3_MOSI	0x100b1
+>> +			MX6UL_PAD_UART2_TX_DATA__GPIO1_IO20	0x10b0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_ecspi1: ecspi1grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_LCD_DATA20__ECSPI1_SCLK	0x100b1
+>> +			MX6UL_PAD_LCD_DATA23__ECSPI1_MISO	0x100b1
+>> +			MX6UL_PAD_LCD_DATA22__ECSPI1_MOSI	0x100b1
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_ecspi1_cs: ecspi1csgrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_LCD_DATA21__GPIO3_IO26	0x10b0
+>> +			MX6UL_PAD_LCD_DATA05__GPIO3_IO10	0x10b0
+>> +			MX6UL_PAD_LCD_DATA06__GPIO3_IO11	0x10b0
+>> +		>;
+>> +	};
+>> +
+>> +
+>> +	pinctrl_enet2: enet2grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_ENET2_RX_EN__ENET2_RX_EN	0x1b0b0
+>> +			MX6UL_PAD_ENET2_RX_ER__ENET2_RX_ER	0x1b0b0
+>> +			MX6UL_PAD_ENET2_RX_DATA0__ENET2_RDATA00	0x1b0b0
+>> +			MX6UL_PAD_ENET2_RX_DATA1__ENET2_RDATA01	0x1b0b0
+>> +			MX6UL_PAD_ENET2_TX_EN__ENET2_TX_EN	0x1b010
+>> +			MX6UL_PAD_ENET2_TX_DATA0__ENET2_TDATA00	0x1b010
+>> +			MX6UL_PAD_ENET2_TX_DATA1__ENET2_TDATA01	0x1b010
+>> +			MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2	0x4001b010
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_flexcan1: flexcan1grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX	0x0b0b0
+>> +			MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x0b0b0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_flexcan2: flexcan2grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_LCD_DATA10__FLEXCAN2_TX	0x0b0b0
+>> +			MX6UL_PAD_LCD_DATA11__FLEXCAN2_RX	0x0b0b0
+>> +		>;
+>> +	};
+>> +
+>> +	princtrl_flexcan2_en: flexcan2engrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x17059
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c2: i2c2grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_GPIO1_IO00__I2C2_SCL	0xb0
+>> +			MX6UL_PAD_GPIO1_IO01__I2C2_SDA	0xb0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c2_gpio: i2c2gpiogrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0xb0
+>> +			MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0xb0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c3: i2c3grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_LCD_DATA01__I2C3_SCL	0xb0
+>> +			MX6UL_PAD_LCD_DATA00__I2C3_SDA	0xb0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c3_gpio: i2c3gpiogrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_LCD_DATA01__GPIO3_IO06	0xb0
+>> +			MX6UL_PAD_LCD_DATA00__GPIO3_IO05	0xb0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c4: i2c4grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_LCD_DATA03__I2C4_SCL	0xb0
+>> +			MX6UL_PAD_LCD_DATA02__I2C4_SDA	0xb0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c4_gpio: i2c4gpiogrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_LCD_DATA03__GPIO3_IO08	0xb0
+>> +			MX6UL_PAD_LCD_DATA02__GPIO3_IO07	0xb0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_pwm3: pwm3grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_GPIO1_IO04__PWM3_OUT	0x0b0b0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_pwm6: pwm6grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_JTAG_TDI__PWM6_OUT	0x0b0b0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_pwm7: pwm7grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_JTAG_TCK__PWM7_OUT	0x0b0b0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_pwm8: pwm8grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_JTAG_TRST_B__PWM8_OUT	0x0b0b0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_s25fl064_hold: s25fl064_holdgrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_LCD_DATA12__GPIO3_IO17	0x100b1
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_sai2: sai2grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_JTAG_TDI__SAI2_TX_BCLK	0x17088
+>> +			MX6UL_PAD_JTAG_TDO__SAI2_TX_SYNC	0x17088
+>> +			MX6UL_PAD_JTAG_TRST_B__SAI2_TX_DATA	0x11088
+>> +			MX6UL_PAD_JTAG_TCK__SAI2_RX_DATA	0x11088
+>> +			MX6UL_PAD_JTAG_TMS__SAI2_MCLK		0x17088
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_uart3: uart3grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_UART3_TX_DATA__UART3_DCE_TX	0x1b0b1
+>> +			MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX	0x1b0b1
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_uart4: uart4grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_LCD_CLK__UART4_DCE_TX		0x1b0b1
+>> +			MX6UL_PAD_LCD_ENABLE__UART4_DCE_RX	0x1b0b1
+>> +			MX6UL_PAD_LCD_HSYNC__GPIO3_IO02	0x1b0b1
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_uart5: uart5grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_UART5_TX_DATA__UART5_DCE_TX	0x1b0b1
+>> +			MX6UL_PAD_UART5_RX_DATA__UART5_DCE_RX	0x1b0b1
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_uart7: uart7grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_LCD_DATA16__UART7_DCE_TX	0x1b0b1
+>> +			MX6UL_PAD_LCD_DATA17__UART7_DCE_RX	0x1b0b1
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usb_otg1: usbotg1grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_CSI_DATA06__GPIO4_IO27	0x80
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usbotg1pwr: usbotg1pwrgrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_CSI_DATA07__GPIO4_IO28	0x17059
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc1: usdhc1grp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
+>> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x10059
+>> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
+>> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
+>> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
+>> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
+>> +			MX6UL_PAD_UART1_RTS_B__GPIO1_IO19	0x17059
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc1_100mhz: usdhc1100mhzgrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170b9
+>> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100b9
+>> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170b9
+>> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
+>> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
+>> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc1_200mhz: usdhc1200mhzgrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170f9
+>> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100f9
+>> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170f9
+>> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170f9
+>> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170f9
+>> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_user_leds: user_ledsgrp {
+>> +		fsl,pins = <
+>> +			MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0x79
+>> +		>;
+>> +	};
+>> +};
+>> -- 
+>> 2.25.1
+>>
