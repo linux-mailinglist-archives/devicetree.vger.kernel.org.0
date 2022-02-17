@@ -2,65 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B7124BAD69
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 00:52:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C45524BAD4E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 00:49:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbiBQXwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 18:52:04 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:55900 "EHLO
+        id S229501AbiBQXsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 18:48:00 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:59632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbiBQXwD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 18:52:03 -0500
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051C53151E;
-        Thu, 17 Feb 2022 15:51:48 -0800 (PST)
-Received: by mail-io1-f45.google.com with SMTP id r7so235899iot.3;
-        Thu, 17 Feb 2022 15:51:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VPqLTBNPDYhEbgZt/YdvKKlTQpPFS9QLFLj/eqQJfu0=;
-        b=lX8Zljn9mAPbtcGw+jIEjRcYIFbfBHiGjlKHdvzlmk7E7n92Zc7UUk00oFCS4Th3Kn
-         IbwauIKUzQb1eOpZqIjYN29SxdLskI7L7nQQd+rgpTZujSUtONpJkF1PiHMwz1PbhKya
-         LGHrWcwd2qXGLlBp+AnHOMs5F3xhJS80HlzH6UgETRXWUyI6Agd8yh2QcjleSZPHHxkq
-         bwp3q8w2O5GoI8hgZO/4t/Ob1Apg6gDwisJ7yp9FYZaofls54G8YEhfeYNWLfN3/OIao
-         MOEwx/oTtDGg9Zxa/otQs9Z8+p/CFjGcHoNVZeyOYdDFh6wS3Ut0K6jpINiBUsB0Eqn4
-         pEdg==
-X-Gm-Message-State: AOAM530TFvO5Z1UfIvkbupdg+eZ4eQb+MI4Ex8BTA2qMnpfdQq3TFQB0
-        yekfI7Q1Aey4hFUkboM8Td5mfDJrXQ==
-X-Google-Smtp-Source: ABdhPJxnkBwBCsnctqo57J95u71yi9llEbgOjpOUuIN18GpsnSf52LyI6k4cwm2+E3jtbV1xtG/w0g==
-X-Received: by 2002:a02:c953:0:b0:314:3463:f725 with SMTP id u19-20020a02c953000000b003143463f725mr3395005jao.275.1645141101018;
-        Thu, 17 Feb 2022 15:38:21 -0800 (PST)
-Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id h8sm2542911ile.22.2022.02.17.15.38.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Feb 2022 15:38:20 -0800 (PST)
-Received: (nullmailer pid 3985592 invoked by uid 1000);
-        Thu, 17 Feb 2022 23:38:17 -0000
-Date:   Thu, 17 Feb 2022 17:38:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>,
-        Ondrej Jirman <megous@megous.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v10 11/18] dt-bindings: usb: Add H616 compatible string
-Message-ID: <Yg7cadPGUwbiOk/K@robh.at.kernel.org>
-References: <20220211122643.1343315-1-andre.przywara@arm.com>
- <20220211122643.1343315-12-andre.przywara@arm.com>
+        with ESMTP id S229515AbiBQXr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 18:47:59 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03EE137A429;
+        Thu, 17 Feb 2022 15:47:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 20319618F5;
+        Thu, 17 Feb 2022 23:39:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C8ABC340E8;
+        Thu, 17 Feb 2022 23:39:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645141194;
+        bh=i+sxzCX0Bfe/BG5rfiKh5UAxg+Z4BhJECi8C+Ih352U=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=YJArVd3/AdKHXuZDc4JDhag1w5xv5ioFy/DQtRHA6RogfkGOoiUhKI+K3DcqbFQ0Y
+         R2RtPcRRC5uicsJMNimBQzyEECBOtyjR02ast5uYNvhVMzfboOXJMyJogd598PCTe1
+         6eZnWPtRB7iBMQH1v3dYZxeukakEu1o+ayxEvoURQffZHiaya6ZZBQDZFEO5tIwds7
+         TO86VJ5Zk8B+9yTuCLZkGkZZFN4dEKO1fQjcs9hXEAXBKzd+9D4HCOUMJLIcupTwwN
+         GB3tVb8CupGvuLGn9Knx6ZXKLrpp2pu67/qySc5hmqJcMelSbSrW/lYMyux6b7q2Zy
+         9q1Os6UnpVyCg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220211122643.1343315-12-andre.przywara@arm.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220213173310.152230-1-marex@denx.de>
+References: <20220213173310.152230-1-marex@denx.de>
+Subject: Re: [PATCH 1/2] dt-bindings: clk: rs9: Add Renesas 9-series I2C PCIe clock generator
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
+Date:   Thu, 17 Feb 2022 15:39:51 -0800
+User-Agent: alot/0.10
+Message-Id: <20220217233954.6C8ABC340E8@smtp.kernel.org>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,16 +55,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Feb 2022 12:26:36 +0000, Andre Przywara wrote:
-> The Allwinner H616 contains four fully OHCI/EHCI compatible USB host
-> controllers, so just add their compatible strings to the list of
-> generic OHCI/EHCI controllers.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  Documentation/devicetree/bindings/usb/generic-ehci.yaml | 1 +
->  Documentation/devicetree/bindings/usb/generic-ohci.yaml | 1 +
->  2 files changed, 2 insertions(+)
-> 
+Quoting Marek Vasut (2022-02-13 09:33:09)
+> diff --git a/Documentation/devicetree/bindings/clock/renesas,9series.yaml=
+ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+> new file mode 100644
+> index 0000000000000..774053748d9f0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+> @@ -0,0 +1,102 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/renesas,9series.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Binding for Renesas 9-series I2C PCIe clock generators
+> +
+> +description: |
+> +  The Renesas 9-series are I2C PCIe clock generators providing
+> +  from 1 to 20 output clocks.
+> +
+> +  When referencing the provided clock in the DT using phandle
+> +  and clock specifier, the following mapping applies:
+> +
+> +  - 9FGV0241:
+> +    0 -- DIF0
+> +    1 -- DIF1
+> +
+> +maintainers:
+> +  - Marek Vasut <marex@denx.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,9fgv0241
+> +
+> +  reg:
+> +    description: I2C device address
+> +    enum: [ 0x68, 0x6a ]
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: XTal input clock
+> +
+> +  renesas,out-amplitude:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 600000, 700000, 800000, 900000 ]
+> +    description: Output clock signal amplitude in uV
+> +
+> +  renesas,out-spread-spectrum:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 100000, 99750, 99500 ]
+> +    description: Output clock down spread in pcm
+> +
+> +patternProperties:
+> +  "^DIF[0-19]$":
+> +    type: object
+> +    description:
+> +      Description of one of the outputs (DIF0..DIF19).
+> +    properties:
+> +      renesas,slew-rate:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [ 2000000, 3000000 ]
+> +        description: Output clock slew rate select in V/ns
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
 
-Acked-by: Rob Herring <robh@kernel.org>
+Can it operate without an input xtal?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    /* 25MHz reference crystal */
+> +    ref25: ref25m {
+> +        compatible =3D "fixed-clock";
+> +        #clock-cells =3D <0>;
+> +        clock-frequency =3D <25000000>;
+> +    };
+> +
+> +    i2c@0 {
+> +        reg =3D <0x0 0x100>;
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        rs9: clock-generator@6a {
+> +            compatible =3D "renesas,9fgv0241";
+> +            reg =3D <0x6a>;
+> +            #clock-cells =3D <1>;
+> +
+> +            clocks =3D <&ref25m>;
+> +
+> +            DIF0 {
+> +                renesas,slew-rate =3D <3000000>;
+> +            };
+> +        };
+> +    };
+> +
+> +    /* Consumer referencing the 9FGV0241 pin DIF0 */
+
+Consumers are typically left out of clk bindings.
+
+> +    consumer {
+> +        /* ... */
+> +        clocks =3D <&rs9 0>;
+> +        /* ... */
+> +    };
+> +
+> +...
+> --=20
+> 2.34.1
+>
