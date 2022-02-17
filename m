@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F41B74BAB9C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 22:16:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45D7A4BABC7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 22:35:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239578AbiBQVQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 16:16:24 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59762 "EHLO
+        id S245570AbiBQVfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 16:35:15 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239098AbiBQVQY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 16:16:24 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F43C54F9E;
-        Thu, 17 Feb 2022 13:16:09 -0800 (PST)
+        with ESMTP id S234005AbiBQVfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 16:35:15 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03BB914CDBD;
+        Thu, 17 Feb 2022 13:35:00 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9F51261239;
-        Thu, 17 Feb 2022 21:16:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FAD2C340EC;
-        Thu, 17 Feb 2022 21:16:08 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A65B9B82522;
+        Thu, 17 Feb 2022 21:34:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ECF9C340F6;
+        Thu, 17 Feb 2022 21:34:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645132568;
-        bh=lzNUZg4/G1tEmDvLX1MFUWisYWeHMVVhEOzHv56p/jA=;
+        s=k20201202; t=1645133697;
+        bh=9ZKFzvuxqGDuxePE3PZ3oKNhPCfiECwJr72AD11sbFY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=d/JvqoJ9efgG0vPVIvBXF9uNOrKqRwS17mhCZnVqaUNDyYwlSzhKO6T/iigyE3MOg
-         uR6Ua+/FNCNyAS6KT6kV4aBppd+PUHAm3uvWTmml6O6DDWSnPvbY/dv7EMNt0QpS1e
-         QMpBa5oXuQDP3fKLzqv+zFyy0JSmlvhnptxi7o0bNOBRkI+EqR81rKIDLTcnxNMrLv
-         xi5zd58j3n8ZS2NCwQJxe+6X5vKDDyXNMx8D/6u7Kx5D8vySNWegAk9MW4g8Z6ZZIw
-         IxqiBBBLZw38mLqG/P59ofMP+y8P6dpS1QpvrF/KGszcMdiUUfeOvy7MchaVPFWovs
-         Vv5h7AbNfMZkQ==
-Received: by mail-ej1-f49.google.com with SMTP id p9so10225502ejd.6;
-        Thu, 17 Feb 2022 13:16:07 -0800 (PST)
-X-Gm-Message-State: AOAM530qzqtGv/AgqwqYf1QTVG9KZOPe1on9kDylvxmULpU9KLgN/7x3
-        NvOQ8oIatAUeheDRPNzE/pg94DTaTPdwCIQr0A==
-X-Google-Smtp-Source: ABdhPJxGT1q+qXGOlER4TMr4P3zf+rDyNFaqtuN2Ztb1ctT3SK7abfQtVJ1CUaJCRGYsVU+tJGD7ig20TkewoYMkPek=
-X-Received: by 2002:a17:906:a40f:b0:6c9:e255:7926 with SMTP id
- l15-20020a170906a40f00b006c9e2557926mr3760578ejz.27.1645132566329; Thu, 17
- Feb 2022 13:16:06 -0800 (PST)
+        b=H2/fEdiI7Xhi3piBuQ1VTw64c6U5/tW4+8NghSs8QoRfCd32mX+hMXVnGH7+m7miF
+         UBIW3S3nGRbCJpw6eDMS7Y49iT/GBxXVwUoyXTK+WwBgxCfI9yDTc+5aTXj37mha/z
+         ZXrUYJ1esod7SXOHSit3YqX+2XV9T9nishJomHWbpRWWyA55Vkv+Q5zU9YUzOvoZ6A
+         NIzghDpjVjdp0QOnqpIGVcw+y8u5x2vqEp9OiP8B55Bor+DQliSFrSnDg/dLCxMWwF
+         hBjrJhKSlTFWjO1nG0lCEt/KtxfdCuq59nR91V3MN7onnRvRHVq9o/TzXRu+5uPy/U
+         tjP8H0nCwuauA==
+Received: by mail-ed1-f49.google.com with SMTP id q17so12051957edd.4;
+        Thu, 17 Feb 2022 13:34:57 -0800 (PST)
+X-Gm-Message-State: AOAM532LT3Nj3p7epuhwd33IOmnBaS7jjgfLWa5xTdFNicRSAw3WDcFG
+        4D6bL63cPwNohqZ/5adKHZOc46p2k4Pyew2PAQ==
+X-Google-Smtp-Source: ABdhPJwMwWaIqmzsA7pkOHfJvLLdy1aqNJdJJazYozh0+S0QqJEe9bX4ggabJGlocMvwwqLVXTQQV+g6qFWIIF9KPxo=
+X-Received: by 2002:a05:6402:278b:b0:412:80a5:6cb3 with SMTP id
+ b11-20020a056402278b00b0041280a56cb3mr4864452ede.157.1645133695579; Thu, 17
+ Feb 2022 13:34:55 -0800 (PST)
 MIME-Version: 1.0
-References: <20220217120856.2910-1-zajec5@gmail.com>
-In-Reply-To: <20220217120856.2910-1-zajec5@gmail.com>
+References: <20220217131234.50328-1-cristian.marussi@arm.com> <20220217131234.50328-5-cristian.marussi@arm.com>
+In-Reply-To: <20220217131234.50328-5-cristian.marussi@arm.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 17 Feb 2022 15:15:54 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJjZRJCHDUK7Pia0ontdAGgvqgfPQgpu6A+UH+qovEJOQ@mail.gmail.com>
-Message-ID: <CAL_JsqJjZRJCHDUK7Pia0ontdAGgvqgfPQgpu6A+UH+qovEJOQ@mail.gmail.com>
-Subject: Re: [PATCH RFC *RFC*] dt-bindings: add U-Boot chosen for environment
- data phandle
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Tom Rini <trini@konsulko.com>,
-        Ricardo Salveti <ricardo@foundries.io>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Jorge Ramirez-Ortiz <jorge@foundries.io>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Date:   Thu, 17 Feb 2022 15:34:44 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+JrLtXUoG10O3kcwYNEbzXXYn0HBLsSfm9R+qLajneeA@mail.gmail.com>
+Message-ID: <CAL_Jsq+JrLtXUoG10O3kcwYNEbzXXYn0HBLsSfm9R+qLajneeA@mail.gmail.com>
+Subject: Re: [PATCH v5 4/8] dt-bindings: firmware: arm,scmi: Add
+ atomic-threshold-us optional property
+To:     Cristian Marussi <cristian.marussi@arm.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        souvik.chakravarty@arm.com,
+        Peter Hilber <peter.hilber@opensynergy.com>,
+        Igor Skalkin <igor.skalkin@opensynergy.com>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -70,70 +72,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 17, 2022 at 6:09 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
-wrote:
+On Thu, Feb 17, 2022 at 7:13 AM Cristian Marussi
+<cristian.marussi@arm.com> wrote:
 >
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> SCMI protocols in the platform can optionally signal to the OSPM agent
+> the expected execution latency for a specific resource/operation pair.
 >
-> This is RFC and request for a help & discussion.
+> Introduce an SCMI system wide optional property to describe a global time
+> threshold which can be configured on a per-platform base to determine the
+> opportunity, or not, for an SCMI command advertised to have a higher
+> latency than the threshold, to be considered for atomic operations:
+> high-latency SCMI synchronous commands should be preferably issued in the
+> usual non-atomic mode.
 >
-> While reviewing patch for U-Boot env binding it has been mentioned that:
->
-> 1. /Processing/ whole DT in U-Boot may be too much work
->    Handling flash devices, partitions, their formats & NVMEM may require
->    too many U-Boot drivers involved.
->
-> 2. It'd be nice to have env data storage devices pointed in chosen
->
-> I wrote this hacky PATCH to give a rough idea how it could look like.
->
-> Please review this and let me know:
-> 1. If solution with chosen + phandles is acceptable
-> 2. How to properly name .yaml file
-> 3. Where it put it
->
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 > ---
->  .../devicetree/bindings/u-boot,chosen.yaml    | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/u-boot,chosen.yaml
->
-> diff --git a/Documentation/devicetree/bindings/u-boot,chosen.yaml b/Docum=
-entation/devicetree/bindings/u-boot,chosen.yaml
-> new file mode 100644
-> index 000000000000..8369da91193d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/u-boot,chosen.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/u-boot,chosen.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: U-Boot setup
-> +
-> +maintainers:
-> +  - Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> +
-> +properties:
-> +  u-boot,env:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: |
-> +      A list of storage volumes containing U-Boot environment data.
-> +
-> +      Env data can be stored on various kinds of storage devices, e.g.:
-> +      1. Raw flash partition
-> +      2. UBI volume
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    chosen {
-> +        u-boot,env =3D <&env>;
+> v4 --> v5:
+> - fixed example and removed dtschema warnings/errors :
+>   arm,scmi.yaml: properties:atomic-threshold-us:
+>         '$ref' should not be valid under {'const': '$ref'}
 
-You should look at the u-boot config support:
+Seems an old version got picked up for linux-next:
 
-https://github.com/devicetree-org/dt-schema/commit/0986f729eff0f40a66e85ab9=
-dfb37681bf025ac4
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/firmware/arm,scmi.yaml:
+properties:atomic-threshold-us: '$ref' should not be valid under
+{'const': '$ref'}
+hint: Standard unit suffix properties don't need a type $ref
+from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/firmware/arm,scmi.yaml:
+ignoring, error in schema: properties: atomic-threshold-us
+
+> - added default: 0 clause
+> v3 --> v4
+> - renamed property to atomic-threshold-us
+> v1 --> v2
+> - rephrased the property description
+> ---
+>  .../devicetree/bindings/firmware/arm,scmi.yaml         | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+
+For this version:
+
+Reviewed-by: Rob Herring <robh@kernel.org>
