@@ -2,194 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0B354BA088
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:02:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FEA04BA09D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:07:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240612AbiBQNDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 08:03:01 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60674 "EHLO
+        id S236188AbiBQNGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 08:06:12 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbiBQNDA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:03:00 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE23F291F9A;
-        Thu, 17 Feb 2022 05:02:45 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id bx31so8264939ljb.0;
-        Thu, 17 Feb 2022 05:02:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=e+QX15fh6AjTvjCx86bn1wO86yEMC2bkhF0fAWHNnUg=;
-        b=lut67Ponvp8shZTDWUe5Oj4AJ9ez1NfZDkmOcaExj54tgf/XNA2xehOZT6z8qFQ5Qn
-         Uh1MpB93m8zYjKvlxYvtkKzZcU3r4syprwi4hXVnU9V4VB7b+AVu2PXJOrI0rVt/35u4
-         xyw77JW2xXZDx1V8SiSXFMAK7lqk3zlw3Jb02TSWIMaeaSwNBx7WgQlPTN29ZQHeMkhU
-         CgwQGnvQ6KU1hclxRNAxrRVW7xLwxQzGjk3yZqBZ6RYPdBBhLSyOiZuLzeAfb3/hnIZR
-         jVC4UPKZ/uwf8nyIY6d7jtzWyTRPCeXx9n4+AZ0qfZTC6gi8ZOnNzQyd7B7ET0Df8riz
-         zu4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=e+QX15fh6AjTvjCx86bn1wO86yEMC2bkhF0fAWHNnUg=;
-        b=QBh6M4uv8MTRtjI5mSQeteqPXJicRHPtEOcMwLzaGhAfmMZzGoXOat1iHUh0gc12O6
-         xbdTv0+ySTkhsXe3jbJFVAD6xiOyiv0NxJTjAVoWvvBi5xtjUxTp0HnpQzdxp0+My+W8
-         ayFOU284V+d8a9YASMv+tE5zgttg4/flmN4knF2STJuH0wx6bzu8EyHfPwLGEk2qRuIB
-         M9DqXvN/RH4+VSRWzxl3CK8dWgSdZ39i5LIDGoWDdf/22LX5eowYh26ac+1p50T7C964
-         EE6mtxN13qpe8xUu79UomRk50hAq+3W9eeD8GYm+RYTNPcDYx8WMui69wLiLy2RFSELw
-         ESSg==
-X-Gm-Message-State: AOAM531+DFwFZHqfuZQumW3nGu9zCnaUZgKk7t26zCXp7wNcftQvrvfw
-        OiuH+onRqZVvCwvcRABh298=
-X-Google-Smtp-Source: ABdhPJwX/PuQ1lPFpaK+K1l8a4th2eL+Z3ItLD4DvLo0qVQgfPzUUio4gMfEyTzB3/jRDrapP4xjYg==
-X-Received: by 2002:a05:651c:1797:b0:23a:18d7:1d39 with SMTP id bn23-20020a05651c179700b0023a18d71d39mr2134034ljb.470.1645102964126;
-        Thu, 17 Feb 2022 05:02:44 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id w8sm653052ljd.27.2022.02.17.05.02.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Feb 2022 05:02:43 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tom Rini <trini@konsulko.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Ricardo Salveti <ricardo@foundries.io>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Jorge Ramirez-Ortiz <jorge@foundries.io>,
-        Sean Anderson <seanga2@gmail.com>, devicetree@vger.kernel.org,
-        u-boot@lists.denx.de, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] dt-bindings: nvmem: add U-Boot environment variables binding
-Date:   Thu, 17 Feb 2022 14:02:35 +0100
-Message-Id: <20220217130235.7450-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231142AbiBQNGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:06:11 -0500
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607782A8D04;
+        Thu, 17 Feb 2022 05:05:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645103157; x=1676639157;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=y40DBqaIdT6zBhrgCBj8cBu666AKZYDew2yl1iQwfVY=;
+  b=QuaHIKK7S+ggzo9G375dg6wtprYz5TJ2NrJZqgYDGBFF8rfQElQdq99w
+   k2ChiIpvxL+fKKVWWGuLU07PA32FSlBfXEJFI4enBoqPBqrK6KIxsepoh
+   JJN1L762kRXXcGSYcgUYWjt7LidlmREFzGAEceGGdhY8WQELUgs4pi+LG
+   lNPWDYZJGGOlo1n596auJXBMXKRL9Q+x5P6hMyYPajnPdLiAmFf7f3/wc
+   oNhBdGFpVpq1mKzFIqOXWshx11IB0GPIdUnky+R6DokqbI2I8oVFwhuOr
+   51S5grlv+auv8qh4cdCQ2tpnqEoFm6U3a+q/oXDxUuTrMg4bbuwDOjZGq
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10260"; a="251066649"
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; 
+   d="scan'208";a="251066649"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2022 05:05:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,375,1635231600"; 
+   d="scan'208";a="589386402"
+Received: from lkp-server01.sh.intel.com (HELO 6f05bf9e3301) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 17 Feb 2022 05:05:50 -0800
+Received: from kbuild by 6f05bf9e3301 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nKgTl-0000D7-BO; Thu, 17 Feb 2022 13:05:49 +0000
+Date:   Thu, 17 Feb 2022 21:05:02 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Liang Yang <liang.yang@amlogic.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-mtd@lists.infradead.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Liang Yang <liang.yang@amlogic.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH RESEND v2 1/2] mtd: rawnand: meson: discard the common
+ MMC sub clock framework
+Message-ID: <202202172131.hVJG538q-lkp@intel.com>
+References: <20220217063346.21691-2-liang.yang@amlogic.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220217063346.21691-2-liang.yang@amlogic.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Liang,
 
-U-Boot uses environment variables for storing device setup data. It
-usually needs to be accessed by a bootloader, kernel and often
-user-space.
+I love your patch! Yet something to improve:
 
-This binding allows describing environment data located in a raw flash
-partition. It's treated as NVMEM device and can be reused later for
-other storage devices.
+[auto build test ERROR on mtd/nand/next]
+[also build test ERROR on mtd/mtd/next mtd/mtd/fixes robh/for-next v5.17-rc4 next-20220217]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Using DT should be cleaner than hardcoding & duplicating such info in
-multiple places. Bootloader & kernel can share DTS and user-space can
-try reading it too or just have correct data exposed by a kernel.
+url:    https://github.com/0day-ci/linux/commits/Liang-Yang/refine-the-NFC-clock-framework/20220217-145053
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
+config: hexagon-randconfig-r013-20220217 (https://download.01.org/0day-ci/archive/20220217/202202172131.hVJG538q-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 0bad7cb56526f2572c74449fcf97c1fcda42b41d)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/d3d7ef65145346ff8212125d56afff6290a5ab68
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Liang-Yang/refine-the-NFC-clock-framework/20220217-145053
+        git checkout d3d7ef65145346ff8212125d56afff6290a5ab68
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash
 
-A custom "compatible" string allows system to automatically load
-relevant NVMEM driver but phandle can be also used for reading raw
-location.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+All errors (new ones prefixed by >>):
+
+>> ld.lld: error: undefined symbol: __clk_get_name
+   >>> referenced by meson_nand.c
+   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
+   >>> referenced by meson_nand.c
+   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
+--
+>> ld.lld: error: undefined symbol: clk_divider_ops
+   >>> referenced by meson_nand.c
+   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
+   >>> referenced by meson_nand.c
+   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
+--
+>> ld.lld: error: undefined symbol: devm_clk_register
+   >>> referenced by meson_nand.c
+   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
+   >>> referenced by meson_nand.c
+   >>> mtd/nand/raw/meson_nand.o:(meson_nfc_probe) in archive drivers/built-in.a
+
 ---
-V2: Update descriptions to don't make this binding MTD (flash partition)
-    specific. Mention multiple possible storage ways.
----
- .../devicetree/bindings/nvmem/u-boot,env.yaml | 66 +++++++++++++++++++
- MAINTAINERS                                   |  5 ++
- 2 files changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-
-diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-new file mode 100644
-index 000000000000..a53e34152c97
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/u-boot,env.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: U-Boot environment variables
-+
-+description: |
-+  U-Boot uses environment variables to store device parameters and
-+  configuration. They may be used for booting process, setup or keeping end user
-+  info.
-+
-+  Data is stored using U-Boot specific formats (variant specific header and NUL
-+  separated key-value pairs).
-+
-+  Environment data can be stored on various storage entities, e.g.:
-+  1. Raw flash partition
-+  2. UBI volume
-+
-+  This binding allows marking storage device (as containing env data) and
-+  specifying used format.
-+
-+  Right now only flash partition case is covered but it may be extended to e.g.
-+  UBI volumes in the future.
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+allOf:
-+  - $ref: nvmem.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description: A standalone env data block
-+        const: u-boot,env
-+      - description: Two redundant blocks with active one flagged
-+        const: u-boot,env-redundant-bool
-+      - description: Two redundant blocks with active having higher counter
-+        const: u-boot,env-redundant-count
-+
-+  reg:
-+    maxItems: 1
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    partitions {
-+        compatible = "fixed-partitions";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        partition@0 {
-+            reg = <0x0 0x40000>;
-+            label = "u-boot";
-+            read-only;
-+        };
-+
-+        env: partition@40000 {
-+            compatible = "u-boot,env";
-+            reg = <0x40000 0x10000>;
-+            label = "u-boot-env";
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 66aa3a589f6a..55c56ce82856 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19905,6 +19905,11 @@ W:	http://linuxtv.org
- T:	git git://linuxtv.org/media_tree.git
- F:	drivers/media/pci/tw686x/
- 
-+U-BOOT ENVIRONMENT VARIABLES
-+M:	Rafał Miłecki <rafal@milecki.pl>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-+
- UACCE ACCELERATOR FRAMEWORK
- M:	Zhangfei Gao <zhangfei.gao@linaro.org>
- M:	Zhou Wang <wangzhou1@hisilicon.com>
--- 
-2.34.1
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
