@@ -2,197 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69A254B99D6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 08:31:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDBEC4B99E4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 08:35:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236279AbiBQHbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 02:31:55 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50088 "EHLO
+        id S236359AbiBQHfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 02:35:22 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:32978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236276AbiBQHby (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 02:31:54 -0500
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD8CC237C5
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 23:31:39 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id z17so3943725plb.9
-        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 23:31:39 -0800 (PST)
+        with ESMTP id S236332AbiBQHfT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 02:35:19 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D7912A22B6;
+        Wed, 16 Feb 2022 23:35:02 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id d27so7374590wrc.6;
+        Wed, 16 Feb 2022 23:35:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=YX/p690Z+UGZJ7mpw5pzBIYlKuoanH5gezFUNUiq9ls=;
-        b=Ujdrb+lzQxBG0ZmwBvpamuEtwe3QV4YDQRngHs5BE5eqbV2wXNXxV618RMADbjshoF
-         HdRwripMd0pgfzrrJt9J+CDTkeoCKPfZB56fLOCuyuER7QAiO82VmJeTSm2aSXkpQzND
-         NCCOv5ZE+nRwn3VJlmGTW5+WqWa5Ci3aVsFB2SeRg4ha25JZ54eOFJBKf+pgs2iR3t75
-         X7LiSdTx9HJeE+zHmtqlF1YPtS68Ie7faK4Z+JTA1+omVpRftshJM1D7GvpC0afcKZ5d
-         x2U7+eCZ60bstW3y0EIs3dKTnIGYAb/jK6QkLYq1oj7InsMo18AcuWl6d74FBO9VJrnw
-         2MMQ==
+        bh=xPL+09khBYV8RItKtpzdQuIqr8WWC0DLKqJPTa3LDKw=;
+        b=po2VcBKQKTamBBBBaXEQhUyyZbCWMQux6CI+7Qrkva5Bj4pzsuE87SAnqEwNj4V1Ga
+         RJOnxqn90soXyp3/xLT5xQMwiyDD+Ve/3Qi9F7SshuX43g1SusUC4tkbcxAs0F4VR8Kz
+         ptxToypmbaHTKb+FOcTgd0i4CWay8lxRZViii5WI0KZjuwSU/o2e1D3BABfh1PLS16IY
+         7Xdxu2sq75ARv1Ys466UjviCKYMW3CHtxLjzIA50bW7Tlv09LW4+96jN4MaeGdyNz+RV
+         v7GV3HLMwrcj4o9wCIFdj4gD2MQlcwhaRbDAA6K8x+J+j2+DxDlzUKzRhlFqlXtxMZ4O
+         Ah/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YX/p690Z+UGZJ7mpw5pzBIYlKuoanH5gezFUNUiq9ls=;
-        b=RXjO0pXZA9SQlFhVuzE7lScZFj59EDQ8HUv28nNV7sJPgRuCdilJgpC9SEQ0VoFWhA
-         uelNfQdBNWJDjaa01iWEHgpdi9MF86JQIt3p0bckbmruWB6Kttv+yYhuolZwTKVoqwAd
-         im6PoW4gFH2cCkceF3Abx9++c5SZtx3g9OoOaTZkYVQTiYo8PJw7ieHFBAJFxgr0Pbt4
-         r9Q8Vft55jnbcjtsgZ/HV5gPI+3UbG/i3poeNiNCjDutTgxphc4cDp16r/NBsu2wDnPN
-         2NP6sySHPWGwrbP5ID5W+D/K6IA5/nctAaIVudXawEBTlFH8lcbw+FC7I5r0RfeItqi1
-         186Q==
-X-Gm-Message-State: AOAM533LbIGgz25yLFjMPzywBO6DtuliUhGg8ct3vcUoyDXoquEB6QDh
-        UcJhEkETUXalTc5DbpU8k2Fuyg==
-X-Google-Smtp-Source: ABdhPJwnVB7OyOYMPuGLctHI8QjFkDeiOWYfXTGuQo+Sas0Do1QcbH228oOT5yUxWd/PDP/h+2zaHQ==
-X-Received: by 2002:a17:903:110d:b0:14d:85b2:4b36 with SMTP id n13-20020a170903110d00b0014d85b24b36mr1652915plh.75.1645083099211;
-        Wed, 16 Feb 2022 23:31:39 -0800 (PST)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id s6sm14254301pfk.86.2022.02.16.23.31.35
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 16 Feb 2022 23:31:38 -0800 (PST)
-Date:   Thu, 17 Feb 2022 15:31:32 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] cpuidle: psci: Call cpu_cluster_pm_enter() on the
- last CPU
-Message-ID: <20220217073130.GD31965@dragon>
-References: <20220216132830.32490-1-shawn.guo@linaro.org>
- <20220216132830.32490-2-shawn.guo@linaro.org>
- <20220216144937.znsba7zbdenl7427@bogus>
- <9bda65e5bb85b00eaca71d95ad78e93b@kernel.org>
+        bh=xPL+09khBYV8RItKtpzdQuIqr8WWC0DLKqJPTa3LDKw=;
+        b=3QeaVOQoVX71X7vL1HB8Yn5Iif+HtRtnH3MU+A2W//ovAvL+kVm61+fE0kfY/ddyI0
+         KQV0B7cuFLB+C19qQzPhsWdqCamZQvgO/CcAtFyxlD8Ym/IA5JbT5wp21tX+3QhD2QgJ
+         H4Aox6ijx2nyb6EPIpvGu1mTpCBIvHaSJFxVLn7nYEHVHKoqKCkmeD4Alc8mvd9bfA3Y
+         oO5tJW5fUeHXxWEYFbGkuVKz/Ol6i79Ba6fTufsP0K5Td70oDw1kdiwbcguDgeaRWcV+
+         4WcYO/3L72cGm858s9WlbaNr548h3QKZCtGUx1bCbtu5NQhySmGfzbafibjxPPfetd9x
+         tgdg==
+X-Gm-Message-State: AOAM533l6PayZteaszCAgj+KbEQhgcaTNRs+CJE4y2K0mh1qBLo6vDMs
+        H+YXZoIoCRTc1ytm79z0EwY=
+X-Google-Smtp-Source: ABdhPJxhGgAhRLb4mOGFtIHKutI5wjGBXoSwwtqIMocgzYakd20/sX20pkYG0oJAAmM5fSBjnhp38w==
+X-Received: by 2002:a5d:5221:0:b0:1d9:2680:5fb with SMTP id i1-20020a5d5221000000b001d9268005fbmr1243143wra.23.1645083300515;
+        Wed, 16 Feb 2022 23:35:00 -0800 (PST)
+Received: from orome (p200300e41f0a6900000000000000043a.dip0.t-ipconnect.de. [2003:e4:1f0a:6900::43a])
+        by smtp.gmail.com with ESMTPSA id ba14sm15366890wrb.56.2022.02.16.23.34.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Feb 2022 23:34:59 -0800 (PST)
+Date:   Thu, 17 Feb 2022 08:34:57 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com, tiwai@suse.com,
+        perex@perex.cz, robh+dt@kernel.org, jonathanh@nvidia.com,
+        mkumard@nvidia.com, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH v3 2/5] dt-bindings: Add Tegra234 APE support
+Message-ID: <Yg36oUdUiB/H+Ngf@orome>
+References: <1643373476-8538-1-git-send-email-spujar@nvidia.com>
+ <1643373476-8538-3-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Bq7R2hPdkx7Mharn"
 Content-Disposition: inline
-In-Reply-To: <9bda65e5bb85b00eaca71d95ad78e93b@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <1643373476-8538-3-git-send-email-spujar@nvidia.com>
+User-Agent: Mutt/2.2 (7160e05a) (2022-02-12)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 16, 2022 at 03:58:41PM +0000, Marc Zyngier wrote:
-> On 2022-02-16 14:49, Sudeep Holla wrote:
-> > +Ulf (as you he is the author of cpuidle-psci-domains.c and can help you
-> > with that if you require)
 
-Thanks, Sudeep!
+--Bq7R2hPdkx7Mharn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > 
-> > On Wed, Feb 16, 2022 at 09:28:28PM +0800, Shawn Guo wrote:
-> > > Make a call to cpu_cluster_pm_enter() on the last CPU going to low
-> > > power
-> > > state (and cpu_cluster_pm_exit() on the firt CPU coming back), so that
-> > > platforms can be notified to set up hardware for getting into the
-> > > cluster
-> > > low power state.
-> > > 
-> > 
-> > NACK. We are not getting the notion of CPU cluster back to cpuidle
-> > again.
-> > That must die. Remember the cluster doesn't map to idle states
-> > especially
-> > in the DSU systems where HMP CPUs are in the same cluster but can be in
-> > different power domains.
+On Fri, Jan 28, 2022 at 06:07:53PM +0530, Sameer Pujar wrote:
+> Add clocks, power-domain and memory bindings to support APE subsystem
+> on Tegra234.
+>=20
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> ---
+>  include/dt-bindings/clock/tegra234-clock.h     | 74 ++++++++++++++++++++=
++++++-
+>  include/dt-bindings/memory/tegra234-mc.h       |  7 +++
+>  include/dt-bindings/power/tegra234-powergate.h |  9 ++++
+>  3 files changed, 89 insertions(+), 1 deletion(-)
+>  create mode 100644 include/dt-bindings/power/tegra234-powergate.h
+[...]
+> diff --git a/include/dt-bindings/memory/tegra234-mc.h b/include/dt-bindin=
+gs/memory/tegra234-mc.h
+> index 2662f70..444e62d 100644
+> --- a/include/dt-bindings/memory/tegra234-mc.h
+> +++ b/include/dt-bindings/memory/tegra234-mc.h
+> @@ -1,4 +1,5 @@
+>  /* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +/* Copyright (c) 2018-2022, NVIDIA CORPORATION. All rights reserved. */
+> =20
+>  #ifndef DT_BINDINGS_MEMORY_TEGRA234_MC_H
+>  #define DT_BINDINGS_MEMORY_TEGRA234_MC_H
+> @@ -7,6 +8,8 @@
+>  #define TEGRA234_SID_INVALID		0x00
+>  #define TEGRA234_SID_PASSTHROUGH	0x7f
+> =20
+> +/* NISO0 stream IDs */
+> +#define TEGRA234_SID_APE	0x02
+> =20
+>  /* NISO1 stream IDs */
+>  #define TEGRA234_SID_SDMMC4	0x02
+> @@ -20,6 +23,10 @@
+>  #define TEGRA234_MEMORY_CLIENT_SDMMCRAB 0x63
+>  /* sdmmcd memory write client */
+>  #define TEGRA234_MEMORY_CLIENT_SDMMCWAB 0x67
+> +/* Audio Processing (APE) engine read clients */
+> +#define TEGRA234_MEMORY_CLIENT_APER 0x7a
+> +/* Audio Processing (APE) engine write clients */
+> +#define TEGRA234_MEMORY_CLIENT_APEW 0x7b
+>  /* BPMP read client */
+>  #define TEGRA234_MEMORY_CLIENT_BPMPR 0x93
+>  /* BPMP write client */
 
-The 'cluster' in cpu_cluster_pm_enter() doesn't necessarily means
-a physical CPU cluster.  I think the documentation of the function has a
-better description.
+This usually needs to be accompanied by a corresponding addition to the
+memory controller driver. Unfortunately it seems like the changes
+targetted at v5.17-rc1 never made it upstream, so I've queued them up
+again for v5.18-rc1. They should show up in today's linux-next. When
+they do, can you please follow up with a patch to the memory controller
+driver that adds the various registers for these clients?
 
- * Notifies listeners that all cpus in a power domain are entering a low power
- * state that may cause some blocks in the same power domain to reset.
+Thanks,
+Thierry
 
-So cpu_domain_pm_enter() might be a better name?  Anyways ...
+--Bq7R2hPdkx7Mharn
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> > 
-> > You need to decide which PSCI CPU_SUSPEND mode you want to use first. If
-> > it is
-> > Platform Co-ordinated(PC), then you need not notify anything to the
-> > platform.
-> > Just request the desired idle state on each CPU and platform will take
-> > care
-> > from there.
-> > 
-> > If for whatever reason you have chosen OS initiated mode(OSI), then
-> > specify
-> > the PSCI power domains correctly in the DT which will make use of the
-> > cpuidle-psci-domains and handle the so called "cluster" state correctly.
+-----BEGIN PGP SIGNATURE-----
 
-Yes, I'm running a Qualcomm platform that has OSI supported in PSCI.
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmIN+p4ACgkQ3SOs138+
+s6HXzg/+Pt32PqWtDsespPZuvsrN9+Q2VO1sd3mIrkZIHBZFTPHrIEo0LSpJFuwB
+4cjq/re93NRotAh3oOc9UbEhXLCq7sGMpUqFMiwvASLqLOJ+O1EJnokqyqrxXXlm
+T407gBsg/+95avKFbgoOCC+D+5nK48HziZL1BLyFBj2jRbkFH08uPcHRWcj25kPh
+ANh1sejoM+GIa7t6dARwh0jX5QdZCErIM7jCL2uHKH5dJawCclfNNv1qsMTqIol/
+F17NEcLjtC3XrZ00JB6akE2r8iLdga0PO8QyE8c1REWTvwD3KFqkKorw9Tup5/u/
+i0JzJi0dsf6yTT/IAPjMUOU2HlEmmbgHWkvBw4MaLJYlefq5/XQQgEXpcKYcPo0Y
+y1C9XWyNfRbdn8yM6JLP5LHo8UdvNV1mZFZf+LMoQ3VbIcl9sbPRgvP7Sc8LoT61
+1tDmq3yW9ViRj9XHdvlhDGt2yipDTEG9LLn6XwpxcOpWHAa/UuSLtEzF362YLvZ9
+mZXAewuzIGWzOHxKT9h3F8rSr6J8Ep8pS2M4i1YyQwIS+CWhIdL5Q6OdU0QS6aaO
+po2J0PR8FQ1PZaLnikMHz1/potg/8+SzmKrUI3HuJSNa2ImpDdU8+msJJLtimjLh
+4U6UwCfQXuGhttj/rv3S4F/TTBlFhXV00TY2J6Ow4AAZ1R36raM=
+=udsN
+-----END PGP SIGNATURE-----
 
-> 
-> My understanding is that what Shawn is after is a way to detect the "last
-> man standing" on the system to kick off some funky wake-up controller that
-> really should be handled by the power controller (because only that guy
-> knows for sure who is the last CPU on the block).
-> 
-> There was previously some really funky stuff (copy pasted from the existing
-> rpmh_rsc_cpu_pm_callback()), which I totally objected to having hidden in
-> an irqchip driver.
-> 
-> My ask was that if we needed such information, and assuming that it is
-> possible to obtain it in a reliable way, this should come from the core
-> code, and not be invented by random drivers.
-
-Thanks Marc for explain my problem!
-
-Right, all I need is a notification in MPM irqchip driver when the CPU
-domain/cluster is about to enter low power state.  As cpu_pm -
-kernel/cpu_pm.c, already has helper cpu_cluster_pm_enter() sending
-CPU_CLUSTER_PM_ENTER event, I just need to find a caller to this cpu_pm
-helper.  
-
-Is .power_off hook of generic_pm_domain a better place for calling the
-helper?
-
-Shawn
-
-----8<------------
-diff --git a/drivers/cpuidle/cpuidle-psci-domain.c b/drivers/cpuidle/cpuidle-psci-domain.c
-index ff2c3f8e4668..58aad15851f9 100644
---- a/drivers/cpuidle/cpuidle-psci-domain.c
-+++ b/drivers/cpuidle/cpuidle-psci-domain.c
-@@ -10,6 +10,7 @@
- #define pr_fmt(fmt) "CPUidle PSCI: " fmt
- 
- #include <linux/cpu.h>
-+#include <linux/cpu_pm.h>
- #include <linux/device.h>
- #include <linux/kernel.h>
- #include <linux/platform_device.h>
-@@ -33,6 +34,7 @@ static int psci_pd_power_off(struct generic_pm_domain *pd)
- {
-        struct genpd_power_state *state = &pd->states[pd->state_idx];
-        u32 *pd_state;
-+       int ret;
- 
-        if (!state->data)
-                return 0;
-@@ -44,6 +46,16 @@ static int psci_pd_power_off(struct generic_pm_domain *pd)
-        pd_state = state->data;
-        psci_set_domain_state(*pd_state);
- 
-+       if (list_empty(&pd->child_links)) {
-+               /*
-+                * The top domain (not being a child of anyone) should be the
-+                * best one triggering PM notification.
-+                */
-+               ret = cpu_cluster_pm_enter();
-+               if (ret)
-+                       return ret;
-+       }
-+
-        return 0;
- }
-
+--Bq7R2hPdkx7Mharn--
