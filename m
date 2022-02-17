@@ -2,830 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B72DF4B9A80
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 09:02:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69A254B99D6
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 08:31:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230011AbiBQIAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 03:00:30 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57186 "EHLO
+        id S236279AbiBQHbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 02:31:55 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236345AbiBQIA3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 03:00:29 -0500
-X-Greylist: delayed 4331 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Feb 2022 00:00:13 PST
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6BAE2722FA
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 00:00:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=c5QQ0kdciDSrG0c0gkc88gdBiKrylLpHR0i6Ol8Zwjo=; b=ouj5pfU6sMxYKprPatWySspc0O
-        mv97yk19zk5WW50s0IEnQAIHjVfL7v8FMtMSLWQPKbj8QB441RJSvIT22a3mVXrCQy9paYHOeqkYK
-        qR6Q6VlUp461rRH3mpIIxvZ4jB/0MP6SKlC7EImQB+YQsioJ9xjh6gTCALOI5EorMlxVqvN7QmZwh
-        o4sKHutSHBtHXtSrgQmgW+GZtUqn85esLzgzlByjYRiNlIpQd4DKtX0Fb/UycwcVFk7fJvLlk4cSx
-        n6KIlok5u4nS7glcEWCvKVsoX7NDAN42JnTfSDTl6WU2TGjCzQBZWxVEU+rdZCTfoaCTlNEGJJHp7
-        tULB5FQw==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:60920 helo=[192.168.69.86])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1nKaZx-001PpF-Et; Thu, 17 Feb 2022 07:47:56 +0100
-Message-ID: <0f37388b-8bb0-879b-7a12-3b256fa11d7c@norik.com>
-Date:   Thu, 17 Feb 2022 07:47:57 +0100
+        with ESMTP id S236276AbiBQHby (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 02:31:54 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD8CC237C5
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 23:31:39 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id z17so3943725plb.9
+        for <devicetree@vger.kernel.org>; Wed, 16 Feb 2022 23:31:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=YX/p690Z+UGZJ7mpw5pzBIYlKuoanH5gezFUNUiq9ls=;
+        b=Ujdrb+lzQxBG0ZmwBvpamuEtwe3QV4YDQRngHs5BE5eqbV2wXNXxV618RMADbjshoF
+         HdRwripMd0pgfzrrJt9J+CDTkeoCKPfZB56fLOCuyuER7QAiO82VmJeTSm2aSXkpQzND
+         NCCOv5ZE+nRwn3VJlmGTW5+WqWa5Ci3aVsFB2SeRg4ha25JZ54eOFJBKf+pgs2iR3t75
+         X7LiSdTx9HJeE+zHmtqlF1YPtS68Ie7faK4Z+JTA1+omVpRftshJM1D7GvpC0afcKZ5d
+         x2U7+eCZ60bstW3y0EIs3dKTnIGYAb/jK6QkLYq1oj7InsMo18AcuWl6d74FBO9VJrnw
+         2MMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=YX/p690Z+UGZJ7mpw5pzBIYlKuoanH5gezFUNUiq9ls=;
+        b=RXjO0pXZA9SQlFhVuzE7lScZFj59EDQ8HUv28nNV7sJPgRuCdilJgpC9SEQ0VoFWhA
+         uelNfQdBNWJDjaa01iWEHgpdi9MF86JQIt3p0bckbmruWB6Kttv+yYhuolZwTKVoqwAd
+         im6PoW4gFH2cCkceF3Abx9++c5SZtx3g9OoOaTZkYVQTiYo8PJw7ieHFBAJFxgr0Pbt4
+         r9Q8Vft55jnbcjtsgZ/HV5gPI+3UbG/i3poeNiNCjDutTgxphc4cDp16r/NBsu2wDnPN
+         2NP6sySHPWGwrbP5ID5W+D/K6IA5/nctAaIVudXawEBTlFH8lcbw+FC7I5r0RfeItqi1
+         186Q==
+X-Gm-Message-State: AOAM533LbIGgz25yLFjMPzywBO6DtuliUhGg8ct3vcUoyDXoquEB6QDh
+        UcJhEkETUXalTc5DbpU8k2Fuyg==
+X-Google-Smtp-Source: ABdhPJwnVB7OyOYMPuGLctHI8QjFkDeiOWYfXTGuQo+Sas0Do1QcbH228oOT5yUxWd/PDP/h+2zaHQ==
+X-Received: by 2002:a17:903:110d:b0:14d:85b2:4b36 with SMTP id n13-20020a170903110d00b0014d85b24b36mr1652915plh.75.1645083099211;
+        Wed, 16 Feb 2022 23:31:39 -0800 (PST)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id s6sm14254301pfk.86.2022.02.16.23.31.35
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 16 Feb 2022 23:31:38 -0800 (PST)
+Date:   Thu, 17 Feb 2022 15:31:32 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] cpuidle: psci: Call cpu_cluster_pm_enter() on the
+ last CPU
+Message-ID: <20220217073130.GD31965@dragon>
+References: <20220216132830.32490-1-shawn.guo@linaro.org>
+ <20220216132830.32490-2-shawn.guo@linaro.org>
+ <20220216144937.znsba7zbdenl7427@bogus>
+ <9bda65e5bb85b00eaca71d95ad78e93b@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH RESEND 2/4] ARM: dts: imx6ull: Add support for PHYTEC
- phyGATE-Tauri-S with i.MX 6ULL
-Content-Language: en-GB
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, kernel@pengutronix.de, leoyang.li@nxp.com,
-        krzysztof.kozlowski@canonical.com, festevam@gmail.com,
-        linux@rempel-privat.de, arnd@arndb.de, linux-imx@nxp.com,
-        y.bas@phytec.de
-References: <20220131080526.1171072-1-andrej.picej@norik.com>
- <20220131080526.1171072-3-andrej.picej@norik.com>
- <20220212054331.GY4909@dragon>
-From:   Andrej Picej <andrej.picej@norik.com>
-In-Reply-To: <20220212054331.GY4909@dragon>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9bda65e5bb85b00eaca71d95ad78e93b@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
+On Wed, Feb 16, 2022 at 03:58:41PM +0000, Marc Zyngier wrote:
+> On 2022-02-16 14:49, Sudeep Holla wrote:
+> > +Ulf (as you he is the author of cpuidle-psci-domains.c and can help you
+> > with that if you require)
 
-I will fix what you pointed out and send a v2.
+Thanks, Sudeep!
 
-Thanks for your review.
+> > 
+> > On Wed, Feb 16, 2022 at 09:28:28PM +0800, Shawn Guo wrote:
+> > > Make a call to cpu_cluster_pm_enter() on the last CPU going to low
+> > > power
+> > > state (and cpu_cluster_pm_exit() on the firt CPU coming back), so that
+> > > platforms can be notified to set up hardware for getting into the
+> > > cluster
+> > > low power state.
+> > > 
+> > 
+> > NACK. We are not getting the notion of CPU cluster back to cpuidle
+> > again.
+> > That must die. Remember the cluster doesn't map to idle states
+> > especially
+> > in the DSU systems where HMP CPUs are in the same cluster but can be in
+> > different power domains.
 
-On 12. 02. 22 06:43, Shawn Guo wrote:
-> On Mon, Jan 31, 2022 at 09:05:24AM +0100, Andrej Picej wrote:
->> From: Alexander Bauer <a.bauer@phytec.de>
->>
->> Add support for the PHYTEC phyGATE-Tauri-S with i.MX 6ULL with eMMC or
->> NAND.
->>
->> Supported features:
->>          * eMMC/NAND
->>          * i2c RTC
->>          * i2c TEMP
->>          * PMIC
->>          * PWM
->>          * debug UART
->>          * CAN
->>          * SD card
->>          * 2x 1Gbit Ethernet
->>          * RS232/RS485
->>          * USB 2.0 Host
->>          * TPM
->>          * SPI-NOR
->>
->> Signed-off-by: Alexander Bauer <a.bauer@phytec.de>
->> Signed-off-by: Jens Lang <j.lang@phytec.de>
->> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->> ---
->>   arch/arm/boot/dts/Makefile                    |   2 +
->>   .../boot/dts/imx6ull-phytec-tauri-emmc.dts    |  20 +
->>   .../boot/dts/imx6ull-phytec-tauri-nand.dts    |  20 +
->>   arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi   | 605 ++++++++++++++++++
->>   4 files changed, 647 insertions(+)
->>   create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts
->>   create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts
->>   create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
->>
->> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
->> index 235ad559acb2..f50270b9965a 100644
->> --- a/arch/arm/boot/dts/Makefile
->> +++ b/arch/arm/boot/dts/Makefile
->> @@ -704,6 +704,8 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
->>   	imx6ull-phytec-segin-ff-rdk-nand.dtb \
->>   	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
->>   	imx6ull-phytec-segin-lc-rdk-nand.dtb \
->> +	imx6ull-phytec-tauri-nand.dtb \
->> +	imx6ull-phytec-tauri-emmc.dtb \
+The 'cluster' in cpu_cluster_pm_enter() doesn't necessarily means
+a physical CPU cluster.  I think the documentation of the function has a
+better description.
+
+ * Notifies listeners that all cpus in a power domain are entering a low power
+ * state that may cause some blocks in the same power domain to reset.
+
+So cpu_domain_pm_enter() might be a better name?  Anyways ...
+
+> > 
+> > You need to decide which PSCI CPU_SUSPEND mode you want to use first. If
+> > it is
+> > Platform Co-ordinated(PC), then you need not notify anything to the
+> > platform.
+> > Just request the desired idle state on each CPU and platform will take
+> > care
+> > from there.
+> > 
+> > If for whatever reason you have chosen OS initiated mode(OSI), then
+> > specify
+> > the PSCI power domains correctly in the DT which will make use of the
+> > cpuidle-psci-domains and handle the so called "cluster" state correctly.
+
+Yes, I'm running a Qualcomm platform that has OSI supported in PSCI.
+
 > 
-> Keep them sort alphabetically.
+> My understanding is that what Shawn is after is a way to detect the "last
+> man standing" on the system to kick off some funky wake-up controller that
+> really should be handled by the power controller (because only that guy
+> knows for sure who is the last CPU on the block).
 > 
->>   	imx6ulz-14x14-evk.dtb \
->>   	imx6ulz-bsh-smm-m2.dtb
->>   dtb-$(CONFIG_SOC_IMX7D) += \
->> diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts b/arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts
->> new file mode 100644
->> index 000000000000..14adb87da911
->> --- /dev/null
->> +++ b/arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts
->> @@ -0,0 +1,20 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (C) 2021 PHYTEC Messtechnik GmbH
->> + * Author: Alexander Bauer <a.bauer@phytec.de>
->> + */
->> +
->> +/dts-v1/;
->> +#include "imx6ull-phytec-tauri.dtsi"
->> +
->> +/ {
->> +	model = "PHYTEC phyGate-Tauri i.MX6 UltraLite";
->> +	compatible = "phytec,imx6ull-phygate-tauri",
->> +		     "phytec,imx6ull-phygate-tauri-emmc",
->> +		     "phytec,imx6ull-pcl063", "fsl,imx6ull";
->> +};
->> +
->> +/* EMMC-Version */
->> +&usdhc2 {
->> +	status = "okay";
->> +};
->> diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts b/arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts
->> new file mode 100644
->> index 000000000000..ae396ac63443
->> --- /dev/null
->> +++ b/arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts
->> @@ -0,0 +1,20 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (C) 2021 PHYTEC Messtechnik GmbH
->> + * Author: Alexander Bauer <a.bauer@phytec.de>
->> + */
->> +
->> +/dts-v1/;
->> +#include "imx6ull-phytec-tauri.dtsi"
->> +
->> +/ {
->> +	model = "PHYTEC phyGate-Tauri i.MX6 UltraLite";
->> +	compatible = "phytec,imx6ull-phygate-tauri",
->> +		     "phytec,imx6ull-phygate-tauri-nand",
->> +		     "phytec,imx6ull-pcl063", "fsl,imx6ull";
->> +};
->> +
->> +/* NAND-Version */
->> +&gpmi {
->> +	status = "okay";
->> +};
->> diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi b/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
->> new file mode 100644
->> index 000000000000..62a70d80c009
->> --- /dev/null
->> +++ b/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
->> @@ -0,0 +1,605 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (C) 2021 PHYTEC Messtechnik GmbH
->> + * Author: Alexander Bauer <a.bauer@phytec.de>
->> + */
->> +
->> +/dts-v1/;
->> +#include "imx6ull.dtsi"
->> +#include "imx6ull-phytec-phycore-som.dtsi"
->> +
->> +/ {
->> +
->> +	model = "PHYTEC phyGate-Tauri i.MX6 UltraLite";
->> +	compatible = "phytec,imx6ull-phygate-tauri",
->> +		     "phytec,imx6ull-pcl063", "fsl,imx6ull";
->> +
->> +	aliases {
->> +		rtc0 = &i2c_rtc;
->> +		rtc1 = &snvs_rtc;
->> +	};
->> +
->> +	gpio_keys: gpio-keys {
->> +		compatible = "gpio-key";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_gpio_keys>;
->> +
->> +		key {
->> +			label = "KEY-A";
->> +			gpios = <&gpio1 18 GPIO_ACTIVE_LOW>;
->> +			linux,code = <30>;
+> There was previously some really funky stuff (copy pasted from the existing
+> rpmh_rsc_cpu_pm_callback()), which I totally objected to having hidden in
+> an irqchip driver.
 > 
-> Use define in include/dt-bindings/input/linux-event-codes.h
-> 
->> +			wakeup-source;
->> +		};
->> +	};
->> +
->> +	reg_adc1_vref_3v3: regulator-vref-3v3 {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vref-3v3";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +	};
->> +
->> +	reg_s25fl064_hold: regulator-s25fl064-hold {
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_s25fl064_hold>;
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "s25fl064_hold";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio3 17 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +		regulator-always-on;
->> +	};
->> +
->> +	reg_usb_hub_vbus: regulator-hub-otg1-vbus {
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_usbhubpwr>;
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "usb_hub_vbus";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio5 5 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +		regulator-always-on;
->> +	};
->> +
->> +	reg_usb_otg1_vbus: regulator-usb-otg1-vbus {
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_usbotg1pwr>;
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "usb_otg1_vbus";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio4 28 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +		regulator-always-on;
->> +	};
->> +
->> +	user_leds: user-leds {
->> +		compatible = "gpio-leds";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_user_leds>,
->> +			    <&pinctrl_user_leds_snvs>;
->> +
->> +		user-led1 {
->> +			label = "yellow";
->> +			gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
->> +			linux,default-trigger = "off";
->> +		};
->> +
->> +		user-led2 {
->> +			label = "red";
->> +			gpios = <&gpio5 9 GPIO_ACTIVE_HIGH>;
->> +			linux,default-trigger = "off";
->> +		};
->> +	};
->> +};
->> +
->> +&can1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_flexcan1>;
->> +	status = "okay";
->> +};
->> +
->> +&can2 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_flexcan2>;
->> +	status = "okay";
->> +};
->> +
->> +&ecspi1 {
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +	fsl,spi-num-chipselects = <3>;
-> 
-> The property is no longer supported.
-> 
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_ecspi1>,
->> +		    <&pinctrl_ecspi1_cs>;
->> +	cs-gpios = <&gpio3 26 GPIO_ACTIVE_LOW>,
->> +		   <&gpio3 10 GPIO_ACTIVE_LOW>,
->> +		   <&gpio3 11 GPIO_ACTIVE_LOW>;
->> +	status = "okay";
->> +
->> +	spi_dev0: spi@0 {
->> +		compatible = "linux,spidev";
-> 
-> Not supported.
-> 
->> +		spi-max-frequency = <57600000>;
->> +		reg = <0>;
->> +	};
->> +
->> +	tpm_tis: tpm@1 {
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_tpm>;
->> +		compatible = "tcg,tpm_tis-spi";
->> +		reg = <1>;
->> +		spi-max-frequency = <20000000>;
->> +		interrupt-parent = <&gpio5>;
->> +		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
->> +		status = "okay";
-> 
-> We generally use okay status to flip a disabled device.  You can save it
-> if that's not the case.
-> 
->> +	};
->> +
->> +/* S25FL064P */
-> 
-> Not sure this comment is so useful.  If you need a comment, as least
-> indent it properly.
-> 
->> +	s25fl064: flash@2 {
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		compatible = " jedec,spi-nor";
->> +		reg = <2>;
->> +		spi-max-frequency = <40000000>;
->> +		m25p,fast-read;
->> +		status = "disabled";
->> +	};
->> +};
->> +
->> +&ecspi3 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_ecspi3>;
->> +	cs-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
->> +	dmas = <&sdma 7 8 0>,
->> +	       <&sdma 8 8 0>;
->> +	dma-names = "rx", "tx";
->> +	status = "okay";
->> +
->> +	spi_dev1: spi@0 {
->> +		compatible = "linux,spidev";
->> +		spi-max-frequency = <57600000>;
->> +		reg = <0>;
->> +	};
->> +};
->> +
->> +&ethphy1 {
->> +	status = "okay";
->> +};
->> +
->> +&fec1 {
->> +	status = "okay";
->> +};
->> +
->> +&fec2 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_enet2>;
->> +	phy-mode = "rmii";
->> +	phy-handle = <&ethphy2>;
->> +	status = "okay";
->> +};
->> +
->> +&i2c1 {
->> +	status = "okay";
->> +
->> +	i2c_rtc: rtc@68 {
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_rtc_int>;
->> +		compatible = "microcrystal,rv4162";
->> +		reg = <0x68>;
->> +		interrupt-parent = <&gpio5>;
->> +		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
->> +	};
->> +
->> +	tmp102: tmp@49 {
-> 
-> Sort the nodes in order of unit-address.
-> 
->> +		compatible = "ti,tmp102";
->> +		reg = <0x49>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_tempsense>;
->> +		interrupt-parent = <&gpio5>;
->> +		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
->> +		#thermal-sensor-cells = <1>;
->> +	};
->> +};
->> +
->> +&i2c2 {
->> +	pinctrl-names = "default", "gpio";
->> +	pinctrl-0 = <&pinctrl_i2c2>;
->> +	pinctrl-1 = <&pinctrl_i2c2_gpio>;
->> +	sda-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->> +	scl-gpios = <&gpio1 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->> +	status = "okay";
->> +};
->> +
->> +&i2c3 {
->> +	pinctrl-names = "default", "gpio";
->> +	pinctrl-0 = <&pinctrl_i2c3>;
->> +	pinctrl-1 = <&pinctrl_i2c3_gpio>;
->> +	sda-gpios = <&gpio3 5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->> +	scl-gpios = <&gpio3 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->> +	status = "okay";
->> +};
->> +
->> +&i2c4 {
->> +	pinctrl-names = "default", "gpio";
->> +	pinctrl-0 = <&pinctrl_i2c4>;
->> +	pinctrl-1 = <&pinctrl_i2c4_gpio>;
->> +	sda-gpios = <&gpio3 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->> +	scl-gpios = <&gpio3 8 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->> +	status = "okay";
->> +};
->> +
->> +&mdio {
->> +	ethphy2: ethernet-phy@2 {
->> +		reg = <2>;
->> +		micrel,led-mode = <1>;
->> +		clocks = <&clks IMX6UL_CLK_ENET2_REF>;
->> +		clock-names = "rmii-ref";
->> +		status = "okay";
->> +	};
->> +};
->> +
->> +&pwm3 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_pwm3>;
->> +	status = "okay";
->> +};
->> +
->> +&pwm6 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_pwm6>;
->> +	status = "okay";
->> +};
->> +
->> +&pwm7 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_pwm7>;
->> +	status = "okay";
->> +};
->> +
->> +&pwm8 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_pwm8>;
->> +	status = "okay";
->> +};
->> +
->> +&uart3 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart3>;
->> +	status = "okay";
->> +};
->> +
->> +/* UART4 * RS485  */
->> +&uart4 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart4>;
->> +	rts-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
->> +	rs485-rts-active-high;
->> +	linux,rs485-enabled-at-boot-time;
->> +	status = "okay";
->> +};
->> +
->> +/* UART5 * RS232  */
->> +&uart5 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart5>;
->> +	uart-has-rtscts;
->> +	status = "okay";
->> +};
->> +
->> +&uart7 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart7>;
->> +	status = "okay";
->> +};
->> +
->> +/* USB */
->> +&usbotg1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_usb_otg1>;
->> +	vbus-supply = <&reg_usb_otg1_vbus>;
->> +	dr_mode = "host";
->> +	disable-over-current;
->> +	status = "okay";
->> +};
->> +
->> +&usbotg2 {
->> +	vbus-supply = <&reg_usb_hub_vbus>;
->> +	disable-over-current;
->> +	dr_mode = "host";
->> +	status = "okay";
->> +};
->> +
->> +&usdhc1 {
->> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
->> +	pinctrl-0 = <&pinctrl_usdhc1>;
->> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
->> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
->> +	cd-gpios = <&gpio1 19 GPIO_ACTIVE_LOW>;
->> +	no-1-8-v;
->> +	keep-power-in-suspend;
->> +	wakeup-source;
->> +	status = "okay";
->> +};
->> +
->> +&usdhc2 {
->> +	status = "disabled";
->> +};
->> +
->> +&iomuxc_snvs {
->> +
-> 
-> Drop this newline.
-> 
->> +	pinctrl_rtc_int: rtcintgrp {
->> +		fsl,pins = <
->> +			MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x17059
->> +		>;
->> +	};
->> +
->> +	pinctrl_stmpe: stmpegrp {
->> +		fsl,pins = <
->> +			MX6ULL_PAD_SNVS_TAMPER3__GPIO5_IO03	0x17059
->> +		>;
->> +	};
->> +
->> +	pinctrl_tempsense: tempsensegrp {
->> +		fsl,pins = <
->> +			MX6ULL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x17059
->> +		>;
->> +	};
->> +
->> +	pinctrl_tpm: tpmgrp {
->> +		fsl,pins = <
->> +			MX6ULL_PAD_SNVS_TAMPER2__GPIO5_IO02	0x17059
->> +		>;
->> +	};
->> +
->> +	pinctrl_usbhubpwr: usbhubpwrgrp {
->> +		fsl,pins = <
->> +			MX6ULL_PAD_SNVS_TAMPER5__GPIO5_IO05	0x17059
->> +		>;
->> +	};
->> +
->> +	pinctrl_user_leds_snvs: user_ledsgrp {
->> +		fsl,pins = <
->> +			MX6ULL_PAD_SNVS_TAMPER9__GPIO5_IO09	0x79
->> +		>;
->> +	};
->> +};
->> +
->> +&iomuxc {
->> +
-> 
-> Drop this newline.
-> 
->> +	pinctrl_gpio: gpio_gpiogrp {
-> 
-> Could you name these pinctrl nodes more consistently.  If you really
-> need some delimiter in node name, hyphen rather than underscore is
-> recommended.
-> 
-> Shawn
-> 
->> +		fsl,pins = <
->> +			MX6UL_PAD_CSI_DATA05__GPIO4_IO26	0x17059  /* nUART_MUX_RS232 */
->> +			MX6UL_PAD_CSI_DATA04__GPIO4_IO25	0x17059  /* nUART_MUX_DUAL_RX_TX */
->> +		>;
->> +	};
->> +
->> +	pinctrl_gpio_keys: gpio_keysgrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x79
->> +		>;
->> +	};
->> +
->> +	pinctrl_ecspi3: ecspi3grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_UART2_RX_DATA__ECSPI3_SCLK	0x100b1
->> +			MX6UL_PAD_UART2_RTS_B__ECSPI3_MISO	0x100b1
->> +			MX6UL_PAD_UART2_CTS_B__ECSPI3_MOSI	0x100b1
->> +			MX6UL_PAD_UART2_TX_DATA__GPIO1_IO20	0x10b0
->> +		>;
->> +	};
->> +
->> +	pinctrl_ecspi1: ecspi1grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_LCD_DATA20__ECSPI1_SCLK	0x100b1
->> +			MX6UL_PAD_LCD_DATA23__ECSPI1_MISO	0x100b1
->> +			MX6UL_PAD_LCD_DATA22__ECSPI1_MOSI	0x100b1
->> +		>;
->> +	};
->> +
->> +	pinctrl_ecspi1_cs: ecspi1csgrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_LCD_DATA21__GPIO3_IO26	0x10b0
->> +			MX6UL_PAD_LCD_DATA05__GPIO3_IO10	0x10b0
->> +			MX6UL_PAD_LCD_DATA06__GPIO3_IO11	0x10b0
->> +		>;
->> +	};
->> +
->> +
->> +	pinctrl_enet2: enet2grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_ENET2_RX_EN__ENET2_RX_EN	0x1b0b0
->> +			MX6UL_PAD_ENET2_RX_ER__ENET2_RX_ER	0x1b0b0
->> +			MX6UL_PAD_ENET2_RX_DATA0__ENET2_RDATA00	0x1b0b0
->> +			MX6UL_PAD_ENET2_RX_DATA1__ENET2_RDATA01	0x1b0b0
->> +			MX6UL_PAD_ENET2_TX_EN__ENET2_TX_EN	0x1b010
->> +			MX6UL_PAD_ENET2_TX_DATA0__ENET2_TDATA00	0x1b010
->> +			MX6UL_PAD_ENET2_TX_DATA1__ENET2_TDATA01	0x1b010
->> +			MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2	0x4001b010
->> +		>;
->> +	};
->> +
->> +	pinctrl_flexcan1: flexcan1grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX	0x0b0b0
->> +			MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x0b0b0
->> +		>;
->> +	};
->> +
->> +	pinctrl_flexcan2: flexcan2grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_LCD_DATA10__FLEXCAN2_TX	0x0b0b0
->> +			MX6UL_PAD_LCD_DATA11__FLEXCAN2_RX	0x0b0b0
->> +		>;
->> +	};
->> +
->> +	princtrl_flexcan2_en: flexcan2engrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x17059
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c2: i2c2grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_GPIO1_IO00__I2C2_SCL	0xb0
->> +			MX6UL_PAD_GPIO1_IO01__I2C2_SDA	0xb0
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c2_gpio: i2c2gpiogrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0xb0
->> +			MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0xb0
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c3: i2c3grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_LCD_DATA01__I2C3_SCL	0xb0
->> +			MX6UL_PAD_LCD_DATA00__I2C3_SDA	0xb0
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c3_gpio: i2c3gpiogrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_LCD_DATA01__GPIO3_IO06	0xb0
->> +			MX6UL_PAD_LCD_DATA00__GPIO3_IO05	0xb0
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c4: i2c4grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_LCD_DATA03__I2C4_SCL	0xb0
->> +			MX6UL_PAD_LCD_DATA02__I2C4_SDA	0xb0
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c4_gpio: i2c4gpiogrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_LCD_DATA03__GPIO3_IO08	0xb0
->> +			MX6UL_PAD_LCD_DATA02__GPIO3_IO07	0xb0
->> +		>;
->> +	};
->> +
->> +	pinctrl_pwm3: pwm3grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_GPIO1_IO04__PWM3_OUT	0x0b0b0
->> +		>;
->> +	};
->> +
->> +	pinctrl_pwm6: pwm6grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_JTAG_TDI__PWM6_OUT	0x0b0b0
->> +		>;
->> +	};
->> +
->> +	pinctrl_pwm7: pwm7grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_JTAG_TCK__PWM7_OUT	0x0b0b0
->> +		>;
->> +	};
->> +
->> +	pinctrl_pwm8: pwm8grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_JTAG_TRST_B__PWM8_OUT	0x0b0b0
->> +		>;
->> +	};
->> +
->> +	pinctrl_s25fl064_hold: s25fl064_holdgrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_LCD_DATA12__GPIO3_IO17	0x100b1
->> +		>;
->> +	};
->> +
->> +	pinctrl_sai2: sai2grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_JTAG_TDI__SAI2_TX_BCLK	0x17088
->> +			MX6UL_PAD_JTAG_TDO__SAI2_TX_SYNC	0x17088
->> +			MX6UL_PAD_JTAG_TRST_B__SAI2_TX_DATA	0x11088
->> +			MX6UL_PAD_JTAG_TCK__SAI2_RX_DATA	0x11088
->> +			MX6UL_PAD_JTAG_TMS__SAI2_MCLK		0x17088
->> +		>;
->> +	};
->> +
->> +	pinctrl_uart3: uart3grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_UART3_TX_DATA__UART3_DCE_TX	0x1b0b1
->> +			MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX	0x1b0b1
->> +		>;
->> +	};
->> +
->> +	pinctrl_uart4: uart4grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_LCD_CLK__UART4_DCE_TX		0x1b0b1
->> +			MX6UL_PAD_LCD_ENABLE__UART4_DCE_RX	0x1b0b1
->> +			MX6UL_PAD_LCD_HSYNC__GPIO3_IO02	0x1b0b1
->> +		>;
->> +	};
->> +
->> +	pinctrl_uart5: uart5grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_UART5_TX_DATA__UART5_DCE_TX	0x1b0b1
->> +			MX6UL_PAD_UART5_RX_DATA__UART5_DCE_RX	0x1b0b1
->> +		>;
->> +	};
->> +
->> +	pinctrl_uart7: uart7grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_LCD_DATA16__UART7_DCE_TX	0x1b0b1
->> +			MX6UL_PAD_LCD_DATA17__UART7_DCE_RX	0x1b0b1
->> +		>;
->> +	};
->> +
->> +	pinctrl_usb_otg1: usbotg1grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_CSI_DATA06__GPIO4_IO27	0x80
->> +		>;
->> +	};
->> +
->> +	pinctrl_usbotg1pwr: usbotg1pwrgrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_CSI_DATA07__GPIO4_IO28	0x17059
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc1: usdhc1grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
->> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x10059
->> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
->> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
->> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
->> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
->> +			MX6UL_PAD_UART1_RTS_B__GPIO1_IO19	0x17059
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc1_100mhz: usdhc1100mhzgrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170b9
->> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100b9
->> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170b9
->> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
->> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
->> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc1_200mhz: usdhc1200mhzgrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170f9
->> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100f9
->> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170f9
->> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170f9
->> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170f9
->> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
->> +		>;
->> +	};
->> +
->> +	pinctrl_user_leds: user_ledsgrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0x79
->> +		>;
->> +	};
->> +};
->> -- 
->> 2.25.1
->>
+> My ask was that if we needed such information, and assuming that it is
+> possible to obtain it in a reliable way, this should come from the core
+> code, and not be invented by random drivers.
+
+Thanks Marc for explain my problem!
+
+Right, all I need is a notification in MPM irqchip driver when the CPU
+domain/cluster is about to enter low power state.  As cpu_pm -
+kernel/cpu_pm.c, already has helper cpu_cluster_pm_enter() sending
+CPU_CLUSTER_PM_ENTER event, I just need to find a caller to this cpu_pm
+helper.  
+
+Is .power_off hook of generic_pm_domain a better place for calling the
+helper?
+
+Shawn
+
+----8<------------
+diff --git a/drivers/cpuidle/cpuidle-psci-domain.c b/drivers/cpuidle/cpuidle-psci-domain.c
+index ff2c3f8e4668..58aad15851f9 100644
+--- a/drivers/cpuidle/cpuidle-psci-domain.c
++++ b/drivers/cpuidle/cpuidle-psci-domain.c
+@@ -10,6 +10,7 @@
+ #define pr_fmt(fmt) "CPUidle PSCI: " fmt
+ 
+ #include <linux/cpu.h>
++#include <linux/cpu_pm.h>
+ #include <linux/device.h>
+ #include <linux/kernel.h>
+ #include <linux/platform_device.h>
+@@ -33,6 +34,7 @@ static int psci_pd_power_off(struct generic_pm_domain *pd)
+ {
+        struct genpd_power_state *state = &pd->states[pd->state_idx];
+        u32 *pd_state;
++       int ret;
+ 
+        if (!state->data)
+                return 0;
+@@ -44,6 +46,16 @@ static int psci_pd_power_off(struct generic_pm_domain *pd)
+        pd_state = state->data;
+        psci_set_domain_state(*pd_state);
+ 
++       if (list_empty(&pd->child_links)) {
++               /*
++                * The top domain (not being a child of anyone) should be the
++                * best one triggering PM notification.
++                */
++               ret = cpu_cluster_pm_enter();
++               if (ret)
++                       return ret;
++       }
++
+        return 0;
+ }
+
