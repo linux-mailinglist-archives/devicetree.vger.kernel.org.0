@@ -2,53 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9A844BA203
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:53:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCB5B4BA20B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:56:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237121AbiBQNx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 08:53:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60104 "EHLO
+        id S234121AbiBQN4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 08:56:44 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241334AbiBQNxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:53:25 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A2523DCE6;
-        Thu, 17 Feb 2022 05:53:09 -0800 (PST)
-X-UUID: 7508a21f15cf42f68e8bd0d4720c2844-20220217
-X-UUID: 7508a21f15cf42f68e8bd0d4720c2844-20220217
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
+        with ESMTP id S236814AbiBQN4o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:56:44 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B71FD39;
+        Thu, 17 Feb 2022 05:56:28 -0800 (PST)
+X-UUID: eb8cab54866a44b495ebad864f121f5a-20220217
+X-UUID: eb8cab54866a44b495ebad864f121f5a-20220217
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 553058100; Thu, 17 Feb 2022 21:53:04 +0800
+        with ESMTP id 1936147992; Thu, 17 Feb 2022 21:56:23 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 17 Feb 2022 21:53:03 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 17 Feb 2022 21:56:22 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Feb 2022 21:53:02 +0800
-Message-ID: <4958e2ad25f4940a0c0bbbf23ea027e7bdaf5ac7.camel@mediatek.com>
-Subject: Re: [PATCH 10/15] ASoC: mediatek: mt8186: add platform driver
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     <lgirdwood@gmail.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <perex@perex.cz>,
-        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
-        <zhangqilong3@huawei.com>, <alsa-devel@alsa-project.org>,
+ Transport; Thu, 17 Feb 2022 21:56:22 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Min Guo <Min.Guo@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
         <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Thu, 17 Feb 2022 21:51:57 +0800
-In-Reply-To: <YgaK4hiRjEJi9wQ4@sirena.org.uk>
-References: <20220211103818.8266-1-jiaxin.yu@mediatek.com>
-         <20220211103818.8266-11-jiaxin.yu@mediatek.com>
-         <YgaK4hiRjEJi9wQ4@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH] dt-bindings: phy: Add compatible for Mediatek MT8192
+Date:   Thu, 17 Feb 2022 21:56:20 +0800
+Message-ID: <20220217135620.10559-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-MTK:  N
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
@@ -59,30 +57,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-02-11 at 16:12 +0000, Mark Brown wrote:
-> On Fri, Feb 11, 2022 at 06:38:13PM +0800, Jiaxin Yu wrote:
-> 
-> >  sound/soc/mediatek/Kconfig                    |   44 +
-> >  sound/soc/mediatek/Makefile                   |    1 +
-> >  sound/soc/mediatek/mt8186/Makefile            |   21 +
-> >  sound/soc/mediatek/mt8186/mt8186-afe-clk.c    |  719 ++++
-> >  sound/soc/mediatek/mt8186/mt8186-afe-clk.h    |  210 +
-> >  sound/soc/mediatek/mt8186/mt8186-afe-common.h |  245 ++
-> >  .../soc/mediatek/mt8186/mt8186-afe-control.c  |  262 ++
-> >  sound/soc/mediatek/mt8186/mt8186-afe-gpio.c   |  211 +
-> >  sound/soc/mediatek/mt8186/mt8186-afe-gpio.h   |   19 +
-> >  sound/soc/mediatek/mt8186/mt8186-afe-pcm.c    | 3030
-> > +++++++++++++++
-> >  .../mediatek/mt8186/mt8186-interconnection.h  |   69 +
-> >  .../soc/mediatek/mt8186/mt8186-misc-control.c | 1729 +++++++++
-> >  sound/soc/mediatek/mt8186/mt8186-reg.h        | 3433
-> > +++++++++++++++++
-> 
-> I know it's already a long series but perhaps the clock and GPIO bits
-> could be split out into separate patches?  This one patch is over
-> 300K
-> which is a bit much in one go, especially when it's not just all big
-> tables.
+This commit adds dt-binding documentation of T-Phy for Mediatek MT8192 SoC
+Platform.
 
-Ok, I see. I've split them out into separate patches in v2 version.
+Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+---
+ Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+index d279ba222316..7b2e1bc119be 100644
+--- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
++++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+@@ -81,6 +81,7 @@ properties:
+               - mediatek,mt7629-tphy
+               - mediatek,mt8183-tphy
+               - mediatek,mt8186-tphy
++              - mediatek,mt8192-tphy
+           - const: mediatek,generic-tphy-v2
+       - items:
+           - enum:
+-- 
+2.18.0
 
