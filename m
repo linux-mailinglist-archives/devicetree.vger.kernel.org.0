@@ -2,67 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D0C34BA682
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 17:58:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE2CE4BA69B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 18:01:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243476AbiBQQ4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 11:56:22 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57594 "EHLO
+        id S235985AbiBQQ7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 11:59:45 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243470AbiBQQ4V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 11:56:21 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEC802B356D
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 08:56:06 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id w3so10764874edu.8
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 08:56:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=PkNoYNUdMWUv78TVv7dUpEnHWbbsKCSUGZ841DxfDXg=;
-        b=kNG2y4vTHfwVT5ZUdw17DeytDBOvBXqaeQVnYkRz58LebKYzpekZe3ulVobtXe9imC
-         4NU8IFZh2iuZOdYGV6LA9Q3Fe0DjDbqZQlE2bpmUK3dVMqQJwGIIvW9h++GwtN4UOVrW
-         P7O53RA6umyQ2Ml51ZsldU+NFU2yh0F4yMf50=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PkNoYNUdMWUv78TVv7dUpEnHWbbsKCSUGZ841DxfDXg=;
-        b=B/MPBrvADZvYKvLLQKa+pgm+KRbISL6GNUAMbYOY+i4KZElCcGdXIfCvqNDtCdRp8G
-         rM1UZJn4ZibA1FoumVHT1FX78FSftCv/0aweh/v9ZO151iByd+qs3PuBJ9yc7NqdA4TD
-         2s+hG75H7UIpho8i4nZVBAd0BK9p0TDVRkHOmQDVxjzDPPmn4FeuLoRIjVNodKBqblVU
-         /shc85bw6IfBFFyU1uzomyQ3Q1AR3d5GS6cbNT9maUP3ESYVtyvJ0ZzCt4lLdT1AXZKH
-         TZz7cI+3ubaW9Vp1qzNPiznuUIyeO/iCYmCQr9yKbeyyVqLlYctYZojr/W/gnrR8gdiQ
-         VV2A==
-X-Gm-Message-State: AOAM531jjKTi2e6ZUMN3Ws8+HkSijH0O9MlgPwJkj/I+RnjDX2+p4yZ7
-        ypFugxlhcyllx9tQn7EykUz1Nw==
-X-Google-Smtp-Source: ABdhPJzTlY+mJt8FL92Kf18Vbfo69m10h0e3Uf353OwM/w04jd3IjrDMoIcpBwdo9lB+0Ht6G701Jg==
-X-Received: by 2002:a05:6402:1e88:b0:410:ebb4:c329 with SMTP id f8-20020a0564021e8800b00410ebb4c329mr3597202edf.300.1645116965327;
-        Thu, 17 Feb 2022 08:56:05 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.pdxnet.pdxeng.ch (host-87-0-15-73.retail.telecomitalia.it. [87.0.15.73])
-        by smtp.gmail.com with ESMTPSA id v4sm965323ejb.72.2022.02.17.08.56.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Feb 2022 08:56:04 -0800 (PST)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: [PATCH v2 1/6] dt-bindings: input: touchscreen: edt-ft5x06: add report-rate
-Date:   Thu, 17 Feb 2022 17:55:53 +0100
-Message-Id: <20220217165559.313366-2-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220217165559.313366-1-dario.binacchi@amarulasolutions.com>
-References: <20220217165559.313366-1-dario.binacchi@amarulasolutions.com>
+        with ESMTP id S232094AbiBQQ7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 11:59:44 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E7B5169390
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 08:59:29 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id BF5F11F46169
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645117168;
+        bh=h7AJTVAuzazEP/DL/m+GeC4fCl6qypW09UJ/r563xOo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=GmtpIfjXozt247NQrOj8RTlTJN5EWtAHsFkWp/WST3gsK5nJDY5EfOz6inSHULUVT
+         qonh/z+mv7dh9xhb1vPfxszQxZmeOhMU+4QRgF148mpoqT4xN65LhbPd2RgxAQ1LE9
+         jp9NZ2+Ck3aGXv95kAfke7W6XZnPuf9h9/gE7otG1rDPszdP0zJS2G7Z5kLrSGWA/H
+         qsknMpMhN0+ZqGDr5EAFRSitFybFpglvUxsyXHGQFWmaR9LiJlk8H/3FgD0aH9MBDm
+         OLTjuFlO8TpXQx9XiSD+7x87VPMqHMPmAn71/3Uh4m34NxavQYLOSp88Fd7YrO8TBe
+         gNpeVpJCvf4sA==
+Message-ID: <15952d98-960b-76b7-4e74-257d0e069f74@collabora.com>
+Date:   Thu, 17 Feb 2022 19:59:24 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v6 09/23] drm/rockchip: dw_hdmi: Add support for hclk
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        kernel@pengutronix.de, Sandy Huang <hjc@rock-chips.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220217082954.2967889-1-s.hauer@pengutronix.de>
+ <20220217082954.2967889-10-s.hauer@pengutronix.de>
+ <cd66c9da-15c2-54e1-8016-8d951926eaa2@gmail.com>
+ <20220217150041.GS18637@pengutronix.de>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220217150041.GS18637@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,37 +63,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It allows to change the M06/M12 default scan rate.
+17.02.2022 18:00, Sascha Hauer пишет:
+> On Thu, Feb 17, 2022 at 03:35:08PM +0300, Dmitry Osipenko wrote:
+>> 17.02.2022 11:29, Sascha Hauer пишет:
+>>> The rk3568 HDMI has an additional clock that needs to be enabled for the
+>>> HDMI controller to work. The purpose of that clock is not clear. It is
+>>> named "hclk" in the downstream driver, so use the same name.
+>>
+>> Have you checked that DSI works without the enabled hclk? I'd expect the
+>> whole VOP to be clock-gated.
+> 
+> No, I haven't checked that.
+> 
+> I am not sure where you aiming at. The HCLK_VOP is supplied to the vop2
+> as well and the vop2 driver also enables this clock. Still, when the
+> HDMI registers are accessed before the vop2 driver enables HCLK_VOP then
+> the system hangs, so the HDMI needs it also.
 
-Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
----
-
-(no changes since v1)
-
- .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-index 2e8da7470513..aa8517c6f65b 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-@@ -85,6 +85,14 @@ properties:
-     minimum: 0
-     maximum: 80
- 
-+  report-rate:
-+    description: Allows setting the scan rate.
-+                 M06 supports range from 3 (30 Hz) to 14 (140 Hz).
-+                 M12 supports range from 1 (1 Hz) to 255 (255 Hz).
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 255
-+
-   touchscreen-size-x: true
-   touchscreen-size-y: true
-   touchscreen-fuzz-x: true
--- 
-2.32.0
-
+HDMI, MIPI and etc are a part of VOP. I'm curious whether MIPI should
+also hang, at least datasheet suggests that it should since hclk ungates
+the AHB part of the VOP's h/w module, which is used for registers access.
