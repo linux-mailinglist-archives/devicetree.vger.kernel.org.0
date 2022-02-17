@@ -2,150 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E96B74BAA01
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 20:41:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 435E14BAA20
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 20:47:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242068AbiBQTl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 14:41:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57602 "EHLO
+        id S245408AbiBQTrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 14:47:25 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239107AbiBQTlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 14:41:25 -0500
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9BDA6007E
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 11:41:10 -0800 (PST)
-Received: by mail-oo1-xc2b.google.com with SMTP id e19-20020a4ab993000000b0031a98fe3a9dso839383oop.6
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 11:41:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=3wvP+CouT5s7ckbu1I32aqEIyb+Q3SaOSxhlymVyShY=;
-        b=JYLlipsvhfV7sqXYVa9saWxp8b9zR4ENVos6xsFloI664t0SttD4jiRU6dK7Qx9iEt
-         S61i1/8tNV3jUM9VR3ZG7wp64r5V9E5vQnsZaBANQYM82bvxAaQ8ox9L1jtOsfI5rKNU
-         GTeaDejUOd6Xe6Z2bxX5z5J05qs9XflVLniFE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=3wvP+CouT5s7ckbu1I32aqEIyb+Q3SaOSxhlymVyShY=;
-        b=IsAO6IkdI+3iG39MW/NlKo3R5xFRycA1ms5gsHpkJDM26IiVnB3hepO1ArOuxpSJYe
-         Ci/R4k50dO8stll6NwjRAlDQWZsowtyya3urOrfzQkq2rZXpxcNgJtWJrNQVtaO8TvC6
-         LtR7cxcaycU8x7sBBtl9FBCCyAbqzlzDsZAuKpdQyB32PXciwuoQrRRWnrbpep1sAKll
-         hDdGtZHTMRdnoqHnz32LXG8849OSi6nXVsjrpH0IMNp9WJzWBUCVAEDc0fO+7PmJ+saI
-         1Xr1u9Md+yPcceTcg5gl9nM0BF2uXHjMAUMgPJ5tuhzoEdkYayrSCGyup1N7dFxEWiP5
-         AOag==
-X-Gm-Message-State: AOAM530KxfzCwGx71pr3jVADBJVO9cjzCAl8FnU4Xwp+2cAzojH40n1h
-        Hfky9wQrNIFxnPzhpQPq6rlNqwWa7GcauD41Mpai4w==
-X-Google-Smtp-Source: ABdhPJzxaar8ksZKNkxlbNXjnGcgtRXh0N8gzo3lIPEiGAozeBu5nup8a4c7u8qz9MRLb9V5pCHw9rvSl1uX+9jgK+s=
-X-Received: by 2002:a4a:d58b:0:b0:319:8746:ac3e with SMTP id
- z11-20020a4ad58b000000b003198746ac3emr1291325oos.1.1645126868547; Thu, 17 Feb
- 2022 11:41:08 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 17 Feb 2022 11:41:08 -0800
+        with ESMTP id S245399AbiBQTrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 14:47:23 -0500
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8C0C26548;
+        Thu, 17 Feb 2022 11:47:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645127228; x=1676663228;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=U4npDy91UVHGnXoEf8fnuC7pAS1YpWNELPCKYb0ijkI=;
+  b=L4FREd2thzcvsQ3EqwGT1ev3TWYl51F3JxLCpiItJd4u1Sh9DTtUeDeO
+   5IEnpwKhIb17MIT47NOqcKAbPaH1VEhy4Mna1K9D/kQqi1pBRCqhscPRI
+   TMmM8fPqLo6cyp+s/kZPaDFjRW0od7bH7NgPjViAMwM+rebqEjItFeMX3
+   2UrgDhsGLUtI37uapqg6ziSBSv2bgRHwpNVwv6F40L4cKqKiqgzephjxY
+   cwbJaCxRsZFigWLpQtkYG5LGtb8U/GM/0RRoUh51AlQdp/HOVmc279NeQ
+   xpBADGNMaQCvIrpBeyysnO5AKUwk0lEe5iYrhqIIgZNrMvgxRbR/25gYu
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="238363452"
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; 
+   d="scan'208";a="238363452"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2022 11:47:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; 
+   d="scan'208";a="626224966"
+Received: from lkp-server01.sh.intel.com (HELO 6f05bf9e3301) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 17 Feb 2022 11:47:01 -0800
+Received: from kbuild by 6f05bf9e3301 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nKmk1-0000Tw-2j; Thu, 17 Feb 2022 19:47:01 +0000
+Date:   Fri, 18 Feb 2022 03:46:12 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sui Jingfeng <15330273260@189.cn>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <error27@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        kernel test robot <lkp@intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        linux-mips@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 1/4] drm/lsdc: add drm driver for loongson display
+ controller
+Message-ID: <202202172203.r8yqYAWT-lkp@intel.com>
+References: <20220217105523.1525122-2-15330273260@189.cn>
 MIME-Version: 1.0
-In-Reply-To: <13007276-c827-0cc4-5db1-396c5184bb35@quicinc.com>
-References: <1644850708-11099-1-git-send-email-quic_srivasam@quicinc.com>
- <1644850708-11099-5-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n504R0avU9Ybj68jxqDRH-Ya5ro0hPo5GJ=2zC6p2SZ_=g@mail.gmail.com> <13007276-c827-0cc4-5db1-396c5184bb35@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 17 Feb 2022 11:41:08 -0800
-Message-ID: <CAE-0n538Lhp7U=pEB_7R5EARG6LveeO=jvF+kE7HCCEXUEm-kQ@mail.gmail.com>
-Subject: Re: [RESEND v13 04/10] ASoC: qcom: Add helper function to get dma
- control and lpaif handle
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, quic_plai@quicinc.com, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
-Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220217105523.1525122-2-15330273260@189.cn>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-02-15 21:11:29)
->
-> On 2/15/2022 6:40 AM, Stephen Boyd wrote:
-> Thanks for your time Stephen!!!
-> > Quoting Srinivasa Rao Mandadapu (2022-02-14 06:58:22)
-> >> Add support function to get dma control and lpaif handle to avoid
-> >> repeated code in platform driver
-> >>
-> >> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> >> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> >> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> >> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> >> ---
-> >>   sound/soc/qcom/lpass-platform.c | 113 +++++++++++++++++++++++-----------------
-> >>   1 file changed, 66 insertions(+), 47 deletions(-)
-> >>
-> >> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
-> >> index a44162c..5d77240 100644
-> >> --- a/sound/soc/qcom/lpass-platform.c
-> >> +++ b/sound/soc/qcom/lpass-platform.c
-> >> @@ -177,6 +177,49 @@ static int lpass_platform_pcmops_close(struct snd_soc_component *component,
-> >>          return 0;
-> >>   }
-> >>
-> >> +static void __lpass_get_lpaif_handle(struct snd_pcm_substream *substream,
-> > const?
-> Okay. will add const to substream pointer.
-> >
-> >> +                                    struct snd_soc_component *component,
-> > const?
-> Here const is giving compilation errors in below code.
+Hi Sui,
 
-Ok
+Thank you for the patch! Perhaps something to improve:
 
-> >
-> >> +                       l_id = pcm_data->dma_ch;
-> >> +                       l_dmactl = drvdata->rd_dmactl;
-> >> +               } else {
-> >> +                       l_dmactl = drvdata->wr_dmactl;
-> >> +                       l_id = pcm_data->dma_ch - v->wrdma_channel_start;
-> >> +               }
-> >> +               l_map = drvdata->lpaif_map;
-> >> +               break;
-> >> +       case LPASS_DP_RX:
-> >> +               l_id = pcm_data->dma_ch;
-> >> +               l_dmactl = drvdata->hdmi_rd_dmactl;
-> >> +               l_map = drvdata->hdmiif_map;
-> >> +               break;
-> >> +       default:
-> >> +               break;
-> >> +       }
-> >> +       if (dmactl)
-> >> +               *dmactl = l_dmactl;
-> >> +       if (id)
-> >> +               *id = l_id;
-> >> +       if (map)
-> >> +               *map = l_map;
-> > Why not 'return 0' here and return -EINVAL in the default case above? Then
-> > we can skip the checks for !map or !dmactl below and simply bail out if
-> > it failed with an error value.
->
-> Here the check is for input params. some users call for only damctl or
-> only map.
+[auto build test WARNING on drm/drm-next]
+[also build test WARNING on robh/for-next v5.17-rc4 next-20220217]
+[cannot apply to mripard/sunxi/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Yes the check is to make sure there's a pointer to store the value into.
-I get that. The users are all internal to this driver though because
-the function is static. If the function returned an error because it
-couldn't find something then we wouldn't have to test the resulting
-pointers for success, instead we could check for a return value.
-Similarly, it may be clearer to have a single get for each item and then
-return a pointer from the function vs. passing it in to extract
-something. It may duplicate some code but otherwise the code would be
-clearer because we're getting one thing and can pass an error value
-through the pointer with PTR_ERR().
+url:    https://github.com/0day-ci/linux/commits/Sui-Jingfeng/drm-lsdc-add-drm-driver-for-loongson-display-controller/20220217-185718
+base:   git://anongit.freedesktop.org/drm/drm drm-next
+config: m68k-randconfig-r034-20220217 (https://download.01.org/0day-ci/archive/20220217/202202172203.r8yqYAWT-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/822d08dcd4408130e10897446cfdd640bcd53c8a
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Sui-Jingfeng/drm-lsdc-add-drm-driver-for-loongson-display-controller/20220217-185718
+        git checkout 822d08dcd4408130e10897446cfdd640bcd53c8a
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=m68k SHELL=/bin/bash drivers/gpu/drm/lsdc/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from include/linux/pci.h:37,
+                    from drivers/gpu/drm/lsdc/lsdc_drv.c:15:
+   drivers/gpu/drm/lsdc/lsdc_drv.c: In function 'lsdc_vram_init':
+>> include/drm/drm_print.h:425:39: warning: format '%llx' expects argument of type 'long long unsigned int', but argument 3 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
+     425 |         dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |                                       ^~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:150:58: note: in expansion of macro 'dev_fmt'
+     150 |         dev_printk_index_wrap(_dev_info, KERN_INFO, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                          ^~~~~~~
+   include/drm/drm_print.h:425:9: note: in expansion of macro 'dev_info'
+     425 |         dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+         |         ^~~~
+   include/drm/drm_print.h:429:9: note: in expansion of macro '__drm_printk'
+     429 |         __drm_printk((drm), info,, fmt, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~
+   drivers/gpu/drm/lsdc/lsdc_drv.c:518:9: note: in expansion of macro 'drm_info'
+     518 |         drm_info(ddev, "vram start: 0x%llx, size: %uMB\n", base, (u32)(size >> 20));
+         |         ^~~~~~~~
+--
+   In file included from drivers/gpu/drm/lsdc/lsdc_drv.h:17,
+                    from drivers/gpu/drm/lsdc/lsdc_pll.c:14:
+   drivers/gpu/drm/lsdc/lsdc_pll.c: In function 'lsdc_pixpll_setup':
+>> drivers/gpu/drm/lsdc/lsdc_pll.c:169:62: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     169 |                 this->index, this->reg_base, this->reg_size, (u64)this->mmio);
+         |                                                              ^
+   include/drm/drm_print.h:461:70: note: in definition of macro 'drm_dbg'
+     461 |         drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DRIVER, fmt, ##__VA_ARGS__)
+         |                                                                      ^~~~~~~~~~~
+
+
+vim +425 include/drm/drm_print.h
+
+02c9656b2f0d69 Haneen Mohammed       2017-10-17  385  
+02c9656b2f0d69 Haneen Mohammed       2017-10-17  386  /**
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  387   * DRM_DEV_DEBUG() - Debug output for generic drm code
+02c9656b2f0d69 Haneen Mohammed       2017-10-17  388   *
+306589856399e1 Douglas Anderson      2021-09-21  389   * NOTE: this is deprecated in favor of drm_dbg_core().
+306589856399e1 Douglas Anderson      2021-09-21  390   *
+091756bbb1a961 Haneen Mohammed       2017-10-17  391   * @dev: device pointer
+091756bbb1a961 Haneen Mohammed       2017-10-17  392   * @fmt: printf() like format string.
+02c9656b2f0d69 Haneen Mohammed       2017-10-17  393   */
+db87086492581c Joe Perches           2018-03-16  394  #define DRM_DEV_DEBUG(dev, fmt, ...)					\
+db87086492581c Joe Perches           2018-03-16  395  	drm_dev_dbg(dev, DRM_UT_CORE, fmt, ##__VA_ARGS__)
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  396  /**
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  397   * DRM_DEV_DEBUG_DRIVER() - Debug output for vendor specific part of the driver
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  398   *
+306589856399e1 Douglas Anderson      2021-09-21  399   * NOTE: this is deprecated in favor of drm_dbg() or dev_dbg().
+306589856399e1 Douglas Anderson      2021-09-21  400   *
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  401   * @dev: device pointer
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  402   * @fmt: printf() like format string.
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  403   */
+db87086492581c Joe Perches           2018-03-16  404  #define DRM_DEV_DEBUG_DRIVER(dev, fmt, ...)				\
+db87086492581c Joe Perches           2018-03-16  405  	drm_dev_dbg(dev, DRM_UT_DRIVER,	fmt, ##__VA_ARGS__)
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  406  /**
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  407   * DRM_DEV_DEBUG_KMS() - Debug output for modesetting code
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  408   *
+306589856399e1 Douglas Anderson      2021-09-21  409   * NOTE: this is deprecated in favor of drm_dbg_kms().
+306589856399e1 Douglas Anderson      2021-09-21  410   *
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  411   * @dev: device pointer
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  412   * @fmt: printf() like format string.
+b52817e9de06a3 Mauro Carvalho Chehab 2020-10-27  413   */
+db87086492581c Joe Perches           2018-03-16  414  #define DRM_DEV_DEBUG_KMS(dev, fmt, ...)				\
+db87086492581c Joe Perches           2018-03-16  415  	drm_dev_dbg(dev, DRM_UT_KMS, fmt, ##__VA_ARGS__)
+a18b21929453af Lyude Paul            2018-07-16  416  
+fb6c7ab8718eb2 Jani Nikula           2019-12-10  417  /*
+fb6c7ab8718eb2 Jani Nikula           2019-12-10  418   * struct drm_device based logging
+fb6c7ab8718eb2 Jani Nikula           2019-12-10  419   *
+fb6c7ab8718eb2 Jani Nikula           2019-12-10  420   * Prefer drm_device based logging over device or prink based logging.
+fb6c7ab8718eb2 Jani Nikula           2019-12-10  421   */
+fb6c7ab8718eb2 Jani Nikula           2019-12-10  422  
+fb6c7ab8718eb2 Jani Nikula           2019-12-10  423  /* Helper for struct drm_device based logging. */
+fb6c7ab8718eb2 Jani Nikula           2019-12-10  424  #define __drm_printk(drm, level, type, fmt, ...)			\
+fb6c7ab8718eb2 Jani Nikula           2019-12-10 @425  	dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+fb6c7ab8718eb2 Jani Nikula           2019-12-10  426  
+fb6c7ab8718eb2 Jani Nikula           2019-12-10  427  
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
