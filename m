@@ -2,228 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 190BA4B9E7B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 12:21:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 830DC4B9EAB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 12:33:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239666AbiBQLV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 06:21:56 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47242 "EHLO
+        id S239778AbiBQLdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 06:33:15 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232210AbiBQLVz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 06:21:55 -0500
-Received: from 189.cn (ptr.189.cn [183.61.185.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 595F1260B;
-        Thu, 17 Feb 2022 03:21:37 -0800 (PST)
-HMM_SOURCE_IP: 10.64.8.31:59904.1315278447
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.31])
-        by 189.cn (HERMES) with SMTP id 60DFA1002A9;
-        Thu, 17 Feb 2022 19:21:33 +0800 (CST)
-Received: from  ([114.242.206.180])
-        by gateway-151646-dep-b7fbf7d79-bwdqx with ESMTP id 45689aa60f704e2f9cd7547de120f433 for krzk@kernel.org;
-        Thu, 17 Feb 2022 19:21:35 CST
-X-Transaction-ID: 45689aa60f704e2f9cd7547de120f433
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Sender: 15330273260@189.cn
-Message-ID: <f75be7e3-bf14-77f5-4885-df9786951348@189.cn>
-Date:   Thu, 17 Feb 2022 19:21:33 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v9 3/4] Documentation/dt: Add descriptions for loongson
- display controller
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S239773AbiBQLdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 06:33:09 -0500
+Received: from mxd2.seznam.cz (mxd2.seznam.cz [IPv6:2a02:598:2::210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E04317C11E;
+        Thu, 17 Feb 2022 03:32:54 -0800 (PST)
+Received: from email.seznam.cz
+        by email-smtpc1a.ng.seznam.cz (email-smtpc1a.ng.seznam.cz [10.23.10.15])
+        id 3e720113657c557a3fdbcd4d;
+        Thu, 17 Feb 2022 12:32:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1645097554; bh=I0huqjO3Ze0Tthxe1VueCZOTHs0UvA6L60KoxxYO8N0=;
+        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+         Content-Transfer-Encoding:X-szn-frgn:X-szn-frgc;
+        b=ClrwNRfoAJ+hpNfeOvbn4OYghlQvpIWh+Ktnn7faEw+xnKW4X/FyNzz53+HbBKrE7
+         3MX0I+hSvx2Yj8wyyTAz0iMmevjI7NtlTGTQz8k9KcgRsxm4P4I84zhJFLqONQIjKJ
+         7PqErwgzO6iPEJr6fGVoOLvRncol21lhnhpego0o=
+Received: from localhost.localdomain (ip-111-27.static.ccinternet.cz [147.161.27.111])
+        by email-relay20.ng.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
+        Thu, 17 Feb 2022 12:32:31 +0100 (CET)  
+From:   michael.srba@seznam.cz
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20220217105523.1525122-1-15330273260@189.cn>
- <20220217105523.1525122-4-15330273260@189.cn>
- <0ed34852-990d-af07-afd7-1d8ce3a2baf9@kernel.org>
-From:   Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <0ed34852-990d-af07-afd7-1d8ce3a2baf9@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Michael Srba <Michael.Srba@seznam.cz>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v6 1/5] dt-bindings: clock: gcc-msm8998: Add definitions of SSC-related clocks
+Date:   Thu, 17 Feb 2022 12:30:00 +0100
+Message-Id: <20220217113004.22757-1-michael.srba@seznam.cz>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-szn-frgn: <beafa1f3-a171-4ad1-9b7a-1724450eefa2>
+X-szn-frgc: <0>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Michael Srba <Michael.Srba@seznam.cz>
 
-On 2022/2/17 18:57, Krzysztof Kozlowski wrote:
-> On 17/02/2022 11:55, Sui Jingfeng wrote:
->> From: suijingfeng <suijingfeng@loongson.cn>
->>
->> Add DT documentation for loongson display controller found in
->> LS2K1000, LS2K0500, LS7A1000 and LS7A2000.
->>
->> v2: DT binding docs and includes should be a separate patch,
->>      fix a warnning because of that.
->>
->> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
->> Signed-off-by: Sui Jingfeng <15330273260@189.cn>
->> ---
->>   .../loongson/loongson,display-controller.yaml | 114 ++++++++++++++++++
->>   1 file changed, 114 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml b/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
->> new file mode 100644
->> index 000000000000..94229519022a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
->> @@ -0,0 +1,114 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/loongson,display-controller.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Loongson LS7A2000/LS7A1000/LS2K1000/LS2K0500 Display Controller Device Tree Bindings
->> +
->> +maintainers:
->> +  - Sui Jingfeng <suijingfeng@loongson.cn>
->> +
->> +description: |+
->> +
->> +  Loongson display controllers are simple which require scanout buffers
->> +  to be physically contiguous. LS2K1000/LS2K0500 is a SOC, only system
->> +  memory is available. LS7A1000/LS7A2000 is bridge chip which is equipped
->> +  with a dedicated video ram which is 64MB or more.
->> +
->> +  For LS7A1000, there are 4 dedicated GPIOs whose control register is
->> +  located at the DC register space. They are used to emulate two way i2c,
->> +  One for DVO0, another for DVO1.
->> +
->> +  LS2K1000 and LS2K0500 SoC grab i2c adapter from other module, either
->> +  general purpose GPIO emulated i2c or hardware i2c in the SoC.
->> +
->> +  LSDC has two display pipes, each way has a DVO interface which provide
->> +  RGB888 signals, vertical & horizontal synchronisations, data enable and
->> +  the pixel clock. LSDC has two CRTC, each CRTC is able to scanout from
->> +  1920x1080 resolution at 60Hz. Each CRTC has two FB address registers.
->> +
->> +  LSDC's display pipeline have several components as below description,
->> +
->> +  The display controller in LS7A1000:
->> +    ___________________                                     _________
->> +    |            -------|                                   |         |
->> +    |  CRTC0 --> | DVO0 ----> Encoder0 ---> Connector0 ---> | Monotor |
->> +    |  _   _     -------|        ^             ^            |_________|
->> +    | | | | |    -------|        |             |
->> +    | |_| |_|    | i2c0 <--------+-------------+
->> +    |            -------|
->> +    |   DC IN LS7A1000  |
->> +    |  _   _     -------|
->> +    | | | | |    | i2c1 <--------+-------------+
->> +    | |_| |_|    -------|        |             |             _________
->> +    |            -------|        |             |            |         |
->> +    |  CRTC1 --> | DVO1 ----> Encoder1 ---> Connector1 ---> |  Panel  |
->> +    |            -------|                                   |_________|
->> +    |___________________|
->> +
->> +  Simple usage of LS7A1000 with LS3A4000 CPU:
->> +
->> +    +------+            +-----------------------------------+
->> +    | DDR4 |            |  +-------------------+            |
->> +    +------+            |  | PCIe Root complex |   LS7A1000 |
->> +       || MC0           |  +--++---------++----+            |
->> +  +----------+  HT 3.0  |     ||         ||                 |
->> +  | LS3A4000 |<-------->| +---++---+  +--++--+    +---------+   +------+
->> +  |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| VRAM |
->> +  +----------+          | +--------+  +-+--+-+    +---------+   +------+
->> +       || MC1           +---------------|--|----------------+
->> +    +------+                            |  |
->> +    | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
->> +    +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DVI/HDMI
->> +                      +-------+                      +------+
->> +
->> +  The display controller in LS2K1000/LS2K0500:
->> +     ___________________                                     _________
->> +    |            -------|                                   |         |
->> +    |  CRTC0 --> | DVO0 ----> Encoder0 ---> Connector0 ---> | Monotor |
->> +    |  _   _     -------|        ^              ^           |_________|
->> +    | | | | |           |        |              |
->> +    | |_| |_|           |     +------+          |
->> +    |                   <---->| i2c0 |<---------+
->> +    |   DC IN LS2K1000  |     +------+
->> +    |  _   _            |     +------+
->> +    | | | | |           <---->| i2c1 |----------+
->> +    | |_| |_|           |     +------+          |            _________
->> +    |            -------|        |              |           |         |
->> +    |  CRTC1 --> | DVO1 ----> Encoder1 ---> Connector1 ---> |  Panel  |
->> +    |            -------|                                   |_________|
->> +    |___________________|
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - loongson,ls7a2000-dc
->> +      - loongson,ls7a1000-dc
->> +      - loongson,ls2k1000-dc
->> +      - loongson,ls2k0500-dc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    minItems: 1
-> No need for minItems, if you have maxItems:1.
->
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    lsdc: display-controller@6,1 {
->> +        compatible = "loongson,ls7a1000-dc";
->> +        reg = <0x3100 0x0 0x0 0x0 0x0>;
->> +        interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
->> +        interrupt-parent = <&pic>;
->> +    };
-> I still do not think you actually tested it with dt_bindings_check...
->
->
-> Best regards,
-> Krzysztof
+This patch adds definitions of four clocks which need to be manipulated
+in order to initialize the AHB bus which exposes the SCC block in the
+global address space.
 
-I'm hurry to fix a few error in the v8 of this patch set, to avoid
-reviewers get angry about those mistake in my patch.
-   
-I come cross a few problems when running make dt_bindings_check,
-i am confusing about that, writing DT discpription of PCI display
-controller is not as easy as platform one. I will fix it at next version,
-thanks you.
+Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ CHANGES:
+ - v2: none
+ - v3: none
+ - v4: none
+ - v5: none
+ - v6: none
+---
+ include/dt-bindings/clock/qcom,gcc-msm8998.h | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/include/dt-bindings/clock/qcom,gcc-msm8998.h b/include/dt-bindings/clock/qcom,gcc-msm8998.h
+index 72c99e486d86..1badb4f9c58f 100644
+--- a/include/dt-bindings/clock/qcom,gcc-msm8998.h
++++ b/include/dt-bindings/clock/qcom,gcc-msm8998.h
+@@ -186,6 +186,10 @@
+ #define UFS_UNIPRO_CORE_CLK_SRC					177
+ #define GCC_MMSS_GPLL0_CLK					178
+ #define HMSS_GPLL0_CLK_SRC					179
++#define GCC_IM_SLEEP						180
++#define AGGRE2_SNOC_NORTH_AXI					181
++#define SSC_XO							182
++#define SSC_CNOC_AHBS_CLK					183
+ 
+ #define PCIE_0_GDSC						0
+ #define UFS_GDSC						1
+-- 
+2.34.1
 
