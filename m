@@ -2,56 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 369184BA1B5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:46:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 742C44BA1C0
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:46:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241167AbiBQNmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 08:42:54 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41106 "EHLO
+        id S241396AbiBQNof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 08:44:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241153AbiBQNmu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:42:50 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F23D819C14;
-        Thu, 17 Feb 2022 05:42:35 -0800 (PST)
-X-UUID: cbe6935b7f414503a3df4dfbc2669e95-20220217
-X-UUID: cbe6935b7f414503a3df4dfbc2669e95-20220217
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1751469062; Thu, 17 Feb 2022 21:42:32 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 17 Feb 2022 21:42:31 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 17 Feb
- 2022 21:42:31 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Feb 2022 21:42:29 +0800
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     <broonie@kernel.org>
-CC:     <lgirdwood@gmail.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <perex@perex.cz>,
-        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
-        <aaronyu@google.com>, <zhangqilong3@huawei.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Jiaxin Yu <jiaxin.yu@mediatek.com>
-Subject: [v2 17/17] dt-bindings: mediatek: mt8186: add mt8186-mt6366-rt1019-rt5682s document
-Date:   Thu, 17 Feb 2022 21:42:05 +0800
-Message-ID: <20220217134205.15400-18-jiaxin.yu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220217134205.15400-1-jiaxin.yu@mediatek.com>
-References: <20220217134205.15400-1-jiaxin.yu@mediatek.com>
+        with ESMTP id S241282AbiBQNoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:44:22 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5335D2B1A92;
+        Thu, 17 Feb 2022 05:43:36 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2D4DC83B8D;
+        Thu, 17 Feb 2022 14:43:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1645105413;
+        bh=vqgVYgx+FqpP/4BNm4tNeIMdW4wMCTTuVxwKgzkTfpE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=EDOv8XGOOQ/2mZKJRDd7OZmnV+/ui2sKBvWzQ5Ii5o3q17FYcdDTnkHbnBMZtO7EP
+         alg6IeLAKoaS9/a4iHMNCDR1izWKjhlQvV+GVRxIh9uDTcTi8G4uAZXIb6pX90TViM
+         vyzQaC70XuGk214eJKk5mZUmutgsr0KaADJlxO5PAJG+yP4qxs6F7+WfIXe62P81wK
+         wqotLM1dF5DvOhHtL1eOV/+SZJ9ifrC/0ESsFE9fBCAUf8EWKPrAsrksb2YVELLFmE
+         DMg+HlNX7LZDzLMnH5+65STFMZxJM6H7jKpJ0jbyipah2+8rPTjhOpo1UlMvYSAW9K
+         S65qlnioeWQng==
+Message-ID: <8b179fe1-55e4-e811-1ac2-46ac726c22d9@denx.de>
+Date:   Thu, 17 Feb 2022 14:43:32 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
+Content-Language: en-US
+To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@rohmsemiconductoreurope.onmicrosoft.com>
+References: <20220215084412.8090-1-marex@denx.de>
+ <20220215084412.8090-2-marex@denx.de>
+ <c1fce212-4d9e-06fe-e3fe-6d0f2ab29489@fi.rohmeurope.com>
+ <8083fbfb-d039-a7c8-7c08-c57ebf9e3b56@denx.de>
+ <88ee0a11-359e-60a5-4d96-54fef6514e69@fi.rohmeurope.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <88ee0a11-359e-60a5-4d96-54fef6514e69@fi.rohmeurope.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,67 +65,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds document for mt8186 board with mt6366, rt1019 and rt5682s.
+[...]
 
-Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
----
- .../sound/mt8186-mt6366-rt1019-rt5682s.yaml   | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
+>>> Anyways, seeing you added a dummy bd71837_match_clkspec in a follow-up
+>>> patch for BD71837 - which has only single clock - I wonder if there is a
+>>> way to omit that dummy callback in controllers which really provide only
+>>> one clock?
+>>
+>> Yes, I think we can omit the match_clkspec call for clock controllers
+>> with clock-cells == 0 altogether.
+> 
+> That would mean you could probably drop the bd718x7 driver patch, right?
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml b/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
-new file mode 100644
-index 000000000000..9280a26038f3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mt8186-mt6366-rt1019-rt5682s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek MT8186 with MT6366, RT1019 and RT5682S ASoC sound card driver
-+
-+maintainers:
-+  - Jiaxin Yu <jiaxin.yu@mediatek.com>
-+
-+description:
-+  This binding describes the MT8186 sound card.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8186_mt6366_rt1019_rt5682s_sound
-+
-+  mediatek,platform:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8186 ASoC platform.
-+
-+  mediatek,hdmi-codec:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of HDMI codec.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - mediatek,platform
-+
-+examples:
-+  - |
-+
-+    sound: mt8186-sound {
-+        compatible = "mediatek,mt8186_mt6366_rt1019_rt5682s_sound";
-+        mediatek,platform = <&afe>;
-+        mediatek,hdmi-codec = <&it6505dptx>;
-+        pinctrl-names = "aud_clk_mosi_off",
-+                        "aud_clk_mosi_on";
-+        pinctrl-0 = <&aud_clk_mosi_off>;
-+        pinctrl-1 = <&aud_clk_mosi_on>;
-+    };
-+
-+...
--- 
-2.18.0
+Yes
 
+I'm just waiting for feedback from Stephen on 2/3, then I'll send V2.
