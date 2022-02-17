@@ -2,123 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DFB04BAAB2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 21:19:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25A2E4BAAE6
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 21:26:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245676AbiBQUTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 15:19:23 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45918 "EHLO
+        id S1343547AbiBQU0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 15:26:30 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231553AbiBQUTW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 15:19:22 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5615D189;
-        Thu, 17 Feb 2022 12:19:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645129148; x=1676665148;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yh8fUoXh79fS9tMsEOb8wgZoSRTMtMmtTdQN/QJbHJA=;
-  b=G2wOtGc/yDDNsBnNq96FTXOCZpP/zfbI5iOFJ6LIHbhTTgz1CEOQSi37
-   2gSpqcVz9CdEjcs37ww8p6K415QeMnfox2D6xw1td7QMlMUlhXHbwqSC9
-   SDRMwDLS/RKuyzjopJa0qCz4/UAC4K4zm/sIG0XGc1aahrPbGtfAizNny
-   EoxHiSObeYndx+T/vcDcnwUsfhWDuiU4m1yL/xP/uIleXDgdvGzxvaiF/
-   pzSEtnueAxqnU5jx65JFA1pphepgc2v/hXGi8vrq7MctlEcKRbTm5cLkb
-   iHr8NTEMwJS9Y775lhom4RT+u9Zqnvgyv1joBrumB8Y6JLCDUOLh9Nm8U
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10261"; a="234497386"
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; 
-   d="scan'208";a="234497386"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2022 12:19:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,376,1635231600"; 
-   d="scan'208";a="589718320"
-Received: from lkp-server01.sh.intel.com (HELO 6f05bf9e3301) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 17 Feb 2022 12:19:03 -0800
-Received: from kbuild by 6f05bf9e3301 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nKnF0-0000bi-KF; Thu, 17 Feb 2022 20:19:02 +0000
-Date:   Fri, 18 Feb 2022 04:18:43 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     kbuild-all@lists.01.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH] ASoC: codecs: Add power domains support in digital macro
- codecs
-Message-ID: <202202180450.f9HRZqEk-lkp@intel.com>
-References: <1645108786-25990-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S1343574AbiBQU03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 15:26:29 -0500
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8434166E01;
+        Thu, 17 Feb 2022 12:26:14 -0800 (PST)
+Received: by mail-io1-f42.google.com with SMTP id w7so5124217ioj.5;
+        Thu, 17 Feb 2022 12:26:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vor4YtyDZgpnRzyqF0dXDY/vRW7EOoRe/r5dnL1ZLQg=;
+        b=vM4OQPyH+ozY5r/KgDCMUvF+PyU6mfL17TRHt4COMM1Yk1sHVvKg5JdSTCzC2CXNRH
+         APs/E5Aml/ZHgf6YXHszbABZfo88LN+a3rc2flH+3KILEnQ2qqo4O9NYK4nyn1O1AtLU
+         UgGySOj/a0+fmGL4u8fCPDjEbnh952U5z3Tyy6H6c7BTSmDLT97/xsOjFRV8WfzAyVx3
+         z5WSuerphgA+SpJiGpWO6Udg7CX4o4ggLfWtrNPHX5vnm1R4jut+OTpwxqFEYpplW3Uw
+         c1NTlzYpzql6jL1OEOsZ6LJano3M4lZ0nL6j9urLgaUhGRkKWyM3sZFlF54Lpfa0LFa+
+         9B8Q==
+X-Gm-Message-State: AOAM532aDQ5QcOYwsxGoGHQDHj7JGxc+Mh1ilFq7Vjiz1wWLGr6wFv4c
+        e4IWryiIfThiVQDu1MXrjA==
+X-Google-Smtp-Source: ABdhPJx0exKureLbCBomuzKVmB9EqkRlmaPsBk22Z2l1Z5ZFj3qJjE7J2WGMnPGZagmhxJLUrdJLpw==
+X-Received: by 2002:a05:6638:1384:b0:311:985a:ee84 with SMTP id w4-20020a056638138400b00311985aee84mr3190230jad.222.1645129574263;
+        Thu, 17 Feb 2022 12:26:14 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id w4sm2302324ilo.53.2022.02.17.12.26.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Feb 2022 12:26:13 -0800 (PST)
+Received: (nullmailer pid 3717063 invoked by uid 1000);
+        Thu, 17 Feb 2022 20:26:11 -0000
+Date:   Thu, 17 Feb 2022 14:26:11 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     nick.hawkins@hpe.com
+Cc:     verdun@hpe.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] [v1]dt-bindings: vendor-prefixes: add HPE Prefix
+Message-ID: <Yg6vY6KTLg7GGpN7@robh.at.kernel.org>
+References: <nick.hawkins@hpe.com>
+ <20220210175912.102159-1-nick.hawkins@hpe.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1645108786-25990-1-git-send-email-quic_srivasam@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220210175912.102159-1-nick.hawkins@hpe.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivasa,
+On Thu, Feb 10, 2022 at 11:59:11AM -0600, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+> 
+> Description: This patch adds the Hewlett Packard Enterprise prefix
+> that will be used for upcoming support in the HPE BMC GXP.
+> 
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Thank you for the patch! Yet something to improve:
+Applied, thanks.
 
-[auto build test ERROR on broonie-sound/for-next]
-[also build test ERROR on next-20220217]
-[cannot apply to v5.17-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Srinivasa-Rao-Mandadapu/ASoC-codecs-Add-power-domains-support-in-digital-macro-codecs/20220217-224032
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-config: nios2-randconfig-r014-20220217 (https://download.01.org/0day-ci/archive/20220218/202202180450.f9HRZqEk-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/a1e8b5e6a2baa8ce5b2373bfbdfce5a771132448
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Srinivasa-Rao-Mandadapu/ASoC-codecs-Add-power-domains-support-in-digital-macro-codecs/20220217-224032
-        git checkout a1e8b5e6a2baa8ce5b2373bfbdfce5a771132448
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nios2 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   nios2-linux-ld: sound/soc/codecs/lpass-va-macro.o: in function `va_macro_probe':
->> lpass-va-macro.c:(.text+0x918): undefined reference to `lpass_macro_pds_init'
-   lpass-va-macro.c:(.text+0x918): relocation truncated to fit: R_NIOS2_CALL26 against `lpass_macro_pds_init'
-   nios2-linux-ld: sound/soc/codecs/lpass-va-macro.o: in function `va_macro_remove':
->> lpass-va-macro.c:(.text+0xec0): undefined reference to `lpass_macro_pds_exit'
-   lpass-va-macro.c:(.text+0xec0): relocation truncated to fit: R_NIOS2_CALL26 against `lpass_macro_pds_exit'
-   nios2-linux-ld: sound/soc/codecs/lpass-rx-macro.o: in function `rx_macro_probe':
->> lpass-rx-macro.c:(.text+0x1cb8): undefined reference to `lpass_macro_pds_init'
-   lpass-rx-macro.c:(.text+0x1cb8): relocation truncated to fit: R_NIOS2_CALL26 against `lpass_macro_pds_init'
-   nios2-linux-ld: sound/soc/codecs/lpass-rx-macro.o: in function `rx_macro_remove':
->> lpass-rx-macro.c:(.text+0x2188): undefined reference to `lpass_macro_pds_exit'
-   lpass-rx-macro.c:(.text+0x2188): relocation truncated to fit: R_NIOS2_CALL26 against `lpass_macro_pds_exit'
-   nios2-linux-ld: net/core/sock.o: in function `sk_destruct':
-   sock.c:(.text+0x23bc): undefined reference to `__sk_defer_free_flush'
-   sock.c:(.text+0x23bc): relocation truncated to fit: R_NIOS2_CALL26 against `__sk_defer_free_flush'
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Rob
