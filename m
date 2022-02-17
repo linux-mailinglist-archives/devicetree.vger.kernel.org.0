@@ -2,124 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 903B84BA86D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 19:36:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C059B4BA88A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 19:40:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244557AbiBQSgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 13:36:06 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59540 "EHLO
+        id S244428AbiBQSjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 13:39:49 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244980AbiBQSgA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 13:36:00 -0500
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A42024593;
-        Thu, 17 Feb 2022 10:34:11 -0800 (PST)
-Received: from fraeml742-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4K03Np424Mz67bZ1;
-        Fri, 18 Feb 2022 02:33:14 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml742-chm.china.huawei.com (10.206.15.223) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Thu, 17 Feb 2022 19:34:09 +0100
-Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Thu, 17 Feb
- 2022 18:34:08 +0000
-Date:   Thu, 17 Feb 2022 18:34:07 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     chegbeli <ciprian.hegbeli@analog.com>
-CC:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] iio: add meter subdirectory
-Message-ID: <20220217183407.00005bcb@Huawei.com>
-In-Reply-To: <20220217135140.5658-2-ciprian.hegbeli@analog.com>
-References: <20220217135140.5658-1-ciprian.hegbeli@analog.com>
-        <20220217135140.5658-2-ciprian.hegbeli@analog.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S244424AbiBQSjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 13:39:48 -0500
+Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0D944751
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 10:39:33 -0800 (PST)
+Received: by mail-yb1-xb41.google.com with SMTP id l125so14924317ybl.4
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 10:39:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=5z4KZZme9DmqhD8xo2bWEvO4a/9IShPeRKvpn5SmIKk=;
+        b=XiUt7aTjj9bQPDETa6mCtrlJop+fHHEgsGx2ZAflCFX3QmYPJxVP+/D3VBeq1GWv2G
+         tPQlgy3miPLScmo+BtZH0TkJf9YjddTcRhViBWCBaGSNO4/VinR1WROVRD99LE4/FUEU
+         LZXU4ZP+RJjiCV43bfTB208cwGjc46oLCAZ/AaMixkG2snBX3pNv4mFHiKgKxz6x7D/e
+         Acz+tU9jdrkutbFlrl9TTmdyGYzv/sUOpMSLDRs7Qk4e0mZ8nBMYTL6eyQdXfqlfP7Eb
+         P4YMMrcQaacezHTN7cQ/izGqZOD1GVQ0y8Ncquq45E33XrQ9ByaK2H7R5zx0hE3Ls8Aa
+         +MiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=5z4KZZme9DmqhD8xo2bWEvO4a/9IShPeRKvpn5SmIKk=;
+        b=7w7/U5LUWSipLbVEdzdqj28gjngSRG8xbV+oas4smOBRmnNXt2OHdCXTEqu17uHuSs
+         fksPsyiy+APG5ZFpUybPQTarTomHLXzQ2pC8d7XBJCltVs5sQBPfIPvAM7n5Uf6xOG6z
+         eS5pDreunoTbpB+maqlqLSUnm/rEYCr0YHWW0pevk/Vz8unuA9wTohuDucm/vK0Mi0pR
+         ERiVt2x1xTSLySdYMfTauiDY7zIsT8Yo+2TYPmfrQC5d7xucq9XanjlJe+r4a4OlQbOd
+         APBohwgsbLG73kxy32AJZPPF/ZTyQRLkhL7Bm8WFfJc9qbF7U8MRe2JUvVfEHvuAGVqB
+         Htng==
+X-Gm-Message-State: AOAM531aR89srMw3g/idr5Il4rpLiwFoifJ/QDYldD3x095AFZbSOGgf
+        2uvOaEWw3z3O5hza+VptcM6f2jP+jyy43EMuXdA=
+X-Google-Smtp-Source: ABdhPJwbM+YASWpXePyOfKh81jpT4ynebt+q0eMMo1+HqAbnb1F/raFC/E8oqwk79g7rgNTVrlJD8AVT+TY8PyEx+Yg=
+X-Received: by 2002:a25:1988:0:b0:615:2b7b:d43 with SMTP id
+ 130-20020a251988000000b006152b7b0d43mr3638476ybz.424.1645123172809; Thu, 17
+ Feb 2022 10:39:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.41]
-X-ClientProxiedBy: lhreml723-chm.china.huawei.com (10.201.108.74) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:7010:2312:b0:210:8aef:e1ce with HTTP; Thu, 17 Feb 2022
+ 10:39:32 -0800 (PST)
+From:   Mark Ugo <markugo200@gmail.com>
+Date:   Thu, 17 Feb 2022 19:39:32 +0100
+Message-ID: <CAB1V1dD_wSB9fFmti1sifSERnzbd+vQkBHy4W-gRvApq35wkQA@mail.gmail.com>
+Subject: Contact
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLY,HK_SCAM,LOTS_OF_MONEY,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_MONEY autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:b41 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [markugo200[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [markugo200[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  0.0 LOTS_OF_MONEY Huge... sums of money
+        *  0.5 HK_SCAM No description available.
+        *  1.0 FREEMAIL_REPLY From and body contain different freemails
+        *  2.9 UNDISC_MONEY Undisclosed recipients + money/fraud signs
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Feb 2022 15:51:38 +0200
-chegbeli <ciprian.hegbeli@analog.com> wrote:
+-- 
+Hello,
 
-> For IIO devices which are designed to measure and process power
-> readings.
-> 
-> Signed-off-by: chegbeli <ciprian.hegbeli@analog.com>
-No need for separate patch - just squash this with the driver patch.
+I'm happy to inform you about my success in getting the fund
+transferred to Swiss account with the cooperation of new partner from
+Germany. Presently I'm in London United Kingdom for investment
+projects with my own share of the total sum.
 
-> ---
->  drivers/iio/Kconfig        | 1 +
->  drivers/iio/Makefile       | 1 +
->  drivers/iio/meter/Kconfig  | 9 +++++++++
->  drivers/iio/meter/Makefile | 5 +++++
->  4 files changed, 16 insertions(+)
->  create mode 100644 drivers/iio/meter/Kconfig
->  create mode 100644 drivers/iio/meter/Makefile
-> 
-> diff --git a/drivers/iio/Kconfig b/drivers/iio/Kconfig
-> index b190846c3dc2..892c7f575416 100644
-> --- a/drivers/iio/Kconfig
-> +++ b/drivers/iio/Kconfig
-> @@ -86,6 +86,7 @@ source "drivers/iio/humidity/Kconfig"
->  source "drivers/iio/imu/Kconfig"
->  source "drivers/iio/light/Kconfig"
->  source "drivers/iio/magnetometer/Kconfig"
-> +source "drivers/iio/meter/Kconfig"
->  source "drivers/iio/multiplexer/Kconfig"
->  source "drivers/iio/orientation/Kconfig"
->  source "drivers/iio/test/Kconfig"
-> diff --git a/drivers/iio/Makefile b/drivers/iio/Makefile
-> index 3be08cdadd7e..c8afc053fccf 100644
-> --- a/drivers/iio/Makefile
-> +++ b/drivers/iio/Makefile
-> @@ -32,6 +32,7 @@ obj-y += humidity/
->  obj-y += imu/
->  obj-y += light/
->  obj-y += magnetometer/
-> +obj-y += meter/
->  obj-y += multiplexer/
->  obj-y += orientation/
->  obj-y += position/
-> diff --git a/drivers/iio/meter/Kconfig b/drivers/iio/meter/Kconfig
-> new file mode 100644
-> index 000000000000..d1c91eed5283
-> --- /dev/null
-> +++ b/drivers/iio/meter/Kconfig
-> @@ -0,0 +1,9 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +#
-> +# Energy meter drivers
-> +#
-> +# When adding new entries keep the list in alphabetical order
-> +
-> +menu "Active energy metering"
-> +
-> +endmenu
-> diff --git a/drivers/iio/meter/Makefile b/drivers/iio/meter/Makefile
-> new file mode 100644
-> index 000000000000..c27cba44fc0b
-> --- /dev/null
-> +++ b/drivers/iio/meter/Makefile
-> @@ -0,0 +1,5 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +#
-> +# Makefile for enrgy metering drivers
-> +#
-> +# When adding new entries keep the list in alphabetical order
+Meanwhile, I did not forget your past efforts and attempts to assist
+me in transferring those funds despite that it failed us some how. Now
+contact my secretary with below stated information for your
+compensation.
 
+Veronica Udom
+Email:veronica.udom@clerk.com
+
+
+Ask her to send you the total sum of $850.000.00 (Eight Hundred and
+Fifty Thousand US Dollars) which I kept for your compensation for all
+the past efforts and attempts to assist me  I appreciated your efforts
+at that time very much.
+
+So feel free and get in touch with my secretary  and instruct her
+where to send the check containing the amount to you. Please do let me
+know immediately you receive it. At the moment, I am very busy here
+because of the investment projects which I and my new partner are
+having in London.
+
+Yours sincerely
+Mark Ugo
