@@ -2,55 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A004BA248
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 15:01:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 409044BA249
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 15:01:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241573AbiBQOBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 09:01:06 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36918 "EHLO
+        id S241576AbiBQOBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 09:01:08 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241661AbiBQOA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 09:00:58 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B91E2B1671;
-        Thu, 17 Feb 2022 06:00:20 -0800 (PST)
-X-UUID: 334b4836794847bbb0e77f7a0a234c33-20220217
-X-UUID: 334b4836794847bbb0e77f7a0a234c33-20220217
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 205135712; Thu, 17 Feb 2022 22:00:17 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 17 Feb 2022 22:00:16 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Feb 2022 22:00:15 +0800
-Message-ID: <a912ed83c8d959fc3bb0a08f00b3fd036beee270.camel@mediatek.com>
-Subject: Re: [PATCH 09/15] ASoC: mediatek: mt8186: support tdm in platform
- driver
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     <lgirdwood@gmail.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <perex@perex.cz>,
-        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
-        <zhangqilong3@huawei.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Thu, 17 Feb 2022 21:59:43 +0800
-In-Reply-To: <YgZ/pzrJqvcAuzmE@sirena.org.uk>
-References: <20220211103818.8266-1-jiaxin.yu@mediatek.com>
-         <20220211103818.8266-10-jiaxin.yu@mediatek.com>
-         <YgZ/pzrJqvcAuzmE@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S241693AbiBQOBB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 09:01:01 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56032B101A
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 06:00:41 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id B0F181F45C8A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645106440;
+        bh=ssJasQQ8weULUqHF5Y87VL+8ytcuA+D5QpQWHyuRV2k=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=e+8D2NrfmVm3obXlqpX0Z6PwoRJRYhkdF5E7yreEMnY4/q4bLQZcy6CW0m6BTinMu
+         49KQmGTnQMM79aBTQQUP8VvzCuJK4AC8qouh9Fl625xa9Z5muNHnT4xOwa/lWtykqR
+         eiDNDtCPiXivs71Bs+sSQfP+9J93HvG8hMTWWSCy5LarVdWD2xqWn1Jj9lPu7hN5+k
+         nC9BorluLt0D+ovNoo+kFNk/24cJRyLUn/dHx1sIWIughQbk5qjoud8EM8w/6VbnhN
+         IjKvG8oP2nZhLA5HC5qn8kLrvPggf/R2UUBfQhhK4uEGwK8OudORHZujtQjjRt6pU9
+         Yh4JvrQPU7aGg==
+Message-ID: <f5abe6aa-473a-a00d-2bc5-b8a1d0560d1f@collabora.com>
+Date:   Thu, 17 Feb 2022 17:00:37 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v6 13/23] drm/rockchip: dw_hdmi: Set cur_ctr to 0 always
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Yakir Yang <ykk@rock-chips.com>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220217082954.2967889-1-s.hauer@pengutronix.de>
+ <20220217082954.2967889-14-s.hauer@pengutronix.de>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220217082954.2967889-14-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,65 +62,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-02-11 at 15:24 +0000, Mark Brown wrote:
-> On Fri, Feb 11, 2022 at 06:38:12PM +0800, Jiaxin Yu wrote:
+17.02.2022 11:29, Sascha Hauer пишет:
+> From: Douglas Anderson <dianders@chromium.org>
 > 
-> Again, mostly looks good just fairly small and easily fixable issues:
-> 
-> > +static int mtk_tdm_hd_en_event(struct snd_soc_dapm_widget *w,
-> > +			       struct snd_kcontrol *kcontrol,
-> > +			       int event)
-> > +{
-> > +	struct snd_soc_component *cmpnt = snd_soc_dapm_to_component(w-
-> > >dapm);
-> > +
-> > +	dev_info(cmpnt->dev, "%s(), name %s, event 0x%x\n",
-> > +		 __func__, w->name, event);
-> > +
-> > +	return 0;
-> > +}
-> 
-> This does nothing, you can just remove it.
+> Jitter was improved by lowering the MPLL bandwidth to account for high
+> frequency noise in the rk3288 PLL.  In each case MPLL bandwidth was
+> lowered only enough to get us a comfortable margin.  We believe that
+> lowering the bandwidth like this is safe given sufficient testing.
 
-Yes, this is readlly useless, removed it in the v2 version.
+There are no device-trees that use "rockchip,rk3288-cru", AFAICS..
 
-> 
-> > +	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
-> > +	case SND_SOC_DAIFMT_NB_NF:
-> > +		tdm_priv->bck_invert = TDM_BCK_NON_INV;
-> > +		tdm_priv->lck_invert = TDM_LCK_NON_INV;
-> > +		break;
-> > +	case SND_SOC_DAIFMT_NB_IF:
-> > +		tdm_priv->bck_invert = TDM_BCK_NON_INV;
-> > +		tdm_priv->lck_invert = TDM_LCK_INV;
-> > +		break;
-> > +	case SND_SOC_DAIFMT_IB_NF:
-> > +		tdm_priv->bck_invert = TDM_BCK_INV;
-> > +		tdm_priv->lck_invert = TDM_LCK_NON_INV;
-> > +		break;
-> > +	case SND_SOC_DAIFMT_IB_IF:
-> > +	default:
-> > +		tdm_priv->bck_invert = TDM_BCK_INV;
-> > +		tdm_priv->lck_invert = TDM_LCK_INV;
-> 
-> You should return an error in the default case rather than just
-> picking
-> one of the behaviours to help spot any configuration errors.
-
-Done in the v2 version.
-
-> 
-> > +	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
-> > +	case SND_SOC_DAIFMT_CBM_CFM:
-> > +		tdm_priv->slave_mode = false;
-> > +		break;
-> > +	case SND_SOC_DAIFMT_CBS_CFS:
-> > +		tdm_priv->slave_mode = true;
-> 
-> We're trying to move away from these defines and the master/slave
-> terminology to talk about clock providers instead - the new defines
-> are
-> _PROVIDER_MASK, _DAIFMT_CBP_CFP and _DAIFMT_CBC_CFC.
-
-Done in the v2 version.
-
+Was this change tested on a non-RK3288 devices?
