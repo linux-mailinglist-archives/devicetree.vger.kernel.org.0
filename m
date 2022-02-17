@@ -2,110 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB0C94B9D76
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 11:46:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B20464B9DC6
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 11:57:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239280AbiBQKq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 05:46:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60384 "EHLO
+        id S229537AbiBQKzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 05:55:53 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239274AbiBQKqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 05:46:25 -0500
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A971294112;
-        Thu, 17 Feb 2022 02:46:11 -0800 (PST)
-Received: from hatter.bewilderbeest.net (174-21-187-98.tukw.qwest.net [174.21.187.98])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 888F2C55;
-        Thu, 17 Feb 2022 02:46:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1645094770;
-        bh=uUlF8FcwaYf9aGYW+5rRDb+F4fC71b6gQUNd/l6QrtE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Xr18n/QleCAZEULPoAqyKVz/yD9EN5HfdEQ1N3l777roRbcdi6qlN8d9skbhQvcAd
-         /zbvzR0CJgzqAX8xDj7YynY2uZeYgne2OPQ5srXGItCmyJlMKftXlzLY0cpbxAEwLe
-         zR/SQCw4hHw18kfO/AxnVWL4/TUh5NffUZkb1kR0=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Zev Weiss <zev@bewilderbeest.net>, openbmc@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Arnd Bergmann <arnd@arndb.de>, linux-hwmon@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: [PATCH 3/4] dt-bindings: Add power-efuse binding
-Date:   Thu, 17 Feb 2022 02:44:43 -0800
-Message-Id: <20220217104444.7695-4-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220217104444.7695-1-zev@bewilderbeest.net>
-References: <20220217104444.7695-1-zev@bewilderbeest.net>
+        with ESMTP id S239406AbiBQKzp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 05:55:45 -0500
+Received: from 189.cn (ptr.189.cn [183.61.185.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0186929413B;
+        Thu, 17 Feb 2022 02:55:28 -0800 (PST)
+HMM_SOURCE_IP: 10.64.8.41:52562.1081528680
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+        by 189.cn (HERMES) with SMTP id 5D2F4100238;
+        Thu, 17 Feb 2022 18:55:24 +0800 (CST)
+Received: from  ([172.27.8.53])
+        by gateway-151646-dep-b7fbf7d79-9vctg with ESMTP id 945ce06b9ab14270b795d7e7408b29e0 for mripard@kernel.org;
+        Thu, 17 Feb 2022 18:55:27 CST
+X-Transaction-ID: 945ce06b9ab14270b795d7e7408b29e0
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 172.27.8.53
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+From:   Sui Jingfeng <15330273260@189.cn>
+To:     Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v9 0/4] drm/lsdc: add drm driver for loongson display controller
+Date:   Thu, 17 Feb 2022 18:55:19 +0800
+Message-Id: <20220217105523.1525122-1-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This can be used to describe a power output supplied by a regulator
-device that the system controls.
+There is a display controller in loongson's LS2K1000 SoC and LS7A1000
+bridge chip, it is a PCI device in those chips. It has two display
+pipes but with only one hardware cursor. Each way has a DVO interface
+which provide RGB888 signals, vertical & horizontal synchronisations,
+data enable and the pixel clock. Each CRTC is able to scanout from
+1920x1080 resolution at 60Hz. The maxmium resolution is 2048x2048
+according to the hardware spec. Loongson display controllers are simple
+which require scanout buffers to be physically contiguous.
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
----
- .../devicetree/bindings/misc/power-efuse.yaml | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/power-efuse.yaml
+For LS7A1000/LS7A2000 bridge chip, the DC is equipped with a dedicated
+video ram which is typically 64MB or more. In this case, VRAM helper
+based driver is intend to be used. While LS2K1000 is a SoC, only system
+memory is available. Therefore CMA helper based driver is intend to be
+used. It is possible to use VRAM helper based solution by carving out
+part of system memory as VRAM though.
 
-diff --git a/Documentation/devicetree/bindings/misc/power-efuse.yaml b/Documentation/devicetree/bindings/misc/power-efuse.yaml
-new file mode 100644
-index 000000000000..cadce15d2ce7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/power-efuse.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/misc/power-efuse.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic power efuse device
-+
-+maintainers:
-+ - Zev Weiss <zev@bewilderbeest.net>
-+
-+properties:
-+  compatible:
-+    const: power-efuse
-+
-+  vout-supply:
-+    description:
-+      phandle to the regulator providing power for the efuse
-+
-+  error-flags-cache-ttl-ms:
-+    description:
-+      The number of milliseconds the vout-supply regulator's error
-+      flags should be cached before re-fetching them.
-+
-+required:
-+  - compatible
-+  - vout-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    efuse {
-+        compatible = "power-efuse";
-+        vout-supply = <&efuse_reg>;
-+        error-flags-cache-ttl-ms = <500>;
-+    };
+For LS7A1000, there are 4 dedicated GPIOs whose control register is
+located at the DC register space, They are used to emulate two way i2c.
+One for DVO0, another for DVO1. LS2K1000 and LS2K0500 SoC don't have such
+GPIO hardwared, they grab i2c adapter from other module, either general
+purpose GPIO emulated i2c or hardware i2c adapter.
+
+    +------+            +-----------------------------------+
+    | DDR4 |            |  +-------------------+            |
+    +------+            |  | PCIe Root complex |   LS7A1000 |
+       || MC0           |  +--++---------++----+            |
+  +----------+  HT 3.0  |     ||         ||                 |
+  | LS3A4000 |<-------->| +---++---+  +--++--+    +---------+   +------+
+  |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| VRAM |
+  +----------+          | +--------+  +-+--+-+    +---------+   +------+
+       || MC1           +---------------|--|----------------+
+    +------+                            |  |
+    | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
+    +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DVI/HDMI
+                      +-------+                      +------+
+
+The above picture give a simple usage of LS7A1000, note that the encoder
+is not necessary adv7125 or tfp410, other candicate encoders can be
+ch7034b, sil9022 and ite66121 lt8618 etc.
+
+v2: fixup warnings reported by kernel test robot
+
+v3: fix more grammar mistakes in Kconfig reported by Randy Dunlap and give
+    more details about lsdc.
+
+v4:
+   1) Add dts required and explain why device tree is required.
+   2) Give more description about lsdc and vram helper base driver.
+   3) Fix warnings reported by kernel test robot.
+   4) Introduce stride_alignment member into struct lsdc_chip_desc, the
+      stride alignment is 256 bytes for ls7a1000, ls2k1000 and ls2k0500.
+      But ls7a2000 improve it to 32 bytes, for extend the support for the
+      device on coming.
+
+v5:
+   1) using writel and readl replace writeq and readq, to fix kernel test
+      robot report build error on other archtecture
+   2) set default fb format to XRGB8888 at crtc reset time.
+   3) fix typos.
+
+v6:
+   1) Explain why we are not switch to drm dridge subsystem on ls2k1000.
+   2) Explain why tiny drm driver is not suitable for us.
+   3) Give a short description of the trival dirty uppdate implement based
+      on CMA helper.
+   4) code clean up
+
+v7:
+   1) Remove select I2C_GPIO and I2C_LS2X in Kconfig, it is not ready now
+   2) Licensing issues are fixed suggested by Krzysztof Kozlowski.
+   3) lsdc_pixpll_print() is removed, part of it move to debugfs.
+   4) Set prefer_shadow to true if vram based driver is in using.
+   5) Replace double blank lines with single line in all files
+   6) Verbose cmd line parameter is replaced with drm_dbg()
+   7) All warnnings reported by ./scripts/checkpatch.pl --strict are fixed
+   8) Get edid from dtb support is removed as suggested by Maxime Ripard
+   9) Fix typos and various improvement
+
+v8:
+   1) Drop damage update implement and its command line.
+   2) Drop DRM_LSDC_VRAM_DRIVER config option as suggested by Maxime.
+   3) Deduce DC's identification from its compatible property.
+   4) Drop the board specific dts patch.
+   5) Add documention about the display controller device node.
+
+v9:
+   1) Fix the warnnings reported by checkpatch script and fix typos
+
+
+Below is a brief introduction of loongson's CPU, bridge chip and SoC.
+LS2K1000 is a double core 1.0Ghz mips64r2 compatible SoC[1]. LS7A1000 is
+a bridge chip made by Loongson corporation which act as north and/or south
+bridge of loongson's desktop and server level processor. It is equivalent
+to AMD RS780E+SB710 or something like that. More details can be read from
+its user manual[2].
+
+This bridge chip is typically use with LS3A3000, LS3A4000 and LS3A5000 cpu.
+LS3A3000 is 4 core 1.45gHz mips64r2 compatible cpu.
+LS3A4000 is 4 core 1.8gHz mips64r5 compatible cpu[3].
+LS3A5000 is 4 core 2.5gHz loongarch cpu[4].
+
+Nearly all loongson cpu has the hardware maintain the cache coherency,
+except for early version of ls2k1000 or ls3a2000. This is the most distinct
+feature from other Mips cpu.
+
+[1] https://wiki.debian.org/InstallingDebianOn/Lemote/Loongson2K1000
+[2] https://loongson.github.io/LoongArch-Documentation/Loongson-7A1000-usermanual-EN.html
+[3] https://ee-paper.com/loongson-3a4000-3b4000-motherboard-products-are-compatible-with-uos-system/
+[4] https://loongson.github.io/LoongArch-Documentation/Loongson-3A5000-usermanual-EN.html
+[5] https://github.com/loongson-community/pmon
+
+suijingfeng (4):
+  drm/lsdc: add drm driver for loongson display controller
+  MIPS: Loongson64: dts: update the display controller device node
+  Documentation/dt: Add descriptions for loongson display controller
+  MAINTAINERS: add maintainers for DRM LSDC driver
+
+ .../loongson/loongson,display-controller.yaml | 114 +++
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  |   8 +
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +-
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/lsdc/Kconfig                  |  21 +
+ drivers/gpu/drm/lsdc/Makefile                 |  13 +
+ drivers/gpu/drm/lsdc/lsdc_connector.c         | 334 +++++++++
+ drivers/gpu/drm/lsdc/lsdc_connector.h         |  38 +
+ drivers/gpu/drm/lsdc/lsdc_crtc.c              | 341 +++++++++
+ drivers/gpu/drm/lsdc/lsdc_drv.c               | 699 ++++++++++++++++++
+ drivers/gpu/drm/lsdc/lsdc_drv.h               | 209 ++++++
+ drivers/gpu/drm/lsdc/lsdc_encoder.c           |  54 ++
+ drivers/gpu/drm/lsdc/lsdc_i2c.c               | 198 +++++
+ drivers/gpu/drm/lsdc/lsdc_i2c.h               |  40 +
+ drivers/gpu/drm/lsdc/lsdc_irq.c               |  60 ++
+ drivers/gpu/drm/lsdc/lsdc_irq.h               |  20 +
+ drivers/gpu/drm/lsdc/lsdc_plane.c             | 526 +++++++++++++
+ drivers/gpu/drm/lsdc/lsdc_pll.c               | 580 +++++++++++++++
+ drivers/gpu/drm/lsdc/lsdc_pll.h               |  90 +++
+ drivers/gpu/drm/lsdc/lsdc_regs.h              | 202 +++++
+ 22 files changed, 3561 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+ create mode 100644 drivers/gpu/drm/lsdc/Kconfig
+ create mode 100644 drivers/gpu/drm/lsdc/Makefile
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_connector.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_connector.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_crtc.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_drv.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_drv.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_encoder.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_i2c.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_i2c.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_irq.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_irq.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_plane.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_pll.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_pll.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_regs.h
+
 -- 
-2.35.1
+2.25.1
 
