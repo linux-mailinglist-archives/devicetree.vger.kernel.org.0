@@ -2,142 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D5614BA5DD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 17:30:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DAD04BA64B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 17:42:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243224AbiBQQ17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 11:27:59 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:32972 "EHLO
+        id S243345AbiBQQkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 11:40:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243182AbiBQQ1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 11:27:55 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934ABB2E08;
-        Thu, 17 Feb 2022 08:27:37 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id d10so8516236eje.10;
-        Thu, 17 Feb 2022 08:27:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=x0CAWbNuIuDfQpbJainmJSxgl05KS6pI1nwvw77TVRY=;
-        b=XYjjMpDhaV3y4guUdwjcp7pgm0CCJvpxAYqNX/uRe1b80YfpnK0ARRNBQuuarUXsmt
-         IuoP9UGADm0phg5YjhICWB2TYsr8Q15w9dvHc8shFxuizpjNbhIo8BnklYElCvt1LVfH
-         aHEjCRuS/wUZhdmJDKGXCXZH2MeGUT5QgqowghefD1jO/9ZYE8o3eZGL/FRNKnJPk8ni
-         ky4p5t2DWKWEzWnNXX/Q+f4T3nvBS9CpocYX9sHIJdlvOprs79hV9JmszQBdz25z9bUi
-         Q2t7B+W8f1RiL4+buQH0S5DKRQ9D5BHYgteg7ctM8Z1DIkqdwZjesChIj/808a++1E4J
-         cu2A==
+        with ESMTP id S233621AbiBQQkV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 11:40:21 -0500
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC2122B31A2;
+        Thu, 17 Feb 2022 08:40:06 -0800 (PST)
+Received: by mail-il1-f172.google.com with SMTP id f13so2670281ilq.5;
+        Thu, 17 Feb 2022 08:40:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=x0CAWbNuIuDfQpbJainmJSxgl05KS6pI1nwvw77TVRY=;
-        b=5v4SbT74eWBvdrpKEuR6C2yACdN6GvJI9LmPptnr80C4XKH56j6k/94iC/fPG0kybQ
-         im6aGSLxQh6uBYqXTxJKmmQtRqO8SNfiSh6xLxyxsSS+Y7jxYXFmHtdhWCrU9c+Sc00p
-         W9FtU3qCKZbP2L0M0GkrqGc/FbJz1XZS7jznZjLfueLvgrKQXi7ddoxlFerWoiEO+W+q
-         DfJhkweC42W6z6eNGN2qZwp5lJpNmhsqJ75Hd7D3hBRDCrDZ1b1Q+6hiHfZese3VHmAl
-         BY8rszViXilMVzRnQ/t8CSYNGgOKTl4kpYoT+Usp9L0nF0fComXmwOQt2Rj0w2+Sduwf
-         eT0Q==
-X-Gm-Message-State: AOAM533VpJkhagUH9xAj/OKI/SxuLha4CIW8r+BTobfJMbVOCANbwcPT
-        6W5KizBWCro6mrguGc04n14=
-X-Google-Smtp-Source: ABdhPJzlwfwiOWxf+goTzxLgaAJ6/r/qIVfSm0JJTyMJULqZyhZQz20H7AUpWOyqFSUm3xkOn6AE4Q==
-X-Received: by 2002:a17:907:2bf6:b0:6b9:725e:4e1f with SMTP id gv54-20020a1709072bf600b006b9725e4e1fmr2943906ejc.527.1645115256153;
-        Thu, 17 Feb 2022 08:27:36 -0800 (PST)
-Received: from poker.lan (static.2-229-210-222.ip198.fastwebnet.it. [2.229.210.222])
-        by smtp.gmail.com with ESMTPSA id j13sm3653742edw.24.2022.02.17.08.27.34
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=42YgXKsYX5OZqyMF3kRdlVgh0yrlkJ5vHS9c6U9AXD8=;
+        b=uvSwjivzanb29+kwl7fByzsu2bthAzwtX9G0+k6erRNYnedtGile3qSm4dcBaVk02t
+         h3DOJRelgu5E93hFd/lcPQPHXvT9Li/y0R15YTOhuOuUEDXDgsvGVnIIhWp8TDxH/wSJ
+         y86DWQqZ4WzcnBONBx2y76mUjC/htlIWbhjM6G3LrVNzssS8eKwJyF23xClrXtngNDQM
+         SJ0FMnqgb0Rzz3WbuvsoObx+POXSxCpsgqVVcK8QUaepzjyvqxpbVxzIyKsxsNt1KAfj
+         irAEzUFHyogxTfHIEexHj3GMp9kD8UL27TlNceY7emP/mOcMIHUhzFoHSqmciC+HHpuL
+         cwOw==
+X-Gm-Message-State: AOAM532zubg56qQ4v7tw41pHrexG10glqJ1hRksJ5YCctclcPP7HOrDo
+        1RvhSOtOUVw9Oygla+V14w==
+X-Google-Smtp-Source: ABdhPJzblA3h4h2T4K+K98Bdy6EvTCXy87z0Zrx38haaMlOdtIg1+JWX6SDxGNwnl4O1+t+hZSC20A==
+X-Received: by 2002:a05:6e02:2168:b0:2c1:a436:d18c with SMTP id s8-20020a056e02216800b002c1a436d18cmr499762ilv.49.1645116005928;
+        Thu, 17 Feb 2022 08:40:05 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id a19sm2309825iot.35.2022.02.17.08.40.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Feb 2022 08:27:35 -0800 (PST)
-From:   Andrea Merello <andrea.merello@gmail.com>
-To:     jic23@kernel.org, mchehab+huawei@kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     lars@metafoo.de, robh+dt@kernel.org, andy.shevchenko@gmail.com,
-        matt.ranostay@konsulko.com, ardeleanalex@gmail.com,
-        jacopo@jmondi.org, Andrea Merello <andrea.merello@gmail.com>,
-        Andrea Merello <andrea.merello@iit.it>
-Subject: [v3 13/13] docs: iio: add documentation for BNO055 driver
-Date:   Thu, 17 Feb 2022 17:27:10 +0100
-Message-Id: <20220217162710.33615-14-andrea.merello@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220217162710.33615-1-andrea.merello@gmail.com>
-References: <20220217162710.33615-1-andrea.merello@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Thu, 17 Feb 2022 08:40:05 -0800 (PST)
+Received: (nullmailer pid 3365323 invoked by uid 1000);
+        Thu, 17 Feb 2022 16:39:55 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sui Jingfeng <15330273260@189.cn>
+Cc:     Dan Carpenter <dan.carpenter@oracle.com>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        suijingfeng <suijingfeng@loongson.cn>, Li Yi <liyi@loongson.cn>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-mips@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        Zack Rusin <zackr@vmware.com>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Ilia Mirkin <imirkin@alum.mit.edu>
+In-Reply-To: <20220216181712.1493400-3-15330273260@189.cn>
+References: <20220216181712.1493400-1-15330273260@189.cn> <20220216181712.1493400-3-15330273260@189.cn>
+Subject: Re: [PATCH v8 2/3] MIPS: Loongson64: dts: update the display controller device node
+Date:   Thu, 17 Feb 2022 10:39:55 -0600
+Message-Id: <1645115995.354636.3365322.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Andrea Merello <andrea.merello@iit.it>
----
- Documentation/iio/bno055.rst | 53 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
- create mode 100644 Documentation/iio/bno055.rst
+On Thu, 17 Feb 2022 02:17:11 +0800, Sui Jingfeng wrote:
+> From: suijingfeng <suijingfeng@loongson.cn>
+> 
+> The display controller is a pci device, its PCI vendor id is 0x0014
+> its PCI device id is 0x7a06.
+> 
+> 1) In order to let the lsdc kms driver to know which chip the DC is
+>    contained in, we add different compatible for different chip.
+> 
+> 2) Add display controller device node for ls2k1000 SoC
+> 
+> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+> Signed-off-by: Sui Jingfeng <15330273260@189.cn>
+> ---
+>  .../loongson/loongson,display-controller.yaml | 114 ++++++++++++++++++
+>  .../display/loongson/loongson-drm.txt         |  16 +++
+>  .../boot/dts/loongson/loongson64-2k1000.dtsi  |   8 ++
+>  arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +-
+>  4 files changed, 140 insertions(+), 5 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson-drm.txt
+> 
 
-diff --git a/Documentation/iio/bno055.rst b/Documentation/iio/bno055.rst
-new file mode 100644
-index 000000000000..4bb185075325
---- /dev/null
-+++ b/Documentation/iio/bno055.rst
-@@ -0,0 +1,53 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+==============================
-+BNO055 driver
-+==============================
-+
-+1. Overview
-+===========
-+
-+This driver supports Bosch BNO055 IMUs (on both serial and I2C busses).
-+
-+Accelerometer, magnetometer and gyroscope measures are always provided.
-+When "fusion_enable" sysfs attribute is set to 1, orientation (both Euler
-+angles and quaternion), linear velocity and gravity vector are also
-+provided, but some sensor settings (e.g. low pass filtering and range)
-+became locked (the IMU firmware controls them).
-+
-+IIO attributes for unavailable measurements (e.g. Euler angles when fusion
-+mode is disabled) just read zero.
-+
-+This driver supports also IIO buffers.
-+
-+2. Calibration
-+==============
-+
-+The IMU continuously performs an autocalibration procedure if (and only if)
-+operating in fusion mode. The magnetometer autocalibration can however be
-+disabled writing 0 in the sysfs in_magn_calibration_fast_enable attribute.
-+
-+The driver provides access to autocalibration flags (i.e. you can known if
-+the IMU has successfully autocalibrated) and to the calibration data blob.
-+
-+The user can save this blob in a firmware file (i.e. in /lib/firmware) that
-+the driver looks for at probe time. If found, then the IMU is initialized
-+with this calibration data. This saves the user from performing the
-+calibration procedure every time (which consist of moving the IMU in
-+various way).
-+
-+The driver looks for calibration data file using two different names: first
-+a file whose name is suffixed with the IMU unique ID (exposed in sysfs as
-+serial_number) is searched for; this is useful when there is more than one
-+IMU instance. If this file is not found, then a "generic" calibration file
-+is searched for (which can be used when only one IMU is present, without
-+struggling with fancy names, that change on each device).
-+
-+Valid calibration file names would be e.g.
-+ bno055-caldata-0e7c26a33541515120204a35342b04ff.dat
-+ bno055-caldata.dat
-+
-+In non-fusion mode the IIO 'offset' attributes provide access to the
-+offsets from calibration data (if any), so that the user can apply them to
-+the accel, angvel and magn IIO attributes. In fusion mode they are not
-+needed (the IMU firmware internally applies those corrections) and they
-+read as zero.
--- 
-2.17.1
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/display/loongson/loongson,display-controller.yaml#
+Error: Documentation/devicetree/bindings/display/loongson/loongson,display-controller.example.dts:22.30-31 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:378: Documentation/devicetree/bindings/display/loongson/loongson,display-controller.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1398: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1593886
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
