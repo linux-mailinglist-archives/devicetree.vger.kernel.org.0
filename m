@@ -2,83 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2815E4BA339
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 15:42:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ABF34BA360
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 15:44:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241963AbiBQOm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 09:42:29 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37846 "EHLO
+        id S233925AbiBQOoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 09:44:16 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233259AbiBQOmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 09:42:25 -0500
-X-Greylist: delayed 18850 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Feb 2022 06:42:10 PST
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 434091EA710;
-        Thu, 17 Feb 2022 06:42:10 -0800 (PST)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [80.241.60.233])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4JzyG81ts4z9sW9;
-        Thu, 17 Feb 2022 15:42:08 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
-        t=1645108925;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=P3WOWoBkW9fNOW7y5qawru7527uDPIT2KJWNbGZXIZU=;
-        b=P53Xwlqo9K0bhRWOP+bBgy0KgnFYBK1w1Zkli3EzRyysM7MZW+XyvwUSTA5a5O/vRRb+Ku
-        FbPuIcKEAc3VzcVcQ4foatjtxakoO8p2Or+hrvT7J3DygCjFZPuExEx0SriVVTwom0SS1M
-        XaDv+JLw4TjuUCiverfZqCiB/czEjkeoJ6dHxgshRerBSzA5mEubHrnDKD/gL+lDYzpetK
-        /UR2UB2sMSVwT3GmRMqLbdoCcoskUqzip7qONgmz+1+zPQRwkJIJUqe2GyKUYgELAasgQM
-        //iUrNYV2zCFesBLPF6PabFEMdO3CsIjMwSWODy24G87AFlYzC9lo3MxMB2DNw==
-From:   Marcello Sylvester Bauer <sylv@sylv.io>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 1/3] dt-bindings: trivial-devices: Add xdpe11280
-Date:   Thu, 17 Feb 2022 15:41:33 +0100
-Message-Id: <cbef5619ca8bb1edef32532ac22a5803248036ee.1645108566.git.sylv@sylv.io>
-In-Reply-To: <cover.1645108566.git.sylv@sylv.io>
-References: <cover.1645108566.git.sylv@sylv.io>
+        with ESMTP id S235436AbiBQOoQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 09:44:16 -0500
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D200F207FFF
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 06:44:00 -0800 (PST)
+Received: by mail-qk1-x731.google.com with SMTP id j78so190177qke.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 06:44:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=7Dm8/9xh+wmDmQBhMFT43NJgXO5tbOXeBqNcPHzywpk=;
+        b=ZICFIWA9Sbi45aOvx4dcDKut/wdPr6VMVnR4U4cb/kJNSc5ETL1ImhYOA8svydp4va
+         RzN0pqQOm5Dq4JA7d4pON7G9eyLMCXEsZuWHjnT9Fj9mCm+TUeulRj9lF2p9y2RbrWcw
+         Zdpbnbp0nBhk0+kYOrKKXdR396nWX9LG40kL5OO0Sx5HRmFULTOjGINNiVDkIXxd4+xP
+         TOWJ3oYmeQRu60z0DluHgDjZgUZAXTPIUOGK3h/aHozSzMAyMRLTYmepfzaIg3ggnHGr
+         dP2iJfjIiPWmJy73uFUWoYnY+wyUm1t2ktREy2fqVLd/EgvXbdq9nYV+GFUVOklwgQKe
+         rgsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=7Dm8/9xh+wmDmQBhMFT43NJgXO5tbOXeBqNcPHzywpk=;
+        b=QteY2Ao++ybA5bseoW5j1fPFZiyohN/OZzdTA3BmUcXAwFbPmO+NweTbrKflGsPk3U
+         il+XBz/Z2b/7vFQZkoUUUxQheEjcvcqRU5bKcaMa8OoFvv1l/Yd+fFMzuKcZxSqr3e6V
+         hNdIvcJQrSwTh1H4TGxtCq/9h6ps4QTmol9cpjs4zzb35cYtHXUEZIXIgXGQOuPebEl+
+         QFwL+KkHCQN7Sm/rzK/++ZR6w1FqwPMSVehZ+LJ9oQ6bRjgTAoNHp3XjCyA/8c2a5Xk/
+         31QbxuPhe4ymsKALG4jMCSZJ7gWIM8RB8K1VE1BPYmAZMWolqiaNfPGqJ3ODIXOVnRRw
+         TJaQ==
+X-Gm-Message-State: AOAM533ESRZicqOfrc3dFCa3d0A6rKbEH046pn2dI6WSKdxyUYW25RJa
+        y7U4qg2JchzIV34+bZcFITka/w==
+X-Google-Smtp-Source: ABdhPJxLj1ldRMkUKspCf3+BTfjxi/lSWLS/APEjil4eZvdWbgL26ckX1Mt84cdeQha/7dTmRgmWsw==
+X-Received: by 2002:ae9:edc6:0:b0:60c:8807:712f with SMTP id c189-20020ae9edc6000000b0060c8807712fmr1821761qkg.14.1645109039947;
+        Thu, 17 Feb 2022 06:43:59 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
+        by smtp.gmail.com with ESMTPSA id h19sm13099450qtx.12.2022.02.17.06.43.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Feb 2022 06:43:59 -0800 (PST)
+Message-ID: <20a43338009164be793abb9fedd002f2e4c9a293.camel@ndufresne.ca>
+Subject: Re: [PATCH v6, 06/15] media: mtk-vcodec: Refactor get and put
+ capture buffer flow
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Date:   Thu, 17 Feb 2022 09:43:54 -0500
+In-Reply-To: <353328c24f92a0690c8461a9b18c62166b769a40.camel@mediatek.com>
+References: <20220122035316.18179-1-yunfei.dong@mediatek.com>
+         <20220122035316.18179-7-yunfei.dong@mediatek.com>
+         <b07ac9bebb1d2ecef8ddb1426f16f4ff3218a131.camel@ndufresne.ca>
+         <353328c24f92a0690c8461a9b18c62166b769a40.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.3 (3.42.3-1.fc35) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Infineon Multi-phase Digital Controller XDPE11280.
+Le jeudi 17 février 2022 à 17:03 +0800, yunfei.dong@mediatek.com a écrit :
+> > > -	ret = vdec_if_decode(ctx, bs_src, dst_buf, &res_chg);
+> > > +	ret = vdec_if_decode(ctx, bs_src, NULL, &res_chg);
+> > >   	if (ret) {
+> > >   		mtk_v4l2_err(" <===[%d], src_buf[%d] sz=0x%zx pts=%llu
+> > > vdec_if_decode() ret=%d res_chg=%d===>",
+> > >   			     ctx->id, vb2_src->index, bs_src->size,
+> > > @@ -220,12 +266,9 @@ static void mtk_vdec_worker(struct work_struct
+> > > *work)
+> > >   		}
+> > >   	}
+> > >   
+> > > -	mtk_vdec_stateless_set_dst_payload(ctx, dst_buf);
+> > > -
+> > > -	v4l2_m2m_buf_done_and_job_finish(dev->m2m_dev_dec, ctx-
+> > > > m2m_ctx,
+> > > -					 ret ? VB2_BUF_STATE_ERROR :
+> > > VB2_BUF_STATE_DONE);
+> > > -
+> > > +	mtk_vdec_stateless_out_to_done(ctx, bs_src, ret);
+> > 
+> > v4l2_m2m_buf_done_and_job_finish() was specially crafted to prevent
+> > developer
+> > from implementing the signalling of the request at the wrong moment.
+> > This patch
+> > broke this strict ordering. The relevant comment in the helper
+> > function:
+> > 
+> > 
+> As we discussed in chat, please help to check whether it's possible to
+> let lat and core decode in parallel.
 
-Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Thanks, Benjamin is looking into that. For the mailing list here, here's some
+prior art for a similar problem found by downstream RPi4 HEVC driver developer.
+The general problem here is that we don't want to signal the request until the
+decode have complete, yet we want to pick and run second (concurrent job) so
+that parallel decoding is made possible. For RPi4 it is not multi-core, but the
+decoding is split in 2 stages, and the decoder run both stages concurrently,
+which basically means, we need to be able to run two jobs at the same time
+whenever possible.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 091792ba993e..8a42aea3b8a6 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -137,6 +137,8 @@ properties:
-           - infineon,slb9645tt
-             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
-           - infineon,tlv493d-a1b6
-+            # Infineon Multi-phase Digital VR Controller xdpe11280
-+          - infineon,xdpe11280
-             # Infineon Multi-phase Digital VR Controller xdpe12254
-           - infineon,xdpe12254
-             # Infineon Multi-phase Digital VR Controller xdpe12284
--- 
-2.34.1
+https://github.com/raspberrypi/linux/commit/964be1d20e2f1335915a6bf8c82a3199bfddf8ac
+
+This introduce media_request_pin/unpin, but being able to pin a request and not
+have it bound to any other object lifetime anymore seems a bit error prone in
+comparison to the current restrictions. Comments welcome !
+
+> 
+> I will continue to fix h264 issue.
+
+Thanks.
+
+> 
+> Thanks for your help.
+> 
+> Best Regards,
+> Yunfei Dong
 
