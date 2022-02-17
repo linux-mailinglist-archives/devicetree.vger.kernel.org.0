@@ -2,80 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E9024B9C48
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 10:43:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 936AC4B9C50
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 10:45:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230252AbiBQJmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 04:42:07 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47536 "EHLO
+        id S235498AbiBQJpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 04:45:14 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238797AbiBQJmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 04:42:06 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C991704A;
-        Thu, 17 Feb 2022 01:41:48 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id D02991F45872
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645090907;
-        bh=2au26a2pUUKO9XqAr3U0rSJiLwbbAivsU5W+9bDSiT0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=VMCg3wVBo5/cDjYCSAZaXU+iTi1rSSmSg0GY+5dmWH/sPjr7oHhFBuwVl8PwCGvra
-         hZTn0pQzhKE1qe9AsqDiHXfS7TVv6eL9RM2UAMUIdyTjH8uCgsv98EHcCIhLWGhK9C
-         4ybY4grpadFXTBsLr8p7EVNHtISarntW8d+dtEwejEmt8mShJv7rlGXkaO563J/DFc
-         YCZ5+dJDp2nkREk1upnv5ZKIxbEcshWZfvxzBjkySJZ5SMzNxG9jvZ6L6ugHzkscNw
-         u8V8SXn9pb2eOclaBeP/MKK4MvS+7DHa/LJDhN5X3ubQLQKQOCPgx8cbMjpjCd5cQO
-         Nf/iRt2HZgDLQ==
-Message-ID: <f510614b-8e64-52cb-7f7d-5cc07de7d5a6@collabora.com>
-Date:   Thu, 17 Feb 2022 10:41:44 +0100
+        with ESMTP id S232795AbiBQJpO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 04:45:14 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E838417048
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 01:44:59 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6EA2F3F338
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 09:44:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645091098;
+        bh=/6BRQwo9F2YRhb8CCreWYd07yVTpbMqy24rXfG8Cqa0=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=wExrARZiqKQ2l55eNJt6LginpSvSUiNa7sdSc54N+PuLrxRv4v1xMJX0yp/HJmcU7
+         yEWd3NYQ31osq9nV9sP3+0nUjte1g1D0mPiW1pAHmDCDbAQZ2nG4QehwjEqYfddfio
+         dmraQpFTtO11X9f9CUyGOoWRUBxwUufeOWlRBBYADP+S4JeMSgOqB+rkdfN7NiIH8k
+         ibXw3QYI5hWJwBQhUK39eWzcWg6sfToFF6H3EQRbPZfikulXEFBqI/YWJvDLbDo3U8
+         AmD84Di6E0Bc0c4J4sfVAGlARBwf/BS4r+CUMQ75ad90p2V+oJ5cR0sS0pIMe9jRm/
+         gHZkevolbTAXQ==
+Received: by mail-ed1-f69.google.com with SMTP id bq19-20020a056402215300b0040f276105a4so3214096edb.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 01:44:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=/6BRQwo9F2YRhb8CCreWYd07yVTpbMqy24rXfG8Cqa0=;
+        b=cAT3Atwk7uqhv7Tb6QBlFFEph3shgRkxH8hNBIbKEt8HdBRPTq27Xm3Zm8SD3TBXlL
+         1aYfJEVMycYpgQ/8ktJfqr/8EwbLHPZ7VQO6fPeo52UQYuCDjwNFuqFGBIraUy4/xpTk
+         aeuqYL/VKYx3i/c+dbcqlV93IzKuQKOSRUzDSYzqqPmxQJAHrzFUgPZNSWDjjRKLQXlU
+         4FqgZSx6IpAvldesCYYg0TEh0etdnDv0JT/J2Auv86FHD4+KzZBKjr2ujIdOhm1Kqu1I
+         NFg2x5MPLeatt8ypIcHOCih4xqZWp7Ac3XNN1Isrm/E/eJ0b8ORU/+WMrk6rgjwrk5zM
+         +yxA==
+X-Gm-Message-State: AOAM532q24i5sHwhd4jN2GWsbXqFDiByL4KHRQdRI5S5ri+t9gOi6aVA
+        QnXtgR9wroPqiEOYRMjZzwD8uUbpLISW4h2pYWnsurQRNMwi/9ALxoR11B+gkelD/o+k2esui9J
+        Wb684vHGZ+PfEm4w7GM4m4cYXW7LHHC50nMfsFos=
+X-Received: by 2002:a50:fc05:0:b0:408:4d18:5070 with SMTP id i5-20020a50fc05000000b004084d185070mr1687914edr.365.1645091095451;
+        Thu, 17 Feb 2022 01:44:55 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJw4HEhNYvN/1dbYjwwFvdfSqvPJagGu9NoMyYbc/Z0Rqg0vqOwN6P+MvYMdO9RtArG/+LyFyw==
+X-Received: by 2002:a50:fc05:0:b0:408:4d18:5070 with SMTP id i5-20020a50fc05000000b004084d185070mr1687899edr.365.1645091095209;
+        Thu, 17 Feb 2022 01:44:55 -0800 (PST)
+Received: from [192.168.0.110] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id l7sm3171222edb.53.2022.02.17.01.44.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Feb 2022 01:44:54 -0800 (PST)
+Message-ID: <dde7c475-e44f-c464-ee4f-afe9346f16e3@canonical.com>
+Date:   Thu, 17 Feb 2022 10:44:54 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [v6 1/3] dt-bindings: mediatek: convert mtk jpeg decoder/encoder
- to yaml
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] [v1] dt-bindings: watchdog: Add HPE GXP Watchdog timer
+ binding
 Content-Language: en-US
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        yong.wu@mediatek.com
-References: <20211206130425.184420-1-hsinyi@chromium.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20211206130425.184420-1-hsinyi@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     nick.hawkins@hpe.com, verdun@hpe.com
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <nick.hawkins@hpe.com>
+ <20220215184039.41882-1-nick.hawkins@hpe.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220215184039.41882-1-nick.hawkins@hpe.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 06/12/21 14:04, Hsin-Yi Wang ha scritto:
-> Convert mediatek jpeg decoder and encoder bindings to yaml.
+On 15/02/2022 19:40, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
 > 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Tested-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> Description: Creating binding for the GXP watchdog timer to be used in
+>  the device tree. This along with the
+>   dt-bindings: timer: Add HPE GXP Timer binding patch will be used to
+>    create the basic dts and dtsi for GXP.
+> Information: GXP is the name of the HPE SoC.
+>  This SoC is used to implement BMC features of HPE servers
+>   (all ProLiant, Synergy, and many Apollo, and Superdome machines)
+>    It does support many features including:
+>         ARMv7 architecture, and it is based on a Cortex A9 core
+>         Use an AXI bus to which
+>                 a memory controller is attached, as well as
+>                  multiple SPI interfaces to connect boot flash,
+>                  and ROM flash, a 10/100/1000 Mac engine which
+>                  supports SGMII (2 ports) and RMII
+>                 Multiple I2C engines to drive connectivity with a
+> 				 host infrastructure
+>                 A video engine which support VGA and DP, as well as
+>                  an hardware video encoder
+>                 Multiple PCIe ports
+>                 A PECI interface, and LPC eSPI
+>                 Multiple UART for debug purpose, and Virtual UART for
+>                  host connectivity
+>                 A GPIO engine.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+All this commit msg looks irrelevant, obfuscating and duplicating the
+same message.
 
-> ---
-> v5->v6: no change, rebase to latest linux-next
-> ---
->   .../bindings/media/mediatek-jpeg-decoder.txt  | 38 --------
->   .../bindings/media/mediatek-jpeg-decoder.yaml | 89 +++++++++++++++++++
->   .../bindings/media/mediatek-jpeg-encoder.txt  | 35 --------
->   .../bindings/media/mediatek-jpeg-encoder.yaml | 80 +++++++++++++++++
->   4 files changed, 169 insertions(+), 73 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
->   create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
->   delete mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
->   create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
 > 
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> ---
+>  .../bindings/watchdog/hpe,gxp-wdt.yaml        | 37 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml b/Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+> new file mode 100644
+> index 000000000000..6044496b4968
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/hpe,gxp-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HPE GXP Controlled Watchdog
+> +
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
+> +
+> +maintainers:
+> +  - Nick Hawkins <nick.hawkins@hpe.com>
+> +  - Jean-Marie Verdun <verdun@hpe.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: hpe,gxp-wdt
+> +
+> +  reg:
+> +    items:
+> +      - description: WDGRST register
+> +      - description: WDGCS register
+> +
+
+Quite ascetic bindings - no clocks? no power-domains? interrupts?
+
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    watchdog0:  watchdog@c0000090 {
+> +      compatible = "hpe,gxp-wdt";
+> +      reg = <0xc0000090 0x02>, <0xc0000096 0x01>;
+> +    };
+> +
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f41088418aae..8c96f4db900c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8385,6 +8385,12 @@ L:	linux-efi@vger.kernel.org
+>  S:	Maintained
+>  F:	block/partitions/efi.*
+>  
+> +GXP WATCHDOG TIMER
+> +M:	Nick Hawkins <nick.hawkins@hpe.com>
+> +M:	Jean-Marie Verdun <verdun@hpe.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/watchdog/hpe,gxp-wdt.yaml
+
+If you have the same maintainers for each of your drivers, it's actually
+easier to keep them in one entry - HPE GXP ARCHITECTURE. There is little
+benefit in having per-block entries which are the same as your main entry.
+
+Best regards,
+Krzysztof
