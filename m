@@ -2,158 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDBEC4B99E4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 08:35:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BB594B9AC3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 09:19:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236359AbiBQHfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 02:35:22 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:32978 "EHLO
+        id S233511AbiBQITZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 03:19:25 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236332AbiBQHfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 02:35:19 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D7912A22B6;
-        Wed, 16 Feb 2022 23:35:02 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id d27so7374590wrc.6;
-        Wed, 16 Feb 2022 23:35:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=xPL+09khBYV8RItKtpzdQuIqr8WWC0DLKqJPTa3LDKw=;
-        b=po2VcBKQKTamBBBBaXEQhUyyZbCWMQux6CI+7Qrkva5Bj4pzsuE87SAnqEwNj4V1Ga
-         RJOnxqn90soXyp3/xLT5xQMwiyDD+Ve/3Qi9F7SshuX43g1SusUC4tkbcxAs0F4VR8Kz
-         ptxToypmbaHTKb+FOcTgd0i4CWay8lxRZViii5WI0KZjuwSU/o2e1D3BABfh1PLS16IY
-         7Xdxu2sq75ARv1Ys466UjviCKYMW3CHtxLjzIA50bW7Tlv09LW4+96jN4MaeGdyNz+RV
-         v7GV3HLMwrcj4o9wCIFdj4gD2MQlcwhaRbDAA6K8x+J+j2+DxDlzUKzRhlFqlXtxMZ4O
-         Ah/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xPL+09khBYV8RItKtpzdQuIqr8WWC0DLKqJPTa3LDKw=;
-        b=3QeaVOQoVX71X7vL1HB8Yn5Iif+HtRtnH3MU+A2W//ovAvL+kVm61+fE0kfY/ddyI0
-         KQV0B7cuFLB+C19qQzPhsWdqCamZQvgO/CcAtFyxlD8Ym/IA5JbT5wp21tX+3QhD2QgJ
-         H4Aox6ijx2nyb6EPIpvGu1mTpCBIvHaSJFxVLn7nYEHVHKoqKCkmeD4Alc8mvd9bfA3Y
-         oO5tJW5fUeHXxWEYFbGkuVKz/Ol6i79Ba6fTufsP0K5Td70oDw1kdiwbcguDgeaRWcV+
-         4WcYO/3L72cGm858s9WlbaNr548h3QKZCtGUx1bCbtu5NQhySmGfzbafibjxPPfetd9x
-         tgdg==
-X-Gm-Message-State: AOAM533l6PayZteaszCAgj+KbEQhgcaTNRs+CJE4y2K0mh1qBLo6vDMs
-        H+YXZoIoCRTc1ytm79z0EwY=
-X-Google-Smtp-Source: ABdhPJxhGgAhRLb4mOGFtIHKutI5wjGBXoSwwtqIMocgzYakd20/sX20pkYG0oJAAmM5fSBjnhp38w==
-X-Received: by 2002:a5d:5221:0:b0:1d9:2680:5fb with SMTP id i1-20020a5d5221000000b001d9268005fbmr1243143wra.23.1645083300515;
-        Wed, 16 Feb 2022 23:35:00 -0800 (PST)
-Received: from orome (p200300e41f0a6900000000000000043a.dip0.t-ipconnect.de. [2003:e4:1f0a:6900::43a])
-        by smtp.gmail.com with ESMTPSA id ba14sm15366890wrb.56.2022.02.16.23.34.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Feb 2022 23:34:59 -0800 (PST)
-Date:   Thu, 17 Feb 2022 08:34:57 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     broonie@kernel.org, lgirdwood@gmail.com, tiwai@suse.com,
-        perex@perex.cz, robh+dt@kernel.org, jonathanh@nvidia.com,
-        mkumard@nvidia.com, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH v3 2/5] dt-bindings: Add Tegra234 APE support
-Message-ID: <Yg36oUdUiB/H+Ngf@orome>
-References: <1643373476-8538-1-git-send-email-spujar@nvidia.com>
- <1643373476-8538-3-git-send-email-spujar@nvidia.com>
+        with ESMTP id S237434AbiBQITX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 03:19:23 -0500
+X-Greylist: delayed 2131 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Feb 2022 00:19:08 PST
+Received: from 11.mo550.mail-out.ovh.net (11.mo550.mail-out.ovh.net [188.165.48.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AEB4297226
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 00:19:08 -0800 (PST)
+Received: from player157.ha.ovh.net (unknown [10.109.146.1])
+        by mo550.mail-out.ovh.net (Postfix) with ESMTP id 13C3623A4B
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 07:43:36 +0000 (UTC)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player157.ha.ovh.net (Postfix) with ESMTPSA id B93F9278408AA;
+        Thu, 17 Feb 2022 07:43:24 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-101G0043059cd4e-4bc9-4526-8836-aad3687309fe,
+                    6571130906B249472519E689D0E5D89D5D0951FF) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Message-ID: <3be13bc2-f8b1-193b-9a36-92d4336d9d28@milecki.pl>
+Date:   Thu, 17 Feb 2022 08:43:23 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Bq7R2hPdkx7Mharn"
-Content-Disposition: inline
-In-Reply-To: <1643373476-8538-3-git-send-email-spujar@nvidia.com>
-User-Agent: Mutt/2.2 (7160e05a) (2022-02-12)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH] dt-bindings: mtd: partitions: convert Broadcom's TRX to
+ the json-schema
+To:     Rob Herring <robh@kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-mtd@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>
+References: <20220216104126.31284-1-zajec5@gmail.com>
+ <1645070363.930966.2266015.nullmailer@robh.at.kernel.org>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+In-Reply-To: <1645070363.930966.2266015.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 18205520019237874606
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrjeejgddutdelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjeetledugeejtdevheetieduhefgtedvgefftddvfedvieevjeegleffleegtdeunecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrudehjedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
---Bq7R2hPdkx7Mharn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 17.02.2022 04:59, Rob Herring wrote:
+> On Wed, 16 Feb 2022 11:41:26 +0100, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> This helps validating DTS files.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+>>   .../bindings/mtd/partitions/brcm,trx.txt      | 42 ---------------
+>>   .../bindings/mtd/partitions/brcm,trx.yaml     | 51 +++++++++++++++++++
+>>   2 files changed, 51 insertions(+), 42 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/brcm,trx.txt
+>>   create mode 100644 Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/linksys,ns-partitions.example.dt.yaml: partition@200000: compatible:0: 'brcm,trx' was expected
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/linksys,ns-partitions.example.dt.yaml: partition@200000: compatible: ['linksys,ns-firmware', 'brcm,trx'] is too long
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/brcm,trx.yaml
 
-On Fri, Jan 28, 2022 at 06:07:53PM +0530, Sameer Pujar wrote:
-> Add clocks, power-domain and memory bindings to support APE subsystem
-> on Tegra234.
->=20
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> ---
->  include/dt-bindings/clock/tegra234-clock.h     | 74 ++++++++++++++++++++=
-+++++-
->  include/dt-bindings/memory/tegra234-mc.h       |  7 +++
->  include/dt-bindings/power/tegra234-powergate.h |  9 ++++
->  3 files changed, 89 insertions(+), 1 deletion(-)
->  create mode 100644 include/dt-bindings/power/tegra234-powergate.h
-[...]
-> diff --git a/include/dt-bindings/memory/tegra234-mc.h b/include/dt-bindin=
-gs/memory/tegra234-mc.h
-> index 2662f70..444e62d 100644
-> --- a/include/dt-bindings/memory/tegra234-mc.h
-> +++ b/include/dt-bindings/memory/tegra234-mc.h
-> @@ -1,4 +1,5 @@
->  /* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +/* Copyright (c) 2018-2022, NVIDIA CORPORATION. All rights reserved. */
-> =20
->  #ifndef DT_BINDINGS_MEMORY_TEGRA234_MC_H
->  #define DT_BINDINGS_MEMORY_TEGRA234_MC_H
-> @@ -7,6 +8,8 @@
->  #define TEGRA234_SID_INVALID		0x00
->  #define TEGRA234_SID_PASSTHROUGH	0x7f
-> =20
-> +/* NISO0 stream IDs */
-> +#define TEGRA234_SID_APE	0x02
-> =20
->  /* NISO1 stream IDs */
->  #define TEGRA234_SID_SDMMC4	0x02
-> @@ -20,6 +23,10 @@
->  #define TEGRA234_MEMORY_CLIENT_SDMMCRAB 0x63
->  /* sdmmcd memory write client */
->  #define TEGRA234_MEMORY_CLIENT_SDMMCWAB 0x67
-> +/* Audio Processing (APE) engine read clients */
-> +#define TEGRA234_MEMORY_CLIENT_APER 0x7a
-> +/* Audio Processing (APE) engine write clients */
-> +#define TEGRA234_MEMORY_CLIENT_APEW 0x7b
->  /* BPMP read client */
->  #define TEGRA234_MEMORY_CLIENT_BPMPR 0x93
->  /* BPMP write client */
+could you advise the best way to solve that?
 
-This usually needs to be accompanied by a corresponding addition to the
-memory controller driver. Unfortunately it seems like the changes
-targetted at v5.17-rc1 never made it upstream, so I've queued them up
-again for v5.18-rc1. They should show up in today's linux-next. When
-they do, can you please follow up with a patch to the memory controller
-driver that adds the various registers for these clients?
 
-Thanks,
-Thierry
+1. compatible = "brcm,trx";
 
---Bq7R2hPdkx7Mharn
-Content-Type: application/pgp-signature; name="signature.asc"
+Most Broadcom 47xx devices have one firmware partition using TRX format.
+So we want something like:
 
------BEGIN PGP SIGNATURE-----
+partition@200000 {
+         compatible = "brcm,trx";
+         label = "firmware";
+         reg = <0x200000 0xf00000>;
+};
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmIN+p4ACgkQ3SOs138+
-s6HXzg/+Pt32PqWtDsespPZuvsrN9+Q2VO1sd3mIrkZIHBZFTPHrIEo0LSpJFuwB
-4cjq/re93NRotAh3oOc9UbEhXLCq7sGMpUqFMiwvASLqLOJ+O1EJnokqyqrxXXlm
-T407gBsg/+95avKFbgoOCC+D+5nK48HziZL1BLyFBj2jRbkFH08uPcHRWcj25kPh
-ANh1sejoM+GIa7t6dARwh0jX5QdZCErIM7jCL2uHKH5dJawCclfNNv1qsMTqIol/
-F17NEcLjtC3XrZ00JB6akE2r8iLdga0PO8QyE8c1REWTvwD3KFqkKorw9Tup5/u/
-i0JzJi0dsf6yTT/IAPjMUOU2HlEmmbgHWkvBw4MaLJYlefq5/XQQgEXpcKYcPo0Y
-y1C9XWyNfRbdn8yM6JLP5LHo8UdvNV1mZFZf+LMoQ3VbIcl9sbPRgvP7Sc8LoT61
-1tDmq3yW9ViRj9XHdvlhDGt2yipDTEG9LLn6XwpxcOpWHAa/UuSLtEzF362YLvZ9
-mZXAewuzIGWzOHxKT9h3F8rSr6J8Ep8pS2M4i1YyQwIS+CWhIdL5Q6OdU0QS6aaO
-po2J0PR8FQ1PZaLnikMHz1/potg/8+SzmKrUI3HuJSNa2ImpDdU8+msJJLtimjLh
-4U6UwCfQXuGhttj/rv3S4F/TTBlFhXV00TY2J6Ow4AAZ1R36raM=
-=udsN
------END PGP SIGNATURE-----
 
---Bq7R2hPdkx7Mharn--
+2. compatible = "linksys,ns-firmware", "brcm,trx";
+
+Linksys has two firmware partitions and operating system has to choose
+the right one to proceed with (to parse for kernel & rootfs). They still
+use TRX format though. So we want something like:
+
+partition@200000 {
+         compatible = "linksys,ns-firmware", "brcm,trx";
+         reg = <0x200000 0xf00000>;
+};
+
+partition@1100000 {
+         compatible = "linksys,ns-firmware", "brcm,trx";
+         reg = <0x1100000 0xf00000>;
+};
+
+
+I thought of moving "linksys,ns-firmware" documentation to the
+brcm,trx.yaml but its part of the compatible = "linksys,ns-partitions";
+(parent node) so it doesn't fit there well.
