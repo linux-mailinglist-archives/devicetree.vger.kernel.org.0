@@ -2,65 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45D7A4BABC7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 22:35:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A7364BABE8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 22:39:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245570AbiBQVfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 16:35:15 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58624 "EHLO
+        id S239727AbiBQVjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 16:39:23 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234005AbiBQVfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 16:35:15 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03BB914CDBD;
-        Thu, 17 Feb 2022 13:35:00 -0800 (PST)
+        with ESMTP id S229755AbiBQVjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 16:39:22 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEEE1C2E75;
+        Thu, 17 Feb 2022 13:39:07 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A65B9B82522;
-        Thu, 17 Feb 2022 21:34:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ECF9C340F6;
-        Thu, 17 Feb 2022 21:34:57 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 55E26B8248E;
+        Thu, 17 Feb 2022 21:39:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ADF6C36AE2;
+        Thu, 17 Feb 2022 21:39:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645133697;
-        bh=9ZKFzvuxqGDuxePE3PZ3oKNhPCfiECwJr72AD11sbFY=;
+        s=k20201202; t=1645133945;
+        bh=cSPYXK1JW5UK6sE5McEoYlfjZ/NZ0FAAfdbIUE9k830=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=H2/fEdiI7Xhi3piBuQ1VTw64c6U5/tW4+8NghSs8QoRfCd32mX+hMXVnGH7+m7miF
-         UBIW3S3nGRbCJpw6eDMS7Y49iT/GBxXVwUoyXTK+WwBgxCfI9yDTc+5aTXj37mha/z
-         ZXrUYJ1esod7SXOHSit3YqX+2XV9T9nishJomHWbpRWWyA55Vkv+Q5zU9YUzOvoZ6A
-         NIzghDpjVjdp0QOnqpIGVcw+y8u5x2vqEp9OiP8B55Bor+DQliSFrSnDg/dLCxMWwF
-         hBjrJhKSlTFWjO1nG0lCEt/KtxfdCuq59nR91V3MN7onnRvRHVq9o/TzXRu+5uPy/U
-         tjP8H0nCwuauA==
-Received: by mail-ed1-f49.google.com with SMTP id q17so12051957edd.4;
-        Thu, 17 Feb 2022 13:34:57 -0800 (PST)
-X-Gm-Message-State: AOAM532LT3Nj3p7epuhwd33IOmnBaS7jjgfLWa5xTdFNicRSAw3WDcFG
-        4D6bL63cPwNohqZ/5adKHZOc46p2k4Pyew2PAQ==
-X-Google-Smtp-Source: ABdhPJwMwWaIqmzsA7pkOHfJvLLdy1aqNJdJJazYozh0+S0QqJEe9bX4ggabJGlocMvwwqLVXTQQV+g6qFWIIF9KPxo=
-X-Received: by 2002:a05:6402:278b:b0:412:80a5:6cb3 with SMTP id
- b11-20020a056402278b00b0041280a56cb3mr4864452ede.157.1645133695579; Thu, 17
- Feb 2022 13:34:55 -0800 (PST)
+        b=pAQWn4Peh7EqlXhkYcEfu2RCqsRvgYztaVYRebyg8WU/zZb8UbfTofV6yzUTSHQ6U
+         EXZUco6QHD9omCg+m/OeMBQ447BEAzYpx7PTyoYz5BUpVqvEdv4SgZPDzBMSsxEcC/
+         hHuGBmqKS6mlToqzpJhXxobL5fveSEL6CaXdetkWoS8+u3v0eD4S+ayGqSKnePtWQ0
+         H+1vJUYl7zHSWbLZh8JcuSSUbfWVYRZwFZOv0h9Yia3FrvyfLpHGDxQY1pT/zI0t5F
+         S4J+GiEU6wS279URzi/KiumL4If4qIIYV6dLFQHZMOEXyhWe3FlOFVkxgD+mHiE2Ol
+         f2VVuIX6hFw9g==
+Received: by mail-ej1-f45.google.com with SMTP id a23so10360402eju.3;
+        Thu, 17 Feb 2022 13:39:04 -0800 (PST)
+X-Gm-Message-State: AOAM532X8XJXOzO4Pz9CIeHNlw8iiff2ZapDxGuzGyLWDU2d4u1xe0F4
+        PbttIQgnJXSCFcfYVJoyJ5Bot7ntCQejxQZTzg==
+X-Google-Smtp-Source: ABdhPJxlrvsn0M9oD3a/hsk9VOmrl1n2EhdiqnAbIxgbtJltj4GV/17YOEggdpjFx6SRI36nR53yiVeqeV8PQLPYwjU=
+X-Received: by 2002:a17:906:960c:b0:6cf:cd37:658c with SMTP id
+ s12-20020a170906960c00b006cfcd37658cmr4049578ejx.325.1645133943296; Thu, 17
+ Feb 2022 13:39:03 -0800 (PST)
 MIME-Version: 1.0
-References: <20220217131234.50328-1-cristian.marussi@arm.com> <20220217131234.50328-5-cristian.marussi@arm.com>
-In-Reply-To: <20220217131234.50328-5-cristian.marussi@arm.com>
+References: <b8a94fbfcab68b1279b09b6297099310c209927b.1644198244.git.lhjeff911@gmail.com>
+In-Reply-To: <b8a94fbfcab68b1279b09b6297099310c209927b.1644198244.git.lhjeff911@gmail.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 17 Feb 2022 15:34:44 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+JrLtXUoG10O3kcwYNEbzXXYn0HBLsSfm9R+qLajneeA@mail.gmail.com>
-Message-ID: <CAL_Jsq+JrLtXUoG10O3kcwYNEbzXXYn0HBLsSfm9R+qLajneeA@mail.gmail.com>
-Subject: Re: [PATCH v5 4/8] dt-bindings: firmware: arm,scmi: Add
- atomic-threshold-us optional property
-To:     Cristian Marussi <cristian.marussi@arm.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        souvik.chakravarty@arm.com,
-        Peter Hilber <peter.hilber@opensynergy.com>,
-        Igor Skalkin <igor.skalkin@opensynergy.com>,
-        devicetree@vger.kernel.org
+Date:   Thu, 17 Feb 2022 15:38:52 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJO=4A5f_26KNcoMWJj3YWxd=qnwE7V90MUCW9muYtH1g@mail.gmail.com>
+Message-ID: <CAL_JsqJO=4A5f_26KNcoMWJj3YWxd=qnwE7V90MUCW9muYtH1g@mail.gmail.com>
+Subject: Re: [PATCH next] dt-bindings:spi: Fix test error for sp7021.
+To:     Li-hao Kuo <lhjeff911@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        "LH.Kuo" <lh.kuo@sunplus.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -72,47 +65,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 17, 2022 at 7:13 AM Cristian Marussi
-<cristian.marussi@arm.com> wrote:
+On Sun, Feb 6, 2022 at 7:46 PM Li-hao Kuo <lhjeff911@gmail.com> wrote:
 >
-> SCMI protocols in the platform can optionally signal to the OSPM agent
-> the expected execution latency for a specific resource/operation pair.
+> Remove the include path and modify parameters for fix error for bt binding test
 >
-> Introduce an SCMI system wide optional property to describe a global time
-> threshold which can be configured on a per-platform base to determine the
-> opportunity, or not, for an SCMI command advertised to have a higher
-> latency than the threshold, to be considered for atomic operations:
-> high-latency SCMI synchronous commands should be preferably issued in the
-> usual non-atomic mode.
->
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+> Fixes: a708078eeb99  ("spi: Add Sunplus SP7021 schema")
+> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
 > ---
-> v4 --> v5:
-> - fixed example and removed dtschema warnings/errors :
->   arm,scmi.yaml: properties:atomic-threshold-us:
->         '$ref' should not be valid under {'const': '$ref'}
+>  Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
 
-Seems an old version got picked up for linux-next:
+Unfortunately, this fix exposes another issue:
 
-/builds/robherring/linux-dt/Documentation/devicetree/bindings/firmware/arm,scmi.yaml:
-properties:atomic-threshold-us: '$ref' should not be valid under
-{'const': '$ref'}
-hint: Standard unit suffix properties don't need a type $ref
-from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt/Documentation/devicetree/bindings/firmware/arm,scmi.yaml:
-ignoring, error in schema: properties: atomic-threshold-us
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.example.dt.yaml:
+spi@9C002D80: 'clocks-names' is a required property
+From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
 
-> - added default: 0 clause
-> v3 --> v4
-> - renamed property to atomic-threshold-us
-> v1 --> v2
-> - rephrased the property description
-> ---
->  .../devicetree/bindings/firmware/arm,scmi.yaml         | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+Please test your stuff!
 
-For this version:
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Rob
