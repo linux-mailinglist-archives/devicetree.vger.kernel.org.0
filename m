@@ -2,68 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E93BA4BA061
-	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 13:52:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BF6B4BA085
+	for <lists+devicetree@lfdr.de>; Thu, 17 Feb 2022 14:01:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240553AbiBQMwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 07:52:19 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59120 "EHLO
+        id S230271AbiBQNBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 08:01:33 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240554AbiBQMwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 07:52:18 -0500
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DF9711A30;
-        Thu, 17 Feb 2022 04:52:03 -0800 (PST)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21HCNFEV030051;
-        Thu, 17 Feb 2022 06:51:52 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=PODMain02222019;
- bh=hbRL+GXRFDweLRaYt0Z5YOa4T9eSAOcGOHkpzVK4Cn4=;
- b=Isa/yu2W8XnNGKd+4kFtY2O7KAfNckBrerQ+EWIDJTc8NfO7sIgvTUjrO3lUQTNFPKL9
- P5wKX8+ECBmE9L+a/ZcNhv0hQdNK/I/xK/69zOkxXI1BWj+xHB3EK9PutC835YRqj6OO
- RUevkZAWVNeqT4fuuTW//FItD7Q/4v8stE/Vosw+JViyX/RvSKxJyKx7FO84AeFrU4lE
- DbU7t59cHeeVqu7NhCFGbffUvRhwpkTLuxVKtmtRKicL3W52GKrM8B1C7k1tc7bpODdP
- 0KT/R2Ydc1VCd/1OeGDcSqX/o/u9/UlPjPdwxiORA2dsDvszToWPogFoIk+SXGFzXS0w tA== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3e8nyda699-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Thu, 17 Feb 2022 06:51:52 -0600
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 17 Feb
- 2022 12:51:51 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
- Transport; Thu, 17 Feb 2022 12:51:51 +0000
-Received: from [10.0.2.15] (AUSNPC0LSNW1.ad.cirrus.com [198.61.64.199])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id AE88146B;
-        Thu, 17 Feb 2022 12:51:50 +0000 (UTC)
-Subject: Re: [PATCH 2/2] ASoC: audio_graph_card2: Add support for variable
- slot widths
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <patches@opensource.cirrus.com>, <linux-kernel@vger.kernel.org>,
-        <robh+dt@kernel.org>, <broonie@kernel.org>
-References: <20220216171408.265605-1-rf@opensource.cirrus.com>
- <20220216171408.265605-3-rf@opensource.cirrus.com>
- <87a6eq49yq.wl-kuninori.morimoto.gx@renesas.com>
-From:   Richard Fitzgerald <rf@opensource.cirrus.com>
-Message-ID: <0ba5f63c-44a4-1949-60dd-f5debd706caa@opensource.cirrus.com>
-Date:   Thu, 17 Feb 2022 12:51:50 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S230093AbiBQNBc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 08:01:32 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB9A2284212;
+        Thu, 17 Feb 2022 05:01:17 -0800 (PST)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21H8Zf8e030645;
+        Thu, 17 Feb 2022 14:00:34 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=bhcz2SL/OhIaWwGW8NTZlL5jRPSdDOHNIjAM7cbOK4A=;
+ b=QHcfZeBExAc57IHbvuBQmZsCFHSwq6cPvWhrxOsUWlam1/M2J/qu+EiznLHO36g0RXvm
+ UErgjsApgGVetf8qOmnGyONej+o7Uvf44iVrZ5hdSPkWtl5rXaHCJOIy944wrrBJkZh6
+ x/EYmuPLMLtyAUdlE2R8gIZauXKnx405TQyb1hQA6XSkj9AtoruX3UQHDyJ+R6KprjIm
+ Gai9rok/OCQ8KW907x4n0vuG8sOoMfwayO7p53Dcfyw2o9Er97DxXabUhHpAhEunoTk3
+ B8IHyqUGp4Dcu7/DliTMYhcDDz9gTZT9FbkagCmBtBd1qfRrC+7q+npq68caAwtidmz/ xw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3e9k069hkc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 17 Feb 2022 14:00:34 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A4228100034;
+        Thu, 17 Feb 2022 14:00:31 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 92D1821ED57;
+        Thu, 17 Feb 2022 14:00:31 +0100 (CET)
+Received: from [10.48.0.175] (10.75.127.49) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 17 Feb
+ 2022 14:00:31 +0100
+Message-ID: <f601db90-4239-8b14-e8a5-e1f7c10c1e9f@foss.st.com>
+Date:   Thu, 17 Feb 2022 14:00:30 +0100
 MIME-Version: 1.0
-In-Reply-To: <87a6eq49yq.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 3/4] nvmem: core: Fix a conflict between MTD and NVMEM
+ on wp-gpios property
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: COEC_n5rfu52TJYRPUMDIj3hJP3bf618
-X-Proofpoint-ORIG-GUID: COEC_n5rfu52TJYRPUMDIj3hJP3bf618
-X-Proofpoint-Spam-Reason: safe
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+        <robh+dt@kernel.org>
+CC:     <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, <chenshumin86@sina.com>
+References: <20220131095755.8981-1-christophe.kerello@foss.st.com>
+ <20220131095755.8981-4-christophe.kerello@foss.st.com>
+ <1bd281d8-a576-26dc-79c3-b1a72a4a9691@linaro.org>
+From:   Christophe Kerello <christophe.kerello@foss.st.com>
+In-Reply-To: <1bd281d8-a576-26dc-79c3-b1a72a4a9691@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-17_04,2022-02-17_01,2021-12-02_01
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,58 +76,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/02/2022 00:23, Kuninori Morimoto wrote:
-> 
-> Hi Richard
-> 
-> Thank you for your patch.
-> One comment from me.
-> 
->>   struct asoc_simple_dai {
->>   	const char *name;
->>   	unsigned int sysclk;
->> @@ -26,6 +31,9 @@ struct asoc_simple_dai {
->>   	unsigned int rx_slot_mask;
->>   	struct clk *clk;
->>   	bool clk_fixed;
->> +	struct asoc_simple_tdm_width_map *tdm_width_map;
->> +	int n_tdm_widths;
->> +	struct snd_soc_dai *dai;
->>   };
-> (snip)
+Hi Srinivas,
 
-(snip)
+On 2/17/22 12:01, Srinivas Kandagatla wrote:
+> 
+> 
+> On 31/01/2022 09:57, Christophe Kerello wrote:
+>> Wp-gpios property can be used on NVMEM nodes and the same property can
+>> be also used on MTD NAND nodes. In case of the wp-gpios property is
+>> defined at NAND level node, the GPIO management is done at NAND driver
+>> level. Write protect is disabled when the driver is probed or resumed
+>> and is enabled when the driver is released or suspended.
+>>
+>> When no partitions are defined in the NAND DT node, then the NAND DT node
+>> will be passed to NVMEM framework. If wp-gpios property is defined in
+>> this node, the GPIO resource is taken twice and the NAND controller
+>> driver fails to probe.
+>>
+>> It would be possible to set config->wp_gpio at MTD level before calling
+>> nvmem_register function but NVMEM framework will toggle this GPIO on
+>> each write when this GPIO should only be controlled at NAND level driver
+>> to ensure that the Write Protect has not been enabled.
+>>
+>> A way to fix this conflict is to add a new boolean flag in nvmem_config
+>> named skip_wp_gpio. In case skip_wp_gpio is set, the GPIO resource will
+>> be managed by the provider.
+>>
+>> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
+>> ---
+>> Changes in v2:
+>>   - rework the proposal done to fix a conflict between MTD and NVMEM on
+>>     wp-gpios property.
+>>
+>>   drivers/nvmem/core.c           | 2 +-
+>>   include/linux/nvmem-provider.h | 4 +++-
+>>   2 files changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+>> index 23a38dcf0fc4..cb40dca6a51d 100644
+>> --- a/drivers/nvmem/core.c
+>> +++ b/drivers/nvmem/core.c
+>> @@ -771,7 +771,7 @@ struct nvmem_device *nvmem_register(const struct 
+>> nvmem_config *config)
+>>       if (config->wp_gpio)
+>>           nvmem->wp_gpio = config->wp_gpio;
+>> -    else
+>> +    else if (!config->skip_wp_gpio)
+>>           nvmem->wp_gpio = gpiod_get_optional(config->dev, "wp",
+>>                               GPIOD_OUT_HIGH);
+>>       if (IS_ERR(nvmem->wp_gpio)) {
+>> diff --git a/include/linux/nvmem-provider.h 
+>> b/include/linux/nvmem-provider.h
+>> index 98efb7b5660d..4b480023c265 100644
+>> --- a/include/linux/nvmem-provider.h
+>> +++ b/include/linux/nvmem-provider.h
+>> @@ -70,7 +70,8 @@ struct nvmem_keepout {
+>>    * @word_size:    Minimum read/write access granularity.
+>>    * @stride:    Minimum read/write access stride.
+>>    * @priv:    User context passed to read/write callbacks.
+>> - * @wp-gpio:   Write protect pin
+>> + * @wp-gpio:    Write protect pin
+>> + * @skip_wp_gpio: Write Protect pin is managed by the provider.
+> 
+> Can we rename this to ingore_wp as suggested by Miquel.
+> 
 
-> (snip)
->> @@ -386,6 +479,8 @@ static int asoc_simple_init_dai(struct snd_soc_dai *dai,
->>   	if (!simple_dai)
->>   		return 0;
->>   
->> +	simple_dai->dai = dai;
-> 
-> Indeed the relationship between asoc_simple_dai and snd_soc_dai are
-> very mystery, and current utils is using confusable naming.
-> We want to have some better solution about there.
-> 
-> Having snd_soc_dai pointer inside asoc_simple_dai itself is not bad idea.
-> But we can get snd_soc_dai pointer without it.
-> 
-> Please check asoc_simple_dai_init().
-> Not tested, but we can replace the code like this ?
-> 
-> =>	struct snd_soc_dai *dai;
-> 
-> 	for_each_prop_dai_codec(props, i, pdai) {
-> =>		dai = asoc_rtd_to_codec(rtd, i);
-> 		ret = asoc_simple_set_tdm(dai, pdai, params);
-> 		if (ret < 0)
-> 			return ret;
-> 	}
-> 
-> 
-I first thought about doing it like that. But I was not sure whether it
-is safe to assume [i] is the same entry for both arrays. If it is ok,
-then I can use that and do not need to add the snd_soc_dai * to struct
-asoc_simple_dai.
+OK, It will be part of v3.
 
-I will look at this and send a V2 set if it is ok.
+Regards,
+Christophe Kerello.
+
+> --srini
+> 
+>>    *
+>>    * Note: A default "nvmem<id>" name will be assigned to the device if
+>>    * no name is specified in its configuration. In such case "<id>" is
+>> @@ -92,6 +93,7 @@ struct nvmem_config {
+>>       enum nvmem_type        type;
+>>       bool            read_only;
+>>       bool            root_only;
+>> +    bool            skip_wp_gpio;
+>>       struct device_node    *of_node;
+>>       bool            no_of_node;
+>>       nvmem_reg_read_t    reg_read;
