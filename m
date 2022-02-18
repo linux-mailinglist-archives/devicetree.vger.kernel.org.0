@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E307B4BBB7C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 15:58:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 225BE4BBB6A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 15:58:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236439AbiBRO5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 09:57:49 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50504 "EHLO
+        id S236403AbiBRO5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 09:57:45 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236658AbiBRO50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 09:57:26 -0500
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C7C17A93
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 06:56:36 -0800 (PST)
-Received: by mail-wm1-x343.google.com with SMTP id d14-20020a05600c34ce00b0037bf4d14dc7so6587743wmq.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 06:56:36 -0800 (PST)
+        with ESMTP id S236677AbiBRO51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 09:57:27 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF57211A19
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 06:56:38 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id n8so5405069wms.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 06:56:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=dyf8Lgz3CGRP90NmEMFSmZ4sowvuSJF2fJjaNq/1oHo=;
-        b=3+Bgb08C7VBTeMDKtyxnSNW4MTo/FoqcRvsKM9o7sBdCQrffwQDuUiUHTeQiT0zV7D
-         SdsU02OPg8z0wKAdUnpsdvJ13iRHqFyB4izp0ejqW1Cdh1393CxCWGgE7YWJpQU1tFSL
-         wpllP/eMvXlWGjt3TU52UJa9wfTMMFy4hZSgNC0wegAkbURh+udXbuodP36LyGD+QK4v
-         cAOEYI8S33XeahoHUhCfEHNkcXL+subtTrgzrEdW5EDOewi2aKibwAe9AZcXEzL8Vuc0
-         EdWur2NsIb5dKx4Mt/a6LxePfco6A7jeJJp9M/u5c6aSJ394dGN4BGOe6EHp+XFjnRRa
-         G4bw==
+        bh=ShbwZ80LmFKnV7XTCTWddvBgAcwyS+Rlr/cQnWDh+r8=;
+        b=TlvVaSawjag5QcCFrxOeydzjezBCwYA71bAh5NjNpv3SHN6mqttytcIZ1ZgpBwKBhm
+         rfezW9xKGlKKy1maOF0q0bZ8eb7bdAdt3KImIxdsP4RGbc6xusqEay/AvTrvAJqQFXG2
+         dFIYcwHJUnJKRK5mHz9wwLo7pz8tFPX24yMCFluQA8LhYto3jG+pxfhSE4BHc4ydSuYQ
+         FWjcKhv99vqLAw5J5Ij9ED2zWsNF0alEUiHfeRsqnM9UnQlIlw1hoP080u7AuNamg0Nc
+         /cGm5OlLFhP3l+rDTAT9YHDNeOe/jnE801jLgnj8e3a6tQD+NefNHPIkBSjT29J3iuSe
+         Lsxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=dyf8Lgz3CGRP90NmEMFSmZ4sowvuSJF2fJjaNq/1oHo=;
-        b=hYZ7qvLEgmOOG2AeGleHSoC4rpYBYr8qlur3RXXOhQKnHlGnjrpQkvTspmnoM3UYAd
-         Elv2fuKHxnJ84YPsWsVP2wWbjPFOI9TXOmf0XWfBc2TDaLO5Uv3/gMN8Kt49toFYeFXq
-         +DyrBl1e8E3MV04hGqw8a9c3rhe44FvDwjsYM9sDD5XUouEiwiVtnfz1+Wsqdepa1OZq
-         JldpiO3GnoFR0pmZfAxuKcfbdj165LKQ8Ub+nC5GuV0uhsmF/SaTw06h9vBmxBKmTp+1
-         qHHyGDWSPgYcioazjXvfamiPiRFVAh1H0LL/ydezV3StSnEFN0C/X/2AguYWwFt3hRCm
-         ZD7g==
-X-Gm-Message-State: AOAM5310v/H5WaZvY0FIGzf+UHDZQvGDo9Ti4/u2+hWhP73fG7w2ZKbW
-        sutxhlj+MBdPTDuMT76BhR1tiQ==
-X-Google-Smtp-Source: ABdhPJx6rXykt2bBihoV1EGcUO8vEHbX7rmGjB/O/cyCDfQdLOoG+5xvSnvWdYVaVgsxH15CXqrdFw==
-X-Received: by 2002:a05:600c:3b1d:b0:37c:2d38:945e with SMTP id m29-20020a05600c3b1d00b0037c2d38945emr11411054wms.60.1645196194799;
-        Fri, 18 Feb 2022 06:56:34 -0800 (PST)
+        bh=ShbwZ80LmFKnV7XTCTWddvBgAcwyS+Rlr/cQnWDh+r8=;
+        b=Kd8lf+avKRiNQt2gS6Vl1uja08lYV8NvSPUDAY4pXK57r45l3fHMurqqQsDiiBQPeR
+         4EQtbMqvH6lJK8dp1EICRjx2snM7zbsi2YdHMri8tW8tZkSW3Pifw/Ywh44B4FARoykh
+         Z6SV+NoelvoDozOypikrrFWeNYcwPbM1nO9SjL/NPoAQmCOnDaPf7ZOTq4INdfJG2r21
+         +QXGjuN4zvpoMIcDCgkWZR3K43X7Dp/3cWfD9b7teaWGxavDJvaAXnOgf2qVCwne0gN5
+         82S7cvIDSh017V3lkUAlb3H1oianYgD7qS3axFsxSOWCK0Wr2F8LeobxL08gq9ljzjdD
+         ng/A==
+X-Gm-Message-State: AOAM533OQnNRd5V+bLSonOP8U3FkCXaujo99t93El/p+6XWvSxP9bJzH
+        Rx1oFyIDveIp9kbcN/e7eGuONA==
+X-Google-Smtp-Source: ABdhPJxQb+ScIrjd3rfZdwkrYFFMK8Y51NEi9X9M09wLIOSbidtouCx2ztOxoRTCWFl9dttaBKNF5w==
+X-Received: by 2002:a1c:4408:0:b0:37b:c7f0:a36e with SMTP id r8-20020a1c4408000000b0037bc7f0a36emr7420230wma.186.1645196196839;
+        Fri, 18 Feb 2022 06:56:36 -0800 (PST)
 Received: from localhost.localdomain (2a02-8440-6241-3b28-3074-96af-9642-0002.rev.sfr.net. [2a02:8440:6241:3b28:3074:96af:9642:2])
-        by smtp.gmail.com with ESMTPSA id b10sm47431454wrd.8.2022.02.18.06.56.32
+        by smtp.gmail.com with ESMTPSA id b10sm47431454wrd.8.2022.02.18.06.56.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Feb 2022 06:56:34 -0800 (PST)
+        Fri, 18 Feb 2022 06:56:36 -0800 (PST)
 From:   Guillaume Ranquet <granquet@baylibre.com>
 To:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
         daniel@ffwll.ch, robh+dt@kernel.org,
@@ -59,9 +59,9 @@ Cc:     dri-devel@lists.freedesktop.org,
         linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
-Subject: [PATCH v8 17/19] drm/mediatek: add hpd debounce
-Date:   Fri, 18 Feb 2022 15:54:35 +0100
-Message-Id: <20220218145437.18563-18-granquet@baylibre.com>
+Subject: [PATCH v8 18/19] drm/mediatek: change the aux retries times when receiving AUX_DEFER
+Date:   Fri, 18 Feb 2022 15:54:36 +0100
+Message-Id: <20220218145437.18563-19-granquet@baylibre.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220218145437.18563-1-granquet@baylibre.com>
 References: <20220218145437.18563-1-granquet@baylibre.com>
@@ -69,8 +69,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,83 +78,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Jitao Shi <jitao.shi@mediatek.com>
 
-Implement the DP HDP debounce described in DP 1.4a 3.3.
+DP 1.4a Section 2.8.7.1.5.6.1:
+A DP Source device shall retry at least seven times upon receiving
+AUX_DEFER before giving up the AUX transaction.
+
+Aux should retry to send msg whether how many bytes.
 
 Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
 Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 ---
- drivers/gpu/drm/mediatek/mtk_dp.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ drivers/gpu/drm/mediatek/mtk_dp.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-index 2a3d5f15b651b..fe91ab8b2fd89 100644
+index fe91ab8b2fd89..4e880d8a8a186 100644
 --- a/drivers/gpu/drm/mediatek/mtk_dp.c
 +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-@@ -178,6 +178,8 @@ struct mtk_dp {
- 	struct device *codec_dev;
- 	u8 connector_eld[MAX_ELD_BYTES];
- 	struct drm_connector *conn;
-+	bool need_debounce;
-+	struct timer_list debounce_timer;
- };
+@@ -1879,7 +1879,7 @@ static ssize_t mtk_dp_aux_transfer(struct drm_dp_aux *mtk_aux,
+ 	bool is_read;
+ 	u8 request;
+ 	size_t accessed_bytes = 0;
+-	int retry = 3, ret = 0;
++	int retry, ret = 0;
  
- static struct regmap_config mtk_dp_regmap_config = {
-@@ -1698,6 +1700,9 @@ static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
- 	if (event < 0)
- 		return IRQ_HANDLED;
+ 	mtk_dp = container_of(mtk_aux, struct mtk_dp, aux);
  
-+	if (mtk_dp->need_debounce && mtk_dp->train_info.cable_plugged_in)
-+		msleep(100);
-+
- 	if (mtk_dp->drm_dev) {
- 		dev_info(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
- 		drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
-@@ -1776,6 +1781,13 @@ static irqreturn_t mtk_dp_hpd_isr_handler(struct mtk_dp *mtk_dp)
+@@ -1913,15 +1913,21 @@ static ssize_t mtk_dp_aux_transfer(struct drm_dp_aux *mtk_aux,
  	}
- 	train_info->cable_state_change = true;
  
-+	if (train_info->cable_state_change) {
-+		if (!train_info->cable_plugged_in) {
-+			mod_timer(&mtk_dp->debounce_timer, jiffies + msecs_to_jiffies(100) - 1);
-+			mtk_dp->need_debounce = false;
-+		}
-+	}
-+
- 	return IRQ_WAKE_THREAD;
- }
- 
-@@ -2239,6 +2251,13 @@ static const struct drm_bridge_funcs mtk_dp_bridge_funcs = {
- 	.detect = mtk_dp_bdg_detect,
- };
- 
-+static void mtk_dp_debounce_timer(struct timer_list *t)
-+{
-+	struct mtk_dp *mtk_dp = from_timer(mtk_dp, t, debounce_timer);
-+
-+	mtk_dp->need_debounce = true;
-+}
-+
- static int mtk_dp_probe(struct platform_device *pdev)
- {
- 	struct mtk_dp *mtk_dp;
-@@ -2319,6 +2338,9 @@ static int mtk_dp_probe(struct platform_device *pdev)
- 	else
- 		mtk_dp->bridge.type = DRM_MODE_CONNECTOR_DisplayPort;
- 
-+	mtk_dp->need_debounce = true;
-+	timer_setup(&mtk_dp->debounce_timer, mtk_dp_debounce_timer, 0);
-+
- 	pm_runtime_enable(dev);
- 	pm_runtime_get_sync(dev);
- 
-@@ -2332,6 +2354,7 @@ static int mtk_dp_remove(struct platform_device *pdev)
- 	platform_device_unregister(mtk_dp->phy_dev);
- 
- 	mtk_dp_video_mute(mtk_dp, true);
-+	del_timer_sync(&mtk_dp->debounce_timer);
- 
- 	pm_runtime_disable(&pdev->dev);
- 
+ 	if (msg->size == 0) {
+-		ret = mtk_dp_aux_do_transfer(mtk_dp, is_read, request,
+-					     msg->address + accessed_bytes,
+-					     msg->buffer + accessed_bytes, 0);
++		retry = 7;
++		while (retry--) {
++			ret = mtk_dp_aux_do_transfer(mtk_dp, is_read, request,
++						     msg->address + accessed_bytes,
++						     msg->buffer + accessed_bytes, 0);
++			if (ret == 0)
++				break;
++			msleep(50);
+ 		}
+ 	} else {
+ 		while (accessed_bytes < msg->size) {
+ 			size_t to_access =
+ 				min_t(size_t, DP_AUX_MAX_PAYLOAD_BYTES,
+ 				      msg->size - accessed_bytes);
++			retry = 7;
+ 			while (retry--) {
+ 				ret = mtk_dp_aux_do_transfer(mtk_dp,
+ 							     is_read, request,
 -- 
 2.34.1
 
