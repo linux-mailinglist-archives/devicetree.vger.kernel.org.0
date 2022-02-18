@@ -2,136 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6B854BBA15
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 14:25:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 682804BBA37
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 14:40:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235770AbiBRNZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 08:25:22 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38402 "EHLO
+        id S235472AbiBRNkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 08:40:42 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235762AbiBRNZV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 08:25:21 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A647284231
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 05:25:04 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id l12-20020a7bc34c000000b003467c58cbdfso8615446wmj.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 05:25:04 -0800 (PST)
+        with ESMTP id S235821AbiBRNki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 08:40:38 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F8E829693B;
+        Fri, 18 Feb 2022 05:40:22 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id m27so2870001wrb.4;
+        Fri, 18 Feb 2022 05:40:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yrkYgpVIUXGnXP2wkyWmIbd2RYDJqfqs2Rsp+OtCt5o=;
-        b=uAAaFw6RHpsnW5DW+gQVrVkaLEzP2Xzhuy4W0EJdVj+v9QPUI1dBLADu063fihlOEu
-         SMmDL+vn0fseuUyOwz4U6ojcjnvO2AmogeBd02BQNAwHSuD2pcrlE/kh8xiGBAW74gk0
-         VLtxRzwtsIGpUyxapMkGGRS/4St+WSxs5Ah+5sMiXD+P009Tfy8QTxz2pi2Qkhqe+hxF
-         hv6LJMEvU1UKM3Gp4pilsMA012MvSbmPZjV8RfRX3qiQ03dZkCCo0OPtymcMqivDiXaK
-         6WxgiHHGOQyo+j/OrC3DkLrUyDsYAju7NmHIHfHQEd1nUXxkf4Wm83SB5/0gRlrqW/3l
-         OVCg==
+        d=gmail.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=GafMyxIWmc4jQRLJIu37KnZfUQv6P8zM1b/LNvntbUA=;
+        b=Cwpf1rGQNNaBjj8uN5Iz8V8VJimuKe/SIXiUcYmHL3kAmqPF6KBhxpeFa9nBVkQhCr
+         j1luzT557/a6s0m13CZin4aywwCzzWzbnWyTdIqVN5esv63nBbvHrUShKfZ2xjBuTXA4
+         Ih9OURpjjhQe9La2y4/KdQTLGM4EVW4ewndChcx9nmwUY/Xq3WgoOLXxPOHDFsztfubC
+         vHyGBb83M8YPXN4tVC1C+bNHqPByQCEpetzFs0whX8pn2/pepUqnJhMwOUeo1/oPWPdG
+         fYgP7zmnvPb41rCMMXzyKvqwORQZhBlWx79s4XQ54vyWDAFNB4+MFiOxqwqWJoJ5GpCJ
+         9e2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yrkYgpVIUXGnXP2wkyWmIbd2RYDJqfqs2Rsp+OtCt5o=;
-        b=bUWbZdhXzkHnUQYkjEEFIRmBveVS3Ph8tD0LmamDmS4uBER2+3xbfDaA4s8zaSYVlt
-         GwvGGtG+RW0YVkNiPBblyuazewB0bFEuImAAmSrYhWDkuK74YYU+nxhN1Z/IFkvC9zXk
-         q+/9aijoz5ldkiJS9+gqSavOm6xALeo03mmy/LjxpgiJS0FmPg1End8WQ11bPfjUBoMk
-         pL9FNNEKlkJyNMzSS0yG9V3SFYXi15OI1urpKXor+vLD7XRwCcvXxMGUW9+ywUmVMX7m
-         ONu+EB8Mq07xd+hu1869tfQq5eM2wHsf8YELIWUK8YCDDFqx3wgXCLi0hviPST+Yi+Af
-         Ixrw==
-X-Gm-Message-State: AOAM532Z+UCsMQ62vQw+mo8imK96sMMaEwsyDfny8O+/aRKkbieOlncW
-        74+ZH4jXK+yhdii4FameZvLisg==
-X-Google-Smtp-Source: ABdhPJyVAYzbgy/AAZpsXhPLMR1fBjvqb4Dg1MygToTm7RwGLTNkBP3nvxFtcdd/zIFp23yEwgJAXg==
-X-Received: by 2002:a05:600c:19ce:b0:37c:6fe:68b6 with SMTP id u14-20020a05600c19ce00b0037c06fe68b6mr10451900wmq.90.1645190702754;
-        Fri, 18 Feb 2022 05:25:02 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id r2sm6039032wmq.24.2022.02.18.05.25.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Feb 2022 05:25:02 -0800 (PST)
-Message-ID: <e451d814-2d10-6cb6-3402-6d1580ddbce2@linaro.org>
-Date:   Fri, 18 Feb 2022 13:25:00 +0000
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=GafMyxIWmc4jQRLJIu37KnZfUQv6P8zM1b/LNvntbUA=;
+        b=2x4Mu8ls1I89e8bEZ65bo8aziBYJCW9rArih5w/jVfqxajWsE9Tn1ZNYgVnbgrx1Dp
+         rl+rGizxBSRn4mFQlKsf7vkG2U3vvDwrVjyX3kyij4JF638Lb2LlBs85YYa9uRNITAXV
+         O9Wc8dZ2KKYM+XpLZZ84Lbgw+OUchjPhfT37U0f2tx1htEVlIoYm0N6HC64WCY4v+D8h
+         GWeTcKs8z+kcO4Qp4MqkPfRmveeX9u/y/iIWpi5g4WmppWCMYHu+vbK5v7WQ8wxpwx5c
+         WSrordjtQNS6n57HolVZqGBxiZ5gIxKRLnfazKNFCpKOcabHz1oR5L+ymrrg2EsaodSH
+         CXSw==
+X-Gm-Message-State: AOAM532dgAPbQHXxIIfaeXZ0RuZwwAwdhj9B1qLLdpqji3acUbSp3ciR
+        kF2vx/J7hl2u3SvsTG9xk20=
+X-Google-Smtp-Source: ABdhPJwdtCVMJWGY6BQSdkSSMYQg2m/W2LFKHvjOXkIXcMwNI1+zjPnJ/ioaioc2fNN6C/0NsHvlpw==
+X-Received: by 2002:a5d:6cd0:0:b0:1e3:11b3:418c with SMTP id c16-20020a5d6cd0000000b001e311b3418cmr6105638wrc.405.1645191620722;
+        Fri, 18 Feb 2022 05:40:20 -0800 (PST)
+Received: from ?IPv6:2001:a61:2b1c:9001:b4fc:bdc6:aa9f:ec65? ([2001:a61:2b1c:9001:b4fc:bdc6:aa9f:ec65])
+        by smtp.gmail.com with ESMTPSA id t1sm50247776wre.45.2022.02.18.05.40.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Feb 2022 05:40:20 -0800 (PST)
+Message-ID: <0fdb9ce85efc251a0f461f25d5cc361ec70af8d7.camel@gmail.com>
+Subject: Re: [PATCH v3 1/3] iio: dac: add support for ltc2688
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     "Sa, Nuno" <Nuno.Sa@analog.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>
+Date:   Fri, 18 Feb 2022 14:40:19 +0100
+In-Reply-To: <YgpeGZYTHWlmVZEU@smile.fi.intel.com>
+References: <20220121142501.151-1-nuno.sa@analog.com>
+         <20220121142501.151-2-nuno.sa@analog.com>
+         <Yf60A1UkbBtQ68qv@smile.fi.intel.com>
+         <PH0PR03MB678628C341A1972BC31F5BBA992B9@PH0PR03MB6786.namprd03.prod.outlook.com>
+         <YgD91zg4L1S5KH5k@smile.fi.intel.com>
+         <e1bd9f14e63e55f48f804568705a9ab8c1a09f62.camel@gmail.com>
+         <0fc9da519df96aaeb3cdcd155fb8aabbdc17fbeb.camel@gmail.com>
+         <YgpeGZYTHWlmVZEU@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.3 (3.42.3-1.fc35) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 4/4] mtd: core: Fix a conflict between MTD and NVMEM on
- wp-gpios property
-Content-Language: en-US
-To:     Christophe Kerello <christophe.kerello@foss.st.com>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, p.yadav@ti.com
-Cc:     linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, chenshumin86@sina.com,
-        stable@vger.kernel.org
-References: <20220217144755.270679-1-christophe.kerello@foss.st.com>
- <20220217144755.270679-5-christophe.kerello@foss.st.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220217144755.270679-5-christophe.kerello@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 17/02/2022 14:47, Christophe Kerello wrote:
-> Wp-gpios property can be used on NVMEM nodes and the same property can
-> be also used on MTD NAND nodes. In case of the wp-gpios property is
-> defined at NAND level node, the GPIO management is done at NAND driver
-> level. Write protect is disabled when the driver is probed or resumed
-> and is enabled when the driver is released or suspended.
+On Mon, 2022-02-14 at 15:50 +0200, Andy Shevchenko wrote:
+> On Mon, Feb 14, 2022 at 02:23:01PM +0100, Nuno Sá wrote:
+> > On Mon, 2022-02-07 at 21:19 +0100, Nuno Sá wrote:
 > 
-> When no partitions are defined in the NAND DT node, then the NAND DT node
-> will be passed to NVMEM framework. If wp-gpios property is defined in
-> this node, the GPIO resource is taken twice and the NAND controller
-> driver fails to probe.
+> > I would definetly like to have some settlement on the above (before
+> > sending a v4). It kind of was discussed a bit already in [1] where
+> > I
+> > felt we had to live with OF for this driver (that is why I kept OF
+> > in
+> > v3. With the above, I cannot
+> > really see how we can have device API with also including OF... If
+> > I
+> > missing something please let me know :)
 > 
-> A new Boolean flag named ignore_wp has been added in nvmem_config.
-> In case ignore_wp is set, it means that the GPIO is handled by the
-> provider. Lets set this flag in MTD layer to avoid the conflict on
-> wp_gpios property.
+> Sorry for the delay, answered to your previous message.
+
+No worries. As I already said, I'm not doing much till the end of the
+month but I definetly wanted the device vs OF question settled before
+starting v4.
+
+- Nuno Sá
 > 
-> Fixes: 2a127da461a9 ("nvmem: add support for the write-protect pin")
-> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
-> Cc: stable@vger.kernel.org
 
-
-Applied thanks,
-
---srini
-
-> ---
-> Changes in v3:
->   - add a fixes tag
->   - rename skip_wp_gpio by ignore_wp in nvmen_config.
-> 
->   drivers/mtd/mtdcore.c | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-> index 70f492dce158..eef87b28d6c8 100644
-> --- a/drivers/mtd/mtdcore.c
-> +++ b/drivers/mtd/mtdcore.c
-> @@ -546,6 +546,7 @@ static int mtd_nvmem_add(struct mtd_info *mtd)
->   	config.stride = 1;
->   	config.read_only = true;
->   	config.root_only = true;
-> +	config.ignore_wp = true;
->   	config.no_of_node = !of_device_is_compatible(node, "nvmem-cells");
->   	config.priv = mtd;
->   
-> @@ -833,6 +834,7 @@ static struct nvmem_device *mtd_otp_nvmem_register(struct mtd_info *mtd,
->   	config.owner = THIS_MODULE;
->   	config.type = NVMEM_TYPE_OTP;
->   	config.root_only = true;
-> +	config.ignore_wp = true;
->   	config.reg_read = reg_read;
->   	config.size = size;
->   	config.of_node = np;
