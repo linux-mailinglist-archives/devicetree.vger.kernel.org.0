@@ -2,96 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEFE94BAEF1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 02:02:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1E164BAEF9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 02:03:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230367AbiBRBBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 20:01:50 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:58242 "EHLO
+        id S230516AbiBRBEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 20:04:00 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:41874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230285AbiBRBBt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 20:01:49 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E521867E9
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 17:01:19 -0800 (PST)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 7FF4883764;
-        Fri, 18 Feb 2022 02:01:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1645146076;
-        bh=O2hHW13mgSaZvN5anxyunPG1uIzz7p4zPFd4aRvlhBk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=U9FA0dav+S0opZLwmeZsm5GU+NnwOb2jAMzjMUIhge1b9NxnICMhCCpD/1mlF+1jw
-         L6L4ewZmNjl1z0Uxvsr/TavOCzOLwv9J08GbQmTsIcDF8bZmdC0B8RyBDynv1UwM0i
-         vNzXw1hIf5H4r36RTEUvHZIyDLTus7MQqfFeu24k4ARwNsNghJ0Yyg7SYTTFAUsgZB
-         41EDLekRfORuyUZL4kou1CqxyDNQ+g4fc5a49VS7SLBwvwqCmYTL+XA3B90ttF/yiK
-         AxCu4DLBhMvSys4LNDfi8PRT7luNJDC2r+BUL1TwMWc1q6EkmM2whF7uZPegdeapYW
-         325keqOu+O+qQ==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Marek Vasut <marex@denx.de>, Jonas Karlman <jonas@kwiboo.se>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: [PATCH V2 01/11] dt-bindings: display: bridge: tc358867: Document DPI output support
-Date:   Fri, 18 Feb 2022 02:00:44 +0100
-Message-Id: <20220218010054.315026-2-marex@denx.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220218010054.315026-1-marex@denx.de>
-References: <20220218010054.315026-1-marex@denx.de>
+        with ESMTP id S230435AbiBRBDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 20:03:54 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58EEA288827
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 17:03:37 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id k25so11236520ejp.5
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 17:03:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YhNqz0TwV7gSLYgP9YWbRspB12calUNnn7qInjIWMb8=;
+        b=kjaQXcd+qDo6HeXDPEWhbFh7itNDJeBgJ0jJRODQBOZ7hs979pzm2WflsUaeHt87yP
+         QfxDMnIRoaJ7eDkvmb/yckwyk9YSdc1FaxiFI9ozai/ESqHRWGC3j6y8tn1v5Pwbp/xi
+         y+HpVyyGh9scpSCcn61WSMOXHDjMnjoadxSfY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YhNqz0TwV7gSLYgP9YWbRspB12calUNnn7qInjIWMb8=;
+        b=mHvSW5ROqw1icKbFvdZqonID77frNUeoByePRwFvMr1Y9UHwgKVXraS8imsrIdRgnU
+         6LI/H9mXEQtObLtaCknZNhkQ8sjjsC+v9bPW6xiIO6HuGNdAjOw0riOeEpB9FmQYtlzm
+         u7THSKo7Sd6bNeHPDW3ZdZ24nEsk8ksSRCxobmSt2s1ZDipp/zocob0rOfGy+TxjFYh3
+         SSDq9LKDwq3pYt/f9/HvXRh3ZY3Ui7OH0A1BOKN6wHtCmd4Ay00QQJjbVtxHTSDoH5/8
+         /6OayXzPJVXji5aMkeJY9tPTwtskCY1tQkJtW3yExcxz6hgU57AQHPoTMY911Gyp4FQN
+         xAiQ==
+X-Gm-Message-State: AOAM533Z78NEcn9AoWIjazPOyB+ZiU5NZIIBqxaDVRxhiCFBFTX8Ixy0
+        RZi8H0QBtUAGAlY0mzc7Nc8Xk/bKAAgOSLo3s5U=
+X-Google-Smtp-Source: ABdhPJy7Eq3e9hF9NQycaLLUh77JL/a93Szo2rwyaZTa9xFLnh/kkSCLvuzXpB5qipewFz82uw/MmA==
+X-Received: by 2002:a17:906:9f06:b0:6ce:36da:8247 with SMTP id fy6-20020a1709069f0600b006ce36da8247mr4529405ejc.651.1645146215585;
+        Thu, 17 Feb 2022 17:03:35 -0800 (PST)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com. [209.85.221.48])
+        by smtp.gmail.com with ESMTPSA id hh13sm1735757ejb.89.2022.02.17.17.03.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Feb 2022 17:03:34 -0800 (PST)
+Received: by mail-wr1-f48.google.com with SMTP id o24so11863680wro.3
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 17:03:34 -0800 (PST)
+X-Received: by 2002:a5d:64ef:0:b0:1e3:1e05:d042 with SMTP id
+ g15-20020a5d64ef000000b001e31e05d042mr4049131wri.679.1645146213585; Thu, 17
+ Feb 2022 17:03:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <1644494255-6632-1-git-send-email-quic_sbillaka@quicinc.com> <1644494255-6632-3-git-send-email-quic_sbillaka@quicinc.com>
+In-Reply-To: <1644494255-6632-3-git-send-email-quic_sbillaka@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 17 Feb 2022 17:03:13 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=VVvcn1VpLXjd+X9Xe50sS_vY5ukKJE8i=eAZf1Phofuw@mail.gmail.com>
+Message-ID: <CAD=FV=VVvcn1VpLXjd+X9Xe50sS_vY5ukKJE8i=eAZf1Phofuw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] arm64: dts: qcom: sc7280: Add support for eDP
+ panel on CRD
+To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, quic_kalyant@quicinc.com,
+        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
+        quic_mkrishn@quicinc.com, quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The TC358767/TC358867/TC9595 are all capable of operating in multiple
-modes, DPI-to-(e)DP, DSI-to-(e)DP, DSI-to-DPI. Document support for the
-DPI output port, which can now be connected both as input and output.
+Hi,
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Jonas Karlman <jonas@kwiboo.se>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: Maxime Ripard <maxime@cerno.tech>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V2: - Rebase on next-20220217
----
- .../devicetree/bindings/display/bridge/toshiba,tc358767.yaml  | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Thu, Feb 10, 2022 at 3:58 AM Sankeerth Billakanti
+<quic_sbillaka@quicinc.com> wrote:
+>
+> +       backlight_3v3_regulator: backlight-3v3-regulator {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "backlight_3v3_regulator";
+> +
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +
+> +               gpio = <&pm8350c_gpios 7 GPIO_ACTIVE_HIGH>;
+> +               enable-active-high;
+> +
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&edp_bl_power>;
+> +       };
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-index f1541cc052977..5cfda6f2ba69c 100644
---- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-@@ -61,8 +61,8 @@ properties:
-       port@1:
-         $ref: /schemas/graph.yaml#/properties/port
-         description: |
--            DPI input port. The remote endpoint phandle should be a
--            reference to a valid DPI output endpoint node
-+            DPI input/output port. The remote endpoint phandle should be a
-+            reference to a valid DPI output or input endpoint node.
- 
-       port@2:
-         $ref: /schemas/graph.yaml#/properties/port
--- 
-2.34.1
+So I'm pretty sure that this is wrong and what you had on a previous
+patch was more correct. Specifically the PMIC's GPIO 7 truly _is_ an
+enable pin for the backlight. In the schematics I see it's named as
+"PMIC_EDP_BL_EN" and is essentially the same net as "EDP_BL_EN". This
+is distinct from the backlight _regulator_ that is named VREG_EDP_BP.
+I believe the VREG_EDP_BP is essentially sourced directly from
+PPVAR_SYS. That's how it works on herobrine and I believe that CRD is
+the same. You currently don't model ppvar_sys, but it's basically just
+a variable-voltage rail that could be provided somewhat directly from
+the battery or could be provided from Type C components. I believe
+that the panel backlight is designed to handle this fairly wide
+voltage range and it's done this way to get the best efficiency.
 
+So personally I'd prefer if you do something like herobrine and model
+PPVAR_SYS. Then the backlight can use ppvar_sys as its regulator and
+you can go back to providing this as an "enable" pin for the
+backlight.
+
+I know, technically it doesn't _really_ matter, but it's nice to model
+it more correctly.
