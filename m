@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 443984BB973
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 13:53:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3D944BB97E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 13:53:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235313AbiBRMxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 07:53:16 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46862 "EHLO
+        id S231591AbiBRMyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 07:54:09 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235357AbiBRMxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 07:53:06 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DA82B4045;
-        Fri, 18 Feb 2022 04:52:42 -0800 (PST)
+        with ESMTP id S234833AbiBRMyJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 07:54:09 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECF342B3545;
+        Fri, 18 Feb 2022 04:53:51 -0800 (PST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: kholk11)
-        with ESMTPSA id 8FB211F46910
+        with ESMTPSA id 96DCE1F4241F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645188761;
-        bh=7bVmllsSdo+zEWIfNE+5yNbesylSATeKRH84GE8XJgE=;
+        s=mail; t=1645188830;
+        bh=Gv8c/LMKo6rxgaMQAVOHcLVtihxtts7Lugi4FWiRWzg=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=n0/DAjtxFTgTEf0bWouyCh2A3lkCBOWFQdTJkWoafSl7oIAzgiSpDM8Jr3N3wPkpm
-         cvjyL/C3QpVE4cCm/sJxaDj6tmLopwNOwhbrdFqXoNTEpH9dr3HSXXmA/ObhAPbRFX
-         7bJNy0HqO2YA8CNEPXZW/NEyC36qqgt4vv9BzZzlvGbs/rfNRYIvGGnSZ/4Mcw82RE
-         EZQDW9ihRPTketCFdo2fwNRfDI0SnamcobthmwBNzgRLs8YrbrYfpcdOOQu9vmfl8f
-         3oCCmpoalIvSYmyADkRseoS0jgMPZc73OtTahhJavj6RRGmG/zWy7GlnJJ2s1Gew3L
-         /8tDPN2MnzCwA==
-Message-ID: <d138f7b9-bfa1-8628-5c5c-aca5c9af48a6@collabora.com>
-Date:   Fri, 18 Feb 2022 13:52:37 +0100
+        b=jsc+Jd7YNSdcSO7Arwmg5Oa5RcOIdQwAd1Vp9MCMsz3njw0Lh3TqNOjD/5VdNV7ds
+         iI3sQ1uy1f4dMupHFJbAhjHvePu0G0116Qam/iDQKq9ZgrL0iriNP/ImzZMPuG8Vq5
+         VhVTNL3KhMozEcwOSBxxcKRacJVHokQNnQQdmJZ7DUGkfshLwdu6xJXMYncEG4B1+7
+         KqStXONu4k1fHPNg9tPMMZq+sUaWrDAjDFPdTLD4rsKaXEq3pGGed8UM2lDEJt2esm
+         IFY5E1Pl5wyQLlXs885fc9PrvpIC87ygeqRuDdtm/39jVwdEwND1zAafv7zWPVbFzL
+         /TW6GzjnqRNcg==
+Message-ID: <b69b6a18-c991-4c37-fff1-d68d140e4901@collabora.com>
+Date:   Fri, 18 Feb 2022 13:53:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.1
-Subject: Re: [PATCH v5 32/34] iommu/mediatek: Initialise/Remove for multi bank
- dev
+Subject: Re: [PATCH v5 27/34] iommu/mediatek-v1: Just rename mtk_iommu to
+ mtk_iommu_v1
 Content-Language: en-US
 To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -52,10 +52,10 @@ Cc:     Robin Murphy <robin.murphy@arm.com>,
         yf.wang@mediatek.com, libo.kang@mediatek.com,
         chengci.xu@mediatek.com
 References: <20220217113453.13658-1-yong.wu@mediatek.com>
- <20220217113453.13658-33-yong.wu@mediatek.com>
+ <20220217113453.13658-28-yong.wu@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220217113453.13658-33-yong.wu@mediatek.com>
+In-Reply-To: <20220217113453.13658-28-yong.wu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -69,16 +69,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Il 17/02/22 12:34, Yong Wu ha scritto:
-> The registers for each bank of the IOMMU base are in order, delta is
-> 0x1000. Initialise the base for each bank.
-> 
-> For all the previous SoC, we only have bank0. thus use "do {} while()"
-> to allow bank0 always go.
-> 
-> When removing the device, Not always all the banks are initialised, it
-> depend on if there is masters for that bank.
+> No functional change. Just rename this for readable. Differentiate this
+> from mtk_iommu.c
 > 
 > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
+> ---
+>   drivers/iommu/mtk_iommu_v1.c | 211 +++++++++++++++++------------------
+>   1 file changed, 103 insertions(+), 108 deletions(-)
+> 
