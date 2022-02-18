@@ -2,88 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AF6A4BB334
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 08:29:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD16D4BB38D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 08:52:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231159AbiBRH3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 02:29:18 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56106 "EHLO
+        id S231495AbiBRHwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 02:52:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230397AbiBRH3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 02:29:18 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F040726122A
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 23:29:01 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nKxhJ-0006e3-2p; Fri, 18 Feb 2022 08:28:57 +0100
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nKxhC-00053L-9p; Fri, 18 Feb 2022 08:28:50 +0100
-Date:   Fri, 18 Feb 2022 08:28:50 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     alexandru.tachici@analog.com
-Cc:     andrew@lunn.ch, davem@davemloft.net, devicetree@vger.kernel.org,
-        hkallweit1@gmail.com, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v4 4/7] net: phy: Add 10BASE-T1L support in phy-c45
-Message-ID: <20220218072850.GA12479@pengutronix.de>
-References: <20220207092753.GC23727@pengutronix.de>
- <20220209151220.15154-1-alexandru.tachici@analog.com>
+        with ESMTP id S230400AbiBRHwX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 02:52:23 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A880256C3E;
+        Thu, 17 Feb 2022 23:52:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645170727; x=1676706727;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=V6cTLA9ndByCFRVhdBYvxukvirSrYaDBlX9n8tyWtL4=;
+  b=cNHmJfYIJRdSNswmKW4kE+qLzGA9LYfZgW5Xl6Y0RHipZNCeXDsKOM5T
+   c/3lpLJf8HGbgxlYYW/uNUCRFh3l/UkEqpqODgU4cQ2jMnFGCNUqxYlWA
+   hQ+YLHANeVgTlA3Yft+wVPKNR0YxhxIamRiugGbAW05Z4AXgnt8r8fj51
+   M=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 17 Feb 2022 23:52:07 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2022 23:52:06 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Thu, 17 Feb 2022 23:52:06 -0800
+Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Thu, 17 Feb 2022 23:52:02 -0800
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <pure.logic@nexus-software.ie>,
+        <bjorn.andersson@linaro.org>, <greg@kroah.com>, <robh@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <quic_rjendra@quicinc.com>,
+        <quic_saipraka@quicinc.com>, <quic_schowdhu@quicinc.com>
+Subject: [PATCH V1 0/2] Revert device tree changes for EUD
+Date:   Fri, 18 Feb 2022 13:21:34 +0530
+Message-ID: <cover.1645168567.git.quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220209151220.15154-1-alexandru.tachici@analog.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:24:08 up 69 days, 16:09, 69 users,  load average: 0.16, 0.17,
- 0.17
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 09, 2022 at 05:12:20PM +0200, alexandru.tachici@analog.com wrote:
-> > On Sat, Dec 11, 2021 at 10:07:49PM +0100, Andrew Lunn wrote:
-> > > > +		ret = phy_read_mmd(phydev, MDIO_MMD_PMAPMD, MDIO_PMA_EXTABLE);
-> > > > +		if (ret < 0)
-> > > > +			return ret;
-> > > > +
-> > > > +		if (ret & MDIO_PMA_EXTABLE_BT1)
-> > > 
-> > > 
-> > > This pattern of reading the MDIO_PMA_EXTABLE register and then looking
-> > > for bit MDIO_PMA_EXTABLE_BT1 happens a lot. It is not something which
-> > > is expected to change is it? So i wounder if it should be read once
-> > > and stored away?
-> > 
-> > What is the state of this patches? Will you be able to make requested
-> > changes and send new version?
-> 
-> I will come back with a V5 where I will add the requested changes.
+Revert the device tree changes for Embedded USB Debugger(EUD)
+from the usb tree to avoid conflicts as device tree changes
+for EUD are supposed to go from qcom Tree.
 
-I tested your patches with TI dp83td510. With some minor quirks on TI
-side it seems to work fine. So you can have my:
+Souradeep Chowdhury (2):
+  Revert "arm64: dts: qcom: sc7280: Set the default dr_mode for usb2"
+  Revert "arm64: dts: qcom: sc7280: Add EUD dt node and dwc3 connector"
 
-Tested-by: Oleksij Rempel <o.rempel@pengutronix.de>
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts |  4 ----
+ arch/arm64/boot/dts/qcom/sc7280.dtsi    | 36 ---------------------------------
+ 2 files changed, 40 deletions(-)
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+--
+2.7.4
+
