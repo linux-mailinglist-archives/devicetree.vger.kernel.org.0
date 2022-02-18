@@ -2,77 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BB724BAF28
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 02:28:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D1E4BAF56
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 02:56:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231243AbiBRB2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 20:28:37 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:38864 "EHLO
+        id S231351AbiBRB4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 20:56:45 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:45456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231248AbiBRB2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 20:28:36 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90C6F3A19C;
-        Thu, 17 Feb 2022 17:28:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 43143B8253B;
-        Fri, 18 Feb 2022 01:28:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA554C340E8;
-        Fri, 18 Feb 2022 01:28:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645147698;
-        bh=jhzByY0/VWFNx3dAoANaAk2W/OZcMkfg0NTGzj6TXko=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=tPPcj5rEcJd3R4iuX45H/GGG8uEU6+fY3k2453ABEBP9VCmFDKqlWRT7oUvmU5iGP
-         wpJ55Wvg/WmXDTVhNO1S/8W9emE1U7teHm6fabsuzOVBOvNFHfrDT9AcPxdFgz0tmF
-         wsqTwgBK2FgyAPXJv9/Q4EKp0v1hAN4yByrfzF/eW2dnPH1AKd20cHPwS0GAn8IRBZ
-         BXP5VVJ07bPtpMoFDqVaHLCvNee/OUSvoYivDokYyBP5vO3KYbQM42Ayzxs13eVGnB
-         DUrxUcW4n1u5ugTZKRvt4jks7pKPlEKz/VuIVVD9J75MIN64/ypfXCBzvRjTn1wM17
-         cH0HHSM4PsUiw==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <7605efbd-1a5e-ef80-5638-8376a325e3ba@denx.de>
-References: <20220213173310.152230-1-marex@denx.de> <20220217233954.6C8ABC340E8@smtp.kernel.org> <7605efbd-1a5e-ef80-5638-8376a325e3ba@denx.de>
-Subject: Re: [PATCH 1/2] dt-bindings: clk: rs9: Add Renesas 9-series I2C PCIe clock generator
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
-Date:   Thu, 17 Feb 2022 17:28:16 -0800
-User-Agent: alot/0.10
-Message-Id: <20220218012817.EA554C340E8@smtp.kernel.org>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229673AbiBRB4o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 20:56:44 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 857CB5C341;
+        Thu, 17 Feb 2022 17:56:28 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id om7so7280893pjb.5;
+        Thu, 17 Feb 2022 17:56:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=WHpd6Sk/XqYh0Nmb203v+Ms5w8m3DPKkCa4xdTTw7C8=;
+        b=GRQCNflMzwSiCrZxgdp/birK1ikdDMUfUZqq53GBOycuXlfK+u55Xio3IRY2pmgDrG
+         6vpkrL+tfZrr6H3e9kVqTGU3vXDxWGKl2PEoBFuZu/YNSnSJ5/eTpmHX1fRuyCAsy38P
+         A/90aP3Zl4ZPaaFgXt7/u+tWODDpypYdXqzkQD9mLuUI0a9KBlcPtSi93FxI9IO2SwPc
+         O/Ez/W3kDBl1a68ZlU9b6PrSpnZgj5LtKJawXOibKX7o2K8517M3tdIbBJ1sZuTfUI3+
+         Gkz41RcwdK3bOOE3CYPi+DvONT9us4OGolEDWsmedZ/gizCsujhhs9hxhaNeRV8uq2j0
+         zKuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=WHpd6Sk/XqYh0Nmb203v+Ms5w8m3DPKkCa4xdTTw7C8=;
+        b=zeY6iZcJ1hmpL8DOwzdHo3jpst6iXXJFBLmICbCZO8whu3PMr/CUFcLCIajTX/IACp
+         6U6Q0ae5RmMN3hyPnUvgM+6m8iTVbFGz7g1J60X8NKUnQpRV8Cpgw837U4kd1J2G/NFo
+         zUYVKgMP1nDdOdEvysREIAF0q+7RJXcX2vvmpka7silfM6pdlWTQXw+dUfJY3GewqJIa
+         EBMKa/YR1t/p1hXcJDV6MDztQrfqwArHhno75/saVHN9fYc/c+NbsQCCCUkck5pIeT+V
+         GZYqQmK3Tg9dBXzzIGku2M7lYANWdoaxvnmXQvp4cbeAOBQRR898P1+wud2Dk56afWLX
+         3igg==
+X-Gm-Message-State: AOAM531zu/Lq7f+eSza5Ikp54USftZ/XSkBXxNNNKUZXZ+bxG1HUTOCe
+        JDxlPdpUR3QIAhIUqMEu4lKgjhaXfxFc9Q==
+X-Google-Smtp-Source: ABdhPJyGF9SFBwyyZSZ95lmmAgCDOnmg5xfmy+Ly6ZrFBOdqdYSznKxxD5LTEC/EHLfKh+4q3rSGEA==
+X-Received: by 2002:a17:902:d353:b0:14a:18ab:298c with SMTP id l19-20020a170902d35300b0014a18ab298cmr5303458plk.87.1645149387808;
+        Thu, 17 Feb 2022 17:56:27 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id g18sm87493pfc.108.2022.02.17.17.56.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Feb 2022 17:56:27 -0800 (PST)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
+        Li-hao Kuo <lhjeff911@gmail.com>
+Subject: [PATCH] dt-bindings: spi: delete unused required and adjust the item.
+Date:   Fri, 18 Feb 2022 09:56:44 +0800
+Message-Id: <6a86f8c481be417972ef1b1e3b902ccf95706547.1645149279.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Marek Vasut (2022-02-17 17:09:26)
-> On 2/18/22 00:39, Stephen Boyd wrote:
-> > Quoting Marek Vasut (2022-02-13 09:33:09)
-> >> diff --git a/Documentation/devicetree/bindings/clock/renesas,9series.y=
-aml b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
-> >> new file mode 100644
-> >> index 0000000000000..774053748d9f0
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
-> >> @@ -0,0 +1,102 @@
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >> +  - '#clock-cells'
-> >=20
-> > Can it operate without an input xtal?
->=20
-> Not to my knowledge.
->=20
+delete unused required(clock-name)
+adjust position (interrupts)
 
-Ok please make it required property then.
+Fixes: 3b8ab4da34 ("spi: Fix test error for sp7021")
+
+Reported-by: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
+---
+ Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+index 298eac2..9df08d7 100644
+--- a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+@@ -47,10 +47,9 @@ required:
+   - compatible
+   - reg
+   - reg-names
+-  - interrupts
+   - interrupt-names
++  - interrupts
+   - clocks
+-  - clocks-names
+   - resets
+   - pinctrl-names
+   - pinctrl-0
+-- 
+2.7.4
+
