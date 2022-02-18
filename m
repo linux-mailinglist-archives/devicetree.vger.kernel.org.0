@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 998D84BB8F7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 13:16:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B466D4BB8FD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 13:17:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234049AbiBRMRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 07:17:13 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58768 "EHLO
+        id S234275AbiBRMRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 07:17:53 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233930AbiBRMRM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 07:17:12 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D0828ADBB;
-        Fri, 18 Feb 2022 04:16:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1645186613; x=1676722613;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=jo9RXuWk9+zTcvMEjwT0ZCRUnTvpVEE6zSwU3xjPQ/I=;
-  b=bTzBfVL/REsG68T8FJQOCPHWo4buHalbltTLn5vnlhFxmIkMpxmA1o+A
-   /buWD0Uo2lMOt3SUsKipEh9pHUBvoH32xW0AfKBRtA9y2to2SRSHTzkYG
-   J9zDaq9B4zC0J+8Hn6KfFmKem8N5oQ+Om4oPEIAHQvEgPBYGq21mEC2mR
-   hIulpvsiVhiVpNS27XShj3y/ZgaJBaN/fG9U/oobGQv9tEFly8DH3Fsys
-   Z+g+T3rNr9b37LpPdH3knfclG3K3AVMImGD3ts+lFiP/ks1u7PPknwKdh
-   rQQcv5GIxziLr2d3oSGl1S3vy8ur69ZSuP1CqYlMfyldoAZTQP7ba5gtk
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.88,378,1635231600"; 
-   d="scan'208";a="149211524"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Feb 2022 05:16:52 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 18 Feb 2022 05:16:52 -0700
-Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Fri, 18 Feb 2022 05:16:47 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <arnd@arndb.de>, <alexandre.belloni@bootlin.com>, <olof@lixom.net>,
-        <soc@kernel.org>, <robh+dt@kernel.org>,
-        <nicolas.ferre@microchip.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <Kavyasree.Kotagiri@microchip.com>,
-        <Manohar.Puri@microchip.com>
-Subject: [PATCH v6] ARM: dts: add DT for lan966 SoC and 2-port board pcb8291
-Date:   Fri, 18 Feb 2022 17:46:41 +0530
-Message-ID: <20220218121641.26472-1-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S232963AbiBRMRw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 07:17:52 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09CD128DDE3;
+        Fri, 18 Feb 2022 04:17:36 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C0B4EB82610;
+        Fri, 18 Feb 2022 12:17:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DA16C340E9;
+        Fri, 18 Feb 2022 12:17:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645186653;
+        bh=Xhp/n5pC/m8sJ4ETvUkmuS+0wXHJDe9HqAoXpaAAhzM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=PrljZQE8KwYpeMK9yqKJtAVzgIsR13V2D/cO1/YaA0stNMtu0dq16C7/idti+OouO
+         iz2SPe6Wma2QcaUnMcTycT8HXS3cD3B6eoJ/i6RDHuJo3uduYJaloxAYQ0wI5FkqYY
+         pT0JTDzLiV4jPhR4md7bFjLPPUov54Vy4lUR69u05EYgC38FJsvdO+dHoBqd+hyQda
+         5y31/ssSqyfZU1lLWFJkCcw/ylmdiwG5K5OcUVgZK9IRLsp2yEFX95MVT29UreL8WH
+         Fkbijs58ZmxV8cx+a7McKm+XS3+DsFBz8/E/FKX19cVTH1GOYNgxiZC7gU8MVxRA3p
+         Vq09onRuupwag==
+Date:   Fri, 18 Feb 2022 12:24:20 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Jagath Jog J <jagathjog1996@gmail.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Slawomir Stepien <sst@poczta.fm>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/4] iio: potentiometer: Add support for Maxim DS3502
+Message-ID: <20220218122420.76425450@jic23-huawei>
+In-Reply-To: <20220214195252.GA7374@jagath-PC>
+References: <20220214033620.4059-1-jagathjog1996@gmail.com>
+        <20220214033620.4059-4-jagathjog1996@gmail.com>
+        <CAHp75VcWym5vyDAVyTUCpj=Qkm28VUaqdqJ7VuFL_bsb0fmhaA@mail.gmail.com>
+        <20220214195252.GA7374@jagath-PC>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,371 +62,184 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds basic DT for Microchip lan966x SoC and associated board
-pcb8291(2-port EVB). Adds peripherals required to allow booting: Interrupt
-Controller, Clock, Generic ARMv7 Timers, Synopsys Timer, Flexcoms, GPIOs.
-Also adds other peripherals like crypto(AES/SHA), DMA, Watchdog Timer, TRNG
-and MCAN0.
+On Tue, 15 Feb 2022 01:22:54 +0530
+Jagath Jog J <jagathjog1996@gmail.com> wrote:
 
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
----
-v5 -> v6:
-- Renamed dts file to lan966x-pcb8291.dts file.
-- Disabled optional watchdog in dtsi file and enabled it in dts file.
+> Hello Andy,
+> 
+> On Mon, Feb 14, 2022 at 01:32:14PM +0200, Andy Shevchenko wrote:
+> > On Mon, Feb 14, 2022 at 5:36 AM Jagath Jog J <jagathjog1996@gmail.com> wrote:  
+> > >
+> > > The DS3502 is a 7-bit, nonvolatile digital potentiometer featuring
+> > > an output voltage range of up to 15.5V.
+> > > DS3502 support is implemented into existing ds1803 driver  
+> > 
+> > Be consistent here and in other commit messages with how you refer to
+> > the IC parts, i.e.
+> > DS1803. Don't forget English grammar and punctuation, i.e. missed period above.
+> >   
+> 
+> I will fix this in v3
+> 
+> > > Datasheet: https://datasheets.maximintegrated.com/en/ds/DS3502.pdf  
+> >   
+> > >  
+> > 
+> > A tag block may not have blank lines. Drop it.
+> >   
+> > > Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>  
+> > 
+> > ...
+> >   
+> > > -       tristate "Maxim Integrated DS1803 Digital Potentiometer driver"
+> > > +       tristate "Maxim Integrated DS1803 and similar Digital Potentiometer driver"  
+> > 
+> > Please, list them like other drivers do:
+> > 
+> >        tristate "Maxim Integrated DS1803/DS... Digital Potentiometer driver"
+> > 
+> > ...
+> >   
+> > > -         Say yes here to build support for the Maxim Integrated DS1803
+> > > -         digital potentiometer chip.
+> > > +         Say yes here to build support for the Maxim Integrated DS1803 and
+> > > +         similar digital potentiometer chip.  
+> > 
+> > Same here.
 
-v4 -> v5:
-- Modified AES, SHA, TRNG node names as per generic names recommended.
+Usual thing is to use the and similar phrasing for the title if it
+is getting to long and have the one place that lists them all being the belp
+text.  We need it somewhere so people can grep for it.
 
-v3 -> v4:
-- Removed character 'x' from compatible string.
-- Removed memory node as handled by bootloader.
-- Renamed flexcom3 usart0 to usart3
-- Added /chosen and /aliases nodes in dts file.
+> > 
+> > ...
+> >   
+> > > - * Maxim Integrated DS1803 digital potentiometer driver
+> > > + * Maxim Integrated DS1803 and similar digital potentiometer driver  
+> > 
+> > Same here.  
+> 
+> Based on Jonathan suggestion for the previous patch version I used 
+> "and similar" wording here.
 
-v2 -> v3:
-- Enabling trng in dtsi itself.
-- Removed "status=okay" dma0.
-- Add gpio pin settings for can0(missed adding this in previous version)
+I wasn't that clear on exactly where to do that!  Sorry about that.
 
-v1 -> v2:
-- Moved flx3 usart0 node to dtsi file.
-- Removed status="okay" for dma0 to maintain consistency across nodes
-  (which means enabling dma0 by default)
+> 
+> > 
+> > ...
+> >   
+> > > -#define DS1803_MAX_POS         255
+> > > -#define DS1803_WRITE(chan)     (0xa8 | ((chan) + 1))  
+> > 
+> > Not sure why these were removed (or moved?)  
+> 
+> Since max wiper position is present in avail array of ds1803_cfg structure
+> and that is being used for read scale so DS1803_MAX_POS is removed.
+> 
+> Since each wiper address of both parts is assigned to the address
+> member of iio_chan_spec struct so DS1803_WRITE(chan) is removed.
+> 
+> > 
+> > ...
+> >   
+> > > +static const struct ds1803_cfg ds1803_cfg[] = {
+> > > +       [DS1803_010] = { .wipers = 2, .avail = { 0, 1, 255 }, .kohms =  10,
+> > > +                        .channels = ds1803_channels,
+> > > +                        .num_channels = ARRAY_SIZE(ds1803_channels) },
+> > > +       [DS1803_050] = { .wipers = 2, .avail = { 0, 1, 255 }, .kohms =  50,
+> > > +                        .channels = ds1803_channels,
+> > > +                        .num_channels = ARRAY_SIZE(ds1803_channels) },
+> > > +       [DS1803_100] = { .wipers = 2, .avail = { 0, 1, 255 }, .kohms = 100,
+> > > +                        .channels = ds1803_channels,
+> > > +                        .num_channels = ARRAY_SIZE(ds1803_channels) },
+> > > +       [DS3502] =     { .wipers = 1, .avail = { 0, 1, 127 }, .kohms =  10,
+> > > +                        .channels = ds3502_channels,
+> > > +                        .num_channels = ARRAY_SIZE(ds3502_channels) },
+> > >  };  
+> > 
+> > Split this on a per type basis. I believe it won't be too much work,
+> > also, consider adding channels as a separate preparatory patch as you
+> > did with avail.  
+> 
+> Based on Jonathan suggestion for the previous patch version to avoid
+> having different chip type related structures so channels and num_channels
+> are added into ds1803_cfg structure.
+> 
+> Sure for channels I will split into separate patch for old part in v3.
 
- arch/arm/boot/dts/Makefile            |   2 +
- arch/arm/boot/dts/lan966x-pcb8291.dts |  64 +++++++
- arch/arm/boot/dts/lan966x.dtsi        | 238 ++++++++++++++++++++++++++
- 3 files changed, 304 insertions(+)
- create mode 100644 arch/arm/boot/dts/lan966x-pcb8291.dts
- create mode 100644 arch/arm/boot/dts/lan966x.dtsi
+I'm not totally sure what Andy is suggesting with his feedback here.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 235ad559acb2..c17a7308ff44 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -735,6 +735,8 @@ dtb-$(CONFIG_SOC_IMX7D) += \
- dtb-$(CONFIG_SOC_IMX7ULP) += \
- 	imx7ulp-com.dtb \
- 	imx7ulp-evk.dtb
-+dtb-$(CONFIG_SOC_LAN966) += \
-+	lan966x-pcb8291.dtb
- dtb-$(CONFIG_SOC_LS1021A) += \
- 	ls1021a-moxa-uc-8410a.dtb \
- 	ls1021a-qds.dtb \
-diff --git a/arch/arm/boot/dts/lan966x-pcb8291.dts b/arch/arm/boot/dts/lan966x-pcb8291.dts
-new file mode 100644
-index 000000000000..3281af90ac6d
---- /dev/null
-+++ b/arch/arm/boot/dts/lan966x-pcb8291.dts
-@@ -0,0 +1,64 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * lan966x_pcb8291.dts - Device Tree file for PCB8291
-+ */
-+/dts-v1/;
-+#include "lan966x.dtsi"
-+
-+/ {
-+	model = "Microchip EVB - LAN9662";
-+	compatible = "microchip,lan9662-pcb8291", "microchip,lan9662", "microchip,lan966";
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	aliases {
-+		serial0 = &usart3;
-+	};
-+};
-+
-+&gpio {
-+	fc_shrd7_pins: fc_shrd7-pins {
-+		pins = "GPIO_49";
-+		function = "fc_shrd7";
-+	};
-+
-+	fc_shrd8_pins: fc_shrd8-pins {
-+		pins = "GPIO_54";
-+		function = "fc_shrd8";
-+	};
-+
-+	fc3_b_pins: fcb3-spi-pins {
-+		/* SCK, RXD, TXD */
-+		pins = "GPIO_51", "GPIO_52", "GPIO_53";
-+		function = "fc3_b";
-+	};
-+
-+	can0_b_pins:  can0_b_pins {
-+		/* RX, TX */
-+		pins = "GPIO_35", "GPIO_36";
-+		function = "can0_b";
-+	};
-+};
-+
-+&can0 {
-+	pinctrl-0 = <&can0_b_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&flx3 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
-+	status = "okay";
-+
-+	usart3: serial@200 {
-+		pinctrl-0 = <&fc3_b_pins>, <&fc_shrd7_pins>, <&fc_shrd8_pins>;
-+		pinctrl-names = "default";
-+		status = "okay";
-+	};
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
-new file mode 100644
-index 000000000000..10ffe78110ff
---- /dev/null
-+++ b/arch/arm/boot/dts/lan966x.dtsi
-@@ -0,0 +1,238 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * lan966x.dtsi - Device Tree Include file for Microchip LAN966 family SoC
-+ *
-+ * Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
-+ *
-+ * Author: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-+ *
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/mfd/atmel-flexcom.h>
-+#include <dt-bindings/dma/at91.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/clock/microchip,lan966x.h>
-+
-+/ {
-+	model = "Microchip LAN966 family SoC";
-+	compatible = "microchip,lan966";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a7";
-+			clock-frequency = <600000000>;
-+			reg = <0x0>;
-+		};
-+	};
-+
-+	clocks {
-+		sys_clk: sys_clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <162500000>;
-+		};
-+
-+		cpu_clk: cpu_clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <600000000>;
-+		};
-+
-+		ddr_clk: ddr_clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <300000000>;
-+		};
-+
-+		nic_clk: nic_clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <200000000>;
-+		};
-+	};
-+
-+	clks: clock-controller@e00c00a8 {
-+		compatible = "microchip,lan966x-gck";
-+		#clock-cells = <1>;
-+		clocks = <&cpu_clk>, <&ddr_clk>, <&sys_clk>;
-+		clock-names = "cpu", "ddr", "sys";
-+		reg = <0xe00c00a8 0x38>;
-+	};
-+
-+	timer {
-+		compatible = "arm,armv7-timer";
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-+		clock-frequency = <37500000>;
-+		arm,cpu-registers-not-fw-configured;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		flx0: flexcom@e0040000 {
-+			compatible = "atmel,sama5d2-flexcom";
-+			reg = <0xe0040000 0x100>;
-+			clocks = <&clks GCK_ID_FLEXCOM0>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xe0040000 0x800>;
-+			status = "disabled";
-+		};
-+
-+		flx1: flexcom@e0044000 {
-+			compatible = "atmel,sama5d2-flexcom";
-+			reg = <0xe0044000 0x100>;
-+			clocks = <&clks GCK_ID_FLEXCOM1>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xe0044000 0x800>;
-+			status = "disabled";
-+		};
-+
-+		trng: rng@e0048000 {
-+			compatible = "atmel,at91sam9g45-trng";
-+			reg = <0xe0048000 0x100>;
-+			clocks = <&nic_clk>;
-+		};
-+
-+		aes: crypto@e004c000 {
-+			compatible = "atmel,at91sam9g46-aes";
-+			reg = <0xe004c000 0x100>;
-+			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dma0 AT91_XDMAC_DT_PERID(13)>,
-+			       <&dma0 AT91_XDMAC_DT_PERID(12)>;
-+			dma-names = "rx", "tx";
-+			clocks = <&nic_clk>;
-+			clock-names = "aes_clk";
-+		};
-+
-+		flx2: flexcom@e0060000 {
-+			compatible = "atmel,sama5d2-flexcom";
-+			reg = <0xe0060000 0x100>;
-+			clocks = <&clks GCK_ID_FLEXCOM2>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xe0060000 0x800>;
-+			status = "disabled";
-+		};
-+
-+		flx3: flexcom@e0064000 {
-+			compatible = "atmel,sama5d2-flexcom";
-+			reg = <0xe0064000 0x100>;
-+			clocks = <&clks GCK_ID_FLEXCOM3>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xe0064000 0x800>;
-+			status = "disabled";
-+
-+			usart3: serial@200 {
-+				compatible = "atmel,at91sam9260-usart";
-+				reg = <0x200 0x200>;
-+				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&nic_clk>;
-+				clock-names = "usart";
-+				atmel,fifo-size = <32>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		dma0: dma-controller@e0068000 {
-+			compatible = "microchip,sama7g5-dma";
-+			reg = <0xe0068000 0x1000>;
-+			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			clocks = <&nic_clk>;
-+			clock-names = "dma_clk";
-+		};
-+
-+		sha: crypto@e006c000 {
-+			compatible = "atmel,at91sam9g46-sha";
-+			reg = <0xe006c000 0xec>;
-+			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dma0 AT91_XDMAC_DT_PERID(14)>;
-+			dma-names = "tx";
-+			clocks = <&nic_clk>;
-+			clock-names = "sha_clk";
-+		};
-+
-+		flx4: flexcom@e0070000 {
-+			compatible = "atmel,sama5d2-flexcom";
-+			reg = <0xe0070000 0x100>;
-+			clocks = <&clks GCK_ID_FLEXCOM4>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xe0070000 0x800>;
-+			status = "disabled";
-+		};
-+
-+		timer0: timer@e008c000 {
-+			compatible = "snps,dw-apb-timer";
-+			reg = <0xe008c000 0x400>;
-+			clocks = <&nic_clk>;
-+			clock-names = "timer";
-+			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		watchdog: watchdog@e0090000 {
-+			compatible = "snps,dw-wdt";
-+			reg = <0xe0090000 0x1000>;
-+			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&nic_clk>;
-+			status = "disabled";
-+		};
-+
-+		can0: can@e081c000 {
-+			compatible = "bosch,m_can";
-+			reg = <0xe081c000 0xfc>, <0x00100000 0x4000>;
-+			reg-names = "m_can", "message_ram";
-+			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "int0", "int1";
-+			clocks = <&clks GCK_ID_MCAN0>, <&clks GCK_ID_MCAN0>;
-+			clock-names = "hclk", "cclk";
-+			assigned-clocks = <&clks GCK_ID_MCAN0>;
-+			assigned-clock-rates = <40000000>;
-+			bosch,mram-cfg = <0x0 0 0 64 0 0 32 32>;
-+			status = "disabled";
-+		};
-+
-+		gpio: pinctrl@e2004064 {
-+			compatible = "microchip,lan966x-pinctrl";
-+			reg = <0xe2004064 0xb4>,
-+			    <0xe2010024 0x138>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&gpio 0 0 78>;
-+			interrupt-controller;
-+			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-+			#interrupt-cells = <2>;
-+		};
-+
-+		gic: interrupt-controller@e8c11000 {
-+			compatible = "arm,gic-400", "arm,cortex-a7-gic";
-+			#interrupt-cells = <3>;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-controller;
-+			reg = <0xe8c11000 0x1000>,
-+			      <0xe8c12000 0x2000>,
-+			      <0xe8c14000 0x2000>,
-+			      <0xe8c16000 0x2000>;
-+		};
-+	};
-+};
--- 
-2.17.1
+> 
+> >
+> > ...
+> >   
+> > > -       data->cfg = &ds1803_cfg[id->driver_data];
+> > > +       data->chip_type = (uintptr_t)device_get_match_data(dev);
+> > > +       if (data->chip_type < DS1803_010 || data->chip_type > DS3502)
+> > > +               data->chip_type = id->driver_data;  
+> > 
+> > Split it into a separate patch and use pointer validation instead:
+> > 
+> > data->cfg = ...
+> > if (!data->cfg)
+> >   data->cfg = ...id->driver_data;
+> > 
+> > ...
+> >   
+> > > -       { .compatible = "maxim,ds1803-010", .data = &ds1803_cfg[DS1803_010] },
+> > > -       { .compatible = "maxim,ds1803-050", .data = &ds1803_cfg[DS1803_050] },
+> > > -       { .compatible = "maxim,ds1803-100", .data = &ds1803_cfg[DS1803_100] },  
+> 
+> To get the chip specific structure I can use previous structure method for data
+> and validation as you shown above.
+> But it is necessary to get the chip_type also because of dependency in 
+> ds1803_raw_read().
+
+You could use a function pointer in the cfg structure and provide appropriate read
+functions for the different types so that read_raw() can call the appropriate function
+for the type of device.  That would be tidy and avoid this need to change
+to an enum.
+
+Sorry for slow response btw as I didn't get in before v3!
+
+Thanks,
+
+Jonathan
+
+
+> 
+> To get the chip_type can I use 
+> data->chip_type = id->driver_data
+> 
+> > > +       { .compatible = "maxim,ds1803-010", .data = (void *)DS1803_010 },
+> > > +       { .compatible = "maxim,ds1803-050", .data = (void *)DS1803_050 },
+> > > +       { .compatible = "maxim,ds1803-100", .data = (void *)DS1803_100 },  
+> > 
+> > This is not good, please use pointers as it was before.
+> >   
+> > > +       { .compatible = "maxim,ds3502",     .data = (void *)DS3502 },  
+> > 
+> > Ditto. Create a new, separate structure for this type.
+> > 
+> > ...
+> >   
+> > >         { "ds1803-010", DS1803_010 },
+> > >         { "ds1803-050", DS1803_050 },
+> > >         { "ds1803-100", DS1803_100 },
+> > > +       { "ds3502",     DS3502     },  
+> > 
+> > Too many spaces.
+> > Besides this, please create a new prerequisite patch to convert this
+> > to use pointers as above.  
+> 
+> Sure I will split this patch in v3.
+> Thanks for feedback.
+> 
+> > 
+> > -- 
+> > With Best Regards,
+> > Andy Shevchenko  
+> 
+> Best Regards,
+> Jagath
 
