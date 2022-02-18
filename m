@@ -2,109 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 260DA4BB502
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 10:05:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 387A84BB50C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 10:06:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233116AbiBRJFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 04:05:41 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45350 "EHLO
+        id S233048AbiBRJHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 04:07:04 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233122AbiBRJFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 04:05:40 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 984BF2B3AF4;
-        Fri, 18 Feb 2022 01:05:23 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DED356164C;
-        Fri, 18 Feb 2022 09:05:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EFFEC340E9;
-        Fri, 18 Feb 2022 09:05:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645175122;
-        bh=nyo3dl7uWvkPYIIURpV8TOwhBt3YscYngOUcSSfxcaQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PFW2c4zwS8hdkniWw010dfPL6MhyVstfD7Laggiz30JnwNn72Kw6j6VY7bFQt1UmU
-         0Ezidu02W74D9+wrZJwfBZVYp9k4SHApO5GJV2t6Y9VdSbWI6C1N3aZnkHqan2cJ40
-         KKfb9UcVHvxnQthquxSoaWS65JVjZQ3+guiy/kYe2ZyVCzNNVxBt5//geG+ujKMOKW
-         2lWB3UGmLbvAwIL0RqvIo74IJdIpIlRwcN9cKxzqymwiiV98Y65PZuYryuM5e+E1I4
-         6PEDMaY4KzTdhLkEZTqEYhQKE6XLw1iHi0jl1qxPvLlt9bIT4AwggQkttTwtKqRRpr
-         9UiTsxWnl1SvA==
-Date:   Fri, 18 Feb 2022 10:05:18 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc:     Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/9] i2c: qcom-cci: fixes and updates
-Message-ID: <Yg9hTgEFJ481AoWO@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
- <Yg6oxrlQZIsJCkUY@kunai>
- <303a2bfd-b3d2-97a8-2438-fefe13a49962@linaro.org>
+        with ESMTP id S231630AbiBRJHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 04:07:03 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 217945C678;
+        Fri, 18 Feb 2022 01:06:46 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id w3so14294989edu.8;
+        Fri, 18 Feb 2022 01:06:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6TCCegS6DBXINxSypqdh55uTuN1cU4u7+gYHLdDW5rs=;
+        b=IsX18i6RNGKHsRzhSZ8kBQYz2FZbkJ9J7+ECdRJcHUiWeNF3uPSt9/0fAGWiePoRAD
+         O0XSLkUuRVizODHz3JTKc4EionY6tKvTLRtRtk2PwJBIlOj8W7k0ZstK2o1S3tFXkTML
+         RvPkvUk9tj/hPAhOVeUf4WgXvzzimxDIjOYsQ/5e9D3X4lqaoCvfX8VIBIEybRAZqt6o
+         0kSVHgLJKpbKnpheuB1ntxKcecnFmMrg1yuaMZh635uelpGeZqkDfKn2JGhOSEMCE2Lb
+         9rRcT+ebKLdDKIJXsUbETp3iIfSiGH/mwmkQfKoMwuc7ZGfSO3B9fK17vkFMpPG26pes
+         YFnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6TCCegS6DBXINxSypqdh55uTuN1cU4u7+gYHLdDW5rs=;
+        b=BtfLOLH8o1jEyYKMZi2O1AHEALdqXdL1qDbnN4B7nuwR28M7wgeY2UVq3k4lvgTRRm
+         +zvcC4rfB4pMTCMk7V1o9WJdzQdX3jNjlOgoC/Vo1vupkpOtLY7bDfNDO+DJcwGB94fu
+         76RlkAzpfWSMnpLY9j3tjwB80n4lOaBJVvsBy8/1V/rMhCturI1higPEROyD7Qx/S8Ln
+         sa0ueyQhq8GRdmHzyKovzQEMSsPhkaXzMZmz8ktM/RV4qIGi6HwFyMTmm+mZuXJ95QeO
+         IILuUfN0NgX4zOokTISuzXjTJOk/+kAM9TmjtzA2mPt7HL1gPh7/goJktFaCyGOA2BLG
+         P7hw==
+X-Gm-Message-State: AOAM530BP0Wbd9GAoFqnocAugYJX4TT81RCqLyBijcjDZf8jOkjucCKx
+        znmGkaf0kI+vQR7ObEGScQdwBTOGl0Y=
+X-Google-Smtp-Source: ABdhPJzIseeTxo4p0eVp+Ij7DuKT9J6uMeQ968V8B8E1KXw79zMWuaoEagi8NpRI5ahRq5Xs3Nz2Ow==
+X-Received: by 2002:a05:6402:90b:b0:412:a7cc:f5f9 with SMTP id g11-20020a056402090b00b00412a7ccf5f9mr6131536edz.136.1645175204669;
+        Fri, 18 Feb 2022 01:06:44 -0800 (PST)
+Received: from debian64.daheim (p5b0d7a77.dip0.t-ipconnect.de. [91.13.122.119])
+        by smtp.gmail.com with ESMTPSA id p12sm1508841edc.49.2022.02.18.01.06.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Feb 2022 01:06:43 -0800 (PST)
+Received: from chuck by debian64.daheim with local (Exim 4.95)
+        (envelope-from <chunkeey@gmail.com>)
+        id 1nKzDv-0004LL-Aw;
+        Fri, 18 Feb 2022 10:06:43 +0100
+From:   Christian Lamparter <chunkeey@gmail.com>
+To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 1/2] dt-bindings: Add ti,tmp125 temperature sensor binding
+Date:   Fri, 18 Feb 2022 10:06:42 +0100
+Message-Id: <d3538ba9beededfe3a9ad5dab4903a6a01834822.1645175187.git.chunkeey@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="6Si3TYDo8mKYMppq"
-Content-Disposition: inline
-In-Reply-To: <303a2bfd-b3d2-97a8-2438-fefe13a49962@linaro.org>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From the freely available Texas Instruments' TMP125 datasheet:
 
---6Si3TYDo8mKYMppq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+"The TMP125 is an SPI-compatible temperature sensor available in the
+tiny SOT23-6 package. Requiring no external components, the TMP125
+is capable of measuring temperatures within 2 degree C of accuracy
+over a temperature range of −25 degree C to +85 degree C and
+2.5 degree C of accuracy over −40 degree C to +125 degree C."
 
+The TMP125 is very similar to the TMP121/TMP122 series of familiar
+chips.
 
-> thank you for applying the fixes, 1/9 and 9/9 are also good to be applied
-> for-next, there is no dependency on vbus-supply, so I would appreciate, if
-> you take two more changes.
+Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Done now.
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 091792ba993e..09b98bf97c8d 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -337,6 +337,7 @@ properties:
+             # Thermometer with SPI interface
+           - ti,tmp121
+           - ti,tmp122
++          - ti,tmp125
+             # Digital Temperature Sensor
+           - ti,tmp275
+             # TI DC-DC converter on PMBus
+-- 
+2.35.1
 
-> As you suggested I'd start working on a generic support of such an optional
-> bus supplier property, I believe at the moment everything is quite clear,
-> I'll start from testing the previous solution, however my preference is
-> to connect regulator on/off to master controller pm ops rather than slave
-> pm ops. Additionally I am not quite satisfied with 'vbus-supply' name,
-
-Did I get this right? You want to reimplement bus regulator handling in
-the bus driver when we already have pending patches to add it to the I2C
-core?
-
-
---6Si3TYDo8mKYMppq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIPYU4ACgkQFA3kzBSg
-KbbuVhAAjo14JDbmMiGeblhRNcJoLwEz5TZVFKEBJ5TyvdY4WeEuANV4OTPa3/Nb
-oVlfMToE8+tQl9JRVLiBm3W8wAU4ta13lNtE2a7FgYEGZQ2kIFI3vaYWGoxKgOoT
-g4NuHwyn1yY0xtJbZHu+iuBfZJsmdDd/GhgQga26/u+Ubwb0KskDv3takhKldpVs
-4LXm+uvr++alLSs+lHODGTB+5X3OGCE/MbQ7mQXJlbEPVncf1ovpTMzvoPzhG25o
-ETkUf52IJiCON9HTeX59DT/1I/52ajTXES60rd43pNjl6bIwi8+9u88pAuYd0DCL
-2FKfFH88g0at4lMFqcwmjvTX3XcfmJJ+OWM9TWkEBLBi2l8wra39Ks9bLUYfBG2+
-mBOgIRS8FEMMtTKpfdvydeorHGfwc9v+4zjQNP+ZVIjl7qm+NZu+I3h8uH79Dcr5
-+CCNg7BHCojsHzF4pzxUj5D7iz2TOlgHH6YHm39TORKNmD+F8hye1OhG6q/BTfQV
-T0jn/92RSAA2cukIl0uO/k1+e3GKWZa/pp2MNtpUzHMmH6x5dRiiTw7g6C/QUSKC
-kEmyXwIai5/emba51HLTtKjmM/lnYiBwHfdpQ+BgIXCeCAIxOqDUbUsmUOXEzICY
-95R/1HQ/7zlt5AQoeRLgpD2SRIFIPeijAF9ZRQHN/YW/hXscaJM=
-=v/eQ
------END PGP SIGNATURE-----
-
---6Si3TYDo8mKYMppq--
