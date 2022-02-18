@@ -2,172 +2,542 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAE754BC27C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 23:15:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1A094BC2BE
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 00:02:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240084AbiBRWPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 17:15:25 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43128 "EHLO
+        id S230301AbiBRXCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 18:02:51 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233670AbiBRWPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 17:15:24 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E93D2838D5;
-        Fri, 18 Feb 2022 14:15:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BD28FB826DB;
-        Fri, 18 Feb 2022 22:15:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54F8DC340E9;
-        Fri, 18 Feb 2022 22:15:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645222504;
-        bh=M5dSoVY3d/Xj3lqvCKf5wDOwHEunbF0u54EGJ2hGCU0=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=gM0+T0vjR9Jk6/5fjNxlyNAAaHWpd+jwzlmkX6cDOCXd6TDZ+Un6BOw4S8crPEVrf
-         WZ5ztiWtO6FC33VyQPNXRrR7vTWVP1TRJSw/6Bbg2Uf/FS0MKrDAbgtfplEhuZqbrU
-         GF4PY/sWX0AGhQZGOTIs0zF5TWWPOfbRLoPaxJwTr1uQfiquTDVcFSIjS0BQbssnyL
-         Aaj0pOW5CbZEMtv2ilsDnVncXnBzIqlUvXe+QvEvsfAwwWwqCSfTesV+b78SZOF7XV
-         Z2Tsd1M26hBDIS1a2nSnyydL7J2g0uvh5FYV9DnRHRlzK9BzzuTd2IVVxOrwrY9zoX
-         w1T+3LJrredLA==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229506AbiBRXCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 18:02:50 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53FEE433BE
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 15:02:31 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0B776482;
+        Sat, 19 Feb 2022 00:02:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1645225349;
+        bh=qmcGvqHgII2pGm21mXJUA++vgYhW+k+aJDJ4Bd/mMzk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BWYVH8QOoA8rJl2CtaGYQtLSVKRdE7rkNBPkYg088WS6b23sI663amZ2u1PHCXEOl
+         OwXnBwPKgzTnIyuofRBuWe27tMggl2rbn4PRAlIIJdL+WWsSLfgXSbUlvVW9okEcFo
+         h2Bc9t6vwyGdsnPP0sapb+BRuwjUzJopuDuApbAQ=
+Date:   Sat, 19 Feb 2022 01:02:20 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        patchwork-lst@pengutronix.de
+Subject: Re: [PATCH v2 3/9] soc: imx: gpcv2: add support for i.MX8MP power
+ domains
+Message-ID: <YhAlfAunReS14b/E@pendragon.ideasonboard.com>
+References: <20220207192547.1997549-1-l.stach@pengutronix.de>
+ <20220207192547.1997549-3-l.stach@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <006919c7-74c9-390a-964e-6b76611988e5@denx.de>
-References: <20220213173310.152230-1-marex@denx.de> <20220213173310.152230-2-marex@denx.de> <20220217234539.819AEC340E8@smtp.kernel.org> <006919c7-74c9-390a-964e-6b76611988e5@denx.de>
-Subject: Re: [PATCH 2/2] clk: rs9: Add Renesas 9-series PCIe clock generator driver
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
-Date:   Fri, 18 Feb 2022 14:15:02 -0800
-User-Agent: alot/0.10
-Message-Id: <20220218221504.54F8DC340E9@smtp.kernel.org>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220207192547.1997549-3-l.stach@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75 autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Marek Vasut (2022-02-17 17:26:22)
-> On 2/18/22 00:45, Stephen Boyd wrote:
-> > Quoting Marek Vasut (2022-02-13 09:33:10)
-> >> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> >> index 6a98291350b64..3ec27842ec779 100644
-> >> --- a/drivers/clk/Makefile
-> >> +++ b/drivers/clk/Makefile
-> >> @@ -68,6 +68,7 @@ obj-$(CONFIG_COMMON_CLK_STM32MP157)   +=3D clk-stm32=
-mp1.o
-> >>   obj-$(CONFIG_COMMON_CLK_TPS68470)      +=3D clk-tps68470.o
-> >>   obj-$(CONFIG_CLK_TWL6040)              +=3D clk-twl6040.o
-> >>   obj-$(CONFIG_ARCH_VT8500)              +=3D clk-vt8500.o
-> >> +obj-$(CONFIG_COMMON_CLK_RS9_PCIE)      +=3D clk-renesas-pcie.o
-> >=20
-> > Is there a reason it doesn't go into drivers/clk/renesas?
->=20
-> The drivers/clk/renesas/ is for renesas SoC (R-Car/RZ/...),
-> this chip is different group (it's probably even IDT PLL IP).
+Hi Lucas,
 
-Ah ok so it's not a renesas SoC but a renesas IP?
+Thank you for the patch.
 
->=20
-> [...]
->=20
-> >> +#include <linux/mod_devicetable.h>
-> >> +#include <linux/module.h>
-> >> +#include <linux/of.h>
-> >> +#include <linux/of_platform.h>
-> >=20
-> > Is this used? If not please remove.
->=20
-> This one is for of_device_get_match_data()
->=20
+On Mon, Feb 07, 2022 at 08:25:41PM +0100, Lucas Stach wrote:
+> This adds driver support for all the GPC power domains found on
+> the i.MX8MP SoC.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  drivers/soc/imx/gpcv2.c | 387 +++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 386 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> index 01f46b078df3..a7c92bdfc53b 100644
+> --- a/drivers/soc/imx/gpcv2.c
+> +++ b/drivers/soc/imx/gpcv2.c
+> @@ -21,10 +21,12 @@
+>  #include <dt-bindings/power/imx8mq-power.h>
+>  #include <dt-bindings/power/imx8mm-power.h>
+>  #include <dt-bindings/power/imx8mn-power.h>
+> +#include <dt-bindings/power/imx8mp-power.h>
+>  
+>  #define GPC_LPCR_A_CORE_BSC			0x000
+>  
+>  #define GPC_PGC_CPU_MAPPING		0x0ec
+> +#define IMX8MP_GPC_PGC_CPU_MAPPING	0x1cc
+>  
+>  #define IMX7_USB_HSIC_PHY_A_CORE_DOMAIN		BIT(6)
+>  #define IMX7_USB_OTG2_PHY_A_CORE_DOMAIN		BIT(5)
+> @@ -65,6 +67,29 @@
+>  #define IMX8MN_OTG1_A53_DOMAIN		BIT(4)
+>  #define IMX8MN_MIPI_A53_DOMAIN		BIT(2)
+>  
+> +#define IMX8MP_MEDIA_ISPDWP_A53_DOMAIN	BIT(20)
+> +#define IMX8MP_HSIOMIX_A53_DOMAIN		BIT(19)
+> +#define IMX8MP_MIPI_PHY2_A53_DOMAIN		BIT(18)
+> +#define IMX8MP_HDMI_PHY_A53_DOMAIN		BIT(17)
+> +#define IMX8MP_HDMIMIX_A53_DOMAIN		BIT(16)
+> +#define IMX8MP_VPU_VC8000E_A53_DOMAIN		BIT(15)
+> +#define IMX8MP_VPU_G2_A53_DOMAIN		BIT(14)
+> +#define IMX8MP_VPU_G1_A53_DOMAIN		BIT(13)
+> +#define IMX8MP_MEDIAMIX_A53_DOMAIN		BIT(12)
+> +#define IMX8MP_GPU3D_A53_DOMAIN			BIT(11)
+> +#define IMX8MP_VPUMIX_A53_DOMAIN		BIT(10)
+> +#define IMX8MP_GPUMIX_A53_DOMAIN		BIT(9)
+> +#define IMX8MP_GPU2D_A53_DOMAIN			BIT(8)
+> +#define IMX8MP_AUDIOMIX_A53_DOMAIN		BIT(7)
+> +#define IMX8MP_MLMIX_A53_DOMAIN			BIT(6)
+> +#define IMX8MP_USB2_PHY_A53_DOMAIN		BIT(5)
+> +#define IMX8MP_USB1_PHY_A53_DOMAIN		BIT(4)
+> +#define IMX8MP_PCIE_PHY_A53_DOMAIN		BIT(3)
+> +#define IMX8MP_MIPI_PHY1_A53_DOMAIN		BIT(2)
+> +
+> +#define IMX8MP_GPC_PU_PGC_SW_PUP_REQ	0x0d8
+> +#define IMX8MP_GPC_PU_PGC_SW_PDN_REQ	0x0e4
+> +
+>  #define GPC_PU_PGC_SW_PUP_REQ		0x0f8
+>  #define GPC_PU_PGC_SW_PDN_REQ		0x104
+>  
+> @@ -107,8 +132,30 @@
+>  #define IMX8MN_OTG1_SW_Pxx_REQ		BIT(2)
+>  #define IMX8MN_MIPI_SW_Pxx_REQ		BIT(0)
+>  
+> +#define IMX8MP_DDRMIX_Pxx_REQ			BIT(19)
+> +#define IMX8MP_MEDIA_ISP_DWP_Pxx_REQ		BIT(18)
+> +#define IMX8MP_HSIOMIX_Pxx_REQ			BIT(17)
+> +#define IMX8MP_MIPI_PHY2_Pxx_REQ		BIT(16)
+> +#define IMX8MP_HDMI_PHY_Pxx_REQ			BIT(15)
+> +#define IMX8MP_HDMIMIX_Pxx_REQ			BIT(14)
+> +#define IMX8MP_VPU_VC8K_Pxx_REQ			BIT(13)
+> +#define IMX8MP_VPU_G2_Pxx_REQ			BIT(12)
+> +#define IMX8MP_VPU_G1_Pxx_REQ			BIT(11)
+> +#define IMX8MP_MEDIMIX_Pxx_REQ			BIT(10)
+> +#define IMX8MP_GPU_3D_Pxx_REQ			BIT(9)
+> +#define IMX8MP_VPU_MIX_SHARE_LOGIC_Pxx_REQ	BIT(8)
+> +#define IMX8MP_GPU_SHARE_LOGIC_Pxx_REQ		BIT(7)
+> +#define IMX8MP_GPU_2D_Pxx_REQ			BIT(6)
+> +#define IMX8MP_AUDIOMIX_Pxx_REQ			BIT(5)
+> +#define IMX8MP_MLMIX_Pxx_REQ			BIT(4)
+> +#define IMX8MP_USB2_PHY_Pxx_REQ			BIT(3)
+> +#define IMX8MP_USB1_PHY_Pxx_REQ			BIT(2)
+> +#define IMX8MP_PCIE_PHY_SW_Pxx_REQ		BIT(1)
+> +#define IMX8MP_MIPI_PHY1_SW_Pxx_REQ		BIT(0)
+> +
+>  #define GPC_M4_PU_PDN_FLG		0x1bc
+>  
+> +#define IMX8MP_GPC_PU_PWRHSK		0x190
+>  #define GPC_PU_PWRHSK			0x1fc
+>  
+>  #define IMX8M_GPU_HSK_PWRDNACKN			BIT(26)
+> @@ -118,7 +165,6 @@
+>  #define IMX8M_VPU_HSK_PWRDNREQN			BIT(5)
+>  #define IMX8M_DISP_HSK_PWRDNREQN		BIT(4)
+>  
+> -
+>  #define IMX8MM_GPUMIX_HSK_PWRDNACKN		BIT(29)
+>  #define IMX8MM_GPU_HSK_PWRDNACKN		(BIT(27) | BIT(28))
+>  #define IMX8MM_VPUMIX_HSK_PWRDNACKN		BIT(26)
+> @@ -137,6 +183,21 @@
+>  #define IMX8MN_DISPMIX_HSK_PWRDNREQN		BIT(7)
+>  #define IMX8MN_HSIO_HSK_PWRDNREQN		BIT(5)
+>  
+> +#define IMX8MP_MEDIAMIX_PWRDNACKN		BIT(3)
 
-So it's going away?
+This should be bit 30.
 
->=20
-> >> +static int rs9_probe(struct i2c_client *client, const struct i2c_devi=
-ce_id *id)
-> >> +{
-> >> +       struct device_node *np =3D client->dev.of_node;
-> >> +       unsigned char *name =3D "DIF0";
-> >> +       struct rs9_driver_data *rs9;
-> >> +       const char *parent_clk;
-> >> +       struct clk_hw *hw;
-> >> +       int i, ret;
-> >> +
-> >> +       rs9 =3D devm_kzalloc(&client->dev, sizeof(*rs9), GFP_KERNEL);
-> >> +       if (!rs9)
-> >> +               return -ENOMEM;
-> >> +
-> >> +       i2c_set_clientdata(client, rs9);
-> >> +       rs9->client =3D client;
-> >> +       rs9->chip_info =3D of_device_get_match_data(&client->dev);
-> >=20
-> > Check for NULL? Use device_get_match_data()? Or does that not work for
-> > i2c devices?
+> +#define IMX8MP_HDMIMIX_PWRDNACKN		BIT(29)
+> +#define IMX8MP_HSIOMIX_PWRDNACKN		BIT(28)
+> +#define IMX8MP_VPUMIX_PWRDNACKN			BIT(26)
+> +#define IMX8MP_GPUMIX_PWRDNACKN			BIT(25)
+> +#define IMX8MP_MLMIX_PWRDNACKN			(BIT(23) | BIT(24))
+> +#define IMX8MP_AUDIOMIX_PWRDNACKN		(BIT(20) | BIT(31))
+> +#define IMX8MP_MEDIAMIX_PWRDNREQN		BIT(14)
+> +#define IMX8MP_HDMIMIX_PWRDNREQN		BIT(13)
+> +#define IMX8MP_HSIOMIX_PWRDNREQN		BIT(12)
+> +#define IMX8MP_VPUMIX_PWRDNREQN			BIT(10)
+> +#define IMX8MP_GPUMIX_PWRDNREQN			BIT(9)
+> +#define IMX8MP_MLMIX_PWRDNREQN			(BIT(7) | BIT(8))
+> +#define IMX8MP_AUDIOMIX_PWRDNREQN		(BIT(4) | BIT(15))
+> +
+>  /*
+>   * The PGC offset values in Reference Manual
+>   * (Rev. 1, 01/2018 and the older ones) GPC chapter's
+> @@ -179,6 +240,28 @@
+>  #define IMX8MN_PGC_GPUMIX		23
+>  #define IMX8MN_PGC_DISPMIX		26
+>  
+> +#define IMX8MP_PGC_NOC			9
+> +#define IMX8MP_PGC_MIPI1		12
+> +#define IMX8MP_PGC_PCIE			13
+> +#define IMX8MP_PGC_USB1			14
+> +#define IMX8MP_PGC_USB2			15
+> +#define IMX8MP_PGC_MLMIX		16
+> +#define IMX8MP_PGC_AUDIOMIX		17
+> +#define IMX8MP_PGC_GPU2D		18
+> +#define IMX8MP_PGC_GPUMIX		19
+> +#define IMX8MP_PGC_VPUMIX		20
+> +#define IMX8MP_PGC_GPU3D		21
+> +#define IMX8MP_PGC_MEDIAMIX		22
+> +#define IMX8MP_PGC_VPU_G1		23
+> +#define IMX8MP_PGC_VPU_G2		24
+> +#define IMX8MP_PGC_VPU_VC8000E		25
+> +#define IMX8MP_PGC_HDMIMIX		26
+> +#define IMX8MP_PGC_HDMI			27
+> +#define IMX8MP_PGC_MIPI2		28
+> +#define IMX8MP_PGC_HSIOMIX		29
+> +#define IMX8MP_PGC_MEDIA_ISP_DWP	30
+> +#define IMX8MP_PGC_DDRMIX		31
+> +
+>  #define GPC_PGC_CTRL(n)			(0x800 + (n) * 0x40)
+>  #define GPC_PGC_SR(n)			(GPC_PGC_CTRL(n) + 0xc)
+>  
+> @@ -212,6 +295,9 @@ struct imx_pgc_domain {
+>  	const int voltage;
+>  	const bool keep_clocks;
+>  	struct device *dev;
+> +
+> +	unsigned int pgc_sw_pup_reg;
+> +	unsigned int pgc_sw_pdn_reg;
+>  };
+>  
+>  struct imx_pgc_domain_data {
+> @@ -824,6 +910,303 @@ static const struct imx_pgc_domain_data imx8mm_pgc_domain_data = {
+>  	.pgc_regs = &imx7_pgc_regs,
+>  };
+>  
+> +static const struct imx_pgc_domain imx8mp_pgc_domains[] = {
+> +	[IMX8MP_POWER_DOMAIN_MIPI_PHY1] = {
+> +		.genpd = {
+> +			.name = "mipi-phy1",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_MIPI_PHY1_SW_Pxx_REQ,
+> +			.map = IMX8MP_MIPI_PHY1_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_MIPI1),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_PCIE_PHY] = {
+> +		.genpd = {
+> +			.name = "pcie-phy1",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_PCIE_PHY_SW_Pxx_REQ,
+> +			.map = IMX8MP_PCIE_PHY_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_PCIE),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_USB1_PHY] = {
+> +		.genpd = {
+> +			.name = "usb-otg1",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_USB1_PHY_Pxx_REQ,
+> +			.map = IMX8MP_USB1_PHY_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_USB1),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_USB2_PHY] = {
+> +		.genpd = {
+> +			.name = "usb-otg2",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_USB2_PHY_Pxx_REQ,
+> +			.map = IMX8MP_USB2_PHY_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_USB2),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_MLMIX] = {
+> +		.genpd = {
+> +			.name = "mlmix",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_MLMIX_Pxx_REQ,
+> +			.map = IMX8MP_MLMIX_A53_DOMAIN,
+> +			.hskreq = IMX8MP_MLMIX_PWRDNREQN,
+> +			.hskack = IMX8MP_MLMIX_PWRDNACKN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_MLMIX),
+> +		.keep_clocks = true,
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_AUDIOMIX] = {
+> +		.genpd = {
+> +			.name = "audiomix",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_AUDIOMIX_Pxx_REQ,
+> +			.map = IMX8MP_AUDIOMIX_A53_DOMAIN,
+> +			.hskreq = IMX8MP_AUDIOMIX_PWRDNREQN,
+> +			.hskack = IMX8MP_AUDIOMIX_PWRDNACKN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_AUDIOMIX),
+> +		.keep_clocks = true,
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_GPU2D] = {
+> +		.genpd = {
+> +			.name = "gpu2d",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_GPU_2D_Pxx_REQ,
+> +			.map = IMX8MP_GPU2D_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_GPU2D),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_GPUMIX] = {
+> +		.genpd = {
+> +			.name = "gpumix",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_GPU_SHARE_LOGIC_Pxx_REQ,
+> +			.map = IMX8MP_GPUMIX_A53_DOMAIN,
+> +			.hskreq = IMX8MP_GPUMIX_PWRDNREQN,
+> +			.hskack = IMX8MP_GPUMIX_PWRDNACKN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_GPUMIX),
+> +		.keep_clocks = true,
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_VPUMIX] = {
+> +		.genpd = {
+> +			.name = "vpumix",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_VPU_MIX_SHARE_LOGIC_Pxx_REQ,
+> +			.map = IMX8MP_VPUMIX_A53_DOMAIN,
+> +			.hskreq = IMX8MP_VPUMIX_PWRDNREQN,
+> +			.hskack = IMX8MP_VPUMIX_PWRDNACKN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_VPUMIX),
+> +		.keep_clocks = true,
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_GPU3D] = {
+> +		.genpd = {
+> +			.name = "gpu3d",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_GPU_3D_Pxx_REQ,
+> +			.map = IMX8MP_GPU3D_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_GPU3D),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_MEDIAMIX] = {
+> +		.genpd = {
+> +			.name = "mediamix",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_MEDIMIX_Pxx_REQ,
+> +			.map = IMX8MP_MEDIAMIX_A53_DOMAIN,
+> +			.hskreq = IMX8MP_MEDIAMIX_PWRDNREQN,
+> +			.hskack = IMX8MP_MEDIAMIX_PWRDNACKN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_MEDIAMIX),
+> +		.keep_clocks = true,
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_VPU_G1] = {
+> +		.genpd = {
+> +			.name = "vpu-g1",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_VPU_G1_Pxx_REQ,
+> +			.map = IMX8MP_VPU_G1_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_VPU_G1),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_VPU_G2] = {
+> +		.genpd = {
+> +			.name = "vpu-g2",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_VPU_G2_Pxx_REQ,
+> +			.map = IMX8MP_VPU_G2_A53_DOMAIN
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_VPU_G2),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_VPU_VC8000E] = {
+> +		.genpd = {
+> +			.name = "vpu-h1",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_VPU_VC8K_Pxx_REQ,
+> +			.map = IMX8MP_VPU_VC8000E_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_VPU_VC8000E),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_HDMIMIX] = {
+> +		.genpd = {
+> +			.name = "hdmimix",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_HDMIMIX_Pxx_REQ,
+> +			.map = IMX8MP_HDMIMIX_A53_DOMAIN,
+> +			.hskreq = IMX8MP_HDMIMIX_PWRDNREQN,
+> +			.hskack = IMX8MP_HDMIMIX_PWRDNACKN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_HDMIMIX),
+> +		.keep_clocks = true,
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_HDMI_PHY] = {
+> +		.genpd = {
+> +			.name = "hdmi-phy",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_HDMI_PHY_Pxx_REQ,
+> +			.map = IMX8MP_HDMI_PHY_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_HDMI),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_MIPI_PHY2] = {
+> +		.genpd = {
+> +			.name = "mipi-phy2",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_MIPI_PHY2_Pxx_REQ,
+> +			.map = IMX8MP_MIPI_PHY2_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_MIPI2),
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_HSIOMIX] = {
+> +		.genpd = {
+> +			.name = "hsiomix",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_HSIOMIX_Pxx_REQ,
+> +			.map = IMX8MP_HSIOMIX_A53_DOMAIN,
+> +			.hskreq = IMX8MP_HSIOMIX_PWRDNREQN,
+> +			.hskack = IMX8MP_HSIOMIX_PWRDNACKN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_HSIOMIX),
+> +		.keep_clocks = true,
+> +	},
+> +
+> +	[IMX8MP_POWER_DOMAIN_MEDIAMIX_ISPDWP] = {
+> +		.genpd = {
+> +			.name = "mediamix-isp-dwp",
+> +		},
+> +		.bits = {
+> +			.pxx = IMX8MP_MEDIA_ISP_DWP_Pxx_REQ,
+> +			.map = IMX8MP_MEDIA_ISPDWP_A53_DOMAIN,
+> +		},
+> +		.pgc = BIT(IMX8MP_PGC_MEDIA_ISP_DWP),
+> +	},
+> +};
+> +
+> +static const struct regmap_range imx8mp_yes_ranges[] = {
+> +		regmap_reg_range(GPC_LPCR_A_CORE_BSC,
+> +				 IMX8MP_GPC_PGC_CPU_MAPPING),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_NOC),
+> +				 GPC_PGC_SR(IMX8MP_PGC_NOC)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MIPI1),
+> +				 GPC_PGC_SR(IMX8MP_PGC_MIPI1)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_PCIE),
+> +				 GPC_PGC_SR(IMX8MP_PGC_PCIE)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_USB1),
+> +				 GPC_PGC_SR(IMX8MP_PGC_USB1)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_USB2),
+> +				 GPC_PGC_SR(IMX8MP_PGC_USB2)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MLMIX),
+> +				 GPC_PGC_SR(IMX8MP_PGC_MLMIX)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_AUDIOMIX),
+> +				 GPC_PGC_SR(IMX8MP_PGC_AUDIOMIX)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_GPU2D),
+> +				 GPC_PGC_SR(IMX8MP_PGC_GPU2D)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_GPUMIX),
+> +				 GPC_PGC_SR(IMX8MP_PGC_GPUMIX)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPUMIX),
+> +				 GPC_PGC_SR(IMX8MP_PGC_VPUMIX)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_GPU3D),
+> +				 GPC_PGC_SR(IMX8MP_PGC_GPU3D)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MEDIAMIX),
+> +				 GPC_PGC_SR(IMX8MP_PGC_MEDIAMIX)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPU_G1),
+> +				 GPC_PGC_SR(IMX8MP_PGC_VPU_G1)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPU_G2),
+> +				 GPC_PGC_SR(IMX8MP_PGC_VPU_G2)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPU_VC8000E),
+> +				 GPC_PGC_SR(IMX8MP_PGC_VPU_VC8000E)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_HDMIMIX),
+> +				 GPC_PGC_SR(IMX8MP_PGC_HDMIMIX)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_HDMI),
+> +				 GPC_PGC_SR(IMX8MP_PGC_HDMI)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MIPI2),
+> +				 GPC_PGC_SR(IMX8MP_PGC_MIPI2)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_HSIOMIX),
+> +				 GPC_PGC_SR(IMX8MP_PGC_HSIOMIX)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MEDIA_ISP_DWP),
+> +				 GPC_PGC_SR(IMX8MP_PGC_MEDIA_ISP_DWP)),
+> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_DDRMIX),
+> +				 GPC_PGC_SR(IMX8MP_PGC_DDRMIX)),
+> +};
+> +
+> +static const struct regmap_access_table imx8mp_access_table = {
+> +	.yes_ranges	= imx8mp_yes_ranges,
+> +	.n_yes_ranges	= ARRAY_SIZE(imx8mp_yes_ranges),
+> +};
+> +
+> +static const struct imx_pgc_regs imx8mp_pgc_regs = {
+> +	.map = IMX8MP_GPC_PGC_CPU_MAPPING,
+> +	.pup = IMX8MP_GPC_PU_PGC_SW_PUP_REQ,
+> +	.pdn = IMX8MP_GPC_PU_PGC_SW_PDN_REQ,
+> +	.hsk = IMX8MP_GPC_PU_PWRHSK,
+> +};
+> +static const struct imx_pgc_domain_data imx8mp_pgc_domain_data = {
+> +	.domains = imx8mp_pgc_domains,
+> +	.domains_num = ARRAY_SIZE(imx8mp_pgc_domains),
+> +	.reg_access_table = &imx8mp_access_table,
+> +	.pgc_regs = &imx8mp_pgc_regs,
+> +};
+> +
+>  static const struct imx_pgc_domain imx8mn_pgc_domains[] = {
+>  	[IMX8MN_POWER_DOMAIN_HSIOMIX] = {
+>  		.genpd = {
+> @@ -1119,6 +1502,7 @@ static int imx_gpcv2_probe(struct platform_device *pdev)
+>  		domain = pd_pdev->dev.platform_data;
+>  		domain->regmap = regmap;
+>  		domain->regs = domain_data->pgc_regs;
+> +
+>  		domain->genpd.power_on  = imx_pgc_power_up;
+>  		domain->genpd.power_off = imx_pgc_power_down;
+>  
+> @@ -1140,6 +1524,7 @@ static const struct of_device_id imx_gpcv2_dt_ids[] = {
+>  	{ .compatible = "fsl,imx7d-gpc", .data = &imx7_pgc_domain_data, },
+>  	{ .compatible = "fsl,imx8mm-gpc", .data = &imx8mm_pgc_domain_data, },
+>  	{ .compatible = "fsl,imx8mn-gpc", .data = &imx8mn_pgc_domain_data, },
+> +	{ .compatible = "fsl,imx8mp-gpc", .data = &imx8mp_pgc_domain_data, },
+>  	{ .compatible = "fsl,imx8mq-gpc", .data = &imx8m_pgc_domain_data, },
+>  	{ }
+>  };
+> 
 
-??
+-- 
+Regards,
 
-> >=20
-> >> +
-> >> +       /* Fetch common configuration from DT (if specified) */
-> >> +       ret =3D rs9_get_common_config(rs9);
-> >> +       if (ret)
-> >> +               return ret;
-> >> +
-> >> +       /* Fetch DIFx output configuration from DT (if specified) */
-> >> +       for (i =3D 0; i < rs9->chip_info->num_clks; i++) {
-> >> +               ret =3D rs9_get_output_config(rs9, i);
-> >> +               if (ret)
-> >> +                       return ret;
-> >> +       }
-> >> +
-> >> +       /* Mandatory XTal */
-> >=20
-> > Oh it's mandatory here but not in the binding?
-> >=20
-> >> +       parent_clk =3D of_clk_get_parent_name(np, 0);
-> >=20
-> > Use clk_parent_data please.
->=20
-> This one line I don't understand -- can you expand on what you expect me =
-
-> to do here ?
-
-Use 'struct clk_parent_data' and set .index to 0 so that when
-registering the clk you don't need to get the parent clk name.
-
->=20
-> >> +       if (!parent_clk)
-> >> +               return dev_err_probe(&client->dev, -EINVAL,
-> >> +                                    "Missing XTal input clock\n");
-> >> +
-> >> +       rs9->regmap =3D devm_regmap_init_i2c(client, &rs9_regmap_confi=
-g);
-> >> +       if (IS_ERR(rs9->regmap))
-> >> +               return dev_err_probe(&client->dev, PTR_ERR(rs9->regmap=
-),
-> >> +                                    "Failed to allocate register map\=
-n");
-> >> +
-> >> +       /* Register clock */
-> >> +       for (i =3D 0; i < rs9->chip_info->num_clks; i++) {
-> >> +               name[3]++;
-> >> +               hw =3D clk_hw_register_fixed_factor(&client->dev, name,
-> >> +                                                 parent_clk, 0, 4, 1);
-
-To do that it looks like maybe we'll need to export
-__clk_hw_register_fixed_factor() and introduces some sort of
-clk_hw_register_fixed_factor_parent_data() API.
-
-> >> +               if (IS_ERR(hw))
-> >> +                       return PTR_ERR(hw);
-> >> +
-> >> +               rs9->clk_dif[i] =3D hw;
+Laurent Pinchart
