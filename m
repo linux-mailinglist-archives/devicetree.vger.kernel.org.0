@@ -2,110 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87BBF4BB899
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 12:46:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 901214BB8B7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 12:53:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230221AbiBRLph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 06:45:37 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56662 "EHLO
+        id S233819AbiBRLyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 06:54:05 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234965AbiBRLpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 06:45:32 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43822654B
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 03:45:12 -0800 (PST)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 99AAC3F1D0
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 11:45:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645184711;
-        bh=45nuHUTa3RbpU9ZD2lFZMGw59sOMcHKVRXRiU7R5uSM=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=ggRoyrwCgnNxLT9ztgEVy9MIiNaEtqT5m37epkFcrfOro7jxvvJ162YWwIGWFKC7z
-         1mQW35a8Vy8t8mhX0FoUYuY8R4CLVa4+FA9gs1Lk7TVjBrTqffrJ00kuTXOMJfG5p/
-         JrS59G73LXp6sZLs8l7x7FfrQS5RsQtUEPtM8EyKII7A30V83ztY1IAJX7wHahIXhe
-         36l5U+U1ys594I4dHHYzKOq7Xg4NyEnB6pv5X5pf5Eyj08paYs0UBOk2KPZ+7MLD8/
-         2DOODsEV6W0YZCqAoroVm1wePrh5vU+hDV1Tnqg5kW7L5LQ6Walvkbq00DOtZC7fxc
-         snU81A6HBoj3A==
-Received: by mail-ej1-f69.google.com with SMTP id sa22-20020a1709076d1600b006ce78cacb85so2954859ejc.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 03:45:11 -0800 (PST)
+        with ESMTP id S233815AbiBRLyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 06:54:05 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9336253BD6
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 03:53:47 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id k25so14430989ejp.5
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 03:53:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=PAFU6gayxYycFAjsYYdsBH4fb14B+9k5K1rC1fr5ibU=;
+        b=y1ApFGs2wBKqI6YmqGjiKRoomFaWQn9GJ+esuDqvq1CBp+bPpXaaNWJxFaT95S6sQO
+         nbB6NlB9oE/XYNfZ5GZGqFa1ulYJLqfN/+qUK4VZFEi8JQSmztrhJ5+iMlIvi6yW+JPj
+         4fPTTTqHCCrzKTkp/QUn9I5U+wD1oSPiY08DcdkkFp5QNxU2ATqMGhNflB2g8QK1Mpi3
+         zrM+ocM6Hvet65ejBI8tO8ffQ5j6KWZPkiPfFtTCywS5Kup/tbAlm2BHDqnGEZHS6HwZ
+         DORXagahzNdE99rrzWxALDbyqxmTh/UcgIXyD24Lg2PYuGbeYTy037/J+Oq5S0w06VJK
+         mj4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=45nuHUTa3RbpU9ZD2lFZMGw59sOMcHKVRXRiU7R5uSM=;
-        b=gE2nbbeYbGJZnfhI13jCkY+Fyh8QcbaG0khcBphlq19VCvDUD7yg1u0IajOXdlD0Am
-         dP9YER3zKwwG4DYPTDfM6i4ONYifoBt4dJgTXmfEdb8tDCp5QfihiApSbfDeCe9SnMB/
-         EjBMoiuZUvGP2NibeejcdoW8K079aegr6SHToY9F+Ui6W6Qbz6WTijV7set7/L+jz6D4
-         iM6qZzruQnV0E0Y+/NZMP4wDr/jCH4sNJX9bmZLwHjn9pAeZxuE/YFQ0C/ZlJdWui6B9
-         RFz8UiFB20WF9+E3AJ7wrobOUjYDbviAs38y9kV1qeKcZSF5zsjoD3uD/HR5SNuXxHZr
-         ijEw==
-X-Gm-Message-State: AOAM530zY0aQHinbSW3cmu7vEyL68MYDl7CwHNkP2MixhQxeoO+0yebc
-        G1uX+kd6x/+jHwySNk8hPKPobnLSmwi8hR+M1eSE3bkpUdoKtppC0KdTlZ+BZHChuXjixIg1FXQ
-        FmNr1YpI+Alaa++hItzpU2kSK582clkhql6+cJHI=
-X-Received: by 2002:a17:906:278f:b0:6d0:432:2bbb with SMTP id j15-20020a170906278f00b006d004322bbbmr6167782ejc.160.1645184711325;
-        Fri, 18 Feb 2022 03:45:11 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJynV0dqjgLoTTflCymfyGQ9pUWeXfBpXUKar3Oqdvi+s3Aq3gKPvuS2SCHhSltOpHfDxs7+Wg==
-X-Received: by 2002:a17:906:278f:b0:6d0:432:2bbb with SMTP id j15-20020a170906278f00b006d004322bbbmr6167766ejc.160.1645184711154;
-        Fri, 18 Feb 2022 03:45:11 -0800 (PST)
-Received: from [192.168.0.114] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id 5sm2166711eji.192.2022.02.18.03.45.10
+        bh=PAFU6gayxYycFAjsYYdsBH4fb14B+9k5K1rC1fr5ibU=;
+        b=hPQp25YoQoC2v/yds40+wSoaWAGMMvS26hDURxWeKBSTMwSKyylArt70vLRwkCdpbd
+         gxrdoQAK1MJL7tqCJgkqCBEDGNcRXA85/4tlMKk1zLpRR0zO5l+754DbKY7KWPTylBHF
+         W7eDAjBzKRJ6PXm+IYakKHmGZN7RsMRg04HxaApc7J0VYhZtn2V4K1CBNwpFTDfvNbKb
+         JqXaBq4DcV+rkeLfERpiYUdI4v7pOjAhQyy0qwF4s6W76KOyEcO508l70QyiQy9lFs54
+         h5EnvlzlFtpPBbq8kmpl/DCIEdd/y/6jDNCMiXmwHkXUvkL1bVDSz+Uzr1aV/2222zl5
+         gQ3A==
+X-Gm-Message-State: AOAM530935NEO6CcmKDGlbS6NEwI+QpJlyISAwORf6snZ9WO/VqToqtS
+        Q/qOt5hzdSgm/QZVDODZV81p4Q==
+X-Google-Smtp-Source: ABdhPJzz58mhC9gqhYwFYu4oy6FCTDMQGTy6UF4AuD1gK4uU6HBfQlrpYujnCiE43A0uNYbiJHFm/A==
+X-Received: by 2002:a17:906:5a6e:b0:6d0:afaa:6ce9 with SMTP id my46-20020a1709065a6e00b006d0afaa6ce9mr1219253ejc.72.1645185226330;
+        Fri, 18 Feb 2022 03:53:46 -0800 (PST)
+Received: from ?IPV6:2a02:768:2307:40d6::f9e? ([2a02:768:2307:40d6::f9e])
+        by smtp.gmail.com with ESMTPSA id m7sm2203683ejq.10.2022.02.18.03.53.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Feb 2022 03:45:10 -0800 (PST)
-Message-ID: <71974ee4-c21a-a446-91cc-7a3ced59af5b@canonical.com>
-Date:   Fri, 18 Feb 2022 12:45:09 +0100
+        Fri, 18 Feb 2022 03:53:45 -0800 (PST)
+Message-ID: <41049c30-aaf1-30e5-2d11-14df0b468411@monstr.eu>
+Date:   Fri, 18 Feb 2022 12:53:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add ti,tmp125 temperature sensor
- binding
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v6 0/3] Stacked/parallel memories bindings
 Content-Language: en-US
-To:     Christian Lamparter <chunkeey@gmail.com>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-References: <d3538ba9beededfe3a9ad5dab4903a6a01834822.1645175187.git.chunkeey@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <d3538ba9beededfe3a9ad5dab4903a6a01834822.1645175187.git.chunkeey@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org
+References: <20220126112608.955728-1-miquel.raynal@bootlin.com>
+From:   Michal Simek <monstr@monstr.eu>
+In-Reply-To: <20220126112608.955728-1-miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/02/2022 10:06, Christian Lamparter wrote:
-> From the freely available Texas Instruments' TMP125 datasheet:
+Hi Mark
+
+On 1/26/22 12:26, Miquel Raynal wrote:
+> Hello Rob, Mark, Tudor & Pratyush,
 > 
-> "The TMP125 is an SPI-compatible temperature sensor available in the
-> tiny SOT23-6 package. Requiring no external components, the TMP125
-> is capable of measuring temperatures within 2 degree C of accuracy
-> over a temperature range of −25 degree C to +85 degree C and
-> 2.5 degree C of accuracy over −40 degree C to +125 degree C."
+> Here is a sixth versions for these bindings, which applies on top of
+> the v5.17-rc1 now that Pratyush's work as been merged.
+> (https://lore.kernel.org/all/20211109181911.2251-1-p.yadav@ti.com/)
 > 
-> The TMP125 is very similar to the TMP121/TMP122 series of familiar
-> chips.
+> Cheers,
+> Miquèl
 > 
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Changes in v6:
+> * Added Pratyush's acks.
+> * The tooling now validates the binding (updating dt-schema is
+>    necesary).
+> * Updated the maxItems field to 4 as a "big enough value" as discussed.
+> 
+> Changes in v5:
+> * Used the uint64-array instead of the matrix type.
+> * Updated the example as well to use a single "/bits/ 64" cast because
+>    doing it twice, despite being supported by the language itself, is not
+>    yet something that we can use for describing bindings.
+> 
+> Changes in v4:
+> * Changed the type of properties to uint64-arrays in order to be able to
+>    describe the size of each element in the array.
+> * Updated the example accordingly.
+> 
+> Changes in v3:
+> * Rebased on top of Pratyush's recent changes.
+> * Dropped the commit allowing to provide two reg entries on the node
+>    name.
+> * Dropped the commit referencing spi-controller.yaml from
+>    jedec,spi-nor.yaml, now replaced by spi-peripheral-props.yaml and
+>    already done in Pratyush's series.
+> * Added Rob's Ack.
+> * Enhanced a commit message.
+> * Moved the new properties to the new SPI peripheral binding file.
+> 
+> Changes in v2:
+> * Dropped the dtc changes for now.
+> * Moved the properties in the device's nodes, not the controller's.
+> * Dropped the useless #address-cells change.
+> * Added a missing "minItems".
+> * Moved the new properties in the spi-controller.yaml file.
+> * Added an example using two stacked memories in the
+>    spi-controller.yaml file.
+> * Renamed the properties to drop the Xilinx prefix.
+> * Added a patch to fix the spi-nor jedec yaml file.
+> 
+> Miquel Raynal (3):
+>    dt-bindings: mtd: spi-nor: Allow two CS per device
+>    spi: dt-bindings: Describe stacked/parallel memories modes
+>    spi: dt-bindings: Add an example with two stacked flashes
+> 
+>   .../bindings/mtd/jedec,spi-nor.yaml           |  3 ++-
+>   .../bindings/spi/spi-controller.yaml          |  7 ++++++
+>   .../bindings/spi/spi-peripheral-props.yaml    | 25 +++++++++++++++++++
+>   3 files changed, 34 insertions(+), 1 deletion(-)
 > 
 
+Can you please pick up this series?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Thanks,
+Michal
+
+-- 
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
 
 
-Best regards,
-Krzysztof
