@@ -2,66 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D43C64BB78C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 12:02:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC0E74BB7A8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 12:06:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234332AbiBRLCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 06:02:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55352 "EHLO
+        id S234331AbiBRLGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 06:06:32 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234307AbiBRLCP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 06:02:15 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C5C23D3CB;
-        Fri, 18 Feb 2022 03:01:56 -0800 (PST)
+        with ESMTP id S234228AbiBRLGb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 06:06:31 -0500
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777E828881F;
+        Fri, 18 Feb 2022 03:06:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645182118; x=1676718118;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=mq183hP0BaGYbuci31d1MFfN1q8alC0YOOwb4tVpnBg=;
-  b=tVc1JFyKn48Rr4koWOZRWP93BsnEW5z2nNJahhwktIWabNm3Kun3OuKk
-   JdpZh67YgrC0oxA/ieLNYXK9SXSwBYj9pNSlW0EEYEgSc5JUcq+tq828u
-   Um1IR2Se6BzbgI5QlgMxtiwVJFi6BpTCREBiymOUb3J9skPRc6ulHGMct
-   4=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 18 Feb 2022 03:01:55 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2022 03:01:54 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Fri, 18 Feb 2022 03:01:54 -0800
-Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Fri, 18 Feb 2022 03:01:50 -0800
-From:   Satya Priya <quic_c_skakit@quicinc.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <quic_jprakash@quicinc.com>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: [PATCH V7 5/5] arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
-Date:   Fri, 18 Feb 2022 16:31:03 +0530
-Message-ID: <1645182064-15843-6-git-send-email-quic_c_skakit@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1645182064-15843-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1645182064-15843-1-git-send-email-quic_c_skakit@quicinc.com>
+  d=axis.com; q=dns/txt; s=axis-central1; t=1645182375;
+  x=1676718375;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=TtCwuTI/iRWtd93Jw/84z0sfqwMlErfgG6nVne3l2O4=;
+  b=iOaC0tRmVWuo4XIL2mEUhQQLo9encK3/GxBIx6RwFCmLlRwU6F9M6bdB
+   jZF5doyFxaIOSVO33C17EHRNFAn5gLRs4xejce5C3IoQi5b4dEHs+zgJ3
+   VzcZBY8BzDv4CQEJC8I4j1NZJBRzfgf1s+fJbEeNocnkdAFwoL+KgWQpX
+   JPcKr9w79QtR0LB4zChTwBZyTYWK/Ixs9tyN0cWpNcnU4iBdZAlALk/Zi
+   MjbEzjFHFGtzv2lcdSeyeHhnZvE29vVrekN6+nsu8PbRlmCNVh5HPoTno
+   3RA5aJqfGC/HKVAC0F1ImsxAwU5kwbyneRT0oZhSNxdBWsuYF0U4wOqmM
+   A==;
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] regulator: virtual: add devicetree support
+Date:   Fri, 18 Feb 2022 12:06:03 +0100
+Message-ID: <20220218110604.1329024-1-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,119 +50,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pm8008_infra and pm8008_regulators support for sc7280 idp.
+The reg-virt-consumer is very useful for development and testing of
+regulator drivers since it allows voltages and modes to be set from
+userspace.  However, it currently requires platform data so it cannot be
+used on modern platforms.  Add support for probing it from the
+devicetree to remedy this.
 
-Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+Since this driver is only meant for testing and is a purely software
+construct, no binding documentation is added.
+
+Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
 ---
-Changes in V2:
- - As per Stephen's comments, replaced '_' with '-' for node names.
+ drivers/regulator/virtual.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Changes in V3:
- - Changed the regulator node names as l1, l2 etc
- - Changed "pm8008-regulators" to "regulators"
- - Changed "qcom,min-dropout-voltage" to "regulator-min-dropout-voltage-microvolt"
-
-Changes in V4:
- - Moved all common stuff to pm8008.dtsi and added board specific configurations here.
-
-Changes in V5:
- - Changed the node names as per pm8008.dtsi
- - Moved supply nodes to chip level (mfd node).
- - Removed the regulator-mindropout property.
-
-Changes in V6:
- - No changes.
-
-Changes in V7:
- - No Changes.
-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 66 ++++++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index ecbf2b8..371ad19 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -263,6 +263,62 @@
- 	};
+diff --git a/drivers/regulator/virtual.c b/drivers/regulator/virtual.c
+index 52c5a0e0acd8..c4d56b484ed5 100644
+--- a/drivers/regulator/virtual.c
++++ b/drivers/regulator/virtual.c
+@@ -13,6 +13,7 @@
+ #include <linux/regulator/consumer.h>
+ #include <linux/slab.h>
+ #include <linux/module.h>
++#include <linux/of.h>
+ 
+ struct virtual_consumer_data {
+ 	struct mutex lock;
+@@ -281,6 +282,14 @@ static const struct attribute_group regulator_virtual_attr_group = {
+ 	.attrs	= regulator_virtual_attributes,
  };
  
-+&i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	#include "pm8008.dtsi"
++#ifdef CONFIG_OF
++static const struct of_device_id regulator_virtual_consumer_of_match[] = {
++	{ .compatible = "regulator-virtual-consumer" },
++	{},
 +};
++MODULE_DEVICE_TABLE(of, regulator_virtual_consumer_of_match);
++#endif
 +
-+&pm8008_infra {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pm8008_active>;
-+};
+ static int regulator_virtual_probe(struct platform_device *pdev)
+ {
+ 	char *reg_id = dev_get_platdata(&pdev->dev);
+@@ -292,6 +301,9 @@ static int regulator_virtual_probe(struct platform_device *pdev)
+ 	if (drvdata == NULL)
+ 		return -ENOMEM;
+ 
++	if (!reg_id)
++		reg_id = "default";
 +
-+&pm8008_regulators {
-+	vdd_l1_l2-supply = <&vreg_s8b_1p2>;
-+	vdd_l3_l4-supply = <&vreg_s1b_1p8>;
-+	vdd_l5-supply = <&vreg_bob>;
-+	vdd_l6-supply = <&vreg_bob>;
-+	vdd_l7-supply = <&vreg_bob>;
-+};
-+
-+&pm8008_l1 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1300000>;
-+};
-+
-+&pm8008_l2 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1250000>;
-+};
-+
-+&pm8008_l3 {
-+	regulator-min-microvolt = <1650000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l4 {
-+	regulator-min-microvolt = <1504000>;
-+	regulator-max-microvolt = <1600000>;
-+};
-+
-+&pm8008_l5 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l6 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l7 {
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3544000>;
-+};
-+
- &qfprom {
- 	vcc-supply = <&vreg_l1c_1p8>;
- };
-@@ -375,6 +431,16 @@
- 	drive-strength = <2>;
+ 	mutex_init(&drvdata->lock);
+ 
+ 	drvdata->regulator = devm_regulator_get(&pdev->dev, reg_id);
+@@ -334,6 +346,7 @@ static struct platform_driver regulator_virtual_consumer_driver = {
+ 	.remove		= regulator_virtual_remove,
+ 	.driver		= {
+ 		.name		= "reg-virt-consumer",
++		.of_match_table = of_match_ptr(regulator_virtual_consumer_of_match),
+ 	},
  };
  
-+&pm8350c_gpios {
-+	pm8008_active: pm8008_active {
-+		pins = "gpio4";
-+		function = "normal";
-+		bias-disable;
-+		output-high;
-+		power-source = <0>;
-+	};
-+};
-+
- &qspi_cs0 {
- 	bias-disable;
- };
 -- 
-2.7.4
+2.34.1
 
