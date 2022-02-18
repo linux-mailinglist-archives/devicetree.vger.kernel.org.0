@@ -2,295 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CF964BB579
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 10:25:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AAE14BB5CA
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 10:42:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233391AbiBRJY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 04:24:59 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40964 "EHLO
+        id S232307AbiBRJlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 04:41:53 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232475AbiBRJY7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 04:24:59 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8735B29834;
-        Fri, 18 Feb 2022 01:24:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1645176281; x=1676712281;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=eC8XXNUO9xGCAs/xTg2IiJ26P+4JTZlkt63ND81hFdQ=;
-  b=ew39SMO3nYWeUq2T2ry+Q4BEqEORSjSpHYFNicQyqvN0Y86UhrwiV3xG
-   mi50ZKVeRmR5YBqHWQi4R1aLe9pLZiv439sZcwsMDZbINGRfkvrU8j+sq
-   H75/uDV8V2K/dRZXl5CzCT5p0WPU4zoRszBO9xz8EvY90bro02LsKAhvE
-   4EZc1n3kgB5LLRfyphcM3gVutBB56BdF0gUjiQ49C4FLeaCdEVUnKW4wO
-   KJAjmbNeBO9BkERdyZ7519RoOQl4b4/SMzPxCQw1p4gRkMbbotcdFhHLP
-   FBopgDCuuFkQlpjjj7kK9go8ueVsR347I/rmTnlTw4jcy/OEPqCiPLoax
-   w==;
-X-IronPort-AV: E=Sophos;i="5.88,378,1635199200"; 
-   d="scan'208";a="22171597"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 18 Feb 2022 10:24:39 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 18 Feb 2022 10:24:39 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 18 Feb 2022 10:24:39 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1645176279; x=1676712279;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=eC8XXNUO9xGCAs/xTg2IiJ26P+4JTZlkt63ND81hFdQ=;
-  b=AT6v7jydo7VpxwgOW2K+wtELSztNTTavUXFMpRmNr5ku/1QcFMrVSMlO
-   gie+54oBj+WSJR1LF0VyHsSHuqq4IDHK1Ia37V+x3bmS9SdiQail429W/
-   MEc9nI0XS9yFUgZQXI6KAJ1w+EnapeFcn7stHxRGKYclHeyvzwxfpiqcR
-   9RP8pEM8SfGoS3aIJwdgtyTXuWm6MbPZu4FtTbMxSbZ84dsIHr7IostLJ
-   50TvZbj7WKLUxrZ8F4vFK6fgei31PJfiTFoDZclLckgsx1sN9i5HZBrCx
-   GXCn4CsU2kMVgYH2HispDit9qy6Prw8fM1U7taOIGxeECjexFF4KpU9B1
-   w==;
-X-IronPort-AV: E=Sophos;i="5.88,378,1635199200"; 
-   d="scan'208";a="22171596"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 18 Feb 2022 10:24:39 +0100
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DF72F280065;
-        Fri, 18 Feb 2022 10:24:38 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Jun Li <jun.li@nxp.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: (EXT) RE: [PATCH v4 3/4] usb: dwc3: imx8mp: Add support for setting SOC specific flags
-Date:   Fri, 18 Feb 2022 10:24:36 +0100
-Message-ID: <1810731.tdWV9SEqCh@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <VI1PR04MB4333E4CB42DF67C8703F42AC89379@VI1PR04MB4333.eurprd04.prod.outlook.com>
-References: <20220126141340.234125-1-alexander.stein@ew.tq-group.com> <20220126141340.234125-4-alexander.stein@ew.tq-group.com> <VI1PR04MB4333E4CB42DF67C8703F42AC89379@VI1PR04MB4333.eurprd04.prod.outlook.com>
+        with ESMTP id S233676AbiBRJlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 04:41:50 -0500
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2107.outbound.protection.outlook.com [40.107.21.107])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C44C4D;
+        Fri, 18 Feb 2022 01:41:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e5aE039+95K3vWAkidg5rucblTAkHLEZlia5ulvi+K+u31UVOWh7OT/XRUTzSSCdV7qx6TNXrRLY3fSUwLE6lh5Kw3CPI/LsMSNzSt5xa5LFf2ZtB9f5qNQp6op/t97vC4kDHAC6DbdIkab58RLLWdgVhffoNBAc+0/gPpNr7wzNf0VmxUEXeHd47NrL3CvhIp7zC2BDz5lln6KERSr9EbAkQDJaYCeZnsmadSuxo8uI6HorHaGD13EqzM0xSEXJC8Q2zfZrau+dI31s2MvJDd8r0/0/wVeUvPGqZUVJ/R4mbxDwII70h6PvRFvvDvxls2cCsOhtYwCjGIl9r2uXOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FiExnOWIywmDhDRGHSmlLJIuI38zGpCwcags1fjZhWs=;
+ b=ZYDB5dpIE5AypZWyqINuAFPggDdVunIzaRbWugf3zW7DqnCCOSVBwkez0d15/bPpgris7Vigx5UVAlYaXPRC3mlmxX+Mkhu3JdLL6ZKnV9an8HitLdlJ/Hz7PW38wLOsWKPaDi97gwBa3CTA/IMx30ZXzMw6oAqsDcjb5Jml4eCLO3Kvfr2KhOCrWhxqVHbsrPqo/2HK0KZaIZsxrxa4sHwEMvp83bAR/EJJTJkx8Ro6ustwI0UMg2UpqMFkuc57FUHCNogi1AaIgjultmpv5tPP2pVshSlZ4e8ydjkGbwv80YP0nbITyJzOg+MqmyMKFm2HiVqgs8Crrp9p30kgHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FiExnOWIywmDhDRGHSmlLJIuI38zGpCwcags1fjZhWs=;
+ b=s+4hGXH14iZ2NEScZvksaGYhHIwoENpQxSQ0vo2JqoBXzjoHxFPo9QHmWxWh6YCNReYU98qAFhYUyqyAKncriK3Ge8Ukar3Cciva/gszaFq1yfaBTvqecFQk4IN/eRkwVFFUn4G/SJ0vWRkIiZEjraM2Qb47F9B1m6jLZtYJiso=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nokia.com;
+Received: from AM7PR07MB6916.eurprd07.prod.outlook.com (2603:10a6:20b:1b4::19)
+ by VI1PR0701MB6960.eurprd07.prod.outlook.com (2603:10a6:800:190::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.7; Fri, 18 Feb
+ 2022 09:41:27 +0000
+Received: from AM7PR07MB6916.eurprd07.prod.outlook.com
+ ([fe80::594:fa1f:92c5:e546]) by AM7PR07MB6916.eurprd07.prod.outlook.com
+ ([fe80::594:fa1f:92c5:e546%5]) with mapi id 15.20.5017.012; Fri, 18 Feb 2022
+ 09:41:27 +0000
+Message-ID: <a828b1b2-9e32-57b2-6d60-b1b8de90222a@nokia.com>
+Date:   Fri, 18 Feb 2022 10:41:19 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: add tmp464.yaml
+Content-Language: fr
+To:     Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Adamski <krzysztof.adamski@nokia.com>
+References: <20220218065856.1899086-1-linux@roeck-us.net>
+From:   Agathe Porte <agathe.porte@nokia.com>
+In-Reply-To: <20220218065856.1899086-1-linux@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DM5PR06CA0067.namprd06.prod.outlook.com
+ (2603:10b6:3:37::29) To AM7PR07MB6916.eurprd07.prod.outlook.com
+ (2603:10a6:20b:1b4::19)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 341524fb-ce51-42b2-56f1-08d9f2c2d5a3
+X-MS-TrafficTypeDiagnostic: VI1PR0701MB6960:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR0701MB6960337CC450DDDE0367351E9B379@VI1PR0701MB6960.eurprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xaGhAiL49Wqf/FKqOFnHNDRJbEW49BY0qqPUNb6hTCfW4pD80+eu42PldZ7/8C4F24ANiKjXUuOgDbAoS6JaBlOZHzOwsUS4CARZdhb0pio0n/+1NSqAojzjakW+IR3yIV+9Ip4uSf4IUhHTfSm5Tf+mgq4ncz8J9KOmWhIwWleoYYyhkNtyxviclrzoycnIBvmlGLGeLVlnKaKvNiaAz15vMul4HoGmCAU9qdAGs8PI322OMlPO3slwF5iIHz+rwBFOz2mbDagrwXB1DQPwb/EheqR7DFSGiRQNH6NSXCGEBCGtKsyky82pCRZcfgZuQhlsGiJPxPAykb7MofL4m/A7di15FEGnVIgAidsjnvcgNVTHXk3IKqaeW+AwdryueSozHPdyiNbdcLjDwllMb77+gMMTi8AGZ6wPW4FORuWbhsMrh6dpZZ0aH8sLQJzB3wPd1a1pyArCrztR8PFHDvRdLSI07R6aLoKm3cd3gdjoXyu8jkUx9ziLdWU2+8NnzrQZp+ZGoc/8mwMXkwXIO1rPFHI7XFXsSkNLuTJ0++asb0xaxvJJisBldXJLZAswmzJCDEQpxmRDHGDymebtRv6U5KLFj6nfwq8fjBhfdUSCEoBYG6fmocatBSoPwrJ2PFJ/So6vUODQxF9vblfumW+Yw2axBFm49vkDFakdkRPpPaoBCnyoFZJ6UKhZzHMgTVI5sznSXq8LvggC5mGCgJXJhLmy2UYt+NDKZNBa8xs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR07MB6916.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(31686004)(6486002)(6512007)(44832011)(38100700002)(83380400001)(2906002)(82960400001)(107886003)(26005)(86362001)(31696002)(2616005)(186003)(66946007)(5660300002)(508600001)(8676002)(4326008)(66574015)(316002)(6666004)(66476007)(36756003)(6506007)(8936002)(54906003)(66556008)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c2JXaXpZOFV6SUl2bTdHS1VrMXdEbW5VaDY4bHIvMThnUGZpMlowZzdpYnBu?=
+ =?utf-8?B?ZytJSmlvaHNoR1VZQVkwWTFYSkZjRnh5aG96TXV5eDBiSGp2Q1pnT3MvK1li?=
+ =?utf-8?B?ajBwVCtJRWEwbEtSd0RKd3dTYm8xMEx3Q2NWTzVDVDJxNFFiNEQ2cWJ1L2pN?=
+ =?utf-8?B?c3B2SjF1ZklWdGRrcm50Z3dha0szRkxXWitIQVVjOU1IbVQ4Yk9XTit1Unln?=
+ =?utf-8?B?VitvNmkvTVF2QXlOb1k0QlBPU2pFUnRIU012dFE3L3U4WkJLbEV3UWRUbXl5?=
+ =?utf-8?B?Y3NrcTE1RndiL0o5Y0l0bTBTbHFENW5SYWZGMHd2RHA2UTcrYVBJL3ZyVWdH?=
+ =?utf-8?B?cHhGdktyYkQzcFlhcVFER3Z0QnRzRE5UdklnZXY2MzlRUHVYZGNBTW14NERj?=
+ =?utf-8?B?ZUFDN1pERDA4Qi93YkhQcWJqeG9WbHJyZHU0NmZqWUMwRWg4R1kvT3NpNmly?=
+ =?utf-8?B?TkkwcFZwTUpNaWZhc3VkZ1JiZ2VuN01aRDExWTVyRmIyRnRVdTRsNzExWHQw?=
+ =?utf-8?B?VmtDdDBCQ3pyU29GSVk0VXlkSW13dVFVUkNWWUxoNmluRjRXYk5Vd0pNYWw0?=
+ =?utf-8?B?MVdtdWNFTkdrTmt2UHJEQTA1VWJ0SVJpUjRqWVRsWlZXeEVNWmhkaDRCVVVo?=
+ =?utf-8?B?K0tqeDZVZTRFSTlUYWU5UlFCV1lHNTUzYUExZ1dwL3ZpVmw1SE5oc3JtbFBB?=
+ =?utf-8?B?N1lMWit1QmNBSEMrNXF2SWQyRVBGNEVGNThQR0JLYWdBdnltRHBLWS92bXJQ?=
+ =?utf-8?B?d0lOaE5CbElOWkJ6cVVkelFXWnF2b3RBS2RzYnI2VzF4V3owRUJoOG5DVzBJ?=
+ =?utf-8?B?QzdFOGJvRlpFN1djaGFPT25SNVorS3UxUlh2aXpIU2ZxN3ZKVUZkWm9IejFS?=
+ =?utf-8?B?dWs0S3pPYm8vejZwYkFVU0lSK0JXN0l5ZVdvQW5FYjkzemNnSFVSQVdYQytN?=
+ =?utf-8?B?MUsyV2lzSWN0dFFsbGxvRnJsOHU0UXRqZVpEc1FLT0ZEellXdlAxWjNIVHl6?=
+ =?utf-8?B?ZWhoLzNZWTdLQjEwRlVabitRaVZubkNaeVliaTdkb0FZWU9mRjJlYjhzbVRu?=
+ =?utf-8?B?cmY5NVp6UFNtcFdBWTdoOGJNQUk4bXluU2dHNzA2SllOSzdwWTVzbVl3OElx?=
+ =?utf-8?B?K01oeDY5RW9Yd0lMUmhsaWZGMkg3cGROdVpjNVpFdURscEVlWE9jSUNsdUh1?=
+ =?utf-8?B?bDNDa1QvWm5GL2VTS0dINll6V2d3UXJBdFJwRVkybUxHUTU1U3B2WkFXeTVj?=
+ =?utf-8?B?ZFZ5QzhaY1ByNVFkRGJZVEV1WGltc0paaGlIMnRvNE44Q05uSUExZzRxUWhR?=
+ =?utf-8?B?VjZZb1ArOW4zcEdyblZmYkZoZnlYRHo5ODZCVUdwbEdVWll4eDBhcUozVzIr?=
+ =?utf-8?B?aUxTSkRBK3MvVk1YSk9ZbkljU1lzUjg2SVdLVEdWbGJSREI3cEVrTzNQUDYw?=
+ =?utf-8?B?ZXZuWWw1Z005dkhSMWxDTDk4V045a0ZjNUNTZkdVTlU2K1M5NDdWVDBaa1h0?=
+ =?utf-8?B?ZWxoODNyeERjL0VXNlBBd3ZaOHF6Q0ErRVdaakpBMzJPS2RPTFJkcXIrMTc5?=
+ =?utf-8?B?aDY5SnNpL2RnZkhLWVVMbm5mVjduY1krWU1XNUkvenM4TjRjRFZyQmt3bjJn?=
+ =?utf-8?B?eXNucTFmajY1OGRCZjVZMWdMTkNhVVc0SWRubElqZjVSOUg0NzFyME9wZzZy?=
+ =?utf-8?B?YXdaMUozTitOUElUVjdLQ3BzMGptOSsybEw1c25QS1pjMGV0bE9vZUZGeGhw?=
+ =?utf-8?B?UUhDQU5kOVQwTzNjS1hPelZYRGhGVXFLVG9ZSHN1bXhFc1VSM2RKVEVOa2Z5?=
+ =?utf-8?B?M0dCYXpGRzV2Z1Y2RHRUbDhDYUNlUEpMSVFUSTV1VkQ0N2VzN3Roc0RFWkZL?=
+ =?utf-8?B?VnpQM1k2bDl1TmU5VHVaMzRmYmZYVm44UEo4dVNaYklYWFUvczNTaFhBa1hF?=
+ =?utf-8?B?VFJOOE5rdFNOVktnaHI3QmxuOUFjcGpWNTBUQzY5Nk9OUFVCRU9RYzVqWFhQ?=
+ =?utf-8?B?eHJXcjd6Y1dTWjlYWVNObkpSN0EvemFkUDdTbVZ2aVVRNjBiS3IvQU5PWklE?=
+ =?utf-8?B?cGhoYm1YSC9GenNPcVp5RDgxWFFibk4yYVBCOE8zTjVYbXFPaDVkcllZTll6?=
+ =?utf-8?B?U3U4UnV2ZEJkWHN1UjFERTBBWndNNkxSclM1MzFCV3BFUStJcC9FMDBrMVRu?=
+ =?utf-8?Q?Ru7SwE5EDpf8SUNts8uUYvw=3D?=
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 341524fb-ce51-42b2-56f1-08d9f2c2d5a3
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR07MB6916.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2022 09:41:27.4276
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vbm59Tp6yGrWl3c3XUqbEk+vGvytsbIqL8wFHeUd4yGgvCaX03eQcd36ALfcijtgPY2Qu+xzrfweh+haY57jrw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0701MB6960
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,FORGED_SPF_HELO,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Li Jun,
+Hi Guenter,
 
-thanks for your feedback.
+Le 18/02/2022 à 07:58, Guenter Roeck a écrit :
+> From: Agathe Porte <agathe.porte@nokia.com>
+>
+> Add basic description of the tmp464 driver DT bindings.
+>
+> Signed-off-by: Agathe Porte <agathe.porte@nokia.com>
+> Cc: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+> ---
+> v4:
+> - No changes
+>
+> +        channel@0 {
+> +          reg = <0x0>;
+> +          ti,n-factor = /bits/ 8 <(-10)>;
+> +          label = "local";
+> +        };
 
-Am Freitag, 18. Februar 2022, 07:57:33 CET schrieb Jun Li:
-> > -----Original Message-----
-> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Sent: Wednesday, January 26, 2022 10:14 PM
-> > To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>; Rob Herring
-> > <robh+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha Hauer
-> > <s.hauer@pengutronix.de>; Fabio Estevam <festevam@gmail.com>
-> > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>; dl-linux-imx
-> > <linux-imx@nxp.com>; linux-usb@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; Jun Li
-> > <jun.li@nxp.com>
-> > Subject: [PATCH v4 3/4] usb: dwc3: imx8mp: Add support for setting SOC
-> > specific flags
-> > 
-> > The i.MX8MP glue layer has support for the following flags:
-> > * over-current polarity
-> > * PWR pad polarity
-> > * controlling PPC flag in HCCPARAMS register
-> > * permanent port attach for usb2 & usb3 port
-> > 
-> > Allow setting these flags by supporting specific flags in the glue node.
-> > In order to get this to work an additional IORESOURCE_MEM and clock is
-> > necessary. For backward compatibility this is purely optional.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > 
-> >  drivers/usb/dwc3/dwc3-imx8mp.c | 62 ++++++++++++++++++++++++++++++++++
-> >  1 file changed, 62 insertions(+)
-> > 
-> > diff --git a/drivers/usb/dwc3/dwc3-imx8mp.c
-> > b/drivers/usb/dwc3/dwc3-imx8mp.c
-> > index 1c8fe657b3a9..5a96b66bf237 100644
-> > --- a/drivers/usb/dwc3/dwc3-imx8mp.c
-> > +++ b/drivers/usb/dwc3/dwc3-imx8mp.c
-> > @@ -36,10 +36,22 @@
-> > 
-> >  #define USB_WAKEUP_EN_MASK		GENMASK(5, 0)
-> > 
-> > +/* USB glue registers */
-> > +#define USB_CTRL0		0x00
-> > +#define USB_CTRL1		0x04
-> > +
-> > +#define USB_CTRL0_PORTPWR_EN	BIT(12) /* 1 - PPC enabled (default) */
-> > +#define USB_CTRL0_USB3_FIXED	BIT(22) /* 1 - USB3 permanent attached */
-> > +#define USB_CTRL0_USB2_FIXED	BIT(23) /* 1 - USB2 permanent attached */
-> > +
-> > +#define USB_CTRL1_OC_POLARITY	BIT(16) /* 0 - HIGH / 1 - LOW */
-> > +#define USB_CTRL1_PWR_POLARITY	BIT(17) /* 0 - HIGH / 1 - LOW */
-> > +
-> > 
-> >  struct dwc3_imx8mp {
-> >  
-> >  	struct device			*dev;
-> >  	struct platform_device		*dwc3;
-> >  	void __iomem			*hsio_blk_base;
-> > 
-> > +	void __iomem			*glue_base;
-> > 
-> >  	struct clk			*hsio_clk;
-> >  	struct clk			*suspend_clk;
-> >  	int				irq;
-> > 
-> > @@ -47,6 +59,42 @@ struct dwc3_imx8mp {
-> > 
-> >  	bool				wakeup_pending;
-> >  
-> >  };
-> > 
-> > +static void imx8mp_configure_glue(struct dwc3_imx8mp *dwc3_imx)
-> > +{
-> > +	struct device *dev = dwc3_imx->dev;
-> > +	u32 value;
-> > +
-> > +	if (!dwc3_imx->glue_base)
-> > +		return;
-> > +
-> > +	value = readl(dwc3_imx->glue_base + USB_CTRL0);
-> > +
-> > +	if (device_property_read_bool(dev, "fsl,permanently-attached"))
-> > +		value |= (USB_CTRL0_USB2_FIXED | USB_CTRL0_USB3_FIXED);
-> > +	else
-> > +		value &= ~(USB_CTRL0_USB2_FIXED | USB_CTRL0_USB3_FIXED);
-> > +
-> > +	if (device_property_read_bool(dev,
-> > "fsl,disable-port-power-control"))
-> > +		value &= ~(USB_CTRL0_PORTPWR_EN);
-> > +	else
-> > +		value |= USB_CTRL0_PORTPWR_EN;
-> > +
-> > +	writel(value, dwc3_imx->glue_base + USB_CTRL0);
-> > +
-> > +	value = readl(dwc3_imx->glue_base + USB_CTRL1);
-> > +	if (device_property_read_bool(dev, "fsl,over-current-active-low"))
-> > +		value |= USB_CTRL1_OC_POLARITY;
-> > +	else
-> > +		value &= ~USB_CTRL1_OC_POLARITY;
-> > +
-> > +	if (device_property_read_bool(dev, "fsl,power-active-low"))
-> > +		value |= USB_CTRL1_PWR_POLARITY;
-> > +	else
-> > +		value &= ~USB_CTRL1_PWR_POLARITY;
-> 
-> I think you don't need a value update&write if property is not present.
+Setting the n-factor for the local channel is not supported, so we 
+should remove this attribute for this example and move it to another 
+channel.
 
-I get what you intend here, but this assumes some (sane) default which might 
-be true in every case. But I prefer configuring this without any assumption 
-about previous settings.
+Here is the output on a hardware test:
 
-> > +
-> > +	writel(value, dwc3_imx->glue_base + USB_CTRL1);
-> > +}
-> > +
-> > 
-> >  static void dwc3_imx8mp_wakeup_enable(struct dwc3_imx8mp *dwc3_imx)
-> >  {
-> >  
-> >  	struct dwc3	*dwc3 = platform_get_drvdata(dwc3_imx->dwc3);
-> > 
-> > @@ -100,6 +148,7 @@ static int dwc3_imx8mp_probe(struct platform_device
-> > *pdev)
-> > 
-> >  	struct device		*dev = &pdev->dev;
-> >  	struct device_node	*dwc3_np, *node = dev->of_node;
-> >  	struct dwc3_imx8mp	*dwc3_imx;
-> > 
-> > +	struct resource		*res;
-> 
-> Looks like this is not used anywhere, remove it.
+[165599.122883] tmp464 16-0049: n-factor can't be set for internal channel
+[165599.123833] tmp464: probe of 16-0049 failed with error -22
 
-It actually is, please refer to the next hunk. Both is inside 
-dwc3_imx8mp_probe(). Probably the context of the diff is a bit misleading.
+> +
+> +        channel@1 {
+> +          reg = <0x1>;
+> +          ti,n-factor = /bits/ 8 <0x0>;
+> +          label = "somelabel";
+> +        };
+No particular issue when defining a property for channel that is not 
+internal during driver probe.
+> +
+> +        channel@2 {
+> +          reg = <0x2>;
+> +          status = "disabled";
+> +        };
 
-> >  	int			err, irq;
-> >  	
-> >  	if (!node) {
-> > 
-> > @@ -119,6 +168,15 @@ static int dwc3_imx8mp_probe(struct platform_device
-> > *pdev)
-> > 
-> >  	if (IS_ERR(dwc3_imx->hsio_blk_base))
-> >  	
-> >  		return PTR_ERR(dwc3_imx->hsio_blk_base);
-> > 
-> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> > +	if (!res) {
-> > +		dev_warn(dev, "Base address for glue layer missing. 
-Continuing
-> > without, some features are missing though.");
-> > +	} else {
-> > +		dwc3_imx->glue_base = devm_ioremap_resource(dev, res);
-> > +		if (IS_ERR(dwc3_imx->glue_base))
-> > +			return PTR_ERR(dwc3_imx->glue_base);
-> > +	}
-> > +
-> > 
-> >  	dwc3_imx->hsio_clk = devm_clk_get(dev, "hsio");
-> >  	if (IS_ERR(dwc3_imx->hsio_clk)) {
-> >  	
-> >  		err = PTR_ERR(dwc3_imx->hsio_clk);
-> > 
-> > @@ -152,6 +210,8 @@ static int dwc3_imx8mp_probe(struct platform_device
-> > *pdev)
-> > 
-> >  	}
-> >  	dwc3_imx->irq = irq;
-> > 
-> > +	imx8mp_configure_glue(dwc3_imx);
-> > +
-> > 
-> >  	pm_runtime_set_active(dev);
-> >  	pm_runtime_enable(dev);
-> >  	err = pm_runtime_get_sync(dev);
-> > 
-> > @@ -252,6 +312,8 @@ static int __maybe_unused dwc3_imx8mp_resume(struct
-> > dwc3_imx8mp *dwc3_imx,
-> > 
-> >  	dwc3_imx8mp_wakeup_disable(dwc3_imx);
-> >  	dwc3_imx->pm_suspended = false;
-> > 
-> > +	imx8mp_configure_glue(dwc3_imx);
-> > +
-> 
-> I guess this is to restore the settings if we experienced a power lost,
-> Please add some comments.
+Works as expected on target:
 
-You are right, makes sense. I'll add a comment.
+root@fct-0a:/sys/class/hwmon/hwmon2 >cat temp3_input
+cat: temp3_input: No data available
 
-Regards,
-Alexander
+Best regards,
 
-> >  	if (dwc3_imx->wakeup_pending) {
-> >  	
-> >  		dwc3_imx->wakeup_pending = false;
-> >  		if (dwc->current_dr_role == DWC3_GCTL_PRTCAP_DEVICE) {
-> > 
-> > --
-> > 2.25.1
-
-
-
+Agathe.
 
