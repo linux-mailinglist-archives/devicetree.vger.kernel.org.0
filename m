@@ -2,103 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 561AC4BB820
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 12:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C24D14BB824
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 12:32:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234107AbiBRLcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 06:32:16 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51516 "EHLO
+        id S233348AbiBRLc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 06:32:59 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232289AbiBRLcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 06:32:15 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C76E1F68CC;
-        Fri, 18 Feb 2022 03:31:58 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233328AbiBRLc6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 06:32:58 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3329E2B0B08
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 03:32:42 -0800 (PST)
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 2C302CE3148;
-        Fri, 18 Feb 2022 11:31:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4984EC340E9;
-        Fri, 18 Feb 2022 11:31:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645183915;
-        bh=Oboki3rXVUkFSDXVQJRt2HfWkd93rIeLixy94j8Qmoo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oXixrVYN2sBoWe83uUCzBE435aGOgGqnk6uRBRSaZRNzXvB3QnkmUz1pLOj3yaFUh
-         XYJfidMl68McsFwpj+IcZ6ngl2tIgz+9VqSxQrL+aGcgqvRANrucgKynTeW7ScMIjk
-         tNQyaQw8bO80fSnYMtfxelnUBZ9Rb7ofXx8blhAnpmS4KbkR9btHpkaJtz5YDLmDiL
-         O6ofY76aQqF4GTVj8sFrpBe8fOSCyi9AMPDBfGQWyJdpi1zu+5D18uB2HJSsj26SSd
-         15TRaWW2JP3M+qHQECodt5atrB6nIQQd1w8kp9QZfwsyPV4ZbILVtng0w7CdKc0afc
-         0Wgj3Wn2o8kKg==
-Received: by pali.im (Postfix)
-        id D945C2BAE; Fri, 18 Feb 2022 12:31:52 +0100 (CET)
-Date:   Fri, 18 Feb 2022 12:31:52 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-pci@vger.kernel.org, Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH dt + pci 1/2] dt-bindings: Add
- 'slot-power-limit-milliwatt' PCIe port property
-Message-ID: <20220218113152.ttoebrmhlwdvzqxe@pali>
-References: <20211031150706.27873-1-kabel@kernel.org>
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 660303F203
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 11:32:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645183960;
+        bh=UvFAlplJwnxMAQBlNc5igwERL0YBCCEO2tKezb7VW+A=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=Z2bNVh6XLleHxDbY5PwyQgeshjB70zlxdh+Gegl3/4gh/hEx/xdN8vD4+rPi+fTqV
+         0aFsE0I/a5N0MfOalCvsiUBmcdEtcKah4S1CnNROVU408gzUdjyk49LCJhfQSxgPON
+         jqrIss2KgaFYTolBviuhKHPDICijatUHEfiERABKtwLtwmfdvWNHP/5o28BUOEEdud
+         n1Ru28FKdDgpdjKk+5aqekjZosi9DORKwAxQ5g7GycBerq9CMBq3sOJicZcNMd4AJu
+         zU9ST7LtVeDIOWa/YLdXLeLC8nO6HAOkFi5tAuEwdvrkTTCLWqEyru3JGHiyrIDA9K
+         nkZc9TIvTbgoA==
+Received: by mail-ed1-f71.google.com with SMTP id j29-20020a508a9d000000b00412aa79f367so2506266edj.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 03:32:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=UvFAlplJwnxMAQBlNc5igwERL0YBCCEO2tKezb7VW+A=;
+        b=wkp1WFpaQoYEIbIAitV01BsFAPlb48f5Y0KIujX+lFOJLINv6eTPGJH3CJTrREmwbU
+         buLYJj9oKXWnM2gKdfvkKiDnr0Cwa785hpQHjg7Dc8a0vI0yqb5HJTpk/Cz85ZOwp/JV
+         Z2AqvPpvXd7ymhul7VGFPof9qFP4Y4uWcJX95eOX9Q+aUyFk7QjAmnSGM9ldV7ZLn/kr
+         C0bjzPeCvuNS2N6MGxp26Qc7ehVG5V+9lIyAV5EUC2M9K+jsoSDto5v2+z3GtiZIXP3i
+         xc0UVJ0PL0lvADNdiTaZ56FY7fbwSvsUq2s3pL5fj8bglLn6lGrlgtxC/WA+jplV0hU+
+         keZQ==
+X-Gm-Message-State: AOAM533Q8/rMkUwPPe6vKdWLZO4nuGLZ1XfnhePUfYJvl5qjwg2aptuo
+        6Dx/HHdo3877lzXmWNUfKnxdMaXEkF0WbCUaVm7Yiu39cq2OZ4sjImX56iqRUbgtmdhTwjlpyd+
+        GlJSzM/JbVSns4gakvG/lDf3GGitzmGvnLsqbs+Q=
+X-Received: by 2002:a50:d711:0:b0:410:a51a:77c5 with SMTP id t17-20020a50d711000000b00410a51a77c5mr7948026edi.154.1645183960092;
+        Fri, 18 Feb 2022 03:32:40 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx2BGgtV4Rd6cxQm5ku1pja1UubWBVIolHvtF8LVAKjcSADCCBUKO4UoAMMNJvsWlax6cMtgw==
+X-Received: by 2002:a50:d711:0:b0:410:a51a:77c5 with SMTP id t17-20020a50d711000000b00410a51a77c5mr7948005edi.154.1645183959873;
+        Fri, 18 Feb 2022 03:32:39 -0800 (PST)
+Received: from [192.168.0.114] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id i6sm2177831eja.132.2022.02.18.03.32.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Feb 2022 03:32:39 -0800 (PST)
+Message-ID: <12b558e3-dc99-db6a-73ea-7d704262ac6a@canonical.com>
+Date:   Fri, 18 Feb 2022 12:32:38 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211031150706.27873-1-kabel@kernel.org>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 1/2] Documentation: dt: extcon: add optional
+ input-debounce attribute
+Content-Language: en-US
+To:     Raveendra Padasalagi <raveendra.padasalagi@broadcom.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     bcm-kernel-feedback-list@broadcom.com
+References: <1508406773-887-1-git-send-email-raveendra.padasalagi@broadcom.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <1508406773-887-1-git-send-email-raveendra.padasalagi@broadcom.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sunday 31 October 2021 16:07:05 Marek Behún wrote:
-> From: Pali Rohár <pali@kernel.org>
+On 19/10/2017 11:52, Raveendra Padasalagi wrote:
+> Add documentation on optional dt attribute "input-debounce"
+> in extcon node to capture user specified timeout value for id
+> and vbus gpio detection.
 > 
-> This property specifies slot power limit in mW unit. It is a form-factor
-> and board specific value and must be initialized by hardware.
-> 
-> Some PCIe controllers delegate this work to software to allow hardware
-> flexibility and therefore this property basically specifies what should
-> host bridge program into PCIe Slot Capabilities registers.
-> 
-> The property needs to be specified in mW unit instead of the special format
-> defined by Slot Capabilities (which encodes scaling factor or different
-> unit). Host drivers should convert the value from mW to needed format.
-> 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
-> Signed-off-by: Marek Behún <kabel@kernel.org>
+> Signed-off-by: Raveendra Padasalagi <raveendra.padasalagi@broadcom.com>
+> Reviewed-by: Ray Jui <ray.jui@broadcom.com>
+> Reviewed-by: Srinath Mannam <srinath.mannam@broadcom.com>
+> Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
 > ---
->  Documentation/devicetree/bindings/pci/pci.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentation/devicetree/bindings/pci/pci.txt
-> index 6a8f2874a24d..7296d599c5ac 100644
-> --- a/Documentation/devicetree/bindings/pci/pci.txt
-> +++ b/Documentation/devicetree/bindings/pci/pci.txt
-> @@ -32,6 +32,12 @@ driver implementation may support the following properties:
->     root port to downstream device and host bridge drivers can do programming
->     which depends on CLKREQ signal existence. For example, programming root port
->     not to advertise ASPM L1 Sub-States support if there is no CLKREQ signal.
-> +- slot-power-limit-miliwatt:
-
-                      ^^^^^^^^
-                typo: milliwatt
-
-> +   If present, this property specifies slot power limit in milliwatts. Host
-> +   drivers can parse this property and use it for programming Root Port or host
-> +   bridge, or for composing and sending PCIe Set_Slot_Power_Limit messages
-> +   through the Root Port or host bridge when transitioning PCIe link from a
-> +   non-DL_Up Status to a DL_Up Status.
+> Changes in v3:
+>  - Modified commit log to name debounce-timeout-ms to input-debounce
+>  - Added Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
+> 
+> Changes in v2:
+>  Rename debounce-timeout-ms to input-debounce
+> 
+>  Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+> index dfc14f7..d115900 100644
+> --- a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+> +++ b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+> @@ -10,6 +10,9 @@ Either one of id-gpio or vbus-gpio must be present. Both can be present as well.
+>  - id-gpio: gpio for USB ID pin. See gpio binding.
+>  - vbus-gpio: gpio for USB VBUS pin.
 >  
->  PCI-PCI Bridge properties
->  -------------------------
-> -- 
-> 2.32.0
-> 
+> +Optional properties:
+> +- input-debounce: debounce timeout value for id and vbus gpio in microseconds.
+> +
+
+Use standard unit suffix. See schemas/property-units.yaml in dtschema
+sources/repo.
+
+
+Best regards,
+Krzysztof
