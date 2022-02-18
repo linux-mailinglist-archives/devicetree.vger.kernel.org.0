@@ -2,149 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BF984BBDDE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 17:56:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 560C34BBE3F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 18:20:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238107AbiBRQ4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 11:56:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60078 "EHLO
+        id S233532AbiBRRUd convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Feb 2022 12:20:33 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238106AbiBRQ4P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 11:56:15 -0500
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B0125AE75
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 08:55:57 -0800 (PST)
-Received: by mail-oo1-xc34.google.com with SMTP id x6-20020a4a4106000000b003193022319cso4185492ooa.4
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 08:55:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=pInuhqCUKlyUoEXuWgKg1Wujz7TDTU39Sy2l1F/hTtA=;
-        b=tGMO/mIvCDGbcTb9cGMz11xTh7itxXS7A61+zRdHHfGkwSvgMKZFG21gFAWetvbnZ1
-         H4bw6eg7/5ZzhaBpDRHoc3nlq1CRQJKgagvK74uAoeHWDDB4PzmwUAfXXEYfMp3lCZdr
-         wbqQtOUtgx3GFlT10yrWbUD3w+oVZWsmqMNZvmJPevYtneBMhxNEFdtDyCDD5L4k6Qrd
-         1oR6nCDA/xl+K/3EhSi3fDIkSABdaGL9AHY8uJJVRDVE2X1TMyDXNguJ7VmEUWzyReZw
-         pbIl/RGCSJupHY11jktZoCTTDx1y2zABB+9f3bMGIAPErILsRUiqgvXFSZ4otQ+Weboh
-         iGNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pInuhqCUKlyUoEXuWgKg1Wujz7TDTU39Sy2l1F/hTtA=;
-        b=orUlxBIDrprRl2oZaLxzn/kPRe5GNYZcvyx02DeGiqPihNfwvdz6H8mwAQ+fxvo3Zm
-         CNuedWxx6FtZZsh5KTNAGxdIY06KQJvxptV4uH/16OtUy36jnUeS8DTqngoYfNvjGG7c
-         iNG47i8tksvOvG6dMh3IEwJRLeMUb8ScDNeO9ngp2OIJ9lCoHm2J9fkV05xewDeYi+pB
-         Gb3jSl5914Eow8RaK5dV3gAdSzg9Jk8wcFfB5TNhqWDuYbnMGPSUb6Qst5MF1htCrJ1D
-         mhjVfOzY6U/9LZb9Am6OWzXCYtgEcJWRPHLBoFI6qYCayspajpfAGzYsYWXpDzRztCsP
-         8Ydw==
-X-Gm-Message-State: AOAM530loXudWpvAnZP1ijvUcclFHNZK1+6g2RGBOqfttgVNeAoXMtC3
-        cBeI4MSrR9X3NUkLF+Q6HiG3bA==
-X-Google-Smtp-Source: ABdhPJwMdNlDq+QHL5mKNt87mqwiHbkMztRqQza/VJNIKkYfdAwMNP8R1T6Q3XW6mpT4o1PdTGlfdg==
-X-Received: by 2002:a05:6870:b003:b0:d1:3804:aee2 with SMTP id y3-20020a056870b00300b000d13804aee2mr2889956oae.155.1645203357235;
-        Fri, 18 Feb 2022 08:55:57 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id el40sm22088082oab.22.2022.02.18.08.55.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Feb 2022 08:55:56 -0800 (PST)
-Date:   Fri, 18 Feb 2022 08:58:02 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Satya Priya Kakitapalli <c_skakit@qti.qualcomm.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh+dt@kernel.org>,
-        linux-leds@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-pwm <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH v12 2/2] leds: Add driver for Qualcomm LPG
-Message-ID: <Yg/QGqQhYZY6KaqJ@ripper>
-References: <20220216045620.1716537-1-bjorn.andersson@linaro.org>
- <20220216045620.1716537-2-bjorn.andersson@linaro.org>
- <CAD=FV=Xj5k7JROP1PFY9tmXxLY7FRJNdr-+UmkCW_YGqpDkFew@mail.gmail.com>
+        with ESMTP id S236427AbiBRRUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 12:20:33 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28AE82B523A;
+        Fri, 18 Feb 2022 09:20:15 -0800 (PST)
+Received: from mail-wr1-f51.google.com ([209.85.221.51]) by
+ mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1M433w-1nL6vW1Ka0-0000YL; Fri, 18 Feb 2022 18:20:14 +0100
+Received: by mail-wr1-f51.google.com with SMTP id o24so15715965wro.3;
+        Fri, 18 Feb 2022 09:20:14 -0800 (PST)
+X-Gm-Message-State: AOAM530OYnMBKHbPQ5PIPh98PvvQPli1FCBmJWBXGvhJh8lEESIVKzww
+        f3OtYCpkRpXUBJqQzNpHjowtm/A3qhaEHVij2w0=
+X-Google-Smtp-Source: ABdhPJw+uQLrWDPTpaVZ2hg+LNvKUOpuIxEMj1NjckGcj0wwgwCnAHT9Xg0He56mfzVIg4cUyUq5DUDOvJoCst25FuU=
+X-Received: by 2002:adf:cf0c:0:b0:1e6:22fe:4580 with SMTP id
+ o12-20020adfcf0c000000b001e622fe4580mr6693423wrj.12.1645204813909; Fri, 18
+ Feb 2022 09:20:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=Xj5k7JROP1PFY9tmXxLY7FRJNdr-+UmkCW_YGqpDkFew@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220113170755.11856-1-pali@kernel.org> <CAK8P3a2D8Yv+KpM4NJyP9mosieqbhHh08=mdEy+OA84Vx6FVCQ@mail.gmail.com>
+ <20220218165530.j62nafuofe342sfi@pali>
+In-Reply-To: <20220218165530.j62nafuofe342sfi@pali>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 18 Feb 2022 18:19:57 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1CHRztMCOFN6iomVf2J7_9qRi4GdZBQfDyhjqDb1Z0Vw@mail.gmail.com>
+Message-ID: <CAK8P3a1CHRztMCOFN6iomVf2J7_9qRi4GdZBQfDyhjqDb1Z0Vw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: marvell: armada-37xx: Increase PCIe IO size
+ from 64 KiB to 1 MiB
+To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:sAedr4StlE0AfwTwvazt/sikNnozQKkTmku1eP7cz5Bfac//0Fo
+ K7Jz/P3gEMu0ocfrTr2srvZFAiAmUNOWP8D2LGC6fS0aELv/M0fKqEd+bIcM1wNaTmqyhEy
+ 1+Qd+ZcC5M2wxsd6dcMWB9I3Vdr78BCdaI6MrHwife9OWnGMpItvhXzN6/e8IG4r8twU/5o
+ G/Vzk5VQd2iTv+HCYJgaw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:bAYExVEZUsI=:sm2JTVg0I7xsOYmC/Klq1b
+ QVRElotdl8y0+Gz3ocWShaGaDBJl4PDpB/Dc8GyfVzmnDI6c4GKoUTldiD2osEKif67zK6GDo
+ +8XG6QKUGejPYHekM4bQk7zmjN210jCdh83ZtBd47pgvKb2H/2MqtZXoaiz5W8R8pxfN7S/PL
+ Yz8cmODWnp9c5OXIRcyXjy7sedXbaN/YcHhvGrfzGsrfTLEMqB9wDZ3Oeb24W9l0VliqKZwVd
+ 8a0x8GATkvmWnMrGsoMYK+mSjj0KR7cqQQhAl0zjCGFGHOgfRtTDG2YbvDutDAJBHyvx2KQgW
+ zOqUXDMG8HT5CfhFtWGJA5H4/AI2L8WBkusVev51GhwbVe5anRPxQUku2BXIgHoWtnCyK2bZu
+ dO3O8nbskjo9GYQs4VQfOMhu6+a2iXys/614lcN4eL2uIMA5k+JHBPbRiC6JI53ccOixx5NoG
+ qj+q7uHk8COqTEhZQQ84xslOWpCZsDKvFv7hBNfKBMAgXhnY7QROn2uNw6CEupQK8yBSdsRm7
+ Pozv9PTLYC8schHEo3UyKviXej1CKey9bHBAAO3lWXV3EjaaCXGcmTOgX6kceWxO2USGYTOZ3
+ y2fpUaYrCB1KHMWpzlVDW+MHhlSUowhBJQRHtuzHB+yLfp3kyzx7onR3kNUDU+P9UL3htAque
+ 3WJHU7OqHz4dESkzAqh+98kQrrpnzg/eCNUZyfUMUjQAJu0esAKajSHL/Iap0WASdxD5/TcFx
+ 9llyar/WKPS9Sy3eMdQq6bbFrVtnAsU1bDNhC7K0QZbrUd5warO6Ov9sYAgl7YCywHGL4TN4b
+ 8uZMBXT8mwb1TQfnmjrw5pKbCBTXDjrf8ndVgnoXhTL0+/hB/Q=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 18 Feb 08:10 PST 2022, Doug Anderson wrote:
-
-> Hi,
-> 
-> On Tue, Feb 15, 2022 at 8:54 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
+On Fri, Feb 18, 2022 at 5:55 PM Pali Rohár <pali@kernel.org> wrote:
+> On Friday 18 February 2022 17:43:04 Arnd Bergmann wrote:
+> > On Thu, Jan 13, 2022 at 6:07 PM Pali Rohár <pali@kernel.org> wrote:
+> > >
+> > > Commit 514ef1e62d65 ("arm64: dts: marvell: armada-37xx: Extend PCIe MEM
+> > > space") increased size of PCIe MEM to 127 MiB, which is the maximal
+> > > possible size for allocated 128 MiB PCIe window. PCIe IO size in that
+> > > commit was unchanged.
+> > >
+> > > Armada 3720 PCIe controller supports 32-bit IO space mapping so it is
+> > > possible to assign more than 64 KiB if address space for IO.
+> > >
+> > > Currently controller has assigned 127 MiB + 64 KiB memory and therefore
+> > > there is 960 KiB of unused memory. So assign it to IO space by increasing
+> > > IO window from 64 KiB to 1 MiB.
+> > >
+> > > DTS file armada-3720-turris-mox.dts already uses whole 128 MiB space, so
+> > > only update comment about 32-bit IO space mapping.
+> > >
+> > > Signed-off-by: Pali Rohár <pali@kernel.org>
+> > > Fixes: 514ef1e62d65 ("arm64: dts: marvell: armada-37xx: Extend PCIe MEM space")
 > >
-> > +static int lpg_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> > +                        const struct pwm_state *state)
-> > +{
-> > +       struct lpg *lpg = container_of(chip, struct lpg, pwm);
-> > +       struct lpg_channel *chan = &lpg->channels[pwm->hwpwm];
-> > +       int ret;
-> > +
-> > +       if (state->polarity != PWM_POLARITY_NORMAL)
-> > +               return -EINVAL;
-> > +
-> > +       mutex_lock(&lpg->lock);
-> > +
-> > +       if (state->enabled) {
-> > +               ret = lpg_calc_freq(chan, state->period);
-> > +               if (ret < 0)
-> > +                       goto out_unlock;
-> > +
-> > +               lpg_calc_duty(chan, state->duty_cycle);
-> > +       }
-> > +       chan->enabled = state->enabled;
-> > +
-> > +       lpg_apply(chan);
-> > +
-> > +       triled_set(lpg, chan->triled_mask, chan->enabled ? chan->triled_mask : 0);
-> > +
-> > +out_unlock:
-> > +       mutex_unlock(&lpg->lock);
-> > +
-> > +       return ret;
-> > +}
-> 
-> My compiler (correctly) yelled that `ret` is returned uninitialized if
-> `state->enabled` is false.
+> > I just saw this is the fixes pull request, and it seems very odd. Does this
+> > fix an actual bug?
+>
+> Do you mean this patch or commit 514ef1e62d65?
 
-You're absolutely correct. I am however not able to figure out how to
-get my compiler (aarc64 gcc 11.2.0) to give me a warning about this.
+This one. 514ef1e62d65 looks fine.
 
-If anyone have any suggestions I'd be very happy.
+> > Note that Linux normally doesn't map more than 64KB
+> > of I/O space per PCI domain, so it should not make a difference to us.
+>
+> Last time I looked into ARM code, it can allocate more than 64 kB for IO.
 
-> I initialized `ret` to 0 and the problem
-> went away. I assume that the patch will need to spin to fix that
-> unless everything else looks great and a maintainer wants to fix that
-> when applying.
-> 
-> With that fix, I was able to use Bjorn's patch along with Satya's
-> patches adding pm8350c support (removing the now defunct
-> "pwm_9bit_mask" property) to make the PWM on my board work. Thus, once
-> the error my compiler complained about is fixed I'm happy with my
-> `Tested-by` being added.
-> 
 
-Thanks! I will initialize ret and send out v13 including your T-b.
 
-Regards,
-Bjorn
+> > Also, note that having a high bus address for the I/O space (0xefff0000,
+> > as as the CPU physical address here) means that a lot of the older
+> > devices that actually require I/O space won't work, because they need a
+> > low bus address in the first few KB.
+> >
+> > Is this mapping a requirement from a broken bootloader, or can you change
+> > the mapping of the I/O port window in the physical space to the usual
+> > bus address 0?
+>
+> At physical address 0x0 it is not possible as at this address is mapped
+> DDR.
 
-> For now I haven't actually reviewed the code here, but if folks feel
-> like it needs an extra pair of eyes then please yell and I'll find
-> some time to do it.
-> 
-> -Doug
+I meant bus address 0, not CPU physical address 0 of course. We don't
+care where in physical space the I/O window is.
+
+> ARM Trusted-Firmware sets PCIe space to range [0xe8000000-0xf0000000].
+> This (default) configuration is specified in DTS file. Which parts of
+> this range is used for IO and which MEM is up to the a3720 PCIe kernel
+> driver and currently it configures it based on how sub-ranges are
+> specified in DT.
+>
+> In some cases (e.g. when board has 4 GB of RAM), TF-A relocates this
+> PCIe range to different location (otherwise it cannot activate more than
+> 2 GB of RAM) and U-Boot during loading of kernel DTB file, is patching
+> it.
+>
+> It could be possible to change TF-A code to move PCIe space to different
+> location (from [0xe8000000-0xf0000000]) but not to 0x0. But changing it
+> means to move other parts and invent mapping in which most of RAM can be
+> mapped to...
+
+Can't you change the mapping to have a bus address that is different
+the physical address?
+
+       Arnd
