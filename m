@@ -2,145 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 010674BB1BD
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 07:01:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B5224BB281
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 07:36:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231156AbiBRGBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 01:01:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51470 "EHLO
+        id S231604AbiBRGgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 01:36:38 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231149AbiBRGBO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 01:01:14 -0500
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A18C326512A
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 22:00:58 -0800 (PST)
-Received: by mail-oo1-xc2a.google.com with SMTP id d134-20020a4a528c000000b00319244f4b04so2352248oob.8
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 22:00:58 -0800 (PST)
+        with ESMTP id S231663AbiBRGgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 01:36:36 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0D503F88D;
+        Thu, 17 Feb 2022 22:36:17 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id v5-20020a17090a4ec500b001b8b702df57so11551265pjl.2;
+        Thu, 17 Feb 2022 22:36:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vC5rr9/FFwl108xT94dxdS0audFET9/KpZypiZZFFo0=;
-        b=UYyjQv6/7mpgSZOWGk2/ust+6hOD4YjQAmr5tQ5iB2PeMarCwuNe5WoWL/dGHhgvg9
-         UAbaXSrf5MWippiTC8ws2jSkTlePYQ6tehyZjxPtBc5uAmU3g1bRYXAyb6bXqgS0ouAd
-         Ua6Oxx4UzemOIaFN3q8Rccy9D9rGc8UNh4b4nhxyvOnJZheCXdFW+q70UZr5+9A+Lu0U
-         aT2kyp7Y+5vOn+OyNyYW6NFy0CTpObikM5/eUuI+JFi0loqXNagB0UJbmFodqmIdR1e5
-         T40vkrs+IfV8K3ekT33j48RnBGf6dLsD/v9gpBw7hX7kE1CYVtkzpglin6tJQe5bFrqz
-         5mJg==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uQbAoqa1KwsbzMCJZPl0QEWgqTPAIhCjokqucaj50oY=;
+        b=AYiuXzt+VjjBbC8zDKNraQA+ivOdwWihW359vxsCkXzMcRx2t7py4bkBRZjgd+W/xV
+         +zZUcRr0FejKug0DGu7gQNZ9WG7i317125t/vZiO3jacVxigNHyPNZImGAoNeCHdEN9R
+         1YYRi20EyMR++891bATZSZ9pEWDhHp8OM//irMJSflSfAJjjzjB5EbyVKEoIMnSornb5
+         /ffUzCTkA2tLG8DUVFgMI+U/5LIfROe1HYM0lVpBcNiHYLLeUSokukLWRnHD+mRJuRr6
+         fo67qJQuI4XvqqASObdLtKshonxZ2RgQPS2A0zdsJD86x/SdGzRkrQuKzyDx9bFKjlzf
+         r5MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vC5rr9/FFwl108xT94dxdS0audFET9/KpZypiZZFFo0=;
-        b=VzAADwpp14NWNNlbUbN4O+HtaspLRl5mGxflBtfpJZb9zBjD2YgAoK8s8Yms34oziX
-         y2ptmmmqGELJ0o92YJN0I/H9jEEpU/Awb+Hbf8bfgCFCNQN66qNQIptqvHMmyD5Pe7zW
-         RBFQYbCKEBPlaSHunQPZtIatD/KUPuRZciH9d9c9kvAJFBUFFuIB0hZ3NZtgOmSiimEJ
-         4WiSm8PicPQVeoYQqPUTObjiX+MNHf8DvN7PhrafLlacbJZr+rm9WR/6l4yE5YaPILxB
-         X0AzFKJNuuwSeyiYVk9Wp5+vueV6gKUM9sCyYY353At0ItkJB7CQbg8zlQK79DAdqT2L
-         UW7g==
-X-Gm-Message-State: AOAM532Ah4KvOi+gG5+t6vvRSmc5z8HmhjrpvvDp94bht6Iu2o4D2XlW
-        dbH50ErBLkKnQiT/egHZz4frVA==
-X-Google-Smtp-Source: ABdhPJwMUgPMYZgFc7a9CJBSMUtuUqp+3FcdwropR0b3xxEM7qtpwzSq3DvZN9WJm2f428LBq/Z1TQ==
-X-Received: by 2002:a05:6870:d24f:b0:cc:f65f:68e4 with SMTP id h15-20020a056870d24f00b000ccf65f68e4mr2408028oac.167.1645164057943;
-        Thu, 17 Feb 2022 22:00:57 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id bc36sm948918oob.45.2022.02.17.22.00.56
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uQbAoqa1KwsbzMCJZPl0QEWgqTPAIhCjokqucaj50oY=;
+        b=6GEPhjZSZJ3knU8wrgsjZqQ5bX4fKwVAyN77BgbDlmoLub8nMPlqpPWu6n1BtVRngW
+         rtANRmhIGlB2yliKhqyP3E3ie/MB/ZHLEFsI635i0TsW6pjL04k3HsOTdgC5QqeDyMTN
+         PvdNDXPqKL9AqCk3CFm4fbe3uIj3fkc5dnGfv/B9G4WyBtGxn32RlDPcW0RwUmg0It1r
+         ETQ2OW++pluFZyjTg0Wt+NRyLisbjVK/41TwC80UelCPKZaR0dUScNPQ10oA2pqjVQSx
+         rvvFc4bQ/dW54l+eVoYTkEA6iA0biKp8kyQg5Wwp1XSA7YpCjzrrwUX6GaqFft4qsWZZ
+         nRQg==
+X-Gm-Message-State: AOAM531mb4VSMcXXbQAcCR8qWj2FX7CM4PZ6FYy+cu+CskAgkTA8cSMB
+        CVJ7bZoN8f2oQO8lOjJBBu+TarUssZ0nxi+K
+X-Google-Smtp-Source: ABdhPJybcMeibfzO9kHX/YbZmh51OF4KbpZX/mTydmB1H9MdHMPIId3WfgzwMptueR01D0dG5cCTBQ==
+X-Received: by 2002:a17:902:930b:b0:14d:b0c0:1f71 with SMTP id bc11-20020a170902930b00b0014db0c01f71mr6270349plb.113.1645166177121;
+        Thu, 17 Feb 2022 22:36:17 -0800 (PST)
+Received: from localhost.localdomain ([101.78.151.222])
+        by smtp.gmail.com with ESMTPSA id a29sm9664298pgl.24.2022.02.17.22.36.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Feb 2022 22:00:57 -0800 (PST)
-Date:   Thu, 17 Feb 2022 22:03:03 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, quic_kalyant@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
-        quic_mkrishn@quicinc.com, quic_vproddut@quicinc.com
-Subject: Re: [PATCH v4 2/5] arm64: dts: qcom: sc7280: Add support for eDP
- panel on CRD
-Message-ID: <Yg82lyRCi3XJHCU2@ripper>
-References: <1644494255-6632-1-git-send-email-quic_sbillaka@quicinc.com>
- <1644494255-6632-3-git-send-email-quic_sbillaka@quicinc.com>
- <CAD=FV=VVvcn1VpLXjd+X9Xe50sS_vY5ukKJE8i=eAZf1Phofuw@mail.gmail.com>
+        Thu, 17 Feb 2022 22:36:16 -0800 (PST)
+From:   Rex Nie <rexnie3@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org, spanda@codeaurora.org,
+        dianders@chromium.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        hsinyi@chromium.org, rexnie3@gmail.com
+Subject: [PATCH] drm/panel: Add panel-edp: add lcd innolux,n140hca-eac
+Date:   Fri, 18 Feb 2022 14:36:10 +0800
+Message-Id: <20220218063610.1530630-1-rexnie3@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=VVvcn1VpLXjd+X9Xe50sS_vY5ukKJE8i=eAZf1Phofuw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 17 Feb 17:03 PST 2022, Doug Anderson wrote:
+innolux,n140hca-eac is a eDP-based LCD panel. This panel has 1920x1080
+resolution in 14-inch TFT panel.
 
-> Hi,
-> 
-> On Thu, Feb 10, 2022 at 3:58 AM Sankeerth Billakanti
-> <quic_sbillaka@quicinc.com> wrote:
-> >
-> > +       backlight_3v3_regulator: backlight-3v3-regulator {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-name = "backlight_3v3_regulator";
-> > +
-> > +               regulator-min-microvolt = <3300000>;
-> > +               regulator-max-microvolt = <3300000>;
-> > +
-> > +               gpio = <&pm8350c_gpios 7 GPIO_ACTIVE_HIGH>;
-> > +               enable-active-high;
-> > +
-> > +               pinctrl-names = "default";
-> > +               pinctrl-0 = <&edp_bl_power>;
-> > +       };
-> 
-> So I'm pretty sure that this is wrong and what you had on a previous
-> patch was more correct. Specifically the PMIC's GPIO 7 truly _is_ an
-> enable pin for the backlight. In the schematics I see it's named as
-> "PMIC_EDP_BL_EN" and is essentially the same net as "EDP_BL_EN". This
-> is distinct from the backlight _regulator_ that is named VREG_EDP_BP.
-> I believe the VREG_EDP_BP is essentially sourced directly from
-> PPVAR_SYS. That's how it works on herobrine and I believe that CRD is
-> the same. You currently don't model ppvar_sys, but it's basically just
-> a variable-voltage rail that could be provided somewhat directly from
-> the battery or could be provided from Type C components. I believe
-> that the panel backlight is designed to handle this fairly wide
-> voltage range and it's done this way to get the best efficiency.
-> 
-> So personally I'd prefer if you do something like herobrine and model
-> PPVAR_SYS. Then the backlight can use ppvar_sys as its regulator and
-> you can go back to providing this as an "enable" pin for the
-> backlight.
-> 
-> I know, technically it doesn't _really_ matter, but it's nice to model
-> it more correctly.
+Signed-off-by: Rex Nie <rexnie3@gmail.com>
+---
+ .../display/panel/innolux,n140hca-eac.yaml    | 43 +++++++++++++++++++
+ drivers/gpu/drm/panel/panel-edp.c             | 26 +++++++++++
+ 2 files changed, 69 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/innolux,n140hca-eac.yaml
 
-While I've not seen your schematics, the proposal does look similar to
-what I have on sc8180x, where there's a power rail, the BL_EN and a pwm
-signal.
+diff --git a/Documentation/devicetree/bindings/display/panel/innolux,n140hca-eac.yaml b/Documentation/devicetree/bindings/display/panel/innolux,n140hca-eac.yaml
+new file mode 100644
+index 000000000000..5493e383c97c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/innolux,n140hca-eac.yaml
+@@ -0,0 +1,43 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/innolux,n140hca-eac.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Innolux N140HCA-EAC 14 inch eDP 1080p display panel
++
++maintainers:
++  - Sandeep Panda <spanda@codeaurora.org>
++  - Douglas Anderson <dianders@chromium.org>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: innolux,n140hca-eac
++
++  enable-gpios: true
++  power-supply: true
++  backlight: true
++  no-hpd: true
++
++required:
++  - compatible
++  - power-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    panel_edp: panel-edp {
++        compatible = "innolux,n140hca-eac";
++        enable-gpios = <&pio 96 GPIO_ACTIVE_HIGH>;
++        power-supply = <&pp3300_disp_x>;
++        backlight = <&backlight_lcd0>;
++        no-hpd;
++    };
++
++...
+diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
+index f7bfcf63d48e..f5f9c9cb26ba 100644
+--- a/drivers/gpu/drm/panel/panel-edp.c
++++ b/drivers/gpu/drm/panel/panel-edp.c
+@@ -1330,6 +1330,29 @@ static const struct panel_desc innolux_n125hce_gn1 = {
+ 	},
+ };
+ 
++static const struct display_timing innolux_n140hca_eac_timing = {
++	.pixelclock = { 72600000, 76420000, 80240000 },
++	.hactive = { 1920, 1920, 1920 },
++	.hfront_porch = { 80, 80, 80 },
++	.hback_porch = { 190, 190, 190 },
++	.hsync_len = { 60, 60, 60 },
++	.vactive = { 1080, 1080, 1080 },
++	.vfront_porch = { 6, 6, 6 },
++	.vback_porch = { 38, 38, 38 },
++	.vsync_len = { 8, 8, 8 },
++	.flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW,
++};
++
++static const struct panel_desc innolux_n140hca_eac = {
++	.timings = &innolux_n140hca_eac_timing,
++	.num_timings = 1,
++	.bpc = 6,
++	.size = {
++		.width = 309,
++		.height = 174,
++	},
++};
++
+ static const struct drm_display_mode innolux_p120zdg_bf1_mode = {
+ 	.clock = 206016,
+ 	.hdisplay = 2160,
+@@ -1750,6 +1773,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "innolux,n125hce-gn1",
+ 		.data = &innolux_n125hce_gn1,
++	}, {
++		.compatible = "innolux,n140hca-eac",
++		.data = &innolux_n140hca_eac,
+ 	}, {
+ 		.compatible = "innolux,p120zdg-bf1",
+ 		.data = &innolux_p120zdg_bf1,
+-- 
+2.25.1
 
-If that's the case I think representing BL_EN using the enable-gpios
-property directly in the pwm-backlight node seems more appropriate (with
-power-supply being the actual thing that powers the backlight).
-
-If however gpio 7 is wired to something like the enable-pin on an actual
-LDO the proposal here seems reasonable, but it seems unlikely that the
-output of that would be named "backlight_3v3_regulator"?
-
-Regards,
-Bjorn
