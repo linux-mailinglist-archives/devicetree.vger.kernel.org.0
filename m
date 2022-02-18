@@ -2,115 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9877C4BB686
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 11:12:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E12F64BB672
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 11:11:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233931AbiBRKMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 05:12:52 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39800 "EHLO
+        id S231462AbiBRKLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 05:11:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233935AbiBRKMu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 05:12:50 -0500
-Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC68154F95;
-        Fri, 18 Feb 2022 02:12:31 -0800 (PST)
-Received: from email.seznam.cz
-        by email-smtpc18b.ko.seznam.cz (email-smtpc18b.ko.seznam.cz [10.53.18.21])
-        id 26b949fe7db71d97271085a0;
-        Fri, 18 Feb 2022 11:12:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1645179129; bh=7ubBe+jigkJQ0b6P8fnTBoTjIXf8z/f1esHNa37llBM=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding:X-szn-frgn:
-         X-szn-frgc;
-        b=hlxlmWoJJn13dG+VSKAK84GGxFB41suXLecdq5OnXsMMG3kKG/b/N06+qvqpxkTme
-         5y7v2APIUqnsU1JxGYDU/rAbCdMqCrfH71HYsrNGCJ6UMUF8ezFsIV0E6vbqMwcXAT
-         TyHrxwf7riXYET+tr8TJrqLMFWJOgpa2+oezNfJA=
-Received: from localhost.localdomain (ip-111-27.static.ccinternet.cz [147.161.27.111])
-        by email-relay21.ko.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Fri, 18 Feb 2022 11:12:03 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S230250AbiBRKLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 05:11:24 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C2F1A3406;
+        Fri, 18 Feb 2022 02:11:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1645179029;
+        bh=dQaqrY1szTQw9YJ5drdcXLw3CUwut1x5HuSIYC9iL30=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=gB6XqqEoSlrqdJyM42lAzTT7wy7q/yZHtvVLzTXcgzyD6Uh9a3eptkNSd1nNcQwjH
+         RJfXeEaEteC6w5aDfYAOJmUxH5+P6Tuss79Q+abdFRrae076f4niwkTb/+bcsWZmNc
+         pBiF+JcSUaIiCpDgn8QC83D/4LiziJIUh1aGEgKU=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from max-esprimop556.user.selfnet.de ([141.72.241.228]) by
+ mail.gmx.net (mrgmx104 [212.227.17.168]) with ESMTPSA (Nemesis) id
+ 1M6DWi-1nNC4j26w4-006hyE; Fri, 18 Feb 2022 11:10:29 +0100
+From:   Max Buchholz <max.buchholz@gmx.de>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, Michael Srba <michael.srba@seznam.cz>,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [PATCH v7 5/5] arm64: dts: qcom: msm8998: reserve potentially inaccessible clocks
-Date:   Fri, 18 Feb 2022 11:09:33 +0100
-Message-Id: <20220218100933.32736-5-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220218100933.32736-1-michael.srba@seznam.cz>
-References: <20220218100933.32736-1-michael.srba@seznam.cz>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Max Buchholz <max.buchholz@gmx.de>
+Cc:     Max Buchholz <Max.Buchholz@gmx.de>,
+        David Heidelberg <david@ixit.cz>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: nvidia,tegra20-kbc: Convert to json-schema
+Date:   Fri, 18 Feb 2022 11:10:10 +0100
+Message-Id: <20220218101011.22988-1-max.buchholz@gmx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <4a764dfa-d00d-40b6-bad3-37115b067571>
-X-szn-frgc: <0>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:UkGIICl6xbjoVsCCGPW/PZwIzzlt2IWnp1FVx8gSHB/6A++cTIy
+ uITxyk1KCNKk6tDRl4e21GfJQ1wzqqVRLCewIdzOYlFEr8NPgumVyzqx9ufFg0ja+gVGSU3
+ +QzocnU6Y9dhHb+t5kXaHBssqy47WN/rT3RjpiiTHMhJFU5ty4VsawFpo3hEmWSw6QqA8CB
+ 0mTiNW7ek7WUI6dOFQrmw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:+xjSSEDY6F4=:xYZggW/fkvD+XhqJuzQlTc
+ okTjuMKHFJ/IcFNnvci3yGLge2sKr1yLfeiXtUWKdDjfmjSwWRbOsfWcRYkJ1Y8KSLQTB6Kbk
+ K7/H3XrIou7qtAvgZgd0t8N43EZEhP7zHDSZlkj0Q60OsQLtgldct3mcqG/gOzkni5luy7Tex
+ 6Jg5KTtnymLSTxMHwpdzRc2s/DC7kuFqKVVmvHmhb0R/9LlpLDY1lGU+veMao+3xvdwSmApdb
+ BVSMs5Ev2NeLc+uWWCEmuSE45WH0naMkTGUtgnGUZ+WjeYwsYfLg6lQ9vcLo1hBMmv523LwmG
+ fkSVH7RdXFlsnZ7AcLw1/9T168ILepnYzfFqzbfnxUyG6VSBi/E+EleAqfytLWvC6Z51YzyKv
+ 7DeT73s1qMne0NialqWS/iL7MdksLU+cONJtFTDxvqvp2tZ/5csuuXWceCqucWm4Z/Uw94kUQ
+ tcuHQ6HCjLjJ5RR+xhZPGYp9n8eQa0dMV/QM5vEVSY7PovDtFdoYQsDCYBv4L5I9YdbNT8WYe
+ SabwFDQODkbgFEy1uXiDlXdXhvPjMy3EpjOzai2hFhONos6euJIXZt+38aPqK3kbaiDI+tw2N
+ qmqYr3ucOaplSZRrxQnGL0SuOuvxbbhgmWTLLbK7I/M31ZeMDwoSaPBAnn7NXTlP4NRvTuDLc
+ V/uXNBqTu7WfAQPfpgYeAFiZtLthQpjeW4tD8oXIoDmB3sCrJwapPcAtvHo3GzW/a2wEdK99m
+ mgkHl+wxTjSx9FpcT5VEjF24nDc8wm+jvVAFxwW8Owd0uZffyrluGan/dOEKlcM46bgstYFxO
+ OZ+Eu9fmkvlxucdDnPV07H/w6ldg/p3cPXHVcPa/tPSnKEbHLUK/Bj5tFD6Iqzqbj0hprz3Y8
+ HPGESuI1rkCf9TvRt1UtBNHP0vWaMlF13N3ZpgR2v9n2isylMfZ7WqT58I+SJpoxzq6h+/Py8
+ 7yI6iUwpXpBiPG65vHSEeW9/k8odas+DT9POAjnoVNmKA/s7Z/O8zNUyxqzRYJIaVbFNG1bUQ
+ 0h6xXfauRpNci0V8E6oVG3QyBBclCsM7g3p2lwbtOuqiriV45cmm/hyU/AzMVzxUnmVffxbKd
+ /SerSQg27utJ9I=
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H4,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <michael.srba@seznam.cz>
+From: Max Buchholz <Max.Buchholz@gmx.de>
 
-With the gcc driver now being more complete and describing clocks which
-might not always be write-accessible to the OS, conservatively specify
-all such clocks as protected in the SoC dts.
-The board dts - or even user-supplied dts - can override this property
-to reflect the actual configuration.
+This converts the Nvidia Tegra keyboard controller bindings to YAML
+and fix them up a bit.
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
----
- CHANGES:
- - v2: add this patch
- - v3: fix missing Signed-off-by
- - v4: add a proper explanation as per review, (hopefully) fix the subject and commit message
- - v5: none
- - v6: none
- - v7: none
----
+Acked-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: Max Buchholz <max.buchholz@gmx.de>
+=2D--
+ .../bindings/input/nvidia,tegra20-kbc.txt     |  55 ---------
+ .../bindings/input/nvidia,tegra20-kbc.yaml    | 114 ++++++++++++++++++
+ 2 files changed, 114 insertions(+), 55 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/nvidia,tegra20=
+-kbc.txt
+ create mode 100644 Documentation/devicetree/bindings/input/nvidia,tegra20=
+-kbc.yaml
 
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index f273bc1ff629..16dccf9d881e 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -863,6 +863,21 @@ gcc: clock-controller@100000 {
- 
- 			clock-names = "xo", "sleep_clk";
- 			clocks = <&xo>, <&sleep_clk>;
+diff --git a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.tx=
+t b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt
+deleted file mode 100644
+index 1faa7292e21f..000000000000
+=2D-- a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt
++++ /dev/null
+@@ -1,55 +0,0 @@
+-* Tegra keyboard controller
+-The key controller has maximum 24 pins to make matrix keypad. Any pin
+-can be configured as row or column. The maximum column pin can be 8
+-and maximum row pins can be 16 for Tegra20/Tegra30.
+-
+-Required properties:
+=2D- compatible: "nvidia,tegra20-kbc"
+=2D- reg: Register base address of KBC.
+=2D- interrupts: Interrupt number for the KBC.
+=2D- nvidia,kbc-row-pins: The KBC pins which are configured as row. This i=
+s an
+-  array of pin numbers which is used as rows.
+=2D- nvidia,kbc-col-pins: The KBC pins which are configured as column. Thi=
+s is an
+-  array of pin numbers which is used as column.
+=2D- linux,keymap: The keymap for keys as described in the binding documen=
+t
+-  devicetree/bindings/input/matrix-keymap.txt.
+=2D- clocks: Must contain one entry, for the module clock.
+-  See ../clocks/clock-bindings.txt for details.
+=2D- resets: Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+=2D- reset-names: Must include the following entries:
+-  - kbc
+-
+-Optional properties, in addition to those specified by the shared
+-matrix-keyboard bindings:
+-
+=2D- linux,fn-keymap: a second keymap, same specification as the
+-  matrix-keyboard-controller spec but to be used when the KEY_FN modifier
+-  key is pressed.
+=2D- nvidia,debounce-delay-ms: delay in milliseconds per row scan for debo=
+uncing
+=2D- nvidia,repeat-delay-ms: delay in milliseconds before repeat starts
+=2D- nvidia,ghost-filter: enable ghost filtering for this device
+=2D- wakeup-source: configure keyboard as a wakeup source for suspend/resu=
+me
+-		 (Legacy property supported: "nvidia,wakeup-source")
+-
+-Example:
+-
+-keyboard: keyboard {
+-	compatible =3D "nvidia,tegra20-kbc";
+-	reg =3D <0x7000e200 0x100>;
+-	interrupts =3D <0 85 0x04>;
+-	clocks =3D <&tegra_car 36>;
+-	resets =3D <&tegra_car 36>;
+-	reset-names =3D "kbc";
+-	nvidia,ghost-filter;
+-	nvidia,debounce-delay-ms =3D <640>;
+-	nvidia,kbc-row-pins =3D <0 1 2>;    /* pin 0, 1, 2 as rows */
+-	nvidia,kbc-col-pins =3D <11 12 13>; /* pin 11, 12, 13 as columns */
+-	linux,keymap =3D <0x00000074
+-			0x00010067
+-			0x00020066
+-			0x01010068
+-			0x02000069
+-			0x02010070
+-			0x02020071>;
+-};
+diff --git a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.ya=
+ml b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.yaml
+new file mode 100644
+index 000000000000..076b347a6f07
+=2D-- /dev/null
++++ b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.yaml
+@@ -0,0 +1,114 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/input/nvidia,tegra20-kbc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+			/*
-+			 * The hypervisor typically configures the memory region where these clocks
-+			 * reside as read-only for the HLOS. If the HLOS tried to enable or disable
-+			 * these clocks on a device with such configuration (e.g. because they are
-+			 * enabled but unused during boot-up), the device will most likely decide
-+			 * to reboot.
-+			 * In light of that, we are conservative here and we list all such clocks
-+			 * as protected. The board dts (or a user-supplied dts) can override the
-+			 * list of protected clocks if it differs from the norm, and it is in fact
-+			 * desired for the HLOS to manage these clocks
-+			 */
-+			protected-clocks = <AGGRE2_SNOC_NORTH_AXI>,
-+					   <SSC_XO>,
-+					   <SSC_CNOC_AHBS_CLK>;
- 		};
- 
- 		rpm_msg_ram: sram@778000 {
--- 
-2.34.1
++title: Nvidia Tegra keyboard controller
++
++maintainers:
++  - Max Buchholz <max.buchholz@gmx.de>
++
++description: >
++  The key controller has maximum 24 pins to make matrix keypad. Any pin
++  can be configured as row or column. The maximum column pin can be 8
++  and maximum row pins can be 16 for Tegra20/Tegra30.
++
++properties:
++  compatible:
++    const: nvidia,tegra20-kbc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description: Interrupt number for the KBC.
++
++  nvidia,kbc-row-pins:
++    description: >
++      The KBC pins which are configured as row. This is an
++      array of pin numbers which is used as rows.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++
++  nvidia,kbc-col-pins:
++    description: >
++      The KBC pins which are configured as column. This is an
++      array of pin numbers which is used as column.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++
++  linux,keymap:
++    description: >
++      The keymap for keys as described in the binding document
++      devicetree/bindings/input/matrix-keymap.txt.
++
++  clocks:
++    maxItems: 1
++    description: >
++      Must contain one entry, for the module clock.
++      See ../clocks/clock-bindings.txt for details.
++
++  resets:
++    description: >
++      Must contain an entry for each entry in reset-names.
++      See ../reset/reset.txt for details.
++
++  reset-names:
++    const: kbc
++
++  linux,fn-keymap:
++    description: >
++      a second keymap, same specification as the
++      matrix-keyboard-controller spec but to be used when the KEY_FN modi=
+fier
++      key is pressed.
++
++  nvidia,debounce-delay-ms:
++    description: delay in milliseconds per row scan for debouncing
++
++  nvidia,repeat-delay-ms:
++    description: delay in milliseconds before repeat starts
++
++  nvidia,ghost-filter:
++    description: enable ghost filtering for this device
++    type: boolean
++
++  wakeup-source:
++    description: configure keyboard as a wakeup source for suspend/resume
++
++  nvidia,wakeup-source:
++    description: configure keyboard as a wakeup source for suspend/resume
++    deprecated: true
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - nvidia,kbc-row-pins
++  - nvidia,kbc-col-pins
++  - linux,keymap
++  - clocks
++  - resets
++  - reset-names
++
++additionalProperties: false
++
++examples:
++  - |
++    keyboard: {
++        compatible =3D "nvidia,tegra20-kbc";
++        reg =3D <0x7000e200 0x100>;
++        interrupts =3D <0 85 0x04>;
++        clocks =3D <&tegra_car 36>;
++        resets =3D <&tegra_car 36>;
++        reset-names =3D "kbc";
++        nvidia,ghost-filter;
++        nvidia,debounce-delay-ms =3D <640>;
++        nvidia,kbc-row-pins =3D <0 1 2>;    /* pin 0, 1, 2 as rows */
++        nvidia,kbc-col-pins =3D <11 12 13>; /* pin 11, 12, 13 as columns =
+*/
++        linux,keymap =3D <0x00000074
++                0x00010067
++                0x00020066
++                0x01010068
++                0x02000069
++                0x02010070
++                0x02020071>;
++    };
+=2D-
+2.35.1
 
