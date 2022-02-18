@@ -2,60 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3D944BB97E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 13:53:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BFA34BB98A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 13:55:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231591AbiBRMyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 07:54:09 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52416 "EHLO
+        id S235377AbiBRMzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 07:55:50 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234833AbiBRMyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 07:54:09 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECF342B3545;
-        Fri, 18 Feb 2022 04:53:51 -0800 (PST)
+        with ESMTP id S235382AbiBRMzt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 07:55:49 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EE222B4D88;
+        Fri, 18 Feb 2022 04:55:21 -0800 (PST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: kholk11)
-        with ESMTPSA id 96DCE1F4241F
+        with ESMTPSA id 07B791F46724
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645188830;
-        bh=Gv8c/LMKo6rxgaMQAVOHcLVtihxtts7Lugi4FWiRWzg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jsc+Jd7YNSdcSO7Arwmg5Oa5RcOIdQwAd1Vp9MCMsz3njw0Lh3TqNOjD/5VdNV7ds
-         iI3sQ1uy1f4dMupHFJbAhjHvePu0G0116Qam/iDQKq9ZgrL0iriNP/ImzZMPuG8Vq5
-         VhVTNL3KhMozEcwOSBxxcKRacJVHokQNnQQdmJZ7DUGkfshLwdu6xJXMYncEG4B1+7
-         KqStXONu4k1fHPNg9tPMMZq+sUaWrDAjDFPdTLD4rsKaXEq3pGGed8UM2lDEJt2esm
-         IFY5E1Pl5wyQLlXs885fc9PrvpIC87ygeqRuDdtm/39jVwdEwND1zAafv7zWPVbFzL
-         /TW6GzjnqRNcg==
-Message-ID: <b69b6a18-c991-4c37-fff1-d68d140e4901@collabora.com>
-Date:   Fri, 18 Feb 2022 13:53:47 +0100
+        s=mail; t=1645188915;
+        bh=Tpe2RPwvbdCojJ6DWrGoQuw8qWJegr0r7DlDrw/eAPk=;
+        h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+        b=BOWv9ZVUqUaglIggPkiRNn+3+u/HWW0z7myKhXZ2wmX8NSgYTYnonZ7n1U8zAt2ox
+         eSEiSdSF+HjFhaQo8rdhdFgzKZPxIHJ8cugi/wS3e7fW8hQ3giP91irMtWg+o65iNZ
+         9KZ6ZH4S5g5eGfN/nZjT4qCkleGoMN+iW0OOqvp9oR46xU7PcF2n2F6TkcBiV3Ez4q
+         bz3MNL1QIZik43JPuB3BxVL55/aF6iOpp+/ZTkrCfcLmttKI2txBThKwNe4YuNyWXM
+         N3nhIr3iuDEeBHcB+GiTM+lw3jxDnsunAaqHjq+O7liLrzhnckFpxEBISQQD6CEkcF
+         +Mqi1YtJ4gqEA==
+Message-ID: <932bb7da-fc2e-4562-a0fc-308a7c19343e@collabora.com>
+Date:   Fri, 18 Feb 2022 13:55:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.1
-Subject: Re: [PATCH v5 27/34] iommu/mediatek-v1: Just rename mtk_iommu to
- mtk_iommu_v1
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, xueqi.zhang@mediatek.com,
-        yen-chang.chen@mediatek.com, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, libo.kang@mediatek.com,
-        chengci.xu@mediatek.com
-References: <20220217113453.13658-1-yong.wu@mediatek.com>
- <20220217113453.13658-28-yong.wu@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220217113453.13658-28-yong.wu@mediatek.com>
+Subject: Re: [PATCH v2 05/23] arm64: dts: mt8192: Add SCP node
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        --to=Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
+ <20220218091633.9368-6-allen-kh.cheng@mediatek.com>
+Content-Language: en-US
+In-Reply-To: <20220218091633.9368-6-allen-kh.cheng@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -68,15 +62,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/02/22 12:34, Yong Wu ha scritto:
-> No functional change. Just rename this for readable. Differentiate this
-> from mtk_iommu.c
+Il 18/02/22 10:16, Allen-KH Cheng ha scritto:
+> Add SCP node for mt8192 SoC.
 > 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 > ---
->   drivers/iommu/mtk_iommu_v1.c | 211 +++++++++++++++++------------------
->   1 file changed, 103 insertions(+), 108 deletions(-)
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index f92d8d7afa5d..61aadd7bd397 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -706,6 +706,18 @@
+>   			status = "disabled";
+>   		};
+>   
+> +		scp: scp@10500000 {
+> +			compatible = "mediatek,mt8192-scp";
+> +			reg = <0 0x10500000 0 0x100000>,
+> +			    <0 0x10700000 0 0x8000>,
+> +			    <0 0x10720000 0 0xe0000>;
+
+Please fix indentation:
+			reg = <0 0x10500000 0 0x100000>,
+			      <0 0x10700000 0 0x8000>,
+			      <0 0x10720000 0 0xe0000>;
+
+
+
+> +			reg-names = "sram", "l1tcm", "cfg";
+> +			interrupts = <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&infracfg CLK_INFRA_SCPSYS>;
+> +			clock-names = "main";
+> +			status = "disabled";
+> +		};
+> +
+>   		nor_flash: spi@11234000 {
+>   			compatible = "mediatek,mt8192-nor";
+>   			reg = <0 0x11234000 0 0xe0>;
+
+
+
