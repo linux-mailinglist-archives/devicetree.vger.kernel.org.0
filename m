@@ -2,78 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACA5B4BAE45
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 01:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A76624BAE5D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 01:30:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbiBRASu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 19:18:50 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:54198 "EHLO
+        id S229886AbiBRAaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 19:30:13 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:42720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbiBRASq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 19:18:46 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A11DD3E5D8
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 16:18:30 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id v25so1396195oiv.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 16:18:30 -0800 (PST)
+        with ESMTP id S229799AbiBRAaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 19:30:13 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E555E17C;
+        Thu, 17 Feb 2022 16:29:57 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id c192so4176913wma.4;
+        Thu, 17 Feb 2022 16:29:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=A0w/SqOdMz9JqzxXphVHbdn/ofl6hS1bJpMLgWc1xKY=;
-        b=RBDdLXcavqALvL2aPUvJnlvKaIQ1sNCTlGXUjSixkUx6zPkIULCzeE7lGRnnYdGkyY
-         pQEFeiJzwfJIfdf1nIN6cHzlhLbuJK9eRgGN/PXncVdznskcbaZrjp7SfS+PEs1yZCg7
-         4FALdj7QCzEXJm9vAG6IikJTTdxED3fi4wiI4=
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/OTruRCD+Ij6EmV9ckr8IJ1zAJ1b2hmL42wGrOlCU10=;
+        b=pImZn1Zhd2lJxHSPc8u25DL0DScj4aIrBcWC7PAamH33A13iQ1UhnqIKRK0ZhbwzSP
+         +rvkMHRFZ0iqZ55M5CRkQ2F+EtrwmKTyVe6f9wLO/DjFccUFgMZdD/hKm4F8Gtf197J7
+         tQ2ezG51RkTN10j1TPVo2dUfmIco/G9ln6mnBiOkUkjCBnRbUu35TZmMEv2NoB+pnnOX
+         /KgOujMt+vEuRFNLc+7IYr9p7zD1hS6DgxAksy1C5nkDRfaLjXLyRDgNtBKgFQHrhre+
+         sSUIHVXGkDZnEIqSunfYV5qnm4DoaAXzkvwa3APCBVeUbbPp7UkSztf7aZPpwNRUDugw
+         zsMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=A0w/SqOdMz9JqzxXphVHbdn/ofl6hS1bJpMLgWc1xKY=;
-        b=3nq4tAla1Itx3prH3dbV9gM1iGuHBZ5iRv6kq1IDXDjOJky8JxuKRHGc4wROz/H8ng
-         8Hd3MMBd92i8nkmFBD0z/Ezl1C1KlnGDi9K8FnUcueiLrZRz7dNnucu2tt5VVb4HZrVp
-         Nz0kuHG7QwKXYSlqP0esL+819AVH5ptUcSftUKVXZuo1Zvt684sUo77kIkezdF08WapG
-         rhXSemJ+dtnpCTqze/yIr1Jf0zP3ozwDdZGM0EfLcwfxAnCDk77DfOLxBumEYMgpI/FN
-         HK80eSXubtStZeu2eUKT6Prlu6+dG8vsrSKGon/kZwwheSwMUBpp37V4SsuzapTqHgKX
-         nefg==
-X-Gm-Message-State: AOAM532vLjhp7uH6pcR35JkmHpd/ugb0iOBWxotgyHH+baao7U8KqAb3
-        YdBNkvN+VkWs8EHPU4AlAJLUJkx0ulY2YY17Pp0Fkw==
-X-Google-Smtp-Source: ABdhPJwqNt21JkBwrP+UAPtFRk28p6wGEEJdk3rvAFbwcRwFIjPQ29AefqdWopg67l9g+04pxITxo3m5CSJlse7/eLE=
-X-Received: by 2002:a05:6808:b2f:b0:2cf:9af3:1687 with SMTP id
- t15-20020a0568080b2f00b002cf9af31687mr2216175oij.112.1645143510019; Thu, 17
- Feb 2022 16:18:30 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 17 Feb 2022 16:18:29 -0800
-MIME-Version: 1.0
-In-Reply-To: <20220215201539.3970459-3-dmitry.baryshkov@linaro.org>
-References: <20220215201539.3970459-1-dmitry.baryshkov@linaro.org> <20220215201539.3970459-3-dmitry.baryshkov@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 17 Feb 2022 16:18:29 -0800
-Message-ID: <CAE-0n52DNP_vgG5E2L1hnh_sPxWsDgZVVL-_XoEfbH3yOUqoGQ@mail.gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: clocks: qcom,sdm845-camcc: add clocks/clock-names
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/OTruRCD+Ij6EmV9ckr8IJ1zAJ1b2hmL42wGrOlCU10=;
+        b=728XWdI19rbUo2HyDurNKeMsTD6pU63K6wDwtLyXm3OHbUWyp15HYC7WaYWAp1ToFa
+         74TtFdKye4nc6YbTVYXv9o3Osf1ML0fqLyeZTS7zAbgjdHcJNjHFrQwJZV2Q6Y17E9co
+         iE/rdYQDz/AXcNKZPa0j6ultzQDBsDmvc5ab3wfBo2rUlDc6ksA/JBbz/kiNM1oqgfI9
+         8eH6ddARtwcjlREvFtczj6S4v9RTs5TA2T+2HCT/YE/cpH26Wi1JRqRBWmGlSH7pO5Jc
+         EqRqbStHjSbKekH0WRIKxevMLjYDRuo0PLIQXBqWSUfjNfsqDtEBnN0k6q3OJ0/5vJ2J
+         wehA==
+X-Gm-Message-State: AOAM5321Hj6rWjtdsiash4jV7rObu9f3rDRmHVIjfrSjgmbyv/Gy57MD
+        pYm7jPMfeubIuZFZk960kYo=
+X-Google-Smtp-Source: ABdhPJx+hrwVMjoiO5aTUi3AaEvAAdkQP879FBW22W4ZFQBb9PeUZwxZM23/oekaDNmvTFfmDHHFEQ==
+X-Received: by 2002:a05:600c:364f:b0:37b:ba9e:2805 with SMTP id y15-20020a05600c364f00b0037bba9e2805mr4750108wmq.119.1645144195936;
+        Thu, 17 Feb 2022 16:29:55 -0800 (PST)
+Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.googlemail.com with ESMTPSA id d29sm3640406wra.63.2022.02.17.16.29.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Feb 2022 16:29:55 -0800 (PST)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>
+Subject: [PATCH v2 00/18] Multiple addition to ipq8064 dtsi
+Date:   Fri, 18 Feb 2022 01:29:38 +0100
+Message-Id: <20220218002956.6590-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dmitry Baryshkov (2022-02-15 12:15:36)
-> The driver can parse bi-tcxo clock from the clocks passed in the device
-> tree. Specify it in schema.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+This try to complete the ipq8064 dtsi and introduce 2 new dtsi
+ipq8064-v2 and ipq8065. While some node are still missing (cpufreq node,
+l2 scale node, fab scale node) this would add most of the missing node
+to make ipq8064 actually usable.
 
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Some of the changes are the fix for the pci IO that cause any secondary
+wifi card with ath10k to fail init.
+Adds regulators definition for RPM.
+Adds many missing gsbi nodes used by all the devices.
+Enable the usb phy by default as they are actually enabled internally by
+xlate only if the dwc3 driver is used.
+Add opp table and declare idle state for ipq8064.
+Fix some dtc warning.
+
+This also add the ipq8064-v2.0 dtsi and the ipq8065 dtsi used by more
+recent devices based on this SoC.
+
+v2:
+- Added missing patch
+- Added additional gsbi6 spi
+- Added extra description for L2 cache opp
+- Fxied smb208 enabled by default that is problematic for rb3011 devices
+
+Ansuel Smith (18):
+  ARM: dts: qcom: add multiple missing pin definition for ipq8064
+  ARM: dts: qcom: add gsbi6 missing definition for ipq8064
+  ARM: dts: qcom: add missing rpm regulators and cells for ipq8064
+  ARM: dts: qcom: disable smb208 regulators for ipq8064-rb3011
+  ARM: dts: qcom: add missing snps,dwmac compatible for gmac ipq8064
+  ARM: dts: qcom: enable usb phy by default for ipq8064
+  ARM: dts: qcom: reduce pci IO size to 64K for ipq8064
+  ARM: dts: qcom: fix dtc warning for missing #address-cells for ipq8064
+  ARM: dts: qcom: add smem node for ipq8064
+  ARM: dts: qcom: add saw for l2 cache and kraitcc for ipq8064
+  ARM: dts: qcom: add sic non secure node for ipq8064
+  ARM: dts: qcom: fix and add some missing gsbi node for ipq8064
+  ARM: dts: qcom: add opp table for cpu and l2 for ipq8064
+  ARM: dts: qcom: add speedbin efuse nvmem binding
+  ARM: dts: qcom: add multiple missing binding for cpu and l2 for
+    ipq8064
+  ARM: dts: qcom: remove redundant binding from ipq8064 rb3011 dts
+  ARM: dts: qcom: add ipq8064-v2.0 dtsi
+  ARM: dts: qcom: add ipq8065 dtsi
+
+ arch/arm/boot/dts/qcom-ipq8064-rb3011.dts |  21 +-
+ arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi  |  70 ++++
+ arch/arm/boot/dts/qcom-ipq8064.dtsi       | 375 +++++++++++++++++++++-
+ arch/arm/boot/dts/qcom-ipq8065.dtsi       | 168 ++++++++++
+ 4 files changed, 603 insertions(+), 31 deletions(-)
+ create mode 100644 arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
+ create mode 100644 arch/arm/boot/dts/qcom-ipq8065.dtsi
+
+-- 
+2.34.1
+
