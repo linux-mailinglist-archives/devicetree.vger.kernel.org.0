@@ -2,180 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F160F4BB179
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 06:35:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E39A04BB1B7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 06:58:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230352AbiBRFfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 00:35:14 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55386 "EHLO
+        id S230522AbiBRF7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 00:59:10 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229719AbiBRFfN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 00:35:13 -0500
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2121.outbound.protection.outlook.com [40.107.21.121])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E076819E0A0;
-        Thu, 17 Feb 2022 21:34:55 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M7zo9GNnfF0zk1VonjXT7hw3RR0VcBGzAJQRhTKkW5QdpCP/9Y74/6TT0LHAWzSArCEo7taPxcY4AECY13mIrXdFg1vxihy3fMqWlFHrr+YbVcKQVNr5n7d81fns/P7o6AKwcKzbc25j89SERw0CeJoZG4eQgLFb504FqQTOF/uNAlKzjXZfvAw04TVBoi6ScgkeACcnphwyo6pgZFrCLMzBdTVFejLyyrz8lvyd6m64Y/rfZkQhXdT8wPwY6gYq7vQIWIBZp159I+wsilXcOFDMjhFdCz+6vwXjvXTD6pPyrFdLQkf2tl923LQGOamweu0d0OO1wWijybWPlZ9pgA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OgM30240XNSxlIR4qK/1WzuseiUtWt8wAiYUtTQRSt8=;
- b=PEkrGR5zlCPfGfGgpZgjwdLhcXvvAwnPdeNXDD2JqfO72uxg4ft8r4FMNfETcEueos0r2hY5xVSlUsBjH1N0h+RFlV7bM7W5JyEE9r3LJT3guj2wt4WVN4+gDwglk+AEPVj3zs//sLY0FslOn/EqoUh4g2sS+johyiMwr1UHYwpMdznN3LFT9rjdPprwT8orj64kBRX+nVk4oKVQf0X7Ow8wGDoJnLmvIVZeP41pg8gxcrxtbjH0wvh/xi+1QAL1B09UthTz8BZVyqFS3aFsNfVMrUxr/p3JA7prXZnfTOPgazwTxXGQBqBYLys8Jp9gbL/Rk6DwwGsEp28GdJP07g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=leica-geosystems.com.cn; dmarc=pass action=none
- header.from=leica-geosystems.com.cn; dkim=pass
- header.d=leica-geosystems.com.cn; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=leica-geosystems.com.cn; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OgM30240XNSxlIR4qK/1WzuseiUtWt8wAiYUtTQRSt8=;
- b=MRJ2m7sqs97VQ36ngf6hqdyRLYVgcTrmBRQ///T2HYbWpcdYUcM7K2kCXtq0GUX/5ZhlGWmRUDv+3pj/nS51Uo5nFSQkoVmax9Q+3H7YWe7Gvq1lJN33U0k59Nsgo2LXLKZMmYn0Hwxji0+/NqCtrjRprH1my6wplos+QO6iJII=
-Received: from AM9PR06MB7844.eurprd06.prod.outlook.com (2603:10a6:20b:3aa::24)
- by VI1PR0601MB2656.eurprd06.prod.outlook.com (2603:10a6:800:84::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Fri, 18 Feb
- 2022 05:34:48 +0000
-Received: from AM9PR06MB7844.eurprd06.prod.outlook.com
- ([fe80::49af:32ea:4fd0:4933]) by AM9PR06MB7844.eurprd06.prod.outlook.com
- ([fe80::49af:32ea:4fd0:4933%6]) with mapi id 15.20.4975.018; Fri, 18 Feb 2022
- 05:34:48 +0000
-From:   LI Qingwu <qing-wu.li@leica-geosystems.com.cn>
-To:     Rob Herring <robh@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "tomas.melin@vaisala.com" <tomas.melin@vaisala.com>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        GEO-CHHER-bsp-development 
-        <bsp-development.geo@leica-geosystems.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH V2 1/5] dt-bindings: iio: accel: sca3300: Document
- murata,scl3300
-Thread-Topic: [PATCH V2 1/5] dt-bindings: iio: accel: sca3300: Document
- murata,scl3300
-Thread-Index: AQHYI8dlgBAnLkHEfkK43/i+MVs3uqyYXaSAgABs41A=
-Date:   Fri, 18 Feb 2022 05:34:48 +0000
-Message-ID: <AM9PR06MB78442036A5C52FCC5E248AD1D7379@AM9PR06MB7844.eurprd06.prod.outlook.com>
-References: <20220217062705.2867149-1-Qing-wu.Li@leica-geosystems.com.cn>
- <20220217062705.2867149-2-Qing-wu.Li@leica-geosystems.com.cn>
- <Yg7US2LIBFRWq4OA@robh.at.kernel.org>
-In-Reply-To: <Yg7US2LIBFRWq4OA@robh.at.kernel.org>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=leica-geosystems.com.cn;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5c99e337-77af-4c67-80d7-08d9f2a06127
-x-ms-traffictypediagnostic: VI1PR0601MB2656:EE_
-x-microsoft-antispam-prvs: <VI1PR0601MB2656BA64ECCF4943FA889C8CD7379@VI1PR0601MB2656.eurprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: m4zcyZFoBtw/PZFEepT/onGkoyiNO0t85f6iZwyrx+lpVav3vw7Y2nMEQ26EhAiTvBsGkC7Jwo0etIaJUMkXKYiodYh40L1BnZsNQX+ySLKuWIcJRas0w17xjgZRMXCF8ktTc800eAlG049XdB00HOsZBzPpQSmtqv7aUhQHm4iNHci9H469SUG8L+gVoE4Hfqfj5LCMkug6RKdxKHLpaCAJDPKF0LnlWhKwR5EC4P+Q8eRPQH+rCiSPzM8omBBHj8OuLIF2XVRaeJ6BkLWb56MDkXiJB7TY6jPYZToQvYPxPNpvVFgN+I47XbfIrdnfN3MQ3L1wcUZRpqB8PKShVro7AiNxjJMAl080nS2TgHiydXm+bEXLikEPB4+qgVKitriCfuuOHKClbY8BoJj4jrq3VfPhjGBC4kNjgsj+XSyyRf1nkfWP2qeApP/gi11cZ+A/uBvEjHsOS+0oiVdkz9QSQfVLz4dpu/ZTQZ+R3Paet+OtxvxJGl4zIbghLoNjaxqWfKejtiOGbtERmx0JIMwXxjAL5JKFU9mUisEjBbclspshu6H8WNMmfNVgxL3aBkl43KtjO8j/7uPrL3mw1W2D9budb8pt/B2aOp4daORa+jI+KxCrUDQyWkXnCQ9K9QHJ2oIylgmR11ClYVauzCAfEoI2VTz+JlH8Xc9iq7H1GGrJxPUjGW8KUJ6BaGwu5eO5Jl5lc4L6Pfhuvq1jJfUwS/fJ5TcZf65IXnFEX9KHdAUss8KOCtB+PNeY6b3W
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR06MB7844.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(83380400001)(38100700002)(122000001)(55016003)(38070700005)(9686003)(7696005)(54906003)(6916009)(6506007)(53546011)(966005)(508600001)(71200400001)(45080400002)(2906002)(64756008)(66446008)(86362001)(66556008)(66476007)(4326008)(8676002)(26005)(76116006)(8936002)(186003)(5660300002)(52536014)(66946007)(33656002)(316002)(10090945009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HnDqJvN7batKIjeG359IF0zVILOZrXLFj5agp87uU09AksMsSY3yAeGDu7Mf?=
- =?us-ascii?Q?lVns7WgMG8NdjqpRVBxxp6WENddMVm3FPI2HQIbLL1cC/YSHTodLDqOukjXW?=
- =?us-ascii?Q?27E0glPRs0m4OV5+VCleG16D5oOvFOeeAp/jy/iyrKCBiNwK/TengQ/M+JLb?=
- =?us-ascii?Q?meU2rinag5qdw9lAoo1LI2++Z23CePhylvIspCq6zeHN+PsB/4zfpjC39jua?=
- =?us-ascii?Q?ZpokWA5KJYBy+9ZrdRZbYCiDSMZdBKAeyeCuquPeXpkPcwSIY0GKs0vikofz?=
- =?us-ascii?Q?yd/RVuTGVbOotBAtgJmdu23sf1lo11Y1WZvUbqTABmplGFYQQd66M88LmdTI?=
- =?us-ascii?Q?Umii8QoC4KBRx1jdmZ97p2WF7ahqs/J7/6vrG2hCtohUGZNQjRosCcazQEPT?=
- =?us-ascii?Q?AlcoTHesFiQUfYnVz7szob32VpWPxS/mtZunUXQpgVsBEAhZDcMdqIr83SfH?=
- =?us-ascii?Q?8C4DkzhiyAycnJ3qLnJZD48/rS/8+l5KGcmnOi1qWBC3p7D9xfS133Xt6LUI?=
- =?us-ascii?Q?yTBsQZDSTVNvewOvXLQVrS/I4G4IcmrjDKuAYAvfdBvkJwYGEnHk6si6PPMR?=
- =?us-ascii?Q?pgv1k/nsSW0lYXBzOQFLof1xlvCCaNjrQjrSONA7DrxqzlgZpTsMg0ZX+mb+?=
- =?us-ascii?Q?zIt1hhc3uEyJgpgfOWbdN8vRGwt8lF00gT0rbTWRRu6OSJ4O1LtVyQOioqjX?=
- =?us-ascii?Q?n3CWiSl2jsFfK+2L6YuZeSmA2o+AiMLvBvkhLPdT3cR84nD0NVRRvbMw/72t?=
- =?us-ascii?Q?JWKO+BT0p9h32c2JBQYg986SSwTmAquZhYhj9+DjgHZuHguJCUEO1SwHyNLq?=
- =?us-ascii?Q?SHG1PyWKtkxhk3TMvB9svl7Yrtx0nEvMD6JDSCK5OruL4/k+m/MkSrYv22j8?=
- =?us-ascii?Q?IIK9wxo1cdWQO1flq6Pli1uOrZ9Lgmx+Rylr9KmAHLW650ktVupghw4e0yWO?=
- =?us-ascii?Q?dmgbxDwmJYfQvApw5zSlx+E6MS5e+yvBCOSIKgZXWbv5RhSpUGqN9uQWgoey?=
- =?us-ascii?Q?FhEbtiTogcriUATymf6W28PKxi6db7feuRWBgsWEawHYoatybvCo6U1XzRD9?=
- =?us-ascii?Q?Fs3OY1kp2tWW9UavpgBDmyWe/F1O3LcfvDM9Ci222Tua1Pd9sF3pkmK9wnfg?=
- =?us-ascii?Q?zoO0vAgONl4ay5Oqn3W+R5+bc4VSGt0CYkIAozpvtAVt88+LApFLLfRN9giF?=
- =?us-ascii?Q?D3cNqFPuCC5PWY2n6ySsAvTvJxcnAdyq/qpREXt0OINbEWs9izMeMrcS8OU9?=
- =?us-ascii?Q?EhX2qCDGrbU3RcwWe2yN3X0rlLNiJJvNcRRWUjxpA3i7t3/Eepn7XIO+M+wQ?=
- =?us-ascii?Q?trbijxpxLFImARhogGuhTTB/tdF3aRHGa/2Ix+yzrWVlcQ5bdCURBnYDlXTE?=
- =?us-ascii?Q?61a/fBetTZTsISspybt/buiZ8WWRgJtR0Pi7OQFtlq7o5/t9/xFklYoDj1dS?=
- =?us-ascii?Q?n7JI5BBVdzUzGOm1+uQUGEetewWw6K+HzHm3XJHMNtuoUMWp4IEkW/JQBFPd?=
- =?us-ascii?Q?nB5PJQCrrdvHvs0ZQWMmP4Ky6ZvgU8qTbXmN/lNz5s9sS9tJEQK1WXhXTL70?=
- =?us-ascii?Q?ST6phhsiIZn9Dz/y7V0J3QI+JIqbjJ4VOAqZiHBu1jSut1wReGIdwizuTSTI?=
- =?us-ascii?Q?gzAAEWO1+tsQoA4lpHjVT7keW5XC1h9cKvU7fo8vd8eqpdbMDbsjPnvKqYiA?=
- =?us-ascii?Q?HtkaNcbp3mPQGJxh6GOQZO5EnI0/IZjyx1hcjVgGM9VQowcMDvl0/SP4WVol?=
- =?us-ascii?Q?q0A65JctYA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S230508AbiBRF7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 00:59:07 -0500
+X-Greylist: delayed 447 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Feb 2022 21:58:50 PST
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB3424636D
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 21:58:50 -0800 (PST)
+Received: by codeconstruct.com.au (Postfix, from userid 10001)
+        id 86480202DA; Fri, 18 Feb 2022 13:51:21 +0800 (AWST)
+From:   Matt Johnston <matt@codeconstruct.com.au>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        linux-i2c@vger.kernel.org, netdev@vger.kernel.org,
+        Zev Weiss <zev@bewilderbeest.net>, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, Wolfram Sang <wsa@kernel.org>
+Subject: [PATCH net-next v6 1/2] dt-bindings: net: New binding mctp-i2c-controller
+Date:   Fri, 18 Feb 2022 13:51:05 +0800
+Message-Id: <20220218055106.1944485-2-matt@codeconstruct.com.au>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220218055106.1944485-1-matt@codeconstruct.com.au>
+References: <20220218055106.1944485-1-matt@codeconstruct.com.au>
 MIME-Version: 1.0
-X-OriginatorOrg: leica-geosystems.com.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR06MB7844.eurprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c99e337-77af-4c67-80d7-08d9f2a06127
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Feb 2022 05:34:48.7522
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zmEa97PIpWGy5AmQOm6xxNxjYIsGlTv6jldVGb4pwiWb3YbSaLVZsbWNYzTBxejIqWw9ycwAs0M+KIJzyvhnrcfP591lPuHJvncBC64d3LnmlQmavSv6HhEvF/hepVPL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0601MB2656
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Used to define a local endpoint to communicate with MCTP peripherals
+attached to an I2C bus. This I2C endpoint can communicate with remote
+MCTP devices on the I2C bus.
 
+In the example I2C topology below (matching the second yaml example) we
+have MCTP devices on busses i2c1 and i2c6. MCTP-supporting busses are
+indicated by the 'mctp-controller' DT property on an I2C bus node.
 
-Hi Rob Herring
+A mctp-i2c-controller I2C client DT node is placed at the top of the
+mux topology, since only the root I2C adapter will support I2C slave
+functionality.
+                                               .-------.
+                                               |eeprom |
+    .------------.     .------.               /'-------'
+    | adapter    |     | mux  --@0,i2c5------'
+    | i2c1       ----.*|      --@1,i2c6--.--.
+    |............|    \'------'           \  \  .........
+    | mctp-i2c-  |     \                   \  \ .mctpB  .
+    | controller |      \                   \  '.0x30   .
+    |            |       \  .........        \  '.......'
+    | 0x50       |        \ .mctpA  .         \ .........
+    '------------'         '.0x1d   .          '.mctpC  .
+                            '.......'          '.0x31   .
+                                                '.......'
+(mctpX boxes above are remote MCTP devices not included in the DT at
+present, they can be hotplugged/probed at runtime. A DT binding for
+specific fixed MCTP devices could be added later if required)
 
+Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Wolfram Sang <wsa@kernel.org>
+---
+ Documentation/devicetree/bindings/i2c/i2c.txt |  4 +
+ .../bindings/net/mctp-i2c-controller.yaml     | 92 +++++++++++++++++++
+ 2 files changed, 96 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml
 
-
-
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Friday, February 18, 2022 7:04 AM
-> To: LI Qingwu <qing-wu.li@leica-geosystems.com.cn>
-> Cc: robh+dt@kernel.org; devicetree@vger.kernel.org; linux-iio@vger.kernel=
-.org;
-> jic23@kernel.org; tomas.melin@vaisala.com; andy.shevchenko@gmail.com;
-> lars@metafoo.de; GEO-CHHER-bsp-development
-> <bsp-development.geo@leica-geosystems.com>; linux-kernel@vger.kernel.org
-> Subject: Re: [PATCH V2 1/5] dt-bindings: iio: accel: sca3300: Document
-> murata,scl3300
->=20
-> [Some people who received this message don't often get email from
-> robh@kernel.org. Learn why this is important at
-> http://aka.ms/LearnAboutSenderIdentification.]
->=20
-> This email is not from Hexagon's Office 365 instance. Please be careful w=
-hile
-> clicking links, opening attachments, or replying to this email.
->=20
->=20
-> On Thu, 17 Feb 2022 06:27:01 +0000, LI Qingwu wrote:
-> > Add DT bindings for Murata scl3300 inclinometer.
-> >
-> > Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> > ---
-> >  Documentation/devicetree/bindings/iio/accel/murata,sca3300.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
->=20
->=20
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,.
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
->=20
-> If a tag was not added on purpose, please state why and what changed.
-
-Thanks, I will add in v3.
+diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
+index b864916e087f..fc3dd7ec0445 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c.txt
++++ b/Documentation/devicetree/bindings/i2c/i2c.txt
+@@ -95,6 +95,10 @@ wants to support one of the below features, it should adapt these bindings.
+ - smbus-alert
+ 	states that the optional SMBus-Alert feature apply to this bus.
+ 
++- mctp-controller
++	indicates that the system is accessible via this bus as an endpoint for
++	MCTP over I2C transport.
++
+ Required properties (per child device)
+ --------------------------------------
+ 
+diff --git a/Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml b/Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml
+new file mode 100644
+index 000000000000..afd11c9422fa
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/mctp-i2c-controller.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MCTP I2C transport binding
++
++maintainers:
++  - Matt Johnston <matt@codeconstruct.com.au>
++
++description: |
++  An mctp-i2c-controller defines a local MCTP endpoint on an I2C controller.
++  MCTP I2C is specified by DMTF DSP0237.
++
++  An mctp-i2c-controller must be attached to an I2C adapter which supports
++  slave functionality. I2C busses (either directly or as subordinate mux
++  busses) are attached to the mctp-i2c-controller with a 'mctp-controller'
++  property on each used bus. Each mctp-controller I2C bus will be presented
++  to the host system as a separate MCTP I2C instance.
++
++properties:
++  compatible:
++    const: mctp-i2c-controller
++
++  reg:
++    minimum: 0x40000000
++    maximum: 0x4000007f
++    description: |
++      7 bit I2C address of the local endpoint.
++      I2C_OWN_SLAVE_ADDRESS (1<<30) flag must be set.
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    // Basic case of a single I2C bus
++    #include <dt-bindings/i2c/i2c.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      mctp-controller;
++
++      mctp@30 {
++        compatible = "mctp-i2c-controller";
++        reg = <(0x30 | I2C_OWN_SLAVE_ADDRESS)>;
++      };
++    };
++
++  - |
++    // Mux topology with multiple MCTP-handling busses under
++    // a single mctp-i2c-controller.
++    // i2c1 and i2c6 can have MCTP devices, i2c5 does not.
++    #include <dt-bindings/i2c/i2c.h>
++
++    i2c1: i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      mctp-controller;
++
++      mctp@50 {
++        compatible = "mctp-i2c-controller";
++        reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
++      };
++    };
++
++    i2c-mux {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      i2c-parent = <&i2c1>;
++
++      i2c5: i2c@0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0>;
++        eeprom@33 {
++          reg = <0x33>;
++        };
++      };
++
++      i2c6: i2c@1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <1>;
++        mctp-controller;
++      };
++    };
+-- 
+2.32.0
 
