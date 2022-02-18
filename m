@@ -2,148 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D7964BB5E8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 10:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 541824BB5F1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 10:50:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232058AbiBRJqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 04:46:37 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60030 "EHLO
+        id S233802AbiBRJvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 04:51:05 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233775AbiBRJqg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 04:46:36 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D5E491AE1
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 01:46:19 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id d27so13564377wrb.5
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 01:46:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TNPs3XUIKSJGHFJT31aKb5KrR4RIhs82BSGaW6p5+r8=;
-        b=aMnVyUqa2iZNrnxcPBcAiBODjipAWB0m4PbyPEvAMm+dWL6d9x5uyTW2u76utu6bLk
-         Ac0vPLp8pDxRVjmI1e+T8dQ6LmVsJSOnsSXvLXWVcz8kbZr+eNbQfdQ0dfzNcQWp7N/k
-         mN9n/YgIb4eu+SY76EihV15a2Qm7HwADUzWPQ9cwJ/Bj8dAxBq0hbFCl66YLxWOOG+jj
-         D3NLR5KJ4hYzhc//UhA0kqw8PSzm4TBFJVe5iqhk+d/t8L5l4nJqxEcb/ZG+W9uU13jI
-         oUKolYaAoX4iTb1eCrmV1sAhc3KMqKNauyUiNbVxufjW2XOKe1cL8xOlMKEUrvZdCUcC
-         7uLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=TNPs3XUIKSJGHFJT31aKb5KrR4RIhs82BSGaW6p5+r8=;
-        b=yK3/AwzPteIRq9kCgg8ywWdq0IUbJTMtNiaM0ctNjw7qbhrVpQSIXTwkrJUYuY5fnF
-         g+KUJKn0lvr05FdpyjFraYgVUD/Zq7vXbz3+411yB/eBHPEhLWrhpr1BPzT2A5rc1QEt
-         B7a7y8eALKxO27ybTdzYpO6mMDmJ4CS92iLtKXJX9ng5oJp0sOUJ/y2UVpeFNAhPkndg
-         DVhK8qOYCktuM9eW3oxeWcdMbrKDTcsajahePVUTDIcpFd7tVJX0y9YbJYcYiHpEa6Ih
-         kzq+mJ9eG/Ufcao1eX08QlFKKdc5i84BHZ6mLLcxi7QSQTd41dR86E+4NLkB/MXG+e2d
-         pmTw==
-X-Gm-Message-State: AOAM533UhdFkSl6YNweWD4ReoCZLWlKCDnu1QqVv291UXrriKWD9OCEc
-        fFT63fWvWfZRJVIYqdR9BuR4jQ==
-X-Google-Smtp-Source: ABdhPJz+D9bmvjgoT8qq45YSNK+QUrJSJSkPVo+OcczsyGu5pCnQnNkzQok/8IEwR4pVbDWeRIo2Og==
-X-Received: by 2002:a5d:42ca:0:b0:1e6:2bf3:5c17 with SMTP id t10-20020a5d42ca000000b001e62bf35c17mr5254344wrr.621.1645177577821;
-        Fri, 18 Feb 2022 01:46:17 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id g22sm3649606wmh.12.2022.02.18.01.46.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Feb 2022 01:46:17 -0800 (PST)
-Message-ID: <f44ae992-5408-6f4c-2d03-6c0c64336fb1@linaro.org>
-Date:   Fri, 18 Feb 2022 09:46:15 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 4/4] mtd: core: Fix a conflict between MTD and NVMEM on
- wp-gpios property
-Content-Language: en-US
-To:     Christophe Kerello <christophe.kerello@foss.st.com>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, p.yadav@ti.com
-Cc:     linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, chenshumin86@sina.com,
-        stable@vger.kernel.org
-References: <20220217144755.270679-1-christophe.kerello@foss.st.com>
- <20220217144755.270679-5-christophe.kerello@foss.st.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220217144755.270679-5-christophe.kerello@foss.st.com>
+        with ESMTP id S233429AbiBRJvE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 04:51:04 -0500
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-eopbgr140130.outbound.protection.outlook.com [40.107.14.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9F4269ABF;
+        Fri, 18 Feb 2022 01:50:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e6UIyP94rbq4c3nZRUlNWJIQP6+tY8a0j30n9xYU5mCIGVtfv1WzxQTnavJJws8irHvieik3+jOLKQqOEHgoB7tOPYdjjtWXw32s6CB4yINhpsS4fzFBW0//l8EA/SyvLXB+ryrT4jTeybZhD0UevZ46OUjV+abJv2nOPthg13OUU0nDVEpR69sL5MhgKMlvJrEWmijLTaYW45/yk9ECNq3It+tEUYpJahIOvdCPHk7gHA2NSh+s1gFneMhMWUjbeot+AAGbYK7b4EsGL1huvw7L/iaqXaM6sw0wzDVP4vDUo+tKSq0IhD5ToRC0imT5+b/Op5gt4OynMPisnEDCzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7o8mLb3UDVaR5BmFEz3LPuK2Mxac9KLVZX1QwE+i/ps=;
+ b=E9OXa7hfMpXYbnuc/F0cHC+il8CwwAU3eOgEZcONdSl/JjDG98dwGyqKP4LfJJ2s80YBbji0lHFn2sbUUjXvkUPhdHTYmRvw4tb8GznfJJpalHd/Em6OlxnWJZY4oml42ntM7yakcSWl2dRcqIYego4qSf/zY7lke/FQffmivfvzNRIg/kAGusoyh8PI9cKnufQTJYcy3H41zQ6Qt7ugYwgps7Rt7UFiVCVOADyTAwvRHI6sz6UtYSayVdwaD338CCFyDJvvxoUbx8v3MAaiVXKs33z8FGnBQWhEBpVY99bdMKU8QLC229aLiyfZXr/amW1U+vYWwpOgiAdNM2o6/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7o8mLb3UDVaR5BmFEz3LPuK2Mxac9KLVZX1QwE+i/ps=;
+ b=r6Vm0RonM1QyCstzGt6YLlbQlrGLOki5OVV04B38doZ+eYuQNlnCoq3y86OshBS1dL87r6mEd089TNXtpvmK+a7QFaZKAGnVarAr7bgXrtu/VXKThPl7cseWpUXwE2WFb1CQAqxbWE11A8yIOQs9W/lDSybfSIKIi0pzIXIBbfA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nokia.com;
+Received: from AM7PR07MB6916.eurprd07.prod.outlook.com (2603:10a6:20b:1b4::19)
+ by VI1PR0701MB7054.eurprd07.prod.outlook.com (2603:10a6:800:195::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.7; Fri, 18 Feb
+ 2022 09:50:45 +0000
+Received: from AM7PR07MB6916.eurprd07.prod.outlook.com
+ ([fe80::594:fa1f:92c5:e546]) by AM7PR07MB6916.eurprd07.prod.outlook.com
+ ([fe80::594:fa1f:92c5:e546%5]) with mapi id 15.20.5017.012; Fri, 18 Feb 2022
+ 09:50:45 +0000
+Message-ID: <bb9d1f78-7f4d-a865-922e-ebf7362f6b64@nokia.com>
+Date:   Fri, 18 Feb 2022 10:50:43 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v4 2/2] hwmon: Add driver for Texas Instruments TMP464 and
+ TMP468
+Content-Language: fr
+To:     Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Adamski <krzysztof.adamski@nokia.com>
+References: <20220218065856.1899086-1-linux@roeck-us.net>
+ <20220218065856.1899086-2-linux@roeck-us.net>
+From:   Agathe Porte <agathe.porte@nokia.com>
+In-Reply-To: <20220218065856.1899086-2-linux@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PR1P264CA0016.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:19e::21) To AM7PR07MB6916.eurprd07.prod.outlook.com
+ (2603:10a6:20b:1b4::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 435598b3-e794-461a-75d6-08d9f2c42217
+X-MS-TrafficTypeDiagnostic: VI1PR0701MB7054:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR0701MB705411BB20472B55768764139B379@VI1PR0701MB7054.eurprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zdwbbBVO3XI651uBz3Gjq185hFG5Q3LmDy3O5Nkq4wYpQ1ujdN8FN+UDBERydRgj3xHK8TJKm+g+sZDPT5CxYKcCd6jufnPNvrmRXrmaqNEPORS0LMPAoeDX1k8gczTQWctD9TD841I+CA1jC11we5Rem834YY0Za03O7HDp8E7DezF/SAadBD4opQMbko12M4k/HVYpGata9DjumkubwIVub4sTK8teLmcoRaUM8YGkmXPuZFgeSUxq4AyPHYg13+ykQAWKOYiqJX4FCt0Sp4G4mpkQDiIGo9VSCWm22PUqCavpmZ4JUA372H5U8m0Bb14SY/13TD6gLDOOU28a9DsaQXJkWNkl/yzjEj+YzNRsIbJJaHqkBz8jAO3qlVrfzrgzwjRB/ssBSnmyR/YmM3KeN//JbvNhJCpbelpiYqQ0g+uJT+/0UqR2uVzlkzwly+hQMjn2p3kQIEuyyWiiX5+eF+YV8TuPcvoAGaydyCg7dUcziTe+ZKRJLi5tU2xeAHkCqDTVovaI3faf2H5QcLBdgvckg5MW7jSqrqiPj5ttCmMgFjm5xgB5PAU1ownsQJRsa+IuisHZA+E9bNg0ADKKHGuP/DKnsWgtKb8WOFq7/XwGka8F9nE4FWpUkBMvGHg+UxHo5fM06HJk5JCf8BEFfYH8LuTLbGLyNG2upMliq+ZFirfchXdRv02CdxH70At+E6qxWa8DrtlZdVIp2vUzBIsXig7kbr+kuaCYFXtEHkCyeI02TNQ9dBoPdtmj
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR07MB6916.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(38100700002)(107886003)(4000180100002)(82960400001)(36756003)(66556008)(8936002)(6486002)(186003)(2616005)(44832011)(26005)(508600001)(54906003)(86362001)(8676002)(4326008)(5660300002)(6512007)(2906002)(316002)(6506007)(66476007)(66946007)(31696002)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S090SCtXbzNnU0xIZFlPeFBBUmZSQzhRYXdJWjVnQjBRcTdvaVVnSkc4TXNk?=
+ =?utf-8?B?c0NUR2h5TUZhUGlqcXJDem9sTmViS0luMW41WTkyS2ViTE15SHRQNE5Cempo?=
+ =?utf-8?B?ejNpdjEwKzFubUpWSHNvTjlwZkc3eWxmRUVkb2dVbm5zRGd0Z3gzbXl6OUlE?=
+ =?utf-8?B?YUc3Yk5VS3hJU2F6c21vSlNvM0JOcXptdFVFMU9zeVNwSVpmTWJDTDM3NG42?=
+ =?utf-8?B?d09VUHBRaVJTYnZXK2ZQekRSbVhJTTJFUExXQmxYbzZTUzN6c1h6amdZV3M5?=
+ =?utf-8?B?ODUySk5BcHl2ajU4cGxEYnF5aHQ4MDJHZWdCaEFjbHo1dWtGYzJNeUJEaFdR?=
+ =?utf-8?B?aTFPWnZZaHVoZ0daT0MzOVhYQVQ0ZW5rMk84ZEtDajV4Z1o0OWlscWs5cE9Q?=
+ =?utf-8?B?bWRqamxqMmtEZVc4NDNKNTR4RjAram5wMkY0YUFWWHFKSDB0MC9pYkhuQk1t?=
+ =?utf-8?B?ODltREk4elRKMlFwU281Wk4vQzZYd3pCMWJHWWJmMTV2RnRtTVp4WFhsVWRH?=
+ =?utf-8?B?UlpVMGpJYVA1Zk5GdXJQRTlXL0hxbThDdzRyRjFQN09JQ2pydURIYklvY3BG?=
+ =?utf-8?B?U1Z4aU9JSDhjdVBCMk1jVmFTQUlnZkY5SzRVUENzRUM4ZVlaTGxWWjU2cDZo?=
+ =?utf-8?B?ZUcrcW9BU2g3ZEh0VC9tbnljN1lWNnNaUUg0bTVONmdKdjNTdG5vdVRlb3kv?=
+ =?utf-8?B?a3EyaFFYRlhoM01Cd2gvS0xNTFMrcFg2aG5sQVZ6RityM0NOYmdOVVZDMFJu?=
+ =?utf-8?B?T0pDeldTUTl3Y1Bxd1BtSHpqdktBaHhPY1dURHg1UE9MM1M0aDloVzBneEZS?=
+ =?utf-8?B?MUlmSlBnV0Z6cVgyVFdBOE1KZWg4OG8wb1hmaWJHbG40Y3haa1pDc0t4em1w?=
+ =?utf-8?B?V1VFelJ5SlVkL2xjN3BOd2xxcmlBS2pwaTlRQ1dCZmdKUTBNWVdmQnJNalBo?=
+ =?utf-8?B?MTQ3ZG5EZklDSjE5bExCcWkyMlJHK3VHaFBUL1VRbWlGVGdOU3dEM1h1Q0gx?=
+ =?utf-8?B?UzFZb0RYWkJWQ0pVcVR6eldVZDB1Ny9yaXVYVVI2cjNGWEt6QzVMTDRwbmc2?=
+ =?utf-8?B?OUw4OU9Cc09UYTE1ZGx6SGtjVklNYUo0dzRoNExmZHAvUHJKS2lPMVhPYVFQ?=
+ =?utf-8?B?cDNZdlJjeGoyZVFVUmxoOHhTUWZWa2RUQVhBd0Nmd0wzOXFMakhZbGVZZmJ0?=
+ =?utf-8?B?VVhiNE5xMjhNRXFPTU5WSVVPbWJIcjJJajBDYndnaFE1Y0Z2WHlHZXMwNlRV?=
+ =?utf-8?B?ZU92MnJBN21nYTlQd0FCa2ZRS0FnRVFPQzFYOHZBZnVOazRCYzR2YkJ6TzNp?=
+ =?utf-8?B?SlRjRmtmWU9tYVpTYnNTR0REbkV3TGlIbDVtaWxlcXhpdnpvUWtXVXNFUFFa?=
+ =?utf-8?B?SU5jTVJBUWJUWFJhUmlITmRTSmkwSytxUzAranJ2TkVYTDBPWjI2TXluUy9T?=
+ =?utf-8?B?VEIwckEvOHFjcmRndXdBT1ovY0N2NWs5SG9LcE9xUFhZTzQ1aUpUZUxobzg3?=
+ =?utf-8?B?bWZZTkRXTXI4ZTBkVnNQYWZKSmdqMEp0WkpaRThMYTN0MTdBSGthNy9qMGRo?=
+ =?utf-8?B?Z1VjKzRsbm5xREI1QWt4cFRZMkpCZU9OUHcrNjlYbjJHUFIrWHRuUjBIemMv?=
+ =?utf-8?B?L21OODBJd1NMeFc3NDVKeDlnY2JlbC82eFQyb1ZyYlFVOEF2dURtaEpGdXZ6?=
+ =?utf-8?B?M0NIK0Y3Q01sZUdPUFpzdFBqbXVUR21XRnViMEgzV3BLMjZ4dmFTUFdORGNj?=
+ =?utf-8?B?WkNZZTZEbWJJUkU0MmJwdDkrOEZCUWxVY2pnTTd1c3hQSXUvQUUvTVM1Tm5J?=
+ =?utf-8?B?SzB1UlpiaS9ma09ZdGEvQmd1Mm1mWFY5c2RpSUw0WjJyeG9XamlwUC9BUENh?=
+ =?utf-8?B?S0laNEh6ak5OZkdLOVBqUkhzVS9jNnJaUXFjVHRxYmZwamtrRlE3bFFPLzBB?=
+ =?utf-8?B?c0RXaGdZK3pxblBzMS9MdzhQZzZ2MlJHdGtsc0RQWEZQK0pWL0F3Lzkybldj?=
+ =?utf-8?B?TWYxdEdtWjg5cElPNDF4M3hKdmtxZytpVlVxUWxOOUNaSXowOFgvQWpSaXpi?=
+ =?utf-8?B?eE9Wa0t1QkxCL0xuNzd0RXpnUk5jT0lGMS9SeTNnd2lNQTRoT0djazVpQVFv?=
+ =?utf-8?B?ZWZoSHFmTW9JcC8zQWFvbWdvMzcrdHdqWGMyQ1JYUExXREJhL3NSZEYwQjVt?=
+ =?utf-8?Q?GbFmUtVIgRQlT2NDhaVZMhU=3D?=
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 435598b3-e794-461a-75d6-08d9f2c42217
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR07MB6916.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2022 09:50:45.0672
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FfOLPvXQeHONiMb1iiLuOfhLmuTHmPvfi8uSWZ+VfIQbcaPwrPvPEaTQGGurzdIyCF8rAgK2dUtjWqpQNXPOuA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0701MB7054
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,FORGED_SPF_HELO,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+Hi Guenter,
 
-
-On 17/02/2022 14:47, Christophe Kerello wrote:
-> Wp-gpios property can be used on NVMEM nodes and the same property can
-> be also used on MTD NAND nodes. In case of the wp-gpios property is
-> defined at NAND level node, the GPIO management is done at NAND driver
-> level. Write protect is disabled when the driver is probed or resumed
-> and is enabled when the driver is released or suspended.
-> 
-> When no partitions are defined in the NAND DT node, then the NAND DT node
-> will be passed to NVMEM framework. If wp-gpios property is defined in
-> this node, the GPIO resource is taken twice and the NAND controller
-> driver fails to probe.
-> 
-> A new Boolean flag named ignore_wp has been added in nvmem_config.
-> In case ignore_wp is set, it means that the GPIO is handled by the
-> provider. Lets set this flag in MTD layer to avoid the conflict on
-> wp_gpios property.
-> 
-> Fixes: 2a127da461a9 ("nvmem: add support for the write-protect pin")
-> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
-> Cc: stable@vger.kernel.org
+Le 18/02/2022 à 07:58, Guenter Roeck a écrit :
+> Add support for Texas Instruments TMP464 and TMP468 temperature sensor
+> ICs.
+>
+> TI's TMP464 is an I2C temperature sensor chip. This chip is similar
+> to TI's TMP421 chip, but with 16bit-wide registers (instead of
+> 8bit-wide registers). The chip has one local sensor and four remote
+> sensors. TMP468 is similar to TMP464 but has one local and eight
+> remote sensors.
+>
+> Originally-from: Agathe Porte <agathe.porte@nokia.com>
+> Cc: Agathe Porte <agathe.porte@nokia.com>
+> Cc: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
 > ---
+> v4:
+> - Fixed reading n-factor information from devicetree
+>    [Use of_property_read_u8 instead of of_property_read_s32 to read the
+>     property value, and write n-factor value into the upper 8 bit of the
+>     n-factor register]
 
+Changing n-factor with DT seems to work:
 
-There seems to be already an mtd core patch [1] that is planned to go 
-via nvmem tree, do you want me to take 3/4 and 4/4 via nvmem tree as well?
-Or
-you can pick up both the series via mtd tree?
+temp2_input=38500 (nfactor=10)
+temp2_input=35500 (nfactor=-10)
 
-Am okay either way.
+Driver probes just fine with this attribute set.
 
+> +static int tmp464_probe_child_from_dt(struct device *dev,
+> +				      struct device_node *child,
+> +				      struct tmp464_data *data)
+> +
+> +{
+> +	struct regmap *regmap = data->regmap;
+> +	u32 channel;
+> +	u8 nfactor;
+> +	s32 val;
 
+val is not used according to the compiler, and thus should be removed 
+(module does not compile with -Werror)
 
-[1] 
-https://patchwork.kernel.org/project/linux-usb/patch/20220104133843.44272-4-andriy.shevchenko@linux.intel.com/
+PS: TMP464 samples will be sent by DHL today and should arrive to you on 
+Feb, 23rd.
 
---srini
+Best regards,
 
+Agathe.
 
-> Changes in v3:
->   - add a fixes tag
->   - rename skip_wp_gpio by ignore_wp in nvmen_config.
-> 
->   drivers/mtd/mtdcore.c | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-> index 70f492dce158..eef87b28d6c8 100644
-> --- a/drivers/mtd/mtdcore.c
-> +++ b/drivers/mtd/mtdcore.c
-> @@ -546,6 +546,7 @@ static int mtd_nvmem_add(struct mtd_info *mtd)
->   	config.stride = 1;
->   	config.read_only = true;
->   	config.root_only = true;
-> +	config.ignore_wp = true;
->   	config.no_of_node = !of_device_is_compatible(node, "nvmem-cells");
->   	config.priv = mtd;
->   
-> @@ -833,6 +834,7 @@ static struct nvmem_device *mtd_otp_nvmem_register(struct mtd_info *mtd,
->   	config.owner = THIS_MODULE;
->   	config.type = NVMEM_TYPE_OTP;
->   	config.root_only = true;
-> +	config.ignore_wp = true;
->   	config.reg_read = reg_read;
->   	config.size = size;
->   	config.of_node = np;
