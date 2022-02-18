@@ -2,92 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F79B4BB690
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 11:13:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 272674BB6DF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 11:28:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233358AbiBRKNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 05:13:45 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43810 "EHLO
+        id S232997AbiBRK1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 05:27:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233953AbiBRKNn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 05:13:43 -0500
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C9BE5EDD9;
-        Fri, 18 Feb 2022 02:13:27 -0800 (PST)
-Received: by mail-vs1-f54.google.com with SMTP id d26so4563415vsh.0;
-        Fri, 18 Feb 2022 02:13:27 -0800 (PST)
+        with ESMTP id S233570AbiBRK1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 05:27:23 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27163193CB;
+        Fri, 18 Feb 2022 02:27:06 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id 75so7453980pgb.4;
+        Fri, 18 Feb 2022 02:27:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WRUQ/0ItbuB8Qd5eXwqs349lFDwlCtd3M661qIRr/M4=;
+        b=mD47QKPrM8oJIUo+2zfGME4E/z+r0q6UB4rPJC0A6e/1sP61wyq8JjzZTfaYqLg4rz
+         zd65wHk4j7xCrbUkA63r2cUWBIhpqDDoGnOSTYKw5oCCoagzg4Uqi3nupCr01pI8Hhoe
+         dnkIkfcyAq1Jw/P3GfeRMAcg0qcIt4iMYFk5U5lhfPwHO9PIeCFqCoIZZGEkVGK6/9M2
+         2lm/NmFLQZnk3UxhW0e/e6IpSFLR3fmpMbpq119M4eDA+HiVSWB/mJq4c22JzFXSYBfE
+         FPSBE8ECWtRW1t1C/IJEqg7WBygiBLKNvhJfFnvQKMarWipClLIx9u8HmQJr60EbcD7H
+         JP4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=biimC3ZT2BE1qWlcoP/prHvVGaEl3yOP7VCC6ZAmJec=;
-        b=GwlLUnzqr3Qf3/Dlfc26dn9yftBoS5iP5IpWB4rtuwydAkaKmjQWsLZwhWfNec32Fy
-         vU06IuHCMjfdas3jzEwCTjhSKL73a0rZJJs25JRPDH5B+bKxnw86876PRsCB0dDL04rO
-         ybPIK74pfix7tqGQotSe/VR+guWJ6JpIOZ/NpdnURUEDRq2TRabyMf46uJKhwVu0rbPi
-         ENHKRtIr2PEj6sko+y74D8QXuq3Wi7kxVAnhGTEhkMX3ETf7A1melPOhB+mK/ZeQCl8b
-         E/T67/8ixxTCjIS1PVIsqwe15Kbx5NGcoQaO0Q+oco0WWeJrYWt/GlNNeU4hIDICXvEQ
-         +BkA==
-X-Gm-Message-State: AOAM531atcCGBI5TWGOguFU4H5fS14Fe2uKg7TnqswRMxBEd+7qFIzF3
-        Ia3VXb/fHiXOKF4By3TFP50k5BvZbU6wPQ==
-X-Google-Smtp-Source: ABdhPJzboswq3Qf4DkeS6az73Pe3optwurOBz43dfLXN1TnoFH5VquHl77Z8ldgag6e98Z3Q8txQlA==
-X-Received: by 2002:a05:6102:ccb:b0:31b:93d6:aba7 with SMTP id g11-20020a0561020ccb00b0031b93d6aba7mr2966959vst.79.1645179206169;
-        Fri, 18 Feb 2022 02:13:26 -0800 (PST)
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com. [209.85.221.175])
-        by smtp.gmail.com with ESMTPSA id z23sm4964827uaq.2.2022.02.18.02.13.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Feb 2022 02:13:26 -0800 (PST)
-Received: by mail-vk1-f175.google.com with SMTP id bj24so4548372vkb.8;
-        Fri, 18 Feb 2022 02:13:25 -0800 (PST)
-X-Received: by 2002:a05:6122:ca1:b0:330:b95b:e048 with SMTP id
- ba33-20020a0561220ca100b00330b95be048mr3094832vkb.39.1645179205702; Fri, 18
- Feb 2022 02:13:25 -0800 (PST)
-MIME-Version: 1.0
-References: <20220216181003.114049-1-nikita.yoush@cogentembedded.com>
-In-Reply-To: <20220216181003.114049-1-nikita.yoush@cogentembedded.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 18 Feb 2022 11:13:14 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUM0tKbJ_8OkNA4Ep_mzhmwr=JNC+v48hgqZtAGu--p1Q@mail.gmail.com>
-Message-ID: <CAMuHMdUM0tKbJ_8OkNA4Ep_mzhmwr=JNC+v48hgqZtAGu--p1Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: ulcb-kf: fix wrong comment
-To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WRUQ/0ItbuB8Qd5eXwqs349lFDwlCtd3M661qIRr/M4=;
+        b=HFZ7Qf6JXv6XrbXP5cRa2Crntx/7SCG1DUdgHI0p32Ego75w2fNUWtWl3IB9WUehuF
+         FkPsqnkhD27qsWvs4pGjVjtqXjjDrSh4h/oD041GihdVeMHv1a6UGlZjPtgtSHZ+RTp/
+         9ToeJbMEaI3qkMu6dl0a7v9T+5xt4hV2EDealo772Ukzf8JR+YubyLOQuHlvURPM8pS5
+         cnKLW6OBCiUvszbyNDjIssr27Q5oQMVd1bapCTKLhuAps7dDzsLhllGVcMRHSpY7V7pc
+         Frv5tFLY3hkiC2qwmVUUit89J1J8yCcS5ZwcjAfchdeFY3vUZX0Z7Pe+4o8Iber0CDUJ
+         kpCQ==
+X-Gm-Message-State: AOAM532aj9U4QiKT1LtGpX2k5RynwVwngSMDYr063gWXzvrh8JJCs4qs
+        hoBZujS0P6ENz9+FIqXS0Sc=
+X-Google-Smtp-Source: ABdhPJzspd9NuP5bL32rgfy620IWs+rzFnjNv77U9r9eEoNmSQhxtq+FlWo92HmBLKkzXmlR4I4Wcg==
+X-Received: by 2002:a63:a501:0:b0:372:f7dc:6ced with SMTP id n1-20020a63a501000000b00372f7dc6cedmr5871183pgf.26.1645180025700;
+        Fri, 18 Feb 2022 02:27:05 -0800 (PST)
+Received: from localhost.localdomain ([101.78.151.222])
+        by smtp.gmail.com with ESMTPSA id r14sm2411481pfl.62.2022.02.18.02.27.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Feb 2022 02:27:05 -0800 (PST)
+From:   Rex Nie <rexnie3@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hsinyi@chromium.org,
+        Rex Nie <rexnie3@gmail.com>
+Subject: [PATCH 1/2] drm/panel-edp: Add eDP innolux panel support
+Date:   Fri, 18 Feb 2022 18:26:47 +0800
+Message-Id: <20220218102647.1634329-1-rexnie3@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 16, 2022 at 7:10 PM Nikita Yushchenko
-<nikita.yoush@cogentembedded.com> wrote:
-> Fix comment referencing salvator board, likely a copy-paste leftover.
->
-> ulcb-kf.dtsi has nothing to do with salvator.
->
-> Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Add support for the 14" innolux,n140hca-eac eDP panel.
 
-Fixes: 80c07701d5918928 ("arm64: dts: renesas: ulcb-kf: add pcm3168
-sound codec")
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.18.
+Signed-off-by: Rex Nie <rexnie3@gmail.com>
+---
+ drivers/gpu/drm/panel/panel-edp.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-Gr{oetje,eeting}s,
+diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
+index f7bfcf63d48e..f5f9c9cb26ba 100644
+--- a/drivers/gpu/drm/panel/panel-edp.c
++++ b/drivers/gpu/drm/panel/panel-edp.c
+@@ -1330,6 +1330,29 @@ static const struct panel_desc innolux_n125hce_gn1 = {
+ 	},
+ };
+ 
++static const struct display_timing innolux_n140hca_eac_timing = {
++	.pixelclock = { 72600000, 76420000, 80240000 },
++	.hactive = { 1920, 1920, 1920 },
++	.hfront_porch = { 80, 80, 80 },
++	.hback_porch = { 190, 190, 190 },
++	.hsync_len = { 60, 60, 60 },
++	.vactive = { 1080, 1080, 1080 },
++	.vfront_porch = { 6, 6, 6 },
++	.vback_porch = { 38, 38, 38 },
++	.vsync_len = { 8, 8, 8 },
++	.flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW,
++};
++
++static const struct panel_desc innolux_n140hca_eac = {
++	.timings = &innolux_n140hca_eac_timing,
++	.num_timings = 1,
++	.bpc = 6,
++	.size = {
++		.width = 309,
++		.height = 174,
++	},
++};
++
+ static const struct drm_display_mode innolux_p120zdg_bf1_mode = {
+ 	.clock = 206016,
+ 	.hdisplay = 2160,
+@@ -1750,6 +1773,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "innolux,n125hce-gn1",
+ 		.data = &innolux_n125hce_gn1,
++	}, {
++		.compatible = "innolux,n140hca-eac",
++		.data = &innolux_n140hca_eac,
+ 	}, {
+ 		.compatible = "innolux,p120zdg-bf1",
+ 		.data = &innolux_p120zdg_bf1,
+-- 
+2.25.1
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
