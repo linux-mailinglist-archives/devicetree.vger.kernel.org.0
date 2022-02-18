@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E71D24BB4D0
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 10:02:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 571074BB4E2
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 10:03:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233000AbiBRJCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 04:02:03 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55864 "EHLO
+        id S233171AbiBRJDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 04:03:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233011AbiBRJCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 04:02:01 -0500
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3221D532ED
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 01:01:45 -0800 (PST)
-Received: by mail-io1-xd2a.google.com with SMTP id c18so4227511ioc.6
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 01:01:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U8AEdmITUIDJSI02jf8n1UdQu5Z2kTq1rYcS4yrbyjQ=;
-        b=g10Pv4nLzUwZQKqmdv9zn0DbJnh7QDler3SfEmWHSCPPNMePstfRf6EIz8T9g1k3q5
-         Y2fDM52ypuGLRKkJmSK8e8XuD77uA4DFttbqXAc/496wXFtVCXCxiWmyT03EMukXyZBS
-         3Bz6lISNM4D11i14X4GbTJlF6wTstAeoWVTls=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=U8AEdmITUIDJSI02jf8n1UdQu5Z2kTq1rYcS4yrbyjQ=;
-        b=zwQuytkU8978LgC6iWu2UhaCEqxPNRN/9mjXcKgWOhV10S+hUhaTZ+uNXb9aHWSOKY
-         oKw34kN8pULyq6RyOOrCdJZcbQMJO6v0jZfvOG/y+ItrWdJB4guycjKplXA8cxNv3a26
-         3LR71shoYv8VtN45zGdnTAYzQ2EJWaMUiApwcTpIL3fq1Y8e1GNweqWaKZJKh9YcaW2G
-         Kv/N5PcMHMq/4ZbjPCuxk39gfdKuBdq0UyxFFOBaQxnpB6vBL2Hy9UtJL88ikt4x2ExY
-         gsRcyjDQ21O9JDOf8xW5n1Cf6XbwNst1v6pv5DzCdWpQ+aGEuNrKn2jQnOYYaUKJ8D/d
-         d4yg==
-X-Gm-Message-State: AOAM531bkB3IANLNfX/Kjgv0b5KQsh2lQfa5Wi+FlND+8NDauVpaKmb8
-        mhqB/adAE/OAGBkaufqPw31cLDiRN6E5vvOL6oV4MQ==
-X-Google-Smtp-Source: ABdhPJwkHQMn7rS7t8JjEUIDpKt6F6hXh8261rU+mdXf4Nr0q63mzDPdxRNHBcKlGfW12wJ7ty3/ZQUDZVuxWVb6Ol8=
-X-Received: by 2002:a05:6602:29cb:b0:638:d53c:d212 with SMTP id
- z11-20020a05660229cb00b00638d53cd212mr4869652ioq.167.1645174903774; Fri, 18
- Feb 2022 01:01:43 -0800 (PST)
+        with ESMTP id S233163AbiBRJDM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 04:03:12 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 512285A5AF;
+        Fri, 18 Feb 2022 01:02:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DEFE4B825AE;
+        Fri, 18 Feb 2022 09:02:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2627FC340E9;
+        Fri, 18 Feb 2022 09:02:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645174956;
+        bh=aIkKsEl2GbDXqPXbKKzQuLv48/u0NcCWEnw8Mk9m3hc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LMUIl/xn37op7CmJ+rWRWA9sv5FrDIVO4XsaAgFm/+MUn0zvMbeSj+pXW3hG8bmJU
+         cX+NFi+4KH6OGZRNHGYhl1aN7vYQanetKmAYtwb/hNNTFSxT/iF8qxXUDL0eLyMh0r
+         mVvyEUCzXQ/0sOb4Mo0oIB8gXPWaaWQLVudv501UZIjegG++BNxjTD9jEDXL1QzOgB
+         MO3Zlv0iHnPL1zUYCBwDxUE0JOaSOTfTyvxJHGTTY0woLukJFhvpvIZ0q5OVknoID0
+         q01nYZEVUZj/8+KsqZZ3EWUOSuKfXIManz37HqU/7Ft7L+Olpjm/vBWsMzS2IYacNu
+         sJpsMjKcphofw==
+Date:   Fri, 18 Feb 2022 10:02:30 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/9] dt-bindings: i2c: qcom-cci: add QCOM SM8450
+ compatible
+Message-ID: <Yg9gppmj0bCs9T8f@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220203164629.1711958-1-vladimir.zapolskiy@linaro.org>
+ <20220203164629.1711958-2-vladimir.zapolskiy@linaro.org>
 MIME-Version: 1.0
-References: <20220218063610.1530630-1-rexnie3@gmail.com>
-In-Reply-To: <20220218063610.1530630-1-rexnie3@gmail.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Fri, 18 Feb 2022 17:01:17 +0800
-Message-ID: <CAJMQK-gz5ha232M22+wEY8Bid4oHOESJPk3vRXDU_dzAeiaEQA@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel: Add panel-edp: add lcd innolux,n140hca-eac
-To:     Rex Nie <rexnie3@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, thierry.reding@gmail.com,
-        sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, spanda@codeaurora.org, dianders@chromium.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="bqcqhxpEu4BvQHAN"
+Content-Disposition: inline
+In-Reply-To: <20220203164629.1711958-2-vladimir.zapolskiy@linaro.org>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,118 +64,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 18, 2022 at 2:36 PM Rex Nie <rexnie3@gmail.com> wrote:
->
-> innolux,n140hca-eac is a eDP-based LCD panel. This panel has 1920x1080
-> resolution in 14-inch TFT panel.
->
-> Signed-off-by: Rex Nie <rexnie3@gmail.com>
-> ---
->  .../display/panel/innolux,n140hca-eac.yaml    | 43 +++++++++++++++++++
->  drivers/gpu/drm/panel/panel-edp.c             | 26 +++++++++++
->  2 files changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/innolux,n140hca-eac.yaml
->
-Hi Rex,
 
-Please split yaml and driver into different patches.
-You don't need to create a new binding for innolux,n140hca-eac.yaml.
-You can add the compatible into panel-simple.yaml. Check
-innolux,n125hce-gn1 for example.
+--bqcqhxpEu4BvQHAN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> diff --git a/Documentation/devicetree/bindings/display/panel/innolux,n140hca-eac.yaml b/Documentation/devicetree/bindings/display/panel/innolux,n140hca-eac.yaml
-> new file mode 100644
-> index 000000000000..5493e383c97c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/innolux,n140hca-eac.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/innolux,n140hca-eac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Innolux N140HCA-EAC 14 inch eDP 1080p display panel
-> +
-> +maintainers:
-> +  - Sandeep Panda <spanda@codeaurora.org>
-> +  - Douglas Anderson <dianders@chromium.org>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: innolux,n140hca-eac
-> +
-> +  enable-gpios: true
-> +  power-supply: true
-> +  backlight: true
-> +  no-hpd: true
-> +
-> +required:
-> +  - compatible
-> +  - power-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    panel_edp: panel-edp {
-> +        compatible = "innolux,n140hca-eac";
-> +        enable-gpios = <&pio 96 GPIO_ACTIVE_HIGH>;
-> +        power-supply = <&pp3300_disp_x>;
-> +        backlight = <&backlight_lcd0>;
-> +        no-hpd;
-> +    };
-> +
-> +...
-> diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-> index f7bfcf63d48e..f5f9c9cb26ba 100644
-> --- a/drivers/gpu/drm/panel/panel-edp.c
-> +++ b/drivers/gpu/drm/panel/panel-edp.c
-> @@ -1330,6 +1330,29 @@ static const struct panel_desc innolux_n125hce_gn1 = {
->         },
->  };
->
-> +static const struct display_timing innolux_n140hca_eac_timing = {
-> +       .pixelclock = { 72600000, 76420000, 80240000 },
-> +       .hactive = { 1920, 1920, 1920 },
-> +       .hfront_porch = { 80, 80, 80 },
-> +       .hback_porch = { 190, 190, 190 },
-> +       .hsync_len = { 60, 60, 60 },
-> +       .vactive = { 1080, 1080, 1080 },
-> +       .vfront_porch = { 6, 6, 6 },
-> +       .vback_porch = { 38, 38, 38 },
-> +       .vsync_len = { 8, 8, 8 },
-> +       .flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW,
-> +};
-> +
-> +static const struct panel_desc innolux_n140hca_eac = {
-> +       .timings = &innolux_n140hca_eac_timing,
-> +       .num_timings = 1,
-> +       .bpc = 6,
-> +       .size = {
-> +               .width = 309,
-> +               .height = 174,
-> +       },
-> +};
-> +
->  static const struct drm_display_mode innolux_p120zdg_bf1_mode = {
->         .clock = 206016,
->         .hdisplay = 2160,
-> @@ -1750,6 +1773,9 @@ static const struct of_device_id platform_of_match[] = {
->         }, {
->                 .compatible = "innolux,n125hce-gn1",
->                 .data = &innolux_n125hce_gn1,
-> +       }, {
-> +               .compatible = "innolux,n140hca-eac",
-> +               .data = &innolux_n140hca_eac,
->         }, {
->                 .compatible = "innolux,p120zdg-bf1",
->                 .data = &innolux_p120zdg_bf1,
-> --
-> 2.25.1
->
+On Thu, Feb 03, 2022 at 06:46:28PM +0200, Vladimir Zapolskiy wrote:
+> The change adds QCOM SM8450 compatible value to the list of QCOM CCI
+> controller compatibles, the controller found on the SoC is equal to
+> the ones found on previous SoC generations.
+>=20
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+
+Applied to for-next, thanks!
+
+
+--bqcqhxpEu4BvQHAN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIPYKIACgkQFA3kzBSg
+KbaCaxAAqa5Xs+mgYuMWfNXtObaIOuOb3dB5Mz8aDsekMuw9Qq35Y/LP8V2dmxHP
+ajcMswddYxg47v/Ol3hzX2Jpl+8GVYjmq5ueMuBmiqBrt3roFGYXZK/2i/9w7jJV
+DV6rxzcrBmqE4VSn0cc92soTUnxm0ZJfPQig9yA/tTa0LgFoB1rISR9cJa/+l6IE
+IntiSx/fst384ooPz+EJdN+nppffpqG+3c8wzTcOE8b0+JUiNUupt6DJb9sDkZjD
+WZqUKwbjLweT6jeBnHHa/pG0s+trYn4g7KES7PgmuXB5UeC2FlqcRVX9F6Jm55bm
+zVe1PDivHmBeUr7P9jUh+86ptpmiCGGSCbBAJ55SyzXYKNCUNlnwEbbUejDjOsi5
+WetuHE4eexU40JvAAoGWSOI6Xb1V7wMQo+corEcaEFoxFuAq9mIlj44l9b1Fb7JN
+78bOSrWbKnGuQ24D8r5XzRjUzA03IgUfvaBizgbiOAIp7Q0UnsYSKvbkZIuvRQKm
+0tjSjXOn8Fmx0u9rW5hok8CPH3K2ZZn3gjh/AoMBBHam9L0cd6MSszEQJjwkcitb
+pX8Ns1EEI+/j42wvFF12x/ssTZvMs1AUv4RWtUlpXK5n2JWLuOW+PWlnfk6TSbv8
+v7UgO3pms6ff6lzWMY7w58NF2xsTnf+HLnJKudODSy2Afhn1Xw4=
+=IK/b
+-----END PGP SIGNATURE-----
+
+--bqcqhxpEu4BvQHAN--
