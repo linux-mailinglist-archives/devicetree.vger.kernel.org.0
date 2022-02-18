@@ -2,71 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 096954BB50A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 10:06:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B7004BB51B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 10:16:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233043AbiBRJHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 04:07:04 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48842 "EHLO
+        id S231410AbiBRJQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 04:16:28 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230301AbiBRJHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 04:07:03 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 019195C674;
-        Fri, 18 Feb 2022 01:06:45 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id a23so13466439eju.3;
-        Fri, 18 Feb 2022 01:06:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=JXfkjLKc2/jzha3K+51cfOAN1nyWSR/pkf5HEd1BF/M=;
-        b=DzI6WD/b7UuXeXmiGC6zc56VDhJs8YyiRdoLAk/8l7hsiF+7I65oYjwjdi0Q3kOhkJ
-         JT7da+t/FGTEeXtrNUCuREmeF1vyibKqK1cknDuCkzlsXc8BDLl7z424BQVATXY9oh+D
-         b5kvDxQ5vicVrrex3l8Gs5BsyL0yF9IkLZV1ZzgF9jjSvk5IyDaU0axf8LE6bV9NrUpb
-         FGLWqLVJwUd22jrs8vqnSYCgcWvy0OoJRXJ4EwDcUNEHs5ZVPNJLSUy5gtuH9Iu36rJ9
-         h2q2/RWkZt2k0lZ7H/o3NnAWHpVC4fhhlxoYYI0JgCWRBFZ3/iLtCnnnUjLIjRtzmbAB
-         QAmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JXfkjLKc2/jzha3K+51cfOAN1nyWSR/pkf5HEd1BF/M=;
-        b=73GQrzaGDOIur7kLgZ+t0l9yUAS9RWGGuey8UCZpOPEM1FfyPhRKv3o5cyQyi4LPBM
-         ZPkUTXg6c9s+Whyyw7w/0PEjD+HUI+lYIyb/r5r5E8VdHw5W4ccsipNaAjK6EYRMTsIK
-         18RO4/A/5fWy60oraeULcpId0zYPUAJJiqddlVR6fsSGF/8TQN4bfDnHjo5yB9i0EiHH
-         Gn79CvgKs0llXzMMNs7mvaOD8vlye6X1kk1pdyJTZQQ58l7biaTNN1GNXWrJ0ZXmUnmI
-         pgQP8oykZOJ8REpP5SiS/tn1NSNkApe4Zp2HtoocQ00f2TibDj2sJFARlNKro9ZYFXiF
-         TInw==
-X-Gm-Message-State: AOAM531vE9bNOD1XfLBownLxC7vyyh4uMz/l7f8a3Lt1PwH5vqs3slZh
-        ihLOJKLfNO3L9APZD7MFHAxaKlsiCXI=
-X-Google-Smtp-Source: ABdhPJzxpkSB01VgMzTtx/2/BMOk81lAJ7YigafV+DQAvEbx9Pu7z5/8gfANLhqYbFMAJIhUPR8YkQ==
-X-Received: by 2002:a17:906:3283:b0:6ce:78f9:fafd with SMTP id 3-20020a170906328300b006ce78f9fafdmr5581393ejw.534.1645175204363;
-        Fri, 18 Feb 2022 01:06:44 -0800 (PST)
-Received: from debian64.daheim (p5b0d7a77.dip0.t-ipconnect.de. [91.13.122.119])
-        by smtp.gmail.com with ESMTPSA id p24sm2075594edi.78.2022.02.18.01.06.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Feb 2022 01:06:43 -0800 (PST)
-Received: from chuck by debian64.daheim with local (Exim 4.95)
-        (envelope-from <chunkeey@gmail.com>)
-        id 1nKzDv-0004LN-Bj;
-        Fri, 18 Feb 2022 10:06:43 +0100
-From:   Christian Lamparter <chunkeey@gmail.com>
-To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 2/2] hwmon: (lm70) Add ti,tmp125 support
-Date:   Fri, 18 Feb 2022 10:06:43 +0100
-Message-Id: <43b19cbd4e7f51e9509e561b02b5d8d0e7079fac.1645175187.git.chunkeey@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <d3538ba9beededfe3a9ad5dab4903a6a01834822.1645175187.git.chunkeey@gmail.com>
-References: <d3538ba9beededfe3a9ad5dab4903a6a01834822.1645175187.git.chunkeey@gmail.com>
+        with ESMTP id S231174AbiBRJQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 04:16:27 -0500
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0752728BF62
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 01:16:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc
+        :To:Subject:From:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=bE833ii6JBmVkFFXcZO7xdCOK5mk+A6Va/gURh5A52Q=; b=eUp0OXuV8NHIN2mwM2Ta8znO1S
+        2PTSsHILY65SAMrFQVhDhur2u379KzvB+OihOB7rqv70dAJjoq0p85MxACwc68yZfYTPSOA2dKXex
+        1xIBYYHtWEbUytn/u5gnv16B9McXIMdgydKYvYD4fBhyDAz/qxotrK/2ak5Nx2x4di5PD+BeaqDAQ
+        zesfyI8Mpb5SqBe1Fs9WRexYP+x1L457parH+5sCuOXTmEq1wvGMH5IFs0E4e1dM0/XqddoMokOXp
+        q/hnf7IDWC3ofPJJ4q+Xj4+yLOy8FxpsxWdTunlzwAKw293TZ+d+//zBgeF9Dv7dqx30AkYRfbHb4
+        gyuAiXFw==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:33112 helo=[192.168.69.86])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1nKzMp-006Wuz-UL; Fri, 18 Feb 2022 10:16:03 +0100
+Message-ID: <c84bfc22-7fa7-d101-3f52-a775c72579f7@norik.com>
+Date:   Fri, 18 Feb 2022 10:16:05 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+From:   Andrej Picej <andrej.picej@norik.com>
+Subject: Re: [PATCH RESEND 3/4] ARM: dts: imx6ul: phycore: Change USB LDO
+ voltage for usb compliance
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, kernel@pengutronix.de, leoyang.li@nxp.com,
+        krzysztof.kozlowski@canonical.com, festevam@gmail.com,
+        linux@rempel-privat.de, arnd@arndb.de, linux-imx@nxp.com,
+        y.bas@phytec.de
+References: <20220131080526.1171072-1-andrej.picej@norik.com>
+ <20220131080526.1171072-4-andrej.picej@norik.com>
+ <20220212054627.GZ4909@dragon>
+Content-Language: en-GB
+In-Reply-To: <20220212054627.GZ4909@dragon>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,125 +72,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The TMP125 is a 2 degree Celsius accurate Digital
-Temperature Sensor with a SPI interface.
 
-The temperature register is a 16-bit, read-only register.
-The MSB (Bit 15) is a leading zero and never set. Bits 14
-to 5 are the 1+9 temperature data bits in a two's
-complement format. Bits 4 to 0 are useless copies of
-Bit 5 value and therefore ignored.
 
-This was tested on a Aerohive HiveAP-350.
+On 12. 02. 22 06:46, Shawn Guo wrote:
+> On Mon, Jan 31, 2022 at 09:05:25AM +0100, Andrej Picej wrote:
+>> From: Yunus Bas <y.bas@phytec.de>
+>>
+>> According to the NXP usb compliance reference, the USB data lines for
+>> Full/Low speed are connected to the ARM USB LDO, which is set to
+>> minimum-voltage = 2.6V and maximum-voltage = 3.4 V. When the regulator
+>> is deactivated, the data lines are defaulty driven with 2.6V, which is
+>> not USB Full-Speed compliant. To be compliant, we need to activate the
+>> USB LDO regulator and set it to the value of 3V, which is the specified
+>> value in the USB specification.
+>>
+>> Signed-off-by: Yunus Bas <y.bas@phytec.de>
+>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>> ---
+>>   arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi b/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi
+>> index 3cddc68917a0..2e03be3d43ec 100644
+>> --- a/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi
+>> +++ b/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi
+>> @@ -83,6 +83,11 @@ eeprom@52 {
+>>   	};
+>>   };
+>>   
+>> +&reg_3p0 {
+>> +	regulator-min-microvolt = <3000000>;
+>> +	regulator-always-on;
+> 
+> Rather than setting it always-on, shouldn't the consumer of the
+> regulator turn it on/off as needed?
 
-Bonus: lm70 supports TMP122/TMP124 as well.
-I added them to the Kconfig module description.
+Sorry for late response, but I had to look into this a bit to see the 
+reason for using always-on.
 
-Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
----
-v1 -> v2: - spelling fixes + nicer (IMHO) texts (Roeck)
-	  - added entry to Documentation/hwmon/lm70.rst (Roeck)
----
- Documentation/hwmon/lm70.rst |  7 +++++++
- drivers/hwmon/Kconfig        |  4 ++--
- drivers/hwmon/lm70.c         | 16 ++++++++++++++++
- 3 files changed, 25 insertions(+), 2 deletions(-)
+The consumer should turn the regulator on/off, but the consumer doesn't 
+do that. If regulator is not specified as always-on the regulator stays 
+in disabled state, even when usb device is used. That's why this was 
+added here.
 
-diff --git a/Documentation/hwmon/lm70.rst b/Documentation/hwmon/lm70.rst
-index 6ddc5b67ccb5..11303a7e16a8 100644
---- a/Documentation/hwmon/lm70.rst
-+++ b/Documentation/hwmon/lm70.rst
-@@ -15,6 +15,10 @@ Supported chips:
- 
-     Information: https://www.ti.com/product/tmp122
- 
-+  * Texas Instruments TMP125
-+
-+    Information: https://www.ti.com/product/tmp125
-+
-   * National Semiconductor LM71
- 
-     Datasheet: https://www.ti.com/product/LM71
-@@ -53,6 +57,9 @@ The LM74 and TMP121/TMP122/TMP123/TMP124 are very similar; main difference is
- 
- The TMP122/TMP124 also feature configurable temperature thresholds.
- 
-+The TMP125 is less accurate and provides 10-bit temperature data
-+with 0.25 degrees Celsius resolution.
-+
- The LM71 is also very similar; main difference is 14-bit temperature
- data (0.03125 degrees celsius resolution).
- 
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 8df25f1079ba..94a47e70533f 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -1208,8 +1208,8 @@ config SENSORS_LM70
- 	depends on SPI_MASTER
- 	help
- 	  If you say yes here you get support for the National Semiconductor
--	  LM70, LM71, LM74 and Texas Instruments TMP121/TMP123 digital tempera-
--	  ture sensor chips.
-+	  LM70, LM71, LM74 and Texas Instruments TMP121/TMP123, TMP122/TMP124,
-+	  TMP125 digital temperature sensor chips.
- 
- 	  This driver can also be built as a module. If so, the module
- 	  will be called lm70.
-diff --git a/drivers/hwmon/lm70.c b/drivers/hwmon/lm70.c
-index d2a60de5b8de..c20a749fc7f2 100644
---- a/drivers/hwmon/lm70.c
-+++ b/drivers/hwmon/lm70.c
-@@ -34,6 +34,7 @@
- #define LM70_CHIP_LM71		2	/* NS LM71 */
- #define LM70_CHIP_LM74		3	/* NS LM74 */
- #define LM70_CHIP_TMP122	4	/* TI TMP122/TMP124 */
-+#define LM70_CHIP_TMP125	5	/* TI TMP125 */
- 
- struct lm70 {
- 	struct spi_device *spi;
-@@ -87,6 +88,12 @@ static ssize_t temp1_input_show(struct device *dev,
- 	 * LM71:
- 	 * 14 bits of 2's complement data, discard LSB 2 bits,
- 	 * resolution 0.0312 degrees celsius.
-+	 *
-+	 * TMP125:
-+	 * MSB/D15 is a leading zero. D14 is the sign-bit. This is
-+	 * followed by 9 temperature bits (D13..D5) in 2's complement
-+	 * data format with a resolution of 0.25 degrees celsius per unit.
-+	 * LSB 5 bits (D4..D0) share the same value as D5 and get discarded.
- 	 */
- 	switch (p_lm70->chip) {
- 	case LM70_CHIP_LM70:
-@@ -102,6 +109,10 @@ static ssize_t temp1_input_show(struct device *dev,
- 	case LM70_CHIP_LM71:
- 		val = ((int)raw / 4) * 3125 / 100;
- 		break;
-+
-+	case LM70_CHIP_TMP125:
-+		val = (sign_extend32(raw, 14) / 32) * 250;
-+		break;
- 	}
- 
- 	status = sprintf(buf, "%d\n", val); /* millidegrees Celsius */
-@@ -135,6 +146,10 @@ static const struct of_device_id lm70_of_ids[] = {
- 		.compatible = "ti,tmp122",
- 		.data = (void *) LM70_CHIP_TMP122,
- 	},
-+	{
-+		.compatible = "ti,tmp125",
-+		.data = (void *) LM70_CHIP_TMP125,
-+	},
- 	{
- 		.compatible = "ti,lm71",
- 		.data = (void *) LM70_CHIP_LM71,
-@@ -184,6 +199,7 @@ static const struct spi_device_id lm70_ids[] = {
- 	{ "lm70",   LM70_CHIP_LM70 },
- 	{ "tmp121", LM70_CHIP_TMP121 },
- 	{ "tmp122", LM70_CHIP_TMP122 },
-+	{ "tmp125", LM70_CHIP_TMP125 },
- 	{ "lm71",   LM70_CHIP_LM71 },
- 	{ "lm74",   LM70_CHIP_LM74 },
- 	{ },
--- 
-2.35.1
+This should probably be fixed on consumer side. If you want I can drop 
+the patch from this series and submit the fixed version when the stuff 
+gets resolved.
 
+BR,
+Andrej
