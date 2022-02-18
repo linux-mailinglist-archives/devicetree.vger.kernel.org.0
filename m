@@ -2,113 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC0E74BB7A8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 12:06:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EDA64BB7CF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 12:11:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234331AbiBRLGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 06:06:32 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47656 "EHLO
+        id S231245AbiBRLLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 06:11:00 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234228AbiBRLGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 06:06:31 -0500
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777E828881F;
-        Fri, 18 Feb 2022 03:06:14 -0800 (PST)
+        with ESMTP id S234503AbiBRLKj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 06:10:39 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C29E62B4071;
+        Fri, 18 Feb 2022 03:10:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1645182375;
-  x=1676718375;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=TtCwuTI/iRWtd93Jw/84z0sfqwMlErfgG6nVne3l2O4=;
-  b=iOaC0tRmVWuo4XIL2mEUhQQLo9encK3/GxBIx6RwFCmLlRwU6F9M6bdB
-   jZF5doyFxaIOSVO33C17EHRNFAn5gLRs4xejce5C3IoQi5b4dEHs+zgJ3
-   VzcZBY8BzDv4CQEJC8I4j1NZJBRzfgf1s+fJbEeNocnkdAFwoL+KgWQpX
-   JPcKr9w79QtR0LB4zChTwBZyTYWK/Ixs9tyN0cWpNcnU4iBdZAlALk/Zi
-   MjbEzjFHFGtzv2lcdSeyeHhnZvE29vVrekN6+nsu8PbRlmCNVh5HPoTno
-   3RA5aJqfGC/HKVAC0F1ImsxAwU5kwbyneRT0oZhSNxdBWsuYF0U4wOqmM
-   A==;
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] regulator: virtual: add devicetree support
-Date:   Fri, 18 Feb 2022 12:06:03 +0100
-Message-ID: <20220218110604.1329024-1-vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.34.1
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645182616; x=1676718616;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=CbfVTNhsS2bqMRasM6gcxO6lnE300E5ZKpXg7xb5KNY=;
+  b=C+qqt7AMdUnShTjExaUd6elC+3gVikMiE4f22bxqgQ51MRjNe6GyA70Z
+   lOBcwj2Tqh38aCQXJAcFTeYOJf/P06YQutYKT8YwUtm1ks23v6e5xR/J1
+   f7FAhmibvkRe36QREUJRdtl32D+V8atMvU0P37JzZaqYyVaSOZndGdUtW
+   4=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 18 Feb 2022 03:10:16 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Feb 2022 03:10:15 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Fri, 18 Feb 2022 03:10:15 -0800
+Received: from [10.216.13.71] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Fri, 18 Feb
+ 2022 03:10:09 -0800
+Message-ID: <25bb20e4-3de5-65fb-0520-fad8f352cc08@quicinc.com>
+Date:   Fri, 18 Feb 2022 16:40:05 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH 0/8] Add APCS support for SDX65
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <dianders@chromium.org>,
+        <jassisinghbrar@gmail.com>, <linus.walleij@linaro.org>,
+        <linux@armlinux.org.uk>, <mani@kernel.org>,
+        <mturquette@baylibre.com>, <robh+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <1644821540-17928-1-git-send-email-quic_rohiagar@quicinc.com>
+ <20220217220829.76DB9C340E8@smtp.kernel.org>
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+In-Reply-To: <20220217220829.76DB9C340E8@smtp.kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reg-virt-consumer is very useful for development and testing of
-regulator drivers since it allows voltages and modes to be set from
-userspace.  However, it currently requires platform data so it cannot be
-used on modern platforms.  Add support for probing it from the
-devicetree to remedy this.
 
-Since this driver is only meant for testing and is a purely software
-construct, no binding documentation is added.
+On 2/18/2022 3:38 AM, Stephen Boyd wrote:
+> Quoting Rohit Agarwal (2022-02-13 22:52:20)
+>> Hello,
+>>
+>> This series adds APCS mailbox and clock support for SDX65. The APCS IP
+>> in SDX65 provides IPC and clock functionalities. Hence, mailbox support
+>> is added to the "qcom-apcs-ipc-mailbox" driver and a dedicated clock
+>> driver "apcs-sdx65" is added.
+>>
+> Something is wrong with your series. I only see a couple patches and
+> they're not threaded.
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
- drivers/regulator/virtual.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/drivers/regulator/virtual.c b/drivers/regulator/virtual.c
-index 52c5a0e0acd8..c4d56b484ed5 100644
---- a/drivers/regulator/virtual.c
-+++ b/drivers/regulator/virtual.c
-@@ -13,6 +13,7 @@
- #include <linux/regulator/consumer.h>
- #include <linux/slab.h>
- #include <linux/module.h>
-+#include <linux/of.h>
- 
- struct virtual_consumer_data {
- 	struct mutex lock;
-@@ -281,6 +282,14 @@ static const struct attribute_group regulator_virtual_attr_group = {
- 	.attrs	= regulator_virtual_attributes,
- };
- 
-+#ifdef CONFIG_OF
-+static const struct of_device_id regulator_virtual_consumer_of_match[] = {
-+	{ .compatible = "regulator-virtual-consumer" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, regulator_virtual_consumer_of_match);
-+#endif
-+
- static int regulator_virtual_probe(struct platform_device *pdev)
- {
- 	char *reg_id = dev_get_platdata(&pdev->dev);
-@@ -292,6 +301,9 @@ static int regulator_virtual_probe(struct platform_device *pdev)
- 	if (drvdata == NULL)
- 		return -ENOMEM;
- 
-+	if (!reg_id)
-+		reg_id = "default";
-+
- 	mutex_init(&drvdata->lock);
- 
- 	drvdata->regulator = devm_regulator_get(&pdev->dev, reg_id);
-@@ -334,6 +346,7 @@ static struct platform_driver regulator_virtual_consumer_driver = {
- 	.remove		= regulator_virtual_remove,
- 	.driver		= {
- 		.name		= "reg-virt-consumer",
-+		.of_match_table = of_match_ptr(regulator_virtual_consumer_of_match),
- 	},
- };
- 
--- 
-2.34.1
+I uploaded the patches individually based on the maintainers which is why it is not coming as thread. I will upload the next version as a patch series with the comments addressed. Thanks!
 
