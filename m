@@ -2,270 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B82FA4BBCA8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 16:57:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97EAA4BBCF4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 17:04:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232118AbiBRP6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 10:58:02 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33680 "EHLO
+        id S237376AbiBRQEY convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Feb 2022 11:04:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231794AbiBRP5y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 10:57:54 -0500
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2077.outbound.protection.outlook.com [40.107.92.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7565EDDD;
-        Fri, 18 Feb 2022 07:57:37 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=beaYzV40uc2jZFStS9cdM74UvYNizXXXmnL7dt+6kLet51r+uWgxMXMDWv9VqUX2ZfhNXNiAlTb2Al79o6iRqYrUp/lA898yKE50J/TnUZ4V4XIhpUYWyc3MBROCN6jDy0oey6zMGMnMZLdBGU0p+kM8MdJ7PHfPEr5SXHAW75WN+ZmNHwAni8GSDGFmF0dYFnNtrbK8fjgsjHJhaX9sRf0HKc73GGc1HedhLbHcWON2ZV0j+HT0hFIJkhFtOsLV/XsQB/viE6tIaLlpUW77AfDZRAY0C2c2atQvXNqIXBIOsXw+ioPs8OqbBijYISYN88XzM2+I9LTP3MLzLR9EFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NZ38nmP5Pd6sEtCL4z/ZVSwd7kLNpFXi2fWrnrn9QTQ=;
- b=dy+iNJxla+a4yxvV/HWdzAd+zB43pFvvZuVRwkXDJnkTVzFBpOUC5U8gO+xj4kTp8Q8vCLX/cxRN25FCnBl6ZMKRD5e01azN9JKJET2sSgAwZTnDxYXRXJ+ohYS8sy1s00GdT2Uh3sVptYrfAIMhmwM2C87CaNyDTsdD2OxjpGCY5MU8B7jUUiuhPtD5wtRMVCDiHGGG6yL+4Kly1xnRJlLgy7QfYxqTIKWqTi6Zf/AkZvorAY+2VrtRbrX+OGVHE2z4TQ9LVLE2bK1XlLvnyMXYe/4XQEeM+sAVMjxYRyYs4uOzC3wzQ9ASvCNb9guIXXFd2aMUMKiVfljiMKOdDg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NZ38nmP5Pd6sEtCL4z/ZVSwd7kLNpFXi2fWrnrn9QTQ=;
- b=aFHUXVvZuiG/kBIlv7br/b5M6EOefEzmX+31xrtGxgZr5Octr8EYT5CI9+AwxyZrNq6aq82hbgG/hkK5l9rnaU+NTwjehl69Md0NFPTMi7Kv0LnAAtNCcRe8jcoHx8R8ea94ADZb2HVvC2auRIyMFKWVqAbuqYxlYPBqavVcug4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by BY5PR12MB4643.namprd12.prod.outlook.com (2603:10b6:a03:1ff::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.17; Fri, 18 Feb
- 2022 15:57:32 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::192:5346:4ece:7ca3]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::192:5346:4ece:7ca3%4]) with mapi id 15.20.4995.016; Fri, 18 Feb 2022
- 15:57:32 +0000
-Message-ID: <16c1886f-d130-b299-9d09-ad11556f3bfd@amd.com>
-Date:   Fri, 18 Feb 2022 10:57:27 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation
- property creating and value setting
-Content-Language: en-US
-To:     Simon Ser <contact@emersion.fr>,
-        Hans de Goede <hdegoede@redhat.com>
-Cc:     Emil Velikov <emil.l.velikov@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S236909AbiBRQEV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 11:04:21 -0500
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8660449240;
+        Fri, 18 Feb 2022 08:04:03 -0800 (PST)
+Received: from fraeml711-chm.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4K0c136t8mz67HV7;
+        Sat, 19 Feb 2022 00:03:03 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml711-chm.china.huawei.com (10.206.15.60) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Fri, 18 Feb 2022 17:04:00 +0100
+Received: from localhost (10.47.75.241) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Fri, 18 Feb
+ 2022 16:03:59 +0000
+Date:   Fri, 18 Feb 2022 16:03:58 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+CC:     Andy Shevchenko <andriy.shevchenko@intel.com>,
+        "Sa, Nuno" <Nuno.Sa@analog.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Alex Deucher <alexander.deucher@amd.com>,
-        LAKML <linux-arm-kernel@lists.infradead.org>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <20220208084234.1684930-1-hsinyi@chromium.org>
- <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
- <KW6DNh6IRRgVJx9DfOFBnEqc4a0x-AnDXEbMxwpfEbk8dOn_KGVzAfo-slJWq-4nWW728Uc-OVpFh2w4fDE4-bxfkDuz1hFILRVvbcuXqaw=@emersion.fr>
- <CACvgo532-pC+7DLFCo=DWTX-OnJEJvSoTmQnt3_qLhiT4cqEMg@mail.gmail.com>
- <GYG6EVT1MqtmfKiPpMhDG9mpuATnmwVDq2PuE_dpDat5oQW_t1tUfm39lSWHj32D5r7mrog27sL4dkgdMYQ5BN830TfVOrgQ4Ts8LcO8Hcs=@emersion.fr>
- <CACvgo52+o9_ETC+1RKzqKkyw3ZJ28RjH0BqC9DfmNAKqByud8Q@mail.gmail.com>
- <d3f0cc20-d226-ee42-cc98-b469949cec9e@redhat.com>
- <YV87l-2XXzmZ2i6GuGd__uf85s2JQkbXt_qTQDYlbBh1kW2COJoNLUDinmLCokKyy-_0ZnIMUcZeW0GdJ8zF690iYi4ThKrjc09omNMe-0g=@emersion.fr>
- <d4f5e101-3dd5-2f3a-6c14-6b32ee37c223@redhat.com>
- <DM7TzJ-fZEHjoGXvMG8XLfJ2VxohRxotL40_0Vb4cAUvrELgV9BvPGbK6HAwOYOBCx8qXtY2LQ0xnZ-nlH_IVCyne7tMKfvkqxtoWI6MkTw=@emersion.fr>
-From:   Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <DM7TzJ-fZEHjoGXvMG8XLfJ2VxohRxotL40_0Vb4cAUvrELgV9BvPGbK6HAwOYOBCx8qXtY2LQ0xnZ-nlH_IVCyne7tMKfvkqxtoWI6MkTw=@emersion.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YTOPR0101CA0023.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:15::36) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
+        "Jonathan Cameron" <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH v3 1/3] iio: dac: add support for ltc2688
+Message-ID: <20220218160358.0000499d@Huawei.com>
+In-Reply-To: <11bd63bc07fd406bfa31bdc38b597011cc9312cc.camel@gmail.com>
+References: <20220121142501.151-1-nuno.sa@analog.com>
+        <20220121142501.151-2-nuno.sa@analog.com>
+        <Yf60A1UkbBtQ68qv@smile.fi.intel.com>
+        <PH0PR03MB678628C341A1972BC31F5BBA992B9@PH0PR03MB6786.namprd03.prod.outlook.com>
+        <YgD91zg4L1S5KH5k@smile.fi.intel.com>
+        <e1bd9f14e63e55f48f804568705a9ab8c1a09f62.camel@gmail.com>
+        <Ygpd7pebiuGuB8nT@smile.fi.intel.com>
+        <11bd63bc07fd406bfa31bdc38b597011cc9312cc.camel@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 47e5ae0f-1f4c-4599-456a-08d9f2f75f2c
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4643:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR12MB4643B91DB8633A416C21662F8C379@BY5PR12MB4643.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: z4peCcs5bhAcYBD3KY8qfu9rzrvD2IM+Azlj8a8Ty9PKSac3HL63wEILXD1pXSBBDjGt+fxsKxLvc/Q989KYnER4KT0bb9qWHvv3PWuTyGWdaKnbroBkz/lSKG6so8Wl/Fsbav3GkEwp6X1V+8+UnXcS30YNVjk9LkLsYC5XGEL9CWn2HuZYc2jqz/P2fI4QNxz2rezgGDwFGukjludWg0CoYinAWlkVmfBMQ3RD3MOABvKaYxmlE9eIX8PVWypxTbydcAKMO+Ek5l12UkJHKq0wihL6GkwrU1HT6CX2FWDl5SU3gS7Y8NrNWb2VBEHZh1+fs6NCHZzMjcSIKes3zpQgz0StvDzNxiNQE4UMPs4GGgfowKYIIgxlXcpJInP4VrsqHwSooWPONzsjtA3Ti821JSe7WDiCraww9gFUvFiTzO9iUH0K4U0aLlk7Yx28ldBnmdxjji8alkPUH4yiL1NLXHBkcqm0WDlsGGP1lcbp2SxmblgWrEzXpqSx0DSFBascx8+1ncbonikc0bIp6oWpfV0V6wQd0NIpVuGK7xPaa5YSkTe8yF4spsatSn2UIceRrf858+4fG0niQWO7WNouGl5UEOR2O4nY4ZPd35Uu0+2JBZDpA4VQoA2+SkpvupXgrwUUnUtPUU1x0LBqwyHcQZg+8vNUN+fRQHw/WCk0bxfePRFzZk30xVIMsLa+V/5U+MSev3KsFzfZ/i/xTmsQiU+MGDYK/B8H5W3AsXk4uZAfp+mfm8GzYDbKUiDc
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5427.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(6486002)(8936002)(83380400001)(6512007)(86362001)(6506007)(38100700002)(4326008)(66476007)(8676002)(508600001)(66556008)(66946007)(31696002)(2616005)(36756003)(31686004)(110136005)(6666004)(54906003)(26005)(186003)(44832011)(53546011)(7416002)(316002)(5660300002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T2czdTc1bVQyZmpxeTRpRTU4L3JhN1ZySUZsMHhCSHF4YTRjRHZzWXozdkxR?=
- =?utf-8?B?SFh5Zlo0N3ZNaTB1RGw2TjE1azU5RUNIUXRrYm1ueUgxVHZqdmVDQWdUUjhG?=
- =?utf-8?B?UlIvT05pS1k3WGM5NXRwU3BnbWMzWnU5WmxZQksxR3hVRlY1WXlaNHIyaDlQ?=
- =?utf-8?B?dE1JcExHZE94RlUyZHd3NEEremVNbXhCZitJRkRCTDR2aVRuT3JsZk5hRFBa?=
- =?utf-8?B?a1RMaUhsNGcyblhYdzNqS0pRRVA5Vk0rV3FwVHZNcXNzeUlZOVU1RUtEM0JX?=
- =?utf-8?B?K0J0WFR3bTRnVUZ1S1pidk5jTjRqY3d2Nk9jREZlajUrMzhzd1JqTnR5ZExo?=
- =?utf-8?B?MlBwb2xkMXhuMGxyVWVxSTdnR1E5ZzBOTyszMkhnZnk5ZDFkemFjWGxIMGhO?=
- =?utf-8?B?UzIwbDlESGFyclFveTNxSUNOaFZRSU9PSmxUZVNDdzB4ZndLZDdqRDlVSUpr?=
- =?utf-8?B?Rjd6M3BuSE96V2J4aEhNK29TdXBITGZsSHBsMlVCeWlDQnVaQWllK2YrbU8r?=
- =?utf-8?B?VXliZ3dsOFZYcjJWc3Y2RE1GYlUxa1dWMDJEOG1oUG9Wd1pBd3FCdXl1NGEx?=
- =?utf-8?B?YmdvUjAzU09NSjR1Ymp3ekdHL3VXaFpaOTNmamU3N3NlcUlCVXU1R1F2U2t1?=
- =?utf-8?B?S0srQVdWODhoNmNoNXJURkVmaXcrbzhtcG9ibUVyWElGNVBZdXhnNk90a3l6?=
- =?utf-8?B?NW9pTnYxQ3VHUmdBSW1IMlFxMUpDZzFid3R2TzFyTkdzZXJLUzdjYTVQZ2dl?=
- =?utf-8?B?V1JCMmVMN3BUWE9ZanBJK3dXUC9WWGtLaVJzSk5EbGRmRnRhMjFsMlhMZFNN?=
- =?utf-8?B?UWROWEduS2JVRE02SmZQRUUveXBwc29FSDFGTnVLM3hwYmpiSmo4WjFOamVL?=
- =?utf-8?B?enl6bjV0Z2JGWmtidnJSMktINzE5R0lZNUJwbHllVUMwU3NLMDVKVHp5aUFF?=
- =?utf-8?B?SG0xa3E5bXRLbnRxUkJVeTVCOStiVUFYK1JpSVlDdzhLY2NVSWI3Ymo5SEd2?=
- =?utf-8?B?VFl4cWMwNHFRTEE5d3N6cTE1TzRZVnBlVjRYbGFmRVdpdHRLM2J3WmNZOXlB?=
- =?utf-8?B?MlNXZkxvNmFSS21Vc3hXNUJRMGpCU21hMkJJeFVGSGczaUFsWHRTV2kxNTlH?=
- =?utf-8?B?aUtxaEc1NlJtdms4OUp3ODJ4dzhpajlMOWhMZmh6QnI4bEFqOXgvRURUSk5x?=
- =?utf-8?B?RHhUaUZMWWZDSWVPMlhXc2l5Q1Vqc1FNbkRHdUU0bnRUUU90Y3NHYjFETlA0?=
- =?utf-8?B?UlZIKyt3TkEvTVRLRmI5T0JLd2NtUm0wNlUwU2pkK1BDdjRSc2Q5c3hJT0hu?=
- =?utf-8?B?TFdpYmludmVvc2tkMjFPbHhvcFV3Z1NrQVd2cjlHS3BXWnZCQ3FsdCthWTBu?=
- =?utf-8?B?SzBZdnJuODZWYmxWb2VJWktvMXJlQmdKWnNSbnVXOHBJemNNdWExTWV2aTE1?=
- =?utf-8?B?TVZNNTlwL0w0YmFzektFV2gwV2xkUUkrdE9OZGFYNTRrSWRNTTQrSDFLTUtV?=
- =?utf-8?B?eW82QnZhL0xSWGlBOEdUN1hQM0g0dDNWTDNtaURFKzVvdkY1d3BhZ2tjWWk5?=
- =?utf-8?B?WVFSbmxhdXBOSWFuakwvRjFkQ1gybXU3OU1oQWIwVTF2QWxBSlNaZGQ3U3NI?=
- =?utf-8?B?SHdLdXRWOVlxc2RtRnVST05peFZPNHBJYlZIamlTSks2RDFxcEttdjJydUls?=
- =?utf-8?B?R2JBcVZoTGZNS01RaXVUOURRRGMzeHNWMGVUYVk4N3VwSW9JTkhIV3FBUDdz?=
- =?utf-8?B?REtUd0RnR1F0bEF0bEN1RjJuUnVLOWl5VVZQcFpvTm5NalF2ZnVxQU5rV082?=
- =?utf-8?B?OWVGZnI5ZzRaYzYvUTZXWW5yMm51aVBSdFBZeDdITlhiak9SMHhlTFFEcFZs?=
- =?utf-8?B?NDhnS2pTUGorRkcwM1Jhc0x2Mnc0YklUMm05TTJ1V1pJYWhOSUs1L2d0YjZB?=
- =?utf-8?B?cGsrMk9sNnZ3UVhWSTBaVU4wd1hDa3BxWTB3dGNUSzhyekcxM1FUSThNR3hy?=
- =?utf-8?B?QzFMemhaR09RbENlMVJoZ2hXdTU4WXlFM0Zta2Y2aTRaWDNzczZFOVZKWWVB?=
- =?utf-8?B?UkpDV3RQN1pJbm5ackNaMlhiSEJkYklWdTJnRFJKamgrNUFLQXRSRlpyYmdQ?=
- =?utf-8?B?OFdMWDlUVlJ1enRwbE1iNDRRODdhK21QeEh3MFFmQ2FiUllkRFkxYytjdC91?=
- =?utf-8?Q?G+A0wVZHow8j+0tgBJBIqjA=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47e5ae0f-1f4c-4599-456a-08d9f2f75f2c
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2022 15:57:31.9091
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Nxz8t5OUV/KkZ0QMn0LC6Q0Cqgk+6OwRAs9Qp9HXrYIpxz2eMKXKKQI3SJ6F4FAGy03v++RXLpiX0eIy8IC2RQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4643
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [10.47.75.241]
+X-ClientProxiedBy: lhreml726-chm.china.huawei.com (10.201.108.77) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-18 07:12, Simon Ser wrote:
-> On Friday, February 18th, 2022 at 12:54, Hans de Goede <hdegoede@redhat.com> wrote:
-> 
->> On 2/18/22 12:39, Simon Ser wrote:
->>> On Friday, February 18th, 2022 at 11:38, Hans de Goede <hdegoede@redhat.com> wrote:
->>>
->>>> What I'm reading in the above is that it is being considered to allow
->>>> changing the panel-orientation value after the connector has been made
->>>> available to userspace; and let userspace know about this through a uevent.
->>>>
->>>> I believe that this is a bad idea, it is important to keep in mind here
->>>> what userspace (e.g. plymouth) uses this prorty for. This property is
->>>> used to rotate the image being rendered / shown on the framebuffer to
->>>> adjust for the panel orientation.
->>>>
->>>> So now lets assume we apply the correct upside-down orientation later
->>>> on a device with an upside-down mounted LCD panel. Then on boot the
->>>> following could happen:
->>>>
->>>> 1. amdgpu exports a connector for the LCD panel to userspace without
->>>> setting panel-orient=upside-down
->>>> 2. plymouth sees this and renders its splash normally, but since the
->>>> panel is upside-down it will now actually show upside-down
->>>
->>> At this point amdgpu hasn't probed the connector yet. So the connector
->>> will be marked as disconnected, and plymouth shouldn't render anything.
->>
->> If before the initial probe of the connector there is a /dev/dri/card0
->> which plymouth can access, then plymouth may at this point decide
->> to disable any seemingly unused crtcs, which will make the screen go black...
->>
->> I'm not sure if plymouth will actually do this, but AFAICT this would
->> not be invalid behavior for a userspace kms consumer to do and I
->> believe it is likely that mutter will disable unused crtcs.
->>
->> IMHO it is just a bad idea to register /dev/dri/card0 with userspace
->> before the initial connector probe is done. Nothing good can come
->> of that.
->>
->> If all the exposed connectors initially are going to show up as
->> disconnected anyways what is the value in registering /dev/dri/card0
->> with userspace early ?
-> 
-> OK. I'm still unsure how I feel about this, but I think I agree with
-> you. That said, the amdgpu architecture is quite involved with multiple
-> abstraction levels, so I don't think I'm equipped to write a patch to
-> fix this...
-> 
+On Fri, 18 Feb 2022 14:51:28 +0100
+Nuno Sá <noname.nuno@gmail.com> wrote:
 
-amdgpu_dm's connector registration already triggers a detection. See the
-calls to dc_link_detect and amdgpu_dm_update_connector_after_detect in
-amdgpu_dm_initialize_drm_device.
-
-dc_link_detect is supposed to read the edid via
-dm_helpers_read_local_edid and amdgpu_dm_update_connector_after_detect
-will update the EDID on the connector via a
-drm_connector_update_edid_property call.
-
-This all happens at driver load.
-
-I don't know why you're seeing the embedded connector as disconnected
-unless the DP-MIPI bridge for some reason doesn't indicate that the panel
-is connected at driver load.
-
-Harry
-
-> cc Daniel Vetter: can you confirm probing all connectors is a good thing
-> to do on driver module load?
+> On Mon, 2022-02-14 at 15:49 +0200, Andy Shevchenko wrote:
+> > On Mon, Feb 07, 2022 at 09:19:46PM +0100, Nuno Sá wrote:  
+> > > On Mon, 2022-02-07 at 13:09 +0200, Andy Shevchenko wrote:  
+> > > > On Sun, Feb 06, 2022 at 01:19:59PM +0000, Sa, Nuno wrote:  
+> > > > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > > > > > Sent: Saturday, February 5, 2022 6:30 PM
+> > > > > > On Fri, Jan 21, 2022 at 03:24:59PM +0100, Nuno Sá wrote:  
+> > 
+> > ...
+> >   
+> > > > > > Second, why do you need this specific function instead of
+> > > > > > regmap
+> > > > > > bulk
+> > > > > > ops against be24/le24?  
+> > > > > 
+> > > > > Not sure I'm following this one... If you mean why am I using a
+> > > > > custom 
+> > > > > regmap_bus implementation, that was already explained in the
+> > > > > RFC
+> > > > > patch.
+> > > > > And IIRC, you were the one already asking 😉.  
+> > > > 
+> > > > Hmm... It was some time I have looked there. Any message ID to
+> > > > share,
+> > > > so
+> > > > I can find it quickly?  
+> >   
+> > > https://lore.kernel.org/all/20211112152235.12fdcc49@jic23-huawei/  
+> > 
+> > Thanks!
+> > 
+> > So, it's all about cs_change, right?
+> > But doesn't bulk operation work exactly as we need here?
+> >   
 > 
->>>> I guess the initial modeline is inherited from the video-bios, but
->>>> what about the physical size? Note that you cannot just change the
->>>> physical size later either, that gets used to determine the hidpi
->>>> scaling factor in the bootsplash, and changing that after the initial
->>>> bootsplash dislay will also look ugly
->>>>
->>>> b) Why you need the edid for the panel-orientation property at all,
->>>> typically the edid prom is part of the panel and the panel does not
->>>> know that it is mounted e.g. upside down at all, that is a property
->>>> of the system as a whole not of the panel as a standalone unit so
->>>> in my experience getting panel-orient info is something which comes
->>>> from the firmware /video-bios not from edid ?
->>>
->>> This is an internal DRM thing. The orientation quirks logic uses the
->>> mode size advertised by the EDID.
->>
->> The DMI based quirking does, yes. But e.g. the quirk code directly
->> reading this from the Intel VBT does not rely on the mode.
->>
->> But if you are planning on using a DMI based quirk for the steamdeck
->> then yes that needs the mode.
->>
->> Thee mode check is there for 2 reasons:
->>
->> 1. To avoid also applying the quirk to external displays, but
->> I think that that is also solved in most drivers by only checking for
->> a quirk at all on the eDP connector
->>
->> 2. Some laptop models ship with different panels in different badges
->> some of these are portrait (so need a panel-orient) setting and others
->> are landscape.
+> Yes... that and we need to send the NOOP command in the second TX
+> transfer.
 > 
-> That makes sense. So yeah the EDID mode based matching logic needs to
-> stay to accomodate for these cases.
+> > Looking again to the RFC code, it seems like we can still do it
+> > 
+> > First, you call _gather_write() followed by _read(). It will show
+> > exactly what
+> > you do, i.e. you send command first with the value 0x0000, followed
+> > by sending
+> > command and reading back the value at the same time.
+> > 
+> > Would it work?  
 > 
->>> I agree that at least in the Steam
->>> Deck case it may not make a lot of sense to use any info from the
->>> EDID, but that's needed for the current status quo.
->>
->> We could extend the DMI quirk mechanism to allow quirks which don't
->> do the mode check, for use on devices where we can guarantee neither
->> 1 nor 2 happens, then amdgpu could call the quirk code early simply
->> passing 0x0 as resolution.
+> Well, _gather_write() are 2 spi transfers only with TX set. That means
+> that only on the _read() (which will be another spi_message) we will
+> ask for the data. Im not really sure this would work being it on a
+> different message. This would also mean, one extra dummy transfer. To
+> me that already feels that a custom bus implementation is not a bad
+> idea...
+> > 
+> > ...
+> >   
+> > > > > > > +       ret = kstrtou16(buf, 10, &val);  
+> > > > > > 
+> > > > > > In other function you have long, here u16. I would expect
+> > > > > > that
+> > > > > > the
+> > > > > > types are of
+> > > > > > the same class, e.g. if here you have u16, then there
+> > > > > > something
+> > > > > > like
+> > > > > > s32 / s64.
+> > > > > > Or here something like unsigned short.
+> > > > > > 
+> > > > > > A bit of elaboration why u16 is chosen here?  
+> > > > > 
+> > > > > Well, I never really saw any enforcement here to be honest
+> > > > > (rather
+> > > > > than using
+> > > > > stdint types...). So I pretty much just use these in unsigned
+> > > > > types
+> > > > > because
+> > > > > I'm lazy and u16 is faster to type than unsigned short... In
+> > > > > this
+> > > > > case, unless Jonathan
+> > > > > really asks for it, I prefer not to go all over the driver and
+> > > > > change this...  
+> > > > 
+> > > > This is about consistency. It may work as is, but it feels not
+> > > > good
+> > > > when for
+> > > > int (or unsigned int) one uses fixed-width types. Also it's non-
+> > > > written advice
+> > > > to use fixed-width variables when it's about programming
+> > > > registers or
+> > > > so, for
+> > > > the rest, use POD types.  
+> >   
 > 
-> Yeah. But per the above amdgpu should maybe probe connectors on module
-> load. If/when amdgpu is fixed to do this, then we don't need to disable
-> the mode matching logic in panel-orientation quirks anymore.
+> Ok, going a bit back in the discussion, you argued that in one place I
+> was using long while here u16. Well, in the place I'm using long, that
+> was on purpose because that value is to be compared against an array of
+> longs (which has to be long because it depends on CCF rates). I guess I
+> can als0 use s64, but there is also a reason why long was used.
+> 
+> In the u16 case, we really want to have 2 bytes because I'm going to
+> use that value to write the dac code which is 2 bytes.
+> 
+> > > I can understand your reasoning but again this is something that
+> > > I never really saw being enforced. So, I'm more than ok to change
+> > > it
+> > > if it really becomes something that we will try to "enforce" in
+> > > IIO.
+> > > Otherwise it just feels as a random nitpick :).  
+> > 
+> > No, this is about consistency and common sense. If you define type
+> > uXX,
+> > we have an API for that exact type. It's confusing why POD type APIs
+> > are used with fixed-width types or vise versa.
+> > 
+> > Moreover (which is pure theoretical, though) some architectures might
+> > have no (mutual) equivalency between these types.
+> > 
+> > ...
+> >   
+> > > > > > > +static int ltc2688_tgp_clk_setup(struct ltc2688_state *st,
+> > > > > > > +                                struct ltc2688_chan *chan,
+> > > > > > > +                                struct device_node *np,
+> > > > > > > int
+> > > > > > > tgp)
+> > > > > > > +{
+> > > > > > > +       unsigned long rate;
+> > > > > > > +       struct clk *clk;
+> > > > > > > +       int ret, f;
+> > > > > > > +
+> > > > > > > +       clk = devm_get_clk_from_child(&st->spi->dev, np,
+> > > > > > > NULL);
+> > > > > > > +       if (IS_ERR(clk))  
+> > > > > > 
+> > > > > > Make it optional for non-OF, can be done as easy as
+> > > > > > 
+> > > > > >         if (IS_ERR(clk)) {
+> > > > > >                 if (PTR_ERR(clk) == -ENOENT)
+> > > > > >                         clk = NULL;
+> > > > > >                 else
+> > > > > >                         return dev_err_probe(...);
+> > > > > >         }
+> > > > > >   
+> > > > > > > +               return dev_err_probe(&st->spi->dev,
+> > > > > > > PTR_ERR(clk),
+> > > > > > > +                                    "failed to get tgp
+> > > > > > > clk.\n");  
+> > > > > 
+> > > > > Well, I might be missing the point but I think this is not so
+> > > > > straight....
+> > > > > We will only get here if the property " adi,toggle-dither-
+> > > > > input" is
+> > > > > given
+> > > > > in which case having the associated clocks is __mandatory__.  
+> > > > 
+> > > > Ah, okay, would be a limitation for non-OF platforms.
+> > > >   
+> > > > > Hence,
+> > > > > once we are here, this can never be optional. That said, we
+> > > > > need
+> > > > > device_node   
+> > > > 
+> > > > That's fine, since CCF is OF-centric API.
+> > > >   
+> > > > > and hence of.h  
+> > > > 
+> > > > Why? This header doesn't bring anything you will use here.  
+> > > 
+> > > Correct me if Im missing something. AFAIU, the idea is to use
+> > > 'device_for_each_child_node()' which returns a fwnode_handle. That
+> > > means, that we will have to pass that to this function and use
+> > > 'to_of_node()' to pass a device_node to
+> > > 'devm_get_clk_from_child()'.
+> > > 
+> > > This means, we need of.h for 'to_of_node()'...  
+> > 
+> > Yeah, you are right, but it would be still better since it narrows
+> > the problem to the CCF calls only.
+> >   
+> 
+> So, to clear....
+> 
+> In your opinion, you are fine whith using device properties and just
+> have 'to_of_node()' in this CCF call? I'm fine with it, so if Jonathan
+> does not have any complain about it, will do like this in v4,
+> 
+> Jonathan, any comment on this one?
+
+Whilst it's less than ideal, I'm fine with it being all generic except
+for the clock part and using to_of_node() which I think is what Andy
+is suggesting.
+
+Thanks,
+
+Jonathan
+
+
+> 
+> - Nuno Sá
+> 
 
