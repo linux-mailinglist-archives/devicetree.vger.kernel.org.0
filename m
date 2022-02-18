@@ -2,196 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E39A04BB1B7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 06:58:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 010674BB1BD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 07:01:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230522AbiBRF7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 00:59:10 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44292 "EHLO
+        id S231156AbiBRGBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 01:01:17 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbiBRF7H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 00:59:07 -0500
-X-Greylist: delayed 447 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Feb 2022 21:58:50 PST
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB3424636D
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 21:58:50 -0800 (PST)
-Received: by codeconstruct.com.au (Postfix, from userid 10001)
-        id 86480202DA; Fri, 18 Feb 2022 13:51:21 +0800 (AWST)
-From:   Matt Johnston <matt@codeconstruct.com.au>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        linux-i2c@vger.kernel.org, netdev@vger.kernel.org,
-        Zev Weiss <zev@bewilderbeest.net>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, Wolfram Sang <wsa@kernel.org>
-Subject: [PATCH net-next v6 1/2] dt-bindings: net: New binding mctp-i2c-controller
-Date:   Fri, 18 Feb 2022 13:51:05 +0800
-Message-Id: <20220218055106.1944485-2-matt@codeconstruct.com.au>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220218055106.1944485-1-matt@codeconstruct.com.au>
-References: <20220218055106.1944485-1-matt@codeconstruct.com.au>
+        with ESMTP id S231149AbiBRGBO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 01:01:14 -0500
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A18C326512A
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 22:00:58 -0800 (PST)
+Received: by mail-oo1-xc2a.google.com with SMTP id d134-20020a4a528c000000b00319244f4b04so2352248oob.8
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 22:00:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vC5rr9/FFwl108xT94dxdS0audFET9/KpZypiZZFFo0=;
+        b=UYyjQv6/7mpgSZOWGk2/ust+6hOD4YjQAmr5tQ5iB2PeMarCwuNe5WoWL/dGHhgvg9
+         UAbaXSrf5MWippiTC8ws2jSkTlePYQ6tehyZjxPtBc5uAmU3g1bRYXAyb6bXqgS0ouAd
+         Ua6Oxx4UzemOIaFN3q8Rccy9D9rGc8UNh4b4nhxyvOnJZheCXdFW+q70UZr5+9A+Lu0U
+         aT2kyp7Y+5vOn+OyNyYW6NFy0CTpObikM5/eUuI+JFi0loqXNagB0UJbmFodqmIdR1e5
+         T40vkrs+IfV8K3ekT33j48RnBGf6dLsD/v9gpBw7hX7kE1CYVtkzpglin6tJQe5bFrqz
+         5mJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vC5rr9/FFwl108xT94dxdS0audFET9/KpZypiZZFFo0=;
+        b=VzAADwpp14NWNNlbUbN4O+HtaspLRl5mGxflBtfpJZb9zBjD2YgAoK8s8Yms34oziX
+         y2ptmmmqGELJ0o92YJN0I/H9jEEpU/Awb+Hbf8bfgCFCNQN66qNQIptqvHMmyD5Pe7zW
+         RBFQYbCKEBPlaSHunQPZtIatD/KUPuRZciH9d9c9kvAJFBUFFuIB0hZ3NZtgOmSiimEJ
+         4WiSm8PicPQVeoYQqPUTObjiX+MNHf8DvN7PhrafLlacbJZr+rm9WR/6l4yE5YaPILxB
+         X0AzFKJNuuwSeyiYVk9Wp5+vueV6gKUM9sCyYY353At0ItkJB7CQbg8zlQK79DAdqT2L
+         UW7g==
+X-Gm-Message-State: AOAM532Ah4KvOi+gG5+t6vvRSmc5z8HmhjrpvvDp94bht6Iu2o4D2XlW
+        dbH50ErBLkKnQiT/egHZz4frVA==
+X-Google-Smtp-Source: ABdhPJwMUgPMYZgFc7a9CJBSMUtuUqp+3FcdwropR0b3xxEM7qtpwzSq3DvZN9WJm2f428LBq/Z1TQ==
+X-Received: by 2002:a05:6870:d24f:b0:cc:f65f:68e4 with SMTP id h15-20020a056870d24f00b000ccf65f68e4mr2408028oac.167.1645164057943;
+        Thu, 17 Feb 2022 22:00:57 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id bc36sm948918oob.45.2022.02.17.22.00.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Feb 2022 22:00:57 -0800 (PST)
+Date:   Thu, 17 Feb 2022 22:03:03 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, quic_kalyant@quicinc.com,
+        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
+        quic_mkrishn@quicinc.com, quic_vproddut@quicinc.com
+Subject: Re: [PATCH v4 2/5] arm64: dts: qcom: sc7280: Add support for eDP
+ panel on CRD
+Message-ID: <Yg82lyRCi3XJHCU2@ripper>
+References: <1644494255-6632-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1644494255-6632-3-git-send-email-quic_sbillaka@quicinc.com>
+ <CAD=FV=VVvcn1VpLXjd+X9Xe50sS_vY5ukKJE8i=eAZf1Phofuw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=VVvcn1VpLXjd+X9Xe50sS_vY5ukKJE8i=eAZf1Phofuw@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Used to define a local endpoint to communicate with MCTP peripherals
-attached to an I2C bus. This I2C endpoint can communicate with remote
-MCTP devices on the I2C bus.
+On Thu 17 Feb 17:03 PST 2022, Doug Anderson wrote:
 
-In the example I2C topology below (matching the second yaml example) we
-have MCTP devices on busses i2c1 and i2c6. MCTP-supporting busses are
-indicated by the 'mctp-controller' DT property on an I2C bus node.
+> Hi,
+> 
+> On Thu, Feb 10, 2022 at 3:58 AM Sankeerth Billakanti
+> <quic_sbillaka@quicinc.com> wrote:
+> >
+> > +       backlight_3v3_regulator: backlight-3v3-regulator {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "backlight_3v3_regulator";
+> > +
+> > +               regulator-min-microvolt = <3300000>;
+> > +               regulator-max-microvolt = <3300000>;
+> > +
+> > +               gpio = <&pm8350c_gpios 7 GPIO_ACTIVE_HIGH>;
+> > +               enable-active-high;
+> > +
+> > +               pinctrl-names = "default";
+> > +               pinctrl-0 = <&edp_bl_power>;
+> > +       };
+> 
+> So I'm pretty sure that this is wrong and what you had on a previous
+> patch was more correct. Specifically the PMIC's GPIO 7 truly _is_ an
+> enable pin for the backlight. In the schematics I see it's named as
+> "PMIC_EDP_BL_EN" and is essentially the same net as "EDP_BL_EN". This
+> is distinct from the backlight _regulator_ that is named VREG_EDP_BP.
+> I believe the VREG_EDP_BP is essentially sourced directly from
+> PPVAR_SYS. That's how it works on herobrine and I believe that CRD is
+> the same. You currently don't model ppvar_sys, but it's basically just
+> a variable-voltage rail that could be provided somewhat directly from
+> the battery or could be provided from Type C components. I believe
+> that the panel backlight is designed to handle this fairly wide
+> voltage range and it's done this way to get the best efficiency.
+> 
+> So personally I'd prefer if you do something like herobrine and model
+> PPVAR_SYS. Then the backlight can use ppvar_sys as its regulator and
+> you can go back to providing this as an "enable" pin for the
+> backlight.
+> 
+> I know, technically it doesn't _really_ matter, but it's nice to model
+> it more correctly.
 
-A mctp-i2c-controller I2C client DT node is placed at the top of the
-mux topology, since only the root I2C adapter will support I2C slave
-functionality.
-                                               .-------.
-                                               |eeprom |
-    .------------.     .------.               /'-------'
-    | adapter    |     | mux  --@0,i2c5------'
-    | i2c1       ----.*|      --@1,i2c6--.--.
-    |............|    \'------'           \  \  .........
-    | mctp-i2c-  |     \                   \  \ .mctpB  .
-    | controller |      \                   \  '.0x30   .
-    |            |       \  .........        \  '.......'
-    | 0x50       |        \ .mctpA  .         \ .........
-    '------------'         '.0x1d   .          '.mctpC  .
-                            '.......'          '.0x31   .
-                                                '.......'
-(mctpX boxes above are remote MCTP devices not included in the DT at
-present, they can be hotplugged/probed at runtime. A DT binding for
-specific fixed MCTP devices could be added later if required)
+While I've not seen your schematics, the proposal does look similar to
+what I have on sc8180x, where there's a power rail, the BL_EN and a pwm
+signal.
 
-Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Wolfram Sang <wsa@kernel.org>
----
- Documentation/devicetree/bindings/i2c/i2c.txt |  4 +
- .../bindings/net/mctp-i2c-controller.yaml     | 92 +++++++++++++++++++
- 2 files changed, 96 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml
+If that's the case I think representing BL_EN using the enable-gpios
+property directly in the pwm-backlight node seems more appropriate (with
+power-supply being the actual thing that powers the backlight).
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
-index b864916e087f..fc3dd7ec0445 100644
---- a/Documentation/devicetree/bindings/i2c/i2c.txt
-+++ b/Documentation/devicetree/bindings/i2c/i2c.txt
-@@ -95,6 +95,10 @@ wants to support one of the below features, it should adapt these bindings.
- - smbus-alert
- 	states that the optional SMBus-Alert feature apply to this bus.
- 
-+- mctp-controller
-+	indicates that the system is accessible via this bus as an endpoint for
-+	MCTP over I2C transport.
-+
- Required properties (per child device)
- --------------------------------------
- 
-diff --git a/Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml b/Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml
-new file mode 100644
-index 000000000000..afd11c9422fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/mctp-i2c-controller.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/mctp-i2c-controller.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MCTP I2C transport binding
-+
-+maintainers:
-+  - Matt Johnston <matt@codeconstruct.com.au>
-+
-+description: |
-+  An mctp-i2c-controller defines a local MCTP endpoint on an I2C controller.
-+  MCTP I2C is specified by DMTF DSP0237.
-+
-+  An mctp-i2c-controller must be attached to an I2C adapter which supports
-+  slave functionality. I2C busses (either directly or as subordinate mux
-+  busses) are attached to the mctp-i2c-controller with a 'mctp-controller'
-+  property on each used bus. Each mctp-controller I2C bus will be presented
-+  to the host system as a separate MCTP I2C instance.
-+
-+properties:
-+  compatible:
-+    const: mctp-i2c-controller
-+
-+  reg:
-+    minimum: 0x40000000
-+    maximum: 0x4000007f
-+    description: |
-+      7 bit I2C address of the local endpoint.
-+      I2C_OWN_SLAVE_ADDRESS (1<<30) flag must be set.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    // Basic case of a single I2C bus
-+    #include <dt-bindings/i2c/i2c.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      mctp-controller;
-+
-+      mctp@30 {
-+        compatible = "mctp-i2c-controller";
-+        reg = <(0x30 | I2C_OWN_SLAVE_ADDRESS)>;
-+      };
-+    };
-+
-+  - |
-+    // Mux topology with multiple MCTP-handling busses under
-+    // a single mctp-i2c-controller.
-+    // i2c1 and i2c6 can have MCTP devices, i2c5 does not.
-+    #include <dt-bindings/i2c/i2c.h>
-+
-+    i2c1: i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      mctp-controller;
-+
-+      mctp@50 {
-+        compatible = "mctp-i2c-controller";
-+        reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
-+      };
-+    };
-+
-+    i2c-mux {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      i2c-parent = <&i2c1>;
-+
-+      i2c5: i2c@0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <0>;
-+        eeprom@33 {
-+          reg = <0x33>;
-+        };
-+      };
-+
-+      i2c6: i2c@1 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <1>;
-+        mctp-controller;
-+      };
-+    };
--- 
-2.32.0
+If however gpio 7 is wired to something like the enable-pin on an actual
+LDO the proposal here seems reasonable, but it seems unlikely that the
+output of that would be named "backlight_3v3_regulator"?
 
+Regards,
+Bjorn
