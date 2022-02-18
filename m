@@ -2,101 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1EAD4BBDA2
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 17:39:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1161C4BBDBF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 17:43:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237972AbiBRQjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 11:39:25 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48160 "EHLO
+        id S238044AbiBRQnk convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Feb 2022 11:43:40 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbiBRQjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 11:39:24 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEF9D1662F7;
-        Fri, 18 Feb 2022 08:39:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1645202345; x=1676738345;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=QxnUeu0qfzfRrvCh1uPZCHmA8hmtolG6mYblm9b+4cc=;
-  b=1tCmWGKMgKcaRHB8K4IZ8P2T2e2Ooj+GpGJ3RUz2gDZ2mDcruuuJhipO
-   3ASbJ0f8UPgZxf6+5Vot+8ZTL7eF0DMBo7zSp9Wp7nozBftvI2TL4mRkU
-   q2mqq2s/ocPRZCrBCdXmSXcV8DPira8R7ZlP1HB6E0reqgljrvc6QWwZ9
-   ATruaCm8MF40jQH1PUpwuyUu3Q3FK9uip/DdYiJ5L3Pl7sjuX/uG+JtJY
-   YsxYeTudk9LDHUljUVAwlIE4S7qQV2hANr4V1AqxAGBTDN/62T0RON6VF
-   KknhObNJqoNeYPcjUPxII2PuVX8yRXTUqGDZFU3EqaWlvOF8tHOX+5ND/
-   w==;
-X-IronPort-AV: E=Sophos;i="5.88,379,1635231600"; 
-   d="scan'208";a="146528317"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Feb 2022 09:39:03 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 18 Feb 2022 09:39:03 -0700
-Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Fri, 18 Feb 2022 09:38:57 -0700
-Message-ID: <4b3a954cde4e9d1b6a94991964eb21e80278a8ab.camel@microchip.com>
-Subject: Re: [PATCH v8 net-next 01/10] dt-bindings: net: dsa: dt bindings
- for microchip lan937x
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>, <andrew@lunn.ch>,
-        <netdev@vger.kernel.org>, <olteanv@gmail.com>, <robh+dt@kernel.org>
-CC:     <UNGLinuxDriver@microchip.com>, <woojung.huh@microchip.com>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>
-Date:   Fri, 18 Feb 2022 22:08:55 +0530
-In-Reply-To: <d8e5f6a8-a7e1-dabd-f4b4-ea8ea21d0a1d@gmail.com>
-References: <20220207172204.589190-1-prasanna.vengateshan@microchip.com>
-         <20220207172204.589190-2-prasanna.vengateshan@microchip.com>
-         <88caec5c-c509-124e-5f6b-22b94f968aea@gmail.com>
-         <ebf1b233da821e2cd3586f403a1cdc2509671cde.camel@microchip.com>
-         <d8e5f6a8-a7e1-dabd-f4b4-ea8ea21d0a1d@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.0-1 
+        with ESMTP id S234214AbiBRQnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 11:43:40 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9672523191E;
+        Fri, 18 Feb 2022 08:43:23 -0800 (PST)
+Received: from mail-wr1-f46.google.com ([209.85.221.46]) by
+ mrelayeu.kundenserver.de (mreue009 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MEVBa-1nVb073iJ8-00G0Xa; Fri, 18 Feb 2022 17:43:21 +0100
+Received: by mail-wr1-f46.google.com with SMTP id i14so15505233wrc.10;
+        Fri, 18 Feb 2022 08:43:21 -0800 (PST)
+X-Gm-Message-State: AOAM533KCBp9cfGSfaeNhC/xkomehwEVEK/RVeRToK64sowAqKKKJ5sd
+        EyPuZH0FFbIuBMi0gDipcKGEW3HWGysJe2FpqV8=
+X-Google-Smtp-Source: ABdhPJya7KJW40w+8EvG22/ogqA/L/ueVMwSm8J6b9LRMVcNTbNBBrGtb6cVelJPl3THb0bYSKxwpfk4ST+4TsvPcE8=
+X-Received: by 2002:adf:c406:0:b0:1e4:a5ae:34a3 with SMTP id
+ v6-20020adfc406000000b001e4a5ae34a3mr6918358wrf.407.1645202601511; Fri, 18
+ Feb 2022 08:43:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220113170755.11856-1-pali@kernel.org>
+In-Reply-To: <20220113170755.11856-1-pali@kernel.org>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 18 Feb 2022 17:43:04 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2D8Yv+KpM4NJyP9mosieqbhHh08=mdEy+OA84Vx6FVCQ@mail.gmail.com>
+Message-ID: <CAK8P3a2D8Yv+KpM4NJyP9mosieqbhHh08=mdEy+OA84Vx6FVCQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: marvell: armada-37xx: Increase PCIe IO size
+ from 64 KiB to 1 MiB
+To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:4M5UZfLM60QlGjKrHZAErX2tEmSvIBbWz5fsxkzKo1WtRaOEwll
+ 4x/PeYB4D5BNUoJBVIjgYznYIf43JeH2M1T1P12hmC+9akv3Ei8oSDHQ1X/tBJJ4Oorzip8
+ coJInlkwrg8mrXxYz1TMofoX0bIdg2fwqPO5SoVUq/intsgmzBC4jR8Umf7J0BeC7Df8hEv
+ AdFAD/XNQUEhwmzSavAxw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:clAO1iAF50Q=:ghn77pxIagHZbjCyBKMTHe
+ wSfXnErKGCGokZrbipsHRxA9IDwHlW1VM+EIXokHnD84W+kJQpfacF37W5Uptbqq4XQprKgQY
+ Q0J6d2uUa6pYZD0XAdARTLp0vKLqBl63uiXRtCY1ztMAK7/vmBKibb0l21VxADUQM/YFXli/S
+ ZGLlVSyh8HJnPj7GJom9p8Xrda1whD6ruekewloeAUCXFJleDOVK2xoEgfOjFKSJACsPFZEJx
+ JwGr3gOU0oR5CuZKgF07Z5Od2naYLfYWF4TXHqFq4dFNmoV2bVm04fLz/W7v9IZNFZc6EphpQ
+ KjwyLlp4YW01m+BdNUpt9UtLjTydNGTJkthswDO5hJqKlsHq2MJu6Sc8XNuNCz04ioN9onNHn
+ 5SHWVKu4KdMjElLEEp+94KovNio1+JVz/EqXJiK/2usoc84wQYEucDASkUYDgln7M7SMj9Caq
+ zGfdSFBtXF1w22TmyDBV9zRjt1bSaEk/4F7BACGv1ITeGv4yfiDgv+D5oktF6OCLrPyN7qcdX
+ /86NNVOjk+dYIL2hZ36XRTQVOuMNfcQy7CvQUQexm+yj/IpPFUXCIrHLcvulvPMusgs3aeuY/
+ AA4RQyI2Oa1svvsRoajLY576O7eZYH0wX/k7hQegUSx4jJ0eLf2Z9Yy9kXwv+AOC2K+qpgu9J
+ arzReH47kKjT/09xwsoNDq0lVJQf9vhl+ofQnVv7zf44epu/fZXjhZ8TiNSsbI/bVvhKGqOyJ
+ USaQxr90OlgAFUfoXfsHMd42bHz/GnnEXbiERsnx8WCO2RumOQqdn5pCrEkWQxJgm158NRXNU
+ H8V5GZHHlDsIMy6yhFmBsLLUWAnfOkAbZw+3JjFWEHOpC7XkJY=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-02-11 at 19:56 -0800, Florian Fainelli wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> content is safe
-> 
-> On 2/9/2022 3:58 AM, Prasanna Vengateshan wrote:
-> > On Mon, 2022-02-07 at 18:53 -0800, Florian Fainelli wrote:
-> > > 
-> > > > +                rx-internal-delay-ps:
-> > > > +                  $ref: "#/$defs/internal-delay-ps"
-> > > > +                tx-internal-delay-ps:
-> > > > +                  $ref: "#/$defs/internal-delay-ps"
-> > > 
-> > > Likewise, this should actually be changed in ethernet-controller.yaml
-> > 
-> > There is *-internal-delay-ps property defined for mac in ethernet-
-> > controller.yaml. Should that be changed like above?
-> 
-> It seems to me that these properties override whatever 'phy-mode'
-> property is defined, but in premise you are right that this is largely
-> applicable to RGMII only. I seem to recall that the QCA8K driver had
-> some sort of similar delay being applied even in SGMII mode but I am not
-> sure if we got to the bottom of this.
-> 
-> Please make sure that this does not create regressions for other DTS in
-> the tree before going with that change in ethernet-controller.yaml.
+On Thu, Jan 13, 2022 at 6:07 PM Pali Rohár <pali@kernel.org> wrote:
+>
+> Commit 514ef1e62d65 ("arm64: dts: marvell: armada-37xx: Extend PCIe MEM
+> space") increased size of PCIe MEM to 127 MiB, which is the maximal
+> possible size for allocated 128 MiB PCIe window. PCIe IO size in that
+> commit was unchanged.
+>
+> Armada 3720 PCIe controller supports 32-bit IO space mapping so it is
+> possible to assign more than 64 KiB if address space for IO.
+>
+> Currently controller has assigned 127 MiB + 64 KiB memory and therefore
+> there is 960 KiB of unused memory. So assign it to IO space by increasing
+> IO window from 64 KiB to 1 MiB.
+>
+> DTS file armada-3720-turris-mox.dts already uses whole 128 MiB space, so
+> only update comment about 32-bit IO space mapping.
+>
+> Signed-off-by: Pali Rohár <pali@kernel.org>
+> Fixes: 514ef1e62d65 ("arm64: dts: marvell: armada-37xx: Extend PCIe MEM space")
 
-Okay, Can these be submitted as a seperate patch?
+I just saw this is the fixes pull request, and it seems very odd. Does this
+fix an actual bug? Note that Linux normally doesn't map more than 64KB
+of I/O space per PCI domain, so it should not make a difference to us.
 
-Prasanna V
+Also, note that having a high bus address for the I/O space (0xefff0000,
+as as the CPU physical address here) means that a lot of the older
+devices that actually require I/O space won't work, because they need a
+low bus address in the first few KB.
 
+Is this mapping a requirement from a broken bootloader, or can you change
+the mapping of the I/O port window in the physical space to the usual
+bus address 0?
+
+        Arnd
