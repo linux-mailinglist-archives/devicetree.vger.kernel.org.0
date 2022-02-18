@@ -2,270 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97EAA4BBCF4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 17:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CDFB4BBD19
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 17:11:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237376AbiBRQEY convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Feb 2022 11:04:24 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58628 "EHLO
+        id S236350AbiBRQL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 11:11:27 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236909AbiBRQEV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 11:04:21 -0500
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8660449240;
-        Fri, 18 Feb 2022 08:04:03 -0800 (PST)
-Received: from fraeml711-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4K0c136t8mz67HV7;
-        Sat, 19 Feb 2022 00:03:03 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml711-chm.china.huawei.com (10.206.15.60) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Fri, 18 Feb 2022 17:04:00 +0100
-Received: from localhost (10.47.75.241) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Fri, 18 Feb
- 2022 16:03:59 +0000
-Date:   Fri, 18 Feb 2022 16:03:58 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-CC:     Andy Shevchenko <andriy.shevchenko@intel.com>,
-        "Sa, Nuno" <Nuno.Sa@analog.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Jonathan Cameron" <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v3 1/3] iio: dac: add support for ltc2688
-Message-ID: <20220218160358.0000499d@Huawei.com>
-In-Reply-To: <11bd63bc07fd406bfa31bdc38b597011cc9312cc.camel@gmail.com>
-References: <20220121142501.151-1-nuno.sa@analog.com>
-        <20220121142501.151-2-nuno.sa@analog.com>
-        <Yf60A1UkbBtQ68qv@smile.fi.intel.com>
-        <PH0PR03MB678628C341A1972BC31F5BBA992B9@PH0PR03MB6786.namprd03.prod.outlook.com>
-        <YgD91zg4L1S5KH5k@smile.fi.intel.com>
-        <e1bd9f14e63e55f48f804568705a9ab8c1a09f62.camel@gmail.com>
-        <Ygpd7pebiuGuB8nT@smile.fi.intel.com>
-        <11bd63bc07fd406bfa31bdc38b597011cc9312cc.camel@gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S237498AbiBRQLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 11:11:25 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E34F107D22
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 08:11:08 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id m3so10338219eda.10
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 08:11:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=A2OloDpJvsjdWi7wGdly9G9Fl4hNwVdVhIAytmuuXRs=;
+        b=EkJRBZvSnj9R4IxbhdruXGy1aYW2yS2ue39KyFuXYWoUHS8yMXNEtcICUEj45dcK7D
+         Ju1waEUm5V22tInwgU0e5alziJzVuCyDNowFFx/G8WGjFod0Jk+kODbiGWAn11xCkIY6
+         Nb4cJq6//pZhbOaTWDt3uiAOK54AuW1bKNcUE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=A2OloDpJvsjdWi7wGdly9G9Fl4hNwVdVhIAytmuuXRs=;
+        b=wH+TKg9kAa8qoUT/rySTgidpBxJBeMB4hovoCaivCy3N5BU41n49r+ka0+ZNcO6xTe
+         vLE0ud+Zf9X/J3Y3Rx1DfOYrB/hbWFRiZMJsaU6EgPdNbdy74iigYmad8lPypsXuVKo4
+         Xu5o+OtXCtaDTg5+R+wzL1wN3ao8huW3Ero8YtYnGfvmLYtMgkMYU6kvVY+SMPn3gejh
+         SG2tWhPrKeou7QAEnlLXRvD9ja+Fw9MLYy7SlitsXnzAvyofeE8AKtfvbmbxISfo8c6n
+         F19YgjcvWPhmz69xU2m5mOBcl9Um/eDEdriIKG/RdS/ACYfUAFgzAWiV8rDH0T6+exR7
+         rPbA==
+X-Gm-Message-State: AOAM530vQgvp0uRFg+cICumuCaBjSD3hAJI4/BCyI7qtcdoA23kmH196
+        L8u6e1l0kbuD6nNDRByWbCEglrCsNnc/uT7X/Ns=
+X-Google-Smtp-Source: ABdhPJx/Asqyoe7hA8KhWAxV46S1F8+jPGpYOsmCEEhZNRj1Z4LoF/ZJzRgd/SXEmACsktifDVCYiw==
+X-Received: by 2002:a05:6402:84f:b0:412:d1ef:c7df with SMTP id b15-20020a056402084f00b00412d1efc7dfmr1615755edz.210.1645200666098;
+        Fri, 18 Feb 2022 08:11:06 -0800 (PST)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com. [209.85.221.43])
+        by smtp.gmail.com with ESMTPSA id p24sm2347292ejx.53.2022.02.18.08.11.03
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Feb 2022 08:11:04 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id i14so15361835wrc.10
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 08:11:03 -0800 (PST)
+X-Received: by 2002:adf:ef07:0:b0:1e3:333f:a101 with SMTP id
+ e7-20020adfef07000000b001e3333fa101mr6712804wro.301.1645200663316; Fri, 18
+ Feb 2022 08:11:03 -0800 (PST)
 MIME-Version: 1.0
+References: <20220216045620.1716537-1-bjorn.andersson@linaro.org> <20220216045620.1716537-2-bjorn.andersson@linaro.org>
+In-Reply-To: <20220216045620.1716537-2-bjorn.andersson@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 18 Feb 2022 08:10:50 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=Xj5k7JROP1PFY9tmXxLY7FRJNdr-+UmkCW_YGqpDkFew@mail.gmail.com>
+Message-ID: <CAD=FV=Xj5k7JROP1PFY9tmXxLY7FRJNdr-+UmkCW_YGqpDkFew@mail.gmail.com>
+Subject: Re: [PATCH v12 2/2] leds: Add driver for Qualcomm LPG
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Satya Priya Kakitapalli <c_skakit@qti.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh+dt@kernel.org>,
+        linux-leds@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-pwm <linux-pwm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [10.47.75.241]
-X-ClientProxiedBy: lhreml726-chm.china.huawei.com (10.201.108.77) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Feb 2022 14:51:28 +0100
-Nuno Sá <noname.nuno@gmail.com> wrote:
+Hi,
 
-> On Mon, 2022-02-14 at 15:49 +0200, Andy Shevchenko wrote:
-> > On Mon, Feb 07, 2022 at 09:19:46PM +0100, Nuno Sá wrote:  
-> > > On Mon, 2022-02-07 at 13:09 +0200, Andy Shevchenko wrote:  
-> > > > On Sun, Feb 06, 2022 at 01:19:59PM +0000, Sa, Nuno wrote:  
-> > > > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > > > > > Sent: Saturday, February 5, 2022 6:30 PM
-> > > > > > On Fri, Jan 21, 2022 at 03:24:59PM +0100, Nuno Sá wrote:  
-> > 
-> > ...
-> >   
-> > > > > > Second, why do you need this specific function instead of
-> > > > > > regmap
-> > > > > > bulk
-> > > > > > ops against be24/le24?  
-> > > > > 
-> > > > > Not sure I'm following this one... If you mean why am I using a
-> > > > > custom 
-> > > > > regmap_bus implementation, that was already explained in the
-> > > > > RFC
-> > > > > patch.
-> > > > > And IIRC, you were the one already asking 😉.  
-> > > > 
-> > > > Hmm... It was some time I have looked there. Any message ID to
-> > > > share,
-> > > > so
-> > > > I can find it quickly?  
-> >   
-> > > https://lore.kernel.org/all/20211112152235.12fdcc49@jic23-huawei/  
-> > 
-> > Thanks!
-> > 
-> > So, it's all about cs_change, right?
-> > But doesn't bulk operation work exactly as we need here?
-> >   
-> 
-> Yes... that and we need to send the NOOP command in the second TX
-> transfer.
-> 
-> > Looking again to the RFC code, it seems like we can still do it
-> > 
-> > First, you call _gather_write() followed by _read(). It will show
-> > exactly what
-> > you do, i.e. you send command first with the value 0x0000, followed
-> > by sending
-> > command and reading back the value at the same time.
-> > 
-> > Would it work?  
-> 
-> Well, _gather_write() are 2 spi transfers only with TX set. That means
-> that only on the _read() (which will be another spi_message) we will
-> ask for the data. Im not really sure this would work being it on a
-> different message. This would also mean, one extra dummy transfer. To
-> me that already feels that a custom bus implementation is not a bad
-> idea...
-> > 
-> > ...
-> >   
-> > > > > > > +       ret = kstrtou16(buf, 10, &val);  
-> > > > > > 
-> > > > > > In other function you have long, here u16. I would expect
-> > > > > > that
-> > > > > > the
-> > > > > > types are of
-> > > > > > the same class, e.g. if here you have u16, then there
-> > > > > > something
-> > > > > > like
-> > > > > > s32 / s64.
-> > > > > > Or here something like unsigned short.
-> > > > > > 
-> > > > > > A bit of elaboration why u16 is chosen here?  
-> > > > > 
-> > > > > Well, I never really saw any enforcement here to be honest
-> > > > > (rather
-> > > > > than using
-> > > > > stdint types...). So I pretty much just use these in unsigned
-> > > > > types
-> > > > > because
-> > > > > I'm lazy and u16 is faster to type than unsigned short... In
-> > > > > this
-> > > > > case, unless Jonathan
-> > > > > really asks for it, I prefer not to go all over the driver and
-> > > > > change this...  
-> > > > 
-> > > > This is about consistency. It may work as is, but it feels not
-> > > > good
-> > > > when for
-> > > > int (or unsigned int) one uses fixed-width types. Also it's non-
-> > > > written advice
-> > > > to use fixed-width variables when it's about programming
-> > > > registers or
-> > > > so, for
-> > > > the rest, use POD types.  
-> >   
-> 
-> Ok, going a bit back in the discussion, you argued that in one place I
-> was using long while here u16. Well, in the place I'm using long, that
-> was on purpose because that value is to be compared against an array of
-> longs (which has to be long because it depends on CCF rates). I guess I
-> can als0 use s64, but there is also a reason why long was used.
-> 
-> In the u16 case, we really want to have 2 bytes because I'm going to
-> use that value to write the dac code which is 2 bytes.
-> 
-> > > I can understand your reasoning but again this is something that
-> > > I never really saw being enforced. So, I'm more than ok to change
-> > > it
-> > > if it really becomes something that we will try to "enforce" in
-> > > IIO.
-> > > Otherwise it just feels as a random nitpick :).  
-> > 
-> > No, this is about consistency and common sense. If you define type
-> > uXX,
-> > we have an API for that exact type. It's confusing why POD type APIs
-> > are used with fixed-width types or vise versa.
-> > 
-> > Moreover (which is pure theoretical, though) some architectures might
-> > have no (mutual) equivalency between these types.
-> > 
-> > ...
-> >   
-> > > > > > > +static int ltc2688_tgp_clk_setup(struct ltc2688_state *st,
-> > > > > > > +                                struct ltc2688_chan *chan,
-> > > > > > > +                                struct device_node *np,
-> > > > > > > int
-> > > > > > > tgp)
-> > > > > > > +{
-> > > > > > > +       unsigned long rate;
-> > > > > > > +       struct clk *clk;
-> > > > > > > +       int ret, f;
-> > > > > > > +
-> > > > > > > +       clk = devm_get_clk_from_child(&st->spi->dev, np,
-> > > > > > > NULL);
-> > > > > > > +       if (IS_ERR(clk))  
-> > > > > > 
-> > > > > > Make it optional for non-OF, can be done as easy as
-> > > > > > 
-> > > > > >         if (IS_ERR(clk)) {
-> > > > > >                 if (PTR_ERR(clk) == -ENOENT)
-> > > > > >                         clk = NULL;
-> > > > > >                 else
-> > > > > >                         return dev_err_probe(...);
-> > > > > >         }
-> > > > > >   
-> > > > > > > +               return dev_err_probe(&st->spi->dev,
-> > > > > > > PTR_ERR(clk),
-> > > > > > > +                                    "failed to get tgp
-> > > > > > > clk.\n");  
-> > > > > 
-> > > > > Well, I might be missing the point but I think this is not so
-> > > > > straight....
-> > > > > We will only get here if the property " adi,toggle-dither-
-> > > > > input" is
-> > > > > given
-> > > > > in which case having the associated clocks is __mandatory__.  
-> > > > 
-> > > > Ah, okay, would be a limitation for non-OF platforms.
-> > > >   
-> > > > > Hence,
-> > > > > once we are here, this can never be optional. That said, we
-> > > > > need
-> > > > > device_node   
-> > > > 
-> > > > That's fine, since CCF is OF-centric API.
-> > > >   
-> > > > > and hence of.h  
-> > > > 
-> > > > Why? This header doesn't bring anything you will use here.  
-> > > 
-> > > Correct me if Im missing something. AFAIU, the idea is to use
-> > > 'device_for_each_child_node()' which returns a fwnode_handle. That
-> > > means, that we will have to pass that to this function and use
-> > > 'to_of_node()' to pass a device_node to
-> > > 'devm_get_clk_from_child()'.
-> > > 
-> > > This means, we need of.h for 'to_of_node()'...  
-> > 
-> > Yeah, you are right, but it would be still better since it narrows
-> > the problem to the CCF calls only.
-> >   
-> 
-> So, to clear....
-> 
-> In your opinion, you are fine whith using device properties and just
-> have 'to_of_node()' in this CCF call? I'm fine with it, so if Jonathan
-> does not have any complain about it, will do like this in v4,
-> 
-> Jonathan, any comment on this one?
+On Tue, Feb 15, 2022 at 8:54 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> +static int lpg_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +                        const struct pwm_state *state)
+> +{
+> +       struct lpg *lpg = container_of(chip, struct lpg, pwm);
+> +       struct lpg_channel *chan = &lpg->channels[pwm->hwpwm];
+> +       int ret;
+> +
+> +       if (state->polarity != PWM_POLARITY_NORMAL)
+> +               return -EINVAL;
+> +
+> +       mutex_lock(&lpg->lock);
+> +
+> +       if (state->enabled) {
+> +               ret = lpg_calc_freq(chan, state->period);
+> +               if (ret < 0)
+> +                       goto out_unlock;
+> +
+> +               lpg_calc_duty(chan, state->duty_cycle);
+> +       }
+> +       chan->enabled = state->enabled;
+> +
+> +       lpg_apply(chan);
+> +
+> +       triled_set(lpg, chan->triled_mask, chan->enabled ? chan->triled_mask : 0);
+> +
+> +out_unlock:
+> +       mutex_unlock(&lpg->lock);
+> +
+> +       return ret;
+> +}
 
-Whilst it's less than ideal, I'm fine with it being all generic except
-for the clock part and using to_of_node() which I think is what Andy
-is suggesting.
+My compiler (correctly) yelled that `ret` is returned uninitialized if
+`state->enabled` is false. I initialized `ret` to 0 and the problem
+went away. I assume that the patch will need to spin to fix that
+unless everything else looks great and a maintainer wants to fix that
+when applying.
 
-Thanks,
+With that fix, I was able to use Bjorn's patch along with Satya's
+patches adding pm8350c support (removing the now defunct
+"pwm_9bit_mask" property) to make the PWM on my board work. Thus, once
+the error my compiler complained about is fixed I'm happy with my
+`Tested-by` being added.
 
-Jonathan
+For now I haven't actually reviewed the code here, but if folks feel
+like it needs an extra pair of eyes then please yell and I'll find
+some time to do it.
 
-
-> 
-> - Nuno Sá
-> 
-
+-Doug
