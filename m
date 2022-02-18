@@ -2,86 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1E164BAEF9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 02:03:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3484BAF0B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 02:10:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230516AbiBRBEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 20:04:00 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:41874 "EHLO
+        id S231179AbiBRBJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 20:09:46 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:38226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbiBRBDy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 20:03:54 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58EEA288827
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 17:03:37 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id k25so11236520ejp.5
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 17:03:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YhNqz0TwV7gSLYgP9YWbRspB12calUNnn7qInjIWMb8=;
-        b=kjaQXcd+qDo6HeXDPEWhbFh7itNDJeBgJ0jJRODQBOZ7hs979pzm2WflsUaeHt87yP
-         QfxDMnIRoaJ7eDkvmb/yckwyk9YSdc1FaxiFI9ozai/ESqHRWGC3j6y8tn1v5Pwbp/xi
-         y+HpVyyGh9scpSCcn61WSMOXHDjMnjoadxSfY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YhNqz0TwV7gSLYgP9YWbRspB12calUNnn7qInjIWMb8=;
-        b=mHvSW5ROqw1icKbFvdZqonID77frNUeoByePRwFvMr1Y9UHwgKVXraS8imsrIdRgnU
-         6LI/H9mXEQtObLtaCknZNhkQ8sjjsC+v9bPW6xiIO6HuGNdAjOw0riOeEpB9FmQYtlzm
-         u7THSKo7Sd6bNeHPDW3ZdZ24nEsk8ksSRCxobmSt2s1ZDipp/zocob0rOfGy+TxjFYh3
-         SSDq9LKDwq3pYt/f9/HvXRh3ZY3Ui7OH0A1BOKN6wHtCmd4Ay00QQJjbVtxHTSDoH5/8
-         /6OayXzPJVXji5aMkeJY9tPTwtskCY1tQkJtW3yExcxz6hgU57AQHPoTMY911Gyp4FQN
-         xAiQ==
-X-Gm-Message-State: AOAM533Z78NEcn9AoWIjazPOyB+ZiU5NZIIBqxaDVRxhiCFBFTX8Ixy0
-        RZi8H0QBtUAGAlY0mzc7Nc8Xk/bKAAgOSLo3s5U=
-X-Google-Smtp-Source: ABdhPJy7Eq3e9hF9NQycaLLUh77JL/a93Szo2rwyaZTa9xFLnh/kkSCLvuzXpB5qipewFz82uw/MmA==
-X-Received: by 2002:a17:906:9f06:b0:6ce:36da:8247 with SMTP id fy6-20020a1709069f0600b006ce36da8247mr4529405ejc.651.1645146215585;
-        Thu, 17 Feb 2022 17:03:35 -0800 (PST)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com. [209.85.221.48])
-        by smtp.gmail.com with ESMTPSA id hh13sm1735757ejb.89.2022.02.17.17.03.34
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Feb 2022 17:03:34 -0800 (PST)
-Received: by mail-wr1-f48.google.com with SMTP id o24so11863680wro.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 17:03:34 -0800 (PST)
-X-Received: by 2002:a5d:64ef:0:b0:1e3:1e05:d042 with SMTP id
- g15-20020a5d64ef000000b001e31e05d042mr4049131wri.679.1645146213585; Thu, 17
- Feb 2022 17:03:33 -0800 (PST)
+        with ESMTP id S231173AbiBRBJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 20:09:45 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5006E3BA7F;
+        Thu, 17 Feb 2022 17:09:29 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 1B5BC83764;
+        Fri, 18 Feb 2022 02:09:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1645146567;
+        bh=14iST5FeUS5RbDDo2bOjE1LXbfmy9laLrqGHDAyvzi4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ZAywQqC5RsrGjyElizKPE/nCXZBZIX8od4+rb89nIg6heSkYBE+xcpbSW1YFJkjTT
+         fy4S/q0aOXIRUwAjhQad1TO/Y6FyAZ1fRE50Mo9E0+MiuplRIfQ9vfWON7zIkgvEs9
+         G/gyo5j/4VZc2SMNViifBUBDh/H2bBQHndpbFAAspRmDRKqLij95lR2dLXiN3MBt38
+         F/niEP9ZtGi9IzU96RobI5wfKZznmlYUYZMNoIclLfEJ1Aopb9lxZwTre/+vX3tMW7
+         Skp1UoFntLWVU7UKG7zq2aEqgbIgi4mTF7O0Eg76ecG3AA8LKV9b7G78cj9SeGKHSU
+         hEsi7Yv7agALw==
+Message-ID: <7605efbd-1a5e-ef80-5638-8376a325e3ba@denx.de>
+Date:   Fri, 18 Feb 2022 02:09:26 +0100
 MIME-Version: 1.0
-References: <1644494255-6632-1-git-send-email-quic_sbillaka@quicinc.com> <1644494255-6632-3-git-send-email-quic_sbillaka@quicinc.com>
-In-Reply-To: <1644494255-6632-3-git-send-email-quic_sbillaka@quicinc.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 17 Feb 2022 17:03:13 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VVvcn1VpLXjd+X9Xe50sS_vY5ukKJE8i=eAZf1Phofuw@mail.gmail.com>
-Message-ID: <CAD=FV=VVvcn1VpLXjd+X9Xe50sS_vY5ukKJE8i=eAZf1Phofuw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/5] arm64: dts: qcom: sc7280: Add support for eDP
- panel on CRD
-To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, quic_kalyant@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
-        quic_mkrishn@quicinc.com, quic_vproddut@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH 1/2] dt-bindings: clk: rs9: Add Renesas 9-series I2C PCIe
+ clock generator
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20220213173310.152230-1-marex@denx.de>
+ <20220217233954.6C8ABC340E8@smtp.kernel.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20220217233954.6C8ABC340E8@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,42 +60,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 2/18/22 00:39, Stephen Boyd wrote:
+> Quoting Marek Vasut (2022-02-13 09:33:09)
+>> diff --git a/Documentation/devicetree/bindings/clock/renesas,9series.yaml b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+>> new file mode 100644
+>> index 0000000000000..774053748d9f0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+>> @@ -0,0 +1,102 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/renesas,9series.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Binding for Renesas 9-series I2C PCIe clock generators
+>> +
+>> +description: |
+>> +  The Renesas 9-series are I2C PCIe clock generators providing
+>> +  from 1 to 20 output clocks.
+>> +
+>> +  When referencing the provided clock in the DT using phandle
+>> +  and clock specifier, the following mapping applies:
+>> +
+>> +  - 9FGV0241:
+>> +    0 -- DIF0
+>> +    1 -- DIF1
+>> +
+>> +maintainers:
+>> +  - Marek Vasut <marex@denx.de>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - renesas,9fgv0241
+>> +
+>> +  reg:
+>> +    description: I2C device address
+>> +    enum: [ 0x68, 0x6a ]
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: XTal input clock
+>> +
+>> +  renesas,out-amplitude:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [ 600000, 700000, 800000, 900000 ]
+>> +    description: Output clock signal amplitude in uV
+>> +
+>> +  renesas,out-spread-spectrum:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [ 100000, 99750, 99500 ]
+>> +    description: Output clock down spread in pcm
+>> +
+>> +patternProperties:
+>> +  "^DIF[0-19]$":
+>> +    type: object
+>> +    description:
+>> +      Description of one of the outputs (DIF0..DIF19).
+>> +    properties:
+>> +      renesas,slew-rate:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        enum: [ 2000000, 3000000 ]
+>> +        description: Output clock slew rate select in V/ns
+>> +    additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - '#clock-cells'
+> 
+> Can it operate without an input xtal?
 
-On Thu, Feb 10, 2022 at 3:58 AM Sankeerth Billakanti
-<quic_sbillaka@quicinc.com> wrote:
->
-> +       backlight_3v3_regulator: backlight-3v3-regulator {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "backlight_3v3_regulator";
-> +
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +
-> +               gpio = <&pm8350c_gpios 7 GPIO_ACTIVE_HIGH>;
-> +               enable-active-high;
-> +
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&edp_bl_power>;
-> +       };
+Not to my knowledge.
 
-So I'm pretty sure that this is wrong and what you had on a previous
-patch was more correct. Specifically the PMIC's GPIO 7 truly _is_ an
-enable pin for the backlight. In the schematics I see it's named as
-"PMIC_EDP_BL_EN" and is essentially the same net as "EDP_BL_EN". This
-is distinct from the backlight _regulator_ that is named VREG_EDP_BP.
-I believe the VREG_EDP_BP is essentially sourced directly from
-PPVAR_SYS. That's how it works on herobrine and I believe that CRD is
-the same. You currently don't model ppvar_sys, but it's basically just
-a variable-voltage rail that could be provided somewhat directly from
-the battery or could be provided from Type C components. I believe
-that the panel backlight is designed to handle this fairly wide
-voltage range and it's done this way to get the best efficiency.
-
-So personally I'd prefer if you do something like herobrine and model
-PPVAR_SYS. Then the backlight can use ppvar_sys as its regulator and
-you can go back to providing this as an "enable" pin for the
-backlight.
-
-I know, technically it doesn't _really_ matter, but it's nice to model
-it more correctly.
+[...]
