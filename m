@@ -2,106 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16F274BAE8E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 01:36:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEFE94BAEF1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Feb 2022 02:02:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230144AbiBRAeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Feb 2022 19:34:05 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:43956 "EHLO
+        id S230367AbiBRBBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Feb 2022 20:01:50 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:58242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230146AbiBRAeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 19:34:05 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0FC840A09;
-        Thu, 17 Feb 2022 16:33:41 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230285AbiBRBBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Feb 2022 20:01:49 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E521867E9
+        for <devicetree@vger.kernel.org>; Thu, 17 Feb 2022 17:01:19 -0800 (PST)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 39610B819EE;
-        Fri, 18 Feb 2022 00:33:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBFE5C340E9;
-        Fri, 18 Feb 2022 00:33:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645144418;
-        bh=e/znNyDINSmervQbv/vjQdjL+iOg2YVcl9VW/Ak7M34=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=MhnvbVUGqtcfi8MC1zO5YLdbZ9LvVI+GP0ULoeKxwQ9yubWwXRLDaovyn4cEXKkdU
-         b7C3lqMBjLhborfb2ZHKcfC287/fFbhQpPaY+WZpAyX+WM5RE3baErc+FzyvXQyXG8
-         2HEwl6Wujsj+eauQUcFZ+NQTWSUaH6o0g1sIvgjedKlIABrW1aevxwnu+q+q6s/KlC
-         5Ao/1ZEF2M/NjahLNQDRs5Dt73RNlNi1n/4UYRg7XYkEtYJK9IVC3bnrcU9XQdupNM
-         xwbeBZXQN6nw7KyE2LuOefGFgbf4kbKCoIXC7ohkyEyGIbreccfLTUCeihMBDiFh1p
-         pDdjkgWKDDLgQ==
-Content-Type: text/plain; charset="utf-8"
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 7FF4883764;
+        Fri, 18 Feb 2022 02:01:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1645146076;
+        bh=O2hHW13mgSaZvN5anxyunPG1uIzz7p4zPFd4aRvlhBk=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=U9FA0dav+S0opZLwmeZsm5GU+NnwOb2jAMzjMUIhge1b9NxnICMhCCpD/1mlF+1jw
+         L6L4ewZmNjl1z0Uxvsr/TavOCzOLwv9J08GbQmTsIcDF8bZmdC0B8RyBDynv1UwM0i
+         vNzXw1hIf5H4r36RTEUvHZIyDLTus7MQqfFeu24k4ARwNsNghJ0Yyg7SYTTFAUsgZB
+         41EDLekRfORuyUZL4kou1CqxyDNQ+g4fc5a49VS7SLBwvwqCmYTL+XA3B90ttF/yiK
+         AxCu4DLBhMvSys4LNDfi8PRT7luNJDC2r+BUL1TwMWc1q6EkmM2whF7uZPegdeapYW
+         325keqOu+O+qQ==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Marek Vasut <marex@denx.de>, Jonas Karlman <jonas@kwiboo.se>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: [PATCH V2 01/11] dt-bindings: display: bridge: tc358867: Document DPI output support
+Date:   Fri, 18 Feb 2022 02:00:44 +0100
+Message-Id: <20220218010054.315026-2-marex@denx.de>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220218010054.315026-1-marex@denx.de>
+References: <20220218010054.315026-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <YghBkp/sUHdqSn4G@piout.net>
-References: <20220203021736.13434-1-samuel@sholland.org> <20220203021736.13434-6-samuel@sholland.org> <164422443570.21572.13511859513410998733.b4-ty@cerno.tech> <bb05bc64-2a9e-fe21-5a69-0ea31134e978@sholland.org> <20220211124312.kiw6t25nojvkp2rw@houat> <YghBkp/sUHdqSn4G@piout.net>
-Subject: Re: (subset) [PATCH v3 5/6] clk: sunxi-ng: Add support for the sun6i RTC clocks
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        linux-sunxi@lists.linux.dev,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Maxime Ripard <maxime@cerno.tech>
-Date:   Thu, 17 Feb 2022 16:33:37 -0800
-User-Agent: alot/0.10
-Message-Id: <20220218003338.DBFE5C340E9@smtp.kernel.org>
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Alexandre Belloni (2022-02-12 15:24:02)
-> On 11/02/2022 13:43:12+0100, Maxime Ripard wrote:
-> > Hi Samuel,
-> >=20
-> > On Mon, Feb 07, 2022 at 05:54:02PM -0600, Samuel Holland wrote:
-> > > On 2/7/22 3:00 AM, Maxime Ripard wrote:
-> > > > On Wed, 2 Feb 2022 20:17:35 -0600, Samuel Holland wrote:
-> > > >> The RTC power domain in sun6i and newer SoCs manages the 16 MHz RC
-> > > >> oscillator (called "IOSC" or "osc16M") and the optional 32 kHz cry=
-stal
-> > > >> oscillator (called "LOSC" or "osc32k"). Starting with the H6, this=
- power
-> > > >> domain also handles the 24 MHz DCXO (called variously "HOSC", "dcx=
-o24M",
-> > > >> or "osc24M") as well. The H6 also adds a calibration circuit for I=
-OSC.
-> > > >>
-> > > >> Later SoCs introduce further variations on the design:
-> > > >>  - H616 adds an additional mux for the 32 kHz fanout source.
-> > > >>  - R329 adds an additional mux for the RTC timekeeping clock, a cl=
-ock
-> > > >>    for the SPI bus between power domains inside the RTC, and remov=
-es the
-> > > >>    IOSC calibration functionality.
-> > > >>
-> > > >> [...]
-> > > >=20
-> > > > Applied to local tree (sunxi/clk-for-5.18).
-> > >=20
-> > > Part of the build failures were because this patch depends on patch 3=
-. Is that
-> > > okay, or should I update this patch to be independent?
-> >=20
-> > We don't have anything queued up yet, so I think the easiest would be to
-> > merge this through the RTC tree. So nothing to do on your side yet, we
-> > just need Alex to answer :)
-> >=20
->=20
-> I can take the whole series but I think I would need acks from Stephen
->=20
+The TC358767/TC358867/TC9595 are all capable of operating in multiple
+modes, DPI-to-(e)DP, DSI-to-(e)DP, DSI-to-DPI. Document support for the
+DPI output port, which can now be connected both as input and output.
 
-For the clk patches
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Jonas Karlman <jonas@kwiboo.se>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Maxime Ripard <maxime@cerno.tech>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+V2: - Rebase on next-20220217
+---
+ .../devicetree/bindings/display/bridge/toshiba,tc358767.yaml  | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+index f1541cc052977..5cfda6f2ba69c 100644
+--- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+@@ -61,8 +61,8 @@ properties:
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+         description: |
+-            DPI input port. The remote endpoint phandle should be a
+-            reference to a valid DPI output endpoint node
++            DPI input/output port. The remote endpoint phandle should be a
++            reference to a valid DPI output or input endpoint node.
+ 
+       port@2:
+         $ref: /schemas/graph.yaml#/properties/port
+-- 
+2.34.1
+
