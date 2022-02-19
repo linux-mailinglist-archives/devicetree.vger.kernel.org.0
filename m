@@ -2,67 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E55594BC52C
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 04:07:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D7C74BC528
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 04:07:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241250AbiBSDD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 22:03:57 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54792 "EHLO
+        id S234332AbiBSDFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 22:05:42 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241235AbiBSDD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 22:03:57 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E91B189A9B
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 19:03:39 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id ay7so5097261oib.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 19:03:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to;
-        bh=zIB+88SZu/CTl47f1fdTeX2AI5RUdEbWO+4zjIrvIzM=;
-        b=J4SJ7j5uTIF6325BNiAXQXv0efYxC/HzwgbEKT3PY/NqwzZU5+zH/6+Cd5iItGU9l2
-         /eor0oEEJhiuQ8Dgq1+viv0K8pWJS24WfjjGNPeQU0LXv/Xsompp6ztvXrDE48I60fVG
-         jIWiASD20CAYMHlNMfNi5CrEOEwnyC9sKZPvo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to;
-        bh=zIB+88SZu/CTl47f1fdTeX2AI5RUdEbWO+4zjIrvIzM=;
-        b=jtor2jYGphez3f+FeKOQK2lx3K+alA5JGkNryqhuydapNqh6TcidyjiizE9qdR9rsO
-         jFSKzhNwoyzEaxokogPte0eaGEnnZ5ZlSYDaeMzcMSj1HRD+53DNklZNo4MAOeDjwWsx
-         mclnAYRI49S1+UicZraJzu8kg31aQwo7Z0RwM6m3hgvaPrx5qDUXSAoglS9f1Yjs0SFl
-         ygW1Kk6zzkIv7AgqlbnLDC227BLD97oBRiyX6mTPdQYY5zhuaQoYQ39+4QjnB/4xaJtR
-         Vc84H0j8d4wh4OK9r9BtbTTnXsatzYciJZXETWVitt3iEWfLvtN0C3Bu5KREr3Fuwu8B
-         5Fng==
-X-Gm-Message-State: AOAM532OHUnXH9K1RlzbKyqrLNMpJfajedraTMkxrpsafy8LRWD2yaZL
-        AA4q6wXf8k6zfEoz6UVc3xzuw9XBa7/peFtEp4XYHQ==
-X-Google-Smtp-Source: ABdhPJyTyySKaogGebiYw5qOlLQGTpdp3qqpV2Sh4WlZmZiT0rP6wCEw1BDRdNlhT/JVspPiNudlDVaQIpYcAmd99sw=
-X-Received: by 2002:a05:6808:f88:b0:2d4:c8c2:b898 with SMTP id
- o8-20020a0568080f8800b002d4c8c2b898mr626747oiw.112.1645239819056; Fri, 18 Feb
- 2022 19:03:39 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 18 Feb 2022 19:03:38 -0800
+        with ESMTP id S241262AbiBSDFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 22:05:41 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1844B206DDE;
+        Fri, 18 Feb 2022 19:05:24 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A93B2B82545;
+        Sat, 19 Feb 2022 03:05:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A6B0C340E9;
+        Sat, 19 Feb 2022 03:05:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645239921;
+        bh=qcG42ckwvTujI+qvncPuMVGp5lOEJBPmEsEliCc63As=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=Qg5YmeZvqwfGVHULJRENtysMRRqXqbs2M8AUOBxpMtNV6J1H0V11NEUyoJjhl8qDT
+         2lZZPZqsoKY1k44WvtdovkvvfT09PikT4+DuAI3JQiuX4asIVAneN+RiKX3JTRtHlS
+         lIjHs/aLM56DQAZqyUASIkBEgdfZztj68bpg7SABcFBsviHPGcgDqYUU1ZxVC7cfei
+         PcG5Qpz0TeaonbNnmg9vg4m3na9urQsAYRfVfJZ81NfNePrSaQNccqpDKG/G3K3tkS
+         8tBmMoaXlN4nDH8GT/hmt0vKSccTXVBLzMDSutI4+PHf1MoUXXfE97cUX30gAU5kRJ
+         /+EolOQAbRqcw==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <1645078066-9365-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1645078066-9365-1-git-send-email-quic_srivasam@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <182f1f73-70eb-5811-b3ad-35b6428ed59a@denx.de>
+References: <20220213173310.152230-1-marex@denx.de> <20220213173310.152230-2-marex@denx.de> <20220217234539.819AEC340E8@smtp.kernel.org> <006919c7-74c9-390a-964e-6b76611988e5@denx.de> <20220218221504.54F8DC340E9@smtp.kernel.org> <182f1f73-70eb-5811-b3ad-35b6428ed59a@denx.de>
+Subject: Re: [PATCH 2/2] clk: rs9: Add Renesas 9-series PCIe clock generator driver
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
+Date:   Fri, 18 Feb 2022 19:05:19 -0800
 User-Agent: alot/0.10
-Date:   Fri, 18 Feb 2022 19:03:38 -0800
-Message-ID: <CAE-0n51j9x2-5ZBPOkhewih6ojvE=a-Ot3htQ7JPKYzBm32UJA@mail.gmail.com>
-Subject: Re: [PATCH v14 00/10] Add support for audio on SC7280 based targets
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, quic_plai@quicinc.com, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Message-Id: <20220219030521.0A6B0C340E9@smtp.kernel.org>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,14 +55,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-02-16 22:07:36)
-> This patch set is to add support for Audio over wcd codec,
-> digital mics, through digital codecs and without ADSP.
->
-> Changes Since V13:
->     -- Change bulk cdc clock voting to individual clock voting.
->     -- Remove redundant code, conditional check and prints.
->     -- Fix typo errors.
+Quoting Marek Vasut (2022-02-18 17:11:04)
+> On 2/18/22 23:15, Stephen Boyd wrote:
+> >>
+> >>>> +       if (!parent_clk)
+> >>>> +               return dev_err_probe(&client->dev, -EINVAL,
+> >>>> +                                    "Missing XTal input clock\n");
+> >>>> +
+> >>>> +       rs9->regmap =3D devm_regmap_init_i2c(client, &rs9_regmap_con=
+fig);
+> >>>> +       if (IS_ERR(rs9->regmap))
+> >>>> +               return dev_err_probe(&client->dev, PTR_ERR(rs9->regm=
+ap),
+> >>>> +                                    "Failed to allocate register ma=
+p\n");
+> >>>> +
+> >>>> +       /* Register clock */
+> >>>> +       for (i =3D 0; i < rs9->chip_info->num_clks; i++) {
+> >>>> +               name[3]++;
+> >>>> +               hw =3D clk_hw_register_fixed_factor(&client->dev, na=
+me,
+> >>>> +                                                 parent_clk, 0, 4, =
+1);
+> >=20
+> > To do that it looks like maybe we'll need to export
+> > __clk_hw_register_fixed_factor() and introduces some sort of
+> > clk_hw_register_fixed_factor_parent_data() API.
+>=20
+> Setting parent_clk to NULL should be enough.
+>=20
 
-Seems we're still discussing on v13. Will you reply to the review
-comments or post v15?
+Perfect, but also weird. I worry that's a bug that snuck in. Probably a
+good idea to not rely on that.
