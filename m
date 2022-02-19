@@ -2,119 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DE774BCA30
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 19:47:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B22704BCA33
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 19:49:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242978AbiBSSqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 13:46:21 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58642 "EHLO
+        id S240712AbiBSStd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 13:49:33 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230022AbiBSSqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 13:46:19 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B3B517896F
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 10:46:00 -0800 (PST)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D4A854025B
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 18:45:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645296358;
-        bh=eJ6HQrRnH7eCjaR+k7F77ct8AqISDRTidseB01nTcCM=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=oQXUBVzDFSmNnuSIOkQM4BOooRj99xTLYvL/F7bGnmJafNIN3oW1V178eq5g6jJBY
-         iQn0LE7x5LFbJieE1w601waIu4HbbbIW0Y3HIBAkq3/9RdI83lLvFHqeDvOZj4ELVk
-         Akrod3LjeuKhortbsC2Bwk5avG7nSPm3dehJoVMqlGFGTJTZ8eVcal2yAPzUKaU5Rt
-         X/+pJTVy5vZ24JEpP6PKBH7YXIsoGD4d6ivC6pP+OJBEdbLuLIak4iUdv0/eOxo2y3
-         4BEBBx4vzwCNIK+aJ0rTHjKvPw58msb5mSUmAHxaBcceFH1qH2nAMrqw6/wiBTKOpM
-         dIOxJeLEUISZQ==
-Received: by mail-ej1-f69.google.com with SMTP id k21-20020a1709063e1500b006d0777c06d6so2942858eji.1
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 10:45:58 -0800 (PST)
+        with ESMTP id S242082AbiBSStd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 13:49:33 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F6D96E783;
+        Sat, 19 Feb 2022 10:49:14 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id b9so11325471lfv.7;
+        Sat, 19 Feb 2022 10:49:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=7YhVG8Dy+S1k40YAXhEZryTJrbvkmx9GiFs6+GPhuaQ=;
+        b=H2eafIb0d+gnPTeQfQp3hdpbyrFDjuxHlgGunCA2MiiBccQeIlixC6yWs5I08xT0nN
+         Xdxjxk6Mzk8p+BE7e+dKuSRT5dolF+XjEsJlja7p0ETEvEEvuH8Yh4dlWKRoZ4iZ8OXR
+         U2uMxEimT2NduF42uHLQHUyEfjdv17in99/lWPBlj/UL2FNWAnSXBzrBQJDMu+DCgkAH
+         rM5Bvsb9e5s2clBjZTXORVVjUxCWI1VNQIWotvuonsawBYM+5GZBhOaAS/1YLepiFidN
+         FhhGEihUOKgcKs01grZCKhcxkiknAkYyU1UNow5+2vpKdwOxLKw3yYdKAJcq9QIwFmjy
+         ZvKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=eJ6HQrRnH7eCjaR+k7F77ct8AqISDRTidseB01nTcCM=;
-        b=sC6ev6FlXN5sVCr4mNqxvrRAEmzp1LRTJHZPnuWkhSC03lbGlARDyYmXrTj7BIUwso
-         6FsLNKwpQia+E7TfwkLVyNnLlxxE7gsKEu6L3HMS4503EQx7KP5U8UE6ezaC08C8t4Ag
-         HdyjVx8NghVo/cxGRlThqUf0x7aJ9mpn2QTlKcV4JAq4byYA9pU05r7qRG8flp05sAu/
-         FtmrZCc2XOc3YWg1mbmpz+b4bxv4JSvc18H6SHcPse5y3fl7sKpe5UkL6kyS3xjtWayZ
-         33Ie2HKz13LA2h8T2Fiom3h16mQwQJWr7VX/otE8HT8vNDhDpWyjAPBhF+zTr2o4yUII
-         iY9A==
-X-Gm-Message-State: AOAM533E71b8zAZ8+P0P5qL+i/o4wI8ArzLJWgZXyg2ZWpok9MT3foKN
-        ncjJe+lMDjiNWG8lDH4WRl7+woNG0wIirs+kPxYKnN5/VTbPuHptIwP38jbp+LcoSCyNvSpJEJf
-        sKyD6yTYqGR62oU/AFQDkammbszz36/4y0Mcmmw0=
-X-Received: by 2002:aa7:c612:0:b0:40f:2a41:bddb with SMTP id h18-20020aa7c612000000b0040f2a41bddbmr13789835edq.291.1645296358467;
-        Sat, 19 Feb 2022 10:45:58 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwCUQahoUlw1/KaqiAKlfUzjGeKC0o8en5bVZWTPpKsIDqk+8vzgYr9LfT4H6VG0K4MxnLXbw==
-X-Received: by 2002:aa7:c612:0:b0:40f:2a41:bddb with SMTP id h18-20020aa7c612000000b0040f2a41bddbmr13789828edq.291.1645296358336;
-        Sat, 19 Feb 2022 10:45:58 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id j11sm4847509eda.106.2022.02.19.10.45.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Feb 2022 10:45:57 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Wei Xu <xuwei5@hisilicon.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jan Kotas <jank@cadence.com>, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [RFC PATCH 8/8] arm64: dts: ti: use 'freq-table' in UFS node
-Date:   Sat, 19 Feb 2022 19:45:54 +0100
-Message-Id: <20220219184554.44887-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220219184224.44339-1-krzysztof.kozlowski@canonical.com>
-References: <20220219184224.44339-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7YhVG8Dy+S1k40YAXhEZryTJrbvkmx9GiFs6+GPhuaQ=;
+        b=SOFA9UcPAmDR55npkUyF9ObyBBfv5vFSOolQUApNdwbAcZ+meH7R0bHttk/M9J1X8W
+         2TTT3LsawlCjeC1JI6q4kxSZQ00OKvhKqq2xmfna0+YAddQdLoOc+j44JECF3YFXRrJY
+         84OkCLjED0yR9TGux5A23IMEVjyHfNOoYhOmbdIBASZYU5gq2zU+7K6f3pLBv2jelijV
+         U675+zeyD9AcNc0dG9YRoNOY9C1JWKf6Cn2He5axrX56/j6ChpOAAPDxpJlEzhrZsrki
+         5TKV42ZazXOnjgvrPDeZlkelLfMZ3wvkTjDeNbhdPTIgDD4EwGXwJ5wfeldEuJJ0yRQq
+         Umug==
+X-Gm-Message-State: AOAM530HFqa1hfBcvlKlypV65ReIOtD80QV8A99Mq6d2CT10tysGRkPB
+        btdUG4ZI1k0suPSG9GA9OW0=
+X-Google-Smtp-Source: ABdhPJxu4c7EAYfGM/Z+Iq7ORPC+Om71HaUK4ew3FTkSHXyN9PFMoo+/wBKUzofOsjvEek347LaSWQ==
+X-Received: by 2002:a05:6512:3f91:b0:43e:da3e:464b with SMTP id x17-20020a0565123f9100b0043eda3e464bmr9015660lfa.673.1645296552456;
+        Sat, 19 Feb 2022 10:49:12 -0800 (PST)
+Received: from [192.168.2.145] (109-252-138-165.dynamic.spd-mgts.ru. [109.252.138.165])
+        by smtp.googlemail.com with ESMTPSA id y18sm737447ljd.13.2022.02.19.10.49.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 19 Feb 2022 10:49:12 -0800 (PST)
+Message-ID: <b1df816b-6838-c435-1a23-5029144e4cfe@gmail.com>
+Date:   Sat, 19 Feb 2022 21:49:11 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 8/9] drm/tegra: vic: Implement get_streamid_offset
+Content-Language: en-US
+To:     Mikko Perttunen <mperttunen@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, joro@8bytes.org, will@kernel.org,
+        robh+dt@kernel.org, robin.murphy@arm.com
+Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220218113952.3077606-1-mperttunen@nvidia.com>
+ <20220218113952.3077606-9-mperttunen@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20220218113952.3077606-9-mperttunen@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'freq-table-hz' property is deprecated by UFS bindings.
-The uint32-array requires also element to be passed within one <> block.
+18.02.2022 14:39, Mikko Perttunen пишет:
+> +static int vic_get_streamid_offset(struct tegra_drm_client *client)
+> +{
+> +	struct vic *vic = to_vic(client);
+> +	int err;
+> +
+> +	err = vic_load_firmware(vic);
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+You can't invoke vic_load_firmware() while RPM is suspended. Either
+replace this with RPM get/put or do something else.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 599861259a30..c3afef0321ae 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -1257,7 +1257,9 @@ ufs@4e84000 {
- 			compatible = "cdns,ufshc-m31-16nm", "jedec,ufs-2.0";
- 			reg = <0x0 0x4e84000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
--			freq-table-hz = <250000000 250000000>, <19200000 19200000>, <19200000 19200000>;
-+			freq-table = <250000000 250000000
-+				      19200000 19200000
-+				      19200000 19200000>;
- 			clocks = <&k3_clks 277 0>, <&k3_clks 277 1>, <&k3_clks 277 1>;
- 			clock-names = "core_clk", "phy_clk", "ref_clk";
- 			dma-coherent;
--- 
-2.32.0
+> +	if (err < 0)
+> +		return err;
+> +
+> +	if (vic->can_use_context)
+> +		return 0x30;
+> +	else
+> +		return -ENOTSUPP;
 
+If (!vic->can_use_context)
+	return -ENOTSUPP;
+
+return 0x30;
