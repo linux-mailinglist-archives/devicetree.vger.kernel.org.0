@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAEB04BC4AE
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 03:06:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57E564BC4DC
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 03:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240998AbiBSCCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 21:02:16 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56266 "EHLO
+        id S240968AbiBSCcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 21:32:47 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231952AbiBSCCP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 21:02:15 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D90E35842
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 18:01:57 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id a7-20020a9d5c87000000b005ad1467cb59so3171842oti.5
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 18:01:57 -0800 (PST)
+        with ESMTP id S239006AbiBSCcq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 21:32:46 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 020CD427F0
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 18:32:28 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id x193so5119566oix.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 18:32:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=H1HxUEpXoVQpsG8b03LMRl3OP81XuF90MDBUIM1swkQ=;
-        b=eQ5IdMRZJ/DaSRP8WbiioyS35zcy5eh0OoymuYg4k1pbLMXwFPhx6Bp9+3DKPVO1vR
-         6shMg4ag19yItVLaQJzXoh57cB9YPbPrdKYsDJDRiQOgmnMfVtRJhOPnKkcYQrJ5Ye29
-         wS9+CiZlwWxqD1AOSZqhXXkKmmYf858gzM+C8=
+        bh=GMyd0+sXMi4cIFzcL0iJI6zscXkgFMDHcUknF9cxQis=;
+        b=i1BaGO+F9XGzIZMSKGhY8yTuyr89G7+EJfFqOOAHde+lwE4P4HgSbb5JUP0L1xQG3q
+         xWVV24YMKR1/KeN6qa7KKstzzQZmkIBIDVx6wdPP+CvgNlYQFcigM1AlOqA5VWaGtDtt
+         DXkpIN5IlLhK182wst1HI3hS6xIv+B42mKRio=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=H1HxUEpXoVQpsG8b03LMRl3OP81XuF90MDBUIM1swkQ=;
-        b=OH193yEe+XrMFvzF5XJhIZ9NBdnIyQBp07BKBYS0RJIHN/gqAUUsbsnxlZ8VdNsZIv
-         NpGd2X2sh+zULM03aXxT7YpSxprb3mMMpULixjN9nZxe+9FqsZTYE7Lkr3ZXx2fNrNFR
-         yTCzWuGf8w4YYfs7x/wvRHiMAPRV2Iaavg7xM0p6+myJsbafz04beL2dKU5JCfIiBAjJ
-         9ohGboYJTtCbQ/2MO4W539/ey2plq4vci/ICEi34N8KXzF2xrT/8LPfjyma/aFEkg3iL
-         c28uKeI29IOlriUs4wTzox4CYV3MGUXWxRj2BZKSJobYqDaGT3Rum3zH1ezWWcJ4segR
-         P0RA==
-X-Gm-Message-State: AOAM530xYH4zlRQfR5jyXXxUjK5YFiBSc4t2OGhmBLBfKJ+koLWUU5yf
-        JIky7PjMlPIRDXbUMUvfv4ZV3G95xSBplTiQuAqigQ==
-X-Google-Smtp-Source: ABdhPJxbSl0kE3DczPu6BGX+BY6C0anissA0/n4yKPe0SQQa9W0I7aVBe/cfhUhFKWw4vHqaAMQV+sHfQkhzqIZeMyg=
-X-Received: by 2002:a9d:22e9:0:b0:5ac:1754:342c with SMTP id
- y96-20020a9d22e9000000b005ac1754342cmr3333680ota.159.1645236116595; Fri, 18
- Feb 2022 18:01:56 -0800 (PST)
+        bh=GMyd0+sXMi4cIFzcL0iJI6zscXkgFMDHcUknF9cxQis=;
+        b=7q93VtVt5Y1eurLQPoMvqsfUh64R0eC7z7njKkWXsxIk3PhGyEQhc/x62lB1F5M0rV
+         K1WGjZcZFsOziVJVkFawQXAmPmNaQ+My9WduEDRUu0sqeG1izcQSunWCuMeCu/+jIxjP
+         nr544cCvm7R/ei1QupzfFOBd8XWQvfYzBdcdrGsGWtjwQ0TmCUTyGLbhb1YM4V3z4WJ7
+         Xc85MiT/AHx4NfXnoX+48/cSjJoW9mMPDzSDRr7g/kVdqfLEYyqnyDIXlQCmu5RxIXb7
+         ufVLFQLzOQna3SwOMVY0marPmR7dMnCjTkf3VFvI8MKwxiL2o/zCU6f+grqBGr90rbzS
+         Uafg==
+X-Gm-Message-State: AOAM531RwravazGNmQtmhumTygARrF87iRV9jP67/xHCtOue3SyBFdPB
+        eikMb0PuqRGSpP5j2SBvicWZbNdQioTCWAgWXakh5w==
+X-Google-Smtp-Source: ABdhPJw34gCloewSbJ7M6JQB0jN6jKAkR9GAZpyAcVGrzLxrbEqMsFWVYuzOyI1NGQWi4ffTFeIXjyjw0kRA2nfyoa8=
+X-Received: by 2002:aca:df44:0:b0:2ce:285f:cb99 with SMTP id
+ w65-20020acadf44000000b002ce285fcb99mr6296170oig.40.1645237948132; Fri, 18
+ Feb 2022 18:32:28 -0800 (PST)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 18 Feb 2022 18:01:55 -0800
+ HTTPREST; Fri, 18 Feb 2022 18:32:27 -0800
 MIME-Version: 1.0
-In-Reply-To: <1645182064-15843-6-git-send-email-quic_c_skakit@quicinc.com>
-References: <1645182064-15843-1-git-send-email-quic_c_skakit@quicinc.com> <1645182064-15843-6-git-send-email-quic_c_skakit@quicinc.com>
+In-Reply-To: <1644851994-22732-2-git-send-email-quic_srivasam@quicinc.com>
+References: <1644851994-22732-1-git-send-email-quic_srivasam@quicinc.com> <1644851994-22732-2-git-send-email-quic_srivasam@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Fri, 18 Feb 2022 18:01:55 -0800
-Message-ID: <CAE-0n509bg6RzieOtYuUvicU14D7bmgH-u02F1TB+hBZ+xH4CA@mail.gmail.com>
-Subject: Re: [PATCH V7 5/5] arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Date:   Fri, 18 Feb 2022 18:32:27 -0800
+Message-ID: <CAE-0n52Ksur6aSuB69h49LjDFU2LXBh-b3HRTK+uYTU4fcQhDA@mail.gmail.com>
+Subject: Re: [PATCH v6 1/7] dt-bindings: pinctrl: qcom: Update lpass lpi file
+ name to SoC specific
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz,
+        quic_plai@quicinc.com, robh+dt@kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com
+Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,137 +74,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya (2022-02-18 03:01:03)
-> Add pm8008_infra and pm8008_regulators support for sc7280 idp.
+Quoting Srinivasa Rao Mandadapu (2022-02-14 07:19:48)
+> Change generic lpass lpi pincotrol bindings file to SoC specific file,
+> to distinguish and accomadate other SoC specific dt bindings.
 >
-> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
 > ---
-> Changes in V2:
->  - As per Stephen's comments, replaced '_' with '-' for node names.
->
-> Changes in V3:
->  - Changed the regulator node names as l1, l2 etc
->  - Changed "pm8008-regulators" to "regulators"
->  - Changed "qcom,min-dropout-voltage" to "regulator-min-dropout-voltage-microvolt"
->
-> Changes in V4:
->  - Moved all common stuff to pm8008.dtsi and added board specific configurations here.
->
-> Changes in V5:
->  - Changed the node names as per pm8008.dtsi
->  - Moved supply nodes to chip level (mfd node).
->  - Removed the regulator-mindropout property.
->
-> Changes in V6:
->  - No changes.
->
-> Changes in V7:
->  - No Changes.
->
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 66 ++++++++++++++++++++++++++++++++
->  1 file changed, 66 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index ecbf2b8..371ad19 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -263,6 +263,62 @@
->         };
->  };
->
-> +&i2c1 {
 
-Can we add another phandle?
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-&pm8008_bus: &i2c1 {
+If you generate the patch with git format-patch -M -C does it detect
+this is largely a copy? I tried myself and it looks like it is.
 
-> +       #address-cells = <1>;
-> +       #size-cells = <0>;
-> +       status = "okay";
-> +
-> +       #include "pm8008.dtsi"
-> +};
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+similarity index 97%
+rename from Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+rename to Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+index 5c5542f1627c..06efb1382876 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/pinctrl/qcom,lpass-lpi-pinctrl.yaml#
++$id: http://devicetree.org/schemas/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
 
-And then
+ title: Qualcomm Technologies, Inc. Low Power Audio SubSystem (LPASS)
 
-#include "pm8008.dtsi"
 
-and have the pm8008.dtsi file add itself as a child of &pm8008_bus? Then
-we can easily see that pm8008 is a child of pm8008_bus without having to
-figure out where the file is included. It also helps avoid polluting the
-i2c node with things that shouldn't be there in case we want to include
-configuration bits in the pm8008.dtsi file that aren't directly related
-to the bus node.
-
-> +
-> +&pm8008_infra {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pm8008_active>;
-> +};
-> +
-> +&pm8008_regulators {
-> +       vdd_l1_l2-supply = <&vreg_s8b_1p2>;
-> +       vdd_l3_l4-supply = <&vreg_s1b_1p8>;
-> +       vdd_l5-supply = <&vreg_bob>;
-> +       vdd_l6-supply = <&vreg_bob>;
-> +       vdd_l7-supply = <&vreg_bob>;
-> +};
-> +
-> +&pm8008_l1 {
-> +       regulator-min-microvolt = <950000>;
-> +       regulator-max-microvolt = <1300000>;
-> +};
-> +
-> +&pm8008_l2 {
-> +       regulator-min-microvolt = <950000>;
-> +       regulator-max-microvolt = <1250000>;
-> +};
-> +
-> +&pm8008_l3 {
-> +       regulator-min-microvolt = <1650000>;
-> +       regulator-max-microvolt = <3000000>;
-> +};
-> +
-> +&pm8008_l4 {
-> +       regulator-min-microvolt = <1504000>;
-> +       regulator-max-microvolt = <1600000>;
-> +};
-> +
-> +&pm8008_l5 {
-> +       regulator-min-microvolt = <2600000>;
-> +       regulator-max-microvolt = <3000000>;
-> +};
-> +
-> +&pm8008_l6 {
-> +       regulator-min-microvolt = <2600000>;
-> +       regulator-max-microvolt = <3000000>;
-> +};
-> +
-> +&pm8008_l7 {
-> +       regulator-min-microvolt = <3000000>;
-> +       regulator-max-microvolt = <3544000>;
-> +};
-> +
->  &qfprom {
->         vcc-supply = <&vreg_l1c_1p8>;
->  };
-> @@ -375,6 +431,16 @@
->         drive-strength = <2>;
->  };
->
-> +&pm8350c_gpios {
-> +       pm8008_active: pm8008_active {
-
-No underscore in node names. pm8008_active: pm8008-active {
-
-> +               pins = "gpio4";
-> +               function = "normal";
-> +               bias-disable;
-> +               output-high;
-
-Is this a reset signal? Should the driver be deasserting the reset when
-it is ready? That could be the same time the gpio is acquired.
-
-> +               power-source = <0>;
-> +       };
-> +};
+Please generate with -M and -C in the future.
