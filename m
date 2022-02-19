@@ -2,542 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1A094BC2BE
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 00:02:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 724114BC3FB
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 01:55:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230301AbiBRXCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 18:02:51 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36172 "EHLO
+        id S240566AbiBSAxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 19:53:39 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbiBRXCu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 18:02:50 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53FEE433BE
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 15:02:31 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0B776482;
-        Sat, 19 Feb 2022 00:02:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645225349;
-        bh=qmcGvqHgII2pGm21mXJUA++vgYhW+k+aJDJ4Bd/mMzk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BWYVH8QOoA8rJl2CtaGYQtLSVKRdE7rkNBPkYg088WS6b23sI663amZ2u1PHCXEOl
-         OwXnBwPKgzTnIyuofRBuWe27tMggl2rbn4PRAlIIJdL+WWsSLfgXSbUlvVW9okEcFo
-         h2Bc9t6vwyGdsnPP0sapb+BRuwjUzJopuDuApbAQ=
-Date:   Sat, 19 Feb 2022 01:02:20 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        patchwork-lst@pengutronix.de
-Subject: Re: [PATCH v2 3/9] soc: imx: gpcv2: add support for i.MX8MP power
- domains
-Message-ID: <YhAlfAunReS14b/E@pendragon.ideasonboard.com>
-References: <20220207192547.1997549-1-l.stach@pengutronix.de>
- <20220207192547.1997549-3-l.stach@pengutronix.de>
+        with ESMTP id S240572AbiBSAxi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 19:53:38 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 942C82790A7
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 16:53:18 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id qx21so18573567ejb.13
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 16:53:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MGHwoQoxInpR0HuivERFqQnJ/YDdnM3tfc/vI2kgqZ0=;
+        b=L+32DakSO8c8K7dQaYC2mtIW9t6DJ7J7BcXCm5xHqMTTEj6M8Cimt10zk9POL68FNO
+         3aoz7cOkrOtyIke8YwmdlQhiVzqZGXGgtb4l6LUYLXsVYSlXCNKXLnTIvzEWBa6N2DWV
+         iUpQ2/xuPrntHC/2N9lgLUM820GNGSeYE8wsQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MGHwoQoxInpR0HuivERFqQnJ/YDdnM3tfc/vI2kgqZ0=;
+        b=dOggkpKhRy7/6TgrtX0bA3Tt+no64imokM3Uqxvujnw+F3at3yqlhQH6KuOxTTds51
+         Xu0WbXWR/UxHaQCFIKmZkiRDy5VRyUurOdqLS4LTjj+CO5rgR+bdUoxgqDtW/cfn/kBV
+         MM3MuwdaT/LKsdT7hzykB/QoNWG6t26LAvcLonBJDTw+iBhyaJQdGCIHyiI1Uz8SA1Tl
+         GvTNVPmgqTLAtqDJ7rMIotKJnrruJCNkEUi7ZMRFnqyaX29lTfNwzZWTxGSNUiu8rWYF
+         yulQJJtngLy6kocHo3qXG7RAqdU5j+2H1F0w2yP0+fCFDa8GDRAdqmOaBLYdf+MQs1Xx
+         zx4Q==
+X-Gm-Message-State: AOAM531QknPdAhW9QzKinlH/ZnuN+Ngl9p2pbVsOuB9rORK7lQQcAwo9
+        659C2Rlffv9zTxpW1p9p5FO2dH7k15IM3Juazps=
+X-Google-Smtp-Source: ABdhPJytLLkK3Qipj/biwqpkcmH/em26hZZO5a38MSNd9YDaRjIDdvqHD1vPv4wU4tcY+F0v+oqpNQ==
+X-Received: by 2002:a17:906:a384:b0:6ce:c3f4:c59a with SMTP id k4-20020a170906a38400b006cec3f4c59amr8095063ejz.580.1645231996463;
+        Fri, 18 Feb 2022 16:53:16 -0800 (PST)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com. [209.85.218.41])
+        by smtp.gmail.com with ESMTPSA id j6sm5277023edl.98.2022.02.18.16.53.15
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Feb 2022 16:53:16 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id lw4so18595309ejb.12
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 16:53:15 -0800 (PST)
+X-Received: by 2002:a5d:64ef:0:b0:1e3:1e05:d042 with SMTP id
+ g15-20020a5d64ef000000b001e31e05d042mr7524925wri.679.1645231494092; Fri, 18
+ Feb 2022 16:44:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220207192547.1997549-3-l.stach@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75 autolearn=no autolearn_force=no
-        version=3.4.6
+References: <1644494255-6632-1-git-send-email-quic_sbillaka@quicinc.com> <1644494255-6632-6-git-send-email-quic_sbillaka@quicinc.com>
+In-Reply-To: <1644494255-6632-6-git-send-email-quic_sbillaka@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 18 Feb 2022 16:44:42 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WkjZr2vwo42rP7Ou_UP_CSoC=sGY08+pFHY_aVfN_Vhg@mail.gmail.com>
+Message-ID: <CAD=FV=WkjZr2vwo42rP7Ou_UP_CSoC=sGY08+pFHY_aVfN_Vhg@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] drm/msm/dp: Add driver support to utilize drm panel
+To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, quic_kalyant@quicinc.com,
+        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
+        quic_mkrishn@quicinc.com, quic_vproddut@quicinc.com,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
+Hi,
 
-Thank you for the patch.
-
-On Mon, Feb 07, 2022 at 08:25:41PM +0100, Lucas Stach wrote:
-> This adds driver support for all the GPC power domains found on
-> the i.MX8MP SoC.
-> 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+On Thu, Feb 10, 2022 at 3:58 AM Sankeerth Billakanti
+<quic_sbillaka@quicinc.com> wrote:
+>
+> Add support in the DP driver to utilize the custom eDP panels
+> from drm/panels.
+>
+> An eDP panel is always connected to the platform. So, the eDP
+> connector can be reported as always connected. The display mode
+> will be sourced from the panel. The panel mode will be set after
+> the link training is completed.
+>
+> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
 > ---
->  drivers/soc/imx/gpcv2.c | 387 +++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 386 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> index 01f46b078df3..a7c92bdfc53b 100644
-> --- a/drivers/soc/imx/gpcv2.c
-> +++ b/drivers/soc/imx/gpcv2.c
-> @@ -21,10 +21,12 @@
->  #include <dt-bindings/power/imx8mq-power.h>
->  #include <dt-bindings/power/imx8mm-power.h>
->  #include <dt-bindings/power/imx8mn-power.h>
-> +#include <dt-bindings/power/imx8mp-power.h>
->  
->  #define GPC_LPCR_A_CORE_BSC			0x000
->  
->  #define GPC_PGC_CPU_MAPPING		0x0ec
-> +#define IMX8MP_GPC_PGC_CPU_MAPPING	0x1cc
->  
->  #define IMX7_USB_HSIC_PHY_A_CORE_DOMAIN		BIT(6)
->  #define IMX7_USB_OTG2_PHY_A_CORE_DOMAIN		BIT(5)
-> @@ -65,6 +67,29 @@
->  #define IMX8MN_OTG1_A53_DOMAIN		BIT(4)
->  #define IMX8MN_MIPI_A53_DOMAIN		BIT(2)
->  
-> +#define IMX8MP_MEDIA_ISPDWP_A53_DOMAIN	BIT(20)
-> +#define IMX8MP_HSIOMIX_A53_DOMAIN		BIT(19)
-> +#define IMX8MP_MIPI_PHY2_A53_DOMAIN		BIT(18)
-> +#define IMX8MP_HDMI_PHY_A53_DOMAIN		BIT(17)
-> +#define IMX8MP_HDMIMIX_A53_DOMAIN		BIT(16)
-> +#define IMX8MP_VPU_VC8000E_A53_DOMAIN		BIT(15)
-> +#define IMX8MP_VPU_G2_A53_DOMAIN		BIT(14)
-> +#define IMX8MP_VPU_G1_A53_DOMAIN		BIT(13)
-> +#define IMX8MP_MEDIAMIX_A53_DOMAIN		BIT(12)
-> +#define IMX8MP_GPU3D_A53_DOMAIN			BIT(11)
-> +#define IMX8MP_VPUMIX_A53_DOMAIN		BIT(10)
-> +#define IMX8MP_GPUMIX_A53_DOMAIN		BIT(9)
-> +#define IMX8MP_GPU2D_A53_DOMAIN			BIT(8)
-> +#define IMX8MP_AUDIOMIX_A53_DOMAIN		BIT(7)
-> +#define IMX8MP_MLMIX_A53_DOMAIN			BIT(6)
-> +#define IMX8MP_USB2_PHY_A53_DOMAIN		BIT(5)
-> +#define IMX8MP_USB1_PHY_A53_DOMAIN		BIT(4)
-> +#define IMX8MP_PCIE_PHY_A53_DOMAIN		BIT(3)
-> +#define IMX8MP_MIPI_PHY1_A53_DOMAIN		BIT(2)
-> +
-> +#define IMX8MP_GPC_PU_PGC_SW_PUP_REQ	0x0d8
-> +#define IMX8MP_GPC_PU_PGC_SW_PDN_REQ	0x0e4
-> +
->  #define GPC_PU_PGC_SW_PUP_REQ		0x0f8
->  #define GPC_PU_PGC_SW_PDN_REQ		0x104
->  
-> @@ -107,8 +132,30 @@
->  #define IMX8MN_OTG1_SW_Pxx_REQ		BIT(2)
->  #define IMX8MN_MIPI_SW_Pxx_REQ		BIT(0)
->  
-> +#define IMX8MP_DDRMIX_Pxx_REQ			BIT(19)
-> +#define IMX8MP_MEDIA_ISP_DWP_Pxx_REQ		BIT(18)
-> +#define IMX8MP_HSIOMIX_Pxx_REQ			BIT(17)
-> +#define IMX8MP_MIPI_PHY2_Pxx_REQ		BIT(16)
-> +#define IMX8MP_HDMI_PHY_Pxx_REQ			BIT(15)
-> +#define IMX8MP_HDMIMIX_Pxx_REQ			BIT(14)
-> +#define IMX8MP_VPU_VC8K_Pxx_REQ			BIT(13)
-> +#define IMX8MP_VPU_G2_Pxx_REQ			BIT(12)
-> +#define IMX8MP_VPU_G1_Pxx_REQ			BIT(11)
-> +#define IMX8MP_MEDIMIX_Pxx_REQ			BIT(10)
-> +#define IMX8MP_GPU_3D_Pxx_REQ			BIT(9)
-> +#define IMX8MP_VPU_MIX_SHARE_LOGIC_Pxx_REQ	BIT(8)
-> +#define IMX8MP_GPU_SHARE_LOGIC_Pxx_REQ		BIT(7)
-> +#define IMX8MP_GPU_2D_Pxx_REQ			BIT(6)
-> +#define IMX8MP_AUDIOMIX_Pxx_REQ			BIT(5)
-> +#define IMX8MP_MLMIX_Pxx_REQ			BIT(4)
-> +#define IMX8MP_USB2_PHY_Pxx_REQ			BIT(3)
-> +#define IMX8MP_USB1_PHY_Pxx_REQ			BIT(2)
-> +#define IMX8MP_PCIE_PHY_SW_Pxx_REQ		BIT(1)
-> +#define IMX8MP_MIPI_PHY1_SW_Pxx_REQ		BIT(0)
-> +
->  #define GPC_M4_PU_PDN_FLG		0x1bc
->  
-> +#define IMX8MP_GPC_PU_PWRHSK		0x190
->  #define GPC_PU_PWRHSK			0x1fc
->  
->  #define IMX8M_GPU_HSK_PWRDNACKN			BIT(26)
-> @@ -118,7 +165,6 @@
->  #define IMX8M_VPU_HSK_PWRDNREQN			BIT(5)
->  #define IMX8M_DISP_HSK_PWRDNREQN		BIT(4)
->  
-> -
->  #define IMX8MM_GPUMIX_HSK_PWRDNACKN		BIT(29)
->  #define IMX8MM_GPU_HSK_PWRDNACKN		(BIT(27) | BIT(28))
->  #define IMX8MM_VPUMIX_HSK_PWRDNACKN		BIT(26)
-> @@ -137,6 +183,21 @@
->  #define IMX8MN_DISPMIX_HSK_PWRDNREQN		BIT(7)
->  #define IMX8MN_HSIO_HSK_PWRDNREQN		BIT(5)
->  
-> +#define IMX8MP_MEDIAMIX_PWRDNACKN		BIT(3)
+>
+> Changes in v4:
+>   - Remove obvious comments
+>   - Define separate connector_ops for eDP
+>   - Remove unnecessary checks
+>
+> Changes in v3:
+>   None
+>
+>  drivers/gpu/drm/msm/dp/dp_display.c |  6 ++++
+>  drivers/gpu/drm/msm/dp/dp_drm.c     | 62 +++++++++++++++++++++++++++++++------
+>  drivers/gpu/drm/msm/dp/dp_parser.h  |  3 ++
+>  3 files changed, 61 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index 7cc4d21..5d314e6 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -1513,6 +1513,9 @@ int msm_dp_display_enable(struct msm_dp *dp, struct drm_encoder *encoder)
+>                 return -EINVAL;
+>         }
+>
+> +       if (dp->connector_type == DRM_MODE_CONNECTOR_eDP)
+> +               dp_hpd_plug_handle(dp_display, 0);
 
-This should be bit 30.
+I'm really not so sure here. You're just totally ignoring the HPD
+signal here which isn't right at all. The HPD signal is important for
+knowing if an edp panel is ready yet so you can't just ignore it. The
+only way this could work is if something else turns the panel on w/
+plenty of time before your code runs so it has had time to get
+ready...
 
-> +#define IMX8MP_HDMIMIX_PWRDNACKN		BIT(29)
-> +#define IMX8MP_HSIOMIX_PWRDNACKN		BIT(28)
-> +#define IMX8MP_VPUMIX_PWRDNACKN			BIT(26)
-> +#define IMX8MP_GPUMIX_PWRDNACKN			BIT(25)
-> +#define IMX8MP_MLMIX_PWRDNACKN			(BIT(23) | BIT(24))
-> +#define IMX8MP_AUDIOMIX_PWRDNACKN		(BIT(20) | BIT(31))
-> +#define IMX8MP_MEDIAMIX_PWRDNREQN		BIT(14)
-> +#define IMX8MP_HDMIMIX_PWRDNREQN		BIT(13)
-> +#define IMX8MP_HSIOMIX_PWRDNREQN		BIT(12)
-> +#define IMX8MP_VPUMIX_PWRDNREQN			BIT(10)
-> +#define IMX8MP_GPUMIX_PWRDNREQN			BIT(9)
-> +#define IMX8MP_MLMIX_PWRDNREQN			(BIT(7) | BIT(8))
-> +#define IMX8MP_AUDIOMIX_PWRDNREQN		(BIT(4) | BIT(15))
+It feels like we just need to work to get this all plumbed up properly
+with the right power sequencing. That'll also allow us to enable the
+generic edp-panel stuff...
+
+
+> +static int edp_connector_get_modes(struct drm_connector *connector)
+> +{
+> +       struct msm_dp *dp;
 > +
->  /*
->   * The PGC offset values in Reference Manual
->   * (Rev. 1, 01/2018 and the older ones) GPC chapter's
-> @@ -179,6 +240,28 @@
->  #define IMX8MN_PGC_GPUMIX		23
->  #define IMX8MN_PGC_DISPMIX		26
->  
-> +#define IMX8MP_PGC_NOC			9
-> +#define IMX8MP_PGC_MIPI1		12
-> +#define IMX8MP_PGC_PCIE			13
-> +#define IMX8MP_PGC_USB1			14
-> +#define IMX8MP_PGC_USB2			15
-> +#define IMX8MP_PGC_MLMIX		16
-> +#define IMX8MP_PGC_AUDIOMIX		17
-> +#define IMX8MP_PGC_GPU2D		18
-> +#define IMX8MP_PGC_GPUMIX		19
-> +#define IMX8MP_PGC_VPUMIX		20
-> +#define IMX8MP_PGC_GPU3D		21
-> +#define IMX8MP_PGC_MEDIAMIX		22
-> +#define IMX8MP_PGC_VPU_G1		23
-> +#define IMX8MP_PGC_VPU_G2		24
-> +#define IMX8MP_PGC_VPU_VC8000E		25
-> +#define IMX8MP_PGC_HDMIMIX		26
-> +#define IMX8MP_PGC_HDMI			27
-> +#define IMX8MP_PGC_MIPI2		28
-> +#define IMX8MP_PGC_HSIOMIX		29
-> +#define IMX8MP_PGC_MEDIA_ISP_DWP	30
-> +#define IMX8MP_PGC_DDRMIX		31
+> +       dp = to_dp_connector(connector)->dp_display;
 > +
->  #define GPC_PGC_CTRL(n)			(0x800 + (n) * 0x40)
->  #define GPC_PGC_SR(n)			(GPC_PGC_CTRL(n) + 0xc)
->  
-> @@ -212,6 +295,9 @@ struct imx_pgc_domain {
->  	const int voltage;
->  	const bool keep_clocks;
->  	struct device *dev;
+> +       return drm_bridge_get_modes(dp->panel_bridge, connector);
+> +}
 > +
-> +	unsigned int pgc_sw_pup_reg;
-> +	unsigned int pgc_sw_pdn_reg;
+> +static enum drm_mode_status edp_connector_mode_valid(
+> +               struct drm_connector *connector,
+> +               struct drm_display_mode *mode)
+> +{
+> +       if (mode->clock > EDP_MAX_PIXEL_CLK_KHZ)
+> +               return MODE_CLOCK_HIGH;
+> +
+> +       return MODE_OK;
+> +}
+> +
+>  static const struct drm_connector_funcs dp_connector_funcs = {
+>         .detect = dp_connector_detect,
+>         .fill_modes = drm_helper_probe_single_connector_modes,
+> @@ -132,11 +151,24 @@ static const struct drm_connector_funcs dp_connector_funcs = {
+>         .atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
 >  };
->  
->  struct imx_pgc_domain_data {
-> @@ -824,6 +910,303 @@ static const struct imx_pgc_domain_data imx8mm_pgc_domain_data = {
->  	.pgc_regs = &imx7_pgc_regs,
+>
+> +static const struct drm_connector_funcs edp_connector_funcs = {
+> +       .fill_modes = drm_helper_probe_single_connector_modes,
+> +       .destroy = drm_connector_cleanup,
+> +       .reset = drm_atomic_helper_connector_reset,
+> +       .atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+> +       .atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+> +};
+> +
+>  static const struct drm_connector_helper_funcs dp_connector_helper_funcs = {
+>         .get_modes = dp_connector_get_modes,
+>         .mode_valid = dp_connector_mode_valid,
 >  };
->  
-> +static const struct imx_pgc_domain imx8mp_pgc_domains[] = {
-> +	[IMX8MP_POWER_DOMAIN_MIPI_PHY1] = {
-> +		.genpd = {
-> +			.name = "mipi-phy1",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_MIPI_PHY1_SW_Pxx_REQ,
-> +			.map = IMX8MP_MIPI_PHY1_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_MIPI1),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_PCIE_PHY] = {
-> +		.genpd = {
-> +			.name = "pcie-phy1",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_PCIE_PHY_SW_Pxx_REQ,
-> +			.map = IMX8MP_PCIE_PHY_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_PCIE),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_USB1_PHY] = {
-> +		.genpd = {
-> +			.name = "usb-otg1",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_USB1_PHY_Pxx_REQ,
-> +			.map = IMX8MP_USB1_PHY_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_USB1),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_USB2_PHY] = {
-> +		.genpd = {
-> +			.name = "usb-otg2",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_USB2_PHY_Pxx_REQ,
-> +			.map = IMX8MP_USB2_PHY_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_USB2),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_MLMIX] = {
-> +		.genpd = {
-> +			.name = "mlmix",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_MLMIX_Pxx_REQ,
-> +			.map = IMX8MP_MLMIX_A53_DOMAIN,
-> +			.hskreq = IMX8MP_MLMIX_PWRDNREQN,
-> +			.hskack = IMX8MP_MLMIX_PWRDNACKN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_MLMIX),
-> +		.keep_clocks = true,
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_AUDIOMIX] = {
-> +		.genpd = {
-> +			.name = "audiomix",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_AUDIOMIX_Pxx_REQ,
-> +			.map = IMX8MP_AUDIOMIX_A53_DOMAIN,
-> +			.hskreq = IMX8MP_AUDIOMIX_PWRDNREQN,
-> +			.hskack = IMX8MP_AUDIOMIX_PWRDNACKN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_AUDIOMIX),
-> +		.keep_clocks = true,
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_GPU2D] = {
-> +		.genpd = {
-> +			.name = "gpu2d",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_GPU_2D_Pxx_REQ,
-> +			.map = IMX8MP_GPU2D_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_GPU2D),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_GPUMIX] = {
-> +		.genpd = {
-> +			.name = "gpumix",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_GPU_SHARE_LOGIC_Pxx_REQ,
-> +			.map = IMX8MP_GPUMIX_A53_DOMAIN,
-> +			.hskreq = IMX8MP_GPUMIX_PWRDNREQN,
-> +			.hskack = IMX8MP_GPUMIX_PWRDNACKN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_GPUMIX),
-> +		.keep_clocks = true,
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_VPUMIX] = {
-> +		.genpd = {
-> +			.name = "vpumix",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_VPU_MIX_SHARE_LOGIC_Pxx_REQ,
-> +			.map = IMX8MP_VPUMIX_A53_DOMAIN,
-> +			.hskreq = IMX8MP_VPUMIX_PWRDNREQN,
-> +			.hskack = IMX8MP_VPUMIX_PWRDNACKN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_VPUMIX),
-> +		.keep_clocks = true,
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_GPU3D] = {
-> +		.genpd = {
-> +			.name = "gpu3d",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_GPU_3D_Pxx_REQ,
-> +			.map = IMX8MP_GPU3D_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_GPU3D),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_MEDIAMIX] = {
-> +		.genpd = {
-> +			.name = "mediamix",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_MEDIMIX_Pxx_REQ,
-> +			.map = IMX8MP_MEDIAMIX_A53_DOMAIN,
-> +			.hskreq = IMX8MP_MEDIAMIX_PWRDNREQN,
-> +			.hskack = IMX8MP_MEDIAMIX_PWRDNACKN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_MEDIAMIX),
-> +		.keep_clocks = true,
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_VPU_G1] = {
-> +		.genpd = {
-> +			.name = "vpu-g1",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_VPU_G1_Pxx_REQ,
-> +			.map = IMX8MP_VPU_G1_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_VPU_G1),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_VPU_G2] = {
-> +		.genpd = {
-> +			.name = "vpu-g2",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_VPU_G2_Pxx_REQ,
-> +			.map = IMX8MP_VPU_G2_A53_DOMAIN
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_VPU_G2),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_VPU_VC8000E] = {
-> +		.genpd = {
-> +			.name = "vpu-h1",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_VPU_VC8K_Pxx_REQ,
-> +			.map = IMX8MP_VPU_VC8000E_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_VPU_VC8000E),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_HDMIMIX] = {
-> +		.genpd = {
-> +			.name = "hdmimix",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_HDMIMIX_Pxx_REQ,
-> +			.map = IMX8MP_HDMIMIX_A53_DOMAIN,
-> +			.hskreq = IMX8MP_HDMIMIX_PWRDNREQN,
-> +			.hskack = IMX8MP_HDMIMIX_PWRDNACKN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_HDMIMIX),
-> +		.keep_clocks = true,
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_HDMI_PHY] = {
-> +		.genpd = {
-> +			.name = "hdmi-phy",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_HDMI_PHY_Pxx_REQ,
-> +			.map = IMX8MP_HDMI_PHY_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_HDMI),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_MIPI_PHY2] = {
-> +		.genpd = {
-> +			.name = "mipi-phy2",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_MIPI_PHY2_Pxx_REQ,
-> +			.map = IMX8MP_MIPI_PHY2_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_MIPI2),
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_HSIOMIX] = {
-> +		.genpd = {
-> +			.name = "hsiomix",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_HSIOMIX_Pxx_REQ,
-> +			.map = IMX8MP_HSIOMIX_A53_DOMAIN,
-> +			.hskreq = IMX8MP_HSIOMIX_PWRDNREQN,
-> +			.hskack = IMX8MP_HSIOMIX_PWRDNACKN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_HSIOMIX),
-> +		.keep_clocks = true,
-> +	},
-> +
-> +	[IMX8MP_POWER_DOMAIN_MEDIAMIX_ISPDWP] = {
-> +		.genpd = {
-> +			.name = "mediamix-isp-dwp",
-> +		},
-> +		.bits = {
-> +			.pxx = IMX8MP_MEDIA_ISP_DWP_Pxx_REQ,
-> +			.map = IMX8MP_MEDIA_ISPDWP_A53_DOMAIN,
-> +		},
-> +		.pgc = BIT(IMX8MP_PGC_MEDIA_ISP_DWP),
-> +	},
+>
+> +static const struct drm_connector_helper_funcs edp_connector_helper_funcs = {
+> +       .get_modes = edp_connector_get_modes,
+> +       .mode_valid = edp_connector_mode_valid,
 > +};
 > +
-> +static const struct regmap_range imx8mp_yes_ranges[] = {
-> +		regmap_reg_range(GPC_LPCR_A_CORE_BSC,
-> +				 IMX8MP_GPC_PGC_CPU_MAPPING),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_NOC),
-> +				 GPC_PGC_SR(IMX8MP_PGC_NOC)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MIPI1),
-> +				 GPC_PGC_SR(IMX8MP_PGC_MIPI1)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_PCIE),
-> +				 GPC_PGC_SR(IMX8MP_PGC_PCIE)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_USB1),
-> +				 GPC_PGC_SR(IMX8MP_PGC_USB1)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_USB2),
-> +				 GPC_PGC_SR(IMX8MP_PGC_USB2)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MLMIX),
-> +				 GPC_PGC_SR(IMX8MP_PGC_MLMIX)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_AUDIOMIX),
-> +				 GPC_PGC_SR(IMX8MP_PGC_AUDIOMIX)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_GPU2D),
-> +				 GPC_PGC_SR(IMX8MP_PGC_GPU2D)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_GPUMIX),
-> +				 GPC_PGC_SR(IMX8MP_PGC_GPUMIX)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPUMIX),
-> +				 GPC_PGC_SR(IMX8MP_PGC_VPUMIX)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_GPU3D),
-> +				 GPC_PGC_SR(IMX8MP_PGC_GPU3D)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MEDIAMIX),
-> +				 GPC_PGC_SR(IMX8MP_PGC_MEDIAMIX)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPU_G1),
-> +				 GPC_PGC_SR(IMX8MP_PGC_VPU_G1)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPU_G2),
-> +				 GPC_PGC_SR(IMX8MP_PGC_VPU_G2)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPU_VC8000E),
-> +				 GPC_PGC_SR(IMX8MP_PGC_VPU_VC8000E)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_HDMIMIX),
-> +				 GPC_PGC_SR(IMX8MP_PGC_HDMIMIX)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_HDMI),
-> +				 GPC_PGC_SR(IMX8MP_PGC_HDMI)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MIPI2),
-> +				 GPC_PGC_SR(IMX8MP_PGC_MIPI2)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_HSIOMIX),
-> +				 GPC_PGC_SR(IMX8MP_PGC_HSIOMIX)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MEDIA_ISP_DWP),
-> +				 GPC_PGC_SR(IMX8MP_PGC_MEDIA_ISP_DWP)),
-> +		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_DDRMIX),
-> +				 GPC_PGC_SR(IMX8MP_PGC_DDRMIX)),
-> +};
+>  /* connector initialization */
+>  struct drm_connector *dp_drm_connector_init(struct msm_dp *dp_display)
+>  {
+> @@ -154,18 +186,28 @@ struct drm_connector *dp_drm_connector_init(struct msm_dp *dp_display)
+>
+>         connector = &dp_connector->base;
+>
+> -       ret = drm_connector_init(dp_display->drm_dev, connector,
+> -                       &dp_connector_funcs,
+> -                       dp_display->connector_type);
+> -       if (ret)
+> -               return ERR_PTR(ret);
+> +       if (dp_display->connector_type == DRM_MODE_CONNECTOR_eDP) {
+> +               ret = drm_connector_init(dp_display->drm_dev, connector,
+> +                               &edp_connector_funcs, DRM_MODE_CONNECTOR_eDP);
+> +               if (ret)
+> +                       return ERR_PTR(ret);
 > +
-> +static const struct regmap_access_table imx8mp_access_table = {
-> +	.yes_ranges	= imx8mp_yes_ranges,
-> +	.n_yes_ranges	= ARRAY_SIZE(imx8mp_yes_ranges),
-> +};
-> +
-> +static const struct imx_pgc_regs imx8mp_pgc_regs = {
-> +	.map = IMX8MP_GPC_PGC_CPU_MAPPING,
-> +	.pup = IMX8MP_GPC_PU_PGC_SW_PUP_REQ,
-> +	.pdn = IMX8MP_GPC_PU_PGC_SW_PDN_REQ,
-> +	.hsk = IMX8MP_GPC_PU_PWRHSK,
-> +};
-> +static const struct imx_pgc_domain_data imx8mp_pgc_domain_data = {
-> +	.domains = imx8mp_pgc_domains,
-> +	.domains_num = ARRAY_SIZE(imx8mp_pgc_domains),
-> +	.reg_access_table = &imx8mp_access_table,
-> +	.pgc_regs = &imx8mp_pgc_regs,
-> +};
-> +
->  static const struct imx_pgc_domain imx8mn_pgc_domains[] = {
->  	[IMX8MN_POWER_DOMAIN_HSIOMIX] = {
->  		.genpd = {
-> @@ -1119,6 +1502,7 @@ static int imx_gpcv2_probe(struct platform_device *pdev)
->  		domain = pd_pdev->dev.platform_data;
->  		domain->regmap = regmap;
->  		domain->regs = domain_data->pgc_regs;
-> +
->  		domain->genpd.power_on  = imx_pgc_power_up;
->  		domain->genpd.power_off = imx_pgc_power_down;
->  
-> @@ -1140,6 +1524,7 @@ static const struct of_device_id imx_gpcv2_dt_ids[] = {
->  	{ .compatible = "fsl,imx7d-gpc", .data = &imx7_pgc_domain_data, },
->  	{ .compatible = "fsl,imx8mm-gpc", .data = &imx8mm_pgc_domain_data, },
->  	{ .compatible = "fsl,imx8mn-gpc", .data = &imx8mn_pgc_domain_data, },
-> +	{ .compatible = "fsl,imx8mp-gpc", .data = &imx8mp_pgc_domain_data, },
->  	{ .compatible = "fsl,imx8mq-gpc", .data = &imx8m_pgc_domain_data, },
->  	{ }
->  };
-> 
+> +               drm_connector_helper_add(connector,
+> +                               &edp_connector_helper_funcs);
+> +       } else {
+> +               ret = drm_connector_init(dp_display->drm_dev, connector,
+> +                               &dp_connector_funcs,
+> +                               DRM_MODE_CONNECTOR_DisplayPort);
+> +               if (ret)
+> +                       return ERR_PTR(ret);
+>
+> -       drm_connector_helper_add(connector, &dp_connector_helper_funcs);
+> +               drm_connector_helper_add(connector, &dp_connector_helper_funcs);
 
--- 
-Regards,
+This is probably not the correct way to do this. Drivers like this
+should really be moving _away_ from creating their own connectors. The
+idea is that you should just be creating bridges and then someone
+creates a "bridge connector" that implements the connector functions
+atop the bridge.
 
-Laurent Pinchart
+This is what Dmitry is working on [1]. Speaking of which, he really
+ought to be CCed on all your patches.
+
+
+> -       /*
+> -        * Enable HPD to let hpd event is handled when cable is connected.
+> -        */
+> -       connector->polled = DRM_CONNECTOR_POLL_HPD;
+> +               /*
+> +                * Enable HPD to let hpd event is handled when cable is connected.
+> +                */
+> +               connector->polled = DRM_CONNECTOR_POLL_HPD;
+> +       }
+>
+>         drm_connector_attach_encoder(connector, dp_display->encoder);
+>
+> diff --git a/drivers/gpu/drm/msm/dp/dp_parser.h b/drivers/gpu/drm/msm/dp/dp_parser.h
+> index 3172da0..58c4f27 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_parser.h
+> +++ b/drivers/gpu/drm/msm/dp/dp_parser.h
+> @@ -17,6 +17,9 @@
+>  #define DP_MAX_PIXEL_CLK_KHZ   675000
+>  #define DP_MAX_NUM_DP_LANES    4
+>
+> +/* Maximum validated clock */
+> +#define EDP_MAX_PIXEL_CLK_KHZ  285550
+
+As discussed out-of-band, this isn't my favorite define. The datasheet
+for sc7280, which is what you're testing on / targeting, claims to
+support higher rates. Other users of this driver also ought to support
+higher rates. It might be OK short term, but it's definitely not a
+good long term solution.
+
+[1] https://lore.kernel.org/all/20220211224006.1797846-5-dmitry.baryshkov@linaro.org/
