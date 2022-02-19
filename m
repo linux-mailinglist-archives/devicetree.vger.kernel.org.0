@@ -2,111 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C16534BC3A8
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 01:49:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 098494BC474
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 02:13:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240469AbiBSArz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 19:47:55 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40540 "EHLO
+        id S239725AbiBSBL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 20:11:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240500AbiBSArw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 19:47:52 -0500
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4478278282
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 16:47:29 -0800 (PST)
-Received: by mail-oi1-x22b.google.com with SMTP id j24so2703956oii.11
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 16:47:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=c/0FNgv5lUN8jWi4HV9B3F/rz6WuSHsRs+ZuBRv8FFI=;
-        b=ZiY0wwJ0SqisQuu6ArfKe03xg+2W+PovMKQyGMyksKruK698BV0tgUOmJQQczbB4Xy
-         es5RPo++t4bQEgF6wzMapiJTWPReNgRTwNNnnpyDJCfbCrFvTWOcPHowU1Vwl23ky6QG
-         DLN4/uaRUwaGd6Uiy3y+l0wMQJpMBa9ezEV3oMztup72dpEC+uY7NTrt5/fnJI8q9SwT
-         XepPFmnUClJGgK/xmhL+gQhVMQdh5nP1IFVL0PN3g01vJ0kc/FXov1ooooas1J6O8XfN
-         UX3AvR6/Kpz7g0WdEIyp4lPJ9SKAa2nSDYRPLrxuhBE571zxzuyKjTZXPQkW8/0ZFDVF
-         Btqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=c/0FNgv5lUN8jWi4HV9B3F/rz6WuSHsRs+ZuBRv8FFI=;
-        b=MehnE32mTe2f8yycR9v0YWDFy6rYzrBuBJFhdfZJ/4uBjF6zo/wRyu938agcjAAfID
-         1NS5HpV9WKbjd/VCXUyjWp+aCjzoBY/eNOwTKn3yzVTxpJfN2/aMEiULRc/BrGBULrne
-         ZoRNbzbZokdjF9M0nRblBlT+LPB7SUAsr1etDpz5OCPkTdFNrhbDxM032fjOkm1gwD9M
-         /ryPESaJ0URFeWwigNhOYt/tpZvbreIog22sNtN2x3kzxDgdpgFzeLYnOeoTebQ92UWq
-         oFWqR3CGc/g10DzhmtpNaVEEe3Dkh/c0KXJM4rQ7/sZFPHRYgi1jFC0c+iktReLf2LX2
-         OzKw==
-X-Gm-Message-State: AOAM5330v4BnXY4xdkHLCOH66n0knhaGrP66RuKWUA+RQFfcl0yjxit1
-        I5jLA7Nq+alVUIYwi1ImuChPlA==
-X-Google-Smtp-Source: ABdhPJzRQen7NvHhjcQNsc8zdzkieqqweNi8Zrd2NfXxhR0scCdRCj2ZIJPPYhXkW27QcvKyFYXfyg==
-X-Received: by 2002:a05:6808:190f:b0:2d4:b3c0:193a with SMTP id bf15-20020a056808190f00b002d4b3c0193amr1760730oib.229.1645231649091;
-        Fri, 18 Feb 2022 16:47:29 -0800 (PST)
-Received: from rivos-atish.. (adsl-70-228-75-190.dsl.akrnoh.ameritech.net. [70.228.75.190])
-        by smtp.gmail.com with ESMTPSA id n11sm11360794oal.1.2022.02.18.16.47.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Feb 2022 16:47:28 -0800 (PST)
-From:   Atish Patra <atishp@rivosinc.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atishp@rivosinc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv@lists.infradead.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [v6 9/9] MAINTAINERS: Add entry for RISC-V PMU drivers
-Date:   Fri, 18 Feb 2022 16:47:00 -0800
-Message-Id: <20220219004700.1973682-10-atishp@rivosinc.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220219004700.1973682-1-atishp@rivosinc.com>
-References: <20220219004700.1973682-1-atishp@rivosinc.com>
+        with ESMTP id S230301AbiBSBL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 20:11:26 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68743256EDC;
+        Fri, 18 Feb 2022 17:11:07 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id DEA26838FC;
+        Sat, 19 Feb 2022 02:11:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1645233065;
+        bh=4SHsxBH5ZD2zX8xKdgkrtOxu71RgyMGTeNTz+vpWntg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=TlwLmdUAKmjLJxm5eMMKQOFIwBo6/wv3h6vYARwhRyeF8evHd2mVweCMNx08YDpGw
+         JE3LgB9yP+O7YlR5ylOAtZ0EGdel948SlgZ6iLAuZGp/4/OQAsmRxngUhMyhAs80tH
+         7k+C9bK9bNA0LofPN0RKyWMyQV4UThHs+Jd1vMr8Pp8wHG+XiPBFk8RMu/buZbtxvF
+         tVQMSZdbTDb0JSAR/Sn+F13pGy9FPkVyqtxXFuR6HCnjByFuH7TylsTgKH45YPkKJT
+         xr3YJr2bLPvaQKFI9QPbZVauNk/uS9xl2/7LxK5CVsxSRhki5YwIi9S+BKIFmbJnqQ
+         TdUCXjW3byuTg==
+Message-ID: <182f1f73-70eb-5811-b3ad-35b6428ed59a@denx.de>
+Date:   Sat, 19 Feb 2022 02:11:04 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH 2/2] clk: rs9: Add Renesas 9-series PCIe clock generator
+ driver
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20220213173310.152230-1-marex@denx.de>
+ <20220213173310.152230-2-marex@denx.de>
+ <20220217234539.819AEC340E8@smtp.kernel.org>
+ <006919c7-74c9-390a-964e-6b76611988e5@denx.de>
+ <20220218221504.54F8DC340E9@smtp.kernel.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20220218221504.54F8DC340E9@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Atish Patra <atish.patra@wdc.com>
+On 2/18/22 23:15, Stephen Boyd wrote:
 
-Add myself and Anup as maintainer for RISC-V PMU drivers.
+Hi,
 
-Signed-off-by: Atish Patra <atish.patra@wdc.com>
-Signed-off-by: Atish Patra <atishp@rivosinc.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+>>>> @@ -68,6 +68,7 @@ obj-$(CONFIG_COMMON_CLK_STM32MP157)   += clk-stm32mp1.o
+>>>>    obj-$(CONFIG_COMMON_CLK_TPS68470)      += clk-tps68470.o
+>>>>    obj-$(CONFIG_CLK_TWL6040)              += clk-twl6040.o
+>>>>    obj-$(CONFIG_ARCH_VT8500)              += clk-vt8500.o
+>>>> +obj-$(CONFIG_COMMON_CLK_RS9_PCIE)      += clk-renesas-pcie.o
+>>>
+>>> Is there a reason it doesn't go into drivers/clk/renesas?
+>>
+>> The drivers/clk/renesas/ is for renesas SoC (R-Car/RZ/...),
+>> this chip is different group (it's probably even IDT PLL IP).
+> 
+> Ah ok so it's not a renesas SoC but a renesas IP?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fca970a46e77..101a07728d5f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16596,6 +16596,15 @@ S:	Maintained
- F:	drivers/mtd/nand/raw/r852.c
- F:	drivers/mtd/nand/raw/r852.h
- 
-+RISC-V PMU DRIVERS
-+M:	Atish Patra <atishp@atishpatra.org>
-+R:	Anup Patel <anup@brainfault.org>
-+L:	linux-riscv@lists.infradead.org
-+S:	Supported
-+F:	drivers/perf/riscv_pmu.c
-+F:	drivers/perf/riscv_pmu_legacy.c
-+F:	drivers/perf/riscv_pmu_sbi.c
-+
- RISC-V ARCHITECTURE
- M:	Paul Walmsley <paul.walmsley@sifive.com>
- M:	Palmer Dabbelt <palmer@dabbelt.com>
--- 
-2.30.2
+I suspect it is IDT IP, since the datasheet looks similar to what 
+versaclock datasheets used to look like, except the register layout is 
+much simpler and the registers are completely different. So it _might_ 
+be some mutation of the IDT PLL, and it is now owned by renesas.
 
+The renesas SoC clock IP is something entirely different from the IP 
+used here.
+
+>>>> +#include <linux/mod_devicetable.h>
+>>>> +#include <linux/module.h>
+>>>> +#include <linux/of.h>
+>>>> +#include <linux/of_platform.h>
+>>>
+>>> Is this used? If not please remove.
+>>
+>> This one is for of_device_get_match_data()
+>>
+> 
+> So it's going away?
+
+Yes
+
+[...]
+
+>>> Use clk_parent_data please.
+>>
+>> This one line I don't understand -- can you expand on what you expect me
+>> to do here ?
+> 
+> Use 'struct clk_parent_data' and set .index to 0 so that when
+> registering the clk you don't need to get the parent clk name.
+> 
+>>
+>>>> +       if (!parent_clk)
+>>>> +               return dev_err_probe(&client->dev, -EINVAL,
+>>>> +                                    "Missing XTal input clock\n");
+>>>> +
+>>>> +       rs9->regmap = devm_regmap_init_i2c(client, &rs9_regmap_config);
+>>>> +       if (IS_ERR(rs9->regmap))
+>>>> +               return dev_err_probe(&client->dev, PTR_ERR(rs9->regmap),
+>>>> +                                    "Failed to allocate register map\n");
+>>>> +
+>>>> +       /* Register clock */
+>>>> +       for (i = 0; i < rs9->chip_info->num_clks; i++) {
+>>>> +               name[3]++;
+>>>> +               hw = clk_hw_register_fixed_factor(&client->dev, name,
+>>>> +                                                 parent_clk, 0, 4, 1);
+> 
+> To do that it looks like maybe we'll need to export
+> __clk_hw_register_fixed_factor() and introduces some sort of
+> clk_hw_register_fixed_factor_parent_data() API.
+
+Setting parent_clk to NULL should be enough.
+
+[...]
