@@ -2,159 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99C494BC84E
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 12:51:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 766674BC85E
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 13:08:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236760AbiBSLvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 06:51:15 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41358 "EHLO
+        id S242228AbiBSMJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 07:09:08 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232111AbiBSLvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 06:51:14 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210AE20B390;
-        Sat, 19 Feb 2022 03:50:55 -0800 (PST)
-Received: from g550jk.localnet (ip-213-127-118-180.ip.prioritytelecom.net [213.127.118.180])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 77DD3C7237;
-        Sat, 19 Feb 2022 11:50:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1645271453; bh=nC99qo7DWCTFKJZfG2BsUuk/w+zIZq2q7Fu2YsHaMEU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=LIknI+e8nDnvXuaxUFMR2hDoxj3FbWPl8v1dNgkoE1GN7n88yWcSMWUrFLppE7cC4
-         7jOMGB7CaF4OMSEzYEdm3MB33EbEIByi/qeJiD3NJzk8FdDCMZ4JyQXXjOSyDt6btx
-         dWCpmS0OMxHFpj0vqmQzbJNsUWbvc/htZ7stmZ2o=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 10/15] arm64: dts: qcom: Add MSM8953 device tree
-Date:   Sat, 19 Feb 2022 12:50:52 +0100
-Message-ID: <4689218.GXAFRqVoOG@g550jk>
-In-Reply-To: <YgvXdFZfWEzHF2Oy@yoga>
-References: <20220112194118.178026-1-luca@z3ntu.xyz> <20220112194118.178026-11-luca@z3ntu.xyz> <YgvXdFZfWEzHF2Oy@yoga>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S240894AbiBSMJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 07:09:08 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D9366608
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 04:08:48 -0800 (PST)
+Received: from localhost.localdomain ([37.4.249.169]) by
+ mrelayeu.kundenserver.de (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1MOQu6-1ncLaP2beg-00Prwh; Sat, 19 Feb 2022 13:08:27 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org,
+        Maxime Ripard <maxime@cerno.tech>,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH] ARM: boot: dts: bcm2711: Fix HVS register range
+Date:   Sat, 19 Feb 2022 13:07:55 +0100
+Message-Id: <1645272475-4096-1-git-send-email-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.7.4
+X-Provags-ID: V03:K1:CEQXljQlq99kCIS1ovn802odaTpnYacaS+3Ogj8ElXNPPTDkElg
+ cevyNxcrsfhxgAcO3zh9TnJQ8tNG++GeF7m7PnzVThx3U3a4mqSSI1YISSw4Xjo7TJfx4Hj
+ RgkaEzkrOc5oZNEXwZC0bjPMYr6CwIcHIGgDXl9/Ku10S8GuDZGkJqbBKRf43oeNd7qDgWm
+ TYXSJFLGa6v6kyyGVyDoA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:iXlHHJ9AljU=:rI/f2rBnM3wxUNc8i0hOwm
+ YlzY3n5YrYROV2XTtERbPCXy5EpV/AiVbIs//ZBP4gA9yORNJr52S7hrxgM/G3f12D/5WQjR2
+ HNZcA9SB9kFIEyIM8eGJV8mSW9fgerVipepbvPUzJskjIlQu/FeAmebGZ+AexPgtzyCwVolyj
+ XwE045wsjCZrPZ3S8voL2QlgoDQ/VUze1GNxvNYObzjPvMFHU77gSGwo6BJYe/C3uAMtaB+GQ
+ Q1KFqZOU0qNSQ2fC+Qrq6t4KehubaHYa7faZvzzrMWnqEj9DelaJGI4Q7/ktQB+ALk+bh+MJb
+ UYoIa5yKe08T20ZMP6DiS2M0FMqI/4kGtUcOjEsdz7DGCC9KpXSFqOAYqO1GO43NxVNMlpljm
+ cS5UPtysEKqj0V7WvLDL4GVyyT2thy9xFV0YOrWVMhGKQihiZlXzMyiYtflQuJkE8Hqlzt3F8
+ bN+8g3LD/+TpsiXBExCbxcVn2wj2YvGPkDvXLoP0+cxjNGgcYKlCFQ0HBGWSJeg0HzrC8QN62
+ PuzyTGNZFLxl8+bY3HFcsVLiABWp+0VFuoO+lmCQUcdgi3uwyIBtESCibvXtaFfgY/cjHh2cH
+ NYtH9Km0dGxZ+OXEncmXtmknpdiAdNz2zXLCZDFWaAhEXAdyphvPKkq991dEk+dmLzhNMRdKZ
+ 6zKoYgSM+fmqLPgcuvd7mJmUMF18Lncgdo2Xh17VDkNTcpQic98pNA2QKUhZQRnAhm58qAkXV
+ swR2lj39dOdQicEx
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+From: Maxime Ripard <maxime@cerno.tech>
 
-On Dienstag, 15. Februar 2022 17:40:20 CET Bjorn Andersson wrote:
-> On Wed 12 Jan 13:40 CST 2022, Luca Weiss wrote:
-> > From: Vladimir Lypak <vladimir.lypak@gmail.com>
-> > 
-> > Add a base DT for MSM8953 SoC.
-> > 
-> > Co-developed-by: Luca Weiss <luca@z3ntu.xyz>
-> > Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > ---
-> > 
-> >  arch/arm64/boot/dts/qcom/msm8953.dtsi | 1337 +++++++++++++++++++++++++
-> >  1 file changed, 1337 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/qcom/msm8953.dtsi
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> > b/arch/arm64/boot/dts/qcom/msm8953.dtsi new file mode 100644
-> > index 000000000000..59918b527750
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> > @@ -0,0 +1,1337 @@
-> > +// SPDX-License-Identifier: BSD-3-Clause
-> > +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
-> > +
-> > +#include <dt-bindings/clock/qcom,gcc-msm8953.h>
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +#include <dt-bindings/power/qcom-rpmpd.h>
-> > +#include <dt-bindings/thermal/thermal.h>
-> > +
-> > +/ {
-> > +	interrupt-parent = <&intc>;
-> > +
-> > +	#address-cells = <2>;
-> > +	#size-cells = <2>;
-> 
-> Why do you have address/size-cells of 2, and then limit them to 1 in
-> /soc?
+While the HVS has the same context memory size in the BCM2711 than in
+the previous SoCs, the range allocated to the registers doubled and it
+now takes 16k + 16k, compared to 8k + 16k before.
 
-Quite a few arm64 qcom dtsi files use #address-cells & #size-cells = <1> which 
-also makes reg properties quite more readable - and we don't need the 64 bits 
-on 8953.
+The KMS driver will use the whole context RAM though, eventually
+resulting in a pointer dereference error when we access the higher half
+of the context memory since it hasn't been mapped.
 
-> 
-> > +
-> > +	aliases {
-> > +		i2c1 = &i2c_1;
-> > +		i2c2 = &i2c_2;
-> > +		i2c3 = &i2c_3;
-> > +		i2c4 = &i2c_4;
-> > +		i2c5 = &i2c_5;
-> > +		i2c6 = &i2c_6;
-> > +		i2c7 = &i2c_7;
-> > +		i2c8 = &i2c_8;
-> 
-> It was expressed a while back that you should specify alias only for the
-> things that you have enabled in your .dts.
+Fixes: 4564363351e2 ("ARM: dts: bcm2711: Enable the display pipeline")
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+---
+ arch/arm/boot/dts/bcm2711.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Sure, I'll remove it.
-
-> 
-> > +	};
-> 
-> [..]
-> 
-> > +		tcsr_mutex: hwlock@1905000 {
-> > +			compatible = "qcom,tcsr-mutex";
-> > +			reg = <0x1905000 0x20000>;
-> > +			#hwlock-cells = <1>;
-> > +		};
-> > +
-> > +		tcsr: syscon@1937000 {
-> > +			compatible = "qcom,tcsr-msm8953", "syscon";
-> > +			reg = <0x1937000 0x30000>;
-> > +		};
-> > +
-> > +		tcsr_phy_clk_scheme_sel: syscon@193f044 {
-> 
-> I don't fancy exposing a single word from the middle of &tcsr using a
-> syscon. The tcsr node should express the TCSR region and if we need to
-> reference bits of information within that we should do that in some
-> structured way.
-> 
-> Wouldn't nvmem be a good candidate for this?
-
-The qusb2 bindings expect the reference like this as far as I can tell, 
-
-qphy->tcsr = syscon_regmap_lookup_by_phandle(dev->of_node,
-                                           "qcom,tcsr-syscon");
-
-So I don't think we can change this without changing the driver as well?
-
-Regards
-Luca
-
-> 
-> > +			compatible = "syscon";
-> > +			reg = <0x193f044 0x4>;
-> > +		};
-> > +
-> 
-> Regards,
-> Bjorn
-
-
-
+diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
+index dff18fc..21294f7 100644
+--- a/arch/arm/boot/dts/bcm2711.dtsi
++++ b/arch/arm/boot/dts/bcm2711.dtsi
+@@ -290,6 +290,7 @@
+ 
+ 		hvs: hvs@7e400000 {
+ 			compatible = "brcm,bcm2711-hvs";
++			reg = <0x7e400000 0x8000>;
+ 			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
+ 
+-- 
+2.7.4
 
