@@ -2,156 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FFE04BC97E
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 18:16:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D26E74BC98D
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 18:39:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242600AbiBSRQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 12:16:59 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46460 "EHLO
+        id S235299AbiBSRkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 12:40:05 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242610AbiBSRQ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 12:16:58 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C17E2C07;
-        Sat, 19 Feb 2022 09:16:38 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id cm8so11307791edb.3;
-        Sat, 19 Feb 2022 09:16:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:cc
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=T9EQL5ZXNiD+KSv8P5NAsXTQao5/V3noUXFDN8MuNzk=;
-        b=I4x2sSs28bNnRdwIYHiDEpgJ0QStGbZFXjcOyVyb+rfJrG8t9CDV7vIiDpJM/UroJD
-         GbvJzZkAlulVPXeWjl0u7yr569mLS3iv1sJMUm5+96eKHdK3yLy7xrA8l4vr60XbaQMr
-         vwwK+i7ymWcIgSZQzflUhiqz9SlTstmVP3n9Kvnk0hgU8m9PSXKbmRc4ESbzK6al/Lai
-         LTCFRXKcU4rPFWOaRfc8RVKszeqj+HA/P8n89Nf3jYYksC2yP4NVhB1eiyMTvnEDsSk9
-         Z/97v0BE9JfNSCbgX6752MWjmjJJ8mp62RIZFzb2cB4rNKalA1VEN5SaVgmO7LXV1rki
-         T/jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=T9EQL5ZXNiD+KSv8P5NAsXTQao5/V3noUXFDN8MuNzk=;
-        b=ODCqxccnjJPB0eqVUHuL8EmFK/h0JG/KagVV7bicY31MylBIAMaL1+hEv4GajJJbMJ
-         yIKQg2TyzKIDWNIG67Gn+Gr2tsnf86taKRDMEizVRLTyaXcQ0P+NEeZfq9u/EdXb21i/
-         cy5tnjw7aoIhr7cViIkSAJNtxiXw/hNMgUAjC66IVqjx6bcDg5SL6gweL9dalymMXEWo
-         +zo8NTDMFbxtkPwWTT1Sni7m3RHYajx30GJbdGHtLiZU6F/KCSiSx23wt7GWAw17ITUM
-         FalISDkhxLi03tX82rL0v/8ja9d3lkCbpLYz63OxqeGZQcwZ6ak4j+1lAs2/mj9vYw2a
-         aHqQ==
-X-Gm-Message-State: AOAM533+FTkPL1e13E++x3TmNKUYDvIzsuH31iG+R4ywaqWN3eZeoutm
-        CvSpAzTh5LJhel+qFR6qS0GFsV2sQGU=
-X-Google-Smtp-Source: ABdhPJykHTjW+gWjmanRPCbVfqty60bJcp6S25QsAeOqUloeISYFvnm09pvUhltBBk0suYWV78hO3Q==
-X-Received: by 2002:a05:6402:3549:b0:412:b31c:5509 with SMTP id f9-20020a056402354900b00412b31c5509mr11051717edd.224.1645290997226;
-        Sat, 19 Feb 2022 09:16:37 -0800 (PST)
-Received: from ?IPV6:2003:ea:8f4d:2b00:5cf9:df09:c1b3:d44d? (p200300ea8f4d2b005cf9df09c1b3d44d.dip0.t-ipconnect.de. [2003:ea:8f4d:2b00:5cf9:df09:c1b3:d44d])
-        by smtp.googlemail.com with ESMTPSA id z22sm6522838edd.45.2022.02.19.09.16.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Feb 2022 09:16:36 -0800 (PST)
-Message-ID: <09bf3d8a-2902-723b-80d2-0c4d1c24f53d@gmail.com>
-Date:   Sat, 19 Feb 2022 18:16:32 +0100
+        with ESMTP id S233433AbiBSRkE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 12:40:04 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0C01B3721;
+        Sat, 19 Feb 2022 09:39:45 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2462C60C02;
+        Sat, 19 Feb 2022 17:39:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D769C004E1;
+        Sat, 19 Feb 2022 17:39:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645292384;
+        bh=q5vh7Hqz0EWyZEaGmusptGwSRgqiKYCYOveZSVUl/ow=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=W/9pl3vD1a8QnuF3UG/Sxx/VyNR2UaSZj0UwlZ+yyvDdYA0mxVjq7HAaX6MRKmYwx
+         3ynbnQ/9UcJJ3JjWfzXlKwZlB2hhjF1OP+1e72ApwENGdK0HXARDPZfRYq/ZMpc2WN
+         VBeVmiTkxq4qEcdDhxUTO6E2nrz/VXhX6t/TSr7F2ZZhCCrlWj2QM7vYy1LUB8WvEo
+         L/j6Fu5jJCr/JHpgZpTjt4ISLK8vomkWdszJ/zSE27TlTYEaB2uXQCyP7kVNYoxLW0
+         nLDoNGrFAXpeYHno9sWAWxzvTlivB9gRaTxmEGfJw56841KX8Hcdd0ZfyMoANJeWQa
+         YKGiHA530npQw==
+Date:   Sat, 19 Feb 2022 17:46:31 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc:     lars@metafoo.de, robh+dt@kernel.org, tomas.melin@vaisala.com,
+        andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH V2 0/5] iio: accel: sca3300: add compitible for scl3300
+Message-ID: <20220219174631.29c56207@jic23-huawei>
+In-Reply-To: <20220217062705.2867149-1-Qing-wu.Li@leica-geosystems.com.cn>
+References: <20220217062705.2867149-1-Qing-wu.Li@leica-geosystems.com.cn>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Content-Language: en-US
-To:     =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org
-References: <4172e59f-b9d5-d87d-9dbd-a6f683a2173c@gmail.com>
- <CANiq72mi5fj07cfo6T4jPmp=EiRtE_uDeHHCqjG9h+duPrUMKg@mail.gmail.com>
- <ecdbfb3a-e214-a059-95b9-1ebf2f625295@gmail.com>
- <862fc0e3-6c76-8dea-6725-a6c45ade1ecd@suse.de>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH 0/6] auxdisplay: Add support for the Titanmec TM1628 7
- segment display controller
-In-Reply-To: <862fc0e3-6c76-8dea-6725-a6c45ade1ecd@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19.02.2022 17:07, Andreas Färber wrote:
-> Hi,
+On Thu, 17 Feb 2022 06:27:00 +0000
+LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn> wrote:
+
+> The current driver support sca3300 only.
+> Modifed for support SCL3300.
+> Verifed with SCL3300 on IMX8MM.
+> Splited the change for review.
 > 
-> On 19.02.22 14:37, Heiner Kallweit wrote:
->> On 19.02.2022 14:27, Miguel Ojeda wrote:
->>> On Sat, Feb 19, 2022 at 2:13 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>>>
->>>> This series adds support for the Titanmec TM1628 7 segment display
->>>> controller. It's based on previous RFC work from Andreas Färber.
->>>> The RFC version placed the driver in the LED subsystem, but this was
->>>> NAK'ed by the LED maintainer. Therefore I moved the driver to
->>>> /drivers/auxdisplay what seems most reasonable to me.
->>>
->>> Could you please link to the discussion and/or summarize the rationale
->>> behind the NAK?
->>>
->>
->> +Pavel
->>
->> I didn't find an explicit reason, but I suppose Pavel sees this driver as
->> one that makes use of the LED subsystem, but doesn't belong to it.
->> In the following mail he's expressing his opinion that the driver should
->> be best placed under auxdisplay.
->>
->> https://lore.kernel.org/linux-arm-kernel/20200226130300.GB2800@duo.ucw.cz/
+> Same as sca3300, scl3300 have 3-axis acceleration,and temperature.
+> Different with sca3300, it can output inclination data directly.
+> The change add the support with scl3300, support inclination data output.
 > 
-> And I disagreed. It does not fit with the other drivers in auxdisplay
-> that were operating on a much higher level.
+> Change in V2:
+> Drop the extra interface for set/get opration mode.
+> Drop the interface for enalbe/disable inclination output,
+> set inclination output is alwasy on.
+> Fix the findings in V1.
+
+Please run a spell checker on cover letters / patch descriptions.
+
+Though as people who follow IIO patches will probably note, I
+often forget myself and have sent some completely unreadable
+messages as a result!  One of those do as I say, not as I do
+requests :)
+
+Jonathan
+
 > 
-
-We need to find a place. And if Pavel has good reasons that it doesn't
-fit into the LED subsystem, and Miguel should be fine with having
-it in auxdisplay, then I'd see no reason to not go this way.
-
-> I'd also like to point out that I did implement the map_to_7segment API,
-
-Looking at the history of include/uapi/linux/map_to_7segment.h I see no
-commit from you. Seems I'm missing something here.
-
-> as was suggested, as you will find in my tree - which you may have
-> missed, referencing only the RFC patchset and putting your authorship on
-> it exclusively? A move from one directory to another should not warrant
-> my author and SoB getting removed from the actual driver.
+> LI Qingwu (5):
+>   dt-bindings: iio: accel: sca3300: Document murata,scl3300
+>   iio: accel: sca3300: add define for temp channel for reuse.
+>   iio: accel: sca3300: modified to support multi chips
+>   iio: accel: sca3300: Add support for SCL3300
+>   iio: accel: sca3300: Add inclination channels.
 > 
-The driver includes major changes and I mentioned your work in the commit
-message. Also your still listed as MODULE_AUTHOR. My intention is to
-get a driver upstream, not to earn credits for something.
-So sure, your SoB can be (re-)added.
-
-> Given that we need to manage a buffer with bits per segment or LED
-> symbol, one idea that I haven't found time for yet was to implement it
-> as framebuffer or drm device instead. (And most Realtek platforms got
-> broken by removing the adjustable text base defines.)
-> 
-I'm not aware of the Realtek platform issue, do you have a link to a
-related discussion? And wouldn't you think it's overengineering to
-write a DRM driver for a 7 segment display with 4 digits?
-Framebuffer seems to be deprecated based on my experience with
-pygame / SDL2.
-
-> Regards,
-> Andreas
+>  .../bindings/iio/accel/murata,sca3300.yaml    |   1 +
+>  drivers/iio/accel/sca3300.c                   | 271 ++++++++++++++----
+>  2 files changed, 222 insertions(+), 50 deletions(-)
 > 
 
-Heiner
