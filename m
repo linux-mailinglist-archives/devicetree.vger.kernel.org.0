@@ -2,592 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F4AE4BCAFC
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 23:10:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAB3B4BCB2F
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 00:58:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231562AbiBSWKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 17:10:45 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33694 "EHLO
+        id S231745AbiBSX6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 18:58:39 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbiBSWKo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 17:10:44 -0500
-Received: from mx2.smtp.larsendata.com (mx2.smtp.larsendata.com [91.221.196.228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FE2142A19
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 14:10:21 -0800 (PST)
-Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
-        by mx2.smtp.larsendata.com (Halon) with ESMTPS
-        id c5297060-91d0-11ec-b2df-0050568cd888;
-        Sat, 19 Feb 2022 22:10:38 +0000 (UTC)
-Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sam@ravnborg.org)
-        by mail01.mxhotel.dk (Postfix) with ESMTPSA id 0D1E7194B34;
-        Sat, 19 Feb 2022 23:10:18 +0100 (CET)
-Date:   Sat, 19 Feb 2022 23:10:14 +0100
-X-Report-Abuse-To: abuse@mxhotel.dk
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>
-Cc:     robh+dt@kernel.org, thierry.reding@gmail.com, maxime@cerno.tech,
-        dave.stevenson@raspberrypi.com, david@lechnology.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 3/3] drm/tiny: Add MIPI DBI compatible SPI driver
-Message-ID: <YhFqxklH9hsLrI1X@ravnborg.org>
-References: <20220218151110.11316-1-noralf@tronnes.org>
- <20220218151110.11316-4-noralf@tronnes.org>
+        with ESMTP id S229821AbiBSX6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 18:58:38 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54ECA38B7
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 15:58:18 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id v22so7570507ljh.7
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 15:58:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=davTlAz72/o8PzH0gfbXYTV3qnPMMT+uYMyKepr6G5I=;
+        b=gpIzCawQ7726/hWrK4YYTMqxVQSQ+isU4ZSHdyFlx9TkwfZokyi796JG+kQp7csEtL
+         iyeCjl9TlHFyuauhIpMANmAcGt/wNX+YNM8mr3A2NKiinY1gGYRmcIXwH+tjg0C7Zzc+
+         MbB6xGg/bWmyN57/OdGmbJ2q+WCdkq5+Gnpnetp1Frlvj+hxJSpEZTKm2Yo5wbjdUhjv
+         bAP4M8+FImn/IbXBT/2pQaAbxnr9RXIBS+QZmKhvDwwovyTZYvj04DNpsekP63NlQ0Ip
+         iV3w8xhQs4OWGlIx6fTA4T+ULsylCnBleh7tNYm47hRfY+D7Qg+Yfa/zoYairLKOO95s
+         6VPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=davTlAz72/o8PzH0gfbXYTV3qnPMMT+uYMyKepr6G5I=;
+        b=FXznn0btckocpBDUmEbovsXdFutKYY0tzNA1W7fD6vAaeFKgEgtRHDXRccJdkKvWBA
+         Q/svEpzEdA3m8DfMh+ijlhrjXNq236kKzv/IuvSJd3DEfUTDASYR5JK4+9XAqosrCe6a
+         bFnNvUyo41LsWRh9+Cw8a/8/vOQ8ljtq/KR8dK3QdybN99zqoIKZEu05Ca+3ik1ABWbn
+         304o1dLt+x7u8WNCcV4NaYOJYRUXttOOj4EpSo4jvgHKNbKVaZ3BBBU+YCwhX8wxzJBo
+         9LRm194r+265rjSIsMBqqrzDq+8xAbDKuQjc4UgxtBC9FlQFHG9xN5jFhc8JjZ9mg+pt
+         +/7w==
+X-Gm-Message-State: AOAM533ENHCMhswH0dr07VzgVmFvUNy3vDpXtBiroFVJnF37hqqS+QDG
+        M8FkYma+j84iLn6hKbgf1aAoYQ==
+X-Google-Smtp-Source: ABdhPJyQFOkTeWyLkS8fTh2/rw4kF64sCDC5TAs3PjIg8YLy+/XN839nIdoHfVIaCJyc1OHZtauocg==
+X-Received: by 2002:a05:651c:198f:b0:244:4deb:70d6 with SMTP id bx15-20020a05651c198f00b002444deb70d6mr9980225ljb.167.1645315096519;
+        Sat, 19 Feb 2022 15:58:16 -0800 (PST)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id q34sm814106lje.121.2022.02.19.15.58.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Feb 2022 15:58:16 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     linux-leds@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Antonio Ospite <ao2@ao2.it>
+Subject: [PATCH 1/3] dt-bindings: leds: Add regulator-led binding
+Date:   Sun, 20 Feb 2022 00:56:05 +0100
+Message-Id: <20220219235607.1613686-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220218151110.11316-4-noralf@tronnes.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Noralf,
-On Fri, Feb 18, 2022 at 04:11:10PM +0100, Noralf Trønnes wrote:
-> Add a driver that will work with most MIPI DBI compatible SPI panels.
-> This avoids adding a driver for every new MIPI DBI compatible controller
-> that is to be used by Linux. The 'compatible' Device Tree property with
-> a '.bin' suffix will be used to load a firmware file that contains the
-> controller configuration.
-A solution where we have the command sequences as part of the DT-overlay
-is IMO a much better way to solve this:
-- The users needs to deal only with a single file, so there is less that
-  goes wrong
-- The user need not reading special instructions how to handle a .bin
-  file, if the overlay is present everything is fine
-- The file that contains the command sequences can be properly annotated
-  with comments
-- The people that creates the command sequences has no need for a special
-  script to create the file for a display - this is all readable ascii.
-- Using a DT-overlay the parsing of the DT-overlay can be done by
-  well-tested functions, no need to invent something new to parse the
-  file
+The regulator is a LED connected directly to a regulator and with
+its brightness controlled by the voltage of the regulator.
 
+Cc: devicetree@vger.kernel.org
+Cc: Antonio Ospite <ao2@ao2.it>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ .../bindings/leds/regulator-led.yaml          | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/regulator-led.yaml
 
-The idea with a common mipi DBI SPI driver is super, it is the detail
-with the .bin file that I am against.
+diff --git a/Documentation/devicetree/bindings/leds/regulator-led.yaml b/Documentation/devicetree/bindings/leds/regulator-led.yaml
+new file mode 100644
+index 000000000000..3e020d700c00
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/regulator-led.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/regulator-led.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Device Tree Bindings for Regulator LEDs
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  Regulator LEDs are powered by a single regulator such that they can
++  be turned on or off by enabling or disabling the regulator. The available
++  brightness settings will be inferred from the available voltages on the
++  regulator, and any constraints on the voltage or current will need to be
++  specified on the regulator.
++
++allOf:
++  - $ref: common.yaml#
++
++properties:
++  $nodename:
++    pattern: '^led.*$'
++
++  compatible:
++    const: regulator-led
++
++  vled-supply:
++    description:
++      The regulator controlling the current to the LED.
++
++  function: true
++  color: true
++  linux,default-trigger: true
++  default-state: true
++
++required:
++  - compatible
++  - vled-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++
++    led-heartbeat {
++        compatible = "regulator-led";
++        vled-supply = <&regulator>;
++        function = LED_FUNCTION_STATUS;
++        color = <LED_COLOR_ID_BLUE>;
++        linux,default-trigger = "heartbeat";
++    };
++...
+-- 
+2.34.1
 
-With the above said, a few comments to the current implementation below.
-As we know it from you - a very well-written driver.
-
-	Sam
-
-> Acked-by: Maxime Ripard <maxime@cerno.tech>
-> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
-> ---
->  MAINTAINERS                           |   8 +
->  drivers/gpu/drm/tiny/Kconfig          |  13 +
->  drivers/gpu/drm/tiny/Makefile         |   1 +
->  drivers/gpu/drm/tiny/panel-mipi-dbi.c | 413 ++++++++++++++++++++++++++
->  4 files changed, 435 insertions(+)
->  create mode 100644 drivers/gpu/drm/tiny/panel-mipi-dbi.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8e6e892f99f0..3a0e57f23ad0 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6107,6 +6107,14 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
->  F:	Documentation/devicetree/bindings/display/multi-inno,mi0283qt.txt
->  F:	drivers/gpu/drm/tiny/mi0283qt.c
->  
-> +DRM DRIVER FOR MIPI DBI compatible panels
-> +M:	Noralf Trønnes <noralf@tronnes.org>
-> +S:	Maintained
-> +W:	https://github.com/notro/panel-mipi-dbi/wiki
-Nice with a wiki for this, I can see this will grow over time and be a
-place to find how to support more panels.
-
-> +T:	git git://anongit.freedesktop.org/drm/drm-misc
-> +F:	Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> +F:	drivers/gpu/drm/tiny/panel-mipi-dbi.c
-> +
->  DRM DRIVER FOR MSM ADRENO GPU
->  M:	Rob Clark <robdclark@gmail.com>
->  M:	Sean Paul <sean@poorly.run>
-> diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-> index 712e0004e96e..d552e1618da7 100644
-> --- a/drivers/gpu/drm/tiny/Kconfig
-> +++ b/drivers/gpu/drm/tiny/Kconfig
-> @@ -51,6 +51,19 @@ config DRM_GM12U320
->  	 This is a KMS driver for projectors which use the GM12U320 chipset
->  	 for video transfer over USB2/3, such as the Acer C120 mini projector.
->  
-> +config DRM_PANEL_MIPI_DBI
-> +	tristate "DRM support for MIPI DBI compatible panels"
-> +	depends on DRM && SPI
-> +	select DRM_KMS_HELPER
-> +	select DRM_KMS_CMA_HELPER
-This symbol is not present in my drm-misc-next tree (which is a few
-weeks old, so it may be newer).
-
-> +	select DRM_MIPI_DBI
-> +	select BACKLIGHT_CLASS_DEVICE
-> +	help
-> +	  Say Y here if you want to enable support for MIPI DBI compatible
-> +	  panels. The controller command setup can be provided using a
-> +	  firmware file.
-Consider adding a link to the wiki here - this may make it easier for
-the user to find it.
-
-> +	  To compile this driver as a module, choose M here.
-> +
->  config DRM_SIMPLEDRM
->  	tristate "Simple framebuffer driver"
->  	depends on DRM && MMU
-> diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
-> index 5d5505d40e7b..1d9d6227e7ab 100644
-> --- a/drivers/gpu/drm/tiny/Makefile
-> +++ b/drivers/gpu/drm/tiny/Makefile
-> @@ -4,6 +4,7 @@ obj-$(CONFIG_DRM_ARCPGU)		+= arcpgu.o
->  obj-$(CONFIG_DRM_BOCHS)			+= bochs.o
->  obj-$(CONFIG_DRM_CIRRUS_QEMU)		+= cirrus.o
->  obj-$(CONFIG_DRM_GM12U320)		+= gm12u320.o
-> +obj-$(CONFIG_DRM_PANEL_MIPI_DBI)	+= panel-mipi-dbi.o
->  obj-$(CONFIG_DRM_SIMPLEDRM)		+= simpledrm.o
->  obj-$(CONFIG_TINYDRM_HX8357D)		+= hx8357d.o
->  obj-$(CONFIG_TINYDRM_ILI9163)		+= ili9163.o
-> diff --git a/drivers/gpu/drm/tiny/panel-mipi-dbi.c b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-> new file mode 100644
-> index 000000000000..9240fdec38d6
-> --- /dev/null
-> +++ b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
-> @@ -0,0 +1,413 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * DRM driver for MIPI DBI compatible display panels
-> + *
-> + * Copyright 2022 Noralf Trønnes
-> + */
-> +
-> +#include <linux/backlight.h>
-> +#include <linux/delay.h>
-> +#include <linux/firmware.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-> +
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_drv.h>
-> +#include <drm/drm_fb_helper.h>
-> +#include <drm/drm_gem_atomic_helper.h>
-> +#include <drm/drm_gem_cma_helper.h>
-> +#include <drm/drm_managed.h>
-> +#include <drm/drm_mipi_dbi.h>
-> +#include <drm/drm_modeset_helper.h>
-> +
-> +#include <video/display_timing.h>
-> +#include <video/mipi_display.h>
-> +#include <video/of_display_timing.h>
-> +#include <video/videomode.h>
-videomode should not be used in new drivers, it is an fbdev artifact.
-But that said - we are still missing a direct display_timing =>
-display_mode - so maybe we need it here.
-
-If it is needed Kconfig needs to be extended with:
-select VIDEOMODE_HELPERS
-
-> +
-> +static const u8 panel_mipi_dbi_magic[15] = { 'M', 'I', 'P', 'I', ' ', 'D', 'B', 'I',
-> +					     0, 0, 0, 0, 0, 0, 0 };
-> +
-> +/*
-> + * The optional display controller configuration is stored in a firmware file.
-> + * The Device Tree 'compatible' property value with a '.bin' suffix is passed
-> + * to request_firmware() to fetch this file.
-> + */
-> +struct panel_mipi_dbi_config {
-> +	/* Magic string: panel_mipi_dbi_magic */
-> +	u8 magic[15];
-> +
-> +	/* Config file format version */
-> +	u8 file_format_version;
-> +
-> +	/*
-> +	 * MIPI commands to execute when the display pipeline is enabled.
-> +	 * This is used to configure the display controller.
-> +	 *
-> +	 * The commands are stored in a byte array with the format:
-> +	 *     command, num_parameters, [ parameter, ...], command, ...
-> +	 *
-> +	 * Some commands require a pause before the next command can be received.
-> +	 * Inserting a delay in the command sequence is done by using the NOP command with one
-> +	 * parameter: delay in miliseconds (the No Operation command is part of the MIPI Display
-> +	 * Command Set where it has no parameters).
-> +	 *
-> +	 * Example:
-> +	 *     command 0x11
-> +	 *     sleep 120ms
-> +	 *     command 0xb1 parameters 0x01, 0x2c, 0x2d
-> +	 *     command 0x29
-> +	 *
-> +	 * Byte sequence:
-> +	 *     0x11 0x00
-> +	 *     0x00 0x01 0x78
-> +	 *     0xb1 0x03 0x01 0x2c 0x2d
-> +	 *     0x29 0x00
-> +	 */
-> +	u8 commands[];
-> +};
-> +
-> +struct panel_mipi_dbi_commands {
-> +	const u8 *buf;
-> +	size_t len;
-> +};
-> +
-> +static struct panel_mipi_dbi_commands *
-> +panel_mipi_dbi_check_commands(struct device *dev, const struct firmware *fw)
-> +{
-> +	const struct panel_mipi_dbi_config *config = (struct panel_mipi_dbi_config *)fw->data;
-> +	struct panel_mipi_dbi_commands *commands;
-> +	size_t size = fw->size, commands_len;
-> +	unsigned int i = 0;
-> +
-> +	if (size < sizeof(*config) + 2) { /* At least 1 command */
-> +		dev_err(dev, "config: file size=%zu is too small\n", size);
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	if (memcmp(config->magic, panel_mipi_dbi_magic, sizeof(config->magic))) {
-> +		dev_err(dev, "config: Bad magic: %15ph\n", config->magic);
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	if (config->file_format_version != 1) {
-> +		dev_err(dev, "config: version=%u is not supported\n", config->file_format_version);
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	drm_dev_dbg(dev, DRM_UT_DRIVER, "size=%zu version=%u\n", size, config->file_format_version);
-> +
-> +	commands_len = size - sizeof(*config);
-> +
-> +	while ((i + 1) < commands_len) {
-> +		u8 command = config->commands[i++];
-> +		u8 num_parameters = config->commands[i++];
-> +		const u8 *parameters = &config->commands[i];
-> +
-> +		i += num_parameters;
-> +		if (i > commands_len) {
-> +			dev_err(dev, "config: command=0x%02x num_parameters=%u overflows\n",
-> +				command, num_parameters);
-> +			return ERR_PTR(-EINVAL);
-> +		}
-> +
-> +		if (command == 0x00 && num_parameters == 1)
-> +			drm_dev_dbg(dev, DRM_UT_DRIVER, "sleep %ums\n", parameters[0]);
-> +		else
-> +			drm_dev_dbg(dev, DRM_UT_DRIVER, "command %02x %*ph\n",
-> +				    command, num_parameters, parameters);
-> +	}
-> +
-> +	if (i != commands_len) {
-> +		dev_err(dev, "config: malformed command array\n");
-> +		return ERR_PTR(-EINVAL);
-> +	}
-> +
-> +	commands = devm_kzalloc(dev, sizeof(*commands), GFP_KERNEL);
-> +	if (!commands)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	commands->len = commands_len;
-> +	commands->buf = devm_kmemdup(dev, config->commands, commands->len, GFP_KERNEL);
-> +	if (!commands->buf)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	return commands;
-> +}
-> +
-> +static struct panel_mipi_dbi_commands *panel_mipi_dbi_commands_from_fw(struct device *dev)
-> +{
-> +	struct panel_mipi_dbi_commands *commands;
-> +	const struct firmware *fw;
-> +	const char *compatible;
-> +	struct property *prop;
-> +	char fw_name[40];
-> +	int ret;
-> +
-> +	of_property_for_each_string(dev->of_node, "compatible", prop, compatible) {
-> +		snprintf(fw_name, sizeof(fw_name), "%s.bin", compatible);
-> +		ret = firmware_request_nowarn(&fw, fw_name, dev);
-> +		if (ret) {
-> +			drm_dev_dbg(dev, DRM_UT_DRIVER,
-> +				    "No config file found for compatible: '%s' (error=%d)\n",
-> +				    compatible, ret);
-It would be more helpful to spell out that we failed to find a file
-named compatible.bin here as the user may not be aware that the .bin
-file is needed.
-
-> +			continue;
-> +		}
-> +
-> +		commands = panel_mipi_dbi_check_commands(dev, fw);
-> +		release_firmware(fw);
-> +		return commands;
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
-> +static void panel_mipi_dbi_commands_execute(struct mipi_dbi *dbi,
-> +					    struct panel_mipi_dbi_commands *commands)
-> +{
-> +	unsigned int i = 0;
-> +
-> +	if (!commands)
-> +		return;
-> +
-> +	while (i < commands->len) {
-> +		u8 command = commands->buf[i++];
-> +		u8 num_parameters = commands->buf[i++];
-> +		const u8 *parameters = &commands->buf[i];
-> +
-> +		if (command == 0x00 && num_parameters == 1)
-> +			msleep(parameters[0]);
-> +		else if (num_parameters)
-> +			mipi_dbi_command_stackbuf(dbi, command, parameters, num_parameters);
-> +		else
-> +			mipi_dbi_command(dbi, command);
-> +
-> +		i += num_parameters;
-> +	}
-> +}
-> +
-> +static void panel_mipi_dbi_enable(struct drm_simple_display_pipe *pipe,
-> +				  struct drm_crtc_state *crtc_state,
-> +				  struct drm_plane_state *plane_state)
-> +{
-> +	struct mipi_dbi_dev *dbidev = drm_to_mipi_dbi_dev(pipe->crtc.dev);
-> +	struct mipi_dbi *dbi = &dbidev->dbi;
-> +	int ret, idx;
-> +
-> +	if (!drm_dev_enter(pipe->crtc.dev, &idx))
-> +		return;
-> +
-> +	drm_dbg(pipe->crtc.dev, "\n");
-> +
-> +	ret = mipi_dbi_poweron_conditional_reset(dbidev);
-> +	if (ret < 0)
-> +		goto out_exit;
-> +	if (!ret)
-> +		panel_mipi_dbi_commands_execute(dbi, dbidev->driver_private);
-> +
-> +	mipi_dbi_enable_flush(dbidev, crtc_state, plane_state);
-> +out_exit:
-> +	drm_dev_exit(idx);
-> +}
-> +
-> +static const struct drm_simple_display_pipe_funcs panel_mipi_dbi_pipe_funcs = {
-> +	.enable = panel_mipi_dbi_enable,
-> +	.disable = mipi_dbi_pipe_disable,
-> +	.update = mipi_dbi_pipe_update,
-> +};
-> +
-> +DEFINE_DRM_GEM_CMA_FOPS(panel_mipi_dbi_fops);
-> +
-> +static const struct drm_driver panel_mipi_dbi_driver = {
-> +	.driver_features	= DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
-> +	.fops			= &panel_mipi_dbi_fops,
-> +	DRM_GEM_CMA_DRIVER_OPS_VMAP,
-> +	.debugfs_init		= mipi_dbi_debugfs_init,
-> +	.name			= "panel-mipi-dbi",
-> +	.desc			= "MIPI DBI compatible display panel",
-> +	.date			= "20220103",
-> +	.major			= 1,
-> +	.minor			= 0,
-> +};
-> +
-> +static int panel_mipi_dbi_get_mode(struct mipi_dbi_dev *dbidev, struct drm_display_mode *mode)
-> +{
-> +	struct device *dev = dbidev->drm.dev;
-> +	u32 width_mm = 0, height_mm = 0;
-> +	struct display_timing timing;
-> +	struct videomode vm;
-> +	int ret;
-> +
-> +	ret = of_get_display_timing(dev->of_node, "panel-timing", &timing);
-> +	if (ret) {
-> +		dev_err(dev, "%pOF: failed to get panel-timing (error=%d)\n", dev->of_node, ret);
-> +		return ret;
-> +	}
-> +
-> +	videomode_from_timing(&timing, &vm);
-> +
-> +	if (!vm.hactive || vm.hfront_porch || vm.hsync_len ||
-> +	    (vm.hback_porch + vm.hactive) > 0xffff ||
-> +	    !vm.vactive || vm.vfront_porch || vm.vsync_len ||
-> +	    (vm.vback_porch + vm.vactive) > 0xffff ||
-> +	    vm.flags) {
-> +		dev_err(dev, "%pOF: panel-timing out of bounds\n", dev->of_node);
-> +		return -EINVAL;
-> +	}
-We should have a helper that implements this. Maybe the display_timing
-=> display_mode helper could do it.
-
-> +
-> +	/* The driver doesn't use the pixel clock but it is mandatory so fake one if not set */
-> +	if (!vm.pixelclock)
-> +		vm.pixelclock = (vm.hback_porch + vm.hactive) * (vm.vback_porch + vm.vactive) * 60;
-> +
-> +	dbidev->top_offset = vm.vback_porch;
-> +	dbidev->left_offset = vm.hback_porch;
-> +
-> +	memset(mode, 0, sizeof(*mode));
-> +	drm_display_mode_from_videomode(&vm, mode);
-> +	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-> +
-> +	ret = device_property_read_u32(dev, "width-mm", &width_mm);
-> +	if (ret && ret != -EINVAL)
-> +		return ret;
-> +
-> +	ret = device_property_read_u32(dev, "height-mm", &height_mm);
-> +	if (ret && ret != -EINVAL)
-> +		return ret;
-> +
-> +	mode->width_mm = width_mm;
-> +	mode->height_mm = height_mm;
-> +
-> +	drm_mode_debug_printmodeline(mode);
-> +
-> +	return 0;
-> +}
-> +
-> +static int panel_mipi_dbi_spi_probe(struct spi_device *spi)
-> +{
-> +	struct device *dev = &spi->dev;
-> +	struct drm_display_mode mode;
-> +	struct mipi_dbi_dev *dbidev;
-> +	struct drm_device *drm;
-> +	struct mipi_dbi *dbi;
-> +	struct gpio_desc *dc;
-> +	int ret;
-> +
-> +	dbidev = devm_drm_dev_alloc(dev, &panel_mipi_dbi_driver, struct mipi_dbi_dev, drm);
-> +	if (IS_ERR(dbidev))
-> +		return PTR_ERR(dbidev);
-> +
-> +	dbi = &dbidev->dbi;
-> +	drm = &dbidev->drm;
-> +
-> +	ret = panel_mipi_dbi_get_mode(dbidev, &mode);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dbidev->regulator = devm_regulator_get(dev, "power");
-> +	if (IS_ERR(dbidev->regulator))
-> +		return dev_err_probe(dev, PTR_ERR(dbidev->regulator),
-> +				     "Failed to get regulator 'power'\n");
-> +
-> +	dbidev->backlight = devm_of_find_backlight(dev);
-> +	if (IS_ERR(dbidev->backlight))
-> +		return dev_err_probe(dev, PTR_ERR(dbidev->backlight), "Failed to get backlight\n");
-> +
-> +	dbi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(dbi->reset))
-> +		return dev_err_probe(dev, PTR_ERR(dbi->reset), "Failed to get GPIO 'reset'\n");
-> +
-> +	dc = devm_gpiod_get_optional(dev, "dc", GPIOD_OUT_LOW);
-> +	if (IS_ERR(dc))
-> +		return dev_err_probe(dev, PTR_ERR(dc), "Failed to get GPIO 'dc'\n");
-> +
-> +	ret = mipi_dbi_spi_init(spi, dbi, dc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (device_property_present(dev, "write-only"))
-> +		dbi->read_commands = NULL;
-read_commands are unused - so the write-only property is in practice
-ignored.
-
-> +
-> +	dbidev->driver_private = panel_mipi_dbi_commands_from_fw(dev);
-> +	if (IS_ERR(dbidev->driver_private))
-> +		return PTR_ERR(dbidev->driver_private);
-> +
-> +	ret = mipi_dbi_dev_init(dbidev, &panel_mipi_dbi_pipe_funcs, &mode, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	drm_mode_config_reset(drm);
-> +
-> +	ret = drm_dev_register(drm, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	spi_set_drvdata(spi, drm);
-> +
-> +	drm_fbdev_generic_setup(drm, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static int panel_mipi_dbi_spi_remove(struct spi_device *spi)
-> +{
-> +	struct drm_device *drm = spi_get_drvdata(spi);
-> +
-> +	drm_dev_unplug(drm);
-> +	drm_atomic_helper_shutdown(drm);
-> +
-> +	return 0;
-> +}
-> +
-> +static void panel_mipi_dbi_spi_shutdown(struct spi_device *spi)
-> +{
-> +	drm_atomic_helper_shutdown(spi_get_drvdata(spi));
-> +}
-> +
-> +static int __maybe_unused panel_mipi_dbi_pm_suspend(struct device *dev)
-> +{
-> +	return drm_mode_config_helper_suspend(dev_get_drvdata(dev));
-> +}
-> +
-> +static int __maybe_unused panel_mipi_dbi_pm_resume(struct device *dev)
-> +{
-> +	drm_mode_config_helper_resume(dev_get_drvdata(dev));
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops panel_mipi_dbi_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(panel_mipi_dbi_pm_suspend, panel_mipi_dbi_pm_resume)
-> +};
-> +
-> +static const struct of_device_id panel_mipi_dbi_spi_of_match[] = {
-> +	{ .compatible = "panel-mipi-dbi-spi" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, panel_mipi_dbi_spi_of_match);
-> +
-> +static const struct spi_device_id panel_mipi_dbi_spi_id[] = {
-> +	{ "panel-mipi-dbi-spi", 0 },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(spi, panel_mipi_dbi_spi_id);
-> +
-> +static struct spi_driver panel_mipi_dbi_spi_driver = {
-> +	.driver = {
-> +		.name = "panel-mipi-dbi-spi",
-> +		.owner = THIS_MODULE,
-> +		.of_match_table = panel_mipi_dbi_spi_of_match,
-> +		.pm = &panel_mipi_dbi_pm_ops,
-> +	},
-> +	.id_table = panel_mipi_dbi_spi_id,
-> +	.probe = panel_mipi_dbi_spi_probe,
-> +	.remove = panel_mipi_dbi_spi_remove,
-> +	.shutdown = panel_mipi_dbi_spi_shutdown,
-> +};
-> +module_spi_driver(panel_mipi_dbi_spi_driver);
-> +
-> +MODULE_DESCRIPTION("MIPI DBI compatible display panel driver");
-> +MODULE_AUTHOR("Noralf Trønnes");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.33.0
