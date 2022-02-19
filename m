@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86E214BCAF4
+	by mail.lfdr.de (Postfix) with ESMTP id D280C4BCAF5
 	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 22:59:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243217AbiBSV4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 16:56:14 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55300 "EHLO
+        id S240181AbiBSV42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 16:56:28 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243178AbiBSV4L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 16:56:11 -0500
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8983541AB
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 13:55:45 -0800 (PST)
-Received: by mail-pf1-x42a.google.com with SMTP id i21so5290187pfd.13
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 13:55:45 -0800 (PST)
+        with ESMTP id S243188AbiBSV4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 16:56:13 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F07D4541B4
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 13:55:46 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id om7so11523614pjb.5
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 13:55:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=DZiOtxBgoTtwB9UJCoY4ZWmHfqn+dNPJ6H+DmBuShUo=;
-        b=VsBO4YCWPc6ib471hmScxdPkd5daMf5/3q37Dx+GlNpIVyuhM1J3OTEnzAq3ifa2Nk
-         ThSiij4+tIN2Dd/oF+tW6xv2JAJqAmURHr4Ny+pX9XNRQYFyIBL1mGJ953LQ0GCTSKUO
-         uoNTgpN5gGcy7yeBAPELm0gJMt+qeTXLf/RkPjoIDpdVlreCHJu0HEBwnvEx5IpZJW14
-         D2EOiCLdJvp4lwuPO8Qitwkd6x+sikjvvc/wyk/Wutdh1YYpPBEvR+fOQTy7lcSjP4ZV
-         WniLF2oSAtEmrfQfRWq2tnzfGF4X5+hk3oWPKLo76jIl3SPcNdt1CFQS89M/v9zjIUUM
-         m6bg==
+        bh=9DbHqa7/PuuNUMOB7llAk+nGQ8XUCY82hlr70rx3hVw=;
+        b=lMjdjwfj/yDZTTN1HHuqEqPG/1HemUUV8Zai5f4adJ5QtFzGfu892IQ+bv5mTvsCdC
+         hKeH346azPEzDp7/Qee0oz31oraJBCRHEJBp+3bc0zfjWKaIC/2DErWJW/PlQiSEp796
+         +pDt3kN28gf1Bgr0wZ8xOlhxKf6CBK7MQleRRBLx3tdSPuDwDfxkjCdpPfluTJXCWWke
+         fLVHPkKFGUsMUAwLRWalE3t5L6NumiQ64GU6D0CahKtRD5D562bkHFyaSM+XyjtTwnL5
+         cxTLxN6H3KPXLOyCgUmogh5pOcF1ugmkJvBage57cVzRK9F2p5b1aDgP+nRfPkWEfAj8
+         HA2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=DZiOtxBgoTtwB9UJCoY4ZWmHfqn+dNPJ6H+DmBuShUo=;
-        b=b/Vt/aVGrlTRhnFnzzChQUosxhPLZh22hI09+6zj6I1IptIkMBC2MmKpPplp+CCjGh
-         oSfhIVvcHXsNdsc7czyJX+5c6wS0SdNae8UnoTVTTFA30enHcRI5l4qM0C6TbBGAyHAL
-         3C8mZDA+Wd9cDeoLuK7iYDR5FjPDiDFqnF8Y4yJihEH+yLvRAsAhlN8WiMjiYHF9uxva
-         OwyygSCsvLCdMPaKJvkqr48b8Qcu4VKkZqz4alfWYPO94NBHYFG937b19U8UaMCg+6/6
-         X+MeTTAb+o0TanM585FC5fD7h6lDHFVJXpUKhhizqmCn+SGAJOgzS88LUDWfJWAaxHho
-         2+4w==
-X-Gm-Message-State: AOAM532rEHiG21eIE2PG8t7DPw8LkkDA4bph/2NFcqauuUI0q42oXFwk
-        TAVrAgRByg7ZY+KLm5nIOLgTag==
-X-Google-Smtp-Source: ABdhPJyoFjeAb5/4d7KaIVBfHrlpcRCkYuPnEHCv4zupG3KFWCHinQulVyzNGCV+KsSAPxCBwWg1TQ==
-X-Received: by 2002:a63:e403:0:b0:365:5657:7b4d with SMTP id a3-20020a63e403000000b0036556577b4dmr10908413pgi.130.1645307745264;
-        Sat, 19 Feb 2022 13:55:45 -0800 (PST)
+        bh=9DbHqa7/PuuNUMOB7llAk+nGQ8XUCY82hlr70rx3hVw=;
+        b=L3JIx2HLPzN6606uuRsILw0GYXWcTl5toKghfFII4Ul4ExcB9R9zKeAJA+c/udBMim
+         HDORfjug9ZBRyOhDLT0CDaRqmLiPeJRCdKDZ1yME2Qh9nLAZpU24np968kF0K6cqDbAd
+         qBf12xKo0tBfTCIsvfLLkD7bG7fGobq/aGJ1+mGZgWcQcxyHUHloDNaxXJPB3ZhFJ0Kc
+         02Y2tQOzajwSPMoLcQGXkzd+iVN6q7HrkCdqlmq0m0kDk5BSybobGqKpCUqw2/fJZl+y
+         /A4vnDrLK4flS2QoiB4uFmN8AYR/PHRWs7TfP6c3lx6jhlschgttPTC9YBbniwIR9Zof
+         /feg==
+X-Gm-Message-State: AOAM533PH9pC7W+712ocIZlsJoTTHF5dRsxY0m5GIPXl3DeBmeHaEeB1
+        +rWEKmt2QiXk1ZxeuGkNWWzmnQ==
+X-Google-Smtp-Source: ABdhPJwn7h7JYGRUMVhMEzpjLHw+5/dBjRfY4qeN6ev9JfTP0JOjdKzAk7hp+6ntGi56C2g+1y40Vg==
+X-Received: by 2002:a17:90b:358d:b0:1bb:74a3:7088 with SMTP id mm13-20020a17090b358d00b001bb74a37088mr14369662pjb.141.1645307746444;
+        Sat, 19 Feb 2022 13:55:46 -0800 (PST)
 Received: from x1.hsd1.or.comcast.net ([2601:1c2:1001:7090:31ab:1e81:9550:f30a])
-        by smtp.gmail.com with ESMTPSA id i17sm13447337pgn.82.2022.02.19.13.55.44
+        by smtp.gmail.com with ESMTPSA id i17sm13447337pgn.82.2022.02.19.13.55.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Feb 2022 13:55:44 -0800 (PST)
+        Sat, 19 Feb 2022 13:55:46 -0800 (PST)
 From:   Drew Fustini <dfustini@baylibre.com>
 To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -60,9 +60,9 @@ To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
         Santosh Shilimkar <ssantosh@kernel.org>,
         Tony Lindgren <tony@atomide.com>, s-anna@ti.com,
         khilman@baylibre.com
-Subject: [PATCH 04/11] dt-bindings: wkup_m3_ipc: Add ti,io-isolation property
-Date:   Sat, 19 Feb 2022 13:53:21 -0800
-Message-Id: <20220219215328.485660-5-dfustini@baylibre.com>
+Subject: [PATCH 05/11] soc: ti: wkup_m3_ipc: Add support for IO Isolation
+Date:   Sat, 19 Feb 2022 13:53:22 -0800
+Message-Id: <20220219215328.485660-6-dfustini@baylibre.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220219215328.485660-1-dfustini@baylibre.com>
 References: <20220219215328.485660-1-dfustini@baylibre.com>
@@ -70,8 +70,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,70 +79,80 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Dave Gerlach <d-gerlach@ti.com>
 
-Add documentation for the ti,io-isolation DT property on the wkup_m3_ipc
-node which tells the wkup_m3_ipc driver to use the wkup_m3 to enable
-IO Isolation during low power mode transitions on am43xx platforms.
+AM43xx support isolation of the IOs so that control is taken
+from the peripheral they are connected to and overridden by values
+present in the CTRL_CONF_* registers for the pad in the control module.
+
+The actual toggling happens from the wkup_m3, so use a DT property from
+thea wkup_m3_ipc node to allow the PM code to communicate the necessity
+for placing the IOs into isolation to the firmware.
 
 Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+Signed-off-by: Keerthy <j-keerthy@ti.com>
 Signed-off-by: Drew Fustini <dfustini@baylibre.com>
 ---
- .../bindings/soc/ti/wkup_m3_ipc.txt           | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ drivers/soc/ti/wkup_m3_ipc.c | 14 ++++++++++++--
+ include/linux/wkup_m3_ipc.h  |  1 +
+ 2 files changed, 13 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
-index 4cdbb60fd0d0..df6b600abf4c 100644
---- a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
-+++ b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
-@@ -89,3 +89,49 @@ Example:
- 		ti,vtt-gpio-pin = <7>;
- 		...
- 	};
+diff --git a/drivers/soc/ti/wkup_m3_ipc.c b/drivers/soc/ti/wkup_m3_ipc.c
+index 974b4118a893..e7ae942b7014 100644
+--- a/drivers/soc/ti/wkup_m3_ipc.c
++++ b/drivers/soc/ti/wkup_m3_ipc.c
+@@ -46,6 +46,8 @@
+ #define IPC_VTT_STAT_MASK		(0x1 << 3)
+ #define IPC_VTT_GPIO_PIN_SHIFT		(0x4)
+ #define IPC_VTT_GPIO_PIN_MASK		(0x3f << 4)
++#define IPC_IO_ISOLATION_STAT_SHIFT	(10)
++#define IPC_IO_ISOLATION_STAT_MASK	(0x1 << 10)
+ 
+ #define M3_STATE_UNKNOWN		0
+ #define M3_STATE_RESET			1
+@@ -228,6 +230,11 @@ static void wkup_m3_set_vtt_gpio(struct wkup_m3_ipc *m3_ipc, int gpio)
+ 			    (gpio << IPC_VTT_GPIO_PIN_SHIFT);
+ }
+ 
++static void wkup_m3_set_io_isolation(struct wkup_m3_ipc *m3_ipc)
++{
++	m3_ipc->isolation_conf = (1 << IPC_IO_ISOLATION_STAT_SHIFT);
++}
 +
+ /* Public functions */
+ /**
+  * wkup_m3_set_mem_type - Pass wkup_m3 which type of memory is in use
+@@ -308,8 +315,8 @@ static int wkup_m3_prepare_low_power(struct wkup_m3_ipc *m3_ipc, int state)
+ 	wkup_m3_ctrl_ipc_write(m3_ipc, m3_ipc->resume_addr, 0);
+ 	wkup_m3_ctrl_ipc_write(m3_ipc, m3_power_state, 1);
+ 	wkup_m3_ctrl_ipc_write(m3_ipc, m3_ipc->mem_type |
+-			       m3_ipc->vtt_conf, 4);
+-
++			       m3_ipc->vtt_conf |
++			       m3_ipc->isolation_conf, 4);
+ 	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 2);
+ 	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 3);
+ 	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 5);
+@@ -519,6 +526,9 @@ static int wkup_m3_ipc_probe(struct platform_device *pdev)
+ 			dev_warn(dev, "Invalid VTT GPIO(%d) pin\n", temp);
+ 	}
+ 
++	if (of_find_property(np, "ti,set-io-isolation", NULL))
++		wkup_m3_set_io_isolation(m3_ipc);
 +
-+IO Isolation
-+============
-+Supported by: AM43xx SoCs
-+
-+It is possible to configure any pin with a corresponding CTRL_CONF_*
-+register in the control module to use the states defined in the DS_PAD_CONFIG
-+bits by enabling IO isolation on the SoC. The 'ti,set-io-isolation' property
-+tells the wkup_m3_ipc driver to enable IO isolation late in the suspend path
-+after all drivers have been disabled.
-+
-+Optional properties:
-+- ti,set-io-isolation:	Indicates that the IO's should be placed into
-+			isolation and the DS_PAD_CONFIG values should be
-+			used during suspend.
-+
-+Example (VTT Toggle using any GPIO on am437x-gp-evm):
-+-----------------------------------------------------
-+
-+On the AM437x GP EVM, the VTT enable line must be held low to disable VTT
-+regulator and held high to enable, so the following pinctrl entry is used.
-+The DS pull is enabled which uses a pull down by default and DS off mode is
-+used which outputs a low by default. For the normal state, a pull up is
-+specified so that the VTT enable line gets pulled high immediately after
-+the DS states are removed upon exit from DeepSleep0.
-+
-+	&am43xx_pinmux {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ddr3_vtt_toggle_default>;
-+
-+		ddr3_vtt_toggle_default: ddr_vtt_toggle_default {
-+		pinctrl-single,pins = <
-+			0x25C (DS0_PULL_UP_DOWN_EN | PIN_OUTPUT_PULLUP |
-+			       DS0_FORCE_OFF_MODE | MUX_MODE7)>;
-+		};
-+		...
-+	};
-+
-+	wkup_m3_ipc: wkup_m3_ipc@1324 {
-+		compatible = "ti,am4372-wkup-m3-ipc";
-+		...
-+		...
-+		ti,set-io-isolation;
-+		...
-+	};
+ 	/*
+ 	 * Wait for firmware loading completion in a thread so we
+ 	 * can boot the wkup_m3 as soon as it's ready without holding
+diff --git a/include/linux/wkup_m3_ipc.h b/include/linux/wkup_m3_ipc.h
+index 2bc52c6381d5..b706eac58f92 100644
+--- a/include/linux/wkup_m3_ipc.h
++++ b/include/linux/wkup_m3_ipc.h
+@@ -34,6 +34,7 @@ struct wkup_m3_ipc {
+ 	int mem_type;
+ 	unsigned long resume_addr;
+ 	int vtt_conf;
++	int isolation_conf;
+ 	int state;
+ 
+ 	struct completion sync_complete;
 -- 
 2.32.0
 
