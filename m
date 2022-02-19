@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86A944BC4AB
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 02:51:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E99444BC4B1
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 03:06:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240846AbiBSBu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 20:50:57 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55014 "EHLO
+        id S240942AbiBSB5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 20:57:41 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbiBSBu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 20:50:56 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A0725B6D2
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 17:50:39 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id z7so1979917oid.4
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 17:50:39 -0800 (PST)
+        with ESMTP id S236839AbiBSB5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 20:57:41 -0500
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEBF9246372
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 17:57:23 -0800 (PST)
+Received: by mail-oo1-xc36.google.com with SMTP id p206-20020a4a2fd7000000b0031bfec11983so5726534oop.13
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 17:57:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=iQdqk3TnJErEbPNDiC4Mb5t6O95gNpK1dN2mo5Ib0wY=;
-        b=WRYdTLyVGDcaLis/GHRSHAOoFFVnVeZi3whJAi6JIsiF9Ko/gL3HPr/3N5fKfwcFSk
-         jmQGmDzHh7TilTCt6zObkTMDouUgSO6UM+9U7rZfhtaFXISd43V8VZK9+BB7iUBUDl7G
-         Nvj/15HiMEY9jYoKp+0yF/A3yNJVVjGpusP6Q=
+        bh=O4w1/n60qxqwVlOxTKzOpTfKi28I2/RDtRvzUGnWMyg=;
+        b=c1XE06RLHIrAGxiv2X1h/1nfy9FOFquIrbKqYWvdEjgb7NQr2hXi/N3ie0bynuyaol
+         tAhfz0iojY/KL1BPTfUZUjQ6QwXxHOH4zmokNN3Tae8m+MD5yRT1kAYKaCz1JsEfNG71
+         HxjROfXwKHFjm/1XScTc0bn2RRqoenBpsLs0o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=iQdqk3TnJErEbPNDiC4Mb5t6O95gNpK1dN2mo5Ib0wY=;
-        b=iXnl5DdbGr1KZlIUrD3tHTmrOvVmjHgzeUvf2zeOKG0Rk60hnrWYoouc0b9BtUz34k
-         xGJtmLatDP6Oulco4sy8nAAz/xIt9ATfRmEDpupD0ghwN2X+QlOts1pDEdrNRrfHk6p/
-         IP7dN0MhG+VYF7SeIhg9L/jRSnY+DHapUnzEE1tOl3txPWM+Ro2hFC70lkKjBp0lCOTo
-         6nyUziCRPh2tD0QJQA6mekx6ppoYmOGQkDAvaNSxMWWrcniasNQptwbijs8s+8dTZI32
-         fFEvogZMWJqwXPtsx+TchZij4Dn0ZmwcqipoHSEVNgh4mt5n23kndqrnR4Ue27WXlzM7
-         TQ9Q==
-X-Gm-Message-State: AOAM5329VpOPXMDWT1MlloxmLuMVIxh0RFZVOxFPViQAPOW5QCqVSuRZ
-        MqogV+8zfuFGSHe/V5d9O1560QflMGs8j5aWE1z8vg==
-X-Google-Smtp-Source: ABdhPJyBjVxmZ85zfetySH4t0ngAoSWvUFWgLABLiNdUWsdfWBzxvDturAoF83YxAK+5IcA1VhmUmMHth+830OCMGmY=
-X-Received: by 2002:a05:6808:f88:b0:2d4:c8c2:b898 with SMTP id
- o8-20020a0568080f8800b002d4c8c2b898mr541902oiw.112.1645235438430; Fri, 18 Feb
- 2022 17:50:38 -0800 (PST)
+        bh=O4w1/n60qxqwVlOxTKzOpTfKi28I2/RDtRvzUGnWMyg=;
+        b=7Pn5klNS8uNLiSB5HQcdh+z/OtxlLGSeQxJb0xwtbqreuWRV7MIPuEUilSEJthwPiv
+         qtTGoRGAjdNwCNd4ChVG0ml7XEtwSu4OxtctchDwQnqKmTxR16RY5JvYrco+6Eu261z3
+         jzCuTiyy5NcZARblpgMNpToZ75CDPoQJ6lZFZzGsyxF+IxNJrm8Gqyt3ItUcFHf/mn8X
+         rPXzgYvsvYAd49XLF7vkcRpn70Kh1EFUBCip94GLULrR2Iyrag8e6uWWL/mRw1GBm133
+         y6F4NDui8OcHfdcWW86cUn4+CkKJXFy1uRbDNub6NJOE9aL4guykXTZRQoqjqhEHotaa
+         OJkQ==
+X-Gm-Message-State: AOAM53012wsNAQuQvosK8/yov6Zv3dp9cnKHE0w+7SikHV3BDujglQjO
+        tXuB+Eb7lXXHFYnByL6VzgP88rr8t8FIqRnAMKR/BQ==
+X-Google-Smtp-Source: ABdhPJzPjO+V71vJgm0n23Io89XXp4Vg+EB3s05L8mvs0Ol3hN6o6d09tBUfRKerCIjWCPbAZjf0zIjpTCcqmC2bwNk=
+X-Received: by 2002:a4a:a9cf:0:b0:2e9:5c75:e242 with SMTP id
+ h15-20020a4aa9cf000000b002e95c75e242mr3146796oon.25.1645235843079; Fri, 18
+ Feb 2022 17:57:23 -0800 (PST)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 18 Feb 2022 17:50:38 -0800
+ HTTPREST; Fri, 18 Feb 2022 17:57:22 -0800
 MIME-Version: 1.0
-In-Reply-To: <1645182064-15843-4-git-send-email-quic_c_skakit@quicinc.com>
-References: <1645182064-15843-1-git-send-email-quic_c_skakit@quicinc.com> <1645182064-15843-4-git-send-email-quic_c_skakit@quicinc.com>
+In-Reply-To: <1645182064-15843-5-git-send-email-quic_c_skakit@quicinc.com>
+References: <1645182064-15843-1-git-send-email-quic_c_skakit@quicinc.com> <1645182064-15843-5-git-send-email-quic_c_skakit@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Fri, 18 Feb 2022 17:50:38 -0800
-Message-ID: <CAE-0n50GRE1hUxpeLcv_jdNtxHuABMpGNJO5oMvMGimQHxAwHA@mail.gmail.com>
-Subject: Re: [PATCH V7 3/5] regulator: Add a regulator driver for the PM8008 PMIC
+Date:   Fri, 18 Feb 2022 17:57:22 -0800
+Message-ID: <CAE-0n53P1HZCjXUFWApEU8qG3_+Vv4XoZou5OwHsHvMJpqMe=g@mail.gmail.com>
+Subject: Re: [PATCH V7 4/5] arm64: dts: qcom: pm8008: Add base dts file
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Satya Priya <quic_c_skakit@quicinc.com>
@@ -72,60 +72,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya (2022-02-18 03:01:01)
-> Qualcomm Technologies, Inc. PM8008 is an I2C controlled PMIC
-> containing 7 LDO regulators.  Add a PM8008 regulator driver to
-> support PMIC regulator management via the regulator framework.
+Quoting Satya Priya (2022-02-18 03:01:02)
+> Add base DTS file for pm8008 with infra and regulator nodes.
 >
 > Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-
-> diff --git a/drivers/regulator/qcom-pm8008-regulator.c b/drivers/regulator/qcom-pm8008-regulator.c
+> ---
+> Changes in V4:
+>  - This is newly added in V4, to add all the pm8008 common stuff.
+>
+> Changes in V5:
+>  - Changed the mfd node names from pm8008_chip to pm8008_infra and
+>    pm8008_ldo to pm8008_regulators as they re more appropriate.
+>  - Changed the compatible for pm8008@9 mfd node to differentiate from
+>    pm8008@8 node in driver.
+>  - Removed compatible for regulators node.
+>  - Removed reg property for LDOs and added in driver.
+>
+> Changes in V6:
+>  - Changed node names to small letters.
+>
+> Changes in V7:
+>  - Removed intermediate regulators node.
+>
+>  arch/arm64/boot/dts/qcom/pm8008.dtsi | 44 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8008.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/qcom/pm8008.dtsi b/arch/arm64/boot/dts/qcom/pm8008.dtsi
 > new file mode 100644
-> index 0000000..1c52864
+> index 0000000..0f48572
 > --- /dev/null
-> +++ b/drivers/regulator/qcom-pm8008-regulator.c
-> @@ -0,0 +1,205 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
+> +++ b/arch/arm64/boot/dts/qcom/pm8008.dtsi
+> @@ -0,0 +1,44 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +// Copyright (c) 2022, The Linux Foundation. All rights reserved.
 > +
-> +#include <linux/device.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/driver.h>
-> +#include <linux/regulator/machine.h>
-> +
-> +#define VSET_STEP_MV                   8
-> +#define VSET_STEP_UV                   (VSET_STEP_MV * 1000)
-> +
-> +#define LDO_ENABLE_REG(base)           ((base) + 0x46)
-> +#define ENABLE_BIT                     BIT(7)
+> +pm8008_infra: pm8008@8 {
 
-This is SPMI_COMMON_REG_ENABLE and SPMI_COMMON_ENABLE_MASK
+Node name should be generic, pmic@8
 
+> +       compatible = "qcom,pm8008";
+> +       reg = <0x8>;
+> +       #address-cells = <1>;
+> +       #size-cells = <0>;
+> +};
 > +
-> +#define LDO_VSET_LB_REG(base)          ((base) + 0x40)
+> +pm8008_regulators: pm8008@9 {
+
+Node name should be generic, pmic@9
+
+> +       compatible = "qcom,pm8008-regulators";
+> +       reg = <0x9>;
+> +       #address-cells = <1>;
+
+Address cells is 0 too?
+
+> +       #size-cells = <0>;
 > +
-> +#define LDO_STEPPER_CTL_REG(base)      ((base) + 0x3b)
-> +#define DEFAULT_VOLTAGE_STEPPER_RATE   38400
-> +#define STEP_RATE_MASK                 GENMASK(1, 0)
+> +       pm8008_l1: ldo1 {
+> +               regulator-name = "pm8008_l1";
+> +       };
 > +
-> +struct regulator_data {
-
-Please use a name like spmi_regulator_data :) Or pm8008_regulator_data?
-Something that isn't so generic.
-
-It seems similar to qcom_spmi-regulator.c so is there some reason we
-can't shove this into there? Less code for things that aren't relevant I
-guess?
-
-> +       const char                      *name;
-> +       const char                      *supply_name;
-> +       u16                             base;
-> +       int                             min_uv;
-> +       int                             max_uv;
-> +       int                             min_dropout_uv;
-> +       const struct linear_range       *voltage_range;
+> +       pm8008_l2: ldo2 {
+> +               regulator-name = "pm8008_l2";
+> +       };
+> +
+> +       pm8008_l3: ldo3 {
+> +               regulator-name = "pm8008_l3";
+> +       };
+> +
+> +       pm8008_l4: ldo4 {
+> +               regulator-name = "pm8008_l4";
+> +       };
+> +
+> +       pm8008_l5: ldo5 {
+> +               regulator-name = "pm8008_l5";
+> +       };
+> +
+> +       pm8008_l6: ldo6 {
+> +               regulator-name = "pm8008_l6";
+> +       };
+> +
+> +       pm8008_l7: ldo7 {
+> +               regulator-name = "pm8008_l7";
+> +       };
+>
