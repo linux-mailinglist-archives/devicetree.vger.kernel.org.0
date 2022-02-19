@@ -2,254 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D6F64BCA64
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 20:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D2834BCAC2
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 22:55:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239495AbiBSTDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 14:03:08 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39286 "EHLO
+        id S234227AbiBSV4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 16:56:01 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231915AbiBSTDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 14:03:07 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90C135D19D;
-        Sat, 19 Feb 2022 11:02:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2B89860DFB;
-        Sat, 19 Feb 2022 19:02:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2187C004E1;
-        Sat, 19 Feb 2022 19:02:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645297367;
-        bh=tj0EP2VurH6MfpD42AsvaZR9bvac+IhL8NrnCSENi8g=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=fCES3hd8m9ArBa3CY92cwD2O+v7Y/61E4kkOlvkQj359shYE359i50DPZUTPGoABH
-         UbXvTP12FdP2e9OI/nfX8nDG+siB9bGag4T9/+Ycr8mc06ga8WA/VICTePSnT8z9cu
-         b7Sl+RyMSmxVDC9qHYlH3crpfvBDCTumeiIZptg+4OvvnUrYPStIud7NTXWpQ9wiy3
-         6Y0PfkykA8LWoi2SLnbtGTLllbKmsAsNDxsQTkzJCjY+WwYqlmCdEAiNv7xFNaO6Ns
-         fF1Q8RKUHJm+cAYAd4fokvXDhe2INRYnItUeYB17vYzrr5HfVD6a0LVDWltOAmVyHR
-         9c4QRrer+fNYw==
-Date:   Sat, 19 Feb 2022 19:09:36 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 2/2] iio: frequency: admv4420.c: Add support for
- ADMV4420
-Message-ID: <20220219190936.72000244@jic23-huawei>
-In-Reply-To: <20220218150738.94735-2-cristian.pop@analog.com>
-References: <20220218150738.94735-1-cristian.pop@analog.com>
-        <20220218150738.94735-2-cristian.pop@analog.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S229516AbiBSVz7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 16:55:59 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA80A54194
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 13:55:39 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id om7so11523472pjb.5
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 13:55:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+iB57UsJFQk/qq+LqVrtygemXd0B+XVilZt4bFe5htU=;
+        b=u5QhJnaaBF1SaKzz2/AjuOZECD3NVFhQ0Zrh5Uh70FXAXPLK+SYH6ZFV67648MToHb
+         24xqZa0KtbsnXxThMuOffKAsoP58K2KgmpJUtNMWIDGvxSCZdzA9jbUwLjkUg40g3Qq/
+         2fEc2Ftlb5+zx65nVGgQhT0bTvZsJMRgDFVpQdz5vkmWbmIdIH53utimgQiiwHLfGgqU
+         NGAboZr1sbE/ZFi8SVqEkF3X2XMNZ6/+lXxVpVgWyr33R7152G11sYVSyRtIpTbc0smC
+         EFi/H9O+GQPGZpOzvhdvWxlXMvuy4U0WANQxUt+GLjmJAKmuhM6WgGd+00YDW+1E1BC+
+         ncQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+iB57UsJFQk/qq+LqVrtygemXd0B+XVilZt4bFe5htU=;
+        b=g/67g7Ca1Ty8cqSXfWmxxRYz+HW3C1UueIsXZMOhuGlTMQcckrDn4lAAw5HtIKuBGR
+         kOSXJ/nnUrzkISmk4MtMdaFKZ8lgJ7mPqCLgq85U8Y3rr0388iAe4DNtWWHoy4fy0FlJ
+         B45oQc0ujKXHCWtVewKVua6fgNu1tyA0b/bkXI6Zboxft0yuofmKvMDeXgi25I4vOtNl
+         ay1ANBOar0IJQDREPsgaVWVEKuGKTaxUJSD6EBk8lq9APs7U/E414yavzRdyJsRkUIlt
+         LuSzRHOgyDJHgEP0C8YHik+Ry8SuW9HcukEgjv6lajUQykxEqIj0p4GFTCGcuA06xVr+
+         5AWw==
+X-Gm-Message-State: AOAM5314/iAgoy07TGNm4LeVSwmghDJ2092CTf6UFq29IHpJ7iKfZVTc
+        4f6cfS3lQ2GSXlg3r95Xtt3ttw==
+X-Google-Smtp-Source: ABdhPJyLzGQfZEFYVEdwDM8G/RuzZT3/PENOwn2dG/FOspxT/iak7Uij73jUVZB1jllVqos1xyCcQg==
+X-Received: by 2002:a17:90a:c706:b0:1b8:a942:3e36 with SMTP id o6-20020a17090ac70600b001b8a9423e36mr14451630pjt.40.1645307739266;
+        Sat, 19 Feb 2022 13:55:39 -0800 (PST)
+Received: from x1.hsd1.or.comcast.net ([2601:1c2:1001:7090:31ab:1e81:9550:f30a])
+        by smtp.gmail.com with ESMTPSA id i17sm13447337pgn.82.2022.02.19.13.55.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Feb 2022 13:55:38 -0800 (PST)
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dave Gerlach <d-gerlach@ti.com>, devicetree@vger.kernel.org,
+        Drew Fustini <dfustini@baylibre.com>,
+        Keerthy <j-keerthy@ti.com>, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, s-anna@ti.com,
+        khilman@baylibre.com
+Subject: [PATCH 00/11] soc: ti: wkup_m3_ipc: support vtt toggle, io isolation & voltage scaling
+Date:   Sat, 19 Feb 2022 13:53:17 -0800
+Message-Id: <20220219215328.485660-1-dfustini@baylibre.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Feb 2022 17:07:38 +0200
-Cristian Pop <cristian.pop@analog.com> wrote:
+Improve the wkup_m3_ipc driver to better support the TI Wakeup Cortex M3 
+device found on TI AM33xx and AM43xx SoCs.
 
-> Add support for K Band Downconverter with Integrated
-> Fractional-N PLL and VCO.
-> More info:
-> https://www.analog.com/en/products/admv4420.html
-> 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+This series derives from these commits in the ti-linux-5.10.y branch of
+the TI Linux repo [1]:
 
-Just some really minor comment from a final read through.
+  6ab4eff1034b ("remoteproc: move rproc_da_to_va declaration to remoteproc.h")
+  2a9be39a26f7 ("dt-bindings: wkup_m3_ipc: Add vtt toggling bindings")
+  c65263f9e12c ("wkup_m3_ipc: Add support for toggling VTT regulator")
+  5c6c821803e1 ("dt-bindings: wkup_m3_ipc: Add ti,io-isolation property")
+  196c46f7577d ("wkup_m3_ipc: Add support for IO Isolation")
+  c28acc847e5d ("soc: ti: wkup_m3_ipc: Add support for i2c voltage scaling")
+  a4f9ef4ab5ca ("ARM: dts: am437x-gp-evm: Enable wkup_m3 control of IO isolation")
+  94de756f1771 ("ARM: dts: am33xx: Add scale data fw to wkup_m3_ipc node")
+  b7ae4b063793 ("ARM: dts: am43xx: Add scale data fw to wkup_m3_ipc node")
+  451ec7871ae7 ("soc: ti: wkup_m3_ipc: Add debug option to halt m3 in suspend")
 
-Mainly we need to leave time for futher DT review.
+Minor changes have been made to some patches to resolve conflicts and 
+to split i2c voltage scaling dt-bindings into separate patch.
 
-Thanks,
+[1] git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git
 
-Jonathan
+Dave Gerlach (10):
+  dt-bindings: wkup_m3_ipc: Add vtt toggling bindings
+  soc: ti: wkup_m3_ipc: Add support for toggling VTT regulator
+  dt-bindings: wkup_m3_ipc: Add ti,io-isolation property
+  soc: ti: wkup_m3_ipc: Add support for IO Isolation
+  ARM: dts: am437x-gp-evm: Enable wkup_m3 control of IO isolation
+  dt-bindings: wkup_m3_ipc: Add scale-data-fw property
+  soc: ti: wkup_m3_ipc: Add support for i2c voltage scaling
+  ARM: dts: am33xx: Add scale data fw to wkup_m3_ipc node
+  ARM: dts: am43xx: Add scale data fw to wkup_m3_ipc node
+  soc: ti: wkup_m3_ipc: Add debug option to halt m3 in suspend
 
+Suman Anna (1):
+  remoteproc: move rproc_da_to_va declaration to remoteproc.h
 
-> ---
->  drivers/iio/frequency/Kconfig    |  10 +
->  drivers/iio/frequency/Makefile   |   1 +
->  drivers/iio/frequency/admv4420.c | 400 +++++++++++++++++++++++++++++++
->  3 files changed, 411 insertions(+)
->  create mode 100644 drivers/iio/frequency/admv4420.c
-> 
-> diff --git a/drivers/iio/frequency/Kconfig b/drivers/iio/frequency/Kconfig
-> index b44036f843af..d905214a0be6 100644
-> --- a/drivers/iio/frequency/Kconfig
-> +++ b/drivers/iio/frequency/Kconfig
-> @@ -60,6 +60,16 @@ config ADMV1013
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called admv1013.
->  
-> +config ADMV4420
-> +       tristate "Analog Devices ADMV4420 K Band Downconverter"
-> +       depends on SPI
-> +       help
-> +         Say yes here to build support for Analog Devices K Band
-> +         Downconverter with integrated Fractional-N PLL and VCO.
-> +
-> +         To compile this driver as a module, choose M here: the
-> +         module will be called admv4420.
-> +
->  config ADRF6780
->          tristate "Analog Devices ADRF6780 Microwave Upconverter"
->          depends on SPI
-> diff --git a/drivers/iio/frequency/Makefile b/drivers/iio/frequency/Makefile
-> index ae6899856c99..782e5baa1630 100644
-> --- a/drivers/iio/frequency/Makefile
-> +++ b/drivers/iio/frequency/Makefile
-> @@ -8,4 +8,5 @@ obj-$(CONFIG_AD9523) += ad9523.o
->  obj-$(CONFIG_ADF4350) += adf4350.o
->  obj-$(CONFIG_ADF4371) += adf4371.o
->  obj-$(CONFIG_ADMV1013) += admv1013.o
-> +obj-$(CONFIG_ADMV4420) += admv4420.o
->  obj-$(CONFIG_ADRF6780) += adrf6780.o
-> diff --git a/drivers/iio/frequency/admv4420.c b/drivers/iio/frequency/admv4420.c
-> new file mode 100644
-> index 000000000000..b4579505372e
-> --- /dev/null
-> +++ b/drivers/iio/frequency/admv4420.c
-> @@ -0,0 +1,400 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +/*
-> + * ADMV4420
-> + *
-> + * Copyright 2021 Analog Devices Inc.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/units.h>
-> +
-> +#include <asm/unaligned.h>
-> +
-> +/* ADMV4420 Register Map */
-> +#define ADMV4420_SPI_CONFIG_1			0x00
-> +#define ADMV4420_SPI_CONFIG_2			0x01
-> +#define ADMV4420_CHIPTYPE			0x03
-> +#define ADMV4420_PRODUCT_ID_L			0x04
-> +#define ADMV4420_PRODUCT_ID_H			0x05
-> +#define ADMV4420_SCRATCHPAD			0x0A
-> +#define ADMV4420_SPI_REV			0x0B
-> +#define ADMV4420_ENABLES			0x103
-> +#define ADMV4420_SDO_LEVEL			0x108
-> +#define ADMV4420_INT_L				0x200
-> +#define ADMV4420_INT_H				0x201
-> +#define ADMV4420_FRAC_L				0x202
-> +#define ADMV4420_FRAC_M				0x203
-> +#define ADMV4420_FRAC_H				0x204
-> +#define ADMV4420_MOD_L				0x208
-> +#define ADMV4420_MOD_M				0x209
-> +#define ADMV4420_MOD_H				0x20A
-> +#define ADMV4420_R_DIV_L			0x20C
-> +#define ADMV4420_R_DIV_H			0x20D
-> +#define ADMV4420_REFERENCE			0x20E
-> +#define ADMV4420_VCO_DATA_READBACK1		0x211
-> +#define ADMV4420_VCO_DATA_READBACK2		0x212
-> +#define ADMV4420_PLL_MUX_SEL			0x213
-> +#define ADMV4420_LOCK_DETECT			0x214
-> +#define ADMV4420_BAND_SELECT			0x215
-> +#define ADMV4420_VCO_ALC_TIMEOUT		0x216
-> +#define ADMV4420_VCO_MANUAL			0x217
-> +#define ADMV4420_ALC				0x219
-> +#define ADMV4420_VCO_TIMEOUT1			0x21C
-> +#define ADMV4420_VCO_TIMEOUT2			0x21D
-> +#define ADMV4420_VCO_BAND_DIV			0x21E
-> +#define ADMV4420_VCO_READBACK_SEL		0x21F
-> +#define ADMV4420_AUTOCAL			0x226
-> +#define ADMV4420_CP_STATE			0x22C
-> +#define ADMV4420_CP_BLEED_EN			0x22D
-> +#define ADMV4420_CP_CURRENT			0x22E
-> +#define ADMV4420_CP_BLEED			0x22F
-> +
-> +#define ADMV4420_SPI_CONFIG_1_SDOACTIVE		(BIT(4) | BIT(3))
-> +#define ADMV4420_SPI_CONFIG_1_ENDIAN		(BIT(5) | BIT(2))
-> +#define ADMV4420_SPI_CONFIG_1_SOFTRESET		(BIT(7) | BIT(1))
-> +
-> +#define ADMV4420_REFERENCE_DIVIDE_BY_2_MASK	BIT(0)
-> +#define ADMV4420_REFERENCE_MODE_MASK		BIT(1)
-> +#define ADMV4420_REFERENCE_IN_MODE(x)		FIELD_PREP(ADMV4420_REFERENCE_MODE_MASK, x)
-> +#define ADMV4420_REFERENCE_DOUBLER_MASK		BIT(2)
-> +#define ADMV4420_REFERENCE_DOUBLER(x)		FIELD_PREP(ADMV4420_REFERENCE_DOUBLER_MASK, x)
+ .../bindings/soc/ti/wkup_m3_ipc.txt           |  91 ++++++++
+ arch/arm/boot/dts/am335x-bone-common.dtsi     |   4 +
+ arch/arm/boot/dts/am335x-evm.dts              |   4 +
+ arch/arm/boot/dts/am335x-evmsk.dts            |   4 +
+ arch/arm/boot/dts/am437x-gp-evm.dts           |   5 +
+ arch/arm/boot/dts/am437x-sk-evm.dts           |   4 +
+ arch/arm/boot/dts/am43x-epos-evm.dts          |   4 +
+ drivers/remoteproc/remoteproc_internal.h      |   1 -
+ drivers/soc/ti/wkup_m3_ipc.c                  | 208 +++++++++++++++++-
+ include/linux/remoteproc.h                    |   1 +
+ include/linux/wkup_m3_ipc.h                   |  13 ++
+ 11 files changed, 334 insertions(+), 5 deletions(-)
 
-I'd have preferred that you only defined the MASK then used FIELD_PREP inline
-as that tends to be easier to review than hiding macros behind macros.
-
-> +
-
-> +
-> +struct admv4420_state {
-> +	struct spi_device		*spi;
-> +	struct regmap			*regmap;
-> +	u64				vco_freq_hz;
-> +	u64				lo_freq_hz;
-> +	struct admv4420_reference_block ref_block;
-> +	struct admv4420_n_counter	n_counter;
-> +	enum admv4420_mux_sel		mux_sel;
-> +	struct mutex			lock;
-> +	u8				transf_buf[4] ____cacheline_aligned;
-> +};
-
-...
-
-> +static int admv4420_set_n_counter(struct admv4420_state *st, u32 int_val,
-> +				  u32 frac_val, u32 mod_val)
-> +{
-> +	int ret;
-> +
-> +	put_unaligned_le32(frac_val, st->transf_buf);
-
-Comment rather than suggestion that you change this, but we actually know
-transf_buf is aligned, so could have used cpu_to_le32() as it is __cacheline_aligned
-which is way more than 32 bits.
-
-> +	ret = regmap_bulk_write(st->regmap, ADMV4420_FRAC_L, st->transf_buf, 3);
-> +	if (ret)
-> +		return ret;
-> +
-> +	put_unaligned_le32(mod_val, st->transf_buf);
-> +	ret = regmap_bulk_write(st->regmap, ADMV4420_MOD_L, st->transf_buf, 3);
-> +	if (ret)
-> +		return ret;
-> +
-> +	put_unaligned_le32(int_val, st->transf_buf);
-> +	return regmap_bulk_write(st->regmap, ADMV4420_INT_L, st->transf_buf, 2);
-> +}
-> +
-
-...
-
-> +static void admv4420_fw_parse(struct admv4420_state *st)
-> +{
-> +	struct fwnode_handle *fwnode = dev_fwnode(&st->spi->dev);
-> +	u32 tmp;
-> +	int ret;
-> +
-> +	ret = fwnode_property_read_u32(fwnode, "adi,lo-freq-khz", &tmp);
-
-Why not device_property_read_u32?
-
-> +	if (!ret)
-> +		st->lo_freq_hz = (u64)tmp * KILO;
-> +
-> +	st->ref_block.ref_single_ended = fwnode_property_read_bool(fwnode,
-> +								   "adi,ref-ext-single-ended-en");
-
-device_property_read_bool()?
-
-> +}
-> +
+-- 
+2.32.0
 
