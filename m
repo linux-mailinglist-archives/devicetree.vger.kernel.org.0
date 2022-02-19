@@ -2,96 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E298E4BC53E
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 04:28:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B6544BC60F
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 07:46:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239897AbiBSD2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 22:28:18 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41732 "EHLO
+        id S241364AbiBSGq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 01:46:59 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230240AbiBSD2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 22:28:17 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 799D24A928;
-        Fri, 18 Feb 2022 19:27:58 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S233857AbiBSGq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 01:46:58 -0500
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF4A51E52;
+        Fri, 18 Feb 2022 22:46:35 -0800 (PST)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 56A9383B9B;
-        Sat, 19 Feb 2022 04:27:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1645241275;
-        bh=aRtziGvGKQ0yJ+NF1mQSSUBxsxlyEIkgVwgL9biQI/k=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=vGHRRaXiPqnHwESIdioo9d5Yp3Msj0yr7Y4bc5y0rKvyErV0GgsfSXGjGBdarpq19
-         XgEEs3BPiFo5c58TaCyZve9RKx60umekJpIj+V5XNkocflL3YuOndiCL9/eCM7FXot
-         inYOBxJ2vG7v61x0OGAxn0Ec9wl9ZZS6t5/ZoKboGQZuiLe3acwcY5qKu79k18yRY5
-         Kg0DDELacf1n1P3oMLaO8cXVhdnmxj2KLxGKzyEubgOnWdoSzup4glt02PXXEMdq5N
-         vHObftsuRnoXDf83FyUoimOgjdq+ChuuXekLvkZYvcdBFOA9Bk65Oso7QOOgOsnIjE
-         jauPpepQFGmBA==
-Message-ID: <0391894f-751c-81ca-c437-8e843874c019@denx.de>
-Date:   Sat, 19 Feb 2022 04:27:54 +0100
+        by box.trvn.ru (Postfix) with ESMTPSA id 25D8D41905;
+        Sat, 19 Feb 2022 11:46:31 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1645253192; bh=lnldBt2/lTX1IYFuV+p84jRTjimuSd8iLwXPT/3fEp4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=GO0SppYvdaTnx+df9OVivsd1qnxCjBO76hePIM7CkOPGyspGViWDAtiW+yODjiuRp
+         N/B2YrUuR48gyxyLGmXypyJWWCWafEdFkYmry5AqwyYPePlvcUUXfg+kIVHjhM57BU
+         j0vVSqT6EXCTRl/VvkM4oDOy5xk31TvFHsKNuvN/i2pmejKJMZFIsRatpU6YTLrTYw
+         0NegAasMVnYroc2Fm1c6Zf0Wd5kkCTsqhpPYDbmPg2D12jfTqVORKiOLqKi+KFF81n
+         HUTWo8fiWVLITy6CFtjhwzNMVdkXOqipCzphhFIs65VmR2cmXdfciKoKV9Nnoh6hmk
+         XYGs1F6k88u1g==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 2/2] clk: rs9: Add Renesas 9-series PCIe clock generator
- driver
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20220213173310.152230-1-marex@denx.de>
- <20220213173310.152230-2-marex@denx.de>
- <20220217234539.819AEC340E8@smtp.kernel.org>
- <006919c7-74c9-390a-964e-6b76611988e5@denx.de>
- <20220218221504.54F8DC340E9@smtp.kernel.org>
- <182f1f73-70eb-5811-b3ad-35b6428ed59a@denx.de>
- <20220219030521.0A6B0C340E9@smtp.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220219030521.0A6B0C340E9@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Date:   Sat, 19 Feb 2022 11:46:31 +0500
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
+        sboyd@kernel.org, krzk@kernel.org, linus.walleij@linaro.org,
+        masneyb@onstation.org, sean.anderson@seco.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v5 2/2] pwm: Add clock based PWM output driver
+In-Reply-To: <20220214184320.ym36pfvozwdp5nbb@pengutronix.de>
+References: <20220212162342.72646-1-nikita@trvn.ru>
+ <20220212162342.72646-3-nikita@trvn.ru>
+ <20220214184320.ym36pfvozwdp5nbb@pengutronix.de>
+Message-ID: <425691dbe49115f04dbe89c158bf6d1c@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/19/22 04:05, Stephen Boyd wrote:
-> Quoting Marek Vasut (2022-02-18 17:11:04)
->> On 2/18/22 23:15, Stephen Boyd wrote:
->>>>
->>>>>> +       if (!parent_clk)
->>>>>> +               return dev_err_probe(&client->dev, -EINVAL,
->>>>>> +                                    "Missing XTal input clock\n");
->>>>>> +
->>>>>> +       rs9->regmap = devm_regmap_init_i2c(client, &rs9_regmap_config);
->>>>>> +       if (IS_ERR(rs9->regmap))
->>>>>> +               return dev_err_probe(&client->dev, PTR_ERR(rs9->regmap),
->>>>>> +                                    "Failed to allocate register map\n");
->>>>>> +
->>>>>> +       /* Register clock */
->>>>>> +       for (i = 0; i < rs9->chip_info->num_clks; i++) {
->>>>>> +               name[3]++;
->>>>>> +               hw = clk_hw_register_fixed_factor(&client->dev, name,
->>>>>> +                                                 parent_clk, 0, 4, 1);
->>>
->>> To do that it looks like maybe we'll need to export
->>> __clk_hw_register_fixed_factor() and introduces some sort of
->>> clk_hw_register_fixed_factor_parent_data() API.
->>
->> Setting parent_clk to NULL should be enough.
->>
-> 
-> Perfect, but also weird. I worry that's a bug that snuck in. Probably a
-> good idea to not rely on that.
+Hi,
 
-No, I was wrong, the index=0 is right, and it is already fixed in V2.
+Uwe Kleine-König писал(а) 14.02.2022 23:43:
+> On Sat, Feb 12, 2022 at 09:23:42PM +0500, Nikita Travkin wrote:
+>> Some systems have clocks exposed to external devices. If the clock
+>> controller supports duty-cycle configuration, such clocks can be used as
+>> pwm outputs. In fact PWM and CLK subsystems are interfaced with in a
+>> similar way and an "opposite" driver already exists (clk-pwm). Add a
+>> driver that would enable pwm devices to be used via clk subsystem.
+>>
+>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>> --
+>>
+>> Changes in v2:
+>>  - Address Uwe's review comments:
+>>    - Round set clk rate up
+>>    - Add a description with limitations of the driver
+>>    - Disable and unprepare clock before removing pwmchip
+>> Changes in v3:
+>>  - Use 64bit version of div round up
+>>  - Address Uwe's review comments:
+>>    - Reword the limitations to avoid incorrect claims
+>>    - Move the clk_enabled flag assignment
+>>    - Drop unnecessary statements
+>> Changes in v5:
+>>  - add missed returns
+>> ---
+>>  drivers/pwm/Kconfig   |  10 +++
+>>  drivers/pwm/Makefile  |   1 +
+>>  drivers/pwm/pwm-clk.c | 139 ++++++++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 150 insertions(+)
+>>  create mode 100644 drivers/pwm/pwm-clk.c
+>>
+>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+>> index 21e3b05a5153..daa2491a4054 100644
+>> --- a/drivers/pwm/Kconfig
+>> +++ b/drivers/pwm/Kconfig
+>> @@ -140,6 +140,16 @@ config PWM_BRCMSTB
+>>  	  To compile this driver as a module, choose M Here: the module
+>>  	  will be called pwm-brcmstb.c.
+>>
+>> +config PWM_CLK
+>> +	tristate "Clock based PWM support"
+>> +	depends on HAVE_CLK || COMPILE_TEST
+>> +	help
+>> +	  Generic PWM framework driver for outputs that can be
+>> +	  muxed to clocks.
+>> +
+>> +	  To compile this driver as a module, choose M here: the module
+>> +	  will be called pwm-clk.
+>> +
+>>  config PWM_CLPS711X
+>>  	tristate "CLPS711X PWM support"
+>>  	depends on ARCH_CLPS711X || COMPILE_TEST
+>> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+>> index 708840b7fba8..4a860103c470 100644
+>> --- a/drivers/pwm/Makefile
+>> +++ b/drivers/pwm/Makefile
+>> @@ -10,6 +10,7 @@ obj-$(CONFIG_PWM_BCM_KONA)	+= pwm-bcm-kona.o
+>>  obj-$(CONFIG_PWM_BCM2835)	+= pwm-bcm2835.o
+>>  obj-$(CONFIG_PWM_BERLIN)	+= pwm-berlin.o
+>>  obj-$(CONFIG_PWM_BRCMSTB)	+= pwm-brcmstb.o
+>> +obj-$(CONFIG_PWM_CLK)		+= pwm-clk.o
+>>  obj-$(CONFIG_PWM_CLPS711X)	+= pwm-clps711x.o
+>>  obj-$(CONFIG_PWM_CRC)		+= pwm-crc.o
+>>  obj-$(CONFIG_PWM_CROS_EC)	+= pwm-cros-ec.o
+>> diff --git a/drivers/pwm/pwm-clk.c b/drivers/pwm/pwm-clk.c
+>> new file mode 100644
+>> index 000000000000..e503337ad055
+>> --- /dev/null
+>> +++ b/drivers/pwm/pwm-clk.c
+>> @@ -0,0 +1,139 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Clock based PWM controller
+>> + *
+>> + * Copyright (c) 2021 Nikita Travkin <nikita@trvn.ru>
+>> + *
+>> + * This is an "adapter" driver that allows PWM consumers to use
+>> + * system clocks with duty cycle control as PWM outputs.
+>> + *
+>> + * Limitations:
+>> + * - Glitches are possible when new pwm state is applied.
+>> + * - Due to the fact that exact behavior depends on the underlying
+>> + *   clock driver, various limitations are possible.
+>> + * - Period depends on the clock and, in general, not guaranteed.
+> 
+> This sentence is broken.
+> 
+
+Here what I mean is that the clock driver might e.g. have a lookup table
+for some rates and will only set one close to the requested ones.
+(Extreme scenario is that only one rate is allowed in the lookup table,
+which is a real possibility for some platforms that I think this driver
+will be used with, the lookup may need to be changed for those clocks)
+
+I will reword this like:
+
+  Some clock drivers may only pick the closest available rate
+  and not the exact requested one. Because of this, exact period
+  is not guaranteed.
+
+Thanks,
+Nikita
+
+>> + * - Underlying clock may not be able to give 0% or 100% duty cycle
+>> + *   (constant off or on), exact behavior will depend on the clock.
+>> + * - When the PWM is disabled, the clock will be disabled as well,
+>> + *   line state will depend on the clock.
+>> + */
+>> +
+>> +#include <linux/kernel.h>
+>> +#include <linux/math64.h>
+>> +#include <linux/err.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/pwm.h>
+>> +
+>> +struct pwm_clk_chip {
+>> +	struct pwm_chip chip;
+>> +	struct clk *clk;
+>> +	bool clk_enabled;
+>> +};
+>> +
+>> +#define to_pwm_clk_chip(_chip) container_of(_chip, struct pwm_clk_chip, chip)
+>> +
+>> +static int pwm_clk_apply(struct pwm_chip *pwm_chip, struct pwm_device *pwm,
+>> +			 const struct pwm_state *state)
+>> +{
+>> +	struct pwm_clk_chip *chip = to_pwm_clk_chip(pwm_chip);
+>> +	int ret;
+>> +	u32 rate;
+>> +	u64 period = state->period;
+>> +	u64 duty_cycle = state->duty_cycle;
+>> +
+>> +	if (!state->enabled) {
+>> +		if (pwm->state.enabled) {
+>> +			clk_disable(chip->clk);
+>> +			chip->clk_enabled = false;
+>> +		}
+>> +		return 0;
+>> +	} else if (!pwm->state.enabled) {
+>> +		ret = clk_enable(chip->clk);
+>> +		if (ret)
+>> +			return ret;
+>> +		chip->clk_enabled = true;
+>> +	}
+>> +
+>> +	rate = DIV64_U64_ROUND_UP(NSEC_PER_SEC, period);
+>> +	ret = clk_set_rate(chip->clk, rate);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (state->polarity == PWM_POLARITY_INVERSED)
+>> +		duty_cycle = period - duty_cycle;
+>> +
+>> +	return clk_set_duty_cycle(chip->clk, duty_cycle, period);
+>> +}
+>> +
+>> +static const struct pwm_ops pwm_clk_ops = {
+>> +	.apply = pwm_clk_apply,
+>> +	.owner = THIS_MODULE,
+>> +};
+>> +
+>> +static int pwm_clk_probe(struct platform_device *pdev)
+>> +{
+>> +	struct pwm_clk_chip *chip;
+>> +	int ret;
+>> +
+>> +	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+>> +	if (!chip)
+>> +		return -ENOMEM;
+>> +
+>> +	chip->clk = devm_clk_get(&pdev->dev, NULL);
+>> +	if (IS_ERR(chip->clk))
+>> +		return dev_err_probe(&pdev->dev, PTR_ERR(chip->clk),
+>> +				     "Failed to get clock\n");
+>> +
+>> +	chip->chip.dev = &pdev->dev;
+>> +	chip->chip.ops = &pwm_clk_ops;
+>> +	chip->chip.npwm = 1;
+>> +
+>> +	ret = clk_prepare(chip->clk);
+>> +	if (ret < 0)
+>> +		return dev_err_probe(&pdev->dev, ret, "Failed to prepare clock\n");
+>> +
+>> +	ret = pwmchip_add(&chip->chip);
+>> +	if (ret < 0)
+>> +		return dev_err_probe(&pdev->dev, ret, "Failed to add pwm chip\n");
+> 
+> As was already pointed out, here is some error cleanup necessary.
+> 
+>> +	platform_set_drvdata(pdev, chip);
+>> +	return 0;
+>> +}
+> 
+> Otherwise looks good.
+> 
+> Best regards
+> Uwe
