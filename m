@@ -2,76 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 838124BCADB
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 22:59:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F4AE4BCAFC
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 23:10:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243184AbiBSV4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 16:56:20 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55436 "EHLO
+        id S231562AbiBSWKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 17:10:45 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243235AbiBSV4P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 16:56:15 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 943055469E
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 13:55:54 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id om7so11523776pjb.5
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 13:55:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ALItf1cmaYde5anKiXpaOkvR8+mXdj6IXy5l9T74CXY=;
-        b=Fn3Ru8rk2m6UM8OQLbL67IIZ8/ISkk5RdEHaoDTmx+kgG1d3LaSWDLlgU5hpIz1l7O
-         J7wJiWswQe2eiNiH9NK+KlcuyYwX5V/xk9AHURcL6gvv2KVTbN0ZXmOqjFP+Ymae+m6A
-         XsyBw4215bt3cTNo+f3XJ9PD+lGYKgdRNXJuv4eDuVCSb1Kd3aWbB/DRxrG1zuO6qOK6
-         bmbXgCSMop4xAHAEGWRHJpJPJUIw19GqTB9pqV/e0IkSqhlP2Oz0sYn9UK88VS0LbwQK
-         NDpXPd0nK3sJsBc29nP85v40SbCnUAjXVZumbtGJ7Ffb2doMS7kbn7u00qZ8C4AP5K39
-         rWYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ALItf1cmaYde5anKiXpaOkvR8+mXdj6IXy5l9T74CXY=;
-        b=40g6PKLcLBYXaBO9GwtmDhUFp1K//RarPyt7lfFFl7CgeZQuBSOxBi6Tp8jQzNwaur
-         ygm6FPeZONx/U7BPTYH9k+LZaCNYSnxUP2MmlBgcCeWz93OtxC5KfGUWuzzEejXtfBov
-         wVoyD4+Xcj/E4eZOAXnKgv6LF4vEDgJlB+KQ4O8i41LGol0wgFIThIP0wLACGrdHbzk7
-         awOsgzvNC4wen6ZSfl6rcgCfuq5QsfSOB5CQGSp2ny1FVw+5eCwM3IomK2oFer1v6bEp
-         AnbWjRw1+u0W+x+bPAp7hWRVw2uiCZh6qDUrwD4JDU5fdsW8kBIRkaLiPp8Hj3x8nfW2
-         W2mA==
-X-Gm-Message-State: AOAM530I0zeRSoPmrFSY6lGsx+cCU3AEWUfZ+zBcdN6VFrEz5AHE4GdA
-        Fl/x2Vbo2njF/s6HdUigs44F7g==
-X-Google-Smtp-Source: ABdhPJxMLUiSjR9mcVV1iK9+hG/lKSlGmCHqWar1s22AM6LNq/uC41pK9n3kfEId/9Rjt1hG8v3Asg==
-X-Received: by 2002:a17:902:ba96:b0:14c:8407:8e4b with SMTP id k22-20020a170902ba9600b0014c84078e4bmr12646881pls.135.1645307754101;
-        Sat, 19 Feb 2022 13:55:54 -0800 (PST)
-Received: from x1.hsd1.or.comcast.net ([2601:1c2:1001:7090:31ab:1e81:9550:f30a])
-        by smtp.gmail.com with ESMTPSA id i17sm13447337pgn.82.2022.02.19.13.55.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Feb 2022 13:55:53 -0800 (PST)
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dave Gerlach <d-gerlach@ti.com>, devicetree@vger.kernel.org,
-        Drew Fustini <dfustini@baylibre.com>,
-        Keerthy <j-keerthy@ti.com>, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, s-anna@ti.com,
-        khilman@baylibre.com
-Cc:     Brad Griffis <bgriffis@ti.com>
-Subject: [PATCH 11/11] soc: ti: wkup_m3_ipc: Add debug option to halt m3 in suspend
-Date:   Sat, 19 Feb 2022 13:53:28 -0800
-Message-Id: <20220219215328.485660-12-dfustini@baylibre.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220219215328.485660-1-dfustini@baylibre.com>
-References: <20220219215328.485660-1-dfustini@baylibre.com>
+        with ESMTP id S229674AbiBSWKo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 17:10:44 -0500
+Received: from mx2.smtp.larsendata.com (mx2.smtp.larsendata.com [91.221.196.228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FE2142A19
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 14:10:21 -0800 (PST)
+Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
+        by mx2.smtp.larsendata.com (Halon) with ESMTPS
+        id c5297060-91d0-11ec-b2df-0050568cd888;
+        Sat, 19 Feb 2022 22:10:38 +0000 (UTC)
+Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sam@ravnborg.org)
+        by mail01.mxhotel.dk (Postfix) with ESMTPSA id 0D1E7194B34;
+        Sat, 19 Feb 2022 23:10:18 +0100 (CET)
+Date:   Sat, 19 Feb 2022 23:10:14 +0100
+X-Report-Abuse-To: abuse@mxhotel.dk
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>
+Cc:     robh+dt@kernel.org, thierry.reding@gmail.com, maxime@cerno.tech,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v4 3/3] drm/tiny: Add MIPI DBI compatible SPI driver
+Message-ID: <YhFqxklH9hsLrI1X@ravnborg.org>
+References: <20220218151110.11316-1-noralf@tronnes.org>
+ <20220218151110.11316-4-noralf@tronnes.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+In-Reply-To: <20220218151110.11316-4-noralf@tronnes.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,172 +49,545 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dave Gerlach <d-gerlach@ti.com>
+Hi Noralf,
+On Fri, Feb 18, 2022 at 04:11:10PM +0100, Noralf Trønnes wrote:
+> Add a driver that will work with most MIPI DBI compatible SPI panels.
+> This avoids adding a driver for every new MIPI DBI compatible controller
+> that is to be used by Linux. The 'compatible' Device Tree property with
+> a '.bin' suffix will be used to load a firmware file that contains the
+> controller configuration.
+A solution where we have the command sequences as part of the DT-overlay
+is IMO a much better way to solve this:
+- The users needs to deal only with a single file, so there is less that
+  goes wrong
+- The user need not reading special instructions how to handle a .bin
+  file, if the overlay is present everything is fine
+- The file that contains the command sequences can be properly annotated
+  with comments
+- The people that creates the command sequences has no need for a special
+  script to create the file for a display - this is all readable ascii.
+- Using a DT-overlay the parsing of the DT-overlay can be done by
+  well-tested functions, no need to invent something new to parse the
+  file
 
-Add a debugfs option to allow configurable halting of the wkup_m3
-during suspend at the last possible point before low power mode entry.
-This condition can only be resolved through JTAG and advancing beyond
-the while loop in a8_lp_ds0_handler. Although this hangs the system it
-forces the system to remain active once it has been entirely configured
-for low power mode entry, allowing for register inspection through JTAG
-to help in debugging transition errors.
 
-Halt mode can be set using the enable_off_mode entry under wkup_m3_ipc
-in the debugfs.
+The idea with a common mipi DBI SPI driver is super, it is the detail
+with the .bin file that I am against.
 
-Suggested-by: Brad Griffis <bgriffis@ti.com>
-Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-[dfustini: resolve trivial line conflicts]
-Signed-off-by: Drew Fustini <dfustini@baylibre.com>
----
- drivers/soc/ti/wkup_m3_ipc.c | 78 +++++++++++++++++++++++++++++++++++-
- include/linux/wkup_m3_ipc.h  |  2 +
- 2 files changed, 79 insertions(+), 1 deletion(-)
+With the above said, a few comments to the current implementation below.
+As we know it from you - a very well-written driver.
 
-diff --git a/drivers/soc/ti/wkup_m3_ipc.c b/drivers/soc/ti/wkup_m3_ipc.c
-index 5a1722c3bf1a..244bce3f52e8 100644
---- a/drivers/soc/ti/wkup_m3_ipc.c
-+++ b/drivers/soc/ti/wkup_m3_ipc.c
-@@ -7,6 +7,7 @@
-  * Dave Gerlach <d-gerlach@ti.com>
-  */
- 
-+#include <linux/debugfs.h>
- #include <linux/err.h>
- #include <linux/firmware.h>
- #include <linux/kernel.h>
-@@ -50,6 +51,9 @@
- #define IPC_IO_ISOLATION_STAT_SHIFT	(10)
- #define IPC_IO_ISOLATION_STAT_MASK	(0x1 << 10)
- 
-+#define IPC_DBG_HALT_SHIFT		(11)
-+#define IPC_DBG_HALT_MASK		(0x1 << 11)
-+
- #define M3_STATE_UNKNOWN		0
- #define M3_STATE_RESET			1
- #define M3_STATE_INITED			2
-@@ -137,6 +141,73 @@ static void wkup_m3_scale_data_fw_cb(const struct firmware *fw, void *context)
- 	release_firmware(fw);
- };
- 
-+#ifdef CONFIG_DEBUG_FS
-+static void wkup_m3_set_halt_late(bool enabled)
-+{
-+	if (enabled)
-+		m3_ipc_state->halt = (1 << IPC_DBG_HALT_SHIFT);
-+	else
-+		m3_ipc_state->halt = 0;
-+}
-+
-+static int option_get(void *data, u64 *val)
-+{
-+	u32 *option = data;
-+
-+	*val = *option;
-+
-+	return 0;
-+}
-+
-+static int option_set(void *data, u64 val)
-+{
-+	u32 *option = data;
-+
-+	*option = val;
-+
-+	if (option == &m3_ipc_state->halt) {
-+		if (val)
-+			wkup_m3_set_halt_late(true);
-+		else
-+			wkup_m3_set_halt_late(false);
-+	}
-+
-+	return 0;
-+}
-+
-+DEFINE_SIMPLE_ATTRIBUTE(wkup_m3_ipc_option_fops, option_get, option_set,
-+			"%llu\n");
-+
-+static int wkup_m3_ipc_dbg_init(struct wkup_m3_ipc *m3_ipc)
-+{
-+	m3_ipc->dbg_path = debugfs_create_dir("wkup_m3_ipc", NULL);
-+
-+	if (!m3_ipc->dbg_path)
-+		return -EINVAL;
-+
-+	(void)debugfs_create_file("enable_late_halt", 0644,
-+				  m3_ipc->dbg_path,
-+				  &m3_ipc->halt,
-+				  &wkup_m3_ipc_option_fops);
-+
-+	return 0;
-+}
-+
-+static inline void wkup_m3_ipc_dbg_destroy(struct wkup_m3_ipc *m3_ipc)
-+{
-+	debugfs_remove_recursive(m3_ipc->dbg_path);
-+}
-+#else
-+static inline int wkup_m3_ipc_dbg_init(struct wkup_m3_ipc *m3_ipc)
-+{
-+	return 0;
-+}
-+
-+static inline void wkup_m3_ipc_dbg_destroy(struct wkup_m3_ipc *m3_ipc)
-+{
-+}
-+#endif /* CONFIG_DEBUG_FS */
-+
- static int wkup_m3_init_scale_data(struct wkup_m3_ipc *m3_ipc,
- 				   struct device *dev)
- {
-@@ -402,7 +473,8 @@ static int wkup_m3_prepare_low_power(struct wkup_m3_ipc *m3_ipc, int state)
- 	wkup_m3_ctrl_ipc_write(m3_ipc, m3_power_state, 1);
- 	wkup_m3_ctrl_ipc_write(m3_ipc, m3_ipc->mem_type |
- 			       m3_ipc->vtt_conf |
--			       m3_ipc->isolation_conf, 4);
-+			       m3_ipc->isolation_conf |
-+			       m3_ipc->halt, 4);
- 	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 2);
- 	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 3);
- 	wkup_m3_ctrl_ipc_write(m3_ipc, DS_IPC_DEFAULT, 6);
-@@ -634,6 +706,8 @@ static int wkup_m3_ipc_probe(struct platform_device *pdev)
- 		goto err_put_rproc;
- 	}
- 
-+	wkup_m3_ipc_dbg_init(m3_ipc);
-+
- 	return 0;
- 
- err_put_rproc:
-@@ -645,6 +719,8 @@ static int wkup_m3_ipc_probe(struct platform_device *pdev)
- 
- static int wkup_m3_ipc_remove(struct platform_device *pdev)
- {
-+	wkup_m3_ipc_dbg_destroy(m3_ipc_state);
-+
- 	mbox_free_channel(m3_ipc_state->mbox);
- 
- 	rproc_shutdown(m3_ipc_state->rproc);
-diff --git a/include/linux/wkup_m3_ipc.h b/include/linux/wkup_m3_ipc.h
-index fef0fac60f8c..26d1eb058fa3 100644
---- a/include/linux/wkup_m3_ipc.h
-+++ b/include/linux/wkup_m3_ipc.h
-@@ -36,6 +36,7 @@ struct wkup_m3_ipc {
- 	int vtt_conf;
- 	int isolation_conf;
- 	int state;
-+	u32 halt;
- 
- 	unsigned long volt_scale_offsets;
- 	const char *sd_fw_name;
-@@ -46,6 +47,7 @@ struct wkup_m3_ipc {
- 
- 	struct wkup_m3_ipc_ops *ops;
- 	int is_rtc_only;
-+	struct dentry *dbg_path;
- };
- 
- struct wkup_m3_wakeup_src {
--- 
-2.32.0
+	Sam
 
+> Acked-by: Maxime Ripard <maxime@cerno.tech>
+> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
+> ---
+>  MAINTAINERS                           |   8 +
+>  drivers/gpu/drm/tiny/Kconfig          |  13 +
+>  drivers/gpu/drm/tiny/Makefile         |   1 +
+>  drivers/gpu/drm/tiny/panel-mipi-dbi.c | 413 ++++++++++++++++++++++++++
+>  4 files changed, 435 insertions(+)
+>  create mode 100644 drivers/gpu/drm/tiny/panel-mipi-dbi.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 8e6e892f99f0..3a0e57f23ad0 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6107,6 +6107,14 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
+>  F:	Documentation/devicetree/bindings/display/multi-inno,mi0283qt.txt
+>  F:	drivers/gpu/drm/tiny/mi0283qt.c
+>  
+> +DRM DRIVER FOR MIPI DBI compatible panels
+> +M:	Noralf Trønnes <noralf@tronnes.org>
+> +S:	Maintained
+> +W:	https://github.com/notro/panel-mipi-dbi/wiki
+Nice with a wiki for this, I can see this will grow over time and be a
+place to find how to support more panels.
+
+> +T:	git git://anongit.freedesktop.org/drm/drm-misc
+> +F:	Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> +F:	drivers/gpu/drm/tiny/panel-mipi-dbi.c
+> +
+>  DRM DRIVER FOR MSM ADRENO GPU
+>  M:	Rob Clark <robdclark@gmail.com>
+>  M:	Sean Paul <sean@poorly.run>
+> diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
+> index 712e0004e96e..d552e1618da7 100644
+> --- a/drivers/gpu/drm/tiny/Kconfig
+> +++ b/drivers/gpu/drm/tiny/Kconfig
+> @@ -51,6 +51,19 @@ config DRM_GM12U320
+>  	 This is a KMS driver for projectors which use the GM12U320 chipset
+>  	 for video transfer over USB2/3, such as the Acer C120 mini projector.
+>  
+> +config DRM_PANEL_MIPI_DBI
+> +	tristate "DRM support for MIPI DBI compatible panels"
+> +	depends on DRM && SPI
+> +	select DRM_KMS_HELPER
+> +	select DRM_KMS_CMA_HELPER
+This symbol is not present in my drm-misc-next tree (which is a few
+weeks old, so it may be newer).
+
+> +	select DRM_MIPI_DBI
+> +	select BACKLIGHT_CLASS_DEVICE
+> +	help
+> +	  Say Y here if you want to enable support for MIPI DBI compatible
+> +	  panels. The controller command setup can be provided using a
+> +	  firmware file.
+Consider adding a link to the wiki here - this may make it easier for
+the user to find it.
+
+> +	  To compile this driver as a module, choose M here.
+> +
+>  config DRM_SIMPLEDRM
+>  	tristate "Simple framebuffer driver"
+>  	depends on DRM && MMU
+> diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
+> index 5d5505d40e7b..1d9d6227e7ab 100644
+> --- a/drivers/gpu/drm/tiny/Makefile
+> +++ b/drivers/gpu/drm/tiny/Makefile
+> @@ -4,6 +4,7 @@ obj-$(CONFIG_DRM_ARCPGU)		+= arcpgu.o
+>  obj-$(CONFIG_DRM_BOCHS)			+= bochs.o
+>  obj-$(CONFIG_DRM_CIRRUS_QEMU)		+= cirrus.o
+>  obj-$(CONFIG_DRM_GM12U320)		+= gm12u320.o
+> +obj-$(CONFIG_DRM_PANEL_MIPI_DBI)	+= panel-mipi-dbi.o
+>  obj-$(CONFIG_DRM_SIMPLEDRM)		+= simpledrm.o
+>  obj-$(CONFIG_TINYDRM_HX8357D)		+= hx8357d.o
+>  obj-$(CONFIG_TINYDRM_ILI9163)		+= ili9163.o
+> diff --git a/drivers/gpu/drm/tiny/panel-mipi-dbi.c b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
+> new file mode 100644
+> index 000000000000..9240fdec38d6
+> --- /dev/null
+> +++ b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
+> @@ -0,0 +1,413 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * DRM driver for MIPI DBI compatible display panels
+> + *
+> + * Copyright 2022 Noralf Trønnes
+> + */
+> +
+> +#include <linux/backlight.h>
+> +#include <linux/delay.h>
+> +#include <linux/firmware.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/property.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_drv.h>
+> +#include <drm/drm_fb_helper.h>
+> +#include <drm/drm_gem_atomic_helper.h>
+> +#include <drm/drm_gem_cma_helper.h>
+> +#include <drm/drm_managed.h>
+> +#include <drm/drm_mipi_dbi.h>
+> +#include <drm/drm_modeset_helper.h>
+> +
+> +#include <video/display_timing.h>
+> +#include <video/mipi_display.h>
+> +#include <video/of_display_timing.h>
+> +#include <video/videomode.h>
+videomode should not be used in new drivers, it is an fbdev artifact.
+But that said - we are still missing a direct display_timing =>
+display_mode - so maybe we need it here.
+
+If it is needed Kconfig needs to be extended with:
+select VIDEOMODE_HELPERS
+
+> +
+> +static const u8 panel_mipi_dbi_magic[15] = { 'M', 'I', 'P', 'I', ' ', 'D', 'B', 'I',
+> +					     0, 0, 0, 0, 0, 0, 0 };
+> +
+> +/*
+> + * The optional display controller configuration is stored in a firmware file.
+> + * The Device Tree 'compatible' property value with a '.bin' suffix is passed
+> + * to request_firmware() to fetch this file.
+> + */
+> +struct panel_mipi_dbi_config {
+> +	/* Magic string: panel_mipi_dbi_magic */
+> +	u8 magic[15];
+> +
+> +	/* Config file format version */
+> +	u8 file_format_version;
+> +
+> +	/*
+> +	 * MIPI commands to execute when the display pipeline is enabled.
+> +	 * This is used to configure the display controller.
+> +	 *
+> +	 * The commands are stored in a byte array with the format:
+> +	 *     command, num_parameters, [ parameter, ...], command, ...
+> +	 *
+> +	 * Some commands require a pause before the next command can be received.
+> +	 * Inserting a delay in the command sequence is done by using the NOP command with one
+> +	 * parameter: delay in miliseconds (the No Operation command is part of the MIPI Display
+> +	 * Command Set where it has no parameters).
+> +	 *
+> +	 * Example:
+> +	 *     command 0x11
+> +	 *     sleep 120ms
+> +	 *     command 0xb1 parameters 0x01, 0x2c, 0x2d
+> +	 *     command 0x29
+> +	 *
+> +	 * Byte sequence:
+> +	 *     0x11 0x00
+> +	 *     0x00 0x01 0x78
+> +	 *     0xb1 0x03 0x01 0x2c 0x2d
+> +	 *     0x29 0x00
+> +	 */
+> +	u8 commands[];
+> +};
+> +
+> +struct panel_mipi_dbi_commands {
+> +	const u8 *buf;
+> +	size_t len;
+> +};
+> +
+> +static struct panel_mipi_dbi_commands *
+> +panel_mipi_dbi_check_commands(struct device *dev, const struct firmware *fw)
+> +{
+> +	const struct panel_mipi_dbi_config *config = (struct panel_mipi_dbi_config *)fw->data;
+> +	struct panel_mipi_dbi_commands *commands;
+> +	size_t size = fw->size, commands_len;
+> +	unsigned int i = 0;
+> +
+> +	if (size < sizeof(*config) + 2) { /* At least 1 command */
+> +		dev_err(dev, "config: file size=%zu is too small\n", size);
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	if (memcmp(config->magic, panel_mipi_dbi_magic, sizeof(config->magic))) {
+> +		dev_err(dev, "config: Bad magic: %15ph\n", config->magic);
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	if (config->file_format_version != 1) {
+> +		dev_err(dev, "config: version=%u is not supported\n", config->file_format_version);
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	drm_dev_dbg(dev, DRM_UT_DRIVER, "size=%zu version=%u\n", size, config->file_format_version);
+> +
+> +	commands_len = size - sizeof(*config);
+> +
+> +	while ((i + 1) < commands_len) {
+> +		u8 command = config->commands[i++];
+> +		u8 num_parameters = config->commands[i++];
+> +		const u8 *parameters = &config->commands[i];
+> +
+> +		i += num_parameters;
+> +		if (i > commands_len) {
+> +			dev_err(dev, "config: command=0x%02x num_parameters=%u overflows\n",
+> +				command, num_parameters);
+> +			return ERR_PTR(-EINVAL);
+> +		}
+> +
+> +		if (command == 0x00 && num_parameters == 1)
+> +			drm_dev_dbg(dev, DRM_UT_DRIVER, "sleep %ums\n", parameters[0]);
+> +		else
+> +			drm_dev_dbg(dev, DRM_UT_DRIVER, "command %02x %*ph\n",
+> +				    command, num_parameters, parameters);
+> +	}
+> +
+> +	if (i != commands_len) {
+> +		dev_err(dev, "config: malformed command array\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	commands = devm_kzalloc(dev, sizeof(*commands), GFP_KERNEL);
+> +	if (!commands)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	commands->len = commands_len;
+> +	commands->buf = devm_kmemdup(dev, config->commands, commands->len, GFP_KERNEL);
+> +	if (!commands->buf)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	return commands;
+> +}
+> +
+> +static struct panel_mipi_dbi_commands *panel_mipi_dbi_commands_from_fw(struct device *dev)
+> +{
+> +	struct panel_mipi_dbi_commands *commands;
+> +	const struct firmware *fw;
+> +	const char *compatible;
+> +	struct property *prop;
+> +	char fw_name[40];
+> +	int ret;
+> +
+> +	of_property_for_each_string(dev->of_node, "compatible", prop, compatible) {
+> +		snprintf(fw_name, sizeof(fw_name), "%s.bin", compatible);
+> +		ret = firmware_request_nowarn(&fw, fw_name, dev);
+> +		if (ret) {
+> +			drm_dev_dbg(dev, DRM_UT_DRIVER,
+> +				    "No config file found for compatible: '%s' (error=%d)\n",
+> +				    compatible, ret);
+It would be more helpful to spell out that we failed to find a file
+named compatible.bin here as the user may not be aware that the .bin
+file is needed.
+
+> +			continue;
+> +		}
+> +
+> +		commands = panel_mipi_dbi_check_commands(dev, fw);
+> +		release_firmware(fw);
+> +		return commands;
+> +	}
+> +
+> +	return NULL;
+> +}
+> +
+> +static void panel_mipi_dbi_commands_execute(struct mipi_dbi *dbi,
+> +					    struct panel_mipi_dbi_commands *commands)
+> +{
+> +	unsigned int i = 0;
+> +
+> +	if (!commands)
+> +		return;
+> +
+> +	while (i < commands->len) {
+> +		u8 command = commands->buf[i++];
+> +		u8 num_parameters = commands->buf[i++];
+> +		const u8 *parameters = &commands->buf[i];
+> +
+> +		if (command == 0x00 && num_parameters == 1)
+> +			msleep(parameters[0]);
+> +		else if (num_parameters)
+> +			mipi_dbi_command_stackbuf(dbi, command, parameters, num_parameters);
+> +		else
+> +			mipi_dbi_command(dbi, command);
+> +
+> +		i += num_parameters;
+> +	}
+> +}
+> +
+> +static void panel_mipi_dbi_enable(struct drm_simple_display_pipe *pipe,
+> +				  struct drm_crtc_state *crtc_state,
+> +				  struct drm_plane_state *plane_state)
+> +{
+> +	struct mipi_dbi_dev *dbidev = drm_to_mipi_dbi_dev(pipe->crtc.dev);
+> +	struct mipi_dbi *dbi = &dbidev->dbi;
+> +	int ret, idx;
+> +
+> +	if (!drm_dev_enter(pipe->crtc.dev, &idx))
+> +		return;
+> +
+> +	drm_dbg(pipe->crtc.dev, "\n");
+> +
+> +	ret = mipi_dbi_poweron_conditional_reset(dbidev);
+> +	if (ret < 0)
+> +		goto out_exit;
+> +	if (!ret)
+> +		panel_mipi_dbi_commands_execute(dbi, dbidev->driver_private);
+> +
+> +	mipi_dbi_enable_flush(dbidev, crtc_state, plane_state);
+> +out_exit:
+> +	drm_dev_exit(idx);
+> +}
+> +
+> +static const struct drm_simple_display_pipe_funcs panel_mipi_dbi_pipe_funcs = {
+> +	.enable = panel_mipi_dbi_enable,
+> +	.disable = mipi_dbi_pipe_disable,
+> +	.update = mipi_dbi_pipe_update,
+> +};
+> +
+> +DEFINE_DRM_GEM_CMA_FOPS(panel_mipi_dbi_fops);
+> +
+> +static const struct drm_driver panel_mipi_dbi_driver = {
+> +	.driver_features	= DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+> +	.fops			= &panel_mipi_dbi_fops,
+> +	DRM_GEM_CMA_DRIVER_OPS_VMAP,
+> +	.debugfs_init		= mipi_dbi_debugfs_init,
+> +	.name			= "panel-mipi-dbi",
+> +	.desc			= "MIPI DBI compatible display panel",
+> +	.date			= "20220103",
+> +	.major			= 1,
+> +	.minor			= 0,
+> +};
+> +
+> +static int panel_mipi_dbi_get_mode(struct mipi_dbi_dev *dbidev, struct drm_display_mode *mode)
+> +{
+> +	struct device *dev = dbidev->drm.dev;
+> +	u32 width_mm = 0, height_mm = 0;
+> +	struct display_timing timing;
+> +	struct videomode vm;
+> +	int ret;
+> +
+> +	ret = of_get_display_timing(dev->of_node, "panel-timing", &timing);
+> +	if (ret) {
+> +		dev_err(dev, "%pOF: failed to get panel-timing (error=%d)\n", dev->of_node, ret);
+> +		return ret;
+> +	}
+> +
+> +	videomode_from_timing(&timing, &vm);
+> +
+> +	if (!vm.hactive || vm.hfront_porch || vm.hsync_len ||
+> +	    (vm.hback_porch + vm.hactive) > 0xffff ||
+> +	    !vm.vactive || vm.vfront_porch || vm.vsync_len ||
+> +	    (vm.vback_porch + vm.vactive) > 0xffff ||
+> +	    vm.flags) {
+> +		dev_err(dev, "%pOF: panel-timing out of bounds\n", dev->of_node);
+> +		return -EINVAL;
+> +	}
+We should have a helper that implements this. Maybe the display_timing
+=> display_mode helper could do it.
+
+> +
+> +	/* The driver doesn't use the pixel clock but it is mandatory so fake one if not set */
+> +	if (!vm.pixelclock)
+> +		vm.pixelclock = (vm.hback_porch + vm.hactive) * (vm.vback_porch + vm.vactive) * 60;
+> +
+> +	dbidev->top_offset = vm.vback_porch;
+> +	dbidev->left_offset = vm.hback_porch;
+> +
+> +	memset(mode, 0, sizeof(*mode));
+> +	drm_display_mode_from_videomode(&vm, mode);
+> +	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
+> +
+> +	ret = device_property_read_u32(dev, "width-mm", &width_mm);
+> +	if (ret && ret != -EINVAL)
+> +		return ret;
+> +
+> +	ret = device_property_read_u32(dev, "height-mm", &height_mm);
+> +	if (ret && ret != -EINVAL)
+> +		return ret;
+> +
+> +	mode->width_mm = width_mm;
+> +	mode->height_mm = height_mm;
+> +
+> +	drm_mode_debug_printmodeline(mode);
+> +
+> +	return 0;
+> +}
+> +
+> +static int panel_mipi_dbi_spi_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev = &spi->dev;
+> +	struct drm_display_mode mode;
+> +	struct mipi_dbi_dev *dbidev;
+> +	struct drm_device *drm;
+> +	struct mipi_dbi *dbi;
+> +	struct gpio_desc *dc;
+> +	int ret;
+> +
+> +	dbidev = devm_drm_dev_alloc(dev, &panel_mipi_dbi_driver, struct mipi_dbi_dev, drm);
+> +	if (IS_ERR(dbidev))
+> +		return PTR_ERR(dbidev);
+> +
+> +	dbi = &dbidev->dbi;
+> +	drm = &dbidev->drm;
+> +
+> +	ret = panel_mipi_dbi_get_mode(dbidev, &mode);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dbidev->regulator = devm_regulator_get(dev, "power");
+> +	if (IS_ERR(dbidev->regulator))
+> +		return dev_err_probe(dev, PTR_ERR(dbidev->regulator),
+> +				     "Failed to get regulator 'power'\n");
+> +
+> +	dbidev->backlight = devm_of_find_backlight(dev);
+> +	if (IS_ERR(dbidev->backlight))
+> +		return dev_err_probe(dev, PTR_ERR(dbidev->backlight), "Failed to get backlight\n");
+> +
+> +	dbi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(dbi->reset))
+> +		return dev_err_probe(dev, PTR_ERR(dbi->reset), "Failed to get GPIO 'reset'\n");
+> +
+> +	dc = devm_gpiod_get_optional(dev, "dc", GPIOD_OUT_LOW);
+> +	if (IS_ERR(dc))
+> +		return dev_err_probe(dev, PTR_ERR(dc), "Failed to get GPIO 'dc'\n");
+> +
+> +	ret = mipi_dbi_spi_init(spi, dbi, dc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (device_property_present(dev, "write-only"))
+> +		dbi->read_commands = NULL;
+read_commands are unused - so the write-only property is in practice
+ignored.
+
+> +
+> +	dbidev->driver_private = panel_mipi_dbi_commands_from_fw(dev);
+> +	if (IS_ERR(dbidev->driver_private))
+> +		return PTR_ERR(dbidev->driver_private);
+> +
+> +	ret = mipi_dbi_dev_init(dbidev, &panel_mipi_dbi_pipe_funcs, &mode, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_mode_config_reset(drm);
+> +
+> +	ret = drm_dev_register(drm, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	spi_set_drvdata(spi, drm);
+> +
+> +	drm_fbdev_generic_setup(drm, 0);
+> +
+> +	return 0;
+> +}
+> +
+> +static int panel_mipi_dbi_spi_remove(struct spi_device *spi)
+> +{
+> +	struct drm_device *drm = spi_get_drvdata(spi);
+> +
+> +	drm_dev_unplug(drm);
+> +	drm_atomic_helper_shutdown(drm);
+> +
+> +	return 0;
+> +}
+> +
+> +static void panel_mipi_dbi_spi_shutdown(struct spi_device *spi)
+> +{
+> +	drm_atomic_helper_shutdown(spi_get_drvdata(spi));
+> +}
+> +
+> +static int __maybe_unused panel_mipi_dbi_pm_suspend(struct device *dev)
+> +{
+> +	return drm_mode_config_helper_suspend(dev_get_drvdata(dev));
+> +}
+> +
+> +static int __maybe_unused panel_mipi_dbi_pm_resume(struct device *dev)
+> +{
+> +	drm_mode_config_helper_resume(dev_get_drvdata(dev));
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops panel_mipi_dbi_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(panel_mipi_dbi_pm_suspend, panel_mipi_dbi_pm_resume)
+> +};
+> +
+> +static const struct of_device_id panel_mipi_dbi_spi_of_match[] = {
+> +	{ .compatible = "panel-mipi-dbi-spi" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, panel_mipi_dbi_spi_of_match);
+> +
+> +static const struct spi_device_id panel_mipi_dbi_spi_id[] = {
+> +	{ "panel-mipi-dbi-spi", 0 },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(spi, panel_mipi_dbi_spi_id);
+> +
+> +static struct spi_driver panel_mipi_dbi_spi_driver = {
+> +	.driver = {
+> +		.name = "panel-mipi-dbi-spi",
+> +		.owner = THIS_MODULE,
+> +		.of_match_table = panel_mipi_dbi_spi_of_match,
+> +		.pm = &panel_mipi_dbi_pm_ops,
+> +	},
+> +	.id_table = panel_mipi_dbi_spi_id,
+> +	.probe = panel_mipi_dbi_spi_probe,
+> +	.remove = panel_mipi_dbi_spi_remove,
+> +	.shutdown = panel_mipi_dbi_spi_shutdown,
+> +};
+> +module_spi_driver(panel_mipi_dbi_spi_driver);
+> +
+> +MODULE_DESCRIPTION("MIPI DBI compatible display panel driver");
+> +MODULE_AUTHOR("Noralf Trønnes");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.33.0
