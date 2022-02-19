@@ -2,97 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D5A64BC8C2
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 14:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 957C94BC8CE
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 15:11:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242356AbiBSNzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 08:55:08 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58318 "EHLO
+        id S238867AbiBSOMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 09:12:01 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231447AbiBSNzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 08:55:08 -0500
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723FA1A2774;
-        Sat, 19 Feb 2022 05:54:46 -0800 (PST)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id E4BF5403F2;
-        Sat, 19 Feb 2022 18:54:40 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1645278882; bh=FkC6NFqmywpOwa4XAmaTo8rLxho52gFHok8cO4GwSY0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=KaICIyvngb7glnGwaBDP4yreBTZ7ftfx5XJp96kbpNn09hgHxsT1kt4fKmTTHkJBF
-         pqLzi/afSBxzlRGp/NjJNqaC1Uo0RJMHANu9g6lK1vwTbSC25r1dSzCcospOTa25EI
-         QnODySW/YWJ6e8Q6fiWX51TL2+2BPe2ZDLZ3e1sIf/nfbxwpKNaP9ESnBUDKcSyufD
-         rMkan0Wm6joaScvpJApWG+IF3/nBzbBsVEkTSl6wLxcvc3UBLT+212e2RsBS5WNJvH
-         +2D1ivNq7SFJguxdNFVY3GmSIRQV5ZL98+PzOmmqgvAqd/+cJlBK56bBe52euq7Zaw
-         3MfWrQeRksZ7g==
+        with ESMTP id S238683AbiBSOMA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 09:12:00 -0500
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF2DB3631F;
+        Sat, 19 Feb 2022 06:11:40 -0800 (PST)
+Received: by mail-io1-xd35.google.com with SMTP id c18so8356611ioc.6;
+        Sat, 19 Feb 2022 06:11:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=khEKiFmlxsxiqTtZYX/qTk1TpXtOYU/3OblqSoDUfW0=;
+        b=ZObrfqYotJuDphjyiBMB/p7l1RjWwBi7KwVByx0fZsy5G7MwhhOgTKtBx1YSVnd36F
+         wwKzz6FUpJ714wLF2d+DjM+j/DuyFrSoOf38xJAQ0r2AcC41mFdnU8M4YoRBQzw3e+oJ
+         45f8OQ5pM7KJ3CiNhWqMlOKJSVfimH7yjaqq/aW4E9XGzvCgqr0vC7YspFQtAYt81jph
+         Xi5+lcHwDA9scIGPe4j+BD8vLIR4cgKJJbITBBnShSx5eyiQQQwb3bSLt3AvNWma4Q50
+         HvFnrE3DlEPXIYW0shbg/lZj38hziCQKP9T6h0by4YcguyQneSBEtK9oowyEp1BkbF0V
+         5URw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=khEKiFmlxsxiqTtZYX/qTk1TpXtOYU/3OblqSoDUfW0=;
+        b=HQgcWlZLlU7ZgebjghFEEX96AaB9Ob/SrMRzcGWn++IG2XNNCZtuaXsQwLD9rxW1ZA
+         FBp+UgAyKBLtXvsuy2Mf/1u+cIE/DAqLi6g2/rlCkRMPZETVTJL/phGkSD8+mWDmhY+G
+         HQb0X8DzKh74W6Ilosr2O3xM5X4XKNP4oUJYycOAOyjt7ir6HxzbfgZ6yaN+eK53kB+c
+         m6q5JxlwuqiZ4ef0HfaZ+0UbBzIhMKFFhkWVKpIfR+EqZ7oABW+pnceO1l049d3QaEmG
+         brHq/bxaKId68h7kES1VrFa6/+aze3vARAfVr6B0hImRUkY8IOgVSe+QPaWIzU1xcQgV
+         DoMQ==
+X-Gm-Message-State: AOAM5311Gdg1r/Ub46Tr/w6nZ9V9OFKvXOZMrVXzSHGNWOpy0fRRjSmX
+        D+tKdgZgvbwR2mHKr2RQHNZwkxGUvwdEwJ9J2fA=
+X-Google-Smtp-Source: ABdhPJx5eE3sAx403go1Z2XHoeZZ5Xc3sz8vW4aQ9/eP501nK+eXQOuYg1aMlzYNe9DLkA7BIIff8QBau4zCr9ehHag=
+X-Received: by 2002:a02:6d5c:0:b0:30c:a4da:d47d with SMTP id
+ e28-20020a026d5c000000b0030ca4dad47dmr8712134jaf.308.1645279900228; Sat, 19
+ Feb 2022 06:11:40 -0800 (PST)
 MIME-Version: 1.0
-Date:   Sat, 19 Feb 2022 18:54:40 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
-        sboyd@kernel.org, krzk@kernel.org, linus.walleij@linaro.org,
-        masneyb@onstation.org, sean.anderson@seco.com,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v5 2/2] pwm: Add clock based PWM output driver
-In-Reply-To: <20220219101049.erwzy5mpmsfgcwjy@pengutronix.de>
-References: <20220212162342.72646-1-nikita@trvn.ru>
- <20220212162342.72646-3-nikita@trvn.ru>
- <20220214184320.ym36pfvozwdp5nbb@pengutronix.de>
- <425691dbe49115f04dbe89c158bf6d1c@trvn.ru>
- <20220219101049.erwzy5mpmsfgcwjy@pengutronix.de>
-Message-ID: <086f021bd11b7a730445250db2af01e8@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <4172e59f-b9d5-d87d-9dbd-a6f683a2173c@gmail.com>
+ <CANiq72mi5fj07cfo6T4jPmp=EiRtE_uDeHHCqjG9h+duPrUMKg@mail.gmail.com> <ecdbfb3a-e214-a059-95b9-1ebf2f625295@gmail.com>
+In-Reply-To: <ecdbfb3a-e214-a059-95b9-1ebf2f625295@gmail.com>
+From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date:   Sat, 19 Feb 2022 15:11:29 +0100
+Message-ID: <CANiq72=+richkEREEdxkgxfuosN1rUfzcg0=0Z6CzHSH28HnLw@mail.gmail.com>
+Subject: Re: [PATCH 0/6] auxdisplay: Add support for the Titanmec TM1628 7
+ segment display controller
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Uwe Kleine-König писал(а) 19.02.2022 15:10:
-> Hello,
-> 
-> On Sat, Feb 19, 2022 at 11:46:31AM +0500, Nikita Travkin wrote:
->> Uwe Kleine-König писал(а) 14.02.2022 23:43:
->> > On Sat, Feb 12, 2022 at 09:23:42PM +0500, Nikita Travkin wrote:
->> >> + * Limitations:
->> >> + * - Glitches are possible when new pwm state is applied.
->> >> + * - Due to the fact that exact behavior depends on the underlying
->> >> + *   clock driver, various limitations are possible.
->> >> + * - Period depends on the clock and, in general, not guaranteed.
->> >
->> > This sentence is broken.
->> >
->>
->> Here what I mean is that the clock driver might e.g. have a lookup table
->> for some rates and will only set one close to the requested ones.
->> (Extreme scenario is that only one rate is allowed in the lookup table,
->> which is a real possibility for some platforms that I think this driver
->> will be used with, the lookup may need to be changed for those clocks)
->>
->> I will reword this like:
->>
->>   Some clock drivers may only pick the closest available rate
->>   and not the exact requested one. Because of this, exact period
->>   is not guaranteed.
-> 
-> That there is no exact match is quite normal also for dedicated PWM
-> HW blocks. So I think the second item in your list is good enough to
-> cover the non-existing guaranteed for period and glitches.
-> 
+On Sat, Feb 19, 2022 at 2:37 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>
+> I didn't find an explicit reason, but I suppose Pavel sees this driver as
+> one that makes use of the LED subsystem, but doesn't belong to it.
+> In the following mail he's expressing his opinion that the driver should
+> be best placed under auxdisplay.
 
-Oh, I will just drop the 1 (glitches) and 3 (period) then.
-Thanks for explaining!
+Ah, OK -- thanks!
 
-Nikita
-
-> Best regards
-> Uwe
+Cheers,
+Miguel
