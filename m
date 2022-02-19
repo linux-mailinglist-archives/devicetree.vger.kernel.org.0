@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 098494BC474
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 02:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E0584BC485
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 02:21:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239725AbiBSBL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 20:11:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45674 "EHLO
+        id S240896AbiBSBU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 20:20:57 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230301AbiBSBL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 20:11:26 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68743256EDC;
-        Fri, 18 Feb 2022 17:11:07 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id DEA26838FC;
-        Sat, 19 Feb 2022 02:11:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1645233065;
-        bh=4SHsxBH5ZD2zX8xKdgkrtOxu71RgyMGTeNTz+vpWntg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TlwLmdUAKmjLJxm5eMMKQOFIwBo6/wv3h6vYARwhRyeF8evHd2mVweCMNx08YDpGw
-         JE3LgB9yP+O7YlR5ylOAtZ0EGdel948SlgZ6iLAuZGp/4/OQAsmRxngUhMyhAs80tH
-         7k+C9bK9bNA0LofPN0RKyWMyQV4UThHs+Jd1vMr8Pp8wHG+XiPBFk8RMu/buZbtxvF
-         tVQMSZdbTDb0JSAR/Sn+F13pGy9FPkVyqtxXFuR6HCnjByFuH7TylsTgKH45YPkKJT
-         xr3YJr2bLPvaQKFI9QPbZVauNk/uS9xl2/7LxK5CVsxSRhki5YwIi9S+BKIFmbJnqQ
-         TdUCXjW3byuTg==
-Message-ID: <182f1f73-70eb-5811-b3ad-35b6428ed59a@denx.de>
-Date:   Sat, 19 Feb 2022 02:11:04 +0100
+        with ESMTP id S240890AbiBSBU4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 20:20:56 -0500
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DDE3158DB7
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 17:20:38 -0800 (PST)
+Received: by mail-pl1-x635.google.com with SMTP id l8so8449134pls.7
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 17:20:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8Lj6YX7FRkv3bs+GJXuZJxzDwnOwlM3IinhEgHw4XZw=;
+        b=HrTqeMzkOeddI4nLvtfvWYkYVZH7pUGm2Y3tDGKpvNGtyvKgK7N9WiuUKu7FRu3Vkz
+         pNh/6/PHWCo9zDjdo/VyhkCzGS+Q+tnVYX8W8OdXkCyCrVR1yeUWCxRXkQU2U4jkoDlc
+         NWnxUVaCHwDlP//jkVd3s/AJmtET4MjgKUfO8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8Lj6YX7FRkv3bs+GJXuZJxzDwnOwlM3IinhEgHw4XZw=;
+        b=COVSHhH/8el0gov+kQrC1FZ0IRSMnHYXxAmOzVgCRvY6gRTjS3YVsxTEhOS1dwKPtL
+         rj11h+RjMClf4rcyo430lQoomVIsMG8RI12wJxUx0VJtJ709dct+/4059CF2qZil4Ihu
+         2FucpHIyGkPobTTk0hC36REcYgar4+NcCPidnThZmrpoVB32KeC+JIKiBKQpFoqcvuY/
+         fs++bCgZ0GCbq1dJeGLH2A4Lhef1WNafzD4CRCt0hhzn95323hHZhh+qXpD8JAGVKKKg
+         /QPkZATNGfvcCs4GYIykchO/bM3OyQLc1Atxw1O5c9TWvO7dgG5HF0cfA9iq/vIPgO2Y
+         DPug==
+X-Gm-Message-State: AOAM530n/CxSWC378ZBEPo8TxhiqRUQoRkaIdB0hVvc/0FLtYRDy/L9Y
+        ypIRiLMe/wtqkRw3/AZMnd4ETg==
+X-Google-Smtp-Source: ABdhPJy6xXRVgXghCn/2tizJ4qCsDOqDWj7clCWwB2FkX/Hh0jpyIgWEaLNnLb/o7oqWsdRq1D9kkw==
+X-Received: by 2002:a17:90b:3ec2:b0:1b9:fbeb:942b with SMTP id rm2-20020a17090b3ec200b001b9fbeb942bmr15026530pjb.55.1645233637899;
+        Fri, 18 Feb 2022 17:20:37 -0800 (PST)
+Received: from jwerner-p920.mtv.corp.google.com ([2620:15c:202:201:90c7:ea9e:6907:5ea9])
+        by smtp.gmail.com with ESMTPSA id gk11-20020a17090b118b00b001b8c8cfdca2sm494549pjb.20.2022.02.18.17.20.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Feb 2022 17:20:37 -0800 (PST)
+From:   Julius Werner <jwerner@chromium.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Julius Werner <jwerner@chromium.org>
+Subject: [PATCH] dt-bindings: memory: lpddr2: Adjust revision ID property to match lpddr3
+Date:   Fri, 18 Feb 2022 17:20:25 -0800
+Message-Id: <20220219012025.2887724-1-jwerner@chromium.org>
+X-Mailer: git-send-email 2.35.1.473.g83b2b277ed-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 2/2] clk: rs9: Add Renesas 9-series PCIe clock generator
- driver
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20220213173310.152230-1-marex@denx.de>
- <20220213173310.152230-2-marex@denx.de>
- <20220217234539.819AEC340E8@smtp.kernel.org>
- <006919c7-74c9-390a-964e-6b76611988e5@denx.de>
- <20220218221504.54F8DC340E9@smtp.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220218221504.54F8DC340E9@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,75 +64,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/18/22 23:15, Stephen Boyd wrote:
+Commit XXXXXX (dt-bindings: memory: lpddr2: Add revision-id properties)
+added the properties `revision-id1` and `revision-id2` to the
+"jedec,lpddr2" binding. The "jedec,lpddr3" binding already had a single
+array property `revision-id` for the same purpose. For consistency
+between related memory types, this patch deprecates the LPDDR2
+properties and instead adds a property in the same style as for LPDDR3
+to that binding.
 
-Hi,
+Signed-off-by: Julius Werner <jwerner@chromium.org>
+---
+ .../memory-controllers/ddr/jedec,lpddr2.yaml       | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
->>>> @@ -68,6 +68,7 @@ obj-$(CONFIG_COMMON_CLK_STM32MP157)   += clk-stm32mp1.o
->>>>    obj-$(CONFIG_COMMON_CLK_TPS68470)      += clk-tps68470.o
->>>>    obj-$(CONFIG_CLK_TWL6040)              += clk-twl6040.o
->>>>    obj-$(CONFIG_ARCH_VT8500)              += clk-vt8500.o
->>>> +obj-$(CONFIG_COMMON_CLK_RS9_PCIE)      += clk-renesas-pcie.o
->>>
->>> Is there a reason it doesn't go into drivers/clk/renesas?
->>
->> The drivers/clk/renesas/ is for renesas SoC (R-Car/RZ/...),
->> this chip is different group (it's probably even IDT PLL IP).
-> 
-> Ah ok so it's not a renesas SoC but a renesas IP?
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+index 25ed0266f6dd3d..37229738f47271 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+@@ -30,12 +30,23 @@ properties:
+     maximum: 255
+     description: |
+       Revision 1 value of SDRAM chip. Obtained from device datasheet.
++      Property is deprecated, use revision-id instead.
++    deprecated: true
+ 
+   revision-id2:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     maximum: 255
+     description: |
+       Revision 2 value of SDRAM chip. Obtained from device datasheet.
++      Property is deprecated, use revision-id instead.
++    deprecated: true
++
++  revision-id:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 2
++    maxItems: 2
++    description: |
++      Revision IDs read from Mode Register 6 and 7. One byte per uint32 cell (i.e. <MR6 MR7>).
+ 
+   density:
+     $ref: /schemas/types.yaml#/definitions/uint32
+@@ -164,8 +175,7 @@ examples:
+         compatible = "elpida,ECB240ABACN", "jedec,lpddr2-s4";
+         density = <2048>;
+         io-width = <32>;
+-        revision-id1 = <1>;
+-        revision-id2 = <0>;
++        revision-id = <123 234>;
+ 
+         tRPab-min-tck = <3>;
+         tRCD-min-tck = <3>;
+-- 
+2.31.0
 
-I suspect it is IDT IP, since the datasheet looks similar to what 
-versaclock datasheets used to look like, except the register layout is 
-much simpler and the registers are completely different. So it _might_ 
-be some mutation of the IDT PLL, and it is now owned by renesas.
-
-The renesas SoC clock IP is something entirely different from the IP 
-used here.
-
->>>> +#include <linux/mod_devicetable.h>
->>>> +#include <linux/module.h>
->>>> +#include <linux/of.h>
->>>> +#include <linux/of_platform.h>
->>>
->>> Is this used? If not please remove.
->>
->> This one is for of_device_get_match_data()
->>
-> 
-> So it's going away?
-
-Yes
-
-[...]
-
->>> Use clk_parent_data please.
->>
->> This one line I don't understand -- can you expand on what you expect me
->> to do here ?
-> 
-> Use 'struct clk_parent_data' and set .index to 0 so that when
-> registering the clk you don't need to get the parent clk name.
-> 
->>
->>>> +       if (!parent_clk)
->>>> +               return dev_err_probe(&client->dev, -EINVAL,
->>>> +                                    "Missing XTal input clock\n");
->>>> +
->>>> +       rs9->regmap = devm_regmap_init_i2c(client, &rs9_regmap_config);
->>>> +       if (IS_ERR(rs9->regmap))
->>>> +               return dev_err_probe(&client->dev, PTR_ERR(rs9->regmap),
->>>> +                                    "Failed to allocate register map\n");
->>>> +
->>>> +       /* Register clock */
->>>> +       for (i = 0; i < rs9->chip_info->num_clks; i++) {
->>>> +               name[3]++;
->>>> +               hw = clk_hw_register_fixed_factor(&client->dev, name,
->>>> +                                                 parent_clk, 0, 4, 1);
-> 
-> To do that it looks like maybe we'll need to export
-> __clk_hw_register_fixed_factor() and introduces some sort of
-> clk_hw_register_fixed_factor_parent_data() API.
-
-Setting parent_clk to NULL should be enough.
-
-[...]
