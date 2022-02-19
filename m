@@ -2,70 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D144BC86B
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 13:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA5A54BC86D
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 13:53:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242129AbiBSMtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 07:49:41 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54564 "EHLO
+        id S242246AbiBSMus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 07:50:48 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233494AbiBSMtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 07:49:40 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82DA8483AB;
-        Sat, 19 Feb 2022 04:49:20 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id f11so229047ljq.11;
-        Sat, 19 Feb 2022 04:49:20 -0800 (PST)
+        with ESMTP id S233494AbiBSMur (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 07:50:47 -0500
+Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57083483AE
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 04:50:29 -0800 (PST)
+Received: by mail-vk1-xa2a.google.com with SMTP id v192so6268417vkv.4
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 04:50:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wtjZ8Ae2cLsRZz7SUHUZ5yy4CcOsPrQ4KfjvroHRHfE=;
-        b=g7Xnklyx4Bu1DTso0pb2Bv6zQrurbW9O0sXWI2pmgrM8eaFGTyBLL5SliVyhj8U2Wk
-         ODmUEzZMGSNr7vqTWXHfzOgnqrwkmShY8J2ZeDS+fojyEBWILoLac2H3aPTP4tFZs3W+
-         XYa8W1ZGcuUeZHhxjw+8NQ7sxY+LpJpQrWV4ZtWYTzg7eomIsi48bCsasZEO5euEs+yD
-         JlMG/FRGCXd+RP0fjP5BP7v6EvdzMO3Nuu7gT7QDJeX4x9iLDCM2wp1t7qswnCEXZCC7
-         C0YoiT6f/LiLf4QrX2NsT4OxvijsnWdy8ezrr8XsLXc4xo9ECovyiWDz3ehHJLfIwDa8
-         zWgg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vGhXNwDABqJrebyS9iZitB79qnL+Qx7T9tvGfBslXag=;
+        b=B87lE/ifgNm2x/g9Z/N/ZVxYlAuRwWFrFkPjB+F1ULvXhDcJ/l5hgUtbZSuG4W8YDW
+         HZDWYHn3yxLaJM/c196aRp0g6bYWcLzpG6xUNn7haZe/+Q3W5GfZC/MXurMCkI5EH+1j
+         pn0aAR567WHwki5YfhCJ6gcubqN7EbPTjB/LasHiZ0we7EQyS8jXHvJRnpBv0m8JjtFP
+         wmcl3FcnB7nyPikZ2KMECnfTiQYjLcyBKo6zOS1OGEqcDwARi20TC4ynwY7evuxw4Hrw
+         18Zc/rsR/hSXa4BIwziTNDY+49KxR/b1QLAmbAtP7QNiDo8xB44vhZoUuCxfi5LlsitD
+         utpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wtjZ8Ae2cLsRZz7SUHUZ5yy4CcOsPrQ4KfjvroHRHfE=;
-        b=S9Ii55OYHcYWIX/LY8Wm786tiEZSPoPLi+OMJDq6zRSZhjR5mPHEQtT09LTRVXCTdb
-         eHl5ejOHqhZXMH3dxF+OBkxVhFoM+KI9nZWOIF8Qa4XWDDwikTCDa5i9Jq6FrLF8ZVuQ
-         Kpo+y0dV/3I4I5znP7NqYnDu/srKjawJLg+sV2C3MG1eXSYZcYgljXTYd8wh5V3bGOOJ
-         zBGurV4tOzXwKU1ecJCcoTGCM4qiFulfsmfo6NbECkeM7fHg5vDkg43T+fGk6XyCWE/U
-         4TmX9EU7WaHAiwWrgh3Pi93c7j5/toxxAFZCkVpmrA74y+L+GT4YaJ295pxWyvlMXp3D
-         LBOw==
-X-Gm-Message-State: AOAM533tNGcY3EZVBCokSYeOESsHMt+gpFgYdIMEvTEDeFNzK/izTdgm
-        EyRPCrkYZL+PmMnwhbH3FpY5dbfa+TE=
-X-Google-Smtp-Source: ABdhPJx3F50rZ2UoMvyAf2Z7Yddg7sa7UyrtTbX2UhyUX/S87/IyNgMMg/SdCzbizOH/VDJYTpOBgw==
-X-Received: by 2002:a2e:808b:0:b0:243:f7ef:fbb6 with SMTP id i11-20020a2e808b000000b00243f7effbb6mr8530698ljg.30.1645274958701;
-        Sat, 19 Feb 2022 04:49:18 -0800 (PST)
-Received: from [192.168.2.145] (109-252-138-165.dynamic.spd-mgts.ru. [109.252.138.165])
-        by smtp.googlemail.com with ESMTPSA id w3sm569682lft.161.2022.02.19.04.49.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Feb 2022 04:49:18 -0800 (PST)
-Message-ID: <aa3e4a15-0e9b-5aea-7c6c-26b80d12ad7d@gmail.com>
-Date:   Sat, 19 Feb 2022 15:49:17 +0300
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vGhXNwDABqJrebyS9iZitB79qnL+Qx7T9tvGfBslXag=;
+        b=NJRusqbcApqPSrXvO1h15b9gta17egmn+E3kGfwQ+FsKw+NCZLQDb+qcATUJgrU44M
+         b2nsvbRsfDqrXFF/znke9Cie+hq90s1KQ/oiy8/Rv5i+8YxgbnBqQB3uka+JB+SVOqZJ
+         uk7hvPsAfimQnEPnm9BBR7qAnN2xzq4z/ZXL26RGxr6cLnF4q/h9fLn/RXDOP1fNmAYS
+         u1V8KFjXSlJjkKfQt0wIm50ePpS1upfn2aL2oUu8Zpuk6VFpANFtR3vUW0cjgKc4FexC
+         pOG/DHiUHwwtLorasbkA7bH9d8pLqySDfipQC8fCvdOPGKoFyO3SsXxtHyFkRd8Ocyf+
+         /7SA==
+X-Gm-Message-State: AOAM531s4Q84B69c/ZTYPSlvNMIHIn3XadnaJw5YwggjcxnP/RrbVTUX
+        2kEUAKQkqlwZIk4S/ceU5FFT9hnW6f/a4RwAtuU=
+X-Google-Smtp-Source: ABdhPJyUUPnR4ZO/VUrdD2Tt8Otg490iWkavm1bSQyyhrOdiTsRbxkOupnHcZn4oY9v1qWrbCzqFsHbu3ns1vVKRzR4=
+X-Received: by 2002:a05:6122:a1f:b0:32d:a4a4:6c27 with SMTP id
+ 31-20020a0561220a1f00b0032da4a46c27mr5027326vkn.14.1645275028202; Sat, 19 Feb
+ 2022 04:50:28 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2] dt-bindings: memory: lpddr2: Adjust revision ID
- property to match lpddr3
-Content-Language: en-US
-To:     Julius Werner <jwerner@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220219012457.2889385-1-jwerner@chromium.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20220219012457.2889385-1-jwerner@chromium.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20220213225646.67761-1-pbrobinson@gmail.com> <00c698c4-1829-1569-4af8-7165ec35c07e@i2se.com>
+In-Reply-To: <00c698c4-1829-1569-4af8-7165ec35c07e@i2se.com>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Sat, 19 Feb 2022 12:50:17 +0000
+Message-ID: <CALeDE9NfyLg5AT1sNHGYvtN3yuLAcd2+TTmVEfsgE7-zTGUhbg@mail.gmail.com>
+Subject: Re: [PATCH v4 00/15] Raspberry PI 4 V3D enablement
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Russell King <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,61 +78,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-19.02.2022 04:24, Julius Werner пишет:
-> Commit 3539a2 (dt-bindings: memory: lpddr2: Add revision-id properties)
-> added the properties `revision-id1` and `revision-id2` to the
-> "jedec,lpddr2" binding. The "jedec,lpddr3" binding already had a single
-> array property `revision-id` for the same purpose. For consistency
-> between related memory types, this patch deprecates the LPDDR2
-> properties and instead adds a property in the same style as for LPDDR3
-> to that binding.
-> 
-> Signed-off-by: Julius Werner <jwerner@chromium.org>
-> ---
+On Sat, Feb 19, 2022 at 12:12 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
+>
+> Hi Peter,
+>
+> Am 13.02.22 um 23:56 schrieb Peter Robinson:
+> > This is purely a rebased of Nicolas's v3 patch set from around a year ago.
+> >
+> > I've tested this using mesa 21.3.x and Wayland/Gnome on Fedora 35, it's
+> > more or less stable with basic testing.
+> do you plan to submit a follow-up series?
 
-Every revised version of the patch must contain changelog.
-
->  .../memory-controllers/ddr/jedec,lpddr2.yaml       | 14 ++++++++++++--
->  1 file changed, 12 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-> index 25ed0266f6dd3d..37229738f47271 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
-> @@ -30,12 +30,23 @@ properties:
->      maximum: 255
->      description: |
->        Revision 1 value of SDRAM chip. Obtained from device datasheet.
-> +      Property is deprecated, use revision-id instead.
-> +    deprecated: true
->  
->    revision-id2:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      maximum: 255
->      description: |
->        Revision 2 value of SDRAM chip. Obtained from device datasheet.
-> +      Property is deprecated, use revision-id instead.
-> +    deprecated: true
-> +
-> +  revision-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 2
-> +    maxItems: 2
-> +    description: |
-> +      Revision IDs read from Mode Register 6 and 7. One byte per uint32 cell (i.e. <MR6 MR7>).
->  
->    density:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> @@ -164,8 +175,7 @@ examples:
->          compatible = "elpida,ECB240ABACN", "jedec,lpddr2-s4";
->          density = <2048>;
->          io-width = <32>;
-> -        revision-id1 = <1>;
-> -        revision-id2 = <0>;
-> +        revision-id = <123 234>;
->  
->          tRPab-min-tck = <3>;
->          tRCD-min-tck = <3>;
-
-It's not enough to change only the binding. You should also update the
-device-trees and drivers/memory.
+You mean a v5 of this one? Yes, I was just awaiting to see if I get
+any more feedback, I will probably get time to do it tomorrow.
