@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEC874BC4F0
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 03:38:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 341B74BC4EB
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 03:38:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241119AbiBSChR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 21:37:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37808 "EHLO
+        id S239045AbiBSCi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 21:38:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240365AbiBSChQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 21:37:16 -0500
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF48154BED
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 18:36:58 -0800 (PST)
-Received: by mail-oo1-xc2d.google.com with SMTP id d134-20020a4a528c000000b00319244f4b04so5813759oob.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 18:36:58 -0800 (PST)
+        with ESMTP id S239111AbiBSCiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 21:38:25 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF676006E
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 18:38:07 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id l12-20020a0568302b0c00b005a4856ff4ceso3188516otv.13
+        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 18:38:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=k7MibnFlGnXWaoyuZc5fFX+hxS1DyD57HaegQF8+k5M=;
-        b=Bk7rZo63WFjFUSnO4tKCyrWj6rYnFOp7yPp/BHupJggG8IRXcqYgB8LVXZ8YwNQ97K
-         e9KEHfdxp2/cJNO42Ry1qQGnp6/duq13w3fLU8f4Z/54K4iIJGyyYEiCCrjSEXaWnKrl
-         uGIqwTLNcA0+cr+eIUof3oq363RdQrMaapM6E=
+        bh=Q/d8d9FtvFLvr7ME3dVsj5LqYy1sSgbi/qeJ46Jm0aU=;
+        b=igmVvA+pynBNZ+OpRVvuE3rxbpMYu4Wko1Nb6whyoNL4U/mFTtIz7mOzAWv8suyjpg
+         qQkhX/GISFBC0mmukyAFo+aDL4DzmLx/DPsYOXeuQi4mp03agz3Vm0yt029c2g1miors
+         6iDhXOSShbGUBPVzQ64qq73tiFAOrEqNVneUA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=k7MibnFlGnXWaoyuZc5fFX+hxS1DyD57HaegQF8+k5M=;
-        b=Va8nNA+IauXPr3mz6v5PsfWzmcXeN3hd50Sj1Hi7tWJFqAElHHIgP0bu5hhk2kVj09
-         QprHwylxO3yzsCzeXn01So4ozqSjI1VqbKe+PSDxdnxy04RxJvWTdbbJ0B5FTq7jgIhl
-         9++dma7niFMMkoEsyfOoPVZm2mtHsKlijC5Xd5r4XjFFnbK4HzzKNnETf1LFnZ0Zarhv
-         hosEAvuQeaCJNmIMUghHik9aapOBM2XODzDJwvVqqUZMV05AhEj5bTbuRI23ttWWMxrg
-         4DOezieBurdkxqzjwbJFO0FOHCpz9C4AqNVcNQx8B09y2sAzFYlsD0ttlvK/m+ri1p1c
-         soVg==
-X-Gm-Message-State: AOAM530zNws98GZZtf57hXgmo4bogefR7BA66tK2QhbAttanhotFvhr4
-        zxWD0+sXLCkJuFLhdF5P249YjlY7AeDdFyZqyHUOcA==
-X-Google-Smtp-Source: ABdhPJzqlbIZ9/jzgYSBbZJnFgkexJgnaPi6xmRk2KUZIo43z8DVRDJDT73d9tERc88r8QLDQD6Sgey3RUqQPzCI1OU=
-X-Received: by 2002:a05:6870:5829:b0:c8:9f42:f919 with SMTP id
- r41-20020a056870582900b000c89f42f919mr4185776oap.54.1645238218057; Fri, 18
- Feb 2022 18:36:58 -0800 (PST)
+        bh=Q/d8d9FtvFLvr7ME3dVsj5LqYy1sSgbi/qeJ46Jm0aU=;
+        b=IJemU4Url66fc8P+uxgK70O2wRrjoDHsrUKUSTY8vITqD9rQdDQz3qEJwcFQMu/Ysw
+         UeHQlbgxbkFBDR6n5H7wEz/b3qxjZeFurQSM8gz/IqbdLl3snfCkYdd3/yNcIADiYqGa
+         PGxYaKFSbtRPbc2mvZZKxkU6Mz4f3jyFbQEEQVJtCcaFf5Mb7IGRxoSU3GNBbVJ7v4Ou
+         JCeLoaC2L21ouVEXPFdzE82soopwppgz/SDQ2t6ofMgeyaw5OQ0hoKoK2wPiPAElYUHo
+         5oujg2ZrsuFcGTwhhn+xOHh8n9eeNDDQpj3/sS+caU+aF5T9ubqWA1OyLhYdvyRn6qWF
+         Aixg==
+X-Gm-Message-State: AOAM531gtNaLZWKxu9skY4RSA6Ufz7JeERijg9I/YQ/L4RzBkDGANO7g
+        57mNMRpLv306oHcLefaYW2nb0Ky24si7fn6wsAXH0g==
+X-Google-Smtp-Source: ABdhPJwDM7ap6YfqY8vNs89NKhqKuvxAmqVdqaPWrzkpraWmJ8qaQAj6OBhQJRKTB417QMhc9jcNWYtgJWlO7UpCuyo=
+X-Received: by 2002:a9d:22e9:0:b0:5ac:1754:342c with SMTP id
+ y96-20020a9d22e9000000b005ac1754342cmr3361118ota.159.1645238286645; Fri, 18
+ Feb 2022 18:38:06 -0800 (PST)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 18 Feb 2022 18:36:57 -0800
+ HTTPREST; Fri, 18 Feb 2022 18:38:06 -0800
 MIME-Version: 1.0
-In-Reply-To: <1644851994-22732-4-git-send-email-quic_srivasam@quicinc.com>
-References: <1644851994-22732-1-git-send-email-quic_srivasam@quicinc.com> <1644851994-22732-4-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1644851994-22732-5-git-send-email-quic_srivasam@quicinc.com>
+References: <1644851994-22732-1-git-send-email-quic_srivasam@quicinc.com> <1644851994-22732-5-git-send-email-quic_srivasam@quicinc.com>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Fri, 18 Feb 2022 18:36:57 -0800
-Message-ID: <CAE-0n527fs5rfPG1HonW_9ZTugANnWNYSs_0+wts+zDK=zcZjA@mail.gmail.com>
-Subject: Re: [PATCH v6 3/7] pinctrl: qcom: Update macro name to LPI specific
+Date:   Fri, 18 Feb 2022 18:38:06 -0800
+Message-ID: <CAE-0n51vhcUg5ng7FWzS0-09-zazCk5JKwpvLPfK4w15_r97kw@mail.gmail.com>
+Subject: Re: [PATCH v6 4/7] pinctrl: qcom: Update lpi pin group structure
 To:     Linus Walleij <linus.walleij@linaro.org>,
         Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         agross@kernel.org, alsa-devel@alsa-project.org,
@@ -73,15 +73,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-02-14 07:19:50)
-> Update NO_SLEW macro to LPI_NO_SLEW macro as this driver lpi specific.
-
-Is this to avoid NO_SLEW somewhere else?
-
+Quoting Srinivasa Rao Mandadapu (2022-02-14 07:19:51)
+> @@ -150,20 +148,20 @@ enum sm8250_lpi_functions {
+>         LPI_MUX__,
+>  };
 >
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
+> -static const unsigned int gpio0_pins[] = { 0 };
+> -static const unsigned int gpio1_pins[] = { 1 };
+> -static const unsigned int gpio2_pins[] = { 2 };
+> -static const unsigned int gpio3_pins[] = { 3 };
+> -static const unsigned int gpio4_pins[] = { 4 };
+> -static const unsigned int gpio5_pins[] = { 5 };
+> -static const unsigned int gpio6_pins[] = { 6 };
+> -static const unsigned int gpio7_pins[] = { 7 };
+> -static const unsigned int gpio8_pins[] = { 8 };
+> -static const unsigned int gpio9_pins[] = { 9 };
+> -static const unsigned int gpio10_pins[] = { 10 };
+> -static const unsigned int gpio11_pins[] = { 11 };
+> -static const unsigned int gpio12_pins[] = { 12 };
+> -static const unsigned int gpio13_pins[] = { 13 };
+> +static int gpio0_pins[] = { 0 };
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Why do we lose const?
+
+> +static int gpio1_pins[] = { 1 };
+> +static int gpio2_pins[] = { 2 };
+> +static int gpio3_pins[] = { 3 };
+> +static int gpio4_pins[] = { 4 };
+> +static int gpio5_pins[] = { 5 };
+> +static int gpio6_pins[] = { 6 };
+> +static int gpio7_pins[] = { 7 };
+> +static int gpio8_pins[] = { 8 };
+> +static int gpio9_pins[] = { 9 };
+> +static int gpio10_pins[] = { 10 };
+> +static int gpio11_pins[] = { 11 };
+> +static int gpio12_pins[] = { 12 };
+> +static int gpio13_pins[] = { 13 };
+>  static const char * const swr_tx_clk_groups[] = { "gpio0" };
+>  static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio5" };
+>  static const char * const swr_rx_clk_groups[] = { "gpio3" };
