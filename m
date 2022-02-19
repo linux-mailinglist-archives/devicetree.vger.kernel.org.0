@@ -2,236 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDBF14BC49D
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 02:39:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDDD24BC4A4
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 02:50:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240471AbiBSBj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Feb 2022 20:39:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38190 "EHLO
+        id S239017AbiBSBup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Feb 2022 20:50:45 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240454AbiBSBjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 20:39:25 -0500
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5E968CDAD
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 17:39:07 -0800 (PST)
-Received: by mail-oo1-xc2b.google.com with SMTP id 189-20020a4a03c6000000b003179d7b30d8so5737252ooi.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Feb 2022 17:39:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=RjemXSV75Vw9palHMQyo5enZxXAZmf41kHPQ4eZELJo=;
-        b=AyMfeiJMS0vSJv5HMaokxLm+QZ9zNKlhrrZ2aY8umxmkCsSlQxiLiJRO4UxQhtW6HJ
-         i15x6OajGsIHWsKHFrrm+PiEJXzsNY/bpsizuVIYqNYyvN7nbdFT3CgtdaGoZjovHBcY
-         RnWEe2eyoThWh0g2DZxHfLGCfURX9iuwfyfmQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=RjemXSV75Vw9palHMQyo5enZxXAZmf41kHPQ4eZELJo=;
-        b=pq5IrNPJJRPJaS3Exvcs9FTN773eZzEun/xGJRW79CEUpMKDcJrtEZYn5GaVUI9DR5
-         Jzl/egR9BNclK+6jTfdRc/U2m0tlK+5Asdws04SF8UNxIYj2rxdmJHAPEoCkxJsc1yq3
-         9iwlL3BbFUV8tp2hUB5NFY4BCfL5KIzQ3mG3ICB6kFJuE9nFaUPzCwi/KLBs88J8gKOV
-         Lb3kbVjNr3WGSJnAOIMakWF5UOs8XeKiLcDtavMabopMncWWCyiTmuuHU9Gs4orGQb+t
-         hOUVzTgqBmYaag1DWXRW3cgAJ2LOHcYiHwltj8MbdiZknLV8uu3RES1KPElf4FI7LxdL
-         Kbmg==
-X-Gm-Message-State: AOAM531L6TAZfcfSHFvVpH11fQpb+CNKNd51pAPkns2hcU18+vO7e1Wz
-        4ECEjvsMt3qQOTssaBv1hfpxMZG47hz+lpMRDUn4Ow==
-X-Google-Smtp-Source: ABdhPJwXxe1c3WauETFWf8LaaMFkHaOzvltuFdBobBGGMqsHsPktQBUX+6qtWVkVyHL9zO0d5lroDGq4n/a4iXlur7c=
-X-Received: by 2002:a05:6870:631a:b0:d1:7d97:806 with SMTP id
- s26-20020a056870631a00b000d17d970806mr3779181oao.8.1645234746846; Fri, 18 Feb
- 2022 17:39:06 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 18 Feb 2022 17:39:06 -0800
-MIME-Version: 1.0
-In-Reply-To: <1645182064-15843-2-git-send-email-quic_c_skakit@quicinc.com>
-References: <1645182064-15843-1-git-send-email-quic_c_skakit@quicinc.com> <1645182064-15843-2-git-send-email-quic_c_skakit@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 18 Feb 2022 17:39:06 -0800
-Message-ID: <CAE-0n51X=LJMjDb9KS0rqQDqLR5srzxCOJCRS4oJgPSXbvaSiQ@mail.gmail.com>
-Subject: Re: [PATCH V7 1/5] dt-bindings: mfd: pm8008: Add pm8008 regulators
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S229532AbiBSBuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Feb 2022 20:50:44 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D337525B6D2;
+        Fri, 18 Feb 2022 17:50:23 -0800 (PST)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id B9F6783A2B;
+        Sat, 19 Feb 2022 02:50:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1645235422;
+        bh=QFlK+zLJQrH3WUBZUSNmolLfD6HTSXiI6Zg/p/Y6UnQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=DP3F+xNqjqzXaOE32wzvFTPCPKXul8cExDu1e91Ln2gE1XfIA8ricTd7KnR8j4wRS
+         S7ueNCi/SCcWe8FIPcmAkmRtCBAgV3x7HHwQaxTzEJauTlViHmLTJ8V1Qzhc/RqNsQ
+         atVX6lEzATtIxGq6uRAyjgQA5vwB+6mzPkWV227KJqdCCK/STmBI6P46e91eJh8qaH
+         b5mvOGNc+kkqSl4nQ5wkONO8KZvthyMk3cfxbhZhpsUw62pjdOjSUn5ADQRUwIm6Q9
+         k1XanT6ch8e4jk4xIGhgeGp26a/H0N20M237wBgQxFRw+gjW3OzeXivTdiQ1O2+U7J
+         XAZbZtpZa3v0w==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-clk@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: clk: rs9: Add Renesas 9-series I2C PCIe clock generator
+Date:   Sat, 19 Feb 2022 02:50:01 +0100
+Message-Id: <20220219015003.507601-1-marex@denx.de>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya (2022-02-18 03:00:59)
-> Add regulators and their supply nodes. Add separate compatible
-> "qcom,pm8008-regulators" to differentiate between pm8008 infra
-> and pm8008 regulators mfd devices.
->
-> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-> ---
+Add binding for Renesas 9-series PCIe clock generators. This binding
+is designed to support 9FGV/9DBV/9DMV/9FGL/9DML/9QXL/9SQ series I2C
+PCIe clock generators, currently the only tested and supported chip
+is 9FGV0241.
 
-Is the register layout compatible with SPMI regulators? The gpio node
-seems to be fully compatible and the same driver probes there for SPMI
-and i2c, so I wonder why we can't extend the existing SPMI gpio and
-regulator bindings to have the new compatible strings for pm8008. Is
-anything really different, or do we have the same device talking i2c
-instead of SPMI now? Possibly it's exposing the different hardware
-blocks inside the PMIC at different i2c addresses. It looks like the i2c
-address is 0x8 and then there's 16-bits of address space inside the i2c
-device to do things. 0x9 is the i2c address for the regulators and then
-each ldo is at some offset in there?
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+To: linux-clk@vger.kernel.org
+---
+V2: - Drop clock consumer from the binding example
+    - Make clocks, i.e. xtal, mandatory
+---
+ .../bindings/clock/renesas,9series.yaml       | 96 +++++++++++++++++++
+ 1 file changed, 96 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,9series.yaml
 
-> Changes in V2:
->  - As per Rob's comments changed "pm8008[a-z]?-regulator" to
->    "^pm8008[a-z]?-regulators".
->
-> Changes in V3:
->  - Fixed bot errors.
->  - As per stephen's comments, changed "^pm8008[a-z]?-regulators$" to
->    "regulators".
->
-> Changes in V4:
->  - Changed compatible string to "qcom,pm8008-regulators"
->
-> Changes in V5:
->  - Remove compatible for regulators node.
->  - Move supply nodes of the regulators to chip level.
->
-> Changes in V6:
->  - No changes.
->
-> Changes in V7:
->  - Removed the intermediate regulators node and added ldos
->    directly under mfd node.
->
->  .../devicetree/bindings/mfd/qcom,pm8008.yaml       | 50 +++++++++++++++++++---
->  1 file changed, 43 insertions(+), 7 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> index ec3138c..6b3b53e 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> @@ -16,7 +16,9 @@ description: |
->
->  properties:
->    compatible:
-> -    const: qcom,pm8008
-> +    enum:
-> +      - qcom,pm8008
-> +      - qcom,pm8008-regulators
->
->    reg:
->      description:
-> @@ -44,6 +46,21 @@ properties:
->    "#size-cells":
->      const: 0
->
-> +  vdd_l1_l2-supply:
-> +    description: Input supply phandle of ldo1 and ldo2 regulators.
-> +
-> +  vdd_l3_l4-supply:
-> +    description: Input supply phandle of ldo3 and ldo4 regulators.
-> +
-> +  vdd_l5-supply:
-> +    description: Input supply phandle of ldo5 regulator.
-> +
-> +  vdd_l6-supply:
-> +    description: Input supply phandle of ldo6 regulator.
-> +
-> +  vdd_l7-supply:
-> +    description: Input supply phandle of ldo7 regulator.
-> +
->  patternProperties:
->    "^gpio@[0-9a-f]+$":
->      type: object
-> @@ -85,13 +102,16 @@ patternProperties:
->
->      additionalProperties: false
->
-> +  "^ldo[1-7]$":
-> +    type: object
-> +    $ref: "../regulator/regulator.yaml#"
-> +    description: PM8008 regulator peripherals of PM8008 regulator device
-> +
->  required:
->    - compatible
->    - reg
-> -  - interrupts
->    - "#address-cells"
->    - "#size-cells"
-> -  - "#interrupt-cells"
->
->  additionalProperties: false
->
-> @@ -102,13 +122,11 @@ examples:
->      qupv3_se13_i2c {
->        #address-cells = <1>;
->        #size-cells = <0>;
-> -      pm8008i@8 {
-> +      pm8008_infra: pm8008@8 {
->          compatible = "qcom,pm8008";
->          reg = <0x8>;
->          #address-cells = <1>;
->          #size-cells = <0>;
-> -        interrupt-controller;
-> -        #interrupt-cells = <2>;
->
->          interrupt-parent = <&tlmm>;
->          interrupts = <32 IRQ_TYPE_EDGE_RISING>;
+diff --git a/Documentation/devicetree/bindings/clock/renesas,9series.yaml b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+new file mode 100644
+index 0000000000000..8eb56f38d99e9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+@@ -0,0 +1,96 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/renesas,9series.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Binding for Renesas 9-series I2C PCIe clock generators
++
++description: |
++  The Renesas 9-series are I2C PCIe clock generators providing
++  from 1 to 20 output clocks.
++
++  When referencing the provided clock in the DT using phandle
++  and clock specifier, the following mapping applies:
++
++  - 9FGV0241:
++    0 -- DIF0
++    1 -- DIF1
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++properties:
++  compatible:
++    enum:
++      - renesas,9fgv0241
++
++  reg:
++    description: I2C device address
++    enum: [ 0x68, 0x6a ]
++
++  '#clock-cells':
++    const: 1
++
++  clocks:
++    items:
++      - description: XTal input clock
++
++  renesas,out-amplitude:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 600000, 700000, 800000, 900000 ]
++    description: Output clock signal amplitude in uV
++
++  renesas,out-spread-spectrum:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 100000, 99750, 99500 ]
++    description: Output clock down spread in pcm
++
++patternProperties:
++  "^DIF[0-19]$":
++    type: object
++    description:
++      Description of one of the outputs (DIF0..DIF19).
++    properties:
++      renesas,slew-rate:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [ 2000000, 3000000 ]
++        description: Output clock slew rate select in V/ns
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    /* 25MHz reference crystal */
++    ref25: ref25m {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <25000000>;
++    };
++
++    i2c@0 {
++        reg = <0x0 0x100>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rs9: clock-generator@6a {
++            compatible = "renesas,9fgv0241";
++            reg = <0x6a>;
++            #clock-cells = <1>;
++
++            clocks = <&ref25m>;
++
++            DIF0 {
++                renesas,slew-rate = <3000000>;
++            };
++        };
++    };
++
++...
+-- 
+2.34.1
 
-I still fail to see what this part of the diff has to do with
-regulators. Can it be split off to a different patch with a clear
-description of why interrupt-controller and #interrupt-cells is no
-longer required for qcom,pm8008?
-
-It really looks like we're combining the binding for qcom,pm8008 and
-qcom,pm8008-regulators at the same level, which looks wrong. We don't
-want to describe the least common denominator between the two bindings.
-Why not make two different bindings and files? One for the interrupty
-gpio/interrupt controller device (at 0x8) and one for the regulator one
-(at 0x9)?
-
-> @@ -123,6 +141,24 @@ examples:
->            #interrupt-cells = <2>;
->          };
->        };
-> -    };
->
-> +      pm8008_regulators: pm8008@9 {
-
-pmic@9, or regulators@9? The node name should be generic.
-
-> +        compatible = "qcom,pm8008-regulators";
-> +        reg = <0x9>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        vdd_l1_l2-supply = <&vreg_s8b_1p2>;
-> +        vdd_l3_l4-supply = <&vreg_s1b_1p8>;
-> +        vdd_l5-supply = <&vreg_bob>;
-> +        vdd_l6-supply = <&vreg_bob>;
-> +        vdd_l7-supply = <&vreg_bob>;
-> +
-> +        pm8008_l1: ldo1 {
-> +          regulator-name = "pm8008_l1";
-> +          regulator-min-microvolt = <950000>;
-> +          regulator-max-microvolt = <1300000>;
-> +        };
-> +      };
-
-For some i2c devices that appear on multiple i2c addresses we make an
-i2c client for each address in the driver that attaches to the node we
-put in DT. I suppose that won't work easily here. Either way, it would
-make it much clearer if this existing binding was left alone. Is there
-other functionality inside the i2c address 0x9 register space that isn't
-regulators?
