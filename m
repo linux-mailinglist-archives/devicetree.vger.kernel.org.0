@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17E214BC939
-	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 16:49:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 785014BC938
+	for <lists+devicetree@lfdr.de>; Sat, 19 Feb 2022 16:49:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240259AbiBSPt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 10:49:56 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54296 "EHLO
+        id S234373AbiBSPtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 10:49:19 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235451AbiBSPt4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 10:49:56 -0500
+        with ESMTP id S240259AbiBSPtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 10:49:18 -0500
 Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB9C4F3C
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 07:49:36 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20FD82632
+        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 07:48:58 -0800 (PST)
 Received: from [192.168.1.107] ([37.4.249.169]) by mrelayeu.kundenserver.de
  (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MqJZl-1nzTo73PUZ-00nNgD; Sat, 19 Feb 2022 16:43:40 +0100
-Subject: Re: [PATCH v4 13/15] ARM: dts: bcm2711: Enable V3D
+ 1McYTD-1nxp3s3dbJ-00cwyx; Sat, 19 Feb 2022 16:48:41 +0100
+Subject: Re: [PATCH v4 14/15] ARM: configs: Enable DRM_V3D
 To:     Peter Robinson <pbrobinson@gmail.com>
 Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -36,7 +36,7 @@ Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Will Deacon <will@kernel.org>,
         Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 References: <20220213225646.67761-1-pbrobinson@gmail.com>
- <20220213225646.67761-14-pbrobinson@gmail.com>
+ <20220213225646.67761-15-pbrobinson@gmail.com>
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 Autocrypt: addr=stefan.wahren@i2se.com; keydata=
  LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tClZlcnNpb246IEdudVBHIHYy
@@ -168,31 +168,31 @@ Autocrypt: addr=stefan.wahren@i2se.com; keydata=
  VVBnY0pKTmFHWTIKVklEclpRaTROU2lOUTBOSWkrZGp1NGZOTW1DcFFxZzh0YkMzY0FhNnl3
  bTZvUUIxU0JobURYMmUxMWdSbGx1SQpPblRHUEUwSFRvM2w3MmxoYmc9PQo9cVpNVgotLS0t
  LUVORCBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCg==
-Message-ID: <baaeb53f-ca69-7376-52cb-f51fefd2bee6@i2se.com>
-Date:   Sat, 19 Feb 2022 16:43:38 +0100
+Message-ID: <08aba7f8-d162-6116-9822-e50242561490@i2se.com>
+Date:   Sat, 19 Feb 2022 16:48:40 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20220213225646.67761-14-pbrobinson@gmail.com>
+In-Reply-To: <20220213225646.67761-15-pbrobinson@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-X-Provags-ID: V03:K1:ZOq49+rvsyJVKyfVybdkCgVamE/7ib2geIhxYz25NTSHv7rwzSE
- 5ZUDbWvkIL60tZ4vX7BuyFIu19hClmwvoHFIKYw4NeemR8lcMvJj0hncSQFjaTjsLZBdg+y
- izS3w/Nkjs9QcE6K2KgUUtvptocWxe2nLadai1B/hW1Er+vqkrY3vZV4naxsedZtRXRswJ+
- ixZftIACk0yBbmu2KGbCg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:JnZEat7YudE=:DKcebzgpokSZUIPHe/xmvO
- A5/SIxb6gnruzcNYVwIdQwPEDdEnlwcfbZK7gxiKCcbL/DmLd4H11LQx+q9FTe12wxQW7eNW7
- EHfgpGK9iJxU3FhY92jIUTczb5KT731tdSl2d5ydjLCoPvq8bHc1Ru8JApGVA+60e8faa9P9x
- MaeOB/ow8H2YCQP6QpyHxccGPtG6Bwn+DyqMzETQm/R8LJJpjSLxulxrdruuXgwCXhv16Prnc
- X8R6QbBudZglAD0IbMzrJHK4odLMHyoJi6+eWhzcO5+SBJ3AyecL2M4t9Ks+KjCQTaqdsDKBX
- Oiy3Q2B0oXcqXmI6kBSms5NVdbp8J1S/9VDJ49r3Gch12CmVHZ7OCAyPRvl5AGuly6lrIDhef
- +7lmVY2Jrn/MmS/388hnAlGxn7GAFvy1ok+TEKhtED0y88jd8Ebh/XI/ReCFGo2dDFnSIBLJX
- 4qReNSH0WNrnLhUXqz+EH1r/jJ22S2hcyjNa4CykMyADejiZANEg+8tfOdz7tQx3Lc46/QWBr
- cZGKct7vnwRerRyehF+7sM8H/2U4/s7yNNecdlVjNQrdVymEjF2GzN89WkH3hryLTwZqO3jqe
- oqU3ZScf0IXONPgPngOm4CBIEepxvS3YprJpfJ77PDlfjnHy8Kr96zMEIppJnr1goAnAsMLmt
- I6X5FhZsSGXwGWHywcrtJMOtuCj7Q7jLdEXdPXxOW/BKG6I0WKOUcmUCZ6ldV43P+CqaMU9Bi
- Up8rLnEGIWn2bRr5
+X-Provags-ID: V03:K1:K2C7uOcV4NLzrVjYfODvqgozPFwJrXrixCRrDOYCIejbkSXqFPP
+ qYp/YnoYOt5x5R/yX5Qwqj6mfr+bjJU6lXWx8bPyeJ4RhjRp70pfrnTNjONSCF9bZ/H9BNE
+ ovQ9t+x6zac2eX4gYHkq4HuOn9IsP9968vafvlubMPy+sGbQ/l4fCv+aqUlW6sAqGsNRwtg
+ 0u3kWUy9tljezdoFOKedQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:2s72gOgDHJ4=:l8HGWLGRhEUzMN7Pa0yVbE
+ FNDR8CgXKEcH1yxXB2alnTd1epykgk4xN4Sc8Hd9OHxPzXkMA5yi7BohHwBme83tT/rJJkf9v
+ 6UkEPcys6oDW7LKH8Pfhq0o5w04NZj+VUvjnoGgC6+H0TrkWrruaca/grge62iFXRQ+QJXeKE
+ IljWUAIirhBfU6iNMPem09Xy29tfskiiDliTedbAAISRDbo5fYOssK0fmktNgP9BrvsnH5wqs
+ 5EHPpER73QxE3fGwY0wHlyGSDcx805vx1/W08JW3cuXqKaeXbPXHvonqesigH1JwJ3DUOIVa7
+ 7ZUs5k7jg4u4qVHTxSTwnJhBa7FP3O7EDb56S82NXWzj/CunEKY1D2E+tKNZhGgbYLhvB/8cm
+ xZ7us+G98KCuJovyvInSxMMz6EEqEfM7QurTyKEVpFTCkbPpnA6VGmrlZh9nVtTWVqERwwTEq
+ I+q8LF5++psiP5Ayv8bz69u3DjPO7OLB0XNkmGpFiULso3vU2Ol3AEmw0vsM07x+s853f31ju
+ yYBg/dZ1nlfrd4+hzYIaXmW5lBAlXgNQqwIuAnkHiOTxUEFatjI6Er9EXX4OqoXHBjqyfVjds
+ GU0oah0ZCQn1aJEqUnRngArDsGuuAN3kAUzoZfbl8ie1Pm0VqJOByUTu+OJetSpsFyrKeijqH
+ p09f0ylbmH+85zP5aVRXPrNNJPLzxwtyor8LvOLIIhR99Sgfc6i/YqG3g2o117MoJAtWhwZD3
+ d0RzwVpRTPo8veYb
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -205,46 +205,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hi Peter,
 
 Am 13.02.22 um 23:56 schrieb Peter Robinson:
-> This enables V3D for bcm2711 (used in the Raspberry Pi 4).
+> BCM2711, the SoC used on the Raspberry Pi 4 has a different GPU than its
+> predecessors. Enable it.
+Marek Szyprowski enabled Raspberry Pi 4 support in bcm2835_defconfig.
+Could you please enabled V3D there too?
 >
 > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 > Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
 > ---
-> Changes since v3:
-> - Minor updates for rebase
->
 > Changes since v1:
 >  - Correct node's name address 
 >
->  arch/arm/boot/dts/bcm2711.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  arch/arm/configs/multi_v7_defconfig | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-> index 171fc5d2acef..9514c0ba481c 100644
-> --- a/arch/arm/boot/dts/bcm2711.dtsi
-> +++ b/arch/arm/boot/dts/bcm2711.dtsi
-> @@ -551,6 +551,18 @@ genet_mdio: mdio@e14 {
->  				#size-cells = <0x0>;
->  			};
->  		};
-> +
-> +		v3d: gpu@7ec00000 {
-> +			compatible = "brcm,bcm2711-v3d";
-> +			reg = <0x0 0x7ec00000 0x4000>,
-> +			      <0x0 0x7ec04000 0x4000>;
-> +			reg-names = "hub", "core0";
-> +
-> +			power-domains = <&pm BCM2835_POWER_DOMAIN_GRAFX_V3D>;
-> +			resets = <&pm BCM2835_RESET_V3D>;
-> +			clocks = <&firmware_clocks 5>;
-
-please move the firmware clock usage to bcm2711-rpi.dtsi, because it's
-not defined here.
-
-Best regards
-
-> +			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
->  	};
->  };
->  
+> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+> index 8863fa969ede..d203587194a1 100644
+> --- a/arch/arm/configs/multi_v7_defconfig
+> +++ b/arch/arm/configs/multi_v7_defconfig
+> @@ -706,6 +706,7 @@ CONFIG_DRM_IMX_PARALLEL_DISPLAY=m
+>  CONFIG_DRM_IMX_TVE=m
+>  CONFIG_DRM_IMX_LDB=m
+>  CONFIG_DRM_IMX_HDMI=m
+> +CONFIG_DRM_V3D=m
+>  CONFIG_DRM_VC4=m
+>  CONFIG_DRM_ETNAVIV=m
+>  CONFIG_DRM_MXSFB=m
