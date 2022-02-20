@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 822FA4BD0EB
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 20:27:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4154E4BD0ED
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 20:28:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232109AbiBTT11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 14:27:27 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51508 "EHLO
+        id S237888AbiBTT2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 14:28:23 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237888AbiBTT10 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 14:27:26 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE5093D494;
-        Sun, 20 Feb 2022 11:27:03 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id b11so14774388lfb.12;
-        Sun, 20 Feb 2022 11:27:03 -0800 (PST)
+        with ESMTP id S241913AbiBTT2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 14:28:22 -0500
+Received: from mail-vk1-xa33.google.com (mail-vk1-xa33.google.com [IPv6:2607:f8b0:4864:20::a33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A91142EDE
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 11:28:00 -0800 (PST)
+Received: by mail-vk1-xa33.google.com with SMTP id n142so7569124vkf.5
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 11:28:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+CBohTXjiF2y/aRtjMAO0yIsALllgZyLcpPrTZaHWd0=;
-        b=jodWkcuH0TeMc8aYVGWs5nME3nrpvQ3BiLW23XnjkjD0Z9g9eqJj7ykXyo13yRtiBM
-         r/4Ty+OT26QaKcJnx+jabucIguIRVFXukNmAjIZlHvrahKMoYy6QUASivVBUCUZLlM+2
-         VFxT6bIB+FqehtK3qtt7mqbGJzwMlajgv2GFzb0Iy/w2KLmBeQvq80GJF3vP3+oTSPD5
-         NTZgo+cmiQuYENYIUnw0Q9kn93A0NYXyJcMPHWnlJKyIUwzEU+Wp0Tg9eoPKLCBF6uNe
-         whuqr+vltCCw+OLHnFSh4I4FpidiyLYEmRa/t6S/R/ifR6CehVw7ZiQFWm3DiFD/m29S
-         SPxA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4IRO5hHGYeIoylYuVK33+2BS5ReysD7fo4a7BXesZuw=;
+        b=CsoFZP8P1w9w2drWP8uiM3uOSCLueumKupeIAhRAXKTGoLTlCjgBO3/rZJ/psbGFZB
+         H7BVErWlwgMKE/K74azciXZT1fdQCmKJ6KRCK3mO/Xxsr5+yu9OnzweySUSYf2HA96o3
+         4Yg2bfXE3e4+g7NYr1vgX4u1N/NnaIwiP+TJg9RKuxmm1SXJZ4W6+26XaAYh+q1cSlmU
+         U5K4Zd/I2pt69JKKjvT859Nnz1q3g7muFJyKiFdemkqEvTRcRacwkCV6D25OoSoW7DXZ
+         JeTeQx0gMoK1BKfUG6vCMmRfkbd9b2U0b2zs6mWK5YViX8lhHpBqmUFIkVCIuWX0+6WP
+         9HGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+CBohTXjiF2y/aRtjMAO0yIsALllgZyLcpPrTZaHWd0=;
-        b=J97n1vzZqw0L0Qh4d1fLs2Bf/RabM7mk/53AOxOv/7gS62RCL1/Qus6x2sNEaulVQw
-         uBIaFXDeHWfWCsdNV/Uscb6bLqJoLINBlOHi4UUFpRQF9w/BHudYiycOxGrQBylQP5s9
-         The4ACfpv1Hmgrbzvob8fB+5VEsLNThcch5rHtCpZ9QBgmAdssDego3C6h85mkIXItD6
-         FLrydspYLqguHVLkMLhAxuHCZp7mmvdrVA5khlJBIuYFypZfOroptN9umoWcHB34g6Je
-         sPRF+dTqJDqT7V/hsdHGJn0denztjtK/cJjbk30uP0vcM2+a+w1w42YzQ0NfBIgocA1S
-         NFPg==
-X-Gm-Message-State: AOAM532ELy2+oYKtKvL5DxAIyxxHs9nbIzIgWnuT0OU20C0/ABPqWls+
-        KZ1i7tQQmZfC82DeTu2UDJ8=
-X-Google-Smtp-Source: ABdhPJx25DC37pk+556+PNIF39kCwSa4RUqIVMMyEIrec5hnNbW3vukAaVsr29NU5Ezk4G06YLwc2g==
-X-Received: by 2002:a05:6512:398b:b0:443:3b11:a985 with SMTP id j11-20020a056512398b00b004433b11a985mr11611711lfu.211.1645385221694;
-        Sun, 20 Feb 2022 11:27:01 -0800 (PST)
-Received: from [192.168.1.47] ([62.122.67.26])
-        by smtp.gmail.com with ESMTPSA id l1sm550944ljq.39.2022.02.20.11.27.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Feb 2022 11:27:01 -0800 (PST)
-Message-ID: <4aa8b12c-351f-93db-9ae8-a980911c7bc4@gmail.com>
-Date:   Sun, 20 Feb 2022 21:26:59 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4IRO5hHGYeIoylYuVK33+2BS5ReysD7fo4a7BXesZuw=;
+        b=pXBBtzuQJrn57nvggKhJFjCvkrTpU/9Leo2ggJQEtZflRzqhuY0n5WoUEGB6382dYr
+         qQqBPKtMBdQjVZV1CFKtMLPtnUZvXxjyO62EKIlbuDX+AN6QvyVUvIX1PTCL4yHMkYk0
+         NUOiA1Ooh4vzE6nYZ48hSjssj8uHRzzVMpwMIhBgR/d4sOWMSROgaQRxsO84kiSC7vUq
+         sv8CZiXFAXNjh/3WyqsD0kHl7h9IFVvxfNhzwazuFcN4hMk4LBIIp5wAdBTs4YbVXt+N
+         oAmX8pLFRFcRY/O4WHIO76qHwLJTc1p6WCARdYs/A77Lndq9DeUy9C9UImzYQf2rm7sI
+         49Iw==
+X-Gm-Message-State: AOAM530wQBeMNGby3PfVQpZdOIj6vBF7HInBi4annd5gEzvM6zDvsIaB
+        44yrkrlBFB9I8GQEFZrf/S35cqlMhIRI/rEmojBb8Lhiqeg=
+X-Google-Smtp-Source: ABdhPJwTuEFZ0bprKQguEb06qZ4ZbEct6gVWJdtqXGDtbEg9KPRdpROMAuRF4Za2EmOfRck6Tw6IYWXKP+ZNvN0AXlY=
+X-Received: by 2002:a05:6122:a1f:b0:32d:a4a4:6c27 with SMTP id
+ 31-20020a0561220a1f00b0032da4a46c27mr6480235vkn.14.1645385279027; Sun, 20 Feb
+ 2022 11:27:59 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v5 2/2] Input: add Imagis touchscreen driver
-Content-Language: en-US
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+References: <20220213225646.67761-1-pbrobinson@gmail.com> <20220213225646.67761-9-pbrobinson@gmail.com>
+ <27143189-0cb4-7bf5-25c1-1f5eff9c2d4d@i2se.com>
+In-Reply-To: <27143189-0cb4-7bf5-25c1-1f5eff9c2d4d@i2se.com>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Sun, 20 Feb 2022 19:27:48 +0000
+Message-ID: <CALeDE9M7Km2xsK2ooheBzfy_75pSocMGdzti-LaFNpSh6tF2Fg@mail.gmail.com>
+Subject: Re: [PATCH v4 08/15] soc: bcm: bcm2835-power: Add support for
+ BCM2711's RPiVid ASB
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220216134302.5153-1-markuss.broks@gmail.com>
- <20220216134302.5153-3-markuss.broks@gmail.com>
- <20220217033543.GA35183@nixie71>
-From:   Markuss Broks <markuss.broks@gmail.com>
-In-Reply-To: <20220217033543.GA35183@nixie71>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Russell King <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,556 +81,262 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->
-> Did checkpatch not complain about the C++ style comment?
->
-I always run "./scripts/checkpatch.pl --strict patches/v5/*.patch" before
-sending, and it hasn't reported any issues with that.
+Hi Stefan,
 
-> Please follow the kernel style guidelines for comments. I was also
-> hoping to see more detail as to why this is necessary. The loop in
-> and of itself is enough to suggest the controller may fail, but why?
+On Sat, Feb 19, 2022 at 3:39 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
 >
-> Does the datasheet or an errata document ask for this?
+> Hi Peter,
+>
+> Am 13.02.22 um 23:56 schrieb Peter Robinson:
+> > From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> >
+> > In BCM2711 the new RPiVid ASB took over V3D. The old ASB is still present
+> > with the ISP and H264 bits, and V3D is in the same place in the new ASB
+> > as the old one.
+> >
+> > Use the fact that 'pm->rpivid_asb' is populated as a hint that we're on
+> > BCM2711. On top of that introduce the macro ASB_BASE() which will select
+> > the correct ASB register base, based on whether we're trying to access
+> > V3D and which platform we're on.
+> >
+> > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> > Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+> > ---
+> > Changes since v2:
+> >  - Correct names again
+> >
+> > Changes since v1:
+> >  - Correct names
+> >
+> >  drivers/soc/bcm/bcm2835-power.c | 66 ++++++++++++++++++++-------------
+> >  1 file changed, 41 insertions(+), 25 deletions(-)
+> >
+> > diff --git a/drivers/soc/bcm/bcm2835-power.c b/drivers/soc/bcm/bcm2835-power.c
+> > index 1e0041ec8132..eea31f75dc64 100644
+> > --- a/drivers/soc/bcm/bcm2835-power.c
+> > +++ b/drivers/soc/bcm/bcm2835-power.c
+> > @@ -126,8 +126,9 @@
+> >
+> >  #define ASB_AXI_BRDG_ID                      0x20
+> >
+> > -#define ASB_READ(reg) readl(power->asb + (reg))
+> > -#define ASB_WRITE(reg, val) writel(PM_PASSWORD | (val), power->asb + (reg))
+> > +#define ASB_BASE(is_v3d) (is_v3d && power->rpivid_asb ? power->rpivid_asb : power->asb)
+> > +#define ASB_READ(reg, is_v3d) readl(ASB_BASE(is_v3d) + (reg))
+> > +#define ASB_WRITE(reg, val, is_v3d) writel(PM_PASSWORD | (val), ASB_BASE(is_v3d) + (reg))
+> just a general note: passing parameter to decide which register should
+> be used is not the preferred way. It's harder to maintain. A more data
+> driven approach is better in the long run.
+> >
+> >  struct bcm2835_power_domain {
+> >       struct generic_pm_domain base;
+> > @@ -142,13 +143,16 @@ struct bcm2835_power {
+> >       void __iomem            *base;
+> >       /* AXI Async bridge registers. */
+> >       void __iomem            *asb;
+> > +     /* RPiVid bridge registers. */
+> > +     void __iomem            *rpivid_asb;
+> >
+> >       struct genpd_onecell_data pd_xlate;
+> >       struct bcm2835_power_domain domains[BCM2835_POWER_DOMAIN_COUNT];
+> >       struct reset_controller_dev reset;
+> >  };
+> >
+> > -static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg)
+> > +static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg,
+> > +                           bool is_v3d)
+> >  {
+> >       u64 start;
+> >
+> > @@ -158,8 +162,8 @@ static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg)
+> >       start = ktime_get_ns();
+> >
+> >       /* Enable the module's async AXI bridges. */
+> > -     ASB_WRITE(reg, ASB_READ(reg) & ~ASB_REQ_STOP);
+> > -     while (ASB_READ(reg) & ASB_ACK) {
+> > +     ASB_WRITE(reg, ASB_READ(reg, is_v3d) & ~ASB_REQ_STOP, is_v3d);
+> > +     while (ASB_READ(reg, is_v3d) & ASB_ACK) {
+> >               cpu_relax();
+> >               if (ktime_get_ns() - start >= 1000)
+> >                       return -ETIMEDOUT;
+> > @@ -168,7 +172,8 @@ static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg)
+> >       return 0;
+> >  }
+> >
+> > -static int bcm2835_asb_disable(struct bcm2835_power *power, u32 reg)
+> > +static int bcm2835_asb_disable(struct bcm2835_power *power, u32 reg,
+> > +                            bool is_v3d)
+> >  {
+> >       u64 start;
+> >
+> > @@ -178,8 +183,8 @@ static int bcm2835_asb_disable(struct bcm2835_power *power, u32 reg)
+> >       start = ktime_get_ns();
+> >
+> >       /* Enable the module's async AXI bridges. */
+> > -     ASB_WRITE(reg, ASB_READ(reg) | ASB_REQ_STOP);
+> > -     while (!(ASB_READ(reg) & ASB_ACK)) {
+> > +     ASB_WRITE(reg, ASB_READ(reg, is_v3d) | ASB_REQ_STOP, is_v3d);
+> > +     while (!(ASB_READ(reg, is_v3d) & ASB_ACK)) {
+> >               cpu_relax();
+> >               if (ktime_get_ns() - start >= 1000)
+> >                       return -ETIMEDOUT;
+> > @@ -274,7 +279,8 @@ static int bcm2835_asb_power_on(struct bcm2835_power_domain *pd,
+> >                               u32 pm_reg,
+> >                               u32 asb_m_reg,
+> >                               u32 asb_s_reg,
+> > -                             u32 reset_flags)
+> > +                             u32 reset_flags,
+> > +                             bool is_v3d)
+> >  {
+> >       struct bcm2835_power *power = pd->power;
+> >       int ret;
+> > @@ -301,13 +307,13 @@ static int bcm2835_asb_power_on(struct bcm2835_power_domain *pd,
+> >               goto err_enable_resets;
+> >       }
+> >
+> > -     ret = bcm2835_asb_enable(power, asb_m_reg);
+> > +     ret = bcm2835_asb_enable(power, asb_m_reg, is_v3d);
+> >       if (ret) {
+> >               dev_err(power->dev, "Failed to enable ASB master for %s\n",
+> >                       pd->base.name);
+> >               goto err_disable_clk;
+> >       }
+> > -     ret = bcm2835_asb_enable(power, asb_s_reg);
+> > +     ret = bcm2835_asb_enable(power, asb_s_reg, is_v3d);
+> >       if (ret) {
+> >               dev_err(power->dev, "Failed to enable ASB slave for %s\n",
+> >                       pd->base.name);
+> > @@ -317,7 +323,7 @@ static int bcm2835_asb_power_on(struct bcm2835_power_domain *pd,
+> >       return 0;
+> >
+> >  err_disable_asb_master:
+> > -     bcm2835_asb_disable(power, asb_m_reg);
+> > +     bcm2835_asb_disable(power, asb_m_reg, is_v3d);
+> >  err_disable_clk:
+> >       clk_disable_unprepare(pd->clk);
+> >  err_enable_resets:
+> > @@ -329,22 +335,23 @@ static int bcm2835_asb_power_off(struct bcm2835_power_domain *pd,
+> >                                u32 pm_reg,
+> >                                u32 asb_m_reg,
+> >                                u32 asb_s_reg,
+> > -                              u32 reset_flags)
+> > +                              u32 reset_flags,
+> > +                              bool is_v3d)
+> >  {
+> >       struct bcm2835_power *power = pd->power;
+> >       int ret;
+> >
+> > -     ret = bcm2835_asb_disable(power, asb_s_reg);
+> > +     ret = bcm2835_asb_disable(power, asb_s_reg, is_v3d);
+> >       if (ret) {
+> >               dev_warn(power->dev, "Failed to disable ASB slave for %s\n",
+> >                        pd->base.name);
+> >               return ret;
+> >       }
+> > -     ret = bcm2835_asb_disable(power, asb_m_reg);
+> > +     ret = bcm2835_asb_disable(power, asb_m_reg, is_v3d);
+> >       if (ret) {
+> >               dev_warn(power->dev, "Failed to disable ASB master for %s\n",
+> >                        pd->base.name);
+> > -             bcm2835_asb_enable(power, asb_s_reg);
+> > +             bcm2835_asb_enable(power, asb_s_reg, is_v3d);
+> >               return ret;
+> >       }
+> >
+> > @@ -369,7 +376,7 @@ static int bcm2835_power_pd_power_on(struct generic_pm_domain *domain)
+> >       case BCM2835_POWER_DOMAIN_GRAFX_V3D:
+> >               return bcm2835_asb_power_on(pd, PM_GRAFX,
+> >                                           ASB_V3D_M_CTRL, ASB_V3D_S_CTRL,
+> > -                                         PM_V3DRSTN);
+> > +                                         PM_V3DRSTN, true);
+> >
+> >       case BCM2835_POWER_DOMAIN_IMAGE:
+> >               return bcm2835_power_power_on(pd, PM_IMAGE);
+> > @@ -377,17 +384,17 @@ static int bcm2835_power_pd_power_on(struct generic_pm_domain *domain)
+> >       case BCM2835_POWER_DOMAIN_IMAGE_PERI:
+> >               return bcm2835_asb_power_on(pd, PM_IMAGE,
+> >                                           0, 0,
+> > -                                         PM_PERIRSTN);
+> > +                                         PM_PERIRSTN, false);
+> >
+> >       case BCM2835_POWER_DOMAIN_IMAGE_ISP:
+> >               return bcm2835_asb_power_on(pd, PM_IMAGE,
+> >                                           ASB_ISP_M_CTRL, ASB_ISP_S_CTRL,
+> > -                                         PM_ISPRSTN);
+> > +                                         PM_ISPRSTN, false);
+> >
+> >       case BCM2835_POWER_DOMAIN_IMAGE_H264:
+> >               return bcm2835_asb_power_on(pd, PM_IMAGE,
+> >                                           ASB_H264_M_CTRL, ASB_H264_S_CTRL,
+> > -                                         PM_H264RSTN);
+> > +                                         PM_H264RSTN, false);
+> >
+> >       case BCM2835_POWER_DOMAIN_USB:
+> >               PM_WRITE(PM_USB, PM_USB_CTRLEN);
+> > @@ -435,7 +442,7 @@ static int bcm2835_power_pd_power_off(struct generic_pm_domain *domain)
+> >       case BCM2835_POWER_DOMAIN_GRAFX_V3D:
+> >               return bcm2835_asb_power_off(pd, PM_GRAFX,
+> >                                            ASB_V3D_M_CTRL, ASB_V3D_S_CTRL,
+> > -                                          PM_V3DRSTN);
+> > +                                          PM_V3DRSTN, true);
+> >
+> >       case BCM2835_POWER_DOMAIN_IMAGE:
+> >               return bcm2835_power_power_off(pd, PM_IMAGE);
+> > @@ -443,17 +450,17 @@ static int bcm2835_power_pd_power_off(struct generic_pm_domain *domain)
+> >       case BCM2835_POWER_DOMAIN_IMAGE_PERI:
+> >               return bcm2835_asb_power_off(pd, PM_IMAGE,
+> >                                            0, 0,
+> > -                                          PM_PERIRSTN);
+> > +                                          PM_PERIRSTN, false);
+> >
+> >       case BCM2835_POWER_DOMAIN_IMAGE_ISP:
+> >               return bcm2835_asb_power_off(pd, PM_IMAGE,
+> >                                            ASB_ISP_M_CTRL, ASB_ISP_S_CTRL,
+> > -                                          PM_ISPRSTN);
+> > +                                          PM_ISPRSTN, false);
+> >
+> >       case BCM2835_POWER_DOMAIN_IMAGE_H264:
+> >               return bcm2835_asb_power_off(pd, PM_IMAGE,
+> >                                            ASB_H264_M_CTRL, ASB_H264_S_CTRL,
+> > -                                          PM_H264RSTN);
+> > +                                          PM_H264RSTN, false);
+> >
+> >       case BCM2835_POWER_DOMAIN_USB:
+> >               PM_WRITE(PM_USB, 0);
+> > @@ -626,13 +633,22 @@ static int bcm2835_power_probe(struct platform_device *pdev)
+> >       power->dev = dev;
+> >       power->base = pm->base;
+> >       power->asb = pm->asb;
+> > +     power->rpivid_asb = pm->rpivid_asb;
+> >
+> > -     id = ASB_READ(ASB_AXI_BRDG_ID);
+> > +     id = ASB_READ(ASB_AXI_BRDG_ID, false);
+> >       if (id != 0x62726467 /* "BRDG" */) {
+> >               dev_err(dev, "ASB register ID returned 0x%08x\n", id);
+> >               return -ENODEV;
+> >       }
+> >
+> > +     if (pm->rpivid_asb) {
+> > +             id = ASB_READ(ASB_AXI_BRDG_ID, true);
+> > +             if (id != 0x62726467 /* "BRDG" */) {
+>
+> It would be nice to use a define for this id, since we use it twice.
 
-The only source of information on the touchscreen driver I have is the
-downstream driver, and it has retries for i2c reads/writes. However, during
-testing I've never got an error reading any of the registers, and I wonder
-if I can just drop it.
+Any preferences or suggestion as to what it should be called?
 
-> Can the controller actually report more than 10 contacts?
->
-> If so, what is the reason to bail? Is this the controller's way of saying
-> that the remaining register contents may be garbage?
->
-> Or, can the controller report more contacts than it has available registers
-> for X/Y? That seems odd.
->
-> These kind of controller-specific properties are handy to accompany with a
-> comment.
+Also are you prepared to add/ok if I add your reviewed-by to the
+patches you've reviewed?
 
-I added that as a guard against reporting more touches than possible,
-because it potentially can cause kernel oops. Is it not needed?
-I can't check how many touches it can actually report because the
-touchscreen used for testing only supports two touch points.
+Peter
 
-> Just confirming: does this controller require you to write the resolution
-> back to any internal scaling registers?
-
-I believe it doesn't: the downstream driver does nothing of that sort.
-There is a register where x and y resolution is stored, but the downstream
-driver never uses it to set the resolution.
-
-> You haven't responded to my question about this pair of statements, as
-> well as a couple other questions from my previous review.
-
-I re-used this code from zinitix touchscreen driver to get both regulators
-for turning them on or off at the same time.
-
-> Can this not be done in a bulk read so as to save up to 10 stop/starts?
+> Best regards
 >
-> Maybe it makes sense to define a bulk read function, with imagis_i2c_read
-> simply calling the bulk read function with a fixed length.
-
-Regarding this, I'm not sure how do I do this, since for each finger it's
-read from different i2c registers. It's not possible with one single i2c
-bulk read, so do I make it 10 separate i2c reads?
-Wouldn't this go against the purpose of having a bulk read function?
-
-I'm sorry if I haven't responded to any other of your questions.
-
-- Markuss
-(re-sent in plain text)
-
-On 2/17/22 05:35, Jeff LaBundy wrote:
-> Hi Markuss,
+> > +                     dev_err(dev, "RPiVid ASB register ID returned 0x%08x\n", id);
+> > +                     return -ENODEV;
+> > +             }
+> > +     }
+> > +
+> >       power->pd_xlate.domains = devm_kcalloc(dev,
+> >                                              ARRAY_SIZE(power_domain_names),
+> >                                              sizeof(*power->pd_xlate.domains),
 >
-> On Wed, Feb 16, 2022 at 03:43:01PM +0200, Markuss Broks wrote:
->> Add support for the IST3038C touchscreen IC from Imagis, based on
->> downstream driver. The driver supports multi-touch (10 touch points)
->> The IST3038C IC supports touch keys, but the support isn't added
->> because the touch screen used for testing doesn't utilize touch keys.
->> Looking at the downstream driver, it is possible to add support
->> for other Imagis ICs of IST30**C series.
->>
->> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
->> ---
->>   MAINTAINERS                        |   6 +
->>   drivers/input/touchscreen/Kconfig  |  10 +
->>   drivers/input/touchscreen/Makefile |   1 +
->>   drivers/input/touchscreen/imagis.c | 341 +++++++++++++++++++++++++++++
->>   4 files changed, 358 insertions(+)
->>   create mode 100644 drivers/input/touchscreen/imagis.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index a899828a8d4e..3b99c60e9f4b 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -9411,6 +9411,12 @@ M:	Stanislaw Gruszka <stf_xl@wp.pl>
->>   S:	Maintained
->>   F:	drivers/usb/atm/ueagle-atm.c
->>   
->> +IMAGIS TOUCHSCREEN DRIVER
->> +M:	Markuss Broks <markuss.broks@gmail.com>
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
->> +F:	drivers/input/touchscreen/imagis.c
->> +
->>   IMGTEC ASCII LCD DRIVER
->>   M:	Paul Burton <paulburton@kernel.org>
->>   S:	Maintained
->> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
->> index 2f6adfb7b938..a0f929506228 100644
->> --- a/drivers/input/touchscreen/Kconfig
->> +++ b/drivers/input/touchscreen/Kconfig
->> @@ -638,6 +638,16 @@ config TOUCHSCREEN_MTOUCH
->>   	  To compile this driver as a module, choose M here: the
->>   	  module will be called mtouch.
->>   
->> +config TOUCHSCREEN_IMAGIS
->> +	tristate "Imagis touchscreen support"
->> +	depends on I2C
->> +	help
->> +		Say Y here if you have an Imagis IST30xxC touchscreen.
->> +		If unsure, say N.
->> +
->> +		To compile this driver as a module, choose M here: the
->> +		module will be called imagis.
-> Please adhere to the indentation scheme used throughout the rest of
-> this file.
->
->> +
->>   config TOUCHSCREEN_IMX6UL_TSC
->>   	tristate "Freescale i.MX6UL touchscreen controller"
->>   	depends on ((OF && GPIOLIB) || COMPILE_TEST) && HAS_IOMEM
->> diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
->> index 39a8127cf6a5..557f84fd2075 100644
->> --- a/drivers/input/touchscreen/Makefile
->> +++ b/drivers/input/touchscreen/Makefile
->> @@ -49,6 +49,7 @@ obj-$(CONFIG_TOUCHSCREEN_GOODIX)	+= goodix_ts.o
->>   obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
->>   obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
->>   obj-$(CONFIG_TOUCHSCREEN_ILITEK)	+= ilitek_ts_i2c.o
->> +obj-$(CONFIG_TOUCHSCREEN_IMAGIS)	+= imagis.o
->>   obj-$(CONFIG_TOUCHSCREEN_IMX6UL_TSC)	+= imx6ul_tsc.o
->>   obj-$(CONFIG_TOUCHSCREEN_INEXIO)	+= inexio.o
->>   obj-$(CONFIG_TOUCHSCREEN_IPROC)		+= bcm_iproc_tsc.o
->> diff --git a/drivers/input/touchscreen/imagis.c b/drivers/input/touchscreen/imagis.c
->> new file mode 100644
->> index 000000000000..df26b90371c3
->> --- /dev/null
->> +++ b/drivers/input/touchscreen/imagis.c
->> @@ -0,0 +1,341 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +
-> Please explicitly include bits.h.
->
->> +#include <linux/delay.h>
->> +#include <linux/i2c.h>
->> +#include <linux/input.h>
->> +#include <linux/input/mt.h>
->> +#include <linux/input/touchscreen.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/property.h>
->> +#include <linux/regulator/consumer.h>
->> +
->> +#define IST3038C_HIB_ACCESS		(0x800B << 16)
->> +#define IST3038C_DIRECT_ACCESS		BIT(31)
->> +#define IST3038C_REG_CHIPID		0x40001000
->> +#define IST3038C_REG_HIB_BASE		0x30000100
->> +#define IST3038C_REG_TOUCH_STATUS		(IST3038C_REG_HIB_BASE | IST3038C_HIB_ACCESS)
->> +#define IST3038C_REG_TOUCH_COORD		(IST3038C_REG_HIB_BASE | IST3038C_HIB_ACCESS | 0x8)
->> +#define IST3038C_REG_INTR_MESSAGE		(IST3038C_REG_HIB_BASE | IST3038C_HIB_ACCESS | 0x4)
->> +#define IST3038C_WHOAMI			0x38c
->> +#define IST3038C_CHIP_ON_DELAY		60 // ms
-> IST3038C_CHIP_ON_DELAY_MS
->
-> Did checkpatch not complain about the C++ style comment?
->
->> +#define IST3038C_I2C_RETRY_COUNT		3
->> +#define IST3038C_MAX_SUPPORTED_FINGER_NUM		10
->> +#define IST3038C_X_MASK		GENMASK(23, 12)
->> +#define IST3038C_X_SHIFT		12
->> +#define IST3038C_Y_MASK		GENMASK(11, 0)
->> +#define IST3038C_AREA_MASK		GENMASK(27, 24)
->> +#define IST3038C_AREA_SHIFT		24
->> +#define IST3038C_FINGER_COUNT_MASK		GENMASK(15, 12)
->> +#define IST3038C_FINGER_COUNT_SHIFT		12
->> +#define IST3038C_FINGER_STATUS_MASK		GENMASK(9, 0)
->> +
->> +struct imagis_ts {
->> +	struct i2c_client *client;
->> +	struct input_dev *input_dev;
->> +	struct touchscreen_properties prop;
->> +	struct regulator_bulk_data supplies[2];
->> +};
->> +
->> +static int imagis_i2c_read_reg(struct imagis_ts *ts,
->> +			       unsigned int reg, unsigned int *buffer)
->> +{
->> +	__be32 reg_be = cpu_to_be32(reg);
->> +	struct i2c_msg msg[] = {
->> +		{
->> +			.addr = ts->client->addr,
->> +			.flags = 0,
->> +			.buf = (unsigned char *)&reg_be,
->> +			.len = sizeof(reg_be),
->> +		}, {
->> +			.addr = ts->client->addr,
->> +			.flags = I2C_M_RD,
->> +			.buf = (unsigned char *)buffer,
->> +			.len = sizeof(reg_be),
->> +		},
->> +	};
->> +	int ret, error;
->> +	int retry = IST3038C_I2C_RETRY_COUNT;
->> +
->> +	do { // The controller might need several reads until it returns a value
->> +		ret = i2c_transfer(ts->client->adapter, msg, ARRAY_SIZE(msg));
->> +		if (ret == ARRAY_SIZE(msg)) {
->> +			*buffer = be32_to_cpu(*buffer);
->> +			return 0;
->> +		}
-> Please follow the kernel style guidelines for comments. I was also
-> hoping to see more detail as to why this is necessary. The loop in
-> and of itself is enough to suggest the controller may fail, but why?
->
-> Does the datasheet or an errata document ask for this?
->
->> +
->> +		error = ret < 0 ? ret : -EIO;
->> +		dev_err(&ts->client->dev,
->> +			"%s - i2c_transfer failed: %d (%d)\n",
->> +			__func__, error, ret);
->> +	} while (--retry);
->> +
->> +	return error;
->> +}
->> +
->> +static irqreturn_t imagis_interrupt(int irq, void *dev_id)
->> +{
->> +	struct imagis_ts *ts = dev_id;
->> +	unsigned int finger_status, intr_message;
->> +	int error, i, finger_count, finger_pressed;
->> +
->> +	error = imagis_i2c_read_reg(ts, IST3038C_REG_INTR_MESSAGE, &intr_message);
->> +	if (error) {
->> +		dev_err(&ts->client->dev, "failed to read the interrupt message\n");
->> +		return IRQ_HANDLED;
->> +	}
->> +
->> +	finger_count = (intr_message & IST3038C_FINGER_COUNT_MASK) >> IST3038C_FINGER_COUNT_SHIFT;
->> +	finger_pressed = intr_message & IST3038C_FINGER_STATUS_MASK;
->> +	if (finger_count > IST3038C_MAX_SUPPORTED_FINGER_NUM) {
->> +		dev_err(&ts->client->dev, "finger count is more than maximum supported\n");
->> +		return IRQ_HANDLED;
->> +	}
-> Can the controller actually report more than 10 contacts?
->
-> If so, what is the reason to bail? Is this the controller's way of saying
-> that the remaining register contents may be garbage?
->
-> Or, can the controller report more contacts than it has available registers
-> for X/Y? That seems odd.
->
-> These kind of controller-specific properties are handy to accompany with a
-> comment.
->
->> +
->> +	for (i = 0; i < finger_count; i++) {
->> +		error = imagis_i2c_read_reg(ts, IST3038C_REG_TOUCH_COORD + (i * 4), &finger_status);
->> +		if (error) {
->> +			dev_err(&ts->client->dev, "failed to read coordinates for finger %d\n", i);
->> +			return IRQ_HANDLED;
->> +		}
->> +		input_mt_slot(ts->input_dev, i);
->> +		input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER,
->> +					   finger_pressed & BIT(i));
->> +		touchscreen_report_pos(ts->input_dev, &ts->prop,
->> +				       (finger_status & IST3038C_X_MASK) >> IST3038C_X_SHIFT,
->> +				       finger_status & IST3038C_Y_MASK, 1);
->> +		input_report_abs(ts->input_dev, ABS_MT_TOUCH_MAJOR,
->> +				 (finger_status & IST3038C_AREA_MASK) >> IST3038C_AREA_SHIFT);
->> +	}
->> +	input_mt_sync_frame(ts->input_dev);
->> +	input_sync(ts->input_dev);
->> +
->> +	return IRQ_HANDLED;
->> +}
->> +
->> +static int imagis_start(struct imagis_ts *ts)
->> +{
->> +	int error;
->> +
->> +	error = regulator_bulk_enable(ARRAY_SIZE(ts->supplies),
->> +				      ts->supplies);
->> +	if (error) {
->> +		dev_err(&ts->client->dev,
->> +			"Failed to enable regulators: %d\n", error);
->> +		return error;
->> +	}
->> +
->> +	msleep(IST3038C_CHIP_ON_DELAY);
->> +
->> +	enable_irq(ts->client->irq);
->> +	return 0;
->> +}
->> +
->> +static int imagis_stop(struct imagis_ts *ts)
->> +{
->> +	int error = 0;
-> Nit: any reason to initialize this to zero, then immediately change it below?
->
->> +
->> +	disable_irq(ts->client->irq);
->> +
->> +	error = regulator_bulk_disable(ARRAY_SIZE(ts->supplies),
->> +				       ts->supplies);
->> +	if (error)
->> +		dev_err(&ts->client->dev,
->> +			"Failed to disable regulators: %d\n", error);
->> +	return error;
->> +}
->> +
->> +static int imagis_input_open(struct input_dev *dev)
->> +{
->> +	struct imagis_ts *ts = input_get_drvdata(dev);
->> +
->> +	return imagis_start(ts);
->> +}
->> +
->> +static void imagis_input_close(struct input_dev *dev)
->> +{
->> +	struct imagis_ts *ts = input_get_drvdata(dev);
->> +
->> +	imagis_stop(ts);
->> +}
->> +
->> +static int imagis_init_input_dev(struct imagis_ts *ts)
->> +{
->> +	struct input_dev *input_dev;
->> +	int error;
->> +
->> +	input_dev = devm_input_allocate_device(&ts->client->dev);
->> +	if (!input_dev)
->> +		return -ENOMEM;
->> +
->> +	ts->input_dev = input_dev;
->> +
->> +	input_dev->name = "Imagis capacitive touchscreen";
->> +	input_dev->phys = "input/ts";
->> +	input_dev->id.bustype = BUS_I2C;
->> +	input_dev->open = imagis_input_open;
->> +	input_dev->close = imagis_input_close;
->> +
->> +	input_set_drvdata(input_dev, ts);
->> +
->> +	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_X);
->> +	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_Y);
->> +	input_set_abs_params(input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
->> +
->> +	touchscreen_parse_properties(input_dev, true, &ts->prop);
->> +	if (!ts->prop.max_x || !ts->prop.max_y) {
->> +		dev_err(&ts->client->dev,
->> +			"Touchscreen-size-x and/or touchscreen-size-y not set in dts\n");
->> +		return -EINVAL;
->> +	}
-> Just confirming: does this controller require you to write the resolution
-> back to any internal scaling registers?
->
->> +
->> +	error = input_mt_init_slots(input_dev, IST3038C_MAX_SUPPORTED_FINGER_NUM,
->> +				    INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
->> +	if (error) {
->> +		dev_err(&ts->client->dev,
->> +			"Failed to initialize MT slots: %d", error);
->> +		return error;
->> +	}
->> +
->> +	error = input_register_device(input_dev);
->> +	if (error) {
->> +		dev_err(&ts->client->dev,
->> +			"Failed to register input device: %d", error);
->> +		return error;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int imagis_init_regulators(struct imagis_ts *ts)
->> +{
->> +	struct i2c_client *client = ts->client;
->> +	int error = 0;
->> +
->> +	ts->supplies[0].supply = "vdd";
->> +	ts->supplies[1].supply = "vddio";
-> You haven't responded to my question about this pair of statements, as
-> well as a couple other questions from my previous review.
->
->> +	error = devm_regulator_bulk_get(&client->dev,
->> +					ARRAY_SIZE(ts->supplies),
->> +					ts->supplies);
->> +
->> +	return error;
->> +}
->> +
->> +static int imagis_probe(struct i2c_client *i2c)
->> +{
->> +	struct device *dev;
->> +	struct imagis_ts *ts;
->> +	int chip_id, ret, error;
->> +
->> +	dev = &i2c->dev;
->> +
->> +	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
->> +	if (!ts)
->> +		return -ENOMEM;
->> +
->> +	ts->client = i2c;
->> +
->> +	ret = imagis_init_regulators(ts);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "regulator init error: %d\n", ret);
->> +
-> As mentioned earlier, please use 'error' for return variables that only
-> return zero or negative values.
->
->> +	ret = regulator_bulk_enable(ARRAY_SIZE(ts->supplies),
->> +				    ts->supplies);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "failed to enable regulators: %d\n", ret);
->> +
->> +	msleep(IST3038C_CHIP_ON_DELAY);
->> +
->> +	ret = imagis_i2c_read_reg(ts, IST3038C_REG_CHIPID | IST3038C_DIRECT_ACCESS, &chip_id);
->> +	if (ret) {
->> +		dev_err(dev, "chip ID read failure: %d\n", ret);
->> +		goto error_probe;
->> +	}
->> +
->> +	if (chip_id == IST3038C_WHOAMI) {
->> +		dev_dbg(dev, "Detected IST3038C chip\n");
->> +	} else {
->> +		dev_err(dev, "unknown chip ID: 0x%x\n", chip_id);
->> +		ret = -EINVAL;
->> +		goto error_probe;
->> +	}
-> It's personal preference, but this seems cleaner:
->
-> if (chip_id != ...) {
->          /* ... */
->          goto ...
-> }
->
-> dev_dbg(...);
->
-> And again, it's personal preference, but the dev_dbg is a bit pointless.
-> The presence of the device in /dev/input is enough to show the device
-> made it through probe.
->
->> +
->> +	ret = devm_request_threaded_irq(dev, i2c->irq,
->> +					NULL, imagis_interrupt,
->> +					IRQF_ONESHOT | IRQF_NO_AUTOEN,
->> +					"imagis-touchscreen", ts);
->> +	if (ret) {
->> +		dev_err(dev, "IRQ allocation failure: %d\n", ret);
->> +		goto error_probe;
->> +	}
-> I think you have unbalanced regulator enable/disable here. Based on
-> the above flags, it seems you are relying on the open callback to
-> call imagis_start which then enables interrupts.
->
-> However, that also enables regulators once more which will increase
-> the refcount. Even if the close callback runs before the driver
-> is detached, the regulators will be left enabled.
->
-> Maybe you need to add a device-managed action to disable regulators;
-> this will also allow you to get rid of the teardown path below the
-> error_probe label as well as a second return variable.
->
->> +
->> +	ret = imagis_init_input_dev(ts);
->> +	if (ret) {
->> +		dev_err(dev, "input subsystem init error: %d\n", ret);
->> +		goto error_probe;
->> +	}
->> +	return 0;
->> +
->> +error_probe:
->> +	error = regulator_bulk_disable(ARRAY_SIZE(ts->supplies),
->> +				       ts->supplies);
->> +	if (error)
->> +		dev_err(dev, "Failed to disable regulators: %d\n", error);
->> +	return ret;
->> +}
->> +
->> +static int __maybe_unused imagis_suspend(struct device *dev)
->> +{
->> +	struct i2c_client *client = to_i2c_client(dev);
->> +	struct imagis_ts *ts = i2c_get_clientdata(client);
->> +
->> +	mutex_lock(&ts->input_dev->mutex);
->> +
->> +	if (input_device_enabled(ts->input_dev))
->> +		imagis_stop(ts);
-> Again, please pass the return value as you have done below.
->
->> +
->> +	mutex_unlock(&ts->input_dev->mutex);
->> +
->> +	return 0;
->> +}
->> +
->> +static int __maybe_unused imagis_resume(struct device *dev)
->> +{
->> +	struct i2c_client *client = to_i2c_client(dev);
->> +	struct imagis_ts *ts = i2c_get_clientdata(client);
->> +	int ret = 0;
-> Again, please use 'error' here.
->
->> +
->> +	mutex_lock(&ts->input_dev->mutex);
->> +
->> +	if (input_device_enabled(ts->input_dev))
->> +		ret = imagis_start(ts);
->> +
->> +	mutex_unlock(&ts->input_dev->mutex);
->> +
->> +	return ret;
->> +}
->> +
->> +static SIMPLE_DEV_PM_OPS(imagis_pm_ops, imagis_suspend, imagis_resume);
->> +
->> +#ifdef CONFIG_OF
->> +static const struct of_device_id imagis_of_match[] = {
->> +	{ .compatible = "imagis,ist3038c", },
->> +	{ },
->> +};
->> +MODULE_DEVICE_TABLE(i2c, imagis_of_match);
-> MODULE_DEVICE_TABLE(of, ...);
->
->> +#endif
->> +
->> +static struct i2c_driver imagis_ts_driver = {
->> +	.driver = {
->> +		   .name = "imagis-touchscreen",
->> +		   .pm = &imagis_pm_ops,
->> +		   .of_match_table = of_match_ptr(imagis_of_match),
->> +	},
->> +	.probe_new	= imagis_probe,
-> No extraneous spaces please.
->
->> +};
->> +
->> +module_i2c_driver(imagis_ts_driver);
->> +
->> +MODULE_DESCRIPTION("Imagis IST3038C Touchscreen Driver");
->> +MODULE_AUTHOR("Markuss Broks <markuss.broks@gmail.com>");
->> +MODULE_LICENSE("GPL");
->> -- 
->> 2.35.0
->>
-> Kind regards,
-> Jeff LaBundy
