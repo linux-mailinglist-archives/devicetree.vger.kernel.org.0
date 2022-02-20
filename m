@@ -2,144 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAB3B4BCB2F
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 00:58:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A80E4BCBB4
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 03:46:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231745AbiBSX6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Feb 2022 18:58:39 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49078 "EHLO
+        id S233505AbiBTCq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Feb 2022 21:46:59 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbiBSX6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 18:58:38 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54ECA38B7
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 15:58:18 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id v22so7570507ljh.7
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 15:58:18 -0800 (PST)
+        with ESMTP id S230431AbiBTCq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Feb 2022 21:46:58 -0500
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3FDD5FA0;
+        Sat, 19 Feb 2022 18:46:37 -0800 (PST)
+Received: by mail-pg1-x52a.google.com with SMTP id 132so11233140pga.5;
+        Sat, 19 Feb 2022 18:46:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=davTlAz72/o8PzH0gfbXYTV3qnPMMT+uYMyKepr6G5I=;
-        b=gpIzCawQ7726/hWrK4YYTMqxVQSQ+isU4ZSHdyFlx9TkwfZokyi796JG+kQp7csEtL
-         iyeCjl9TlHFyuauhIpMANmAcGt/wNX+YNM8mr3A2NKiinY1gGYRmcIXwH+tjg0C7Zzc+
-         MbB6xGg/bWmyN57/OdGmbJ2q+WCdkq5+Gnpnetp1Frlvj+hxJSpEZTKm2Yo5wbjdUhjv
-         bAP4M8+FImn/IbXBT/2pQaAbxnr9RXIBS+QZmKhvDwwovyTZYvj04DNpsekP63NlQ0Ip
-         iV3w8xhQs4OWGlIx6fTA4T+ULsylCnBleh7tNYm47hRfY+D7Qg+Yfa/zoYairLKOO95s
-         6VPg==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=j08tqWBEN8h5E9YAL/mlMShWRnLDdiaTyKWwQQyWLNc=;
+        b=Z+J/50E99oxKUrebYU0PNuHC3HioU3MRIqrj+OikTOW9pU+oNj5ela/0bX9ThlJShc
+         veMYhv75jt3ExqLWXWk/uFProit/bYozw9BRf0BUJBc7b+LP16OsAgH5HOYecki1uUZ5
+         3owG9UUQiO6d1XGIHzdhYwLTYWCqCr+ZckJpZ/yTeePkEtgeWr8rk5TToVZ94WAva7GD
+         lL+Sb1rwwJHH1Edb9plriXJRY/N38bWgPGQbWpUgvkpL6T3K8rhh891QCNnMnuPyeHy1
+         h1lI9tHYdkMtKFDbjmg/Hl2BOVFW5s3hAU3/8497n4MOdUdGzKJIHXx/ZjPIKTTplw9a
+         Y9xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=davTlAz72/o8PzH0gfbXYTV3qnPMMT+uYMyKepr6G5I=;
-        b=FXznn0btckocpBDUmEbovsXdFutKYY0tzNA1W7fD6vAaeFKgEgtRHDXRccJdkKvWBA
-         Q/svEpzEdA3m8DfMh+ijlhrjXNq236kKzv/IuvSJd3DEfUTDASYR5JK4+9XAqosrCe6a
-         bFnNvUyo41LsWRh9+Cw8a/8/vOQ8ljtq/KR8dK3QdybN99zqoIKZEu05Ca+3ik1ABWbn
-         304o1dLt+x7u8WNCcV4NaYOJYRUXttOOj4EpSo4jvgHKNbKVaZ3BBBU+YCwhX8wxzJBo
-         9LRm194r+265rjSIsMBqqrzDq+8xAbDKuQjc4UgxtBC9FlQFHG9xN5jFhc8JjZ9mg+pt
-         +/7w==
-X-Gm-Message-State: AOAM533ENHCMhswH0dr07VzgVmFvUNy3vDpXtBiroFVJnF37hqqS+QDG
-        M8FkYma+j84iLn6hKbgf1aAoYQ==
-X-Google-Smtp-Source: ABdhPJyQFOkTeWyLkS8fTh2/rw4kF64sCDC5TAs3PjIg8YLy+/XN839nIdoHfVIaCJyc1OHZtauocg==
-X-Received: by 2002:a05:651c:198f:b0:244:4deb:70d6 with SMTP id bx15-20020a05651c198f00b002444deb70d6mr9980225ljb.167.1645315096519;
-        Sat, 19 Feb 2022 15:58:16 -0800 (PST)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id q34sm814106lje.121.2022.02.19.15.58.15
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=j08tqWBEN8h5E9YAL/mlMShWRnLDdiaTyKWwQQyWLNc=;
+        b=EsI25Hw5F635VKGe1eN8Lgmlm/L2ijHUO3Ruq2ivAn5dh6fG7HU+fKCrRCSTEsw2lj
+         IrviKIp0ird20asB/g5NTgizIoYA7iXZgJhgn6xgJAovlxV3To/HA3xnb9Bm9TWghkhf
+         vkaOKb0oD9awmp9tnFAP043Em/2ukUWD93a42PBqJnpfQGxcdNkrdQIbDuG6zduh89kv
+         MMibb9f5vtDeHjVSqJv369o1nq4esKYq+wxhbRUdktlTB+xeDkT83cTDUroC/TAtVAgc
+         e1ppajIvOMU/YUBaOpUl/Noc0QM0v7AHZS7HHwNF5wzYrGaO8aVoR4192rY8DfbSoh1f
+         tnpA==
+X-Gm-Message-State: AOAM531+H2GD/sstoNK6eovhUCk6UTmELIXFgkRxlZO9dsAT6ta2PWkI
+        olme/yDrzO/ns++N7QjHZl4=
+X-Google-Smtp-Source: ABdhPJzmdYqoxrt26EOLftsJtDYYhE+hpXj3Mr4y7RjSpQ+GD7UHbbl9qDx9WOz+A61he3D3gsGEsQ==
+X-Received: by 2002:a63:10c:0:b0:36c:6dd0:44af with SMTP id 12-20020a63010c000000b0036c6dd044afmr11571935pgb.41.1645325196978;
+        Sat, 19 Feb 2022 18:46:36 -0800 (PST)
+Received: from localhost.localdomain ([116.73.72.178])
+        by smtp.gmail.com with ESMTPSA id lw16sm3488761pjb.51.2022.02.19.18.46.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Feb 2022 15:58:16 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     linux-leds@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Antonio Ospite <ao2@ao2.it>
-Subject: [PATCH 1/3] dt-bindings: leds: Add regulator-led binding
-Date:   Sun, 20 Feb 2022 00:56:05 +0100
-Message-Id: <20220219235607.1613686-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Sat, 19 Feb 2022 18:46:36 -0800 (PST)
+From:   Jagath Jog J <jagathjog1996@gmail.com>
+To:     jic23@kernel.org, lars@metafoo.de, andy.shevchenko@gmail.com,
+        sst@poczta.fm, robh+dt@kernel.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/7] iio: potentiometer: Add support for DS3502
+Date:   Sun, 20 Feb 2022 08:16:25 +0530
+Message-Id: <20220220024632.4183-1-jagathjog1996@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The regulator is a LED connected directly to a regulator and with
-its brightness controlled by the voltage of the regulator.
+Add dt-bindings and support for Maxim DS3502 into existing ds1803 driver.
+DS3502 is a 7 bit Nonvolatile Digital Potentiometer.
 
-Cc: devicetree@vger.kernel.org
-Cc: Antonio Ospite <ao2@ao2.it>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/leds/regulator-led.yaml          | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/regulator-led.yaml
+Changes since v3:
+1. Dropped the chip type switch statement in read_raw function.
+2. Added device specific read function pointer in their structure.
+3. Added two separate functions to read values from two different types
+   of devices.
 
-diff --git a/Documentation/devicetree/bindings/leds/regulator-led.yaml b/Documentation/devicetree/bindings/leds/regulator-led.yaml
-new file mode 100644
-index 000000000000..3e020d700c00
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/regulator-led.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/regulator-led.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Device Tree Bindings for Regulator LEDs
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  Regulator LEDs are powered by a single regulator such that they can
-+  be turned on or off by enabling or disabling the regulator. The available
-+  brightness settings will be inferred from the available voltages on the
-+  regulator, and any constraints on the voltage or current will need to be
-+  specified on the regulator.
-+
-+allOf:
-+  - $ref: common.yaml#
-+
-+properties:
-+  $nodename:
-+    pattern: '^led.*$'
-+
-+  compatible:
-+    const: regulator-led
-+
-+  vled-supply:
-+    description:
-+      The regulator controlling the current to the LED.
-+
-+  function: true
-+  color: true
-+  linux,default-trigger: true
-+  default-state: true
-+
-+required:
-+  - compatible
-+  - vled-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    led-heartbeat {
-+        compatible = "regulator-led";
-+        vled-supply = <&regulator>;
-+        function = LED_FUNCTION_STATUS;
-+        color = <LED_COLOR_ID_BLUE>;
-+        linux,default-trigger = "heartbeat";
-+    };
-+...
+Changes since v2:
+1. Addressed Andy Shevchenko comments.
+2. Adding device name in Kconfig file.
+3. Spliting up of patch into 3 patches.
+4. Adding channel info into ds1803_cfg in separate patch.
+5. Dropping the use of enum in firmware data instead using previous
+   pointer method for accessing device specific data.
+6. Separate patch for using firmware provided data instead of 
+   id->driver_data.
+7. Adding DS3502 support in separate patch.
+
+Changes since v1:
+1. Fixes the alignment to match the open parenthesis in separate patch.
+2. Adding available functionality for ds1803 driver in separate patch.
+3. Moving maxim_potentiometer members into ds1803_cfg structure.
+4. Droping of the INFO_ENABLE channel type.
+5. Firmware entry with data is used instead of id->driver_data to
+   to retrieve the chip specific data.
+
+Jagath Jog J (7):
+  iio: potentiometer: Alignment to match the open parenthesis
+  iio: potentiometer: Add available functionality
+  iio: potentiometer: Add channel information in device data
+  iio: potentiometer: Change to firmware provided data
+  iio: potentiometer: Add device specific read_raw function
+  iio: potentiometer: Add support for Maxim DS3502
+  dt-bindings: iio: potentiometer: Add Maxim DS3502 in trivial-devices
+
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ drivers/iio/potentiometer/Kconfig             |   6 +-
+ drivers/iio/potentiometer/ds1803.c            | 153 +++++++++++++-----
+ 3 files changed, 121 insertions(+), 40 deletions(-)
+
 -- 
-2.34.1
+2.17.1
 
