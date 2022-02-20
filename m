@@ -2,268 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 723744BCFB8
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 17:14:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B16F44BD011
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 18:10:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233158AbiBTQAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 11:00:04 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35180 "EHLO
+        id S244323AbiBTRHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 12:07:09 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236433AbiBTQAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 11:00:03 -0500
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4EE9443D3
-        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 07:59:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=XJbiEOOycE926THhQfrdo+uPdzPFqrvHznVgiCFC4Fs=; b=q+nQTH7R2G87n4tqDYShVErIMF
-        BfTygwTuk8fEQwzd6P0ha7Tz/J+j1EA+QSLHPvTdvsIDNQtIeJcf+bybi7B3k0WJo3xrfO2fMHfDN
-        AGfH5hIO+MQlN6Apht3nFgTWZCRvRd79mJWZu+lcTKe32ndYPiIlpD5hOsX0t9qS+1R0CgjjD94kC
-        +VgPVuLOuThfbOM3qfGvwHQewWclqiPHva+tFaT+ct3ABUuO+xZ4gP9BVgJnLUIP4/HVIjVZ1yW/J
-        y5LRYckJW2Rywxc29Mj1pf/N7kVCrlAdlZ0ZpakaGnicvZWI4DqHoyIYKEsH8sIZiibCQXwwy3lbF
-        uDvliVAQ==;
-Received: from [2a01:799:95e:a400:cca0:57ac:c55d:a485] (port=58751)
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1nLocb-0002XW-Fm; Sun, 20 Feb 2022 16:59:37 +0100
-Message-ID: <08d29bb6-8b44-8355-b9dc-a96b2e20cc20@tronnes.org>
-Date:   Sun, 20 Feb 2022 16:59:34 +0100
+        with ESMTP id S244320AbiBTRHI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 12:07:08 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3F1638784
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 09:06:44 -0800 (PST)
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 421E33FDC7
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 17:06:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645376803;
+        bh=WBnOQoWPjOARSkiKCXtTlNVMckDodu4ejT0rDiafNjA=;
+        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+         In-Reply-To:Content-Type;
+        b=Ni5srko/AZ2mtmUIYas70FeEUGC0SSP+jNegpXG4/aj+lJsPe5baYorJkDQxxDGab
+         pf2AI7atdsaGg1CXV672O2b5rfxI2OrD2kUU12u7tvtScvSXnuGxEbUP+JxRVLnr4M
+         zfj+A/H6RQraaJSL2yEppnA8M3533+K9QgoBCjejAkDynheMiJOAFDR+za5hBzSuFy
+         TMVTv3Bf/Ftz+7VwLXoeknLYf8kDDRQudaR2CN7cNa9W4IevaRaxFvgGpf8U++3Cr8
+         qNGD37H3i/mrcsBGVhQNQ8aELDUrGWJwYMMdTCUu8o2S9p1N5VpMVbVikcuCn0MjJE
+         y9Gkm5pOoIwHQ==
+Received: by mail-wr1-f70.google.com with SMTP id p9-20020adf9589000000b001e333885ac1so6115729wrp.10
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 09:06:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=WBnOQoWPjOARSkiKCXtTlNVMckDodu4ejT0rDiafNjA=;
+        b=QEWERXjfOuzJ74Vx+WaikSNfrXN9DAp9wGBN90Di+fvD/m60nhiE2+BAwgHlGlFqaM
+         Ay2v0WN/AbVziV+i4UWpX0iBqE1KBOWQGFAMX8YVd7MOYTalrAxk0OpJieqofBn+hb5X
+         +qVetkfD6MhlzPJCN8Htl5o2qS7SPX4sVmdkZ0GtXNJ5Q1RtdY9uQrUsbglKK/IPYy7p
+         tosWVL5P1dE30uvOXAHRbS32uj5JzFyEWThxijV2Xv0lS0vkO6tTSipUfeF9hE13RMJA
+         vj2y40IplDEI1qHFY2jH7znNlBA0RM0ojlhb8IYG13670L1LvWHB4bUVwOqsWfuYWHvn
+         VOfg==
+X-Gm-Message-State: AOAM532oFdU7uoas+oJEJYU7u2Wp4+gzeia52z+S3oGK1qlLOkZbx/4C
+        ZG0Ov+t7v8z+Y8sVRaheeKjPRVqvlyJHwGmhBFA75eulpqPFPDadZXf1obQA5EkHH7qvtZsV95G
+        tddfZNXqh4+ttBKrFGtNgGTrpO4oDn1xOuud9rcE=
+X-Received: by 2002:a5d:6701:0:b0:1e3:3ba6:d2e8 with SMTP id o1-20020a5d6701000000b001e33ba6d2e8mr12749097wru.221.1645376802805;
+        Sun, 20 Feb 2022 09:06:42 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz+T9JJCGKV5qwlPuZcr/TUyFN6JvUfkDiFzvlppDQW5HEFlxqK6x/k5fxQNEwOPo0Zx2NtKA==
+X-Received: by 2002:a5d:6701:0:b0:1e3:3ba6:d2e8 with SMTP id o1-20020a5d6701000000b001e33ba6d2e8mr12749069wru.221.1645376802468;
+        Sun, 20 Feb 2022 09:06:42 -0800 (PST)
+Received: from [192.168.0.118] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id ba14sm25464009wrb.56.2022.02.20.09.06.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Feb 2022 09:06:41 -0800 (PST)
+Message-ID: <d47a91e6-228a-38ea-fd55-8a3a61d1f63e@canonical.com>
+Date:   Sun, 20 Feb 2022 18:06:40 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v4 3/3] drm/tiny: Add MIPI DBI compatible SPI driver
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     robh+dt@kernel.org, thierry.reding@gmail.com, maxime@cerno.tech,
-        dave.stevenson@raspberrypi.com, david@lechnology.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20220218151110.11316-1-noralf@tronnes.org>
- <20220218151110.11316-4-noralf@tronnes.org> <YhFqxklH9hsLrI1X@ravnborg.org>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <YhFqxklH9hsLrI1X@ravnborg.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [RFC PATCH 3/8] dt-bindings: ufs: cdns,ufshc: convert to dtschema
+Content-Language: en-US
+To:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jan Kotas <jank@cadence.com>, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20220219184224.44339-1-krzysztof.kozlowski@canonical.com>
+ <20220219184224.44339-4-krzysztof.kozlowski@canonical.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220219184224.44339-4-krzysztof.kozlowski@canonical.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-Den 19.02.2022 23.10, skrev Sam Ravnborg:
-> Hi Noralf,
-> On Fri, Feb 18, 2022 at 04:11:10PM +0100, Noralf Trønnes wrote:
->> Add a driver that will work with most MIPI DBI compatible SPI panels.
->> This avoids adding a driver for every new MIPI DBI compatible controller
->> that is to be used by Linux. The 'compatible' Device Tree property with
->> a '.bin' suffix will be used to load a firmware file that contains the
->> controller configuration.
-> A solution where we have the command sequences as part of the DT-overlay
-> is IMO a much better way to solve this:
-> - The users needs to deal only with a single file, so there is less that
->   goes wrong
-> - The user need not reading special instructions how to handle a .bin
->   file, if the overlay is present everything is fine
-> - The file that contains the command sequences can be properly annotated
->   with comments
-> - The people that creates the command sequences has no need for a special
->   script to create the file for a display - this is all readable ascii.
-> - Using a DT-overlay the parsing of the DT-overlay can be done by
->   well-tested functions, no need to invent something new to parse the
->   file
+On 19/02/2022 19:42, Krzysztof Kozlowski wrote:
+> Convert the Cadence Universal Flash Storage (UFS) Controlle to DT schema
+> format.
 > 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  .../devicetree/bindings/ufs/cdns,ufshc.txt    | 32 -----------
+>  .../devicetree/bindings/ufs/cdns,ufshc.yaml   | 56 +++++++++++++++++++
+>  2 files changed, 56 insertions(+), 32 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/ufs/cdns,ufshc.txt
+>  create mode 100644 Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
 > 
-> The idea with a common mipi DBI SPI driver is super, it is the detail
-> with the .bin file that I am against.
-> 
+> diff --git a/Documentation/devicetree/bindings/ufs/cdns,ufshc.txt b/Documentation/devicetree/bindings/ufs/cdns,ufshc.txt
+> deleted file mode 100644
+> index 02347b017abd..000000000000
+> --- a/Documentation/devicetree/bindings/ufs/cdns,ufshc.txt
+> +++ /dev/null
+> @@ -1,32 +0,0 @@
+> -* Cadence Universal Flash Storage (UFS) Controller
+> -
+> -UFS nodes are defined to describe on-chip UFS host controllers.
+> -Each UFS controller instance should have its own node.
+> -Please see the ufshcd-pltfrm.txt for a list of all available properties.
+> -
+> -Required properties:
+> -- compatible	: Compatible list, contains one of the following controllers:
+> -			"cdns,ufshc" - Generic CDNS HCI,
+> -			"cdns,ufshc-m31-16nm" - CDNS UFS HC + M31 16nm PHY
+> -		  complemented with the JEDEC version:
+> -			"jedec,ufs-2.0"
+> -
+> -- reg		: Address and length of the UFS register set.
+> -- interrupts	: One interrupt mapping.
+> -- freq-table-hz	: Clock frequency table.
+> -		  See the ufshcd-pltfrm.txt for details.
+> -- clocks	: List of phandle and clock specifier pairs.
+> -- clock-names	: List of clock input name strings sorted in the same
+> -		  order as the clocks property. "core_clk" is mandatory.
+> -		  Depending on a type of a PHY,
+> -		  the "phy_clk" clock can also be added, if needed.
+> -
+> -Example:
+> -	ufs@fd030000 {
+> -		compatible = "cdns,ufshc", "jedec,ufs-2.0";
+> -		reg = <0xfd030000 0x10000>;
+> -		interrupts = <0 1 IRQ_TYPE_LEVEL_HIGH>;
+> -		freq-table-hz = <0 0>, <0 0>;
+> -		clocks = <&ufs_core_clk>, <&ufs_phy_clk>;
+> -		clock-names = "core_clk", "phy_clk";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml b/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
+> new file mode 100644
+> index 000000000000..68ae5663cd25
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/ufs/cdns,ufshc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cadence Universal Flash Storage (UFS) Controller
+> +
+> +maintainers:
+> +  - Jan Kotas <jank@cadence.com>
+> +
 
-The fbtft drivers has an init= DT property that contains the command
-sequence. Example for the MZ61581 display:
+This will require a "select:" to avoid clash with qcom (and maybe other)
+schemas.
 
-				init = <0x10000b0 00
-					0x1000011
-					0x20000ff
-					0x10000b3 0x02 0x00 0x00 0x00
-					0x10000c0 0x13 0x3b 0x00 0x02 0x00 0x01 0x00 0x43
-					0x10000c1 0x08 0x16 0x08 0x08
-					0x10000c4 0x11 0x07 0x03 0x03
-					0x10000c6 0x00
-					0x10000c8 0x03 0x03 0x13 0x5c 0x03 0x07 0x14 0x08 0x00 0x21 0x08
-0x14 0x07 0x53 0x0c 0x13 0x03 0x03 0x21 0x00
-					0x1000035 0x00
-					0x1000036 0xa0
-					0x100003a 0x55
-					0x1000044 0x00 0x01
-					0x10000d0 0x07 0x07 0x1d 0x03
-					0x10000d1 0x03 0x30 0x10
-					0x10000d2 0x03 0x14 0x04
-					0x1000029
-					0x100002c>;
-
-Parsed here:
-https://elixir.bootlin.com/linux/latest/C/ident/fbtft_init_display_from_property
-
-Before fbdev was closed for new drivers I looked at fixing up fbtft for
-proper inclusion and asked on the Device Tree mailinglist about the init
-property and how to handle the controller configuration generically.
-I was politely told that this should be done in the driver, so when I
-made my first DRM driver I made a driver specifically for a panel
-(mi0283qt.c).
-
-Later I found another post that in clear words stated that setting
-random registers from DT was not acceptable.
-
-So I think Maxime has provided a clever way of dealing with this problem
-to let us have a generic driver: The OS is in charge of how to configure
-the controller and in this case does it using a firmware file.
-
-> With the above said, a few comments to the current implementation below.
-> As we know it from you - a very well-written driver.
-> 
-> 	Sam
-> 
->> Acked-by: Maxime Ripard <maxime@cerno.tech>
->> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
->> ---
-
->> diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
->> index 712e0004e96e..d552e1618da7 100644
->> --- a/drivers/gpu/drm/tiny/Kconfig
->> +++ b/drivers/gpu/drm/tiny/Kconfig
->> @@ -51,6 +51,19 @@ config DRM_GM12U320
->>  	 This is a KMS driver for projectors which use the GM12U320 chipset
->>  	 for video transfer over USB2/3, such as the Acer C120 mini projector.
->>  
->> +config DRM_PANEL_MIPI_DBI
->> +	tristate "DRM support for MIPI DBI compatible panels"
->> +	depends on DRM && SPI
->> +	select DRM_KMS_HELPER
->> +	select DRM_KMS_CMA_HELPER
-> This symbol is not present in my drm-misc-next tree (which is a few
-> weeks old, so it may be newer).
-> 
-
-Turns out this was removed in 09717af7d13d.
-This should be DRM_GEM_CMA_HELPER now.
-
->> +	select DRM_MIPI_DBI
->> +	select BACKLIGHT_CLASS_DEVICE
->> +	help
->> +	  Say Y here if you want to enable support for MIPI DBI compatible
->> +	  panels. The controller command setup can be provided using a
->> +	  firmware file.
-> Consider adding a link to the wiki here - this may make it easier for
-> the user to find it.
-> 
->> +	  To compile this driver as a module, choose M here.
->> +
->>  config DRM_SIMPLEDRM
->>  	tristate "Simple framebuffer driver"
->>  	depends on DRM && MMU
-
->> diff --git a/drivers/gpu/drm/tiny/panel-mipi-dbi.c b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
->> new file mode 100644
->> index 000000000000..9240fdec38d6
->> --- /dev/null
->> +++ b/drivers/gpu/drm/tiny/panel-mipi-dbi.c
->> @@ -0,0 +1,413 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * DRM driver for MIPI DBI compatible display panels
->> + *
->> + * Copyright 2022 Noralf Trønnes
->> + */
->> +
->> +#include <linux/backlight.h>
->> +#include <linux/delay.h>
->> +#include <linux/firmware.h>
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/module.h>
->> +#include <linux/property.h>
->> +#include <linux/regulator/consumer.h>
->> +#include <linux/spi/spi.h>
->> +
->> +#include <drm/drm_atomic_helper.h>
->> +#include <drm/drm_drv.h>
->> +#include <drm/drm_fb_helper.h>
->> +#include <drm/drm_gem_atomic_helper.h>
->> +#include <drm/drm_gem_cma_helper.h>
->> +#include <drm/drm_managed.h>
->> +#include <drm/drm_mipi_dbi.h>
->> +#include <drm/drm_modeset_helper.h>
->> +
->> +#include <video/display_timing.h>
->> +#include <video/mipi_display.h>
->> +#include <video/of_display_timing.h>
->> +#include <video/videomode.h>
-> videomode should not be used in new drivers, it is an fbdev artifact.
-> But that said - we are still missing a direct display_timing =>
-> display_mode - so maybe we need it here.
-> 
-> If it is needed Kconfig needs to be extended with:
-> select VIDEOMODE_HELPERS
-> 
-
-Good catch!
-
->> +static int panel_mipi_dbi_spi_probe(struct spi_device *spi)
->> +{
->> +	struct device *dev = &spi->dev;
->> +	struct drm_display_mode mode;
->> +	struct mipi_dbi_dev *dbidev;
->> +	struct drm_device *drm;
->> +	struct mipi_dbi *dbi;
->> +	struct gpio_desc *dc;
->> +	int ret;
->> +
->> +	dbidev = devm_drm_dev_alloc(dev, &panel_mipi_dbi_driver, struct mipi_dbi_dev, drm);
->> +	if (IS_ERR(dbidev))
->> +		return PTR_ERR(dbidev);
->> +
->> +	dbi = &dbidev->dbi;
->> +	drm = &dbidev->drm;
->> +
->> +	ret = panel_mipi_dbi_get_mode(dbidev, &mode);
->> +	if (ret)
->> +		return ret;
->> +
->> +	dbidev->regulator = devm_regulator_get(dev, "power");
->> +	if (IS_ERR(dbidev->regulator))
->> +		return dev_err_probe(dev, PTR_ERR(dbidev->regulator),
->> +				     "Failed to get regulator 'power'\n");
->> +
->> +	dbidev->backlight = devm_of_find_backlight(dev);
->> +	if (IS_ERR(dbidev->backlight))
->> +		return dev_err_probe(dev, PTR_ERR(dbidev->backlight), "Failed to get backlight\n");
->> +
->> +	dbi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
->> +	if (IS_ERR(dbi->reset))
->> +		return dev_err_probe(dev, PTR_ERR(dbi->reset), "Failed to get GPIO 'reset'\n");
->> +
->> +	dc = devm_gpiod_get_optional(dev, "dc", GPIOD_OUT_LOW);
->> +	if (IS_ERR(dc))
->> +		return dev_err_probe(dev, PTR_ERR(dc), "Failed to get GPIO 'dc'\n");
->> +
->> +	ret = mipi_dbi_spi_init(spi, dbi, dc);
->> +	if (ret)
->> +		return ret;
->> +
->> +	if (device_property_present(dev, "write-only"))
->> +		dbi->read_commands = NULL;
-> read_commands are unused - so the write-only property is in practice
-> ignored.
-> 
-
->read_commands is set to a default in mipi_dbi_spi_init() and we clear
-it when write-only.
-
-Noralf.
+Best regards,
+Krzysztof
