@@ -2,220 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FA9D4BCCC2
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 06:56:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E85214BCDCC
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 11:21:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232925AbiBTF4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 00:56:44 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40536 "EHLO
+        id S234304AbiBTJbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 04:31:00 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbiBTF4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 00:56:43 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22DF038BE6
-        for <devicetree@vger.kernel.org>; Sat, 19 Feb 2022 21:56:22 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0C11B25B;
-        Sun, 20 Feb 2022 06:56:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645336579;
-        bh=hU6sWMuW9kmpZP/XAq4vFI3h0ZEqeYsiaq+qhA7drt4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ovo5Ktk+RpnXmcZ6IEZLACrXW4nTe1qLzoQl3cYTUmwjEl/pbrYm0CDevLY7OfKlz
-         nDhqADH2vHV1//wNv/5U7rUDNSC56G727yYdAcDso75oamFolYWfoFJ6AK5+tir+xa
-         NGTDanBzYwUnZzsSbOyJlEUAYSvExMrKGjnEDfgU=
-Date:   Sun, 20 Feb 2022 07:56:10 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        patchwork-lst@pengutronix.de
-Subject: Re: [PATCH v2 7/9] arm64: dts: imx8mp: add HSIO power-domains
-Message-ID: <YhHX+hJ/P7vWiCdi@pendragon.ideasonboard.com>
-References: <20220207192547.1997549-1-l.stach@pengutronix.de>
- <20220207192547.1997549-7-l.stach@pengutronix.de>
- <YhCfAJbLkrzS9rIz@pendragon.ideasonboard.com>
+        with ESMTP id S229818AbiBTJbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 04:31:00 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AE974C7A4
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 01:30:39 -0800 (PST)
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B30DD40042
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 09:30:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645349437;
+        bh=ZhlW2P314Xp7IVd+FJpw1KLggsQP1D5CsVCti6D2Xfc=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=wZTOY5IaH5kq0+oFO0lKt9OSE3p72emJ+UiqiRFPamot4zo9xV+134BjzF5w8CJgi
+         bsSmhJwxTMLChB8hvA6ndf1sBWtreM7KNuc5YTysseRePpsH3QcSbAYxMfH0U1GRyu
+         oyhSUL4EWarmrc7iqmSIP+h6Z92lfJZoD5vPSYQvNapFf1FPLhAzhm+ge+TZ3BHzCv
+         hNsoC0ssHZrC/65+hMMSYvnCNTgtGzwGkToYEE2PjptMg+8rMxYUPVgArhiSgwqtxx
+         EHv0ZP/K4PViNrgmKT1FyZ4dS8bxoR8AKNhDliv67FutKcOozeWi6CqCGhPl1ut/fr
+         UkmH2Oufp94OQ==
+Received: by mail-wr1-f69.google.com with SMTP id v17-20020adf8b51000000b001e336bf3be7so5693517wra.1
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 01:30:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ZhlW2P314Xp7IVd+FJpw1KLggsQP1D5CsVCti6D2Xfc=;
+        b=yFLqP0wFumi4jcUmiR/ehoXZeSvbahengK0HnvHxkK8E0+bBQ5yqGzumhIIa8PZgal
+         60WHGKzsa6W84XKonkMkVmpxTkhCc3oVDELetGs2kwsbWj3yFNBxbo+fq3rNVKOwj34R
+         Qy0YKqXa6kaTe4tcbhq21ZkqEc/PuGw5AzJM2C7hIGwgM9tK8Dje+SWc6ei4jAZVq02M
+         QZadY+/66BGGM1uRkq2TH29v8EIvuCOXpNiejMG1qa9Yov6YbL4mfnO0t1FcCphN+18W
+         VPp3GJ8BxX8GmaVdSWQVk51J9iXefYe++KTRSZFL/4J1g3LzOBP0VlJ50F4eZgSkasAI
+         3CdA==
+X-Gm-Message-State: AOAM531m+5Ak+61qXmE/4XAVs247uQgjjz+zaoLEqjpi9JWZ7BiRM2HQ
+        jS8NJILGaZqJKvBNur3nPyR07ttIMw1fOktzn3E91h6Iw7W5mMVl8ZwMQjGqgFVzYt7YFMEg2n+
+        hErz/DjBhU0fQEUT/dZkqjuFMEnfAsqc8iwJ9d+8=
+X-Received: by 2002:a5d:568a:0:b0:1e4:7cc8:fa6d with SMTP id f10-20020a5d568a000000b001e47cc8fa6dmr11679927wrv.48.1645349433185;
+        Sun, 20 Feb 2022 01:30:33 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzDPzoJ3r3Cf/g14eN02kggEVtqJQJJBBiuuP/xysWCL9EyAUqqQm+LFlX4Qx6fEQSqO5pRiw==
+X-Received: by 2002:a5d:568a:0:b0:1e4:7cc8:fa6d with SMTP id f10-20020a5d568a000000b001e47cc8fa6dmr11679891wrv.48.1645349432988;
+        Sun, 20 Feb 2022 01:30:32 -0800 (PST)
+Received: from [192.168.0.117] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id x7sm39145432wro.21.2022.02.20.01.30.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Feb 2022 01:30:32 -0800 (PST)
+Message-ID: <5d507fda-525e-4064-3add-0bb0cc23d016@canonical.com>
+Date:   Sun, 20 Feb 2022 10:30:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YhCfAJbLkrzS9rIz@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 00/11] i2c: npcm: Bug fixes timeout, spurious
+ interrupts
+Content-Language: en-US
+To:     Tyrone Ting <warp5tw@gmail.com>, avifishman70@gmail.com,
+        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
+        semen.protsenko@linaro.org, yangyicong@hisilicon.com,
+        wsa@kernel.org, jie.deng@intel.com, sven@svenpeter.dev,
+        bence98@sch.bme.hu, christophe.leroy@csgroup.eu,
+        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
+        digetx@gmail.com, andriy.shevchenko@linux.intel.com,
+        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com
+Cc:     openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220220035321.3870-1-warp5tw@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220220035321.3870-1-warp5tw@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
-
-One more comment.
-
-On Sat, Feb 19, 2022 at 09:40:50AM +0200, Laurent Pinchart wrote:
-> On Mon, Feb 07, 2022 at 08:25:45PM +0100, Lucas Stach wrote:
-> > This adds the GPC and HSIO blk-ctrl nodes providing power control for
-> > the high-speed (USB and PCIe) IOs.
-> > 
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 63 ++++++++++++++++++++---
-> >  1 file changed, 57 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > index 6b840c05dd77..dc488a147d0c 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > @@ -4,6 +4,7 @@
-> >   */
-> >  
-> >  #include <dt-bindings/clock/imx8mp-clock.h>
-> > +#include <dt-bindings/power/imx8mp-power.h>
-> >  #include <dt-bindings/gpio/gpio.h>
-> >  #include <dt-bindings/input/input.h>
-> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > @@ -475,6 +476,44 @@ src: reset-controller@30390000 {
-> >  				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-> >  				#reset-cells = <1>;
-> >  			};
-> > +
-> > +			gpc: gpc@303a0000 {
-> > +				compatible = "fsl,imx8mp-gpc";
-> > +				reg = <0x303a0000 0x10000>;
+On 20/02/2022 04:53, Tyrone Ting wrote:
+> From: Tyrone Ting <kfting@nuvoton.com>
 > 
-> According to the reference manual, the GPC occupies 4kB, not 64kB.
+> This patchset includes the following fixes:
 > 
-> > +				interrupt-parent = <&gic>;
-> > +				interrupt-controller;
-> > +				#interrupt-cells = <3>;
-> > +
-> > +				pgc {
-> > +					#address-cells = <1>;
-> > +					#size-cells = <0>;
-> > +
+> - Add dt-bindings description for NPCM845.
+> - Bug fix for timeout calculation.
+> - Better handling of spurious interrupts.
+> - Fix for event type in slave mode.
+> - Removal of own slave addresses [2:10].
+> - Support for next gen BMC (NPCM845).
 > 
-> We're working on support for the MEDIAMIX power domains, which we'll
-> rebase on top of this. In case the HSIO part still needs more work,
-> could you split this patch in two, with one patch that adds the PGC,
-> with an empty pgc nodde, and a second patch that adds the HSIO-related
-> power domains ? The first one could then be merged faster (it would be
-> great if it could get in v5.18).
+> The NPCM I2C driver is tested on NPCM750 and NPCM845 evaluation boards.
 > 
-> > +					pgc_pcie_phy: power-domain@1 {
-> > +						#power-domain-cells = <0>;
-> > +						reg = <IMX8MP_POWER_DOMAIN_PCIE_PHY>;
-> > +					};
-> > +
-> > +					pgc_usb1_phy: power-domain@2 {
-> > +						#power-domain-cells = <0>;
-> > +						reg = <IMX8MP_POWER_DOMAIN_USB1_PHY>;
-> > +					};
-> > +
-> > +					pgc_usb2_phy: power-domain@3 {
-> > +						#power-domain-cells = <0>;
-> > +						reg = <IMX8MP_POWER_DOMAIN_USB2_PHY>;
-> > +					};
-> > +
-> > +					pgc_hsiomix: power-domains@17 {
-> > +						#power-domain-cells = <0>;
-> > +						reg = <IMX8MP_POWER_DOMAIN_HSIOMIX>;
-> > +						clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
-> > +							 <&clk IMX8MP_CLK_HSIO_ROOT>;
-> > +						assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
-> > +						assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
-> > +						assigned-clock-rates = <500000000>;
-> > +					};
-> > +				};
-> > +			};
-> >  		};
-> >  
-> >  		aips2: bus@30400000 {
-> > @@ -908,6 +947,20 @@ ddr-pmu@3d800000 {
-> >  			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-> >  		};
-> >  
-> > +		hsio_blk_ctrl: blk-ctrl@32f10000 {
-> > +			compatible = "fsl,imx8mp-hsio-blk-ctrl", "syscon";
-> > +			reg = <0x32f10000 0x24>;
-> > +			clocks = <&clk IMX8MP_CLK_USB_ROOT>,
-> > +				 <&clk IMX8MP_CLK_PCIE_ROOT>;
-> > +			clock-names = "usb", "pcie";
-> > +			power-domains = <&pgc_hsiomix>, <&pgc_hsiomix>,
-> > +					<&pgc_usb1_phy>, <&pgc_usb2_phy>,
-> > +					<&pgc_hsiomix>, <&pgc_pcie_phy>;
-> 
-> Would it be useful to rework the driver to avoid specifying the same
-> parent power domain multiple times in DT ?
-> 
-> > +			power-domain-names = "bus", "usb", "usb-phy1",
-> > +					     "usb-phy2", "pcie", "pcie-phy";
-> > +			#power-domain-cells = <1>;
-> > +		};
+> Addressed comments from:
+>  - Jonathan Neuschäfer : https://lkml.org/lkml/2022/2/7/670
+>  - Krzysztof Kozlowski : https://lkml.org/lkml/2022/2/7/760
 
-Shouldn't this be in an aips4 node ?
+How did you address the ABI change comment? I still see you break the
+ABI with the introduction of a new, required property.
 
-> > +
-> >  		usb3_phy0: usb-phy@381f0040 {
-> >  			compatible = "fsl,imx8mp-usb-phy";
-> >  			reg = <0x381f0040 0x40>;
-> > @@ -915,6 +968,7 @@ usb3_phy0: usb-phy@381f0040 {
-> >  			clock-names = "phy";
-> >  			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
-> >  			assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
-> > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB_PHY1>;
-> >  			#phy-cells = <0>;
-> >  			status = "disabled";
-> >  		};
-> > @@ -926,6 +980,7 @@ usb3_0: usb@32f10100 {
-> >  				 <&clk IMX8MP_CLK_USB_ROOT>;
-> >  			clock-names = "hsio", "suspend";
-> >  			interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-> > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>;
-> >  			#address-cells = <1>;
-> >  			#size-cells = <1>;
-> >  			dma-ranges = <0x40000000 0x40000000 0xc0000000>;
-> > @@ -939,9 +994,6 @@ usb_dwc3_0: usb@38100000 {
-> >  					 <&clk IMX8MP_CLK_USB_CORE_REF>,
-> >  					 <&clk IMX8MP_CLK_USB_ROOT>;
-> >  				clock-names = "bus_early", "ref", "suspend";
-> > -				assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
-> > -				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
-> > -				assigned-clock-rates = <500000000>;
-> >  				interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-> >  				phys = <&usb3_phy0>, <&usb3_phy0>;
-> >  				phy-names = "usb2-phy", "usb3-phy";
-> > @@ -957,6 +1009,7 @@ usb3_phy1: usb-phy@382f0040 {
-> >  			clock-names = "phy";
-> >  			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
-> >  			assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
-> > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB_PHY2>;
-> >  			#phy-cells = <0>;
-> >  		};
-> >  
-> > @@ -967,6 +1020,7 @@ usb3_1: usb@32f10108 {
-> >  				 <&clk IMX8MP_CLK_USB_ROOT>;
-> >  			clock-names = "hsio", "suspend";
-> >  			interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
-> > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>;
-> >  			#address-cells = <1>;
-> >  			#size-cells = <1>;
-> >  			dma-ranges = <0x40000000 0x40000000 0xc0000000>;
-> > @@ -980,9 +1034,6 @@ usb_dwc3_1: usb@38200000 {
-> >  					 <&clk IMX8MP_CLK_USB_CORE_REF>,
-> >  					 <&clk IMX8MP_CLK_USB_ROOT>;
-> >  				clock-names = "bus_early", "ref", "suspend";
-> > -				assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
-> > -				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
-> > -				assigned-clock-rates = <500000000>;
-> >  				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
-> >  				phys = <&usb3_phy1>, <&usb3_phy1>;
-> >  				phy-names = "usb2-phy", "usb3-phy";
-> > 
 
--- 
-Regards,
-
-Laurent Pinchart
+Best regards,
+Krzysztof
