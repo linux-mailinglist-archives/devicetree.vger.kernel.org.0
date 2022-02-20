@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85ED04BD059
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 18:33:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E6164BD099
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 19:19:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244357AbiBTRd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 12:33:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48988 "EHLO
+        id S244497AbiBTSLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 13:11:43 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244435AbiBTRd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 12:33:26 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C5A2CC8B;
-        Sun, 20 Feb 2022 09:33:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 674B160DC7;
-        Sun, 20 Feb 2022 17:33:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE0DEC340E8;
-        Sun, 20 Feb 2022 17:33:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645378383;
-        bh=8q7//Sk7DHFweHerADNXnSPuOBjE/leZSiwsR8HLToM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Az3mXqslYQ92lmQIlaTq/BC85BuJjjAe20UaW2/gc8oimvfyByPi6QQmuYsThENGJ
-         1aiCEhYULxBNySZChcc31MIy+kzt2okGwshVYQfSsqdpSfQzZREfyYPcQsDJrWD2RV
-         hSqq4KLLPh4iVzaQX+FvF1r/3r/drSr+R8rACJ00/15yQjzy+xIyo7ZD1xv1myaOkB
-         5Ew7d3GB4/fmh8XmbwsvP2HtvQdW6KpKitjF3ll1r5x49vA5gIOQhtXqTvlgSOb8V0
-         J6OFpVLN2pbpaGCR/Ak8dbygkyRbD9gLvzt4hS5VNnTNIRPyNuckZPPkBefYefomvR
-         9fV3E6aGiZHeQ==
-Date:   Sun, 20 Feb 2022 17:39:55 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Antoniu Miclaus <antoniu.miclaus@analog.com>, robh+dt@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v8 2/4] dt-bindings:iio:frequency: add admv1014 binding
-Message-ID: <20220220173955.7e9804ae@jic23-huawei>
-In-Reply-To: <c7e39902-c85a-c601-8b9c-b2292ffeb46d@canonical.com>
-References: <20220215081216.67706-1-antoniu.miclaus@analog.com>
-        <20220215081216.67706-2-antoniu.miclaus@analog.com>
-        <c7e39902-c85a-c601-8b9c-b2292ffeb46d@canonical.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S244496AbiBTSLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 13:11:43 -0500
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08E9527E3
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 10:11:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        Subject:References:Cc:To:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Os9o4td5pJZYXoeuhusOmIeSWOhlMjQmMkCevD42/8Y=; b=LZrBVNN9xJUpRAvu6J+OK+v9bl
+        AQqRfnVvyzCOtJwTKrMKOy7FrwV/c/RWLwfWqSFdX6Tlsab7szyFk+008CUc5m1fKkiCl1NDIlkez
+        4Kqpt03RBS+BH9sOqFLAkmW4xc4hlxS1Wim0oS/mXQCP3dyYwzYlhfeateKnkcr96p8qdw0gqoJu6
+        G9MsQCBDFqS8E3Qhyev+Y0uCsycQxCopHyiji4V9+byGoR7S5DbBa3p4KObFWyCB+bxjnRbhskt6x
+        xLLcwtHwNxAsdpl/7286pVUkp5HMqOrXZmHVZPkscBpFxXtMm7pFZ5gr6B/tVpwt7KWIavY/pyyZG
+        R/FnQonQ==;
+Received: from [2a01:799:95e:a400:cca0:57ac:c55d:a485] (port=49264)
+        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <noralf@tronnes.org>)
+        id 1nLqg1-0001kW-U0; Sun, 20 Feb 2022 19:11:17 +0100
+Message-ID: <388f7dc3-afcd-e4c3-592f-8e8401819371@tronnes.org>
+Date:   Sun, 20 Feb 2022 19:11:14 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+To:     noralf@tronnes.org
+Cc:     dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        maxime@cerno.tech, robh+dt@kernel.org, sam@ravnborg.org,
+        thierry.reding@gmail.com
+References: <35cd42a3-5183-2f21-8728-ee9d65dd1740@tronnes.org>
+Subject: Re: [PATCH v4 3/3] drm/tiny: Add MIPI DBI compatible SPI driver
+From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <35cd42a3-5183-2f21-8728-ee9d65dd1740@tronnes.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,67 +57,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 20 Feb 2022 13:16:41 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+> Den 20.02.2022 11.04, skrev Sam Ravnborg:
+> > Hi Noralf,
+> >
+> >>> +static int panel_mipi_dbi_get_mode(struct mipi_dbi_dev *dbidev,
+struct drm_display_mode *mode)
+> >>> +{
+> >>> +	struct device *dev = dbidev->drm.dev;
+> >>> +	u32 width_mm = 0, height_mm = 0;
+> >>> +	struct display_timing timing;
+> >>> +	struct videomode vm;
+> >>> +	int ret;
+> >>> +
+> >>> +	ret = of_get_display_timing(dev->of_node, "panel-timing", &timing);
+> >>> +	if (ret) {
+> >>> +		dev_err(dev, "%pOF: failed to get panel-timing (error=%d)\n",
+dev->of_node, ret);
+> >>> +		return ret;
+> >>> +	}
+> >>> +
+> >>> +	videomode_from_timing(&timing, &vm);
+> >>> +
+> >>> +	if (!vm.hactive || vm.hfront_porch || vm.hsync_len ||
+> >>> +	    (vm.hback_porch + vm.hactive) > 0xffff ||
+> >>> +	    !vm.vactive || vm.vfront_porch || vm.vsync_len ||
+> >>> +	    (vm.vback_porch + vm.vactive) > 0xffff ||
+> >>> +	    vm.flags) {
+> >>> +		dev_err(dev, "%pOF: panel-timing out of bounds\n", dev->of_node);
+> >>> +		return -EINVAL;
+> >>> +	}
+> >> We should have a helper that implements this. Maybe the display_timing
+> >> => display_mode helper could do it.
+> >
+> > It would be nice with a drm_display_timing_to_mode() but that can come
+> > later - the comment above should not be understood that I consider it
+> > mandatory for this driver.
+> >
+>
+> I did consider adding an of_get_drm_panel_mode() fashioned after
+> of_get_drm_display_mode() but I didn't find any other driver that would
+> actually be able to use it and I would have to do some substraction to
+> get back the {h,v}front_porch values that I need and the optional pixel
+> clock calculation becomes more complex acting from a drm_display_mode so
+> I decided against it.
+>
+> Looking at it now, what I could do is add a function like what
+> of_get_videomode() does for "display-timings":
+>
+> /**
+>  * of_get_panel_videomode - get the panel-timing videomode from devicetree
+>  * @np: devicenode containing the panel-timing subnode
+>  * @vm: returns the videomode
+>  *
+>  * Returns:
+>  * Zero on success, negative error code on failure.
+>  **/
+> int of_get_panel_videomode(struct device_node *np, struct videomode *vm)
+> {
+> 	struct display_timing timing;
+> 	int ret;
+>
+> 	ret = of_get_display_timing(np, "panel-timing", &timing);
+> 	if (ret)
+> 		return ret;
+>
+> 	videomode_from_timing(&timing, vm);
+>
+> 	return 0;
+> }
+>
+> This could also be used by panel-lvds and 2 fbdev drivers, the other
+> panel-timing users need/use the display_timing itself, some for bounds
+> checking.
 
-> On 15/02/2022 09:12, Antoniu Miclaus wrote:
-> > Add device tree bindings for the ADMV1014 Upconverter.
-> > 
-> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>  
-> 
-> Your subject seems still wrongly formatted.
-> > ---
-> > changes in v8:
-> >  - remove `clock-cells`
-> >  - rename device node to be more generic
-> >  - set 'maxItems' for clocks property
-> >  .../bindings/iio/frequency/adi,admv1014.yaml  | 134 ++++++++++++++++++
-> >  1 file changed, 134 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
-> > 
-> > diff --git a/Documentation/d  
-> 
-> (...)
-> 
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    spi {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +      converter@0{  
-> 
-> Missing space after address... I thought you will correct it while
-> changing node name.
-Fixed up.
+Scratch that, since videomode is to be avoided I tried adding a
+drm_display_mode function and it didn't complicate matter as I though it
+would so I'll do that instead:
 
-> 
-> 
-> > +        compatible = "adi,admv1014";
-> > +        reg = <0>;
-> > +        spi-max-frequency = <1000000>;
-> > +        clocks = <&admv1014_lo>;
-> > +        clock-names = "lo_in";
-> > +        vcm-supply = <&vcm>;
-> > +        vcc-if-bb-supply = <&vcc_if_bb>;
-> > +        vcc-vga-supply = <&vcc_vga>;
-> > +        vcc-vva-supply = <&vcc_vva>;
-> > +        vcc-lna-3p3-supply = <&vcc_lna_3p3>;
-> > +        vcc-lna-1p5-supply = <&vcc_lna_1p5>;
-> > +        vcc-bg-supply = <&vcc_bg>;
-> > +        vcc-quad-supply = <&vcc_quad>;
-> > +        vcc-mixer-supply = <&vcc_mixer>;
-> > +        adi,quad-se-mode = "diff";
-> > +        adi,detector-enable;
-> > +        adi,p1db-compensation-enable;
-> > +      };
-> > +    };
-> > +...  
-> 
-> 
-> Best regards,
-> Krzysztof
+static int panel_mipi_dbi_get_mode(struct mipi_dbi_dev *dbidev, struct
+drm_display_mode *mode)
+{
+	struct device *dev = dbidev->drm.dev;
+	u32 width_mm = 0, height_mm = 0;
+	u16 hback_porch, vback_porch;
+	struct videomode vm;
+	int ret;
 
+	ret = of_get_drm_panel_display_mode(dev->of_node, mode, NULL);
+	if (ret) {
+		dev_err(dev, "%pOF: failed to get panel-timing (error=%d)\n",
+dev->of_node, ret);
+		return ret;
+	}
+
+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
+
+	hback_porch = mode->htotal - mode->hsync_end;
+	vback_porch = mode->vtotal - mode->vsync_end;
+
+	if (mode->hsync_end > mode->hdisplay || (hback_porch + mode->hdisplay)
+> 0xffff ||
+	    mode->vsync_end > mode->vdisplay || (vback_porch + mode->vdisplay)
+> 0xffff ||
+	    mode->flags) {
+		dev_err(dev, "%pOF: panel-timing out of bounds\n", dev->of_node);
+		return -EINVAL;
+	}
+
+	/* The driver doesn't use the pixel clock but it is mandatory so fake
+one if not set */
+	if (!mode->pixelclock)
+		mode->pixelclock = mode->htotal * mode->vtotal * 60 / 1000;
+
+	dbidev->top_offset = vback_porch;
+	dbidev->left_offset = hback_porch;
+
+	return 0;
+}
+
+
+int of_get_drm_panel_display_mode(struct device_node *np,
+				  struct drm_display_mode *dmode, u32 *bus_flags)
+{
+	u32 width_mm = 0, height_mm = 0;
+	struct display_timing timing;
+	struct videomode vm;
+	int ret;
+
+	ret = of_get_display_timing(np, "panel-timing", &timing);
+	if (ret)
+		return ret;
+
+	videomode_from_timing(&timing, vm);
+
+	memset(dmode, 0, sizeof(*dmode));
+	drm_display_mode_from_videomode(&vm, dmode);
+	if (bus_flags)
+		drm_bus_flags_from_videomode(&vm, bus_flags);
+
+	ret = of_property_read_u32(np, "width-mm", &width_mm);
+	if (ret && ret != -EINVAL)
+		return ret;
+
+	ret = of_property_read_u32(np, "height-mm", &height_mm);
+	if (ret && ret != -EINVAL)
+		return ret;
+
+	mode->width_mm = width_mm;
+	mode->height_mm = height_mm;
+
+	drm_mode_debug_printmodeline(dmode);
+
+	return 0;
+}
+EXPORT_SYMBOL_GPL(of_get_drm_display_mode);
+
+Noralf.
