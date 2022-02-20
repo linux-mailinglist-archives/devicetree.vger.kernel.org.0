@@ -2,73 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3225F4BCE2C
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 12:33:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05FDD4BCE2E
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 12:35:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236181AbiBTLdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 06:33:18 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60858 "EHLO
+        id S235856AbiBTLgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 06:36:11 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236230AbiBTLdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 06:33:17 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F0ED63A3;
-        Sun, 20 Feb 2022 03:32:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645356776; x=1676892776;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=i/VJQhlu3ikToIXMrpS73cFgt2VT8PabBnXNmlB9UY8=;
-  b=hHNlpSBjJ7SxMUXMKpjyfeJrWJJ7uLO4e+udvDvVU/Drr1vrEAtV/y05
-   f7qq126QgRiKpHxk1J+N55IVsNi7IbqEd6Nd8BDEwoz53wkrlOSvJCsV+
-   Zv8TZxqqqjl/z7F1zptkvJTBw5elV1FGnsei38Sa6VcGCeJn7AW0dJd87
-   CwpBGpdaHolUR/kLfMfrG1L+wzW1vFCjxa2QwmFcuX47gswo7dlstxq9t
-   Uv1o/5vG3D/ZRU/VdLnsL9UO9MVO/lRubkMaAcgrrB68h61tLsoPBaldW
-   zoDQBFuIDbGANw7LtKyVVXKrarIsF+7MNcAIDqsokPa6DuA7IfkPtJJPa
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10263"; a="251117293"
-X-IronPort-AV: E=Sophos;i="5.88,383,1635231600"; 
-   d="scan'208";a="251117293"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 03:32:55 -0800
-X-IronPort-AV: E=Sophos;i="5.88,383,1635231600"; 
-   d="scan'208";a="490143924"
-Received: from smile.fi.intel.com ([10.237.72.59])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 03:32:53 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1nLkRd-006V0X-8S;
-        Sun, 20 Feb 2022 13:32:01 +0200
-Date:   Sun, 20 Feb 2022 13:32:00 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc:     "Sa, Nuno" <Nuno.Sa@analog.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v3 1/3] iio: dac: add support for ltc2688
-Message-ID: <YhImsJidUu2fMKgu@smile.fi.intel.com>
-References: <20220121142501.151-1-nuno.sa@analog.com>
- <20220121142501.151-2-nuno.sa@analog.com>
- <Yf60A1UkbBtQ68qv@smile.fi.intel.com>
- <PH0PR03MB678628C341A1972BC31F5BBA992B9@PH0PR03MB6786.namprd03.prod.outlook.com>
- <YgD91zg4L1S5KH5k@smile.fi.intel.com>
- <e1bd9f14e63e55f48f804568705a9ab8c1a09f62.camel@gmail.com>
- <Ygpd7pebiuGuB8nT@smile.fi.intel.com>
- <11bd63bc07fd406bfa31bdc38b597011cc9312cc.camel@gmail.com>
+        with ESMTP id S230099AbiBTLgK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 06:36:10 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F2331DDE
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 03:35:48 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B8BA925B;
+        Sun, 20 Feb 2022 12:35:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1645356946;
+        bh=h3TjgobjOErw+y9+H+t1kNGzyjvsPkb5YVbgo6gsbGc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nbCzhblTnjBafjEob+BihYn6lcKAyV309qHrF9VHUekgFEdE+g/zk0Z/bCtrbK2qp
+         mS2v5+FmNzeBXbS2i64JcAvKUxr943i7X2NFHV7Xa5CEVA6Ey0kEhW1AJffa2zyByJ
+         cTGWWHxvlvl1sfjjSPlRGtHi/rtxHR0o2sn/7r3E=
+Date:   Sun, 20 Feb 2022 13:35:36 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        patchwork-lst@pengutronix.de
+Subject: Re: [PATCH v2 3/9] soc: imx: gpcv2: add support for i.MX8MP power
+ domains
+Message-ID: <YhIniLdFtcpODXBN@pendragon.ideasonboard.com>
+References: <20220207192547.1997549-1-l.stach@pengutronix.de>
+ <20220207192547.1997549-3-l.stach@pengutronix.de>
+ <YhAlfAunReS14b/E@pendragon.ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <11bd63bc07fd406bfa31bdc38b597011cc9312cc.camel@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+In-Reply-To: <YhAlfAunReS14b/E@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,202 +52,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 18, 2022 at 02:51:28PM +0100, Nuno Sá wrote:
-> On Mon, 2022-02-14 at 15:49 +0200, Andy Shevchenko wrote:
-> > On Mon, Feb 07, 2022 at 09:19:46PM +0100, Nuno Sá wrote:
-> > > On Mon, 2022-02-07 at 13:09 +0200, Andy Shevchenko wrote:
-> > > > On Sun, Feb 06, 2022 at 01:19:59PM +0000, Sa, Nuno wrote:
-> > > > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > > > > > Sent: Saturday, February 5, 2022 6:30 PM
-> > > > > > On Fri, Jan 21, 2022 at 03:24:59PM +0100, Nuno Sá wrote:
+Hi Lucas,
 
-...
+On Sat, Feb 19, 2022 at 01:02:21AM +0200, Laurent Pinchart wrote:
+> On Mon, Feb 07, 2022 at 08:25:41PM +0100, Lucas Stach wrote:
+> > This adds driver support for all the GPC power domains found on
+> > the i.MX8MP SoC.
+> > 
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > ---
+> >  drivers/soc/imx/gpcv2.c | 387 +++++++++++++++++++++++++++++++++++++++-
+> >  1 file changed, 386 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> > index 01f46b078df3..a7c92bdfc53b 100644
+> > --- a/drivers/soc/imx/gpcv2.c
+> > +++ b/drivers/soc/imx/gpcv2.c
 
-> > > > > > Second, why do you need this specific function instead of
-> > > > > > regmap
-> > > > > > bulk
-> > > > > > ops against be24/le24?
-> > > > > 
-> > > > > Not sure I'm following this one... If you mean why am I using a
-> > > > > custom 
-> > > > > regmap_bus implementation, that was already explained in the
-> > > > > RFC
-> > > > > patch.
-> > > > > And IIRC, you were the one already asking 😉.
-> > > > 
-> > > > Hmm... It was some time I have looked there. Any message ID to
-> > > > share,
-> > > > so
-> > > > I can find it quickly?
-> > 
-> > > https://lore.kernel.org/all/20211112152235.12fdcc49@jic23-huawei/
-> > 
-> > Thanks!
-> > 
-> > So, it's all about cs_change, right?
-> > But doesn't bulk operation work exactly as we need here?
-> > 
+[snip]
+
+> > @@ -137,6 +183,21 @@
+> >  #define IMX8MN_DISPMIX_HSK_PWRDNREQN		BIT(7)
+> >  #define IMX8MN_HSIO_HSK_PWRDNREQN		BIT(5)
+> >  
+> > +#define IMX8MP_MEDIAMIX_PWRDNACKN		BIT(3)
 > 
-> Yes... that and we need to send the NOOP command in the second TX
-> transfer.
-> 
-> > Looking again to the RFC code, it seems like we can still do it
-> > 
-> > First, you call _gather_write() followed by _read(). It will show
-> > exactly what
-> > you do, i.e. you send command first with the value 0x0000, followed
-> > by sending
-> > command and reading back the value at the same time.
-> > 
-> > Would it work?
-> 
-> Well, _gather_write() are 2 spi transfers only with TX set. That means
-> that only on the _read() (which will be another spi_message) we will
-> ask for the data. Im not really sure this would work being it on a
-> different message. This would also mean, one extra dummy transfer. To
-> me that already feels that a custom bus implementation is not a bad
-> idea...
+> This should be bit 30.
 
-I see, okay, what Jonothan decides then. Still I'm not convinced.
+With this fixed,
 
-...
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-> > > > > > > +       ret = kstrtou16(buf, 10, &val);
-> > > > > > 
-> > > > > > In other function you have long, here u16. I would expect
-> > > > > > that
-> > > > > > the
-> > > > > > types are of
-> > > > > > the same class, e.g. if here you have u16, then there
-> > > > > > something
-> > > > > > like
-> > > > > > s32 / s64.
-> > > > > > Or here something like unsigned short.
-> > > > > > 
-> > > > > > A bit of elaboration why u16 is chosen here?
-> > > > > 
-> > > > > Well, I never really saw any enforcement here to be honest
-> > > > > (rather
-> > > > > than using
-> > > > > stdint types...). So I pretty much just use these in unsigned
-> > > > > types
-> > > > > because
-> > > > > I'm lazy and u16 is faster to type than unsigned short... In
-> > > > > this
-> > > > > case, unless Jonathan
-> > > > > really asks for it, I prefer not to go all over the driver and
-> > > > > change this...
-> > > > 
-> > > > This is about consistency. It may work as is, but it feels not
-> > > > good
-> > > > when for
-> > > > int (or unsigned int) one uses fixed-width types. Also it's non-
-> > > > written advice
-> > > > to use fixed-width variables when it's about programming
-> > > > registers or
-> > > > so, for
-> > > > the rest, use POD types.
-> 
-> Ok, going a bit back in the discussion, you argued that in one place I
-> was using long while here u16. Well, in the place I'm using long, that
-> was on purpose because that value is to be compared against an array of
-> longs (which has to be long because it depends on CCF rates). I guess I
-> can als0 use s64, but there is also a reason why long was used.
-> 
-> In the u16 case, we really want to have 2 bytes because I'm going to
-> use that value to write the dac code which is 2 bytes.
+with a soon to be posted driver for the MEDIA_BLK_CTRL.
 
-Okay, that's what I want to hear. If it's indeed goes to be a value to the
-register, then it's fine.
+While this shouldn't be a blocker, I'm wondering how we should deal with
+the NOC configuration that TF-A handles in the power domain code ([1]).
+The reference manual doesn't document the registers, which doesn't help.
 
-Perhaps a comment?
+There are also two registers in the MEDIA_BLK_CTRL that are specific to
+the LCDIF and ISI, see [2]. Would you recommend dealing with them in the
+imx8m-blk-ctrl driver (maybe in the power domain notifier, the same way
+we set bit 8 in the CLK_EN register), or through a syscon phandle
+directly in the LCDIF and ISI drivers ?
 
-> > > I can understand your reasoning but again this is something that
-> > > I never really saw being enforced. So, I'm more than ok to change
-> > > it
-> > > if it really becomes something that we will try to "enforce" in
-> > > IIO.
-> > > Otherwise it just feels as a random nitpick :).
-> > 
-> > No, this is about consistency and common sense. If you define type
-> > uXX,
-> > we have an API for that exact type. It's confusing why POD type APIs
-> > are used with fixed-width types or vise versa.
-> > 
-> > Moreover (which is pure theoretical, though) some architectures might
-> > have no (mutual) equivalency between these types.
+[1] https://source.codeaurora.org/external/qoriq/qoriq-components/atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf-5.10.72-2.2.0#n156
+[2] https://source.codeaurora.org/external/qoriq/qoriq-components/atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf-5.10.72-2.2.0#n146
 
-...
+> > +#define IMX8MP_HDMIMIX_PWRDNACKN		BIT(29)
+> > +#define IMX8MP_HSIOMIX_PWRDNACKN		BIT(28)
+> > +#define IMX8MP_VPUMIX_PWRDNACKN			BIT(26)
+> > +#define IMX8MP_GPUMIX_PWRDNACKN			BIT(25)
+> > +#define IMX8MP_MLMIX_PWRDNACKN			(BIT(23) | BIT(24))
+> > +#define IMX8MP_AUDIOMIX_PWRDNACKN		(BIT(20) | BIT(31))
+> > +#define IMX8MP_MEDIAMIX_PWRDNREQN		BIT(14)
+> > +#define IMX8MP_HDMIMIX_PWRDNREQN		BIT(13)
+> > +#define IMX8MP_HSIOMIX_PWRDNREQN		BIT(12)
+> > +#define IMX8MP_VPUMIX_PWRDNREQN			BIT(10)
+> > +#define IMX8MP_GPUMIX_PWRDNREQN			BIT(9)
+> > +#define IMX8MP_MLMIX_PWRDNREQN			(BIT(7) | BIT(8))
+> > +#define IMX8MP_AUDIOMIX_PWRDNREQN		(BIT(4) | BIT(15))
+> > +
+> >  /*
+> >   * The PGC offset values in Reference Manual
+> >   * (Rev. 1, 01/2018 and the older ones) GPC chapter's
 
-> > > > > > > +static int ltc2688_tgp_clk_setup(struct ltc2688_state *st,
-> > > > > > > +                                struct ltc2688_chan *chan,
-> > > > > > > +                                struct device_node *np,
-> > > > > > > int
-> > > > > > > tgp)
-> > > > > > > +{
-> > > > > > > +       unsigned long rate;
-> > > > > > > +       struct clk *clk;
-> > > > > > > +       int ret, f;
-> > > > > > > +
-> > > > > > > +       clk = devm_get_clk_from_child(&st->spi->dev, np,
-> > > > > > > NULL);
-> > > > > > > +       if (IS_ERR(clk))
-> > > > > > 
-> > > > > > Make it optional for non-OF, can be done as easy as
-> > > > > > 
-> > > > > >         if (IS_ERR(clk)) {
-> > > > > >                 if (PTR_ERR(clk) == -ENOENT)
-> > > > > >                         clk = NULL;
-> > > > > >                 else
-> > > > > >                         return dev_err_probe(...);
-> > > > > >         }
-> > > > > > 
-> > > > > > > +               return dev_err_probe(&st->spi->dev,
-> > > > > > > PTR_ERR(clk),
-> > > > > > > +                                    "failed to get tgp
-> > > > > > > clk.\n");
-> > > > > 
-> > > > > Well, I might be missing the point but I think this is not so
-> > > > > straight....
-> > > > > We will only get here if the property " adi,toggle-dither-
-> > > > > input" is
-> > > > > given
-> > > > > in which case having the associated clocks is __mandatory__.
-> > > > 
-> > > > Ah, okay, would be a limitation for non-OF platforms.
-> > > > 
-> > > > > Hence,
-> > > > > once we are here, this can never be optional. That said, we
-> > > > > need
-> > > > > device_node 
-> > > > 
-> > > > That's fine, since CCF is OF-centric API.
-> > > > 
-> > > > > and hence of.h
-> > > > 
-> > > > Why? This header doesn't bring anything you will use here.
-> > > 
-> > > Correct me if Im missing something. AFAIU, the idea is to use
-> > > 'device_for_each_child_node()' which returns a fwnode_handle. That
-> > > means, that we will have to pass that to this function and use
-> > > 'to_of_node()' to pass a device_node to
-> > > 'devm_get_clk_from_child()'.
-> > > 
-> > > This means, we need of.h for 'to_of_node()'...
-> > 
-> > Yeah, you are right, but it would be still better since it narrows
-> > the problem to the CCF calls only.
-> 
-> So, to clear....
-> 
-> In your opinion, you are fine whith using device properties and just
-> have 'to_of_node()' in this CCF call? I'm fine with it, so if Jonathan
-> does not have any complain about it, will do like this in v4,
-
-Yes, that will show that only CCF is missing the fwnode APIs.
+[snip]
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Regards,
 
-
+Laurent Pinchart
