@@ -2,74 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D4EE4BD0F2
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 20:29:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEE0D4BD125
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 20:57:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244635AbiBTT3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 14:29:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58412 "EHLO
+        id S233813AbiBTT5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 14:57:40 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243180AbiBTT3O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 14:29:14 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6436442EDA;
-        Sun, 20 Feb 2022 11:28:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645385333; x=1676921333;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=M7/i6xnRFkEXEKJukN+sGwvyQIdCKObg+1yeNQa6vvI=;
-  b=BNK/veTKDtiptWH5dxPMC5ZcvrLF5fLhtLjyP+ShFD2U0qTCZDlJJU63
-   BzPcnLU1vyekFx5rQ/HZIsvsVtBPKXzoSx4kAF+I2/RNOvIrTqf3Y/mMa
-   6heqxyTifuQSp/sKwNxHohx7HNcDn6Az3c+2XEftOZmhbtp6HA7YqoNtr
-   ZMWm8MpawNwM5BptEMLtxE65lI59gntrbXdPBERFb66UG76nGskJR/mBI
-   GILIG7kPfW7TSveyx9bZnoAonj0MtYEMgCpkdY1JBZf3wvA5nxSHeKwaj
-   uigWJ+38ReYvXQsUQqsKPZAjd71IaWGy3UnL+GtB26d9bysLRVvaxPiY1
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="234937631"
-X-IronPort-AV: E=Sophos;i="5.88,384,1635231600"; 
-   d="scan'208";a="234937631"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 11:28:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,384,1635231600"; 
-   d="scan'208";a="778502463"
-Received: from lkp-server01.sh.intel.com (HELO da3212ac2f54) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 20 Feb 2022 11:28:48 -0800
-Received: from kbuild by da3212ac2f54 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nLrt1-0000e7-Q2; Sun, 20 Feb 2022 19:28:47 +0000
-Date:   Mon, 21 Feb 2022 03:28:20 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Laetitia MARIOTTINI <laetitia.mariottini@se.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH 3/8] soc: renesas: rzn1-sysc: Export function to set
- dmamux
-Message-ID: <202202210355.JzDJ9Lyz-lkp@intel.com>
-References: <20220218181226.431098-4-miquel.raynal@bootlin.com>
+        with ESMTP id S232313AbiBTT5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 14:57:39 -0500
+Received: from mx2.smtp.larsendata.com (mx2.smtp.larsendata.com [91.221.196.228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D343914F
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 11:57:14 -0800 (PST)
+Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
+        by mx2.smtp.larsendata.com (Halon) with ESMTPS
+        id 56791c69-9287-11ec-b2df-0050568cd888;
+        Sun, 20 Feb 2022 19:57:31 +0000 (UTC)
+Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sam@ravnborg.org)
+        by mail01.mxhotel.dk (Postfix) with ESMTPSA id 4FE42194B40;
+        Sun, 20 Feb 2022 20:57:11 +0100 (CET)
+Date:   Sun, 20 Feb 2022 20:57:06 +0100
+X-Report-Abuse-To: abuse@mxhotel.dk
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>
+Cc:     dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        maxime@cerno.tech, robh+dt@kernel.org, thierry.reding@gmail.com
+Subject: Re: [PATCH v4 3/3] drm/tiny: Add MIPI DBI compatible SPI driver
+Message-ID: <YhKdEuU3qoY/x/ie@ravnborg.org>
+References: <35cd42a3-5183-2f21-8728-ee9d65dd1740@tronnes.org>
+ <388f7dc3-afcd-e4c3-592f-8e8401819371@tronnes.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220218181226.431098-4-miquel.raynal@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <388f7dc3-afcd-e4c3-592f-8e8401819371@tronnes.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,74 +49,244 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+Hi Noralf.
 
-I love your patch! Perhaps something to improve:
+On Sun, Feb 20, 2022 at 07:11:14PM +0100, Noralf Trønnes wrote:
+> > Den 20.02.2022 11.04, skrev Sam Ravnborg:
+> > > Hi Noralf,
+> > >
+> > >>> +static int panel_mipi_dbi_get_mode(struct mipi_dbi_dev *dbidev,
+> struct drm_display_mode *mode)
+> > >>> +{
+> > >>> +	struct device *dev = dbidev->drm.dev;
+> > >>> +	u32 width_mm = 0, height_mm = 0;
+> > >>> +	struct display_timing timing;
+> > >>> +	struct videomode vm;
+> > >>> +	int ret;
+> > >>> +
+> > >>> +	ret = of_get_display_timing(dev->of_node, "panel-timing", &timing);
+> > >>> +	if (ret) {
+> > >>> +		dev_err(dev, "%pOF: failed to get panel-timing (error=%d)\n",
+> dev->of_node, ret);
+> > >>> +		return ret;
+> > >>> +	}
+> > >>> +
+> > >>> +	videomode_from_timing(&timing, &vm);
+> > >>> +
+> > >>> +	if (!vm.hactive || vm.hfront_porch || vm.hsync_len ||
+> > >>> +	    (vm.hback_porch + vm.hactive) > 0xffff ||
+> > >>> +	    !vm.vactive || vm.vfront_porch || vm.vsync_len ||
+> > >>> +	    (vm.vback_porch + vm.vactive) > 0xffff ||
+> > >>> +	    vm.flags) {
+> > >>> +		dev_err(dev, "%pOF: panel-timing out of bounds\n", dev->of_node);
+> > >>> +		return -EINVAL;
+> > >>> +	}
+> > >> We should have a helper that implements this. Maybe the display_timing
+> > >> => display_mode helper could do it.
+> > >
+> > > It would be nice with a drm_display_timing_to_mode() but that can come
+> > > later - the comment above should not be understood that I consider it
+> > > mandatory for this driver.
+> > >
+> >
+> > I did consider adding an of_get_drm_panel_mode() fashioned after
+> > of_get_drm_display_mode() but I didn't find any other driver that would
+> > actually be able to use it and I would have to do some substraction to
+> > get back the {h,v}front_porch values that I need and the optional pixel
+> > clock calculation becomes more complex acting from a drm_display_mode so
+> > I decided against it.
+> >
+> > Looking at it now, what I could do is add a function like what
+> > of_get_videomode() does for "display-timings":
+> >
+> > /**
+> >  * of_get_panel_videomode - get the panel-timing videomode from devicetree
+> >  * @np: devicenode containing the panel-timing subnode
+> >  * @vm: returns the videomode
+> >  *
+> >  * Returns:
+> >  * Zero on success, negative error code on failure.
+> >  **/
+> > int of_get_panel_videomode(struct device_node *np, struct videomode *vm)
+> > {
+> > 	struct display_timing timing;
+> > 	int ret;
+> >
+> > 	ret = of_get_display_timing(np, "panel-timing", &timing);
+> > 	if (ret)
+> > 		return ret;
+> >
+> > 	videomode_from_timing(&timing, vm);
+> >
+> > 	return 0;
+> > }
+> >
+> > This could also be used by panel-lvds and 2 fbdev drivers, the other
+> > panel-timing users need/use the display_timing itself, some for bounds
+> > checking.
+> 
+> Scratch that, since videomode is to be avoided I tried adding a
+> drm_display_mode function and it didn't complicate matter as I though it
+> would so I'll do that instead:
 
-[auto build test WARNING on geert-renesas-devel/next]
-[also build test WARNING on geert-renesas-drivers/renesas-clk robh/for-next linus/master v5.17-rc4 next-20220217]
-[cannot apply to vkoul-dmaengine/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+I like, but would like to get rid of video_mode entirely.
 
-url:    https://github.com/0day-ci/linux/commits/Miquel-Raynal/RZN1-DMA-support/20220220-182519
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
-config: arm-randconfig-r022-20220220 (https://download.01.org/0day-ci/archive/20220221/202202210355.JzDJ9Lyz-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d271fc04d5b97b12e6b797c6067d3c96a8d7470e)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm cross compiling tool for clang build
-        # apt-get install binutils-arm-linux-gnueabi
-        # https://github.com/0day-ci/linux/commit/ed9b880ea7f2b23b42feeed7a6ed898cd09ae2f1
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Miquel-Raynal/RZN1-DMA-support/20220220-182519
-        git checkout ed9b880ea7f2b23b42feeed7a6ed898cd09ae2f1
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/clk/renesas/
+> 
+> static int panel_mipi_dbi_get_mode(struct mipi_dbi_dev *dbidev, struct
+> drm_display_mode *mode)
+> {
+> 	struct device *dev = dbidev->drm.dev;
+> 	u32 width_mm = 0, height_mm = 0;
+> 	u16 hback_porch, vback_porch;
+> 	struct videomode vm;
+> 	int ret;
+> 
+> 	ret = of_get_drm_panel_display_mode(dev->of_node, mode, NULL);
+> 	if (ret) {
+> 		dev_err(dev, "%pOF: failed to get panel-timing (error=%d)\n",
+> dev->of_node, ret);
+> 		return ret;
+> 	}
+> 
+> 	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
+> 
+> 	hback_porch = mode->htotal - mode->hsync_end;
+> 	vback_porch = mode->vtotal - mode->vsync_end;
+The accesss functions I posed below could be used here - so we avoid
+typing these (trivial) calculations in many places.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> 
+> 	if (mode->hsync_end > mode->hdisplay || (hback_porch + mode->hdisplay)
+> > 0xffff ||
+> 	    mode->vsync_end > mode->vdisplay || (vback_porch + mode->vdisplay)
+> > 0xffff ||
+> 	    mode->flags) {
+> 		dev_err(dev, "%pOF: panel-timing out of bounds\n", dev->of_node);
+> 		return -EINVAL;
+> 	}
+With the display_timing => drm_display_mode I think the above is no
+longer required.
 
-All warnings (new ones prefixed by >>):
+> 
+> 	/* The driver doesn't use the pixel clock but it is mandatory so fake
+> one if not set */
+> 	if (!mode->pixelclock)
+> 		mode->pixelclock = mode->htotal * mode->vtotal * 60 / 1000;
+> 
+> 	dbidev->top_offset = vback_porch;
+> 	dbidev->left_offset = hback_porch;
+> 
+> 	return 0;
+> }
+> 
+> 
+> int of_get_drm_panel_display_mode(struct device_node *np,
+> 				  struct drm_display_mode *dmode, u32 *bus_flags)
+> {
+Not sure about the bus_flags argument here - seems misplaced.
 
->> drivers/clk/renesas/r9a06g032-clocks.c:320:5: warning: no previous prototype for function 'r9a06g032_syscon_set_dmamux' [-Wmissing-prototypes]
-   int r9a06g032_syscon_set_dmamux(u32 mask, u32 val)
-       ^
-   drivers/clk/renesas/r9a06g032-clocks.c:320:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   int r9a06g032_syscon_set_dmamux(u32 mask, u32 val)
-   ^
-   static 
-   1 warning generated.
+> 	u32 width_mm = 0, height_mm = 0;
+> 	struct display_timing timing;
+> 	struct videomode vm;
+> 	int ret;
+> 
+> 	ret = of_get_display_timing(np, "panel-timing", &timing);
+> 	if (ret)
+> 		return ret;
+> 
+> 	videomode_from_timing(&timing, vm);
+> 
+> 	memset(dmode, 0, sizeof(*dmode));
+> 	drm_display_mode_from_videomode(&vm, dmode);
+> 	if (bus_flags)
+> 		drm_bus_flags_from_videomode(&vm, bus_flags);
+
+This does a:
+display_timing => video_mode => drm_display_display_mode
+
+We could do a:
+display_timing => drm_display_mode.
+
+Sample implementation could look like this:
+void drm_mode_from_display_timing(struct drm_display_mode *mode,
+                                  const struct display_timing *dt)
+{
+	mode->hdisplay = dt->hactive.typ;
+        mode->hsync_start = dt->hactive.typ + dt->hfront_porch.typ;
+        mode->hsync_end = dt->hactive.typ + dt->hfront_porch.typ + dt->hsync_len.typ;
+        mode->htotal = dt->hactive.typ + dt->hfront_porch.typ + dt->hsync_len.typ + dt->hback_porch.typ;
+
+        mode->vdisplay = dt->vactive.typ;
+        mode->vsync_start = dt->vactive.typ + dt->vfront_porch.typ;
+        mode->vsync_end = dt->vactive.typ + dt->vfront_porch.typ + dt->vsync_len.typ;
+        mode->vtotal = dt->vactive.typ + dt->vfront_porch.typ + dt->vsync_len.typ + dt->vback_porch.typ;
+
+        mode->clock = dt->pixelclock.typ / 1000;
+
+        mode->flags = 0;
+        if (dt->flags & DISPLAY_FLAGS_HSYNC_HIGH)
+                mode->flags |= DRM_MODE_FLAG_PHSYNC;
+        else if (dt->flags & DISPLAY_FLAGS_HSYNC_LOW)
+                mode->flags |= DRM_MODE_FLAG_NHSYNC;
+        if (dt->flags & DISPLAY_FLAGS_VSYNC_HIGH)
+                mode->flags |= DRM_MODE_FLAG_PVSYNC;
+        else if (dt->flags & DISPLAY_FLAGS_VSYNC_LOW)
+                mode->flags |= DRM_MODE_FLAG_NVSYNC;
+        if (dt->flags & DISPLAY_FLAGS_INTERLACED)
+                mode->flags |= DRM_MODE_FLAG_INTERLACE;
+        if (dt->flags & DISPLAY_FLAGS_DOUBLESCAN)
+                mode->flags |= DRM_MODE_FLAG_DBLSCAN;
+        if (dt->flags & DISPLAY_FLAGS_DOUBLECLK)
+                mode->flags |= DRM_MODE_FLAG_DBLCLK;
+        drm_mode_set_name(mode);
+}
+EXPORT_SYMBOL_GPL(drm_mode_from_display_timing);
+
+If we then on top of this would like easy access to the names we know we
+could add a few access functions:
+
+static inline u32 drm_mode_hactive(const struct drm_display_mode *mode)
+{
+        mode->hdisplay;
+}
+
+static inline u32 drm_mode_hfront_porch(const struct drm_display_mode *mode)
+{
+        mode->hsync_start - mode->hdisplay;
+}
+
+static inline u32 drm_mode_hback_porch(const struct drm_display_mode *mode)
+{
+        mode->htotal - mode->hsync_start;
+}
+
+static inline u32 drm_mode_hsync_len(const struct drm_display_mode *mode)
+{
+        return mode->hsync_end - mode->hsync_start;
+}
+
+static inline u32 drm_mode_vactive(const struct drm_display_mode *mode)
+{
+        return mode->vdisplay;
+}
+
+static inline u32 drm_mode_vfront_porch(const struct drm_display_mode *mode)
+{
+        return mode->vsync_start - mode->vdisplay;
+}
+
+static inline u32 drm_mode_vsync_len(const struct drm_display_mode *mode)
+{
+        return mode->vsync_end - mode->vsync_start;
+}
+
+static inline u32 drm_mode_vback_porch(const struct drm_display_mode *mode)
+{
+        return mode->vtotal - mode->vsync_end;
+}
 
 
-vim +/r9a06g032_syscon_set_dmamux +320 drivers/clk/renesas/r9a06g032-clocks.c
+The above was something I just quickly typed. This was the easy part.
+Writing kernel-.doc and fix it so it works is the time consuming part..
 
-   317	
-   318	/* Exported helper to access the DMAMUX register */
-   319	static struct r9a06g032_priv *syscon_priv;
- > 320	int r9a06g032_syscon_set_dmamux(u32 mask, u32 val)
-   321	{
-   322		u32 dmamux;
-   323	
-   324		if (!syscon_priv)
-   325			return -EPROBE_DEFER;
-   326	
-   327		spin_lock(&syscon_priv->lock);
-   328	
-   329		dmamux = readl(syscon_priv->reg + R9A06G032_SYSCON_DMAMUX);
-   330		dmamux &= ~mask;
-   331		dmamux |= val & mask;
-   332		writel(dmamux, syscon_priv->reg + R9A06G032_SYSCON_DMAMUX);
-   333	
-   334		spin_unlock(&syscon_priv->lock);
-   335	
-   336		return 0;
-   337	}
-   338	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+	Sam
