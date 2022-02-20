@@ -2,152 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E8724BCE3E
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 12:41:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC1834BCE48
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 12:54:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239473AbiBTLlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 06:41:49 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44560 "EHLO
+        id S237895AbiBTLv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 06:51:29 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234206AbiBTLls (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 06:41:48 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CCC333E00;
-        Sun, 20 Feb 2022 03:41:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231391AbiBTLv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 06:51:27 -0500
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410BF4BFC0;
+        Sun, 20 Feb 2022 03:51:06 -0800 (PST)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BDDF661147;
-        Sun, 20 Feb 2022 11:41:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9280DC340E8;
-        Sun, 20 Feb 2022 11:41:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645357287;
-        bh=mcf/nbUtt3kQFwvUjXM7DJ/iXY1xk8mILVycvz100A0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=VWqZBTm5MjNelia8nPtrWJB7kv+8eiyNRzrUSKZijx2sYExSMtRgiJe+Ujq9LkS3H
-         z31VagRuYh/bGNAtdxNfB3dzK40ktNj+LxUWy7YM767Zk/sznUXRvXwEe6EnAoMsP+
-         fzRIp8aFqOqUbpjL9OQ5/Y36ltjLpVZRXtGR9Y1EpXZatihDZisxsHDYHjoLw9c6Ya
-         MMeuVaNbDBt/uIbSyUzeNq7q8Xuty3Q69/MUt+kPmmEGguXPIX/WD0LgQjPuYnEN4a
-         D45FQSppQIkSoKU3Kj8SaFxfcKyp4IlzmUb+JcxuN2biH4XD8OqhVT2wq8GPVbU0gm
-         GswiMi1RCLd1A==
-Date:   Sun, 20 Feb 2022 11:48:16 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Antoniu Miclaus <antoniu.miclaus@analog.com>, robh+dt@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings:iio:amplifiers: add ada4250 doc
-Message-ID: <20220220114816.50a57225@jic23-huawei>
-In-Reply-To: <69cc2a64-c273-f2f6-b25b-73fc2248bb18@canonical.com>
-References: <20220214094115.48548-1-antoniu.miclaus@analog.com>
-        <20220214094115.48548-2-antoniu.miclaus@analog.com>
-        <69cc2a64-c273-f2f6-b25b-73fc2248bb18@canonical.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        by box.trvn.ru (Postfix) with ESMTPSA id 523E94013D;
+        Sun, 20 Feb 2022 16:50:52 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1645357854; bh=Uf6HYUxn28IZAPxShVWn4wFM8oxeVc0cjXkSVYshVfk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gVXeiOMmpGlXWSmykXoo+2fcwzekUokom4ag3iZN+7jrGOVxbWaXFhG3x8C3/g4pN
+         sHZIkz+FHA6gxhZGEidKvC5I7oRrVv1Dv53959T3N6on/Zp8H+xc4mEXkfwpNKBDpM
+         d1OFZqyAM36UnHEaHcxFssKBiBJz/FRpl8AbLw5h9/ulStz1tnrpCvcQxHui4PKskJ
+         HlCMh5VzYBYDkE2oRD40mJpf80+GfbG77vwu1tYQR2UW6DmQGei5o6PhLnQyVYKITh
+         KGjlgKIlxFYEeHwb3usxB8GZrVZfGXYjcA51pb9wZ/nDtlvznnZbK1dwoD2z0twc2Y
+         IFxsYXmqQwgQg==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     thierry.reding@gmail.com, lee.jones@linaro.org
+Cc:     u.kleine-koenig@pengutronix.de, robh+dt@kernel.org,
+        sboyd@kernel.org, krzk@kernel.org, linus.walleij@linaro.org,
+        masneyb@onstation.org, sean.anderson@seco.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH v6 0/2] Clock based PWM output driver
+Date:   Sun, 20 Feb 2022 16:50:28 +0500
+Message-Id: <20220220115030.23772-1-nikita@trvn.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 20 Feb 2022 11:53:55 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+This series introduces an "adapter" driver that allows PWM consumers
+to control clock outputs with duty-cycle control.
 
-> On 14/02/2022 10:41, Antoniu Miclaus wrote:
-> > Add device tree bindings for the ADA4250 driver.  
-> 
-> Please put the bindings patch as first in the series.
-> 
-> > 
-> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > ---
-> >  .../bindings/iio/amplifiers/adi,ada4250.yaml  | 48 +++++++++++++++++++
-> >  1 file changed, 48 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml b/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
-> > new file mode 100644
-> > index 000000000000..22283ab48903
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
-> > @@ -0,0 +1,48 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/amplifiers/adi,ada4250.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ADA4250 Programmable Gain Instrumentation Amplifier
-> > +
-> > +maintainers:
-> > +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > +
-> > +description: |
-> > +  Precision Low Power, 110kHz, 26uA, Programmable Gain Instrumentation Amplifier.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - adi,ada4250
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  avdd-supply: true  
-> 
-> Needs a description, not a true.
+Some platforms (e.g. some Qualcomm chipsets) have "General Purpose"
+clocks that can be muxed to GPIO outputs and used as PWM outputs.
+Those outputs may be connected to various peripherals such as
+leds in display backlight or haptic feedback motor driver.
 
-For a generic supply where all we really have is a name, I'm not sure
-a description adds anything.  Of course, if there is more info that can be provided
-a description is great to have.
+To avoid re-implementing every single PWM consumer driver with clk
+support (like in [1]) and don't put the burden of providing the PWM
+sources on the clock drivers (as was proposed in [2]), clk based
+pwm controller driver is introduced.
 
-> 
-> As Jonathan said, you should allow spi-max-frequency (so
-> spi-max-frequency: true).
-> 
-> No io-channel-cells?
+There is an existing driver that provides the opposite function
+in drivers/clk/clk-pwm.c with a compatible "pwm-clock" so the new
+driver uses the opposite naming scheme: drivers/pwm/pwm-clk.c
+and compatible "clk-pwm".
 
-I'm not sure you'd have a consumer of this type of device, so
-it may not make sense...
+Changes in v2:
+ - Fix filename in the DT schema.
+ - Address Uwe's review comments.
+Changes in v3:
+ - Fix node pattern in the core pwm schema.
+ - Address Uwe's review comments.
+Changes in v4:
+ - Drop the (incorrect) pwm schema change.
+ - Use generic node name in the dt bindings example.
+Changes in v5:
+ - Correct required properties.
+ - add missed returns.
+Changes in v6:
+ - Add missed error cleanup
+ - Adjust limitations comment
 
-> 
-> > +
-> > +  adi,refbuf-enable:
-> > +    description:
-> > +      Enable internal buffer to drive the reference pin.
-> > +    type: boolean
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - avdd-supply
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    spi {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +      ada4250@0{  
-> 
-> Generic node name, so "amplifier".
-> 
-> > +        compatible = "adi,ada4250";
-> > +        reg = <0>;
-> > +        avdd-supply = <&avdd>;
-> > +      };
-> > +    };
-> > +...  
-> 
-> 
-> Best regards,
-> Krzysztof
+Nikita Travkin (2):
+  dt-bindings: pwm: Document clk based PWM controller
+  pwm: Add clock based PWM output driver
+
+ .../devicetree/bindings/pwm/clk-pwm.yaml      |  46 ++++++
+ drivers/pwm/Kconfig                           |  10 ++
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-clk.c                         | 139 ++++++++++++++++++
+ 4 files changed, 196 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/clk-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-clk.c
+
+-- 
+2.34.1
 
