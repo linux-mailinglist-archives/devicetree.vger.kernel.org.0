@@ -2,143 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 387284BCE67
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 13:16:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F2744BCEFF
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 15:35:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234710AbiBTMRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 07:17:08 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59430 "EHLO
+        id S241497AbiBTOTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 09:19:39 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237555AbiBTMRH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 07:17:07 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C41DAAE4A
-        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 04:16:44 -0800 (PST)
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7D8C63F339
-        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 12:16:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645359403;
-        bh=wQTHSR0uateHCvdtn+TIYEU3YpwrEc+BhJaQXGCxr7g=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=Qb/vxb+fZ8WoK/lG4iFOCIiThWU/IhkmS5B+EqRSNUIunmqCRz23R49zXPaIgyjoq
-         M2Md5yK5ZVPCs2AUfyOxn3NKkV+LqAOA2+lvKUkkQ9wsZqbMuP1vaublVRvhXH8QsC
-         aimkydsT0Ls4EpS1gFrcQV92P9Mkz0BTO6gQr7qXB+bpAvcm20hbP6Eczn+r3N1daD
-         o+jgJsJd22qbxGpKH1wozxTMezUVCJzV928Z9xczlgBk9xwtBpJ4aCMXbHtD/3mBaI
-         6floceQPFElVfqASe4CygEfZh1K104C1ooc7WNbB02A/DK3sqmhJ7uxwsHHa6fhS0e
-         /bCZrHPVNB4dA==
-Received: by mail-wm1-f72.google.com with SMTP id 22-20020a05600c229600b0037be079ebf6so1587177wmf.9
-        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 04:16:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wQTHSR0uateHCvdtn+TIYEU3YpwrEc+BhJaQXGCxr7g=;
-        b=c7Ehatd5ioNS54y3+PPJg27TqpK9TLF4FFJjuyjUp1Qng6v27iWd31hFB/U3KIqP6r
-         3WepgZpDnyRqxJT3R3M3KJJ+JZRfICyZtMQ7X/Y2kk+858iqbQTTLvSC9uq4YVLhFSpW
-         tTM10sE/GYXXtNX02BkAE5ia/QKttA1Y2Bc6VXP+O1Sp4eAOy+4gCE8Ib9EZn/UbrX+z
-         Zcw0emGTng1YPsTdfPowFQjwZ9C9addIixjzAmpF2HMmlKcDWAN5lUgAk6I1KoNJNJIE
-         V+svD5csSIeOoJRqY0CN1n2l+jh6fM3Pr3Xq5zdxHJ+qFZyL7fHXXLC4lFlFFu6l1Ia1
-         dFtw==
-X-Gm-Message-State: AOAM5301408hdG+KcbxBultSP2KcpG5i0HayAFC2Qoz9jfys1Fozzes3
-        6UKfazAs23EeJTuht9QSkex1L1/Ffl/J9yy8QdD7WotjTfpbhLWNYrBr8ssSiirtdNDt70XrSlP
-        E3QrcgiXEcPO8bZMDuQgYlqrK9j5+exI8HTESoHI=
-X-Received: by 2002:a05:600c:1908:b0:37c:70f:3dd1 with SMTP id j8-20020a05600c190800b0037c070f3dd1mr17786027wmq.134.1645359403140;
-        Sun, 20 Feb 2022 04:16:43 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy/anjXzLIgwxPYmg5RERwU2PHMiEdpS8UtYqMRd6DeP3lWED3IukimGmQeX+fnq/nNvYKeBg==
-X-Received: by 2002:a05:600c:1908:b0:37c:70f:3dd1 with SMTP id j8-20020a05600c190800b0037c070f3dd1mr17786009wmq.134.1645359402912;
-        Sun, 20 Feb 2022 04:16:42 -0800 (PST)
-Received: from [192.168.0.117] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id a1sm30724881wri.36.2022.02.20.04.16.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Feb 2022 04:16:42 -0800 (PST)
-Message-ID: <c7e39902-c85a-c601-8b9c-b2292ffeb46d@canonical.com>
-Date:   Sun, 20 Feb 2022 13:16:41 +0100
+        with ESMTP id S239245AbiBTOTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 09:19:39 -0500
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F14AE3B54D
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 06:19:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=xVgYaid1TgLKd3hqSmNU1CwEHT+VxWW/HyJZrkuDY1A=; b=dJ4zWhUEog6SUm26G9WIvd/muh
+        aJ/3CUm2k5BeLoRpU9A6ONs5ZSM8vtoul4PYXqArdq7OuakZkAWCTlCP4DzN+V7Nj1Gjh6OeHgAgE
+        gyz3uwyesd0m50RW/oPvAkUOOtX6xjoYd8OrrEyxKIRsk2jx+SIaGqSf3KPzmMuKb+skkVkhEAOF7
+        e0vCbUEcsOZugV5G0ddQoEC4JrlpkvlAwYLcwju8174AV7lVqYQbw3cHlZ2jBYv/OG7gY9CR1SPOO
+        pAfspCSfY5Pi/itWmaxamXw1ETEeAZcXEsJVxMr80PnNw9Joh5pnL3OrST9hAlizbc9KMqyb/ILJZ
+        P/2u8nVA==;
+Received: from [2a01:799:95e:a400:cca0:57ac:c55d:a485] (port=55828)
+        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <noralf@tronnes.org>)
+        id 1nLn3T-0004HZ-34; Sun, 20 Feb 2022 15:19:15 +0100
+Message-ID: <35cd42a3-5183-2f21-8728-ee9d65dd1740@tronnes.org>
+Date:   Sun, 20 Feb 2022 15:19:12 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v8 2/4] dt-bindings:iio:frequency: add admv1014 binding
-Content-Language: en-US
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
-        robh+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>
-References: <20220215081216.67706-1-antoniu.miclaus@analog.com>
- <20220215081216.67706-2-antoniu.miclaus@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220215081216.67706-2-antoniu.miclaus@analog.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v4 3/3] drm/tiny: Add MIPI DBI compatible SPI driver
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org, david@lechnology.com,
+        dave.stevenson@raspberrypi.com, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, thierry.reding@gmail.com, maxime@cerno.tech
+References: <20220218151110.11316-1-noralf@tronnes.org>
+ <20220218151110.11316-4-noralf@tronnes.org> <YhFqxklH9hsLrI1X@ravnborg.org>
+ <YhISOrwTYsn2w6zo@ravnborg.org>
+From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <YhISOrwTYsn2w6zo@ravnborg.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/02/2022 09:12, Antoniu Miclaus wrote:
-> Add device tree bindings for the ADMV1014 Upconverter.
+
+
+Den 20.02.2022 11.04, skrev Sam Ravnborg:
+> Hi Noralf,
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
-Your subject seems still wrongly formatted.
-> ---
-> changes in v8:
->  - remove `clock-cells`
->  - rename device node to be more generic
->  - set 'maxItems' for clocks property
->  .../bindings/iio/frequency/adi,admv1014.yaml  | 134 ++++++++++++++++++
->  1 file changed, 134 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
+>>> +static int panel_mipi_dbi_get_mode(struct mipi_dbi_dev *dbidev, struct drm_display_mode *mode)
+>>> +{
+>>> +	struct device *dev = dbidev->drm.dev;
+>>> +	u32 width_mm = 0, height_mm = 0;
+>>> +	struct display_timing timing;
+>>> +	struct videomode vm;
+>>> +	int ret;
+>>> +
+>>> +	ret = of_get_display_timing(dev->of_node, "panel-timing", &timing);
+>>> +	if (ret) {
+>>> +		dev_err(dev, "%pOF: failed to get panel-timing (error=%d)\n", dev->of_node, ret);
+>>> +		return ret;
+>>> +	}
+>>> +
+>>> +	videomode_from_timing(&timing, &vm);
+>>> +
+>>> +	if (!vm.hactive || vm.hfront_porch || vm.hsync_len ||
+>>> +	    (vm.hback_porch + vm.hactive) > 0xffff ||
+>>> +	    !vm.vactive || vm.vfront_porch || vm.vsync_len ||
+>>> +	    (vm.vback_porch + vm.vactive) > 0xffff ||
+>>> +	    vm.flags) {
+>>> +		dev_err(dev, "%pOF: panel-timing out of bounds\n", dev->of_node);
+>>> +		return -EINVAL;
+>>> +	}
+>> We should have a helper that implements this. Maybe the display_timing
+>> => display_mode helper could do it.
 > 
-> diff --git a/Documentation/d
+> It would be nice with a drm_display_timing_to_mode() but that can come
+> later - the comment above should not be understood that I consider it
+> mandatory for this driver.
+> 
 
-(...)
+I did consider adding an of_get_drm_panel_mode() fashioned after
+of_get_drm_display_mode() but I didn't find any other driver that would
+actually be able to use it and I would have to do some substraction to
+get back the {h,v}front_porch values that I need and the optional pixel
+clock calculation becomes more complex acting from a drm_display_mode so
+I decided against it.
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      converter@0{
+Looking at it now, what I could do is add a function like what
+of_get_videomode() does for "display-timings":
 
-Missing space after address... I thought you will correct it while
-changing node name.
+/**
+ * of_get_panel_videomode - get the panel-timing videomode from devicetree
+ * @np: devicenode containing the panel-timing subnode
+ * @vm: returns the videomode
+ *
+ * Returns:
+ * Zero on success, negative error code on failure.
+ **/
+int of_get_panel_videomode(struct device_node *np, struct videomode *vm)
+{
+	struct display_timing timing;
+	int ret;
 
+	ret = of_get_display_timing(np, "panel-timing", &timing);
+	if (ret)
+		return ret;
 
-> +        compatible = "adi,admv1014";
-> +        reg = <0>;
-> +        spi-max-frequency = <1000000>;
-> +        clocks = <&admv1014_lo>;
-> +        clock-names = "lo_in";
-> +        vcm-supply = <&vcm>;
-> +        vcc-if-bb-supply = <&vcc_if_bb>;
-> +        vcc-vga-supply = <&vcc_vga>;
-> +        vcc-vva-supply = <&vcc_vva>;
-> +        vcc-lna-3p3-supply = <&vcc_lna_3p3>;
-> +        vcc-lna-1p5-supply = <&vcc_lna_1p5>;
-> +        vcc-bg-supply = <&vcc_bg>;
-> +        vcc-quad-supply = <&vcc_quad>;
-> +        vcc-mixer-supply = <&vcc_mixer>;
-> +        adi,quad-se-mode = "diff";
-> +        adi,detector-enable;
-> +        adi,p1db-compensation-enable;
-> +      };
-> +    };
-> +...
+	videomode_from_timing(&timing, vm);
 
+	return 0;
+}
 
-Best regards,
-Krzysztof
+This could also be used by panel-lvds and 2 fbdev drivers, the other
+panel-timing users need/use the display_timing itself, some for bounds
+checking.
+
+Noralf.
