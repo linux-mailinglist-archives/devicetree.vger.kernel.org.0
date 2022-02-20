@@ -2,286 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8E584BCE5C
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 13:07:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 387284BCE67
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 13:16:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237026AbiBTMHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 07:07:52 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38912 "EHLO
+        id S234710AbiBTMRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 07:17:08 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbiBTMHv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 07:07:51 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AAC540E7E;
-        Sun, 20 Feb 2022 04:07:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S237555AbiBTMRH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 07:17:07 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C41DAAE4A
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 04:16:44 -0800 (PST)
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E1E5CB80D44;
-        Sun, 20 Feb 2022 12:07:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A244EC340E8;
-        Sun, 20 Feb 2022 12:07:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645358845;
-        bh=qIYqNkqbYg9a12Wje7xqZ23YRGPPYOaM6TBHWPMsTmo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=hXdd1RHH/37o9iwJYrMMk4SSFp7Gbzd/Bo81A3W/PeOocmOlGhd4g2ddemBYewlvW
-         tB4EYbYNk0fHGGIMfjbjEyQtu+Z0EXTZ8+hiLrXMRz6tGIJoOtL2UTOAxjfyhTfohu
-         jBGb9IbKpAe+5vGbqDz+beo7AUAJhHYbqOi54Jk5myhC8VJAvPeWl2spo0tINOc/Q3
-         UDodrX/Yy5P/0F3iRD83KACA0phn4EgpxTmMfqrIl+G/Yjb8FUk5vwDWYTwrc8yWeR
-         p14xGozYlNFR3lX7tQyjk62DA4Bs1z9tEPnPqyRlwQElkhdrybuFPECO3BlNVPgBIE
-         521wxzM9ryKDA==
-Date:   Sun, 20 Feb 2022 12:14:14 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc:     <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v8 1/4] iio:frequency:admv1014: add support for ADMV1014
-Message-ID: <20220220121414.48d7a3b6@jic23-huawei>
-In-Reply-To: <20220215081216.67706-1-antoniu.miclaus@analog.com>
-References: <20220215081216.67706-1-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7D8C63F339
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 12:16:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645359403;
+        bh=wQTHSR0uateHCvdtn+TIYEU3YpwrEc+BhJaQXGCxr7g=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=Qb/vxb+fZ8WoK/lG4iFOCIiThWU/IhkmS5B+EqRSNUIunmqCRz23R49zXPaIgyjoq
+         M2Md5yK5ZVPCs2AUfyOxn3NKkV+LqAOA2+lvKUkkQ9wsZqbMuP1vaublVRvhXH8QsC
+         aimkydsT0Ls4EpS1gFrcQV92P9Mkz0BTO6gQr7qXB+bpAvcm20hbP6Eczn+r3N1daD
+         o+jgJsJd22qbxGpKH1wozxTMezUVCJzV928Z9xczlgBk9xwtBpJ4aCMXbHtD/3mBaI
+         6floceQPFElVfqASe4CygEfZh1K104C1ooc7WNbB02A/DK3sqmhJ7uxwsHHa6fhS0e
+         /bCZrHPVNB4dA==
+Received: by mail-wm1-f72.google.com with SMTP id 22-20020a05600c229600b0037be079ebf6so1587177wmf.9
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 04:16:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wQTHSR0uateHCvdtn+TIYEU3YpwrEc+BhJaQXGCxr7g=;
+        b=c7Ehatd5ioNS54y3+PPJg27TqpK9TLF4FFJjuyjUp1Qng6v27iWd31hFB/U3KIqP6r
+         3WepgZpDnyRqxJT3R3M3KJJ+JZRfICyZtMQ7X/Y2kk+858iqbQTTLvSC9uq4YVLhFSpW
+         tTM10sE/GYXXtNX02BkAE5ia/QKttA1Y2Bc6VXP+O1Sp4eAOy+4gCE8Ib9EZn/UbrX+z
+         Zcw0emGTng1YPsTdfPowFQjwZ9C9addIixjzAmpF2HMmlKcDWAN5lUgAk6I1KoNJNJIE
+         V+svD5csSIeOoJRqY0CN1n2l+jh6fM3Pr3Xq5zdxHJ+qFZyL7fHXXLC4lFlFFu6l1Ia1
+         dFtw==
+X-Gm-Message-State: AOAM5301408hdG+KcbxBultSP2KcpG5i0HayAFC2Qoz9jfys1Fozzes3
+        6UKfazAs23EeJTuht9QSkex1L1/Ffl/J9yy8QdD7WotjTfpbhLWNYrBr8ssSiirtdNDt70XrSlP
+        E3QrcgiXEcPO8bZMDuQgYlqrK9j5+exI8HTESoHI=
+X-Received: by 2002:a05:600c:1908:b0:37c:70f:3dd1 with SMTP id j8-20020a05600c190800b0037c070f3dd1mr17786027wmq.134.1645359403140;
+        Sun, 20 Feb 2022 04:16:43 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJy/anjXzLIgwxPYmg5RERwU2PHMiEdpS8UtYqMRd6DeP3lWED3IukimGmQeX+fnq/nNvYKeBg==
+X-Received: by 2002:a05:600c:1908:b0:37c:70f:3dd1 with SMTP id j8-20020a05600c190800b0037c070f3dd1mr17786009wmq.134.1645359402912;
+        Sun, 20 Feb 2022 04:16:42 -0800 (PST)
+Received: from [192.168.0.117] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id a1sm30724881wri.36.2022.02.20.04.16.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Feb 2022 04:16:42 -0800 (PST)
+Message-ID: <c7e39902-c85a-c601-8b9c-b2292ffeb46d@canonical.com>
+Date:   Sun, 20 Feb 2022 13:16:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v8 2/4] dt-bindings:iio:frequency: add admv1014 binding
+Content-Language: en-US
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+        robh+dt@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
+References: <20220215081216.67706-1-antoniu.miclaus@analog.com>
+ <20220215081216.67706-2-antoniu.miclaus@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220215081216.67706-2-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Feb 2022 10:12:13 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-
-> The ADMV1014 is a silicon germanium (SiGe), wideband,
-> microwave downconverter optimized for point to point microwave
-> radio designs operating in the 24 GHz to 44 GHz frequency range.
+On 15/02/2022 09:12, Antoniu Miclaus wrote:
+> Add device tree bindings for the ADMV1014 Upconverter.
 > 
-> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADMV1014.pdf
 > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Hi Antoniu.
-
-One really trivial point inline that I noticed whilst having 'one last look'.
-
-I'll fix it up whilst applying but please check I didn't mess up!
-
-Series applied to the togreg branch of iio.git and initially pushed out as
-testing to let 0-day poke at it an see if it can find anything we missed.
-
-Thanks,
-
-Jonathan
-
+Your subject seems still wrongly formatted.
 > ---
 > changes in v8:
->  - remove clk-provider header
->  drivers/iio/frequency/Kconfig    |  10 +
->  drivers/iio/frequency/Makefile   |   1 +
->  drivers/iio/frequency/admv1014.c | 823 +++++++++++++++++++++++++++++++
->  3 files changed, 834 insertions(+)
->  create mode 100644 drivers/iio/frequency/admv1014.c
+>  - remove `clock-cells`
+>  - rename device node to be more generic
+>  - set 'maxItems' for clocks property
+>  .../bindings/iio/frequency/adi,admv1014.yaml  | 134 ++++++++++++++++++
+>  1 file changed, 134 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
 > 
-> diff --git a/drivers/iio/frequency/Kconfig b/drivers/iio/frequency/Kconfig
-> index 2c9e0559e8a4..493221f42077 100644
-> --- a/drivers/iio/frequency/Kconfig
-> +++ b/drivers/iio/frequency/Kconfig
-> @@ -50,6 +50,16 @@ config ADF4371
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called adf4371.
->  
-> +config ADMV1014
-> +	tristate "Analog Devices ADMV1014 Microwave Downconverter"
-> +	depends on SPI && COMMON_CLK && 64BIT
-> +	help
-> +	  Say yes here to build support for Analog Devices ADMV1014
-> +	  24 GHz to 44 GHz, Wideband, Microwave Downconverter.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called admv1014.
-> +
->  config ADRF6780
->          tristate "Analog Devices ADRF6780 Microwave Upconverter"
->          depends on SPI
-> diff --git a/drivers/iio/frequency/Makefile b/drivers/iio/frequency/Makefile
-> index ae3136c79202..5f0348e5eb53 100644
-> --- a/drivers/iio/frequency/Makefile
-> +++ b/drivers/iio/frequency/Makefile
-> @@ -7,4 +7,5 @@
->  obj-$(CONFIG_AD9523) += ad9523.o
->  obj-$(CONFIG_ADF4350) += adf4350.o
->  obj-$(CONFIG_ADF4371) += adf4371.o
-> +obj-$(CONFIG_ADMV1014) += admv1014.o
->  obj-$(CONFIG_ADRF6780) += adrf6780.o
-> diff --git a/drivers/iio/frequency/admv1014.c b/drivers/iio/frequency/admv1014.c
-> new file mode 100644
-> index 000000000000..06a60c246161
-> --- /dev/null
-> +++ b/drivers/iio/frequency/admv1014.c
-> @@ -0,0 +1,823 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * ADMV1014 driver
-> + *
-> + * Copyright 2022 Analog Devices Inc.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/clkdev.h>
-> +#include <linux/device.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/notifier.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/units.h>
-> +
-> +#include <asm/unaligned.h>
-> +
-> +/* ADMV1014 Register Map */
-> +#define ADMV1014_REG_SPI_CONTROL		0x00
-> +#define ADMV1014_REG_ALARM			0x01
-> +#define ADMV1014_REG_ALARM_MASKS		0x02
-> +#define ADMV1014_REG_ENABLE			0x03
-> +#define ADMV1014_REG_QUAD			0x04
-> +#define ADMV1014_REG_LO_AMP_PHASE_ADJUST1	0x05
-> +#define ADMV1014_REG_MIXER			0x07
-> +#define ADMV1014_REG_IF_AMP			0x08
-> +#define ADMV1014_REG_IF_AMP_BB_AMP		0x09
-> +#define ADMV1014_REG_BB_AMP_AGC			0x0A
-> +#define ADMV1014_REG_VVA_TEMP_COMP		0x0B
-> +
-> +/* ADMV1014_REG_SPI_CONTROL Map */
-> +#define ADMV1014_PARITY_EN_MSK			BIT(15)
-> +#define ADMV1014_SPI_SOFT_RESET_MSK		BIT(14)
-> +#define ADMV1014_CHIP_ID_MSK			GENMASK(11, 4)
-> +#define ADMV1014_CHIP_ID			0x9
-> +#define ADMV1014_REVISION_ID_MSK		GENMASK(3, 0)
-> +
-> +/* ADMV1014_REG_ALARM Map */
-> +#define ADMV1014_PARITY_ERROR_MSK		BIT(15)
-> +#define ADMV1014_TOO_FEW_ERRORS_MSK		BIT(14)
-> +#define ADMV1014_TOO_MANY_ERRORS_MSK		BIT(13)
-> +#define ADMV1014_ADDRESS_RANGE_ERROR_MSK	BIT(12)
-> +
-> +/* ADMV1014_REG_ENABLE Map */
-> +#define ADMV1014_IBIAS_PD_MSK			BIT(14)
-> +#define ADMV1014_P1DB_COMPENSATION_MSK		GENMASK(13, 12)
-> +#define ADMV1014_IF_AMP_PD_MSK			BIT(11)
-> +#define ADMV1014_QUAD_BG_PD_MSK			BIT(9)
-> +#define ADMV1014_BB_AMP_PD_MSK			BIT(8)
-> +#define ADMV1014_QUAD_IBIAS_PD_MSK		BIT(7)
-> +#define ADMV1014_DET_EN_MSK			BIT(6)
-> +#define ADMV1014_BG_PD_MSK			BIT(5)
-> +
-> +/* ADMV1014_REG_QUAD Map */
-> +#define ADMV1014_QUAD_SE_MODE_MSK		GENMASK(9, 6)
-> +#define ADMV1014_QUAD_FILTERS_MSK		GENMASK(3, 0)
-> +
-> +/* ADMV1014_REG_LO_AMP_PHASE_ADJUST1 Map */
-> +#define ADMV1014_LOAMP_PH_ADJ_I_FINE_MSK	GENMASK(15, 9)
-> +#define ADMV1014_LOAMP_PH_ADJ_Q_FINE_MSK	GENMASK(8, 2)
-> +
-> +/* ADMV1014_REG_MIXER Map */
-> +#define ADMV1014_MIXER_VGATE_MSK		GENMASK(15, 9)
-> +#define ADMV1014_DET_PROG_MSK			GENMASK(6, 0)
-> +
-> +/* ADMV1014_REG_IF_AMP Map */
-> +#define ADMV1014_IF_AMP_COARSE_GAIN_I_MSK	GENMASK(11, 8)
-> +#define ADMV1014_IF_AMP_FINE_GAIN_Q_MSK		GENMASK(7, 4)
-> +#define ADMV1014_IF_AMP_FINE_GAIN_I_MSK		GENMASK(3, 0)
-> +
-> +/* ADMV1014_REG_IF_AMP_BB_AMP Map */
-> +#define ADMV1014_IF_AMP_COARSE_GAIN_Q_MSK	GENMASK(15, 12)
-> +#define ADMV1014_BB_AMP_OFFSET_Q_MSK		GENMASK(9, 5)
-> +#define ADMV1014_BB_AMP_OFFSET_I_MSK		GENMASK(4, 0)
-> +
-> +/* ADMV1014_REG_BB_AMP_AGC Map */
-> +#define ADMV1014_BB_AMP_REF_GEN_MSK		GENMASK(6, 3)
-> +#define ADMV1014_BB_AMP_GAIN_CTRL_MSK		GENMASK(2, 1)
-> +#define ADMV1014_BB_SWITCH_HIGH_LOW_CM_MSK	BIT(0)
-> +
-> +/* ADMV1014_REG_VVA_TEMP_COMP Map */
-> +#define ADMV1014_VVA_TEMP_COMP_MSK		GENMASK(15, 0)
-> +
-> +/* ADMV1014 Miscellaneous Defines */
-> +#define ADMV1014_READ				BIT(7)
-> +#define ADMV1014_REG_ADDR_READ_MSK		GENMASK(6, 1)
-> +#define ADMV1014_REG_ADDR_WRITE_MSK		GENMASK(22, 17)
-> +#define ADMV1014_REG_DATA_MSK			GENMASK(16, 1)
-> +#define ADMV1014_NUM_REGULATORS			9
+> diff --git a/Documentation/d
 
-...
+(...)
 
 > +
-> +static int admv1014_init(struct admv1014_state *st)
-> +{
-> +	unsigned int chip_id, enable_reg, enable_reg_msk;
-> +	struct spi_device *spi = st->spi;
-> +	int ret;
+> +additionalProperties: false
 > +
-> +	ret = regulator_bulk_enable(ADMV1014_NUM_REGULATORS, st->regulators);
-> +	if (ret) {
-> +		dev_err(&spi->dev, "Failed to enable regulators");
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_add_action_or_reset(&spi->dev, admv1014_reg_disable, st->regulators);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = clk_prepare_enable(st->clkin);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_add_action_or_reset(&spi->dev, admv1014_clk_disable, st->clkin);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->nb.notifier_call = admv1014_freq_change;
-> +	ret = devm_clk_notifier_register(&spi->dev, st->clkin, &st->nb);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_add_action_or_reset(&spi->dev, admv1014_powerdown, st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Perform a software reset */
-> +	ret = __admv1014_spi_update_bits(st, ADMV1014_REG_SPI_CONTROL,
-> +					 ADMV1014_SPI_SOFT_RESET_MSK,
-> +					 FIELD_PREP(ADMV1014_SPI_SOFT_RESET_MSK, 1));
-> +	if (ret) {
-> +		dev_err(&spi->dev, "ADMV1014 SPI software reset failed.\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = __admv1014_spi_update_bits(st, ADMV1014_REG_SPI_CONTROL,
-> +					 ADMV1014_SPI_SOFT_RESET_MSK,
-> +					 FIELD_PREP(ADMV1014_SPI_SOFT_RESET_MSK, 0));
-> +	if (ret) {
-> +		dev_err(&spi->dev, "ADMV1014 SPI software reset disable failed.\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = __admv1014_spi_write(st, ADMV1014_REG_VVA_TEMP_COMP, 0x727C);
-> +	if (ret) {
-> +		dev_err(&spi->dev, "Writing default Temperature Compensation value failed.\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = __admv1014_spi_read(st, ADMV1014_REG_SPI_CONTROL, &chip_id);
-> +	if (ret)
-> +		return ret;
-> +
-> +	chip_id = (chip_id & ADMV1014_CHIP_ID_MSK) >> 4;
+> +examples:
+> +  - |
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      converter@0{
 
-Trivial but this could be a FIELD_GET()
+Missing space after address... I thought you will correct it while
+changing node name.
+
+
+> +        compatible = "adi,admv1014";
+> +        reg = <0>;
+> +        spi-max-frequency = <1000000>;
+> +        clocks = <&admv1014_lo>;
+> +        clock-names = "lo_in";
+> +        vcm-supply = <&vcm>;
+> +        vcc-if-bb-supply = <&vcc_if_bb>;
+> +        vcc-vga-supply = <&vcc_vga>;
+> +        vcc-vva-supply = <&vcc_vva>;
+> +        vcc-lna-3p3-supply = <&vcc_lna_3p3>;
+> +        vcc-lna-1p5-supply = <&vcc_lna_1p5>;
+> +        vcc-bg-supply = <&vcc_bg>;
+> +        vcc-quad-supply = <&vcc_quad>;
+> +        vcc-mixer-supply = <&vcc_mixer>;
+> +        adi,quad-se-mode = "diff";
+> +        adi,detector-enable;
+> +        adi,p1db-compensation-enable;
+> +      };
+> +    };
+> +...
+
+
+Best regards,
+Krzysztof
