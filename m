@@ -2,159 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34AFC4BCF16
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 15:50:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3344BCF31
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 15:58:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244025AbiBTOuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 09:50:32 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58528 "EHLO
+        id S244036AbiBTO40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 09:56:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237568AbiBTOub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 09:50:31 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CFD845046;
-        Sun, 20 Feb 2022 06:50:10 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id cm8so14691546edb.3;
-        Sun, 20 Feb 2022 06:50:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EFxuQ6hya/OuHvYdtbr0hoW/qhdSsZlWYvOGdY27hok=;
-        b=PGgaUGNavMME3+e4cVgMSOT6JbOJpRPhkIE+8HN78cK7BfYd7I1iPU6fxfdnYDEh6a
-         eei9Ua/M5Z+cR06MnkgTSlltHA8HjUSH+0r3toXKX0qi2DxKxVKAMfUc6HkoieyqlTJD
-         jDEDBwmUC1ZMqj7DSUCMnxl3KCYv/5u/Kwub+o4Wsw5PKnbR84ZvHcqIfbPR7aqvsWQn
-         z1zNMhmdRhsZ5/Ipm1fbketIkTHbOwj7+uMvOBx+Wc50DgsKLxpdKLzpOugtBQCowb0f
-         Pqg5LR3dAK8qku7bJCcetch2iBGljmAhRVNrjzElGXiiBlyhSQiU3AH9XdiBsey+IWLQ
-         gHyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EFxuQ6hya/OuHvYdtbr0hoW/qhdSsZlWYvOGdY27hok=;
-        b=RgVdvnfPYRRq1oAOwzL0sUV3NjMzDACsu5awSZRfT10wXq879SOxGMAbcT7Z3g6cOT
-         VDP1rpIK5uwHi6jhmiQDUa66vpRrSTWKLYKLmw0Pb6fRYDpGr4TVSHHOA/afqK/p7EmD
-         Uc3QHz4fnVB0vK8aSK7kXrcxuSlZXgBgmz6hRaTaX4Uz1p899xPHgAVNYz4Rdy1p9Q0Q
-         F1/gpagHYVWRHd21XpqEE0Nd8weMl0IdPcbqQuITb7xZo99yqSfUNmIzX3+GYQTn50Tm
-         5xjVS3q/a712U/1ZCK6ZF+2wJWX0pNcKjSnOoZ1laVwngCBN51Lju6qS3ad+myvKDhub
-         aarw==
-X-Gm-Message-State: AOAM531zYdiHrQE5cUGiHKTJk91Kq2KZg+bhSg25lrTF0k33EpK9/B+J
-        aRyqLS405TRvXR/nVDc/PTuDOI23HwU=
-X-Google-Smtp-Source: ABdhPJzifEPoru563kIdCf5OLWnn21smZSuE/Xgn2AQSWAfzHkFS6WBgPTM7ccP/Mk2vSTqV6d9pCg==
-X-Received: by 2002:a50:d088:0:b0:410:d12b:84e1 with SMTP id v8-20020a50d088000000b00410d12b84e1mr17589356edd.106.1645368608824;
-        Sun, 20 Feb 2022 06:50:08 -0800 (PST)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.gmail.com with ESMTPSA id pg26sm2299057ejb.194.2022.02.20.06.50.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Feb 2022 06:50:08 -0800 (PST)
-Date:   Sun, 20 Feb 2022 15:50:05 +0100
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Jonathan McDowell <noodles@earth.li>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S239021AbiBTO40 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 09:56:26 -0500
+Received: from 189.cn (ptr.189.cn [183.61.185.102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 468CF45AD8;
+        Sun, 20 Feb 2022 06:56:01 -0800 (PST)
+HMM_SOURCE_IP: 10.64.8.41:45934.2136022094
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+        by 189.cn (HERMES) with SMTP id EB34A100294;
+        Sun, 20 Feb 2022 22:55:55 +0800 (CST)
+Received: from  ([114.242.206.180])
+        by gateway-151646-dep-b7fbf7d79-9vctg with ESMTP id a74a3e6ba36d472c8c6f76fc73a8ac17 for mripard@kernel.org;
+        Sun, 20 Feb 2022 22:55:59 CST
+X-Transaction-ID: a74a3e6ba36d472c8c6f76fc73a8ac17
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+From:   Sui Jingfeng <15330273260@189.cn>
+To:     Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 16/18] ARM: dts: qcom: remove redundant binding from
- ipq8064 rb3011 dts
-Message-ID: <YhJVDYMfs/VzpSE8@Ansuel-xps.localdomain>
-References: <20220218002956.6590-1-ansuelsmth@gmail.com>
- <20220218002956.6590-17-ansuelsmth@gmail.com>
- <Yg+pL44ogVscn9Kw@earth.li>
- <YhFAMlSA0WYoSE6w@earth.li>
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v10 0/4] drm/lsdc: add drm driver for loongson display controller
+Date:   Sun, 20 Feb 2022 22:55:50 +0800
+Message-Id: <20220220145554.117854-1-15330273260@189.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YhFAMlSA0WYoSE6w@earth.li>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 19, 2022 at 07:08:34PM +0000, Jonathan McDowell wrote:
-> On Fri, Feb 18, 2022 at 02:11:59PM +0000, Jonathan McDowell wrote:
-> > On Fri, Feb 18, 2022 at 01:29:54AM +0100, Ansuel Smith wrote:
-> > > Mdio0_pins are now declared in ipq8064 dtsi. Usb phy are enabled by
-> > > default.
-> ...
-> > > -	mdio0_pins: mdio0_pins {
-> > > -		mux {
-> > > -			pins = "gpio0", "gpio1";
-> > > -			function = "gpio";
-> > > -			drive-strength = <8>;
-> > > -			bias-disable;
-> > > -		};
-> > > -	};
-> > > -
-> > 
-> > This sets the pins to "gpio". Your earlier patch sets them to "mdio", so
-> > removing this will break MDIO0 on the RB3011. It's likely that your
-> > fixes for MDIO/QCA8K mean that the RB3011 can be switch to use the MDIO
-> > driver rather than mdio-gpio, but that will need tested and this change
-> > alone will definitely break things.
-> 
-> I tried the below patch to switch the RB3011 to the IPQ8064 MDIO driver
-> (based on qcom,ipq8064-mdio.yaml) and get:
-> 
-> [    1.270310] qca8k 37000000.mdio-mii:10: Switch id detected 0 but expected 13
-> 
-> and none of the ports on that associated switch come up. Kernel is
-> 5.15.23 rather than latest, but there are no updates to mdio-ipq8064.c
-> in later kernels than I can see and none of the qca8k changes seem
-> relevant. Is there something else I'm missing?
->
+There is a display controller in loongson's LS2K1000 SoC and LS7A1000
+bridge chip, the display controller is a PCI device in those chips. It
+has two display pipes but with only one hardware cursor. Each way has
+a DVO interface which provide RGB888 signals, vertical & horizontal
+synchronisations, data enable and the pixel clock. Each CRTC is able to
+scanout from 1920x1080 resolution at 60Hz, the maxmium resolution is
+2048x2048 according to the hardware spec. Loongson display controllers
+are simple which require scanout buffers to be physically contiguous.
 
-I encounter an error like that when the MDIO_MASTER_EN was set to 1.
-Wonder if we should trigger a switch reset or a reset of the
-MDIO_MASTER_EN before probing the switch? (this is currently done after
-any phy read/write)
-But it's strange... Wonder if the dedicated mdio can't work on this
-device with 2 switch attached?
+For LS7A1000 bridge chip, the DC is equipped with a dedicated video RAM
+which is typically 64MB or more. In this case, VRAM helper based driver
+is intend to be used. While LS2K1000 is a SoC, only system memory is
+available. Therefore CMA helper based driver is intend to be used. It is
+possible to use VRAM helper based solution by carving out part of system
+memory as VRAM though.
 
-> 
-> diff --git a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-> index c3e3070702f9..0cafee65ca22 100644
-> --- a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-> +++ b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-> @@ -24,13 +24,13 @@ memory@42000000 {
->  		device_type = "memory";
->  	};
->  
-> -	mdio0: mdio-0 {
-> +	mdio0: mdio@37000000 {
->  		status = "okay";
-> -		compatible = "virtual,mdio-gpio";
-> -		gpios = <&qcom_pinmux 1 GPIO_ACTIVE_HIGH>,
-> -			<&qcom_pinmux 0 GPIO_ACTIVE_HIGH>;
-> +		compatible = "qcom,ipq8064-mdio";
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> +		reg = <0x37000000 0x200000>;
-> +		clocks = <&gcc GMAC_CORE1_CLK>;
->  
->  		pinctrl-0 = <&mdio0_pins>;
->  		pinctrl-names = "default";
-> @@ -318,7 +318,7 @@ mux {
->  	mdio0_pins: mdio0_pins {
->  		mux {
->  			pins = "gpio0", "gpio1";
-> -			function = "gpio";
-> +			function = "mdio";
->  			drive-strength = <8>;
->  			bias-disable;
->  		};
-> 
-> J.
-> 
-> -- 
-> /-\                             |  Shall I call the United Nations?
-> |@/  Debian GNU/Linux Developer |
-> \-                              |
+For LS7A1000, there are 4 dedicated GPIOs whose control register is
+located at the DC register space, They are used to emulate two way i2c.
+One for DVO0, another for DVO1. LS2K1000 and LS2K0500 SoC don't have such
+GPIO hardwared, they grab i2c adapter from other module, either general
+purpose GPIO emulated i2c or hardware i2c adapter.
+
+    +------+            +-----------------------------------+
+    | DDR4 |            |  +-------------------+            |
+    +------+            |  | PCIe Root complex |   LS7A1000 |
+       || MC0           |  +--++---------++----+            |
+  +----------+  HT 3.0  |     ||         ||                 |
+  | LS3A4000 |<-------->| +---++---+  +--++--+    +---------+   +------+
+  |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| VRAM |
+  +----------+          | +--------+  +-+--+-+    +---------+   +------+
+       || MC1           +---------------|--|----------------+
+    +------+                            |  |
+    | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
+    +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DVI/HDMI
+                      +-------+                      +------+
+
+The above picture give a simple usage of LS7A1000, note that the encoder
+is not necessary adv7125 or tfp410, other candicates can be ch7034b,
+sil9022 ite66121 and lt8618 etc.
+
+v2: Fixup warnings reported by kernel test robot
+
+v3: Fix more grammar mistakes in Kconfig reported by Randy Dunlap and give
+    more details about lsdc.
+
+v4:
+   1) Add dts required and explain why device tree is required.
+   2) Give more description about lsdc and VRAM helper based driver.
+   3) Fix warnings reported by kernel test robot.
+   4) Introduce stride_alignment member into struct lsdc_chip_desc, the
+      stride alignment is 256 bytes for ls7a1000, ls2k1000 and ls2k0500.
+
+v5:
+   1) Using writel and readl replace writeq and readq, to fix kernel test
+      robot report build error on other archtecture.
+   2) Set default fb format to XRGB8888 at crtc reset time.
+   3) Fix typos.
+
+v6:
+   1) Explain why we are not switch to drm dridge subsystem on ls2k1000.
+   2) Explain why tiny drm driver is not suitable for us.
+   3) Give a short description of the trival dirty uppdate implement based
+      on CMA helper.
+   4) Code clean up
+
+v7:
+   1) Remove select I2C_GPIO and I2C_LS2X in Kconfig, it is not ready now
+   2) Licensing issues are fixed suggested by Krzysztof Kozlowski.
+   3) Remove lsdc_pixpll_print(), part of it move to debugfs.
+   4) Set prefer_shadow to true if vram based driver is in using.
+   5) Replace double blank lines with single line in all files.
+   6) Verbose cmd line parameter is replaced with drm_dbg()
+   7) All warnnings reported by ./scripts/checkpatch.pl --strict are fixed
+   8) Get edid from dtb support is removed as suggested by Maxime Ripard
+   9) Fix typos and various improvement
+
+v8:
+   1) Drop damage update implement and its command line.
+   2) Drop DRM_LSDC_VRAM_DRIVER config option as suggested by Maxime.
+   3) Deduce DC's identification from its compatible property.
+   4) Drop the board specific dts patch.
+   5) Add documention about the display controller device node.
+
+v9:
+   1) Fix the warnings reported by checkpatch script and fix typos
+
+v10:
+   1) Pass `make dt_binding_check` validation
+   2) Fix typos
+   3) Fix warnings reported by kernel test robot
+
+suijingfeng (4):
+  MIPS: Loongson64: dts: update the display controller device node
+  Documentation/dt: Add descriptions for loongson display controller
+  drm/lsdc: add drm driver for loongson display controller
+  MAINTAINERS: add maintainers for DRM LSDC driver
+
+ .../loongson/loongson,display-controller.yaml | 122 ++++
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  |   8 +
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +-
+ drivers/gpu/drm/Kconfig                       |   2 +
+ drivers/gpu/drm/Makefile                      |   1 +
+ drivers/gpu/drm/lsdc/Kconfig                  |  21 +
+ drivers/gpu/drm/lsdc/Makefile                 |  13 +
+ drivers/gpu/drm/lsdc/lsdc_connector.c         | 331 +++++++++
+ drivers/gpu/drm/lsdc/lsdc_connector.h         |  35 +
+ drivers/gpu/drm/lsdc/lsdc_crtc.c              | 338 +++++++++
+ drivers/gpu/drm/lsdc/lsdc_drv.c               | 672 ++++++++++++++++++
+ drivers/gpu/drm/lsdc/lsdc_drv.h               | 205 ++++++
+ drivers/gpu/drm/lsdc/lsdc_encoder.c           |  51 ++
+ drivers/gpu/drm/lsdc/lsdc_i2c.c               | 195 +++++
+ drivers/gpu/drm/lsdc/lsdc_i2c.h               |  37 +
+ drivers/gpu/drm/lsdc/lsdc_irq.c               |  57 ++
+ drivers/gpu/drm/lsdc/lsdc_irq.h               |  17 +
+ drivers/gpu/drm/lsdc/lsdc_plane.c             | 517 ++++++++++++++
+ drivers/gpu/drm/lsdc/lsdc_pll.c               | 573 +++++++++++++++
+ drivers/gpu/drm/lsdc/lsdc_pll.h               |  87 +++
+ drivers/gpu/drm/lsdc/lsdc_regs.h              | 199 ++++++
+ 22 files changed, 3492 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+ create mode 100644 drivers/gpu/drm/lsdc/Kconfig
+ create mode 100644 drivers/gpu/drm/lsdc/Makefile
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_connector.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_connector.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_crtc.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_drv.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_drv.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_encoder.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_i2c.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_i2c.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_irq.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_irq.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_plane.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_pll.c
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_pll.h
+ create mode 100644 drivers/gpu/drm/lsdc/lsdc_regs.h
 
 -- 
-	Ansuel
+2.25.1
+
