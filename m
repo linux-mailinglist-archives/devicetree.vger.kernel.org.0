@@ -2,124 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05FDD4BCE2E
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 12:35:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E1624BCE40
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 12:42:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235856AbiBTLgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 06:36:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35520 "EHLO
+        id S237190AbiBTLmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 06:42:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230099AbiBTLgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 06:36:10 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F2331DDE
-        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 03:35:48 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B8BA925B;
-        Sun, 20 Feb 2022 12:35:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645356946;
-        bh=h3TjgobjOErw+y9+H+t1kNGzyjvsPkb5YVbgo6gsbGc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nbCzhblTnjBafjEob+BihYn6lcKAyV309qHrF9VHUekgFEdE+g/zk0Z/bCtrbK2qp
-         mS2v5+FmNzeBXbS2i64JcAvKUxr943i7X2NFHV7Xa5CEVA6Ey0kEhW1AJffa2zyByJ
-         cTGWWHxvlvl1sfjjSPlRGtHi/rtxHR0o2sn/7r3E=
-Date:   Sun, 20 Feb 2022 13:35:36 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        patchwork-lst@pengutronix.de
-Subject: Re: [PATCH v2 3/9] soc: imx: gpcv2: add support for i.MX8MP power
- domains
-Message-ID: <YhIniLdFtcpODXBN@pendragon.ideasonboard.com>
-References: <20220207192547.1997549-1-l.stach@pengutronix.de>
- <20220207192547.1997549-3-l.stach@pengutronix.de>
- <YhAlfAunReS14b/E@pendragon.ideasonboard.com>
+        with ESMTP id S236495AbiBTLmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 06:42:53 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A822ACD
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 03:42:32 -0800 (PST)
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7C7C73FDC7
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 11:42:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645357351;
+        bh=o2BZTZUqbj/n7i9reyFZoNn64d0OySHScMS04/ePEFY=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=ShBnhGtgeR7uApu//0XzctU1DeMxqF7/BMv/kpESjk5JGIFNBKu7JEaAiA95I2476
+         vmtzgcz7Ld2Zzq38VP3ssnFyougyposteil7PAz5YH/Z4wqzpGUU8oUN9lDgU1hb/I
+         HOlHmURbNzOkDvvTmxaYDADwRVMYKEAal4YHWcRCMmZfLSHW2mzxp2Zqnwk1YwFZZO
+         Exrw4mCX84LH09rQpXiesS5fqht44DJBxZIGororhcgYE3VBsAxcQUHgZOKb5gca8L
+         xuht/g45bY+g+RxECCV5NScEq9NgcJDPqFuL+mUabS7wficVD8JyiTDIgFv38/fHxW
+         641dTN+I4qENA==
+Received: by mail-wr1-f72.google.com with SMTP id g11-20020adfa48b000000b001e57dfb3c38so5784460wrb.2
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 03:42:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=o2BZTZUqbj/n7i9reyFZoNn64d0OySHScMS04/ePEFY=;
+        b=skwDaReJKm8gT1fwBVdUbdclXJU+aGBDjolgvJsuIPIbuV4iGH+anj8M5UCZv78YmJ
+         tGDerrurwM4aNzlFOCAcnRVAVhrGw4P1PCDEdC8yWa1dU5gwQKWkQPuRNGfvQQGAmruw
+         8OSIEGHMnDoc/MyconZVloyfhw3LVps7hKk36czZAd/X0TOsJIPzOPorfEBFlfhw9EGS
+         BDrGe8NDVwJDQ5Zv80/HilwewXSSLpsHyFmAaL0JeClEyL4MxIE4eh4pS08TCz3IZPIi
+         72IbRAZt9WXhjsuG0vAfDoZWj0QQ4yGnFSJJyVKyYiKpYp93D3ZPVgpQyWPSD85ApqnT
+         cRBA==
+X-Gm-Message-State: AOAM532z3BOI5lyp6BT7b52Zu8qPnCbrzeacGuJvbZ0jxadi0Q5q6F9P
+        tR5zns0dX7yImmk2Y/HrYaP0b9Uf5QlFIOtgyhf4lqgcu+zvhs/rv0WIiQ11mJhwbvzkgHErncc
+        d3A/sOG6UvE4mWWIAQBHzSw53Eg7cuOwQwGw4E38=
+X-Received: by 2002:adf:c38e:0:b0:1e4:a236:14bf with SMTP id p14-20020adfc38e000000b001e4a23614bfmr12033884wrf.427.1645357350861;
+        Sun, 20 Feb 2022 03:42:30 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwfsYo4GwUA1+Km9MI4HVMy2sCPrjyWlwi5jX5paio6IB4iiHrEaJoo204gv97MNCIvOELM6g==
+X-Received: by 2002:adf:c38e:0:b0:1e4:a236:14bf with SMTP id p14-20020adfc38e000000b001e4a23614bfmr12033870wrf.427.1645357350618;
+        Sun, 20 Feb 2022 03:42:30 -0800 (PST)
+Received: from [192.168.0.117] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id z17sm4585962wmf.11.2022.02.20.03.42.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Feb 2022 03:42:30 -0800 (PST)
+Message-ID: <836e3c76-0d4a-6592-5a9f-c664fb056d23@canonical.com>
+Date:   Sun, 20 Feb 2022 12:42:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YhAlfAunReS14b/E@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 2/3] dt-bindings:iio:amplifiers: add ada4250 doc
+Content-Language: en-US
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Antoniu Miclaus <antoniu.miclaus@analog.com>, robh+dt@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220214094115.48548-1-antoniu.miclaus@analog.com>
+ <20220214094115.48548-2-antoniu.miclaus@analog.com>
+ <69cc2a64-c273-f2f6-b25b-73fc2248bb18@canonical.com>
+ <20220220114816.50a57225@jic23-huawei>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220220114816.50a57225@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
-
-On Sat, Feb 19, 2022 at 01:02:21AM +0200, Laurent Pinchart wrote:
-> On Mon, Feb 07, 2022 at 08:25:41PM +0100, Lucas Stach wrote:
-> > This adds driver support for all the GPC power domains found on
-> > the i.MX8MP SoC.
-> > 
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > ---
-> >  drivers/soc/imx/gpcv2.c | 387 +++++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 386 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> > index 01f46b078df3..a7c92bdfc53b 100644
-> > --- a/drivers/soc/imx/gpcv2.c
-> > +++ b/drivers/soc/imx/gpcv2.c
-
-[snip]
-
-> > @@ -137,6 +183,21 @@
-> >  #define IMX8MN_DISPMIX_HSK_PWRDNREQN		BIT(7)
-> >  #define IMX8MN_HSIO_HSK_PWRDNREQN		BIT(5)
-> >  
-> > +#define IMX8MP_MEDIAMIX_PWRDNACKN		BIT(3)
+On 20/02/2022 12:48, Jonathan Cameron wrote:
+> On Sun, 20 Feb 2022 11:53:55 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
 > 
-> This should be bit 30.
+>> On 14/02/2022 10:41, Antoniu Miclaus wrote:
+>>> Add device tree bindings for the ADA4250 driver.  
+>>
+>> Please put the bindings patch as first in the series.
+>>
+>>>
+>>> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+>>> ---
+>>>  .../bindings/iio/amplifiers/adi,ada4250.yaml  | 48 +++++++++++++++++++
+>>>  1 file changed, 48 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml b/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
+>>> new file mode 100644
+>>> index 000000000000..22283ab48903
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
+>>> @@ -0,0 +1,48 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/iio/amplifiers/adi,ada4250.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: ADA4250 Programmable Gain Instrumentation Amplifier
+>>> +
+>>> +maintainers:
+>>> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+>>> +
+>>> +description: |
+>>> +  Precision Low Power, 110kHz, 26uA, Programmable Gain Instrumentation Amplifier.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - adi,ada4250
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  avdd-supply: true  
+>>
+>> Needs a description, not a true.
+> 
+> For a generic supply where all we really have is a name, I'm not sure
+> a description adds anything.  Of course, if there is more info that can be provided
+> a description is great to have.
 
-With this fixed,
+Hm, OK, if the description would be "AVDD supply", then indeed does not
+make much sense.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+>>
+>> As Jonathan said, you should allow spi-max-frequency (so
+>> spi-max-frequency: true).
+>>
+>> No io-channel-cells?
+> 
+> I'm not sure you'd have a consumer of this type of device, so
+> it may not make sense...
 
-with a soon to be posted driver for the MEDIA_BLK_CTRL.
+OK.
 
-While this shouldn't be a blocker, I'm wondering how we should deal with
-the NOC configuration that TF-A handles in the power domain code ([1]).
-The reference manual doesn't document the registers, which doesn't help.
 
-There are also two registers in the MEDIA_BLK_CTRL that are specific to
-the LCDIF and ISI, see [2]. Would you recommend dealing with them in the
-imx8m-blk-ctrl driver (maybe in the power domain notifier, the same way
-we set bit 8 in the CLK_EN register), or through a syscon phandle
-directly in the LCDIF and ISI drivers ?
-
-[1] https://source.codeaurora.org/external/qoriq/qoriq-components/atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf-5.10.72-2.2.0#n156
-[2] https://source.codeaurora.org/external/qoriq/qoriq-components/atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf-5.10.72-2.2.0#n146
-
-> > +#define IMX8MP_HDMIMIX_PWRDNACKN		BIT(29)
-> > +#define IMX8MP_HSIOMIX_PWRDNACKN		BIT(28)
-> > +#define IMX8MP_VPUMIX_PWRDNACKN			BIT(26)
-> > +#define IMX8MP_GPUMIX_PWRDNACKN			BIT(25)
-> > +#define IMX8MP_MLMIX_PWRDNACKN			(BIT(23) | BIT(24))
-> > +#define IMX8MP_AUDIOMIX_PWRDNACKN		(BIT(20) | BIT(31))
-> > +#define IMX8MP_MEDIAMIX_PWRDNREQN		BIT(14)
-> > +#define IMX8MP_HDMIMIX_PWRDNREQN		BIT(13)
-> > +#define IMX8MP_HSIOMIX_PWRDNREQN		BIT(12)
-> > +#define IMX8MP_VPUMIX_PWRDNREQN			BIT(10)
-> > +#define IMX8MP_GPUMIX_PWRDNREQN			BIT(9)
-> > +#define IMX8MP_MLMIX_PWRDNREQN			(BIT(7) | BIT(8))
-> > +#define IMX8MP_AUDIOMIX_PWRDNREQN		(BIT(4) | BIT(15))
-> > +
-> >  /*
-> >   * The PGC offset values in Reference Manual
-> >   * (Rev. 1, 01/2018 and the older ones) GPC chapter's
-
-[snip]
-
--- 
-Regards,
-
-Laurent Pinchart
+Best regards,
+Krzysztof
