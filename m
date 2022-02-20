@@ -2,114 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 240394BD1ED
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 22:27:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFD6C4BD20D
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 22:37:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245038AbiBTVXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 16:23:20 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34176 "EHLO
+        id S235508AbiBTVbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 16:31:22 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245090AbiBTVXT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 16:23:19 -0500
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF174377D0;
-        Sun, 20 Feb 2022 13:22:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645392177; x=1676928177;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2MWCVpu+jSUWZjvnLkEhW8kS0xqlx71w6KIQ0s+e4/A=;
-  b=go9f6plBGTbpnyU8vwHjVINFBGne8hTSfrveXqRh0fpQBgQiS5ZD5huI
-   1JVDtdw5CO65dCeNqya9hJVyqmjfqYwgIdFH7gOdG+LjP/6N/0EiHM1cA
-   sxNVdyQyEbKRFMRi6lrYKMNsplEVfeu6zCENM44O6uRkdCCpe/Vq3EJEE
-   Y/obmYX41VdWJt4ZWTUK9ujQVwsWqzOvlMeCE/PkMcAcDdz743r617I6d
-   hCebo7g0kuB/4j701ByaCwDnaE41eanzs7Uczd5If7H+GDXiouThR/9pp
-   WLsb0PHsOdl9haLZf11a6d7vZkoVxNfGDUSP6hp1nvbdktzn3eUqAdFOs
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10264"; a="312145691"
-X-IronPort-AV: E=Sophos;i="5.88,384,1635231600"; 
-   d="scan'208";a="312145691"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 13:22:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,384,1635231600"; 
-   d="scan'208";a="683020262"
-Received: from lkp-server01.sh.intel.com (HELO da3212ac2f54) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 20 Feb 2022 13:22:53 -0800
-Received: from kbuild by da3212ac2f54 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nLtfR-0000qC-0x; Sun, 20 Feb 2022 21:22:53 +0000
-Date:   Mon, 21 Feb 2022 05:22:44 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Laetitia MARIOTTINI <laetitia.mariottini@se.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH 4/8] dma: dmamux: Introduce RZN1 DMA router support
-Message-ID: <202202210543.GR8q2zw2-lkp@intel.com>
-References: <20220218181226.431098-5-miquel.raynal@bootlin.com>
+        with ESMTP id S229960AbiBTVbV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 16:31:21 -0500
+Received: from mx2.smtp.larsendata.com (mx2.smtp.larsendata.com [91.221.196.228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D57041625
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 13:30:59 -0800 (PST)
+Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
+        by mx2.smtp.larsendata.com (Halon) with ESMTPS
+        id 7012d53f-9294-11ec-b2df-0050568cd888;
+        Sun, 20 Feb 2022 21:31:17 +0000 (UTC)
+Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sam@ravnborg.org)
+        by mail01.mxhotel.dk (Postfix) with ESMTPSA id 238C8194B05;
+        Sun, 20 Feb 2022 22:30:59 +0100 (CET)
+Date:   Sun, 20 Feb 2022 22:30:54 +0100
+X-Report-Abuse-To: abuse@mxhotel.dk
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>
+Cc:     dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        maxime@cerno.tech, robh+dt@kernel.org, thierry.reding@gmail.com
+Subject: Re: [PATCH v4 3/3] drm/tiny: Add MIPI DBI compatible SPI driver
+Message-ID: <YhKzDi9CBrjLGm/X@ravnborg.org>
+References: <35cd42a3-5183-2f21-8728-ee9d65dd1740@tronnes.org>
+ <388f7dc3-afcd-e4c3-592f-8e8401819371@tronnes.org>
+ <YhKdEuU3qoY/x/ie@ravnborg.org>
+ <5357536f-c2ff-d778-dbd6-87c8079ab855@tronnes.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220218181226.431098-5-miquel.raynal@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <5357536f-c2ff-d778-dbd6-87c8079ab855@tronnes.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+Hi Noralf,
 
-I love your patch! Yet something to improve:
+> >> 	    mode->flags) {
+> >> 		dev_err(dev, "%pOF: panel-timing out of bounds\n", dev->of_node);
+> >> 		return -EINVAL;
+> >> 	}
+> > With the display_timing => drm_display_mode I think the above is no
+> > longer required.
+> > 
+> 
+> I still need to verify the values to ensure that front_porch and
+> sync_len are zero. Maybe I need a comment now to tell what I'm checking
+> since I'm further away from the DT values:
+> 
+> /*
+>  * Make sure width and height are set and that only back porch and
+>  * pixelclock are set in the other timing values. Also check that
+>  * width and height don't exceed the 16-bit value specified by MIPI DCS.
+>  */
+Yes, that would be nice.
+> 
+> >>
+> >> 	/* The driver doesn't use the pixel clock but it is mandatory so fake
+> >> one if not set */
+> >> 	if (!mode->pixelclock)
+> >> 		mode->pixelclock = mode->htotal * mode->vtotal * 60 / 1000;
+> >>
+> >> 	dbidev->top_offset = vback_porch;
+> >> 	dbidev->left_offset = hback_porch;
+> >>
+> >> 	return 0;
+> >> }
+> >>
+> >>
+> >> int of_get_drm_panel_display_mode(struct device_node *np,
+> >> 				  struct drm_display_mode *dmode, u32 *bus_flags)
+> >> {
+> > Not sure about the bus_flags argument here - seems misplaced.
+> > 
+> 
+> I did the same as of_get_drm_display_mode(), don't panel drivers need
+> the bus flags?
 
-[auto build test ERROR on geert-renesas-devel/next]
-[also build test ERROR on geert-renesas-drivers/renesas-clk robh/for-next linus/master v5.17-rc4 next-20220217]
-[cannot apply to vkoul-dmaengine/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+In my haste I missed the display_timing combines flags for the bus and
+the mode - so yes it is needed.
 
-url:    https://github.com/0day-ci/linux/commits/Miquel-Raynal/RZN1-DMA-support/20220220-182519
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
-config: microblaze-randconfig-r026-20220220 (https://download.01.org/0day-ci/archive/20220221/202202210543.GR8q2zw2-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/df0b7e58b46473e407c2c552f843d0628ad6875d
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Miquel-Raynal/RZN1-DMA-support/20220220-182519
-        git checkout df0b7e58b46473e407c2c552f843d0628ad6875d
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=microblaze SHELL=/bin/bash
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> 
+> >> 	u32 width_mm = 0, height_mm = 0;
+> >> 	struct display_timing timing;
+> >> 	struct videomode vm;
+> >> 	int ret;
+> >>
+> >> 	ret = of_get_display_timing(np, "panel-timing", &timing);
+> >> 	if (ret)
+> >> 		return ret;
+> >>
+> >> 	videomode_from_timing(&timing, vm);
+> >>
+> >> 	memset(dmode, 0, sizeof(*dmode));
+> >> 	drm_display_mode_from_videomode(&vm, dmode);
+> >> 	if (bus_flags)
+> >> 		drm_bus_flags_from_videomode(&vm, bus_flags);
+> > 
+> > This does a:
+> > display_timing => video_mode => drm_display_display_mode
+> > 
+> > We could do a:
+> > display_timing => drm_display_mode.
+> > 
+> 
+> I'll leave this to others to sort out. I want the function to look the
+> same as of_get_drm_display_mode() and it uses videomode. If videomode
+> goes away both can be fixed at the same time.
 
-All errors (new ones prefixed by >>):
+When I have dig myself out of the bridge hole I am in I may take a
+look at this.
 
-   microblaze-linux-ld: drivers/dma/dw/dmamux.o: in function `rzn1_dmamux_init':
->> (.text+0x45c): multiple definition of `init_module'; drivers/dma/dw/platform.o:(.init.text+0x0): first defined here
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+	Sam
