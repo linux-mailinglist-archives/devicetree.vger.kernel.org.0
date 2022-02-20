@@ -2,112 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44DBC4BCEF5
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 15:35:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEAA14BCF15
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 15:50:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243424AbiBTO10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 09:27:26 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60488 "EHLO
+        id S235931AbiBTOpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 09:45:31 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231159AbiBTO1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 09:27:25 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E121EC42;
-        Sun, 20 Feb 2022 06:27:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2ADBAB80D44;
-        Sun, 20 Feb 2022 14:27:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D6FBC340E8;
-        Sun, 20 Feb 2022 14:26:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645367218;
-        bh=RTigvJDntL6YVrCZiZEnoHivr3No4Poo1ugUd6o9OOA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=qZeLd9QNm+MvELxBeIy46L4kJE97lrRj+vtOl6ACAkDZN4nGM9TDoQuju06Xy2Z+D
-         xBF1+jdwFExfnWWQBjCReGy3gJQp2OOjC702qMFzdtL4EP+GCT8RlCX4e5IQtq1rei
-         ETA8iwYVato7MjgSUITt3wiYuU2/fvfegn0mgtPM3+0CbMV29PfQX6J88LH1fGGsdD
-         upcm7NkRgYiMNige18VHZp/nW7uLYVBRnUzr0FkdLwWEnX1Kkyf049Ctz6gjLE2dgz
-         Z5ni7iFZRFyoPaRSUE6uA5QMwzgezzW85Zk51EkCjtyqcsysJt+4Y+7RG+1QJE6ShP
-         OXp5HlHRpNLUA==
-Date:   Sun, 20 Feb 2022 14:33:48 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Jagath Jog J <jagathjog1996@gmail.com>
-Cc:     lars@metafoo.de, andy.shevchenko@gmail.com, sst@poczta.fm,
-        robh+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/7] iio: potentiometer: Add support for DS3502
-Message-ID: <20220220143348.44f71d62@jic23-huawei>
-In-Reply-To: <20220220024632.4183-1-jagathjog1996@gmail.com>
-References: <20220220024632.4183-1-jagathjog1996@gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S233440AbiBTOpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 09:45:30 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1E3153701;
+        Sun, 20 Feb 2022 06:45:08 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id s24so17897601edr.5;
+        Sun, 20 Feb 2022 06:45:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=9WBIrLV7a7ITqe2gJcFg0OaqJzdOIMlPPMgtT7XmAPU=;
+        b=H0+WHetxE3GHBnp1GDl3r6+qGiyJk3Rrd5db2S2XBkX0f4gUOf9+dOiE601TZBMNvK
+         IL47+O1eoRDnhJpw/ehMBCkw7lIM6BGDwr94NnWAZ89hl/ck/F1mSmYZuxRmlMmoc8zH
+         +w1NtPAN0whbKWUXSxHj+eoScSeggIAeE3ZunxCAfhqJlAEedXnP9Q2gNsiu/MmRGALz
+         8F07UMSrKtY4BzuqnPlOpklayIVU8RXWXJXuChOj1r0kvVSraITTXGjBQaqu13C4o5kl
+         BLexyC20HFa5vKBuWmmJ+OuOgMEJse7DLQQBR2n6vSPp3oMAGkuG+isfsE+cuDJFpfhX
+         o6Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9WBIrLV7a7ITqe2gJcFg0OaqJzdOIMlPPMgtT7XmAPU=;
+        b=pcQlYFnj2X5brC9pmpM2/hANfGEgqQ4g+zhDqdhgN8kgmGtWk0Ps7ORs5zXaLHiGPU
+         j/ud9OjZwpvLEJMAJHeFp3PxFDO0rpWYbv0vJosxZQYQjUnfFfA/PMhq8UqdFiPVh5SI
+         QQSXVc4yZW32KjWrbCToVYQQVj90j7XRRBQHX0HbdDVS8t76LPvnSbmPl/fSceXtWVE6
+         t99og57lKCtNdt2hTeZymHfQh8n68dpwuFnwA0CB3Hp8NT30Gh4WFbBGX4PUMX1cpyck
+         2+kD/O8/uC7XaCkc0ULIrXKYgs3sYbSJ5WXwLbe5MMGsV1QFDEUZ/6sk32AR6+ZTOgx6
+         gxCQ==
+X-Gm-Message-State: AOAM531ZD61RLHCvW3h+V8KbuKGzQYp/Mt1dAtzhTddsaJXIyHKSfWKJ
+        W2indIBXK35VSh3On/YDvpG8Eprhh5Q=
+X-Google-Smtp-Source: ABdhPJw69n/kzMU1yI5alkes24zOZOzztseCW0XJxNuMy+DzX+BR7QzCWzxYjqZgd7jVRDahFEO0BA==
+X-Received: by 2002:a50:aa9d:0:b0:40f:d653:ff0f with SMTP id q29-20020a50aa9d000000b0040fd653ff0fmr17436302edc.114.1645368307039;
+        Sun, 20 Feb 2022 06:45:07 -0800 (PST)
+Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.gmail.com with ESMTPSA id x12sm7133581edv.57.2022.02.20.06.45.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Feb 2022 06:45:06 -0800 (PST)
+Date:   Sun, 20 Feb 2022 15:44:54 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Jonathan McDowell <noodles@earth.li>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 16/18] ARM: dts: qcom: remove redundant binding from
+ ipq8064 rb3011 dts
+Message-ID: <YhJT5gD2TuwucnQX@Ansuel-xps.localdomain>
+References: <20220218002956.6590-1-ansuelsmth@gmail.com>
+ <20220218002956.6590-17-ansuelsmth@gmail.com>
+ <Yg+pL44ogVscn9Kw@earth.li>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yg+pL44ogVscn9Kw@earth.li>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 20 Feb 2022 08:16:25 +0530
-Jagath Jog J <jagathjog1996@gmail.com> wrote:
-
-> Add dt-bindings and support for Maxim DS3502 into existing ds1803 driver.
-> DS3502 is a 7 bit Nonvolatile Digital Potentiometer.
-
-Looks good to me.  Will leave it on list a few more days though
-to allow others to comment if they wish.
-
-Nice work,
-
-Thanks,
-
-Jonathan
-
+On Fri, Feb 18, 2022 at 02:11:59PM +0000, Jonathan McDowell wrote:
+> On Fri, Feb 18, 2022 at 01:29:54AM +0100, Ansuel Smith wrote:
+> > Mdio0_pins are now declared in ipq8064 dtsi. Usb phy are enabled by
+> > default.
+> > 
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/qcom-ipq8064-rb3011.dts | 17 -----------------
+> >  1 file changed, 17 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
+> > index 0982b6214fb7..ddc9cc49ab60 100644
+> > --- a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
+> > +++ b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
+> > @@ -259,10 +259,6 @@ &gsbi7_serial {
+> >  	status = "okay";
+> >  };
+> >  
+> > -&hs_phy_1 {
+> > -	status = "okay";
+> > -};
+> > -
+> >  &nand {
+> >  	status = "okay";
+> >  
+> > @@ -309,15 +305,6 @@ mux {
+> >  		};
+> >  	};
+> >  
+> > -	mdio0_pins: mdio0_pins {
+> > -		mux {
+> > -			pins = "gpio0", "gpio1";
+> > -			function = "gpio";
+> > -			drive-strength = <8>;
+> > -			bias-disable;
+> > -		};
+> > -	};
+> > -
 > 
-> Changes since v3:
-> 1. Dropped the chip type switch statement in read_raw function.
-> 2. Added device specific read function pointer in their structure.
-> 3. Added two separate functions to read values from two different types
->    of devices.
-> 
-> Changes since v2:
-> 1. Addressed Andy Shevchenko comments.
-> 2. Adding device name in Kconfig file.
-> 3. Spliting up of patch into 3 patches.
-> 4. Adding channel info into ds1803_cfg in separate patch.
-> 5. Dropping the use of enum in firmware data instead using previous
->    pointer method for accessing device specific data.
-> 6. Separate patch for using firmware provided data instead of 
->    id->driver_data.
-> 7. Adding DS3502 support in separate patch.
-> 
-> Changes since v1:
-> 1. Fixes the alignment to match the open parenthesis in separate patch.
-> 2. Adding available functionality for ds1803 driver in separate patch.
-> 3. Moving maxim_potentiometer members into ds1803_cfg structure.
-> 4. Droping of the INFO_ENABLE channel type.
-> 5. Firmware entry with data is used instead of id->driver_data to
->    to retrieve the chip specific data.
-> 
-> Jagath Jog J (7):
->   iio: potentiometer: Alignment to match the open parenthesis
->   iio: potentiometer: Add available functionality
->   iio: potentiometer: Add channel information in device data
->   iio: potentiometer: Change to firmware provided data
->   iio: potentiometer: Add device specific read_raw function
->   iio: potentiometer: Add support for Maxim DS3502
->   dt-bindings: iio: potentiometer: Add Maxim DS3502 in trivial-devices
-> 
->  .../devicetree/bindings/trivial-devices.yaml  |   2 +
->  drivers/iio/potentiometer/Kconfig             |   6 +-
->  drivers/iio/potentiometer/ds1803.c            | 153 +++++++++++++-----
->  3 files changed, 121 insertions(+), 40 deletions(-)
+> This sets the pins to "gpio". Your earlier patch sets them to "mdio", so
+> removing this will break MDIO0 on the RB3011. It's likely that your
+> fixes for MDIO/QCA8K mean that the RB3011 can be switch to use the MDIO
+> driver rather than mdio-gpio, but that will need tested and this change
+> alone will definitely break things.
 > 
 
+I could be wrong but I remember that before the mdio driver we used the
+mdio-gpio driver with the pins set to mdio function without problems.
+
+> >  	mdio1_pins: mdio1_pins {
+> >  		mux {
+> >  			pins = "gpio10", "gpio11";
+> > @@ -358,10 +345,6 @@ mux {
+> >  	};
+> >  };
+> >  
+> > -&ss_phy_1 {
+> > -	status = "okay";
+> > -};
+> > -
+> >  &usb3_1 {
+> >  	pinctrl-0 = <&usb1_pwr_en_pins>;
+> >  	pinctrl-names = "default";
+> > -- 
+> > 2.34.1
+> > 
+> 
+> J.
+> 
+> -- 
+> /-\                             |  Even the Evening Herald slags me
+> |@/  Debian GNU/Linux Developer |                off.
+> \-                              |
+
+-- 
+	Ansuel
