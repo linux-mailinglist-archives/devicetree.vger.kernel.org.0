@@ -2,69 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 421D74BCE02
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 11:38:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A82C4BCE07
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 11:50:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231834AbiBTKjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 05:39:05 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36472 "EHLO
+        id S229507AbiBTKvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 05:51:08 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229788AbiBTKjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 05:39:05 -0500
-Received: from out28-146.mail.aliyun.com (out28-146.mail.aliyun.com [115.124.28.146])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F9B4C40F;
-        Sun, 20 Feb 2022 02:38:43 -0800 (PST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1311721|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0279972-0.00820433-0.963799;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047193;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=5;RT=5;SR=0;TI=SMTPD_---.MslCD3M_1645353518;
-Received: from 192.168.10.152(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.MslCD3M_1645353518)
-          by smtp.aliyun-inc.com(33.37.72.206);
-          Sun, 20 Feb 2022 18:38:39 +0800
-Subject: Re: [PATCH v3 0/3] Add SMP/SMT support for Ingenic sysost driver.
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1643957682-39450-1-git-send-email-zhouyanjie@wanyeetech.com>
-Message-ID: <247a098a-67df-a451-86c9-800c39af80d2@wanyeetech.com>
-Date:   Sun, 20 Feb 2022 18:38:38 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        with ESMTP id S229480AbiBTKvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 05:51:08 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66DAC2ACB;
+        Sun, 20 Feb 2022 02:50:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645354244; x=1676890244;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XrfqCSj6wxGMuWTz7BPscifaGhiC5e7JhWuvazwKhxg=;
+  b=bRhQjG/PVzR9FP4dq+QcPvZuJHO3KqcMDZEiEyKLoQmitpfhi5RHtSMU
+   4rSt2/oN+ILfkBsVF/O9YJ1QM+s8ZJx0c1N3CZDN2F5LCLbrOyt3Mm26r
+   tDJMESRLIQF8cHY31lBqgRju9vyPdw6NH3HKx+EUQb2a0zZV/wtofPNhg
+   WcrY93ixsZ3AUMB9lL6wsfU++YDHggs6XbL4TdxH7RiVAnRAHWB6dffYv
+   RMtECvTF40ia0CupFruBWjaqVitourQXY/oTcr4fDeYuCKxHzmE4BxA7A
+   hREUE3dUvDACBHdgiUR3dscSJamJSAveFi1yNgxaP5o0JgZ9p0Q8+H++0
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10263"; a="248944311"
+X-IronPort-AV: E=Sophos;i="5.88,383,1635231600"; 
+   d="scan'208";a="248944311"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 02:50:44 -0800
+X-IronPort-AV: E=Sophos;i="5.88,383,1635231600"; 
+   d="scan'208";a="775716675"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 02:50:40 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nLjml-006UU3-OX;
+        Sun, 20 Feb 2022 12:49:47 +0200
+Date:   Sun, 20 Feb 2022 12:49:47 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Viresh Kumar <vireshk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Laetitia MARIOTTINI <laetitia.mariottini@se.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>
+Subject: Re: [PATCH 5/8] dma: dw: Avoid partial transfers
+Message-ID: <YhIcyyBp53LnMbjU@smile.fi.intel.com>
+References: <20220218181226.431098-1-miquel.raynal@bootlin.com>
+ <20220218181226.431098-6-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-In-Reply-To: <1643957682-39450-1-git-send-email-zhouyanjie@wanyeetech.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220218181226.431098-6-miquel.raynal@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Feb 18, 2022 at 07:12:23PM +0100, Miquel Raynal wrote:
+> From: Phil Edworthy <phil.edworthy@renesas.com>
+> 
+> Pausing a partial transfer only causes data to be written to mem that is
+> a multiple of the memory width setting.
+> 
+> However, when a DMA client driver finishes DMA early, e.g. due to UART
+> char timeout interrupt, all data read from the DEV must be written to MEM.
+> 
+> Therefore, allow the slave to limit the memory width to ensure all data
+> read from the DEV is written to MEM when DMA is paused.
 
-A gentle ping :)
+Is this a fix?
+What happens to the data if you don't do this?
+As far as I understood the Synopsys DesignWare specification the DMA controller
+is capable of flushing FIFO in that case on byte-by-byte basis. Do you have an
+HW integration bug?
+
+TL;DR: tell us more about this.
+
+...
+
+> +		if (sconfig->dst_addr_width && sconfig->dst_addr_width < data_width)
+> +			data_width = sconfig->dst_addr_width;
+
+But here no check that you do it for explicitly peripheral to memory, so this
+will affect memory to peripheral transfers as well.
 
 
-On 2022/2/4 下午2:54, 周琰杰 (Zhou Yanjie) wrote:
-> 1.On the hardware of X2000 SoC, the OST has been split into
->    two parts, two 32bit timers for clockevent and one 64bit
->    timer for clocksource (with different addresses), so it
->    not appropriate to use only one "ingenic,x2000-ost", just
->    remove it, then introduce "ingenic,x2000-ost32" and
->    "ingenic,x2000-ost64".
-> 2.The OST in Ingenic XBurst®2 SoCs has a global timer and
->    up to 16 event timers, add support for the event timers.
-> 3.Add dt-bindings and compatible strings for the X1600 SoC,
->    the X1830 SoC, the X2000 SoC, and the X2500 SoC.
->
-> 周琰杰 (Zhou Yanjie) (3):
->    dt-bindings: timer: Remove unreasonable binding.
->    dt-bindings: timer: Add bindings for new Ingenic SoCs.
->    clocksource: Ingenic: Add SMP/SMT support for sysost driver.
->
->   .../devicetree/bindings/timer/ingenic,sysost.yaml  |   7 +-
->   drivers/clocksource/ingenic-sysost.c               | 403 ++++++++++++++++-----
->   2 files changed, 310 insertions(+), 100 deletions(-)
->
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
