@@ -2,165 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DAD84BCE0A
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 11:54:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C69384BCE12
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 11:57:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231426AbiBTKyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 05:54:20 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36788 "EHLO
+        id S231947AbiBTK5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 05:57:22 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230407AbiBTKyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 05:54:19 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82FC3CA70
-        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 02:53:58 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 69B253F339
-        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 10:53:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645354437;
-        bh=rbI2U7x1cHPvp7Ypc0YrVspNGO328GiT7owoM0mdXBQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-         In-Reply-To:Content-Type;
-        b=pF0v2BY9seMzL21UG8rQ37pmt0lidaOTGWuiiPMvjf2RMz4Pc38o51rYvUUfRjidP
-         T726UIlkptA0eCSEEbFD1QX8a2U9X0MC4+P9qiBZ+kYVUTV/KwA0FBNuFmKVY4wqV/
-         lPNpjjjIajYYvyh0utRpYwFacgE2jZIa01nlepJ+MAbDzavIvpjL5Mtcp3vkTrIWkB
-         Y+Vn64nCHTdDieAAp+XtyQNWmKOukFAAtlFkTpHX/2qSZemCzUTr3tg8WHszmz2R7c
-         zCtLMxn4PJguhHQ3KSZ7e5n8B8ZVqU0jrBLsuQlj56kjMzPPV7xP3l/ZDQLYu/wQxF
-         UpospstLjqV6w==
-Received: by mail-ed1-f72.google.com with SMTP id l14-20020aa7cace000000b003f7f8e1cbbdso8460358edt.20
-        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 02:53:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=rbI2U7x1cHPvp7Ypc0YrVspNGO328GiT7owoM0mdXBQ=;
-        b=IZHbzBeUssSY+BM0Pk8N0+kt5rRvAMC7tPcEBK52okOiAQgS9d2+TlincDP814Q0mg
-         gHXM0r1/WZOPX4rVg2XBR7zdhpuHW5kpDHjde/1J7O6GYjpK2JkGUDtwlNYGg0lmlyB7
-         QuBblt7ywBhiyc+aWxz4s3evfKkcOago3r4buyLbF2rlN2TLWmnluJlL26OHnByFc+Nc
-         8vvdBz5oToxB8lS0tkCugkKCK9GK8L/9M5REoldfe+iVTedAOy6VxD7ABl4uzb4x4IJM
-         XoA/07hw5UsfFibh03B1W+O3YVXGr+raFkNbqjJ1xD83vj67K+oUspdlBkgPKTiNo7UD
-         9CcA==
-X-Gm-Message-State: AOAM531dohNPAihRh7FB223MDJRXyQk9a25QhXFmHbKlz1G97eVJIfJs
-        d3H/CWb1YHuMZvc8kjcQ6UyWj6eneimOeBa60g1xj7HAejBCHmy8urvcs2ihsDr/Lds1ltmaTeH
-        x3q8x5oiO+SeEAI8okyVn7yJu/pXutoe3M4e0nPo=
-X-Received: by 2002:a05:6402:520a:b0:412:8361:d11e with SMTP id s10-20020a056402520a00b004128361d11emr16281500edd.190.1645354436985;
-        Sun, 20 Feb 2022 02:53:56 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJz8C7k+C/26qS39pBy5PpopktLCI0D5x+PjoZJAKXQk0+LOpRbf6bMM3TBru7V9NBB4VUGsuw==
-X-Received: by 2002:a05:6402:520a:b0:412:8361:d11e with SMTP id s10-20020a056402520a00b004128361d11emr16281489edd.190.1645354436801;
-        Sun, 20 Feb 2022 02:53:56 -0800 (PST)
-Received: from [192.168.0.117] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id jt11sm1096778ejc.167.2022.02.20.02.53.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Feb 2022 02:53:56 -0800 (PST)
-Message-ID: <69cc2a64-c273-f2f6-b25b-73fc2248bb18@canonical.com>
-Date:   Sun, 20 Feb 2022 11:53:55 +0100
+        with ESMTP id S229480AbiBTK5V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 05:57:21 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39065340C2;
+        Sun, 20 Feb 2022 02:57:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645354620; x=1676890620;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yPqPywbDC7Awr4bHvSEXFevB7s9D3RWFfXlO+8m6W44=;
+  b=grmpciZvqwbTEiQGP9hdwHFo0pb8S43722IJNdUUlq3fSPWP8My02gxc
+   7iizn46btKlUrVSwuKG2Llu0Dy3e6xfBMKhKsYukOe3Y26vRO09mKERDY
+   dQoMSsvmQIHidDUAMXH9qdtZInh/Wk9y8/nVzfnjIQgW2Cx86vyJzDOt5
+   GmQJlQ2Rgr8dt6/0fFC3kvbOchDY4Qc35wpMok+TQP2+apJAylFzX8Xjr
+   jWfARkYVaIONnZWDy84mzpNzYW/W6o6mWhvsE2zmWtUj3PP78WFzEY/wt
+   HsjnMWA2GgRKjgJu8is8RwWejhEvuVkVA9XNnJmTn/VPYm++Uvl3b1hh3
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10263"; a="275951791"
+X-IronPort-AV: E=Sophos;i="5.88,383,1635231600"; 
+   d="scan'208";a="275951791"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 02:56:59 -0800
+X-IronPort-AV: E=Sophos;i="5.88,383,1635231600"; 
+   d="scan'208";a="531490390"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 02:56:55 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nLjsp-006UYn-51;
+        Sun, 20 Feb 2022 12:56:03 +0200
+Date:   Sun, 20 Feb 2022 12:56:02 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Viresh Kumar <vireshk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Laetitia MARIOTTINI <laetitia.mariottini@se.com>
+Subject: Re: [PATCH 4/8] dma: dmamux: Introduce RZN1 DMA router support
+Message-ID: <YhIeQlwmt/yCc8Uu@smile.fi.intel.com>
+References: <20220218181226.431098-1-miquel.raynal@bootlin.com>
+ <20220218181226.431098-5-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 2/3] dt-bindings:iio:amplifiers: add ada4250 doc
-Content-Language: en-US
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
-        robh+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220214094115.48548-1-antoniu.miclaus@analog.com>
- <20220214094115.48548-2-antoniu.miclaus@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220214094115.48548-2-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220218181226.431098-5-miquel.raynal@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2022 10:41, Antoniu Miclaus wrote:
-> Add device tree bindings for the ADA4250 driver.
-
-Please put the bindings patch as first in the series.
-
+On Fri, Feb 18, 2022 at 07:12:22PM +0100, Miquel Raynal wrote:
+> The Renesas RZN1 DMA IP is a based on a DW core, with eg. an additional
+> dmamux register located in the system control area which can take up to
+> 32 requests (16 per DMA controller). Each DMA channel can be wired to
+> two different peripherals.
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
->  .../bindings/iio/amplifiers/adi,ada4250.yaml  | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml b/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
-> new file mode 100644
-> index 000000000000..22283ab48903
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/amplifiers/adi,ada4250.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ADA4250 Programmable Gain Instrumentation Amplifier
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +
-> +description: |
-> +  Precision Low Power, 110kHz, 26uA, Programmable Gain Instrumentation Amplifier.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ada4250
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  avdd-supply: true
+> We need two additional information from the 'dmas' property: the channel
+> (bit in the dmamux register) that must be accessed and the value of the
+> mux for this channel.
 
-Needs a description, not a true.
+...
 
-As Jonathan said, you should allow spi-max-frequency (so
-spi-max-frequency: true).
+> +dw_dmac-y			:= platform.o dmamux.o
 
-No io-channel-cells?
+We do not need this on other platforms, please make sure we have no dangling
+code on, e.g., x86.
 
-> +
-> +  adi,refbuf-enable:
-> +    description:
-> +      Enable internal buffer to drive the reference pin.
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - avdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      ada4250@0{
+...
 
-Generic node name, so "amplifier".
+> +	/* The of_node_put() will be done in the core for the node */
+> +	master = map->req_idx < dmamux->dmac_requests ? 0 : 1;
 
-> +        compatible = "adi,ada4250";
-> +        reg = <0>;
-> +        avdd-supply = <&avdd>;
-> +      };
-> +    };
-> +...
+The opposite conditional will be better, no?`
+
+...
+
+> +	dmamux->used_chans |= BIT(map->req_idx);
+> +	ret = r9a06g032_syscon_set_dmamux(BIT(map->req_idx),
+> +					  val ? BIT(map->req_idx) : 0);
 
 
-Best regards,
-Krzysztof
+Cleaner to do
+
+	u32 mask = BIT(...);
+	...
+
+	dmamux->used_chans |= mask;
+	ret = r9a06g032_syscon_set_dmamux(mask, val ? mask : 0);
+
+...
+
+> +static const struct of_device_id rzn1_dmac_match[] __maybe_unused = {
+> +	{ .compatible = "renesas,rzn1-dma", },
+> +	{},
+
+No comma for terminator entry.
+
+> +};
+
+...
+
+> +	if (!node)
+> +		return -ENODEV;
+
+Dup check, why not to simply try for phandle first?
+
+...
+
+> +	if (of_property_read_u32(dmac_node, "dma-requests",
+> +				 &dmamux->dmac_requests)) {
+
+One line?
+
+> +		dev_err(&pdev->dev, "Missing DMAC requests information\n");
+> +		of_node_put(dmac_node);
+> +		return -EINVAL;
+
+First put node, then simply use dev_err_probe().
+
+> +	}
+
+...
+
+> +static const struct of_device_id rzn1_dmamux_match[] = {
+> +	{ .compatible = "renesas,rzn1-dmamux", },
+> +	{},
+
+No comma.
+
+> +};
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
