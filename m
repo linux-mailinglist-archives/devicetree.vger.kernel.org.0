@@ -2,158 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 900914BCF08
-	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 15:35:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44DBC4BCEF5
+	for <lists+devicetree@lfdr.de>; Sun, 20 Feb 2022 15:35:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243982AbiBTObR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 09:31:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44148 "EHLO
+        id S243424AbiBTO10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 09:27:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbiBTObR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 09:31:17 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C00940E41;
-        Sun, 20 Feb 2022 06:30:56 -0800 (PST)
-Received: from [IPV6:2a01:e0a:169:7140:7455:118c:f6d8:298b] (unknown [IPv6:2a01:e0a:169:7140:7455:118c:f6d8:298b])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3BF7825B;
-        Sun, 20 Feb 2022 15:30:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645367451;
-        bh=JNOQomlYL0ZA5oGYqK1uafrk9spBe5F5IHhU6wrv6Tc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PMChX8PFM8VrGzU/mOpuL64FGQVIMpIXCQSvurNSq/q07jPwE1QHzGVbzwzDq44yg
-         CtsnRs0PwxJwRixQlPZRzpI2/Q4cp5XyptIBizm285urFsLOkgReIlpptOMv5tUp7q
-         95nGxmxuIfaRQYI8MsuniKsftKIre+3QGZi6Ju4Q=
-Message-ID: <fc3abf5b-64c7-82c6-ec9c-5c3659c55b49@ideasonboard.com>
-Date:   Sun, 20 Feb 2022 15:30:48 +0100
+        with ESMTP id S231159AbiBTO1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 09:27:25 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E121EC42;
+        Sun, 20 Feb 2022 06:27:01 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2ADBAB80D44;
+        Sun, 20 Feb 2022 14:27:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D6FBC340E8;
+        Sun, 20 Feb 2022 14:26:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645367218;
+        bh=RTigvJDntL6YVrCZiZEnoHivr3No4Poo1ugUd6o9OOA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=qZeLd9QNm+MvELxBeIy46L4kJE97lrRj+vtOl6ACAkDZN4nGM9TDoQuju06Xy2Z+D
+         xBF1+jdwFExfnWWQBjCReGy3gJQp2OOjC702qMFzdtL4EP+GCT8RlCX4e5IQtq1rei
+         ETA8iwYVato7MjgSUITt3wiYuU2/fvfegn0mgtPM3+0CbMV29PfQX6J88LH1fGGsdD
+         upcm7NkRgYiMNige18VHZp/nW7uLYVBRnUzr0FkdLwWEnX1Kkyf049Ctz6gjLE2dgz
+         Z5ni7iFZRFyoPaRSUE6uA5QMwzgezzW85Zk51EkCjtyqcsysJt+4Y+7RG+1QJE6ShP
+         OXp5HlHRpNLUA==
+Date:   Sun, 20 Feb 2022 14:33:48 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Jagath Jog J <jagathjog1996@gmail.com>
+Cc:     lars@metafoo.de, andy.shevchenko@gmail.com, sst@poczta.fm,
+        robh+dt@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/7] iio: potentiometer: Add support for DS3502
+Message-ID: <20220220143348.44f71d62@jic23-huawei>
+In-Reply-To: <20220220024632.4183-1-jagathjog1996@gmail.com>
+References: <20220220024632.4183-1-jagathjog1996@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 00/11] Add support for BCM2835 camera interface
- (unicam)
-Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        kernel-list@raspberrypi.com, laurent.pinchart@ideasonboard.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        lukasz@jany.st, mchehab@kernel.org, naush@raspberrypi.com,
-        robh@kernel.org, tomi.valkeinen@ideasonboard.com,
-        bcm-kernel-feedback-list@broadcom.com
-References: <20220208155027.891055-1-jeanmichel.hautbois@ideasonboard.com>
- <a7a6f1fe-c2f0-f545-1da3-a7685fdb63d5@i2se.com>
-From:   Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-In-Reply-To: <a7a6f1fe-c2f0-f545-1da3-a7685fdb63d5@i2se.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
+On Sun, 20 Feb 2022 08:16:25 +0530
+Jagath Jog J <jagathjog1996@gmail.com> wrote:
 
-On 16/02/2022 21:57, Stefan Wahren wrote:
-> Hi Jean-Michel,
+> Add dt-bindings and support for Maxim DS3502 into existing ds1803 driver.
+> DS3502 is a 7 bit Nonvolatile Digital Potentiometer.
+
+Looks good to me.  Will leave it on list a few more days though
+to allow others to comment if they wish.
+
+Nice work,
+
+Thanks,
+
+Jonathan
+
 > 
-> Am 08.02.22 um 16:50 schrieb Jean-Michel Hautbois:
->> Hello !
->>
->> ...
->>
->> In order to properly configure the media pipeline, it is needed to call
->> the usual ioctls, and configure routing in order to send the embedded
->> data from the sensor to the "unicam-embedded" device node :
->>
->> ```
->> media=0
->> media-ctl -d${media} -l "'imx219 2-0010':0->'unicam-subdev':0 [1]"
->> media-ctl -d${media} -l "'unicam-subdev':1->'unicam-image':0 [1]"
->> media-ctl -d${media} -v -R "'unicam-subdev' [0/0->1/0[1],0/1->2/0[1]]"
->> media-ctl -d${media} -V "'imx219 2-0010':0/0 [fmt:SRGGB10_1X10/3280x2464 field:none]"
->> v4l2-ctl -d0 --set-fmt-video width=3280,height=2464,pixelformat='pRAA',field=none
->> media-ctl -d${media} -v -V "'imx219 2-0010':0/1 [fmt:METADATA_8/16384x1 field:none]"
->> media-ctl -d${media} -p
->> ```
+> Changes since v3:
+> 1. Dropped the chip type switch statement in read_raw function.
+> 2. Added device specific read function pointer in their structure.
+> 3. Added two separate functions to read values from two different types
+>    of devices.
 > 
-> i tried to test the unicam driver on a Raspberry Pi 4 with the imx219
-> camera (based on 5.17-rc4). The unicam & imx219 driver probes and
-> /dev/video0 is created.
+> Changes since v2:
+> 1. Addressed Andy Shevchenko comments.
+> 2. Adding device name in Kconfig file.
+> 3. Spliting up of patch into 3 patches.
+> 4. Adding channel info into ds1803_cfg in separate patch.
+> 5. Dropping the use of enum in firmware data instead using previous
+>    pointer method for accessing device specific data.
+> 6. Separate patch for using firmware provided data instead of 
+>    id->driver_data.
+> 7. Adding DS3502 support in separate patch.
 > 
-> If a execute the first media-ctl command, it complains with invalid
-> argument 22. Is there a more fool-proof variant to configure this (a
-> script or something else)? I never used the unicam driver before.
+> Changes since v1:
+> 1. Fixes the alignment to match the open parenthesis in separate patch.
+> 2. Adding available functionality for ds1803 driver in separate patch.
+> 3. Moving maxim_potentiometer members into ds1803_cfg structure.
+> 4. Droping of the INFO_ENABLE channel type.
+> 5. Firmware entry with data is used instead of id->driver_data to
+>    to retrieve the chip specific data.
 > 
-> Here is the output of
+> Jagath Jog J (7):
+>   iio: potentiometer: Alignment to match the open parenthesis
+>   iio: potentiometer: Add available functionality
+>   iio: potentiometer: Add channel information in device data
+>   iio: potentiometer: Change to firmware provided data
+>   iio: potentiometer: Add device specific read_raw function
+>   iio: potentiometer: Add support for Maxim DS3502
+>   dt-bindings: iio: potentiometer: Add Maxim DS3502 in trivial-devices
 > 
-> $ mediactl -d0 -p
+>  .../devicetree/bindings/trivial-devices.yaml  |   2 +
+>  drivers/iio/potentiometer/Kconfig             |   6 +-
+>  drivers/iio/potentiometer/ds1803.c            | 153 +++++++++++++-----
+>  3 files changed, 121 insertions(+), 40 deletions(-)
 > 
 
-Based on your output, I suppose the issue is the naming of the imx219 
-media entity ('imx219 2-0010' vs 'imx219 5-0010').
-You could add a '-v' in the line to help you I suppose.
-
-A more bullet-proof version of the commands is certainly doable, not 
-sure how though as I would not like to rewrite a libcamera-like command ;-).
-
-> Media controller API version 5.17.0
-> 
-> Media device information
-> ------------------------
-> driver          unicam
-> model           unicam
-> serial
-> bus info        platform:fe801000.csi
-> hw revision     0x0
-> driver version  5.17.0
-> 
-> Device topology
-> - entity 1: unicam-subdev (3 pads, 3 links, 2 routes)
->              type V4L2 subdev subtype Unknown flags 0
->              device node name /dev/v4l-subdev0
->      routes:
->          0/0 -> 1/0 [ACTIVE]
->          0/1 -> 2/0 [ACTIVE]
->      pad0: Sink
->          [stream:0 fmt:unknown/0x0]
->          [stream:1 fmt:unknown/0x0]
->          <- "imx219 5-0010":0 [ENABLED,IMMUTABLE]
->      pad1: Source
->          [stream:0 fmt:unknown/0x0]
->          -> "unicam-image":0 [ENABLED,IMMUTABLE]
->      pad2: Source
->          [stream:0 fmt:unknown/0x0]
->          -> "unicam-embedded":0 [ENABLED,IMMUTABLE]
-> 
-> - entity 5: imx219 5-0010 (1 pad, 1 link, 2 routes)
->              type V4L2 subdev subtype Sensor flags 0
->              device node name /dev/v4l-subdev1
->      routes:
->          0/0 -> 0/0 [ACTIVE, IMMUTABLE, SOURCE]
->          0/0 -> 0/1 [ACTIVE, SOURCE]
->      pad0: Source
->          [stream:0 fmt:SRGGB10_1X10/3280x2464 field:none colorspace:raw
->           crop.bounds:(8,8)/3280x2464
->           crop:(8,8)/3280x2464]
->          [stream:1 fmt:METADATA_8/16384x1 field:none
->           crop.bounds:(8,8)/3280x2464
->           crop:(8,8)/3280x2464]
->          -> "unicam-subdev":0 [ENABLED,IMMUTABLE]
-> 
-> - entity 9: unicam-image (1 pad, 1 link, 0 route)
->              type Node subtype V4L flags 1
->              device node name /dev/video0
->      pad0: Sink
->          <- "unicam-subdev":1 [ENABLED,IMMUTABLE]
-> 
-> - entity 15: unicam-embedded (1 pad, 1 link, 0 route)
->               type Node subtype V4L flags 0
->               device node name /dev/video1
->      pad0: Sink
->          <- "unicam-subdev":2 [ENABLED,IMMUTABLE]
-> 
