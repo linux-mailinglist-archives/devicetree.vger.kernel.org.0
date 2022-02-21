@@ -2,63 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4848A4BE592
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:00:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 025734BE3AC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:57:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357774AbiBUMYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 07:24:19 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35682 "EHLO
+        id S1358114AbiBUMkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 07:40:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357803AbiBUMYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 07:24:15 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC6EB13E18;
-        Mon, 21 Feb 2022 04:23:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1645446231; x=1676982231;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=qYQL/2vLasMvQaOGDiMD2exx1N8juhfE8Ppak7zURa8=;
-  b=YYLHUSP6MKg7iPtvzXJJ1F9dgn9Xa3vkWNrcDQjIkvC93Xt+cNWcvlBY
-   qQLTnaS9krsU5bCv6twhuFZo84EgL9uzy31r0zEXzTkYZXXzHnDm2hZn9
-   4ovyAr+dvBhl+ozuC4rOf3StmUYHNg8MEiROzoSImazDS+Mdrcu8k0TN5
-   KRKb9WmZq9Bbvi0KlfQNbwnxK0ceAlBnXBdGF3YDmgeadlCLoZj2hSw1P
-   YqAUCjQ1vU3Z3vYcbPCyvHsaE3iY0HS3K3C93J8m6YcuSLs6/Ux+l3DQ4
-   cadPelQVeywC+l03dG7e4L07LFrGpoZRxZspG69Au3G9ZHjaPIyNc4w5U
-   g==;
-X-IronPort-AV: E=Sophos;i="5.88,385,1635231600"; 
-   d="scan'208";a="86446827"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Feb 2022 05:23:50 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 21 Feb 2022 05:23:50 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Mon, 21 Feb 2022 05:23:47 -0700
-From:   <conor.dooley@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <linux-clk@vger.kernel.org>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <krzysztof.kozlowski@canonical.com>, <geert@linux-m68k.org>,
-        <david.abdurachmanov@gmail.com>, <palmer@dabbelt.com>,
-        <daire.mcnamara@microchip.com>, <cyril.jean@microchip.com>,
-        <conor.dooley@microchip.com>,
-        Padmarao Bengari <padmarao.begari@microchip.com>
-Subject: [PATCH v10 RESEND 1/1] clk: microchip: Add driver for Microchip PolarFire SoC
-Date:   Mon, 21 Feb 2022 12:26:54 +0000
-Message-ID: <20220221122653.1527949-2-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220221122653.1527949-1-conor.dooley@microchip.com>
-References: <20220221122653.1527949-1-conor.dooley@microchip.com>
+        with ESMTP id S1358086AbiBUMkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 07:40:23 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C2261928B
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 04:40:00 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id q198-20020a1ca7cf000000b0037bb52545c6so13456140wme.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 04:39:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=R/f51CIZR0643bv1aqteYa+9eUKhtWxP5/qjv85KXj8=;
+        b=bameRcwi6JoaD2M3I7RYimjEysOpTD99zApAfcKTy8lF1obgbQ6PoH6zMBRJ2an/ra
+         XhZzLk3+P+LvmUJZSRGo4u8NywtRdT60Ep/BJndTU9XZN0l/x97cjTIiC6uUhPa5CI+u
+         2yGfP0g/fZlGpKCNHecWTXhTofhlVHrxTrfUcXfIPQXu6FzNUZvuCnIubkD51i96XpnI
+         YhGDkFnBSIt8SZ6nEEVsX44HT5XlTjrJVeA5v9cK/0vDZiU66acvNjNqWq/oXo3STiGl
+         rYWGVpV0RfbMjPmDFPQQkEEq89/Q7TdhtztPWUmgT2lujlH966adrVVYnJYctL7JNq+P
+         3cWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=R/f51CIZR0643bv1aqteYa+9eUKhtWxP5/qjv85KXj8=;
+        b=3mhRjKfSK4vL/tvYKg9w09XPfCshCqn5Yx5n6gb35Cd7m2A3oILMUynRGED5jvq1ze
+         RT1XGwXmT4s3+p+eppQqop94lvHCwZSi6cHkQLJJmeXu8ws1O7no+383Y6Tv3X4IlsqQ
+         USCB8GMagHHEzi1I5rAWQgnSzbm4/SaejPu0G5xRnWs9Wi8XfjoK9on07Z5WucXefu3v
+         3JVAnbDj/UBrM1zmDWyCmU2XgAI2A6ka7YSoBuoSrd5hB+qtW7VZrgu7CBnCxQxM04m7
+         kaIWEnu7i4II7yJq/E2Fp4cCwr+wFoaUY4P6/gqogSyzrYjK+pWjlfABL2HQnj7lef4r
+         zvRQ==
+X-Gm-Message-State: AOAM530+PdU9eeNGsRKDmQfLqMEwwMHtx4PXAnWNuhhTdE00gxMIZ1dh
+        eCf4AZmpZcbPCK86w0wup94BKA==
+X-Google-Smtp-Source: ABdhPJxkJi1EPLjYr7iSmElxNRVJGzj1OLsfkUvsS+BfolnnyJhH3DB/wikuEdQKXWXlhbT3n4hdJg==
+X-Received: by 2002:a05:600c:1e0e:b0:37c:6c82:72a6 with SMTP id ay14-20020a05600c1e0e00b0037c6c8272a6mr21033143wmb.35.1645447198661;
+        Mon, 21 Feb 2022 04:39:58 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id h11sm32207945wrr.64.2022.02.21.04.39.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Feb 2022 04:39:58 -0800 (PST)
+Date:   Mon, 21 Feb 2022 12:39:56 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Roger Quadros <rogerq@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: update Roger Quadros email
+Message-ID: <YhOIHARSdIliVWjW@google.com>
+References: <20220221100701.48593-1-krzysztof.kozlowski@canonical.com>
+ <2e33c00b-8460-3d85-92aa-2c3257725c2c@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <2e33c00b-8460-3d85-92aa-2c3257725c2c@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,477 +77,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daire McNamara <daire.mcnamara@microchip.com>
+On Mon, 21 Feb 2022, Roger Quadros wrote:
 
-Add support for clock configuration on Microchip PolarFire SoC
+> On 21/02/2022 12:07, Krzysztof Kozlowski wrote:
+> > Emails to Roger Quadros TI account bounce with:
+> >   550 Invalid recipient <rogerq@ti.com> (#5.1.1)
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> 
+> Thanks so much!
+> 
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
 
-Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Tested-by: Geert Uytterhoeven <geert@linux-m68k.org>
+I assume you mean Acked-by (if you are the maintainer) or Reviewed-by?
 
-Co-developed-by: Padmarao Bengari <padmarao.begari@microchip.com>
-Signed-off-by: Padmarao Bengari <padmarao.begari@microchip.com>
-Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-Co-developed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- drivers/clk/Kconfig              |   4 +-
- drivers/clk/Makefile             |   2 +-
- drivers/clk/microchip/Kconfig    |  10 +
- drivers/clk/microchip/Makefile   |   1 +
- drivers/clk/microchip/clk-mpfs.c | 382 +++++++++++++++++++++++++++++++
- 5 files changed, 395 insertions(+), 4 deletions(-)
- create mode 100644 drivers/clk/microchip/Kconfig
- create mode 100644 drivers/clk/microchip/clk-mpfs.c
+> > ---
+> > 
+> > Roger,
+> > You should also add a mailmap entry for your inactive emails.
+> 
+> OK. I will send out a patch for this. Thanks for the hint. :)
+> 
+> > ---
+> >  .../devicetree/bindings/mfd/ti,j721e-system-controller.yaml     | 2 +-
+> >  Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml         | 2 +-
+> >  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml         | 2 +-
+> >  Documentation/devicetree/bindings/usb/ti,keystone-dwc3.yaml     | 2 +-
+> >  4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index ad4256d54361..678a865021e2 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -330,9 +330,6 @@ config COMMON_CLK_PXA
- 	help
- 	  Support for the Marvell PXA SoC.
- 
--config COMMON_CLK_PIC32
--	def_bool COMMON_CLK && MACH_PIC32
--
- config COMMON_CLK_OXNAS
- 	bool "Clock driver for the OXNAS SoC Family"
- 	depends on ARCH_OXNAS || COMPILE_TEST
-@@ -407,6 +404,7 @@ source "drivers/clk/keystone/Kconfig"
- source "drivers/clk/mediatek/Kconfig"
- source "drivers/clk/meson/Kconfig"
- source "drivers/clk/mstar/Kconfig"
-+source "drivers/clk/microchip/Kconfig"
- source "drivers/clk/mvebu/Kconfig"
- source "drivers/clk/pistachio/Kconfig"
- source "drivers/clk/qcom/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 16e588630472..61271926b16b 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -91,7 +91,7 @@ obj-$(CONFIG_ARCH_KEYSTONE)		+= keystone/
- obj-$(CONFIG_MACH_LOONGSON32)		+= loongson1/
- obj-y					+= mediatek/
- obj-$(CONFIG_ARCH_MESON)		+= meson/
--obj-$(CONFIG_MACH_PIC32)		+= microchip/
-+obj-y					+= microchip/
- ifeq ($(CONFIG_COMMON_CLK), y)
- obj-$(CONFIG_ARCH_MMP)			+= mmp/
- endif
-diff --git a/drivers/clk/microchip/Kconfig b/drivers/clk/microchip/Kconfig
-new file mode 100644
-index 000000000000..e1af380d8c9c
---- /dev/null
-+++ b/drivers/clk/microchip/Kconfig
-@@ -0,0 +1,10 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+config COMMON_CLK_PIC32
-+	def_bool COMMON_CLK && MACH_PIC32
-+
-+config MCHP_CLK_MPFS
-+	bool "Clk driver for PolarFire SoC"
-+	depends on (RISCV && SOC_MICROCHIP_POLARFIRE) || COMPILE_TEST
-+	help
-+	  Supports Clock Configuration for PolarFire SoC
-\ No newline at end of file
-diff --git a/drivers/clk/microchip/Makefile b/drivers/clk/microchip/Makefile
-index f34b247e870f..5fa6dcf30a9a 100644
---- a/drivers/clk/microchip/Makefile
-+++ b/drivers/clk/microchip/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-$(CONFIG_COMMON_CLK_PIC32) += clk-core.o
- obj-$(CONFIG_PIC32MZDA) += clk-pic32mzda.o
-+obj-$(CONFIG_MCHP_CLK_MPFS) += clk-mpfs.o
-diff --git a/drivers/clk/microchip/clk-mpfs.c b/drivers/clk/microchip/clk-mpfs.c
-new file mode 100644
-index 000000000000..eec461b906d8
---- /dev/null
-+++ b/drivers/clk/microchip/clk-mpfs.c
-@@ -0,0 +1,382 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Daire McNamara,<daire.mcnamara@microchip.com>
-+ * Copyright (C) 2020 Microchip Technology Inc.  All rights reserved.
-+ */
-+#include <linux/clk-provider.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <dt-bindings/clock/microchip,mpfs-clock.h>
-+
-+/* address offset of control registers */
-+#define REG_CLOCK_CONFIG_CR	0x08u
-+#define REG_SUBBLK_CLOCK_CR	0x84u
-+#define REG_SUBBLK_RESET_CR	0x88u
-+
-+struct mpfs_clock_data {
-+	void __iomem *base;
-+	struct clk_hw_onecell_data hw_data;
-+};
-+
-+struct mpfs_cfg_clock {
-+	const struct clk_div_table *table;
-+	unsigned int id;
-+	u8 shift;
-+	u8 width;
-+};
-+
-+struct mpfs_cfg_hw_clock {
-+	struct mpfs_cfg_clock cfg;
-+	void __iomem *sys_base;
-+	struct clk_hw hw;
-+	struct clk_init_data init;
-+};
-+
-+#define to_mpfs_cfg_clk(_hw) container_of(_hw, struct mpfs_cfg_hw_clock, hw)
-+
-+struct mpfs_periph_clock {
-+	unsigned int id;
-+	u8 shift;
-+};
-+
-+struct mpfs_periph_hw_clock {
-+	struct mpfs_periph_clock periph;
-+	void __iomem *sys_base;
-+	struct clk_hw hw;
-+};
-+
-+#define to_mpfs_periph_clk(_hw) container_of(_hw, struct mpfs_periph_hw_clock, hw)
-+
-+/*
-+ * mpfs_clk_lock prevents anything else from writing to the
-+ * mpfs clk block while a software locked register is being written.
-+ */
-+static DEFINE_SPINLOCK(mpfs_clk_lock);
-+
-+static const struct clk_parent_data mpfs_cfg_parent[] = {
-+	{ .index = 0 },
-+};
-+
-+static const struct clk_div_table mpfs_div_cpu_axi_table[] = {
-+	{ 0, 1 }, { 1, 2 }, { 2, 4 }, { 3, 8 },
-+	{ 0, 0 }
-+};
-+
-+static const struct clk_div_table mpfs_div_ahb_table[] = {
-+	{ 1, 2 }, { 2, 4}, { 3, 8 },
-+	{ 0, 0 }
-+};
-+
-+static unsigned long mpfs_cfg_clk_recalc_rate(struct clk_hw *hw, unsigned long prate)
-+{
-+	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
-+	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
-+	void __iomem *base_addr = cfg_hw->sys_base;
-+	u32 val;
-+
-+	val = readl_relaxed(base_addr + REG_CLOCK_CONFIG_CR) >> cfg->shift;
-+	val &= clk_div_mask(cfg->width);
-+
-+	return prate / (1u << val);
-+}
-+
-+static long mpfs_cfg_clk_round_rate(struct clk_hw *hw, unsigned long rate, unsigned long *prate)
-+{
-+	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
-+	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
-+
-+	return divider_round_rate(hw, rate, prate, cfg->table, cfg->width, CLK_DIVIDER_ONE_BASED);
-+}
-+
-+static int mpfs_cfg_clk_set_rate(struct clk_hw *hw, unsigned long rate, unsigned long prate)
-+{
-+	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
-+	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
-+	void __iomem *base_addr = cfg_hw->sys_base;
-+	unsigned long flags;
-+	u32 val;
-+	int divider_setting;
-+
-+	divider_setting = divider_get_val(rate, prate, cfg->table, cfg->width,
-+					  CLK_DIVIDER_ONE_BASED);
-+
-+	if (divider_setting < 0)
-+		return divider_setting;
-+
-+	spin_lock_irqsave(&mpfs_clk_lock, flags);
-+
-+	val = readl_relaxed(base_addr + REG_CLOCK_CONFIG_CR);
-+	val &= ~(clk_div_mask(cfg->width) << cfg_hw->cfg.shift);
-+	val |= divider_setting << cfg->shift;
-+	writel_relaxed(val, base_addr + REG_CLOCK_CONFIG_CR);
-+
-+	spin_unlock_irqrestore(&mpfs_clk_lock, flags);
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops mpfs_clk_cfg_ops = {
-+	.recalc_rate = mpfs_cfg_clk_recalc_rate,
-+	.round_rate = mpfs_cfg_clk_round_rate,
-+	.set_rate = mpfs_cfg_clk_set_rate,
-+};
-+
-+#define CLK_CFG(_id, _name, _parent, _shift, _width, _table, _flags) {		\
-+	.cfg.id = _id,								\
-+	.cfg.shift = _shift,							\
-+	.cfg.width = _width,							\
-+	.cfg.table = _table,							\
-+	.hw.init = CLK_HW_INIT_PARENTS_DATA(_name, _parent, &mpfs_clk_cfg_ops,	\
-+					    _flags),				\
-+}
-+
-+static struct mpfs_cfg_hw_clock mpfs_cfg_clks[] = {
-+	CLK_CFG(CLK_CPU, "clk_cpu", mpfs_cfg_parent, 0, 2, mpfs_div_cpu_axi_table, 0),
-+	CLK_CFG(CLK_AXI, "clk_axi", mpfs_cfg_parent, 2, 2, mpfs_div_cpu_axi_table, 0),
-+	CLK_CFG(CLK_AHB, "clk_ahb", mpfs_cfg_parent, 4, 2, mpfs_div_ahb_table, 0),
-+};
-+
-+static int mpfs_clk_register_cfg(struct device *dev, struct mpfs_cfg_hw_clock *cfg_hw,
-+				 void __iomem *sys_base)
-+{
-+	cfg_hw->sys_base = sys_base;
-+
-+	return devm_clk_hw_register(dev, &cfg_hw->hw);
-+}
-+
-+static int mpfs_clk_register_cfgs(struct device *dev, struct mpfs_cfg_hw_clock *cfg_hws,
-+				  unsigned int num_clks, struct mpfs_clock_data *data)
-+{
-+	void __iomem *sys_base = data->base;
-+	unsigned int i, id;
-+	int ret;
-+
-+	for (i = 0; i < num_clks; i++) {
-+		struct mpfs_cfg_hw_clock *cfg_hw = &cfg_hws[i];
-+
-+		ret = mpfs_clk_register_cfg(dev, cfg_hw, sys_base);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "failed to register clock id: %d\n",
-+					     cfg_hw->cfg.id);
-+
-+		id = cfg_hws[i].cfg.id;
-+		data->hw_data.hws[id] = &cfg_hw->hw;
-+	}
-+
-+	return 0;
-+}
-+
-+static int mpfs_periph_clk_enable(struct clk_hw *hw)
-+{
-+	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
-+	struct mpfs_periph_clock *periph = &periph_hw->periph;
-+	void __iomem *base_addr = periph_hw->sys_base;
-+	u32 reg, val;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&mpfs_clk_lock, flags);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
-+	val = reg & ~(1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_RESET_CR);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
-+	val = reg | (1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_CLOCK_CR);
-+
-+	spin_unlock_irqrestore(&mpfs_clk_lock, flags);
-+
-+	return 0;
-+}
-+
-+static void mpfs_periph_clk_disable(struct clk_hw *hw)
-+{
-+	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
-+	struct mpfs_periph_clock *periph = &periph_hw->periph;
-+	void __iomem *base_addr = periph_hw->sys_base;
-+	u32 reg, val;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&mpfs_clk_lock, flags);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
-+	val = reg | (1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_RESET_CR);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
-+	val = reg & ~(1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_CLOCK_CR);
-+
-+	spin_unlock_irqrestore(&mpfs_clk_lock, flags);
-+}
-+
-+static int mpfs_periph_clk_is_enabled(struct clk_hw *hw)
-+{
-+	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
-+	struct mpfs_periph_clock *periph = &periph_hw->periph;
-+	void __iomem *base_addr = periph_hw->sys_base;
-+	u32 reg;
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
-+	if ((reg & (1u << periph->shift)) == 0u) {
-+		reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
-+		if (reg & (1u << periph->shift))
-+			return 1;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops mpfs_periph_clk_ops = {
-+	.enable = mpfs_periph_clk_enable,
-+	.disable = mpfs_periph_clk_disable,
-+	.is_enabled = mpfs_periph_clk_is_enabled,
-+};
-+
-+#define CLK_PERIPH(_id, _name, _parent, _shift, _flags) {			\
-+	.periph.id = _id,							\
-+	.periph.shift = _shift,							\
-+	.hw.init = CLK_HW_INIT_HW(_name, _parent, &mpfs_periph_clk_ops,		\
-+				  _flags),					\
-+}
-+
-+#define PARENT_CLK(PARENT) (&mpfs_cfg_clks[CLK_##PARENT].hw)
-+
-+/*
-+ * Critical clocks:
-+ * - CLK_ENVM: reserved by hart software services (hss) superloop monitor/m mode interrupt
-+ *   trap handler
-+ * - CLK_MMUART0: reserved by the hss
-+ * - CLK_DDRC: provides clock to the ddr subsystem
-+ * - CLK_FICx: these provide clocks for sections of the fpga fabric, disabling them would
-+ *   cause the fabric to go into reset
-+ */
-+
-+static struct mpfs_periph_hw_clock mpfs_periph_clks[] = {
-+	CLK_PERIPH(CLK_ENVM, "clk_periph_envm", PARENT_CLK(AHB), 0, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_MAC0, "clk_periph_mac0", PARENT_CLK(AHB), 1, 0),
-+	CLK_PERIPH(CLK_MAC1, "clk_periph_mac1", PARENT_CLK(AHB), 2, 0),
-+	CLK_PERIPH(CLK_MMC, "clk_periph_mmc", PARENT_CLK(AHB), 3, 0),
-+	CLK_PERIPH(CLK_TIMER, "clk_periph_timer", PARENT_CLK(AHB), 4, 0),
-+	CLK_PERIPH(CLK_MMUART0, "clk_periph_mmuart0", PARENT_CLK(AHB), 5, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_MMUART1, "clk_periph_mmuart1", PARENT_CLK(AHB), 6, 0),
-+	CLK_PERIPH(CLK_MMUART2, "clk_periph_mmuart2", PARENT_CLK(AHB), 7, 0),
-+	CLK_PERIPH(CLK_MMUART3, "clk_periph_mmuart3", PARENT_CLK(AHB), 8, 0),
-+	CLK_PERIPH(CLK_MMUART4, "clk_periph_mmuart4", PARENT_CLK(AHB), 9, 0),
-+	CLK_PERIPH(CLK_SPI0, "clk_periph_spi0", PARENT_CLK(AHB), 10, 0),
-+	CLK_PERIPH(CLK_SPI1, "clk_periph_spi1", PARENT_CLK(AHB), 11, 0),
-+	CLK_PERIPH(CLK_I2C0, "clk_periph_i2c0", PARENT_CLK(AHB), 12, 0),
-+	CLK_PERIPH(CLK_I2C1, "clk_periph_i2c1", PARENT_CLK(AHB), 13, 0),
-+	CLK_PERIPH(CLK_CAN0, "clk_periph_can0", PARENT_CLK(AHB), 14, 0),
-+	CLK_PERIPH(CLK_CAN1, "clk_periph_can1", PARENT_CLK(AHB), 15, 0),
-+	CLK_PERIPH(CLK_USB, "clk_periph_usb", PARENT_CLK(AHB), 16, 0),
-+	CLK_PERIPH(CLK_RTC, "clk_periph_rtc", PARENT_CLK(AHB), 18, 0),
-+	CLK_PERIPH(CLK_QSPI, "clk_periph_qspi", PARENT_CLK(AHB), 19, 0),
-+	CLK_PERIPH(CLK_GPIO0, "clk_periph_gpio0", PARENT_CLK(AHB), 20, 0),
-+	CLK_PERIPH(CLK_GPIO1, "clk_periph_gpio1", PARENT_CLK(AHB), 21, 0),
-+	CLK_PERIPH(CLK_GPIO2, "clk_periph_gpio2", PARENT_CLK(AHB), 22, 0),
-+	CLK_PERIPH(CLK_DDRC, "clk_periph_ddrc", PARENT_CLK(AHB), 23, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC0, "clk_periph_fic0", PARENT_CLK(AHB), 24, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC1, "clk_periph_fic1", PARENT_CLK(AHB), 25, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC2, "clk_periph_fic2", PARENT_CLK(AHB), 26, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC3, "clk_periph_fic3", PARENT_CLK(AHB), 27, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_ATHENA, "clk_periph_athena", PARENT_CLK(AHB), 28, 0),
-+	CLK_PERIPH(CLK_CFM, "clk_periph_cfm", PARENT_CLK(AHB), 29, 0),
-+};
-+
-+static int mpfs_clk_register_periph(struct device *dev, struct mpfs_periph_hw_clock *periph_hw,
-+				    void __iomem *sys_base)
-+{
-+	periph_hw->sys_base = sys_base;
-+
-+	return devm_clk_hw_register(dev, &periph_hw->hw);
-+}
-+
-+static int mpfs_clk_register_periphs(struct device *dev, struct mpfs_periph_hw_clock *periph_hws,
-+				     int num_clks, struct mpfs_clock_data *data)
-+{
-+	void __iomem *sys_base = data->base;
-+	unsigned int i, id;
-+	int ret;
-+
-+	for (i = 0; i < num_clks; i++) {
-+		struct mpfs_periph_hw_clock *periph_hw = &periph_hws[i];
-+
-+		ret = mpfs_clk_register_periph(dev, periph_hw, sys_base);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "failed to register clock id: %d\n",
-+					     periph_hw->periph.id);
-+
-+		id = periph_hws[i].periph.id;
-+		data->hw_data.hws[id] = &periph_hw->hw;
-+	}
-+
-+	return 0;
-+}
-+
-+static int mpfs_clk_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mpfs_clock_data *clk_data;
-+	unsigned int num_clks;
-+	int ret;
-+
-+	/* CLK_RESERVED is not part of cfg_clks nor periph_clks, so add 1 */
-+	num_clks = ARRAY_SIZE(mpfs_cfg_clks) + ARRAY_SIZE(mpfs_periph_clks) + 1;
-+
-+	clk_data = devm_kzalloc(dev, struct_size(clk_data, hw_data.hws, num_clks), GFP_KERNEL);
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	clk_data->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(clk_data->base))
-+		return PTR_ERR(clk_data->base);
-+
-+	clk_data->hw_data.num = num_clks;
-+
-+	ret = mpfs_clk_register_cfgs(dev, mpfs_cfg_clks, ARRAY_SIZE(mpfs_cfg_clks), clk_data);
-+	if (ret)
-+		return ret;
-+
-+	ret = mpfs_clk_register_periphs(dev, mpfs_periph_clks, ARRAY_SIZE(mpfs_periph_clks),
-+					clk_data);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, &clk_data->hw_data);
-+	if (ret)
-+		return ret;
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id mpfs_clk_of_match_table[] = {
-+	{ .compatible = "microchip,mpfs-clkcfg", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mpfs_clk_match_table);
-+
-+static struct platform_driver mpfs_clk_driver = {
-+	.probe = mpfs_clk_probe,
-+	.driver	= {
-+		.name = "microchip-mpfs-clkcfg",
-+		.of_match_table = mpfs_clk_of_match_table,
-+	},
-+};
-+
-+static int __init clk_mpfs_init(void)
-+{
-+	return platform_driver_register(&mpfs_clk_driver);
-+}
-+core_initcall(clk_mpfs_init);
-+
-+static void __exit clk_mpfs_exit(void)
-+{
-+	platform_driver_unregister(&mpfs_clk_driver);
-+}
-+module_exit(clk_mpfs_exit);
-+
-+MODULE_DESCRIPTION("Microchip PolarFire SoC Clock Driver");
-+MODULE_LICENSE("GPL v2");
+What's the merge-plan for this Krzysztof?
+
 -- 
-2.32.0
-
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
