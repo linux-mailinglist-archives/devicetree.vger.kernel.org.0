@@ -2,325 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DAD24BDB55
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:39:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11BAC4BE947
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:07:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358302AbiBUMsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 07:48:40 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45644 "EHLO
+        id S1358336AbiBUMxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 07:53:01 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358306AbiBUMsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 07:48:39 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE6101A804;
-        Mon, 21 Feb 2022 04:48:15 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id u18so29147060edt.6;
-        Mon, 21 Feb 2022 04:48:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=WVoZZscbEjnNNoIlj1VM/8Hs2mv5BvtpQxaozTKRcQ0=;
-        b=lPtVtWT5ymP7i5opMcIt8onnLgAsQqczNjEp2sftjCYXy+HWTf33BxdGSuiTUPRAsP
-         Bwx8S8APCDWOVfh1K2nd6VBWtiAvKJsD+VX7gHsalX91mPzxXKLd40NNxb5SKgjsPdxx
-         yf7BNQeymSkua2MTnB0072ZSFPwouWA4aYIZpqn2G55vfoP70GXlxdjj56xOsKZdMwZs
-         m9aAnvgPulYYciHKTOFDGD1IUp9R/pCUumeTjOYZh7Zvi0O++SSJBKBP4qA3kfezxYFF
-         E01uPD0/7D+qtCswvZbeQli+Km54W2z51RCxO3VZua8a2FPcqsqg/xNgsUeFCgV5aDUy
-         oZtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=WVoZZscbEjnNNoIlj1VM/8Hs2mv5BvtpQxaozTKRcQ0=;
-        b=rD5IbLtASeIdJmzgnwi9zlhL0Bbf12veD0wd/4+j+WMYZwEJa+VGgf6SeE3/RDjxoe
-         oiTIoJs9eznUzS1CBZI7Kh/4iH9btu5felMfikNF8ytFQCAojBG2Hnx7d1PxyeSGnf66
-         ywYVfCYIaI6B7JVi7B4SBdchwZPNAcGk+ehg1Ji0kAbcHbbcK1xo0Z6/gn/mDeTKzODe
-         /ls4RtX2ED62b5fv5u1xeeOT5I/WLPbULyqHp0t+UxBurlaSdPDapdK4EkXhAeWIu0q+
-         zIO9GSwVokwFqmRBNc81gW+EgslOmana773IwLE99Xh6cfqR5dDNnVau7DTvBAC+m4hS
-         EvmA==
-X-Gm-Message-State: AOAM532JhDyXRHQ29Mo8Dl3293BGOEGPW6pYx49qDZwekuhqSlX9HByP
-        fc5a+ONQtiVpJK7W7WnvCZc=
-X-Google-Smtp-Source: ABdhPJxfq1+POl8Ag1qsImkMI/utm8bYPKmzui4JO69MLfA0ZnmIBRUlyGibAzZO6EU0GQz2VsGtbA==
-X-Received: by 2002:a05:6402:5109:b0:412:eb8d:cbd5 with SMTP id m9-20020a056402510900b00412eb8dcbd5mr8712759edd.290.1645447694242;
-        Mon, 21 Feb 2022 04:48:14 -0800 (PST)
-Received: from ?IPv6:2001:a61:2a07:4a01:d343:1872:4725:7bb9? ([2001:a61:2a07:4a01:d343:1872:4725:7bb9])
-        by smtp.gmail.com with ESMTPSA id 24sm5148744ejm.163.2022.02.21.04.48.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Feb 2022 04:48:13 -0800 (PST)
-Message-ID: <3f2523127eb320a9825e272353afea9673e5d003.camel@gmail.com>
-Subject: Re: [PATCH v3 1/3] iio: dac: add support for ltc2688
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     "Sa, Nuno" <Nuno.Sa@analog.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>
-Date:   Mon, 21 Feb 2022 13:48:12 +0100
-In-Reply-To: <YhImsJidUu2fMKgu@smile.fi.intel.com>
-References: <20220121142501.151-1-nuno.sa@analog.com>
-         <20220121142501.151-2-nuno.sa@analog.com>
-         <Yf60A1UkbBtQ68qv@smile.fi.intel.com>
-         <PH0PR03MB678628C341A1972BC31F5BBA992B9@PH0PR03MB6786.namprd03.prod.outlook.com>
-         <YgD91zg4L1S5KH5k@smile.fi.intel.com>
-         <e1bd9f14e63e55f48f804568705a9ab8c1a09f62.camel@gmail.com>
-         <Ygpd7pebiuGuB8nT@smile.fi.intel.com>
-         <11bd63bc07fd406bfa31bdc38b597011cc9312cc.camel@gmail.com>
-         <YhImsJidUu2fMKgu@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.3 (3.42.3-1.fc35) 
+        with ESMTP id S1358335AbiBUMxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 07:53:00 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF841C10F;
+        Mon, 21 Feb 2022 04:52:36 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5BA63482;
+        Mon, 21 Feb 2022 13:52:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1645447953;
+        bh=wZf75ab33ig0Wo1mulG1VIJgjrkjwCuvAbAR2SNt/W8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DiC0TC3VeFgDJrbzHx1FIa8os2YjyBOAXeDB/TuAbHrYiZ87b0iRuVOrqe6KnT5zW
+         vGXeE2jPWJkW0P6YWWW2BXkaL4FW140SkKxODDW3X6zj27QTOnG/9I4gGPhUaoGZ1j
+         yxxrR/VjC/DuefJ7Ca0AusZ7ol4NmHoC4Yd546e4=
+Date:   Mon, 21 Feb 2022 14:52:23 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
+        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
+        tomi.valkeinen@ideasonboard.com,
+        bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: [PATCH v5 03/11] dt-bindings: media: Add bindings for
+ bcm2835-unicam
+Message-ID: <YhOLB9AyLK9kzfeG@pendragon.ideasonboard.com>
+References: <20220208155027.891055-1-jeanmichel.hautbois@ideasonboard.com>
+ <20220208155027.891055-4-jeanmichel.hautbois@ideasonboard.com>
+ <f58bf6a9-c63f-19ab-36c8-a9a7b9182859@i2se.com>
+ <20220214093954.5y4jbqcddmwhgxr5@houat>
+ <YgomyazKaV2QnfYQ@pendragon.ideasonboard.com>
+ <7ba0d8e7-72b9-d139-f29f-45a803ca2fdb@i2se.com>
+ <YhM6474MwSh6bjUe@pendragon.ideasonboard.com>
+ <4f809de2-24ee-dd9f-6354-2ce770a3ff4d@i2se.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <4f809de2-24ee-dd9f-6354-2ce770a3ff4d@i2se.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 2022-02-20 at 13:32 +0200, Andy Shevchenko wrote:
-> On Fri, Feb 18, 2022 at 02:51:28PM +0100, Nuno Sá wrote:
-> > On Mon, 2022-02-14 at 15:49 +0200, Andy Shevchenko wrote:
-> > > On Mon, Feb 07, 2022 at 09:19:46PM +0100, Nuno Sá wrote:
-> > > > On Mon, 2022-02-07 at 13:09 +0200, Andy Shevchenko wrote:
-> > > > > On Sun, Feb 06, 2022 at 01:19:59PM +0000, Sa, Nuno wrote:
-> > > > > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > > > > > > Sent: Saturday, February 5, 2022 6:30 PM
-> > > > > > > On Fri, Jan 21, 2022 at 03:24:59PM +0100, Nuno Sá wrote:
-> 
-> ...
-> 
-> > > > > > > Second, why do you need this specific function instead of
-> > > > > > > regmap
-> > > > > > > bulk
-> > > > > > > ops against be24/le24?
-> > > > > > 
-> > > > > > Not sure I'm following this one... If you mean why am I
-> > > > > > using a
-> > > > > > custom 
-> > > > > > regmap_bus implementation, that was already explained in
-> > > > > > the
-> > > > > > RFC
-> > > > > > patch.
-> > > > > > And IIRC, you were the one already asking 😉.
-> > > > > 
-> > > > > Hmm... It was some time I have looked there. Any message ID
-> > > > > to
-> > > > > share,
-> > > > > so
-> > > > > I can find it quickly?
-> > > 
-> > > > https://lore.kernel.org/all/20211112152235.12fdcc49@jic23-huawei/
-> > > 
-> > > Thanks!
-> > > 
-> > > So, it's all about cs_change, right?
-> > > But doesn't bulk operation work exactly as we need here?
-> > > 
-> > 
-> > Yes... that and we need to send the NOOP command in the second TX
-> > transfer.
-> > 
-> > > Looking again to the RFC code, it seems like we can still do it
-> > > 
-> > > First, you call _gather_write() followed by _read(). It will show
-> > > exactly what
-> > > you do, i.e. you send command first with the value 0x0000,
-> > > followed
-> > > by sending
-> > > command and reading back the value at the same time.
-> > > 
-> > > Would it work?
-> > 
-> > Well, _gather_write() are 2 spi transfers only with TX set. That
-> > means
-> > that only on the _read() (which will be another spi_message) we
-> > will
-> > ask for the data. Im not really sure this would work being it on a
-> > different message. This would also mean, one extra dummy transfer.
-> > To
-> > me that already feels that a custom bus implementation is not a bad
-> > idea...
-> 
-> I see, okay, what Jonothan decides then. Still I'm not convinced.
-> 
-> ...
-> 
-> > > > > > > > +       ret = kstrtou16(buf, 10, &val);
-> > > > > > > 
-> > > > > > > In other function you have long, here u16. I would expect
-> > > > > > > that
-> > > > > > > the
-> > > > > > > types are of
-> > > > > > > the same class, e.g. if here you have u16, then there
-> > > > > > > something
-> > > > > > > like
-> > > > > > > s32 / s64.
-> > > > > > > Or here something like unsigned short.
-> > > > > > > 
-> > > > > > > A bit of elaboration why u16 is chosen here?
-> > > > > > 
-> > > > > > Well, I never really saw any enforcement here to be honest
-> > > > > > (rather
-> > > > > > than using
-> > > > > > stdint types...). So I pretty much just use these in
-> > > > > > unsigned
-> > > > > > types
-> > > > > > because
-> > > > > > I'm lazy and u16 is faster to type than unsigned short...
-> > > > > > In
-> > > > > > this
-> > > > > > case, unless Jonathan
-> > > > > > really asks for it, I prefer not to go all over the driver
-> > > > > > and
-> > > > > > change this...
-> > > > > 
-> > > > > This is about consistency. It may work as is, but it feels
-> > > > > not
-> > > > > good
-> > > > > when for
-> > > > > int (or unsigned int) one uses fixed-width types. Also it's
-> > > > > non-
-> > > > > written advice
-> > > > > to use fixed-width variables when it's about programming
-> > > > > registers or
-> > > > > so, for
-> > > > > the rest, use POD types.
-> > 
-> > Ok, going a bit back in the discussion, you argued that in one
-> > place I
-> > was using long while here u16. Well, in the place I'm using long,
-> > that
-> > was on purpose because that value is to be compared against an
-> > array of
-> > longs (which has to be long because it depends on CCF rates). I
-> > guess I
-> > can als0 use s64, but there is also a reason why long was used.
-> > 
-> > In the u16 case, we really want to have 2 bytes because I'm going
-> > to
-> > use that value to write the dac code which is 2 bytes.
-> 
-> Okay, that's what I want to hear. If it's indeed goes to be a value
-> to the
-> register, then it's fine.
-> 
-> Perhaps a comment?
-> 
+Hi Stefan,
 
-I guess you mean to have a comment to state that here we have fixed
-size type (as opposed to long, used in another place), because we
-directly use the value on a register write?
-
-Asking it because I'm not planning to add comments in all the places
-where I have fixed size types for register read/writes...
-
-> > > > I can understand your reasoning but again this is something
-> > > > that
-> > > > I never really saw being enforced. So, I'm more than ok to
-> > > > change
-> > > > it
-> > > > if it really becomes something that we will try to "enforce" in
-> > > > IIO.
-> > > > Otherwise it just feels as a random nitpick :).
-> > > 
-> > > No, this is about consistency and common sense. If you define
-> > > type
-> > > uXX,
-> > > we have an API for that exact type. It's confusing why POD type
-> > > APIs
-> > > are used with fixed-width types or vise versa.
-> > > 
-> > > Moreover (which is pure theoretical, though) some architectures
-> > > might
-> > > have no (mutual) equivalency between these types.
+On Mon, Feb 21, 2022 at 01:45:10PM +0100, Stefan Wahren wrote:
+> Am 21.02.22 um 08:10 schrieb Laurent Pinchart:
+> > On Mon, Feb 14, 2022 at 12:32:59PM +0100, Stefan Wahren wrote:
+> >> Am 14.02.22 um 10:54 schrieb Laurent Pinchart:
+> >>> On Mon, Feb 14, 2022 at 10:39:54AM +0100, Maxime Ripard wrote:
+> >>>> On Sun, Feb 13, 2022 at 04:48:45PM +0100, Stefan Wahren wrote:
+> >>>>> as someone with a little more insight to the clocks, i like to know your
+> >>>>> opinion about the bcm2835-unicam binding.
+> >>>>>
+> >>>>> Am 08.02.22 um 16:50 schrieb Jean-Michel Hautbois:
+> >>>>>> Introduce the dt-bindings documentation for bcm2835 CCP2/CSI2 Unicam
+> >>>>>> camera interface.
+> >>>>>>
+> >>>>>> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> >>>>>> Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> >>>>>> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> >>>>>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >>>>>>
+> >>>>>> ---
+> >>>>>> v4:
+> >>>>>> - make MAINTAINERS its own patch
+> >>>>>> - describe the reg and clocks correctly
+> >>>>>> - use a vendor entry for the number of data lanes
+> >>>>>> ---
+> >>>>>>  .../bindings/media/brcm,bcm2835-unicam.yaml   | 117 ++++++++++++++++++
+> >>>>>>  1 file changed, 117 insertions(+)
+> >>>>>>  create mode 100644 Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> >>>>>> new file mode 100644
+> >>>>>> index 000000000000..1938ace23b3d
+> >>>>>> --- /dev/null
+> >>>>>> +++ b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> >>>>>> @@ -0,0 +1,117 @@
+> >>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>>>> +%YAML 1.2
+> >>>>>> +---
+> >>>>>> +$id: http://devicetree.org/schemas/media/brcm,bcm2835-unicam.yaml#
+> >>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>>>> +
+> >>>>>> +title: Broadcom BCM283x Camera Interface (Unicam)
+> >>>>>> +
+> >>>>>> +maintainers:
+> >>>>>> +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+> >>>>>> +
+> >>>>>> +description: |-
+> >>>>>> +  The Unicam block on BCM283x SoCs is the receiver for either
+> >>>>>> +  CSI-2 or CCP2 data from image sensors or similar devices.
+> >>>>>> +
+> >>>>>> +  The main platform using this SoC is the Raspberry Pi family of boards.  On
+> >>>>>> +  the Pi the VideoCore firmware can also control this hardware block, and
+> >>>>>> +  driving it from two different processors will cause issues.  To avoid this,
+> >>>>>> +  the firmware checks the device tree configuration during boot. If it finds
+> >>>>>> +  device tree nodes whose name starts with 'csi' then it will stop the firmware
+> >>>>>> +  accessing the block, and it can then safely be used via the device tree
+> >>>>>> +  binding.
+> >>>>>> +
+> >>>>>> +properties:
+> >>>>>> +  compatible:
+> >>>>>> +    const: brcm,bcm2835-unicam
+> >>>>>> +
+> >>>>>> +  reg:
+> >>>>>> +    items:
+> >>>>>> +      - description: Unicam block.
+> >>>>>> +      - description: Clock Manager Image (CMI) block.
+> >>>>>> +
+> >>>>>> +  reg-names:
+> >>>>>> +    items:
+> >>>>>> +      - const: unicam
+> >>>>>> +      - const: cmi
+> >>>>>> +
+> >>>>>> +  interrupts:
+> >>>>>> +    maxItems: 1
+> >>>>>> +
+> >>>>>> +  clocks:
+> >>>>>> +    items:
+> >>>>>> +      - description: Clock to drive the LP state machine of Unicam.
+> >>>>>> +      - description: Clock for the VPU (core clock).
+> >>>>>> +
+> >>>>>> +  clock-names:
+> >>>>>> +    items:
+> >>>>>> +      - const: lp
+> >>>>>> +      - const: vpu
+> >>>>>> +
+> >>>>>
+> >>>>> according to this patch [1], the unicam driver only needs the VPU clock
+> >>>>> reference just to enforce a minimum of 250 MHz. The firmware clock
+> >>>>> binding and its driver is specific to the bcm2711, but the Unicam IP
+> >>>>> exists since bcm2835.
+> >>>>>
+> >>>>> So do you think the clock part is correct or should be the VPU clock
+> >>>>> optional?
+> >>>>
+> >>>> I think we should keep it mandatory. Indeed, that clock is shared with
+> >>>> the HVS that will change its rate on a regular basis, so even just
+> >>>> enforcing that 250MHz while it's on without a clock handle will be
+> >>>> fairly hard.
+> >>>>
+> >>>> Also, those are the constraints we have now, but having the clock handle
+> >>>> all the time will allow us to add any constraint we might need in the
+> >>>> future.
+> >>>>
+> >>>> And BCM2711 or not, the clock has probably always been there.
+> >>>
+> >>> Furthermore, regardless of what the driver needs, Unicam operates with
+> >>> the VPU clock, so I think it makes sense to reference it in the device
+> >>> tree.
+> >>
+> >> okay, as a result we need a DTS patch for bcm2835-rpi.dtsi to enable the
+> >> firmware clocks and its driver in this series.
+> >
+> > Can't we do that on top, enabling Unicam support for bcm2711 only first
+> > ? I have no idea how to deal with firmware clocks on bcm2825, and I'm
+> > not sure Jean-Michel even has a hardware platform to test it.
 > 
-> ...
+> sorry as being a bcm2835 maintainer so long, i'm not always aware of the
+> ambiguous meaning of bcm2835. The bcm2835-rpi.dtsi is used by all
+> Raspberry Pi generations. So it's sufficient to test it with a Raspberry
+> Pi 4, but we would gain support for all generations.
 > 
-> > > > > > > > +static int ltc2688_tgp_clk_setup(struct ltc2688_state
-> > > > > > > > *st,
-> > > > > > > > +                                struct ltc2688_chan
-> > > > > > > > *chan,
-> > > > > > > > +                                struct device_node
-> > > > > > > > *np,
-> > > > > > > > int
-> > > > > > > > tgp)
-> > > > > > > > +{
-> > > > > > > > +       unsigned long rate;
-> > > > > > > > +       struct clk *clk;
-> > > > > > > > +       int ret, f;
-> > > > > > > > +
-> > > > > > > > +       clk = devm_get_clk_from_child(&st->spi->dev,
-> > > > > > > > np,
-> > > > > > > > NULL);
-> > > > > > > > +       if (IS_ERR(clk))
-> > > > > > > 
-> > > > > > > Make it optional for non-OF, can be done as easy as
-> > > > > > > 
-> > > > > > >         if (IS_ERR(clk)) {
-> > > > > > >                 if (PTR_ERR(clk) == -ENOENT)
-> > > > > > >                         clk = NULL;
-> > > > > > >                 else
-> > > > > > >                         return dev_err_probe(...);
-> > > > > > >         }
-> > > > > > > 
-> > > > > > > > +               return dev_err_probe(&st->spi->dev,
-> > > > > > > > PTR_ERR(clk),
-> > > > > > > > +                                    "failed to get tgp
-> > > > > > > > clk.\n");
-> > > > > > 
-> > > > > > Well, I might be missing the point but I think this is not
-> > > > > > so
-> > > > > > straight....
-> > > > > > We will only get here if the property " adi,toggle-dither-
-> > > > > > input" is
-> > > > > > given
-> > > > > > in which case having the associated clocks is
-> > > > > > __mandatory__.
-> > > > > 
-> > > > > Ah, okay, would be a limitation for non-OF platforms.
-> > > > > 
-> > > > > > Hence,
-> > > > > > once we are here, this can never be optional. That said, we
-> > > > > > need
-> > > > > > device_node 
-> > > > > 
-> > > > > That's fine, since CCF is OF-centric API.
-> > > > > 
-> > > > > > and hence of.h
-> > > > > 
-> > > > > Why? This header doesn't bring anything you will use here.
-> > > > 
-> > > > Correct me if Im missing something. AFAIU, the idea is to use
-> > > > 'device_for_each_child_node()' which returns a fwnode_handle.
-> > > > That
-> > > > means, that we will have to pass that to this function and use
-> > > > 'to_of_node()' to pass a device_node to
-> > > > 'devm_get_clk_from_child()'.
-> > > > 
-> > > > This means, we need of.h for 'to_of_node()'...
-> > > 
-> > > Yeah, you are right, but it would be still better since it
-> > > narrows
-> > > the problem to the CCF calls only.
-> > 
-> > So, to clear....
-> > 
-> > In your opinion, you are fine whith using device properties and
-> > just
-> > have 'to_of_node()' in this CCF call? I'm fine with it, so if
-> > Jonathan
-> > does not have any complain about it, will do like this in v4,
+> So my request is to move the changes from bcm2711 specific dtsi to the
+> general dtsi. There is no need to touch any driver, please have a look
+> at this patch [1] to see what i had in my mind. Just compile tested.
 > 
-> Yes, that will show that only CCF is missing the fwnode APIs.
+> I hope you understand, i want to have it for all generations in one step.
 > 
+> [1] -
+> https://github.com/lategoodbye/rpi-zero/commit/67897cc22c03204e6464d00ff4ddac6bf5dc65dc
 
-Ok, it's settled then...
+Got it. I thought changes would be needed in the firmware clocks driver,
+if it's just about moving the node to a different file, it's pretty
+easy. Thank you for taking the time to cook up a patch to educate me :-)
 
-- Nuno Sá
+> > If you want to send a patch series to enable firmware clocks on bcm2835,
+> > we'll be happy to rebase on top.
 
+-- 
+Regards,
+
+Laurent Pinchart
