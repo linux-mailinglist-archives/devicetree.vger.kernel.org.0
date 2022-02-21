@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C38D14BE016
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92ADA4BE76F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:03:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355439AbiBULRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 06:17:01 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48110 "EHLO
+        id S1356082AbiBULTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 06:19:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356318AbiBULQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 06:16:22 -0500
+        with ESMTP id S1356083AbiBULS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 06:18:58 -0500
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EB9FDF35
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 02:57:57 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E6C3214
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 03:01:57 -0800 (PST)
 Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0EAB6482;
-        Mon, 21 Feb 2022 11:57:54 +0100 (CET)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 29BE0482;
+        Mon, 21 Feb 2022 12:01:56 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645441075;
-        bh=bWlNeVNKlz9/StQUVM42xOtXpZb5awVLlVDId/S/r8g=;
+        s=mail; t=1645441316;
+        bh=zL+A9J1KeW/ARZ1q5A5RpjSe1/HILtoHdyf3xFjXq0k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TJNm7WtscnEp/mg5WCdMo60cM5wue3hKlG5rJI/wc6AcNHfF+Ds+C0+0Qhc8CbClA
-         8FH/5/lcrGhtMuj7rAYT+yFTtF7uHfVNA97Kc3G0eE5cgDhd0aWCBnkIKRFlYNuwUr
-         Wr+gRM3HdJbhwPWtvuFaG4ezZ1Ovf/0OZiiJBZqI=
-Date:   Mon, 21 Feb 2022 12:57:45 +0200
+        b=mBHDogm5BBVNQTtB2Tpn96vE9QVtc2yKbxvFAx9w5wvnlegb5IHpHE9J0upsjgGsd
+         nu5dB7ak588SQ1XnXgfuex84yz1pe+kjiWkl4fMlIpXZGSqk3A3Y3czc6HlHhbVIC6
+         csgUHV4WfaOV6N3fb6s6YsoSDLiqv3ULFMVr/0oo=
+Date:   Mon, 21 Feb 2022 13:01:47 +0200
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     Lucas Stach <l.stach@pengutronix.de>
 Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -32,20 +32,17 @@ Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        patchwork-lst@pengutronix.de,
-        Paul Elder <paul.elder@ideasonboard.com>
-Subject: Re: [PATCH v2 3/9] soc: imx: gpcv2: add support for i.MX8MP power
- domains
-Message-ID: <YhNwKfdFAEJl3P3b@pendragon.ideasonboard.com>
+        patchwork-lst@pengutronix.de
+Subject: Re: [PATCH v2 7/9] arm64: dts: imx8mp: add HSIO power-domains
+Message-ID: <YhNxG8oJb/kOArBt@pendragon.ideasonboard.com>
 References: <20220207192547.1997549-1-l.stach@pengutronix.de>
- <20220207192547.1997549-3-l.stach@pengutronix.de>
- <YhAlfAunReS14b/E@pendragon.ideasonboard.com>
- <YhIniLdFtcpODXBN@pendragon.ideasonboard.com>
- <b4e2099b6d9511f144bbbf6355f8c284b3328901.camel@pengutronix.de>
+ <20220207192547.1997549-7-l.stach@pengutronix.de>
+ <YhCfAJbLkrzS9rIz@pendragon.ideasonboard.com>
+ <3e9d3135d9d838cb58e828478145704b9cb7f58d.camel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <b4e2099b6d9511f144bbbf6355f8c284b3328901.camel@pengutronix.de>
+In-Reply-To: <3e9d3135d9d838cb58e828478145704b9cb7f58d.camel@pengutronix.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -57,89 +54,179 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Lucas,
 
-On Mon, Feb 21, 2022 at 11:09:58AM +0100, Lucas Stach wrote:
-> Am Sonntag, dem 20.02.2022 um 13:35 +0200 schrieb Laurent Pinchart:
-> > On Sat, Feb 19, 2022 at 01:02:21AM +0200, Laurent Pinchart wrote:
-> > > On Mon, Feb 07, 2022 at 08:25:41PM +0100, Lucas Stach wrote:
-> > > > This adds driver support for all the GPC power domains found on
-> > > > the i.MX8MP SoC.
-> > > > 
-> > > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > > > ---
-> > > >  drivers/soc/imx/gpcv2.c | 387 +++++++++++++++++++++++++++++++++++++++-
-> > > >  1 file changed, 386 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> > > > index 01f46b078df3..a7c92bdfc53b 100644
-> > > > --- a/drivers/soc/imx/gpcv2.c
-> > > > +++ b/drivers/soc/imx/gpcv2.c
-> > 
-> > [snip]
-> > 
-> > > > @@ -137,6 +183,21 @@
-> > > >  #define IMX8MN_DISPMIX_HSK_PWRDNREQN		BIT(7)
-> > > >  #define IMX8MN_HSIO_HSK_PWRDNREQN		BIT(5)
-> > > >  
-> > > > +#define IMX8MP_MEDIAMIX_PWRDNACKN		BIT(3)
+On Mon, Feb 21, 2022 at 11:05:00AM +0100, Lucas Stach wrote:
+> Am Samstag, dem 19.02.2022 um 09:40 +0200 schrieb Laurent Pinchart:
+> > On Mon, Feb 07, 2022 at 08:25:45PM +0100, Lucas Stach wrote:
+> > > This adds the GPC and HSIO blk-ctrl nodes providing power control for
+> > > the high-speed (USB and PCIe) IOs.
 > > > 
-> > > This should be bit 30.
+> > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 63 ++++++++++++++++++++---
+> > >  1 file changed, 57 insertions(+), 6 deletions(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > index 6b840c05dd77..dc488a147d0c 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > @@ -4,6 +4,7 @@
+> > >   */
+> > >  
+> > >  #include <dt-bindings/clock/imx8mp-clock.h>
+> > > +#include <dt-bindings/power/imx8mp-power.h>
+> > >  #include <dt-bindings/gpio/gpio.h>
+> > >  #include <dt-bindings/input/input.h>
+> > >  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > @@ -475,6 +476,44 @@ src: reset-controller@30390000 {
+> > >  				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> > >  				#reset-cells = <1>;
+> > >  			};
+> > > +
+> > > +			gpc: gpc@303a0000 {
+> > > +				compatible = "fsl,imx8mp-gpc";
+> > > +				reg = <0x303a0000 0x10000>;
 > > 
-> > With this fixed,
-> > 
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > 
-> > with a soon to be posted driver for the MEDIA_BLK_CTRL.
-> > 
-> > While this shouldn't be a blocker, I'm wondering how we should deal with
-> > the NOC configuration that TF-A handles in the power domain code ([1]).
-> > The reference manual doesn't document the registers, which doesn't help.
->
-> Yes, that doesn't help. My hope was that at some point we could get
-> around to add proper interconnect drivers for those NoC nodes and have
-> the description for those scheduling parameters in the DT, but without
-> any documentation this will probably be a hard nut to crack.
-
-Indeed. Maybe someone from NXP could help :-)
-
-> > There are also two registers in the MEDIA_BLK_CTRL that are specific to
-> > the LCDIF and ISI, see [2]. Would you recommend dealing with them in the
-> > imx8m-blk-ctrl driver (maybe in the power domain notifier, the same way
-> > we set bit 8 in the CLK_EN register), or through a syscon phandle
-> > directly in the LCDIF and ISI drivers ?
+> > According to the reference manual, the GPC occupies 4kB, not 64kB.
 > 
-> For now I think it would be good enough to initialize those registers
-> in the power domain notifier. I don't think the ISI or LCDIF drivers
-> have any more information available that would make it beneficial to
-> change those values on the fly. As long as they are just static init
-> values, writing them once from the PM notifier should be good enough.
+> Right, will fix.
+> 
+> > > +				interrupt-parent = <&gic>;
+> > > +				interrupt-controller;
+> > > +				#interrupt-cells = <3>;
+> > > +
+> > > +				pgc {
+> > > +					#address-cells = <1>;
+> > > +					#size-cells = <0>;
+> > > +
+> > 
+> > We're working on support for the MEDIAMIX power domains, which we'll
+> > rebase on top of this. In case the HSIO part still needs more work,
+> > could you split this patch in two, with one patch that adds the PGC,
+> > with an empty pgc nodde, and a second patch that adds the HSIO-related
+> > power domains ? The first one could then be merged faster (it would be
+> > great if it could get in v5.18).
+> 
+> I don't think the HSIO part is controversial. It seems to work well in
+> my testing and DT binding is already reviewed. Not sure if someone is
+> going to review it properly, but I hope that we can land it together
+> with the reset of this series.
 
-Sounds good to me. Paul, could you do so when posting the MEDIA_BLK_CTRL
-driver ?
+I'll give it a review.
 
-> > [1] https://source.codeaurora.org/external/qoriq/qoriq-components/atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf-5.10.72-2.2.0#n156
-> > [2] https://source.codeaurora.org/external/qoriq/qoriq-components/atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf-5.10.72-2.2.0#n146
+> > > +					pgc_pcie_phy: power-domain@1 {
+> > > +						#power-domain-cells = <0>;
+> > > +						reg = <IMX8MP_POWER_DOMAIN_PCIE_PHY>;
+> > > +					};
+> > > +
+> > > +					pgc_usb1_phy: power-domain@2 {
+> > > +						#power-domain-cells = <0>;
+> > > +						reg = <IMX8MP_POWER_DOMAIN_USB1_PHY>;
+> > > +					};
+> > > +
+> > > +					pgc_usb2_phy: power-domain@3 {
+> > > +						#power-domain-cells = <0>;
+> > > +						reg = <IMX8MP_POWER_DOMAIN_USB2_PHY>;
+> > > +					};
+> > > +
+> > > +					pgc_hsiomix: power-domains@17 {
+> > > +						#power-domain-cells = <0>;
+> > > +						reg = <IMX8MP_POWER_DOMAIN_HSIOMIX>;
+> > > +						clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
+> > > +							 <&clk IMX8MP_CLK_HSIO_ROOT>;
+> > > +						assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
+> > > +						assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
+> > > +						assigned-clock-rates = <500000000>;
+> > > +					};
+> > > +				};
+> > > +			};
+> > >  		};
+> > >  
+> > >  		aips2: bus@30400000 {
+> > > @@ -908,6 +947,20 @@ ddr-pmu@3d800000 {
+> > >  			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+> > >  		};
+> > >  
+> > > +		hsio_blk_ctrl: blk-ctrl@32f10000 {
+> > > +			compatible = "fsl,imx8mp-hsio-blk-ctrl", "syscon";
+> > > +			reg = <0x32f10000 0x24>;
+> > > +			clocks = <&clk IMX8MP_CLK_USB_ROOT>,
+> > > +				 <&clk IMX8MP_CLK_PCIE_ROOT>;
+> > > +			clock-names = "usb", "pcie";
+> > > +			power-domains = <&pgc_hsiomix>, <&pgc_hsiomix>,
+> > > +					<&pgc_usb1_phy>, <&pgc_usb2_phy>,
+> > > +					<&pgc_hsiomix>, <&pgc_pcie_phy>;
 > > 
-> > > > +#define IMX8MP_HDMIMIX_PWRDNACKN		BIT(29)
-> > > > +#define IMX8MP_HSIOMIX_PWRDNACKN		BIT(28)
-> > > > +#define IMX8MP_VPUMIX_PWRDNACKN			BIT(26)
-> > > > +#define IMX8MP_GPUMIX_PWRDNACKN			BIT(25)
-> > > > +#define IMX8MP_MLMIX_PWRDNACKN			(BIT(23) | BIT(24))
-> > > > +#define IMX8MP_AUDIOMIX_PWRDNACKN		(BIT(20) | BIT(31))
-> > > > +#define IMX8MP_MEDIAMIX_PWRDNREQN		BIT(14)
-> > > > +#define IMX8MP_HDMIMIX_PWRDNREQN		BIT(13)
-> > > > +#define IMX8MP_HSIOMIX_PWRDNREQN		BIT(12)
-> > > > +#define IMX8MP_VPUMIX_PWRDNREQN			BIT(10)
-> > > > +#define IMX8MP_GPUMIX_PWRDNREQN			BIT(9)
-> > > > +#define IMX8MP_MLMIX_PWRDNREQN			(BIT(7) | BIT(8))
-> > > > +#define IMX8MP_AUDIOMIX_PWRDNREQN		(BIT(4) | BIT(15))
-> > > > +
-> > > >  /*
-> > > >   * The PGC offset values in Reference Manual
-> > > >   * (Rev. 1, 01/2018 and the older ones) GPC chapter's
-> > 
-> > [snip]
-> > 
+> > Would it be useful to rework the driver to avoid specifying the same
+> > parent power domain multiple times in DT ?
+> 
+> I don't think so. That's the pattern we used for all the other blk-
+> ctrls, where each virtual power-domain in the blk-ctrl has its own
+> handle to a upstream GPC power domain. I don't see why we would want to
+> change this now.
+
+It's a small optimization, but probably not really important.
+
+> > > +			power-domain-names = "bus", "usb", "usb-phy1",
+> > > +					     "usb-phy2", "pcie", "pcie-phy";
+> > > +			#power-domain-cells = <1>;
+> > > +		};
+> > > +
+> > >  		usb3_phy0: usb-phy@381f0040 {
+> > >  			compatible = "fsl,imx8mp-usb-phy";
+> > >  			reg = <0x381f0040 0x40>;
+> > > @@ -915,6 +968,7 @@ usb3_phy0: usb-phy@381f0040 {
+> > >  			clock-names = "phy";
+> > >  			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
+> > >  			assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+> > > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB_PHY1>;
+> > >  			#phy-cells = <0>;
+> > >  			status = "disabled";
+> > >  		};
+> > > @@ -926,6 +980,7 @@ usb3_0: usb@32f10100 {
+> > >  				 <&clk IMX8MP_CLK_USB_ROOT>;
+> > >  			clock-names = "hsio", "suspend";
+> > >  			interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>;
+> > >  			#address-cells = <1>;
+> > >  			#size-cells = <1>;
+> > >  			dma-ranges = <0x40000000 0x40000000 0xc0000000>;
+> > > @@ -939,9 +994,6 @@ usb_dwc3_0: usb@38100000 {
+> > >  					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+> > >  					 <&clk IMX8MP_CLK_USB_ROOT>;
+> > >  				clock-names = "bus_early", "ref", "suspend";
+> > > -				assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
+> > > -				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
+> > > -				assigned-clock-rates = <500000000>;
+> > >  				interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> > >  				phys = <&usb3_phy0>, <&usb3_phy0>;
+> > >  				phy-names = "usb2-phy", "usb3-phy";
+> > > @@ -957,6 +1009,7 @@ usb3_phy1: usb-phy@382f0040 {
+> > >  			clock-names = "phy";
+> > >  			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
+> > >  			assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+> > > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB_PHY2>;
+> > >  			#phy-cells = <0>;
+> > >  		};
+> > >  
+> > > @@ -967,6 +1020,7 @@ usb3_1: usb@32f10108 {
+> > >  				 <&clk IMX8MP_CLK_USB_ROOT>;
+> > >  			clock-names = "hsio", "suspend";
+> > >  			interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>;
+> > >  			#address-cells = <1>;
+> > >  			#size-cells = <1>;
+> > >  			dma-ranges = <0x40000000 0x40000000 0xc0000000>;
+> > > @@ -980,9 +1034,6 @@ usb_dwc3_1: usb@38200000 {
+> > >  					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+> > >  					 <&clk IMX8MP_CLK_USB_ROOT>;
+> > >  				clock-names = "bus_early", "ref", "suspend";
+> > > -				assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
+> > > -				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
+> > > -				assigned-clock-rates = <500000000>;
+> > >  				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+> > >  				phys = <&usb3_phy1>, <&usb3_phy1>;
+> > >  				phy-names = "usb2-phy", "usb3-phy";
+> > > 
 
 -- 
 Regards,
