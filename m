@@ -2,363 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F1054BE3A7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:57:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64A524BE0D9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347976AbiBUJ1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 04:27:24 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47508 "EHLO
+        id S231426AbiBUJiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 04:38:17 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349872AbiBUJ0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 04:26:45 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B83001EAFD;
-        Mon, 21 Feb 2022 01:10:51 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 0A1BA2223E;
-        Mon, 21 Feb 2022 10:10:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1645434649;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=1CVJ3zXsh+NaiVRj46zuadW+OtpATHxdz24V6BgPaWk=;
-        b=C1bzeR8XuiRuGpymeuSp7mS+mXkDyqkYIWJpJgPSmpdXH7Rqc+I2qMStv+w1Quz7M5NgUy
-        94DUn/Wz+YbUIU6N9dM8C0YPDlxxVPbqUEH/bwl07EF58GQ6ki5A9iruKKkzUSAdm930rL
-        yZycOr6YyjqvoEK1pIaGiPpiqNuYFKA=
+        with ESMTP id S1351879AbiBUJho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 04:37:44 -0500
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF1F6654E;
+        Mon, 21 Feb 2022 01:16:38 -0800 (PST)
+Received: by mail-qv1-f46.google.com with SMTP id e22so30466709qvf.9;
+        Mon, 21 Feb 2022 01:16:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SnKbJVLfgaRymluaOH/LPddpZ+bX9fHGr9MZlFjIlxM=;
+        b=xlszHnUJZbhIjq4nQuqRUxIpX+ZfTRCwdPRH6JUb0Rvq9OUyvuK3ao4uGA/qe8YAt9
+         aRwJPJpGq5UYWG41pIYlqXI+Alf5mMVRRK8lxqxiErOY5SU8dManyJI3h3kghACPJqi1
+         kjcSpxFG4FvYcsgEgWdUQplB7rPtBRPfJDnahGtHTo/ABh6ualHu6ho63zODxfTUL5Q9
+         ZTRrxgqrvH78VCUTlzMKMlmnqdaLNY56+45VCLb30IsXhtnawdeAu0NXckEQ/XmFCm0U
+         os2PcoJHR75srE5I9n5PZ7n+laNlBI2fHCy4fURJZlrlCt7ecBEuK6AdzIrVPzwLG8Xa
+         Rj5w==
+X-Gm-Message-State: AOAM533WDul4UqeTa8pSk3g/J6ynjFVoBSQyFWPowC5KGguzwvWCFn2P
+        NFhzQqWl8QV05TL5cwPqSIygnc8p69MgsQ==
+X-Google-Smtp-Source: ABdhPJzHa1YQ0rsQI9qD1uMb+I73idgYRZxjNeFVFO5wfbo/kE8e/gp5ZtX8MxbtRt9LhMOSES8J4Q==
+X-Received: by 2002:ac8:5988:0:b0:2d7:84d6:aee with SMTP id e8-20020ac85988000000b002d784d60aeemr16892128qte.466.1645434997036;
+        Mon, 21 Feb 2022 01:16:37 -0800 (PST)
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
+        by smtp.gmail.com with ESMTPSA id y18sm30482997qtj.33.2022.02.21.01.16.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Feb 2022 01:16:36 -0800 (PST)
+Received: by mail-yb1-f170.google.com with SMTP id e140so32871434ybh.9;
+        Mon, 21 Feb 2022 01:16:36 -0800 (PST)
+X-Received: by 2002:a25:324c:0:b0:623:fb7d:cbc8 with SMTP id
+ y73-20020a25324c000000b00623fb7dcbc8mr17519476yby.397.1645434996064; Mon, 21
+ Feb 2022 01:16:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 21 Feb 2022 10:10:46 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-Cc:     arnd@arndb.de, alexandre.belloni@bootlin.com, olof@lixom.net,
-        soc@kernel.org, robh+dt@kernel.org, nicolas.ferre@microchip.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        Manohar.Puri@microchip.com
-Subject: Re: [PATCH v7] ARM: dts: add DT for lan966 SoC and 2-port board
- pcb8291
-In-Reply-To: <20220221080858.14233-1-kavyasree.kotagiri@microchip.com>
-References: <20220221080858.14233-1-kavyasree.kotagiri@microchip.com>
-User-Agent: Roundcube Webmail/1.4.12
-Message-ID: <3b4c56201a478876783e69243c901cd8@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220218181226.431098-1-miquel.raynal@bootlin.com> <20220218181226.431098-4-miquel.raynal@bootlin.com>
+In-Reply-To: <20220218181226.431098-4-miquel.raynal@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 21 Feb 2022 10:16:24 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWBfJSeEOev81WYSEw+9FAcUzBnN2n5BHJ2n0ig=6fxKQ@mail.gmail.com>
+Message-ID: <CAMuHMdWBfJSeEOev81WYSEw+9FAcUzBnN2n5BHJ2n0ig=6fxKQ@mail.gmail.com>
+Subject: Re: [PATCH 3/8] soc: renesas: rzn1-sysc: Export function to set dmamux
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Laetitia MARIOTTINI <laetitia.mariottini@se.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-02-21 09:08, schrieb Kavyasree Kotagiri:
-> This patch adds basic DT for Microchip lan966x SoC and associated board
-> pcb8291(2-port EVB). Adds peripherals required to allow booting: 
-> Interrupt
-> Controller, Clock, Generic ARMv7 Timers, Synopsys Timer, Flexcoms, 
-> GPIOs.
-> Also adds other peripherals like crypto(AES/SHA), DMA, Watchdog Timer, 
-> TRNG
-> and MCAN0.
-> 
-> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> ---
-> v6 -> v7:
-> - Removed "arm,cpu-registers-not-fw-configured" property, as not 
-> required.
-> - Corrected "PPI interrupt cpu mask" and order of interrupts.
-> 
-> v5 -> v6:
-> - Renamed dts file to lan966x-pcb8291.dts file.
-> - Disabled optional watchdog in dtsi file and enabled it in dts file.
-> 
-> v4 -> v5:
-> - Modified AES, SHA, TRNG node names as per generic names recommended.
-> 
-> v3 -> v4:
-> - Removed character 'x' from compatible string.
-> - Removed memory node as handled by bootloader.
-> - Renamed flexcom3 usart0 to usart3
-> - Added /chosen and /aliases nodes in dts file.
-> 
-> v2 -> v3:
-> - Enabling trng in dtsi itself.
-> - Removed "status=okay" dma0.
-> - Add gpio pin settings for can0(missed adding this in previous 
-> version)
-> 
-> v1 -> v2:
-> - Moved flx3 usart0 node to dtsi file.
-> - Removed status="okay" for dma0 to maintain consistency across nodes
->   (which means enabling dma0 by default)
-> 
->  arch/arm/boot/dts/Makefile            |   2 +
->  arch/arm/boot/dts/lan966x-pcb8291.dts |  64 +++++++
->  arch/arm/boot/dts/lan966x.dtsi        | 237 ++++++++++++++++++++++++++
->  3 files changed, 303 insertions(+)
->  create mode 100644 arch/arm/boot/dts/lan966x-pcb8291.dts
->  create mode 100644 arch/arm/boot/dts/lan966x.dtsi
-> 
+Hi Miquel,
+
+On Fri, Feb 18, 2022 at 7:12 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> The dmamux register is located within the system controller.
+>
+> Without syscon, we need an extra helper in order to give write access to
+> this register to a dmamux driver.
+>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+
+Thanks for your patch!
+
+> --- a/drivers/clk/renesas/r9a06g032-clocks.c
+> +++ b/drivers/clk/renesas/r9a06g032-clocks.c
+
+Missing #include <linux/soc/renesas/r9a06g032-syscon.h>
+
+> @@ -315,6 +315,27 @@ struct r9a06g032_priv {
+>         void __iomem *reg;
+>  };
+>
+> +/* Exported helper to access the DMAMUX register */
+> +static struct r9a06g032_priv *syscon_priv;
+
+I'd call this sysctrl_priv, as that matches the bindings and
+binding header file name.
+
+> +int r9a06g032_syscon_set_dmamux(u32 mask, u32 val)
+> +{
+> +       u32 dmamux;
+> +
+> +       if (!syscon_priv)
+> +               return -EPROBE_DEFER;
+> +
+> +       spin_lock(&syscon_priv->lock);
+
+This needs propection against interrupts => spin_lock_irqsave().
+
+> +
+> +       dmamux = readl(syscon_priv->reg + R9A06G032_SYSCON_DMAMUX);
+> +       dmamux &= ~mask;
+> +       dmamux |= val & mask;
+> +       writel(dmamux, syscon_priv->reg + R9A06G032_SYSCON_DMAMUX);
+> +
+> +       spin_unlock(&syscon_priv->lock);
+> +
+> +       return 0;
+> +}
+> +
+>  /* register/bit pairs are encoded as an uint16_t */
+>  static void
+>  clk_rdesc_set(struct r9a06g032_priv *clocks,
+
+> --- a/include/dt-bindings/clock/r9a06g032-sysctrl.h
+> +++ b/include/dt-bindings/clock/r9a06g032-sysctrl.h
+> @@ -145,4 +145,6 @@
+>  #define R9A06G032_CLK_UART6            152
+>  #define R9A06G032_CLK_UART7            153
+>
+> +#define R9A06G032_SYSCON_DMAMUX                0xA0
+
+I don't think this needs to be part of the bindings, so please move
+it to the driver source file.
 
 > --- /dev/null
-> +++ b/arch/arm/boot/dts/lan966x.dtsi
-> @@ -0,0 +1,237 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * lan966x.dtsi - Device Tree Include file for Microchip LAN966 family 
-> SoC
-> + *
-> + * Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
-> + *
-> + * Author: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> + *
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/mfd/atmel-flexcom.h>
-> +#include <dt-bindings/dma/at91.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/clock/microchip,lan966x.h>
-> +
-> +/ {
-> +	model = "Microchip LAN966 family SoC";
-> +	compatible = "microchip,lan966";
+> +++ b/include/linux/soc/renesas/r9a06g032-syscon.h
 
-As mentioned earlier, this isn't a documented compatible string. So,
-I guess without overwriting this in the board dts it will throw an
-error with the dt schema validator. OTOH, there are many dtsi files
-in arch/arm/boot/dts/ doing this. I don't know what is correct here.
+r9a06g032-sysctrl.h etc.
 
-Everthing else looks good.
+> @@ -0,0 +1,11 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __LINUX_SOC_RENESAS_R9A06G032_SYSCON_H__
+> +#define __LINUX_SOC_RENESAS_R9A06G032_SYSCON_H__
+> +
+> +#ifdef CONFIG_CLK_R9A06G032
+> +int r9a06g032_syscon_set_dmamux(u32 mask, u32 val);
+> +#else
+> +static inline int r9a06g032_syscon_set_dmamux(u32 mask, u32 val) { return -ENODEV; }
+> +#endif
+> +
+> +#endif /* __LINUX_SOC_RENESAS_R9A06G032_SYSCON_H__ */
+> --
+> 2.27.0
 
-Reviewed-by: Michael Walle <michael@walle.cc>
+Gr{oetje,eeting}s,
 
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a7";
-> +			clock-frequency = <600000000>;
-> +			reg = <0x0>;
-> +		};
-> +	};
-> +
-> +	clocks {
-> +		sys_clk: sys_clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <162500000>;
-> +		};
-> +
-> +		cpu_clk: cpu_clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <600000000>;
-> +		};
-> +
-> +		ddr_clk: ddr_clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <300000000>;
-> +		};
-> +
-> +		nic_clk: nic_clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <200000000>;
-> +		};
-> +	};
-> +
-> +	clks: clock-controller@e00c00a8 {
-> +		compatible = "microchip,lan966x-gck";
-> +		#clock-cells = <1>;
-> +		clocks = <&cpu_clk>, <&ddr_clk>, <&sys_clk>;
-> +		clock-names = "cpu", "ddr", "sys";
-> +		reg = <0xe00c00a8 0x38>;
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv7-timer";
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) | 
-> IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
-> +		clock-frequency = <37500000>;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		flx0: flexcom@e0040000 {
-> +			compatible = "atmel,sama5d2-flexcom";
-> +			reg = <0xe0040000 0x100>;
-> +			clocks = <&clks GCK_ID_FLEXCOM0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xe0040000 0x800>;
-> +			status = "disabled";
-> +		};
-> +
-> +		flx1: flexcom@e0044000 {
-> +			compatible = "atmel,sama5d2-flexcom";
-> +			reg = <0xe0044000 0x100>;
-> +			clocks = <&clks GCK_ID_FLEXCOM1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xe0044000 0x800>;
-> +			status = "disabled";
-> +		};
-> +
-> +		trng: rng@e0048000 {
-> +			compatible = "atmel,at91sam9g45-trng";
-> +			reg = <0xe0048000 0x100>;
-> +			clocks = <&nic_clk>;
-> +		};
-> +
-> +		aes: crypto@e004c000 {
-> +			compatible = "atmel,at91sam9g46-aes";
-> +			reg = <0xe004c000 0x100>;
-> +			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
-> +			dmas = <&dma0 AT91_XDMAC_DT_PERID(13)>,
-> +			       <&dma0 AT91_XDMAC_DT_PERID(12)>;
-> +			dma-names = "rx", "tx";
-> +			clocks = <&nic_clk>;
-> +			clock-names = "aes_clk";
-> +		};
-> +
-> +		flx2: flexcom@e0060000 {
-> +			compatible = "atmel,sama5d2-flexcom";
-> +			reg = <0xe0060000 0x100>;
-> +			clocks = <&clks GCK_ID_FLEXCOM2>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xe0060000 0x800>;
-> +			status = "disabled";
-> +		};
-> +
-> +		flx3: flexcom@e0064000 {
-> +			compatible = "atmel,sama5d2-flexcom";
-> +			reg = <0xe0064000 0x100>;
-> +			clocks = <&clks GCK_ID_FLEXCOM3>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xe0064000 0x800>;
-> +			status = "disabled";
-> +
-> +			usart3: serial@200 {
-> +				compatible = "atmel,at91sam9260-usart";
-> +				reg = <0x200 0x200>;
-> +				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&nic_clk>;
-> +				clock-names = "usart";
-> +				atmel,fifo-size = <32>;
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		dma0: dma-controller@e0068000 {
-> +			compatible = "microchip,sama7g5-dma";
-> +			reg = <0xe0068000 0x1000>;
-> +			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-> +			#dma-cells = <1>;
-> +			clocks = <&nic_clk>;
-> +			clock-names = "dma_clk";
-> +		};
-> +
-> +		sha: crypto@e006c000 {
-> +			compatible = "atmel,at91sam9g46-sha";
-> +			reg = <0xe006c000 0xec>;
-> +			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-> +			dmas = <&dma0 AT91_XDMAC_DT_PERID(14)>;
-> +			dma-names = "tx";
-> +			clocks = <&nic_clk>;
-> +			clock-names = "sha_clk";
-> +		};
-> +
-> +		flx4: flexcom@e0070000 {
-> +			compatible = "atmel,sama5d2-flexcom";
-> +			reg = <0xe0070000 0x100>;
-> +			clocks = <&clks GCK_ID_FLEXCOM4>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xe0070000 0x800>;
-> +			status = "disabled";
-> +		};
-> +
-> +		timer0: timer@e008c000 {
-> +			compatible = "snps,dw-apb-timer";
-> +			reg = <0xe008c000 0x400>;
-> +			clocks = <&nic_clk>;
-> +			clock-names = "timer";
-> +			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		watchdog: watchdog@e0090000 {
-> +			compatible = "snps,dw-wdt";
-> +			reg = <0xe0090000 0x1000>;
-> +			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&nic_clk>;
-> +			status = "disabled";
-> +		};
-> +
-> +		can0: can@e081c000 {
-> +			compatible = "bosch,m_can";
-> +			reg = <0xe081c000 0xfc>, <0x00100000 0x4000>;
-> +			reg-names = "m_can", "message_ram";
-> +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "int0", "int1";
-> +			clocks = <&clks GCK_ID_MCAN0>, <&clks GCK_ID_MCAN0>;
-> +			clock-names = "hclk", "cclk";
-> +			assigned-clocks = <&clks GCK_ID_MCAN0>;
-> +			assigned-clock-rates = <40000000>;
-> +			bosch,mram-cfg = <0x0 0 0 64 0 0 32 32>;
-> +			status = "disabled";
-> +		};
-> +
-> +		gpio: pinctrl@e2004064 {
-> +			compatible = "microchip,lan966x-pinctrl";
-> +			reg = <0xe2004064 0xb4>,
-> +			    <0xe2010024 0x138>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&gpio 0 0 78>;
-> +			interrupt-controller;
-> +			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		gic: interrupt-controller@e8c11000 {
-> +			compatible = "arm,gic-400", "arm,cortex-a7-gic";
-> +			#interrupt-cells = <3>;
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-controller;
-> +			reg = <0xe8c11000 0x1000>,
-> +			      <0xe8c12000 0x2000>,
-> +			      <0xe8c14000 0x2000>,
-> +			      <0xe8c16000 0x2000>;
-> +		};
-> +	};
-> +};
+                        Geert
 
--- 
--michael
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
