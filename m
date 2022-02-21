@@ -2,63 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F1294BD40C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 03:57:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFDCA4BD407
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 03:57:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343947AbiBUCg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 21:36:58 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48774 "EHLO
+        id S1343891AbiBUCgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 21:36:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343938AbiBUCgy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:36:54 -0500
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 989AF299;
-        Sun, 20 Feb 2022 18:36:31 -0800 (PST)
-Received: by mail-il1-f177.google.com with SMTP id p11so8992040ils.1;
-        Sun, 20 Feb 2022 18:36:31 -0800 (PST)
+        with ESMTP id S1343889AbiBUCgf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:36:35 -0500
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2600D3DDE0;
+        Sun, 20 Feb 2022 18:36:12 -0800 (PST)
+Received: by mail-io1-f54.google.com with SMTP id r7so8982377iot.3;
+        Sun, 20 Feb 2022 18:36:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=QyX/i2/YrR/rW3J3vcQL5VJG0A8Hvyop2ZIeubiA5uY=;
-        b=31BVrDMMHkfUoZhz/E4uchbtevPAmv2DARIy4BG6ZnmCbgdiANjL8c40C2i/jz5HDM
-         4YVT6C6Nqi5eJoPVuBGppH4+QS1PU70XVltW0QNXIigSr6ah8T/qw7gXhAACwmPa86FQ
-         hKFyNYWZ0qNy0IzP95SzszTAwOm9yvTWO44betxNJd5ZGrsJJFNctuQo0WkYbuKvO1JZ
-         XrITdvo9ENscJEhe329jrqL505rYh5yIoBdJCeprqbg4dMV71wO/TzcS4I1NiHZbZDjj
-         ofgjlKu7OvgslbMF3MwPrZA2Iwg+BI4YpcmeapUIm7S2APRBbyzoD1KLtw1pWhETs0oG
-         Tlyw==
-X-Gm-Message-State: AOAM533a+05RkWvkwoe7DpYTJ0ZZfBKQawA9JFkzvZyFSG2fz4S7eFU4
-        DFX4xjRAw6jv5BGXfi3Ayg==
-X-Google-Smtp-Source: ABdhPJzdwNs2TTvMMhPurie/Z2ze3Kaj4Y2IAOi9YjrL1pMLCBZwuYrSXPXRDjt2YTX9QydWacu9Kw==
-X-Received: by 2002:a92:ca0f:0:b0:2bf:56d4:3aec with SMTP id j15-20020a92ca0f000000b002bf56d43aecmr14324732ils.220.1645410990890;
-        Sun, 20 Feb 2022 18:36:30 -0800 (PST)
+        bh=FxeQCl1x7bPN2N7fKduzQexfeAZe1Kk7c2rGWjraM2M=;
+        b=vKnQxwU0+VxmSw9UgqnXXmy67eKsY5scUhrpbbtqsCdtT4dRP+MxYhekfIpriQTshC
+         1nm2PjKWr6m0zD/HMv+YamC02/uNkUyKQA2phTNMYRPFErn166bxut6/9kHzAvgNwOjL
+         xzbb27GxpmVv3C6qYeCeEC43SeTYYOB3whsz09/BHkZLKGNL5q/rgPIT0tctSQJVaRfe
+         KST+7ak1id9I58t9S8i17QskVHfr5OIEc3LAO67hVS8FkPO3q524hELgHaYn13/W6Tyd
+         R4wlW1uXKFkaYttTA0zDX1zgQxKKIOord1jX0vtOraXN+uxsS4Rfywokru+s4rNP3pbg
+         hhTw==
+X-Gm-Message-State: AOAM530TsRhPWYhMdkRmKMuUkBwczMYaV2gv36O3PXXZFF3OKhpP+cJW
+        bjzhbTW0aSqazCtL9gqaGozjPJ73Eg==
+X-Google-Smtp-Source: ABdhPJwOKow//TiuesfE0CYp/GWJkr7IS6te0xCDAT81+jaq7aIKH6XqV2hxLRYv99lirxqpAHRZdQ==
+X-Received: by 2002:a05:6638:2722:b0:30d:2b4e:5ff with SMTP id m34-20020a056638272200b0030d2b4e05ffmr13408270jav.261.1645410972080;
+        Sun, 20 Feb 2022 18:36:12 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id h13sm7203330ili.28.2022.02.20.18.36.28
+        by smtp.gmail.com with ESMTPSA id f13sm4569612iov.39.2022.02.20.18.36.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Feb 2022 18:36:30 -0800 (PST)
-Received: (nullmailer pid 2041543 invoked by uid 1000);
+        Sun, 20 Feb 2022 18:36:11 -0800 (PST)
+Received: (nullmailer pid 2041534 invoked by uid 1000);
         Mon, 21 Feb 2022 02:36:09 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     linux-clk@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        dmaengine@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Laetitia MARIOTTINI <laetitia.mariottini@se.com>,
-        devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-In-Reply-To: <20220218181226.431098-3-miquel.raynal@bootlin.com>
-References: <20220218181226.431098-1-miquel.raynal@bootlin.com> <20220218181226.431098-3-miquel.raynal@bootlin.com>
-Subject: Re: [PATCH 2/8] dt-bindings: dma: Introduce RZN1 DMA compatible
+To:     chegbeli <ciprian.hegbeli@analog.com>
+Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org, jic23@kernel.org
+In-Reply-To: <20220217135140.5658-3-ciprian.hegbeli@analog.com>
+References: <20220217135140.5658-1-ciprian.hegbeli@analog.com> <20220217135140.5658-3-ciprian.hegbeli@analog.com>
+Subject: Re: [PATCH 2/3] dt-bindings: iio: add ADE9078
 Date:   Sun, 20 Feb 2022 20:36:09 -0600
-Message-Id: <1645410969.367667.2041542.nullmailer@robh.at.kernel.org>
+Message-Id: <1645410969.316145.2041533.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -70,38 +58,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Feb 2022 19:12:20 +0100, Miquel Raynal wrote:
-> Just like for the NAND controller that is also on this SoC, let's
-> provide a SoC generic and a more specific couple of compatibles.
+On Thu, 17 Feb 2022 15:51:39 +0200, chegbeli wrote:
+> Added device tree bindings for the ADE9078
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Signed-off-by: chegbeli <ciprian.hegbeli@analog.com>
 > ---
->  .../devicetree/bindings/dma/snps,dma-spear1340.yaml       | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+>  .../bindings/iio/meter/adi,ade9078.yaml       | 153 ++++++++++++++++++
+>  include/dt-bindings/iio/meter/adi,ade9078.h   |  21 +++
+>  2 files changed, 174 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/meter/adi,ade9078.yaml
+>  create mode 100644 include/dt-bindings/iio/meter/adi,ade9078.h
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/iio/meter/adi,ade9078.yaml:131:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/renesas-nandc.example.dt.yaml: nand-controller@40102000: '#dma-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/renesas-nandc.example.dt.yaml: nand-controller@40102000: $nodename:0: 'nand-controller@40102000' does not match '^dma-controller(@.*)?$'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/renesas-nandc.example.dt.yaml: nand-controller@40102000: clocks: [[4294967295, 117], [4294967295, 37]] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/renesas-nandc.example.dt.yaml: nand-controller@40102000: clock-names: ['hclk', 'eclk'] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/renesas-nandc.example.dt.yaml: nand-controller@40102000: Unevaluated properties are not allowed ('clocks', 'clock-names', '#address-cells', '#size-cells' were unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/renesas-nandc.example.dt.yaml: nand-controller@40102000: '#dma-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
+./Documentation/devicetree/bindings/iio/meter/adi,ade9078.yaml:  while scanning a block scalar
+  in "<unicode string>", line 129, column 5
+found a tab character where an indentation space is expected
+  in "<unicode string>", line 131, column 1
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/iio/meter/adi,ade9078.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 46, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: while scanning a block scalar
+  in "<unicode string>", line 129, column 5
+found a tab character where an indentation space is expected
+  in "<unicode string>", line 131, column 1
+make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/iio/meter/adi,ade9078.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/meter/adi,ade9078.yaml: ignoring, error parsing file
+make: *** [Makefile:1398: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1594847
+See https://patchwork.ozlabs.org/patch/1594257
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
