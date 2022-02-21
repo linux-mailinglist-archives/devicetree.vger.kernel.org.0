@@ -2,162 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9B84BD744
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 08:43:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ECA84BD70C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 08:43:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346138AbiBUH2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 02:28:38 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45566 "EHLO
+        id S1344843AbiBUH3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 02:29:49 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346195AbiBUH2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 02:28:35 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8241655E;
-        Sun, 20 Feb 2022 23:28:10 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id A20DA2223A;
-        Mon, 21 Feb 2022 08:28:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1645428488;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=VPDNd8ZGaYr6EuNj8Vq7XPMc5Y8ydaZmaBuwz3fu05k=;
-        b=Bz3JOih8aagS5xYhpXGfMg/U0AF67+eE/wQZVOlzOf3PO1yxDzqloVpN1H1g6jccjfJqxh
-        pGrLeQAocT6ZOTagme52OZ55YgOkUnX7cqu/Z5dCO8uaZRN3bhaXRbtqGUqmcb/IdL/tls
-        T4eY3v6QJSW2HmXjtrp2n5kv2C2CZxE=
+        with ESMTP id S231397AbiBUH3s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 02:29:48 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D3C2E7;
+        Sun, 20 Feb 2022 23:29:24 -0800 (PST)
+X-UUID: 2e011d40a02843e2b7e6398bc6902036-20220221
+X-UUID: 2e011d40a02843e2b7e6398bc6902036-20220221
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 499028823; Mon, 21 Feb 2022 15:29:22 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 21 Feb 2022 15:29:21 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 21 Feb
+ 2022 15:29:21 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 21 Feb 2022 15:29:20 +0800
+Message-ID: <4be20cf9fd351c17414945a2fa199c490a0ff8d6.camel@mediatek.com>
+Subject: Re: [PATCH v5 2/3] mmc: core: Add support for SDIO async interrupt
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        "Eric Biggers" <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "Stephen Boyd" <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Mon, 21 Feb 2022 15:29:19 +0800
+In-Reply-To: <CAPDyKFqd+H6F4+gBd4CEigaOTC5TtjtT75B3G0B6qexFi6XqKw@mail.gmail.com>
+References: <20220121071942.11601-1-axe.yang@mediatek.com>
+         <20220121071942.11601-3-axe.yang@mediatek.com>
+         <CAPDyKFqd+H6F4+gBd4CEigaOTC5TtjtT75B3G0B6qexFi6XqKw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Mon, 21 Feb 2022 08:28:06 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Kavyasree.Kotagiri@microchip.com
-Cc:     Manohar.Puri@microchip.com, UNGLinuxDriver@microchip.com,
-        alexandre.belloni@bootlin.com, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Nicolas.Ferre@microchip.com,
-        olof@lixom.net, robh+dt@kernel.org, soc@kernel.org
-Subject: Re: [PATCH v4] ARM: dts: add DT for lan966 SoC and 2-port board
- pcb8291
-In-Reply-To: <CO1PR11MB4865E667CB963C8B5DE5000B923A9@CO1PR11MB4865.namprd11.prod.outlook.com>
-References: <20220209111318.21112-1-kavyasree.kotagiri@microchip.com>
- <20220209184600.1230365-1-michael@walle.cc>
- <CO1PR11MB486534A2987684CC7402CE06922F9@CO1PR11MB4865.namprd11.prod.outlook.com>
- <97bcfa4417d5f8c41cc6aa1e411c8747@walle.cc>
- <CO1PR11MB4865E913D083C1D80D4E1F80922F9@CO1PR11MB4865.namprd11.prod.outlook.com>
- <b98f40575f88a0bbf205d628f73cccac@walle.cc>
- <CO1PR11MB4865B205DF4490D37E96524792379@CO1PR11MB4865.namprd11.prod.outlook.com>
- <426e31325066cfa9f0ab50860289e12a@walle.cc>
- <CO1PR11MB4865E667CB963C8B5DE5000B923A9@CO1PR11MB4865.namprd11.prod.outlook.com>
-User-Agent: Roundcube Webmail/1.4.12
-Message-ID: <ee1e083c29359f2afb21d0b1457cdce0@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-02-21 06:44, schrieb Kavyasree.Kotagiri@microchip.com:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know 
->> the
->> content is safe
->> 
->> Am 2022-02-18 13:28, schrieb Kavyasree.Kotagiri@microchip.com:
->> >> EXTERNAL EMAIL: Do not click links or open attachments unless you know
->> >> the
->> >> content is safe
->> >>
->> >> Am 2022-02-10 12:52, schrieb Kavyasree.Kotagiri@microchip.com:
->> >> >> EXTERNAL EMAIL: Do not click links or open attachments unless you
->> know
->> >> >> the
->> >> >> content is safe
->> >> >>
->> >> >> Am 2022-02-10 10:40, schrieb Kavyasree.Kotagiri@microchip.com:
->> >> >> >> EXTERNAL EMAIL: Do not click links or open attachments unless you
->> >> know
->> >> >> >> the
->> >> >> >> content is safe
->> >> >>
->> >> >> >> > +     clocks {
->> >> >> >> [..]
->> >> >> >> > +
->> >> >> >> > +             nic_clk: nic_clk {
->> >> >> >>
->> >> >> >> What does nic_clk stand for? If I had to guess, it
->> >> >> >> has something to do with network. But..
->> >> >> >>
->> >> >> > NIC clock is the clock used by AXI, AHB fabric and APB bridges which
->> >> >> > connects all the peripherals.
->> >> >> > It is named so because the AXI fabric is based on NIC400 IP from ARM
->> >> >>
->> >> >> Ok, thanks for clarification.
->> >> >>
->> >> >>
->> >> >> >> > +             watchdog: watchdog@e0090000 {
->> >> >> >> > +                     compatible = "snps,dw-wdt";
->> >> >> >> > +                     reg = <0xe0090000 0x1000>;
->> >> >> >> > +                     interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
->> >> >> >> > +                     clocks = <&nic_clk>;
->> >> >> >>
->> >> >> >> Btw. can we disable all nodes by default and enable them
->> >> >> >> in the board dts files?
->> >> >> > I would like to have only board specific nodes enabled in dts files
->> >> >> > and rest of them in dtsi file
->> >> >>
->> >> >> And how do you know which ones are board specific? E.g. I would like
->> >> >> to add our board which is also based on the lan9668. Maybe I don't
->> >> >> want a watchdog (or whatever node). Of course I could use
->> >> >>
->> >> >> &watchdog {
->> >> >>    status = "disabled";
->> >> >> };
->> >> >>
->> >> >> But IMHO opt-in is better. At least thats what we are doing for
->> >> >> the layerscape over on arm64.
->> >> >>
->> >> > Basically, I am disabling only the nodes which have pinctrl settings
->> >> > in dtsi file
->> >> > and enable in dts to make sure there are no conflicts on pins on the
->> >> > board.
->> >>
->> >> Thats not what I'm asking. I would like to see *optional* nodes
->> >> disabled by default. Whether the watchdog is optional might be
->> >> debatable, but what about the usb controller and the qspi
->> >> controller? They don't have shared pins AFAIK, so according
->> >> to your rule, they will be enabled by default and each board
->> >> which doesn't have anything connected on these pins would have
->> >> to disabled it.
->> >>
->> >> Please keep in mind that this .dtsi will also be used by boards
->> >> not manufactured by microchip.
->> >>
->> > I agree with you - "disabling optional nodes in dtsi"
->> > I have gone through all the nodes.
->> > Confirmed and moved enabling optional node watchdog
->> > to dts file.
->> 
->> Great, I just wanted to get to an agreement how the optional nodes
->> should be handled. If it turns out, some are still optional or
->> some aren't. It is easy to just mark them disabled and enable them
->> in the board dts files in a later patch.
->> 
-> Sorry, I didn't get you. Do you still see optional nodes in my dtsi?
-> I think GPIO controller, Interrupt controller, XDMA, timers, AES, SHA, 
-> TRNG are
-> not optional. So, I keep them enabled in dtsi.
+On Mon, 2022-02-14 at 16:34 +0100, Ulf Hansson wrote:
+> On Fri, 21 Jan 2022 at 08:19, Axe Yang <axe.yang@mediatek.com> wrote:
+> > 
+> > If cap-sdio-async-irq flag is set in host dts node, parse EAI
+> > information from SDIO CCCR interrupt externsion segment. If async
+> > interrupt is supported by SDIO card then send command to card to
+> > enable it and set enable_async_irq flag in sdio_cccr structure to
+> > 1.
+> > The parse flow is implemented in sdio_read_cccr().
+> > 
+> > Acked-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> > ---
+> >  drivers/mmc/core/host.c  |  2 ++
+> >  drivers/mmc/core/sdio.c  | 17 +++++++++++++++++
+> >  include/linux/mmc/card.h |  3 ++-
+> >  include/linux/mmc/host.h |  1 +
+> >  include/linux/mmc/sdio.h |  5 +++++
+> >  5 files changed, 27 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
+> > index cf140f4ec864..a972241548b4 100644
+> > --- a/drivers/mmc/core/host.c
+> > +++ b/drivers/mmc/core/host.c
+> > @@ -410,6 +410,8 @@ int mmc_of_parse(struct mmc_host *host)
+> >         if (device_property_read_bool(dev, "no-mmc-hs400"))
+> >                 host->caps2 &= ~(MMC_CAP2_HS400_1_8V |
+> > MMC_CAP2_HS400_1_2V |
+> >                                  MMC_CAP2_HS400_ES);
+> > +       if (device_property_read_bool(dev, "cap-sdio-async-irq"))
+> > +               host->caps2 |= MMC_CAP2_SDIO_ASYNC_IRQ;
+> > 
+> >         /* Must be after "non-removable" check */
+> >         if (device_property_read_u32(dev, "fixed-emmc-driver-type", 
+> > &drv_type) == 0) {
+> > diff --git a/drivers/mmc/core/sdio.c b/drivers/mmc/core/sdio.c
+> > index 41164748723d..771fb5d18585 100644
+> > --- a/drivers/mmc/core/sdio.c
+> > +++ b/drivers/mmc/core/sdio.c
+> > @@ -225,6 +225,23 @@ static int sdio_read_cccr(struct mmc_card
+> > *card, u32 ocr)
+> >                                 card->sw_caps.sd3_drv_type |=
+> > SD_DRIVER_TYPE_C;
+> >                         if (data & SDIO_DRIVE_SDTD)
+> >                                 card->sw_caps.sd3_drv_type |=
+> > SD_DRIVER_TYPE_D;
+> > +
+> > +                       if (card->host->caps2 &
+> > MMC_CAP2_SDIO_ASYNC_IRQ) {
+> 
+> We can probably check host->pm_caps & MMC_PM_WAKE_SDIO_IRQ here,
+> instead of MMC_CAP2_SDIO_ASYNC_IRQ.
 
-Agreed. Once you posted a new version, I'll post an RFC (or a regular
-patch depending how fast this is picked up) for our board based on the
-LAN966x.
+Will update this part in next version.
 
--michael
+> 
+> > +                               ret = mmc_io_rw_direct(card, 0, 0,
+> > SDIO_CCCR_INTERRUPT_EXT, 0,
+> > +                                                      &data);
+> > +                               if (ret)
+> > +                                       goto out;
+> > +
+> > +                               if (data & SDIO_INTERRUPT_EXT_SAI)
+> > {
+> > +                                       data |=
+> > SDIO_INTERRUPT_EXT_EAI;
+> > +                                       ret =
+> > mmc_io_rw_direct(card, 1, 0, SDIO_CCCR_INTERRUPT_EXT,
+> > +                                                              data
+> > , NULL);
+> > +                                       if (ret)
+> > +                                               goto out;
+> > +
+> > +                                       card->cccr.enable_async_irq 
+> > = 1;
+> 
+> As you show in the next patch(3), this flag is useful to read for the
+> host driver.
+> 
+> However, rather than accessing this flag directly in the host driver,
+> can you please add a helper function that takes a struct mmc_card* as
+> in-parameter instead?
+
+OK. I will do that in next version.
+
+> 
+> > +                               }
+> > +                       }
+> >                 }
+> > 
+> >                 /* if no uhs mode ensure we check for high speed */
+> > diff --git a/include/linux/mmc/card.h b/include/linux/mmc/card.h
+> > index 37f975875102..4df9182bc0e6 100644
+> > --- a/include/linux/mmc/card.h
+> > +++ b/include/linux/mmc/card.h
+> > @@ -219,7 +219,8 @@ struct sdio_cccr {
+> >                                 wide_bus:1,
+> >                                 high_power:1,
+> >                                 high_speed:1,
+> > -                               disable_cd:1;
+> > +                               disable_cd:1,
+> > +                               enable_async_irq:1;
+> >  };
+> > 
+> >  struct sdio_cis {
+> > diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
+> > index 7afb57cab00b..502a5418264c 100644
+> > --- a/include/linux/mmc/host.h
+> > +++ b/include/linux/mmc/host.h
+> > @@ -402,6 +402,7 @@ struct mmc_host {
+> >  #define MMC_CAP2_CRYPTO                0
+> >  #endif
+> >  #define MMC_CAP2_ALT_GPT_TEGRA (1 << 28)       /* Host with eMMC
+> > that has GPT entry at a non-standard location */
+> > +#define MMC_CAP2_SDIO_ASYNC_IRQ        (1 << 29)       /* SDIO
+> > host supports asynchronous interrupt */
+> > 
+> >         int                     fixed_drv_type; /* fixed driver
+> > type for non-removable media */
+> > 
+> > diff --git a/include/linux/mmc/sdio.h b/include/linux/mmc/sdio.h
+> > index 2a05d1ac4f0e..1ef400f28642 100644
+> > --- a/include/linux/mmc/sdio.h
+> > +++ b/include/linux/mmc/sdio.h
+> > @@ -159,6 +159,11 @@
+> >  #define  SDIO_DTSx_SET_TYPE_A  (1 << SDIO_DRIVE_DTSx_SHIFT)
+> >  #define  SDIO_DTSx_SET_TYPE_C  (2 << SDIO_DRIVE_DTSx_SHIFT)
+> >  #define  SDIO_DTSx_SET_TYPE_D  (3 << SDIO_DRIVE_DTSx_SHIFT)
+> > +
+> > +#define SDIO_CCCR_INTERRUPT_EXT        0x16
+> > +#define SDIO_INTERRUPT_EXT_SAI (1 << 0)
+> > +#define SDIO_INTERRUPT_EXT_EAI (1 << 1)
+> > +
+> >  /*
+> >   * Function Basic Registers (FBR)
+> >   */
+> 
+Regards,
+Axe Yang
+
+
