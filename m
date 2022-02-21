@@ -2,135 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2430E4BD731
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 08:43:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12FF44BD740
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 08:43:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345795AbiBUHFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 02:05:07 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49878 "EHLO
+        id S240788AbiBUHIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 02:08:21 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345790AbiBUHFF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 02:05:05 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FAC5FAC;
-        Sun, 20 Feb 2022 23:04:38 -0800 (PST)
-X-UUID: 1b285ebb4d624eda838e4a2c5c83752d-20220221
-X-UUID: 1b285ebb4d624eda838e4a2c5c83752d-20220221
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <axe.yang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 889575141; Mon, 21 Feb 2022 15:04:33 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 21 Feb 2022 15:04:32 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 21 Feb 2022 15:04:31 +0800
-Message-ID: <21fa48195101b91c09b266f1c4f40eda5d127fdb.camel@mediatek.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: mmc: add cap-sdio-async-irq flag
-From:   Axe Yang <axe.yang@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        "Eric Biggers" <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "Stephen Boyd" <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Mon, 21 Feb 2022 15:04:31 +0800
-In-Reply-To: <CAPDyKFr8bV+1uTbuhMObvORLGJHsvZHUONJkdY54MXPPRWL5Qw@mail.gmail.com>
-References: <20220119103212.13158-1-axe.yang@mediatek.com>
-         <20220119103212.13158-2-axe.yang@mediatek.com>
-         <CAPDyKFr8bV+1uTbuhMObvORLGJHsvZHUONJkdY54MXPPRWL5Qw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1345828AbiBUHIP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 02:08:15 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32D3A1BC;
+        Sun, 20 Feb 2022 23:07:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645427272; x=1676963272;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=sV7G7H3FRpvSMYsrKqiLWIsBg3WAv9FuYrMkuC4PuLg=;
+  b=pfoFJ3zqQPltg+Qu3aVeytTZRwhhojyQS5mpS+E4/6oheCVfej61v5Cg
+   UI3aPHOmxqoF02tZa9JH+9xhCDOKz4TXbn7DIG6q73GRIgZF7tGIB5yLB
+   Ur29GSr+QpdCx0y9e7ebtMHmeIu568FvWpiFZv8UICef7j/a7gb70iYkB
+   4=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 20 Feb 2022 23:07:51 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 23:07:52 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Sun, 20 Feb 2022 23:07:50 -0800
+Received: from [10.216.7.34] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Sun, 20 Feb
+ 2022 23:07:47 -0800
+Message-ID: <3b8b03ba-c6a1-d794-79e5-f244bc1dffae@quicinc.com>
+Date:   Mon, 21 Feb 2022 12:37:41 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v2 05/19] ath11k: Remove core PCI references from PCI
+ common code
+Content-Language: en-US
+To:     Kalle Valo <kvalo@kernel.org>
+CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>
+References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
+ <1642337235-8618-6-git-send-email-quic_mpubbise@quicinc.com>
+ <87a6fggo0h.fsf@kernel.org> <871r0sgn7n.fsf@kernel.org>
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <871r0sgn7n.fsf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-02-14 at 16:23 +0100, Ulf Hansson wrote:
-> On Wed, 19 Jan 2022 at 11:32, Axe Yang <axe.yang@mediatek.com> wrote:
-> > 
-> > Asynchronous interrupt is a mechanism that allow SDIO devices alarm
-> > interrupt when host stop providing clock to card. Add a DT flag to
-> > enable this feature if it is supported by SDIO card.
-> > 
-> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-> > ---
-> >  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 5
-> > +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/mmc-
-> > controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-
-> > controller.yaml
-> > index 513f3c8758aa..16fb06f88471 100644
-> > --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> > @@ -165,6 +165,11 @@ properties:
-> >      description:
-> >        eMMC hardware reset is supported
-> > 
-> > +  cap-sdio-async-irq:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description:
-> > +      SDIO async interrupt is supported.
+
+
+On 1/28/2022 4:07 PM, Kalle Valo wrote:
+> Kalle Valo <kvalo@kernel.org> writes:
 > 
-> We already have a DT property for this, I believe.
+>> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+>>
+>>> Remove core PCI and ath11k PCI references(struct ath11k_pci)
+>>> from PCI common code. Since, PCI common code will be used
+>>> by hybrid bus devices, this code should be independent
+>>> from ATH11K PCI references and Linux core PCI references
+>>> like struct pci_dev.
+>>>
+>>> Since this change introduces function callbacks for bus wakeup
+>>> and bus release operations, wakeup_mhi HW param is no longer
+>>> needed and hence it is removed completely. Alternatively, bus
+>>> wakeup/release ops for QCA9074 are initialized to NULL as
+>>> QCA9704 does not need bus wakeup/release for register accesses.
+>>>
+>>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+>>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+>>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+>>> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+>>>
+>>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+>>
+>> [...]
+>>
+>>> @@ -651,6 +653,13 @@ struct ath11k_bus_params {
+>>>   	bool fixed_bdf_addr;
+>>>   	bool fixed_mem_region;
+>>>   	bool static_window_map;
+>>> +	struct {
+>>> +		void (*wakeup)(struct ath11k_base *ab);
+>>> +		void (*release)(struct ath11k_base *ab);
+>>> +		int (*get_msi_irq)(struct ath11k_base *ab, unsigned int vector);
+>>> +		void (*window_write32)(struct ath11k_base *ab, u32 offset, u32 value);
+>>> +		u32 (*window_read32)(struct ath11k_base *ab, u32 offset);
+>>> +	} ops;
+>>>   };
+>>
+>> Please don't use bus_params for this, I'm starting to suspect that we
+>> actually need to remove struct ath11k_bus_params altogether. It would be
+>> cleaner to have separate 'struct ath11k_pci_ops' or something like that.
 > 
-> "wakeup-source" is probably what you want, but we have additional
-> properties that are related to this too. See more below.
-> 
-> > +
-> >    cap-sdio-irq:
-> >      $ref: /schemas/types.yaml#/definitions/flag
-> >      description:
-> 
-> The above, "cap-sdio-irq", informs whether the SDIO IRQs can be
-> supported at all, by the host controller.
-> 
-> The property "keep-power-in-suspend" informs whether we can preserve
-> the power to the card during a suspend/resume cycle. This should be
-> needed in your case too, I think.
-> 
-> In other words, you may need to combine "cap-sdio-irq",
-> "wakeup-source" and "keep-power-in-suspend" to describe your HW.
-> 
-> However, what perhaps is missing, is a common MMC/SDIO binding that
-> let us describe an optional irq-line, which sometimes is being used
-> for the wakeup irq. In the sdhci-omap case, we look for an irq
-> mapping
-> towards "wakeup" if specified in the "interrupt-names" property.
-> 
-> In some case, when the SDIO card supports an out-of-band IRQ line,
-> the
-> similar should be specified in the child-node corresponding to the
-> SDIO card.
-> 
+> And after looking at this more it seems .get_msi_irq is the only
+> function which actually has two different implementations. The other
+> four are either run or not run, there's no difference in the
+> implementation. So would it be cleaner to have a some sort check within
+> the function for these other four, instead using function pointers?
 > 
 
-Yes, the intention of the patchset is to wakeup SDIO host in
-runtime/system suspend state within SDIO DAT1(in-band wakeup).
+WCN6750 has it's own wakeup() and release(), I'll send that patch 
+separately. QCN9074 doesn't need wakeup() and release() functions.
 
-I will implement it with "wakeup-source", thanks for your review.
-
+The intention of the patch was to remove all Linux and ATH11K PCI 
+reference like struct pci_dev and ath11k_pci in the common code.
+TBH, WCN6750 doesn't need these references since it is a AHB device
+in ATH11K. If we have these references in common code, first thing is
+the code will look kind of messed up and another aspect is we need to
+enable CONFIG_PCI unnecessarily. This was the reason behind defining
+other two callbacks window_write32() and read32().
