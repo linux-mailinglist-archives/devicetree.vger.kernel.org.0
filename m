@@ -2,154 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1AB94BE96A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:07:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 775B64BDF64
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:50:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381316AbiBUQyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 11:54:16 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42334 "EHLO
+        id S236717AbiBUQ6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 11:58:38 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236640AbiBUQyP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 11:54:15 -0500
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4913122534;
-        Mon, 21 Feb 2022 08:53:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645462432; x=1676998432;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jFAKX07sax2uMuZwpnIsQeZvNSQX6LJPr86+iOLPjR4=;
-  b=ZCJ/1rlP/8Z/iiIBndgFo90PRraxskZEkTXvUuVY34Fnin+P6FOYfWzK
-   vKdAUIbP1VBDf9aZ6wjVC+7/uJ2LZYgBCSV21fe/j998iwGLeE7InxWfX
-   rBuskH3Oaclkc+8sGUiCOdIG1nVtjNrMJaLbtrl1IVIYdU0V1EEaFQGkQ
-   zA7aMqur2eubkJ/a04mwMpvczwtuMx/Z0yHYag7d1y2WEZNIDo1EYWuWc
-   0lyO5CSKZcCyqrRs2Dr+hAoTBjdr7RE/wBvvtdCn0GEandSp4GsOgDgWC
-   JAe4XYr8fpDDBHaRVvbFXokEyPatzF7R+piViFyXBO0Dg2C+lXX3FYPZF
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10265"; a="314803674"
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; 
-   d="scan'208";a="314803674"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 08:53:51 -0800
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; 
-   d="scan'208";a="706312552"
-Received: from smile.fi.intel.com ([10.237.72.59])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 08:53:47 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nMBvj-006rFh-Ly;
-        Mon, 21 Feb 2022 18:52:55 +0200
-Date:   Mon, 21 Feb 2022 18:52:55 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Laetitia MARIOTTINI <laetitia.mariottini@se.com>
-Subject: Re: [PATCH 5/8] dma: dw: Avoid partial transfers
-Message-ID: <YhPDZ4yb50sMdVgV@smile.fi.intel.com>
-References: <20220218181226.431098-1-miquel.raynal@bootlin.com>
- <20220218181226.431098-6-miquel.raynal@bootlin.com>
- <YhIcyyBp53LnMbjU@smile.fi.intel.com>
- <TYYPR01MB7086F412B035A09AED2037A9F53A9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+        with ESMTP id S231262AbiBUQ6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 11:58:37 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 04E4022B3D;
+        Mon, 21 Feb 2022 08:58:12 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8D5461042;
+        Mon, 21 Feb 2022 08:58:12 -0800 (PST)
+Received: from [10.57.40.147] (unknown [10.57.40.147])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AB2533F70D;
+        Mon, 21 Feb 2022 08:58:09 -0800 (PST)
+Message-ID: <56cf458b-080b-2e22-69d7-039ff7d0b56a@arm.com>
+Date:   Mon, 21 Feb 2022 16:58:03 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TYYPR01MB7086F412B035A09AED2037A9F53A9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v3 1/9] dt-bindings: host1x: Add memory-contexts property
+Content-Language: en-GB
+To:     Mikko Perttunen <cyndis@kapsi.fi>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
+        will@kernel.org, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220218113952.3077606-1-mperttunen@nvidia.com>
+ <20220218113952.3077606-2-mperttunen@nvidia.com>
+ <48ac567b-37e8-1fa2-c389-536e276fdd2c@arm.com>
+ <2e9c4ea5-6bbd-9724-0f4e-ed25f7294aa2@kapsi.fi>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <2e9c4ea5-6bbd-9724-0f4e-ed25f7294aa2@kapsi.fi>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 08:14:47AM +0000, Phil Edworthy wrote:
-> Hi Andy,
+On 2022-02-21 15:28, Mikko Perttunen wrote:
+> On 2/21/22 17:23, Robin Murphy wrote:
+>> On 2022-02-18 11:39, Mikko Perttunen via iommu wrote:
+>>> Add schema information for the memory-contexts property used to
+>>> specify context stream IDs. This uses the standard iommu-map property
+>>> inside a child node.
+>>
+>> Couldn't you simply make "iommu-map" an allowed property on the host1x 
+>> node itself? From a DT perspective I'm not sure the intermediate node 
+>> really fits meaningfully, and I can't see that it serves much purpose 
+>> in practice either, other than perhaps defeating fw_devlink.
+>>
+>> Robin.
 > 
-> I wrote the patch a few years ago, but didn't get the time to upstream it.
+> The stream IDs described here are not used by the host1x device itself, 
+> so I don't think I can. Host1x's memory transactions still go through 
+> the stream ID specified in its 'iommus' property, these stream IDs are 
+> used by engines (typically in addition to the stream ID specified in 
+> their own nodes).
 > 
-> I am not aware of a HW integration bug on the RZ/N1 device but can't rule it
-> out. I am struggling to see what kind of HW issue this could be as, iirc,
-> word accesses work fine when the size of the transfer is a multiple of the
-> MEM width.
+> Host1x 'iommus' -- Channel commands
+> Engine 'iommus' -- Engine firmware (and data if context isolation is not 
+> enabled)
+> memory-contexts 'iommu-map' -- Data used by engines.
+
+Right, that still appears to match my understanding, that as far as 
+software sees, the host1x is effectively acting as a bridge to the 
+engines in itself. Even if it's not physically routing traffic in and/or 
+out, the host1x device is the place where the context IDs *logically* 
+exist, and thus owns the mapping between context IDs and the StreamIDs 
+emitted by any engine working in a given context.
+
+Consider a PCIe root complex with integrated endpoints - chances are the 
+RCiEPs have their own physical interfaces to issue DMA directly into the 
+SoC interconnect, but that doesn't change how we describe the PCI 
+Requester ID to StreamID mapping at the root complex, since the RC still 
+logically owns the RID space. You can think of a RID as being "consumed" 
+at the RC by indexing into config space to ultimately gain control of 
+the corresponding endpoint, just like context IDs are "consumed" at the 
+  host1x by generating commands to ultimately cause some engine to 
+operate in the correct address space.
+
+You don't have to pretend the host1x uses a context for its own 
+command-fetching (or whatever) traffic either - it's always been 
+intended that the "iommus" and "iommu-map" properties should happily be 
+able to coexist on the same node, since they serve distinctly different 
+purposes. If it doesn't work in practice then we've got a bug to fix 
+somewhere.
+
+If the context-switching mechanism was some distinct self-contained 
+thing bolted on beside the other host1x functionality then describing it 
+as a separate level of DT hierarchy might be more justifiable, but 
+that's not the impression I'm getting from skimming the rest of the 
+series. Just reading of the names of things in patch #6, my intuitive 
+reaction is that clearly each host1x owns 9 StreamIDs, one for general 
+stuff and 8 for contexts. Adding the knowledge that technically the 
+context StreamIDs end up delegated to other host1x-controlled engines 
+still doesn't shift the paradigm. I don't believe we need a level of DT 
+structure purely to help document what the iommu-map means for host1x - 
+the binding can do that just fine.
+
+Thanks,
+Robin.
+
+> (Perhaps I should add this information to various places in more 
+> abundance and clarity.)
 > 
-> I found the issue when testing DMA with the UART transferring different amounts of data.
-
-Can you tell more about the setup and test cases?
-
-Also, which version of the DW DMAC IP is being used in this SoC?
-
-...
-
-> > > +		if (sconfig->dst_addr_width && sconfig->dst_addr_width <
-> > data_width)
-> > > +			data_width = sconfig->dst_addr_width;
-> > 
-> > But here no check that you do it for explicitly peripheral to memory, so
-> > this
-> > will affect memory to peripheral transfers as well.
-> No, this should be ok as this change is within:
-> 	case DMA_DEV_TO_MEM:
-
-Ah, it's better. But still unclear to me why we need this.
-
-P.S. Please avoid top-postings.
-
-> > -----Original Message-----
-> > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > Sent: 20 February 2022 10:50
-> > On Fri, Feb 18, 2022 at 07:12:23PM +0100, Miquel Raynal wrote:
-
-> > > Pausing a partial transfer only causes data to be written to mem that is
-> > > a multiple of the memory width setting.
-> > >
-> > > However, when a DMA client driver finishes DMA early, e.g. due to UART
-> > > char timeout interrupt, all data read from the DEV must be written to
-> > MEM.
-> > >
-> > > Therefore, allow the slave to limit the memory width to ensure all data
-> > > read from the DEV is written to MEM when DMA is paused.
-> > 
-> > Is this a fix?
-> > What happens to the data if you don't do this?
-> > As far as I understood the Synopsys DesignWare specification the DMA
-> > controller
-> > is capable of flushing FIFO in that case on byte-by-byte basis. Do you
-> > have an
-> > HW integration bug?
-> > 
-> > TL;DR: tell us more about this.
-> > 
-> > ...
-> > 
-> > > +		if (sconfig->dst_addr_width && sconfig->dst_addr_width <
-> > data_width)
-> > > +			data_width = sconfig->dst_addr_width;
-> > 
-> > But here no check that you do it for explicitly peripheral to memory, so
-> > this
-> > will affect memory to peripheral transfers as well.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> Mikko
+> 
+>>
+>>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+>>> ---
+>>> v3:
+>>> * New patch
+>>> ---
+>>>   .../bindings/display/tegra/nvidia,tegra20-host1x.yaml  | 10 ++++++++++
+>>>   1 file changed, 10 insertions(+)
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml 
+>>> b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml 
+>>>
+>>> index 4fd513efb0f7..3ac0fde54a16 100644
+>>> --- 
+>>> a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml 
+>>>
+>>> +++ 
+>>> b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml 
+>>>
+>>> @@ -144,6 +144,16 @@ allOf:
+>>>           reset-names:
+>>>             maxItems: 1
+>>> +        memory-contexts:
+>>> +          type: object
+>>> +          properties:
+>>> +            iommu-map:
+>>> +              description: Specification of stream IDs available for 
+>>> memory context device
+>>> +                use. Should be a mapping of IDs 0..n to IOMMU 
+>>> entries corresponding to
+>>> +                usable stream IDs.
+>>> +          required:
+>>> +            - iommu-map
+>>> +
+>>>         required:
+>>>           - reg-names
+> 
