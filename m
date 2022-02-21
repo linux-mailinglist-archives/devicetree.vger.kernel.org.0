@@ -2,162 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E887B4BE11B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:53:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAE3D4BE99D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:07:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378271AbiBUOrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 09:47:10 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58936 "EHLO
+        id S1378118AbiBUOlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 09:41:51 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378288AbiBUOrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 09:47:08 -0500
-Received: from m43-7.mailgun.net (m43-7.mailgun.net [69.72.43.7])
-        by lindbergh.monkeyblade.net (Postfix) with UTF8SMTPS id 9F6BE38A5
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 06:46:44 -0800 (PST)
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1645454804; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=X7DJq3qZnxS9ZNz4Hv7Z9IEBP+2GgBCe/ukmflBEl+U=; b=ey9Q2zn/mJASU6P7PJmD0SixzYUxZVulikpUHiYm0S+5TrbmIvsgDYkC9Set4mVdWzq8Eh4K
- 06qJhVMFJGTAqBzHGw0lB5UT/HO5THMw8Cx9xT29URe81PZyVv86wCYxcWBiDS4kX/BUFdBa
- gCJEyi57kYwXUpd5S0OOkvOlOTo=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 6213a4a639713d0712a0d9d8 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 21 Feb 2022 14:41:42
- GMT
-Sender: quic_akhilpo=quicinc.com@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D2EC6C43619; Mon, 21 Feb 2022 14:41:41 +0000 (UTC)
+        with ESMTP id S233354AbiBUOlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 09:41:50 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 112CF205D2;
+        Mon, 21 Feb 2022 06:41:27 -0800 (PST)
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B849E482;
+        Mon, 21 Feb 2022 15:41:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1645454485;
+        bh=qbtv7tnQ4gO1K0aKaieZYrPLWZbVH2knSyRwonXWsgI=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=QLWN/hx6rvmMLfrMBnZ8uE6Zx8Q3Ad0kiyMbdWVoGZCuuai4/skR+V9hUvEPSAxM5
+         2Mgk6Q9gzXFfuPOs9qNNzgr5nZYfC8WqQe8E+QiA/r3TvT/rSlqT43V9nmxRem1zuX
+         viO4ZWGDA1pqLEJIBIUiAGKmG15e4O3TbFkfLvPg=
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20211229193135.28767-4-laurent.pinchart+renesas@ideasonboard.com>
+References: <20211229193135.28767-1-laurent.pinchart+renesas@ideasonboard.com> <20211229193135.28767-4-laurent.pinchart+renesas@ideasonboard.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: renesas: Add panel overlay for Draak and Ebisu boards
+From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-renesas-soc@vger.kernel.org
+Date:   Mon, 21 Feb 2022 14:41:23 +0000
+Message-ID: <164545448355.2976960.17099137139723587029@Monstersaurus>
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
-Received: from hyd-lnxbld559.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akhilpo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BED46C4361C;
-        Mon, 21 Feb 2022 14:41:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org BED46C4361C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=quicinc.com
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-To:     freedreno <freedreno@lists.freedesktop.org>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        Rob Clark <robdclark@gmail.com>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: qcom: sc7280: Support gpu speedbin
-Date:   Mon, 21 Feb 2022 20:11:02 +0530
-Message-Id: <20220221201039.5.I4c2cb95f06f0c37038c80cc1ad20563fdf0618e2@changeid>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1645454462-27867-1-git-send-email-quic_akhilpo@quicinc.com>
-References: <1645454462-27867-1-git-send-email-quic_akhilpo@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add speedbin fuse and additional OPPs for gpu to support sc7280 SKUs.
+Quoting Laurent Pinchart (2021-12-29 19:31:35)
+> The Draak and Ebisu boards support an optional LVDS panel. One
+> compatible panel is the Mitsubishi AA104XD12. Add a corresponding DT
+> overlay.
+>=20
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.co=
+m>
 
-Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
----
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 46 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 365a2e0..f8fc8b8 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -605,6 +605,11 @@
- 			power-domains = <&rpmhpd SC7280_MX>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			gpu_speed_bin: gpu_speed_bin@1e9 {
-+				reg = <0x1e9 0x2>;
-+				bits = <5 8>;
-+			};
- 		};
- 
- 		sdhc_1: sdhci@7c4000 {
-@@ -1762,6 +1767,9 @@
- 			interconnect-names = "gfx-mem";
- 			#cooling-cells = <2>;
- 
-+			nvmem-cells = <&gpu_speed_bin>;
-+			nvmem-cell-names = "speed_bin";
-+
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
-@@ -1769,18 +1777,56 @@
- 					opp-hz = /bits/ 64 <315000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
- 					opp-peak-kBps = <1804000>;
-+					opp-supported-hw = <0x03>;
- 				};
- 
- 				opp-450000000 {
- 					opp-hz = /bits/ 64 <450000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
- 					opp-peak-kBps = <4068000>;
-+					opp-supported-hw = <0x03>;
- 				};
- 
- 				opp-550000000 {
- 					opp-hz = /bits/ 64 <550000000>;
- 					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
- 					opp-peak-kBps = <6832000>;
-+					opp-supported-hw = <0x03>;
-+				};
-+
-+				opp-608000000 {
-+					opp-hz = /bits/ 64 <608000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-+					opp-peak-kBps = <8368000>;
-+					opp-supported-hw = <0x02>;
-+				};
-+
-+				opp-700000000 {
-+					opp-hz = /bits/ 64 <700000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-+					opp-peak-kBps = <8532000>;
-+					opp-supported-hw = <0x02>;
-+				};
-+
-+				opp-812000000 {
-+					opp-hz = /bits/ 64 <812000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-+					opp-peak-kBps = <8532000>;
-+					opp-supported-hw = <0x02>;
-+				};
-+
-+				opp-840000000 {
-+					opp-hz = /bits/ 64 <840000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
-+					opp-peak-kBps = <8532000>;
-+					opp-supported-hw = <0x02>;
-+				};
-+
-+				opp-900000000 {
-+					opp-hz = /bits/ 64 <900000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
-+					opp-peak-kBps = <8532000>;
-+					opp-supported-hw = <0x02>;
- 				};
- 			};
- 		};
--- 
-2.7.4
-
+> ---
+> Changes since v1:
+>=20
+> - Create endpoint in lvds1 port@1
+> ---
+>  arch/arm64/boot/dts/renesas/Makefile          |  1 +
+>  .../renesas/draak-ebisu-panel-aa104xd12.dts   | 36 +++++++++++++++++++
+>  2 files changed, 37 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd=
+12.dts
+>=20
+> diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/r=
+enesas/Makefile
+> index 982ca3e0e86f..5e831bd33828 100644
+> --- a/arch/arm64/boot/dts/renesas/Makefile
+> +++ b/arch/arm64/boot/dts/renesas/Makefile
+> @@ -76,3 +76,4 @@ dtb-$(CONFIG_ARCH_R8A77965) +=3D r8a779m5-salvator-xs.d=
+tb
+>  dtb-$(CONFIG_ARCH_R9A07G044) +=3D r9a07g044l2-smarc.dtb
+> =20
+>  dtb-$(CONFIG_ARCH_RCAR_GEN3) +=3D salvator-panel-aa104xd12.dtbo
+> +dtb-$(CONFIG_ARCH_RCAR_GEN3) +=3D draak-ebisu-panel-aa104xd12.dtbo
+> diff --git a/arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dts =
+b/arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dts
+> new file mode 100644
+> index 000000000000..258f8668ca36
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dts
+> @@ -0,0 +1,36 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Device Tree overlay for the AA104XD12 panel connected to LVDS1 on a D=
+raak or
+> + * Ebisu board
+> + *
+> + * Copyright 2021 Ideas on Board Oy
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +&{/} {
+> +#include "panel-aa104xd12.dtsi"
+> +};
+> +
+> +&{/panel} {
+> +       backlight =3D <&backlight>;
+> +
+> +       port {
+> +               panel_in: endpoint {
+> +                       remote-endpoint =3D <&lvds1_out>;
+> +               };
+> +       };
+> +};
+> +
+> +&lvds1 {
+> +       status =3D "okay";
+> +
+> +       ports {
+> +               port@1 {
+> +                       lvds1_out: endpoint {
+> +                               remote-endpoint =3D <&panel_in>;
+> +                       };
+> +               };
+> +       };
+> +};
+> --=20
+> Regards,
+>=20
+> Laurent Pinchart
+>
