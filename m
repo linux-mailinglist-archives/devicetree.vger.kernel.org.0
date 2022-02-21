@@ -2,185 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B1434BE065
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:51:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C7854BE842
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:05:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353410AbiBUOmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 09:42:52 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55264 "EHLO
+        id S1378430AbiBUOw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 09:52:26 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344379AbiBUOmu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 09:42:50 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69F23765B;
-        Mon, 21 Feb 2022 06:42:27 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EF0C0482;
-        Mon, 21 Feb 2022 15:42:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645454546;
-        bh=RL7Ns70rAF+Bkb03HTLNS6K1v/ctQIJYbnehlZszA6A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SP0jCEz//2WhKEbnFIUdi4mHWlgJbcvVacjwNITvA4/CWwCiibviiviyfyELCqGeb
-         UhIe19Rs0H1HVPXyZG/1igSQvMnWZQM3/8HWQbUtkknOesA3G6v26LQKBNnWW4+YPu
-         dzX2K9dRjeB1VguY66RAfCWkfkFlELXK+xH7w1BQ=
-Date:   Mon, 21 Feb 2022 16:42:17 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: renesas: Prepare AA1024XD12 panel
- .dtsi for overlay support
-Message-ID: <YhOkyScHvAi5JQmH@pendragon.ideasonboard.com>
-References: <20211229193135.28767-1-laurent.pinchart+renesas@ideasonboard.com>
- <20211229193135.28767-2-laurent.pinchart+renesas@ideasonboard.com>
- <164545430425.2976960.2974689638537387661@Monstersaurus>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <164545430425.2976960.2974689638537387661@Monstersaurus>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1378419AbiBUOwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 09:52:25 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36A6D13D70;
+        Mon, 21 Feb 2022 06:52:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645455122; x=1676991122;
+  h=from:to:cc:subject:date:message-id;
+  bh=0r70U4Ls0HL3+dHw7RRmyaZy44+ZP9FEugYbM/LwvYU=;
+  b=wT/DnJ4JrG9uxvsNDHKnfYR24S4zlE+ekx2Lv10vuWK23PdvPAR+yEYW
+   b7BzyjIfwgvnhNu9qDUfTb9tGLPKHxfpe/SrFIAOA2sGw2OYxaDaJCq2t
+   pxo7mDeLbI5Jl8H0/EOzZcZe/eisQHd5fOvbxmg1JEh072fTvKvjyjpHC
+   g=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 21 Feb 2022 06:52:01 -0800
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 21 Feb 2022 06:51:59 -0800
+X-QCInternal: smtphost
+Received: from vpolimer-linux.qualcomm.com ([10.204.67.235])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 21 Feb 2022 20:21:32 +0530
+Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
+        id AAA7E5392; Mon, 21 Feb 2022 20:21:31 +0530 (IST)
+From:   Vinod Polimera <quic_vpolimer@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        robdclark@gmail.com, seanpaul@chromium.org, swboyd@chromium.org,
+        dianders@chromium.org, krzysztof.kozlowski@canonical.com,
+        thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch
+Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        quic_kalyant@quicinc.com, quic_sbillaka@quicinc.com,
+        quic_vproddut@quicinc.com
+Subject: [PATCH v2 0/4] Add PSR support for eDP
+Date:   Mon, 21 Feb 2022 20:21:22 +0530
+Message-Id: <1645455086-9359-1-git-send-email-quic_vpolimer@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 02:38:24PM +0000, Kieran Bingham wrote:
-> Quoting Laurent Pinchart (2021-12-29 19:31:33)
-> > The Mitsubishi AA1024XD12 panel can be used for R-Car Gen2 and Gen3
-> > boards as an optional external panel. It is described in the
-> > arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi file as a direct child of the
-> > DT root node. This allows including r8a77xx-aa104xd12-panel.dtsi in
-> > board device trees, with other minor modifications, to enable the panel.
-> > 
-> > This is however not how external components should be modelled. Instead
-> > of modifying the board device tree to enable the panel, it should be
-> > compiled as a DT overlay, to be loaded by the boot loader.
-> > 
-> > Prepare the r8a77xx-aa104xd12-panel.dtsi file for this usage by
-> > declaring a panel node only, without hardcoding its path. Overlay
-> > sources can then include r8a77xx-aa104xd12-panel.dtsi where appropriate.
-> > 
-> > This change doesn't cause any regression as r8a77xx-aa104xd12-panel.dtsi
-> > is currently unused. As overlay support for this panel has only been
-> > tested with Gen3 hardware, and Gen2 support will require more
-> > development, move the file to arch/arm64/boot/dts/renesas/.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > ---
-> >  .../arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi | 39 -------------------
-> >  .../boot/dts/renesas/panel-aa104xd12.dtsi     | 30 ++++++++++++++
-> >  2 files changed, 30 insertions(+), 39 deletions(-)
-> >  delete mode 100644 arch/arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi
-> >  create mode 100644 arch/arm64/boot/dts/renesas/panel-aa104xd12.dtsi
-> > 
-> > diff --git a/arch/arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi b/arch/arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi
-> > deleted file mode 100644
-> > index 79fce67ebb1c..000000000000
-> > --- a/arch/arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi
-> > +++ /dev/null
-> > @@ -1,39 +0,0 @@
-> > -// SPDX-License-Identifier: GPL-2.0
-> > -/*
-> > - * Common file for the AA104XD12 panel connected to Renesas R-Car boards
-> > - *
-> > - * Copyright (C) 2014 Renesas Electronics Corp.
-> > - */
-> > -
-> > -/ {
-> > -       panel {
-> > -               compatible = "mitsubishi,aa104xd12", "panel-lvds";
-> > -
-> > -               width-mm = <210>;
-> > -               height-mm = <158>;
-> > -               data-mapping = "jeida-18";
-> > -
-> > -               panel-timing {
-> > -                       /* 1024x768 @65Hz */
-> > -                       clock-frequency = <65000000>;
-> > -                       hactive = <1024>;
-> > -                       vactive = <768>;
-> > -                       hsync-len = <136>;
-> > -                       hfront-porch = <20>;
-> > -                       hback-porch = <160>;
-> > -                       vfront-porch = <3>;
-> > -                       vback-porch = <29>;
-> > -                       vsync-len = <6>;
-> > -               };
-> > -
-> > -               port {
-> > -                       panel_in: endpoint {
-> > -                               remote-endpoint = <&lvds_connector>;
-> > -                       };
-> > -               };
-> > -       };
-> > -};
-> > -
-> > -&lvds_connector {
-> > -       remote-endpoint = <&panel_in>;
-> > -};
-> > diff --git a/arch/arm64/boot/dts/renesas/panel-aa104xd12.dtsi b/arch/arm64/boot/dts/renesas/panel-aa104xd12.dtsi
-> > new file mode 100644
-> > index 000000000000..6e9f447d8fe1
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/renesas/panel-aa104xd12.dtsi
-> 
-> Is this a device directly on the renesas board itself?
+*** BLURB HERE ***
 
-I would have included it in the board DT if that had been the case :-)
+Vinod Polimera (4):
+  drm/msm/dp: Add basic PSR support for eDP
+  drm/bridge: use atomic enable/disable for bridge callbacks
+  drm/msm/disp/dpu1: use atomic enable/disable callbacks for encoder
+    functions
+  drm/msm/disp/dpu1: add PSR support for eDP interface in dpu driver
 
-> I still wonder if
-> 'extra' overlays should be in a subfolder here, or ... even potentially
-> some more common location - but this can do for now I guess.
-
-They should, but they should then be parametric, it's a whole other
-story.
-
-> And I see I gave this on v1, but /after/ you posted v2 ;-)
-> 
-> You can keep it though ...
-> 
-> Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> 
-> > @@ -0,0 +1,30 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Common file for the AA104XD12 panel connected to Renesas R-Car Gen3 boards.
-> > + *
-> > + * Copyright (C) 2021 Renesas Electronics Corp.
-> > + */
-> > +
-> > +panel {
-> > +       compatible = "mitsubishi,aa104xd12", "panel-lvds";
-> > +
-> > +       width-mm = <210>;
-> > +       height-mm = <158>;
-> > +       data-mapping = "jeida-18";
-> > +
-> > +       panel-timing {
-> > +               /* 1024x768 @65Hz */
-> > +               clock-frequency = <65000000>;
-> > +               hactive = <1024>;
-> > +               vactive = <768>;
-> > +               hsync-len = <136>;
-> > +               hfront-porch = <20>;
-> > +               hback-porch = <160>;
-> > +               vfront-porch = <3>;
-> > +               vback-porch = <29>;
-> > +               vsync-len = <6>;
-> > +       };
-> > +
-> > +       port {
-> > +       };
-> > +};
+ drivers/gpu/drm/bridge/panel.c              | 102 ++++++++++++++--
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    |  31 ++++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c |  40 ++++++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     |   2 +-
+ drivers/gpu/drm/msm/dp/dp_catalog.c         |  81 +++++++++++++
+ drivers/gpu/drm/msm/dp/dp_catalog.h         |   4 +
+ drivers/gpu/drm/msm/dp/dp_ctrl.c            |  63 ++++++++++
+ drivers/gpu/drm/msm/dp/dp_ctrl.h            |   3 +
+ drivers/gpu/drm/msm/dp/dp_display.c         |  14 +++
+ drivers/gpu/drm/msm/dp/dp_display.h         |   1 +
+ drivers/gpu/drm/msm/dp/dp_drm.c             | 177 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/msm/dp/dp_link.c            |  22 ++++
+ drivers/gpu/drm/msm/dp/dp_panel.c           |  21 ++++
+ drivers/gpu/drm/msm/dp/dp_panel.h           |   6 +
+ drivers/gpu/drm/msm/dp/dp_reg.h             |  19 +++
+ drivers/gpu/drm/msm/msm_drv.h               |   6 +
+ 16 files changed, 568 insertions(+), 24 deletions(-)
 
 -- 
-Regards,
+2.7.4
 
-Laurent Pinchart
