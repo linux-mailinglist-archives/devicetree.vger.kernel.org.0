@@ -2,80 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D60C64BD3D0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 03:35:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EF454BD3E8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 03:57:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245302AbiBUCdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 21:33:10 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42442 "EHLO
+        id S1343898AbiBUCgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 21:36:44 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242885AbiBUCdJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:33:09 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E9573DDE0;
-        Sun, 20 Feb 2022 18:32:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C86F861113;
-        Mon, 21 Feb 2022 02:32:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33E66C340F6;
-        Mon, 21 Feb 2022 02:32:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645410766;
-        bh=0jsRD7cxJXC7LM6Gajfxrs8QV4QjeNnPnIXPYuhllT8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FBn02HELnb62R3PHfzhqu3w2/puH9BB71lmp1+JbMtBTQK4iXpp5Gptu5EwUi318o
-         axZsZkzxdbnzyd9f4uv7KJJI7MLzGyVAyCThWAj/0SFLgpq6o50spxLTs50HPIqYLg
-         CvQbZJmL25f+qYa3avYEiu/660iUkBWV1kHsbiyqJJ2JhkjhUPKuj5zosFy+97WMff
-         P6aLZHJVws3yYjudmyiqb1GQ1qSRD6d57rdpB3oM1WSIBmRH3Kwq4MnycwPUnw/KVm
-         VMrHL9g31epieHaV/9oDCKO/NSnvsd4+PuPoAmoK85dyjnFTA/6Kca+R7jwh8IHbLa
-         yXON4TfoDr1Gg==
-Received: by mail-ej1-f52.google.com with SMTP id qx21so29222789ejb.13;
-        Sun, 20 Feb 2022 18:32:46 -0800 (PST)
-X-Gm-Message-State: AOAM531imdYcGGSl0CxLWM+mvW7CZBjFW4ZdmnJ0qx4Qe0/jef9DDheo
-        c6QPxY/5JWaeNbwJmWhwocMjRAt1Q7kvaowC2w==
-X-Google-Smtp-Source: ABdhPJz2uuAFArWvpdO16hER5PM32Ny9J4D8AGVlqgdAATHBKDTbcCog+Sa1GoLGAIMj8A8YCPDI1915gwsrWyH6h64=
-X-Received: by 2002:a17:906:2a11:b0:69f:286a:66a7 with SMTP id
- j17-20020a1709062a1100b0069f286a66a7mr14222076eje.680.1645410764208; Sun, 20
- Feb 2022 18:32:44 -0800 (PST)
-MIME-Version: 1.0
-References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-8-granquet@baylibre.com>
-In-Reply-To: <20220218145437.18563-8-granquet@baylibre.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 21 Feb 2022 10:32:32 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-5g4fXVTOETDxbn2Cp3MVjFs-Sh9NT1NepfEXUhdJQEw@mail.gmail.com>
-Message-ID: <CAAOTY_-5g4fXVTOETDxbn2Cp3MVjFs-Sh9NT1NepfEXUhdJQEw@mail.gmail.com>
-Subject: Re: [PATCH v8 07/19] drm/mediatek: dpi: implement a swap_input toggle
- in board config
-To:     Guillaume Ranquet <granquet@baylibre.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, deller@gmx.de,
-        CK Hu <ck.hu@mediatek.com>, Jitao Shi <jitao.shi@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S1343905AbiBUCgm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:36:42 -0500
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B6023DDE0;
+        Sun, 20 Feb 2022 18:36:20 -0800 (PST)
+Received: by mail-il1-f173.google.com with SMTP id d7so8971257ilf.8;
+        Sun, 20 Feb 2022 18:36:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=uAgMNJsD7INE5dFmY8Xlz21D6qpjVxGcjpghogIYeNY=;
+        b=sOpYOQyHf7d0eMc1NkGUQPVFs1kcE58fYg77G4AUz2TC/opa23FMEnjdLWSIYcYnlk
+         nlcgNpJmDyGBhKltoPZy3ggzyggXMtFAzDO4O3zwh1jQRnV3gdZnZsETa0iWUtT6uEwt
+         IkPyICIcFjV0V3LxXGB0koFMClhKqO5IWVEhd6AHCp8OFwlPtye56+990I2A7rsqGJwV
+         91A7gKB4oicIrcyMrl3WS6s/qtS+7L7wNw5C3VjaPJ8xw0bm3b5xGZ1jC8YSYqiqi2zM
+         dJDsp2iyW0Td85p6AGsQrpcjgXYUq6GsluPahUqzdwaRkQ1Tkf3jxXdagmE5ogcGlar4
+         AMUA==
+X-Gm-Message-State: AOAM532bf00PPNkIyrbgZ7l1GgQjmRzZxY4VQ3vkevEMlHcuImagbXY/
+        tODgpMZMrdVPuVB2ncg/KQ==
+X-Google-Smtp-Source: ABdhPJz2DfaQWNzJPUw3IqWnC9QhQKn66unhRPcWMPIvrixApoeelkVT8Tp/miCfwnh3IxQWexkAKA==
+X-Received: by 2002:a92:ca0a:0:b0:2b7:bca5:63df with SMTP id j10-20020a92ca0a000000b002b7bca563dfmr14222447ils.232.1645410979730;
+        Sun, 20 Feb 2022 18:36:19 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id e5sm7232198ilq.9.2022.02.20.18.36.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Feb 2022 18:36:19 -0800 (PST)
+Received: (nullmailer pid 2041551 invoked by uid 1000);
+        Mon, 21 Feb 2022 02:36:09 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+In-Reply-To: <20220220173905.14165-2-ansuelsmth@gmail.com>
+References: <20220220173905.14165-1-ansuelsmth@gmail.com> <20220220173905.14165-2-ansuelsmth@gmail.com>
+Subject: Re: [RFC RFT PATCH v2 1/2] dt-bindings: mtd: partitions: Document new partition-dynamic nodes
+Date:   Sun, 20 Feb 2022 20:36:09 -0600
+Message-Id: <1645410969.414517.2041550.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,103 +61,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Guillaume:
-
-Guillaume Ranquet <granquet@baylibre.com> =E6=96=BC 2022=E5=B9=B42=E6=9C=88=
-18=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8810:56=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Adds a bit of flexibility to support boards without swap_input support
->
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+On Sun, 20 Feb 2022 18:39:04 +0100, Ansuel Smith wrote:
+> Document new partition-dynamic nodes used to provide an OF node for
+> partition registred at runtime by parsers. This is required for nvmem
+> system to declare and detect nvmem-cells.
+> 
+> With these special partitions, only the label is required as the parser
+> will provide reg and offset of the mtd. NVMEM will use the data from the
+> parser and provide the NVMEM cells declared in the DTS, "connecting" the
+> dynamic partition with a static declaration of cells in them.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
-k/mtk_dpi.c
-> index 545a1337cc899..454f8563efae4 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -126,6 +126,7 @@ struct mtk_dpi_conf {
->         const u32 *output_fmts;
->         u32 num_output_fmts;
->         bool is_ck_de_pol;
-> +       bool swap_input_support;
->         const struct mtk_dpi_yc_limit *limit;
->  };
->
-> @@ -378,18 +379,21 @@ static void mtk_dpi_config_color_format(struct mtk_=
-dpi *dpi,
->             (format =3D=3D MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
->                 mtk_dpi_config_yuv422_enable(dpi, false);
->                 mtk_dpi_config_csc_enable(dpi, true);
-> -               mtk_dpi_config_swap_input(dpi, false);
-> +               if (dpi->conf->swap_input_support)
-> +                       mtk_dpi_config_swap_input(dpi, false);
->                 mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP=
-_BGR);
->         } else if ((format =3D=3D MTK_DPI_COLOR_FORMAT_YCBCR_422) ||
->                    (format =3D=3D MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
->                 mtk_dpi_config_yuv422_enable(dpi, true);
->                 mtk_dpi_config_csc_enable(dpi, true);
-> -               mtk_dpi_config_swap_input(dpi, true);
-> +               if (dpi->conf->swap_input_support)
-> +                       mtk_dpi_config_swap_input(dpi, true);
+>  .../mtd/partitions/partition-dynamic.yaml     | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/partition-dynamic.yaml
+> 
 
-In MT8173, MT2701, MT8183, MT8192, YCBCR_444 would not swap but
-YCBCR_422 would swap. But In MT8195, both YCBCR_444 and YCBCR_422
-would not swap, So I think one of these format would be abnormal in
-MT8195, right? Or would you provide more information about how this
-swap work?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Regards,
-Chun-Kuang.
+yamllint warnings/errors:
 
->                 mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP=
-_RGB);
->         } else {
->                 mtk_dpi_config_yuv422_enable(dpi, false);
->                 mtk_dpi_config_csc_enable(dpi, false);
-> -               mtk_dpi_config_swap_input(dpi, false);
-> +               if (dpi->conf->swap_input_support)
-> +                       mtk_dpi_config_swap_input(dpi, false);
->                 mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP=
-_RGB);
->         }
->  }
-> @@ -808,6 +812,7 @@ static const struct mtk_dpi_conf mt8173_conf =3D {
->         .output_fmts =3D mt8173_output_fmts,
->         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
->         .is_ck_de_pol =3D true,
-> +       .swap_input_support =3D true,
->         .limit =3D &mtk_dpi_limit,
->  };
->
-> @@ -819,6 +824,7 @@ static const struct mtk_dpi_conf mt2701_conf =3D {
->         .output_fmts =3D mt8173_output_fmts,
->         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
->         .is_ck_de_pol =3D true,
-> +       .swap_input_support =3D true,
->         .limit =3D &mtk_dpi_limit,
->  };
->
-> @@ -829,6 +835,7 @@ static const struct mtk_dpi_conf mt8183_conf =3D {
->         .output_fmts =3D mt8183_output_fmts,
->         .num_output_fmts =3D ARRAY_SIZE(mt8183_output_fmts),
->         .is_ck_de_pol =3D true,
-> +       .swap_input_support =3D true,
->         .limit =3D &mtk_dpi_limit,
->  };
->
-> @@ -839,6 +846,7 @@ static const struct mtk_dpi_conf mt8192_conf =3D {
->         .output_fmts =3D mt8173_output_fmts,
->         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
->         .is_ck_de_pol =3D true,
-> +       .swap_input_support =3D true,
->         .limit =3D &mtk_dpi_limit,
->  };
->
-> --
-> 2.34.1
->
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/partition-dynamic.example.dt.yaml: partitions: '#address-cells', '#size-cells', 'art' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1595230
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
