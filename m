@@ -2,111 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D514BE4A1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 558294BDF5C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:50:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356482AbiBULe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 06:34:56 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53196 "EHLO
+        id S1356491AbiBULgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 06:36:08 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347794AbiBULey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 06:34:54 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F421DF41
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 03:34:29 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 96F98482;
-        Mon, 21 Feb 2022 12:34:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645443267;
-        bh=SQelA6LOgFYfSyw2kG9TR+wmN6lPV2msLTlidoc5R00=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=s0B0Dywrdf8UWHDZ38Jiprm5ZlqjFevuAjpzSYu/4FJGQHX7/u0NrLlA36oNjnmFv
-         Xo+hSNGLqZZKG3EjbW04M0dLSigF0bctypzlI7DgfNaHRsERtgEqfBwHJR7fVJCqNE
-         kdKWN/Wfm5TzB5PB92kB6yrZGAdpVgmX6/tP8VaQ=
-Date:   Mon, 21 Feb 2022 13:34:18 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        patchwork-lst@pengutronix.de
-Subject: Re: [PATCH v2 8/9] arm64: dts: imx8mp: add GPU power domains
-Message-ID: <YhN4urs6KS2m5NBC@pendragon.ideasonboard.com>
-References: <20220207192547.1997549-1-l.stach@pengutronix.de>
- <20220207192547.1997549-8-l.stach@pengutronix.de>
+        with ESMTP id S244809AbiBULgI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 06:36:08 -0500
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 384DADF3C;
+        Mon, 21 Feb 2022 03:35:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Sw0I/RylQnKI1uq0FibHj95obK9mnJQpn1pSKABNnu4=; b=gfg8U2QUAXfumrTD8Ej62KBdYt
+        iK+1LPPtSoHp2VAEDWfEKsObDjwWMfI+Czo0lPkH4p6lHUhAuxPd9caqhTAAznjJ3A5fOvEvqbiQR
+        L0FHlTx6FrJWU6NqoNCo2syRgLj7slWQaQujCc2K9yW/+gC5bzEhMaXq7vIHFTunnnku/WZXmtTuR
+        v83CnecZ7mgL7pJaDxOdrS+ByyrKZVMRxQXQ6UvIeBSk7UKhZu7VEV1g7Y8G83O4FfoPYHHi1T94j
+        LEIxcin8vZ/W14NsYg4JNUlgPSIiyJF0WjmkPD/k9X0HsElqZ/upiv6Es7KQHF21rinaUXL+byoJe
+        m9ommXOQ==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=[192.168.1.10])
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1nM6yb-00021R-0w; Mon, 21 Feb 2022 13:35:33 +0200
+Message-ID: <d30291a3-c1d1-5c7d-025f-03cd58eee1ab@kapsi.fi>
+Date:   Mon, 21 Feb 2022 13:35:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220207192547.1997549-8-l.stach@pengutronix.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH v3 3/9] gpu: host1x: Add context device management code
+Content-Language: en-US
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
+        will@kernel.org, robh+dt@kernel.org, robin.murphy@arm.com
+Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220218113952.3077606-1-mperttunen@nvidia.com>
+ <20220218113952.3077606-4-mperttunen@nvidia.com>
+ <149d4794-90fd-cde3-9d59-39e6488db679@gmail.com>
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+In-Reply-To: <149d4794-90fd-cde3-9d59-39e6488db679@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
-
-Thank you for the patch.
-
-On Mon, Feb 07, 2022 at 08:25:46PM +0100, Lucas Stach wrote:
-> Add the power domains for the GPUs, which do not require any interaction with
-> a blk-ctrl, but are simply two PU domains nested inside a MIX domain.
+On 2/19/22 19:48, Dmitry Osipenko wrote:
+> 18.02.2022 14:39, Mikko Perttunen пишет:
+> ...
+>> +/*
+>> + * Due to an issue with T194 NVENC, only 38 bits can be used.
+>> + * Anyway, 256GiB of IOVA ought to be enough for anyone.
+>> + */
+>> +static dma_addr_t context_device_dma_mask = DMA_BIT_MASK(38);
 > 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 27 +++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
+> s/dma_addr_t/u64/ ? Apparently you should get compilation warning on ARM32.
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index dc488a147d0c..9ed57171b9fc 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -503,6 +503,33 @@ pgc_usb2_phy: power-domain@3 {
->  						reg = <IMX8MP_POWER_DOMAIN_USB2_PHY>;
->  					};
->  
-> +					pgc_gpu2d: power-domain@6 {
-> +						#power-domain-cells = <0>;
-> +						reg = <IMX8MP_POWER_DOMAIN_GPU2D>;
-> +						clocks = <&clk IMX8MP_CLK_GPU2D_ROOT>;
-> +						power-domains = <&pgc_gpumix>;
-> +					};
-> +
-> +					pgc_gpumix: power-domain@7 {
-> +						#power-domain-cells = <0>;
-> +						reg = <IMX8MP_POWER_DOMAIN_GPUMIX>;
-> +						clocks = <&clk IMX8MP_CLK_GPU_ROOT>,
-> +							 <&clk IMX8MP_CLK_GPU_AHB>;
-> +						assigned-clocks = <&clk IMX8MP_CLK_GPU_AXI>,
-> +								  <&clk IMX8MP_CLK_GPU_AHB>;
-> +						assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
-> +									 <&clk IMX8MP_SYS_PLL1_800M>;
-> +						assigned-clock-rates = <800000000>, <400000000>;
-> +					};
-> +
-> +					pgc_gpu3d: power-domain@9 {
-> +						#power-domain-cells = <0>;
-> +						reg = <IMX8MP_POWER_DOMAIN_GPU3D>;
-> +						clocks = <&clk IMX8MP_CLK_GPU3D_ROOT>,
-> +							 <&clk IMX8MP_CLK_GPU3D_SHADER_CORE>;
-> +						power-domains = <&pgc_gpumix>;
-> +					};
-> +
->  					pgc_hsiomix: power-domains@17 {
->  						#power-domain-cells = <0>;
->  						reg = <IMX8MP_POWER_DOMAIN_HSIOMIX>;
+> https://elixir.bootlin.com/linux/v5.17-rc4/source/include/linux/device.h#L524 >
+>> +int host1x_context_list_init(struct host1x *host1x)
+>> +{
+>> +	struct host1x_context_list *cdl = &host1x->context_list;
+>> +	struct host1x_context *ctx;
+>> +	struct device_node *node;
+>> +	int index;
+> 
+> Nitpick: unsigned int
+> 
+> ...
+>> +del_devices:
+>> +	while (--index >= 0)
+> 
+> Nitpick: while (index--)
+> 
+> ... >> +void host1x_context_list_free(struct host1x_context_list *cdl)
+>> +{
+>> +	int i;
+> 
+> Nitpick: unsigned int
 > 
 
--- 
-Regards,
+Thanks, fixed all.
 
-Laurent Pinchart
+Mikko
