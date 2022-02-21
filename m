@@ -2,95 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62ED74BE83E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:05:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C14DB4BE83A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:05:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358496AbiBUNDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 08:03:12 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35444 "EHLO
+        id S239402AbiBUNMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 08:12:55 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346408AbiBUNDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 08:03:11 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99EBAF34;
-        Mon, 21 Feb 2022 05:02:48 -0800 (PST)
+        with ESMTP id S1350923AbiBUNMw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 08:12:52 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB35E1EED5;
+        Mon, 21 Feb 2022 05:12:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645448568; x=1676984568;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=KZx0AC6N1KetqJgjIGPHT+c6fRZkwXmMUhQ/6zLIsZ0=;
-  b=zAipwSRgTinJBatAPL2aYqA5hrm6rOEFmtMmEQjQ7YQRvsA5M89Vn0xE
-   Kkr2JUaFysvmR//urkkITDHAFsnFhWCHpzsjDMMTqsqgFVFuWPnL7cDIv
-   +fiTuvV2/KhhqiZJNGKad0Arne1i54pYMunHuEuca5JOhLP2YjXfADBu/
-   k=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 21 Feb 2022 05:02:48 -0800
+  t=1645449149; x=1676985149;
+  h=from:to:cc:subject:date:message-id;
+  bh=G7oTbgnW/y7+oRzp7iXZzH5BC58ZLVjZyl7jNT6m2Z8=;
+  b=LdPwZU66Nr+bx0t1XDmcph2ydGHan+ebdb65MdBo8c+aUUrNuKIR5iSP
+   nBsxNsJCHZFkkNlLQFXBG6oL1N992cBb2hCUg6PZe/MI9McdW98XjBE8i
+   Dn+8iUS6bT23MJhNIOSborsemk1yzc7NFQF+CORUe/qVbMIwqU9FyaAhJ
+   M=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 21 Feb 2022 05:12:28 -0800
 X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 05:02:47 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 21 Feb 2022 05:02:47 -0800
-Received: from [10.216.15.213] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Mon, 21 Feb
- 2022 05:02:44 -0800
-Message-ID: <58726955-9682-15fc-56c7-cf504ef4d3e9@quicinc.com>
-Date:   Mon, 21 Feb 2022 18:32:40 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH 0/3] soundwire: qcom: add pm runtime support
-Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        <robh+dt@kernel.org>, <vkoul@kernel.org>,
-        <yung-chuan.liao@linux.intel.com>
-CC:     <pierre-louis.bossart@linux.intel.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20220221104127.15670-1-srinivas.kandagatla@linaro.org>
-From:   "Srinivasa Rao Mandadapu (Temp)" <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <20220221104127.15670-1-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 21 Feb 2022 05:12:26 -0800
+X-QCInternal: smtphost
+Received: from vpolimer-linux.qualcomm.com ([10.204.67.235])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 21 Feb 2022 18:42:12 +0530
+Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
+        id 41F47231E; Mon, 21 Feb 2022 18:42:12 +0530 (IST)
+From:   Vinod Polimera <quic_vpolimer@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dmitry.baryshkov@linaro.org, dianders@chromium.org,
+        quic_kalyant@quicinc.com
+Subject: [v1] arm64/dts/qcom/sc7280: update mdp clk to max supported value to support higher refresh rates
+Date:   Mon, 21 Feb 2022 18:42:06 +0530
+Message-Id: <1645449126-17718-1-git-send-email-quic_vpolimer@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Srini for Your patches!!!
+Panels with higher refresh rate will need mdp clk above 300Mhz.
+Select max frequency for mdp clock during bootup, dpu driver will
+scale down the clock as per usecase when first update from the framework is received.
 
-I think runtime pm support in bolero codecs side still pending right?
+Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index baf1653..7af96fc 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2895,7 +2895,7 @@
+ 				assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>,
+ 						<&dispcc DISP_CC_MDSS_VSYNC_CLK>,
+ 						<&dispcc DISP_CC_MDSS_AHB_CLK>;
+-				assigned-clock-rates = <300000000>,
++				assigned-clock-rates = <506666667>,
+ 							<19200000>,
+ 							<19200000>;
+ 				operating-points-v2 = <&mdp_opp_table>;
+-- 
+2.7.4
 
-On 2/21/2022 4:11 PM, Srinivas Kandagatla wrote:
-> This patchset adds pm runtime support to Qualcomm SounWire Controller using
-> SoundWire Clock Stop and Wake up using Headset events on supported instances and
-> a bus reset on instances that require full reset.
->
->
-> Tested it on SM8250 MTP and Dragon Board DB845c
->
-> --srini
->
->
-> Srinivas Kandagatla (3):
->    soundwire: qcom: add runtime pm support
->    dt-bindings: soundwire: qcom: document optional wake irq
->    soundwire: qcom: add wake up interrupt support
->
->   .../bindings/soundwire/qcom,sdw.txt           |   2 +-
->   drivers/soundwire/qcom.c                      | 215 +++++++++++++++++-
->   2 files changed, 215 insertions(+), 2 deletions(-)
->
