@@ -2,103 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EED424BD837
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 09:40:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B728B4BD7B6
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 09:40:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244648AbiBUIZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 03:25:34 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38068 "EHLO
+        id S245414AbiBUI3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 03:29:48 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:43644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244581AbiBUIZd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 03:25:33 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71712BF4
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 00:25:10 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id n8so9014951wms.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 00:25:10 -0800 (PST)
+        with ESMTP id S231290AbiBUI3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 03:29:46 -0500
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BD0BBC;
+        Mon, 21 Feb 2022 00:29:23 -0800 (PST)
+Received: by mail-vs1-xe35.google.com with SMTP id j3so2527675vsi.7;
+        Mon, 21 Feb 2022 00:29:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=HtxBmeOXC9JY2medDRrYSSTNzMcetLrIdHLgGlB77Vo=;
-        b=kZj0ZPJi5Rn/Ledb5Qn5+fHEFZqPJV8hDipfpQa+OlYs3IGumEzDR3Ko5IziRAYDtk
-         OY0aRY/Ln+wFUiAJ350VXcf1vBGH9nMtgnxWfbtRV/78G6gxbz3kqDjSL6kOktJN8Ad3
-         DvBvd/4imz+F/6NtHWFxKe8gThzidTTBkbwv1tv45cM/FFu0hdq+Nn6+sg9wayudfzd0
-         S8s6e36z7F7pR1Um/NLEXHoF//puL0VwVu8O5I+pPMMwoFKQqDmKHDg//8+fnb9lctVg
-         IYwaaenDBbVPV/d8Bvh+Ug28MP/okaFK/YFXRY0qm4sHteBreuGvIiA9VkTkCEqJwHic
-         ATJA==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=z7GbsHFki7BHmmijQLgu4jj0JzXWxy6jSKULjvaUMy8=;
+        b=YAe/FOh3YSDtYtbR4PnOKeb4K5dDoW+FBsI8qeLiL3vGVsklbxiZNspPuYQ7qJDmrQ
+         VMY/g5C96ioabxZxaqBJxV9ZwxOwHHk//+aLa4GlP1zEnq4ao/ojIBoqmpTINNqJyz63
+         kxl1dPlUHvkcaxDaQt2g7NyFo/afKAAWQ4A7+h2WoU2SMyTTXhb9885eyU5v22W7+JiV
+         6P32BHphxsl7ac4qJ2dXLKTu8EAnJc6K1qxfDr8MeAl2oPzF2Qi7i5PeZb39PbUuByTq
+         PC8rPkA4b1xX+5G7RL4wxAxYfNB47mUHsNYZGvs4TNx2pdpEEHNHRcA4/8CbCHqTv6zq
+         Lgyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=HtxBmeOXC9JY2medDRrYSSTNzMcetLrIdHLgGlB77Vo=;
-        b=qDNsN4xLJxTklHNx3Qv8p0K/AsR5uwuS28v/qoO0ioPJ+l6UvvXmP8hy0TBuibZFq3
-         0qK1zk9iWhKT9FZ/IbMCN/XO1RPK9BP0oTbt2+tlSJCUF3p7BKYEq/oaQTP9AZiNp757
-         SaVGF4gE7Nd0EHjxJqb4pt8k5HCbykRENddm4Qtz0U34QVGbj1WUlvGjR8kdgBxsDeKb
-         A7XllT4Foh64CE5IqLGD/rB+5kyQrKLeZFtrJ4TZzFA1RzqpoQ3h+vreH4j339pLjbK9
-         hRVlTnT7MtlFUzyXLaOdEa/gY0Y2IFJiquxCtnQB8WVVhbcMj39DKQnY+I2dROyxhoF5
-         8cLA==
-X-Gm-Message-State: AOAM532m0WQvAax5Wn3CHXj88LqYpmpZ7HBX5ct65Hd+3XO1cHSGZKTg
-        rEmLV6bIWKeHSuJMKCoHRQ2m/uA4K6NrRMN+
-X-Google-Smtp-Source: ABdhPJwfUY2Exdd7ZUJLotq3D3qwt70QY/uo/prkHK4RJ7kTBcqoqAfFpREMtYJAF62kh96pY29mPw==
-X-Received: by 2002:a1c:6a03:0:b0:37b:dda6:4259 with SMTP id f3-20020a1c6a03000000b0037bdda64259mr20501670wmc.20.1645431909129;
-        Mon, 21 Feb 2022 00:25:09 -0800 (PST)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:77b7:547a:df0c:28d8])
-        by smtp.gmail.com with ESMTPSA id o25-20020a05600c379900b0037bbafa37easm6732025wmr.31.2022.02.21.00.25.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Feb 2022 00:25:08 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Sam Nazarko <email@samnazarko.co.uk>,
-        Chad Wagner <wagnerch42@gmail.com>
-Subject: Re: [PATCH v2 0/3] arm64: dts: meson: add support for OSMC Vero 4K+
-Date:   Mon, 21 Feb 2022 09:25:06 +0100
-Message-Id: <164543190117.17295.2849143887503486162.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220211105311.30320-1-christianshewitt@gmail.com>
-References: <20220211105311.30320-1-christianshewitt@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=z7GbsHFki7BHmmijQLgu4jj0JzXWxy6jSKULjvaUMy8=;
+        b=DubekVlca61rsQZdWyYEDEExcAQAlDs6O7ZilkA8GCN6Z3oGFIcerE6TkYf20ex85u
+         U5IwGi9ugHmu0TAtT3Iz7RfplHcMkOkycgiP3YASsGkgr7oJS/+35bsuBG6Zrc3caURe
+         1448xq9vJjxq5MevZ9Qtiz/xP9I4UT9+sE350A3Fnyi+mX8WpGciW5gun/W0YsRnENkI
+         lck3pB20GgOsiZJBsZt8N8uXndUOxgqxyVgftbnG81+9dhSg0q9nXcC4205Su9mZsfQ2
+         prsZsY45wvKeAdbpCkhMuXzXLCqJ+G/XMMQm7kx82iKLL8QnIHEUQGmPfdvm1L8rrswu
+         eUUQ==
+X-Gm-Message-State: AOAM533JXMYflbWjgMnrdPcmn0SP+xjCIFsP2KzuRz9AZIAd5KqSaMDq
+        EjPML5gEKVx6AgVAgJ67WumNk5XvgYzA3ENIDA==
+X-Google-Smtp-Source: ABdhPJxrwy07YYidAlOGzW8ZJV9eYQ1bjoVO5usicU/jUamQDPj0Kh2S1a/A8IpLOP9uhc2ftnW2l1cER8DZgG31qNU=
+X-Received: by 2002:a67:b807:0:b0:31b:b306:a5c with SMTP id
+ i7-20020a67b807000000b0031bb3060a5cmr7001993vsf.50.1645432162605; Mon, 21 Feb
+ 2022 00:29:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220220035321.3870-1-warp5tw@gmail.com> <20220220035321.3870-5-warp5tw@gmail.com>
+ <ae927203-794b-06c6-3bcc-d67f13ab841d@canonical.com>
+In-Reply-To: <ae927203-794b-06c6-3bcc-d67f13ab841d@canonical.com>
+From:   Tyrone Ting <warp5tw@gmail.com>
+Date:   Mon, 21 Feb 2022 16:29:10 +0800
+Message-ID: <CACD3sJbn7EK71+3yjok8Qg3DRrRNgEVne0mNs8vRBiJu3mpxbQ@mail.gmail.com>
+Subject: Re: [PATCH v2 04/11] i2c: npcm: Update gcr property name
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, semen.protsenko@linaro.org,
+        yangyicong@hisilicon.com, wsa@kernel.org, jie.deng@intel.com,
+        sven@svenpeter.dev, bence98@sch.bme.hu,
+        christophe.leroy@csgroup.eu, lukas.bulwahn@gmail.com,
+        olof@lixom.net, arnd@arndb.de, digetx@gmail.com,
+        andriy.shevchenko@linux.intel.com, tali.perry@nuvoton.com,
+        Avi.Fishman@nuvoton.com, tomer.maimon@nuvoton.com,
+        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, kfting@nuvoton.com,
+        openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Krzysztof:
 
-On Fri, 11 Feb 2022 10:53:08 +0000, Christian Hewitt wrote:
-> This series adds support for the OSMC Vero 4K+ Set-Top Box device
-> based on the Amlogic GXL (S905D) chipset. The Vero 4k+ is notable
-> for being an original Linux (not Android) STB device, running its
-> own Debian-derived 'OSMC' distro. Big thanks to Chad Wagner for his
-> help with testing and device-tree fettling.
-> 
-> Changes since v1:
-> - Address device-tree comments from Neil
-> - Add Neil's reviewed-by to patch 3
-> 
-> [...]
+Thank you for your comments and please find my reply next to your comments.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.18/dt64)
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> =E6=96=BC 2022=E5=
+=B9=B42=E6=9C=8820=E6=97=A5
+=E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=885:32=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On 20/02/2022 04:53, Tyrone Ting wrote:
+> > From: Tali Perry <tali.perry1@gmail.com>
+> >
+> > Use a generic name for NPCM system manager reigster.
+>
+> The subject is not accurate and you entirely skipped in commit msg the
+> fact of an ABI break.
+>
+> You do not update a property name but you change the way of getting GCR
+> regmap.
+>
 
-[1/3] dt-bindings: vendor-prefixes: add osmc prefix
-      https://git.kernel.org/amlogic/c/41654043226f517a8b37cab34f1eab5c6ef16947
-[2/3] dt-bindings: arm: amlogic: add Vero 4K+ bindings
-      https://git.kernel.org/amlogic/c/3f7dbd336f360a76103153b85ce616b86d85c6cd
-[3/3] arm64: dts: meson: add support for OSMC Vero 4K+
-      https://git.kernel.org/amlogic/c/d926a4fe25338e120ab49547de9707dc6e5e5824
+I'll change the subject since the patch is to change the way to getting GCR
+regmap as you indicated.
 
--- 
-Neil
+About the ABI break, I responded in the discussion thread of
+[PATCH v2 00/11] i2c: npcm: Bug fixes timeout, spurious interrupts.
+
+> Best regards,
+> Krzysztof
+
+Best regards,
+Tyrone
