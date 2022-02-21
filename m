@@ -2,183 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F614BED70
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 23:52:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC0154BED7F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 23:57:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235836AbiBUWwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 17:52:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52630 "EHLO
+        id S235901AbiBUW5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 17:57:44 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:55276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235816AbiBUWwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 17:52:10 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D41092458C;
-        Mon, 21 Feb 2022 14:51:46 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A3CCC106F;
-        Mon, 21 Feb 2022 14:51:46 -0800 (PST)
-Received: from e123648.arm.com (unknown [10.57.9.194])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 6E6623F66F;
-        Mon, 21 Feb 2022 14:51:44 -0800 (PST)
-From:   Lukasz Luba <lukasz.luba@arm.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     lukasz.luba@arm.com, dietmar.eggemann@arm.com,
-        viresh.kumar@linaro.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, nm@ti.com, sboyd@kernel.org,
-        mka@chromium.org, dianders@chromium.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: [RFC][PATCH 2/2] opp: Add support for 'advanced' Energy Model in DT
-Date:   Mon, 21 Feb 2022 22:51:31 +0000
-Message-Id: <20220221225131.15836-3-lukasz.luba@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220221225131.15836-1-lukasz.luba@arm.com>
-References: <20220221225131.15836-1-lukasz.luba@arm.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S235524AbiBUW5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 17:57:44 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59AE1E23;
+        Mon, 21 Feb 2022 14:57:20 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id p15so36874008ejc.7;
+        Mon, 21 Feb 2022 14:57:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=E05PBM3g71A4k7E9vGw3giTSxbO/J+/4n8YQAkXE/j4=;
+        b=nnx0lWuKB7+M55EH4gjB6puSSMr7Vw+kyqifIywADnDKB3+xO/NVwpdqIrAvzbd8Af
+         bWaIaqI6K3BXoFGo1osFrUJ2B9feX+a+tYo2/avFZTiOnfBq/RsLfnvqjmL+IZjhMeq9
+         EYL2fQjw45ewUs/4Qpa4WXFdUsOMU5XiiZwN/eeBbXS//tGp7LJigArOHxku2Ch+xUQ8
+         a0jfgN03LqpBNcvScqWtkK8NtSaUeuvw/PKtTofU+lkHskflH0aZRSuw7f8eVeqDIwKs
+         Q9cCoCHrrk2imEdVAVoO0sKJQA/6L/HbyQ7nGBUfi7JUCONVcbiQ+3Nf0U8IkE2hCJ+7
+         EgnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=E05PBM3g71A4k7E9vGw3giTSxbO/J+/4n8YQAkXE/j4=;
+        b=gQJ2dttyP6cTIjk36QQBiN2UbZvT96afmT/CRN+5uIAZ4Y8GsOjRpHd5Rl4zXqEjNm
+         rbZn85mP/zyMEpbwCFSceNZjMKQp5XKZhP7+dry29ZSJYCsZf0jjAJVOOHKA8Zkz8GpE
+         IKxtQYb9WT1o8OAFbAY1Laj+9tLC08yuW7vhUrX2rTYnwkRjqG1/iKphdCASezn0+hHI
+         ZXy8Zxu/5vbF6WLV+DFaPriDVxpN/+dhuQs7Oo1hbfmTQMikVU1cIgTUqKfmO+xz6WKS
+         QVjMHPvfCJ6CXjHHYFKY9h+82M7f6I5ipKewPHu4LAmGS1EGuTlfJix0Er8n50QGJx5D
+         nFyw==
+X-Gm-Message-State: AOAM530gLOACNqWgKrbwxzHHMq70MWapiD66OfMlqtbmtobRDAFGCBef
+        hbY9QCPyXIHIR8T5zzNF2+VUXw4AJWw=
+X-Google-Smtp-Source: ABdhPJxkvRMSBgdvJ+9bT568jE+xIiQCMw90veoAJuQKf4gx9NP9cAIeKBPl1NME0MaxbW8TQa9/fQ==
+X-Received: by 2002:a17:906:b348:b0:6cf:8cfe:d729 with SMTP id cd8-20020a170906b34800b006cf8cfed729mr17748990ejb.622.1645484238806;
+        Mon, 21 Feb 2022 14:57:18 -0800 (PST)
+Received: from ?IPV6:2003:ea:8f4d:2b00:f82b:ace:7fd9:1c1d? (p200300ea8f4d2b00f82b0ace7fd91c1d.dip0.t-ipconnect.de. [2003:ea:8f4d:2b00:f82b:ace:7fd9:1c1d])
+        by smtp.googlemail.com with ESMTPSA id b3sm5580023ejl.67.2022.02.21.14.57.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Feb 2022 14:57:18 -0800 (PST)
+Message-ID: <d8baa907-a8c8-17d3-e724-df490a0fff83@gmail.com>
+Date:   Mon, 21 Feb 2022 23:57:13 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v2 0/6] auxdisplay: Add support for the Titanmec TM1628 7
+ segment display controller
+Content-Language: en-US
+To:     Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+References: <1f39432b-84e2-e6dc-a6b8-c48ad5cf2210@gmail.com>
+ <CANiq72ko6=dYBvbRc5T7Qq_2mxRtq1NpvcV_saMbTDfz0PK1aw@mail.gmail.com>
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <CANiq72ko6=dYBvbRc5T7Qq_2mxRtq1NpvcV_saMbTDfz0PK1aw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Energy Model (EM) can be created based on DT entry:
-'dynamic-power-coefficient'. It's a 'simple' EM which is limited to the
-dynamic power. It has to fit into the math formula which requires also
-information about voltage. Some of the platforms don't expose voltage
-information, thus it's not possible to use EM registration using DT.
+On 21.02.2022 23:10, Miguel Ojeda wrote:
+> On Mon, Feb 21, 2022 at 9:19 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>>
+>> v2:
+>> - (re-)add Andreas' SoB to two patches
+> 
+> But those were also developed by you too, right? i.e. it should have a
+> Co-developed-by too, otherwise it looks like you only handled the
+> patch:
+> 
 
-This patch aims to fix it. It introduces new implementation of the EM
-registration callback. The new mechanism parses EM array specified in DT
-which contains a set of tuples: frequency (in kHz) and power (uW).
-It also allows to register 'advanced' EM, which models total power
-(static + dynamic), so better reflects real HW.
+Right, about half of the original code was reworked. Let's see whether and
+which feedback comes for v2. If a v3 should be needed, I'll follow your
+suggestion.
 
-Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
----
- drivers/opp/of.c | 95 +++++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 94 insertions(+), 1 deletion(-)
+> ```
+> Example of a patch submitted by the From: author::
+> 
+>         <changelog>
+> 
+>         Co-developed-by: First Co-Author <first@coauthor.example.org>
+>         Signed-off-by: First Co-Author <first@coauthor.example.org>
+>         Co-developed-by: Second Co-Author <second@coauthor.example.org>
+>         Signed-off-by: Second Co-Author <second@coauthor.example.org>
+>         Signed-off-by: From Author <from@author.example.org>
+> ```
+> 
+> Cheers,
+> Miguel
 
-diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-index 2f40afa4e65c..af879c798934 100644
---- a/drivers/opp/of.c
-+++ b/drivers/opp/of.c
-@@ -1395,6 +1395,85 @@ struct device_node *dev_pm_opp_get_of_node(struct dev_pm_opp *opp)
- }
- EXPORT_SYMBOL_GPL(dev_pm_opp_get_of_node);
- 
-+/*
-+ * Callback function provided to the Energy Model framework upon registration.
-+ * It provides the power based on DT by @dev at @kHz if it is the frequency
-+ * of an existing OPP, or at the frequency of the first OPP above @kHz otherwise
-+ * (see dev_pm_opp_find_freq_ceil()). This function updates @kHz to the ceiled
-+ * frequency and @mW to the associated power. The power is a value specified
-+ * in DT for a given frequency. It's a total power (static + dynamic), so
-+ * better reflects the real HW characteristics.
-+ *
-+ * Returns 0 on success or a proper -E* value in case of error.
-+ */
-+static int __maybe_unused
-+_get_dt_power(unsigned long *mW, unsigned long *kHz, struct device *dev)
-+{
-+	struct device_node *np, *em_node;
-+	const struct property *prop;
-+	struct dev_pm_opp *opp;
-+	unsigned long opp_freq;
-+	const __be32 *val;
-+	int nr;
-+
-+	np = of_node_get(dev->of_node);
-+	if (!np)
-+		return -EINVAL;
-+
-+	/* Find the right frequency and convert it to kHz */
-+	opp_freq = *kHz * 1000;
-+	opp = dev_pm_opp_find_freq_ceil(dev, &opp_freq);
-+	if (IS_ERR(opp))
-+		return -EINVAL;
-+
-+	opp_freq /= 1000;
-+
-+	em_node = of_parse_phandle(np, "energy-model", 0);
-+	of_node_put(np);
-+	if (!em_node) {
-+		dev_warn(dev, "%s: No EM phandle found\n", __func__);
-+		return -EINVAL;
-+	}
-+
-+	prop = of_find_property(em_node, "energy-model-entries", NULL);
-+	of_node_put(em_node);
-+	if (!prop) {
-+		dev_warn(dev, "%s: No EM entries found\n", __func__);
-+		return -ENODEV;
-+	}
-+
-+	if (!prop->value) {
-+		dev_warn(dev, "%s: No EM entries value found\n", __func__);
-+		return -ENODATA;
-+	}
-+
-+	/*
-+	 * Each EM entry is a set of tuples consisting of Frequency and
-+	 * Power like <freq-kHz power-uW>.
-+	 */
-+	nr = prop->length / sizeof(u32);
-+	if (nr % 2) {
-+		dev_warn(dev, "%s: Invalid EM DT table\n", __func__);
-+		return -EINVAL;
-+	}
-+
-+	val = prop->value;
-+	while (nr) {
-+		unsigned long freq = be32_to_cpup(val++);
-+		unsigned long power = be32_to_cpup(val++);
-+
-+		if (opp_freq == freq) {
-+			*kHz = opp_freq;
-+			*mW = power / 1000;
-+			return 0;
-+		}
-+
-+		nr -= 2;
-+	}
-+
-+	return -EINVAL;
-+}
-+
- /*
-  * Callback function provided to the Energy Model framework upon registration.
-  * This computes the power estimated by @dev at @kHz if it is the frequency
-@@ -1459,7 +1538,7 @@ static int __maybe_unused _get_power(unsigned long *mW, unsigned long *kHz,
- int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
- {
- 	struct em_data_callback em_cb = EM_DATA_CB(_get_power);
--	struct device_node *np;
-+	struct device_node *np, *em_node;
- 	int ret, nr_opp;
- 	u32 cap;
- 
-@@ -1480,6 +1559,20 @@ int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
- 		goto failed;
- 	}
- 
-+	/* First, try to find more precised Energy Model array in DT */
-+	em_node = of_parse_phandle(np, "energy-model", 0);
-+	of_node_put(np);
-+	if (em_node) {
-+		struct em_data_callback em_dt_cb = EM_DATA_CB(_get_dt_power);
-+
-+		pr_info("EM: found energy-model phandle node\n");
-+		of_node_put(em_node);
-+		ret = em_dev_register_perf_domain(dev, nr_opp, &em_dt_cb, cpus, true);
-+		if (ret)
-+			goto failed;
-+		return 0;
-+	}
-+
- 	/*
- 	 * Register an EM only if the 'dynamic-power-coefficient' property is
- 	 * set in devicetree. It is assumed the voltage values are known if that
--- 
-2.17.1
-
+Heiner
