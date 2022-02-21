@@ -2,174 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 774E54BEBCD
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 21:27:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FB354BEBD8
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 21:28:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233654AbiBUU12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 15:27:28 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48484 "EHLO
+        id S229634AbiBUU3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 15:29:00 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:49670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233669AbiBUU10 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 15:27:26 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFD3A22BFF;
-        Mon, 21 Feb 2022 12:26:59 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id d10so36077619eje.10;
-        Mon, 21 Feb 2022 12:26:59 -0800 (PST)
+        with ESMTP id S229451AbiBUU25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 15:28:57 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A0C122BFF;
+        Mon, 21 Feb 2022 12:28:33 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id p9so36136619ejd.6;
+        Mon, 21 Feb 2022 12:28:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=kKy0SIhSKIu0kr4V4JEIbxoglz4OmTrfglh5tt6nsYg=;
-        b=QhVIXeLafiSQ+OusdmmLI0MIBGtvj3M481RJOUzvum6fl2yqAsuXwGTwQhoP9NLvat
-         y4Y+vCs1VSsLIzMLQRF5NuFHG6V8TgmXXLxQ60lQBmu4dmRZV9ItYU/MX0mzMRxuwmwy
-         EqyvBxAGVS5LUf+H9sO4IezQR9H3OsdG4GiTusuanzCvgMRXZ6pEPZwSgua6a+yohYwf
-         4by0nWAmB9lBf2uIB3ytC4/PhWqcpzzOQ46K8YahEYzftolz1Qf2npCeqtoAV1g3Zslo
-         opN2I62ZXz/PAUFu+YXk+dQPE9Kepb5WHawTz8ll4C1CJXarImQ9pStdnL54hqxfPioq
-         Criw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=q6Ei0SlXMY3U/GoKunxXGFN3d3mmMhFrtGn6z+uSaC0=;
+        b=NoakwNhd8fsNBSn2f119ciSVyPnsAJM1JwLA9Zrmt+mf+4bNHRgomzv0sQHHVrEI8f
+         HIZfzeu9yPeL7oZCHeYC0sO74zDMqqOur1h2QUvye1XwcSq0yKT8rlJytPqBNS9I6ZyX
+         Jdu4tnIdkSezU/azVi6oiGgtjyjklFStzDW6GUi9DNRNuxrn6dCitFd1KByOaKo/v5Qv
+         XTK3D2Fp3plPwPXmPieVsq1fhH3bFbCQjrxv+JaM6Fi8DxgWxioklPkRRg8BT6lhbsVB
+         fd42r3Mlui5vEaMwRrk/6ZLkIbSSjX4lfvx3zbVBjE6hol134NMAzHwECg1x5+4I857a
+         LDbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=kKy0SIhSKIu0kr4V4JEIbxoglz4OmTrfglh5tt6nsYg=;
-        b=x9LEt+MNIo3xcioAM4/ZvCi2/Dcp9IrjQKcGenlf0aH8OSYp+nG90ZApsy15r8RpIl
-         XMj5MyFukWWfvPxTS1/4kxqY6nfEdbbsf/mjnMgq5NrS77IXMSHj1G5ATSiQ5QZjSSvz
-         OnuqsF8xUt1QKMda8kQk7JtkUoAkzXERv3MLQ1HxJl3w+uNb+gSgc5xTly6Qk43KKYoa
-         RiiEJKYXzR9nhPcIfBlDQym2u2cD+fPoeGFT9PIKDptsQLHnE6UhoJpedytbdCo3uNo8
-         rdCdLv/xUnrsQSUY2oyxgFGHfMb9DfmXPs/5P7w/IQdb14BSVOt/tPiVArgwwldMOoiL
-         3m3g==
-X-Gm-Message-State: AOAM532rpfCqWukreM1mzQ7kmCGfik9xtvL8GOOeav0hFt1pS3tZF590
-        +DzHBbuT+ML9Qexzk7rRPFc=
-X-Google-Smtp-Source: ABdhPJzT/P9zjoUcLxnr99/r6mPFb4wbtKG9JwGOJjHBZorNZuyuG/B2BVUR3d7nISl8goaCC1aj/w==
-X-Received: by 2002:a17:906:a057:b0:6cf:2736:ba65 with SMTP id bg23-20020a170906a05700b006cf2736ba65mr16811745ejb.171.1645475218445;
-        Mon, 21 Feb 2022 12:26:58 -0800 (PST)
-Received: from ?IPV6:2003:ea:8f4d:2b00:b141:a0d:4aad:2a06? (p200300ea8f4d2b00b1410a0d4aad2a06.dip0.t-ipconnect.de. [2003:ea:8f4d:2b00:b141:a0d:4aad:2a06])
-        by smtp.googlemail.com with ESMTPSA id y21sm5391986ejq.185.2022.02.21.12.26.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Feb 2022 12:26:58 -0800 (PST)
-Message-ID: <cb4c2ed9-0710-7b6c-f4c1-faf13d814f09@gmail.com>
-Date:   Mon, 21 Feb 2022 21:26:32 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=q6Ei0SlXMY3U/GoKunxXGFN3d3mmMhFrtGn6z+uSaC0=;
+        b=T6mCe2gvZrPO18eG8jAYkl6q3FnB0a5kl1vVO3thRgtYPT7+u+Rl1/M+Fwb2MZVm1G
+         yfXdabM36JBtH7CqgZ7X84dhMkU3cDy11vlJz4qJ5AL7X/dqh38xmVVQMNtimUlRES4v
+         U/WVluIFxzR2LjJ1EStBnyFfO1CxB2OpUWh2k+Kb0uySyrBL1SA7UMxN+x0MFbOVRy2n
+         g8saCYhtUMAb4nNHbjSRx7DV/f93c/V4oIA4N3LNTvAXjfAPN8ZO+uxqBXr7YPMf0o/3
+         lXv4Mx4p1Z4VDkJ8kru3ZIhqU+1CHa9ZaYxHib0cpTOStU+PlcHtF1YkI1ROyogXr/Yu
+         9S1g==
+X-Gm-Message-State: AOAM531eqnDjzUGTSoy4w+mC9y0DPPsIbC5uxl0DndTTLFHsNY1vJg2h
+        PmaRl3DgGqvTGAq8g39uHr1Cp1K8/ucRiCNrCKWXMzKX+v60PA==
+X-Google-Smtp-Source: ABdhPJxMRStBkzPxpbZgk30MqjUMTHWbg9bwebVH/catXsHjZZf8XkEvU9uyAXyAas8QN0uqZONLpwWNZyXhrIAoZZs=
+X-Received: by 2002:a17:906:cc12:b0:6b5:ec8f:fdf2 with SMTP id
+ ml18-20020a170906cc1200b006b5ec8ffdf2mr16711397ejb.579.1645475311926; Mon, 21
+ Feb 2022 12:28:31 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: [PATCH v2 6/6] arm64: dts: meson-gxl-s905w-tx3-mini: add support for
- the 7 segment display
-Content-Language: en-US
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-References: <1f39432b-84e2-e6dc-a6b8-c48ad5cf2210@gmail.com>
-In-Reply-To: <1f39432b-84e2-e6dc-a6b8-c48ad5cf2210@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220217162710.33615-1-andrea.merello@gmail.com> <20220217162710.33615-12-andrea.merello@gmail.com>
+In-Reply-To: <20220217162710.33615-12-andrea.merello@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 21 Feb 2022 21:27:55 +0100
+Message-ID: <CAHp75VcbkZV0ek6C-YKb3iuZKyQGp7U48j-hQ+UqXFuGEYgZ4Q@mail.gmail.com>
+Subject: Re: [v3 11/13] iio: imu: add BNO055 serdev driver
+To:     Andrea Merello <andrea.merello@gmail.com>
+Cc:     jic23@kernel.org, mchehab+huawei@kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        matt.ranostay@konsulko.com, ardeleanalex@gmail.com,
+        jacopo@jmondi.org, Andrea Merello <andrea.merello@iit.it>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the 7 segment display of the device.
+On Thu, Feb 17, 2022 at 5:27 PM Andrea Merello <andrea.merello@gmail.com> wrote:
+>
+> This path adds a serdev driver for communicating to a BNO055 IMU via
+> serial bus, and it enables the BNO055 core driver to work in this
+> scenario.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- .../dts/amlogic/meson-gxl-s905w-tx3-mini.dts  | 59 +++++++++++++++++++
- 1 file changed, 59 insertions(+)
+>  drivers/iio/imu/bno055/bno055_sl.c | 557 +++++++++++++++++++++++++++++
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
-index 6705c2082..20bbd931e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
-@@ -10,6 +10,7 @@
- 
- #include "meson-gxl-s905x.dtsi"
- #include "meson-gx-p23x-q20x.dtsi"
-+#include <dt-bindings/leds/common.h>
- 
- / {
- 	compatible = "oranth,tx3-mini", "amlogic,s905w", "amlogic,meson-gxl";
-@@ -19,6 +20,64 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x40000000>; /* 1 GiB or 2 GiB */
- 	};
-+
-+	spi {
-+		compatible = "spi-gpio";
-+		sck-gpios = <&gpio GPIODV_27  GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio GPIODV_26 GPIO_ACTIVE_HIGH>;
-+		cs-gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
-+		num-chipselects = <1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		tm1628: led-controller@0 {
-+			compatible = "titanmec,tm1628";
-+			reg = <0>;
-+			spi-3wire;
-+			spi-lsb-first;
-+			spi-rx-delay-us = <1>;
-+			spi-max-frequency = <500000>;
-+			#address-cells = <2>;
-+			#size-cells = <0>;
-+
-+			segment-mapping = /bits/ 8 <4 5 6 1 2 3 7>;
-+			grid = /bits/ 8 <4 3 2 1>;
-+
-+			alarm@5,1 {
-+				reg = <5 1>;
-+				function = LED_FUNCTION_ALARM;
-+			};
-+
-+			usb@5,2 {
-+				reg = <5 2>;
-+				function = LED_FUNCTION_USB;
-+			};
-+			play@5,3 {
-+				reg = <5 3>;
-+				function = "play";
-+			};
-+
-+			pause@5,4 {
-+				reg = <5 4>;
-+				function = "pause";
-+			};
-+
-+			colon@5,5 {
-+				reg = <5 5>;
-+				function = "colon";
-+			};
-+
-+			lan@5,6 {
-+				reg = <5 6>;
-+				function = LED_FUNCTION_LAN;
-+			};
-+
-+			wlan@5,7 {
-+				reg = <5 7>;
-+				function = LED_FUNCTION_WLAN;
-+			};
-+		};
-+	};
- };
- 
- &ir {
+Can we use the suffix _ser instead of _sl?
+
+...
+
+> +config BOSCH_BNO055_SERIAL
+> +       tristate "Bosch BNO055 attached via serial bus"
+
+Serial is too broad, it can cover a lot of buses, can we be more specific?
+
+...
+
+> +       help
+> +         Enable this to support Bosch BNO055 IMUs attached via serial bus.
+
+Ditto.
+
+...
+
+> +struct bno055_sl_priv {
+> +       struct serdev_device *serdev;
+> +       struct completion cmd_complete;
+> +       enum {
+> +               CMD_NONE,
+> +               CMD_READ,
+> +               CMD_WRITE,
+> +       } expect_response;
+> +       int expected_data_len;
+> +       u8 *response_buf;
+> +
+> +       /**
+> +        * enum cmd_status - represent the status of a command sent to the HW.
+> +        * @STATUS_OK:   The command executed successfully.
+> +        * @STATUS_FAIL: The command failed: HW responded with an error.
+> +        * @STATUS_CRIT: The command failed: the serial communication failed.
+> +        */
+> +       enum {
+> +               STATUS_OK = 0,
+> +               STATUS_FAIL = 1,
+> +               STATUS_CRIT = -1
+
++ Comma and sort them by value?
+For the second part is an additional question, why negative?
+
+> +       } cmd_status;
+> +       struct mutex lock;
+> +
+> +       /* Only accessed in RX callback context. No lock needed. */
+> +       struct {
+> +               enum {
+> +                       RX_IDLE,
+> +                       RX_START,
+> +                       RX_DATA
+
++ Comma.
+
+> +               } state;
+> +               int databuf_count;
+> +               int expected_len;
+> +               int type;
+> +       } rx;
+> +
+> +       /* Never accessed in behalf of RX callback context. No lock needed */
+> +       bool cmd_stale;
+> +};
+
+...
+
+> +       dev_dbg(&priv->serdev->dev, "send (len: %d): %*ph", len, len, data);
+
+Not a fan of this and similar. Can't you introduce a trace events for
+this driver?
+
+...
+
+> +       ret = serdev_device_write(priv->serdev, data, len,
+> +                                 msecs_to_jiffies(25));
+
+One line?
+
+...
+
+> +       int i = 0;
+
+> +       while (1) {
+> +               ret = bno055_sl_send_chunk(priv, hdr + i * 2, 2);
+> +               if (ret)
+> +                       goto fail;
+> +
+> +               if (i++ == 1)
+> +                       break;
+> +               usleep_range(2000, 3000);
+> +       }
+
+The infinite loops are hard to read and understand.
+Can you convert it to the regular while or for one?
+
+Also, this looks like a repetition of something (however it seems that
+it's two sequencial packets to send).
+
+...
+
+> +       const int retry_max = 5;
+> +       int retry = retry_max;
+
+> +       while (retry--) {
+
+Instead simply use
+
+unsigned int retries = 5;
+
+do {
+  ...
+} while (--retries);
+
+which is much better to understand.
+
+...
+
+> +               if (retry != (retry_max - 1))
+> +                       dev_dbg(&priv->serdev->dev, "cmd retry: %d",
+> +                               retry_max - retry);
+
+This is an invariant to the loop.
+
+> +               ret = bno055_sl_do_send_cmd(priv, read, addr, len, data);
+> +               if (ret)
+> +                       continue;
+
+...
+
+> +               if (ret == -ERESTARTSYS) {
+> +                       priv->cmd_stale = true;
+> +                       return -ERESTARTSYS;
+
+> +               } else if (!ret) {
+
+Redundant 'else'
+
+> +                       return -ETIMEDOUT;
+> +               }
+
+Also {} can be dropped.
+
+...
+
+> +               if (priv->cmd_status == STATUS_OK)
+> +                       return 0;
+
+> +               else if (priv->cmd_status == STATUS_CRIT)
+
+Redundant 'else'
+
+> +                       return -EIO;
+
+...
+
+> +static int bno055_sl_write_reg(void *context, const void *_data, size_t count)
+> +{
+> +       u8 *data = (u8 *)_data;
+
+Why casting?
+
+...
+
+> +       if (val_size > 128) {
+> +               dev_err(&priv->serdev->dev, "Invalid read valsize %d",
+> +                       val_size);
+
+One line?
+
+> +               return -EINVAL;
+> +       }
+
+...
+
+> +       reg_addr = ((u8 *)reg)[0];
+
+This looks ugly.
+Can't you supply the data struct pointer instead of void pointer?
+
+...
+
+> +       if (serdev_device_set_baudrate(serdev, 115200) != 115200) {
+
+Is it limitation / requirement by the hardware? Otherwise it should
+come from DT / ACPI.
+
+...
+
+> +       ret = serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
+
+Ditto.
+
+...
+
+> +       regmap = devm_regmap_init(&serdev->dev, &bno055_sl_regmap_bus,
+> +                                 priv, &bno055_regmap_config);
+
+> +       if (IS_ERR(regmap)) {
+> +               dev_err(&serdev->dev, "Unable to init register map");
+> +               return PTR_ERR(regmap);
+> +       }
+
+return dev_err_probe();
+
 -- 
-2.35.1
-
-
+With Best Regards,
+Andy Shevchenko
