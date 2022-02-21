@@ -2,154 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F3344BD627
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 07:56:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB72E4BD65D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 07:56:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240759AbiBUGaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 01:30:07 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50336 "EHLO
+        id S1345264AbiBUGhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 01:37:07 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230148AbiBUGaG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 01:30:06 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69BAD4163D;
-        Sun, 20 Feb 2022 22:29:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645424984; x=1676960984;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=dXYD8eWi1+Io0cIGkxMhaeSzOKmEOR73lAviKQy1nXM=;
-  b=g2fKnk3lBUyQX30vC3Ox2sx9tX0mv9SRjdjLEP++CcNprrCZc4jLNW8t
-   UkD86g6mhCOoQnwqt/Z0IqwtyeSN4Earfbbi4INmywpyoSvR3vM0dpugD
-   2CZvJDSQDlK+yW3zqXbHewGYm2kd88S/hongPCAlOoaEdbiHk7tIN3UwB
-   0=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 20 Feb 2022 22:29:44 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 22:29:43 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Sun, 20 Feb 2022 22:29:41 -0800
-Received: from [10.216.7.34] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Sun, 20 Feb
- 2022 22:29:38 -0800
-Message-ID: <f3704567-f269-c836-2880-e953c4abb872@quicinc.com>
-Date:   Mon, 21 Feb 2022 11:59:33 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v2 00/19] add support for WCN6750
-Content-Language: en-US
-To:     Kalle Valo <kvalo@kernel.org>
-CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>
-References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
- <87ilu4gomd.fsf@kernel.org>
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <87ilu4gomd.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1345267AbiBUGhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 01:37:04 -0500
+X-Greylist: delayed 304 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 20 Feb 2022 22:36:40 PST
+Received: from m239-7.eu.mailgun.net (m239-7.eu.mailgun.net [185.250.239.7])
+        by lindbergh.monkeyblade.net (Postfix) with UTF8SMTPS id D4AEF388
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 22:36:40 -0800 (PST)
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=hewittfamily.org.uk;
+ q=dns/txt; s=s1; t=1645425400; h=To: References: Message-Id:
+ Content-Transfer-Encoding: Cc: Date: In-Reply-To: From: Subject:
+ Mime-Version: Content-Type: Sender;
+ bh=nh91ABop/kMzqvCnHihv6nbKToFnlhJ3AYmAB1JeUWk=; b=ecBPG241+obwfYs9LdKa1jybI3G68VE3uW3ranYngVAswad3dequYHM8+pPmIuDO8kRvLSpC
+ V8xkswAsaBFfiAIeHCwAL+HqEBLINsaDWt5z2kIB9Dy3c0nNKHcTFL2bkunnLrA4zGsS+d21
+ Q1S4EwK/6AUdsqMJJ2wby7ulAGqyh0MxVAzqSYz+h+jHQCq/i/qoW5w4ZKj9Wp3xpJdNPAzO
+ yIaWn9LKqXib017Pdf3WoRT3DcR4t39efS1prfDpjRD6sVCTyL0mOmjLsSF/372G4k+CX5vm
+ QDDRDH2AsVhCbcsybuB22ESU40f0bReb0KXqZLRiaruaLPfN0BdnvQ==
+X-Mailgun-Sending-Ip: 185.250.239.7
+X-Mailgun-Sid: WyIzZDI1OSIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJlMzcyMCJd
+Received: from mail.hewittfamily.org.uk (<unknown> [87.200.95.144]) by
+ smtp-out-n01.prod.eu-central-1.postgun.com with SMTP id
+ 621331c5a6f2f5d90489763f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 21 Feb 2022 06:31:33
+ GMT
+Sender: andrew@hewittfamily.org.uk
+Received: from smtpclient.apple (unknown [167.99.200.149])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.hewittfamily.org.uk (Postfix) with ESMTPSA id A9BD06A6C53;
+        Mon, 21 Feb 2022 10:31:26 +0400 (+04)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.40.0.1.81\))
+Subject: Re: [PATCH 0/6] auxdisplay: Add support for the Titanmec TM1628 7
+ segment display controller
+From:   Christian Hewitt <andrew@hewittfamily.org.uk>
+In-Reply-To: <4172e59f-b9d5-d87d-9dbd-a6f683a2173c@gmail.com>
+Date:   Mon, 21 Feb 2022 10:31:16 +0400
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?utf-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <5A223478-0404-4D2D-BE7E-85A6E852174F@hewittfamily.org.uk>
+References: <4172e59f-b9d5-d87d-9dbd-a6f683a2173c@gmail.com>
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+X-Mailer: Apple Mail (2.3693.40.0.1.81)
+X-Synology-Spam-Status: score=3.742, required 5, TO_DN_EQ_ADDR_SOME 0, TO_DN_SOME 0, MV_CASE 0.5, __THREADED 0, __INR_AND_NO_REF 0, FREEMAIL_TO 0, RCVD_COUNT_ZERO 0, FROM_EQ_ENVFROM 0, MIME_TRACE 0, __NOT_SPOOFED 0, __BODY_URI_ONLY 0, MID_RHS_MATCH_FROM 0, NO_RECEIVED -0.001, FROM_HAS_DN 0, FREEMAIL_ENVRCPT 0, TO_MATCH_ENVRCPT_ALL 0, TAGGED_RCPT 0, MIME_GOOD -0.1, SCC_BODY_URI_ONLY 0.833, RCPT_COUNT_TWELVE 0, __HDRS_LCASE_KNOWN 0, SUSPICIOUS_RECIPS 2.51
+X-Synology-Spam-Flag: no
+X-Synology-Virus-Status: no
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/28/2022 3:37 PM, Kalle Valo wrote:
 
-> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
->
->> WCN6750 is non-DBS 2x2 11AX chipset. Unlike QCA6390/WCN6855 which
->> are DBS (dual band simultaneous) solutions (2 LMACs), WCN6750 has a
->> single LMAC supporting 2G, 5G and 6G bands. It can be operated only
->> on one band at any given point.
->>
->> WCN6750 is a PCIe device. Unlike other supported ATH11K PCIe devices
->> which are directly attached to APSS (Application Processor SubSystem),
->> WCN6750 is not attached to APSS, it is attached to the WPSS
->> (Wireless Processor SubSystem) Q6 processor, the FW which runs on the
->> Q6 processor will enumerate the PCIe device. Since APSS is unaware of
->> such a device, it has to be registered as a platform device(AHB) to the
->> kernel for device probing. Like other AHB devices, remoteproc APIs are
->> used to boot up or shutdown of WCN6750.
->>
->> WCN6750 uses both AHB and PCIe ATH11K APIs for it's operation.
->> It uses AHB APIs for device probe and booting of the remote processor.
->> Once device is booted up, it uses ATH11K PCIe APIs for initialization
->> and register access. Hence, it is referred as hybrid bus device in
->> the rest of this series.
->>
->> Since the chip is enumerated by WPSS Q6, device information like
->> BAR and BAR size is not known to the APSS processor. A new QMI message
->> called device info QMI request will be sent to the target for fetching
->> these details.
->>
->> STA and AP modes are supported; Basic connectivity and ping are
->> verified in both the modes.
->>
->> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
->> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->>
->> Note:
->> *	Remoteproc driver changes for WCN6750 which takes care of
->> 	downloading the FW and booting of Q6 processor are under
->> 	upstream review.
->> 	Link: https://patchwork.kernel.org/project/linux-remoteproc/list/?series=582475
-> This is a very good overview, thanks for that. But I think something
-> which is not clearly mentioned here is that this only works on Qualcomm
-> Snapdragon SoC, right?
+> On 19 Feb 2022, at 5:13 pm, Heiner Kallweit <hkallweit1@gmail.com> =
+wrote:
+>=20
+> This series adds support for the Titanmec TM1628 7 segment display
+> controller. It's based on previous RFC work from Andreas F=C3=A4rber.
+> The RFC version placed the driver in the LED subsystem, but this was
+> NAK'ed by the LED maintainer. Therefore I moved the driver to
+> /drivers/auxdisplay what seems most reasonable to me.
+>=20
+> To be decided is through which tree this series should go.
+> I'd think SPI would be most suited, but that's a decision I
+> leave up to the respective maintainers.
+>=20
+> Further changes to the RFC version:
+> - Driver can be built also w/o LED class support, for displays that
+>  don't have any symbols to be exposed as LED's.
+> - Simplified the code and rewrote a lot of it.
+> - Driver is now kind of a MVP, but functionality should be sufficient
+>  for most use cases.
+> - Use the existing 7 segment support in uapi/linux/map_to_7segment.h
+>  as suggested by Geert Uytterhoeven.
+>=20
+> Note: There's a number of chips from other manufacturers that are
+>      almost identical, e.g. FD628, SM1628. Only difference I saw so
+>      far is that they partially support other display modes.
+>      TM1628: 6x12, 7x11
+>      SM1628C: 4x13, 5x12, 6x11, 7x10
+>      For typical displays on devices using these chips this
+>      difference shouldn't matter.
+>=20
+> Successfully tested on a TX3 Mini TV box that has an SM1628C and a
+> display with 4 digits and 7 symbols.
 
-You are absolutely right.
+Thanks for dusting off sources and working on this! - it=E2=80=99s =
+another piece
+of the upstream puzzle for distros that install on Android boxes.
 
->   So even though WCN6750 is a PCI device, it cannot
-> be attached to any platform. It would be good to emphasise that.
+I needed the following patch to address compile issues (missing include,
+and the recent void/int change in linux-next (I=E2=80=99m using 5.17.y):
 
-I'll add this detail in the next revision.
+diff --git a/drivers/auxdisplay/tm1628.c b/drivers/auxdisplay/tm1628.c
+index a39b638282c1..ab3557f8b330 100644
+--- a/drivers/auxdisplay/tm1628.c
++++ b/drivers/auxdisplay/tm1628.c
+@@ -5,6 +5,7 @@
+ * Copyright (c) 2019 Andreas F=C3=A4rber
+ */
 
->> Manikanta Pubbisetty (19):
->>    ath11k: PCI changes to support WCN6750
->>    ath11k: Refactor PCI code to support hybrid bus devices
->>    ath11k: Choose MSI config based on HW revision
->>    ath11k: Refactor MSI logic
->>    ath11k: Remove core PCI references from PCI common code
->>    ath11k: Add HW params for WCN6750
->>    ath11k: Add bus params for WCN6750
->>    ath11k: Add register access logic for WCN6750
->>    ath11k: Fetch device information via QMI for WCN6750
->>    ath11k: Add QMI changes for WCN6750
->>    ath11k: HAL changes to support WCN6750
->>    ath11k: Datapath changes to support WCN6750
->>    ath11k: Fix RX de-fragmentation issue on WCN6750
->>    ath11k: Do not put HW in DBS mode for WCN6750
->>    ath11k: WMI changes to support WCN6750
->>    ath11k: Update WBM idle ring HP after FW mode on
->>    ath11k: Add support for WCN6750 device
->>    ath11k: Add support for targets without trustzone
->>    dt: bindings: net: add bindings of WCN6750 for ath11k
-> 19 patches is a lot to chew on in one go, my recommendation is to have
-> max 10-12 patches per set.
->
-> In this case having three patchsets would make it a lot easier for
-> reviewers, but not sure how to split them. Maybe you could submit these
-> patches separate for preparing WCN6750 support, after a quick look they
-> seem pretty independent:
->
->    ath11k: Fetch device information via QMI for WCN6750
->    ath11k: HAL changes to support WCN6750
->    ath11k: Fix RX de-fragmentation issue on WCN6750
->    ath11k: Do not put HW in DBS mode for WCN6750
->    ath11k: WMI changes to support WCN6750
-Sure, I'll logically split the series in the next revisions.
++#include <linux/ctype.h>
+#include <linux/delay.h>
+#include <linux/leds.h>
+#include <linux/module.h>
+@@ -327,10 +328,11 @@ static int tm1628_spi_probe(struct spi_device =
+*spi)
+       return device_create_file(&spi->dev, &dev_attr_display_text);
+}
+
+-static void tm1628_spi_remove(struct spi_device *spi)
++static int tm1628_spi_remove(struct spi_device *spi)
+{
+       device_remove_file(&spi->dev, &dev_attr_display_text);
+       tm1628_set_display_ctrl(spi, false);
++       return 0;
+}
+
+static void tm1628_spi_shutdown(struct spi_device *spi)
+
+I also needed CONFIG_SPI_GPIO=3Dy in kernel config. With this added the
+driver probes on my TX3 mini box and the display goes dark overwriting
+the default =E2=80=98boot=E2=80=99 text. The following systemd service =
+and script sets
+the clock and flashes the colon separator on/off to count seconds:
+
+=
+https://github.com/chewitt/LibreELEC.tv/commit/c8f1ebe6f6c366188f18f9d2b40=
+1de6c2979fdd7
+
+With the include fixup and maybe a Kconfig tweak, for the series:
+
+Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+
