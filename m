@@ -2,48 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDD594BD37F
+	by mail.lfdr.de (Postfix) with ESMTP id 9F24B4BD37E
 	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 03:09:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245519AbiBUCAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 21:00:15 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47736 "EHLO
+        id S245710AbiBUCHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 21:07:47 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245603AbiBUCAM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:00:12 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC6051E5B;
-        Sun, 20 Feb 2022 17:59:38 -0800 (PST)
-X-UUID: 798cdaec667145c9be5fd4a3925eea2b-20220221
-X-UUID: 798cdaec667145c9be5fd4a3925eea2b-20220221
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
+        with ESMTP id S245487AbiBUCHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:07:46 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41E5E3FD9E;
+        Sun, 20 Feb 2022 18:07:24 -0800 (PST)
+X-UUID: 3261f95a62d1426eaa304a0716ed11db-20220221
+X-UUID: 3261f95a62d1426eaa304a0716ed11db-20220221
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <chui-hao.chiu@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1326933686; Mon, 21 Feb 2022 09:59:33 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+        with ESMTP id 1175757474; Mon, 21 Feb 2022 10:07:20 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
  mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 21 Feb 2022 09:59:31 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ 15.2.792.15; Mon, 21 Feb 2022 10:07:18 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 21 Feb 2022 09:59:31 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
+ Transport; Mon, 21 Feb 2022 10:07:18 +0800
+From:   Peter Chiu <chui-hao.chiu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, Ryder Lee <ryder.Lee@mediatek.com>,
+        Evelyn Tsai <evelyn.tsai@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [PATCH v2 15/15] clk: mediatek: Add MT8186 ipesys clock support
-Date:   Mon, 21 Feb 2022 09:52:58 +0800
-Message-ID: <20220221015258.913-16-chun-jie.chen@mediatek.com>
+        "Peter Chiu" <chui-hao.chiu@mediatek.com>
+Subject: [PATCH] arm64: dts: mt7986: add built-in Wi-Fi device nodes
+Date:   Mon, 21 Feb 2022 10:07:08 +0800
+Message-ID: <20220221020708.12724-1-chui-hao.chiu@mediatek.com>
 X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220221015258.913-1-chun-jie.chen@mediatek.com>
-References: <20220221015258.913-1-chun-jie.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-MTK:  N
@@ -56,91 +53,174 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MT8186 ipesys clock controller which provides clock gate
-control for Image Process Engine.
+This enables built-in 802.11ax Wi-Fi support.
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
 ---
- drivers/clk/mediatek/Makefile         |  2 +-
- drivers/clk/mediatek/clk-mt8186-ipe.c | 55 +++++++++++++++++++++++++++
- 2 files changed, 56 insertions(+), 1 deletion(-)
- create mode 100644 drivers/clk/mediatek/clk-mt8186-ipe.c
+This patch depends on below patchs
+1) https://patchwork.kernel.org/patch/12704208/
+2) https://patchwork.kernel.org/patch/12704207/
+3) https://patchwork.kernel.org/patch/12739683/
+---
+ arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 41 +++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 19 +++++++++
+ arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 43 ++++++++++++++++++++
+ 3 files changed, 103 insertions(+)
 
-diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-index 6902da61e150..caf2ce93d666 100644
---- a/drivers/clk/mediatek/Makefile
-+++ b/drivers/clk/mediatek/Makefile
-@@ -75,7 +75,7 @@ obj-$(CONFIG_COMMON_CLK_MT8186) += clk-mt8186-mcu.o clk-mt8186-topckgen.o clk-mt
- 				   clk-mt8186-apmixedsys.o clk-mt8186-imp_iic_wrap.o \
- 				   clk-mt8186-mfg.o clk-mt8186-mm.o clk-mt8186-wpe.o \
- 				   clk-mt8186-img.o clk-mt8186-vdec.o clk-mt8186-venc.o \
--				   clk-mt8186-cam.o clk-mt8186-mdp.o
-+				   clk-mt8186-cam.o clk-mt8186-mdp.o clk-mt8186-ipe.o
- obj-$(CONFIG_COMMON_CLK_MT8192) += clk-mt8192.o
- obj-$(CONFIG_COMMON_CLK_MT8192_AUDSYS) += clk-mt8192-aud.o
- obj-$(CONFIG_COMMON_CLK_MT8192_CAMSYS) += clk-mt8192-cam.o
-diff --git a/drivers/clk/mediatek/clk-mt8186-ipe.c b/drivers/clk/mediatek/clk-mt8186-ipe.c
-new file mode 100644
-index 000000000000..a1cb56532da0
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt8186-ipe.c
-@@ -0,0 +1,55 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// Copyright (c) 2022 MediaTek Inc.
-+// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-+
-+#include "clk-gate.h"
-+#include "clk-mtk.h"
-+
-+#include <dt-bindings/clock/mt8186-clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+
-+static const struct mtk_gate_regs ipe_cg_regs = {
-+	.set_ofs = 0x4,
-+	.clr_ofs = 0x8,
-+	.sta_ofs = 0x0,
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+index 4f3ff4e32452..06d09b33fabc 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+@@ -40,6 +40,13 @@
+ 	status = "okay";
+ };
+ 
++&wmac {
++	status = "okay";
++	pinctrl-names = "default", "dbdc";
++	pinctrl-0 = <&wf_2g_5g_pins>;
++	pinctrl-1 = <&wf_dbdc_pins>;
 +};
 +
-+#define GATE_IPE(_id, _name, _parent, _shift)			\
-+	GATE_MTK(_id, _name, _parent, &ipe_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+ &pio {
+ 	uart1_pins: uart1-pins {
+ 		mux {
+@@ -61,6 +68,40 @@
+ 			groups = "jtag";
+ 		};
+ 	};
 +
-+static const struct mtk_gate ipe_clks[] = {
-+	GATE_IPE(CLK_IPE_LARB19, "ipe_larb19", "top_ipe", 0),
-+	GATE_IPE(CLK_IPE_LARB20, "ipe_larb20", "top_ipe", 1),
-+	GATE_IPE(CLK_IPE_SMI_SUBCOM, "ipe_smi_subcom", "top_ipe", 2),
-+	GATE_IPE(CLK_IPE_FD, "ipe_fd", "top_ipe", 3),
-+	GATE_IPE(CLK_IPE_FE, "ipe_fe", "top_ipe", 4),
-+	GATE_IPE(CLK_IPE_RSC, "ipe_rsc", "top_ipe", 5),
-+	GATE_IPE(CLK_IPE_DPE, "ipe_dpe", "top_ipe", 6),
-+	GATE_IPE(CLK_IPE_GALS_IPE, "ipe_gals_ipe", "top_img1", 8),
++	wf_2g_5g_pins: wf_2g_5g-pins {
++		mux {
++			function = "wifi";
++			groups = "wf_2g", "wf_5g";
++		};
++		conf {
++			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
++			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
++			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
++			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
++			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
++			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
++			       "WF1_TOP_CLK", "WF1_TOP_DATA";
++			drive-strength = <4>;
++		};
++	};
++
++	wf_dbdc_pins: wf_dbdc-pins {
++		mux {
++			function = "wifi";
++			groups = "wf_dbdc";
++		};
++		conf {
++			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
++			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
++			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
++			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
++			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
++			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
++			       "WF1_TOP_CLK", "WF1_TOP_DATA";
++			drive-strength = <4>;
++		};
++	};
+ };
+ 
+ &ice {
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+index fa98c2305e75..3896b5dca4b4 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+@@ -7,6 +7,7 @@
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/clock/mt7986-clk.h>
++#include <dt-bindings/reset/mt7986-resets.h>
+ 
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -79,6 +80,11 @@
+ 			reg = <0 0x43000000 0 0x30000>;
+ 			no-map;
+ 		};
++
++		wmcpu_emi: wmcpu-reserved@4fc00000 {
++			no-map;
++			reg = <0 0x4fc00000 0 0x00100000>;
++		};
+ 	};
+ 
+ 	timer {
+@@ -231,6 +237,19 @@
+ 			 #reset-cells = <1>;
+ 		};
+ 
++		wmac: wmac@18000000 {
++			compatible = "mediatek,mt7986-wmac";
++			resets = <&watchdog MT7986_TOPRGU_CONSYS_SW_RST>;
++			reset-names = "consys";
++			reg = <0 0x18000000 0 0x1000000>,
++			      <0 0x10003000 0 0x1000>,
++			      <0 0x11d10000 0 0x1000>;
++			interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
++			memory-region = <&wmcpu_emi>;
++		};
+ 	};
+ 
+ };
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+index 5fb752edd754..fb422878ebb2 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+@@ -27,3 +27,46 @@
+ &uart0 {
+ 	status = "okay";
+ };
++
++&wmac {
++	status = "okay";
++	pinctrl-names = "default", "dbdc";
++	pinctrl-0 = <&wf_2g_5g_pins>;
++	pinctrl-1 = <&wf_dbdc_pins>;
 +};
 +
-+static const struct mtk_clk_desc ipe_desc = {
-+	.clks = ipe_clks,
-+	.num_clks = ARRAY_SIZE(ipe_clks),
-+};
++&pio {
++	wf_2g_5g_pins: wf_2g_5g-pins {
++		mux {
++			function = "wifi";
++			groups = "wf_2g", "wf_5g";
++		};
++		conf {
++			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
++			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
++			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
++			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
++			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
++			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
++			       "WF1_TOP_CLK", "WF1_TOP_DATA";
++			drive-strength = <4>;
++		};
++	};
 +
-+static const struct of_device_id of_match_clk_mt8186_ipe[] = {
-+	{
-+		.compatible = "mediatek,mt8186-ipesys",
-+		.data = &ipe_desc,
-+	}, {
-+		/* sentinel */
-+	}
++	wf_dbdc_pins: wf_dbdc-pins {
++		mux {
++			function = "wifi";
++			groups = "wf_dbdc";
++		};
++		conf {
++			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
++			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
++			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
++			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
++			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
++			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
++			       "WF1_TOP_CLK", "WF1_TOP_DATA";
++			drive-strength = <4>;
++		};
++	};
 +};
-+
-+static struct platform_driver clk_mt8186_ipe_drv = {
-+	.probe = mtk_clk_simple_probe,
-+	.remove = mtk_clk_simple_remove,
-+	.driver = {
-+		.name = "clk-mt8186-ipe",
-+		.of_match_table = of_match_clk_mt8186_ipe,
-+	},
-+};
-+builtin_platform_driver(clk_mt8186_ipe_drv);
 -- 
 2.18.0
 
