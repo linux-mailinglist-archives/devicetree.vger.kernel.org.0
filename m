@@ -2,576 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3E04BD398
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 03:22:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D60C64BD3D0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 03:35:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343489AbiBUCPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 21:15:12 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:56792 "EHLO
+        id S245302AbiBUCdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 21:33:10 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245756AbiBUCPL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:15:11 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7D4D3207C;
-        Sun, 20 Feb 2022 18:14:48 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id i10so11714457plr.2;
-        Sun, 20 Feb 2022 18:14:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=6AzNizfsx+LtGMw+yopQz+Isc0bIkR81XctoNgYWxX4=;
-        b=gB0QQOUBdl/EQMokLnGdgsbZGUrzMKQR0PwkTGUbuAGCum3AKpgKnNoVBL3WrlgPv1
-         h4rGFzqzFbwt/I9Ck3dOA+tnXwfTkoBs8A/ci5Jg1yfnOZ5jeubQPQVQ9PYx5oB7Ug3x
-         +l5GHwQHOQfcyMldxD3EMDgQWMS3KThJlEzo3F+FSGd3Ev0uQ5nuENW5UQ/xE1W0DATx
-         fkpeYjGh7hSZmjLOmN7OnngZ3lGFUS1EPCsmZMNLVO3uzobHEp1K3gSxWDXSU88txJVE
-         UQyTk0npcpRDK0Em4nMyRT9DqUBn0NUNI7u5dyuBWP8g52eAPWOVRCGxIWtSVLhCye4J
-         Dh1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=6AzNizfsx+LtGMw+yopQz+Isc0bIkR81XctoNgYWxX4=;
-        b=j2wWBgN6pUFYbSRqNaMuAcUIWaxlzuIPXmOIjZ2zRJ8BZgog1qE8QJVIJEoxfTPmJf
-         ADROXnlrwRt2+xNeWe/w17I60jQxIh0w8R3R2BmUL0x+XNpKL01knNB3QbfEVYpnOQKK
-         DLnmVZ94pJgHUozRVM+/z6gJS2uCpuANe2HiiosxAyVAcDiU8juOCR2zYSG3Ly5nyETI
-         NWgKd1i90VXgICUiIkZYQDDp6uD3y0k8ZuEjUUuF9akZ0g0k3MGMZF54GHZCtwVGvIbg
-         lFvU7KOmd0rAQoSbVHCXpN1tV6NrdYXDjzGD4YmKDXafLXAXkYN0f3FJeSVese4L7v9p
-         uRhA==
-X-Gm-Message-State: AOAM533pNZNou0vnsZVc6GrMD2M3nCSaizz4CltkkrfKzPMRva3DP9RM
-        UVptCF9TmkDAtc9N9xFNIQU=
-X-Google-Smtp-Source: ABdhPJygyqIVlHgzMZ6nE511kwA/XgnLTjPqAfP1pqDnoGxD22PV4sS7o5c/0TS+sdDws5UeFyj3iA==
-X-Received: by 2002:a17:902:9348:b0:14f:c715:2a94 with SMTP id g8-20020a170902934800b0014fc7152a94mr1086393plp.66.1645409688289;
-        Sun, 20 Feb 2022 18:14:48 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id s48sm10022908pfw.111.2022.02.20.18.14.46
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 20 Feb 2022 18:14:47 -0800 (PST)
-From:   Tony Huang <tonyhuang.sunplus@gmail.com>
-To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, derek.kiernan@xilinx.com,
-        dragan.cvetic@xilinx.com, arnd@arndb.de,
-        gregkh@linuxfoundation.org, wells.lu@sunplus.com,
-        tony.huang@sunplus.com
-Cc:     Tony Huang <tonyhuang.sunplus@gmail.com>
-Subject: [PATCH v9 2/2] misc: Add iop driver for Sunplus SP7021
-Date:   Mon, 21 Feb 2022 10:14:55 +0800
-Message-Id: <20f858dfe999816cb05dfde5f89db48f3416358e.1645407997.git.tonyhuang.sunplus@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1645407997.git.tonyhuang.sunplus@gmail.com>
-References: <cover.1645407997.git.tonyhuang.sunplus@gmail.com>
-In-Reply-To: <cover.1645407997.git.tonyhuang.sunplus@gmail.com>
-References: <cover.1645407997.git.tonyhuang.sunplus@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S242885AbiBUCdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:33:09 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E9573DDE0;
+        Sun, 20 Feb 2022 18:32:47 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C86F861113;
+        Mon, 21 Feb 2022 02:32:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33E66C340F6;
+        Mon, 21 Feb 2022 02:32:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645410766;
+        bh=0jsRD7cxJXC7LM6Gajfxrs8QV4QjeNnPnIXPYuhllT8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=FBn02HELnb62R3PHfzhqu3w2/puH9BB71lmp1+JbMtBTQK4iXpp5Gptu5EwUi318o
+         axZsZkzxdbnzyd9f4uv7KJJI7MLzGyVAyCThWAj/0SFLgpq6o50spxLTs50HPIqYLg
+         CvQbZJmL25f+qYa3avYEiu/660iUkBWV1kHsbiyqJJ2JhkjhUPKuj5zosFy+97WMff
+         P6aLZHJVws3yYjudmyiqb1GQ1qSRD6d57rdpB3oM1WSIBmRH3Kwq4MnycwPUnw/KVm
+         VMrHL9g31epieHaV/9oDCKO/NSnvsd4+PuPoAmoK85dyjnFTA/6Kca+R7jwh8IHbLa
+         yXON4TfoDr1Gg==
+Received: by mail-ej1-f52.google.com with SMTP id qx21so29222789ejb.13;
+        Sun, 20 Feb 2022 18:32:46 -0800 (PST)
+X-Gm-Message-State: AOAM531imdYcGGSl0CxLWM+mvW7CZBjFW4ZdmnJ0qx4Qe0/jef9DDheo
+        c6QPxY/5JWaeNbwJmWhwocMjRAt1Q7kvaowC2w==
+X-Google-Smtp-Source: ABdhPJz2uuAFArWvpdO16hER5PM32Ny9J4D8AGVlqgdAATHBKDTbcCog+Sa1GoLGAIMj8A8YCPDI1915gwsrWyH6h64=
+X-Received: by 2002:a17:906:2a11:b0:69f:286a:66a7 with SMTP id
+ j17-20020a1709062a1100b0069f286a66a7mr14222076eje.680.1645410764208; Sun, 20
+ Feb 2022 18:32:44 -0800 (PST)
+MIME-Version: 1.0
+References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-8-granquet@baylibre.com>
+In-Reply-To: <20220218145437.18563-8-granquet@baylibre.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 21 Feb 2022 10:32:32 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-5g4fXVTOETDxbn2Cp3MVjFs-Sh9NT1NepfEXUhdJQEw@mail.gmail.com>
+Message-ID: <CAAOTY_-5g4fXVTOETDxbn2Cp3MVjFs-Sh9NT1NepfEXUhdJQEw@mail.gmail.com>
+Subject: Re: [PATCH v8 07/19] drm/mediatek: dpi: implement a swap_input toggle
+ in board config
+To:     Guillaume Ranquet <granquet@baylibre.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, deller@gmx.de,
+        CK Hu <ck.hu@mediatek.com>, Jitao Shi <jitao.shi@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IOP(8051) embedded inside SP7021 which is used as
-Processor for I/O control, monitor RTC interrupt and
-cooperation with CPU & PMC in power management purpose.
-The IOP core is DQ8051, so also named IOP8051,
-it supports dedicated JTAG debug pins which share with SP7021.
-In standby mode operation, the power spec reach 400uA.
+Hi, Guillaume:
 
-Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
----
-Changes in v9:
- - Remove custom attributes sysfs.
+Guillaume Ranquet <granquet@baylibre.com> =E6=96=BC 2022=E5=B9=B42=E6=9C=88=
+18=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8810:56=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> Adds a bit of flexibility to support boards without swap_input support
+>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
+k/mtk_dpi.c
+> index 545a1337cc899..454f8563efae4 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -126,6 +126,7 @@ struct mtk_dpi_conf {
+>         const u32 *output_fmts;
+>         u32 num_output_fmts;
+>         bool is_ck_de_pol;
+> +       bool swap_input_support;
+>         const struct mtk_dpi_yc_limit *limit;
+>  };
+>
+> @@ -378,18 +379,21 @@ static void mtk_dpi_config_color_format(struct mtk_=
+dpi *dpi,
+>             (format =3D=3D MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
+>                 mtk_dpi_config_yuv422_enable(dpi, false);
+>                 mtk_dpi_config_csc_enable(dpi, true);
+> -               mtk_dpi_config_swap_input(dpi, false);
+> +               if (dpi->conf->swap_input_support)
+> +                       mtk_dpi_config_swap_input(dpi, false);
+>                 mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP=
+_BGR);
+>         } else if ((format =3D=3D MTK_DPI_COLOR_FORMAT_YCBCR_422) ||
+>                    (format =3D=3D MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
+>                 mtk_dpi_config_yuv422_enable(dpi, true);
+>                 mtk_dpi_config_csc_enable(dpi, true);
+> -               mtk_dpi_config_swap_input(dpi, true);
+> +               if (dpi->conf->swap_input_support)
+> +                       mtk_dpi_config_swap_input(dpi, true);
 
- MAINTAINERS                |   1 +
- drivers/misc/Kconfig       |  20 +++
- drivers/misc/Makefile      |   1 +
- drivers/misc/sunplus_iop.c | 420 +++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 442 insertions(+)
- create mode 100644 drivers/misc/sunplus_iop.c
+In MT8173, MT2701, MT8183, MT8192, YCBCR_444 would not swap but
+YCBCR_422 would swap. But In MT8195, both YCBCR_444 and YCBCR_422
+would not swap, So I think one of these format would be abnormal in
+MT8195, right? Or would you provide more information about how this
+swap work?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6f336c9..11ecefa 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18246,6 +18246,7 @@ SUNPLUS IOP DRIVER
- M:	Tony Huang <tonyhuang.sunplus@gmail.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/misc/sunplu-iop.yaml
-+F:	drivers/misc/sunplus_iop.c
- 
- SUPERH
- M:	Yoshinori Sato <ysato@users.sourceforge.jp>
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 0f5a49f..c1d790e 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -470,6 +470,26 @@ config HISI_HIKEY_USB
- 	  switching between the dual-role USB-C port and the USB-A host ports
- 	  using only one USB controller.
- 
-+config SUNPLUS_IOP
-+	tristate "Sunplus IOP support"
-+	default ARCH_SUNPLUS
-+	help
-+	  Sunplus I/O processor (8051) driver.
-+	  Processor for I/O control, monitor RTC interrupt
-+	  and cooperation with CPU&PMC in power management.
-+
-+	  The IOP core is DQ8051, so also named IOP8051.
-+	  Need Install DQ8051, The DQ8051 bin file generated by keil C.
-+	  We will provide users with 8051 normal and standby source code.
-+	  Path: https://sunplus.atlassian.net/wiki/spaces/doc/pages/610172933/
-+	  How+to+use+I+O+processor+8051+of+SP7021#5.-Write-C-or-assembly-source-files-for-IOP
-+	  Users can follow the operation steps to generate normal.bin and standby.bin.
-+	  Path: https://sunplus.atlassian.net/wiki/spaces/doc/pages/466190338/26.+IOP8051
-+	  26.5?How To Create 8051 bin file
-+
-+	  This driver can also be built as a module.  If so, the module
-+	  will be called sunplus_iop.
-+
- source "drivers/misc/c2port/Kconfig"
- source "drivers/misc/eeprom/Kconfig"
- source "drivers/misc/cb710/Kconfig"
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index a086197..eafeab6 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -52,6 +52,7 @@ obj-$(CONFIG_DW_XDATA_PCIE)	+= dw-xdata-pcie.o
- obj-$(CONFIG_PCI_ENDPOINT_TEST)	+= pci_endpoint_test.o
- obj-$(CONFIG_OCXL)		+= ocxl/
- obj-$(CONFIG_BCM_VK)		+= bcm-vk/
-+obj-$(CONFIG_SUNPLUS_IOP)	+= sunplus_iop.o
- obj-y				+= cardreader/
- obj-$(CONFIG_PVPANIC)   	+= pvpanic/
- obj-$(CONFIG_HABANA_AI)		+= habanalabs/
-diff --git a/drivers/misc/sunplus_iop.c b/drivers/misc/sunplus_iop.c
-new file mode 100644
-index 0000000..c1180c1
---- /dev/null
-+++ b/drivers/misc/sunplus_iop.c
-@@ -0,0 +1,420 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * The IOP driver for Sunplus SP7021
-+ *
-+ * Copyright (C) 2021 Sunplus Technology Inc.
-+ *
-+ * All Rights Reserved.
-+ */
-+#include <linux/delay.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/firmware.h>
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/miscdevice.h>
-+#include <linux/of_platform.h>
-+#include <linux/of_address.h>
-+#include <linux/of_gpio.h>
-+
-+enum IOP_Status_e {
-+	IOP_SUCCESS,		/* successful */
-+	IOP_ERR_IOP_BUSY,	/* IOP is busy */
-+};
-+
-+/* moon0 register offset */
-+#define IOP_CLKEN0	0x04
-+#define IOP_RESET0	0x54
-+
-+/* IOP register offset */
-+#define IOP_CONTROL	0x00
-+#define IOP_DATA0	0x20
-+#define IOP_DATA1	0x24
-+#define IOP_DATA2	0x28
-+#define IOP_DATA3	0x2c
-+#define IOP_DATA4	0x30
-+#define IOP_DATA5	0x34
-+#define IOP_DATA6	0x38
-+#define IOP_DATA7	0x3c
-+#define IOP_DATA8	0x40
-+#define IOP_DATA9	0x44
-+#define IOP_DATA10	0x48
-+#define IOP_DATA11	0x4c
-+#define IOP_BASE_ADR_L	0x50
-+#define IOP_BASE_ADR_H	0x54
-+
-+/* PMC register offset */
-+#define IOP_PMC_TIMER		0x00
-+#define IOP_PMC_CTRL		0x04
-+#define IOP_XTAL27M_PASSWORD_I	0x08
-+#define IOP_XTAL27M_PASSWORD_II	0x0c
-+#define IOP_XTAL32K_PASSWORD_I	0x10
-+#define IOP_XTAL32K_PASSWORD_II	0x14
-+#define IOP_CLK27M_PASSWORD_I	0x18
-+#define IOP_CLK27M_PASSWORD_II	0x1c
-+#define IOP_PMC_TIMER2		0x20
-+
-+#define NORMAL_CODE_MAX_SIZE 0X1000	/* Max size of normal.bin that can be received */
-+#define STANDBY_CODE_MAX_SIZE 0x4000	/* Max size of standby.bin that can be received */
-+struct sp_iop {
-+	struct miscdevice dev;
-+	struct mutex write_lock;	/* avoid parallel access */
-+	void __iomem *iop_regs;
-+	void __iomem *pmc_regs;
-+	void __iomem *moon0_regs;
-+	int irq;
-+	int gpio_wakeup;
-+	unsigned char iop_normal_code[NORMAL_CODE_MAX_SIZE];
-+	unsigned char iop_standby_code[STANDBY_CODE_MAX_SIZE];
-+	resource_size_t iop_mem_start;
-+	resource_size_t iop_mem_size;
-+	unsigned char bin_code_mode;
-+};
-+
-+static void sp_iop_normal_mode(struct sp_iop *iop)
-+{
-+	void __iomem *iop_kernel_base;
-+	unsigned int reg;
-+
-+	iop_kernel_base = ioremap(iop->iop_mem_start, NORMAL_CODE_MAX_SIZE);
-+	memset(iop_kernel_base, 0, NORMAL_CODE_MAX_SIZE);
-+	memcpy(iop_kernel_base, iop->iop_normal_code, NORMAL_CODE_MAX_SIZE);
-+
-+	writel(0x00100010, iop->moon0_regs + IOP_CLKEN0);
-+
-+	reg = readl(iop->iop_regs + IOP_CONTROL);
-+	reg |= 0x01;
-+	writel(reg, iop->iop_regs + IOP_CONTROL);
-+
-+	reg = readl(iop->iop_regs + IOP_CONTROL);
-+	reg &= ~(0x8000);
-+	writel(reg, iop->iop_regs + IOP_CONTROL);
-+
-+	reg = readl(iop->iop_regs + IOP_CONTROL);
-+	reg |= 0x0200;// disable watchdog event reset IOP
-+	writel(reg, iop->iop_regs + IOP_CONTROL);
-+
-+	reg = (iop->iop_mem_start & 0xFFFF);
-+	writel(reg, iop->iop_regs + IOP_BASE_ADR_L);
-+	reg	= (iop->iop_mem_start >> 16);
-+	writel(reg, iop->iop_regs + IOP_BASE_ADR_H);
-+
-+	reg = readl(iop->iop_regs + IOP_CONTROL);
-+	reg &= ~(0x01);
-+	writel(reg, iop->iop_regs + IOP_CONTROL);
-+	iop->bin_code_mode = 0;
-+}
-+
-+static void sp_iop_standby_mode(struct sp_iop *iop)
-+{
-+	void __iomem *iop_kernel_base;
-+	unsigned long reg;
-+
-+	iop_kernel_base = ioremap(iop->iop_mem_start, STANDBY_CODE_MAX_SIZE);
-+	memset(iop_kernel_base, 0, STANDBY_CODE_MAX_SIZE);
-+	memcpy(iop_kernel_base, iop->iop_standby_code, STANDBY_CODE_MAX_SIZE);
-+
-+	writel(0x00100010, iop->moon0_regs + IOP_CLKEN0);
-+
-+	reg = readl(iop->iop_regs + IOP_CONTROL);
-+	reg |= 0x01;
-+	writel(reg, iop->iop_regs + IOP_CONTROL);
-+
-+	reg = readl(iop->iop_regs + IOP_CONTROL);
-+	reg &= ~(0x8000);
-+	writel(reg, iop->iop_regs + IOP_CONTROL);
-+
-+	reg = readl(iop->iop_regs + IOP_CONTROL);
-+	reg |= 0x0200;// disable watchdog event reset IOP
-+	writel(reg, iop->iop_regs + IOP_CONTROL);
-+
-+	reg = (iop->iop_mem_start & 0xFFFF);
-+	writel(reg, iop->iop_regs + IOP_BASE_ADR_L);
-+	reg = (iop->iop_mem_start >> 16);
-+	writel(reg, iop->iop_regs + IOP_BASE_ADR_H);
-+
-+	reg = readl(iop->iop_regs + IOP_CONTROL);
-+	reg &= ~(0x01);
-+	writel(reg, iop->iop_regs + IOP_CONTROL);
-+	iop->bin_code_mode = 1;
-+}
-+
-+/* 8051 informs linux kerenl. 8051 has been switched to standby.bin code. */
-+#define IOP_READY	0x0004
-+#define RISC_READY	0x0008
-+
-+/* System linux kernel tells 8051 which  gpio pin to wake-up through. */
-+#define WAKEUP_PIN	0xFE02
-+
-+/* System linux kernel tells 8051 to execute S1 or S3 mode. */
-+#define S1	0x5331
-+#define S3	0x5333
-+
-+static int sp_iop_s3mode(struct device *dev, struct sp_iop *iop)
-+{
-+	unsigned int reg;
-+	int ret, value;
-+
-+	/* PMC set */
-+	writel(0x00010001, iop->pmc_regs + IOP_PMC_TIMER);
-+	reg = readl(iop->pmc_regs + IOP_PMC_CTRL);
-+	/* disable system reset PMC, enalbe power down IOP Domain, enable gating clock 27Mhz */
-+	reg |= 0x23;
-+	writel(reg, iop->pmc_regs + IOP_PMC_CTRL);
-+
-+	writel(0x55aa00ff, iop->pmc_regs + IOP_XTAL27M_PASSWORD_I);
-+	writel(0x00ff55aa, iop->pmc_regs + IOP_XTAL27M_PASSWORD_II);
-+	writel(0xaa00ff55, iop->pmc_regs + IOP_XTAL32K_PASSWORD_I);
-+	writel(0xff55aa00, iop->pmc_regs + IOP_XTAL32K_PASSWORD_II);
-+	writel(0xaaff0055, iop->pmc_regs + IOP_CLK27M_PASSWORD_I);
-+	writel(0x5500aaff, iop->pmc_regs + IOP_CLK27M_PASSWORD_II);
-+	writel(0x01000100, iop->pmc_regs + IOP_PMC_TIMER2);
-+
-+	/* IOP Hardware IP reset */
-+	reg = readl(iop->moon0_regs + IOP_RESET0);
-+	reg |= 0x10;
-+	writel(reg, (iop->moon0_regs + IOP_RESET0));
-+	reg &= ~(0x10);
-+	writel(reg, (iop->moon0_regs + IOP_RESET0));
-+
-+	writel(0x00ff0085, (iop->moon0_regs + 32 * 4 * 1 + 4 * 1));
-+
-+	reg = readl(iop->moon0_regs + 32 * 4 * 1 + 4 * 2);
-+	reg |= 0x08000800;
-+	writel(reg, (iop->moon0_regs + 32 * 4 * 1 + 4 * 2));
-+
-+	writel(WAKEUP_PIN, iop->iop_regs + IOP_DATA0);
-+	writel(iop->gpio_wakeup, iop->iop_regs + IOP_DATA1);
-+
-+	ret = readl_poll_timeout(iop->iop_regs + IOP_DATA2, value,
-+				 (value & IOP_READY) == IOP_READY, 1000, 10000);
-+	if (ret) {
-+		dev_err(dev, "timed out\n");
-+		return ret;
-+	}
-+
-+	reg = RISC_READY;
-+	writel(reg, iop->iop_regs + IOP_DATA2);
-+	reg = 0x0000;
-+	writel(reg, iop->iop_regs + IOP_DATA5);
-+	reg = 0x0060;
-+	writel(reg, iop->iop_regs + IOP_DATA6);
-+
-+	ret = readl_poll_timeout(iop->iop_regs + IOP_DATA7, value,
-+				 value == 0xaaaa, 1000, 10000);
-+	if (ret) {
-+		dev_err(dev, "timed out\n");
-+		return ret;
-+	}
-+
-+	/* 8051 bin file call Ultra low function. */
-+	writel(0xdd, iop->iop_regs + IOP_DATA1);
-+	/*
-+	 * When the execution is here, the system linux kernel
-+	 * is about to be powered off
-+	 * The purpose of mdelay(10): Do not let the system linux
-+	 * kernel continue to run other programs.
-+	 */
-+	mdelay(10);
-+	return 0;
-+}
-+
-+static int sp_iop_s1mode(struct device *dev, struct sp_iop *iop)
-+{
-+	int ret, value;
-+
-+	ret = readl_poll_timeout(iop->iop_regs + IOP_DATA2, value,
-+				 (value & IOP_READY) == IOP_READY, 1000, 10000);
-+	if (ret) {
-+		dev_err(dev, "timed out\n");
-+		return ret;
-+	}
-+
-+	writel(RISC_READY, iop->iop_regs + IOP_DATA2);
-+	writel(0x0000, iop->iop_regs + IOP_DATA5);
-+	writel(0x0060, iop->iop_regs + IOP_DATA6);
-+
-+	ret = readl_poll_timeout(iop->iop_regs + IOP_DATA7, value,
-+				 value == 0xaaaa, 1000, 10000);
-+	if (ret) {
-+		dev_err(dev, "timed out\n");
-+		return ret;
-+	}
-+
-+	/* 8051 bin file call S1_mode function. */
-+	writel(0xee, iop->iop_regs + IOP_DATA1);
-+	/*
-+	 * When the execution is here, the system linux kernel
-+	 * is about to be powered off
-+	 * The purpose of mdelay(10): Do not let the system linux
-+	 * kernel continue to run other programs.
-+	 */
-+	mdelay(10);
-+	return 0;
-+}
-+
-+static int  sp_iop_get_normal_code(struct device *dev, struct sp_iop *iop)
-+{
-+	const struct firmware *fw;
-+	static const char file[] = "normal.bin";
-+	unsigned int err, i;
-+
-+	err = request_firmware(&fw, file, dev);
-+	if (err) {
-+		dev_err(dev, "get bin file error\n");
-+		return err;
-+	}
-+
-+	for (i = 0; i < NORMAL_CODE_MAX_SIZE; i++) {
-+		char temp;
-+
-+		temp = fw->data[i];
-+		iop->iop_normal_code[i] = temp;
-+	}
-+	release_firmware(fw);
-+	return err;
-+}
-+
-+static int  sp_iop_get_standby_code(struct device *dev, struct sp_iop *iop)
-+{
-+	const struct firmware *fw;
-+	static const char file[] = "standby.bin";
-+	unsigned int err, i;
-+
-+	err = request_firmware(&fw, file, dev);
-+	if (err) {
-+		dev_err(dev, "get bin file error\n");
-+		return err;
-+	}
-+
-+	for (i = 0; i < STANDBY_CODE_MAX_SIZE; i++) {
-+		char temp;
-+
-+		temp = fw->data[i];
-+		iop->iop_standby_code[i] = temp;
-+	}
-+	release_firmware(fw);
-+	return err;
-+}
-+
-+static int sp_iop_get_resources(struct platform_device *pdev, struct sp_iop *p_sp_iop_info)
-+{
-+	struct resource *r;
-+
-+	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "iop");
-+	p_sp_iop_info->iop_regs = devm_ioremap_resource(&pdev->dev, r);
-+	if (IS_ERR(p_sp_iop_info->iop_regs)) {
-+		dev_err(&pdev->dev, "ioremap fail\n");
-+		return PTR_ERR(p_sp_iop_info->iop_regs);
-+	}
-+
-+	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "iop_pmc");
-+	p_sp_iop_info->pmc_regs = devm_ioremap_resource(&pdev->dev, r);
-+	if (IS_ERR(p_sp_iop_info->pmc_regs)) {
-+		dev_err(&pdev->dev, "ioremap fail\n");
-+		return PTR_ERR(p_sp_iop_info->pmc_regs);
-+	}
-+
-+	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "moon0");
-+	p_sp_iop_info->moon0_regs = devm_ioremap_resource(&pdev->dev, r);
-+	if (IS_ERR(p_sp_iop_info->moon0_regs)) {
-+		dev_err(&pdev->dev, "ioremap fail\n");
-+		return PTR_ERR(p_sp_iop_info->moon0_regs);
-+	}
-+	return IOP_SUCCESS;
-+}
-+
-+static int sp_iop_platform_driver_probe(struct platform_device *pdev)
-+{
-+	int ret = -ENXIO;
-+	int rc;
-+	struct sp_iop *iop;
-+	struct device_node *memnp;
-+	struct resource mem_res;
-+
-+	iop = devm_kzalloc(&pdev->dev, sizeof(struct sp_iop), GFP_KERNEL);
-+	if (!iop) {
-+		ret	= -ENOMEM;
-+		goto fail_kmalloc;
-+	}
-+	/* init */
-+	mutex_init(&iop->write_lock);
-+	ret = sp_iop_get_resources(pdev, iop);
-+
-+	// Get reserve address
-+	memnp = of_parse_phandle(pdev->dev.of_node, "memory-region", 0);
-+	if (!memnp) {
-+		dev_err(&pdev->dev, "no memory-region node\n");
-+		return -EINVAL;
-+	}
-+
-+	rc = of_address_to_resource(memnp, 0, &mem_res);
-+	of_node_put(memnp);
-+	if (rc) {
-+		dev_err(&pdev->dev, "failed to translate memory-region to a resource\n");
-+		return -EINVAL;
-+	}
-+
-+	iop->iop_mem_start = mem_res.start;
-+	iop->iop_mem_size = resource_size(&mem_res);
-+
-+	ret = sp_iop_get_normal_code(&pdev->dev, iop);
-+	if (ret != 0) {
-+		dev_err(&pdev->dev, "get normal code err=%d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = sp_iop_get_standby_code(&pdev->dev, iop);
-+	if (ret != 0) {
-+		dev_err(&pdev->dev, "get standby code err=%d\n", ret);
-+		return ret;
-+	}
-+
-+	sp_iop_normal_mode(iop);
-+	platform_set_drvdata(pdev, iop);
-+	iop->gpio_wakeup = of_get_named_gpio(pdev->dev.of_node, "iop-wakeup", 0);
-+	return 0;
-+
-+fail_kmalloc:
-+	return ret;
-+}
-+
-+static void sp_iop_platform_driver_shutdown(struct platform_device *pdev)
-+{
-+	struct sp_iop *iop = platform_get_drvdata(pdev);
-+	unsigned int ret, value;
-+
-+	value = readl(iop->iop_regs + IOP_DATA11);
-+	sp_iop_standby_mode(iop);
-+
-+	ret = readl_poll_timeout(iop->iop_regs + IOP_DATA0, value,
-+				 value == 0x2222, 1000, 100000);
-+	if (ret)
-+		dev_warn(&pdev->dev, "timed out\n");
-+
-+	if (value == S1)
-+		sp_iop_s1mode(&pdev->dev, iop);
-+	else
-+		sp_iop_s3mode(&pdev->dev, iop);
-+}
-+
-+static const struct of_device_id sp_iop_of_match[] = {
-+	{ .compatible = "sunplus,sp7021-iop" },
-+	{ /* sentinel */ },
-+};
-+
-+MODULE_DEVICE_TABLE(of, sp_iop_of_match);
-+
-+static struct platform_driver sp_iop_platform_driver = {
-+	.probe		= sp_iop_platform_driver_probe,
-+	.shutdown	= sp_iop_platform_driver_shutdown,
-+	.driver = {
-+		.name	= "sunplus,sp7021-iop",
-+		.of_match_table = sp_iop_of_match,
-+	}
-+};
-+
-+module_platform_driver(sp_iop_platform_driver);
-+
-+MODULE_AUTHOR("Tony Huang <tonyhuang.sunplus@gmail.com>");
-+MODULE_DESCRIPTION("Sunplus IOP Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
+Regards,
+Chun-Kuang.
 
+>                 mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP=
+_RGB);
+>         } else {
+>                 mtk_dpi_config_yuv422_enable(dpi, false);
+>                 mtk_dpi_config_csc_enable(dpi, false);
+> -               mtk_dpi_config_swap_input(dpi, false);
+> +               if (dpi->conf->swap_input_support)
+> +                       mtk_dpi_config_swap_input(dpi, false);
+>                 mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP=
+_RGB);
+>         }
+>  }
+> @@ -808,6 +812,7 @@ static const struct mtk_dpi_conf mt8173_conf =3D {
+>         .output_fmts =3D mt8173_output_fmts,
+>         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
+>         .is_ck_de_pol =3D true,
+> +       .swap_input_support =3D true,
+>         .limit =3D &mtk_dpi_limit,
+>  };
+>
+> @@ -819,6 +824,7 @@ static const struct mtk_dpi_conf mt2701_conf =3D {
+>         .output_fmts =3D mt8173_output_fmts,
+>         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
+>         .is_ck_de_pol =3D true,
+> +       .swap_input_support =3D true,
+>         .limit =3D &mtk_dpi_limit,
+>  };
+>
+> @@ -829,6 +835,7 @@ static const struct mtk_dpi_conf mt8183_conf =3D {
+>         .output_fmts =3D mt8183_output_fmts,
+>         .num_output_fmts =3D ARRAY_SIZE(mt8183_output_fmts),
+>         .is_ck_de_pol =3D true,
+> +       .swap_input_support =3D true,
+>         .limit =3D &mtk_dpi_limit,
+>  };
+>
+> @@ -839,6 +846,7 @@ static const struct mtk_dpi_conf mt8192_conf =3D {
+>         .output_fmts =3D mt8173_output_fmts,
+>         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
+>         .is_ck_de_pol =3D true,
+> +       .swap_input_support =3D true,
+>         .limit =3D &mtk_dpi_limit,
+>  };
+>
+> --
+> 2.34.1
+>
