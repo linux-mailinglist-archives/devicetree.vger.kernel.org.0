@@ -2,76 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACCE44BD3F5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 03:57:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F5BF4BD414
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 04:02:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344024AbiBUCn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 21:43:59 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40186 "EHLO
+        id S1343499AbiBUDA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 22:00:27 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344021AbiBUCn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:43:58 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58600E002;
-        Sun, 20 Feb 2022 18:43:36 -0800 (PST)
+        with ESMTP id S245754AbiBUDA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 22:00:26 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 883A049279;
+        Sun, 20 Feb 2022 19:00:03 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F1A65B80E3B;
-        Mon, 21 Feb 2022 02:43:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74847C36AE2;
-        Mon, 21 Feb 2022 02:43:33 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0E56F61126;
+        Mon, 21 Feb 2022 03:00:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C8E7C340E8;
+        Mon, 21 Feb 2022 02:59:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645411413;
-        bh=fr9WRLrW4coExEzj2Kuaw9OBpeHu4mj+MkxXimcnkCw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tHGeFe5kGxavBagXfuqMvZGtm9XDhRHHf+F/OYh1gQbFsj115H1fn7bAF3Gy/ZjSV
-         tKvXiYAod5rP1da37lvbUbVcupqxjUDf9xRGMcPJE7PGqzqDVLfqGRbd/+GORMiP4O
-         Gxe/IimKdeCkmmB86sCgXl8gg7pWab1VGJvjWP0unJ8jiqE949Ywbxs0mCtnjxBB/k
-         zlWlE8hjtFtl02/DkLFkYhaG2nIaCaH/9rZIKqdhJdyRcVEkz3xlJLGRyDMHXsDD04
-         Q+qfu4OFlOx6hK+6w9Stp1ZngsaT7szHesbaI/vsJaIb1ezjuwYbrropLb71RNgIzV
-         eZXH4RvJ2WmPQ==
-Received: by mail-ej1-f42.google.com with SMTP id qk11so29393197ejb.2;
-        Sun, 20 Feb 2022 18:43:33 -0800 (PST)
-X-Gm-Message-State: AOAM530TTkinVBVwygfABEootZq89pdRIduP6dcbuTx9QENDpvOpi4xq
-        rgjuhB7AetW9y+KGm1a+KwEk8egj6bhFbeU+8w==
-X-Google-Smtp-Source: ABdhPJwOzYdjdfRguJrzoCzdajK1FOiYj6KmzNtAScRDhOVtID8EpaZbeIyGY8zVQWhRYhYShCXwM4IhUMsXpmbxZhY=
-X-Received: by 2002:a17:906:b348:b0:6cf:5b66:2f80 with SMTP id
- cd8-20020a170906b34800b006cf5b662f80mr13893213ejb.638.1645411411757; Sun, 20
- Feb 2022 18:43:31 -0800 (PST)
+        s=k20201202; t=1645412402;
+        bh=Z11mP6FU9ojgXwPg+o0cYxKyTiDeQ75L3RW9Rl4Rakg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KAwiVyGXD4CQtxMfkHVZ2loJ1mFhOiSrUASFc+yuulumSpyBBjqzkdUM1bsnVGqrG
+         GbUjpgXyBfV/wLAI3q8QaPi6DXHZKOOA7V9B0z9kXls8LiByYhL3lWMWlTN4JaVUYJ
+         H7vkQsafEkr9RrulEr4oHmYs58PzyU+O3+uNmOlp5yVsWtSxtBy7k/8mFKPwKzJq10
+         LwQWLLDVy8VbdT79qI2h+ZUpMGDSWX6O52rvNil2Sjhc8BSROLEZraAm8hJaV0+oCo
+         VHHyrALpqu46Xd9hm3/xDjRSFV1N4h0Jtqn1Pn5tkFtLyfA9jjV1c6tLTefT08Yv9o
+         n3qp0Aar4QiGA==
+Date:   Mon, 21 Feb 2022 10:59:54 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Ming Qian <ming.qian@nxp.com>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v15.1 11/13] ARM64: dts: freescale: imx8q: add imx vpu
+ codec entries
+Message-ID: <20220221025954.GB2249@dragon>
+References: <cover.1643165764.git.ming.qian@nxp.com>
+ <7f8db91ae941309e38684a17ae1d3c088e72b209.1643165765.git.ming.qian@nxp.com>
 MIME-Version: 1.0
-References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-10-granquet@baylibre.com>
-In-Reply-To: <20220218145437.18563-10-granquet@baylibre.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 21 Feb 2022 10:43:19 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8zj3PxdZ-CftM8jE+0T-vmck1UMH9tNYN6YL5MuaTdQw@mail.gmail.com>
-Message-ID: <CAAOTY_8zj3PxdZ-CftM8jE+0T-vmck1UMH9tNYN6YL5MuaTdQw@mail.gmail.com>
-Subject: Re: [PATCH v8 09/19] drm/mediatek: dpi: move dimension_mask to board config
-To:     Guillaume Ranquet <granquet@baylibre.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, deller@gmx.de,
-        CK Hu <ck.hu@mediatek.com>, Jitao Shi <jitao.shi@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7f8db91ae941309e38684a17ae1d3c088e72b209.1643165765.git.ming.qian@nxp.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -82,90 +58,193 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Guillaume:
+On Wed, Jan 26, 2022 at 11:09:30AM +0800, Ming Qian wrote:
+> Add the Video Processing Unit node for IMX8Q SoC.
+> 
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
+> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
 
-Guillaume Ranquet <granquet@baylibre.com> =E6=96=BC 2022=E5=B9=B42=E6=9C=88=
-18=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8810:56=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Add flexibility by moving the dimension mask to board config
+'arm64: ...' in subject prefix.
 
-Replace 'board' with 'SoC'.
-
->
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
-k/mtk_dpi.c
-> index 8ca3455ed64ee..0d3acd08ea358 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -129,6 +129,8 @@ struct mtk_dpi_conf {
->         bool swap_input_support;
->         // Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and VSYNC_PORCH (no =
-shift)
->         u32 dimension_mask;
-> +       // Mask used for HSIZE and VSIZE (no shift)
+>  .../arm64/boot/dts/freescale/imx8-ss-vpu.dtsi | 72 +++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 17 +++++
+>  arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 24 +++++++
+>  3 files changed, 113 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
+> new file mode 100644
+> index 000000000000..f2dde6d14ca3
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
+> @@ -0,0 +1,72 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright 2021 NXP
+> + *	Dong Aisheng <aisheng.dong@nxp.com>
+> + */
+> +
+> +vpu: vpu@2c000000 {
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +	ranges = <0x2c000000 0x0 0x2c000000 0x2000000>;
+> +	reg = <0 0x2c000000 0 0x1000000>;
+> +	power-domains = <&pd IMX_SC_R_VPU>;
+> +	status = "disabled";
+> +
+> +	mu_m0: mailbox@2d000000 {
+> +		compatible = "fsl,imx6sx-mu";
+> +		reg = <0x2d000000 0x20000>;
+> +		interrupts = <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>;
+> +		#mbox-cells = <2>;
+> +		power-domains = <&pd IMX_SC_R_VPU_MU_0>;
+> +		status = "okay";
 
-/* ... */
+We generally use 'okay' status to flip a disabled device, so it can be
+saved here?
 
-Regards,
-Chun-Kuang.
+> +	};
+> +
+> +	mu1_m0: mailbox@2d020000 {
+> +		compatible = "fsl,imx6sx-mu";
+> +		reg = <0x2d020000 0x20000>;
+> +		interrupts = <GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>;
+> +		#mbox-cells = <2>;
+> +		power-domains = <&pd IMX_SC_R_VPU_MU_1>;
+> +		status = "okay";
+> +	};
+> +
+> +	mu2_m0: mailbox@2d040000 {
+> +		compatible = "fsl,imx6sx-mu";
+> +		reg = <0x2d040000 0x20000>;
+> +		interrupts = <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>;
+> +		#mbox-cells = <2>;
+> +		power-domains = <&pd IMX_SC_R_VPU_MU_2>;
+> +		status = "disabled";
+> +	};
+> +
+> +	vpu_core0: vpu_core@2d080000 {
+> +		reg = <0x2d080000 0x10000>;
+> +		compatible = "nxp,imx8q-vpu-decoder";
+> +		power-domains = <&pd IMX_SC_R_VPU_DEC_0>;
+> +		mbox-names = "tx0", "tx1", "rx";
+> +		mboxes = <&mu_m0 0 0>,
+> +			<&mu_m0 0 1>,
+> +			<&mu_m0 1 0>;
+> +		status = "disabled";
+> +	};
 
-> +       u32 hvsize_mask;
->         const struct mtk_dpi_yc_limit *limit;
+Have a newline between nodes.
+
+> +	vpu_core1: vpu_core@2d090000 {
+> +		reg = <0x2d090000 0x10000>;
+> +		compatible = "nxp,imx8q-vpu-encoder";
+> +		power-domains = <&pd IMX_SC_R_VPU_ENC_0>;
+> +		mbox-names = "tx0", "tx1", "rx";
+> +		mboxes = <&mu1_m0 0 0>,
+> +			<&mu1_m0 0 1>,
+> +			<&mu1_m0 1 0>;
+> +		status = "disabled";
+> +	};
+> +	vpu_core2: vpu_core@2d0a0000 {
+> +		reg = <0x2d0a0000 0x10000>;
+> +		compatible = "nxp,imx8q-vpu-encoder";
+> +		power-domains = <&pd IMX_SC_R_VPU_ENC_1>;
+> +		mbox-names = "tx0", "tx1", "rx";
+> +		mboxes = <&mu2_m0 0 0>,
+> +			<&mu2_m0 0 1>,
+> +			<&mu2_m0 1 0>;
+> +		status = "disabled";
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> index 863232a47004..05495b60beb8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+> @@ -196,6 +196,23 @@ &usdhc2 {
+>  	status = "okay";
 >  };
->
-> @@ -243,8 +245,10 @@ static void mtk_dpi_config_interface(struct mtk_dpi =
-*dpi, bool inter)
->
->  static void mtk_dpi_config_fb_size(struct mtk_dpi *dpi, u32 width, u32 h=
-eight)
->  {
-> -       mtk_dpi_mask(dpi, DPI_SIZE, width << HSIZE, HSIZE_MASK);
-> -       mtk_dpi_mask(dpi, DPI_SIZE, height << VSIZE, VSIZE_MASK);
-> +       mtk_dpi_mask(dpi, DPI_SIZE, width << HSIZE,
-> +                    dpi->conf->hvsize_mask << HSIZE);
-> +       mtk_dpi_mask(dpi, DPI_SIZE, height << VSIZE,
-> +                    dpi->conf->hvsize_mask << VSIZE);
->  }
->
->  static void mtk_dpi_config_channel_limit(struct mtk_dpi *dpi)
-> @@ -816,6 +820,7 @@ static const struct mtk_dpi_conf mt8173_conf =3D {
->         .is_ck_de_pol =3D true,
->         .swap_input_support =3D true,
->         .dimension_mask =3D HPW_MASK,
-> +       .hvsize_mask =3D HSIZE_MASK,
->         .limit =3D &mtk_dpi_limit,
->  };
->
-> @@ -829,6 +834,7 @@ static const struct mtk_dpi_conf mt2701_conf =3D {
->         .is_ck_de_pol =3D true,
->         .swap_input_support =3D true,
->         .dimension_mask =3D HPW_MASK,
-> +       .hvsize_mask =3D HSIZE_MASK,
->         .limit =3D &mtk_dpi_limit,
->  };
->
-> @@ -841,6 +847,7 @@ static const struct mtk_dpi_conf mt8183_conf =3D {
->         .is_ck_de_pol =3D true,
->         .swap_input_support =3D true,
->         .dimension_mask =3D HPW_MASK,
-> +       .hvsize_mask =3D HSIZE_MASK,
->         .limit =3D &mtk_dpi_limit,
->  };
->
-> @@ -853,6 +860,7 @@ static const struct mtk_dpi_conf mt8192_conf =3D {
->         .is_ck_de_pol =3D true,
->         .swap_input_support =3D true,
->         .dimension_mask =3D HPW_MASK,
-> +       .hvsize_mask =3D HSIZE_MASK,
->         .limit =3D &mtk_dpi_limit,
->  };
->
-> --
-> 2.34.1
->
+>  
+> +&vpu {
+> +	compatible = "nxp,imx8qxp-vpu";
+> +	status = "okay";
+> +};
+> +
+> +&vpu_core0 {
+> +	reg = <0x2d040000 0x10000>;
+> +	memory-region = <&decoder_boot>, <&decoder_rpc>;
+> +	status = "okay";
+> +};
+> +
+> +&vpu_core1 {
+> +	reg = <0x2d050000 0x10000>;
+> +	memory-region = <&encoder_boot>, <&encoder_rpc>;
+> +	status = "okay";
+> +};
+> +
+>  &iomuxc {
+>  	pinctrl_fec1: fec1grp {
+>  		fsl,pins = <
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> index dbec7c106e0b..a041b85d612b 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> @@ -46,6 +46,9 @@ aliases {
+>  		serial1 = &lpuart1;
+>  		serial2 = &lpuart2;
+>  		serial3 = &lpuart3;
+> +		vpu_core0 = &vpu_core0;
+> +		vpu_core1 = &vpu_core1;
+> +		vpu_core2 = &vpu_core2;
+>  	};
+>  
+>  	cpus {
+> @@ -162,10 +165,30 @@ reserved-memory {
+>  		#size-cells = <2>;
+>  		ranges;
+>  
+> +		decoder_boot: decoder-boot@84000000 {
+> +			reg = <0 0x84000000 0 0x2000000>;
+> +			no-map;
+> +		};
+> +
+> +		encoder_boot: encoder-boot@86000000 {
+> +			reg = <0 0x86000000 0 0x200000>;
+> +			no-map;
+> +		};
+> +
+> +		decoder_rpc: decoder-rpc@0x92000000 {
+
+No '0x' in unit-address.
+
+Shawn
+
+> +			reg = <0 0x92000000 0 0x100000>;
+> +			no-map;
+> +		};
+> +
+>  		dsp_reserved: dsp@92400000 {
+>  			reg = <0 0x92400000 0 0x2000000>;
+>  			no-map;
+>  		};
+> +
+> +		encoder_rpc: encoder-rpc@0x94400000 {
+> +			reg = <0 0x94400000 0 0x700000>;
+> +			no-map;
+> +		};
+>  	};
+>  
+>  	pmu {
+> @@ -287,6 +310,7 @@ map0 {
+>  
+>  	/* sorted in register address */
+>  	#include "imx8-ss-img.dtsi"
+> +	#include "imx8-ss-vpu.dtsi"
+>  	#include "imx8-ss-adma.dtsi"
+>  	#include "imx8-ss-conn.dtsi"
+>  	#include "imx8-ss-ddr.dtsi"
+> -- 
+> 2.33.0
+> 
