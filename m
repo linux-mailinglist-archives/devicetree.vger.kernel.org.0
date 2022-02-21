@@ -2,192 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B63E04BEAE9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 20:37:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE81A4BEA91
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 20:36:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232394AbiBUSvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 13:51:33 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34486 "EHLO
+        id S229452AbiBUTGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 14:06:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233806AbiBUSvH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 13:51:07 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B24BA195;
-        Mon, 21 Feb 2022 10:50:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645469443; x=1677005443;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=48JzrGcTX6rVc7SRQV6pRltiPRSxLzqQcpIlYLCwjao=;
-  b=VvG4yEpmFBDLiapwSRUysMSQMjdjEq35Rx7/4Dd0pS8SD0eG7n79CYzl
-   JaAAUGfYuWcAltzXt+sbr1kUsCwn3v8feYSrTDzZ304fjBDGFVZTmKA3T
-   41Kx5fhJDgFqa6EQuwf3ml8lYjIZuDTBgiA7GCYPr8fic7yTDobn4OEjv
-   5dVoPua+WhOudTmjORCgVoMXdXzrlWgWip62auxZShVE9e/2MZGFJBmwq
-   okBPd894VmoYkLVvHHil9Gv2exySIZqSu8nfacf928dcVLwcBf2EV+lTz
-   zZ7arnTbEPFPo8sXuNqGbVHvjw+Xj3f01GnZIoKc9xZ5gLN3/xHgAHe6w
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10265"; a="251313809"
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; 
-   d="scan'208";a="251313809"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 10:50:43 -0800
-X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; 
-   d="scan'208";a="505207399"
-Received: from smile.fi.intel.com ([10.237.72.59])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 10:50:40 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1nMDkr-006sqq-2Y;
-        Mon, 21 Feb 2022 20:49:49 +0200
-Date:   Mon, 21 Feb 2022 20:49:48 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc:     Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
-        "Sa, Nuno" <Nuno.Sa@analog.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v3 1/3] iio: dac: add support for ltc2688
-Message-ID: <YhPezO7CcDOAK/HU@smile.fi.intel.com>
-References: <Yf60A1UkbBtQ68qv@smile.fi.intel.com>
- <PH0PR03MB678628C341A1972BC31F5BBA992B9@PH0PR03MB6786.namprd03.prod.outlook.com>
- <YgD91zg4L1S5KH5k@smile.fi.intel.com>
- <e1bd9f14e63e55f48f804568705a9ab8c1a09f62.camel@gmail.com>
- <Ygpd7pebiuGuB8nT@smile.fi.intel.com>
- <11bd63bc07fd406bfa31bdc38b597011cc9312cc.camel@gmail.com>
- <YhImsJidUu2fMKgu@smile.fi.intel.com>
- <3f2523127eb320a9825e272353afea9673e5d003.camel@gmail.com>
- <YhPGJqEuTQ3TBy46@smile.fi.intel.com>
- <20220221173045.00003969@Huawei.com>
+        with ESMTP id S232606AbiBUTGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 14:06:51 -0500
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 743C013D0C
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 11:06:27 -0800 (PST)
+Received: by mail-oo1-xc2f.google.com with SMTP id u47-20020a4a9732000000b00316d0257de0so14383760ooi.7
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 11:06:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=mKYaMuXCaSDbgjwH5cDbyrb4SD5Y9F+pgT6HwHOAhw4=;
+        b=UayZoVpBKx73lHes9iSu/MRvaEOhZYEQ0s336NxWMNl0hTE8xxqgGUfeNvZRpbJdno
+         bOXRl6PkW8QImlSkKym03EpeC3YUqykYUDzXJEAjDMnB7u6ql+oPbHK9HEsdVwtY/+C/
+         nmuUkEiG2Sl3O+QCGNRlSv3D/YOZKHwFp6gT5CNkRsSapZG88rQf7n6cwMhEw/em7yHn
+         tP6rxY2fRy05sFM6IvlXbTZRYrjvqNN6/WHXbLLxKES1yx+79e8gfw9mp/jIgZeDAFZV
+         xBs2Ud8HzCJrTLNVQ1+x/cMlh8ji2v4uhcUQHMGrv+jYpYKwGMCo4jD4zxHD8X1dwqjB
+         z7IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mKYaMuXCaSDbgjwH5cDbyrb4SD5Y9F+pgT6HwHOAhw4=;
+        b=E/1Igo0Oku4YunxTlf/+EjL/88NBd3qmGjhER3JJNlMTVo7VJ8o3u4Wf4YDqq3duxM
+         xBBn2BzKaEpjZmV7PZCptAysXzjIZA29tnqFBYcXisOyXMQRfGYj7zYm98V20YQd+OrB
+         7r8ouLe6BoWbaSa/qe+qcDvrfLEXYb8m8ifN9xRezEvD55CPgA+aVmPydLPAbmS8j1j+
+         8Wkk9ZdzN3RyVErFmE/Gdo3ir94FgupYwFL2yKMeSmkEF0DQv9YVBLQ00Lmqlzp/Ur0t
+         2Ykge+IL5yaiC9hxez84BCF1XjV3plRJry7XqqVtTX9zt5u3mHDaV7Ygz945YegyoLlv
+         FKRw==
+X-Gm-Message-State: AOAM532VbOq9EXBCjoUp5/3LwZ/NeOP5uPQ1UDn6P0s6n3mRteal4dxd
+        /M/lWVHc45aGdCiqBhiTjujMQQ==
+X-Google-Smtp-Source: ABdhPJxZkhpfXyfMIR6pZATfsUiV6WfNFnMWVkBrVLoHBjm225+ktGOVREx1Vzzq++JUcijZyrDVVQ==
+X-Received: by 2002:a4a:1506:0:b0:2da:ee84:9759 with SMTP id 6-20020a4a1506000000b002daee849759mr6514311oon.65.1645470386741;
+        Mon, 21 Feb 2022 11:06:26 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id j32sm4357309ota.59.2022.02.21.11.06.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Feb 2022 11:06:25 -0800 (PST)
+Date:   Mon, 21 Feb 2022 11:08:28 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 1/6] device property: Helper to match multiple
+ connections
+Message-ID: <YhPjLOJchd4l+095@ripper>
+References: <20220208031944.3444-1-bjorn.andersson@linaro.org>
+ <20220208031944.3444-2-bjorn.andersson@linaro.org>
+ <YgOz6K55Oi2Si4pU@smile.fi.intel.com>
+ <Yg/s3eKB2wLEQTgY@ripper>
+ <YhIjHjMrhUpM0ucV@smile.fi.intel.com>
+ <YhMbLsvF8p/ce+mg@ripper>
+ <YhPJmiFSH8s94il7@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220221173045.00003969@Huawei.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <YhPJmiFSH8s94il7@smile.fi.intel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 05:30:45PM +0000, Jonathan Cameron wrote:
-> On Mon, 21 Feb 2022 19:04:38 +0200
-> Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+On Mon 21 Feb 09:19 PST 2022, Andy Shevchenko wrote:
+
+> On Sun, Feb 20, 2022 at 08:55:10PM -0800, Bjorn Andersson wrote:
+> > On Sun 20 Feb 03:16 PST 2022, Andy Shevchenko wrote:
+> > > On Fri, Feb 18, 2022 at 11:00:45AM -0800, Bjorn Andersson wrote:
+> > > > On Wed 09 Feb 04:30 PST 2022, Andy Shevchenko wrote:
+> > > > > On Mon, Feb 07, 2022 at 07:19:39PM -0800, Bjorn Andersson wrote:
 > 
-> > On Mon, Feb 21, 2022 at 01:48:12PM +0100, Nuno Sá wrote:
-> > > On Sun, 2022-02-20 at 13:32 +0200, Andy Shevchenko wrote:  
-> > > > On Fri, Feb 18, 2022 at 02:51:28PM +0100, Nuno Sá wrote:  
-> > > > > On Mon, 2022-02-14 at 15:49 +0200, Andy Shevchenko wrote:  
-> > > > > > On Mon, Feb 07, 2022 at 09:19:46PM +0100, Nuno Sá wrote:  
-> > > > > > > On Mon, 2022-02-07 at 13:09 +0200, Andy Shevchenko wrote:  
-> > > > > > > > On Sun, Feb 06, 2022 at 01:19:59PM +0000, Sa, Nuno wrote:  
-> > > > > > > > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > > > > > > > > > Sent: Saturday, February 5, 2022 6:30 PM
-> > > > > > > > > > On Fri, Jan 21, 2022 at 03:24:59PM +0100, Nuno Sá wrote:  
-> > 
-> > ...
-> > 
-> > > > > > > > > > > +       ret = kstrtou16(buf, 10, &val);  
-> > > > > > > > > > 
-> > > > > > > > > > In other function you have long, here u16. I would expect that
-> > > > > > > > > > the types are of the same class, e.g. if here you have u16,
-> > > > > > > > > > then there something like s32 / s64.  Or here something like
-> > > > > > > > > > unsigned short.
-> > > > > > > > > > 
-> > > > > > > > > > A bit of elaboration why u16 is chosen here?  
-> > > > > > > > > 
-> > > > > > > > > Well, I never really saw any enforcement here to be honest
-> > > > > > > > > (rather than using stdint types...). So I pretty much just use
-> > > > > > > > > these in unsigned types because I'm lazy and u16 is faster to
-> > > > > > > > > type than unsigned short...  In this case, unless Jonathan really
-> > > > > > > > > asks for it, I prefer not to go all over the driver and change
-> > > > > > > > > this...  
-> > > > > > > > 
-> > > > > > > > This is about consistency. It may work as is, but it feels not good
-> > > > > > > > when for int (or unsigned int) one uses fixed-width types. Also
-> > > > > > > > it's non- written advice to use fixed-width variables when it's
-> > > > > > > > about programming registers or so, for the rest, use POD types.  
+> ...
+> 
+> > > > > > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > > > > > +				   const char *con_id, void *data,
+> > > > > > +				   devcon_match_fn_t match,
+> > > > > > +				   void **matches, unsigned int matches_len)
+> > > > > > +{
+> > > > > > +	unsigned int count;
+> > > > > > +
+> > > > > > +	if (!fwnode || !match || !matches)
 > > > > > 
-> > > > > Ok, going a bit back in the discussion, you argued that in one place I
-> > > > > was using long while here u16. Well, in the place I'm using long, that
-> > > > > was on purpose because that value is to be compared against an array of
-> > > > > longs (which has to be long because it depends on CCF rates). I guess I
-> > > > > can als0 use s64, but there is also a reason why long was used.
-> > > > > 
-> > > > > In the u16 case, we really want to have 2 bytes because I'm going to use
-> > > > > that value to write the dac code which is 2 bytes.  
+> > > > > !matches case may be still useful to get the count and allocate memory by
+> > > > > caller. Please, consider this case.
 > > > > 
-> > > > Okay, that's what I want to hear. If it's indeed goes to be a value to the
-> > > > register, then it's fine.
+> > > > As discussed in previous version, and described in the commit message,
+> > > > the returned value of "match" is a opaque pointer to something which
+> > > > has to be passed back to the caller in order to be cleaned up.
 > > > > 
-> > > > Perhaps a comment?  
+> > > > E.g. the typec mux code returns a pointer to a typec_mux/switch object
+> > > > with a refcounted struct device within, or an ERR_PTR().
+> > > > 
+> > > > So unfortunately we can must gather the results into matches and pass it
+> > > > back to the caller to take consume or clean up.
 > > > 
-> > > I guess you mean to have a comment to state that here we have fixed
-> > > size type (as opposed to long, used in another place), because we
-> > > directly use the value on a register write?
-> > > 
-> > > Asking it because I'm not planning to add comments in all the places
-> > > where I have fixed size types for register read/writes...  
+> > > It's fine. You have **matches, means pointer of an opaque pointer.
+> > > What I'm talking about is memory allocation for and array of _pointers_.
+> > > That's what caller very much aware of and can allocate on heap. So, please
+> > > consider this case.
 > > 
-> > Thinking more about it and now I'm convinced that using the value that goes to
-> > the register in ABI is bad idea (means that user space must not care about the
-> > size or contents of the hardware register and should be abstract representation
-> > of the HW).
+> > I'm sorry, but I'm not sure what you're looking for.
 > > 
-> > OTOH this seems to be "raw" value of something. So, I maybe missed the convention
-> > in IIO about this kind of values WRT the variable types used on ABI side.
 > > 
-> > That said, I leave it to Jonathan since I'm not convinced that u16 is a proper
-> > choice here.
+> > I still interpret your comment as that it would be nice to be able to do
+> > something like:
+> > 
+> > count = fwnode_connection_find_matches(fwnode, "orientation-switch",
+> > 				       NULL, typec_switch_match, NULL, 0);
+> > 
+> > based on the returned value the caller could allocate an array of
+> > "count" pointers and then call the function again to actually fill out
+> > the count elements.
 > 
-> From a userspace point of view it doesn't care as it's writing a string.
-> In this particular case the string only has valid values that from 0-(2^16-1)
-> (i.e. 16 bits).  So if it writes outside of that range it is an error.
-> You could read it into an unsigned long and then check against the range,
-> but there is little point given you'd still return an error if it was out of
-> range.  The fact that kstrto16() does that for you really just a shortcut
-> though it will return -ERANGE rather than perhaps -EINVAL which might be used
-> for a more generic "not this value".
+> Yes, that's what I want from the generic fwnode APIs.
+> (Keyword: generic)
 > 
-> Userspace can also read the range that is acceptable from
-> out_voltage0_raw_available [0 1 2^16-1] and hence not write an invalid value
-> in the first place - which is obviously preferred to getting an error.
-> Scaling etc is also expressed to userspace so it it wants to write a particular
-> voltage it can perform the appropriate scaling. Note that moving linear scaling
-> like this to userspace allows easy use of floating point + may be a significant
-> performance advantage if using the chrdev interface which uses the same
-> approach (and values) as the sysfs interface.
+> > The problem with this is that, typec_switch_match() does:
+> 
+> As you stated, the problem is in the typec_switch_match(). So, it's not related
+> to the fwnode, but how you are using it.
+> 
+> > void *typec_switch_match(fwnode, id, data) {
+> > 	struct device *dev = find_struct_device(fwnode, id);
+> > 	if (!dev)
+> > 		return NULL;
+> > 	get_device(dev);
+> > 	return container_of(dev, struct typec_switch, dev);
+> > }
+> > 
+> > So if we call the match function and if that finds a "dev" it will
+> > return a struct typec_switch with a refcounted struct device within.
+> 
+> fwnode (as being an abstraction on top of the others) has no knowledge
+> about this. And more important should not know that.
+> 
+> > We can see if that's NULL or not and will be able to return a "count",
+> > but we have no way of releasing the reference acquired - we must return
+> > the void pointer back to the client, so that it can release it.
+> 
+> The caller (if it wants to!) may create different callbacks for count and real
+> matching, no?
+> 
 
-With the same logic it can be unsigned short, no?
+Ahh, yeah you're right, we can shift this responsibility onto the caller
+and thereby allow them to implement the count as well. Makes sense!
 
-The point is to use u16 when it's indeed fixed-width value that goes to
-hardware or being used as part of a protocol. And thus mentioning of the
-IOCTL protocols may justify the choice. Then the question to the other
-values, shouldn't they be also fixed-width ones?
+Thanks,
+Bjorn
 
-> > > > > > > I can understand your reasoning but again this is something that I
-> > > > > > > never really saw being enforced. So, I'm more than ok to change it if
-> > > > > > > it really becomes something that we will try to "enforce" in IIO.
-> > > > > > > Otherwise it just feels as a random nitpick :).  
-> > > > > > 
-> > > > > > No, this is about consistency and common sense. If you define type uXX,
-> > > > > > we have an API for that exact type. It's confusing why POD type APIs
-> > > > > > are used with fixed-width types or vise versa.
-> > > > > > 
-> > > > > > Moreover (which is pure theoretical, though) some architectures might
-> > > > > > have no (mutual) equivalency between these types.  
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> > My claim is that this is not a problem, because this works fine with any
+> > reasonable size of fwnode graphs we might run into - and the client will
+> > in general have a sense of the worst case number of matches (in this
+> > series its 3, as there's 3 types of lanes that can be switched/muxed
+> > coming out of a USB connector).
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
