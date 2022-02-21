@@ -2,64 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDF1D4BE3AF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:57:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AED954BE73D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:03:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381480AbiBURMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 12:12:45 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34176 "EHLO
+        id S1381615AbiBURUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 12:20:42 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237880AbiBURMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 12:12:44 -0500
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE98C14024;
-        Mon, 21 Feb 2022 09:12:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Cbh14+tf3RlQjgmoKOC/m9u4BnwaRP9y3quGxX96FSI=; b=jhA/4QXJ9SC3/vv4U/UbbXUYnM
-        AFPLrTXhyYEUM/FjH0rg8HRpPJ750cSDMf8AW4LT3BYRVB+Ib26IRJ/RM69rjja74gzRYCgnqMk+a
-        tfoW1rLKoTOfrBaYZhNGbqE4Wsc4PutIf3RvPFDyM2PBXMunzVP1tu25N/DR/DxdTtEeEiWbEijxv
-        UQtTSY3zvh339M4V2jvsBZXKtctRTk+uFuLmdylbC79Ew2vW5R0GFf4EADGQKbosyHaf71OLN5h9O
-        HZxSiVCydytd3bnua3Mti6l3EC0fr0hhGqbVJqfDOEMDuEhkkZp8UBQSUqY1bTGvhLoofcKjToZOU
-        hht37tLg==;
-Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=[192.168.1.10])
-        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <cyndis@kapsi.fi>)
-        id 1nMCEL-0004yN-An; Mon, 21 Feb 2022 19:12:09 +0200
-Message-ID: <a90d3f9a-417c-5a03-21fd-1a0baa3c1873@kapsi.fi>
-Date:   Mon, 21 Feb 2022 19:12:08 +0200
+        with ESMTP id S1381608AbiBURUl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 12:20:41 -0500
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 206D5C5E;
+        Mon, 21 Feb 2022 09:20:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645464018; x=1677000018;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=d5MBD6jseNDfERr7Px+b+BKh2csyDhPOjHVWEWXUWp0=;
+  b=PMNt1bh2YdTAgOcfTGN5Higc428uAc7YoEcSlhJaAsU55sUBY76cEALN
+   fo2/VUyJh3jokrQYzihp4YW7CRNx5hPC81Huv/LjDCj39F3A8asExt2B0
+   /4CkL5Oj9U/iPOUTu7pcb2GIkP33Ph6zX5nVDfPV+06s73FO6D9XOs0zD
+   CICNNTPSmktZ4vZr/50bGrCqFAMyD7TaBjyTPPdIrtJRXQxSjfgwbBgpW
+   p+krrkk2tfID6lJNqambxdWUBJwD2k0Trdu1YVeLAeU17UVkoxi9dtRl7
+   V5hRHbBakNDrQvEpxh3snDAkI79dQCLRgWt2ZRJYCXAdRfhKOdzV/6WJl
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10265"; a="251729331"
+X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; 
+   d="scan'208";a="251729331"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 09:20:17 -0800
+X-IronPort-AV: E=Sophos;i="5.88,386,1635231600"; 
+   d="scan'208";a="490502556"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 09:20:14 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nMCLK-006rcp-SM;
+        Mon, 21 Feb 2022 19:19:22 +0200
+Date:   Mon, 21 Feb 2022 19:19:22 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 1/6] device property: Helper to match multiple
+ connections
+Message-ID: <YhPJmiFSH8s94il7@smile.fi.intel.com>
+References: <20220208031944.3444-1-bjorn.andersson@linaro.org>
+ <20220208031944.3444-2-bjorn.andersson@linaro.org>
+ <YgOz6K55Oi2Si4pU@smile.fi.intel.com>
+ <Yg/s3eKB2wLEQTgY@ripper>
+ <YhIjHjMrhUpM0ucV@smile.fi.intel.com>
+ <YhMbLsvF8p/ce+mg@ripper>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v3 1/9] dt-bindings: host1x: Add memory-contexts property
-Content-Language: en-US
-To:     Robin Murphy <robin.murphy@arm.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
-        will@kernel.org, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220218113952.3077606-1-mperttunen@nvidia.com>
- <20220218113952.3077606-2-mperttunen@nvidia.com>
- <48ac567b-37e8-1fa2-c389-536e276fdd2c@arm.com>
- <2e9c4ea5-6bbd-9724-0f4e-ed25f7294aa2@kapsi.fi>
- <56cf458b-080b-2e22-69d7-039ff7d0b56a@arm.com>
-From:   Mikko Perttunen <cyndis@kapsi.fi>
-In-Reply-To: <56cf458b-080b-2e22-69d7-039ff7d0b56a@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 91.158.25.70
-X-SA-Exim-Mail-From: cyndis@kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YhMbLsvF8p/ce+mg@ripper>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,125 +76,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/21/22 18:58, Robin Murphy wrote:
-> On 2022-02-21 15:28, Mikko Perttunen wrote:
->> On 2/21/22 17:23, Robin Murphy wrote:
->>> On 2022-02-18 11:39, Mikko Perttunen via iommu wrote:
->>>> Add schema information for the memory-contexts property used to
->>>> specify context stream IDs. This uses the standard iommu-map property
->>>> inside a child node.
->>>
->>> Couldn't you simply make "iommu-map" an allowed property on the 
->>> host1x node itself? From a DT perspective I'm not sure the 
->>> intermediate node really fits meaningfully, and I can't see that it 
->>> serves much purpose in practice either, other than perhaps defeating 
->>> fw_devlink.
->>>
->>> Robin.
->>
->> The stream IDs described here are not used by the host1x device 
->> itself, so I don't think I can. Host1x's memory transactions still go 
->> through the stream ID specified in its 'iommus' property, these stream 
->> IDs are used by engines (typically in addition to the stream ID 
->> specified in their own nodes).
->>
->> Host1x 'iommus' -- Channel commands
->> Engine 'iommus' -- Engine firmware (and data if context isolation is 
->> not enabled)
->> memory-contexts 'iommu-map' -- Data used by engines.
-> 
-> Right, that still appears to match my understanding, that as far as 
-> software sees, the host1x is effectively acting as a bridge to the 
-> engines in itself. Even if it's not physically routing traffic in and/or 
-> out, the host1x device is the place where the context IDs *logically* 
-> exist, and thus owns the mapping between context IDs and the StreamIDs 
-> emitted by any engine working in a given context.
-> 
-> Consider a PCIe root complex with integrated endpoints - chances are the 
-> RCiEPs have their own physical interfaces to issue DMA directly into the 
-> SoC interconnect, but that doesn't change how we describe the PCI 
-> Requester ID to StreamID mapping at the root complex, since the RC still 
-> logically owns the RID space. You can think of a RID as being "consumed" 
-> at the RC by indexing into config space to ultimately gain control of 
-> the corresponding endpoint, just like context IDs are "consumed" at the 
->   host1x by generating commands to ultimately cause some engine to 
-> operate in the correct address space.
-> 
-> You don't have to pretend the host1x uses a context for its own 
-> command-fetching (or whatever) traffic either - it's always been 
-> intended that the "iommus" and "iommu-map" properties should happily be 
-> able to coexist on the same node, since they serve distinctly different 
-> purposes. If it doesn't work in practice then we've got a bug to fix 
-> somewhere.
-> 
+On Sun, Feb 20, 2022 at 08:55:10PM -0800, Bjorn Andersson wrote:
+> On Sun 20 Feb 03:16 PST 2022, Andy Shevchenko wrote:
+> > On Fri, Feb 18, 2022 at 11:00:45AM -0800, Bjorn Andersson wrote:
+> > > On Wed 09 Feb 04:30 PST 2022, Andy Shevchenko wrote:
+> > > > On Mon, Feb 07, 2022 at 07:19:39PM -0800, Bjorn Andersson wrote:
 
-Interesting, I had assumed that they were exclusive but indeed comparing 
-with PCIe this makes sense. I'll look into it.
+...
 
-> If the context-switching mechanism was some distinct self-contained 
-> thing bolted on beside the other host1x functionality then describing it 
-> as a separate level of DT hierarchy might be more justifiable, but 
-> that's not the impression I'm getting from skimming the rest of the 
-> series. Just reading of the names of things in patch #6, my intuitive 
-> reaction is that clearly each host1x owns 9 StreamIDs, one for general 
-> stuff and 8 for contexts. Adding the knowledge that technically the 
-> context StreamIDs end up delegated to other host1x-controlled engines 
-> still doesn't shift the paradigm. I don't believe we need a level of DT 
-> structure purely to help document what the iommu-map means for host1x - 
-> the binding can do that just fine.
-
-Theoretically there can be any number of these stream IDs, but indeed, 
-there is quite specific HW support for this in Host1x.
-
-Thanks for your help once again!
-Mikko
-
+> > > > > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > > > > +				   const char *con_id, void *data,
+> > > > > +				   devcon_match_fn_t match,
+> > > > > +				   void **matches, unsigned int matches_len)
+> > > > > +{
+> > > > > +	unsigned int count;
+> > > > > +
+> > > > > +	if (!fwnode || !match || !matches)
+> > > > 
+> > > > !matches case may be still useful to get the count and allocate memory by
+> > > > caller. Please, consider this case.
+> > > 
+> > > As discussed in previous version, and described in the commit message,
+> > > the returned value of "match" is a opaque pointer to something which
+> > > has to be passed back to the caller in order to be cleaned up.
+> > > 
+> > > E.g. the typec mux code returns a pointer to a typec_mux/switch object
+> > > with a refcounted struct device within, or an ERR_PTR().
+> > > 
+> > > So unfortunately we can must gather the results into matches and pass it
+> > > back to the caller to take consume or clean up.
+> > 
+> > It's fine. You have **matches, means pointer of an opaque pointer.
+> > What I'm talking about is memory allocation for and array of _pointers_.
+> > That's what caller very much aware of and can allocate on heap. So, please
+> > consider this case.
 > 
-> Thanks,
-> Robin.
+> I'm sorry, but I'm not sure what you're looking for.
 > 
->> (Perhaps I should add this information to various places in more 
->> abundance and clarity.)
->>
->> Mikko
->>
->>>
->>>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
->>>> ---
->>>> v3:
->>>> * New patch
->>>> ---
->>>>   .../bindings/display/tegra/nvidia,tegra20-host1x.yaml  | 10 
->>>> ++++++++++
->>>>   1 file changed, 10 insertions(+)
->>>>
->>>> diff --git 
->>>> a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml 
->>>> b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml 
->>>>
->>>> index 4fd513efb0f7..3ac0fde54a16 100644
->>>> --- 
->>>> a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml 
->>>>
->>>> +++ 
->>>> b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml 
->>>>
->>>> @@ -144,6 +144,16 @@ allOf:
->>>>           reset-names:
->>>>             maxItems: 1
->>>> +        memory-contexts:
->>>> +          type: object
->>>> +          properties:
->>>> +            iommu-map:
->>>> +              description: Specification of stream IDs available 
->>>> for memory context device
->>>> +                use. Should be a mapping of IDs 0..n to IOMMU 
->>>> entries corresponding to
->>>> +                usable stream IDs.
->>>> +          required:
->>>> +            - iommu-map
->>>> +
->>>>         required:
->>>>           - reg-names
->>
+> 
+> I still interpret your comment as that it would be nice to be able to do
+> something like:
+> 
+> count = fwnode_connection_find_matches(fwnode, "orientation-switch",
+> 				       NULL, typec_switch_match, NULL, 0);
+> 
+> based on the returned value the caller could allocate an array of
+> "count" pointers and then call the function again to actually fill out
+> the count elements.
+
+Yes, that's what I want from the generic fwnode APIs.
+(Keyword: generic)
+
+> The problem with this is that, typec_switch_match() does:
+
+As you stated, the problem is in the typec_switch_match(). So, it's not related
+to the fwnode, but how you are using it.
+
+> void *typec_switch_match(fwnode, id, data) {
+> 	struct device *dev = find_struct_device(fwnode, id);
+> 	if (!dev)
+> 		return NULL;
+> 	get_device(dev);
+> 	return container_of(dev, struct typec_switch, dev);
+> }
+> 
+> So if we call the match function and if that finds a "dev" it will
+> return a struct typec_switch with a refcounted struct device within.
+
+fwnode (as being an abstraction on top of the others) has no knowledge
+about this. And more important should not know that.
+
+> We can see if that's NULL or not and will be able to return a "count",
+> but we have no way of releasing the reference acquired - we must return
+> the void pointer back to the client, so that it can release it.
+
+The caller (if it wants to!) may create different callbacks for count and real
+matching, no?
+
+> My claim is that this is not a problem, because this works fine with any
+> reasonable size of fwnode graphs we might run into - and the client will
+> in general have a sense of the worst case number of matches (in this
+> series its 3, as there's 3 types of lanes that can be switched/muxed
+> coming out of a USB connector).
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
