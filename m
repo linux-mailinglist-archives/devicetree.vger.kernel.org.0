@@ -2,102 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A93C74BED07
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 23:10:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B5324BED0B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 23:11:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233824AbiBUWK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 17:10:57 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36854 "EHLO
+        id S233632AbiBUWLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 17:11:47 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232574AbiBUWK5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 17:10:57 -0500
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3086522BE8;
-        Mon, 21 Feb 2022 14:10:33 -0800 (PST)
-Received: by mail-io1-xd31.google.com with SMTP id c23so13003679ioi.4;
-        Mon, 21 Feb 2022 14:10:33 -0800 (PST)
+        with ESMTP id S232574AbiBUWLr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 17:11:47 -0500
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9216C22BF0;
+        Mon, 21 Feb 2022 14:11:21 -0800 (PST)
+Received: by mail-qk1-x734.google.com with SMTP id f10so14456589qkg.9;
+        Mon, 21 Feb 2022 14:11:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Z+rAJszSEvmqBNoUmCp25Rx7tCIKTIKIJ/vzygiTiNU=;
-        b=S7pZm6u3CUoSRWhIevbFJ7iuyoYizjOdMSrxZ8r5RYDp1p/T4i4IpM0PCpfmdSAVcL
-         UspswO6GnBhtK4pnq1X6wszMSj9Qbsyo1bmUaKtW5ECHW+tAFw/cx98GWGBDlrl/ZEbm
-         /us86SMszml4cBbd63fB8JUK3oLLh+VA4qLagehggzFdAXcivvtO6gvP7v9QqVDieBJk
-         PqYhMZFivFCM10K4TFHmmcpRLeSofD39RY1xNLxwjRSoXzkpHbiwh2Zd0HQ3keaph3qb
-         DrH064wnjRX3k7hlMa9QPxwj4aVFWmTjvbcD6ssLzl1xv9zmUa4ADZ4sR37IKZwuF4HQ
-         no2A==
+        h=sender:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=CuC7f4KIwhRURQqrkG1raV3vJWZvnVGFpmPUwwQMuuE=;
+        b=EPQjAeljfZI07y1KWMA5ii6YRXBezMDpX4SEnWzSYInuqPIBI6PSuD3mEq88PACcIF
+         BXnbcHmvKplH7koEBdQbpua/DvYHU3K+ylBLgw8Hdhyni9QEC1jQKkUf8S17NEd0tSpV
+         EKaaOFLNJucljmw1c7lE+1ho7tBIsOy1M9+o/g0OJPNHPIRCAbLgLrwhbbahY31PdSlO
+         /Kwh8R0pgEamuORLmC+fgNYuip5EAGQ7ZuQbZdu9B1u3h9KkjGSvyXq3JAE5W07GrK5A
+         nqaltX6dD1VUnahlWp+CM7/hysZK5A9VP0DrHT08Um20TanzRODtDvbAnnkaIDu+Oyi4
+         jbOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Z+rAJszSEvmqBNoUmCp25Rx7tCIKTIKIJ/vzygiTiNU=;
-        b=rOZHwkH64W2WSNtvTYIq4gTTfwm1KYUYeDOy7c5h/ByiFI1mhBx8JZsEc/zGooLb1K
-         UIFasiX5yRg55qgXj9LqBUM+ASporjiAewnLAq0rEH/6LyIyJ84fI4/i/z5/SsrDOuxI
-         jK/G/jwkteRxj+gM3vd9cRdAlJbF28jMkEGhI6C9n+C947hQ46EKhKdw1fqz8mx5dUnt
-         o2vI0gGdhwg+2Cu0F8rXGStLFGK6t0RrTyAlKNeP3BXwlB7dUicY+acU/kddcoE/xR45
-         8y6BOQgnoZ2W4nKbLehZ74R1/YbfwFFVsViwICfkDVrYGcXVfM6MNM/ujSJ37e+u9TG1
-         yWGQ==
-X-Gm-Message-State: AOAM532DhD0bdI9GroxLs8C9w3AcgxDPEB6z+jMGhq3wrKMKUkW7L9tF
-        6R5cTY1FoOxDJ0l9HDS9eZdpU5axjSINlcNigkU=
-X-Google-Smtp-Source: ABdhPJxtX6h0gkfIJdOs/LpUaxa9CUaWdh6MY9eyTlILX66v8ZCa3R/8q03D8mwPRfzvvOim7xMhQagxBJ4rkaaFK7U=
-X-Received: by 2002:a02:a1ca:0:b0:314:c448:2a4e with SMTP id
- o10-20020a02a1ca000000b00314c4482a4emr10360369jah.186.1645481432583; Mon, 21
- Feb 2022 14:10:32 -0800 (PST)
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :subject:content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=CuC7f4KIwhRURQqrkG1raV3vJWZvnVGFpmPUwwQMuuE=;
+        b=WBBhdAVHRhdJ1iIrm7coY1miuk0ctcAIrbCk1Yrcb+1elX2btCxmcKh5KrpaX2Zbud
+         SiUbdvX72xdAlg9i4kY4zO+BoY7tCYVH6RRQ7sgoZKdMmnQp2B3M1xvKThVj4L0f9Wni
+         tpwF9Kmwm13sE5cQyTnjeFT5O+/QKZGVNdiMcUW0wpx1FkaS6hrkuYIubXkOuD28/yVX
+         piYO/ielQJ4xl2BTUyGf9F7LoR3XYkvS76bfaqe/RKqmKoBcRIm6zDH/qyhlZgd5tqt0
+         6SPITQxTG56JIKwLfDNSho9OgUL/USEDDkvIT35H4NH4LvEDCwJthm88xlniP2ZxBj+Z
+         a6MA==
+X-Gm-Message-State: AOAM53065/enzU9VRbjxS8g2p/cCwNlGM7ElDi9lLZQVqJ2waADRwr72
+        6gq6OF45gTy1NF6K+yfNQwk0fD4ziYpnaw==
+X-Google-Smtp-Source: ABdhPJxpJ+l2HZnyCZFV4l5AhFdQti/g+NjkiIxQWV5JfL7+b5zo1Dwj1KsaXDmwMtkX0JIsX7QE4A==
+X-Received: by 2002:ae9:dfc7:0:b0:648:e065:84be with SMTP id t190-20020ae9dfc7000000b00648e06584bemr4538507qkf.129.1645481480727;
+        Mon, 21 Feb 2022 14:11:20 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id h1sm28345769qkn.71.2022.02.21.14.11.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Feb 2022 14:11:19 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <238e6fb0-cd77-4772-3e92-23941dc74403@roeck-us.net>
+Date:   Mon, 21 Feb 2022 14:11:17 -0800
 MIME-Version: 1.0
-References: <1f39432b-84e2-e6dc-a6b8-c48ad5cf2210@gmail.com>
-In-Reply-To: <1f39432b-84e2-e6dc-a6b8-c48ad5cf2210@gmail.com>
-From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date:   Mon, 21 Feb 2022 23:10:21 +0100
-Message-ID: <CANiq72ko6=dYBvbRc5T7Qq_2mxRtq1NpvcV_saMbTDfz0PK1aw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/6] auxdisplay: Add support for the Titanmec TM1628 7
- segment display controller
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 1/2] dt-bindings: hwmon: add tmp464.yaml
+Content-Language: en-US
+To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>
+Cc:     linux-hwmon@vger.kernel.org, Agathe Porte <agathe.porte@nokia.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220218150908.1947772-1-linux@roeck-us.net>
+ <YhNWVLHYVtCvdGhi@localhost.localdomain>
+ <66e6b131-274f-454b-44f6-17df879d71a9@roeck-us.net>
+ <YhQDGHD3S0qwP2OB@localhost.localdomain>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <YhQDGHD3S0qwP2OB@localhost.localdomain>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 9:19 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
-> v2:
-> - (re-)add Andreas' SoB to two patches
+On 2/21/22 13:24, Krzysztof Adamski wrote:
+> Dnia Mon, Feb 21, 2022 at 08:16:15AM -0800, Guenter Roeck napisał(a):
+>>> I still thing we should have the same format here and in tmp421, for
+>>> consistency. If use the same property name, "ti,n-factor" but on tmp421
+>>> you have use 32bit value while here you have to use 8bit (which is weird
+>>> in DT, BTW), it might be confusing.
+>>> Back when we did this for TMP421, there was some discussion and we
+>>> settled on this approach, why do it differently now?
+>>>
+>>
+>> I seem to recall from that discussion that there was supposedly no way to
+>> express negative numbers in devicetree. Obviously that is incorrect.
+> 
+> Well, I would still argue it *is* correct. DT only support unsigned
+> numbers and, really, only 32 or 64 bit. See the chapter 2.2.4 Properties
+> in:
+> https://github.com/devicetree-org/devicetree-specification/releases/download/v0.4-rc1/devicetree-specification-v0.4-rc1.pdf
+> 
+> Devicetree also supports array of bytes, and this is how we get the
+> /bits/ magic but this is just a syntactic suggar. The same is true about
+> negative values. Just decompile your compiled DTB and you will see.
+> To put it in other words - DTS does support negative values, DTB don't.j
+> 
+>> In addition to that, I strongly suspect that the tmp421 code as written
+>> does not work. Its value range is specified as 0..255, but it is read with
+>>     err = of_property_read_s32(child, "ti,n-factor", &val);
+>> and range checked with
+>>     if (val > 127 || val < -128) {
+>>                dev_err(dev, "n-factor for channel %d invalid (%d)\n",
+>>                       i, val);
+>>                return -EINVAL;
+>>        }
+>>
+>> That just looks wrong. Either the value range is 0..255 and checked
+>> as 0 .. 255, or it is -128 .. 127 and must be both checked and specified
+>> accordingly. This made me look into the code and I found how negative
+>> numbers are supposed to be handled.
+> 
+> It worked for me when I tested that. I could redo the test, if you are
+> unsure. The code also looks good to me. I wasn't convinced for this
+> format in yaml but after the whole discussion we had, we settled on
+> that, with Robs blessing :)
+> 
 
-But those were also developed by you too, right? i.e. it should have a
-Co-developed-by too, otherwise it looks like you only handled the
-patch:
+It is hard for me to believe that you can enter, say, 255 into the dts file
+and of_property_read_s32() reads it as -1. If so, of_property_read_s32()
+could never support values of 128 and above, which seems unlikely.
 
-```
-Example of a patch submitted by the From: author::
+Now, I can imagine that one can enter 0xffffffff and of_property_read_s32()
+returns -1, but that isn't what is documented for tmp421.
 
-        <changelog>
+Guenter
 
-        Co-developed-by: First Co-Author <first@coauthor.example.org>
-        Signed-off-by: First Co-Author <first@coauthor.example.org>
-        Co-developed-by: Second Co-Author <second@coauthor.example.org>
-        Signed-off-by: Second Co-Author <second@coauthor.example.org>
-        Signed-off-by: From Author <from@author.example.org>
-```
+> Here's the actual discussion where all this was considered:
+> https://patchwork.kernel.org/project/linux-hwmon/patch/3ff7b4cc57dab2073fa091072366c1e524631729.1632984254.git.krzysztof.adamski@nokia.com/
+> 
+> I'm not saying the way we do this for tmp421 is better or even right,
+> all I say is that it would make sense to be consistent and not redo this
+> discussion every time we have this problem.
+> 
+> Krzysztof
 
-Cheers,
-Miguel
