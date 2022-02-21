@@ -2,66 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 780FC4BDB68
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:40:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63E3A4BDDEC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:46:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355281AbiBUKsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 05:48:00 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44558 "EHLO
+        id S1355326AbiBUKtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 05:49:01 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355320AbiBUKrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 05:47:42 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC6054BFD;
-        Mon, 21 Feb 2022 02:08:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645438123; x=1676974123;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=IllAWlnl/SYaMR8rAmC0CK5PLIeHha4xbUrs57x67pE=;
-  b=MmfPgWfg1PIAGJleVVv56onNwHgKUFWrL/0AuQ7hsRmbkw58pEN5f4/W
-   brOGmLW0BlZYVixllUaEkrweINX4DceYr8IGFKiRRQYsv95vzWqBQDCJc
-   vGVFu5t795fdF6rM9T60w1PsuK6HBWr2BPYAEjPyxPxitaVZ/LEuRDmah
-   g=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 21 Feb 2022 02:08:42 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 02:08:41 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 21 Feb 2022 02:08:41 -0800
-Received: from [10.216.7.34] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Mon, 21 Feb
- 2022 02:08:37 -0800
-Message-ID: <04138c2c-7dff-3378-ffd7-cfb0c146a763@quicinc.com>
-Date:   Mon, 21 Feb 2022 15:38:31 +0530
+        with ESMTP id S235388AbiBUKsf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 05:48:35 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 107E056218
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 02:10:05 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nM5dn-0001Es-9Z; Mon, 21 Feb 2022 11:09:59 +0100
+Message-ID: <b4e2099b6d9511f144bbbf6355f8c284b3328901.camel@pengutronix.de>
+Subject: Re: [PATCH v2 3/9] soc: imx: gpcv2: add support for i.MX8MP power
+ domains
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        patchwork-lst@pengutronix.de
+Date:   Mon, 21 Feb 2022 11:09:58 +0100
+In-Reply-To: <YhIniLdFtcpODXBN@pendragon.ideasonboard.com>
+References: <20220207192547.1997549-1-l.stach@pengutronix.de>
+         <20220207192547.1997549-3-l.stach@pengutronix.de>
+         <YhAlfAunReS14b/E@pendragon.ideasonboard.com>
+         <YhIniLdFtcpODXBN@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v2 05/19] ath11k: Remove core PCI references from PCI
- common code
-Content-Language: en-US
-To:     Kalle Valo <kvalo@kernel.org>
-CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>
-References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
- <1642337235-8618-6-git-send-email-quic_mpubbise@quicinc.com>
- <87a6fggo0h.fsf@kernel.org>
- <df81787b-3ad4-62b7-7a39-fdca6775bae1@quicinc.com>
- <875yp8zihm.fsf@kernel.org>
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <875yp8zihm.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,63 +53,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
+
+Am Sonntag, dem 20.02.2022 um 13:35 +0200 schrieb Laurent Pinchart:
+> Hi Lucas,
+> 
+> On Sat, Feb 19, 2022 at 01:02:21AM +0200, Laurent Pinchart wrote:
+> > On Mon, Feb 07, 2022 at 08:25:41PM +0100, Lucas Stach wrote:
+> > > This adds driver support for all the GPC power domains found on
+> > > the i.MX8MP SoC.
+> > > 
+> > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > > ---
+> > >  drivers/soc/imx/gpcv2.c | 387 +++++++++++++++++++++++++++++++++++++++-
+> > >  1 file changed, 386 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> > > index 01f46b078df3..a7c92bdfc53b 100644
+> > > --- a/drivers/soc/imx/gpcv2.c
+> > > +++ b/drivers/soc/imx/gpcv2.c
+> 
+> [snip]
+> 
+> > > @@ -137,6 +183,21 @@
+> > >  #define IMX8MN_DISPMIX_HSK_PWRDNREQN		BIT(7)
+> > >  #define IMX8MN_HSIO_HSK_PWRDNREQN		BIT(5)
+> > >  
+> > > +#define IMX8MP_MEDIAMIX_PWRDNACKN		BIT(3)
+> > 
+> > This should be bit 30.
+> 
+> With this fixed,
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> with a soon to be posted driver for the MEDIA_BLK_CTRL.
+> 
+> While this shouldn't be a blocker, I'm wondering how we should deal with
+> the NOC configuration that TF-A handles in the power domain code ([1]).
+> The reference manual doesn't document the registers, which doesn't help.
+> 
+Yes, that doesn't help. My hope was that at some point we could get
+around to add proper interconnect drivers for those NoC nodes and have
+the description for those scheduling parameters in the DT, but without
+any documentation this will probably be a hard nut to crack.
+
+> There are also two registers in the MEDIA_BLK_CTRL that are specific to
+> the LCDIF and ISI, see [2]. Would you recommend dealing with them in the
+> imx8m-blk-ctrl driver (maybe in the power domain notifier, the same way
+> we set bit 8 in the CLK_EN register), or through a syscon phandle
+> directly in the LCDIF and ISI drivers ?
+
+For now I think it would be good enough to initialize those registers
+in the power domain notifier. I don't think the ISI or LCDIF drivers
+have any more information available that would make it beneficial to
+change those values on the fly. As long as they are just static init
+values, writing them once from the PM notifier should be good enough.
+
+Regards,
+Lucas
+
+> 
+> [1] https://source.codeaurora.org/external/qoriq/qoriq-components/atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf-5.10.72-2.2.0#n156
+> [2] https://source.codeaurora.org/external/qoriq/qoriq-components/atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf-5.10.72-2.2.0#n146
+> 
+> > > +#define IMX8MP_HDMIMIX_PWRDNACKN		BIT(29)
+> > > +#define IMX8MP_HSIOMIX_PWRDNACKN		BIT(28)
+> > > +#define IMX8MP_VPUMIX_PWRDNACKN			BIT(26)
+> > > +#define IMX8MP_GPUMIX_PWRDNACKN			BIT(25)
+> > > +#define IMX8MP_MLMIX_PWRDNACKN			(BIT(23) | BIT(24))
+> > > +#define IMX8MP_AUDIOMIX_PWRDNACKN		(BIT(20) | BIT(31))
+> > > +#define IMX8MP_MEDIAMIX_PWRDNREQN		BIT(14)
+> > > +#define IMX8MP_HDMIMIX_PWRDNREQN		BIT(13)
+> > > +#define IMX8MP_HSIOMIX_PWRDNREQN		BIT(12)
+> > > +#define IMX8MP_VPUMIX_PWRDNREQN			BIT(10)
+> > > +#define IMX8MP_GPUMIX_PWRDNREQN			BIT(9)
+> > > +#define IMX8MP_MLMIX_PWRDNREQN			(BIT(7) | BIT(8))
+> > > +#define IMX8MP_AUDIOMIX_PWRDNREQN		(BIT(4) | BIT(15))
+> > > +
+> > >  /*
+> > >   * The PGC offset values in Reference Manual
+> > >   * (Rev. 1, 01/2018 and the older ones) GPC chapter's
+> 
+> [snip]
+> 
 
 
-On 2/21/2022 2:47 PM, Kalle Valo wrote:
-> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
-> 
->> On 1/28/2022 3:50 PM, Kalle Valo wrote:
->>> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
->>>
->>>> Remove core PCI and ath11k PCI references(struct ath11k_pci)
->>>> from PCI common code. Since, PCI common code will be used
->>>> by hybrid bus devices, this code should be independent
->>>> from ATH11K PCI references and Linux core PCI references
->>>> like struct pci_dev.
->>>>
->>>> Since this change introduces function callbacks for bus wakeup
->>>> and bus release operations, wakeup_mhi HW param is no longer
->>>> needed and hence it is removed completely. Alternatively, bus
->>>> wakeup/release ops for QCA9074 are initialized to NULL as
->>>> QCA9704 does not need bus wakeup/release for register accesses.
->>>>
->>>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
->>>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->>>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
->>>> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->>>>
->>>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
->>>
->>> [...]
->>>
->>>> @@ -651,6 +653,13 @@ struct ath11k_bus_params {
->>>>    	bool fixed_bdf_addr;
->>>>    	bool fixed_mem_region;
->>>>    	bool static_window_map;
->>>> +	struct {
->>>> +		void (*wakeup)(struct ath11k_base *ab);
->>>> +		void (*release)(struct ath11k_base *ab);
->>>> +		int (*get_msi_irq)(struct ath11k_base *ab, unsigned int vector);
->>>> +		void (*window_write32)(struct ath11k_base *ab, u32 offset, u32 value);
->>>> +		u32 (*window_read32)(struct ath11k_base *ab, u32 offset);
->>>> +	} ops;
->>>>    };
->>>
->>> Please don't use bus_params for this, I'm starting to suspect that we
->>> actually need to remove struct ath11k_bus_params altogether. It would be
->>> cleaner to have separate 'struct ath11k_pci_ops' or something like that.
->>>
->>
->> Sure, something like 'struct ath11k_bus_ops' in ath11k_base struct
->> would be appropriate.
-> 
-> But we have 'struct ath11k_hif_ops' already, and that's basically
-> ath11k_bus_ops with a confusing name :) (IIRC HIF means Host InterFace,
-> or something like that.) So having both ath11k_bus_ops and
-> ath11k_hif_ops would become even more confusing.
-> 
-> You are basically abstracting out PCI functionality, that's why I
-> suggested ath11k_pci_ops. But yeah, naming is hard :)
-> 
-
-Hmmm, makes sense :)
