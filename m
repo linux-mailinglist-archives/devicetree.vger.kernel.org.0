@@ -2,115 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA0C64BD2FA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 02:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0810A4BD31C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 02:28:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235646AbiBUA6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 19:58:44 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:40352 "EHLO
+        id S236416AbiBUB23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 20:28:29 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:46278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231709AbiBUA6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 19:58:44 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DE1140A23;
-        Sun, 20 Feb 2022 16:58:19 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D4F9A83047;
-        Mon, 21 Feb 2022 01:58:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1645405097;
-        bh=ySgxRbIRRZCUcFMFrvjpHqo7ATo2umBGc0PreJbrLVs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=evO6pryiQyKHiDVJ1nZEIAa7m9VQD5Yu28W7Ovtt/k8RW0MEReEs+wC+xTCkxFeXn
-         654dtYbpHRDxzoPHjVq3A39BCDdoBd/RKYzc5Hv5LJXZKYPR+pyZWqJ/8j3ELxKd4t
-         OR2wqnprh1DvVF/zknJdHVjNYQPQ0L7uCE0je/iSrGeGZmJ3l24FEN4Ug9mOr0G7wy
-         AWhm8kFU8Ixgy+BAVQIGl3lvxv5hlH88D+e+xiEW/VneP2s5Ke2t2fMUrsENViS7DF
-         34OuiuIqnjuMn6+zpXhEQCd4lKJrkv1KiBkM6LY8MWpwfTPOw0bSQj1l8crCGqN9dq
-         OOo1or8aSs4kA==
-Message-ID: <77c85470-5378-8c8b-8e5f-d57c83773ed6@denx.de>
-Date:   Mon, 21 Feb 2022 01:58:16 +0100
+        with ESMTP id S233987AbiBUB22 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 20:28:28 -0500
+Received: from 189.cn (ptr.189.cn [183.61.185.104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D654222506;
+        Sun, 20 Feb 2022 17:28:04 -0800 (PST)
+HMM_SOURCE_IP: 10.64.8.41:55796.1374937723
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
+        by 189.cn (HERMES) with SMTP id 9CEA6100114;
+        Mon, 21 Feb 2022 09:27:51 +0800 (CST)
+Received: from  ([172.27.8.53])
+        by gateway-151646-dep-b7fbf7d79-9vctg with ESMTP id 33968a4650c64d8492bd84a8ba4934bc for jiaxun.yang@flygoat.com;
+        Mon, 21 Feb 2022 09:28:03 CST
+X-Transaction-ID: 33968a4650c64d8492bd84a8ba4934bc
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 172.27.8.53
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+Message-ID: <034c425e-bcd8-0fe4-f10c-3ef297ffcc72@189.cn>
+Date:   Mon, 21 Feb 2022 09:27:49 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v10 1/4] MIPS: Loongson64: dts: update the display
+ controller device node
 Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com
-References: <20220215084412.8090-1-marex@denx.de>
- <20220215084412.8090-2-marex@denx.de>
- <20220217222328.7F7B3C340E8@smtp.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220217222328.7F7B3C340E8@smtp.kernel.org>
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20220220145554.117854-1-15330273260@189.cn>
+ <20220220145554.117854-2-15330273260@189.cn>
+ <a865b770-126e-a7c0-48bb-4f072b8dc5bd@flygoat.com>
+From:   Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <a865b770-126e-a7c0-48bb-4f072b8dc5bd@flygoat.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/17/22 23:23, Stephen Boyd wrote:
-> Quoting Marek Vasut (2022-02-15 00:44:11)
->> Some platforms require clock to be always running, e.g. because those clock
->> supply devices which are not otherwise attached to the system. One example
->> is a system where the SoC serves as a crystal oscillator replacement for a
->> programmable logic device. The critical-clock property of a clock controller
->> allows listing clock which must never be turned off.
+
+On 2022/2/21 02:18, Jiaxun Yang wrote:
+>
+>
+> 在 2022/2/20 14:55, Sui Jingfeng 写道:
+>> From: suijingfeng <suijingfeng@loongson.cn>
 >>
->> The implementation here is similar to "protected-clock", except protected
->> clock property is currently driver specific. This patch attempts to make
->> a generic implementation of "critical-clock" instead.
+>> The display controller is a pci device, its PCI vendor id is 0x0014
+>> its PCI device id is 0x7a06.
 >>
->> Unlike "assigned-clocks", the "critical-clock" must be parsed much earlier
->> in __clk_register() to assign CLK_IS_CRITICAL flag to clk_init_data .flags
->> field. The parsing code obviously need to be cleaned up and factor out into
->> separate function.
+>> 1) In order to let the driver to know which chip the DC is contained
+>>     in, the compatible string of the display controller is updated
+>>     according to the chip's name.
 >>
->> The new match_clkspec() callback is used to determine whether struct clk_hw
->> that is currently being registered matches the clock specifier in the DT
->> "critical-clock" property, and if so, then the CLK_IS_CRITICAL is added to
->> these newly registered clock. This callback is currently driver specific,
->> although I suspect a common and/or generic version of the callback could
->> be added. Also, this new callback could possibly be used to replace (*get)
->> argument of of_clk_add_hw_provider() later on too.
-> 
-> I don't see any mention of of_clk_detect_critical() here. We don't want
-> to enshrine the critical clk flag in DT. There was a bunch of discussion
-> about this on the mailing list years ago and the end result was this
-> instantly deprecated function to set the flag based on a DT property.
-> That thread isn't mentioned here either.
+>> 2) Add display controller device node for ls2k1000 SoC
+>>
+>> Reported-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ^ The usage of Reported-by flag seems wired here.
+> In most case we use it to credit people who find a bug that is already 
+> in-tree.
+> Reviewing effort is already credited by Reviewed-by flag.
+>
+> If you intend to let maintainers track their suggestions easier, the 
+> common
+> practice is to append suggester's name after each entry of changelog
+> between versions.
+>
+> Thanks.
 
-I wasn't aware of clock-critical DT prop, but it seems deprecated and 
-not generic enough anyway.
+Ok, Now I know that. I will revise it next time, thank you.
 
-> I see that there isn't any more 'clock-critical' in the kernel's dts so
-> I wonder if we would be able to get rid of that function or at least
-> hollow it out and see if anyone complains. Either way, what is the
-> actual problem trying to be solved? If the crystal oscillator isn't used
-> anywhere in the kernel why are we registering it with the clk framework?
-
-The problem is the other way around -- the SoC clock IPs often have a 
-couple of general purpose clock routed to various SoC IO pins, those 
-clock can be used for any purpose, and those are already registered with 
-kernel clock framework. Some devices save on BoM and use those general 
-purpose clock to supply clock networks which are otherwise not 
-interacting with the kernel, like some CPLD for example. Since from the 
-kernel point of view, those clock are unused, the kernel can turn those 
-clock OFF and that will make the entire device fail.
-
-So this critical-clocks property permits marking clock which must not 
-ever be turned OFF accordingly.
-
-[...]
+>
+>> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+>> Signed-off-by: Sui Jingfeng <15330273260@189.cn>
+>> ---
+>>   arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 8 ++++++++
+>>   arch/mips/boot/dts/loongson/ls7a-pch.dtsi          | 7 ++-----
+>>   2 files changed, 10 insertions(+), 5 deletions(-)
+>>
+> [...]
+> - Jiaxun
