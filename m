@@ -2,144 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2E1B4BDC85
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 450B14BE003
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:51:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358432AbiBUM65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 07:58:57 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57778 "EHLO
+        id S237459AbiBUNAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 08:00:01 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231617AbiBUM6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 07:58:54 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 384401EAD5;
-        Mon, 21 Feb 2022 04:58:30 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21LCwI27047020;
-        Mon, 21 Feb 2022 06:58:18 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1645448298;
-        bh=zJPkUq5bndr8qfbg5WIBf/HuUb+QSE7Kcn6n8iOJ4gU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Xix/xZcWtlSkqka3uGCAoboZQFohva0T2zZu93RneAZaStraEU8uCUh28fIkSYXxv
-         Ngt5guRsBnBV2GhcFu/gr/S1Xeitq9pwA34d/8QQVncSRP5QuKvqTxyiE2XgEQ48R+
-         hF18EocxkGyJS2S1Vkjp1PE5cflc3pWWhjCluARg=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21LCwI3Z035992
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 21 Feb 2022 06:58:18 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 21
- Feb 2022 06:58:18 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 21 Feb 2022 06:58:18 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21LCwHha021570;
-        Mon, 21 Feb 2022 06:58:17 -0600
-Date:   Mon, 21 Feb 2022 06:58:17 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Drew Fustini <dfustini@baylibre.com>
-CC:     =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dave Gerlach <d-gerlach@ti.com>, <devicetree@vger.kernel.org>,
-        Keerthy <j-keerthy@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S1348732AbiBUNAA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 08:00:00 -0500
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE471EADA
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 04:59:35 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2BC3024000E;
+        Mon, 21 Feb 2022 12:59:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1645448371;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=uhTsNJ0kQ/JteUN01wS0pWNvIJDnfr56O80qPFYTQnw=;
+        b=Alwdtw0XSor57w4FVemMV1hXlcsJhPuvWYXPMpOc+ZmsLlD+gUr/85IBzkW4AEh+MpD9Pz
+        GONNuZNjuZiWPr3bNNBzwK6A6XdPiC5plnS8DQk6Bpma9rwYKFVabKt7huyLV0/iL9eENv
+        XZTvGh9ODK0HwLKXHOevSkDK4AAkYqgJdyDnwG/s2XIzRXjZ3MHMi5P2Xf2xZ7g4xnn6M0
+        inB2hbEUozQbq3ZVwUdXus0c9CPEr/xU0GRchwkQNWtDifsCCUeyLDWh/KfuGFRlROY2b+
+        QZGQ7WVCWy42MLbWe+rtfjbu9EK7fsFpxb0w7YF+53H2YJFefrpvR78+xxEuag==
+Date:   Mon, 21 Feb 2022 13:59:27 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, <s-anna@ti.com>,
-        <khilman@baylibre.com>
-Subject: Re: [PATCH 00/11] soc: ti: wkup_m3_ipc: support vtt toggle, io
- isolation & voltage scaling
-Message-ID: <20220221125817.eg2rf6ktrhiq7eck@overbook>
-References: <20220219215328.485660-1-dfustini@baylibre.com>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Laetitia MARIOTTINI <laetitia.mariottini@se.com>
+Subject: Re: [PATCH 5/8] dma: dw: Avoid partial transfers
+Message-ID: <20220221135915.7a441663@xps13>
+In-Reply-To: <TYYPR01MB7086F412B035A09AED2037A9F53A9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+References: <20220218181226.431098-1-miquel.raynal@bootlin.com>
+        <20220218181226.431098-6-miquel.raynal@bootlin.com>
+        <YhIcyyBp53LnMbjU@smile.fi.intel.com>
+        <TYYPR01MB7086F412B035A09AED2037A9F53A9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220219215328.485660-1-dfustini@baylibre.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13:53-20220219, Drew Fustini wrote:
-> Improve the wkup_m3_ipc driver to better support the TI Wakeup Cortex M3 
-> device found on TI AM33xx and AM43xx SoCs.
-> 
-> This series derives from these commits in the ti-linux-5.10.y branch of
-> the TI Linux repo [1]:
-> 
->   6ab4eff1034b ("remoteproc: move rproc_da_to_va declaration to remoteproc.h")
->   2a9be39a26f7 ("dt-bindings: wkup_m3_ipc: Add vtt toggling bindings")
->   c65263f9e12c ("wkup_m3_ipc: Add support for toggling VTT regulator")
->   5c6c821803e1 ("dt-bindings: wkup_m3_ipc: Add ti,io-isolation property")
->   196c46f7577d ("wkup_m3_ipc: Add support for IO Isolation")
->   c28acc847e5d ("soc: ti: wkup_m3_ipc: Add support for i2c voltage scaling")
->   a4f9ef4ab5ca ("ARM: dts: am437x-gp-evm: Enable wkup_m3 control of IO isolation")
->   94de756f1771 ("ARM: dts: am33xx: Add scale data fw to wkup_m3_ipc node")
->   b7ae4b063793 ("ARM: dts: am43xx: Add scale data fw to wkup_m3_ipc node")
->   451ec7871ae7 ("soc: ti: wkup_m3_ipc: Add debug option to halt m3 in suspend")
-> 
-> Minor changes have been made to some patches to resolve conflicts and 
-> to split i2c voltage scaling dt-bindings into separate patch.
-> 
-> [1] git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git
-> 
-> Dave Gerlach (10):
->   dt-bindings: wkup_m3_ipc: Add vtt toggling bindings
->   soc: ti: wkup_m3_ipc: Add support for toggling VTT regulator
->   dt-bindings: wkup_m3_ipc: Add ti,io-isolation property
->   soc: ti: wkup_m3_ipc: Add support for IO Isolation
->   ARM: dts: am437x-gp-evm: Enable wkup_m3 control of IO isolation
->   dt-bindings: wkup_m3_ipc: Add scale-data-fw property
->   soc: ti: wkup_m3_ipc: Add support for i2c voltage scaling
->   ARM: dts: am33xx: Add scale data fw to wkup_m3_ipc node
->   ARM: dts: am43xx: Add scale data fw to wkup_m3_ipc node
->   soc: ti: wkup_m3_ipc: Add debug option to halt m3 in suspend
-> 
-> Suman Anna (1):
->   remoteproc: move rproc_da_to_va declaration to remoteproc.h
+Hi Andy,
 
+phil.edworthy@renesas.com wrote on Mon, 21 Feb 2022 08:14:47 +0000:
 
-This series seems to needing to go to various maintainers here
+> Hi Andy,
+>=20
+> I wrote the patch a few years ago, but didn't get the time to upstream it.
+>=20
+> I am not aware of a HW integration bug on the RZ/N1 device but can't rule=
+ it out. I am struggling to see what kind of HW issue this could be as, iir=
+c, word accesses work fine when the size of the transfer is a multiple of t=
+he MEM width.
+>=20
+> I found the issue when testing DMA with the UART transferring different a=
+mounts of data.
+>=20
+> > > +		if (sconfig->dst_addr_width && sconfig->dst_addr_width < =20
+> > data_width) =20
+> > > +			data_width =3D sconfig->dst_addr_width; =20
+> >=20
+> > But here no check that you do it for explicitly peripheral to memory, so
+> > this
+> > will affect memory to peripheral transfers as well. =20
+> No, this should be ok as this change is within:
+> 	case DMA_DEV_TO_MEM:
 
-Series should cleanup (example: txt files to yaml bindings),
-prior to creating patch series for each maintainer. I'd suggest bindings
-and drivers in 1 kernel rev and follow it up with dts updata for the
-next rev.
+I will add this to the commit log to clarify.
 
-
-> 
->  .../bindings/soc/ti/wkup_m3_ipc.txt           |  91 ++++++++
->  arch/arm/boot/dts/am335x-bone-common.dtsi     |   4 +
->  arch/arm/boot/dts/am335x-evm.dts              |   4 +
->  arch/arm/boot/dts/am335x-evmsk.dts            |   4 +
->  arch/arm/boot/dts/am437x-gp-evm.dts           |   5 +
->  arch/arm/boot/dts/am437x-sk-evm.dts           |   4 +
->  arch/arm/boot/dts/am43x-epos-evm.dts          |   4 +
->  drivers/remoteproc/remoteproc_internal.h      |   1 -
->  drivers/soc/ti/wkup_m3_ipc.c                  | 208 +++++++++++++++++-
->  include/linux/remoteproc.h                    |   1 +
->  include/linux/wkup_m3_ipc.h                   |  13 ++
->  11 files changed, 334 insertions(+), 5 deletions(-)
-> 
-> -- 
-> 2.32.0
-> 
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Thanks,
+Miqu=C3=A8l
