@@ -2,101 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 450B14BE003
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:51:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62ED74BE83E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:05:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237459AbiBUNAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 08:00:01 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58780 "EHLO
+        id S1358496AbiBUNDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 08:03:12 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348732AbiBUNAA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 08:00:00 -0500
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE471EADA
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 04:59:35 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 2BC3024000E;
-        Mon, 21 Feb 2022 12:59:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1645448371;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=uhTsNJ0kQ/JteUN01wS0pWNvIJDnfr56O80qPFYTQnw=;
-        b=Alwdtw0XSor57w4FVemMV1hXlcsJhPuvWYXPMpOc+ZmsLlD+gUr/85IBzkW4AEh+MpD9Pz
-        GONNuZNjuZiWPr3bNNBzwK6A6XdPiC5plnS8DQk6Bpma9rwYKFVabKt7huyLV0/iL9eENv
-        XZTvGh9ODK0HwLKXHOevSkDK4AAkYqgJdyDnwG/s2XIzRXjZ3MHMi5P2Xf2xZ7g4xnn6M0
-        inB2hbEUozQbq3ZVwUdXus0c9CPEr/xU0GRchwkQNWtDifsCCUeyLDWh/KfuGFRlROY2b+
-        QZGQ7WVCWy42MLbWe+rtfjbu9EK7fsFpxb0w7YF+53H2YJFefrpvR78+xxEuag==
-Date:   Mon, 21 Feb 2022 13:59:27 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Laetitia MARIOTTINI <laetitia.mariottini@se.com>
-Subject: Re: [PATCH 5/8] dma: dw: Avoid partial transfers
-Message-ID: <20220221135915.7a441663@xps13>
-In-Reply-To: <TYYPR01MB7086F412B035A09AED2037A9F53A9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-References: <20220218181226.431098-1-miquel.raynal@bootlin.com>
-        <20220218181226.431098-6-miquel.raynal@bootlin.com>
-        <YhIcyyBp53LnMbjU@smile.fi.intel.com>
-        <TYYPR01MB7086F412B035A09AED2037A9F53A9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S1346408AbiBUNDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 08:03:11 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99EBAF34;
+        Mon, 21 Feb 2022 05:02:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645448568; x=1676984568;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=KZx0AC6N1KetqJgjIGPHT+c6fRZkwXmMUhQ/6zLIsZ0=;
+  b=zAipwSRgTinJBatAPL2aYqA5hrm6rOEFmtMmEQjQ7YQRvsA5M89Vn0xE
+   Kkr2JUaFysvmR//urkkITDHAFsnFhWCHpzsjDMMTqsqgFVFuWPnL7cDIv
+   +fiTuvV2/KhhqiZJNGKad0Arne1i54pYMunHuEuca5JOhLP2YjXfADBu/
+   k=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 21 Feb 2022 05:02:48 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 05:02:47 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Mon, 21 Feb 2022 05:02:47 -0800
+Received: from [10.216.15.213] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Mon, 21 Feb
+ 2022 05:02:44 -0800
+Message-ID: <58726955-9682-15fc-56c7-cf504ef4d3e9@quicinc.com>
+Date:   Mon, 21 Feb 2022 18:32:40 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH 0/3] soundwire: qcom: add pm runtime support
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>,
+        <yung-chuan.liao@linux.intel.com>
+CC:     <pierre-louis.bossart@linux.intel.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>
+References: <20220221104127.15670-1-srinivas.kandagatla@linaro.org>
+From:   "Srinivasa Rao Mandadapu (Temp)" <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <20220221104127.15670-1-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Thanks Srini for Your patches!!!
 
-phil.edworthy@renesas.com wrote on Mon, 21 Feb 2022 08:14:47 +0000:
+I think runtime pm support in bolero codecs side still pending right?
 
-> Hi Andy,
->=20
-> I wrote the patch a few years ago, but didn't get the time to upstream it.
->=20
-> I am not aware of a HW integration bug on the RZ/N1 device but can't rule=
- it out. I am struggling to see what kind of HW issue this could be as, iir=
-c, word accesses work fine when the size of the transfer is a multiple of t=
-he MEM width.
->=20
-> I found the issue when testing DMA with the UART transferring different a=
-mounts of data.
->=20
-> > > +		if (sconfig->dst_addr_width && sconfig->dst_addr_width < =20
-> > data_width) =20
-> > > +			data_width =3D sconfig->dst_addr_width; =20
-> >=20
-> > But here no check that you do it for explicitly peripheral to memory, so
-> > this
-> > will affect memory to peripheral transfers as well. =20
-> No, this should be ok as this change is within:
-> 	case DMA_DEV_TO_MEM:
 
-I will add this to the commit log to clarify.
-
-Thanks,
-Miqu=C3=A8l
+On 2/21/2022 4:11 PM, Srinivas Kandagatla wrote:
+> This patchset adds pm runtime support to Qualcomm SounWire Controller using
+> SoundWire Clock Stop and Wake up using Headset events on supported instances and
+> a bus reset on instances that require full reset.
+>
+>
+> Tested it on SM8250 MTP and Dragon Board DB845c
+>
+> --srini
+>
+>
+> Srinivas Kandagatla (3):
+>    soundwire: qcom: add runtime pm support
+>    dt-bindings: soundwire: qcom: document optional wake irq
+>    soundwire: qcom: add wake up interrupt support
+>
+>   .../bindings/soundwire/qcom,sdw.txt           |   2 +-
+>   drivers/soundwire/qcom.c                      | 215 +++++++++++++++++-
+>   2 files changed, 215 insertions(+), 2 deletions(-)
+>
