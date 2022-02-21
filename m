@@ -2,90 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BD7C4BEC12
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 21:47:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A204BEC2B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 22:01:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233997AbiBUUsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 15:48:20 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:58772 "EHLO
+        id S233277AbiBUVCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 16:02:12 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230412AbiBUUsT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 15:48:19 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BBBCB12;
-        Mon, 21 Feb 2022 12:47:55 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id gb39so36312018ejc.1;
-        Mon, 21 Feb 2022 12:47:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zGSZ89NGWU5FaKpIsF1/9hh9l6nIkwe/qG/ZNjD1Gho=;
-        b=WGVTzUfSeqcpIobttsC2YB0FBAfz9AJG8O2SqFwqkbZN1W3mzv4xX4ji5VS7KE9sr4
-         aeSMQn7UgoagvDwc5wLxL0ymAtY3KdbU/MwJay+vgNFlvD3o4B6QbH3TIOdbxfDrTX8w
-         yCyFRCLPSWS48GElAiH9sOMR2iUtZGlP2GYEypbF+p93pTzVvrS7lSUQcwecdfevodlW
-         M6WyE8M47stH/JwBKC8kVH2A5EAF/4N8agW/vA6MnKAKFk4i2i1E2GE+FU31wIGcpFHO
-         hNpcxAOmWoMW/hkjKWFHFnIQ3L+ywIjSLHaJtXrqx94QBZyDycAiIky/+bVBmJoo+DBb
-         0BuQ==
+        with ESMTP id S232555AbiBUVCL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 16:02:11 -0500
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26A2DDA5;
+        Mon, 21 Feb 2022 13:01:47 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id qk11so36386581ejb.2;
+        Mon, 21 Feb 2022 13:01:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zGSZ89NGWU5FaKpIsF1/9hh9l6nIkwe/qG/ZNjD1Gho=;
-        b=fjxN3e1b+Mtmc1N+RHEm+C7rIO6GUsRZexXrZs2YMq5FFRf2UxyD+oa//4Vwh0cQM/
-         yyOh6OIWlZ4gPbP9UfOhA/taVpdQDyEELaM7ClGode8SmbcBteCvcsEFhxKtk/jKSmk3
-         srMOTNK0WvPA8rHRkyV3JLg4jjA9d2vMREVfYUQ6phK/dz8Q21kJPjJ3B0isw+ont2Ys
-         uHpdNHqpQXQcO3YjWiKoLSDLhpQRNHpgMrmbAguOBBy6MQMwSJTUBm5ztwAkwyPZIlNn
-         jSJ/LxsTPquA5wptlCTUtqn4Qdx36MUDUvksZ5bJWJw9/Y/CgffFknpjQNjmcZkeV15+
-         YpBQ==
-X-Gm-Message-State: AOAM533dYlvHOYbfKTltJVbgHj4I9XmHs+jDIaMcKmzjiUYewFZahl0s
-        1/KvJhy4uC80h489+wApXnq1dr/0TH39yTwriNE=
-X-Google-Smtp-Source: ABdhPJxdwH7zfNkiQ4rytH7m242Ve2I/jw1LQ+RosnvzuBHwS2SMPecJxy/LPj8BMksh+YX6BEylXz54Ck1bjtQTNag=
-X-Received: by 2002:a17:906:4cc7:b0:6d0:7efb:49f with SMTP id
- q7-20020a1709064cc700b006d07efb049fmr15837539ejt.639.1645476474036; Mon, 21
- Feb 2022 12:47:54 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=2974eKi5BdNp35gKs82/fhm6RumNbC6dF3NV48ttMrc=;
+        b=1eqzCAudxjM9+/gdX6Jkrrb47saHKR/G8cMmnpDSSGRsltcbboNsnFGFNubNEHqI9x
+         SyC902PaTUis3Vg2RQ0b7JKkYKoyiG/HL4WJwcon8g/P51E6immNKDB24ieBC3D7vo99
+         BWbW3oFOmwKG/G1AX/qYNCgbZViQ2gX0J3H4ImiwoVfXhIbY2jEK3kRBcZI7QLmk0xt0
+         87sPrgC/Bo69ztbKoSRvou4672H2gopBSXnkELT2AJPA/MpCZ6Z/fwL/9hNpkHch+sj/
+         0pl++ZaPy/eZI/F0cAZ38/pGzsCehVNO2fHL38+d0ow8rCX14rbta75v5cFreS2fl69o
+         a4wQ==
+X-Gm-Message-State: AOAM531JrT61ywkzyNBn085gjyS6fq/lPJt4/S+Mz4PLIMK8Jk1bJN5H
+        4x9N231HhYvrDthBHxdeBHsl3KIqrf4=
+X-Google-Smtp-Source: ABdhPJzztwOaZSVTcKC2G5n99pioUT5+4mVtbjxwfaAkvFPqFPoLnSzgiO6qRNho1HaBDipNXAVWwA==
+X-Received: by 2002:a17:906:3588:b0:6a7:7ac1:cac8 with SMTP id o8-20020a170906358800b006a77ac1cac8mr16443120ejb.342.1645477305493;
+        Mon, 21 Feb 2022 13:01:45 -0800 (PST)
+Received: from [192.168.0.122] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.googlemail.com with ESMTPSA id m7sm4115951eds.104.2022.02.21.13.01.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Feb 2022 13:01:44 -0800 (PST)
+Message-ID: <2546477f-4190-e838-3095-f47b31802445@kernel.org>
+Date:   Mon, 21 Feb 2022 22:01:43 +0100
 MIME-Version: 1.0
-References: <20220218042038.15176-1-jagathjog1996@gmail.com> <20220218042038.15176-6-jagathjog1996@gmail.com>
-In-Reply-To: <20220218042038.15176-6-jagathjog1996@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 21 Feb 2022 21:47:18 +0100
-Message-ID: <CAHp75Ve=CQ6DL-J=9v_fnCHZydc=QQZOAC=RkFq0Ckkjk+-dAw@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] iio: potentiometer: Add support for Maxim DS3502
-To:     Jagath Jog J <jagathjog1996@gmail.com>
-Cc:     jic23@kernel.org, lars@metafoo.de, sst@poczta.fm,
-        robh+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
+Content-Language: en-US
+To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <cover.1645460043.git.oleksii_moisieiev@epam.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <cover.1645460043.git.oleksii_moisieiev@epam.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 18, 2022 at 5:20 AM Jagath Jog J <jagathjog1996@gmail.com> wrote:
->
-> The DS3502 is a 7-bit, nonvolatile digital potentiometer featuring
-> an output voltage range of up to 15.5V.
-> DS3502 support is implemented into existing DS1803 driver.
+On 21/02/2022 18:26, Oleksii Moisieiev wrote:
+> Introducing new parameter called scmi_devid to the device-tree bindings.
+> This parameter should be set for the device nodes, which has
+> clocks/power-domains/resets working through SCMI.
+> Given parameter should set the device_id, needed to set device
+> permissions in the Firmware. This feature will be extremely useful for
+> the virtualized systems, which has more that one Guests running on the
+> system at the same time or for the syestems, which require several
+> agents with different permissions. Trusted agent will use scmi_devid to
+> set the Device permissions for the Firmware (See Section 4.2.2.10 [0]
+> for details).
+> Agents concept is described in Section 4.2.1 [0].
+> 
+> scmi_devid in Device-tree node example:
+> usb@e6590000
+> {
+>     scmi_devid = <19>;
+>     clocks = <&scmi_clock 3>, <&scmi_clock 2>;
+>     resets = <&scmi_reset 10>, <&scmi_reset 9>;
+>     power-domains = <&scmi_power 0>;
+> };
 
+And how do you prevent DT overlay adding such devid to any other node
+thus allowing any other device to send requests with given devid?
 
-> Datasheet: https://datasheets.maximintegrated.com/en/ds/DS3502.pdf
->
-> Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
+Plus few technicalities:
+1. Hyphen, not underscore in property name, so scmi-devid.
+2. Your schema does is not selected by anything. How is it intended to
+be used? Nothing is including it, either...
 
-Please, make sure the Datasheet will be in the tag block (tag block
-doesn't allow blank lines).
-
-1. summary
-2. blank line
-3. long description (may contain blank lines)
-4. blank line
-5. tag block (may not contain blank lines)
-
--- 
-With Best Regards,
-Andy Shevchenko
+Best regards,
+Krzysztof
