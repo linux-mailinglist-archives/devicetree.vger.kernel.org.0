@@ -2,204 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11BAC4BE947
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:07:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC7C34BE928
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:06:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358336AbiBUMxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 07:53:01 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50736 "EHLO
+        id S1358378AbiBUM4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 07:56:03 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358335AbiBUMxA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 07:53:00 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF841C10F;
-        Mon, 21 Feb 2022 04:52:36 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5BA63482;
-        Mon, 21 Feb 2022 13:52:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645447953;
-        bh=wZf75ab33ig0Wo1mulG1VIJgjrkjwCuvAbAR2SNt/W8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DiC0TC3VeFgDJrbzHx1FIa8os2YjyBOAXeDB/TuAbHrYiZ87b0iRuVOrqe6KnT5zW
-         vGXeE2jPWJkW0P6YWWW2BXkaL4FW140SkKxODDW3X6zj27QTOnG/9I4gGPhUaoGZ1j
-         yxxrR/VjC/DuefJ7Ca0AusZ7ol4NmHoC4Yd546e4=
-Date:   Mon, 21 Feb 2022 14:52:23 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Maxime Ripard <maxime@cerno.tech>,
-        Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
-        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
-        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
-        tomi.valkeinen@ideasonboard.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH v5 03/11] dt-bindings: media: Add bindings for
- bcm2835-unicam
-Message-ID: <YhOLB9AyLK9kzfeG@pendragon.ideasonboard.com>
-References: <20220208155027.891055-1-jeanmichel.hautbois@ideasonboard.com>
- <20220208155027.891055-4-jeanmichel.hautbois@ideasonboard.com>
- <f58bf6a9-c63f-19ab-36c8-a9a7b9182859@i2se.com>
- <20220214093954.5y4jbqcddmwhgxr5@houat>
- <YgomyazKaV2QnfYQ@pendragon.ideasonboard.com>
- <7ba0d8e7-72b9-d139-f29f-45a803ca2fdb@i2se.com>
- <YhM6474MwSh6bjUe@pendragon.ideasonboard.com>
- <4f809de2-24ee-dd9f-6354-2ce770a3ff4d@i2se.com>
+        with ESMTP id S233385AbiBUM4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 07:56:02 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC3531C10F;
+        Mon, 21 Feb 2022 04:55:39 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21LCtNQl071574;
+        Mon, 21 Feb 2022 06:55:23 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1645448123;
+        bh=Ldesc9E9S6OV1ULQBDllRREpqpso1MX11dz5s4qIfkE=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=bN3yr06kwogpyXgikL5UHPTiPSSyPuoFfAMjZFdF0kxOpZU1h3oeDpIezYGXghR75
+         HP5cueo8zogJ5n4Sptor4c0ktOsbf6t2FR5kReY4TjpineJZfnf0golZj90l0HbGze
+         EZgzEQGZohwP8/Z3J/yWSFDWrbYL3BDLK/DDVRd4=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21LCtMlw059858
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 21 Feb 2022 06:55:22 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 21
+ Feb 2022 06:55:22 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 21 Feb 2022 06:55:22 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21LCtM5f038962;
+        Mon, 21 Feb 2022 06:55:22 -0600
+Date:   Mon, 21 Feb 2022 06:55:22 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Drew Fustini <dfustini@baylibre.com>
+CC:     =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dave Gerlach <d-gerlach@ti.com>, <devicetree@vger.kernel.org>,
+        Keerthy <j-keerthy@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, <s-anna@ti.com>,
+        <khilman@baylibre.com>
+Subject: Re: [PATCH 02/11] dt-bindings: wkup_m3_ipc: Add vtt toggling bindings
+Message-ID: <20220221125522.l3tntb6i7yjxp6vb@flattered>
+References: <20220219215328.485660-1-dfustini@baylibre.com>
+ <20220219215328.485660-3-dfustini@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <4f809de2-24ee-dd9f-6354-2ce770a3ff4d@i2se.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220219215328.485660-3-dfustini@baylibre.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
+On 13:53-20220219, Drew Fustini wrote:
+> From: Dave Gerlach <d-gerlach@ti.com>
+> 
+> Add description of the wkup_m3_ipc DT properties that can be used to
+> toggle VTT regulator during low power mode transitions.
+> 
+> Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> ---
+>  .../bindings/soc/ti/wkup_m3_ipc.txt           | 34 +++++++++++++++++++
 
-On Mon, Feb 21, 2022 at 01:45:10PM +0100, Stefan Wahren wrote:
-> Am 21.02.22 um 08:10 schrieb Laurent Pinchart:
-> > On Mon, Feb 14, 2022 at 12:32:59PM +0100, Stefan Wahren wrote:
-> >> Am 14.02.22 um 10:54 schrieb Laurent Pinchart:
-> >>> On Mon, Feb 14, 2022 at 10:39:54AM +0100, Maxime Ripard wrote:
-> >>>> On Sun, Feb 13, 2022 at 04:48:45PM +0100, Stefan Wahren wrote:
-> >>>>> as someone with a little more insight to the clocks, i like to know your
-> >>>>> opinion about the bcm2835-unicam binding.
-> >>>>>
-> >>>>> Am 08.02.22 um 16:50 schrieb Jean-Michel Hautbois:
-> >>>>>> Introduce the dt-bindings documentation for bcm2835 CCP2/CSI2 Unicam
-> >>>>>> camera interface.
-> >>>>>>
-> >>>>>> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> >>>>>> Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
-> >>>>>> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-> >>>>>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >>>>>>
-> >>>>>> ---
-> >>>>>> v4:
-> >>>>>> - make MAINTAINERS its own patch
-> >>>>>> - describe the reg and clocks correctly
-> >>>>>> - use a vendor entry for the number of data lanes
-> >>>>>> ---
-> >>>>>>  .../bindings/media/brcm,bcm2835-unicam.yaml   | 117 ++++++++++++++++++
-> >>>>>>  1 file changed, 117 insertions(+)
-> >>>>>>  create mode 100644 Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
-> >>>>>>
-> >>>>>> diff --git a/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
-> >>>>>> new file mode 100644
-> >>>>>> index 000000000000..1938ace23b3d
-> >>>>>> --- /dev/null
-> >>>>>> +++ b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
-> >>>>>> @@ -0,0 +1,117 @@
-> >>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>>>>> +%YAML 1.2
-> >>>>>> +---
-> >>>>>> +$id: http://devicetree.org/schemas/media/brcm,bcm2835-unicam.yaml#
-> >>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>>>> +
-> >>>>>> +title: Broadcom BCM283x Camera Interface (Unicam)
-> >>>>>> +
-> >>>>>> +maintainers:
-> >>>>>> +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-> >>>>>> +
-> >>>>>> +description: |-
-> >>>>>> +  The Unicam block on BCM283x SoCs is the receiver for either
-> >>>>>> +  CSI-2 or CCP2 data from image sensors or similar devices.
-> >>>>>> +
-> >>>>>> +  The main platform using this SoC is the Raspberry Pi family of boards.  On
-> >>>>>> +  the Pi the VideoCore firmware can also control this hardware block, and
-> >>>>>> +  driving it from two different processors will cause issues.  To avoid this,
-> >>>>>> +  the firmware checks the device tree configuration during boot. If it finds
-> >>>>>> +  device tree nodes whose name starts with 'csi' then it will stop the firmware
-> >>>>>> +  accessing the block, and it can then safely be used via the device tree
-> >>>>>> +  binding.
-> >>>>>> +
-> >>>>>> +properties:
-> >>>>>> +  compatible:
-> >>>>>> +    const: brcm,bcm2835-unicam
-> >>>>>> +
-> >>>>>> +  reg:
-> >>>>>> +    items:
-> >>>>>> +      - description: Unicam block.
-> >>>>>> +      - description: Clock Manager Image (CMI) block.
-> >>>>>> +
-> >>>>>> +  reg-names:
-> >>>>>> +    items:
-> >>>>>> +      - const: unicam
-> >>>>>> +      - const: cmi
-> >>>>>> +
-> >>>>>> +  interrupts:
-> >>>>>> +    maxItems: 1
-> >>>>>> +
-> >>>>>> +  clocks:
-> >>>>>> +    items:
-> >>>>>> +      - description: Clock to drive the LP state machine of Unicam.
-> >>>>>> +      - description: Clock for the VPU (core clock).
-> >>>>>> +
-> >>>>>> +  clock-names:
-> >>>>>> +    items:
-> >>>>>> +      - const: lp
-> >>>>>> +      - const: vpu
-> >>>>>> +
-> >>>>>
-> >>>>> according to this patch [1], the unicam driver only needs the VPU clock
-> >>>>> reference just to enforce a minimum of 250 MHz. The firmware clock
-> >>>>> binding and its driver is specific to the bcm2711, but the Unicam IP
-> >>>>> exists since bcm2835.
-> >>>>>
-> >>>>> So do you think the clock part is correct or should be the VPU clock
-> >>>>> optional?
-> >>>>
-> >>>> I think we should keep it mandatory. Indeed, that clock is shared with
-> >>>> the HVS that will change its rate on a regular basis, so even just
-> >>>> enforcing that 250MHz while it's on without a clock handle will be
-> >>>> fairly hard.
-> >>>>
-> >>>> Also, those are the constraints we have now, but having the clock handle
-> >>>> all the time will allow us to add any constraint we might need in the
-> >>>> future.
-> >>>>
-> >>>> And BCM2711 or not, the clock has probably always been there.
-> >>>
-> >>> Furthermore, regardless of what the driver needs, Unicam operates with
-> >>> the VPU clock, so I think it makes sense to reference it in the device
-> >>> tree.
-> >>
-> >> okay, as a result we need a DTS patch for bcm2835-rpi.dtsi to enable the
-> >> firmware clocks and its driver in this series.
-> >
-> > Can't we do that on top, enabling Unicam support for bcm2711 only first
-> > ? I have no idea how to deal with firmware clocks on bcm2825, and I'm
-> > not sure Jean-Michel even has a hardware platform to test it.
-> 
-> sorry as being a bcm2835 maintainer so long, i'm not always aware of the
-> ambiguous meaning of bcm2835. The bcm2835-rpi.dtsi is used by all
-> Raspberry Pi generations. So it's sufficient to test it with a Raspberry
-> Pi 4, but we would gain support for all generations.
-> 
-> So my request is to move the changes from bcm2711 specific dtsi to the
-> general dtsi. There is no need to touch any driver, please have a look
-> at this patch [1] to see what i had in my mind. Just compile tested.
-> 
-> I hope you understand, i want to have it for all generations in one step.
-> 
-> [1] -
-> https://github.com/lategoodbye/rpi-zero/commit/67897cc22c03204e6464d00ff4ddac6bf5dc65dc
 
-Got it. I thought changes would be needed in the firmware clocks driver,
-if it's just about moving the node to a different file, it's pretty
-easy. Thank you for taking the time to cook up a patch to educate me :-)
+NAK. no more txt files please. convert to yaml prior to adding features.
 
-> > If you want to send a patch series to enable firmware clocks on bcm2835,
-> > we'll be happy to rebase on top.
+>  1 file changed, 34 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
+> index 401550487ed6..4cdbb60fd0d0 100644
+> --- a/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
+> +++ b/Documentation/devicetree/bindings/soc/ti/wkup_m3_ipc.txt
+> @@ -55,3 +55,37 @@ Example:
+>  			...
+>  		};
+>  	};
+> +
+> +Support for VTT Toggle
+> +==================================
+> +In order to enable the support for VTT toggle during Suspend/Resume
+> +sequence needed by some boards (like AM335x EVM-SK & AM437x GP EVM),
+> +the below DT properties are required. It is possible to toggle VTT
+> +using one of two methods depending on the SoC being used, either
+> +GPIO0 toggle (AM335x and AM437x), or any GPIO with DS_PAD_CONFIG
+> +bits in the control module (AM437x only).
+> +
+> +VTT Toggle using GPIO0
+> +----------------------------------
+> +Supported by: AM335x and AM437x
+> +Used on: AM335x EVM-SK
+> +
+> +Optional properties:
+> +- ti,needs-vtt-toggle:	Indicates that the boards requires VTT toggling
+> +			during suspend/resume.
+> +- ti,vtt-gpio-pin:	Specifies the GPIO0 pin used for VTT toggle.
+> +
+> +Important Note:
+> +- Here it is assumed that VTT Toggle will be done using a pin on GPIO-0 Instance.
+> +  It will not work on any other GPIO using the above properties, regardless of
+> +  which part is being used.
+> +
+> +Example:
+> +	wkup_m3_ipc: wkup_m3_ipc@1324 {
+> +		compatible = "ti,am3352-wkup-m3-ipc";
+> +		...
+> +		...
+> +		ti,needs-vtt-toggle;
+> +		ti,vtt-gpio-pin = <7>;
+> +		...
+> +	};
+> -- 
+> 2.32.0
+> 
 
 -- 
 Regards,
-
-Laurent Pinchart
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
