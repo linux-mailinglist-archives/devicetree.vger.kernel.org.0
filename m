@@ -2,122 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2D244BD7E7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 09:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89AD14BD841
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 09:41:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbiBUIRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 03:17:41 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52306 "EHLO
+        id S239052AbiBUIW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 03:22:59 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239108AbiBUIQx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 03:16:53 -0500
-Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9930C1AF3B;
-        Mon, 21 Feb 2022 00:16:27 -0800 (PST)
-Received: by mail-ua1-x929.google.com with SMTP id 4so7572110uaf.0;
-        Mon, 21 Feb 2022 00:16:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=9ZtiehFZPrmpWvveDKWHT6rZBAs1vzApL4d4uaQ55HM=;
-        b=P1GYRFZQeNPXDzMXWJMxK1Yx5Aiz56hvaICJRp4ELbWmjcvC2CljnRwc/RkSBLwm8C
-         TvcnGVTln6qK7UEbtJb9Q784S9w0JvfjCLBlD99ydBcfj2HEXUa4/SRKzvw9gUXFPqUM
-         e4jWTf4H0mAw8dE8PqxzIciBHPF4Y8x2AYqK+RIDZBA+7NcDreAWaUiCe+skZFOps1RA
-         ThBwCqO4Ruxw2Vd/8MhEVA/9dOAcrjDUSmMkgaF36az5l/0DMjdbmH04n5uhdkaFgf31
-         Z0L3V+iR9uJjo+wfRWUWd4IheeWR0FOC7u2J1mqrYLBCJaL9YZ7pvC0cfJeYvIARTgAB
-         kLTQ==
+        with ESMTP id S239108AbiBUIW6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 03:22:58 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32EA219B
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 00:22:35 -0800 (PST)
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id ECBA43F1AB
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 08:22:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645431753;
+        bh=hlIj3vhV71SSbB5w21H5u6H9YDo8YKgOZoNaxfo50oc=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=tWuQMxuDLtOko3MVlZFpEAluxgt4GdeT8Hxbp7mNL6TwPjkG9p1wzQOs8a0ndnXZU
+         deFoH2rBYOcMtLeiFTl54NX3ZnR1v9qY8SZVX8rI2Fi4JpCCrBWEydIUJD7aS9in9i
+         t34tHGWaxP8vfncI8rfPDaAhSQMZq2tRT7pxdARCjnYdd1u7tJMJjdAS/jdv0Fb9al
+         EXA1xmEyr6mS2PEc1SJx9AglT21Zc708Xc4y9ViYQm6ukUwbmAHQ+jYXwh69Y3vC2D
+         oAy6vsUVLdI+moRkr5WqJmhk8hijbytmZToTA3YbQby/baDPolTKwTibNehfrwjSxx
+         9Oe7/TrHTosEg==
+Received: by mail-wr1-f70.google.com with SMTP id e11-20020adf9bcb000000b001e316b01456so7047981wrc.21
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 00:22:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9ZtiehFZPrmpWvveDKWHT6rZBAs1vzApL4d4uaQ55HM=;
-        b=D4MGkUFGlOUPTQGZ/iafirC1Z8PQqWuELrnvaGsxlqAADr5OuIzNc1gnrd3uYZCC16
-         0lH3BKZqr9bjubVGSIWgLUmmeDOBe6q+V6bsprXkh1h1pkRwC9gU4pFrPf5AD+zVJ0h+
-         Nm9MLvIP1hnlAhmo9FlxDBjqXpRJVWWeOOeU/0WdSmnDG3FHbKnBf7gwmMn9LEofOwXA
-         hWx11fFeT3OQmeLozMJ0d8ZygTM5X1tuvPojp+5mkRWC69hcxzbwq//crrIxijQfw9+O
-         L27AGKlzBWTZ6ERiyY62gl5PsyYCagsCq3gh561cr4p0QuNDYnAKq1gTUFWjmC3T+nkF
-         unig==
-X-Gm-Message-State: AOAM533KkIwA0gv/BRP941zPwLWc0deHCwzpAZ2rpIaEWrMOaNApgovR
-        TdRToFGs61jO/SBShk9DpwhXFXtEYwugGOuP1w==
-X-Google-Smtp-Source: ABdhPJyCMqtc8yHa/Q//l3WPGW/u7LD/b3KNuHBI4Tjjh+j6t4LGe5SjDXAiedVRJD5oqBZFsxBlyHaEwvCXTA8W/yw=
-X-Received: by 2002:a05:6130:388:b0:342:b8e5:15c2 with SMTP id
- az8-20020a056130038800b00342b8e515c2mr580343uab.85.1645431386642; Mon, 21 Feb
- 2022 00:16:26 -0800 (PST)
-MIME-Version: 1.0
-References: <20220220035321.3870-1-warp5tw@gmail.com> <5d507fda-525e-4064-3add-0bb0cc23d016@canonical.com>
-In-Reply-To: <5d507fda-525e-4064-3add-0bb0cc23d016@canonical.com>
-From:   Tyrone Ting <warp5tw@gmail.com>
-Date:   Mon, 21 Feb 2022 16:16:14 +0800
-Message-ID: <CACD3sJaXeWLu6=oLgxJcU9R+A1J+jB7xKaGcDFwYxof33yj17Q@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] i2c: npcm: Bug fixes timeout, spurious interrupts
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, semen.protsenko@linaro.org,
-        yangyicong@hisilicon.com, wsa@kernel.org, jie.deng@intel.com,
-        sven@svenpeter.dev, bence98@sch.bme.hu,
-        christophe.leroy@csgroup.eu, lukas.bulwahn@gmail.com,
-        olof@lixom.net, arnd@arndb.de, digetx@gmail.com,
-        andriy.shevchenko@linux.intel.com, tali.perry@nuvoton.com,
-        Avi.Fishman@nuvoton.com, tomer.maimon@nuvoton.com,
-        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, kfting@nuvoton.com,
-        openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hlIj3vhV71SSbB5w21H5u6H9YDo8YKgOZoNaxfo50oc=;
+        b=X2VCeqFNbmWzH3AfoenpQsHkprYG2q6PD1qeZ5BSyF88H/bVvEVy16hneTVBlkSvJ4
+         T3YIwkPuq6zusMnFpofud/3ymmBZZzk95m8Vi63dj0qWWrgh4F2NSV0RtyzI2iGslC83
+         gXB3EtcAt0tC1rCtnGR9+rirrA6ZtFXO0vmI3qkB9yYPIuAdXRQw6uGNzp09oy6iIVXk
+         4TNL14qJ58BoFJoisBSwNu93EzNFWzzNvPQVw4TdpgjdEZuuDvr8B4op4xtwTVhQee+h
+         C+yfdRJk6DfW1t68xWyx2JsJbi632RgPhXqH6sXJ3jEKSdCJTcrDOnZI1JfEb+kw+0L1
+         Wy1w==
+X-Gm-Message-State: AOAM531EvLrFXdV40L9gfRjH92WjnQfFM8lGCCZ6axufuIleo+kk0muQ
+        D44j37nsTEU0ZhdzcosqM/6slhfE/4CjvPNVsBEhf6kGDBVDj1OfdsI+fJde6FoEq+teO1PaWg3
+        095LlmZylJweJboN96fNNAHg4sJ1VUVYNoUMkG6Q=
+X-Received: by 2002:a5d:64cc:0:b0:1e8:f4ad:bf85 with SMTP id f12-20020a5d64cc000000b001e8f4adbf85mr13862934wri.630.1645431753279;
+        Mon, 21 Feb 2022 00:22:33 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJykaiGNU5Li3aG1FyjXURj4iFwPk3GA+YI6LrQsfKHNOWgUmrUefkO9/8NaVDTBak7lyE72kw==
+X-Received: by 2002:a5d:64cc:0:b0:1e8:f4ad:bf85 with SMTP id f12-20020a5d64cc000000b001e8f4adbf85mr13862922wri.630.1645431753107;
+        Mon, 21 Feb 2022 00:22:33 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id j5-20020a05600c410500b0037bc3e4b526sm6727615wmi.7.2022.02.21.00.22.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Feb 2022 00:22:32 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Roger Quadros <rogerq@ti.com>, linux-usb@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Wei Xu <xuwei5@hisilicon.com>, David Heidelberg <david@ixit.cz>
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: add second HiSilicon prefix
+Date:   Mon, 21 Feb 2022 09:22:26 +0100
+Message-Id: <20220221082228.34407-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof:
+There are few boards DTS using "hisi,rst-syscon" property -
+undocumented "hisi" prefix.  The property will not be changed in DTS to
+non-deprecated one, because of compatibility reasons.  Add deprecated
+"hisi" prefix to silence DT schema warnings.
 
-Thank you for your comments and please find my reply next to your comments.
+Cc: Wei Xu <xuwei5@hisilicon.com>
+Cc: David Heidelberg <david@ixit.cz>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> =E6=96=BC 2022=E5=
-=B9=B42=E6=9C=8820=E6=97=A5
-=E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=885:30=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On 20/02/2022 04:53, Tyrone Ting wrote:
-> > From: Tyrone Ting <kfting@nuvoton.com>
-> >
-> > This patchset includes the following fixes:
-> >
-> > - Add dt-bindings description for NPCM845.
-> > - Bug fix for timeout calculation.
-> > - Better handling of spurious interrupts.
-> > - Fix for event type in slave mode.
-> > - Removal of own slave addresses [2:10].
-> > - Support for next gen BMC (NPCM845).
-> >
-> > The NPCM I2C driver is tested on NPCM750 and NPCM845 evaluation boards.
-> >
-> > Addressed comments from:
-> >  - Jonathan Neusch=C3=A4fer : https://lkml.org/lkml/2022/2/7/670
-> >  - Krzysztof Kozlowski : https://lkml.org/lkml/2022/2/7/760
->
-> How did you address the ABI change comment? I still see you break the
-> ABI with the introduction of a new, required property.
->
+---
 
-I add the new, required property "nuvoton,sys-mgr" in the file
-nuvoton-common-npcm7xx.dtsi.
-The file nuvoton-common-npcm7xx.dtsi is required by the existing
-upstream NPCM devicetree files.
-It is also updated and committed in this patch set [PATCH v2 01/11]
-arm: dts: add new property for NPCM i2c module.
-Please let me know if I misunderstand the meaning of "breaking the ABI".
-Thank you again.
+See:
+https://lore.kernel.org/all/61AF1E3B.5060706@hisilicon.com/
+https://www.spinics.net/lists/arm-kernel/msg887577.html
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
->
-> Best regards,
-> Krzysztof
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index ebe294516937..79a172eaaaee 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -505,6 +505,9 @@ patternProperties:
+     description: Himax Technologies, Inc.
+   "^hirschmann,.*":
+     description: Hirschmann Automation and Control GmbH
++  "^hisi,.*":
++    description: HiSilicon Limited (deprecated, use hisilicon)
++    deprecated: true
+   "^hisilicon,.*":
+     description: HiSilicon Limited.
+   "^hit,.*":
+-- 
+2.32.0
 
-Best regards,
-Tyrone
