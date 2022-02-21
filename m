@@ -2,102 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 000A24BED01
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 23:08:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A93C74BED07
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 23:10:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235226AbiBUWIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 17:08:32 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35470 "EHLO
+        id S233824AbiBUWK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 17:10:57 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235202AbiBUWIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 17:08:31 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2024722BE8
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 14:08:08 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id n18-20020a05600c4f9200b003806ce86c6dso286097wmq.5
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 14:08:08 -0800 (PST)
+        with ESMTP id S232574AbiBUWK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 17:10:57 -0500
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3086522BE8;
+        Mon, 21 Feb 2022 14:10:33 -0800 (PST)
+Received: by mail-io1-xd31.google.com with SMTP id c23so13003679ioi.4;
+        Mon, 21 Feb 2022 14:10:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=60je+LDflCDSpm+PbhIAk73PJa9MombVHWRyiPaaQWE=;
-        b=Xc+ttGq4R78QFtqn/s4XTJgEVdfnTa45KWY338EVWaVgUeKsd/3rzs+fljLfLy8hAQ
-         ywWMhR2Cef3L70rleLY3XxSLO150C8Wot5CTouwd52Gtj1uJhB/b2iIgmJvpP2w0kLFM
-         mihbHvkyKnJPifkH+8karxCKTZmcW7VoSXkUbPFhY5Nw9AysNrWDYEnqDpPfSnQVU6zT
-         KGo1CqfO7RE7J2yaI2Bg3H1pgRXHh8A8wDw1QQkhVzpEc15sOc9/1ZykQQzm5aPwxh9L
-         6qmL+OmU70hdvpnlqSo84pRS5CW+tnnrPWOyG1b/8wclFKf4ipsZBYOejtkoCKIRN6+R
-         P/lw==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Z+rAJszSEvmqBNoUmCp25Rx7tCIKTIKIJ/vzygiTiNU=;
+        b=S7pZm6u3CUoSRWhIevbFJ7iuyoYizjOdMSrxZ8r5RYDp1p/T4i4IpM0PCpfmdSAVcL
+         UspswO6GnBhtK4pnq1X6wszMSj9Qbsyo1bmUaKtW5ECHW+tAFw/cx98GWGBDlrl/ZEbm
+         /us86SMszml4cBbd63fB8JUK3oLLh+VA4qLagehggzFdAXcivvtO6gvP7v9QqVDieBJk
+         PqYhMZFivFCM10K4TFHmmcpRLeSofD39RY1xNLxwjRSoXzkpHbiwh2Zd0HQ3keaph3qb
+         DrH064wnjRX3k7hlMa9QPxwj4aVFWmTjvbcD6ssLzl1xv9zmUa4ADZ4sR37IKZwuF4HQ
+         no2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=60je+LDflCDSpm+PbhIAk73PJa9MombVHWRyiPaaQWE=;
-        b=qwZWrPEPZknvNNGDNYUuHxDnQaFajqx5qMZmrkp3ATms7QKX5TGP/ZHGRsdwMCICvb
-         jH/2JRGuL7/xBZSVgOe/O6CFMXe1s31qJjjpRIOOt8zKtF6Y8LODydcntCNSt1VLL7q3
-         LxHfBu6Hro+MRzZOmGTeZNqe8eEuf1fexhERWmAMpsNVB2rzeMFEjXvyNd6QRIx8ospN
-         l0Q7Ag9eLrq6ozp8/vUR16xYoT04kXfVMQd03YQnBG8DEDoWj+o2CrVT9vSFA9lRDf0H
-         nb3xeBrsn0P2zHa0WuAn+KCcOUTkUob7q5RmfE7bKemHp8UDIFKeunIj+vgluW8pbno7
-         9jyA==
-X-Gm-Message-State: AOAM532e2n1KV96XOutLpqhxbRybPyglWe017jvweu2iS5NwsSrqg1zK
-        eqfY5LbwZ9K87nui1X1IY1e23w==
-X-Google-Smtp-Source: ABdhPJySvP8m2Z4xEHLtT7V1pqg8A5o8lAHBN72Y7cEMji5QGaJrIVqIDM4jOtJiknnTHt3q4gAjOQ==
-X-Received: by 2002:a05:600c:14c6:b0:37c:440:c0e with SMTP id i6-20020a05600c14c600b0037c04400c0emr817905wmh.87.1645481286698;
-        Mon, 21 Feb 2022 14:08:06 -0800 (PST)
-Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id w8sm51626093wre.83.2022.02.21.14.08.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Feb 2022 14:08:06 -0800 (PST)
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org
-Subject: [PATCH v8 9/9] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable rradc
-Date:   Mon, 21 Feb 2022 22:07:43 +0000
-Message-Id: <20220221220743.541704-10-caleb.connolly@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220221220743.541704-1-caleb.connolly@linaro.org>
-References: <20220221220743.541704-1-caleb.connolly@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Z+rAJszSEvmqBNoUmCp25Rx7tCIKTIKIJ/vzygiTiNU=;
+        b=rOZHwkH64W2WSNtvTYIq4gTTfwm1KYUYeDOy7c5h/ByiFI1mhBx8JZsEc/zGooLb1K
+         UIFasiX5yRg55qgXj9LqBUM+ASporjiAewnLAq0rEH/6LyIyJ84fI4/i/z5/SsrDOuxI
+         jK/G/jwkteRxj+gM3vd9cRdAlJbF28jMkEGhI6C9n+C947hQ46EKhKdw1fqz8mx5dUnt
+         o2vI0gGdhwg+2Cu0F8rXGStLFGK6t0RrTyAlKNeP3BXwlB7dUicY+acU/kddcoE/xR45
+         8y6BOQgnoZ2W4nKbLehZ74R1/YbfwFFVsViwICfkDVrYGcXVfM6MNM/ujSJ37e+u9TG1
+         yWGQ==
+X-Gm-Message-State: AOAM532DhD0bdI9GroxLs8C9w3AcgxDPEB6z+jMGhq3wrKMKUkW7L9tF
+        6R5cTY1FoOxDJ0l9HDS9eZdpU5axjSINlcNigkU=
+X-Google-Smtp-Source: ABdhPJxtX6h0gkfIJdOs/LpUaxa9CUaWdh6MY9eyTlILX66v8ZCa3R/8q03D8mwPRfzvvOim7xMhQagxBJ4rkaaFK7U=
+X-Received: by 2002:a02:a1ca:0:b0:314:c448:2a4e with SMTP id
+ o10-20020a02a1ca000000b00314c4482a4emr10360369jah.186.1645481432583; Mon, 21
+ Feb 2022 14:10:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1f39432b-84e2-e6dc-a6b8-c48ad5cf2210@gmail.com>
+In-Reply-To: <1f39432b-84e2-e6dc-a6b8-c48ad5cf2210@gmail.com>
+From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date:   Mon, 21 Feb 2022 23:10:21 +0100
+Message-ID: <CANiq72ko6=dYBvbRc5T7Qq_2mxRtq1NpvcV_saMbTDfz0PK1aw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/6] auxdisplay: Add support for the Titanmec TM1628 7
+ segment display controller
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the PMI8998 RRADC.
+On Mon, Feb 21, 2022 at 9:19 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>
+> v2:
+> - (re-)add Andreas' SoB to two patches
 
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+But those were also developed by you too, right? i.e. it should have a
+Co-developed-by too, otherwise it looks like you only handled the
+patch:
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index 367389526b41..b3b6aa4e0fa3 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -312,6 +312,10 @@ resin {
- 	};
- };
- 
-+&pmi8998_rradc {
-+	status = "okay";
-+};
-+
- /* QUAT I2S Uses 1 I2S SD Line for audio on TAS2559/60 amplifiers */
- &q6afedai {
- 	qi2s@22 {
--- 
-2.35.1
+```
+Example of a patch submitted by the From: author::
 
+        <changelog>
+
+        Co-developed-by: First Co-Author <first@coauthor.example.org>
+        Signed-off-by: First Co-Author <first@coauthor.example.org>
+        Co-developed-by: Second Co-Author <second@coauthor.example.org>
+        Signed-off-by: Second Co-Author <second@coauthor.example.org>
+        Signed-off-by: From Author <from@author.example.org>
+```
+
+Cheers,
+Miguel
