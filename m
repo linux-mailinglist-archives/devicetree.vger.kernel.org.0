@@ -2,56 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5544A4BD42D
+	by mail.lfdr.de (Postfix) with ESMTP id 072D24BD42C
 	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 04:25:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344183AbiBUDVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 22:21:16 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52164 "EHLO
+        id S1344199AbiBUDXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 22:23:49 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344182AbiBUDVP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 22:21:15 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA61741338;
-        Sun, 20 Feb 2022 19:20:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S243681AbiBUDXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 22:23:49 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BC3D831DFA
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 19:23:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1645413805;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=UbQQFCgnQIVIZZPgSlksdQLecjmzQ0HCcY6adsazJww=;
+        b=cgNV9Q5/gGiB93CUnARdkwWtpVfz8iLZYHjuc90xCU/6B2AtS1NuggKjvfYC1/YyKPas9e
+        LuNXhDfCm47nKPiD0xI8cOtKwQGrigynhDhxdchgU32GVXMuZ2v1G0wcHPM6In8PMYMR5k
+        nN2/qkSR134WQrbMUIMgBnRl/L96RVc=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-168-WvW5EuPqM1-kJoFwBDMQ6Q-1; Sun, 20 Feb 2022 22:23:22 -0500
+X-MC-Unique: WvW5EuPqM1-kJoFwBDMQ6Q-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com [10.5.11.23])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7451D6113A;
-        Mon, 21 Feb 2022 03:20:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C4EAC340EB;
-        Mon, 21 Feb 2022 03:20:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645413652;
-        bh=BsOF4O9MtEGZQijN1hcpOFMalvpmK6xjtHuxCcuIQQo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=k4VXj7rF+wz86jES+PoZdNgQjJgM2iW96fedLE4I9DomqSA6llWHIZOFHOdK07D5H
-         M99z4xpfQdLrGC0jSP27y7geI7M9aBPb4Vk+CbQxrs62ViFpNXtrDzsdCIiDw0Z97/
-         2uEe6A2224Dbv3Pv9tlodMhrjl07sns0RsTETb1XG2TEoEwV/D4tPCcvS92hy8BFbd
-         z/JDDYKIN1XY6GlLYvPZHF6vVInpGPKAiq7jAo7cFxqlBOEaVFsrQ/zcc1kHQd3yWT
-         2ttjjUXHkbiUBuwUDdmGnokynoQRUXvUEqLfeDD+ejZB3klS0VdGzW/jSK9bP+a8Wd
-         FFoPlzA4kZiWA==
-Date:   Mon, 21 Feb 2022 11:20:46 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mp-evk: add support for I2C5
-Message-ID: <20220221032046.GG2249@dragon>
-References: <20220211153843.3721618-1-hugo@hugovil.com>
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 119AD2F4A;
+        Mon, 21 Feb 2022 03:23:19 +0000 (UTC)
+Received: from localhost (ovpn-12-166.pek2.redhat.com [10.72.12.166])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 574A7E2E5;
+        Mon, 21 Feb 2022 03:23:01 +0000 (UTC)
+Date:   Mon, 21 Feb 2022 11:22:58 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v20 2/5] arm64: kdump: introduce some macros for crash
+ kernel reservation
+Message-ID: <YhMFkgkqnZ4A3ysK@MiWiFi-R3L-srv>
+References: <20220124084708.683-1-thunder.leizhen@huawei.com>
+ <20220124084708.683-3-thunder.leizhen@huawei.com>
+ <YgY89RxkAl12n/dd@MiWiFi-R3L-srv>
+ <69da7ed5-4ef4-3655-8965-4181c7d7bf0b@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220211153843.3721618-1-hugo@hugovil.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <69da7ed5-4ef4-3655-8965-4181c7d7bf0b@huawei.com>
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,38 +80,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 11, 2022 at 10:38:43AM -0500, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On 02/14/22 at 02:22pm, Leizhen (ThunderTown) wrote:
 > 
-> Add support for i2c5, which is used to access the
-> external I2C bus on connector J22 of the imx8mp-evk.
 > 
-> Limit the speed to 100kHz since this is an external I2C bus.
+> On 2022/2/11 18:39, Baoquan He wrote:
+> > On 01/24/22 at 04:47pm, Zhen Lei wrote:
+> >> From: Chen Zhou <chenzhou10@huawei.com>
+> >>
+> >> Introduce macro CRASH_ALIGN for alignment, macro CRASH_ADDR_LOW_MAX
+> >> for upper bound of low crash memory, macro CRASH_ADDR_HIGH_MAX for
+> >> upper bound of high crash memory, use macros instead.
+> >>
+> >> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
+> >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> >> Tested-by: John Donnelly <John.p.donnelly@oracle.com>
+> >> Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
+> >> ---
+> >>  arch/arm64/mm/init.c | 11 ++++++++---
+> >>  1 file changed, 8 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> >> index 90f276d46b93bc6..6c653a2c7cff052 100644
+> >> --- a/arch/arm64/mm/init.c
+> >> +++ b/arch/arm64/mm/init.c
+> >> @@ -65,6 +65,12 @@ EXPORT_SYMBOL(memstart_addr);
+> >>  phys_addr_t arm64_dma_phys_limit __ro_after_init;
+> >>  
+> >>  #ifdef CONFIG_KEXEC_CORE
+> >> +/* Current arm64 boot protocol requires 2MB alignment */
+> >> +#define CRASH_ALIGN		SZ_2M
+> >> +
+> >> +#define CRASH_ADDR_LOW_MAX	arm64_dma_phys_limit
+> >> +#define CRASH_ADDR_HIGH_MAX	MEMBLOCK_ALLOC_ACCESSIBLE
+> > 
+> > MEMBLOCK_ALLOC_ACCESSIBLE is obvoiously a alloc flag for memblock
+> > allocator, I don't think it's appropriate to make HIGH_MAX get its value.
 > 
-> Disabled by default, since it is shared with the CAN1 bus.
+> Right, thanks.
 > 
-> To enable i2c5, you need to disable the CAN1 function, enable the i2c5
-> function and also configure the CAN1/I2C5_SEL GPIO to HIGH to
-> select i2c5 instead of CAN1. This can be done by defining a gpio-hog
-> inside the pca6416 node, in your board device tree, like in this example:
+> > You can make it as memblock.current_limit, or do not define it, but using
+> > MEMBLOCK_ALLOC_ACCESSIBLE direclty in memblock_phys_alloc_range() with
+> > a code comment. 
 > 
-> &flexcan1 {
-> 	status = "disabled";
-> };
-> 
-> &i2c5 {
-> 	status = "okay";
-> };
-> 
-> &pca6416 {
-> 	can1-i2c5-sel-hog {
-> 		gpio-hog;
-> 		gpios = <2 GPIO_ACTIVE_HIGH>;
-> 		output-high;
-> 		line-name = "can1-i2c5-sel";
-> 	};
-> };
-> 
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> This patch is not required at present. These macros are added to eliminate
+> differences to share code with x86.
 
-Applied, thanks!
+So this patch may not be needed in this series. It can be added in
+another post when you start to do the clean up and code unification
+among ARCHes, with my udnerstanding. At that time you can consider how
+to abstract the common code to handle the difference.
+
