@@ -2,55 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEDA04BE59F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 136A74BDF4B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:49:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380709AbiBUQgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 11:36:11 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:44642 "EHLO
+        id S1381201AbiBUQsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 11:48:02 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380689AbiBUQgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 11:36:09 -0500
+        with ESMTP id S1381204AbiBUQsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 11:48:01 -0500
 Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD45220C6;
-        Mon, 21 Feb 2022 08:35:46 -0800 (PST)
-Received: by mail-ed1-f41.google.com with SMTP id z22so30551253edd.1;
-        Mon, 21 Feb 2022 08:35:46 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4266122BEF;
+        Mon, 21 Feb 2022 08:47:38 -0800 (PST)
+Received: by mail-ed1-f41.google.com with SMTP id s14so13239510edw.0;
+        Mon, 21 Feb 2022 08:47:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=YFk+sl4M7Srs5DbyN1lMmhvfVbrNyGzC2wMufF8/rDI=;
-        b=a3nP+7a2WMjKLb+A+/p0mXULvk3eOmZE7OQNybxwWA+KTBhiEBn/YKCi2A9xgZFaVy
-         qnqITPv0RoaSbtukQ7BVl88pQnVAokUdYpVVb5uukUKYUzASu92iUAwdYcaQD1MfWEEz
-         YbWVUuHcQwKweHgvW1VfZTLiYQpcUKKT8iLcYWnEojMX/mTzmQewO2LuEjFAM22se/xm
-         XLhFAMXeglhve9r6T7V9JFII2d2K84yaRu/KumZb9wNKrpz/XfJMl4v6irrBFrLIdGnb
-         qUzC23AtR/kr26ZKSXX6QtnHDCi16qADorsYCU2OW1Qvm/YDlQOvyZADJTRNjweK6T5R
-         3S9g==
-X-Gm-Message-State: AOAM532vxTjN/aVWvA/UowGUz121bmoUKMOqyfSSngCX1oClRXrFji65
-        r7KpDCfl4bnfiUDVN9XT4bI=
-X-Google-Smtp-Source: ABdhPJyoawrcgww37p4WIuGhhpNJtlKE54lAC3oY6WyEM4tYYSDFB2khdaABAB+WyF0xZpbWP+d/XQ==
-X-Received: by 2002:a50:fc81:0:b0:408:4c2d:bf69 with SMTP id f1-20020a50fc81000000b004084c2dbf69mr22229360edq.229.1645461344712;
-        Mon, 21 Feb 2022 08:35:44 -0800 (PST)
+        bh=6uoQveL+AD9RUCzosFzI8fgp4aGHk8q16xyazzg5bDY=;
+        b=CCgED8i18vq6cbHpVRExlsxnVU5/6OmxFJvjA2ZgmIb9BRhEy9tewKTbQO5BTFrDEZ
+         wCKhZaLptVJrepeai8WbSp7fx2wphXSFk+oABigmcnbOAf3vTUssIIsYQlrlPPakbjYs
+         VX4BrbonSxY3a/bq623BHi3PxgYBF1bDl/jrpXQA6nwMyb6dqpSR004xRKYY9/k+vpP4
+         +j8gr7eRvPkB4whXgXy6IzvJsubh3vIT30xi/uRMoNRbVKIK/jTume8hFjhwc3LJ6GGQ
+         x3nh2W3S0SYuKjx14v0c8KlcgZsW2r0xX9aLDo01UYDnnikQtSy+2gMxvqXdpykZ9LGb
+         +YCQ==
+X-Gm-Message-State: AOAM5320fgUtqGFkthFWvfbXF0KfEOvtqTG89ZbEXEadz+zAxe1D+oCb
+        JGPIEFdyN33r/LyRtwK4Yfc=
+X-Google-Smtp-Source: ABdhPJwLiISVhc2YR4ZxaIDiGLJ7BTzOKu2ot3AVX6stdd3PHhVYLTNRJ/enKvUfksmKQHriNQlsUg==
+X-Received: by 2002:a05:6402:4245:b0:410:ee7d:8f0b with SMTP id g5-20020a056402424500b00410ee7d8f0bmr22300690edb.295.1645462056810;
+        Mon, 21 Feb 2022 08:47:36 -0800 (PST)
 Received: from [192.168.0.122] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.googlemail.com with ESMTPSA id e27sm5482626ejm.18.2022.02.21.08.35.42
+        by smtp.googlemail.com with ESMTPSA id v12sm8942549edr.8.2022.02.21.08.47.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Feb 2022 08:35:43 -0800 (PST)
-Message-ID: <61e964b4-a406-7721-f3d4-26754c7f865c@kernel.org>
-Date:   Mon, 21 Feb 2022 17:35:42 +0100
+        Mon, 21 Feb 2022 08:47:35 -0800 (PST)
+Message-ID: <3e1ee336-1c78-7719-826c-2a093a20ee8e@kernel.org>
+Date:   Mon, 21 Feb 2022 17:47:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v4 2/3] dt-bindings:iio:amplifiers: add ada4250 doc
+Subject: Re: [PATCH 2/3] dt-bindings: remoteproc: Add AVM WASP
 Content-Language: en-US
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
-        robh+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220221092740.25511-1-antoniu.miclaus@analog.com>
- <20220221092740.25511-2-antoniu.miclaus@analog.com>
+To:     Daniel Kestrel <kestrelseventyfour@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220221135351.GA7342@ubuntu>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220221092740.25511-2-antoniu.miclaus@analog.com>
+In-Reply-To: <20220221135351.GA7342@ubuntu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
@@ -64,27 +66,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2022 10:27, Antoniu Miclaus wrote:
-> Add device tree bindings for the ADA4250 driver.
+On 21/02/2022 14:53, Daniel Kestrel wrote:
+> AVM Fritzbox router boards may contain an additional ATH79
+> based SoC that has the wifi cards connected.
+> This patch adds bindings for this remote processor.
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Daniel Kestrel <kestrelseventyfour@gmail.com>
 > ---
-> changes in v4:
->  - add `spi-max-frequency` property
->  - use generic node naming
->  .../bindings/iio/amplifiers/adi,ada4250.yaml  | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
+>  .../bindings/remoteproc/avm,wasp-rproc.yaml   | 93 +++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> new file mode 100644
+> index 000000000000..21f3bbcc4202
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> @@ -0,0 +1,93 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/avm,wasp-rproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AVM WASP processor controller bindings
+> +
+> +maintainers:
+> +  - Daniel Kestrel <kestrelseventyfour@gmail.com>
+> +
+> +description: |
+> +  This document defines the bindings for the remoteproc component that loads and
+> +  boots firmwares on the AVM Wireless Assistent Support Processor (WASP) SoC
+> +  that is attached to some AVM Fritzbox devices (3390, 3490, 5490, 5491, 7490).
+> +
+> +properties:
+> +  compatible:
+> +    const: avm,wasp
+> +
+> +  ath9k-firmware:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: |
+> +      Should contain the name of the ath9k eeprom that is to be loaded from
+> +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
+> +      The file should be located on the firmware search path.
 
-Please do not resend without fixing pointed out issues. It just looks
-you ignore comments.
+Are you sure this is a property of hardware? It looks like runtime
+configuration parameter.
 
-Please fix or respond to previous comments. Please also fix all common
-issues recently pointed out for all Analog devices - folks from Analog
-are making the same mistakes. Reviewing the same mistake is a bit a
-waste of time. Much more appreciated is when team applies one feedback
-to all its submissions. IOW, do not repeat the same mistake second time.
+> +
+> +  ath10k-caldata:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: |
+> +      Should contain the name of the ath10k caldata that is to be loaded from
+> +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
+> +      The file should be located on the firmware search path.
+
+Same.
+
+> +
+> +  wasp-netboot-firmware:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: |
+> +      Should contain the name of the netboot firmware that is to be loaded
+> +      and started on the WASP SoC using mdio in order to be able to load
+> +      the initramfs image as a second stage.
+> +      The file should be located on the firmware search path.
+
+Same.
+
+> +
+> +  wasp-netboot-mdio:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Reference to the Lantiq GSWIP switch mdio.
+
+Vendor prefix.
+
+> +
+> +  wasp-initramfs-port:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Reference to the network port, where the WASP SoC is connected to.
+
+Vendor prefix.
+
+> +
+> +  wasp-initramfs-image:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: |
+> +      Should contain the name of the initramfs linux image that is to be loaded
+> +      and started on the WASP SoC.
+> +      The file should be located on the firmware search path.
+
+initramfs path looks even less like a property of hardware... If you
+change initramfs from CPIO to initrd or GZ, hardware changes as well?
+
+> +  reset-gpio:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: Reference and parameters for the reset gpio of the WASP SoC.
+
+Wrong suffix, unneeded type. Did you run dt_binding_check?
+
+"Reference and parameters" are obvious, so they should be skipped.
+
+> +
+> +  startup-gpio:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: Reference and parameters for the power switch gpio of the WASP SoC.
+
+Same.
+
+> +
+> +required:
+> +  - compatible
+> +  - ath9k-firmware
+> +  - ath10k-caldata
+> +  - wasp-netboot-firmware
+> +  - wasp-netboot-mdio
+> +  - wasp-initramfs-port
+> +  - wasp-initramfs-image
+> +  - reset-gpio
+> +  - startup-gpio
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    avm-wasp {
+
+Generic node name describing class of a device. AVM is company, WASP is
+product, so neither of them are generic.
 
 
 Best regards,
