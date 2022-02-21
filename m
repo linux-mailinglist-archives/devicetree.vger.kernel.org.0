@@ -2,255 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C4174BDB94
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:40:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ADB54BE649
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:02:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355009AbiBUKmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 05:42:25 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:60092 "EHLO
+        id S1355264AbiBUKog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 05:44:36 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:39458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355589AbiBUKlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 05:41:09 -0500
-Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com [66.111.4.224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 075384D624;
-        Mon, 21 Feb 2022 02:03:14 -0800 (PST)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E57DB58025E;
-        Mon, 21 Feb 2022 05:03:11 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 21 Feb 2022 05:03:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; bh=MewriESTXRMbblpSYnQ8yYADa3NnoEjRQEC2H3
-        lKSUI=; b=Mt768FWMLUOeF8jeTm7nkj7ASdVW7s67U6Im0Wy00c2rytVEY+2t8W
-        plTGafbs/POLzovhcntJtXs25qHVz/XcFfimvNGPiD84N33FRLEHQnXPHu8y9RM/
-        62unKA84+3IGrcJEgQR7urG8gi8N6Btu/vc8WtRwCIB5JG3XuZKjVkLQcaXk4sId
-        u2RPC3YU/KWIkMuJygRm6ogYbDUo6qXqVkzxgB6VYUC8ZfOlBZz0f4wQ06Dplrhr
-        7l/pyobImZL6lWzDe/CbdcPjGrIl77Tft0nS4Szn6M62y081r+L15ny6+G2R/LEN
-        KpmKYGGVHxHW+x0KfWi2kfOXntvVShFg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=MewriESTXRMbblpSY
-        nQ8yYADa3NnoEjRQEC2H3lKSUI=; b=PWnPDsKkAXzzlVLbReqFM4ev0+D84Wmj8
-        UXO8s4hvhDp2973lI485LLrFleqMu5Z2xSEMtWpepGxvtUDkC5NYDYKzEvAA2R1u
-        +IDGx4LP70DhXKLJZRrhVPFKCHXq+U0oJmA/zEQDePTOtoT4M4lCXDSu54Bp47C/
-        JA4gRxORqlB66YrgQRNOhVr4Jvl9XxgvDHoK98Lp9e3S2QIfJvBCG+uRyNBIpulU
-        64c/a4Fq9zRPOXrTNEJdKLYcadHfD5pyWYMO35o771FiIaLYYzbsAsQIyz6Zh007
-        UqcSl5oSzox4tIE1TJFkI5Kw17EIRC/wRewu3LeKwkuD9lrc+b73A==
-X-ME-Sender: <xms:X2MTYvc9vVjKn80UQsy7USVcWpMf3QaFKgRQGxIh6pUP7DB15cmcAQ>
-    <xme:X2MTYlNo6Wdazc_lM4SSTMuwXmOQqattlLu8VDPymELmuGE5HeawXUvyGuIHN4UNU
-    p9eYBAa-tOUhpspKS0>
-X-ME-Received: <xmr:X2MTYohVABDQ07AHDI5_6ZDv267i9MnVq-X84H77mRfZ0QPCroS6HeZ_vUduOXFiFnV_d7sLhT4VfDZs6QBd5qOq-v9apDqj-0jScjU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrkeeigddutdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeffteetveeijeetuefhffegkeetgffhieelheehtdduudethffhjedtvddtudel
-    vdenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
-    vggthh
-X-ME-Proxy: <xmx:X2MTYg8HQCsmowzoLQPVSDV6SuRwknGP0H8muXZFOLqUOvNzp1ysiw>
-    <xmx:X2MTYrs_srCsXTTK-5X6pOTDSJSZmNrU-N30D0cnI1NLEbIVOMv_fA>
-    <xmx:X2MTYvHAccxpkx-tn53rooXHlxc_HLLMyY9o8R0-reF8hsM0whxRuQ>
-    <xmx:X2MTYjN0PEgIm1hOlGQtl1p4RqDvuy9Fp_NwTItBPx4KcmFC3GRsTA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 21 Feb 2022 05:03:10 -0500 (EST)
-Date:   Mon, 21 Feb 2022 11:03:09 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
+        with ESMTP id S1355375AbiBUKoY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 05:44:24 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8AA06E4DF
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 02:05:08 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nM5Z0-0000e8-W5; Mon, 21 Feb 2022 11:05:03 +0100
+Message-ID: <3e9d3135d9d838cb58e828478145704b9cb7f58d.camel@pengutronix.de>
+Subject: Re: [PATCH v2 7/9] arm64: dts: imx8mp: add HSIO power-domains
+From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
-        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
-        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
-        tomi.valkeinen@ideasonboard.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH v5 03/11] dt-bindings: media: Add bindings for
- bcm2835-unicam
-Message-ID: <20220221100309.ytcy6bxijwztyhsd@houat>
-References: <20220208155027.891055-1-jeanmichel.hautbois@ideasonboard.com>
- <20220208155027.891055-4-jeanmichel.hautbois@ideasonboard.com>
- <f58bf6a9-c63f-19ab-36c8-a9a7b9182859@i2se.com>
- <20220214093954.5y4jbqcddmwhgxr5@houat>
- <YgomyazKaV2QnfYQ@pendragon.ideasonboard.com>
- <7ba0d8e7-72b9-d139-f29f-45a803ca2fdb@i2se.com>
- <YhM6474MwSh6bjUe@pendragon.ideasonboard.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        patchwork-lst@pengutronix.de
+Date:   Mon, 21 Feb 2022 11:05:00 +0100
+In-Reply-To: <YhCfAJbLkrzS9rIz@pendragon.ideasonboard.com>
+References: <20220207192547.1997549-1-l.stach@pengutronix.de>
+         <20220207192547.1997549-7-l.stach@pengutronix.de>
+         <YhCfAJbLkrzS9rIz@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="hgycafmcvwvkmfnm"
-Content-Disposition: inline
-In-Reply-To: <YhM6474MwSh6bjUe@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
 
---hgycafmcvwvkmfnm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Am Samstag, dem 19.02.2022 um 09:40 +0200 schrieb Laurent Pinchart:
+> Hi Lucas,
+> 
+> Thank you for the patch.
+> 
+> On Mon, Feb 07, 2022 at 08:25:45PM +0100, Lucas Stach wrote:
+> > This adds the GPC and HSIO blk-ctrl nodes providing power control for
+> > the high-speed (USB and PCIe) IOs.
+> > 
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 63 ++++++++++++++++++++---
+> >  1 file changed, 57 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > index 6b840c05dd77..dc488a147d0c 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -4,6 +4,7 @@
+> >   */
+> >  
+> >  #include <dt-bindings/clock/imx8mp-clock.h>
+> > +#include <dt-bindings/power/imx8mp-power.h>
+> >  #include <dt-bindings/gpio/gpio.h>
+> >  #include <dt-bindings/input/input.h>
+> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > @@ -475,6 +476,44 @@ src: reset-controller@30390000 {
+> >  				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> >  				#reset-cells = <1>;
+> >  			};
+> > +
+> > +			gpc: gpc@303a0000 {
+> > +				compatible = "fsl,imx8mp-gpc";
+> > +				reg = <0x303a0000 0x10000>;
+> 
+> According to the reference manual, the GPC occupies 4kB, not 64kB.
 
-On Mon, Feb 21, 2022 at 09:10:27AM +0200, Laurent Pinchart wrote:
-> Hi Stefan,
->=20
-> On Mon, Feb 14, 2022 at 12:32:59PM +0100, Stefan Wahren wrote:
-> > Am 14.02.22 um 10:54 schrieb Laurent Pinchart:
-> > > On Mon, Feb 14, 2022 at 10:39:54AM +0100, Maxime Ripard wrote:
-> > >> On Sun, Feb 13, 2022 at 04:48:45PM +0100, Stefan Wahren wrote:
-> > >>> as someone with a little more insight to the clocks, i like to know=
- your
-> > >>> opinion about the bcm2835-unicam binding.
-> > >>>
-> > >>> Am 08.02.22 um 16:50 schrieb Jean-Michel Hautbois:
-> > >>>> Introduce the dt-bindings documentation for bcm2835 CCP2/CSI2 Unic=
-am
-> > >>>> camera interface.
-> > >>>>
-> > >>>> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > >>>> Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
-> > >>>> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonbo=
-ard.com>
-> > >>>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > >>>>
-> > >>>> ---
-> > >>>> v4:
-> > >>>> - make MAINTAINERS its own patch
-> > >>>> - describe the reg and clocks correctly
-> > >>>> - use a vendor entry for the number of data lanes
-> > >>>> ---
-> > >>>>  .../bindings/media/brcm,bcm2835-unicam.yaml   | 117 +++++++++++++=
-+++++
-> > >>>>  1 file changed, 117 insertions(+)
-> > >>>>  create mode 100644 Documentation/devicetree/bindings/media/brcm,b=
-cm2835-unicam.yaml
-> > >>>>
-> > >>>> diff --git a/Documentation/devicetree/bindings/media/brcm,bcm2835-=
-unicam.yaml b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.y=
-aml
-> > >>>> new file mode 100644
-> > >>>> index 000000000000..1938ace23b3d
-> > >>>> --- /dev/null
-> > >>>> +++ b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.=
-yaml
-> > >>>> @@ -0,0 +1,117 @@
-> > >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > >>>> +%YAML 1.2
-> > >>>> +---
-> > >>>> +$id: http://devicetree.org/schemas/media/brcm,bcm2835-unicam.yaml#
-> > >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > >>>> +
-> > >>>> +title: Broadcom BCM283x Camera Interface (Unicam)
-> > >>>> +
-> > >>>> +maintainers:
-> > >>>> +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-> > >>>> +
-> > >>>> +description: |-
-> > >>>> +  The Unicam block on BCM283x SoCs is the receiver for either
-> > >>>> +  CSI-2 or CCP2 data from image sensors or similar devices.
-> > >>>> +
-> > >>>> +  The main platform using this SoC is the Raspberry Pi family of =
-boards.  On
-> > >>>> +  the Pi the VideoCore firmware can also control this hardware bl=
-ock, and
-> > >>>> +  driving it from two different processors will cause issues.  To=
- avoid this,
-> > >>>> +  the firmware checks the device tree configuration during boot. =
-If it finds
-> > >>>> +  device tree nodes whose name starts with 'csi' then it will sto=
-p the firmware
-> > >>>> +  accessing the block, and it can then safely be used via the dev=
-ice tree
-> > >>>> +  binding.
-> > >>>> +
-> > >>>> +properties:
-> > >>>> +  compatible:
-> > >>>> +    const: brcm,bcm2835-unicam
-> > >>>> +
-> > >>>> +  reg:
-> > >>>> +    items:
-> > >>>> +      - description: Unicam block.
-> > >>>> +      - description: Clock Manager Image (CMI) block.
-> > >>>> +
-> > >>>> +  reg-names:
-> > >>>> +    items:
-> > >>>> +      - const: unicam
-> > >>>> +      - const: cmi
-> > >>>> +
-> > >>>> +  interrupts:
-> > >>>> +    maxItems: 1
-> > >>>> +
-> > >>>> +  clocks:
-> > >>>> +    items:
-> > >>>> +      - description: Clock to drive the LP state machine of Unica=
-m.
-> > >>>> +      - description: Clock for the VPU (core clock).
-> > >>>> +
-> > >>>> +  clock-names:
-> > >>>> +    items:
-> > >>>> +      - const: lp
-> > >>>> +      - const: vpu
-> > >>>> +
-> > >>>
-> > >>> according to this patch [1], the unicam driver only needs the VPU c=
-lock
-> > >>> reference just to enforce a minimum of 250 MHz. The firmware clock
-> > >>> binding and its driver is specific to the bcm2711, but the Unicam IP
-> > >>> exists since bcm2835.
-> > >>>
-> > >>> So do you think the clock part is correct or should be the VPU clock
-> > >>> optional?
-> > >>
-> > >> I think we should keep it mandatory. Indeed, that clock is shared wi=
-th
-> > >> the HVS that will change its rate on a regular basis, so even just
-> > >> enforcing that 250MHz while it's on without a clock handle will be
-> > >> fairly hard.
-> > >>
-> > >> Also, those are the constraints we have now, but having the clock ha=
-ndle
-> > >> all the time will allow us to add any constraint we might need in the
-> > >> future.
-> > >>
-> > >> And BCM2711 or not, the clock has probably always been there.
-> > >
-> > > Furthermore, regardless of what the driver needs, Unicam operates with
-> > > the VPU clock, so I think it makes sense to reference it in the device
-> > > tree.
-> >=20
-> > okay, as a result we need a DTS patch for bcm2835-rpi.dtsi to enable the
-> > firmware clocks and its driver in this series.
->=20
-> Can't we do that on top, enabling Unicam support for bcm2711 only first
-> ? I have no idea how to deal with firmware clocks on bcm2825, and I'm
-> not sure Jean-Michel even has a hardware platform to test it.
+Right, will fix.
 
-The RPi kernel uses the firmware clocks driver for all the platforms, so
-it shouldn't be too bad.
+> 
+> > +				interrupt-parent = <&gic>;
+> > +				interrupt-controller;
+> > +				#interrupt-cells = <3>;
+> > +
+> > +				pgc {
+> > +					#address-cells = <1>;
+> > +					#size-cells = <0>;
+> > +
+> 
+> We're working on support for the MEDIAMIX power domains, which we'll
+> rebase on top of this. In case the HSIO part still needs more work,
+> could you split this patch in two, with one patch that adds the PGC,
+> with an empty pgc nodde, and a second patch that adds the HSIO-related
+> power domains ? The first one could then be merged faster (it would be
+> great if it could get in v5.18).
 
-Maxime
+I don't think the HSIO part is controversial. It seems to work well in
+my testing and DT binding is already reviewed. Not sure if someone is
+going to review it properly, but I hope that we can land it together
+with the reset of this series.
 
---hgycafmcvwvkmfnm
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> > +					pgc_pcie_phy: power-domain@1 {
+> > +						#power-domain-cells = <0>;
+> > +						reg = <IMX8MP_POWER_DOMAIN_PCIE_PHY>;
+> > +					};
+> > +
+> > +					pgc_usb1_phy: power-domain@2 {
+> > +						#power-domain-cells = <0>;
+> > +						reg = <IMX8MP_POWER_DOMAIN_USB1_PHY>;
+> > +					};
+> > +
+> > +					pgc_usb2_phy: power-domain@3 {
+> > +						#power-domain-cells = <0>;
+> > +						reg = <IMX8MP_POWER_DOMAIN_USB2_PHY>;
+> > +					};
+> > +
+> > +					pgc_hsiomix: power-domains@17 {
+> > +						#power-domain-cells = <0>;
+> > +						reg = <IMX8MP_POWER_DOMAIN_HSIOMIX>;
+> > +						clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
+> > +							 <&clk IMX8MP_CLK_HSIO_ROOT>;
+> > +						assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
+> > +						assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
+> > +						assigned-clock-rates = <500000000>;
+> > +					};
+> > +				};
+> > +			};
+> >  		};
+> >  
+> >  		aips2: bus@30400000 {
+> > @@ -908,6 +947,20 @@ ddr-pmu@3d800000 {
+> >  			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+> >  		};
+> >  
+> > +		hsio_blk_ctrl: blk-ctrl@32f10000 {
+> > +			compatible = "fsl,imx8mp-hsio-blk-ctrl", "syscon";
+> > +			reg = <0x32f10000 0x24>;
+> > +			clocks = <&clk IMX8MP_CLK_USB_ROOT>,
+> > +				 <&clk IMX8MP_CLK_PCIE_ROOT>;
+> > +			clock-names = "usb", "pcie";
+> > +			power-domains = <&pgc_hsiomix>, <&pgc_hsiomix>,
+> > +					<&pgc_usb1_phy>, <&pgc_usb2_phy>,
+> > +					<&pgc_hsiomix>, <&pgc_pcie_phy>;
+> 
+> Would it be useful to rework the driver to avoid specifying the same
+> parent power domain multiple times in DT ?
 
------BEGIN PGP SIGNATURE-----
+I don't think so. That's the pattern we used for all the other blk-
+ctrls, where each virtual power-domain in the blk-ctrl has its own
+handle to a upstream GPC power domain. I don't see why we would want to
+change this now.
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYhNjXQAKCRDj7w1vZxhR
-xXONAQCmnUupgwvTeLp0tAkmJV3ctRhLRSUsMMeJCaHqExxavAEAlN3LD5YUbQlJ
-ZP3zjKZ/YFbcFLVUD8Dzpvqr5E0xaAg=
-=C2uD
------END PGP SIGNATURE-----
+Regards,
+Lucas
 
---hgycafmcvwvkmfnm--
+> 
+> > +			power-domain-names = "bus", "usb", "usb-phy1",
+> > +					     "usb-phy2", "pcie", "pcie-phy";
+> > +			#power-domain-cells = <1>;
+> > +		};
+> > +
+> >  		usb3_phy0: usb-phy@381f0040 {
+> >  			compatible = "fsl,imx8mp-usb-phy";
+> >  			reg = <0x381f0040 0x40>;
+> > @@ -915,6 +968,7 @@ usb3_phy0: usb-phy@381f0040 {
+> >  			clock-names = "phy";
+> >  			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
+> >  			assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+> > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB_PHY1>;
+> >  			#phy-cells = <0>;
+> >  			status = "disabled";
+> >  		};
+> > @@ -926,6 +980,7 @@ usb3_0: usb@32f10100 {
+> >  				 <&clk IMX8MP_CLK_USB_ROOT>;
+> >  			clock-names = "hsio", "suspend";
+> >  			interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+> > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>;
+> >  			#address-cells = <1>;
+> >  			#size-cells = <1>;
+> >  			dma-ranges = <0x40000000 0x40000000 0xc0000000>;
+> > @@ -939,9 +994,6 @@ usb_dwc3_0: usb@38100000 {
+> >  					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+> >  					 <&clk IMX8MP_CLK_USB_ROOT>;
+> >  				clock-names = "bus_early", "ref", "suspend";
+> > -				assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
+> > -				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
+> > -				assigned-clock-rates = <500000000>;
+> >  				interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> >  				phys = <&usb3_phy0>, <&usb3_phy0>;
+> >  				phy-names = "usb2-phy", "usb3-phy";
+> > @@ -957,6 +1009,7 @@ usb3_phy1: usb-phy@382f0040 {
+> >  			clock-names = "phy";
+> >  			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
+> >  			assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+> > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB_PHY2>;
+> >  			#phy-cells = <0>;
+> >  		};
+> >  
+> > @@ -967,6 +1020,7 @@ usb3_1: usb@32f10108 {
+> >  				 <&clk IMX8MP_CLK_USB_ROOT>;
+> >  			clock-names = "hsio", "suspend";
+> >  			interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
+> > +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>;
+> >  			#address-cells = <1>;
+> >  			#size-cells = <1>;
+> >  			dma-ranges = <0x40000000 0x40000000 0xc0000000>;
+> > @@ -980,9 +1034,6 @@ usb_dwc3_1: usb@38200000 {
+> >  					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+> >  					 <&clk IMX8MP_CLK_USB_ROOT>;
+> >  				clock-names = "bus_early", "ref", "suspend";
+> > -				assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
+> > -				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
+> > -				assigned-clock-rates = <500000000>;
+> >  				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+> >  				phys = <&usb3_phy1>, <&usb3_phy1>;
+> >  				phy-names = "usb2-phy", "usb3-phy";
+> > 
+> 
+
+
