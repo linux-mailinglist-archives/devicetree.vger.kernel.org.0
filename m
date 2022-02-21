@@ -2,234 +2,363 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E72214BDE27
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:46:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F1054BE3A7
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:57:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241798AbiBUJWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 04:22:54 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36940 "EHLO
+        id S1347976AbiBUJ1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 04:27:24 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:47508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349309AbiBUJVN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 04:21:13 -0500
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150125.outbound.protection.outlook.com [40.107.15.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 782B436156;
-        Mon, 21 Feb 2022 01:08:04 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CepL/Oluyk2X8DYdXihYiMZ6niAtIcs4Tpn9N/nN2m2tVTyf3xOiLgwK1pFdQPq+WE5LDsEY3STkbmQAt4MZ4HA2d9zGM75KxpWTttzOsMwiEJGNXoccGi/n+kOOraFBq28L0K4OzJKjv5WimLwMVIEJIw7Jp0Qc/NP6yESjKlmv0vwzPLmCsZBcLPiC5p4cdk45XLx9wzXw9W8Spay3/TM9+pHmRu0miWi3EcCbWKAVmT7KBkYEju+L6CqbpmD6hIEZO+ZYzlpm1ScizHrXQHa/kB/jgKBWyD4+p/nVayvXHuejZ8GunUkCJA297bgpyU7g7rOlkXUz51EBge3Gqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Dw0vsA8BDgjDXLZ07tLY6bwFEg8/PQbyB4cD62Njg2U=;
- b=fhEjeCAwosBFiZdGgsz2tQ9LqWdlvVGtN/i3fqntIl1BJ1jGrRWUSIzEu2vJMZwH5jELqYQj2hVZx6VT+kx2ihL9HQuQv8ZuVbZKZe0p0Y7exWvsp4cCeTj8SqcYIpo5qrUMELhTha7Kml142s8jNv0ZdGYN0nRLuxGAaKxQJOc5dmDCBkeSBMg+U2458NdrQQLuSHcL6dlgV65dk08s/rfhTaD2u3lWdADBiygO/1tUlPXHc283OWJU83s2PzBhFlLX2tfkCwKqRcbiC5VktZ1qCOdYrpwoFJxIxWy4gZeiEe9RNJKnZOn6gq8jaTaCBuVCnb0HJLAslTeUSavF3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
- dkim=pass header.d=nokia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
- s=selector1-nokia-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Dw0vsA8BDgjDXLZ07tLY6bwFEg8/PQbyB4cD62Njg2U=;
- b=GVFkixZummEl0010T/0amOhOYTFxDk1/LZjfHmY3E7VWlIh+OJ7NpZJlX+S+H2Rdu2K9UgY/s34zIdgCcmH9HvNPUx/oNIWP/bJD9wXKfMgnY0P1hfxWGcbQKzctLSHO3sy0d9HpBsevJmT20BaR6dJYpauSQHHrUq3qYDQrjp8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nokia.com;
-Received: from DU2PR07MB8110.eurprd07.prod.outlook.com (2603:10a6:10:239::15)
- by HE1PR07MB4201.eurprd07.prod.outlook.com (2603:10a6:7:98::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.19; Mon, 21 Feb
- 2022 09:07:57 +0000
-Received: from DU2PR07MB8110.eurprd07.prod.outlook.com
- ([fe80::99a2:6f44:700b:b796]) by DU2PR07MB8110.eurprd07.prod.outlook.com
- ([fe80::99a2:6f44:700b:b796%3]) with mapi id 15.20.5017.021; Mon, 21 Feb 2022
- 09:07:57 +0000
-Date:   Mon, 21 Feb 2022 10:07:32 +0100
-From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-hwmon@vger.kernel.org, Agathe Porte <agathe.porte@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: hwmon: add tmp464.yaml
-Message-ID: <YhNWVLHYVtCvdGhi@localhost.localdomain>
-References: <20220218150908.1947772-1-linux@roeck-us.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220218150908.1947772-1-linux@roeck-us.net>
-X-ClientProxiedBy: MA0PR01CA0001.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:80::14) To DU2PR07MB8110.eurprd07.prod.outlook.com
- (2603:10a6:10:239::15)
+        with ESMTP id S1349872AbiBUJ0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 04:26:45 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B83001EAFD;
+        Mon, 21 Feb 2022 01:10:51 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 0A1BA2223E;
+        Mon, 21 Feb 2022 10:10:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1645434649;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=1CVJ3zXsh+NaiVRj46zuadW+OtpATHxdz24V6BgPaWk=;
+        b=C1bzeR8XuiRuGpymeuSp7mS+mXkDyqkYIWJpJgPSmpdXH7Rqc+I2qMStv+w1Quz7M5NgUy
+        94DUn/Wz+YbUIU6N9dM8C0YPDlxxVPbqUEH/bwl07EF58GQ6ki5A9iruKKkzUSAdm930rL
+        yZycOr6YyjqvoEK1pIaGiPpiqNuYFKA=
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b18c3831-a318-4bba-7fdd-08d9f519a6f3
-X-MS-TrafficTypeDiagnostic: HE1PR07MB4201:EE_
-X-Microsoft-Antispam-PRVS: <HE1PR07MB4201AB2E8D5E7C2CA8A49E94EF3A9@HE1PR07MB4201.eurprd07.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HUQXYZ5B9etPj3qK/EcwvvgqNJtWLpXklyjkGwCVnCJb3XN8+FajHscqtDfnbHTEwGWqUTHhjaqSv4T9h4gJec7nDRM0czTfzExOH3WN9I4uQjuWTnZWo62O+whQT0i8eRThylfJl10cgyFDJd/dPey4mqu7aMQn2n/kcUiJOr1yrhwpvZ8Y0OxvbaerX0Hi3Uc2jn2e54yXn+mW4SlsbiosHDi77i3/GwlHc8ObaHZUz1OGbolrxKrJLQ0AFkM/aBfT1KXxBiSh59BjbyAu2UG8JT/KVranL4E+lDNPtlKTNLtfSU8v2D8RCxKLpsieZaQOfcDM/YvUWB66gdNYGqlffa6aNlvXBIuttDXLCtwJlX0YhPkPxovp2Hgh554scFLkDvm9DsuU7xhXXrT/IhAGIdWTseqqjdw/Pd0rHesLZ2NzGH/dCjCnqT1WAJrW2DnqyXGdLWgiuoeVkRqtWhoOGjLOi0Yce+AXmjWvsUVDBVG5G6q8HLAuW43LZGAtrdQX5SZHVhb1O7cTDQAxVe+JN9LoGovC/wY1gUz9TFcFaRRNgmIFNNPxXgpwqozdlbQqPbqISTeEgloxbzdv0b+LXNFCE+Ob95+XxZmJipc079re8/Ut50/rWhakpnQmBIsly7BpwbrqU8LNJTAnElBA6xBIgGZfsqeQL7yi8ZdKeUhOlL7w6KqYQWtgaFwiPUWr/vJ/mJvsSQ4QEGJ3o7iFIcmLujn0pqQ5L0TZwuONO2nO8OtYHXwTC3dnaDXpXKbgowoqXa/pncCp4txV6Cp2blwTHcUZ8sYAKx59I7A=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR07MB8110.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(44832011)(316002)(83380400001)(6512007)(86362001)(8936002)(6506007)(52116002)(66556008)(66946007)(66476007)(4326008)(8676002)(5660300002)(9686003)(6666004)(26005)(38350700002)(38100700002)(966005)(6486002)(2906002)(508600001)(82960400001)(6916009)(186003)(54906003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eGV2aGdkYW9wTXovaUtvL1I5eW5nSWpaUkRaMU1xWlhMTVBDNHNrWlp6RE1o?=
- =?utf-8?B?YnFSMDdqY205S05QcEx5QmJsSHVjd00rSitEWmRnZnJNN2RWei9HT1JTTVVF?=
- =?utf-8?B?ZXZxOURjZGdiQytkM1B0U0JLcGhxcytnNm1NT2dDZ2E0K1JTU1hCVHNYM2s3?=
- =?utf-8?B?SithNlJhRnhCdUUwUkJUNTJ5elh6NDJwdWc3dGZoNHMrcDZ6djVzQ2FXMzN5?=
- =?utf-8?B?enJtTmltQ3ZTSnV1SDFJVkExbi9STzJzMy9NeStsRUpXK09WNjBTS2t6RUpN?=
- =?utf-8?B?U1ZNRjRVSEwzVDl3TEUvN0xFMTVhUGtRNG82RGV0cUtBQnZyOTVWUDdML2xi?=
- =?utf-8?B?ZXdkTGpaTlU0Z1NBWHBLQmtlcEQvYkNNM0g0RTdueDBXYkVPanAvTE9DeHNW?=
- =?utf-8?B?clk3bHRLSmdkajh2RWZVWVl4V2JhVWtUbS9taDdvV1ozZFRJSXBPWjJ3bC9j?=
- =?utf-8?B?SlZyTUVtNmg2OUFocS9sS3ZxUnZPdUpoRVlqc2RQT0ZZMDFEWWF1TnFvSzN5?=
- =?utf-8?B?UVcySTIvQzhwME95b2lIVjVVb1RqTkRjdXhXQ09ldE9oRUJ0RlpMWkF3K1ls?=
- =?utf-8?B?cEg2SlhqUFZIL1p5TzJ0WFpObytjZ3pnMFE0RGtDdFMxN0ZqZzVvMk5iU04w?=
- =?utf-8?B?MVVqYldVclorNk91L2ZCV2NNazA0ZE1iUWxYZnZ3NUZIcnoyZ3QzTFJ3a094?=
- =?utf-8?B?ZkRlbjdiOUROeW5zQm5mNnFIU0VUeHkyK2NGN050UEtaZk5IU2JEQ3J3TjFB?=
- =?utf-8?B?NWI1cERKMVVuVmthZUxqTDZuNGc5OGNYMjIyc2lKS053NEdWa0tuZENKRmJt?=
- =?utf-8?B?Ukw1UzJ5UWxhYkxhUVFsaEpnU0U3OUd3RWgxZFdPcUhGNi9DaFFCQVRVbEtF?=
- =?utf-8?B?SEQyMlhBbE95em5IV01vbjh3dlgvTUdYdUlWRzRJK0lnUWJEZFB6VkFiRVVL?=
- =?utf-8?B?cFVvdlNCQ24wK3c2NW5tV1VXWEdsM2V5aDdXcDVlVmsvcUQrNkZGSm9JbWho?=
- =?utf-8?B?N3Fmem8ranlDbFA1L2xvOVZxT2d0czB4c09CNFBUMUFLMG9qTEFIN3c2cXVj?=
- =?utf-8?B?Ni93MmhSRFpVVCsyMTQyaGJMUTFjMk5lWmdSMDRXRE1CckU3cFRqc3Q1eENs?=
- =?utf-8?B?cldjYnd6RXdoQ2ZiQ0Jod2FIM3ovTTE4UHkyL3kzZXlDT3BCM1lLeGwwbER1?=
- =?utf-8?B?UkFtOHRNcHVvSjB5am1sTHdYUnZ1L20vYzF5RWxGWEUyTUVSK3NIOS9jODVG?=
- =?utf-8?B?T0N4N3hPU0Z4TVpaWVpmTS9ML0FFanJvaTZ4S3B1aW52eFJsKzdCMzhqTzNE?=
- =?utf-8?B?WmMwbGdleS8yd3d6N3RVSXlPZzlnSmd5bCtZQ09oNmlJc3VWb3JLb1pGSk9Q?=
- =?utf-8?B?K05TdTg4S0hKVGIxcjVJck42UUVYNTUzbVVPTGRXWEpucmdWa0pON296OENY?=
- =?utf-8?B?WVlTc1E0dnJUekwvckFkTzRiV3ZRNTBEYjhvVUQ0NC85ek1nZTIyd2owQTNY?=
- =?utf-8?B?T1FGbVRCdEtidlNGTlJ6d2pOMDZydmNrMDQyN1ZQYWhqUjB4cHFMTldRNTFY?=
- =?utf-8?B?eHUyQTJtSmhwSGRTQlAwWHFFTGZweWxkN2NPQnVMZ3FrcmxUZFZnajlqeGF2?=
- =?utf-8?B?eVlvaG5uRytYOEVlS2FZVWNPazAvOWZJakg4K3JhMDNLbDlnbU9oaXg3czht?=
- =?utf-8?B?SkZnMzg1ZTE2K2M4dWd0WU5QNUNQcXZlS2h1QnBYMlZWbzRBU2dnV2s0TGp3?=
- =?utf-8?B?Z3dNcFJuS042NUt4SXhBQU11TFY4N2tOTHdtcG5YM0FjNHV2NEM3NU1vcXpz?=
- =?utf-8?B?R243blBLQkpLYmdCb1FmMW5JME9IWnR6MFQ3dzl1SDUrMnBGWEdkNndkcmN5?=
- =?utf-8?B?R2pnRGZMTXQxRytJemVHVXZtZXRoSTdaQUtRNWkzU2w0TVZEY1d1MVlBMFdK?=
- =?utf-8?B?T1FNcWxTS25jd042cnNnQnJlMnJJQXh5a242SjgweTNuUzUvd2VRNHJ3S3gx?=
- =?utf-8?B?VEFEbVVSdE1RR0puamFtbGNpVmFES0NsUU9TU1B2a2tMd1BNT2ZFa3JJUnRx?=
- =?utf-8?B?NHpQSDhSUmhYTXlFWkh1aG4yVWs1V3U1VFJ2MnBjQWRJelFreHNUWDVNb3I0?=
- =?utf-8?B?anI3MTVqRE9KNjZyRnBSRDdkM0hORXg2cm1zcHlQYUgzTWFkS1p5QUFwMCs1?=
- =?utf-8?B?MlRkTks2T0dsczVLRVE4ZnExQkYxWWVlMkYzZUNQVnAzUFRPV28zUXhJTm9r?=
- =?utf-8?B?WnNPS1U3LzlpSWJ1QWE5UHV0VG1BPT0=?=
-X-OriginatorOrg: nokia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b18c3831-a318-4bba-7fdd-08d9f519a6f3
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR07MB8110.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2022 09:07:57.5648
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Fp305uiDTMInUJNGCP7Ev9KWB7Jdm0s4VexqqT168M9Sq/ayyqrRgB0Uj8oMlrOg2QpHwshcDsqLapVJ3bpn+maVZjzA1o93AV79VhDFYGQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR07MB4201
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,FORGED_SPF_HELO,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 21 Feb 2022 10:10:46 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+Cc:     arnd@arndb.de, alexandre.belloni@bootlin.com, olof@lixom.net,
+        soc@kernel.org, robh+dt@kernel.org, nicolas.ferre@microchip.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+        Manohar.Puri@microchip.com
+Subject: Re: [PATCH v7] ARM: dts: add DT for lan966 SoC and 2-port board
+ pcb8291
+In-Reply-To: <20220221080858.14233-1-kavyasree.kotagiri@microchip.com>
+References: <20220221080858.14233-1-kavyasree.kotagiri@microchip.com>
+User-Agent: Roundcube Webmail/1.4.12
+Message-ID: <3b4c56201a478876783e69243c901cd8@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dnia Fri, Feb 18, 2022 at 07:09:07AM -0800, Guenter Roeck napisał(a):
->From: Agathe Porte <agathe.porte@nokia.com>
->
->Add basic description of the tmp464 driver DT bindings.
->
->Signed-off-by: Agathe Porte <agathe.porte@nokia.com>
->Cc: Krzysztof Adamski <krzysztof.adamski@nokia.com>
->Signed-off-by: Guenter Roeck <linux@roeck-us.net>
->---
->v5:
->- Dropped ti,n-factor from channel@0 example. Added additional
->  channel to examples to show positive ti,n-factor property.
->
->v4:
->- No changes
->
->v3:
->- Addedd support for TMP468.
->- Changed number of channels from 0..3 (which was wrong anyway) to 0..8.
->- Changed value range for ti,n-factor to int8, with an example for
->  a negative value.
->- Added myself as driver maintainer.
->
-> .../devicetree/bindings/hwmon/ti,tmp464.yaml  | 114 ++++++++++++++++++
-> MAINTAINERS                                   |   7 ++
-> 2 files changed, 121 insertions(+)
-> create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml
->
->diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml
->new file mode 100644
->index 000000000000..14f6a3412b8c
->--- /dev/null
->+++ b/Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml
->@@ -0,0 +1,114 @@
->+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->+%YAML 1.2
->+---
->+$id: http://devicetree.org/schemas/hwmon/ti,tmp464.yaml#
->+$schema: http://devicetree.org/meta-schemas/core.yaml#
->+
->+title: TMP464 and TMP468 temperature sensors
->+
->+maintainers:
->+  - Agathe Porte <agathe.porte@nokia.com>
->+
->+description: |
->+  ±0.0625°C Remote and Local temperature sensor
->+  https://www.ti.com/lit/ds/symlink/tmp464.pdf
->+  https://www.ti.com/lit/ds/symlink/tmp468.pdf
->+
->+properties:
->+  compatible:
->+    enum:
->+      - ti,tmp464
->+      - ti,tmp468
->+
->+  reg:
->+    maxItems: 1
->+
->+  '#address-cells':
->+    const: 1
->+
->+  '#size-cells':
->+    const: 0
->+
->+required:
->+  - compatible
->+  - reg
->+
->+additionalProperties: false
->+
->+patternProperties:
->+  "^channel@([0-8])$":
->+    type: object
->+    description: |
->+      Represents channels of the device and their specific configuration.
->+
->+    properties:
->+      reg:
->+        description: |
->+          The channel number. 0 is local channel, 1-8 are remote channels.
->+        items:
->+          minimum: 0
->+          maximum: 8
->+
->+      label:
->+        description: |
->+          A descriptive name for this channel, like "ambient" or "psu".
->+
->+      ti,n-factor:
->+        description: |
->+          The value (two's complement) to be programmed in the channel specific N correction register.
->+          For remote channels only.
->+        $ref: /schemas/types.yaml#/definitions/int8
->+        items:
->+          minimum: -128
->+          maximum: 127
+Am 2022-02-21 09:08, schrieb Kavyasree Kotagiri:
+> This patch adds basic DT for Microchip lan966x SoC and associated board
+> pcb8291(2-port EVB). Adds peripherals required to allow booting: 
+> Interrupt
+> Controller, Clock, Generic ARMv7 Timers, Synopsys Timer, Flexcoms, 
+> GPIOs.
+> Also adds other peripherals like crypto(AES/SHA), DMA, Watchdog Timer, 
+> TRNG
+> and MCAN0.
+> 
+> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> ---
+> v6 -> v7:
+> - Removed "arm,cpu-registers-not-fw-configured" property, as not 
+> required.
+> - Corrected "PPI interrupt cpu mask" and order of interrupts.
+> 
+> v5 -> v6:
+> - Renamed dts file to lan966x-pcb8291.dts file.
+> - Disabled optional watchdog in dtsi file and enabled it in dts file.
+> 
+> v4 -> v5:
+> - Modified AES, SHA, TRNG node names as per generic names recommended.
+> 
+> v3 -> v4:
+> - Removed character 'x' from compatible string.
+> - Removed memory node as handled by bootloader.
+> - Renamed flexcom3 usart0 to usart3
+> - Added /chosen and /aliases nodes in dts file.
+> 
+> v2 -> v3:
+> - Enabling trng in dtsi itself.
+> - Removed "status=okay" dma0.
+> - Add gpio pin settings for can0(missed adding this in previous 
+> version)
+> 
+> v1 -> v2:
+> - Moved flx3 usart0 node to dtsi file.
+> - Removed status="okay" for dma0 to maintain consistency across nodes
+>   (which means enabling dma0 by default)
+> 
+>  arch/arm/boot/dts/Makefile            |   2 +
+>  arch/arm/boot/dts/lan966x-pcb8291.dts |  64 +++++++
+>  arch/arm/boot/dts/lan966x.dtsi        | 237 ++++++++++++++++++++++++++
+>  3 files changed, 303 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/lan966x-pcb8291.dts
+>  create mode 100644 arch/arm/boot/dts/lan966x.dtsi
+> 
 
-I still thing we should have the same format here and in tmp421, for
-consistency. If use the same property name, "ti,n-factor" but on tmp421
-you have use 32bit value while here you have to use 8bit (which is weird
-in DT, BTW), it might be confusing.
-Back when we did this for TMP421, there was some discussion and we
-settled on this approach, why do it differently now?
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/lan966x.dtsi
+> @@ -0,0 +1,237 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * lan966x.dtsi - Device Tree Include file for Microchip LAN966 family 
+> SoC
+> + *
+> + * Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
+> + *
+> + * Author: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> + *
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/mfd/atmel-flexcom.h>
+> +#include <dt-bindings/dma/at91.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/clock/microchip,lan966x.h>
+> +
+> +/ {
+> +	model = "Microchip LAN966 family SoC";
+> +	compatible = "microchip,lan966";
 
-Krzysztof
+As mentioned earlier, this isn't a documented compatible string. So,
+I guess without overwriting this in the board dts it will throw an
+error with the dt schema validator. OTOH, there are many dtsi files
+in arch/arm/boot/dts/ doing this. I don't know what is correct here.
+
+Everthing else looks good.
+
+Reviewed-by: Michael Walle <michael@walle.cc>
+
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a7";
+> +			clock-frequency = <600000000>;
+> +			reg = <0x0>;
+> +		};
+> +	};
+> +
+> +	clocks {
+> +		sys_clk: sys_clk {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <162500000>;
+> +		};
+> +
+> +		cpu_clk: cpu_clk {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <600000000>;
+> +		};
+> +
+> +		ddr_clk: ddr_clk {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <300000000>;
+> +		};
+> +
+> +		nic_clk: nic_clk {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <200000000>;
+> +		};
+> +	};
+> +
+> +	clks: clock-controller@e00c00a8 {
+> +		compatible = "microchip,lan966x-gck";
+> +		#clock-cells = <1>;
+> +		clocks = <&cpu_clk>, <&ddr_clk>, <&sys_clk>;
+> +		clock-names = "cpu", "ddr", "sys";
+> +		reg = <0xe00c00a8 0x38>;
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv7-timer";
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) | 
+> IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
+> +		clock-frequency = <37500000>;
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		flx0: flexcom@e0040000 {
+> +			compatible = "atmel,sama5d2-flexcom";
+> +			reg = <0xe0040000 0x100>;
+> +			clocks = <&clks GCK_ID_FLEXCOM0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0xe0040000 0x800>;
+> +			status = "disabled";
+> +		};
+> +
+> +		flx1: flexcom@e0044000 {
+> +			compatible = "atmel,sama5d2-flexcom";
+> +			reg = <0xe0044000 0x100>;
+> +			clocks = <&clks GCK_ID_FLEXCOM1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0xe0044000 0x800>;
+> +			status = "disabled";
+> +		};
+> +
+> +		trng: rng@e0048000 {
+> +			compatible = "atmel,at91sam9g45-trng";
+> +			reg = <0xe0048000 0x100>;
+> +			clocks = <&nic_clk>;
+> +		};
+> +
+> +		aes: crypto@e004c000 {
+> +			compatible = "atmel,at91sam9g46-aes";
+> +			reg = <0xe004c000 0x100>;
+> +			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
+> +			dmas = <&dma0 AT91_XDMAC_DT_PERID(13)>,
+> +			       <&dma0 AT91_XDMAC_DT_PERID(12)>;
+> +			dma-names = "rx", "tx";
+> +			clocks = <&nic_clk>;
+> +			clock-names = "aes_clk";
+> +		};
+> +
+> +		flx2: flexcom@e0060000 {
+> +			compatible = "atmel,sama5d2-flexcom";
+> +			reg = <0xe0060000 0x100>;
+> +			clocks = <&clks GCK_ID_FLEXCOM2>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0xe0060000 0x800>;
+> +			status = "disabled";
+> +		};
+> +
+> +		flx3: flexcom@e0064000 {
+> +			compatible = "atmel,sama5d2-flexcom";
+> +			reg = <0xe0064000 0x100>;
+> +			clocks = <&clks GCK_ID_FLEXCOM3>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0xe0064000 0x800>;
+> +			status = "disabled";
+> +
+> +			usart3: serial@200 {
+> +				compatible = "atmel,at91sam9260-usart";
+> +				reg = <0x200 0x200>;
+> +				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&nic_clk>;
+> +				clock-names = "usart";
+> +				atmel,fifo-size = <32>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+> +		dma0: dma-controller@e0068000 {
+> +			compatible = "microchip,sama7g5-dma";
+> +			reg = <0xe0068000 0x1000>;
+> +			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+> +			#dma-cells = <1>;
+> +			clocks = <&nic_clk>;
+> +			clock-names = "dma_clk";
+> +		};
+> +
+> +		sha: crypto@e006c000 {
+> +			compatible = "atmel,at91sam9g46-sha";
+> +			reg = <0xe006c000 0xec>;
+> +			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+> +			dmas = <&dma0 AT91_XDMAC_DT_PERID(14)>;
+> +			dma-names = "tx";
+> +			clocks = <&nic_clk>;
+> +			clock-names = "sha_clk";
+> +		};
+> +
+> +		flx4: flexcom@e0070000 {
+> +			compatible = "atmel,sama5d2-flexcom";
+> +			reg = <0xe0070000 0x100>;
+> +			clocks = <&clks GCK_ID_FLEXCOM4>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0xe0070000 0x800>;
+> +			status = "disabled";
+> +		};
+> +
+> +		timer0: timer@e008c000 {
+> +			compatible = "snps,dw-apb-timer";
+> +			reg = <0xe008c000 0x400>;
+> +			clocks = <&nic_clk>;
+> +			clock-names = "timer";
+> +			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		watchdog: watchdog@e0090000 {
+> +			compatible = "snps,dw-wdt";
+> +			reg = <0xe0090000 0x1000>;
+> +			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&nic_clk>;
+> +			status = "disabled";
+> +		};
+> +
+> +		can0: can@e081c000 {
+> +			compatible = "bosch,m_can";
+> +			reg = <0xe081c000 0xfc>, <0x00100000 0x4000>;
+> +			reg-names = "m_can", "message_ram";
+> +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "int0", "int1";
+> +			clocks = <&clks GCK_ID_MCAN0>, <&clks GCK_ID_MCAN0>;
+> +			clock-names = "hclk", "cclk";
+> +			assigned-clocks = <&clks GCK_ID_MCAN0>;
+> +			assigned-clock-rates = <40000000>;
+> +			bosch,mram-cfg = <0x0 0 0 64 0 0 32 32>;
+> +			status = "disabled";
+> +		};
+> +
+> +		gpio: pinctrl@e2004064 {
+> +			compatible = "microchip,lan966x-pinctrl";
+> +			reg = <0xe2004064 0xb4>,
+> +			    <0xe2010024 0x138>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&gpio 0 0 78>;
+> +			interrupt-controller;
+> +			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		gic: interrupt-controller@e8c11000 {
+> +			compatible = "arm,gic-400", "arm,cortex-a7-gic";
+> +			#interrupt-cells = <3>;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-controller;
+> +			reg = <0xe8c11000 0x1000>,
+> +			      <0xe8c12000 0x2000>,
+> +			      <0xe8c14000 0x2000>,
+> +			      <0xe8c16000 0x2000>;
+> +		};
+> +	};
+> +};
+
+-- 
+-michael
