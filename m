@@ -2,118 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B1A44BD7DC
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 09:40:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EED424BD837
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 09:40:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242519AbiBUIXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 03:23:00 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:35766 "EHLO
+        id S244648AbiBUIZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 03:25:34 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236489AbiBUIW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 03:22:59 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19617219B
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 00:22:37 -0800 (PST)
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C660F40326
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 08:22:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645431755;
-        bh=fspCJLtE7LEYQw6XkHye8Kq07ah4N6vXGNGBhm+7ar4=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=LBbk7H1nV9m1w1K9rQ0Kpt7eYgFQjrOCayfmJL7DQerlDD4uQEeci+RWuhNZLVMWn
-         Bv17cX2iWo/yvZuPi2P8S6uzlqLtkpAzlYOZWaQE3QJcTjbVWqHaR4oR/1ns3ma7AC
-         M1dGRxaDxvlGFKyWuGKtul2BlDXK7HfvVA1GXdV9aR0xiSd2QsWXgc0bU1IoJ1dYxc
-         NFSRslvEY3VmJEzED05xw1wg1JJlhScmxqZ/66lcUBqJJLzR8vKmJh8DCMkoN+V4Jz
-         HS6xMxW7apS0rWyM8shU1Ebg0qxEFa6bWz65ZpLFNbO7DZ2gyqrzuLOFqbwu9bzcUi
-         snlNbWingzYrw==
-Received: by mail-wr1-f71.google.com with SMTP id e1-20020adfa741000000b001e2e74c3d4eso7024994wrd.12
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 00:22:35 -0800 (PST)
+        with ESMTP id S244581AbiBUIZd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 03:25:33 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71712BF4
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 00:25:10 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id n8so9014951wms.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 00:25:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=HtxBmeOXC9JY2medDRrYSSTNzMcetLrIdHLgGlB77Vo=;
+        b=kZj0ZPJi5Rn/Ledb5Qn5+fHEFZqPJV8hDipfpQa+OlYs3IGumEzDR3Ko5IziRAYDtk
+         OY0aRY/Ln+wFUiAJ350VXcf1vBGH9nMtgnxWfbtRV/78G6gxbz3kqDjSL6kOktJN8Ad3
+         DvBvd/4imz+F/6NtHWFxKe8gThzidTTBkbwv1tv45cM/FFu0hdq+Nn6+sg9wayudfzd0
+         S8s6e36z7F7pR1Um/NLEXHoF//puL0VwVu8O5I+pPMMwoFKQqDmKHDg//8+fnb9lctVg
+         IYwaaenDBbVPV/d8Bvh+Ug28MP/okaFK/YFXRY0qm4sHteBreuGvIiA9VkTkCEqJwHic
+         ATJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=fspCJLtE7LEYQw6XkHye8Kq07ah4N6vXGNGBhm+7ar4=;
-        b=RGgIpyhkKLP/KZU2YwIbjia13hou7h0ZCoLxE0e0HjOxHPXRlPs9wyZnziPmzCzR5c
-         EeE3Gaq4InhrsuPI4KOj8KiLvgtuPkfGokHQOyXmpFpUH9dkchN0pzv4h0fmL8uKYVq6
-         kEbnyDB4bGqC2J0SWrIrhcaW3Gcc4J1QQPbfcFHivOSijm90KQ7OWVSDrN3Pggjy6cam
-         h3MPYFqbHj7H0/wwq3VuQqdJnnPfjpDPeGwkQpUkvceaZlV6zSoJ0oLoSx3rfGh8fFkH
-         jvKIox527rvibCD1Jfrt/rUbpp9/3DNyGUIeu6XfbXH00m/M7VDIe3GoHrqJTEnAg+QP
-         vk7Q==
-X-Gm-Message-State: AOAM532sRLLvjSYG/YqgZ0iN2cRLZsCo1Sei7tjwlwOhFg4VI+IxINYg
-        8FjJ8+aAEulnTFOUtcEvp6GM+pqKT41nDZ1TZ32cfNhGvzEuAXiCfyOV5WjQbjiquALO+lSyqxC
-        YpwZ/pU1u11yH1lFmcRosfd1FK5Di1qLAq1PwRiU=
-X-Received: by 2002:a5d:452e:0:b0:1e2:e3df:5933 with SMTP id j14-20020a5d452e000000b001e2e3df5933mr15938216wra.158.1645431755558;
-        Mon, 21 Feb 2022 00:22:35 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJz77IEo/QTGJFbeIF9OrxTWGYJqcHKNN51p3fYxQmGEuSBNmMUKYmATuYBwKgois8ytkRw3rA==
-X-Received: by 2002:a5d:452e:0:b0:1e2:e3df:5933 with SMTP id j14-20020a5d452e000000b001e2e3df5933mr15938201wra.158.1645431755417;
-        Mon, 21 Feb 2022 00:22:35 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id j5-20020a05600c410500b0037bc3e4b526sm6727615wmi.7.2022.02.21.00.22.34
+        bh=HtxBmeOXC9JY2medDRrYSSTNzMcetLrIdHLgGlB77Vo=;
+        b=qDNsN4xLJxTklHNx3Qv8p0K/AsR5uwuS28v/qoO0ioPJ+l6UvvXmP8hy0TBuibZFq3
+         0qK1zk9iWhKT9FZ/IbMCN/XO1RPK9BP0oTbt2+tlSJCUF3p7BKYEq/oaQTP9AZiNp757
+         SaVGF4gE7Nd0EHjxJqb4pt8k5HCbykRENddm4Qtz0U34QVGbj1WUlvGjR8kdgBxsDeKb
+         A7XllT4Foh64CE5IqLGD/rB+5kyQrKLeZFtrJ4TZzFA1RzqpoQ3h+vreH4j339pLjbK9
+         hRVlTnT7MtlFUzyXLaOdEa/gY0Y2IFJiquxCtnQB8WVVhbcMj39DKQnY+I2dROyxhoF5
+         8cLA==
+X-Gm-Message-State: AOAM532m0WQvAax5Wn3CHXj88LqYpmpZ7HBX5ct65Hd+3XO1cHSGZKTg
+        rEmLV6bIWKeHSuJMKCoHRQ2m/uA4K6NrRMN+
+X-Google-Smtp-Source: ABdhPJwfUY2Exdd7ZUJLotq3D3qwt70QY/uo/prkHK4RJ7kTBcqoqAfFpREMtYJAF62kh96pY29mPw==
+X-Received: by 2002:a1c:6a03:0:b0:37b:dda6:4259 with SMTP id f3-20020a1c6a03000000b0037bdda64259mr20501670wmc.20.1645431909129;
+        Mon, 21 Feb 2022 00:25:09 -0800 (PST)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:77b7:547a:df0c:28d8])
+        by smtp.gmail.com with ESMTPSA id o25-20020a05600c379900b0037bbafa37easm6732025wmr.31.2022.02.21.00.25.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Feb 2022 00:22:34 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mon, 21 Feb 2022 00:25:08 -0800 (PST)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Roger Quadros <rogerq@ti.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: usb: do not use deprecated synopsys prefix
-Date:   Mon, 21 Feb 2022 09:22:28 +0100
-Message-Id: <20220221082228.34407-3-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220221082228.34407-1-krzysztof.kozlowski@canonical.com>
-References: <20220221082228.34407-1-krzysztof.kozlowski@canonical.com>
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Sam Nazarko <email@samnazarko.co.uk>,
+        Chad Wagner <wagnerch42@gmail.com>
+Subject: Re: [PATCH v2 0/3] arm64: dts: meson: add support for OSMC Vero 4K+
+Date:   Mon, 21 Feb 2022 09:25:06 +0100
+Message-Id: <164543190117.17295.2849143887503486162.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220211105311.30320-1-christianshewitt@gmail.com>
+References: <20220211105311.30320-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "synopsys" prefix and "synopsys,dwc3" compatible are deprecated.
+Hi,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- Documentation/devicetree/bindings/usb/dwc3-cavium.txt       | 2 +-
- Documentation/devicetree/bindings/usb/ti,keystone-dwc3.yaml | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+On Fri, 11 Feb 2022 10:53:08 +0000, Christian Hewitt wrote:
+> This series adds support for the OSMC Vero 4K+ Set-Top Box device
+> based on the Amlogic GXL (S905D) chipset. The Vero 4k+ is notable
+> for being an original Linux (not Android) STB device, running its
+> own Debian-derived 'OSMC' distro. Big thanks to Chad Wagner for his
+> help with testing and device-tree fettling.
+> 
+> Changes since v1:
+> - Address device-tree comments from Neil
+> - Add Neil's reviewed-by to patch 3
+> 
+> [...]
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc3-cavium.txt b/Documentation/devicetree/bindings/usb/dwc3-cavium.txt
-index 710b782ccf65..171df79360ff 100644
---- a/Documentation/devicetree/bindings/usb/dwc3-cavium.txt
-+++ b/Documentation/devicetree/bindings/usb/dwc3-cavium.txt
-@@ -20,7 +20,7 @@ Example device node:
- 			    refclk-type-hs = "dlmc_ref_clk0";
- 			    power = <0x00000002 0x00000002 0x00000001>;
- 			    xhci@1690000000000 {
--				    compatible = "cavium,octeon-7130-xhci", "synopsys,dwc3";
-+				    compatible = "cavium,octeon-7130-xhci", "snps,dwc3";
- 				    reg = <0x00016900 0x00000000 0x00000010 0x00000000>;
- 				    interrupt-parent = <0x00000010>;
- 				    interrupts = <0x00000009 0x00000004>;
-diff --git a/Documentation/devicetree/bindings/usb/ti,keystone-dwc3.yaml b/Documentation/devicetree/bindings/usb/ti,keystone-dwc3.yaml
-index f6e91a5fd8fe..b1f65a656528 100644
---- a/Documentation/devicetree/bindings/usb/ti,keystone-dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/ti,keystone-dwc3.yaml
-@@ -92,7 +92,7 @@ examples:
-       ranges;
- 
-       usb@2690000 {
--        compatible = "synopsys,dwc3";
-+        compatible = "snps,dwc3";
-         reg = <0x2690000 0x70000>;
-         interrupts = <GIC_SPI 393 IRQ_TYPE_EDGE_RISING>;
-         usb-phy = <&usb_phy>, <&usb_phy>;
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.18/dt64)
+
+[1/3] dt-bindings: vendor-prefixes: add osmc prefix
+      https://git.kernel.org/amlogic/c/41654043226f517a8b37cab34f1eab5c6ef16947
+[2/3] dt-bindings: arm: amlogic: add Vero 4K+ bindings
+      https://git.kernel.org/amlogic/c/3f7dbd336f360a76103153b85ce616b86d85c6cd
+[3/3] arm64: dts: meson: add support for OSMC Vero 4K+
+      https://git.kernel.org/amlogic/c/d926a4fe25338e120ab49547de9707dc6e5e5824
+
 -- 
-2.32.0
-
+Neil
