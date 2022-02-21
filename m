@@ -2,134 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 179104BE7E4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6412C4BDF92
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:50:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378112AbiBUOlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 09:41:04 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51592 "EHLO
+        id S1378124AbiBUOlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 09:41:51 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:51968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378099AbiBUOlB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 09:41:01 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32056205CF;
-        Mon, 21 Feb 2022 06:40:38 -0800 (PST)
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3B4DF482;
-        Mon, 21 Feb 2022 15:40:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645454436;
-        bh=nTpZoOQNBKaZvvyP6+yOBIA2qRqlBuY3KLj4nTlSb8c=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=fteu9wsvyQGzIY3q8U1+cxKEKinBJWDZs8O/Wva7W0VXalFO+maEYzKzty5xzIclY
-         wTbYbxwxGuoEJilYm9YUCgplaeRB+mU/tDlUE/d0wT8DEnVR6K3WoVeLdAnZSZ8QAD
-         619fxqcsyhY1o8TFL5KBvicyCGJZYzT9sfujOlYg=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211229193135.28767-3-laurent.pinchart+renesas@ideasonboard.com>
-References: <20211229193135.28767-1-laurent.pinchart+renesas@ideasonboard.com> <20211229193135.28767-3-laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: renesas: Add panel overlay for Salvator-X(S) boards
-From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-renesas-soc@vger.kernel.org
-Date:   Mon, 21 Feb 2022 14:40:33 +0000
-Message-ID: <164545443374.2976960.661493389191640326@Monstersaurus>
-User-Agent: alot/0.10
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1378118AbiBUOlt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 09:41:49 -0500
+Received: from so254-9.mailgun.net (so254-9.mailgun.net [198.61.254.9])
+        by lindbergh.monkeyblade.net (Postfix) with UTF8SMTPS id 9A17D205CF
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 06:41:23 -0800 (PST)
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1645454486; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=xUsJwQqKxY3LkEa3BP/FKFjRWiH9Bwosxaz/JVSIBxA=; b=fmgXitzB91PA2XPWw6gc7xQYAa60st8B1wdbMzgHYW+vBgHnHAoLlak0D/f6pM+rh77xcyTg
+ Qa5032aC8tZq3sHnZRBNLCy6ZBkfax8wDHxQpXtjfwpjeg/TT+Mhr3E2yeGolCeHz7bpc4Mh
+ i+SwXABiyhqcKwYzD+EAdv7fshI=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 6213a48c0ae862b7cf2fdca8 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 21 Feb 2022 14:41:16
+ GMT
+Sender: quic_akhilpo=quicinc.com@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 66CC7C43637; Mon, 21 Feb 2022 14:41:15 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+Received: from hyd-lnxbld559.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akhilpo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0E40EC4338F;
+        Mon, 21 Feb 2022 14:41:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 0E40EC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=quicinc.com
+From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
+To:     freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        Rob Clark <robdclark@gmail.com>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Douglas Anderson <dianders@chromium.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] Support 7c3 gpu SKUs
+Date:   Mon, 21 Feb 2022 20:10:57 +0530
+Message-Id: <1645454462-27867-1-git-send-email-quic_akhilpo@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Laurent Pinchart (2021-12-29 19:31:34)
-> The Salvator-X and Salvator-XS boards support an optional LVDS panel.
-> One compatible panel is the Mitsubishi AA104XD12. Add a corresponding DT
-> overlay.
->=20
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.co=
-m>
-> ---
-> Changes since v1:
->=20
-> - Create endpoint in lvds0 port@1
-> ---
->  arch/arm64/boot/dts/renesas/Makefile          |  2 ++
->  .../dts/renesas/salvator-panel-aa104xd12.dts  | 36 +++++++++++++++++++
->  2 files changed, 38 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.=
-dts
->=20
-> diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/r=
-enesas/Makefile
-> index d1c5c21d8d14..982ca3e0e86f 100644
-> --- a/arch/arm64/boot/dts/renesas/Makefile
-> +++ b/arch/arm64/boot/dts/renesas/Makefile
-> @@ -74,3 +74,5 @@ dtb-$(CONFIG_ARCH_R8A77961) +=3D r8a779m3-ulcb-kf.dtb
->  dtb-$(CONFIG_ARCH_R8A77965) +=3D r8a779m5-salvator-xs.dtb
-> =20
->  dtb-$(CONFIG_ARCH_R9A07G044) +=3D r9a07g044l2-smarc.dtb
-> +
-> +dtb-$(CONFIG_ARCH_RCAR_GEN3) +=3D salvator-panel-aa104xd12.dtbo
-> diff --git a/arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dts b/a=
-rch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dts
-> new file mode 100644
-> index 000000000000..c83a30adc6ad
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dts
-> @@ -0,0 +1,36 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree overlay for the AA104XD12 panel connected to LVDS0 on a
-> + * Salvator-X or Salvator-XS board
-> + *
-> + * Copyright 2021 Ideas on Board Oy
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&{/} {
-> +#include "panel-aa104xd12.dtsi"
+This series supercedes [1]. Major change in this series is that it is now
+optional to include a gpu name in the gpu-list. This helps to avoid the
+confusion when we have different SKUs with different gpu names. And also
+I am pretty happy that the overall changes are smaller now.
 
-I guess parameters would help reduce the redundancy of having to=20
-define per-board overlays, but this fits what we have got so:
+[1] https://patchwork.freedesktop.org/series/99048/
 
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Akhil P Oommen (5):
+  drm/msm: Use generic name for gpu resources
+  drm/msm/adreno: Generate name from chipid for 7c3
+  drm/msm/a6xx: Add support for 7c3 SKUs
+  drm/msm/adreno: Expose speedbin to userspace
+  arm64: dts: qcom: sc7280: Support gpu speedbin
 
-> +};
-> +
-> +&{/panel} {
-> +       backlight =3D <&backlight>;
-> +
-> +       port {
-> +               panel_in: endpoint {
-> +                       remote-endpoint =3D <&lvds0_out>;
-> +               };
-> +       };
-> +};
-> +
-> +&lvds0 {
-> +       status =3D "okay";
-> +
-> +       ports {
-> +               port@1 {
-> +                       lvds0_out: endpoint {
-> +                               remote-endpoint =3D <&panel_in>;
-> +                       };
-> +               };
-> +       };
-> +};
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
->
+ arch/arm64/boot/dts/qcom/sc7280.dtsi       | 46 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c      | 18 ++++++++++--
+ drivers/gpu/drm/msm/adreno/adreno_device.c |  1 -
+ drivers/gpu/drm/msm/adreno/adreno_gpu.c    | 35 +++++++++++++++++++----
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h    |  3 ++
+ drivers/gpu/drm/msm/msm_gpu.c              |  4 +--
+ 6 files changed, 96 insertions(+), 11 deletions(-)
+
+-- 
+2.7.4
+
