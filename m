@@ -2,147 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03B9C4BE1D3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:53:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C38D14BE016
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:51:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356465AbiBULQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 06:16:58 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48076 "EHLO
+        id S1355439AbiBULRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 06:17:01 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355585AbiBULPN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 06:15:13 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F27A42DD1;
-        Mon, 21 Feb 2022 02:52:42 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 88698150C;
-        Mon, 21 Feb 2022 02:52:42 -0800 (PST)
-Received: from bogus (unknown [10.57.3.200])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D52D83F66F;
-        Mon, 21 Feb 2022 02:52:40 -0800 (PST)
-Date:   Mon, 21 Feb 2022 10:51:51 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Edwin Chiu <edwinchiu0505tw@gmail.com>
-Cc:     edwin.chiu@sunplus.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rafael@kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
-        daniel.lezcano@linaro.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for sunplus
- sp7021
-Message-ID: <20220221105151.6rvyoqyvj6ehhtnj@bogus>
-References: <cover.1645427180.git.edwinchiu0505tw@gmail.com>
- <1628e048220f066204b8ac27f3cedf7f3cc02963.1645427180.git.edwinchiu0505tw@gmail.com>
+        with ESMTP id S1356318AbiBULQW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 06:16:22 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EB9FDF35
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 02:57:57 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0EAB6482;
+        Mon, 21 Feb 2022 11:57:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1645441075;
+        bh=bWlNeVNKlz9/StQUVM42xOtXpZb5awVLlVDId/S/r8g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TJNm7WtscnEp/mg5WCdMo60cM5wue3hKlG5rJI/wc6AcNHfF+Ds+C0+0Qhc8CbClA
+         8FH/5/lcrGhtMuj7rAYT+yFTtF7uHfVNA97Kc3G0eE5cgDhd0aWCBnkIKRFlYNuwUr
+         Wr+gRM3HdJbhwPWtvuFaG4ezZ1Ovf/0OZiiJBZqI=
+Date:   Mon, 21 Feb 2022 12:57:45 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        patchwork-lst@pengutronix.de,
+        Paul Elder <paul.elder@ideasonboard.com>
+Subject: Re: [PATCH v2 3/9] soc: imx: gpcv2: add support for i.MX8MP power
+ domains
+Message-ID: <YhNwKfdFAEJl3P3b@pendragon.ideasonboard.com>
+References: <20220207192547.1997549-1-l.stach@pengutronix.de>
+ <20220207192547.1997549-3-l.stach@pengutronix.de>
+ <YhAlfAunReS14b/E@pendragon.ideasonboard.com>
+ <YhIniLdFtcpODXBN@pendragon.ideasonboard.com>
+ <b4e2099b6d9511f144bbbf6355f8c284b3328901.camel@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1628e048220f066204b8ac27f3cedf7f3cc02963.1645427180.git.edwinchiu0505tw@gmail.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <b4e2099b6d9511f144bbbf6355f8c284b3328901.camel@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 03:26:18PM +0800, Edwin Chiu wrote:
-> Create cpuidle driver for sunplus sp7021 chip
+Hi Lucas,
+
+On Mon, Feb 21, 2022 at 11:09:58AM +0100, Lucas Stach wrote:
+> Am Sonntag, dem 20.02.2022 um 13:35 +0200 schrieb Laurent Pinchart:
+> > On Sat, Feb 19, 2022 at 01:02:21AM +0200, Laurent Pinchart wrote:
+> > > On Mon, Feb 07, 2022 at 08:25:41PM +0100, Lucas Stach wrote:
+> > > > This adds driver support for all the GPC power domains found on
+> > > > the i.MX8MP SoC.
+> > > > 
+> > > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > > > ---
+> > > >  drivers/soc/imx/gpcv2.c | 387 +++++++++++++++++++++++++++++++++++++++-
+> > > >  1 file changed, 386 insertions(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> > > > index 01f46b078df3..a7c92bdfc53b 100644
+> > > > --- a/drivers/soc/imx/gpcv2.c
+> > > > +++ b/drivers/soc/imx/gpcv2.c
+> > 
+> > [snip]
+> > 
+> > > > @@ -137,6 +183,21 @@
+> > > >  #define IMX8MN_DISPMIX_HSK_PWRDNREQN		BIT(7)
+> > > >  #define IMX8MN_HSIO_HSK_PWRDNREQN		BIT(5)
+> > > >  
+> > > > +#define IMX8MP_MEDIAMIX_PWRDNACKN		BIT(3)
+> > > 
+> > > This should be bit 30.
+> > 
+> > With this fixed,
+> > 
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > 
+> > with a soon to be posted driver for the MEDIA_BLK_CTRL.
+> > 
+> > While this shouldn't be a blocker, I'm wondering how we should deal with
+> > the NOC configuration that TF-A handles in the power domain code ([1]).
+> > The reference manual doesn't document the registers, which doesn't help.
+>
+> Yes, that doesn't help. My hope was that at some point we could get
+> around to add proper interconnect drivers for those NoC nodes and have
+> the description for those scheduling parameters in the DT, but without
+> any documentation this will probably be a hard nut to crack.
+
+Indeed. Maybe someone from NXP could help :-)
+
+> > There are also two registers in the MEDIA_BLK_CTRL that are specific to
+> > the LCDIF and ISI, see [2]. Would you recommend dealing with them in the
+> > imx8m-blk-ctrl driver (maybe in the power domain notifier, the same way
+> > we set bit 8 in the CLK_EN register), or through a syscon phandle
+> > directly in the LCDIF and ISI drivers ?
 > 
-> Signed-off-by: Edwin Chiu <edwinchiu0505tw@gmail.com>
-> ---
-> Changes in v3
->  - Rearrangement #include sequence
->  - Change remark style to /*~*/
->  - Align author email address to same as sob
->  - Optimal code
-> Changes in v4
->  - According Rob Herringrobh's comment
->    There is no need for this binding.
->    Just wanting a different driver is not a reason
->    for a duplicate schema.
->    So remove yaml file and submit driver again.
-> Changes in v5
->  - According Krzysztof's comment
->    You either use appropriate compatible in DT
->    or add your compatible to cpuidle-arm.
->    Even if this did not work, then the solution is to
->    use common parts, not to duplicate entire driver.
->    According Sudeep's comment
->    In short NACK for any dedicated driver for this platform,
->    use the generic cpuidle-arm driver with appropriate platform hooks
->    Create cpuidle-sunplus.c in arch/arm/mach-sunplus/
->    for hook generic cpuidle-arm driver
-> 
->  MAINTAINERS                                   |  6 ++
->  arch/arm/mach-sunplus/cpuidle-sunplus.c       | 88 +++++++++++++++++
->  include/linux/platform_data/cpuidle-sunplus.h | 12 ++++
->  3 files changed, 106 insertions(+)
->  create mode 100644 arch/arm/mach-sunplus/cpuidle-sunplus.c
->  create mode 100644 include/linux/platform_data/cpuidle-sunplus.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e0dca8f..5c96428 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18252,6 +18252,12 @@ L:	netdev@vger.kernel.org
->  S:	Maintained
->  F:	drivers/net/ethernet/dlink/sundance.c
->  
-> +SUNPLUS CPUIDLE DRIVER
-> +M:	Edwin Chiu <edwinchiu0505tw@gmail.com>
-> +S:	Maintained
-> +F:	arch/arm/mach-sunplus/cpuidle-sunplus.c
-> +F:	include/linux/platform_data/cpuidle-sunplus.h
-> +
->  SUPERH
->  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
->  M:	Rich Felker <dalias@libc.org>
-> diff --git a/arch/arm/mach-sunplus/cpuidle-sunplus.c b/arch/arm/mach-sunplus/cpuidle-sunplus.c
-> new file mode 100644
-> index 0000000..e9d9738
-> --- /dev/null
-> +++ b/arch/arm/mach-sunplus/cpuidle-sunplus.c
-> @@ -0,0 +1,88 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * SP7021 cpu idle Driver.
-> + * Copyright (C) Sunplus Tech / Tibbo Tech.
-> + */
-> +#define pr_fmt(fmt) "CPUidle arm: " fmt
-> +
-> +#include <linux/cpuidle.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_data/cpuidle-sunplus.h>
-> +
-> +#include <asm/cpuidle.h>
-> +
-> +typedef int (*idle_fn)(void);
-> +
-> +static DEFINE_PER_CPU(idle_fn*, sp7021_idle_ops);
-> +
-> +static int sp7021_cpuidle_enter(unsigned long index)
-> +{
-> +	return __this_cpu_read(sp7021_idle_ops)[index]();
-> +}
-> +static int sp7021_cpu_spc(void)
-> +{
-> +	cpu_v7_do_idle();   /* idle to WFI */
-> +	return 0;
-> +}
+> For now I think it would be good enough to initialize those registers
+> in the power domain notifier. I don't think the ISI or LCDIF drivers
+> have any more information available that would make it beneficial to
+> change those values on the fly. As long as they are just static init
+> values, writing them once from the PM notifier should be good enough.
 
-You really don't need a cpuidle driver to just WFI for any states.
-Add the driver when you have something non WFI in the suspend function.
+Sounds good to me. Paul, could you do so when posting the MEDIA_BLK_CTRL
+driver ?
 
-> +static const struct of_device_id sp7021_idle_state_match[] = {
-> +	{ .compatible = "arm,idle-state", .data = sp7021_cpu_spc },
-> +	{ },
-> +};
-
-This is better than adding new driver like you did in previous version.
-
-I did a quick check but couldn't figure out. How do cpus get switched
-ON or OFF on this platform(for example during CPU hotplug) ?
+> > [1] https://source.codeaurora.org/external/qoriq/qoriq-components/atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf-5.10.72-2.2.0#n156
+> > [2] https://source.codeaurora.org/external/qoriq/qoriq-components/atf/tree/plat/imx/imx8m/imx8mp/gpc.c?h=lf-5.10.72-2.2.0#n146
+> > 
+> > > > +#define IMX8MP_HDMIMIX_PWRDNACKN		BIT(29)
+> > > > +#define IMX8MP_HSIOMIX_PWRDNACKN		BIT(28)
+> > > > +#define IMX8MP_VPUMIX_PWRDNACKN			BIT(26)
+> > > > +#define IMX8MP_GPUMIX_PWRDNACKN			BIT(25)
+> > > > +#define IMX8MP_MLMIX_PWRDNACKN			(BIT(23) | BIT(24))
+> > > > +#define IMX8MP_AUDIOMIX_PWRDNACKN		(BIT(20) | BIT(31))
+> > > > +#define IMX8MP_MEDIAMIX_PWRDNREQN		BIT(14)
+> > > > +#define IMX8MP_HDMIMIX_PWRDNREQN		BIT(13)
+> > > > +#define IMX8MP_HSIOMIX_PWRDNREQN		BIT(12)
+> > > > +#define IMX8MP_VPUMIX_PWRDNREQN			BIT(10)
+> > > > +#define IMX8MP_GPUMIX_PWRDNREQN			BIT(9)
+> > > > +#define IMX8MP_MLMIX_PWRDNREQN			(BIT(7) | BIT(8))
+> > > > +#define IMX8MP_AUDIOMIX_PWRDNREQN		(BIT(4) | BIT(15))
+> > > > +
+> > > >  /*
+> > > >   * The PGC offset values in Reference Manual
+> > > >   * (Rev. 1, 01/2018 and the older ones) GPC chapter's
+> > 
+> > [snip]
+> > 
 
 -- 
 Regards,
-Sudeep
+
+Laurent Pinchart
