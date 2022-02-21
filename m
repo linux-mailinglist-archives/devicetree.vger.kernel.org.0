@@ -2,69 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 549CF4BD58F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 06:45:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A57B94BD5B2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 07:00:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344655AbiBUFpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 00:45:13 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:41964 "EHLO
+        id S1344787AbiBUFxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 00:53:40 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344649AbiBUFpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 00:45:13 -0500
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DFBD31DC3
-        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 21:44:50 -0800 (PST)
-Received: by mail-pl1-x62c.google.com with SMTP id i10so12035489plr.2
-        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 21:44:50 -0800 (PST)
+        with ESMTP id S1344786AbiBUFxi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 00:53:38 -0500
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D39403C4B1
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 21:53:15 -0800 (PST)
+Received: by mail-il1-x133.google.com with SMTP id e11so9245189ils.3
+        for <devicetree@vger.kernel.org>; Sun, 20 Feb 2022 21:53:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=NzWld38SFAn0hncCzudzmSq8RQy5woIo/8NaM7ZRlas=;
-        b=Cuwl6GcKQBZCFXxjfMHDQtmUYutqxwKOoNgd+YJ0Crd99cWuxr7geM3pGJEYiAXi7p
-         BzonzPkIAXeCkxsilBTqgjbs2Thbw3zh6zyeFxSqvBKla0rJd8s3xZKAvXPYzUyXqz22
-         cDiiHR+oc7BSDYW7ZE2a7fe26yXEsCLQpOHi57DnqTdrAFbCaiztVpgh6TPT6636tEnJ
-         epphhWJ9sHnmUOo38BOF8NLz5+WSJJces3coennEUFQk8GwhVM2bhtZ7Mte/I1t1IaPZ
-         PP1hYg1gQ+5HbWP7QMusHWZV5rgTiDQhts1DFDJfzx/Bsscm4tWzQwC9uHlaoUbIQKU/
-         JrHg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Tu5+ZumlPrWZWUHsiI2Qy64iwmLnXHPFMBECCxnAn1Q=;
+        b=eNH4LlOm7E19BUvV8/YUg4na+pugGL0GQtGPyd4F0sskxsfwUbBSISYkazJdvs/PoP
+         TCUuJ7V7E5q05LnFlzsaF6puEW9DPWepHDebomaIkIAB1deViIk2fnuBFkUBKQaOz4Wi
+         r4T2B57aJdhZf+gNbMORQrt6rYCVmxRrpXl+k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NzWld38SFAn0hncCzudzmSq8RQy5woIo/8NaM7ZRlas=;
-        b=cSkLIDALWFszGsA5oP8fEibjS3HS9FhPFgXYmcHApjmP+bXR2x2YLo5nXpaE4mW7cs
-         a2urqi64NPucYVuK5OudF748o12Eppok8EJlKtMHi+w/qz7fHlTEYqSaXyp4G8jxvqeL
-         pI1lycR6d7PVcYqVxVEquhqQwGiJ4a4P3UQnTGvp4tZ36jFoiJDcQ19DMDplr1Yvd/Dk
-         dNk+kpf3XBx47BxvA5/0V9ebWnd30joizpAVLwE+SqeNiGRANXGrSOjVm6nlUkXAuCZB
-         XceTghIp/4Wl1LFUlJmG2L464qENmuKxhFJPIH78V9V3auysfv+XaYUgMTWtJ5eAunfW
-         Mdog==
-X-Gm-Message-State: AOAM53255Y3OheBc2bqBKs1ZwUAogNOOG6Udxqvv0boGuqoYVdfccQqW
-        l4GnC28xZ2bbust8PoQzVEiF
-X-Google-Smtp-Source: ABdhPJybyjPoU57s6j8heaGBbT/bkCBRzKHxWrNmILlk0vP/V+o4r/o0qoyk/eurYtpWcxOGMQ0asQ==
-X-Received: by 2002:a17:902:eb85:b0:14d:b906:cbd3 with SMTP id q5-20020a170902eb8500b0014db906cbd3mr17207331plg.122.1645422289873;
-        Sun, 20 Feb 2022 21:44:49 -0800 (PST)
-Received: from thinkpad ([220.158.158.223])
-        by smtp.gmail.com with ESMTPSA id t7sm10941987pfj.138.2022.02.20.21.44.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Feb 2022 21:44:49 -0800 (PST)
-Date:   Mon, 21 Feb 2022 11:14:45 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/7] Add APCS support for SDX65
-Message-ID: <20220221054445.GD15108@thinkpad>
-References: <1645420953-21176-1-git-send-email-quic_rohiagar@quicinc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Tu5+ZumlPrWZWUHsiI2Qy64iwmLnXHPFMBECCxnAn1Q=;
+        b=PrkE/z2F96t1RJQVv9ez5KDFJE8WN9tmiLLfjrtN1goUOhJvEzA1Ve5LDvq2BTcqO3
+         uzgiFoDyJCEJh1W8xf3JhgXZ9n/KyjlziY5Sv8aLVM5lU+3qLnRD+5uQpkaBi8PfCbLg
+         oxKyJxoQ4F1jXHbRp9hulmIE3zQD6+Edd4GMCpUvvlsWICiK9yNrmZWqXxAANVkgaTHN
+         oqQUFe7/3jg4ZYVgcA0KOAiSzFuzLy4b1pHATIQT3Vi431xO3T48vTCLUCkjkc0iEB8C
+         jLODymOspBmZxxZ8Ra+O531uOdjFhGmDEJ40TkCMBuZaI1YJReNCS4/97DKnHNfs5wgC
+         Cd7w==
+X-Gm-Message-State: AOAM533njqEp0gjyCq4lwkQL9V5ZHVhyJzWDUzDyHUEZDi+hmD5x2GoF
+        fYEczaCK43QMqs85F+X6mliE5wK/9QhahqY6z3QHog==
+X-Google-Smtp-Source: ABdhPJy+ADYxxlDzmssOlbjH+urLluUHRb2DC7LoPstB1CTvBPMG2Vu8sbsrVI+mxW56/GIh/EIENpAVCZE2xANFsiE=
+X-Received: by 2002:a92:b05:0:b0:2b7:ee19:ee15 with SMTP id
+ b5-20020a920b05000000b002b7ee19ee15mr14838488ilf.10.1645422794893; Sun, 20
+ Feb 2022 21:53:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1645420953-21176-1-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220218094417.1631559-1-rexnie3@gmail.com> <CAG+K-_+txzJ2F9LONj_i3icqXFmn9byhUjJtu7N-xeY-5UKizQ@mail.gmail.com>
+In-Reply-To: <CAG+K-_+txzJ2F9LONj_i3icqXFmn9byhUjJtu7N-xeY-5UKizQ@mail.gmail.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Mon, 21 Feb 2022 13:52:49 +0800
+Message-ID: <CAJMQK-ibOOdofUVso=RvLz5OiCzH0kaQ16VMgXY7Qpxm5NEEYA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/panel-edp: Add eDP innolux panel support
+To:     Rex Nie <rexnie3@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Daocai Nie <niedaocai@huaqin.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,48 +69,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 10:52:26AM +0530, Rohit Agarwal wrote:
-> Hello,
-> 
-> Changes from v2:
->  - Addressed Stephen's comments and made necessary changes.
->  - Rebased on top
-> 
-> Changes from v1:
->  - Addressed Mani's comments and made necessary changes.
->  - Removed the last patch from the series as it became redundant after making changes.
-> 
-> This series adds APCS mailbox and clock support for SDX65. The APCS IP
-> in SDX65 provides IPC and clock functionalities. Hence, mailbox support
-> is added to the "qcom-apcs-ipc-mailbox" driver and a dedicated clock
-> driver "apcs-sdx65" is added.
+On Fri, Feb 18, 2022 at 5:59 PM Rex Nie <rexnie3@gmail.com> wrote:
+>
+> Add hsinyi@chromium.org to cc list
+>
+> On Fri, 18 Feb 2022 at 17:44, Rex Nie <rexnie3@gmail.com> wrote:
+>>
+>> From: Daocai Nie <niedaocai@huaqin.corp-partner.google.com>
+>>
+>> Add support for the 14" innolux,n140hca-eac eDP panel.
+>>
+>> Signed-off-by: Daocai Nie <niedaocai@huaqin.corp-partner.google.com>
 
-You seem to have missed adding r-o-b tags.
-
-Thanks,
-Mani
-
-> 
-> Thanks,
-> Rohit
-> 
-> Rohit Agarwal (7):
->   dt-bindings: mailbox: Add binding for SDX65 APCS
->   mailbox: qcom: Add support for SDX65 APCS IPC
->   dt-bindings: clock: Add A7 PLL binding for SDX65
->   clk: qcom: Add A7 PLL support for SDX65
->   ARM: dts: qcom: sdx65: Add support for A7 PLL clock
->   ARM: dts: qcom: sdx65: Add support for APCS block
->   clk: qcom: Add SDX65 APCS clock controller support
-> 
->  Documentation/devicetree/bindings/clock/qcom,a7pll.yaml |  3 ++-
->  .../bindings/mailbox/qcom,apcs-kpss-global.yaml         |  1 +
->  arch/arm/boot/dts/qcom-sdx65.dtsi                       | 17 +++++++++++++++++
->  drivers/clk/qcom/Kconfig                                | 12 ++++++------
->  drivers/clk/qcom/a7-pll.c                               |  1 +
->  drivers/mailbox/qcom-apcs-ipc-mailbox.c                 |  5 +++++
->  6 files changed, 32 insertions(+), 7 deletions(-)
-> 
-> -- 
-> 2.7.4
-> 
+Acked-by: Hsin-Yi Wang <hsinyi@chromium.org>
+>> ---
+>>  drivers/gpu/drm/panel/panel-edp.c | 26 ++++++++++++++++++++++++++
+>>  1 file changed, 26 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
+>> index f7bfcf63d48e..f5f9c9cb26ba 100644
+>> --- a/drivers/gpu/drm/panel/panel-edp.c
+>> +++ b/drivers/gpu/drm/panel/panel-edp.c
+>> @@ -1330,6 +1330,29 @@ static const struct panel_desc innolux_n125hce_gn1 = {
+>>         },
+>>  };
+>>
+>> +static const struct display_timing innolux_n140hca_eac_timing = {
+>> +       .pixelclock = { 72600000, 76420000, 80240000 },
+>> +       .hactive = { 1920, 1920, 1920 },
+>> +       .hfront_porch = { 80, 80, 80 },
+>> +       .hback_porch = { 190, 190, 190 },
+>> +       .hsync_len = { 60, 60, 60 },
+>> +       .vactive = { 1080, 1080, 1080 },
+>> +       .vfront_porch = { 6, 6, 6 },
+>> +       .vback_porch = { 38, 38, 38 },
+>> +       .vsync_len = { 8, 8, 8 },
+>> +       .flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW,
+>> +};
+>> +
+>> +static const struct panel_desc innolux_n140hca_eac = {
+>> +       .timings = &innolux_n140hca_eac_timing,
+>> +       .num_timings = 1,
+>> +       .bpc = 6,
+>> +       .size = {
+>> +               .width = 309,
+>> +               .height = 174,
+>> +       },
+>> +};
+>> +
+>>  static const struct drm_display_mode innolux_p120zdg_bf1_mode = {
+>>         .clock = 206016,
+>>         .hdisplay = 2160,
+>> @@ -1750,6 +1773,9 @@ static const struct of_device_id platform_of_match[] = {
+>>         }, {
+>>                 .compatible = "innolux,n125hce-gn1",
+>>                 .data = &innolux_n125hce_gn1,
+>> +       }, {
+>> +               .compatible = "innolux,n140hca-eac",
+>> +               .data = &innolux_n140hca_eac,
+>>         }, {
+>>                 .compatible = "innolux,p120zdg-bf1",
+>>                 .data = &innolux_p120zdg_bf1,
+>> --
+>> 2.25.1
+>>
