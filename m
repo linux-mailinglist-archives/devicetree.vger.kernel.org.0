@@ -2,86 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A8B4BE775
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:03:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75D514BDE95
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:47:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350695AbiBURWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 12:22:10 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53144 "EHLO
+        id S1380394AbiBUR2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 12:28:11 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:34764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352849AbiBURWJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 12:22:09 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E7CFC
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 09:21:40 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 268BF3FDC7
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 17:21:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645464099;
-        bh=8v28uIG1PBlifiT6rIaCfjGfwA19knBew3PLYVSAoVg=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=dquq+Y9L3FFGM+qcrxwfuJk46Q+Lg5VnEyhdd9lj53zW0RVGNNMNB5lI07XwBy0I1
-         +uvLvwPWZZy9OiQt++68zT7ZNO6T/AQOdO2+l6wOCfIAR0N7JgCHa4X8+fhlM7stk+
-         R1WhjWf95tV3g5jXGLv4kvQbevrsXQKrEnH1qSanC6ZlJ8wyZ4yh6Pk1cA1i800Ty0
-         D2705oPfy/NsbWACSc+dncTQZxBCdOKsOnsIQ0LND4TkpmzOqNLnmqY+ET/AetXwGP
-         SFpCBy2sBLI21Epr/aJoVghLZhQdF7APhjVZSQyYmeBqGH+gZMGhJ2fTB4BYW13gHY
-         MEbgRSPWqmrpg==
-Received: by mail-ed1-f69.google.com with SMTP id n7-20020a05640205c700b0040b7be76147so10462576edx.10
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 09:21:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=8v28uIG1PBlifiT6rIaCfjGfwA19knBew3PLYVSAoVg=;
-        b=uC3Bvqz0zq0RRGNyF32Oloqeg0ycDlc9wfk+ib9NDZRFP9vaOFVNjvMocl/ZHOqKql
-         NH54VrsLmg5clDTOrC1+JU0BzOJZPaEmhKJY/jvCZu6cqH3XmRH1gojeZjcLEtOIso1E
-         jJOeQzrD+dSYAaV0vaOU6aJ7O7roRUEGhGbERoTmd26YIHRqHubsn00OdnJDuYcGzBjE
-         vutG0ovhezqpq9T3kfEJnHbxP9zJE8xYfaTlmKD4aA5xyhDIu/XGlz4fIrESErv5zf8e
-         ebvWFYGOOiiqQGrgub3Owj5wXcggdkKVgVpwmYJFP0/vemon1xPKakpRZ71XS5nJkZip
-         1NZw==
-X-Gm-Message-State: AOAM531K3WiY+S2/oU59qzkpIeEHxxoaSqDtZsorMLfStn8HkUOT0i2r
-        Ouf+ki7LT6FxgXq5Vd4RM9vDmwnK3ydPUHi+y/5D4pzmb3UIs7bX7CZRBOSNMnYfqyIK2dtcQN0
-        nj5xDZBAMMvl0NoB7INMhlfGaWUCiOSzojZhMRho=
-X-Received: by 2002:a17:906:8d8:b0:6d2:131d:be51 with SMTP id o24-20020a17090608d800b006d2131dbe51mr427248eje.564.1645464098911;
-        Mon, 21 Feb 2022 09:21:38 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwjgJyey9bJW6vUD8/B7gNtQBM0pda0yp9JUDrbNodpj1wa0288+D69iHNZR8/Gq65bjaVYbg==
-X-Received: by 2002:a17:906:8d8:b0:6d2:131d:be51 with SMTP id o24-20020a17090608d800b006d2131dbe51mr427229eje.564.1645464098682;
-        Mon, 21 Feb 2022 09:21:38 -0800 (PST)
-Received: from [192.168.0.122] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id n25sm8828648eds.89.2022.02.21.09.21.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Feb 2022 09:21:38 -0800 (PST)
-Message-ID: <3a7468bd-bba4-8f9c-7ffe-49c01c35497b@canonical.com>
-Date:   Mon, 21 Feb 2022 18:21:37 +0100
+        with ESMTP id S236985AbiBUR2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 12:28:08 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C624419C02;
+        Mon, 21 Feb 2022 09:27:44 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8F5DB1063;
+        Mon, 21 Feb 2022 09:27:44 -0800 (PST)
+Received: from [10.57.40.147] (unknown [10.57.40.147])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8D1663F70D;
+        Mon, 21 Feb 2022 09:27:42 -0800 (PST)
+Message-ID: <71e94ac3-20fc-6f41-270f-fe246740e7e0@arm.com>
+Date:   Mon, 21 Feb 2022 17:27:30 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/5] dt-bindings: arm: fsl: add TQ Systems boards based
- on i.MX6UL(L)
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Matthias Schiffer <matthias.schiffer@tq-group.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>
-References: <20220221160419.550640-1-alexander.stein@ew.tq-group.com>
- <20220221160419.550640-2-alexander.stein@ew.tq-group.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220221160419.550640-2-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v3 8/9] drm/tegra: vic: Implement get_streamid_offset
+Content-Language: en-GB
+To:     Mikko Perttunen <mperttunen@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, joro@8bytes.org, will@kernel.org,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220218113952.3077606-1-mperttunen@nvidia.com>
+ <20220218113952.3077606-9-mperttunen@nvidia.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220218113952.3077606-9-mperttunen@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,37 +48,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2022 17:04, Alexander Stein wrote:
-> From: Matthias Schiffer <matthias.schiffer@tq-group.com>
+On 2022-02-18 11:39, Mikko Perttunen via iommu wrote:
+> Implement the get_streamid_offset required for supporting context
+> isolation. Since old firmware cannot support context isolation
+> without hacks that we don't want to implement, check the firmware
+> binary to see if context isolation should be enabled.
 > 
-> TQMa6ULx is a SOM family using NXP i.MX6UL CPU family.
-> TQMa6ULLx is a SOM family using NXP i.MX6ULL CPU family.
-> Both are available as a socket type as well as an LGA type.
-> For both variants there are the mainboards MBa6ULx and MBa6ULxL, trailing
-> 'L' is LGA version.
-> Finally there is the possibility to use the socket module with an LGA
-> adapter on the MBa6ULxL.
-> 
-> The SOM needs a mainboard, therefore we provide compatibles using this
-> naming schema:
-> 
-> "tq,imx6ul-<SOM>" for the module and
-> "tq,imx6ul-<SOM>-<SBC>" for when mounted on the mainboard.
-> The i.MX6ULL version is done similar.
-> 
-> Signed-off-by: Matthias Schiffer <matthias.schiffer@tq-group.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
 > ---
-> Changes in v2:
-> * Acked-by: Rob Herring
+>   drivers/gpu/drm/tegra/vic.c | 38 +++++++++++++++++++++++++++++++++++++
+>   1 file changed, 38 insertions(+)
 > 
->  .../devicetree/bindings/arm/fsl.yaml          | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
-> 
+> diff --git a/drivers/gpu/drm/tegra/vic.c b/drivers/gpu/drm/tegra/vic.c
+> index 1e342fa3d27b..2863ee5e0e67 100644
+> --- a/drivers/gpu/drm/tegra/vic.c
+> +++ b/drivers/gpu/drm/tegra/vic.c
+> @@ -38,6 +38,8 @@ struct vic {
+>   	struct clk *clk;
+>   	struct reset_control *rst;
+>   
+> +	bool can_use_context;
+> +
+>   	/* Platform configuration */
+>   	const struct vic_config *config;
+>   };
+> @@ -229,6 +231,7 @@ static int vic_load_firmware(struct vic *vic)
+>   {
+>   	struct host1x_client *client = &vic->client.base;
+>   	struct tegra_drm *tegra = vic->client.drm;
+> +	u32 fce_bin_data_offset;
+>   	dma_addr_t iova;
+>   	size_t size;
+>   	void *virt;
+> @@ -277,6 +280,25 @@ static int vic_load_firmware(struct vic *vic)
+>   		vic->falcon.firmware.phys = phys;
+>   	}
+>   
+> +	/*
+> +	 * Check if firmware is new enough to not require mapping firmware
+> +	 * to data buffer domains.
+> +	 */
+> +	fce_bin_data_offset = *(u32 *)(virt + VIC_UCODE_FCE_DATA_OFFSET);
+> +
+> +	if (!vic->config->supports_sid) {
+> +		vic->can_use_context = false;
+> +	} else if (fce_bin_data_offset != 0x0 && fce_bin_data_offset != 0xa5a5a5a5) {
+> +		/*
+> +		 * Firmware will access FCE through STREAMID0, so context
+> +		 * isolation cannot be used.
+> +		 */
+> +		vic->can_use_context = false;
+> +		dev_warn_once(vic->dev, "context isolation disabled due to old firmware\n");
+> +	} else {
+> +		vic->can_use_context = true;
+> +	}
+> +
+>   	return 0;
+>   
+>   cleanup:
+> @@ -358,10 +380,26 @@ static void vic_close_channel(struct tegra_drm_context *context)
+>   	host1x_channel_put(context->channel);
+>   }
+>   
+> +static int vic_get_streamid_offset(struct tegra_drm_client *client)
+> +{
+> +	struct vic *vic = to_vic(client);
+> +	int err;
+> +
+> +	err = vic_load_firmware(vic);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	if (vic->can_use_context)
+> +		return 0x30;
+> +	else
+> +		return -ENOTSUPP;
+> +}
+> +
+>   static const struct tegra_drm_client_ops vic_ops = {
+>   	.open_channel = vic_open_channel,
+>   	.close_channel = vic_close_channel,
+>   	.submit = tegra_drm_submit,
+> +	.get_streamid_offset = vic_get_streamid_offset,
 
+The patch order seems off here, since the .get_streamid_offset member 
+isn't defined yet.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Robin.
 
-Best regards,
-Krzysztof
+>   };
+>   
+>   #define NVIDIA_TEGRA_124_VIC_FIRMWARE "nvidia/tegra124/vic03_ucode.bin"
