@@ -2,201 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF90F4BDEF5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:49:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E72214BDE27
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:46:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245426AbiBUJN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 04:13:27 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:33882 "EHLO
+        id S241798AbiBUJWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 04:22:54 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:36940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349577AbiBUJMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 04:12:35 -0500
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C0424093
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 01:05:31 -0800 (PST)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 4ACBD5C0230;
-        Mon, 21 Feb 2022 04:05:31 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Mon, 21 Feb 2022 04:05:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; bh=7xyoypuqqRg03OPI0Bu8KGab+bG2HsC1cotBN8
-        O1/ZY=; b=vkpUGC9LkwQ5RIEJqkI9IOn6ZPk7qWbSfa7Y5OCDtWff1+dAEYZQ6A
-        pcmzPRDEIOx/8pXfbc1ViqcfABgwX4UV8meoa2S42n67B+AeY6ua1jxonlzKb3yM
-        bsiHfB8Ea3dhdHivYPjiVkq3o4aJ0o8Q9SvM3DdFi2Au1nBrStqO89YiGbusG+on
-        Z7U5q1SkG0VS4oS1/c8pEF3yNYctk0vRUE2G7EmqxGyTVEma1tuRKhZersvow7Wv
-        sOcVY5HCYGszI0b5N2JYNuiehgkih8E75lTEE7ykfSSwDGj3GeM0uIFPNiqlMU3p
-        uQ6DSK10udc+ge36gznJ8jpyDqR6fWog==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=7xyoypuqqRg03OPI0
-        Bu8KGab+bG2HsC1cotBN8O1/ZY=; b=gyyicsNxlT2kJ4Raikse+b1AGSh+Vgi+f
-        2v3iw0MMoh99/8nutmxiFL61EwH8ZtcAfUvANhp/2utBb/ui0yN/EE+4zWWLNTGL
-        MTcNIafi3iiGqnNgptD7GL5rLvil95i2UuaI85b6w5O7RT3NWfTRnrm5F/u6/9hT
-        awZpyRsnXNGHMi1m2UnGCbtKgYKruAea8LfLMMQjP6T7bO268eEnrN6zxynpw7V9
-        P7//KLKmI5fgXFd1HdUJIHH66dZk6gUGBifLgWPvb06QGGn7K01RraZVYkVh282U
-        z93d1CIwl9Q05WSEF2NvHuCbAaQWxqyxCUMBNmHaSQUYc0SuhKjAw==
-X-ME-Sender: <xms:2lUTYvn7UJps3dgRG1SLKWLiNcbIFApyWRYHGcnX9D6FXM3Hm8w9Hg>
-    <xme:2lUTYi0bX_ZC-EMBgy-rSwFSgAF30fwcC6CdX8YxyMG140xznvYVRgR5iID-ciGrj
-    jG_N085GDu455owKJw>
-X-ME-Received: <xmr:2lUTYlpYxWMYX1ET8LKx9uWE3Hmdr24Pte8UlwYVurAZqhvJrKFDtVZTPVmGDhAe_d-SohZKV9uMwmbRGdmyunr2XwfJ2mYkL-8tHig>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrkeehgdduvdehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepjeeuieelleeivedvhfdvjeetledvtefhleejjeeiueejjeeileevudeftddv
-    ledtnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
-    hh
-X-ME-Proxy: <xmx:2lUTYnnmQoxuBo4Cru0x4SOUCDLBKdyblz5Mpqe7PaRXBVdO1EuSLA>
-    <xmx:2lUTYt2bXHXG7jfm1Zk38ioxyJhpVUGU2MTdk_kzcxjBXvP8UceT5w>
-    <xmx:2lUTYmuHGQPkA9N55tfD9SOMlz7uIJX3tpWlAdYjcik4bUbH60lrbA>
-    <xmx:21UTYnpRyQj9wRBxJl8henkTEdBlbUcIv8yHiHps3iwzLI0ozaQ-ZQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 21 Feb 2022 04:05:30 -0500 (EST)
-Date:   Mon, 21 Feb 2022 10:05:29 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        robh+dt@kernel.org, thierry.reding@gmail.com,
-        dave.stevenson@raspberrypi.com, david@lechnology.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 3/3] drm/tiny: Add MIPI DBI compatible SPI driver
-Message-ID: <20220221090529.s2bxjli4dsp43l4e@houat>
-References: <20220218151110.11316-1-noralf@tronnes.org>
- <20220218151110.11316-4-noralf@tronnes.org>
- <YhFqxklH9hsLrI1X@ravnborg.org>
- <08d29bb6-8b44-8355-b9dc-a96b2e20cc20@tronnes.org>
- <YhKzaU2vz17y+j4s@ravnborg.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zmp4tyxe2eanrjli"
+        with ESMTP id S1349309AbiBUJVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 04:21:13 -0500
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150125.outbound.protection.outlook.com [40.107.15.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 782B436156;
+        Mon, 21 Feb 2022 01:08:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CepL/Oluyk2X8DYdXihYiMZ6niAtIcs4Tpn9N/nN2m2tVTyf3xOiLgwK1pFdQPq+WE5LDsEY3STkbmQAt4MZ4HA2d9zGM75KxpWTttzOsMwiEJGNXoccGi/n+kOOraFBq28L0K4OzJKjv5WimLwMVIEJIw7Jp0Qc/NP6yESjKlmv0vwzPLmCsZBcLPiC5p4cdk45XLx9wzXw9W8Spay3/TM9+pHmRu0miWi3EcCbWKAVmT7KBkYEju+L6CqbpmD6hIEZO+ZYzlpm1ScizHrXQHa/kB/jgKBWyD4+p/nVayvXHuejZ8GunUkCJA297bgpyU7g7rOlkXUz51EBge3Gqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Dw0vsA8BDgjDXLZ07tLY6bwFEg8/PQbyB4cD62Njg2U=;
+ b=fhEjeCAwosBFiZdGgsz2tQ9LqWdlvVGtN/i3fqntIl1BJ1jGrRWUSIzEu2vJMZwH5jELqYQj2hVZx6VT+kx2ihL9HQuQv8ZuVbZKZe0p0Y7exWvsp4cCeTj8SqcYIpo5qrUMELhTha7Kml142s8jNv0ZdGYN0nRLuxGAaKxQJOc5dmDCBkeSBMg+U2458NdrQQLuSHcL6dlgV65dk08s/rfhTaD2u3lWdADBiygO/1tUlPXHc283OWJU83s2PzBhFlLX2tfkCwKqRcbiC5VktZ1qCOdYrpwoFJxIxWy4gZeiEe9RNJKnZOn6gq8jaTaCBuVCnb0HJLAslTeUSavF3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Dw0vsA8BDgjDXLZ07tLY6bwFEg8/PQbyB4cD62Njg2U=;
+ b=GVFkixZummEl0010T/0amOhOYTFxDk1/LZjfHmY3E7VWlIh+OJ7NpZJlX+S+H2Rdu2K9UgY/s34zIdgCcmH9HvNPUx/oNIWP/bJD9wXKfMgnY0P1hfxWGcbQKzctLSHO3sy0d9HpBsevJmT20BaR6dJYpauSQHHrUq3qYDQrjp8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nokia.com;
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com (2603:10a6:10:239::15)
+ by HE1PR07MB4201.eurprd07.prod.outlook.com (2603:10a6:7:98::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.19; Mon, 21 Feb
+ 2022 09:07:57 +0000
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::99a2:6f44:700b:b796]) by DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::99a2:6f44:700b:b796%3]) with mapi id 15.20.5017.021; Mon, 21 Feb 2022
+ 09:07:57 +0000
+Date:   Mon, 21 Feb 2022 10:07:32 +0100
+From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org, Agathe Porte <agathe.porte@nokia.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: hwmon: add tmp464.yaml
+Message-ID: <YhNWVLHYVtCvdGhi@localhost.localdomain>
+References: <20220218150908.1947772-1-linux@roeck-us.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Disposition: inline
-In-Reply-To: <YhKzaU2vz17y+j4s@ravnborg.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220218150908.1947772-1-linux@roeck-us.net>
+X-ClientProxiedBy: MA0PR01CA0001.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:80::14) To DU2PR07MB8110.eurprd07.prod.outlook.com
+ (2603:10a6:10:239::15)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b18c3831-a318-4bba-7fdd-08d9f519a6f3
+X-MS-TrafficTypeDiagnostic: HE1PR07MB4201:EE_
+X-Microsoft-Antispam-PRVS: <HE1PR07MB4201AB2E8D5E7C2CA8A49E94EF3A9@HE1PR07MB4201.eurprd07.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HUQXYZ5B9etPj3qK/EcwvvgqNJtWLpXklyjkGwCVnCJb3XN8+FajHscqtDfnbHTEwGWqUTHhjaqSv4T9h4gJec7nDRM0czTfzExOH3WN9I4uQjuWTnZWo62O+whQT0i8eRThylfJl10cgyFDJd/dPey4mqu7aMQn2n/kcUiJOr1yrhwpvZ8Y0OxvbaerX0Hi3Uc2jn2e54yXn+mW4SlsbiosHDi77i3/GwlHc8ObaHZUz1OGbolrxKrJLQ0AFkM/aBfT1KXxBiSh59BjbyAu2UG8JT/KVranL4E+lDNPtlKTNLtfSU8v2D8RCxKLpsieZaQOfcDM/YvUWB66gdNYGqlffa6aNlvXBIuttDXLCtwJlX0YhPkPxovp2Hgh554scFLkDvm9DsuU7xhXXrT/IhAGIdWTseqqjdw/Pd0rHesLZ2NzGH/dCjCnqT1WAJrW2DnqyXGdLWgiuoeVkRqtWhoOGjLOi0Yce+AXmjWvsUVDBVG5G6q8HLAuW43LZGAtrdQX5SZHVhb1O7cTDQAxVe+JN9LoGovC/wY1gUz9TFcFaRRNgmIFNNPxXgpwqozdlbQqPbqISTeEgloxbzdv0b+LXNFCE+Ob95+XxZmJipc079re8/Ut50/rWhakpnQmBIsly7BpwbrqU8LNJTAnElBA6xBIgGZfsqeQL7yi8ZdKeUhOlL7w6KqYQWtgaFwiPUWr/vJ/mJvsSQ4QEGJ3o7iFIcmLujn0pqQ5L0TZwuONO2nO8OtYHXwTC3dnaDXpXKbgowoqXa/pncCp4txV6Cp2blwTHcUZ8sYAKx59I7A=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR07MB8110.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(44832011)(316002)(83380400001)(6512007)(86362001)(8936002)(6506007)(52116002)(66556008)(66946007)(66476007)(4326008)(8676002)(5660300002)(9686003)(6666004)(26005)(38350700002)(38100700002)(966005)(6486002)(2906002)(508600001)(82960400001)(6916009)(186003)(54906003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eGV2aGdkYW9wTXovaUtvL1I5eW5nSWpaUkRaMU1xWlhMTVBDNHNrWlp6RE1o?=
+ =?utf-8?B?YnFSMDdqY205S05QcEx5QmJsSHVjd00rSitEWmRnZnJNN2RWei9HT1JTTVVF?=
+ =?utf-8?B?ZXZxOURjZGdiQytkM1B0U0JLcGhxcytnNm1NT2dDZ2E0K1JTU1hCVHNYM2s3?=
+ =?utf-8?B?SithNlJhRnhCdUUwUkJUNTJ5elh6NDJwdWc3dGZoNHMrcDZ6djVzQ2FXMzN5?=
+ =?utf-8?B?enJtTmltQ3ZTSnV1SDFJVkExbi9STzJzMy9NeStsRUpXK09WNjBTS2t6RUpN?=
+ =?utf-8?B?U1ZNRjRVSEwzVDl3TEUvN0xFMTVhUGtRNG82RGV0cUtBQnZyOTVWUDdML2xi?=
+ =?utf-8?B?ZXdkTGpaTlU0Z1NBWHBLQmtlcEQvYkNNM0g0RTdueDBXYkVPanAvTE9DeHNW?=
+ =?utf-8?B?clk3bHRLSmdkajh2RWZVWVl4V2JhVWtUbS9taDdvV1ozZFRJSXBPWjJ3bC9j?=
+ =?utf-8?B?SlZyTUVtNmg2OUFocS9sS3ZxUnZPdUpoRVlqc2RQT0ZZMDFEWWF1TnFvSzN5?=
+ =?utf-8?B?UVcySTIvQzhwME95b2lIVjVVb1RqTkRjdXhXQ09ldE9oRUJ0RlpMWkF3K1ls?=
+ =?utf-8?B?cEg2SlhqUFZIL1p5TzJ0WFpObytjZ3pnMFE0RGtDdFMxN0ZqZzVvMk5iU04w?=
+ =?utf-8?B?MVVqYldVclorNk91L2ZCV2NNazA0ZE1iUWxYZnZ3NUZIcnoyZ3QzTFJ3a094?=
+ =?utf-8?B?ZkRlbjdiOUROeW5zQm5mNnFIU0VUeHkyK2NGN050UEtaZk5IU2JEQ3J3TjFB?=
+ =?utf-8?B?NWI1cERKMVVuVmthZUxqTDZuNGc5OGNYMjIyc2lKS053NEdWa0tuZENKRmJt?=
+ =?utf-8?B?Ukw1UzJ5UWxhYkxhUVFsaEpnU0U3OUd3RWgxZFdPcUhGNi9DaFFCQVRVbEtF?=
+ =?utf-8?B?SEQyMlhBbE95em5IV01vbjh3dlgvTUdYdUlWRzRJK0lnUWJEZFB6VkFiRVVL?=
+ =?utf-8?B?cFVvdlNCQ24wK3c2NW5tV1VXWEdsM2V5aDdXcDVlVmsvcUQrNkZGSm9JbWho?=
+ =?utf-8?B?N3Fmem8ranlDbFA1L2xvOVZxT2d0czB4c09CNFBUMUFLMG9qTEFIN3c2cXVj?=
+ =?utf-8?B?Ni93MmhSRFpVVCsyMTQyaGJMUTFjMk5lWmdSMDRXRE1CckU3cFRqc3Q1eENs?=
+ =?utf-8?B?cldjYnd6RXdoQ2ZiQ0Jod2FIM3ovTTE4UHkyL3kzZXlDT3BCM1lLeGwwbER1?=
+ =?utf-8?B?UkFtOHRNcHVvSjB5am1sTHdYUnZ1L20vYzF5RWxGWEUyTUVSK3NIOS9jODVG?=
+ =?utf-8?B?T0N4N3hPU0Z4TVpaWVpmTS9ML0FFanJvaTZ4S3B1aW52eFJsKzdCMzhqTzNE?=
+ =?utf-8?B?WmMwbGdleS8yd3d6N3RVSXlPZzlnSmd5bCtZQ09oNmlJc3VWb3JLb1pGSk9Q?=
+ =?utf-8?B?K05TdTg4S0hKVGIxcjVJck42UUVYNTUzbVVPTGRXWEpucmdWa0pON296OENY?=
+ =?utf-8?B?WVlTc1E0dnJUekwvckFkTzRiV3ZRNTBEYjhvVUQ0NC85ek1nZTIyd2owQTNY?=
+ =?utf-8?B?T1FGbVRCdEtidlNGTlJ6d2pOMDZydmNrMDQyN1ZQYWhqUjB4cHFMTldRNTFY?=
+ =?utf-8?B?eHUyQTJtSmhwSGRTQlAwWHFFTGZweWxkN2NPQnVMZ3FrcmxUZFZnajlqeGF2?=
+ =?utf-8?B?eVlvaG5uRytYOEVlS2FZVWNPazAvOWZJakg4K3JhMDNLbDlnbU9oaXg3czht?=
+ =?utf-8?B?SkZnMzg1ZTE2K2M4dWd0WU5QNUNQcXZlS2h1QnBYMlZWbzRBU2dnV2s0TGp3?=
+ =?utf-8?B?Z3dNcFJuS042NUt4SXhBQU11TFY4N2tOTHdtcG5YM0FjNHV2NEM3NU1vcXpz?=
+ =?utf-8?B?R243blBLQkpLYmdCb1FmMW5JME9IWnR6MFQ3dzl1SDUrMnBGWEdkNndkcmN5?=
+ =?utf-8?B?R2pnRGZMTXQxRytJemVHVXZtZXRoSTdaQUtRNWkzU2w0TVZEY1d1MVlBMFdK?=
+ =?utf-8?B?T1FNcWxTS25jd042cnNnQnJlMnJJQXh5a242SjgweTNuUzUvd2VRNHJ3S3gx?=
+ =?utf-8?B?VEFEbVVSdE1RR0puamFtbGNpVmFES0NsUU9TU1B2a2tMd1BNT2ZFa3JJUnRx?=
+ =?utf-8?B?NHpQSDhSUmhYTXlFWkh1aG4yVWs1V3U1VFJ2MnBjQWRJelFreHNUWDVNb3I0?=
+ =?utf-8?B?anI3MTVqRE9KNjZyRnBSRDdkM0hORXg2cm1zcHlQYUgzTWFkS1p5QUFwMCs1?=
+ =?utf-8?B?MlRkTks2T0dsczVLRVE4ZnExQkYxWWVlMkYzZUNQVnAzUFRPV28zUXhJTm9r?=
+ =?utf-8?B?WnNPS1U3LzlpSWJ1QWE5UHV0VG1BPT0=?=
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b18c3831-a318-4bba-7fdd-08d9f519a6f3
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR07MB8110.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2022 09:07:57.5648
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Fp305uiDTMInUJNGCP7Ev9KWB7Jdm0s4VexqqT168M9Sq/ayyqrRgB0Uj8oMlrOg2QpHwshcDsqLapVJ3bpn+maVZjzA1o93AV79VhDFYGQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR07MB4201
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,FORGED_SPF_HELO,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---zmp4tyxe2eanrjli
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sun, Feb 20, 2022 at 10:32:25PM +0100, Sam Ravnborg wrote:
-> Hi Noralf,
->=20
-> On Sun, Feb 20, 2022 at 04:59:34PM +0100, Noralf Tr=F8nnes wrote:
-> >=20
-> >=20
-> > Den 19.02.2022 23.10, skrev Sam Ravnborg:
-> > > Hi Noralf,
-> > > On Fri, Feb 18, 2022 at 04:11:10PM +0100, Noralf Tr=F8nnes wrote:
-> > >> Add a driver that will work with most MIPI DBI compatible SPI panels.
-> > >> This avoids adding a driver for every new MIPI DBI compatible contro=
-ller
-> > >> that is to be used by Linux. The 'compatible' Device Tree property w=
-ith
-> > >> a '.bin' suffix will be used to load a firmware file that contains t=
-he
-> > >> controller configuration.
-> > > A solution where we have the command sequences as part of the DT-over=
-lay
-> > > is IMO a much better way to solve this:
-> > > - The users needs to deal only with a single file, so there is less t=
-hat
-> > >   goes wrong
-> > > - The user need not reading special instructions how to handle a .bin
-> > >   file, if the overlay is present everything is fine
-> > > - The file that contains the command sequences can be properly annota=
-ted
-> > >   with comments
-> > > - The people that creates the command sequences has no need for a spe=
-cial
-> > >   script to create the file for a display - this is all readable asci=
-i.
-> > > - Using a DT-overlay the parsing of the DT-overlay can be done by
-> > >   well-tested functions, no need to invent something new to parse the
-> > >   file
-> > >=20
-> > >=20
-> > > The idea with a common mipi DBI SPI driver is super, it is the detail
-> > > with the .bin file that I am against.
-> > >=20
-> >=20
-> > The fbtft drivers has an init=3D DT property that contains the command
-> > sequence. Example for the MZ61581 display:
-> >=20
-> > 				init =3D <0x10000b0 00
-> > 					0x1000011
-> > 					0x20000ff
-> > 					0x10000b3 0x02 0x00 0x00 0x00
-> > 					0x10000c0 0x13 0x3b 0x00 0x02 0x00 0x01 0x00 0x43
-> > 					0x10000c1 0x08 0x16 0x08 0x08
-> > 					0x10000c4 0x11 0x07 0x03 0x03
-> > 					0x10000c6 0x00
-> > 					0x10000c8 0x03 0x03 0x13 0x5c 0x03 0x07 0x14 0x08 0x00 0x21 0x08
-> > 0x14 0x07 0x53 0x0c 0x13 0x03 0x03 0x21 0x00
-> > 					0x1000035 0x00
-> > 					0x1000036 0xa0
-> > 					0x100003a 0x55
-> > 					0x1000044 0x00 0x01
-> > 					0x10000d0 0x07 0x07 0x1d 0x03
-> > 					0x10000d1 0x03 0x30 0x10
-> > 					0x10000d2 0x03 0x14 0x04
-> > 					0x1000029
-> > 					0x100002c>;
-> >=20
-> > Parsed here:
-> > https://elixir.bootlin.com/linux/latest/C/ident/fbtft_init_display_from=
-_property
-> >=20
-> > Before fbdev was closed for new drivers I looked at fixing up fbtft for
-> > proper inclusion and asked on the Device Tree mailinglist about the init
-> > property and how to handle the controller configuration generically.
-> > I was politely told that this should be done in the driver, so when I
-> > made my first DRM driver I made a driver specifically for a panel
-> > (mi0283qt.c).
-> >=20
-> > Later I found another post that in clear words stated that setting
-> > random registers from DT was not acceptable.
+Dnia Fri, Feb 18, 2022 at 07:09:07AM -0800, Guenter Roeck napisał(a):
+>From: Agathe Porte <agathe.porte@nokia.com>
 >
-> Understood and thanks for the explanation.
-> It is a shame that the users loose here :-(
+>Add basic description of the tmp464 driver DT bindings.
+>
+>Signed-off-by: Agathe Porte <agathe.porte@nokia.com>
+>Cc: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+>Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+>---
+>v5:
+>- Dropped ti,n-factor from channel@0 example. Added additional
+>  channel to examples to show positive ti,n-factor property.
+>
+>v4:
+>- No changes
+>
+>v3:
+>- Addedd support for TMP468.
+>- Changed number of channels from 0..3 (which was wrong anyway) to 0..8.
+>- Changed value range for ti,n-factor to int8, with an example for
+>  a negative value.
+>- Added myself as driver maintainer.
+>
+> .../devicetree/bindings/hwmon/ti,tmp464.yaml  | 114 ++++++++++++++++++
+> MAINTAINERS                                   |   7 ++
+> 2 files changed, 121 insertions(+)
+> create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml
+>
+>diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml
+>new file mode 100644
+>index 000000000000..14f6a3412b8c
+>--- /dev/null
+>+++ b/Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml
+>@@ -0,0 +1,114 @@
+>+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>+%YAML 1.2
+>+---
+>+$id: http://devicetree.org/schemas/hwmon/ti,tmp464.yaml#
+>+$schema: http://devicetree.org/meta-schemas/core.yaml#
+>+
+>+title: TMP464 and TMP468 temperature sensors
+>+
+>+maintainers:
+>+  - Agathe Porte <agathe.porte@nokia.com>
+>+
+>+description: |
+>+  ±0.0625°C Remote and Local temperature sensor
+>+  https://www.ti.com/lit/ds/symlink/tmp464.pdf
+>+  https://www.ti.com/lit/ds/symlink/tmp468.pdf
+>+
+>+properties:
+>+  compatible:
+>+    enum:
+>+      - ti,tmp464
+>+      - ti,tmp468
+>+
+>+  reg:
+>+    maxItems: 1
+>+
+>+  '#address-cells':
+>+    const: 1
+>+
+>+  '#size-cells':
+>+    const: 0
+>+
+>+required:
+>+  - compatible
+>+  - reg
+>+
+>+additionalProperties: false
+>+
+>+patternProperties:
+>+  "^channel@([0-8])$":
+>+    type: object
+>+    description: |
+>+      Represents channels of the device and their specific configuration.
+>+
+>+    properties:
+>+      reg:
+>+        description: |
+>+          The channel number. 0 is local channel, 1-8 are remote channels.
+>+        items:
+>+          minimum: 0
+>+          maximum: 8
+>+
+>+      label:
+>+        description: |
+>+          A descriptive name for this channel, like "ambient" or "psu".
+>+
+>+      ti,n-factor:
+>+        description: |
+>+          The value (two's complement) to be programmed in the channel specific N correction register.
+>+          For remote channels only.
+>+        $ref: /schemas/types.yaml#/definitions/int8
+>+        items:
+>+          minimum: -128
+>+          maximum: 127
 
-=46rom a user point-of-view, nothing prevents the overlays and the
-firmware to be in the same package, provided by whatever distro or
-build-system they would use.
+I still thing we should have the same format here and in tmp421, for
+consistency. If use the same property name, "ti,n-factor" but on tmp421
+you have use 32bit value while here you have to use 8bit (which is weird
+in DT, BTW), it might be confusing.
+Back when we did this for TMP421, there was some discussion and we
+settled on this approach, why do it differently now?
 
-The only case where it's a bit less efficient is for a panel that isn't
-supported already, but it's just a documentation and tooling issue, and
-Noralf has an awesome track record for both.
-
-And the DT syntax throw so much people off that I'm not sure it's such a
-benefit :)
-
-Maxime
-
---zmp4tyxe2eanrjli
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYhNV2QAKCRDj7w1vZxhR
-xU6KAQC//hdezKafTZL2B1JdH8/R+dGme8guAu3EmMvNuKJ7gAD/Rvi9EL+5cBtN
-czxrmAUMXSfj5k4zrcrUL6QtqCJW5gE=
-=oFW2
------END PGP SIGNATURE-----
-
---zmp4tyxe2eanrjli--
+Krzysztof
