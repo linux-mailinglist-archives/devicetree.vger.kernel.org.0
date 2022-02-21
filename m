@@ -2,117 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8800A4BDF94
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:50:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C0EA4BDC7F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:42:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350653AbiBUJmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 04:42:35 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59840 "EHLO
+        id S1351700AbiBUJuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 04:50:37 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:42232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350820AbiBUJlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 04:41:22 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5B33D1DF;
-        Mon, 21 Feb 2022 01:17:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 5927ACE0E90;
-        Mon, 21 Feb 2022 09:17:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C9BBC340EB;
-        Mon, 21 Feb 2022 09:17:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645435048;
-        bh=iJfhffaxaqucqlfWHbQPFYGDjZ9N6RtcLoLdRTMnIyY=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=W5U/jExpVNMAES/DEUdOWgigHuCG/oVtAsjj8JoBZTk2KEHetUKwb/cFaweqMcNAZ
-         Z6kpwWnalZu3uEYgA/hKbYwgNWdczdkAG5opvih6GdxATlVYnbb1hZ94JVrmrJzLCt
-         Fij2h2sF3q0hcphj5MGm8M/rEKwxj/Cxcg/O1rq5Vh4894Nx3wCdolR3ZX9srwsl+b
-         pazkXtAD5wAfujHr0UukkEKa61if2dhZzzdey4hZ8PjrwItoCeeue6BkvHDyxASYfn
-         JkAX8Rh0kpzfmFf/a/tQv96UClGLX1hT+mrObJ1QIOty5JcVw3BAIO6DrLVS6cMwej
-         abJ2tgBzjtTQg==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>
-Subject: Re: [PATCH v2 05/19] ath11k: Remove core PCI references from PCI common code
-References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
-        <1642337235-8618-6-git-send-email-quic_mpubbise@quicinc.com>
-        <87a6fggo0h.fsf@kernel.org>
-        <df81787b-3ad4-62b7-7a39-fdca6775bae1@quicinc.com>
-Date:   Mon, 21 Feb 2022 11:17:25 +0200
-In-Reply-To: <df81787b-3ad4-62b7-7a39-fdca6775bae1@quicinc.com> (Manikanta
-        Pubbisetty's message of "Mon, 21 Feb 2022 12:25:45 +0530")
-Message-ID: <875yp8zihm.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        with ESMTP id S1352387AbiBUJrY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 04:47:24 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A634424A8;
+        Mon, 21 Feb 2022 01:19:38 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id t14so13649512ljh.8;
+        Mon, 21 Feb 2022 01:19:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=huPIGDsJDWnlkYGD8RjgTidc2vJbYvfd2l32RF6F7ME=;
+        b=XHq3QluY2NVKJBoPyZ5hC8E9kHQvOAPPb8ZhyHDx1zhlAkNeBSQDU9oDMYEo9kLtj1
+         9cXg34dwfdzJeRIGaVXIq3srnStQKw3QDXKQ1thq0Uc6l1XFZg/mZzpv6moP6tyl8vZ1
+         gr+nNuiwanMDAssVdkEgx9KaXjFFvMWdGLLBJSOQYy2hv1mgqQLmpbD2vThAYB6uxphS
+         gY3TtaGTMtam7ba1xHPA893XpvlEeTFewfs2YkAyUdpAH1Pp1SqlJ4GI/2fZMzRRvfX9
+         gWdHZxniM+CkrZLLtz10wy918bnMFilflVU3jK9GI8aVxImTznpEv+nO78UKn11BNPWF
+         8Szg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=huPIGDsJDWnlkYGD8RjgTidc2vJbYvfd2l32RF6F7ME=;
+        b=F9z/78idZ0Pt1vW8eJNXJFcTWpMHuhScVbHFE/pqoRAYidGdVhuAxnx8QFR+5JiGkv
+         afxYCTHPfz70mekNwJ9sT8qGAC+/+szsTs5SlApsF3gqj748vr+Clk8nlqzmCMWPlrzF
+         Io/fgrt3tG0NX2+vtRpCjhTFMHg2jZ+orSZsT9zi43PYfWIDcQRRWVUJWjTVmeRzRTWN
+         M5AjZ9NfR9XKcU4YUZTsP5q5IZ3UpNmnyhGkOLVBC4q3yB+tMd41wGrOcUtJN0OJndtA
+         Kkqk9ZlsG4bX31DzBrhnwkH/aiMk9ZqEqUtYtp/+f6Dorz40R1600OENFjHS9eiDXwlz
+         0+TA==
+X-Gm-Message-State: AOAM530CI8H2IO+7gOMIsqis2Jwl9maKzVx0dOEdkyx8EvUkVi+rnMLU
+        b5BTXVMtdlDpI8q3IBFslVk=
+X-Google-Smtp-Source: ABdhPJxx4DFd3v22H/QNGr758lj+rOXO8wtuMl5kY/nQQ9qHtifRlgmAIpdT7UoX8ouAj3ynnDz2BA==
+X-Received: by 2002:a2e:bd82:0:b0:241:130d:90b3 with SMTP id o2-20020a2ebd82000000b00241130d90b3mr13798892ljq.383.1645435176659;
+        Mon, 21 Feb 2022 01:19:36 -0800 (PST)
+Received: from [192.168.1.103] ([178.176.73.51])
+        by smtp.gmail.com with ESMTPSA id a9sm795218lfl.180.2022.02.21.01.19.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Feb 2022 01:19:35 -0800 (PST)
+Subject: Re: [PATCH v10 1/4] MIPS: Loongson64: dts: update the display
+ controller device node
+To:     Sui Jingfeng <15330273260@189.cn>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20220220145554.117854-1-15330273260@189.cn>
+ <20220220145554.117854-2-15330273260@189.cn>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <08abcb14-f1f6-8be5-6309-cd16e0578c05@gmail.com>
+Date:   Mon, 21 Feb 2022 12:19:34 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220220145554.117854-2-15330273260@189.cn>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+On 2/20/22 5:55 PM, Sui Jingfeng wrote:
 
-> On 1/28/2022 3:50 PM, Kalle Valo wrote:
->> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
->>
->>> Remove core PCI and ath11k PCI references(struct ath11k_pci)
->>> from PCI common code. Since, PCI common code will be used
->>> by hybrid bus devices, this code should be independent
->>> from ATH11K PCI references and Linux core PCI references
->>> like struct pci_dev.
->>>
->>> Since this change introduces function callbacks for bus wakeup
->>> and bus release operations, wakeup_mhi HW param is no longer
->>> needed and hence it is removed completely. Alternatively, bus
->>> wakeup/release ops for QCA9074 are initialized to NULL as
->>> QCA9704 does not need bus wakeup/release for register accesses.
->>>
->>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
->>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
->>> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->>>
->>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
->>
->> [...]
->>
->>> @@ -651,6 +653,13 @@ struct ath11k_bus_params {
->>>   	bool fixed_bdf_addr;
->>>   	bool fixed_mem_region;
->>>   	bool static_window_map;
->>> +	struct {
->>> +		void (*wakeup)(struct ath11k_base *ab);
->>> +		void (*release)(struct ath11k_base *ab);
->>> +		int (*get_msi_irq)(struct ath11k_base *ab, unsigned int vector);
->>> +		void (*window_write32)(struct ath11k_base *ab, u32 offset, u32 value);
->>> +		u32 (*window_read32)(struct ath11k_base *ab, u32 offset);
->>> +	} ops;
->>>   };
->>
->> Please don't use bus_params for this, I'm starting to suspect that we
->> actually need to remove struct ath11k_bus_params altogether. It would be
->> cleaner to have separate 'struct ath11k_pci_ops' or something like that.
->>
->
-> Sure, something like 'struct ath11k_bus_ops' in ath11k_base struct
-> would be appropriate.
+> From: suijingfeng <suijingfeng@loongson.cn>
+> 
+> The display controller is a pci device, its PCI vendor id is 0x0014
+> its PCI device id is 0x7a06.
+> 
+> 1) In order to let the driver to know which chip the DC is contained
+>    in, the compatible string of the display controller is updated
+>    according to the chip's name.
+> 
+> 2) Add display controller device node for ls2k1000 SoC
+> 
+> Reported-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+> Signed-off-by: Sui Jingfeng <15330273260@189.cn>
+> ---
+>  arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 8 ++++++++
+>  arch/mips/boot/dts/loongson/ls7a-pch.dtsi          | 7 ++-----
+>  2 files changed, 10 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+> index 768cf2abcea3..af9cda540f9e 100644
+> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+> @@ -209,6 +209,14 @@ gpu@5,0 {
+>  				interrupt-parent = <&liointc0>;
+>  			};
+>  
+> +			lsdc: display-controller@6,0 {
 
-But we have 'struct ath11k_hif_ops' already, and that's basically
-ath11k_bus_ops with a confusing name :) (IIRC HIF means Host InterFace,
-or something like that.) So having both ath11k_bus_ops and
-ath11k_hif_ops would become even more confusing.
+   Shouldn't the node name just be "display", according to the section 2.2.2
+of the DT spec?
 
-You are basically abstracting out PCI functionality, that's why I
-suggested ath11k_pci_ops. But yeah, naming is hard :)
+[...]
+> diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> index 2f45fce2cdc4..ec35ea9b2fe8 100644
+> --- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> +++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> @@ -160,11 +160,8 @@ gpu@6,0 {
+>  				interrupt-parent = <&pic>;
+>  			};
+>  
+> -			dc@6,1 {
+> -				compatible = "pci0014,7a06.0",
+> -						   "pci0014,7a06",
+> -						   "pciclass030000",
+> -						   "pciclass0300";
+> +			lsdc: display-controller@6,1 {
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+   Same here...
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+[...]
+
+MBR, Sergey
