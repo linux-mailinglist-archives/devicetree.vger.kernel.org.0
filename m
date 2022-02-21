@@ -2,139 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 077644BD5F7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 07:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F3344BD627
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 07:56:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345065AbiBUGTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 01:19:48 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59812 "EHLO
+        id S240759AbiBUGaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 01:30:07 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239052AbiBUGTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 01:19:47 -0500
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CFF210C1;
-        Sun, 20 Feb 2022 22:19:23 -0800 (PST)
-Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.53])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4K2BtB2dDnz9sp9;
-        Mon, 21 Feb 2022 14:17:38 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Mon, 21 Feb 2022 14:19:20 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Mon, 21 Feb 2022 14:19:18 +0800
-Subject: Re: [PATCH v20 2/5] arm64: kdump: introduce some macros for crash
- kernel reservation
-To:     Baoquan He <bhe@redhat.com>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-References: <20220124084708.683-1-thunder.leizhen@huawei.com>
- <20220124084708.683-3-thunder.leizhen@huawei.com>
- <YgY89RxkAl12n/dd@MiWiFi-R3L-srv>
- <69da7ed5-4ef4-3655-8965-4181c7d7bf0b@huawei.com>
- <YhMFkgkqnZ4A3ysK@MiWiFi-R3L-srv>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <d6ef5ad2-13c1-ecac-e8d4-70b48561f249@huawei.com>
-Date:   Mon, 21 Feb 2022 14:19:18 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        with ESMTP id S230148AbiBUGaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 01:30:06 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69BAD4163D;
+        Sun, 20 Feb 2022 22:29:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645424984; x=1676960984;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=dXYD8eWi1+Io0cIGkxMhaeSzOKmEOR73lAviKQy1nXM=;
+  b=g2fKnk3lBUyQX30vC3Ox2sx9tX0mv9SRjdjLEP++CcNprrCZc4jLNW8t
+   UkD86g6mhCOoQnwqt/Z0IqwtyeSN4Earfbbi4INmywpyoSvR3vM0dpugD
+   2CZvJDSQDlK+yW3zqXbHewGYm2kd88S/hongPCAlOoaEdbiHk7tIN3UwB
+   0=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 20 Feb 2022 22:29:44 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 22:29:43 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Sun, 20 Feb 2022 22:29:41 -0800
+Received: from [10.216.7.34] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Sun, 20 Feb
+ 2022 22:29:38 -0800
+Message-ID: <f3704567-f269-c836-2880-e953c4abb872@quicinc.com>
+Date:   Mon, 21 Feb 2022 11:59:33 +0530
 MIME-Version: 1.0
-In-Reply-To: <YhMFkgkqnZ4A3ysK@MiWiFi-R3L-srv>
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v2 00/19] add support for WCN6750
 Content-Language: en-US
+To:     Kalle Valo <kvalo@kernel.org>
+CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>
+References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
+ <87ilu4gomd.fsf@kernel.org>
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <87ilu4gomd.fsf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 1/28/2022 3:37 PM, Kalle Valo wrote:
 
+> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+>
+>> WCN6750 is non-DBS 2x2 11AX chipset. Unlike QCA6390/WCN6855 which
+>> are DBS (dual band simultaneous) solutions (2 LMACs), WCN6750 has a
+>> single LMAC supporting 2G, 5G and 6G bands. It can be operated only
+>> on one band at any given point.
+>>
+>> WCN6750 is a PCIe device. Unlike other supported ATH11K PCIe devices
+>> which are directly attached to APSS (Application Processor SubSystem),
+>> WCN6750 is not attached to APSS, it is attached to the WPSS
+>> (Wireless Processor SubSystem) Q6 processor, the FW which runs on the
+>> Q6 processor will enumerate the PCIe device. Since APSS is unaware of
+>> such a device, it has to be registered as a platform device(AHB) to the
+>> kernel for device probing. Like other AHB devices, remoteproc APIs are
+>> used to boot up or shutdown of WCN6750.
+>>
+>> WCN6750 uses both AHB and PCIe ATH11K APIs for it's operation.
+>> It uses AHB APIs for device probe and booting of the remote processor.
+>> Once device is booted up, it uses ATH11K PCIe APIs for initialization
+>> and register access. Hence, it is referred as hybrid bus device in
+>> the rest of this series.
+>>
+>> Since the chip is enumerated by WPSS Q6, device information like
+>> BAR and BAR size is not known to the APSS processor. A new QMI message
+>> called device info QMI request will be sent to the target for fetching
+>> these details.
+>>
+>> STA and AP modes are supported; Basic connectivity and ping are
+>> verified in both the modes.
+>>
+>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+>> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+>>
+>> Note:
+>> *	Remoteproc driver changes for WCN6750 which takes care of
+>> 	downloading the FW and booting of Q6 processor are under
+>> 	upstream review.
+>> 	Link: https://patchwork.kernel.org/project/linux-remoteproc/list/?series=582475
+> This is a very good overview, thanks for that. But I think something
+> which is not clearly mentioned here is that this only works on Qualcomm
+> Snapdragon SoC, right?
 
-On 2022/2/21 11:22, Baoquan He wrote:
-> On 02/14/22 at 02:22pm, Leizhen (ThunderTown) wrote:
->>
->>
->> On 2022/2/11 18:39, Baoquan He wrote:
->>> On 01/24/22 at 04:47pm, Zhen Lei wrote:
->>>> From: Chen Zhou <chenzhou10@huawei.com>
->>>>
->>>> Introduce macro CRASH_ALIGN for alignment, macro CRASH_ADDR_LOW_MAX
->>>> for upper bound of low crash memory, macro CRASH_ADDR_HIGH_MAX for
->>>> upper bound of high crash memory, use macros instead.
->>>>
->>>> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
->>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->>>> Tested-by: John Donnelly <John.p.donnelly@oracle.com>
->>>> Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
->>>> ---
->>>>  arch/arm64/mm/init.c | 11 ++++++++---
->>>>  1 file changed, 8 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
->>>> index 90f276d46b93bc6..6c653a2c7cff052 100644
->>>> --- a/arch/arm64/mm/init.c
->>>> +++ b/arch/arm64/mm/init.c
->>>> @@ -65,6 +65,12 @@ EXPORT_SYMBOL(memstart_addr);
->>>>  phys_addr_t arm64_dma_phys_limit __ro_after_init;
->>>>  
->>>>  #ifdef CONFIG_KEXEC_CORE
->>>> +/* Current arm64 boot protocol requires 2MB alignment */
->>>> +#define CRASH_ALIGN		SZ_2M
->>>> +
->>>> +#define CRASH_ADDR_LOW_MAX	arm64_dma_phys_limit
->>>> +#define CRASH_ADDR_HIGH_MAX	MEMBLOCK_ALLOC_ACCESSIBLE
->>>
->>> MEMBLOCK_ALLOC_ACCESSIBLE is obvoiously a alloc flag for memblock
->>> allocator, I don't think it's appropriate to make HIGH_MAX get its value.
->>
->> Right, thanks.
->>
->>> You can make it as memblock.current_limit, or do not define it, but using
->>> MEMBLOCK_ALLOC_ACCESSIBLE direclty in memblock_phys_alloc_range() with
->>> a code comment. 
->>
->> This patch is not required at present. These macros are added to eliminate
->> differences to share code with x86.
-> 
-> So this patch may not be needed in this series. It can be added in
-> another post when you start to do the clean up and code unification
-> among ARCHes, with my udnerstanding. At that time you can consider how
-> to abstract the common code to handle the difference.
+You are absolutely right.
 
-Yes, it should be merged with the v20 3/5.
+>   So even though WCN6750 is a PCI device, it cannot
+> be attached to any platform. It would be good to emphasise that.
 
-> 
-> .
-> 
+I'll add this detail in the next revision.
 
--- 
-Regards,
-  Zhen Lei
+>> Manikanta Pubbisetty (19):
+>>    ath11k: PCI changes to support WCN6750
+>>    ath11k: Refactor PCI code to support hybrid bus devices
+>>    ath11k: Choose MSI config based on HW revision
+>>    ath11k: Refactor MSI logic
+>>    ath11k: Remove core PCI references from PCI common code
+>>    ath11k: Add HW params for WCN6750
+>>    ath11k: Add bus params for WCN6750
+>>    ath11k: Add register access logic for WCN6750
+>>    ath11k: Fetch device information via QMI for WCN6750
+>>    ath11k: Add QMI changes for WCN6750
+>>    ath11k: HAL changes to support WCN6750
+>>    ath11k: Datapath changes to support WCN6750
+>>    ath11k: Fix RX de-fragmentation issue on WCN6750
+>>    ath11k: Do not put HW in DBS mode for WCN6750
+>>    ath11k: WMI changes to support WCN6750
+>>    ath11k: Update WBM idle ring HP after FW mode on
+>>    ath11k: Add support for WCN6750 device
+>>    ath11k: Add support for targets without trustzone
+>>    dt: bindings: net: add bindings of WCN6750 for ath11k
+> 19 patches is a lot to chew on in one go, my recommendation is to have
+> max 10-12 patches per set.
+>
+> In this case having three patchsets would make it a lot easier for
+> reviewers, but not sure how to split them. Maybe you could submit these
+> patches separate for preparing WCN6750 support, after a quick look they
+> seem pretty independent:
+>
+>    ath11k: Fetch device information via QMI for WCN6750
+>    ath11k: HAL changes to support WCN6750
+>    ath11k: Fix RX de-fragmentation issue on WCN6750
+>    ath11k: Do not put HW in DBS mode for WCN6750
+>    ath11k: WMI changes to support WCN6750
+Sure, I'll logically split the series in the next revisions.
