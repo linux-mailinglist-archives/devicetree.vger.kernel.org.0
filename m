@@ -2,128 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDCFA4BDDBD
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:45:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 435E14BE56E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 19:00:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359076AbiBUN2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 08:28:18 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:38748 "EHLO
+        id S1359168AbiBUNil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 08:38:41 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:54364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359071AbiBUN2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 08:28:17 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDEBB205D0
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 05:27:53 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id l123-20020a1c2581000000b0037b9d960079so13562354wml.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 05:27:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=/lGIfMGk1oVr2+u1/5qKv/kN5Orfd9go72p5+5s/Q1Q=;
-        b=Nn23Z3VJQgFV/uNeTp2uTp/Mpb76j7vhPK0nI2byWaEp2tI1bKPWr4+pk5pbqkHpDg
-         HQlS+z9Oiw8FNgfxvncdtmqlQgI3ccP4XXIQkpKj8UA8vDB9+GZC0ZzrJV+KiyO1+/py
-         +ULXb/rd2IH+UeQaYsWm2UwcKP27BDuNuOxAxRM4Xf7ltHDyAQ/6BcQmKV32iHhA8oUk
-         VIBmldm8FfoJaZ8b8ZFgcF4d3ayOh5glmC/vTW4YOJ80zTrfk3TNgVcbd1ezM/1B7fVs
-         9Me1mk4gyQjTmr0FyoUORZSAYuWhiT677ZuFvsA3tRgh/9DcCce8MnLKGLzVS3FXZA1q
-         SdYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=/lGIfMGk1oVr2+u1/5qKv/kN5Orfd9go72p5+5s/Q1Q=;
-        b=PG4XysOXWg1AY7ZlKAwJAt/HsfxS2kszcZg9zbIi1lG229EeDl6qthi0/ey1DApyx8
-         QU4aRw817ODKxFiNTCSpTywFeGtxAykS8+1Wq7etVtxOSho6wXxX24yqcW81MDHv19Rt
-         s7ORsyBVbbqu+UJoH28mf/3rtHslGbKqO1px0LF2vfwQkR7Qgzz0GgnWT4+tetHZJJt9
-         SRyJib+hhefSyCOYRly1VNR2dor85dUzNdpqUvKlRUBwfZ2G+yJGIuDZz44bQ7SsPx+j
-         FVoFIGhHVY077cYUYf1IJ8BEKJgh91qf5HgimU1zRcyaE0K4/02PGPPC4R+uC2+TaSk+
-         v18A==
-X-Gm-Message-State: AOAM531a8CjM/So+GYeK+t7PS9gBZbpWTbsPY4gYbWDr1G7IcF/H5lT3
-        lQ/u8bb0oGLrO88kF97aZ7Borw==
-X-Google-Smtp-Source: ABdhPJwF5QWnYt1zOPAojpFO1VDPsFZ4MZKwOYNkOiOQlcod81UDKpEXWWBm+3GFWGQFtL4+tnSMvQ==
-X-Received: by 2002:a7b:c196:0:b0:37c:91e0:85f3 with SMTP id y22-20020a7bc196000000b0037c91e085f3mr21240303wmi.172.1645450072472;
-        Mon, 21 Feb 2022 05:27:52 -0800 (PST)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id n15sm24583839wri.80.2022.02.21.05.27.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Feb 2022 05:27:52 -0800 (PST)
-Date:   Mon, 21 Feb 2022 13:27:50 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Roger Quadros <rogerq@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: update Roger Quadros email
-Message-ID: <YhOTVrrzYMMC7DKL@google.com>
-References: <20220221100701.48593-1-krzysztof.kozlowski@canonical.com>
- <2e33c00b-8460-3d85-92aa-2c3257725c2c@kernel.org>
- <YhOIHARSdIliVWjW@google.com>
- <7448b9b3-78f9-6f33-ae8d-d099bc64abe4@canonical.com>
+        with ESMTP id S1359139AbiBUNik (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 08:38:40 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C949517A88;
+        Mon, 21 Feb 2022 05:38:16 -0800 (PST)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21LCjG3k002334;
+        Mon, 21 Feb 2022 14:37:55 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=98j3uGLmj33OK+/665DQtkEMyBwIaDlMKW+jkpdU1TM=;
+ b=Vb/jqUnVGN3ob4XyHIF0tzlPrgVqEXNa4naZDcql/WKygA9XMVdlQnPNgU0OTjrK1OyE
+ nUNgb5jBoDHIlx1PQH2d/B2AWVndyd2iw1NjyGAegLHClqNsg8TZBq9+J4ckisi+42Y9
+ lbpjHChikaXXiL5FvdfXKTLwR5KdNhrDXx1ux4Cw5pnGGxA6uTZxuZxNwKMukz04Hv/D
+ tSAp1U7VnnTBJCdyBremNgY/eSqSYzyzAg2L37qHDx9VtZ5II+/MZaE9Qqe49xFfYcnR
+ NnkKvIlegA4QZPY/NwyMofmgCLEn4SvRaGOkxGtf8OdoHCC2a8E/M6agbxiSJIYEVW74 1Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ebsqxcdbp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 21 Feb 2022 14:37:55 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9BBB010002A;
+        Mon, 21 Feb 2022 14:37:53 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 902DB229A81;
+        Mon, 21 Feb 2022 14:37:53 +0100 (CET)
+Received: from localhost (10.75.127.48) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Mon, 21 Feb 2022 14:37:52
+ +0100
+From:   Alexandre Torgue <alexandre.torgue@foss.st.com>
+To:     <arnd@arndb.de>, <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, Marek Vasut <marex@denx.de>,
+        <jagan@amarulasolutions.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Marc Zyngier <maz@kernel.org>
+Subject: [PATCH 0/2] ARM: dts: stm32: Correct masks for GIC PPI interrupts on stm32mp
+Date:   Mon, 21 Feb 2022 14:37:48 +0100
+Message-ID: <20220221133750.20297-1-alexandre.torgue@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7448b9b3-78f9-6f33-ae8d-d099bc64abe4@canonical.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-21_07,2022-02-21_01,2021-12-02_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Feb 2022, Krzysztof Kozlowski wrote:
+Using GIC_CPU_MASK_SIMPLE(x), x should reflect the number of CPUs.
 
-> On 21/02/2022 13:39, Lee Jones wrote:
-> > On Mon, 21 Feb 2022, Roger Quadros wrote:
-> > 
-> >> On 21/02/2022 12:07, Krzysztof Kozlowski wrote:
-> >>> Emails to Roger Quadros TI account bounce with:
-> >>>   550 Invalid recipient <rogerq@ti.com> (#5.1.1)
-> >>>
-> >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> >>
-> >> Thanks so much!
-> >>
-> >> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> > 
-> > I assume you mean Acked-by (if you are the maintainer) or Reviewed-by?
-> > 
-> >>> ---
-> >>>
-> >>> Roger,
-> >>> You should also add a mailmap entry for your inactive emails.
-> >>
-> >> OK. I will send out a patch for this. Thanks for the hint. :)
-> >>
-> >>> ---
-> >>>  .../devicetree/bindings/mfd/ti,j721e-system-controller.yaml     | 2 +-
-> >>>  Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml         | 2 +-
-> >>>  Documentation/devicetree/bindings/usb/ti,j721e-usb.yaml         | 2 +-
-> >>>  Documentation/devicetree/bindings/usb/ti,keystone-dwc3.yaml     | 2 +-
-> >>>  4 files changed, 4 insertions(+), 4 deletions(-)
-> > 
-> > What's the merge-plan for this Krzysztof?
-> 
-> First-in-first-served? :) or Rob?
-> It's a small change and I think non-controversial, so whoever could pick
-> it up first, should do it.
+regards
+alex
 
-I'm inclined to agree.
+Alexandre Torgue (2):
+  ARM: dts: stm32: Correct masks for GIC PPI interrupts on stm32mp13
+  ARM: dts: stm32: Correct masks for GIC PPI interrupts on stm32mp15
 
-Acked-by: Lee Jones <lee.jones@linaro.org>
-
-:)
+ arch/arm/boot/dts/stm32mp131.dtsi | 8 ++++----
+ arch/arm/boot/dts/stm32mp151.dtsi | 8 ++++----
+ arch/arm/boot/dts/stm32mp153.dtsi | 7 +++++++
+ 3 files changed, 15 insertions(+), 8 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.17.1
+
