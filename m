@@ -2,173 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A524BE0D9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:52:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8800A4BDF94
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 18:50:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231426AbiBUJiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 04:38:17 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:45648 "EHLO
+        id S1350653AbiBUJmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 04:42:35 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:59840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351879AbiBUJho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 04:37:44 -0500
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF1F6654E;
-        Mon, 21 Feb 2022 01:16:38 -0800 (PST)
-Received: by mail-qv1-f46.google.com with SMTP id e22so30466709qvf.9;
-        Mon, 21 Feb 2022 01:16:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SnKbJVLfgaRymluaOH/LPddpZ+bX9fHGr9MZlFjIlxM=;
-        b=xlszHnUJZbhIjq4nQuqRUxIpX+ZfTRCwdPRH6JUb0Rvq9OUyvuK3ao4uGA/qe8YAt9
-         aRwJPJpGq5UYWG41pIYlqXI+Alf5mMVRRK8lxqxiErOY5SU8dManyJI3h3kghACPJqi1
-         kjcSpxFG4FvYcsgEgWdUQplB7rPtBRPfJDnahGtHTo/ABh6ualHu6ho63zODxfTUL5Q9
-         ZTRrxgqrvH78VCUTlzMKMlmnqdaLNY56+45VCLb30IsXhtnawdeAu0NXckEQ/XmFCm0U
-         os2PcoJHR75srE5I9n5PZ7n+laNlBI2fHCy4fURJZlrlCt7ecBEuK6AdzIrVPzwLG8Xa
-         Rj5w==
-X-Gm-Message-State: AOAM533WDul4UqeTa8pSk3g/J6ynjFVoBSQyFWPowC5KGguzwvWCFn2P
-        NFhzQqWl8QV05TL5cwPqSIygnc8p69MgsQ==
-X-Google-Smtp-Source: ABdhPJzHa1YQ0rsQI9qD1uMb+I73idgYRZxjNeFVFO5wfbo/kE8e/gp5ZtX8MxbtRt9LhMOSES8J4Q==
-X-Received: by 2002:ac8:5988:0:b0:2d7:84d6:aee with SMTP id e8-20020ac85988000000b002d784d60aeemr16892128qte.466.1645434997036;
-        Mon, 21 Feb 2022 01:16:37 -0800 (PST)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id y18sm30482997qtj.33.2022.02.21.01.16.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Feb 2022 01:16:36 -0800 (PST)
-Received: by mail-yb1-f170.google.com with SMTP id e140so32871434ybh.9;
-        Mon, 21 Feb 2022 01:16:36 -0800 (PST)
-X-Received: by 2002:a25:324c:0:b0:623:fb7d:cbc8 with SMTP id
- y73-20020a25324c000000b00623fb7dcbc8mr17519476yby.397.1645434996064; Mon, 21
- Feb 2022 01:16:36 -0800 (PST)
+        with ESMTP id S1350820AbiBUJlW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 04:41:22 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5B33D1DF;
+        Mon, 21 Feb 2022 01:17:31 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 5927ACE0E90;
+        Mon, 21 Feb 2022 09:17:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C9BBC340EB;
+        Mon, 21 Feb 2022 09:17:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645435048;
+        bh=iJfhffaxaqucqlfWHbQPFYGDjZ9N6RtcLoLdRTMnIyY=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=W5U/jExpVNMAES/DEUdOWgigHuCG/oVtAsjj8JoBZTk2KEHetUKwb/cFaweqMcNAZ
+         Z6kpwWnalZu3uEYgA/hKbYwgNWdczdkAG5opvih6GdxATlVYnbb1hZ94JVrmrJzLCt
+         Fij2h2sF3q0hcphj5MGm8M/rEKwxj/Cxcg/O1rq5Vh4894Nx3wCdolR3ZX9srwsl+b
+         pazkXtAD5wAfujHr0UukkEKa61if2dhZzzdey4hZ8PjrwItoCeeue6BkvHDyxASYfn
+         JkAX8Rh0kpzfmFf/a/tQv96UClGLX1hT+mrObJ1QIOty5JcVw3BAIO6DrLVS6cMwej
+         abJ2tgBzjtTQg==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>
+Subject: Re: [PATCH v2 05/19] ath11k: Remove core PCI references from PCI common code
+References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
+        <1642337235-8618-6-git-send-email-quic_mpubbise@quicinc.com>
+        <87a6fggo0h.fsf@kernel.org>
+        <df81787b-3ad4-62b7-7a39-fdca6775bae1@quicinc.com>
+Date:   Mon, 21 Feb 2022 11:17:25 +0200
+In-Reply-To: <df81787b-3ad4-62b7-7a39-fdca6775bae1@quicinc.com> (Manikanta
+        Pubbisetty's message of "Mon, 21 Feb 2022 12:25:45 +0530")
+Message-ID: <875yp8zihm.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-References: <20220218181226.431098-1-miquel.raynal@bootlin.com> <20220218181226.431098-4-miquel.raynal@bootlin.com>
-In-Reply-To: <20220218181226.431098-4-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 21 Feb 2022 10:16:24 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWBfJSeEOev81WYSEw+9FAcUzBnN2n5BHJ2n0ig=6fxKQ@mail.gmail.com>
-Message-ID: <CAMuHMdWBfJSeEOev81WYSEw+9FAcUzBnN2n5BHJ2n0ig=6fxKQ@mail.gmail.com>
-Subject: Re: [PATCH 3/8] soc: renesas: rzn1-sysc: Export function to set dmamux
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Laetitia MARIOTTINI <laetitia.mariottini@se.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-On Fri, Feb 18, 2022 at 7:12 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> The dmamux register is located within the system controller.
+> On 1/28/2022 3:50 PM, Kalle Valo wrote:
+>> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+>>
+>>> Remove core PCI and ath11k PCI references(struct ath11k_pci)
+>>> from PCI common code. Since, PCI common code will be used
+>>> by hybrid bus devices, this code should be independent
+>>> from ATH11K PCI references and Linux core PCI references
+>>> like struct pci_dev.
+>>>
+>>> Since this change introduces function callbacks for bus wakeup
+>>> and bus release operations, wakeup_mhi HW param is no longer
+>>> needed and hence it is removed completely. Alternatively, bus
+>>> wakeup/release ops for QCA9074 are initialized to NULL as
+>>> QCA9704 does not need bus wakeup/release for register accesses.
+>>>
+>>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+>>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+>>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+>>> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+>>>
+>>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+>>
+>> [...]
+>>
+>>> @@ -651,6 +653,13 @@ struct ath11k_bus_params {
+>>>   	bool fixed_bdf_addr;
+>>>   	bool fixed_mem_region;
+>>>   	bool static_window_map;
+>>> +	struct {
+>>> +		void (*wakeup)(struct ath11k_base *ab);
+>>> +		void (*release)(struct ath11k_base *ab);
+>>> +		int (*get_msi_irq)(struct ath11k_base *ab, unsigned int vector);
+>>> +		void (*window_write32)(struct ath11k_base *ab, u32 offset, u32 value);
+>>> +		u32 (*window_read32)(struct ath11k_base *ab, u32 offset);
+>>> +	} ops;
+>>>   };
+>>
+>> Please don't use bus_params for this, I'm starting to suspect that we
+>> actually need to remove struct ath11k_bus_params altogether. It would be
+>> cleaner to have separate 'struct ath11k_pci_ops' or something like that.
+>>
 >
-> Without syscon, we need an extra helper in order to give write access to
-> this register to a dmamux driver.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Sure, something like 'struct ath11k_bus_ops' in ath11k_base struct
+> would be appropriate.
 
-Thanks for your patch!
+But we have 'struct ath11k_hif_ops' already, and that's basically
+ath11k_bus_ops with a confusing name :) (IIRC HIF means Host InterFace,
+or something like that.) So having both ath11k_bus_ops and
+ath11k_hif_ops would become even more confusing.
 
-> --- a/drivers/clk/renesas/r9a06g032-clocks.c
-> +++ b/drivers/clk/renesas/r9a06g032-clocks.c
+You are basically abstracting out PCI functionality, that's why I
+suggested ath11k_pci_ops. But yeah, naming is hard :)
 
-Missing #include <linux/soc/renesas/r9a06g032-syscon.h>
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-> @@ -315,6 +315,27 @@ struct r9a06g032_priv {
->         void __iomem *reg;
->  };
->
-> +/* Exported helper to access the DMAMUX register */
-> +static struct r9a06g032_priv *syscon_priv;
-
-I'd call this sysctrl_priv, as that matches the bindings and
-binding header file name.
-
-> +int r9a06g032_syscon_set_dmamux(u32 mask, u32 val)
-> +{
-> +       u32 dmamux;
-> +
-> +       if (!syscon_priv)
-> +               return -EPROBE_DEFER;
-> +
-> +       spin_lock(&syscon_priv->lock);
-
-This needs propection against interrupts => spin_lock_irqsave().
-
-> +
-> +       dmamux = readl(syscon_priv->reg + R9A06G032_SYSCON_DMAMUX);
-> +       dmamux &= ~mask;
-> +       dmamux |= val & mask;
-> +       writel(dmamux, syscon_priv->reg + R9A06G032_SYSCON_DMAMUX);
-> +
-> +       spin_unlock(&syscon_priv->lock);
-> +
-> +       return 0;
-> +}
-> +
->  /* register/bit pairs are encoded as an uint16_t */
->  static void
->  clk_rdesc_set(struct r9a06g032_priv *clocks,
-
-> --- a/include/dt-bindings/clock/r9a06g032-sysctrl.h
-> +++ b/include/dt-bindings/clock/r9a06g032-sysctrl.h
-> @@ -145,4 +145,6 @@
->  #define R9A06G032_CLK_UART6            152
->  #define R9A06G032_CLK_UART7            153
->
-> +#define R9A06G032_SYSCON_DMAMUX                0xA0
-
-I don't think this needs to be part of the bindings, so please move
-it to the driver source file.
-
-> --- /dev/null
-> +++ b/include/linux/soc/renesas/r9a06g032-syscon.h
-
-r9a06g032-sysctrl.h etc.
-
-> @@ -0,0 +1,11 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef __LINUX_SOC_RENESAS_R9A06G032_SYSCON_H__
-> +#define __LINUX_SOC_RENESAS_R9A06G032_SYSCON_H__
-> +
-> +#ifdef CONFIG_CLK_R9A06G032
-> +int r9a06g032_syscon_set_dmamux(u32 mask, u32 val);
-> +#else
-> +static inline int r9a06g032_syscon_set_dmamux(u32 mask, u32 val) { return -ENODEV; }
-> +#endif
-> +
-> +#endif /* __LINUX_SOC_RENESAS_R9A06G032_SYSCON_H__ */
-> --
-> 2.27.0
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
