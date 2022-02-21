@@ -2,51 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFDCA4BD407
-	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 03:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10A414BD3F3
+	for <lists+devicetree@lfdr.de>; Mon, 21 Feb 2022 03:57:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343891AbiBUCgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Feb 2022 21:36:35 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48462 "EHLO
+        id S1343932AbiBUCgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Feb 2022 21:36:52 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:48618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343889AbiBUCgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:36:35 -0500
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2600D3DDE0;
-        Sun, 20 Feb 2022 18:36:12 -0800 (PST)
-Received: by mail-io1-f54.google.com with SMTP id r7so8982377iot.3;
-        Sun, 20 Feb 2022 18:36:12 -0800 (PST)
+        with ESMTP id S1343927AbiBUCgv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Feb 2022 21:36:51 -0500
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA77B43AF6;
+        Sun, 20 Feb 2022 18:36:28 -0800 (PST)
+Received: by mail-il1-f180.google.com with SMTP id d7so8971414ilf.8;
+        Sun, 20 Feb 2022 18:36:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=FxeQCl1x7bPN2N7fKduzQexfeAZe1Kk7c2rGWjraM2M=;
-        b=vKnQxwU0+VxmSw9UgqnXXmy67eKsY5scUhrpbbtqsCdtT4dRP+MxYhekfIpriQTshC
-         1nm2PjKWr6m0zD/HMv+YamC02/uNkUyKQA2phTNMYRPFErn166bxut6/9kHzAvgNwOjL
-         xzbb27GxpmVv3C6qYeCeEC43SeTYYOB3whsz09/BHkZLKGNL5q/rgPIT0tctSQJVaRfe
-         KST+7ak1id9I58t9S8i17QskVHfr5OIEc3LAO67hVS8FkPO3q524hELgHaYn13/W6Tyd
-         R4wlW1uXKFkaYttTA0zDX1zgQxKKIOord1jX0vtOraXN+uxsS4Rfywokru+s4rNP3pbg
-         hhTw==
-X-Gm-Message-State: AOAM530TsRhPWYhMdkRmKMuUkBwczMYaV2gv36O3PXXZFF3OKhpP+cJW
-        bjzhbTW0aSqazCtL9gqaGozjPJ73Eg==
-X-Google-Smtp-Source: ABdhPJwOKow//TiuesfE0CYp/GWJkr7IS6te0xCDAT81+jaq7aIKH6XqV2hxLRYv99lirxqpAHRZdQ==
-X-Received: by 2002:a05:6638:2722:b0:30d:2b4e:5ff with SMTP id m34-20020a056638272200b0030d2b4e05ffmr13408270jav.261.1645410972080;
-        Sun, 20 Feb 2022 18:36:12 -0800 (PST)
+        bh=okTrvIdz3GnIfJtRIsWGhDUho/L1prgimJXoaYAoKg8=;
+        b=YJ2Ed7Z2cEtZPcH0d19AWRpRIZfo285DWXQ7FLjylkTLKkkaTs93mgqxSxUA7wTaki
+         6kN/L5UBPEfLbqpw/1lfqErvFWD80HFkachEYLmvgz1Y4qDjEuJYv0E8sxW4CDhfN6Wj
+         FZ5uHpWXoKWzjuOyHk2nJdEhh5DZuqGu3trdTXDqfdnmT6w3O0guWY6Xga73PXSjSfhv
+         c0Okc4g3f3zkcevoRBO+N9nLGzFSqr7T7U8N1N+hd+3meOVcucjs/+zzsM+FR3berJIx
+         6O2+eKIq6nMsjGd4dYX7xBpLBugjmHw7wkGqNktUZBnHHJ6Kj5J8RR0Cpzu9HxB8I3hZ
+         k+bA==
+X-Gm-Message-State: AOAM530AdulUHPoRr8oyZr7/2syOFxwvnev/koxWGLhg8scfQhqsWse9
+        UV3oB05EcXEftzE/D7dwzg==
+X-Google-Smtp-Source: ABdhPJw7G16QW3mZskjN26qBK95JxF1Ol6vXqkdIQvYr1acM/QnGofvpQACwFsVGxIzJWu04tQPwqw==
+X-Received: by 2002:a92:d3c7:0:b0:2bf:40d4:a87c with SMTP id c7-20020a92d3c7000000b002bf40d4a87cmr14307155ilh.35.1645410988222;
+        Sun, 20 Feb 2022 18:36:28 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id f13sm4569612iov.39.2022.02.20.18.36.10
+        by smtp.gmail.com with ESMTPSA id a18sm4172934ilk.65.2022.02.20.18.36.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Feb 2022 18:36:11 -0800 (PST)
-Received: (nullmailer pid 2041534 invoked by uid 1000);
+        Sun, 20 Feb 2022 18:36:27 -0800 (PST)
+Received: (nullmailer pid 2041547 invoked by uid 1000);
         Mon, 21 Feb 2022 02:36:09 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     chegbeli <ciprian.hegbeli@analog.com>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org, jic23@kernel.org
-In-Reply-To: <20220217135140.5658-3-ciprian.hegbeli@analog.com>
-References: <20220217135140.5658-1-ciprian.hegbeli@analog.com> <20220217135140.5658-3-ciprian.hegbeli@analog.com>
-Subject: Re: [PATCH 2/3] dt-bindings: iio: add ADE9078
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-samsung-soc@vger.kernel.org,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        linux-scsi@vger.kernel.org, Avri Altman <avri.altman@wdc.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-kernel@vger.kernel.org, Tero Kristo <kristo@kernel.org>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Jan Kotas <jank@cadence.com>,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chanho Park <chanho61.park@samsung.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
+        Nishanth Menon <nm@ti.com>
+In-Reply-To: <20220219184224.44339-4-krzysztof.kozlowski@canonical.com>
+References: <20220219184224.44339-1-krzysztof.kozlowski@canonical.com> <20220219184224.44339-4-krzysztof.kozlowski@canonical.com>
+Subject: Re: [RFC PATCH 3/8] dt-bindings: ufs: cdns,ufshc: convert to dtschema
 Date:   Sun, 20 Feb 2022 20:36:09 -0600
-Message-Id: <1645410969.316145.2041533.nullmailer@robh.at.kernel.org>
+Message-Id: <1645410969.391228.2041546.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -58,56 +72,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Feb 2022 15:51:39 +0200, chegbeli wrote:
-> Added device tree bindings for the ADE9078
+On Sat, 19 Feb 2022 19:42:19 +0100, Krzysztof Kozlowski wrote:
+> Convert the Cadence Universal Flash Storage (UFS) Controlle to DT schema
+> format.
 > 
-> Signed-off-by: chegbeli <ciprian.hegbeli@analog.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
->  .../bindings/iio/meter/adi,ade9078.yaml       | 153 ++++++++++++++++++
->  include/dt-bindings/iio/meter/adi,ade9078.h   |  21 +++
->  2 files changed, 174 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/meter/adi,ade9078.yaml
->  create mode 100644 include/dt-bindings/iio/meter/adi,ade9078.h
+>  .../devicetree/bindings/ufs/cdns,ufshc.txt    | 32 -----------
+>  .../devicetree/bindings/ufs/cdns,ufshc.yaml   | 56 +++++++++++++++++++
+>  2 files changed, 56 insertions(+), 32 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/ufs/cdns,ufshc.txt
+>  create mode 100644 Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/meter/adi,ade9078.yaml:131:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/iio/meter/adi,ade9078.yaml:  while scanning a block scalar
-  in "<unicode string>", line 129, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 131, column 1
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/iio/meter/adi,ade9078.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 46, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a block scalar
-  in "<unicode string>", line 129, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 131, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/iio/meter/adi,ade9078.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/meter/adi,ade9078.yaml: ignoring, error parsing file
-make: *** [Makefile:1398: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ufs/cdns,ufshc.example.dt.yaml: ufs@fd030000: clock-names: ['core_clk', 'phy_clk'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ufs/ti,j721e-ufs.example.dt.yaml: ufs@4000: clock-names: ['core_clk'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ufs/cdns,ufshc.yaml
 
 doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/ufs/ti,j721e-ufs.yaml references a file that doesn't exist: Documentation/devicetree/bindings/ufs/cdns,ufshc.txt
+Documentation/devicetree/bindings/ufs/ti,j721e-ufs.yaml: Documentation/devicetree/bindings/ufs/cdns,ufshc.txt
 
-See https://patchwork.ozlabs.org/patch/1594257
+See https://patchwork.ozlabs.org/patch/1595072
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
