@@ -2,172 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8EB94BFA79
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EAA64BFAD6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:23:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbiBVOLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 09:11:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47440 "EHLO
+        id S232772AbiBVOXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 09:23:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232259AbiBVOLF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:11:05 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6625615F62B;
-        Tue, 22 Feb 2022 06:10:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EDFA961490;
-        Tue, 22 Feb 2022 14:10:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA1E6C340F0;
-        Tue, 22 Feb 2022 14:10:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645539039;
-        bh=mIAp2LLc6xWWL3o5yI6XQYBeO/1InohcDH9qSKGds5g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aFi8tmZzVKR2gc3QK92t/eb+wmnLiB8Qndgqvdauqi4eJC/OHPNC1Xq2vrU9BeEkZ
-         3hJRL3L31SG2jTX2iMvPmXamNTgKfWA2pThCQLMa8YQZVxivopvD/1aG1xA80lkJeo
-         uP4LSbGhrzSDSDAtV56A8t4SKpdYZYrnC8+7tPZ35KL9YldUcaL+j1Lez1r08II4Xg
-         37Ebr+zyzI/uR3WtG8DoW/8DzIDek0afFEQx1mu6EqU1Vbdi1MJxU2/LjfIhLByggX
-         I0xe57F1Anf5BDNS1iEnLXW2tvHCNHszmyQvdz59Gv2dlPpzlzqzpnvaEAFEfTbzEd
-         EBnTZSB6Nh6fA==
-Date:   Tue, 22 Feb 2022 19:40:34 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH v9 1/4] phy: cadence: Add Cadence D-PHY Rx driver
-Message-ID: <YhTu2ixdWBKU1Y8y@matsya>
-References: <20220131173314.2073641-1-p.yadav@ti.com>
- <20220131173314.2073641-2-p.yadav@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220131173314.2073641-2-p.yadav@ti.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S232812AbiBVOXP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:23:15 -0500
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59D44C6803;
+        Tue, 22 Feb 2022 06:22:49 -0800 (PST)
+Received: by mail-oi1-f173.google.com with SMTP id j24so12454281oii.11;
+        Tue, 22 Feb 2022 06:22:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=rD5aOaysoX7AXKi/miKBCGc1jjVI4baaQQsU/wovaeg=;
+        b=grhQNwLuK5G4B8GXFmif1k+mlFW3TwbAfEb2hoAsMSzmrh0q7p6rdhlzbRj+l3lK6K
+         fMN+oYdQaOYL2RJobQHTm5jWT79UJLBxlrts75oBXoSnJILNTVyNRnBGjrArXWY7Mv58
+         wuMDDVebwgIGmPbBwf2+OxnGASokXPhT1kO+2728MczJcwJT5UhrAr8deLLcsOtGi0RA
+         Bkl0KLePGkH6Ip93cC3o0vSe/0n2o9MYnt+fkWWiEeQ+wUvnyCBNbdj4Un7K5dfxzWXj
+         6h2WCMdvuzq2hH6mn3cuwrcQ9TPbynXGGG0uKNkpitBYT1W2DcMNxT0DlvzrnmSmA8ZX
+         5YXg==
+X-Gm-Message-State: AOAM531UqAZN2BRc3qiCCE+7Iw/vs79pBnXN30nwAhJ5AxKvvQhCM3kc
+        beQTvVWS1yMY59XUpryUJg==
+X-Google-Smtp-Source: ABdhPJwVon8hc/Aiatn3KQ49ftntGD1o45JbfKv8M5qfLueMW864329WvIdvFp+I4R2VvQVOUJgEtQ==
+X-Received: by 2002:aca:2112:0:b0:2d4:653d:82b8 with SMTP id 18-20020aca2112000000b002d4653d82b8mr1921220oiz.126.1645539768672;
+        Tue, 22 Feb 2022 06:22:48 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bf13sm7569801oib.32.2022.02.22.06.22.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Feb 2022 06:22:47 -0800 (PST)
+Received: (nullmailer pid 3016156 invoked by uid 1000);
+        Tue, 22 Feb 2022 14:22:43 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        =?utf-8?q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Mark Brown <broonie@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <39d61ddb-4b54-4a13-fbb2-c0f88d9bf017@gmail.com>
+References: <1f39432b-84e2-e6dc-a6b8-c48ad5cf2210@gmail.com> <39d61ddb-4b54-4a13-fbb2-c0f88d9bf017@gmail.com>
+Subject: Re: [PATCH v2 3/6] dt-bindings: auxdisplay: Add Titan Micro Electronics TM1628
+Date:   Tue, 22 Feb 2022 08:22:43 -0600
+Message-Id: <1645539763.080061.3016155.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31-01-22, 23:03, Pratyush Yadav wrote:
-> The Cadence D-PHY can be configured in Tx (DSI) mode or Rx (CSI) mode.
-> Both modes have a different programming sequence and share little among
-> them. In addition, a PHY configured in Tx mode cannot be used in Rx mode
-> and vice versa. For this reason, create a separate driver for the Rx
-> mode to make it easier to read and maintain.
+On Mon, 21 Feb 2022 21:23:18 +0100, Heiner Kallweit wrote:
+> Add a YAML schema binding for TM1628 auxdisplay
+> (7/11-segment LED) controller.
 > 
-> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> This patch is partially based on previous RFC work from
+> Andreas Färber <afaerber@suse.de>.
 > 
+> Signed-off-by: Andreas Färber <afaerber@suse.de>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 > ---
+> v2:
+> - (re-)add Andreas' SoB
+> - fix YAML errors reported by Rob
+> ---
+>  .../bindings/auxdisplay/titanmec,tm1628.yaml  | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
 > 
-> Changes in v9:
-> - Use %ld instead of %d for printing PTR_ERR().
-> 
-> Changes in v8:
-> - Move lanes check to start of configure sequence.
-> - Change MODULE_LICENSE() to "GPL".
-> - Add Laurent's R-by.
-> 
-> Changes in v7:
-> - Add spaces after { and before } in the bands table.
-> - Drop the wrapping around the for loop on cdns_dphy_rx_get_band_ctrl().
-> - Make cdns_dphy_rx_wait_for_bit() inline.
-> - Print an error message if registering PHY provider fails.
-> 
-> Changes in v6:
-> - Move to a separate driver.
-> 
-> Changes in v5:
-> - Use the new cdns_dphy_info to specify PHY ops.
-> - Re-order include in alphabetical order.
-> - Make bands const.
-> - Drop num_bands.
-> - Make i, lanes unsigned.
-> - Drop the maximum check in cdns_dphy_rx_get_band_ctrl(). Let the loop
->   complete and return -EOPNOTSUPP when we reach the end.
-> - Drop the "rate < bands[i].min_rate" check since the bands are in
->   ascending order.
-> - Move data_lane_ctrl to start of function and make it static const.
-> 
-> Changes in v4:
-> - Drop the submode parts. Use a different compatible for the Rx ops.
-> - Make bands and num_bands static.
-> 
-> Changes in v3:
-> - Use a table to select the band.
-> - Use a table to poll the data lane ready bits.
-> - Multiply the DPHY HS clock rate by 2 to get the bit rate since the
->   clock is DDR.
-> 
->  drivers/phy/cadence/Kconfig        |   8 +
->  drivers/phy/cadence/Makefile       |   1 +
->  drivers/phy/cadence/cdns-dphy-rx.c | 255 +++++++++++++++++++++++++++++
->  3 files changed, 264 insertions(+)
->  create mode 100644 drivers/phy/cadence/cdns-dphy-rx.c
-> 
-> diff --git a/drivers/phy/cadence/Kconfig b/drivers/phy/cadence/Kconfig
-> index a62910ff5591..1adde2d99ae7 100644
-> --- a/drivers/phy/cadence/Kconfig
-> +++ b/drivers/phy/cadence/Kconfig
-> @@ -22,6 +22,14 @@ config PHY_CADENCE_DPHY
->  	  system. If M is selected, the module will be called
->  	  cdns-dphy.
->  
-> +config PHY_CADENCE_DPHY_RX
-> +	tristate "Cadence D-PHY Rx Support"
-> +	depends on HAS_IOMEM && OF
-> +	select GENERIC_PHY
-> +	select GENERIC_PHY_MIPI_DPHY
-> +	help
-> +	  Support for Cadence D-PHY in Rx configuration.
-> +
->  config PHY_CADENCE_SIERRA
->  	tristate "Cadence Sierra PHY Driver"
->  	depends on OF && HAS_IOMEM && RESET_CONTROLLER
-> diff --git a/drivers/phy/cadence/Makefile b/drivers/phy/cadence/Makefile
-> index 26e16bd34efe..e17f035ddece 100644
-> --- a/drivers/phy/cadence/Makefile
-> +++ b/drivers/phy/cadence/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  obj-$(CONFIG_PHY_CADENCE_TORRENT)	+= phy-cadence-torrent.o
->  obj-$(CONFIG_PHY_CADENCE_DPHY)	+= cdns-dphy.o
-> +obj-$(CONFIG_PHY_CADENCE_DPHY_RX)	+= cdns-dphy-rx.o
->  obj-$(CONFIG_PHY_CADENCE_SIERRA)	+= phy-cadence-sierra.o
->  obj-$(CONFIG_PHY_CADENCE_SALVO)	+= phy-cadence-salvo.o
-> diff --git a/drivers/phy/cadence/cdns-dphy-rx.c b/drivers/phy/cadence/cdns-dphy-rx.c
-> new file mode 100644
-> index 000000000000..c9bb8c7f16f6
-> --- /dev/null
-> +++ b/drivers/phy/cadence/cdns-dphy-rx.c
-> @@ -0,0 +1,255 @@
-> +// SPDX-License-Identifier: GPL-2.0+
 
-GPL v2 and more...
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +/*
-> + * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
+yamllint warnings/errors:
 
-this should say 2022 as well
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.example.dt.yaml: led-controller@0: 'spi-3-wire', 'spi-lsb-first', 'spi-max-frequency' do not match any of the regexes: '^.*@[1-7],([1-9]|1[0-6])$', 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
 
-> +MODULE_AUTHOR("Pratyush Yadav <p.yadav@ti.com>");
-> +MODULE_DESCRIPTION("Cadence D-PHY Rx Driver");
-> +MODULE_LICENSE("GPL");
+doc reference errors (make refcheckdocs):
 
-This means GPL v2 only and does not match SPDX tag, pls update
+See https://patchwork.ozlabs.org/patch/1595730
 
--- 
-~Vinod
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
