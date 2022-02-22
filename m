@@ -2,219 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6856E4C0036
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 18:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9484C006D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 18:50:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234377AbiBVRff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 12:35:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34676 "EHLO
+        id S234177AbiBVRuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 12:50:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233705AbiBVRfe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 12:35:34 -0500
-Received: from mx0b-0039f301.pphosted.com (mx0b-0039f301.pphosted.com [148.163.137.242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A37216FDD2;
-        Tue, 22 Feb 2022 09:35:08 -0800 (PST)
-Received: from pps.filterd (m0174680.ppops.net [127.0.0.1])
-        by mx0b-0039f301.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21MHN8aM016345;
-        Tue, 22 Feb 2022 17:35:03 GMT
-Received: from eur05-db8-obe.outbound.protection.outlook.com (mail-db8eur05lp2105.outbound.protection.outlook.com [104.47.17.105])
-        by mx0b-0039f301.pphosted.com (PPS) with ESMTPS id 3ed46e8167-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 22 Feb 2022 17:35:02 +0000
+        with ESMTP id S233160AbiBVRup (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 12:50:45 -0500
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2041.outbound.protection.outlook.com [40.107.20.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5648B15FCBF;
+        Tue, 22 Feb 2022 09:50:19 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GJSVudjTk6tfATe0czdwKIyUImDmbjKno2bn45Bto4HjIJQBhjOW89mm5eGS613HHhH5kchYQDbCmXfXAX4frgMQQTjnllfI3L0nVS7yGe9wr0CxO0OYNpPojcr62C+KcijG6QVDeT1YeRJ+5rXSc0DJaJtaaQejAhlhTQSw6eHe+J1Nt5bEN+Bjv31c+YHSW86qcZ48nOsuAJ8Uz5GYiV6YPTKtLi8nZh5Rwh2OI6cG3WDdh5NF+I2gl3ly3bk2rsfucaPcjqLpAc+3Ra5oB3C+jdDSj7wk9OkCsSAZ0X8EdldMhs+w2LqBC1Hf7KiaGaNynMfRip+lM3mGmrLA0Q==
+ b=W+hFlI0Eg70iJW8T8vMziIz9ZFDNZgDl3rAAUpIybltoHqkckNf48vWUcr3hHpl1HDv6fnjvrmlTBHt5I3KxI8M/u+u7oSyyunKSceQTNntvk7GtY+xCb1Uz7j1hAzvnYPb7WFB9pw39T0oGGigiv52L/UOe669XS+Q0YG4GeF2coeun39Q7DDhMOfVVrt2u0Pnc98qH5Ew7i9rgDTBYozxz3PMgSNjlIp71R3vnB706srVvEttJ3WTe7aA40v2PftDqR2kiQTZQQ2EOoAlKXz8S+wnzxKvdbRp43uk3mr9NpLdHbooAefQ1E9QJuz+ZUOH1WfjXmEiW3+yLmE/YKw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=70xpp7jgAFZapTxMW9lCIf1O9X3tYKous6KDx35Gjik=;
- b=MMU5DKBqMUoSwmYhMGJUZ1MAyud+5AJanPTywpFqhQy7O7FeyZ6oxk2zFEO7kvqRor5RY4R5QH9wi9/eYNyaakGLa6ArTlTO2h2m7ZILDMvZ5IPeogCb9zewK7R7ezFxLM7DnwTp2QMTNv8Y9ab7+ev3Xnq24RFHpt8bowDJLA6ze/iIuSp8FqpFEe6XiTNS054TrxIaKFFvvNSSjlIGQztZBsKlW1KwcQ8cNI28EG/do2WlbNvgErkiw/gcU6xolITlK3f3qKFEbsrcKxW8vOe13deZlj8dIzNjtsii4MSsHhnpsTdgaDAyDoggvIFQF7oz5HdTISXijKD9m4K6LA==
+ bh=mnJWxjD6QlsPRLzUzk/FWJSgCWgArQNDv9ALFcw/Dzc=;
+ b=jMUXJcDs1SppMUg/yWz8LxkqKHBIaFzMWzcJKT+JuCk3gWSCIAD22xJ2NahTJbM3UEAxFyHUPyi+Ov44lUXpkw68nJtL6TqZqzFuxeKPMq9JfAMUAndeAu4Tl7JLK8UZocS+mwKMYL5duNGvlFKWd67hQRHWC9siCji/y97lh57wIfjLi4S9420pPGeYq+MogvMEvIp4X4xucYkhXkBZsD0uwmMHpL4PKsMkUjC5GckVS1AXxfV1AZBo0oPb2xzyP3tb58G2PZxQU+63Thq9BeEfKHAn07KQ6bIBmQG98gUaFWxI8cDlxgfHdddL5hbADdyIPGc6NvNFnPL2ma0BUQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=epam.com; dmarc=pass action=none header.from=epam.com;
- dkim=pass header.d=epam.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=epam.com; s=selector2;
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=70xpp7jgAFZapTxMW9lCIf1O9X3tYKous6KDx35Gjik=;
- b=IzOO6Iw45/oL+1WR9ITTMjPiAInNgWIqmFEX9T4o88ey8ARP2GiLdOMwjugejkWK5m6THBMEoFpyRiS1a+ey4TjPaMleRthdzSLDawhnJRq5KbdxIo7mw7jKOrXPu50L1MjCEpIMJMbZATUqyk2IiFz/YfEuRC6epSOplDGnIFe3hDiWz4/gyJ6x9PPbbUa71+JSZ89L8H2AjPLUv8O+bYpM6yQRf3gZwae4Y2AOhsfRB+Jt5/cs4G4CCdPkKNEzgrUHTiXdfB5omS7WsHjN/wvJyapegb82Dl/SfVMQn7QyAmrazWUpQUa4/qwBsfcr3Mv2/xTLN6tJIEp+3WUi+A==
-Received: from PA4PR03MB7136.eurprd03.prod.outlook.com (2603:10a6:102:ea::23)
- by HE1PR0302MB2812.eurprd03.prod.outlook.com (2603:10a6:3:f6::21) with
+ bh=mnJWxjD6QlsPRLzUzk/FWJSgCWgArQNDv9ALFcw/Dzc=;
+ b=S/wB3gD/9WntG3oPp5MAucqWa5GmhmL2TOBjB2xvrYxuaETmpfhcGKyM4FFfcRimc/FdDQgNxC+9lMx4q8CvfcFGnOgj/wxHFuwCvw4cMuD6+4hnK+fE1vGL+jlhGoexCe67fbe22XxE6MkQOm0W5rdSTqdr1SKFq3hMQdJMiOE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from HE1PR0802MB2426.eurprd08.prod.outlook.com (2603:10a6:3:e1::23)
+ by DU0PR08MB7485.eurprd08.prod.outlook.com (2603:10a6:10:355::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.27; Tue, 22 Feb
- 2022 17:34:59 +0000
-Received: from PA4PR03MB7136.eurprd03.prod.outlook.com
- ([fe80::c1c:f98:9dd:86e0]) by PA4PR03MB7136.eurprd03.prod.outlook.com
- ([fe80::c1c:f98:9dd:86e0%5]) with mapi id 15.20.4995.027; Tue, 22 Feb 2022
- 17:34:59 +0000
-From:   Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
-Thread-Topic: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
-Thread-Index: AQHYJ0gzI98NnKSQaEaZikv/1tAERayefeSAgAAKkQCAAK8mgIAAiGsAgAAWbwA=
-Date:   Tue, 22 Feb 2022 17:34:59 +0000
-Message-ID: <20220222173458.GA2310133@EPUAKYIW015D>
-References: <cover.1645460043.git.oleksii_moisieiev@epam.com>
- <2546477f-4190-e838-3095-f47b31802445@kernel.org>
- <20220221213932.GA164964@EPUAKYIW015D>
- <7f17ab8f-429f-d2e0-8f5f-bfa2dd19cc49@kernel.org>
- <20220222161440.xadrgjftdyxenxgo@bogus>
-In-Reply-To: <20220222161440.xadrgjftdyxenxgo@bogus>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d6a62685-1328-4920-6fbd-08d9f629a655
-x-ms-traffictypediagnostic: HE1PR0302MB2812:EE_
-x-microsoft-antispam-prvs: <HE1PR0302MB28125C316D8A51A765788A58E33B9@HE1PR0302MB2812.eurprd03.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 3YvCKBIsSX4C4m/puGyAJ3CT5f3zkoDCX2Fvm7okEDYIIqzDqTSjWQxXfzfoS327y6uATEvQ8MxWNumrFFgSOBLatELS4a64kBbLDoyY89CDs75P3C+OlCoS9dkjECUsdOjdP15snrRCqTHaIh7MSeR7nrSG0U9x/YVyIw42cYXhvFF+fOR+KKHpa1oe/n1vUBGUDsheBMG+U60HfWsk/Fo9JSnXd/oguyhkh6kShHoF28KIrY6cT1GakXSBrMTTxfUvCeTeJL1luH/k5oTtYQQV1KWTwsv+1zNQTWRxGSPgt7mrwcc01/TR01OV+h1PIQ6e7cKH+Ibo6kEo20bHLgsM5EO5ZxT3QUDNgo9+rGb9hGJ/b1ODl820svvQ+9RHPuW6bjQJsdy9Jh/NGoRGt3x7uMDTztmQVor5OMmIhln8uEOItOP9/wMII1gV83QiQKYasVyLgv7l4z3LzkqBEo3i7hi4i42DT0z5EXoUSV8x5/IFW0bnkLR9j9cI2FSnElyf6cGWuiIR0+HOK4/W2hrGj2Cj7mMeo1ZimN6equO7IMAslKC85N7MpKo/CkonrB/Z8nI2B1xbSSCjMcVBiYQZYtLC8oalW+qWWgZRtFOBj9rak3BY9NFxsK/CVP4AwxhgxHvtU+eX5yadTyxfjLd5cc9tySy6TpV+J7mO7qdkZL94jU1xtnRV7WBzUpdvg+b1X+tqozdPujuc7GWFfw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR03MB7136.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(7916004)(366004)(66946007)(76116006)(66556008)(91956017)(64756008)(6916009)(54906003)(83380400001)(71200400001)(508600001)(4326008)(53546011)(8676002)(66476007)(66446008)(33656002)(6506007)(6486002)(122000001)(33716001)(26005)(86362001)(1076003)(186003)(38070700005)(8936002)(316002)(9686003)(6512007)(38100700002)(2906002)(5660300002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?kwzFnvNrbqANCeoGktrrBbt4Gi9ZWh4/Ua6Zu48pNiQpvOAWMcP7616tkdLu?=
- =?us-ascii?Q?hTKPz26xh9ShknC/gY4pmTCqBE2SIOo00ENHTdVysay01bjrOSHnveit/Lg7?=
- =?us-ascii?Q?BRISHar6AeP554jLaMvTgyad1luRtcCKfmrAmLp6nTme9LRxoNZ++3eiu8DA?=
- =?us-ascii?Q?D9Y1/ZGLv/D1DnKaRdfEsSJXjxf4QmvzqiR6P5Jj5GpF2wyqxTgkgDBrF2Av?=
- =?us-ascii?Q?Ofp5BEcAH259zpuaGoSyRlTYPCUGvL8hMRJmXiwRkXFAYds2Q7p5+Ij8OyyC?=
- =?us-ascii?Q?xYMSdbT6BwRE53duVK8cMv03B81XV/njmOJJErcNOPP8PYFpwRWLwb873MgJ?=
- =?us-ascii?Q?wO/LQoxxfPJGRAlpC+Y6uH+9plKDjw+6OULb11atkUq1skUFOVkuCRvtllrU?=
- =?us-ascii?Q?7DmksOA3Px6AzPNfVb5kI7VTumSE2Rn6R7y2nxN5pbYY8WXrVLrkIKUkHdt2?=
- =?us-ascii?Q?d3mi4puHF0od4eDR2ZUI5LGnODhWcbCYRgJW0JG9HTuA4QuGRVEWQn4J5u2z?=
- =?us-ascii?Q?2l7pJ+X/8w/FoaVqZ818txHtCtSGV/WL9J6zYEpPe2SdIAhShR/M+31BmQgV?=
- =?us-ascii?Q?uItCIAvNt5+x/mqrmuyEIEKkOUf91Nr8WCrZFMTlFuX0g+kQm9XMrr4IHoWh?=
- =?us-ascii?Q?wHPUQmPv3MlkwVuTxlIZb2YYN3u9GnnKqRBTcjRPSP8Sx/D2cLW34OfvAOr/?=
- =?us-ascii?Q?YyhmrTV5OfkTmuMv4y+YbmKDXEslg8Sygp/0U6K8v4WjY1rXD9nYStd3esZg?=
- =?us-ascii?Q?+acsUXPWUDgEYH3HzfvGSekCH0Qy8vTDUSzc+ErbdtUCW4yK/N10FAyJh6hD?=
- =?us-ascii?Q?28lrsxeYpu2yXbYdnZRuJPjV4TYanCz9jh9ftU8dd+EjlgWWYl8Bygh80pvS?=
- =?us-ascii?Q?dWWYG2wOqbe2w3nEmTKWHHyaU2K2bHJQO63cCuOxuyQICpvr2Ten5z/fM4XH?=
- =?us-ascii?Q?vUqadW+X31YNLHrgNiEgt41i+9Rm1zgROhX1vahXvvKC02N3PeaRGI5MACx7?=
- =?us-ascii?Q?lNycnmIeP/JpNqmbzwLPUXDDz/64d8IPoEOQFwWlqj2ChheimNjPFljmNAkg?=
- =?us-ascii?Q?toJUaqSD6JEFet0M9Ae0CPxh/7XxMIbChqhIY85dvrzfMGSU73bRtD6ishSp?=
- =?us-ascii?Q?sa3umrCAYoH6W0IJ4fDBVrgHIjxvOQY8mhnU2n36e1yr0+vZ2WaEC51jIQ7j?=
- =?us-ascii?Q?TiBt4UHGH2XJ3fdfd11z7Rev+ky9uEV7y9FWEIypoYpG02ETyMa6IVNtJi/X?=
- =?us-ascii?Q?osks+n7pIKo2XOcJsoU/zVii4lGOQ5Y7tvU+uyJouI0x5vBjrxCF5CF6JSVG?=
- =?us-ascii?Q?16HeSzvRWzgz+rBzPE4SBu3HBUlFs/kVsnW1hFkkM/qYv0Gw/EQup3akde3O?=
- =?us-ascii?Q?gtg7+ceBlScP7hhY7yl+6NZ3LlwNGViWLB6WD95o2YBg5uTFy9UGrk22JTLS?=
- =?us-ascii?Q?RnE8F6IB34oIBaTTUEskXANUJpPV/NcKkSqd7iPUwwlDUfFm89IDufYg/XQ5?=
- =?us-ascii?Q?le/IRNSlw5OAaEmVyVYiU+Z6qMfqlb9az/4z3qwlc0iNEFOy6ntht0zvCWk0?=
- =?us-ascii?Q?IZfLS8G/8OOPwv3ZcJP4dnn+vr3BNrTYdMAbIXf+E3iIsYzUPKmI0fEUq9bZ?=
- =?us-ascii?Q?VYWaT6xCSGZoAsoUgPYbhvF19hQkSB+/OcQbmI8/ie8+8Wpnv9gCxCTpU1YN?=
- =?us-ascii?Q?wb20qORY0qsh0A9DpccR1RNEhuw=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <BC5CF11C430846449F3F5BC657412671@eurprd03.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Tue, 22 Feb
+ 2022 17:50:15 +0000
+Received: from HE1PR0802MB2426.eurprd08.prod.outlook.com
+ ([fe80::f9ee:a333:b115:5049]) by HE1PR0802MB2426.eurprd08.prod.outlook.com
+ ([fe80::f9ee:a333:b115:5049%4]) with mapi id 15.20.4995.027; Tue, 22 Feb 2022
+ 17:50:14 +0000
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Liang Chen <cl@rock-chips.com>, frank-w@public-files.de
+Subject: [PATCH 1/2] arm64: dts: rockchip: enable work led on rk3568-evb1
+Date:   Tue, 22 Feb 2022 18:50:03 +0100
+Message-Id: <20220222175004.1308990-1-michael.riesch@wolfvision.net>
+X-Mailer: git-send-email 2.30.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ZR0P278CA0108.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:23::23) To HE1PR0802MB2426.eurprd08.prod.outlook.com
+ (2603:10a6:3:e1::23)
 MIME-Version: 1.0
-X-OriginatorOrg: epam.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0d87d415-1fb5-4f01-25ef-08d9f62bc7b3
+X-MS-TrafficTypeDiagnostic: DU0PR08MB7485:EE_
+X-Microsoft-Antispam-PRVS: <DU0PR08MB748525993F4DF76FD88FD76AF23B9@DU0PR08MB7485.eurprd08.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7blQFLvLxTwQOZthcMVbBK8nNj/vINr9uRsDxUR7hNQgJOgSlwB1x4X8/edD0MkvvLXi6s8j+eyUAR31s2I4DOmPd5xmOQpmj55PFakuvqO3neUh2TDvMFthAWqV/N20klezz9f600QKkMI0U+i5oecmTj5agt7cZlautsU8nzJ2g8qMxrI6dajb6qVrP8NFI9H1SgY+DHOVFXJylsORJXysCYXb9TVs2TO7BO9n5RCjJqX8OzvH0HTfwFia7ypjn1XQS+2QAiFe0BRvPqd5cMs600yWQvDm4o5mIV+Pnbru0Bfg0Ua00fryYsSYJQv+94suXbaSL3Dy5tpu97OPDKcWxcjyct3AghQQsTdW0TZDTNATlphYeMOQswFoXiIW0OOsuDXtgvDxsmDsSWlexJJ8Ry2O181cbXsYgBSbQRUXP5keQCIzScnkAcA+I/FW/yUlV4I9U/B+bhDCmX31G8TJQffhn/LwL/IGGYuhXpdfcT5kWJvQ2fpyLJn3uPKL0T91FmRVoZM74ZA+sqMaig5HCuYPjMQSzFViewKCcXGRbHpWNsLhmkZ+kweEA9ssh1SugCAJoYYO0JFw/8dAwISjGUi8ORZq4Fsgt65djdqzALojRgOWSkNB+95wSOHNApZVsSCMrXaEa+WpMN0Khg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0802MB2426.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(346002)(39830400003)(376002)(396003)(366004)(136003)(186003)(8676002)(4326008)(54906003)(6506007)(2906002)(2616005)(316002)(38100700002)(5660300002)(6512007)(66476007)(1076003)(66556008)(66946007)(44832011)(6486002)(6666004)(8936002)(36756003)(508600001)(52116002)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FlFlFoZqABBrBmvhMdZpQS9ykdrV2/jRjFszQcWjTStLxb4NSCh5vUOUYZwQ?=
+ =?us-ascii?Q?dGhqxjqO6g6zH4MYXkqx1T98U++YKPA8UUM4seA2xOwoOi+RU/eJlxEDi/Rp?=
+ =?us-ascii?Q?dYKog5HVYNr8OkqBOQKohRMjzXEjKMU4+PfyI9xKqWRIJ5khg9nZQp0vUZqa?=
+ =?us-ascii?Q?z1RWccssvBobdd8ksNH6CrIzRgLBMIZ6Q21ZfnjSm9o1zMJF81S1+ZN+JsNc?=
+ =?us-ascii?Q?lGSkR9wXL2KuHk6pv8iOXUb2Rm/ou3Tmefz+qP5aoaVmGw3bWnlpRoUMCkX6?=
+ =?us-ascii?Q?YtNSWlNvhmp0FfarMZTm5qCxntujuQif7whX6tYaCA0hadc0hk/WrS7YRskv?=
+ =?us-ascii?Q?Dj1QlG++Db3PEvkUyl8pF/ZZdpELLn4r3HaLJaMZFGf1dgMQ6V65P6zgU6LF?=
+ =?us-ascii?Q?EQA/oJWPPXajy/gXDCi5pHX7ECxeCvYuKMN9CJ0FBPdkS3iDMOwvVrLroDvS?=
+ =?us-ascii?Q?D8BgLzKAIvzzskCIFPFu57DMrM1fMTSE6Lzd1JJ5ZgcbDMMa0wi16pdksmJS?=
+ =?us-ascii?Q?PUbtJAB4JHI/v+whbJ99iem1sBoEBO/GoO37dryou0iDnEvRY7Ox7DbVf/4Y?=
+ =?us-ascii?Q?rBC2zqX7IC8s2gKuzX/GpmdGphf3R7W7cA6XPvTb6m7qXuV42Ni4ZFN1NGrH?=
+ =?us-ascii?Q?mDQvF+1La5jU3OfB2dtUIY/WziK9fyhjxDve4FIiq8FhV4IwnzeR0yQaclGt?=
+ =?us-ascii?Q?1BlmB6q4y/dosC74eniG0IZ1em0IeiGFYpQnpaehLY51LuKBq2uIDGK8AcwI?=
+ =?us-ascii?Q?cuXKaRPWLy0oUExrS4Ov9rhVmrxecwiHvFCMSDZeRWDMffZ02KyFx5MjxPek?=
+ =?us-ascii?Q?YW/MqbxS7tCpccFHdHkTHBFRkL/mZ4cgtRuV3bLn54hDC9zqx04IhemsPX2j?=
+ =?us-ascii?Q?AuZOE/TgNLKSqN21FbFwyvpg/KADSWvhnOqbO2yhpYHgY2nOfEEVoV+AmscZ?=
+ =?us-ascii?Q?mMNoEUtRh6DkqC4LtSqwIAV8d1BKaSqBULXa8XvKrp4rJE0GRASkzJpB76Bg?=
+ =?us-ascii?Q?mb2dRZaJXd0CIea1B6HvLf+uOcbGmaV130Mc8Tb4li9dWHt7L8ccBp4BgG1l?=
+ =?us-ascii?Q?SLT6oxlxumqo07kuTI0IrpQCNbOboQf4E+bgMNNuWVA7FE2bZq/XC21fWy3k?=
+ =?us-ascii?Q?6OY3o3vvUWwsZ7arxd5QWwFBYX2DdB+nZBvcas4Ik4zN6MitFsWdOClZmxh2?=
+ =?us-ascii?Q?amshE1vzMVe6GqqPy65xJmo/EhsPddexRfxoia9iooB1gP0yRktqPmz1/RER?=
+ =?us-ascii?Q?JRSJ9DSlJESnGXkWvtcmEvbMA+bSr5ejT3jHHc9KOUayA1x9ZxM1yMCYcb5J?=
+ =?us-ascii?Q?JURPBBl22Y/L505tiZxh6u6O4USE3EzIUStS6hmer04qi9ljr+DRLxGMNKKh?=
+ =?us-ascii?Q?fLqLHZNb9CWjRXP8zIem6cPADFvV2w1wRR91OIUhjnlBTuSbcIUDOtCHuMs8?=
+ =?us-ascii?Q?ogZa9fl3HTq7BClAJXTV+bKQiyu0AtYAonAyp3IQyA+lDClAMkFQN6VQavc8?=
+ =?us-ascii?Q?S97aHO4agfMHz+0vxo3sql2UsI0BFNro3Io2bAGUTi4VI2nBFS0f5gQ62zb8?=
+ =?us-ascii?Q?dgJpr/Ly65rmFV2yk/VPsiSBLJPjKnxk3AKhf2oiaOQD78hpLzZnEdjW5BUo?=
+ =?us-ascii?Q?NJv9vvsZJvH0y6SpZQHhLXkirRPW1tLC/DPARiT0zFnV1h7wPSi82ULwGvGj?=
+ =?us-ascii?Q?2e8iK/kd+U5UfYVvNWHfzcigAEcdACEmXoGhIVC5KdIebQHb88wRfX79uxIP?=
+ =?us-ascii?Q?9FXpk23ttQ=3D=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d87d415-1fb5-4f01-25ef-08d9f62bc7b3
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0802MB2426.eurprd08.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR03MB7136.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d6a62685-1328-4920-6fbd-08d9f629a655
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2022 17:34:59.3563
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2022 17:50:14.7037
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b41b72d0-4e9f-4c26-8a69-f949f367c91d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OuTPrccx3Q8wc3bQDQ2DKe2FPvG4+enTDdX+TWZAmgbFuGyMvU41mGiZIBrpyd+YBRTF4LwSCo8r7vfw2xD7hTcRSXNntDW3tlaF5LTMsOE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0302MB2812
-X-Proofpoint-GUID: 5njnDgzxWdbgA1uzuYnQVTySHNJoJcbf
-X-Proofpoint-ORIG-GUID: 5njnDgzxWdbgA1uzuYnQVTySHNJoJcbf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-02-22_05,2022-02-21_02,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
- spamscore=0 priorityscore=1501 mlxscore=0 adultscore=0 clxscore=1015
- impostorscore=0 malwarescore=0 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2201110000 definitions=main-2202220107
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fIWU3aPRduKqEtFwcT///rcavWFu0KmLoA1x6xe8R/5lwUhQ0h0+XBg/g9olHirOIkTkj1yK31u/NPNi8wMJ4atwEjIqZcrh7DR6xpFKQUU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB7485
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 22, 2022 at 04:14:40PM +0000, Sudeep Holla wrote:
-> On Tue, Feb 22, 2022 at 09:06:25AM +0100, Krzysztof Kozlowski wrote:
-> > On 21/02/2022 22:39, Oleksii Moisieiev wrote:
-> > > Hi Krzysztof,
-> > >=20
-> > > On Mon, Feb 21, 2022 at 10:01:43PM +0100, Krzysztof Kozlowski wrote:
-> > >> On 21/02/2022 18:26, Oleksii Moisieiev wrote:
-> > >>> Introducing new parameter called scmi_devid to the device-tree bind=
-ings.
-> > >>> This parameter should be set for the device nodes, which has
-> > >>> clocks/power-domains/resets working through SCMI.
-> > >>> Given parameter should set the device_id, needed to set device
-> > >>> permissions in the Firmware. This feature will be extremely useful =
-for
-> > >>> the virtualized systems, which has more that one Guests running on =
-the
-> > >>> system at the same time or for the syestems, which require several
-> > >>> agents with different permissions. Trusted agent will use scmi_devi=
-d to
-> > >>> set the Device permissions for the Firmware (See Section 4.2.2.10 [=
-0]
-> > >>> for details).
-> > >>> Agents concept is described in Section 4.2.1 [0].
-> > >>>
-> > >>> scmi_devid in Device-tree node example:
-> > >>> usb@e6590000
-> > >>> {
-> > >>>     scmi_devid =3D <19>;
-> > >>>     clocks =3D <&scmi_clock 3>, <&scmi_clock 2>;
-> > >>>     resets =3D <&scmi_reset 10>, <&scmi_reset 9>;
-> > >>>     power-domains =3D <&scmi_power 0>;
-> > >>> };
-> > >>
-> > >> And how do you prevent DT overlay adding such devid to any other nod=
-e
-> > >> thus allowing any other device to send requests with given devid?
-> > >>
-> > > Thank you for the quick response.
-> > > scmi_devid value will be used only by Trusted Agent when the device
-> > > permissions are set. Non-trusted agents, which in our case are
-> > > represented as Guest OS are using scmi drivers, already present in li=
-nux
-> > > kernel, ignores scmi_devid and uses scmi_clocks, scmi_power, scmi_res=
-et
-> > > nodes to access to SCMI protocol.
-> >=20
-> > Ah, ok.
-> >=20
-> > >=20
-> > >> Plus few technicalities:
-> > >> 1. Hyphen, not underscore in property name, so scmi-devid.
-> > >=20
-> > > Thanks for the tip, I will change that in v2.
-> >=20
-> > Few more thoughts:
-> > 1. This looks specific to ARM SCMI, so you also need vendor prefix, so
-> > something like:
-> > arm,scmi-devid
-> > arm,scmi-device-id
-> >=20
->=20
-> Keeping the other discussion separate, I wanted to comment on this.
-> I agree with Krzysztof on having vendor specific prefix if we decide to a=
-dd
-> this device id thing. However, I prefer not to use "arm,scmi-" here.
-> It can be "xen,scmi-" as we had plans to introduce some concepts in SCMI
-> spec that may use looks like this device-id. I would just like to avoid
-> conflicting with that in the future. It may happen to be same in the futu=
-re
-> (i.e. this xen device-id matches 100% with definition of device-id we mig=
-ht
-> introduce in the spec, but I want to make assumption otherwise and leave
-> scope for divergence however small/little it can be). No issues even if
-> they converge and match 100% later in the far future.
->=20
+Enable the blue work LED on the Rockchip RK3568 EVB1.
 
-xem,scmi- works for me. What do other thinks?=
+Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+---
+ .../boot/dts/rockchip/rk3568-evb1-v10.dts      | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+index 39c495ff0157..aaf7b4bed24b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+@@ -33,6 +33,18 @@ dc_12v: dc-12v {
+ 		regulator-max-microvolt = <12000000>;
+ 	};
+ 
++	leds {
++		compatible = "gpio-leds";
++
++		led_work: led-work {
++			gpios = <&gpio0 RK_PC0 GPIO_ACTIVE_HIGH>;
++			label = "led_work";
++			linux,default-trigger = "heartbeat";
++			pinctrl-names = "default";
++			pinctrl-0 = <&led_work_en>;
++		};
++	};
++
+ 	vcc3v3_sys: vcc3v3-sys {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc3v3_sys";
+@@ -404,6 +416,12 @@ vcc3v3_lcd1_n_en: vcc3v3_lcd1_n_en {
+ 		};
+ 	};
+ 
++	leds {
++		led_work_en: led_work_en {
++			rockchip,pins = <0 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	pmic {
+ 		pmic_int: pmic_int {
+ 			rockchip,pins =
+-- 
+2.30.2
+
