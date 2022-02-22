@@ -2,119 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F14F4BF756
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 12:39:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 099284BF75A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 12:40:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbiBVLkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 06:40:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59890 "EHLO
+        id S231743AbiBVLkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 06:40:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231738AbiBVLkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 06:40:14 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1BF4137599;
-        Tue, 22 Feb 2022 03:39:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1645529989; x=1677065989;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=vTBBdEJPDTv9Jo14PTFuc9Ho0MLN95dGKxtfaf1LydE=;
-  b=EvqOWGU6zLUYeBn085flALinkCKigV9weiLS740uv476WvJM/FPaQVT8
-   n66n9I9tHwLmQnDDsi9vijD5lAOAkzvNhOfI9ZHwbFLZMilYklNGpKq15
-   pY1mMAXnzRIC1owdHaknVTdnwpAtDB0640GHv7pySfLLJu4/c5s3rrTc9
-   iUrv0hkuDrdYi13pwCsG1um3q2oOp5j9eUe6hFP2xmAQ7cARnxSxk5lak
-   qgDYXE7Q/UNzsff9t6+8GwHyytFoLIYwGLLp8QVNqKGKlSLo6s8QwfUEU
-   KxxOLlh/zYEf/s8/RytZfGX+DcA5hZG78dmSewOJlEiLlhyaOsJSo7DCC
-   w==;
-X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; 
-   d="scan'208";a="149554587"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Feb 2022 04:39:48 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 22 Feb 2022 04:39:48 -0700
-Received: from hari-laptop.amer.actel.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Tue, 22 Feb 2022 04:39:42 -0700
-From:   Hari Prasath <Hari.PrasathGE@microchip.com>
-To:     <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>,
-        <davem@davemloft.net>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux@armlinux.org.uk>
-CC:     <Hari.PrasathGE@microchip.com>
-Subject: [PATCH] 3/3] ARM: dts: at91: sama7g5: Enable can0 and can1 support in sama7g5-ek
-Date:   Tue, 22 Feb 2022 17:09:24 +0530
-Message-ID: <20220222113924.25799-3-Hari.PrasathGE@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220222113924.25799-1-Hari.PrasathGE@microchip.com>
-References: <20220222113924.25799-1-Hari.PrasathGE@microchip.com>
+        with ESMTP id S231737AbiBVLkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 06:40:23 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5733A137752
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 03:39:58 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id k1so32615374wrd.8
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 03:39:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:from:mime-version:content-transfer-encoding
+         :content-description:subject:to:date:reply-to;
+        bh=zncUP4k0qWTkrruw/2Qwtl328+sz3ixjRaMsIKFNcuk=;
+        b=ev/X+VLqFgdHLzEbG+HiNy2++X4XSN25RLgjcfm0CzJVYYqGeylJN5IU2i4K0gH1hn
+         +8AGoeumAVMCl9g3N/19Lqy+u6ruMx4zhIPA2BQiMuPoUSPL8aiYAg6gmULhqlJQ8DB8
+         xxV7GkkSpA1DGq2mXWaE1q4WjHwZ43RnW2YeyYs+nWMZsnQn5Gy8MO89DQQpIR99gCvi
+         KerslBcf97L+VPb8q90ECSIGKpWOuSYtIYpiaWpmFW4QoJNV8giCzg2MmLLSz+scXIpy
+         2S37VxFahY/5C1inqKYn+E57mMlcSXcTi760s+d9EdQtaj0Eg7eilf2Oa2TvxgxA7CK9
+         rL4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:from:mime-version
+         :content-transfer-encoding:content-description:subject:to:date
+         :reply-to;
+        bh=zncUP4k0qWTkrruw/2Qwtl328+sz3ixjRaMsIKFNcuk=;
+        b=6UqOEzLwqTB+PiqA5zYotDGvHT3DPcn7en9a075TFQwwytSn0VR3bi5+zzjyZkShlN
+         073+2gJT7slqFh5QcuJn25wVklFV6ItQlwQ0ZsFYUyEpz6WxOJKJnjzRlZkZ+HV0X77O
+         OdIVnAEvunMxAXOUkLU/PTrjeHFHASUuHstTHPOYWzsbqKwUiD3YHPoPrJWmWkYPN6yU
+         pXOWygwwMDdQDirTLIkc0N1xok3mG58JzjTluuIRHwFbl1UOOASVWDhxcFo+5f8pUUju
+         q6mWwtsLDRIMHzSLBjk9u75LmqczLw9T7JfC/K87IyyGhTYGOJ6sBCFaLnNv/mJXp2Aj
+         u7TA==
+X-Gm-Message-State: AOAM533/l7DigbLh2Q7Gs2qBxepKvHugNKoNWDsqJzR85uE+agnq7O6Z
+        bC1Ncnu/KGeXcmRRKhv/vpD9rBAUoE8=
+X-Google-Smtp-Source: ABdhPJxyctue8CHBoNEwEPVhSI/FPtI3eS/4+UQL+VLFnEgEcTcwfw8TU66uOtr+rb/rQV5X4dijag==
+X-Received: by 2002:a5d:47a1:0:b0:1e3:814:472d with SMTP id 1-20020a5d47a1000000b001e30814472dmr18854443wrb.395.1645529996751;
+        Tue, 22 Feb 2022 03:39:56 -0800 (PST)
+Received: from MACBOOKPROF612.localdomain ([102.165.192.234])
+        by smtp.gmail.com with ESMTPSA id b11sm30544902wrd.31.2022.02.22.03.39.46
+        (version=TLS1 cipher=AES128-SHA bits=128/128);
+        Tue, 22 Feb 2022 03:39:51 -0800 (PST)
+Message-ID: <6214cb87.1c69fb81.cc40b.b15f@mx.google.com>
+From:   Scott Godfrey <markmillercom322@gmail.com>
+X-Google-Original-From: Scott Godfrey
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Description: Mail message body
+Subject: CONGRATULATION!!!!
+To:     Recipients <Scott@vger.kernel.org>
+Date:   Tue, 22 Feb 2022 13:39:44 +0200
+Reply-To: scottgodfrey.net@gmail.com
+X-Antivirus: AVG (VPS 220222-0, 2/22/2022), Outbound message
+X-Antivirus-Status: Clean
+X-Spam-Status: No, score=4.6 required=5.0 tests=ADVANCE_FEE_2_NEW_MONEY,
+        BAYES_50,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        LOTS_OF_MONEY,MONEY_FRAUD_3,MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,TO_MALFORMED,T_SCC_BODY_TEXT_LINE,
+        XFER_LOTSA_MONEY autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the can0 and can1 controllers in sama7g5-ek board along with
-its pin mux settings.
+My Name is Scott Godfrey. I wish to inform you that The sum of $2,500,000(M=
+illion)has been donated to you.I
+won a fortune of $699.8 Million in the Million Dollars Power-Ball Jackpot L=
+ottery,2021.And I am
+donating part of it to five lucky people and five Charity
+organization. Your email came out victorious. Please contact via email: sco=
+ttgodfrey.net@gmail.com. For more information about your claims. Thanks.
 
-Signed-off-by: Hari Prasath <Hari.PrasathGE@microchip.com>
----
- arch/arm/boot/dts/at91-sama7g5ek.dts | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
 
-diff --git a/arch/arm/boot/dts/at91-sama7g5ek.dts b/arch/arm/boot/dts/at91-sama7g5ek.dts
-index ccf9e224da78..5211a8c9a19c 100644
---- a/arch/arm/boot/dts/at91-sama7g5ek.dts
-+++ b/arch/arm/boot/dts/at91-sama7g5ek.dts
-@@ -131,6 +131,18 @@
- 	status = "okay";
- };
- 
-+&can0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can0_default>;
-+	status = "okay";
-+};
-+
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1_default>;
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&vddcpu>;
- };
-@@ -454,6 +466,19 @@
- };
- 
- &pioA {
-+
-+	pinctrl_can0_default: can0_default {
-+		pinmux = <PIN_PD12__CANTX0>,
-+			 <PIN_PD13__CANRX0 >;
-+		bias-disable;
-+	};
-+
-+	pinctrl_can1_default: can1_default {
-+		pinmux = <PIN_PD14__CANTX1>,
-+			 <PIN_PD15__CANRX1 >;
-+		bias-disable;
-+	};
-+
- 	pinctrl_flx0_default: flx0_default {
- 		pinmux = <PIN_PE3__FLEXCOM0_IO0>,
- 			 <PIN_PE4__FLEXCOM0_IO1>,
 -- 
-2.17.1
+This email has been checked for viruses by AVG.
+https://www.avg.com
 
