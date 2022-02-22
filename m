@@ -2,57 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 489A44C034C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:49:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A57FE4C034A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:49:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235576AbiBVUsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 15:48:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34086 "EHLO
+        id S235596AbiBVUsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 15:48:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231274AbiBVUst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:48:49 -0500
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D4F8A2F2B
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:23 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id k22-20020a9d4b96000000b005ad5211bd5aso8639776otf.8
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:23 -0800 (PST)
+        with ESMTP id S235588AbiBVUsv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:48:51 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409FDA2F2B
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:25 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id j24so13769338oii.11
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=abzbFZd3TPTA4Go+lX5G5nJcRHQv2voi7TDO266GTxo=;
-        b=bE1/yeOloum46YlusWndmuMHyJDVbuCOKxi7LzM43W6kLZSY5/aP7dpw83JCFGjpbg
-         MuLW8oE4pbJOIDJW4KhDlBpis+FdejzShVly+iPEsgn0mTmfZRjpFhNAbpvkGWlfUbKs
-         tZ+1u40aGQmj4CxRPTp9j+YNTlwuC4zcWX6Xq6t31ETRqb/3yRIKyOdHDaA/pu5XYCCv
-         4N22WUTc2cDJ2UDqJQ0kwC1KPCfNuXTnqAkdBenSH7X52JG1GCgGw+KzEKzEkDdYhvc6
-         S3SRfKIkttpI6b5LohIIsYWvnDcOtjz6m8b/Zu1gtsMaxJpRWUBqMrH1mJHWLn1BWBgJ
-         jv7A==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=iS9w0OaNOwq2lVntX7Egw8nvc58/BIqmU/Sn5pstZMs=;
+        b=rRGe87CLAPEMwKCoMohUgZZL6sAWpauySTKwK10hlBitWtAMxblHUSHWwMfnnBkzDT
+         fQRz9htC6ToICG4iDBshh1uYJSdDxHP60alvI+vnzF7Hm2lnQDcS2Q3EdF2AyqHWEODk
+         YK3FWoptNBw4L47SYKIRZBRn9HGdrtw6StUyCFBgVEQq+LUCsL+BrruzWkN2zlu3I3UT
+         dBDqH2aN+5LJNpsley/R7n5BSncuZjiDC+w6sM05yMnG3hTh47q/E3jWM1zbOwXhwibt
+         O+4JhqYfGO8WdcrKVyMpisub3OqqHSZs0KrAuz7/Vnn8BV6TgSxK2WMsOoNMv9EcDLRN
+         3Img==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=abzbFZd3TPTA4Go+lX5G5nJcRHQv2voi7TDO266GTxo=;
-        b=xnzosVNKGj1EXYh82Y+xMTOHzq51uDDc8ivSTPvKtH4G5kElcOdMsFcPGVzOzH4+a+
-         AZSRIVIqU+eRemInneC66UwjM3t4ITuxZ9RcQwT0mcA69Kgm0c4ZiBv0J76NVwnBLmad
-         PFMlbKLlZ4sOJfpOA2nhgqP0BcQyfNZb9H6jB2IJYxNK8cD4UI0Pd2cWTxK0znMBYOKB
-         r+d+IuE/IMbkI0Y6MwqJlEVsdjE49NlInOsL8BKjjZ8BbwCgHc1KF1beCw4RBg25c6vs
-         vmQvRR3TdDkCR8pwWNyXl3wGm+N3gGU7Q8HU9Qo9kHFdRhM0lwoR9cYYym6j/WSojLtW
-         G9pw==
-X-Gm-Message-State: AOAM533a8KfY4szbkGwA2nL74RVby2nymfLoPfaoM0NdIuQiey2qLy8Y
-        jII+hm9QgApeTiKpqJgQoMQI3Q==
-X-Google-Smtp-Source: ABdhPJwg12YQEEr0/64hFTYZhFiG9EZriyVRTIR/jLqxzfJ1/ovNNDL9pkKJyO2n8bLO2oKPpSFvqA==
-X-Received: by 2002:a05:6830:2a05:b0:5af:1417:1218 with SMTP id y5-20020a0568302a0500b005af14171218mr5015956otu.237.1645562902530;
-        Tue, 22 Feb 2022 12:48:22 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=iS9w0OaNOwq2lVntX7Egw8nvc58/BIqmU/Sn5pstZMs=;
+        b=x7ruVDUcD3UCfa71zK5E0RiqEY2rQ2iAYET9EMyHM3EbWph6ed4oeqk3Cr/ED4JAHb
+         UpDEd3ENs2HbDGU7Y5m0SXFbDXvdSSLBNwxkMmczX2D4f/Eo2QWXYwYC7j1iVacJVjSc
+         /Br2ClDRwYxbajrtKdwYjPLfiB4KHe1Or3yZYvLuZ0o65BNIhe5VeZ/uXoNgSSnaHhp7
+         22xh8lCrgc2IUnuLdxYGdRDyK8PU/fB89cXuhFciK8pg1eqfMwb4it0PzNEUQYEXqKiP
+         kKWuqvIFhPcnjbMlPUj8UASpEJNxqTf71uEAZgoOuA6QXWUoJ2pLtmK0Pw0ySTfFttXB
+         SfgQ==
+X-Gm-Message-State: AOAM531kIZnvQzEQFMRHFSMHdwhdZuc9R7WGaUHSm8bdcoJVasmRYcAR
+        l763Wr3+tF53kPzgUKN+8pd/xg==
+X-Google-Smtp-Source: ABdhPJw0ScEMRh1ux7LSggP6NcFsmCRkNYmE6w/mjB+xAu+3FRIejJDB5juXy405QpGsJwXjkx771w==
+X-Received: by 2002:a05:6808:903:b0:2d4:8451:d651 with SMTP id w3-20020a056808090300b002d48451d651mr3075448oih.29.1645562904409;
+        Tue, 22 Feb 2022 12:48:24 -0800 (PST)
 Received: from rivos-atish.. (adsl-70-228-75-190.dsl.akrnoh.ameritech.net. [70.228.75.190])
-        by smtp.gmail.com with ESMTPSA id o14sm16508197oaq.37.2022.02.22.12.48.20
+        by smtp.gmail.com with ESMTPSA id o14sm16508197oaq.37.2022.02.22.12.48.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 12:48:21 -0800 (PST)
+        Tue, 22 Feb 2022 12:48:23 -0800 (PST)
 From:   Atish Patra <atishp@rivosinc.com>
 To:     linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atishp@rivosinc.com>,
+Cc:     Tsukasa OI <research_trasio@irq.a4lg.com>,
+        Anup Patel <anup@brainfault.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Atish Patra <atishp@rivosinc.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
         Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
         Damien Le Moal <damien.lemoal@wdc.com>,
         devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -60,10 +62,12 @@ Cc:     Atish Patra <atishp@rivosinc.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v5 0/6] Provide a fraemework for RISC-V ISA extensions 
-Date:   Tue, 22 Feb 2022 12:48:05 -0800
-Message-Id: <20220222204811.2281949-1-atishp@rivosinc.com>
+Subject: [PATCH v5 1/6] RISC-V: Correctly print supported extensions
+Date:   Tue, 22 Feb 2022 12:48:06 -0800
+Message-Id: <20220222204811.2281949-2-atishp@rivosinc.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220222204811.2281949-1-atishp@rivosinc.com>
+References: <20220222204811.2281949-1-atishp@rivosinc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,88 +79,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series implements a generic framework to parse multi-letter ISA
-extensions. This series is based on Tsukasa's v3 isa extension improvement
-series[1]. I have fixed few bugs and improved comments from that series
-(PATCH1-3). I have not used PATCH 4 from that series as we are not using
-ISA extension versioning as of now. We can add that later if required.
+From: Tsukasa OI <research_trasio@irq.a4lg.com>
 
-PATCH 4 allows the probing of multi-letter extensions via a macro.
-It continues to use the common isa extensions between all the harts.
-Thus hetergenous hart systems will only see the common ISA extensions.
+This commit replaces BITS_PER_LONG with number of alphabet letters.
 
-PATCH 6 improves the /proc/cpuinfo interface for the available ISA extensions
-via /proc/cpuinfo.
+Current ISA pretty-printing code expects extension 'a' (bit 0) through
+'z' (bit 25).  Although bit 26 and higher is not currently used (thus never
+cause an issue in practice), it will be an annoying problem if we start to
+use those in the future.
 
-Here is the example output of /proc/cpuinfo:
-(with debug patches in Qemu and Linux kernel)
+This commit disables printing high bits for now.
 
-# cat /proc/cpuinfo 
-processor	: 0
-hart		: 0
-isa		: rv64imafdch
-isa-ext		: svpbmt svnapot svinval 
-mmu		: sv48
+Reviewed-by: Anup Patel <anup@brainfault.org>
+Tested-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Tsukasa OI <research_trasio@irq.a4lg.com>
+Signed-off-by: Atish Patra <atishp@rivosinc.com>
+---
+ arch/riscv/kernel/cpufeature.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-processor	: 1
-hart		: 1
-isa		: rv64imafdch
-isa-ext		: svpbmt svnapot svinval 
-mmu		: sv48
-
-processor	: 2
-hart		: 2
-isa		: rv64imafdch
-isa-ext		: svpbmt svnapot svinval 
-mmu		: sv48
-
-processor	: 3
-hart		: 3
-isa		: rv64imafdch
-isa-ext		: svpbmt svnapot svinval 
-mmu		: sv48
-
-Anybody adding support for any new multi-letter extensions should add an
-entry to the riscv_isa_ext_id and the isa extension array. 
-E.g. The patch[2] adds the support for various ISA extensions.
-
-[1] https://lore.kernel.org/all/0f568515-a05e-8204-aae3-035975af3ee8@irq.a4lg.com/T/
-[2] https://github.com/atishp04/linux/commit/e9e240c9a854dceb434ceb53bdbe82a657bee5f2 
-
-Changes from v4->v5:
-1. Improved the /proc/cpuinfo to include only valid & enabled extensions
-2. Improved the multi-letter parsing by skipping the 'su' modes generated in
-   Qemu as suggested by Tsukasa.
-
-Changes from v3->v4:
-1. Changed temporary variable for current hart isa to a bitmap
-2. Added reviewed-by tags.
-3. Improved comments
-
-Changes from v2->v3:
-1. Updated comments to mark clearly a fix required for Qemu only.
-2. Fixed a bug where the 1st multi-letter extension can be present without _
-3. Added Tested by tags. 
-
-Changes from v1->v2:
-1. Instead of adding a separate DT property use the riscv,isa property.
-2. Based on Tsukasa's v3 isa extension improvement series.
-
-Atish Patra (3):
-RISC-V: Implement multi-letter ISA extension probing framework
-RISC-V: Do no continue isa string parsing without correct XLEN
-RISC-V: Improve /proc/cpuinfo output for ISA extensions
-
-Tsukasa OI (3):
-RISC-V: Correctly print supported extensions
-RISC-V: Minimal parser for "riscv, isa" strings
-RISC-V: Extract multi-letter extension names from "riscv, isa"
-
-arch/riscv/include/asm/hwcap.h |  25 +++++++
-arch/riscv/kernel/cpu.c        |  51 ++++++++++++-
-arch/riscv/kernel/cpufeature.c | 130 +++++++++++++++++++++++++++------
-3 files changed, 183 insertions(+), 23 deletions(-)
-
---
+diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+index d959d207a40d..dd3d57eb4eea 100644
+--- a/arch/riscv/kernel/cpufeature.c
++++ b/arch/riscv/kernel/cpufeature.c
+@@ -13,6 +13,8 @@
+ #include <asm/smp.h>
+ #include <asm/switch_to.h>
+ 
++#define NUM_ALPHA_EXTS ('z' - 'a' + 1)
++
+ unsigned long elf_hwcap __read_mostly;
+ 
+ /* Host ISA bitmap */
+@@ -63,7 +65,7 @@ void __init riscv_fill_hwcap(void)
+ {
+ 	struct device_node *node;
+ 	const char *isa;
+-	char print_str[BITS_PER_LONG + 1];
++	char print_str[NUM_ALPHA_EXTS + 1];
+ 	size_t i, j, isa_len;
+ 	static unsigned long isa2hwcap[256] = {0};
+ 
+@@ -133,13 +135,13 @@ void __init riscv_fill_hwcap(void)
+ 	}
+ 
+ 	memset(print_str, 0, sizeof(print_str));
+-	for (i = 0, j = 0; i < BITS_PER_LONG; i++)
++	for (i = 0, j = 0; i < NUM_ALPHA_EXTS; i++)
+ 		if (riscv_isa[0] & BIT_MASK(i))
+ 			print_str[j++] = (char)('a' + i);
+ 	pr_info("riscv: ISA extensions %s\n", print_str);
+ 
+ 	memset(print_str, 0, sizeof(print_str));
+-	for (i = 0, j = 0; i < BITS_PER_LONG; i++)
++	for (i = 0, j = 0; i < NUM_ALPHA_EXTS; i++)
+ 		if (elf_hwcap & BIT_MASK(i))
+ 			print_str[j++] = (char)('a' + i);
+ 	pr_info("riscv: ELF capabilities %s\n", print_str);
+-- 
 2.30.2
 
