@@ -2,133 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0CD4BFAEF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:30:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 567074BFB13
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:46:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232714AbiBVOat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 09:30:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55570 "EHLO
+        id S232588AbiBVOrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 09:47:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231273AbiBVOas (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:30:48 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0E06015DDF6;
-        Tue, 22 Feb 2022 06:30:23 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CD73D139F;
-        Tue, 22 Feb 2022 06:30:22 -0800 (PST)
-Received: from [10.57.9.152] (unknown [10.57.9.152])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AF56D3F5A1;
-        Tue, 22 Feb 2022 06:30:20 -0800 (PST)
-Message-ID: <38a2f694-3dd9-8d3f-68bd-986006499000@arm.com>
-Date:   Tue, 22 Feb 2022 14:30:19 +0000
+        with ESMTP id S232761AbiBVOrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:47:07 -0500
+Received: from 189.cn (ptr.189.cn [183.61.185.104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7F5251FC;
+        Tue, 22 Feb 2022 06:46:39 -0800 (PST)
+HMM_SOURCE_IP: 10.64.8.31:53590.1226820573
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.31])
+        by 189.cn (HERMES) with SMTP id 2669A100282;
+        Tue, 22 Feb 2022 22:46:36 +0800 (CST)
+Received: from  ([114.242.206.180])
+        by gateway-151646-dep-b7fbf7d79-bwdqx with ESMTP id 608c66110ce94bae849ff8b258bd58fa for maxime@cerno.tech;
+        Tue, 22 Feb 2022 22:46:38 CST
+X-Transaction-ID: 608c66110ce94bae849ff8b258bd58fa
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+Message-ID: <54ea69d7-2fac-74dc-2ef6-843a666cff85@189.cn>
+Date:   Tue, 22 Feb 2022 22:46:35 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [RFC][PATCH 1/2] dt-bindings: power: add Energy Model bindings
+Subject: Re: [PATCH v10 3/4] drm/lsdc: add drm driver for loongson display
+ controller
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     dianders@chromium.org, viresh.kumar@linaro.org, nm@ti.com,
-        rafael@kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dietmar.eggemann@arm.com, devicetree@vger.kernel.org,
-        daniel.lezcano@linaro.org, mka@chromium.org
-References: <20220221225131.15836-1-lukasz.luba@arm.com>
- <20220221225131.15836-2-lukasz.luba@arm.com>
- <1645539763.088690.3016157.nullmailer@robh.at.kernel.org>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-In-Reply-To: <1645539763.088690.3016157.nullmailer@robh.at.kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Randy Dunlap <rdunlap@infradead.org>,
+        kernel test robot <lkp@intel.com>
+References: <20220220145554.117854-1-15330273260@189.cn>
+ <20220220145554.117854-4-15330273260@189.cn>
+ <20220222082747.66otrkc4zwvhem7w@houat>
+From:   Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <20220222082747.66otrkc4zwvhem7w@houat>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-
-On 2/22/22 14:22, Rob Herring wrote:
-> On Mon, 21 Feb 2022 22:51:30 +0000, Lukasz Luba wrote:
->> Add DT bindings for the Energy Model information.
->>
->> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
->> ---
->>   .../bindings/power/energy-model.yaml          | 51 +++++++++++++++++++
->>   1 file changed, 51 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/power/energy-model.yaml
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/power/energy-model.yaml:34:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
-> ./Documentation/devicetree/bindings/power/energy-model.yaml:35:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
-> ./Documentation/devicetree/bindings/power/energy-model.yaml:36:16: [warning] wrong indentation: expected 9 but found 15 (indentation)
-> ./Documentation/devicetree/bindings/power/energy-model.yaml:35:39: [error] syntax error: expected ',' or '}', but got '{' (syntax)
-> 
-> dtschema/dtc warnings/errors:
-> make[1]: *** Deleting file 'Documentation/devicetree/bindings/power/energy-model.example.dts'
-> Traceback (most recent call last):
->    File "/usr/local/bin/dt-extract-example", line 46, in <module>
->      binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
->    File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
->      return constructor.get_single_data()
->    File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
->      node = self.composer.get_single_node()
->    File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
->    File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
->    File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
->    File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
->    File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
->    File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
->    File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-> ruamel.yaml.parser.ParserError: while parsing a flow mapping
->    in "<unicode string>", line 34, column 5
-> did not find expected ',' or '}'
->    in "<unicode string>", line 35, column 39
-> make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/power/energy-model.example.dts] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> ./Documentation/devicetree/bindings/power/energy-model.yaml:  while parsing a flow mapping
->    in "<unicode string>", line 34, column 5
-> did not find expected ',' or '}'
->    in "<unicode string>", line 35, column 39
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/energy-model.yaml: ignoring, error parsing file
-> make: *** [Makefile:1398: dt_binding_check] Error 2
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/1595776
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
-
-This new dt bindings idea is abandoned. We would go for
-a new entry in the OPP node: "opp-microwatt".
-I've sent a v2.
-
-BTW, I've tried to run this check, but for some reason my python failed
-when I tried to upgrade the dtschema:
-
-'Could not find a version that satisfies the requirement 
-jsonschema>=4.1.2 (from dtschema)'
-
-It used to work. I'll probaby have to invest more time and figure
-out why my pip3 fails.
-
-Regards,
-Lukasz
+On 2022/2/22 16:27, Maxime Ripard wrote:
+>> +	if (!of_device_is_available(output)) {
+>> +		of_node_put(output);
+>> +		drm_info(ddev, "connector%d is not available\n", index);
+>> +		return NULL;
+>> +	}
+>> +
+>> +	disp_tims_np = of_get_child_by_name(output, "display-timings");
+>> +	if (disp_tims_np) {
+>> +		lsdc_get_display_timings_from_dtb(output, &lconn->disp_tim);
+>> +		lconn->has_disp_tim = true;
+>> +		of_node_put(disp_tims_np);
+>> +		drm_info(ddev, "Found display timings provided by connector%d\n", index);
+>> +	}
+>> +
+>> +	connector_type = lsdc_get_connector_type(ddev, output, index);
+>> +
+>> +	if (output) {
+>> +		of_node_put(output);
+>> +		output = NULL;
+>> +	}
+>> +
+>> +DT_SKIPED:
+>> +
+>> +	/* Only create the i2c channel if display timing is not provided */
+>> +	if (!lconn->has_disp_tim) {
+>> +		const struct lsdc_chip_desc * const desc = ldev->desc;
+>> +
+>> +		if (desc->have_builtin_i2c)
+>> +			lconn->ddc = lsdc_create_i2c_chan(ddev, index);
+>> +		else
+>> +			lconn->ddc = lsdc_get_i2c_adapter(ddev, index);
+> This looks weird: the connector bindings have a property to store the
+> i2c controller connected to the DDC lines, so you should use that
+> instead.
+>
+This is not  weird,  ast, mgag200, hibmc do the same thing.
