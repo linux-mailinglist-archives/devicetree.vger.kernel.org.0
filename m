@@ -2,178 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FD614BFC55
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:21:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 455374BFC8A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:28:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233421AbiBVPWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 10:22:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53998 "EHLO
+        id S233269AbiBVP2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 10:28:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233420AbiBVPWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:22:02 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8B7585AEF3;
-        Tue, 22 Feb 2022 07:21:36 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E21CED1;
-        Tue, 22 Feb 2022 07:21:36 -0800 (PST)
-Received: from [10.57.9.152] (unknown [10.57.9.152])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A6C23F5A1;
-        Tue, 22 Feb 2022 07:21:33 -0800 (PST)
-Message-ID: <9cfe84b0-01bf-6e20-9839-5f597e7fa588@arm.com>
-Date:   Tue, 22 Feb 2022 15:21:32 +0000
+        with ESMTP id S232389AbiBVP2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:28:23 -0500
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BA1ABF94D
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:27:57 -0800 (PST)
+Received: by mail-qv1-xf36.google.com with SMTP id 8so6831895qvf.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:27:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
+        bh=sRXHeZa3R3XlgQ3HiJffd+JnUn0eLfdgPeYFYoXUPrA=;
+        b=OM8uvKjAqiC1AFy883I9phKcgjUhezz0SI1Zd0n1/e8N0pexuTzZYEesBLhTn2J0q5
+         wuNz/qzfZoQx4gqHM/2EUgCZxcH7nIl1zwNAKSvKD24YcWjwl0AwQWwugipEssZ0ddsz
+         eYkIurkODq75S+udILDkgjj4Bf8oN29wqttH1Rvrgg+K7uxImMrUBrbcrOHwuOL98oIT
+         GKtf0eZHgpx7aZs3kFNxWdTYHTp1n8SL3+gOjX8PRQENJ34taYBHy0wFPXx4DStnb86x
+         hqFlDVWhl2c0ecYNcteLMpF/nN3QGe2N9QH0szYwtdm/fq1JJ9F8qUNRdSuT6B/PHblj
+         BcOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:cc;
+        bh=sRXHeZa3R3XlgQ3HiJffd+JnUn0eLfdgPeYFYoXUPrA=;
+        b=h48F4B4C1oaRcOal5gy5Sywn33iXtBcI3gWWrrcHuQv9lTCdgx67F/W1lYJpR11HcS
+         XlcaAuW01iTbPL/a4nDDqiUeG3EIbxHibwKdnET4bEadegBIlwC+nGNYl7IxcskBMdRD
+         uIRV9cgzAHHD7ZmzOQQaHa1DQDLSZDGtD8OLgIvcmEMtmo8ETbHfQHcmX+B5gL1Hpo1I
+         JjwuO66XVMVIH68skigclO8YHOBCePdICB6rv22d2d4SiMm3YR1/Xsi5RzNZFZRJWfp3
+         3d8zBTOfE9Fd5aIW4jZPN7GoU8q/MDOA+Idzqp81zpsGaLGuSPzEB8CKvg4cyErBtfBX
+         lDIQ==
+X-Gm-Message-State: AOAM531YFhTan/mx1cN1AnGu+0T2YaXRmg+u2Rz0K8n55GUsyYnHQ3LW
+        whIeVHsH8oubVlVU6k9/66QdoyOF9xHaieDb4kg=
+X-Received: by 2002:a05:622a:588:b0:2de:6f57:1576 with SMTP id
+ c8-20020a05622a058800b002de6f571576mt1162222qtb.83.1645543676369; Tue, 22 Feb
+ 2022 07:27:56 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [[PATCH v2 2/2] OPP: Add 'opp-microwatt' parsing for advanced EM
- registration
-Content-Language: en-US
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
-        viresh.kumar@linaro.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, nm@ti.com, sboyd@kernel.org,
-        dianders@chromium.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20220222140746.12293-1-lukasz.luba@arm.com>
- <20220222140746.12293-3-lukasz.luba@arm.com> <YhT6EBzSE/7S3QqT@google.com>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-In-Reply-To: <YhT6EBzSE/7S3QqT@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220221135351.GA7342@ubuntu> <3e1ee336-1c78-7719-826c-2a093a20ee8e@kernel.org>
+In-Reply-To: <3e1ee336-1c78-7719-826c-2a093a20ee8e@kernel.org>
+From:   Kestrel seventyfour <kestrelseventyfour@gmail.com>
+Date:   Tue, 22 Feb 2022 16:27:45 +0100
+Message-ID: <CAE9cyGRcDSJwrKOWER9wxHSAQzLs2ZdL+uWsme0etMV+8wKcMg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: remoteproc: Add AVM WASP
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,MISSING_HEADERS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+Am Mo., 21. Feb. 2022 um 17:47 Uhr schrieb Krzysztof Kozlowski
+<krzk@kernel.org>:
+>
+> On 21/02/2022 14:53, Daniel Kestrel wrote:
+> > AVM Fritzbox router boards may contain an additional ATH79
+> > based SoC that has the wifi cards connected.
+> > This patch adds bindings for this remote processor.
+> >
+> > Signed-off-by: Daniel Kestrel <kestrelseventyfour@gmail.com>
+> > ---
+> >  .../bindings/remoteproc/avm,wasp-rproc.yaml   | 93 +++++++++++++++++++
+> >  1 file changed, 93 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> > new file mode 100644
+> > index 000000000000..21f3bbcc4202
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> > @@ -0,0 +1,93 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/remoteproc/avm,wasp-rproc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: AVM WASP processor controller bindings
+> > +
+> > +maintainers:
+> > +  - Daniel Kestrel <kestrelseventyfour@gmail.com>
+> > +
+> > +description: |
+> > +  This document defines the bindings for the remoteproc component that loads and
+> > +  boots firmwares on the AVM Wireless Assistent Support Processor (WASP) SoC
+> > +  that is attached to some AVM Fritzbox devices (3390, 3490, 5490, 5491, 7490).
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: avm,wasp
+> > +
+> > +  ath9k-firmware:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: |
+> > +      Should contain the name of the ath9k eeprom that is to be loaded from
+> > +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
+> > +      The file should be located on the firmware search path.
+>
+> Are you sure this is a property of hardware? It looks like runtime
+> configuration parameter.
+>
+> > +
+> > +  ath10k-caldata:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: |
+> > +      Should contain the name of the ath10k caldata that is to be loaded from
+> > +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
+> > +      The file should be located on the firmware search path.
+>
+> Same.
+>
+> > +
+> > +  wasp-netboot-firmware:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: |
+> > +      Should contain the name of the netboot firmware that is to be loaded
+> > +      and started on the WASP SoC using mdio in order to be able to load
+> > +      the initramfs image as a second stage.
+> > +      The file should be located on the firmware search path.
+>
+> Same.
+>
+> > +
+> > +  wasp-netboot-mdio:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: Reference to the Lantiq GSWIP switch mdio.
+>
+> Vendor prefix.
+>
+> > +
+> > +  wasp-initramfs-port:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: Reference to the network port, where the WASP SoC is connected to.
+>
+> Vendor prefix.
+>
+> > +
+> > +  wasp-initramfs-image:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: |
+> > +      Should contain the name of the initramfs linux image that is to be loaded
+> > +      and started on the WASP SoC.
+> > +      The file should be located on the firmware search path.
+>
+> initramfs path looks even less like a property of hardware... If you
+> change initramfs from CPIO to initrd or GZ, hardware changes as well?
+>
+> > +  reset-gpio:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description: Reference and parameters for the reset gpio of the WASP SoC.
+>
+> Wrong suffix, unneeded type. Did you run dt_binding_check?
 
-On 2/22/22 14:58, Matthias Kaehlcke wrote:
-> On Tue, Feb 22, 2022 at 02:07:46PM +0000, Lukasz Luba wrote:
+Hi Krzystof,
 
-[snip]
+Sorry for missing the dt_binding_check.
+I have switched to use devm_gpiod_get and it does not work if the
+suffix is not -gpio
+or -gpios (see of_find_gpio method).
+Would avm,reset-gpio be ok to use here?
 
->> +static int __maybe_unused
->> +_get_dt_power(unsigned long *mW, unsigned long *kHz, struct device *dev)
-> 
-> nit: the device is usually the first parameter. It's also the only true input
-> parameter of this function, most code puts input parameters first.
-
-Good point. I have internal patch set under review changing this. It's
-going to be changed and the 'dev' would be the 1st arg. I'll send this
-patch set as soon as this one gets queued into pm tree.
-
-> 
->> +{
->> +	struct dev_pm_opp *opp;
->> +	unsigned long opp_freq;
->> +	u32 opp_power;
->> +	int ret;
->> +
->> +	/* Find the right frequency and related OPP */
->> +	opp_freq = *kHz * 1000;
->> +	opp = dev_pm_opp_find_freq_ceil(dev, &opp_freq);
->> +	if (IS_ERR(opp))
->> +		return -EINVAL;
->> +
->> +	ret = of_property_read_u32(opp->np, "opp-microwatt", &opp_power);
->> +	dev_pm_opp_put(opp);
->> +	if (ret)
->> +		return -EINVAL;
->> +
->> +	*kHz = opp_freq / 1000;
->> +	*mW = opp_power / 1000;
->> +
->> +	return 0;
->> +}
->> +
->>   /*
->>    * Callback function provided to the Energy Model framework upon registration.
->>    * This computes the power estimated by @dev at @kHz if it is the frequency
->> @@ -1445,6 +1479,33 @@ static int __maybe_unused _get_power(unsigned long *mW, unsigned long *kHz,
->>   	return 0;
->>   }
->>   
->> +static int _of_find_opp_microwatt_property(struct device *dev)
-> 
-> this function doesn't retrurn the property like of_find_property() does,
-> _of_has_opp_microwatt_property() would be a be a better name IMO. I'd
-> also suggest to change the return type to bool, since callers don't
-> really care about the specific error (which with the current code is
-> -EINVAL) in all cases.
-
-Agree, I'll change the name and return type.
-
-> 
-> 
->> +{
->> +	unsigned long freq = 0;
-> 
-> Does the compiler complain when the initialization is skipped? The
-> value of the variable is never read, only it's address is passed to
-> dev_pm_opp_find_freq_ceil().
-
-It has to be 0, since under the hood the dev_pm_opp_find_freq_ceil()
-is going to find first freq which is equal or bigger than this one.
-We actually use that ptr value in the _find_freq_ceil().
-
-> 
->> +	struct dev_pm_opp *opp;
->> +	struct device_node *np;
->> +	struct property *prop;
->> +
->> +	/* We only support "operating-points-v2" */
->> +	np = dev_pm_opp_of_get_opp_desc_node(dev);
->> +	if (!np)
->> +		return -EINVAL;
->> +
->> +	of_node_put(np);
->> +
->> +	/* Check if an OPP has needed property */
-> 
-> The comment doesn't add much value IMO
-
-Well, it just stress the 'an' as in this case it's the 1st OPP,
-due to the fact freq = 0 and finding the 'ceiling' on it.
-I'll remove it.
-
-> 
->> +	opp = dev_pm_opp_find_freq_ceil(dev, &freq);
->> +	if (IS_ERR(opp))
->> +		return -EINVAL;
->> +
->> +	prop = of_find_property(opp->np, "opp-microwatt", NULL);
->> +	dev_pm_opp_put(opp);
->> +	if (!prop)
->> +		return -EINVAL;
->> +
->> +	return 0;
->> +}
->> +
->>   /**
->>    * dev_pm_opp_of_register_em() - Attempt to register an Energy Model
->>    * @dev		: Device for which an Energy Model has to be registered
->> @@ -1474,6 +1535,15 @@ int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
->>   		goto failed;
->>   	}
->>   
->> +	/* First, try to find more precised Energy Model in DT */
->> +	if (!_of_find_opp_microwatt_property(dev)) {
->> +		struct em_data_callback em_dt_cb = EM_DATA_CB(_get_dt_power);
->> +
->> +		ret = em_dev_register_perf_domain(dev, nr_opp, &em_dt_cb,
->> +						  cpus, true);
->> +		return ret;
-> 
-> just 'return em_dev_register_perf_domain(...);'?
-
-true
-
-Thanks for the review! I'll address these comments in v3 if Viresh
-agrees with this new approach.
-
-Regards,
-Lukasz
+Thanks.
+>
+> "Reference and parameters" are obvious, so they should be skipped.
+>
+> > +
+> > +  startup-gpio:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description: Reference and parameters for the power switch gpio of the WASP SoC.
+>
+> Same.
+Is avm,startup-gpio ok, like above?
+>
+> > +
+> > +required:
+> > +  - compatible
+> > +  - ath9k-firmware
+> > +  - ath10k-caldata
+> > +  - wasp-netboot-firmware
+> > +  - wasp-netboot-mdio
+> > +  - wasp-initramfs-port
+> > +  - wasp-initramfs-image
+> > +  - reset-gpio
+> > +  - startup-gpio
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    avm-wasp {
+>
+> Generic node name describing class of a device. AVM is company, WASP is
+> product, so neither of them are generic.
+>
+>
+> Best regards,
+> Krzysztof
