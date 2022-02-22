@@ -2,92 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5354BFF57
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:53:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E24B4BFF6D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:56:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232725AbiBVQxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 11:53:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59550 "EHLO
+        id S234413AbiBVQ5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 11:57:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231357AbiBVQxx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:53:53 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 336A43334D;
-        Tue, 22 Feb 2022 08:53:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C32E560FFC;
-        Tue, 22 Feb 2022 16:53:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 708C8C340E8;
-        Tue, 22 Feb 2022 16:53:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645548807;
-        bh=TUxBIxRT0G5OuJaTd5jQshN1DOVr2xzMdhYOQd/l81o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bxKgcTT/Ulyk+/DiKVeNI0Iu9KLF1yhZAMLNIvFAFk4I7djaVVSUEGoRYodftm4Do
-         a6MVGkfo8w8fy294W88abJW/pEx0BJ2B5+XosRv6zkeAGOgKGkh7Vk3FFaKpFmTLGj
-         k0Nzr/67IVmShBwkOQ7HQYrgXFjMse9yNX5wLLO2m5qc1iBZepO+mEMzfNIV/2kjvv
-         v3RHMu6H5MkK14FhFzX7XUK9suxBf6+FNvKTYhJRxCkfJGZd1usfj7krFxhcHn1MVL
-         ychDpI4Ky+9RZqiWuOziRCjsV49aRYWQ81Afs2zJxbNE43iHGXFP4YUS7CWN8aXW65
-         mEapEZ6TKrvAg==
-Date:   Tue, 22 Feb 2022 22:23:23 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        David Collins <quic_collinsd@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        David Dai <daidavid1@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] spmi: pmic-arb: Add support for PMIC v7
-Message-ID: <YhUVAwtfjuIdKrRQ@matsya>
-References: <20220201134108.2677578-1-vkoul@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220201134108.2677578-1-vkoul@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S234406AbiBVQ5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:57:10 -0500
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A4F2E080
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 08:56:43 -0800 (PST)
+Received: by mail-pl1-x62a.google.com with SMTP id z2so7494132plg.8
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 08:56:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sXnwIqemEC4VmrxMuG0rukm8/Qgs5rtWRkI7dl2HHXQ=;
+        b=ZErSsy2XtmemzMgltOpndEBcbJNGpdqZBal2hI3LVU0c7zhqOh08YrKILnGpQln1Yi
+         mDewIy3LB3YfwcJmuhLGM5tuujgcjVA0rYKlAD5QxAlNCFz5Vvy6aIhspLvEhLQCH4S/
+         4FOgRCJzZjq5gu2cIcaP1T3CCgMb9VRFzsQ91koKkcjss3QC3zoGXfeVIuVVtNrT6j5T
+         qVzqv3//MpEGLtziUQ1XpfMuErG2bv/92c1CPiGN4f37+yelbOe/O9fDz+fDtErwInM3
+         V90ZqhXw8oZlfv+zDq5ZzaAt4zmVoc0Vh7hdN25ypjoCzttupB5Si95j+AW83P/Q5ruV
+         5raA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=sXnwIqemEC4VmrxMuG0rukm8/Qgs5rtWRkI7dl2HHXQ=;
+        b=FxtXaba8Dx/PPNdSTwwU7CyB55Kj0zAivI8r7DIgJ6JuQQ9zI/WufWS7zpCQsVeP5W
+         n0dGHlV+dEfk+S2Z3RhjNSo6i6BNN1hOhLrzJwdn1Y7jMLf1Vpr9mQpfMshULNzgu+Gg
+         dS7L2EBZxHszYKFAiNVBN6osZBnHw0PgdS9VInZt0WuYg4OGuzYgeOckWEo2+GGOPvQT
+         /f78bzAGx/FrS9iG75rfGsLPgSgu/3XumQRzNfMRc8ELOFC8zd3j6mKz9ke9caX0dtYc
+         tPGaHfDCIfrsPF56XXaKqOkd+8maacQ7epaOqKT+F/u35oLjysidn8/Scyu9JZnNEYfW
+         Cj9A==
+X-Gm-Message-State: AOAM5330fgc3mvsG3YI+JqwP45rclaPdXFqVoKGxE1yLpxUv+GF68zE3
+        Ul3H6E6JlODTP12dpJ/fu1gfLg==
+X-Google-Smtp-Source: ABdhPJyZQOpQ+rB+jjtMOmnLRlG8KDNzfoPLbi3mZ7nXtXFc4nnYVev3L2+NfU2W0IUbq3CGl6yXzQ==
+X-Received: by 2002:a17:903:31c8:b0:14e:db10:5b02 with SMTP id v8-20020a17090331c800b0014edb105b02mr23699396ple.81.1645549003167;
+        Tue, 22 Feb 2022 08:56:43 -0800 (PST)
+Received: from localhost ([12.3.194.138])
+        by smtp.gmail.com with ESMTPSA id f3sm17912532pfe.137.2022.02.22.08.56.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Feb 2022 08:56:42 -0800 (PST)
+Date:   Tue, 22 Feb 2022 08:56:42 -0800 (PST)
+X-Google-Original-Date: Tue, 22 Feb 2022 08:55:55 PST (-0800)
+Subject:     Re: [PATCH 00/12] Initial support for Nuclei DemoSoC w/ UX600
+In-Reply-To: <6ff70d9fbbfcde860823aa24f0ce58a0a96a1c91.camel@nucleisys.com>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     icenowy@nucleisys.com, robh+dt@kernel.org
+Message-ID: <mhng-624abf1a-c1e9-40aa-97a5-07a5b9676942@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01-02-22, 19:11, Vinod Koul wrote:
-> Hello,
-> 
-> The is version 3 of support for PMIC v7. I have added a new property
-> qcom,bus-id for supporting v7 and then add driver changes for v7
-> 
-> This depends on yaml conversion patch:
-> https://lore.kernel.org/linux-arm-msm/20211227170151.73116-1-david@ixit.cz/
+On Sat, 19 Feb 2022 06:45:43 PST (-0800), icenowy@nucleisys.com wrote:
+> 在 2022-01-27星期四的 23:16 +0800，Icenowy Zheng写道：
+>> This patchset adds support for Nuclei DemoSoC (which is an evaluation
+>> platform made with Nuclei CPU cores and mainly peripherals in
+>> original
+>> Hummingbird E203 project, running on FPGA) with UX600 CPU cores.
+>>
+>> Most patches are for DT bindings, the remaining ones are adding a
+>> Kconfig option and some DTS/DTSI files. The last one is a workaround
+>> for
+>> a severe bug in currently released versions of UX600, which is found
+>> in 5.17 kernel, in which Sv48 support is added to Linux.
+>>
+>> Two non-technical patches are in this patchset too, for MAINTAINERS
+>> and .mailmap items.
+>
+> Ping, could any RISC-V maintainers review these patches, especially the
+> SATP workaround one?
 
-Any feedback on this...
+Sorry, I remember having written this but I guess it got lost.  IIRC my 
+main worry here was that, at least as far as I can tell, DemoSOC is an 
+FPGA development board.  If this is actually in production somewhere 
+then it's a different story, but IIUC the general rule is not to accept 
+code for development hardware that can be updated.
 
-> 
-> Changes since v2:
->  - Drop yaml conversion patch
->  - Fix author for spmi patch
-> Changes since v1:
->  - Add yaml conversion patch and new binding
->  - fix driver bug report by Jonathan
-> 
-> David Collins (1):
->   spmi: pmic-arb: Add support for PMIC v7
-> 
-> Vinod Koul (1):
->   dt-bindings: spmi: Add qcom,bus-id
-> 
->  .../bindings/spmi/qcom,spmi-pmic-arb.yaml     |  11 +
->  drivers/spmi/spmi-pmic-arb.c                  | 233 ++++++++++++++++--
->  2 files changed, 225 insertions(+), 19 deletions(-)
-> 
-> -- 
-> 2.31.1
+Assuming DemoSOC can be updated, I'd also argue that we should have some 
+sort of version attached to it in DT entries.  Without some versioning 
+we'll end up lost when trying to later determine what we're actually 
+running on.
 
--- 
-~Vinod
+As far as the errata goes: it looks fine to me, but I'd like to see some 
+sort of description of what the errata actually is (ie, some 
+documentation from the manufacturer).  I know that's not always 
+possible, but without some desciption of what the bug is it gets tricky 
+to mainain this sort of stuff.  For example: we've got sv57 patches 
+now, so how do I know what to do with them on this target?
+
+>
+>>
+>> Icenowy Zheng (12):
+>>   dt-bindings: vendor-prefixes: add Nuclei
+>>   RISC-V: add Nuclei SoC Kconfig option
+>>   dt-bindings: riscv: add compatible strings for Nuclei UX600 series
+>>   dt-bindings: timer: add compatible for Nuclei UX600 CLINT-compat
+>> timer
+>>   dt-bindings: interrupt-controller: add compatible string for UX600
+>>     PLIC
+>>   dt-bindings: serial: add compatible string for Nuclei DemoSoC UART
+>>   dt-bindings: spi: add compatible string for Nuclei DemoSoC SPI
+>>   dt-bindings: riscv: add binding for Nuclei platform boards
+>>   riscv: dts: add device tree for Nuclei DemoSoC w/ UX600 on DDR200T
+>>   RISC-V: workaround Nuclei UX600 cores with broken SATP CSR
+>>   MAINTAINERS: add myself as Nuclei SoCs/CPUs supporter
+>>   mailmap: add Icenowy Zheng's Nuclei mail addresses
+>>
+>>  .mailmap                                      |  1 +
+>>  .../sifive,plic-1.0.0.yaml                    |  1 +
+>>  .../devicetree/bindings/riscv/cpus.yaml       |  7 ++
+>>  .../devicetree/bindings/riscv/nuclei.yaml     | 27 ++++++++
+>>  .../bindings/serial/sifive-serial.yaml        |  1 +
+>>  .../devicetree/bindings/spi/spi-sifive.yaml   |  1 +
+>>  .../bindings/timer/sifive,clint.yaml          |  1 +
+>>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>>  MAINTAINERS                                   |  7 ++
+>>  arch/riscv/Kconfig.socs                       |  6 ++
+>>  arch/riscv/boot/dts/Makefile                  |  1 +
+>>  arch/riscv/boot/dts/nuclei/Makefile           |  2 +
+>>  .../dts/nuclei/nuclei-demosoc-ddr200t.dtsi    | 41 ++++++++++++
+>>  .../nuclei/nuclei-demosoc-ux600-ddr200t.dts   | 13 ++++
+>>  .../boot/dts/nuclei/nuclei-demosoc-ux600.dtsi | 49 ++++++++++++++
+>>  .../riscv/boot/dts/nuclei/nuclei-demosoc.dtsi | 67
+>> +++++++++++++++++++
+>>  arch/riscv/include/asm/vendorid_list.h        |  1 +
+>>  arch/riscv/mm/init.c                          | 17 +++++
+>>  18 files changed, 245 insertions(+)
+>>  create mode 100644
+>> Documentation/devicetree/bindings/riscv/nuclei.yaml
+>>  create mode 100644 arch/riscv/boot/dts/nuclei/Makefile
+>>  create mode 100644 arch/riscv/boot/dts/nuclei/nuclei-demosoc-
+>> ddr200t.dtsi
+>>  create mode 100644 arch/riscv/boot/dts/nuclei/nuclei-demosoc-ux600-
+>> ddr200t.dts
+>>  create mode 100644 arch/riscv/boot/dts/nuclei/nuclei-demosoc-
+>> ux600.dtsi
+>>  create mode 100644 arch/riscv/boot/dts/nuclei/nuclei-demosoc.dtsi
+>>
