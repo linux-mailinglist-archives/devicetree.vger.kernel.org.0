@@ -2,120 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B97004C02CC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:06:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55F1A4C02E0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:10:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232041AbiBVUGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 15:06:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54300 "EHLO
+        id S235138AbiBVULH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 15:11:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231683AbiBVUGw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:06:52 -0500
-Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17D76F210A;
-        Tue, 22 Feb 2022 12:06:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
-        s=the; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:
-        Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=GZ/WSWgJBiEHXHtoaYeS23vkf3k0hR1lrwLvk6dfqQY=; b=C3sRnNBZ9WphMIrOCeHKtbYK1Z
-        4BUp8uWwLjKHugkczVmwkQFLYAx32RzaAOuAsJ6Gh6phWD7HlRwWlnBjafl60VWYMSRz13GuMmPDU
-        ltYUt4ur4nth7jHVgdhIDTts6ppa7lV9BiwwJk6cpBlSlCtqLRhiCTkq9MqW3qkbAT8ptGwvr8ffy
-        8JylfP3UpLceoAQoW/vFlVrCfa7eqwZ/i3+OMMxXe4FX1bS42h2aeek65DCEnX/kwZUv8RCZw/jbM
-        iX6deNsMoWnKQhDtMPcd+mbCnDdiGkv2jR3Z+pgE81jKbbFhMiPc/c4T8RlP/WadtJmyEqcC+ZEyh
-        fA1pedyA==;
-Received: from noodles by the.earth.li with local (Exim 4.94.2)
-        (envelope-from <noodles@earth.li>)
-        id 1nMbQU-00CR3y-GA; Tue, 22 Feb 2022 20:06:22 +0000
-Date:   Tue, 22 Feb 2022 20:06:22 +0000
-From:   Jonathan McDowell <noodles@earth.li>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S230059AbiBVULH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:11:07 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 451E310CF22;
+        Tue, 22 Feb 2022 12:10:41 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 962771F43B94
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645560640;
+        bh=ijj2dOGdIN4gy/4SAGPiZ20l35Ou58dlQ9MCO5DfMIE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=G29CedeLHQLOCZfpfQbXX3XGa/nWcAvsTeMiNJZOsDGFnAgdYZyDnAgQFbC8m0deA
+         Vt+3/geQqeCPUzmdB8wrYXBCKB8CHJt/Ld9rS/uXc4iwNVZ515AAHeKJX66hivM9ZJ
+         r4XlsCk6FQDniPjKYHIRdBU2uL8rvjBZpY/BLcnZRPdKFnt/j9jGwOiBX10U28FGjD
+         NOsL0t71Wz/Jaq8/1ui5ABEk4ws6yxl508TopE3RbC9rVksAgYX9I6H2MlM5rFdmGK
+         lCeQ6zxWsUnJFqZWKCm9laTtntmxnljkOuVnFnIOIN83ghTGSdsB5ClP6jrzGSDBud
+         AcqnN5T8i1n+Q==
+Date:   Tue, 22 Feb 2022 15:10:34 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/18] Multiple addition to ipq8064 dtsi
-Message-ID: <YhVCPiBr+aEwQqkG@earth.li>
-References: <20220218002956.6590-1-ansuelsmth@gmail.com>
+        --to=Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>
+Subject: Re: [PATCH v2 06/23] arm64: dts: mt8192: Add usb-phy node
+Message-ID: <20220222201034.pb36pfrgujushsge@notapiano>
+References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
+ <20220218091633.9368-7-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220218002956.6590-1-ansuelsmth@gmail.com>
+In-Reply-To: <20220218091633.9368-7-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 18, 2022 at 01:29:38AM +0100, Ansuel Smith wrote:
-> This try to complete the ipq8064 dtsi and introduce 2 new dtsi
-> ipq8064-v2 and ipq8065. While some node are still missing (cpufreq node,
-> l2 scale node, fab scale node) this would add most of the missing node
-> to make ipq8064 actually usable.
+On Fri, Feb 18, 2022 at 05:16:16PM +0800, Allen-KH Cheng wrote:
+> Add xhci node for mt8192 SoC.
 > 
-> Some of the changes are the fix for the pci IO that cause any secondary
-> wifi card with ath10k to fail init.
-> Adds regulators definition for RPM.
-> Adds many missing gsbi nodes used by all the devices.
-> Enable the usb phy by default as they are actually enabled internally by
-> xlate only if the dwc3 driver is used.
-> Add opp table and declare idle state for ipq8064.
-> Fix some dtc warning.
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 25 ++++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
 > 
-> This also add the ipq8064-v2.0 dtsi and the ipq8065 dtsi used by more
-> recent devices based on this SoC.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 61aadd7bd397..ce18d692175f 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -875,6 +875,31 @@
+>  			#clock-cells = <1>;
+>  		};
+>  
+> +		u3phy0: usb-phy@11e40000 {
 
-A couple of comments directly on 2 patches, but otherwise for the set:
+According to Documentation/devicetree/bindings/phy/mediatek,tphy.yaml, this node
+should be called t-phy. Only the child nodes should be usb-phy.
 
-Tested-by: Jonathan McDowell <noodles@earth.li>
+> +			compatible = "mediatek,mt8192-tphy",
+> +				     "mediatek,generic-tphy-v2";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			status = "okay";
 
-> v2:
-> - Added missing patch
-> - Added additional gsbi6 spi
-> - Added extra description for L2 cache opp
-> - Fxied smb208 enabled by default that is problematic for rb3011 devices
-> 
-> Ansuel Smith (18):
->   ARM: dts: qcom: add multiple missing pin definition for ipq8064
->   ARM: dts: qcom: add gsbi6 missing definition for ipq8064
->   ARM: dts: qcom: add missing rpm regulators and cells for ipq8064
->   ARM: dts: qcom: disable smb208 regulators for ipq8064-rb3011
->   ARM: dts: qcom: add missing snps,dwmac compatible for gmac ipq8064
->   ARM: dts: qcom: enable usb phy by default for ipq8064
->   ARM: dts: qcom: reduce pci IO size to 64K for ipq8064
->   ARM: dts: qcom: fix dtc warning for missing #address-cells for ipq8064
->   ARM: dts: qcom: add smem node for ipq8064
->   ARM: dts: qcom: add saw for l2 cache and kraitcc for ipq8064
->   ARM: dts: qcom: add sic non secure node for ipq8064
->   ARM: dts: qcom: fix and add some missing gsbi node for ipq8064
->   ARM: dts: qcom: add opp table for cpu and l2 for ipq8064
->   ARM: dts: qcom: add speedbin efuse nvmem binding
->   ARM: dts: qcom: add multiple missing binding for cpu and l2 for
->     ipq8064
->   ARM: dts: qcom: remove redundant binding from ipq8064 rb3011 dts
->   ARM: dts: qcom: add ipq8064-v2.0 dtsi
->   ARM: dts: qcom: add ipq8065 dtsi
-> 
->  arch/arm/boot/dts/qcom-ipq8064-rb3011.dts |  21 +-
->  arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi  |  70 ++++
->  arch/arm/boot/dts/qcom-ipq8064.dtsi       | 375 +++++++++++++++++++++-
->  arch/arm/boot/dts/qcom-ipq8065.dtsi       | 168 ++++++++++
->  4 files changed, 603 insertions(+), 31 deletions(-)
->  create mode 100644 arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
->  create mode 100644 arch/arm/boot/dts/qcom-ipq8065.dtsi
-> 
+"okay" is already the default status, so you can drop this line, as well as the
+ones on the child nodes below.
+
+> +
+> +			u2port0: usb-phy@11e40000 {
+> +				reg = <0 0x11e40000 0 0x700>;
+> +				clocks = <&clk26m>;
+> +				clock-names = "ref";
+> +				#phy-cells = <1>;
+> +				status = "okay";
+> +			};
+> +
+> +			u3port0: usb-phy@11e40700 {
+> +				reg = <0 0x11e40700 0 0x900>;
+> +				clocks = <&clk26m>;
+> +				clock-names = "ref";
+> +				#phy-cells = <1>;
+> +				status = "okay";
+> +			};
+> +		};
+> +
+>  		i2c0: i2c@11f00000 {
+>  			compatible = "mediatek,mt8192-i2c";
+>  			reg = <0 0x11f00000 0 0x1000>,
 > -- 
-> 2.34.1
+> 2.18.0
 > 
-
-J.
-
--- 
-"evilwm - we sold our souls to the window manager" --
-http://www.6809.org.uk/evilwm/
+> 
