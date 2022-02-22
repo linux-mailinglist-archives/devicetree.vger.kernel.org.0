@@ -2,79 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B493E4C02F8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:27:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D830E4C0301
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:28:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235400AbiBVU1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 15:27:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32900 "EHLO
+        id S233004AbiBVU2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 15:28:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231694AbiBVU1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:27:41 -0500
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2949D051;
-        Tue, 22 Feb 2022 12:27:15 -0800 (PST)
-Received: by mail-ot1-f42.google.com with SMTP id j3-20020a9d7683000000b005aeed94f4e9so7087423otl.6;
-        Tue, 22 Feb 2022 12:27:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uPnUbQrAlFPwBsKQK/FHM3ApbVo/5s8mNMNmKnxO5co=;
-        b=pDTbECdoXBX2cqC8oVNUUqqjOGWAVH4pLzUAvipZ8k9W83WRIMED3yT9gtG3ht36NF
-         Ij3noHsARUbGZsyJrTjtfwiGnVogBse8aMrmyo1jdjgDjbKytslPxkn2D+QsravFzSzW
-         Q6aoZoCAEGsKmieO1JH4qkHCgmqHTaLtHiIS8HnuC6b5svbh9LjeC18DrL76j5CmCp/7
-         ShdDjSYXXi/go/eEG7DRl6mKF4o7by4d3VBfuuAnCYG0IaAL4xopX4TFFGReZpmDQmro
-         1WNwinmz33OOGRLZKNVwh1XG9Q3PdccrIxn4hbn9TVXFSFVY2KUlthccOdv1ho2Ed97o
-         XqNg==
-X-Gm-Message-State: AOAM532jSGXm5mc1hgsUgdI02zL8gfKKbzhQBJnG/qk3mBYg84VwgQCm
-        xCy47cePMP069yA8lPjc62Okc694SQ==
-X-Google-Smtp-Source: ABdhPJzu1Y7MfdsZBnFKD4tdGj0xn3CXifVlJN/265Lw6Z6FbCDdeAP5RHP7woKaVlQzblKUciWqww==
-X-Received: by 2002:a9d:5e92:0:b0:59e:28db:41cf with SMTP id f18-20020a9d5e92000000b0059e28db41cfmr9175612otl.366.1645561634834;
-        Tue, 22 Feb 2022 12:27:14 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j2sm4716448ooi.39.2022.02.22.12.27.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 12:27:14 -0800 (PST)
-Received: (nullmailer pid 3527901 invoked by uid 1000);
-        Tue, 22 Feb 2022 20:27:13 -0000
-Date:   Tue, 22 Feb 2022 14:27:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>
-Cc:     broonie@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org,
-        skomatineni@nvidia.com, ldewangan@nvidia.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de
-Subject: Re: [PATCH v2 2/5] dt-bindings: spi: Tegra234 QUAD SPI compatible
-Message-ID: <YhVHIVJlCwhbVAH7@robh.at.kernel.org>
-References: <20220222175611.58051-1-kyarlagadda@nvidia.com>
- <20220222175611.58051-3-kyarlagadda@nvidia.com>
+        with ESMTP id S231694AbiBVU2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:28:38 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7649B16C6;
+        Tue, 22 Feb 2022 12:28:10 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id A5FE61F4305C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645561689;
+        bh=XYnec0KXZAvsEu9FVDIA+DCNqtz7GcNyNM0dZi5nGKw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AQiUjtKxRYO1xX9vVoOOFXkPFSCC67v1ZQxPvDobu4gWR7S//0ksNk3esKGbhVuXp
+         kkybtmOoMYucr4ZC4eBN8+PeME0ZM5h+wNE5jlPY5T3Ek0ktTMD57SSphD/bUYi83h
+         oSvqbbit0Wx3GY23pOda1i/ImLhxByL6Mjc3J9W5tOCTsWn/U3lK0lq579nvZhsEBr
+         7vtTRzcVV8L5wBeZI8Nvp0xbrG1sjiWotqPbE2KehW+LSuoOVy0FNzqIy+PBtpLmja
+         z5+JJx0Ai8AM+CipiokKTlJvCmNjdeaEPE8YrNTDWyAQnZ3eLjQFJlAdlrBVDVkofZ
+         sFEWANLIa6NOw==
+Date:   Tue, 22 Feb 2022 15:28:03 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        --to=Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>
+Subject: Re: [PATCH v2 07/23] arm64: dts: mt8192: Add xhci node
+Message-ID: <20220222202803.7mkskda3nsjrunpx@notapiano>
+References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
+ <20220218091633.9368-8-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220222175611.58051-3-kyarlagadda@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220218091633.9368-8-allen-kh.cheng@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 22, 2022 at 11:26:08PM +0530, Krishna Yarlagadda wrote:
-> Add compatible string for Tegra234 for Tegra QUAD SPI
+On Fri, Feb 18, 2022 at 05:16:17PM +0800, Allen-KH Cheng wrote:
+> Add xhci node for mt8192 SoC.
 > 
-> Signed-off-by: Krishna Yarlagadda <kyarlagadda@nvidia.com>
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 25 ++++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index ce18d692175f..08c7c1c772f5 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -10,6 +10,7 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
+> +#include <dt-bindings/phy/phy.h>
+>  #include <dt-bindings/power/mt8192-power.h>
+>  
+>  / {
+> @@ -718,6 +719,30 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		xhci: xhci@11200000 {
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+According to Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml, this
+node should be called usb (but the label can be kept as xhci).
 
-If a tag was not added on purpose, please state why and what changed.
+> +			compatible = "mediatek,mt8192-xhci",
+> +				     "mediatek,mtk-xhci";
+> +			reg = <0 0x11200000 0 0x1000>,
+> +			      <0 0x11203e00 0 0x0100>;
+> +			reg-names = "mac", "ippc";
+> +			interrupts-extended = <&gic GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			interrupt-names = "host";
+> +			phys = <&u2port0 PHY_TYPE_USB2>,
+> +			       <&u3port0 PHY_TYPE_USB3>;
+> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_SEL>,
+> +					  <&topckgen CLK_TOP_SSUSB_XHCI_SEL>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+> +			clocks = <&infracfg CLK_INFRA_SSUSB>,
+> +				 <&infracfg CLK_INFRA_SSUSB_XHCI>,
+> +				 <&apmixedsys CLK_APMIXED_USBPLL>;
+> +			clock-names = "sys_ck", "xhci_ck", "ref_ck";
+> +			wakeup-source;
+> +			mediatek,syscon-wakeup = <&pericfg 0x420 102>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+
+This node doesn't have any children, so no need for #address-cells and
+#size-cells, just drop them.
+
+Also, let's keep this node disabled by default:
+
+			status = "disabled";
+
+> +		};
+> +
+>  		nor_flash: spi@11234000 {
+>  			compatible = "mediatek,mt8192-nor";
+>  			reg = <0 0x11234000 0 0xe0>;
+> -- 
+> 2.18.0
+> 
+> 
