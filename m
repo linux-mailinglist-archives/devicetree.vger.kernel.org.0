@@ -2,90 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D45B4BFB1C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:48:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD6CA4BFB2D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:51:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232031AbiBVOtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 09:49:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39536 "EHLO
+        id S232942AbiBVOvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 09:51:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232641AbiBVOtJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:49:09 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D81BD2C2
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 06:48:41 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id az26-20020a05600c601a00b0037c078db59cso2028833wmb.4
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 06:48:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=tnceEeGnrcuJoNr0+Cgdwzi8bAtUJ8PrVOXTOsxGiv8=;
-        b=BLNhsgYEBr+ldXVFFu/RqMuSdMknUikmOnh+8PhlpuW1sex7DrIgwqFbS79lt+/9Fj
-         eXInu65RHdP9/RaAHHicAaBN23Jee6z4YfIKtTIt5jhBGbqSiH7zL35GymIk22sC0g08
-         xHnyW1O0Im9gXYw7vKouOD2AAfu9LV+0K8noU24UdxG4szvFdJUX2OduZ/J4gioREeSO
-         rGi4r5uVVa5HGCmYasymCdXYxR8jfWbRpPEcq1o2WuKlizofX49G9sUG9u8gG2zzYnje
-         o4Ls8K10TAvHE/L/3CEwzT4fE5T6Z0tH/BQ0dAQMzo9dYX/eGOUmj6BUbtKHQO3073vD
-         /DQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=tnceEeGnrcuJoNr0+Cgdwzi8bAtUJ8PrVOXTOsxGiv8=;
-        b=pzvPAtLPRzBKnN139ecfWYpufhW3WIHk9C3XbW59TNytLv2cHhy6VoLItG/Cg4PeiF
-         QgiNbNLbxexiEQZBiRHv04S/Z3yU58VfbCfnBqz0OcDJx8B8Iehw5Q+eyL6K5Y8gy4mG
-         POm0qyEmuVOCqih/Pb5FJEi21aar0cGByM4UfSYtS7quHd8B9ULu//wwMlppcjPJbzeQ
-         9NC2yAKdpCzALNlxOU8ws00jlOsGD2db4xL6/H8ILz237Rdy+KkSnUtRTHO1a04cWY0L
-         Z5RDTSy368UCXd9BNACw1AkVGoNK4phCW5O5y4KDbryWsMPAFnNZuxMtwGaBOYfZOdfy
-         6Hiw==
-X-Gm-Message-State: AOAM530/yZYIG3Tz0okyQ2bdIZ/iiwWMvux92aQ7YhmkRnBVU8WL/uJY
-        23Clzyxh4YbZHCkOWTAaSUv/GQ==
-X-Google-Smtp-Source: ABdhPJzHLE6QCDQn+Ao6ARDEbUXD14NHh4L6o7VCIBQ8a6PNAyJ3LeVtt+yRC0QvCiQEGnMDHYR1+Q==
-X-Received: by 2002:a05:600c:3217:b0:380:e2a3:18cf with SMTP id r23-20020a05600c321700b00380e2a318cfmr1613415wmp.129.1645541319974;
-        Tue, 22 Feb 2022 06:48:39 -0800 (PST)
-Received: from ?IPV6:2001:861:44c0:66c0:8df:a253:2751:6a9c? ([2001:861:44c0:66c0:8df:a253:2751:6a9c])
-        by smtp.gmail.com with ESMTPSA id k4-20020a05600c0b4400b0034a0cb4332csm2514284wmr.10.2022.02.22.06.48.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Feb 2022 06:48:39 -0800 (PST)
-Message-ID: <1530c337-22b5-b20d-27ae-50696344e80f@baylibre.com>
-Date:   Tue, 22 Feb 2022 15:48:38 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 0/6] auxdisplay: Add support for the Titanmec TM1628 7
- segment display controller
-Content-Language: en-US
-To:     =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        with ESMTP id S229679AbiBVOvv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:51:51 -0500
+Received: from mx0a-0039f301.pphosted.com (mx0a-0039f301.pphosted.com [148.163.133.242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CB9D995C;
+        Tue, 22 Feb 2022 06:51:25 -0800 (PST)
+Received: from pps.filterd (m0174678.ppops.net [127.0.0.1])
+        by mx0a-0039f301.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21MEO0u1019526;
+        Tue, 22 Feb 2022 14:51:20 GMT
+Received: from eur04-vi1-obe.outbound.protection.outlook.com (mail-vi1eur04lp2056.outbound.protection.outlook.com [104.47.14.56])
+        by mx0a-0039f301.pphosted.com (PPS) with ESMTPS id 3ed1ja84at-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Feb 2022 14:51:20 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Y18iAJoGvT4wHqS21ZE/QlO+Xo+k9mcgyqKzIxMw8sS/NEaM9QaqxXP1g9UeRS8wToIr3YUNp/DtCDrchof6gQsEj6/o221xcnWcahAbbtpSjnvy5RRHycgJjIqWDlWQOy+nl38B4RIY9kgdx7UhWQ9dZnMjJnWPUaCYGHMhuCl0zDhqZJm5ucoQ8FlZYzvrBqVAxuOSh+El3gQSkHVGF7UCPHc7PzpReFOudJxbT2ZJahImPHUM6qc5rXMQJUdpqj95Uv5hfyW3ntBXiB95IpY57Jv1JgaaiMN9BXZSpq48nGzmLWQikCWEbEhXO4gyP97FOqOskL0Lm5sUYHkEWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GHIHpA29C12ceW9k+mO8CQbbvEjeNpYCzlFoR/aP/so=;
+ b=YbfnbAiK2G3Ib+hIOROBaBnzqw3Sm5QKIyQNuN5/knwKizAUg784KEz2in1aD0jXTglxreKziHWDk8/1OsTey3LrMMeba3mvooTSiti+V+NSR+CrDfk73wZfyH9Fh/gume8Jnutpkovag3Ay3i6eTJKe/WS5rpwHY5bHDW9jJ+C8FXj/FiRFjKmspC8+2cIK4/Ym4+CDc9dbfS74wugr4GQ291vib3gGhLBGLYB/wofvTK406UIcnmDNcPqR9S6M0jYyUipxJns9F7KLNAOuXQadYKzIvlhjQ8svCGEgJVzfuDQTE5Ixb6+UGg/ARYZarCKWTKXwtABmXiH+RJmkIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=epam.com; dmarc=pass action=none header.from=epam.com;
+ dkim=pass header.d=epam.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=epam.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GHIHpA29C12ceW9k+mO8CQbbvEjeNpYCzlFoR/aP/so=;
+ b=ahBUGI+eQg7tMxEv7aAk6h4UF89okh5ht3jivtMGNj7j58IOr3w1oNtr3AZT2fXwXP7zbSVK9KLw9SIpJNNIlouSRcKItcFdohM5E48zA4G0T5q/NckRWedseOxQVCpNxUQ7Ub7xGj1ZETc3p1zQmhu0HeG4St92C53D87mdcmnmRxrpeBTdjEo7m4Mqx8SAYe+kIZrnbXEtN8xZJaVdJjdIOpLS+ipYz9ReqPn0FJoV2VhrRxrxrUfeI4zt8NoowX7OZiMocpHC4PaxfZCiGcNfzZxlWNy7yYnWnU0y7CBKk1UlZhHEH0JFtCI4m6xIOG+1/P3dx2ZYnHSkD0kppw==
+Received: from PA4PR03MB7136.eurprd03.prod.outlook.com (2603:10a6:102:ea::23)
+ by AM6PR03MB4551.eurprd03.prod.outlook.com (2603:10a6:20b:8::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.21; Tue, 22 Feb
+ 2022 14:51:17 +0000
+Received: from PA4PR03MB7136.eurprd03.prod.outlook.com
+ ([fe80::c1c:f98:9dd:86e0]) by PA4PR03MB7136.eurprd03.prod.outlook.com
+ ([fe80::c1c:f98:9dd:86e0%5]) with mapi id 15.20.4995.027; Tue, 22 Feb 2022
+ 14:51:17 +0000
+From:   Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Cristian Marussi <cristian.marussi@arm.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org
-References: <4172e59f-b9d5-d87d-9dbd-a6f683a2173c@gmail.com>
- <CANiq72mi5fj07cfo6T4jPmp=EiRtE_uDeHHCqjG9h+duPrUMKg@mail.gmail.com>
- <ecdbfb3a-e214-a059-95b9-1ebf2f625295@gmail.com>
- <862fc0e3-6c76-8dea-6725-a6c45ade1ecd@suse.de>
- <09bf3d8a-2902-723b-80d2-0c4d1c24f53d@gmail.com>
- <a890337b-39e4-f796-2d53-05edd2d69c80@suse.de>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <a890337b-39e4-f796-2d53-05edd2d69c80@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [RFC PATCH 1/1] dt-bindings: arm: Add scmi_devid property
+ description for SCMI
+Thread-Topic: [RFC PATCH 1/1] dt-bindings: arm: Add scmi_devid property
+ description for SCMI
+Thread-Index: AQHYJ0g0zA4b1xgTn0m4ZMeiASfcF6yfoL6AgAAH+gA=
+Date:   Tue, 22 Feb 2022 14:51:16 +0000
+Message-ID: <20220222145116.GA2024457@EPUAKYIW015D>
+References: <cover.1645460043.git.oleksii_moisieiev@epam.com>
+ <c751add9b54e9661e463ae265d8d5f0314eac33e.1645460043.git.oleksii_moisieiev@epam.com>
+ <1645539763.068794.3016153.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1645539763.068794.3016153.nullmailer@robh.at.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5111ab7d-91df-4e6a-c5cd-08d9f612c7bf
+x-ms-traffictypediagnostic: AM6PR03MB4551:EE_
+x-microsoft-antispam-prvs: <AM6PR03MB4551BD2C0D1ECD4ABB02DB3CE33B9@AM6PR03MB4551.eurprd03.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: piZO2pXZZkztRQhENOPoYa62bMOew8F6ZnVL1VqBtXdSJeSlM3G9GGX08ZG4rrqOPHt2V1oerSY3h952Dlywk/mOYP3e/8K5kfBGj63GVnSX36jpShIQji3mjlYIDRynnFS6nOUnI5IjGmctWIgrTjDLpBrZpktgvF0bcVirecSKhLjpPIcwaHZNF+xozxKwD6lV+7RAPYlDhiq77VLycOMPAk8SG07lJUlxTGCahnFwbtadWANu7acONanZocc3oAICzonTDSKWBbWxYNa3ws+BLIGjEDnOzMpM/u6OcxL0bhEV3irmCu69dYn9f+M2sfIwf5vBRyRC6cOOBLQXfLw1OGtcRVk05UW/Z8mUxnSMyY4XUyaLKPks2BU29Klx4OWqirNbVyfPNZ4XbS3AzDJjoXsEkd8uCrz85T9MWTeuYwKka2AIEhafxnlaNxBsI5xhXGW/JH6MZF/ZzvmRwTw0GFfPe9iii8QW4hXOFEOAAE4ogBxL8YK2cSWqiySLW4d6tsH7rQMKiFPIQRh4Jl0/cCIfhp+iGN14ccDP+xFrbNCk3XjBgwUm8lBZ1VElnDjZiS0i17rcnR+E3Gb2DWGbMNcQ0yn700CQFnE4bZaIl8ebZqerNZRRIscICPPldvtI58V8otUnny8TZgnkptqVGKo2UmigGXdTJTP43CN56aERLghgJp5IJiPkUgn4K2nMCeFLM5praWjK4+0utN7dKJG2fAPxymhu4q21NcvNiJr07uek2NtXe+tDnx4iQDysGbVLZsEjVFHF+KbjLTinWrCINwbIxSWKeayHbEM=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR03MB7136.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(7916004)(4636009)(366004)(186003)(1076003)(6486002)(966005)(86362001)(4326008)(66556008)(66446008)(8676002)(66476007)(83380400001)(76116006)(66946007)(26005)(91956017)(64756008)(6512007)(9686003)(6506007)(6916009)(38100700002)(5660300002)(54906003)(71200400001)(8936002)(38070700005)(33716001)(316002)(508600001)(2906002)(33656002)(122000001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?gwsKhteK6n7VZJ2jtcsdXY9oBGPOyVR2LM2OHkr6tQYFhALKMjBHGn33Q+Y6?=
+ =?us-ascii?Q?MN+VrnvMBfHOAGEiHNqbc1lyCywnzufTauKmbb4KJhaBrS7Kf8W39prAB+LB?=
+ =?us-ascii?Q?7QGJVaaHtjETnPjOtn3FlrFFBM0sT3TusOt3MWwsahH+NjUMu1PB4g+3j3KG?=
+ =?us-ascii?Q?osmMu7ta1UWClivriN5lTY3lo8Twm2UZA906DVX/cNCOj/esQXY+kHjlZfrQ?=
+ =?us-ascii?Q?u2DVrhEN8D7SMaUxawaisuUGAp1oXziSbjfOrLLTDvqAbzM6AtJsn82OighP?=
+ =?us-ascii?Q?JSldmCftG0Z5DQ/bHcPTnDyzI+iJUDlRm1yvp1HOtpxXoXQisvkg7sjIfoDC?=
+ =?us-ascii?Q?TqmL2yJP8gCFCURkvvjfop9tHivlwK8MDDalk8TVT84p5ZZLTsO9Ih5YRYE2?=
+ =?us-ascii?Q?kKKyHE9YgegZe/No99MZCTT7YnuP5cOBcLOui8LIH+hpNVIjWmI+0pCFwxKn?=
+ =?us-ascii?Q?H2UxUCt1YOqDj9fDo0asAhFnbvuUjutuvk7ttRFF7bkUSpsbq6iOdmbShJoq?=
+ =?us-ascii?Q?DCKRkumsQwGdx0Q7YETmoS3DyL1sHVcKnFmNUlGoKSBRSTPABzHDXNIzZsH4?=
+ =?us-ascii?Q?oKhWEJEg99tRaml5rSvG6EdLYrZFV1lHsXK7MofhUVIzEasCRJZV76LD+vec?=
+ =?us-ascii?Q?kadMKO9SrCMr6LnFXtzn+kBZy5fVqcILeLqiAZZ6PuUvdLDv2S4ip+HG41hL?=
+ =?us-ascii?Q?M2H5HkkgoRqv8R1KDAsFyBCdKiAgC3Hzbd8gS7UQiVLoE78odXYutkFqZNjm?=
+ =?us-ascii?Q?JhTIyFL2qVUV/KsKUAGBP/h7bpLc80w7R0dJ7ITgx0yQoi3gfbptCfY0rbWE?=
+ =?us-ascii?Q?6HcecoGLvzx7xyRFBlRwIimtLaM9dUeingpfyaXeOQKG/D37MqgW7D7c97ca?=
+ =?us-ascii?Q?n4f3jdA0lsLDGT4o6kyOqxLud3w14PQP2czpSzbqYRWjjxjuMMk7rmGk+MSO?=
+ =?us-ascii?Q?Hggy3gcB8YkRdBqNy2cM6GE5orwMzz83p5wmao8ks7b34f4VKOMKkGd7dZnd?=
+ =?us-ascii?Q?pnG7P10TTRMiSGvkoS2gOzEg3h2dCHYhSKQwwsCE0I9E38/F2AJ7AOyqD04C?=
+ =?us-ascii?Q?7yF1GifYXJfNX32upW8q3pQ3r6M66nCRr4MbgRNMWeQQxrFLpWPeo2ihPpUc?=
+ =?us-ascii?Q?6Y45zjmjg1d/O8UqjeCw9xRoczqn+PKX86VQIOqFGN1SjbV8URienkUbj3zr?=
+ =?us-ascii?Q?hyKMFXeFV+Yhm9YvPzK4g7h3cy8HFla+inLA8zrz6IpN36SgCV052N8na2F9?=
+ =?us-ascii?Q?2Nh+bishCgVmrWUh23dh19bxZ7GXBR6w10UyRM/KqRpAmzNZ+VW7Swp6XSrs?=
+ =?us-ascii?Q?teOPBUK/EfBdWCy+9MtHSW1Un+obdL5IHZAdm/0+pTksp5+npGL9XffDrlLD?=
+ =?us-ascii?Q?iIUTHM3V256dXrl9XvupcoL9U8hvt7OhrRQTa4tftsVEmlyLemHMA+pcspRb?=
+ =?us-ascii?Q?prfcPcvHWbXPNHXFzoabf8cCr8vOIHcvrBjz4XwVm5MgA0+PqvZ2F2enSgg/?=
+ =?us-ascii?Q?ytBKijzOCFBupT6nf5D+yRdFsC+xEIIa6aFGDWQmDiQrfqKWsTFQmWAB0XEi?=
+ =?us-ascii?Q?ksy7pSQGC58H0+m5V8U7ruy/Sjj62MhH7ImZb04kf+25q/+TLpifysVg89k0?=
+ =?us-ascii?Q?TqbwgSP/7TapmUZTRC7rbCiIlixswtR8zlKd5pCaraAaV7UGSZeANNuDdJYJ?=
+ =?us-ascii?Q?iEzNVZ4Rgzey6zA6Ve8CQNrSAnU=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <3893D14DF7DD344AA0CABFDDEE3F3B63@eurprd03.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: epam.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR03MB7136.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5111ab7d-91df-4e6a-c5cd-08d9f612c7bf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2022 14:51:16.9776
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b41b72d0-4e9f-4c26-8a69-f949f367c91d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: q43Rn4YQyFRlpORl1eOPO9LmCP6TpKJC68CSVEYjuqesJ5l+yIcsOO5L9cu5bbMuIchOjp2VvRRJmobEg6h92krzNtTB+8nAd0Y6ivks3Uk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR03MB4551
+X-Proofpoint-ORIG-GUID: 2ciFPhLH0-_e-YKlvg5laPSlsW0kG-oF
+X-Proofpoint-GUID: 2ciFPhLH0-_e-YKlvg5laPSlsW0kG-oF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-02-22_03,2022-02-21_02,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 suspectscore=0 priorityscore=1501 phishscore=0
+ adultscore=0 mlxlogscore=783 clxscore=1011 malwarescore=0 impostorscore=0
+ spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2201110000 definitions=main-2202220092
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,120 +140,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2022 13:12, Andreas Färber wrote:
-> On 19.02.22 18:16, Heiner Kallweit wrote:
->> On 19.02.2022 17:07, Andreas Färber wrote:
->>> Hi,
->>>
->>> On 19.02.22 14:37, Heiner Kallweit wrote:
->>>> On 19.02.2022 14:27, Miguel Ojeda wrote:
->>>>> On Sat, Feb 19, 2022 at 2:13 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>>>>>
->>>>>> This series adds support for the Titanmec TM1628 7 segment display
->>>>>> controller. It's based on previous RFC work from Andreas Färber.
->>>>>> The RFC version placed the driver in the LED subsystem, but this was
->>>>>> NAK'ed by the LED maintainer. Therefore I moved the driver to
->>>>>> /drivers/auxdisplay what seems most reasonable to me.
->>>>>
->>>>> Could you please link to the discussion and/or summarize the rationale
->>>>> behind the NAK?
->>>>>
->>>>
->>>> +Pavel
->>>>
->>>> I didn't find an explicit reason, but I suppose Pavel sees this driver as
->>>> one that makes use of the LED subsystem, but doesn't belong to it.
->>>> In the following mail he's expressing his opinion that the driver should
->>>> be best placed under auxdisplay.
->>>>
->>>> https://lore.kernel.org/linux-arm-kernel/20200226130300.GB2800@duo.ucw.cz/
->>>
->>> And I disagreed. It does not fit with the other drivers in auxdisplay
->>> that were operating on a much higher level.
->>>
->>
->> We need to find a place. And if Pavel has good reasons that it doesn't
->> fit into the LED subsystem, and Miguel should be fine with having
->> it in auxdisplay, then I'd see no reason to not go this way.
->>
->>> I'd also like to point out that I did implement the map_to_7segment API,
->>
->> Looking at the history of include/uapi/linux/map_to_7segment.h I see no
->> commit from you. Seems I'm missing something here.
-> 
-> You're replying inline too early:
-> 
->>> as was suggested, as you will find in my tree
-> 
-> As I said, I implemented it in my driver:
-> 
-> https://github.com/afaerber/linux/commit/bbecf951348c7de8ba922c6c002a09369b717d82
-> 
-> Thus me saying you are unnecessarily duplicating work that I already
-> did, without ping'ing the thread or me and claiming the credit for an
-> implementation change which I already did myself.
-> 
->>> - which you may have
->>> missed, referencing only the RFC patchset and putting your authorship on
->>> it exclusively? A move from one directory to another should not warrant
->>> my author and SoB getting removed from the actual driver.
->>>
->> The driver includes major changes and I mentioned your work in the commit
->> message. Also your still listed as MODULE_AUTHOR. My intention is to
->> get a driver upstream, not to earn credits for something.
->> So sure, your SoB can be (re-)added.
-> 
-> https://github.com/afaerber/linux/commits/rtd1295-next
-> 
-> Also note this 5-in-4 optimization:
-> 
-> https://github.com/afaerber/linux/commit/ff8284b6ed9dc1e354c35840afdaf50b1cd97fea
-> 
-> And several more chipsets being covered.
-> 
->>> Given that we need to manage a buffer with bits per segment or LED
->>> symbol, one idea that I haven't found time for yet was to implement it
->>> as framebuffer or drm device instead. (And most Realtek platforms got
->>> broken by removing the adjustable text base defines.)
->>>
->> I'm not aware of the Realtek platform issue, do you have a link to a
->> related discussion?
-> 
-> Realtek has a boot ROM at the beginning of memory space, which has been
-> a problem from the first RFC and for most bootloaders required to tweak
-> the kernel's text offset for successful boot. (Some not Open Source (LK)
-> and/or not openly flashable.)
-> 
-> http://lists.infradead.org/pipermail/linux-arm-kernel/2017-February/487718.html
-> 
-> In 2020 that arm64 feature got removed without any further discussion:
-> 
-> https://lore.kernel.org/all/20200825135440.11288-1-ardb@kernel.org/
+On Tue, Feb 22, 2022 at 08:22:43AM -0600, Rob Herring wrote:
+> On Mon, 21 Feb 2022 17:26:47 +0000, Oleksii Moisieiev wrote:
+> > Document scmi_devid property for the devices, using SCMI protocol
+> > to work with clocks/resets/power-domains etc. This property is intended
+> > to set the device id, which should be used to manage device permissions
+> > in the firmware. Device permissions management is descibed in DEN 0056,
+> > Section 4.2.2.10 [0].
+> >=20
+> > This property is useful for the virtualized systems, when several agent=
+s
+> > are running on the same platform. Agent term is descibed in Section
+> > 4.1.1 [0].
+> >=20
+> > [0] https://urldefense.com/v3/__https://developer.arm.com/documentation=
+/den0056/latest__;!!GF_29dbcQIUBPA!m_dudHGSVg6mys2GtScvkfHNbQ1mv2kCGeU2GEdc=
+V_C0cqHoWuknIkJPdLTaKiq6Ed9f$ [developer[.]arm[.]com]
+> >=20
+> > Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> > ---
+> >  .../bindings/firmware/arm,scmi-devid.yaml     | 41 +++++++++++++++++++
+> >  1 file changed, 41 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/firmware/arm,scmi=
+-devid.yaml
+> >=20
+>=20
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firm=
+ware/arm,scmi-devid.example.dt.yaml: example-0: usb@ee0a0000:reg:0: [0, 399=
+3632768, 0, 256] is too long
+> 	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg=
+.yaml
+>=20
+> doc reference errors (make refcheckdocs):
+>=20
+> See https://urldefense.com/v3/__https://patchwork.ozlabs.org/patch/159572=
+0__;!!GF_29dbcQIUBPA!m_dudHGSVg6mys2GtScvkfHNbQ1mv2kCGeU2GEdcV_C0cqHoWuknIk=
+JPdLTaKsRHUfCS$ [patchwork[.]ozlabs[.]org]
+>=20
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>=20
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>=20
+> pip3 install dtschema --upgrade
+>=20
+> Please check and re-submit.
+>=20
 
-Note the TEXT_OFFSET is only an issue with Amlogic vendor bootloader,
-it has never been an issue with mainline U-Boot.
+Hi Rob,
 
-Neil
+Thank you. I will recheck on my side.
 
-> 
-> I've tried to revert it, but that's been a pain:
-> 
-> https://github.com/afaerber/linux/commit/0d2c647781bc89ee95bfa7b80d71237c7ebea230
-> 
->> And wouldn't you think it's overengineering to
->> write a DRM driver for a 7 segment display with 4 digits?
->> Framebuffer seems to be deprecated based on my experience with
->> pygame / SDL2.
-> 
-> Is there any other API that would allow userspace to write to the buffer
-> and bitblt parts to the SPI device?
-> 
-> Thinking of some optimizations I implemented in my driver to avoid
-> unnecessary SPI transfers:
-> 
-> https://github.com/afaerber/linux/commit/46c40209db163a81474c6894ebbd90b5e238ce60
-> 
-> Regards,
-> Andreas
-> 
-
+Best regards,
+Oleksii.=
