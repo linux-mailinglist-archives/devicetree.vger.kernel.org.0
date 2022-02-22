@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00C374BFBA1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:02:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B876B4BFBB6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:02:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233170AbiBVPCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 10:02:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49628 "EHLO
+        id S233079AbiBVPBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 10:01:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233110AbiBVPBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:01:15 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9592F10F203
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:00:11 -0800 (PST)
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        with ESMTP id S233087AbiBVPAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:00:55 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6040610DA7F
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:00:06 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 091194081B
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 15:00:07 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 217943FCA5
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 15:00:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645542007;
-        bh=YBEC74wb9GPpBj/B6mQOA+S5GClKlTxflH8/ImjOGfA=;
+        s=20210705; t=1645542005;
+        bh=LfKEooVWXSt0X9amI75MXA0ImuzcwyjqGr8txR6hCCo=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=OkAcyGHSlMPznrF7HJyFj7mmi6ZirlLLonyYv23IyfhItglB9WOWcHL4AAHDtdHPO
-         wIIQxGrG++EGzh/rBoBMqF3JlUYNJOGmauFRO24CFm1/YEqOBYHRT3nRsUKDrjbHTs
-         hd8hb9IEvA7OEsCe8qLX4h00V+nNUccZ6LTcSO8PAfsoDoZZN2w2mYof65UqJCcg12
-         zgpPea7J52kW+NtTw/fLqV9IcM5Zvrb32pr+DDciy9vLh0Io8Zkr4yZrW7tk/nkV7y
-         GnYdsWeM8wdPstXenXWizXqCWVWPoP/9lpspBb3KBXcK0QfdEzaHxYuMYBMLS7uRVq
-         1jfugrqsrKoOw==
-Received: by mail-ed1-f71.google.com with SMTP id l3-20020a50cbc3000000b0041083c11173so12112996edi.4
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:00:07 -0800 (PST)
+        b=vc3RucsustSnI9z6fj1AZ3faXkw/uB81BLhjsfHz9uRvUq0axAi6FjprYifCaTms2
+         G/jZ5OzN3Fsjqjp3rsoU3oDbFNiRJX2kApHmhH+rnhTqdDTx5nOGGuQIQ6z5ypInDT
+         XQZhR0GMrPt225HGhVjquKJrxdjFIkraKhNTHqmrvpXeZ8puofX0OhzAWd4CK4s/vq
+         9GzlJ8XZX/v1ep8CVwanxcr1kJpqdvVbDSGMOKMMO8rOrzUgh3NRPONnqXvUrres2E
+         cQUpSxkQE6or1M4U3Lv7nrjl8vQ/IdP5JnUWZeNc5MxtirhxkAKnBLLSweT95TmM/D
+         k/vJQLd/Zafog==
+Received: by mail-ed1-f70.google.com with SMTP id g5-20020a056402090500b0040f28e1da47so12132425edz.8
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:00:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=YBEC74wb9GPpBj/B6mQOA+S5GClKlTxflH8/ImjOGfA=;
-        b=10wNq8ymwPLuAowp7xJGFlMdKB2lsh0/w6I2S47zeTRdYzxfZ60K/SypzlhBat863u
-         B4ScItX3xmHIC5q1eZyfek9ltiEAp6AqR4M+UInHEYxpyV3jPRcsZpNKIAgoih2614bi
-         Iyem1PUz+ulL/25LygxQgQ6H2YJx1Ol/hKCKOQ8qkJaTlHN2ikuhI/4+YZp9AvkIK6Id
-         /YtKKLBeg1Jq/RW6mdrBmYb0YuSLR58CuQPwEVVQEt0EOtF//7eyxHtXQScxCfGQVDfX
-         RXxoUbyaUOm56MXr8+2fvdocP8SwKMZkNmeuEAqb1WfQLRCAvm/Yf7IYbgsxVD2ylwDH
-         QE2w==
-X-Gm-Message-State: AOAM5303IFphnIFyNZmp7m70wJ0tGl8L/O0oSbJJwytpLgBeP/oOZthV
-        FtsJfZZLOWtAWqHlxj0eumpqzLu0o9uxHx61J7XtETNFMAuxfJ/1yqH5rUT4hDVpmHprIObiN+m
-        eUFf/As5kyWDuZcZmxJv9AQrht/J8Jd6Bwrq6wRY=
-X-Received: by 2002:a17:906:7746:b0:6ce:a12e:489f with SMTP id o6-20020a170906774600b006cea12e489fmr18914899ejn.551.1645542003129;
-        Tue, 22 Feb 2022 07:00:03 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwLi2RkpjMH1XnBpd7ijPxBtJkEM6ya606jWmcrmuPZusdxAuidRgjMaupSJDwmi2J8JqbfkQ==
-X-Received: by 2002:a17:906:7746:b0:6ce:a12e:489f with SMTP id o6-20020a170906774600b006cea12e489fmr18914869ejn.551.1645542002826;
-        Tue, 22 Feb 2022 07:00:02 -0800 (PST)
+        bh=LfKEooVWXSt0X9amI75MXA0ImuzcwyjqGr8txR6hCCo=;
+        b=erL1q37LcR0FNtmYV29cRzZpFSRWGcb2CkMyAV0HvS2c/hgykcYF8Q20EclwcyYuso
+         BmlEbXk5UUTHMeAfKSB6hULnLWdrVZd76aaPVUGfccTzXXMb/b9m4kT5d0JXlda99sGw
+         KfF04jDBNttS84LX9uH6+eTmqmYkHhy+EPniuWsPQCqGxv6xqP5IU/MafxTogjH1MNIq
+         mffyQfRtPCyvjzWocxPAoHhbi4R+AI0MNkwlddCOApYJlQ57WJ5ngo236EOz42pecgmy
+         GB2SMWYM+jYXsvV0TjpjiNJGGTD/iIvhokDpgLdoCQuiTYv52EpLgi8yXg2k3V1C0LBH
+         N3Dg==
+X-Gm-Message-State: AOAM531CtzBQNg+KqhxVEa9nyZ4dAAVXcCPNbVMjoYeh9bCp8xXig2Ib
+        Rjqp3puBUrG1qtooCCrN5+feXXO84Eng2q/Rvz1Q3944a/hoPf5akf9zY4n2Kl8ABLy7SYZe4+t
+        NSmGBc+PhGUTVfOantRyxqVk4HxS4xqJ4pyTnNWQ=
+X-Received: by 2002:a17:906:70c2:b0:6cf:e1cc:4d8c with SMTP id g2-20020a17090670c200b006cfe1cc4d8cmr20090148ejk.696.1645542004850;
+        Tue, 22 Feb 2022 07:00:04 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyR3qbd+Iftv6XGp15bvvgUICPOPWMYZg+AzIuOxdejdmzbh/iz1wm8C/0MI15ezn8MGt0S6w==
+X-Received: by 2002:a17:906:70c2:b0:6cf:e1cc:4d8c with SMTP id g2-20020a17090670c200b006cfe1cc4d8cmr20090120ejk.696.1645542004625;
+        Tue, 22 Feb 2022 07:00:04 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id m2sm2467960ejb.20.2022.02.22.07.00.01
+        by smtp.gmail.com with ESMTPSA id m2sm2467960ejb.20.2022.02.22.07.00.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 07:00:02 -0800 (PST)
+        Tue, 22 Feb 2022 07:00:04 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Alim Akhtar <alim.akhtar@samsung.com>,
         Avri Altman <avri.altman@wdc.com>,
@@ -76,9 +76,9 @@ To:     Alim Akhtar <alim.akhtar@samsung.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 14/15] arm64: dts: qcom: msm8996: correct UFS compatible
-Date:   Tue, 22 Feb 2022 15:58:53 +0100
-Message-Id: <20220222145854.358646-15-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 15/15] arm64: dts: qcom: sm8350: drop duplicated ref_clk in UFS
+Date:   Tue, 22 Feb 2022 15:58:54 +0100
+Message-Id: <20220222145854.358646-16-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220222145854.358646-1-krzysztof.kozlowski@canonical.com>
 References: <20220222145854.358646-1-krzysztof.kozlowski@canonical.com>
@@ -86,7 +86,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,28 +94,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm UFS bindings require to use specific (qcom,msm8996-ufshc)
-and generic (jedec,ufs-2.0) compatibles.
+ref_clk clock in UFS node is already there with a <0 0> frequency, which
+matches other DTSI files.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index fad1bbfa1c0a..f25c68511b64 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -1728,7 +1728,8 @@ pcie2: pcie@610000 {
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index a26bd3f13d4a..cb6442c9e761 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -1916,7 +1916,6 @@ ufs_mem_hc: ufshc@1d84000 {
+ 			iommus = <&apps_smmu 0xe0 0x0>;
  
- 		ufshc: ufshc@624000 {
--			compatible = "qcom,ufshc";
-+			compatible = "qcom,msm8996-ufshc", "qcom,ufshc",
-+				     "jedec,ufs-2.0";
- 			reg = <0x00624000 0x2500>;
- 			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
- 
+ 			clock-names =
+-				"ref_clk",
+ 				"core_clk",
+ 				"bus_aggr_clk",
+ 				"iface_clk",
+@@ -1926,7 +1925,6 @@ ufs_mem_hc: ufshc@1d84000 {
+ 				"rx_lane0_sync_clk",
+ 				"rx_lane1_sync_clk";
+ 			clocks =
+-				<&rpmhcc RPMH_CXO_CLK>,
+ 				<&gcc GCC_UFS_PHY_AXI_CLK>,
+ 				<&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+ 				<&gcc GCC_UFS_PHY_AHB_CLK>,
+@@ -1936,7 +1934,6 @@ ufs_mem_hc: ufshc@1d84000 {
+ 				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+ 				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+ 			freq-table =
+-				<75000000 300000000>,
+ 				<75000000 300000000>,
+ 				<0 0>,
+ 				<0 0>,
 -- 
 2.32.0
 
