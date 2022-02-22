@@ -2,163 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C00D24BF25C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 08:04:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 029A54BF27B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 08:13:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230336AbiBVHCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 02:02:46 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:46432 "EHLO
+        id S230372AbiBVHIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 02:08:44 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:57418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbiBVHCp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 02:02:45 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF9F5C341
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 23:02:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1645513340; x=1677049340;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=aaDHfTA8cEuXnBhot1k0WwBv9nEfGPEZMBOiYzq4+dA=;
-  b=VVSG1YKRYbd5wpyoiWsyS69n93iqOcoJbwZOPS1/ExeiGramDVstsWEK
-   xPuMLYFv+rsJfz1eLUcau9V3CWk13hnDezh9cu7wOiJ6Bod1CU0WZbNff
-   r4eD+4Ag9ciF3QVMrkJxwtJmfQ8GQr01KCeI2jexPguRENcy771tWLjpA
-   0AmXsk8UzMGb6tgVskmI5YdyoATTTdUeA3pU+ut/J+fO6DSxVCF/vYQMY
-   JcHcumVTun1s1MxAWW8ZeaSMXYIQOdc4PeJzXJeK3vXwYWJvkBbT56Izz
-   BnjcKHVN6kxwK8EAf5T1xm4iw7xWvuXmCpqZ8slFUpR/3RLkwrwEnnn+u
-   w==;
-X-IronPort-AV: E=Sophos;i="5.88,387,1635199200"; 
-   d="scan'208";a="22225405"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 22 Feb 2022 08:02:16 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 22 Feb 2022 08:02:16 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 22 Feb 2022 08:02:16 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1645513336; x=1677049336;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=aaDHfTA8cEuXnBhot1k0WwBv9nEfGPEZMBOiYzq4+dA=;
-  b=UKaQqKFQuH8ME19f9GFoUAY71tgF7UamW3eGODjmAyEHO5J61MxCbehP
-   O4zslF3sbPPfNNKxewVM6+qhgcYPCFGXDjh5LLDx4bgOw9XnZOKpVTFOT
-   /ocxrdYUipSGkkZq87QtpAc4bgW38xf4Qj3z0UDtdZN9CULqOje00tmTz
-   TBgMqZth80I7jiHWrYHtgZSheU0loyccJ8KnFCbucZy0IDzvPErDonZz6
-   l/0b4oNTbMr1DuGjVYIm2TDD/4ICMW2j04MHmxRbIIO6dbSDT1PBJ+geD
-   UltmXwuhAsyoxgdvIh8ydvOvlVlfKTnW7sbUhGCU+JIfdL7n3CPcFiA50
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.88,387,1635199200"; 
-   d="scan'208";a="22225395"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 22 Feb 2022 08:01:58 +0100
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 77B08280065;
-        Tue, 22 Feb 2022 08:01:58 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: (EXT) Re: [PATCH v2 0/5] Support for TQMa6ULx & TQMa6ULxL modules
-Date:   Tue, 22 Feb 2022 08:01:56 +0100
-Message-ID: <3168916.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220222023423.GX2249@dragon>
-References: <20220221160419.550640-1-alexander.stein@ew.tq-group.com> <20220222022833.GW2249@dragon> <20220222023423.GX2249@dragon>
+        with ESMTP id S230369AbiBVHIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 02:08:44 -0500
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B564B0EBC;
+        Mon, 21 Feb 2022 23:08:18 -0800 (PST)
+Received: from dggeme758-chm.china.huawei.com (unknown [172.30.72.55])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4K2qrz1GCDzZfbC;
+        Tue, 22 Feb 2022 15:03:47 +0800 (CST)
+Received: from [127.0.0.1] (10.67.102.125) by dggeme758-chm.china.huawei.com
+ (10.3.19.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.21; Tue, 22
+ Feb 2022 15:08:16 +0800
+Message-ID: <62148BE0.7060501@hisilicon.com>
+Date:   Tue, 22 Feb 2022 15:08:16 +0800
+From:   Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Roger Quadros <rogerq@ti.com>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     David Heidelberg <david@ixit.cz>, <xuwei5@hisilicon.com>
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add second HiSilicon
+ prefix
+References: <20220221082228.34407-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220221082228.34407-1-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.102.125]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ dggeme758-chm.china.huawei.com (10.3.19.104)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
+Hi Krzysztof,
 
-Am Dienstag, 22. Februar 2022, 03:34:23 CET schrieb Shawn Guo:
-> On Tue, Feb 22, 2022 at 10:28:39AM +0800, Shawn Guo wrote:
-> > On Mon, Feb 21, 2022 at 05:04:14PM +0100, Alexander Stein wrote:
-> > > Alexander Stein (4):
-> > >   ARM: dts: imx6ul: add TQ-Systems MBa6ULx device trees
-> > >   ARM: dts: imx6ul: add TQ-Systems MBa6ULxL device trees
-> > >   ARM: dts: imx6ull: add TQ-Systems MBa6ULLx device trees
-> > >   ARM: dts: imx6ull: add TQ-Systems MBa6ULLxL device trees
-> > > 
-> > > Matthias Schiffer (1):
-> > >   dt-bindings: arm: fsl: add TQ Systems boards based on i.MX6UL(L)
-> > 
-> > Applied all, thanks!
+On 2022/2/21 16:22, Krzysztof Kozlowski wrote:
+> There are few boards DTS using "hisi,rst-syscon" property -
+> undocumented "hisi" prefix.  The property will not be changed in DTS to
+> non-deprecated one, because of compatibility reasons.  Add deprecated
+> "hisi" prefix to silence DT schema warnings.
 > 
-> I replied too soon.
+> Cc: Wei Xu <xuwei5@hisilicon.com>
+> Cc: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+Thanks!
+Reviewed-by: Wei Xu <xuwei5@hisilicon.com>
+
+Best Regards,
+Wei
+
 > 
-> ../arch/arm/boot/dts/mba6ulx.dtsi:46.10-50.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:52.10-56.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:58.10-63.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:52.10-56.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:58.10-63.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:58.10-63.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name ERROR: Input tree has errors,
-> aborting (use -f to force output)
-> make[2]: *** [../scripts/Makefile.lib:351:
-> arch/arm/boot/dts/imx6ul-tqma6ul2-mba6ulx.dtb] Error 2 make[2]: *** Waiting
-> for unfinished jobs....
->   DTC     arch/arm/boot/dts/imx6ul-pico-dwarf.dtb
-> ../arch/arm/boot/dts/mba6ulx.dtsi:46.10-50.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:52.10-56.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:58.10-63.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:52.10-56.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:58.10-63.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:58.10-63.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name ERROR: Input tree has errors,
-> aborting (use -f to force output)
-> make[2]: *** [../scripts/Makefile.lib:351:
-> arch/arm/boot/dts/imx6ul-tqma6ul1-mba6ulx.dtb] Error 2
-> ../arch/arm/boot/dts/mba6ulx.dtsi:46.10-50.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:52.10-56.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:58.10-63.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:52.10-56.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:58.10-63.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name
-> ../arch/arm/boot/dts/mba6ulx.dtsi:58.10-63.5: ERROR (duplicate_node_names):
-> /gpio-keys/button: Duplicate node name ERROR: Input tree has errors,
-> aborting (use -f to force output)
-> make[2]: *** [../scripts/Makefile.lib:351:
-> arch/arm/boot/dts/imx6ul-tqma6ul2l-mba6ulx.dtb] Error 2 make[1]: ***
-> [/home/r65073/repos/korg/imx/Makefile:1370: dtbs] Error 2 make[1]: Leaving
-> directory '/home/r65073/repos/korg/imx/IMX6'
-> make: *** [Makefile:219: __sub-make] Error 2
-
-Ah, thanks for pointing this out. Sorry, this is the result from trying to 
-trigger a dtbs_check warning.
-Will send a fixed version.
-Sorry for the noise.
-
-Regards,
-Alexander
-
-
+> ---
+> 
+> See:
+> https://lore.kernel.org/all/61AF1E3B.5060706@hisilicon.com/
+> https://www.spinics.net/lists/arm-kernel/msg887577.html
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index ebe294516937..79a172eaaaee 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -505,6 +505,9 @@ patternProperties:
+>      description: Himax Technologies, Inc.
+>    "^hirschmann,.*":
+>      description: Hirschmann Automation and Control GmbH
+> +  "^hisi,.*":
+> +    description: HiSilicon Limited (deprecated, use hisilicon)
+> +    deprecated: true
+>    "^hisilicon,.*":
+>      description: HiSilicon Limited.
+>    "^hit,.*":
+> 
 
