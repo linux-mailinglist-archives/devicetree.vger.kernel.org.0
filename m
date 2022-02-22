@@ -2,54 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73F304BF57C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 11:10:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6863D4BF586
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 11:12:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbiBVKKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 05:10:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39058 "EHLO
+        id S230049AbiBVKNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 05:13:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230442AbiBVKJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 05:09:49 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93FE11C935;
-        Tue, 22 Feb 2022 02:09:23 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id DAA191F442C2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645524562;
-        bh=JxbXr9ACueoKHRqZRjfnrevBI7Jf+2vW88nX1Uz2Uiw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=RiFfI5jInD+h90OnlAlKkj5f+sczBcQFJNBi9knbaDNKGUg2IgKrCVVelakbbbCt8
-         XgqWi16ODlh84vZmd1BEyWnPlKEkBtvctlyI14Pp6M0M+IY0gQZqhR20Em5c8ITtPp
-         NSoDxEHm2gVh6N8X6XYVRwvkupWYTf5C6oJstHt7/c/RsI6nynCoH2pn1gE3CioSTS
-         IBLlT7Pm3/2VZcFdR8ZD00LaEIlB0j8Qn961vdiZgW0cjiWhG49eIZrvEPoKePdIF9
-         vFlzkYKkrtRMD6mZ1PyOCQqNEjAoLKAKUifrz4qQRzyBDQF/d95Dzjtn6LiKnSRS9x
-         lDfbuzkKxCRDg==
-Message-ID: <3d333da3-82cb-acdd-fba0-d555d94fbfa2@collabora.com>
-Date:   Tue, 22 Feb 2022 11:09:19 +0100
+        with ESMTP id S229526AbiBVKNJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 05:13:09 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A079E139CF8
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 02:12:44 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id l8so15185437pls.7
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 02:12:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=XJOc4s/JmrXgMJQfNvQ3zYpIHSf0zbHb+cTgCBKjP8I=;
+        b=YtKoFtPDq9w4pOD4tUF/xaR3cgs6ntps/TGd9w4bavkd2Z9rgvvmXJiLHFCSXE7SQr
+         57+itX+45l3RNsA6+gOR56Km9guMlYU+mF2/L1gANc3sb1nqwU4uw+KqcCebql1xZqna
+         jJ3XQtWc6gfqiKKZ1GwYWFEq25BAY7Zsp6tQZBycsv1doi/G0HmvnXu+lhJ7LS0uN+WQ
+         quZenR9rc5X8GHcdcUUFo0SBqyEV0ipED5XTc+2DXVbmfQ1XNDBIuGdLph4xU4VGNuYw
+         kp4J14p9at86TscDjxH4a6W+tVwY6WTE7HuNBgocof1NTwm8WuLsWLQrwGD5tqpv5PQE
+         NeEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=XJOc4s/JmrXgMJQfNvQ3zYpIHSf0zbHb+cTgCBKjP8I=;
+        b=gI1IK6gJ1uEKbz1eLnYypzYM8bJahIrpf9U7+tSGugi7KIuqWRfLFUi/TONzU6p2fB
+         ViHvvAAfrSlO28hR2L9h+B+nd0cZJIoLigTSXEYKm9slO9ongF3O3DWy+8mtFcdm2tGY
+         nTl/RhAsW8a47MEkuR7eBjDFccEEUHsgFo9JDEBP/vTfFCj7ZA3vhp+zMF/3r+FYVNYZ
+         1OUnVHXD1TMpa0wj/88DM81XnrUT/OzALiZ7T0TA/HTTPXB4gnS+xYP9IQA9cokQXWya
+         EDvE3H1i0vYeJtD2QeAL/lykgZWGCrjf7ua+bYkfYNEbUBA7+nT9PrRQo+T2+dqBi4gn
+         vsvw==
+X-Gm-Message-State: AOAM533vntp0I5cYT+umaOW3Ojs3IOfxEqgyEZ4IkTpHVnv3yIeJrcVX
+        UyJWY27n1NI+Lk0nKrlwtHkJWw==
+X-Google-Smtp-Source: ABdhPJy5BfU61CZQ975wpep6TOhShZvNAo+rQcyErW2vgrzEuMCagPqMLcjIdyjTEPqR2cs+BqAW5g==
+X-Received: by 2002:a17:902:7407:b0:14f:b5f4:6537 with SMTP id g7-20020a170902740700b0014fb5f46537mr8873407pll.32.1645524764110;
+        Tue, 22 Feb 2022 02:12:44 -0800 (PST)
+Received: from localhost ([223.184.83.228])
+        by smtp.gmail.com with ESMTPSA id h26sm20821773pgm.72.2022.02.22.02.12.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Feb 2022 02:12:43 -0800 (PST)
+Date:   Tue, 22 Feb 2022 15:42:42 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
+        rafael@kernel.org, daniel.lezcano@linaro.org, nm@ti.com,
+        sboyd@kernel.org, mka@chromium.org, dianders@chromium.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [RFC][PATCH 1/2] dt-bindings: power: add Energy Model bindings
+Message-ID: <20220222101242.chwcxan2nyhczqth@vireshk-i7>
+References: <20220221225131.15836-1-lukasz.luba@arm.com>
+ <20220221225131.15836-2-lukasz.luba@arm.com>
+ <20220222030337.ijnfrh367illmidr@vireshk-i7>
+ <147e48e5-e310-cd8f-ba8c-ff32e3094be3@arm.com>
+ <20220222094547.tgj4bciq6rez62nk@vireshk-i7>
+ <c83ae91b-6901-de2b-913e-b28af73c52fa@arm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH V2 2/6] spi: mediatek: add IPM single mode design support
-Content-Language: en-US
-To:     Leilk Liu <leilk.liu@mediatek.com>, Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20220221040717.3729-1-leilk.liu@mediatek.com>
- <20220221040717.3729-3-leilk.liu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220221040717.3729-3-leilk.liu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c83ae91b-6901-de2b-913e-b28af73c52fa@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,162 +78,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/02/22 05:07, Leilk Liu ha scritto:
-> this patch add the support of IPM single mode design.
+On 22-02-22, 10:03, Lukasz Luba wrote:
 > 
-> Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
-> ---
->   drivers/spi/spi-mt65xx.c | 103 +++++++++++++++++++++++++++++++++------
->   1 file changed, 87 insertions(+), 16 deletions(-)
 > 
-> diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
-> index bbfeb8046c17..5fa677a589a4 100644
-> --- a/drivers/spi/spi-mt65xx.c
-> +++ b/drivers/spi/spi-mt65xx.c
-> @@ -31,6 +31,7 @@
->   #define SPI_CFG2_REG                      0x0028
->   #define SPI_TX_SRC_REG_64                 0x002c
->   #define SPI_RX_DST_REG_64                 0x0030
-> +#define SPI_CFG3_IPM_REG                  0x0040
->   
->   #define SPI_CFG0_SCK_HIGH_OFFSET          0
->   #define SPI_CFG0_SCK_LOW_OFFSET           8
-> @@ -48,6 +49,7 @@
->   #define SPI_CFG1_CS_IDLE_MASK             0xff
->   #define SPI_CFG1_PACKET_LOOP_MASK         0xff00
->   #define SPI_CFG1_PACKET_LENGTH_MASK       0x3ff0000
-> +#define SPI_CFG1_IPM_PACKET_LENGTH_MASK   GENMASK(31, 16)
->   #define SPI_CFG2_SCK_HIGH_OFFSET          0
->   #define SPI_CFG2_SCK_LOW_OFFSET           16
->   
-> @@ -68,7 +70,13 @@
->   #define SPI_CMD_TX_ENDIAN            BIT(15)
->   #define SPI_CMD_FINISH_IE            BIT(16)
->   #define SPI_CMD_PAUSE_IE             BIT(17)
-> +#define SPI_CMD_IPM_NONIDLE_MODE     BIT(19)
-> +#define SPI_CMD_IPM_SPIM_LOOP        BIT(21)
-> +#define SPI_CMD_IPM_GET_TICKDLY_OFFSET    22
->   
-> +#define SPI_CMD_IPM_GET_TICKDLY_MASK	GENMASK(24, 22)
-> +#define SPI_CFG3_IPM_HALF_DUPLEX_DIR		BIT(2)
-> +#define SPI_CFG3_IPM_HALF_DUPLEX_EN		BIT(3)
->   #define MT8173_SPI_MAX_PAD_SEL 3
->   
->   #define MTK_SPI_PAUSE_INT_STATUS 0x2
-> @@ -78,6 +86,7 @@
->   
->   #define MTK_SPI_MAX_FIFO_SIZE 32U
->   #define MTK_SPI_PACKET_SIZE 1024
-> +#define MTK_SPI_IPM_PACKET_SIZE SZ_64K
->   #define MTK_SPI_32BITS_MASK  (0xffffffff)
->   
->   #define DMA_ADDR_EXT_BITS (36)
-> @@ -93,6 +102,9 @@ struct mtk_spi_compatible {
->   	bool dma_ext;
->   	/* some IC no need unprepare SPI clk */
->   	bool no_need_unprepare;
-> +	/* IPM design improve some single mode features */
-> +	bool ipm_design;
-> +
->   };
->   
->   struct mtk_spi {
-> @@ -116,6 +128,12 @@ static const struct mtk_spi_compatible mt2712_compat = {
->   	.must_tx = true,
->   };
->   
-> +static const struct mtk_spi_compatible ipm_compat_single = {
-> +	.enhance_timing = true,
-> +	.dma_ext = true,
-> +	.ipm_design = true,
-> +};
-> +
->   static const struct mtk_spi_compatible mt6765_compat = {
->   	.need_pad_sel = true,
->   	.must_tx = true,
-> @@ -157,6 +175,9 @@ static const struct mtk_chip_config mtk_default_chip_info = {
->   };
->   
->   static const struct of_device_id mtk_spi_of_match[] = {
-> +	{ .compatible = "mediatek,ipm-spi-single",
-> +		.data = (void *)&ipm_compat_single,
-> +	},
->   	{ .compatible = "mediatek,mt2701-spi",
->   		.data = (void *)&mtk_common_compat,
->   	},
-> @@ -275,12 +296,11 @@ static int mtk_spi_set_hw_cs_timing(struct spi_device *spi)
->   	return 0;
->   }
->   
-> -static int mtk_spi_prepare_message(struct spi_master *master,
-> -				   struct spi_message *msg)
-> +static int mtk_spi_hw_init(struct spi_master *master,
-> +			   struct spi_device *spi)
->   {
->   	u16 cpha, cpol;
->   	u32 reg_val;
-> -	struct spi_device *spi = msg->spi;
->   	struct mtk_chip_config *chip_config = spi->controller_data;
->   	struct mtk_spi *mdata = spi_master_get_devdata(master);
->   
-> @@ -288,6 +308,15 @@ static int mtk_spi_prepare_message(struct spi_master *master,
->   	cpol = spi->mode & SPI_CPOL ? 1 : 0;
->   
->   	reg_val = readl(mdata->base + SPI_CMD_REG);
-> +	if (mdata->dev_comp->ipm_design) {
-> +		/* SPI transfer without idle time until packet length done */
-> +		reg_val |= SPI_CMD_IPM_NONIDLE_MODE;
-> +		if (spi->mode & SPI_LOOP)
-> +			reg_val |= SPI_CMD_IPM_SPIM_LOOP;
-> +		else
-> +			reg_val &= ~SPI_CMD_IPM_SPIM_LOOP;
-> +	}
-> +
->   	if (cpha)
->   		reg_val |= SPI_CMD_CPHA;
->   	else
-> @@ -344,18 +373,33 @@ static int mtk_spi_prepare_message(struct spi_master *master,
->   		writel(mdata->pad_sel[spi->chip_select],
->   		       mdata->base + SPI_PAD_SEL_REG);
->   
-> -	/* tick delay */
-> -	reg_val = readl(mdata->base + SPI_CFG1_REG);
-> -	reg_val &= ~SPI_CFG1_GET_TICK_DLY_MASK;
-> -	reg_val |= ((chip_config->tick_delay & 0x7)
-> -		<< SPI_CFG1_GET_TICK_DLY_OFFSET);
-> -	writel(reg_val, mdata->base + SPI_CFG1_REG);
+> On 2/22/22 09:45, Viresh Kumar wrote:
+> > On 22-02-22, 08:06, Lukasz Luba wrote:
+> > > I'm not sure if that would be flexible enough to meet the requirement:
+> > > power for each OPP might be different in one board vs. other board.
+> > 
+> > Don't DT files overload values from board files all the time ? Why wouldn't the
+> > same apply for OPP table as well ?
+> 
+> In that SoC and family of the boards, there are no such examples.
 
-Hello Leilk,
+Here is one I think.
 
-with this change, you are excluding this code from MT2712: is that
-intentional?
-If it is, then this should reside in a different commit with a Fixes
-tag, also explaining the reason for not setting the tick delay on
-that SoC.
+arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dts
 
-Also, please don't remove the /* tick delay */ comment.
+> It used to be popular in arm32 boards, but I'm not sure nowadays.
 
-Regards,
-Angelo
+I think it is still common, not with OPPs though.
 
-> +	if (mdata->dev_comp->enhance_timing) {
-> +		if (mdata->dev_comp->ipm_design) {
-> +			reg_val = readl(mdata->base + SPI_CMD_REG);
-> +			reg_val &= ~SPI_CMD_IPM_GET_TICKDLY_MASK;
-> +			reg_val |= ((chip_config->tick_delay & 0x7)
-> +				   << SPI_CMD_IPM_GET_TICKDLY_OFFSET);
-> +			writel(reg_val, mdata->base + SPI_CMD_REG);
-> +		} else {
-> +			reg_val = readl(mdata->base + SPI_CFG1_REG);
-> +			reg_val &= ~SPI_CFG1_GET_TICK_DLY_MASK;
-> +			reg_val |= ((chip_config->tick_delay & 0x7)
-> +				<< SPI_CFG1_GET_TICK_DLY_OFFSET);
-> +			writel(reg_val, mdata->base + SPI_CFG1_REG);
-> +		}
-> +	}
->   
->   	/* set hw cs timing */
->   	mtk_spi_set_hw_cs_timing(spi);
->   	return 0;
->   }
+> > > AFAIK the OPP definition is more SoC specific.
+> > 
+> > This isn't about OPP definition as well, but just that if DT allows you to
+> > override or not. I think it will.
+> > 
+> 
+> Redefining the whole OPP table, when the freq, voltage, interconnect,
+> and other old entries don't change isn't too messy?
 
+I think you misunderstood what I said. The common part of the OPP table should
+stay in the central .dtsi file. The dts files though, should just add the power
+specific values to the existing OPP table.
+
+> As I said, I would prefer something lightweight, not redefining all
+> stuff from OPP in every board file.
+
+-- 
+viresh
