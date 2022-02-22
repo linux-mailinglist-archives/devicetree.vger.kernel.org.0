@@ -2,71 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA2334BEFD9
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 04:16:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCE484BF078
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 05:10:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233328AbiBVDEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 22:04:07 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:37450 "EHLO
+        id S241400AbiBVDWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 22:22:12 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:53114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233173AbiBVDEG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 22:04:06 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE0125E83
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 19:03:41 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id gf13-20020a17090ac7cd00b001bbfb9d760eso1000113pjb.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 19:03:41 -0800 (PST)
+        with ESMTP id S241559AbiBVDWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 22:22:03 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F72227144
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 19:21:27 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id j12so38239221ybh.8
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 19:21:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=q1rax7G4k5CCLSu09IqEgCbCj8ZVR2NTHSH1BgrxHe0=;
-        b=PsL08C81Kelj7c9r8L29y7wGb0vEXUN5Yj445KMSVmi2wK6HbjzM/Tc27bBhLH3Puv
-         aeEYS0SCq8aZgZC2Ii+ivfgo88TwtACOBCdKHiDRdhjKtDXwSS2bGfdZi9V/VCrv5QNF
-         w3Tgdx1lOdq3kATph5xRTiwzd1Pw8aCsKJ+RYZ4ofn4Epzr8hk8IMlCtti6Bcc9Z6TmX
-         ys4rVayLhwcPhJVrAaQzCo6LfcN+tzi2yS0J3SA7TQaUydbWo/IiYo6BuMLfvEBqOu2E
-         pKSxWZSYJmn4iJmEUfBtEKzthDOgr1zjD21wHFoipzCE6lngjoRztn0keTGsr21Pn1Gw
-         zYrg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MZmWgceQ6d0EJDvYHIwt2SeSJZCWvvIDtaWqqmY4OMA=;
+        b=DrPJ477mHkIvsVG73tpIaNLu6pLFpEIIqmAUrwV2BmcWkzPeUA+j1IusCbgfZ0t3nV
+         zroHaYD7xo6WtfwZMIE85TsMJ39VJhAZQt4cXKPZjcljp1PxYz8OLCkamgJl+wJ7kREv
+         SR4lEk4X+3DQyQX7tgFVZS1Pqp1kyT5uurxnc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=q1rax7G4k5CCLSu09IqEgCbCj8ZVR2NTHSH1BgrxHe0=;
-        b=lt6zkDl0unh+VY7WOGvxZ6ZjSsU2ifZl+KurTFv9vjFSSgEGvRAPP9YSCsuOY9OMkT
-         iYopi9w9by2pP58ypVGhOk12HzZkigZ9cSsOmB0YdXgeHD3OadbYKIEN2mA4//Xfwt7w
-         KCEgyw24kWdgJ56T4px5e7NH5rmzkh5GjfJXusQIrYpvR6JLCX1Aw3LYBwXc/ELGwPOt
-         NBUaKGrTomJTCqwoDMxS77nWD8Hd5imW3I6meNTietEvi6KKbB+vv4vAhaTFrRJy4SzL
-         nXd13Gr8mXf/bSc3HQDLWEtoEUoRPb80iGrhySJhe1NbHPCfKl4e1/pqBlCQn+GweP/2
-         6zUQ==
-X-Gm-Message-State: AOAM531fC+02Fy43aHKLtC/70e0sSO1F5ouNRxzGXtVqhlKsfBwV/+2z
-        yLMHI+NYHUHwHBNmLMxQO0MoQw==
-X-Google-Smtp-Source: ABdhPJzAdoixanI42+eSMtqelZAuLWBoMV4auYmoFJWOKzOZ+LBVbKYHRC4IjUCViPcUfLAG7Mjdeg==
-X-Received: by 2002:a17:90a:67cd:b0:1bc:4437:df27 with SMTP id g13-20020a17090a67cd00b001bc4437df27mr1940741pjm.112.1645499021302;
-        Mon, 21 Feb 2022 19:03:41 -0800 (PST)
-Received: from localhost ([223.184.83.228])
-        by smtp.gmail.com with ESMTPSA id il4sm641203pjb.28.2022.02.21.19.03.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Feb 2022 19:03:40 -0800 (PST)
-Date:   Tue, 22 Feb 2022 08:33:37 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
-        rafael@kernel.org, daniel.lezcano@linaro.org, nm@ti.com,
-        sboyd@kernel.org, mka@chromium.org, dianders@chromium.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [RFC][PATCH 1/2] dt-bindings: power: add Energy Model bindings
-Message-ID: <20220222030337.ijnfrh367illmidr@vireshk-i7>
-References: <20220221225131.15836-1-lukasz.luba@arm.com>
- <20220221225131.15836-2-lukasz.luba@arm.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MZmWgceQ6d0EJDvYHIwt2SeSJZCWvvIDtaWqqmY4OMA=;
+        b=KrjL9P8gGzdxe1pTVFQC1b3ogtcKW/q/SaNqAhrmz2165S0TYY6x6iI15Uhj57/1Qm
+         oJ/Nnof4ixGTwEofAAiO3P+IDoq0sZD0efFKFYObdmVp/BusOo8utQ30+jmbb2oYs16r
+         PVUSYbAk0wamDe9el79LYj5xnVzBR7Z4TUuUylE4Hx/TFHRE8GIr6oQaTBjT2BAsGQMQ
+         AfnTfMJjRF3mBAxP9eZZCC5MIKKR+JFd+Py9IMhZWB8n+9Z0N0Y8ZSa+IL9ca6qkGo0D
+         MNOg2bdCamqXBK96fB21jiN/L3pcK+XMb11mrbphvtW5tNQrdJLm8DpnYdVaEgqq4ZVs
+         Vlbg==
+X-Gm-Message-State: AOAM532M+URdCiOQAGnsYCrU5tDJHs1JEF3zg7j27U3W8JaYgBRXU5Jz
+        z1S5tSUb9+e74VOklD1uGke5QREkxwTVsLmHmqACwA==
+X-Google-Smtp-Source: ABdhPJxt7WwycTtizv9sQEejATOIAE0jfqZbArOAZiarEyoXEA95Nu+HBOjjRAGBu2adA3cQSIpv+e7ZPkkikuTfZUg=
+X-Received: by 2002:a25:d314:0:b0:624:6c1a:6f2d with SMTP id
+ e20-20020a25d314000000b006246c1a6f2dmr11111568ybf.189.1645500087178; Mon, 21
+ Feb 2022 19:21:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220221225131.15836-2-lukasz.luba@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
+In-Reply-To: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 22 Feb 2022 11:21:16 +0800
+Message-ID: <CAGXv+5EHLi0TpZaZq3rbOZeUjiFA_0t3QwZtjSLPZEe_zFO6XA@mail.gmail.com>
+Subject: Re: [PATCH v2 00/23] Add driver nodes for MT8192 SoC
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "--to=Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Ryder Lee <ryder.lee@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,74 +67,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-02-22, 22:51, Lukasz Luba wrote:
-> Add DT bindings for the Energy Model information.
-> 
-> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
-> ---
->  .../bindings/power/energy-model.yaml          | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/energy-model.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/power/energy-model.yaml b/Documentation/devicetree/bindings/power/energy-model.yaml
-> new file mode 100644
-> index 000000000000..804a9b324925
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/energy-model.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/energy-model.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Energy Model Bindings
-> +
-> +maintainers:
-> +  - Lukasz Luba <lukasz.luba@arm.com>
-> +
-> +description: |+
-> +  Devices work at specific performance states (frequencies). The power which
-> +  is used at a given performance state is an important information. A framework
-> +  which maintains this information is Energy Model. This document defines
-> +  bindings for these Energy Model performance states applicable across wide
-> +  range of devices. For illustration purpose, this document uses GPU as a device.
-> +
-> +  This binding only supports frequency-power pairs.
-> +
-> +select: true
-> +
-> +properties:
-> +  operating-points:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    items:
-> +      items:
-> +        - description: Frequency in kHz
-> +        - description: Power in uW
-> +
-> +
-> +additionalProperties: true
-> +examples:
-> +    {
-> +       gpu_energy_model: energy-model {
-> +               compatible = "energy-model";
-> +               energy-model-entries = <
-> +                               200000 300000
-> +                               297000 500000
-> +                               400000 800000
-> +                               500000 1400000
-> +                               600000 2000000
-> +                               800000 2800000
-> +                               >;
-> +       };
-> +    };
-> +
-> +    &gpu {
-> +       energy-model = <&gpu_energy_model>;
-> +    };
+On Fri, Feb 18, 2022 at 5:16 PM Allen-KH Cheng
+<allen-kh.cheng@mediatek.com> wrote:
+>
+> This series are based on tag: next-20220216, linux-next/master
+> and apply the below patchs
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220207094024.22674-1-allen-kh.cheng@mediatek.com/
 
-What about getting this from the OPP table instead? There is no point adding
-similar tables for a device.
+It would make things easier if you incorporated the above patch into this
+series when you send v3.
 
--- 
-viresh
+ChenYu
+
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220217135620.10559-1-allen-kh.cheng@mediatek.com/
+>
+> There some patches are missed in PATCH v1.
+> I resend series again and also add display related nodes in PATCH v2.
+>
+> changes since v1:
+> - add usb-phy node for xhci node
+> - move infracfg_rst patch in front of PCIe patch
+> - add display nodes, i2c aliases and pwm node.
+>
+> Allen-KH Cheng (23):
+>   arm64: dts: mt8192: Add power domains controller
+>   arm64: dts: mt8192: Add pwrap node
+>   arm64: dts: mt8192: Add spmi node
+>   arm64: dts: mt8192: Add gce node
+>   arm64: dts: mt8192: Add SCP node
+>   arm64: dts: mt8192: Add usb-phy node
+>   arm64: dts: mt8192: Add xhci node
+>   arm64: dts: mt8192: Add audio-related nodes
+>   arm64: dts: mt8192: Add infracfg_rst node
+>   arm64: dts: mt8192: Add PCIe node
+>   arm64: dts: mt8192: Correct nor_flash status of mt8192
+>   arm64: dts: mt8192: Add efuse node
+>   arm64: dts: mt8192: Add mmc device nodes
+>   arm64: dts: mt8192: Add mipi_tx node
+>   arm64: dts: mt8192: Add m4u and smi nodes
+>   arm64: dts: mt8192: Add H264 venc device node
+>   arm64: dts: mt8192: Add vcodec lat and core nodes
+>   arm64: dts: mt8192: Add dpi node
+>   arm64: dts: mt8192: Add i2c aliases
+>   arm64: dts: mt8192: Add display nodes
+>   arm64: dts: mt8192: Add dsi node
+>   arm64: dts: mt8192: Add gce info for display nodes
+>   arm64: dts: mt8192: Add pwm node
+>
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 1000 +++++++++++++++++++++-
+>  1 file changed, 989 insertions(+), 11 deletions(-)
+>
+> --
+> 2.18.0
+>
