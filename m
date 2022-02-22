@@ -2,232 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2128A4BFF1C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:45:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 428294BFF39
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:50:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234285AbiBVQpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 11:45:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59564 "EHLO
+        id S232466AbiBVQuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 11:50:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234276AbiBVQpk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:45:40 -0500
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC57169380
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 08:45:10 -0800 (PST)
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220222164504epoutp037beee2d839585938b5995e90b6a6b5cd~WKXbsR3L82265622656epoutp039
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 16:45:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220222164504epoutp037beee2d839585938b5995e90b6a6b5cd~WKXbsR3L82265622656epoutp039
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1645548304;
-        bh=89A9xGsLZgggriJk0T8FetbTt2DC2jUjiKY7gpqWiH8=;
-        h=From:To:In-Reply-To:Subject:Date:References:From;
-        b=JzPCcG2L2l4Get1gftRaX02K9aewZfT4g8OkoFxSt27VqVeWRNRJNMPwBjouVatXP
-         WirM16tM4z4xmfDW4O8q+MvlIqDr43+kuiUv6ZRLi0+03IrmeozZVhyFuyHi0AiWE+
-         zGqbVivFPt/Qtoou0rPEGv/EVIB24fHksJCd5XGs=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20220222164503epcas5p292e11954f8f24846d2222f448e2a9bb2~WKXa2fdwu2938929389epcas5p2V;
-        Tue, 22 Feb 2022 16:45:03 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.181]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4K34lZ6RM3z4x9Pp; Tue, 22 Feb
-        2022 16:44:58 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D5.0A.05590.A0315126; Wed, 23 Feb 2022 01:44:58 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-        20220222164457epcas5p1168ed8f6910091e9ce6f707b6e577853~WKXVciNC_2018820188epcas5p1h;
-        Tue, 22 Feb 2022 16:44:57 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220222164457epsmtrp2a5a861bc93f96f3e1b508184d27678cd~WKXVaSC0y1935419354epsmtrp2M;
-        Tue, 22 Feb 2022 16:44:57 +0000 (GMT)
-X-AuditID: b6c32a4b-739ff700000015d6-22-6215130a9c79
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        68.34.29871.90315126; Wed, 23 Feb 2022 01:44:57 +0900 (KST)
-Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220222164454epsmtip10d83608980c13a56c198afb6a07b76e9~WKXSaPM1t1245612456epsmtip1K;
-        Tue, 22 Feb 2022 16:44:54 +0000 (GMT)
-From:   "Alim Akhtar" <alim.akhtar@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
-        "'Avri Altman'" <avri.altman@wdc.com>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Andy Gross'" <agross@kernel.org>,
-        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>,
-        "'Wei Xu'" <xuwei5@hisilicon.com>, "'Nishanth Menon'" <nm@ti.com>,
-        "'Vignesh Raghavendra'" <vigneshr@ti.com>,
-        "'Tero Kristo'" <kristo@kernel.org>,
-        "'James E.J. Bottomley'" <jejb@linux.ibm.com>,
-        "'Martin K. Petersen'" <martin.petersen@oracle.com>,
-        "'Jan Kotas'" <jank@cadence.com>, "'Li Wei'" <liwei213@huawei.com>,
-        "'Stanley Chu'" <stanley.chu@mediatek.com>,
-        "'Yaniv Gardi'" <ygardi@codeaurora.org>,
-        <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>
-In-Reply-To: <20220222145854.358646-10-krzysztof.kozlowski@canonical.com>
-Subject: RE: [PATCH v2 09/15] scsi: ufs: deprecate 'freq-table-hz' property
-Date:   Tue, 22 Feb 2022 22:14:53 +0530
-Message-ID: <0c8b01d8280b$868abc20$93a03460$@samsung.com>
+        with ESMTP id S233950AbiBVQuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:50:24 -0500
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18D816AA45
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 08:49:55 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id i6so12622380pfc.9
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 08:49:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=7Ljxg0fnUTAqNuMf+CJgicX0/L6Xlb1XybLuSqJDmXk=;
+        b=uE6SBmObEnrdiczQzKgPlGMv8vibgsSwlxw/OWFFl5tJSF9LjJF/rjG8oPclIfaq1L
+         UrUHsspinjXruRROM/iCiRWSxVGr3+ZWbUfPXuqR5xPy9dpJrysOCoqnjFVzn3CbXW0K
+         FCKyXKEg8rhNgXlRkNrIQsE6/NN+LgqGbt5mGlHsuiZsT3NofE0iGEeeZfq9/54ENmnb
+         OxKoGs2xB0FOOyjbM74jnMvao5bsUuTeDX+pWsT+q+FqCCi/z1haGKUhSozFloM/kgDo
+         3pRMq1envIYSHJ2wyzatIlSQnPBm9eAoqpLDc05axNwkjc6xKIXSWut2kjBzGHYi/YFR
+         VfFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7Ljxg0fnUTAqNuMf+CJgicX0/L6Xlb1XybLuSqJDmXk=;
+        b=UlrtgWgPJLSTVHpCDaO4rIm49LMj1R27zH7C4Gi3Ctg9CRG8Xood6Tn11U8v5VOPZb
+         Jj2Vx9ZGAw0PnX3b6MDK/Dtg8E7rw0MqxDc5f8pk+BnZbgXDaJm2J7e45B1/u5daasL0
+         fviZRklEvRYAU28C0WC+07wllkaivyZGzvv6HghuzdOd9t3bpqXMnemiO+ww5KY/sca/
+         pThq2mBdmzo1knZjYFqRnnRJ0TWzcCtCv/K1Pd0JxqvfShA6yJKriM9GscGZdqEN/Lw6
+         62if7rgQaQ1ujbTXKV0L6lgczhzhqME5RmB3y6ljTJcdC6LKRiLKPobzHYuO89CX36Wp
+         X3Aw==
+X-Gm-Message-State: AOAM533O/IO3x8jiZyB5IElZf1v5ZRiXmSLWrnpzndIwQVgJvbaV8bB/
+        MklQKeUb1MvkZvKlqmeunRczDg==
+X-Google-Smtp-Source: ABdhPJzq9169xLlO34W8P9IgbAuUtBoSjkMowSoJhPUCS8RWnTU5gOJmAR7QpjMOeL9mOr3qha8IXw==
+X-Received: by 2002:a62:ee12:0:b0:4e1:2ec1:cba2 with SMTP id e18-20020a62ee12000000b004e12ec1cba2mr25805336pfi.71.1645548595246;
+        Tue, 22 Feb 2022 08:49:55 -0800 (PST)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id z11-20020a17090a1fcb00b001bc58804974sm76007pjz.27.2022.02.22.08.49.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Feb 2022 08:49:54 -0800 (PST)
+Date:   Tue, 22 Feb 2022 09:49:51 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Tanmay Shah <tanmay.shah@xilinx.com>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        michal.simek@xilinx.com, laurent.pinchart@ideasonboard.com,
+        ben.levinsky@xilinx.com, bill.mills@linaro.org,
+        sergei.korneichuk@xilinx.com, arun.balaji.kannan@xilinx.com,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 6/6] drivers: remoteproc: Add Xilinx r5 remoteproc
+ driver
+Message-ID: <20220222164951.GB923552@p14s>
+References: <20220210112824.2084724-1-tanmay.shah@xilinx.com>
+ <20220210112824.2084724-7-tanmay.shah@xilinx.com>
+ <20220216182631.GA347485@p14s>
+ <9d20b1ae-e158-a0a7-7415-cd589ec44900@xilinx.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQLp66nIdBfWENW71H4Q0TOw7Swh8QIFI3oQAXS0vvaqYGzvQA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Te0xTZxT3u73cW5jVu6LyiVGbZmRDR2kHlAvC5tC4u7AZ1IRsmgkXuCld
-        6cO2SGUmsMBQeVncI1LZeDg04zGhc9IVurJaxnSgYVBkhTkjMEUeoiROBshaLm789zvn/H7f
-        75zz5XA5fCMeyJWr9IxWRWcIMT/0ytXg4BA///Up4vxCMXljeA4lx2ZdGPmrfQolK503fMii
-        TjlZM3AFIS/OnMPJ5smnCGke7vchy+zdONlrrcDI3rweQJ69+SNCFt2yYORChROQFzufIeTE
-        026E/MTmxMna738H5GL3NE6OdHzGIRe6S/CdG6iGU+MIZcotwaje0hKEGv6yGafynZM+lLnu
-        FEYN9bdhlLGmHVDffZ1D5V+zo9SjUTdKdQ60INSMeQt1or0ISVhzUBGTztBpjFbAqFLVaXKV
-        LFYYfyBpV1KEVCwJkUSRkUKBilYyscLd7ySE7JFneIYXCo7SGZmeVAKt0wlDX4/RqjP1jCBd
-        rdPHChlNWoYmXCPS0UpdpkomUjH6aIlY/FqEh5isSHf+cBvRuDcZnH1NaC64EFAIfLmQCIe1
-        g3fRQuDH5ROtABqvNvuwwWMAbw06loMnABbPjoPnkgVTJe7FfMIG4Ll2f5Y0BqDDMcvxFjAi
-        BFrOF2DewjriHwx2PSxfKvgSb8OOBSPixf5EPLxvtyzlUSIITn88j3kxj4iCraddOItfhNfK
-        R1Av5hBbYctkBYftQgBnRy942uN6DOLgT6dFLCUAjnU4ca8vJFp9Yem4FWX5u2GbY86Hxf7w
-        QedlnMWBcGbKhnnfgYQCFlvD2PRxWPvVz8vSN2B7XwXqpXCIYHjJGsparYElcyMIq+TBkwV8
-        lh0E86Zcy8pNsKyoaNmUgkMDk8v7dANYMeHGjUBgWjGkacWQphXTmP53rgJoHdjIaHRKGaOL
-        0ISpmKz//jtVrTSDpdPYFm8Bd+9MixwA4QIHgFyOcB1vCPdP4fPS6GPZjFadpM3MYHQOEOHZ
-        fBkncH2q2nNbKn2SJDxKHC6VSsOjwqQSYQDvuqyJ5hMyWs8oGEbDaJ/rEK5vYC5SL1e7eYu3
-        7wXlBJ7YnySzBm+J1q79S6kx3hTZuhrRBpUB7Yw5Yt78VvbWkccNC/xDkebE0Ufj5fzsZ5Yz
-        f88ellvW/jKo3NuEfxH4pJbnevlOI76j/ZLkzfPv9dCje444s+XJn4pfOsi1lv75wYbtr07N
-        9xjvne1RBBxtbqqOEWVFZp/JuT/3rV3Qv7pqRliMRifbji2GGHrrpvw29iobWz/67RXtqr37
-        cM4+e0JBwR+CLp51s3tifFBBhyaussbZXK5D0sa4dw1o/Q6DG6+Ch/fDjpq2vqxk7uX3P69+
-        2EI9oO1lRxNPFu488E369sqoxQ/r8evzhpQ83uqx+uMvaKqFqC6dlmzjaHX0v/IVeaqjBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrDIsWRmVeSWpSXmKPExsWy7bCSnC6nsGiSwbwOLYtzj3+zWLz8eZXN
-        4vT+dywW84+cY7XoPp5psejGNiaL5Z9ns1tsfPuDyWLT42usFhP3n2W3uLxrDpvF5eaLjBYz
-        zu9jsui+voPN4u+cI4wWy4//Y7J48+Msk0Xr3iPsFku33mS0+H/2A7vFk6NTmC3+nu1ldxDz
-        WNP5msljVkMvm8flvl4mj8dzN7J7tBx5y+qxaVUnm8eda3vYPCYsOsDosXlJvUfLyf0sHh+f
-        3mLxOH5jO5PH501yHu0HupkC+KK4bFJSczLLUov07RK4Mo7svMdUcEu64siVDSwNjMvEuxg5
-        OSQETCT+zprP3sXIxSEksJtR4sTn98wQCWmJ6xsnsEPYwhIr/z2HKnrOKLFixW5WkASbgK7E
-        jsVtbCAJEYEedokXN76yQFRdY5RYNms1G0gVp4CnxNG/E5hAbGEBb4kX+3eArWARUJX40PgH
-        rIZXwFJid/9VdghbUOLkzCdAgzg4mAX0JNo2MoKEmQXkJba/nQN1nYLEz6fLWEFKRAScJA72
-        60GUiEu8PHqEfQKj0Cwkg2YhDJqFZNAsJB0LGFlWMUqmFhTnpucWGxYY5qWW6xUn5haX5qXr
-        JefnbmIEJwgtzR2M21d90DvEyMTBeIhRgoNZSYT3DrtwkhBvSmJlVWpRfnxRaU5q8SFGaQ4W
-        JXHeC10n44UE0hNLUrNTUwtSi2CyTBycUg1MQpIiySX2kyN+2DYsYBE87fhvzQKPy18b74cp
-        q9u90S7QYOD7srOpcf7psoMiO47Ku6Wufq96Z9lHuSVOmz9etpqQLhOyampu0kaHRVOF9dwl
-        WZgYpP5tkZr8y3rhUs7rmy69vDnL7M6n1U9uMbt7N8Xs+qKWLcu3W0R3UraujLCixTTHhX9V
-        j/O7iwuZ+0R3TrPnvTjPvMme9eOux5XKERd+SP36s93qSda0/bVWZfKlH5k2cOyyirwlxZF9
-        OjJo/WKHp29eFfjfCeJ6Jzc5aeXy5Nkr3qVOX1211CzAsOaF+2ShFwVpbj5XHeLmq8+WnSzf
-        JPUm++/fbyVnDgX6TJbf9f5F12b2vOMVa9MnK7EUZyQaajEXFScCACBkeAF/AwAA
-X-CMS-MailID: 20220222164457epcas5p1168ed8f6910091e9ce6f707b6e577853
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220222150007epcas5p22f05e6c8e80a5ad18a9528cd0ead865d
-References: <20220222145854.358646-1-krzysztof.kozlowski@canonical.com>
-        <CGME20220222150007epcas5p22f05e6c8e80a5ad18a9528cd0ead865d@epcas5p2.samsung.com>
-        <20220222145854.358646-10-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9d20b1ae-e158-a0a7-7415-cd589ec44900@xilinx.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
+[...]
 
->-----Original Message-----
->From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@canonical.com]
->Sent: Tuesday, February 22, 2022 8:29 PM
->To: Alim Akhtar <alim.akhtar@samsung.com>; Avri Altman
-><avri.altman@wdc.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof
->Kozlowski <krzysztof.kozlowski@canonical.com>; Andy Gross
-><agross@kernel.org>; Bjorn Andersson <bjorn.andersson@linaro.org>; Wei
->Xu <xuwei5@hisilicon.com>; Nishanth Menon <nm@ti.com>; Vignesh
->Raghavendra <vigneshr@ti.com>; Tero Kristo <kristo@kernel.org>; James E.J.
->Bottomley <jejb@linux.ibm.com>; Martin K. Petersen
-><martin.petersen@oracle.com>; Jan Kotas <jank@cadence.com>; Li Wei
-><liwei213@huawei.com>; Stanley Chu <stanley.chu@mediatek.com>; Yaniv
->Gardi <ygardi@codeaurora.org>; linux-scsi@vger.kernel.org;
->devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
->msm@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-samsung-
->soc@vger.kernel.org; linux-mediatek@lists.infradead.org
->Subject: [PATCH v2 09/15] scsi: ufs: deprecate 'freq-table-hz' property
->
->The 'freq-table-hz' is not correct in DT schema, because '-hz' suffix
-defines
->uint32 type, not an array.  Therefore deprecate 'freq-table-hz'
->and use 'freq-table' instead.
->
-May be once all the dts change migrate to using 'freq-table', just remove
-'freq-table-hz' from driver.
+> > > + * zynqmp_r5_cluster_init()
+> > > + * Create and initialize zynqmp_r5_cluster type object
+> > > + *
+> > > + * @cluster: pointer to zynqmp_r5_cluster type object
+> > > + *
+> > > + * Return: 0 for success and error code for failure.
+> > > + */
+> > > +static int zynqmp_r5_cluster_init(struct zynqmp_r5_cluster *cluster)
+> > > +{
+> > > +	struct device *dev = cluster->dev;
+> > > +	struct device_node *dev_node = dev_of_node(dev);
+> > > +	struct device_node *child;
+> > > +	struct platform_device *child_pdev;
+> > > +	int core_count = 0, ret, i;
+> > > +	enum zynqmp_r5_cluster_mode cluster_mode = LOCKSTEP_MODE;
+> > > +	struct zynqmp_r5_core **r5_cores;
+> > > +
+> > > +	ret = of_property_read_u32(dev_node, "xlnx,cluster-mode", &cluster_mode);
+> > > +
+> > > +	/*
+> > > +	 * on success returns 0, if not defined then returns -EINVAL,
+> > > +	 * In that case, default is LOCKSTEP mode
+> > > +	 */
+> > > +	if (ret != -EINVAL && ret != 0) {
+> > > +		dev_err(dev, "Invalid xlnx,cluster-mode property\n");
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	/*
+> > > +	 * For now driver only supports split mode and lockstep mode.
+> > > +	 * fail driver probe if either of that is not set in dts
+> > > +	 */
+> > > +	if (cluster_mode == SINGLE_CPU_MODE) {
+> > > +		dev_err(dev, "driver does not support single cpu mode\n");
+> > > +		return -EINVAL;
+> > > +	} else if ((cluster_mode != SPLIT_MODE &&
+> > > +		   cluster_mode != LOCKSTEP_MODE)) {
+> > > +		dev_err(dev, "Invalid cluster mode\n");
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	/*
+> > > +	 * Number of cores is decided by number of child nodes of
+> > > +	 * r5f subsystem node in dts. If Split mode is used in dts
+> > > +	 * 2 child nodes are expected.
+> > > +	 * In lockstep mode if two child nodes are available,
+> > > +	 * only use first child node and consider it as core0
+> > > +	 * and ignore core1 dt node.
+> > > +	 */
+> > > +	core_count = of_get_available_child_count(dev_node);
+> > > +	if (core_count <= 0) {
+> > > +		dev_err(dev, "Invalid number of r5 cores %d", core_count);
+> > > +		return -EINVAL;
+> > > +	} else if (cluster_mode == SPLIT_MODE && core_count != 2) {
+> > > +		dev_err(dev, "Invalid number of r5 cores for split mode\n");
+> > > +		return -EINVAL;
+> > > +	} else if (cluster_mode == LOCKSTEP_MODE && core_count == 2) {
+> > > +		dev_warn(dev, "Only r5 core0 will be used\n");
+> > > +		core_count = 1;
+> > > +	}
+> > > +
+> > > +	r5_cores = devm_kcalloc(dev, core_count,
+> > > +				sizeof(struct zynqmp_r5_core *), GFP_KERNEL);
+> > > +	if (!r5_cores)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	i = 0;
+> > > +	for_each_available_child_of_node(dev_node, child) {
+> > > +		child_pdev = of_find_device_by_node(child);
+> > > +		if (!child_pdev) {
+> > > +			of_node_put(child);
+> > > +			return -ENODEV;
+> > > +		}
+> > > +
+> > > +		/* create and add remoteproc instance of type struct rproc */
+> > > +		r5_cores[i] = zynqmp_r5_add_rproc_core(&child_pdev->dev);
+> > Function zynqmp_r5_add_rproc_core() returns an error code on error that is never
+> > checked.
+> > 
+> > > +		r5_cores[i]->dev = &child_pdev->dev;
+> > This will result in a kernel stack trace if zynqmp_r5_add_rproc_core() fails.
+> Sure I will fix it.
+> > > +		if (!r5_cores[i]->dev) {
+> > > +			dev_err(dev, "can't get device for r5 core %d\n", i);
+> > > +			of_node_put(child);
+> > > +			return -ENODEV;
+> > > +		}
+> > And here the validity of child_pdev->dev is checked _after_ it has been passed
+> > to zynqmp_r5_add_rproc_core().  This check should not be needed if proper
+> > error handling is done above.
+> I agree.
+> > > +
+> > > +		r5_cores[i]->np = dev_of_node(r5_cores[i]->dev);
+> > > +		if (!r5_cores[i]->np) {
+> > > +			dev_err(dev, "can't get device node for r5 core %d\n", i);
+> > > +			of_node_put(child);
+> > As mention in the documentation for of_find_device_by_node(), the function takes
+> > a reference to child_pdev->dev that needs to be released with put_device().  In
+> > fact I don't see the reference dropped anywhere, even when the driver is
+> > released.
+> 
+> I agree. I want to use r5_cores[i]->dev throughout driver so,
+> 
+> Is it fine if I use put_device() during driver release i.e. function
+> zynqmp_r5_cluster_exit( ) ?
+> 
 
->Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->---
-> drivers/scsi/ufs/ufshcd-pltfrm.c | 21 +++++++++++++--------
-> 1 file changed, 13 insertions(+), 8 deletions(-)
->
->diff --git a/drivers/scsi/ufs/ufshcd-pltfrm.c
-b/drivers/scsi/ufs/ufshcd-pltfrm.c
->index 87975d1a21c8..2b192477d158 100644
->--- a/drivers/scsi/ufs/ufshcd-pltfrm.c
->+++ b/drivers/scsi/ufs/ufshcd-pltfrm.c
->@@ -47,8 +47,9 @@ static int ufshcd_parse_clock_info(struct ufs_hba *hba)
-> 	if (cnt <= 0)
-> 		goto out;
->
->-	if (!of_get_property(np, "freq-table-hz", &len)) {
->-		dev_info(dev, "freq-table-hz property not specified\n");
->+	if (!of_get_property(np, "freq-table", &len) ||
->+	    !of_get_property(np, "freq-table-hz", &len)) {
->+		dev_info(dev, "freq-table property not specified\n");
-> 		goto out;
-> 	}
->
->@@ -57,7 +58,7 @@ static int ufshcd_parse_clock_info(struct ufs_hba *hba)
->
-> 	sz = len / sizeof(*clkfreq);
-> 	if (sz != 2 * cnt) {
->-		dev_err(dev, "%s len mismatch\n", "freq-table-hz");
->+		dev_err(dev, "%s len mismatch\n", "freq-table");
-> 		ret = -EINVAL;
-> 		goto out;
-> 	}
->@@ -69,12 +70,16 @@ static int ufshcd_parse_clock_info(struct ufs_hba
->*hba)
-> 		goto out;
-> 	}
->
->-	ret = of_property_read_u32_array(np, "freq-table-hz",
->+	ret = of_property_read_u32_array(np, "freq-table",
-> 			clkfreq, sz);
-> 	if (ret && (ret != -EINVAL)) {
->-		dev_err(dev, "%s: error reading array %d\n",
->-				"freq-table-hz", ret);
->-		return ret;
->+		ret = of_property_read_u32_array(np, "freq-table-hz",
->+						 clkfreq, sz);
->+		if (ret && (ret != -EINVAL)) {
->+			dev_err(dev, "%s: error reading array %d\n",
->+				"freq-table", ret);
->+			return ret;
->+		}
-> 	}
->
-> 	for (i = 0; i < sz; i += 2) {
->@@ -99,7 +104,7 @@ static int ufshcd_parse_clock_info(struct ufs_hba *hba)
->
-> 		if (!strcmp(name, "ref_clk"))
-> 			clki->keep_link_active = true;
->-		dev_dbg(dev, "%s: min %u max %u name %s\n", "freq-table-
->hz",
->+		dev_dbg(dev, "%s: min %u max %u name %s\n", "freq-table",
-> 				clki->min_freq, clki->max_freq, clki->name);
-> 		list_add_tail(&clki->list, &hba->clk_list_head);
-> 	}
->--
->2.32.0
+Yes, that would be the right place to do it.
 
+> > Moreover, if we end up here for r5_cores[1], resources acquired for r5_core[0]
+> > are not released.
+> 
+> Most of the resources (such as zynqmp_r5_rproc_ops and r5_rproc objects) for
+> r5_core[0] are allocated using devm_* API,
+> 
+> so I believe it will be de-allocated when driver probe fails and driver
+> exits.
+> 
+> If r5_cores[1] fails, then r5_cores[0]->np needs to be released here. I will
+> find out mechanism to take care of this.
+> 
+> Please let me know if I am missing anything here.
+> 
 
+I'll take another look in your next revision.
+
+> > > +			return -ENODEV;
+> > > +		}
+> > > +
+> > > +		i++;
+> > > +
+> > > +		/*
+> > > +		 * If two child nodes are available in dts in lockstep mode,
+> > > +		 * then ignore second child node.
+> > > +		 */
+> > > +		if (i == core_count) {
+> > > +			of_node_put(child);
+> > > +			break;
+> > > +		}
+> > > +		of_node_put(child);
+> > This one is not needed as it is already done by the
+> > for_each_available_child_of_node() loop.
+> 
+> Ok I will remove it.
+> 
+> > More comments tomorrow.
+> > 
+> > Thanks,
+> > Mathieu
+> > 
+> > > +	}
+> > > +
+> > > +	cluster->mode = cluster_mode;
+> > > +	cluster->core_count = core_count;
+> > > +	cluster->r5_cores = r5_cores;
+> > > +
+> > > +	ret = zynqmp_r5_core_init(cluster);
+> > > +	if (ret < 0) {
+> > > +		dev_err(dev, "failed to init r5 core err %d\n", ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static void zynqmp_r5_cluster_exit(void *data)
+> > > +{
+> > > +	struct platform_device *pdev = (struct platform_device *)data;
+> > > +
+> > > +	platform_set_drvdata(pdev, NULL);
+> > > +
+> > > +	pr_info("Exit r5f subsystem driver\n");
+> > > +}
+> > > +
+> > > +/*
+> > > + * zynqmp_r5_remoteproc_probe()
+> > > + *
+> > > + * @pdev: domain platform device for R5 cluster
+> > > + *
+> > > + * called when driver is probed, for each R5 core specified in DT,
+> > > + * setup as needed to do remoteproc-related operations
+> > > + *
+> > > + * Return: 0 for success, negative value for failure.
+> > > + */
+> > > +static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
+> > > +{
+> > > +	int ret;
+> > > +	struct zynqmp_r5_cluster *cluster;
+> > > +	struct device *dev = &pdev->dev;
+> > > +
+> > > +	cluster = devm_kzalloc(dev, sizeof(*cluster), GFP_KERNEL);
+> > > +	if (!cluster)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	cluster->dev = dev;
+> > > +
+> > > +	ret = devm_of_platform_populate(dev);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "failed to populate platform dev %d\n", ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	/* wire in so each core can be cleaned up at driver remove */
+> > > +	platform_set_drvdata(pdev, cluster);
+> > > +
+> > > +	ret = devm_add_action_or_reset(dev, zynqmp_r5_cluster_exit, pdev);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = zynqmp_r5_cluster_init(cluster);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "Invalid r5f subsystem device tree\n");
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +/* Match table for OF platform binding */
+> > > +static const struct of_device_id zynqmp_r5_remoteproc_match[] = {
+> > > +	{ .compatible = "xlnx,zynqmp-r5fss", },
+> > > +	{ /* end of list */ },
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
+> > > +
+> > > +static struct platform_driver zynqmp_r5_remoteproc_driver = {
+> > > +	.probe = zynqmp_r5_remoteproc_probe,
+> > > +	.driver = {
+> > > +		.name = "zynqmp_r5_remoteproc",
+> > > +		.of_match_table = zynqmp_r5_remoteproc_match,
+> > > +	},
+> > > +};
+> > > +module_platform_driver(zynqmp_r5_remoteproc_driver);
+> > > +
+> > > +MODULE_DESCRIPTION("Xilinx R5F remote processor driver");
+> > > +MODULE_AUTHOR("Xilinx Inc.");
+> > > +MODULE_LICENSE("GPL v2");
+> > > -- 
+> > > 2.25.1
+> > > 
