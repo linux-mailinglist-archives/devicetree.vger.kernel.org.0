@@ -2,138 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E82A4BFCA2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:31:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9E6F4BFDEB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:59:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233483AbiBVPbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 10:31:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57216 "EHLO
+        id S233836AbiBVP77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 10:59:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230105AbiBVPbw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:31:52 -0500
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4413D163053;
-        Tue, 22 Feb 2022 07:31:26 -0800 (PST)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id E8E261F3A3;
-        Tue, 22 Feb 2022 15:31:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1645543884; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=mDPR/RXvsCjUbyhuXvYy8h8gwyiPv74HOWucNF3wYxk=;
-        b=lIS/6beohKMQq+8gS6SQYcDHOi/ruXQaNMzRNoW3jHVhGZc+JZqJvuFFu6bq/4qAuJtIPC
-        h47tif6zGyKNdSGDQNdmvctntW3su9UxqbflWCLMN4A4mGO/UYmiMfB+FDz2Z5CVx1EHo2
-        MQ37RTB+gL/CONYWVUhtMkZuqMrIbjw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1645543884;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=mDPR/RXvsCjUbyhuXvYy8h8gwyiPv74HOWucNF3wYxk=;
-        b=ugoYPahRmWnja57J9+RNhmgpFpPRC15aLeQzJRi79k+bbxIb7tI2exn4EmcoUmH1SHy3FV
-        5e2o0hwpoQcXzCAQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 8C03D13BC3;
-        Tue, 22 Feb 2022 15:31:24 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id sLXXH8wBFWLrJAAAMHmgww
-        (envelope-from <afaerber@suse.de>); Tue, 22 Feb 2022 15:31:24 +0000
-Message-ID: <587391d0-f364-b2b6-399d-8994f4a17385@suse.de>
-Date:   Tue, 22 Feb 2022 16:31:24 +0100
+        with ESMTP id S231794AbiBVP77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:59:59 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B52A2D7625;
+        Tue, 22 Feb 2022 07:59:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1645545541;
+        bh=v9/boqjlEcMyJId9CIqJT5C3HYAS1X5pmHRpj5+LSPc=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=cbzMWlssQz1//PF81imE5fp0P7GhAfIzopBnTdtSgpTFKkIIK0dcRYGairYstDVtA
+         fTumudGg1hHmC5mVNbopU7Y/ObW6RxAZQFDUXV2RNmrnd0O9CpQbZenoXTf5gC/lFG
+         zgo/bvwWAlDR0g4fwesrdJpFarVh2oVqkacLEUyo=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N1fis-1oOZK92U6C-0123sk; Tue, 22
+ Feb 2022 16:59:01 +0100
+Date:   Tue, 22 Feb 2022 16:58:55 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Tyrone Ting <warp5tw@gmail.com>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        semen.protsenko@linaro.org, yangyicong@hisilicon.com,
+        wsa@kernel.org, jie.deng@intel.com, sven@svenpeter.dev,
+        bence98@sch.bme.hu, christophe.leroy@csgroup.eu,
+        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
+        digetx@gmail.com, andriy.shevchenko@linux.intel.com,
+        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 05/11] i2c: npcm: Remove unused clock node
+Message-ID: <YhUIP4pvoGBUohCE@latitude>
+References: <20220220035321.3870-1-warp5tw@gmail.com>
+ <20220220035321.3870-6-warp5tw@gmail.com>
+ <YhN8OGIR9eSCus8E@latitude>
+ <CACD3sJbMZ-CT4htPUBqyswghAC+j8PgJ_z-VdA38yC+6HFrF+w@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH 0/6] auxdisplay: Add support for the Titanmec TM1628 7
- segment display controller
-Content-Language: en-US
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        "linux-realtek-soc@lists.infradead.org" 
-        <linux-realtek-soc@lists.infradead.org>
-References: <4172e59f-b9d5-d87d-9dbd-a6f683a2173c@gmail.com>
- <CANiq72mi5fj07cfo6T4jPmp=EiRtE_uDeHHCqjG9h+duPrUMKg@mail.gmail.com>
- <ecdbfb3a-e214-a059-95b9-1ebf2f625295@gmail.com>
- <862fc0e3-6c76-8dea-6725-a6c45ade1ecd@suse.de>
- <09bf3d8a-2902-723b-80d2-0c4d1c24f53d@gmail.com>
- <a890337b-39e4-f796-2d53-05edd2d69c80@suse.de>
- <1530c337-22b5-b20d-27ae-50696344e80f@baylibre.com>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Organization: SUSE Software Solutions Germany GmbH
-In-Reply-To: <1530c337-22b5-b20d-27ae-50696344e80f@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="BFV9RJgjJXy7GXVr"
+Content-Disposition: inline
+In-Reply-To: <CACD3sJbMZ-CT4htPUBqyswghAC+j8PgJ_z-VdA38yC+6HFrF+w@mail.gmail.com>
+X-Provags-ID: V03:K1:rkMLMEInh17Ve8XEjZGhyurP/kHhNyjyxMPqtUdDPcpxZOVYY84
+ txLbQ0ex8B7LbDZXCEOuqWbWr/BgbINmZ/my9cXBi5qZrwiU1ImYy0D7ahISGOQrPnpwxLs
+ 3QEMMXU/b6q2CuXyXDJPG/F5COM7fxchIRgR0t00uAF+ZePvhRcIPT/xfr51YVNNo2cJIwd
+ WpPA7p37qFwt1E8AOOVUQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Yajh5NqeYhs=:yyQF5KUIf9keFlVIDVev0x
+ RMyiFIEKsJfAqDv8iScdFtsSbx9c/MXj/m38FFWZ+S5sl/fssdxvp4lXPZ8koIFyM9prrKW1B
+ rRCJQyicu6pUX/BKEk+uMk3FQPgJMYSrLCcScT284aJmSxzNRFfpoYAroQzaBwj2tqEAALX7x
+ DKICabara53MyEGB8jqDrOwXtiFzo/86prDPX4F+hRBYfVcTQwwseo9HhDRA8bZyKF1McWr09
+ wtDWzBGUJuFBgiw2GUnaaUcYkLxoghz0vvrhp+hVa+hnzedDc2kei1Xg2cUYfjOe+nFyoQx+D
+ Ms1XEO7kfmcfTGxxcbX+9VYs9Y5g85GkwZVucKV3ylfHJ0BwrYp+bYmcCAfQSslo25rduYcQs
+ ypL76f1f0DeMRzxAAn8B1Qw7i9d28oaGWFaToXs3isj6uJZTmRbNi77grVgW2H2nU+wDMoP0U
+ fwHUKD5RJxa6xB5o81FlTysBMFr50rPKJvV2mUbzQhJKh0qZXo949bfPhISF1eKTKag7U5zo1
+ 1yalgmzNtdIzQ1s3rQJk9r6yZT7D9RoKc4WkM08MDtmfZ+O+tzpfqJ25qhozdSZPwvvzwa6xj
+ HrFawC4U5la7dxnK2jwE3lo5DBQAHq6Djy8l21wdYptKID9vE9gaV7u6m7XkYwaj548HogTj+
+ 7bD/iMmStloFWhX4gkb5ZQlfxHfGt+zhBHtS7mIywqt1fOBTok/lbCtZni+yBmxi3XryFrt9h
+ cUbrpllS2XV9d0HYjFFs1NVHnm14FbqrIXl4pQ0THAtA27rtp3tYMpzM+vI6Aplf35fCYKK5Y
+ 4YppBHNBrKqhAK7MIUrMK4dExLZE5rOihrM8EoXcivXXX186d6jjqLsHjiMo7W3Mkt+mIRJF9
+ C/7AWQ8RKq11RCbzuOBykJk9R9HlBcKRiTU0hOslaGyhx0C/H46KBmRrx2Nj1uLN+O/VAauRT
+ QvPLVaP9V69b2JjrEKbx2CTILdWpBec/Tw/mQXVmtaqGP8JTj/yVI4/davAI7pNMHJT98aHgv
+ UC1k7vyg5x7KWlg4n2X4A1WIj8UD14m2Iq5UFcExEJoUAdTvyjqwX2jWj+4YbN+ONRKzsPZFR
+ GEvrUYzS4AsLnY=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22.02.22 15:48, Neil Armstrong wrote:
-> On 22/02/2022 13:12, Andreas Färber wrote:
->> On 19.02.22 18:16, Heiner Kallweit wrote:
->>> On 19.02.2022 17:07, Andreas Färber wrote:
->>>> [...] (And most Realtek platforms got
->>>> broken by removing the adjustable text base defines.)
->>>>
->>> I'm not aware of the Realtek platform issue, do you have a link to a
->>> related discussion?
->>
->> Realtek has a boot ROM at the beginning of memory space, which has been
->> a problem from the first RFC and for most bootloaders required to tweak
->> the kernel's text offset for successful boot. (Some not Open Source (LK)
->> and/or not openly flashable.)
->>
->> http://lists.infradead.org/pipermail/linux-arm-kernel/2017-February/487718.html
->>
->>
->> In 2020 that arm64 feature got removed without any further discussion:
->>
->> https://lore.kernel.org/all/20200825135440.11288-1-ardb@kernel.org/
-> 
-> Note the TEXT_OFFSET is only an issue with Amlogic vendor bootloader,
-> it has never been an issue with mainline U-Boot.
 
-There is no mainline U-Boot for Realtek DHC (!= Amlogic Meson) though!
+--BFV9RJgjJXy7GXVr
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-More important drivers than LED got blocked here, too, like MMC and USB
-and pinctrl and clk.
+On Tue, Feb 22, 2022 at 10:15:04AM +0800, Tyrone Ting wrote:
+> Hi Jonathan:
+>=20
+> Thank you for your comments and please find my reply next to your comment=
+s.
+>=20
+> Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> =E6=96=BC 2022=E5=B9=B42=
+=E6=9C=8821=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=887:49=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+> >
+> > On Sun, Feb 20, 2022 at 11:53:15AM +0800, Tyrone Ting wrote:
+> > > From: Tali Perry <tali.perry1@gmail.com>
+> > >
+> > > Remove unused npcm750-clk node.
+> >
+> > You're not actually removing a node, for example in the sense of removi=
+ng a
+> > devicetree node from a devicetree.
+> >
+> > So, I think "Remove unused variable clk_regmap." would be a better
+> > description.
+> >
+>=20
+> May I modify the description according to your input and attach
+> "Reviewed-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>"
+> onto this commit in the next version of the patch set?
 
-And as hinted above, some Realtek boards come with a vendor LK that I
-can't even patch a downstream version of.
+Yes!
 
-Regards,
-Andreas
 
--- 
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Ivo Totev
-HRB 36809 (AG Nürnberg)
+Jonathan
+
+--BFV9RJgjJXy7GXVr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmIVCBgACgkQCDBEmo7z
+X9vfqA//UCqVrHlOZvzDu7L0EyOn3evdp8KqQUPYp/8FSJD0Cb/Ak6HAByo7g0F3
+wss1Xu7kJvV5YDYJn92mCS6oyLH4av/702Ej4s6bfw5UudeW+Fe4tXiumerPTP+d
+0Af6kNPoVAv/JPxLzLaWOcuPqvQ7mSI/dXkJ67YjdPZ9K1uI3tOcP77Us864kBxh
+0BKcaDzcyuSeZXcw3fNMFj/wJAjemU3poSHsO6iiHaqJIb2BXQohyT8D+vX/VAVz
+RP3LJVsJWZDHbvXtjlKpXiCOEc3u7URTMaKCCqnGR5hUW+groLKqiWI4iltMk9eh
+M0OOi2PF9imId4UWTikbd6cB/0n/XUqQ5Cz3AF698sYiU/VVtsrEtekjH3Cabhj8
+j2kbzkPwPV0xSqeKrQohj7ARPsppynPxdoNUCQ3ebV0zBNxwqYQ1zXqtNj75nB/S
+ixt5cjacJ8/PW/3UYfBcvu2+gN3lVrILRi+nq584LI73NXOh0RHNlNI8qDaNB+MO
+waBjT0bk5BrgNTV8LO6xKtvOEMHQiccqzqGU7EouAm+qeu8gj/TibSK+T2mandcO
+17Wy6HHAZlwtGI/hSnlbTRF/+0y1RcRTQZ13iIPbiXU6QsFAEfDolgvDnHFTlwA4
+FbqAG/lIgWA5PtPerENLQkRH2mcoth8gFNZEO/CkVpQhr8g5vNs=
+=aOOj
+-----END PGP SIGNATURE-----
+
+--BFV9RJgjJXy7GXVr--
