@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E3644C0355
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF4B54C034E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:49:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235602AbiBVUsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 15:48:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34132 "EHLO
+        id S235625AbiBVUs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 15:48:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235600AbiBVUsw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:48:52 -0500
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFFF7A2F2B
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:26 -0800 (PST)
-Received: by mail-oo1-xc34.google.com with SMTP id i6-20020a4ac506000000b0031c5ac6c078so11590295ooq.6
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:26 -0800 (PST)
+        with ESMTP id S235604AbiBVUsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:48:54 -0500
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B17F4A2F2B
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:28 -0800 (PST)
+Received: by mail-oi1-x22f.google.com with SMTP id ay7so15933035oib.8
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=4FsTSrbVAURtuc7icXoc7CnjlReAr0UpIVXQMIlDTc4=;
-        b=6a+eX7j3LCyMn7OaC5yvtENFql8mK7SDDMa4RtV1aQ93fAn5DduP6Fgc7zUxkNDPTK
-         2f5BEhyv8QBUUnYojgoP9I+MJqoziATEH1PvK8x/8t7oxNPO0/tcxhlAJGfxpsv2ELxp
-         nfu2dWei93dbF37AOXHaYScoVk4bCNOoDm8lnsSjeyt2iYjkkidiwnvv/dGi5PNu1x2R
-         68xEWUesACbG6mjSkozJilU0wLtHje/Ch7BosK/ew81mgyEbv8fsSfyEZnHa/tvVCuWn
-         NihWa3DT/You12J90LfMjxx/hnQY9P/qyn3SO5SeuXy/X83tM5KGyBCAF4sPu+G1sY0j
-         nLbw==
+        bh=c80lDSr4/XrHo4HXuUiUdwW2N5759X0Jr8s3r01G4uw=;
+        b=qi2CLkoTpNf+/7KRpxJWRKKedV3ySUp6Hi5CiH/Rl69V/1ZYKrlbplu5LuSaHdhRIr
+         U3qvvNSC3b8wbwX2/jLQsKii0fmBsrukVOjWCg8MHzVUm8SSVTFJXjwemeX/p3d7bn6Q
+         +m87Kf9FB60c/CB+MHLc7aTiHvLqierIr4BTAMkPS7FbbukSEVFc7B/wbjSfrQvOn2Jk
+         E8yxCnUIUCRB+eJ5tkE7gfAvVChYIkBzF1uoQFj7V7qm3IKD0Nr14+iqzwFSYX/sG6p8
+         N4+OOxN8twd0yzhKVeF35CuuEGVtvYulguhNHU0z+MdnBFRUedC9fBtzQri9+gdN6jNK
+         01IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=4FsTSrbVAURtuc7icXoc7CnjlReAr0UpIVXQMIlDTc4=;
-        b=njZDA7P8Eq/tquG/f5yEYXgoEJWbi0xX15022vQwnPWoD53tp7MSC96paIePlPC3bG
-         kadKE8TRN6yN9cH+/lJoObc4ZfX19/vZM/2XyR5iG1ghP/mJM2X6TiOAsH7RMAZxS3nw
-         XydfvnFanJPWX1k5OD9bWBf8PRshFb8dUXqGmMMWVgdS+g3yRxkyrJd0tFnp5HH4j87i
-         IElvbE7na/mgEqTKTzGd4tDL8Vm4Y2Jzu4tx6xh100w9znQ2m9sa4rRwn/zVRCHQ7vxi
-         WE0XTEwtLpi08VHTvWitxHrUqWXizDKY2SseWTyYJdMpq1L+oeRmv0AYIpV+G8UPh/G6
-         WwyQ==
-X-Gm-Message-State: AOAM531OrKJZNP99T+14J0llI7m65yP3ZIQibw7Un2VeE2hlIzxJZalJ
-        pheQmbflXVFL6+5mwGbm9QlxyA==
-X-Google-Smtp-Source: ABdhPJwVNKQnkJZdZ0jgSou92auChtzBu1r7KPJtir+JSZM/M01cC0DkREbbPZe7LjE4CO/652m/yQ==
-X-Received: by 2002:a05:6870:d88e:b0:d1:359a:29f with SMTP id dv14-20020a056870d88e00b000d1359a029fmr2644172oab.232.1645562906164;
-        Tue, 22 Feb 2022 12:48:26 -0800 (PST)
+        bh=c80lDSr4/XrHo4HXuUiUdwW2N5759X0Jr8s3r01G4uw=;
+        b=bGF5bDsdshtbTty7mNE1tEyMZ5DiBTh1oKFf3y9LPlMU4U+gooouV9+Wg7PZsSZgBq
+         SfjjFyeTLTIGhGPEWVHB8n3e3gauAZePPP8iLMXmr/+c3za/ISD1rABsbP7z2JsZc3AI
+         QtWaNGlZ6wQ44qRIyvp0TSXJQTEG6JGzq94OiCj6GGis8WQEIHtE0jmrWZkF/VSwHEk0
+         bOSWJYTMk5I6crkhZv2e86Do4SZXSGLqa+jUl741R2aybn1rcxg4/pIrx2ZwiyVSyeN0
+         c8xsQQBTClzrekfjFYkmXGqqWwxqQF10kpA9XzUjN0cA+Vn0E6G3dY09OfuvKqIyhfZM
+         kW6g==
+X-Gm-Message-State: AOAM533ejQEd1NsQN6dJ01e5Y46CENXtICVVbNjhiGsbz9l/ayEmyzEo
+        hZCr09qgxb0FFsg48LxQf3QLpB5KFzX3Ww==
+X-Google-Smtp-Source: ABdhPJz2U8KLjdjNRUB//gea/ufjet3hLSc2A6nlzGRCQGTmGSKt0aTPN50GrrZNsqro3BBTDjNyuQ==
+X-Received: by 2002:a05:6808:2106:b0:2d5:3244:ca43 with SMTP id r6-20020a056808210600b002d53244ca43mr2968470oiw.263.1645562907949;
+        Tue, 22 Feb 2022 12:48:27 -0800 (PST)
 Received: from rivos-atish.. (adsl-70-228-75-190.dsl.akrnoh.ameritech.net. [70.228.75.190])
-        by smtp.gmail.com with ESMTPSA id o14sm16508197oaq.37.2022.02.22.12.48.24
+        by smtp.gmail.com with ESMTPSA id o14sm16508197oaq.37.2022.02.22.12.48.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 12:48:25 -0800 (PST)
+        Tue, 22 Feb 2022 12:48:27 -0800 (PST)
 From:   Atish Patra <atishp@rivosinc.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Tsukasa OI <research_trasio@irq.a4lg.com>,
-        Atish Patra <atishp@rivosinc.com>,
         Heiko Stuebner <heiko@sntech.de>,
+        Anup Patel <anup@brainfault.org>,
+        Atish Patra <atishp@rivosinc.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
         Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
         Damien Le Moal <damien.lemoal@wdc.com>,
         devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -62,9 +62,9 @@ Cc:     Tsukasa OI <research_trasio@irq.a4lg.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v5 2/6] RISC-V: Minimal parser for "riscv, isa" strings
-Date:   Tue, 22 Feb 2022 12:48:07 -0800
-Message-Id: <20220222204811.2281949-3-atishp@rivosinc.com>
+Subject: [PATCH v5 3/6] RISC-V: Extract multi-letter extension names from "riscv, isa"
+Date:   Tue, 22 Feb 2022 12:48:08 -0800
+Message-Id: <20220222204811.2281949-4-atishp@rivosinc.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220222204811.2281949-1-atishp@rivosinc.com>
 References: <20220222204811.2281949-1-atishp@rivosinc.com>
@@ -81,132 +81,72 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Tsukasa OI <research_trasio@irq.a4lg.com>
 
-Current hart ISA ("riscv,isa") parser don't correctly parse:
+Currently, there is no usage for version numbers in extensions as
+any ratified non base ISA extension will always at v1.0.
 
-1. Multi-letter extensions
-2. Version numbers
+Extract the extension names in place for future parsing.
 
-All ISA extensions ratified recently has multi-letter extensions
-(except 'H'). The current "riscv,isa" parser that is easily confused
-by multi-letter extensions and "p" in version numbers can be a huge
-problem for adding new extensions through the device tree.
-
-Leaving it would create incompatible hacks and would make "riscv,isa"
-value unreliable.
-
-This commit implements minimal parser for "riscv,isa" strings.  With this,
-we can safely ignore multi-letter extensions and version numbers.
-
-[Improved commit text and fixed a bug around 's' in base extension]
-Signed-off-by: Atish Patra <atishp@rivosinc.com>
-[Fixed workaround for QEMU]
-Signed-off-by: Tsukasa OI <research_trasio@irq.a4lg.com>
 Tested-by: Heiko Stuebner <heiko@sntech.de>
+Reviewed-by: Anup Patel <anup@brainfault.org>
+Signed-off-by: Tsukasa OI <research_trasio@irq.a4lg.com>
+[Improved commit text and comments]
+Signed-off-by: Atish Patra <atishp@rivosinc.com>
 ---
- arch/riscv/kernel/cpufeature.c | 72 ++++++++++++++++++++++++++++------
- 1 file changed, 61 insertions(+), 11 deletions(-)
+ arch/riscv/kernel/cpufeature.c | 35 ++++++++++++++++++++++++++--------
+ 1 file changed, 27 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index dd3d57eb4eea..72c5f6ef56b5 100644
+index 72c5f6ef56b5..b0df7eff47f7 100644
 --- a/arch/riscv/kernel/cpufeature.c
 +++ b/arch/riscv/kernel/cpufeature.c
-@@ -7,6 +7,7 @@
-  */
- 
- #include <linux/bitmap.h>
-+#include <linux/ctype.h>
- #include <linux/of.h>
- #include <asm/processor.h>
- #include <asm/hwcap.h>
-@@ -66,7 +67,7 @@ void __init riscv_fill_hwcap(void)
- 	struct device_node *node;
- 	const char *isa;
- 	char print_str[NUM_ALPHA_EXTS + 1];
--	size_t i, j, isa_len;
-+	int i, j;
- 	static unsigned long isa2hwcap[256] = {0};
- 
- 	isa2hwcap['i'] = isa2hwcap['I'] = COMPAT_HWCAP_ISA_I;
-@@ -92,23 +93,72 @@ void __init riscv_fill_hwcap(void)
- 			continue;
- 		}
- 
--		i = 0;
--		isa_len = strlen(isa);
- #if IS_ENABLED(CONFIG_32BIT)
- 		if (!strncmp(isa, "rv32", 4))
--			i += 4;
-+			isa += 4;
- #elif IS_ENABLED(CONFIG_64BIT)
- 		if (!strncmp(isa, "rv64", 4))
--			i += 4;
-+			isa += 4;
- #endif
--		for (; i < isa_len; ++i) {
--			this_hwcap |= isa2hwcap[(unsigned char)(isa[i])];
-+		for (; *isa; ++isa) {
-+			const char *ext = isa++;
-+			const char *ext_end = isa;
-+			bool ext_long = false, ext_err = false;
-+
-+			switch (*ext) {
-+			case 's':
-+				/**
-+				 * Workaround for invalid single-letter 's' & 'u'(QEMU).
-+				 * No need to set the bit in riscv_isa as 's' & 'u' are
-+				 * not valid ISA extensions. It works until multi-letter
-+				 * extension starting with "Su" appears.
-+				 */
-+				if (ext[-1] != '_' && ext[1] == 'u') {
-+					++isa;
-+					ext_err = true;
+@@ -124,8 +124,28 @@ void __init riscv_fill_hwcap(void)
+ 				ext_long = true;
+ 				/* Multi-letter extension must be delimited */
+ 				for (; *isa && *isa != '_'; ++isa)
+-					if (!islower(*isa) && !isdigit(*isa))
++					if (unlikely(!islower(*isa)
++						     && !isdigit(*isa)))
+ 						ext_err = true;
++				/* Parse backwards */
++				ext_end = isa;
++				if (unlikely(ext_err))
 +					break;
-+				}
-+				fallthrough;
-+			case 'x':
-+			case 'z':
-+				ext_long = true;
-+				/* Multi-letter extension must be delimited */
-+				for (; *isa && *isa != '_'; ++isa)
-+					if (!islower(*isa) && !isdigit(*isa))
-+						ext_err = true;
-+				break;
-+			default:
-+				if (unlikely(!islower(*ext))) {
-+					ext_err = true;
-+					break;
-+				}
-+				/* Find next extension */
-+				if (!isdigit(*isa))
++				if (!isdigit(ext_end[-1]))
 +					break;
 +				/* Skip the minor version */
-+				while (isdigit(*++isa))
++				while (isdigit(*--ext_end))
 +					;
-+				if (*isa != 'p')
-+					break;
-+				if (!isdigit(*++isa)) {
-+					--isa;
++				if (ext_end[0] != 'p'
++				    || !isdigit(ext_end[-1])) {
++					/* Advance it to offset the pre-decrement */
++					++ext_end;
 +					break;
 +				}
 +				/* Skip the major version */
-+				while (isdigit(*++isa))
++				while (isdigit(*--ext_end))
 +					;
-+				break;
++				++ext_end;
+ 				break;
+ 			default:
+ 				if (unlikely(!islower(*ext))) {
+@@ -151,14 +171,13 @@ void __init riscv_fill_hwcap(void)
+ 			}
+ 			if (*isa != '_')
+ 				--isa;
+-			/*
+-			 * TODO: Full version-aware handling including
+-			 * multi-letter extensions will be added in-future.
+-			 */
+-			if (ext_err || ext_long)
++
++			if (unlikely(ext_err))
+ 				continue;
+-			this_hwcap |= isa2hwcap[(unsigned char)(*ext)];
+-			this_isa |= (1UL << (*ext - 'a'));
++			if (!ext_long) {
++				this_hwcap |= isa2hwcap[(unsigned char)(*ext)];
++				this_isa |= (1UL << (*ext - 'a'));
 +			}
-+			if (*isa != '_')
-+				--isa;
- 			/*
--			 * TODO: X, Y and Z extension parsing for Host ISA
--			 * bitmap will be added in-future.
-+			 * TODO: Full version-aware handling including
-+			 * multi-letter extensions will be added in-future.
- 			 */
--			if ('a' <= isa[i] && isa[i] < 'x')
--				this_isa |= (1UL << (isa[i] - 'a'));
-+			if (ext_err || ext_long)
-+				continue;
-+			this_hwcap |= isa2hwcap[(unsigned char)(*ext)];
-+			this_isa |= (1UL << (*ext - 'a'));
  		}
  
  		/*
