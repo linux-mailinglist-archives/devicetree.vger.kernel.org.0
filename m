@@ -2,59 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6B784BFC33
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:17:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D97D94BFC51
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:21:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233301AbiBVPRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 10:17:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40658 "EHLO
+        id S233379AbiBVPVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 10:21:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233313AbiBVPRV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:17:21 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE0F32A721;
-        Tue, 22 Feb 2022 07:16:53 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 1402E1F42D79
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645543012;
-        bh=m6iks4nKShpjnvSQCg9oNY965h9zeoboZznnHfhpxKI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=hWvPkhkzNvqzNuA/40T3XKUxHYa8HSRU4pVMNzoIFWC7rXAT0apDYLnpkMJhnqbJM
-         arssexAyQVcSVzvw5Amf+UBgH8G+8JAoeSIFcUxhxPNyzQMNZV+16CstcTP/iDH5Hg
-         8XKAw2ROpBcy+hVlpJZNGroDpoRV/m8w9fVh/Yl0wVhuV6RPtUoYvkLuG/iZUukwGC
-         bAX9ZZ15SJkfiUYauqLfQv5HFCFnR47Rx3FLe1eOLehFQPIJKIeNvBPRO6NReiqME2
-         u+ne7v0rhJH3lU010TKtdqa7o08BP9WgUrRIeePPFQWufHuOtvUjuDVVM8Ex9z5m24
-         I22HEnZSbhtaw==
-Message-ID: <1c791b60-935c-1e8e-dd1b-4b18fc273c1b@collabora.com>
-Date:   Tue, 22 Feb 2022 16:16:48 +0100
+        with ESMTP id S232898AbiBVPVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:21:39 -0500
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 916971617E4
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:21:13 -0800 (PST)
+Received: by mail-yb1-xb33.google.com with SMTP id p19so41820958ybc.6
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:21:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HVdVMfysf95jTHRvOxuNoVjxuB0CjZvhXhqlbIHuN0Y=;
+        b=KTh8aFNGaoyntsSAxBWClVP9/nSFTBS6irzubM66J/T39Yf6IABij0qQupUfuzzdZH
+         ihIj4SU7EJtHUp3eNKbXfhrrfrdHCRjI06QOYhuWfa0CrRe5czKlGZ0kFgPhNtdusiE/
+         0cWGtj2Eo8LQ48RmeuO5gh48DJcz9Ic28mn3vkGeynwoJm2hTtHUmOW3NPXIa4x6jgsf
+         6IVhC3O85FyU1YztP8Nj8fRJuiHPBP5iQXLzDxOET1eFSu7QBjKPOJvhBmaOXJMJnFLm
+         a5nEmVP4VCmsyQ2WvCMH6N508jNFlxP3rso6X+xul9CMCySIXCetVpdBnk8Y2gRuOE2p
+         bnRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HVdVMfysf95jTHRvOxuNoVjxuB0CjZvhXhqlbIHuN0Y=;
+        b=QjZtprJWGO/ATPqCPC/2ojTYoRabM/lm6zQGM1EPrdbzEA4jMzMPBaejWk+tlhqI3A
+         1F+M2J7tVmZWDFpDs9hQ8i+lY71QDfr+UHfymuuuRk/xQ1VKx9cWWKwGyJW5I75BJPBt
+         5lUenTFJ307qzbY8+2A6tSlG0lUdrN/Wjdw1PelnSPyfHgLOb/jOsueqMeIRHIxG3YYH
+         QIWYfXQo0S1bqtWi90kqi807AAPQNXmMmfdcySPnnRJbhErQ4rVYVJ4dGz2eaXCdwky7
+         m4jj9dw5wpXgp5z7ns1gzxielW1fIt7iDxQH1iiCGV+noLcjh2lyF1n41uSJP7Uu197U
+         GdiQ==
+X-Gm-Message-State: AOAM531vKKMgf9hB6mEjxxVAc1eXwmPtUrThbOmnlOYN2CIQq5By7A/N
+        6OqvQUc3pIh7jhpjsuWRfwx9sHd64DIib0403hWyBg==
+X-Google-Smtp-Source: ABdhPJyCcJARRbkiTPXc35f6YTtpOe1UTQH526CZggy98Wmxv6UfuXKgc5itp4zRkLxISttmSWvkXXI+3Fq9wJhPrqM=
+X-Received: by 2002:a25:aac3:0:b0:624:ab10:49dc with SMTP id
+ t61-20020a25aac3000000b00624ab1049dcmr6967837ybi.291.1645543272820; Tue, 22
+ Feb 2022 07:21:12 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v8 04/19] video/hdmi: Add audio_infoframe packing for DP
-Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, maarten.lankhorst@linux.intel.com,
-        mripard@kernel.org, tzimmermann@suse.de, matthias.bgg@gmail.com,
-        chunfeng.yun@mediatek.com, kishon@ti.com, vkoul@kernel.org,
-        deller@gmx.de, ck.hu@mediatek.com, jitao.shi@mediatek.com
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-References: <20220218145437.18563-1-granquet@baylibre.com>
- <20220218145437.18563-5-granquet@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220218145437.18563-5-granquet@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20220216212433.1373903-1-luca@z3ntu.xyz> <20220216212433.1373903-2-luca@z3ntu.xyz>
+In-Reply-To: <20220216212433.1373903-2-luca@z3ntu.xyz>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 22 Feb 2022 16:21:01 +0100
+Message-ID: <CACRpkdZhtdyni0cKT43nd9YVSnA_Dza6=kuECuXLJKbDG2rbEA@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: bluetooth: broadcom: add BCM43430A0
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,34 +69,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/02/22 15:54, Guillaume Ranquet ha scritto:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> Similar to HDMI, DP uses audio infoframes as well which are structured
-> very similar to the HDMI ones.
-> 
-> This patch adds a helper function to pack the HDMI audio infoframe for
-> DP, called hdmi_audio_infoframe_pack_for_dp().
-> hdmi_audio_infoframe_pack_only() is split into two parts. One of them
-> packs the payload only and can be used for HDMI and DP.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+On Wed, Feb 16, 2022 at 10:25 PM Luca Weiss <luca@z3ntu.xyz> wrote:
 
-Hello Guillaume,
+> Document the compatible string for BCM43430A0 bluetooth.
+>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 
-I've just noticed that this patch will not apply against the latest linux-next,
-as the include/drm/drm_dp_helper.h header was moved to
-include/drm/dp/drm_dp_helper.h
+Looks good to me:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Can you please rebase for v9?
-
-Thanks,
-Angelo
-
-> ---
->   drivers/video/hdmi.c        | 83 ++++++++++++++++++++++++++++---------
->   include/drm/drm_dp_helper.h |  2 +
->   include/linux/hdmi.h        |  7 +++-
->   3 files changed, 72 insertions(+), 20 deletions(-)
-> 
+Yours,
+Linus Walleij
