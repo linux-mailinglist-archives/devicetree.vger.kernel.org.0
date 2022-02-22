@@ -2,81 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D97D94BFC51
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:21:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FD614BFC55
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:21:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233379AbiBVPVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 10:21:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53072 "EHLO
+        id S233421AbiBVPWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 10:22:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232898AbiBVPVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:21:39 -0500
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 916971617E4
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:21:13 -0800 (PST)
-Received: by mail-yb1-xb33.google.com with SMTP id p19so41820958ybc.6
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:21:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HVdVMfysf95jTHRvOxuNoVjxuB0CjZvhXhqlbIHuN0Y=;
-        b=KTh8aFNGaoyntsSAxBWClVP9/nSFTBS6irzubM66J/T39Yf6IABij0qQupUfuzzdZH
-         ihIj4SU7EJtHUp3eNKbXfhrrfrdHCRjI06QOYhuWfa0CrRe5czKlGZ0kFgPhNtdusiE/
-         0cWGtj2Eo8LQ48RmeuO5gh48DJcz9Ic28mn3vkGeynwoJm2hTtHUmOW3NPXIa4x6jgsf
-         6IVhC3O85FyU1YztP8Nj8fRJuiHPBP5iQXLzDxOET1eFSu7QBjKPOJvhBmaOXJMJnFLm
-         a5nEmVP4VCmsyQ2WvCMH6N508jNFlxP3rso6X+xul9CMCySIXCetVpdBnk8Y2gRuOE2p
-         bnRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HVdVMfysf95jTHRvOxuNoVjxuB0CjZvhXhqlbIHuN0Y=;
-        b=QjZtprJWGO/ATPqCPC/2ojTYoRabM/lm6zQGM1EPrdbzEA4jMzMPBaejWk+tlhqI3A
-         1F+M2J7tVmZWDFpDs9hQ8i+lY71QDfr+UHfymuuuRk/xQ1VKx9cWWKwGyJW5I75BJPBt
-         5lUenTFJ307qzbY8+2A6tSlG0lUdrN/Wjdw1PelnSPyfHgLOb/jOsueqMeIRHIxG3YYH
-         QIWYfXQo0S1bqtWi90kqi807AAPQNXmMmfdcySPnnRJbhErQ4rVYVJ4dGz2eaXCdwky7
-         m4jj9dw5wpXgp5z7ns1gzxielW1fIt7iDxQH1iiCGV+noLcjh2lyF1n41uSJP7Uu197U
-         GdiQ==
-X-Gm-Message-State: AOAM531vKKMgf9hB6mEjxxVAc1eXwmPtUrThbOmnlOYN2CIQq5By7A/N
-        6OqvQUc3pIh7jhpjsuWRfwx9sHd64DIib0403hWyBg==
-X-Google-Smtp-Source: ABdhPJyCcJARRbkiTPXc35f6YTtpOe1UTQH526CZggy98Wmxv6UfuXKgc5itp4zRkLxISttmSWvkXXI+3Fq9wJhPrqM=
-X-Received: by 2002:a25:aac3:0:b0:624:ab10:49dc with SMTP id
- t61-20020a25aac3000000b00624ab1049dcmr6967837ybi.291.1645543272820; Tue, 22
- Feb 2022 07:21:12 -0800 (PST)
+        with ESMTP id S233420AbiBVPWC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:22:02 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8B7585AEF3;
+        Tue, 22 Feb 2022 07:21:36 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E21CED1;
+        Tue, 22 Feb 2022 07:21:36 -0800 (PST)
+Received: from [10.57.9.152] (unknown [10.57.9.152])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A6C23F5A1;
+        Tue, 22 Feb 2022 07:21:33 -0800 (PST)
+Message-ID: <9cfe84b0-01bf-6e20-9839-5f597e7fa588@arm.com>
+Date:   Tue, 22 Feb 2022 15:21:32 +0000
 MIME-Version: 1.0
-References: <20220216212433.1373903-1-luca@z3ntu.xyz> <20220216212433.1373903-2-luca@z3ntu.xyz>
-In-Reply-To: <20220216212433.1373903-2-luca@z3ntu.xyz>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 22 Feb 2022 16:21:01 +0100
-Message-ID: <CACRpkdZhtdyni0cKT43nd9YVSnA_Dza6=kuECuXLJKbDG2rbEA@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: bluetooth: broadcom: add BCM43430A0
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [[PATCH v2 2/2] OPP: Add 'opp-microwatt' parsing for advanced EM
+ registration
+Content-Language: en-US
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
+        viresh.kumar@linaro.org, rafael@kernel.org,
+        daniel.lezcano@linaro.org, nm@ti.com, sboyd@kernel.org,
+        dianders@chromium.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20220222140746.12293-1-lukasz.luba@arm.com>
+ <20220222140746.12293-3-lukasz.luba@arm.com> <YhT6EBzSE/7S3QqT@google.com>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+In-Reply-To: <YhT6EBzSE/7S3QqT@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 16, 2022 at 10:25 PM Luca Weiss <luca@z3ntu.xyz> wrote:
+Hi Matthias,
 
-> Document the compatible string for BCM43430A0 bluetooth.
->
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+On 2/22/22 14:58, Matthias Kaehlcke wrote:
+> On Tue, Feb 22, 2022 at 02:07:46PM +0000, Lukasz Luba wrote:
 
-Looks good to me:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+[snip]
 
-Yours,
-Linus Walleij
+>> +static int __maybe_unused
+>> +_get_dt_power(unsigned long *mW, unsigned long *kHz, struct device *dev)
+> 
+> nit: the device is usually the first parameter. It's also the only true input
+> parameter of this function, most code puts input parameters first.
+
+Good point. I have internal patch set under review changing this. It's
+going to be changed and the 'dev' would be the 1st arg. I'll send this
+patch set as soon as this one gets queued into pm tree.
+
+> 
+>> +{
+>> +	struct dev_pm_opp *opp;
+>> +	unsigned long opp_freq;
+>> +	u32 opp_power;
+>> +	int ret;
+>> +
+>> +	/* Find the right frequency and related OPP */
+>> +	opp_freq = *kHz * 1000;
+>> +	opp = dev_pm_opp_find_freq_ceil(dev, &opp_freq);
+>> +	if (IS_ERR(opp))
+>> +		return -EINVAL;
+>> +
+>> +	ret = of_property_read_u32(opp->np, "opp-microwatt", &opp_power);
+>> +	dev_pm_opp_put(opp);
+>> +	if (ret)
+>> +		return -EINVAL;
+>> +
+>> +	*kHz = opp_freq / 1000;
+>> +	*mW = opp_power / 1000;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   /*
+>>    * Callback function provided to the Energy Model framework upon registration.
+>>    * This computes the power estimated by @dev at @kHz if it is the frequency
+>> @@ -1445,6 +1479,33 @@ static int __maybe_unused _get_power(unsigned long *mW, unsigned long *kHz,
+>>   	return 0;
+>>   }
+>>   
+>> +static int _of_find_opp_microwatt_property(struct device *dev)
+> 
+> this function doesn't retrurn the property like of_find_property() does,
+> _of_has_opp_microwatt_property() would be a be a better name IMO. I'd
+> also suggest to change the return type to bool, since callers don't
+> really care about the specific error (which with the current code is
+> -EINVAL) in all cases.
+
+Agree, I'll change the name and return type.
+
+> 
+> 
+>> +{
+>> +	unsigned long freq = 0;
+> 
+> Does the compiler complain when the initialization is skipped? The
+> value of the variable is never read, only it's address is passed to
+> dev_pm_opp_find_freq_ceil().
+
+It has to be 0, since under the hood the dev_pm_opp_find_freq_ceil()
+is going to find first freq which is equal or bigger than this one.
+We actually use that ptr value in the _find_freq_ceil().
+
+> 
+>> +	struct dev_pm_opp *opp;
+>> +	struct device_node *np;
+>> +	struct property *prop;
+>> +
+>> +	/* We only support "operating-points-v2" */
+>> +	np = dev_pm_opp_of_get_opp_desc_node(dev);
+>> +	if (!np)
+>> +		return -EINVAL;
+>> +
+>> +	of_node_put(np);
+>> +
+>> +	/* Check if an OPP has needed property */
+> 
+> The comment doesn't add much value IMO
+
+Well, it just stress the 'an' as in this case it's the 1st OPP,
+due to the fact freq = 0 and finding the 'ceiling' on it.
+I'll remove it.
+
+> 
+>> +	opp = dev_pm_opp_find_freq_ceil(dev, &freq);
+>> +	if (IS_ERR(opp))
+>> +		return -EINVAL;
+>> +
+>> +	prop = of_find_property(opp->np, "opp-microwatt", NULL);
+>> +	dev_pm_opp_put(opp);
+>> +	if (!prop)
+>> +		return -EINVAL;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   /**
+>>    * dev_pm_opp_of_register_em() - Attempt to register an Energy Model
+>>    * @dev		: Device for which an Energy Model has to be registered
+>> @@ -1474,6 +1535,15 @@ int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
+>>   		goto failed;
+>>   	}
+>>   
+>> +	/* First, try to find more precised Energy Model in DT */
+>> +	if (!_of_find_opp_microwatt_property(dev)) {
+>> +		struct em_data_callback em_dt_cb = EM_DATA_CB(_get_dt_power);
+>> +
+>> +		ret = em_dev_register_perf_domain(dev, nr_opp, &em_dt_cb,
+>> +						  cpus, true);
+>> +		return ret;
+> 
+> just 'return em_dev_register_perf_domain(...);'?
+
+true
+
+Thanks for the review! I'll address these comments in v3 if Viresh
+agrees with this new approach.
+
+Regards,
+Lukasz
