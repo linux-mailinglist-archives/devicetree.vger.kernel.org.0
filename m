@@ -2,187 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 819404BF9E2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 14:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 400484BFA5F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:08:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230527AbiBVNyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 08:54:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52406 "EHLO
+        id S231553AbiBVOIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 09:08:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiBVNyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 08:54:21 -0500
-Received: from 189.cn (ptr.189.cn [183.61.185.102])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 315E89F6FE;
-        Tue, 22 Feb 2022 05:53:54 -0800 (PST)
-HMM_SOURCE_IP: 10.64.8.41:39724.521596506
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.41])
-        by 189.cn (HERMES) with SMTP id 0E3FF1001AE;
-        Tue, 22 Feb 2022 21:53:48 +0800 (CST)
-Received: from  ([114.242.206.180])
-        by gateway-151646-dep-b7fbf7d79-9vctg with ESMTP id 437f38b646a245689e764bf8741df661 for maxime@cerno.tech;
-        Tue, 22 Feb 2022 21:53:53 CST
-X-Transaction-ID: 437f38b646a245689e764bf8741df661
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Sender: 15330273260@189.cn
-Message-ID: <400476ec-4b81-6a3d-651a-dbfa8eb5717e@189.cn>
-Date:   Tue, 22 Feb 2022 21:53:45 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v10 3/4] drm/lsdc: add drm driver for loongson display
- controller
-Content-Language: en-US
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S230163AbiBVOIg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:08:36 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCB513113F;
+        Tue, 22 Feb 2022 06:08:10 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21ME7MkP005019;
+        Tue, 22 Feb 2022 08:07:22 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1645538842;
+        bh=8HPnjRNTg1rgRuGDrTg7AuCbtaoqyKy2IHjGLaHD7Fs=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ctwrzo4XA7iB3hzjs0/vCaLdhyfnlm9x8Tdm/vef0FUl6cqTWqKcvKg8na866ipQ3
+         LkfBXKjRm6agy3zbZ0R+Hv1+oLn5AMKHSzkk/YA4GXqoL7gpruaaFDcenNcJOSZymK
+         u2NjCkYLufIp1G3dAt7RFNAxpFND1thYMo9NUp/8=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21ME7MSc086515
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 22 Feb 2022 08:07:22 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 22
+ Feb 2022 08:07:21 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 22 Feb 2022 08:07:21 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21ME7LqE034437;
+        Tue, 22 Feb 2022 08:07:21 -0600
+Date:   Tue, 22 Feb 2022 08:07:21 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+CC:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Randy Dunlap <rdunlap@infradead.org>,
-        kernel test robot <lkp@intel.com>
-References: <20220220145554.117854-1-15330273260@189.cn>
- <20220220145554.117854-4-15330273260@189.cn>
- <20220222082747.66otrkc4zwvhem7w@houat>
-From:   Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <20220222082747.66otrkc4zwvhem7w@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Wei Xu <xuwei5@hisilicon.com>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jan Kotas <jank@cadence.com>, <linux-scsi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [RFC PATCH 8/8] arm64: dts: ti: use 'freq-table' in UFS node
+Message-ID: <20220222140721.bzbspfcethml2psm@running>
+References: <20220219184224.44339-1-krzysztof.kozlowski@canonical.com>
+ <20220219184554.44887-1-krzysztof.kozlowski@canonical.com>
+ <20220221131340.q3hjpjevqrfvhggv@specimen>
+ <19705501-2391-14a4-0eac-4b2b647a9735@canonical.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <19705501-2391-14a4-0eac-4b2b647a9735@canonical.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14:20-20220221, Krzysztof Kozlowski wrote:
+> On 21/02/2022 14:13, Nishanth Menon wrote:
+> > On 19:45-20220219, Krzysztof Kozlowski wrote:
+> >> The 'freq-table-hz' property is deprecated by UFS bindings.
+> >> The uint32-array requires also element to be passed within one <> block.
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> >> ---
+> >>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 4 +++-
+> >>  1 file changed, 3 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> >> index 599861259a30..c3afef0321ae 100644
+> >> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> >> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> >> @@ -1257,7 +1257,9 @@ ufs@4e84000 {
+> >>  			compatible = "cdns,ufshc-m31-16nm", "jedec,ufs-2.0";
+> >>  			reg = <0x0 0x4e84000 0x0 0x10000>;
+> >>  			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> >> -			freq-table-hz = <250000000 250000000>, <19200000 19200000>, <19200000 19200000>;
+> >> +			freq-table = <250000000 250000000
+> > 
+> > <min max> is much more readable and less error prone in case of a large
+> > set.
+> 
+> Pairs are easily visible if split per line, so readability is similar.
+> Not much is lost.
+> 
+> > 
+> >> +				      19200000 19200000
+> >> +				      19200000 19200000>;
+> > 
+> > are you sure the removal of the tuple adds value?
+> 
+> DT schema requires it, or rather: I do not know how to express uint32
+> tuples in DT schema. All my tries failed.
 
-On 2022/2/22 16:27, Maxime Ripard wrote:
-> Hi,
->
-> On Sun, Feb 20, 2022 at 10:55:53PM +0800, Sui Jingfeng wrote:
->> +/* lsdc_get_display_timings_from_dtb - Get display timings from the device tree
->> + *
->> + * @np: point to the device node contain the display timings
->> + * @pptim: point to where the pointer of struct display_timings is store to
->> + */
->> +static void lsdc_get_display_timings_from_dtb(struct device_node *np,
->> +					      struct display_timings **pptim)
->> +{
->> +	struct display_timings *timings;
->> +
->> +	if (!np)
->> +		return;
->> +
->> +	timings = of_get_display_timings(np);
->> +	if (timings)
->> +		*pptim = timings;
->> +}
-> This is not documented in your binding.
->
->> +static int lsdc_get_connector_type(struct drm_device *ddev,
->> +				   struct device_node *output,
->> +				   unsigned int index)
->> +{
->> +	const char *name;
->> +	int ret;
->> +
->> +	ret = of_property_read_string(output, "connector", &name);
->> +	if (ret < 0)
->> +		return DRM_MODE_CONNECTOR_Unknown;
->> +
->> +	if (strncmp(name, "vga-connector", 13) == 0) {
->> +		ret = DRM_MODE_CONNECTOR_VGA;
->> +		drm_info(ddev, "connector%d is VGA\n", index);
->> +	} else if (strncmp(name, "dvi-connector", 13) == 0) {
->> +		bool analog, digital;
->> +
->> +		analog = of_property_read_bool(output, "analog");
->> +		digital = of_property_read_bool(output, "digital");
->> +
->> +		if (analog && !digital)
->> +			ret = DRM_MODE_CONNECTOR_DVIA;
->> +		else if (analog && digital)
->> +			ret = DRM_MODE_CONNECTOR_DVII;
->> +		else
->> +			ret = DRM_MODE_CONNECTOR_DVID;
->> +
->> +		drm_info(ddev, "connector%d is DVI\n", index);
->> +	} else if (strncmp(name, "virtual-connector", 17) == 0) {
->> +		ret = DRM_MODE_CONNECTOR_VIRTUAL;
->> +		drm_info(ddev, "connector%d is virtual\n", index);
->> +	} else if (strncmp(name, "dpi-connector", 13) == 0) {
->> +		ret = DRM_MODE_CONNECTOR_DPI;
->> +		drm_info(ddev, "connector%d is DPI\n", index);
->> +	} else if (strncmp(name, "hdmi-connector", 14) == 0) {
->> +		int res;
->> +		const char *hdmi_type;
->> +
->> +		ret = DRM_MODE_CONNECTOR_HDMIA;
->> +
->> +		res = of_property_read_string(output, "type", &hdmi_type);
->> +		if (res == 0 && !strcmp(hdmi_type, "b"))
->> +			ret = DRM_MODE_CONNECTOR_HDMIB;
->> +
->> +		drm_info(ddev, "connector%d is HDMI, type is %s\n", index, hdmi_type);
->> +	} else {
->> +		ret = DRM_MODE_CONNECTOR_Unknown;
->> +		drm_info(ddev, "The type of connector%d is unknown\n", index);
->> +	}
->> +
->> +	return ret;
->> +}
-> Your ports and that you're using the connectors bindings either.
->
->> +struct lsdc_connector *lsdc_connector_init(struct lsdc_device *ldev, unsigned int index)
->> +{
->> +	struct drm_device *ddev = &ldev->drm;
->> +	struct device_node *np = ddev->dev->of_node;
->> +	struct device_node *output = NULL;
->> +	unsigned int connector_type = DRM_MODE_CONNECTOR_Unknown;
->> +	struct device_node *disp_tims_np;
->> +	struct lsdc_connector *lconn;
->> +	struct drm_connector *connector;
->> +	int ret;
->> +
->> +	lconn = devm_kzalloc(ddev->dev, sizeof(*lconn), GFP_KERNEL);
->> +	if (!lconn)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	lconn->index = index;
->> +	lconn->has_disp_tim = false;
->> +	lconn->ddc = NULL;
->> +
->> +	output = of_parse_phandle(np, "output-ports", index);
->> +	if (!output) {
->> +		drm_warn(ddev, "no output-ports property, please update dtb\n");
->> +		/*
->> +		 * Providing a blindly support even though no output-ports
->> +		 * property is provided in the dtb.
->> +		 */
->> +		goto DT_SKIPED;
->> +	}
-> output-ports is not documented either.
-Thanks for you take time review my patch, i will try to document it at 
-next version.
+https://www.kernel.org/doc/Documentation/devicetree/bindings/opp/opp-v1.yaml
+comes to mind..
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
