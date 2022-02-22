@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59F124C0349
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:49:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AA9C4C0353
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:49:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235615AbiBVUs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 15:48:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34214 "EHLO
+        id S235667AbiBVUtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 15:49:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235620AbiBVUs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:48:56 -0500
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A772A41A3
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:30 -0800 (PST)
-Received: by mail-ot1-x32e.google.com with SMTP id g6-20020a9d6486000000b005acf9a0b644so10464139otl.12
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:30 -0800 (PST)
+        with ESMTP id S235631AbiBVUs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:48:58 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB05A419C
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:32 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id s5so15949530oic.10
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=7jxshT1pWA/8RZp0d4XCT2f4zJBopPI7Okk1zgrv3jU=;
-        b=rcW/NJ3twEXUjUwMjHFOr2n4rYJi5TW0BSWPqI5ZoOTC69sMiCT7h39r/USkVKIYHO
-         0J2flxYvVc4S5GlpKiyqWPWZ12NjMFEZGGXqZRYLd8u4IZRM3jsapeRiUNIB4Kz4YNRJ
-         vsGUv/doyie+sOOkt9MyiQT0aCPc58B6+vDRtK7Yssu/yQahgZlZSKXETmW/M9H5q/mt
-         1iZCAQKnBPTdewg+SDGiRZcm49aAaAXE2pJsqwZxZPvb/9VFXrTEfSbspTuz4j/rAm0C
-         UizPz/QaiZZRMKTsJoQ2BABJCcmgTTyz82uJGl8xZhvsrVXCxkwaDOh75iEcoNCtrPVY
-         DzPQ==
+        bh=klZ1jMjbBvLLqWpFcVVPQAyVMxl5JTcih5hQrWe+IKM=;
+        b=SToRoHvrgISX5HcL1lbaJnzkK53qsAnL+YhbPx/ajhID82BuLQq8fsttj+vq9XmDCC
+         X7QwCrMMZkcCMi7ZE0u94fuFeCGYyg5edz2U7bSCAbGgipkNoiK5UAxKwtXA4JdfbXbs
+         1i3mF7sY1OX+rmyhL9+OddhiwK58X1jeGNoL57g/izIWG+KE15ndTqxJ2Y8BD4GWW+9R
+         QXpluEmcSJRwLW5L4joKNrFJ2MJuIELZHAzYtBuq4IsLAem1+r2jw07dj6Kih4iB3xqJ
+         0DMZcdx/YYhDqHHb27H5ogfGGRUAX7AUSplf06dE8EWm5AZI03ROUP6hAfQ48LnlDZFe
+         0uXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=7jxshT1pWA/8RZp0d4XCT2f4zJBopPI7Okk1zgrv3jU=;
-        b=eWYnfPw3FEzgu5PJGhkBPI/YuaN82513lEg4cUqJiO9Ls9cqy7IhZM94YGIUTXxTRp
-         5NrLBX88MBZAi0nKy4xlsSZI3zqZSbRC4c1cR0BtglowSfN/VrAyBrgvMfDzFXhZQG+F
-         jpkcbsk3M0qzQrT41uXYAWTf27Xvy9HcITW9EVoHhmmCTVrdeJp788yL+tddlyIdp2Lu
-         mrSwPZMKOc69GDTCdisoBOBUNF/gTOxU4AaATPuNk42N913Yri0IK6Uk+aADofOHNdzP
-         SYqodMP4m8TDSKh1t+ALtEKZA2Cw3VDfRH2PA1SSnSt5Mdc3y8m64PRxDDcO6xKoINay
-         NvyQ==
-X-Gm-Message-State: AOAM532z5BdBlnyVVCRILBqltp+Cw1qYb6TTrE3rkSusejXGXUE4zetF
-        3dS9mNS/+kvcHL+lbv0TtqP15Q==
-X-Google-Smtp-Source: ABdhPJziqVBxNlzDAcUXnP8ghiwG6ffgujh/J8VzWwqr8QmDfZL1gilLS0gYfHzMF0NzxkkbF/GKGQ==
-X-Received: by 2002:a05:6830:410b:b0:5af:432e:e375 with SMTP id w11-20020a056830410b00b005af432ee375mr3276695ott.191.1645562909675;
-        Tue, 22 Feb 2022 12:48:29 -0800 (PST)
+        bh=klZ1jMjbBvLLqWpFcVVPQAyVMxl5JTcih5hQrWe+IKM=;
+        b=e/HTcA0k+uJObXLxtyhdFs0V6zJEx66AlU3d0KtwK+hdSdiPPe3N/nKEJCDQhvKmG4
+         VCIOfa327rizWHXFOytPHQC0vP3zP4vXW+lTDQiTZybVTAuMVfjnOu2VaqN6Fr/6SrZk
+         ZLBnYWGQKPe8KD9Yvb4csbrvXBUyt1woCXz4yCCxSPofPvFIgI0B23LYIAd17Cr8G63g
+         nw+J5xSgTalDBtsa/fm/p6M/ZzeyasOz8dQmPZvOXxbUU2BCJpgziU7sAFMmZv3EvzKV
+         WBM3ipcg/LoG4Hjyaixl/DhVS2WB7IyXPu3xXqv3UzBcF5+d0yuxR8vrZcBhmUx4fUfL
+         UvcQ==
+X-Gm-Message-State: AOAM530yRsLQ2Rd789fNHRY/LMtAmubLH/qB4bxJN1K8JF1wTaXPcYY+
+        MufoUGYC9RxIMDBGVIVVw+137A==
+X-Google-Smtp-Source: ABdhPJxuDinis6H1SdDayKBv5l4KVw4gpSxffp1LNNYuA9r/JGZwEVp7PVaiYmeyU7yakZXDrftMjA==
+X-Received: by 2002:a05:6808:1441:b0:2d6:9ee5:99b1 with SMTP id x1-20020a056808144100b002d69ee599b1mr1571540oiv.18.1645562911821;
+        Tue, 22 Feb 2022 12:48:31 -0800 (PST)
 Received: from rivos-atish.. (adsl-70-228-75-190.dsl.akrnoh.ameritech.net. [70.228.75.190])
-        by smtp.gmail.com with ESMTPSA id o14sm16508197oaq.37.2022.02.22.12.48.28
+        by smtp.gmail.com with ESMTPSA id o14sm16508197oaq.37.2022.02.22.12.48.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 12:48:29 -0800 (PST)
+        Tue, 22 Feb 2022 12:48:31 -0800 (PST)
 From:   Atish Patra <atishp@rivosinc.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Atish Patra <atishp@rivosinc.com>,
@@ -61,9 +61,9 @@ Cc:     Atish Patra <atishp@rivosinc.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v5 4/6] RISC-V: Implement multi-letter ISA extension probing framework
-Date:   Tue, 22 Feb 2022 12:48:09 -0800
-Message-Id: <20220222204811.2281949-5-atishp@rivosinc.com>
+Subject: [PATCH v5 5/6] RISC-V: Do no continue isa string parsing without correct XLEN
+Date:   Tue, 22 Feb 2022 12:48:10 -0800
+Message-Id: <20220222204811.2281949-6-atishp@rivosinc.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220222204811.2281949-1-atishp@rivosinc.com>
 References: <20220222204811.2281949-1-atishp@rivosinc.com>
@@ -78,118 +78,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Multi-letter extensions can be probed using exising
-riscv_isa_extension_available API now. It doesn't support versioning
-right now as there is no use case for it.
-Individual extension specific implementation will be added during
-each extension support.
+The isa string should begin with either rv64 or rv32. Otherwise, it is
+an incorrect isa string. Currently, the string parsing continues even if
+it doesnot begin with current XLEN.
+
+Fix this by checking if it found "rv64" or "rv32" in the beginning.
 
 Tested-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Atish Patra <atishp@rivosinc.com>
 ---
- arch/riscv/include/asm/hwcap.h | 18 ++++++++++++++++++
- arch/riscv/kernel/cpufeature.c | 24 ++++++++++++++++++------
- 2 files changed, 36 insertions(+), 6 deletions(-)
+ arch/riscv/kernel/cpufeature.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index 5ce50468aff1..170bd80da520 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -34,7 +34,25 @@ extern unsigned long elf_hwcap;
- #define RISCV_ISA_EXT_s		('s' - 'a')
- #define RISCV_ISA_EXT_u		('u' - 'a')
- 
-+/*
-+ * Increse this to higher value as kernel support more ISA extensions.
-+ */
- #define RISCV_ISA_EXT_MAX	64
-+#define RISCV_ISA_EXT_NAME_LEN_MAX 32
-+
-+/* The base ID for multi-letter ISA extensions */
-+#define RISCV_ISA_EXT_BASE 26
-+
-+/*
-+ * This enum represent the logical ID for each multi-letter RISC-V ISA extension.
-+ * The logical ID should start from RISCV_ISA_EXT_BASE and must not exceed
-+ * RISCV_ISA_EXT_MAX. 0-25 range is reserved for single letter
-+ * extensions while all the multi-letter extensions should define the next
-+ * available logical extension id.
-+ */
-+enum riscv_isa_ext_id {
-+	RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
-+};
- 
- unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
- 
 diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index b0df7eff47f7..c6693873e95c 100644
+index c6693873e95c..f3a4b0619aa0 100644
 --- a/arch/riscv/kernel/cpufeature.c
 +++ b/arch/riscv/kernel/cpufeature.c
-@@ -83,7 +83,7 @@ void __init riscv_fill_hwcap(void)
- 
+@@ -84,6 +84,7 @@ void __init riscv_fill_hwcap(void)
  	for_each_of_cpu_node(node) {
  		unsigned long this_hwcap = 0;
--		unsigned long this_isa = 0;
-+		DECLARE_BITMAP(this_isa, RISCV_ISA_EXT_MAX);
+ 		DECLARE_BITMAP(this_isa, RISCV_ISA_EXT_MAX);
++		const char *temp;
  
  		if (riscv_of_processor_hartid(node) < 0)
  			continue;
-@@ -100,6 +100,7 @@ void __init riscv_fill_hwcap(void)
+@@ -93,6 +94,7 @@ void __init riscv_fill_hwcap(void)
+ 			continue;
+ 		}
+ 
++		temp = isa;
+ #if IS_ENABLED(CONFIG_32BIT)
+ 		if (!strncmp(isa, "rv32", 4))
+ 			isa += 4;
+@@ -100,6 +102,9 @@ void __init riscv_fill_hwcap(void)
  		if (!strncmp(isa, "rv64", 4))
  			isa += 4;
  #endif
-+		bitmap_zero(this_isa, RISCV_ISA_EXT_MAX);
++		/* The riscv,isa DT property must start with rv64 or rv32 */
++		if (temp == isa)
++			continue;
+ 		bitmap_zero(this_isa, RISCV_ISA_EXT_MAX);
  		for (; *isa; ++isa) {
  			const char *ext = isa++;
- 			const char *ext_end = isa;
-@@ -172,12 +173,22 @@ void __init riscv_fill_hwcap(void)
- 			if (*isa != '_')
- 				--isa;
- 
-+#define SET_ISA_EXT_MAP(name, bit)						\
-+			do {							\
-+				if ((ext_end - ext == sizeof(name) - 1) &&	\
-+				     !memcmp(ext, name, sizeof(name) - 1)) {    \
-+					set_bit(bit, this_isa);			\
-+					pr_info("Found ISA extension %s", name);\
-+				}						\
-+			} while (false)						\
-+
- 			if (unlikely(ext_err))
- 				continue;
- 			if (!ext_long) {
- 				this_hwcap |= isa2hwcap[(unsigned char)(*ext)];
--				this_isa |= (1UL << (*ext - 'a'));
-+				set_bit(*ext - 'a', this_isa);
- 			}
-+#undef SET_ISA_EXT_MAP
- 		}
- 
- 		/*
-@@ -190,10 +201,11 @@ void __init riscv_fill_hwcap(void)
- 		else
- 			elf_hwcap = this_hwcap;
- 
--		if (riscv_isa[0])
--			riscv_isa[0] &= this_isa;
-+		if (bitmap_weight(riscv_isa, RISCV_ISA_EXT_MAX))
-+			bitmap_and(riscv_isa, riscv_isa, this_isa, RISCV_ISA_EXT_MAX);
- 		else
--			riscv_isa[0] = this_isa;
-+			bitmap_copy(riscv_isa, this_isa, RISCV_ISA_EXT_MAX);
-+
- 	}
- 
- 	/* We don't support systems with F but without D, so mask those out
-@@ -207,7 +219,7 @@ void __init riscv_fill_hwcap(void)
- 	for (i = 0, j = 0; i < NUM_ALPHA_EXTS; i++)
- 		if (riscv_isa[0] & BIT_MASK(i))
- 			print_str[j++] = (char)('a' + i);
--	pr_info("riscv: ISA extensions %s\n", print_str);
-+	pr_info("riscv: base ISA extensions %s\n", print_str);
- 
- 	memset(print_str, 0, sizeof(print_str));
- 	for (i = 0, j = 0; i < NUM_ALPHA_EXTS; i++)
 -- 
 2.30.2
 
