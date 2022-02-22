@@ -2,136 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B6114BFBD7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:03:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6BAF4BFBE2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:05:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233190AbiBVPDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 10:03:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47956 "EHLO
+        id S229893AbiBVPEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 10:04:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233438AbiBVPC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:02:59 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C357110E544
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:01:49 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 80F353FCA6
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 15:01:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645542108;
-        bh=HtdrJ3I4lOo9P+o7lWSeEHgMO5/UUG8VsgHgTsClLgE=;
-        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-         In-Reply-To:Content-Type;
-        b=G+PMQ6V4Q5in6kK6rSduCkvGNHTtH+X25bfzi4EQKTEGYL2UaIAxtYU7TZnqBh49l
-         v7Yt4WGFM5fBf038GUvq20EPjmfg4kG59j2HkCrisb9aV+f36+HXOrFrUdXkeQBD6D
-         OuVyVGbdGwGATWXtS9bkM6DCW4oAvTptqzUxZz5ZWBTO2+CFASoT60Ng7EkwBVqwf2
-         iaNnYpLLwionXg74HKRub/LqIfvP2BYMalwNZ593fuTbzA1TRbjy8mCkF+FWhrmHJa
-         x/nBB7uWI2mBzw4KBqK8UK46vTIMBisnesHdKrMVC7VZ9r0+PttR8L6krPtv8pjlTs
-         B/fy0EWWyZiqQ==
-Received: by mail-ed1-f69.google.com with SMTP id d11-20020a50c88b000000b00410ba7a14acso12098978edh.6
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:01:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=HtdrJ3I4lOo9P+o7lWSeEHgMO5/UUG8VsgHgTsClLgE=;
-        b=UEfJBzj7Uyl2lr5+LPkgpBUoPCrKTiODYcKB0L8uuxcgEOK1FvT7+Aeo7aTwskf3wi
-         khCmUGnwxz6+DQYV12xjzosZqVgViNECS/GiBM6ROvpIaup2QPlylY5cBh3Nu9H1HyjB
-         0CfU2g9ipSyqc0UFQByeICQx/74GlMNELXYQ6dRtNEkbWuu+GbvojjhCVNDiBnJXybhB
-         FOQic22ezy6PKxfVHGdYwrvHWmj9/xZcQSdTymDACDpMkZhEsXP/3wTDzdC5Jhxvcuj6
-         EcKqS076316weo2If7/N3+JAAol9M4xXLe5fRg+u6hMUYobHYNpU7UjE0d/H96WdcJjC
-         aGoA==
-X-Gm-Message-State: AOAM533hIclRKo5DJwpiGcUHl0sS0hkdxyU5wCPh9O38xyeW7D9OxpV3
-        n0oHngvXxMY9GObynkpL3atNqPKODCPH5/NIt3SCiDwXM5dAaoH4qzSGXt/ASHZjmV13ZsN6E4H
-        MBbMxM36GvBSGu0QWXv/BhXGTleHcAFMu1rEcOQM=
-X-Received: by 2002:a17:906:b005:b0:6b4:8861:597b with SMTP id v5-20020a170906b00500b006b48861597bmr19372055ejy.238.1645542107960;
-        Tue, 22 Feb 2022 07:01:47 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyl5ajALOLJhstZXNm4FFrBok2iV4kiyLbSmxL7nyMkd0sVGKDRLluG1qlnkwVf1Pl3ETi9Pw==
-X-Received: by 2002:a17:906:b005:b0:6b4:8861:597b with SMTP id v5-20020a170906b00500b006b48861597bmr19372009ejy.238.1645542107580;
-        Tue, 22 Feb 2022 07:01:47 -0800 (PST)
-Received: from [192.168.0.124] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id ci16sm6345629ejb.128.2022.02.22.07.01.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Feb 2022 07:01:47 -0800 (PST)
-Message-ID: <4e459bbb-ca6c-4ca2-efe9-8ab4d4f3b648@canonical.com>
-Date:   Tue, 22 Feb 2022 16:01:45 +0100
+        with ESMTP id S230204AbiBVPEu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:04:50 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D15755BFA;
+        Tue, 22 Feb 2022 07:04:25 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21MF44lv119918;
+        Tue, 22 Feb 2022 09:04:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1645542244;
+        bh=0TF0Nb9Xr5PW1Hve2ocmAZgfDz2+Q7g0gLda7jNucyM=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=c/u7yiiP9pt8BwViucg/xBL/03COWQQGBo3b+NASpfG0rTL8jTXs4jJseI1w2ncy5
+         Bmjtd1TMR4Ssy45tawqetRoXNOJvUHHGjk9jS1lYjczx6ktt+q2c+rLbOr10DggVj2
+         Ev6u5ld4toUt70X8aEdJrK+eszSdspQzTuThZoJA=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21MF44EH035003
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 22 Feb 2022 09:04:04 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 22
+ Feb 2022 09:04:04 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 22 Feb 2022 09:04:04 -0600
+Received: from [10.250.234.33] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21MF408c028352;
+        Tue, 22 Feb 2022 09:04:01 -0600
+Message-ID: <7fb78e91-90a3-8c61-0584-0448c8936e75@ti.com>
+Date:   Tue, 22 Feb 2022 20:33:59 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 05/15] dt-bindings: ufs: qcom,ufs: convert to dtschema
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-*: Fix whitespace around flash@0
+ nodes
 Content-Language: en-US
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Wei Xu <xuwei5@hisilicon.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+To:     Pratyush Yadav <p.yadav@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
         Tero Kristo <kristo@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Jan Kotas <jank@cadence.com>, Li Wei <liwei213@huawei.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Yaniv Gardi <ygardi@codeaurora.org>,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20220222145854.358646-1-krzysztof.kozlowski@canonical.com>
- <20220222145854.358646-6-krzysztof.kozlowski@canonical.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220222145854.358646-6-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=UTF-8
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20220217181025.1815118-1-p.yadav@ti.com>
+From:   Apurva Nandan <a-nandan@ti.com>
+In-Reply-To: <20220217181025.1815118-1-p.yadav@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2022 15:58, Krzysztof Kozlowski wrote:
-> Convert the Qualcomm Universal Flash Storage (UFS) Controller to DT
-> schema format.
-> 
-> Except the conversion, add also properties already present in DTS:
-> iommus, interconnects and power-domains.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+On 17/02/22 23:40, Pratyush Yadav wrote:
+> The OSPI flash nodes are missing a space before the opening brace. Fix
+> that.
+>
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+
+Reviewed-by: Apurva Nandan<a-nandan@ti.com>
+
 > ---
->  .../devicetree/bindings/ufs/qcom,ufs.yaml     | 241 ++++++++++++++++++
->  .../devicetree/bindings/ufs/ufshcd-pltfrm.txt |  90 -------
->  2 files changed, 241 insertions(+), 90 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->  delete mode 100644 Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> new file mode 100644
-> index 000000000000..356217124222
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> @@ -0,0 +1,241 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ufs/qcom,ufs.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Universal Flash Storage (UFS) Controller
-> +
-> +maintainers:
-> +  - Yaniv Gardi <ygardi@codeaurora.org>
-
-This email bounces ("User doesn't exist: ygardi@codeaurora.org"), so
-maintainer is needed for Qualcomm UFS bindings.
-
-Best regards,
-Krzysztof
+>
+> Only compile-tested.
+>
+>   arch/arm64/boot/dts/ti/k3-am642-evm.dts               | 2 +-
+>   arch/arm64/boot/dts/ti/k3-am642-sk.dts                | 2 +-
+>   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi           | 2 +-
+>   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 2 +-
+>   arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi           | 2 +-
+>   5 files changed, 5 insertions(+), 5 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> index e94ae178b1ae..edf80e277267 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> @@ -498,7 +498,7 @@ &ospi0 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&ospi0_pins_default>;
+>
+> -	flash@0{
+> +	flash@0 {
+>   		compatible = "jedec,spi-nor";
+>   		reg = <0x0>;
+>   		spi-tx-bus-width = <8>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> index a9785bec12df..30b956276060 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> @@ -369,7 +369,7 @@ &ospi0 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&ospi0_pins_default>;
+>
+> -	flash@0{
+> +	flash@0 {
+>   		compatible = "jedec,spi-nor";
+>   		reg = <0x0>;
+>   		spi-tx-bus-width = <8>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> index 34724440171a..7d819f0db8df 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> @@ -256,7 +256,7 @@ &ospi0 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
+>
+> -	flash@0{
+> +	flash@0 {
+>   		compatible = "jedec,spi-nor";
+>   		reg = <0x0>;
+>   		spi-tx-bus-width = <8>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> index 2d7596911b27..2ecc4541f6d8 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> @@ -482,7 +482,7 @@ &ospi1 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
+>
+> -	flash@0{
+> +	flash@0 {
+>   		compatible = "jedec,spi-nor";
+>   		reg = <0x0>;
+>   		spi-tx-bus-width = <1>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> index 2fee2906183d..990dfcd61018 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
+> @@ -171,7 +171,7 @@ &ospi0 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
+>
+> -	flash@0{
+> +	flash@0 {
+>   		compatible = "jedec,spi-nor";
+>   		reg = <0x0>;
+>   		spi-tx-bus-width = <8>;
+> --
+> 2.34.1
+>
