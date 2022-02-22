@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07B474BF4A4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 10:27:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E168F4BF4A7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 10:27:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbiBVJ1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 04:27:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36714 "EHLO
+        id S229537AbiBVJ2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 04:28:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230112AbiBVJ1j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 04:27:39 -0500
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6944EAC925;
-        Tue, 22 Feb 2022 01:27:14 -0800 (PST)
-Received: by mail-ej1-f42.google.com with SMTP id qx21so40840177ejb.13;
-        Tue, 22 Feb 2022 01:27:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=hozujUNDxQYWs0z4Yohi78rvGC8YWWcZ/HA3dpl2q7E=;
-        b=bVOuxCn8ZCxUJ8R71qARPlCiRaIvC8bQyUT/u/je5vmx7tB9UrZ+5SU5xtQMl5lB/V
-         KSxoHvjhd/0z286QiwM83I6OduRjlRtZJ4cz+q93UTfHc9BqTrNCAKIMIawdlV0QNa7x
-         al6qtN8cAH+GYDwbQsntac0d4c1rdabpHNa/gCZurpNZ5eCYLmAj7dwSlzi0ZXnW0Kjg
-         ify1Bs9L2BA0vvW8vTu1MGXUSY26VfkOv3f3BQRmR89Tk2FGT0b1fDiBcAwmDWfYwqR9
-         pYx/g+Qk9BWgRatBhigNkpXWXszxhlQa3rIkdSiW7u5rpFSiR3E58h4mZf7qlvrq9vzk
-         pwnw==
-X-Gm-Message-State: AOAM532Zdub0UldDPV4iK4NG6vrUzKQDipnqk8qoCvEJj1IQcOJLp9/r
-        RZFr4jabG/AjXW0Pqavm+TVkEui8K0Y=
-X-Google-Smtp-Source: ABdhPJySyXFu/4L5OU/8cKuytxrd02nUbQ50nye4mtpUoe7hIbFWYgfioRnOnAG5v842r3HAjhPAOw==
-X-Received: by 2002:a17:907:765a:b0:6d1:bc6:df10 with SMTP id kj26-20020a170907765a00b006d10bc6df10mr10611324ejc.254.1645522032710;
-        Tue, 22 Feb 2022 01:27:12 -0800 (PST)
-Received: from [192.168.0.122] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.googlemail.com with ESMTPSA id q16sm5691100ejc.21.2022.02.22.01.27.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Feb 2022 01:27:11 -0800 (PST)
-Message-ID: <e9ef5936-63dc-f959-13f3-6ab3e9bf140b@kernel.org>
-Date:   Tue, 22 Feb 2022 10:27:10 +0100
+        with ESMTP id S230169AbiBVJ17 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 04:27:59 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBCECB150D;
+        Tue, 22 Feb 2022 01:27:34 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 505E91F43FA4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645522052;
+        bh=9uIWhkgh5zj+kS+T5nmX1TTemvU0JjPsg/tDayMXXIM=;
+        h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+        b=WGzSpzkFjQqTS2z3k6akWiB7z9JcJe7NQtCE5iLTZ+xtjOkyjRk8g3pUm+HXEUEwS
+         wC1joSSu8ixjFIRti1u6wvw0Uokl5Y/0mQD68IITDkDTvxEK4kqEiKRyzT3ku36TfZ
+         Cn77ERP+0FfeK26yCuP5PWD/TeqRfSVNw+LlnJaSv8aEmoAA07rb081xrBMLAkrfw4
+         5T4GdVGvf2qkn049NMlMOGxY5PcICG/3N3NwQF1A4k4Fl7QNwpxA00mayoG0/Y81t/
+         9lJ/6LWYJhHMFTiOrRKAh+i8BQrULno5quArIiQ3+3lcCSsq/PnX5BBAPsH/6JQKvo
+         MaSFQE+q4Rkog==
+Message-ID: <88cf418d-69d2-2852-1ed6-d96143694dac@collabora.com>
+Date:   Tue, 22 Feb 2022 10:27:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
+ Thunderbird/91.5.1
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v23 1/7] dt-bindings: soc: mediatek: add mtk svs
+ dt-bindings
+To:     Roger Lu <roger.lu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>
+References: <20220221063939.14969-1-roger.lu@mediatek.com>
+ <20220221063939.14969-2-roger.lu@mediatek.com>
 Content-Language: en-US
-To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <cover.1645460043.git.oleksii_moisieiev@epam.com>
- <2546477f-4190-e838-3095-f47b31802445@kernel.org>
- <20220221213932.GA164964@EPUAKYIW015D>
- <7f17ab8f-429f-d2e0-8f5f-bfa2dd19cc49@kernel.org>
- <20220222085532.GA439897@EPUAKYIW015D>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220222085532.GA439897@EPUAKYIW015D>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20220221063939.14969-2-roger.lu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,65 +73,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2022 09:55, Oleksii Moisieiev wrote:
+Il 21/02/22 07:39, Roger Lu ha scritto:
+> Document the binding for enabling mtk svs on MediaTek SoC.
 > 
->>
->> 2. Does your example work properly? Passes dt_binding_check? Reg looks
->> different than unit-address.
->>
-> dt_bindings_check passes without errors. Also I've checked this file
-> explicitly by using command:
-> yamllint -c Documentation/devicetree/bindings/.yamllint Documentation/devicetree/bindings/firmware/arm,scmi-devid.yaml
-> 
-> Reg value, if you mean reg parameter from an Example, was taken from
-> r8a77961.dtsi file.
-The check does not pass. You have an error there:
+> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Documentation/devicetree/bindings/firmware/arm,scmi-devid.example.dt.yaml:
-example-0: usb@ee0a0000:reg:0: [0, 3993632768, 0, 256] is too long
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-
-
-> 
->>
->>>
->>>> 2. Your schema does is not selected by anything. How is it intended to
->>>> be used? Nothing is including it, either...
->>>>
->>>
->>> The idea is to use this parameter to set the device_id for the device in
->>> the device-tree, which matches to the device mapping in the Firmware, so
->>> Trusted Agent can use it to the device permissions.
->>> Please see Sections 4.2.2.10 and 4.2.1 [0] (Link was provided in the
->>> cover letter).
->>>
->>> I'm currently propose the new feature, called SCI mediator to Xen-devel
->>> community. Please see link [1] from cover letter for the details.
->>> In this feature - Xen is the Trusted Agent, which uses scmi_devid
->>> parameter to set the device permissions.
->>> We think that this parameter will be useful for other possible SCMI
->>> implementations, such as other hypervisor or SCMI backend server etc.
->>
->> We talk about different things, I think. I was asking how is this schema
->> selected?
->>
->> I gave it a fast try (dtbs_check) and it confirmed - schema does not
->> have an effect. It's a noop. You need something like "select: true", see:
->> Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
->> or this schema should be included by other schemas... but then I would
->> be happy to see actual usage in this patchset (more commits...).
->>
-> 
-> I think select: true will work for me. I'll do dtbs_check and
-> dt_bindings_check after making all changes and prepare v2 if there will
-> be no further comments.
-> 
-> Also what do you think about maintainers: field? Is it correct? I'm not
-> sure if I used it correctly.
-
-
-I think you should add arm,scmi maintainer next to you.
-
-
-Best regards,
-Krzysztof
