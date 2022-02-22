@@ -2,80 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BBFF4C041A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 22:50:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57C3A4C0422
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 22:52:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230274AbiBVVue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 16:50:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45438 "EHLO
+        id S235883AbiBVVxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 16:53:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235874AbiBVVud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 16:50:33 -0500
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9658380206
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 13:50:07 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id p9so47013538ejd.6
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 13:50:07 -0800 (PST)
+        with ESMTP id S232165AbiBVVxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 16:53:22 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 751FDA144F
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 13:52:54 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id e2so18345428ljq.12
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 13:52:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MDe1/XbZZwpMzP4Bd4iYW6ooJa1SuvyIIVKBTpf5jUo=;
-        b=JIbNmgkRgP4fmF8fqKDxZPoO3hitMDXsTDRzZdAS3R1lGW5Qw/2Pfw8K2nfHxZpCxZ
-         CMraYxwZL0nqKfhrIzAlWOz+jA4Q6lyHsTp9H2qhakiBhCRJmo2r7cSThBodJyHwFBhC
-         9sy0CGhOAlttN6NzFmMpVWtPN3xc3gm7AOi00=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=DnQVyyMn8RG++Vgl/Pa8NzULdHKj/pUJucwQb5cYs+g=;
+        b=s8yuX9EfwrdMsKsJdaHldrNLwhygAeMsozgvqodkSh6UwTSPwjMUpMOItZE4zbbICi
+         nyl66PhI3+bsqrWnNUMc6Abr3kUid1/cO5/95pY2eC38/+MW60dZx8HuMsrxViYNlK1z
+         CCg4K6PsA+CEt+2ArTHWYJe6w5N8liXkDk5JT0TouKwhyd5/0EOWN2S60MmjbAOFs9wm
+         Jf2WD0lNSpxfxmZp4dFydIGaqJcJot9b1o/LnQZNWNf8zLyb5zpObJgNCOAOnzf7w/RY
+         TuKd9zHJ7sUkv1A8uCo3PLTCG0HtMGHxaFRX8h6MRG1StVcPS0WcthPy2ykUREpUZO+i
+         KEdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MDe1/XbZZwpMzP4Bd4iYW6ooJa1SuvyIIVKBTpf5jUo=;
-        b=QO0Kp2irS88OUbJ8UqOQnr8B9Q0R5bq/BbMm5owP8H9Kdhu2WgNJ0AYyED6PrLstc1
-         6P/Uijv71Og6TSjm0f6VmJnnLFvMZJ0/RIt8URdDeXJAqupdD8lVvafE9sabKZMRj/Xh
-         QQgziHqPNIrBLAevwDBucjaV5+yWPORAj2KZxdOgc8VKJfhz8W5UXMfwGktL8Pw2o9tf
-         rEzle38DkT/A3rmZvokmjqCdQgY2x22Ioo3J0bSgyb0GdNzYP52O2RntauSPIPDjD2xv
-         7X4pxXuDcc4sH02KnxHnRXht+E3zGom2XLQuJxW76oGmH3Vz24BAwO4H4mamEyl39WLx
-         xwiQ==
-X-Gm-Message-State: AOAM530Aif3+KATr3rVqLf2U4r1J20NkQ4bG25BWbbJhXYw5+9SrMWMG
-        VsVbfMuU8tKQl80lLNRNEjvT2EPLrfGPaVYIMo0=
-X-Google-Smtp-Source: ABdhPJyiya71xcyX5SKV9vkRjWFJBH5EV97SFicF4jHGhYLUE2qTSbwJUhfKohMuSJR0kInI4gfgcQ==
-X-Received: by 2002:a17:906:1603:b0:6ce:362:c938 with SMTP id m3-20020a170906160300b006ce0362c938mr20819019ejd.253.1645566605548;
-        Tue, 22 Feb 2022 13:50:05 -0800 (PST)
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com. [209.85.221.52])
-        by smtp.gmail.com with ESMTPSA id en27sm8513109edb.5.2022.02.22.13.50.04
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=DnQVyyMn8RG++Vgl/Pa8NzULdHKj/pUJucwQb5cYs+g=;
+        b=kVXrSLAAR6As5fS4JrmtRB03ksy+qujbtsdCo5wdBpnsYrqdFzH6UqbrRDpsn2+3mn
+         o1FcVSkP9PYsDErMP7h6u+6GQjy1pX891euqBxQM+XWhJSHR/OoWGQaOz7EGpekawihg
+         t3B2j6hcJm22i18H5P+fks+B+jgh7DmPX0PFSFccy5ZRR/XCiu/0dBUtEyJo3JgiFj/n
+         r0GD9CX7fJMH0jG9qh+OdN2DniC2Cyk35aQYQzpMpJ3agMWjH53CsIVqCwG/WUa7E6/m
+         Z3ZpKHr0ju0bqJAyE67T9IN20k3LFZjnaE0VJAODFJEX/acn7v7MHBAWkCPENGQoKlQ9
+         hYqg==
+X-Gm-Message-State: AOAM532gnqf7TiCHxQDqSV9StDlsLKSM93+HmKmPGql3b6xQrLnyfVR4
+        h54ZSIb9iN3AWHNMVSPARCMMOw==
+X-Google-Smtp-Source: ABdhPJxpf7TacdvKOq8G88nEdBuaCHZdQKLsTEYszp+u/DF9UoUbIm7a2znK9UJSTxFT+YEjSMKjKw==
+X-Received: by 2002:a05:651c:12c5:b0:23e:1f55:35b4 with SMTP id 5-20020a05651c12c500b0023e1f5535b4mr18221737lje.58.1645566772827;
+        Tue, 22 Feb 2022 13:52:52 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id a7sm1485675lfr.12.2022.02.22.13.52.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Feb 2022 13:50:04 -0800 (PST)
-Received: by mail-wr1-f52.google.com with SMTP id o24so36029724wro.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 13:50:04 -0800 (PST)
-X-Received: by 2002:a5d:64ea:0:b0:1ea:8148:6b97 with SMTP id
- g10-20020a5d64ea000000b001ea81486b97mr4692080wri.679.1645566604132; Tue, 22
- Feb 2022 13:50:04 -0800 (PST)
+        Tue, 22 Feb 2022 13:52:52 -0800 (PST)
+Message-ID: <490deb0b-aecb-c4a8-ea02-2c687a8da57b@linaro.org>
+Date:   Wed, 23 Feb 2022 00:52:50 +0300
 MIME-Version: 1.0
-References: <1645449126-17718-1-git-send-email-quic_vpolimer@quicinc.com>
- <CAE-0n507XcYRz4=Uw-K37kPsLRqi_gN2L9y1wcu_X-UJP+6ySg@mail.gmail.com>
- <CAD=FV=WvstZkDJcHJPAT0aez3X=uSKzDX0paQRHYD4DEktkMEQ@mail.gmail.com> <CAE-0n51V+bfDUb_heV_DVkS+KOzDcjYzxpU=E8cCGFESrUwpeg@mail.gmail.com>
-In-Reply-To: <CAE-0n51V+bfDUb_heV_DVkS+KOzDcjYzxpU=E8cCGFESrUwpeg@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 22 Feb 2022 13:49:51 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XAvq5LuhZua3FU39RRsicC2dzGAZkG4NHYx8QaP7ov4A@mail.gmail.com>
-Message-ID: <CAD=FV=XAvq5LuhZua3FU39RRsicC2dzGAZkG4NHYx8QaP7ov4A@mail.gmail.com>
-Subject: Re: [v1] arm64/dts/qcom/sc7280: update mdp clk to max supported value
- to support higher refresh rates
-To:     Stephen Boyd <swboyd@chromium.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v2 1/4] drm/msm/dp: Add basic PSR support for eDP
+Content-Language: en-GB
+To:     Doug Anderson <dianders@chromium.org>
 Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
         dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
         linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
         LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        quic_kalyant@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Sean Paul <seanpaul@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, quic_kalyant@quicinc.com,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        quic_vproddut@quicinc.com
+References: <1645455086-9359-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1645455086-9359-2-git-send-email-quic_vpolimer@quicinc.com>
+ <CAA8EJppRUZ5OHSMS1NdFXDDvRXJFNsdoJDWgU7ZPUoAW9OD+eQ@mail.gmail.com>
+ <CAD=FV=W2wi47egKmWDS+BZGSy85K+A8jX0gvi6CYhmFgoBBRmw@mail.gmail.com>
+ <c388d91c-ea00-8fa8-3fcf-4ce754edb1b4@linaro.org>
+ <CAD=FV=WJdcVEmnUvFfkJY3V2eWF2t4xkfCKNwaFHY+FwORg4VA@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <CAD=FV=WJdcVEmnUvFfkJY3V2eWF2t4xkfCKNwaFHY+FwORg4VA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,71 +95,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 23/02/2022 00:32, Doug Anderson wrote:
+> Hi,
+> 
+> On Tue, Feb 22, 2022 at 1:23 PM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+>>
+>> On 22/02/2022 22:25, Doug Anderson wrote:
+>>> Hi,
+>>>
+>>> On Mon, Feb 21, 2022 at 7:12 PM Dmitry Baryshkov
+>>> <dmitry.baryshkov@linaro.org> wrote:
+>>>>
+>>>>> +static int dp_link_psr_status(struct dp_link_private *link)
+>>>>> +{
+>>>>> +       u8 status[2];
+>>>>> +
+>>>>> +       drm_dp_dpcd_read(link->aux, DP_PSR_ERROR_STATUS, status, 2);
+>>>>> +
+>>>>> +       if (status[0] & DP_PSR_LINK_CRC_ERROR)
+>>>>> +               DRM_ERROR("PSR LINK CRC ERROR\n");
+>>>>> +       else if (status[0] & DP_PSR_RFB_STORAGE_ERROR)
+>>>>> +               DRM_ERROR("PSR RFB STORAGE ERROR\n");
+>>>>> +       else if (status[0] & DP_PSR_VSC_SDP_UNCORRECTABLE_ERROR)
+>>>>> +               DRM_ERROR("PSR VSC SDP UNCORRECTABLE ERROR\n");
+>>>>> +       else if (status[1] & DP_PSR_CAPS_CHANGE)
+>>>>> +               DRM_INFO("PSR Capability Change\n");
+>>>>
+>>>> DRM_DEBUG_DP
+>>>
+>>> Not sure I'll have time to go back and review the series, but one
+>>> thing that caught my eye as this flashed through my inbox is that I
+>>> think all of these "shouting" are deprecated. It's even officially
+>>> documented now as of commit d2f0a8afc1be ("UPSTREAM: drm/print: Add
+>>> deprecation notes to DRM_...() functions").
+>>
+>> Agreed. But not the DRM_INFO too.
+> 
+> You're saying that DRM_INFO _isn't_ deprecated? I was pretty sure that
+> it was, too. If not, can you please submit a patch to `drm_print.h`
+> clarifying since my patch (which folks Acked) marked it as deprecated:
 
-On Tue, Feb 22, 2022 at 1:46 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Doug Anderson (2022-02-22 13:25:05)
-> > Hi,
-> >
-> > On Tue, Feb 22, 2022 at 12:58 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > >
-> > > Quoting Vinod Polimera (2022-02-21 05:12:06)
-> > > > Panels with higher refresh rate will need mdp clk above 300Mhz.
-> > > > Select max frequency for mdp clock during bootup, dpu driver will
-> > > > scale down the clock as per usecase when first update from the framework is received.
-> > > >
-> > > > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> > >
-> > > Please add a Fixes tag.
-> > >
-> > > > ---
-> > > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > index baf1653..7af96fc 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > @@ -2895,7 +2895,7 @@
-> > > >                                 assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>,
-> > > >                                                 <&dispcc DISP_CC_MDSS_VSYNC_CLK>,
-> > > >                                                 <&dispcc DISP_CC_MDSS_AHB_CLK>;
-> > > > -                               assigned-clock-rates = <300000000>,
-> > > > +                               assigned-clock-rates = <506666667>,
-> > >
-> > > Why not simply remove the clock assignment and set the rate based on the
-> > > OPP when the driver probes?
-> >
-> > I was curious so I dug. It turns out that it _is_ using the OPP. It's
-> > just that the kernel driver currently assumes that the initial rate is
-> > the max rate. :-P You can actually see in msm_dss_parse_clock() that
-> > it walks through each of its clocks at boot and records the boot rate
-> > and stashes it as the "max_rate". That's not a scheme I've seen done
-> > commonly, so if nothing else it deserves a comment in the commit
-> > message.
->
-> That sounds like a scheme to detect the max frequency of the clk before
-> an OPP table is written. It would be better to convert that code to use
-> OPP tables if available and then drop this assigned clock property from
-> the DT (in both places).
+It is deprecated
 
-Ah, good point! You could just check what the max OPP table rate is.
-Then you don't need to worry about specifying the same clock rate
-twice.
+> My understanding (also in the description of my patch) was that
+> DRM_INFO() by itself didn't add much so we should just use the
+> standard pr_info(). If pr_info() wasn't to your liking then it was
+> better to do drm_info(drmdev, ...) or drm_info(NULL, ...);
 
+I don't think we should get this message at all, unless debugging is 
+enabled. Thus I asked to change DRM_INFO to DEBUG.
 
-> > One other note is that I think there are _two_ places in the dtsi that
-> > are setting this same clock rate, right? The parent node `mdss`, which
-> > you're not touching, and the child `mdss_mdp`, which you are touching.
-> > Seems like you should just do it in one place. If it needs to be done
-> > by the parent then the child could just assume that the clock has
-> > already been set by the parent.
-> >
->
-> I see that it's this way on sc7180 too, which is sad but it seems nobody
-> noticed.
+Regarding your point, I'm fine with either of them. Hopefully when 
+Kuogee's patches are in, we can use drm_dbg_db w/o any issues.
 
-Never too late to fix it! :-)
-
--Doug
+-- 
+With best wishes
+Dmitry
