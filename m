@@ -2,216 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 455374BFC8A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:28:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09C364BFC9F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 16:31:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233269AbiBVP2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 10:28:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46644 "EHLO
+        id S233473AbiBVPbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 10:31:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232389AbiBVP2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:28:23 -0500
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BA1ABF94D
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:27:57 -0800 (PST)
-Received: by mail-qv1-xf36.google.com with SMTP id 8so6831895qvf.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 07:27:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
-        bh=sRXHeZa3R3XlgQ3HiJffd+JnUn0eLfdgPeYFYoXUPrA=;
-        b=OM8uvKjAqiC1AFy883I9phKcgjUhezz0SI1Zd0n1/e8N0pexuTzZYEesBLhTn2J0q5
-         wuNz/qzfZoQx4gqHM/2EUgCZxcH7nIl1zwNAKSvKD24YcWjwl0AwQWwugipEssZ0ddsz
-         eYkIurkODq75S+udILDkgjj4Bf8oN29wqttH1Rvrgg+K7uxImMrUBrbcrOHwuOL98oIT
-         GKtf0eZHgpx7aZs3kFNxWdTYHTp1n8SL3+gOjX8PRQENJ34taYBHy0wFPXx4DStnb86x
-         hqFlDVWhl2c0ecYNcteLMpF/nN3QGe2N9QH0szYwtdm/fq1JJ9F8qUNRdSuT6B/PHblj
-         BcOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:cc;
-        bh=sRXHeZa3R3XlgQ3HiJffd+JnUn0eLfdgPeYFYoXUPrA=;
-        b=h48F4B4C1oaRcOal5gy5Sywn33iXtBcI3gWWrrcHuQv9lTCdgx67F/W1lYJpR11HcS
-         XlcaAuW01iTbPL/a4nDDqiUeG3EIbxHibwKdnET4bEadegBIlwC+nGNYl7IxcskBMdRD
-         uIRV9cgzAHHD7ZmzOQQaHa1DQDLSZDGtD8OLgIvcmEMtmo8ETbHfQHcmX+B5gL1Hpo1I
-         JjwuO66XVMVIH68skigclO8YHOBCePdICB6rv22d2d4SiMm3YR1/Xsi5RzNZFZRJWfp3
-         3d8zBTOfE9Fd5aIW4jZPN7GoU8q/MDOA+Idzqp81zpsGaLGuSPzEB8CKvg4cyErBtfBX
-         lDIQ==
-X-Gm-Message-State: AOAM531YFhTan/mx1cN1AnGu+0T2YaXRmg+u2Rz0K8n55GUsyYnHQ3LW
-        whIeVHsH8oubVlVU6k9/66QdoyOF9xHaieDb4kg=
-X-Received: by 2002:a05:622a:588:b0:2de:6f57:1576 with SMTP id
- c8-20020a05622a058800b002de6f571576mt1162222qtb.83.1645543676369; Tue, 22 Feb
- 2022 07:27:56 -0800 (PST)
+        with ESMTP id S233469AbiBVPbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 10:31:36 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D139D16304A;
+        Tue, 22 Feb 2022 07:31:10 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8786CB81AB0;
+        Tue, 22 Feb 2022 15:31:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0B84C340E8;
+        Tue, 22 Feb 2022 15:31:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645543868;
+        bh=9i4xuAv3MAiVPzxe+5g/FOn2ai3P/TMo7VhrUW14K+E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=O2IFr1uJQF5P3+BH4KDnb3lCGnQ0dO4zVDFzNwNAOsBSyd0vdUO7zOqKcw6jnU86d
+         +N/SDg0tbXP4GZNAfMsypnDtvYGLx1c/qxngV9EEEA+YC5G9XXexTXFWGgQVx53L9s
+         Ylf1QA9YmFhnLjCv5BHlCi/Qk7iGdBbBmQXpuj3GCXROcqQesURsx4THmKpjKWIpYE
+         ZzOhm0DVEm2wh9/9vDB8hrQN7xCdXuEsbJFK8Khm3XxSAzntG6ZSWLRx5fnqxmDxiJ
+         ZGVhEeTfBksBamVcq3uB/3HOztGYZ4wHbI8S37wg0nwO95p2Z3V7LuWF2kxNX3Csof
+         xe/VCRFUeJJZg==
+Date:   Tue, 22 Feb 2022 08:31:03 -0700
+From:   Nathan Chancellor <nathan@kernel.org>
+To:     Akhil R <akhilrajeev@nvidia.com>
+Cc:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        jonathanh@nvidia.com, kyarlagadda@nvidia.com, ldewangan@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        p.zabel@pengutronix.de, rgumasta@nvidia.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, vkoul@kernel.org,
+        Pavan Kunapuli <pkunapuli@nvidia.com>
+Subject: Re: [PATCH v20 2/2] dmaengine: tegra: Add tegra gpcdma driver
+Message-ID: <YhUBt20I471s9Bhv@dev-arch.archlinux-ax161>
+References: <20220221153934.5226-1-akhilrajeev@nvidia.com>
+ <20220221153934.5226-3-akhilrajeev@nvidia.com>
 MIME-Version: 1.0
-References: <20220221135351.GA7342@ubuntu> <3e1ee336-1c78-7719-826c-2a093a20ee8e@kernel.org>
-In-Reply-To: <3e1ee336-1c78-7719-826c-2a093a20ee8e@kernel.org>
-From:   Kestrel seventyfour <kestrelseventyfour@gmail.com>
-Date:   Tue, 22 Feb 2022 16:27:45 +0100
-Message-ID: <CAE9cyGRcDSJwrKOWER9wxHSAQzLs2ZdL+uWsme0etMV+8wKcMg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: remoteproc: Add AVM WASP
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,MISSING_HEADERS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220221153934.5226-3-akhilrajeev@nvidia.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mo., 21. Feb. 2022 um 17:47 Uhr schrieb Krzysztof Kozlowski
-<krzk@kernel.org>:
->
-> On 21/02/2022 14:53, Daniel Kestrel wrote:
-> > AVM Fritzbox router boards may contain an additional ATH79
-> > based SoC that has the wifi cards connected.
-> > This patch adds bindings for this remote processor.
-> >
-> > Signed-off-by: Daniel Kestrel <kestrelseventyfour@gmail.com>
-> > ---
-> >  .../bindings/remoteproc/avm,wasp-rproc.yaml   | 93 +++++++++++++++++++
-> >  1 file changed, 93 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
-> > new file mode 100644
-> > index 000000000000..21f3bbcc4202
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
-> > @@ -0,0 +1,93 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/remoteproc/avm,wasp-rproc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: AVM WASP processor controller bindings
-> > +
-> > +maintainers:
-> > +  - Daniel Kestrel <kestrelseventyfour@gmail.com>
-> > +
-> > +description: |
-> > +  This document defines the bindings for the remoteproc component that loads and
-> > +  boots firmwares on the AVM Wireless Assistent Support Processor (WASP) SoC
-> > +  that is attached to some AVM Fritzbox devices (3390, 3490, 5490, 5491, 7490).
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: avm,wasp
-> > +
-> > +  ath9k-firmware:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: |
-> > +      Should contain the name of the ath9k eeprom that is to be loaded from
-> > +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
-> > +      The file should be located on the firmware search path.
->
-> Are you sure this is a property of hardware? It looks like runtime
-> configuration parameter.
->
-> > +
-> > +  ath10k-caldata:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: |
-> > +      Should contain the name of the ath10k caldata that is to be loaded from
-> > +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
-> > +      The file should be located on the firmware search path.
->
-> Same.
->
-> > +
-> > +  wasp-netboot-firmware:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: |
-> > +      Should contain the name of the netboot firmware that is to be loaded
-> > +      and started on the WASP SoC using mdio in order to be able to load
-> > +      the initramfs image as a second stage.
-> > +      The file should be located on the firmware search path.
->
-> Same.
->
-> > +
-> > +  wasp-netboot-mdio:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: Reference to the Lantiq GSWIP switch mdio.
->
-> Vendor prefix.
->
-> > +
-> > +  wasp-initramfs-port:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: Reference to the network port, where the WASP SoC is connected to.
->
-> Vendor prefix.
->
-> > +
-> > +  wasp-initramfs-image:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: |
-> > +      Should contain the name of the initramfs linux image that is to be loaded
-> > +      and started on the WASP SoC.
-> > +      The file should be located on the firmware search path.
->
-> initramfs path looks even less like a property of hardware... If you
-> change initramfs from CPIO to initrd or GZ, hardware changes as well?
->
-> > +  reset-gpio:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: Reference and parameters for the reset gpio of the WASP SoC.
->
-> Wrong suffix, unneeded type. Did you run dt_binding_check?
+Hi Akhil,
 
-Hi Krzystof,
+On Mon, Feb 21, 2022 at 09:09:34PM +0530, Akhil R wrote:
+> Adding GPC DMA controller driver for Tegra. The driver supports dma
+> transfers between memory to memory, IO peripheral to memory and
+> memory to IO peripheral.
+> 
+> Co-developed-by: Pavan Kunapuli <pkunapuli@nvidia.com>
+> Signed-off-by: Pavan Kunapuli <pkunapuli@nvidia.com>
+> Co-developed-by: Rajesh Gumasta <rgumasta@nvidia.com>
+> Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  drivers/dma/Kconfig            |   11 +
+>  drivers/dma/Makefile           |    1 +
+>  drivers/dma/tegra186-gpc-dma.c | 1507 ++++++++++++++++++++++++++++++++
+>  3 files changed, 1519 insertions(+)
+>  create mode 100644 drivers/dma/tegra186-gpc-dma.c
 
-Sorry for missing the dt_binding_check.
-I have switched to use devm_gpiod_get and it does not work if the
-suffix is not -gpio
-or -gpios (see of_find_gpio method).
-Would avm,reset-gpio be ok to use here?
+<snip>
 
-Thanks.
->
-> "Reference and parameters" are obvious, so they should be skipped.
->
-> > +
-> > +  startup-gpio:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: Reference and parameters for the power switch gpio of the WASP SoC.
->
-> Same.
-Is avm,startup-gpio ok, like above?
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - ath9k-firmware
-> > +  - ath10k-caldata
-> > +  - wasp-netboot-firmware
-> > +  - wasp-netboot-mdio
-> > +  - wasp-initramfs-port
-> > +  - wasp-initramfs-image
-> > +  - reset-gpio
-> > +  - startup-gpio
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    avm-wasp {
->
-> Generic node name describing class of a device. AVM is company, WASP is
-> product, so neither of them are generic.
->
->
-> Best regards,
-> Krzysztof
+> +static const struct __maybe_unused dev_pm_ops tegra_dma_dev_pm_ops = {
+
+The __maybe_unused cannot split the type ("struct dev_pm_ops") otherwise
+it causes a clang warning:
+
+https://lore.kernel.org/r/202202221207.lQ53BwKp-lkp@intel.com/
+
+static const struct dev_pm_ops tegra_dma_dev_pm_ops __maybe_unused = {
+
+would look a litle better I think. However, is this attribute even
+needed? The variable is unconditionally used below, so there should be
+no warning about it being unused?
+
+Cheers,
+Nathan
+
+> +	SET_SYSTEM_SLEEP_PM_OPS(tegra_dma_pm_suspend, tegra_dma_pm_resume)
+> +};
+> +
+> +static struct platform_driver tegra_dma_driver = {
+> +	.driver = {
+> +		.name	= "tegra-gpcdma",
+> +		.pm	= &tegra_dma_dev_pm_ops,
+> +		.of_match_table = tegra_dma_of_match,
+> +	},
+> +	.probe		= tegra_dma_probe,
+> +	.remove		= tegra_dma_remove,
+> +};
+> +
+> +module_platform_driver(tegra_dma_driver);
+> +
+> +MODULE_DESCRIPTION("NVIDIA Tegra GPC DMA Controller driver");
+> +MODULE_AUTHOR("Pavan Kunapuli <pkunapuli@nvidia.com>");
+> +MODULE_AUTHOR("Rajesh Gumasta <rgumasta@nvidia.com>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.17.1
+> 
+> 
