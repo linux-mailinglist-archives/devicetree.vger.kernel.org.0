@@ -2,90 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2E264C0187
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 19:41:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A49E54C01AA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 19:54:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234678AbiBVSmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 13:42:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32894 "EHLO
+        id S235106AbiBVSyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 13:54:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233516AbiBVSmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 13:42:03 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2B8D3190C;
-        Tue, 22 Feb 2022 10:41:37 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5F8D161295;
-        Tue, 22 Feb 2022 18:41:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F537C340E8;
-        Tue, 22 Feb 2022 18:41:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645555296;
-        bh=PlcILcXwOi9fBpsm7seOqoPGQWIfouA8pxkgWFTFfJE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=D8+SlpmptrI87aGvfboenq5So/2aJLP0cDinsaic44I2HTUR0bMnVtONdsmMCafKE
-         LQ4vpL2j5lwsKlYbDYy+oEeOuHgMZoS4t7NHcl1UzDwoJ6VQVtUzXFHWH0XzHoE7+4
-         x2CjSraa+BqwHwpK3DQiteyQVgPdd6F5mmg/ZAiz3Xh5QuGtSvf/qC0oI8y/GlrRbL
-         wa8v4t6tEhHsGGrsyGrFQ6TQZXF9VlLbxSaV6u51LJNz9EHTbd2+i+0TkwXHS2mAK6
-         hhU3R5t+Ef8rvxbaxk4GMn1nDLnNBvnwYd9M3rZN65xjWbOE7sxJC5ukNdYjpxs5P/
-         3oYesyjVyZ6FQ==
-Date:   Tue, 22 Feb 2022 18:41:31 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org,
-        skomatineni@nvidia.com, ldewangan@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de
-Subject: Re: [PATCH v2 5/5] spi: tegra210-quad: combined sequence mode
-Message-ID: <YhUuW+MlgeQRTVZB@sirena.org.uk>
-References: <20220222175611.58051-1-kyarlagadda@nvidia.com>
- <20220222175611.58051-6-kyarlagadda@nvidia.com>
+        with ESMTP id S235112AbiBVSyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 13:54:21 -0500
+Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F1F11160CE;
+        Tue, 22 Feb 2022 10:53:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
+        s=the; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:
+        Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=qpS9nGyFPO790yWv4rcOp/sHSPx2uX3RHvqYO9OH0vU=; b=SUDzqoUJBTmv3cNN9LvobX2bAe
+        pXwV7+if7oaCtrdEsVPFwRnNiNUpTguFJh94HOEVUCbgK6YfFN3mFuVPg+/MOy0MZJ86ZOUzJLpyv
+        GCVEBtCwTWvlkICsYCEhE9Gh0ZgjZVSogEbrrfH6U77F2DW6wrnoGv0nARapvtPkwnLuIv0F/K+Nw
+        PzisRB+VREHjMApdfHFXv17DiUztRR60MMs2DTgzwNStUfNvkJN1ms52UQCCBpqeMWDZEG18KHXCC
+        JA5UODqjPAfeEmiB+RBl0+bn6P+ez4kvofVzf+SkArM4A72X4P0fmKJznWYOyjhChZi2LinvOHvkd
+        nGmcwLGQ==;
+Received: from noodles by the.earth.li with local (Exim 4.94.2)
+        (envelope-from <noodles@earth.li>)
+        id 1nMaII-00COUO-NI; Tue, 22 Feb 2022 18:53:50 +0000
+Date:   Tue, 22 Feb 2022 18:53:50 +0000
+From:   Jonathan McDowell <noodles@earth.li>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 04/18] ARM: dts: qcom: disable smb208 regulators for
+ ipq8064-rb3011
+Message-ID: <YhUxPigWzLOffcZM@earth.li>
+References: <20220218002956.6590-1-ansuelsmth@gmail.com>
+ <20220218002956.6590-5-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="WWVA/QWcCulnhLx/"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220222175611.58051-6-kyarlagadda@nvidia.com>
-X-Cookie: I smell a wumpus.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220218002956.6590-5-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Feb 18, 2022 at 01:29:42AM +0100, Ansuel Smith wrote:
+> Mikrotik RB3011 have a special configuration where the regulators are
+> not the common smb208 controlled by RPM but they use a TPS563900
+> controlled via i2c. Disable the smb208 for this specific device.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  arch/arm/boot/dts/qcom-ipq8064-rb3011.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
+> index 596d129d4a95..0982b6214fb7 100644
+> --- a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
+> +++ b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
+> @@ -216,6 +216,10 @@ led@7 {
+>  	};
+>  };
+>  
+> +&smb208_regulators {
+> +	status = "disabled";
+> +}
 
---WWVA/QWcCulnhLx/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Missing ; after the }, but with that:
 
-On Tue, Feb 22, 2022 at 11:26:11PM +0530, Krishna Yarlagadda wrote:
+Reviewed-by: Jonathan McDowell <noodles@earth.li>
+Tested-by: Jonathan McDowell <noodles@earth.li>
 
-> +	val = tegra_qspi_readl(tqspi, QSPI_GLOBAL_CONFIG);
-> +	val |= QSPI_CMB_SEQ_EN;
-> +	tegra_qspi_writel(tqspi, val, QSPI_GLOBAL_CONFIG);
+> +
+>  &adm_dma {
+>  	status = "okay";
+>  };
+> -- 
+> 2.34.1
+> 
 
-I notice that nothing seems to clear QSPI_CMB_SEQ_EN - is that self
-clearing or something?
+J.
 
---WWVA/QWcCulnhLx/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIVLloACgkQJNaLcl1U
-h9CEGAf/VSroGQl8z/3WJdxNVBdGUYCSFKyikKK8yzn9796Gh2t+sA96yEW6uFJY
-x45RQmeKDruKl5sWoDb695A3S6g6fwP8hO3ZbARV/06g9Ib7DZsB9WTpuVICXXZ2
-AO7Pysc3R0qBb+4XKZpgWt+8g5u16UXptgmGa7bUI02gJNW3Nn4/RfcR3hsNnKOe
-9uAeq2Dpncm8H5+gxP0i8Ngr1aba8MZHa61Rr0j/I2zLADVK4Mcwpy6XfVZoNXns
-UlZvRs0FiygfEQnLEJ3a9Q9ZAPMPnE1/iJi9LtyS/H7SpIx0POv/AbKtaEWgHe/E
-NaSmsp5CtTJg3R8H3LDX8fDxif7ARQ==
-=z2l3
------END PGP SIGNATURE-----
-
---WWVA/QWcCulnhLx/--
+-- 
+/-\                             |  Design a system any fool can use,
+|@/  Debian GNU/Linux Developer |  and only a fool will want to use
+\-                              |                 it.
