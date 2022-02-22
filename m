@@ -2,88 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F9D14C03A1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 22:15:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBD8E4C03AD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 22:19:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235279AbiBVVQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 16:16:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42086 "EHLO
+        id S235746AbiBVVUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 16:20:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235700AbiBVVQI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 16:16:08 -0500
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB65B106605;
-        Tue, 22 Feb 2022 13:15:42 -0800 (PST)
-Received: by mail-oo1-f43.google.com with SMTP id p206-20020a4a2fd7000000b0031bfec11983so19424429oop.13;
-        Tue, 22 Feb 2022 13:15:42 -0800 (PST)
+        with ESMTP id S234190AbiBVVUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 16:20:17 -0500
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B913110E051
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 13:19:51 -0800 (PST)
+Received: by mail-oo1-xc29.google.com with SMTP id p206-20020a4a2fd7000000b0031bfec11983so19438654oop.13
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 13:19:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=PZXGdH7QOkFGdyZL9vslSSuJH2T6cBvsFBVFd42Xdko=;
+        b=RwQ1qfHBX5YIxEy+KPyWxkJlAkJ/VTS081sLpYhZ0tAeKOngBOgBWhMOaTMHHoekQ5
+         seKF/z0Zlz2Lmun8lOKI8aBPHiQZHtZ9LDVAQTPhoRLdCa/L+35K1WP4BjQa1fRMMs0l
+         CQ8EwktT9W/rqR0ixUMXRnp8SEpUEob+vtQLY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LxgusODP2GOfUh+GrU/i/NsPSEgZvwaQGFPVZgBGVG0=;
-        b=AT3ouWFNn74ONhDYiPT5L2XbAfJ9d55I8+ipNLvhHRcRVwHfou8ps/jDMQKMtP/B9t
-         gjlKfTA2nR7XgJGZlXPH2NYoVcim5BFhb2ZA1bRDT/yaADS+rOSTnqt3VS32q3E8cTu1
-         IcIMp7DzSkw5aJNqUia5GH44Bmm1p4dRJclkvz9MYhXkmm6e/8V197D1+M/YovBxFRj2
-         L8Z3moihtUvLf426a1kHDHxzDHKoIrgGw4SVc02dDsAPseiDiqowYbfm8Dg43ScuXzKn
-         QgjqBISX2t6JxwnEN1Vp/Q+1XxO2lvy33XBnD2THnXl4b2Klj/AcFTkZz14iYBjU8E6T
-         f/SQ==
-X-Gm-Message-State: AOAM533NDYqSS6g8u+6JtnD6Uy7VqSF2TWbY2Joaom493QI7CL+1iJJ4
-        X//b26rVlujtVas1bUXN+w==
-X-Google-Smtp-Source: ABdhPJweZeM8YTKjHsA/asTQIGx8MLwhI9nfrImLfLJ2q3s2S6hi4sAwCA3bD7eX2mY/mlV4k5EL+Q==
-X-Received: by 2002:a05:6870:961a:b0:d2:858c:ea4 with SMTP id d26-20020a056870961a00b000d2858c0ea4mr2549999oaq.186.1645564542158;
-        Tue, 22 Feb 2022 13:15:42 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f1sm3477355oov.45.2022.02.22.13.15.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 13:15:41 -0800 (PST)
-Received: (nullmailer pid 3600555 invoked by uid 1000);
-        Tue, 22 Feb 2022 21:15:40 -0000
-Date:   Tue, 22 Feb 2022 15:15:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH] MAINTAINERS: sifive: drop Yash Shah
-Message-ID: <YhVSfKZbnGcGJGFH@robh.at.kernel.org>
-References: <20220214082349.162973-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=PZXGdH7QOkFGdyZL9vslSSuJH2T6cBvsFBVFd42Xdko=;
+        b=v8Rif9lGLGos2hvwmo4k9n4Z9NiLwZ41hOyNrvlgLox9aLLfrlMW5plrPLUtsDSimb
+         yu6GbJnlQAhmqR4e2fTzD6ym67GrIFXwnNxhSHfZxeqM5ItNm6npD7CQzWbjKVqStARE
+         Tj4pB8PJQFrHo87Wjn8SLKRGVJvkON0oq//kOV3LssLCDWNNz6bTx49gVWSDXrGmli+F
+         UThLMFUpnOwgbgBTj/2/9O7dNVwWYPXp/J6afZVKYFNBVS81CDCey9Mnb9Tai+fg3kZZ
+         Z/xn4yrvPfasMe5RfhRqND95rzqYyPdJ2u5+t74T311/is4LWs+C9+L/3HWVAbBx91RI
+         5qUA==
+X-Gm-Message-State: AOAM530001FdBrAmBM6Jnsrok6abkCwCe2vJg632X5USgFL54SYoWAPE
+        phJypVSw/hXnJv9Bh3YswRG0ug5q/XyIO3qPHdtOWQ==
+X-Google-Smtp-Source: ABdhPJy7r6Dp6z5t3lrBYpzhD+7i1xvLB2uoHm7Qkx145lEhXBxvO1W68wKoliw01/Yq59Ok3PUuUtXn3CmG57UGp7U=
+X-Received: by 2002:a05:6870:5829:b0:c8:9f42:f919 with SMTP id
+ r41-20020a056870582900b000c89f42f919mr2737701oap.54.1645564791160; Tue, 22
+ Feb 2022 13:19:51 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 22 Feb 2022 21:19:50 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220214082349.162973-1-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <1645455086-9359-3-git-send-email-quic_vpolimer@quicinc.com>
+References: <1645455086-9359-1-git-send-email-quic_vpolimer@quicinc.com> <1645455086-9359-3-git-send-email-quic_vpolimer@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 22 Feb 2022 21:19:50 +0000
+Message-ID: <CAE-0n53a5akPXSJjkD4SvnparcxBpN2LaGt_7J=6petTPukHeQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] drm/bridge: use atomic enable/disable for bridge callbacks
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>, agross@kernel.org,
+        airlied@linux.ie, bjorn.andersson@linaro.org, daniel@ffwll.ch,
+        devicetree@vger.kernel.org, dianders@chromium.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        krzysztof.kozlowski@canonical.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        robh+dt@kernel.org, sam@ravnborg.org, seanpaul@chromium.org,
+        thierry.reding@gmail.com
+Cc:     quic_kalyant@quicinc.com, quic_sbillaka@quicinc.com,
+        quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Feb 2022 09:23:49 +0100, Krzysztof Kozlowski wrote:
-> Emails to Yash Shah bounce with "The email account that you tried to
-> reach does not exist.", so drop him from all maintainer entries.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  Documentation/devicetree/bindings/gpio/sifive,gpio.yaml     | 1 -
->  Documentation/devicetree/bindings/pwm/pwm-sifive.yaml       | 1 -
->  .../devicetree/bindings/riscv/sifive-l2-cache.yaml          | 1 -
->  MAINTAINERS                                                 | 6 ------
->  4 files changed, 9 deletions(-)
-> 
+Quoting Vinod Polimera (2022-02-21 06:51:24)
+> diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
+> index b32295a..5c7dc82 100644
+> --- a/drivers/gpu/drm/bridge/panel.c
+> +++ b/drivers/gpu/drm/bridge/panel.c
+> @@ -102,30 +136,82 @@ static void panel_bridge_detach(struct drm_bridge *bridge)
+>                 drm_connector_cleanup(connector);
+>  }
+>
+> -static void panel_bridge_pre_enable(struct drm_bridge *bridge)
+> +static void panel_bridge_pre_enable(struct drm_bridge *bridge,
+> +               struct drm_bridge_state *old_bridge_state)
+>  {
+>         struct panel_bridge *panel_bridge = drm_bridge_to_panel_bridge(bridge);
+> +       struct drm_atomic_state *old_state = old_bridge_state->base.state;
+> +       struct drm_encoder *encoder = bridge->encoder;
+> +       struct drm_crtc *crtc;
+> +       struct drm_crtc_state *old_crtc_state;
+> +
+> +       crtc = bridge_drm_get_new_connector_crtc(encoder, old_state);
+> +       if (!crtc)
+> +               return;
+> +
+> +       old_crtc_state = drm_atomic_get_old_crtc_state(old_state, crtc);
+> +       if (old_crtc_state && old_crtc_state->self_refresh_active)
 
-Applied, thanks!
+Can you please add some comment about why self_refresh_active means we
+should bail out from this function? Such a comment would be helpful to
+understand the code quickly vs. having to figure out what the intention
+of the logic is. The analogix driver has
+
+/* Don't touch the panel if we're coming back from PSR */
+
+so even mentioning PSR here would be helpful.
