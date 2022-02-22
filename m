@@ -2,97 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB714BEF9A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 03:43:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C59B24BEF9E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 03:43:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231751AbiBVC1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 21:27:55 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52110 "EHLO
+        id S232017AbiBVC3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 21:29:06 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:52836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiBVC1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 21:27:55 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E2F624580;
-        Mon, 21 Feb 2022 18:27:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645496851; x=1677032851;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Z0dCkhFrHYypecMqCx7KI+gQczqt9hRDEfCKOGE+e9k=;
-  b=ija/iJlZyhdjwPAY4cm+zY+HGN8JRnZUZdcjlXCa3d+c8dz+x7lokJT9
-   lCr/o+lMD9/zjjoJd4IzcgQRUu6XHSNfZiEJthfKrfZEnM9S3jPkrLqk4
-   qOIHPfplrngvr2l4w5fZg5leeNwJCqe4XXvSRWa1JRhMuNkIg6FNpN2s7
-   E=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 21 Feb 2022 18:27:30 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 18:27:30 -0800
-Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 21 Feb 2022 18:27:29 -0800
-Received: from [10.231.205.174] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Mon, 21 Feb
- 2022 18:27:27 -0800
-Message-ID: <ab72af9e-b1dc-8562-b2c7-ac329af7a1b2@quicinc.com>
-Date:   Tue, 22 Feb 2022 10:26:48 +0800
+        with ESMTP id S229447AbiBVC3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 21:29:05 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0C8B25C5E
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 18:28:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3B033614EC
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 02:28:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6435BC340E9;
+        Tue, 22 Feb 2022 02:28:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645496919;
+        bh=S5RMH0nqYWm/DGxd+0faffd9R3jh0exe+sEoDdLZFaQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=INmVwRXbRxN6vVNCvhM5lmziqtRermWXJvB+LVL6+r/gozf7xrYxY+5mUDP4gus4e
+         cPZz8hW9oGjfQy+VnHZrwn9RY+Kig8pYXvhIqOWlOUG3OXIwkgT861OSK0J2fmgjKz
+         iKQC6ZWrvKjWQq9EDD+YdIiUfxtNIGq68evZwk5R045cQ7df+FAo1oIqDz0fFPJ7FR
+         aEPe3JKgy/S62Wd38qypF7lPZa68Ihx5M1vHsN0uAzG9FpfLow2vwuQUGCX+VXZU2B
+         mqipBqihGc1oaAzIJwm7j8un5OBgpJh8yTzM+UZrbIfNvtE1Y8Ws6CBtB1z5Zpw1oB
+         PqCahUS63G+xA==
+Date:   Tue, 22 Feb 2022 10:28:33 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/5] Support for TQMa6ULx & TQMa6ULxL modules
+Message-ID: <20220222022833.GW2249@dragon>
+References: <20220221160419.550640-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v5 08/10] bindings: spmi: spmi-pmic-arb: mark interrupt
- properties as optional
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        <devicetree@vger.kernel.org>, <collinsd@codeaurora.org>,
-        <subbaram@codeaurora.org>, <tglx@linutronix.de>, <maz@kernel.org>
-References: <1643178713-17178-1-git-send-email-quic_fenglinw@quicinc.com>
- <1643178713-17178-9-git-send-email-quic_fenglinw@quicinc.com>
- <Yf2qVi8Xj/iYYRNm@robh.at.kernel.org>
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-In-Reply-To: <Yf2qVi8Xj/iYYRNm@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SCC_BODY_URI_ONLY,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220221160419.550640-1-alexander.stein@ew.tq-group.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Feb 21, 2022 at 05:04:14PM +0100, Alexander Stein wrote:
+> Alexander Stein (4):
+>   ARM: dts: imx6ul: add TQ-Systems MBa6ULx device trees
+>   ARM: dts: imx6ul: add TQ-Systems MBa6ULxL device trees
+>   ARM: dts: imx6ull: add TQ-Systems MBa6ULLx device trees
+>   ARM: dts: imx6ull: add TQ-Systems MBa6ULLxL device trees
+> 
+> Matthias Schiffer (1):
+>   dt-bindings: arm: fsl: add TQ Systems boards based on i.MX6UL(L)
 
-
-On 2022/2/5 6:36, Rob Herring wrote:
-> On Wed, Jan 26, 2022 at 02:31:50PM +0800, Fenglin Wu wrote:
->> From: David Collins <collinsd@codeaurora.org>
->>
->> Mark all interrupt related properties as optional instead of
->> required.  Some boards do not required PMIC IRQ support and it
->> isn't needed to handle SPMI bus transactions, so specify it as
->> optional.
->>
->> Signed-off-by: David Collins <collinsd@codeaurora.org>
->> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt | 2 ++
->>   1 file changed, 2 insertions(+)
-> 
-> This will collide with converting it to DT schema[1].
-> 
-> Rob
-> 
-> [1] https://lore.kernel.org/all/20220131172450.2528065-2-vkoul@kernel.org/
-Noticed that, I just didn't know which one would get merged 1st. I can 
-update it once the DT schema change get accepted and be present in 
-spmi-next branch.
+Applied all, thanks!
