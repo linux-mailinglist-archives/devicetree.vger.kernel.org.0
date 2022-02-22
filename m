@@ -2,68 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FD604BFE6B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:24:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A80484BFEC7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233500AbiBVQYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 11:24:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49386 "EHLO
+        id S234124AbiBVQdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 11:33:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230295AbiBVQYk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:24:40 -0500
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E846166A79;
-        Tue, 22 Feb 2022 08:24:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=orNwPadLyZMf1dU28nfIOtIad1J0UPF7cu+kVS+SXB4=; b=qe4lpTnNgBZVySRtcKlpB9P4wS
-        cwDoiJwxuZOdS+saabUOIkzYZUV41PPWWbuJqZLkcEoQjIGNYmgD2B6WmbScT1vwsjJLMRmZgU94M
-        swkrlzZh/4Bdp4AunBMnVTj2jCeH5ARtT5329KjDjsnCVbaTIrlWEHKS9Re5hxdM+oOQpJtDCCoqL
-        K6Ru76oCv7p+KFlznfV1lTS0ppH/XOCQx2CORBcwciP0VtZ1VGPdinUjpi+X27Aepz0xYeV2ep2lr
-        4fWm2cB3R0eftyPwX7HofBbcan+KhKUiCFkXQ7012S0za5OCvDg7tziO8W79x8PsXT7Cn+RYkuFkd
-        uJKXShew==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1nMXxR-00AcJa-Rg; Tue, 22 Feb 2022 16:24:09 +0000
-Date:   Tue, 22 Feb 2022 08:24:09 -0800
-From:   Christoph Hellwig <hch@infradead.org>
-To:     Mikko Perttunen <mperttunen@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
-        will@kernel.org, robh+dt@kernel.org, robin.murphy@arm.com,
-        linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 3/9] gpu: host1x: Add context device management code
-Message-ID: <YhUOKaoCA7dyAZAh@infradead.org>
-References: <20220218113952.3077606-1-mperttunen@nvidia.com>
- <20220218113952.3077606-4-mperttunen@nvidia.com>
+        with ESMTP id S234119AbiBVQdU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:33:20 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C3AF162006;
+        Tue, 22 Feb 2022 08:32:45 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21MGWZaT053060;
+        Tue, 22 Feb 2022 10:32:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1645547555;
+        bh=b5zGZfrvG+yLErjAoFGzAo3G6Af6FpoDENZ4VIjCO3E=;
+        h=From:To:CC:Subject:Date;
+        b=XGxWdftUskbRYRjKcNTxhujZqwpcgidruzAAlIyIyP0LflFFFpe6qJvH4xhkkL86i
+         OYitpBW2ls/tVtawBdkjqB+AWkOwAnMyAABFvcVyf7+mnHZs8bIyvJyamkPOfxOg6d
+         bIuwEg67rnjxZOTcpQg3I0W+8xS2vV9hoVDwh7II=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21MGWZRt067311
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 22 Feb 2022 10:32:35 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 22
+ Feb 2022 10:32:35 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 22 Feb 2022 10:32:35 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21MGWXb2066738;
+        Tue, 22 Feb 2022 10:32:34 -0600
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     <nm@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@canonical.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tomi.valkeinen@ideasonboard.com>,
+        <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH 0/2] DSS: Add support for DisplayPort
+Date:   Tue, 22 Feb 2022 22:02:28 +0530
+Message-ID: <20220222163230.1566-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220218113952.3077606-4-mperttunen@nvidia.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 18, 2022 at 01:39:46PM +0200, Mikko Perttunen wrote:
-> +
-> +/*
-> + * Due to an issue with T194 NVENC, only 38 bits can be used.
-> + * Anyway, 256GiB of IOVA ought to be enough for anyone.
-> + */
-> +static dma_addr_t context_device_dma_mask = DMA_BIT_MASK(38);
+The following series of patches enables DisplayPort on
+j721e-evm
 
-You need a mask per device.  Please don't share the same variable
-for multiple masks.
+Tomi Valkeinen (2):
+  arm64: dts: ti: k3-j721e-main: add DP & DP PHY
+  arm64: dts: ti: k3-j721e-common-proc-board: add DP to j7 evm
 
-> +EXPORT_SYMBOL(host1x_context_alloc);
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  66 +++++++++++-
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 102 ++++++++++++++++++
+ 2 files changed, 164 insertions(+), 4 deletions(-)
 
-All this low-level code really should be EXPORT_SYMBOL_GPL.
+-- 
+2.17.1
+
