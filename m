@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB73A4BFEDE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:36:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76BFC4BFEF1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:37:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233182AbiBVQgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 11:36:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55258 "EHLO
+        id S233368AbiBVQht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 11:37:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232748AbiBVQgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:36:43 -0500
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA7715F0A4
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 08:36:17 -0800 (PST)
-Received: by mail-pf1-x42c.google.com with SMTP id w2so386506pfu.11
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 08:36:17 -0800 (PST)
+        with ESMTP id S233103AbiBVQhs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:37:48 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E9D0B5626
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 08:37:23 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id c9so4140878pll.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 08:37:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=cGfg7SzK60hTzPzU6ehbR2PDv3GsZi0qKrZOQnAODkU=;
-        b=AUIIco/2inR+8I7aH+Pyg4fwYdkiolcG213TdJ0X5lweNW9bSX+pZoB4IHeg8VVZd6
-         JzRhgAdx4ZGoQ6qso0qo/w3jYB3T9jM4M/Urf8xD2FdBsJypiLSkVzkmsGnzXkD5bsp9
-         fDAVAhndI5qICDB4mdVkNFleEj8N5asKSb6quR9pZrzXJH5sAMotwIVQuME9nqwtbae+
-         mn8fcl/QddnMYHtkUy6edmuZQL24BloTQT9qakNHl3otil5KwlCnkfic89nO6ix3T4Wm
-         AF8XVy+nCrpzSiFK4UVaInuCalMFuRgXnBhfEjo5fwxiDSn0M1CCG01/bOq/ZCZLYTdf
-         klfA==
+        bh=zJKFw8FqLa0/MDr6tt9GMe0RBKT3PW0n39OIwZ0O4uo=;
+        b=HSv/LWTBxB/IblslEsOA5ur3tfXkJDxwQtRJaY5h7HjhMQiJhvdYboT9wp6E0bCH4I
+         8DdvwAWi1QjDva5VUeH94r4awfv/mFIWAppR0qDT7qJhNf+p4mYlyZ2ywi2fQGitbv3m
+         XYrCEqe9iOl5PTURBouiqxUOa/Y50iyXgsnXk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=cGfg7SzK60hTzPzU6ehbR2PDv3GsZi0qKrZOQnAODkU=;
-        b=jHDTROJjCrLQgl5nSqt91hC0LYkbkNNPjo+oyq9EvYUFg+v6mhvJNy1pYbJdysXi0J
-         Db9DqsIKs9Q/nbsuI0J2fEMEwVZOFh/99EdxBjgvrzHKTr/cZETaMwQpqwzHpAy1VGc9
-         8GBfPqlvb6PRYSXZS4S7MvW6x4WixGcHaWZP6K4bhxn9Bd8SGgAY2tmTrAVpkHKbaOt9
-         J1awCbF+HdKXjFFIM94fL6Wsy/6za6Ek+9APyRl8m7PQksZcqTDovFhFm8pSJgyjsWcE
-         eIoJvyn0ldEbKVs+KST8PHjtvcWHYcOUqqrrE8bJQtbM+ua5n7p0zPLx9Awng51Js7Y8
-         tBOA==
-X-Gm-Message-State: AOAM531lROulwkMhedUN1QhaCIjw+T14+JNgfteHUStZiLy7kE0SGwwY
-        6LPTXwi6Je32N9lFqaOXp7uQVA==
-X-Google-Smtp-Source: ABdhPJxOBQmir6IdwffJxdtp5EScm5kselNJW4g3MGWY6cnK67KAGdSSIM12h28f6yt/WrFs98gghQ==
-X-Received: by 2002:a05:6a00:7c6:b0:4e1:799:7a2 with SMTP id n6-20020a056a0007c600b004e1079907a2mr25306856pfu.25.1645547776950;
-        Tue, 22 Feb 2022 08:36:16 -0800 (PST)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id 142sm18356534pfy.11.2022.02.22.08.36.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 08:36:15 -0800 (PST)
-Date:   Tue, 22 Feb 2022 09:36:13 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tanmay Shah <tanmay.shah@xilinx.com>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        michal.simek@xilinx.com, laurent.pinchart@ideasonboard.com,
-        ben.levinsky@xilinx.com, bill.mills@linaro.org,
-        sergei.korneichuk@xilinx.com, arun.balaji.kannan@xilinx.com,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
- bindings
-Message-ID: <20220222163613.GA923552@p14s>
-References: <20220210112824.2084724-1-tanmay.shah@xilinx.com>
- <20220210112824.2084724-2-tanmay.shah@xilinx.com>
- <20220214182208.GA101373@p14s>
- <f383cd27-9757-7b56-4ebc-1227b28f51f7@xilinx.com>
+        bh=zJKFw8FqLa0/MDr6tt9GMe0RBKT3PW0n39OIwZ0O4uo=;
+        b=vU2F9sQCib1vnT7byJ//P9/kA92NjbTWKkICyu7mZwnd9XJ4ubwxvw0r3T4s2jBv1k
+         SAgxMfeyzMb8wru+OujGo5UoZuTZ6sndjY8Ffb+Zkis/5E3yKPmE6iEinR0UsD0wpO7K
+         fUCaJB09OyGKX0dvhcgKy6Zxka/sH2J+V+LoKV5YJmqF52E8+b6KcCtgTFKrxI7WATqP
+         z4szeA27SO2L5sJjy05HN0LMk1bP6+LuRcMOohy35ODoEe+udVfILgS1BcBhk5YjqGbu
+         iknxqGcUdJjlP8RNP+2HoPXwMcwe0rFQgi/tjiSqKHIqChRJMS0kv9PLyc84Y7EDnlsC
+         Y3bg==
+X-Gm-Message-State: AOAM531EXFL/ZSZ5eEHPwhcuw6+GE5FggusfZSHP+AoO1NsmB9Xbwk2t
+        a0LdrkM7Lp/4klkQdVQ77ZVSWw==
+X-Google-Smtp-Source: ABdhPJw2nkaf19Zt/2StCdOtfN8Vhu2UNXiJNU17qd0uLXleZFtIYo+1Nlv3kRC2irZouQGn7Cho2w==
+X-Received: by 2002:a17:902:bf07:b0:14f:a3a7:97a0 with SMTP id bi7-20020a170902bf0700b0014fa3a797a0mr12887998plb.105.1645547842764;
+        Tue, 22 Feb 2022 08:37:22 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:8ac3:6f5f:e299:2e9b])
+        by smtp.gmail.com with UTF8SMTPSA id f8sm14392364pfv.100.2022.02.22.08.37.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Feb 2022 08:37:22 -0800 (PST)
+Date:   Tue, 22 Feb 2022 08:37:20 -0800
+From:   "mka@chromium.org" <mka@chromium.org>
+To:     "Tao Wang (Consultant) (QUIC)" <quic_wat@quicinc.com>
+Cc:     "balbi@kernel.org" <balbi@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dianders@chromium.org" <dianders@chromium.org>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "hadess@hadess.net" <hadess@hadess.net>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "mathias.nyman@intel.com" <mathias.nyman@intel.com>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "peter.chen@kernel.org" <peter.chen@kernel.org>,
+        "ravisadineni@chromium.org" <ravisadineni@chromium.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "rogerq@kernel.org" <rogerq@kernel.org>,
+        "stern@rowland.harvard.edu" <stern@rowland.harvard.edu>,
+        "swboyd@chromium.org" <swboyd@chromium.org>,
+        "Linyu Yuan (QUIC)" <quic_linyyuan@quicinc.com>
+Subject: Re: =?utf-8?B?5Zue5aSN?= =?utf-8?Q?=3A?= Re: [PATCH v20 3/5] usb:
+ misc: Add onboard_usb_hub driver
+Message-ID: <YhURQAksLKVuzU36@google.com>
+References: <SA1PR02MB86067ACF0C96F18B7306D208903A9@SA1PR02MB8606.namprd02.prod.outlook.com>
+ <SA1PR02MB860660B6F33011E5A97F7930903A9@SA1PR02MB8606.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <f383cd27-9757-7b56-4ebc-1227b28f51f7@xilinx.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <SA1PR02MB860660B6F33011E5A97F7930903A9@SA1PR02MB8606.namprd02.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,224 +84,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 05:58:15PM -0800, Tanmay Shah wrote:
-> Hi Mathieu,
+On Mon, Feb 21, 2022 at 06:20:00AM +0000, Tao Wang (Consultant) (QUIC) wrote:
+>    Hi,
 > 
-> Thanks for reviews.
 > 
-> Please find my comments below.
 > 
-> On 2/14/22 10:22 AM, Mathieu Poirier wrote:
-> > On Thu, Feb 10, 2022 at 03:28:19AM -0800, Tanmay Shah wrote:
-> > > Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
-> > > Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem (cluster).
-> > > 
-> > > Signed-off-by: Tanmay Shah<tanmay.shah@xilinx.com>
-> > > ---
-> > > 
-> > > Changes in v3:
-> > >    - None
-> > > 
-> > >   .../bindings/remoteproc/xlnx,r5f-rproc.yaml   | 139 ++++++++++++++++++
-> > >   include/dt-bindings/power/xlnx-zynqmp-power.h |   6 +
-> > >   2 files changed, 145 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> > > new file mode 100644
-> > > index 000000000000..d43f0b16ad7f
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> > > @@ -0,0 +1,139 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id:http://devicetree.org/schemas/remoteproc/xlnx,r5f-rproc.yaml#
-> > > +$schema:http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Xilinx R5F processor subsystem
-> > > +
-> > > +maintainers:
-> > > +  - Ben Levinsky<ben.levinsky@xilinx.com>
-> > > +  - Tanmay Shah<tanmay.shah@xilinx.com>
-> > > +
-> > > +description: |
-> > > +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
-> > > +  real-time processing based on the Cortex-R5F processor core from ARM.
-> > > +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
-> > > +  floating-point unit that implements the Arm VFPv3 instruction set.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: xlnx,zynqmp-r5fss
-> > > +
-> > > +  xlnx,cluster-mode:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: |
-> > > +      The RPU MPCore can operate in split mode(Dual-processor performance), Safety
-> > > +      lock-step mode(Both RPU cores execute the same code in lock-step,
-> > > +      clock-for-clock) or Single CPU mode (RPU core 0 can be held in reset while
-> > > +      core 1 runs normally). The processor does not support dynamic configuration.
-> > > +      Switching between modes is only permitted immediately after a processor reset.
-> > > +      If set to  1 then lockstep mode and if 0 then split mode.
-> > > +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 1
-> > > +
-> > > +  reg:
-> > > +    items:
-> > > +      - description: RPU subsystem status and control registers
-> > > +
-> > > +patternProperties:
-> > > +  "^r5f-[a-f0-9]+$":
-> > > +    type: object
-> > > +    description: |
-> > > +      The RPU is located in the Low Power Domain of the Processor Subsystem.
-> > > +      Each processor includes separate L1 instruction and data caches and
-> > > +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
-> > > +      memory space is non-cacheable.
-> > > +
-> > > +      Each RPU contains one 64KB memory and two 32KB memories that
-> > > +      are accessed via the TCM A and B port interfaces, for a total of 128KB
-> > > +      per processor. In lock-step mode, the processor has access to 256KB of
-> > > +      TCM memory.
-> > > +
-> > > +    properties:
-> > > +      compatible:
-> > > +        const: xlnx,zynqmp-r5f
-> > > +
-> > > +      power-domains:
-> > > +        description: |
-> > > +          phandle to a PM domain provider node and an args specifier containing
-> > > +          the r5f0 and r5f1 node id value.
-> > > +
-> > > +      reg:
-> > > +        items:
-> > > +          - description: RPU0 and RPU1 control and status registers
-> > > +
-> > > +      mboxes:
-> > > +        items:
-> > > +          - description: |
-> > > +              Bi-directional channel to send data to RPU and receive ack from RPU.
-> > > +              Request and response message buffers are available and each buffer is 32 bytes.
-> > > +          - description: |
-> > > +              Bi-directional channel to receive data from RPU and send ack from RPU.
-> > > +              Request and response message buffers are available and each buffer is 32 bytes.
-> > > +        minItems: 1
-> > > +
-> > > +      mbox-names:
-> > > +        items:
-> > > +          - const: tx
-> > > +          - const: rx
-> > > +        minItems: 1
-> > > +
-> > > +      sram:
-> > > +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +        minItems: 1
-> > > +        description: |
-> > > +          phandles to one or more reserved on-chip SRAM regions. Other than TCM,
-> > > +          the RPU can execute instructions and access data from, the OCM memory,
-> > > +          the main DDR memory, and other system memories.
-> > > +
-> > > +          The regions should be defined as child nodes of the respective SRAM
-> > > +          node, and should be defined as per the generic bindings in,
-> > > +          Documentation/devicetree/bindings/sram/sram.yaml
-> > > +
-> > > +      memory-region:
-> > > +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +        description: |
-> > > +          List of phandles to the reserved memory regions associated with the
-> > > +          remoteproc device. This is variable and describes the memories shared with
-> > > +          the remote processor (e.g. remoteproc firmware and carveouts, rpmsg
-> > > +          vrings, ...). This reserved memory region will be allocated on DDR memory.
-> > > +          See Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > > 
-> > Aside from "compatible" and "power-domains", none of the above properties appear
-> > in the example below, making this patchset harder to review.
-> > 
-> > I am pretty sure to have commented on this earlier...
+>    Regarding on board hub driver,
 > 
-> In example, I have included only required property nodes.
+>    [1]https://lore.kernel.org/linux-usb/20220119124327.v20.3.I7c9a1f1d6ced
+>    41dd8310e8a03da666a32364e790@changeid/#R
 > 
-> If you want, I can include other properties as well. However, some of the
-> properties needs new bindings for example "sram".
 > 
-> So, I can't include it as I don't know how bindings for them will look like.
+>    I have one comment below,
 > 
+> 
+>    +static const struct usb_device_id onboard_hub_id_table[] = {
+> 
+>    +       { USB_DEVICE(VENDOR_ID_REALTEK, 0x0411) }, /* RTS5411 USB 3.1
+>    */
+> 
+>    +       { USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1
+>    */
+> 
+>    +       { USB_DEVICE(VENDOR_ID_REALTEK, 0x0414) }, /* RTS5414 USB 3.2
+>    */
+> 
+>    +       { USB_DEVICE(VENDOR_ID_REALTEK, 0x5414) }, /* RTS5414 USB 2.1
+>    */
+> 
+>    +       {}
+> 
+>    +};
+> 
+>    +MODULE_DEVICE_TABLE(usb, onboard_hub_id_table);
+> 
+> 
+>    Can we support read VID/PID from device tree which provide platfrom
+>    device info?
 
-I'm fine with that part.
+As far as I understand the kernel exclusively uses the VID/PID reported by
+the USB device, the compatible string in the device tree is purely
+informational (though this driver uses it for the platform device).
 
-> In next revision, I can include mboxes, mbox-names and memory-region
-> properties. Is that fine?
-> 
-> Also, should I add those nodes in actual device-tree now or later?
-> 
-> For example, mboxes and mbox-names are not needed for driver as of now.
-> 
-> So should I include them in dts now or later when I send rpmsg related
-> patches?
-
-Include in the example the properties currently supported by the driver.  Not
-all of them have to be in the DTS though.
-
-> 
-> > More comments to come later or tomorrow.
-> > 
-> > Thanks,
-> > Mathieu
-> > 
-> > > +    required:
-> > > +      - compatible
-> > > +      - power-domains
-> > > +
-> > > +    unevaluatedProperties: false
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    r5fss: r5fss@ff9a0000 {
-> > > +        compatible = "xlnx,zynqmp-r5fss";
-> > > +        xlnx,cluster-mode = <1>;
-> > > +
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <1>;
-> > > +        reg = <0xff9a0000 0x228>;
-> > > +
-> > > +        r5f-0 {
-> > > +            compatible = "xlnx,zynqmp-r5f";
-> > > +            power-domains = <&zynqmp_firmware 0x7>;
-> > > +        };
-> > > +
-> > > +        r5f-1 {
-> > > +            compatible = "xlnx,zynqmp-r5f";
-> > > +            power-domains = <&zynqmp_firmware 0x8>;
-> > > +        };
-> > > +    };
-> > > +...
-> > > diff --git a/include/dt-bindings/power/xlnx-zynqmp-power.h b/include/dt-bindings/power/xlnx-zynqmp-power.h
-> > > index 0d9a412fd5e0..618024cbb20d 100644
-> > > --- a/include/dt-bindings/power/xlnx-zynqmp-power.h
-> > > +++ b/include/dt-bindings/power/xlnx-zynqmp-power.h
-> > > @@ -6,6 +6,12 @@
-> > >   #ifndef _DT_BINDINGS_ZYNQMP_POWER_H
-> > >   #define _DT_BINDINGS_ZYNQMP_POWER_H
-> > > +#define		PD_RPU_0	7
-> > > +#define		PD_RPU_1	8
-> > > +#define		PD_R5_0_ATCM	15
-> > > +#define		PD_R5_0_BTCM	16
-> > > +#define		PD_R5_1_ATCM	17
-> > > +#define		PD_R5_1_BTCM	18
-> > >   #define		PD_USB_0	22
-> > >   #define		PD_USB_1	23
-> > >   #define		PD_TTC_0	24
-> > > -- 
-> > > 2.25.1
-> > > 
