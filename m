@@ -2,70 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAC4D4C049F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 23:30:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F514C04A7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 23:34:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232527AbiBVWah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 17:30:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42038 "EHLO
+        id S236065AbiBVWe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 17:34:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236065AbiBVWag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 17:30:36 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9757A107A80;
-        Tue, 22 Feb 2022 14:30:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645569010; x=1677105010;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xNrJu+yqd7ua9/SEuv5UXQMlKTb2A3rhgHibGD43eDA=;
-  b=fwFbKn2EdqS4n+FSU3xwEEEWMu6Ss65sEKQ13ZUMXLDq8Q+sn2rG+iWi
-   HjjHPszovfFdetBosQnPf0IAG2ZtrlMEKzSCMAjSQ70Su1ivqVmDZaTdt
-   vpLANBKXaMhttM0hK2ZMH+7LCwmxjMC59u1ojB0YAZP5TyaTf8tKT6LyK
-   hzRlNrNNmNX24lGsNFOZ3C9j0RZU6fnump7w2zQbMfRIMPFwYc/gFXU+K
-   Rw/ryqjY0QP1sqYIo4M9NMhE5ACGCunsNmtd92bDuLeH7V1IFKvMNSKCm
-   RfJ2uH3mlXeX4g7c5k7MNIxamLYXazZPhpGfpdX97rz3Jmj1Ha2CjLkIP
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="252017977"
-X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; 
-   d="scan'208";a="252017977"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2022 14:30:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,389,1635231600"; 
-   d="scan'208";a="505699824"
-Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 22 Feb 2022 14:30:06 -0800
-Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nMdfZ-0000gI-9L; Tue, 22 Feb 2022 22:30:05 +0000
-Date:   Wed, 23 Feb 2022 06:29:11 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     michael.srba@seznam.cz, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S236063AbiBVWe1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 17:34:27 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C15CC6277;
+        Tue, 22 Feb 2022 14:34:01 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 07B771F442FC
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645569240;
+        bh=bgMJpukKsAN/2biajYD0mGaPqwL63HQC8cQg4u9C94g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=O+uQejWktUJuxx1ndtBGCiMmIzqI2aGr5fsrAL9xiQZvod9c3+N1eb1Y7E6MkPHVI
+         YnJri23wDglTuWQIrUjh1XTDWfHgHO8CZ/tn+W38Jz/Jn9I7LJNHo8RRn5WfmmWu9Z
+         74uMw7c35/26DBzTdU5TLzjX1PYImKCzQ/V4RzHAgXCe9DavaKekAaX9Coflafyeux
+         GIY/oHrt2gTyTkCEuoowdF2bqAzaQW3Ohm06/MfUDruQYkomovnE2M9Wb9ZZ5mkoeI
+         5RhnttcZA6Io9DSPpENTtcsPOXzS8Yv7t5fUMfTVOacDA7DOYItyoT0HAcp9FVgnTT
+         igFCguYvhIPng==
+Date:   Tue, 22 Feb 2022 17:33:55 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     kbuild-all@lists.01.org, Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, Michael Srba <Michael.Srba@seznam.cz>
-Subject: Re: [PATCH v8 4/5] drivers: bus: add driver for initializing the SSC
- bus on (some) qcom SoCs
-Message-ID: <202202230613.3K7X7na5-lkp@intel.com>
-References: <20220220212034.9152-4-michael.srba@seznam.cz>
+        --to=Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>
+Subject: Re: [PATCH v2 17/23] arm64: dts: mt8192: Add vcodec lat and core
+ nodes
+Message-ID: <20220222223355.o4o6v7yxozsnkz33@notapiano>
+References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
+ <20220218091633.9368-18-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220220212034.9152-4-michael.srba@seznam.cz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220218091633.9368-18-allen-kh.cheng@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,62 +58,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Feb 18, 2022 at 05:16:27PM +0800, Allen-KH Cheng wrote:
+> Add vcodec lat and core nodes for mt8192 SoC.
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 58 ++++++++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 936aa788664f..543a80252ce5 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -1291,6 +1291,64 @@
+>  			power-domains = <&spm MT8192_POWER_DOMAIN_ISP2>;
+>  		};
+>  
+> +		vcodec_dec: vcodec_dec@16000000 {
 
-Thank you for the patch! Yet something to improve:
+It's usually preferred to use '-' instead of '_' in the node name, like:
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on clk/clk-next linus/master v5.17-rc5 next-20220217]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+		vcodec_dec: vcodec-dec@16000000 {
 
-url:    https://github.com/0day-ci/linux/commits/michael-srba-seznam-cz/dt-bindings-clock-gcc-msm8998-Add-definitions-of-SSC-related-clocks/20220221-052431
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20220223/202202230613.3K7X7na5-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/33b907599d7992605f1cdd439529acd9bb8a8e2b
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review michael-srba-seznam-cz/dt-bindings-clock-gcc-msm8998-Add-definitions-of-SSC-related-clocks/20220221-052431
-        git checkout 33b907599d7992605f1cdd439529acd9bb8a8e2b
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash
+Same thing for the other vcodec nodes below.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+But more importantly, the Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+dt-binding shows the mtk-vcodec-lat and mtk-vcodec-core as subnodes of
+vcodec-dec. So I would follow that same structure here. Unless it does make more
+sense to have the nodes separate like this, but in that case the dt-binding
+should be updated.
 
-All errors (new ones prefixed by >>):
+> +			compatible = "mediatek,mt8192-vcodec-dec";
+> +			reg = <0 0x16000000 0 0x1000>;		/* VDEC_SYS */
+> +			mediatek,scp = <&scp>;
+> +			iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+> +		};
+> +
+> +		vcodec_lat: vcodec_lat@0x16010000 {
 
-   s390-linux-ld: kernel/dma/coherent.o: in function `dma_init_coherent_memory':
-   coherent.c:(.text+0x122): undefined reference to `memremap'
-   s390-linux-ld: coherent.c:(.text+0x230): undefined reference to `memunmap'
-   s390-linux-ld: kernel/dma/coherent.o: in function `dma_declare_coherent_memory':
-   coherent.c:(.text+0x69c): undefined reference to `memunmap'
-   s390-linux-ld: drivers/irqchip/irq-al-fic.o: in function `al_fic_init_dt':
-   irq-al-fic.c:(.init.text+0x7a): undefined reference to `of_iomap'
-   s390-linux-ld: irq-al-fic.c:(.init.text+0x4f4): undefined reference to `iounmap'
-   s390-linux-ld: drivers/bus/qcom-ssc-block-bus.o: in function `qcom_ssc_block_bus_remove':
->> qcom-ssc-block-bus.c:(.text+0x1ac): undefined reference to `iounmap'
->> s390-linux-ld: qcom-ssc-block-bus.c:(.text+0x1c2): undefined reference to `iounmap'
-   s390-linux-ld: drivers/clk/clk-fixed-mmio.o: in function `fixed_mmio_clk_setup':
-   clk-fixed-mmio.c:(.text+0x90): undefined reference to `of_iomap'
-   s390-linux-ld: clk-fixed-mmio.c:(.text+0xcc): undefined reference to `iounmap'
-   s390-linux-ld: drivers/clk/clk-lan966x.o: in function `lan966x_clk_probe':
-   clk-lan966x.c:(.text+0x5d4): undefined reference to `devm_platform_ioremap_resource'
-   s390-linux-ld: clk-lan966x.c:(.text+0x748): undefined reference to `devm_ioremap_resource'
-   s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_init':
-   timer-of.c:(.init.text+0x152): undefined reference to `of_iomap'
-   s390-linux-ld: timer-of.c:(.init.text+0x77e): undefined reference to `iounmap'
-   s390-linux-ld: drivers/clocksource/timer-of.o: in function `timer_of_cleanup':
-   timer-of.c:(.init.text+0x968): undefined reference to `iounmap'
-   s390-linux-ld: drivers/clocksource/timer-microchip-pit64b.o: in function `mchp_pit64b_dt_init_timer':
-   timer-microchip-pit64b.c:(.init.text+0x6a6): undefined reference to `of_iomap'
-   s390-linux-ld: timer-microchip-pit64b.c:(.init.text+0xd04): undefined reference to `iounmap'
+Again, please drop the '0x' prefix.
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> +			compatible = "mediatek,mtk-vcodec-lat";
+> +			reg = <0 0x16010000 0 0x800>;		/* VDEC_MISC */
+> +			interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
+> +				<&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
+> +				<&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
+> +				<&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
+> +				<&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
+> +				<&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
+> +				<&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
+> +				<&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
+> +			clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> +				 <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
+> +				 <&vdecsys_soc CLK_VDEC_SOC_LAT>,
+> +				 <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
+> +				 <&topckgen CLK_TOP_MAINPLL_D4>;
+> +			clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat", "vdec-vdec",
+> +				      "vdec-top";
+> +			assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+> +			power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
+> +		};
+> +
+> +		vcodec_core: vcodec_core@0x16025000 {
+
+Ditto.
