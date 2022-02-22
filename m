@@ -2,74 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A3B34C04E7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 23:52:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F1304C050D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 00:02:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236134AbiBVWw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 17:52:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53082 "EHLO
+        id S232031AbiBVXDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 18:03:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235034AbiBVWw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 17:52:56 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F3C60A83
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 14:52:28 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id d28so8485493wra.4
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 14:52:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/EnLdcDCaY6axPEw3k6ZqOc6igFL4mnKPGEeDh9ZpYQ=;
-        b=JlBU679E2RSWDtfPGZfq0mRe9IowogDAY4FI/8A2KbsQN3adCGWLzFglR/ESl0ximD
-         jiiwoJjkosMGrOaWQov+altgqvmI+80/Nlm0sQA932DVQd0zeZKbu0Cq/OQIM118sEWN
-         ZRNff4+TNcoySlMtlg3uQ+8O66yjEp5ROk7ukfcHedr2n9uK4nBy22SESUTa7y7QOYHh
-         4fhUH5HcXrU8hy7y9rItzfvN5Uq4Gg5QB8PeeJ7TUq+OD+dxCnMXuz1IwwmQkzCXcyPo
-         xdw4bedgVDHODG/3trm5BD2P0t/kqe68HvRGMj2ymEdItmrMjzgOX5ZG2og8iWfPMjhU
-         H+aA==
+        with ESMTP id S231131AbiBVXDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 18:03:03 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700B78AE54;
+        Tue, 22 Feb 2022 15:02:37 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id k2so12542345oia.2;
+        Tue, 22 Feb 2022 15:02:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/EnLdcDCaY6axPEw3k6ZqOc6igFL4mnKPGEeDh9ZpYQ=;
-        b=AKCIrVZ5r0rcXrllWHMCNmjEWXG4F4oqET0vmynH0N5hBqxUujLWq6cBq6GLfA8sxX
-         V+WHuLRkXlybmmkYF6FQN5xdTTBqewTZqjwhPJGIxWwjGNDYUtIl2MswI0kNITyoHV9/
-         Deu/wZDSHVU17l8c0yHQdBMajksI7SR02iwmXQfhl8Vyu8kV71/8aoSe6icmGXoGG/Da
-         4FPkmh8EGl3K1YGjW56PjDYRBnUyioZJzmOiHLfCm4Ck+sM0TBUFz5NdqizwvObPjWVD
-         zR836YKbw2jbo8vORiuTKGvgMHPpYEZHae4n1RrtSuaKgacwg8g5+NFLuC3WaqmMUuNd
-         pL0A==
-X-Gm-Message-State: AOAM533PSuW2q4naKVcT1eAl2VKzjZZ3LfB3gn8E0SZcbP+zIhg4HfbR
-        7eYcnTSvpXWU/AQfAJ59xCX4jA==
-X-Google-Smtp-Source: ABdhPJxnBqQUGE8FatYN5I3AE2KTzM8vUylwQpMxfwtN0+FUJdGdMooq4XpfX0P1pMsgjqsaS4xNAQ==
-X-Received: by 2002:a05:6000:18a5:b0:1eb:93a3:ebcb with SMTP id b5-20020a05600018a500b001eb93a3ebcbmr2595027wri.291.1645570347524;
-        Tue, 22 Feb 2022 14:52:27 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id b16sm4232325wmj.32.2022.02.22.14.52.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Feb 2022 14:52:26 -0800 (PST)
-Message-ID: <1cb4e02f-f040-23bd-44d0-0675429332bd@linaro.org>
-Date:   Tue, 22 Feb 2022 22:52:25 +0000
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=d6NMNgjpMH0rJqe9W2px91jdR184ky7Ff9IefMqODMA=;
+        b=cBdaGY/Uh0tEbrlZo46lbjqDH4K4Gl/Z1+bLV1w1Lfh0FmOEZ3A7A11JHnTS+nalau
+         9r7+08LQ7JSgtQ9etXuu6RQ8FYtAYGlkpitP6EFQgqw5Ka/oerkLZREcrYkAOua2jz6p
+         ecRcNmrbSjELQqBJ7b2Saf06wP7f3jD9QTjbS/6n1H9VHm+ByV12JNkoUbnXF7Bb8Kn9
+         QiVfDGFyQVREUn8rZbUZyAiP0drS0AfRBoyK02T9OC/GnO7V4Qgq/lTQeP02a41M82tD
+         tGe1iNYW7IJodGBjAw578CPtUFqxq9rk1vVYdZHN91w0sNuOgAstY1XUDXFX10z+ldu9
+         q5Xg==
+X-Gm-Message-State: AOAM532rzppROh8l91Dg8KvzpM0CXWD7k7mxLL3mS9jPUvex6CM+V8Pk
+        JwGLDQULq3Lp9NMfvLFDsQ==
+X-Google-Smtp-Source: ABdhPJyJ30kZqNC1ZDZBZMmAjEJgXkLFmJ3LtezCgaHxYtAREtjokF4HlGFTwewJeEPi/yZQK0XFEQ==
+X-Received: by 2002:aca:502:0:b0:2cd:c24:278f with SMTP id 2-20020aca0502000000b002cd0c24278fmr3103957oif.150.1645570956534;
+        Tue, 22 Feb 2022 15:02:36 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id s27sm2738598oiw.38.2022.02.22.15.02.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Feb 2022 15:02:35 -0800 (PST)
+Received: (nullmailer pid 3759205 invoked by uid 1000);
+        Tue, 22 Feb 2022 23:02:34 -0000
+Date:   Tue, 22 Feb 2022 17:02:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sui Jingfeng <15330273260@189.cn>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v10 2/4] Documentation/dt: Add descriptions for loongson
+ display controller
+Message-ID: <YhVrigEnXTiNgk67@robh.at.kernel.org>
+References: <20220220145554.117854-1-15330273260@189.cn>
+ <20220220145554.117854-3-15330273260@189.cn>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 3/3] soundwire: qcom: add wake up interrupt support
-Content-Language: en-US
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        robh+dt@kernel.org, vkoul@kernel.org,
-        yung-chuan.liao@linux.intel.com
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, quic_srivasam@quicinc.com
-References: <20220221104127.15670-1-srinivas.kandagatla@linaro.org>
- <20220221104127.15670-4-srinivas.kandagatla@linaro.org>
- <5e050d4c-e3d2-35fb-ca49-7be53579bc31@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <5e050d4c-e3d2-35fb-ca49-7be53579bc31@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220220145554.117854-3-15330273260@189.cn>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,87 +82,185 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Feb 20, 2022 at 10:55:52PM +0800, Sui Jingfeng wrote:
+> From: suijingfeng <suijingfeng@loongson.cn>
 
+Follow the conventions of the subsystem for patch subjects. It should be 
+evident with 'git log --oneline Documentation/devicetree/bindings/display'.
 
-On 22/02/2022 19:26, Pierre-Louis Bossart wrote:
-> 
-> 
-> 
->> +static irqreturn_t qcom_swrm_wake_irq_handler(int irq, void *dev_id)
->> +{
->> +	struct qcom_swrm_ctrl *swrm = dev_id;
->> +	int ret = IRQ_HANDLED;
->> +	struct sdw_slave *slave;
->> +
->> +	clk_prepare_enable(swrm->hclk);
->> +
->> +	if (swrm->wake_irq > 0) {
->> +		if (!irqd_irq_disabled(irq_get_irq_data(swrm->wake_irq)))
->> +			disable_irq_nosync(swrm->wake_irq);
->> +	}
->> +
->> +	/*
->> +	 * resume all the slaves which must have potentially generated this
->> +	 * interrupt, this should also wake the controller at the same time.
->> +	 * this is much safer than waking controller directly that will deadlock!
->> +	 */
-> There should be no difference if you first resume the controller and
-> then attached peripherals, or do a loop where you rely on the pm_runtime
-> framework.
-> 
-> The notion that there might be a dead-lock is surprising, you would need
-> to elaborate here.Issue is, if wakeup interrupt resumes the controller first which can 
-trigger an slave pending interrupt (ex: Button press event) in the 
-middle of resume that will try to wake the slave device which in turn 
-will try to wake parent in the middle of resume resulting in a dead lock.
+Something like this:
 
-This was the best way to avoid dead lock.
+dt-bindings: display: Add Loongson display controller
 
 > 
->> +	list_for_each_entry(slave, &swrm->bus.slaves, node) {
->> +		ret = pm_runtime_get_sync(&slave->dev);
+> Add DT documentation for loongson display controller found in LS2K1000,
+> LS2K0500 and LS7A1000.
 > 
-> In my experience, you don't want to blur layers and take references on
-> the child devices from the parent device. I don't know how many times we
-> end-up with weird behavior.
+> v2: DT binding docs and includes should be a separate patch,
+>     fix a warnning because of that.
 > 
-> we've done something similar on the Intel side but implemented in a less
-> directive manner.
-thanks, I can take some inspiration from that.
+> v3: split dt-bindings from other changes into a separate patch.
+> 
+> v4: fix warnings and errors when running make dt_binding_check
 
+What happened in versions 5-10? You've sent 10 versions in 3 weeks. 
+That's not a rate that gives people time to review. Also, it looks like 
+all the changes you've made are either documented things to do or not do 
+or are errors the tools (checkpatch.pl, 'make dt_binding_check') will 
+tell you to fix. 
 
---srini
+>
+> Reported-by: Rob Herring <robh@kernel.org>
+> Reported-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+What did we report? That's generally for fixes.
+
+> Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+> Signed-off-by: Sui Jingfeng <15330273260@189.cn>
+> ---
+>  .../loongson/loongson,display-controller.yaml | 122 ++++++++++++++++++
+>  1 file changed, 122 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
 > 
-> ret = device_for_each_child(bus->dev, NULL, intel_resume_child_device);
+> diff --git a/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml b/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+> new file mode 100644
+> index 000000000000..ee1a59b91943
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/loongson/loongson,display-controller.yaml
+> @@ -0,0 +1,122 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/loongson/loongson,display-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson LS7A1000/LS2K1000/LS2K0500 Display Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Sui Jingfeng <suijingfeng@loongson.cn>
+> +
+> +description: |+
+> +
+> +  Loongson display controllers are simple which require scanout buffers
+> +  to be physically contiguous. LS2K1000/LS2K0500 is a SOC, only system
+> +  memory is available. LS7A1000/LS7A2000 is bridge chip which is equipped
+> +  with a dedicated video ram which is 64MB or more.
+> +
+> +  For LS7A1000, there are 4 dedicated GPIOs whose control register is
+> +  located at the DC register space. They are used to emulate two way i2c,
+> +  One for DVO0, another for DVO1.
+> +
+> +  LS2K1000 and LS2K0500 SoC grab i2c adapter from other module, either
+> +  general purpose GPIO emulated i2c or hardware i2c in the SoC.
+> +
+> +  LSDC has two display pipes, each way has a DVO interface which provide
+> +  RGB888 signals, vertical & horizontal synchronisations, data enable and
+> +  the pixel clock. LSDC has two CRTC, each CRTC is able to scanout from
+> +  1920x1080 resolution at 60Hz. Each CRTC has two FB address registers.
+> +
+> +  LSDC's display pipeline have several components as below description,
+> +
+> +  The display controller in LS7A1000:
+> +    ___________________                                     _________
+> +    |            -------|                                   |         |
+> +    |  CRTC0 --> | DVO0 ----> Encoder0 ---> Connector0 ---> | Monitor |
+> +    |  _   _     -------|        ^             ^            |_________|
+> +    | | | | |    -------|        |             |
+> +    | |_| |_|    | i2c0 <--------+-------------+
+> +    |            -------|
+> +    |   DC IN LS7A1000  |
+> +    |  _   _     -------|
+> +    | | | | |    | i2c1 <--------+-------------+
+> +    | |_| |_|    -------|        |             |             _________
+> +    |            -------|        |             |            |         |
+> +    |  CRTC1 --> | DVO1 ----> Encoder1 ---> Connector1 ---> |  Panel  |
+> +    |            -------|                                   |_________|
+> +    |___________________|
+> +
+> +  Simple usage of LS7A1000 with LS3A4000 CPU:
+> +
+> +    +------+            +-----------------------------------+
+> +    | DDR4 |            |  +-------------------+            |
+> +    +------+            |  | PCIe Root complex |   LS7A1000 |
+> +       || MC0           |  +--++---------++----+            |
+> +  +----------+  HT 3.0  |     ||         ||                 |
+> +  | LS3A4000 |<-------->| +---++---+  +--++--+    +---------+   +------+
+> +  |   CPU    |<-------->| | GC1000 |  | LSDC |<-->| DDR3 MC |<->| VRAM |
+> +  +----------+          | +--------+  +-+--+-+    +---------+   +------+
+
+How do you know how much VRAM you have? That's going to need a binding 
+for the VRAM.
+
+> +       || MC1           +---------------|--|----------------+
+> +    +------+                            |  |
+> +    | DDR4 |          +-------+   DVO0  |  |  DVO1   +------+
+> +    +------+   VGA <--|ADV7125|<--------+  +-------->|TFP410|--> DVI/HDMI
+> +                      +-------+                      +------+
+> +
+> +  The display controller in LS2K1000/LS2K0500:
+> +     ___________________                                     _________
+> +    |            -------|                                   |         |
+> +    |  CRTC0 --> | DVO0 ----> Encoder0 ---> Connector0 ---> | Monitor |
+> +    |  _   _     -------|        ^              ^           |_________|
+> +    | | | | |           |        |              |
+> +    | |_| |_|           |     +------+          |
+> +    |                   <---->| i2c0 |<---------+
+> +    |   DC IN LS2K1000  |     +------+
+> +    |  _   _            |     +------+
+> +    | | | | |           <---->| i2c1 |----------+
+> +    | |_| |_|           |     +------+          |            _________
+> +    |            -------|        |              |           |         |
+> +    |  CRTC1 --> | DVO1 ----> Encoder1 ---> Connector1 ---> |  Panel  |
+> +    |            -------|                                   |_________|
+> +    |___________________|
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^display-controller@[0-9a-f],[0-9a-f]$"
+> +
+> +  compatible:
+> +    enum:
+> +      - loongson,ls7a1000-dc
+> +      - loongson,ls2k1000-dc
+> +      - loongson,ls2k0500-dc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    bus {
+> +
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +        #interrupt-cells = <2>;
+> +
+> +        lsdc: display-controller@6,1 {
+> +            compatible = "loongson,ls7a1000-dc";
+> +            reg = <0x3100 0x0 0x0 0x0 0x0>;
+> +            interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-parent = <&pic>;
+
+Don't need 'interrupt-parent' in examples.
+
+This certainly looks incomplete given you have 2 outputs you are going 
+to need to describe what's connected to them.
+
+> +        };
+> +    };
+> +...
+> -- 
+> 2.25.1
 > 
-> static int intel_resume_child_device(struct device *dev, void *data)
-> {
-> [...]	
-> 	ret = pm_request_resume(dev);
-> 	if (ret < 0)
-> 		dev_err(dev, "%s: pm_request_resume failed: %d\n", __func__, ret);
-> 
-> 	return ret;
-> }
-> 
-> 
->> +		if (ret < 0 && ret != -EACCES) {
->> +			dev_err_ratelimited(swrm->dev,
->> +					    "pm_runtime_get_sync failed in %s, ret %d\n",
->> +					    __func__, ret);
->> +			pm_runtime_put_noidle(&slave->dev);
->> +			ret = IRQ_NONE;
->> +			goto err;
->> +		}
->> +	}
->> +
->> +	list_for_each_entry(slave, &swrm->bus.slaves, node) {
->> +		pm_runtime_mark_last_busy(&slave->dev);
->> +		pm_runtime_put_autosuspend(&slave->dev);
->> +	}
->> +err:
->> +	clk_disable_unprepare(swrm->hclk);
->> +	return IRQ_HANDLED;
->> +}
->> +
 > 
