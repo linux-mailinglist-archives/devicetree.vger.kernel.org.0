@@ -2,61 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AF6B4C027E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 20:55:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF0D4C020C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 20:31:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235317AbiBVTz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 14:55:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55346 "EHLO
+        id S232372AbiBVTbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 14:31:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235316AbiBVTz5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 14:55:57 -0500
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF4EC621D;
-        Tue, 22 Feb 2022 11:55:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645559731; x=1677095731;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=VHSxbtD4mVx8CwpUuPAeIMnzDxuN5vCFvKRBG3+7rIs=;
-  b=K9IgKY9KYFhrkkRVT+Dl8DqIEQUdV6U3nCB5uUxsGshQarMZYRMUwdjq
-   s0VgH6Ooe2B3dKn5bPsTBW6x/egCfL81YG5a/OoEO8dN0ha8qo1YP3L1Y
-   PpXJPfKE7m0DGxgCd7g72+j2Wa6AEZprazarVWnKOeBGzhRokT7xrEAsk
-   5KDzZe/SWw1LutoR7+01IANEEFx1AO8uJQAQc7cApRiixmaJXsCXmxRW/
-   i8ykxboByRN4RheM4tJAGJo8AJBT2bnYEZkWJLYStEhHFgZMKUUbnhIPm
-   YlhDUnh9fA2qKyZGz0D4a2ac/VoEKwFykS3jwNoL5rqcskTBYl+/7gIxq
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="231772629"
-X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; 
-   d="scan'208";a="231772629"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2022 11:55:18 -0800
-X-IronPort-AV: E=Sophos;i="5.88,387,1635231600"; 
-   d="scan'208";a="639032064"
-Received: from mjpatel-mobl.amr.corp.intel.com (HELO [10.212.37.223]) ([10.212.37.223])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2022 11:55:18 -0800
-Message-ID: <5e050d4c-e3d2-35fb-ca49-7be53579bc31@linux.intel.com>
-Date:   Tue, 22 Feb 2022 13:26:57 -0600
+        with ESMTP id S230493AbiBVTbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 14:31:37 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E367CBF4E;
+        Tue, 22 Feb 2022 11:31:11 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 94AFF1F42C46
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645558270;
+        bh=vZziczXassul2CymxgXhkwNg2UBW/i5hySVH6iKoSkA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=X87BBKUrjMdOyVJxoPd+Sq7cUKuydQJm41Lm+Z546naJqX88X56ptY+ktWPha0r34
+         9o8ksTzO0Ra25o4ZDf0EKdbDCKPqe2Qye15At2inxVXZ7fzr6Ku5u219fzWN12WGJO
+         v0LNQv9flc2atvScVzmq4jYULiQIeH2dHfJ/VHJtEB0DAQ3dAcG4cQAkBeDD0mFSGC
+         6boEV6nUNW6xHNgZsAyiX4yUVlSUdnrlEsq4rWq495jhQqw86D8cBKvEMwjfYR+d2o
+         +aZbmBQ6xSD+skSUTYmCGBXkAnGEQiwTpJz+AZ7aFo7iJm4Zt12KxC9/d34eYRTJaE
+         wMF8u5Tkmv8fw==
+Date:   Tue, 22 Feb 2022 14:31:05 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        --to=Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>
+Subject: Re: [PATCH v2 03/23] arm64: dts: mt8192: Add spmi node
+Message-ID: <20220222193105.zw2e3bhpfymk4kv2@notapiano>
+References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
+ <20220218091633.9368-4-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.5.0
-Subject: Re: [PATCH 3/3] soundwire: qcom: add wake up interrupt support
-Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        robh+dt@kernel.org, vkoul@kernel.org,
-        yung-chuan.liao@linux.intel.com
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, quic_srivasam@quicinc.com
-References: <20220221104127.15670-1-srinivas.kandagatla@linaro.org>
- <20220221104127.15670-4-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20220221104127.15670-4-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220218091633.9368-4-allen-kh.cheng@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,74 +58,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Feb 18, 2022 at 05:16:13PM +0800, Allen-KH Cheng wrote:
+> Add spmi node for mt8192 SoC.
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 
-
-
-> +static irqreturn_t qcom_swrm_wake_irq_handler(int irq, void *dev_id)
-> +{
-> +	struct qcom_swrm_ctrl *swrm = dev_id;
-> +	int ret = IRQ_HANDLED;
-> +	struct sdw_slave *slave;
-> +
-> +	clk_prepare_enable(swrm->hclk);
-> +
-> +	if (swrm->wake_irq > 0) {
-> +		if (!irqd_irq_disabled(irq_get_irq_data(swrm->wake_irq)))
-> +			disable_irq_nosync(swrm->wake_irq);
-> +	}
-> +
-> +	/*
-> +	 * resume all the slaves which must have potentially generated this
-> +	 * interrupt, this should also wake the controller at the same time.
-> +	 * this is much safer than waking controller directly that will deadlock!
-> +	 */
-There should be no difference if you first resume the controller and
-then attached peripherals, or do a loop where you rely on the pm_runtime
-framework.
-
-The notion that there might be a dead-lock is surprising, you would need
-to elaborate here.
-
-> +	list_for_each_entry(slave, &swrm->bus.slaves, node) {
-> +		ret = pm_runtime_get_sync(&slave->dev);
-
-In my experience, you don't want to blur layers and take references on
-the child devices from the parent device. I don't know how many times we
-end-up with weird behavior.
-
-we've done something similar on the Intel side but implemented in a less
-directive manner.
-
-ret = device_for_each_child(bus->dev, NULL, intel_resume_child_device);
-
-static int intel_resume_child_device(struct device *dev, void *data)
-{
-[...]	
-	ret = pm_request_resume(dev);
-	if (ret < 0)
-		dev_err(dev, "%s: pm_request_resume failed: %d\n", __func__, ret);
-
-	return ret;
-}
-
-
-> +		if (ret < 0 && ret != -EACCES) {
-> +			dev_err_ratelimited(swrm->dev,
-> +					    "pm_runtime_get_sync failed in %s, ret %d\n",
-> +					    __func__, ret);
-> +			pm_runtime_put_noidle(&slave->dev);
-> +			ret = IRQ_NONE;
-> +			goto err;
-> +		}
-> +	}
-> +
-> +	list_for_each_entry(slave, &swrm->bus.slaves, node) {
-> +		pm_runtime_mark_last_busy(&slave->dev);
-> +		pm_runtime_put_autosuspend(&slave->dev);
-> +	}
-> +err:
-> +	clk_disable_unprepare(swrm->hclk);
-> +	return IRQ_HANDLED;
-> +}
-> +
-
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
