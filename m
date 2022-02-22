@@ -2,90 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 108E44BF17C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 06:42:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5E684BF11D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 06:24:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbiBVFhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 00:37:33 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:48430 "EHLO
+        id S229379AbiBVFXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 00:23:20 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:53412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbiBVFhS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 00:37:18 -0500
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599AD630B;
-        Mon, 21 Feb 2022 21:36:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645508213; x=1677044213;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references;
-  bh=c9a7UM3eycakspYO8Qaza117CO9MFjnDGSX8vyBkrj0=;
-  b=W5sTXocC9urbKLI7KZAzMV0zS657pBnNIH2ByXEMd9mNTVwO/6HVhf7z
-   Skm5O5Tfgdm3Adslrf/PYgPeq1NBIP5D16JQxDHj3X+Sku0APzFtYC//c
-   tkfkZ6A1yG+rK5z4BoHAfCPAtLw53GO3xzJfBBEvEWS6k3R7RF2AnFjMb
-   M=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 21 Feb 2022 20:56:48 -0800
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 21 Feb 2022 20:56:45 -0800
-X-QCInternal: smtphost
-Received: from hu-rohiagar-hyd.qualcomm.com (HELO hu-sgudaval-hyd.qualcomm.com) ([10.213.106.138])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 22 Feb 2022 10:26:32 +0530
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 0B94144B1; Tue, 22 Feb 2022 10:26:31 +0530 (+0530)
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     bjorn.andersson@linaro.org, agross@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        manivannan.sadhasivam@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH v4 5/5] clk: qcom: Add SDX65 APCS clock controller support
-Date:   Tue, 22 Feb 2022 10:26:25 +0530
-Message-Id: <1645505785-2271-6-git-send-email-quic_rohiagar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1645505785-2271-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1645505785-2271-1-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229436AbiBVFXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 00:23:05 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DA5EB6D14;
+        Mon, 21 Feb 2022 21:22:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 31795B81754;
+        Tue, 22 Feb 2022 05:22:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27A35C340EB;
+        Tue, 22 Feb 2022 05:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645507357;
+        bh=KCTcj5TseEAUcvGzo4Wj0gTwBw0tNSSMLCB6TBjzO/o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YqfBCdQOkblPXZ0t5+y1SjzzAmAVZVBfCOTxiJf/NnYx0y5GvX6M/ehX0FfBLcx4q
+         FuYsgSjAnhdtAsrz0AmhKXDaZAavMCrlofIA8jLaDlJNXXTec4f5SCq3gquAHD+gHi
+         TH9S1846C1rPAgxCUYSdLQFonpTgfuAwRjBvoYQH0Zog5bfZKtSh5/cYBPnaQLUm9I
+         JdS9iWejT/tePeno6otX6673OFB1pNZqW/HV91nxiDxZv8ic5cru1DjijVQyHRGnUX
+         z9nCp2CdZk3QX+1m+uZHyGfddMHFtCKOGPJEyCMRdrzvEHFqinQIzg4SrE9fqbu7SV
+         GC11hcpIgnzMw==
+Date:   Tue, 22 Feb 2022 10:52:33 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Roger Quadros <rogerq@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: update Roger Quadros email
+Message-ID: <YhRzGbSHLrDwxxSm@matsya>
+References: <20220221100701.48593-1-krzysztof.kozlowski@canonical.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220221100701.48593-1-krzysztof.kozlowski@canonical.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update APCS Kconfig to reflect support for SDX65
-APCS clock controller.
+On 21-02-22, 11:07, Krzysztof Kozlowski wrote:
+> Emails to Roger Quadros TI account bounce with:
+>   550 Invalid recipient <rogerq@ti.com> (#5.1.1)
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> 
+> ---
+> 
+> Roger,
+> You should also add a mailmap entry for your inactive emails.
+> 
+> Best regards,
+> Krzysztof
+> ---
+>  .../devicetree/bindings/mfd/ti,j721e-system-controller.yaml     | 2 +-
+>  Documentation/devicetree/bindings/phy/ti,omap-usb2.yaml         | 2 +-
 
-Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
----
- drivers/clk/qcom/Kconfig | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Acked-By: Vinod Koul <vkoul@kernel.org>
 
-diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-index 5159a1d..1a641d4 100644
---- a/drivers/clk/qcom/Kconfig
-+++ b/drivers/clk/qcom/Kconfig
-@@ -55,13 +55,13 @@ config QCOM_CLK_APCC_MSM8996
- 	  drivers for dynamic power management.
- 
- config QCOM_CLK_APCS_SDX55
--	tristate "SDX55 APCS Clock Controller"
-+	tristate "SDX55 and SDX65 APCS Clock Controller"
- 	depends on QCOM_APCS_IPC || COMPILE_TEST
- 	help
--	  Support for the APCS Clock Controller on SDX55 platform. The
-+	  Support for the APCS Clock Controller on SDX55, SDX65 platforms. The
- 	  APCS is managing the mux and divider which feeds the CPUs.
- 	  Say Y if you want to support CPU frequency scaling on devices
--	  such as SDX55.
-+	  such as SDX55, SDX65.
- 
- config QCOM_CLK_RPM
- 	tristate "RPM based Clock Controller"
 -- 
-2.7.4
-
+~Vinod
