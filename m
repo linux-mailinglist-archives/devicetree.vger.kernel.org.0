@@ -2,116 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 567074BFB13
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:46:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D45B4BFB1C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:48:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232588AbiBVOrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 09:47:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36104 "EHLO
+        id S232031AbiBVOtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 09:49:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232761AbiBVOrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:47:07 -0500
-Received: from 189.cn (ptr.189.cn [183.61.185.104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7F5251FC;
-        Tue, 22 Feb 2022 06:46:39 -0800 (PST)
-HMM_SOURCE_IP: 10.64.8.31:53590.1226820573
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.31])
-        by 189.cn (HERMES) with SMTP id 2669A100282;
-        Tue, 22 Feb 2022 22:46:36 +0800 (CST)
-Received: from  ([114.242.206.180])
-        by gateway-151646-dep-b7fbf7d79-bwdqx with ESMTP id 608c66110ce94bae849ff8b258bd58fa for maxime@cerno.tech;
-        Tue, 22 Feb 2022 22:46:38 CST
-X-Transaction-ID: 608c66110ce94bae849ff8b258bd58fa
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Sender: 15330273260@189.cn
-Message-ID: <54ea69d7-2fac-74dc-2ef6-843a666cff85@189.cn>
-Date:   Tue, 22 Feb 2022 22:46:35 +0800
+        with ESMTP id S232641AbiBVOtJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:49:09 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D81BD2C2
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 06:48:41 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id az26-20020a05600c601a00b0037c078db59cso2028833wmb.4
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 06:48:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=tnceEeGnrcuJoNr0+Cgdwzi8bAtUJ8PrVOXTOsxGiv8=;
+        b=BLNhsgYEBr+ldXVFFu/RqMuSdMknUikmOnh+8PhlpuW1sex7DrIgwqFbS79lt+/9Fj
+         eXInu65RHdP9/RaAHHicAaBN23Jee6z4YfIKtTIt5jhBGbqSiH7zL35GymIk22sC0g08
+         xHnyW1O0Im9gXYw7vKouOD2AAfu9LV+0K8noU24UdxG4szvFdJUX2OduZ/J4gioREeSO
+         rGi4r5uVVa5HGCmYasymCdXYxR8jfWbRpPEcq1o2WuKlizofX49G9sUG9u8gG2zzYnje
+         o4Ls8K10TAvHE/L/3CEwzT4fE5T6Z0tH/BQ0dAQMzo9dYX/eGOUmj6BUbtKHQO3073vD
+         /DQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=tnceEeGnrcuJoNr0+Cgdwzi8bAtUJ8PrVOXTOsxGiv8=;
+        b=pzvPAtLPRzBKnN139ecfWYpufhW3WIHk9C3XbW59TNytLv2cHhy6VoLItG/Cg4PeiF
+         QgiNbNLbxexiEQZBiRHv04S/Z3yU58VfbCfnBqz0OcDJx8B8Iehw5Q+eyL6K5Y8gy4mG
+         POm0qyEmuVOCqih/Pb5FJEi21aar0cGByM4UfSYtS7quHd8B9ULu//wwMlppcjPJbzeQ
+         9NC2yAKdpCzALNlxOU8ws00jlOsGD2db4xL6/H8ILz237Rdy+KkSnUtRTHO1a04cWY0L
+         Z5RDTSy368UCXd9BNACw1AkVGoNK4phCW5O5y4KDbryWsMPAFnNZuxMtwGaBOYfZOdfy
+         6Hiw==
+X-Gm-Message-State: AOAM530/yZYIG3Tz0okyQ2bdIZ/iiwWMvux92aQ7YhmkRnBVU8WL/uJY
+        23Clzyxh4YbZHCkOWTAaSUv/GQ==
+X-Google-Smtp-Source: ABdhPJzHLE6QCDQn+Ao6ARDEbUXD14NHh4L6o7VCIBQ8a6PNAyJ3LeVtt+yRC0QvCiQEGnMDHYR1+Q==
+X-Received: by 2002:a05:600c:3217:b0:380:e2a3:18cf with SMTP id r23-20020a05600c321700b00380e2a318cfmr1613415wmp.129.1645541319974;
+        Tue, 22 Feb 2022 06:48:39 -0800 (PST)
+Received: from ?IPV6:2001:861:44c0:66c0:8df:a253:2751:6a9c? ([2001:861:44c0:66c0:8df:a253:2751:6a9c])
+        by smtp.gmail.com with ESMTPSA id k4-20020a05600c0b4400b0034a0cb4332csm2514284wmr.10.2022.02.22.06.48.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Feb 2022 06:48:39 -0800 (PST)
+Message-ID: <1530c337-22b5-b20d-27ae-50696344e80f@baylibre.com>
+Date:   Tue, 22 Feb 2022 15:48:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v10 3/4] drm/lsdc: add drm driver for loongson display
- controller
+Subject: Re: [PATCH 0/6] auxdisplay: Add support for the Titanmec TM1628 7
+ segment display controller
 Content-Language: en-US
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Randy Dunlap <rdunlap@infradead.org>,
-        kernel test robot <lkp@intel.com>
-References: <20220220145554.117854-1-15330273260@189.cn>
- <20220220145554.117854-4-15330273260@189.cn>
- <20220222082747.66otrkc4zwvhem7w@houat>
-From:   Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <20220222082747.66otrkc4zwvhem7w@houat>
+To:     =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org
+References: <4172e59f-b9d5-d87d-9dbd-a6f683a2173c@gmail.com>
+ <CANiq72mi5fj07cfo6T4jPmp=EiRtE_uDeHHCqjG9h+duPrUMKg@mail.gmail.com>
+ <ecdbfb3a-e214-a059-95b9-1ebf2f625295@gmail.com>
+ <862fc0e3-6c76-8dea-6725-a6c45ade1ecd@suse.de>
+ <09bf3d8a-2902-723b-80d2-0c4d1c24f53d@gmail.com>
+ <a890337b-39e4-f796-2d53-05edd2d69c80@suse.de>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <a890337b-39e4-f796-2d53-05edd2d69c80@suse.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,NICE_REPLY_A,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22/02/2022 13:12, Andreas Färber wrote:
+> On 19.02.22 18:16, Heiner Kallweit wrote:
+>> On 19.02.2022 17:07, Andreas Färber wrote:
+>>> Hi,
+>>>
+>>> On 19.02.22 14:37, Heiner Kallweit wrote:
+>>>> On 19.02.2022 14:27, Miguel Ojeda wrote:
+>>>>> On Sat, Feb 19, 2022 at 2:13 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>>>>>>
+>>>>>> This series adds support for the Titanmec TM1628 7 segment display
+>>>>>> controller. It's based on previous RFC work from Andreas Färber.
+>>>>>> The RFC version placed the driver in the LED subsystem, but this was
+>>>>>> NAK'ed by the LED maintainer. Therefore I moved the driver to
+>>>>>> /drivers/auxdisplay what seems most reasonable to me.
+>>>>>
+>>>>> Could you please link to the discussion and/or summarize the rationale
+>>>>> behind the NAK?
+>>>>>
+>>>>
+>>>> +Pavel
+>>>>
+>>>> I didn't find an explicit reason, but I suppose Pavel sees this driver as
+>>>> one that makes use of the LED subsystem, but doesn't belong to it.
+>>>> In the following mail he's expressing his opinion that the driver should
+>>>> be best placed under auxdisplay.
+>>>>
+>>>> https://lore.kernel.org/linux-arm-kernel/20200226130300.GB2800@duo.ucw.cz/
+>>>
+>>> And I disagreed. It does not fit with the other drivers in auxdisplay
+>>> that were operating on a much higher level.
+>>>
+>>
+>> We need to find a place. And if Pavel has good reasons that it doesn't
+>> fit into the LED subsystem, and Miguel should be fine with having
+>> it in auxdisplay, then I'd see no reason to not go this way.
+>>
+>>> I'd also like to point out that I did implement the map_to_7segment API,
+>>
+>> Looking at the history of include/uapi/linux/map_to_7segment.h I see no
+>> commit from you. Seems I'm missing something here.
+> 
+> You're replying inline too early:
+> 
+>>> as was suggested, as you will find in my tree
+> 
+> As I said, I implemented it in my driver:
+> 
+> https://github.com/afaerber/linux/commit/bbecf951348c7de8ba922c6c002a09369b717d82
+> 
+> Thus me saying you are unnecessarily duplicating work that I already
+> did, without ping'ing the thread or me and claiming the credit for an
+> implementation change which I already did myself.
+> 
+>>> - which you may have
+>>> missed, referencing only the RFC patchset and putting your authorship on
+>>> it exclusively? A move from one directory to another should not warrant
+>>> my author and SoB getting removed from the actual driver.
+>>>
+>> The driver includes major changes and I mentioned your work in the commit
+>> message. Also your still listed as MODULE_AUTHOR. My intention is to
+>> get a driver upstream, not to earn credits for something.
+>> So sure, your SoB can be (re-)added.
+> 
+> https://github.com/afaerber/linux/commits/rtd1295-next
+> 
+> Also note this 5-in-4 optimization:
+> 
+> https://github.com/afaerber/linux/commit/ff8284b6ed9dc1e354c35840afdaf50b1cd97fea
+> 
+> And several more chipsets being covered.
+> 
+>>> Given that we need to manage a buffer with bits per segment or LED
+>>> symbol, one idea that I haven't found time for yet was to implement it
+>>> as framebuffer or drm device instead. (And most Realtek platforms got
+>>> broken by removing the adjustable text base defines.)
+>>>
+>> I'm not aware of the Realtek platform issue, do you have a link to a
+>> related discussion?
+> 
+> Realtek has a boot ROM at the beginning of memory space, which has been
+> a problem from the first RFC and for most bootloaders required to tweak
+> the kernel's text offset for successful boot. (Some not Open Source (LK)
+> and/or not openly flashable.)
+> 
+> http://lists.infradead.org/pipermail/linux-arm-kernel/2017-February/487718.html
+> 
+> In 2020 that arm64 feature got removed without any further discussion:
+> 
+> https://lore.kernel.org/all/20200825135440.11288-1-ardb@kernel.org/
 
-On 2022/2/22 16:27, Maxime Ripard wrote:
->> +	if (!of_device_is_available(output)) {
->> +		of_node_put(output);
->> +		drm_info(ddev, "connector%d is not available\n", index);
->> +		return NULL;
->> +	}
->> +
->> +	disp_tims_np = of_get_child_by_name(output, "display-timings");
->> +	if (disp_tims_np) {
->> +		lsdc_get_display_timings_from_dtb(output, &lconn->disp_tim);
->> +		lconn->has_disp_tim = true;
->> +		of_node_put(disp_tims_np);
->> +		drm_info(ddev, "Found display timings provided by connector%d\n", index);
->> +	}
->> +
->> +	connector_type = lsdc_get_connector_type(ddev, output, index);
->> +
->> +	if (output) {
->> +		of_node_put(output);
->> +		output = NULL;
->> +	}
->> +
->> +DT_SKIPED:
->> +
->> +	/* Only create the i2c channel if display timing is not provided */
->> +	if (!lconn->has_disp_tim) {
->> +		const struct lsdc_chip_desc * const desc = ldev->desc;
->> +
->> +		if (desc->have_builtin_i2c)
->> +			lconn->ddc = lsdc_create_i2c_chan(ddev, index);
->> +		else
->> +			lconn->ddc = lsdc_get_i2c_adapter(ddev, index);
-> This looks weird: the connector bindings have a property to store the
-> i2c controller connected to the DDC lines, so you should use that
-> instead.
->
-This is not  weird,  ast, mgag200, hibmc do the same thing.
+Note the TEXT_OFFSET is only an issue with Amlogic vendor bootloader,
+it has never been an issue with mainline U-Boot.
+
+Neil
+
+> 
+> I've tried to revert it, but that's been a pain:
+> 
+> https://github.com/afaerber/linux/commit/0d2c647781bc89ee95bfa7b80d71237c7ebea230
+> 
+>> And wouldn't you think it's overengineering to
+>> write a DRM driver for a 7 segment display with 4 digits?
+>> Framebuffer seems to be deprecated based on my experience with
+>> pygame / SDL2.
+> 
+> Is there any other API that would allow userspace to write to the buffer
+> and bitblt parts to the SPI device?
+> 
+> Thinking of some optimizations I implemented in my driver to avoid
+> unnecessary SPI transfers:
+> 
+> https://github.com/afaerber/linux/commit/46c40209db163a81474c6894ebbd90b5e238ce60
+> 
+> Regards,
+> Andreas
+> 
+
