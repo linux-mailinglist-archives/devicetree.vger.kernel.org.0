@@ -2,97 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BD254BF1CE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 06:56:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE5844BF1FA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 07:19:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230099AbiBVF4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 00:56:20 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:54850 "EHLO
+        id S230212AbiBVGUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 01:20:03 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:60158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230090AbiBVF4T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 00:56:19 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E15584EA0C;
-        Mon, 21 Feb 2022 21:55:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645509355; x=1677045355;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=1w/99RMhCK35nQZFM9F66CUxVK8PKcS33/TsYHPySS0=;
-  b=UV5VR36BePD8DC4gyfnZxXUoWnZQpgEYWS9qNS1/eXaApu6sKLGR4Ecc
-   jjlspcPXWJkomOHP1hTXilrzBktgW6iab9F30gHLsa+2UCa7LkcHieWMs
-   cPs0Ol46QIs5xbtxVFetR+i5m4TI/Qxs5fV4nVGIOPM20izj9kq4W5cnB
-   g=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 21 Feb 2022 21:55:54 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Feb 2022 21:55:53 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 21 Feb 2022 21:55:53 -0800
-Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 21 Feb 2022 21:55:49 -0800
-From:   Satya Priya <quic_c_skakit@quicinc.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
-CC:     Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        "Doug Anderson" <dianders@chromium.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: [PATCH V4 4/4] arm64: dts: qcom: Enable pm8350c pwm for sc7280-idp2
-Date:   Tue, 22 Feb 2022 11:25:09 +0530
-Message-ID: <1645509309-16142-5-git-send-email-quic_c_skakit@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1645509309-16142-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1645509309-16142-1-git-send-email-quic_c_skakit@quicinc.com>
+        with ESMTP id S230204AbiBVGUC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 01:20:02 -0500
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C55921EACF
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 22:19:28 -0800 (PST)
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(26021:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Tue, 22 Feb 2022 14:15:00 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.18; Tue, 22 Feb 2022 14:15:18 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2375.018; Tue, 22 Feb 2022 14:15:18 +0800
+From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "stefan.wahren@i2se.com" <stefan.wahren@i2se.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        Rob Herring <robh@kernel.org>
+Subject: RE: [PATCH v9 02/10] dt-bindings: arm: sunplus: Add bindings for
+ Sunplus SP7021 SoC boards
+Thread-Topic: [PATCH v9 02/10] dt-bindings: arm: sunplus: Add bindings for
+ Sunplus SP7021 SoC boards
+Thread-Index: AQHYJtRL7BpgMun7wkSEmTd5rYSoP6ydrKQAgAFsZ7A=
+Date:   Tue, 22 Feb 2022 06:15:18 +0000
+Message-ID: <fd66d0c1f8d5410ca676dd523bcde61b@cqplus1.com>
+References: <cover.1645413746.git.qinjian@cqplus1.com>
+ <87cc20bb3ef747c4da89f9e60c0847532bb0a679.1645413746.git.qinjian@cqplus1.com>
+ <141c1b3e-b116-a0eb-78ad-dd9263880e9d@kernel.org>
+In-Reply-To: <141c1b3e-b116-a0eb-78ad-dd9263880e9d@kernel.org>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.18]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable pm8350c pmic pwm support for backlight on sc7280-idp2.
-
-Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
-Changes in V3:
- - New patch added in V3, to enable pwm support on sc7280-idp2 board.
-
-Changes in V4:
- - No changes.
-
- arch/arm64/boot/dts/qcom/sc7280-idp2.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
-index 73b9911..d4f7cab 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
-@@ -34,3 +34,7 @@
- &nvme_3v3_regulator {
- 	gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
- };
-+
-+&pm8350c_pwm {
-+	status = "okay";
-+};
--- 
-2.7.4
-
+PiA+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiArICAkbm9kZW5hbWU6DQo+ID4gKyAgICBjb25z
+dDogJy8nDQo+ID4gKyAgY29tcGF0aWJsZToNCj4gPiArICAgIG9uZU9mOg0KPiA+ICsgICAgICAt
+IGl0ZW1zOg0KPiA+ICsgICAgICAgICAgLSBjb25zdDogc3VucGx1cyxzcDcwMjEtYWNoaXANCj4g
+PiArDQo+IA0KPiBZb3UgZGlkIG5vdCBwdWJsaXNoIERUUyBzbyBiaWdnZXIgcGljdHVyZSBhbmQg
+Y29udGV4dCBhcmUgbWlzc2luZyBoZXJlLg0KPiBJcyBpdCBhIFNvQyBjb21wYXRpYmxlPyBBIGJv
+YXJkIGNvbXBhdGlibGU/IFdoeSBvbmx5IG9uZT8gQWdhaW5zdCB3aGF0DQo+IGRvZXMgaXQgdmFs
+aWRhdGU/DQo+IA0KPiBUaGlzIGJpbmRpbmcgbG9va3MgaW5jb21wbGV0ZS4NCg0KU3VucGx1cyBT
+UDcwMjEgaXMgYW4gQVJNIENvcnRleCBBNyBiYXNlZCBTb0MuDQpUaGUgcGF0Y2ggaXMgZm9yIFNQ
+NzAyMSBTb0MgYW5kIFNQNzAyMSBiYXNlZCBib2FyZHMuDQpTb3JyeSwgSSBkb24ndCB1bmRlcnN0
+YW5kIHlvdXIgcXVlc3Rpb25zLg0KQ291bGQgeW91IGV4cGxhaW4gbW9yZT8NCiANCg==
