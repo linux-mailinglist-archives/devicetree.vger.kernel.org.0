@@ -2,216 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 847EE4BF277
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 08:13:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 418544BF296
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 08:26:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230395AbiBVHK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 02:10:26 -0500
-Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:34436 "EHLO
+        id S230495AbiBVHYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 02:24:17 -0500
+Received: from gmail-smtp-in.l.google.com ([23.128.96.19]:58594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230402AbiBVHKZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 02:10:25 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0839AEF12
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 23:09:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1645513800; x=1677049800;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ta6ccs7Jyl0WobnQjmSXElkf0wXHjQ9WPuK+/aE7ELU=;
-  b=W2VAhjP3d747kOIOn/ucA8lKs/34PbR1wKdpjAAz70fi/6kX8L829AF/
-   LshmKqGP0xQG+MqWiHYHVoASkogHitb+r2IH2oZ9XtaQCsfKwjCY/hRuH
-   K558hF2S3ABiMrytQertSUChfOzIWVa4FTJTwVrWKNNU4HWGIh6KSvZaJ
-   e6/l+ZOrnN8ts1i1Eo3tdF+03ZjxMDLoNqA9fRPzI8wuKYm9z5d+rIgDZ
-   ZaP7lfT6Z01/9niIshsXVnTNvK7bWx4d70VYjJ0LQxNIhvtLyZfsgb/da
-   nTAFvHdAvsf6yOy06NT6RaJeGAiFVibwzgG6iHK2Q/2UhH5IxxbyhzlFf
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.88,387,1635199200"; 
-   d="scan'208";a="22225730"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 22 Feb 2022 08:09:55 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 22 Feb 2022 08:09:55 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 22 Feb 2022 08:09:55 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1645513795; x=1677049795;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ta6ccs7Jyl0WobnQjmSXElkf0wXHjQ9WPuK+/aE7ELU=;
-  b=XDGj/hlWV5IYmPuOEaVu6sBM4F//feudHv/+xXQsMVfeFijlpRD/Arlz
-   CMgMQapYW+63VjH2iqJVzQp0rH3bKnrCXJcu4X9u3k740BwcIHJgvd1zu
-   oRph1RWZHYj0Xvi9Jm/C+YlVH4SW4sK37gyRPFys1N8MzRz4nrqWEvAft
-   PCCUTPbFlXCtva0mCMtLzm2Sf91MRShr1Q6zsC2D9vJri5bDVxMz7NZRk
-   BezfyHe9xITeWuLycsAknYDWNcqfd0oxay7FCm2Co2OEBDFQuiExfi2BL
-   spvHWYAkL8VYcXwURL8NeNMfcbjyPx7Bar8HFP52AS3crTSCBB6IlKsv/
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.88,387,1635199200"; 
-   d="scan'208";a="22225729"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 22 Feb 2022 08:09:55 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C5D85280075;
-        Tue, 22 Feb 2022 08:09:54 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 5/5] ARM: dts: imx6ull: add TQ-Systems MBa6ULLxL device trees
-Date:   Tue, 22 Feb 2022 08:09:45 +0100
-Message-Id: <20220222070945.563672-6-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220222070945.563672-1-alexander.stein@ew.tq-group.com>
-References: <20220222070945.563672-1-alexander.stein@ew.tq-group.com>
-MIME-Version: 1.0
+        with ESMTP id S231132AbiBVHYR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 02:24:17 -0500
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com (mail-eopbgr30095.outbound.protection.outlook.com [40.107.3.95])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C39641162AA;
+        Mon, 21 Feb 2022 23:23:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fqhNNokGLSOU7i0ipbVoaAH1m+5HhNoSYAmDJO4QqYwo262wfquURE2xux/8xYa1TEqRMU8Sm7DAbInXPvctpySIGJcYwzKGTiuHHpzScP+7fvuRoVDvWVeOI+blj9N3/Z2ZTkO2gT0pEGwsAQYI8aiWKyG6lXONatgcEPT2fAx/qesauJIGNLStFmt9QGBYtKVEdlSczb8HY3291rI6I+q3VEirj4GMElg4UVL5CydeOkSkrW2ocR8MM9r/PScdcCFxnWjYOMTJK6/cOzijpEwxqdZ4+U3VFQLJjrUnM5ShKMBenBUNN+ZohTP48hpD8zvoj0Xybjp8Nu9FS0FmsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nYR4q+wBxR7cXzzqd5wp50XtU5KrQ3ujjEXGMUubdaM=;
+ b=GIlx7peEPMoQSzus0+xQi7u7aGSUFBApQXSnMJVQg7188dJncVqTkx/DUzzoVi84URZ3YedIGG81mG3hVmUPpLWo+shAEYwN8/JtmSSzUN0OfGb/uzi/BfDCT8YSJH1dFC1mzMo0w2IjKEKZBR57jRwU/zGEpWXfAEp2lpMHhrAMHwjKg1BzMRsOPx5thoy9VUgtIcTmgXjREv+xiAuRvaIQVrYnxY56z5f3W1Xbs7RLKOPerJmPYodXFEJnieRLOxd6V5KdX+Tq4HzwdmmqEhXEGNL9G/hNz0mecHM/3Kfn7KXs/6mbIH4qUsxe5mo2+HWcok5Q6ra3ft8dgRBKmw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nYR4q+wBxR7cXzzqd5wp50XtU5KrQ3ujjEXGMUubdaM=;
+ b=QhxFrzRIXTgxBmQe4viKN9I64RhBt4jkhon7aCBLdSIghW4CuB5/XLcDzVJNez/H/6kGULdhviw96fWbmDauyi5dRy75ZC9WY0+v/Wek/5F+xOr5YRHEAM2k1gmX784z8oUl6la24P9v3KIzrS6Z9GRapjkoJMZKto32569+qug=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nokia.com;
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com (2603:10a6:10:239::15)
+ by AM0PR07MB5217.eurprd07.prod.outlook.com (2603:10a6:208:ed::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.21; Tue, 22 Feb
+ 2022 07:23:48 +0000
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::99a2:6f44:700b:b796]) by DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::99a2:6f44:700b:b796%3]) with mapi id 15.20.5017.021; Tue, 22 Feb 2022
+ 07:23:48 +0000
+Date:   Tue, 22 Feb 2022 08:23:35 +0100
+From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org, Agathe Porte <agathe.porte@nokia.com>,
+        Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: hwmon: add tmp464.yaml
+Message-ID: <YhSPd79vHLO+73ln@localhost.localdomain>
+References: <20220218150908.1947772-1-linux@roeck-us.net>
+ <YhNWVLHYVtCvdGhi@localhost.localdomain>
+ <66e6b131-274f-454b-44f6-17df879d71a9@roeck-us.net>
+ <YhQDGHD3S0qwP2OB@localhost.localdomain>
+ <238e6fb0-cd77-4772-3e92-23941dc74403@roeck-us.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <238e6fb0-cd77-4772-3e92-23941dc74403@roeck-us.net>
+X-ClientProxiedBy: MA0PR01CA0008.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:80::15) To DU2PR07MB8110.eurprd07.prod.outlook.com
+ (2603:10a6:10:239::15)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 65f44832-257a-44fe-154a-08d9f5d444d2
+X-MS-TrafficTypeDiagnostic: AM0PR07MB5217:EE_
+X-Microsoft-Antispam-PRVS: <AM0PR07MB52177873A1B909D5940463E9EF3B9@AM0PR07MB5217.eurprd07.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: NiIiKuls5VZZ9J/6KsOPFtCjbGgq+zXyFCAD2JlG9Xcqmv0a5DIlRKZuCjJrAnzK7Jd0UbvHzV1xKOfmytNiETIlRzS8nZn1bK2PCE2PhbfWPs8TRF5gUV1a1vjK1gDl9piDE5zuLpXp9gEDO4inLAYD3EKdgMt1kyBzQkMwsQFvxXAFaMUJCZSI9XtNauOUwlaFCtT2oQwnxEXr4XBGs0uz/qN2xctnL+DnGYbGm6B8DE0XHU/waxpK++M9ROwz5z6fAKapEpeuVtoJOQaHssnCU0XzOI5CTKKELxnT3n2RMvlElaYBhpeQ0uVyZvicJKC3A0YkU9Qx1vx3dBf8+yXHyFOGLJC2Rq7wknOxn91/NYzC3sSIVrOY7Fwp3PcCEln2GSwm2YR4C27xR8QGngVkux3p3Aj/we1Xt6yvTqco4Em+zba+qRFuxw4a7w2eNKDt4naafCCzKnc+pjRlj3VpZ+B99aJc8GjOLepLUGSzfI/Cw52eVJrAH6szra1LQE4lLNo0uRDvzKlBl7EXl43rV7ovYVPb2ISKStCCgs30lXeIkBjLSPxMROh6hPPlvNS2Q1H81AdZVE5UT2HQ+9vZpJxj0L1X6/OWyKkePr6pFzc1suVaLcoEONwd2YX64r0KQEItMOVBVNkrra0elfV4PEMbWq5uqCAJAeZSMtp7lCN8zL7e9aUzqgc1i18YMTrGYariQQUNIEm6HXrj0iT7fIk5uyDO6brcINPxfGISi7REjeu9ZC9HNvG/iRL2wgU4i4l7Gc1ys+5/GF0aoEQyHLilmypv7F9WWTCezJZAhHLmIQxxCGeXydc9kYoi
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR07MB8110.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(8936002)(508600001)(26005)(38100700002)(52116002)(38350700002)(186003)(6666004)(6486002)(5660300002)(86362001)(6506007)(66946007)(66556008)(66476007)(8676002)(4326008)(82960400001)(44832011)(2906002)(54906003)(83380400001)(9686003)(6512007)(316002)(110136005)(67856001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a0l3UU5iYmdyMFd0YWUxK3E2dklOb2FJZjU5M1I3UnRDUmRBZy81VFBJb01k?=
+ =?utf-8?B?QklUTGNRSWo5WVpXVXVKTXZMelRWY3dDR3FZVXZBRWo1em9rWXBzSEdXTWxF?=
+ =?utf-8?B?aHRvVVBsM2UxNGd5TkV0UGttL2paWVlVZUFnRmYyUlFPSmM2aTAxNFdVd1Bh?=
+ =?utf-8?B?blZLeDh2WG8vTVM1dk96Q0tPYzBCdmlYZE54MmNxS3RzUC9jeEExNHdBeUNs?=
+ =?utf-8?B?UmN1c3liTFE2OHllUVVQRGI4dEFJaVR1VU9pZXFUeEg3U3RVTmRiR2xlMEpa?=
+ =?utf-8?B?WVlSd3hyMVdPS1VXSTVLcmZ3R1czVGNlTHE3OWJsbEZuakNwSXQyYytUeW9R?=
+ =?utf-8?B?bnJ0N2p3SnB5d3R1WFNXbFFkSS9EY3cwelZGaC9nYWJZRXBTdkFEbGNtdUlW?=
+ =?utf-8?B?blQ5TGtHblByakJGZFVOV0pLc1hBZks1UTR6NXVBdEdtUnJNU2tyT0pXei9r?=
+ =?utf-8?B?Nkc1bHErd21RSC85UmpPdXUzM1NodWNZTEg2M255ZUZUZnV3TGl1K2ljbVY0?=
+ =?utf-8?B?UUhrY0NsZlBndlFyVDdLdUR2SU10MTZCbEgvVm1LVW5DNVJaQWFadDFzckl1?=
+ =?utf-8?B?N2JIelBRUGM0anlMSlZmeHBqcDM1QVIwNE9DZlpjS3RVK044d2sxdkNaaW9X?=
+ =?utf-8?B?REhEMXdRekF3R2tiV2t2QVdJbUMvUEhqNnZQMFlKN09lMUd5RllMd2pBTnRM?=
+ =?utf-8?B?a0FaUExwaWJ0cEM4WFREZWpWVENUdXB1UFVVTVZwZmluUzZoT3R5bUtTWnhI?=
+ =?utf-8?B?T3EyaENrWDMxZWIyZW1scHRMRE5iTzVjV0Fsam8xZkNVZHhlbUJGTytoWWxr?=
+ =?utf-8?B?ZVNNZSt6TmFON0lhOXpSUXd5WHVxQktWVUpncE9YL2NEYkZnalRxMzd4YUs3?=
+ =?utf-8?B?NHoxTDVMZkZLTnhSdENxdTZTWmxjaURCU3pPVG5ia2ZTTktsSjUxejRteUxX?=
+ =?utf-8?B?bGlDeHRqaU0yVEtJTGFQeTV1eHBvM3JacWlzeTlGOHI1M1J0Mk5oTndWTy9K?=
+ =?utf-8?B?MHViNnkzbUZWNUR2M1FrMmsyOGxoQ1ZzaFJWMFZPdTNHWjZSSUpTVnBQY2p1?=
+ =?utf-8?B?T2hDaHVaeEgxclI4OWxFUm5rNDNCcStDaDFwM0w0Y2J1Uy9EWDZSbnY1ZFZy?=
+ =?utf-8?B?eWt1RS82TEsrOFhhTFhOV2IvNW51WjhJazFZWVRyS0RQTFVtTkNONXk1UU1O?=
+ =?utf-8?B?aVJDaDlqR0g0eW8yc1BHY3Bsd3Y4QlNSaXdIYVQyOW0xYTJ0SGRPRE5LUHEv?=
+ =?utf-8?B?YWdQb05oYVd4akVzcllCMUw5bzZvdXZvbjdSK1pHY0xzR1AxVDVGc2RVYmhK?=
+ =?utf-8?B?ZGpmazVCRHV0UlVxaktvdk9MODVrVG5aM0FsN3lUQWJBWnpveXpoelFzdExu?=
+ =?utf-8?B?clVFa1cxaDh0MVNHUWRES3ZEeWF4OURTeno2SGR2dUJxR1pXQ3h4aC9YcWxr?=
+ =?utf-8?B?RktFcmt2ck9IcUlJZElZbEZXamp3TUxoMTFRZ0Jmbkh0S29VbldqWGNrVEpS?=
+ =?utf-8?B?S29SQjJlWGcvVjRaZ0pzdGJ0RjhnWC90dTdiMGRVVURmRmM0Y3ZySGp4MWtk?=
+ =?utf-8?B?Yy9NOVE3djlnb3hVb1VTTGJ1L0RvUUxTYzArbzNkQ2VpU0EvVlhLZUc5R0dO?=
+ =?utf-8?B?aGNRTjZ3ZHBrSFZ6Mi9aVytmWFE3MHdxUS9tK1l2QWQrT3hzblNZTkxrYUNN?=
+ =?utf-8?B?VExHanQ5WU5DdUZ6Q0VnaEN1S0pxRTd5M2ROcm00aDkzZFlsMW9UTzBqeGFL?=
+ =?utf-8?B?U0c0VEhnWHJ4WTJOM0lyb04xMElzTEVReXFPb0lGcHZxNE1YaklQYzQ5YjVM?=
+ =?utf-8?B?YlJHOE0vQ3k1UlpERXErVG5meno2ZUZBZmh4TmdsWlVOQVl2V09wTDZzbEpv?=
+ =?utf-8?B?aUswU2I4aTRYZVBqcS90T0NBN1lLSVVRT3dCdFkzSFcwTm02MTE1VHpKQ3Jq?=
+ =?utf-8?B?c3FUSzh3dW0vQms4Z2NQbjJJanJsc09EeitGb2lDZENKU3R0a0ZhaGx5MzQx?=
+ =?utf-8?B?aFFzQnpNaSthMDFsM1VrR1RnNjZSNVJ4NFZJU1FmUE9IOWQ4VDNpQllQZ1hP?=
+ =?utf-8?B?c3NNQ216Lzh5cHN2Q3ZFeXdRM3JNWXlqWUVRekpBSTRMTXRUQUwrM2w2RHBW?=
+ =?utf-8?B?Sks1cVF0MWJxcytHTzI4L1RjclYrcE1ZaXNXRlhrRmV3QVoyaUZvcjI1OFFE?=
+ =?utf-8?B?bHA4Uk9jUndtc2cwdVhGYzkwOG5LWm1tTWNiUW1tSzRrL0l0QUhMOTNPeHZi?=
+ =?utf-8?B?amZpNndycEdTdUdSMWpPTnZ1RjV3PT0=?=
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65f44832-257a-44fe-154a-08d9f5d444d2
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR07MB8110.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2022 07:23:48.8469
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: h1wiKmsCJnzW2Z6fKfGsKeiPciUJUBBqDrKw48JLztIQk2NrtSCpGkiaTZpKYrG1co0cv4MDrFyuu48ZPku+lO6Hgiowh7dQTmBtt7H9o9A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR07MB5217
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,FORGED_SPF_HELO,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device trees for the MBa6ULx mainboard with TQMa6ULLxL SoMs.
+Dnia Mon, Feb 21, 2022 at 02:11:17PM -0800, Guenter Roeck napisał(a):
+>On 2/21/22 13:24, Krzysztof Adamski wrote:
+>>Dnia Mon, Feb 21, 2022 at 08:16:15AM -0800, Guenter Roeck napisał(a):
+>>>>I still thing we should have the same format here and in tmp421, for
+>>>>consistency. If use the same property name, "ti,n-factor" but on tmp421
+>>>>you have use 32bit value while here you have to use 8bit (which is weird
+>>>>in DT, BTW), it might be confusing.
+>>>>Back when we did this for TMP421, there was some discussion and we
+>>>>settled on this approach, why do it differently now?
+>>>>
+>>>
+>>>I seem to recall from that discussion that there was supposedly no way to
+>>>express negative numbers in devicetree. Obviously that is incorrect.
+>>
+>>Well, I would still argue it *is* correct. DT only support unsigned
+>>numbers and, really, only 32 or 64 bit. See the chapter 2.2.4 Properties
+>>in:
+>>https://github.com/devicetree-org/devicetree-specification/releases/download/v0.4-rc1/devicetree-specification-v0.4-rc1.pdf
+>>
+>>Devicetree also supports array of bytes, and this is how we get the
+>>/bits/ magic but this is just a syntactic suggar. The same is true about
+>>negative values. Just decompile your compiled DTB and you will see.
+>>To put it in other words - DTS does support negative values, DTB don't.j
+>>
+>>>In addition to that, I strongly suspect that the tmp421 code as written
+>>>does not work. Its value range is specified as 0..255, but it is read with
+>>>    err = of_property_read_s32(child, "ti,n-factor", &val);
+>>>and range checked with
+>>>    if (val > 127 || val < -128) {
+>>>               dev_err(dev, "n-factor for channel %d invalid (%d)\n",
+>>>                      i, val);
+>>>               return -EINVAL;
+>>>       }
+>>>
+>>>That just looks wrong. Either the value range is 0..255 and checked
+>>>as 0 .. 255, or it is -128 .. 127 and must be both checked and specified
+>>>accordingly. This made me look into the code and I found how negative
+>>>numbers are supposed to be handled.
+>>
+>>It worked for me when I tested that. I could redo the test, if you are
+>>unsure. The code also looks good to me. I wasn't convinced for this
+>>format in yaml but after the whole discussion we had, we settled on
+>>that, with Robs blessing :)
+>>
+>
+>It is hard for me to believe that you can enter, say, 255 into the dts file
+>and of_property_read_s32() reads it as -1. If so, of_property_read_s32()
+>could never support values of 128 and above, which seems unlikely.
+>
+>Now, I can imagine that one can enter 0xffffffff and of_property_read_s32()
+>returns -1, but that isn't what is documented for tmp421.
+>
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v3:
-* None
+Yes, you are correct, you have to enter either <(-1)> or <0xffffffff>
+(which is the same thing). I was quite confused on how to specify that
+in DT bindings and apparently maybe we did not understand each other
+well enough back when the patch was submitted. The code and the
+description is correct, though, so the question is how to properly set
+"minimum" and "maximum" value.
 
- arch/arm/boot/dts/Makefile                    |  1 +
- .../boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts   | 15 ++++
- arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi     | 76 +++++++++++++++++++
- 3 files changed, 92 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts
- create mode 100644 arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
+I think I should at least update the example of tmp421 in the binding to
+use <(-1)> notation to make it obvious that it works this way. But I
+guess we need Rob to help us understand how this should be specified.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 3a6eccb6371a..9bf89273ae71 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -710,6 +710,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
- 	imx6ull-phytec-segin-lc-rdk-nand.dtb \
- 	imx6ull-tqma6ull2-mba6ulx.dtb \
-+	imx6ull-tqma6ull2l-mba6ulx.dtb \
- 	imx6ulz-14x14-evk.dtb \
- 	imx6ulz-bsh-smm-m2.dtb
- dtb-$(CONFIG_SOC_IMX7D) += \
-diff --git a/arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts b/arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts
-new file mode 100644
-index 000000000000..33437aae9822
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ull-tqma6ull2l-mba6ulx.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright 2018-2022 TQ-Systems GmbH
-+ * Author: Markus Niebel <Markus.Niebel@tq-group.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx6ull-tqma6ull2l.dtsi"
-+#include "mba6ulx.dtsi"
-+
-+/ {
-+	model = "TQ Systems TQMa6ULL2L SoM on MBa6ULx board";
-+	compatible = "tq,imx6ull-tqma6ull2l-mba6ulx", "tq,imx6ull-tqma6ull2l", "fsl,imx6ull";
-+};
-diff --git a/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi b/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
-new file mode 100644
-index 000000000000..8e4d5cd18614
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright 2018-2022 TQ-Systems GmbH
-+ * Author: Markus Niebel <Markus.Niebel@tq-group.com>
-+ */
-+
-+#include "imx6ull.dtsi"
-+#include "imx6ul-tqma6ul-common.dtsi"
-+#include "imx6ul-tqma6ulxl-common.dtsi"
-+
-+/ {
-+	model = "TQ Systems TQMa6ULL2L SoM";
-+	compatible = "tq,imx6ull-tqma6ull2l", "fsl,imx6ull";
-+};
-+
-+&usdhc2 {
-+	fsl,tuning-step= <6>;
-+	/* Errata ERR010450 Workaround */
-+	max-frequency = <99000000>;
-+	assigned-clocks = <&clks IMX6UL_CLK_USDHC2_SEL>, <&clks IMX6UL_CLK_USDHC2>;
-+	assigned-clock-parents = <&clks IMX6UL_CLK_PLL2_PFD2>;
-+	assigned-clock-rates = <0>, <198000000>;
-+};
-+
-+&iomuxc {
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x00017031
-+			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x00017039
-+			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x00017039
-+			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x00017039
-+			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x00017039
-+			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x00017039
-+			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x00017039
-+			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x00017039
-+			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x00017039
-+			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x00017039
-+			/* rst */
-+			MX6UL_PAD_NAND_ALE__GPIO4_IO10		0x0001b051
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x000170f1
-+			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x000170f1
-+			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x000170f1
-+			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x000170f1
-+			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x000170f1
-+			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x000170f1
-+			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x000170f1
-+			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x000170f1
-+			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x000170f1
-+			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x000170f1
-+			/* rst */
-+			MX6UL_PAD_NAND_ALE__GPIO4_IO10		0x0001b051
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_RE_B__USDHC2_CLK		0x000170f1
-+			MX6UL_PAD_NAND_WE_B__USDHC2_CMD		0x000170f1
-+			MX6UL_PAD_NAND_DATA00__USDHC2_DATA0	0x000170f1
-+			MX6UL_PAD_NAND_DATA01__USDHC2_DATA1	0x000170f1
-+			MX6UL_PAD_NAND_DATA02__USDHC2_DATA2	0x000170f1
-+			MX6UL_PAD_NAND_DATA03__USDHC2_DATA3	0x000170f1
-+			MX6UL_PAD_NAND_DATA04__USDHC2_DATA4	0x000170f1
-+			MX6UL_PAD_NAND_DATA05__USDHC2_DATA5	0x000170f1
-+			MX6UL_PAD_NAND_DATA06__USDHC2_DATA6	0x000170f1
-+			MX6UL_PAD_NAND_DATA07__USDHC2_DATA7	0x000170f1
-+			/* rst */
-+			MX6UL_PAD_NAND_ALE__GPIO4_IO10		0x0001b051
-+		>;
-+	};
-+};
--- 
-2.25.1
+In any case, if you drop usage of /bits 8/ and keep the property naitive
+32 bit, both tmp421 and tmp464 bindings will be compatible with each
+other.
 
+@Rob, if I want a property ti,n-factor be in in range from <(-128)> to
+<127>, so that we can use of_property_read_s32() and then use just one
+byte of that, how to specify that in yaml file? For TMP421, we currently
+have:
+
+  ti,n-factor:
+    description: |
+      The value (two's complement) to be programmed in the channel specific N correction register.
+      For remote channels only.
+    $ref: /schemas/types.yaml#/definitions/uint32
+    items:
+      minimum: 0
+      maximum: 255
+
+which is confusing.
+
+Guenter is proposing to use
+  $ref: /schemas/types.yaml#/definitions/int8
+  items:
+    minimum: -128
+    maximum: 127
+
+and of_property_read_u8() for the same property on another driver, so
+usage of /bits/ 8 is required. Which approach is better in your opinion?
+
+Krzysztof
+
+
+Krzysztof
