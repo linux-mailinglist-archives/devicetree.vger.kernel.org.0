@@ -2,117 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD03F4BF7FB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 13:19:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88C0B4BF855
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 13:47:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231203AbiBVMTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 07:19:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58220 "EHLO
+        id S231995AbiBVMsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 07:48:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231174AbiBVMTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 07:19:50 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D58499AD9C;
-        Tue, 22 Feb 2022 04:19:25 -0800 (PST)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id 91C1621119;
-        Tue, 22 Feb 2022 12:19:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1645532364; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=q8Aq0Ckoy74UZCe6DtMgK4l1xKOMqpQJP0j1u4pDmBA=;
-        b=nyEYrnboomUbw6rCwTPb7I0dekr6bEn9xChtG9zRkJR3sbUzbhVFb6D5+asxxxpZMdvzo8
-        ByBGxYkf7C12/StskBQvJB2EgHYlOF8NDsGM7pqKJb9Ke9F/XCKIdWr+DHmNUJQizA8hW6
-        39kbTbS2mSaJ1aN94DYWqsIDBEVVC7A=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1645532364;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=q8Aq0Ckoy74UZCe6DtMgK4l1xKOMqpQJP0j1u4pDmBA=;
-        b=ncMPLE1l+dm8/do9nyZnyHtQiSxSCh69BhwyWgnVTFpHWnSlnn2IjQjLF8KEpr5KO3DJoO
-        RMrYwA3l+zhiiLCg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 4760113C1E;
-        Tue, 22 Feb 2022 12:19:24 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id 7FpJEMzUFGJsOQAAMHmgww
-        (envelope-from <afaerber@suse.de>); Tue, 22 Feb 2022 12:19:24 +0000
-Message-ID: <9b229724-9715-f8cd-6a2e-d7373893f021@suse.de>
-Date:   Tue, 22 Feb 2022 13:19:23 +0100
+        with ESMTP id S229524AbiBVMsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 07:48:08 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8405B1285B6
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 04:47:43 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id e140so40769669ybh.9
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 04:47:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=hTGHJaB41/Hd4IfiC8eiTpep59F8i91dCxDfF/yHri4=;
+        b=XB6OJrMgTx2Tt+SWSwYeUqhvi8Yx7qsTbhgp3bW1cDVTpaWN2yoiEk1CETXZugw2Ju
+         8xnBa4TRD9QiN8odOay3UYffVNtJ1U8vD2x61H5oAbbrWl0ZjoBbvb3Jg0l6NHVWdllp
+         7orRZvkmuyXmyjWhBp5J91QmiX0YLOC8tNCOkdMCDjzLsmv0Ih0xc6WxD/4ly/tjx8Ra
+         4pD5JsbdGadN6q7QVsvUG5sE+koQtHEdNqq6/+vZe7FFwJVH8eeeHbqStxLLK6E+pnfb
+         kcEmIiksEvxRvi0eSWXY53tQxIh1xqqjLlPLVx6VjuMT1bu4y/H9rS9cSIsa9tsR4kuU
+         N2yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=hTGHJaB41/Hd4IfiC8eiTpep59F8i91dCxDfF/yHri4=;
+        b=WLmI8pxvn3UIGPO75o0Zjm/MXp9tjZCchaaVQX/8YhcKkn1QKDwwnWgcunghIxxTiZ
+         RjL6zso+CcQx1ubhPB6ojgrZwIeYSEPSkJoY6qv6hUYqYS+i3bISOPU8bmk18Kq4hCxF
+         DszbJRIxor3RYAKp9aDPLOsPm940wVWW5DvAHOs685jijL2po4JzY5DhL/ClH8YOurzz
+         Aq6zcnvVkzwXYplse69SWhmX0k/OF5qWT8dlAIsh9Irs1OwZ6jKSlnmIMcah99kWiCHV
+         Ad+KA6U4zOQl6FUNeYET9lw/J1q+l2TUKo8WjQqiDBs2E1Jrp4ZiUET6A3Kif55vKH7u
+         YNWw==
+X-Gm-Message-State: AOAM531pehRGkHcf6Z163P1cqxuHbVDlwLf1od3VlxV5EgljX/eFG4Qa
+        nZXxIuFRRyFIihKI/CMcYQRr28E+2GoCV+mXZa8=
+X-Google-Smtp-Source: ABdhPJyeUkMs0IwjGcFtjUCYnjA7Wt5jL31B2HEE5ZpKxu46kiWKlAN3fxx2EVc+5j0v61Z9xJJKRfSjnuT7Kow+oIo=
+X-Received: by 2002:a25:4cc3:0:b0:61a:8a69:de05 with SMTP id
+ z186-20020a254cc3000000b0061a8a69de05mr23490626yba.638.1645534062674; Tue, 22
+ Feb 2022 04:47:42 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v2 0/6] auxdisplay: Add support for the Titanmec TM1628 7
- segment display controller
-Content-Language: en-US
-To:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-References: <1f39432b-84e2-e6dc-a6b8-c48ad5cf2210@gmail.com>
- <CANiq72ko6=dYBvbRc5T7Qq_2mxRtq1NpvcV_saMbTDfz0PK1aw@mail.gmail.com>
- <d8baa907-a8c8-17d3-e724-df490a0fff83@gmail.com>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Organization: SUSE Software Solutions Germany GmbH
-In-Reply-To: <d8baa907-a8c8-17d3-e724-df490a0fff83@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Received: by 2002:a05:7010:3e19:b0:20e:6caa:bb5d with HTTP; Tue, 22 Feb 2022
+ 04:47:42 -0800 (PST)
+Reply-To: gisabelanv@gmail.com
+From:   Isabel Guerrero <ayikaekue1@gmail.com>
+Date:   Tue, 22 Feb 2022 12:47:42 +0000
+Message-ID: <CADeH0HtXxRnpYrO2xwaAkXx0--ZG9RBFS5m2RV6SFOEt=BtE-Q@mail.gmail.com>
+Subject: Hello
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21.02.22 23:57, Heiner Kallweit wrote:
-> On 21.02.2022 23:10, Miguel Ojeda wrote:
->> On Mon, Feb 21, 2022 at 9:19 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>>
->>> v2:
->>> - (re-)add Andreas' SoB to two patches
->>
->> But those were also developed by you too, right? i.e. it should have a
->> Co-developed-by too, otherwise it looks like you only handled the
->> patch:
->>
-> 
-> Right, about half of the original code was reworked. Let's see whether and
-> which feedback comes for v2. If a v3 should be needed, I'll follow your
-> suggestion.
-
-The dispute is that he apparently only looked at my RFC but didn't ask
-me or check himself for newer code, which there was.
-
-Regards,
-Andreas
-
--- 
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Ivo Totev
-HRB 36809 (AG Nürnberg)
+Good day, I=E2=80=99ve not yet received your response to my previous mail.
