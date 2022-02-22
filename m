@@ -2,54 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 017354C03CB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 22:27:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31E714C03D6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 22:29:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235815AbiBVV1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 16:27:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43992 "EHLO
+        id S232777AbiBVV3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 16:29:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235794AbiBVV1b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 16:27:31 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC807B55B;
-        Tue, 22 Feb 2022 13:27:05 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 85AAE1F43C9B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645565223;
-        bh=9taHBRKeDVk3pqAcIWviMl4FP9lPlYjt9sExErI2Two=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OI6vcjXnKEAap1oo7yLdLSKaq/zJtCvz1L565DXez7v46BufwMQtbDe4C/cTevSFm
-         n95HxUQQcgERx76OqyKtISyrunX5ZASrc5P3luaIxgwBwc7MjnTLYvElFVa0sxso+B
-         qJMPcsTyvp2pn1g7AYMD+QNzZcI63z+a+xKQtM7m78+gpkoZ9/pBXvWte9O7zOBI7o
-         k6O70T3iFLIYkkgT8AxH1z5BuoD0S+eyIqxjWTBL/AfIuQVyNa7vSP75p28B9TEyzM
-         92KxVT4xPThFwEpkASPbuB6YCRc02wFTaKJb4qb4nfNGqtwCGkKwQw2vjWrZtEUQe+
-         442F7NoxtQdQQ==
-Date:   Tue, 22 Feb 2022 16:26:58 -0500
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        --to=Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>
-Subject: Re: [PATCH v2 14/23] arm64: dts: mt8192: Add mipi_tx node
-Message-ID: <20220222212658.xuau6t3xcvu7m4uz@notapiano>
-References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
- <20220218091633.9368-15-allen-kh.cheng@mediatek.com>
+        with ESMTP id S230181AbiBVV3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 16:29:43 -0500
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F591168D7
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 13:29:17 -0800 (PST)
+Received: by mail-oo1-xc2b.google.com with SMTP id w10-20020a4ae08a000000b0031bdf7a6d76so19465338oos.10
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 13:29:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=+DdLQYhSVowvrvUvwIQHQ/jS7fQBlZEdC1qdY+ozB14=;
+        b=Rsk1TlpY40oUYm8qLz6rSs4XgoVG1cDlLPSjZeqiErRUwqIsKAEgvWhgJYlUmS8r4j
+         DjiVcbfh+svMwjhb3wL0JouOTW6bqgZa/kAhgPYAn6Dh9SYQGBWMXuycEGaHAY6+3gA8
+         FOW3og2f8W0/duBSTidtHZlk49iwwwQQn5u2s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=+DdLQYhSVowvrvUvwIQHQ/jS7fQBlZEdC1qdY+ozB14=;
+        b=vP7yHVVB6UH77LviAOGoqg7M5KNQr0UaZDNY5G1WDXAspaQrIUuBG5yKtufOG0B8f6
+         o//CTwreVBqqNmJ84mumEsaNm3j9vYj8mszXkejVLORexCnpX5YgZBGAPplf8MkEZRmp
+         q84iiVFQjn/emS4vT4AP9wLjmoCzGeY02M+/oiaRwX/i6OpRblDxWCnFa8vCzN0cVLng
+         XIYLvfIlO77Vo5mb2oQ93X0rYVCU7Q27Tg4Ef+dTI6TJ+4ljIluwvl6m4NeKIYEJ3lfl
+         jTmLuNv8dR/vNNmgVLyU8clfn3ekr+L+Fd957NtA27gW2cOO8xoaAeqUMfnKC7vZ+H2q
+         +ObQ==
+X-Gm-Message-State: AOAM533/NcaksLfFC53Loib0DZ9AcU1aGDDoc2yR7QqjoV8EWImCg8Jc
+        D1mX1TqJiK2+sC2virHvWGoepiS4vmOkEvt4LiaEMg==
+X-Google-Smtp-Source: ABdhPJwO0OjVyqoI0wHs16t1k/y/Gcj/QLmaofaVi0N6xYQGEKIvtIgjAOzkMZeCBU2B35BgAheofP2PYe1GQzcZFU0=
+X-Received: by 2002:a05:6870:5829:b0:c8:9f42:f919 with SMTP id
+ r41-20020a056870582900b000c89f42f919mr2755947oap.54.1645565356781; Tue, 22
+ Feb 2022 13:29:16 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 22 Feb 2022 21:29:16 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220218091633.9368-15-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+In-Reply-To: <1645455086-9359-5-git-send-email-quic_vpolimer@quicinc.com>
+References: <1645455086-9359-1-git-send-email-quic_vpolimer@quicinc.com> <1645455086-9359-5-git-send-email-quic_vpolimer@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 22 Feb 2022 21:29:16 +0000
+Message-ID: <CAE-0n523rt_ThJSr=NTrjb2ASpb_4nnwNo9bTw8fZcz-yH9opQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] drm/msm/disp/dpu1: add PSR support for eDP
+ interface in dpu driver
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>, agross@kernel.org,
+        airlied@linux.ie, bjorn.andersson@linaro.org, daniel@ffwll.ch,
+        devicetree@vger.kernel.org, dianders@chromium.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        krzysztof.kozlowski@canonical.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        robh+dt@kernel.org, sam@ravnborg.org, seanpaul@chromium.org,
+        thierry.reding@gmail.com
+Cc:     quic_kalyant@quicinc.com, quic_sbillaka@quicinc.com,
+        quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,40 +73,198 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 18, 2022 at 05:16:24PM +0800, Allen-KH Cheng wrote:
-> Add mipi_tx node for mt8192 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index cfc2db501108..f5e5af949f19 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -1114,6 +1114,16 @@
->  			};
->  		};
->  
-> +		mipi_tx0: mipi-dphy@11e50000 {
-
-According to Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml, this
-node's name should be dsi-phy, not mipi-dphy.
-
-> +			compatible = "mediatek,mt8183-mipi-tx";
-> +			reg = <0 0x11e50000 0 0x1000>;
-> +			clocks = <&apmixedsys CLK_APMIXED_MIPID26M>;
-> +			clock-names = "ref_clk";
-> +			#clock-cells = <0>;
-> +			#phy-cells = <0>;
-> +			clock-output-names = "mipi_tx0_pll";
-> +		};
+Quoting Vinod Polimera (2022-02-21 06:51:26)
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> index e7c9fe1..ba3240c 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> @@ -951,6 +952,14 @@ static void dpu_crtc_disable(struct drm_crtc *crtc,
+>
+>         DRM_DEBUG_KMS("crtc%d\n", crtc->base.id);
+>
+> +       if (old_crtc_state->self_refresh_active) {
+> +               drm_for_each_encoder_mask(encoder, crtc->dev,
+> +                                old_crtc_state->encoder_mask) {
+> +                       dpu_encoder_assign_crtc(encoder, NULL);
+> +               }
+> +               return;
+> +       }
 > +
->  		i2c0: i2c@11f00000 {
->  			compatible = "mediatek,mt8192-i2c";
->  			reg = <0 0x11f00000 0 0x1000>,
-> -- 
-> 2.18.0
-> 
-> 
+>         /* Disable/save vblank irq handling */
+>         drm_crtc_vblank_off(crtc);
+>
+> @@ -962,7 +971,12 @@ static void dpu_crtc_disable(struct drm_crtc *crtc,
+>                  */
+>                 if (dpu_encoder_get_intf_mode(encoder) == INTF_MODE_VIDEO)
+>                         release_bandwidth = true;
+> -               dpu_encoder_assign_crtc(encoder, NULL);
+> +               /* If disable is triggered during psr active(e.g: screen dim in PSR),
+
+Multiline comments start with /* on a line by itself
+
+		/*
+		 * If disable is triggered ...
+
+> +                * we will need encoder->crtc connection to process the device sleep &
+> +                * preserve it during psr sequence.
+> +                */
+> +               if (!crtc->state->self_refresh_active)
+> +                       dpu_encoder_assign_crtc(encoder, NULL);
+>         }
+>
+>         /* wait for frame_event_done completion */
+> @@ -1010,6 +1024,8 @@ static void dpu_crtc_enable(struct drm_crtc *crtc,
+>         struct dpu_crtc *dpu_crtc = to_dpu_crtc(crtc);
+>         struct drm_encoder *encoder;
+>         bool request_bandwidth = false;
+> +       struct drm_crtc_state *old_crtc_state =
+> +               drm_atomic_get_old_crtc_state(state, crtc);
+
+Use two lines
+
+	struct drm_crtc_state *old_crtc_state;
+
+	old_crtc_state = drm_atomic_get_old_crtc_state(state, crtc);
+
+>
+>         pm_runtime_get_sync(crtc->dev->dev);
+>
+> @@ -1032,8 +1048,10 @@ static void dpu_crtc_enable(struct drm_crtc *crtc,
+>         trace_dpu_crtc_enable(DRMID(crtc), true, dpu_crtc);
+>         dpu_crtc->enabled = true;
+>
+> -       drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state->encoder_mask)
+> -               dpu_encoder_assign_crtc(encoder, crtc);
+> +       if (!old_crtc_state->self_refresh_active) {
+> +               drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state->encoder_mask)
+> +                       dpu_encoder_assign_crtc(encoder, crtc);
+
+Make these two lines above into a function with a meaningful name?
+dpu_encoder_assign_crtcs()? And then push the encoder mask iteration
+into the loop by passing the mask as a function argument. I see
+dpu_encoder_assign_crtc() takes a spinlock, so we could probably take
+that lock out too and push it into this new function to avoid grabbing
+and dropping the spinlock multiple times.
+
+> +       }
+>
+>         /* Enable/restore vblank irq handling */
+>         drm_crtc_vblank_on(crtc);
+> @@ -1497,7 +1515,7 @@ struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
+>  {
+>         struct drm_crtc *crtc = NULL;
+>         struct dpu_crtc *dpu_crtc = NULL;
+> -       int i;
+> +       int i, ret;
+>
+>         dpu_crtc = kzalloc(sizeof(*dpu_crtc), GFP_KERNEL);
+>         if (!dpu_crtc)
+> @@ -1534,6 +1552,11 @@ struct drm_crtc *dpu_crtc_init(struct drm_device *dev, struct drm_plane *plane,
+>         /* initialize event handling */
+>         spin_lock_init(&dpu_crtc->event_lock);
+>
+> +       ret = drm_self_refresh_helper_init(crtc);
+> +       if (ret)
+> +               DPU_ERROR("Failed to initialize %s with SR helpers %d\n",
+
+What is SR? Write self-refresh?
+
+> +                       crtc->name, ret);
+> +
+>         DRM_DEBUG_KMS("%s: successfully initialized crtc\n", dpu_crtc->name);
+>         return crtc;
+>  }
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> index 6eac417..ba9d8ea 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> @@ -217,6 +217,14 @@ static u32 dither_matrix[DITHER_MATRIX_SZ] = {
+>         15, 7, 13, 5, 3, 11, 1, 9, 12, 4, 14, 6, 0, 8, 2, 10
+>  };
+>
+> +static inline bool is_self_refresh_active(struct drm_crtc_state *state)
+
+const drm_crtc_state?
+
+> +{
+> +       if (state && state->self_refresh_active)
+> +               return true;
+> +
+> +       return false;
+
+	return state && state->self_refresh_active;
+
+> +}
+> +
+>  static void _dpu_encoder_setup_dither(struct dpu_hw_pingpong *hw_pp, unsigned bpc)
+>  {
+>         struct dpu_hw_dither_cfg dither_cfg = { 0 };
+> @@ -629,7 +637,8 @@ static int dpu_encoder_virt_atomic_check(
+>                 if (drm_atomic_crtc_needs_modeset(crtc_state)) {
+>                         dpu_rm_release(global_state, drm_enc);
+>
+> -                       if (!crtc_state->active_changed || crtc_state->active)
+> +                       if (!crtc_state->active_changed || crtc_state->active ||
+> +                                       crtc_state->self_refresh_active)
+>                                 ret = dpu_rm_reserve(&dpu_kms->rm, global_state,
+>                                                 drm_enc, crtc_state, topology);
+>                 }
+> @@ -1182,11 +1191,30 @@ static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc,
+>  {
+>         struct dpu_encoder_virt *dpu_enc = NULL;
+>         struct msm_drm_private *priv;
+> +       struct drm_crtc *crtc;
+> +       struct drm_crtc_state *old_state;
+>         int i = 0;
+>
+>         dpu_enc = to_dpu_encoder_virt(drm_enc);
+>         DPU_DEBUG_ENC(dpu_enc, "\n");
+
+Presumably this print wants a valid 'dpu_enc' pointer.
+
+>
+> +       if (!drm_enc) {
+
+So this check for !drm_enc is impossible? Please remove it.
+
+> +               DPU_ERROR("invalid encoder\n");
+> +               return;
+> +       }
+> +       dpu_enc = to_dpu_encoder_virt(drm_enc);
+
+We got it again?
+
+> +
+> +       crtc = dpu_enc->crtc;
+> +
+> +       old_state = drm_atomic_get_old_crtc_state(state, crtc);
+> +
+> +       /*
+> +        * The encoder turn off already occurred when self refresh mode
+
+s/turn off/disable/
+
+> +        * was set earlier, in the old_state for the corresponding crtc.
+> +        */
+> +       if (drm_enc->encoder_type == DRM_MODE_ENCODER_TMDS && is_self_refresh_active(old_state))
+> +               return;
+> +
+>         mutex_lock(&dpu_enc->enc_lock);
+>         dpu_enc->enabled = false;
+>
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> index 47fe11a..d550f90 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> @@ -495,7 +495,7 @@ static void dpu_kms_wait_for_commit_done(struct msm_kms *kms,
+>                 return;
+>         }
+>
+> -       if (!crtc->state->active) {
+> +       if (!drm_atomic_crtc_effectively_active(crtc->state)) {
+>                 DPU_DEBUG("[crtc:%d] not active\n", crtc->base.id);
+>                 return;
+>         }
+> --
+> 2.7.4
+>
