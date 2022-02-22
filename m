@@ -2,194 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B35704BFE65
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:21:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FD604BFE6B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:24:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233521AbiBVQWW convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Feb 2022 11:22:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48626 "EHLO
+        id S233500AbiBVQYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 11:24:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230429AbiBVQWW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:22:22 -0500
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11EE66C96A;
-        Tue, 22 Feb 2022 08:21:55 -0800 (PST)
-Received: from fraeml715-chm.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4K34Cl08jQz683mZ;
-        Wed, 23 Feb 2022 00:20:51 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml715-chm.china.huawei.com (10.206.15.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Tue, 22 Feb 2022 17:21:52 +0100
-Received: from localhost (10.47.30.92) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Tue, 22 Feb
- 2022 16:21:51 +0000
-Date:   Tue, 22 Feb 2022 16:21:50 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-CC:     Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
-        "Sa, Nuno" <Nuno.Sa@analog.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Jonathan Cameron" <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v3 1/3] iio: dac: add support for ltc2688
-Message-ID: <20220222162150.0000361f@Huawei.com>
-In-Reply-To: <YhPezO7CcDOAK/HU@smile.fi.intel.com>
-References: <Yf60A1UkbBtQ68qv@smile.fi.intel.com>
-        <PH0PR03MB678628C341A1972BC31F5BBA992B9@PH0PR03MB6786.namprd03.prod.outlook.com>
-        <YgD91zg4L1S5KH5k@smile.fi.intel.com>
-        <e1bd9f14e63e55f48f804568705a9ab8c1a09f62.camel@gmail.com>
-        <Ygpd7pebiuGuB8nT@smile.fi.intel.com>
-        <11bd63bc07fd406bfa31bdc38b597011cc9312cc.camel@gmail.com>
-        <YhImsJidUu2fMKgu@smile.fi.intel.com>
-        <3f2523127eb320a9825e272353afea9673e5d003.camel@gmail.com>
-        <YhPGJqEuTQ3TBy46@smile.fi.intel.com>
-        <20220221173045.00003969@Huawei.com>
-        <YhPezO7CcDOAK/HU@smile.fi.intel.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S230295AbiBVQYk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:24:40 -0500
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E846166A79;
+        Tue, 22 Feb 2022 08:24:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=orNwPadLyZMf1dU28nfIOtIad1J0UPF7cu+kVS+SXB4=; b=qe4lpTnNgBZVySRtcKlpB9P4wS
+        cwDoiJwxuZOdS+saabUOIkzYZUV41PPWWbuJqZLkcEoQjIGNYmgD2B6WmbScT1vwsjJLMRmZgU94M
+        swkrlzZh/4Bdp4AunBMnVTj2jCeH5ARtT5329KjDjsnCVbaTIrlWEHKS9Re5hxdM+oOQpJtDCCoqL
+        K6Ru76oCv7p+KFlznfV1lTS0ppH/XOCQx2CORBcwciP0VtZ1VGPdinUjpi+X27Aepz0xYeV2ep2lr
+        4fWm2cB3R0eftyPwX7HofBbcan+KhKUiCFkXQ7012S0za5OCvDg7tziO8W79x8PsXT7Cn+RYkuFkd
+        uJKXShew==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1nMXxR-00AcJa-Rg; Tue, 22 Feb 2022 16:24:09 +0000
+Date:   Tue, 22 Feb 2022 08:24:09 -0800
+From:   Christoph Hellwig <hch@infradead.org>
+To:     Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
+        will@kernel.org, robh+dt@kernel.org, robin.murphy@arm.com,
+        linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 3/9] gpu: host1x: Add context device management code
+Message-ID: <YhUOKaoCA7dyAZAh@infradead.org>
+References: <20220218113952.3077606-1-mperttunen@nvidia.com>
+ <20220218113952.3077606-4-mperttunen@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [10.47.30.92]
-X-ClientProxiedBy: lhreml713-chm.china.huawei.com (10.201.108.64) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220218113952.3077606-4-mperttunen@nvidia.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Feb 2022 20:49:48 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+On Fri, Feb 18, 2022 at 01:39:46PM +0200, Mikko Perttunen wrote:
+> +
+> +/*
+> + * Due to an issue with T194 NVENC, only 38 bits can be used.
+> + * Anyway, 256GiB of IOVA ought to be enough for anyone.
+> + */
+> +static dma_addr_t context_device_dma_mask = DMA_BIT_MASK(38);
 
-> On Mon, Feb 21, 2022 at 05:30:45PM +0000, Jonathan Cameron wrote:
-> > On Mon, 21 Feb 2022 19:04:38 +0200
-> > Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
-> >   
-> > > On Mon, Feb 21, 2022 at 01:48:12PM +0100, Nuno Sá wrote:  
-> > > > On Sun, 2022-02-20 at 13:32 +0200, Andy Shevchenko wrote:    
-> > > > > On Fri, Feb 18, 2022 at 02:51:28PM +0100, Nuno Sá wrote:    
-> > > > > > On Mon, 2022-02-14 at 15:49 +0200, Andy Shevchenko wrote:    
-> > > > > > > On Mon, Feb 07, 2022 at 09:19:46PM +0100, Nuno Sá wrote:    
-> > > > > > > > On Mon, 2022-02-07 at 13:09 +0200, Andy Shevchenko wrote:    
-> > > > > > > > > On Sun, Feb 06, 2022 at 01:19:59PM +0000, Sa, Nuno wrote:    
-> > > > > > > > > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > > > > > > > > > > Sent: Saturday, February 5, 2022 6:30 PM
-> > > > > > > > > > > On Fri, Jan 21, 2022 at 03:24:59PM +0100, Nuno Sá wrote:    
-> > > 
-> > > ...
-> > >   
-> > > > > > > > > > > > +       ret = kstrtou16(buf, 10, &val);    
-> > > > > > > > > > > 
-> > > > > > > > > > > In other function you have long, here u16. I would expect that
-> > > > > > > > > > > the types are of the same class, e.g. if here you have u16,
-> > > > > > > > > > > then there something like s32 / s64.  Or here something like
-> > > > > > > > > > > unsigned short.
-> > > > > > > > > > > 
-> > > > > > > > > > > A bit of elaboration why u16 is chosen here?    
-> > > > > > > > > > 
-> > > > > > > > > > Well, I never really saw any enforcement here to be honest
-> > > > > > > > > > (rather than using stdint types...). So I pretty much just use
-> > > > > > > > > > these in unsigned types because I'm lazy and u16 is faster to
-> > > > > > > > > > type than unsigned short...  In this case, unless Jonathan really
-> > > > > > > > > > asks for it, I prefer not to go all over the driver and change
-> > > > > > > > > > this...    
-> > > > > > > > > 
-> > > > > > > > > This is about consistency. It may work as is, but it feels not good
-> > > > > > > > > when for int (or unsigned int) one uses fixed-width types. Also
-> > > > > > > > > it's non- written advice to use fixed-width variables when it's
-> > > > > > > > > about programming registers or so, for the rest, use POD types.    
-> > > > > > 
-> > > > > > Ok, going a bit back in the discussion, you argued that in one place I
-> > > > > > was using long while here u16. Well, in the place I'm using long, that
-> > > > > > was on purpose because that value is to be compared against an array of
-> > > > > > longs (which has to be long because it depends on CCF rates). I guess I
-> > > > > > can als0 use s64, but there is also a reason why long was used.
-> > > > > > 
-> > > > > > In the u16 case, we really want to have 2 bytes because I'm going to use
-> > > > > > that value to write the dac code which is 2 bytes.    
-> > > > > 
-> > > > > Okay, that's what I want to hear. If it's indeed goes to be a value to the
-> > > > > register, then it's fine.
-> > > > > 
-> > > > > Perhaps a comment?    
-> > > > 
-> > > > I guess you mean to have a comment to state that here we have fixed
-> > > > size type (as opposed to long, used in another place), because we
-> > > > directly use the value on a register write?
-> > > > 
-> > > > Asking it because I'm not planning to add comments in all the places
-> > > > where I have fixed size types for register read/writes...    
-> > > 
-> > > Thinking more about it and now I'm convinced that using the value that goes to
-> > > the register in ABI is bad idea (means that user space must not care about the
-> > > size or contents of the hardware register and should be abstract representation
-> > > of the HW).
-> > > 
-> > > OTOH this seems to be "raw" value of something. So, I maybe missed the convention
-> > > in IIO about this kind of values WRT the variable types used on ABI side.
-> > > 
-> > > That said, I leave it to Jonathan since I'm not convinced that u16 is a proper
-> > > choice here.  
-> > 
-> > From a userspace point of view it doesn't care as it's writing a string.
-> > In this particular case the string only has valid values that from 0-(2^16-1)
-> > (i.e. 16 bits).  So if it writes outside of that range it is an error.
-> > You could read it into an unsigned long and then check against the range,
-> > but there is little point given you'd still return an error if it was out of
-> > range.  The fact that kstrto16() does that for you really just a shortcut
-> > though it will return -ERANGE rather than perhaps -EINVAL which might be used
-> > for a more generic "not this value".
-> > 
-> > Userspace can also read the range that is acceptable from
-> > out_voltage0_raw_available [0 1 2^16-1] and hence not write an invalid value
-> > in the first place - which is obviously preferred to getting an error.
-> > Scaling etc is also expressed to userspace so it it wants to write a particular
-> > voltage it can perform the appropriate scaling. Note that moving linear scaling
-> > like this to userspace allows easy use of floating point + may be a significant
-> > performance advantage if using the chrdev interface which uses the same
-> > approach (and values) as the sysfs interface.  
-> 
-> With the same logic it can be unsigned short, no?
+You need a mask per device.  Please don't share the same variable
+for multiple masks.
 
-It could be any integer as long as it is at least as large as a u16.
-But it it is larger than a u16 you'll need an additional check on the
-maximum.
+> +EXPORT_SYMBOL(host1x_context_alloc);
 
-> 
-> The point is to use u16 when it's indeed fixed-width value that goes to
-> hardware or being used as part of a protocol. And thus mentioning of the
-> IOCTL protocols may justify the choice. Then the question to the other
-> values, shouldn't they be also fixed-width ones?
-
-If we had a fixed width type that took the values 0-4 sure using such
-a magic type would make sense, but we don't.
-
-Note that internally kstrtou16 is just strtoull and a range check.
-The one other case we have here does pretty much the same thing.
-
-Jonathan
-
-> 
-> > > > > > > > I can understand your reasoning but again this is something that I
-> > > > > > > > never really saw being enforced. So, I'm more than ok to change it if
-> > > > > > > > it really becomes something that we will try to "enforce" in IIO.
-> > > > > > > > Otherwise it just feels as a random nitpick :).    
-> > > > > > > 
-> > > > > > > No, this is about consistency and common sense. If you define type uXX,
-> > > > > > > we have an API for that exact type. It's confusing why POD type APIs
-> > > > > > > are used with fixed-width types or vise versa.
-> > > > > > > 
-> > > > > > > Moreover (which is pure theoretical, though) some architectures might
-> > > > > > > have no (mutual) equivalency between these types.    
-> 
-
+All this low-level code really should be EXPORT_SYMBOL_GPL.
