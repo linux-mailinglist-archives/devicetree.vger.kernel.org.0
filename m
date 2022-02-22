@@ -2,38 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 541F14BFA6F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8EB94BFA79
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 15:11:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232711AbiBVOJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 09:09:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45454 "EHLO
+        id S230047AbiBVOLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 09:11:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232720AbiBVOJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:09:22 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B1CA515F620;
-        Tue, 22 Feb 2022 06:08:56 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8075A139F;
-        Tue, 22 Feb 2022 06:08:56 -0800 (PST)
-Received: from e123648.arm.com (unknown [10.57.9.152])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 4A4D23F5A1;
-        Tue, 22 Feb 2022 06:08:54 -0800 (PST)
-From:   Lukasz Luba <lukasz.luba@arm.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     lukasz.luba@arm.com, dietmar.eggemann@arm.com,
-        viresh.kumar@linaro.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, nm@ti.com, sboyd@kernel.org,
-        mka@chromium.org, dianders@chromium.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: [[PATCH v2 2/2] OPP: Add 'opp-microwatt' parsing for advanced EM registration
-Date:   Tue, 22 Feb 2022 14:07:46 +0000
-Message-Id: <20220222140746.12293-3-lukasz.luba@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220222140746.12293-1-lukasz.luba@arm.com>
-References: <20220222140746.12293-1-lukasz.luba@arm.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        with ESMTP id S232259AbiBVOLF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 09:11:05 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6625615F62B;
+        Tue, 22 Feb 2022 06:10:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EDFA961490;
+        Tue, 22 Feb 2022 14:10:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA1E6C340F0;
+        Tue, 22 Feb 2022 14:10:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645539039;
+        bh=mIAp2LLc6xWWL3o5yI6XQYBeO/1InohcDH9qSKGds5g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aFi8tmZzVKR2gc3QK92t/eb+wmnLiB8Qndgqvdauqi4eJC/OHPNC1Xq2vrU9BeEkZ
+         3hJRL3L31SG2jTX2iMvPmXamNTgKfWA2pThCQLMa8YQZVxivopvD/1aG1xA80lkJeo
+         uP4LSbGhrzSDSDAtV56A8t4SKpdYZYrnC8+7tPZ35KL9YldUcaL+j1Lez1r08II4Xg
+         37Ebr+zyzI/uR3WtG8DoW/8DzIDek0afFEQx1mu6EqU1Vbdi1MJxU2/LjfIhLByggX
+         I0xe57F1Anf5BDNS1iEnLXW2tvHCNHszmyQvdz59Gv2dlPpzlzqzpnvaEAFEfTbzEd
+         EBnTZSB6Nh6fA==
+Date:   Tue, 22 Feb 2022 19:40:34 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH v9 1/4] phy: cadence: Add Cadence D-PHY Rx driver
+Message-ID: <YhTu2ixdWBKU1Y8y@matsya>
+References: <20220131173314.2073641-1-p.yadav@ti.com>
+ <20220131173314.2073641-2-p.yadav@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220131173314.2073641-2-p.yadav@ti.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -42,118 +61,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Energy Model (EM) can be created based on DT entry:
-'dynamic-power-coefficient'. It's a 'simple' EM which is limited to the
-dynamic power. It has to fit into the math formula which requires also
-information about voltage. Some of the platforms don't expose voltage
-information, thus it's not possible to use EM registration using DT.
+On 31-01-22, 23:03, Pratyush Yadav wrote:
+> The Cadence D-PHY can be configured in Tx (DSI) mode or Rx (CSI) mode.
+> Both modes have a different programming sequence and share little among
+> them. In addition, a PHY configured in Tx mode cannot be used in Rx mode
+> and vice versa. For this reason, create a separate driver for the Rx
+> mode to make it easier to read and maintain.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> ---
+> 
+> Changes in v9:
+> - Use %ld instead of %d for printing PTR_ERR().
+> 
+> Changes in v8:
+> - Move lanes check to start of configure sequence.
+> - Change MODULE_LICENSE() to "GPL".
+> - Add Laurent's R-by.
+> 
+> Changes in v7:
+> - Add spaces after { and before } in the bands table.
+> - Drop the wrapping around the for loop on cdns_dphy_rx_get_band_ctrl().
+> - Make cdns_dphy_rx_wait_for_bit() inline.
+> - Print an error message if registering PHY provider fails.
+> 
+> Changes in v6:
+> - Move to a separate driver.
+> 
+> Changes in v5:
+> - Use the new cdns_dphy_info to specify PHY ops.
+> - Re-order include in alphabetical order.
+> - Make bands const.
+> - Drop num_bands.
+> - Make i, lanes unsigned.
+> - Drop the maximum check in cdns_dphy_rx_get_band_ctrl(). Let the loop
+>   complete and return -EOPNOTSUPP when we reach the end.
+> - Drop the "rate < bands[i].min_rate" check since the bands are in
+>   ascending order.
+> - Move data_lane_ctrl to start of function and make it static const.
+> 
+> Changes in v4:
+> - Drop the submode parts. Use a different compatible for the Rx ops.
+> - Make bands and num_bands static.
+> 
+> Changes in v3:
+> - Use a table to select the band.
+> - Use a table to poll the data lane ready bits.
+> - Multiply the DPHY HS clock rate by 2 to get the bit rate since the
+>   clock is DDR.
+> 
+>  drivers/phy/cadence/Kconfig        |   8 +
+>  drivers/phy/cadence/Makefile       |   1 +
+>  drivers/phy/cadence/cdns-dphy-rx.c | 255 +++++++++++++++++++++++++++++
+>  3 files changed, 264 insertions(+)
+>  create mode 100644 drivers/phy/cadence/cdns-dphy-rx.c
+> 
+> diff --git a/drivers/phy/cadence/Kconfig b/drivers/phy/cadence/Kconfig
+> index a62910ff5591..1adde2d99ae7 100644
+> --- a/drivers/phy/cadence/Kconfig
+> +++ b/drivers/phy/cadence/Kconfig
+> @@ -22,6 +22,14 @@ config PHY_CADENCE_DPHY
+>  	  system. If M is selected, the module will be called
+>  	  cdns-dphy.
+>  
+> +config PHY_CADENCE_DPHY_RX
+> +	tristate "Cadence D-PHY Rx Support"
+> +	depends on HAS_IOMEM && OF
+> +	select GENERIC_PHY
+> +	select GENERIC_PHY_MIPI_DPHY
+> +	help
+> +	  Support for Cadence D-PHY in Rx configuration.
+> +
+>  config PHY_CADENCE_SIERRA
+>  	tristate "Cadence Sierra PHY Driver"
+>  	depends on OF && HAS_IOMEM && RESET_CONTROLLER
+> diff --git a/drivers/phy/cadence/Makefile b/drivers/phy/cadence/Makefile
+> index 26e16bd34efe..e17f035ddece 100644
+> --- a/drivers/phy/cadence/Makefile
+> +++ b/drivers/phy/cadence/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  obj-$(CONFIG_PHY_CADENCE_TORRENT)	+= phy-cadence-torrent.o
+>  obj-$(CONFIG_PHY_CADENCE_DPHY)	+= cdns-dphy.o
+> +obj-$(CONFIG_PHY_CADENCE_DPHY_RX)	+= cdns-dphy-rx.o
+>  obj-$(CONFIG_PHY_CADENCE_SIERRA)	+= phy-cadence-sierra.o
+>  obj-$(CONFIG_PHY_CADENCE_SALVO)	+= phy-cadence-salvo.o
+> diff --git a/drivers/phy/cadence/cdns-dphy-rx.c b/drivers/phy/cadence/cdns-dphy-rx.c
+> new file mode 100644
+> index 000000000000..c9bb8c7f16f6
+> --- /dev/null
+> +++ b/drivers/phy/cadence/cdns-dphy-rx.c
+> @@ -0,0 +1,255 @@
+> +// SPDX-License-Identifier: GPL-2.0+
 
-This patch aims to fix it. It introduces new implementation of the EM
-registration callback. The new mechanism parses OPP node in DT which
-contains the power expressed in micro-Watts. It also allows to register
-'advanced' EM, which models total power (static + dynamic), so better
-reflects real HW.
+GPL v2 and more...
 
-Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
----
- drivers/opp/of.c | 70 ++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 70 insertions(+)
+> +/*
+> + * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
 
-diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-index 2f40afa4e65c..94059408fa39 100644
---- a/drivers/opp/of.c
-+++ b/drivers/opp/of.c
-@@ -1395,6 +1395,40 @@ struct device_node *dev_pm_opp_get_of_node(struct dev_pm_opp *opp)
- }
- EXPORT_SYMBOL_GPL(dev_pm_opp_get_of_node);
- 
-+/*
-+ * Callback function provided to the Energy Model framework upon registration.
-+ * It provides the power based on DT by @dev at @kHz if it is the frequency
-+ * of an existing OPP, or at the frequency of the first OPP above @kHz otherwise
-+ * (see dev_pm_opp_find_freq_ceil()). This function updates @kHz to the ceiled
-+ * frequency and @mW to the associated power.
-+ *
-+ * Returns 0 on success or a proper -EINVAL value in case of error.
-+ */
-+static int __maybe_unused
-+_get_dt_power(unsigned long *mW, unsigned long *kHz, struct device *dev)
-+{
-+	struct dev_pm_opp *opp;
-+	unsigned long opp_freq;
-+	u32 opp_power;
-+	int ret;
-+
-+	/* Find the right frequency and related OPP */
-+	opp_freq = *kHz * 1000;
-+	opp = dev_pm_opp_find_freq_ceil(dev, &opp_freq);
-+	if (IS_ERR(opp))
-+		return -EINVAL;
-+
-+	ret = of_property_read_u32(opp->np, "opp-microwatt", &opp_power);
-+	dev_pm_opp_put(opp);
-+	if (ret)
-+		return -EINVAL;
-+
-+	*kHz = opp_freq / 1000;
-+	*mW = opp_power / 1000;
-+
-+	return 0;
-+}
-+
- /*
-  * Callback function provided to the Energy Model framework upon registration.
-  * This computes the power estimated by @dev at @kHz if it is the frequency
-@@ -1445,6 +1479,33 @@ static int __maybe_unused _get_power(unsigned long *mW, unsigned long *kHz,
- 	return 0;
- }
- 
-+static int _of_find_opp_microwatt_property(struct device *dev)
-+{
-+	unsigned long freq = 0;
-+	struct dev_pm_opp *opp;
-+	struct device_node *np;
-+	struct property *prop;
-+
-+	/* We only support "operating-points-v2" */
-+	np = dev_pm_opp_of_get_opp_desc_node(dev);
-+	if (!np)
-+		return -EINVAL;
-+
-+	of_node_put(np);
-+
-+	/* Check if an OPP has needed property */
-+	opp = dev_pm_opp_find_freq_ceil(dev, &freq);
-+	if (IS_ERR(opp))
-+		return -EINVAL;
-+
-+	prop = of_find_property(opp->np, "opp-microwatt", NULL);
-+	dev_pm_opp_put(opp);
-+	if (!prop)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
- /**
-  * dev_pm_opp_of_register_em() - Attempt to register an Energy Model
-  * @dev		: Device for which an Energy Model has to be registered
-@@ -1474,6 +1535,15 @@ int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
- 		goto failed;
- 	}
- 
-+	/* First, try to find more precised Energy Model in DT */
-+	if (!_of_find_opp_microwatt_property(dev)) {
-+		struct em_data_callback em_dt_cb = EM_DATA_CB(_get_dt_power);
-+
-+		ret = em_dev_register_perf_domain(dev, nr_opp, &em_dt_cb,
-+						  cpus, true);
-+		return ret;
-+	}
-+
- 	np = of_node_get(dev->of_node);
- 	if (!np) {
- 		ret = -EINVAL;
+this should say 2022 as well
+
+> +MODULE_AUTHOR("Pratyush Yadav <p.yadav@ti.com>");
+> +MODULE_DESCRIPTION("Cadence D-PHY Rx Driver");
+> +MODULE_LICENSE("GPL");
+
+This means GPL v2 only and does not match SPDX tag, pls update
+
 -- 
-2.17.1
-
+~Vinod
