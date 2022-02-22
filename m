@@ -2,132 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C9674C00A0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 18:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E58F94C00AE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 18:57:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234744AbiBVR53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 12:57:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36638 "EHLO
+        id S234751AbiBVR5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 12:57:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234726AbiBVR52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 12:57:28 -0500
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0463E9F3AB;
-        Tue, 22 Feb 2022 09:56:48 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id i10-20020a4aab0a000000b002fccf890d5fso18694899oon.5;
-        Tue, 22 Feb 2022 09:56:48 -0800 (PST)
+        with ESMTP id S234772AbiBVR5m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 12:57:42 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C8DC085A
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 09:57:13 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id ay7so15375651oib.8
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 09:57:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=rfmaBXDNF2dcfkVI4GZHzIMW5mn3jOrlYCzlPPScMHQ=;
+        b=kpvqMMTu4zQ5/Qjh5pIG3UjKhzitX43hxeJ4qKO7/VsGjllS4xqFbl9MQz5ejboL43
+         NMKgqtotlR6vpU6Pjjjf2otFX5LduwdIdT94S7izpri+t9rQ4jjHzkfeXKQuhaLLlsbs
+         cdkQnxBMgZSSDix3DyCdBdzqtDSVoNXiU0gJqGCidjJkE5l1+WTxtGK28x6dqqr2qB0K
+         /89Ma96s/C+5YW1hZIL8HWvurtyOIF/bQfxWT4gskpY1w4hcanwKqkRAfD0vHGJba8mY
+         kgJ7hX0tJ1n8upJ2025RbQRteMmFT6LAwZCtNVcOWAocaNnyaBYI3UWqipfbwWm7B/If
+         367A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=d0c5eaekgCsd/2MB/A2s3Yr0/x87WiLkg0ydsvjSbdg=;
-        b=X5ln7daP7x36ZsQwdFB3GPGWMZbyrSw1tImIzf0EpnnNkjrt1zBa4+uwoixGuyE8Ko
-         bgEhFZvEVl2Czxutg1OAhZv3S8fqJUs/N4onWCRB64yda9IFuA51xoRfmvpjOStBZJRX
-         WpvqmsJ6KjKYrq6kCllipG9O0s0wU3cyM+WJIzkW/fJv/gQzTa9x/kIPaidKAUdVRytm
-         ktqCiORrcA4/2xPE44Lc7tKu0jZAPLxKM8f+5F7qbMiBmLhdqjmQ4WacS2HzKqEOqqp7
-         P2nJtXHWoHTLNwiPlgV7ufu5whS81R+jvaKHMkDzgLl4kEa19v4Dt0tig5u8IOvquaip
-         z1Iw==
-X-Gm-Message-State: AOAM531G135hW3DBrg/Gjr7+0Jfvy9GGgzveZRGjOgN0qEZI+tkLFVVT
-        n0tOMbBMxyrShGVHpdKgDw==
-X-Google-Smtp-Source: ABdhPJzyCoIdb4zb2XlsBbH2K09wgxaBCtYwIdcE2Yqsud2oVcKlTNvKGVY6PBPFKAl9JjY+BPTX8g==
-X-Received: by 2002:a05:6870:790c:b0:d2:8591:d4a5 with SMTP id hg12-20020a056870790c00b000d28591d4a5mr2255509oab.265.1645552607973;
-        Tue, 22 Feb 2022 09:56:47 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o15sm6387844ooi.31.2022.02.22.09.56.46
+        bh=rfmaBXDNF2dcfkVI4GZHzIMW5mn3jOrlYCzlPPScMHQ=;
+        b=FQBhPlPPRwQEWRZ8nsIDAyECLlg5ImVWc/zN/oVGtv5KTKBSdVSnGtn7o9WIqKN0jI
+         VIOvOzVj+JvFPDbIThfkS7sYH4up/2NIWvlEY/Cxd3bYtNcuCyqyJnL/DSH4Ju0ISGV6
+         z7ziuAEXfjDnfHRfSr0QyFA7+1SsdSuF7t+g48Epi7ZeuxMN7E7eU2mgpuSH3jPJ3KsR
+         nHjr6yoV0F86Q/pt1NkvqAkdWogbDGQH+hR3Vrfd2N08BAsEwyTt15iklPrKaT+1J9sg
+         NeSlMOCxzuieMTwvFJ63qledUBy/SVHVrsOB65GU1h2gLMYdI2TW8BzWDh6MmwHhtZK/
+         btQA==
+X-Gm-Message-State: AOAM533cPLO3tTPOlUhC9xG+s5Gla5MN2h7ptfkYO2RPpLafgvKGRpuZ
+        OejZhuIyUJd7n1lzXSNEvRbalQ==
+X-Google-Smtp-Source: ABdhPJxfanSWm6mS3pAMGDzvvvoc7Di46iARnR31cY2yD0zBOAlaSXe7Ly0XMyJAPvZNoSjaiyIbAg==
+X-Received: by 2002:a05:6808:2386:b0:2d5:47e8:521a with SMTP id bp6-20020a056808238600b002d547e8521amr1446220oib.232.1645552632587;
+        Tue, 22 Feb 2022 09:57:12 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id bj38sm5963664oib.20.2022.02.22.09.57.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 09:56:47 -0800 (PST)
-Received: (nullmailer pid 3307024 invoked by uid 1000);
-        Tue, 22 Feb 2022 17:56:46 -0000
-Date:   Tue, 22 Feb 2022 11:56:46 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Tyrone Ting <warp5tw@gmail.com>
-Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        krzysztof.kozlowski@canonical.com, semen.protsenko@linaro.org,
-        yangyicong@hisilicon.com, wsa@kernel.org, jie.deng@intel.com,
-        sven@svenpeter.dev, bence98@sch.bme.hu,
-        christophe.leroy@csgroup.eu, lukas.bulwahn@gmail.com,
-        olof@lixom.net, arnd@arndb.de, digetx@gmail.com,
-        andriy.shevchenko@linux.intel.com, tali.perry@nuvoton.com,
-        Avi.Fishman@nuvoton.com, tomer.maimon@nuvoton.com,
-        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, kfting@nuvoton.com,
-        openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 02/11] dt-bindings: i2c: npcm: support NPCM845
-Message-ID: <YhUj3uRQinOVF4eM@robh.at.kernel.org>
-References: <20220220035321.3870-1-warp5tw@gmail.com>
- <20220220035321.3870-3-warp5tw@gmail.com>
+        Tue, 22 Feb 2022 09:57:12 -0800 (PST)
+Date:   Tue, 22 Feb 2022 09:59:12 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Doug Anderson <dianders@chromium.org>
+Subject: Re: [PATCH V4 2/4] leds: Add pm8350c support to Qualcomm LPG driver
+Message-ID: <YhUkcH1dYXPDXA01@ripper>
+References: <1645509309-16142-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1645509309-16142-3-git-send-email-quic_c_skakit@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220220035321.3870-3-warp5tw@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <1645509309-16142-3-git-send-email-quic_c_skakit@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 20, 2022 at 11:53:12AM +0800, Tyrone Ting wrote:
-> From: Tyrone Ting <kfting@nuvoton.com>
+On Mon 21 Feb 21:55 PST 2022, Satya Priya wrote:
+
+> Add pm8350c compatible and lpg_data to the driver.
 > 
-> Add compatible and nuvoton,sys-mgr description for NPCM i2c module.
-> 
-> Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
-> Signed-off-by: Tali Perry <tali.perry1@gmail.com>
+> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
 > ---
->  .../bindings/i2c/nuvoton,npcm7xx-i2c.yaml       | 17 ++++++++++++-----
->  1 file changed, 12 insertions(+), 5 deletions(-)
+> Changes in V2:
+>  - Added const for lpg_channel_data[] struct.
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/nuvoton,npcm7xx-i2c.yaml b/Documentation/devicetree/bindings/i2c/nuvoton,npcm7xx-i2c.yaml
-> index 128444942aec..809c51ac32fe 100644
-> --- a/Documentation/devicetree/bindings/i2c/nuvoton,npcm7xx-i2c.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/nuvoton,npcm7xx-i2c.yaml
-> @@ -7,17 +7,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: nuvoton NPCM7XX I2C Controller Device Tree Bindings
+> Changes in V3:
+>  - Correct the num_channels and add respective base addresses.
+> 
+> Changes in V4:
+>  - Remove .pwm_9bit_mask, add .triled_base and .triled_mask.
+
+This changed the patch quite a bit. In general when this happen I would
+suggest that you don't keep previously acquired Reviewed-bys.
+
+Regards,
+Bjorn
+
+> 
+>  drivers/leds/rgb/leds-qcom-lpg.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
+> index c1ad678..ab29610 100644
+> --- a/drivers/leds/rgb/leds-qcom-lpg.c
+> +++ b/drivers/leds/rgb/leds-qcom-lpg.c
+> @@ -1374,9 +1374,22 @@ static const struct lpg_data pm8150l_lpg_data = {
+>  	},
+>  };
 >  
->  description: |
-> -  The NPCM750x includes sixteen I2C bus controllers. All Controllers support
-> -  both master and slave mode. Each controller can switch between master and slave
-> -  at run time (i.e. IPMB mode). Each controller has two 16 byte HW FIFO for TX and
-> -  RX.
-> +  I2C bus controllers of the NPCM series support both master and
-> +  slave mode. Each controller can switch between master and slave at run time
-> +  (i.e. IPMB mode). HW FIFO for TX and RX are supported.
->  
->  maintainers:
->    - Tali Perry <tali.perry1@gmail.com>
->  
->  properties:
->    compatible:
-> -    const: nuvoton,npcm750-i2c
-> +     enum:
-> +      - nuvoton,npcm750-i2c
-> +      - nuvoton,npcm845-i2c
->  
->    reg:
->      maxItems: 1
-> @@ -36,11 +37,16 @@ properties:
->      default: 100000
->      enum: [100000, 400000, 1000000]
->  
-> +  nuvoton,sys-mgr:
-> +    $ref: "/schemas/types.yaml#/definitions/phandle"
-> +    description: The phandle of system manager register node.
+> +static const struct lpg_data pm8350c_pwm_data = {
+> +	.triled_base = 0xef00,
 > +
->  required:
->    - compatible
->    - reg
->    - interrupts
->    - clocks
-> +  - nuvoton,sys-mgr
-
-You can't make nuvoton,sys-mgr required for existing users. You can add 
-an if/then schema for nuvoton,npcm845-i2c if you want to make it 
-required in that case.
-
-Rob
+> +	.num_channels = 4,
+> +	.channels = (const struct lpg_channel_data[]) {
+> +		{ .base = 0xe800, .triled_mask = BIT(7) },
+> +		{ .base = 0xe900, .triled_mask = BIT(6) },
+> +		{ .base = 0xea00, .triled_mask = BIT(5) },
+> +		{ .base = 0xeb00 },
+> +	},
+> +};
+> +
+>  static const struct of_device_id lpg_of_table[] = {
+>  	{ .compatible = "qcom,pm8150b-lpg", .data = &pm8150b_lpg_data },
+>  	{ .compatible = "qcom,pm8150l-lpg", .data = &pm8150l_lpg_data },
+> +	{ .compatible = "qcom,pm8350c-pwm", .data = &pm8350c_pwm_data },
+>  	{ .compatible = "qcom,pm8916-pwm", .data = &pm8916_pwm_data },
+>  	{ .compatible = "qcom,pm8941-lpg", .data = &pm8941_lpg_data },
+>  	{ .compatible = "qcom,pm8994-lpg", .data = &pm8994_lpg_data },
+> -- 
+> 2.7.4
+> 
