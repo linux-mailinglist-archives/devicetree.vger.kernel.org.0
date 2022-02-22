@@ -2,127 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C95D4C00D5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 19:01:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A9F74C00DC
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 19:02:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231295AbiBVSCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 13:02:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54216 "EHLO
+        id S234778AbiBVSC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 13:02:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231745AbiBVSCD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 13:02:03 -0500
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D761811165;
-        Tue, 22 Feb 2022 10:01:33 -0800 (PST)
-Received: by mail-ot1-f51.google.com with SMTP id p12-20020a05683019cc00b005af1442c9e9so6358836otp.13;
-        Tue, 22 Feb 2022 10:01:33 -0800 (PST)
+        with ESMTP id S234401AbiBVSCY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 13:02:24 -0500
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D669931206
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 10:01:57 -0800 (PST)
+Received: by mail-ot1-x331.google.com with SMTP id k9-20020a056830242900b005ad25f8ebfdso10204034ots.7
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 10:01:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SdxXBssqIsA1l+C6PXrlMorWOAj9zYyZXBKmUKMGGC8=;
+        b=SeLZhPFd5FksIREpIbjxg8L6cWMzA7jyGFZvXFmarSW6JT2CTchwa88hMEEegG0g5J
+         sEW9T5K1xDqNe35ep+WkFnGIoyYK9JRUkmbehMKUmXqwoGxe5RV2CXqke77ey4RWVyeJ
+         7gx4hkcqB7snXXVsFY+KEmoJxlA3DiSa3MYgmW30PwOLzM7V4Due72mSc3aLyDy85Llq
+         JRFQLPf6vlyG2/L23ui3GG7IcZTqHYNYD1f+MJTK5pbOv1TGJ2Cfqux4LxbwiwgdW81s
+         rDJWqiJJk5M5Wy52Vi5uwOy4yFtV/SnnUQxNsVhy3OW85Z0Y24e+qRRRrT6dPzvHUzk/
+         PZ3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YuKLz06AZYr8z+0AaROHF1CH113GpD871BS09fSdbV8=;
-        b=u4FF90g3tUoZob2IXyQswSw4xhKHbZFUOcmZqiIORdCBB53oFrOSqSDSfN3s60sWR8
-         LcWUPQOYTbkKop+e665QkpThvJgPItmDxi7XZVOHgE+HalLLZ2i5GFupvAwshATjQt9x
-         aNAmJ5vVS94DeGI2gvNzSdnq++E0wW4p4/FyLkc3yT4j+9W67ntH51g1cm71tPX/GkrJ
-         qFqFNTCryC3o2PwmvxkDLtKTYdpEFDv6pBuY88RIjZPqgVUpOqoCfBG5cOzz5vY+xK75
-         1WB2fO7SMrKld+wltr1tCJDNXrBVPyYngd4mxvgra/DXNkjFgg9Lk7gIZY3WMN7aSszL
-         ef5g==
-X-Gm-Message-State: AOAM532kCBylLvn5FKsiBVbZDPn8eTxFHqvxz1kMgpPQXTnbg1SeFP7D
-        OoLc8BLyPM0H+2ui1MFMeIWpeS/jLA==
-X-Google-Smtp-Source: ABdhPJyCpi8WRkHYBg6TUjBZvXk0DpfAaYtR71zU0qpKqMyo7K65bwZg7M03m3vEHNjHT8DVDw1VvQ==
-X-Received: by 2002:a05:6830:25cc:b0:5ad:7fe:3bbd with SMTP id d12-20020a05683025cc00b005ad07fe3bbdmr8423431otu.354.1645552892877;
-        Tue, 22 Feb 2022 10:01:32 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d18sm157517otf.50.2022.02.22.10.01.31
+        bh=SdxXBssqIsA1l+C6PXrlMorWOAj9zYyZXBKmUKMGGC8=;
+        b=D89bNg5j8OE/EOgqM0dloXL6y7r3OFmHC7akIfc32asMFyrEhRubK5UW9WYVEr2aTt
+         1XcbhMBO/fCzXmBN1JucgZAMvjV9YQxx/rvpc/TyWmuuXte8lphkjjkT4tx3cx7qWWa9
+         OPpKkI4SpdaNX1JsP5YtKOYHahGiQoZm1ff30K77h+KqfjaXs7iimlXy/dgWYw3pWOsK
+         dxlXi2TvBOLnQsfjwtWfJKivJFr0BUI4TcZ9FU9ftUTQ82GSxzDatGUUhz80hwKOXVrm
+         lWDF/8KhG5YS1MjuO0YXPkojy+bv/X4sywu0F0l3OcMV6xxdWXvn0VrLgDAjpEUhH3cg
+         j+6Q==
+X-Gm-Message-State: AOAM532QtOzG8ikeKeT6knUnD9bkReX6WYXcE05M0t7wWgk6WZ67HwBH
+        Znd39FOhBamVWjEKGDRK+PqfQA==
+X-Google-Smtp-Source: ABdhPJxWEHC+Mm9/uZ3OOHosJbLQd2o6I9x0B1SYOT+wH5/0geWhywMJzUO7D5r90LvBSBOGtL/1qw==
+X-Received: by 2002:a05:6830:44f:b0:5ac:fdb6:28d7 with SMTP id d15-20020a056830044f00b005acfdb628d7mr8649483otc.182.1645552917118;
+        Tue, 22 Feb 2022 10:01:57 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id 8sm6335790ota.60.2022.02.22.10.01.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 10:01:32 -0800 (PST)
-Received: (nullmailer pid 3314154 invoked by uid 1000);
-        Tue, 22 Feb 2022 18:01:31 -0000
-Date:   Tue, 22 Feb 2022 12:01:31 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Richard Weinberger <richard@nod.at>,
+        Tue, 22 Feb 2022 10:01:56 -0800 (PST)
+Date:   Tue, 22 Feb 2022 10:03:57 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
+        Nishanth Menon <nm@ti.com>,
         Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
-Subject: Re: [RFC RFT PATCH v2 1/2] dt-bindings: mtd: partitions: Document
- new partition-dynamic nodes
-Message-ID: <YhUk+3P7g6bigRP3@robh.at.kernel.org>
-References: <20220220173905.14165-1-ansuelsmth@gmail.com>
- <20220220173905.14165-2-ansuelsmth@gmail.com>
- <1645410969.414517.2041550.nullmailer@robh.at.kernel.org>
- <YhO2dK0eNP9fOeOZ@Ansuel-xps.localdomain>
+        Tero Kristo <kristo@kernel.org>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Jan Kotas <jank@cadence.com>, Li Wei <liwei213@huawei.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Yaniv Gardi <ygardi@codeaurora.org>,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 04/15] dt-bindings: ufs: drop unused/old ufs-qcom PHY
+ bindings
+Message-ID: <YhUljWBHi6vbMth4@ripper>
+References: <20220222145854.358646-1-krzysztof.kozlowski@canonical.com>
+ <20220222145854.358646-5-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YhO2dK0eNP9fOeOZ@Ansuel-xps.localdomain>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220222145854.358646-5-krzysztof.kozlowski@canonical.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 04:57:40PM +0100, Ansuel Smith wrote:
-> On Sun, Feb 20, 2022 at 08:36:09PM -0600, Rob Herring wrote:
-> > On Sun, 20 Feb 2022 18:39:04 +0100, Ansuel Smith wrote:
-> > > Document new partition-dynamic nodes used to provide an OF node for
-> > > partition registred at runtime by parsers. This is required for nvmem
-> > > system to declare and detect nvmem-cells.
-> > > 
-> > > With these special partitions, only the label is required as the parser
-> > > will provide reg and offset of the mtd. NVMEM will use the data from the
-> > > parser and provide the NVMEM cells declared in the DTS, "connecting" the
-> > > dynamic partition with a static declaration of cells in them.
-> > > 
-> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > ---
-> > >  .../mtd/partitions/partition-dynamic.yaml     | 54 +++++++++++++++++++
-> > >  1 file changed, 54 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/partition-dynamic.yaml
-> > > 
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/partition-dynamic.example.dt.yaml: partitions: '#address-cells', '#size-cells', 'art' do not match any of the regexes: 'pinctrl-[0-9]+'
-> > 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
-> > 
-> > doc reference errors (make refcheckdocs):
-> > 
-> > See https://patchwork.ozlabs.org/patch/1595230
-> > 
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
-> > 
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> > 
-> > pip3 install dtschema --upgrade
-> > 
-> > Please check and re-submit.
-> > 
+On Tue 22 Feb 06:58 PST 2022, Krzysztof Kozlowski wrote:
+
+> The Qualcomm UFS PHY bindings are documented in
+> bindings/phy/qcom,qmp-phy.yaml and the compatibles from separate file
+> bindings/ufs/ufs-qcom.txt are not used at all.
 > 
-> Considering the idea of this partition-dynamic, should these warning be
-> ignored or the smem-part should include the ref of these new partitions?
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-We can't have warnings. 
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-> Or should I remove the example?
-
-Doesn't that just kick the problem to actual users?
-
-> (or should I add the example to smem-part instead of partition-dynamic)
-
-That shouldn't matter I think...
-
-Rob
+> ---
+>  .../devicetree/bindings/ufs/ufs-qcom.txt      | 63 -------------------
+>  1 file changed, 63 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/ufs/ufs-qcom.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/ufs/ufs-qcom.txt b/Documentation/devicetree/bindings/ufs/ufs-qcom.txt
+> deleted file mode 100644
+> index fd59f93e9556..000000000000
+> --- a/Documentation/devicetree/bindings/ufs/ufs-qcom.txt
+> +++ /dev/null
+> @@ -1,63 +0,0 @@
+> -* Qualcomm Technologies Inc Universal Flash Storage (UFS) PHY
+> -
+> -UFSPHY nodes are defined to describe on-chip UFS PHY hardware macro.
+> -Each UFS PHY node should have its own node.
+> -
+> -To bind UFS PHY with UFS host controller, the controller node should
+> -contain a phandle reference to UFS PHY node.
+> -
+> -Required properties:
+> -- compatible        : compatible list, contains one of the following -
+> -			"qcom,ufs-phy-qmp-20nm" for 20nm ufs phy,
+> -			"qcom,ufs-phy-qmp-14nm" for legacy 14nm ufs phy,
+> -			"qcom,msm8996-ufs-phy-qmp-14nm" for 14nm ufs phy
+> -			 present on MSM8996 chipset.
+> -- reg               : should contain PHY register address space (mandatory),
+> -- reg-names         : indicates various resources passed to driver (via reg proptery) by name.
+> -                      Required "reg-names" is "phy_mem".
+> -- #phy-cells        : This property shall be set to 0
+> -- vdda-phy-supply   : phandle to main PHY supply for analog domain
+> -- vdda-pll-supply   : phandle to PHY PLL and Power-Gen block power supply
+> -- clocks	    : List of phandle and clock specifier pairs
+> -- clock-names       : List of clock input name strings sorted in the same
+> -		      order as the clocks property. "ref_clk_src", "ref_clk",
+> -		      "tx_iface_clk" & "rx_iface_clk" are mandatory but
+> -		      "ref_clk_parent" is optional
+> -
+> -Optional properties:
+> -- vdda-phy-max-microamp : specifies max. load that can be drawn from phy supply
+> -- vdda-pll-max-microamp : specifies max. load that can be drawn from pll supply
+> -- vddp-ref-clk-supply   : phandle to UFS device ref_clk pad power supply
+> -- vddp-ref-clk-max-microamp : specifies max. load that can be drawn from this supply
+> -- resets : specifies the PHY reset in the UFS controller
+> -
+> -Example:
+> -
+> -	ufsphy1: ufsphy@fc597000 {
+> -		compatible = "qcom,ufs-phy-qmp-20nm";
+> -		reg = <0xfc597000 0x800>;
+> -		reg-names = "phy_mem";
+> -		#phy-cells = <0>;
+> -		vdda-phy-supply = <&pma8084_l4>;
+> -		vdda-pll-supply = <&pma8084_l12>;
+> -		vdda-phy-max-microamp = <50000>;
+> -		vdda-pll-max-microamp = <1000>;
+> -		clock-names = "ref_clk_src",
+> -			"ref_clk_parent",
+> -			"ref_clk",
+> -			"tx_iface_clk",
+> -			"rx_iface_clk";
+> -		clocks = <&clock_rpm clk_ln_bb_clk>,
+> -			<&clock_gcc clk_pcie_1_phy_ldo >,
+> -			<&clock_gcc clk_ufs_phy_ldo>,
+> -			<&clock_gcc clk_gcc_ufs_tx_cfg_clk>,
+> -			<&clock_gcc clk_gcc_ufs_rx_cfg_clk>;
+> -		resets = <&ufshc 0>;
+> -	};
+> -
+> -	ufshc: ufshc@fc598000 {
+> -		#reset-cells = <1>;
+> -		...
+> -		phys = <&ufsphy1>;
+> -		phy-names = "ufsphy";
+> -	};
+> -- 
+> 2.32.0
+> 
