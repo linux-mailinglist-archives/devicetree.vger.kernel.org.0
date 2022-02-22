@@ -2,73 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B0EA4BEF91
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 03:43:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C684BEFE1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 04:16:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232413AbiBVClc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Feb 2022 21:41:32 -0500
-Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:57264 "EHLO
+        id S239525AbiBVDMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Feb 2022 22:12:31 -0500
+Received: from mxb-00190b01.gslb.pphosted.com ([23.128.96.19]:50566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231297AbiBVClb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 21:41:31 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F172125C6C
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 18:41:06 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id s13so1650856wrb.6
-        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 18:41:06 -0800 (PST)
+        with ESMTP id S239491AbiBVDMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Feb 2022 22:12:30 -0500
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0BFB60D7
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 19:12:06 -0800 (PST)
+Received: by mail-qv1-xf2a.google.com with SMTP id f19so37596899qvb.6
+        for <devicetree@vger.kernel.org>; Mon, 21 Feb 2022 19:12:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=F8EZpKYd1YA4m/weW3nrPOkwMsmkl5R8bOsF2q/+kU0=;
-        b=HForMk1XC3MkMzJ+J54cA80wGm/GIyofNGNmGWu0B8Es9sy9F550QKc7PUw548wNL0
-         fM7pt+A0LbhkzaNepRQYFk1jOVT8b5S6Js1iAB05M9QtEBVnPGTXzSupaslIdr/LyQEQ
-         sBJX+EyhNEQCp71dIvjb4Jmkyum8WCTOHXBMhZSBiE1tYvmHZdHFNJ5VsxTXmeQKq6mm
-         C8bg2FsKuCLOoD2tmIPjQhr7/8TSBmGmf6AE/WQPXRwJvHlfoJD3I6CEIC6uMHkDY9C9
-         lpWTvufU+4islN8fKp3GLLJtfmTWMkQ+TH7FxEiY9eE/HFibNBNfvsRnYWmPBDo7uZh5
-         D0XA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gQ7tL9yE1YjTlYy7IejJ8wI93X2uR0MQXXmiDoUIMcA=;
+        b=widGmEJ6an//elEa8rev0M6RF+QC8ehjwvQe1U0C2Wrcne672GyJ+RJLdDOwhjuhNI
+         UcpbRuelVUJcEQeRZNccQxmvsGXx0/Fd3M75o3+Q/PjT9dNMDogeWaeKTngkwiAbahkI
+         rO7hqsUL8KQDoja4dZt9RRb0eEnAic9/jYh1S02Cahb1RbwmEw2SjyTAB0VfHf45i4rV
+         +rQ33Q+YIHM9JvYOzg6C8lIkwoqps9FfRTuQ4F/Ek+WEwIluRTJZxNWyHfZ4nEgJ8RW3
+         tZBgXSK+dkrG5cGAASx4asZ4ILaDTwUozxHNINhLjAk5cJvAHfBa8yU+VPwsOSdfVQZz
+         lH8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=F8EZpKYd1YA4m/weW3nrPOkwMsmkl5R8bOsF2q/+kU0=;
-        b=pQRCMd6OS4+EFw5UR31gYYNYOzv6pQaty54vXA580VzI1fz4jKs7SRIYc4OhBfMFvv
-         nlI7BvbH8uDzyhGpqlLM1zdNwL2yx/VHhskjqekoebiBFvDriVAQEDXhI6xQ83zAiEh6
-         leDs6mZcCIhZYs8eBrzACBPtxoQTAVj5FHMNvX+7d9bP5K0mKKJEltrKbyuxJffLrzRV
-         NKaWYgzh+vBRFqTqiJf62uCA/FMrrec8jB2RkjVFr9xdHfpcFdTQxlYAtS+IuvR+Scc2
-         6FhZuxOiRbNOSCHNNN0l7MefTPVkPE8rJlLuDrfHDNan+xTEBL0/UMscunFeQ8w4sRCH
-         LpBw==
-X-Gm-Message-State: AOAM531hSexrF/LGvmgCF0F3na9z/JwL74TClDY7YNZ1n16C6hzMWayn
-        REGpX0FZCcsb4mwfhpmBaXcetw==
-X-Google-Smtp-Source: ABdhPJxajEOCGHoJBRvOvFIfTrVcQeI5sLbNDPNbpduQzv3/9EyjjE2qz5FGJzbFat4Y5ELvavGxkw==
-X-Received: by 2002:a5d:5090:0:b0:1e4:b66b:11a2 with SMTP id a16-20020a5d5090000000b001e4b66b11a2mr17906213wrt.360.1645497665611;
-        Mon, 21 Feb 2022 18:41:05 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id e7sm30613620wrg.44.2022.02.21.18.41.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Feb 2022 18:41:05 -0800 (PST)
-Message-ID: <144e802c-588c-12e2-5815-5847d2a9fe29@linaro.org>
-Date:   Tue, 22 Feb 2022 02:41:04 +0000
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gQ7tL9yE1YjTlYy7IejJ8wI93X2uR0MQXXmiDoUIMcA=;
+        b=1Kw2fLF+30JGGvsvJizDoERPww9telY+FMui63jyvTEUL3DRcg4Zlf/XTgY1zGcUZN
+         s0F9uHnKPp6BYCbO1SI3EL7fj6orATEacgek14ulMf7LVbUjOiaOGCN6cVWkYSuRZ/HI
+         UDWJoe6kREwSfY0NwS5sYCMAZ/TcMOjmooULmlP+zi4Jg/bbKovLSCpcAi+qhFWxoHkI
+         KW8TzpUDqJbZNyvgcstiBQ7+btUZlTgAxFGdSBFRHIe4y/z8BreRsaaz4YnE6ySF9FLc
+         v5ML0ijtPx1ryz+vrhz7QvzX6PMOaRhSeGhFXwcm3Wi/yyuH8/PeAPXeBDPwgNGLcHyu
+         uzPw==
+X-Gm-Message-State: AOAM530az/KsQz/R153cjF2Em0vOQ0T9C8HGa2VXXTBsMvR0kdKllyDP
+        U4cyElbPxS8uv7FQNtBHX8HMsgs0x6T6VnxdU9cdFw==
+X-Google-Smtp-Source: ABdhPJw7BO2C1PYECTEtc3I5iKBeb2Gxkis1DlKuq3jNu0GdzNbF3pLixIt7A3UygUGnJxqtVPwf14/05FmYSwMt0Qs=
+X-Received: by 2002:a05:6214:400a:b0:431:7f6c:98fc with SMTP id
+ kd10-20020a056214400a00b004317f6c98fcmr8728971qvb.122.1645499525424; Mon, 21
+ Feb 2022 19:12:05 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq6018: Add mdio bus description
-Content-Language: en-US
-To:     Baruch Siach <baruch@tkos.co.il>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>
-Cc:     Baruch Siach <baruch.siach@siklu.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <a4b1ad7b15c13f368b637efdb903da143b830a88.1645454002.git.baruch@tkos.co.il>
- <5e7e06e0cb189bab4586646470894bbda572785d.1645454002.git.baruch@tkos.co.il>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <5e7e06e0cb189bab4586646470894bbda572785d.1645454002.git.baruch@tkos.co.il>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <1645455086-9359-1-git-send-email-quic_vpolimer@quicinc.com> <1645455086-9359-4-git-send-email-quic_vpolimer@quicinc.com>
+In-Reply-To: <1645455086-9359-4-git-send-email-quic_vpolimer@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 22 Feb 2022 05:26:42 +0300
+Message-ID: <CAA8EJpq1U6ZdZu42vg0qpMUxJao+s58ZJfcNh_F-4SBH_E=MJg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] drm/msm/disp/dpu1: use atomic enable/disable
+ callbacks for encoder functions
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        robdclark@gmail.com, seanpaul@chromium.org, swboyd@chromium.org,
+        dianders@chromium.org, krzysztof.kozlowski@canonical.com,
+        thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, quic_kalyant@quicinc.com,
+        quic_sbillaka@quicinc.com, quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,37 +73,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2022 14:33, Baruch Siach wrote:
-> From: Baruch Siach <baruch.siach@siklu.com>
-> 
-> The IPQ60xx has the same MDIO bug block as IPQ4019. Add IO range and
-> clock resources description.
-> 
-> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
-> ---
->   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 5eb7dc9cc231..093011d18ca6 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -635,6 +635,16 @@ qrtr_requests {
->   			};
->   		};
->   
-> +		mdio: mdio@90000 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			compatible = "qcom,ipq6018-mdio", "qcom,ipq4019-mdio";
-> +			reg = <0x0 0x90000 0x0 0x64>;
-> +			clocks = <&gcc GCC_MDIO_AHB_CLK>;
-> +			clock-names = "gcc_mdio_ahb_clk";
-> +			status = "disabled";
-> +		};
-> +
->   		qusb_phy_1: qusb@59000 {
->   			compatible = "qcom,ipq6018-qusb2-phy";
->   			reg = <0x0 0x059000 0x0 0x180>;
+On Mon, 21 Feb 2022 at 17:52, Vinod Polimera <quic_vpolimer@quicinc.com> wrote:
+>
+> Use atomic variants for encoder callback functions such that
+> certain states like self-refresh can be accessed as part of
+> enable/disable sequence.
+>
+> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+>
+> Changes in v2:
+> - As per review suggestion by Dmitry.
+> ---
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> index 1e648db..6eac417 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> @@ -1138,7 +1138,8 @@ void dpu_encoder_virt_runtime_resume(struct drm_encoder *drm_enc)
+>         mutex_unlock(&dpu_enc->enc_lock);
+>  }
+>
+> -static void dpu_encoder_virt_enable(struct drm_encoder *drm_enc)
+> +static void dpu_encoder_virt_enable(struct drm_encoder *drm_enc,
+> +                               struct drm_atomic_state *state)
+>  {
+>         struct dpu_encoder_virt *dpu_enc = NULL;
+>         int ret = 0;
+> @@ -1176,7 +1177,8 @@ static void dpu_encoder_virt_enable(struct drm_encoder *drm_enc)
+>         mutex_unlock(&dpu_enc->enc_lock);
+>  }
+>
+> -static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc)
+> +static void dpu_encoder_virt_disable(struct drm_encoder *drm_enc,
+> +                               struct drm_atomic_state *state)
+>  {
+>         struct dpu_encoder_virt *dpu_enc = NULL;
+>         struct msm_drm_private *priv;
+> @@ -2094,8 +2096,8 @@ static void dpu_encoder_frame_done_timeout(struct timer_list *t)
+>
+>  static const struct drm_encoder_helper_funcs dpu_encoder_helper_funcs = {
+>         .mode_set = dpu_encoder_virt_mode_set,
+> -       .disable = dpu_encoder_virt_disable,
+> -       .enable = dpu_encoder_virt_enable,
+> +       .atomic_disable = dpu_encoder_virt_disable,
+> +       .atomic_enable = dpu_encoder_virt_enable,
+>         .atomic_check = dpu_encoder_virt_atomic_check,
+>  };
+>
+> --
+> 2.7.4
+>
+
+
+-- 
+With best wishes
+Dmitry
