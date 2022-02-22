@@ -2,125 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D830E4C0301
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:28:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 799424C030E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:34:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233004AbiBVU2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 15:28:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37218 "EHLO
+        id S231694AbiBVUfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 15:35:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231694AbiBVU2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:28:38 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7649B16C6;
-        Tue, 22 Feb 2022 12:28:10 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id A5FE61F4305C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645561689;
-        bh=XYnec0KXZAvsEu9FVDIA+DCNqtz7GcNyNM0dZi5nGKw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AQiUjtKxRYO1xX9vVoOOFXkPFSCC67v1ZQxPvDobu4gWR7S//0ksNk3esKGbhVuXp
-         kkybtmOoMYucr4ZC4eBN8+PeME0ZM5h+wNE5jlPY5T3Ek0ktTMD57SSphD/bUYi83h
-         oSvqbbit0Wx3GY23pOda1i/ImLhxByL6Mjc3J9W5tOCTsWn/U3lK0lq579nvZhsEBr
-         7vtTRzcVV8L5wBeZI8Nvp0xbrG1sjiWotqPbE2KehW+LSuoOVy0FNzqIy+PBtpLmja
-         z5+JJx0Ai8AM+CipiokKTlJvCmNjdeaEPE8YrNTDWyAQnZ3eLjQFJlAdlrBVDVkofZ
-         sFEWANLIa6NOw==
-Date:   Tue, 22 Feb 2022 15:28:03 -0500
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S235501AbiBVUfG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:35:06 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8462112D93E;
+        Tue, 22 Feb 2022 12:34:40 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id bg10so46520851ejb.4;
+        Tue, 22 Feb 2022 12:34:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zJjW40gRYjxp9MOc6prbOQbeJQ4Y96DDyPM3W2oQ0zQ=;
+        b=LopXt5kB3hxGK0aA50DzHk+5tKlxBFD9uSUtVWerRLtJSjayu4367XM1r5cIPFx+Sq
+         c7R4HaBJSrHWKruQItW+p5U4+D7gdLHfm4lyOROOXL+7LHH+F39SWgQ0XpaS0731nRZd
+         w0svFDzd5lt1KhGVvPfz1BgU36ugsCUoYlluYMxvKYH7Irn8VjYxWrlGZxyX7nYfNSPM
+         0oRC0t/L9CzbqWisTVsMbW/QXQcgfU3Z4NRby95+ND3dPSTcj31BmCQLodu6VllVag3H
+         3m66m5/vRzsl9wSiY0ZTrBcWYgKQRRDUgng0hzxTkErcwcf4S3Tc6MQmRh5o0HI1E3W8
+         +PtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zJjW40gRYjxp9MOc6prbOQbeJQ4Y96DDyPM3W2oQ0zQ=;
+        b=MnMpN5x2xISQ9Qx6kn91IPGsB53S0ms3iQd83STvXrbnt33B3TSYHraweNo590tDRm
+         iKkW76iASZ7q2WD/lVJFcj5fwcTM2CEAN6hdUiwuFaHx/2qYC8JGy7TCUonAmF8kTlt/
+         5WEgUVYM0wpr+semN5/dAIe6UWwDWaoanQVrzPUnj65DbE6k6oYReqo5dmRSqu874CqI
+         sZxuhkGrASrrWJydKUZXZbkxtAJrSry9HxZSWqXiu3JhdTwTJgBjmaJdELfp3FlWeqmZ
+         JTvTpVWQB/VKyCH+JiIgLKauizPBg405EAvDliwb4GWK5Fj6Q43YWY+u/v/1p5Q+xRbd
+         rmig==
+X-Gm-Message-State: AOAM531AFUgKptQ+yipXT6andfbV9bFzIMmQUBEmjZV1JJ+Kw9gdnzHt
+        e7/D4PWb1JRdfbUjCS1atmFL2atbpKsNIttr
+X-Google-Smtp-Source: ABdhPJz3JHOgC8ANlkEN+8VPzW64fK4g9/h4wZ9C+XjBPur7Es5FiJFR1e3OQobDQmjhGKChv/7BLg==
+X-Received: by 2002:a17:907:1183:b0:6cf:ce2f:51c1 with SMTP id uz3-20020a170907118300b006cfce2f51c1mr20466998ejb.209.1645562078864;
+        Tue, 22 Feb 2022 12:34:38 -0800 (PST)
+Received: from nergzd-desktop.localdomain ([62.122.67.26])
+        by smtp.gmail.com with ESMTPSA id ec37sm10358388edb.19.2022.02.22.12.34.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Feb 2022 12:34:38 -0800 (PST)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        --to=Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>
-Subject: Re: [PATCH v2 07/23] arm64: dts: mt8192: Add xhci node
-Message-ID: <20220222202803.7mkskda3nsjrunpx@notapiano>
-References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
- <20220218091633.9368-8-allen-kh.cheng@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v6 0/2] Add support for Imagis touchscreens
+Date:   Tue, 22 Feb 2022 22:34:09 +0200
+Message-Id: <20220222203414.8656-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220218091633.9368-8-allen-kh.cheng@mediatek.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 18, 2022 at 05:16:17PM +0800, Allen-KH Cheng wrote:
-> Add xhci node for mt8192 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 25 ++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index ce18d692175f..08c7c1c772f5 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -10,6 +10,7 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
-> +#include <dt-bindings/phy/phy.h>
->  #include <dt-bindings/power/mt8192-power.h>
->  
->  / {
-> @@ -718,6 +719,30 @@
->  			status = "disabled";
->  		};
->  
-> +		xhci: xhci@11200000 {
+Add support for Imagis touchscreens, used on various mobile
+devices such as Samsung Galaxy J5 (2015), J3 (2015), J5 (2016).
 
-According to Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml, this
-node should be called usb (but the label can be kept as xhci).
+v2: rebase on top of the correct tree
+v3:
+- prefix all defines as IST3038C
+- use two tabs for all defines
+- add missing <linux/regulator/consumer.h> header
+- drop ADDR_LEN and DATA_LEN defines; use sizeof(reg_be) instead
+- use __be32 type for reg_be
+- add a comment about i2c read not being successful on first try
+- use "ret" instead of "res" in read_reg function
+- don't use the internal __cpu_to_be32 function, use cpu_to_be32 instead
+- use "error" instead of "ret" in interrupt handler
+- pass the slot state directly, without ternary operator
+- drop the dev_err in init_input_dev function
+- reorder the functions in _probe so that the chipid command is read as fast 
+as possible
+- don't use imagis_start in probe
+- initialize the irq after the chip is powered
+- save the return value in imagis_resume
+- drop WIDTH_MAJOR since only TOUCH_MAJOR is reported
+- the "chip detected" message is now dev_dbg
+- reorder headers so they are in alphabetic order
+- use GENMASK to generate masks for getting the X and Y coordinates and touch area
+- drop *_pressure from device tree bindings since the driver doesn't
+support reporting pressure
+- fix the typo with i2c address in device treee bindings (48 instead of 50)
+- add IRQF_NO_AUTOEN flag to avoid unbalanced irq enable
+v4:
+- alphabetically order MAINTAINERS entry
+- alphabetically order Kconfig and Makefile
+- drop the error message in init_regulators
+- disable regulators on probe error
+- drop IRQF_TRIGGER_FALLING
+- @ is not optional (device tree bindings)
+- don't use items for compatible
+- add maxItems property to reg, drop the comment
+v5:
+- compatible enum is not an item of the list, drop "-"
+v6:
+- add _MS suffix to the delay define, drop the comment
+- change the reason for retry comment
+- add imagis_power_off and imagis_power_on functions to turn regulators
+on and off
+- use imagis_power_on/off in imagis_start and imagis_stop as well as in probe function
+- use error instead of ret in calls to functions which only return 0 or -errno
+- include linux/bits.h
+- proper indentation in Kconfig
+- drop the dev_dbg chip id message
+- MODULE_DEVICE_TABLE(of, ...);
+- no extra tabs in i2c_driver struct
+- save the return value in imagis_suspend
 
-> +			compatible = "mediatek,mt8192-xhci",
-> +				     "mediatek,mtk-xhci";
-> +			reg = <0 0x11200000 0 0x1000>,
-> +			      <0 0x11203e00 0 0x0100>;
-> +			reg-names = "mac", "ippc";
-> +			interrupts-extended = <&gic GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			interrupt-names = "host";
-> +			phys = <&u2port0 PHY_TYPE_USB2>,
-> +			       <&u3port0 PHY_TYPE_USB3>;
-> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_SEL>,
-> +					  <&topckgen CLK_TOP_SSUSB_XHCI_SEL>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +			clocks = <&infracfg CLK_INFRA_SSUSB>,
-> +				 <&infracfg CLK_INFRA_SSUSB_XHCI>,
-> +				 <&apmixedsys CLK_APMIXED_USBPLL>;
-> +			clock-names = "sys_ck", "xhci_ck", "ref_ck";
-> +			wakeup-source;
-> +			mediatek,syscon-wakeup = <&pericfg 0x420 102>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
+Markuss Broks (2):
+  dt-bindings: input/touchscreen: bindings for Imagis
+  Input: add Imagis touchscreen driver
 
-This node doesn't have any children, so no need for #address-cells and
-#size-cells, just drop them.
+ .../input/touchscreen/imagis,ist3038c.yaml    |  78 +++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/input/touchscreen/Kconfig             |  10 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/imagis.c            | 329 ++++++++++++++++++
+ 6 files changed, 426 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+ create mode 100644 drivers/input/touchscreen/imagis.c
 
-Also, let's keep this node disabled by default:
+-- 
+2.35.0
 
-			status = "disabled";
-
-> +		};
-> +
->  		nor_flash: spi@11234000 {
->  			compatible = "mediatek,mt8192-nor";
->  			reg = <0 0x11234000 0 0xe0>;
-> -- 
-> 2.18.0
-> 
-> 
