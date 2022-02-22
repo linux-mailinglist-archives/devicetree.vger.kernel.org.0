@@ -2,72 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FD4C4C0151
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 19:31:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDE404C0179
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 19:37:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234990AbiBVScF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 13:32:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51480 "EHLO
+        id S232707AbiBVShZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 13:37:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234984AbiBVScE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 13:32:04 -0500
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F007DC7C30
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 10:31:37 -0800 (PST)
-Received: by mail-oo1-xc2a.google.com with SMTP id p206-20020a4a2fd7000000b0031bfec11983so18783687oop.13
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 10:31:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0eQyxholJjBEMSQZWDFEm2M/Fwxq/JEZfGHCPfXfVx8=;
-        b=thYh2iioevpyO45vzlZllF8/uQycsw5qB0AzyDTe8QlJze9noS9xsmGOXfKGboW3r3
-         c0ok3dv5hPdiR2CSjzMMaqeCbB2HsDDTY+SsOC0AoUySifZZxYovcu6hcu48SQd2T8o9
-         fj4spOik4Pn6arfwgGudjfXt19jgURL5QutrZAyuMRZqqsPDLOm1PM5odlUalYIsVV0h
-         hBv+mwavegmmIHuDZ1BM3YHQzMxSYnLa7F/i6H1SfR0xcxod4XYm0P0DDT5I2oEKlSOV
-         ab1zDYCmhjDnHl5RTW56/I/w0sFdrVpRVYy3N57IWtQ515LmcJsmqUekdB8JcybLBa1u
-         HraQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0eQyxholJjBEMSQZWDFEm2M/Fwxq/JEZfGHCPfXfVx8=;
-        b=NxF/UMxRSAx7Sjqaqussop7CZZPOLOGWYjF1f22HWAZOwRC2azzpjyey8SELaVZ/aW
-         dTEo6OdkvGOlB82aGlowVarl9TqCDwwowNaoYYo+n0c4nzterCbs8SyAAktRvESgOqc6
-         eX/0VtOO0Ob7u4TNkJqjvacb3SpMSdHtAa7GsPAK2Wj5EgnlqEgW9XRhgOZbh/c7itH3
-         61lTw0IpONXWJZ34ZxmMaDlY/vT8sWvv1K/VkZXKV+gIPFMyPBDVppfbjfV6Atqj+9EX
-         cyZT2TMFU55zVpk+6XdnfSz40kWXjXMAH6ZhccohDfsXwZR98vgNEha0raZXaqv/mP8E
-         Htyw==
-X-Gm-Message-State: AOAM530om2AztCrHB1E4YN+D6TpvE7hVkNR4WQDuA+El+eYAb4DzFSTq
-        zobfp08B+/dGEVcoxBszf9Vs4g==
-X-Google-Smtp-Source: ABdhPJzi3P1ahgtmbW5BDgyO3RTaYuowS42Lg/e49loUlZZ9lvfcpXXgGyzz8pMAJZgBO55dNtdQrw==
-X-Received: by 2002:a05:6870:d915:b0:d3:dc7f:9dd0 with SMTP id gq21-20020a056870d91500b000d3dc7f9dd0mr2256041oab.138.1645554696895;
-        Tue, 22 Feb 2022 10:31:36 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id x22sm5704272ooo.20.2022.02.22.10.31.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 10:31:36 -0800 (PST)
-Date:   Tue, 22 Feb 2022 10:33:37 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     robh+dt@kernel.org, ohad@wizery.com, agross@kernel.org,
-        mathieu.poirier@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, evgreen@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org, mka@chromium.org,
-        krzysztof.kozlowski@canonical.com
-Subject: Re: [PATCH 2/3] remoteproc: qcom_q6v5_mss: Add support for
- interconnect bandwidth voting
-Message-ID: <YhUsgVWJo8emK3bj@ripper>
-References: <1644813252-12897-1-git-send-email-quic_sibis@quicinc.com>
- <1644813252-12897-3-git-send-email-quic_sibis@quicinc.com>
+        with ESMTP id S231931AbiBVShZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 13:37:25 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB01E0AD5;
+        Tue, 22 Feb 2022 10:36:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A6FE161583;
+        Tue, 22 Feb 2022 18:36:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B962FC340E8;
+        Tue, 22 Feb 2022 18:36:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645555017;
+        bh=cZVj2to85O+PQ1olYQUt+4ZXnAEO+ZaqtiSsiAd1RxM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ncoQ56LcvCbF+u+RDOVbS5WMYctSGS9KigK1X7tIBDCpf74Mppj/zc3uqIC64Z9d7
+         pYAHF4JeS9R8WeQ9VZ6Ohf7Ru0Enwxzv82bFJTbmaoEDgHitKd9yU2UOf6yhEChtaj
+         6oqRzOakk4SoVpz6KkRFDaMSNxZhuT5aOguo4/tMK06cXL3kZno46ta0Z+Vi7+32mA
+         V3bgzUfMx0ViTP9Lt5QYYLEZ1dGdmImasTwcgPolvCx7SGFJ43KcCGzycLAxUbOzcY
+         tdvTN/SvINbmqyqyaVWC0wVc6ogksodwqUm8s88Mi5/u3DbKZG3Rd0cu11yYOsjcAL
+         iL8vgnSPjplDA==
+Date:   Tue, 22 Feb 2022 18:36:51 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org,
+        skomatineni@nvidia.com, ldewangan@nvidia.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de
+Subject: Re: [PATCH v2 4/5] spi: tegra210-quad: add acpi support
+Message-ID: <YhUtQ/8Kgcx4OY4S@sirena.org.uk>
+References: <20220222175611.58051-1-kyarlagadda@nvidia.com>
+ <20220222175611.58051-5-kyarlagadda@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2dt5HGRedkKEQZId"
 Content-Disposition: inline
-In-Reply-To: <1644813252-12897-3-git-send-email-quic_sibis@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220222175611.58051-5-kyarlagadda@nvidia.com>
+X-Cookie: I smell a wumpus.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,226 +59,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 13 Feb 20:34 PST 2022, Sibi Sankar wrote:
 
-> Add support for proxy interconnect bandwidth votes during modem bootup on
-> SC7280 SoCs.
-> 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
->  drivers/remoteproc/qcom_q6v5_mss.c | 95 +++++++++++++++++++++++++++++++++++++-
->  1 file changed, 94 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
-> index a2c231a17b2b..5a37628311c6 100644
-> --- a/drivers/remoteproc/qcom_q6v5_mss.c
-> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
-> @@ -12,6 +12,7 @@
->  #include <linux/devcoredump.h>
->  #include <linux/dma-mapping.h>
->  #include <linux/interrupt.h>
-> +#include <linux/interconnect.h>
->  #include <linux/kernel.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/module.h>
-> @@ -125,6 +126,18 @@
->  #define QDSP6SS_BOOT_CMD                0x404
->  #define BOOT_FSM_TIMEOUT                10000
->  
-> +struct interconnect_info {
+--2dt5HGRedkKEQZId
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This is a rather generic name.
+On Tue, Feb 22, 2022 at 11:26:10PM +0530, Krishna Yarlagadda wrote:
 
-> +	struct icc_path *path;
-> +	u32 average_bandwidth;
-> +	u32 peak_bandwidth;
-> +};
-> +
-> +struct qcom_mss_icc_res {
-> +	const char *name;
-> +	u32 average_bandwidth;
-> +	u32 peak_bandwidth;
-> +};
-> +
->  struct reg_info {
->  	struct regulator *reg;
->  	int uV;
-> @@ -142,6 +155,7 @@ struct rproc_hexagon_res {
->  	struct qcom_mss_reg_res *proxy_supply;
->  	struct qcom_mss_reg_res *fallback_proxy_supply;
->  	struct qcom_mss_reg_res *active_supply;
-> +	struct qcom_mss_icc_res *proxy_path;
->  	char **proxy_clk_names;
->  	char **reset_clk_names;
->  	char **active_clk_names;
-> @@ -202,6 +216,9 @@ struct q6v5 {
->  	int proxy_reg_count;
->  	int fallback_proxy_reg_count;
->  
-> +	struct interconnect_info interconnect[1];
+> Add ACPI ID for Tegra QUAD SPI. Switch to common device property calls.
+> Skip clock calls that are not updated in ACPI boot.
 
-If there is only one, then I think it's perfectly fine that we postpone
-the introduction of an array and the loops etc.
+> @@ -1377,6 +1400,8 @@ static int __maybe_unused tegra_qspi_runtime_suspen=
+d(struct device *dev)
+>  	struct spi_master *master =3D dev_get_drvdata(dev);
+>  	struct tegra_qspi *tqspi =3D spi_master_get_devdata(master);
+> =20
+> +	if (has_acpi_companion(tqspi->dev))
+> +		return 0;
+>  	/* flush all write which are in PPSB queue by reading back */
+>  	tegra_qspi_readl(tqspi, QSPI_COMMAND1);
 
-But if you see a reason to support multiple paths, I think we should
-utilize the icc bulk API.
+As well as clock stuff this is also skipping flushing of pending writes
+- is that intentional?  It's not called out in the changelog and seems
+like something that could cause issues if someone runs on a system where
+the firmware does implement runtime suspend.
 
-> +	int proxy_path_count;
-> +
->  	bool dump_mba_loaded;
->  	size_t current_dump_size;
->  	size_t total_dump_size;
-> @@ -267,6 +284,29 @@ static int q6v5_regulator_init(struct device *dev, struct reg_info *regs,
->  	return i;
->  }
->  
-> +static int q6v5_interconnect_init(struct device *dev, struct interconnect_info *interconnect,
-> +				  const struct qcom_mss_icc_res *icc_res)
-> +{
-> +	struct icc_path *path;
-> +	int i;
-> +
-> +	for (i = 0; icc_res[i].name; i++) {
-> +		path = devm_of_icc_get(dev, icc_res[i].name);
-> +		if (IS_ERR(path)) {
-> +			int ret = PTR_ERR(path);
-> +
-> +			dev_err_probe(dev, ret, "Failed to get %s interconnect\n", icc_res[i].name);
-> +			return ret;
-> +		}
-> +
-> +		interconnect[i].path = path;
-> +		interconnect[i].average_bandwidth = icc_res[i].average_bandwidth;
-> +		interconnect[i].peak_bandwidth = icc_res[i].peak_bandwidth;
-> +	}
-> +
-> +	return i;
-> +}
-> +
->  static int q6v5_regulator_enable(struct q6v5 *qproc,
->  				 struct reg_info *regs, int count)
->  {
-> @@ -364,6 +404,36 @@ static void q6v5_clk_disable(struct device *dev,
->  		clk_disable_unprepare(clks[i]);
->  }
->  
-> +static int q6v5_icc_enable(struct device *dev, struct interconnect_info *interconnect, int count)
-> +{
-> +	int ret;
-> +	int i;
-> +
-> +	for (i = 0; i < count; i++) {
-> +		ret = icc_set_bw(interconnect[i].path, interconnect[i].average_bandwidth,
-> +				 interconnect[i].peak_bandwidth);
-> +		if (ret)
-> +			dev_err(dev, "Failed enabling %s interconnect\n",
-> +				icc_get_name(interconnect[i].path));
-> +		goto err;
-> +	}
-> +
-> +	return 0;
-> +err:
-> +	for (i--; i >= 0; i--)
-> +		icc_set_bw(interconnect[i].path, 0, 0);
+--2dt5HGRedkKEQZId
+Content-Type: application/pgp-signature; name="signature.asc"
 
-devm_of_icc_get() will return an "enabled" path, but from that point we
-can use icc_enable() and icc_disable() to toggle if our vote should be
-taking part in the aggregation.
+-----BEGIN PGP SIGNATURE-----
 
-By using that we should be able to just icc_set_bw() in
-q6v5_interconnect_init(), call icc_disable() and from there on we can
-wrap our proxy vote in icc_enable() and icc_disable(). That way you
-don't need to copy average_bandwidth and peak_bandwidth into the
-interconnect_info.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIVLUIACgkQJNaLcl1U
+h9B91Af/V0Mz9zlkixlXsHowRNpP67V4tM0YmpfXrzB6Y1fCXNS+xNOoCC7CqsD7
+tkhG66C+UKCmENOKOso53ErNiSYDswdKQdawM8fEmRI0Bm2CNhyG6JayCeCmsgCx
+v2AMcW2Kw0pNAWJzR0SqJzreyT7A+zc4IrSt0dq45CFesYbwiayeEX11vzhzEL6z
+8WZwfG1N4bCKWQnt/Fhu7unGmM42hIuWB3dXKm7XZP3+3QxxwUNYOPE6ZSUn6Vyz
+wS9jxAknsbiNB7Nd8fayHaQrBF8w3Tw6Kg4oNLAFx198yz87DvcCUUlr2c2W/zgs
+WRAEZKb3NizNWeBI6yHA0py8jXNEvQ==
+=n2OX
+-----END PGP SIGNATURE-----
 
-Regards,
-Bjorn
-
-> +
-> +	return ret;
-> +}
-> +
-> +static void q6v5_icc_disable(struct device *dev, struct interconnect_info *interconnect, int count)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < count; i++)
-> +		icc_set_bw(interconnect[i].path, 0, 0);
-> +}
-> +
->  static int q6v5_pds_enable(struct q6v5 *qproc, struct device **pds,
->  			   size_t pd_count)
->  {
-> @@ -1011,10 +1081,14 @@ static int q6v5_mba_load(struct q6v5 *qproc)
->  	if (ret)
->  		return ret;
->  
-> +	ret = q6v5_icc_enable(qproc->dev, qproc->interconnect, qproc->proxy_path_count);
-> +	if (ret)
-> +		goto disable_irqs;
-> +
->  	ret = q6v5_pds_enable(qproc, qproc->proxy_pds, qproc->proxy_pd_count);
->  	if (ret < 0) {
->  		dev_err(qproc->dev, "failed to enable proxy power domains\n");
-> -		goto disable_irqs;
-> +		goto disable_path;
->  	}
->  
->  	ret = q6v5_regulator_enable(qproc, qproc->fallback_proxy_regs,
-> @@ -1158,6 +1232,8 @@ static int q6v5_mba_load(struct q6v5 *qproc)
->  			       qproc->fallback_proxy_reg_count);
->  disable_proxy_pds:
->  	q6v5_pds_disable(qproc, qproc->proxy_pds, qproc->proxy_pd_count);
-> +disable_path:
-> +	q6v5_icc_disable(qproc->dev, qproc->interconnect, qproc->proxy_path_count);
->  disable_irqs:
->  	qcom_q6v5_unprepare(&qproc->q6v5);
->  
-> @@ -1232,6 +1308,7 @@ static void q6v5_mba_reclaim(struct q6v5 *qproc)
->  				       qproc->fallback_proxy_reg_count);
->  		q6v5_regulator_disable(qproc, qproc->proxy_regs,
->  				       qproc->proxy_reg_count);
-> +		q6v5_icc_disable(qproc->dev, qproc->interconnect, qproc->proxy_path_count);
->  	}
->  }
->  
-> @@ -1611,6 +1688,7 @@ static void qcom_msa_handover(struct qcom_q6v5 *q6v5)
->  	q6v5_regulator_disable(qproc, qproc->fallback_proxy_regs,
->  			       qproc->fallback_proxy_reg_count);
->  	q6v5_pds_disable(qproc, qproc->proxy_pds, qproc->proxy_pd_count);
-> +	q6v5_icc_disable(qproc->dev, qproc->interconnect, qproc->proxy_path_count);
->  }
->  
->  static int q6v5_init_mem(struct q6v5 *qproc, struct platform_device *pdev)
-> @@ -1942,6 +2020,13 @@ static int q6v5_probe(struct platform_device *pdev)
->  	}
->  	qproc->active_reg_count = ret;
->  
-> +	ret = q6v5_interconnect_init(&pdev->dev, qproc->interconnect, desc->proxy_path);
-> +	if (ret < 0) {
-> +		dev_err(&pdev->dev, "Failed to get proxy interconnects.\n");
-> +		goto free_rproc;
-> +	}
-> +	qproc->proxy_path_count = ret;
-> +
->  	ret = q6v5_pds_attach(&pdev->dev, qproc->proxy_pds,
->  			      desc->proxy_pd_names);
->  	/* Fallback to regulators for old device trees */
-> @@ -2077,6 +2162,14 @@ static const struct rproc_hexagon_res sc7280_mss = {
->  		"mss",
->  		NULL
->  	},
-> +	.proxy_path = (struct qcom_mss_icc_res[]) {
-> +		{
-> +			.name = "imem",
-> +			.average_bandwidth = 0,
-> +			.peak_bandwidth = 8532000,
-> +		},
-> +		{}
-> +	},
->  	.need_mem_protection = true,
->  	.has_alt_reset = false,
->  	.has_mba_logs = true,
-> -- 
-> 2.7.4
-> 
+--2dt5HGRedkKEQZId--
