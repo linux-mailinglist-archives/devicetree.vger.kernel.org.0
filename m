@@ -2,137 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8552C4BFE60
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:21:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B35704BFE65
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 17:21:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233563AbiBVQV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 11:21:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47438 "EHLO
+        id S233521AbiBVQWW convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Feb 2022 11:22:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230429AbiBVQV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:21:58 -0500
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D779827B3C;
-        Tue, 22 Feb 2022 08:21:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=ev42OadWq8vJV+artW66Bqa32qEn5wnRjyQS5YnZUfA=; b=K85J3/EmImSwh8Nm5XOiFvEDhn
-        10fci+/n1GGjuKrYNG9qXk0EV8sGEgb51sAWMB+hp4Pe56CU4l1OyYkpdiSQw+3IaRB8Dq7CNzVVV
-        cKtLXyA7PaUtOFdiGX8PtGssDgZi3O04oAx3J0iK5vrJQUIYJB5ESrw1xSymRNJbTg2v3/iT3OobL
-        OFmKLXDV7AiNAiX/F63tCkivHIVYGv51ygmO6qZbbdVm0oAIWk66lU+Gpd2iqUhdF/UIpa6s5Cn5y
-        8gdTWUTyGvFgEjbA2/HN8DVe9tPEcGSfG0LVnWLWYEZavmOL885zA7WzTj5eHaFuKE42rJh/0zYc+
-        uuL2MGxg==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1nMXuq-00AbjJ-8Z; Tue, 22 Feb 2022 16:21:28 +0000
-Date:   Tue, 22 Feb 2022 08:21:28 -0800
-From:   Christoph Hellwig <hch@infradead.org>
-To:     Mikko Perttunen <mperttunen@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
-        will@kernel.org, robh+dt@kernel.org, robin.murphy@arm.com,
-        linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/9] gpu: host1x: Add context bus
-Message-ID: <YhUNiHiYdQfxJybk@infradead.org>
-References: <20220218113952.3077606-1-mperttunen@nvidia.com>
- <20220218113952.3077606-3-mperttunen@nvidia.com>
+        with ESMTP id S230429AbiBVQWW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 11:22:22 -0500
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11EE66C96A;
+        Tue, 22 Feb 2022 08:21:55 -0800 (PST)
+Received: from fraeml715-chm.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4K34Cl08jQz683mZ;
+        Wed, 23 Feb 2022 00:20:51 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml715-chm.china.huawei.com (10.206.15.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Tue, 22 Feb 2022 17:21:52 +0100
+Received: from localhost (10.47.30.92) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.21; Tue, 22 Feb
+ 2022 16:21:51 +0000
+Date:   Tue, 22 Feb 2022 16:21:50 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+CC:     Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
+        "Sa, Nuno" <Nuno.Sa@analog.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Jonathan Cameron" <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH v3 1/3] iio: dac: add support for ltc2688
+Message-ID: <20220222162150.0000361f@Huawei.com>
+In-Reply-To: <YhPezO7CcDOAK/HU@smile.fi.intel.com>
+References: <Yf60A1UkbBtQ68qv@smile.fi.intel.com>
+        <PH0PR03MB678628C341A1972BC31F5BBA992B9@PH0PR03MB6786.namprd03.prod.outlook.com>
+        <YgD91zg4L1S5KH5k@smile.fi.intel.com>
+        <e1bd9f14e63e55f48f804568705a9ab8c1a09f62.camel@gmail.com>
+        <Ygpd7pebiuGuB8nT@smile.fi.intel.com>
+        <11bd63bc07fd406bfa31bdc38b597011cc9312cc.camel@gmail.com>
+        <YhImsJidUu2fMKgu@smile.fi.intel.com>
+        <3f2523127eb320a9825e272353afea9673e5d003.camel@gmail.com>
+        <YhPGJqEuTQ3TBy46@smile.fi.intel.com>
+        <20220221173045.00003969@Huawei.com>
+        <YhPezO7CcDOAK/HU@smile.fi.intel.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220218113952.3077606-3-mperttunen@nvidia.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [10.47.30.92]
+X-ClientProxiedBy: lhreml713-chm.china.huawei.com (10.201.108.64) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 18, 2022 at 01:39:45PM +0200, Mikko Perttunen wrote:
-> The context bus is a "dummy" bus that contains struct devices that
-> correspond to IOMMU contexts assigned through Host1x to processes.
-> 
-> Even when host1x itself is built as a module, the bus is registered
-> in built-in code so that the built-in ARM SMMU driver is able to
-> reference it.
-> 
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-> ---
->  drivers/gpu/Makefile               |  3 +--
->  drivers/gpu/host1x/Kconfig         |  5 +++++
->  drivers/gpu/host1x/Makefile        |  1 +
->  drivers/gpu/host1x/context_bus.c   | 31 ++++++++++++++++++++++++++++++
->  include/linux/host1x_context_bus.h | 15 +++++++++++++++
->  5 files changed, 53 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/gpu/host1x/context_bus.c
->  create mode 100644 include/linux/host1x_context_bus.h
-> 
-> diff --git a/drivers/gpu/Makefile b/drivers/gpu/Makefile
-> index 835c88318cec..8997f0096545 100644
-> --- a/drivers/gpu/Makefile
-> +++ b/drivers/gpu/Makefile
-> @@ -2,7 +2,6 @@
->  # drm/tegra depends on host1x, so if both drivers are built-in care must be
->  # taken to initialize them in the correct order. Link order is the only way
->  # to ensure this currently.
-> -obj-$(CONFIG_TEGRA_HOST1X)	+= host1x/
-> -obj-y			+= drm/ vga/
-> +obj-y			+= host1x/ drm/ vga/
->  obj-$(CONFIG_IMX_IPUV3_CORE)	+= ipu-v3/
->  obj-$(CONFIG_TRACE_GPU_MEM)		+= trace/
-> diff --git a/drivers/gpu/host1x/Kconfig b/drivers/gpu/host1x/Kconfig
-> index 6815b4db17c1..1861a8180d3f 100644
-> --- a/drivers/gpu/host1x/Kconfig
-> +++ b/drivers/gpu/host1x/Kconfig
-> @@ -1,8 +1,13 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> +
-> +config TEGRA_HOST1X_CONTEXT_BUS
-> +	bool
-> +
->  config TEGRA_HOST1X
->  	tristate "NVIDIA Tegra host1x driver"
->  	depends on ARCH_TEGRA || (ARM && COMPILE_TEST)
->  	select DMA_SHARED_BUFFER
-> +	select TEGRA_HOST1X_CONTEXT_BUS
->  	select IOMMU_IOVA
->  	help
->  	  Driver for the NVIDIA Tegra host1x hardware.
-> diff --git a/drivers/gpu/host1x/Makefile b/drivers/gpu/host1x/Makefile
-> index d2b6f7de0498..c891a3e33844 100644
-> --- a/drivers/gpu/host1x/Makefile
-> +++ b/drivers/gpu/host1x/Makefile
-> @@ -18,3 +18,4 @@ host1x-y = \
->  	hw/host1x07.o
->  
->  obj-$(CONFIG_TEGRA_HOST1X) += host1x.o
-> +obj-$(CONFIG_TEGRA_HOST1X_CONTEXT_BUS) += context_bus.o
-> diff --git a/drivers/gpu/host1x/context_bus.c b/drivers/gpu/host1x/context_bus.c
-> new file mode 100644
-> index 000000000000..2625914f3c7d
-> --- /dev/null
-> +++ b/drivers/gpu/host1x/context_bus.c
-> @@ -0,0 +1,31 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2021, NVIDIA Corporation.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/of.h>
-> +
-> +struct bus_type host1x_context_device_bus_type = {
-> +	.name = "host1x-context",
-> +};
-> +EXPORT_SYMBOL(host1x_context_device_bus_type);
+On Mon, 21 Feb 2022 20:49:48 +0200
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 
-EXPORT_SYMBOL_GPL, please.
+> On Mon, Feb 21, 2022 at 05:30:45PM +0000, Jonathan Cameron wrote:
+> > On Mon, 21 Feb 2022 19:04:38 +0200
+> > Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+> >   
+> > > On Mon, Feb 21, 2022 at 01:48:12PM +0100, Nuno Sá wrote:  
+> > > > On Sun, 2022-02-20 at 13:32 +0200, Andy Shevchenko wrote:    
+> > > > > On Fri, Feb 18, 2022 at 02:51:28PM +0100, Nuno Sá wrote:    
+> > > > > > On Mon, 2022-02-14 at 15:49 +0200, Andy Shevchenko wrote:    
+> > > > > > > On Mon, Feb 07, 2022 at 09:19:46PM +0100, Nuno Sá wrote:    
+> > > > > > > > On Mon, 2022-02-07 at 13:09 +0200, Andy Shevchenko wrote:    
+> > > > > > > > > On Sun, Feb 06, 2022 at 01:19:59PM +0000, Sa, Nuno wrote:    
+> > > > > > > > > > > From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > > > > > > > > > > Sent: Saturday, February 5, 2022 6:30 PM
+> > > > > > > > > > > On Fri, Jan 21, 2022 at 03:24:59PM +0100, Nuno Sá wrote:    
+> > > 
+> > > ...
+> > >   
+> > > > > > > > > > > > +       ret = kstrtou16(buf, 10, &val);    
+> > > > > > > > > > > 
+> > > > > > > > > > > In other function you have long, here u16. I would expect that
+> > > > > > > > > > > the types are of the same class, e.g. if here you have u16,
+> > > > > > > > > > > then there something like s32 / s64.  Or here something like
+> > > > > > > > > > > unsigned short.
+> > > > > > > > > > > 
+> > > > > > > > > > > A bit of elaboration why u16 is chosen here?    
+> > > > > > > > > > 
+> > > > > > > > > > Well, I never really saw any enforcement here to be honest
+> > > > > > > > > > (rather than using stdint types...). So I pretty much just use
+> > > > > > > > > > these in unsigned types because I'm lazy and u16 is faster to
+> > > > > > > > > > type than unsigned short...  In this case, unless Jonathan really
+> > > > > > > > > > asks for it, I prefer not to go all over the driver and change
+> > > > > > > > > > this...    
+> > > > > > > > > 
+> > > > > > > > > This is about consistency. It may work as is, but it feels not good
+> > > > > > > > > when for int (or unsigned int) one uses fixed-width types. Also
+> > > > > > > > > it's non- written advice to use fixed-width variables when it's
+> > > > > > > > > about programming registers or so, for the rest, use POD types.    
+> > > > > > 
+> > > > > > Ok, going a bit back in the discussion, you argued that in one place I
+> > > > > > was using long while here u16. Well, in the place I'm using long, that
+> > > > > > was on purpose because that value is to be compared against an array of
+> > > > > > longs (which has to be long because it depends on CCF rates). I guess I
+> > > > > > can als0 use s64, but there is also a reason why long was used.
+> > > > > > 
+> > > > > > In the u16 case, we really want to have 2 bytes because I'm going to use
+> > > > > > that value to write the dac code which is 2 bytes.    
+> > > > > 
+> > > > > Okay, that's what I want to hear. If it's indeed goes to be a value to the
+> > > > > register, then it's fine.
+> > > > > 
+> > > > > Perhaps a comment?    
+> > > > 
+> > > > I guess you mean to have a comment to state that here we have fixed
+> > > > size type (as opposed to long, used in another place), because we
+> > > > directly use the value on a register write?
+> > > > 
+> > > > Asking it because I'm not planning to add comments in all the places
+> > > > where I have fixed size types for register read/writes...    
+> > > 
+> > > Thinking more about it and now I'm convinced that using the value that goes to
+> > > the register in ABI is bad idea (means that user space must not care about the
+> > > size or contents of the hardware register and should be abstract representation
+> > > of the HW).
+> > > 
+> > > OTOH this seems to be "raw" value of something. So, I maybe missed the convention
+> > > in IIO about this kind of values WRT the variable types used on ABI side.
+> > > 
+> > > That said, I leave it to Jonathan since I'm not convinced that u16 is a proper
+> > > choice here.  
+> > 
+> > From a userspace point of view it doesn't care as it's writing a string.
+> > In this particular case the string only has valid values that from 0-(2^16-1)
+> > (i.e. 16 bits).  So if it writes outside of that range it is an error.
+> > You could read it into an unsigned long and then check against the range,
+> > but there is little point given you'd still return an error if it was out of
+> > range.  The fact that kstrto16() does that for you really just a shortcut
+> > though it will return -ERANGE rather than perhaps -EINVAL which might be used
+> > for a more generic "not this value".
+> > 
+> > Userspace can also read the range that is acceptable from
+> > out_voltage0_raw_available [0 1 2^16-1] and hence not write an invalid value
+> > in the first place - which is obviously preferred to getting an error.
+> > Scaling etc is also expressed to userspace so it it wants to write a particular
+> > voltage it can perform the appropriate scaling. Note that moving linear scaling
+> > like this to userspace allows easy use of floating point + may be a significant
+> > performance advantage if using the chrdev interface which uses the same
+> > approach (and values) as the sysfs interface.  
+> 
+> With the same logic it can be unsigned short, no?
 
-But the pattern that this copies in arm_smmu_bus_init is really
-ugly.  I think we need to figure out a way todo that without having
-to export all the low-level bus types.
+It could be any integer as long as it is at least as large as a u16.
+But it it is larger than a u16 you'll need an additional check on the
+maximum.
+
+> 
+> The point is to use u16 when it's indeed fixed-width value that goes to
+> hardware or being used as part of a protocol. And thus mentioning of the
+> IOCTL protocols may justify the choice. Then the question to the other
+> values, shouldn't they be also fixed-width ones?
+
+If we had a fixed width type that took the values 0-4 sure using such
+a magic type would make sense, but we don't.
+
+Note that internally kstrtou16 is just strtoull and a range check.
+The one other case we have here does pretty much the same thing.
+
+Jonathan
+
+> 
+> > > > > > > > I can understand your reasoning but again this is something that I
+> > > > > > > > never really saw being enforced. So, I'm more than ok to change it if
+> > > > > > > > it really becomes something that we will try to "enforce" in IIO.
+> > > > > > > > Otherwise it just feels as a random nitpick :).    
+> > > > > > > 
+> > > > > > > No, this is about consistency and common sense. If you define type uXX,
+> > > > > > > we have an API for that exact type. It's confusing why POD type APIs
+> > > > > > > are used with fixed-width types or vise versa.
+> > > > > > > 
+> > > > > > > Moreover (which is pure theoretical, though) some architectures might
+> > > > > > > have no (mutual) equivalency between these types.    
+> 
+
