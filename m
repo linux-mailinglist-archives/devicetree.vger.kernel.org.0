@@ -2,88 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 525EE4C0345
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:47:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 489A44C034C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 21:49:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235506AbiBVUrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 15:47:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60838 "EHLO
+        id S235576AbiBVUsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 15:48:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235570AbiBVUrI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:47:08 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ED004CD43
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:46:39 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 98B04FF807;
-        Tue, 22 Feb 2022 20:46:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1645562792;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=U+URZgxj9nzytd/RWgKSb1xmxxLoF8F2uzNEWDYieyE=;
-        b=gio0QLnASurQ4A/a73tVkPgJfzoAlaWqc6Djwbs1yQ7uhkJRDq/NrTjENaLA5wG1C0FH8x
-        pbgrOjJyw06rddJwn+1mOyJ/hQWsVe3lKvKgrP0Hcnlz+/CTyI7SjDcfORZUZZtsg2AQF0
-        yjtc3o40jZBQICxa5xgKLwpvPFdDGIB9Sncv4DVDQKVdidwuezxPf8TBfYkJM28qr1nv/3
-        u+61JxLlDYDaU7u9x+AAPNgu0FKr9BZcnIfgpk27A8bgJwKw7osaOvo+vz6fDsufyQ+zOM
-        23y+rDrZ7JdEQ0TrU4Xa7F9KX3UmIHUTrF8b9IstKPb/NKmM/B8rWXMxXQUKbw==
-Date:   Tue, 22 Feb 2022 21:46:30 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Hari Prasath <Hari.PrasathGE@microchip.com>
-Cc:     nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        davem@davemloft.net, ludovic.desroches@microchip.com,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux@armlinux.org.uk
-Subject: Re: [PATCH] 1/3] ARM: dts: at91: sama7g5: Restrict ns_sram
-Message-ID: <YhVLpnQ5fKs5x1Hq@piout.net>
-References: <20220222113924.25799-1-Hari.PrasathGE@microchip.com>
+        with ESMTP id S231274AbiBVUst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 15:48:49 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D4F8A2F2B
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:23 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id k22-20020a9d4b96000000b005ad5211bd5aso8639776otf.8
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 12:48:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=abzbFZd3TPTA4Go+lX5G5nJcRHQv2voi7TDO266GTxo=;
+        b=bE1/yeOloum46YlusWndmuMHyJDVbuCOKxi7LzM43W6kLZSY5/aP7dpw83JCFGjpbg
+         MuLW8oE4pbJOIDJW4KhDlBpis+FdejzShVly+iPEsgn0mTmfZRjpFhNAbpvkGWlfUbKs
+         tZ+1u40aGQmj4CxRPTp9j+YNTlwuC4zcWX6Xq6t31ETRqb/3yRIKyOdHDaA/pu5XYCCv
+         4N22WUTc2cDJ2UDqJQ0kwC1KPCfNuXTnqAkdBenSH7X52JG1GCgGw+KzEKzEkDdYhvc6
+         S3SRfKIkttpI6b5LohIIsYWvnDcOtjz6m8b/Zu1gtsMaxJpRWUBqMrH1mJHWLn1BWBgJ
+         jv7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=abzbFZd3TPTA4Go+lX5G5nJcRHQv2voi7TDO266GTxo=;
+        b=xnzosVNKGj1EXYh82Y+xMTOHzq51uDDc8ivSTPvKtH4G5kElcOdMsFcPGVzOzH4+a+
+         AZSRIVIqU+eRemInneC66UwjM3t4ITuxZ9RcQwT0mcA69Kgm0c4ZiBv0J76NVwnBLmad
+         PFMlbKLlZ4sOJfpOA2nhgqP0BcQyfNZb9H6jB2IJYxNK8cD4UI0Pd2cWTxK0znMBYOKB
+         r+d+IuE/IMbkI0Y6MwqJlEVsdjE49NlInOsL8BKjjZ8BbwCgHc1KF1beCw4RBg25c6vs
+         vmQvRR3TdDkCR8pwWNyXl3wGm+N3gGU7Q8HU9Qo9kHFdRhM0lwoR9cYYym6j/WSojLtW
+         G9pw==
+X-Gm-Message-State: AOAM533a8KfY4szbkGwA2nL74RVby2nymfLoPfaoM0NdIuQiey2qLy8Y
+        jII+hm9QgApeTiKpqJgQoMQI3Q==
+X-Google-Smtp-Source: ABdhPJwg12YQEEr0/64hFTYZhFiG9EZriyVRTIR/jLqxzfJ1/ovNNDL9pkKJyO2n8bLO2oKPpSFvqA==
+X-Received: by 2002:a05:6830:2a05:b0:5af:1417:1218 with SMTP id y5-20020a0568302a0500b005af14171218mr5015956otu.237.1645562902530;
+        Tue, 22 Feb 2022 12:48:22 -0800 (PST)
+Received: from rivos-atish.. (adsl-70-228-75-190.dsl.akrnoh.ameritech.net. [70.228.75.190])
+        by smtp.gmail.com with ESMTPSA id o14sm16508197oaq.37.2022.02.22.12.48.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Feb 2022 12:48:21 -0800 (PST)
+From:   Atish Patra <atishp@rivosinc.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Atish Patra <atishp@rivosinc.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Atish Patra <atishp@atishpatra.org>,
+        Anup Patel <anup@brainfault.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv@lists.infradead.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v5 0/6] Provide a fraemework for RISC-V ISA extensions 
+Date:   Tue, 22 Feb 2022 12:48:05 -0800
+Message-Id: <20220222204811.2281949-1-atishp@rivosinc.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220222113924.25799-1-Hari.PrasathGE@microchip.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2022 17:09:22+0530, Hari Prasath wrote:
-> Limit the size of SRAM available for the rest of kernel via genalloc API's to
-> 13k. The rest of the SRAM is used by CAN controllers and hence this restriction.
-> 
+This series implements a generic framework to parse multi-letter ISA
+extensions. This series is based on Tsukasa's v3 isa extension improvement
+series[1]. I have fixed few bugs and improved comments from that series
+(PATCH1-3). I have not used PATCH 4 from that series as we are not using
+ISA extension versioning as of now. We can add that later if required.
 
-Certainly not, if the can controller need the SRAM, they have to
-allocate it properly.
+PATCH 4 allows the probing of multi-letter extensions via a macro.
+It continues to use the common isa extensions between all the harts.
+Thus hetergenous hart systems will only see the common ISA extensions.
 
-> Signed-off-by: Hari Prasath <Hari.PrasathGE@microchip.com>
-> ---
->  arch/arm/boot/dts/sama7g5.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
-> index eddcfbf4d223..6c7012f74b10 100644
-> --- a/arch/arm/boot/dts/sama7g5.dtsi
-> +++ b/arch/arm/boot/dts/sama7g5.dtsi
-> @@ -65,7 +65,7 @@
->  		compatible = "mmio-sram";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> -		reg = <0x100000 0x20000>;
-> +		reg = <0x100000 0x3400>;
->  		ranges;
->  	};
->  
-> -- 
-> 2.17.1
-> 
+PATCH 6 improves the /proc/cpuinfo interface for the available ISA extensions
+via /proc/cpuinfo.
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Here is the example output of /proc/cpuinfo:
+(with debug patches in Qemu and Linux kernel)
+
+# cat /proc/cpuinfo 
+processor	: 0
+hart		: 0
+isa		: rv64imafdch
+isa-ext		: svpbmt svnapot svinval 
+mmu		: sv48
+
+processor	: 1
+hart		: 1
+isa		: rv64imafdch
+isa-ext		: svpbmt svnapot svinval 
+mmu		: sv48
+
+processor	: 2
+hart		: 2
+isa		: rv64imafdch
+isa-ext		: svpbmt svnapot svinval 
+mmu		: sv48
+
+processor	: 3
+hart		: 3
+isa		: rv64imafdch
+isa-ext		: svpbmt svnapot svinval 
+mmu		: sv48
+
+Anybody adding support for any new multi-letter extensions should add an
+entry to the riscv_isa_ext_id and the isa extension array. 
+E.g. The patch[2] adds the support for various ISA extensions.
+
+[1] https://lore.kernel.org/all/0f568515-a05e-8204-aae3-035975af3ee8@irq.a4lg.com/T/
+[2] https://github.com/atishp04/linux/commit/e9e240c9a854dceb434ceb53bdbe82a657bee5f2 
+
+Changes from v4->v5:
+1. Improved the /proc/cpuinfo to include only valid & enabled extensions
+2. Improved the multi-letter parsing by skipping the 'su' modes generated in
+   Qemu as suggested by Tsukasa.
+
+Changes from v3->v4:
+1. Changed temporary variable for current hart isa to a bitmap
+2. Added reviewed-by tags.
+3. Improved comments
+
+Changes from v2->v3:
+1. Updated comments to mark clearly a fix required for Qemu only.
+2. Fixed a bug where the 1st multi-letter extension can be present without _
+3. Added Tested by tags. 
+
+Changes from v1->v2:
+1. Instead of adding a separate DT property use the riscv,isa property.
+2. Based on Tsukasa's v3 isa extension improvement series.
+
+Atish Patra (3):
+RISC-V: Implement multi-letter ISA extension probing framework
+RISC-V: Do no continue isa string parsing without correct XLEN
+RISC-V: Improve /proc/cpuinfo output for ISA extensions
+
+Tsukasa OI (3):
+RISC-V: Correctly print supported extensions
+RISC-V: Minimal parser for "riscv, isa" strings
+RISC-V: Extract multi-letter extension names from "riscv, isa"
+
+arch/riscv/include/asm/hwcap.h |  25 +++++++
+arch/riscv/kernel/cpu.c        |  51 ++++++++++++-
+arch/riscv/kernel/cpufeature.c | 130 +++++++++++++++++++++++++++------
+3 files changed, 183 insertions(+), 23 deletions(-)
+
+--
+2.30.2
+
