@@ -2,154 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E9E44BF323
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 09:06:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CABAB4BF32B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 09:08:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229445AbiBVIG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 03:06:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45584 "EHLO
+        id S229481AbiBVIHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 03:07:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiBVIGz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 03:06:55 -0500
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 522E6BE;
-        Tue, 22 Feb 2022 00:06:30 -0800 (PST)
-Received: by mail-ej1-f41.google.com with SMTP id vz16so40401725ejb.0;
-        Tue, 22 Feb 2022 00:06:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=HN8iQ48TFLf5TAJFPvpzMrdS4ER89HB927MvRfaxKLQ=;
-        b=lhD2ASO6iIKxsFTgRm6+aEZmuXEdUNCYArCIFHiO53emIqTlBzzDS70dsIP4SCwIIm
-         ImXs2An/6Y93lMPMPq4jKIcwdOloi9zzEpd++ddXNJWlQSBOrjpX/8JvdDZa7apehlzI
-         xegmnS0l/2ieO54HtlZ2q3E8PpcCfk1lpBZIwhOrpElnAFzvA0Uckk4zXnaNFbF7BkZt
-         3U9vVZyui1XhbFKCR1kWpyRm0RyuplDdflQMRuxRw9eNGYA9r2jezt+yYL89uydLwmKZ
-         tGC6UV3+OLWdNrU6Tqtdzv7u52KKtht1k3pKWfVCrLueisrOxPuJlU0YkFXwqswtaQ8D
-         ywVw==
-X-Gm-Message-State: AOAM531uJSEJmE6gnhusGKt7Td9ae5a//fWDEj3lyFg92wnr7BQq29sk
-        CXkXOWrpBs0wzCiY6w27+nNxDkRLQ9A=
-X-Google-Smtp-Source: ABdhPJw8lk6p+R8nygZLxTy2ou48SBS/IXDH881ulump5Nl3GLTOrPreVBmc7IeZYvVjQb8NzPDueQ==
-X-Received: by 2002:a17:906:4ccd:b0:6b7:75ca:3eac with SMTP id q13-20020a1709064ccd00b006b775ca3eacmr18490885ejt.167.1645517188871;
-        Tue, 22 Feb 2022 00:06:28 -0800 (PST)
-Received: from [192.168.0.122] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.googlemail.com with ESMTPSA id kw5sm6098484ejc.140.2022.02.22.00.06.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Feb 2022 00:06:28 -0800 (PST)
-Message-ID: <7f17ab8f-429f-d2e0-8f5f-bfa2dd19cc49@kernel.org>
-Date:   Tue, 22 Feb 2022 09:06:25 +0100
+        with ESMTP id S229379AbiBVIHX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 03:07:23 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5A50E149BAD;
+        Tue, 22 Feb 2022 00:06:58 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C5AB41063;
+        Tue, 22 Feb 2022 00:06:57 -0800 (PST)
+Received: from [10.57.9.152] (unknown [10.57.9.152])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D11473F5A1;
+        Tue, 22 Feb 2022 00:06:55 -0800 (PST)
+Message-ID: <147e48e5-e310-cd8f-ba8c-ff32e3094be3@arm.com>
+Date:   Tue, 22 Feb 2022 08:06:54 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
+Subject: Re: [RFC][PATCH 1/2] dt-bindings: power: add Energy Model bindings
 Content-Language: en-US
-To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <cover.1645460043.git.oleksii_moisieiev@epam.com>
- <2546477f-4190-e838-3095-f47b31802445@kernel.org>
- <20220221213932.GA164964@EPUAKYIW015D>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220221213932.GA164964@EPUAKYIW015D>
-Content-Type: text/plain; charset=UTF-8
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
+        rafael@kernel.org, daniel.lezcano@linaro.org, nm@ti.com,
+        sboyd@kernel.org, mka@chromium.org, dianders@chromium.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <20220221225131.15836-1-lukasz.luba@arm.com>
+ <20220221225131.15836-2-lukasz.luba@arm.com>
+ <20220222030337.ijnfrh367illmidr@vireshk-i7>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+In-Reply-To: <20220222030337.ijnfrh367illmidr@vireshk-i7>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/02/2022 22:39, Oleksii Moisieiev wrote:
-> Hi Krzysztof,
-> 
-> On Mon, Feb 21, 2022 at 10:01:43PM +0100, Krzysztof Kozlowski wrote:
->> On 21/02/2022 18:26, Oleksii Moisieiev wrote:
->>> Introducing new parameter called scmi_devid to the device-tree bindings.
->>> This parameter should be set for the device nodes, which has
->>> clocks/power-domains/resets working through SCMI.
->>> Given parameter should set the device_id, needed to set device
->>> permissions in the Firmware. This feature will be extremely useful for
->>> the virtualized systems, which has more that one Guests running on the
->>> system at the same time or for the syestems, which require several
->>> agents with different permissions. Trusted agent will use scmi_devid to
->>> set the Device permissions for the Firmware (See Section 4.2.2.10 [0]
->>> for details).
->>> Agents concept is described in Section 4.2.1 [0].
->>>
->>> scmi_devid in Device-tree node example:
->>> usb@e6590000
->>> {
->>>     scmi_devid = <19>;
->>>     clocks = <&scmi_clock 3>, <&scmi_clock 2>;
->>>     resets = <&scmi_reset 10>, <&scmi_reset 9>;
->>>     power-domains = <&scmi_power 0>;
->>> };
+Hi Viresh,
+
+Thanks for having a look at it.
+
+On 2/22/22 03:03, Viresh Kumar wrote:
+> On 21-02-22, 22:51, Lukasz Luba wrote:
+>> Add DT bindings for the Energy Model information.
 >>
->> And how do you prevent DT overlay adding such devid to any other node
->> thus allowing any other device to send requests with given devid?
+>> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
+>> ---
+>>   .../bindings/power/energy-model.yaml          | 51 +++++++++++++++++++
+>>   1 file changed, 51 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/power/energy-model.yaml
 >>
-> Thank you for the quick response.
-> scmi_devid value will be used only by Trusted Agent when the device
-> permissions are set. Non-trusted agents, which in our case are
-> represented as Guest OS are using scmi drivers, already present in linux
-> kernel, ignores scmi_devid and uses scmi_clocks, scmi_power, scmi_reset
-> nodes to access to SCMI protocol.
-
-Ah, ok.
-
+>> diff --git a/Documentation/devicetree/bindings/power/energy-model.yaml b/Documentation/devicetree/bindings/power/energy-model.yaml
+>> new file mode 100644
+>> index 000000000000..804a9b324925
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/power/energy-model.yaml
+>> @@ -0,0 +1,51 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/power/energy-model.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Energy Model Bindings
+>> +
+>> +maintainers:
+>> +  - Lukasz Luba <lukasz.luba@arm.com>
+>> +
+>> +description: |+
+>> +  Devices work at specific performance states (frequencies). The power which
+>> +  is used at a given performance state is an important information. A framework
+>> +  which maintains this information is Energy Model. This document defines
+>> +  bindings for these Energy Model performance states applicable across wide
+>> +  range of devices. For illustration purpose, this document uses GPU as a device.
+>> +
+>> +  This binding only supports frequency-power pairs.
+>> +
+>> +select: true
+>> +
+>> +properties:
+>> +  operating-points:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>> +    items:
+>> +      items:
+>> +        - description: Frequency in kHz
+>> +        - description: Power in uW
+>> +
+>> +
+>> +additionalProperties: true
+>> +examples:
+>> +    {
+>> +       gpu_energy_model: energy-model {
+>> +               compatible = "energy-model";
+>> +               energy-model-entries = <
+>> +                               200000 300000
+>> +                               297000 500000
+>> +                               400000 800000
+>> +                               500000 1400000
+>> +                               600000 2000000
+>> +                               800000 2800000
+>> +                               >;
+>> +       };
+>> +    };
+>> +
+>> +    &gpu {
+>> +       energy-model = <&gpu_energy_model>;
+>> +    };
 > 
->> Plus few technicalities:
->> 1. Hyphen, not underscore in property name, so scmi-devid.
+> What about getting this from the OPP table instead? There is no point adding
+> similar tables for a device.
 > 
-> Thanks for the tip, I will change that in v2.
 
-Few more thoughts:
-1. This looks specific to ARM SCMI, so you also need vendor prefix, so
-something like:
-arm,scmi-devid
-arm,scmi-device-id
+I'm not sure if that would be flexible enough to meet the requirement:
+power for each OPP might be different in one board vs. other board.
 
-2. Does your example work properly? Passes dt_binding_check? Reg looks
-different than unit-address.
+Power can be different because of static power, which might vary due to
+different temperature that the SoC operates at a particular OPP. It can
+be due to: better heat sink (or no at all like on dev board), bigger PCB
+with fat copper layers, different location of hot devices (like PMIC) on 
+the PCB, missing some hot devices on the PCB (fast charger), case, etc.
 
+The 'advanced' EM and this DT array allows to provide avg power from
+measurements for a particular board and for each OPP independently.
 
-> 
->> 2. Your schema does is not selected by anything. How is it intended to
->> be used? Nothing is including it, either...
->>
-> 
-> The idea is to use this parameter to set the device_id for the device in
-> the device-tree, which matches to the device mapping in the Firmware, so
-> Trusted Agent can use it to the device permissions.
-> Please see Sections 4.2.2.10 and 4.2.1 [0] (Link was provided in the
-> cover letter).
-> 
-> I'm currently propose the new feature, called SCI mediator to Xen-devel
-> community. Please see link [1] from cover letter for the details.
-> In this feature - Xen is the Trusted Agent, which uses scmi_devid
-> parameter to set the device permissions.
-> We think that this parameter will be useful for other possible SCMI
-> implementations, such as other hypervisor or SCMI backend server etc.
+AFAIK the OPP definition is more SoC specific. I'm particularly
+interested in this SC7180 SoC and it's GPU power [1]. There is
+also a nice OPP definition in that node.
+As you can see there is one SoC file and quite a few boards next to
+it. Some of them have a decent thermal design (inside Chromebook) but
+some are 'just' dev boards. The power would be different for those
+boards.
 
-We talk about different things, I think. I was asking how is this schema
-selected?
+Similar issue would be e.g. for Rk3399 SoC (Chromebook, Pine64, IoT and
+some dev boards).
 
-I gave it a fast try (dtbs_check) and it confirmed - schema does not
-have an effect. It's a noop. You need something like "select: true", see:
-Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
-or this schema should be included by other schemas... but then I would
-be happy to see actual usage in this patchset (more commits...).
+IMO the OPP table might be to much hassle and heavy for those boards.
 
-
-Best regards,
-Krzysztof
+[1] 
+https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/qcom/sc7180.dtsi#L1953
