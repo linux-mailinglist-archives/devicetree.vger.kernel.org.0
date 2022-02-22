@@ -2,183 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B81E74C0110
-	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 19:14:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84ACE4C0119
+	for <lists+devicetree@lfdr.de>; Tue, 22 Feb 2022 19:18:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232616AbiBVSOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 13:14:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36026 "EHLO
+        id S234477AbiBVSSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Feb 2022 13:18:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234718AbiBVSOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 13:14:48 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BBDE17289A
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 10:14:22 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id k2so11685830oia.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 10:14:22 -0800 (PST)
+        with ESMTP id S234442AbiBVSSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 13:18:24 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59479657A8
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 10:17:57 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id vz16so45572104ejb.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 10:17:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LVnQOEdOfsSROklcR4dN5XSqlK3ehHzd57yMiFQiZEw=;
-        b=gACc9RkTQBgrInQOVXfQ1pKbHWcF+vW7yEcgUKHfbJNaSRgH0VSAeKEPmgvoPrsGtM
-         1OHOpOzefMJ6TeAtuAiFsTjcl2Z9l/sYaFMYHKdbQPiC1OAZZrnJ783k277cmUAHT3Ak
-         cpk2Wqa53ywX5ZF0emDkit0q3oOUM3KphJLlH5nz/ouLpXXye4c+4fATKRJl6SNpHWGk
-         BiqWCZVClbCg7zcgsHIHRxq8t0cu1KJSPZT06YHqjR46WEnl8XruiaDoUWfA1ygDLGUh
-         j3BYR4yVxu5WbWo7sy10d0FagAti8sZxg5eSabztkpnrb6Tsoa782kR5Ws+gEaC70TFs
-         Cj4g==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=9bhd07zCdaxpy0M7izmCDuaMW/aakZ/2KBRTmVTQxBk=;
+        b=E/jmpx4/G+75EM3Db27YuB27H56JL7rxSh5hZbyV0JXQMYmJOZQaP40pWph18n8pI4
+         RC6611I0QWglIaOoAyjD4QQmlcZwJf7TzmqHIdLyphDbfd45Wl4HMUmxUe2MbPDI2hUr
+         fGa0qmIje34LObmzFZGq/O3IEZ6tzUkUZWG+wycZq/WDHrTm/e5ng65ibCt0c503IaL5
+         lDem+pBfX8vdzgOP4fVv/HmRwPQ2OcRVhpO/VpxrI1yE4WuJFHMBLcdOI61TvIaRjldl
+         RjL8qZQnCqhxpz7tP1G9iUEyV44Vyufzs3C2jJlgSU6rP+lW0cbhGrMckIPDmhEq84Yj
+         tVGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LVnQOEdOfsSROklcR4dN5XSqlK3ehHzd57yMiFQiZEw=;
-        b=YorCOSWrkvMMTZHsYyFYW5+j+YIOD60dRLenIIiLdXin5odbBUBifR7rWiELiK1yfO
-         sN40SrJsu1TjgOiNTY+kXOvKkwEl3B1uezQaVMQEKKS31Z34IfqcbZZQoE6FLP43seXA
-         02E+HPiOEk3hTWGsxr7cj8CNoIEr8pj55Ych2sZauLNGMD+wgo4AF/a1cFwP+zeHBwpw
-         1kkSv0J2Ml14umYy8EE0yM4pA2pOy3PcnTPpmXrkjxgX+HWSnJjnHSanywYQx7vrv89N
-         QcRoc2aFh5Pz9KMX97VBUVfwwx7utG2BXutALFLi4wQZmNJEUOaav8DjtoFtDzNorArF
-         I/Zg==
-X-Gm-Message-State: AOAM530GYl3at910kfhfV5k1pS9sdparIkE3T/yofr0Vk5gVwDtwMKHR
-        afSDpHsf/hv6Fnm4TojxWNNqvA==
-X-Google-Smtp-Source: ABdhPJx7kZEQxrj35Gmb41f+nvIkI4s49gKjv/NLrazcdAlObCeL+cSnEQ3LUMdDYmBlxChh3xHItg==
-X-Received: by 2002:aca:ba83:0:b0:2d4:13f1:8530 with SMTP id k125-20020acaba83000000b002d413f18530mr2556490oif.169.1645553661373;
-        Tue, 22 Feb 2022 10:14:21 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id c14sm7909698ots.71.2022.02.22.10.14.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 10:14:20 -0800 (PST)
-Date:   Tue, 22 Feb 2022 10:16:21 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Jan Kotas <jank@cadence.com>, Li Wei <liwei213@huawei.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Yaniv Gardi <ygardi@codeaurora.org>,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 09/15] scsi: ufs: deprecate 'freq-table-hz' property
-Message-ID: <YhUodbzxx4wbr+gy@ripper>
-References: <20220222145854.358646-1-krzysztof.kozlowski@canonical.com>
- <20220222145854.358646-10-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=9bhd07zCdaxpy0M7izmCDuaMW/aakZ/2KBRTmVTQxBk=;
+        b=Njm7Y1Uw/yD6LmJCCXk48SzaU/l1jndxB4iQxqGgyqoS9XjfB6OIWFbGB+Q0g55ygP
+         /qj0BQgIHRgLVedG9Uutc6q6GgeHVyTLgZEn66FUXQ8eoCAdHQtUVfqslAXxheEnEO89
+         taqy4CMf0IE6FkqOdXdR+16jDt4GiVT4VKPP9kAbz9wXH0dmHP6gEgOid/PtPUCcCdWj
+         XgoGsiyZfrfNJtqr5ViO/J7tURWEJdRn1wINKdZeOZQdz6qz9pTEeVRmhd7Y6YxrXlb+
+         H5g6Bgm/cw+QCR0t+p89nJn8eWheN8MjkkW7K57OgmNFMQLPdVCHhGHVZ7ArwK90jchC
+         F2Qg==
+X-Gm-Message-State: AOAM530q/u0WwPRXHwe4ZS5h+E551v1nSmYjYnypR5w0CFe8OQDhresJ
+        KFMkUj7KgaOMWqk2PQX+a1TmAIAxLKg=
+X-Google-Smtp-Source: ABdhPJwzoIoAO9MtKvt7j055dhfmEt6aez5R6BZ1XicL32hEOtW++qk2B21g+BVRHobXEZrZDdHbhw==
+X-Received: by 2002:a17:906:ae56:b0:6ce:375a:4b93 with SMTP id lf22-20020a170906ae5600b006ce375a4b93mr20805627ejb.189.1645553875762;
+        Tue, 22 Feb 2022 10:17:55 -0800 (PST)
+Received: from ?IPV6:2003:ea:8f4d:2b00:9cef:d49f:b9d:efeb? (p200300ea8f4d2b009cefd49f0b9defeb.dip0.t-ipconnect.de. [2003:ea:8f4d:2b00:9cef:d49f:b9d:efeb])
+        by smtp.googlemail.com with ESMTPSA id 9sm6553307ejd.184.2022.02.22.10.17.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Feb 2022 10:17:55 -0800 (PST)
+Message-ID: <1c85aa0b-8a37-df62-2896-d5652c81535c@gmail.com>
+Date:   Tue, 22 Feb 2022 19:17:52 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220222145854.358646-10-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v2 3/6] dt-bindings: auxdisplay: Add Titan Micro
+ Electronics TM1628
+Content-Language: en-US
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+References: <1f39432b-84e2-e6dc-a6b8-c48ad5cf2210@gmail.com>
+ <39d61ddb-4b54-4a13-fbb2-c0f88d9bf017@gmail.com>
+ <1645539763.080061.3016155.nullmailer@robh.at.kernel.org>
+ <e1998e9e-3bb9-9516-8cf3-3b4ab8576e92@gmail.com>
+In-Reply-To: <e1998e9e-3bb9-9516-8cf3-3b4ab8576e92@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 22 Feb 06:58 PST 2022, Krzysztof Kozlowski wrote:
-
-> The 'freq-table-hz' is not correct in DT schema, because '-hz' suffix
-> defines uint32 type, not an array.  Therefore deprecate 'freq-table-hz'
-> and use 'freq-table' instead.
+On 22.02.2022 18:00, Heiner Kallweit wrote:
+> On 22.02.2022 15:22, Rob Herring wrote:
+>> On Mon, 21 Feb 2022 21:23:18 +0100, Heiner Kallweit wrote:
+>>> Add a YAML schema binding for TM1628 auxdisplay
+>>> (7/11-segment LED) controller.
+>>>
+>>> This patch is partially based on previous RFC work from
+>>> Andreas Färber <afaerber@suse.de>.
+>>>
+>>> Signed-off-by: Andreas Färber <afaerber@suse.de>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>> ---
+>>> v2:
+>>> - (re-)add Andreas' SoB
+>>> - fix YAML errors reported by Rob
+>>> ---
+>>>  .../bindings/auxdisplay/titanmec,tm1628.yaml  | 88 +++++++++++++++++++
+>>>  1 file changed, 88 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.example.dt.yaml: led-controller@0: 'spi-3-wire', 'spi-lsb-first', 'spi-max-frequency' do not match any of the regexes: '^.*@[1-7],([1-9]|1[0-6])$', 'pinctrl-[0-9]+'
+>> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/patch/1595730
+>>
+>> This check can fail if there are any dependencies. The base for a patch
+>> series is generally the most recent rc1.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit.
+>>
 > 
-
-Patch looks good in itself, but why don't we use opp-table to describe
-the performance states?
-
-In particular looking at the two columns of frequencies for various
-Qualcomm boards they require different performance-states.
-
-A concrete example is sm8350.dtsi, which specifies 75MHz and 300MHz as
-the first frequency pair. The lower level requires the VDD_CX power rail
-to be at least &rpmhpd_opp_low_svs, the higher frequency has a
-required-opps of &rpmhpd_opp_nom.
-
-
-As this isn't possible to express in the current binding we've just been
-forced to always run at a higher voltage level and kept this in the todo
-list.
-
-But rather than migrating freq-table-hz to freq-table and then having to
-introduce an opp table to express the power constraints, could we
-perhaps skip the intermediate step?
-
-Or would you have any other suggestion about how we can represent the
-required-opps level together with the freq-table (if that's what we want
-to stick with).
-
-Regards,
-Bjorn
-
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  drivers/scsi/ufs/ufshcd-pltfrm.c | 21 +++++++++++++--------
->  1 file changed, 13 insertions(+), 8 deletions(-)
+> When I run "make DT_CHECKER_FLAGS=-m dt_binding_check" then this error isn't reported. I have:
 > 
-> diff --git a/drivers/scsi/ufs/ufshcd-pltfrm.c b/drivers/scsi/ufs/ufshcd-pltfrm.c
-> index 87975d1a21c8..2b192477d158 100644
-> --- a/drivers/scsi/ufs/ufshcd-pltfrm.c
-> +++ b/drivers/scsi/ufs/ufshcd-pltfrm.c
-> @@ -47,8 +47,9 @@ static int ufshcd_parse_clock_info(struct ufs_hba *hba)
->  	if (cnt <= 0)
->  		goto out;
->  
-> -	if (!of_get_property(np, "freq-table-hz", &len)) {
-> -		dev_info(dev, "freq-table-hz property not specified\n");
-> +	if (!of_get_property(np, "freq-table", &len) ||
-> +	    !of_get_property(np, "freq-table-hz", &len)) {
-> +		dev_info(dev, "freq-table property not specified\n");
->  		goto out;
->  	}
->  
-> @@ -57,7 +58,7 @@ static int ufshcd_parse_clock_info(struct ufs_hba *hba)
->  
->  	sz = len / sizeof(*clkfreq);
->  	if (sz != 2 * cnt) {
-> -		dev_err(dev, "%s len mismatch\n", "freq-table-hz");
-> +		dev_err(dev, "%s len mismatch\n", "freq-table");
->  		ret = -EINVAL;
->  		goto out;
->  	}
-> @@ -69,12 +70,16 @@ static int ufshcd_parse_clock_info(struct ufs_hba *hba)
->  		goto out;
->  	}
->  
-> -	ret = of_property_read_u32_array(np, "freq-table-hz",
-> +	ret = of_property_read_u32_array(np, "freq-table",
->  			clkfreq, sz);
->  	if (ret && (ret != -EINVAL)) {
-> -		dev_err(dev, "%s: error reading array %d\n",
-> -				"freq-table-hz", ret);
-> -		return ret;
-> +		ret = of_property_read_u32_array(np, "freq-table-hz",
-> +						 clkfreq, sz);
-> +		if (ret && (ret != -EINVAL)) {
-> +			dev_err(dev, "%s: error reading array %d\n",
-> +				"freq-table", ret);
-> +			return ret;
-> +		}
->  	}
->  
->  	for (i = 0; i < sz; i += 2) {
-> @@ -99,7 +104,7 @@ static int ufshcd_parse_clock_info(struct ufs_hba *hba)
->  
->  		if (!strcmp(name, "ref_clk"))
->  			clki->keep_link_active = true;
-> -		dev_dbg(dev, "%s: min %u max %u name %s\n", "freq-table-hz",
-> +		dev_dbg(dev, "%s: min %u max %u name %s\n", "freq-table",
->  				clki->min_freq, clki->max_freq, clki->name);
->  		list_add_tail(&clki->list, &hba->clk_list_head);
->  	}
-> -- 
-> 2.32.0
+>> yamllint -v
+> yamllint 1.26.2
 > 
+>> dt-doc-validate --version
+> 2022.2.dev1+gf677c85
+> 
+>> pip show dtschema
+> Name: dtschema
+> Version: 2022.2.dev1+gf677c85
+> Summary: DeviceTree validation schema and tools
+> Home-page: https://github.com/devicetree-org/dt-schema
+> Author: Rob Herring
+> Author-email: robh@kernel.org
+> License: BSD
+> Location: /usr/lib/python3.10/site-packages
+> Requires: ruamel.yaml, jsonschema, rfc3987
+> Required-by:
+> 
+> What else could be messing?
+> 
+> If it matters: I'm building on latest linux-next.
+
+I was able to reproduce the error eventually.
