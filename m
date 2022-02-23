@@ -2,104 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C67234C0E05
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 09:07:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4196D4C0E20
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 09:20:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238919AbiBWIIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 03:08:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51392 "EHLO
+        id S235763AbiBWIU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 03:20:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233116AbiBWIIR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 03:08:17 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE94142EC0
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 00:07:50 -0800 (PST)
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B990E3F1B7
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 08:07:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645603669;
-        bh=cJAoPDc8aKVGCYTCguUnHYj9Um4T6R7Mz/nddrCfS+U=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=BEnIEv+WsJC6I7DqWHoeNGmj5Ar9fPOuOxjJ5W83I8soAzpOZpRchMPfFMRB43/h/
-         Y4tIcXCefv8Le/kZdMPu+KV2NHew2kJAy5oi7n4uKWDZQxnAq9EmQT2Ys+0Qw+8SRb
-         oB2PxPAgNLQNa7lWsLs844GO5MzNI3JztTfNYUrbUs7tPzPgCD4DwepA86iOxhG+YE
-         PASfdL2vTqmo8kTLmTnvECBB24hFKO8Pn20bKeSocr9L4ZoNuoSfbCY805vv3uncze
-         PbbMLdipJe+afTFtCO03ZQCEd2zpfqZ6IlqAlSFZhZkqmhoh2ypA+6GKcM7dIbXv7F
-         xJD4ocEeyp3/g==
-Received: by mail-ed1-f70.google.com with SMTP id l3-20020a50cbc3000000b0041083c11173so13234947edi.4
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 00:07:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cJAoPDc8aKVGCYTCguUnHYj9Um4T6R7Mz/nddrCfS+U=;
-        b=V32WsFqfxl/KjCVvP9/5CKoGFmWVNU1r1C5lLcKPgOEkq5EE1O3cL2qS6l4I1mljDr
-         eOLEw/tmrr4lw6i8ATORWV3+i1qFHQzsHdRhHo5fOiRZETkypYqxh7E/JlQ29J/lKQjx
-         dNtZW2r2fT9D8ECwHb9hY3BtpZYFArpClAdJGJawRM1yDYFKafcyv11cSFO6O3o3Hv0g
-         wmrm/WGYHaUp0vYwU5Svy33wlTr7xaGKT3g7N+S+Q6ZUhAxoHq+1lIBlnWHphwBskyze
-         krvHMgVKku7V4gJzPC6mFbW8IpEbq9yogoyBz9dnchVoP0A31f1XgtsN9wHMBtB9wKnN
-         jM6A==
-X-Gm-Message-State: AOAM530VugGSjWiCVZUOSz9XIiNBPanYMpEAopq3ZoHttV44gUwFTPHF
-        XYJjD6aq5o+6ibDYycG8d9D8ITr+LeoozkTV7epTDYW+zNiTOq2RqeN02av5ZPyoZV8oknvJv3r
-        hWp/slcx7b6eewMOfUDNip5JGJ5VCjM9ICzelJMg=
-X-Received: by 2002:a17:906:3b4b:b0:6d3:4b9f:1764 with SMTP id h11-20020a1709063b4b00b006d34b9f1764mr3782771ejf.345.1645603669461;
-        Wed, 23 Feb 2022 00:07:49 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJw+sAsvC2YVaWkNxMY27IgSZbd57gDhRWf6CFP5QRb8O1Ze/Oy2J3V8J8SGl8x0BiwMVeVhGA==
-X-Received: by 2002:a17:906:3b4b:b0:6d3:4b9f:1764 with SMTP id h11-20020a1709063b4b00b006d34b9f1764mr3782763ejf.345.1645603669271;
-        Wed, 23 Feb 2022 00:07:49 -0800 (PST)
-Received: from [192.168.0.124] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id h8sm11129654edk.14.2022.02.23.00.07.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 00:07:48 -0800 (PST)
-Message-ID: <566af033-352c-ad04-53dd-219cda3f78a0@canonical.com>
-Date:   Wed, 23 Feb 2022 09:07:48 +0100
+        with ESMTP id S232535AbiBWIUz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 03:20:55 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF6803BBCF
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 00:20:28 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nMmsn-0001hh-Uq; Wed, 23 Feb 2022 09:20:22 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nMmsm-000mFQ-1R; Wed, 23 Feb 2022 09:20:19 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nMmsk-004z5V-Gb; Wed, 23 Feb 2022 09:20:18 +0100
+Date:   Wed, 23 Feb 2022 09:20:18 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     conor.dooley@microchip.com, linus.walleij@linaro.org,
+        brgl@bgdev.pl, robh+dt@kernel.org, jassisinghbrar@gmail.com,
+        thierry.reding@gmail.com, lee.jones@linaro.org,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, geert@linux-m68k.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-riscv@lists.infradead.org,
+        lewis.hanly@microchip.com, daire.mcnamara@microchip.com,
+        ivan.griffin@microchip.com, atishp@rivosinc.com,
+        Rob Herring <robh@kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Subject: Re: [PATCH v7 05/11] dt-bindings: pwm: add microchip corepwm binding
+Message-ID: <20220223082018.degrftmxpk5uc6xn@pengutronix.de>
+References: <20220214135840.168236-1-conor.dooley@microchip.com>
+ <20220214135840.168236-6-conor.dooley@microchip.com>
+ <20220223062018.nbgidqxgh2soz625@pengutronix.de>
+ <65edc257-82ec-e100-7a44-5c510aba51ce@canonical.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v6 1/2] dt-bindings: input/touchscreen: bindings for
- Imagis
-Content-Language: en-US
-To:     Markuss Broks <markuss.broks@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220222203414.8656-1-markuss.broks@gmail.com>
- <20220222203414.8656-2-markuss.broks@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220222203414.8656-2-markuss.broks@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="iwzv2cqxmtoj6ivg"
+Content-Disposition: inline
+In-Reply-To: <65edc257-82ec-e100-7a44-5c510aba51ce@canonical.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2022 21:34, Markuss Broks wrote:
-> This patch adds device-tree bindings for the Imagis
-> IST3038C touch screen IC.
-> 
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-No need for blank line between tags. I guess this can be fixed when
-applied, but if there is a resend - please correct it.
+--iwzv2cqxmtoj6ivg
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Feb 23, 2022 at 08:12:49AM +0100, Krzysztof Kozlowski wrote:
+> On 23/02/2022 07:20, Uwe Kleine-K=F6nig wrote:
+> > On Mon, Feb 14, 2022 at 01:58:35PM +0000, conor.dooley@microchip.com wr=
+ote:
+> >> From: Conor Dooley <conor.dooley@microchip.com>
+> >>
+> >> Add device tree bindings for the Microchip fpga fabric based "core" PWM
+> >> controller.
+> >>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> >> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> >=20
+> > I like it:
+> >=20
+> > Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> >=20
+> > nitpick: Put your S-o-b last in the commit log. (This doesn't justify a
+> > resend IMHO)
+>=20
+> It should be the opposite - the first. First author signs the patch,
+> then comes review and finally an ack. Putting SoB at then suggests that
+> tags were accumulated before sending patch, out of mailing list.
 
-Best regards,
-Krzysztof
+well, or in an earlier revision of this patch as is the case here. One
+of the ideas of S-o-b is that the order shows the flow of the patch
+states and if this patch ends in git with:
+
+	Referred-by: Rob Herring <robh@kernel.org>
+	Singed-off-by: Conor Dooley <conor.dooley@microchip.com>
+	Backed-by: Palmer Dabbelt <palmer@rivosinc.com>
+	Singed-off-by: Peter Maintainer <pm@example.com>
+
+I'd expect that Backed-by was added by Peter, not Conor.
+(Modified the tags on purpose to not interfere with b4's tag pickup, I
+guess you humans still get the point.)
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--iwzv2cqxmtoj6ivg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmIV7j8ACgkQwfwUeK3K
+7Aloogf+O25Xs80EkRbZcoT53Op4Qz+T2M0ldDqTk6fHIxcR3qzb7m74O1AGSR3K
+UfR9clLI5oaiJ77rpUJrj755Va3JCOlPiwB14+LakdvvjWlnf+z7h+DC892GcAaj
+ML4S91q/Y/ORSl0189iTfICN78MRMs6UWjVJWX3wV/HqeFQi3fSMNXTjQ8IC6LYe
+GWMVhC3eYpSFxsdqMDeAaEX6CChb0CwfAwMzWxrOt+6sFPfimaOMz4HgHpJsn1bf
+qTj64t9fgifBN41OJNqirl2R2mPxKn/McocqNmDFj+o1DyQ0ikT1sqGFTjnEN3fl
+I/W+Pfdxw50SJZHNxfcDTll9wibNTA==
+=Be78
+-----END PGP SIGNATURE-----
+
+--iwzv2cqxmtoj6ivg--
