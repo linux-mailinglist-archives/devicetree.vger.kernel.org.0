@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E4114C0D54
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 08:33:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDB1E4C0D5C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 08:35:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237762AbiBWHeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 02:34:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57526 "EHLO
+        id S238686AbiBWHgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 02:36:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230206AbiBWHeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 02:34:05 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48B6150470
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 23:33:37 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id b11so29444959lfb.12
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 23:33:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lDlvFrajDqrQchn6w54uabpCbRnHwQwOc/C3bGmlO0U=;
-        b=dPv5BYrzN39pPB63DQ2U4vLv0nOlr98gwht+Zo4QATaTg5q7prK52shXjsR/AXna6U
-         k71RPBMDx5GsG8mV17b87tTN3iAWOTahxvggmsaI0oMlsVgEiZoXtDR87rqcGCLj6DI5
-         Msk2/lY5YZo0wR4NNR2sUeLocDFc3Kpo8TpPo23Ye2kg3mFHuHr14max0+aI3TyZvlOF
-         8/MHL9x9RtHFgI1bjFWYygEWBld8kk8y3weK7HbCIlbe9QeLYfl/cWhrdhEiwzJh2s+d
-         gpokPBntHpV5rlru4h165pnoUlQhr32QsgOK4yvG8nWcE8dA1duH6MCTXNjLtpdQ1fOp
-         IODg==
+        with ESMTP id S235456AbiBWHgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 02:36:21 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02A3B50473
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 23:35:54 -0800 (PST)
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BF94E3FCAD
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 07:35:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645601752;
+        bh=aODgGfRuLmdS4tRHrVKVzJZACN4gsj7dyGKVHf/acuA=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=RhjUuSMlSO9HH7xqUVoan5RQ24GSZZczGUyoS3RS7AAUB+pUyzYXFscijCQHE9Hcb
+         IkDv8ytN83L5sws1qgfMmvzd9wUSpDSpgMJ7IWHoBAEqjwtHJPr3Cho2ue60SBHCXD
+         XaZC/vuY10Ekel/iBrpSIWMrjfC5kDVXRk7zF6K+k6117r7Y/yBByZ27qWsmnlvtYj
+         FtCSoA/9lEs10aJmIOcZgC2+6WWqNmJAqcjoxfhIqKdtHDP2a7s9Jyl0DnWLjsFZve
+         VLEcdtXYs506krbRqoqXZ0kLmYHdl8fY8G7MqS5YKvWxsGZB6rH74Dl2FI7QK1q3ex
+         tY9BuXbIbpfgw==
+Received: by mail-ej1-f71.google.com with SMTP id mp5-20020a1709071b0500b0069f2ba47b20so6652220ejc.19
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 23:35:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lDlvFrajDqrQchn6w54uabpCbRnHwQwOc/C3bGmlO0U=;
-        b=r1jpNnKtwqEibz6Z0L28e7h9CtFX3O+FwgP+80JV7MXvCEyoy/Dt0WlcnzUduIlxRS
-         SnikSl1M/WJDZLqPrbxZZ2aEV/tl5oDTer06mguInVn6ia1Y+gKj/nAYnOJeG13gRH1P
-         9cI0cxjYbt0GVUWJFmDIpJA3uuf2tiXB4RtYN7lRPKJzKYQmWn3bfOsjR79fI650qg8D
-         Y3SPPa6MRi1poDC8lcmRiITO3sHfcIrXqLOoIdrlv0Jkz+TRz6saB3ufiXPeiry7b1T+
-         kLgwqpjmym+c2p6wAGTE6FjX0o+8UrLMqrWAZ3WR0twjT7oWj4vpb2m00yJ+nhT8hqrM
-         ar2g==
-X-Gm-Message-State: AOAM53304AwRa05f14gUIsb9c7zdbuvKLh7szVkIHpArtgc52LNSiuQf
-        1ChwX9NSUhZZEvUMIWzeKrgIPFOezgIWrxvp2MmEIg==
-X-Google-Smtp-Source: ABdhPJw/GJqPBESH0NTsrjpQmSPMVgGSEkmdayQA8+Ukdar13GPBEALRgM9upMK7jU0EafwCI3f8KY3Ur+qVWLFe8VA=
-X-Received: by 2002:a05:6512:710:b0:443:7fb6:5223 with SMTP id
- b16-20020a056512071000b004437fb65223mr19200205lfs.223.1645601615597; Tue, 22
- Feb 2022 23:33:35 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aODgGfRuLmdS4tRHrVKVzJZACN4gsj7dyGKVHf/acuA=;
+        b=J+CfktHqLh3zc0sgMJ5vILEjB5W+x+ygfpxWhc+azDInD/qbzSxmUKqbhMzpDcTwmx
+         kCI6VuWeUxYTDAKJy7s6yYzOv0U8z+6YiakUp4FgMhZ3xX7Vonx10QiXYs2AJ/e1wZRC
+         6i5LZACxAwcDrleJlFPoE0Z5HS2JCjmmhhwUGeOJQ5zgQUM4Ogz1DAcjIYJYsWoJgD3z
+         GRgMBXDiVUTWczNTJ3xXCLKtjF5lt3Wll/f8uQeP6FQps1lz32lJ2d23E4l8wvwUJhcm
+         AQ0ugL+8mTtfm++QKN6toK8LqJ30DNODfSmQryf92NSQ+S2AYE6S+1UzJZbedMlx9FjV
+         ogzA==
+X-Gm-Message-State: AOAM532iaCOw+veQW3BxQPdVLn3g2XhHu8WY17GFb4aY7tSVHKydRKsr
+        IVxI/VTDloF1+lKqVXpuXcw9GX5Xuz9m7DGnM5Cu+InjMkSdaiW2tu0wS4FViu280m8LOAX+UlI
+        M7eo3ZbnJUl6RsNthGsoDt7WNn2PcSx/5AZFjBPA=
+X-Received: by 2002:a17:906:3bc7:b0:6cc:493e:31e4 with SMTP id v7-20020a1709063bc700b006cc493e31e4mr21625337ejf.549.1645601752353;
+        Tue, 22 Feb 2022 23:35:52 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzugDAebkigYMSFqiHHTQ3C1J6Lrwp3y9xalxujMvR5h0cH2kx7GcK7Vzs36/2R2yC4qTpfYg==
+X-Received: by 2002:a17:906:3bc7:b0:6cc:493e:31e4 with SMTP id v7-20020a1709063bc700b006cc493e31e4mr21625323ejf.549.1645601752129;
+        Tue, 22 Feb 2022 23:35:52 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id u4sm7129842ejn.216.2022.02.22.23.35.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Feb 2022 23:35:51 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH 1/2] dt-bindings: writing-schema: Install from PyPI repository
+Date:   Wed, 23 Feb 2022 08:35:46 +0100
+Message-Id: <20220223073547.8746-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <cover.1642582832.git.zong.li@sifive.com> <mhng-ffd770d4-8f8a-417a-a589-f14d09f55282@palmer-ri-x1c9>
- <CANXhq0pYHfsa4T1t=FK2=jM4OEfgXD=sDS5vVV4EKCpkwTz6og@mail.gmail.com> <20220218222339.9BF5CC340E9@smtp.kernel.org>
-In-Reply-To: <20220218222339.9BF5CC340E9@smtp.kernel.org>
-From:   Zong Li <zong.li@sifive.com>
-Date:   Wed, 23 Feb 2022 15:33:24 +0800
-Message-ID: <CANXhq0qbjBpRPMP51cK9QsvQj-uvG_czPgLw+cjrWXhWEibcDw@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Refactor the PRCI driver to reduce the complexity
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,58 +77,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 19, 2022 at 6:23 AM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Zong Li (2022-02-06 21:21:50)
-> > On Sat, Feb 5, 2022 at 2:56 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
-> > >
-> > > On Wed, 19 Jan 2022 01:28:37 PST (-0800), zong.li@sifive.com wrote:
-> > > > This patch set tries to improve the PRCI driver to reduce the
-> > > > complexity, we remove the SoCs C files by putting putting all stuff in
-> > > > each SoCs header file, and include these SoCs-specific header files in
-> > > > core of PRCI. It can also avoid the W=1 kernel build warnings about
-> > > > variable defined but not used [-Wunused-const-variable=], like 'commit
-> > > > 487dc7bb6a0c ("clk: sifive:fu540-prci: Declare static const variable
-> > > > 'prci_clk_fu540' where it's used")' does.
-> > > >
-> > > > This patch set also contains the dt-bindings and dts change, because
-> > > > we change the macro name for fu540 and fu740 by adding the prefix
-> > > > respectively.
-> > > >
-> > > > Thanks all for your review and suggestions.
-> > > >
-> > > > Zong Li (4):
-> > > >   dt-bindings: change the macro name of prci in header files and example
-> > > >   riscv: dts: Change the macro name of prci in each device node
-> > > >   clk: sifive: Add SoCs prefix in each SoCs-dependent data
-> > >
-> > > IIUC these there aren't bisectable: the bindings change will break
-> > > builds of the DTs and drivers.  I'm not sure what's generally the way to
-> > > go with these, but I always try to avoid broken builds in the middle of
-> > > patch sets.
-> > >
-> > > Aside from that this generally looks good to me, but the DT and clock
-> > > folks are probably a better bet for a proper review here.  Happy to take
-> > > this through the RISC-V tree, but IMO it's a better candidate for the
-> > > clock tree so
-> > >
-> > > Acked-by: Palmer Dabbelt <palmer@rivosinc.com> # aside from breaking bisect
-> > >
-> > > Thanks!
-> > >
-> >
-> > Many thanks for your review and reminding, and yes, it seems a bit
-> > hard there since the DT binding docs and includes need to be a
-> > separate patch.
-> >
->
-> Why not add new defines with the same numbers in a different file? Then
-> a cycle or two later the conflicting defines can be removed? The driver
-> can include the new file with the new defines while the old defines can
-> be changed in parallel?
+From: Krzysztof Kozlowski <krzk@kernel.org>
 
-Hi Stephon, many thanks for your tips. I'm afraid that I don't
-completely understand, does it mean that I can create a new temporary
-file to define these numbers for the driver, and add a patch to remove
-this file in the same patch set. If I understand correctly, let me
-prepare the next version for doing that. Thanks.
+Installing dtschema from github.com/devicetree-org is not needed anymore
+because dtschema is now part of regular PyPI repository.  In certain
+cases it might cause some troubles as it brings latest master version,
+not the stable release:
+
+    $ pip3 show dtschema
+    Version: 2020.8.2.dev4+g341f3e3
+    $ make dt_binding_check
+    dtschema minimum version is v2020.8.1
+
+Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ Documentation/devicetree/bindings/writing-schema.rst | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
+index ea21c72aeb37..4004dd9209a6 100644
+--- a/Documentation/devicetree/bindings/writing-schema.rst
++++ b/Documentation/devicetree/bindings/writing-schema.rst
+@@ -118,7 +118,7 @@ The DT schema project must be installed in order to validate the DT schema
+ binding documents and validate DTS files using the DT schema. The DT schema
+ project can be installed with pip::
+ 
+-    pip3 install git+https://github.com/devicetree-org/dt-schema.git@master
++    pip3 install dtschema
+ 
+ Several executables (dt-doc-validate, dt-mk-schema, dt-validate) will be
+ installed. Ensure they are in your PATH (~/.local/bin by default).
+-- 
+2.32.0
+
