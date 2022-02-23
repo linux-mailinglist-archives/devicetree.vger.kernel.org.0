@@ -2,105 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E34944C12A9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 13:22:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AF244C12AD
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 13:22:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238736AbiBWMW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 07:22:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58570 "EHLO
+        id S237649AbiBWMXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 07:23:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237783AbiBWMW1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 07:22:27 -0500
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 311B59AD9B;
-        Wed, 23 Feb 2022 04:22:00 -0800 (PST)
-Received: by mail-vs1-f53.google.com with SMTP id e26so2951862vso.3;
-        Wed, 23 Feb 2022 04:22:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BH9kx8uglIy4IymTz3ycr2PEM2TVDcpmS0Wpy32dbbI=;
-        b=7ZL1+71pUijFszLPbokmpDzFI9Vdv+y7l55adoxsO5W3FP2Ey0HSj2INOUUZl0OcgL
-         EE1ythJiv/r5XwZCCCcwpWzwyv4OPwC9bV4EBT9rmUlYqt076lHohAumz35GpoF1Znvj
-         97M+qMdBWEdijf7Q7qwJVPuLfDwg9uS5PYIIR4eHSA+A5JfV9i1DvqY2C5kwFJusaTk/
-         BNFjbOHZ5SlSJF+uhkLl7FHy/GPTWP7H9oku0yD70dPfzznVVy13tGgYkE5prcpzfga3
-         astpFD/tmZPTA+JyFViGeLWZC5wdeXxO43I3C80JFGQs4/kwIttMr7kd9XtqlM3OmJej
-         rzDQ==
-X-Gm-Message-State: AOAM532rrsFim7cBtL7iw400q35mfvrL2tkUlNSz0cY7n6rcavxitfWY
-        EDEWIkHH0JDSBND61VhTiun971dO+rt/hw==
-X-Google-Smtp-Source: ABdhPJzbuskKnYq8oJB/4rObpZcTKXVv2SrEX++zKypPtsZe9cYXvqaaBLAgrxH2Pudvpaq209emOw==
-X-Received: by 2002:a05:6102:3116:b0:31b:f7e2:c504 with SMTP id e22-20020a056102311600b0031bf7e2c504mr11236202vsh.58.1645618919137;
-        Wed, 23 Feb 2022 04:21:59 -0800 (PST)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id y22sm646492vsi.25.2022.02.23.04.21.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 04:21:58 -0800 (PST)
-Received: by mail-vs1-f43.google.com with SMTP id i27so2909504vsr.10;
-        Wed, 23 Feb 2022 04:21:58 -0800 (PST)
-X-Received: by 2002:a05:6102:4411:b0:31b:6df1:3b80 with SMTP id
- df17-20020a056102441100b0031b6df13b80mr11609191vsb.5.1645618918150; Wed, 23
- Feb 2022 04:21:58 -0800 (PST)
+        with ESMTP id S237783AbiBWMXI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 07:23:08 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5509AE4E;
+        Wed, 23 Feb 2022 04:22:39 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 4819F22247;
+        Wed, 23 Feb 2022 13:22:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1645618957;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=y/v/ob3j7CFTOeneTUJXiDczC4fyDRPdARdepXg2BXQ=;
+        b=jmDXKC04r4mEmRgvnMeuHII2cZJWavo/wBoupyMiLIYBUZ7L+efgGmKnkF8sGi7bKQ8RqZ
+        j2j3wgRgdUqk48TlVsqWXPYUnALIGNYUAn48nQ/gj1hlFmiemFsPBIt4sjMl7mYGapWj0S
+        5mWrYdsS3jnmi2kEfB7k+4N/byjDQ5E=
 MIME-Version: 1.0
-References: <20220222103437.194779-1-miquel.raynal@bootlin.com> <20220222103437.194779-3-miquel.raynal@bootlin.com>
-In-Reply-To: <20220222103437.194779-3-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 23 Feb 2022 13:21:47 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVzMiBn-rZgWkp=v7VWqEf1CX9kPTF7qn0cx9va9Z9dWg@mail.gmail.com>
-Message-ID: <CAMuHMdVzMiBn-rZgWkp=v7VWqEf1CX9kPTF7qn0cx9va9Z9dWg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/8] dt-bindings: dma: Introduce RZN1 DMA compatible
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 23 Feb 2022 13:22:37 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Peng Fan <peng.fan@nxp.com>, Anson Huang <Anson.Huang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Li Yang <leoyang.li@nxp.com>, linux-kernel@vger.kernel.org,
+        heiko.thiery@gmail.com
+Subject: Re: [PATCH] dt-bindings: arm: fsl: add IMX8MN DDR3L eval board
+In-Reply-To: <96f7a28b-81b9-a05f-e8f5-a4fb377476fc@canonical.com>
+References: <20220222151357.1710503-1-michael@walle.cc>
+ <96f7a28b-81b9-a05f-e8f5-a4fb377476fc@canonical.com>
+User-Agent: Roundcube Webmail/1.4.12
+Message-ID: <e45e6fd29b5c91e1413247aa50d6d809@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 22, 2022 at 11:35 AM Miquel Raynal
-<miquel.raynal@bootlin.com> wrote:
-> Just like for the NAND controller that is also on this SoC, let's
-> provide a SoC generic and a more specific couple of compatibles for the
-> DMA controller.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Am 2022-02-23 12:32, schrieb Krzysztof Kozlowski:
+> On 22/02/2022 16:13, Michael Walle wrote:
+>> Add a new compatible string for that eval board. It features an IMX8MN
+>> UltraLite and has DDR3L RAM. The product part number is 8MNANOD3L-EVK.
+>> 
+>> Signed-off-by: Michael Walle <michael@walle.cc>
+>> ---
+>>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml 
+>> b/Documentation/devicetree/bindings/arm/fsl.yaml
+>> index 23e678232451..e11ffaa8721e 100644
+>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>> @@ -834,6 +834,7 @@ properties:
+>>                - bsh,imx8mn-bsh-smm-s2     # i.MX8MN BSH SystemMaster 
+>> S2
+>>                - bsh,imx8mn-bsh-smm-s2pro  # i.MX8MN BSH SystemMaster 
+>> S2 PRO
+>>                - fsl,imx8mn-ddr4-evk       # i.MX8MN DDR4 EVK Board
+>> +              - fsl,imx8mn-ddr3l-evk      # i.MX8MN DDR3L EVK Board
+> 
+> Looks good, just please put it in alphabetical order, so before ddr4,
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> 
+> 
+> Best regards,
+> Krzysztof
 
-> +++ b/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
+Thanks, I actually forgot to put Anson on CC as he has added the
+other entries. Doing that now, also adding Peng Fan. Maybe they
+have an opinion on the choosen name.
 
-Perhaps you want to add the power-domains property?
-The RZ/N1 clock driver is also a clock-domain provider.
-
-Apart from that:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-michael
