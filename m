@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7914C0C84
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 07:23:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C079E4C0C8D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 07:32:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238301AbiBWGXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 01:23:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40840 "EHLO
+        id S238196AbiBWGcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 01:32:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234868AbiBWGXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 01:23:24 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1C32506CB
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 22:22:57 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nMl2t-0005cM-1S; Wed, 23 Feb 2022 07:22:39 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nMl2s-000lHS-6g; Wed, 23 Feb 2022 07:22:37 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nMl2q-004y0T-ML; Wed, 23 Feb 2022 07:22:36 +0100
-Date:   Wed, 23 Feb 2022 07:22:33 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-mediatek@lists.infradead.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>, linux-pwm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        linux-arm-msm@vger.kernel.org, chrome-platform@lists.linux.dev,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-rockchip@lists.infradead.org, Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/4] mfd/pwm: dt-bindings: google, cros-ec:
- include generic pwm schema
-Message-ID: <20220223062233.4m2xejozz4d47gmo@pengutronix.de>
-References: <20220214081916.162014-1-krzysztof.kozlowski@canonical.com>
- <164557235424.1264579.14486504733557463529.b4-ty@sntech.de>
+        with ESMTP id S235483AbiBWGcv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 01:32:51 -0500
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A1F3267D;
+        Tue, 22 Feb 2022 22:32:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645597943; x=1677133943;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=t+EWHkxVYiuPqz5bFdNUluXRx58UgyPApSK+jiVbtZw=;
+  b=GkquXK1GV0bmr2G7x1ZI00ZmiCjATypWitLLqUNrh1NVapuDBqaw0iZb
+   66SVLnPMwpGSsRSET2OxCNow9v0G0ip0paJsQUk+8vcv1Mj0cqDPi6BIS
+   Hge1OP/x/V0E7DWPeZrG6i/Hz1tsMeVLRUoAaxRAUPYPgpNfqE0+9aZ0X
+   wBOLEK03GgQjI55XmcYrE2AyuSeK93CSSXsDrA6DoIOdEU50HLvzNLwB6
+   kKOLoEIZpdO9l9CZ5rqoxA4xOoc0SZ7qhzE0FfO1bHopuvXhGarlmgRjd
+   AfI2x0mHw3D4UOmj0GpmGk5MmiQAMqaKue9ve5EWxU943a13Sy+RzTt7D
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="251815156"
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; 
+   d="scan'208";a="251815156"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2022 22:32:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; 
+   d="scan'208";a="637304237"
+Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 22 Feb 2022 22:32:18 -0800
+Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nMlCD-00014Q-Qt; Wed, 23 Feb 2022 06:32:17 +0000
+Date:   Wed, 23 Feb 2022 14:31:57 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, sboyd@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        abel.vesa@nxp.com
+Cc:     kbuild-all@lists.01.org, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V2 5/5] clk: imx: add i.MX93 clk
+Message-ID: <202202231413.DjpCSE8G-lkp@intel.com>
+References: <20220223011606.3282165-6-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tz6kkjgucct6gsdy"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <164557235424.1264579.14486504733557463529.b4-ty@sntech.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220223011606.3282165-6-peng.fan@oss.nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,60 +67,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi "Peng,
 
---tz6kkjgucct6gsdy
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for the patch! Yet something to improve:
 
-Hello,
+[auto build test ERROR on next-20220217]
+[cannot apply to shawnguo/for-next robh/for-next clk/clk-next v5.17-rc5 v5.17-rc4 v5.17-rc3 v5.17-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-On Wed, Feb 23, 2022 at 12:27:08AM +0100, Heiko Stuebner wrote:
-> On Mon, 14 Feb 2022 09:19:12 +0100, Krzysztof Kozlowski wrote:
-> > DTS patches are independent. Not tested, but I really hope no downstrea=
-m kernel
-> > depends on pwm node naming... If it does, please change it to compatibl=
-e. :)
-> >=20
-> > Best regards,
-> > Krzysztof
-> >=20
-> > Krzysztof Kozlowski (4):
-> >   dt-bindings: pwm: google,cros-ec: include generic pwm schema
-> >   arm64: dts: mt8183: align Google CROS EC PWM node name with dtschema
-> >   arm64: dts: qcom: align Google CROS EC PWM node name with dtschema
-> >   arm64: dts: rk3399: align Google CROS EC PWM node name with dtschema
-> >=20
-> > [...]
->=20
-> Applied, thanks!
->=20
-> [4/4] arm64: dts: rk3399: align Google CROS EC PWM node name with dtschema
->       commit: 474a84be692d893f45a54b405dcbc137cbf77949
+url:    https://github.com/0day-ci/linux/commits/Peng-Fan-OSS/imx-add-i-MX93-clk-bindings-and-driver/20220223-091628
+base:    3c30cf91b5ecc7272b3d2942ae0505dd8320b81c
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220223/202202231413.DjpCSE8G-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/6af055ecd8262a7ba5aa17d0bde604f63fae465c
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Peng-Fan-OSS/imx-add-i-MX93-clk-bindings-and-driver/20220223-091628
+        git checkout 6af055ecd8262a7ba5aa17d0bde604f63fae465c
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash
 
-I expected that all patches in this series go in together via an ARM
-tree. Or are there expectations that this goes via PWM?
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Best regards
-Uwe
+All errors (new ones prefixed by >>):
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+>> drivers/clk/imx/clk-imx93.c:17:10: fatal error: soc/imx/soc.h: No such file or directory
+      17 | #include <soc/imx/soc.h>
+         |          ^~~~~~~~~~~~~~~
+   compilation terminated.
 
---tz6kkjgucct6gsdy
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+vim +17 drivers/clk/imx/clk-imx93.c
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmIV0qYACgkQwfwUeK3K
-7Al9mQgAhD+Y70LUATDqKKM6Uf5x8vV8s8vkHGeNWj6YC7RgYVH/gsKh2FZTHebB
-13Z4Tmc+6U7nbvDhzVU3v+6p4QqjwRJO1dINTZZwkPXYBS1wopfnGkdrjJWcXSWL
-i2pFlGJm9Sh/16uLjIUsGMr+/V4ftEHzphi9fAvKUcbLlGmOIVA4KkA1IM3kUUqM
-QvrvXSxms4ktaL+IEnjtza+lr8VhuYyeLCnrapNYBQ8qzvlIEy77IQN7xTiaQ5KY
-/jsRBUw82H0YuUxCx4pHX3b7Y17mOXBrWJtt5EWwsjNNEjAuGnyE/1WCxC8sht/6
-p1Wso+Y/5o80Ph14XipAdR7uEVIEBQ==
-=96Gc
------END PGP SIGNATURE-----
+  > 17	#include <soc/imx/soc.h>
+    18	
 
---tz6kkjgucct6gsdy--
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
