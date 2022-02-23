@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B46A4C1359
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 13:57:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E461D4C1373
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 13:59:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240676AbiBWM5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 07:57:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51794 "EHLO
+        id S229437AbiBWM7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 07:59:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240669AbiBWM5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 07:57:42 -0500
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA499A181
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 04:57:13 -0800 (PST)
-Received: by mail-pf1-x434.google.com with SMTP id x18so15236534pfh.5
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 04:57:13 -0800 (PST)
+        with ESMTP id S240712AbiBWM5y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 07:57:54 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00BDEE085
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 04:57:18 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id m22so2603955pja.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 04:57:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=9zjHo6BnE+LkvSb3drhMyymhfgiGeZ2qxQyNQtjreqM=;
-        b=CNsXNq6GX/7wV0tQQjbzBvUkFpuR3GUyUnpFx34jzgdd5Fca/MULlkHlNnop9BE1H7
-         UzYtJoh0fjmwrJ7nPJWqTsMnuA09heFJZcOadyMiQnz0YGRZ/cBWaupEglqNi+YebIfG
-         bOd1OHuu0t0wZKKTgcbhFCjlTiEy7o0wednqgj1ST/w7M17cUKSSQXfRpvdVVuqub/Sb
-         ulNUDwC7lxJ4ocr5GGvujco3nau+SVz1RFQkaiugxQQbQchtOTC8nzH541e/vEwwKtGS
-         vxVgnoH3bg3IHWaZTegO5vsd79ctl9MSUb4ZNp5ritfSZ0gc+b4dzihzzT3qXH53GrdP
-         zrzA==
+        bh=Gpyd4vP7EgbsF/QazldQl0vAIMM6wCSjCpTQL1+8JT0=;
+        b=E7V2nNWC+ebjB9OizOIDqcJ2x3xgHFzfgiXjJr0YRjP3kTrq96iaiKBZgb5Rm4X3EN
+         Pd1am9duErfEAzbCmSx6GPhkF/wOey1bLlYOcFy3iEzJhRyhSXFAbSk5qm4C4KY7fAZq
+         t2TMDuWRZMjJE6+VwbOPLG7LHh9WmoX5R3PNVRS/MrJskCHz51cL+fNZgWpH0GHbQAYv
+         el1PzdOJO3UIcaGqNmOIphcffgw2JDQbhax52uO/5+IfD8/5HBwBFERuX2q252M2Zc/Y
+         WVNePkii7LexIgRlSs9PWW4VSfDw9p04LbmeOV3iT0f1G6P7jTmPf0EHoWfAb6Dqf6Yo
+         WRlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=9zjHo6BnE+LkvSb3drhMyymhfgiGeZ2qxQyNQtjreqM=;
-        b=DZ+HX/DB3ffqjOTGXwPX/H63Ij/nhzFoCSpJQdVjMMSiX05uB7nMHTg2zScVdqLX+p
-         mW3UqfXUflEBwqIk7HmYAFeFsL6y6P3cCJx7w0ur/0PvGlZP7FKl//dY0UkDfhbv5/Ms
-         PEUqMzBmi8vwxBVKhcrizEELC1J1dYBOWvFt9au2AZRZFMZs89qptyqFjmGd7rptznEg
-         drvoI6VrXJvNsf8j4+eMsFcSWVvL63u4TWlPvOST7AU7ertDZcHMt9N3vtzo7YSAOYqA
-         UHTgZextevoepCKkeglTlal3IF7pGyWB13dOsT89zTwBgrh97OVMZDQeR2TuEN9cUfoY
-         Qdwg==
-X-Gm-Message-State: AOAM531oMUpVf2pzSFRxD2kMLmY+S4s1zxPUf1Qu2lK2Sdl7FXaOcwDJ
-        qVh+ikzM5YkcRbMhFxnI5Pl6RTOuTUcsew==
-X-Google-Smtp-Source: ABdhPJyfMBO4QcCVfia/BemnU75mzGDNEqqptHIs/x1P4e0kISqh/l1AoaX/wM3QNabCIVs7Kj+0QQ==
-X-Received: by 2002:a63:531d:0:b0:365:5f0c:7cbb with SMTP id h29-20020a63531d000000b003655f0c7cbbmr23503993pgb.150.1645621033463;
-        Wed, 23 Feb 2022 04:57:13 -0800 (PST)
+        bh=Gpyd4vP7EgbsF/QazldQl0vAIMM6wCSjCpTQL1+8JT0=;
+        b=yzFndLw4sl/PYFRkscxA77iNQeC9xfp39Pn5Y6Zgy2+KJd61n+2ZJmCvDKR4ij/sN/
+         PDFDve3opqr1sE9qzeBprtgm3r1xIgJSN1UFRNlx/hUL9EvP2EOHJJbfyXaLk6qJGlWE
+         SWM7FtdBYeOjU+S1juO+cCpK+X2T0SWt/wh8MJE/P1NBiAqmFcyGH8IEkHr5VnUnjsUa
+         GelNc0PIVmX4x8Wq2IdKPwzMcY5SsWtxMqUg6NyU7+AsPLItY11tO/26CKmf3lRRM/PV
+         DQbdAdn5SABtJ7wffic8wpnGP/l0acHxTlfm9ys0iuMQ4nAsHJ9reNlMHpH/5zW69LYG
+         FdMg==
+X-Gm-Message-State: AOAM530qvt5/vapuNOrSZg2yeh9JkG8Di0SJnPhO1ZyGWcSojtyHxQxn
+        14kmQNdeukYnTkS4lwyJBts89w==
+X-Google-Smtp-Source: ABdhPJx6n9/CeWhHPrqJMfspDzJDPCGI1x0rvizUiWRysgrWf99/an1PBiJeX235MOAA0OC8/dgMPQ==
+X-Received: by 2002:a17:902:db04:b0:14c:f43b:e9df with SMTP id m4-20020a170902db0400b0014cf43be9dfmr27648150plx.76.1645621038420;
+        Wed, 23 Feb 2022 04:57:18 -0800 (PST)
 Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id z23sm22136243pfj.87.2022.02.23.04.57.09
+        by smtp.gmail.com with ESMTPSA id z23sm22136243pfj.87.2022.02.23.04.57.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Feb 2022 04:57:12 -0800 (PST)
+        Wed, 23 Feb 2022 04:57:17 -0800 (PST)
 From:   Shawn Guo <shawn.guo@linaro.org>
 To:     Marc Zyngier <maz@kernel.org>,
         "Rafael J . Wysocki" <rafael@kernel.org>
@@ -60,10 +60,10 @@ Cc:     Valentin Schneider <valentin.schneider@arm.com>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH v6 1/3] PM: cpu: Add CPU_LAST_PM_ENTER and CPU_FIRST_PM_EXIT support
-Date:   Wed, 23 Feb 2022 20:55:34 +0800
-Message-Id: <20220223125536.230224-2-shawn.guo@linaro.org>
+        Shawn Guo <shawn.guo@linaro.org>, Rob Herring <robh@kernel.org>
+Subject: [PATCH v6 2/3] dt-bindings: interrupt-controller: Add Qualcomm MPM support
+Date:   Wed, 23 Feb 2022 20:55:35 +0800
+Message-Id: <20220223125536.230224-3-shawn.guo@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220223125536.230224-1-shawn.guo@linaro.org>
 References: <20220223125536.230224-1-shawn.guo@linaro.org>
@@ -79,105 +79,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It becomes a common situation on some platforms that certain hardware
-setup needs to be done on the last standing cpu, and rpmh-rsc[1] is such
-an existing example.  As figuring out the last standing cpu is really
-something generic, it adds CPU_LAST_PM_ENTER (and CPU_FIRST_PM_EXIT)
-event support to cpu_pm helper, so that individual driver can be
-notified when the last standing cpu is about to enter low power state.
+It adds DT binding support for Qualcomm MPM interrupt controller.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/soc/qcom/rpmh-rsc.c?id=v5.16#n773
-
+Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 ---
- include/linux/cpu_pm.h | 15 +++++++++++++++
- kernel/cpu_pm.c        | 33 +++++++++++++++++++++++++++++++--
- 2 files changed, 46 insertions(+), 2 deletions(-)
+ .../interrupt-controller/qcom,mpm.yaml        | 96 +++++++++++++++++++
+ 1 file changed, 96 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
 
-diff --git a/include/linux/cpu_pm.h b/include/linux/cpu_pm.h
-index 552b8f9ea05e..153344307b7c 100644
---- a/include/linux/cpu_pm.h
-+++ b/include/linux/cpu_pm.h
-@@ -55,6 +55,21 @@ enum cpu_pm_event {
- 
- 	/* A cpu power domain is exiting a low power state */
- 	CPU_CLUSTER_PM_EXIT,
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
+new file mode 100644
+index 000000000000..509d20c091af
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
+@@ -0,0 +1,96 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/qcom,mpm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	/*
-+	 * A cpu is entering a low power state after all other cpus
-+	 * in the system have entered the lower power state.
-+	 */
-+	CPU_LAST_PM_ENTER,
++title: Qualcom MPM Interrupt Controller
 +
-+	/* The last cpu failed to enter a low power state */
-+	CPU_LAST_PM_ENTER_FAILED,
++maintainers:
++  - Shawn Guo <shawn.guo@linaro.org>
 +
-+	/*
-+	 * A cpu is exiting a low power state before any other cpus
-+	 * in the system exits the low power state.
-+	 */
-+	CPU_FIRST_PM_EXIT,
- };
- 
- #ifdef CONFIG_CPU_PM
-diff --git a/kernel/cpu_pm.c b/kernel/cpu_pm.c
-index 246efc74e3f3..7c104446e1e9 100644
---- a/kernel/cpu_pm.c
-+++ b/kernel/cpu_pm.c
-@@ -26,6 +26,8 @@ static struct {
- 	.lock  = __RAW_SPIN_LOCK_UNLOCKED(cpu_pm_notifier.lock),
- };
- 
-+static atomic_t cpus_in_pm;
++description:
++  Qualcomm Technologies Inc. SoCs based on the RPM architecture have a
++  MSM Power Manager (MPM) that is in always-on domain. In addition to managing
++  resources during sleep, the hardware also has an interrupt controller that
++  monitors the interrupts when the system is asleep, wakes up the APSS when
++  one of these interrupts occur and replays it to GIC interrupt controller
++  after GIC becomes operational.
 +
- static int cpu_pm_notify(enum cpu_pm_event event)
- {
- 	int ret;
-@@ -116,7 +118,20 @@ EXPORT_SYMBOL_GPL(cpu_pm_unregister_notifier);
-  */
- int cpu_pm_enter(void)
- {
--	return cpu_pm_notify_robust(CPU_PM_ENTER, CPU_PM_ENTER_FAILED);
-+	int ret;
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
 +
-+	ret = cpu_pm_notify_robust(CPU_PM_ENTER, CPU_PM_ENTER_FAILED);
-+	if (ret)
-+		return ret;
++properties:
++  compatible:
++    items:
++      - const: qcom,mpm
 +
-+	if (atomic_inc_return(&cpus_in_pm) == num_online_cpus()) {
-+		ret = cpu_pm_notify_robust(CPU_LAST_PM_ENTER,
-+					   CPU_LAST_PM_ENTER_FAILED);
-+		if (ret)
-+			return ret;
-+	}
++  reg:
++    maxItems: 1
++    description:
++      Specifies the base address and size of vMPM registers in RPM MSG RAM.
 +
-+	return 0;
- }
- EXPORT_SYMBOL_GPL(cpu_pm_enter);
- 
-@@ -134,7 +149,21 @@ EXPORT_SYMBOL_GPL(cpu_pm_enter);
-  */
- int cpu_pm_exit(void)
- {
--	return cpu_pm_notify(CPU_PM_EXIT);
-+	int ret;
++  interrupts:
++    maxItems: 1
++    description:
++      Specify the IRQ used by RPM to wakeup APSS.
 +
-+	ret = cpu_pm_notify(CPU_PM_EXIT);
-+	if (ret)
-+		return ret;
++  mboxes:
++    maxItems: 1
++    description:
++      Specify the mailbox used to notify RPM for writing vMPM registers.
 +
-+	if (atomic_read(&cpus_in_pm) == num_online_cpus()) {
-+		ret = cpu_pm_notify(CPU_FIRST_PM_EXIT);
-+		if (ret)
-+			return ret;
-+	}
++  interrupt-controller: true
 +
-+	atomic_dec(&cpus_in_pm);
++  '#interrupt-cells':
++    const: 2
++    description:
++      The first cell is the MPM pin number for the interrupt, and the second
++      is the trigger type.
 +
-+	return 0;
- }
- EXPORT_SYMBOL_GPL(cpu_pm_exit);
- 
++  qcom,mpm-pin-count:
++    description:
++      Specify the total MPM pin count that a SoC supports.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  qcom,mpm-pin-map:
++    description:
++      A set of MPM pin numbers and the corresponding GIC SPIs.
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    items:
++      items:
++        - description: MPM pin number
++        - description: GIC SPI number for the MPM pin
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - mboxes
++  - interrupt-controller
++  - '#interrupt-cells'
++  - qcom,mpm-pin-count
++  - qcom,mpm-pin-map
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    mpm: interrupt-controller@45f01b8 {
++        compatible = "qcom,mpm";
++        interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
++        reg = <0x45f01b8 0x1000>;
++        mboxes = <&apcs_glb 1>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
++        interrupt-parent = <&intc>;
++        qcom,mpm-pin-count = <96>;
++        qcom,mpm-pin-map = <2 275>,
++                           <5 296>,
++                           <12 422>,
++                           <24 79>,
++                           <86 183>,
++                           <90 260>,
++                           <91 260>;
++    };
 -- 
 2.25.1
 
