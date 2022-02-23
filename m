@@ -2,169 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8FC34C17F2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 16:59:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD4F4C17E0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 16:58:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237359AbiBWP7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 10:59:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51442 "EHLO
+        id S242513AbiBWP62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 10:58:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234105AbiBWP7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 10:59:32 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A27BC12CB;
-        Wed, 23 Feb 2022 07:59:01 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21NFwl67063190;
-        Wed, 23 Feb 2022 09:58:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1645631927;
-        bh=E/bTPkKyvKNO3M+trEvQvgNaUVq/uZYZz6ly5Zwvuy4=;
-        h=From:To:CC:Subject:Date;
-        b=gNONmWsY2mVORI2MITc6H7MZj1ZLYeH8gmLE0Kt9awiSQ/oWFdIyw/Pby/9aWoa+W
-         cmynfjfpKyHcwIrSpnc1gjMSVS80QhO8+uitz1tyo25C+XkzqRgqm2YF7uWr5tSEsq
-         1RPLWkg4XxkYA6Wnz9siCjkKbtJOD+wfDneESDlU=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21NFwlae104499
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 23 Feb 2022 09:58:47 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 23
- Feb 2022 09:58:46 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 23 Feb 2022 09:58:46 -0600
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21NFwhDF032258;
-        Wed, 23 Feb 2022 09:58:43 -0600
-From:   Aparna M <a-m1@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kishon@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <praneeth@ti.com>, <nikhil.nd@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-am642-sk: Enable WLAN connected to SDHCI0
-Date:   Wed, 23 Feb 2022 21:27:54 +0530
-Message-ID: <20220223155754.7298-1-a-m1@ti.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S229842AbiBWP61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 10:58:27 -0500
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52AB8B2D77;
+        Wed, 23 Feb 2022 07:58:00 -0800 (PST)
+Received: by mail-oo1-f54.google.com with SMTP id 189-20020a4a03c6000000b003179d7b30d8so22888636ooi.2;
+        Wed, 23 Feb 2022 07:58:00 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MXdhDqHwo9RSoGDS4F+6YXTay9qxmpFa8aYups9hS1A=;
+        b=CLgtxzDivu4bC/JfXabDfvlqvmxET2hwG14oJ0LOIFKJoa9lBEcYyZ7VXsbuUG4B3Q
+         A8Du8iQhZu1cI1Fu/1EsmeqRFl2bLTqI2jWNaYjq3cQ/UxwAsepktyULg4Szu+RkW8dd
+         dGKMNDPiE92B1ymiUMgn9/89IIKyxMAuvIXiSRGYIiDB/f7uRrDexHKeJ6uQA0wVUHM0
+         +V+sNiiVZRUI9DJPfKSNvToEgmLZXHrbJB38dfrmqpZt3KNSJMC3bu8tB6aLCMvpGufv
+         iNV86oxOkCGpkPEK+7a0qHA/CYcrjLeyzcSRvg6JplHWamT8PoGMIDGGtVhNq+GlFwq2
+         LxKA==
+X-Gm-Message-State: AOAM532VF0TRraIFQ4cLNumcQH0LXlALz7SbCFSyFnjAqlx/hn9PLNEl
+        9EcBncMXsj0M/+Y0VM55MyNE14s/fg==
+X-Google-Smtp-Source: ABdhPJxzUe+lJIur2gdc+j9OgKQIEfPj1dm2wxDDipkMIvMR9csXumgpHJcUUi9gfQzfXkkbK1XtsA==
+X-Received: by 2002:a05:6870:8883:b0:d3:6ffa:cf20 with SMTP id m3-20020a056870888300b000d36ffacf20mr4027959oam.104.1645631879697;
+        Wed, 23 Feb 2022 07:57:59 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q10sm5860otl.1.2022.02.23.07.57.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Feb 2022 07:57:58 -0800 (PST)
+Received: (nullmailer pid 1005248 invoked by uid 1000);
+        Wed, 23 Feb 2022 15:57:58 -0000
+Date:   Wed, 23 Feb 2022 09:57:57 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Markuss Broks <markuss.broks@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, linux-input@vger.kernel.org,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: input/touchscreen: bindings for
+ Imagis
+Message-ID: <YhZZhUVldKkSaKsb@robh.at.kernel.org>
+References: <20220222203414.8656-1-markuss.broks@gmail.com>
+ <20220222203414.8656-2-markuss.broks@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220222203414.8656-2-markuss.broks@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kishon Vijay Abraham I <kishon@ti.com>
+On Tue, 22 Feb 2022 22:34:10 +0200, Markuss Broks wrote:
+> This patch adds device-tree bindings for the Imagis
+> IST3038C touch screen IC.
+> 
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  .../input/touchscreen/imagis,ist3038c.yaml    | 74 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  2 files changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+> 
 
-WL1837 module is connected to SDHCI0 in AM642 SK. Enable it here.
-This will enable the WiFi functionaliy on the board.
-
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-Signed-off-by: Aparna M <a-m1@ti.com>
----
-
-v1 -> v2: Update commit message with "From:" details
-
- arch/arm64/boot/dts/ti/k3-am642-sk.dts | 62 ++++++++++++++++++++++++++
- 1 file changed, 62 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 6b04745147be..1178bb982f05 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -125,6 +125,31 @@
- 		vin-supply = <&vcc_3v3_sys>;
- 		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
- 	};
-+
-+	com8_ls_en: fixed-regulator-com8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "com8_ls_en";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		pinctrl-0 = <&main_com8_ls_en_pins_default>;
-+		pinctrl-names = "default";
-+		gpio = <&main_gpio0 62 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	wlan_en: fixed-regulator-wlan {
-+		/* output of SN74AVC4T245RSVR */
-+		compatible = "regulator-fixed";
-+		regulator-name = "wlan_en";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		enable-active-high;
-+		pinctrl-0 = <&main_wlan_en_pins_default>;
-+		pinctrl-names = "default";
-+		vin-supply = <&com8_ls_en>;
-+		gpio = <&main_gpio0 48 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- &main_pmx0 {
-@@ -216,6 +241,23 @@
- 			AM64X_IOPAD(0x0270, PIN_INPUT, 0) /* (D18) ECAP0_IN_APWM_OUT */
- 		>;
- 	};
-+	main_wlan_en_pins_default: main-wlan-en-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x00c4, PIN_OUTPUT_PULLUP, 7) /* (V8) GPIO0_48 */
-+		>;
-+	};
-+
-+	main_com8_ls_en_pins_default: main-com8-ls-en-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x00fc, PIN_OUTPUT, 7) /* (U7) PRG1_PRU0_GPO17.GPIO0_62 */
-+		>;
-+	};
-+
-+	main_wlan_pins_default: main-wlan-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x00bc, PIN_INPUT, 7) /* (U8) GPIO0_46 */
-+		>;
-+	};
- };
- 
- &mcu_uart0 {
-@@ -293,6 +335,26 @@
- 	status = "reserved";
- };
- 
-+&sdhci0 {
-+	vmmc-supply = <&wlan_en>;
-+	bus-width = <4>;
-+	non-removable;
-+	cap-power-off-card;
-+	keep-power-in-suspend;
-+	ti,driver-strength-ohm = <50>;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	wlcore: wlcore@2 {
-+		compatible = "ti,wl1837";
-+		reg = <2>;
-+		pinctrl-0 = <&main_wlan_pins_default>;
-+		pinctrl-names = "default";
-+		interrupt-parent = <&main_gpio0>;
-+		interrupts = <46 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+};
-+
- &sdhci1 {
- 	/* SD/MMC */
- 	vmmc-supply = <&vdd_mmc1>;
--- 
-2.17.1
-
+Acked-by: Rob Herring <robh@kernel.org>
