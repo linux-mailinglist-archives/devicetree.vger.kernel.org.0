@@ -2,85 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38F864C1D0E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:22:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDE3C4C1B54
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 20:03:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241110AbiBWUW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 15:22:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
+        id S244090AbiBWTEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 14:04:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241035AbiBWUWw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:22:52 -0500
-X-Greylist: delayed 1481 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 23 Feb 2022 12:22:22 PST
-Received: from v157-7-243-95.myvps.jp (v157-7-243-95.myvps.jp [157.7.243.95])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A964D251
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 12:22:22 -0800 (PST)
-Received: from v157-7-243-95.myvps.jp (localhost [127.0.0.1])
-        by v157-7-243-95.myvps.jp (8.14.4/8.14.4) with ESMTP id 21NAvJMl019130
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 19:57:19 +0900
-Received: (from apache@localhost)
-        by v157-7-243-95.myvps.jp (8.14.4/8.14.4/Submit) id 21NAvJU6019129;
-        Wed, 23 Feb 2022 19:57:19 +0900
-To:     devicetree@vger.kernel.org
-Subject: =?UTF-8?B?44GK5ZWP44GE5ZCI44KP44Gb6Kqg44Gr44GC44KK44GM44Go44GG44GU44GW?=  =?UTF-8?B?44GE44G+44GZ44CC77yI56K66KqN55So6Ieq5YuV6YCB5L+h44Oh44O844Or?=  =?UTF-8?B?77yJ5qCq5byP5Lya56S+44OK44Kr44K/44Kx?=
-X-PHP-Originating-Script: 952:class-phpmailer.php
-Date:   Wed, 23 Feb 2022 10:57:19 +0000
-From:   NAKATAKE <info@nakatake-wp.com>
-Message-ID: <e45b0c32c66e3e18fe785fab04c8203a@www.nakatake-wp.com>
-X-Priority: 3
-X-Mailer: PHPMailer 5.2.7 (https://github.com/PHPMailer/PHPMailer/)
-Reply-To: info@nakatake-wp.com
+        with ESMTP id S232675AbiBWTEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 14:04:06 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC0F76561
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 11:03:35 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id l19so16272400pfu.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 11:03:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=M+ikUS2HXQGSZdemxaJfX0vveKZ/5VeOycL6B465U6E=;
+        b=GG7/aPu3rWPLCrcqfX/MtdHF1OgXJCOXAwRiVoJcrxEu1fdnzxPDQI3T5It2uKeMfu
+         Xq3t8JExNtHKemFUykYPQ5cRZ/qpX0dT02vKxwZCDebDvAxG54+6sQRqBAZs6xHTB7xT
+         zyjbK//LuqfHL11h2ogaay2bS/XLvwLC9Q/eWNnQ5w4MmGVY1qIfXVAizMoBXK+/Ktkb
+         3bKtqXNBei0Z1Orn0y7x5sXMHb0DGkUKeD4/oc8VHs+VubXCutNOrdW1O9xphbBdGSvV
+         pC8e/dtqH9R8VDCOB5fUt4DWsNbIyVKppYJwuJLS8Bb8UOCcbJUBd91FR92YiYZfGsj4
+         XK0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=M+ikUS2HXQGSZdemxaJfX0vveKZ/5VeOycL6B465U6E=;
+        b=qiDQnRL8CqFL8Ex0kPUJ2huBGTwrf1SPXocLMJQh4lf40LRYAIWlsmNlMoaH2Cdb8U
+         jZbcaW512uBLFpeQmW6sRndMoqbN9JbVFyZd6GVeDJJs4JfQ6zDCFQsZTUOHRdTl8mOM
+         gc6xVbeLR1ZAbl+iBxxf2KX0czu0lxceWQWaGMT0T5tbxIYQ9ODhYjcEF2Us6MiZJWud
+         eeWIZ+MfS4anY9QEgSkQIKeQJL8gMWCdloT843VSgd93v4RspDc3Att9i5uuNaCaVrWb
+         cy0zWilL3LzeOiSvhLIds4ktiyKpU/kc3dVF3z1yEAfASmqFCYI89CwzHhvm6nR9kScR
+         IIkg==
+X-Gm-Message-State: AOAM531GI+7EFGm5zjZNy076UqcEP6tEn5iurskoL3gfHsuWqlNNaXBK
+        OuXf2QkwSqGkgkYElhSPrEQ=
+X-Google-Smtp-Source: ABdhPJzIOAHE404bN7qZ0z4kLUHr0Uo2twhFBe+78QJPo4jSfLDYpDIPmIQ+q7rYcfgyKoomzbUDyQ==
+X-Received: by 2002:a63:e744:0:b0:370:25a8:bfed with SMTP id j4-20020a63e744000000b0037025a8bfedmr812276pgk.432.1645643015401;
+        Wed, 23 Feb 2022 11:03:35 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id p2sm215516pjo.38.2022.02.23.11.03.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Feb 2022 11:03:34 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org,
+        Maxime Ripard <maxime@cerno.tech>
+Subject: Re: [PATCH] ARM: boot: dts: bcm2711: Fix HVS register range
+Date:   Wed, 23 Feb 2022 11:03:32 -0800
+Message-Id: <20220223190332.3791516-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <1645272475-4096-1-git-send-email-stefan.wahren@i2se.com>
+References: <1645272475-4096-1-git-send-email-stefan.wahren@i2se.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: Yes, score=6.6 required=5.0 tests=BAYES_99,BAYES_999,
-        HEADER_FROM_DIFFERENT_DOMAINS,PDS_RDNS_DYNAMIC_FP,RDNS_DYNAMIC,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: *  1.7 URIBL_BLACK Contains an URL listed in the URIBL blacklist
-        *      [URIs: clck.ru]
-        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
-        *      [score: 1.0000]
-        *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
-        *      [score: 1.0000]
-        *  0.0 SPF_NONE SPF: sender does not publish an SPF Record
-        *  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
-        *      mail domains are different
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  1.0 RDNS_DYNAMIC Delivered to internal network by host with
-        *      dynamic-looking rDNS
-        *  0.0 PDS_RDNS_DYNAMIC_FP RDNS_DYNAMIC with FP steps
-X-Spam-Level: ******
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-この度は、お問い合わせ誠にありがとうございます。
-いただきました内容につきまして、後日ご連絡をさせていただきます。
+On Sat, 19 Feb 2022 13:07:55 +0100, Stefan Wahren <stefan.wahren@i2se.com> wrote:
+> From: Maxime Ripard <maxime@cerno.tech>
+> 
+> While the HVS has the same context memory size in the BCM2711 than in
+> the previous SoCs, the range allocated to the registers doubled and it
+> now takes 16k + 16k, compared to 8k + 16k before.
+> 
+> The KMS driver will use the whole context RAM though, eventually
+> resulting in a pointer dereference error when we access the higher half
+> of the context memory since it hasn't been mapped.
+> 
+> Fixes: 4564363351e2 ("ARM: dts: bcm2711: Enable the display pipeline")
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> ---
 
-お問合せ内容：
-ao5e7tf
-
-お名前：
-❤️ Caroline liked you! Click Here: https://clck.ru/c4Mfv?19u1 ❤️
-
-住所：
-010577716969 福井県 zcy1w7t
-
-メール：
-devicetree@vger.kernel.org
-
-見積もり：
-見積もりを希望しない
-
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/fixes, thanks!
 --
-このメールは 新着トピックス｜株式会社ナカタケ (http://www.nakatake-wp.com/wp) のお問い合わせフォームから送信されました。
-
-
-------------------------------------------------------------------------------------------------------------------
-株式会社 ナカタケ
-〒920-0207 石川県金沢市須崎町口266番地 TEL:076-238-2121
-
+Florian
