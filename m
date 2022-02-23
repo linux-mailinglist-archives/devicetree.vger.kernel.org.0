@@ -2,120 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62BDD4C0E8A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 09:53:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28EFB4C0EB3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 09:59:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239063AbiBWIxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 03:53:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33210 "EHLO
+        id S239132AbiBWJAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 04:00:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232440AbiBWIxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 03:53:43 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7CBD65780;
-        Wed, 23 Feb 2022 00:53:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1645606396; x=1677142396;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Gf7fLnuz2/+PWrNrtqGk1PKFdI0hQYHsrfCkNF3N2OE=;
-  b=wfa74g05p79C6sjxL3xJ82DiO5q4vDUA2aprhaAcKbq0sipbcQXCuCJV
-   UDz7Xo4806bIa+1v5X9/tdXNYEaROAPRUZR+eXa1ePKaA1OAhubZpKYP1
-   purYunz0Zl500zH4BtKtISVV7cRteONTGkwwVO2JbFmg07PPSdVZXA0pf
-   4FGkpPbi0k0eEValV5eQDH+9khs4ZH2XnSMbHsdodl3G69hkH02q4PDji
-   J9Wj3A3JLktAqqQrDiXRyleiSpmFCVwbkl9PHMh1PmxYFyzpj+t2j0lnW
-   Q8dZXQDI5xIU3dQrtkaQI0OAX9ieIE8SVZC9OaL8lLLUV3hgFTMGwQu4+
-   A==;
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; 
-   d="scan'208";a="149703384"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Feb 2022 01:53:14 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 23 Feb 2022 01:53:14 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Wed, 23 Feb 2022 01:53:09 -0700
-From:   <conor.dooley@microchip.com>
-To:     <u.kleine-koenig@pengutronix.de>,
-        <krzysztof.kozlowski@canonical.com>
-CC:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
-        <aou@eecs.berkeley.edu>, <atishp@rivosinc.com>, <brgl@bgdev.pl>,
-        <conor.dooley@microchip.com>, <daire.mcnamara@microchip.com>,
-        <devicetree@vger.kernel.org>, <geert@linux-m68k.org>,
-        <ivan.griffin@microchip.com>, <jassisinghbrar@gmail.com>,
-        <lee.jones@linaro.org>, <lewis.hanly@microchip.com>,
-        <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-rtc@vger.kernel.org>,
-        <palmer@dabbelt.com>, <palmer@rivosinc.com>,
-        <paul.walmsley@sifive.com>, <robh+dt@kernel.org>,
-        <robh@kernel.org>, <thierry.reding@gmail.com>
-Subject: Re: [PATCH v7 05/11] dt-bindings: pwm: add microchip corepwm binding
-Date:   Wed, 23 Feb 2022 08:55:10 +0000
-Message-ID: <20220223085509.3664942-1-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220223082018.degrftmxpk5uc6xn@pengutronix.de>
-References: <20220223082018.degrftmxpk5uc6xn@pengutronix.de>
+        with ESMTP id S232588AbiBWJAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 04:00:19 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 612CA7CDE1;
+        Wed, 23 Feb 2022 00:59:52 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 29303D6E;
+        Wed, 23 Feb 2022 00:59:52 -0800 (PST)
+Received: from [10.57.9.184] (unknown [10.57.9.184])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 36B4C3F5A1;
+        Wed, 23 Feb 2022 00:59:50 -0800 (PST)
+Message-ID: <b6682d6f-a6ae-8a82-68c3-13840c02d178@arm.com>
+Date:   Wed, 23 Feb 2022 08:59:48 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [[PATCH v2 2/2] OPP: Add 'opp-microwatt' parsing for advanced EM
+ registration
+Content-Language: en-US
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
+        rafael@kernel.org, daniel.lezcano@linaro.org, nm@ti.com,
+        sboyd@kernel.org, mka@chromium.org, dianders@chromium.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <20220222140746.12293-1-lukasz.luba@arm.com>
+ <20220222140746.12293-3-lukasz.luba@arm.com>
+ <20220223055357.t3wulpla64vt3xus@vireshk-i7>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+In-Reply-To: <20220223055357.t3wulpla64vt3xus@vireshk-i7>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/02/2022 08:20, Uwe Kleine-König wrote:
-> On Wed, Feb 23, 2022 at 08:12:49AM +0100, Krzysztof Kozlowski wrote:
-> > On 23/02/2022 07:20, Uwe Kleine-König wrote:
-> > > On Mon, Feb 14, 2022 at 01:58:35PM +0000, conor.dooley@microchip.com wrote:
-> > >> From: Conor Dooley <conor.dooley@microchip.com>
-> > >>
-> > >> Add device tree bindings for the Microchip fpga fabric based "core" PWM
-> > >> controller.
-> > >>
-> > >> Reviewed-by: Rob Herring <robh@kernel.org>
-> > >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > >> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> > > 
-> > > I like it:
-> > > 
-> > > Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> > > 
-> > > nitpick: Put your S-o-b last in the commit log. (This doesn't justify a
-> > > resend IMHO)
-> > 
-> > It should be the opposite - the first. First author signs the patch,
-> > then comes review and finally an ack. Putting SoB at then suggests that
-> > tags were accumulated before sending patch, out of mailing list.
-> 
-> well, or in an earlier revision of this patch as is the case here. One
-> of the ideas of S-o-b is that the order shows the flow of the patch
-> states and if this patch ends in git with:
-> 
-> 	Referred-by: Rob Herring <robh@kernel.org>
-> 	Singed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> 	Backed-by: Palmer Dabbelt <palmer@rivosinc.com>
-> 	Singed-off-by: Peter Maintainer <pm@example.com>
-> 
-> I'd expect that Backed-by was added by Peter, not Conor.
-> (Modified the tags on purpose to not interfere with b4's tag pickup, I
-> guess you humans still get the point.)
 
-I had put the acks after the S-o-B for patches I hadn't changed since the ack,
-but I think that may have been a misinterpretation of what was meant by Rob
-when he said tags should be in chronological order. Won't do it this way in
-the future.
 
-If the remaining patch gets a maintainer ack, the order will be fine I guess
-since it'll be Palmer taking it anyway. If there's a v8, I will fix the order.
+On 2/23/22 05:53, Viresh Kumar wrote:
+> On 22-02-22, 14:07, Lukasz Luba wrote:
+>> +static int _of_find_opp_microwatt_property(struct device *dev)
+>> +{
+>> +	unsigned long freq = 0;
+>> +	struct dev_pm_opp *opp;
+>> +	struct device_node *np;
+>> +	struct property *prop;
+>> +
+>> +	/* We only support "operating-points-v2" */
+>> +	np = dev_pm_opp_of_get_opp_desc_node(dev);
+>> +	if (!np)
+>> +		return -EINVAL;
+>> +
+>> +	of_node_put(np);
+>> +
+>> +	/* Check if an OPP has needed property */
+>> +	opp = dev_pm_opp_find_freq_ceil(dev, &freq);
+>> +	if (IS_ERR(opp))
+>> +		return -EINVAL;
+>> +
+>> +	prop = of_find_property(opp->np, "opp-microwatt", NULL);
+>> +	dev_pm_opp_put(opp);
+>> +	if (!prop)
+>> +		return -EINVAL;
+>> +
+>> +	return 0;
+>> +}
+> 
+> Please follow everything just like opp-microvolt is defined. Create a new field
+> in the struct dev_pm_opp, initialize it only once when the OPP is created, that
+> field should be used here instead of parsing the DT here again. There also needs
+> to be a debug file in debugfs for this new field.
+> 
+> Search for "supply" and "microvolt" in the OPP core, you will see all the places
+> that need it.
+> 
 
-Thanks,
-Conor
+OK, so you want to have this available for the whole system. I can do
+that. I would go for one value of power and try to fit into the
+opp_parse_supplies() code. As far as I can see in the
+dev_pm_opp_get_voltage() the simple solution: supplier[0] and u_volt
+is used. I would go for similar solution for u_watt.
+There is even a single u_amp and no _max, _min variants, so should be
+good..
