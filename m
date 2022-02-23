@@ -2,324 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B88D44C1C7A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 20:46:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD9E64C1CE0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:09:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244341AbiBWTqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 14:46:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44286 "EHLO
+        id S234631AbiBWUJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 15:09:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243072AbiBWTqp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 14:46:45 -0500
-Received: from mail.schwermer.no (mail.schwermer.no [49.12.228.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6BB44B401;
-        Wed, 23 Feb 2022 11:46:16 -0800 (PST)
-From:   sven@svenschwermer.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=svenschwermer.de;
-        s=mail; t=1645645575;
-        bh=YjSfJgahcyOe04pZ9pdE0sp2HmcDXPOk4E4irpcypQo=;
-        h=From:To:Cc:Subject:In-Reply-To:References;
-        b=KWqRenL93jLy5WRdoduMoRo9nmUbJscbhToKljNRMWwbsNU5TvfdlKnbwECGBSSLR
-         JG7OG7sZdC89rAQrOa+Lt0wlq5gXbfmaqrMF5D6R7ldwwAfJartQ811/PJxRge3G93
-         kVlyuLGled2TLBeJLVtTx8B8wB5kcqtJB6ureJ5k5Jn1sDWqdkzn2iU1U2ferT6fo2
-         dgvyTaU8P51yj1Z99nkBMjb5Lt6NCwsp9HdSY7Yn/dRmLpMXc/RiJKDpIzwxEPs07J
-         uEIL2stCQ2cZ67rJNkrI8UBalBQqKypk2M95w8Nx2bHHRvrnlIix2KstfvK0o5fMvh
-         b2rSsoGFbuFag==
-To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-Cc:     Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        post@lespocky.de, andy.shevchenko@gmail.com, robh@kernel.org
-Subject: [PATCH v8 3/3] leds: Add PWM multicolor driver
-Date:   Wed, 23 Feb 2022 20:45:41 +0100
-Message-Id: <20220223194541.826572-4-sven@svenschwermer.de>
-In-Reply-To: <20220223194541.826572-1-sven@svenschwermer.de>
-References: <20220223194541.826572-1-sven@svenschwermer.de>
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S236066AbiBWUJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:09:12 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D053D4CD44;
+        Wed, 23 Feb 2022 12:08:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645646923; x=1677182923;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=+MGvrogjK3hBuwIOknzKUrzQSja4adIWRodFkkTu2kk=;
+  b=qAu3HWwEtw6P/h3mKJP5QzYTHoGNQNbzHClMR3xvT211kdvjO6BZfWcA
+   xRSkXlgxJbpTQugwZpKvC9pP3K0FHhDFmpboCywcu9hiDPwFefW3G3seQ
+   +c2UtidQmDkzt1WQTbQjuBapTau7x+1T9cjoJl9l6fhvGJgYoocEHVl07
+   A=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 23 Feb 2022 12:08:43 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 12:08:42 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Wed, 23 Feb 2022 12:08:42 -0800
+Received: from [10.216.14.166] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Wed, 23 Feb
+ 2022 12:08:36 -0800
+Message-ID: <d70cf11a-1a23-e240-3565-9966a6f4bfaa@quicinc.com>
+Date:   Thu, 24 Feb 2022 01:38:33 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH 2/5] drm/msm/adreno: Generate name from chipid for 7c3
+Content-Language: en-US
+To:     Rob Clark <robdclark@gmail.com>
+CC:     freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Sean Paul <sean@poorly.run>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <1645454462-27867-1-git-send-email-quic_akhilpo@quicinc.com>
+ <20220221201039.2.I9436e0e300f76b2e6c34136a0b902e8cfd73e0d6@changeid>
+ <CAF6AEGuVZaOdUUf8ccokTQdAXMdW3oVYNx3ae9ShBoh8ibXVOw@mail.gmail.com>
+From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
+In-Reply-To: <CAF6AEGuVZaOdUUf8ccokTQdAXMdW3oVYNx3ae9ShBoh8ibXVOw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+On 2/23/2022 6:28 AM, Rob Clark wrote:
+> On Mon, Feb 21, 2022 at 6:41 AM Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
+>> Use a gpu name which is sprintf'ed from the chipid for 7c3 gpu instead of
+>> hardcoding one. This helps to avoid code churn in case of a gpu rename.
+>>
+>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>> ---
+>>
+>>   drivers/gpu/drm/msm/adreno/adreno_device.c |  1 -
+>>   drivers/gpu/drm/msm/adreno/adreno_gpu.c    | 14 ++++++++++++--
+>>   2 files changed, 12 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+>> index fb26193..89cfd84 100644
+>> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
+>> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+>> @@ -318,7 +318,6 @@ static const struct adreno_info gpulist[] = {
+>>                  .hwcg = a660_hwcg,
+>>          }, {
+>>                  .rev = ADRENO_REV(6, 3, 5, ANY_ID),
+>> -               .name = "Adreno 7c Gen 3",
+>>                  .fw = {
+>>                          [ADRENO_FW_SQE] = "a660_sqe.fw",
+>>                          [ADRENO_FW_GMU] = "a660_gmu.bin",
+>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+>> index f33cfa4..158bbf7 100644
+>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+>> @@ -929,12 +929,22 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
+>>          struct adreno_platform_config *config = dev->platform_data;
+>>          struct msm_gpu_config adreno_gpu_config  = { 0 };
+>>          struct msm_gpu *gpu = &adreno_gpu->base;
+>> +       struct adreno_rev *rev = &config->rev;
+>> +       const char *gpu_name;
+>> +       static char name[8];
+> I think 8 is not always enough.. but maybe just use devm_kasprintf()
+> to keep it simpler?
+>
+> BR,
+> -R
+Sounds good. Will update this patch.
 
-By allowing to group multiple monochrome PWM LEDs into multicolor LEDs,
-all involved LEDs can be controlled in-sync. This enables using effects
-using triggers, etc.
-
-Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
-
-Notes:
-    Changes in v8:
-    * (no changes)
-    
-    Changes in v7:
-    * (no changes)
-    
-    Changes in v6:
-    * (no changes)
-    
-    Changes in v5:
-    * Factor iteration over subleds out into function
-    
-    Changes in v4:
-    * Remove mutex destruction and remove function
-    * Include missing headers
-    * Use post-increment instead of pre-increment
-    * Variable declarations in reverse xmas tree order
-    * Use dev_err_probe where possible
-    * Return immediately where possible
-    * Cosmetic changes
-    * Document LKM name
-    
-    Changes in v3:
-    * Release fwnode handles
-    * Sort header includes
-    * Remove deprecated device tree properties
-    * Remove deprecated LED_OFF
-    * Remove subled channel assignment
-    * s/pwmstate/state/
-
- drivers/leds/Kconfig               |  11 ++
- drivers/leds/Makefile              |   1 +
- drivers/leds/leds-pwm-multicolor.c | 186 +++++++++++++++++++++++++++++
- 3 files changed, 198 insertions(+)
- create mode 100644 drivers/leds/leds-pwm-multicolor.c
-
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index 6090e647daee..e70a46704076 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -552,6 +552,17 @@ config LEDS_PWM
- 	help
- 	  This option enables support for pwm driven LEDs
- 
-+config LEDS_PWM_MULTICOLOR
-+	tristate "PWM driven multi-color LED Support"
-+	depends on LEDS_CLASS_MULTICOLOR
-+	depends on PWM
-+	help
-+	  This option enables support for PWM driven monochrome LEDs that are
-+	  grouped into multicolor LEDs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-pwm-multicolor.
-+
- config LEDS_REGULATOR
- 	tristate "REGULATOR driven LED support"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index e58ecb36360f..ba2c2c1edf12 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -73,6 +73,7 @@ obj-$(CONFIG_LEDS_PCA963X)		+= leds-pca963x.o
- obj-$(CONFIG_LEDS_PM8058)		+= leds-pm8058.o
- obj-$(CONFIG_LEDS_POWERNV)		+= leds-powernv.o
- obj-$(CONFIG_LEDS_PWM)			+= leds-pwm.o
-+obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
- obj-$(CONFIG_LEDS_REGULATOR)		+= leds-regulator.o
- obj-$(CONFIG_LEDS_S3C24XX)		+= leds-s3c24xx.o
- obj-$(CONFIG_LEDS_SC27XX_BLTC)		+= leds-sc27xx-bltc.o
-diff --git a/drivers/leds/leds-pwm-multicolor.c b/drivers/leds/leds-pwm-multicolor.c
-new file mode 100644
-index 000000000000..45e38708ecb1
---- /dev/null
-+++ b/drivers/leds/leds-pwm-multicolor.c
-@@ -0,0 +1,186 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * PWM-based multi-color LED control
-+ *
-+ * Copyright 2022 Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/kernel.h>
-+#include <linux/led-class-multicolor.h>
-+#include <linux/leds.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/pwm.h>
-+
-+struct pwm_led {
-+	struct pwm_device *pwm;
-+	struct pwm_state state;
-+};
-+
-+struct pwm_mc_led {
-+	struct led_classdev_mc mc_cdev;
-+	struct mutex lock;
-+	struct pwm_led leds[];
-+};
-+
-+static int led_pwm_mc_set(struct led_classdev *cdev,
-+			  enum led_brightness brightness)
-+{
-+	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
-+	struct pwm_mc_led *priv = container_of(mc_cdev, struct pwm_mc_led, mc_cdev);
-+	unsigned long long duty;
-+	int ret = 0;
-+	int i;
-+
-+	led_mc_calc_color_components(mc_cdev, brightness);
-+
-+	mutex_lock(&priv->lock);
-+
-+	for (i = 0; i < mc_cdev->num_colors; i++) {
-+		duty = priv->leds[i].state.period;
-+		duty *= mc_cdev->subled_info[i].brightness;
-+		do_div(duty, cdev->max_brightness);
-+
-+		priv->leds[i].state.duty_cycle = duty;
-+		priv->leds[i].state.enabled = duty > 0;
-+		ret = pwm_apply_state(priv->leds[i].pwm,
-+				      &priv->leds[i].state);
-+		if (ret)
-+			break;
-+	}
-+
-+	mutex_unlock(&priv->lock);
-+
-+	return ret;
-+}
-+
-+static int iterate_subleds(struct device *dev, struct pwm_mc_led *priv,
-+			   struct fwnode_handle *mcnode)
-+{
-+	struct mc_subled *subled = priv->mc_cdev.subled_info;
-+	struct fwnode_handle *fwnode;
-+	struct pwm_led *pwmled;
-+	u32 color;
-+	int ret;
-+
-+	/* iterate over the nodes inside the multi-led node */
-+	fwnode_for_each_child_node(mcnode, fwnode) {
-+		pwmled = &priv->leds[priv->mc_cdev.num_colors];
-+		pwmled->pwm = devm_fwnode_pwm_get(dev, fwnode, NULL);
-+		if (IS_ERR(pwmled->pwm)) {
-+			ret = PTR_ERR(pwmled->pwm);
-+			dev_err(dev, "unable to request PWM: %d\n", ret);
-+			goto release_fwnode;
-+		}
-+		pwm_init_state(pwmled->pwm, &pwmled->state);
-+
-+		ret = fwnode_property_read_u32(fwnode, "color", &color);
-+		if (ret) {
-+			dev_err(dev, "cannot read color: %d\n", ret);
-+			goto release_fwnode;
-+		}
-+
-+		subled[priv->mc_cdev.num_colors].color_index = color;
-+		priv->mc_cdev.num_colors++;
-+	}
-+
-+	return 0;
-+
-+release_fwnode:
-+	fwnode_handle_put(fwnode);
-+	return ret;
-+}
-+
-+static int led_pwm_mc_probe(struct platform_device *pdev)
-+{
-+	struct fwnode_handle *mcnode, *fwnode;
-+	struct led_init_data init_data = {};
-+	struct led_classdev *cdev;
-+	struct mc_subled *subled;
-+	struct pwm_mc_led *priv;
-+	int count = 0;
-+	int ret = 0;
-+
-+	mcnode = device_get_named_child_node(&pdev->dev, "multi-led");
-+	if (!mcnode)
-+		return dev_err_probe(&pdev->dev, -ENODEV,
-+				     "expected multi-led node\n");
-+
-+	/* count the nodes inside the multi-led node */
-+	fwnode_for_each_child_node(mcnode, fwnode)
-+		count++;
-+
-+	priv = devm_kzalloc(&pdev->dev, struct_size(priv, leds, count),
-+			    GFP_KERNEL);
-+	if (!priv) {
-+		ret = -ENOMEM;
-+		goto release_mcnode;
-+	}
-+	mutex_init(&priv->lock);
-+
-+	subled = devm_kcalloc(&pdev->dev, count, sizeof(*subled), GFP_KERNEL);
-+	if (!subled) {
-+		ret = -ENOMEM;
-+		goto release_mcnode;
-+	}
-+	priv->mc_cdev.subled_info = subled;
-+
-+	/* init the multicolor's LED class device */
-+	cdev = &priv->mc_cdev.led_cdev;
-+	fwnode_property_read_u32(mcnode, "max-brightness",
-+				 &cdev->max_brightness);
-+	cdev->flags = LED_CORE_SUSPENDRESUME;
-+	cdev->brightness_set_blocking = led_pwm_mc_set;
-+
-+	ret = iterate_subleds(&pdev->dev, priv, mcnode);
-+	if (ret)
-+		goto release_mcnode;
-+
-+	init_data.fwnode = mcnode;
-+	ret = devm_led_classdev_multicolor_register_ext(&pdev->dev,
-+							&priv->mc_cdev,
-+							&init_data);
-+	if (ret) {
-+		dev_err(&pdev->dev,
-+			"failed to register multicolor PWM led for %s: %d\n",
-+			cdev->name, ret);
-+		goto release_mcnode;
-+	}
-+
-+	ret = led_pwm_mc_set(cdev, cdev->brightness);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "failed to set led PWM value for %s: %d",
-+				     cdev->name, ret);
-+
-+	platform_set_drvdata(pdev, priv);
-+	return 0;
-+
-+release_mcnode:
-+	fwnode_handle_put(mcnode);
-+	return ret;
-+}
-+
-+static const struct of_device_id of_pwm_leds_mc_match[] = {
-+	{ .compatible = "pwm-leds-multicolor", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_pwm_leds_mc_match);
-+
-+static struct platform_driver led_pwm_mc_driver = {
-+	.probe		= led_pwm_mc_probe,
-+	.driver		= {
-+		.name	= "leds_pwm_multicolor",
-+		.of_match_table = of_pwm_leds_mc_match,
-+	},
-+};
-+module_platform_driver(led_pwm_mc_driver);
-+
-+MODULE_AUTHOR("Sven Schwermer <sven.schwermer@disruptive-technologies.com>");
-+MODULE_DESCRIPTION("multi-color PWM LED driver");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:leds-pwm-multicolor");
--- 
-2.35.1
+-Akhil.
+>>          adreno_gpu->funcs = funcs;
+>>          adreno_gpu->info = adreno_info(config->rev);
+>>          adreno_gpu->gmem = adreno_gpu->info->gmem;
+>>          adreno_gpu->revn = adreno_gpu->info->revn;
+>> -       adreno_gpu->rev = config->rev;
+>> +       adreno_gpu->rev = *rev;
+>> +
+>> +       gpu_name = adreno_gpu->info->name;
+>> +       if (!gpu_name) {
+>> +               sprintf(name, "%d.%d.%d.%d", rev->core, rev->major, rev->minor,
+>> +                               rev->patchid);
+>> +               gpu_name = name;
+>> +       }
+>>
+>>          adreno_gpu_config.ioname = "kgsl_3d0_reg_memory";
+>>
+>> @@ -948,7 +958,7 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
+>>          pm_runtime_enable(dev);
+>>
+>>          return msm_gpu_init(drm, pdev, &adreno_gpu->base, &funcs->base,
+>> -                       adreno_gpu->info->name, &adreno_gpu_config);
+>> +                       gpu_name, &adreno_gpu_config);
+>>   }
+>>
+>>   void adreno_gpu_cleanup(struct adreno_gpu *adreno_gpu)
+>> --
+>> 2.7.4
+>>
 
