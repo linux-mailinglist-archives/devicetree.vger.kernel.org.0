@@ -2,116 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49F8F4C0C31
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 06:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2BCA4C0C40
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 06:50:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238524AbiBWFbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 00:31:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42554 "EHLO
+        id S237496AbiBWFui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 00:50:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238495AbiBWFbj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 00:31:39 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D47456D942;
-        Tue, 22 Feb 2022 21:30:45 -0800 (PST)
+        with ESMTP id S237203AbiBWFui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 00:50:38 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 127AD43ED9
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 21:50:10 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id p23so18991716pgj.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 21:50:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645594245; x=1677130245;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=v44Gg2Pi51r7C5Yz0LglEBe7K1Ubw4buBZxC3226XpA=;
-  b=kazKmxAFupOl/tUMRjhxJqGshBUJeh9xLNdkDg5qg8swLaDEZDHnW3st
-   Pp3uw0rFRhIw0siyZ88X1JJubsmxKvUpjKkWslXZLoA79Go2a3vo3gCT7
-   bfyiKSKP/+Wdj1TEPVBvdGkFdeuWI2mp0ChyQYvnzEVq2GokV/m5yLX/3
-   g=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 22 Feb 2022 21:29:48 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2022 21:29:47 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Tue, 22 Feb 2022 21:29:15 -0800
-Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Tue, 22 Feb 2022 21:29:11 -0800
-From:   Satya Priya <quic_c_skakit@quicinc.com>
-To:     <bjorn.andersson@linaro.org>
-CC:     <corbet@lwn.net>, <devicetree@vger.kernel.org>,
-        <dianders@chromium.org>, <lee.jones@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>, <luca@z3ntu.xyz>, <pavel@ucw.cz>,
-        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>
-Subject: Re: [PATCH v13 2/2] leds: Add driver for Qualcomm LPG
-Date:   Wed, 23 Feb 2022 10:58:54 +0530
-Message-ID: <1645594134-16082-1-git-send-email-quic_c_skakit@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <20220218183116.2261770-2-bjorn.andersson@linaro.org>
-References: <20220218183116.2261770-2-bjorn.andersson@linaro.org>
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=v75UoHDMV8Urw5J412ERbhmzgEk+9C7vg5aYyG8DNWU=;
+        b=BhmhUsOjiIoWB4qqEZ33JuuDLGq5ar8gcqVcHHXAJufMZCtfgryWlMFaMYU4rdl4pO
+         2qKNZxmv0itQMvWcmyvQ0uEeZrxMcRGmSlTB2XBjeS2H0loTJ2VQQynnQw9YyQeaZqrb
+         evhNvF4ZXxKsk+Z4YGdR51uzVeqJQIYNImt78PTJPycNlFsMUCCwbYcTF6ihEcM0sIWY
+         RvmjHGcq2I0SOPOfvWZoGHa+reskTyS3azZFEMV/O1rJ8zsNBoMS4ojkr84SIcSOlhcV
+         fPCaDNni0wJmgmaXXn6EcZM4BUVX4TEDzIM9C+YLJHbJFbP1BV3yWttFLUUN7rAT9jBo
+         fUgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=v75UoHDMV8Urw5J412ERbhmzgEk+9C7vg5aYyG8DNWU=;
+        b=np3AcRww+fLQNHLkcbFnUvufywqzDaD3faHb3yMtr2gWH1v4HV5TcwIEnNAcQmfbLO
+         8fO4taiI8f2Wmz+oHRxhgKbcOPg0EGLSKQXlj6WEU1W+9m9RlzS/d4IocJZp2v1ufFu3
+         vNnoh/NSz1BnRpT1T6+sTc3Bh9k5jeIBT/9yyyjrVxE8iMUzU4mdkWL+rFlEXD25Az1s
+         52KC9+AzrIeNpFvNEE6FuvBPyN+HRtoW4plOrsWiqjGB/RG6hCbHS+2owntXfxne0cIO
+         yB8jUkiKy7/lt8O1F/GSEInzgjulgTlSKZsiOROkH/GIYiRs1wzEdQ0FQDcs5Zj0UA7W
+         hhhA==
+X-Gm-Message-State: AOAM532nQ4AHymiW+6UcIAtPTmR/PhVlhHFOez2G98bzJQFpWd3l0PGJ
+        vvBJCnE/donU9QnBZzNNBFjCHA==
+X-Google-Smtp-Source: ABdhPJzoLX4bZEQZeZGtz4jgW5zJz1eKTbRYv8TUYOR+TdHLNMDzpgbnlYYaD9VxiwDslerAzXtxMg==
+X-Received: by 2002:a63:8649:0:b0:34c:3be:ba14 with SMTP id x70-20020a638649000000b0034c03beba14mr22311661pgd.139.1645595409440;
+        Tue, 22 Feb 2022 21:50:09 -0800 (PST)
+Received: from localhost ([223.184.83.228])
+        by smtp.gmail.com with ESMTPSA id z27sm22534821pgk.78.2022.02.22.21.50.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Feb 2022 21:50:08 -0800 (PST)
+Date:   Wed, 23 Feb 2022 11:20:06 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
+        rafael@kernel.org, daniel.lezcano@linaro.org, nm@ti.com,
+        sboyd@kernel.org, mka@chromium.org, dianders@chromium.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [[PATCH v2 1/2] dt-bindings: opp: Add 'opp-microwatt' entry in
+ the OPP
+Message-ID: <20220223055006.zlcwco7oducggxjw@vireshk-i7>
+References: <20220222140746.12293-1-lukasz.luba@arm.com>
+ <20220222140746.12293-2-lukasz.luba@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220222140746.12293-2-lukasz.luba@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
+On 22-02-22, 14:07, Lukasz Luba wrote:
+> Add new entry for the OPP which provides information about power
+> expressed in micro-Watts. It is useful for the Energy Model framework.
+> 
+> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
+> ---
+>  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> index 15a76bcd6d42..3f07a279ed2a 100644
+> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> @@ -93,6 +93,13 @@ patternProperties:
+>          minItems: 1
+>          maxItems: 8   # Should be enough regulators
+>  
+> +      opp-microwatt:
+> +        description:
+> +          Power for the OPP
+> +
+> +          A value representing power for the OPP in micro-Watts.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
 
-The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
-PMICs from Qualcomm. These PMICs typically comes with 1-8 LPG instances,
-with their output being routed to various other components, such as
-current sinks or GPIOs.
+I was expecting a much larger change here. Look at how opp-microvolt and
+opp-microamp is defined in this file.
 
-Each LPG instance can operate on fixed parameters or based on a shared
-lookup-table, altering the duty cycle over time. This provides the means
-for hardware assisted transitions of LED brightness.
+Should this value be made per-supply/regulator, just like voltage/current ?
 
-A typical use case for the fixed parameter mode is to drive a PWM
-backlight control signal, the driver therefor allows each LPG instance
-to be exposed to the kernel either through the LED framework or the PWM
-framework.
+>        opp-level:
+>          description:
+>            A value representing the performance level of the device.
 
-A typical use case for the LED configuration is to drive RGB LEDs in
-smartphones etc, for which the driver supports multiple channels to be
-ganged up to a MULTICOLOR LED. In this configuration the pattern
-generators will be synchronized, to allow for multi-color patterns.
-
-The idea of modelling this as a LED driver ontop of a PWM driver was
-considered, but setting the properties related to patterns does not fit
-in the PWM API. Similarly the idea of just duplicating the lower bits in
-a PWM and LED driver separately was considered, but this would not allow
-the PWM channels and LEDs to be configured on a per-board basis. The
-driver implements the more complex LED interface, and provides a PWM
-interface on the side of that, in the same driver.
-
-Tested-by: Luca Weiss <luca@z3ntu.xyz>
-Tested-by: Doug Anderson <dianders@chromium.org>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
-
-Tested-by: Satya Priya <quic_c_skakit@quicinc.com>
-
- Documentation/leds/leds-qcom-lpg.rst |   76 ++
- drivers/leds/Kconfig                 |    3 +
- drivers/leds/Makefile                |    3 +
- drivers/leds/rgb/Kconfig             |   18 +
- drivers/leds/rgb/Makefile            |    3 +
- drivers/leds/rgb/leds-qcom-lpg.c     | 1401 ++++++++++++++++++++++++++++++++++
- 6 files changed, 1504 insertions(+)
- create mode 100644 Documentation/leds/leds-qcom-lpg.rst
- create mode 100644 drivers/leds/rgb/Kconfig
- create mode 100644 drivers/leds/rgb/Makefile
- create mode 100644 drivers/leds/rgb/leds-qcom-lpg.c
-
+-- 
+viresh
