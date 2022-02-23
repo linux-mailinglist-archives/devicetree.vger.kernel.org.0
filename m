@@ -2,40 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7978B4C18A2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 17:34:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75A854C18AF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 17:35:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237720AbiBWQfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 11:35:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45168 "EHLO
+        id S237993AbiBWQgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 11:36:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231128AbiBWQfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 11:35:04 -0500
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED204EF53;
-        Wed, 23 Feb 2022 08:34:36 -0800 (PST)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5C5C6E000D;
-        Wed, 23 Feb 2022 16:34:32 +0000 (UTC)
-Date:   Wed, 23 Feb 2022 17:34:31 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Eugen.Hristev@microchip.com
-Cc:     linux-media@vger.kernel.org, hverkuil-cisco@xs4all.nl,
-        Nicolas.Ferre@microchip.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Claudiu.Beznea@microchip.com
-Subject: Re: [PATCH v5 04/13] media: atmel: atmel-isc: implement media
- controller
-Message-ID: <20220223163431.wask6vh2tfhllzf4@uno.localdomain>
-References: <20220217135645.1427466-1-eugen.hristev@microchip.com>
- <20220217135645.1427466-5-eugen.hristev@microchip.com>
- <e4109e0f-af1f-7594-a154-92e65fd7ac59@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <e4109e0f-af1f-7594-a154-92e65fd7ac59@microchip.com>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        with ESMTP id S242859AbiBWQgB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 11:36:01 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31BDC55BCF;
+        Wed, 23 Feb 2022 08:35:33 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id f8so20496986pgc.8;
+        Wed, 23 Feb 2022 08:35:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=oH1ou976HmXhvnLbgu7IxgeGoD4+eYCbPOT2XRjgKEM=;
+        b=jlsREVy8R49OrDspMhQiqfPgjB0/PK5psEoO54u0TavB4obO/MKWx6aTTR76F0Kr+h
+         oet2VkFZ756FkA/XakrGIVvYz1lATkQe5DtwJjrufsNlmY4vwnfEyn0s4vLnC4LzEFDw
+         cjyeF5YJcss6GxXzdqMbN+RTDKW4UAzYNHbRylGJ/MX4bEqHs/uSDAVRyzNsEt7je4Qb
+         Qc37ysfzIf9jmIyAOGV8lkZe+LMRGaXh/a1qgwlz8qcSeoe90jz3gxZlj16f9Kjcqtq0
+         eEMQj7PS8RDojDDxR7SnM4pTqUcZGybjjVOw22Iuand6EJhIcPdD9y9u686eB/CB63AQ
+         TUVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=oH1ou976HmXhvnLbgu7IxgeGoD4+eYCbPOT2XRjgKEM=;
+        b=oPv9jfmNTbsiC5TRnGXud2sZpw8FHXXC/l6KmweNGgV/MOPF0nO8sUjBY9OJ8s+BHY
+         GbPWqzXmGqZA4HX8gGBFppM7708/r4pt1IakevNvirv6/V9RXpnxfEZOHPKynCgAT9e4
+         pzXQIfG+Uq+x+qFUzovqJzZR0qV7UF1qzHzsZEANsaO8nMJ3xPjbVHoco0/i+T5Gmc7P
+         L3uBgNkev4B25F4N+QMDGIckHwk5Ug3diLurinFroMSKxU+p6c6/nTBO6K6RXKtCsaKV
+         DkPDl23r8o+xMFg0T+2A1y0RXKU2S/KFpuXNCq9bByZNG+M4wjJcFH6muoDqb1ULK24X
+         5u1g==
+X-Gm-Message-State: AOAM532OTRiye33WnL3vcT3Rm6Vc0smxm5FkJ85cq+IQIiA5boIUW+Zg
+        5NUGrPyZDRPfh/wyjviYF8GQJKa3/O7ox/I3
+X-Google-Smtp-Source: ABdhPJyKVIuMD+OERPktA5c9elzcOl+QUNj4Ucx2PRwK8DxnElZ6xWssEcbRHGUnRzhlPHJOPnC83g==
+X-Received: by 2002:a05:6a00:24ca:b0:4e1:cb76:32da with SMTP id d10-20020a056a0024ca00b004e1cb7632damr538969pfv.81.1645634132533;
+        Wed, 23 Feb 2022 08:35:32 -0800 (PST)
+Received: from localhost.localdomain ([27.7.190.133])
+        by smtp.gmail.com with ESMTPSA id q93-20020a17090a4fe600b001b9ba2a1dc3sm3455106pjh.25.2022.02.23.08.35.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Feb 2022 08:35:32 -0800 (PST)
+From:   Jagath Jog J <jagathjog1996@gmail.com>
+To:     jic23@kernel.org, lars@metafoo.de, andy.shevchenko@gmail.com,
+        sst@poczta.fm, robh+dt@kernel.org
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/7] iio: potentiometer: Add support for DS3502
+Date:   Wed, 23 Feb 2022 22:05:18 +0530
+Message-Id: <20220223163525.13399-1-jagathjog1996@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -43,97 +64,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugen,
+Add dt-bindings and support for Maxim DS3502 into existing ds1803 driver.
+DS3502 is a 7 bit Nonvolatile Digital Potentiometer.
 
-On Thu, Feb 17, 2022 at 02:59:19PM +0000, Eugen.Hristev@microchip.com wrote:
-> On 2/17/22 3:56 PM, Eugen Hristev wrote:
-> > Implement the support for media-controller.
-> > This means that the capabilities of the driver have changed and now
-> > it also advertises the IO_MC .
-> > The driver will register it's media device, and add the video entity to this
-> > media device. The subdevices are registered to the same media device.
-> > The ISC will have a base entity which is auto-detected as atmel_isc_base.
-> > It will also register a subdevice that allows cropping of the incoming frame
-> > to the maximum frame size supported by the ISC.
-> > The ISC will create a link between the subdevice that is asynchronously
-> > registered and the atmel_isc_scaler entity.
-> > Then, the atmel_isc_scaler and atmel_isc_base are connected through another
-> > link.
-> >
-> > Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> > ---
->
->
-> Hello Jacopo,
->
-> I will add to this patch a little update about how the scaler is seen
-> now by the media-ctl :
->
-> for imx219 sensor, which generates 3280x2464:
->
->
-> - entity 1: atmel_isc_scaler (2 pads, 2 links)
->              type V4L2 subdev subtype Unknown flags 0
->              device node name /dev/v4l-subdev0
->          pad0: Sink
->                  [fmt:SRGGB10_1X10/3280x2464 field:none colorspace:srgb
->                   crop.bounds:(0,0)/3280x2464
->                   crop:(0,0)/3264x2464]
->                  <- "csi2dc":1 [ENABLED,IMMUTABLE]
->          pad1: Source
->                  [fmt:SRGGB10_1X10/3264x2464 field:none colorspace:srgb]
->                  -> "atmel_isc_common":0 [ENABLED,IMMUTABLE]
->
->
-> The source pad of the scaler looks good now.
->
-> For the imx274 which I am using (and it generates 3840x2160 ):
->
-> - entity 1: atmel_isc_scaler (2 pads, 2 links)
->              type V4L2 subdev subtype Unknown flags 0
->              device node name /dev/v4l-subdev0
->          pad0: Sink
->                  [fmt:SRGGB10_1X10/3840x2160 field:none colorspace:srgb
->                   crop.bounds:(0,0)/3840x2160
->                   crop:(0,0)/3264x2160]
->                  <- "csi2dc":1 [ENABLED,IMMUTABLE]
->          pad1: Source
->                  [fmt:SRGGB10_1X10/3264x2160 field:none colorspace:srgb]
->                  -> "atmel_isc_common":0 [ENABLED,IMMUTABLE]
->
-> So in both cases, each line is cropped down to 3264 as the maximum width.
->
-> If we select a lower frame size, the scaler will automatically update
-> the source pad to reflect this, e.g.:
->
->
-> - entity 1: atmel_isc_scaler (2 pads, 2 links)
->              type V4L2 subdev subtype Unknown flags 0
->              device node name /dev/v4l-subdev0
->          pad0: Sink
->                  [fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb
->                   crop.bounds:(0,0)/1920x1080
->                   crop:(0,0)/1920x1080]
->                  <- "csi2dc":1 [ENABLED,IMMUTABLE]
->          pad1: Source
->                  [fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb]
->                  -> "atmel_isc_common":0 [ENABLED,IMMUTABLE]
->
->
-> does it look good now ?
+Changes since v4:
+1. Included property.h header which has device_get_match_data()
+   function prototype.
+2. Removed blank space in tag block of the commit message.
+3. Style changes for ds1803_cfg structure.
 
-great! I think it now works as intended, thanks!
+Changes since v3:
+1. Dropped the chip type switch statement in read_raw function.
+2. Added device specific read function pointer in their structure.
+3. Added two separate functions to read values from two different types
+   of devices.
 
-I only have one question. BOUND target is the larger rectangle that
-contains all crop rectangles. As your max crop is limited to 3264x2160
-I wonder if BOUND should be limited by the same size. Does
-v4l2-compliance check for this.
+Changes since v2:
+1. Addressed Andy Shevchenko comments.
+2. Adding device name in Kconfig file.
+3. Spliting up of patch into 3 patches.
+4. Adding channel info into ds1803_cfg in separate patch.
+5. Dropping the use of enum in firmware data instead using previous
+   pointer method for accessing device specific data.
+6. Separate patch for using firmware provided data instead of 
+   id->driver_data.
+7. Adding DS3502 support in separate patch.
 
-Otherwise it looks good!
+Changes since v1:
+1. Fixes the alignment to match the open parenthesis in separate patch.
+2. Adding available functionality for ds1803 driver in separate patch.
+3. Moving maxim_potentiometer members into ds1803_cfg structure.
+4. Droping of the INFO_ENABLE channel type.
+5. Firmware entry with data is used instead of id->driver_data to
+   to retrieve the chip specific data.
 
-Thanks
-  j
+Jagath Jog J (7):
+  iio: potentiometer: Alignment to match the open parenthesis
+  iio: potentiometer: Add available functionality
+  iio: potentiometer: Add channel information in device data
+  iio: potentiometer: Change to firmware provided data
+  iio: potentiometer: Add device specific read_raw function
+  iio: potentiometer: Add support for Maxim DS3502
+  dt-bindings: iio: potentiometer: Add Maxim DS3502 in trivial-devices
 
->
-> Thanks for checking this out !
-> Eugen
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ drivers/iio/potentiometer/Kconfig             |   6 +-
+ drivers/iio/potentiometer/ds1803.c            | 170 ++++++++++++++----
+ 3 files changed, 138 insertions(+), 40 deletions(-)
+
+-- 
+2.17.1
+
