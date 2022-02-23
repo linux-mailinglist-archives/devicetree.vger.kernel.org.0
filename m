@@ -2,158 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD9E64C1CE0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:09:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EB5D4C1D0B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:21:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234631AbiBWUJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 15:09:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41186 "EHLO
+        id S240974AbiBWUVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 15:21:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236066AbiBWUJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:09:12 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D053D4CD44;
-        Wed, 23 Feb 2022 12:08:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645646923; x=1677182923;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=+MGvrogjK3hBuwIOknzKUrzQSja4adIWRodFkkTu2kk=;
-  b=qAu3HWwEtw6P/h3mKJP5QzYTHoGNQNbzHClMR3xvT211kdvjO6BZfWcA
-   xRSkXlgxJbpTQugwZpKvC9pP3K0FHhDFmpboCywcu9hiDPwFefW3G3seQ
-   +c2UtidQmDkzt1WQTbQjuBapTau7x+1T9cjoJl9l6fhvGJgYoocEHVl07
-   A=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 23 Feb 2022 12:08:43 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 12:08:42 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Wed, 23 Feb 2022 12:08:42 -0800
-Received: from [10.216.14.166] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Wed, 23 Feb
- 2022 12:08:36 -0800
-Message-ID: <d70cf11a-1a23-e240-3565-9966a6f4bfaa@quicinc.com>
-Date:   Thu, 24 Feb 2022 01:38:33 +0530
+        with ESMTP id S232105AbiBWUVc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:21:32 -0500
+X-Greylist: delayed 18142 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 23 Feb 2022 12:21:00 PST
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB6094D24F;
+        Wed, 23 Feb 2022 12:21:00 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 25761FF806;
+        Wed, 23 Feb 2022 20:20:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1645647659;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Kppx7Y3HjhzvN/0jitv+VoeGh8Sofe2wA4Rh6vVi4nc=;
+        b=i/1fOodDKjajA7oMrrhNGuIu5sn0knGb8CS5vjJRRF7pgR6lo5Ax8zNhM85PKuJUiuuMMJ
+        F0ge0zIXNiPi+gichbf04LURreif0+ASM4CWWywE/KCI6lilVoJDvfZMYiuii5a4mRbP4Y
+        AUv8ltZiNhwC1Ql3jZABl97QRZdG2LeBIC7pGp17YhCDjdnwi+MxSbUwKYL84UFDGbQIgx
+        cscriGuvt8D1yBksk8WwgtAfGxiTH/2OeFLQtKidR0tQoG6rQw94NpHYVw/pgoiQ8+W72f
+        qmrsyQSEpelVR7uovNn5/lleH0xAvDpEEZO2utZV2oJeePAOqWCmWRRSuV7qVg==
+Date:   Wed, 23 Feb 2022 21:20:54 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Conor.Dooley@microchip.com
+Cc:     a.zummo@towertech.it, Lewis.Hanly@microchip.com,
+        Daire.McNamara@microchip.com, Ivan.Griffin@microchip.com,
+        atishp@rivosinc.com, palmer@rivosinc.com, robh@kernel.org,
+        linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, geert@linux-m68k.org,
+        krzysztof.kozlowski@canonical.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v7 03/11] dt-bindings: rtc: add bindings for microchip
+ mpfs rtc
+Message-ID: <YhaXJofTTTgaoEsn@piout.net>
+References: <20220214135840.168236-1-conor.dooley@microchip.com>
+ <20220214135840.168236-4-conor.dooley@microchip.com>
+ <5b0681a0-ff46-7eb4-3644-0d1173c1f0d4@microchip.com>
+ <YhZQRqHib2+GR7Ma@piout.net>
+ <3483b6c4-67a7-5ed5-2953-728ea8ba5874@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 2/5] drm/msm/adreno: Generate name from chipid for 7c3
-Content-Language: en-US
-To:     Rob Clark <robdclark@gmail.com>
-CC:     freedreno <freedreno@lists.freedesktop.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Sean Paul <sean@poorly.run>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <1645454462-27867-1-git-send-email-quic_akhilpo@quicinc.com>
- <20220221201039.2.I9436e0e300f76b2e6c34136a0b902e8cfd73e0d6@changeid>
- <CAF6AEGuVZaOdUUf8ccokTQdAXMdW3oVYNx3ae9ShBoh8ibXVOw@mail.gmail.com>
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <CAF6AEGuVZaOdUUf8ccokTQdAXMdW3oVYNx3ae9ShBoh8ibXVOw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3483b6c4-67a7-5ed5-2953-728ea8ba5874@microchip.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/23/2022 6:28 AM, Rob Clark wrote:
-> On Mon, Feb 21, 2022 at 6:41 AM Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
->> Use a gpu name which is sprintf'ed from the chipid for 7c3 gpu instead of
->> hardcoding one. This helps to avoid code churn in case of a gpu rename.
->>
->> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->> ---
->>
->>   drivers/gpu/drm/msm/adreno/adreno_device.c |  1 -
->>   drivers/gpu/drm/msm/adreno/adreno_gpu.c    | 14 ++++++++++++--
->>   2 files changed, 12 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
->> index fb26193..89cfd84 100644
->> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
->> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
->> @@ -318,7 +318,6 @@ static const struct adreno_info gpulist[] = {
->>                  .hwcg = a660_hwcg,
->>          }, {
->>                  .rev = ADRENO_REV(6, 3, 5, ANY_ID),
->> -               .name = "Adreno 7c Gen 3",
->>                  .fw = {
->>                          [ADRENO_FW_SQE] = "a660_sqe.fw",
->>                          [ADRENO_FW_GMU] = "a660_gmu.bin",
->> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
->> index f33cfa4..158bbf7 100644
->> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
->> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
->> @@ -929,12 +929,22 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
->>          struct adreno_platform_config *config = dev->platform_data;
->>          struct msm_gpu_config adreno_gpu_config  = { 0 };
->>          struct msm_gpu *gpu = &adreno_gpu->base;
->> +       struct adreno_rev *rev = &config->rev;
->> +       const char *gpu_name;
->> +       static char name[8];
-> I think 8 is not always enough.. but maybe just use devm_kasprintf()
-> to keep it simpler?
->
-> BR,
-> -R
-Sounds good. Will update this patch.
+On 23/02/2022 15:25:00+0000, Conor.Dooley@microchip.com wrote:
+> On 23/02/2022 15:18, Alexandre Belloni wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> > On 23/02/2022 07:41:27+0000, Conor.Dooley@microchip.com wrote:
+> >> Hi Alessandro, Alexandre,
+> >> If one of you could take a look at this, that'd be great.
+> > 
+> > I actually expected someone else to apply this, what is your plan?
+> 
+> I was going to ask Palmer to take the series via riscv. Since I have
+> Rob's R-b, I was just looking for a subsystem maintainer ack/R-b before
+> actually asking him.
+> 
 
--Akhil.
->>          adreno_gpu->funcs = funcs;
->>          adreno_gpu->info = adreno_info(config->rev);
->>          adreno_gpu->gmem = adreno_gpu->info->gmem;
->>          adreno_gpu->revn = adreno_gpu->info->revn;
->> -       adreno_gpu->rev = config->rev;
->> +       adreno_gpu->rev = *rev;
->> +
->> +       gpu_name = adreno_gpu->info->name;
->> +       if (!gpu_name) {
->> +               sprintf(name, "%d.%d.%d.%d", rev->core, rev->major, rev->minor,
->> +                               rev->patchid);
->> +               gpu_name = name;
->> +       }
->>
->>          adreno_gpu_config.ioname = "kgsl_3d0_reg_memory";
->>
->> @@ -948,7 +958,7 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
->>          pm_runtime_enable(dev);
->>
->>          return msm_gpu_init(drm, pdev, &adreno_gpu->base, &funcs->base,
->> -                       adreno_gpu->info->name, &adreno_gpu_config);
->> +                       gpu_name, &adreno_gpu_config);
->>   }
->>
->>   void adreno_gpu_cleanup(struct adreno_gpu *adreno_gpu)
->> --
->> 2.7.4
->>
+Rob's review is enough for a DT binding, no need to wait for me. but
+FWIW:
 
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+
+
+> Thanks,
+> Conor.
+> 
+> > 
+> >> Thanks,
+> >> Conor.
+> >>
+> >> On 14/02/2022 13:58, conor.dooley@microchip.com wrote:
+> >>> From: Conor Dooley <conor.dooley@microchip.com>
+> >>>
+> >>> Add device tree bindings for the real time clock on
+> >>> the Microchip PolarFire SoC.
+> >>>
+> >>> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> >>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> >>> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> >>> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>> ---
+> >>>    .../bindings/rtc/microchip,mfps-rtc.yaml      | 58 +++++++++++++++++++
+> >>>    1 file changed, 58 insertions(+)
+> >>>    create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..a2e984ea3553
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> >>> @@ -0,0 +1,58 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/rtc/microchip,mfps-rtc.yaml#
+> >>> +
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Microchip PolarFire Soc (MPFS) RTC Device Tree Bindings
+> >>> +
+> >>> +allOf:
+> >>> +  - $ref: rtc.yaml#
+> >>> +
+> >>> +maintainers:
+> >>> +  - Daire McNamara <daire.mcnamara@microchip.com>
+> >>> +  - Lewis Hanly <lewis.hanly@microchip.com>
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    enum:
+> >>> +      - microchip,mpfs-rtc
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  interrupts:
+> >>> +    items:
+> >>> +      - description: |
+> >>> +          RTC_WAKEUP interrupt
+> >>> +      - description: |
+> >>> +          RTC_MATCH, asserted when the content of the Alarm register is equal
+> >>> +          to that of the RTC's count register.
+> >>> +
+> >>> +  clocks:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clock-names:
+> >>> +    items:
+> >>> +      - const: rtc
+> >>> +
+> >>> +required:
+> >>> +  - compatible
+> >>> +  - reg
+> >>> +  - interrupts
+> >>> +  - clocks
+> >>> +  - clock-names
+> >>> +
+> >>> +additionalProperties: false
+> >>> +
+> >>> +examples:
+> >>> +  - |
+> >>> +    rtc@20124000 {
+> >>> +        compatible = "microchip,mpfs-rtc";
+> >>> +        reg = <0x20124000 0x1000>;
+> >>> +        clocks = <&clkcfg 21>;
+> >>> +        clock-names = "rtc";
+> >>> +        interrupts = <80>, <81>;
+> >>> +    };
+> >>> +...
+> >>
+> > 
+> > --
+> > Alexandre Belloni, co-owner and COO, Bootlin
+> > Embedded Linux and Kernel engineering
+> > https://bootlin.com
+> 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
