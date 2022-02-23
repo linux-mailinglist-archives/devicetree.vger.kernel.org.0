@@ -2,112 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D9684C1A8C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 19:02:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E72784C1A69
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 19:00:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239363AbiBWSDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 13:03:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32808 "EHLO
+        id S243642AbiBWR7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 12:59:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236327AbiBWSDE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 13:03:04 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9D7435856;
-        Wed, 23 Feb 2022 10:02:35 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id s24so39044780edr.5;
-        Wed, 23 Feb 2022 10:02:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=RvLWLImKF4e7kO+CK5fBPeKwpYaywnsLJXvg5598LAA=;
-        b=Xof3f+C2MWxq9dDxNkehSWNiydzzI2D/wlgkOJ7dJOPAKdlh9n/8kH6j44886v6bvf
-         iStAlMDwbouUuvI14282aVTnwEcgG9smQp2T1bjLzZcVzb0ymtE8Oqr6FAamP0Fer5Za
-         yzrqPFBdfXlmyHAG2TQWbk+98cfvsj5G8nTJwHUao3LxadfH+viz0yPY+JCB3q+a+HCF
-         pMbofE4rQIaA1LqAQ5uNmNfZBbUyaDzI/LGWDePrUNLXbddCkh16znD/wdgcVf0TDtQb
-         KwxHPsV/nLKs/eEBTS6KCoEbokciWU4dejg+iRa/FNKVStPkfnlkIBybD0MJKRGOdsHb
-         FRTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=RvLWLImKF4e7kO+CK5fBPeKwpYaywnsLJXvg5598LAA=;
-        b=Aw4ZEnnnaIs1DxipSalACs5c+9qSDHtYN09SCFSL2qQVL3W2uHSRLM+q9vC+bR0abB
-         YFqAzAnRIE40gdbSRhC9SEis98C4+Kf4ygiBzT5TXGjhBWR+xhHSPubBebuO/uCVSXcA
-         fluAxrASTbj1SQyu48De54cxXeYxwDe48xz97DxAVZgxhG0YupV3Bd7v4ahQ253P3sQp
-         iDGBo7VHi/voFacCOLmJHuKhm6IXLdP8sSrHyXA0cZ9TRuwwDiTzSWM8Z2hPmyFJxSV8
-         xqq8ewHZjlnek4tXYm2SoCgY/wHUdDzLbTUqgBhTK5kE/KWUTeRXMho3lzNK/Bg7HYV+
-         5S1g==
-X-Gm-Message-State: AOAM533MENFaSvvdzUkM/gcfV+ogu4SzHq+VzrJlUop9xlWSiqeoTekE
-        5nrG+SXmQUGuZ/kh6eRayQU=
-X-Google-Smtp-Source: ABdhPJx8Mkk+LyafzM/hSAfFdCJCs9Z1ihr6F9bBe+uLkcZDIU3BYCB0OA40n/8jrAW6eP/L2evAKA==
-X-Received: by 2002:a05:6402:3487:b0:40f:fa53:956c with SMTP id v7-20020a056402348700b0040ffa53956cmr629775edc.22.1645639354295;
-        Wed, 23 Feb 2022 10:02:34 -0800 (PST)
-Received: from ?IPV6:2003:ea:8f4d:2b00:d12c:c0a:f603:b44d? (p200300ea8f4d2b00d12c0c0af603b44d.dip0.t-ipconnect.de. [2003:ea:8f4d:2b00:d12c:c0a:f603:b44d])
-        by smtp.googlemail.com with ESMTPSA id d12sm203890edy.17.2022.02.23.10.02.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 10:02:33 -0800 (PST)
-Message-ID: <dc89a2c4-3652-bf04-c69d-355a5bbd548d@gmail.com>
-Date:   Wed, 23 Feb 2022 18:57:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: [PATCH v3 1/5] dt-bindings: vendor-prefixes: Add Titan Micro
- Electronics
-Content-Language: en-US
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S243654AbiBWR7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 12:59:50 -0500
+Received: from hostingweb31-40.netsons.net (hostingweb31-40.netsons.net [89.40.174.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791EF3DDDC;
+        Wed, 23 Feb 2022 09:59:19 -0800 (PST)
+Received: from [77.244.183.192] (port=62116 helo=melee.fritz.box)
+        by hostingweb31.netsons.net with esmtpa (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1nMvv3-00039p-3o; Wed, 23 Feb 2022 18:59:17 +0100
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Miguel Ojeda <ojeda@kernel.org>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <4eb7b036-a9b9-3bd2-4e84-f56ba4b1a740@gmail.com>
-In-Reply-To: <4eb7b036-a9b9-3bd2-4e84-f56ba4b1a740@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: [PATCH v6 0/8] Add MAX77714 PMIC minimal driver (RTC and watchdog only)
+Date:   Wed, 23 Feb 2022 18:59:00 +0100
+Message-Id: <20220223175908.191618-1-luca@lucaceresoli.net>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Assign vendor prefix "titanmec", matching their domain name.
+Hi,
 
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Andreas Färber <afaerber@suse.de>
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+this series adds minimal drivers for the Maxim Semiconductor MAX77714
+(https://www.maximintegrated.com/en/products/power/power-management-ics/MAX77714.html).
+Only RTC and watchdog are implemented by these patches.
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index e062a8187..6ffdec91f 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1238,6 +1238,8 @@ patternProperties:
-     description: Texas Instruments
-   "^tianma,.*":
-     description: Tianma Micro-electronics Co., Ltd.
-+  "^titanmec,.*":
-+    description: Shenzhen Titan Micro Electronics Co., Ltd.
-   "^tlm,.*":
-     description: Trusted Logic Mobility
-   "^tmt,.*":
+This is almost a bare resend of v5. Changes are minimal, trivial and only
+in comments (see list below).
+
+All implemented functionality is tested and working: RTC read/write,
+watchdog start/stop/ping/set_timeout.
+
+Patches 1-3 are trivial cleanups to the max77686 drivers.
+
+Patches 4-8 add dt bindings, mfd driver, watchdog driver and rtc driver.
+
+Changes in v6:
+ - patch 6: removed, now in mainline
+ - patch 5: describe as "Core driver", not "MFD driver" in comment
+   (Lee Jones)
+ - update copyright years
+ - add review tags
+
+Changes in v5:
+ - patch 7: fix (and simplify) watchdog_info code
+ - patch 8: remove amibguity in comment
+
+Changes in v4:
+ - do not add a new wdog driver for MAX77714, extend the MAX77620 wdog
+   driver; this means removing v3 patch 7, now replaced by patches 7+8
+ - added review tags
+
+Changes in v3:
+ - fixed all issues reported on v1 patches
+ - removed patch 1 of v2, already applied
+   ("mfd: max77686: Correct tab-based alignment of register addresses")
+
+Changes in v2:
+ - fixed all issues reported on v1 patches
+ - added patch 7 ("watchdog: Kconfig: fix help text indentation")
+ - additional minor improvements
+
+Luca
+
+Luca Ceresoli (8):
+  rtc: max77686: convert comments to kernel-doc format
+  rtc: max77686: rename day-of-month defines
+  rtc: max77686: remove unused code to read in 12-hour mode
+  dt-bindings: mfd: add Maxim MAX77714 PMIC
+  mfd: max77714: Add driver for Maxim MAX77714 PMIC
+  watchdog: max77620: add support for the max77714 variant
+  watchdog: max77620: add comment to clarify set_timeout procedure
+  rtc: max77686: add MAX77714 support
+
+ .../bindings/mfd/maxim,max77714.yaml          |  68 ++++++++
+ MAINTAINERS                                   |   7 +
+ drivers/mfd/Kconfig                           |  14 ++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/max77686.c                        |   2 +-
+ drivers/mfd/max77714.c                        | 152 ++++++++++++++++++
+ drivers/rtc/Kconfig                           |   2 +-
+ drivers/rtc/rtc-max77686.c                    |  75 +++++----
+ drivers/watchdog/Kconfig                      |   2 +-
+ drivers/watchdog/max77620_wdt.c               |  85 ++++++++--
+ include/linux/mfd/max77686-private.h          |   4 +-
+ include/linux/mfd/max77714.h                  |  60 +++++++
+ 12 files changed, 421 insertions(+), 51 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
+ create mode 100644 drivers/mfd/max77714.c
+ create mode 100644 include/linux/mfd/max77714.h
+
 -- 
-2.35.1
-
+2.25.1
 
