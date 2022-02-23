@@ -2,195 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02B814C1D50
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:48:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDC4C4C1D74
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 22:06:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234283AbiBWUsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 15:48:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48594 "EHLO
+        id S242076AbiBWVGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 16:06:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234184AbiBWUsu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:48:50 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CFC748E59
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 12:48:19 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id d3so25946302wrf.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 12:48:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=RRu2PqFxs+FPxxXA+v25zzkAp1fkNpteo8XX4VMDfsI=;
-        b=7XOoxRqb9Tv8kkCqMFJc5EqMLpdohXL6zjfTgOd7rLqoL9hjhjxLHgwcjThSa2r4uE
-         cfhJDDfaXveX9Ng8Vdd47vyy4E3dPrskszcIFjovCrel9HtE+pXh0eqkbxQe7YrVSNwG
-         lWNWlEEpEhvRrQZ94lu3Asx3ml1g1Dnuvl/S7WL2WiKfJkce+t1aep9NmikFKC++i2cp
-         Bs3zVs+sFui9Fd+TA3gD2EPgFBykwjmGMXnsgOXu8WAJdM488/vNt/kBPuHmu9TZWYA1
-         WB8Et2mwrkrO7nwEOThETi3qqzLMbHymoOesRTkLa62cCJNtfhpkK3u8hCixOa51wyKN
-         7yrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=RRu2PqFxs+FPxxXA+v25zzkAp1fkNpteo8XX4VMDfsI=;
-        b=52T/WrH5m8YmxKWwN9lqm1aPIw8GjwJjj6BxQM4KzD1b16CEotFC0XSZ/t3WEfLOV9
-         7SE6TJp34fFsc74baJHhCnkbiTiGitk0RomghX1aKWz/zpo96FZtZDCp+0J2OGJwpxMF
-         2L5gOfpdW0ycgKXBqMy1fYgihaPLPqu40r7rhyTabPUvfaXADZ/6kAsHoVq9PyDMi9Sj
-         PvLxTBuevQDMZjhCoLphZH09SL1qhtWKca1rB82si+y66ihKYaaBPpKUmgxaPLiYA7vc
-         VJx1DBqFiGSTZeqsR+/j2cUKPeb9XmsLKoOxCB4/akRdpHjfEOorJo9sbYXqCErO7O8S
-         VITg==
-X-Gm-Message-State: AOAM533AkKQwApzs+dQ0h1kGnun5g0RSWaSG/CTPns9kewCZ83W/C2cW
-        BvKFhVUmTkwwI08Zxc5ZsFRZ4A==
-X-Google-Smtp-Source: ABdhPJwTSd3fwnBHNPVLAxW9AId4se4ijwGgW4cX5Yfawa3jAXMdmq++0LpZ4WASwNLU9EfbO/Xqmw==
-X-Received: by 2002:adf:e54e:0:b0:1ea:9746:16d5 with SMTP id z14-20020adfe54e000000b001ea974616d5mr1030363wrm.186.1645649297584;
-        Wed, 23 Feb 2022 12:48:17 -0800 (PST)
-Received: from [192.168.2.116] ([109.76.226.172])
-        by smtp.gmail.com with ESMTPSA id f7sm578561wrz.40.2022.02.23.12.48.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 12:48:17 -0800 (PST)
-Message-ID: <c94f9c0a-6dbe-c1f4-daff-e4d29f3ace02@conchuod.ie>
-Date:   Wed, 23 Feb 2022 20:48:16 +0000
+        with ESMTP id S239208AbiBWVGu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 16:06:50 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 638834DF79;
+        Wed, 23 Feb 2022 13:06:21 -0800 (PST)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 1B05E22247;
+        Wed, 23 Feb 2022 22:06:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1645650379;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=SBkyV3Y37C1PQOYlMNcw1v4s6vUf2MzUko1G+h5pAHs=;
+        b=gckdT97Tc7r0urgZ5KftgN2f0Ex4RaFi5rRBMzXM0NmKAgahjB/z+P8J6+nyiTCmLJGZRX
+        0ZtuIAHT/388SGrl0XFCV5TfuDmZzTUNVq9fWFr27pczWbtnyO4cr41ZQyU/uKamKeF0/P
+        5x0Ff1jduV7l6YKdqZUErntuUwAWSLE=
+From:   Michael Walle <michael@walle.cc>
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     heiko.thiery@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v1 1/2] arm64: dts: imx8mn-evk: use proper names for PMIC outputs
+Date:   Wed, 23 Feb 2022 22:05:58 +0100
+Message-Id: <20220223210559.1999209-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v7 00/11] Update the Icicle Kit device tree
-Content-Language: en-US
-To:     palmer@dabbelt.com
-Cc:     lewis.hanly@microchip.com, daire.mcnamara@microchip.com,
-        ivan.griffin@microchip.com, atishp@rivosinc.com,
-        conor.dooley@microchip.com, linus.walleij@linaro.org,
-        brgl@bgdev.pl, robh+dt@kernel.org, jassisinghbrar@gmail.com,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        lee.jones@linaro.org, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, geert@linux-m68k.org,
-        krzysztof.kozlowski@canonical.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20220214135840.168236-1-conor.dooley@microchip.com>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <20220214135840.168236-1-conor.dooley@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2022 13:58, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> This series updates the Microchip Icicle Kit device tree by adding a
-> host of peripherals, and some updates to the memory map. In addition,
-> the device tree has been split into a third part, which contains "soft"
-> peripherals that are in the fpga fabric.
-> 
-> Several of the entries are for peripherals that have not get had their
-> drivers upstreamed, so in those cases the dt bindings are included where
-> appropriate in order to avoid the many "DT compatible string <x> appears
-> un-documented" errors.
-> 
-> Depends on mpfs clock driver binding (on clk/next) to provide
-> dt-bindings/clock/microchip,mpfs-clock.h for the device tree
-> and on the other changes to the icicle/mpfs device tree from geert
-> that are already in linux/riscv/for-next.
-> 
-> Additionally, the interrupt-extended warnings on the plic/clint are
-> cleared by [1] & [2].
-> 
-> [1] https://lore.kernel.org/linux-riscv/cover.1639744468.git.geert@linux-m68k.org/
-> [2] https://lore.kernel.org/linux-riscv/cover.1639744106.git.geert@linux-m68k.org/
+Use the power signal names as given in the schematics of the reference
+board.
 
-Hey Palmer,
+Signed-off-by: Michael Walle <michael@walle.cc>
+---
+ arch/arm64/boot/dts/freescale/imx8mn-evk.dts | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-dt-bindings should be set now, so if you're still happy to take the 
-series via riscv, that'd be great. i2c, spi & usb patches ended going 
-via the sub-system trees (and have been dropped from the series), in 
-case those generate warnings for you.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
+index b4225cfcb6d9..eaa06f49aef5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
+@@ -41,7 +41,7 @@ pmic: pmic@25 {
+ 
+ 		regulators {
+ 			buck1: BUCK1{
+-				regulator-name = "BUCK1";
++				regulator-name = "VDD_ARM_0V9";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <2187500>;
+ 				regulator-boot-on;
+@@ -50,7 +50,7 @@ buck1: BUCK1{
+ 			};
+ 
+ 			buck2: BUCK2 {
+-				regulator-name = "BUCK2";
++				regulator-name = "VDD_SOC";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <2187500>;
+ 				regulator-boot-on;
+@@ -61,7 +61,7 @@ buck2: BUCK2 {
+ 			};
+ 
+ 			buck4: BUCK4{
+-				regulator-name = "BUCK4";
++				regulator-name = "VDD_3V3";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <3400000>;
+ 				regulator-boot-on;
+@@ -69,7 +69,7 @@ buck4: BUCK4{
+ 			};
+ 
+ 			buck5: BUCK5{
+-				regulator-name = "BUCK5";
++				regulator-name = "VDD_1V8";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <3400000>;
+ 				regulator-boot-on;
+@@ -77,7 +77,7 @@ buck5: BUCK5{
+ 			};
+ 
+ 			buck6: BUCK6 {
+-				regulator-name = "BUCK6";
++				regulator-name = "NVCC_DRAM_1V1";
+ 				regulator-min-microvolt = <600000>;
+ 				regulator-max-microvolt = <3400000>;
+ 				regulator-boot-on;
+@@ -85,7 +85,7 @@ buck6: BUCK6 {
+ 			};
+ 
+ 			ldo1: LDO1 {
+-				regulator-name = "LDO1";
++				regulator-name = "NVCC_SNVS_1V8";
+ 				regulator-min-microvolt = <1600000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
+@@ -93,7 +93,7 @@ ldo1: LDO1 {
+ 			};
+ 
+ 			ldo2: LDO2 {
+-				regulator-name = "LDO2";
++				regulator-name = "VDD_SNVS_0V8";
+ 				regulator-min-microvolt = <800000>;
+ 				regulator-max-microvolt = <1150000>;
+ 				regulator-boot-on;
+@@ -101,7 +101,7 @@ ldo2: LDO2 {
+ 			};
+ 
+ 			ldo3: LDO3 {
+-				regulator-name = "LDO3";
++				regulator-name = "VDDA_1V8";
+ 				regulator-min-microvolt = <800000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
+@@ -109,7 +109,7 @@ ldo3: LDO3 {
+ 			};
+ 
+ 			ldo4: LDO4 {
+-				regulator-name = "LDO4";
++				regulator-name = "VDD_PHY_1V2";
+ 				regulator-min-microvolt = <800000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
+@@ -117,7 +117,7 @@ ldo4: LDO4 {
+ 			};
+ 
+ 			ldo5: LDO5 {
+-				regulator-name = "LDO5";
++				regulator-name = "NVCC_SD2";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
+-- 
+2.30.2
 
-Thanks,
-Conor.
-> 
-> Changes from v6:
-> - Dropped i2c patch, as its in i2c-next
-> - Added ack on gpio, reviewed-by on rtc
-> - Dropped child nodes from sysctrl binding entirely, added a link to
->    the online documenation for the services the system controller can
->    provide
-> - Dropped the #pwm-cells and replaced with a ref, a la Krzysztof's
->    series
-> 
-> Changes from v5:
-> - reworded the descriptions in the pwm binding to (hopefully) add
->    clarity
-> - added -mask to the custom properties and made them 32 bit
-> - renamed the i2c binding to corei2c, since it is not mpfs specific
-> - removed the child nodes of the system controller in example/dts &
->    will create them in the driver.
->    @Rob, I assume keeping them documented is the correct thing to do?
-> - removed the dependancy on the clock binding from the examples
-> - reformatted rtc interrupts as per Rob's suggestion
-> 
-> Changes from v4:
-> - dont include icicle_kit_defconfig, accidentally added in v3
-> - drop prescaler from mpfs-rtc & calculate the value instead
-> - use corei2c as a fallback device for mpfs-i2c
-> - drop spi dt-binding (on spi-next)
->    commit 2da187304e556ac59cf2dacb323cc78ded988169
-> - drop usb dt-binding (on usb-next)
-> 
-> Changes from v3:
-> - drop "mailbox: change mailbox-mpfs compatible string", already upstream:
->    commit f10b1fc0161cd99e ("mailbox: change mailbox-mpfs compatible string")
-> - fix copy paste error in microchip,mpfs-mailbox dt-binding
-> - remove whitespace in syscontroller dt entry
-> 
-> Changes from v2:
-> - dropped plic int header & corresponding defines in dts{,i}
-> - use $ref to drmode in mpfs-musb binding
-> - split changes to dts{,i} again: functional changes to existing
->    elements now are in a new patch
-> - drop num-cs property in mpfs-spi binding
-> - dont make the system controller a simple-mfd
-> - move the separate bindings for rng/generic system services into the
->    system controller binding
-> - added an instance corei2c as i2c2 in the fabric dtsi
-> - add version numbering to corepwm and corei2c compat string (-rtl-vN)
-> 
-> Conor Dooley (11):
->    dt-bindings: soc/microchip: update syscontroller compatibles
->    dt-bindings: soc/microchip: add info about services to mpfs sysctrl
->    dt-bindings: rtc: add bindings for microchip mpfs rtc
->    dt-bindings: gpio: add bindings for microchip mpfs gpio
->    dt-bindings: pwm: add microchip corepwm binding
->    riscv: dts: microchip: use clk defines for icicle kit
->    riscv: dts: microchip: add fpga fabric section to icicle kit
->    riscv: dts: microchip: refactor icicle kit device tree
->    riscv: dts: microchip: update peripherals in icicle kit device tree
->    riscv: dts: microchip: add new peripherals to icicle kit device tree
->    MAINTAINERS: update riscv/microchip entry
-> 
->   .../bindings/gpio/microchip,mpfs-gpio.yaml    |  79 ++++++
->   ...ilbox.yaml => microchip,mpfs-mailbox.yaml} |   6 +-
->   .../bindings/pwm/microchip,corepwm.yaml       |  81 ++++++
->   .../bindings/rtc/microchip,mfps-rtc.yaml      |  58 ++++
->   .../microchip,mpfs-sys-controller.yaml        |  40 +++
->   ...icrochip,polarfire-soc-sys-controller.yaml |  35 ---
->   MAINTAINERS                                   |   2 +
->   .../dts/microchip/microchip-mpfs-fabric.dtsi  |  25 ++
->   .../microchip/microchip-mpfs-icicle-kit.dts   | 115 ++++++--
->   .../boot/dts/microchip/microchip-mpfs.dtsi    | 254 ++++++++++++++----
->   10 files changed, 591 insertions(+), 104 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
->   rename Documentation/devicetree/bindings/mailbox/{microchip,polarfire-soc-mailbox.yaml => microchip,mpfs-mailbox.yaml} (82%)
->   create mode 100644 Documentation/devicetree/bindings/pwm/microchip,corepwm.yaml
->   create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
->   create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
->   delete mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
->   create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-fabric.dtsi
-> 
