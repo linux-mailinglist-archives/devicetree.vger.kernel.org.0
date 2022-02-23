@@ -2,96 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1464C138A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:04:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 050664C1390
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:06:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240653AbiBWNFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 08:05:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58924 "EHLO
+        id S240716AbiBWNGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 08:06:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236296AbiBWNFW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:05:22 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2459793190;
-        Wed, 23 Feb 2022 05:04:54 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9CCE6B81E80;
-        Wed, 23 Feb 2022 13:04:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BE9AC340E7;
-        Wed, 23 Feb 2022 13:04:49 +0000 (UTC)
-Message-ID: <2c0b387c-d636-bc0c-74b1-f1eba3d89254@xs4all.nl>
-Date:   Wed, 23 Feb 2022 14:04:48 +0100
+        with ESMTP id S240714AbiBWNGW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:06:22 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4893AA4193
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:05:54 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id d14-20020a05600c34ce00b0037bf4d14dc7so4295388wmq.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:05:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=6Iisim3PKzqx+0SuQ2EiWiTngQbIiBBSQFYW4bmZFG4=;
+        b=xL6fA/11WclCJM2MxlSqzWBaUxk7fA+4OI+SITJI3HuBC6aQNHwmvUdRbzI1PWCJjl
+         nouFQQhqbAdlbueFM4m4nechphstnnVXOLaT+TT5I1cZyq1ZPuPhF4HtYie6PMauU2Xm
+         O5y8ACzbRTCySsiNoG6ClSYFzXpaVUE25zrItpI4eg7w2gdceTjzAoMqekdca/mwhw2A
+         0X4OPqCP0xw5cQdDChXDAKGE2Ptt3GNilnfvPJ8MJzcV8cI1QihpzAVp+jpbSy84uxJA
+         kpLQ+TDO5gjA0kM/GLr8jOWm0+Gk3p8/LGu0A7nCV+J5YODK8d8N5fL0XBhB1Yox5U0G
+         ArZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=6Iisim3PKzqx+0SuQ2EiWiTngQbIiBBSQFYW4bmZFG4=;
+        b=wYRzVlEiIqT/7XqfxL9I/ZeSV8hFPEENDr1c9weHZIM26AfMYFFq+rc3Cc9QLIM/D5
+         DfI79JHQCueRf8fR5TO2SwuJiul71laCt4qzhHvsc1G0/zgWE1b22nAouu7TakckivXB
+         iax/jro3ElkiZSER3jflw3ejjVy4IOGjz0pV9JJNLZNPwNIRz0OYzIrlqvPtGNOU/6px
+         nW0ax9Qut2cY3SsXT4RQaCbbn9ggPfa5vfg7/DjA2adniz78NKDyNbyu+m7Rwd+j7wcB
+         QRwBfkMAnNNMhN7CSQ3+Sp3qJCnot/drPBagSg8vK2WAGTC53+KyddRLzxdOWL7C68z/
+         74Gw==
+X-Gm-Message-State: AOAM533W4GsVR7S8y7QFKZAMtPp3pLmZYcSkdngT9SRSPlnsnDW0yOLl
+        m0ZNHuspdqc+I/gym1fx3vM8Bg==
+X-Google-Smtp-Source: ABdhPJxjlMvrB5Zg7n5QG4YhSseGskPdLA0ieLEpVQkkvGr/YjdvxZNHAECAhketBqw3EMUC5LVe9w==
+X-Received: by 2002:a05:600c:4f93:b0:37b:c4c1:e806 with SMTP id n19-20020a05600c4f9300b0037bc4c1e806mr7711932wmq.104.1645621552724;
+        Wed, 23 Feb 2022 05:05:52 -0800 (PST)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id s2sm5334745wmc.45.2022.02.23.05.05.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Feb 2022 05:05:52 -0800 (PST)
+Date:   Wed, 23 Feb 2022 14:05:50 +0100
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     heiko@sntech.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        herbert@gondor.apana.org.au, davem@davemloft.net
+Subject: Re: [PATCH v3] dt-bindings: crypto: convert rockchip-crypto to yaml
+Message-ID: <YhYxLmBYa+DMCnuz@Red>
+References: <20220211115925.3382735-1-clabbe@baylibre.com>
+ <f078ac6f-5605-7b86-5734-cbbf7dc52c71@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v10 2/2] media: i2c: isl7998x: Add driver for Intersil
- ISL7998x
-Content-Language: en-US
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Michael Tretter <m.tretter@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        p.zabel@pengutronix.de, Ian Arkver <ian.arkver.dev@gmail.com>,
-        kernel@pengutronix.de, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
-References: <20220217154407.2892822-1-m.tretter@pengutronix.de>
- <20220217154407.2892822-3-m.tretter@pengutronix.de>
- <2a2038bc-9f84-c451-deb3-1e807ac2f0d3@xs4all.nl>
- <YhYlnEBAh0QtRXZ0@paasikivi.fi.intel.com>
- <YhYuogHaHuyVPd2C@paasikivi.fi.intel.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-In-Reply-To: <YhYuogHaHuyVPd2C@paasikivi.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f078ac6f-5605-7b86-5734-cbbf7dc52c71@gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/23/22 13:54, Sakari Ailus wrote:
-> Hi Hans, Michael,
+Le Tue, Feb 15, 2022 at 03:07:56PM +0100, Johan Jonker a écrit :
+> Hi Heiko,
 > 
-> On Wed, Feb 23, 2022 at 02:16:28PM +0200, Sakari Ailus wrote:
->>>> +static int isl7998x_pre_streamon(struct v4l2_subdev *sd, u32 flags)
->>>> +{
->>>> +	struct i2c_client *client = v4l2_get_subdevdata(sd);
->>>> +	struct device *dev = &client->dev;
->>>> +
->>>> +	if (flags & V4L2_SUBDEV_PRE_STREAMON_FL_MANUAL_LP)
->>>> +		return pm_runtime_resume_and_get(dev);
->>>> +
->>>> +	return 0;
->>>
->>> This feels a bit scary: if V4L2_SUBDEV_PRE_STREAMON_FL_MANUAL_LP is NOT
->>> set, then pm_runtime_resume_and_get() isn't called, but this function
->>> still returns success...
->>
->> Good find.
->>
->> pm_runtime_resume_and_get() need to be called unconditionally.
->>
->> Alternatively, store what was done here, and put the PM use count
->> accordingly below. But I see no reason to do that.
+> On 2/11/22 12:59, Corentin Labbe wrote:
+> > Convert rockchip-crypto to yaml
+> > 
+> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> > ---
+> > Changes since v1:
+> > - fixed example
+> > - renamed to a new name
+> > - fixed some maxItems
+> > 
+> > Change since v2:
+> > - Fixed maintainers section
+> > 
+> >  .../crypto/rockchip,rk3288-crypto.yaml        | 66 +++++++++++++++++++
+> >  .../bindings/crypto/rockchip-crypto.txt       | 28 --------
+> >  2 files changed, 66 insertions(+), 28 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
 > 
-> But I think the driver is otherwise good to go.
+> rockchip,crypto.yaml
+
+
+Hello
+
+DT maintainer asked for rockchip,rk3288-crypto, so I will keep it.
+
 > 
-> Unless there are objections, I'll drop the check in the pre_streamon()
-> callback and apply it into my tree.
+> >  delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> > new file mode 100644
+> > index 000000000000..2e1e9fa711c4
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+> > @@ -0,0 +1,66 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/crypto/rockchip,rk3288-crypto.yaml#
 > 
+> rockchip,crypto.yaml
+> 
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Rockchip Electronics And Security Accelerator
+> > +
+> > +maintainers:
+> > +  - Heiko Stuebner <heiko@sntech.de>
+> > +
+> > +properties:
+> > +  compatible:
+> 
+>     oneOf:
+>       - const: rockchip,rk3288-crypto
+>       - items:
+>           - enum:
+>               - rockchip,rk3228-crypto
+>               - rockchip,rk3328-crypto
+>               - rockchip,rk3368-crypto
+>               - rockchip,rk3399-crypto
+>           - const: rockchip,rk3288-crypto
+> 
+> rk3288 was the first in line that had support, so we use that as fall
+> back string.
 
-OK, with that change you can add my:
+I will dont add compatible which are not handled by the driver unless DT maintainer said I should.
 
-Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> 
+> > +    const: rockchip,rk3288-crypto
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: clock data
+> > +      - description: clock data
+> > +      - description: clock crypto accelerator
+> 
+> > +      - description: clock dma
+> 
+> remove ???
+> 
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: aclk
+> > +      - const: hclk
+> > +      - const: sclk
+> 
+> > +      - const: apb_pclk
+> 
+> remove ???
+> 
+> Similar to the rk3568 pclk_xpcs discussion ACLK_DMAC1 belongs to the
+> dmac_bus_s node and should have been enabled by the DMA driver I think.
+> Could you advise if this is correct or should we remove parsing/enabling
+> ACLK_DMAC1 in rk3288_crypto.c in order to it easier
+> porting/adding/syncing nodes for other SoC types?
+> 
+> Johan
 
-to this patch. I'll delegate the series to you in patchwork.
+I tested on my rk3328-rock64 and I confirm apb_pclk is unnessecary.
+I will issue patch for fixing this.
 
-Regards,
-
-	Hans
+Regards
