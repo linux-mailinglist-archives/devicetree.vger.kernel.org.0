@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AE894C1A01
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 18:42:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CFEA4C1A16
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 18:45:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236603AbiBWRnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 12:43:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32820 "EHLO
+        id S234363AbiBWRpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 12:45:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232539AbiBWRnD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 12:43:03 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87B1F3EA88;
-        Wed, 23 Feb 2022 09:42:35 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21NHgPBJ043894;
-        Wed, 23 Feb 2022 11:42:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1645638145;
-        bh=71VKBZlzfawa2k4ICvtL0nMLvisqBZLYxeXPD7Q2JiI=;
-        h=From:To:CC:Subject:Date;
-        b=rYkiafohMBdFfL0D4vQsuOxk7Z4RNiZBczqFJtqUkRyNKPz3N1b3yC6DnPli8xnv/
-         CohptNCYZwY1XX/1EDxN3y62JcmIfjzTtSKvEHiQeLo9wPDwyLghsIDYYGAArIcIgu
-         ofxBZlKYM93s5ifGQVKf3xqNeax5nWAMIaIOZrOc=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21NHgPlu038885
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 23 Feb 2022 11:42:25 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 23
- Feb 2022 11:42:25 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 23 Feb 2022 11:42:25 -0600
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21NHgMwD118869;
-        Wed, 23 Feb 2022 11:42:22 -0600
-From:   Aparna M <a-m1@ti.com>
-To:     <a-govindraju@ti.com>, <linus.walleij@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <praneeth@ti.com>, <grygorii.strashko@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <bgolaszewski@baylibre.com>
-Subject: [PATCH v5] dt-bindings: gpio: Convert TI TPIC2810 GPIO Controller bindings to YAML
-Date:   Wed, 23 Feb 2022 23:12:15 +0530
-Message-ID: <20220223174215.17838-1-a-m1@ti.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S237498AbiBWRpl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 12:45:41 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAE3A41989;
+        Wed, 23 Feb 2022 09:45:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 788E6B82120;
+        Wed, 23 Feb 2022 17:45:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAB1EC340EF;
+        Wed, 23 Feb 2022 17:45:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645638310;
+        bh=1r9SfSx7/nO9MV6j5ddvX/n3LarVOe+sjHrIT6ZK9fA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VVBkCk7w/c4DZVbeBicjFjK5olhg87LsvDpdxtSV11yKd8ELyw4uWw3wLS20jFKte
+         e1ME+a8aaC0c73K9bRmen1AFPBg0fpNUCoo2yjZDl8koygGXGGjdzJ56v+jkp5YleB
+         NvFxzo3wkzF2vw0E2IexCTK4LZppG5bFOeM7zEuIza45c1+9SvBqPntPD1tAq4Xn3I
+         wDpxUiloXysvO7piilxpfnjpbgRI3WiTO5wIAPTy11vUvs1wW1+X2AwzS6uNp98UxO
+         AqvHyCUOf1nFyKrRUTwD9l/puj0h0dLVDVeBGw3coh3qOIK7cpY+00385iV4K8oGLw
+         aZnVXv2GPdXJg==
+Date:   Wed, 23 Feb 2022 17:45:02 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH v15 01/10] ASoC: qcom: SC7280: Update config for building
+ codec dma drivers
+Message-ID: <YhZynroGqrGZXeek@sirena.org.uk>
+References: <1645630745-25051-1-git-send-email-quic_srivasam@quicinc.com>
+ <1645630745-25051-2-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="BgxGnRv0ITTKSGV7"
+Content-Disposition: inline
+In-Reply-To: <1645630745-25051-2-git-send-email-quic_srivasam@quicinc.com>
+X-Cookie: I smell a wumpus.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -62,102 +63,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert gpio-tpic2810 bindings to yaml format and remove outdated
-bindings in .txt format.
 
-Signed-off-by: Aparna M <a-m1@ti.com>
----
+--BgxGnRv0ITTKSGV7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-v4 -> v5: Fix indentation issues
-v3 -> v4: Add gpio-line-names property
-v2 -> v3: Remove redundant descriptions and make minor change in example
-v1 -> v2: Fix identation issues and update commit message
+On Wed, Feb 23, 2022 at 09:08:56PM +0530, Srinivasa Rao Mandadapu wrote:
 
- .../bindings/gpio/gpio-tpic2810.txt           | 16 ------
- .../bindings/gpio/gpio-tpic2810.yaml          | 51 +++++++++++++++++++
- 2 files changed, 51 insertions(+), 16 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
+> +snd-soc-lpass-cdc-dma-objs := lpass-cdc-dma.o
+>  snd-soc-lpass-hdmi-objs := lpass-hdmi.o
+>  snd-soc-lpass-platform-objs := lpass-platform.o
+>  snd-soc-lpass-ipq806x-objs := lpass-ipq806x.o
+>  snd-soc-lpass-apq8016-objs := lpass-apq8016.o
+>  snd-soc-lpass-sc7180-objs := lpass-sc7180.o
+> +snd-soc-lpass-sc7280-objs := lpass-sc7280.o
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
-deleted file mode 100644
-index 1afc2de7a537..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--TPIC2810 GPIO controller bindings
--
--Required properties:
-- - compatible		: Should be "ti,tpic2810".
-- - reg			: The I2C address of the device
-- - gpio-controller	: Marks the device node as a GPIO controller.
-- - #gpio-cells		: Should be two. For consumer use see gpio.txt.
--
--Example:
--
--	gpio@60 {
--		compatible = "ti,tpic2810";
--		reg = <0x60>;
--		gpio-controller;
--		#gpio-cells = <2>;
--	};
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
-new file mode 100644
-index 000000000000..cb8a5c376e1e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/gpio-tpic2810.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TPIC2810 GPIO controller bindings
-+
-+maintainers:
-+  - Aswath Govindraju <a-govindraju@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tpic2810
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-line-names:
-+    minItems: 1
-+    maxItems: 32
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - "#gpio-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        gpio@60 {
-+            compatible = "ti,tpic2810";
-+            reg = <0x60>;
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+            gpio-line-names = "LED A", "LED B", "LED C";
-+        };
-+    };
--- 
-2.17.1
+This will break the build given that neither of these source files are
+present yet?
 
+--BgxGnRv0ITTKSGV7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIWcp0ACgkQJNaLcl1U
+h9CNAgf/fgT85WLXUxvPTW+bdBxpXXG4xGbT3a/xOpeZwtb9IGS8T8CEhrNyMMUy
+M3Hugbmecjtc9uJkjidtB6gtcdDfSBdBndnS2a0GrbHUxF64xHsa5D/Af3zVVXzo
+UgS4RSolole5NP1bZbCBLtp0PHiAqpEezwCNX46YPjtOyF+Z7Tq1hwJv6tI1DLda
+t1lVDT3nN601EguQf/A0nzZXl7Iu0868+Eln49TGhVSHibUt3qE5w2kDSiElaWQ9
+D8Dx/MhzXIAu7aQc9nsMHAa2xGX/7nEFdNmWMRFAT060DjaWFCAqvAade9y3HUGI
+rSPDjjvk7U0+l+xqc9V/1Axp/NZSbg==
+=LxWV
+-----END PGP SIGNATURE-----
+
+--BgxGnRv0ITTKSGV7--
