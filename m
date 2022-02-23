@@ -2,88 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B92C4C1460
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:40:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A7614C14D2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:55:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240991AbiBWNk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 08:40:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36966 "EHLO
+        id S241132AbiBWN4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 08:56:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240976AbiBWNk0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:40:26 -0500
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9900EAC056;
-        Wed, 23 Feb 2022 05:39:59 -0800 (PST)
-Received: by mail-ua1-f43.google.com with SMTP id k5so1450987uao.2;
-        Wed, 23 Feb 2022 05:39:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dPeYplQbbLYXGtovtVVhsdi1q95Z7tVy8kR/XdoEwFw=;
-        b=PX7Nt9qXpqmTjlFOhhrsb5M/khaHHVULEAZc7ld8M2DZqySjYEcdAERmkeamrdW/aU
-         Vy91Muu7B/Qi09vclq9GJ3lSKdbRjnWlNa4bjwT1LX4jqIWqCHomrF6Js/54IQsdCGgl
-         tYPIW0jKrvm88C/94Zebd9QiCvh2mreNv5QBAk/j3/sTeQW64tGMETml+dan/2Inlhns
-         8hUrm8iBx3vO7BjOiaFscGf7Itc8ZgN7rjDu0Vzr/CErLH4bnqvMRMS1aMqCakGv2e4L
-         NSGAHCtwMxnIqB6JHsigQnVmLdDIEMp60YQRqoL2IDnrYLmWCIvBKgp597YTnicPyrqs
-         ldHg==
-X-Gm-Message-State: AOAM531a69GdEbv6Vhvyy1rl+1jKsNe3FwsHb8Q3ivxLXaF93y2xgPQG
-        0d35jLtEVe4FJoWRcdvAQ2yZzq0H4qG2ng==
-X-Google-Smtp-Source: ABdhPJwNxI2R6AEdabxPGiQHMAf1Ybqt+uMRJxs0wwwqMa5UMibfkulRZnrAVCVLljIQa5ADJ/LFiQ==
-X-Received: by 2002:ab0:2111:0:b0:341:8339:51b4 with SMTP id d17-20020ab02111000000b00341833951b4mr10756970ual.76.1645623598626;
-        Wed, 23 Feb 2022 05:39:58 -0800 (PST)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id t127sm4198604vkb.31.2022.02.23.05.39.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 05:39:58 -0800 (PST)
-Received: by mail-vs1-f48.google.com with SMTP id y26so3187221vsq.8;
-        Wed, 23 Feb 2022 05:39:57 -0800 (PST)
-X-Received: by 2002:a67:e10e:0:b0:31b:956b:70cf with SMTP id
- d14-20020a67e10e000000b0031b956b70cfmr11904088vsl.77.1645623597826; Wed, 23
- Feb 2022 05:39:57 -0800 (PST)
+        with ESMTP id S229574AbiBWN4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:56:09 -0500
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD0BEB0A6E;
+        Wed, 23 Feb 2022 05:55:40 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21NDtZ1b026972;
+        Wed, 23 Feb 2022 07:55:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1645624535;
+        bh=S7C/NqOakX7UbNk41LHpz1uj1i2eJAfjzGfWkUQqzhw=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=LSta1V0AMWkVKye2BKyuO6aQ3615OtOoEXSGlXiowG0NonB/PWCMoOhLXa3hzrScc
+         5u4uIOc5fE/deD9KDWmW2qvxR2Ry4rWk8I2nUvBOBJimnNdK+doOycKbJZyMoQeMiD
+         IwfV/fEK4w0j3wEm3Q9aWYk1ge+nIDfChTUm6gbY=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21NDtYHs116763
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 23 Feb 2022 07:55:34 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 23
+ Feb 2022 07:55:34 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 23 Feb 2022 07:55:34 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21NDtYiN063612;
+        Wed, 23 Feb 2022 07:55:34 -0600
+Date:   Wed, 23 Feb 2022 07:55:34 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Aparna M <a-m1@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <praneeth@ti.com>, <grygorii.strashko@ti.com>, <nikhil.nd@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am642-sk: Add DT entry for onboard
+ LEDs
+Message-ID: <20220223135534.jbmbdvc4zye7udmc@grafting>
+References: <20220223083229.8044-1-a-m1@ti.com>
 MIME-Version: 1.0
-References: <20220221095032.95054-1-jjhiblot@traphandler.com> <20220221095032.95054-5-jjhiblot@traphandler.com>
-In-Reply-To: <20220221095032.95054-5-jjhiblot@traphandler.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 23 Feb 2022 14:39:46 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX=Yos_CGcBXbV_+WGcTkz18mxiR4xbXwPqjR4mUGnMtQ@mail.gmail.com>
-Message-ID: <CAMuHMdX=Yos_CGcBXbV_+WGcTkz18mxiR4xbXwPqjR4mUGnMtQ@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] ARM: dts: r9a06g032-rzn1d400-db: Enable watchdog0
- with a 60s timeout
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220223083229.8044-1-a-m1@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 10:51 AM Jean-Jacques Hiblot
-<jjhiblot@traphandler.com> wrote:
-> 60s is a sensible default value.
->
-> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 14:02-20220223, Aparna M wrote:
+> AM642 SK has 8 leds connected to tpic2810 onboard. Add support for these
+> gpio leds.
+> 
+> Signed-off-by: Aparna M <a-m1@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts | 70 ++++++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> index 6b04745147be..31e45bafa49e 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+[...]
 
-Will queue in renesas-devel for v5.18.
+> +
+> +	exp2: gpio@60 {
+> +		compatible = "ti,tpic2810";
 
-Gr{oetje,eeting}s,
+Sorry, but no.
+please convert
+	Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt to yaml
 
-                        Geert
+prior to any patches that enable it. (dtbs_check should have already
+warned you about this).
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +		reg = <0x60>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names = "LED1","LED2","LED3","LED4","LED5","LED6","LED7","LED8";
+> +	};
+>  };
+>  
+>  &main_i2c3 {
+> -- 
+> 2.17.1
+> 
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
