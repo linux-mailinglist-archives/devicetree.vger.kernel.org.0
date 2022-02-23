@@ -2,206 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7E834C0D02
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 08:07:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E36244C0D07
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 08:09:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238534AbiBWHH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 02:07:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38132 "EHLO
+        id S238554AbiBWHKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 02:10:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238097AbiBWHH0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 02:07:26 -0500
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD1C6335;
-        Tue, 22 Feb 2022 23:06:57 -0800 (PST)
-Received: by mail-ej1-f48.google.com with SMTP id a23so50209218eju.3;
-        Tue, 22 Feb 2022 23:06:57 -0800 (PST)
+        with ESMTP id S236030AbiBWHKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 02:10:16 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 212593BFB8
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 23:09:49 -0800 (PST)
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 010394003C
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 07:09:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645600182;
+        bh=nimhNkIt7mdxahM9C8qO53ZAeN7FCRJYbKKsVkt4SHg=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=pWNgBR86IA0p/Davm1YfHEs71H25V07UDz7SAKnXauSQGFqQltoAgYo9Aiwc9eSc1
+         hr8EKqOLsx3WrT/5d3ue+M8L9K/9XRrjl9LuRm7wBAVJduPGSjDd5VR9p6wJpCjmZp
+         UY6WY0PFsbAOk/9WZf0Er6mfQGa09P05Ak8Z9TDcj2btsVZ9/Jv8Tui59rieH++Vmv
+         +WHdshe4iNfle0iYtozepgMZV4Px2vYz+QLGGkj6M71Xq0SDdAlWpWEmol2EaVK7DI
+         eBhx7D9LipuQ67eVGxAK/skaDl2e9Dz5CHHmwT9iM9Dmt9jq83IdrKjwUrPh9u6cSD
+         PFNya+ZupS38Q==
+Received: by mail-ej1-f72.google.com with SMTP id i20-20020a17090671d400b006d0ed9c68c1so3435223ejk.14
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 23:09:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ObENWS/hj5zY1mVUZ7GyGOu2G+FMnfCnwItgeAu0qvU=;
-        b=7teXXEDX/hwh/VYglJHouK1ukUJo/AH4t/4dere0sCw9wApomsnXCIR051pBFSLdm5
-         FpgwWgxDeQOAdAKwcYh/IxBP06TdwAWM7m2aL0VO4zW3lXuZyWLsKiyQ4yhySLBsdBtP
-         eSVFrI/9raBZrD6drANTOZkEGB1s20AaFSfCisKYuWj0OsTHMo80SJRhkkNawTB+blcJ
-         r8tkeUZYCw7kIUCOmMhvxHsQbjkz6vdhCBA7A1X9O9US27KvY5TkBvP4r7AiI8TK8IB4
-         hj81UB+JI2lMX64uD0BtsCYGjxd000SF3xws+NPIAUWhy4O44YwWyZL3ZpmO3Pu91taB
-         I34Q==
-X-Gm-Message-State: AOAM533yL8QC9pEWddvfyStJya7Cu6eVizdyZhJFp0rBcdGb7XZ0nLlW
-        +h+W4azByKJontR5P9zHvJsToHI0kpk=
-X-Google-Smtp-Source: ABdhPJyWWy+Cb9A31GxKcYIrYJ/8SE/IDHrMOfRGQPDdvYdyBzQ1Awt6FtUXg9KlRqAOosOzi6JgHg==
-X-Received: by 2002:a17:906:a24b:b0:6ce:70da:12bb with SMTP id bi11-20020a170906a24b00b006ce70da12bbmr20765929ejb.667.1645600016008;
-        Tue, 22 Feb 2022 23:06:56 -0800 (PST)
+        bh=nimhNkIt7mdxahM9C8qO53ZAeN7FCRJYbKKsVkt4SHg=;
+        b=QFzJaC+iBg8ETcV666YbLFfERQDRi9jLomcvHG+6Y2EdbypAsdWp4y53s/E8jzHSoC
+         VrjQv4YRgj8aeyziE28bQzO/2FVgOL2bew/cPi6QvZeg6yoqVu+flAhCSPpm7kUsL2ol
+         g4dSVbE3uiWVt3QsXPp3y7myfhZL7ualZZmK/N4pTXu0smlz6yEGHHG7yWICnA332geY
+         YJuc9PYiKJGRYU95YtsAKgPss+rfM7LN81lyVZYV4PXLedOPPgzervf8glsmNFNzii2I
+         28SQesmLaXugxR8iqhpLXdTocfYdxIqgcDjymDbIIVPdnDUNwXnrYT9b4LuTLS5WwguD
+         pO2A==
+X-Gm-Message-State: AOAM531MSaf8fxy8K2sBTljj7QZlT8PDyD0AXY+z635ACYJweCENgFqF
+        jYelpdICcfrgKzgnZaQL0A1yWRvrGbU8NL2jmcxH4y48BjW9ZIwU9eXCQ0FlDuZK4uyTzhX+dcv
+        KlC/w/PAHtoOHo2BiPP766Q7+pVHoMIPdOwV6hEk=
+X-Received: by 2002:aa7:dd9a:0:b0:410:b875:ab95 with SMTP id g26-20020aa7dd9a000000b00410b875ab95mr29494454edv.248.1645600181674;
+        Tue, 22 Feb 2022 23:09:41 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyzCfvOZRfs9gbRYzkE2QJAiHsybZmRR4vAzmtPrnH3egKFJYppepwp/EaGxvawIkcSpK6J/A==
+X-Received: by 2002:aa7:dd9a:0:b0:410:b875:ab95 with SMTP id g26-20020aa7dd9a000000b00410b875ab95mr29494428edv.248.1645600181505;
+        Tue, 22 Feb 2022 23:09:41 -0800 (PST)
 Received: from [192.168.0.124] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.googlemail.com with ESMTPSA id s18sm257263eja.87.2022.02.22.23.06.54
+        by smtp.gmail.com with ESMTPSA id kw5sm7198688ejc.140.2022.02.22.23.09.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Feb 2022 23:06:54 -0800 (PST)
-Message-ID: <a05ccb6a-4807-ad1d-06bc-bcf79d9624b8@kernel.org>
-Date:   Wed, 23 Feb 2022 08:06:53 +0100
+        Tue, 22 Feb 2022 23:09:40 -0800 (PST)
+Message-ID: <18bdf4ae-c445-ad10-b344-324436cbe445@canonical.com>
+Date:   Wed, 23 Feb 2022 08:09:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 2/3] dt-bindings: remoteproc: Add AVM WASP
+Subject: Re: (subset) [PATCH 0/4] mfd/pwm: dt-bindings: google, cros-ec:
+ include generic pwm schema
 Content-Language: en-US
-To:     Kestrel seventyfour <kestrelseventyfour@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     linux-mediatek@lists.infradead.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Lee Jones <lee.jones@linaro.org>, linux-pwm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        linux-arm-msm@vger.kernel.org, chrome-platform@lists.linux.dev,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-rockchip@lists.infradead.org, Andy Gross <agross@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Guenter Roeck <groeck@chromium.org>,
         linux-kernel@vger.kernel.org
-References: <20220221135351.GA7342@ubuntu>
- <3e1ee336-1c78-7719-826c-2a093a20ee8e@kernel.org>
- <CAE9cyGRcDSJwrKOWER9wxHSAQzLs2ZdL+uWsme0etMV+8wKcMg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <CAE9cyGRcDSJwrKOWER9wxHSAQzLs2ZdL+uWsme0etMV+8wKcMg@mail.gmail.com>
+References: <20220214081916.162014-1-krzysztof.kozlowski@canonical.com>
+ <164557235424.1264579.14486504733557463529.b4-ty@sntech.de>
+ <20220223062233.4m2xejozz4d47gmo@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220223062233.4m2xejozz4d47gmo@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2022 16:27, Kestrel seventyfour wrote:
-> Am Mo., 21. Feb. 2022 um 17:47 Uhr schrieb Krzysztof Kozlowski
-> <krzk@kernel.org>:
->>
->> On 21/02/2022 14:53, Daniel Kestrel wrote:
->>> AVM Fritzbox router boards may contain an additional ATH79
->>> based SoC that has the wifi cards connected.
->>> This patch adds bindings for this remote processor.
+On 23/02/2022 07:22, Uwe Kleine-König wrote:
+> Hello,
+> 
+> On Wed, Feb 23, 2022 at 12:27:08AM +0100, Heiko Stuebner wrote:
+>> On Mon, 14 Feb 2022 09:19:12 +0100, Krzysztof Kozlowski wrote:
+>>> DTS patches are independent. Not tested, but I really hope no downstream kernel
+>>> depends on pwm node naming... If it does, please change it to compatible. :)
 >>>
->>> Signed-off-by: Daniel Kestrel <kestrelseventyfour@gmail.com>
->>> ---
->>>  .../bindings/remoteproc/avm,wasp-rproc.yaml   | 93 +++++++++++++++++++
->>>  1 file changed, 93 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+>>> Best regards,
+>>> Krzysztof
 >>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
->>> new file mode 100644
->>> index 000000000000..21f3bbcc4202
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
->>> @@ -0,0 +1,93 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/remoteproc/avm,wasp-rproc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: AVM WASP processor controller bindings
->>> +
->>> +maintainers:
->>> +  - Daniel Kestrel <kestrelseventyfour@gmail.com>
->>> +
->>> +description: |
->>> +  This document defines the bindings for the remoteproc component that loads and
->>> +  boots firmwares on the AVM Wireless Assistent Support Processor (WASP) SoC
->>> +  that is attached to some AVM Fritzbox devices (3390, 3490, 5490, 5491, 7490).
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: avm,wasp
->>> +
->>> +  ath9k-firmware:
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>> +    description: |
->>> +      Should contain the name of the ath9k eeprom that is to be loaded from
->>> +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
->>> +      The file should be located on the firmware search path.
+>>> Krzysztof Kozlowski (4):
+>>>   dt-bindings: pwm: google,cros-ec: include generic pwm schema
+>>>   arm64: dts: mt8183: align Google CROS EC PWM node name with dtschema
+>>>   arm64: dts: qcom: align Google CROS EC PWM node name with dtschema
+>>>   arm64: dts: rk3399: align Google CROS EC PWM node name with dtschema
+>>>
+>>> [...]
 >>
->> Are you sure this is a property of hardware? It looks like runtime
->> configuration parameter.
+>> Applied, thanks!
 >>
->>> +
->>> +  ath10k-caldata:
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>> +    description: |
->>> +      Should contain the name of the ath10k caldata that is to be loaded from
->>> +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
->>> +      The file should be located on the firmware search path.
->>
->> Same.
->>
->>> +
->>> +  wasp-netboot-firmware:
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>> +    description: |
->>> +      Should contain the name of the netboot firmware that is to be loaded
->>> +      and started on the WASP SoC using mdio in order to be able to load
->>> +      the initramfs image as a second stage.
->>> +      The file should be located on the firmware search path.
->>
->> Same.
->>
->>> +
->>> +  wasp-netboot-mdio:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: Reference to the Lantiq GSWIP switch mdio.
->>
->> Vendor prefix.
->>
->>> +
->>> +  wasp-initramfs-port:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: Reference to the network port, where the WASP SoC is connected to.
->>
->> Vendor prefix.
->>
->>> +
->>> +  wasp-initramfs-image:
->>> +    $ref: /schemas/types.yaml#/definitions/string
->>> +    description: |
->>> +      Should contain the name of the initramfs linux image that is to be loaded
->>> +      and started on the WASP SoC.
->>> +      The file should be located on the firmware search path.
->>
->> initramfs path looks even less like a property of hardware... If you
->> change initramfs from CPIO to initrd or GZ, hardware changes as well?
->>
->>> +  reset-gpio:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +    description: Reference and parameters for the reset gpio of the WASP SoC.
->>
->> Wrong suffix, unneeded type. Did you run dt_binding_check?
+>> [4/4] arm64: dts: rk3399: align Google CROS EC PWM node name with dtschema
+>>       commit: 474a84be692d893f45a54b405dcbc137cbf77949
 > 
-> Hi Krzystof,
-> 
-> Sorry for missing the dt_binding_check.
-> I have switched to use devm_gpiod_get and it does not work if the
-> suffix is not -gpio
-> or -gpios (see of_find_gpio method).
-> Would avm,reset-gpio be ok to use here?
+> I expected that all patches in this series go in together via an ARM
+> tree. Or are there expectations that this goes via PWM?
 
-No, because the suffix must be -gpios.
-These are the legacy, often deprecated properties:
-git grep '\-gpio:' -- Documentation/devicetree/ | grep yaml
+I would propose to pick individual patches by each maintainer. bindings
+by PWM tree (Rob acked it) and DTS via each SoC tree.
 
-These are proper:
-git grep '\-gpios:' -- Documentation/devicetree/ | grep yaml
-
-
-> 
-> Thanks.
->>
->> "Reference and parameters" are obvious, so they should be skipped.
->>
->>> +
->>> +  startup-gpio:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +    description: Reference and parameters for the power switch gpio of the WASP SoC.
->>
->> Same.
-> Is avm,startup-gpio ok, like above?
-
-avm,startup-gpios
-
+Such approach gives flexibility, although `make dtbs_check` will spot
+the new errors when run in PWM tree. Next will be fine, though.
 
 Best regards,
 Krzysztof
