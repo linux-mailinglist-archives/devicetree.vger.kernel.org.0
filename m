@@ -2,147 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0409C4C1578
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 15:35:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB8E44C1591
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 15:39:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241623AbiBWOf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 09:35:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50988 "EHLO
+        id S241688AbiBWOjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 09:39:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241553AbiBWOf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 09:35:26 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00B1BB3E6E;
-        Wed, 23 Feb 2022 06:34:57 -0800 (PST)
-Received: from tatooine.ideasonboard.com (unknown [IPv6:2a01:e0a:169:7140:7ebc:9e38:c4df:c57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 442A5929;
-        Wed, 23 Feb 2022 15:34:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645626896;
-        bh=t7lXyoF+dyXhtYXC4fPPLMW3kGBxlRCCjpwpkuyd/NM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QFdAdvyydxPmLVK0oZz77NP/VG+nAD2fQY7iSbKs/H8sJfTVle6/unEwzHsZfFZQY
-         SmwbJ1u6aDZq045UofPFbsyoN4wLdfBVCeK3UnX9Fv/cAEADljzkrf5JGlGoCvCSg5
-         YoVaPR0YQvNf5JqF0osV0zTuMaOYJ3NXpFC6AngI=
-From:   Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, sbranden@broadcom.com,
-        rjui@broadcom.com, f.fainelli@gmail.com, nsaenz@kernel.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
-        stefan.wahren@i2se.com, dave.stevenson@raspberrypi.com,
-        naush@raspberrypi.com,
-        Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-Subject: [PATCH v5.1 2/2] ARM: dts: bcm2711: Add unicam CSI nodes
-Date:   Wed, 23 Feb 2022 15:34:34 +0100
-Message-Id: <20220223143434.71853-2-jeanmichel.hautbois@ideasonboard.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220223143434.71853-1-jeanmichel.hautbois@ideasonboard.com>
-References: <20220208155027.891055-7-jeanmichel.hautbois@ideasonboard.com>
- <20220223143434.71853-1-jeanmichel.hautbois@ideasonboard.com>
+        with ESMTP id S241680AbiBWOjr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 09:39:47 -0500
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 815B2B54E7;
+        Wed, 23 Feb 2022 06:39:17 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 0E9AC58048A;
+        Wed, 23 Feb 2022 09:39:15 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Wed, 23 Feb 2022 09:39:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; bh=FgQTgqziNKWKER2EIGatrqwMgScYbE1jaY41Ku
+        Ra9OM=; b=Yli2PPJDon/Sd3hWdozX4L17oVl7xLrv21xPwvKecUIpyd8aPy1+eQ
+        PN29mJy2I0NrgpCdcxuxsni2F/BGR7WOXN4tTRXOGeJuamGKEymBaHfDqsyIyNcD
+        xahS06C6zwAStN1A1Mk3pcsGwl2akNdlXJzlcSc5O/xr8+TLvdSsv6T6m3DNzLQ1
+        MKSDLi+nKhqoxXUKqgiLBBqk6yRi+kqHZL5mgm9ePBJsQ5zZwJaBD8vImC2vzLvi
+        4g8YL8kts6FypEX0dFFRj9xTE1XAOu3pVu7TQJbhgOSQvcUqB6S+3ifg6xd074Qk
+        VeemYsCbaTufoebFyK4dUPM1BCrfHc2A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=FgQTgqziNKWKER2EI
+        GatrqwMgScYbE1jaY41KuRa9OM=; b=fJcIHRF17UWKd0l8UNOFyNrRjbu8kDSvB
+        j9nKZS5xD6s5+mep1mSmlY4AT3MPwU3ZkQ3EfiB0hM4iZGkuU1FQlGyNmLtm5tDe
+        7jHteapsg/MRIyxLXkG1U4cBvHoAKog7OdOJYs5tgxB6IwoYfURQcoZjy5HiYzyL
+        rQL0b2cN5R7Mo/QtQZ+LUOAQT0RvJJX+czf6rheaXsjAYhCmt1idGp0yEwKBmsGJ
+        AXsycRUS0N+ttmx+PHDahoITWdsPjNgi3ieoKCSt4KHSSWykydxBnMXVhYCKhan4
+        eldILqu8Ye/Mqa7HGDT5qe45rO4TSTUtbUmSQ/spOWDmILLaVYs+w==
+X-ME-Sender: <xms:EkcWYuYja8czwuHjew1dyGXmSuW1IKamNvDwikHODq06sRG2mjSCTQ>
+    <xme:EkcWYhYJ3f73iiAKCifKa2kr9MB21Hc3xt8JBOuYfNf0VFS7WYZqI-tIJv1yPD1Fb
+    A9gVvgioma9HhTCcz4>
+X-ME-Received: <xmr:EkcWYo_67oWoiTUGgonTnQtUWz7tZt1Ddxj9aFt-pxhubGm7botnBe6T68pxVybDmQNNR2FSluRZBn4QRMYcM7YhPCqrWsMBUOrTrn4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrledtgdeiiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
+    veenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:EkcWYgqVlP6Ct4NexodwRqXpnhoYgMrH9eEnml_fgpbDTez2YDNf9Q>
+    <xmx:EkcWYpo1pjBxKyzP3kkl2grSbOaeCDSqqu2ZSVrVymR29meM7o5DeA>
+    <xmx:EkcWYuTKy4G5BQHnSLw7ioA2cgW6wHA4QmmGS1yUOlB_Vk34BCFu4w>
+    <xmx:E0cWYjZQST1x64XLUkl8j2Ez7BYtR7WdgwqkR66KWHn4p-JgHD4IYA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 23 Feb 2022 09:39:13 -0500 (EST)
+Date:   Wed, 23 Feb 2022 15:39:12 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Sui Jingfeng <15330273260@189.cn>
+Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Randy Dunlap <rdunlap@infradead.org>,
+        kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v10 3/4] drm/lsdc: add drm driver for loongson display
+ controller
+Message-ID: <20220223143912.m727fie3vtdkvklo@houat>
+References: <20220220145554.117854-1-15330273260@189.cn>
+ <20220220145554.117854-4-15330273260@189.cn>
+ <20220222082747.66otrkc4zwvhem7w@houat>
+ <54ea69d7-2fac-74dc-2ef6-843a666cff85@189.cn>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wam4wqm3zed2h2ms"
+Content-Disposition: inline
+In-Reply-To: <54ea69d7-2fac-74dc-2ef6-843a666cff85@189.cn>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add both MIPI CSI-2 nodes in the core bcm2711 tree. Use the 3-cells
-interrupt declaration, corresponding clocks and default as disabled.
 
-Thanks to Stefan Wahren for his guidance on how to deal with different
-RPi variants.
+--wam4wqm3zed2h2ms
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- arch/arm/boot/dts/bcm2711.dtsi     |  8 ++++++++
- arch/arm/boot/dts/bcm2835-rpi.dtsi | 14 ++++++++++++++
- arch/arm/boot/dts/bcm283x.dtsi     | 22 ++++++++++++++++++++++
- 3 files changed, 44 insertions(+)
+On Tue, Feb 22, 2022 at 10:46:35PM +0800, Sui Jingfeng wrote:
+>=20
+> On 2022/2/22 16:27, Maxime Ripard wrote:
+> > > +	if (!of_device_is_available(output)) {
+> > > +		of_node_put(output);
+> > > +		drm_info(ddev, "connector%d is not available\n", index);
+> > > +		return NULL;
+> > > +	}
+> > > +
+> > > +	disp_tims_np =3D of_get_child_by_name(output, "display-timings");
+> > > +	if (disp_tims_np) {
+> > > +		lsdc_get_display_timings_from_dtb(output, &lconn->disp_tim);
+> > > +		lconn->has_disp_tim =3D true;
+> > > +		of_node_put(disp_tims_np);
+> > > +		drm_info(ddev, "Found display timings provided by connector%d\n", =
+index);
+> > > +	}
+> > > +
+> > > +	connector_type =3D lsdc_get_connector_type(ddev, output, index);
+> > > +
+> > > +	if (output) {
+> > > +		of_node_put(output);
+> > > +		output =3D NULL;
+> > > +	}
+> > > +
+> > > +DT_SKIPED:
+> > > +
+> > > +	/* Only create the i2c channel if display timing is not provided */
+> > > +	if (!lconn->has_disp_tim) {
+> > > +		const struct lsdc_chip_desc * const desc =3D ldev->desc;
+> > > +
+> > > +		if (desc->have_builtin_i2c)
+> > > +			lconn->ddc =3D lsdc_create_i2c_chan(ddev, index);
+> > > +		else
+> > > +			lconn->ddc =3D lsdc_get_i2c_adapter(ddev, index);
+> > This looks weird: the connector bindings have a property to store the
+> > i2c controller connected to the DDC lines, so you should use that
+> > instead.
+> >=20
+> This is not=A0 weird,=A0 ast, mgag200, hibmc do the same thing.
 
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index dff18fc9a906..53dbd5d00c3a 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -1036,6 +1036,14 @@ &rmem {
- 	#address-cells = <2>;
- };
- 
-+&csi0 {
-+	interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
-+&csi1 {
-+	interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
- &cma {
- 	/*
- 	 * arm64 reserves the CMA by default somewhere in ZONE_DMA32,
-diff --git a/arch/arm/boot/dts/bcm2835-rpi.dtsi b/arch/arm/boot/dts/bcm2835-rpi.dtsi
-index 8f988dd253fc..d339f62bdc8f 100644
---- a/arch/arm/boot/dts/bcm2835-rpi.dtsi
-+++ b/arch/arm/boot/dts/bcm2835-rpi.dtsi
-@@ -40,6 +40,20 @@ vchiq: mailbox@7e00b840 {
- 	};
- };
- 
-+&csi0 {
-+	clocks = <&clocks BCM2835_CLOCK_CAM0>,
-+		 <&firmware_clocks 4>;
-+	clock-names = "lp", "vpu";
-+	power-domains = <&power RPI_POWER_DOMAIN_UNICAM0>;
-+};
-+
-+&csi1 {
-+	clocks = <&clocks BCM2835_CLOCK_CAM1>,
-+		 <&firmware_clocks 4>;
-+	clock-names = "lp", "vpu";
-+	power-domains = <&power RPI_POWER_DOMAIN_UNICAM1>;
-+};
-+
- &gpio {
- 	pinctrl-names = "default";
- 
-diff --git a/arch/arm/boot/dts/bcm283x.dtsi b/arch/arm/boot/dts/bcm283x.dtsi
-index c113661a6668..7b96e1707024 100644
---- a/arch/arm/boot/dts/bcm283x.dtsi
-+++ b/arch/arm/boot/dts/bcm283x.dtsi
-@@ -456,6 +456,28 @@ dsi1: dsi@7e700000 {
- 			status = "disabled";
- 		};
- 
-+		csi0: csi@7e800000 {
-+			compatible = "brcm,bcm2835-unicam";
-+			reg = <0x7e800000 0x800>,
-+			      <0x7e802000 0x4>;
-+			reg-names = "unicam", "cmi";
-+			interrupts = <2 6>;
-+			status = "disabled";
-+			port {
-+			};
-+		};
-+
-+		csi1: csi@7e801000 {
-+			compatible = "brcm,bcm2835-unicam";
-+			reg = <0x7e801000 0x800>,
-+			      <0x7e802004 0x4>;
-+			reg-names = "unicam", "cmi";
-+			interrupts = <2 7>;
-+			status = "disabled";
-+			port {
-+			};
-+		};
-+
- 		i2c1: i2c@7e804000 {
- 			compatible = "brcm,bcm2835-i2c";
- 			reg = <0x7e804000 0x1000>;
--- 
-2.32.0
+And none of them have DT support.
 
+Maxime
+
+--wam4wqm3zed2h2ms
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYhZHEAAKCRDj7w1vZxhR
+xXitAP9v7HOYqHz8i7UAxoCMoqbrhwBW9XOoHnf/jK5QqIkJuwEAuPDXzMoMz/sH
+GrxQHl28jgBtPlbX7QJnoi4BgNwVNQA=
+=4ezX
+-----END PGP SIGNATURE-----
+
+--wam4wqm3zed2h2ms--
