@@ -2,98 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D084B4C1419
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:26:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 290524C144A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:37:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240598AbiBWN0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 08:26:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48214 "EHLO
+        id S240950AbiBWNh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 08:37:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240466AbiBWN0g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:26:36 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBFC8A9A7E
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:26:08 -0800 (PST)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2D2F43F1BC
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 13:26:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645622767;
-        bh=PtdI+8+uPiMKtPcTbYLUdwlTYloxTDVphk9EdUF2zm8=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=FYm3e9fOXdpK2m73LNkXkgZss861nTjQniJjXh/bI5KjAnoy14sgMMYqOVS9tLrhG
-         92LG88gZzkKZp8bAUcKxriEHeC6XLJxhGlfWgE1Hl8yVmubKLsJVhVN49nj1wAGRTr
-         hLDIehrvLrQvy+jQfvLbRAQFoHsi6RCcd0FvZ4KIbBSbWAGHqXFcN9ctW0or3EOgs+
-         rQp3RY3XHCq6NTTGcwz4OHR6/hyJALgWyDAWnuovePXubBochfgaF3G4s3CK0HKMv3
-         MZGQxmMWPOWIFb5kohrtu8WdYAkIrKJmkRYZItvskPf61HkQbT0CP4Kbdflyioo+uR
-         iW/IY1W3XvGfA==
-Received: by mail-ej1-f72.google.com with SMTP id 13-20020a170906328d00b006982d0888a4so7041133ejw.9
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:26:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=PtdI+8+uPiMKtPcTbYLUdwlTYloxTDVphk9EdUF2zm8=;
-        b=ZoNPYaIJst4tbEJ5k9v/hIxbFJx4Wzttcf4S5jbvLdvkJHBslg49myUyfVebdOiF2W
-         g8CrKU4/2JfYKNIQ+8CNBXrkfPFxoTE58VEHlLyGQdnBf1lfok3+Nn32H0dHpgP5lyVH
-         6z66+s7AtvVxHzrCkNrSztHbMHuDqg+kYf/YP8e1e44UlspgCwEf7i5p4TfXR8RqV5U0
-         qDP8+7WHxOlOamBHDC05AhFKAVQTkGubjDhs09J7VE5VigMG2bcsdH7UXLFqrQ5Oa5oh
-         ZVYP2mw1mItgJyK3CMcM3AEueJ2UYfbBw+/KyfjqPrXQvDZqMxhs276NgHqnBrAWMTkJ
-         JwFg==
-X-Gm-Message-State: AOAM530YlPbJO270acD3pjJD3kEDYB8UvXzi/e64z41iCFd0JBa/4sSD
-        8G3ytkmjHGHByomdD0uvlI/gq/RWZXYbmnbH+6LBMva0e2fGBUbRipxG6O4XFj0obHNL1Qhd1/3
-        HkQV8o0uWUefb34nrYbg+OLHfJLAGAgZ7OHNchgc=
-X-Received: by 2002:a17:906:b04:b0:6bd:bf71:ed08 with SMTP id u4-20020a1709060b0400b006bdbf71ed08mr23405195ejg.585.1645622766591;
-        Wed, 23 Feb 2022 05:26:06 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxCfMw7qk7j/oxTgQsdqHA7i2FsSbGvByk1qfJ1Smy+/dKx4SJUHcvGGZFuCdaso8N1+cLGBQ==
-X-Received: by 2002:a17:906:b04:b0:6bd:bf71:ed08 with SMTP id u4-20020a1709060b0400b006bdbf71ed08mr23405179ejg.585.1645622766439;
-        Wed, 23 Feb 2022 05:26:06 -0800 (PST)
-Received: from [192.168.0.125] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id o17sm7714109edr.47.2022.02.23.05.26.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 05:26:05 -0800 (PST)
-Message-ID: <b591b26e-1a80-e17d-4525-989b357e97b1@canonical.com>
-Date:   Wed, 23 Feb 2022 14:26:05 +0100
+        with ESMTP id S231817AbiBWNhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:37:25 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFCF6369E1;
+        Wed, 23 Feb 2022 05:36:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645623417; x=1677159417;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wQFkkwBVr5xmq1ehCi1EaGXRavrySghv8G52N1mmqNQ=;
+  b=Uqb87PfhcjvSNZs94v/TL0IBT8z3g3k0gNzjR+w3M3DoLvAIwm4a2qzL
+   OtLpkpnm8ZLODUc5xWwtHd8VOkUW02AfTCabhK1sa4cglQ4o4/xck4M8e
+   eSIWmUQFuf+DLdaKrtwVXOuH9SgddH/z8363LZ+SuN7KKl0nl93lv7IyH
+   jO2rHKUNAhCupdZf6UgYz+hUIGNU7nYim8mPSy79p7kPY3wgRV5faMTtc
+   TRMsokMd6WVd4DcYDAkYPaZtViRnYrjRPxtEo/6V0rNtV8WRp4VMVz+oO
+   SQE3OGfzUsK5I3OCm/8lSxDV4rylV/eEBtVW9eqzdZg8NwZZVIa5hVMMm
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="276581810"
+X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; 
+   d="scan'208";a="276581810"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 05:36:57 -0800
+X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; 
+   d="scan'208";a="637424343"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 05:36:53 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nMroI-007R0v-TI;
+        Wed, 23 Feb 2022 15:36:02 +0200
+Date:   Wed, 23 Feb 2022 15:35:58 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>
+Subject: Re: [PATCH v2 5/8] dma: dw: Avoid partial transfers
+Message-ID: <YhY4PqqOgYTLgpKr@smile.fi.intel.com>
+References: <20220222103437.194779-1-miquel.raynal@bootlin.com>
+ <20220222103437.194779-6-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v7 1/2] dt-bindings: iio: frequency: Add ADMV4420 doc
-Content-Language: en-US
-To:     Cristian Pop <cristian.pop@analog.com>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     jic23@kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org
-References: <20220223130808.13352-1-cristian.pop@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220223130808.13352-1-cristian.pop@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220222103437.194779-6-miquel.raynal@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/02/2022 14:08, Cristian Pop wrote:
-> Add device tree bindings for the ADMV4420 K band downconverter.
+On Tue, Feb 22, 2022 at 11:34:34AM +0100, Miquel Raynal wrote:
+> From: Phil Edworthy <phil.edworthy@renesas.com>
 > 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
-> ---
-> Changes in v7:
->  - Fix commit message
+> Pausing a partial transfer only causes data to be written to memory that
+> is a multiple of the memory width setting.
+> 
+> However, when a DMA client driver finishes DMA early, e.g. due to UART
+> char timeout interrupt, all data read from the device must be written to
+> memory.
+> 
+> Therefore, allow the slave to limit the memory width to ensure all data
+> read from the device is written to memory when DMA is paused.
 
-Please include the tags accumulated in previous reviews.
+(I have only 2.17d and 2.21a datasheets, so below based on the latter)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+It seems you are referring to the chapter 7.7 "Disabling a Channel Prior
+to Transfer Completion" of the data sheet where it stays that it does not
+guarantee to have last burst to be completed in case of
+SRC_TR_WIDTH < DST_TR_WIDTH and the CH_SUSP bit is high, when the FIFO_EMPTY
+is asserted.
+
+Okay, in iDMA 32-bit we have a specific bit (seems like a fix) that drains
+FIFO, but still it doesn't drain the FIFO fully (in case of misalignment)
+and the last piece of data (which is less than TR width) is lost when channel
+gets disabled.
+
+Now, if we look at the implementation of the serial8250_rx_dma_flush() we
+may see that it does
+ 1. Pause channel without draining FIFO
+ 2. Moves data to TTY buffer
+ 3. Terminates channel.
+
+During termination it does pause channel again (with draining enabled),
+followed by disabling channel and resuming it again.
+
+According to the 7.7 the resuming channel allows to finish the transfer
+normally.
+
+It seems the logic in the ->terminate_all() is broken and we actually need
+to resume channel first (possibly conditionally, if it was suspended), then
+pause it and disable and resume again.
+
+The problem with ->terminate_all() is that it has no knowledge if it has
+been called on paused channel (that's why it has to pause channel itself).
+The pause on termination is required due to some issues in early steppings
+of iDMA 32-bit hardware implementations.
+
+If my theory is correct, the above change should fix the issues you see.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Best regards,
-Krzysztof
