@@ -2,147 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D4334C113C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 12:27:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B8804C1141
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 12:27:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239851AbiBWL14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 06:27:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37890 "EHLO
+        id S239857AbiBWL2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 06:28:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239854AbiBWL1v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 06:27:51 -0500
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 342EC3CA4D;
-        Wed, 23 Feb 2022 03:27:23 -0800 (PST)
-Received: by mail-vs1-f41.google.com with SMTP id g21so2773862vsp.6;
-        Wed, 23 Feb 2022 03:27:23 -0800 (PST)
+        with ESMTP id S233080AbiBWL15 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 06:27:57 -0500
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C8C43CA4D
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 03:27:30 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id f8so19624069pgc.8
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 03:27:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=SHFYegUo03DjCxdS0Gu5tYZKm6OzwquBbzLjVdntcXk=;
+        b=i5LJtE7uwG6kpWKGBodkWlbpgX52o368X518RNlIpeyHlkCkynvrx1At+yOSAeufGu
+         djbOWwiuFNCqUPu/DzSMpmlkx3ahZk1v84UBd4Xpd9cfrlPJLpLJDx+B1WjFmoQc28t3
+         TTMnPkEhHpMiyFNjcb2iSxpfx257y/sytifC29WTguckha8pyjJm18ehKx0R1YyyjO8K
+         b2YuU3eUXamZQWnFmCxK7SYxKY1yskcxVmj2+CtUrTMy44XpEVJD4rgLHZY8rwSEcrLV
+         sfT/UqzKJg6JzPZe6LX0fqYWwGwPoSReLugxvjlq0J1DsLdh5D/7cFO8tN1kXglJCVAE
+         OPuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pCNg1dsvPK2cBaOM9RaFK2fkB9AEdshhbIiM7c0UENw=;
-        b=XETiVgOxdwnbwZFx3HqyuH/fT529T4GP0nqUZSweIs4XZM1u+k7Y9icHe6wmJ47pk0
-         2yle23OhAMsKc/R4oN0k/z5wsrk/uleEoNFKkSu4EISK0W7h1doH44YziVPk2kefjEH5
-         ch4zEPyYDCfEJ3p/vbLOCFi0nrmqWFZxwg2Jj98s75HZdz2V/Ni2Ch8HX3Ov/xJbIitd
-         273r5hSLjaWfOO5T8oyfA9Rx7MA4M5dXm8IfMyMH6rp17qf1sbB4ucvsM15iVfRBa7Ry
-         /6vtNQGgpnEayTy318ynCc3Lcq1QodUPpHLk1PoxPi0oHfD3GVN0fwBFIpZo1YoC6YzF
-         QLKw==
-X-Gm-Message-State: AOAM5327w/fSulyIpaUsDdU4EsAdCuY14oli+cBrBunDbtb519tH3kjj
-        7ddQ5fO3MlnSPZG5cvcFm47eUbIjAgrvOA==
-X-Google-Smtp-Source: ABdhPJzD1xrDgXnqyaCr3y34geL6gcdufvrQQHEKhzlNeVwwl2t5LNxGaZzPrdwMWFoKp0ehM7gdFA==
-X-Received: by 2002:a67:d589:0:b0:31b:5561:b18e with SMTP id m9-20020a67d589000000b0031b5561b18emr11884394vsj.53.1645615642261;
-        Wed, 23 Feb 2022 03:27:22 -0800 (PST)
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
-        by smtp.gmail.com with ESMTPSA id u6sm8521559vku.15.2022.02.23.03.27.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 03:27:22 -0800 (PST)
-Received: by mail-vs1-f46.google.com with SMTP id d11so2767979vsm.5;
-        Wed, 23 Feb 2022 03:27:21 -0800 (PST)
-X-Received: by 2002:a05:6102:4411:b0:31b:6df1:3b80 with SMTP id
- df17-20020a056102441100b0031b6df13b80mr11543425vsb.5.1645615641619; Wed, 23
- Feb 2022 03:27:21 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=SHFYegUo03DjCxdS0Gu5tYZKm6OzwquBbzLjVdntcXk=;
+        b=jURwMdBTT8ntAkzh4dWtaOw5vex4+IKzNzUmgzCZLfYw6BGCwXKGSGggakkMtR9vfp
+         4E/q9EbpodMAKhDBbD8ODp3CsEe6o9X4IlEIekQgsrcY8S2AWWcYBPSlRfnyGUFqNI4c
+         OKblOhl2AjYfUrvda9ACOqd4ooPCP8QbMwE1drIQJctCOEFeiA8Pq18oYD7abwpIHph9
+         lVAMdAxOtowt+/P+ZZV/uxPrzYs3+hYGfWqaEB5idDOfqFTW56zHt5OR5zDkLgYY6mfm
+         KPvM0mM+B0Y9g7LQJ5Do43EMAwCJYpjvXrb8G53epDXVz1wNnYHLkijF08WZWb637nZ6
+         kh0Q==
+X-Gm-Message-State: AOAM533j7w/cBf0dELTDBLdEF9U6R0PHO5i0aUb/WjjfU6e4uFI92N5C
+        bvMcTbOulE6foiO39CkqGIkK1ZE7jYLkNQ==
+X-Google-Smtp-Source: ABdhPJw3BRAmUjieArpqYJc7cltWKssHfIhl6hTr4Mo8DxuN4xlikUgPz9OL2RIHSoi4ljl0vP/BOw==
+X-Received: by 2002:a63:6c43:0:b0:373:7202:6e13 with SMTP id h64-20020a636c43000000b0037372026e13mr23738814pgc.110.1645615649506;
+        Wed, 23 Feb 2022 03:27:29 -0800 (PST)
+Received: from localhost ([223.184.83.228])
+        by smtp.gmail.com with ESMTPSA id j4sm14582389pfj.218.2022.02.23.03.27.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Feb 2022 03:27:29 -0800 (PST)
+Date:   Wed, 23 Feb 2022 16:57:27 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
+        rafael@kernel.org, nm@ti.com, sboyd@kernel.org, mka@chromium.org,
+        dianders@chromium.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] Introduce 'advanced' Energy Model in DT
+Message-ID: <20220223112727.akprxqglyr7ostqh@vireshk-i7>
+References: <20220222140746.12293-1-lukasz.luba@arm.com>
+ <467a7de4-df84-8e9e-a26a-80449ca55950@linaro.org>
+ <20220223104341.jh5hjcv6ugaexgoa@vireshk-i7>
+ <94d3f2a3-4145-afdc-d810-61f2120df579@arm.com>
 MIME-Version: 1.0
-References: <20220222103437.194779-1-miquel.raynal@bootlin.com> <20220222103437.194779-2-miquel.raynal@bootlin.com>
-In-Reply-To: <20220222103437.194779-2-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 23 Feb 2022 12:27:10 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXJ5nNf0d2tn05HcknznK199U6oFkZSR-BrFhmurRR8HA@mail.gmail.com>
-Message-ID: <CAMuHMdXJ5nNf0d2tn05HcknznK199U6oFkZSR-BrFhmurRR8HA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/8] dt-bindings: dma: Introduce RZN1 dmamux bindings
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <94d3f2a3-4145-afdc-d810-61f2120df579@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+On 23-02-22, 11:22, Lukasz Luba wrote:
+> On 2/23/22 10:43, Viresh Kumar wrote:
+> > On 23-02-22, 10:52, Daniel Lezcano wrote:
+> > > why not extend the energy model to any kind of devices?
+> > 
+> > FWIW, the OPP core supports a wide range of devices now, not just CPUs.
 
-On Tue, Feb 22, 2022 at 11:34 AM Miquel Raynal
-<miquel.raynal@bootlin.com> wrote:
-> The Renesas RZN1 DMA IP is a based on a DW core, with eg. an additional
-> dmamux register located in the system control area which can take up to
-> 32 requests (16 per DMA controller). Each DMA channel can be wired to
-> two different peripherals.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+There are many other devices which still use Freq.
 
-Thanks for your patch!
+> Is that the "opp-level" thing which would allow that?
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/renesas,rzn1-dmamux.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/N1 DMA mux
-> +
-> +maintainers:
-> +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> +
-> +allOf:
-> +  - $ref: "dma-router.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    const: renesas,rzn1-dmamux
+For power supplies/regulators, we don't have freq and they use level, right.
 
-Do we want an SoC-specific compatible value, too?
-See also my comments on the dmamux driver.
+Also for interconnect we use bandwidth, in a similar way.
 
-> +
-> +  '#dma-cells':
-> +    const: 6
-> +    description:
-> +      The first four cells are dedicated to the master DMA controller. The fifth
-> +      cell gives the DMA mux bit index that must be set starting from 0. The
-> +      sixth cell gives the binary value that must be written there, ie. 0 or 1.
-> +
-> +  dma-masters:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  dma-requests:
-> +    const: 32
+> I can see some DT files with regulators(?) using it e.g. [1].
+> It looks flexible, the opp-hz is not hard requirement,
+> the opp-level can be used instead IIUC.
 
-Do we need this in DT? It depends on the actual dmamux hardware,
-and is (currently) the register width of the CFG_DMAMUX register.
+Right.
 
-The rest LGTM (I'm no dma-router expert),so with the above clarified:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> It might be a next step which might meet Daniel's needs.
+> If that 'level' can be any number and frequency is not available
+> then EM must have 'level' filed in the struct em_perf_state
+> for this kind of new devices. I'm open for such change.
+> We can discuss this as a next step. We would need to find some examples
+> how this new thing would be used.
+> 
+> [1] https://elixir.bootlin.com/linux/v5.17-rc5/source/arch/arm/boot/dts/tegra20-peripherals-opp.dtsi#L4
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+viresh
