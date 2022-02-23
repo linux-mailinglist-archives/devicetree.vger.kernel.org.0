@@ -2,127 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DED3F4C114A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 12:31:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7376F4C114F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 12:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239855AbiBWLcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 06:32:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43322 "EHLO
+        id S239846AbiBWLc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 06:32:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239846AbiBWLcE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 06:32:04 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1AD3DFF4;
-        Wed, 23 Feb 2022 03:31:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645615895; x=1677151895;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0zm8wIULsN4Dyhom0z7elKrKoBwJYW9qnpSEEw2q5Wk=;
-  b=kog0pOB+nM8reYobUTlNS5hEPr9EMXMc5hqqtRTBdJSePP5+42ZRC+xJ
-   Vv3aE1ws2ZvDtIZp6lms0hkqlYXpQ/wwciq3r39/giuhoPxb8aWxJ6brd
-   YfTyz0UcfIWNVXVO5MFnondma+ZoY5haECBCm2BfkSYNC9S9q3tyQcAqm
-   Q5QNZGwt9NdTsXnp6Q0phHI3HxrGZUFY/yPQnG8TtOyyyISquRPfY8LD2
-   6GTKN/SxaMyVxoRDKqYWF25dl2hR0l8P270NORYqpmFdarFHne/TKhnf2
-   rxZW4is9aKdHb2PfiAuCLpH6jFqD+f58s6hKmYWnmcXkxNhAJaHDXx+R9
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="250769476"
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; 
-   d="scan'208";a="250769476"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 03:31:35 -0800
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; 
-   d="scan'208";a="637389174"
-Received: from smile.fi.intel.com ([10.237.72.59])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 03:31:33 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nMpqx-007OOM-0K;
-        Wed, 23 Feb 2022 13:30:39 +0200
-Date:   Wed, 23 Feb 2022 13:30:38 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     shruthi.sanil@intel.com, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mgross@linux.intel.com,
-        srikanth.thokala@intel.com, lakshmi.bai.raja.subramanian@intel.com,
-        mallikarjunappa.sangannavar@intel.com
-Subject: Re: [PATCH v8 1/2] dt-bindings: timer: Add bindings for Intel Keem
- Bay SoC Timer
-Message-ID: <YhYa3tlTEcLct2xu@smile.fi.intel.com>
-References: <20220222095654.9097-1-shruthi.sanil@intel.com>
- <20220222095654.9097-2-shruthi.sanil@intel.com>
- <YhVuJaf3AJ1c6TpT@robh.at.kernel.org>
+        with ESMTP id S239912AbiBWLcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 06:32:55 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F59333369
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 03:32:28 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 632893F1BC
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 11:32:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645615946;
+        bh=rHG+vfkPnctmAtn+BXrH4H+8gRXose5yQLu+rWYptLY=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=pLCREwA7JA2J0U/pXSqs9IwS7vmTJg+yF/sWWN4DUf8ytsM+gwThqYuyh4n+d7jwS
+         tvH8gW7RwXZkdpaVfat//gQIHSfzYj0wWxOJk3iIoVhiJa/KdHR349oQH3Az6GNoGJ
+         79qCYQRHootfn0kiLsBSVcN7wVM7Yxg4AjZY712/CComDX1eBZshpbdFpKHgYjmGU9
+         8xd44toB4ywLWiyBTsNF/2aXDCk6Lg/rsdAhcEwNDELOy8hvxpGYZLIAwSZ1jyYenk
+         LEaq8/arXmPml4aPA2YoFAuz/sloYgCar0iJ5KmhcU2FFOCLKjgM1YNwYIC+xWAnAs
+         lyKZiNOvWc/Pg==
+Received: by mail-ej1-f70.google.com with SMTP id qf24-20020a1709077f1800b006ce8c140d3dso6988875ejc.18
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 03:32:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=rHG+vfkPnctmAtn+BXrH4H+8gRXose5yQLu+rWYptLY=;
+        b=22YFQ7AVVNgQEeWBUdLLc//TQV7uPhj3M7jhGyGOelGkfZxnRjTv2BYT5iqpWvgS5Y
+         DsQnduFLzknZ5Zb4WxGUbXcL6m9Xy6FD4jjYdT1UTz3K3D+BuVzfAoT6po7aQjyDtiMf
+         BoBgFgckdU1pLXsVAV+5plF2h89+oCdHKMXYq3h1WkhL8+npMOAuQht/jg489eft7qD2
+         /w3NgcvaRbxFEG6iPobOG4Td0OZtt6g3jxtIInV2xKLI1DObFMxxXIykRzIn83PzZJyy
+         dVLVEJ86BAgX6ZPQY/A2fOwaRngXOGw/KJJuY/RBBnn60g8fwwNszH9q7os0h756GuHa
+         SzjQ==
+X-Gm-Message-State: AOAM533HLFOcTxN6IQpWAVCpWBRE8OLDBZs41lP0/UU4VHCePU+X2xtz
+        OOuKAmQtPgkFe8QHRcwm8CRxxHGAszNtMP3wyzBNQZNx/6l8HYpotEqi1v5G9eO3aXKHncsAYeH
+        ybUz0IaB9CH36DwtQ+hI17WtslHzXy9UFI0TZoKE=
+X-Received: by 2002:a05:6402:5c9:b0:412:e7f8:81c3 with SMTP id n9-20020a05640205c900b00412e7f881c3mr19997673edx.386.1645615946003;
+        Wed, 23 Feb 2022 03:32:26 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJy6S4sBvt3FBVGg7wH41ZDGhEOI/3APJRfTKFOVERInVX5l+0UyB25l+UO6lGLm6PNkjP0Ciw==
+X-Received: by 2002:a05:6402:5c9:b0:412:e7f8:81c3 with SMTP id n9-20020a05640205c900b00412e7f881c3mr19997661edx.386.1645615945843;
+        Wed, 23 Feb 2022 03:32:25 -0800 (PST)
+Received: from [192.168.0.125] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id jz17sm7364998ejb.195.2022.02.23.03.32.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Feb 2022 03:32:24 -0800 (PST)
+Message-ID: <96f7a28b-81b9-a05f-e8f5-a4fb377476fc@canonical.com>
+Date:   Wed, 23 Feb 2022 12:32:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YhVuJaf3AJ1c6TpT@robh.at.kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] dt-bindings: arm: fsl: add IMX8MN DDR3L eval board
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     devicetree@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        linux-kernel@vger.kernel.org, heiko.thiery@gmail.com
+References: <20220222151357.1710503-1-michael@walle.cc>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220222151357.1710503-1-michael@walle.cc>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 22, 2022 at 05:13:41PM -0600, Rob Herring wrote:
-> On Tue, Feb 22, 2022 at 03:26:53PM +0530, shruthi.sanil@intel.com wrote:
-> > From: Shruthi Sanil <shruthi.sanil@intel.com>
-> > 
-> > Add Device Tree bindings for the Timer IP, which can be used as
-> > clocksource and clockevent device in the Intel Keem Bay SoC.
-
-...
-
-> > +    soc {
-> > +        #address-cells = <0x2>;
-> > +        #size-cells = <0x2>;
-> > +
-> > +        gpt@20331000 {
-> > +            compatible = "intel,keembay-gpt-creg", "simple-mfd";
+On 22/02/2022 16:13, Michael Walle wrote:
+> Add a new compatible string for that eval board. It features an IMX8MN
+> UltraLite and has DDR3L RAM. The product part number is 8MNANOD3L-EVK.
 > 
-> It looks like you are splitting things based on Linux implementation
-> details. Does this h/w block have different combinations of timers and
-> counters? If not, then you don't need the child nodes at all. There's
-> plenty of h/w blocks that get used as both a clocksource and clockevent.
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Maybe I already raised this, but assume I don't remember and this patch
-> needs to address any questions I already asked.
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 23e678232451..e11ffaa8721e 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -834,6 +834,7 @@ properties:
+>                - bsh,imx8mn-bsh-smm-s2     # i.MX8MN BSH SystemMaster S2
+>                - bsh,imx8mn-bsh-smm-s2pro  # i.MX8MN BSH SystemMaster S2 PRO
+>                - fsl,imx8mn-ddr4-evk       # i.MX8MN DDR4 EVK Board
+> +              - fsl,imx8mn-ddr3l-evk      # i.MX8MN DDR3L EVK Board
 
-I dunno if I mentioned that hardware seems to have 5 or so devices behind
-the block, so ideally it should be one device node that represents the global
-register spaces and several children nodes.
+Looks good, just please put it in alphabetical order, so before ddr4,
 
-However, I am not familiar with the established practices in DT world, but
-above seems to me the right thing to do since it describes the hardware as
-is (without any linuxisms).
-
-> > +            reg = <0x0 0x20331000 0x0 0xc>;
-> > +            ranges = <0x0 0x0 0x20330000 0xF0>;
-> > +            #address-cells = <0x1>;
-> > +            #size-cells = <0x1>;
-> > +
-> > +            counter@e8 {
-> > +                compatible = "intel,keembay-counter";
-> > +                reg = <0xe8 0x8>;
-> > +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> > +            };
-> > +
-> > +            timer@30 {
-> > +                compatible = "intel,keembay-timer";
-> > +                reg = <0x30 0xc>;
-> > +                interrupts = <GIC_SPI 0x5 IRQ_TYPE_LEVEL_HIGH>;
-> > +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> > +            };
-> > +        };
-> > +    };
-
--- 
-With Best Regards,
-Andy Shevchenko
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
 
+Best regards,
+Krzysztof
