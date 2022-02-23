@@ -2,98 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E2C54C180A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 17:02:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 175B74C1836
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 17:09:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242532AbiBWQC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 11:02:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56314 "EHLO
+        id S242635AbiBWQJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 11:09:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242583AbiBWQCs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 11:02:48 -0500
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4F86D39C;
-        Wed, 23 Feb 2022 08:02:19 -0800 (PST)
-Received: by mail-oo1-f42.google.com with SMTP id s203-20020a4a3bd4000000b003191c2dcbe8so22888785oos.9;
-        Wed, 23 Feb 2022 08:02:19 -0800 (PST)
+        with ESMTP id S242041AbiBWQJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 11:09:30 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E316C249F;
+        Wed, 23 Feb 2022 08:09:01 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id x5so44857460edd.11;
+        Wed, 23 Feb 2022 08:09:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZyZRbXUmNhOeC2PbqfcoC4tf9cHQR1dNU7NBuU/qb9k=;
+        b=AWiaWyGsWe9eDbFoRVqklvwEiIlJiCMTsLVqBy7gKYDTSOTSXZ62tbEiFGtlwRl/W8
+         uJg6aW+VVk4BzQ6ZRYq9bnWRkr45Xi35j+sUx/xrVKHkYuGBr8If7hxtyweYJxAwuR8v
+         ys6Sk1L8DRQpZae5fYcmo75wG890PgFwBtPOfDTALzLTrZUa+g43hK5Fk5I9CYjP8f9h
+         B0oG29nOsKb7QmZ536lo2qlTTEQN5+cSda1jGpeo08NJSStbWUMfCOrZHheP594Ow9VY
+         MniS9nOUyJ9n0uhrXtIvwKRKUVPgpE3BwRVr86gWxvom41lxyhF12xdU+sOk6vSEdxAG
+         UQBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SnHAJ2jXJaVVjE1oqZGwvuQytS4K0cKMmmVsJjHc5pk=;
-        b=cmlhd8svXculh72aqZrwvwv6LDzoc9l7X83KA0mIFJ4nMQjNbB8GJnZhWINfmOrWIu
-         RQy9GCoVDo3uT0bRQeWm+E+2Z09aQKKwlWP/veik3B5DFaoLYiRjIpJEt65B6nYXILqm
-         G/vF5ihXJ5sWir1ddrSob6MqeKmbCvPNtf7avkvLaHgGDMEtq9OT+Xew2zbxapmSAOkB
-         pbPcaqJ8e+0gAhamdhyeazmMNNwhJ+FVKukhRFliWJUzJd7skDzNezN13RMaFbAeE+e6
-         Gf4VCpa0oBKAbLhn/yTrOaTvEqUc9MJUUQqvTg0HiOrqiZvOVvH3j2+4ZJM7CvFRs1IO
-         l9VQ==
-X-Gm-Message-State: AOAM531tlxHzGRjv8HnFaPaA5G9FJ9i86nHViIyIC8to8z+82oxZoYZL
-        zyp20uIg5/r6rTgCUY/fLQ==
-X-Google-Smtp-Source: ABdhPJw8XWn4z29aClQvUF5kk1BY9mwbXLVBQPAYTLP4JVYBwZtzfi//QgYZpCES82OuILp12HV5sQ==
-X-Received: by 2002:a4a:a8c2:0:b0:319:4f4:18ea with SMTP id r2-20020a4aa8c2000000b0031904f418eamr65183oom.20.1645632138616;
-        Wed, 23 Feb 2022 08:02:18 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w28sm9647ott.14.2022.02.23.08.02.17
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZyZRbXUmNhOeC2PbqfcoC4tf9cHQR1dNU7NBuU/qb9k=;
+        b=I2Z91HoZzpJOngzI8HOZdu038u4rGCpC4diW9Obj4vqXsqWEJMlqbev57ugJdKqYDG
+         PhE065DK0n3otigZjfZ8YAVyYgXXcpd9Ogn7sPOGOSnbcXhYYQ/QiOTrgvlUFTyn4sdd
+         oMVgstH4fBhGCyMPOC7WsH2mNPMAER3yhcb1A/V5njTeEdr0PreB6+ltiY9/e1gDsks3
+         yc2ppv5WbyO/ZZIrLA5yw9zENRlVArF/Yyg1c36t+d4H5cDAkbhbetxJLkCzu1QK3bXl
+         1dHakI2ckRrPTrAtWxC/Is5rgWnoFqAWgWJB4Ooz28JteJ+gaDxb4RHUBYtuUkZJXZ9g
+         KsgA==
+X-Gm-Message-State: AOAM532mL+JThCJappYQEpYUC4k6wBKC3Bayneo17jjyqRr2/3ZEt1xN
+        /sbSRceLPueyCuo3VVG7y3C3KbeHwbEicUvh
+X-Google-Smtp-Source: ABdhPJxaogQCfFn/TmyftzshXaeheo/8/ijlWBOdflnWtsny2/OMWrpxYUujGL6iYBsKbra7mVgUxg==
+X-Received: by 2002:a50:f61c:0:b0:413:3b58:32af with SMTP id c28-20020a50f61c000000b004133b5832afmr113530edn.49.1645632539897;
+        Wed, 23 Feb 2022 08:08:59 -0800 (PST)
+Received: from nergzd-desktop.localdomain ([62.122.67.26])
+        by smtp.gmail.com with ESMTPSA id x7sm52005edr.12.2022.02.23.08.08.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Feb 2022 08:02:17 -0800 (PST)
-Received: (nullmailer pid 1012060 invoked by uid 1000);
-        Wed, 23 Feb 2022 16:02:16 -0000
-Date:   Wed, 23 Feb 2022 10:02:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-hwmon@vger.kernel.org, Agathe Porte <agathe.porte@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: hwmon: add tmp464.yaml
-Message-ID: <YhZaiAIq7xUig+Wj@robh.at.kernel.org>
-References: <20220222220937.18728-1-linux@roeck-us.net>
+        Wed, 23 Feb 2022 08:08:58 -0800 (PST)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v7 0/2] Add support for Imagis touchscreens
+Date:   Wed, 23 Feb 2022 18:07:39 +0200
+Message-Id: <20220223160749.37001-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220222220937.18728-1-linux@roeck-us.net>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Feb 2022 14:09:36 -0800, Guenter Roeck wrote:
-> From: Agathe Porte <agathe.porte@nokia.com>
-> 
-> Add basic description of the tmp464 driver DT bindings.
-> 
-> Signed-off-by: Agathe Porte <agathe.porte@nokia.com>
-> Cc: Krzysztof Adamski <krzysztof.adamski@nokia.com>
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
-> ---
-> v6:
-> - Model ti,n-factor as int32 instead of int8.
-> 
-> v5:
-> - Dropped ti,n-factor from channel@0 example. Added additional
->   channel to examples to show positive ti,n-factor property.
-> 
-> v4:
-> - No changes
-> 
-> v3:
-> - Addedd support for TMP468.
-> - Changed number of channels from 0..3 (which was wrong anyway) to 0..8.
-> - Changed value range for ti,n-factor to int8, with an example for
->   a negative value.
-> - Added myself as driver maintainer.
-> 
->  .../devicetree/bindings/hwmon/ti,tmp464.yaml  | 114 ++++++++++++++++++
->  MAINTAINERS                                   |   7 ++
->  2 files changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml
-> 
+Add support for Imagis touchscreens, used on various mobile
+devices such as Samsung Galaxy J5 (2015), J3 (2015), J5 (2016).
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+v2: rebase on top of the correct tree
+v3:
+- prefix all defines as IST3038C
+- use two tabs for all defines
+- add missing <linux/regulator/consumer.h> header
+- drop ADDR_LEN and DATA_LEN defines; use sizeof(reg_be) instead
+- use __be32 type for reg_be
+- add a comment about i2c read not being successful on first try
+- use "ret" instead of "res" in read_reg function
+- don't use the internal __cpu_to_be32 function, use cpu_to_be32 instead
+- use "error" instead of "ret" in interrupt handler
+- pass the slot state directly, without ternary operator
+- drop the dev_err in init_input_dev function
+- reorder the functions in _probe so that the chipid command is read as fast 
+as possible
+- don't use imagis_start in probe
+- initialize the irq after the chip is powered
+- save the return value in imagis_resume
+- drop WIDTH_MAJOR since only TOUCH_MAJOR is reported
+- the "chip detected" message is now dev_dbg
+- reorder headers so they are in alphabetic order
+- use GENMASK to generate masks for getting the X and Y coordinates and touch area
+- drop *_pressure from device tree bindings since the driver doesn't
+support reporting pressure
+- fix the typo with i2c address in device treee bindings (48 instead of 50)
+- add IRQF_NO_AUTOEN flag to avoid unbalanced irq enable
+v4:
+- alphabetically order MAINTAINERS entry
+- alphabetically order Kconfig and Makefile
+- drop the error message in init_regulators
+- disable regulators on probe error
+- drop IRQF_TRIGGER_FALLING
+- @ is not optional (device tree bindings)
+- don't use items for compatible
+- add maxItems property to reg, drop the comment
+v5:
+- compatible enum is not an item of the list, drop "-"
+v6:
+- add _MS suffix to the delay define, drop the comment
+- change the reason for retry comment
+- add imagis_power_off and imagis_power_on functions to turn regulators
+on and off
+- use imagis_power_on/off in imagis_start and imagis_stop as well as in probe function
+- use error instead of ret in calls to functions which only return 0 or -errno
+- include linux/bits.h
+- proper indentation in Kconfig
+- drop the dev_dbg chip id message
+- MODULE_DEVICE_TABLE(of, ...);
+- no extra tabs in i2c_driver struct
+- save the return value in imagis_suspend
+v7:
+- initialize ret with 0 in _suspend and _resume (kernel test robot)
+- use a separate ret_be variable to avoid casting to __be32 (kernel test robot)
+
+Markuss Broks (2):
+  dt-bindings: input/touchscreen: bindings for Imagis
+  Input: add Imagis touchscreen driver
+
+ .../input/touchscreen/imagis,ist3038c.yaml    |  78 +++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/input/touchscreen/Kconfig             |  10 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/imagis.c            | 329 ++++++++++++++++++
+ 6 files changed, 426 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+ create mode 100644 drivers/input/touchscreen/imagis.c
+
+-- 
+2.35.0
+
