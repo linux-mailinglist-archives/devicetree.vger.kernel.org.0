@@ -2,155 +2,342 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37AC24C197E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 18:07:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F0C74C19D4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 18:23:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243219AbiBWRIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 12:08:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35128 "EHLO
+        id S243366AbiBWRXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 12:23:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243320AbiBWRIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 12:08:06 -0500
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 846501D310
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 09:07:37 -0800 (PST)
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220223170732epoutp028e1e51cbedbc2e1a3ffb0e583721cdd0~WeUVkJf0V2306323063epoutp02Z
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 17:07:32 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220223170732epoutp028e1e51cbedbc2e1a3ffb0e583721cdd0~WeUVkJf0V2306323063epoutp02Z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1645636052;
-        bh=UL4yhKqRjrF/i/6aY21BYBDYT+6g6lJv1blGzeLha14=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=PrbEmm2Pa70axQTVADf3yZuIWHVXlhcd+TkVepcPwoyQs31trdu4buaPVVfNqssOB
-         CgYy7IGqtMWEjH6iZrJo6jzPkhMG1Y7s673DoYMkqNRG0inn62M4TJPSWpjukVyNkR
-         ptMQz1czxZBakPxm5BNs4rtbKuk+OzuIHoXK2o6o=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20220223170731epcas5p23aa2664ea9b6a4782322656b004b8e40~WeUUkjA7F0865808658epcas5p2k;
-        Wed, 23 Feb 2022 17:07:31 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.183]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4K3jC43wbrz4x9Pv; Wed, 23 Feb
-        2022 17:07:28 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        E2.AC.05590.0D966126; Thu, 24 Feb 2022 02:07:28 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20220223170727epcas5p20066f8455fa0ca98323ac286dabc90ec~WeUQyf_yy2933129331epcas5p29;
-        Wed, 23 Feb 2022 17:07:27 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220223170727epsmtrp10e82f6823a94ebb3d16642084f81978e~WeUQxwOV32819728197epsmtrp1T;
-        Wed, 23 Feb 2022 17:07:27 +0000 (GMT)
-X-AuditID: b6c32a4b-723ff700000015d6-55-621669d007b9
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        89.E2.29871.FC966126; Thu, 24 Feb 2022 02:07:27 +0900 (KST)
-Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
-        [107.108.73.139]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20220223170726epsmtip1457171ab722826f93d0e118b0385d941~WeUPnYIXk1400314003epsmtip17;
-        Wed, 23 Feb 2022 17:07:26 +0000 (GMT)
-From:   Alim Akhtar <alim.akhtar@samsung.com>
-To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     krzysztof.kozlowski@canonical.com,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        pankaj.dubey@samsung.com, robh+dt@kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>
-Subject: [PATCH] arm64: dts: fsd: Add the MCT support
-Date:   Wed, 23 Feb 2022 22:48:58 +0530
-Message-Id: <20220223171858.11384-1-alim.akhtar@samsung.com>
-X-Mailer: git-send-email 2.17.1
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFKsWRmVeSWpSXmKPExsWy7bCmuu6FTLEkg1W90hYP5m1js5h/5Byr
-        xca3P5gsNj2+xmpxedccNosZ5/cxWSza+oXdonXvEXYHDo9ZDb1sHptWdbJ5bF5S79G3ZRWj
-        x+dNcgGsUdk2GamJKalFCql5yfkpmXnptkrewfHO8aZmBoa6hpYW5koKeYm5qbZKLj4Bum6Z
-        OUCnKCmUJeaUAoUCEouLlfTtbIryS0tSFTLyi0tslVILUnIKTAr0ihNzi0vz0vXyUkusDA0M
-        jEyBChOyM54+2M1YsIO74v3HN4wNjAs5uxg5OSQETCTObD3H3sXIxSEksJtR4vrFnSwQzidG
-        iSVdU5kgnG+MEv9n/WeEabm37QJU1V5Gif6Fr6CcFiaJub8+gVWxCWhL3J2+hQnEFhFwk7jR
-        2AE2ihmkY3XbJTaQhLCAqcS0GbPAGlgEVCW+nJrDDmLzCthILGraxgaxTl5i9YYDzBD2NnaJ
-        pq/5ELaLxMT5z9khbGGJV8e3QNlSEi/724BsDiA7W6JnlzFEuEZi6bxjLBC2vcSBK3NYQEqY
-        BTQl1u/SBwkzC/BJ9P5+wgTRySvR0SYEUa0q0fzuKlSntMTE7m5WCNtDouXsK7DDhARigaaf
-        Y5nAKDMLYegCRsZVjJKpBcW56anFpgXGeanl8LhJzs/dxAhOVFreOxgfPfigd4iRiYPxEKME
-        B7OSCO8dduEkId6UxMqq1KL8+KLSnNTiQ4ymwECayCwlmpwPTJV5JfGGJpYGJmZmZiaWxmaG
-        SuK8p9I3JAoJpCeWpGanphakFsH0MXFwSjUw3bW46cKvEM3J/G5JrJbEuWCe+Ent8n3sIpfP
-        LChfxeD2hctlavMukTR3JznvOi+mzhMT5X4yLNha9PCYpPIKn91d3/l1g57q6x14e5pvHzv7
-        x4CytIuNEzg3/rqneMmHP1a+wO3MwXU9Bo/fPxX7nPqD92C33LOk+Jg3OXpR2e5Vk9Uf9yz7
-        /kV4gq399zVP1mxZVOd3WOZ+jpzjzT3P8puPn3prtE1P5WlO8mzBBfr507IO33C8f+nchwct
-        bz8nTem2ija8eiG1XS7Vdvm3W3rfVEJcV/z2mORoFnRsR9keDf1vZc+uuK46fFqxdiXbgqj4
-        bq79r+9fWNHlKt5/5PFVu60CG3PWmjCKcZY6KrEUZyQaajEXFScCANqbSIXdAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpmluLIzCtJLcpLzFFi42LZdlhJTvd8pliSwfs5yhYP5m1js5h/5Byr
-        xca3P5gsNj2+xmpxedccNosZ5/cxWSza+oXdonXvEXYHDo9ZDb1sHptWdbJ5bF5S79G3ZRWj
-        x+dNcgGsUVw2Kak5mWWpRfp2CVwZTx/sZizYwV3x/uMbxgbGhZxdjJwcEgImEve2XWABsYUE
-        djNKzFqtBhGXlri+cQI7hC0ssfLfcyCbC6imiUli29VeNpAEm4C2xN3pW5hAbBEBD4m2f/eY
-        QYqYBQ4zSnx5t5EZJCEsYCoxbcYsRhCbRUBV4supOWBTeQVsJBY1bWOD2CAvsXrDAeYJjDwL
-        GBlWMUqmFhTnpucWGxYY5qWW6xUn5haX5qXrJefnbmIEh5OW5g7G7as+6B1iZOJgPMQowcGs
-        JMJ7h104SYg3JbGyKrUoP76oNCe1+BCjNAeLkjjvha6T8UIC6YklqdmpqQWpRTBZJg5OqQam
-        qRcYX/kezOk0Cgs2CV29WeSKoJyBjtPF7iN188Q7+nWSspcE75TcI8NZee7Tn9rD3bUuO//9
-        2rdqoapa3I1HJarz6v/ItCqdbxHLcil2TF7DuixZcMHNzafvVkg/6JAqt49b6JmsUaM/IenI
-        M27J2iU129sE9l3qfePTH5V1rkWNy/PwJ6/rWxbslIxQZomSmmq7eeF73prXPcl7n/06NPl2
-        vJGcTMpxtd/MVjP5zmUc90uob8wyNlR71xB2+z737+7/r+umWjW23cmICHv2s62+fdmz5Xsi
-        o8yDHNJb8x/Y1lxb1mMmyyuq8nl79MbetQUefJNOXP0VZxZs+2/Oy9lVZ6eGrokxE/Q7ckiJ
-        pTgj0VCLuag4EQBi/eUilgIAAA==
-X-CMS-MailID: 20220223170727epcas5p20066f8455fa0ca98323ac286dabc90ec
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220223170727epcas5p20066f8455fa0ca98323ac286dabc90ec
-References: <CGME20220223170727epcas5p20066f8455fa0ca98323ac286dabc90ec@epcas5p2.samsung.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S243360AbiBWRXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 12:23:33 -0500
+Received: from so254-9.mailgun.net (so254-9.mailgun.net [198.61.254.9])
+        by lindbergh.monkeyblade.net (Postfix) with UTF8SMTPS id 6AF7939822
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 09:23:03 -0800 (PST)
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1645636983; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=mRnkL5n6eiIsjYh2V2ShFb4AjLUxMZbIXAv47aXX/9I=; b=eG94WWc0AxPwMoubOQtxPn1HqpVS5utOLEhxEDhJcCvIIHOqKbeLhPaWugPTXM/bloGf6WJO
+ 9Ij4OXwKg4Z1BJqvpmX6+gLavijBL+gnx9ehuyvzGKjM89dBVjjBKO3QZYz1a0jpxxABmrBp
+ mzvpeS10VUuO6bIXCxe7ufWCFAs=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 62166d7627716a695236be76 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 23 Feb 2022 17:23:02
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5C95DC4360C; Wed, 23 Feb 2022 17:23:01 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Received: from hu-tdas-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D5A47C4338F;
+        Wed, 23 Feb 2022 17:22:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org D5A47C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [v5 1/2] dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7280
+Date:   Wed, 23 Feb 2022 22:52:47 +0530
+Message-Id: <20220223172248.18877-1-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add node relevant to support MCT, which is used as
-one of the system timer on this SoC.
+The LPASS(Low Power Audio Subsystem) clock provider have a bunch of generic
+properties that are needed in a device tree. Also add clock ids for
+LPASS core clocks and audio clock IDs for LPASS client to request for
+the clocks.
 
-Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Signed-off-by: Taniya Das <tdas@codeaurora.org>
 ---
- arch/arm64/boot/dts/tesla/fsd.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ .../clock/qcom,sc7280-lpasscorecc.yaml        | 172 ++++++++++++++++++
+ .../clock/qcom,lpassaudiocc-sc7280.h          |  43 +++++
+ .../clock/qcom,lpasscorecc-sc7280.h           |  26 +++
+ 3 files changed, 241 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml
+ create mode 100644 include/dt-bindings/clock/qcom,lpassaudiocc-sc7280.h
+ create mode 100644 include/dt-bindings/clock/qcom,lpasscorecc-sc7280.h
 
-diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-index da4acd68b976..9a652abcbcac 100644
---- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-@@ -725,6 +725,29 @@ spi_2: spi@14160000 {
- 			num-cs = <1>;
- 			status = "disabled";
- 		};
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml
+new file mode 100644
+index 000000000000..bad9135489de
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml
+@@ -0,0 +1,172 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,sc7280-lpasscorecc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		timer@10040000 {
-+			compatible = "samsung,exynos4210-mct";
-+			reg = <0x0 0x10040000 0x0 0x800>;
-+			interrupts = <GIC_SPI 455 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 457 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&fin_pll>, <&clock_imem IMEM_MCT_PCLK>;
-+			clock-names = "fin_pll", "mct";
-+		};
- 	};
- };
- 
--- 
-2.25.1
++title: Qualcomm LPASS Core & Audio Clock Controller Binding for SC7280
++
++maintainers:
++  - Taniya Das <tdas@codeaurora.org>
++
++description: |
++  Qualcomm LPASS core and audio clock control module which supports the
++  clocks and power domains on SC7280.
++
++  See also:
++  - dt-bindings/clock/qcom,lpasscorecc-sc7280.h
++  - dt-bindings/clock/qcom,lpassaudiocc-sc7280.h
++
++properties:
++  clocks: true
++
++  clock-names: true
++
++  compatible:
++    enum:
++      - qcom,sc7280-lpassaoncc
++      - qcom,sc7280-lpassaudiocc
++      - qcom,sc7280-lpasscorecc
++      - qcom,sc7280-lpasshm
++
++  power-domains:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - '#clock-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: qcom,sc7280-lpassaudiocc
++
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Board XO source
++            - description: LPASS_AON_CC_MAIN_RCG_CLK_SRC
++
++        clock-names:
++          items:
++            - const: bi_tcxo
++            - const: lpass_aon_cc_main_rcg_clk_src
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,sc7280-lpassaoncc
++
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Board XO source
++            - description: Board XO active only source
++            - description: LPASS_AON_CC_MAIN_RCG_CLK_SRC
++
++        clock-names:
++          items:
++            - const: bi_tcxo
++            - const: bi_tcxo_ao
++            - const: iface
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,sc7280-lpasshm
++              - qcom,sc7280-lpasscorecc
++
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Board XO source
++
++        clock-names:
++          items:
++            - const: bi_tcxo
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
++    #include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
++    #include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
++    lpass_audiocc: clock-controller@3300000 {
++      compatible = "qcom,sc7280-lpassaudiocc";
++      reg = <0x3300000 0x30000>;
++      clocks = <&rpmhcc RPMH_CXO_CLK>,
++               <&lpass_aon LPASS_AON_CC_MAIN_RCG_CLK_SRC>;
++      clock-names = "bi_tcxo", "lpass_aon_cc_main_rcg_clk_src";
++      power-domains = <&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
++      #clock-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
++    #include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
++    #include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
++    lpass_hm: clock-controller@3c00000 {
++      compatible = "qcom,sc7280-lpasshm";
++      reg = <0x3c00000 0x28>;
++      clocks = <&rpmhcc RPMH_CXO_CLK>;
++      clock-names = "bi_tcxo";
++      #clock-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
++    #include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
++    #include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
++    lpasscore: clock-controller@3900000 {
++      compatible = "qcom,sc7280-lpasscorecc";
++      reg = <0x3900000 0x50000>;
++      clocks = <&rpmhcc RPMH_CXO_CLK>;
++      clock-names = "bi_tcxo";
++      power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>;
++      #clock-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++
++  - |
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
++    #include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
++    #include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
++    lpass_aon: clock-controller@3380000 {
++      compatible = "qcom,sc7280-lpassaoncc";
++      reg = <0x3380000 0x30000>;
++      clocks = <&rpmhcc RPMH_CXO_CLK>, <&rpmhcc RPMH_CXO_CLK_A>,
++               <&lpasscore LPASS_CORE_CC_CORE_CLK>;
++      clock-names = "bi_tcxo", "bi_tcxo_ao","iface";
++      #clock-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++
++...
+diff --git a/include/dt-bindings/clock/qcom,lpassaudiocc-sc7280.h b/include/dt-bindings/clock/qcom,lpassaudiocc-sc7280.h
+new file mode 100644
+index 000000000000..20ef2ea673f3
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,lpassaudiocc-sc7280.h
+@@ -0,0 +1,43 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_LPASS_AUDIO_CC_SC7280_H
++#define _DT_BINDINGS_CLK_QCOM_LPASS_AUDIO_CC_SC7280_H
++
++/* LPASS_AUDIO_CC clocks */
++#define LPASS_AUDIO_CC_PLL				0
++#define LPASS_AUDIO_CC_PLL_OUT_AUX2			1
++#define LPASS_AUDIO_CC_PLL_OUT_AUX2_DIV_CLK_SRC		2
++#define LPASS_AUDIO_CC_PLL_OUT_MAIN_DIV_CLK_SRC		3
++#define LPASS_AUDIO_CC_CDIV_RX_MCLK_DIV_CLK_SRC		4
++#define LPASS_AUDIO_CC_CODEC_MEM0_CLK			5
++#define LPASS_AUDIO_CC_CODEC_MEM1_CLK			6
++#define LPASS_AUDIO_CC_CODEC_MEM2_CLK			7
++#define LPASS_AUDIO_CC_CODEC_MEM_CLK			8
++#define LPASS_AUDIO_CC_EXT_MCLK0_CLK			9
++#define LPASS_AUDIO_CC_EXT_MCLK0_CLK_SRC		10
++#define LPASS_AUDIO_CC_EXT_MCLK1_CLK			11
++#define LPASS_AUDIO_CC_EXT_MCLK1_CLK_SRC		12
++#define LPASS_AUDIO_CC_RX_MCLK_2X_CLK			13
++#define LPASS_AUDIO_CC_RX_MCLK_CLK			14
++#define LPASS_AUDIO_CC_RX_MCLK_CLK_SRC			15
++
++/* LPASS_AON_CC clocks */
++#define LPASS_AON_CC_PLL				0
++#define LPASS_AON_CC_PLL_OUT_EVEN			1
++#define LPASS_AON_CC_PLL_OUT_MAIN_CDIV_DIV_CLK_SRC	2
++#define LPASS_AON_CC_PLL_OUT_ODD			3
++#define LPASS_AON_CC_AUDIO_HM_H_CLK			4
++#define LPASS_AON_CC_CDIV_TX_MCLK_DIV_CLK_SRC		5
++#define LPASS_AON_CC_MAIN_RCG_CLK_SRC			6
++#define LPASS_AON_CC_TX_MCLK_2X_CLK			7
++#define LPASS_AON_CC_TX_MCLK_CLK			8
++#define LPASS_AON_CC_TX_MCLK_RCG_CLK_SRC		9
++#define LPASS_AON_CC_VA_MEM0_CLK			10
++
++/* LPASS_AON_CC power domains */
++#define LPASS_AON_CC_LPASS_AUDIO_HM_GDSC		0
++
++#endif
+diff --git a/include/dt-bindings/clock/qcom,lpasscorecc-sc7280.h b/include/dt-bindings/clock/qcom,lpasscorecc-sc7280.h
+new file mode 100644
+index 000000000000..28ed2a07aacc
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,lpasscorecc-sc7280.h
+@@ -0,0 +1,26 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_LPASS_CORE_CC_SC7280_H
++#define _DT_BINDINGS_CLK_QCOM_LPASS_CORE_CC_SC7280_H
++
++/* LPASS_CORE_CC clocks */
++#define LPASS_CORE_CC_DIG_PLL				0
++#define LPASS_CORE_CC_DIG_PLL_OUT_MAIN_DIV_CLK_SRC	1
++#define LPASS_CORE_CC_DIG_PLL_OUT_ODD			2
++#define LPASS_CORE_CC_CORE_CLK				3
++#define LPASS_CORE_CC_CORE_CLK_SRC			4
++#define LPASS_CORE_CC_EXT_IF0_CLK_SRC			5
++#define LPASS_CORE_CC_EXT_IF0_IBIT_CLK			6
++#define LPASS_CORE_CC_EXT_IF1_CLK_SRC			7
++#define LPASS_CORE_CC_EXT_IF1_IBIT_CLK			8
++#define LPASS_CORE_CC_LPM_CORE_CLK			9
++#define LPASS_CORE_CC_LPM_MEM0_CORE_CLK			10
++#define LPASS_CORE_CC_SYSNOC_MPORT_CORE_CLK		11
++
++/* LPASS_CORE_CC power domains */
++#define LPASS_CORE_CC_LPASS_CORE_HM_GDSC		0
++
++#endif
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
 
