@@ -2,166 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD2944C1B17
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 19:43:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38F864C1D0E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:22:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240337AbiBWSoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 13:44:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33566 "EHLO
+        id S241110AbiBWUW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 15:22:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235517AbiBWSoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 13:44:23 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D48064DF62;
-        Wed, 23 Feb 2022 10:43:54 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 661B6615F8;
-        Wed, 23 Feb 2022 18:43:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 247C7C340E7;
-        Wed, 23 Feb 2022 18:43:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645641833;
-        bh=XfBLjj4j3UjNuCB/GziGUYF4ayFzbyJpJY2IrYM3XUU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rmrjmHtGi/1eLxifAooKa7LLAMo24uRQeYXZJ/mzAaxxaKc++A2OAi+Jp6i9WAGMi
-         hJTYhkUFcvE2ciF4k0zmK8FEhlFUJu+4acynMdYvZ4Yr3yJR5tsUQZhJ+XxEFa6Z7W
-         lwXyAGLc4AcMGc3J4bK9XLFsYn+5Jrsbe5B7B/lMG8lDV4vXn/lCrCGmOaDcm51tAx
-         GPuaxtQZVOBqg9+m/zXUJ2Ab1/+ECWKrxHtWpUE2Pu1/xkVIaTrq4fdTx15RBqOXXb
-         wE4dw+3JRK3HrsoG7T0mZdrPpildS7DbpeJvFrtEEx88gDSN2ue685s1+qA6gUmxbY
-         y7lGzNN4ReiQg==
-Date:   Wed, 23 Feb 2022 11:43:48 -0700
-From:   Nathan Chancellor <nathan@kernel.org>
-To:     Akhil R <akhilrajeev@nvidia.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Pavan Kunapuli <pkunapuli@nvidia.com>
-Subject: Re: [PATCH v20 2/2] dmaengine: tegra: Add tegra gpcdma driver
-Message-ID: <YhaAZNaav720xXXx@dev-arch.archlinux-ax161>
-References: <20220221153934.5226-1-akhilrajeev@nvidia.com>
- <20220221153934.5226-3-akhilrajeev@nvidia.com>
- <YhUBt20I471s9Bhv@dev-arch.archlinux-ax161>
- <DM5PR12MB1850EF14473F9F941FB12506C03C9@DM5PR12MB1850.namprd12.prod.outlook.com>
+        with ESMTP id S241035AbiBWUWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:22:52 -0500
+X-Greylist: delayed 1481 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 23 Feb 2022 12:22:22 PST
+Received: from v157-7-243-95.myvps.jp (v157-7-243-95.myvps.jp [157.7.243.95])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A964D251
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 12:22:22 -0800 (PST)
+Received: from v157-7-243-95.myvps.jp (localhost [127.0.0.1])
+        by v157-7-243-95.myvps.jp (8.14.4/8.14.4) with ESMTP id 21NAvJMl019130
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 19:57:19 +0900
+Received: (from apache@localhost)
+        by v157-7-243-95.myvps.jp (8.14.4/8.14.4/Submit) id 21NAvJU6019129;
+        Wed, 23 Feb 2022 19:57:19 +0900
+To:     devicetree@vger.kernel.org
+Subject: =?UTF-8?B?44GK5ZWP44GE5ZCI44KP44Gb6Kqg44Gr44GC44KK44GM44Go44GG44GU44GW?=  =?UTF-8?B?44GE44G+44GZ44CC77yI56K66KqN55So6Ieq5YuV6YCB5L+h44Oh44O844Or?=  =?UTF-8?B?77yJ5qCq5byP5Lya56S+44OK44Kr44K/44Kx?=
+X-PHP-Originating-Script: 952:class-phpmailer.php
+Date:   Wed, 23 Feb 2022 10:57:19 +0000
+From:   NAKATAKE <info@nakatake-wp.com>
+Message-ID: <e45b0c32c66e3e18fe785fab04c8203a@www.nakatake-wp.com>
+X-Priority: 3
+X-Mailer: PHPMailer 5.2.7 (https://github.com/PHPMailer/PHPMailer/)
+Reply-To: info@nakatake-wp.com
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM5PR12MB1850EF14473F9F941FB12506C03C9@DM5PR12MB1850.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: Yes, score=6.6 required=5.0 tests=BAYES_99,BAYES_999,
+        HEADER_FROM_DIFFERENT_DOMAINS,PDS_RDNS_DYNAMIC_FP,RDNS_DYNAMIC,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Report: *  1.7 URIBL_BLACK Contains an URL listed in the URIBL blacklist
+        *      [URIs: clck.ru]
+        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
+        *      [score: 1.0000]
+        *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
+        *      [score: 1.0000]
+        *  0.0 SPF_NONE SPF: sender does not publish an SPF Record
+        *  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+        *      mail domains are different
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+        *      dynamic-looking rDNS
+        *  0.0 PDS_RDNS_DYNAMIC_FP RDNS_DYNAMIC with FP steps
+X-Spam-Level: ******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 23, 2022 at 03:49:09AM +0000, Akhil R wrote:
-> > Hi Akhil,
-> > 
-> > On Mon, Feb 21, 2022 at 09:09:34PM +0530, Akhil R wrote:
-> > > Adding GPC DMA controller driver for Tegra. The driver supports dma
-> > > transfers between memory to memory, IO peripheral to memory and memory
-> > > to IO peripheral.
-> > >
-> > > Co-developed-by: Pavan Kunapuli <pkunapuli@nvidia.com>
-> > > Signed-off-by: Pavan Kunapuli <pkunapuli@nvidia.com>
-> > > Co-developed-by: Rajesh Gumasta <rgumasta@nvidia.com>
-> > > Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
-> > > Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> > > Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
-> > > Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
-> > > ---
-> > >  drivers/dma/Kconfig            |   11 +
-> > >  drivers/dma/Makefile           |    1 +
-> > >  drivers/dma/tegra186-gpc-dma.c | 1507
-> > > ++++++++++++++++++++++++++++++++
-> > >  3 files changed, 1519 insertions(+)
-> > >  create mode 100644 drivers/dma/tegra186-gpc-dma.c
-> > 
-> > <snip>
-> > 
-> > > +static const struct __maybe_unused dev_pm_ops tegra_dma_dev_pm_ops =
-> > > +{
-> > 
-> > The __maybe_unused cannot split the type ("struct dev_pm_ops") otherwise it
-> > causes a clang warning:
-> > 
-> > https://lore.kernel.org/r/202202221207.lQ53BwKp-lkp@intel.com/
-> > 
-> > static const struct dev_pm_ops tegra_dma_dev_pm_ops __maybe_unused = {
-> > 
-> > would look a litle better I think. However, is this attribute even needed? The
-> > variable is unconditionally used below, so there should be no warning about it
-> > being unused?
-> > 
-> > Cheers,
-> > Nathan
-> > 
-> > > +     SET_SYSTEM_SLEEP_PM_OPS(tegra_dma_pm_suspend,
-> > > +tegra_dma_pm_resume) };
-> > > +
-> > > +static struct platform_driver tegra_dma_driver = {
-> > > +     .driver = {
-> > > +             .name   = "tegra-gpcdma",
-> > > +             .pm     = &tegra_dma_dev_pm_ops,
-> > > +             .of_match_table = tegra_dma_of_match,
-> > > +     },
-> > > +     .probe          = tegra_dma_probe,
-> > > +     .remove         = tegra_dma_remove,
-> > > +};
-> > > +
-> > > +module_platform_driver(tegra_dma_driver);
-> > > +
-> > > +MODULE_DESCRIPTION("NVIDIA Tegra GPC DMA Controller driver");
-> > > +MODULE_AUTHOR("Pavan Kunapuli <pkunapuli@nvidia.com>");
-> > > +MODULE_AUTHOR("Rajesh Gumasta <rgumasta@nvidia.com>");
-> > > +MODULE_LICENSE("GPL");
-> > > --
-> > > 2.17.1
-> > >
-> > >
-> 
-> Hi Nathan,
-> 
-> Thanks. Will update the same.
-> 
-> I am getting notification for the below warning also.
-> 
-> >> drivers/dma/tegra186-gpc-dma.c:898:53: warning: shift count >= width of type [-Wshift-count-overflow]
->                            FIELD_PREP(TEGRA_GPCDMA_HIGH_ADDR_DST_PTR, (dest >> 32));
-> https://lore.kernel.org/all/202202230559.bLOEMEUh-lkp@intel.com/
-> 
-> I suppose, this is because it is compiled against a different ARCH other than arm64.
-> For arm64, the dma_addr_t is 64 bytes, and this warning does not occur.
-> Could this be ignored for now? If not, could you suggest a fix, if possible?
+この度は、お問い合わせ誠にありがとうございます。
+いただきました内容につきまして、後日ご連絡をさせていただきます。
 
-I am not really familiar with the DMA API and dma_addr_t so I am not
-sure about a proper fix.
+お問合せ内容：
+ao5e7tf
 
-You could cast dest to u64 to guarantee it is a type that can be shifted
-by 32 but that might not be right for CONFIG_PHYS_ADDR_T_64BIT=n. If the
-driver is not expected to run without CONFIG_PHYS_ADDR_T_64BIT, then
-this is probably fine.
+お名前：
+❤️ Caroline liked you! Click Here: https://clck.ru/c4Mfv?19u1 ❤️
 
-You could mark this driver 'depends on PHYS_ADDR_T_64BIT' if it cannot
-run with CONFIG_ARCH_TEGRA=y + CONFIG_PHYS_ADDR_T_64BIT=n but I do not
-see any other drivers that do that, which might mean that is not a
-proper fix.
+住所：
+010577716969 福井県 zcy1w7t
 
-Please do not ignore the warning, as it will show up with ARCH=arm
-allmodconfig, which has -Werror enabled.
+メール：
+devicetree@vger.kernel.org
 
-Cheers,
-Nathan
+見積もり：
+見積もりを希望しない
+
+--
+このメールは 新着トピックス｜株式会社ナカタケ (http://www.nakatake-wp.com/wp) のお問い合わせフォームから送信されました。
+
+
+------------------------------------------------------------------------------------------------------------------
+株式会社 ナカタケ
+〒920-0207 石川県金沢市須崎町口266番地 TEL:076-238-2121
+
