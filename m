@@ -2,103 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B273B4C139F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:11:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 172E14C13C9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:15:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbiBWNMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 08:12:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34820 "EHLO
+        id S240794AbiBWNP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 08:15:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240711AbiBWNMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:12:06 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57E355D1B1
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:11:38 -0800 (PST)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        with ESMTP id S240802AbiBWNPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:15:21 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22821A9E38
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:14:52 -0800 (PST)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id A73913F1F3
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 13:11:35 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D92C0407AB
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 13:14:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645621896;
-        bh=6ItdzAIC73ba61SL64woNZZ4z8ugfh6dQKurjioqyaA=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=qji3mBBEBra1Kmh6YgakCFJSNo8iv8R2NhZxdC6xji32S+1mOBFL1PbwMcspVnoVT
-         82+mE6MtF2DYNa1Vi8XtYxfDVAlqhpHWpnE5HltLTQ6gYQNxGC2ptslYaElPDQR4Iv
-         6LoCQRM/+G835vXX5lTaTZiD1K3M+wKVM4qv2HYNzdrDnVArhywwIJHgGtUBNRi4iQ
-         wOqhPnEz9nYq9eq43vojGIxHQbfCi+xJZEXp5O34drx8WW9y/WoDaXczCQNfCN9gmz
-         HtTsNB6rs32HpJ0x5Z4Iocukpk8GTZDZowXCGRGaM7wznxPwUt17or6e8Kr5eq8GWC
-         ztrZ6j+w/0D5w==
-Received: by mail-ej1-f72.google.com with SMTP id 13-20020a170906328d00b006982d0888a4so7025205ejw.9
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:11:35 -0800 (PST)
+        s=20210705; t=1645622090;
+        bh=luA2pGmBUiuoHCIdDEpQqIZrDzzhrlzhl8j+UonA2Ac=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=SE/wFLOUyXOiI4eiUTQNM7fAxLnoIYhR0HPH+u6H6P/Pa1pOEgkj3WiFpX3JyShGL
+         6iU6BbSuC834ylUIxvstAaOls101s58kWPTD41GyeW1Yzhd16Ps5IS8AdziwLskueY
+         wBmULKIn6Y6f1KrdohkDc91NRfQY3VfwH3eEkN4VL0vwzCjLFngIknP8uaFfKNgqcM
+         2p7MoMj4AxwPvkOn5WABQIJpRH2yuF0x9g6C9U69e4TccYdlCc7XxJGYVzDXxahJ9H
+         QXop5hjEQMjag48iRyadReWYoEDR+jAJvLyHv5dnpqpE5QCCO+dMzv82SBJ3XuhNuC
+         n4uIC7I+LNNNw==
+Received: by mail-ed1-f72.google.com with SMTP id h17-20020a05640250d100b004133863d836so874779edb.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:14:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6ItdzAIC73ba61SL64woNZZ4z8ugfh6dQKurjioqyaA=;
-        b=DGszvg09QCk933Uy4zT37ejHIbgVWcxb/5bwkZxJiL5UmRYoNfTY7V8tUQVR/8c1Ln
-         0ezb9HCS30mVGad6cl9gH6w6lEn6kl/UMXtGedvd+YdmXxsCANoZPP+0Vq0WiQI5LSRZ
-         sELkiTBjSP2mn4CB6/aTIJn/DS7b8tfDncYZtH7x1479YqEystCXtRsLa988sYgzaoDg
-         YEEfOUmTkC16DMpuS6/2V4J05pKYq9FxRrvjDggj9DK98SDd0IuUAchVMAbZJRZMKmDo
-         I3o6J544kQBJADuSgSurQawDQwShmW0WEfleMspgcfmduU52X3Rqsr3NRZIQMiY9fnGG
-         VMUw==
-X-Gm-Message-State: AOAM532cPgREu3f3Kd/Xq4JxD3aRYkdEmWo13hJjMjChUEAdrYEUbVBt
-        B0tHJPtD5YvYypxSxrVvRG3nCD5jtEdADOgjkK1+caii3otbeGxlZUhgawQn5omqgX7o1pEgEdB
-        GgK/JAV4ghl4Q1sPE/Zv+aVPFytdxY0WDReQ87OE=
-X-Received: by 2002:a17:906:e13:b0:6ce:21ca:1b91 with SMTP id l19-20020a1709060e1300b006ce21ca1b91mr23486657eji.193.1645621893962;
-        Wed, 23 Feb 2022 05:11:33 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzqN7LLprVP7W7VK/4Uq3spoFQPaiet9FLARrRJrnw6k3jKocmQL3RLligIlXMbw8qEbieF2Q==
-X-Received: by 2002:a17:906:e13:b0:6ce:21ca:1b91 with SMTP id l19-20020a1709060e1300b006ce21ca1b91mr23486648eji.193.1645621893757;
-        Wed, 23 Feb 2022 05:11:33 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id h7sm11800293ede.66.2022.02.23.05.11.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Feb 2022 05:11:33 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     David Virag <virag.david003@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        phone-devel@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/1] Initial Samsung Galaxy A8 (2018) support
-Date:   Wed, 23 Feb 2022 14:10:58 +0100
-Message-Id: <164562185401.52450.9639221721231378939.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220221194958.117361-1-virag.david003@gmail.com>
-References: <20220221194958.117361-1-virag.david003@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=luA2pGmBUiuoHCIdDEpQqIZrDzzhrlzhl8j+UonA2Ac=;
+        b=2VN6JPls2clSEbHg7/KKP/bqtp48JnWxeVgcaFUKoMo1hEZxP7Y7uM+6qwcBZ/hWKB
+         X05cqldQqfJGoXxn0rWFSjdWmYGYhtHMxq2VMwf6D+GOL3mfVaN13HmbhTamPXmSlnNo
+         JexiRhZRxdW0yFvddhzUi3bxiKi/SDPceFXIrF5cG4u22aKWSigxIzpkWQgdqhVf65nT
+         0nwrH8uEvWLDwv//fdBaaL6rOcN+EFCxMnB+rRtIyzHBHZ3sdzCeEX3viGHLJy9Mo8tl
+         K0zFPr9Y1FHc+8Kgb6PdoZhD4DnJ4SDcSU91mQOhPjRFC3/zUsj/bvGqc9gtSAxpfZNS
+         Omaw==
+X-Gm-Message-State: AOAM531GXpyLzm65j0g9UfXpbG8smtap6nyhWHChsYSr77LOGZj6wGP4
+        1TJamfJcIYmGLcUrQGBOB7DwEGqi0YRWS9iCGVKgCJmQBnGI+MovsovlYEynTapg7tbmAEy9aE5
+        /aYhH5uGRvxD7QoHeutUDX8jFfNRei4T1BEzQDHc=
+X-Received: by 2002:a17:906:af79:b0:6ce:61d3:7e9b with SMTP id os25-20020a170906af7900b006ce61d37e9bmr23249841ejb.191.1645622089864;
+        Wed, 23 Feb 2022 05:14:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzPXOdScuO9l5oh+CHacL1L0JeFIZjGDBcMotv+/pc0BsZ6IXhLfsZQvcbVqSbjklwZ5f51Fg==
+X-Received: by 2002:a17:906:af79:b0:6ce:61d3:7e9b with SMTP id os25-20020a170906af7900b006ce61d37e9bmr23249825ejb.191.1645622089612;
+        Wed, 23 Feb 2022 05:14:49 -0800 (PST)
+Received: from [192.168.0.125] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id z13sm603406edb.54.2022.02.23.05.14.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Feb 2022 05:14:49 -0800 (PST)
+Message-ID: <99c673e7-09ea-ce0f-f8b7-b03ca35e8740@canonical.com>
+Date:   Wed, 23 Feb 2022 14:14:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3] dt-bindings: crypto: convert rockchip-crypto to yaml
+Content-Language: en-US
+To:     LABBE Corentin <clabbe@baylibre.com>,
+        Johan Jonker <jbx6244@gmail.com>
+Cc:     heiko@sntech.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org, herbert@gondor.apana.org.au,
+        davem@davemloft.net
+References: <20220211115925.3382735-1-clabbe@baylibre.com>
+ <f078ac6f-5605-7b86-5734-cbbf7dc52c71@gmail.com> <YhYxLmBYa+DMCnuz@Red>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YhYxLmBYa+DMCnuz@Red>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Feb 2022 20:49:55 +0100, David Virag wrote:
-> Add basic initial support for the Samsung Galaxy A8 (2018) smartphone.
-> This phone is also known as "jackpotlte" and under the model name
-> "SM-A530F". In its current state this should work on most if not all
-> Exynos7885 phones/devices released.
+On 23/02/2022 14:05, LABBE Corentin wrote:
+> Le Tue, Feb 15, 2022 at 03:07:56PM +0100, Johan Jonker a écrit :
+>> Hi Heiko,
+>>
+>> On 2/11/22 12:59, Corentin Labbe wrote:
+>>> Convert rockchip-crypto to yaml
+>>>
+>>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+>>> ---
+>>> Changes since v1:
+>>> - fixed example
+>>> - renamed to a new name
+>>> - fixed some maxItems
+>>>
+>>> Change since v2:
+>>> - Fixed maintainers section
+>>>
+>>>  .../crypto/rockchip,rk3288-crypto.yaml        | 66 +++++++++++++++++++
+>>>  .../bindings/crypto/rockchip-crypto.txt       | 28 --------
+>>>  2 files changed, 66 insertions(+), 28 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+>>
+>> rockchip,crypto.yaml
 > 
-> As of now, it supports I2C nodes (all disabled by default) and UART
-> console with basic clock support in place.
 > 
-> [...]
+> Hello
+> 
+> DT maintainer asked for rockchip,rk3288-crypto, so I will keep it.
 
-Applied, thanks!
+I don't insist on keeping rk32880crypto name. It depends whether the
+bindings are for a family of devices or rather specific one or few
+devices. Based on comments here, it is quite possible that all Rockchip
+crypto blocks will fit into this bindings, so the name could be generic.
 
-[1/1] arm64: dts: exynos: Add initial device tree support for Exynos7885 SoC
-      commit: 06874015327ba7bf6aae49ca825a492a2679237f
+Having a specific name, even if it contains multiple devices, is also fine.
+
+What I would prefer to avoid is to have a generic name
+"rockchip,crypto.yaml" and then in two months one more generic
+"rockchip,crypto2.yaml", and then add third...
+
+> 
+>>
+>>>  delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+>>> new file mode 100644
+>>> index 000000000000..2e1e9fa711c4
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+>>> @@ -0,0 +1,66 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/crypto/rockchip,rk3288-crypto.yaml#
+>>
+>> rockchip,crypto.yaml
+>>
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Rockchip Electronics And Security Accelerator
+>>> +
+>>> +maintainers:
+>>> +  - Heiko Stuebner <heiko@sntech.de>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>
+>>     oneOf:
+>>       - const: rockchip,rk3288-crypto
+>>       - items:
+>>           - enum:
+>>               - rockchip,rk3228-crypto
+>>               - rockchip,rk3328-crypto
+>>               - rockchip,rk3368-crypto
+>>               - rockchip,rk3399-crypto
+>>           - const: rockchip,rk3288-crypto
+>>
+>> rk3288 was the first in line that had support, so we use that as fall
+>> back string.
+> 
+> I will dont add compatible which are not handled by the driver unless DT maintainer said I should.
+
+They could be added for completeness because bindings describe rather
+hardware, not Linux driver state, but there is no such must. It can also
+be added later by another contributor.
+
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Krzysztof
