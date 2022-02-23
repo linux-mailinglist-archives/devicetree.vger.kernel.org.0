@@ -2,177 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 172E14C13C9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:15:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF8364C140D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:22:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240794AbiBWNP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 08:15:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37758 "EHLO
+        id S235598AbiBWNXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 08:23:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240802AbiBWNPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:15:21 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22821A9E38
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:14:52 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D92C0407AB
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 13:14:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645622090;
-        bh=luA2pGmBUiuoHCIdDEpQqIZrDzzhrlzhl8j+UonA2Ac=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=SE/wFLOUyXOiI4eiUTQNM7fAxLnoIYhR0HPH+u6H6P/Pa1pOEgkj3WiFpX3JyShGL
-         6iU6BbSuC834ylUIxvstAaOls101s58kWPTD41GyeW1Yzhd16Ps5IS8AdziwLskueY
-         wBmULKIn6Y6f1KrdohkDc91NRfQY3VfwH3eEkN4VL0vwzCjLFngIknP8uaFfKNgqcM
-         2p7MoMj4AxwPvkOn5WABQIJpRH2yuF0x9g6C9U69e4TccYdlCc7XxJGYVzDXxahJ9H
-         QXop5hjEQMjag48iRyadReWYoEDR+jAJvLyHv5dnpqpE5QCCO+dMzv82SBJ3XuhNuC
-         n4uIC7I+LNNNw==
-Received: by mail-ed1-f72.google.com with SMTP id h17-20020a05640250d100b004133863d836so874779edb.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:14:50 -0800 (PST)
+        with ESMTP id S236619AbiBWNXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:23:10 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A39DDAB44B;
+        Wed, 23 Feb 2022 05:22:42 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id i20so3363661wmc.3;
+        Wed, 23 Feb 2022 05:22:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=vGb2ARjYKMt2Kvks9J2lDsUiX/tTNuHKRpCYsHVcRkI=;
+        b=kNKKfuaa00aoAnTcnnO+KZaAksC+0IILYIogAnyAAhwNrakLcAe5J7O0QAwR0RDN/1
+         Ze4OTeX6LbZ0Mpnq4ZeshG4K375CfLfFlr94dBoO5I+NX57CJ+PBkIWxoqfOOLCqvPnb
+         OqjkLE7Z3EwN4+TfHKj0tFwX/njk68Vbf54LslksMqjZDyofemE9KCUoT1qYQwih0hka
+         AVX+s7VJu6boMSoACspKaowjsJBZGTgEelCzkyXzLfZASWl70Img0zGWZZPF7EqkRLwd
+         w/Qe8lxpSAENYseOIGLVH1UTpggc0nnfA/VWoqHPCw2PGTOex2OaIHOMp47ad7zZOeNk
+         gnlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=luA2pGmBUiuoHCIdDEpQqIZrDzzhrlzhl8j+UonA2Ac=;
-        b=2VN6JPls2clSEbHg7/KKP/bqtp48JnWxeVgcaFUKoMo1hEZxP7Y7uM+6qwcBZ/hWKB
-         X05cqldQqfJGoXxn0rWFSjdWmYGYhtHMxq2VMwf6D+GOL3mfVaN13HmbhTamPXmSlnNo
-         JexiRhZRxdW0yFvddhzUi3bxiKi/SDPceFXIrF5cG4u22aKWSigxIzpkWQgdqhVf65nT
-         0nwrH8uEvWLDwv//fdBaaL6rOcN+EFCxMnB+rRtIyzHBHZ3sdzCeEX3viGHLJy9Mo8tl
-         K0zFPr9Y1FHc+8Kgb6PdoZhD4DnJ4SDcSU91mQOhPjRFC3/zUsj/bvGqc9gtSAxpfZNS
-         Omaw==
-X-Gm-Message-State: AOAM531GXpyLzm65j0g9UfXpbG8smtap6nyhWHChsYSr77LOGZj6wGP4
-        1TJamfJcIYmGLcUrQGBOB7DwEGqi0YRWS9iCGVKgCJmQBnGI+MovsovlYEynTapg7tbmAEy9aE5
-        /aYhH5uGRvxD7QoHeutUDX8jFfNRei4T1BEzQDHc=
-X-Received: by 2002:a17:906:af79:b0:6ce:61d3:7e9b with SMTP id os25-20020a170906af7900b006ce61d37e9bmr23249841ejb.191.1645622089864;
-        Wed, 23 Feb 2022 05:14:49 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzPXOdScuO9l5oh+CHacL1L0JeFIZjGDBcMotv+/pc0BsZ6IXhLfsZQvcbVqSbjklwZ5f51Fg==
-X-Received: by 2002:a17:906:af79:b0:6ce:61d3:7e9b with SMTP id os25-20020a170906af7900b006ce61d37e9bmr23249825ejb.191.1645622089612;
-        Wed, 23 Feb 2022 05:14:49 -0800 (PST)
-Received: from [192.168.0.125] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id z13sm603406edb.54.2022.02.23.05.14.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 05:14:49 -0800 (PST)
-Message-ID: <99c673e7-09ea-ce0f-f8b7-b03ca35e8740@canonical.com>
-Date:   Wed, 23 Feb 2022 14:14:48 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=vGb2ARjYKMt2Kvks9J2lDsUiX/tTNuHKRpCYsHVcRkI=;
+        b=TXU6w9LasioNuUPzldTvyXTLeCARAhAByRBvLASVBNn2ZoVEmb22MtAlrvMErNC+WM
+         uTy9FLmOQ35H3sjDcu7VkL7uEvEy6PoE29Y0cyt6/4bzBIApffm5RZK0FHjntvxTL67N
+         FScEyeO7hc4C2AxGQuVCrGCb2MwTlZ9D60t0bxxB3UZotPW/SSe5lYHC07Dq2StIUYpP
+         +PZ8E8Zbck6Wi6uTogydWBO+P2V3KoRAHU2G2gNGMVPCD7nvpUNSVpN9Ue9Go+UNy7Wz
+         5yZOcDBJFkLIIxznCmjoWyFce38BC9OXUBa7haMwa2MQ/MWokGsO+gOb2JHMS9+PGt71
+         AyFw==
+X-Gm-Message-State: AOAM531PHxQ+5eVSQM2KeZ/8X3V2AUFxG1uhrw21YDUMa3GYLPRttM+y
+        Kc9PkT7HW8Z6NF8IPfGOP5QVypySKl8=
+X-Google-Smtp-Source: ABdhPJxBb9fVmzJnugIzRqLWFDZChGUnTqVK+AjpBU9JMUTg1LRe8IlxoBZPAE0QkkWoUccti5ECHQ==
+X-Received: by 2002:a05:600c:3d06:b0:37b:f831:2a98 with SMTP id bh6-20020a05600c3d0600b0037bf8312a98mr7411709wmb.36.1645622560974;
+        Wed, 23 Feb 2022 05:22:40 -0800 (PST)
+Received: from orome (p200300e41f0a6900000000000000043a.dip0.t-ipconnect.de. [2003:e4:1f0a:6900::43a])
+        by smtp.gmail.com with ESMTPSA id c14-20020a7bc84e000000b0038100c9a593sm153072wml.45.2022.02.23.05.22.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Feb 2022 05:22:39 -0800 (PST)
+Date:   Wed, 23 Feb 2022 14:22:38 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sumit Gupta <sumitg@nvidia.com>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Jon Hunter <jonathanh@nvidia.com>,
+        kbuild-all@lists.01.org, bbasu@nvidia.com, vsethi@nvidia.com,
+        jsequeira@nvidia.com, Thierry Reding <treding@nvidia.com>
+Subject: Re: [Patch v3 3/9] dt-bindings: arm: tegra: Add NVIDIA Tegra194
+ axi2apb binding
+Message-ID: <YhY1Hhgz/O724oYL@orome>
+References: <20211221125117.6545-1-sumitg@nvidia.com>
+ <20211221125117.6545-4-sumitg@nvidia.com>
+ <YcNv7xm19sFTlfjW@robh.at.kernel.org>
+ <226fd57c-2631-ec7a-fc48-d6547d557681@nvidia.com>
+ <CAL_Jsq+=hGG-cMwvM0sKFW=Rwa56=fqS379jL4ZjSyDKOia-RA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3] dt-bindings: crypto: convert rockchip-crypto to yaml
-Content-Language: en-US
-To:     LABBE Corentin <clabbe@baylibre.com>,
-        Johan Jonker <jbx6244@gmail.com>
-Cc:     heiko@sntech.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        robh+dt@kernel.org, herbert@gondor.apana.org.au,
-        davem@davemloft.net
-References: <20220211115925.3382735-1-clabbe@baylibre.com>
- <f078ac6f-5605-7b86-5734-cbbf7dc52c71@gmail.com> <YhYxLmBYa+DMCnuz@Red>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <YhYxLmBYa+DMCnuz@Red>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ek0gW7MJ0WaqCJOs"
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+=hGG-cMwvM0sKFW=Rwa56=fqS379jL4ZjSyDKOia-RA@mail.gmail.com>
+User-Agent: Mutt/2.2.1 (c8109e14) (2022-02-19)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/02/2022 14:05, LABBE Corentin wrote:
-> Le Tue, Feb 15, 2022 at 03:07:56PM +0100, Johan Jonker a écrit :
->> Hi Heiko,
->>
->> On 2/11/22 12:59, Corentin Labbe wrote:
->>> Convert rockchip-crypto to yaml
->>>
->>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
->>> ---
->>> Changes since v1:
->>> - fixed example
->>> - renamed to a new name
->>> - fixed some maxItems
->>>
->>> Change since v2:
->>> - Fixed maintainers section
->>>
->>>  .../crypto/rockchip,rk3288-crypto.yaml        | 66 +++++++++++++++++++
->>>  .../bindings/crypto/rockchip-crypto.txt       | 28 --------
->>>  2 files changed, 66 insertions(+), 28 deletions(-)
->>>  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
->>
->> rockchip,crypto.yaml
-> 
-> 
-> Hello
-> 
-> DT maintainer asked for rockchip,rk3288-crypto, so I will keep it.
 
-I don't insist on keeping rk32880crypto name. It depends whether the
-bindings are for a family of devices or rather specific one or few
-devices. Based on comments here, it is quite possible that all Rockchip
-crypto blocks will fit into this bindings, so the name could be generic.
+--ek0gW7MJ0WaqCJOs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Having a specific name, even if it contains multiple devices, is also fine.
+On Mon, Dec 27, 2021 at 11:41:10AM -0400, Rob Herring wrote:
+> On Thu, Dec 23, 2021 at 4:24 AM Sumit Gupta <sumitg@nvidia.com> wrote:
+> > > On Tue, Dec 21, 2021 at 06:21:11PM +0530, Sumit Gupta wrote:
+> > >> Add device-tree binding documentation to represent the axi2apb bridg=
+es
+> > >> used by Control Backbone (CBB) 1.0 in Tegra194 SOC. All errors for A=
+PB
+> > >> slaves are reported as slave error because APB bas single bit to rep=
+ort
+> > >> error. So, CBB driver needs to further check error status registers =
+of
+> > >> all the axi2apb bridges to find error type.
+> > >>
+> > >> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> > >> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > >> ---
+> > >>   .../arm/tegra/nvidia,tegra194-axi2apb.yaml    | 40 +++++++++++++++=
+++++
+> > >>   1 file changed, 40 insertions(+)
+> > >>   create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvi=
+dia,tegra194-axi2apb.yaml
+> > >>
+> > >> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegr=
+a194-axi2apb.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegr=
+a194-axi2apb.yaml
+> > >> new file mode 100644
+> > >> index 000000000000..788a13f8aa93
+> > >> --- /dev/null
+> > >> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-ax=
+i2apb.yaml
+> > >> @@ -0,0 +1,40 @@
+> > >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > >> +%YAML 1.2
+> > >> +---
+> > >> +$id: "http://devicetree.org/schemas/arm/tegra/nvidia,tegra194-axi2a=
+pb.yaml#"
+> > >> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > >> +
+> > >> +title: NVIDIA Tegra194 AXI2APB bridge
+> > >> +
+> > >> +maintainers:
+> > >> +  - Sumit Gupta <sumitg@nvidia.com>
+> > >> +
+> > >> +properties:
+> > >> +  $nodename:
+> > >> +    pattern: "^axi2apb@([0-9a-f]+)$"
+> > >> +
+> > >> +  compatible:
+> > >> +    enum:
+> > >> +      - nvidia,tegra194-axi2apb
+> > >> +
+> > >> +  reg:
+> > >> +    maxItems: 6
+> > >> +    description: Physical base address and length of registers for =
+all bridges
+> > >> +
+> > >> +additionalProperties: false
+> > >> +
+> > >> +required:
+> > >> +  - compatible
+> > >> +  - reg
+> > >> +
+> > >> +examples:
+> > >> +  - |
+> > >> +    axi2apb: axi2apb@2390000 {
+> > >
+> > > As axi2apb appears to be a bus, then all the child nodes (APB devices)
+> > > should be under this node.
+> >
+> > axi2apb is a bridge which coverts an AXI to APB interface and not a bus.
+>=20
+> A bus and bridge node are pretty much one and the same in DT
+> representation. A PCI host bridge has a PCI bus beneath it for
+> example.
 
-What I would prefer to avoid is to have a generic name
-"rockchip,crypto.yaml" and then in two months one more generic
-"rockchip,crypto2.yaml", and then add third...
+Sorry for taking so long to reply, this fell through the cracks.
 
-> 
->>
->>>  delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
->>>
->>> diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
->>> new file mode 100644
->>> index 000000000000..2e1e9fa711c4
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
->>> @@ -0,0 +1,66 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/crypto/rockchip,rk3288-crypto.yaml#
->>
->> rockchip,crypto.yaml
->>
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Rockchip Electronics And Security Accelerator
->>> +
->>> +maintainers:
->>> +  - Heiko Stuebner <heiko@sntech.de>
->>> +
->>> +properties:
->>> +  compatible:
->>
->>     oneOf:
->>       - const: rockchip,rk3288-crypto
->>       - items:
->>           - enum:
->>               - rockchip,rk3228-crypto
->>               - rockchip,rk3328-crypto
->>               - rockchip,rk3368-crypto
->>               - rockchip,rk3399-crypto
->>           - const: rockchip,rk3288-crypto
->>
->> rk3288 was the first in line that had support, so we use that as fall
->> back string.
-> 
-> I will dont add compatible which are not handled by the driver unless DT maintainer said I should.
+These aren't really bridges as such. CBB (which we call /bus@0 in DT) is
+a sort of large container for all IP. Within that there are various shim
+layers that connect these "legacy" interfaces to CBB. I suppose you
+could call them bridges, but it's a bit of a stretch. From a software
+point of view there is no observable translation happening. The only
+reason why we need this is for improved error reporting.
 
-They could be added for completeness because bindings describe rather
-hardware, not Linux driver state, but there is no such must. It can also
-be added later by another contributor.
+The TRM also doesn't make a distinction between the various bridges. The
+devices are all just mapped into a single address space via the CBB.
 
+My understanding is that this is also gone in newer chips, so matters
+become a bit simpler there.
 
-Best regards,
-Krzysztof
+Reorganizing /bus@0 into multiple bridges and busses would be a lot of
+churn and likely confuse people that want to correlate what's in the TRM
+to what's in DT, so I don't think it's worth it.
+
+For newer chips we may want to keep this in mind so we structure the DT
+more accurately from the beginning, though as I said, things have been
+simplified a bit, so this may not be an issue anymore.
+
+Thierry
+
+--ek0gW7MJ0WaqCJOs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmIWNRsACgkQ3SOs138+
+s6FZOQ/+LbbpJ1EmeqjNCY26tK+hEL1Y8oOHW2uV65Aq9zQu/JVNRCaPVfasdvD9
+9blDOZNeaBBp0Ri0NJbjKyInvBKS3W2/G9RBR2HxUQkibabTvfNuovoS3gNorw4/
+EygTUAuWX6p2lAKu+mAN0JW4rnkQRrrnqbTXQiGa1nnfsBorzIil+MXY8MBb8mxV
+AN1tIdITQli7dByU2OA3g431h1yBB+CFc5q1kXhgVxrd24s/bqmHHofHvOCbiTX8
+8oXV2pEwUq+4IfCEZRl8J2LgV0jLqSTUYNheWfMaKhH5iS63XSzTTE1IjsV903y5
+8UJpLvj7x8h3pj4WTOOv7skc8AoWL0F7vsFXccJDtvTvGbUrL+pBn/6zxfgicV3n
+W2Qty4P+dL+RzukHXV6pMyXeZnSvAvrqkVrSwoaWddaaeIcQ3nQE08vQxLD5jWnD
++KTn4/wWEefqqoh9x/gvWiJqcCyKejWgSlqIL2FXVSHVcQ/d7ZeL99NHnDb/H/iE
+osQl6tNezgI/FVTPkwTMgdJ6Qh9vy5yt8GyOEPe3H2tRb48hCgRF0VWwWfD8njun
+Noe9m9m8DPYpQ+4sAQtiWZTQgLozMzD5y4Rx0O5Hdo71TfVE9B2u5vqN5pbplLKp
+BkTOo8JyU415bhThgCa4K0F5XexhW1wjsamb78hccEWuP2+eWBg=
+=IRCr
+-----END PGP SIGNATURE-----
+
+--ek0gW7MJ0WaqCJOs--
