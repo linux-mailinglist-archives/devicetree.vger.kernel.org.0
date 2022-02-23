@@ -2,92 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C6E4C1633
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 16:12:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65E1C4C1642
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 16:14:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239125AbiBWPM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 10:12:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46948 "EHLO
+        id S240498AbiBWPOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 10:14:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232062AbiBWPM2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 10:12:28 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C65756E28F;
-        Wed, 23 Feb 2022 07:12:00 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id AF9001F44A38
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645629119;
-        bh=ELPweJBc6ajob3F7Lui867O0B7uOutbKAFuyBG7+YpI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dRntzR73s7+bZmeaMg/SQxnWDBkL1AIhU6PAT8n/MPSuMwzDE8nUHna9JAKcikkdw
-         aSy2WBCmWQ+vXwLyYfzNZIhhxk5buaVev1Xgps9sROqdLeua7TI+F9VlJEN0fA2VnG
-         KnV6g/R3LZMyXjBwQe2BlD3oCA07ZwdA91ajkVZiBwt08PGs6y3HcdkNKBAONKJ8vT
-         nj80NEBPGkw6ahUoP+pA6/prEYTa2vhG0K7q06uMuq0Bv58Lb6lYuEcb23SykAz0yE
-         FMfmERBoqjWOfTEi+oeiwoj0TVXa+4ZlqgqSVNKKVkYJu0gcn9U0lfq75fjPLj4YV5
-         EmUUwg8++EPuQ==
-Date:   Wed, 23 Feb 2022 10:11:53 -0500
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        --to=Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>
-Subject: Re: [PATCH v2 06/23] arm64: dts: mt8192: Add usb-phy node
-Message-ID: <20220223151153.mjmo6vspg6cior2i@notapiano>
-References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
- <20220218091633.9368-7-allen-kh.cheng@mediatek.com>
- <20220222201034.pb36pfrgujushsge@notapiano>
- <ef364c56deef3cc20d7d7d9ca6c568c0612c7a2a.camel@mediatek.com>
+        with ESMTP id S232062AbiBWPOx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 10:14:53 -0500
+Received: from 189.cn (ptr.189.cn [183.61.185.102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 50AE8B82DE;
+        Wed, 23 Feb 2022 07:14:23 -0800 (PST)
+HMM_SOURCE_IP: 10.64.8.31:44458.435332613
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.31])
+        by 189.cn (HERMES) with SMTP id 30AE11001F7;
+        Wed, 23 Feb 2022 23:14:17 +0800 (CST)
+Received: from  ([114.242.206.180])
+        by gateway-151646-dep-b7fbf7d79-bwdqx with ESMTP id 90e95b07aa22426594cd3a88c70e7830 for maxime@cerno.tech;
+        Wed, 23 Feb 2022 23:14:21 CST
+X-Transaction-ID: 90e95b07aa22426594cd3a88c70e7830
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 114.242.206.180
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+Message-ID: <0d4a75c4-78bb-4aed-0fa8-88e9cc165896@189.cn>
+Date:   Wed, 23 Feb 2022 23:14:12 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v10 3/4] drm/lsdc: add drm driver for loongson display
+ controller
+Content-Language: en-US
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
+        Roland Scheidegger <sroland@vmware.com>,
+        Zack Rusin <zackr@vmware.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        suijingfeng <suijingfeng@loongson.cn>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Randy Dunlap <rdunlap@infradead.org>,
+        kernel test robot <lkp@intel.com>
+References: <20220220145554.117854-1-15330273260@189.cn>
+ <20220220145554.117854-4-15330273260@189.cn>
+ <20220222082747.66otrkc4zwvhem7w@houat>
+ <54ea69d7-2fac-74dc-2ef6-843a666cff85@189.cn>
+ <20220223143912.m727fie3vtdkvklo@houat>
+From:   Sui Jingfeng <15330273260@189.cn>
+In-Reply-To: <20220223143912.m727fie3vtdkvklo@houat>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ef364c56deef3cc20d7d7d9ca6c568c0612c7a2a.camel@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 23, 2022 at 09:24:12PM +0800, allen-kh.cheng wrote:
-> On Tue, 2022-02-22 at 15:10 -0500, N�colas F. R. A. Prado wrote:
-> > On Fri, Feb 18, 2022 at 05:16:16PM +0800, Allen-KH Cheng wrote:
-> > > Add xhci node for mt8192 SoC.
-> > > 
-> > > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> > > ---
-> > >  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 25
-> > > ++++++++++++++++++++++++
-> > >  1 file changed, 25 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > index 61aadd7bd397..ce18d692175f 100644
-> > > --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > > @@ -875,6 +875,31 @@
-> > >  			#clock-cells = <1>;
-> > >  		};
-> > >  
-> > > +		u3phy0: usb-phy@11e40000 {
-> > 
-> > According to
-> > Documentation/devicetree/bindings/phy/mediatek,tphy.yaml, this node
-> > should be called t-phy. Only the child nodes should be usb-phy.
-> > 
-> Hi N�colas,
-> 
-> I think it should be "u3phy0: t-phy@11e40000". am I right?
 
-Yes, that's it.
+On 2022/2/23 22:39, Maxime Ripard wrote:
+> On Tue, Feb 22, 2022 at 10:46:35PM +0800, Sui Jingfeng wrote:
+>> On 2022/2/22 16:27, Maxime Ripard wrote:
+>>>> +	if (!of_device_is_available(output)) {
+>>>> +		of_node_put(output);
+>>>> +		drm_info(ddev, "connector%d is not available\n", index);
+>>>> +		return NULL;
+>>>> +	}
+>>>> +
+>>>> +	disp_tims_np = of_get_child_by_name(output, "display-timings");
+>>>> +	if (disp_tims_np) {
+>>>> +		lsdc_get_display_timings_from_dtb(output, &lconn->disp_tim);
+>>>> +		lconn->has_disp_tim = true;
+>>>> +		of_node_put(disp_tims_np);
+>>>> +		drm_info(ddev, "Found display timings provided by connector%d\n", index);
+>>>> +	}
+>>>> +
+>>>> +	connector_type = lsdc_get_connector_type(ddev, output, index);
+>>>> +
+>>>> +	if (output) {
+>>>> +		of_node_put(output);
+>>>> +		output = NULL;
+>>>> +	}
+>>>> +
+>>>> +DT_SKIPED:
+>>>> +
+>>>> +	/* Only create the i2c channel if display timing is not provided */
+>>>> +	if (!lconn->has_disp_tim) {
+>>>> +		const struct lsdc_chip_desc * const desc = ldev->desc;
+>>>> +
+>>>> +		if (desc->have_builtin_i2c)
+>>>> +			lconn->ddc = lsdc_create_i2c_chan(ddev, index);
+>>>> +		else
+>>>> +			lconn->ddc = lsdc_get_i2c_adapter(ddev, index);
+>>> This looks weird: the connector bindings have a property to store the
+>>> i2c controller connected to the DDC lines, so you should use that
+>>> instead.
+>>>
+>> This is not  weird,  ast, mgag200, hibmc do the same thing.
+> And none of them have DT support.
+>
+> Maxime
+
+You are wrong, ast driver have dt support. See ast_detect_config_mode() 
+in drm/ast/ast_main.c
+
+static void ast_detect_config_mode(struct drm_device *dev, u32 *scu_rev)
+{
+     struct device_node *np = dev->dev->of_node;
+     struct ast_private *ast = to_ast_private(dev);
+     struct pci_dev *pdev = to_pci_dev(dev->dev);
+     uint32_t data, jregd0, jregd1;
+
+     /* Defaults */
+     ast->config_mode = ast_use_defaults;
+     *scu_rev = 0xffffffff;
+
+     /* Check if we have device-tree properties */
+     if (np && !of_property_read_u32(np, "aspeed,scu-revision-id",
+                     scu_rev)) {
+         /* We do, disable P2A access */
+         ast->config_mode = ast_use_dt;
+         drm_info(dev, "Using device-tree for configuration\n");
+         return;
+     }
+
+  ....
+
+}
+
