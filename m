@@ -2,155 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1089C4C18DF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 17:39:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3238E4C1903
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 17:49:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242941AbiBWQjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 11:39:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51762 "EHLO
+        id S243016AbiBWQtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 11:49:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242948AbiBWQjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 11:39:07 -0500
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2114.outbound.protection.outlook.com [40.107.215.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8790B91CF;
-        Wed, 23 Feb 2022 08:38:39 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YpIx2G8WKt9iq973VTy+9CHhyTV75mB+2+gsBBKfoGDi3vzM+WrnOYrHG43VeD9sIP+2nLapMmSdYhFlfybhlUVJ/2Yat94LvhUu9mLb8m7Txik0xccmIcfMdKFD6JZqF15KF4JJbGrfH38EB2Vq037TPQRLYwD+2Wg8Wvfv07qYLBOFG17mRFdsGFqj53ZZfr7RbMHumNau7Z62jeguWv09NdArz5qGzUzvG3KOtpeDVsD5OT0sXGa208+xy6hGN4CNT+L0Ec7A3BvbF2Vx60Vk6sBaf+yNJS50TsFDhFuZn5vcLp8o/eomBr2j3Dx+luss+Bp8BfOwYAB0+Pq9pQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L/0gIZG7+YciRgoRA1fMf6PicAE4HT92JknzHSYqlU8=;
- b=E+u/6n4AYoX+Lr/qk7idAKJjk3/zMf7jNtV0JBhF9pCHtzEQjY9DSIFDYt4wwHnBqWcN87cmRmLsckaV/blTX2oUxKf28IfEC4ggPvWipBgM/Xp+t78Nb62T6wO1/lW3b6X9KOzEV+DSj1+5TJ7U8aIbd075JtwoWlYlcguCu1cPJufrOQ49qodF33uTp939X9s0dEkAsqh+DtgsHBV6Sx2T6315Z5URbTew+0I0AprgSSJ13enSl3WNf8uqGDZS1avWlQdgQlCrQMcGZlDSdbwXywaSyw1THbor25KUz4VVYx9i7Uk17Mes/VTONpZ3vU2Qk1LfAlEKeoTdOmk6gA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=quantatw.com; dmarc=pass action=none header.from=quantatw.com;
- dkim=pass header.d=quantatw.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quantacorp.onmicrosoft.com; s=selector2-quantacorp-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L/0gIZG7+YciRgoRA1fMf6PicAE4HT92JknzHSYqlU8=;
- b=vCiaIlETGH5cFJW+OWuP5fbcjfwf58zyVv/uc+tdjh9+DDKxnRMoIjSijG1kGYC+Qgmu0wZheZ8ONOkwKadIiCZCZaEc01je7w/iUlcVh7wDo02cuB84Pe7GpwIuUvlLzOOknMO50o3RE6f4Z3yrJ7v/8S+wVdXd6n9tOJSrjPM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=quantatw.com;
-Received: from HK0PR04MB3282.apcprd04.prod.outlook.com (2603:1096:203:89::17)
- by TY2PR04MB3456.apcprd04.prod.outlook.com (2603:1096:404:9b::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.24; Wed, 23 Feb
- 2022 16:38:33 +0000
-Received: from HK0PR04MB3282.apcprd04.prod.outlook.com
- ([fe80::ec21:c033:761d:3e03]) by HK0PR04MB3282.apcprd04.prod.outlook.com
- ([fe80::ec21:c033:761d:3e03%4]) with mapi id 15.20.4995.027; Wed, 23 Feb 2022
- 16:38:33 +0000
-From:   Potin Lai <potin.lai@quantatw.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
+        with ESMTP id S243002AbiBWQth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 11:49:37 -0500
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF930E4E;
+        Wed, 23 Feb 2022 08:49:07 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 01073FF802;
+        Wed, 23 Feb 2022 16:49:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1645634946;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=xaUb2CD3MY4isvllCC6mNWacyCjvupia9kHICx3QHGA=;
+        b=WMj+HiLMld8KdH1Cakquy9OoT7Ti2J9T9xi2XWITG8ZHQNfPsINGcSL9FrHQMY+NAwrXnM
+        3Sv9H2HeZW33EaqfY3cX0Y3BHG9gFwGo6CF5UG0Vfs2BgMdqZjskQOtST2+B003UadILNa
+        h1EyCDziYyBkdZizUHnadNtktv/G+U8YgwxxdMX8K1LUzxFdrYY3exn2z1BapUIuUZTFIz
+        7cJG2YTlJKqgq1js3tcK3mn/Ip5n356zf6HSWy/cdOB6vha6LS1Cbn3OHkc1FMN3iNQyuK
+        CJy1lyy3GopNEZYQkdQclPSksHopspROIfYSVjyNwpzykHJeQlLBfCWTrjIOnw==
+Date:   Wed, 23 Feb 2022 17:49:02 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        dmaengine <dmaengine@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Potin Lai <potin.lai@quantatw.com>
-Subject: [PATCH 2/2] dt-bindings: hwmon: Add sample averaging property for ADM1275
-Date:   Thu, 24 Feb 2022 00:38:17 +0800
-Message-Id: <20220223163817.30583-3-potin.lai@quantatw.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220223163817.30583-1-potin.lai@quantatw.com>
-References: <20220223163817.30583-1-potin.lai@quantatw.com>
-Content-Type: text/plain
-X-ClientProxiedBy: HK2PR02CA0138.apcprd02.prod.outlook.com
- (2603:1096:202:16::22) To HK0PR04MB3282.apcprd04.prod.outlook.com
- (2603:1096:203:89::17)
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>
+Subject: Re: [PATCH v2 4/8] dma: dmamux: Introduce RZN1 DMA router support
+Message-ID: <20220223174902.3a9b85ea@xps13>
+In-Reply-To: <CAMuHMdWd150q63Nr-=7tn34D3EyiBkAKyuXHm35MM6wci93KZw@mail.gmail.com>
+References: <20220222103437.194779-1-miquel.raynal@bootlin.com>
+        <20220222103437.194779-5-miquel.raynal@bootlin.com>
+        <CAMuHMdWd150q63Nr-=7tn34D3EyiBkAKyuXHm35MM6wci93KZw@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9c81b200-ff5f-4e62-7c9c-08d9f6eaee06
-X-MS-TrafficTypeDiagnostic: TY2PR04MB3456:EE_
-X-Microsoft-Antispam-PRVS: <TY2PR04MB345613662EA41001E92C7F408E3C9@TY2PR04MB3456.apcprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vOa7KJA/iDsPGcRKgXPLCTNrBUSfZEh9dI3MjIbPl5r6DSvMcD7qNxVFLr8FerAmzUJniU8AsouZbLd5hfhyRUVUu9sKBeia68ms97p3QqzSFNtuW7IRfjMpHszjS3Gl/wThuqHLIQ7rkw70bdeQxxZuYBk+xZv3vepqroezZNTLZCHP+vRkJ44MhRWhWyCYhL/O4htX9MQ9BZNtGMdcCj8z5eRFKclaKosEhtN48DhobaOktjytGnJk6174ndJ7u9tKd4IoHzfTyZFmzkX1gYLMa11XLYMsxFZ7T7H0Y/uQbMkidzPJzyNyVQYM1eIz/i8TYtqvLruIdg4qOEumTmIqfPdxt5LlmJ3F/i//QXx9wl6U2MhdAa5pIAG0rXpWyTx0chLJenAam4J9Xk96cE/AjrH8u6JaZcFW4YaCL1WRO2U0j5XWW++9QdYjzD0Pv3JHFbIKB/xlc98KFvJAqDMQhRdmGWEGXDH5iiuQ6HzyPvsEDxIGU/BhI2FwwKz0mNtWOJC8QB/vTTatZtq56TzaYD2yw9m1P/E4vvcqHHV+5XgKZjHJc7OFd8s7Cg+FNpRuY1M7G9dWtIIg7e0pcg0vvjFnFN+8qulhA8pEkSsiWHjagtzwcWUS9hNlFtD4F54AYSW9tQ+vDdH4s2xYEqsF2ZTCoSkqbJvDPg6FSMQ589JG3WFuSW/+zvmtGKDIT0ZTZmxeDXaQT3svVpNbJw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR04MB3282.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(38100700002)(38350700002)(86362001)(52116002)(54906003)(36756003)(6666004)(4326008)(6486002)(2616005)(8676002)(508600001)(5660300002)(26005)(1076003)(4744005)(44832011)(8936002)(186003)(6506007)(316002)(66946007)(66556008)(66476007)(6512007)(110136005)(107886003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?iMAzb2MZmGMpVP9qzgfY55Y8yr+zqdP0rbepvjuEIA1mYJ6jvX0EnmIMKTl8?=
- =?us-ascii?Q?0M1MEwxmx1MCEJpQU5KeRkM3b9ALUGIXAlBfJnLChYmXDEu+54yMI74gPB+X?=
- =?us-ascii?Q?1CbXgnV+p5KSRfo6qRyxK+u/5qvGCdY9EuteRS5S0FWwf+9o9XJ7ABpoCfb2?=
- =?us-ascii?Q?J0ifMagWFBbRRRZEmcm2vKaFIW6wC/33mgRB70TMhby01z08nFFnsKOZ7CUf?=
- =?us-ascii?Q?bjUJlZ6vJvuDXo6/Y5S0owKdnNP7xv7TnNbYN1XBarnBKibJYDxPMJULkG8H?=
- =?us-ascii?Q?KfcSbJuv4rkPcN59xgPLh5hpLxo9s4wMOodyegIe9jBFAuAtdM6zRnUs717K?=
- =?us-ascii?Q?0mJajcImRlFg2tlLdwLvyu8x2lYyw7dE57U7r+cWvdZ9Y3UFVOJkv/pKOoD4?=
- =?us-ascii?Q?l+NOnX9FkCmtZeInp8RUnDqmSK5nWlTUbU7nU1Z3V9gtDYoR8oSzP9XvNcqV?=
- =?us-ascii?Q?c0emzksdQQpgJssoanWC4YJ4pwIJl9EUw1jjfCdQF+LdpOOR1eGOtAQODYQq?=
- =?us-ascii?Q?GxgeVlaX0UOEkyyLgc7kphJWMisggeeX5X3dlsvVFOgr03a/Hwchw6x2f5iT?=
- =?us-ascii?Q?WzIcY+oLn+7rdblvPLi2N4iuQA7DPMr/RjxJVIOqYIr8PJkKlhTcpJzZ06NF?=
- =?us-ascii?Q?G/63C6EpAVDDkFsRRXw8gqN7VW5r8NqeBIJSYlKMRxnZjzikydPX/OqxJAeQ?=
- =?us-ascii?Q?F98jFzFYV3W/3sC1K9KFbsP/Z41yo7duIrSFVKdgNMG02pqXOLXOUf4+Ki5t?=
- =?us-ascii?Q?wCUKI7I/Xupqjrc/gF3GMAFb079MmrXFAP5Ef2+jdlv+6vtdP7u5Sv3Bse16?=
- =?us-ascii?Q?RNhPeaF5nKsDe3DFSIR38nu+5JV4agSAfjXMyXA91EcGzkcn021qLqNg6mpV?=
- =?us-ascii?Q?1I/QR/fTY3Is3dXNTobSQyvN5QWFvexYT4MbwL4OWbmrFmHvwKafPktcGYeM?=
- =?us-ascii?Q?3Kt733GxsQqf1tnTKPNYm+qMuJLsFGgYPWiwYn1Sy2CW5tq8xuh7kmYIV46Z?=
- =?us-ascii?Q?hYcKe4eZuHp4IIVlnYfeKG0+Wok2gzYTqcVVqqUA9pW8vNae/8Z7bhzqGPYk?=
- =?us-ascii?Q?w3kifBjfC2Nrh2BzFrQLz2CGFEBNMRI+BOQ/kTlZjDBDJ7Sny6D9ti7gWFrT?=
- =?us-ascii?Q?GJEf5JOpoFUB65QiKbAY9iCWJD/NyEnK3/61mNNTqOUOOpD5KjUeRn+kjIBs?=
- =?us-ascii?Q?4ipLa6fNzB+jORRsBPQsgI4usN4ArANmjDGntSbZPL5RpcNLHtXxp2SeMmxG?=
- =?us-ascii?Q?LszOngPULLHvwkVSSaVvHTMT4Gbl89leUUOZF40UN29CjEy9QRqaYYBdoasc?=
- =?us-ascii?Q?AvdbtKRpZvItNjO/fzDcbntMmzyjytd7Kq/AUGg4WKGrFDeNxO7KiA7T0/gn?=
- =?us-ascii?Q?rYQIg1G8kTk2RDUR8Fm4tpRFSiFF5ew7Uu8MShviUxBYBuXcNeph1O4sWOdT?=
- =?us-ascii?Q?/C5fVzKJjeC98OmfWrprwwKA1jF2GhPSwAI8/dGQ+BvaQHOZwv/uEFt+zSvt?=
- =?us-ascii?Q?scj7+swShALKsD4HSvlomzEsL48Dov23ubB4QGbojm+h7OKl4twp67hlpoFy?=
- =?us-ascii?Q?QfG6joUtKkx7covOn5kvKVhZjQ/EE93y3MSBdQkdmPmFcttgzwQcduZEfviM?=
- =?us-ascii?Q?uUzCPpLa97pTGIDcMPRm1iw=3D?=
-X-OriginatorOrg: quantatw.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c81b200-ff5f-4e62-7c9c-08d9f6eaee06
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR04MB3282.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2022 16:38:32.7224
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 179b0327-07fc-4973-ac73-8de7313561b2
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vVDod9AcQMn5df/liJak4UAPopvbabrabagVCUvWdJZVyRXgOw5Vd9u2WZ4VsSevMb8d5vXSRY+axL7W4iMt5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR04MB3456
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding information for "pwr-avg" and "vi-avg" properties
+Hi Geert,
 
-Signed-off-by: Potin Lai <potin.lai@quantatw.com>
----
- .../devicetree/bindings/hwmon/adi,adm1275.yaml         | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+geert@linux-m68k.org wrote on Wed, 23 Feb 2022 13:46:11 +0100:
 
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
-index 223393d7cafd..2525a67a880e 100644
---- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
-@@ -37,6 +37,14 @@ properties:
-     description:
-       Shunt resistor value in micro-Ohm.
- 
-+  vi-avg:
-+    description:
-+      Sample averaging for current and voltage.
-+
-+  pwr-avg:
-+    description:
-+      Sample averaging for power.
-+
- required:
-   - compatible
-   - reg
-@@ -53,5 +61,7 @@ examples:
-             compatible = "adi,adm1272";
-             reg = <0x10>;
-             shunt-resistor-micro-ohms = <500>;
-+            vi-avg = <128>;
-+            pwr-avg = <128>;
-         };
-     };
--- 
-2.17.1
+> Hi Miquel,
+>=20
+> On Tue, Feb 22, 2022 at 11:35 AM Miquel Raynal
+> <miquel.raynal@bootlin.com> wrote:
+> > The Renesas RZN1 DMA IP is a based on a DW core, with eg. an additional
+> > dmamux register located in the system control area which can take up to
+> > 32 requests (16 per DMA controller). Each DMA channel can be wired to
+> > two different peripherals.
+> >
+> > We need two additional information from the 'dmas' property: the channel
+> > (bit in the dmamux register) that must be accessed and the value of the
+> > mux for this channel.
+> >
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com> =20
+>=20
+> Thanks for your patch!
+>=20
+> > --- /dev/null
+> > +++ b/drivers/dma/dw/dmamux.c =20
+>=20
+> rzn1-dmamux.c?
 
+Ok.
+
+>=20
+> > @@ -0,0 +1,167 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2022 Schneider-Electric
+> > + * Author: Miquel Raynal <miquel.raynal@bootlin.com
+> > + * Based on TI crossbar driver written by Peter Ujfalusi <peter.ujfalu=
+si@ti.com>
+> > + */
+> > +#include <linux/slab.h>
+> > +#include <linux/err.h>
+> > +#include <linux/init.h>
+> > +#include <linux/list.h>
+> > +#include <linux/io.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/of_dma.h>
+> > +#include <linux/soc/renesas/r9a06g032-sysctrl.h>
+> > +
+> > +#define RZN1_DMAMUX_LINES      64 =20
+>=20
+> Unused. But using it wouldn't hurt, I guess?
+>=20
+> > +static void *rzn1_dmamux_route_allocate(struct of_phandle_args *dma_sp=
+ec,
+> > +                                       struct of_dma *ofdma)
+> > +{
+> > +       struct platform_device *pdev =3D of_find_device_by_node(ofdma->=
+of_node);
+> > +       struct rzn1_dmamux_data *dmamux =3D platform_get_drvdata(pdev);
+> > +       struct rzn1_dmamux_map *map;
+> > +       unsigned int master, chan, val;
+> > +       u32 mask;
+> > +       int ret;
+> > +
+> > +       map =3D kzalloc(sizeof(*map), GFP_KERNEL);
+> > +       if (!map)
+> > +               return ERR_PTR(-ENOMEM);
+> > +
+> > +       if (dma_spec->args_count !=3D 6)
+> > +               return ERR_PTR(-EINVAL);
+> > +
+> > +       chan =3D dma_spec->args[0];
+> > +       map->req_idx =3D dma_spec->args[4];
+> > +       val =3D dma_spec->args[5];
+> > +       dma_spec->args_count -=3D 2;
+> > +
+> > +       if (chan >=3D dmamux->dmac_requests) {
+> > +               dev_err(&pdev->dev, "Invalid DMA request line: %d\n", c=
+han); =20
+>=20
+> %u
+>=20
+> > +               return ERR_PTR(-EINVAL);
+> > +       }
+> > +
+> > +       if (map->req_idx >=3D dmamux->dmamux_requests ||
+> > +           map->req_idx % dmamux->dmac_requests !=3D chan) { =20
+>=20
+> The reliance on .dmac_requests (i.e. "dma-requests" in the parent
+> DMA controller DT node) looks fragile to me.  Currently there are two
+> masters, each providing 16 channels, hence using all 2 x 16 =3D
+> 32 bits in the DMAMUX register.
+> What if a variant used the same mux, and the same 16/16 split, but
+> the parent DMACs don't have all channels available?
+> I think it would be safer to hardcode this as 16 (using a #define, ofc).
+
+That's right, I assumed this was safe but indeed it does not work in
+all cases. I will change the second condition to:
+
+		map->req_idx % <16> !=3D chan
+
+>=20
+> > +               dev_err(&pdev->dev, "Invalid MUX request line: %d\n", m=
+ap->req_idx); =20
+>=20
+> %u
+>=20
+> > +               return ERR_PTR(-EINVAL);
+> > +       }
+> > +
+> > +       /* The of_node_put() will be done in the core for the node */
+> > +       master =3D map->req_idx >=3D dmamux->dmac_requests ? 1 : 0; =20
+>=20
+> The name "master" confused me: initially I thought it was used as a
+> boolean flag, but it really is the index of the parent DMAC.
+
+I personally prefer using true/false for booleans ;) Whatever, the name
+is badly chosen I agree, I'll switch to "dmac_idx" which seems more
+accurate.
+
+>=20
+> > +       dma_spec->np =3D of_parse_phandle(ofdma->of_node, "dma-masters"=
+, master);
+> > +       if (!dma_spec->np) {
+> > +               dev_err(&pdev->dev, "Can't get DMA master\n");
+> > +               return ERR_PTR(-EINVAL);
+> > +       }
+> > +
+> > +       dev_dbg(&pdev->dev, "Mapping DMAMUX request %u to DMAC%u reques=
+t %u\n",
+> > +               map->req_idx, master, chan);
+> > +
+> > +       mask =3D BIT(map->req_idx);
+> > +       mutex_lock(&dmamux->lock);
+> > +       dmamux->used_chans |=3D mask;
+> > +       ret =3D r9a06g032_sysctrl_set_dmamux(mask, val ? mask : 0);
+> > +       mutex_unlock(&dmamux->lock);
+> > +       if (ret) {
+> > +               rzn1_dmamux_free(&pdev->dev, map);
+> > +               return ERR_PTR(ret);
+> > +       }
+> > +
+> > +       return map;
+> > +}
+> > +
+> > +static const struct of_device_id rzn1_dmac_match[] __maybe_unused =3D {
+> > +       { .compatible =3D "renesas,rzn1-dma" },
+> > +       {},
+> > +};
+> > +
+> > +static int rzn1_dmamux_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device_node *mux_node =3D pdev->dev.of_node;
+> > +       const struct of_device_id *match;
+> > +       struct device_node *dmac_node;
+> > +       struct rzn1_dmamux_data *dmamux;
+> > +
+> > +       dmamux =3D devm_kzalloc(&pdev->dev, sizeof(*dmamux), GFP_KERNEL=
+);
+> > +       if (!dmamux)
+> > +               return -ENOMEM;
+> > +
+> > +       mutex_init(&dmamux->lock);
+> > +
+> > +       dmac_node =3D of_parse_phandle(mux_node, "dma-masters", 0);
+> > +       if (!dmac_node)
+> > +               return dev_err_probe(&pdev->dev, -ENODEV, "Can't get DM=
+A master node\n");
+> > +
+> > +       match =3D of_match_node(rzn1_dmac_match, dmac_node);
+> > +       if (!match) {
+> > +               of_node_put(dmac_node);
+> > +               return dev_err_probe(&pdev->dev, -EINVAL, "DMA master i=
+s not supported\n");
+> > +       }
+> > +
+> > +       if (of_property_read_u32(dmac_node, "dma-requests", &dmamux->dm=
+ac_requests)) {
+> > +               of_node_put(dmac_node);
+> > +               return dev_err_probe(&pdev->dev, -EINVAL, "Missing DMAC=
+ requests information\n");
+> > +       }
+> > +
+> > +       of_node_put(dmac_node); =20
+>=20
+> When hardcoding dmac_requests to 16, I guess the whole dmac_node
+> handling can be removed?
+
+Not really, I think the following checks are still valid and fortunate,
+and they need some of_ handling to work properly:
+- verify that the chan requested is within the range of dmac_requests
+  in the _route_allocate() callback
+- ensure the dmamux is wired to a supported DMAC in the DT (this
+  condition might be loosen in the future if needed or dropped entirely
+  if considered useless)
+- I would like to add a check against the number of requests supported
+  by the dmamux and the dmac (not done yet).
+For the record, I've taken inspiration to write these lines on the other
+dma router driver from TI.
+
+Unless, and I know some people think like that, we do not try to
+validate the DT and if the DT is wrong that is none of our business.
+
+>=20
+> > +
+> > +       if (of_property_read_u32(mux_node, "dma-requests", &dmamux->dma=
+mux_requests)) { =20
+>=20
+> Don't obtain from DT, but fix to 32?
+
+I believe the answer to the previous question should give me a clue
+about why you would prefer hardcoding than reading from the DT such
+an information. Perhaps I should mention that all these properties are
+already part of the bindings, and are not specific to the driver, the
+information will be in the DT anyway.
+
+Thanks,
+Miqu=C3=A8l
