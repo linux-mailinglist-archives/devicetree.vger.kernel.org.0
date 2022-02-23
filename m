@@ -2,187 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 741B74C1D28
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:28:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54B224C1D35
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:36:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241129AbiBWU2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 15:28:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56844 "EHLO
+        id S241331AbiBWUgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 15:36:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240361AbiBWU2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:28:44 -0500
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 713214D63E;
-        Wed, 23 Feb 2022 12:28:16 -0800 (PST)
-Received: by mail-io1-xd2f.google.com with SMTP id d62so194014iog.13;
-        Wed, 23 Feb 2022 12:28:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=j3u+xo/IEURdRuin0oiVWN0xAJWJDqfhSkcI9D3SfbI=;
-        b=HbEIXELccuOf0hWVOgXBf/snUQeXov/yYyjP2y/iHQ1N8apQnriYHgb1QiDBCRjucB
-         GFA1t85Aer1wIUGOFXAPvtAmhlxBWB0xgpkk21J9b2dz+QAFk2e2BgDDyz8va5phPiuX
-         wVAgGAEIrYi9HkLGRNr/Ttsc4nCSrxZWRZY9Dijt94m59kJFy1xrgFriprUcxnAQG3Cb
-         DrMoIRMeriV+iic5UYI/Z2rf248LdxDKF+kZ2S4oBD80JEOMH4bP7vZZjJ4jLtvzyCFP
-         f2OBsAsTCoSwAZNuJsxC0cpSLu1A0hCqprC2++26DQ1GD+LHcUx5Z/KvePQwLIdVMnB8
-         PlTQ==
+        with ESMTP id S240361AbiBWUgk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:36:40 -0500
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC1D7457B7;
+        Wed, 23 Feb 2022 12:36:10 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id p12-20020a05683019cc00b005af1442c9e9so8967946otp.13;
+        Wed, 23 Feb 2022 12:36:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=j3u+xo/IEURdRuin0oiVWN0xAJWJDqfhSkcI9D3SfbI=;
-        b=ObNZYI/EwiHubX37TC5I0i78AjaJrk+sZEM6dgh87bA2GPT0ewCmIQY7xdCRZ83J8V
-         zT5Qy3y/tbD/nnOzmHfDMaJ4f8G+eI2ZFn4tYUMJwhXD7qgo/jk6atmcMoYkt/+EVIUN
-         K/YMMRGSmek6eszer0gpsbjGefXnF3ywbdIXh0OUzO0fDllNkHfvCMIKz6Bbg0gmZgMH
-         8k2/EVjISp66E1HpYT+BUExqxWqbqGR689CiWZNr0bezzbJCjerFqvP4NrojkkV8P4tv
-         40Hj6L/7+kEYbuip8J+tXQEMYnm08dpoDxFaVMS6sjpF0z7Lx9Sjfz6mysCGbpWEwmUZ
-         9L0g==
-X-Gm-Message-State: AOAM533cKy2p4V6kuTh74dSTitCeFXNwVGGpT3VO+anTgde9KspgnFUd
-        3VRK614WX58fhGvdvUp+Bybb2Fg7kTz7DedHfGM=
-X-Google-Smtp-Source: ABdhPJxDbCKBFfm9B/Fyen9WfJDQ4/pWumus5ny8gK7Ns5ZEcNWZuqum9MH+JjV6MrvcXvPBGWuuoR+i6zvcIt8dD0c=
-X-Received: by 2002:a05:6638:204d:b0:314:a290:48c with SMTP id
- t13-20020a056638204d00b00314a290048cmr1124167jaj.264.1645648095765; Wed, 23
- Feb 2022 12:28:15 -0800 (PST)
-MIME-Version: 1.0
-References: <4eb7b036-a9b9-3bd2-4e84-f56ba4b1a740@gmail.com> <944317db-b659-cb36-addf-c33623a4ff60@gmail.com>
-In-Reply-To: <944317db-b659-cb36-addf-c33623a4ff60@gmail.com>
-From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date:   Wed, 23 Feb 2022 21:28:04 +0100
-Message-ID: <CANiq72kdeuJhaEUOBAB3uYm9SA4Wm0U5=DNgxFMxiGDacUgaBA@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] auxdisplay: add support for Titanmec TM1628 7
- segment display controller
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=AtS1UhK3oifjJ90VCpSbRXxg8A7dCgkWJ8FEFysGrNE=;
+        b=CBPkKjgroBHtOSYBtixEUBb2xjmn7meWcCZu5FrElZ2RsVCOQ0FuT2IRa+zOw/QOe/
+         a4xpXyYfu9GJf1rnnrLN8nAYPtQwho3U7wZZrXhSMasl+TX2R7HkKEPcVc82LCDJSyvl
+         H1efaC+/IFhVn5+FjtBet3+aRBX0hgBcpMvWZ2XiTKZ4OlUg+U++yvggYOcync/Ms+jB
+         nLu7amStk9UMRp+xYoJOvvsHuJAwXBvED7Jd8k8G4z83KfgefmjcPcj9kN90qZKJryWy
+         S5x/c6fLMNHM9P6QS91FpI9JYAWUqPP46vJWpXYfiFIDKlDRrgvu9RMe0HjD55xnoeDg
+         AFQA==
+X-Gm-Message-State: AOAM5310tEIiZSsFXJfq3j5zq0vmT52iUUqcXyPqTsjKN4JK7M8P8jxM
+        tRh0BIHmB9PnXoHayjEKBRZmCw8sWQ==
+X-Google-Smtp-Source: ABdhPJz3ckJaYRybKmgJJ/q1yQDRwRp85ZQ09OgnYrUvPTy8PaiR7k8K4X4hzPGzUBOutazacMW3fw==
+X-Received: by 2002:a9d:452:0:b0:5a3:8357:f43 with SMTP id 76-20020a9d0452000000b005a383570f43mr524585otc.319.1645648570113;
+        Wed, 23 Feb 2022 12:36:10 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id f16sm355550oae.6.2022.02.23.12.36.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Feb 2022 12:36:09 -0800 (PST)
+Received: (nullmailer pid 1426824 invoked by uid 1000);
+        Wed, 23 Feb 2022 20:36:08 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     devicetree@vger.kernel.org, svarbanov@mm-sol.com,
+        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com,
+        bhelgaas@google.com, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        agross@kernel.org
+In-Reply-To: <20220223192946.473172-3-bhupesh.sharma@linaro.org>
+References: <20220223192946.473172-1-bhupesh.sharma@linaro.org> <20220223192946.473172-3-bhupesh.sharma@linaro.org>
+Subject: Re: [PATCH 2/6] dt-bindings: phy: qcom,qmp: Add SM8150 PCIe PHY bindings
+Date:   Wed, 23 Feb 2022 14:36:08 -0600
+Message-Id: <1645648568.439634.1426821.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 23, 2022 at 7:02 PM Heiner Kallweit <hkallweit1@gmail.com> wrot=
-e:
->
-> Co-Developed-by: Heiner Kallweit <hkallweit1@gmail.com>
+On Thu, 24 Feb 2022 00:59:42 +0530, Bhupesh Sharma wrote:
+> Add the following two PCIe PHYs found on SM8150, to the QMP binding:
+> 
+> QMP GEN3x1 PHY - 1 lane
+> QMP GEN3x2 PHY - 2 lanes
+> 
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-If you (Heiner) are going to be the "From" author, then this line
-should not be here.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-> +         Say Y to enable support for Titan Micro Electronics TM1628
-> +         LED controller.
-> +         It's a 3-wire SPI device controlling a two-dimensional grid of
-> +         LEDs. Dimming is applied to all outputs through an internal PWM=
-.
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-Maybe a newline between paragraphs?
+Full log is available here: https://patchwork.ozlabs.org/patch/1596890
 
-> + * Copyright (c) 2019 Andreas F=C3=A4rber
 
-...here: should there be entries for you (Heiner) too? If not, should
-Andreas be the "From" author?
+phy@1c06000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dt.yaml
 
-This also applies to the `MODULE_AUTHOR`.
+phy@1c07000: '#clock-cells' is a required property
+	arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dt.yaml
 
-Also it may be a good idea to add the emails:
+phy@1c07000: 'lanes@1c06000' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/qcom-sdx55-mtp.dt.yaml
+	arch/arm/boot/dts/qcom-sdx55-t55.dt.yaml
+	arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dt.yaml
 
-    MODULE_AUTHOR("Andreas F=C3=A4rber <afaerber@suse.de>");
-    MODULE_AUTHOR("Heiner Kallweit <hkallweit1@gmail.com>");
+phy@1c0a000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
 
-(You may also want to consider adding an entry on `MAINTAINERS`).
+phy@1c0e000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-crd.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-idp2.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-idp.dt.yaml
 
-> +       u8 cmd =3D TM1628_CMD_DISPLAY_MODE | grid_mode;
+phy@1c0e000: 'lanes@1c0e200' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/qcom/sc7280-crd.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-herobrine.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-idp2.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-idp.dt.yaml
 
-Consider using `const` for some of the variables.
+phy@1c16000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dt.yaml
 
-> +       for (i =3D 0; i < s->grid_size; i++) {
-> +               int pos =3D s->grid[i] - 1;
-> +
-> +               if (i < msg_len) {
+phy@1d87000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
+	arch/arm64/boot/dts/qcom/sa8155p-adp.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8450-qrd.dt.yaml
 
-Consider inverting the condition, doing the set to `0` + `continue;`
-to avoid the indentation.
+phy@1d87000: 'lanes@1d87400', 'vdda-max-microamp', 'vdda-pll-max-microamp' do not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/qcom/sm8450-qrd.dt.yaml
 
-> +       struct tm1628_led *led =3D container_of(led_cdev, struct tm1628_l=
-ed, leddev);
-> +       struct tm1628 *s =3D led->ctrl;
-> +       int offset;
-> +       __le16 bit;
+phy@1d87000: 'vdda-max-microamp', 'vdda-pll-max-microamp' do not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dt.yaml
 
-Style: sometimes the variables are initialized right away using a
-value from above, but other times they are done below.
+phy@1da7000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dt.yaml
 
-> +       if (count > s->grid_size + 1) /* consider trailing newline */
+phy@34000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dt.yaml
 
-Style: sometimes comments are trailing the line, others are above.
-Also, sometimes they start with uppercase, but in other cases they do
-not.
+phy@58000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/ipq8074-hk01.dt.yaml
 
-Also, about the `+ 1`: is it possible that sysfs gives us a buffer
-full of `isprint()`? i.e. is it possible that `grid_size =3D=3D
-MAX_GRID_SIZE` and `count =3D=3D MAX_GRID_SIZE + 1` and then we perform an
-out-of-bounds store to `MAX_GRID_SIZE + 2` in `text`?
+phy@627000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
+	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dt.yaml
 
-> +       ret =3D tm1628_write_data(spi, 0, MAX_GRID_SIZE);
-> +       if (ret)
-> +               return ret;
-> +       /* Assume that subsequent SPI transfers will be ok if first was o=
-k */
+phy@627000: 'vdda-phy-max-microamp', 'vdda-pll-max-microamp', 'vddp-ref-clk-always-on', 'vddp-ref-clk-max-microamp' do not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dt.yaml
 
-If not, is there a consequence? i.e. why wouldn't one check and fail
-similarly in the `tm1628_set_*` calls below?
+phy@7410000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
 
-> +       if (!IS_REACHABLE(CONFIG_LEDS_CLASS))
-> +               goto no_leds;
+phy@78000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/ipq8074-hk01.dt.yaml
 
-What about putting the code in the `if` body (negating the condition)?
+phy@88e9000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dt.yaml
 
-> +       num_leds =3D 0;
+phy@88eb000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
+	arch/arm64/boot/dts/qcom/sa8155p-adp.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-mtp.dt.yaml
 
-This is reusing the variable for a different purpose, no? i.e. if we
-did not get here, we would have no leds, yet we would report the
-number above.
+phy@c010000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-lilac.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dt.yaml
 
-> +       device_for_each_child_node(&spi->dev, child) {
-> +               u32 reg[2];
-> +
-> +               ret =3D fwnode_property_read_u32_array(child, "reg", reg,=
- 2);
-> +               if (ret) {
-> +                       dev_err(&spi->dev, "Reading %s reg property faile=
-d (%d)\n",
-> +                               fwnode_get_name(child), ret);
+phy@ff6000: '#clock-cells' is a required property
+	arch/arm/boot/dts/qcom-sdx55-mtp.dt.yaml
+	arch/arm/boot/dts/qcom-sdx55-t55.dt.yaml
+	arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dt.yaml
 
-Is a failure expected? i.e. this `continue;`s, but should it fail or
-is it OK to proceed?
+phy-wrapper@88e9000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8450-qrd.dt.yaml
 
-> +       for (i =3D 0; i < 7; i++) {
+phy-wrapper@88e9000: 'vdda-phy-supply' is a required property
+	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dt.yaml
 
-Maybe a `#define` for several of the `7`s around?
+phy-wrapper@88e9000: 'vdda-pll-supply' is a required property
+	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dt.yaml
 
-> +static void tm1628_spi_remove(struct spi_device *spi)
+phy-wrapper@88eb000: '#clock-cells' is a required property
+	arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
 
-Doesn't `.remove` return `int`?
+ssphy@78000: 'lane@78200' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
 
-Thanks!
-
-Cheers,
-Miguel
