@@ -2,103 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2C714C134B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 13:55:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76E944C1356
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 13:57:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236367AbiBWMz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 07:55:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48914 "EHLO
+        id S240654AbiBWM5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 07:57:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbiBWMz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 07:55:56 -0500
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A799397B96;
-        Wed, 23 Feb 2022 04:55:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645620928; x=1677156928;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yj1iRZc5qHxepJ/WE4+wHca4wPR0DNIu5U+/2LhzzO8=;
-  b=ZIdWy6F0QB44ZSTQk+SGyAKYq5e4qFXpuRxw7eHOipFMofnNRNC3B9l1
-   SuJHqHR0Fcvy0TRBk1FNyoxrXokvN0NOmDHfHfrosZTplKTGZo/mAkPHL
-   2cIkGF3L0oMohyquZUpviIlB9UngQoA4JYE4a1lyqBowcu6SVXg5fI67j
-   ODYyQOmp8aONVj5bKoUEJnNyjKsKzzShPDH6Zp4ppfOZwLtLV9uVa9yLI
-   r0rwO2IufuF/4X/sm4o5BWFBhj2NRxH13a5E2oD5e2R1eOLbEseDKBohA
-   /j3jqV0J0erFfW9lit2r/l0rD5voi6shX3DHRvub0SjKwv497RanbnRyW
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="315181123"
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; 
-   d="scan'208";a="315181123"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 04:55:03 -0800
-X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; 
-   d="scan'208";a="543305210"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 04:55:00 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id AB5FF2028B;
-        Wed, 23 Feb 2022 14:54:58 +0200 (EET)
-Date:   Wed, 23 Feb 2022 14:54:58 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Michael Tretter <m.tretter@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        p.zabel@pengutronix.de, Ian Arkver <ian.arkver.dev@gmail.com>,
-        kernel@pengutronix.de, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v10 2/2] media: i2c: isl7998x: Add driver for Intersil
- ISL7998x
-Message-ID: <YhYuogHaHuyVPd2C@paasikivi.fi.intel.com>
-References: <20220217154407.2892822-1-m.tretter@pengutronix.de>
- <20220217154407.2892822-3-m.tretter@pengutronix.de>
- <2a2038bc-9f84-c451-deb3-1e807ac2f0d3@xs4all.nl>
- <YhYlnEBAh0QtRXZ0@paasikivi.fi.intel.com>
+        with ESMTP id S240663AbiBWM5h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 07:57:37 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A97B646B
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 04:57:09 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id h125so19842692pgc.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 04:57:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Y7p50x25eNVekjg+ymUsqrkEEJjrygmLcJW+jfWZAL4=;
+        b=hO8KtL8T4lW0iWOfKNJYOgSwDXKQ2KB3KpJKEZEvQhwg0KLrxXK6yXpgWqV4WFOSf/
+         M8SBPEbEW9VOXbbRa1vNA80wMeq+e7FX30FoOtjlyWclj0Eqz1mB6EHH5XWCMVafnhJ/
+         hRe7wV8PAx7uSGxJBGvxc4pTf90yD3nNgO7xBPd/T1vrZy2CFwpPcnOuek84uzQYbD82
+         0+tns0Wgb067H6YDGtrOj/rArns/nnmTbWmrd1NWDHUuUEPZg+7yacwY0etNwWTLweuD
+         nkNaWHAHT9Vp0vo0FvDTnXCeevZmgs0j89+Ln4OM/+jbp0EyVUFUZAs6YELjkyEPsGba
+         mQjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Y7p50x25eNVekjg+ymUsqrkEEJjrygmLcJW+jfWZAL4=;
+        b=SSgx8Y4zhW9K9DlJMzHhtSIRJt9e6HLU+KeTNzP5DYcdgvqE/I2IpfStzYxwTWZ1nz
+         DOmGSsIQJI20Oyela+vcylx7dzdgF7utyxLT1J9fzSRv8r7LpVzr0HtPrDTJo0qNQ0Vb
+         B6X9MlIAypYe9CVQM+Xj1v6h8Qc8FufvBJj4+vBp6RUTgSbnYPW3gnTKw2iqxtT+IqSZ
+         EzPrQE5f6TsD5TAeLed6o4fLIJB5VH5KY2exj/Lhg/e5tNk7pOStnmcHRi57BL9d6llz
+         56FzYEcW3eHnGhndomO9l+thi5HGQsaQ+/PiHHGFVNmeK8GQ2ERw90V7lA86ZsrsZend
+         Q+ag==
+X-Gm-Message-State: AOAM530dqPGlfZTxTf2v3SbER8c4Lnw0dRCab0ZDzMIyxxWOk7hv4+ts
+        YyjhBbtjucWt459f0iWAwca3fw==
+X-Google-Smtp-Source: ABdhPJw3oJNN7uI+1rZGMolJCYaTrvpcScHLNMedFT8pmYEybpvBHt++jzQGrywlVm4DHkTdSX/gEQ==
+X-Received: by 2002:a05:6a00:1743:b0:4e0:c65e:d656 with SMTP id j3-20020a056a00174300b004e0c65ed656mr30187313pfc.5.1645621028776;
+        Wed, 23 Feb 2022 04:57:08 -0800 (PST)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id z23sm22136243pfj.87.2022.02.23.04.57.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Feb 2022 04:57:07 -0800 (PST)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Marc Zyngier <maz@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>
+Cc:     Valentin Schneider <valentin.schneider@arm.com>,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH v6 0/3] Add Qualcomm MPM irqchip driver support
+Date:   Wed, 23 Feb 2022 20:55:33 +0800
+Message-Id: <20220223125536.230224-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YhYlnEBAh0QtRXZ0@paasikivi.fi.intel.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans, Michael,
+It starts from updating cpu_pm to support CPU_LAST_PM_ENTER (and
+CPU_FIRST_PM_EXIT) event, and then adds DT binding and driver support
+for Qualcomm MPM (MSM Power Manager) interrupt controller.
 
-On Wed, Feb 23, 2022 at 02:16:28PM +0200, Sakari Ailus wrote:
-> > > +static int isl7998x_pre_streamon(struct v4l2_subdev *sd, u32 flags)
-> > > +{
-> > > +	struct i2c_client *client = v4l2_get_subdevdata(sd);
-> > > +	struct device *dev = &client->dev;
-> > > +
-> > > +	if (flags & V4L2_SUBDEV_PRE_STREAMON_FL_MANUAL_LP)
-> > > +		return pm_runtime_resume_and_get(dev);
-> > > +
-> > > +	return 0;
-> > 
-> > This feels a bit scary: if V4L2_SUBDEV_PRE_STREAMON_FL_MANUAL_LP is NOT
-> > set, then pm_runtime_resume_and_get() isn't called, but this function
-> > still returns success...
-> 
-> Good find.
-> 
-> pm_runtime_resume_and_get() need to be called unconditionally.
-> 
-> Alternatively, store what was done here, and put the PM use count
-> accordingly below. But I see no reason to do that.
+Changes for v6:
+- Add new event CPU_LAST_PM_ENTER (and CPU_FIRST_PM_EXIT) in cpu_pm
+- Drop vendor driver notes from commit log
+- Check NULL mpm_gic_map instead to save the use of MPM_NO_PARENT_IRQ
+- Add lock protection for register read in qcom_mpm_handler()
+- Return IRQ_NONE if there is no pending interrupt
+- Drop IRQF_TRIGGER_RISING flag from devm_request_irq() call since it's
+  being specified in DT
+- Drop dev_set_drvdata() call which is a leftover from previous version
+- Fix dt_binding_check errors reported by upgraded dtschema
 
-But I think the driver is otherwise good to go.
+Changes for v5:
+- Drop inline attributes and let compiler to decide
+- Use _irqsave/_irqrestore flavour for spin lock
+- Assignment on a single for irq_resolve_mapping() call
+- Add documentation to explain vMPM ownership transition
+- Move MPM pin map data into device tree and so use a generic compatible
+- Drop the code that counts CPUs in PM and use CPU_CLUSTER_PM_ENTER
+  notification instead
 
-Unless there are objections, I'll drop the check in the pre_streamon()
-callback and apply it into my tree.
+Changes for v4:
+- Add the missing include of <linux/interrupt.h> to fix build errors
+  on arm architecture.
+- Leave IRQCHIP_PLATFORM_DRIVER infrastructural unchanged, and use
+  of_find_device_by_node() to get platform_device pointer.
+
+Changes for v3:
+- Support module build
+- Use relaxed accessors
+- Add barrier call to ensure MMIO write completes
+- Use d->chip_data to pass driver private data
+- Use raw spinlock
+- USe BIT() for bit shift
+- Create a single irq domain to cover both types of MPM pins
+- Call irq_resolve_mapping() to find out Linux irq number
+- Save the use of ternary conditional operator and use switch/case for
+  .irq_set_type call
+- Drop unnecessary .irq_disable hook
+- Align qcom_mpm_chip and qcom_mpm_ops members vertically
+- Use helper irq_domain_translate_twocell()
+- Move mailbox requesting forward in probe function
+- Improve the documentation on qcm2290_gic_pins[]
+- Use IRQCHIP_PLATFORM_DRIVER infrastructural
+- Use cpu_pm notifier instead of .suspend_late hook to write MPM for
+  sleep, so that MPM can be set up for both suspend and idle context.
+  The TIMER0/1 setup is currently omitted for idle use case though,
+  as I haven't been able to successfully test the idle context.
+
+Shawn Guo (3):
+  PM: cpu: Add CPU_LAST_PM_ENTER and CPU_FIRST_PM_EXIT support
+  dt-bindings: interrupt-controller: Add Qualcomm MPM support
+  irqchip: Add Qualcomm MPM controller driver
+
+ .../interrupt-controller/qcom,mpm.yaml        |  96 ++++
+ drivers/irqchip/Kconfig                       |   8 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/qcom-mpm.c                    | 439 ++++++++++++++++++
+ include/linux/cpu_pm.h                        |  15 +
+ kernel/cpu_pm.c                               |  33 +-
+ 6 files changed, 590 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml
+ create mode 100644 drivers/irqchip/qcom-mpm.c
 
 -- 
-Kind regards,
+2.25.1
 
-Sakari Ailus
