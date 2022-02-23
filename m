@@ -2,58 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BB3E4C182B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 17:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 861E04C184D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 17:15:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242618AbiBWQJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 11:09:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37646 "EHLO
+        id S242669AbiBWQP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 11:15:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242617AbiBWQJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 11:09:01 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C51B7173;
-        Wed, 23 Feb 2022 08:08:33 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id x193so18861862oix.0;
-        Wed, 23 Feb 2022 08:08:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=VlLFX4EqJjMes8RQHVfh/XZ71GjRDL6L1TFesEM7wzE=;
-        b=U9Iq+jpKmAgE6T1X8+9vDb6hjAy3KHE9oilTJfE1alCPZJKvsKb9/yXmNAqp61hoDt
-         FPOxhqrrIKVz+0aQ6Xh+9hkUedbWmjhmlbFuVVLBVen406wUB/9ye7vQPRy/mtnKhTRW
-         c7eb72DtKfyWRnYquwUSybtboPOkGFjxx5ycJg3R2pYYUx5BhMxnXJVWfzZQ0VsTxPfa
-         9gyg9bOb98mii7sKjLnWr3FEutNpNeBAZ25xmaNXpnBa/fxbcLeBk/NTC3WwiFXcXMCd
-         Q0jKJuRtBoNwqEsaXzfLSz+tMYoS1C8o9Wfh55RHvIFaXIjo95zVvihyOzEvP3KyuZd4
-         JyJg==
-X-Gm-Message-State: AOAM533h/37sj60twFQTPXYO4bWbXX13Sb/JQfbSc3Cgl/D6BCBRqn62
-        zZOVTWwD5L9vxgDnlIlaqw==
-X-Google-Smtp-Source: ABdhPJwJKDQ6JefrLm3QtPQRxB642eYP2C3FBUp8cNjO1ona+VQ8wvG7WgEvKHU/GtcuAWfkCx9uoA==
-X-Received: by 2002:a05:6808:2101:b0:2d4:2b3a:9acb with SMTP id r1-20020a056808210100b002d42b3a9acbmr4960666oiw.231.1645632513102;
-        Wed, 23 Feb 2022 08:08:33 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bc16sm10542255oib.26.2022.02.23.08.08.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Feb 2022 08:08:32 -0800 (PST)
-Received: (nullmailer pid 1021548 invoked by uid 1000);
-        Wed, 23 Feb 2022 16:08:31 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-phy@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>
-In-Reply-To: <20220223044213.3776600-1-bjorn.andersson@linaro.org>
-References: <20220223044213.3776600-1-bjorn.andersson@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp: add sc8180x and sc8280xp ufs compatibles
-Date:   Wed, 23 Feb 2022 10:08:31 -0600
-Message-Id: <1645632511.468790.1021547.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S242670AbiBWQP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 11:15:57 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB81DC4E0B;
+        Wed, 23 Feb 2022 08:15:28 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 4B6071F448A0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645632927;
+        bh=uLwakwP+7QKWR8eipFTI5+MziZSsq1n0V6y5bky0dvQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h6zrFVPJcIENISvUjbXHuF7gKBP62jAgL+effeVsGwYOpsdezSb7QRZjZ797ouJP/
+         6HI9BYeoiHlyaQ671tzSITXcM47cStd2R7vwp7sOIbBAM8IYyY6QiqYVa539q0FAez
+         V7w9irMFCiolbqvs1p4s7LEz/hUV5EA8sSTBjM8Gy2BAIZA5n2FrlqFDQd6ilRqZgD
+         LQfNAi81d6QEofNqYsRAnvkLXBNZGbXgiKiCkTtLQVXL4eUVUwhKU+YV0ULIc5Siy/
+         CUpgnjYOKT//3K0EfX/ZC1eulWw+WvksKLaCXnRfBFZRyECXQVeHyfaa/5WUnEK+Am
+         LFPZEhN8AIsdQ==
+Date:   Wed, 23 Feb 2022 11:15:22 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Robert Foss <robert.foss@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
+Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3] arm64: dts: mt8183: jacuzzi: Fix bus properties in
+ anx's DSI endpoint
+Message-ID: <20220223161522.522ps5jmwizpgqij@notapiano>
+References: <20220214200507.2500693-1-nfraprado@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220214200507.2500693-1-nfraprado@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,75 +55,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Feb 2022 20:42:12 -0800, Bjorn Andersson wrote:
-> Add compatible for the UFS PHY found in the Qualcomm SC8280XP platform
-> and document the required clocks for this and the SC8180X UFS PHY.
+Gentle ping for this patch :). It's an important fix to get the display working
+again on mt8183-kukui-jacuzzi, and also one of the requirements for us to get
+IGT running on that platform in KernelCI :).
+
+Thanks,
+Nícolas
+
+On Mon, Feb 14, 2022 at 03:05:07PM -0500, Nícolas F. R. A. Prado wrote:
+> mt8183-kukui-jacuzzi has an anx7625 bridge connected to the output of
+> its DSI host. However, after commit fd0310b6fe7d ("drm/bridge: anx7625:
+> add MIPI DPI input feature"), a bus-type property started being required
+> in the endpoint node by the driver to indicate whether it is DSI or DPI.
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Add the missing bus-type property and set it to 5
+> (V4L2_FWNODE_BUS_TYPE_PARALLEL) so that the driver has its input
+> configured to DSI and the display pipeline can probe correctly.
+> 
+> While at it, also set the data-lanes property that was also introduced
+> in that same commit, so that we don't rely on the default value.
+> 
+> Fixes: fd0310b6fe7d ("drm/bridge: anx7625: add MIPI DPI input feature")
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
 > ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> v2: https://lore.kernel.org/all/20220201174643.843102-1-nfraprado@collabora.com
+> v1: https://lore.kernel.org/all/20220120224204.773117-1-nfraprado@collabora.com
 > 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml:284:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
-
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/phy/qcom,qmp-phy.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 46, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 850, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 852, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a plain scalar
-  in "<unicode string>", line 283, column 17
-found a tab character that violates indentation
-  in "<unicode string>", line 284, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/phy/qcom,qmp-phy.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml:  while scanning a plain scalar
-  in "<unicode string>", line 283, column 17
-found a tab character that violates indentation
-  in "<unicode string>", line 284, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml: ignoring, error parsing file
-make: *** [Makefile:1398: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1596499
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> Changes in v3:
+> - Added missing Reviewed-by
+> 
+> Changes in v2:
+> - (thanks Rob) Use proper format when refering to commit in commit
+>   message as pointed out by checkpatch
+> 
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> index 8f7bf33f607d..e8f133dc96b9 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> @@ -171,6 +171,8 @@ port@0 {
+>  
+>  			anx7625_in: endpoint {
+>  				remote-endpoint = <&dsi_out>;
+> +				bus-type = <5>;
+> +				data-lanes = <0 1 2 3>;
+>  			};
+>  		};
+>  
+> -- 
+> 2.35.1
+> 
+> 
+> -- 
+> To unsubscribe, send mail to kernel-unsubscribe@lists.collabora.co.uk.
