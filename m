@@ -2,72 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A98604C0F95
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 10:52:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B23704C0FB3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 10:59:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239416AbiBWJwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 04:52:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45730 "EHLO
+        id S232969AbiBWJ72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 04:59:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231612AbiBWJwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 04:52:34 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35CCA4DF6D
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 01:52:06 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id c18-20020a7bc852000000b003806ce86c6dso1129631wml.5
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 01:52:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YoIQETZNiNSTyr2BJ/2MHgHvWpDqddGsgRS7MhKf4to=;
-        b=E1M7o8rwgCxNFCW+d1Fjey13k8AXpaMRSRO2rr+CGOB4RDAiwg7OIGbLritYaQ1Jpr
-         jZp5dSg9SN5BlP97kcEodaI2O02XznEbtiwOfyP1Fko9gRz91yA57C9IkvkniH9nZXyx
-         Abfvy6Q+ML+wzxYdtjjxiPvCgrfMe+uHuKttW8Ga1MB46oj3JUnrdLxmEMBI7t4J0ERn
-         Ly0ShQUw/0NuBfKG6v7jGch49L2S4Vq4+hVNVHSN4tTClRzamqNfa4xPakiacFxeu1s7
-         nGRi8BRwwlVbXU08PJBURMBfG8lHQ/m3PzXHDT2Vl6CqOMOivRrRLHDUdHX9+ZoeTXLU
-         7SDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YoIQETZNiNSTyr2BJ/2MHgHvWpDqddGsgRS7MhKf4to=;
-        b=f9SvBI4gwmeWyl2dKPZ30QcH7a2KduJK4vAohEDXlfnZgLRU3h34Wvcg2PEVQMGHn9
-         baaLlDjqsLGs+6NctZqREeCvHy5xPlrpmb9Cd5tArskVDvJNmsy2vqXqqr4TOh+4Gqu+
-         8x2HakJt8OC2NCDBaZZsScvYvpNt8pc8EMq5uB3ekrQX9Q+uMFHcpQ7jzeGePSF1Z8w0
-         nH63IhbTL8uoty6V4YOlQIz0DNVisz0xDZO+rrwMrPbKLCf8Ux/F6y3HMLEE6LAN4clE
-         CS/PTSS8NnaQiJfvS0T8vkuyoDa4Bf8RQFYCd5ScJe3Va5Y0mZboV+jQ2k5+uqlizHH/
-         2avQ==
-X-Gm-Message-State: AOAM531pg9X7WX6TFlODK4K9jTdPUwPKePl9M1SLSYwWTEXXjkKfgJ8D
-        LzLdkltJpQoFQhcsmwkjXwwyIQ==
-X-Google-Smtp-Source: ABdhPJy0VwwoooQfHbLqKpCv7uw1B7GMQRDRAJ2YXzL1EGhdNZBt8xLaWqe3gjc5/40/LXVwaMifeQ==
-X-Received: by 2002:a05:600c:6c5:b0:380:dda2:d562 with SMTP id b5-20020a05600c06c500b00380dda2d562mr5293043wmn.138.1645609924666;
-        Wed, 23 Feb 2022 01:52:04 -0800 (PST)
-Received: from ?IPV6:2a01:e34:ed2f:f020:7f69:edd5:61dd:b18a? ([2a01:e34:ed2f:f020:7f69:edd5:61dd:b18a])
-        by smtp.googlemail.com with ESMTPSA id e3sm1510091wrw.41.2022.02.23.01.52.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 01:52:04 -0800 (PST)
-Message-ID: <467a7de4-df84-8e9e-a26a-80449ca55950@linaro.org>
-Date:   Wed, 23 Feb 2022 10:52:02 +0100
+        with ESMTP id S231278AbiBWJ71 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 04:59:27 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150B93F8BF;
+        Wed, 23 Feb 2022 01:58:58 -0800 (PST)
+X-UUID: b71f42d1d9fd470794ced5a621dc1fc7-20220223
+X-UUID: b71f42d1d9fd470794ced5a621dc1fc7-20220223
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <johnson.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 937428488; Wed, 23 Feb 2022 17:58:55 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 23 Feb 2022 17:58:53 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 23 Feb
+ 2022 17:58:53 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 23 Feb 2022 17:58:53 +0800
+Message-ID: <d12511c6d1ae317b317229fc78df818840153853.camel@mediatek.com>
+Subject: Re: [PATCH 2/4] regulator: mt6366: Add support for MT6366 regulator
+From:   Johnson Wang <johnson.wang@mediatek.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 23 Feb 2022 17:58:53 +0800
+In-Reply-To: <Ydbno0JM8YP9NhNh@sirena.org.uk>
+References: <20220106065407.16036-1-johnson.wang@mediatek.com>
+         <20220106065407.16036-3-johnson.wang@mediatek.com>
+         <Ydbno0JM8YP9NhNh@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 0/2] Introduce 'advanced' Energy Model in DT
-Content-Language: en-US
-To:     Lukasz Luba <lukasz.luba@arm.com>, linux-kernel@vger.kernel.org
-Cc:     dietmar.eggemann@arm.com, viresh.kumar@linaro.org,
-        rafael@kernel.org, nm@ti.com, sboyd@kernel.org, mka@chromium.org,
-        dianders@chromium.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20220222140746.12293-1-lukasz.luba@arm.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20220222140746.12293-1-lukasz.luba@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,66 +59,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Lukasz,
-
-why not extend the energy model to any kind of devices?
-
-The changes are shyly proposing a new entry in the OPP table like that 
-is the only place where power management can happen.
-
-Is the approach to describe by small pieces here and there, specific 
-attributes and let the kernel create an energy model from that soap?
-
-I prefer the RFC approach where the energy model is described clearly 
-but, IMHO, it should be more abstracted, without reference to frequency 
-or whatever but index <-> power (t-uple or equation)
-
-By this way, it could be possible to describe the battery with the 
-different charges, the LCD bright light, etc ...
-
-
-On 22/02/2022 15:07, Lukasz Luba wrote:
-> Hi all,
+On Thu, 2022-01-06 at 12:59 +0000, Mark Brown wrote:
+> On Thu, Jan 06, 2022 at 02:54:05PM +0800, Johnson Wang wrote:
+> > The MT6366 is a regulator found on boards based on MediaTek MT8186
+> > and
+> > probably other SoCs. It is a so called pmic and connects as a slave
+> > to
+> > SoC using SPI, wrapped inside the pmic-wrapper.
 > 
-> This patch set solves a few issues:
-> 1. It allows to register EM from DT, when the voltage information is not
->     available. (Some background of the issues present on Chromebook devices
->     can be checked at [1].)
-> 2. It allows to register 'advanced' EM from the DT, which is more accurate
->     and reflects total power (dynamic + static).
-> 
-> Implementation details:
-> It adds a new callback in OPP framework to parse the OPP node entry and
-> read the "opp-microwatt". It's going to only work with OPP-v2, but it's
-> agreed to be OK.
-> 
-> Comments, suggestions are very welcome.
-> 
-> changelog:
-> v2:
-> - implemented Viresh idea to add "opp-microwatt" into the OPP node entry in DT
-> v1 [2]
-> 
-> Regards,
-> Lukasz Luba
-> 
-> [1] https://lore.kernel.org/linux-pm/20220207073036.14901-2-lukasz.luba@arm.com/
-> [2] https://lore.kernel.org/linux-pm/20220221225131.15836-1-lukasz.luba@arm.com/
-> 
-> Lukasz Luba (2):
->    dt-bindings: opp: Add 'opp-microwatt' entry in the OPP
->    OPP: Add 'opp-microwatt' parsing for advanced EM registration
-> 
->   .../devicetree/bindings/opp/opp-v2-base.yaml  |  7 ++
->   drivers/opp/of.c                              | 70 +++++++++++++++++++
->   2 files changed, 77 insertions(+)
-> 
+> Reviwed-by: Mark Brown <broonie@kernel.org>
 
+Hi Mark,
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Thank you for review.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Do these regulator patches need some improvement?
+If yes, please give me your advices.
+
+Otherwise, is it possible to apply these patches in the future?
+
+Thanks.
+
+BRs,
+Johnson Wang 
+
