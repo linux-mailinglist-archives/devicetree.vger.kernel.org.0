@@ -2,209 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FA594C1D1F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:26:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 741B74C1D28
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:28:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241199AbiBWU1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 15:27:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
+        id S241129AbiBWU2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 15:28:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241166AbiBWU1B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:27:01 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1427A4D632
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 12:26:30 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id p184-20020a1c29c1000000b0037f76d8b484so28124wmp.5
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 12:26:30 -0800 (PST)
+        with ESMTP id S240361AbiBWU2o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:28:44 -0500
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 713214D63E;
+        Wed, 23 Feb 2022 12:28:16 -0800 (PST)
+Received: by mail-io1-xd2f.google.com with SMTP id d62so194014iog.13;
+        Wed, 23 Feb 2022 12:28:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=sJPlOaClwDYorktbDkd9+wDzEANKDnxO5CFuBVYHXe8=;
-        b=BEEfhcPqiI+WT+Dpz7WzsUiLQTWWnMGmqoexEhw593Y8ZxjjKAZ7ao2qeB0VJZJh6k
-         yBSGlRqkEIG8RCxnec2/BV4zUIEGx0OF8Z0I0bfqTwNgOa8x2ncKzuh104dOuGOtZ1lS
-         Pl/HqYC6zKa9tsnnoJscfu/xMTAhahGI5qwNHxSmIynWSvlwR86mIWhHPYc3H0lbSp+i
-         UFJZV0nEkO21ekUFWgd1zv3VMvxZCBmYVbVBhy9itkQQJOjFmaPzXJ+ryFjhgtMhYpFO
-         ytEG9yc9J0dhY3k/Wlf+8huRfPo9Ivl7hXHsdB3UaPNiuB4LmsG/qt6jMKj3PfSqG7TA
-         vWog==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=j3u+xo/IEURdRuin0oiVWN0xAJWJDqfhSkcI9D3SfbI=;
+        b=HbEIXELccuOf0hWVOgXBf/snUQeXov/yYyjP2y/iHQ1N8apQnriYHgb1QiDBCRjucB
+         GFA1t85Aer1wIUGOFXAPvtAmhlxBWB0xgpkk21J9b2dz+QAFk2e2BgDDyz8va5phPiuX
+         wVAgGAEIrYi9HkLGRNr/Ttsc4nCSrxZWRZY9Dijt94m59kJFy1xrgFriprUcxnAQG3Cb
+         DrMoIRMeriV+iic5UYI/Z2rf248LdxDKF+kZ2S4oBD80JEOMH4bP7vZZjJ4jLtvzyCFP
+         f2OBsAsTCoSwAZNuJsxC0cpSLu1A0hCqprC2++26DQ1GD+LHcUx5Z/KvePQwLIdVMnB8
+         PlTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=sJPlOaClwDYorktbDkd9+wDzEANKDnxO5CFuBVYHXe8=;
-        b=IQFlLNI+FALxSPcPESMBU72hzISBwuSFp66JofN8TKQY+gJbpEUktsRVjPNcVsjsR8
-         IwRN17KyTNzSQxshpTjzqnvkXdyW+Ou7hTA9VdwarDqk9rw+mPqDZLm8rvza9wmtB0cw
-         bJWRS8Vhil3pwPDHJb8MtrUB3mFTDO9GKpmpRHIjLFJ8VB0g0gyPmd3uCvmwuM2wMMTP
-         1rKJYCbE07+qYur66SkRPpRfTA1zFbg8mxjwJATSOw41W74QH1SWmtH7k5Lv99qTx3kr
-         0m/w4LQFy/dI797Wl1y+7Vi0cKE6MmDo+aHO0Py2jg7kmG/yd5ROxuNWVb6XxsZ6sCby
-         wBAw==
-X-Gm-Message-State: AOAM533jxaw5W7rhz+PIRdxUIXY+Izom5Mca1b4+D1Kx5ubiBwbppHpE
-        3rnO8tkiGaiDx5XXqh9RXq7XWw==
-X-Google-Smtp-Source: ABdhPJwe3rIUpO4EQyWFQvq2poGfUjKuImrMQv+GNJQxf6u9vnwiDVZXhTabIndzGbOLOUpAfeVMzA==
-X-Received: by 2002:a05:600c:4fd6:b0:352:c2c6:8f34 with SMTP id o22-20020a05600c4fd600b00352c2c68f34mr9133943wmq.186.1645647988449;
-        Wed, 23 Feb 2022 12:26:28 -0800 (PST)
-Received: from [192.168.2.116] ([109.76.226.172])
-        by smtp.gmail.com with ESMTPSA id e3sm466620wrr.94.2022.02.23.12.26.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 12:26:27 -0800 (PST)
-Message-ID: <08bed815-5f34-634f-df6d-7c7371c33033@conchuod.ie>
-Date:   Wed, 23 Feb 2022 20:26:26 +0000
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=j3u+xo/IEURdRuin0oiVWN0xAJWJDqfhSkcI9D3SfbI=;
+        b=ObNZYI/EwiHubX37TC5I0i78AjaJrk+sZEM6dgh87bA2GPT0ewCmIQY7xdCRZ83J8V
+         zT5Qy3y/tbD/nnOzmHfDMaJ4f8G+eI2ZFn4tYUMJwhXD7qgo/jk6atmcMoYkt/+EVIUN
+         K/YMMRGSmek6eszer0gpsbjGefXnF3ywbdIXh0OUzO0fDllNkHfvCMIKz6Bbg0gmZgMH
+         8k2/EVjISp66E1HpYT+BUExqxWqbqGR689CiWZNr0bezzbJCjerFqvP4NrojkkV8P4tv
+         40Hj6L/7+kEYbuip8J+tXQEMYnm08dpoDxFaVMS6sjpF0z7Lx9Sjfz6mysCGbpWEwmUZ
+         9L0g==
+X-Gm-Message-State: AOAM533cKy2p4V6kuTh74dSTitCeFXNwVGGpT3VO+anTgde9KspgnFUd
+        3VRK614WX58fhGvdvUp+Bybb2Fg7kTz7DedHfGM=
+X-Google-Smtp-Source: ABdhPJxDbCKBFfm9B/Fyen9WfJDQ4/pWumus5ny8gK7Ns5ZEcNWZuqum9MH+JjV6MrvcXvPBGWuuoR+i6zvcIt8dD0c=
+X-Received: by 2002:a05:6638:204d:b0:314:a290:48c with SMTP id
+ t13-20020a056638204d00b00314a290048cmr1124167jaj.264.1645648095765; Wed, 23
+ Feb 2022 12:28:15 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v7 03/11] dt-bindings: rtc: add bindings for microchip
- mpfs rtc
-Content-Language: en-US
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Conor.Dooley@microchip.com
-Cc:     a.zummo@towertech.it, Lewis.Hanly@microchip.com,
-        Daire.McNamara@microchip.com, Ivan.Griffin@microchip.com,
-        atishp@rivosinc.com, palmer@rivosinc.com, robh@kernel.org,
-        linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, geert@linux-m68k.org,
-        krzysztof.kozlowski@canonical.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20220214135840.168236-1-conor.dooley@microchip.com>
- <20220214135840.168236-4-conor.dooley@microchip.com>
- <5b0681a0-ff46-7eb4-3644-0d1173c1f0d4@microchip.com>
- <YhZQRqHib2+GR7Ma@piout.net>
- <3483b6c4-67a7-5ed5-2953-728ea8ba5874@microchip.com>
- <YhaXJofTTTgaoEsn@piout.net>
-From:   Conor Dooley <mail@conchuod.ie>
-In-Reply-To: <YhaXJofTTTgaoEsn@piout.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <4eb7b036-a9b9-3bd2-4e84-f56ba4b1a740@gmail.com> <944317db-b659-cb36-addf-c33623a4ff60@gmail.com>
+In-Reply-To: <944317db-b659-cb36-addf-c33623a4ff60@gmail.com>
+From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date:   Wed, 23 Feb 2022 21:28:04 +0100
+Message-ID: <CANiq72kdeuJhaEUOBAB3uYm9SA4Wm0U5=DNgxFMxiGDacUgaBA@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] auxdisplay: add support for Titanmec TM1628 7
+ segment display controller
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/02/2022 20:20, Alexandre Belloni wrote:
-> On 23/02/2022 15:25:00+0000, Conor.Dooley@microchip.com wrote:
->> On 23/02/2022 15:18, Alexandre Belloni wrote:
->>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>
->>> On 23/02/2022 07:41:27+0000, Conor.Dooley@microchip.com wrote:
->>>> Hi Alessandro, Alexandre,
->>>> If one of you could take a look at this, that'd be great.
->>>
->>> I actually expected someone else to apply this, what is your plan?
->>
->> I was going to ask Palmer to take the series via riscv. Since I have
->> Rob's R-b, I was just looking for a subsystem maintainer ack/R-b before
->> actually asking him.
->>
-> 
-> Rob's review is enough for a DT binding, no need to wait for me. but
-> FWIW:
-> 
-> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+On Wed, Feb 23, 2022 at 7:02 PM Heiner Kallweit <hkallweit1@gmail.com> wrot=
+e:
+>
+> Co-Developed-by: Heiner Kallweit <hkallweit1@gmail.com>
 
-Great, thanks.
-> 
-> 
->> Thanks,
->> Conor.
->>
->>>
->>>> Thanks,
->>>> Conor.
->>>>
->>>> On 14/02/2022 13:58, conor.dooley@microchip.com wrote:
->>>>> From: Conor Dooley <conor.dooley@microchip.com>
->>>>>
->>>>> Add device tree bindings for the real time clock on
->>>>> the Microchip PolarFire SoC.
->>>>>
->>>>> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
->>>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->>>>> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
->>>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>>> ---
->>>>>     .../bindings/rtc/microchip,mfps-rtc.yaml      | 58 +++++++++++++++++++
->>>>>     1 file changed, 58 insertions(+)
->>>>>     create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..a2e984ea3553
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
->>>>> @@ -0,0 +1,58 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/rtc/microchip,mfps-rtc.yaml#
->>>>> +
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Microchip PolarFire Soc (MPFS) RTC Device Tree Bindings
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: rtc.yaml#
->>>>> +
->>>>> +maintainers:
->>>>> +  - Daire McNamara <daire.mcnamara@microchip.com>
->>>>> +  - Lewis Hanly <lewis.hanly@microchip.com>
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - microchip,mpfs-rtc
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  interrupts:
->>>>> +    items:
->>>>> +      - description: |
->>>>> +          RTC_WAKEUP interrupt
->>>>> +      - description: |
->>>>> +          RTC_MATCH, asserted when the content of the Alarm register is equal
->>>>> +          to that of the RTC's count register.
->>>>> +
->>>>> +  clocks:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  clock-names:
->>>>> +    items:
->>>>> +      - const: rtc
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>> +  - interrupts
->>>>> +  - clocks
->>>>> +  - clock-names
->>>>> +
->>>>> +additionalProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    rtc@20124000 {
->>>>> +        compatible = "microchip,mpfs-rtc";
->>>>> +        reg = <0x20124000 0x1000>;
->>>>> +        clocks = <&clkcfg 21>;
->>>>> +        clock-names = "rtc";
->>>>> +        interrupts = <80>, <81>;
->>>>> +    };
->>>>> +...
->>>>
->>>
->>> --
->>> Alexandre Belloni, co-owner and COO, Bootlin
->>> Embedded Linux and Kernel engineering
->>> https://bootlin.com
->>
-> 
+If you (Heiner) are going to be the "From" author, then this line
+should not be here.
+
+> +         Say Y to enable support for Titan Micro Electronics TM1628
+> +         LED controller.
+> +         It's a 3-wire SPI device controlling a two-dimensional grid of
+> +         LEDs. Dimming is applied to all outputs through an internal PWM=
+.
+
+Maybe a newline between paragraphs?
+
+> + * Copyright (c) 2019 Andreas F=C3=A4rber
+
+...here: should there be entries for you (Heiner) too? If not, should
+Andreas be the "From" author?
+
+This also applies to the `MODULE_AUTHOR`.
+
+Also it may be a good idea to add the emails:
+
+    MODULE_AUTHOR("Andreas F=C3=A4rber <afaerber@suse.de>");
+    MODULE_AUTHOR("Heiner Kallweit <hkallweit1@gmail.com>");
+
+(You may also want to consider adding an entry on `MAINTAINERS`).
+
+> +       u8 cmd =3D TM1628_CMD_DISPLAY_MODE | grid_mode;
+
+Consider using `const` for some of the variables.
+
+> +       for (i =3D 0; i < s->grid_size; i++) {
+> +               int pos =3D s->grid[i] - 1;
+> +
+> +               if (i < msg_len) {
+
+Consider inverting the condition, doing the set to `0` + `continue;`
+to avoid the indentation.
+
+> +       struct tm1628_led *led =3D container_of(led_cdev, struct tm1628_l=
+ed, leddev);
+> +       struct tm1628 *s =3D led->ctrl;
+> +       int offset;
+> +       __le16 bit;
+
+Style: sometimes the variables are initialized right away using a
+value from above, but other times they are done below.
+
+> +       if (count > s->grid_size + 1) /* consider trailing newline */
+
+Style: sometimes comments are trailing the line, others are above.
+Also, sometimes they start with uppercase, but in other cases they do
+not.
+
+Also, about the `+ 1`: is it possible that sysfs gives us a buffer
+full of `isprint()`? i.e. is it possible that `grid_size =3D=3D
+MAX_GRID_SIZE` and `count =3D=3D MAX_GRID_SIZE + 1` and then we perform an
+out-of-bounds store to `MAX_GRID_SIZE + 2` in `text`?
+
+> +       ret =3D tm1628_write_data(spi, 0, MAX_GRID_SIZE);
+> +       if (ret)
+> +               return ret;
+> +       /* Assume that subsequent SPI transfers will be ok if first was o=
+k */
+
+If not, is there a consequence? i.e. why wouldn't one check and fail
+similarly in the `tm1628_set_*` calls below?
+
+> +       if (!IS_REACHABLE(CONFIG_LEDS_CLASS))
+> +               goto no_leds;
+
+What about putting the code in the `if` body (negating the condition)?
+
+> +       num_leds =3D 0;
+
+This is reusing the variable for a different purpose, no? i.e. if we
+did not get here, we would have no leds, yet we would report the
+number above.
+
+> +       device_for_each_child_node(&spi->dev, child) {
+> +               u32 reg[2];
+> +
+> +               ret =3D fwnode_property_read_u32_array(child, "reg", reg,=
+ 2);
+> +               if (ret) {
+> +                       dev_err(&spi->dev, "Reading %s reg property faile=
+d (%d)\n",
+> +                               fwnode_get_name(child), ret);
+
+Is a failure expected? i.e. this `continue;`s, but should it fail or
+is it OK to proceed?
+
+> +       for (i =3D 0; i < 7; i++) {
+
+Maybe a `#define` for several of the `7`s around?
+
+> +static void tm1628_spi_remove(struct spi_device *spi)
+
+Doesn't `.remove` return `int`?
+
+Thanks!
+
+Cheers,
+Miguel
