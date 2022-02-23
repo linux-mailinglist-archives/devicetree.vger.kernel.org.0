@@ -2,155 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 348654C0C47
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 06:56:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6354C0C65
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 07:06:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237060AbiBWF40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 00:56:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51196 "EHLO
+        id S238153AbiBWGGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 01:06:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229720AbiBWF4Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 00:56:25 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA444BFFC;
-        Tue, 22 Feb 2022 21:55:58 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21N5tnKU023605;
-        Tue, 22 Feb 2022 23:55:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1645595749;
-        bh=Fw4mHMZ1nbLm/dCziuiDCF8pUtNvwhJTIaN42xVkIDg=;
-        h=From:To:CC:Subject:Date;
-        b=QVLGWFigxG2eyWoiyze2aNW8OjT4csEYn+KkAwbVn0FklZpmE7mgQRxImJvqX0pcj
-         +lCEPB8FcLtEiOIxkiPn1fLB7WCqGaF8M8LU+DU4hqflfbIHYDS5s9bC6mFZEzwR7O
-         cgwGOh/BryRRIdzn2her90TCj2Sr6leYNYEC9d3U=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21N5tnS2064282
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 22 Feb 2022 23:55:49 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 22
- Feb 2022 23:55:49 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 22 Feb 2022 23:55:48 -0600
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21N5tjsY022920;
-        Tue, 22 Feb 2022 23:55:46 -0600
-From:   Aparna M <a-m1@ti.com>
-To:     <a-govindraju@ti.com>, <linus.walleij@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <praneeth@ti.com>, <grygorii.strashko@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <bgolaszewski@baylibre.com>, Aparna M <a-m1@ti.com>
-Subject: [PATCH v3] dt-bindings: gpio: Convert TI TPIC2810 GPIO Controller bindings to YAML
-Date:   Wed, 23 Feb 2022 11:25:36 +0530
-Message-ID: <20220223055536.20300-1-a-m1@ti.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S233319AbiBWGGx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 01:06:53 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B6645B3CE;
+        Tue, 22 Feb 2022 22:06:22 -0800 (PST)
+X-UUID: 0387d5c6fb8544c8b313e2d5a2f8024f-20220223
+X-UUID: 0387d5c6fb8544c8b313e2d5a2f8024f-20220223
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1005719897; Wed, 23 Feb 2022 14:06:16 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 23 Feb 2022 14:06:15 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 23 Feb 2022 14:06:13 +0800
+Message-ID: <bc7d9d90aae903ac95e952d74a15105f51f03542.camel@mediatek.com>
+Subject: Re: [PATCH v2, 00/10] Enable two H264 encoder cores on MT8195
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        "Tiffany Lin" <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>,
+        <angelogioacchino.delregno@collabora.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 23 Feb 2022 14:06:13 +0800
+In-Reply-To: <20220117120615.21687-1-irui.wang@mediatek.com>
+References: <20220117120615.21687-1-irui.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert gpio-tpic2810 bindings to yaml format and remove outdated
-bindings in .txt format.
+Dear all maintainers,
 
-Signed-off-by: Aparna M <a-m1@ti.com>
----
+Gently ping.
 
-v2 -> v3: Remove redundant description and make minor change in example.
-v1 -> v2: Fix indentation issues in code and commit message.
+Could you help to review this series of patches? 
+I would be very grateful for any of your comments.
 
- .../bindings/gpio/gpio-tpic2810.txt           | 16 -------
- .../bindings/gpio/gpio-tpic2810.yaml          | 46 +++++++++++++++++++
- 2 files changed, 46 insertions(+), 16 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
-
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
-deleted file mode 100644
-index 1afc2de7a537..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--TPIC2810 GPIO controller bindings
--
--Required properties:
-- - compatible		: Should be "ti,tpic2810".
-- - reg			: The I2C address of the device
-- - gpio-controller	: Marks the device node as a GPIO controller.
-- - #gpio-cells		: Should be two. For consumer use see gpio.txt.
--
--Example:
--
--	gpio@60 {
--		compatible = "ti,tpic2810";
--		reg = <0x60>;
--		gpio-controller;
--		#gpio-cells = <2>;
--	};
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
-new file mode 100644
-index 000000000000..1375b82759a9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/gpio-tpic2810.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TPIC2810 GPIO controller bindings
-+
-+maintainers:
-+   - Aswath Govindraju <a-govindraju@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tpic2810
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+required:
-+    - compatible
-+    - reg
-+    - gpio-controller
-+    - "#gpio-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        gpio@60 {
-+            compatible = "ti,tpic2810";
-+            reg = <0x60>;
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+        };
-+    };
--- 
-2.17.1
+Thanks
+Best Regards
+On Mon, 2022-01-17 at 20:06 +0800, Irui Wang wrote:
+> MT8195 has two H264 encoder cores, they have their own power-domains,
+> clocks, interrupts, register base. The two H264 encoder cores can
+> work
+> together to achieve higher performance, it's a core mode called
+> frame-racing, one core has 4K@30fps performance, two cores can
+> achieve
+> 4K@60fps.
+> The two encoder core encoding process looks like this:
+> 
+>     VENC Core0: frm#0....frm#2....frm#4....
+>     VENC Core1: ..frm#1....frm#3....frm#5....
+> 
+> This series of patches are used to enable the two H264 encoder cores,
+> encoding process will be changed:
+> As-Is: Synchronous
+> V4L2_VIDIOC_QBUF#0 --> device_run(triger encoder) --> wait encoder
+> IRQ -->
+> encoding done with result --> job_finish
+> V4l2_VIDIOC_QBUF#1 --> device_run(triger encoder) --> wait encoder
+> IRQ -->
+> encoding done with result --> job_finish
+> ...
+> 
+> To-Be: Asynchronous
+> V4L2_VIDIOC_QBUF#0 --> device_run(triger encoder) --> job_finish
+> ..V4l2_VIDIOC_QBUF#1 --> device_run(triger encoder) --> job_finish
+> (venc core0 may encode done here, done the encoding result to client)
+> V4L2_VIDIOC_QBUF#2 --> device_run(triger encoder) --> job_finish.
+> 
+> There is no "wait encoder IRQ" synchronous call during frame-racing
+> mode
+> encoding process, it can full use the two encoder cores to achieve
+> higher
+> performance.
+> 
+> ---
+> This series patches dependent on:
+> [1]: the latest linux stage tree: 
+> https://git.linuxtv.org/media_stage.git
+> 
+> mtk decoder patches
+> [2]: 
+> https://patchwork.linuxtv.org/project/linux-media/list/?series=7105
+> [3]: 
+> https://patchwork.linuxtv.org/project/linux-media/list/?series=7131
+> 
+> new yaml included files
+> [4]:
+> 
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=551641
+> [5]:
+> 
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=580579
+> 
+> ---
+> ---
+> changes compared with v1:
+> - of_platform_populate was used in place of the component framework.
+> - new yaml file for venc cores.
+> - some modifications for patch v1's review comments.
+> ---
+> 
+> Irui Wang (10):
+>   media: mtk-vcodec: Use core type to indicate h264 and vp8 enc
+>   media: mtk-vcodec: export encoder functions
+>   dt-bindings: media: mtk-vcodec: Adds encoder cores dt-bindings for
+>     mt8195
+>   media: mtk-vcodec: Enable venc dual core usage
+>   media: mtk-vcodec: mtk-vcodec: Rewrite venc power manage interface
+>   media: mtk-vcodec: Add venc power on/off interface
+>   media: mtk-vcodec: Rewrite venc clock interface
+>   media: mtk-vcodec: Add more extra processing for dual-core mode
+>   media: mtk-vcodec: Add dual core mode encode process
+>   media: mtk-vcodec: Done encode result to client
+> 
+>  .../media/mediatek,vcodec-encoder-core.yaml   | 214
+> +++++++++++++++++
+>  drivers/media/platform/mtk-vcodec/Makefile    |   4 +-
+>  .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  44 +++-
+>  .../platform/mtk-vcodec/mtk_vcodec_enc.c      | 109 ++++++---
+>  .../platform/mtk-vcodec/mtk_vcodec_enc.h      |   7 +-
+>  .../platform/mtk-vcodec/mtk_vcodec_enc_core.c | 187 +++++++++++++++
+>  .../platform/mtk-vcodec/mtk_vcodec_enc_core.h |  36 +++
+>  .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  | 118 ++++++----
+>  .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   | 187 +++++++++++++--
+>  .../platform/mtk-vcodec/mtk_vcodec_enc_pm.h   |  11 +-
+>  .../platform/mtk-vcodec/mtk_vcodec_util.c     |  19 ++
+>  .../platform/mtk-vcodec/mtk_vcodec_util.h     |   5 +
+>  .../platform/mtk-vcodec/venc/venc_h264_if.c   | 216 +++++++++++++++-
+> --
+>  .../platform/mtk-vcodec/venc/venc_vp8_if.c    |   3 +-
+>  .../media/platform/mtk-vcodec/venc_drv_if.c   |  79 +++++--
+>  .../media/platform/mtk-vcodec/venc_drv_if.h   |   7 +
+>  .../media/platform/mtk-vcodec/venc_vpu_if.c   |  10 +-
+>  .../media/platform/mtk-vcodec/venc_vpu_if.h   |   3 +-
+>  18 files changed, 1097 insertions(+), 162 deletions(-)
+>  create mode 100644
+> Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-
+> core.yaml
+>  create mode 100644 drivers/media/platform/mtk-
+> vcodec/mtk_vcodec_enc_core.c
+>  create mode 100644 drivers/media/platform/mtk-
+> vcodec/mtk_vcodec_enc_core.h
+> 
 
