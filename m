@@ -2,185 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 584294C0CEF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 08:02:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7E834C0D02
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 08:07:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237649AbiBWHCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 02:02:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34400 "EHLO
+        id S238534AbiBWHH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 02:07:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235226AbiBWHCy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 02:02:54 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A0B33A722
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 23:02:26 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id j17so11291535wrc.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 23:02:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oRZEca9XxWtSPuMYjIlFseYg4Esas5bKwsfEt1eCOA8=;
-        b=QIZAImlqRhQHCLYGSrjuJDOCauDvhW1Xw72lbZyNLZmlfJUmufZxFSBB8H2EoKBfKN
-         jxoSwFnND2lhvOlCrC0AidfwIohJ6YEjrVIrXGyyGzc+TWJgHAZww2WFDkbsbRxXjul8
-         qVPvMzBNI6gfzqTmYteg2xN1VqQ7fqk+Pc1po1AtwoR1q6n08ExvZHauK5YFE7VYcj0Z
-         P7U3rFT/AD4Nlw2WtttkORxq2jersjOa1mPgV6CpwJlXuQyh4yx6S86RN13NT2apUzMc
-         VKjIZnG57JmHU6woyskYANNc8Yk+LiEB0wEfmqBnv/2JpZcQP5nQaLkRkyXGn6EddG07
-         h/XQ==
+        with ESMTP id S238097AbiBWHH0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 02:07:26 -0500
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD1C6335;
+        Tue, 22 Feb 2022 23:06:57 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id a23so50209218eju.3;
+        Tue, 22 Feb 2022 23:06:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oRZEca9XxWtSPuMYjIlFseYg4Esas5bKwsfEt1eCOA8=;
-        b=OUzIQwq+DTOtopQkcXFbCAKBT7hub0Ts5hcfC/Sz0YLgvtq3RdD4a0XwV2zWH4g6st
-         fmDSp5kgacD7AxNQXJmDvDqdhHx0jLx/DFQpwUnK0EXX8y4M7RbiNN4gVkPHtU1ZMCA0
-         pbHezAT84KDknwQSEibjVu+HHXtOGoCuBXmVlovRYQa5vJspX3LAYz3K31rvNafSCTTA
-         Ukdx5zgv5DryvpwMbAk7Jm6UqM7ulaMqP1JP+da5T8Hz5bjb9gPuE/BQFCNpaMWG8nNC
-         +bVnsi1Bq/Oyjf5K/V9CmLwpkAeuLZQftOFOGF6dl9/qPJXpQUhuRDx0QZ8y0No1ccxz
-         PXnw==
-X-Gm-Message-State: AOAM5315nMgAEYN8x7Tu6VpZr9fnu5dDx12Vova9AVQMNUuoeNLTq20R
-        W0KgPSazRclTZ9A51mYxefZt4XMAvLCKHZbvTTaa4g==
-X-Google-Smtp-Source: ABdhPJzIrMTIABtJTtVWuTHPjm8BpgI0RV6d0ZUOVxs96DHbAWugAxYt8PRNLPnq+EeeWflAFVTZPUTf3jvN2iH+k6Y=
-X-Received: by 2002:adf:ec47:0:b0:1e4:a380:bb73 with SMTP id
- w7-20020adfec47000000b001e4a380bb73mr22204190wrn.86.1645599744652; Tue, 22
- Feb 2022 23:02:24 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ObENWS/hj5zY1mVUZ7GyGOu2G+FMnfCnwItgeAu0qvU=;
+        b=7teXXEDX/hwh/VYglJHouK1ukUJo/AH4t/4dere0sCw9wApomsnXCIR051pBFSLdm5
+         FpgwWgxDeQOAdAKwcYh/IxBP06TdwAWM7m2aL0VO4zW3lXuZyWLsKiyQ4yhySLBsdBtP
+         eSVFrI/9raBZrD6drANTOZkEGB1s20AaFSfCisKYuWj0OsTHMo80SJRhkkNawTB+blcJ
+         r8tkeUZYCw7kIUCOmMhvxHsQbjkz6vdhCBA7A1X9O9US27KvY5TkBvP4r7AiI8TK8IB4
+         hj81UB+JI2lMX64uD0BtsCYGjxd000SF3xws+NPIAUWhy4O44YwWyZL3ZpmO3Pu91taB
+         I34Q==
+X-Gm-Message-State: AOAM533yL8QC9pEWddvfyStJya7Cu6eVizdyZhJFp0rBcdGb7XZ0nLlW
+        +h+W4azByKJontR5P9zHvJsToHI0kpk=
+X-Google-Smtp-Source: ABdhPJyWWy+Cb9A31GxKcYIrYJ/8SE/IDHrMOfRGQPDdvYdyBzQ1Awt6FtUXg9KlRqAOosOzi6JgHg==
+X-Received: by 2002:a17:906:a24b:b0:6ce:70da:12bb with SMTP id bi11-20020a170906a24b00b006ce70da12bbmr20765929ejb.667.1645600016008;
+        Tue, 22 Feb 2022 23:06:56 -0800 (PST)
+Received: from [192.168.0.124] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.googlemail.com with ESMTPSA id s18sm257263eja.87.2022.02.22.23.06.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Feb 2022 23:06:54 -0800 (PST)
+Message-ID: <a05ccb6a-4807-ad1d-06bc-bcf79d9624b8@kernel.org>
+Date:   Wed, 23 Feb 2022 08:06:53 +0100
 MIME-Version: 1.0
-References: <20220210054947.170134-1-apatel@ventanamicro.com> <20220210054947.170134-5-apatel@ventanamicro.com>
-In-Reply-To: <20220210054947.170134-5-apatel@ventanamicro.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 23 Feb 2022 12:32:11 +0530
-Message-ID: <CAAhSdy3jK26WFhG8Q=Up8hhHPpJCCkA09EKOi+B-Kp0U9Rwg7w@mail.gmail.com>
-Subject: Re: [PATCH v11 4/8] RISC-V: Add SBI HSM suspend related defines
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Anup Patel <apatel@ventanamicro.com>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        kvm-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 2/3] dt-bindings: remoteproc: Add AVM WASP
+Content-Language: en-US
+To:     Kestrel seventyfour <kestrelseventyfour@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220221135351.GA7342@ubuntu>
+ <3e1ee336-1c78-7719-826c-2a093a20ee8e@kernel.org>
+ <CAE9cyGRcDSJwrKOWER9wxHSAQzLs2ZdL+uWsme0etMV+8wKcMg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <CAE9cyGRcDSJwrKOWER9wxHSAQzLs2ZdL+uWsme0etMV+8wKcMg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Palmer
+On 22/02/2022 16:27, Kestrel seventyfour wrote:
+> Am Mo., 21. Feb. 2022 um 17:47 Uhr schrieb Krzysztof Kozlowski
+> <krzk@kernel.org>:
+>>
+>> On 21/02/2022 14:53, Daniel Kestrel wrote:
+>>> AVM Fritzbox router boards may contain an additional ATH79
+>>> based SoC that has the wifi cards connected.
+>>> This patch adds bindings for this remote processor.
+>>>
+>>> Signed-off-by: Daniel Kestrel <kestrelseventyfour@gmail.com>
+>>> ---
+>>>  .../bindings/remoteproc/avm,wasp-rproc.yaml   | 93 +++++++++++++++++++
+>>>  1 file changed, 93 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+>>> new file mode 100644
+>>> index 000000000000..21f3bbcc4202
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+>>> @@ -0,0 +1,93 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/remoteproc/avm,wasp-rproc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: AVM WASP processor controller bindings
+>>> +
+>>> +maintainers:
+>>> +  - Daniel Kestrel <kestrelseventyfour@gmail.com>
+>>> +
+>>> +description: |
+>>> +  This document defines the bindings for the remoteproc component that loads and
+>>> +  boots firmwares on the AVM Wireless Assistent Support Processor (WASP) SoC
+>>> +  that is attached to some AVM Fritzbox devices (3390, 3490, 5490, 5491, 7490).
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: avm,wasp
+>>> +
+>>> +  ath9k-firmware:
+>>> +    $ref: /schemas/types.yaml#/definitions/string
+>>> +    description: |
+>>> +      Should contain the name of the ath9k eeprom that is to be loaded from
+>>> +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
+>>> +      The file should be located on the firmware search path.
+>>
+>> Are you sure this is a property of hardware? It looks like runtime
+>> configuration parameter.
+>>
+>>> +
+>>> +  ath10k-caldata:
+>>> +    $ref: /schemas/types.yaml#/definitions/string
+>>> +    description: |
+>>> +      Should contain the name of the ath10k caldata that is to be loaded from
+>>> +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
+>>> +      The file should be located on the firmware search path.
+>>
+>> Same.
+>>
+>>> +
+>>> +  wasp-netboot-firmware:
+>>> +    $ref: /schemas/types.yaml#/definitions/string
+>>> +    description: |
+>>> +      Should contain the name of the netboot firmware that is to be loaded
+>>> +      and started on the WASP SoC using mdio in order to be able to load
+>>> +      the initramfs image as a second stage.
+>>> +      The file should be located on the firmware search path.
+>>
+>> Same.
+>>
+>>> +
+>>> +  wasp-netboot-mdio:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: Reference to the Lantiq GSWIP switch mdio.
+>>
+>> Vendor prefix.
+>>
+>>> +
+>>> +  wasp-initramfs-port:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: Reference to the network port, where the WASP SoC is connected to.
+>>
+>> Vendor prefix.
+>>
+>>> +
+>>> +  wasp-initramfs-image:
+>>> +    $ref: /schemas/types.yaml#/definitions/string
+>>> +    description: |
+>>> +      Should contain the name of the initramfs linux image that is to be loaded
+>>> +      and started on the WASP SoC.
+>>> +      The file should be located on the firmware search path.
+>>
+>> initramfs path looks even less like a property of hardware... If you
+>> change initramfs from CPIO to initrd or GZ, hardware changes as well?
+>>
+>>> +  reset-gpio:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +    description: Reference and parameters for the reset gpio of the WASP SoC.
+>>
+>> Wrong suffix, unneeded type. Did you run dt_binding_check?
+> 
+> Hi Krzystof,
+> 
+> Sorry for missing the dt_binding_check.
+> I have switched to use devm_gpiod_get and it does not work if the
+> suffix is not -gpio
+> or -gpios (see of_find_gpio method).
+> Would avm,reset-gpio be ok to use here?
 
-On Thu, Feb 10, 2022 at 11:20 AM Anup Patel <apatel@ventanamicro.com> wrote:
->
-> From: Anup Patel <anup.patel@wdc.com>
->
-> We add defines related to SBI HSM suspend call and also
-> update HSM states naming as-per latest SBI specification.
->
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> Reviewed-by: Guo Ren <guoren@kernel.org>
+No, because the suffix must be -gpios.
+These are the legacy, often deprecated properties:
+git grep '\-gpio:' -- Documentation/devicetree/ | grep yaml
 
-This patch is shared with "KVM RISC-V SBI v0.3 support".
-(https://lore.kernel.org/all/20220201082227.361967-2-apatel@ventanamicro.com/T/)
+These are proper:
+git grep '\-gpios:' -- Documentation/devicetree/ | grep yaml
 
-How do you want to handle this ?
 
-One option is that I take this patch through the KVM RISC-V tree
-and you can send this series (minus this patch) for 5.18 after the
-KVM RISC-V changes have been merged.
+> 
+> Thanks.
+>>
+>> "Reference and parameters" are obvious, so they should be skipped.
+>>
+>>> +
+>>> +  startup-gpio:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +    description: Reference and parameters for the power switch gpio of the WASP SoC.
+>>
+>> Same.
+> Is avm,startup-gpio ok, like above?
 
-Regards,
-Anup
+avm,startup-gpios
 
-> ---
->  arch/riscv/include/asm/sbi.h    | 27 ++++++++++++++++++++++-----
->  arch/riscv/kernel/cpu_ops_sbi.c |  2 +-
->  arch/riscv/kvm/vcpu_sbi_hsm.c   |  4 ++--
->  3 files changed, 25 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.h
-> index d1c37479d828..06133b4f8e20 100644
-> --- a/arch/riscv/include/asm/sbi.h
-> +++ b/arch/riscv/include/asm/sbi.h
-> @@ -71,15 +71,32 @@ enum sbi_ext_hsm_fid {
->         SBI_EXT_HSM_HART_START = 0,
->         SBI_EXT_HSM_HART_STOP,
->         SBI_EXT_HSM_HART_STATUS,
-> +       SBI_EXT_HSM_HART_SUSPEND,
->  };
->
-> -enum sbi_hsm_hart_status {
-> -       SBI_HSM_HART_STATUS_STARTED = 0,
-> -       SBI_HSM_HART_STATUS_STOPPED,
-> -       SBI_HSM_HART_STATUS_START_PENDING,
-> -       SBI_HSM_HART_STATUS_STOP_PENDING,
-> +enum sbi_hsm_hart_state {
-> +       SBI_HSM_STATE_STARTED = 0,
-> +       SBI_HSM_STATE_STOPPED,
-> +       SBI_HSM_STATE_START_PENDING,
-> +       SBI_HSM_STATE_STOP_PENDING,
-> +       SBI_HSM_STATE_SUSPENDED,
-> +       SBI_HSM_STATE_SUSPEND_PENDING,
-> +       SBI_HSM_STATE_RESUME_PENDING,
->  };
->
-> +#define SBI_HSM_SUSP_BASE_MASK                 0x7fffffff
-> +#define SBI_HSM_SUSP_NON_RET_BIT               0x80000000
-> +#define SBI_HSM_SUSP_PLAT_BASE                 0x10000000
-> +
-> +#define SBI_HSM_SUSPEND_RET_DEFAULT            0x00000000
-> +#define SBI_HSM_SUSPEND_RET_PLATFORM           SBI_HSM_SUSP_PLAT_BASE
-> +#define SBI_HSM_SUSPEND_RET_LAST               SBI_HSM_SUSP_BASE_MASK
-> +#define SBI_HSM_SUSPEND_NON_RET_DEFAULT                SBI_HSM_SUSP_NON_RET_BIT
-> +#define SBI_HSM_SUSPEND_NON_RET_PLATFORM       (SBI_HSM_SUSP_NON_RET_BIT | \
-> +                                                SBI_HSM_SUSP_PLAT_BASE)
-> +#define SBI_HSM_SUSPEND_NON_RET_LAST           (SBI_HSM_SUSP_NON_RET_BIT | \
-> +                                                SBI_HSM_SUSP_BASE_MASK)
-> +
->  enum sbi_ext_srst_fid {
->         SBI_EXT_SRST_RESET = 0,
->  };
-> diff --git a/arch/riscv/kernel/cpu_ops_sbi.c b/arch/riscv/kernel/cpu_ops_sbi.c
-> index dae29cbfe550..2e16f6732cdf 100644
-> --- a/arch/riscv/kernel/cpu_ops_sbi.c
-> +++ b/arch/riscv/kernel/cpu_ops_sbi.c
-> @@ -111,7 +111,7 @@ static int sbi_cpu_is_stopped(unsigned int cpuid)
->
->         rc = sbi_hsm_hart_get_status(hartid);
->
-> -       if (rc == SBI_HSM_HART_STATUS_STOPPED)
-> +       if (rc == SBI_HSM_STATE_STOPPED)
->                 return 0;
->         return rc;
->  }
-> diff --git a/arch/riscv/kvm/vcpu_sbi_hsm.c b/arch/riscv/kvm/vcpu_sbi_hsm.c
-> index 2e383687fa48..1ac4b2e8e4ec 100644
-> --- a/arch/riscv/kvm/vcpu_sbi_hsm.c
-> +++ b/arch/riscv/kvm/vcpu_sbi_hsm.c
-> @@ -60,9 +60,9 @@ static int kvm_sbi_hsm_vcpu_get_status(struct kvm_vcpu *vcpu)
->         if (!target_vcpu)
->                 return -EINVAL;
->         if (!target_vcpu->arch.power_off)
-> -               return SBI_HSM_HART_STATUS_STARTED;
-> +               return SBI_HSM_STATE_STARTED;
->         else
-> -               return SBI_HSM_HART_STATUS_STOPPED;
-> +               return SBI_HSM_STATE_STOPPED;
->  }
->
->  static int kvm_sbi_ext_hsm_handler(struct kvm_vcpu *vcpu, struct kvm_run *run,
-> --
-> 2.25.1
->
+
+Best regards,
+Krzysztof
