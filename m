@@ -2,114 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEFB04C153E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 15:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C1A04C1551
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 15:23:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241481AbiBWOSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 09:18:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38338 "EHLO
+        id S239075AbiBWOXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 09:23:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234631AbiBWOSv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 09:18:51 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED66B0D0D;
-        Wed, 23 Feb 2022 06:18:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645625904; x=1677161904;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=crq1RQf8JYsNnbTFUCounwd1wHEYciMzKMAUGyE7U0E=;
-  b=nOam0reJjskYH6zRei5Ip4EGifKszNTAJXCBily/TCgZdd2CdipzgDed
-   ZlZEr6BNAXaC75gN1m8cei/yU8DPHJbLe/mOzmg279G/20CPRfYDQ+Cyh
-   3XkXJ6Pj0jOn0fR1ubtoU6AM55b0CIe3V8kZ8iRNXkJpKYwJ3pqAt1smd
-   Fdy1XMnbsRo6ew5XrlrfjOPgcJrL0eEmBiVwf976usNOTnRFhyz7Nvrs0
-   V0viGlZOuWs/GPxmzuN9p8eIMpDolLYDK9EActvYQ6HpZ90LbQi9alWyY
-   nZnzmPjQFcMfaSO0KYd7OgSxwMTTgcvcyTZ6v+8KkSY7LTBcGRAzdIp1n
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="276591593"
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; 
-   d="scan'208";a="276591593"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 06:18:24 -0800
-X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; 
-   d="scan'208";a="548266192"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 06:18:21 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id E6E1C201C2;
-        Wed, 23 Feb 2022 16:18:18 +0200 (EET)
-Date:   Wed, 23 Feb 2022 16:18:18 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Michael Tretter <m.tretter@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        p.zabel@pengutronix.de, Ian Arkver <ian.arkver.dev@gmail.com>,
-        kernel@pengutronix.de, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v10 2/2] media: i2c: isl7998x: Add driver for Intersil
- ISL7998x
-Message-ID: <YhZCKsiUgyh3HodU@paasikivi.fi.intel.com>
-References: <20220217154407.2892822-1-m.tretter@pengutronix.de>
- <20220217154407.2892822-3-m.tretter@pengutronix.de>
- <2a2038bc-9f84-c451-deb3-1e807ac2f0d3@xs4all.nl>
- <YhYlnEBAh0QtRXZ0@paasikivi.fi.intel.com>
- <YhYuogHaHuyVPd2C@paasikivi.fi.intel.com>
- <2c0b387c-d636-bc0c-74b1-f1eba3d89254@xs4all.nl>
+        with ESMTP id S239615AbiBWOXw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 09:23:52 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3082B18AC;
+        Wed, 23 Feb 2022 06:23:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 561AAB81FE0;
+        Wed, 23 Feb 2022 14:23:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C27E3C340E7;
+        Wed, 23 Feb 2022 14:23:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645626201;
+        bh=SrO9bsrYuRt7a8bRBkavU0Z0ZAQi8lO6YTykWYTLTLE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZwRlc/wbqx1ItVhhxrDoIO713Lw9EURd6cCNPGOXG6vl+ZHzdl+O9iEDA35f46rYK
+         vK7tjqDaNYGarr2z/J6QLCIgddURexrZf3WW5CFRtuHm6IT9c3hR1cFAY69YCAXOkS
+         6+FZLXQWIpF9SMp1fLnNaJRS6DbSYFTwSDXQOQAwcin0VqoLZyCAVTTe/hKKnJITNr
+         gN/AgCeh9wQ/nUmXdyiUgnNan/IL787Arip2wVCVFEo3BRyU1mAW0mXP9b1AaTzWVX
+         9VEzzuyL/Q4sYCfpqxgdRXtPV0E0r6hjhM1cJgooicQiQke44MXZaNPPdZ5o/Xx9ec
+         jAadmBbA3+HaA==
+Date:   Wed, 23 Feb 2022 14:23:16 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, kernel@axis.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] regulator: virtual: add devicetree support
+Message-ID: <YhZDVGC7dPiisnI+@sirena.org.uk>
+References: <20220218110604.1329024-1-vincent.whitchurch@axis.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="lWslcJViHbwM70Q/"
 Content-Disposition: inline
-In-Reply-To: <2c0b387c-d636-bc0c-74b1-f1eba3d89254@xs4all.nl>
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220218110604.1329024-1-vincent.whitchurch@axis.com>
+X-Cookie: I smell a wumpus.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 23, 2022 at 02:04:48PM +0100, Hans Verkuil wrote:
-> On 2/23/22 13:54, Sakari Ailus wrote:
-> > Hi Hans, Michael,
-> > 
-> > On Wed, Feb 23, 2022 at 02:16:28PM +0200, Sakari Ailus wrote:
-> >>>> +static int isl7998x_pre_streamon(struct v4l2_subdev *sd, u32 flags)
-> >>>> +{
-> >>>> +	struct i2c_client *client = v4l2_get_subdevdata(sd);
-> >>>> +	struct device *dev = &client->dev;
-> >>>> +
-> >>>> +	if (flags & V4L2_SUBDEV_PRE_STREAMON_FL_MANUAL_LP)
-> >>>> +		return pm_runtime_resume_and_get(dev);
-> >>>> +
-> >>>> +	return 0;
-> >>>
-> >>> This feels a bit scary: if V4L2_SUBDEV_PRE_STREAMON_FL_MANUAL_LP is NOT
-> >>> set, then pm_runtime_resume_and_get() isn't called, but this function
-> >>> still returns success...
-> >>
-> >> Good find.
-> >>
-> >> pm_runtime_resume_and_get() need to be called unconditionally.
-> >>
-> >> Alternatively, store what was done here, and put the PM use count
-> >> accordingly below. But I see no reason to do that.
-> > 
-> > But I think the driver is otherwise good to go.
-> > 
-> > Unless there are objections, I'll drop the check in the pre_streamon()
-> > callback and apply it into my tree.
-> > 
-> 
-> OK, with that change you can add my:
-> 
-> Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> 
-> to this patch. I'll delegate the series to you in patchwork.
 
-Thanks!
+--lWslcJViHbwM70Q/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
--- 
-Sakari Ailus
+On Fri, Feb 18, 2022 at 12:06:03PM +0100, Vincent Whitchurch wrote:
+
+> The reg-virt-consumer is very useful for development and testing of
+> regulator drivers since it allows voltages and modes to be set from
+> userspace.  However, it currently requires platform data so it cannot be
+> used on modern platforms.  Add support for probing it from the
+> devicetree to remedy this.
+
+Meh, you can add a bit of code on module_init() to register a platform
+device or something.
+
+> Since this driver is only meant for testing and is a purely software
+> construct, no binding documentation is added.
+
+That's not going to stop anyone.  We should at the very least be
+printing very loud warnings if anyone tries to intantiate this.
+
+> +	if (!reg_id)
+> +		reg_id = "default";
+> +
+
+Oh?
+
+--lWslcJViHbwM70Q/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIWQ1MACgkQJNaLcl1U
+h9D9rwf9EWvfPUGwP+cLGGFzy4Z+mcsPdZYQYP30JWIZwVe3K3vTEbPRkttdtl07
+rDGuj7BTTUaTMZVfNBzaTYiJKR34JTG3ksTuf8OPY87vGtVx6Dy/TweYrY8/voGv
+nuBM1MQRgeZN8SsOyr7ojtM7I0LlY7ZMda0cMQs3s7T4Ct2oOjPAXzJMqD2h50XL
+5652wNjIeLQJ80pmkawLuinxsKWzdcyrxHJ0r0Pal7ZQ05sPHEDc3nPI90IDEaAy
+Bnfdn+6qpFZ0yQz9UsXfp0Q6Ybw/hp6dYugLxjiEtzfBgUrWbJeBwomkjUiJ4COx
+vjl3gwCXqq/wngpZ8k3wfQlQNrIYCw==
+=Flk0
+-----END PGP SIGNATURE-----
+
+--lWslcJViHbwM70Q/--
