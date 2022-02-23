@@ -2,71 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D2374C0B3F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 05:43:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEDD84C0B54
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 06:00:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238097AbiBWEnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Feb 2022 23:43:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54766 "EHLO
+        id S229456AbiBWFA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 00:00:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237955AbiBWEno (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Feb 2022 23:43:44 -0500
-Received: from mail-oo1-xc2c.google.com (mail-oo1-xc2c.google.com [IPv6:2607:f8b0:4864:20::c2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 992D6527DB
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 20:43:17 -0800 (PST)
-Received: by mail-oo1-xc2c.google.com with SMTP id w10-20020a4ae08a000000b0031bdf7a6d76so20645807oos.10
-        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 20:43:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=bNhRlACxy2aufThO0hLWVItxYuhke+gYQQ/WXwtufY8=;
-        b=kKPKkb9UWRCXh5s8pqyecoVDUfpJBoEebNDqO5baIS3XHk23sQRMFVGe0Rw0VEOb/9
-         S0hS1nDWtPJEOhX1bcvTF6h2mvbvl7VscbsY3yWY3NWTdlCsiGQ1xRGs4Nqa1wYACqDz
-         ACGFHbXEhWAJ/YycNKOBnUSYUC9eTPrwDSRoJk4cBqONtxfuwS1ndinZfJ9FGctoCeTH
-         weui4mCLY7okSfFEWsfsfc0Qs9ra/WtXIi1PDzlxQAHuF455RiMfzNI1BPA7xT6IhmC2
-         HpfK4BUr6zaZbUZmxtpwZARoe1z09jyLQnfgBD0PttRDo6bfmNg3ncbrPMvUvwIaGBxw
-         5UJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bNhRlACxy2aufThO0hLWVItxYuhke+gYQQ/WXwtufY8=;
-        b=60NFarvxgCMWquZrm4myNBzWF604nuRX55RrySh1UseydpshxyOsXHKS15EbatVCtL
-         RbEjIZGIJUWwSDhsPuV6aLA8Rot26rT5qIeXc/XuAaevpcAHuAhS2UrXA8xQ35fuHJnn
-         24zVrtY3Zc2s9MMWbMjOqnifG1rKZ7Vzi30z8IjepN66rnrKB1cDBdFPYwTNBiW5wIQL
-         SfcdMx8RId9QeRHBlhKPW0Z1UjW5ud/8kOyVSuXt4KDuWJXnYDdXQfe1p6VCd6DwJr5G
-         idzY97HHWWvpAPalCsqThjLNj/4A/UsnvCUkffIkesVt5NTAOqMajCW2t9SiyJZiRyAh
-         5bcQ==
-X-Gm-Message-State: AOAM53314P6jqNlwviyknr16ZhozZByuHbMhYUA6H6ySljKJQOr6ZrSy
-        Z0wmR0VWeh0Xwuy3BGu6qun0UA==
-X-Google-Smtp-Source: ABdhPJxUmsS7LgM5xfLdKiun0arpDAiRqf3D/VggoI4K08YZqlQqsoAsNP+wfA5swiCyJKdXHewi4w==
-X-Received: by 2002:a05:6870:60a0:b0:d3:a3f7:8b59 with SMTP id t32-20020a05687060a000b000d3a3f78b59mr3056772oae.94.1645591396944;
-        Tue, 22 Feb 2022 20:43:16 -0800 (PST)
-Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id i20sm115251ota.71.2022.02.22.20.43.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Feb 2022 20:43:16 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S232067AbiBWFAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 00:00:55 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC7C060CCD;
+        Tue, 22 Feb 2022 21:00:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645592428; x=1677128428;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6FLKm6fp0tyd6+4vW4Mst9f8YW1kXerksPWJZQnchhs=;
+  b=mkTRIgGfVowajtjZcwokhZm+kAsW6+MX/JpI+IPNvyifD3UxqLqLipgZ
+   79wlQ55GRGMnPdC7/eTEz3QOPTqrkSU70iwOhnLRshpNPnGoC9by/1l+a
+   8k5ChUQz7myoLs0rNZQb4wszb25j4NdMQeGJrroK+MeFGg/xg2mHjtsKd
+   9DyYPe4rM5eNheFBitL/YgkVeC86ySHgzhQk1NTbRA/LhwczW56KDfsnz
+   6utJDtw7dFOoz0txYWNobIgkvEmw861Pc2Ysu4h+dF+VpVMvzULF8FV3Z
+   pvHVbn2eD2hrdcE8gHMWDClEgXwebdRqmKVAgqCvCUdZzNaKKGqMW2aEz
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="338320951"
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; 
+   d="scan'208";a="338320951"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Feb 2022 21:00:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; 
+   d="scan'208";a="639175040"
+Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 22 Feb 2022 21:00:16 -0800
+Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nMjl9-0000zj-DA; Wed, 23 Feb 2022 05:00:15 +0000
+Date:   Wed, 23 Feb 2022 12:59:48 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Markuss Broks <markuss.broks@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] clk: qcom: rpmhcc: add sc8280xp support to the RPMh clock controller
-Date:   Tue, 22 Feb 2022 20:45:16 -0800
-Message-Id: <20220223044516.3776637-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220223044516.3776637-1-bjorn.andersson@linaro.org>
-References: <20220223044516.3776637-1-bjorn.andersson@linaro.org>
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] Input: add Imagis touchscreen driver
+Message-ID: <202202231213.Vj9yo4tW-lkp@intel.com>
+References: <20220222203414.8656-3-markuss.broks@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220222203414.8656-3-markuss.broks@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,51 +70,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm SC8280XP platform exposes 5 clocks through the RPMh clock
-controller. Add these, and the relates active-only variants, to the RPMh
-clock controller driver.
+Hi Markuss,
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on dtor-input/next]
+[also build test WARNING on linux/master robh/for-next linus/master v5.17-rc5 next-20220222]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Markuss-Broks/Add-support-for-Imagis-touchscreens/20220223-043645
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20220223/202202231213.Vj9yo4tW-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d271fc04d5b97b12e6b797c6067d3c96a8d7470e)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/bc77ee5e0d7309edca7d65925c6afa05334b0b01
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Markuss-Broks/Add-support-for-Imagis-touchscreens/20220223-043645
+        git checkout bc77ee5e0d7309edca7d65925c6afa05334b0b01
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/input/touchscreen/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/input/touchscreen/imagis.c:300:6: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+           if (input_device_enabled(ts->input_dev))
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/input/touchscreen/imagis.c:305:9: note: uninitialized use occurs here
+           return ret;
+                  ^~~
+   drivers/input/touchscreen/imagis.c:300:2: note: remove the 'if' if its condition is always true
+           if (input_device_enabled(ts->input_dev))
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/input/touchscreen/imagis.c:296:9: note: initialize the variable 'ret' to silence this warning
+           int ret;
+                  ^
+                   = 0
+   drivers/input/touchscreen/imagis.c:316:6: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+           if (input_device_enabled(ts->input_dev))
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/input/touchscreen/imagis.c:321:9: note: uninitialized use occurs here
+           return ret;
+                  ^~~
+   drivers/input/touchscreen/imagis.c:316:2: note: remove the 'if' if its condition is always true
+           if (input_device_enabled(ts->input_dev))
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/input/touchscreen/imagis.c:312:9: note: initialize the variable 'ret' to silence this warning
+           int ret;
+                  ^
+                   = 0
+   2 warnings generated.
+
+
+vim +300 drivers/input/touchscreen/imagis.c
+
+   291	
+   292	static int __maybe_unused imagis_suspend(struct device *dev)
+   293	{
+   294		struct i2c_client *client = to_i2c_client(dev);
+   295		struct imagis_ts *ts = i2c_get_clientdata(client);
+   296		int ret;
+   297	
+   298		mutex_lock(&ts->input_dev->mutex);
+   299	
+ > 300		if (input_device_enabled(ts->input_dev))
+   301			ret = imagis_stop(ts);
+   302	
+   303		mutex_unlock(&ts->input_dev->mutex);
+   304	
+   305		return ret;
+   306	}
+   307	
+
 ---
- drivers/clk/qcom/clk-rpmh.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-index 74e57c84f60a..aed907982344 100644
---- a/drivers/clk/qcom/clk-rpmh.c
-+++ b/drivers/clk/qcom/clk-rpmh.c
-@@ -512,6 +512,23 @@ static const struct clk_rpmh_desc clk_rpmh_sm8350 = {
- 	.num_clks = ARRAY_SIZE(sm8350_rpmh_clocks),
- };
- 
-+DEFINE_CLK_RPMH_VRM(sc8280xp, ln_bb_clk3, ln_bb_clk3_ao, "lnbclka3", 2);
-+
-+static struct clk_hw *sc8280xp_rpmh_clocks[] = {
-+	[RPMH_CXO_CLK]		= &sdm845_bi_tcxo.hw,
-+	[RPMH_CXO_CLK_A]	= &sdm845_bi_tcxo_ao.hw,
-+	[RPMH_LN_BB_CLK3]       = &sc8280xp_ln_bb_clk3.hw,
-+	[RPMH_LN_BB_CLK3_A]     = &sc8280xp_ln_bb_clk3_ao.hw,
-+	[RPMH_IPA_CLK]          = &sdm845_ipa.hw,
-+	[RPMH_PKA_CLK]          = &sm8350_pka.hw,
-+	[RPMH_HWKM_CLK]         = &sm8350_hwkm.hw,
-+};
-+
-+static const struct clk_rpmh_desc clk_rpmh_sc8280xp = {
-+	.clks = sc8280xp_rpmh_clocks,
-+	.num_clks = ARRAY_SIZE(sc8280xp_rpmh_clocks),
-+};
-+
- /* Resource name must match resource id present in cmd-db */
- DEFINE_CLK_RPMH_ARC(sc7280, bi_tcxo, bi_tcxo_ao, "xo.lvl", 0x3, 4);
- 
-@@ -691,6 +708,7 @@ static int clk_rpmh_probe(struct platform_device *pdev)
- static const struct of_device_id clk_rpmh_match_table[] = {
- 	{ .compatible = "qcom,sc7180-rpmh-clk", .data = &clk_rpmh_sc7180},
- 	{ .compatible = "qcom,sc8180x-rpmh-clk", .data = &clk_rpmh_sc8180x},
-+	{ .compatible = "qcom,sc8280xp-rpmh-clk", .data = &clk_rpmh_sc8280xp},
- 	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
- 	{ .compatible = "qcom,sdx55-rpmh-clk",  .data = &clk_rpmh_sdx55},
- 	{ .compatible = "qcom,sdx65-rpmh-clk",  .data = &clk_rpmh_sdx65},
--- 
-2.33.1
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
